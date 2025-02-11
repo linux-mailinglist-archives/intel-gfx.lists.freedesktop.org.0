@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52C7A3073B
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 10:35:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 280FBA30748
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 10:38:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAF0410E646;
-	Tue, 11 Feb 2025 09:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B945410E148;
+	Tue, 11 Feb 2025 09:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S1Q/Cs5h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OaQYrMup";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D72CF10E654
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 09:35:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90BD310E148
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 09:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739266543; x=1770802543;
+ t=1739266722; x=1770802722;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=NkiMdYIo40+bD8CBsEjcQAW+n9MAk4h5DMLizfwklTc=;
- b=S1Q/Cs5hjrDDYkXe0yLtEdMxzh4hgI2d8ATq8VoF+oMFMgndSFjTCFQU
- XZuVzrRukRkYgOyhg+tEsLNZsfKAgUgaQmGY41PCFswH/W+XeB8R/Wl3f
- Yaeo58yBLEx8Puq/yU57Sg/FG1qFHbfAzrfVREFwLCGebm8imRW8gMYOw
- Ri9dnyAj0thjEaYvfl+nwZqXdWIu2TvVu7YbFsEMFhW1o3rm5RCyU3sAP
- Ymqcz/mNwbYlu+fZWyJSFlPohD5xeqfqvw+Ac8T15zGavNGihkkGCh1Sp
- HHfr6u7XA3xgCb0On5af3M5/c5JEswJB5aorlafSNXMmSF67L2m9GiMlx A==;
-X-CSE-ConnectionGUID: l97IjIyhTxatFcMVWszhXA==
-X-CSE-MsgGUID: j3/9/PrUT3639g5mxQhqGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51304723"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51304723"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 01:35:42 -0800
-X-CSE-ConnectionGUID: 1bW5R/3bQteD6z9njGTlVQ==
-X-CSE-MsgGUID: FeWv0nNSSr+WE+JL3PaqYg==
+ bh=3WxsuYyzpC/vvXaU8bdbzF/IqNNk4jENVnwkmElYaa4=;
+ b=OaQYrMup9xApKZm8kzBtrNwIu5n5gW95fMbFqjad3lnRXVAeAN/kbxSY
+ sl54k+hGK0OLf5AqtPBb3ZmE/qg7026VpgdjNDbkTKNg6QAOXMwqqI6ox
+ y7KqRbF2UYDVylhRzRUznlIosexHPO78qTq1d3n4tCRStRbA2CPVFeim7
+ i0osIvPKgWcpgpxUc+XVhNR7q+yWxrr6I832v1Y7uMQP8BT2Sek+8ZUIJ
+ 6DYPccEh5S5Rx6fJYpQs+npA2HmfqOnmQlGfgkeO1ERluC3pZv9rh+rUX
+ i5kk8haeBtlIfgcn6APrz4EF2JUTe/AqZ4qyw3399nT6LASDccWWPGpEe A==;
+X-CSE-ConnectionGUID: k/QOCq2sRii4iycKH9ckGQ==
+X-CSE-MsgGUID: xEmuvyuMQIKy1MTbDkN//A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50512191"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="50512191"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 01:38:41 -0800
+X-CSE-ConnectionGUID: QTr8MjceQKuDol0q+E2vRw==
+X-CSE-MsgGUID: i4XmC7g1TjufDX75IuoXyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="117485157"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="112427184"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.29])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 01:35:40 -0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 01:38:40 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] drm/i915: Continue intel_display_power struct
- intel_display conversion
-In-Reply-To: <20250211000135.6096-3-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/4] drm/i915/gvt: Stop using
+ intel_runtime_pm_put_unchecked()
+In-Reply-To: <20250211000135.6096-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250211000135.6096-1-ville.syrjala@linux.intel.com>
- <20250211000135.6096-3-ville.syrjala@linux.intel.com>
-Date: Tue, 11 Feb 2025 11:35:37 +0200
-Message-ID: <87jz9w3jti.fsf@intel.com>
+ <20250211000135.6096-4-ville.syrjala@linux.intel.com>
+Date: Tue, 11 Feb 2025 11:38:37 +0200
+Message-ID: <87h6503joi.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,516 +74,239 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 11 Feb 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Convert the remaining intel_display_power.h interfaces to
-> take struct intel_display instead of struct drm_i915_private.
-> intel_display_power.c still has some internal uses due to
-> i915->runtime_pm.
+> intel_runtime_pm_put_unchecked() is not meant to be used
+> outside the runtime pm implementation, so don't.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
->  drivers/gpu/drm/i915/display/g4x_hdmi.c       |  2 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 10 +++----
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 ++--
->  .../drm/i915/display/intel_display_debugfs.c  |  3 +-
->  .../drm/i915/display/intel_display_power.c    | 30 +++++++------------
->  .../drm/i915/display/intel_display_power.h    | 15 +++++-----
->  .../i915/display/intel_display_power_well.c   |  3 +-
->  drivers/gpu/drm/i915/display/intel_tc.c       | 12 ++++----
->  drivers/gpu/drm/i915/display/skl_watermark.c  | 16 +++++-----
->  drivers/gpu/drm/i915/display/skl_watermark.h  |  3 +-
->  11 files changed, 46 insertions(+), 56 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915=
-/display/g4x_dp.c
-> index 7eb5b4915f2c..d3b5ead188ba 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -1389,7 +1389,7 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
->  	dig_port->max_lanes =3D 4;
->=20=20
->  	intel_encoder->type =3D INTEL_OUTPUT_DP;
-> -	intel_encoder->power_domain =3D intel_display_power_ddi_lanes_domain(de=
-v_priv, port);
-> +	intel_encoder->power_domain =3D intel_display_power_ddi_lanes_domain(di=
-splay, port);
->  	if (IS_CHERRYVIEW(dev_priv)) {
->  		if (port =3D=3D PORT_D)
->  			intel_encoder->pipe_mask =3D BIT(PIPE_C);
-> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i9=
-15/display/g4x_hdmi.c
-> index 7f13cf9b1a2e..9e1ca7767392 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> @@ -763,7 +763,7 @@ bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->  	intel_encoder->shutdown =3D intel_hdmi_encoder_shutdown;
->=20=20
->  	intel_encoder->type =3D INTEL_OUTPUT_HDMI;
-> -	intel_encoder->power_domain =3D intel_display_power_ddi_lanes_domain(de=
-v_priv, port);
-> +	intel_encoder->power_domain =3D intel_display_power_ddi_lanes_domain(di=
-splay, port);
->  	intel_encoder->port =3D port;
->  	if (IS_CHERRYVIEW(dev_priv)) {
->  		if (port =3D=3D PORT_D)
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 6e09dfcbaa7d..8e319399205a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -935,7 +935,7 @@ static enum intel_display_power_domain
->  intel_ddi_main_link_aux_domain(struct intel_digital_port *dig_port,
->  			       const struct intel_crtc_state *crtc_state)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display =3D to_intel_display(dig_port);
->=20=20
->  	/*
->  	 * ICL+ HW requires corresponding AUX IOs to be powered up for PSR with
-> @@ -951,8 +951,8 @@ intel_ddi_main_link_aux_domain(struct intel_digital_p=
-ort *dig_port,
->  	 * extra wells.
->  	 */
->  	if (intel_psr_needs_aux_io_power(&dig_port->base, crtc_state))
-> -		return intel_display_power_aux_io_domain(i915, dig_port->aux_ch);
-> -	else if (DISPLAY_VER(i915) < 14 &&
-> +		return intel_display_power_aux_io_domain(display, dig_port->aux_ch);
-> +	else if (DISPLAY_VER(display) < 14 &&
->  		 (intel_crtc_has_dp_encoder(crtc_state) ||
->  		  intel_encoder_is_tc(&dig_port->base)))
->  		return intel_aux_power_domain(dig_port);
-> @@ -5261,7 +5261,7 @@ void intel_ddi_init(struct intel_display *display,
->  	encoder->get_power_domains =3D intel_ddi_get_power_domains;
->=20=20
->  	encoder->type =3D INTEL_OUTPUT_DDI;
-> -	encoder->power_domain =3D intel_display_power_ddi_lanes_domain(dev_priv=
-, port);
-> +	encoder->power_domain =3D intel_display_power_ddi_lanes_domain(display,=
- port);
->  	encoder->port =3D port;
->  	encoder->cloneable =3D 0;
->  	encoder->pipe_mask =3D ~0;
-> @@ -5412,7 +5412,7 @@ void intel_ddi_init(struct intel_display *display,
->  	}
->=20=20
->  	drm_WARN_ON(&dev_priv->drm, port > PORT_I);
-> -	dig_port->ddi_io_power_domain =3D intel_display_power_ddi_io_domain(dev=
-_priv, port);
-> +	dig_port->ddi_io_power_domain =3D intel_display_power_ddi_io_domain(dis=
-play, port);
->=20=20
->  	if (DISPLAY_VER(dev_priv) >=3D 11) {
->  		if (intel_encoder_is_tc(encoder))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 9f8a8c94cf4c..2d7ac53bb924 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2112,12 +2112,12 @@ enum tc_port intel_encoder_to_tc(struct intel_enc=
-oder *encoder)
->  enum intel_display_power_domain
->  intel_aux_power_domain(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display =3D to_intel_display(dig_port);
->=20=20
->  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> -		return intel_display_power_tbt_aux_domain(i915, dig_port->aux_ch);
-> +		return intel_display_power_tbt_aux_domain(display, dig_port->aux_ch);
->=20=20
-> -	return intel_display_power_legacy_aux_domain(i915, dig_port->aux_ch);
-> +	return intel_display_power_legacy_aux_domain(display, dig_port->aux_ch);
->  }
->=20=20
->  static void get_crtc_power_domains(struct intel_crtc_state *crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index 89e5eea90be8..09a8f667366d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -158,8 +158,9 @@ static int i915_gem_framebuffer_info(struct seq_file =
-*m, void *data)
->  static int i915_power_domain_info(struct seq_file *m, void *unused)
->  {
->  	struct drm_i915_private *i915 =3D node_to_i915(m->private);
-> +	struct intel_display *display =3D &i915->display;
->=20=20
-> -	intel_display_power_debug(i915, m);
-> +	intel_display_power_debug(display, m);
->=20=20
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index cfc5c0b4f907..d93f43d145a9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1056,10 +1056,9 @@ static void gen9_dbuf_slice_set(struct intel_displ=
-ay *display,
->  		 slice, str_enable_disable(enable));
->  }
->=20=20
-> -void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
-> +void gen9_dbuf_slices_update(struct intel_display *display,
->  			     u8 req_slices)
->  {
-> -	struct intel_display *display =3D &dev_priv->display;
-
-The simplicity of these changes is exactly why I've preferred to add
-that display variable instead of inlining &dev_priv->display!
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
->  	struct i915_power_domains *power_domains =3D &display->power.domains;
->  	u8 slice_mask =3D DISPLAY_INFO(display)->dbuf.slice_mask;
->  	enum dbuf_slice slice;
-> @@ -1090,10 +1089,9 @@ void gen9_dbuf_slices_update(struct drm_i915_priva=
-te *dev_priv,
+> ---
+>  drivers/gpu/drm/i915/gvt/aperture_gm.c  |  7 ++++---
+>  drivers/gpu/drm/i915/gvt/debugfs.c      |  5 +++--
+>  drivers/gpu/drm/i915/gvt/gtt.c          |  6 ++++--
+>  drivers/gpu/drm/i915/gvt/gvt.h          |  9 +++++----
+>  drivers/gpu/drm/i915/gvt/handlers.c     | 23 +++++++++++++++--------
+>  drivers/gpu/drm/i915/gvt/sched_policy.c |  5 +++--
+>  6 files changed, 34 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gvt/aperture_gm.c b/drivers/gpu/drm/i91=
+5/gvt/aperture_gm.c
+> index eedd1865bb98..62d14f82256f 100644
+> --- a/drivers/gpu/drm/i915/gvt/aperture_gm.c
+> +++ b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+> @@ -46,6 +46,7 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool high_=
+gm)
+>  	unsigned int flags;
+>  	u64 start, end, size;
+>  	struct drm_mm_node *node;
+> +	intel_wakeref_t wakeref;
+>  	int ret;
 >=20=20
->  static void gen9_dbuf_enable(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
->  	u8 slices_mask;
+>  	if (high_gm) {
+> @@ -63,12 +64,12 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool hig=
+h_gm)
+>  	}
 >=20=20
-> -	display->dbuf.enabled_slices =3D intel_enabled_dbuf_slices_mask(dev_pri=
-v);
-> +	display->dbuf.enabled_slices =3D intel_enabled_dbuf_slices_mask(display=
-);
->=20=20
->  	slices_mask =3D BIT(DBUF_S1) | display->dbuf.enabled_slices;
->=20=20
-> @@ -1104,14 +1102,12 @@ static void gen9_dbuf_enable(struct intel_display=
- *display)
->  	 * Just power up at least 1 slice, we will
->  	 * figure out later which slices we have and what we need.
->  	 */
-> -	gen9_dbuf_slices_update(dev_priv, slices_mask);
-> +	gen9_dbuf_slices_update(display, slices_mask);
+>  	mutex_lock(&gt->ggtt->vm.mutex);
+> -	mmio_hw_access_pre(gt);
+> +	wakeref =3D mmio_hw_access_pre(gt);
+>  	ret =3D i915_gem_gtt_insert(&gt->ggtt->vm, NULL, node,
+>  				  size, I915_GTT_PAGE_SIZE,
+>  				  I915_COLOR_UNEVICTABLE,
+>  				  start, end, flags);
+> -	mmio_hw_access_post(gt);
+> +	mmio_hw_access_post(gt, wakeref);
+>  	mutex_unlock(&gt->ggtt->vm.mutex);
+>  	if (ret)
+>  		gvt_err("fail to alloc %s gm space from host\n",
+> @@ -226,7 +227,7 @@ static int alloc_vgpu_fence(struct intel_vgpu *vgpu)
+>  		vgpu->fence.regs[i] =3D NULL;
+>  	}
+>  	mutex_unlock(&gvt->gt->ggtt->vm.mutex);
+> -	intel_runtime_pm_put_unchecked(uncore->rpm);
+> +	intel_runtime_pm_put(uncore->rpm, wakeref);
+>  	return -ENOSPC;
 >  }
 >=20=20
->  static void gen9_dbuf_disable(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
-> -
-> -	gen9_dbuf_slices_update(dev_priv, 0);
-> +	gen9_dbuf_slices_update(display, 0);
+> diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gv=
+t/debugfs.c
+> index baccbf1761b7..673534f061ef 100644
+> --- a/drivers/gpu/drm/i915/gvt/debugfs.c
+> +++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+> @@ -91,16 +91,17 @@ static int vgpu_mmio_diff_show(struct seq_file *s, vo=
+id *unused)
+>  		.diff =3D 0,
+>  	};
+>  	struct diff_mmio *node, *next;
+> +	intel_wakeref_t wakeref;
 >=20=20
->  	if (DISPLAY_VER(display) >=3D 14)
->  		intel_pmdemand_program_dbuf(display, 0);
-> @@ -2315,9 +2311,8 @@ void intel_display_power_resume(struct intel_displa=
-y *display)
+>  	INIT_LIST_HEAD(&param.diff_mmio_list);
+>=20=20
+>  	mutex_lock(&gvt->lock);
+>  	spin_lock_bh(&gvt->scheduler.mmio_context_lock);
+>=20=20
+> -	mmio_hw_access_pre(gvt->gt);
+> +	wakeref =3D mmio_hw_access_pre(gvt->gt);
+>  	/* Recognize all the diff mmios to list. */
+>  	intel_gvt_for_each_tracked_mmio(gvt, mmio_diff_handler, &param);
+> -	mmio_hw_access_post(gvt->gt);
+> +	mmio_hw_access_post(gvt->gt, wakeref);
+>=20=20
+>  	spin_unlock_bh(&gvt->scheduler.mmio_context_lock);
+>  	mutex_unlock(&gvt->lock);
+> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gt=
+t.c
+> index 2fa7ca19ba5d..ae9b0ded3651 100644
+> --- a/drivers/gpu/drm/i915/gvt/gtt.c
+> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
+> @@ -220,9 +220,11 @@ static u64 read_pte64(struct i915_ggtt *ggtt, unsign=
+ed long index)
+>=20=20
+>  static void ggtt_invalidate(struct intel_gt *gt)
+>  {
+> -	mmio_hw_access_pre(gt);
+> +	intel_wakeref_t wakeref;
+> +
+> +	wakeref =3D mmio_hw_access_pre(gt);
+>  	intel_uncore_write(gt->uncore, GFX_FLSH_CNTL_GEN6, GFX_FLSH_CNTL_EN);
+> -	mmio_hw_access_post(gt);
+> +	mmio_hw_access_post(gt, wakeref);
+>  }
+>=20=20
+>  static void write_pte64(struct i915_ggtt *ggtt, unsigned long index, u64=
+ pte)
+> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gv=
+t.h
+> index 01d890999f25..1d10c16e6465 100644
+> --- a/drivers/gpu/drm/i915/gvt/gvt.h
+> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
+> @@ -570,14 +570,15 @@ enum {
+>  	GVT_FAILSAFE_GUEST_ERR,
+>  };
+>=20=20
+> -static inline void mmio_hw_access_pre(struct intel_gt *gt)
+> +static inline intel_wakeref_t mmio_hw_access_pre(struct intel_gt *gt)
+>  {
+> -	intel_runtime_pm_get(gt->uncore->rpm);
+> +	return intel_runtime_pm_get(gt->uncore->rpm);
+>  }
+>=20=20
+> -static inline void mmio_hw_access_post(struct intel_gt *gt)
+> +static inline void mmio_hw_access_post(struct intel_gt *gt,
+> +				       intel_wakeref_t wakeref)
+>  {
+> -	intel_runtime_pm_put_unchecked(gt->uncore->rpm);
+> +	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
+>  }
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/g=
+vt/handlers.c
+> index 4efee6797873..02f45929592e 100644
+> --- a/drivers/gpu/drm/i915/gvt/handlers.c
+> +++ b/drivers/gpu/drm/i915/gvt/handlers.c
+> @@ -264,6 +264,7 @@ static int fence_mmio_write(struct intel_vgpu *vgpu, =
+unsigned int off,
+>  {
+>  	struct intel_gvt *gvt =3D vgpu->gvt;
+>  	unsigned int fence_num =3D offset_to_fence_num(off);
+> +	intel_wakeref_t wakeref;
+>  	int ret;
+>=20=20
+>  	ret =3D sanitize_fence_mmio_access(vgpu, fence_num, p_data, bytes);
+> @@ -271,10 +272,10 @@ static int fence_mmio_write(struct intel_vgpu *vgpu=
+, unsigned int off,
+>  		return ret;
+>  	write_vreg(vgpu, off, p_data, bytes);
+>=20=20
+> -	mmio_hw_access_pre(gvt->gt);
+> +	wakeref =3D mmio_hw_access_pre(gvt->gt);
+>  	intel_vgpu_write_fence(vgpu, fence_num,
+>  			vgpu_vreg64(vgpu, fence_num_to_offset(fence_num)));
+> -	mmio_hw_access_post(gvt->gt);
+> +	mmio_hw_access_post(gvt->gt, wakeref);
+>  	return 0;
+>  }
+>=20=20
+> @@ -1975,10 +1976,12 @@ static int mmio_read_from_hw(struct intel_vgpu *v=
+gpu,
+>  	    vgpu =3D=3D gvt->scheduler.engine_owner[engine->id] ||
+>  	    offset =3D=3D i915_mmio_reg_offset(RING_TIMESTAMP(engine->mmio_base=
+)) ||
+>  	    offset =3D=3D i915_mmio_reg_offset(RING_TIMESTAMP_UDW(engine->mmio_=
+base))) {
+> -		mmio_hw_access_pre(gvt->gt);
+> +		intel_wakeref_t wakeref;
+> +
+> +		wakeref =3D mmio_hw_access_pre(gvt->gt);
+>  		vgpu_vreg(vgpu, offset) =3D
+>  			intel_uncore_read(gvt->gt->uncore, _MMIO(offset));
+> -		mmio_hw_access_post(gvt->gt);
+> +		mmio_hw_access_post(gvt->gt, wakeref);
+>  	}
+>=20=20
+>  	return intel_vgpu_default_mmio_read(vgpu, offset, p_data, bytes);
+> @@ -3209,10 +3212,12 @@ void intel_gvt_restore_fence(struct intel_gvt *gv=
+t)
+>  	int i, id;
+>=20=20
+>  	idr_for_each_entry(&(gvt)->vgpu_idr, vgpu, id) {
+> -		mmio_hw_access_pre(gvt->gt);
+> +		intel_wakeref_t wakeref;
+> +
+> +		wakeref =3D mmio_hw_access_pre(gvt->gt);
+>  		for (i =3D 0; i < vgpu_fence_sz(vgpu); i++)
+>  			intel_vgpu_write_fence(vgpu, i, vgpu_vreg64(vgpu, fence_num_to_offset=
+(i)));
+> -		mmio_hw_access_post(gvt->gt);
+> +		mmio_hw_access_post(gvt->gt, wakeref);
 >  	}
 >  }
 >=20=20
-> -void intel_display_power_debug(struct drm_i915_private *i915, struct seq=
-_file *m)
-> +void intel_display_power_debug(struct intel_display *display, struct seq=
-_file *m)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	struct i915_power_domains *power_domains =3D &display->power.domains;
->  	int i;
+> @@ -3233,8 +3238,10 @@ void intel_gvt_restore_mmio(struct intel_gvt *gvt)
+>  	int id;
 >=20=20
-> @@ -2498,9 +2493,8 @@ intel_port_domains_for_port(struct intel_display *d=
-isplay, enum port port)
+>  	idr_for_each_entry(&(gvt)->vgpu_idr, vgpu, id) {
+> -		mmio_hw_access_pre(gvt->gt);
+> +		intel_wakeref_t wakeref;
+> +
+> +		wakeref =3D mmio_hw_access_pre(gvt->gt);
+>  		intel_gvt_for_each_tracked_mmio(gvt, mmio_pm_restore_handler, vgpu);
+> -		mmio_hw_access_post(gvt->gt);
+> +		mmio_hw_access_post(gvt->gt, wakeref);
+>  	}
 >  }
+> diff --git a/drivers/gpu/drm/i915/gvt/sched_policy.c b/drivers/gpu/drm/i9=
+15/gvt/sched_policy.c
+> index c077fb4674f0..c75b393ab0b7 100644
+> --- a/drivers/gpu/drm/i915/gvt/sched_policy.c
+> +++ b/drivers/gpu/drm/i915/gvt/sched_policy.c
+> @@ -448,6 +448,7 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
+>  	struct drm_i915_private *dev_priv =3D vgpu->gvt->gt->i915;
+>  	struct intel_engine_cs *engine;
+>  	enum intel_engine_id id;
+> +	intel_wakeref_t wakeref;
 >=20=20
->  enum intel_display_power_domain
-> -intel_display_power_ddi_io_domain(struct drm_i915_private *i915, enum po=
-rt port)
-> +intel_display_power_ddi_io_domain(struct intel_display *display, enum po=
-rt port)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	const struct intel_ddi_port_domains *domains =3D intel_port_domains_for=
-_port(display, port);
->=20=20
->  	if (drm_WARN_ON(display->drm, !domains || domains->ddi_io =3D=3D POWER_=
-DOMAIN_INVALID))
-> @@ -2510,9 +2504,8 @@ intel_display_power_ddi_io_domain(struct drm_i915_p=
-rivate *i915, enum port port)
->  }
->=20=20
->  enum intel_display_power_domain
-> -intel_display_power_ddi_lanes_domain(struct drm_i915_private *i915, enum=
- port port)
-> +intel_display_power_ddi_lanes_domain(struct intel_display *display, enum=
- port port)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	const struct intel_ddi_port_domains *domains =3D intel_port_domains_for=
-_port(display, port);
->=20=20
->  	if (drm_WARN_ON(display->drm, !domains || domains->ddi_lanes =3D=3D POW=
-ER_DOMAIN_INVALID))
-> @@ -2537,9 +2530,8 @@ intel_port_domains_for_aux_ch(struct intel_display =
-*display, enum aux_ch aux_ch)
->  }
->=20=20
->  enum intel_display_power_domain
-> -intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum au=
-x_ch aux_ch)
-> +intel_display_power_aux_io_domain(struct intel_display *display, enum au=
-x_ch aux_ch)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	const struct intel_ddi_port_domains *domains =3D intel_port_domains_for=
-_aux_ch(display, aux_ch);
->=20=20
->  	if (drm_WARN_ON(display->drm, !domains || domains->aux_io =3D=3D POWER_=
-DOMAIN_INVALID))
-> @@ -2549,9 +2541,8 @@ intel_display_power_aux_io_domain(struct drm_i915_p=
-rivate *i915, enum aux_ch aux
->  }
->=20=20
->  enum intel_display_power_domain
-> -intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enu=
-m aux_ch aux_ch)
-> +intel_display_power_legacy_aux_domain(struct intel_display *display, enu=
-m aux_ch aux_ch)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	const struct intel_ddi_port_domains *domains =3D intel_port_domains_for=
-_aux_ch(display, aux_ch);
->=20=20
->  	if (drm_WARN_ON(display->drm, !domains || domains->aux_legacy_usbc =3D=
-=3D POWER_DOMAIN_INVALID))
-> @@ -2561,9 +2552,8 @@ intel_display_power_legacy_aux_domain(struct drm_i9=
-15_private *i915, enum aux_ch
->  }
->=20=20
->  enum intel_display_power_domain
-> -intel_display_power_tbt_aux_domain(struct drm_i915_private *i915, enum a=
-ux_ch aux_ch)
-> +intel_display_power_tbt_aux_domain(struct intel_display *display, enum a=
-ux_ch aux_ch)
->  {
-> -	struct intel_display *display =3D &i915->display;
->  	const struct intel_ddi_port_domains *domains =3D intel_port_domains_for=
-_aux_ch(display, aux_ch);
->=20=20
->  	if (drm_WARN_ON(display->drm, !domains || domains->aux_tbt =3D=3D POWER=
-_DOMAIN_INVALID))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
-/gpu/drm/i915/display/intel_display_power.h
-> index 1e4e113999fb..a3a5c1be8bab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -13,7 +13,6 @@
->=20=20
->  enum aux_ch;
->  enum port;
-> -struct drm_i915_private;
->  struct i915_power_well;
->  struct intel_display;
->  struct intel_encoder;
-> @@ -268,18 +267,18 @@ intel_display_power_put_all_in_set(struct intel_dis=
-play *display,
->  	intel_display_power_put_mask_in_set(display, power_domain_set, &power_d=
-omain_set->mask);
->  }
->=20=20
-> -void intel_display_power_debug(struct drm_i915_private *i915, struct seq=
-_file *m);
-> +void intel_display_power_debug(struct intel_display *display, struct seq=
-_file *m);
->=20=20
->  enum intel_display_power_domain
-> -intel_display_power_ddi_lanes_domain(struct drm_i915_private *i915, enum=
- port port);
-> +intel_display_power_ddi_lanes_domain(struct intel_display *display, enum=
- port port);
->  enum intel_display_power_domain
-> -intel_display_power_ddi_io_domain(struct drm_i915_private *i915, enum po=
-rt port);
-> +intel_display_power_ddi_io_domain(struct intel_display *display, enum po=
-rt port);
->  enum intel_display_power_domain
-> -intel_display_power_aux_io_domain(struct drm_i915_private *i915, enum au=
-x_ch aux_ch);
-> +intel_display_power_aux_io_domain(struct intel_display *display, enum au=
-x_ch aux_ch);
->  enum intel_display_power_domain
-> -intel_display_power_legacy_aux_domain(struct drm_i915_private *i915, enu=
-m aux_ch aux_ch);
-> +intel_display_power_legacy_aux_domain(struct intel_display *display, enu=
-m aux_ch aux_ch);
->  enum intel_display_power_domain
-> -intel_display_power_tbt_aux_domain(struct drm_i915_private *i915, enum a=
-ux_ch aux_ch);
-> +intel_display_power_tbt_aux_domain(struct intel_display *display, enum a=
-ux_ch aux_ch);
->=20=20
->  /*
->   * FIXME: We should probably switch this to a 0-based scheme to be consi=
-stent
-> @@ -293,7 +292,7 @@ enum dbuf_slice {
->  	I915_MAX_DBUF_SLICES
->  };
->=20=20
-> -void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
-> +void gen9_dbuf_slices_update(struct intel_display *display,
->  			     u8 req_slices);
->=20=20
->  #define with_intel_display_power(display, domain, wf) \
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
-ivers/gpu/drm/i915/display/intel_display_power_well.c
-> index f45a4f9ba23c..367f8e8d9e73 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -962,8 +962,7 @@ static bool gen9_dc_off_power_well_enabled(struct int=
-el_display *display,
->=20=20
->  static void gen9_assert_dbuf_enabled(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
-> -	u8 hw_enabled_dbuf_slices =3D intel_enabled_dbuf_slices_mask(dev_priv);
-> +	u8 hw_enabled_dbuf_slices =3D intel_enabled_dbuf_slices_mask(display);
->  	u8 enabled_dbuf_slices =3D display->dbuf.enabled_slices;
->=20=20
->  	drm_WARN(display->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index e9e9ee5d345a..b8d14ed8a56e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -177,11 +177,11 @@ bool intel_tc_port_handles_hpd_glitches(struct inte=
-l_digital_port *dig_port)
->   */
->  bool intel_tc_cold_requires_aux_pw(struct intel_digital_port *dig_port)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display =3D to_intel_display(dig_port);
->  	struct intel_tc_port *tc =3D to_tc_port(dig_port);
->=20=20
->  	return tc_phy_cold_off_domain(tc) =3D=3D
-> -	       intel_display_power_legacy_aux_domain(i915, dig_port->aux_ch);
-> +	       intel_display_power_legacy_aux_domain(display, dig_port->aux_ch);
->  }
->=20=20
->  static intel_wakeref_t
-> @@ -478,11 +478,11 @@ static void tc_phy_load_fia_params(struct intel_tc_=
-port *tc, bool modular_fia)
->  static enum intel_display_power_domain
->  icl_tc_phy_cold_off_domain(struct intel_tc_port *tc)
->  {
-> -	struct drm_i915_private *i915 =3D tc_to_i915(tc);
-> +	struct intel_display *display =3D to_intel_display(tc->dig_port);
->  	struct intel_digital_port *dig_port =3D tc->dig_port;
->=20=20
->  	if (tc->legacy_port)
-> -		return intel_display_power_legacy_aux_domain(i915, dig_port->aux_ch);
-> +		return intel_display_power_legacy_aux_domain(display, dig_port->aux_ch=
-);
->=20=20
->  	return POWER_DOMAIN_TC_COLD_OFF;
->  }
-> @@ -763,11 +763,11 @@ static const struct intel_tc_phy_ops tgl_tc_phy_ops=
- =3D {
->  static enum intel_display_power_domain
->  adlp_tc_phy_cold_off_domain(struct intel_tc_port *tc)
->  {
-> -	struct drm_i915_private *i915 =3D tc_to_i915(tc);
-> +	struct intel_display *display =3D to_intel_display(tc->dig_port);
->  	struct intel_digital_port *dig_port =3D tc->dig_port;
->=20=20
->  	if (tc->mode !=3D TC_PORT_TBT_ALT)
-> -		return intel_display_power_legacy_aux_domain(i915, dig_port->aux_ch);
-> +		return intel_display_power_legacy_aux_domain(display, dig_port->aux_ch=
-);
->=20=20
->  	return POWER_DOMAIN_TC_COLD_OFF;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
-rm/i915/display/skl_watermark.c
-> index 1c4510d520e8..9e97fc703903 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -52,13 +52,13 @@ struct skl_wm_params {
->  	u32 dbuf_block_size;
->  };
->=20=20
-> -u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915)
-> +u8 intel_enabled_dbuf_slices_mask(struct intel_display *display)
->  {
->  	u8 enabled_slices =3D 0;
->  	enum dbuf_slice slice;
->=20=20
-> -	for_each_dbuf_slice(i915, slice) {
-> -		if (intel_de_read(i915, DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
-> +	for_each_dbuf_slice(display, slice) {
-> +		if (intel_de_read(display, DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
->  			enabled_slices |=3D BIT(slice);
+>  	if (!vgpu_data->active)
+>  		return;
+> @@ -466,7 +467,7 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
+>  		scheduler->current_vgpu =3D NULL;
 >  	}
 >=20=20
-> @@ -3701,7 +3701,7 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_a=
-tomic_state *state)
->=20=20
->  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> +	struct intel_display *display =3D to_intel_display(state);
->  	const struct intel_dbuf_state *new_dbuf_state =3D
->  		intel_atomic_get_new_dbuf_state(state);
->  	const struct intel_dbuf_state *old_dbuf_state =3D
-> @@ -3719,12 +3719,12 @@ void intel_dbuf_pre_plane_update(struct intel_ato=
-mic_state *state)
->=20=20
->  	WARN_ON(!new_dbuf_state->base.changed);
->=20=20
-> -	gen9_dbuf_slices_update(i915, new_slices);
-> +	gen9_dbuf_slices_update(display, new_slices);
+> -	intel_runtime_pm_get(&dev_priv->runtime_pm);
+> +	wakeref =3D intel_runtime_pm_get(&dev_priv->runtime_pm);
+>  	spin_lock_bh(&scheduler->mmio_context_lock);
+>  	for_each_engine(engine, vgpu->gvt->gt, id) {
+>  		if (scheduler->engine_owner[engine->id] =3D=3D vgpu) {
+> @@ -475,6 +476,6 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
+>  		}
+>  	}
+>  	spin_unlock_bh(&scheduler->mmio_context_lock);
+> -	intel_runtime_pm_put_unchecked(&dev_priv->runtime_pm);
+> +	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+>  	mutex_unlock(&vgpu->gvt->sched_lock);
 >  }
->=20=20
->  void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> +	struct intel_display *display =3D to_intel_display(state);
->  	const struct intel_dbuf_state *new_dbuf_state =3D
->  		intel_atomic_get_new_dbuf_state(state);
->  	const struct intel_dbuf_state *old_dbuf_state =3D
-> @@ -3742,7 +3742,7 @@ void intel_dbuf_post_plane_update(struct intel_atom=
-ic_state *state)
->=20=20
->  	WARN_ON(!new_dbuf_state->base.changed);
->=20=20
-> -	gen9_dbuf_slices_update(i915, new_slices);
-> +	gen9_dbuf_slices_update(display, new_slices);
->  }
->=20=20
->  static void skl_mbus_sanitize(struct drm_i915_private *i915)
-> @@ -3875,7 +3875,7 @@ void intel_wm_state_verify(struct intel_atomic_stat=
-e *state,
->=20=20
->  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb, hw->ddb_y, hw->min_ddb, hw->in=
-terim_ddb);
->=20=20
-> -	hw_enabled_slices =3D intel_enabled_dbuf_slices_mask(i915);
-> +	hw_enabled_slices =3D intel_enabled_dbuf_slices_mask(display);
->=20=20
->  	if (DISPLAY_VER(i915) >=3D 11 &&
->  	    hw_enabled_slices !=3D i915->display.dbuf.enabled_slices)
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/d=
-rm/i915/display/skl_watermark.h
-> index 8659f89427f2..2a93619256f8 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> @@ -16,13 +16,14 @@ struct drm_i915_private;
->  struct intel_atomic_state;
->  struct intel_bw_state;
->  struct intel_crtc;
-> +struct intel_display;
->  struct intel_crtc_state;
->  struct intel_plane;
->  struct intel_plane_state;
->  struct skl_pipe_wm;
->  struct skl_wm_level;
->=20=20
-> -u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915);
-> +u8 intel_enabled_dbuf_slices_mask(struct intel_display *display);
->=20=20
->  void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
->  void intel_sagv_post_plane_update(struct intel_atomic_state *state);
 
 --=20
 Jani Nikula, Intel
