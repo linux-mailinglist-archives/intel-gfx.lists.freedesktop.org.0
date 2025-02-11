@@ -2,78 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 712BDA32811
+	by mail.lfdr.de (Postfix) with ESMTPS id 07C10A32810
 	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0670C10E8BA;
-	Wed, 12 Feb 2025 14:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3BF10E8B5;
+	Wed, 12 Feb 2025 14:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="czHmWN0t";
+	dkim=pass (1024-bit key; unprotected) header.d=yandex-team.com header.i=@yandex-team.com header.b="LJ5WKFHm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
- [209.85.208.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2797610E194
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 06:34:20 +0000 (UTC)
-Received: by mail-ed1-f54.google.com with SMTP id
- 4fb4d7f45d1cf-5de5a8a96abso4880000a12.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 22:34:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1739255658; x=1739860458; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oQlwrL1wOOlUYQ3HVkX2Tc4R5TyGKexreWomFPK3P/Y=;
- b=czHmWN0tLU43N/DQXrfSFoI+krVXCy2u9RisbLGXoigJTMXFkHu5onqmGHIw/hrR5C
- Q/kYdWvvnZuoyB5/E18iRnYAT07qDyhBOsV08MNAPty9WN2svzCer3GqF2h1xwURqd0f
- 1d+51oISUagvRNoMZIc/0D0WmfbOt7gdXEYzNGUjegBxcsFzygMi13q0RbOejiuBkksd
- m0RzZSlgC0Sc8psUBg0puvz+SqC8Za9M5FNR76GRQroB0QMcOMjRYmnIwW9MNPcRyJFA
- zcFc4Gjc4dn5yivvLMrVZn4KMS3Z6x/G1g/trSuZZgCmyeUXMCYlu6rkKHfmKw43zk8X
- CGEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739255658; x=1739860458;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=oQlwrL1wOOlUYQ3HVkX2Tc4R5TyGKexreWomFPK3P/Y=;
- b=a0wYNnvH1Pwr+tknWhSAa7mq1fP6UoY8PwlISOqcCvkBOt5t0+IeuRpVV6QOGhve9n
- kdzcWJzTaDDzRkU3uS7Yue5Vr9mXjstEAHiqwEy2XpqK6DA/ZZY+RUTM+559fnrnD5zd
- WLMEGTDxI0nnMkhv+v2+fnnVJFhHETZOAehK2vNQ6QsVlpwpj62QuNWQR9tdgDcMYyUl
- ImBKIV8o4I+cD4+Sa3hMqcX/dZPMAld1aqmA2eMTAe0iYkTvlCgM6/SBJRJYBBjLFMM2
- jV2XyijxVG8eWYU3dVSs8KqKeAUWdGQMHMG0n3Sd2VxMWLi0tBfyobH6MB/GATDBqjyB
- 54Iw==
-X-Gm-Message-State: AOJu0YyuiJ1IF6WM2ZDb3PvJFh7FrwXDVMYtytiiDL9yHohrVB0XRASJ
- pUhrlZOrWfLAksk1TUTSm2o97pJDUpr8L7vv+nkue6ut86U6upeR
-X-Gm-Gg: ASbGncv0ZMZWcUZuOe/BgRRjeSOx22f3djJlTo4B62ZNyScPeQ4ZVNw9hXEpR4PaKIK
- urG25TYAO+Aj6IdMOuAYSohJm+itK+jQxZKMKEKV4RT1uERDUEeLM+MIFoEp7HlSbb3KnpNotXt
- npSXHZnbz1fnrpmnoe8S+6/9DXl3K7C2ry14B7PFqb56Ahq5TdLNIGy412cxAMgbS4/SA5lZLek
- 0gWW8TgAwrVyF8htZXtb3o4G0WM66f6sVwwTfKe5wNn+swGQfuTCnB+3pYxgW+3XdfwMnb8Js+e
- n3O4AcepVvMn6jKs14Ps9Umlf5WDa0z0U4AQlJvqZ4UO4i+30vXYH+wsOPiRG+UdCL2/SV+3854
- 6vjfhuLgae49ugAw=
-X-Google-Smtp-Source: AGHT+IFSPB5VMDpn4O68C4Tn6MoteErC5LVqv/fR36wtc5VsAKcH0UgEvTej9OJbBiYLW9OPxxMEdw==
-X-Received: by 2002:a05:6402:a00e:b0:5de:39fd:b309 with SMTP id
- 4fb4d7f45d1cf-5de44fe9488mr41766347a12.4.1739255658307; 
- Mon, 10 Feb 2025 22:34:18 -0800 (PST)
-Received: from legolas.fritz.box
- (p200300d0af0cd200603313d7beea72d6.dip0.t-ipconnect.de.
- [2003:d0:af0c:d200:6033:13d7:beea:72d6])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ab7c62c464dsm300440466b.28.2025.02.10.22.34.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Feb 2025 22:34:17 -0800 (PST)
-From: Markus Theil <theil.markus@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	andi.shyti@linux.intel.com
-Cc: intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, Jason@zx2c4.com,
- tytso@mit.edu, Markus Theil <theil.markus@gmail.com>
-Subject: [PATCH v2 3/3] prandom: remove next_pseudo_random32
-Date: Tue, 11 Feb 2025 07:33:32 +0100
-Message-ID: <20250211063332.16542-4-theil.markus@gmail.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250211063332.16542-1-theil.markus@gmail.com>
-References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
- <20250211063332.16542-1-theil.markus@gmail.com>
+Received: from forwardcorp1a.mail.yandex.net (forwardcorp1a.mail.yandex.net
+ [178.154.239.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8184210E2E8;
+ Tue, 11 Feb 2025 11:53:11 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net
+ (mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net
+ [IPv6:2a02:6b8:c0f:1286:0:640:6f2b:0])
+ by forwardcorp1a.mail.yandex.net (Yandex) with ESMTPS id A65BE614BD;
+ Tue, 11 Feb 2025 14:46:00 +0300 (MSK)
+Received: from dellarbn.yandex.net (unknown [10.214.35.248])
+ by mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net (smtpcorp/Yandex) with
+ ESMTPSA id njMaW61IYa60-0cIaOumc; Tue, 11 Feb 2025 14:45:59 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex-team.com;
+ s=default; t=1739274360;
+ bh=y1+8TKaZyt8/6ij0O/nQoH47E1MV/9ZBI4/TT9VKt0Q=;
+ h=Message-ID:Date:Cc:Subject:To:From;
+ b=LJ5WKFHmyCrCn1KYL3qcylN81InuVfSerkMsn+VBoeKh8/wdxrbUdzZdQ+PpMKMyh
+ oGWt9zOHcNbRA3SiMQ2rM6FIaaD8FM4h8AwmMdD3qpAfcSUkrKnO1pBCwXvTw8TKGl
+ FAEAxOhG/j/IwM2mkQ+KPz4ubeN23snm5HpH+GaQ=
+Authentication-Results: mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net;
+ dkim=pass header.i=@yandex-team.com
+From: Andrey Ryabinin <arbn@yandex-team.com>
+To: Alex Williamson <alex.williamson@redhat.com>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
+ Yi Liu <yi.l.liu@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
+ Andrey Ryabinin <arbn@yandex-team.com>, stable@vger.kernel.org
+Subject: [PATCH 1/2] drm/i915/gvt: Store ->kvm reference in intel_vgpu struct.
+Date: Tue, 11 Feb 2025 12:45:43 +0100
+Message-ID: <20250211114544.17845-1-arbn@yandex-team.com>
+X-Mailer: git-send-email 2.45.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 12 Feb 2025 14:10:13 +0000
@@ -92,34 +69,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-next_pseudo_random32 implements a LCG with known bad statistical
-properties and was only used in two pieces of testing code.
+'vfio_device' keeps the ->kvm pointer with elevated counter from the first
+open of the device up until the last close(). So the kvm struct and its
+dependencies (kvm kthreads, cgroups ...) kept alive even for VFIO device
+that don't need ->kvm.
 
-After the users are converted to prandom as part of this series,
-remove the LCG here.
+Copy ->kvm pointer from the vfio_device struct and store it in the
+'intel_vgpu'. Note that kvm_page_track_[un]register_notifier() already
+does get/put calls, keeping the kvm struct alive.
 
-This removes another option of using an insecure PRNG.
+This will allow to release ->kvm from the vfio_device righ after the
+first open call, so that devices not using kvm not keeping it alive.
 
-Signed-off-by: Markus Theil <theil.markus@gmail.com>
+Devices that are using kvm (like intel_vgpu) will be expected to mange
+the lifetime of the kvm struct by themselves.
+
+Fixes: 2b48f52f2bff ("vfio: fix deadlock between group lock and kvm lock")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Andrey Ryabinin <arbn@yandex-team.com>
 ---
- include/linux/prandom.h | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/i915/gvt/gvt.h   |  1 +
+ drivers/gpu/drm/i915/gvt/kvmgt.c | 14 +++++++-------
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/include/linux/prandom.h b/include/linux/prandom.h
-index f2ed5b72b3d6..ff7dcc3fa105 100644
---- a/include/linux/prandom.h
-+++ b/include/linux/prandom.h
-@@ -47,10 +47,4 @@ static inline void prandom_seed_state(struct rnd_state *state, u64 seed)
- 	state->s4 = __seed(i, 128U);
- }
+diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+index 2c95aeef4e41..6c62467df22c 100644
+--- a/drivers/gpu/drm/i915/gvt/gvt.h
++++ b/drivers/gpu/drm/i915/gvt/gvt.h
+@@ -232,6 +232,7 @@ struct intel_vgpu {
+ 	unsigned long nr_cache_entries;
+ 	struct mutex cache_lock;
  
--/* Pseudo random number generator from numerical recipes. */
--static inline u32 next_pseudo_random32(u32 seed)
--{
--	return seed * 1664525 + 1013904223;
--}
--
- #endif
++	struct kvm *kvm;
+ 	struct kvm_page_track_notifier_node track_node;
+ #define NR_BKT (1 << 18)
+ 	struct hlist_head ptable[NR_BKT];
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index b27ff77bfb50..cf418e2c560d 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -36,6 +36,7 @@
+ #include <linux/init.h>
+ #include <linux/mm.h>
+ #include <linux/kthread.h>
++#include <linux/kvm_host.h>
+ #include <linux/sched/mm.h>
+ #include <linux/types.h>
+ #include <linux/list.h>
+@@ -649,7 +650,7 @@ static bool __kvmgt_vgpu_exist(struct intel_vgpu *vgpu)
+ 		if (!test_bit(INTEL_VGPU_STATUS_ATTACHED, itr->status))
+ 			continue;
+ 
+-		if (vgpu->vfio_device.kvm == itr->vfio_device.kvm) {
++		if (vgpu->kvm == itr->kvm) {
+ 			ret = true;
+ 			goto out;
+ 		}
+@@ -664,13 +665,13 @@ static int intel_vgpu_open_device(struct vfio_device *vfio_dev)
+ 	struct intel_vgpu *vgpu = vfio_dev_to_vgpu(vfio_dev);
+ 	int ret;
+ 
++	vgpu->kvm = vgpu->vfio_device.kvm;
+ 	if (__kvmgt_vgpu_exist(vgpu))
+ 		return -EEXIST;
+ 
+ 	vgpu->track_node.track_write = kvmgt_page_track_write;
+ 	vgpu->track_node.track_remove_region = kvmgt_page_track_remove_region;
+-	ret = kvm_page_track_register_notifier(vgpu->vfio_device.kvm,
+-					       &vgpu->track_node);
++	ret = kvm_page_track_register_notifier(vgpu->kvm, &vgpu->track_node);
+ 	if (ret) {
+ 		gvt_vgpu_err("KVM is required to use Intel vGPU\n");
+ 		return ret;
+@@ -707,8 +708,7 @@ static void intel_vgpu_close_device(struct vfio_device *vfio_dev)
+ 
+ 	debugfs_lookup_and_remove(KVMGT_DEBUGFS_FILENAME, vgpu->debugfs);
+ 
+-	kvm_page_track_unregister_notifier(vgpu->vfio_device.kvm,
+-					   &vgpu->track_node);
++	kvm_page_track_unregister_notifier(vgpu->kvm, &vgpu->track_node);
+ 
+ 	kvmgt_protect_table_destroy(vgpu);
+ 	gvt_cache_destroy(vgpu);
+@@ -1560,7 +1560,7 @@ int intel_gvt_page_track_add(struct intel_vgpu *info, u64 gfn)
+ 	if (kvmgt_gfn_is_write_protected(info, gfn))
+ 		return 0;
+ 
+-	r = kvm_write_track_add_gfn(info->vfio_device.kvm, gfn);
++	r = kvm_write_track_add_gfn(info->kvm, gfn);
+ 	if (r)
+ 		return r;
+ 
+@@ -1578,7 +1578,7 @@ int intel_gvt_page_track_remove(struct intel_vgpu *info, u64 gfn)
+ 	if (!kvmgt_gfn_is_write_protected(info, gfn))
+ 		return 0;
+ 
+-	r = kvm_write_track_remove_gfn(info->vfio_device.kvm, gfn);
++	r = kvm_write_track_remove_gfn(info->kvm, gfn);
+ 	if (r)
+ 		return r;
+ 
 -- 
-2.47.2
+2.45.3
 
