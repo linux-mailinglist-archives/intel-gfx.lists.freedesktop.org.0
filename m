@@ -2,74 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4247EA3280C
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 712BDA32811
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D45B210E8B4;
-	Wed, 12 Feb 2025 14:10:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0670C10E8BA;
+	Wed, 12 Feb 2025 14:10:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NRDtfhVl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="czHmWN0t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AEE310E194
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 06:34:18 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id
- a640c23a62f3a-ab7c14b880dso357960866b.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 22:34:18 -0800 (PST)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+ [209.85.208.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2797610E194
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 06:34:20 +0000 (UTC)
+Received: by mail-ed1-f54.google.com with SMTP id
+ 4fb4d7f45d1cf-5de5a8a96abso4880000a12.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 22:34:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1739255657; x=1739860457; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1739255658; x=1739860458; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=+VPaO82oa+ToJAvE8KK14A7HRHYdSJZmkn8z9n0Ed6E=;
- b=NRDtfhVlqiVadsZLg6qY1p7N1XF+4LZcIqjZ8zgw4QcQmgdBOuDMnm02+8QB1WqnmA
- +9gvuw4vxlPgROlmSed39nhRU3ef5EB5LixsAMz1F+CH6JhZtSHh55DA7DpEHV4u7mDz
- E9zxLnBF8maOW8r3O9o+gcbBSgSaHOWwhft+6gDpuLPsePx8wcZaLqpAfEaNFMIVIyCJ
- 2f5IkahxxuId+A+oTRc2H3zGSs5Q85oTf4psgSE0E11buX3FkUDSygwQ7HwZb8//aNN5
- anL0VEvkcO31dZqvuO7lvc8eONJRrtRVgJwdqsLjWpvpdjvfrmCRTxgGn1/X4pnDQkcR
- b1JQ==
+ bh=oQlwrL1wOOlUYQ3HVkX2Tc4R5TyGKexreWomFPK3P/Y=;
+ b=czHmWN0tLU43N/DQXrfSFoI+krVXCy2u9RisbLGXoigJTMXFkHu5onqmGHIw/hrR5C
+ Q/kYdWvvnZuoyB5/E18iRnYAT07qDyhBOsV08MNAPty9WN2svzCer3GqF2h1xwURqd0f
+ 1d+51oISUagvRNoMZIc/0D0WmfbOt7gdXEYzNGUjegBxcsFzygMi13q0RbOejiuBkksd
+ m0RzZSlgC0Sc8psUBg0puvz+SqC8Za9M5FNR76GRQroB0QMcOMjRYmnIwW9MNPcRyJFA
+ zcFc4Gjc4dn5yivvLMrVZn4KMS3Z6x/G1g/trSuZZgCmyeUXMCYlu6rkKHfmKw43zk8X
+ CGEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739255657; x=1739860457;
+ d=1e100.net; s=20230601; t=1739255658; x=1739860458;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=+VPaO82oa+ToJAvE8KK14A7HRHYdSJZmkn8z9n0Ed6E=;
- b=F9MSceXIq1I7yzJV7ctzmYAvHZiAXFioTJagiiM8yPe+xtTEt2c7W5A4a9OTnBO9xe
- 1pLUOXA55MWrg5XApKMJtLOjLiBZyf0QdBtu0ZPsgqgtiow19/2zf4QQ7UgpUBYdd/zk
- 68hlK4mH+VN1vOPtIaeo5XfC7NgGr8eHf5/GNeN6PxkNU1+Mzw/xqvXLgrWPZDihu9BT
- K+h2bauxwZn0vM5Zy2tbAQarlJcvfj12spWqZWri3gbLvvj63zQKdz93EoQAQMYYb7S4
- COlY9OsweIkOZOmMU7vdI1d5oB6xosi44PPIsOLrdYOck/1seJGpWODA28XgpQ5Cx+qo
- /p8Q==
-X-Gm-Message-State: AOJu0YzHXHuhid1nQEBqYf0DWJ0Ph4QvAtndwc4NDDEj8MIJLKK+Jj0D
- 6vxfxQVE7YqQ4duaRcV/5TVR/Fo6fhIiRR5kkAI9OR8fMaHME+rt
-X-Gm-Gg: ASbGncuWaNLDVcdn4Y3L2NO5ETy31gAQI3qGHJk+NawqLOGlZbf0dx+aOL6Byyf/Q+a
- 23rCbGtCpN4fuOeCyhyfSLo4kU8gllAu+cMkkyeFrKoc294JSGFKvd69XNpHijwgPfVcfJWS5+J
- PVYzAq9vKubdg1cbh07UOoRRwRiovqn6qPeeXrp/92Qpry+qim3AZ5wC0onI2iiYuqKEmZhp3ZR
- gotAk7JZAc+rD8rn+fnncJ9G8qS2e2Pv1Az7P+rRDoQtlr0Rjc0YcojkI+8Nt3UIJyjps+XUzZY
- +eVl+JiMBR4DGxPvq9TDmYmr5YmTVYcl2d2/+qQd2VraNzam8H2C1oMt0P1coMmzOjmxp4VqIO3
- mUXXausX7VpGhL24=
-X-Google-Smtp-Source: AGHT+IH+h/EDzBlXmY1icTRjXeK+Ak7KcNlqt+EmP5Cd9qKrtjUxCKio7N1P1GRT2oqbk9e4+uCvIg==
-X-Received: by 2002:a17:906:6a1a:b0:ab6:d0b9:8fd1 with SMTP id
- a640c23a62f3a-ab7da3ad5c1mr184746966b.34.1739255656735; 
- Mon, 10 Feb 2025 22:34:16 -0800 (PST)
+ bh=oQlwrL1wOOlUYQ3HVkX2Tc4R5TyGKexreWomFPK3P/Y=;
+ b=a0wYNnvH1Pwr+tknWhSAa7mq1fP6UoY8PwlISOqcCvkBOt5t0+IeuRpVV6QOGhve9n
+ kdzcWJzTaDDzRkU3uS7Yue5Vr9mXjstEAHiqwEy2XpqK6DA/ZZY+RUTM+559fnrnD5zd
+ WLMEGTDxI0nnMkhv+v2+fnnVJFhHETZOAehK2vNQ6QsVlpwpj62QuNWQR9tdgDcMYyUl
+ ImBKIV8o4I+cD4+Sa3hMqcX/dZPMAld1aqmA2eMTAe0iYkTvlCgM6/SBJRJYBBjLFMM2
+ jV2XyijxVG8eWYU3dVSs8KqKeAUWdGQMHMG0n3Sd2VxMWLi0tBfyobH6MB/GATDBqjyB
+ 54Iw==
+X-Gm-Message-State: AOJu0YyuiJ1IF6WM2ZDb3PvJFh7FrwXDVMYtytiiDL9yHohrVB0XRASJ
+ pUhrlZOrWfLAksk1TUTSm2o97pJDUpr8L7vv+nkue6ut86U6upeR
+X-Gm-Gg: ASbGncv0ZMZWcUZuOe/BgRRjeSOx22f3djJlTo4B62ZNyScPeQ4ZVNw9hXEpR4PaKIK
+ urG25TYAO+Aj6IdMOuAYSohJm+itK+jQxZKMKEKV4RT1uERDUEeLM+MIFoEp7HlSbb3KnpNotXt
+ npSXHZnbz1fnrpmnoe8S+6/9DXl3K7C2ry14B7PFqb56Ahq5TdLNIGy412cxAMgbS4/SA5lZLek
+ 0gWW8TgAwrVyF8htZXtb3o4G0WM66f6sVwwTfKe5wNn+swGQfuTCnB+3pYxgW+3XdfwMnb8Js+e
+ n3O4AcepVvMn6jKs14Ps9Umlf5WDa0z0U4AQlJvqZ4UO4i+30vXYH+wsOPiRG+UdCL2/SV+3854
+ 6vjfhuLgae49ugAw=
+X-Google-Smtp-Source: AGHT+IFSPB5VMDpn4O68C4Tn6MoteErC5LVqv/fR36wtc5VsAKcH0UgEvTej9OJbBiYLW9OPxxMEdw==
+X-Received: by 2002:a05:6402:a00e:b0:5de:39fd:b309 with SMTP id
+ 4fb4d7f45d1cf-5de44fe9488mr41766347a12.4.1739255658307; 
+ Mon, 10 Feb 2025 22:34:18 -0800 (PST)
 Received: from legolas.fritz.box
  (p200300d0af0cd200603313d7beea72d6.dip0.t-ipconnect.de.
  [2003:d0:af0c:d200:6033:13d7:beea:72d6])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ab7c62c464dsm300440466b.28.2025.02.10.22.34.15
+ a640c23a62f3a-ab7c62c464dsm300440466b.28.2025.02.10.22.34.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Feb 2025 22:34:16 -0800 (PST)
+ Mon, 10 Feb 2025 22:34:17 -0800 (PST)
 From: Markus Theil <theil.markus@gmail.com>
 To: linux-kernel@vger.kernel.org,
 	andi.shyti@linux.intel.com
 Cc: intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, Jason@zx2c4.com,
  tytso@mit.edu, Markus Theil <theil.markus@gmail.com>
-Subject: [PATCH v2 2/3] media: vivid: use prandom
-Date: Tue, 11 Feb 2025 07:33:31 +0100
-Message-ID: <20250211063332.16542-3-theil.markus@gmail.com>
+Subject: [PATCH v2 3/3] prandom: remove next_pseudo_random32
+Date: Tue, 11 Feb 2025 07:33:32 +0100
+Message-ID: <20250211063332.16542-4-theil.markus@gmail.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250211063332.16542-1-theil.markus@gmail.com>
 References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
@@ -92,30 +92,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is part of a prandom cleanup, which removes
-next_pseudo_random32 and replaces it with the standard PRNG.
+next_pseudo_random32 implements a LCG with known bad statistical
+properties and was only used in two pieces of testing code.
+
+After the users are converted to prandom as part of this series,
+remove the LCG here.
+
+This removes another option of using an insecure PRNG.
 
 Signed-off-by: Markus Theil <theil.markus@gmail.com>
 ---
- drivers/media/test-drivers/vivid/vivid-vid-cap.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ include/linux/prandom.h | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/drivers/media/test-drivers/vivid/vivid-vid-cap.c b/drivers/media/test-drivers/vivid/vivid-vid-cap.c
-index b166d90177c6..166372d5f927 100644
---- a/drivers/media/test-drivers/vivid/vivid-vid-cap.c
-+++ b/drivers/media/test-drivers/vivid/vivid-vid-cap.c
-@@ -300,8 +300,10 @@ void vivid_update_quality(struct vivid_dev *dev)
- 	 */
- 	freq_modulus = (dev->tv_freq - 676 /* (43.25-1) * 16 */) % (6 * 16);
- 	if (freq_modulus > 2 * 16) {
-+		struct rnd_state prng;
-+		prandom_seed_state(&prng, dev->tv_freq ^ 0x55);
- 		tpg_s_quality(&dev->tpg, TPG_QUAL_NOISE,
--			next_pseudo_random32(dev->tv_freq ^ 0x55) & 0x3f);
-+			prandom_u32_state(&prng) & 0x3f);
- 		return;
- 	}
- 	if (freq_modulus < 12 /*0.75 * 16*/ || freq_modulus > 20 /*1.25 * 16*/)
+diff --git a/include/linux/prandom.h b/include/linux/prandom.h
+index f2ed5b72b3d6..ff7dcc3fa105 100644
+--- a/include/linux/prandom.h
++++ b/include/linux/prandom.h
+@@ -47,10 +47,4 @@ static inline void prandom_seed_state(struct rnd_state *state, u64 seed)
+ 	state->s4 = __seed(i, 128U);
+ }
+ 
+-/* Pseudo random number generator from numerical recipes. */
+-static inline u32 next_pseudo_random32(u32 seed)
+-{
+-	return seed * 1664525 + 1013904223;
+-}
+-
+ #endif
 -- 
 2.47.2
 
