@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C6CA30C0D
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 13:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B32A30C11
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 13:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2831F10E214;
-	Tue, 11 Feb 2025 12:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1302C10E6BA;
+	Tue, 11 Feb 2025 12:53:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UMckZVAh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dpVlaDmQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DDDF10E1A9;
- Tue, 11 Feb 2025 12:51:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1429110E6BD;
+ Tue, 11 Feb 2025 12:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739278284; x=1770814284;
+ t=1739278385; x=1770814385;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=vPKVOP0JRacOxxMQbqYIW6Dcs8O+G7luMYu20POPNnQ=;
- b=UMckZVAhRK/29iL6Jw9l8HaJkSGom6LH0q8XxzoNz5AHqoVKrv4pE63V
- oRtZEHEDh6AzY7vlD8lrvljOQnxDOwqQo5msaOZmYe45K5ulOUHc04u7v
- ZsN5iZcLcC0r1PgiNkff1ATw3uvIO9+yB0CFTdgTEajbvn6R9JMfpyfn8
- seSXjF41iowqVpS8Q2qZbMT3jkQfLY5Csx3zl2BUCXKNiChadCWu5h1JT
- xF+/4D6Cb6WOkP9h6mOt0/BJQUQ2EU60wHPq6vS8+0u3+Ee66Mbm5pXXM
- 2F315ogtYST5Pox9deJmkTjzNtU8UW7OfoUfl8Hp05a2AOOgEENnLWD0R w==;
-X-CSE-ConnectionGUID: +5WSi8ZVR5Kn9AOZ1aitFg==
-X-CSE-MsgGUID: ez9XdQmcRzq+K9xFJvDBxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27494209"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="27494209"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 04:51:23 -0800
-X-CSE-ConnectionGUID: KXRfhBxKQcCrRCXZneMfLQ==
-X-CSE-MsgGUID: eQkl+LC+R9KWkl6nDvgTKw==
+ bh=ObNdYQeqCZ7NvuOpbVQWE2VUhv8PrgE3bcWuc569YO4=;
+ b=dpVlaDmQSwPSBilSgUz/hwxJ0hBqkc+6d2NOqUEnKLO30Xc+QRdkla+h
+ Evr4ka+WNqZ4OjgE05+I2vVQmlRUWHdIlVPgWLj5gTjZ3fA5hqpW+eHv/
+ qeFbsLqGAO5UHTs5y+vQ7Xb+4Cutc60Lu29xltretytqqckNtPGYLT72H
+ jLT7GadcFxoON9TUKmQ9UTM9c2b88+6eo0FRtuTymIEbpB5YYQMD7kL7Y
+ 4gEB9CfAs05eccYvJuOz5/4kdR/SmkT6m698Vvcyp7nLMa/jGhYt5zlJy
+ Zf3ro9AOxj1T0XUZuB6jj776RlDmD0higVsdQ0Bv0BIGH+8r0Dghe2W1B A==;
+X-CSE-ConnectionGUID: vMvGLXwQR4+2Oo7ps6hnxA==
+X-CSE-MsgGUID: EQaPBalmRPCx5mPSVFgVPg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="43655794"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="43655794"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 04:53:04 -0800
+X-CSE-ConnectionGUID: F1KaTL+6SXS/R6rApycFrQ==
+X-CSE-MsgGUID: o/mYZnDMQ5axcMhLOOCjPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117692627"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="112457511"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.93])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 04:51:20 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 04:53:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
@@ -52,8 +52,8 @@ In-Reply-To: <20250211104857.3501566-2-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250211104857.3501566-1-suraj.kandpal@intel.com>
  <20250211104857.3501566-2-suraj.kandpal@intel.com>
-Date: Tue, 11 Feb 2025 14:51:17 +0200
-Message-ID: <878qqc3are.fsf@intel.com>
+Date: Tue, 11 Feb 2025 14:52:58 +0200
+Message-ID: <875xlg3aol.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,6 +74,9 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 11 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
 > Use struct intel_display wherever possible in intel_display_debug_fs.c
 > to reduce the use of drm_i915_private.
+
+PS. "drm/i915/display_debug_fs:" is not a prefix we've ever used.
+
 >
 > --v2
 > -Rebase
@@ -427,17 +430,6 @@ On Tue, 11 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
 >  	debugfs_create_file("i915_fifo_underrun_reset", 0644, minor->debugfs_root,
 > -			    to_i915(minor->dev), &i915_fifo_underrun_reset_ops);
 > +			    to_intel_display(minor->dev), &i915_fifo_underrun_reset_ops);
-
-Please don't inline to_intel_display(minor->dev), add a separate local
-variable instead. Eventually we'll pass display to
-intel_display_debugfs_register(), the local variable will get removed,
-and this place doesn't need to be changed.
-
-Other than that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
 >  
 >  	drm_debugfs_create_files(intel_display_debugfs_list,
 >  				 ARRAY_SIZE(intel_display_debugfs_list),
