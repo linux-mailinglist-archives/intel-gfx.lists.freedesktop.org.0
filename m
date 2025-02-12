@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4552AA324F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 12:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E78A32517
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 12:35:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB5010E865;
-	Wed, 12 Feb 2025 11:30:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60AA110E864;
+	Wed, 12 Feb 2025 11:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1752F10E864;
- Wed, 12 Feb 2025 11:30:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B3210E864;
+ Wed, 12 Feb 2025 11:35:18 +0000 (UTC)
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2] drm/xe/display: Fix fbdev GGTT mapping handling.
-Date: Wed, 12 Feb 2025 12:30:29 +0100
-Message-ID: <20250212113031.8889-1-dev@lankhorst.se>
+Subject: [PATCH v2.1] drm/xe/display: Fix fbdev GGTT mapping handling.
+Date: Wed, 12 Feb 2025 12:35:08 +0100
+Message-ID: <20250212113509.14972-1-dev@lankhorst.se>
 X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -82,7 +82,7 @@ index 651799c946ace..067adec8d49f5 100644
  	intel_opregion_resume(display);
  
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 11a6b996d739b..54578460a1d19 100644
+index 11a6b996d739b..dee1f6531c849 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
 @@ -12,6 +12,7 @@
@@ -116,7 +116,7 @@ index 11a6b996d739b..54578460a1d19 100644
 +	if (!vma)
 +		return;
 +
-+	vma = vma->bo;
++	bo = vma->bo;
 +
 +	mutex_lock(&ggtt->lock);
 +	for (u32 x = 0; x < bo->ttm.base.size; x += XE_PAGE_SIZE) {
