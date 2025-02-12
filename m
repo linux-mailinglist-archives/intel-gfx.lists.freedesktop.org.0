@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A44EA32C20
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E12A32C21
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:44:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8F8B10E92C;
-	Wed, 12 Feb 2025 16:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A70E610E92E;
+	Wed, 12 Feb 2025 16:44:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnMC+nwJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HS2As9F7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6A3C10E92A
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 16:43:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A99A510E92E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 16:44:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739378640; x=1770914640;
+ t=1739378644; x=1770914644;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XDSI0DOhP2d91g5s74/fKoOGTfhuUcr3St7G9Mh4jGk=;
- b=UnMC+nwJFj2LkibN4hbgsaxBCC0fthMuH4EN3VUEY5sJVBtlvZrwUNeG
- M1zEwF4Y22+WGHCyDoEpzKgzwLUOgH8cw7R6VCTUL+1wYD1sbYaKDo2Wy
- Aq91jLCgpdiJGP4oqcNuint0+q+/lpx/QlmqnBQZOlHkMXuCzNrvjAQQz
- PhgqeSgvFmNWSf78Bx5ggiMlThqvD8ZkuHNFRv/IE9mFpjlTxgxZf3Z0/
- 6vgP/EJa0w4mvYFpXVkvQRWcbshM4Mt/VAijwvV1rNn/pEinB1d7cNdDj
- z8g8ddOOvm3Mbvz9KtZUBnam8f1WBUxxs1nQ1bOJUp60Hu+Aay7vo86Af g==;
-X-CSE-ConnectionGUID: c4r7ukpxRYyLbhaz/YrW1g==
-X-CSE-MsgGUID: unhG3MdvT5GEvauv9CQxaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62515016"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62515016"
+ bh=RbmpImVwKBmq/1p0AzU3gwSGjCiyeEdmMaYThRYWgnM=;
+ b=HS2As9F78VKAGBaA8rNaccwtsMeevEmcBQqwHHLW7Jf88wH6b1YDswOM
+ p2aReSYi7j3z7WZVbSc8J2ONJ8P//ZsQqaYDokmcCcZ8cucc8lVzN1kyM
+ tK9etnyHX1svk7T79ZmkofocJfpbjiyF6m6FwAArhR0tfPyKFsH2zTqBZ
+ ZvUy7oihVMoEK7/fxjsAv2JNANw4LZUNybFe/TjmmpI9n5xk1+r/d6LUg
+ DQfC+r6+sOOVwhmWh/UpDO2xjygcB4YhEUozo+at82mst0SDwUFQo/Cqf
+ ApbXBhP+vIS8qd8xweUmQjaAAmQO776v3aSUlClArLKVAbuYhEsKyF9V2 A==;
+X-CSE-ConnectionGUID: yK9VjE1SRU+fcib8iTJk9g==
+X-CSE-MsgGUID: hlG2++4bTc6NzVX7YRqKvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62515027"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62515027"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:43:59 -0800
-X-CSE-ConnectionGUID: ePtfr2P+REWpQK62qGNs1g==
-X-CSE-MsgGUID: jENKd3wOS+Oi91ZYTQiwng==
+ 12 Feb 2025 08:44:03 -0800
+X-CSE-ConnectionGUID: 4X5QIfjzQvGdqUxveZ8JRQ==
+X-CSE-MsgGUID: nF8XExsOR+e09NIPOQ0Jfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113082672"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113082681"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 08:43:58 -0800
+ by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 08:44:01 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Feb 2025 18:43:56 +0200
+ Wed, 12 Feb 2025 18:43:59 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v2 09/10] drm/i915: Move icl+ nv12 plane register mangling
- into skl_universal_plane.c
-Date: Wed, 12 Feb 2025 18:43:29 +0200
-Message-ID: <20250212164330.16891-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 10/10] drm/i915: Relocate intel_atomic_check_planes()
+Date: Wed, 12 Feb 2025 18:43:30 +0200
+Message-ID: <20250212164330.16891-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250212164330.16891-1-ville.syrjala@linux.intel.com>
 References: <20250212164330.16891-1-ville.syrjala@linux.intel.com>
@@ -72,129 +71,670 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Try to keep all the low level skl+ universal plane register
-details inside skl_universal_plane.c instead of having them
-sprinkled all over the place.
+Move all the intel_atomic_check_planes() machinery into
+intel_atomic_plane.c in order to declutter intel_display.c.
 
 v2: Rebase due to intel_display changes
 
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 30 ++++-------------
- .../drm/i915/display/skl_universal_plane.c    | 32 +++++++++++++++++++
- .../drm/i915/display/skl_universal_plane.h    |  3 ++
- 3 files changed, 41 insertions(+), 24 deletions(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 296 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.h |   3 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 295 -----------------
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 -
+ 4 files changed, 299 insertions(+), 297 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b7f233e526d6..9c7a8203f135 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -123,7 +123,6 @@
- #include "intel_wm.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 71263fbf0047..f58169763835 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -52,6 +52,7 @@
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
  #include "skl_scaler.h"
- #include "skl_universal_plane.h"
--#include "skl_universal_plane_regs.h"
++#include "skl_universal_plane.h"
  #include "skl_watermark.h"
- #include "vlv_dpio_phy_regs.h"
- #include "vlv_dsi.h"
-@@ -4435,33 +4434,16 @@ static void link_nv12_planes(struct intel_crtc_state *crtc_state,
- 	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
  
- 	/* Copy parameters to Y plane */
--	y_plane_state->ctl = uv_plane_state->ctl | PLANE_CTL_YUV420_Y_PLANE;
--	y_plane_state->color_ctl = uv_plane_state->color_ctl;
--	y_plane_state->view = uv_plane_state->view;
--	y_plane_state->decrypt = uv_plane_state->decrypt;
--
- 	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
- 	y_plane_state->uapi.src = uv_plane_state->uapi.src;
- 	y_plane_state->uapi.dst = uv_plane_state->uapi.dst;
- 
--	if (icl_is_hdr_plane(display, uv_plane->id)) {
--		switch (y_plane->id) {
--		case PLANE_7:
--			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_7_ICL;
--			break;
--		case PLANE_6:
--			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_6_ICL;
--			break;
--		case PLANE_5:
--			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_5_RKL;
--			break;
--		case PLANE_4:
--			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_4_RKL;
--			break;
--		default:
--			MISSING_CASE(y_plane->id);
--		}
--	}
+ static void intel_plane_state_reset(struct intel_plane_state *plane_state,
+@@ -1223,3 +1224,298 @@ void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_sta
+ 	drm_vblank_work_init(&old_plane_state->unpin_work, old_plane_state->uapi.crtc,
+ 			     intel_cursor_unpin_work);
+ }
++
++static void link_nv12_planes(struct intel_crtc_state *crtc_state,
++			     struct intel_plane_state *uv_plane_state,
++			     struct intel_plane_state *y_plane_state)
++{
++	struct intel_display *display = to_intel_display(uv_plane_state);
++	struct intel_plane *uv_plane = to_intel_plane(uv_plane_state->uapi.plane);
++	struct intel_plane *y_plane = to_intel_plane(y_plane_state->uapi.plane);
++
++	drm_dbg_kms(display->drm, "UV plane [PLANE:%d:%s] using Y plane [PLANE:%d:%s]\n",
++		    uv_plane->base.base.id, uv_plane->base.name,
++		    y_plane->base.base.id, y_plane->base.name);
++
++	uv_plane_state->planar_linked_plane = y_plane;
++
++	y_plane_state->is_y_plane = true;
++	y_plane_state->planar_linked_plane = uv_plane;
++
++	crtc_state->enabled_planes |= BIT(y_plane->id);
++	crtc_state->active_planes |= BIT(y_plane->id);
++	crtc_state->update_planes |= BIT(y_plane->id);
++
++	crtc_state->data_rate[y_plane->id] = crtc_state->data_rate_y[uv_plane->id];
++	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
++
++	/* Copy parameters to Y plane */
++	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
++	y_plane_state->uapi.src = uv_plane_state->uapi.src;
++	y_plane_state->uapi.dst = uv_plane_state->uapi.dst;
++
 +	y_plane_state->ctl = uv_plane_state->ctl;
 +	y_plane_state->color_ctl = uv_plane_state->color_ctl;
 +	y_plane_state->view = uv_plane_state->view;
 +	y_plane_state->decrypt = uv_plane_state->decrypt;
 +
 +	icl_link_nv12_planes(uv_plane_state, y_plane_state);
- }
- 
- static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 4b8732ae65aa..110f66dd5cf0 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2327,6 +2327,38 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 	return 0;
- }
- 
-+void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
-+			  struct intel_plane_state *y_plane_state)
-+{
-+	struct intel_display *display = to_intel_display(uv_plane_state);
-+	struct intel_plane *uv_plane = to_intel_plane(uv_plane_state->uapi.plane);
-+	struct intel_plane *y_plane = to_intel_plane(y_plane_state->uapi.plane);
-+
-+	drm_WARN_ON(display->drm, icl_is_nv12_y_plane(display, uv_plane->id));
-+	drm_WARN_ON(display->drm, !icl_is_nv12_y_plane(display, y_plane->id));
-+
-+	y_plane_state->ctl |= PLANE_CTL_YUV420_Y_PLANE;
-+
-+	if (icl_is_hdr_plane(display, uv_plane->id)) {
-+		switch (y_plane->id) {
-+		case PLANE_7:
-+			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_7_ICL;
-+			break;
-+		case PLANE_6:
-+			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_6_ICL;
-+			break;
-+		case PLANE_5:
-+			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_5_RKL;
-+			break;
-+		case PLANE_4:
-+			uv_plane_state->cus_ctl |= PLANE_CUS_Y_PLANE_4_RKL;
-+			break;
-+		default:
-+			MISSING_CASE(y_plane->id);
-+		}
-+	}
 +}
 +
- static enum intel_fbc_id skl_fbc_id_for_pipe(enum pipe pipe)
- {
- 	return pipe - PIPE_A + INTEL_FBC_A;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-index 0ce240e9ca5a..5e2451c21eeb 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-@@ -32,6 +32,9 @@ int skl_format_to_fourcc(int format, bool rgb_order, bool alpha);
- int skl_calc_main_surface_offset(const struct intel_plane_state *plane_state,
- 				 int *x, int *y, u32 *offset);
- 
-+void icl_link_nv12_planes(struct intel_plane_state *uv_plane_state,
-+			  struct intel_plane_state *y_plane_state);
++static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
++			      struct intel_plane_state *plane_state)
++{
++	struct intel_display *display = to_intel_display(plane_state);
++	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
 +
- bool icl_is_nv12_y_plane(struct intel_display *display,
- 			 enum plane_id plane_id);
- u8 icl_hdr_plane_mask(void);
++	plane_state->planar_linked_plane = NULL;
++
++	if (!plane_state->is_y_plane)
++		return;
++
++	drm_WARN_ON(display->drm, plane_state->uapi.visible);
++
++	plane_state->is_y_plane = false;
++
++	crtc_state->enabled_planes &= ~BIT(plane->id);
++	crtc_state->active_planes &= ~BIT(plane->id);
++	crtc_state->update_planes |= BIT(plane->id);
++	crtc_state->data_rate[plane->id] = 0;
++	crtc_state->rel_data_rate[plane->id] = 0;
++}
++
++static int icl_check_nv12_planes(struct intel_atomic_state *state,
++				 struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_plane_state *plane_state;
++	struct intel_plane *plane;
++	int i;
++
++	if (DISPLAY_VER(dev_priv) < 11)
++		return 0;
++
++	/*
++	 * Destroy all old plane links and make the Y plane invisible
++	 * in the crtc_state->active_planes mask.
++	 */
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		if (plane->pipe != crtc->pipe)
++			continue;
++
++		if (plane_state->planar_linked_plane)
++			unlink_nv12_plane(crtc_state, plane_state);
++	}
++
++	if (!crtc_state->nv12_planes)
++		return 0;
++
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		struct intel_plane_state *y_plane_state = NULL;
++		struct intel_plane *y_plane;
++
++		if (plane->pipe != crtc->pipe)
++			continue;
++
++		if ((crtc_state->nv12_planes & BIT(plane->id)) == 0)
++			continue;
++
++		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, y_plane) {
++			if (!icl_is_nv12_y_plane(display, y_plane->id))
++				continue;
++
++			if (crtc_state->active_planes & BIT(y_plane->id))
++				continue;
++
++			y_plane_state = intel_atomic_get_plane_state(state, y_plane);
++			if (IS_ERR(y_plane_state))
++				return PTR_ERR(y_plane_state);
++
++			break;
++		}
++
++		if (!y_plane_state) {
++			drm_dbg_kms(&dev_priv->drm,
++				    "[CRTC:%d:%s] need %d free Y planes for planar YUV\n",
++				    crtc->base.base.id, crtc->base.name,
++				    hweight8(crtc_state->nv12_planes));
++			return -EINVAL;
++		}
++
++		link_nv12_planes(crtc_state, plane_state, y_plane_state);
++	}
++
++	return 0;
++}
++
++static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
++					  struct intel_crtc *crtc,
++					  u8 plane_ids_mask)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_plane *plane;
++
++	for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
++		struct intel_plane_state *plane_state;
++
++		if ((plane_ids_mask & BIT(plane->id)) == 0)
++			continue;
++
++		plane_state = intel_atomic_get_plane_state(state, plane);
++		if (IS_ERR(plane_state))
++			return PTR_ERR(plane_state);
++	}
++
++	return 0;
++}
++
++int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
++				     struct intel_crtc *crtc)
++{
++	const struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++
++	return intel_crtc_add_planes_to_state(state, crtc,
++					      old_crtc_state->enabled_planes |
++					      new_crtc_state->enabled_planes);
++}
++
++static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
++{
++	/* See {hsw,vlv,ivb}_plane_ratio() */
++	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
++		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
++		IS_IVYBRIDGE(dev_priv);
++}
++
++static u8 intel_joiner_affected_planes(struct intel_atomic_state *state,
++				       u8 joined_pipes)
++{
++	const struct intel_plane_state *plane_state;
++	struct intel_plane *plane;
++	u8 affected_planes = 0;
++	int i;
++
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		struct intel_plane *linked = plane_state->planar_linked_plane;
++
++		if ((joined_pipes & BIT(plane->pipe)) == 0)
++			continue;
++
++		affected_planes |= BIT(plane->id);
++		if (linked)
++			affected_planes |= BIT(linked->id);
++	}
++
++	return affected_planes;
++}
++
++static int intel_joiner_add_affected_planes(struct intel_atomic_state *state,
++					    u8 joined_pipes)
++{
++	u8 prev_affected_planes, affected_planes = 0;
++
++	/*
++	 * We want all the joined pipes to have the same
++	 * set of planes in the atomic state, to make sure
++	 * state copying always works correctly, and the
++	 * UV<->Y plane linkage is always up to date.
++	 * Keep pulling planes in until we've determined
++	 * the full set of affected planes. A bit complicated
++	 * on account of each pipe being capable of selecting
++	 * their own Y planes independently of the other pipes,
++	 * and the selection being done from the set of
++	 * inactive planes.
++	 */
++	do {
++		struct intel_crtc *crtc;
++
++		for_each_intel_crtc_in_pipe_mask(state->base.dev, crtc, joined_pipes) {
++			int ret;
++
++			ret = intel_crtc_add_planes_to_state(state, crtc, affected_planes);
++			if (ret)
++				return ret;
++		}
++
++		prev_affected_planes = affected_planes;
++		affected_planes = intel_joiner_affected_planes(state, joined_pipes);
++	} while (affected_planes != prev_affected_planes);
++
++	return 0;
++}
++
++static int intel_add_affected_planes(struct intel_atomic_state *state)
++{
++	const struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int i;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		int ret;
++
++		ret = intel_joiner_add_affected_planes(state, intel_crtc_joined_pipe_mask(crtc_state));
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++int intel_atomic_check_planes(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
++	struct intel_plane_state __maybe_unused *plane_state;
++	struct intel_plane *plane;
++	struct intel_crtc *crtc;
++	int i, ret;
++
++	ret = intel_add_affected_planes(state);
++	if (ret)
++		return ret;
++
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		ret = intel_plane_atomic_check(state, plane);
++		if (ret) {
++			drm_dbg_atomic(&dev_priv->drm,
++				       "[PLANE:%d:%s] atomic driver check failed\n",
++				       plane->base.base.id, plane->base.name);
++			return ret;
++		}
++	}
++
++	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
++					    new_crtc_state, i) {
++		u8 old_active_planes, new_active_planes;
++
++		ret = icl_check_nv12_planes(state, crtc);
++		if (ret)
++			return ret;
++
++		/*
++		 * On some platforms the number of active planes affects
++		 * the planes' minimum cdclk calculation. Add such planes
++		 * to the state before we compute the minimum cdclk.
++		 */
++		if (!active_planes_affects_min_cdclk(dev_priv))
++			continue;
++
++		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
++		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
++
++		if (hweight8(old_active_planes) == hweight8(new_active_planes))
++			continue;
++
++		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index fb87b3353ab0..9dc0b8468c2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -81,5 +81,8 @@ void intel_plane_helper_add(struct intel_plane *plane);
+ bool intel_plane_needs_physical(struct intel_plane *plane);
+ void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
+ 					 struct intel_plane_state *new_plane_state);
++int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
++				     struct intel_crtc *crtc);
++int intel_atomic_check_planes(struct intel_atomic_state *state);
+ 
+ #endif /* __INTEL_ATOMIC_PLANE_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 9c7a8203f135..a5f95750d6f3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4409,132 +4409,6 @@ static bool check_single_encoder_cloning(struct intel_atomic_state *state,
+ 	return true;
+ }
+ 
+-static void link_nv12_planes(struct intel_crtc_state *crtc_state,
+-			     struct intel_plane_state *uv_plane_state,
+-			     struct intel_plane_state *y_plane_state)
+-{
+-	struct intel_display *display = to_intel_display(uv_plane_state);
+-	struct intel_plane *uv_plane = to_intel_plane(uv_plane_state->uapi.plane);
+-	struct intel_plane *y_plane = to_intel_plane(y_plane_state->uapi.plane);
+-
+-	drm_dbg_kms(display->drm, "UV plane [PLANE:%d:%s] using Y plane [PLANE:%d:%s]\n",
+-		    uv_plane->base.base.id, uv_plane->base.name,
+-		    y_plane->base.base.id, y_plane->base.name);
+-
+-	uv_plane_state->planar_linked_plane = y_plane;
+-
+-	y_plane_state->is_y_plane = true;
+-	y_plane_state->planar_linked_plane = uv_plane;
+-
+-	crtc_state->enabled_planes |= BIT(y_plane->id);
+-	crtc_state->active_planes |= BIT(y_plane->id);
+-	crtc_state->update_planes |= BIT(y_plane->id);
+-
+-	crtc_state->data_rate[y_plane->id] = crtc_state->data_rate_y[uv_plane->id];
+-	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
+-
+-	/* Copy parameters to Y plane */
+-	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
+-	y_plane_state->uapi.src = uv_plane_state->uapi.src;
+-	y_plane_state->uapi.dst = uv_plane_state->uapi.dst;
+-
+-	y_plane_state->ctl = uv_plane_state->ctl;
+-	y_plane_state->color_ctl = uv_plane_state->color_ctl;
+-	y_plane_state->view = uv_plane_state->view;
+-	y_plane_state->decrypt = uv_plane_state->decrypt;
+-
+-	icl_link_nv12_planes(uv_plane_state, y_plane_state);
+-}
+-
+-static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
+-			      struct intel_plane_state *plane_state)
+-{
+-	struct intel_display *display = to_intel_display(plane_state);
+-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+-
+-	plane_state->planar_linked_plane = NULL;
+-
+-	if (!plane_state->is_y_plane)
+-		return;
+-
+-	drm_WARN_ON(display->drm, plane_state->uapi.visible);
+-
+-	plane_state->is_y_plane = false;
+-
+-	crtc_state->enabled_planes &= ~BIT(plane->id);
+-	crtc_state->active_planes &= ~BIT(plane->id);
+-	crtc_state->update_planes |= BIT(plane->id);
+-	crtc_state->data_rate[plane->id] = 0;
+-	crtc_state->rel_data_rate[plane->id] = 0;
+-}
+-
+-static int icl_check_nv12_planes(struct intel_atomic_state *state,
+-				 struct intel_crtc *crtc)
+-{
+-	struct intel_display *display = to_intel_display(state);
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	struct intel_crtc_state *crtc_state =
+-		intel_atomic_get_new_crtc_state(state, crtc);
+-	struct intel_plane_state *plane_state;
+-	struct intel_plane *plane;
+-	int i;
+-
+-	if (DISPLAY_VER(dev_priv) < 11)
+-		return 0;
+-
+-	/*
+-	 * Destroy all old plane links and make the Y plane invisible
+-	 * in the crtc_state->active_planes mask.
+-	 */
+-	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+-		if (plane->pipe != crtc->pipe)
+-			continue;
+-
+-		if (plane_state->planar_linked_plane)
+-			unlink_nv12_plane(crtc_state, plane_state);
+-	}
+-
+-	if (!crtc_state->nv12_planes)
+-		return 0;
+-
+-	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+-		struct intel_plane_state *y_plane_state = NULL;
+-		struct intel_plane *y_plane;
+-
+-		if (plane->pipe != crtc->pipe)
+-			continue;
+-
+-		if ((crtc_state->nv12_planes & BIT(plane->id)) == 0)
+-			continue;
+-
+-		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, y_plane) {
+-			if (!icl_is_nv12_y_plane(display, y_plane->id))
+-				continue;
+-
+-			if (crtc_state->active_planes & BIT(y_plane->id))
+-				continue;
+-
+-			y_plane_state = intel_atomic_get_plane_state(state, y_plane);
+-			if (IS_ERR(y_plane_state))
+-				return PTR_ERR(y_plane_state);
+-
+-			break;
+-		}
+-
+-		if (!y_plane_state) {
+-			drm_dbg_kms(&dev_priv->drm,
+-				    "[CRTC:%d:%s] need %d free Y planes for planar YUV\n",
+-				    crtc->base.base.id, crtc->base.name,
+-				    hweight8(crtc_state->nv12_planes));
+-			return -EINVAL;
+-		}
+-
+-		link_nv12_planes(crtc_state, plane_state, y_plane_state);
+-	}
+-
+-	return 0;
+-}
+-
+ static u16 hsw_linetime_wm(const struct intel_crtc_state *crtc_state)
+ {
+ 	const struct drm_display_mode *pipe_mode =
+@@ -6135,175 +6009,6 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 		new_crtc_state->update_pipe = true;
+ }
+ 
+-static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
+-					  struct intel_crtc *crtc,
+-					  u8 plane_ids_mask)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	struct intel_plane *plane;
+-
+-	for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
+-		struct intel_plane_state *plane_state;
+-
+-		if ((plane_ids_mask & BIT(plane->id)) == 0)
+-			continue;
+-
+-		plane_state = intel_atomic_get_plane_state(state, plane);
+-		if (IS_ERR(plane_state))
+-			return PTR_ERR(plane_state);
+-	}
+-
+-	return 0;
+-}
+-
+-int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+-				     struct intel_crtc *crtc)
+-{
+-	const struct intel_crtc_state *old_crtc_state =
+-		intel_atomic_get_old_crtc_state(state, crtc);
+-	const struct intel_crtc_state *new_crtc_state =
+-		intel_atomic_get_new_crtc_state(state, crtc);
+-
+-	return intel_crtc_add_planes_to_state(state, crtc,
+-					      old_crtc_state->enabled_planes |
+-					      new_crtc_state->enabled_planes);
+-}
+-
+-static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
+-{
+-	/* See {hsw,vlv,ivb}_plane_ratio() */
+-	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
+-		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+-		IS_IVYBRIDGE(dev_priv);
+-}
+-
+-static u8 intel_joiner_affected_planes(struct intel_atomic_state *state,
+-				       u8 joined_pipes)
+-{
+-	const struct intel_plane_state *plane_state;
+-	struct intel_plane *plane;
+-	u8 affected_planes = 0;
+-	int i;
+-
+-	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+-		struct intel_plane *linked = plane_state->planar_linked_plane;
+-
+-		if ((joined_pipes & BIT(plane->pipe)) == 0)
+-			continue;
+-
+-		affected_planes |= BIT(plane->id);
+-		if (linked)
+-			affected_planes |= BIT(linked->id);
+-	}
+-
+-	return affected_planes;
+-}
+-
+-static int intel_joiner_add_affected_planes(struct intel_atomic_state *state,
+-					    u8 joined_pipes)
+-{
+-	u8 prev_affected_planes, affected_planes = 0;
+-
+-	/*
+-	 * We want all the joined pipes to have the same
+-	 * set of planes in the atomic state, to make sure
+-	 * state copying always works correctly, and the
+-	 * UV<->Y plane linkage is always up to date.
+-	 * Keep pulling planes in until we've determined
+-	 * the full set of affected planes. A bit complicated
+-	 * on account of each pipe being capable of selecting
+-	 * their own Y planes independently of the other pipes,
+-	 * and the selection being done from the set of
+-	 * inactive planes.
+-	 */
+-	do {
+-		struct intel_crtc *crtc;
+-
+-		for_each_intel_crtc_in_pipe_mask(state->base.dev, crtc, joined_pipes) {
+-			int ret;
+-
+-			ret = intel_crtc_add_planes_to_state(state, crtc, affected_planes);
+-			if (ret)
+-				return ret;
+-		}
+-
+-		prev_affected_planes = affected_planes;
+-		affected_planes = intel_joiner_affected_planes(state, joined_pipes);
+-	} while (affected_planes != prev_affected_planes);
+-
+-	return 0;
+-}
+-
+-static int intel_add_affected_planes(struct intel_atomic_state *state)
+-{
+-	const struct intel_crtc_state *crtc_state;
+-	struct intel_crtc *crtc;
+-	int i;
+-
+-	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+-		int ret;
+-
+-		ret = intel_joiner_add_affected_planes(state, intel_crtc_joined_pipe_mask(crtc_state));
+-		if (ret)
+-			return ret;
+-	}
+-
+-	return 0;
+-}
+-
+-static int intel_atomic_check_planes(struct intel_atomic_state *state)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+-	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
+-	struct intel_plane_state __maybe_unused *plane_state;
+-	struct intel_plane *plane;
+-	struct intel_crtc *crtc;
+-	int i, ret;
+-
+-	ret = intel_add_affected_planes(state);
+-	if (ret)
+-		return ret;
+-
+-	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+-		ret = intel_plane_atomic_check(state, plane);
+-		if (ret) {
+-			drm_dbg_atomic(&dev_priv->drm,
+-				       "[PLANE:%d:%s] atomic driver check failed\n",
+-				       plane->base.base.id, plane->base.name);
+-			return ret;
+-		}
+-	}
+-
+-	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+-					    new_crtc_state, i) {
+-		u8 old_active_planes, new_active_planes;
+-
+-		ret = icl_check_nv12_planes(state, crtc);
+-		if (ret)
+-			return ret;
+-
+-		/*
+-		 * On some platforms the number of active planes affects
+-		 * the planes' minimum cdclk calculation. Add such planes
+-		 * to the state before we compute the minimum cdclk.
+-		 */
+-		if (!active_planes_affects_min_cdclk(dev_priv))
+-			continue;
+-
+-		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+-		new_active_planes = new_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
+-
+-		if (hweight8(old_active_planes) == hweight8(new_active_planes))
+-			continue;
+-
+-		ret = intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	return 0;
+-}
+-
+ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
+ {
+ 	struct intel_crtc_state __maybe_unused *crtc_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index e594492bade7..b550a0faa745 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -413,8 +413,6 @@ enum phy_fia {
+ 				       i)
+ 
+ int intel_atomic_check(struct drm_device *dev, struct drm_atomic_state *state);
+-int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+-				     struct intel_crtc *crtc);
+ u8 intel_calc_active_pipes(struct intel_atomic_state *state,
+ 			   u8 active_pipes);
+ void intel_link_compute_m_n(u16 bpp, int nlanes,
 -- 
 2.45.3
 
