@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFE4A32BE9
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B8CA32BEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:38:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B18410E923;
-	Wed, 12 Feb 2025 16:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2724010E915;
+	Wed, 12 Feb 2025 16:37:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBTKIqOB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MBwG15WG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35B7E10E922;
- Wed, 12 Feb 2025 16:37:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB89F10E915;
+ Wed, 12 Feb 2025 16:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739378271; x=1770914271;
+ t=1739378277; x=1770914277;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=azeYBMvnpKEfyVxTEnfw2Y3Wn9lzeE9bfMOsdFH1VE8=;
- b=VBTKIqOB5YxNNt61nR38wo964fQTK/5vG/t12DOuBHvZ/EY10nBBxplX
- Q0KQYSXhvFnMBVZAbwjnjO303X6DeGcjPCj7qO9ts0cmHTv2wG00xNOAO
- SKpQIiCRepFAD1zIWRmSop76Cgjs1jqMJyNJ3Pq9oul1ppyDhKzGBI6EQ
- QtkPTuJBNXCAzDF/raZRlBW0Hlo3O1El+nH8HL3KPTgdYUx3INJBcqXD3
- yAf1qqZk7/A+5mYLVsMCnBpRdRsfamB3imCIxM8VIRj71SxrDf1ml3HVW
- Pi10mgk8aZwjDNI+pbnttNrb/eGOZB9W8WFyrb1Nu99f2/a822/sv9Um1 Q==;
-X-CSE-ConnectionGUID: GeU5G9tNTM2s8fOrv0p7Eg==
-X-CSE-MsgGUID: Xwfe2Q0XS1evzS1Od1Us6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51479979"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51479979"
+ bh=umrwCJgYPCgN24m56xmJ4NtPKsdzFC4pEno3zv0GFfs=;
+ b=MBwG15WGw5afqRRv207YiUMq+kLlGbxXwYeOU0uaM7xQ6Q1hxLZnFlWo
+ Q9ko5VeBt1leGf1q//n0i6t8qy47O9i76Gb2bwSSr0iZgH+Vvc1InAU70
+ zDKVXT3Iv3ae3nexhb0XZ0D4vQTN+asNraxPbhFpBFgtkIYXiBa7L/oez
+ r/BH9uiGgsymivoucTWAMa0gWkyIOS2kuptFlOMNbz5yX40RAUy63Ys6O
+ 4bh9bBKkw55CcR+O3hZeW6jLbstvOsZXe71MgSYADnMwXo3F+7lP/kPe0
+ xPZzQyWpfh1azRLSPdi7eknJhDFJ4XSiT9UwJhBFtJpkf/2OEP+XIJMXb g==;
+X-CSE-ConnectionGUID: ZERq3fxhQSu1r+55QgsXhQ==
+X-CSE-MsgGUID: XjgJWjWnT3+luDJtd4txTA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51480009"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51480009"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:37:51 -0800
-X-CSE-ConnectionGUID: 3/4Um+STTFGBnNx5bgdGfg==
-X-CSE-MsgGUID: wL2w+T+mSTGg2bhZOn/cHg==
+ 12 Feb 2025 08:37:56 -0800
+X-CSE-ConnectionGUID: m+DcZFFNTL2QoC23OW1i6Q==
+X-CSE-MsgGUID: cHZR0LKgR1GE8t9Y2KPGlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113080782"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113080803"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.167])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:37:49 -0800
+ 12 Feb 2025 08:37:54 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 12/14] drm/i915/combo-phy: convert intel_combo_phy.[ch] to
+Subject: [PATCH 13/14] drm/i915/display: convert intel_fifo_underrun.[ch] to
  struct intel_display
-Date: Wed, 12 Feb 2025 18:36:41 +0200
-Message-Id: <c2e0a6294a8eaa4c16632881edc4f2d23c576101.1739378096.git.jani.nikula@intel.com>
+Date: Wed, 12 Feb 2025 18:36:42 +0200
+Message-Id: <682e667013e1726a6f2f78484b7e9618cee3b639.1739378096.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1739378095.git.jani.nikula@intel.com>
 References: <cover.1739378095.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,606 +72,480 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert as much as possible of intel_combo_phy.[ch] to struct
-intel_display, along with intel_phy_is_combo() in intel_display.c.
-
-Drive-by convert some drm_dbg() to drm_dbg_kms() while at it.
+pointer. Convert as much as possible of intel_fifo_underrun.[ch] to
+struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c        |   6 +-
- .../gpu/drm/i915/display/intel_combo_phy.c    | 180 +++++++++---------
- .../gpu/drm/i915/display/intel_combo_phy.h    |   8 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  14 +-
- drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
- .../drm/i915/display/intel_display_power.c    |   5 +-
- .../i915/display/intel_display_power_well.c   |   3 +-
- 8 files changed, 109 insertions(+), 113 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  | 18 ++--
+ .../drm/i915/display/intel_fifo_underrun.c    | 93 ++++++++++---------
+ .../drm/i915/display/intel_fifo_underrun.h    | 11 +--
+ .../drm/i915/display/intel_modeset_setup.c    |  6 +-
+ 6 files changed, 67 insertions(+), 67 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index e84a362b54c9..9600c2a346d4 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -31,8 +31,8 @@
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "icl_dsi.h"
- #include "icl_dsi_regs.h"
- #include "intel_atomic.h"
-@@ -413,12 +413,12 @@ static void gen11_dsi_enable_io_power(struct intel_encoder *encoder)
- 
- static void gen11_dsi_power_up_lanes(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	enum phy phy;
- 
- 	for_each_dsi_phy(phy, intel_dsi->phys)
--		intel_combo_phy_power_up_lanes(dev_priv, phy, true,
-+		intel_combo_phy_power_up_lanes(display, phy, true,
- 					       intel_dsi->lane_count, false);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index 4fbe2e3542ca..17eea244cc83 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -3,20 +3,20 @@
-  * Copyright © 2018 Intel Corporation
-  */
- 
--#include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_combo_phy.h"
- #include "intel_combo_phy_regs.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- 
--#define for_each_combo_phy(__dev_priv, __phy) \
-+#define for_each_combo_phy(__display, __phy) \
- 	for ((__phy) = PHY_A; (__phy) < I915_MAX_PHYS; (__phy)++)	\
--		for_each_if(intel_phy_is_combo(__dev_priv, __phy))
-+		for_each_if(intel_phy_is_combo(__display, __phy))
- 
--#define for_each_combo_phy_reverse(__dev_priv, __phy) \
-+#define for_each_combo_phy_reverse(__display, __phy) \
- 	for ((__phy) = I915_MAX_PHYS; (__phy)-- > PHY_A;) \
--		for_each_if(intel_phy_is_combo(__dev_priv, __phy))
-+		for_each_if(intel_phy_is_combo(__display, __phy))
- 
- enum {
- 	PROCMON_0_85V_DOT_0,
-@@ -53,11 +53,11 @@ static const struct icl_procmon {
- };
- 
- static const struct icl_procmon *
--icl_get_procmon_ref_values(struct drm_i915_private *dev_priv, enum phy phy)
-+icl_get_procmon_ref_values(struct intel_display *display, enum phy phy)
- {
- 	u32 val;
- 
--	val = intel_de_read(dev_priv, ICL_PORT_COMP_DW3(phy));
-+	val = intel_de_read(display, ICL_PORT_COMP_DW3(phy));
- 	switch (val & (PROCESS_INFO_MASK | VOLTAGE_INFO_MASK)) {
- 	default:
- 		MISSING_CASE(val);
-@@ -75,57 +75,57 @@ icl_get_procmon_ref_values(struct drm_i915_private *dev_priv, enum phy phy)
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 89785da93603..5ecf7d1a5f18 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -328,7 +328,7 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
  	}
- }
+ 	crtc->plane_ids_mask |= BIT(primary->id);
  
--static void icl_set_procmon_ref_values(struct drm_i915_private *dev_priv,
-+static void icl_set_procmon_ref_values(struct intel_display *display,
- 				       enum phy phy)
- {
- 	const struct icl_procmon *procmon;
+-	intel_init_fifo_underrun_reporting(dev_priv, crtc, false);
++	intel_init_fifo_underrun_reporting(display, crtc, false);
  
--	procmon = icl_get_procmon_ref_values(dev_priv, phy);
-+	procmon = icl_get_procmon_ref_values(display, phy);
- 
--	intel_de_rmw(dev_priv, ICL_PORT_COMP_DW1(phy),
-+	intel_de_rmw(display, ICL_PORT_COMP_DW1(phy),
- 		     (0xff << 16) | 0xff, procmon->dw1);
- 
--	intel_de_write(dev_priv, ICL_PORT_COMP_DW9(phy), procmon->dw9);
--	intel_de_write(dev_priv, ICL_PORT_COMP_DW10(phy), procmon->dw10);
-+	intel_de_write(display, ICL_PORT_COMP_DW9(phy), procmon->dw9);
-+	intel_de_write(display, ICL_PORT_COMP_DW10(phy), procmon->dw10);
- }
- 
--static bool check_phy_reg(struct drm_i915_private *dev_priv,
-+static bool check_phy_reg(struct intel_display *display,
- 			  enum phy phy, i915_reg_t reg, u32 mask,
- 			  u32 expected_val)
- {
--	u32 val = intel_de_read(dev_priv, reg);
-+	u32 val = intel_de_read(display, reg);
- 
- 	if ((val & mask) != expected_val) {
--		drm_dbg(&dev_priv->drm,
--			"Combo PHY %c reg %08x state mismatch: "
--			"current %08x mask %08x expected %08x\n",
--			phy_name(phy),
--			reg.reg, val, mask, expected_val);
-+		drm_dbg_kms(display->drm,
-+			    "Combo PHY %c reg %08x state mismatch: "
-+			    "current %08x mask %08x expected %08x\n",
-+			    phy_name(phy),
-+			    reg.reg, val, mask, expected_val);
- 		return false;
- 	}
- 
- 	return true;
- }
- 
--static bool icl_verify_procmon_ref_values(struct drm_i915_private *dev_priv,
-+static bool icl_verify_procmon_ref_values(struct intel_display *display,
- 					  enum phy phy)
- {
- 	const struct icl_procmon *procmon;
- 	bool ret;
- 
--	procmon = icl_get_procmon_ref_values(dev_priv, phy);
-+	procmon = icl_get_procmon_ref_values(display, phy);
- 
--	ret = check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW1(phy),
-+	ret = check_phy_reg(display, phy, ICL_PORT_COMP_DW1(phy),
- 			    (0xff << 16) | 0xff, procmon->dw1);
--	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW9(phy),
-+	ret &= check_phy_reg(display, phy, ICL_PORT_COMP_DW9(phy),
- 			     -1U, procmon->dw9);
--	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW10(phy),
-+	ret &= check_phy_reg(display, phy, ICL_PORT_COMP_DW10(phy),
- 			     -1U, procmon->dw10);
- 
- 	return ret;
- }
- 
--static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
-+static bool has_phy_misc(struct intel_display *display, enum phy phy)
- {
- 	/*
- 	 * Some platforms only expect PHY_MISC to be programmed for PHY-A and
-@@ -136,32 +136,30 @@ static bool has_phy_misc(struct drm_i915_private *i915, enum phy phy)
- 	 * that we program it for PHY A.
- 	 */
- 
--	if (IS_ALDERLAKE_S(i915))
-+	if (display->platform.alderlake_s)
- 		return phy == PHY_A;
--	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) ||
--		 IS_ROCKETLAKE(i915) ||
--		 IS_DG1(i915))
-+	else if ((display->platform.jasperlake || display->platform.elkhartlake) ||
-+		 display->platform.rocketlake ||
-+		 display->platform.dg1)
- 		return phy < PHY_C;
- 
- 	return true;
- }
- 
--static bool icl_combo_phy_enabled(struct drm_i915_private *dev_priv,
-+static bool icl_combo_phy_enabled(struct intel_display *display,
- 				  enum phy phy)
- {
- 	/* The PHY C added by EHL has no PHY_MISC register */
--	if (!has_phy_misc(dev_priv, phy))
--		return intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
-+	if (!has_phy_misc(display, phy))
-+		return intel_de_read(display, ICL_PORT_COMP_DW0(phy)) & COMP_INIT;
- 	else
--		return !(intel_de_read(dev_priv, ICL_PHY_MISC(phy)) &
-+		return !(intel_de_read(display, ICL_PHY_MISC(phy)) &
- 			 ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN) &&
--			(intel_de_read(dev_priv, ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
-+			(intel_de_read(display, ICL_PORT_COMP_DW0(phy)) & COMP_INIT);
- }
- 
--static bool ehl_vbt_ddi_d_present(struct drm_i915_private *i915)
-+static bool ehl_vbt_ddi_d_present(struct intel_display *display)
- {
--	struct intel_display *display = &i915->display;
--
- 	bool ddi_a_present = intel_bios_is_port_present(display, PORT_A);
- 	bool ddi_d_present = intel_bios_is_port_present(display, PORT_D);
- 	bool dsi_present = intel_bios_is_dsi_present(display, NULL);
-@@ -181,13 +179,13 @@ static bool ehl_vbt_ddi_d_present(struct drm_i915_private *i915)
- 	 * in the log and let the internal display win.
- 	 */
- 	if (ddi_d_present)
--		drm_err(&i915->drm,
-+		drm_err(display->drm,
- 			"VBT claims to have both internal and external displays on PHY A.  Configuring for internal.\n");
- 
- 	return false;
- }
- 
--static bool phy_is_master(struct drm_i915_private *dev_priv, enum phy phy)
-+static bool phy_is_master(struct intel_display *display, enum phy phy)
- {
- 	/*
- 	 * Certain PHYs are connected to compensation resistors and act
-@@ -207,64 +205,64 @@ static bool phy_is_master(struct drm_i915_private *dev_priv, enum phy phy)
- 	 */
- 	if (phy == PHY_A)
- 		return true;
--	else if (IS_ALDERLAKE_S(dev_priv))
-+	else if (display->platform.alderlake_s)
- 		return phy == PHY_D;
--	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-+	else if (display->platform.dg1 || display->platform.rocketlake)
- 		return phy == PHY_C;
- 
- 	return false;
- }
- 
--static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
-+static bool icl_combo_phy_verify_state(struct intel_display *display,
- 				       enum phy phy)
- {
- 	bool ret = true;
- 	u32 expected_val = 0;
- 
--	if (!icl_combo_phy_enabled(dev_priv, phy))
-+	if (!icl_combo_phy_enabled(display, phy))
- 		return false;
- 
--	if (DISPLAY_VER(dev_priv) >= 12) {
--		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_LN(0, phy),
-+	if (DISPLAY_VER(display) >= 12) {
-+		ret &= check_phy_reg(display, phy, ICL_PORT_TX_DW8_LN(0, phy),
- 				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
- 				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK,
- 				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
- 				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2);
- 
--		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_PCS_DW1_LN(0, phy),
-+		ret &= check_phy_reg(display, phy, ICL_PORT_PCS_DW1_LN(0, phy),
- 				     DCC_MODE_SELECT_MASK, RUN_DCC_ONCE);
- 	}
- 
--	ret &= icl_verify_procmon_ref_values(dev_priv, phy);
-+	ret &= icl_verify_procmon_ref_values(display, phy);
- 
--	if (phy_is_master(dev_priv, phy)) {
--		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_COMP_DW8(phy),
-+	if (phy_is_master(display, phy)) {
-+		ret &= check_phy_reg(display, phy, ICL_PORT_COMP_DW8(phy),
- 				     IREFGEN, IREFGEN);
- 
--		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
--			if (ehl_vbt_ddi_d_present(dev_priv))
-+		if (display->platform.jasperlake || display->platform.elkhartlake) {
-+			if (ehl_vbt_ddi_d_present(display))
- 				expected_val = ICL_PHY_MISC_MUX_DDID;
- 
--			ret &= check_phy_reg(dev_priv, phy, ICL_PHY_MISC(phy),
-+			ret &= check_phy_reg(display, phy, ICL_PHY_MISC(phy),
- 					     ICL_PHY_MISC_MUX_DDID,
- 					     expected_val);
- 		}
- 	}
- 
--	ret &= check_phy_reg(dev_priv, phy, ICL_PORT_CL_DW5(phy),
-+	ret &= check_phy_reg(display, phy, ICL_PORT_CL_DW5(phy),
- 			     CL_POWER_DOWN_ENABLE, CL_POWER_DOWN_ENABLE);
- 
- 	return ret;
- }
- 
--void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
-+void intel_combo_phy_power_up_lanes(struct intel_display *display,
- 				    enum phy phy, bool is_dsi,
- 				    int lane_count, bool lane_reversal)
- {
- 	u8 lane_mask;
- 
- 	if (is_dsi) {
--		drm_WARN_ON(&dev_priv->drm, lane_reversal);
-+		drm_WARN_ON(display->drm, lane_reversal);
- 
- 		switch (lane_count) {
- 		case 1:
-@@ -302,28 +300,28 @@ void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
- 		}
- 	}
- 
--	intel_de_rmw(dev_priv, ICL_PORT_CL_DW10(phy),
-+	intel_de_rmw(display, ICL_PORT_CL_DW10(phy),
- 		     PWR_DOWN_LN_MASK, lane_mask);
- }
- 
--static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
-+static void icl_combo_phys_init(struct intel_display *display)
- {
- 	enum phy phy;
- 
--	for_each_combo_phy(dev_priv, phy) {
-+	for_each_combo_phy(display, phy) {
- 		const struct icl_procmon *procmon;
- 		u32 val;
- 
--		if (icl_combo_phy_verify_state(dev_priv, phy))
-+		if (icl_combo_phy_verify_state(display, phy))
- 			continue;
- 
--		procmon = icl_get_procmon_ref_values(dev_priv, phy);
-+		procmon = icl_get_procmon_ref_values(display, phy);
- 
--		drm_dbg(&dev_priv->drm,
--			"Initializing combo PHY %c (Voltage/Process Info : %s)\n",
--			phy_name(phy), procmon->name);
-+		drm_dbg_kms(display->drm,
-+			    "Initializing combo PHY %c (Voltage/Process Info : %s)\n",
-+			    phy_name(phy), procmon->name);
- 
--		if (!has_phy_misc(dev_priv, phy))
-+		if (!has_phy_misc(display, phy))
- 			goto skip_phy_misc;
- 
- 		/*
-@@ -334,84 +332,84 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
- 		 * based on whether our VBT indicates the presence of any
- 		 * "internal" child devices.
- 		 */
--		val = intel_de_read(dev_priv, ICL_PHY_MISC(phy));
--		if ((IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) &&
-+		val = intel_de_read(display, ICL_PHY_MISC(phy));
-+		if ((display->platform.jasperlake || display->platform.elkhartlake) &&
- 		    phy == PHY_A) {
- 			val &= ~ICL_PHY_MISC_MUX_DDID;
- 
--			if (ehl_vbt_ddi_d_present(dev_priv))
-+			if (ehl_vbt_ddi_d_present(display))
- 				val |= ICL_PHY_MISC_MUX_DDID;
- 		}
- 
- 		val &= ~ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN;
--		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
-+		intel_de_write(display, ICL_PHY_MISC(phy), val);
- 
- skip_phy_misc:
--		if (DISPLAY_VER(dev_priv) >= 12) {
--			val = intel_de_read(dev_priv, ICL_PORT_TX_DW8_LN(0, phy));
-+		if (DISPLAY_VER(display) >= 12) {
-+			val = intel_de_read(display, ICL_PORT_TX_DW8_LN(0, phy));
- 			val &= ~ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK;
- 			val |= ICL_PORT_TX_DW8_ODCC_CLK_SEL;
- 			val |= ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_DIV2;
--			intel_de_write(dev_priv, ICL_PORT_TX_DW8_GRP(phy), val);
-+			intel_de_write(display, ICL_PORT_TX_DW8_GRP(phy), val);
- 
--			val = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
-+			val = intel_de_read(display, ICL_PORT_PCS_DW1_LN(0, phy));
- 			val &= ~DCC_MODE_SELECT_MASK;
- 			val |= RUN_DCC_ONCE;
--			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), val);
-+			intel_de_write(display, ICL_PORT_PCS_DW1_GRP(phy), val);
- 		}
- 
--		icl_set_procmon_ref_values(dev_priv, phy);
-+		icl_set_procmon_ref_values(display, phy);
- 
--		if (phy_is_master(dev_priv, phy))
--			intel_de_rmw(dev_priv, ICL_PORT_COMP_DW8(phy),
-+		if (phy_is_master(display, phy))
-+			intel_de_rmw(display, ICL_PORT_COMP_DW8(phy),
- 				     0, IREFGEN);
- 
--		intel_de_rmw(dev_priv, ICL_PORT_COMP_DW0(phy), 0, COMP_INIT);
--		intel_de_rmw(dev_priv, ICL_PORT_CL_DW5(phy),
-+		intel_de_rmw(display, ICL_PORT_COMP_DW0(phy), 0, COMP_INIT);
-+		intel_de_rmw(display, ICL_PORT_CL_DW5(phy),
- 			     0, CL_POWER_DOWN_ENABLE);
- 	}
- }
- 
--static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
-+static void icl_combo_phys_uninit(struct intel_display *display)
- {
- 	enum phy phy;
- 
--	for_each_combo_phy_reverse(dev_priv, phy) {
-+	for_each_combo_phy_reverse(display, phy) {
- 		if (phy == PHY_A &&
--		    !icl_combo_phy_verify_state(dev_priv, phy)) {
--			if (IS_TIGERLAKE(dev_priv) || IS_DG1(dev_priv)) {
-+		    !icl_combo_phy_verify_state(display, phy)) {
-+			if (display->platform.tigerlake || display->platform.dg1) {
- 				/*
- 				 * A known problem with old ifwi:
- 				 * https://gitlab.freedesktop.org/drm/intel/-/issues/2411
- 				 * Suppress the warning for CI. Remove ASAP!
- 				 */
--				drm_dbg_kms(&dev_priv->drm,
-+				drm_dbg_kms(display->drm,
- 					    "Combo PHY %c HW state changed unexpectedly\n",
- 					    phy_name(phy));
- 			} else {
--				drm_warn(&dev_priv->drm,
-+				drm_warn(display->drm,
- 					 "Combo PHY %c HW state changed unexpectedly\n",
- 					 phy_name(phy));
- 			}
- 		}
- 
--		if (!has_phy_misc(dev_priv, phy))
-+		if (!has_phy_misc(display, phy))
- 			goto skip_phy_misc;
- 
--		intel_de_rmw(dev_priv, ICL_PHY_MISC(phy), 0,
-+		intel_de_rmw(display, ICL_PHY_MISC(phy), 0,
- 			     ICL_PHY_MISC_DE_IO_COMP_PWR_DOWN);
- 
- skip_phy_misc:
--		intel_de_rmw(dev_priv, ICL_PORT_COMP_DW0(phy), COMP_INIT, 0);
-+		intel_de_rmw(display, ICL_PORT_COMP_DW0(phy), COMP_INIT, 0);
- 	}
- }
- 
--void intel_combo_phy_init(struct drm_i915_private *i915)
-+void intel_combo_phy_init(struct intel_display *display)
- {
--	icl_combo_phys_init(i915);
-+	icl_combo_phys_init(display);
- }
- 
--void intel_combo_phy_uninit(struct drm_i915_private *i915)
-+void intel_combo_phy_uninit(struct intel_display *display)
- {
--	icl_combo_phys_uninit(i915);
-+	icl_combo_phys_uninit(display);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.h b/drivers/gpu/drm/i915/display/intel_combo_phy.h
-index 660886f86c59..3f5dba78e533 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.h
-@@ -8,12 +8,12 @@
- 
- #include <linux/types.h>
- 
--struct drm_i915_private;
- enum phy;
-+struct intel_display;
- 
--void intel_combo_phy_init(struct drm_i915_private *dev_priv);
--void intel_combo_phy_uninit(struct drm_i915_private *dev_priv);
--void intel_combo_phy_power_up_lanes(struct drm_i915_private *dev_priv,
-+void intel_combo_phy_init(struct intel_display *display);
-+void intel_combo_phy_uninit(struct intel_display *display);
-+void intel_combo_phy_power_up_lanes(struct intel_display *display,
- 				    enum phy phy, bool is_dsi,
- 				    int lane_count, bool lane_reversal);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 900e066b2478..5433279227e1 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2437,13 +2437,13 @@ static void intel_ddi_disable_fec(struct intel_encoder *encoder,
- static void intel_ddi_power_up_lanes(struct intel_encoder *encoder,
- 				     const struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 
- 	if (intel_encoder_is_combo(encoder)) {
- 		enum phy phy = intel_encoder_to_phy(encoder);
- 
--		intel_combo_phy_power_up_lanes(i915, phy, false,
-+		intel_combo_phy_power_up_lanes(display, phy, false,
- 					       crtc_state->lane_count,
- 					       dig_port->lane_reversal);
- 	}
+ 	for_each_sprite(display, pipe, sprite) {
+ 		struct intel_plane *plane;
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0450fdf9d4de..23d4e4c6bd6b 100644
+index 23d4e4c6bd6b..b491a1638a00 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1995,17 +1995,17 @@ static void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state)
+@@ -7954,8 +7954,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	}
+ 
+ 	/* Underruns don't always raise interrupts, so check manually */
+-	intel_check_cpu_fifo_underruns(dev_priv);
+-	intel_check_pch_fifo_underruns(dev_priv);
++	intel_check_cpu_fifo_underruns(display);
++	intel_check_pch_fifo_underruns(display);
+ 
+ 	if (state->modeset)
+ 		intel_verify_planes(state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 0f68b0a34ca9..b8fcf74bd3ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -562,7 +562,7 @@ void i915_pipestat_irq_handler(struct drm_i915_private *dev_priv,
+ 			i9xx_pipe_crc_irq_handler(dev_priv, pipe);
+ 
+ 		if (pipe_stats[pipe] & PIPE_FIFO_UNDERRUN_STATUS)
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
+ 	}
+ 
+ 	if (blc_event || (iir & I915_ASLE_INTERRUPT))
+@@ -587,7 +587,7 @@ void i965_pipestat_irq_handler(struct drm_i915_private *dev_priv,
+ 			i9xx_pipe_crc_irq_handler(dev_priv, pipe);
+ 
+ 		if (pipe_stats[pipe] & PIPE_FIFO_UNDERRUN_STATUS)
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
+ 	}
+ 
+ 	if (blc_event || (iir & I915_ASLE_INTERRUPT))
+@@ -614,7 +614,7 @@ void valleyview_pipestat_irq_handler(struct drm_i915_private *dev_priv,
+ 			i9xx_pipe_crc_irq_handler(dev_priv, pipe);
+ 
+ 		if (pipe_stats[pipe] & PIPE_FIFO_UNDERRUN_STATUS)
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
+ 	}
+ 
+ 	if (pipe_stats[0] & PIPE_GMBUS_INTERRUPT_STATUS)
+@@ -666,10 +666,10 @@ static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
+ 			"PCH transcoder CRC error interrupt\n");
+ 
+ 	if (pch_iir & SDE_TRANSA_FIFO_UNDER)
+-		intel_pch_fifo_underrun_irq_handler(dev_priv, PIPE_A);
++		intel_pch_fifo_underrun_irq_handler(display, PIPE_A);
+ 
+ 	if (pch_iir & SDE_TRANSB_FIFO_UNDER)
+-		intel_pch_fifo_underrun_irq_handler(dev_priv, PIPE_B);
++		intel_pch_fifo_underrun_irq_handler(display, PIPE_B);
  }
  
- /* Prefer intel_encoder_is_combo() */
--bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
-+bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
- {
- 	if (phy == PHY_NONE)
- 		return false;
--	else if (IS_ALDERLAKE_S(dev_priv))
-+	else if (display->platform.alderlake_s)
- 		return phy <= PHY_E;
--	else if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv))
-+	else if (display->platform.dg1 || display->platform.rocketlake)
- 		return phy <= PHY_D;
--	else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv))
-+	else if (display->platform.jasperlake || display->platform.elkhartlake)
- 		return phy <= PHY_C;
--	else if (IS_ALDERLAKE_P(dev_priv) || IS_DISPLAY_VER(dev_priv, 11, 12))
-+	else if (display->platform.alderlake_p || IS_DISPLAY_VER(display, 11, 12))
- 		return phy <= PHY_B;
- 	else
- 		/*
-@@ -2085,9 +2085,9 @@ enum phy intel_encoder_to_phy(struct intel_encoder *encoder)
+ static void ivb_err_int_handler(struct drm_i915_private *dev_priv)
+@@ -683,7 +683,7 @@ static void ivb_err_int_handler(struct drm_i915_private *dev_priv)
  
- bool intel_encoder_is_combo(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
+ 	for_each_pipe(dev_priv, pipe) {
+ 		if (err_int & ERR_INT_FIFO_UNDERRUN(pipe))
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
  
--	return intel_phy_is_combo(i915, intel_encoder_to_phy(encoder));
-+	return intel_phy_is_combo(display, intel_encoder_to_phy(encoder));
+ 		if (err_int & ERR_INT_PIPE_CRC_DONE(pipe)) {
+ 			if (IS_IVYBRIDGE(dev_priv))
+@@ -707,7 +707,7 @@ static void cpt_serr_int_handler(struct drm_i915_private *dev_priv)
+ 
+ 	for_each_pipe(dev_priv, pipe)
+ 		if (serr_int & SERR_INT_TRANS_FIFO_UNDERRUN(pipe))
+-			intel_pch_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_pch_fifo_underrun_irq_handler(display, pipe);
+ 
+ 	intel_de_write(display, SERR_INT, serr_int);
  }
+@@ -776,7 +776,7 @@ void ilk_display_irq_handler(struct drm_i915_private *dev_priv, u32 de_iir)
+ 			flip_done_handler(dev_priv, pipe);
  
- bool intel_encoder_is_snps(struct intel_encoder *encoder)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index f702425df305..d4a709588700 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -476,7 +476,7 @@ struct drm_display_mode *
- intel_encoder_current_mode(struct intel_encoder *encoder);
- void intel_encoder_get_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *crtc_state);
--bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy);
-+bool intel_phy_is_combo(struct intel_display *display, enum phy phy);
- bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy);
- bool intel_phy_is_snps(struct drm_i915_private *dev_priv, enum phy phy);
- enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d93f43d145a9..396930937d98 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1651,7 +1651,7 @@ static void icl_display_core_init(struct intel_display *display,
+ 		if (de_iir & DE_PIPE_FIFO_UNDERRUN(pipe))
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
+ 
+ 		if (de_iir & DE_PIPE_CRC_DONE(pipe))
+ 			i9xx_pipe_crc_irq_handler(dev_priv, pipe);
+@@ -1228,7 +1228,7 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+ 
+ 		if (iir & GEN8_PIPE_FIFO_UNDERRUN)
+-			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
++			intel_cpu_fifo_underrun_irq_handler(display, pipe);
+ 
+ 		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
+ 		if (fault_errors)
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+index cf70dab4881b..14b00988a81f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+@@ -63,7 +63,7 @@ static bool ivb_can_enable_err_int(struct intel_display *display)
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	for_each_pipe(dev_priv, pipe) {
++	for_each_pipe(display, pipe) {
+ 		crtc = intel_crtc_for_pipe(display, pipe);
+ 
+ 		if (crtc->cpu_fifo_underrun_disabled)
+@@ -81,7 +81,7 @@ static bool cpt_can_enable_serr_int(struct intel_display *display)
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	for_each_pipe(dev_priv, pipe) {
++	for_each_pipe(display, pipe) {
+ 		crtc = intel_crtc_for_pipe(display, pipe);
+ 
+ 		if (crtc->pch_fifo_underrun_disabled)
+@@ -95,20 +95,20 @@ static void i9xx_check_fifo_underruns(struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+-	i915_reg_t reg = PIPESTAT(dev_priv, crtc->pipe);
++	i915_reg_t reg = PIPESTAT(display, crtc->pipe);
+ 	u32 enable_mask;
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+-	if ((intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
++	if ((intel_de_read(display, reg) & PIPE_FIFO_UNDERRUN_STATUS) == 0)
  		return;
  
- 	/* 2. Initialize all combo phys */
--	intel_combo_phy_init(dev_priv);
-+	intel_combo_phy_init(display);
+ 	enable_mask = i915_pipestat_enable_mask(dev_priv, crtc->pipe);
+-	intel_de_write(dev_priv, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+-	intel_de_posting_read(dev_priv, reg);
++	intel_de_write(display, reg, enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
++	intel_de_posting_read(display, reg);
+ 
+ 	trace_intel_cpu_fifo_underrun(display, crtc->pipe);
+-	drm_err(&dev_priv->drm, "pipe %c underrun\n", pipe_name(crtc->pipe));
++	drm_err(display->drm, "pipe %c underrun\n", pipe_name(crtc->pipe));
+ }
+ 
+ static void i9xx_set_fifo_underrun_reporting(struct intel_display *display,
+@@ -116,19 +116,19 @@ static void i9xx_set_fifo_underrun_reporting(struct intel_display *display,
+ 					     bool enable, bool old)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-	i915_reg_t reg = PIPESTAT(dev_priv, pipe);
++	i915_reg_t reg = PIPESTAT(display, pipe);
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+ 	if (enable) {
+ 		u32 enable_mask = i915_pipestat_enable_mask(dev_priv, pipe);
+ 
+-		intel_de_write(dev_priv, reg,
++		intel_de_write(display, reg,
+ 			       enable_mask | PIPE_FIFO_UNDERRUN_STATUS);
+-		intel_de_posting_read(dev_priv, reg);
++		intel_de_posting_read(display, reg);
+ 	} else {
+-		if (old && intel_de_read(dev_priv, reg) & PIPE_FIFO_UNDERRUN_STATUS)
+-			drm_err(&dev_priv->drm, "pipe %c underrun\n",
++		if (old && intel_de_read(display, reg) & PIPE_FIFO_UNDERRUN_STATUS)
++			drm_err(display->drm, "pipe %c underrun\n",
+ 				pipe_name(pipe));
+ 	}
+ }
+@@ -151,18 +151,18 @@ static void ivb_check_fifo_underruns(struct intel_crtc *crtc)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+-	u32 err_int = intel_de_read(dev_priv, GEN7_ERR_INT);
++	u32 err_int = intel_de_read(display, GEN7_ERR_INT);
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+ 	if ((err_int & ERR_INT_FIFO_UNDERRUN(pipe)) == 0)
+ 		return;
+ 
+-	intel_de_write(dev_priv, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
+-	intel_de_posting_read(dev_priv, GEN7_ERR_INT);
++	intel_de_write(display, GEN7_ERR_INT, ERR_INT_FIFO_UNDERRUN(pipe));
++	intel_de_posting_read(display, GEN7_ERR_INT);
+ 
+ 	trace_intel_cpu_fifo_underrun(display, pipe);
+-	drm_err(&dev_priv->drm, "fifo underrun on pipe %c\n", pipe_name(pipe));
++	drm_err(display->drm, "fifo underrun on pipe %c\n", pipe_name(pipe));
+ }
+ 
+ static void ivb_set_fifo_underrun_reporting(struct intel_display *display,
+@@ -171,7 +171,7 @@ static void ivb_set_fifo_underrun_reporting(struct intel_display *display,
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	if (enable) {
+-		intel_de_write(dev_priv, GEN7_ERR_INT,
++		intel_de_write(display, GEN7_ERR_INT,
+ 			       ERR_INT_FIFO_UNDERRUN(pipe));
+ 
+ 		if (!ivb_can_enable_err_int(display))
+@@ -182,8 +182,8 @@ static void ivb_set_fifo_underrun_reporting(struct intel_display *display,
+ 		ilk_disable_display_irq(dev_priv, DE_ERR_INT_IVB);
+ 
+ 		if (old &&
+-		    intel_de_read(dev_priv, GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
+-			drm_err(&dev_priv->drm,
++		    intel_de_read(display, GEN7_ERR_INT) & ERR_INT_FIFO_UNDERRUN(pipe)) {
++			drm_err(display->drm,
+ 				"uncleared fifo underrun on pipe %c\n",
+ 				pipe_name(pipe));
+ 		}
+@@ -220,19 +220,19 @@ static void cpt_check_pch_fifo_underruns(struct intel_crtc *crtc)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	enum pipe pch_transcoder = crtc->pipe;
+-	u32 serr_int = intel_de_read(dev_priv, SERR_INT);
++	u32 serr_int = intel_de_read(display, SERR_INT);
+ 
+ 	lockdep_assert_held(&dev_priv->irq_lock);
+ 
+ 	if ((serr_int & SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) == 0)
+ 		return;
+ 
+-	intel_de_write(dev_priv, SERR_INT,
++	intel_de_write(display, SERR_INT,
+ 		       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+-	intel_de_posting_read(dev_priv, SERR_INT);
++	intel_de_posting_read(display, SERR_INT);
+ 
+ 	trace_intel_pch_fifo_underrun(display, pch_transcoder);
+-	drm_err(&dev_priv->drm, "pch fifo underrun on pch transcoder %c\n",
++	drm_err(display->drm, "pch fifo underrun on pch transcoder %c\n",
+ 		pipe_name(pch_transcoder));
+ }
+ 
+@@ -243,7 +243,7 @@ static void cpt_set_fifo_underrun_reporting(struct intel_display *display,
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+ 	if (enable) {
+-		intel_de_write(dev_priv, SERR_INT,
++		intel_de_write(display, SERR_INT,
+ 			       SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder));
+ 
+ 		if (!cpt_can_enable_serr_int(display))
+@@ -253,9 +253,9 @@ static void cpt_set_fifo_underrun_reporting(struct intel_display *display,
+ 	} else {
+ 		ibx_disable_display_interrupt(dev_priv, SDE_ERROR_CPT);
+ 
+-		if (old && intel_de_read(dev_priv, SERR_INT) &
++		if (old && intel_de_read(display, SERR_INT) &
+ 		    SERR_INT_TRANS_FIFO_UNDERRUN(pch_transcoder)) {
+-			drm_err(&dev_priv->drm,
++			drm_err(display->drm,
+ 				"uncleared pch fifo underrun on pch transcoder %c\n",
+ 				pipe_name(pch_transcoder));
+ 		}
+@@ -368,17 +368,16 @@ bool intel_set_pch_fifo_underrun_reporting(struct intel_display *display,
+ 
+ /**
+  * intel_cpu_fifo_underrun_irq_handler - handle CPU fifo underrun interrupt
+- * @dev_priv: i915 device instance
++ * @display: display device instance
+  * @pipe: (CPU) pipe to set state for
+  *
+  * This handles a CPU fifo underrun interrupt, generating an underrun warning
+  * into dmesg if underrun reporting is enabled and then disables the underrun
+  * interrupt to avoid an irq storm.
+  */
+-void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
++void intel_cpu_fifo_underrun_irq_handler(struct intel_display *display,
+ 					 enum pipe pipe)
+ {
+-	struct intel_display *display = &dev_priv->display;
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 
+ 	/* We may be called too early in init, thanks BIOS! */
+@@ -386,63 +385,62 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+ 		return;
+ 
+ 	/* GMCH can't disable fifo underruns, filter them. */
+-	if (HAS_GMCH(dev_priv) &&
++	if (HAS_GMCH(display) &&
+ 	    crtc->cpu_fifo_underrun_disabled)
+ 		return;
+ 
+ 	if (intel_set_cpu_fifo_underrun_reporting(display, pipe, false)) {
+ 		trace_intel_cpu_fifo_underrun(display, pipe);
+ 
+-		drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
++		drm_err(display->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe));
+ 	}
+ 
+-	intel_fbc_handle_fifo_underrun_irq(&dev_priv->display);
++	intel_fbc_handle_fifo_underrun_irq(display);
+ }
+ 
+ /**
+  * intel_pch_fifo_underrun_irq_handler - handle PCH fifo underrun interrupt
+- * @dev_priv: i915 device instance
++ * @display: display device instance
+  * @pch_transcoder: the PCH transcoder (same as pipe on IVB and older)
+  *
+  * This handles a PCH fifo underrun interrupt, generating an underrun warning
+  * into dmesg if underrun reporting is enabled and then disables the underrun
+  * interrupt to avoid an irq storm.
+  */
+-void intel_pch_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
++void intel_pch_fifo_underrun_irq_handler(struct intel_display *display,
+ 					 enum pipe pch_transcoder)
+ {
+-	struct intel_display *display = &dev_priv->display;
+-
+ 	if (intel_set_pch_fifo_underrun_reporting(display, pch_transcoder,
+ 						  false)) {
+ 		trace_intel_pch_fifo_underrun(display, pch_transcoder);
+-		drm_err(&dev_priv->drm, "PCH transcoder %c FIFO underrun\n",
++		drm_err(display->drm, "PCH transcoder %c FIFO underrun\n",
+ 			pipe_name(pch_transcoder));
+ 	}
+ }
+ 
+ /**
+  * intel_check_cpu_fifo_underruns - check for CPU fifo underruns immediately
+- * @dev_priv: i915 device instance
++ * @display: display device instance
+  *
+  * Check for CPU fifo underruns immediately. Useful on IVB/HSW where the shared
+  * error interrupt may have been disabled, and so CPU fifo underruns won't
+  * necessarily raise an interrupt, and on GMCH platforms where underruns never
+  * raise an interrupt.
+  */
+-void intel_check_cpu_fifo_underruns(struct drm_i915_private *dev_priv)
++void intel_check_cpu_fifo_underruns(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_crtc *crtc;
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+ 
+-	for_each_intel_crtc(&dev_priv->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		if (crtc->cpu_fifo_underrun_disabled)
+ 			continue;
+ 
+-		if (HAS_GMCH(dev_priv))
++		if (HAS_GMCH(display))
+ 			i9xx_check_fifo_underruns(crtc);
+-		else if (DISPLAY_VER(dev_priv) == 7)
++		else if (DISPLAY_VER(display) == 7)
+ 			ivb_check_fifo_underruns(crtc);
+ 	}
+ 
+@@ -451,19 +449,20 @@ void intel_check_cpu_fifo_underruns(struct drm_i915_private *dev_priv)
+ 
+ /**
+  * intel_check_pch_fifo_underruns - check for PCH fifo underruns immediately
+- * @dev_priv: i915 device instance
++ * @display: display device instance
+  *
+  * Check for PCH fifo underruns immediately. Useful on CPT/PPT where the shared
+  * error interrupt may have been disabled, and so PCH fifo underruns won't
+  * necessarily raise an interrupt.
+  */
+-void intel_check_pch_fifo_underruns(struct drm_i915_private *dev_priv)
++void intel_check_pch_fifo_underruns(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_crtc *crtc;
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
+ 
+-	for_each_intel_crtc(&dev_priv->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		if (crtc->pch_fifo_underrun_disabled)
+ 			continue;
+ 
+@@ -474,10 +473,12 @@ void intel_check_pch_fifo_underruns(struct drm_i915_private *dev_priv)
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
+-void intel_init_fifo_underrun_reporting(struct drm_i915_private *i915,
++void intel_init_fifo_underrun_reporting(struct intel_display *display,
+ 					struct intel_crtc *crtc,
+ 					bool enable)
+ {
++	struct drm_i915_private *i915 = to_i915(display->drm);
++
+ 	crtc->cpu_fifo_underrun_disabled = !enable;
  
  	/*
- 	 * 3. Enable Power Well 1 (PG1).
-@@ -1714,7 +1714,6 @@ static void icl_display_core_init(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.h b/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
+index 8302080c2313..ebecc4347cfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
++++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.h
+@@ -9,22 +9,21 @@
+ #include <linux/types.h>
  
- static void icl_display_core_uninit(struct intel_display *display)
+ enum pipe;
+-struct drm_i915_private;
+ struct intel_crtc;
+ struct intel_display;
+ 
+-void intel_init_fifo_underrun_reporting(struct drm_i915_private *i915,
++void intel_init_fifo_underrun_reporting(struct intel_display *display,
+ 					struct intel_crtc *crtc, bool enable);
+ bool intel_set_cpu_fifo_underrun_reporting(struct intel_display *display,
+ 					   enum pipe pipe, bool enable);
+ bool intel_set_pch_fifo_underrun_reporting(struct intel_display *display,
+ 					   enum pipe pch_transcoder,
+ 					   bool enable);
+-void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
++void intel_cpu_fifo_underrun_irq_handler(struct intel_display *display,
+ 					 enum pipe pipe);
+-void intel_pch_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
++void intel_pch_fifo_underrun_irq_handler(struct intel_display *display,
+ 					 enum pipe pch_transcoder);
+-void intel_check_cpu_fifo_underruns(struct drm_i915_private *dev_priv);
+-void intel_check_pch_fifo_underruns(struct drm_i915_private *dev_priv);
++void intel_check_cpu_fifo_underruns(struct intel_display *display);
++void intel_check_pch_fifo_underruns(struct intel_display *display);
+ 
+ #endif /* __INTEL_FIFO_UNDERRUN_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index b4d1a18e9fd4..a5a00b3ce98f 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -454,8 +454,8 @@ static struct intel_connector *intel_encoder_find_connector(struct intel_encoder
+ 
+ static void intel_sanitize_fifo_underrun_reporting(const struct intel_crtc_state *crtc_state)
  {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct i915_power_well *well;
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
  
-@@ -1747,7 +1746,7 @@ static void icl_display_core_uninit(struct intel_display *display)
- 	mutex_unlock(&power_domains->lock);
- 
- 	/* 5. */
--	intel_combo_phy_uninit(dev_priv);
-+	intel_combo_phy_uninit(display);
+ 	/*
+ 	 * We start out with underrun reporting disabled on active
+@@ -470,9 +470,9 @@ static void intel_sanitize_fifo_underrun_reporting(const struct intel_crtc_state
+ 	 * No protection against concurrent access is required - at
+ 	 * worst a fifo underrun happens which also sets this to false.
+ 	 */
+-	intel_init_fifo_underrun_reporting(i915, crtc,
++	intel_init_fifo_underrun_reporting(display, crtc,
+ 					   !crtc_state->hw.active &&
+-					   !HAS_GMCH(i915));
++					   !HAS_GMCH(display));
  }
  
- static void chv_phy_control_init(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 6fbb94c8bfb3..5b60db597329 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -973,7 +973,6 @@ static void gen9_assert_dbuf_enabled(struct intel_display *display)
- 
- void gen9_disable_dc_states(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct intel_cdclk_config cdclk_config = {};
- 	u32 old_state = power_domains->dc_state;
-@@ -1013,7 +1012,7 @@ void gen9_disable_dc_states(struct intel_display *display)
- 		 * PHY's HW context for port B is lost after DC transitions,
- 		 * so we need to restore it manually.
- 		 */
--		intel_combo_phy_init(dev_priv);
-+		intel_combo_phy_init(display);
- }
- 
- static void gen9_dc_off_power_well_enable(struct intel_display *display,
+ static bool intel_sanitize_crtc(struct intel_crtc *crtc,
 -- 
 2.39.5
 
