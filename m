@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99AE2A32037
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B67A32036
 	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 08:46:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D754E10E7DB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3B4910E7D8;
 	Wed, 12 Feb 2025 07:45:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O7xdLCKG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B4cposjP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3BFA10E7D9;
- Wed, 12 Feb 2025 07:45:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D97F710E7D8;
+ Wed, 12 Feb 2025 07:45:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739346357; x=1770882357;
+ t=1739346359; x=1770882359;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GiYZ2tRkfKQPw8aCRxNMjfsxRkjsD8ybOkQ5D1bG1Cg=;
- b=O7xdLCKGwU15mSWMnjUfPc38XIX/KwajvgE1iunrOp5Inet5bKypIJ6c
- N4SQzJJrIpBnOAzHU4zWN2uDI7x4VvmHm85EJjLeqCTHcO7vwqHQaaVAD
- AHvhgX5NXU1jOWGtjW8nnF8aw+hg2Aqy+PPE7K4tOJc/7COPOKqxlJkJ8
- JhfdsipIgnrvq4YARpc7akiwHcFZu9sOS0E/4FR2zNQ/voXhtJCitqmFA
- 6pekIgNkC85WgE5ncvXxLNvNaLMS0w52jErAoG0ggEXX8B8zq9b/Y/XC8
- kLbRX/QHl1pVLRACIVynXDPodGKu47mbGOqg77YJ9YYz/oq3Gy904wzig A==;
-X-CSE-ConnectionGUID: M8tGIv11Q/ON1lJVQivZZA==
-X-CSE-MsgGUID: S4tWCF4QQvW2qm5PQ5uTxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39906732"
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="39906732"
+ bh=SDIQ9sv62lBIFT2CSD8zrEEGHo2ARDQtwyUbn84e+co=;
+ b=B4cposjP3/kH9qwu3kRFaxR/rgbM6aUzMlFkF1VPJWR/qDJ5YXCa1KHM
+ AIAMm3hkmcfi0FaoE9scMzrhLkpf5OsDSugNTPv5kW7tFLFOEi9OCB+24
+ MmrdpN06593p4P4m1+erEM4FgcHTY/EjhxFmL1v7qQSAAyDh9o3YLRqJ4
+ NHq7IwM65QxfFZ6t4GQdW4A+FMehcFhclMCv21e0DLOC/UCQpEzzpn8af
+ Ty41HCPK0gI/5IbVBc4oXARr5EtG8VFfcn00Igk3Ym4C2+c9JwQiLX3nk
+ KKURhDYT6l3etdwxMHPIc0X4rUXQIQrufXnA6Mo0JFDsPvCXTWyj0wi9I w==;
+X-CSE-ConnectionGUID: PgF3tnFpQS+kDQbhGcEc+w==
+X-CSE-MsgGUID: PnXKA6rFQxCA5ATpjHMuJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39906734"
+X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="39906734"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 23:45:57 -0800
-X-CSE-ConnectionGUID: pbi2uWr/Sj6FDN4jjo5x7A==
-X-CSE-MsgGUID: hZ8tC7nJQ4qp+tjS2gLilw==
+ 11 Feb 2025 23:45:59 -0800
+X-CSE-ConnectionGUID: en+4nWoqTt+NYY8YrY57bg==
+X-CSE-MsgGUID: Xg9BcFqwTZ+IjzrQOFVc6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112601090"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112601094"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa010.jf.intel.com with ESMTP; 11 Feb 2025 23:45:55 -0800
+ by orviesa010.jf.intel.com with ESMTP; 11 Feb 2025 23:45:57 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 2/8] drm/i915/dpll: Change param to intel_display in
- for_each_shared_dpll
-Date: Wed, 12 Feb 2025 13:15:36 +0530
-Message-Id: <20250212074542.3569452-3-suraj.kandpal@intel.com>
+Subject: [PATCH 3/8] drm/i915/dpll: Use intel_display for dpll dump and
+ compare hw state
+Date: Wed, 12 Feb 2025 13:15:37 +0530
+Message-Id: <20250212074542.3569452-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250212074542.3569452-1-suraj.kandpal@intel.com>
 References: <20250212074542.3569452-1-suraj.kandpal@intel.com>
@@ -69,267 +69,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Change the argument of for_each_shared_dpll to take intel_display which
-helps move as an ongoing effort to get rid off the dependency on
-drm_i915_private. Some opportunistic changes in intel_pch_refclk done
-too.
+Let's use intel_display for dpll dump and compare hw state. This also
+helps elimanate drm_i915_private dependency from i915_shared_dplls_info
+in intel_display_debugfs.c
 
 --v2
--Prefer using &i915->display [Jani]
+-Fix commit message [Jani]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 24 ++++++++-----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  6 ++--
- .../gpu/drm/i915/display/intel_pch_refclk.c   | 34 +++++++++----------
- 4 files changed, 36 insertions(+), 30 deletions(-)
+ .../gpu/drm/i915/display/intel_crtc_state_dump.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_display.c     |  8 ++++----
+ .../gpu/drm/i915/display/intel_display_debugfs.c |  3 +--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c    | 16 ++++++++--------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h    |  4 ++--
+ 5 files changed, 17 insertions(+), 17 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index ecd0d9853c60..599ddce96371 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -176,6 +176,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   struct intel_atomic_state *state,
+ 			   const char *context)
+ {
++	struct intel_display *display = to_intel_display(pipe_config);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	const struct intel_plane_state *plane_state;
+@@ -340,7 +341,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 		   pipe_config->ips_enabled, pipe_config->double_wide,
+ 		   pipe_config->has_drrs);
+ 
+-	intel_dpll_dump_hw_state(i915, &p, &pipe_config->dpll_hw_state);
++	intel_dpll_dump_hw_state(display, &p, &pipe_config->dpll_hw_state);
+ 
+ 	if (IS_CHERRYVIEW(i915))
+ 		drm_printf(&p, "cgm_mode: 0x%x gamma_mode: 0x%x gamma_enable: %d csc_enable: %d\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 2d7ac53bb924..571a61b770b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5348,14 +5348,14 @@ pipe_config_pll_mismatch(struct drm_printer *p, bool fastset,
+ 			 const struct intel_dpll_hw_state *a,
+ 			 const struct intel_dpll_hw_state *b)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 
+ 	pipe_config_mismatch(p, fastset, crtc, name, " "); /* stupid -Werror=format-zero-length */
+ 
+ 	drm_printf(p, "expected:\n");
+-	intel_dpll_dump_hw_state(i915, p, a);
++	intel_dpll_dump_hw_state(display, p, a);
+ 	drm_printf(p, "found:\n");
+-	intel_dpll_dump_hw_state(i915, p, b);
++	intel_dpll_dump_hw_state(display, p, b);
+ }
+ 
+ static void
+@@ -5495,7 +5495,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ } while (0)
+ 
+ #define PIPE_CONF_CHECK_PLL(name) do { \
+-	if (!intel_dpll_compare_hw_state(dev_priv, &current_config->name, \
++	if (!intel_dpll_compare_hw_state(display, &current_config->name, \
+ 					 &pipe_config->name)) { \
+ 		pipe_config_pll_mismatch(&p, fastset, crtc, __stringify(name), \
+ 					 &current_config->name, \
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 251c172fc5c9..a250d4b4d11f 100644
+index a250d4b4d11f..a646560f4f5b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -643,7 +643,7 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
- 		   display->dpll.ref_clks.nssc,
- 		   display->dpll.ref_clks.ssc);
+@@ -631,7 +631,6 @@ static int i915_display_capabilities(struct seq_file *m, void *unused)
  
--	for_each_shared_dpll(dev_priv, pll, i) {
-+	for_each_shared_dpll(display, pll, i) {
- 		drm_printf(&p, "DPLL%i: %s, id: %i\n", pll->index,
- 			   pll->info->name, pll->info->id);
- 		drm_printf(&p, " pipe_mask: 0x%x, active: 0x%x, on: %s\n",
+ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+ {
+-	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+ 	struct intel_display *display = node_to_intel_display(m->private);
+ 	struct drm_printer p = drm_seq_file_printer(m);
+ 	struct intel_shared_dpll *pll;
+@@ -650,7 +649,7 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+ 			   pll->state.pipe_mask, pll->active_mask,
+ 			   str_yes_no(pll->on));
+ 		drm_printf(&p, " tracked hardware state:\n");
+-		intel_dpll_dump_hw_state(dev_priv, &p, &pll->state.hw_state);
++		intel_dpll_dump_hw_state(display, &p, &pll->state.hw_state);
+ 	}
+ 	drm_modeset_unlock_all(display->drm);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index cb2ef317d219..f79c16e6493c 100644
+index f79c16e6493c..f295d86070e9 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -121,10 +121,11 @@ intel_atomic_duplicate_dpll_state(struct drm_i915_private *i915,
- 				  struct intel_shared_dpll_state *shared_dpll)
- {
- 	struct intel_shared_dpll *pll;
-+	struct intel_display *display = &i915->display;
- 	int i;
+@@ -4592,18 +4592,18 @@ void intel_dpll_sanitize_state(struct drm_i915_private *i915)
  
- 	/* Copy shared dpll state */
--	for_each_shared_dpll(i915, pll, i)
-+	for_each_shared_dpll(display, pll, i)
- 		shared_dpll[pll->index] = pll->state;
- }
- 
-@@ -157,10 +158,11 @@ struct intel_shared_dpll *
- intel_get_shared_dpll_by_id(struct drm_i915_private *i915,
- 			    enum intel_dpll_id id)
- {
-+	struct intel_display *display = &i915->display;
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
--	for_each_shared_dpll(i915, pll, i) {
-+	for_each_shared_dpll(display, pll, i) {
- 		if (pll->info->id == id)
- 			return pll;
- 	}
-@@ -344,12 +346,13 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
- static unsigned long
- intel_dpll_mask_all(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
- 	struct intel_shared_dpll *pll;
- 	unsigned long dpll_mask = 0;
- 	int i;
- 
--	for_each_shared_dpll(i915, pll, i) {
--		drm_WARN_ON(&i915->drm, dpll_mask & BIT(pll->info->id));
-+	for_each_shared_dpll(display, pll, i) {
-+		drm_WARN_ON(display->drm, dpll_mask & BIT(pll->info->id));
- 
- 		dpll_mask |= BIT(pll->info->id);
- 	}
-@@ -513,7 +516,7 @@ static void intel_put_dpll(struct intel_atomic_state *state,
+ /**
+  * intel_dpll_dump_hw_state - dump hw_state
+- * @i915: i915 drm device
++ * @display: intel_display structure
+  * @p: where to print the state to
+  * @dpll_hw_state: hw state to be dumped
+  *
+  * Dumo out the relevant values in @dpll_hw_state.
   */
- void intel_shared_dpll_swap_state(struct intel_atomic_state *state)
+-void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
++void intel_dpll_dump_hw_state(struct intel_display *display,
+ 			      struct drm_printer *p,
+ 			      const struct intel_dpll_hw_state *dpll_hw_state)
  {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_shared_dpll_state *shared_dpll = state->shared_dpll;
- 	struct intel_shared_dpll *pll;
- 	int i;
-@@ -521,7 +524,7 @@ void intel_shared_dpll_swap_state(struct intel_atomic_state *state)
- 	if (!state->dpll_set)
- 		return;
+-	if (i915->display.dpll.mgr) {
+-		i915->display.dpll.mgr->dump_hw_state(p, dpll_hw_state);
++	if (display->dpll.mgr) {
++		display->dpll.mgr->dump_hw_state(p, dpll_hw_state);
+ 	} else {
+ 		/* fallback for platforms that don't use the shared dpll
+ 		 * infrastructure
+@@ -4614,7 +4614,7 @@ void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
  
--	for_each_shared_dpll(i915, pll, i)
-+	for_each_shared_dpll(display, pll, i)
- 		swap(pll->state, shared_dpll[pll->index]);
- }
- 
-@@ -4551,10 +4554,11 @@ void intel_dpll_update_ref_clks(struct drm_i915_private *i915)
- 
- void intel_dpll_readout_hw_state(struct drm_i915_private *i915)
+ /**
+  * intel_dpll_compare_hw_state - compare the two states
+- * @i915: i915 drm device
++ * @display: intel_display structure
+  * @a: first DPLL hw state
+  * @b: second DPLL hw state
+  *
+@@ -4622,12 +4622,12 @@ void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
+  *
+  * Returns: true if the states are equal, false if the differ
+  */
+-bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
++bool intel_dpll_compare_hw_state(struct intel_display *display,
+ 				 const struct intel_dpll_hw_state *a,
+ 				 const struct intel_dpll_hw_state *b)
  {
-+	struct intel_display *display = &i915->display;
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
--	for_each_shared_dpll(i915, pll, i)
-+	for_each_shared_dpll(display, pll, i)
- 		readout_dpll_hw_state(i915, pll);
- }
- 
-@@ -4578,10 +4582,11 @@ static void sanitize_dpll_state(struct drm_i915_private *i915,
- 
- void intel_dpll_sanitize_state(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
--	for_each_shared_dpll(i915, pll, i)
-+	for_each_shared_dpll(display, pll, i)
- 		sanitize_dpll_state(i915, pll);
- }
- 
-@@ -4728,10 +4733,11 @@ void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
- 
- void intel_shared_dpll_verify_disabled(struct intel_atomic_state *state)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
--	for_each_shared_dpll(i915, pll, i)
-+	for_each_shared_dpll(display, pll, i)
- 		verify_single_dpll_state(i915, pll, NULL, NULL);
- }
+-	if (i915->display.dpll.mgr) {
+-		return i915->display.dpll.mgr->compare_hw_state(a, b);
++	if (display->dpll.mgr) {
++		return display->dpll.mgr->compare_hw_state(a, b);
+ 	} else {
+ 		/* fallback for platforms that don't use the shared dpll
+ 		 * infrastructure
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 3eee76874304..382bdf8f0b65 100644
+index 382bdf8f0b65..42379494f347 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -30,9 +30,9 @@
- #include "intel_display_power.h"
- #include "intel_wakeref.h"
+@@ -427,10 +427,10 @@ void intel_dpll_update_ref_clks(struct drm_i915_private *i915);
+ void intel_dpll_readout_hw_state(struct drm_i915_private *i915);
+ void intel_dpll_sanitize_state(struct drm_i915_private *i915);
  
--#define for_each_shared_dpll(__i915, __pll, __i) \
--	for ((__i) = 0; (__i) < (__i915)->display.dpll.num_shared_dpll && \
--		     ((__pll) = &(__i915)->display.dpll.shared_dplls[(__i)]) ; (__i)++)
-+#define for_each_shared_dpll(__display, __pll, __i) \
-+	for ((__i) = 0; (__i) < (__display)->dpll.num_shared_dpll && \
-+		     ((__pll) = &(__display)->dpll.shared_dplls[(__i)]) ; (__i)++)
- 
- enum tc_port;
- struct drm_i915_private;
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-index 71471c1d7dc9..33467de3d115 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-@@ -505,7 +505,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 	bool using_ssc_source = false;
- 
- 	/* We need to take the global config into account */
--	for_each_intel_encoder(&dev_priv->drm, encoder) {
-+	for_each_intel_encoder(display->drm, encoder) {
- 		switch (encoder->type) {
- 		case INTEL_OUTPUT_LVDS:
- 			has_panel = true;
-@@ -522,7 +522,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 	}
- 
- 	if (HAS_PCH_IBX(dev_priv)) {
--		has_ck505 = dev_priv->display.vbt.display_clock_mode;
-+		has_ck505 = display->vbt.display_clock_mode;
- 		can_ssc = has_ck505;
- 	} else {
- 		has_ck505 = false;
-@@ -530,10 +530,10 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 	}
- 
- 	/* Check if any DPLLs are using the SSC source */
--	for_each_shared_dpll(dev_priv, pll, i) {
-+	for_each_shared_dpll(display, pll, i) {
- 		u32 temp;
- 
--		temp = intel_de_read(dev_priv, PCH_DPLL(pll->info->id));
-+		temp = intel_de_read(display, PCH_DPLL(pll->info->id));
- 
- 		if (!(temp & DPLL_VCO_ENABLE))
- 			continue;
-@@ -545,7 +545,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 		}
- 	}
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "has_panel %d has_lvds %d has_ck505 %d using_ssc_source %d\n",
- 		    has_panel, has_lvds, has_ck505, using_ssc_source);
- 
-@@ -554,7 +554,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 	 * PCH B stepping, previous chipset stepping should be
- 	 * ignoring this setting.
- 	 */
--	val = intel_de_read(dev_priv, PCH_DREF_CONTROL);
-+	val = intel_de_read(display, PCH_DREF_CONTROL);
- 
- 	/* As we must carefully and slowly disable/enable each source in turn,
- 	 * compute the final state we want first and check if we need to
-@@ -614,8 +614,8 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 		}
- 
- 		/* Get SSC going before enabling the outputs */
--		intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
--		intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-+		intel_de_write(display, PCH_DREF_CONTROL, val);
-+		intel_de_posting_read(display, PCH_DREF_CONTROL);
- 		udelay(200);
- 
- 		val &= ~DREF_CPU_SOURCE_OUTPUT_MASK;
-@@ -633,23 +633,23 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 			val |= DREF_CPU_SOURCE_OUTPUT_DISABLE;
- 		}
- 
--		intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
--		intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-+		intel_de_write(display, PCH_DREF_CONTROL, val);
-+		intel_de_posting_read(display, PCH_DREF_CONTROL);
- 		udelay(200);
- 	} else {
--		drm_dbg_kms(&dev_priv->drm, "Disabling CPU source output\n");
-+		drm_dbg_kms(display->drm, "Disabling CPU source output\n");
- 
- 		val &= ~DREF_CPU_SOURCE_OUTPUT_MASK;
- 
- 		/* Turn off CPU output */
- 		val |= DREF_CPU_SOURCE_OUTPUT_DISABLE;
- 
--		intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
--		intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-+		intel_de_write(display, PCH_DREF_CONTROL, val);
-+		intel_de_posting_read(display, PCH_DREF_CONTROL);
- 		udelay(200);
- 
- 		if (!using_ssc_source) {
--			drm_dbg_kms(&dev_priv->drm, "Disabling SSC source\n");
-+			drm_dbg_kms(display->drm, "Disabling SSC source\n");
- 
- 			/* Turn off the SSC source */
- 			val &= ~DREF_SSC_SOURCE_MASK;
-@@ -658,13 +658,13 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
- 			/* Turn off SSC1 */
- 			val &= ~DREF_SSC1_ENABLE;
- 
--			intel_de_write(dev_priv, PCH_DREF_CONTROL, val);
--			intel_de_posting_read(dev_priv, PCH_DREF_CONTROL);
-+			intel_de_write(display, PCH_DREF_CONTROL, val);
-+			intel_de_posting_read(display, PCH_DREF_CONTROL);
- 			udelay(200);
- 		}
- 	}
- 
--	drm_WARN_ON(&dev_priv->drm, val != final);
-+	drm_WARN_ON(display->drm, val != final);
- }
- 
- /*
+-void intel_dpll_dump_hw_state(struct drm_i915_private *i915,
++void intel_dpll_dump_hw_state(struct intel_display *display,
+ 			      struct drm_printer *p,
+ 			      const struct intel_dpll_hw_state *dpll_hw_state);
+-bool intel_dpll_compare_hw_state(struct drm_i915_private *i915,
++bool intel_dpll_compare_hw_state(struct intel_display *display,
+ 				 const struct intel_dpll_hw_state *a,
+ 				 const struct intel_dpll_hw_state *b);
+ enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port);
 -- 
 2.34.1
 
