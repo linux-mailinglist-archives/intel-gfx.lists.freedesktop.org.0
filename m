@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56FFDA32B55
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F35A32BCF
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:36:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAA3B89496;
-	Wed, 12 Feb 2025 16:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E16E210E903;
+	Wed, 12 Feb 2025 16:36:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mItAcNv8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwOzPhsM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 187EB89496;
- Wed, 12 Feb 2025 16:17:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6830B10E903;
+ Wed, 12 Feb 2025 16:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739377073; x=1770913073;
+ t=1739378211; x=1770914211;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=XpJV35U97FhYK+AL8Yda+oOzRCN0Xjo9cKENv+kQkaA=;
- b=mItAcNv8mb3XVnqF/ax5sTlzG38N6j6qc1dfvx3ZY9YpcnhdPGm8NUwA
- P1nEkb/JIRdNHE1DxG599AA0wq9D50YIBAQOEJkt79yn8unyYPzwOl/sB
- pFV4OEGYPH/+2ibU34NC7sNCeNus0alKvwlxOmghDouofHt8Yw2czYI0M
- nYp07kBbaeUEnr0McgX1gbYAluTe++ur+N5JXwmZPuGEN1SB2flvXi8YK
- PJ2vdJoVuLOiugKOj4VSUVmrJ2Wejc7Up3NTkMQCNe+gH8A+njfmX2muX
- TYLfPMH/tB/KGLFKaGs72EtEHazoK6oh1OjDtEuuDFUxh7qptuuxWCiPK Q==;
-X-CSE-ConnectionGUID: qWsGiV6FTq23qmOfR2nzzg==
-X-CSE-MsgGUID: NuSsCd0OTFyis4O+onsxlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57447435"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="57447435"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:17:53 -0800
-X-CSE-ConnectionGUID: fL9VmUs1TwKdaDdQMd+ncw==
-X-CSE-MsgGUID: LzubKaaIS+aLtDS0Qa40/A==
+ bh=qIDmZ8GFyhMCk8IVoPrqfz2e02AtA4vVqcnswtOqR0o=;
+ b=KwOzPhsMpCWWIy7Kq+6Jt582SL24o5gu452MSYaWYSGe49WIajIk84Rr
+ lvNhEA0Mi3QhoYouINYdSwTJBgdRbKhdqrn/RD/5UnGXbaF9t+WsEJzlY
+ bFWLGzOajkBVX3wHukCqnpFA+1Rf3lp4CEicRmk99mIS59HmXBHTRFztx
+ gL528rRLdh2PCBGV4sdwa5saeWfp5USCNfpV42NTB5+3bAFO3Qcyt1tSo
+ XYrwvL8aTYdbpoOhza5qMXwJ1rPVv3JvlqHqk6leD4a73EhGsObjnHRh8
+ C0SHJhH627r8dvIXgkGSvnE4OHRyJpOJKPfXBwQEcrIZMdgtXTX9fQT3S g==;
+X-CSE-ConnectionGUID: 7JQlwRmMRGSAuuHdjgI0XA==
+X-CSE-MsgGUID: /lkTI25WST61CzZ1GD/vmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="65405190"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="65405190"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 08:36:50 -0800
+X-CSE-ConnectionGUID: /Apk0w3aRiq3wG6+R9efEg==
+X-CSE-MsgGUID: hvBdBAEaS+iwiuN8qrmtOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="143710438"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:17:51 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm: Fix DSC BPP increment decoding
-Date: Wed, 12 Feb 2025 18:18:51 +0200
-Message-ID: <20250212161851.4007005-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112858729"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.167])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2025 08:36:48 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 00/14] drm/i915/display: conversions to struct intel_display
+Date: Wed, 12 Feb 2025 18:36:29 +0200
+Message-Id: <cover.1739378095.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,45 +68,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Starting with DPCD version 2.0 bits 6:3 of the DP_DSC_BITS_PER_PIXEL_INC
-DPCD register contains the NativeYCbCr422_MAX_bpp_DELTA field, which can
-be non-zero as opposed to earlier DPCD versions, hence decoding the
-bit_per_pixel increment value at bits 2:0 in the same register requires
-applying a mask, do so.
+Convert a bunch of files and functions to struct intel display.
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Fixes: 0c2287c96521 ("drm/display/dp: Add helper function to get DSC bpp precision")
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 2 +-
- include/drm/display/drm_dp.h            | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+The approach is to mostly convert a file, then see what the stragglers
+are, convert those too, and repeat.
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index c488d160a3c1f..f5c596234729d 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -2602,7 +2602,7 @@ u8 drm_dp_dsc_sink_bpp_incr(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
- {
- 	u8 bpp_increment_dpcd = dsc_dpcd[DP_DSC_BITS_PER_PIXEL_INC - DP_DSC_SUPPORT];
- 
--	switch (bpp_increment_dpcd) {
-+	switch (bpp_increment_dpcd & DP_DSC_BITS_PER_PIXEL_MASK) {
- 	case DP_DSC_BITS_PER_PIXEL_1_16:
- 		return 16;
- 	case DP_DSC_BITS_PER_PIXEL_1_8:
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 784a32bfbad8f..c413ef68f9a30 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -359,6 +359,7 @@
- # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
- # define DP_DSC_BITS_PER_PIXEL_1_2          0x3
- # define DP_DSC_BITS_PER_PIXEL_1_1          0x4
-+# define DP_DSC_BITS_PER_PIXEL_MASK         0x7
- 
- #define DP_PSR_SUPPORT                      0x070   /* XXX 1.2? */
- # define DP_PSR_IS_SUPPORTED                1
+The PCH checks are starting to become a big straggler for further
+conversions.
+
+BR,
+Jani.
+
+Jani Nikula (14):
+  drm/i915/dp: convert g4x_dp.[ch] to struct intel display
+  drm/i915/hdmi: convert g4x_hdmi.[ch] to struct intel_display
+  drm/i915/ips: convert hsw_ips.c to struct intel_display
+  drm/i915/display: convert assert_transcoder*() to struct intel_display
+  drm/i915/display: convert assert_port_valid() to struct intel_display
+  drm/i915/hpd: drop dev_priv parameter from intel_hpd_pin_default()
+  drm/i915/display: convert
+    intel_set_{cpu,pch}_fifo_underrun_reporting() to intel_display
+  drm/i915/sdvo: convert intel_sdvo.[ch] to struct intel_display
+  drm/i915/display: convert intel_cpu_transcoder_mode_valid() to
+    intel_display
+  drm/i915/display: convert intel_mode_valid_max_plane_size() to
+    intel_display
+  drm/i915/dsi: convert platform checks to display->platform.<platform>
+    style
+  drm/i915/combo-phy: convert intel_combo_phy.[ch] to struct
+    intel_display
+  drm/i915/display: convert intel_fifo_underrun.[ch] to struct
+    intel_display
+  drm/i915/display: convert i915_pipestat_enable_mask() to struct
+    intel_display
+
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  99 +++---
+ drivers/gpu/drm/i915/display/g4x_dp.h         |  14 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       | 154 +++++----
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |   6 +-
+ drivers/gpu/drm/i915/display/hsw_ips.c        |  26 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  21 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    | 180 ++++++-----
+ .../gpu/drm/i915/display/intel_combo_phy.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  21 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  11 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 155 ++++-----
+ drivers/gpu/drm/i915/display/intel_display.h  |  10 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  37 +--
+ .../gpu/drm/i915/display/intel_display_irq.h  |   5 +-
+ .../drm/i915/display/intel_display_power.c    |   5 +-
+ .../i915/display/intel_display_power_well.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   5 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   5 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  30 +-
+ drivers/gpu/drm/i915/display/intel_dsi.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_fdi.c      |   3 +-
+ .../drm/i915/display/intel_fifo_underrun.c    | 181 ++++++-----
+ .../drm/i915/display/intel_fifo_underrun.h    |  18 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.h  |   3 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   6 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   4 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  11 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 293 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_sdvo.h     |  10 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |   6 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   8 +-
+ 36 files changed, 671 insertions(+), 700 deletions(-)
+
 -- 
-2.44.2
+2.39.5
 
