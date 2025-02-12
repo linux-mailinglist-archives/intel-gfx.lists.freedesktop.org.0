@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C425A326F6
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F743A326F7
 	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 14:27:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A94E410E8A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F145510E8A0;
 	Wed, 12 Feb 2025 13:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKIOCYw0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mv+3DlcD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7799C10E896;
- Wed, 12 Feb 2025 13:27:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38F510E8A0;
+ Wed, 12 Feb 2025 13:27:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739366842; x=1770902842;
+ t=1739366843; x=1770902843;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VTVaCHXXcWNBK+rc5wG5//Zqd4Y/KK+Z5sqxoM/ndy4=;
- b=oKIOCYw0aPrFRjq7xnI0SKnjNG1RTNtQRBlgSJCC5wvWs7sfstYk9thi
- YhsORktkK0949yOsAeXq6D7OoZGgWtEZB+VQ84Inek/JQAcm+e620t9R1
- 4uCEyb/5/q/QxDYXQ2d8f/lHx56FtCwRu1vwdoDdYykBN68oG4rn36/aq
- DRBl6VAcV91BtZ/26NlWdaE6VRo5d6HKdPXObjvfL2Vevw7g4l2vLpmKb
- PfLBmnTLlntt7DcoJxFFni6T/yk0mxbWz0o6tVOUwnRNTCEVb1Ao8Yc2w
- pY6480gn9tSUq/2m/pUBKYRZOZ077m0CElV/KiCWJDC4tZnHCHqsBkHlY A==;
-X-CSE-ConnectionGUID: 8mz5ZgtGSMaTAsEBgxQGEA==
-X-CSE-MsgGUID: ldUCUTGNRuGNykpOTub8Uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="51416186"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="51416186"
+ bh=zQ0B5LmUmWXct9wbzy+2CRmJ7hF+yzEqgT3I6hmYEAE=;
+ b=Mv+3DlcDrD6m49GyiEcriryP1Vj7h0ojADL+pijc4p5gBEz2uSjq1jeA
+ nD4ty2sm5kqxoAsNCUuRzx/ygp4tvV0QA7nWstkERUPp6sQA7FPBhEgCc
+ ydBxcpac/tLwWXIzrAzD9n9rg7QMswaeC9irr/6AwE2O9mmEvGZ6njUFE
+ JLRYFHSSOKMsp7KVCFW8KLIIYNoqfKwjtAoV227kTcozTxGh79UsgNM40
+ g95vi8iYUMl8HOk57CSUg1F1lV9O/AsCQp5XX8p9/8CWEhCKMakme5HdT
+ dEL3fBLJQX2+c3GXxaywZtg+qbtFoEoGHj5TfjctLY3qAnRriqUbG2rxt w==;
+X-CSE-ConnectionGUID: VdgA+C2FQTiW87oXs8xMqw==
+X-CSE-MsgGUID: XsSO0mdjTeqPp7tKVGMkzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="51416189"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="51416189"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:27:21 -0800
-X-CSE-ConnectionGUID: LNnMY4wrTtGThNw7uMAwxw==
-X-CSE-MsgGUID: RyGCHfJ8Sv+kMD7OvnsfeQ==
+ 12 Feb 2025 05:27:23 -0800
+X-CSE-ConnectionGUID: RdhaNaQUTZiJv/t8P174YA==
+X-CSE-MsgGUID: DQdB6a6/Rg2r1o9r41RQhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112655795"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="112655796"
 Received: from dnelso2-mobl.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.97])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 05:27:20 -0800
+ 12 Feb 2025 05:27:21 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/display: Use explicit cast in POWER_DOMAIN_*()
- macros
-Date: Wed, 12 Feb 2025 10:26:37 -0300
-Message-ID: <20250212132658.323640-2-gustavo.sousa@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: Make POWER_DOMAIN_*() always result in
+ enum intel_display_power_domain
+Date: Wed, 12 Feb 2025 10:26:38 -0300
+Message-ID: <20250212132658.323640-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250212132658.323640-1-gustavo.sousa@intel.com>
 References: <20250212132658.323640-1-gustavo.sousa@intel.com>
@@ -69,35 +69,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let the compiler know that we are intetionally using a different enum
-type to perform arithmetic with enum intel_display_power_domain in the
-POWER_DOMAIN_*(). Do that by explicitly casting the macro argument to
-int.
+In the hope of contributing to type safety in our code, let's ensure
+that the type returned by the POWER_DOMAIN_*() macros is always of type
+enum intel_display_power_domain.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202502120809.XfmcqkBD-lkp@intel.com/
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.h | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index a3a5c1be8bab..3caa3f517a32 100644
+index 3caa3f517a32..ab4c9a1e7e02 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -117,12 +117,12 @@ enum intel_display_power_domain {
+@@ -117,12 +117,13 @@ enum intel_display_power_domain {
  	POWER_DOMAIN_INVALID = POWER_DOMAIN_NUM,
  };
  
--#define POWER_DOMAIN_PIPE(pipe) ((pipe) + POWER_DOMAIN_PIPE_A)
-+#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
+-#define POWER_DOMAIN_PIPE(pipe) ((int)(pipe) + POWER_DOMAIN_PIPE_A)
++#define POWER_DOMAIN_PIPE(pipe) \
++	((enum intel_display_power_domain)((int)(pipe) +  1 + POWER_DOMAIN_PIPE_A))
  #define POWER_DOMAIN_PIPE_PANEL_FITTER(pipe) \
--		((pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
-+		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
+-		((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A)
++	((enum intel_display_power_domain)((int)(pipe) + POWER_DOMAIN_PIPE_PANEL_FITTER_A))
  #define POWER_DOMAIN_TRANSCODER(tran) \
  	((tran) == TRANSCODER_EDP ? POWER_DOMAIN_TRANSCODER_EDP : \
--	 (tran) + POWER_DOMAIN_TRANSCODER_A)
-+	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
+-	 (int)(tran) + POWER_DOMAIN_TRANSCODER_A)
++	 (enum intel_display_power_domain)((int)(tran) + POWER_DOMAIN_TRANSCODER_A))
  
  struct intel_power_domain_mask {
  	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
