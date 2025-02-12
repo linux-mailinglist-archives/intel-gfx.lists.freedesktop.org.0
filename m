@@ -2,63 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B22FA32C2D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 140CAA32C34
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:46:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E829D10E92F;
-	Wed, 12 Feb 2025 16:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C01EB10E934;
+	Wed, 12 Feb 2025 16:46:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJKkxBJI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="brRKkd2w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3AD710E92D;
- Wed, 12 Feb 2025 16:45:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74CE910E934
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 16:46:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739378708; x=1770914708;
+ t=1739378764; x=1770914764;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Vh9RiYLtjhCeC0AoVDNpZyxCjBGzvep4m3ysYAn/s0g=;
- b=hJKkxBJIK3ThpX1yG2Owt8+D1/d1RQyhRgM/xii2VxxWggkv6pFyAvyM
- he8IotpVuPsdYd8Lwq6Ypo0RdhIGrvKNogyjm/BlVGi18wvccDlRlGS4h
- icRP82OvzOZBn/JObaFeP73hcjlhguRKC4ogGrTquqjVZheUxV7EToaV7
- k7ppnvxkDKJDFN9nXUYM8yaBpj0U3ZLgPjUEWKue6IImF5J/omYWJ0qS5
- B8ymqcbTzcgIueRLvKpylw1145EYekxcLDBwKgq4acNuFtb54U1XXZmUl
- 6izDF2nMbBzUllEdjolBS2vWXp69pYb7lTG0Sn/2pvR65Qqmy3uTDy33n w==;
-X-CSE-ConnectionGUID: Ujq33EzpRQmO6dZeA5hm9g==
-X-CSE-MsgGUID: 45Y8TzFcRoSZfN1neqmSyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62515159"
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62515159"
+ bh=xOjIt6HQ4ZN26vmRQGTNIdNE1D7FP+WHcmbUCqShSyw=;
+ b=brRKkd2wZCK1CIVAgNfafQcB3I8nGVbkbDbTgpFbQftqs9t7zfGUYkYp
+ YcsngKqu7YF5bGQiq1jnoPBkEKY53YFHAJY62IEvhHcYPR6hD+IsVBX/9
+ XruwX/tDquH9DMy9w7t9Uw6UFPxVPsD+3s7apSqdIZ7yesIQ+5RPBXaBj
+ SCt1nIbZVbIf3hYY4UQplykWiLtqrxiRQS5CJKp4hkhOu517JxApd0nSS
+ /zf0St5RSX107j94bRnt433pLpvqrKzmoxr7hgNAfoGWlr82tqKfUgS0w
+ 61NwvZvf0dsjyoTjhwrvwdmNNi2ZFAGaC1BXgP86CncXlJem+AfU86lSP g==;
+X-CSE-ConnectionGUID: zJFN6bmFR6uBjIKI+iI1lw==
+X-CSE-MsgGUID: p7cw/FwPRbWR2VxahxS+Ug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="62515259"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="62515259"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:45:07 -0800
-X-CSE-ConnectionGUID: YmosOCT4TlSwZuaJcCzbkQ==
-X-CSE-MsgGUID: ei4lPOcCQIKQQZ4VfBAPoQ==
+ 12 Feb 2025 08:46:04 -0800
+X-CSE-ConnectionGUID: TfVoFx7vS+CtEXh37LAtGQ==
+X-CSE-MsgGUID: UKdvzbfyQ52a/7svajzQKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113082917"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113083050"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 08:45:05 -0800
+ by fmviesa008.fm.intel.com with SMTP; 12 Feb 2025 08:46:02 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Feb 2025 18:45:03 +0200
-Date: Wed, 12 Feb 2025 18:45:03 +0200
+ Wed, 12 Feb 2025 18:46:00 +0200
+Date: Wed, 12 Feb 2025 18:46:00 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 7/8] drm/i915/vrr: Check that the push send bit is
- clear after delayed vblank
-Message-ID: <Z6zQD0wK4LjQGxMv@intel.com>
-References: <20250207223159.14132-8-ville.syrjala@linux.intel.com>
- <20250210160711.24010-1-ville.syrjala@linux.intel.com>
- <6e7cb456-7866-4063-8ad0-e7e1c2bcd72d@intel.com>
- <Z6uLA_ZsQS-EIZt_@intel.com>
- <ab7a1152-7b5d-42d3-88f3-f61efab2757b@intel.com>
+To: Maarten Lankhorst <maarten@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 11/11] drm/i915: Pimp the Y plane selection debugs
+Message-ID: <Z6zQSNliqn8NVi7B@intel.com>
+References: <20250127172156.21928-1-ville.syrjala@linux.intel.com>
+ <20250127172156.21928-12-ville.syrjala@linux.intel.com>
+ <cc44cbb1-786b-4342-b23a-b213b069b61a@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab7a1152-7b5d-42d3-88f3-f61efab2757b@intel.com>
+In-Reply-To: <cc44cbb1-786b-4342-b23a-b213b069b61a@lankhorst.se>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,117 +72,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 12, 2025 at 06:39:56PM +0530, Nautiyal, Ankit K wrote:
+On Wed, Feb 12, 2025 at 10:39:20AM +0100, Maarten Lankhorst wrote:
+> Hey,
 > 
-> On 2/11/2025 11:08 PM, Ville Syrjälä wrote:
-> > On Tue, Feb 11, 2025 at 12:38:47PM +0530, Nautiyal, Ankit K wrote:
-> >> On 2/10/2025 9:37 PM, Ville Syrjala wrote:
-> >>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>>
-> >>> Since we don't do mailbox updates the push send bit
-> >>> should alwyas clear by the time the delay vblank fires
-> >>> and the flip completes. Check for that to make sure we
-> >>> haven't screwed up the sequencing/vblank evasion/etc.
-> >>>
-> >>> On the DSB path we should be able to guarantee this
-> >>> since we don't have to deal with any scheduler latencies
-> >>> and whatnot. I suppose unexpected DMA/memory latencies
-> >>> might be the only thing that might trip us up here.
-> >>>
-> >>> For the MMIO path we do always have a non-zero chance
-> >>> that vblank evasion fails (since we can't really guarantee
-> >>> anything about the scheduling behaviour). That could trip
-> >>> up this check, but that seems fine since we already print
-> >>> errors for other types of vblank evasion failures.
-> >>>
-> >>> Should the CPU vblank evasion actually fail, then the push
-> >>> send bit can still be set when the next commit happens. But
-> >>> both the DSB and MMIO paths should handle that situation
-> >>> gracefully.
-> >>>
-> >>> v2: Only check once instead of polling for two scanlines
-> >>>       since we should now be guaranteed to be past the
-> >>>       delayed vblank.
-> >>>       Also check in the MMIO path for good measure
-> >>> v3: Skip the push send check when VRR is enabled.
-> >>>       With joiner the secondary pipe's DSBs doen't have access
-> >>>       to the transcoder registers, and so doing this check
-> >>>       there triggers a reponse timeout error on the DSB. VRR
-> >>>       is not currently allowed when using joiner, so this will
-> >>>       prevent the bogus register access.
-> >>>
-> >>> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com> #v1
-> >>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/display/intel_color.c   |  1 +
-> >>>    drivers/gpu/drm/i915/display/intel_display.c |  4 +++
-> >>>    drivers/gpu/drm/i915/display/intel_vrr.c     | 34 ++++++++++++++++++++
-> >>>    drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
-> >>>    4 files changed, 41 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> >>> index 4d8f6509cac4..cfe14162231d 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> >>> @@ -1991,6 +1991,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
-> >>>    	if (crtc_state->use_dsb) {
-> >>>    		intel_vrr_send_push(crtc_state->dsb_color_vblank, crtc_state);
-> >>>    		intel_dsb_wait_vblank_delay(state, crtc_state->dsb_color_vblank);
-> >>> +		intel_vrr_check_push_sent(crtc_state->dsb_color_vblank, crtc_state);
-> >>>    		intel_dsb_interrupt(crtc_state->dsb_color_vblank);
-> >>>    	}
-> >>>    
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >>> index 0790b2a4583e..34434071a415 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >>> @@ -7737,6 +7737,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
-> >>>    
-> >>>    			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-> >>>    			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
-> >>> +			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
-> >>>    			intel_dsb_interrupt(new_crtc_state->dsb_commit);
-> >>>    		}
-> >>>    	}
-> >>> @@ -7886,6 +7887,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
-> >>>    			intel_crtc_disable_flip_done(state, crtc);
-> >>>    
-> >>>    		intel_atomic_dsb_wait_commit(new_crtc_state);
-> >>> +
-> >>> +		if (!state->base.legacy_cursor_update && !new_crtc_state->use_dsb)
-> >>> +			intel_vrr_check_push_sent(NULL, new_crtc_state);
-> >>>    	}
-> >>>    
-> >>>    	/*
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> >>> index adb51609d0a3..cac49319026d 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> >>> @@ -416,6 +416,40 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
-> >>>    		intel_dsb_nonpost_end(dsb);
-> >>>    }
-> >>>    
-> >>> +void intel_vrr_check_push_sent(struct intel_dsb *dsb,
-> >>> +			       const struct intel_crtc_state *crtc_state)
-> >>> +{
-> >>> +	struct intel_display *display = to_intel_display(crtc_state);
-> >>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >>> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >>> +
-> >>> +	if (!crtc_state->vrr.enable)
-> >> I think you mean:
-> >>
-> >> if (crtc_state->vrr.enable) return;
-> > No. We want to do the check when VRR is enabled (when we are
-> > actually sending pushes), and skip it otherwise (when we don't
-> > send pushes anyway).
-> Oh ok, I got confused with the change log:
+> Patch series looks good.
 > 
-> v3: Skip the push send check when VRR is enabled.
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> 
+> One small comment, I've noticed that in 10/11 I still see a mention of 
+> slave plane in the comments, it would probably be best to fixup any 
+> mention to Y plane in the comments too.
 
-My bad. I'll fix up the commit msg when pushing.
+Ack, I fixed those up and rebased+reposted the series
+due to the earlier intel_display changes.
 
 Thanks for the review.
+
+> 
+> Cheers,
+> 
+> ~Maarten
+> 
+> On 2025-01-27 18:21, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Use the standard [PLANE:%d:%s] stuff for the Y plane debugs,
+> > and more clearly spell out which plane is UV plane and which
+> > is Y plane when linking them.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 +++++---
+> >   1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > index 1fb35f4a7cf4..9c2e8aaba8cd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > @@ -1236,8 +1236,9 @@ static void link_nv12_planes(struct intel_crtc_state *crtc_state,
+> >   	crtc_state->data_rate[y_plane->id] = crtc_state->data_rate_y[uv_plane->id];
+> >   	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
+> >   
+> > -	drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
+> > -		    y_plane->base.name, uv_plane->base.name);
+> > +	drm_dbg_kms(&dev_priv->drm, "UV plane [PLANE:%d:%s] using Y plane [PLANE:%d:%s]\n",
+> > +		    uv_plane->base.base.id, uv_plane->base.name,
+> > +		    y_plane->base.base.id, y_plane->base.name);
+> >   
+> >   	/* Copy parameters to Y plane */
+> >   	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
+> > @@ -1328,7 +1329,8 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
+> >   
+> >   		if (!y_plane_state) {
+> >   			drm_dbg_kms(&dev_priv->drm,
+> > -				    "Need %d free Y planes for planar YUV\n",
+> > +				    "[CRTC:%d:%s] need %d free Y planes for planar YUV\n",
+> > +				    crtc->base.base.id, crtc->base.name,
+> >   				    hweight8(crtc_state->nv12_planes));
+> >   
+> >   			return -EINVAL;
 
 -- 
 Ville Syrjälä
