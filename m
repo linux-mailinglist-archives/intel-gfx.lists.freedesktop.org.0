@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F5DA3203E
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 08:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A73AA3205F
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 08:57:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF1E10E7D9;
-	Wed, 12 Feb 2025 07:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C46AC10E26D;
+	Wed, 12 Feb 2025 07:57:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqK3LQxu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ayvhPxT9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D9210E7E2;
- Wed, 12 Feb 2025 07:46:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F13210E26D;
+ Wed, 12 Feb 2025 07:57:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739346370; x=1770882370;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Z1Qh4/BBGFjdiY+WD0UJKI8BFQeULSQ8p3ZUzbB1DCI=;
- b=eqK3LQxu5CzOb4k7ib5jQHSiTPU+3yTQ0Vjmyh9f8HUGEyKLMLGfxeOS
- wmzL0AVqAlpOgNuWhTy1xV+WPkRq1W4tfqx+ett44phj4l3E4kWwe0KgG
- vM6AxB5CydfjZu0IeQR0UOwWVJpGxwpTMQc4nLzmxUTBctAdh5I2+Csxq
- jb8UkLp/F3VLRbfkejnBJv41bV5irEGIZ5iYIt21q9vt1Xy83eYMQC7f3
- x6qF6NiFyf5fuBdsWH3XreRkuMO3Af03rcaEh9tPwlfD7FruG4Fsf0ABD
- H6t0K8/KFaMWUqn1FCckl4XrKBke0I+qm8sqF5cx/sNM0pUS16epffcdc g==;
-X-CSE-ConnectionGUID: KWP1rNtTQ6i/ywBy4Jdiag==
-X-CSE-MsgGUID: UJjoqxJNQ3ijJLV1yg+HlQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39906755"
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="39906755"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 23:46:10 -0800
-X-CSE-ConnectionGUID: etvUWTqkQzKA2LUyR45/SQ==
-X-CSE-MsgGUID: 6rOmQ/IEQVa+jynPK4Ztrg==
+ t=1739347072; x=1770883072;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lHCYn30JLwDHA1MD+UdnGCI3z/euireppkwUQnYcSGA=;
+ b=ayvhPxT9atiyIqFnC1AwAMVNeZvsxZoON0FhbVtmfDfNb7wFL56sBAn4
+ pOUuYHfTrGcWflzMWyt2DVj3q7QuXnG8CLkZgbpYYnR+6TpEQlt2mxlGt
+ UvzXlDwELf4I8vmjkY8LMvD8+Ywrhl3FIUWw6/gi07sh5//83xaFG3nPp
+ YFaBCXaxWxOvU8eXmI8nTm3XyVs9lrXG/oHJ5jFQxeeaEWmmCYpeCsDBC
+ OMIVmVt5sFZkKjq5PD0WrOIC55bAa61R5W5pbu3g3r/gT99rcay1E7r2r
+ 0CGclR3bUt0uKfjdlnnqUcbxR9HOd5zWNlo4s1FtmmtOgXGTgUnouFCx1 Q==;
+X-CSE-ConnectionGUID: 2sfZKlqBRFSZZxyDX92YXw==
+X-CSE-MsgGUID: nc4tMxMIRAWAv4zuzkJkVg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50973624"
+X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="50973624"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 23:57:52 -0800
+X-CSE-ConnectionGUID: vlTkEIexQey/NTJLFyfRBw==
+X-CSE-MsgGUID: qzOlk4I7SX2kav6rf7wrTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112601154"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa010.jf.intel.com with ESMTP; 11 Feb 2025 23:46:08 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 8/8] drm/i915/dpll: Replace all other leftover drm_i915_private
-Date: Wed, 12 Feb 2025 13:15:42 +0530
-Message-Id: <20250212074542.3569452-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250212074542.3569452-1-suraj.kandpal@intel.com>
-References: <20250212074542.3569452-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116836852"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.81])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 23:57:50 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v7 00/13] PSR DSB support
+Date: Wed, 12 Feb 2025 09:57:28 +0200
+Message-ID: <20250212075742.995022-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,350 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace all other left over drm_i915_private with intel_display
-in dpll_mgr.c.
+This patch set is doing necessary modifications to support PSR update
+using DSB on LunarLake onwards
 
---v2
--Don't use inline to_intel_display() [Jani]
+It is not necessary to wait for PSR1 to idle or PSR2 to exit DEEP
+sleep at the begin of commit This is left out from DSB commit. There
+might be room for optimization for non-DSB as well because such wait
+is not supposed to be necessary at the begin of update.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 100 +++++++++---------
- 1 file changed, 49 insertions(+), 51 deletions(-)
+PSR mutex is not locked when performing DSB commit. It is not
+necessary as we are currently using DSB only when sending updates
+towards panel. I.e. not using it when changing PSR mode. Also
+necessary changes are made to use PSR2_MAN_TRK_CTL only in
+DSB. Frontbuffer updates and legacy cursor updates are using SFF_CTL
+register to perform full frame updates.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 1c718748dacb..eb3df25a308c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -117,11 +117,10 @@ struct intel_dpll_mgr {
- };
- 
- static void
--intel_atomic_duplicate_dpll_state(struct drm_i915_private *i915,
-+intel_atomic_duplicate_dpll_state(struct intel_display *display,
- 				  struct intel_shared_dpll_state *shared_dpll)
- {
- 	struct intel_shared_dpll *pll;
--	struct intel_display *display = &i915->display;
- 	int i;
- 
- 	/* Copy shared dpll state */
-@@ -133,13 +132,14 @@ static struct intel_shared_dpll_state *
- intel_atomic_get_shared_dpll_state(struct drm_atomic_state *s)
- {
- 	struct intel_atomic_state *state = to_intel_atomic_state(s);
-+	struct intel_display *display = to_intel_display(state);
- 
- 	drm_WARN_ON(s->dev, !drm_modeset_is_locked(&s->dev->mode_config.connection_mutex));
- 
- 	if (!state->dpll_set) {
- 		state->dpll_set = true;
- 
--		intel_atomic_duplicate_dpll_state(to_i915(s->dev),
-+		intel_atomic_duplicate_dpll_state(display,
- 						  state->shared_dpll);
- 	}
- 
-@@ -420,13 +420,13 @@ intel_reference_shared_dpll_crtc(const struct intel_crtc *crtc,
- 				 const struct intel_shared_dpll *pll,
- 				 struct intel_shared_dpll_state *shared_dpll_state)
- {
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	drm_WARN_ON(&i915->drm, (shared_dpll_state->pipe_mask & BIT(crtc->pipe)) != 0);
-+	drm_WARN_ON(display->drm, (shared_dpll_state->pipe_mask & BIT(crtc->pipe)) != 0);
- 
- 	shared_dpll_state->pipe_mask |= BIT(crtc->pipe);
- 
--	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] reserving %s\n",
-+	drm_dbg_kms(display->drm, "[CRTC:%d:%s] reserving %s\n",
- 		    crtc->base.base.id, crtc->base.name, pll->info->name);
- }
- 
-@@ -459,13 +459,13 @@ intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
- 				   const struct intel_shared_dpll *pll,
- 				   struct intel_shared_dpll_state *shared_dpll_state)
- {
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	drm_WARN_ON(&i915->drm, (shared_dpll_state->pipe_mask & BIT(crtc->pipe)) == 0);
-+	drm_WARN_ON(display->drm, (shared_dpll_state->pipe_mask & BIT(crtc->pipe)) == 0);
- 
- 	shared_dpll_state->pipe_mask &= ~BIT(crtc->pipe);
- 
--	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] releasing %s\n",
-+	drm_dbg_kms(display->drm, "[CRTC:%d:%s] releasing %s\n",
- 		    crtc->base.base.id, crtc->base.name, pll->info->name);
- }
- 
-@@ -545,9 +545,8 @@ static bool ibx_pch_dpll_get_hw_state(struct intel_display *display,
- 	return val & DPLL_VCO_ENABLE;
- }
- 
--static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *i915)
-+static void ibx_assert_pch_refclk_enabled(struct intel_display *display)
- {
--	struct intel_display *display = &i915->display;
- 	u32 val;
- 	bool enabled;
- 
-@@ -562,12 +561,11 @@ static void ibx_pch_dpll_enable(struct intel_display *display,
- 				struct intel_shared_dpll *pll,
- 				const struct intel_dpll_hw_state *dpll_hw_state)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct i9xx_dpll_hw_state *hw_state = &dpll_hw_state->i9xx;
- 	const enum intel_dpll_id id = pll->info->id;
- 
- 	/* PCH refclock must be enabled first */
--	ibx_assert_pch_refclk_enabled(i915);
-+	ibx_assert_pch_refclk_enabled(display);
- 
- 	intel_de_write(display, PCH_FP0(id), hw_state->fp0);
- 	intel_de_write(display, PCH_FP1(id), hw_state->fp1);
-@@ -1076,7 +1074,7 @@ hsw_ddi_wrpll_get_dpll(struct intel_atomic_state *state,
- static int
- hsw_ddi_lcpll_compute_dpll(struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	int clock = crtc_state->port_clock;
- 
- 	switch (clock / 2) {
-@@ -1085,7 +1083,7 @@ hsw_ddi_lcpll_compute_dpll(struct intel_crtc_state *crtc_state)
- 	case 270000:
- 		return 0;
- 	default:
--		drm_dbg_kms(&i915->drm, "Invalid clock for DP: %d\n",
-+		drm_dbg_kms(display->drm, "Invalid clock for DP: %d\n",
- 			    clock);
- 		return -EINVAL;
- 	}
-@@ -2257,7 +2255,7 @@ static int
- bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
- 			  struct dpll *clk_div)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 
- 	/* Calculate HDMI div */
- 	/*
-@@ -2267,7 +2265,7 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
- 	if (!bxt_find_best_dpll(crtc_state, clk_div))
- 		return -EINVAL;
- 
--	drm_WARN_ON(&i915->drm, clk_div->m1 != 2);
-+	drm_WARN_ON(display->drm, clk_div->m1 != 2);
- 
- 	return 0;
- }
-@@ -2275,7 +2273,7 @@ bxt_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state,
- static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
- 				    struct dpll *clk_div)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	int i;
- 
- 	*clk_div = bxt_dp_clk_val[0];
-@@ -2286,16 +2284,16 @@ static void bxt_ddi_dp_pll_dividers(struct intel_crtc_state *crtc_state,
- 		}
- 	}
- 
--	chv_calc_dpll_params(i915->display.dpll.ref_clks.nssc, clk_div);
-+	chv_calc_dpll_params(display->dpll.ref_clks.nssc, clk_div);
- 
--	drm_WARN_ON(&i915->drm, clk_div->vco == 0 ||
-+	drm_WARN_ON(display->drm, clk_div->vco == 0 ||
- 		    clk_div->dot != crtc_state->port_clock);
- }
- 
- static int bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
- 				     const struct dpll *clk_div)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct bxt_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.bxt;
- 	int clock = crtc_state->port_clock;
- 	int vco = clk_div->vco;
-@@ -2319,7 +2317,7 @@ static int bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
- 		gain_ctl = 1;
- 		targ_cnt = 9;
- 	} else {
--		drm_err(&i915->drm, "Invalid VCO\n");
-+		drm_err(display->drm, "Invalid VCO\n");
- 		return -EINVAL;
- 	}
- 
-@@ -2702,9 +2700,9 @@ static const struct skl_wrpll_params tgl_tbt_pll_24MHz_values = {
- static int icl_calc_dp_combo_pll(struct intel_crtc_state *crtc_state,
- 				 struct skl_wrpll_params *pll_params)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct icl_combo_pll_params *params =
--		i915->display.dpll.ref_clks.nssc == 24000 ?
-+		display->dpll.ref_clks.nssc == 24000 ?
- 		icl_dp_combo_pll_24MHz_values :
- 		icl_dp_combo_pll_19_2MHz_values;
- 	int clock = crtc_state->port_clock;
-@@ -2724,12 +2722,12 @@ static int icl_calc_dp_combo_pll(struct intel_crtc_state *crtc_state,
- static int icl_calc_tbt_pll(struct intel_crtc_state *crtc_state,
- 			    struct skl_wrpll_params *pll_params)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (DISPLAY_VER(i915) >= 12) {
--		switch (i915->display.dpll.ref_clks.nssc) {
-+	if (DISPLAY_VER(display) >= 12) {
-+		switch (display->dpll.ref_clks.nssc) {
- 		default:
--			MISSING_CASE(i915->display.dpll.ref_clks.nssc);
-+			MISSING_CASE(display->dpll.ref_clks.nssc);
- 			fallthrough;
- 		case 19200:
- 		case 38400:
-@@ -2740,9 +2738,9 @@ static int icl_calc_tbt_pll(struct intel_crtc_state *crtc_state,
- 			break;
- 		}
- 	} else {
--		switch (i915->display.dpll.ref_clks.nssc) {
-+		switch (display->dpll.ref_clks.nssc) {
- 		default:
--			MISSING_CASE(i915->display.dpll.ref_clks.nssc);
-+			MISSING_CASE(display->dpll.ref_clks.nssc);
- 			fallthrough;
- 		case 19200:
- 		case 38400:
-@@ -3000,9 +2998,9 @@ static int icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use_ssc,
- static int icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
- 				 struct intel_dpll_hw_state *dpll_hw_state)
- {
--	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
--	int refclk_khz = i915->display.dpll.ref_clks.nssc;
-+	int refclk_khz = display->dpll.ref_clks.nssc;
- 	int clock = crtc_state->port_clock;
- 	u32 dco_khz, m1div, m2div_int, m2div_rem, m2div_frac;
- 	u32 iref_ndiv, iref_trim, iref_pulse_w;
-@@ -3012,7 +3010,7 @@ static int icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
- 	u64 tmp;
- 	bool use_ssc = false;
- 	bool is_dp = !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI);
--	bool is_dkl = DISPLAY_VER(i915) >= 12;
-+	bool is_dkl = DISPLAY_VER(display) >= 12;
- 	int ret;
- 
- 	ret = icl_mg_pll_find_divisors(clock, is_dp, use_ssc, &dco_khz,
-@@ -3110,8 +3108,8 @@ static int icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
- 					 DKL_PLL_DIV0_PROP_COEFF(prop_coeff) |
- 					 DKL_PLL_DIV0_FBPREDIV(m1div) |
- 					 DKL_PLL_DIV0_FBDIV_INT(m2div_int);
--		if (i915->display.vbt.override_afc_startup) {
--			u8 val = i915->display.vbt.override_afc_startup_val;
-+		if (display->vbt.override_afc_startup) {
-+			u8 val = display->vbt.override_afc_startup_val;
- 
- 			hw_state->mg_pll_div0 |= DKL_PLL_DIV0_AFC_STARTUP(val);
- 		}
-@@ -3349,7 +3347,6 @@ static int icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 				  struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct icl_port_dpll *port_dpll =
-@@ -3357,13 +3354,13 @@ static int icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 	enum port port = encoder->port;
- 	unsigned long dpll_mask;
- 
--	if (IS_ALDERLAKE_S(i915)) {
-+	if (display->platform.alderlake_s) {
- 		dpll_mask =
- 			BIT(DPLL_ID_DG1_DPLL3) |
- 			BIT(DPLL_ID_DG1_DPLL2) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
- 			BIT(DPLL_ID_ICL_DPLL0);
--	} else if (IS_DG1(i915)) {
-+	} else if (display->platform.dg1) {
- 		if (port == PORT_D || port == PORT_E) {
- 			dpll_mask =
- 				BIT(DPLL_ID_DG1_DPLL2) |
-@@ -3373,12 +3370,13 @@ static int icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 				BIT(DPLL_ID_DG1_DPLL0) |
- 				BIT(DPLL_ID_DG1_DPLL1);
- 		}
--	} else if (IS_ROCKETLAKE(i915)) {
-+	} else if (display->platform.rocketlake) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
- 			BIT(DPLL_ID_ICL_DPLL1) |
- 			BIT(DPLL_ID_ICL_DPLL0);
--	} else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+	} else if ((display->platform.jasperlake ||
-+		    display->platform.elkhartlake) &&
- 		   port != PORT_A) {
- 		dpll_mask =
- 			BIT(DPLL_ID_EHL_DPLL4) |
-@@ -4383,10 +4381,10 @@ int intel_compute_shared_dplls(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc,
- 			       struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_dpll_mgr *dpll_mgr = i915->display.dpll.mgr;
-+	struct intel_display *display = to_intel_display(state);
-+	const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
- 
--	if (drm_WARN_ON(&i915->drm, !dpll_mgr))
-+	if (drm_WARN_ON(display->drm, !dpll_mgr))
- 		return -EINVAL;
- 
- 	return dpll_mgr->compute_dplls(state, crtc, encoder);
-@@ -4416,10 +4414,10 @@ int intel_reserve_shared_dplls(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc,
- 			       struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_dpll_mgr *dpll_mgr = i915->display.dpll.mgr;
-+	struct intel_display *display = to_intel_display(state);
-+	const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
- 
--	if (drm_WARN_ON(&i915->drm, !dpll_mgr))
-+	if (drm_WARN_ON(display->drm, !dpll_mgr))
- 		return -EINVAL;
- 
- 	return dpll_mgr->get_dplls(state, crtc, encoder);
-@@ -4439,8 +4437,8 @@ int intel_reserve_shared_dplls(struct intel_atomic_state *state,
- void intel_release_shared_dplls(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_dpll_mgr *dpll_mgr = i915->display.dpll.mgr;
-+	struct intel_display *display = to_intel_display(state);
-+	const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
- 
- 	/*
- 	 * FIXME: this function is called for every platform having a
-@@ -4468,10 +4466,10 @@ void intel_update_active_dpll(struct intel_atomic_state *state,
- 			      struct intel_crtc *crtc,
- 			      struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
--	const struct intel_dpll_mgr *dpll_mgr = i915->display.dpll.mgr;
-+	struct intel_display *display = to_intel_display(encoder);
-+	const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
- 
--	if (drm_WARN_ON(&i915->drm, !dpll_mgr))
-+	if (drm_WARN_ON(display->drm, !dpll_mgr))
- 		return;
- 
- 	dpll_mgr->update_active_dpll(state, crtc, encoder);
+DSB_SKIP_WAITS_EN is removed to ensure all waits are performed when
+PSR is active. PSR "Frame Change" event is manually triggered at the
+begin of each DSB commit by adding CURSURFLIVE register write.
+
+Possibe problem with DSB commit when PSR is already waking up is
+avoided by evading scanline 0.
+
+v7:
+  - Rename "drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling when
+    DSB is in use" as "drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB
+    commit" due to scope changes.
+  - Warn on use_dsb in non-dsb pipe update functions
+  - dsb as a first parameter in intel_psr_trigger_frame_change_event
+v6:
+  - add comment explaining why we are not setting DSB_SKIP_WAITS_EN
+  - add separate function to generate the "Frame change"evant.
+  - use intel_dsb_emit_wait_dsl
+  - add evasion of scanline 0 also for Panel Replay
+v5:
+  - rebase
+v4:
+  - remove DSB_SKIP_WAITS_EN
+  - Add CURSURFLIVE register write at the begin of DSB commit
+  - evade scanline 0
+v3:
+  - do not use DSB when PSR mode is changing
+v2:
+  - use _MMIO_TRANS instead of _MMIO_TRANS2
+  - drop evasion from intel_psr_configure_full_frame_update
+
+
+Jouni Högander (13):
+  drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
+  drm/i915/psr: Rename psr_force_hw_tracking_exit as
+    intel_psr_force_update
+  drm/i915/psr: Split setting sff and cff bits away from
+    intel_psr_force_update
+  drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL
+    registers
+  drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
+  drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
+  drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB commit as well
+  drm/i915/display: Warn on use_dsb in non-dsb pipe update functions
+  drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+  drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
+  drm/i915/psr: Add function for triggering "Frame Change" event
+  drm/i915/display: Ensure we have "Frame Change" event in DSB commit
+  drm/i915/psr: Allow DSB usage when PSR is enabled
+
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   4 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  21 ++-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  27 +++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 141 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  10 ++
+ 6 files changed, 136 insertions(+), 74 deletions(-)
+
 -- 
-2.34.1
+2.43.0
 
