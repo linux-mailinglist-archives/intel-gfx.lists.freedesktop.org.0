@@ -2,62 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66178A32068
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 08:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB640A3280D
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ABBD10E7EA;
-	Wed, 12 Feb 2025 07:58:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NP5qwGnC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D93A10E8B6;
+	Wed, 12 Feb 2025 14:10:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C69B010E7EA;
- Wed, 12 Feb 2025 07:58:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739347081; x=1770883081;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nKlrvwkvZhMZ6V2RaPMJC1tIy76lwQlAuu3q3I5PtiM=;
- b=NP5qwGnCctULXbkEmnHRWyU5u7KjWUeT5I+3tesd1uq4q7I9qaXPZyJa
- 1+Krk5JlIhmjIJn8W3SFnURZAPv0PNx494/fEXJxl0IwVm6pP3W2jRp1J
- 7RzBDK5RJqSigFLZdEynJSCgjO1hpkHDrIYpjpReyCGWcz5x6ku/RWRo9
- ZJH5daj0SOyoXmbMnW3eoIpWreCTjq5+3bM+1APPY9Cu/fq2CzhunLsIi
- o4TH6DelVNrwDtFmJq1f6Ajmp5ag3eDOmcv+2kPX1m1NtC7lU+yaU7xJW
- E2LDqkcEtOG8tJAIgvPxVqGabJ6KDJnqLMS/3fo7TmB1N7fRrGbwy9PAB Q==;
-X-CSE-ConnectionGUID: SB/4JeY/TC6cPToPLmw9gw==
-X-CSE-MsgGUID: YO+j3a0dTYummQwFuWFRww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50973632"
-X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="50973632"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 23:58:01 -0800
-X-CSE-ConnectionGUID: thp/3LCtRl23E7TdfVjmMQ==
-X-CSE-MsgGUID: EJIqqWDRRve40CCNAXiGxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116836904"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.81])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 23:58:00 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v7 06/13] drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using
- DSB
-Date: Wed, 12 Feb 2025 09:57:34 +0200
-Message-ID: <20250212075742.995022-7-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250212075742.995022-1-jouni.hogander@intel.com>
-References: <20250212075742.995022-1-jouni.hogander@intel.com>
+X-Greylist: delayed 345 seconds by postgrey-1.36 at gabe;
+ Wed, 12 Feb 2025 08:03:43 UTC
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 132E510E7ED
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 08:03:42 +0000 (UTC)
+Received: from localhost.localdomain (unknown [124.16.141.245])
+ by APP-05 (Coremail) with SMTP id zQCowABXX6N+VKxnCLBmDA--.44042S2;
+ Wed, 12 Feb 2025 15:57:52 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/i915: Check drm_syncobj_fence_get return value in
+ eb_fences_add
+Date: Wed, 12 Feb 2025 15:57:35 +0800
+Message-ID: <20250212075736.922-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.42.0.windows.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowABXX6N+VKxnCLBmDA--.44042S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7KryrArWrCrWkKw1kAry7ZFb_yoW8Gr1Upa
+ 1fKFyjyrs0yw40q3Z7Ar1YyFy3C3WxK3WfKw4qywn5uw4YyF1qqryFvrWjqFyUArs3K347
+ Jr1qkFWSvryUArUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9j14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+ 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+ jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
+ 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+ n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+ AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+ 17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+ IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+ IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+ C2KfnxnUUI43ZEXa7VUb8hL5UUUUU==
+X-Originating-IP: [124.16.141.245]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ8LA2esUh4H3AAAsS
+X-Mailman-Approved-At: Wed, 12 Feb 2025 14:10:13 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,97 +66,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow writing PSR2_MAN_TRK_CTL using DSB by using intel_de_write_dsb. Do
-not check intel_dp->psr.lock being held when using DSB. This assertion
-doesn't make sense as in case of using DSB the actual write happens later
-and we are not taking intel_dp->psr.lock mutex over dsb commit.
+The function drm_syncobj_fence_get() may return NULL if the syncobj
+has no fence. In eb_fences_add(), this return value is not checked,
+leading to a potential NULL pointer dereference in
+i915_request_await_dma_fence().
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+This patch adds a check for the return value of drm_syncobj_fence_get
+and returns an error if it is NULL, preventing the NULL pointer
+dereference.
+
+Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
+Cc: stable@vger.kernel.org # 5.16+
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c     | 16 ++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h     |  4 +++-
- 3 files changed, 14 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2d7ac53bb924..a1e0fa304d22 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7156,7 +7156,7 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
- 			intel_pipe_fastset(old_crtc_state, new_crtc_state);
- 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index f151640c1d13..7da65535feb9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -3252,6 +3252,12 @@ eb_fences_add(struct i915_execbuffer *eb, struct i915_request *rq,
+ 		struct dma_fence *fence;
  
--	intel_psr2_program_trans_man_trk_ctl(new_crtc_state);
-+	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
- 
- 	intel_atomic_update_watermarks(state, crtc);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b5292f68d100..c805ff82e700 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2344,7 +2344,8 @@ static void intel_psr_force_update(struct intel_dp *intel_dp)
- 	intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
- }
- 
--void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
-+void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-+					  const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2358,20 +2359,23 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
- 					     crtc_state->uapi.encoder_mask) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
--		lockdep_assert_held(&intel_dp->psr.lock);
-+		if (!dsb)
-+			lockdep_assert_held(&intel_dp->psr.lock);
+ 		fence = drm_syncobj_fence_get(eb->gem_context->syncobj);
++		if (!fence) {
++			drm_dbg(&eb->i915->drm,
++				"Syncobj handle has no fence\n");
++			return ERR_PTR(-EINVAL);
++		}
 +
- 		if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_cff_enabled)
- 			return;
- 		break;
- 	}
- 
--	intel_de_write(display, PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--		       crtc_state->psr2_man_track_ctl);
-+	intel_de_write_dsb(display, dsb,
-+			   PSR2_MAN_TRK_CTL(display, cpu_transcoder),
-+			   crtc_state->psr2_man_track_ctl);
- 
- 	if (!crtc_state->enable_psr2_su_region_et)
- 		return;
- 
--	intel_de_write(display, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
--		       crtc_state->pipe_srcsz_early_tpt);
-+	intel_de_write_dsb(display, dsb, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
-+			   crtc_state->pipe_srcsz_early_tpt);
- }
- 
- static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 5f1671d02d76..e6eba6633a92 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -17,6 +17,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_display;
- struct intel_dp;
-+struct intel_dsb;
- struct intel_encoder;
- struct intel_plane;
- struct intel_plane_state;
-@@ -54,7 +55,8 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
- bool intel_psr_enabled(struct intel_dp *intel_dp);
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
--void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state);
-+void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-+					  const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
+ 		err = i915_request_await_dma_fence(rq, fence);
+ 		dma_fence_put(fence);
+ 		if (err)
 -- 
-2.43.0
+2.42.0.windows.2
 
