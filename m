@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54D58A32BE2
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5661A32BE5
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 17:37:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F05A010E91F;
-	Wed, 12 Feb 2025 16:37:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8829510E920;
+	Wed, 12 Feb 2025 16:37:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hsb0SYb7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gjMV6kGv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1A8C10E915;
- Wed, 12 Feb 2025 16:37:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B24510E920;
+ Wed, 12 Feb 2025 16:37:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739378263; x=1770914263;
+ t=1739378268; x=1770914268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5BFDw1l2N0XCXFq7LS/cQ4PKQi9ZXy3StrqUrg7+aVQ=;
- b=hsb0SYb7EicZsX8NKtAXRwhzjwZcjPby/c5IoczZCNMQLW8ke7HywGsl
- diEROYGcBgfCXfqr97Hsu/uOfdmlvWXQMMGD+5lt9IvJSrUpnmeEQRq2E
- ufHxkSAO3+rf38Sa/iAx+tp7gzgRI17gQU0fIpGPjgZ6B17BsVU/jXodJ
- //YcjxyjuHFWHMFhn2ZYC+41njZtP+urk5DSiDNOe3ajuWT8pEJQcYmn6
- a8wYMMCl3yWGSWK9wh2r2PUbLqIj9rAKpPj25o3AUyqAAg+nt+yPfH0KY
- cfJ3ninRR25CRlIPmih6hyuNR1Vr/Xuew0VXyr+X+c/nd+d2yM/Bgxi/E Q==;
-X-CSE-ConnectionGUID: jZrd2CjVTAW96/LzGYDlAw==
-X-CSE-MsgGUID: OPqgsiRdT6i6ThCdCXqgjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51479947"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51479947"
+ bh=yLfh0s1k5QixN2DgPIcVG4FyS2/JXOpBIZXLgFiLDD4=;
+ b=gjMV6kGvs9MlMRItoN7+wIOXH0IgOiAgpewnEcC5JWRv2lCHspSvV8Rh
+ FApZXSdjx7/v/bQz1e+/JQTjwi0FN9pq/46CpoyE2A7X3MtbyeTwVHmb8
+ iO6/YCKRBUCyV+Dy3hEroEYkrzyXof/Cx67HJkx8WoppRuoqVf9LJ1/2d
+ GpmCUZBGo7KJ5kZMl5e0TpFwcSH9MwQPTFSkGcb9xUHWwmuNt8LFtzyIC
+ njG0EVpvIeIm5U6cNZR4QN69cScz+Ykm466z1LZ4w5OhNnAiZ5jiOvK8t
+ 9Ux8wWXvKDEUncYwNsMvfViE2MwMGvr/na2UyDJ0GInBfG2sN4uBoXtJ0 g==;
+X-CSE-ConnectionGUID: CQ/IH7qARmeNCARNhsbyqA==
+X-CSE-MsgGUID: jN1TLv8NSWSAZWvVm3Jvaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51479965"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51479965"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:37:41 -0800
-X-CSE-ConnectionGUID: f2i7asRSRxSC1LpE5oG1pg==
-X-CSE-MsgGUID: AVHOEl9ATK+BIj73viro9Q==
+ 12 Feb 2025 08:37:46 -0800
+X-CSE-ConnectionGUID: FgbhZvqhT+SZbRrYhZcifg==
+X-CSE-MsgGUID: rUh4RhHcS1uACgEj3ojunQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113080736"
+X-IronPort-AV: E=Sophos;i="6.13,280,1732608000"; d="scan'208";a="113080757"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.167])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 08:37:39 -0800
+ 12 Feb 2025 08:37:44 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 10/14] drm/i915/display: convert
- intel_mode_valid_max_plane_size() to intel_display
-Date: Wed, 12 Feb 2025 18:36:39 +0200
-Message-Id: <6e7810c793ecc8ff6a31569830bf162156245668.1739378095.git.jani.nikula@intel.com>
+Subject: [PATCH 11/14] drm/i915/dsi: convert platform checks to
+ display->platform.<platform> style
+Date: Wed, 12 Feb 2025 18:36:40 +0200
+Message-Id: <493e4c550f9c515e2e82df1afd8a74a24156e76e.1739378096.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1739378095.git.jani.nikula@intel.com>
 References: <cover.1739378095.git.jani.nikula@intel.com>
@@ -71,162 +71,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Going forward, struct intel_display is the main display device data
-pointer. Convert the intel_mode_valid_max_plane_size() helper to struct
-intel_display, allowing further conversions elsewhere.
+These are stragglers from a time the display->platform mechanism didn't
+exist. Finish the conversion.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 ++++----
- drivers/gpu/drm/i915/display/intel_display.h | 2 +-
- drivers/gpu/drm/i915/display/intel_dp.c      | 3 +--
- drivers/gpu/drm/i915/display/intel_dp_mst.c  | 3 +--
- drivers/gpu/drm/i915/display/intel_dsi.c     | 8 ++++----
- drivers/gpu/drm/i915/display/intel_hdmi.c    | 3 +--
- 6 files changed, 12 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7a25c84bfbac..0450fdf9d4de 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8498,7 +8498,7 @@ enum drm_mode_status intel_cpu_transcoder_mode_valid(struct intel_display *displ
- }
- 
- enum drm_mode_status
--intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
-+intel_mode_valid_max_plane_size(struct intel_display *display,
- 				const struct drm_display_mode *mode,
- 				int num_joined_pipes)
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 1f0ff4000658..e84a362b54c9 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -345,7 +345,6 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
+ 					  const struct intel_crtc_state *crtc_state)
  {
-@@ -8508,7 +8508,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
- 	 * intel_mode_valid() should be
- 	 * sufficient on older platforms.
- 	 */
--	if (DISPLAY_VER(dev_priv) < 9)
-+	if (DISPLAY_VER(display) < 9)
- 		return MODE_OK;
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+ 	int afe_clk_khz;
+@@ -354,7 +353,7 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
  
- 	/*
-@@ -8516,10 +8516,10 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
- 	 * plane so let's not advertize modes that are
- 	 * too big for that.
- 	 */
--	if (DISPLAY_VER(dev_priv) >= 30) {
-+	if (DISPLAY_VER(display) >= 30) {
- 		plane_width_max = 6144 * num_joined_pipes;
- 		plane_height_max = 4800;
--	} else if (DISPLAY_VER(dev_priv) >= 11) {
-+	} else if (DISPLAY_VER(display) >= 11) {
- 		plane_width_max = 5120 * num_joined_pipes;
- 		plane_height_max = 4320;
- 	} else {
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 08e28ea179d2..f702425df305 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -424,7 +424,7 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
- u32 intel_plane_fb_max_stride(struct drm_device *drm,
- 			      u32 pixel_format, u64 modifier);
- enum drm_mode_status
--intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
-+intel_mode_valid_max_plane_size(struct intel_display *display,
- 				const struct drm_display_mode *mode,
- 				int num_joined_pipes);
- enum drm_mode_status
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 61827b0fe95e..29970baaf03e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1396,7 +1396,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	struct intel_display *display = to_intel_display(_connector->dev);
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
--	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	const struct drm_display_mode *fixed_mode;
- 	int target_clock = mode->clock;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
-@@ -1496,7 +1495,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	if (status != MODE_OK)
- 		return status;
+ 	afe_clk_khz = afe_clk(encoder, crtc_state);
  
--	return intel_mode_valid_max_plane_size(dev_priv, mode, num_joined_pipes);
-+	return intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
- }
- 
- bool intel_dp_source_supports_tps3(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 38804254980b..73a0a0f9b3d0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1462,7 +1462,6 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- {
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_dp *intel_dp = connector->mst_port;
- 	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
- 	struct drm_dp_mst_port *port = connector->port;
-@@ -1565,7 +1564,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- 		return 0;
+-	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
++	if (display->platform.alderlake_s || display->platform.alderlake_p) {
+ 		theo_word_clk = DIV_ROUND_UP(afe_clk_khz, 8 * DSI_MAX_ESC_CLK);
+ 		act_word_clk = max(3, theo_word_clk + (theo_word_clk + 1) % 2);
+ 		esc_clk_div_m = act_word_clk * 8;
+@@ -375,7 +374,7 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
+ 		intel_de_posting_read(display, ICL_DPHY_ESC_CLK_DIV(port));
  	}
  
--	*status = intel_mode_valid_max_plane_size(i915, mode, num_joined_pipes);
-+	*status = intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c b/drivers/gpu/drm/i915/display/intel_dsi.c
-index c93a3cf75c52..403151175a87 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.c
-@@ -60,14 +60,14 @@ int intel_dsi_get_modes(struct drm_connector *connector)
- enum drm_mode_status intel_dsi_mode_valid(struct drm_connector *connector,
- 					  const struct drm_display_mode *mode)
+-	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
++	if (display->platform.alderlake_s || display->platform.alderlake_p) {
+ 		for_each_dsi_port(port, intel_dsi->ports) {
+ 			intel_de_write(display, ADL_MIPIO_DW(port, 8),
+ 				       esc_clk_div_m_phy & TX_ESC_CLK_DIV_PHY);
+@@ -426,7 +425,6 @@ static void gen11_dsi_power_up_lanes(struct intel_encoder *encoder)
+ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
  {
--	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-+	struct intel_display *display = to_intel_display(connector->dev);
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
- 	const struct drm_display_mode *fixed_mode =
- 		intel_panel_fixed_mode(intel_connector, mode);
--	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
-+	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	enum drm_mode_status status;
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum phy phy;
+ 	u32 tmp;
+@@ -451,7 +449,7 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+ 		intel_de_write(display, ICL_PORT_TX_DW2_GRP(phy), tmp);
  
--	drm_dbg_kms(&dev_priv->drm, "\n");
-+	drm_dbg_kms(display->drm, "\n");
- 
- 	status = intel_panel_mode_valid(intel_connector, mode);
- 	if (status != MODE_OK)
-@@ -76,7 +76,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct drm_connector *connector,
- 	if (fixed_mode->clock > max_dotclk)
- 		return MODE_CLOCK_HIGH;
- 
--	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
-+	return intel_mode_valid_max_plane_size(display, mode, 1);
- }
- 
- struct intel_dsi_host *intel_dsi_host_init(struct intel_dsi *intel_dsi,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 60572deeffb3..ed017d9de920 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2015,7 +2015,6 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+ 		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
+-		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv) ||
++		if (display->platform.jasperlake || display->platform.elkhartlake ||
+ 		    (DISPLAY_VER(display) >= 12)) {
+ 			intel_de_rmw(display, ICL_PORT_PCS_DW1_AUX(phy),
+ 				     LATENCY_OPTIM_MASK, LATENCY_OPTIM_VAL(0));
+@@ -533,7 +531,6 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+ 			     const struct intel_crtc_state *crtc_state)
  {
- 	struct intel_display *display = to_intel_display(connector->dev);
- 	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum drm_mode_status status;
- 	int clock = mode->clock;
- 	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
-@@ -2068,7 +2067,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 			return status;
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+ 	enum port port;
+ 	enum phy phy;
+@@ -563,7 +560,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+ 		}
  	}
  
--	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
-+	return intel_mode_valid_max_plane_size(display, mode, 1);
- }
- 
- bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+-	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
++	if (display->platform.jasperlake || display->platform.elkhartlake) {
+ 		for_each_dsi_phy(phy, intel_dsi->phys)
+ 			intel_de_rmw(display, ICL_DPHY_CHKN(phy),
+ 				     0, ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP);
 -- 
 2.39.5
 
