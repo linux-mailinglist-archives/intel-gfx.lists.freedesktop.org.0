@@ -2,55 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB640A3280D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A803A32069
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 08:58:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D93A10E8B6;
-	Wed, 12 Feb 2025 14:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E28C110E7EB;
+	Wed, 12 Feb 2025 07:58:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jjOIEkJA";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 345 seconds by postgrey-1.36 at gabe;
- Wed, 12 Feb 2025 08:03:43 UTC
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 132E510E7ED
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2025 08:03:42 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.245])
- by APP-05 (Coremail) with SMTP id zQCowABXX6N+VKxnCLBmDA--.44042S2;
- Wed, 12 Feb 2025 15:57:52 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/i915: Check drm_syncobj_fence_get return value in
- eb_fences_add
-Date: Wed, 12 Feb 2025 15:57:35 +0800
-Message-ID: <20250212075736.922-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.42.0.windows.2
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB7B10E7EB;
+ Wed, 12 Feb 2025 07:58:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739347083; x=1770883083;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=EEmb+3BnWTeqUAl0jXdf9deM9bGOIm1r5RiZ5GwF3Mk=;
+ b=jjOIEkJAI61DSOosL2tvllK+yjrRpQ3msAaRpEc5tEfY1UEAOuqjLe/G
+ wfcne+Oqi9iSYHBAM+/7TnKDDKG4gKVzV9AZO4HbDc4WwmO5YjJrvCIq7
+ vdlaqMa5OMCOWnnahPUAhFmx9K6od3QYSQ9LSi5nKFl+kHTDUZJhlGWRd
+ rQDVZntPhnSJEk8PLAYzr2JqpLub+28ZOFRFCr1/jQ4VBUc0yr6UVH3ix
+ ETvBhdEbgLPI7qUpv7DgKq4Qj5tiEUcQVNdd8zkYq+HxgjRB1UJhdXW5h
+ Cs5sZLPl/XCH0m/+dymsYArd+9jgX7pDxMI+OslqYynbuFTPvtAu6qIa3 A==;
+X-CSE-ConnectionGUID: qjuI8UIGTkGUumvCqAL9FQ==
+X-CSE-MsgGUID: umKquKz+Tkir/eXBz1UDVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="50973635"
+X-IronPort-AV: E=Sophos;i="6.13,279,1732608000"; d="scan'208";a="50973635"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 23:58:03 -0800
+X-CSE-ConnectionGUID: 5jgiE9W+TT+k28p+tNn5+g==
+X-CSE-MsgGUID: MtawYhzSSMCwnHBWELYvUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116836913"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.81])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 23:58:02 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v7 07/13] drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling
+ when DSB is in use
+Date: Wed, 12 Feb 2025 09:57:35 +0200
+Message-ID: <20250212075742.995022-8-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250212075742.995022-1-jouni.hogander@intel.com>
+References: <20250212075742.995022-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowABXX6N+VKxnCLBmDA--.44042S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7KryrArWrCrWkKw1kAry7ZFb_yoW8Gr1Upa
- 1fKFyjyrs0yw40q3Z7Ar1YyFy3C3WxK3WfKw4qywn5uw4YyF1qqryFvrWjqFyUArs3K347
- Jr1qkFWSvryUArUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9j14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
- 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
- n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
- AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
- 17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
- IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
- IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
- C2KfnxnUUI43ZEXa7VUb8hL5UUUUU==
-X-Originating-IP: [124.16.141.245]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCQ8LA2esUh4H3AAAsS
-X-Mailman-Approved-At: Wed, 12 Feb 2025 14:10:13 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,39 +73,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The function drm_syncobj_fence_get() may return NULL if the syncobj
-has no fence. In eb_fences_add(), this return value is not checked,
-leading to a potential NULL pointer dereference in
-i915_request_await_dma_fence().
+Do needed changes to handle PSR2_MAN_TRK_CTL correctly when DSB is in use:
 
-This patch adds a check for the return value of drm_syncobj_fence_get
-and returns an error if it is NULL, preventing the NULL pointer
-dereference.
+1. Write PSR2_MAN_TRK_CTL in commit_pipe_pre_planes only when not using
+   DSB.
+2. Add PSR2_MAN_TRK_CTL writing into DSB commit in
+   intel_atomic_dsb_finish.
 
-Fixes: 544460c33821 ("drm/i915: Multi-BB execbuf")
-Cc: stable@vger.kernel.org # 5.16+
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+Taking PSR lock over DSB commit is not needed because PSR2_MAN_TRK_CTL is
+now written only by DSB.
+
+v2: remove checking use_dsb
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index f151640c1d13..7da65535feb9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -3252,6 +3252,12 @@ eb_fences_add(struct i915_execbuffer *eb, struct i915_request *rq,
- 		struct dma_fence *fence;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a1e0fa304d22..cab6852dd9c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7745,6 +7745,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 					       new_crtc_state);
+ 		bdw_set_pipe_misc(new_crtc_state->dsb_commit,
+ 				  new_crtc_state);
++		intel_psr2_program_trans_man_trk_ctl(new_crtc_state->dsb_commit,
++						     new_crtc_state);
+ 		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
+ 					     state, crtc);
  
- 		fence = drm_syncobj_fence_get(eb->gem_context->syncobj);
-+		if (!fence) {
-+			drm_dbg(&eb->i915->drm,
-+				"Syncobj handle has no fence\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+
- 		err = i915_request_await_dma_fence(rq, fence);
- 		dma_fence_put(fence);
- 		if (err)
 -- 
-2.42.0.windows.2
+2.43.0
 
