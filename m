@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96CAA3443F
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 16:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB75A34442
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 16:02:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE3410EAFE;
-	Thu, 13 Feb 2025 15:02:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3B1B10EAFF;
+	Thu, 13 Feb 2025 15:02:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dEZWyUt5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gK8ALSLt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D9610EAFC
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 15:02:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D51C310EB12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 15:02:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739458957; x=1770994957;
+ t=1739458960; x=1770994960;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=s2FiIIkCVA/c5cwOIEbhwByfphRq2Fxh/ndsvVKqntA=;
- b=dEZWyUt5HfVT5GBxpagX3dUk49xyDuNdV0Bxx5w7/NOd4FvR/1jeAlfZ
- a31YCkdlOworE3MeKJBEnMYf5w0nY+6EO5sEn5tuZHemFoz6r5an/fikK
- xkKWxhtnmhJc2r1AIDrXrs6i1UTcQ9k7wgFcyTC9l9UvdQIFwqZWWl6c4
- UQNftxTYIk3ywg3hYWOd1XS2yOyrHjQX23VVuYPMLl1FmQ3GoQmnvqyoJ
- NUKvmOKbibMAGSqCPPUMFqg/VxuD0zbxKAMkbn9QiYUnkQGBqPZDgzkUq
- YhLXsn+OcCM2Fo2wK/EngRktCJZGA52HFtA8uQ3sEg89Rait4eFVBCcRd A==;
-X-CSE-ConnectionGUID: uhThtk13SluLfYaHiZbUHg==
-X-CSE-MsgGUID: boYW4D2HRK2IaDBHeSwS6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="57567526"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57567526"
+ bh=2OJjojGysEjPPH4JeTYfsTQS3OpDkHB/WbJI6UVUsN8=;
+ b=gK8ALSLtBMC1j0i0IMO6MEcJ/XG9/at28IfW0B730c7xnZbJAoPZMdg7
+ /ih9RaNYVHdNhBe4RPiT5ntjjcaA/rOTgCzSPgGgVL6rZ71ROYJamOxb3
+ vG0Os/rkBedcVH1tq/vr/B9Qdz4hxh4dbv3Neze+9wnQjfeCdyqibMPIk
+ 7aTsJBQ9DhXFxaAwTb351zku9vnMxcPUxTYARcuiWq/jtjKK80XMRkzgd
+ bPM4nE8uxVyvvkaheC4CnjN60UJg1YvdxLDG0f6Ua2slY5WQ5Ripech4k
+ SSYiUyxcEj7UppcZqQcKM7X8dVJwd9vXfNk2fuFRAg5h/KlC615Sie5yJ A==;
+X-CSE-ConnectionGUID: FzHF4V7RTgO1Iu6PuDvusA==
+X-CSE-MsgGUID: NPQ3O3pJT1K4hgOzeYtEBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="57567545"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57567545"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 07:02:37 -0800
-X-CSE-ConnectionGUID: qSK3CyVoQVqX9UlsnZmuLg==
-X-CSE-MsgGUID: Vn+njsVQRR+8Q+maHbic9A==
+ 13 Feb 2025 07:02:40 -0800
+X-CSE-ConnectionGUID: ZgtL9f5MRK2NqDBdVN5esg==
+X-CSE-MsgGUID: dJNwIFgUTguD1lPkWq+gjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113349599"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113349606"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 13 Feb 2025 07:02:35 -0800
+ by fmviesa008.fm.intel.com with SMTP; 13 Feb 2025 07:02:37 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 13 Feb 2025 17:02:34 +0200
+ Thu, 13 Feb 2025 17:02:37 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 05/12] drm/i915: Move intel_hpd_poll_fini() into
- intel_hotplug.c
-Date: Thu, 13 Feb 2025 17:02:13 +0200
-Message-ID: <20250213150220.13580-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/12] drm/i915: Move intel_plane_destroy() into
+ intel_atomic_plane.c
+Date: Thu, 13 Feb 2025 17:02:14 +0200
+Message-ID: <20250213150220.13580-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250213150220.13580-1-ville.syrjala@linux.intel.com>
 References: <20250213150220.13580-1-ville.syrjala@linux.intel.com>
@@ -71,119 +71,90 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The name of intel_hpd_poll_fini() suggests that it should live
-in intel_hotplug.c. Make it so.
+intel_atomic_plane.c (should rename it really) has become our
+standard place for generic plane code. Move intel_plane_destroy()
+there so it doesn't clutter intel_display.c.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 16 ----------------
- drivers/gpu/drm/i915/display/intel_display.h |  2 --
- drivers/gpu/drm/i915/display/intel_hotplug.c | 16 ++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hotplug.h |  1 +
- 4 files changed, 17 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_atomic_plane.h |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c      | 13 -------------
+ drivers/gpu/drm/i915/display/intel_display.h      |  1 -
+ 4 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d3f8af9c75ef..0807a4979ea2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -62,7 +62,6 @@
- #include "intel_bw.h"
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
--#include "intel_connector.h"
- #include "intel_color.h"
- #include "intel_crt.h"
- #include "intel_crtc.h"
-@@ -93,7 +92,6 @@
- #include "intel_fdi.h"
- #include "intel_fifo_underrun.h"
- #include "intel_frontbuffer.h"
--#include "intel_hdcp.h"
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
- #include "intel_link_bw.h"
-@@ -8781,20 +8779,6 @@ void i830_disable_pipe(struct intel_display *display, enum pipe pipe)
- 	intel_de_posting_read(display, DPLL(display, pipe));
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 8a49d87d9bd9..7e87c052be45 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -92,6 +92,19 @@ void intel_plane_free(struct intel_plane *plane)
+ 	kfree(plane);
  }
  
--void intel_hpd_poll_fini(struct drm_i915_private *i915)
--{
--	struct intel_connector *connector;
--	struct drm_connector_list_iter conn_iter;
--
--	/* Kill all the work that may have been queued by hpd. */
--	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
--	for_each_intel_connector_iter(connector, &conn_iter) {
--		intel_connector_cancel_modeset_retry_work(connector);
--		intel_hdcp_cancel_works(connector);
--	}
--	drm_connector_list_iter_end(&conn_iter);
--}
--
- bool intel_scanout_needs_vtd_wa(struct intel_display *display)
- {
- 	struct drm_i915_private *i915 = to_i915(display->drm);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index d4a709588700..e14aa773323e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -571,8 +571,6 @@ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
- int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
- 			bool nonblock);
- 
--void intel_hpd_poll_fini(struct drm_i915_private *i915);
--
- /* modesetting asserts */
- void assert_transcoder(struct intel_display *display,
- 		       enum transcoder cpu_transcoder, bool state);
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 9c935afc60aa..00d7b1ccf190 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -28,8 +28,10 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
-+#include "intel_connector.h"
- #include "intel_display_power.h"
- #include "intel_display_types.h"
-+#include "intel_hdcp.h"
- #include "intel_hotplug.h"
- #include "intel_hotplug_irq.h"
- 
-@@ -864,6 +866,20 @@ void intel_hpd_poll_disable(struct drm_i915_private *dev_priv)
- 	spin_unlock_irq(&dev_priv->irq_lock);
- }
- 
-+void intel_hpd_poll_fini(struct drm_i915_private *i915)
++/**
++ * intel_plane_destroy - destroy a plane
++ * @plane: plane to destroy
++ *
++ * Common destruction function for all types of planes (primary, cursor,
++ * sprite).
++ */
++void intel_plane_destroy(struct drm_plane *plane)
 +{
-+	struct intel_connector *connector;
-+	struct drm_connector_list_iter conn_iter;
-+
-+	/* Kill all the work that may have been queued by hpd. */
-+	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
-+	for_each_intel_connector_iter(connector, &conn_iter) {
-+		intel_connector_cancel_modeset_retry_work(connector);
-+		intel_hdcp_cancel_works(connector);
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
++	drm_plane_cleanup(plane);
++	kfree(to_intel_plane(plane));
 +}
 +
- void intel_hpd_init_early(struct drm_i915_private *i915)
- {
- 	INIT_DELAYED_WORK(&i915->display.hotplug.hotplug_work,
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
-index d2ca9d2f1d39..d6986902b054 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.h
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-@@ -16,6 +16,7 @@ enum port;
+ /**
+  * intel_plane_duplicate_state - duplicate plane state
+  * @plane: drm plane
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index fb87b3353ab0..e965ea0cb15c 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -52,6 +52,7 @@ void intel_plane_disable_arm(struct intel_dsb *dsb,
+ 			     const struct intel_crtc_state *crtc_state);
+ struct intel_plane *intel_plane_alloc(void);
+ void intel_plane_free(struct intel_plane *plane);
++void intel_plane_destroy(struct drm_plane *plane);
+ struct drm_plane_state *intel_plane_duplicate_state(struct drm_plane *plane);
+ void intel_plane_destroy_state(struct drm_plane *plane,
+ 			       struct drm_plane_state *state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0807a4979ea2..4278212a2496 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -8117,19 +8117,6 @@ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+ 	return 0;
+ }
  
- void intel_hpd_poll_enable(struct drm_i915_private *dev_priv);
- void intel_hpd_poll_disable(struct drm_i915_private *dev_priv);
-+void intel_hpd_poll_fini(struct drm_i915_private *i915);
- enum intel_hotplug_state intel_encoder_hotplug(struct intel_encoder *encoder,
- 					       struct intel_connector *connector);
- void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
+-/**
+- * intel_plane_destroy - destroy a plane
+- * @plane: plane to destroy
+- *
+- * Common destruction function for all types of planes (primary, cursor,
+- * sprite).
+- */
+-void intel_plane_destroy(struct drm_plane *plane)
+-{
+-	drm_plane_cleanup(plane);
+-	kfree(to_intel_plane(plane));
+-}
+-
+ static u32 intel_encoder_possible_clones(struct intel_encoder *encoder)
+ {
+ 	struct drm_device *dev = encoder->base.dev;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index e14aa773323e..2e11fc2ba1f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -450,7 +450,6 @@ bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			       const struct intel_crtc_state *pipe_config,
+ 			       bool fastset);
+ 
+-void intel_plane_destroy(struct drm_plane *plane);
+ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state);
+ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state);
+ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
 -- 
 2.45.3
 
