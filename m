@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C6AA33DA1
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 12:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 630A6A33DE7
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 12:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB8610EA60;
-	Thu, 13 Feb 2025 11:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D6C210E0CA;
+	Thu, 13 Feb 2025 11:26:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cEZDip73";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LKwFrkIJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 060BB10EA59;
- Thu, 13 Feb 2025 11:16:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739445401; x=1770981401;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=x1vSQ6TmimV0A/SMCvgod1Dxc15P3suXMMSHIDXezjM=;
- b=cEZDip73x8SbJ2am4jx8eivKiZ4Q6Mnddn4csj3okEkeJ0NUbZo6BsqI
- KhZEvDbHNArSWJCDSNcvxqnz8Zq5ugDf1sOWyJy+l6yFPDB0BKM4+gflJ
- pMl04N9AxuJskpFRrRR26qf6PwIxFPQWsxPL7QiZyBzqfkEb4yy+YSonp
- TU04Zgkl5IeYURNhN5ssL6SdlZXNnUcbXPkxThf1aJ3Ry3Zmbf8gCJ3/T
- GOGFxu6FuyMWnMoJqRd5k7nLPa8M1nb21B/jUrBfKsojZJaFz04T6xEOG
- DBky+dJy4RiT4gCwUEtqi5I57P52S1fhv8F2Ej/ANUIChaCdxZlzcqLPu w==;
-X-CSE-ConnectionGUID: f8KKuEawReuqeH3g2E43zg==
-X-CSE-MsgGUID: al8X9DyjTWuty7v4eORhGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57544636"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57544636"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 03:16:41 -0800
-X-CSE-ConnectionGUID: sAyMXly0RUa7SyZ/+pU4nA==
-X-CSE-MsgGUID: 3bo3qErpRLqkiHiL8hdCyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113292455"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.243])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 03:16:38 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 08/14] drm/i915/sdvo: convert intel_sdvo.[ch] to struct
- intel_display
-In-Reply-To: <SN7PR11MB6750BEBEBE8EB42AD10D836EE3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1739378095.git.jani.nikula@intel.com>
- <2e79909f8a060d7ff1744911f8da9300eb1f225c.1739378095.git.jani.nikula@intel.com>
- <SN7PR11MB6750BEBEBE8EB42AD10D836EE3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Thu, 13 Feb 2025 13:16:35 +0200
-Message-ID: <87pljmxffw.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE9B10E0CA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 11:26:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1739445997;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=tqCQhoc9yHBw/Ye9zCVr4BN8IJWP/oqPEgk4B/klK10=;
+ b=LKwFrkIJw6YHqAPOsIjfeGeF5I/FTCrqIyg5ERuOolOmUD/PjlsCW+oTPf4OwZJkW4sIws
+ UAQ9HBCnsSmccQFlHibmU9O6vtXypvSUZxbrihQ0IHYVD5b3dVa/6M1KDfMzvZ/tkS7F/+
+ cDWjcsXCYH5aBoXJ+q89iEKYMmwiHr4=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-86-qVJDI2yZMZa2Wn-XGHgW5A-1; Thu,
+ 13 Feb 2025 06:26:35 -0500
+X-MC-Unique: qVJDI2yZMZa2Wn-XGHgW5A-1
+X-Mimecast-MFC-AGG-ID: qVJDI2yZMZa2Wn-XGHgW5A_1739445994
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 809821800876; Thu, 13 Feb 2025 11:26:33 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.45.225.79])
+ by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 5A70E300018D; Thu, 13 Feb 2025 11:26:28 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [RFC PATCH v4 0/8] drm/i915: Add drm_panic support
+Date: Thu, 13 Feb 2025 12:19:24 +0100
+Message-ID: <20250213112620.1923927-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,38 +72,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> @@ -1941,12 +1942,13 @@ static enum drm_mode_status
->> intel_sdvo_mode_valid(struct drm_connector *connector,
->>                     const struct drm_display_mode *mode)  {
->> +     struct intel_display *display = to_intel_display(connector->dev);
->
-> Why not &i915->display and declare this after i915 declaration
+This is a draft of drm_panic support for i915.
 
-Because i915 will go away eventually, and I don't want to have to change
-this line again.
+I've tested it on the 4 intel laptops I have at my disposal.
+ * Haswell with 128MB of eDRAM.
+ * Comet Lake.
+ * Alder Lake (with DPT, and Y-tiling).
+ * Lunar Lake (with DPT, and 4-tiling, and using the Xe driver.
 
-BR,
-Jani.
+I tested panic in both fbdev console and gnome desktop.
+
+Best regards,
+
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
+
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
+v4:
+ * Add support for Xe driver, which shares most of the code.
+ * Add support for 4-tiled framebuffer found in newest GPU.
+
+Jocelyn Falempe (8):
+  drm/i915/fbdev: Add intel_fbdev_get_map()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: Add i915_gem_object_panic_map()
+  drm/i915/display: Add drm_panic support
+  drm/i915/display: Flush the front buffer in panic handler
+  drm/i915/display: Add drm_panic support for Y-tiling with DPT
+  drm/i915: Add drm_panic support for 4-tiling with DPT
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 177 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |  10 +
+ drivers/gpu/drm/i915/display/intel_bo.h       |   2 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +
+ .../drm/i915/display/skl_universal_plane.c    |  27 +++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  25 +++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/xe/display/intel_bo.c         |  17 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ 15 files changed, 312 insertions(+), 1 deletion(-)
 
 
->
-> Otherwise LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
->
->>       struct drm_i915_private *i915 = to_i915(connector->dev);
->>       struct intel_sdvo *intel_sdvo =
->> intel_attached_sdvo(to_intel_connector(connector));
->>       struct intel_sdvo_connector *intel_sdvo_connector =
->>               to_intel_sdvo_connector(connector);
->>       bool has_hdmi_sink = intel_has_hdmi_sink(intel_sdvo_connector,
->> connector->state);
->> -     int max_dotclk = i915->display.cdclk.max_dotclk_freq;
->> +     int max_dotclk = display->cdclk.max_dotclk_freq;
->>       enum drm_mode_status status;
->>       int clock = mode->clock;
->>
-
+base-commit: ff3881cc6a588f8cd714c9ffbbcc9ef6b02c8d0f
 -- 
-Jani Nikula, Intel
+2.47.1
+
