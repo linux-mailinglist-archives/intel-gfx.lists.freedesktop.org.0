@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB59A34E45
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 20:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926DAA34E4F
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 20:15:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D5D10EB7E;
-	Thu, 13 Feb 2025 19:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB6C10EB80;
+	Thu, 13 Feb 2025 19:15:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DT8l+xzE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DIsR/OaI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D1BE10EB7E
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 19:14:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7421210EB80
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 19:15:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739474067; x=1771010067;
+ t=1739474152; x=1771010152;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=iq1MLrE1TL4oqPRSmrorldiNWuDE6nn1KaR4lcTOlqo=;
- b=DT8l+xzEBh+KdiakQbwUGaiKYNFnHJ2BDzCHtCfm3ruPY7FBxN3D5nwy
- 8frvY4b4SOTnxhgk+OJ2pouM8IvvgB87zaWD3BA+Izn3/j33ePSuO6XQ4
- ISNpKBQmbjPf4S+lQehci59OwuSrV0DTdyCY4xTXeLi+9Z4R4puZOkjnR
- 9/JBHMrF65/3Zo+d/YgVCIfRnTNv9rDXg2EedB+Pq3u52WUyaE1cEJBHi
- aTOkLCbJPIPZ5EsdNXZRAr3MvWuRAIpDEzAQOCwZjGW1dsweITUVfnUK8
- wkqi7C/zudomw6/75JTVtBFUW9YpviptBYMR+X777xTTCpSp79hCvoTVv w==;
-X-CSE-ConnectionGUID: ECRRJhz6TH6bSFee6N+zyg==
-X-CSE-MsgGUID: 4pP8cOf0RKSv55Gbdy1uWg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="44130799"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="44130799"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 11:14:26 -0800
-X-CSE-ConnectionGUID: 96Eug8iFQuGdJJAqI39vKw==
-X-CSE-MsgGUID: uv/NgIHXSYKwLV6buUYmkw==
+ bh=AA67dxV2s4BrdNANolA/mBU1HRXoocBfG9czbmD417A=;
+ b=DIsR/OaIN6EbqeFVqw+22DI5mB6tuaVQxaPzpf4urRGrEvQjfD1Ve8WS
+ QoSSbojbZdhwdHm1cQ2QGfBKNkGnkYm3PPPWUwQSpnH5cKzeSChRER/G2
+ IDEywQ2yxT7ycOr2JMmo+SxtDnNxznUSOzMImDxxUV/cgJOk/TD59BrEi
+ b1nXfufhlrCuhJikdc6wmw+DT9vxQbbq8BZnFNuvN6VDudK4RmMzIccJ0
+ Ty0L5iGQWmwwGTq4PhHwYjecy8Xw8E5ZF83Z4AYGzoNGnlKOUr8g9JyTp
+ LQNBjUTeaLmW0W/Km7nKftpaZXmqTgdqurg4lDTak4gSJg5QbxgvtRqdr g==;
+X-CSE-ConnectionGUID: DllV6yiaTb2NvpnRUAts5Q==
+X-CSE-MsgGUID: SnUIfKmHQ6qeWpYyps06wg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="50845585"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50845585"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 11:15:52 -0800
+X-CSE-ConnectionGUID: WfxT3a90RSaZPO4nxauObA==
+X-CSE-MsgGUID: VAO/IQbCR/29YNdeBIhu7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="112982344"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114122111"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.30])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 11:14:25 -0800
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 11:15:51 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 04/12] drm/i915: Extract intel_hdcp_cancel_works()
-In-Reply-To: <20250213150220.13580-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 05/12] drm/i915: Move intel_hpd_poll_fini() into
+ intel_hotplug.c
+In-Reply-To: <20250213150220.13580-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250213150220.13580-1-ville.syrjala@linux.intel.com>
- <20250213150220.13580-5-ville.syrjala@linux.intel.com>
-Date: Thu, 13 Feb 2025 21:14:21 +0200
-Message-ID: <878qq9y7w2.fsf@intel.com>
+ <20250213150220.13580-6-ville.syrjala@linux.intel.com>
+Date: Thu, 13 Feb 2025 21:15:46 +0200
+Message-ID: <875xldy7tp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,82 +74,136 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 13 Feb 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Hide the annoying HDCP implementation details better by
-> providing a intel_hdcp_cancel_works().
+> The name of intel_hpd_poll_fini() suggests that it should live
+> in intel_hotplug.c. Make it so.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Somehow the "cancel works" reads funny to me, but it's accurate.
+Side note, I've got patches convert all the hotplug and display irq code
+over to struct intel_display. Let's get this merged first and I'll
+rebase.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 6 ++----
->  drivers/gpu/drm/i915/display/intel_hdcp.c    | 9 +++++++++
->  drivers/gpu/drm/i915/display/intel_hdcp.h    | 1 +
->  3 files changed, 12 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 16 ----------------
+>  drivers/gpu/drm/i915/display/intel_display.h |  2 --
+>  drivers/gpu/drm/i915/display/intel_hotplug.c | 16 ++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_hotplug.h |  1 +
+>  4 files changed, 17 insertions(+), 18 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 93392752b470..d3f8af9c75ef 100644
+> index d3f8af9c75ef..0807a4979ea2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -93,6 +93,7 @@
+> @@ -62,7 +62,6 @@
+>  #include "intel_bw.h"
+>  #include "intel_cdclk.h"
+>  #include "intel_clock_gating.h"
+> -#include "intel_connector.h"
+>  #include "intel_color.h"
+>  #include "intel_crt.h"
+>  #include "intel_crtc.h"
+> @@ -93,7 +92,6 @@
 >  #include "intel_fdi.h"
 >  #include "intel_fifo_underrun.h"
 >  #include "intel_frontbuffer.h"
-> +#include "intel_hdcp.h"
+> -#include "intel_hdcp.h"
 >  #include "intel_hdmi.h"
 >  #include "intel_hotplug.h"
 >  #include "intel_link_bw.h"
-> @@ -8789,10 +8790,7 @@ void intel_hpd_poll_fini(struct drm_i915_private *=
-i915)
->  	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
->  	for_each_intel_connector_iter(connector, &conn_iter) {
->  		intel_connector_cancel_modeset_retry_work(connector);
-> -		if (connector->hdcp.shim) {
-> -			cancel_delayed_work_sync(&connector->hdcp.check_work);
-> -			cancel_work_sync(&connector->hdcp.prop_work);
-> -		}
-> +		intel_hdcp_cancel_works(connector);
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/=
-i915/display/intel_hdcp.c
-> index 1aa4c0fd216f..591851954114 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2615,6 +2615,15 @@ void intel_hdcp_update_pipe(struct intel_atomic_st=
-ate *state,
->  		_intel_hdcp_enable(state, encoder, crtc_state, conn_state);
+> @@ -8781,20 +8779,6 @@ void i830_disable_pipe(struct intel_display *displ=
+ay, enum pipe pipe)
+>  	intel_de_posting_read(display, DPLL(display, pipe));
 >  }
 >=20=20
-> +void intel_hdcp_cancel_works(struct intel_connector *connector)
+> -void intel_hpd_poll_fini(struct drm_i915_private *i915)
+> -{
+> -	struct intel_connector *connector;
+> -	struct drm_connector_list_iter conn_iter;
+> -
+> -	/* Kill all the work that may have been queued by hpd. */
+> -	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> -	for_each_intel_connector_iter(connector, &conn_iter) {
+> -		intel_connector_cancel_modeset_retry_work(connector);
+> -		intel_hdcp_cancel_works(connector);
+> -	}
+> -	drm_connector_list_iter_end(&conn_iter);
+> -}
+> -
+>  bool intel_scanout_needs_vtd_wa(struct intel_display *display)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index d4a709588700..e14aa773323e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -571,8 +571,6 @@ enum drm_mode_status intel_mode_valid(struct drm_devi=
+ce *dev,
+>  int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state =
+*_state,
+>  			bool nonblock);
+>=20=20
+> -void intel_hpd_poll_fini(struct drm_i915_private *i915);
+> -
+>  /* modesetting asserts */
+>  void assert_transcoder(struct intel_display *display,
+>  		       enum transcoder cpu_transcoder, bool state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
+rm/i915/display/intel_hotplug.c
+> index 9c935afc60aa..00d7b1ccf190 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -28,8 +28,10 @@
+>=20=20
+>  #include "i915_drv.h"
+>  #include "i915_irq.h"
+> +#include "intel_connector.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_types.h"
+> +#include "intel_hdcp.h"
+>  #include "intel_hotplug.h"
+>  #include "intel_hotplug_irq.h"
+>=20=20
+> @@ -864,6 +866,20 @@ void intel_hpd_poll_disable(struct drm_i915_private =
+*dev_priv)
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  }
+>=20=20
+> +void intel_hpd_poll_fini(struct drm_i915_private *i915)
 > +{
-> +	if (!connector->hdcp.shim)
-> +		return;
+> +	struct intel_connector *connector;
+> +	struct drm_connector_list_iter conn_iter;
 > +
-> +	cancel_delayed_work_sync(&connector->hdcp.check_work);
-> +	cancel_work_sync(&connector->hdcp.prop_work);
+> +	/* Kill all the work that may have been queued by hpd. */
+> +	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
+> +	for_each_intel_connector_iter(connector, &conn_iter) {
+> +		intel_connector_cancel_modeset_retry_work(connector);
+> +		intel_hdcp_cancel_works(connector);
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
 > +}
 > +
->  void intel_hdcp_component_fini(struct intel_display *display)
+>  void intel_hpd_init_early(struct drm_i915_private *i915)
 >  {
->  	mutex_lock(&display->hdcp.hdcp_mutex);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/=
-i915/display/intel_hdcp.h
-> index 3a7905551051..efe86808e17e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> @@ -33,6 +33,7 @@ void intel_hdcp_enable(struct intel_atomic_state *state,
->  		       const struct intel_crtc_state *pipe_config,
->  		       const struct drm_connector_state *conn_state);
->  int intel_hdcp_disable(struct intel_connector *connector);
-> +void intel_hdcp_cancel_works(struct intel_connector *connector);
->  void intel_hdcp_update_pipe(struct intel_atomic_state *state,
->  			    struct intel_encoder *encoder,
->  			    const struct intel_crtc_state *crtc_state,
+>  	INIT_DELAYED_WORK(&i915->display.hotplug.hotplug_work,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/d=
+rm/i915/display/intel_hotplug.h
+> index d2ca9d2f1d39..d6986902b054 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
+> @@ -16,6 +16,7 @@ enum port;
+>=20=20
+>  void intel_hpd_poll_enable(struct drm_i915_private *dev_priv);
+>  void intel_hpd_poll_disable(struct drm_i915_private *dev_priv);
+> +void intel_hpd_poll_fini(struct drm_i915_private *i915);
+>  enum intel_hotplug_state intel_encoder_hotplug(struct intel_encoder *enc=
+oder,
+>  					       struct intel_connector *connector);
+>  void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
 
 --=20
 Jani Nikula, Intel
