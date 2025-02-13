@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB174A3382C
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 07:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F76A3382D
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 07:48:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0CC10EA0F;
-	Thu, 13 Feb 2025 06:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B271810EA0C;
+	Thu, 13 Feb 2025 06:48:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PpacEOTK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8twmox/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6416410EA09;
- Thu, 13 Feb 2025 06:48:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F58D10EA17;
+ Thu, 13 Feb 2025 06:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739429311; x=1770965311;
+ t=1739429312; x=1770965312;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K/W712OVDTb3pM6ErERULLiPle52QWfmViGppyWkMyg=;
- b=PpacEOTKGe37NWk61+nNLWZoOvOy2+gyrOhJOHbv+mnykI1xiOwnH8Rg
- 2ubKpDCDyrhGfMVzrEDo+AQbNUvWCn85DrZM6Z56pL0njIanBmwjzb6bx
- am9US25SU0VaQqS1eykhpvVbbFaKF/XqLpp/43S6AfZ3I0tpPzzeKcc/t
- /bs2KdEwheXSQRP4xSSG4Nq4+2Tk0ZJ0rIPqnCQnBIEshaAOW3zk8gDHR
- vXQ1bIGwa944x9fq0FeQGe9rM5hs0yPGanbuq1sJNgOyXl61ti59+X7RA
- OSE0J1OmRutw/uVoCKyjZc+pv5MWEHEekR89T4wSaYJhYuK+dHMXKjIZ3 Q==;
-X-CSE-ConnectionGUID: KB2IpHatQwK6WmuOzCZWew==
-X-CSE-MsgGUID: aMedDVlrSKWSfzr5QyVwmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50764108"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50764108"
+ bh=Y1G/9/+uZIzPRvfZp3Ga+WMyNY8c8ejIjZHnvV3TUFs=;
+ b=h8twmox/Zmu/3r21K/28H4tiRQjQyucQ47DBCN9bc27HkKuSdvnsMSdA
+ UE65TnJZ/91U/FotHilYWVRurktX/eIUbQRksXiUn8xRRrV5EjqmhXXmC
+ iq/x/cdFPYuz15ljdoAAesskdbG+k5O0VIupvn6hVI1SuJZTErbWOyS8s
+ JHTm7ooQhRk7LS1ufJ/QWyqeZ1etZBIzrdExbBbtpmQkkESY+lZspc0GZ
+ xxKzlRE5GrDAhXfdRoORH62KyFylUp4/JTtQ6zbj379WbxRlbVAbyX3RC
+ Wau3QglsyLFffP9adMzuKDVDKztW1MtxPSLgRb8C/ruz/AniK2009SSIi w==;
+X-CSE-ConnectionGUID: DWY7gdvXTLaciF44SHpNGQ==
+X-CSE-MsgGUID: hcp7Xn5KQFas/j4dKVky6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50764114"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50764114"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 22:48:30 -0800
-X-CSE-ConnectionGUID: j5c9zbsLQGGgi8t1Ap+zKQ==
-X-CSE-MsgGUID: yuibv3ZmSa6tsjA7RoHYUg==
+ 12 Feb 2025 22:48:32 -0800
+X-CSE-ConnectionGUID: aTp4Rw/ZRiGlIELa0k6pNA==
+X-CSE-MsgGUID: tm4voqUWQmiJY7WUuC2tyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118237245"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118237269"
 Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.234])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2025 22:48:28 -0800
+ 12 Feb 2025 22:48:29 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v8 08/13] drm/i915/display: Warn on use_dsb in non-dsb pipe
- update functions
-Date: Thu, 13 Feb 2025 08:47:59 +0200
-Message-ID: <20250213064804.2077127-9-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v8 09/13] drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
+Date: Thu, 13 Feb 2025 08:48:00 +0200
+Message-ID: <20250213064804.2077127-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250213064804.2077127-1-jouni.hogander@intel.com>
 References: <20250213064804.2077127-1-jouni.hogander@intel.com>
@@ -72,66 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add drm_WARN_ON(use_dsb) into commit_pipe_{pre,post}_planes() and
-intel_pipe_update_{start,end}() as they are not supposed to get called on
-non-dsb updates.
+We have different approach on how flip is considered being complete. We are
+waiting for vblank on DSB and generate interrupt when it happens and this
+interrupt is considered as indication of completion -> we definitely do not
+want to skip vblank wait.
+
+Also not skipping scanline wait shouldn't cause any problems if we are in
+DEEP_SLEEP PIPEDSL register is returning 0 -> evasion does nothing and if
+we are not in DEEP_SLEEP evasion works same way as without PSR.
+
+v2: add comment explaining why we are not setting DSB_SKIP_WAITS_EN
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c    | 4 ++++
- drivers/gpu/drm/i915/display/intel_display.c | 6 +++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index a1694e54a6f1..6a503a2e742b 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -522,6 +522,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
- 	struct intel_vblank_evade_ctx evade;
- 	int scanline;
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index db69b1c676f7..4c067bf9ac4c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -170,17 +170,26 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
+ 	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
+ }
  
-+	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
-+
- 	intel_psr_lock(new_crtc_state);
++/*
++ * Bspec suggests that we should always set DSB_SKIP_WAITS_EN. We have approach
++ * different from what is explained in Bspec on how flip is considered being
++ * complete. We are waiting for vblank in DSB and generate interrupt when it
++ * happens and this interrupt is considered as indication of completion -> we
++ * definitely do not want to skip vblank wait. We also have concern what comes
++ * to skipping vblank evasion. I.e. arming registers are latched before we have
++ * managed writing them. Due to these reasons we are not setting
++ * DSB_SKIP_WAITS_EN.
++ */
+ static u32 dsb_chicken(struct intel_atomic_state *state,
+ 		       struct intel_crtc *crtc)
+ {
+ 	if (pre_commit_is_vrr_active(state, crtc))
+-		return DSB_SKIP_WAITS_EN |
+-			DSB_CTRL_WAIT_SAFE_WINDOW |
++		return DSB_CTRL_WAIT_SAFE_WINDOW |
+ 			DSB_CTRL_NO_WAIT_VBLANK |
+ 			DSB_INST_WAIT_SAFE_WINDOW |
+ 			DSB_INST_NO_WAIT_VBLANK;
+ 	else
+-		return DSB_SKIP_WAITS_EN;
++		return 0;
+ }
  
- 	if (new_crtc_state->do_async_flip) {
-@@ -660,6 +662,8 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	ktime_t end_vbl_time = ktime_get();
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
-+	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
-+
- 	if (new_crtc_state->do_async_flip)
- 		goto out;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dd064c225da1..dbb8dc318471 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7133,11 +7133,13 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	bool modeset = intel_crtc_needs_modeset(new_crtc_state);
- 
-+	drm_WARN_ON(&dev_priv->drm, new_crtc_state->use_dsb);
-+
- 	/*
- 	 * During modesets pipe configuration was programmed as the
- 	 * CRTC was enabled.
- 	 */
--	if (!modeset && !new_crtc_state->use_dsb) {
-+	if (!modeset) {
- 		if (intel_crtc_needs_color_update(new_crtc_state))
- 			intel_color_commit_arm(NULL, new_crtc_state);
- 
-@@ -7160,6 +7162,8 @@ static void commit_pipe_post_planes(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 
-+	drm_WARN_ON(&dev_priv->drm, new_crtc_state->use_dsb);
-+
- 	/*
- 	 * Disable the scaler(s) after the plane(s) so that we don't
- 	 * get a catastrophic underrun even if the two operations
+ static bool assert_dsb_has_room(struct intel_dsb *dsb)
 -- 
 2.43.0
 
