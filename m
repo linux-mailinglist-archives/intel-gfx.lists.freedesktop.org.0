@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3FEA34E3E
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 20:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEEB8A34E42
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 20:13:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4F10E134;
-	Thu, 13 Feb 2025 19:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76AC110EB7F;
+	Thu, 13 Feb 2025 19:13:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vf28BnEQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ofu8LdgF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1301510E134
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 19:12:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 591A210EB7F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2025 19:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739473957; x=1771009957;
+ t=1739473985; x=1771009985;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=m4Q++5hJLfmHuLzPhWAeaGKYU7/llM24AXQZmx7q00g=;
- b=Vf28BnEQlSkvzrZT807T2HWfN/yZdBp40AHJVWjtwy+Ytj/uQmWxz/t+
- t8wfL4lBEfVbkG4cFwKpoLGjW6Gqhms7mby3gdnOb6t3asllPhFOfNGmq
- 83nlNbjHbr0gMxIcSTuXbciSAsSg4x+NQvsSEhUtdpXvWQ+DkmiAd1zkL
- pLzW+uVcRu8xz1yc+iXDon44pVNlIKH7Xga1rP7Dko9GG4+ZfhbzLHo6D
- kZs1CawSl2pLOuUKu3vULZ6WV/t2QzsLsxK+Xggtdd5n+HqBFLZn3z7bh
- n92tRlK+wenVFC0DaJ/uSFbAoDUe1f5KZpVSGutQjVb7/q5neVzE+VK0/ Q==;
-X-CSE-ConnectionGUID: W1FdWWc3SMyHH7G4QWmi0g==
-X-CSE-MsgGUID: jCdLKhqxS1+oVhRaxvGxMw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="50845235"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50845235"
+ bh=U2nTmqXTt4M4ILQjmuKZ+ZztKKcf720ZlFs/sL8XMSY=;
+ b=Ofu8LdgF2ak5YxilLi+i+AJkiAUZZRartBShnozFUTti17dYUmhqZr/V
+ CT9AFu2sEnwqGmcoQr4SJnlm0Q6+ZN/DsXhjGyfgMaon3PEfH3QO1zABr
+ 8Ro6FN1mV36YBg+PGprlm+jSUNPdYNSIijQ1QcPWkpNWK5fEwBuGy3Ajj
+ fTrR9e0FtLhJkw+3iMmG7/xCcb4p0Gi70v85B2yAfipjPuGCU6aPwgNYw
+ FkeeilcOzU9otiwNrZlsVT39du83QG1S8q9YwEeE/Ri60WWCJrActo8hn
+ el8UgnU1BEvg4l2Nfob5TkTCxdwBz3TVWDOPk6S5Mp7qS27w/brD95MOF w==;
+X-CSE-ConnectionGUID: E+0u1a2BTsS4U2V7Nnpzuw==
+X-CSE-MsgGUID: uWhNCfR/SGq4wpopqqPaww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11344"; a="50845269"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50845269"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 11:12:36 -0800
-X-CSE-ConnectionGUID: zFN+frP0TXKCqAYI0tx/TQ==
-X-CSE-MsgGUID: 6uvbUo3PQCCwXvKNzblGvg==
+ 13 Feb 2025 11:13:05 -0800
+X-CSE-ConnectionGUID: sKOy9nDZQoaLsHx4NoMpWA==
+X-CSE-MsgGUID: uA7xX9C6Qri7RqXvgnCAhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136466670"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136466829"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.30])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 11:12:35 -0800
+ 13 Feb 2025 11:13:03 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -51,8 +51,8 @@ In-Reply-To: <20250213150220.13580-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250213150220.13580-1-ville.syrjala@linux.intel.com>
  <20250213150220.13580-4-ville.syrjala@linux.intel.com>
-Date: Thu, 13 Feb 2025 21:12:31 +0200
-Message-ID: <87ed01y7z4.fsf@intel.com>
+Date: Thu, 13 Feb 2025 21:13:00 +0200
+Message-ID: <87bjv5y7yb.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -78,11 +78,6 @@ On Thu, 13 Feb 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > better.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-With the declaration moved from patch 1 to here,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
 >  drivers/gpu/drm/i915/display/intel_connector.c | 6 ++++++
 >  drivers/gpu/drm/i915/display/intel_display.c   | 4 ++--
@@ -119,6 +114,9 @@ rm/i915/display/intel_display.c
 >  #include "intel_clock_gating.h"
 > +#include "intel_connector.h"
 >  #include "intel_color.h"
+
+Nitpick, not alphabetical order.
+
 >  #include "intel_crt.h"
 >  #include "intel_crtc.h"
 > @@ -8787,8 +8788,7 @@ void intel_hpd_poll_fini(struct drm_i915_private *i=
