@@ -2,91 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538CCA33ACB
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 10:15:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 970C0A33AE3
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 10:17:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E593610EA37;
-	Thu, 13 Feb 2025 09:15:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31FFA10EA35;
+	Thu, 13 Feb 2025 09:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHKT3uQu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SEDY9rTP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 690C310E2AD;
- Thu, 13 Feb 2025 09:15:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEFF910EA35;
+ Thu, 13 Feb 2025 09:17:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739438134; x=1770974134;
+ t=1739438244; x=1770974244;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Ap4Bca+OT8HvthvYYpxHLzscKjITjLonsIW7ZdxBBRg=;
- b=BHKT3uQumz5oAM00dNK8Oy+GAX9PMmcJwH3Ou1yN93u/wFuLbejXp/5o
- 3ZniJmfxEEfEnuDxcOePziMuWfr2ojFOuM64eKPFcO4Iok7xarsElYvg+
- wCVcAEOMXw1zmrt5zyn3Sn3wl682JoB126OXU1mjUvoPykfxS2EZkKE0z
- nIhy1uTaEchXkDbav7iV0y6pdHBGIPOiBOR4mQc9fKLxNaQjZi/UJSwNL
- G2rfvGJGdR5eqnSWNVh2Y5NhePlYDp67pqcISUPZFmDVfonGhjwUIiKA3
- dsq9u8CHgwUr/gSlfX5YoGokcfyDVNHmeyhpwc03gPbUSNjdJVJ1gaHJX Q==;
-X-CSE-ConnectionGUID: Ta4TeSTuS1OB7Uh9NpDt4w==
-X-CSE-MsgGUID: QGszCGaNSpeo56grfvSCaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57662332"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57662332"
+ bh=TtEkDv1fGjLAHQaKFLq8ooshjYOucMiDMRIEGf2pPEQ=;
+ b=SEDY9rTPU2E7kg+D3R8eYgmrnH9leJ6SiThXnIg2cb3gwaloJjnOUujO
+ RDP0uHAPSZV1ONpCFbb4oXLGDmv6oPAlnfem5PMEB+9plDH270pkYhiax
+ /B8S9uC0lPhrFEW5IA0cQNVZlR/3Iya7GWcMZMCfMnJs3IDzck0KrW6bk
+ 0WAQJZ3DKP/mzX9+VnxzA2Xz9Wq32iYdbQtLjefw2iorvMskEj0Y0n50t
+ 81P+7YiVf9k6b25UZYSouw0qKBz97V9PCsM2HamNXkwKB33C6f4DVmqhI
+ GIrKolBizEsDYgNDEE92Gn+4TMyyz00/1cZyLycugIGEmXD4ZC1znxTFG w==;
+X-CSE-ConnectionGUID: qxe8c9nrTNudexrir7lLTQ==
+X-CSE-MsgGUID: As9cXCJVTkSQjhgMVs/Qtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57662580"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57662580"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 01:15:34 -0800
-X-CSE-ConnectionGUID: RRexv39ZQia71NZ3O+oYhw==
-X-CSE-MsgGUID: PBmEvGnYREisKi4ghJVstA==
+ 13 Feb 2025 01:17:23 -0800
+X-CSE-ConnectionGUID: //iZaLw+RZqI+SrZr8so1Q==
+X-CSE-MsgGUID: T5ZTiWV9SamL9QEPCPDE5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="144033007"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="144033423"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
  by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Feb 2025 01:15:34 -0800
+ 13 Feb 2025 01:17:23 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 13 Feb 2025 01:15:33 -0800
+ 15.1.2507.44; Thu, 13 Feb 2025 01:17:22 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 13 Feb 2025 01:15:33 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ 15.2.1544.14 via Frontend Transport; Thu, 13 Feb 2025 01:17:22 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 13 Feb 2025 01:15:33 -0800
+ 15.1.2507.44; Thu, 13 Feb 2025 01:17:21 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZgKRatpkw1KMuENVQEvbPjuL/SfAY/9O7Dp/thasbZOx/7rrs4vZ8ZDaVAX6KLk+nQR+WMJ5tBkzPckOwxQ/eGY6aU5JjAVwnF1EBvE/gtHZ9yG/GZkXbH4R63oM/KC7N/Y9RZNlDZzdvOVCLbsaQjw9uHMoxYsOBU/8QVIrLpCWaeB2MM9UHPQuzu2zx+i1MIzdzufrIgdsts7A7xGnRYAGT47ZnKHVjclHWu9o/VSdXZ6eZLwQ7bMJ/T+aKvFYfbFcUb/U4dser9ycxE7c6cgrpKyNT5nrbkf0XvfmLTNmLHWJrFfpLXgaZcFXiMLT+QtVIBUZDpZsOGTYiB+R7w==
+ b=yvFFT5edzVScwOHviv5dKmfjwE2jZ8CZRnbe9l7bHix8GkvCKxX8YiGBlfgtshfoY1eZbCR9xxUbm34dTONeTSj4t768rk0mQkmIulpbzMs4xIwg+d9ok++SeO0l3oS+geDxlgjW6k/LLSByzwVxIHbhvpfygbFvVX9T/uBrauFGTaEaO3CK7HpgB5oKhy8LXWs44W0uaYMOMrfYVtxbrvQ52BOaaByVoIfp4hcwxarkTT3W2EkhMQF9p+UU2PKHU+dljADQACYrhVQ0+2LjJf7sAysBLO/bk+BdjP/Fs5ClqCnt1awZ0dLJuWpHY2my8zwZBAU5hdOy8CW7h3df2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7fWC216bnPGNWadqyJjMESS7zh54qVg8D46PI1AkIW8=;
- b=a00vqx1LLiS9aBMxhIwreiHrrx+4woayq3cQ2q2zZZ/EAnaOCO/VI+dyz4jxu0K+5jVND6+O9LtrpXNH7dxKN/7iFMiTtCdNUkZ3lJgZywX8yJwt38Rv+J1GFOgmkVHvwsn7baXF0K2OJtA2dzNNYAwhHyQKpNb1+YV4ahCGBn//nWFvh63qbKFX2JHLdCtnSEKejRDs7uA6rJoO8fPUJYQM+dYx6ToOw8oo8ir5lI3QHV++05y5eQXC1hJ3coX4Zw+iapyZJeXdHY2lDS1pEs8r5D+98JHUC0scBIqLmeANzm3cNpDpkj7CV6GtK6N4mqxhNuy7h7VtW5aBNzrEew==
+ bh=0Nw80c82j4h6Xkw3CavmaEApah1esSQWht9H2qBD8gk=;
+ b=ePWWOsCylkI49Nv1Xwb5zZIxC9Ja3+ZGrKJ2uGHl4LdSyA1qszFUiGKEb2KjdFOdXWmlB+xUUBpWhut9SByA3FNuo0SjOlAL+YHvX1Dmw4vbk12qcZQ8VxHeLsPQjcz12qo9ksL3kTSct5PQ1RFvizcQSpMs1ts7cDvy2klNHZIkYG/bI//O5++O4z/Z2RDeeUm4eH+XhbqNumulvPWB1pxyzYrtE5Sk9k8a5IV0eTKLIz8wAYug+diwNlLSTbXCZ/8C9d3dNXof5rgB3y+oWRHrmwzErKw6NaHe3AhQIWf2jj54UY5g8bOFqxAIkKK3JDVh4wic8ZIoTbMw3ttfRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by DS7PR11MB6013.namprd11.prod.outlook.com (2603:10b6:8:70::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.13; Thu, 13 Feb
- 2025 09:15:31 +0000
+ by MW3PR11MB4601.namprd11.prod.outlook.com (2603:10b6:303:59::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8422.19; Thu, 13 Feb
+ 2025 09:16:38 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8445.013; Thu, 13 Feb 2025
- 09:15:31 +0000
+ 09:16:38 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
 CC: "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH 09/14] drm/i915/display: convert
- intel_cpu_transcoder_mode_valid() to intel_display
-Thread-Topic: [PATCH 09/14] drm/i915/display: convert
- intel_cpu_transcoder_mode_valid() to intel_display
-Thread-Index: AQHbfWx7RnTkFv4NkkuByheAfEhXGLNE9LBg
-Date: Thu, 13 Feb 2025 09:15:31 +0000
-Message-ID: <SN7PR11MB67507D6FA513715B66D70F03E3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 10/14] drm/i915/display: convert
+ intel_mode_valid_max_plane_size() to intel_display
+Thread-Topic: [PATCH 10/14] drm/i915/display: convert
+ intel_mode_valid_max_plane_size() to intel_display
+Thread-Index: AQHbfWx8nehVcdwcKk6o9FYzL41E4bNE9QQg
+Date: Thu, 13 Feb 2025 09:16:38 +0000
+Message-ID: <SN7PR11MB67504B476004E3E99865CD4EE3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1739378095.git.jani.nikula@intel.com>
- <f9246a00a2e7aabaffb86f863915a4307e1fd3f8.1739378095.git.jani.nikula@intel.com>
-In-Reply-To: <f9246a00a2e7aabaffb86f863915a4307e1fd3f8.1739378095.git.jani.nikula@intel.com>
+ <6e7810c793ecc8ff6a31569830bf162156245668.1739378095.git.jani.nikula@intel.com>
+In-Reply-To: <6e7810c793ecc8ff6a31569830bf162156245668.1739378095.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,82 +94,82 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|DS7PR11MB6013:EE_
-x-ms-office365-filtering-correlation-id: 33561161-60bb-4c72-b2a4-08dd4c0ef6d8
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MW3PR11MB4601:EE_
+x-ms-office365-filtering-correlation-id: e2613d58-6fc8-45e7-be38-08dd4c0f1efc
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?QKJtuadggm+s6ZuWZL1q6XBr1UmBO2XnVB1zc1aV+yp9sBUrJRVtTQ+00ExK?=
- =?us-ascii?Q?a4JhnPXUV5+3KDddcjIUFbJRIZVIMG2JH7qRicmf5cZJ3BPC+1GwDOZyX39g?=
- =?us-ascii?Q?4dH1EQpJmsYn8CuhjvNqQgf+s6eYmeQa7y/IUnHxw9SJFF24yfLv2aIOe+Ur?=
- =?us-ascii?Q?rlypkL0viJJrZ5ZPbRKtFaDr1bKJnGvPtudo2R5xKKLhIXpf2FnbwIcyGNAB?=
- =?us-ascii?Q?q7R5CALvwMEAzOky1ZHMca6/uTPZsPO07b6+YhEFfNqWhMp+yOLA7IJcDfet?=
- =?us-ascii?Q?ATNuCANX8l4fk39Glh+vWo2eMgwuDT7Z0XHEW96Ki+G1Acx8ZxlCe7B4QBn1?=
- =?us-ascii?Q?X1wqhqmyXJ2YZkvaaU2B3Tm0csPYlYEwCVrSQyw1ANS2fKI4IM5PU/vxB455?=
- =?us-ascii?Q?SX4OXudvTrxXHmij3Xs02h3tgswAPShtlkXRmy6NRSe81xFIEa+7UF/YTWw5?=
- =?us-ascii?Q?5h4/rblXLOINtxWtJDRXmOlK31vSwgj4za4FW5iiUZCoxY9675efXypMw93L?=
- =?us-ascii?Q?2tVHkDPqAj5EY9Qx50le8wtdIVtksHLggkcdy8hhj/sdh9oEZPnKTzEhqJOa?=
- =?us-ascii?Q?8DpOr+PdmCHh4aR3TjRolAnlsIlxa4OlsDNlOhkXas0X4w3ClOIPFGX2DrZj?=
- =?us-ascii?Q?RcIzKdxLMzo+5oCfn/LlstJPwqMh3fGPSyF/sOIIasPFmhXIcBaCzvArDTTv?=
- =?us-ascii?Q?/cxrBOAm3AD7eVmEAqSF8n5/znjcDIxIqicNmh8DqAgEmgOr+0yBbEaypWJq?=
- =?us-ascii?Q?aymfPsMQD4BGNpgsHyuDqRSPCkHlurjOo63jbx16Beocc/l6QYgrTUaj6si7?=
- =?us-ascii?Q?k4AYheMwgK9egH9uyz92el/qJ2yRCNoEr39iRC0a17gTnabCjBhkpmEsmnEr?=
- =?us-ascii?Q?7N/BqSD6wVWD08AtLChXxZKgaFPM/SBZ8TNetntR5gi3mJqgpHop9bW1FgWE?=
- =?us-ascii?Q?XxxZ40We9eQKnwqRrQVP+WIO/pSrOs+h9mreXF0x5KAsHQVZtjJ6XHQY8JS0?=
- =?us-ascii?Q?Vsj63rAV2sW9HfaaFDc9l5sI7qp7RKc0Df1d2LGGssCRuXgrh4w0semCeEht?=
- =?us-ascii?Q?HMSWEMHGi3u2FLS1aLG4UT3JG8GKXxcqBfCo/xOSkIu84ngq+69MoP8Crzaj?=
- =?us-ascii?Q?AcQW6hO0vuM480LbfR497MLqbmENcR3PnBEqkS8M8OgFFJKg43ftEyhbMYgH?=
- =?us-ascii?Q?vGqMNi0sn4vnU20tibH7PFdXMQjg6GdgijUHGjbm4feQT+/7PbFN04hnaBX8?=
- =?us-ascii?Q?ncaT5kuN64bnIbNtX00RG8pLdluN+Etnaj5fwROzCKmMHKkRDKBZmepkAGJX?=
- =?us-ascii?Q?sC9+q8BJB9TEvwECLGPt7ONgBID4DVmmCcoEaSieKNNmPFwysAUnqUQHnHI5?=
- =?us-ascii?Q?NscSylEoGaatXfRs46g7A4hIi8qi1LuPf/L07V3z6w7HHnCL4vAXbmHWj40W?=
- =?us-ascii?Q?5lWENTYRL8TqycNDYEmYGWneSWENP0Hj?=
+ ARA:13230040|366016|376014|1800799024|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?aHUxlRqnPQwrO/3nlAeTT3e2XLGttcBp4oSNEezqYZTau9RSPYx9vxLpnKL3?=
+ =?us-ascii?Q?PAN4lNQt1LHjW0C9wdjZ+FC07oMvDT0PE1e9DwW4+fc1YC2DNb7i4ruLK5dU?=
+ =?us-ascii?Q?he/85X7Iln1aStuFnC8scxNcA9FtlljNur5FO+TN0fXcnQfGqBIHj63ez6ps?=
+ =?us-ascii?Q?n4rYu5l8hZA/XTC6TetVSssP2hrTi1Pth4n2zv5flcpOG8hOYwQ85T6nIDS3?=
+ =?us-ascii?Q?d1/s1LLdnd0Ga72axgiPSy9HY3aSCC8JV2PjBTLmhuT7joDY2ps6NSVrt3uH?=
+ =?us-ascii?Q?WRDAZbo/Y6UzmkZHSzx3qrAZiWxP2LUkonegeLmq5uWWHLA+cZTOo2aRAqz/?=
+ =?us-ascii?Q?Svpo4Dq0y9Vi/fXEjxeHFFJhg983Ory8L2yOY6jGpgBXQdzVVUnrPJo/dBHm?=
+ =?us-ascii?Q?19CFiPWWi7fVh0SJfGj8UcgbhaAnW8IJNpJIpWDkLCq1oNYxETin/OTraRV3?=
+ =?us-ascii?Q?J327ZNjFz8lJO96vvslF1iTy7Zy53CWProvxWveNS/hC7TILICL7XVb2bXto?=
+ =?us-ascii?Q?XCql5gsEHWoXZhnQ3FM2f1sdaJCFkTLwgd0pj93tUdS9krP6Eu2YjLJMzlTS?=
+ =?us-ascii?Q?dS8r/OEeCSTcLuM+9g7YgLo37TRmPSTSCFyRoGZG703orIBC/bpte0QpMBIU?=
+ =?us-ascii?Q?uIL1dynGmMoklnhHr3i72iSNnmwU1/deE2euqopG6z8w6K1Pza/PaUSy0Jpn?=
+ =?us-ascii?Q?HN/SdEJ/mF7tF4L0VvrdmyZGasX+186wYU4h46TT4cgkmn2wrfY2bNLnrNHq?=
+ =?us-ascii?Q?J12dblY9NfXcE/CgZ1nqlRJdBs8EfTogVhCuK2yiiJt1Sy8ShqnCqxni5nBY?=
+ =?us-ascii?Q?JdhD++pXCNJXgSXK90jy8quo5LpxoFY24aK+ld3eqsAJQNC5L+sRbd7k8Uy2?=
+ =?us-ascii?Q?YIonqZDvDPGct90dhGpL89Eiph3WCtMJgS+AMs4D5jRnwXUCpH2dNUCQYer3?=
+ =?us-ascii?Q?d88Ghl7ZNLRjD8rL2mUhG8+K59qYq3PyEqNsMoB8dV4znNbux+wNffudjGDy?=
+ =?us-ascii?Q?kNIXLpfl1wc5ZD9ps5ZNyC5WasUbJRwgKQYurz7jcHx0k2HNHYjeiy9X7exY?=
+ =?us-ascii?Q?niBEEMiRXrXsC4FtDcy3qQbx8pvdH7Uqbs4AbG2W4+6JBYxq9+qE1pAA7uhB?=
+ =?us-ascii?Q?mrqZ+AubCeCfpZpP9MnarrSZj9d80UJIZuLW+hl+M5Z4imObSSS7W/jnT4Eq?=
+ =?us-ascii?Q?UET0KWUye18KEZ3CN6e90P01siar+VUblRokZfPhBUM/woiVN3fbGY+dppEq?=
+ =?us-ascii?Q?eifwjqjZy2DBa8Cdi1EBl38rE+uUOY7cv1bNT/EeMFF+thUmzfu3boR5JLoM?=
+ =?us-ascii?Q?PezGuIfVFv4uqKijXKwes/P5ux3zYPT/Xvg9CRE+05g3KWTR7iEnge8EWf+C?=
+ =?us-ascii?Q?L2RDeque/TKC9QlA8gJK+xGvJHvEwTMeTFh/zngPvqDhQHxB3fhBoQ4ofc9y?=
+ =?us-ascii?Q?sVca5ljZw1GmskbkEONThZfxac/p9SZ2?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?s2qNN5Yr6yHJtezW02LLCKJ0XAw8vxR37hUWmsL+MlQssoFW08w1Vwh+mi78?=
- =?us-ascii?Q?hyDC99uZ7L4biJfRKwj5odl9GeuSZmmCDyb2ayrR4uYjVAKhl5EIC7f6q27Y?=
- =?us-ascii?Q?Cg9IqptwdF4qe6NHsBX5jNU1MCf8OJqsT7lz7EVFry6YyhctEP25V/3Q7tOF?=
- =?us-ascii?Q?DQLRx7pCIMpJBSOxG0YECiwphqNY0j2ZhtW+Z5mPyENLapAAXo3DhH7wmlkj?=
- =?us-ascii?Q?jACGNOK7QavGLrwV994R4UyN4ohW09FImz9L/EzEgit1LLHjNPJHoiXe9ISN?=
- =?us-ascii?Q?rYcKuzx3l1F2gXuzvvrqA+hVUbgF/9Hcuzj0Oj6paDb7UY/PA1B+AU66FuWp?=
- =?us-ascii?Q?jxmkNqtvPUMbKR4TkEK8334Ndsp9c0lLO6JMGWMgE2pQDLzcWwnfgyd1YInS?=
- =?us-ascii?Q?NMyYD1/yQC+RuCq8HyQAV64e8c48gsBkmLlEPBe0EgiBWXXnMJeiWmDPEvRO?=
- =?us-ascii?Q?5oljbEFQ547YJTb1Z7llyVIke+1dyoKEiovssZJsg9UGQ58WSiQ9DFGvkTDm?=
- =?us-ascii?Q?wXSXJBuv7l84FTTffNB39y7x+dkp2VleNIoliDXu0OVNAkevQXfG+cyp6j0b?=
- =?us-ascii?Q?HivjlMFyj6xrhsFFad1qcjhEZCBsWIDNmGOne4nqCOxT8JiOHCMw/b31B3Fj?=
- =?us-ascii?Q?3NInKO+15mozHerefnfPSTa39e2bHOuPcU/uYkrinwUdbmViMQhcTM6HWVvm?=
- =?us-ascii?Q?we2A7bHNOklGm9TGFitnwm9Uz/EOkxttgjVhGZO3kO+m6CgN83Uip75p5Lo8?=
- =?us-ascii?Q?s2nWz3icQZl3RWg5LFi3/VQDIaMNb3kLnG4HFWuxES91WUvOqEY5EoJ6zH+P?=
- =?us-ascii?Q?koZufpZmbxxQmZsy/gGadpwfbt//F41WYE7xClCMYX0KnpQKud/8cGjOh1ei?=
- =?us-ascii?Q?ru0I7BiAL142CE2Z5H4SXtSFZusc35cDcrLkUCQVvsaTZDk5xe4K/qVh1kkE?=
- =?us-ascii?Q?LFP+VdewGjMHYKRwr/70NG5rf7dMo3jIL7l0SbGcaO3unSSBeAWf6vRXnRlT?=
- =?us-ascii?Q?YNsyoREv+3StmY5iE5kESGtDoVfsaz27Qq39cQ69/nOsCCg52samcue9mxYP?=
- =?us-ascii?Q?MeRE7QTut4e4knIrz4zIpts1lMiJuZMPsYhtWPelnGFiUBrhVJ2CaAPwV08Q?=
- =?us-ascii?Q?cWtzl+Vev43yUcYrGHcPpfag4E3r2iDRkEvM2T33nFaIYJhD1efObnmIiQqH?=
- =?us-ascii?Q?fHq/TcTXs2XJVJ0FWUD+h9gQ1qX98af5nY2EO6hr3olXq51DMGLtZP1FukcR?=
- =?us-ascii?Q?oCikFjUcFCprMq36NL3UpJ2i3M/GVU7sqfM/FdQDkKgVRslmfDBXRCtpIazy?=
- =?us-ascii?Q?aZ849EQuQqeyXQYOzwNGa3DMzolEGdIGaLRN/Jak6tjZo5m3W6I+hX1R9OtW?=
- =?us-ascii?Q?kGutAcMivqPD+3N6Cova5Z4I5dtZriHbWjdEe7jry4y4n5IIKg044ziFVWxx?=
- =?us-ascii?Q?1lcbJ0WTWqLikKVhKMWVWQX7ilrnQ/4jm1ORbrl0USkMp1R4Ku8oQ3sj8UOh?=
- =?us-ascii?Q?+ZQCKMahbDZFJ4/VjFk/UpgbcLt4gOUWr43vWeFmQpSP+yN7rxQfZfHLn5U7?=
- =?us-ascii?Q?itTruEdyWBeeVQ0wbUVn7WPh4ScDMadMH3odh4wF?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?y17qK3MDU9JwMWL+ReeEhrQX/taL6xvCEBf2iy3gF05QwvJheUWCUNpc0BzQ?=
+ =?us-ascii?Q?C50IzAP3qyRtKhdLzemnBd3Tl4LezvBDzDXdY0JbnhMlhzIg/gbxh+sJuWly?=
+ =?us-ascii?Q?ySHAL+Voxqc3fTTgbd75EVIKxbjtRK3sVhK6EMZozu+LB4PNqR73cq/dV6U3?=
+ =?us-ascii?Q?Zz/EMDgHf9VbpJnLgKCUNC0DL62Mqx1rnfhbeqepTFJ2zBiL6G0NTxlyugHm?=
+ =?us-ascii?Q?VLVXuiPo/vWHTWG1VtrSqVGkLu86LKCHmvlvAeIjcteLQ77SNYQRBbjif68d?=
+ =?us-ascii?Q?p05KFYBrn+r41c/I9qWQxYv1jMHP159fXvJwvEHkcL+uUiUCsulYIrTlonWF?=
+ =?us-ascii?Q?W6rT4YzSk4yg1CLVYqVPC81EfnGKRydKInN9XSxWDVgJJbzuFu9u/HwrEGT9?=
+ =?us-ascii?Q?/CUYo274HhHAEbLnU7kD6qsxyy9eBCYPdy8cBQve5X7UyT6Yf0g1O/oMUVt8?=
+ =?us-ascii?Q?BPhtsc41qmq/mBsTcLfuQxC8AqoPkJYJLCU0EGsJy+cEYIAX5pq0zj4Ek0IX?=
+ =?us-ascii?Q?hJhJeiWIDxtk6xaI4ynPw3AyOoiBYQZRyinS3gLIQgIE4JMWFE6K0X1o/cQi?=
+ =?us-ascii?Q?OfUQ2bTQQH9qS7XYUtpcR0FD4Kce60ymb9IPzVdZov91szlzicqSz0a7qksA?=
+ =?us-ascii?Q?R5gM4rJim1IbZEEevXnKsgeWMARC5TlJNvAEy0s8yAYcSoiaEErzLR6I0uLE?=
+ =?us-ascii?Q?jXXStRlI3S4UGXZeLr63xU65JSycLjHywMw5oKK0lo2sKomzWS8gUEglDs6A?=
+ =?us-ascii?Q?x6INuDvni+HrSkF/X3w/niAK/DxQoEOC42z1A7l4OJPLv9To2ZVojHxsrUR8?=
+ =?us-ascii?Q?2Ghrbe3E6tDxrMI2tmRJivNuuTvIpib3Z0F3zAyAJlf9WcleONYwDgURczGu?=
+ =?us-ascii?Q?4TvcG6X9+cOGy+OBDRqS2BRFLQYN5YyAliq8zPQwgUsregf/6xzKR9s0nvAg?=
+ =?us-ascii?Q?mPmdY7gpCQJEp1aJc6Rcwcx1tMfrqWNqlCDLyqwxksjCyKDEFxeN0Xaq/R1N?=
+ =?us-ascii?Q?9KuhBNPHVqId7eumFf26ZFVQODvVsKkc2494Fckyg4PKxsRVHJMqEEiQPF77?=
+ =?us-ascii?Q?7q2FdeebP3Xe0wkMXdC+g2FnOwVpOBpwmDNBiUk/4vUVoP/DRWN+v/3W+wxD?=
+ =?us-ascii?Q?NK7PrfpvryFQQ8/4zEobp2+y+myiunbHF9PdHGwcPyijKOFVz7C4rOlSpczd?=
+ =?us-ascii?Q?yBSIj5WjAwQ0Bb/6RmC8hv3gJLvTOxzerylwtaciMxPunVFarCy+7D8WClBi?=
+ =?us-ascii?Q?dlRzO9obcJTOjeBZr096TSk1wT2FBCzdBPxar14NQNbmNJcd6CzkrZ3DdqO9?=
+ =?us-ascii?Q?mTZ9B/UCVb8Z0JLrhX/9PhXTSWeM/iexFkrAdPS08gcxUtoQG5tMo/OzSQjS?=
+ =?us-ascii?Q?1YIe8DBvRqIsdfkV8nuP+OYpn/a2+0tLahKL1AYA61Uq+AqvvUAET7yUPlRc?=
+ =?us-ascii?Q?9KcBNnh6ghu7zq4FDqTX4NqeTjywjUi5zWV5t5nNt1JBIFWD4WU3qeQQBTNn?=
+ =?us-ascii?Q?2insaJYnwcBt7ZMQkaG0p8364Y6ThH/JgsLE40m2d5x6RA09nu92Kzn3lGyQ?=
+ =?us-ascii?Q?WK3nS4VxZ8LU3UinW6WgtFelvFdYlLDcBXbVvcBC?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 33561161-60bb-4c72-b2a4-08dd4c0ef6d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2025 09:15:31.1010 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2613d58-6fc8-45e7-be38-08dd4c0f1efc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2025 09:16:38.4298 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j5pksKUubIv8Gv6FVSPO63WC4mHA4p78k1PQw0zxgW3nv0wYqWPSJP6r2ZbrIS2IKEpCSCtcl4ILTdWh0MHmJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6013
+X-MS-Exchange-CrossTenant-userprincipalname: HSw+kK2jJTD/4Q8IZFPnZkYCEywvADE38TNTdePslXLGnWXteMqHJjw1mlsnXA5DLgo+4tGYBSHGjw0pt2qoSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4601
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,19 +189,18 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
-ni
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Jani
 > Nikula
 > Sent: Wednesday, February 12, 2025 10:07 PM
 > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
 > Cc: Nikula, Jani <jani.nikula@intel.com>
-> Subject: [PATCH 09/14] drm/i915/display: convert
-> intel_cpu_transcoder_mode_valid() to intel_display
+> Subject: [PATCH 10/14] drm/i915/display: convert
+> intel_mode_valid_max_plane_size() to intel_display
 >=20
 > Going forward, struct intel_display is the main display device data point=
 er.
-> Convert the intel_cpu_transcoder_mode_valid()() helper to struct intel_di=
-splay,
+> Convert the intel_mode_valid_max_plane_size() helper to struct intel_disp=
+lay,
 > allowing further conversions elsewhere.
 >=20
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
@@ -210,266 +209,179 @@ LGTM,
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/icl_dsi.c       | 4 ++--
->  drivers/gpu/drm/i915/display/intel_crt.c     | 2 +-
->  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++----
 > drivers/gpu/drm/i915/display/intel_display.h | 2 +-
->  drivers/gpu/drm/i915/display/intel_dp.c      | 2 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 2 +-
->  drivers/gpu/drm/i915/display/intel_dvo.c     | 6 +++---
->  drivers/gpu/drm/i915/display/intel_hdmi.c    | 2 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c    | 6 +++---
->  drivers/gpu/drm/i915/display/intel_sdvo.c    | 3 +--
->  drivers/gpu/drm/i915/display/intel_tv.c      | 3 +--
->  drivers/gpu/drm/i915/display/vlv_dsi.c       | 6 +++---
->  12 files changed, 21 insertions(+), 23 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 0f2a19690c18..1f0ff4000658 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -1460,10 +1460,10 @@ static void gen11_dsi_post_disable(struct
-> intel_atomic_state *state,  static enum drm_mode_status
-> gen11_dsi_mode_valid(struct drm_connector *connector,
->  						 const struct
-> drm_display_mode *mode)  {
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> +	struct intel_display *display =3D to_intel_display(connector->dev);
->  	enum drm_mode_status status;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c
-> b/drivers/gpu/drm/i915/display/intel_crt.c
-> index 8eedae1d7684..321580b095e7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -360,7 +360,7 @@ intel_crt_mode_valid(struct drm_connector
-> *connector,
->  	enum drm_mode_status status;
->  	int max_clock;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
+>  drivers/gpu/drm/i915/display/intel_dp.c      | 3 +--
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 3 +--
+>  drivers/gpu/drm/i915/display/intel_dsi.c     | 8 ++++----
+>  drivers/gpu/drm/i915/display/intel_hdmi.c    | 3 +--
+>  6 files changed, 12 insertions(+), 15 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
 > b/drivers/gpu/drm/i915/display/intel_display.c
-> index e1186f46088d..7a25c84bfbac 100644
+> index 7a25c84bfbac..0450fdf9d4de 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8464,14 +8464,14 @@ enum drm_mode_status intel_mode_valid(struct
-> drm_device *dev,
->  	return MODE_OK;
->  }
+> @@ -8498,7 +8498,7 @@ enum drm_mode_status
+> intel_cpu_transcoder_mode_valid(struct intel_display *displ  }
 >=20
-> -enum drm_mode_status intel_cpu_transcoder_mode_valid(struct
+>  enum drm_mode_status
+> -intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> +intel_mode_valid_max_plane_size(struct intel_display *display,
+>  				const struct drm_display_mode *mode,
+>  				int num_joined_pipes)
+>  {
+> @@ -8508,7 +8508,7 @@ intel_mode_valid_max_plane_size(struct
 > drm_i915_private *dev_priv,
-> +enum drm_mode_status intel_cpu_transcoder_mode_valid(struct
-> +intel_display *display,
->  						     const struct
-> drm_display_mode *mode)  {
->  	/*
->  	 * Additional transcoder timing limits,
->  	 * excluding BXT/GLK DSI transcoders.
+>  	 * intel_mode_valid() should be
+>  	 * sufficient on older platforms.
 >  	 */
-> -	if (DISPLAY_VER(dev_priv) >=3D 5) {
-> +	if (DISPLAY_VER(display) >=3D 5) {
->  		if (mode->hdisplay < 64 ||
->  		    mode->htotal - mode->hdisplay < 32)
->  			return MODE_H_ILLEGAL;
-> @@ -8490,7 +8490,7 @@ enum drm_mode_status
-> intel_cpu_transcoder_mode_valid(struct drm_i915_private *de
->  	 * Cantiga+ cannot handle modes with a hsync front porch of 0.
->  	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
->  	 */
-> -	if ((DISPLAY_VER(dev_priv) >=3D 5 || IS_G4X(dev_priv)) &&
-> +	if ((DISPLAY_VER(display) >=3D 5 || display->platform.g4x) &&
->  	    mode->hsync_start =3D=3D mode->hdisplay)
->  		return MODE_H_ILLEGAL;
+> -	if (DISPLAY_VER(dev_priv) < 9)
+> +	if (DISPLAY_VER(display) < 9)
+>  		return MODE_OK;
 >=20
+>  	/*
+> @@ -8516,10 +8516,10 @@ intel_mode_valid_max_plane_size(struct
+> drm_i915_private *dev_priv,
+>  	 * plane so let's not advertize modes that are
+>  	 * too big for that.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >=3D 30) {
+> +	if (DISPLAY_VER(display) >=3D 30) {
+>  		plane_width_max =3D 6144 * num_joined_pipes;
+>  		plane_height_max =3D 4800;
+> -	} else if (DISPLAY_VER(dev_priv) >=3D 11) {
+> +	} else if (DISPLAY_VER(display) >=3D 11) {
+>  		plane_width_max =3D 5120 * num_joined_pipes;
+>  		plane_height_max =3D 4320;
+>  	} else {
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
 > b/drivers/gpu/drm/i915/display/intel_display.h
-> index 9439da737f5b..08e28ea179d2 100644
+> index 08e28ea179d2..f702425df305 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -428,7 +428,7 @@ intel_mode_valid_max_plane_size(struct
-> drm_i915_private *dev_priv,
+> @@ -424,7 +424,7 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
+>  u32 intel_plane_fb_max_stride(struct drm_device *drm,
+>  			      u32 pixel_format, u64 modifier);  enum
+> drm_mode_status -intel_mode_valid_max_plane_size(struct drm_i915_private
+> *dev_priv,
+> +intel_mode_valid_max_plane_size(struct intel_display *display,
 >  				const struct drm_display_mode *mode,
 >  				int num_joined_pipes);
 >  enum drm_mode_status
-> -intel_cpu_transcoder_mode_valid(struct drm_i915_private *i915,
-> +intel_cpu_transcoder_mode_valid(struct intel_display *display,
->  				const struct drm_display_mode *mode);
-> enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)=
-;
-> bool is_trans_port_sync_mode(const struct intel_crtc_state *state); diff =
---git
-> a/drivers/gpu/drm/i915/display/intel_dp.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
 > b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 9ed7d46143e9..61827b0fe95e 100644
+> index 61827b0fe95e..29970baaf03e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1407,7 +1407,7 @@ intel_dp_mode_valid(struct drm_connector
+> @@ -1396,7 +1396,6 @@ intel_dp_mode_valid(struct drm_connector
 > *_connector,
->  	bool dsc =3D false;
->  	int num_joined_pipes;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	struct intel_display *display =3D to_intel_display(_connector->dev);
+>  	struct intel_connector *connector =3D to_intel_connector(_connector);
+>  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
+> -	struct drm_i915_private *dev_priv =3D to_i915(connector->base.dev);
+>  	const struct drm_display_mode *fixed_mode;
+>  	int target_clock =3D mode->clock;
+>  	int max_rate, mode_rate, max_lanes, max_link_clock; @@ -1496,7
+> +1495,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
 >  	if (status !=3D MODE_OK)
 >  		return status;
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode,
+> num_joined_pipes);
+> +	return intel_mode_valid_max_plane_size(display, mode,
+> +num_joined_pipes);
+>  }
+>=20
+>  bool intel_dp_source_supports_tps3(struct intel_display *display) diff -=
+-git
+> a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 459440dd6e87..38804254980b 100644
+> index 38804254980b..73a0a0f9b3d0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1481,7 +1481,7 @@ mst_connector_mode_valid_ctx(struct
-> drm_connector *_connector,
+> @@ -1462,7 +1462,6 @@ mst_connector_mode_valid_ctx(struct
+> drm_connector *_connector,  {
+>  	struct intel_connector *connector =3D to_intel_connector(_connector);
+>  	struct intel_display *display =3D to_intel_display(connector);
+> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
+>  	struct intel_dp *intel_dp =3D connector->mst_port;
+>  	struct drm_dp_mst_topology_mgr *mgr =3D &intel_dp->mst_mgr;
+>  	struct drm_dp_mst_port *port =3D connector->port; @@ -1565,7
+> +1564,7 @@ mst_connector_mode_valid_ctx(struct drm_connector
+> *_connector,
 >  		return 0;
 >  	}
 >=20
-> -	*status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	*status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (*status !=3D MODE_OK)
->  		return 0;
+> -	*status =3D intel_mode_valid_max_plane_size(i915, mode,
+> num_joined_pipes);
+> +	*status =3D intel_mode_valid_max_plane_size(display, mode,
+> +num_joined_pipes);
+>  	return 0;
+>  }
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c
-> b/drivers/gpu/drm/i915/display/intel_dvo.c
-> index 29f8788fb26a..c16fb34b737d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-> @@ -219,16 +219,16 @@ static enum drm_mode_status
-> intel_dvo_mode_valid(struct drm_connector *_connector,
->  		     const struct drm_display_mode *mode)  {
-> +	struct intel_display *display =3D to_intel_display(_connector->dev);
->  	struct intel_connector *connector =3D to_intel_connector(_connector);
-> -	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
->  	struct intel_dvo *intel_dvo =3D intel_attached_dvo(connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c
+> b/drivers/gpu/drm/i915/display/intel_dsi.c
+> index c93a3cf75c52..403151175a87 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsi.c
+> @@ -60,14 +60,14 @@ int intel_dsi_get_modes(struct drm_connector
+> *connector)  enum drm_mode_status intel_dsi_mode_valid(struct
+> drm_connector *connector,
+>  					  const struct drm_display_mode
+> *mode)  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
+> +	struct intel_display *display =3D to_intel_display(connector->dev);
+>  	struct intel_connector *intel_connector =3D
+> to_intel_connector(connector);
 >  	const struct drm_display_mode *fixed_mode =3D
->  		intel_panel_fixed_mode(connector, mode);
-> -	int max_dotclk =3D to_i915(connector->base.dev)-
+>  		intel_panel_fixed_mode(intel_connector, mode);
+> -	int max_dotclk =3D to_i915(connector->dev)-
 > >display.cdclk.max_dotclk_freq;
 > +	int max_dotclk =3D display->cdclk.max_dotclk_freq;
->  	int target_clock =3D mode->clock;
 >  	enum drm_mode_status status;
 >=20
-> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
+> -	drm_dbg_kms(&dev_priv->drm, "\n");
+> +	drm_dbg_kms(display->drm, "\n");
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>  	status =3D intel_panel_mode_valid(intel_connector, mode);
+>  	if (status !=3D MODE_OK)
+> @@ -76,7 +76,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct
+> drm_connector *connector,
+>  	if (fixed_mode->clock > max_dotclk)
+>  		return MODE_CLOCK_HIGH;
+>=20
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
+> +	return intel_mode_valid_max_plane_size(display, mode, 1);
+>  }
+>=20
+>  struct intel_dsi_host *intel_dsi_host_init(struct intel_dsi *intel_dsi, =
+diff --git
+> a/drivers/gpu/drm/i915/display/intel_hdmi.c
 > b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 015110fc57a2..60572deeffb3 100644
+> index 60572deeffb3..ed017d9de920 100644
 > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2023,7 +2023,7 @@ intel_hdmi_mode_valid(struct drm_connector
-> *connector,
->  	bool ycbcr_420_only;
->  	enum intel_output_format sink_format;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c
-> b/drivers/gpu/drm/i915/display/intel_lvds.c
-> index 6b05db2c10ba..7ed8625193fe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-> @@ -394,14 +394,14 @@ static enum drm_mode_status
-> intel_lvds_mode_valid(struct drm_connector *_connector,
->  		      const struct drm_display_mode *mode)  {
-> +	struct intel_display *display =3D to_intel_display(_connector->dev);
->  	struct intel_connector *connector =3D to_intel_connector(_connector);
-> -	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
->  	const struct drm_display_mode *fixed_mode =3D
->  		intel_panel_fixed_mode(connector, mode);
-> -	int max_pixclk =3D to_i915(connector->base.dev)-
-> >display.cdclk.max_dotclk_freq;
-> +	int max_pixclk =3D display->cdclk.max_dotclk_freq;
->  	enum drm_mode_status status;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> index 1ae766212e8a..6e2d9929b4d7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> @@ -1943,7 +1943,6 @@ intel_sdvo_mode_valid(struct drm_connector
-> *connector,
->  		      const struct drm_display_mode *mode)  {
+> @@ -2015,7 +2015,6 @@ intel_hdmi_mode_valid(struct drm_connector
+> *connector,  {
 >  	struct intel_display *display =3D to_intel_display(connector->dev);
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
->  	struct intel_sdvo *intel_sdvo =3D
-> intel_attached_sdvo(to_intel_connector(connector));
->  	struct intel_sdvo_connector *intel_sdvo_connector =3D
->  		to_intel_sdvo_connector(connector);
-> @@ -1952,7 +1951,7 @@ intel_sdvo_mode_valid(struct drm_connector
-> *connector,
+>  	struct intel_hdmi *hdmi =3D
+> intel_attached_hdmi(to_intel_connector(connector));
+> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
 >  	enum drm_mode_status status;
 >  	int clock =3D mode->clock;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c
-> b/drivers/gpu/drm/i915/display/intel_tv.c
-> index 7838c92f8ded..5dbe857ea85b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tv.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
-> @@ -960,12 +960,11 @@ intel_tv_mode_valid(struct drm_connector
+>  	int max_dotclk =3D to_i915(connector->dev)-
+> >display.cdclk.max_dotclk_freq;
+> @@ -2068,7 +2067,7 @@ intel_hdmi_mode_valid(struct drm_connector
 > *connector,
->  		    const struct drm_display_mode *mode)  {
->  	struct intel_display *display =3D to_intel_display(connector->dev);
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
->  	const struct tv_mode *tv_mode =3D intel_tv_mode_find(connector-
-> >state);
->  	int max_dotclk =3D display->cdclk.max_dotclk_freq;
->  	enum drm_mode_status status;
->=20
-> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  	if (status !=3D MODE_OK)
->  		return status;
->=20
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> index d68876fe782c..7414794889e9 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1543,12 +1543,12 @@ static const struct drm_encoder_funcs
-> intel_dsi_funcs =3D {  static enum drm_mode_status vlv_dsi_mode_valid(str=
-uct
-> drm_connector *connector,
->  					       const struct drm_display_mode
-> *mode)  {
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> +	struct intel_display *display =3D to_intel_display(connector->dev);
->=20
-> -	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-> +	if (display->platform.valleyview || display->platform.cherryview) {
->  		enum drm_mode_status status;
->=20
-> -		status =3D intel_cpu_transcoder_mode_valid(i915, mode);
-> +		status =3D intel_cpu_transcoder_mode_valid(display, mode);
->  		if (status !=3D MODE_OK)
 >  			return status;
 >  	}
+>=20
+> -	return intel_mode_valid_max_plane_size(dev_priv, mode, 1);
+> +	return intel_mode_valid_max_plane_size(display, mode, 1);
+>  }
+>=20
+>  bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
 > --
 > 2.39.5
 
