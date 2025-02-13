@@ -2,55 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF69FA339E3
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 09:26:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04ED9A339E5
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 09:27:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D795B10EA22;
-	Thu, 13 Feb 2025 08:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF3A10EA20;
+	Thu, 13 Feb 2025 08:27:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aI+j3LZ9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P6nfotPl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D558510EA21;
- Thu, 13 Feb 2025 08:26:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B1C10E03A;
+ Thu, 13 Feb 2025 08:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739435178; x=1770971178;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bDIrVFmB4OvdAKTiELtj55LNb3D/65nfGgYTu/mtzvU=;
- b=aI+j3LZ9WH81tUfOdecQeP+1Aq2LfPxdwJAvXcxnaaFXQzt5iLugpXwt
- w9BXR0H5FyYk/9N69mNbTqkz51FDpTmGal1DdqzCLu7hisN8zzUDAK/pS
- l2rnhGzoTbKImo601tjrfXOG+hrLGJd2+oQij+K4c2Qjxv9r/3zb/4lKU
- u2IyfaaZY7MYN1/+UtA13XFilB2C/ZlPa65l2gpTWeQIQRTcB32Xfciya
- cwupNWuklTLwx8RfuRKIZ8OCH2EzbsDt2sQSLO/L2F63y0ueG9p8c0BNL
- go6F7pOwve1mxFKs1Y7gfVnSp1M9ksEdCK+56gMMV6TUyyXD3/roLm4XW Q==;
-X-CSE-ConnectionGUID: SDVgaIhpQhCFJ6AtCUXfOw==
-X-CSE-MsgGUID: bTF6x6q+THCXlvca2oF34A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="50772650"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="50772650"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 00:26:17 -0800
-X-CSE-ConnectionGUID: QT5llhi9RwWT4pv0tfbBoQ==
-X-CSE-MsgGUID: 8P5xrU/fSWGeCRlJSZb9PQ==
+ t=1739435253; x=1770971253;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=jBkyjW5SjxzCg5cfeUyuUXSB+DbW1YQehPdypDcCdw0=;
+ b=P6nfotPlfZl5ctzGr6e/XZlwsYwwD0tIu64j2qX/WW7Dd+wKwhpmMSUh
+ 9jCExzvkbVNpTEPcr3eM3P2maKAJ6Bp9LJPvssMJNYVv/7VXFFT8Vuo0F
+ dKIIcku2ZtH/sx49CEfjLtX5h7baPqyKQLbajqOcN7sQGvgLsJKRoovgG
+ iYjAtZ7FGhwxtlKTHwUgRbVOyplqtRt31G95G3Awq9Q1yQVAGTOxu78YZ
+ Md8fwoqxr7yHtoXdTx9iiXeNXujQza76Y9HYly7kRMnVJDWRIpZWoJtqZ
+ gH0I3lrlDKESk6pNLKT2brhHXbT86RoJZktBR/ufkzFho1DTDamTVF31y Q==;
+X-CSE-ConnectionGUID: +UMwI5i9Ty6mF6UyCXFkIg==
+X-CSE-MsgGUID: acdkk0aCQUeEoBTwV3TXQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="43776072"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="43776072"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 00:27:32 -0800
+X-CSE-ConnectionGUID: Vbfto6ZBTGynR0e7xiuYjg==
+X-CSE-MsgGUID: PlqKhN7URWGUb0oN2VVZ2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113064672"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2025 00:26:15 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, santhosh.reddy.guddati@intel.com,
- jani.nikula@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Create force_hdcp14 debug fs entry
-Date: Thu, 13 Feb 2025 13:55:42 +0530
-Message-Id: <20250213082541.3772212-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113605516"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.243])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 00:27:30 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/14] drm/i915/display: conversions to struct
+ intel_display
+In-Reply-To: <Z6zXjEfwCj8BxQSh@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1739378095.git.jani.nikula@intel.com>
+ <Z6zXjEfwCj8BxQSh@intel.com>
+Date: Thu, 13 Feb 2025 10:27:27 +0200
+Message-ID: <87y0yaxn9s.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,144 +71,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Testing HDCP 1.4 becomes tough since the only way our code comes to
-HDCP 1.4 pathway is if the monitor only supports HDCP 1.4 which
-becomes tough to find sometimes.
-Setting this debug_fs entry will force use to use the HDCP 1.4 path
-so that more robust HDCP 1.4 testing can take place.
+On Wed, 12 Feb 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Feb 12, 2025 at 06:36:29PM +0200, Jani Nikula wrote:
+>> Convert a bunch of files and functions to struct intel display.
+>>=20
+>> The approach is to mostly convert a file, then see what the stragglers
+>> are, convert those too, and repeat.
+>>=20
+>> The PCH checks are starting to become a big straggler for further
+>> conversions.
+>
+> Aye. I wonder if we should in fact change all the HAS_PCH_FOO()
+> stuff to some kind of "south display type" thing. The current
+> situation is a bit of a mess due to:
+> - DG1/2 declare some kind of fake PCH type
+> - BXT/GLK don't declare one and yet we still use many
+>   PCH/south display registers
 
---v2
--Move the code to intel_hdcp.c [Jani]
--Remove useless debug logging [Jani]
--Remove Force_HDCP from the debug file [Jani]
+I'm also thinking most or all of the PCH checks outside of display
+should be removed.
 
---v3
--Remove leftover debug loggings [Jani]
+> Anyways, series is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 75 ++++++++++++++++++-
- 2 files changed, 76 insertions(+), 1 deletion(-)
+Thanks, pushed to din!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 6a82c6ade549..c78dd77ef74c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -496,6 +496,8 @@ struct intel_hdcp {
- 	enum transcoder cpu_transcoder;
- 	/* Only used for DP MST stream encryption */
- 	enum transcoder stream_transcoder;
-+	/* Used to force HDCP 1.4 bypassing HDCP 2.x */
-+	bool force_hdcp14;
- };
- 
- struct intel_connector {
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 1aa4c0fd216f..0e663e0e72bb 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2472,13 +2472,16 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	 * Considering that HDCP2.2 is more secure than HDCP1.4, If the setup
- 	 * is capable of HDCP2.2, it is preferred to use HDCP2.2.
- 	 */
--	if (intel_hdcp2_get_capability(connector)) {
-+	if (!hdcp->force_hdcp14 && intel_hdcp2_get_capability(connector)) {
- 		ret = _intel_hdcp2_enable(state, connector);
- 		if (!ret)
- 			check_link_interval =
- 				DRM_HDCP2_CHECK_PERIOD_MS;
- 	}
- 
-+	if (hdcp->force_hdcp14)
-+		drm_dbg_kms(display->drm, "Forcing HDCP 1.4\n");
-+
- 	/*
- 	 * When HDCP2.2 fails and Content Type is not Type1, HDCP1.4 will
- 	 * be attempted.
-@@ -2797,6 +2800,74 @@ static int intel_hdcp_sink_capability_show(struct seq_file *m, void *data)
- }
- DEFINE_SHOW_ATTRIBUTE(intel_hdcp_sink_capability);
- 
-+static ssize_t intel_hdcp_force_14_write(struct file *file,
-+					 const char __user *ubuf,
-+					 size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct intel_connector *connector = m->private;
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+	bool force_hdcp14 = false;
-+	int ret;
-+
-+	if (len == 0)
-+		return 0;
-+
-+	ret = kstrtobool_from_user(ubuf, len, &force_hdcp14);
-+	if (ret < 0)
-+		return ret;
-+
-+	hdcp->force_hdcp14 = force_hdcp14;
-+
-+	*offp += len;
-+	return len;
-+}
-+
-+static int intel_hdcp_force_14_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = m->private;
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_encoder *encoder = intel_attached_encoder(connector);
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+	struct drm_crtc *crtc;
-+	int ret;
-+
-+	if (!encoder)
-+		return -ENODEV;
-+
-+	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	crtc = connector->base.state->crtc;
-+	if (connector->base.status != connector_status_connected || !crtc) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	seq_printf(m, "%s\n",
-+		   str_yes_no(hdcp->force_hdcp14));
-+out:
-+	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-+	return ret;
-+}
-+
-+static int intel_hdcp_force_14_open(struct inode *inode,
-+				    struct file *file)
-+{
-+	return single_open(file, intel_hdcp_force_14_show,
-+			   inode->i_private);
-+}
-+
-+static const struct file_operations intel_hdcp_force_14_fops = {
-+	.owner = THIS_MODULE,
-+	.open = intel_hdcp_force_14_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = intel_hdcp_force_14_write
-+};
-+
- void intel_hdcp_connector_debugfs_add(struct intel_connector *connector)
- {
- 	struct dentry *root = connector->base.debugfs_entry;
-@@ -2807,5 +2878,7 @@ void intel_hdcp_connector_debugfs_add(struct intel_connector *connector)
- 	    connector_type == DRM_MODE_CONNECTOR_HDMIB) {
- 		debugfs_create_file("i915_hdcp_sink_capability", 0444, root,
- 				    connector, &intel_hdcp_sink_capability_fops);
-+		debugfs_create_file("i915_force_hdcp14", 0644, root,
-+				    connector, &intel_hdcp_force_14_fops);
- 	}
- }
--- 
-2.34.1
+>
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>> Jani Nikula (14):
+>>   drm/i915/dp: convert g4x_dp.[ch] to struct intel display
+>>   drm/i915/hdmi: convert g4x_hdmi.[ch] to struct intel_display
+>>   drm/i915/ips: convert hsw_ips.c to struct intel_display
+>>   drm/i915/display: convert assert_transcoder*() to struct intel_display
+>>   drm/i915/display: convert assert_port_valid() to struct intel_display
+>>   drm/i915/hpd: drop dev_priv parameter from intel_hpd_pin_default()
+>>   drm/i915/display: convert
+>>     intel_set_{cpu,pch}_fifo_underrun_reporting() to intel_display
+>>   drm/i915/sdvo: convert intel_sdvo.[ch] to struct intel_display
+>>   drm/i915/display: convert intel_cpu_transcoder_mode_valid() to
+>>     intel_display
+>>   drm/i915/display: convert intel_mode_valid_max_plane_size() to
+>>     intel_display
+>>   drm/i915/dsi: convert platform checks to display->platform.<platform>
+>>     style
+>>   drm/i915/combo-phy: convert intel_combo_phy.[ch] to struct
+>>     intel_display
+>>   drm/i915/display: convert intel_fifo_underrun.[ch] to struct
+>>     intel_display
+>>   drm/i915/display: convert i915_pipestat_enable_mask() to struct
+>>     intel_display
+>>=20
+>>  drivers/gpu/drm/i915/display/g4x_dp.c         |  99 +++---
+>>  drivers/gpu/drm/i915/display/g4x_dp.h         |  14 +-
+>>  drivers/gpu/drm/i915/display/g4x_hdmi.c       | 154 +++++----
+>>  drivers/gpu/drm/i915/display/g4x_hdmi.h       |   6 +-
+>>  drivers/gpu/drm/i915/display/hsw_ips.c        |  26 +-
+>>  drivers/gpu/drm/i915/display/icl_dsi.c        |  21 +-
+>>  .../gpu/drm/i915/display/intel_combo_phy.c    | 180 ++++++-----
+>>  .../gpu/drm/i915/display/intel_combo_phy.h    |   8 +-
+>>  drivers/gpu/drm/i915/display/intel_crt.c      |  21 +-
+>>  drivers/gpu/drm/i915/display/intel_crtc.c     |   2 +-
+>>  drivers/gpu/drm/i915/display/intel_ddi.c      |  11 +-
+>>  drivers/gpu/drm/i915/display/intel_display.c  | 155 ++++-----
+>>  drivers/gpu/drm/i915/display/intel_display.h  |  10 +-
+>>  .../gpu/drm/i915/display/intel_display_irq.c  |  37 +--
+>>  .../gpu/drm/i915/display/intel_display_irq.h  |   5 +-
+>>  .../drm/i915/display/intel_display_power.c    |   5 +-
+>>  .../i915/display/intel_display_power_well.c   |   3 +-
+>>  drivers/gpu/drm/i915/display/intel_dp.c       |   5 +-
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   5 +-
+>>  drivers/gpu/drm/i915/display/intel_dpll.c     |  30 +-
+>>  drivers/gpu/drm/i915/display/intel_dsi.c      |   8 +-
+>>  drivers/gpu/drm/i915/display/intel_dvo.c      |   8 +-
+>>  drivers/gpu/drm/i915/display/intel_fdi.c      |   3 +-
+>>  .../drm/i915/display/intel_fifo_underrun.c    | 181 ++++++-----
+>>  .../drm/i915/display/intel_fifo_underrun.h    |  18 +-
+>>  drivers/gpu/drm/i915/display/intel_hdmi.c     |   5 +-
+>>  drivers/gpu/drm/i915/display/intel_hotplug.c  |   4 +-
+>>  drivers/gpu/drm/i915/display/intel_hotplug.h  |   3 +-
+>>  drivers/gpu/drm/i915/display/intel_lvds.c     |   6 +-
+>>  .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+>>  .../gpu/drm/i915/display/intel_pch_display.c  |   4 +-
+>>  drivers/gpu/drm/i915/display/intel_pps.c      |  11 +-
+>>  drivers/gpu/drm/i915/display/intel_sdvo.c     | 293 +++++++++---------
+>>  drivers/gpu/drm/i915/display/intel_sdvo.h     |  10 +-
+>>  drivers/gpu/drm/i915/display/intel_tv.c       |   6 +-
+>>  drivers/gpu/drm/i915/display/vlv_dsi.c        |   8 +-
+>>  36 files changed, 671 insertions(+), 700 deletions(-)
+>>=20
+>> --=20
+>> 2.39.5
 
+--=20
+Jani Nikula, Intel
