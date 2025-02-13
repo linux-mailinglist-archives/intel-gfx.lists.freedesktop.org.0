@@ -2,60 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EACA33AC8
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 10:15:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 538CCA33ACB
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2025 10:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4F6010EA2E;
-	Thu, 13 Feb 2025 09:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E593610EA37;
+	Thu, 13 Feb 2025 09:15:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ITRaxDH0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHKT3uQu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0E7710E2AD;
- Thu, 13 Feb 2025 09:15:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 690C310E2AD;
+ Thu, 13 Feb 2025 09:15:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739438116; x=1770974116;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=jPPKUPpkNpqt/mapEBADu9Rf2/tOskeJZ8g2rZ02pqg=;
- b=ITRaxDH0qo0i2P0Str9N0K43Q10mdRW7QVxygeYo4KnDsWQabzy9r1OG
- pZki7BQlo/utqLCt7gIVNw5YDhtJSQcFxyDJSZhpqh8vcTDNI+H0lr3l0
- uAqj+Wpkzy9/aUDJrC6iPm1Fqu922KU48htbU7GF/hN55oYX468OAadmQ
- xP+3bSBvuGHxezreigt/H/wAPzew9RWN0CGWyvyCL1bDlEgbsoFolbriW
- 1qKWSI/CjdvybNV9Sdm3OfxMd9LbViKH2jQIp+hTAo4VX6YDlVbxq33Pv
- JaYntqPXCh1dlzvB6ru6Fzwt1ZtCXsaQD7sMOU0uR8kY52EBsgn45U6L8 w==;
-X-CSE-ConnectionGUID: rWJRpr3BTKu/gMDUXgOcxw==
-X-CSE-MsgGUID: mmNkmBthQB69krq92sABlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="51524424"
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="51524424"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 01:15:15 -0800
-X-CSE-ConnectionGUID: NgEIFfo3Q52naujFZCCbJQ==
-X-CSE-MsgGUID: ipkfFcTAQZO5Y8UNekSNAg==
+ t=1739438134; x=1770974134;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Ap4Bca+OT8HvthvYYpxHLzscKjITjLonsIW7ZdxBBRg=;
+ b=BHKT3uQumz5oAM00dNK8Oy+GAX9PMmcJwH3Ou1yN93u/wFuLbejXp/5o
+ 3ZniJmfxEEfEnuDxcOePziMuWfr2ojFOuM64eKPFcO4Iok7xarsElYvg+
+ wCVcAEOMXw1zmrt5zyn3Sn3wl682JoB126OXU1mjUvoPykfxS2EZkKE0z
+ nIhy1uTaEchXkDbav7iV0y6pdHBGIPOiBOR4mQc9fKLxNaQjZi/UJSwNL
+ G2rfvGJGdR5eqnSWNVh2Y5NhePlYDp67pqcISUPZFmDVfonGhjwUIiKA3
+ dsq9u8CHgwUr/gSlfX5YoGokcfyDVNHmeyhpwc03gPbUSNjdJVJ1gaHJX Q==;
+X-CSE-ConnectionGUID: Ta4TeSTuS1OB7Uh9NpDt4w==
+X-CSE-MsgGUID: QGszCGaNSpeo56grfvSCaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11343"; a="57662332"
+X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="57662332"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2025 01:15:34 -0800
+X-CSE-ConnectionGUID: RRexv39ZQia71NZ3O+oYhw==
+X-CSE-MsgGUID: PBmEvGnYREisKi4ghJVstA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,282,1732608000"; d="scan'208";a="113613616"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.243])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2025 01:15:13 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 02/14] drm/i915/hdmi: convert g4x_hdmi.[ch] to struct
- intel_display
-In-Reply-To: <SN7PR11MB6750DD603EED3A6002849BB6E3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="144033007"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Feb 2025 01:15:34 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 13 Feb 2025 01:15:33 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Thu, 13 Feb 2025 01:15:33 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 13 Feb 2025 01:15:33 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZgKRatpkw1KMuENVQEvbPjuL/SfAY/9O7Dp/thasbZOx/7rrs4vZ8ZDaVAX6KLk+nQR+WMJ5tBkzPckOwxQ/eGY6aU5JjAVwnF1EBvE/gtHZ9yG/GZkXbH4R63oM/KC7N/Y9RZNlDZzdvOVCLbsaQjw9uHMoxYsOBU/8QVIrLpCWaeB2MM9UHPQuzu2zx+i1MIzdzufrIgdsts7A7xGnRYAGT47ZnKHVjclHWu9o/VSdXZ6eZLwQ7bMJ/T+aKvFYfbFcUb/U4dser9ycxE7c6cgrpKyNT5nrbkf0XvfmLTNmLHWJrFfpLXgaZcFXiMLT+QtVIBUZDpZsOGTYiB+R7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7fWC216bnPGNWadqyJjMESS7zh54qVg8D46PI1AkIW8=;
+ b=a00vqx1LLiS9aBMxhIwreiHrrx+4woayq3cQ2q2zZZ/EAnaOCO/VI+dyz4jxu0K+5jVND6+O9LtrpXNH7dxKN/7iFMiTtCdNUkZ3lJgZywX8yJwt38Rv+J1GFOgmkVHvwsn7baXF0K2OJtA2dzNNYAwhHyQKpNb1+YV4ahCGBn//nWFvh63qbKFX2JHLdCtnSEKejRDs7uA6rJoO8fPUJYQM+dYx6ToOw8oo8ir5lI3QHV++05y5eQXC1hJ3coX4Zw+iapyZJeXdHY2lDS1pEs8r5D+98JHUC0scBIqLmeANzm3cNpDpkj7CV6GtK6N4mqxhNuy7h7VtW5aBNzrEew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by DS7PR11MB6013.namprd11.prod.outlook.com (2603:10b6:8:70::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8445.13; Thu, 13 Feb
+ 2025 09:15:31 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8445.013; Thu, 13 Feb 2025
+ 09:15:31 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Nikula, Jani" <jani.nikula@intel.com>
+Subject: RE: [PATCH 09/14] drm/i915/display: convert
+ intel_cpu_transcoder_mode_valid() to intel_display
+Thread-Topic: [PATCH 09/14] drm/i915/display: convert
+ intel_cpu_transcoder_mode_valid() to intel_display
+Thread-Index: AQHbfWx7RnTkFv4NkkuByheAfEhXGLNE9LBg
+Date: Thu, 13 Feb 2025 09:15:31 +0000
+Message-ID: <SN7PR11MB67507D6FA513715B66D70F03E3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1739378095.git.jani.nikula@intel.com>
- <4fbaaa4cdab8ec020e5b3fb2f615b3c244c9da2d.1739378095.git.jani.nikula@intel.com>
- <SN7PR11MB6750DD603EED3A6002849BB6E3FF2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Thu, 13 Feb 2025 11:15:09 +0200
-Message-ID: <87seoixl2a.fsf@intel.com>
+ <f9246a00a2e7aabaffb86f863915a4307e1fd3f8.1739378095.git.jani.nikula@intel.com>
+In-Reply-To: <f9246a00a2e7aabaffb86f863915a4307e1fd3f8.1739378095.git.jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|DS7PR11MB6013:EE_
+x-ms-office365-filtering-correlation-id: 33561161-60bb-4c72-b2a4-08dd4c0ef6d8
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?QKJtuadggm+s6ZuWZL1q6XBr1UmBO2XnVB1zc1aV+yp9sBUrJRVtTQ+00ExK?=
+ =?us-ascii?Q?a4JhnPXUV5+3KDddcjIUFbJRIZVIMG2JH7qRicmf5cZJ3BPC+1GwDOZyX39g?=
+ =?us-ascii?Q?4dH1EQpJmsYn8CuhjvNqQgf+s6eYmeQa7y/IUnHxw9SJFF24yfLv2aIOe+Ur?=
+ =?us-ascii?Q?rlypkL0viJJrZ5ZPbRKtFaDr1bKJnGvPtudo2R5xKKLhIXpf2FnbwIcyGNAB?=
+ =?us-ascii?Q?q7R5CALvwMEAzOky1ZHMca6/uTPZsPO07b6+YhEFfNqWhMp+yOLA7IJcDfet?=
+ =?us-ascii?Q?ATNuCANX8l4fk39Glh+vWo2eMgwuDT7Z0XHEW96Ki+G1Acx8ZxlCe7B4QBn1?=
+ =?us-ascii?Q?X1wqhqmyXJ2YZkvaaU2B3Tm0csPYlYEwCVrSQyw1ANS2fKI4IM5PU/vxB455?=
+ =?us-ascii?Q?SX4OXudvTrxXHmij3Xs02h3tgswAPShtlkXRmy6NRSe81xFIEa+7UF/YTWw5?=
+ =?us-ascii?Q?5h4/rblXLOINtxWtJDRXmOlK31vSwgj4za4FW5iiUZCoxY9675efXypMw93L?=
+ =?us-ascii?Q?2tVHkDPqAj5EY9Qx50le8wtdIVtksHLggkcdy8hhj/sdh9oEZPnKTzEhqJOa?=
+ =?us-ascii?Q?8DpOr+PdmCHh4aR3TjRolAnlsIlxa4OlsDNlOhkXas0X4w3ClOIPFGX2DrZj?=
+ =?us-ascii?Q?RcIzKdxLMzo+5oCfn/LlstJPwqMh3fGPSyF/sOIIasPFmhXIcBaCzvArDTTv?=
+ =?us-ascii?Q?/cxrBOAm3AD7eVmEAqSF8n5/znjcDIxIqicNmh8DqAgEmgOr+0yBbEaypWJq?=
+ =?us-ascii?Q?aymfPsMQD4BGNpgsHyuDqRSPCkHlurjOo63jbx16Beocc/l6QYgrTUaj6si7?=
+ =?us-ascii?Q?k4AYheMwgK9egH9uyz92el/qJ2yRCNoEr39iRC0a17gTnabCjBhkpmEsmnEr?=
+ =?us-ascii?Q?7N/BqSD6wVWD08AtLChXxZKgaFPM/SBZ8TNetntR5gi3mJqgpHop9bW1FgWE?=
+ =?us-ascii?Q?XxxZ40We9eQKnwqRrQVP+WIO/pSrOs+h9mreXF0x5KAsHQVZtjJ6XHQY8JS0?=
+ =?us-ascii?Q?Vsj63rAV2sW9HfaaFDc9l5sI7qp7RKc0Df1d2LGGssCRuXgrh4w0semCeEht?=
+ =?us-ascii?Q?HMSWEMHGi3u2FLS1aLG4UT3JG8GKXxcqBfCo/xOSkIu84ngq+69MoP8Crzaj?=
+ =?us-ascii?Q?AcQW6hO0vuM480LbfR497MLqbmENcR3PnBEqkS8M8OgFFJKg43ftEyhbMYgH?=
+ =?us-ascii?Q?vGqMNi0sn4vnU20tibH7PFdXMQjg6GdgijUHGjbm4feQT+/7PbFN04hnaBX8?=
+ =?us-ascii?Q?ncaT5kuN64bnIbNtX00RG8pLdluN+Etnaj5fwROzCKmMHKkRDKBZmepkAGJX?=
+ =?us-ascii?Q?sC9+q8BJB9TEvwECLGPt7ONgBID4DVmmCcoEaSieKNNmPFwysAUnqUQHnHI5?=
+ =?us-ascii?Q?NscSylEoGaatXfRs46g7A4hIi8qi1LuPf/L07V3z6w7HHnCL4vAXbmHWj40W?=
+ =?us-ascii?Q?5lWENTYRL8TqycNDYEmYGWneSWENP0Hj?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?s2qNN5Yr6yHJtezW02LLCKJ0XAw8vxR37hUWmsL+MlQssoFW08w1Vwh+mi78?=
+ =?us-ascii?Q?hyDC99uZ7L4biJfRKwj5odl9GeuSZmmCDyb2ayrR4uYjVAKhl5EIC7f6q27Y?=
+ =?us-ascii?Q?Cg9IqptwdF4qe6NHsBX5jNU1MCf8OJqsT7lz7EVFry6YyhctEP25V/3Q7tOF?=
+ =?us-ascii?Q?DQLRx7pCIMpJBSOxG0YECiwphqNY0j2ZhtW+Z5mPyENLapAAXo3DhH7wmlkj?=
+ =?us-ascii?Q?jACGNOK7QavGLrwV994R4UyN4ohW09FImz9L/EzEgit1LLHjNPJHoiXe9ISN?=
+ =?us-ascii?Q?rYcKuzx3l1F2gXuzvvrqA+hVUbgF/9Hcuzj0Oj6paDb7UY/PA1B+AU66FuWp?=
+ =?us-ascii?Q?jxmkNqtvPUMbKR4TkEK8334Ndsp9c0lLO6JMGWMgE2pQDLzcWwnfgyd1YInS?=
+ =?us-ascii?Q?NMyYD1/yQC+RuCq8HyQAV64e8c48gsBkmLlEPBe0EgiBWXXnMJeiWmDPEvRO?=
+ =?us-ascii?Q?5oljbEFQ547YJTb1Z7llyVIke+1dyoKEiovssZJsg9UGQ58WSiQ9DFGvkTDm?=
+ =?us-ascii?Q?wXSXJBuv7l84FTTffNB39y7x+dkp2VleNIoliDXu0OVNAkevQXfG+cyp6j0b?=
+ =?us-ascii?Q?HivjlMFyj6xrhsFFad1qcjhEZCBsWIDNmGOne4nqCOxT8JiOHCMw/b31B3Fj?=
+ =?us-ascii?Q?3NInKO+15mozHerefnfPSTa39e2bHOuPcU/uYkrinwUdbmViMQhcTM6HWVvm?=
+ =?us-ascii?Q?we2A7bHNOklGm9TGFitnwm9Uz/EOkxttgjVhGZO3kO+m6CgN83Uip75p5Lo8?=
+ =?us-ascii?Q?s2nWz3icQZl3RWg5LFi3/VQDIaMNb3kLnG4HFWuxES91WUvOqEY5EoJ6zH+P?=
+ =?us-ascii?Q?koZufpZmbxxQmZsy/gGadpwfbt//F41WYE7xClCMYX0KnpQKud/8cGjOh1ei?=
+ =?us-ascii?Q?ru0I7BiAL142CE2Z5H4SXtSFZusc35cDcrLkUCQVvsaTZDk5xe4K/qVh1kkE?=
+ =?us-ascii?Q?LFP+VdewGjMHYKRwr/70NG5rf7dMo3jIL7l0SbGcaO3unSSBeAWf6vRXnRlT?=
+ =?us-ascii?Q?YNsyoREv+3StmY5iE5kESGtDoVfsaz27Qq39cQ69/nOsCCg52samcue9mxYP?=
+ =?us-ascii?Q?MeRE7QTut4e4knIrz4zIpts1lMiJuZMPsYhtWPelnGFiUBrhVJ2CaAPwV08Q?=
+ =?us-ascii?Q?cWtzl+Vev43yUcYrGHcPpfag4E3r2iDRkEvM2T33nFaIYJhD1efObnmIiQqH?=
+ =?us-ascii?Q?fHq/TcTXs2XJVJ0FWUD+h9gQ1qX98af5nY2EO6hr3olXq51DMGLtZP1FukcR?=
+ =?us-ascii?Q?oCikFjUcFCprMq36NL3UpJ2i3M/GVU7sqfM/FdQDkKgVRslmfDBXRCtpIazy?=
+ =?us-ascii?Q?aZ849EQuQqeyXQYOzwNGa3DMzolEGdIGaLRN/Jak6tjZo5m3W6I+hX1R9OtW?=
+ =?us-ascii?Q?kGutAcMivqPD+3N6Cova5Z4I5dtZriHbWjdEe7jry4y4n5IIKg044ziFVWxx?=
+ =?us-ascii?Q?1lcbJ0WTWqLikKVhKMWVWQX7ilrnQ/4jm1ORbrl0USkMp1R4Ku8oQ3sj8UOh?=
+ =?us-ascii?Q?+ZQCKMahbDZFJ4/VjFk/UpgbcLt4gOUWr43vWeFmQpSP+yN7rxQfZfHLn5U7?=
+ =?us-ascii?Q?itTruEdyWBeeVQ0wbUVn7WPh4ScDMadMH3odh4wF?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33561161-60bb-4c72-b2a4-08dd4c0ef6d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Feb 2025 09:15:31.1010 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j5pksKUubIv8Gv6FVSPO63WC4mHA4p78k1PQw0zxgW3nv0wYqWPSJP6r2ZbrIS2IKEpCSCtcl4ILTdWh0MHmJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6013
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,596 +186,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Wednesday, February 12, 2025 10:07 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH 02/14] drm/i915/hdmi: convert g4x_hdmi.[ch] to struct
->> intel_display
->>
->> Going forward, struct intel_display is the main display device data pointer.
->> Convert as much as possible of g4x_hdmi.[ch] to struct intel_display.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/g4x_hdmi.c      | 139 +++++++++----------
->>  drivers/gpu/drm/i915/display/g4x_hdmi.h      |   6 +-
->>  drivers/gpu/drm/i915/display/intel_display.c |  16 +--
->>  3 files changed, 79 insertions(+), 82 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c
->> b/drivers/gpu/drm/i915/display/g4x_hdmi.c
->> index 9e1ca7767392..6670cf101b9a 100644
->> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
->> @@ -27,8 +27,8 @@
->>  static void intel_hdmi_prepare(struct intel_encoder *encoder,
->>                              const struct intel_crtc_state *crtc_state)  {
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->> +     struct drm_i915_private *dev_priv = to_i915(display->drm);
->
-> Nit: If we are changing having a change here why not rename it to i915 too.
-> It's going to be useless in future since we want to remove drm_i915_private
-> Usage altogether but in the meantime why not follow the i915 naming convention.
 
-I'm keeping it dev_priv to avoid unrelated changes below. And as you
-say, all of them will need to be removed anyway.
 
->
-> Otherwise LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
->>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->>       const struct drm_display_mode *adjusted_mode = &crtc_state-
->> >hw.adjusted_mode; @@ -54,13 +54,13 @@ static void
->> intel_hdmi_prepare(struct intel_encoder *encoder,
->>
->>       if (HAS_PCH_CPT(dev_priv))
->>               hdmi_val |= SDVO_PIPE_SEL_CPT(crtc->pipe);
->> -     else if (IS_CHERRYVIEW(dev_priv))
->> +     else if (display->platform.cherryview)
->>               hdmi_val |= SDVO_PIPE_SEL_CHV(crtc->pipe);
->>       else
->>               hdmi_val |= SDVO_PIPE_SEL(crtc->pipe);
->>
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, hdmi_val);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, hdmi_val);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>  }
->>
->>  static bool intel_hdmi_get_hw_state(struct intel_encoder *encoder, @@ -
->> 132,6 +132,7 @@ static int g4x_hdmi_compute_config(struct intel_encoder
->> *encoder,
->>                                  struct intel_crtc_state *crtc_state,
->>                                  struct drm_connector_state *conn_state)  {
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_atomic_state *state = to_intel_atomic_state(crtc_state-
->> >uapi.state);
->>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>       struct drm_i915_private *i915 = to_i915(encoder->base.dev); @@ -
->> 142,7 +143,7 @@ static int g4x_hdmi_compute_config(struct intel_encoder
->> *encoder,
->>                       return -EINVAL;
->>       }
->>
->> -     if (IS_G4X(i915))
->> +     if (display->platform.g4x)
->>               crtc_state->has_hdmi_sink =
->> g4x_compute_has_hdmi_sink(state, crtc);
->>       else
->>               crtc_state->has_hdmi_sink =
->> @@ -154,15 +155,15 @@ static int g4x_hdmi_compute_config(struct
->> intel_encoder *encoder,  static void intel_hdmi_get_config(struct
->> intel_encoder *encoder,
->>                                 struct intel_crtc_state *pipe_config)  {
->> +     struct intel_display *display = to_intel_display(encoder);
->> +     struct drm_i915_private *dev_priv = to_i915(display->drm);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->>       u32 tmp, flags = 0;
->>       int dotclock;
->>
->>       pipe_config->output_types |= BIT(INTEL_OUTPUT_HDMI);
->>
->> -     tmp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     tmp = intel_de_read(display, intel_hdmi->hdmi_reg);
->>
->>       if (tmp & SDVO_HSYNC_ACTIVE_HIGH)
->>               flags |= DRM_MODE_FLAG_PHSYNC;
->> @@ -222,33 +223,32 @@ static void intel_hdmi_get_config(struct
->> intel_encoder *encoder,  static void g4x_hdmi_enable_port(struct
->> intel_encoder *encoder,
->>                                const struct intel_crtc_state *pipe_config)  {
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->>       u32 temp;
->>
->> -     temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     temp = intel_de_read(display, intel_hdmi->hdmi_reg);
->>
->>       temp |= SDVO_ENABLE;
->>
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>  }
->>
->>  static void g4x_hdmi_audio_enable(struct intel_encoder *encoder,
->>                                 const struct intel_crtc_state *crtc_state,
->>                                 const struct drm_connector_state
->> *conn_state)  {
->> -     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_hdmi *hdmi = enc_to_intel_hdmi(encoder);
->>
->>       if (!crtc_state->has_audio)
->>               return;
->>
->> -     drm_WARN_ON(&i915->drm, !crtc_state->has_hdmi_sink);
->> +     drm_WARN_ON(display->drm, !crtc_state->has_hdmi_sink);
->>
->>       /* Enable audio presence detect */
->> -     intel_de_rmw(i915, hdmi->hdmi_reg, 0, HDMI_AUDIO_ENABLE);
->> +     intel_de_rmw(display, hdmi->hdmi_reg, 0, HDMI_AUDIO_ENABLE);
->>
->>       intel_audio_codec_enable(encoder, crtc_state, conn_state);  } @@ -
->> 257,7 +257,7 @@ static void g4x_hdmi_audio_disable(struct intel_encoder
->> *encoder,
->>                                  const struct intel_crtc_state *old_crtc_state,
->>                                  const struct drm_connector_state
->> *old_conn_state)  {
->> -     struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_hdmi *hdmi = enc_to_intel_hdmi(encoder);
->>
->>       if (!old_crtc_state->has_audio)
->> @@ -266,7 +266,7 @@ static void g4x_hdmi_audio_disable(struct
->> intel_encoder *encoder,
->>       intel_audio_codec_disable(encoder, old_crtc_state, old_conn_state);
->>
->>       /* Disable audio presence detect */
->> -     intel_de_rmw(i915, hdmi->hdmi_reg, HDMI_AUDIO_ENABLE, 0);
->> +     intel_de_rmw(display, hdmi->hdmi_reg, HDMI_AUDIO_ENABLE, 0);
->>  }
->>
->>  static void g4x_enable_hdmi(struct intel_atomic_state *state, @@ -282,12
->> +282,11 @@ static void ibx_enable_hdmi(struct intel_atomic_state *state,
->>                           const struct intel_crtc_state *pipe_config,
->>                           const struct drm_connector_state *conn_state)  {
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->>       u32 temp;
->>
->> -     temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     temp = intel_de_read(display, intel_hdmi->hdmi_reg);
->>
->>       temp |= SDVO_ENABLE;
->>
->> @@ -295,10 +294,10 @@ static void ibx_enable_hdmi(struct
->> intel_atomic_state *state,
->>        * HW workaround, need to write this twice for issue
->>        * that may result in first write getting masked.
->>        */
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>       /*
->>        * HW workaround, need to toggle enable bit off and on @@ -
->> 309,18 +308,18 @@ static void ibx_enable_hdmi(struct intel_atomic_state
->> *state,
->>        */
->>       if (pipe_config->pipe_bpp > 24 &&
->>           pipe_config->pixel_multiplier > 1) {
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg,
->> +             intel_de_write(display, intel_hdmi->hdmi_reg,
->>                              temp & ~SDVO_ENABLE);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>               /*
->>                * HW workaround, need to write this twice for issue
->>                * that may result in first write getting masked.
->>                */
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>       }
->>  }
->>
->> @@ -329,14 +328,13 @@ static void cpt_enable_hdmi(struct
->> intel_atomic_state *state,
->>                           const struct intel_crtc_state *pipe_config,
->>                           const struct drm_connector_state *conn_state)  {
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->>       struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->>       enum pipe pipe = crtc->pipe;
->>       u32 temp;
->>
->> -     temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     temp = intel_de_read(display, intel_hdmi->hdmi_reg);
->>
->>       temp |= SDVO_ENABLE;
->>
->> @@ -351,24 +349,24 @@ static void cpt_enable_hdmi(struct
->> intel_atomic_state *state,
->>        */
->>
->>       if (pipe_config->pipe_bpp > 24) {
->> -             intel_de_rmw(dev_priv, TRANS_CHICKEN1(pipe),
->> +             intel_de_rmw(display, TRANS_CHICKEN1(pipe),
->>                            0, TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
->>
->>               temp &= ~SDVO_COLOR_FORMAT_MASK;
->>               temp |= SDVO_COLOR_FORMAT_8bpc;
->>       }
->>
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>       if (pipe_config->pipe_bpp > 24) {
->>               temp &= ~SDVO_COLOR_FORMAT_MASK;
->>               temp |= HDMI_COLOR_FORMAT_12bpc;
->>
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->> -             intel_de_rmw(dev_priv, TRANS_CHICKEN1(pipe),
->> +             intel_de_rmw(display, TRANS_CHICKEN1(pipe),
->>                            TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE, 0);
->>       }
->>  }
->> @@ -386,19 +384,18 @@ static void intel_disable_hdmi(struct
->> intel_atomic_state *state,
->>                              const struct drm_connector_state
->> *old_conn_state)  {
->>       struct intel_display *display = to_intel_display(encoder);
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct drm_i915_private *dev_priv = to_i915(display->drm);
->>       struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
->>       struct intel_digital_port *dig_port =
->>               hdmi_to_dig_port(intel_hdmi);
->>       struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
->>       u32 temp;
->>
->> -     temp = intel_de_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     temp = intel_de_read(display, intel_hdmi->hdmi_reg);
->>
->>       temp &= ~SDVO_ENABLE;
->> -     intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -     intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +     intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +     intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>       /*
->>        * HW workaround for IBX, we need to move the port @@ -419,14
->> +416,14 @@ static void intel_disable_hdmi(struct intel_atomic_state *state,
->>                * HW workaround, need to write this twice for issue
->>                * that may result in first write getting masked.
->>                */
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>               temp &= ~SDVO_ENABLE;
->> -             intel_de_write(dev_priv, intel_hdmi->hdmi_reg, temp);
->> -             intel_de_posting_read(dev_priv, intel_hdmi->hdmi_reg);
->> +             intel_de_write(display, intel_hdmi->hdmi_reg, temp);
->> +             intel_de_posting_read(display, intel_hdmi->hdmi_reg);
->>
->>               intel_wait_for_vblank_if_active(display, PIPE_A);
->>               intel_set_cpu_fifo_underrun_reporting(dev_priv, PIPE_A,
->> true); @@ -544,8 +541,8 @@ static void chv_hdmi_post_disable(struct
->> intel_atomic_state *state,
->>                                 const struct intel_crtc_state *old_crtc_state,
->>                                 const struct drm_connector_state
->> *old_conn_state)  {
->> -     struct drm_device *dev = encoder->base.dev;
->> -     struct drm_i915_private *dev_priv = to_i915(dev);
->> +     struct intel_display *display = to_intel_display(encoder);
->> +     struct drm_i915_private *dev_priv = to_i915(display->drm);
->>
->>       vlv_dpio_get(dev_priv);
->>
->> @@ -614,7 +611,7 @@ intel_hdmi_hotplug(struct intel_encoder *encoder,
->> int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
->>                                   struct drm_atomic_state *state)  {
->> -     struct drm_i915_private *i915 = to_i915(state->dev);
->> +     struct intel_display *display = to_intel_display(connector->dev);
->>       struct drm_connector_list_iter conn_iter;
->>       struct drm_connector *conn;
->>       int ret;
->> @@ -623,7 +620,7 @@ int g4x_hdmi_connector_atomic_check(struct
->> drm_connector *connector,
->>       if (ret)
->>               return ret;
->>
->> -     if (!IS_G4X(i915))
->> +     if (!display->platform.g4x)
->>               return 0;
->>
->>       if (!intel_connector_needs_modeset(to_intel_atomic_state(state),
->> connector)) @@ -637,7 +634,7 @@ int
->> g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
->>        *
->>        * See also g4x_compute_has_hdmi_sink().
->>        */
->> -     drm_connector_list_iter_begin(&i915->drm, &conn_iter);
->> +     drm_connector_list_iter_begin(display->drm, &conn_iter);
->>       drm_for_each_connector_iter(conn, &conn_iter) {
->>               struct drm_connector_state *conn_state;
->>               struct drm_crtc_state *crtc_state;
->> @@ -646,7 +643,7 @@ int g4x_hdmi_connector_atomic_check(struct
->> drm_connector *connector,
->>               if (!connector_is_hdmi(conn))
->>                       continue;
->>
->> -             drm_dbg_kms(&i915->drm, "Adding
->> [CONNECTOR:%d:%s]\n",
->> +             drm_dbg_kms(display->drm, "Adding
->> [CONNECTOR:%d:%s]\n",
->>                           conn->base.id, conn->name);
->>
->>               conn_state = drm_atomic_get_connector_state(state, conn);
->> @@ -671,24 +668,24 @@ int g4x_hdmi_connector_atomic_check(struct
->> drm_connector *connector,
->>       return ret;
->>  }
->>
->> -static bool is_hdmi_port_valid(struct drm_i915_private *i915, enum port
->> port)
->> +static bool is_hdmi_port_valid(struct intel_display *display, enum port
->> +port)
->>  {
->> -     if (IS_G4X(i915) || IS_VALLEYVIEW(i915))
->> +     if (display->platform.g4x || display->platform.valleyview)
->>               return port == PORT_B || port == PORT_C;
->>       else
->>               return port == PORT_B || port == PORT_C || port ==
->> PORT_D;  }
->>
->> -static bool assert_hdmi_port_valid(struct drm_i915_private *i915, enum
->> port port)
->> +static bool assert_hdmi_port_valid(struct intel_display *display, enum
->> +port port)
->>  {
->> -     return !drm_WARN(&i915->drm, !is_hdmi_port_valid(i915, port),
->> +     return !drm_WARN(display->drm, !is_hdmi_port_valid(display,
->> port),
->>                        "Platform does not support HDMI %c\n",
->> port_name(port));  }
->>
->> -bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->> +bool g4x_hdmi_init(struct intel_display *display,
->>                  i915_reg_t hdmi_reg, enum port port)  {
->> -     struct intel_display *display = &dev_priv->display;
->> +     struct drm_i915_private *dev_priv = to_i915(display->drm);
->>       const struct intel_bios_encoder_data *devdata;
->>       struct intel_digital_port *dig_port;
->>       struct intel_encoder *intel_encoder;
->> @@ -697,14 +694,14 @@ bool g4x_hdmi_init(struct drm_i915_private
->> *dev_priv,
->>       if (!assert_port_valid(dev_priv, port))
->>               return false;
->>
->> -     if (!assert_hdmi_port_valid(dev_priv, port))
->> +     if (!assert_hdmi_port_valid(display, port))
->>               return false;
->>
->>       devdata = intel_bios_encoder_data_lookup(display, port);
->>
->>       /* FIXME bail? */
->>       if (!devdata)
->> -             drm_dbg_kms(&dev_priv->drm, "No VBT child device for
->> HDMI-%c\n",
->> +             drm_dbg_kms(display->drm, "No VBT child device for HDMI-
->> %c\n",
->>                           port_name(port));
->>
->>       dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL); @@ -723,7
->> +720,7 @@ bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->>
->>       mutex_init(&dig_port->hdcp_mutex);
->>
->> -     if (drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
->> +     if (drm_encoder_init(display->drm, &intel_encoder->base,
->>                            &intel_hdmi_enc_funcs,
->> DRM_MODE_ENCODER_TMDS,
->>                            "HDMI %c", port_name(port)))
->>               goto err_encoder_init;
->> @@ -738,13 +735,13 @@ bool g4x_hdmi_init(struct drm_i915_private
->> *dev_priv,
->>       }
->>       intel_encoder->get_hw_state = intel_hdmi_get_hw_state;
->>       intel_encoder->get_config = intel_hdmi_get_config;
->> -     if (IS_CHERRYVIEW(dev_priv)) {
->> +     if (display->platform.cherryview) {
->>               intel_encoder->pre_pll_enable = chv_hdmi_pre_pll_enable;
->>               intel_encoder->pre_enable = chv_hdmi_pre_enable;
->>               intel_encoder->enable = vlv_enable_hdmi;
->>               intel_encoder->post_disable = chv_hdmi_post_disable;
->>               intel_encoder->post_pll_disable =
->> chv_hdmi_post_pll_disable;
->> -     } else if (IS_VALLEYVIEW(dev_priv)) {
->> +     } else if (display->platform.valleyview) {
->>               intel_encoder->pre_pll_enable = vlv_hdmi_pre_pll_enable;
->>               intel_encoder->pre_enable = vlv_hdmi_pre_enable;
->>               intel_encoder->enable = vlv_enable_hdmi; @@ -765,7
->> +762,7 @@ bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->>       intel_encoder->type = INTEL_OUTPUT_HDMI;
->>       intel_encoder->power_domain =
->> intel_display_power_ddi_lanes_domain(display, port);
->>       intel_encoder->port = port;
->> -     if (IS_CHERRYVIEW(dev_priv)) {
->> +     if (display->platform.cherryview) {
->>               if (port == PORT_D)
->>                       intel_encoder->pipe_mask = BIT(PIPE_C);
->>               else
->> @@ -780,7 +777,7 @@ bool g4x_hdmi_init(struct drm_i915_private
->> *dev_priv,
->>        * to work on real hardware. And since g4x can send infoframes to
->>        * only one port anyway, nothing is lost by allowing it.
->>        */
->> -     if (IS_G4X(dev_priv))
->> +     if (display->platform.g4x)
->>               intel_encoder->cloneable |= BIT(INTEL_OUTPUT_HDMI);
->>
->>       dig_port->hdmi.hdmi_reg = hdmi_reg;
->> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.h
->> b/drivers/gpu/drm/i915/display/g4x_hdmi.h
->> index a52e8986ec7a..039d2bdba06c 100644
->> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.h
->> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.h
->> @@ -13,15 +13,15 @@
->>  enum port;
->>  struct drm_atomic_state;
->>  struct drm_connector;
->> -struct drm_i915_private;
->> +struct intel_display;
->>
->>  #ifdef I915
->> -bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->> +bool g4x_hdmi_init(struct intel_display *display,
->>                  i915_reg_t hdmi_reg, enum port port);  int
->> g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
->>                                   struct drm_atomic_state *state);  #else -
->> static inline bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
->> +static inline bool g4x_hdmi_init(struct intel_display *display,
->>                                i915_reg_t hdmi_reg, int port)
->>  {
->>       return false;
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
->> b/drivers/gpu/drm/i915/display/intel_display.c
->> index e5ceedf56335..b8c57a5d26a0 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -8235,16 +8235,16 @@ void intel_setup_outputs(struct
->> drm_i915_private *dev_priv)
->>                       /* PCH SDVOB multiplex with HDMIB */
->>                       found = intel_sdvo_init(dev_priv, PCH_SDVOB,
->> PORT_B);
->>                       if (!found)
->> -                             g4x_hdmi_init(dev_priv, PCH_HDMIB,
->> PORT_B);
->> +                             g4x_hdmi_init(display, PCH_HDMIB,
->> PORT_B);
->>                       if (!found && (intel_de_read(dev_priv, PCH_DP_B) &
->> DP_DETECTED))
->>                               g4x_dp_init(display, PCH_DP_B, PORT_B);
->>               }
->>
->>               if (intel_de_read(dev_priv, PCH_HDMIC) & SDVO_DETECTED)
->> -                     g4x_hdmi_init(dev_priv, PCH_HDMIC, PORT_C);
->> +                     g4x_hdmi_init(display, PCH_HDMIC, PORT_C);
->>
->>               if (!dpd_is_edp && intel_de_read(dev_priv, PCH_HDMID) &
->> SDVO_DETECTED)
->> -                     g4x_hdmi_init(dev_priv, PCH_HDMID, PORT_D);
->> +                     g4x_hdmi_init(display, PCH_HDMID, PORT_D);
->>
->>               if (intel_de_read(dev_priv, PCH_DP_C) & DP_DETECTED)
->>                       g4x_dp_init(display, PCH_DP_C, PORT_C); @@ -
->> 8277,14 +8277,14 @@ void intel_setup_outputs(struct drm_i915_private
->> *dev_priv)
->>               if (intel_de_read(dev_priv, VLV_DP_B) & DP_DETECTED ||
->> has_port)
->>                       has_edp &= g4x_dp_init(display, VLV_DP_B,
->> PORT_B);
->>               if ((intel_de_read(dev_priv, VLV_HDMIB) & SDVO_DETECTED
->> || has_port) && !has_edp)
->> -                     g4x_hdmi_init(dev_priv, VLV_HDMIB, PORT_B);
->> +                     g4x_hdmi_init(display, VLV_HDMIB, PORT_B);
->>
->>               has_edp = intel_dp_is_port_edp(display, PORT_C);
->>               has_port = intel_bios_is_port_present(display, PORT_C);
->>               if (intel_de_read(dev_priv, VLV_DP_C) & DP_DETECTED ||
->> has_port)
->>                       has_edp &= g4x_dp_init(display, VLV_DP_C,
->> PORT_C);
->>               if ((intel_de_read(dev_priv, VLV_HDMIC) & SDVO_DETECTED
->> || has_port) && !has_edp)
->> -                     g4x_hdmi_init(dev_priv, VLV_HDMIC, PORT_C);
->> +                     g4x_hdmi_init(display, VLV_HDMIC, PORT_C);
->>
->>               if (IS_CHERRYVIEW(dev_priv)) {
->>                       /*
->> @@ -8295,7 +8295,7 @@ void intel_setup_outputs(struct drm_i915_private
->> *dev_priv)
->>                       if (intel_de_read(dev_priv, CHV_DP_D) &
->> DP_DETECTED || has_port)
->>                               g4x_dp_init(display, CHV_DP_D, PORT_D);
->>                       if (intel_de_read(dev_priv, CHV_HDMID) &
->> SDVO_DETECTED || has_port)
->> -                             g4x_hdmi_init(dev_priv, CHV_HDMID,
->> PORT_D);
->> +                             g4x_hdmi_init(display, CHV_HDMID,
->> PORT_D);
->>               }
->>
->>               vlv_dsi_init(dev_priv);
->> @@ -8316,7 +8316,7 @@ void intel_setup_outputs(struct drm_i915_private
->> *dev_priv)
->>                       if (!found && IS_G4X(dev_priv)) {
->>                               drm_dbg_kms(&dev_priv->drm,
->>                                           "probing HDMI on SDVOB\n");
->> -                             g4x_hdmi_init(dev_priv, GEN4_HDMIB,
->> PORT_B);
->> +                             g4x_hdmi_init(display, GEN4_HDMIB,
->> PORT_B);
->>                       }
->>
->>                       if (!found && IS_G4X(dev_priv))
->> @@ -8335,7 +8335,7 @@ void intel_setup_outputs(struct drm_i915_private
->> *dev_priv)
->>                       if (IS_G4X(dev_priv)) {
->>                               drm_dbg_kms(&dev_priv->drm,
->>                                           "probing HDMI on SDVOC\n");
->> -                             g4x_hdmi_init(dev_priv, GEN4_HDMIC,
->> PORT_C);
->> +                             g4x_hdmi_init(display, GEN4_HDMIC,
->> PORT_C);
->>                       }
->>                       if (IS_G4X(dev_priv))
->>                               g4x_dp_init(display, DP_C, PORT_C);
->> --
->> 2.39.5
->
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni
+> Nikula
+> Sent: Wednesday, February 12, 2025 10:07 PM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>
+> Subject: [PATCH 09/14] drm/i915/display: convert
+> intel_cpu_transcoder_mode_valid() to intel_display
+>=20
+> Going forward, struct intel_display is the main display device data point=
+er.
+> Convert the intel_cpu_transcoder_mode_valid()() helper to struct intel_di=
+splay,
+> allowing further conversions elsewhere.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
--- 
-Jani Nikula, Intel
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c       | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_crt.c     | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
+> drivers/gpu/drm/i915/display/intel_display.h | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c      | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dvo.c     | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c    | 2 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c    | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_sdvo.c    | 3 +--
+>  drivers/gpu/drm/i915/display/intel_tv.c      | 3 +--
+>  drivers/gpu/drm/i915/display/vlv_dsi.c       | 6 +++---
+>  12 files changed, 21 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 0f2a19690c18..1f0ff4000658 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -1460,10 +1460,10 @@ static void gen11_dsi_post_disable(struct
+> intel_atomic_state *state,  static enum drm_mode_status
+> gen11_dsi_mode_valid(struct drm_connector *connector,
+>  						 const struct
+> drm_display_mode *mode)  {
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> +	struct intel_display *display =3D to_intel_display(connector->dev);
+>  	enum drm_mode_status status;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c
+> b/drivers/gpu/drm/i915/display/intel_crt.c
+> index 8eedae1d7684..321580b095e7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -360,7 +360,7 @@ intel_crt_mode_valid(struct drm_connector
+> *connector,
+>  	enum drm_mode_status status;
+>  	int max_clock;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index e1186f46088d..7a25c84bfbac 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8464,14 +8464,14 @@ enum drm_mode_status intel_mode_valid(struct
+> drm_device *dev,
+>  	return MODE_OK;
+>  }
+>=20
+> -enum drm_mode_status intel_cpu_transcoder_mode_valid(struct
+> drm_i915_private *dev_priv,
+> +enum drm_mode_status intel_cpu_transcoder_mode_valid(struct
+> +intel_display *display,
+>  						     const struct
+> drm_display_mode *mode)  {
+>  	/*
+>  	 * Additional transcoder timing limits,
+>  	 * excluding BXT/GLK DSI transcoders.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >=3D 5) {
+> +	if (DISPLAY_VER(display) >=3D 5) {
+>  		if (mode->hdisplay < 64 ||
+>  		    mode->htotal - mode->hdisplay < 32)
+>  			return MODE_H_ILLEGAL;
+> @@ -8490,7 +8490,7 @@ enum drm_mode_status
+> intel_cpu_transcoder_mode_valid(struct drm_i915_private *de
+>  	 * Cantiga+ cannot handle modes with a hsync front porch of 0.
+>  	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
+>  	 */
+> -	if ((DISPLAY_VER(dev_priv) >=3D 5 || IS_G4X(dev_priv)) &&
+> +	if ((DISPLAY_VER(display) >=3D 5 || display->platform.g4x) &&
+>  	    mode->hsync_start =3D=3D mode->hdisplay)
+>  		return MODE_H_ILLEGAL;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> b/drivers/gpu/drm/i915/display/intel_display.h
+> index 9439da737f5b..08e28ea179d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -428,7 +428,7 @@ intel_mode_valid_max_plane_size(struct
+> drm_i915_private *dev_priv,
+>  				const struct drm_display_mode *mode,
+>  				int num_joined_pipes);
+>  enum drm_mode_status
+> -intel_cpu_transcoder_mode_valid(struct drm_i915_private *i915,
+> +intel_cpu_transcoder_mode_valid(struct intel_display *display,
+>  				const struct drm_display_mode *mode);
+> enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)=
+;
+> bool is_trans_port_sync_mode(const struct intel_crtc_state *state); diff =
+--git
+> a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9ed7d46143e9..61827b0fe95e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1407,7 +1407,7 @@ intel_dp_mode_valid(struct drm_connector
+> *_connector,
+>  	bool dsc =3D false;
+>  	int num_joined_pipes;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 459440dd6e87..38804254980b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -1481,7 +1481,7 @@ mst_connector_mode_valid_ctx(struct
+> drm_connector *_connector,
+>  		return 0;
+>  	}
+>=20
+> -	*status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	*status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (*status !=3D MODE_OK)
+>  		return 0;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c
+> b/drivers/gpu/drm/i915/display/intel_dvo.c
+> index 29f8788fb26a..c16fb34b737d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> @@ -219,16 +219,16 @@ static enum drm_mode_status
+> intel_dvo_mode_valid(struct drm_connector *_connector,
+>  		     const struct drm_display_mode *mode)  {
+> +	struct intel_display *display =3D to_intel_display(_connector->dev);
+>  	struct intel_connector *connector =3D to_intel_connector(_connector);
+> -	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	struct intel_dvo *intel_dvo =3D intel_attached_dvo(connector);
+>  	const struct drm_display_mode *fixed_mode =3D
+>  		intel_panel_fixed_mode(connector, mode);
+> -	int max_dotclk =3D to_i915(connector->base.dev)-
+> >display.cdclk.max_dotclk_freq;
+> +	int max_dotclk =3D display->cdclk.max_dotclk_freq;
+>  	int target_clock =3D mode->clock;
+>  	enum drm_mode_status status;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 015110fc57a2..60572deeffb3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2023,7 +2023,7 @@ intel_hdmi_mode_valid(struct drm_connector
+> *connector,
+>  	bool ycbcr_420_only;
+>  	enum intel_output_format sink_format;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(dev_priv, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c
+> b/drivers/gpu/drm/i915/display/intel_lvds.c
+> index 6b05db2c10ba..7ed8625193fe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> @@ -394,14 +394,14 @@ static enum drm_mode_status
+> intel_lvds_mode_valid(struct drm_connector *_connector,
+>  		      const struct drm_display_mode *mode)  {
+> +	struct intel_display *display =3D to_intel_display(_connector->dev);
+>  	struct intel_connector *connector =3D to_intel_connector(_connector);
+> -	struct drm_i915_private *i915 =3D to_i915(connector->base.dev);
+>  	const struct drm_display_mode *fixed_mode =3D
+>  		intel_panel_fixed_mode(connector, mode);
+> -	int max_pixclk =3D to_i915(connector->base.dev)-
+> >display.cdclk.max_dotclk_freq;
+> +	int max_pixclk =3D display->cdclk.max_dotclk_freq;
+>  	enum drm_mode_status status;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> index 1ae766212e8a..6e2d9929b4d7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> @@ -1943,7 +1943,6 @@ intel_sdvo_mode_valid(struct drm_connector
+> *connector,
+>  		      const struct drm_display_mode *mode)  {
+>  	struct intel_display *display =3D to_intel_display(connector->dev);
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+>  	struct intel_sdvo *intel_sdvo =3D
+> intel_attached_sdvo(to_intel_connector(connector));
+>  	struct intel_sdvo_connector *intel_sdvo_connector =3D
+>  		to_intel_sdvo_connector(connector);
+> @@ -1952,7 +1951,7 @@ intel_sdvo_mode_valid(struct drm_connector
+> *connector,
+>  	enum drm_mode_status status;
+>  	int clock =3D mode->clock;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_tv.c
+> b/drivers/gpu/drm/i915/display/intel_tv.c
+> index 7838c92f8ded..5dbe857ea85b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> @@ -960,12 +960,11 @@ intel_tv_mode_valid(struct drm_connector
+> *connector,
+>  		    const struct drm_display_mode *mode)  {
+>  	struct intel_display *display =3D to_intel_display(connector->dev);
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+>  	const struct tv_mode *tv_mode =3D intel_tv_mode_find(connector-
+> >state);
+>  	int max_dotclk =3D display->cdclk.max_dotclk_freq;
+>  	enum drm_mode_status status;
+>=20
+> -	status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +	status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  	if (status !=3D MODE_OK)
+>  		return status;
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> index d68876fe782c..7414794889e9 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1543,12 +1543,12 @@ static const struct drm_encoder_funcs
+> intel_dsi_funcs =3D {  static enum drm_mode_status vlv_dsi_mode_valid(str=
+uct
+> drm_connector *connector,
+>  					       const struct drm_display_mode
+> *mode)  {
+> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+> +	struct intel_display *display =3D to_intel_display(connector->dev);
+>=20
+> -	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+> +	if (display->platform.valleyview || display->platform.cherryview) {
+>  		enum drm_mode_status status;
+>=20
+> -		status =3D intel_cpu_transcoder_mode_valid(i915, mode);
+> +		status =3D intel_cpu_transcoder_mode_valid(display, mode);
+>  		if (status !=3D MODE_OK)
+>  			return status;
+>  	}
+> --
+> 2.39.5
+
