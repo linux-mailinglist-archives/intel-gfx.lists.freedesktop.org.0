@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9087A3601C
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45439A3601E
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:19:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B67D10ECA6;
-	Fri, 14 Feb 2025 14:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D34D210ECAB;
+	Fri, 14 Feb 2025 14:19:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C09s9sae";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aFN/cW5L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4EAA10ECA6;
- Fri, 14 Feb 2025 14:19:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0825810ECA6;
+ Fri, 14 Feb 2025 14:19:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739542743; x=1771078743;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oSy9VGFpWZzip9RFoC6TUuUR89vIUShMS+W9+7nQxhU=;
- b=C09s9sae2N9f3BCC6fYMv9ZdTMERuW65qQTVDZm3lMloWcR1bMAlhcFX
- WtZoBY1lMODhEGc7KlvzJiKqrTETbwfFxprPdKDpeXSpq+Nzr2bikt7vT
- 3i7ggC7x7SC/5dQsHLulJPCH1iow4x6lzvZMZOSANUlO7qepPbXxSFpb6
- aS9QZV5Om0BvY+179pigRFf1BaDZIHf3OomiOVQxyIq7LJRDaHZukmEYc
- wGPTA6RiWIGfdZ10rNK2DfsB8cMS0n1ZPne9vU+i0vcMRLImTn4fUi+PM
- 3hJcfGLSfQ2X+pL+UKNoojZ+3nVvt2q1vzD7MwpoE0PLTJNSngB8x5asM A==;
-X-CSE-ConnectionGUID: 3GQuxn2MTHqil/WKrQg/Bg==
-X-CSE-MsgGUID: Izj5BgfkQTqLr6fPJ7oiAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892488"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892488"
+ t=1739542744; x=1771078744;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=msQYmafI/c0c6tU2qwhGKbFDzHpUJGVMCjEFwmmEiI8=;
+ b=aFN/cW5L91AUjv4ZuDL1DxrRY3EIDM4sVDnDLC9/jB4yd0PTgZdgFArU
+ ZWrAPMPzjzKwaL3pM04Ju9PTLcGxCyfu9zmKLE+idccGshiU5hyF1lU7u
+ 3CUomNv63zGFSxnYhh4FYtKuzAY0mQwuKJgG8C8WXClKkq0SEkSjnPClE
+ IRyAm55DG3fVYXyzsd9mfzWlQuNDFw4/UuRrpu2ZrHIQIKhX3BJ+4TTbQ
+ vA390q2x9wWiBiTsk2zB4DajMceCQQjiAJWVuDRti3rIG9XTHlL4mL3dR
+ A1MNcrNU81C39ilz3K5KqfNeCR5tdSGYhnubppNlWMQokdo0HaYirFZwg Q==;
+X-CSE-ConnectionGUID: G1Mr9xf4QT2e10zdC/LaxQ==
+X-CSE-MsgGUID: /WL2WczHS+uX3F21TBa5/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892492"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892492"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:03 -0800
-X-CSE-ConnectionGUID: cubub92TRFmaPqW/tyP9Lg==
-X-CSE-MsgGUID: iFyml0MISmqAz1ghdHT2AQ==
+ 14 Feb 2025 06:19:04 -0800
+X-CSE-ConnectionGUID: kd6ijtDeQ2KhA1x0gJz80w==
+X-CSE-MsgGUID: RffigLOiSlCGZ+/NzdxFpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694211"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694225"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:01 -0800
+ 14 Feb 2025 06:19:02 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 00/11] drm/i915/ddi: Fix/simplify port enabling/disabling
-Date: Fri, 14 Feb 2025 16:19:50 +0200
-Message-ID: <20250214142001.552916-1-imre.deak@intel.com>
+Cc: stable@vger.kernel.org,
+	Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v2 01/11] drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port
+ width macro
+Date: Fri, 14 Feb 2025 16:19:51 +0200
+Message-ID: <20250214142001.552916-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
+In-Reply-To: <20250214142001.552916-1-imre.deak@intel.com>
+References: <20250214142001.552916-1-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,37 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This v2 of [1], addressing the review comments from Jani and adding Rbs.
-This version contains only the first half of the patchset, leaving the
-rest for a follow-up, since programming DDI_BUF_CTL via RMW contained in
-the latter part needs more thought.
+The format of the port width field in the DDI_BUF_CTL and the
+TRANS_DDI_FUNC_CTL registers are different starting with MTL, where the
+x3 lane mode for HDMI FRL has a different encoding in the two registers.
+To account for this use the TRANS_DDI_FUNC_CTL's own port width macro.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>
+Cc: <stable@vger.kernel.org> # v6.5+
+Fixes: b66a8abaa48a ("drm/i915/display/mtl: Fill port width in DDI_BUF_/TRANS_DDI_FUNC_/PORT_BUF_CTL for HDMI")
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-[1] https://patchwork.freedesktop.org/series/144122
-
-Imre Deak (11):
-  drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port width macro
-  drm/i915/ddi: Fix HDMI port width programming in DDI_BUF_CTL
-  drm/i915/ddi: Make all the PORT_WIDTH macros work the same way
-  drm/i915/ddi: Set missing TC DP PHY lane stagger delay in DDI_BUF_CTL
-  drm/i915/ddi: Simplify the port enabling via DDI_BUF_CTL
-  drm/i915/ddi: Simplify the port disabling via DDI_BUF_CTL
-  drm/i915/ddi: Simplify waiting for a port to get active/idle via
-    DDI_BUF_CTL
-  drm/i915/ddi: Move platform checks within
-    mtl_ddi_enable/disable_d2d_link()
-  drm/i915/ddi: Unify the platform specific functions disabling a port
-  drm/i915/ddi: Add a helper to enable a port
-  drm/i915/ddi: Sanitize DDI_BUF_CTL register definitions
-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |   3 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 256 +++++++-----------
- drivers/gpu/drm/i915/i915_reg.h               |  25 +-
- 4 files changed, 123 insertions(+), 165 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 9600c2a346d4c..5d3d54922d629 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -805,8 +805,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+ 		/* select data lane width */
+ 		tmp = intel_de_read(display,
+ 				    TRANS_DDI_FUNC_CTL(display, dsi_trans));
+-		tmp &= ~DDI_PORT_WIDTH_MASK;
+-		tmp |= DDI_PORT_WIDTH(intel_dsi->lane_count);
++		tmp &= ~TRANS_DDI_PORT_WIDTH_MASK;
++		tmp |= TRANS_DDI_PORT_WIDTH(intel_dsi->lane_count);
+ 
+ 		/* select input pipe */
+ 		tmp &= ~TRANS_DDI_EDP_INPUT_MASK;
 -- 
 2.44.2
 
