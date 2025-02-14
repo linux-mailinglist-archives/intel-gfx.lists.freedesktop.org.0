@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A422FA36021
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A18FA36023
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:19:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E56610ECB3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6473110ECB4;
 	Fri, 14 Feb 2025 14:19:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZVBE5WGU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+zBldrb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F327210ECAA;
- Fri, 14 Feb 2025 14:19:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 595BC10ECAA;
+ Fri, 14 Feb 2025 14:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739542747; x=1771078747;
+ t=1739542749; x=1771078749;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=imQR34fiGDTOkcgHMJG9BwFmIqw4EBsIZwKYYT6z6rE=;
- b=ZVBE5WGUzFrL1HaAjQegkh3dkbdsCn1py3EGYIA6EZiwZIeY/pnFCUMC
- +bjGjF5/Q/4mqpZnvaugJ47WFXIUKiRItQfS0nm+DHfvUe3/235cZ6Ufx
- 6rCu/A36SQ+gVhKGl+mqI/mVpuyEmp/+j6jL/cLzvkmwXyKK71LYWhfeH
- FRX6nol7aMB0R0jeHnBwK0wPxslImUFAICUEPf4jBd0rh/AdwlxCEbMXY
- FWgkHlv/3NvlS58k9Mp293684jULB8d3yUNr8eezYaYhc5HVW7jbPLS7e
- 7BU2grMJAlQuOE/Nq1RkizlmNsdTLMF46a0mSUY9fJ0Q6JYktwNO5R2Bg Q==;
-X-CSE-ConnectionGUID: BeCwnJ7gQYGDAdEEEflcOA==
-X-CSE-MsgGUID: /rqD0doAQfq1b362aHAlCw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892498"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892498"
+ bh=6IHuCYtjahNEykADQSP+FJc5aE1Foj9Q/YyNdlcMSGg=;
+ b=j+zBldrbu3OcPvZabzebL4TdtMm/ty9FJrNGvHH0TdUqnzd+bdadajKU
+ eKcsn6Z9I0irEK1hgiIA04OKqTE80fBxUULK1IXN0gFeHAfD8HsCp+92K
+ HT80oiSkHzq7imMBgsupcN+kc+zyb4JG/P09lgtZbYRFW5xSlRTEScznA
+ /VfFRN7cHmqIT5OYdGSG7qZ7e+GW9UYoN9bH4VRrKQIrnSzoX6oYgpT5/
+ SVzllPDrci/hxoMXV+4kdsekP1fbQE1LVR472Xr8qbmnAyrHfcUjpW2/S
+ A3PfPhogHQ+vriEnuIJVID1vQcZ0IrVwC8FTkWp6IcAsCEA5WyCgPH2DX A==;
+X-CSE-ConnectionGUID: MBgJIAIMTryNkJqBp3G+0g==
+X-CSE-MsgGUID: 492gMRRiR8uud8AbxNxY8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="27892499"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="27892499"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:07 -0800
-X-CSE-ConnectionGUID: MhjEodZOSeKN+Gin1mpXFg==
-X-CSE-MsgGUID: ca8cE2X5RAKzvFIhvexdVw==
+ 14 Feb 2025 06:19:08 -0800
+X-CSE-ConnectionGUID: 2p/Q6HZzS3aVYQuSFU2YWQ==
+X-CSE-MsgGUID: Q6FrR5hBSAq2T7lB3ADahw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694248"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136694253"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:19:05 -0800
+ 14 Feb 2025 06:19:07 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 03/11] drm/i915/ddi: Make all the PORT_WIDTH macros work
- the same way
-Date: Fri, 14 Feb 2025 16:19:53 +0200
-Message-ID: <20250214142001.552916-4-imre.deak@intel.com>
+Subject: [PATCH v2 04/11] drm/i915/ddi: Set missing TC DP PHY lane stagger
+ delay in DDI_BUF_CTL
+Date: Fri, 14 Feb 2025 16:19:54 +0200
+Message-ID: <20250214142001.552916-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250214142001.552916-1-imre.deak@intel.com>
 References: <20250214142001.552916-1-imre.deak@intel.com>
@@ -69,83 +69,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make the PORT_WIDTH macro of the XELPDP_PORT_CTL1 register work the same
-way as those used for the DDI_BUF_CTL and the TRANS_DDI_FUNC_CTL
-registers: accept a width parameter and convert it to the given
-register's encoding.
+Add the missing PHY lane stagger delay programming for ICL-ADL
+platforms on TypeC DP outputs.
 
-v2: Robustify macro calls with parens. (Jani)
+v2: (Jani)
+- Clarify code comment about lane stagger programming.
+- Robustify macro calls with parens.
 
+Bspec: 7534, 49533
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 ++-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 22 ++-----------------
- 2 files changed, 4 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 29 ++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h          |  3 +++
+ 2 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-index 4a3cf08007e31..960f7f778fb81 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-@@ -110,7 +110,8 @@
- #define   XELPDP_TCSS_POWER_REQUEST			REG_BIT(5)
- #define   XELPDP_TCSS_POWER_STATE			REG_BIT(4)
- #define   XELPDP_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
--#define   XELPDP_PORT_WIDTH(val)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, val)
-+#define   XELPDP_PORT_WIDTH(width)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, \
-+								       ((width) == 3 ? 4 : (width) - 1))
- 
- #define _XELPDP_PORT_BUF_CTL2(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
- 										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 5ef7857a893f8..a09363e5dc148 100644
+index a09363e5dc148..1e7ae93340ff4 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2525,23 +2525,6 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
- 		     OVERLAP_PIXELS_MASK, dss1);
+@@ -328,9 +328,32 @@ static u32 ddi_buf_phy_link_rate(int port_clock)
+ 	}
  }
  
--static u8 mtl_get_port_width(u8 lane_count)
--{
--	switch (lane_count) {
--	case 1:
--		return 0;
--	case 2:
--		return 1;
--	case 3:
--		return 4;
--	case 4:
--		return 3;
--	default:
--		MISSING_CASE(lane_count);
--		return 4;
--	}
--}
--
- static void
- mtl_ddi_enable_d2d(struct intel_encoder *encoder)
++static int dp_phy_lane_stagger_delay(int port_clock)
++{
++	/*
++	 * Return the number of symbol clocks delay used to stagger the
++	 * assertion/desassertion of the port lane enables. The target delay
++	 * time is 100 ns or greater, return the number of symbols specific to
++	 * the provided port_clock (aka link clock) corresponding to this delay
++	 * time, i.e. so that
++	 *
++	 * number_of_symbols * duration_of_one_symbol >= 100 ns
++	 *
++	 * The delay must be applied only on TypeC DP outputs, for everything else
++	 * the delay must be set to 0.
++	 *
++	 * Return the number of link symbols per 100 ns:
++	 * port_clock (10 kHz) -> bits    / 100 us
++	 * / symbol_size       -> symbols / 100 us
++	 * / 1000              -> symbols / 100 ns
++	 */
++	return DIV_ROUND_UP(port_clock, intel_dp_link_symbol_size(port_clock) * 1000);
++}
++
+ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+ 				      const struct intel_crtc_state *crtc_state)
  {
-@@ -2575,7 +2558,7 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
- 	enum port port = encoder->port;
- 	u32 val = 0;
++	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+@@ -356,6 +379,12 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+ 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+ 			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+ 	}
++
++	if (IS_DISPLAY_VER(display, 11, 13) && intel_encoder_is_tc(encoder)) {
++		int delay = dp_phy_lane_stagger_delay(crtc_state->port_clock);
++
++		intel_dp->DP |= DDI_BUF_LANE_STAGGER_DELAY(delay);
++	}
+ }
  
--	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
-+	val |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
- 
- 	if (intel_dp_is_uhbr(crtc_state))
- 		val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
-@@ -3500,10 +3483,9 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
- 		buf_ctl |= DDI_A_4_LANES;
- 
- 	if (DISPLAY_VER(dev_priv) >= 14) {
--		u8  lane_count = mtl_get_port_width(crtc_state->lane_count);
- 		u32 port_buf = 0;
- 
--		port_buf |= XELPDP_PORT_WIDTH(lane_count);
-+		port_buf |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
- 
- 		if (dig_port->lane_reversal)
- 			port_buf |= XELPDP_PORT_REVERSAL;
+ static int icl_calc_tbt_pll_link(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 3eea191f20175..50efaab3b5536 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3636,6 +3636,9 @@ enum skl_power_gate {
+ #define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
+ #define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
+ #define  DDI_BUF_PORT_REVERSAL			(1 << 16)
++#define  DDI_BUF_LANE_STAGGER_DELAY_MASK	REG_GENMASK(15, 8)
++#define  DDI_BUF_LANE_STAGGER_DELAY(symbols)	REG_FIELD_PREP(DDI_BUF_LANE_STAGGER_DELAY_MASK, \
++							       (symbols))
+ #define  DDI_BUF_IS_IDLE			(1 << 7)
+ #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
+ #define  DDI_A_4_LANES				(1 << 4)
 -- 
 2.44.2
 
