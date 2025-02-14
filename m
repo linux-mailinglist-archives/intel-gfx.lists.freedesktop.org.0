@@ -2,170 +2,171 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86E0A36276
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 16:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B2AA3627A
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 16:59:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 888BC10E4A6;
-	Fri, 14 Feb 2025 15:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA11910ECFA;
+	Fri, 14 Feb 2025 15:59:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=sdore.me header.i=@sdore.me header.b="KcWGSNSa";
+	dkim=pass (1024-bit key; unprotected) header.d=sdore.me header.i=@sdore.me header.b="L7ew2HQO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A450B10E4A6
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 15:58:57 +0000 (UTC)
-X-CSE-ConnectionGUID: hH6n8zX3RHexc5cL1Yq1kA==
-X-CSE-MsgGUID: vVl4Z5qYTw6/8HqvJyd/3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="44231611"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="44231611"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4659410ECFA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2025 15:59:10 +0000 (UTC)
+X-CSE-ConnectionGUID: /iGoqRj7TjOgvUh6L4rDog==
+X-CSE-MsgGUID: SCBAgLMfRECBipc5cBJCYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="44231627"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="44231627"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 07:58:57 -0800
-X-CSE-ConnectionGUID: zUrVGiDISPaVWeO2jRvtFA==
-X-CSE-MsgGUID: lED2/C+HQLCCdOXW5By7ng==
+ 14 Feb 2025 07:59:10 -0800
+X-CSE-ConnectionGUID: 3UovurUgStSikS9el76A/Q==
+X-CSE-MsgGUID: 1FTECp9IR0GG6YisGE+FcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113363200"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113363254"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.110])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 07:58:55 -0800
+ 14 Feb 2025 07:59:08 -0800
 Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
  02160 Espoo
 Resent-To: intel-gfx@lists.freedesktop.org
 Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Fri, 14 Feb 2025 17:58:47 +0200
-Resent-Message-ID: <877c5swma0.fsf@intel.com>
+Resent-Date: Fri, 14 Feb 2025 17:59:00 +0200
+Resent-Message-ID: <8734ggwm9n.fsf@intel.com>
 X-Original-To: jani.nikula@linux.intel.com
-Received: from orviesa006.jf.intel.com (ORVIESA006.jf.intel.com
- [10.64.159.146])
+Received: from orviesa010.jf.intel.com (ORVIESA010.jf.intel.com
+ [10.64.159.150])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id B1A1F20B5714;
- Fri, 14 Feb 2025 03:36:28 -0800 (PST)
-X-CSE-ConnectionGUID: wb0lx8lyQQalXHxzDuyGrw==
-X-CSE-MsgGUID: tUzMmVf2SumRRXNlVShung==
-X-IronPort-AV: E=Sophos;i="6.13,285,1732608000"; d="scan'208";a="113391929"
-Received: from fmvoesa104.fm.intel.com ([10.64.2.14])
- by orviesa006-1.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 03:36:28 -0800
-X-CSE-ConnectionGUID: qE/ACLYrSZ2B3jiMKqObcA==
-X-CSE-MsgGUID: Jahwel10QvuUMsnr/UnSVg==
+ by linux.intel.com (Postfix) with ESMTPS id 0741C20B5713;
+ Fri, 14 Feb 2025 03:44:48 -0800 (PST)
+X-CSE-ConnectionGUID: ThSGVszaSXWQKlQJ2BxPlg==
+X-CSE-MsgGUID: L4j3E2krRzG2hIjvUhvh8g==
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113306683"
+Received: from orvoesa110.jf.intel.com ([10.18.183.150])
+ by orviesa010-1.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2025 03:44:48 -0800
+X-CSE-ConnectionGUID: V9agx0dtQh2XIhHb0gIhGA==
+X-CSE-MsgGUID: ibOXx/OzTAy6Cvt4REt0xA==
 Authentication-Results: mtab.intel.com; spf=None smtp.pra=sdoregor@sdore.me;
  spf=Pass smtp.mailfrom=egormanga@sdore.me; spf=Pass
  smtp.helo=postmaster@sdore.me
-IronPort-SDR: 67af2abb_t2SZOYBojdLqdJvh0MB77SI87HKWyQyDouBl0E4ZBBsi5MC
- W6xNCTdR5GEgABl+1qIYFDzIhvJMRkWg2nB7Vng==
+IronPort-SDR: 67af2cae_5soQ3kHooN66VSl5PZ5x6y9Cwe6iEv5YGnzIaeAUWiVxqA5
+ YT9vNeZWs14ErKZKt86BIpWHb1ntC5sf7SErYGQ==
 X-ThreatScanner-Verdict: Negative
-X-IPAS-Result: =?us-ascii?q?A0HyAwC4NYVn/04BpV9aHgEBCxIMQAmBPwuCRAd2WTQHC?=
- =?us-ascii?q?EiEVogCiWySL415AQEBAQEBAQEBQggBAgQBAQMBA4UADYprAR8GAQQzBg4BA?=
- =?us-ascii?q?gQBAQEBAwIBAgEBAQEBAQEBAQ0BAQECAgEBAQIBAQIEAwEBAQECgQoThXsNg?=
- =?us-ascii?q?mIBgSSBJQEBAQEBAQEBAQEBAQEdAg2BJwQLAQ0BATcBJw0CGA4CLUSDAQGCZ?=
- =?us-ascii?q?AcBDLQefzMaAmWCDAEBBt4DAwaBGi6ITgGEe3CDfYEhG4INgRWBO4ItgkqCD?=
- =?us-ascii?q?oNGgmmDfINujw+PTkiBBRwDWSwBVRMNCgsHBYFzAzgMCzAVgUxEN4JGaUs3A?=
- =?us-ascii?q?g0CNYIefIIrhF6ER4RThWKCFIIRgjeBQB1AAwsYDUgRLDcUGwY9AW4HmyoBP?=
- =?us-ascii?q?INQIC1iKyKCGw2PRoZ3jnehBQQRhBSMGJUuGjOXbgOSYph8jgSWQ4ZjJ4FZT?=
- =?us-ascii?q?TiDIk8DGYhrhUUMFodhgQuzGUMyPAIHAQoBAQMJhUQBih2BSwEB?=
-IronPort-PHdr: A9a23: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
- 27z+6DLJTiEjTSvUh39aIlx
-IronPort-Data: A9a23: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
-IronPort-HdrOrdr: A9a23:lIN/tqAoNCot1WTlHem755DYdb4zR+YMi2TDGXofdfUzSL39qy
- nOpoV/6faQslwssR4b+OxoVJPsfZq+z+8W3WByB9eftWDd0QPCEGgI1+XfKlPbdxEWjtQttp
- tdTw==
-X-Talos-CUID: 9a23:lwl48WOMeR5qWO5DQQQg3WUwK9oeQCf3l3XRBmyhLmxiYejA
-X-Talos-MUID: 9a23:E1+fOATf91wlOrNERXTOjTF9OcMxu52wFX0oipMc/PSCDhJ/bmI=
+X-IPAS-Result: =?us-ascii?q?A0EjAAC4NYVn/04BpV9aHAEBAQEBAQcBARIBAQQEAQFJg?=
+ =?us-ascii?q?TYHAQELAYJDB4FPMQMHCEiMWBucAItsgg0BAQEBAQEBAQFKAQIEAQEDAQOFA?=
+ =?us-ascii?q?A2KawEfBgEEMAkNAQECBAEBAQEDAgECAQEBAQEBAQEBDQEBAQICAQEBAgEBA?=
+ =?us-ascii?q?gQDAQEBAQKBChOFTC8NgmIBM4IWLIELBicLAQ0BATcBDxgnEisrGYMBgmUHA?=
+ =?us-ascii?q?bUpMxoCZYIMAQEG3gMJgUgBjUlwg316JxuCDYJQgi2EWIYvh2qGZocakF1Ig?=
+ =?us-ascii?q?SEDWSwBVRMNCgsHBYFzAzgMCzAVgUxEN4JGaUs3Ag0CNYIefIIrhF6ER4RTh?=
+ =?us-ascii?q?WKCFIIRgjeBXUADCxgNSBEsNxQbBj5uB5srPINQIIEPlhCDIo53oQUEEYQUo?=
+ =?us-ascii?q?UYaM5duA5JimHykR4ZNPYFZTTiDIk8DGY4FASoMFodhtCRDMgI6AgcLAQEDC?=
+ =?us-ascii?q?YVEAYodgUsBAQ?=
+IronPort-PHdr: A9a23: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
+ 8Odj96nj9aQa9YuB1BfWBrkl5PxDfE=
+IronPort-Data: A9a23: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
+IronPort-HdrOrdr: A9a23:JzKF66MxxKYZ+MBcTsyjsMiBIKoaSvp037Dk7S9MoHtuA6ulfq
+ WV9sjzuiWUtN98YhwdcJW7Scu9qBDnhPpICOsqXYtKNTOO0ACVxcNZnO7fKlbbdREWmNQw6U
+ 4ZSdkcNOHN
+X-Talos-CUID: =?us-ascii?q?9a23=3A2/MTsGh6IG3N/APBr3Gegjl5nzJuTCzUw2eIL1O?=
+ =?us-ascii?q?BCTxZab21Qwef2aNLup87?=
+X-Talos-MUID: =?us-ascii?q?9a23=3A88W+BQwFb3Bd7/8a5eLf4a6i2imaqKWkL3Ad1rI?=
+ =?us-ascii?q?Uh+CVawduJ2unoSjvUqZyfw=3D=3D?=
 X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="51705073"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="51705073"
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40397684"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40397684"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from unknown (HELO sdore.me) ([95.165.1.78])
- by mtab.intel.com with ESMTP; 14 Feb 2025 03:36:23 -0800
+ by mtab.intel.com with ESMTP; 14 Feb 2025 03:44:44 -0800
 Received: by sdore.me (Postfix, from userid 1000)
- id 16BFCEEA018FB; Fri, 14 Feb 2025 14:36:17 +0300 (MSK)
+ id E192BEEA01BF7; Fri, 14 Feb 2025 14:36:26 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sdore.me; s=SERV;
- t=1739532977; bh=vooFqMlynklDcHryHXQc2YlfwBSZBFLunnWC36YDAwA=;
- h=From:To:Cc:Subject:Date;
- b=KcWGSNSae+PoERrq6+Suh/STescbEU4osKf/k0JKd1lzjzbGr1mH4BNAvXipy1HgH
- 49lKzJ+Z6NFJqXk0QW1deZFUxdDGX2nLa1MvcdwBnCM4UdvHb/AtBtYtBEghLhHt9L
- 70fWTD7Rhspa1SkclFmm6m2HbDoXKsfWOZj3Yz0Q=
+ t=1739532986; bh=2RRFJdZSLxB0chJqJ8QRDckIZFkpyeAvXlKfsB6hWVk=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=L7ew2HQOQPkneLx8nfuW2OKCPwzxH5o12m79PompgYwmaym1g3bNCwhJNq/EHMKg1
+ opqUC8/94hU0Ck8dOgwVLCWPfJkVDGqbw1soNyF4CoTq7MmPbg7cZT+ld0BBQvuLu9
+ mzhTVTzkM1UP4SADBZzllCEoECnjxSgyR7wYWgSg=
 From: Egor Vorontsov <sdoregor@sdore.me>
 To: linux-kernel@vger.kernel.org
 Cc: dri-devel@lists.freedesktop.org,
@@ -173,17 +174,16 @@ Cc: dri-devel@lists.freedesktop.org,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>,
- Egor Vorontsov <sdoregor@sdore.me>,
- =?UTF-8?q?Maximilian=20Bo=C3=9Fe?= <max@bosse.io>
-Subject: [PATCH v3 1/2] drm/edid: Implement DisplayID Type IX & X timing
- blocks parsing
-Date: Fri, 14 Feb 2025 14:06:41 +0300
-Message-ID: <20250214110643.506740-1-sdoregor@sdore.me>
+ Egor Vorontsov <sdoregor@sdore.me>
+Subject: [PATCH v3 2/2] drm/edid: Refactor DisplayID timing block structs
+Date: Fri, 14 Feb 2025 14:06:42 +0300
+Message-ID: <20250214110643.506740-2-sdoregor@sdore.me>
 X-Mailer: git-send-email 2.48.0
+In-Reply-To: <20250214110643.506740-1-sdoregor@sdore.me>
+References: <20250214110643.506740-1-sdoregor@sdore.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-TUID: kztt2FuAdBaE
+X-TUID: AKj27Zciwnav
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,134 +199,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some newer high refresh rate consumer monitors (including those by Samsung)
-make use of DisplayID 2.1 timing blocks in their EDID data, notably for
-their highest refresh rate modes. Such modes won't be available as of now.
+Using le16 instead of u8[2].
 
-Implement partial support for such blocks in order to enable native
-support of HRR modes of most such monitors for users without having to rely
-on EDID patching/override (or need thereof).
-
-Closes: https://gitlab.freedesktop.org/drm/misc/kernel/-/issues/55
-Suggested-by: Maximilian Boße <max@bosse.io>
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Egor Vorontsov <sdoregor@sdore.me>
 ---
- drivers/gpu/drm/drm_displayid_internal.h | 13 +++++
- drivers/gpu/drm/drm_edid.c               | 63 ++++++++++++++++++++++++
- 2 files changed, 76 insertions(+)
+ drivers/gpu/drm/drm_displayid_internal.h | 18 +++++++--------
+ drivers/gpu/drm/drm_edid.c               | 28 ++++++++++++------------
+ 2 files changed, 23 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
-index aee1b86a73c1..84831ecfdb6e 100644
+index 84831ecfdb6e..957dd0619f5c 100644
 --- a/drivers/gpu/drm/drm_displayid_internal.h
 +++ b/drivers/gpu/drm/drm_displayid_internal.h
-@@ -66,6 +66,7 @@ struct drm_edid;
- #define DATA_BLOCK_2_STEREO_DISPLAY_INTERFACE	0x27
- #define DATA_BLOCK_2_TILED_DISPLAY_TOPOLOGY	0x28
- #define DATA_BLOCK_2_CONTAINER_ID		0x29
-+#define DATA_BLOCK_2_TYPE_10_FORMULA_TIMING	0x2a
- #define DATA_BLOCK_2_VENDOR_SPECIFIC		0x7e
- #define DATA_BLOCK_2_CTA_DISPLAY_ID		0x81
- 
-@@ -129,6 +130,18 @@ struct displayid_detailed_timing_block {
- 	struct displayid_detailed_timings_1 timings[];
- };
- 
-+struct displayid_formula_timings_9 {
-+	u8 flags;
+@@ -115,20 +115,20 @@ struct displayid_tiled_block {
+ struct displayid_detailed_timings_1 {
+ 	u8 pixel_clock[3];
+ 	u8 flags;
+-	u8 hactive[2];
+-	u8 hblank[2];
+-	u8 hsync[2];
+-	u8 hsw[2];
+-	u8 vactive[2];
+-	u8 vblank[2];
+-	u8 vsync[2];
+-	u8 vsw[2];
 +	__le16 hactive;
++	__le16 hblank;
++	__le16 hsync;
++	__le16 hsw;
 +	__le16 vactive;
-+	u8 vrefresh;
-+} __packed;
-+
-+struct displayid_formula_timing_block {
-+	struct displayid_block base;
-+	struct displayid_formula_timings_9 timings[];
-+} __packed;
-+
- #define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
- #define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
++	__le16 vblank;
++	__le16 vsync;
++	__le16 vsw;
+ } __packed;
  
+ struct displayid_detailed_timing_block {
+ 	struct displayid_block base;
+ 	struct displayid_detailed_timings_1 timings[];
+-};
++} __packed;
+ 
+ struct displayid_formula_timings_9 {
+ 	u8 flags;
 diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 13bc4c290b17..03edf0e1598e 100644
+index 03edf0e1598e..32807cefc819 100644
 --- a/drivers/gpu/drm/drm_edid.c
 +++ b/drivers/gpu/drm/drm_edid.c
-@@ -6833,6 +6833,66 @@ static int add_displayid_detailed_1_modes(struct drm_connector *connector,
- 	return num_modes;
+@@ -6760,23 +6760,23 @@ static void update_display_info(struct drm_connector *connector,
  }
  
-+static struct drm_display_mode *drm_mode_displayid_formula(struct drm_device *dev,
-+							   const struct displayid_formula_timings_9 *timings,
-+							   bool type_10)
-+{
-+	struct drm_display_mode *mode;
-+	u16 hactive = le16_to_cpu(timings->hactive) + 1;
-+	u16 vactive = le16_to_cpu(timings->vactive) + 1;
-+	u8 timing_formula = timings->flags & 0x7;
-+
-+	/* TODO: support RB-v2 & RB-v3 */
-+	if (timing_formula > 1)
-+		return NULL;
-+
-+	/* TODO: support video-optimized refresh rate */
-+	if (timings->flags & (1 << 4))
-+		drm_dbg_kms(dev, "Fractional vrefresh is not implemented, proceeding with non-video-optimized refresh rate");
-+
-+	mode = drm_cvt_mode(dev, hactive, vactive, timings->vrefresh + 1, timing_formula == 1, false, false);
-+	if (!mode)
-+		return NULL;
-+
-+	/* TODO: interpret S3D flags */
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER;
-+	drm_mode_set_name(mode);
-+
-+	return mode;
-+}
-+
-+static int add_displayid_formula_modes(struct drm_connector *connector,
-+				       const struct displayid_block *block)
-+{
-+	const struct displayid_formula_timing_block *formula_block = (struct displayid_formula_timing_block *)block;
-+	int num_timings;
-+	struct drm_display_mode *newmode;
-+	int num_modes = 0;
-+	bool type_10 = block->tag == DATA_BLOCK_2_TYPE_10_FORMULA_TIMING;
-+	int timing_size = 6 + ((formula_block->base.rev & 0x70) >> 4);
-+
-+	/* extended blocks are not supported yet */
-+	if (timing_size != 6)
-+		return 0;
-+
-+	if (block->num_bytes % timing_size)
-+		return 0;
-+
-+	num_timings = block->num_bytes / timing_size;
-+	for (int i = 0; i < num_timings; i++) {
-+		const struct displayid_formula_timings_9 *timings = &formula_block->timings[i];
-+
-+		newmode = drm_mode_displayid_formula(connector->dev, timings, type_10);
-+		if (!newmode)
-+			continue;
-+
-+		drm_mode_probed_add(connector, newmode);
-+		num_modes++;
-+	}
-+	return num_modes;
-+}
-+
- static int add_displayid_detailed_modes(struct drm_connector *connector,
- 					const struct drm_edid *drm_edid)
+ static struct drm_display_mode *drm_mode_displayid_detailed(struct drm_device *dev,
+-							    struct displayid_detailed_timings_1 *timings,
++							    const struct displayid_detailed_timings_1 *timings,
+ 							    bool type_7)
  {
-@@ -6845,6 +6905,9 @@ static int add_displayid_detailed_modes(struct drm_connector *connector,
- 		if (block->tag == DATA_BLOCK_TYPE_1_DETAILED_TIMING ||
- 		    block->tag == DATA_BLOCK_2_TYPE_7_DETAILED_TIMING)
- 			num_modes += add_displayid_detailed_1_modes(connector, block);
-+		else if (block->tag == DATA_BLOCK_2_TYPE_9_FORMULA_TIMING ||
-+			 block->tag == DATA_BLOCK_2_TYPE_10_FORMULA_TIMING)
-+			num_modes += add_displayid_formula_modes(connector, block);
- 	}
- 	displayid_iter_end(&iter);
+ 	struct drm_display_mode *mode;
+-	unsigned pixel_clock = (timings->pixel_clock[0] |
+-				(timings->pixel_clock[1] << 8) |
+-				(timings->pixel_clock[2] << 16)) + 1;
+-	unsigned hactive = (timings->hactive[0] | timings->hactive[1] << 8) + 1;
+-	unsigned hblank = (timings->hblank[0] | timings->hblank[1] << 8) + 1;
+-	unsigned hsync = (timings->hsync[0] | (timings->hsync[1] & 0x7f) << 8) + 1;
+-	unsigned hsync_width = (timings->hsw[0] | timings->hsw[1] << 8) + 1;
+-	unsigned vactive = (timings->vactive[0] | timings->vactive[1] << 8) + 1;
+-	unsigned vblank = (timings->vblank[0] | timings->vblank[1] << 8) + 1;
+-	unsigned vsync = (timings->vsync[0] | (timings->vsync[1] & 0x7f) << 8) + 1;
+-	unsigned vsync_width = (timings->vsw[0] | timings->vsw[1] << 8) + 1;
+-	bool hsync_positive = (timings->hsync[1] >> 7) & 0x1;
+-	bool vsync_positive = (timings->vsync[1] >> 7) & 0x1;
++	unsigned int pixel_clock = (timings->pixel_clock[0] |
++				    (timings->pixel_clock[1] << 8) |
++				    (timings->pixel_clock[2] << 16)) + 1;
++	unsigned int hactive = le16_to_cpu(timings->hactive) + 1;
++	unsigned int hblank = le16_to_cpu(timings->hblank) + 1;
++	unsigned int hsync = (le16_to_cpu(timings->hsync) & 0x7fff) + 1;
++	unsigned int hsync_width = le16_to_cpu(timings->hsw) + 1;
++	unsigned int vactive = le16_to_cpu(timings->vactive) + 1;
++	unsigned int vblank = le16_to_cpu(timings->vblank) + 1;
++	unsigned int vsync = (le16_to_cpu(timings->vsync) & 0x7fff) + 1;
++	unsigned int vsync_width = le16_to_cpu(timings->vsw) + 1;
++	bool hsync_positive = le16_to_cpu(timings->hsync) & (1 << 15);
++	bool vsync_positive = le16_to_cpu(timings->vsync) & (1 << 15);
  
+ 	mode = drm_mode_create(dev);
+ 	if (!mode)
 -- 
 2.48.0
 
