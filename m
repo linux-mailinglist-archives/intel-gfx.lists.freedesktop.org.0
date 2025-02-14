@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B41DA35FF6
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:15:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57168A35FF7
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2025 15:15:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFBB210ECA3;
-	Fri, 14 Feb 2025 14:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE62B10ECA5;
+	Fri, 14 Feb 2025 14:15:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCdXF6Q8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="do/OIU0p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93AAA10ECA4;
- Fri, 14 Feb 2025 14:15:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 765D210ECA6;
+ Fri, 14 Feb 2025 14:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739542501; x=1771078501;
+ t=1739542503; x=1771078503;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qftwxTxOGmpR9j20tgstncA8xyaR2yuekvyh5h+cB8A=;
- b=WCdXF6Q8qnlslfHx/a8FBGdIT5q88R9u3Rf7xtfoIpeLMFCYURk+aCub
- tNJR+CoXTsnYZXpRHFItVFRS57+Ny0CwSAY8CdIoy/5iAHSXE7HyJ3zuA
- 44ukMju8QCLZXEwJMFARSe9GGFojmw4lrrXRnbew7tCSI/rfxHhBTKgAY
- p1r/yTbEq7gF5VhhG6KPhKMyMnYosRpfPlrr7WN9V0KNRzD3qxKv3sBcy
- 2i0lP8gLre8UOmvO4FG/BqtC5474D4ooQkd3vb52KY7U1j/l5l5Zc9PH0
- Vu+uaY1vLy6xWLZAj2V6fgz4qMQ+WUAidc3t+UNhAd0Cs7yvQXJptQlUb Q==;
-X-CSE-ConnectionGUID: 0nhyFg7lT82HTMQhujJjfg==
-X-CSE-MsgGUID: X8EPEbZxTOCFYGqAatqsbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="50505078"
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="50505078"
+ bh=1YCfunlPdbp/EWiaMHFi+5/m6k9Y9phK3dekooVvvzc=;
+ b=do/OIU0pNQqTJq5CS/u1MIRm1q2gpTxSpuQLuqFbVr2UALZB2Vwp0Ez+
+ 37/tVYpOVi0Fk7HxaBKfXClCks87t5+ssArKY8TdWydOdIY6cU2ZE9wq0
+ P2Wgx1ijJQWIA4NKgDu4TLFo1mKVxRF4IULlbmrH470O8iAa+bHE65L8f
+ kaVadWiIG79VwXqjqopD5e1EXeWu4DE77PqWWMS2ixYp0DmxVgsZ63jos
+ 23MEt2ZoaAr9UJf/ivBZG8+D7L12v5nSOXHFiUtlgqIaK31bayPh+s7Fj
+ ocIfX14deXuW/+GmN3ZRDxSijft/RG2ONzElSG3VrCybTz5jG+iY7A9Y1 g==;
+X-CSE-ConnectionGUID: bKl1nh/STJ+LmQjxAMVI8Q==
+X-CSE-MsgGUID: MJkq4cTHSLKdHM6IYCTGQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11345"; a="50505082"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="50505082"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2025 06:15:01 -0800
-X-CSE-ConnectionGUID: 0QcUwmIcTUaJSMYyePJ/ug==
-X-CSE-MsgGUID: IFUVwK4eTOqbJM4R8mreyw==
+ 14 Feb 2025 06:15:03 -0800
+X-CSE-ConnectionGUID: d0VKM6D6RHG8Qtokjyg2ew==
+X-CSE-MsgGUID: FmLK2r0SQYCyghM2kFadVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="113327204"
+X-IronPort-AV: E=Sophos;i="6.13,286,1732608000"; d="scan'208";a="113327252"
 Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
- by fmviesa006.fm.intel.com with ESMTP; 14 Feb 2025 06:14:59 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 14 Feb 2025 06:15:00 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com, jani.nikula@linux.intel.com,
  Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 1/2] drm/i915/display: Drop crtc_state from C10/C20 pll
- programming
-Date: Fri, 14 Feb 2025 16:04:41 +0200
-Message-ID: <20250214140442.560378-2-mika.kahola@intel.com>
+Subject: [PATCH v3 2/2] drm/i915/display: Allow display PHYs to reset power
+ state
+Date: Fri, 14 Feb 2025 16:04:42 +0200
+Message-ID: <20250214140442.560378-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250214140442.560378-1-mika.kahola@intel.com>
 References: <20250214140442.560378-1-mika.kahola@intel.com>
@@ -69,265 +69,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For PLL programming for C10 and C20 we don't need to
-carry crtc_state but instead use only necessary parts
-of the crtc_state i.e. pll_state.
+The dedicated display PHYs reset to a power state that blocks S0ix,
+increasing idle system power. After a system reset (cold boot,
+S3/4/5, warm reset) if a dedicated PHY is not being brought up
+shortly, use these steps to move the PHY to the lowest power state
+to save power.
 
-This change is needed to PTL wa 14023648281 where we would
-need to otherwise pass an artificial crtc_state with majority
-of the struct members initialized as NULL.
+1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+   This brings lanes out of reset and enables the PLL to allow powerdown to be moved
+   to the Disable state.
+2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
 
-v2: Use err instead of val for error handling
+v2: Rename WA function to more descriptive (Jani)
+    For PTL, only port A needs this wa
+    Add helpers to check presence of C10 phy and pll enabling (Imre)
+v3: Rename wa function (Imre)
+    Check return value of C10 pll tables readout (Imre)
+    Use PLL request to check pll enabling (Imre)
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 109 +++++++++++--------
- 1 file changed, 65 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 51 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  1 +
+ .../drm/i915/display/intel_display_reset.c    |  2 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  3 ++
+ 4 files changed, 57 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4121d0d759bf..2c74d5cf54be 100644
+index 2c74d5cf54be..5f757134751e 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2020,13 +2020,12 @@ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
- 	return NULL;
+@@ -3559,3 +3559,54 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+ 	else
+ 		intel_c20pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c20);
  }
- 
--static void intel_cx0pll_update_ssc(struct intel_crtc_state *crtc_state,
--				    struct intel_encoder *encoder)
-+static void intel_cx0pll_update_ssc(struct intel_encoder *encoder,
-+				    struct intel_cx0pll_state *pll_state, bool is_dp)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_cx0pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll;
- 
--	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+	if (is_dp) {
- 		if (intel_panel_use_ssc(display)) {
- 			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 			pll_state->ssc_enabled =
-@@ -2035,11 +2034,10 @@ static void intel_cx0pll_update_ssc(struct intel_crtc_state *crtc_state,
- 	}
- }
- 
--static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
--				    struct intel_encoder *encoder)
-+static void intel_c10pll_update_pll(struct intel_encoder *encoder,
-+				    struct intel_cx0pll_state *pll_state, bool is_dp)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_cx0pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll;
- 	int i;
- 
- 	if (pll_state->ssc_enabled)
-@@ -2050,32 +2048,51 @@ static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
- 		pll_state->c10.pll[i] = 0;
- }
- 
-+static int intel_c10pll_calc_state_from_table(struct intel_encoder *encoder,
-+					      const struct intel_c10pll_state * const *tables, int port_clock, bool is_dp,
-+					      struct intel_cx0pll_state *pll_state)
++
++static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
 +{
-+	int i;
++	struct intel_display *display = to_intel_display(encoder);
++        struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
++	u8 lane = dig_port->lane_reversal ? INTEL_CX0_LANE1 : INTEL_CX0_LANE0;
 +
-+	for (i = 0; tables[i]; i++) {
-+		if (port_clock == tables[i]->clock) {
-+			pll_state->c10 = *tables[i];
-+			intel_cx0pll_update_ssc(encoder, pll_state, is_dp);
-+			intel_c10pll_update_pll(encoder, pll_state, is_dp);
-+			pll_state->use_c10 = true;
++	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
++	       intel_cx0_get_pclk_pll_request(lane);
++}
 +
-+			return 0;
-+		}
++/*
++ * WA 14022081154
++ * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
++ * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
++ * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
++ * power state to save power. For PTL the workaround is needed only for port A. Port B
++ * is not connected.
++ *
++ * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
++ *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
++ *    to the Disable state.
++ * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
++ */
++void intel_cx0_pll_power_save_wa(struct intel_display *display)
++{
++	struct intel_encoder *encoder;
++
++	if (DISPLAY_VER(display) != 30)
++		return;
++
++	for_each_intel_encoder(display->drm, encoder) {
++		struct intel_cx0pll_state pll_state = {};
++		int port_clock = 162000;
++
++		if (!intel_encoder_is_c10phy(encoder))
++			continue;
++
++		if (intel_cx0_pll_is_enabled(encoder))
++			continue;
++
++		if (intel_c10pll_calc_state_from_table(encoder,
++						       mtl_c10_edp_tables,
++						       port_clock, true,
++						       &pll_state) < 0)
++			continue;
++
++		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
++		intel_cx0pll_disable(encoder);
 +	}
-+
-+	return -EINVAL;
 +}
-+
- static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
- 				   struct intel_encoder *encoder)
- {
- 	const struct intel_c10pll_state * const *tables;
--	int i;
-+	int err;
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 573fa7d3e88f..a8f811ca5e7b 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -42,5 +42,6 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				     const struct intel_crtc_state *crtc_state);
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
++void intel_cx0_pll_power_save_wa(struct intel_display *display);
  
- 	tables = intel_c10pll_tables_get(crtc_state, encoder);
- 	if (!tables)
- 		return -EINVAL;
+ #endif /* __INTEL_CX0_PHY_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index 093b386c95e8..a690968885bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -7,6 +7,7 @@
  
--	for (i = 0; tables[i]; i++) {
--		if (crtc_state->port_clock == tables[i]->clock) {
--			crtc_state->dpll_hw_state.cx0pll.c10 = *tables[i];
--			intel_cx0pll_update_ssc(crtc_state, encoder);
--			intel_c10pll_update_pll(crtc_state, encoder);
--			crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
-+	err = intel_c10pll_calc_state_from_table(encoder, tables,
-+						 crtc_state->port_clock,
-+						 intel_crtc_has_dp_encoder(crtc_state),
-+						 &crtc_state->dpll_hw_state.cx0pll);
+ #include "i915_drv.h"
+ #include "intel_clock_gating.h"
++#include "intel_cx0_phy.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_reset.h"
+ #include "intel_display_types.h"
+@@ -116,6 +117,7 @@ void intel_display_reset_finish(struct drm_i915_private *i915)
+ 		intel_pps_unlock_regs_wa(display);
+ 		intel_display_driver_init_hw(display);
+ 		intel_clock_gating_init(i915);
++		intel_cx0_pll_power_save_wa(display);
+ 		intel_hpd_init(i915);
  
--			return 0;
--		}
--	}
-+	if (err == 0 || !(intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)))
-+		return err;
- 
- 	/* For HDMI PLLs try SNPS PHY algorithm, if there are no precomputed tables */
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
- 		intel_snps_hdmi_pll_compute_c10pll(&crtc_state->dpll_hw_state.cx0pll.c10,
- 						   crtc_state->port_clock);
--		intel_c10pll_update_pll(crtc_state, encoder);
-+		intel_c10pll_update_pll(encoder,
-+					&crtc_state->dpll_hw_state.cx0pll,
-+					intel_crtc_has_dp_encoder(crtc_state));
- 		crtc_state->dpll_hw_state.cx0pll.use_c10 = true;
- 
- 		return 0;
-@@ -2111,10 +2128,9 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
- }
- 
- static void intel_c10_pll_program(struct intel_display *display,
--				  const struct intel_crtc_state *crtc_state,
--				  struct intel_encoder *encoder)
-+				  struct intel_encoder *encoder,
-+				  const struct intel_c10pll_state *pll_state)
- {
--	const struct intel_c10pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll.c10;
+ 		ret = __intel_display_driver_resume(display, state, ctx);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index eb3df25a308c..c825a507b905 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -27,6 +27,7 @@
+ #include "bxt_dpio_phy_regs.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "intel_cx0_phy.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+ #include "intel_dkl_phy.h"
+@@ -4571,6 +4572,8 @@ void intel_dpll_sanitize_state(struct intel_display *display)
+ 	struct intel_shared_dpll *pll;
  	int i;
  
- 	intel_cx0_rmw(encoder, INTEL_CX0_BOTH_LANES, PHY_C10_VDR_CONTROL(1),
-@@ -2333,7 +2349,9 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
- 	for (i = 0; tables[i]; i++) {
- 		if (crtc_state->port_clock == tables[i]->clock) {
- 			crtc_state->dpll_hw_state.cx0pll.c20 = *tables[i];
--			intel_cx0pll_update_ssc(crtc_state, encoder);
-+			intel_cx0pll_update_ssc(encoder,
-+						&crtc_state->dpll_hw_state.cx0pll,
-+						intel_crtc_has_dp_encoder(crtc_state));
- 			crtc_state->dpll_hw_state.cx0pll.use_c10 = false;
- 			return 0;
- 		}
-@@ -2599,19 +2617,14 @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
- }
- 
- static void intel_c20_pll_program(struct intel_display *display,
--				  const struct intel_crtc_state *crtc_state,
--				  struct intel_encoder *encoder)
-+				  struct intel_encoder *encoder,
-+				  const struct intel_c20pll_state *pll_state,
-+				  int clock, bool dp)
- {
--	const struct intel_c20pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll.c20;
--	bool dp = false;
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
--	u32 clock = crtc_state->port_clock;
- 	bool cntx;
- 	int i;
- 
--	if (intel_crtc_has_dp_encoder(crtc_state))
--		dp = true;
--
- 	/* 1. Read current context selection */
- 	cntx = intel_cx0_read(encoder, INTEL_CX0_LANE0, PHY_C20_VDR_CUSTOM_SERDES_RATE) & BIT(0);
- 
-@@ -2735,7 +2748,8 @@ static int intel_c10pll_calc_port_clock(struct intel_encoder *encoder,
- }
- 
- static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
--					 const struct intel_crtc_state *crtc_state,
-+					 const struct intel_cx0pll_state *pll_state,
-+					 bool is_dp, int port_clock,
- 					 bool lane_reversal)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -2750,18 +2764,17 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
- 
- 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
- 
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
--	    is_hdmi_frl(crtc_state->port_clock))
-+	if (!is_dp && is_hdmi_frl(port_clock))
- 		val |= XELPDP_DDI_CLOCK_SELECT(XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT(XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
- 
- 	/* TODO: HDMI FRL */
- 	/* DP2.0 10G and 20G rates enable MPLLA*/
--	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
--		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLA : 0;
-+	if (port_clock == 1000000 || port_clock == 2000000)
-+		val |= pll_state->ssc_enabled ? XELPDP_SSC_ENABLE_PLLA : 0;
- 	else
--		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
-+		val |= pll_state->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
- 
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
- 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
-@@ -2991,8 +3004,9 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
- 	return val;
- }
- 
--static void intel_cx0pll_enable(struct intel_encoder *encoder,
--				const struct intel_crtc_state *crtc_state)
-+static void __intel_cx0pll_enable(struct intel_encoder *encoder,
-+				  const struct intel_cx0pll_state *pll_state,
-+				  bool is_dp, int port_clock, int lane_count)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
-@@ -3006,7 +3020,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
- 	 * clock muxes, gating and SSC
- 	 */
--	intel_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
-+	intel_program_port_clock_ctl(encoder, pll_state, is_dp, port_clock, lane_reversal);
- 
- 	/* 2. Bring PHY out of reset. */
- 	intel_cx0_phy_lane_reset(encoder, lane_reversal);
-@@ -3026,15 +3040,15 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 
- 	/* 5. Program PHY internal PLL internal registers. */
- 	if (intel_encoder_is_c10phy(encoder))
--		intel_c10_pll_program(display, crtc_state, encoder);
-+		intel_c10_pll_program(display, encoder, &pll_state->c10);
- 	else
--		intel_c20_pll_program(display, crtc_state, encoder);
-+		intel_c20_pll_program(display, encoder, &pll_state->c20, port_clock, is_dp);
- 
- 	/*
- 	 * 6. Program the enabled and disabled owned PHY lane
- 	 * transmitters over message bus
- 	 */
--	intel_cx0_program_phy_lane(encoder, crtc_state->lane_count, lane_reversal);
-+	intel_cx0_program_phy_lane(encoder, lane_count, lane_reversal);
- 
- 	/*
- 	 * 7. Follow the Display Voltage Frequency Switching - Sequence
-@@ -3045,8 +3059,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	 * 8. Program DDI_CLK_VALFREQ to match intended DDI
- 	 * clock frequency.
- 	 */
--	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
--		       crtc_state->port_clock);
-+	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), port_clock);
- 
- 	/*
- 	 * 9. Set PORT_CLOCK_CTL register PCLK PLL Request
-@@ -3073,6 +3086,14 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- }
- 
-+static void intel_cx0pll_enable(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state)
-+{
-+	__intel_cx0pll_enable(encoder, &crtc_state->dpll_hw_state.cx0pll,
-+			      intel_crtc_has_dp_encoder(crtc_state), crtc_state->port_clock, crtc_state->lane_count);
++	intel_cx0_pll_power_save_wa(display);
 +
-+}
-+
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
+ 	for_each_shared_dpll(display, pll, i)
+ 		sanitize_dpll_state(display, pll);
+ }
 -- 
 2.43.0
 
