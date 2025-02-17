@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15372A38A9D
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 18:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1FCA38AD8
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 18:44:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8036810E564;
-	Mon, 17 Feb 2025 17:33:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A1010E57A;
+	Mon, 17 Feb 2025 17:44:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8ydIXtA";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A61F110E564;
- Mon, 17 Feb 2025 17:33:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7271542288163224887=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/xe3lpd=3A_Update?=
- =?utf-8?q?_bandwidth_parameters_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 Feb 2025 17:33:16 -0000
-Message-ID: <173981359667.3325564.9177514444444897975@b555e5b46a47>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD8410E57A;
+ Mon, 17 Feb 2025 17:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739814283; x=1771350283;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=STrzUR1Hj3KUNPaZaIYNMReF77DKkcbtXTmkhVtIAcU=;
+ b=h8ydIXtAyh0xurpL4uuvYJ4h+LjY5ydYVDSFK0qL2eSJmxOVjn2dFKLb
+ kMMFe0FuPX4219OOJ5AaEl9ZtgFWOnwq8mMRTXJD8NA/99S+cgZoB1iHj
+ uWNS5/Rr8tmnBHE6MTsnyd80Y4YfwjRj92P/bTXpRXCHvBaKTPYWYWv+3
+ BHULYhUHh6sKo/Q5D6oz8KWH/1Cy6HEcR0FbO+MR/DDSMV3uy+9y5Oqy8
+ gOn8FVFh0KtnyMuVgQI6kzWTdVdvuxGqnFfkjRc4pWJ0ulJWGo9Gcv8Yn
+ QIjukNrSWiTAqxONudo75nD5npiR2dFEcADcbwaLgsXFwZoN0G3Lwzzfx w==;
+X-CSE-ConnectionGUID: wbG5MDoIRvC5WmxY4o0laA==
+X-CSE-MsgGUID: gTnTwEptTg6m56kXd9z2Dw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40210311"
+X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="40210311"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2025 09:44:43 -0800
+X-CSE-ConnectionGUID: znxS1MY1Rp2iVkkAxtRKBw==
+X-CSE-MsgGUID: Bh/CDBFuT0ylo6WmK7RdtA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="114378033"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 17 Feb 2025 09:44:41 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 17 Feb 2025 19:44:40 +0200
+Date: Mon, 17 Feb 2025 19:44:39 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/3] drm/i915/display: Use display variable in
+ intel_bw.c
+Message-ID: <Z7N1h5KwKChOf7iV@intel.com>
 References: <20250217153550.43909-1-gustavo.sousa@intel.com>
-In-Reply-To: <20250217153550.43909-1-gustavo.sousa@intel.com>
+ <20250217153550.43909-2-gustavo.sousa@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250217153550.43909-2-gustavo.sousa@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,192 +69,391 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7271542288163224887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 17, 2025 at 12:35:23PM -0300, Gustavo Sousa wrote:
+> Update intel_bw.c to use a "display" variable to refer to members of the
+> display struct. While this change does not move that file to completely
+> use struct intel_display as part of it's internal and public interface,
+> this should help with a future transition.
 
-== Series Details ==
+Is there a particular reason you're not converting the whole
+thing? I'd prefer to see a full conversion here.
 
-Series: drm/i915/xe3lpd: Update bandwidth parameters (rev2)
-URL   : https://patchwork.freedesktop.org/series/144441/
-State : success
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 106 ++++++++++++++----------
+>  1 file changed, 60 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 23edc81741de..0fb41e6cd8ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -124,8 +124,9 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
+>  
+>  static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	struct intel_display *display = &i915->display;
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	u16 qgv_points = 0, psf_points = 0;
+>  
+>  	/*
+> @@ -151,6 +152,7 @@ static bool is_sagv_enabled(struct drm_i915_private *i915, u16 points_mask)
+>  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>  				  u32 points_mask)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	int ret;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 14)
+> @@ -170,7 +172,7 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>  		return ret;
+>  	}
+>  
+> -	dev_priv->display.sagv.status = is_sagv_enabled(dev_priv, points_mask) ?
+> +	display->sagv.status = is_sagv_enabled(dev_priv, points_mask) ?
+>  		I915_SAGV_ENABLED : I915_SAGV_DISABLED;
+>  
+>  	return 0;
+> @@ -400,13 +402,14 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
+>  
+>  static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	struct intel_qgv_info qi = {};
+>  	bool is_y_tile = true; /* assume y tile may be used */
+>  	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
+>  	int ipqdepth, ipqdepthpch = 16;
+>  	int dclk_max;
+>  	int maxdebw;
+> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i, ret;
+>  
+>  	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+> @@ -422,7 +425,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>  
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  		int clpchgroup;
+>  		int j;
+>  
+> @@ -460,15 +463,16 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	 * as it will fail and pointless anyway.
+>  	 */
+>  	if (qi.num_points == 1)
+> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  	else
+> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+> +		display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
+>  }
+>  
+>  static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	struct intel_qgv_info qi = {};
+>  	const struct dram_info *dram_info = &dev_priv->dram_info;
+>  	bool is_y_tile = true; /* assume y tile may be used */
+> @@ -477,7 +481,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	int dclk_max;
+>  	int maxdebw, peakbw;
+>  	int clperchgroup;
+> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i, ret;
+>  
+>  	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+> @@ -514,7 +518,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
+>  
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  		struct intel_bw_info *bi_next;
+>  		int clpchgroup;
+>  		int j;
+> @@ -522,7 +526,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
+>  
+>  		if (i < num_groups - 1) {
+> -			bi_next = &dev_priv->display.bw.max[i + 1];
+> +			bi_next = &display->bw.max[i + 1];
+>  
+>  			if (clpchgroup < clperchgroup)
+>  				bi_next->num_planes = (ipqdepth - clpchgroup) /
+> @@ -577,17 +581,18 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
+>  	 * as it will fail and pointless anyway.
+>  	 */
+>  	if (qi.num_points == 1)
+> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  	else
+> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
+> +		display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
+>  }
+>  
+>  static void dg2_get_bw_info(struct drm_i915_private *i915)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	unsigned int deratedbw = IS_DG2_G11(i915) ? 38000 : 50000;
+> -	int num_groups = ARRAY_SIZE(i915->display.bw.max);
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+>  	int i;
+>  
+>  	/*
+> @@ -598,7 +603,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+>  	 * whereas DG2-G11 platforms have 38 GB/s.
+>  	 */
+>  	for (i = 0; i < num_groups; i++) {
+> -		struct intel_bw_info *bi = &i915->display.bw.max[i];
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+>  
+>  		bi->num_planes = 1;
+>  		/* Need only one dummy QGV point per group */
+> @@ -606,12 +611,13 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
+>  		bi->deratedbw[0] = deratedbw;
+>  	}
+>  
+> -	i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
+> +	display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+>  }
+>  
+>  static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+>  			       const struct intel_sa_info *sa)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	struct intel_qgv_info qi = {};
+>  	int num_channels = i915->dram_info.num_channels;
+>  	int peakbw, maxdebw;
+> @@ -631,28 +637,28 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+>  		const struct intel_qgv_point *point = &qi.points[i];
+>  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
+>  
+> -		i915->display.bw.max[0].deratedbw[i] =
+> +		display->bw.max[0].deratedbw[i] =
+>  			min(maxdebw, (100 - sa->derating) * bw / 100);
+> -		i915->display.bw.max[0].peakbw[i] = bw;
+> +		display->bw.max[0].peakbw[i] = bw;
+>  
+>  		drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+> -			    i, i915->display.bw.max[0].deratedbw[i],
+> -			    i915->display.bw.max[0].peakbw[i]);
+> +			    i, display->bw.max[0].deratedbw[i],
+> +			    display->bw.max[0].peakbw[i]);
+>  	}
+>  
+>  	/* Bandwidth does not depend on # of planes; set all groups the same */
+> -	i915->display.bw.max[0].num_planes = 1;
+> -	i915->display.bw.max[0].num_qgv_points = qi.num_points;
+> -	for (i = 1; i < ARRAY_SIZE(i915->display.bw.max); i++)
+> -		memcpy(&i915->display.bw.max[i], &i915->display.bw.max[0],
+> -		       sizeof(i915->display.bw.max[0]));
+> +	display->bw.max[0].num_planes = 1;
+> +	display->bw.max[0].num_qgv_points = qi.num_points;
+> +	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
+> +		memcpy(&display->bw.max[i], &display->bw.max[0],
+> +		       sizeof(display->bw.max[0]));
+>  
+>  	/*
+>  	 * Xe2_HPD should always have exactly two QGV points representing
+>  	 * battery and plugged-in operation.
+>  	 */
+>  	drm_WARN_ON(&i915->drm, qi.num_points != 2);
+> -	i915->display.sagv.status = I915_SAGV_ENABLED;
+> +	display->sagv.status = I915_SAGV_ENABLED;
+>  
+>  	return 0;
+>  }
+> @@ -660,6 +666,7 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+>  static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>  				     int num_planes, int qgv_point)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	int i;
+>  
+>  	/*
+> @@ -667,9 +674,9 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	 */
+>  	num_planes = max(1, num_planes);
+>  
+> -	for (i = 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
+> +	for (i = 0; i < ARRAY_SIZE(display->bw.max); i++) {
+>  		const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[i];
+> +			&display->bw.max[i];
+>  
+>  		/*
+>  		 * Pcode will not expose all QGV points when
+> @@ -688,6 +695,7 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>  static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>  				     int num_planes, int qgv_point)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	int i;
+>  
+>  	/*
+> @@ -695,9 +703,9 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>  	 */
+>  	num_planes = max(1, num_planes);
+>  
+> -	for (i = ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >= 0; i--) {
+> +	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
+>  		const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[i];
+> +			&display->bw.max[i];
+>  
+>  		/*
+>  		 * Pcode will not expose all QGV points when
+> @@ -716,8 +724,9 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>  static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+>  			       int psf_gv_point)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	const struct intel_bw_info *bi =
+> -			&dev_priv->display.bw.max[0];
+> +			&display->bw.max[0];
+>  
+>  	return bi->psf_bw[psf_gv_point];
+>  }
+> @@ -725,6 +734,7 @@ static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+>  static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
+>  			       int num_active_planes, int qgv_point)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	unsigned int idx;
+>  
+>  	if (DISPLAY_VER(i915) >= 12)
+> @@ -732,10 +742,10 @@ static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
+>  	else
+>  		idx = icl_max_bw_index(i915, num_active_planes, qgv_point);
+>  
+> -	if (idx >= ARRAY_SIZE(i915->display.bw.max))
+> +	if (idx >= ARRAY_SIZE(display->bw.max))
+>  		return 0;
+>  
+> -	return i915->display.bw.max[idx].deratedbw[qgv_point];
+> +	return display->bw.max[idx].deratedbw[qgv_point];
+>  }
+>  
+>  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+> @@ -854,10 +864,10 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+>  struct intel_bw_state *
+>  intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_old_global_obj_state(state, &display->bw.obj);
+>  
+>  	return to_intel_bw_state(bw_state);
+>  }
+> @@ -865,10 +875,10 @@ intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+>  struct intel_bw_state *
+>  intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_new_global_obj_state(state, &display->bw.obj);
+>  
+>  	return to_intel_bw_state(bw_state);
+>  }
+> @@ -876,10 +886,10 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+>  struct intel_bw_state *
+>  intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_global_state *bw_state;
+>  
+> -	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.bw.obj);
+> +	bw_state = intel_atomic_get_global_obj_state(state, &display->bw.obj);
+>  	if (IS_ERR(bw_state))
+>  		return ERR_CAST(bw_state);
+>  
+> @@ -889,7 +899,8 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>  static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
+>  					      int num_active_planes)
+>  {
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	struct intel_display *display = &i915->display;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	unsigned int max_bw_point = 0;
+>  	unsigned int max_bw = 0;
+>  	int i;
+> @@ -925,7 +936,8 @@ static u16 icl_prepare_qgv_points_mask(struct drm_i915_private *i915,
+>  
+>  static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> +	struct intel_display *display = &i915->display;
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+>  	unsigned int max_bw_point_mask = 0;
+>  	unsigned int max_bw = 0;
+>  	int i;
+> @@ -965,8 +977,9 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  			       unsigned int num_active_planes,
+>  			       struct intel_bw_state *new_bw_state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	unsigned int best_rate = UINT_MAX;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	unsigned int qgv_peak_bw  = 0;
+>  	int i;
+>  	int ret;
+> @@ -995,17 +1008,17 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>  			tgl_max_bw_index(i915, num_active_planes, i);
+>  		unsigned int max_data_rate;
+>  
+> -		if (bw_index >= ARRAY_SIZE(i915->display.bw.max))
+> +		if (bw_index >= ARRAY_SIZE(display->bw.max))
+>  			continue;
+>  
+> -		max_data_rate = i915->display.bw.max[bw_index].deratedbw[i];
+> +		max_data_rate = display->bw.max[bw_index].deratedbw[i];
+>  
+>  		if (max_data_rate < data_rate)
+>  			continue;
+>  
+>  		if (max_data_rate - data_rate < best_rate) {
+>  			best_rate = max_data_rate - data_rate;
+> -			qgv_peak_bw = i915->display.bw.max[bw_index].peakbw[i];
+> +			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
+>  		}
+>  
+>  		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
+> @@ -1037,8 +1050,9 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
+>  			       const struct intel_bw_state *old_bw_state,
+>  			       struct intel_bw_state *new_bw_state)
+>  {
+> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
+> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
+> +	struct intel_display *display = &i915->display;
+> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
+> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
+>  	u16 psf_points = 0;
+>  	u16 qgv_points = 0;
+>  	int i;
+> -- 
+> 2.48.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16146 -> Patchwork_144441v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_144441v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-pnv-d510/igt@dmabuf@all-tests.html
-    - bat-apl-1:          [PASS][2] -> [INCOMPLETE][3] ([i915#12904]) +1 other test incomplete
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-apl-1/igt@dmabuf@all-tests.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][4] -> [FAIL][5] ([i915#13633])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-    - fi-tgl-1115g4:      [PASS][6] -> [FAIL][7] ([i915#13633])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][10] -> [SKIP][11] ([i915#9197]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][12] ([i915#12061]) -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][14] ([i915#12061]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16146 -> Patchwork_144441v2
-
-  CI-20190529: 20190529
-  CI_DRM_16146: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_144441v2: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html
-
---===============7271542288163224887==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: Update bandwidth parameters (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144441/">https://patchwork.freedesktop.org/series/144441/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16146 -&gt; Patchwork_144441v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_144441v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-pnv-d510/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16146 -&gt; Patchwork_144441v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16146: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_144441v2: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7271542288163224887==--
+-- 
+Ville Syrjälä
+Intel
