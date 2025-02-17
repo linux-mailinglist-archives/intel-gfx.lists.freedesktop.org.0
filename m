@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7C6A38B11
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 19:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D70AA38B1A
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 19:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D39610E596;
-	Mon, 17 Feb 2025 18:08:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TCTm4iEK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C103C10E595;
+	Mon, 17 Feb 2025 18:12:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E3F610E595;
- Mon, 17 Feb 2025 18:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739815737; x=1771351737;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=XRujir9PAo2N/fl02B21mtBCvLoOGWauttdYB08YMM8=;
- b=TCTm4iEKnvIqeJMP/+bEoTHTk77frVHk5p+4w+lEQAQiMfkmcfnMfwgQ
- BBDezVdO9YTW5cMzYK0Bto5KmTRXfVCHwMw/oPK1dnNKv+FbpFpj+zs36
- aJBdVa8e3IUPpYlw6IpkRJlgVpOk+Q0xNNCtR6/YSaAT5G6Uc3TFlb/ZY
- L5Q5Rxw9cvE+V6UfzAzgyS7HJhJXsmCPM1fQune68tr69UPb3gDPnpP5d
- EToR0YscTNUQgOF7xV/zpI4VpTcnJMOHDikRo+FltiIPzIdpOQgobrksj
- 2HPyQ1DTImnMJT5zAIRBnPPsTCYkcESJ9EWHg5TaY+/oL3tHTnqoAY4TK Q==;
-X-CSE-ConnectionGUID: 9BsHc7UcRaqKi0701q5kTg==
-X-CSE-MsgGUID: ZWzhjvYDRDuAZ1pXlM+Nng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="57906935"
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="57906935"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2025 10:08:56 -0800
-X-CSE-ConnectionGUID: 1AoIN/IpTAyyxd31ZgloaQ==
-X-CSE-MsgGUID: L6InR+S+QBOv+jr+pAEUIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,293,1732608000"; d="scan'208";a="114382455"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Feb 2025 10:08:53 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 17 Feb 2025 20:08:52 +0200
-Date: Mon, 17 Feb 2025 20:08:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 06/19] drm/i915/vrr: Use crtc_vtotal for vmin
-Message-ID: <Z7N7NHKqNrHpSH4g@intel.com>
-References: <20250214121130.1808451-1-ankit.k.nautiyal@intel.com>
- <20250214121130.1808451-7-ankit.k.nautiyal@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC60710E595;
+ Mon, 17 Feb 2025 18:12:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250214121130.1808451-7-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Provide_?=
+ =?utf-8?q?more_information_on_display_faults_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Feb 2025 18:12:48 -0000
+Message-ID: <173981596876.3325879.16158275047864143481@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250217070047.953-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250217070047.953-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,88 +37,166 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 14, 2025 at 05:41:16PM +0530, Ankit Nautiyal wrote:
-> To have fixed refresh rate with VRR timing generator the
-> guardband/pipeline full can't be programmed on the fly. So we need to
-> ensure that the values satisfy both the fixed and variable refresh
-> rates.
-> 
-> Since we compute these value based on vmin, lets set the vmin to
-> crtc_vtotal for both fixed and variable timings instead of using the
-> current refresh rate based approach. This way the guardband remains
-> sufficient for both cases.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 34 +++++++++++++++++-------
->  1 file changed, 25 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index efa2aa284285..3bcf2a026ad3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -246,18 +246,34 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
->  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
->  }
->  
-> +/*
-> + * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
-> + * Vtotal value.
-> + */
->  static
-> -int intel_vrr_compute_vmin(struct intel_connector *connector,
-> -			   struct drm_display_mode *adjusted_mode)
-> +int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
->  {
-> -	int vmin;
-> -	const struct drm_display_info *info = &connector->base.display_info;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
->  
-> -	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
-> -			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
-> -	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
-> +	if (DISPLAY_VER(display) >= 13)
-> +		return crtc_vtotal;
-> +	else
-> +		return crtc_vtotal -
-> +			intel_vrr_real_vblank_delay(crtc_state);
-> +}
->  
-> -	return vmin;
-> +static
-> +int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
-> +{
-> +	/*
-> +	 * To make fixed rr and vrr work seamless the guardband/pipeline full
-> +	 * should be set such that it satisfies both the fixed and variable
-> +	 * timings.
-> +	 * For this set the vmin as crtc_vtotal. With this we never need to
-> +	 * change anything to do with the guardband.
-> +	 */
-> +	return intel_vrr_fixed_rr_vtotal(crtc_state);
+== Series Details ==
 
-We don't have the vblank delay dialed in at this point. So this
-needs to be just the normal vtotal wihtout any adjustments.
+Series: drm/i915: Provide more information on display faults (rev3)
+URL   : https://patchwork.freedesktop.org/series/143627/
+State : warning
 
->  }
->  
->  static
-> @@ -305,7 +321,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  	if (HAS_LRR(display))
->  		crtc_state->update_lrr = true;
->  
-> -	vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
-> +	vmin = intel_vrr_compute_vmin(crtc_state);
->  	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
->  
->  	if (vmin >= vmax)
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim checkpatch failed
+58ff02cb79db drm/i915: Add missing else to the if ladder in missing else
+fb1760bf1c2f drm/i915: Introduce a minimal plane error state
+826cd278350d drm/i915: Pimp display fault reporting
+-:154: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#154: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1039:
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:167: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#167: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1052:
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:179: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#179: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1064:
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:188: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#188: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1073:
++	{ .fault = GEN9_PIPE_CURSOR_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:193: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#193: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1078:
++	{ .fault = GEN8_PIPE_SPRITE_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:194: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#194: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1079:
++	{ .fault = GEN8_PIPE_PRIMARY_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:195: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#195: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1080:
++	{ .fault = GEN8_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+total: 0 errors, 7 warnings, 0 checks, 196 lines checked
+7fe5cea31828 drm/i915: Hook in display GTT faults for IVB/HSW
+-:45: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:744:
++	{ .fault = ERR_INT_SPRITE_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:46: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:745:
++	{ .fault = ERR_INT_PRIMARY_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:47: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:746:
++	{ .fault = ERR_INT_CURSOR_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:48: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#48: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:747:
++	{ .fault = ERR_INT_SPRITE_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:49: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#49: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:748:
++	{ .fault = ERR_INT_PRIMARY_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:50: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:749:
++	{ .fault = ERR_INT_CURSOR_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:51: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:750:
++	{ .fault = ERR_INT_SPRITE_C_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:52: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:751:
++	{ .fault = ERR_INT_PRIMARY_C_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:53: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:752:
++	{ .fault = ERR_INT_CURSOR_C_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+total: 0 errors, 9 warnings, 0 checks, 82 lines checked
+df5b50b28c26 drm/i915: Hook in display GTT faults for ILK/SNB
+-:40: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:864:
++	{ .fault = GTT_FAULT_SPRITE_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:41: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:865:
++	{ .fault = GTT_FAULT_SPRITE_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:42: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:866:
++	{ .fault = GTT_FAULT_PRIMARY_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:43: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:867:
++	{ .fault = GTT_FAULT_PRIMARY_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:44: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#44: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:868:
++	{ .fault = GTT_FAULT_CURSOR_A_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+-:45: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:869:
++	{ .fault = GTT_FAULT_CURSOR_B_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
+
+total: 0 errors, 6 warnings, 0 checks, 90 lines checked
+70f2337c58ec drm/i915: Introduce i915_error_regs
+e92230bfdda6 drm/i915: Un-invert {i9xx,i965}_error_mask()
+47564b99ca4b drm/i915: Hook up display fault interrupts for VLV/CHV
+-:59: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1811:
++	{ .fault = SPRITEB_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE1, },
+
+-:60: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1812:
++	{ .fault = SPRITEA_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:61: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#61: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1813:
++	{ .fault = PLANEA_INVALID_GTT_STATUS,  .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:62: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1814:
++	{ .fault = CURSORA_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR,  },
+
+-:63: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#63: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1815:
++	{ .fault = SPRITED_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE1, },
+
+-:64: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#64: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1816:
++	{ .fault = SPRITEC_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:65: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1817:
++	{ .fault = PLANEB_INVALID_GTT_STATUS,  .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:66: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1818:
++	{ .fault = CURSORB_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR,  },
+
+-:67: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1819:
++	{ .fault = SPRITEF_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE1, },
+
+-:68: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1820:
++	{ .fault = SPRITEE_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
+
+-:69: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1821:
++	{ .fault = PLANEC_INVALID_GTT_STATUS,  .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
+
+-:70: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#70: FILE: drivers/gpu/drm/i915/display/intel_display_irq.c:1822:
++	{ .fault = CURSORC_INVALID_GTT_STATUS, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR,  },
+
+total: 0 errors, 12 warnings, 0 checks, 237 lines checked
+
+
