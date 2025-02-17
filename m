@@ -2,53 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AAD1A37BBA
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 08:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0344FA37BBB
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 08:00:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0D5810E142;
-	Mon, 17 Feb 2025 07:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D39010E375;
+	Mon, 17 Feb 2025 07:00:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eq0Iptnc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UIo3xW7F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA94210E142;
- Mon, 17 Feb 2025 07:00:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 163DA10E37D;
+ Mon, 17 Feb 2025 07:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739775651; x=1771311651;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=hyuYhLiKAi96DxIuqen/0pULlGfivG3zarUorRs+s7s=;
- b=Eq0IptncqLWyfDHTidKSuNm1eVVFhwrZ6m+ixMTszfe9u+flHcXsf6Ht
- AZs/jY5Xyx/YmA2fHmR6ba6Rh7uwBP6CPLbl1kUJFegS+vC5XOAtEkvLm
- PkhFf88pMkFboqsydv5A57FwZIZoNPvM8SYtHxEeA7PLnVZF8cnYmW6aJ
- 7cMqHkjhO5h8uQNmQqB8uGwmfUHvL5Wr+zgpPmYBul4pYt/jyzBkDvbnd
- CF9hyJuD5lrumHGFeIKLl65ZwSgLs42SPa1uGoUjZ7yxdjde0XR/soe6D
- WFmQppZZmhUiUIQjtQppJSECXyY02J+nUOeTgH/5gasbvEtnhjk1jh73V w==;
-X-CSE-ConnectionGUID: +JXg3CVrRyac0iNcOy+Rkw==
-X-CSE-MsgGUID: 4s+3nwPvQw6Da45nllpwRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11347"; a="39676238"
-X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; d="scan'208";a="39676238"
+ t=1739775654; x=1771311654;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=K6HIgMdjre2uqCZgYogyWGI9TdGSS4JOwwxeb3HpUds=;
+ b=UIo3xW7FQojpKYKiAyFIe+3zDHpkNc5nDm/D3OMKlENalT4QCM9LS+8V
+ t4Qh5U3G2avXWuaZqUfL4M7krSp+pPdIO7IA1ONsoA5TENpuKSFAK/LW3
+ PlF02T7SVKxwvO0avqyaPHC/fSPn/NaJkEzilTyVw24aSSfqDf8T0CojM
+ mHbpLkbOUQwQuImWZOhAYXQ1+TplVpfHt5CyBknkIAtyoOieXpKyTEGP1
+ TOG+obOB9j1Ctf+8AwvTRQRc88ceerqfg9qqb3CzxSPRaFUWDZ+UIti5R
+ j2Iav2ql9lSjWlKsf9nssTLniwgzc2IewKdii1esOpIj+ouIU1NFKG4Ay A==;
+X-CSE-ConnectionGUID: HQVr/algTrSfZvo++oqfjg==
+X-CSE-MsgGUID: Yq9eU3PzSJaYEDK/aOvhAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11347"; a="39676244"
+X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; d="scan'208";a="39676244"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2025 23:00:50 -0800
-X-CSE-ConnectionGUID: NMFXw4yWQmCIeyaBBuQbOw==
-X-CSE-MsgGUID: yi4ijFAqRNinCZcis1cyOA==
+ 16 Feb 2025 23:00:53 -0800
+X-CSE-ConnectionGUID: vK8kjcz6SqOrGAxJfwR1KQ==
+X-CSE-MsgGUID: Dw8WxfarRB2ZJrd5GI/97Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; d="scan'208";a="114233326"
+X-IronPort-AV: E=Sophos;i="6.13,292,1732608000"; d="scan'208";a="114233349"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Feb 2025 23:00:48 -0800
+ by fmviesa008.fm.intel.com with SMTP; 16 Feb 2025 23:00:51 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 17 Feb 2025 09:00:47 +0200
+ Mon, 17 Feb 2025 09:00:50 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/8] drm/i915: Provide more information on display faults
-Date: Mon, 17 Feb 2025 09:00:39 +0200
-Message-ID: <20250217070047.953-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [PATCH v2 1/8] drm/i915: Add missing else to the if ladder in missing
+ else
+Date: Mon, 17 Feb 2025 09:00:40 +0200
+Message-ID: <20250217070047.953-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250217070047.953-1-ville.syrjala@linux.intel.com>
+References: <20250217070047.953-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,51 +73,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we just print a hardware specific bitmask when
-encountering any kind of display fault error. To make these
-errors a bit easier to decode (and perhps even analyze)
-I now decode the actual bits, and for plane faults provide
-a dump of a few (hopefully) relevant plane registers (CTL,
-SURF,SURFLIVE for now, which should at least help with faults
-cause by bad GTT alignment).
+The if ladder in gen8_de_pipe_fault_mask() was missing one
+else, add it. Doesn't actually matter since each if branch
+just returns directly. But the code is less confusing when
+you always do things the same way.
 
-So far we only reported faults on bdw+, but I'm also hooking
-this stuff up for all ilk+ and vlv/chv. The older gmch
-platforms I left out for now, but I think i965/g4x should
-at least be diable in the future.
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Not sure I'm 100% satisfied with how the pipe_fault_handler
-thing is structured, but at least it works.
-
-v2: Adjust to intel_display changes
-    Add the xe gen2_error_regs stuff in the same patch as i915
-
-Ville Syrjälä (8):
-  drm/i915: Add missing else to the if ladder in missing else
-  drm/i915: Introduce a minimal plane error state
-  drm/i915: Pimp display fault reporting
-  drm/i915: Hook in display GTT faults for IVB/HSW
-  drm/i915: Hook in display GTT faults for ILK/SNB
-  drm/i915: Introduce i915_error_regs
-  drm/i915: Un-invert {i9xx,i965}_error_mask()
-  drm/i915: Hook up display fault interrupts for VLV/CHV
-
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  41 ++
- .../gpu/drm/i915/display/intel_atomic_plane.c |   2 +-
- .../gpu/drm/i915/display/intel_atomic_plane.h |   2 +
- drivers/gpu/drm/i915/display/intel_cursor.c   |  26 ++
- .../gpu/drm/i915/display/intel_display_irq.c  | 392 +++++++++++++++++-
- .../gpu/drm/i915/display/intel_display_irq.h  |   3 +
- .../drm/i915/display/intel_display_types.h    |   7 +
- drivers/gpu/drm/i915/display/intel_sprite.c   |  36 ++
- .../drm/i915/display/skl_universal_plane.c    |  12 +
- drivers/gpu/drm/i915/i915_irq.c               |  61 ++-
- drivers/gpu/drm/i915/i915_irq.h               |   4 +
- drivers/gpu/drm/i915/i915_reg.h               |  34 ++
- drivers/gpu/drm/i915/i915_reg_defs.h          |   8 +
- drivers/gpu/drm/xe/display/ext/i915_irq.c     |  23 +
- 14 files changed, 632 insertions(+), 19 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 880eaed83cd5..d3ba8e2cf5a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -908,7 +908,7 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+ 			GEN9_PIPE_PLANE3_FAULT |
+ 			GEN9_PIPE_PLANE2_FAULT |
+ 			GEN9_PIPE_PLANE1_FAULT;
+-	if (DISPLAY_VER(display) >= 13 || HAS_D12_PLANE_MINIMIZATION(display))
++	else if (DISPLAY_VER(display) >= 13 || HAS_D12_PLANE_MINIMIZATION(display))
+ 		return GEN12_PIPEDMC_FAULT |
+ 			GEN9_PIPE_CURSOR_FAULT |
+ 			GEN11_PIPE_PLANE5_FAULT |
 -- 
 2.45.3
 
