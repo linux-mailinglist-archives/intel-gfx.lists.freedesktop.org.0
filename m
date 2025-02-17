@@ -2,77 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B08A38A89
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 18:26:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15372A38A9D
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2025 18:33:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8059710E00B;
-	Mon, 17 Feb 2025 17:26:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="gO3kYx2h";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8036810E564;
+	Mon, 17 Feb 2025 17:33:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFE0010E00B
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2025 17:26:21 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-438a39e659cso31554795e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2025 09:26:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1739813180; x=1740417980; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=f2XoxVUHEviTLdUFNF9AD1lkODTC3JrZZv4D3w1+gpc=;
- b=gO3kYx2hbjtJwgrccCv1x/r4ByewbMgjSkcDDdoxpquCwYeSI33ZLrWnrBRi8SHBt2
- 2C0dmDti56xItTYHDxGIeUbifxgUi0zNzNLqJz1ir0kxv5/E0lMUelJlvE1nBByR2wIm
- x2kDPURG+6gsyLfG9ldkNJDyasDj4qvuoEavU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739813180; x=1740417980;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=f2XoxVUHEviTLdUFNF9AD1lkODTC3JrZZv4D3w1+gpc=;
- b=iVUhp9Em2J5SKME65SlPkhGJqhbHBLGO5W2BDEovGJCqSwFS4wytd8sBaO+AdwC792
- EiYn/+7fhBy2AYgLc6gqVIlMkh9K6M8g1T/aQCp0meqIRNyPKdBfzUrVujgz1IgC6Xr0
- 8hpHT5zEB7maX0kaaWY0sWJfc+Tl6YS7a6OAFg203VW4FlmjrG7OV8C+A/WnJMyA0ycy
- JpwYdSm6RcA6cR1MkzyDD5jQzL1zKsvwD5jNqYe+uufhLyWXc3AJTQIBYRK8kve/iyTb
- EYBPYO+qrhOoObsXVSIXGY92mUTYV8mRJ3SoBmMGZ9TPbg35dfn+vedcTz5cJMebDIPB
- JcqA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUEzhF2BF4scABVWweKJTM19hfw32eUeLkeYeuvjT6gQMSV0EN3+PrrC14dTDCAFhHhQbPteCZinJI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwRyBrS5eK6qibyuDifffV0dimBTgqwvOWxSGKuToL1EVwNUdj3
- lOUA7U71eKc7w+EVoz4oKuOvx+FRhpqBlkDpBDCh9uhCcQuTpfxKvctYtINO+yA=
-X-Gm-Gg: ASbGncuXyyF9CdplAdW9oJsUpsD7zWjAST0RRRPA9y+/Nx0f6+iFLyBTSxdSKaDmEAX
- 5w0Se2Hzpt9jR4qPeUDDRy0fh2vkpCidLNEYCwKwm2gEmvfuP8Ff9HCW0pjRlDmWYnab/abv9xR
- ROOzQl8JQPXylvvV0QGi1Ix4TbPxV72QmdT/i/SxcNHDb1vGrtWvltSG28f6Wx0q7m2CZm6umQu
- aG1NHNH4OWytYfdZEdpPgXHcWqOvT2OfrUa2Cd9lVsZ+yt6HDC47nSCi4Lc3/2Xr6siH8vjJL5m
- Hl7fOMnORliM93rtnHiCDCl+dfc=
-X-Google-Smtp-Source: AGHT+IF29cKlKjM1PNLzjmTdMX9imDjZm21jbtbsj1zwyPY6d8JzQcln8A8L69GcFebX/8xdhHGCXw==
-X-Received: by 2002:a05:600c:4fc9:b0:439:564a:6503 with SMTP id
- 5b1f17b1804b1-4396e705d5fmr96061625e9.18.1739813180254; 
- Mon, 17 Feb 2025 09:26:20 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38f258f8c4bsm12807264f8f.46.2025.02.17.09.26.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 Feb 2025 09:26:19 -0800 (PST)
-Date: Mon, 17 Feb 2025 18:26:17 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- suraj.kandpal@intel.com, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
-Message-ID: <Z7NxOVfgvvBt_sj3@phenom.ffwll.local>
-References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
- <20250128-dpst-v8-1-871b94d777f8@intel.com>
- <20250217120808.708b9b4d@eldfell>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A61F110E564;
+ Mon, 17 Feb 2025 17:33:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7271542288163224887=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250217120808.708b9b4d@eldfell>
-X-Operating-System: Linux phenom 6.12.11-amd64 
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/xe3lpd=3A_Update?=
+ =?utf-8?q?_bandwidth_parameters_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Feb 2025 17:33:16 -0000
+Message-ID: <173981359667.3325564.9177514444444897975@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250217153550.43909-1-gustavo.sousa@intel.com>
+In-Reply-To: <20250217153550.43909-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,155 +37,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2025 at 12:08:08PM +0200, Pekka Paalanen wrote:
-> Hi Arun,
-> 
-> this whole series seems to be missing all the UAPI docs for the DRM
-> ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
-> replacement for them, I would assume both are a requirement.
-> 
-> Without the ReST docs it is really difficult to see how this new UAPI
-> should be used.
+--===============7271542288163224887==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Seconded. But really only wanted to comment on the userspace address in
-drm blobs.
+== Series Details ==
 
-> > +/**
-> > + * struct drm_histogram_config
-> > + *
-> > + * @hist_mode_data: address to the histogram mode specific data if any
-> 
-> Do I understand correctly that the KMS blob will contain a userspace
-> virtual memory address (a user pointer)? How does that work? What are
-> the lifetime requirements for that memory?
-> 
-> I do not remember any precedent of this, and I suspect it's not a good
-> design. I believe all the data should be contained in the blobs, e.g.
-> how IN_FORMATS does it. I'm not sure what would be the best UAPI here
-> for returning histogram data to userspace, but at least all the data
-> sent to the kernel should be contained in the blob itself since it
-> seems to be quite small. Variable length is ok for blobs.
+Series: drm/i915/xe3lpd: Update bandwidth parameters (rev2)
+URL   : https://patchwork.freedesktop.org/series/144441/
+State : success
 
-So yeah this doesn't work for a few reasons:
+== Summary ==
 
-- It's very restrictive what you're allowed to do during an atomic kms
-  commit, and a userspace page fault due to copy_from/to_user is
-  definitely not ok. Which means you need to unconditionally copy before
-  the atomic commit in the synchronous prep phase for the user->kernel
-  direction, and somewhere after the entire thing has finished for the
-  other direction. So this is worse than just more blobs, because with
-  drm blobs you can at least avoid copying if nothing has changed.
+CI Bug Log - changes from CI_DRM_16146 -> Patchwork_144441v2
+====================================================
 
-- Due to the above you also cannot synchronize with userspace for the
-  kernel->userspace copy. And you can't fix that with a sync_file out
-  fence, because the underlying dma_fence rules are what prevents you from
-  doing userspace page faults in atomic commit, and the same rules apply
-  for any other sync_file fence too.
+Summary
+-------
 
-- More fundamentally, both drm blobs and userspace virtual address spaces
-  (as represented by struct mm_struct) are refconted objects, with
-  entirely decoupled lifetimes. You'll have UAF issues here, and if you
-  fix them by grabbing references you'll break the world.
+  **SUCCESS**
 
-tldr; this does not work
+  No regressions found.
 
-Alternative A: drm blob
------------------------
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html
 
-This would work for the userspace->kernel direction, but there's some
-downsides:
+Participating hosts (42 -> 41)
+------------------------------
 
-- You still copy, although less often than with a userspace pointer.
+  Missing    (1): fi-snb-2520m 
 
-- The kernel->userspace direction doesn't work, because blob objects are
-  immutable. We have mutable blob properties, but mutability is achieved
-  by exchanging the entire blob object. There's two options to address
-  that:
+Known issues
+------------
 
-  a) Fundamentally immutable objects is really nice api designs, so I
-     prefer to not change that. But in theory making blob objects mutable
-     would work, and probably break the world.
+  Here are the changes found in Patchwork_144441v2 that come from known issues:
 
-  b) A more benign trick would be to split the blob object id allocation
-     from creating the object itself. We could then allocate and return
-     the blob ID of the new histogram to userspace synchronously from the
-     atomic ioctl, while creating the object for real only in the atomic
-     commit.
+### IGT changes ###
 
-     As long as we preallocate any memory this doesn't break and dma_fence
-     signalling rules. Which also means we could use the existing atomic
-     out-fence (or a new one for histograms) to signal to userspace when
-     the data is ready, so this is at least somewhat useful for
-     compositors without fundamental issues.
+#### Issues hit ####
 
-     You still suffer from additional copies here.
+  * igt@dmabuf@all-tests:
+    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-pnv-d510/igt@dmabuf@all-tests.html
+    - bat-apl-1:          [PASS][2] -> [INCOMPLETE][3] ([i915#12904]) +1 other test incomplete
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-apl-1/igt@dmabuf@all-tests.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-apl-1/igt@dmabuf@all-tests.html
 
-Alternative B: gem_bo
----------------------
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [PASS][4] -> [FAIL][5] ([i915#13633])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+    - fi-tgl-1115g4:      [PASS][6] -> [FAIL][7] ([i915#13633])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
 
-One alternative which naturally has mutable data would be gem_bo, maybe
-wrapped in a drm_fb. The issue with that is that for small histograms you
-really want cpu access both in userspace and the kernel, while most
-display hardware wants uncached. And all the display-only kms drivers we
-have do not have a concept of cached gem_bo, unlike many of the drm
-drivers with render/accel support. Which means we're adding gem_bo which
-cannot be used for display, on display-only drivers, and I'd expect this
-will result in compositors blowing up in funny ways to no end.
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
 
-So not a good idea either, at least not if your histograms are small and
-the display hw doesn't dma them in/out already anyway.
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][10] -> [SKIP][11] ([i915#9197]) +3 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
 
-This also means that we'll probably need 2 interfaces here, one supporting
-gem_bo for big histograms and hw that can dma in/out of them, and a 2nd
-one optimized for the cpu access case.
+  
+#### Possible fixes ####
 
-Alternative C: memfd
---------------------
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][12] ([i915#12061]) -> [PASS][13] +1 other test pass
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [DMESG-FAIL][14] ([i915#12061]) -> [PASS][15] +1 other test pass
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
 
-I think a new drm property type that accepts memfd would fit the bill
-quit well:
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
 
-- memfd can be mmap(), so you avoid copies.
 
-- their distinct from gem_bo, so no chaos in apis everywhere with imposter
-  gem_bo that cannot ever be used for display.
+Build changes
+-------------
 
-- memfd can be sealed, so we can validate that they have the right size
+  * Linux: CI_DRM_16146 -> Patchwork_144441v2
 
-- thanks to umdabuf there's already core mm code to properly pin them, so
-  painful to implement this all.
+  CI-20190529: 20190529
+  CI_DRM_16146: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_144441v2: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-For a driver interface I think the memfd should be pinned as long as it's
-in a drm_crtc/plane/whatever_state structure, with a kernel vmap void *
-pointer already set up. That way drivers can't get this wrong.
+== Logs ==
 
-The uapi has a few options:
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html
 
-- Allow memfd to back drm_framebuffer. This won't result in api chaos
-  since the compositor creates these, and these memfd should never show up
-  in any property that would have a real fb backed by gem_bo. This still
-  feels horrible to me personally, but it would allow to support
-  histograms that need gem_bo in the same api. Personally I think we
-  should just do two flavors, they're too distinct.
+--===============7271542288163224887==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-- A new memfd kms object like blob objects, which you can create and
-  destroy and which are refcounted. Creation would also pin the memfd and
-  check it has a sealed size (and whatever else we want sealed). This
-  avoids pin/unpin every time you change the memfd property, but no idea
-  whether that's a real use-case.
 
-- memfd properties just get the file descriptor (like in/out fences do)
-  and the drm atomic ioctl layer transparently pins/unpins as needed.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Personally I think option C is neat, A doable, B really only for hw that
-can dma in/out of histograms and where it's big enough that doing so is a
-functional requirement.
 
-Cheers, Sima
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: Update bandwidth parameters (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144441/">https://patchwork.freedesktop.org/series/144441/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16146 -&gt; Patchwork_144441v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_144441v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-pnv-d510/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16146/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16146 -&gt; Patchwork_144441v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16146: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8235: e7e14eff66bc42329903ee579f019094cf1fdfce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_144441v2: c282b8face163244076dac30e4c9ffd74dc89044 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7271542288163224887==--
