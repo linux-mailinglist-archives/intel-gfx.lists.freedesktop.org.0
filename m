@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111BBA39848
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 11:10:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89446A3988D
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 11:18:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 834A810E652;
-	Tue, 18 Feb 2025 10:10:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KeYbxg7S";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E35510E662;
+	Tue, 18 Feb 2025 10:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC8210E64F;
- Tue, 18 Feb 2025 10:10:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739873440; x=1771409440;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R4GGuH4RPihsHl3YJCy6+ODQgvF2FAcdgrTctASoQKM=;
- b=KeYbxg7SqmXmxIMvMkqNT1/2b4yUgu8nJJn6R3rEOovdeQc132HsBO1u
- AWnsP0EfdcdgjpyFpFeB93kxD98TPpdaThrYntzYl/t0k/Laqha4t5eLn
- qWasNKDm+Z8I8ZYzgZFxbzANE767shWYs8Cj73znC6tTD8y0AfnXWOwIE
- cyTfoqQHe80cVYAVUCmR7mvTSXesxRx8vMQ8nwuqf4dYELZxA6gcU6yjH
- 4uMnLcJULfYqbQ3KaDxSKUv4nVDex2kGRaU/GuMNY6mQVrJ2x/JCzi9dB
- JGgj6CGjhPZXwVMwXWRlWfwLYCxQ2vPxElFi3kZVN0mBpe5Qg1elGDxuJ A==;
-X-CSE-ConnectionGUID: g3Glb62QT2GAwsGRi6NtnQ==
-X-CSE-MsgGUID: 6YnIadffTtGv1kry4d+ATw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51546331"
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="51546331"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 02:10:40 -0800
-X-CSE-ConnectionGUID: iDLgaQP8R6mpzkLT8rgYrg==
-X-CSE-MsgGUID: myvOzzbbR++rV4QP64LuAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,295,1732608000"; d="scan'208";a="119343800"
-Received: from unknown (HELO sorvi2.fi.intel.com) ([10.237.72.194])
- by orviesa004.jf.intel.com with ESMTP; 18 Feb 2025 02:10:39 -0800
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com, jani.nikula@linux.intel.com,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v5 2/2] drm/i915/display: Allow display PHYs to reset power
- state
-Date: Tue, 18 Feb 2025 12:00:19 +0200
-Message-ID: <20250218100019.740556-3-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250218100019.740556-1-mika.kahola@intel.com>
-References: <20250218100019.740556-1-mika.kahola@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B2C710E662;
+ Tue, 18 Feb 2025 10:18:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Expose_modifiers/for?=
+ =?utf-8?q?mats_supported_by_async_flips_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 18 Feb 2025 10:18:51 -0000
+Message-ID: <173987393117.3531112.10096824586635993529@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
+In-Reply-To: <20250218-asyn-v5-0-7ac5ac4abd4a@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,170 +37,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The dedicated display PHYs reset to a power state that blocks S0ix,
-increasing idle system power. After a system reset (cold boot,
-S3/4/5, warm reset) if a dedicated PHY is not being brought up
-shortly, use these steps to move the PHY to the lowest power state
-to save power.
+== Series Details ==
 
-1. Follow the PLL Enable Sequence, using any valid frequency such
-   as DP 1.62 GHz. This brings lanes out of reset and enables the
-   PLL to allow powerdown to be moved to the Disable state.
-2. Follow PLL Disable Sequence. This moves powerdown to the Disable
-   state and disables the PLL.
+Series: Expose modifiers/formats supported by async flips (rev5)
+URL   : https://patchwork.freedesktop.org/series/140935/
+State : warning
 
-v2: Rename WA function to more descriptive (Jani)
-    For PTL, only port A needs this wa
-    Add helpers to check presence of C10 phy and pll enabling (Imre)
-v3: Rename wa function (Imre)
-    Check return value of C10 pll tables readout (Imre)
-    Use PLL request to check pll enabling (Imre)
-v4: Move intel_cx0_pll_is_enabled() right after
-    intel_cx0_pll_disable() (Imre)
-    Add drm_WARN_ON() if C10 state cannot be calculated from
-    the tables (Imre)
-v5: Add debug message on PLL enabling (Imre)
-    Add check for intel_encoder_is_dig_port() (Imre)
+== Summary ==
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 61 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  1 +
- .../drm/i915/display/intel_display_reset.c    |  2 +
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  3 +
- 4 files changed, 67 insertions(+)
+Error: dim checkpatch failed
+ae683fed9cd1 drm/plane: Add new plane property IN_FORMATS_ASYNC
+-:102: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#102: FILE: include/drm/drm_plane.h:567:
++					   uint32_t format, uint64_t modifier);
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 8d6fd3f1ac13..22595766eac5 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3294,6 +3294,16 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
+total: 0 errors, 0 warnings, 1 checks, 62 lines checked
+b49c99fd68e5 drm/plane: modify create_in_formats to accommodate async
+-:32: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#32: FILE: drivers/gpu/drm/drm_plane.c:199:
++						 uint32_t format,
+
+total: 0 errors, 0 warnings, 1 checks, 72 lines checked
+41b712fbda8c drm/i915/display: Add i915 hook for format_mod_supported_async
+-:25: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#25: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:512:
  }
- 
-+static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	u8 lane = dig_port->lane_reversal ? INTEL_CX0_LANE1 : INTEL_CX0_LANE0;
-+
-+	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
-+			     intel_cx0_get_pclk_pll_request(lane);
-+}
-+
- static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -3555,3 +3565,54 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
- 	else
- 		intel_c20pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c20);
- }
-+
-+/*
-+ * WA 14022081154
-+ * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
-+ * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
-+ * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
-+ * power state to save power. For PTL the workaround is needed only for port A. Port B
-+ * is not connected.
-+ *
-+ * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
-+ *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
-+ *    to the Disable state.
-+ * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
-+ */
-+void intel_cx0_pll_power_save_wa(struct intel_display *display)
-+{
-+	struct intel_encoder *encoder;
-+
-+	if (DISPLAY_VER(display) != 30)
-+		return;
-+
-+	for_each_intel_encoder(display->drm, encoder) {
-+		struct intel_cx0pll_state pll_state = {};
-+		int port_clock = 162000;
-+
-+		if (!intel_encoder_is_dig_port(encoder))
-+			continue;
-+
-+		if (!intel_encoder_is_c10phy(encoder))
-+			continue;
-+
-+		if (intel_cx0_pll_is_enabled(encoder))
-+			continue;
-+
-+		if (intel_c10pll_calc_state_from_table(encoder,
-+						       mtl_c10_edp_tables,
-+						       true, port_clock,
-+						       &pll_state) < 0) {
-+			drm_WARN_ON(display->drm,
-+				    "Unable to calc C10 state from the tables\n");
-+			continue;
-+		}
-+
-+		drm_dbg_kms(display->drm,
-+			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
-+			    encoder->base.base.id, encoder->base.name);
-+
-+		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
-+		intel_cx0pll_disable(encoder);
-+	}
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-index 573fa7d3e88f..a8f811ca5e7b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
-@@ -42,5 +42,6 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
- void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
- 				     const struct intel_crtc_state *crtc_state);
- int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
-+void intel_cx0_pll_power_save_wa(struct intel_display *display);
- 
- #endif /* __INTEL_CX0_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-index 093b386c95e8..a690968885bf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -7,6 +7,7 @@
- 
- #include "i915_drv.h"
- #include "intel_clock_gating.h"
-+#include "intel_cx0_phy.h"
- #include "intel_display_driver.h"
- #include "intel_display_reset.h"
- #include "intel_display_types.h"
-@@ -116,6 +117,7 @@ void intel_display_reset_finish(struct drm_i915_private *i915)
- 		intel_pps_unlock_regs_wa(display);
- 		intel_display_driver_init_hw(display);
- 		intel_clock_gating_init(i915);
-+		intel_cx0_pll_power_save_wa(display);
- 		intel_hpd_init(i915);
- 
- 		ret = __intel_display_driver_resume(display, state, ctx);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index eb3df25a308c..c825a507b905 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -27,6 +27,7 @@
- #include "bxt_dpio_phy_regs.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "intel_cx0_phy.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dkl_phy.h"
-@@ -4571,6 +4572,8 @@ void intel_dpll_sanitize_state(struct intel_display *display)
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
-+	intel_cx0_pll_power_save_wa(display);
-+
- 	for_each_shared_dpll(display, pll, i)
- 		sanitize_dpll_state(display, pll);
- }
--- 
-2.43.0
++static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
+
+-:44: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#44: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:531:
++						   uint32_t format,
+
+total: 0 errors, 0 warnings, 2 checks, 77 lines checked
+
 
