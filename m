@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16933A3AAB0
+	by mail.lfdr.de (Postfix) with ESMTPS id 61350A3AAB1
 	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 22:19:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE81A10E76B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5D1110E76D;
 	Tue, 18 Feb 2025 21:19:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UNQrvwRe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JmfZPHPA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 430D810E76D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE4310E76B
  for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 21:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739913595; x=1771449595;
+ t=1739913596; x=1771449596;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DDGpILxgaVbUzbP9pCy/+QyGJxLIURE9JMIJxCEqido=;
- b=UNQrvwRePx3jGInipIxgIwZYpeB2Nt+1xN+VPK8akqWvISSYDmaM9OUJ
- KeoJgt0csAhLLKePe5Cp7Y3vHze+E+5KuqL5gEamZLAmA5TCcyBu5jV3J
- NBSYJOihgylfxUIgVTdVqU63l8YWOT2yO6lluCF/8L9TwpUBe71rExBBG
- GQewWLJVvUn0O1MWwOQiAw4okhbXwoKg5thPmYzNFvZXUzEqO9l64o0ac
- IOUZoCMySBOxI5cUKUV86tHWIe8CskYsur3zjziyWU4SCNT4Q8iqy9Gvd
- pm90R8Lpf23RHuy2z+p1YsneUTX4mRiTGjoHaB5YB8/ULqt7xeXTRRCDh Q==;
-X-CSE-ConnectionGUID: cTTWO2wWQ+2sXp7YAZYFog==
-X-CSE-MsgGUID: qXJBMcnPQPKnAQteWKe9HQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39862306"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="39862306"
+ bh=2u/ZWsMif4xoh9R/f79KoBbsvuS3VGHaPO1xD2/ZlQY=;
+ b=JmfZPHPAhO8S6+LjKwlGB70j1B+NMVspDS8x7OalLasQLlfivdE9bpxx
+ lqOayAs0+VLq/IhLLlQV4Y7mi5epCUYrsDwiEmuhXUp2y6uFUNqy1KWu+
+ V6EXJB6w+UG87EbXbO62vxSCNE1nxwBxOdGZO5SBKOuUr1GVWSGlf4xxL
+ mqPxZmCJn7w6gJetienZ/t2QgNrsmNRc06ufqntDPQIPO67GbCvil1FA2
+ sXl2XcedHaa8wl0TyEzBY7pTAfUBym2GbcbU//PqvMErKq6RQ5EytfT77
+ hIsnoG9VRwPvbca4govkRF/hxjSLXNDUpttzMTu32XJJJobN7lKTfP/nJ A==;
+X-CSE-ConnectionGUID: ARxMV9mEQHimQi8EFkQ3Mw==
+X-CSE-MsgGUID: NQWq77IqTyyN+6heucazMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39862309"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="39862309"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 13:19:52 -0800
-X-CSE-ConnectionGUID: OatcjNHrQAianjFarSYO9g==
-X-CSE-MsgGUID: ePD3389/Ql6Dm6WoqrLG8Q==
+ 18 Feb 2025 13:19:55 -0800
+X-CSE-ConnectionGUID: j3vC42X8Rbi3pqu3dzQCig==
+X-CSE-MsgGUID: 5+3LeexCQT6BmgQbkMAszg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114693465"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114693480"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 13:19:50 -0800
+ by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 13:19:52 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Feb 2025 23:19:49 +0200
+ Tue, 18 Feb 2025 23:19:51 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 10/19] drm/i915: Extract intel_cdclk_update_hw_state()
-Date: Tue, 18 Feb 2025 23:19:04 +0200
-Message-ID: <20250218211913.27867-11-ville.syrjala@linux.intel.com>
+Subject: [PATCH 11/19] drm/i915: Extract intel_bw_update_hw_state()
+Date: Tue, 18 Feb 2025 23:19:05 +0200
+Message-ID: <20250218211913.27867-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250218211913.27867-1-ville.syrjala@linux.intel.com>
 References: <20250218211913.27867-1-ville.syrjala@linux.intel.com>
@@ -70,138 +70,112 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Hoist the cdclk stuff into a separate function from
+Hoist the bw stuff into a separate function from
 intel_modeset_readout_hw_state() so that the details
-are better hidden inside intel_cdclk.c.
+are better hidden inside intel_bw.c.
+
+We can also skip the whole thing on pre-skl since the dbuf state
+isn't actually used on those platforms.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 29 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  2 +-
- .../drm/i915/display/intel_modeset_setup.c    | 16 ++--------
- 3 files changed, 31 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 21 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  4 ++--
+ .../drm/i915/display/intel_modeset_setup.c    |  5 +----
+ 3 files changed, 22 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 4b7058e65588..947833a96ab7 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2788,7 +2788,7 @@ static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_state)
- 	return min_cdclk;
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 417d2d527ae4..0090ee7e73a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -806,8 +806,8 @@ static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state), 10), 512);
  }
  
--int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
-+static int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+-void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+-			  const struct intel_crtc_state *crtc_state)
++static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
++				 const struct intel_crtc_state *crtc_state)
  {
- 	int min_cdclk;
- 
-@@ -3340,6 +3340,33 @@ int intel_modeset_calc_cdclk(struct intel_atomic_state *state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+@@ -1422,6 +1422,23 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
  	return 0;
  }
  
-+void intel_cdclk_update_hw_state(struct intel_display *display)
++void intel_bw_update_hw_state(struct intel_display *display)
 +{
-+	struct intel_cdclk_state *cdclk_state =
-+		to_intel_cdclk_state(display->cdclk.obj.state);
++	struct intel_bw_state *bw_state =
++		to_intel_bw_state(display->bw.obj.state);
 +	struct intel_crtc *crtc;
 +
-+	cdclk_state->active_pipes = 0;
++	if (DISPLAY_VER(display) < 9)
++		return;
 +
 +	for_each_intel_crtc(display->drm, crtc) {
 +		const struct intel_crtc_state *crtc_state =
 +			to_intel_crtc_state(crtc->base.state);
-+		enum pipe pipe = crtc->pipe;
-+		int min_cdclk = 0;
 +
-+		if (crtc_state->hw.active) {
-+			cdclk_state->active_pipes |= BIT(pipe);
-+
-+			min_cdclk = intel_crtc_compute_min_cdclk(crtc_state);
-+			if (drm_WARN_ON(display->drm, min_cdclk < 0))
-+				min_cdclk = 0;
-+		}
-+
-+		cdclk_state->min_cdclk[pipe] = min_cdclk;
-+		cdclk_state->min_voltage_level[pipe] = crtc_state->min_voltage_level;
++		intel_bw_crtc_update(bw_state, crtc_state);
 +	}
 +}
 +
- void intel_cdclk_crtc_disable_noatomic(struct intel_crtc *crtc)
+ void intel_bw_crtc_disable_noatomic(struct intel_crtc *crtc)
  {
  	struct intel_display *display = to_intel_display(crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index 689e12e2196b..a1cefd455d92 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -59,7 +59,6 @@ struct intel_cdclk_state {
- 	bool disable_pipes;
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index bd94dde207ee..3313e4eac4f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -16,6 +16,7 @@ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_display;
  
--int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state);
- void intel_cdclk_init_hw(struct intel_display *display);
- void intel_cdclk_uninit_hw(struct intel_display *display);
- void intel_init_cdclk_hooks(struct intel_display *display);
-@@ -84,6 +83,7 @@ int intel_cdclk_atomic_check(struct intel_atomic_state *state,
- int intel_cdclk_state_set_joined_mbus(struct intel_atomic_state *state, bool joined_mbus);
- struct intel_cdclk_state *
- intel_atomic_get_cdclk_state(struct intel_atomic_state *state);
-+void intel_cdclk_update_hw_state(struct intel_display *display);
- void intel_cdclk_crtc_disable_noatomic(struct intel_crtc *crtc);
+ struct intel_dbuf_bw {
+ 	unsigned int max_bw[I915_MAX_DBUF_SLICES];
+@@ -74,14 +75,13 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state);
+ void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+ int intel_bw_init(struct drm_i915_private *dev_priv);
+ int intel_bw_atomic_check(struct intel_atomic_state *state);
+-void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+-			  const struct intel_crtc_state *crtc_state);
+ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ 				  u32 points_mask);
+ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+ 			    bool *need_cdclk_calc);
+ int intel_bw_min_cdclk(struct drm_i915_private *i915,
+ 		       const struct intel_bw_state *bw_state);
++void intel_bw_update_hw_state(struct intel_display *display);
+ void intel_bw_crtc_disable_noatomic(struct intel_crtc *crtc);
  
- #define to_intel_cdclk_state(global_state) \
+ #endif /* __INTEL_BW_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index e9b0533526f6..1cfa03bd3224 100644
+index 1cfa03bd3224..70fad9f89cea 100644
 --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
 +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -693,8 +693,6 @@ static void readout_plane_state(struct drm_i915_private *i915)
- static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- {
- 	struct intel_display *display = &i915->display;
--	struct intel_cdclk_state *cdclk_state =
--		to_intel_cdclk_state(i915->display.cdclk.obj.state);
- 	struct intel_dbuf_state *dbuf_state =
- 		to_intel_dbuf_state(i915->display.dbuf.obj.state);
- 	struct intel_pmdemand_state *pmdemand_state =
-@@ -730,7 +728,6 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 			    str_enabled_disabled(crtc_state->hw.active));
- 	}
+@@ -825,8 +825,6 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 	drm_connector_list_iter_end(&conn_iter);
  
--	cdclk_state->active_pipes = active_pipes;
- 	dbuf_state->active_pipes = active_pipes;
- 
- 	readout_plane_state(i915);
-@@ -833,7 +830,6 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 	for_each_intel_crtc(&i915->drm, crtc) {
+-		struct intel_bw_state *bw_state =
+-			to_intel_bw_state(i915->display.bw.obj.state);
  		struct intel_crtc_state *crtc_state =
  			to_intel_crtc_state(crtc->base.state);
  		struct intel_plane *plane;
--		int min_cdclk = 0;
+@@ -880,10 +878,9 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
  
- 		if (crtc_state->hw.active) {
- 			/*
-@@ -882,22 +878,14 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 				    crtc_state->min_cdclk[plane->id]);
- 		}
- 
--		if (crtc_state->hw.active) {
--			min_cdclk = intel_crtc_compute_min_cdclk(crtc_state);
--			if (drm_WARN_ON(&i915->drm, min_cdclk < 0))
--				min_cdclk = 0;
--		}
--
--		cdclk_state->min_cdclk[crtc->pipe] = min_cdclk;
--		cdclk_state->min_voltage_level[crtc->pipe] =
--			crtc_state->min_voltage_level;
--
  		intel_pmdemand_update_port_clock(display, pmdemand_state, pipe,
  						 crtc_state->port_clock);
- 
- 		intel_bw_crtc_update(bw_state, crtc_state);
+-
+-		intel_bw_crtc_update(bw_state, crtc_state);
  	}
  
-+	intel_cdclk_update_hw_state(display);
-+
- 	intel_pmdemand_init_pmdemand_params(display, pmdemand_state);
- }
++	intel_bw_update_hw_state(display);
+ 	intel_cdclk_update_hw_state(display);
  
+ 	intel_pmdemand_init_pmdemand_params(display, pmdemand_state);
 -- 
 2.45.3
 
