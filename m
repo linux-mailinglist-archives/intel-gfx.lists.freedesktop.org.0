@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B9EA39CD0
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 14:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B84A39D1C
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 14:14:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7AAC10E6A1;
-	Tue, 18 Feb 2025 13:05:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C660510E6B0;
+	Tue, 18 Feb 2025 13:14:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZ7/CEp/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kxBxs0qn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42E610E09E;
- Tue, 18 Feb 2025 13:05:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3087010E09E;
+ Tue, 18 Feb 2025 13:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739883918; x=1771419918;
+ t=1739884473; x=1771420473;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=71kS2+48mrgYJgp15fTP57cbCUmSXoX2GS52jWwTd6k=;
- b=PZ7/CEp/ZYR+6ivOPRCt4QO3Tkelp3bbeCKNaZsczfWTg1QSZsSJ70QB
- V5Ax0swrWEWuJtOdNFUvNpaWF339x2uvSGCIJLJbs4Ijyk+cg/MlIoixx
- 9rUPYbA+S8NVj//t6mpXxGarhs5VfLBr394bKMqwaYr70BPQxtK0X0Dg6
- aJPQX8X2AT3jU4h78utF0lAcMOkdctiz9en1fBVAqMOrx13kA4rM+ZLdU
- mEJ6wvqTbztHWcsjGKLWBhVPImMu4y/3bmTqi/Cbhz4u9uUd0EOEvadUq
- HAWBaImYkVFLnvomIpv+Jh3CeTjeRaB3oVcz8P/Qv5IK/5vkBDSymKYJf Q==;
-X-CSE-ConnectionGUID: t6rtxv/rSti6QMGLbeGQzA==
-X-CSE-MsgGUID: ODV5LqjFTcSWs0rJD/GfwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52007614"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52007614"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 05:05:18 -0800
-X-CSE-ConnectionGUID: cF6gCwh6T9SGTT0NHqU7sQ==
-X-CSE-MsgGUID: 6VZhtQpVSA6Je94QwbgT9A==
+ bh=jOJLCl93tsKsew8t2ufC20SCID4TNwtwEbwZl6+i5hM=;
+ b=kxBxs0qnrT/kRtqAaavD4r8XhT0TYPvARR1u1WInrQK9JE6RhAZtDjnV
+ Rxi1DWIdTOWeMEsdMJVnYJmi+qOai2OGkwtrDTrf8Vm5qoCTtkVY/7nSM
+ YrgYNyjGothi/rRNO3dIHag0RUnH51wAQSPekFRN2ec0GKxGrowgEfbNh
+ g37I3k6VbYW2f4+CGnOOV1Ud0c6bGdiYmiTK/4i0+cV6gICPxYZlZp3an
+ 7E9qy0Gl0u7DOnggspIPrOs9q9SYQgePD1UgQxX2wUwFjqoWraKv94lKW
+ TGUdtl9pWr1hMt5TWcJrQnajDd6ye+pKQJkdhQw8/xYiBIeuTy+m2AGjT g==;
+X-CSE-ConnectionGUID: CpDkVA5KQLePzIxBnwR5tw==
+X-CSE-MsgGUID: kJdAaFI+Trix94vyi+TWWw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40785385"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="40785385"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 05:14:33 -0800
+X-CSE-ConnectionGUID: 4LjJA3QZT2qRUEvpeNwZrg==
+X-CSE-MsgGUID: n5eXVk15RoumrWiqBNDbIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114313710"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145293964"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 05:05:17 -0800
-Date: Tue, 18 Feb 2025 15:06:13 +0200
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2025 05:14:30 -0800
+Date: Tue, 18 Feb 2025 15:15:30 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm/i915/dp: Fix error handling during 128b/132b
- link training
-Message-ID: <Z7SFxRKb9_H0fAjG@ideak-desk.fi.intel.com>
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/dp: Fix disabling the transcoder function
+ in 128b/132b mode
+Message-ID: <Z7SH8qfWiz1KHEJW@ideak-desk.fi.intel.com>
 References: <20250217223828.1166093-1-imre.deak@intel.com>
- <20250217223828.1166093-2-imre.deak@intel.com>
- <875xl7o1py.fsf@intel.com>
+ <20250217223828.1166093-3-imre.deak@intel.com>
+ <8734gbo15k.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <875xl7o1py.fsf@intel.com>
+In-Reply-To: <8734gbo15k.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,79 +72,80 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2025 at 02:51:21PM +0200, Jani Nikula wrote:
+On Tue, Feb 18, 2025 at 03:03:35PM +0200, Jani Nikula wrote:
 > On Tue, 18 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
-> > At the end of a 128b/132b link training sequence, the HW expects the
-> > transcoder training pattern to be set to TPS2 and from that to normal
-> > mode (disabling the training pattern). Transitioning from TPS1 directly
-> > to normal mode leaves the transcoder in a stuck state, resulting in
-> > page-flip timeouts later in the modeset sequence.
+> > During disabling the transcoder in DP 128b/132b mode (both in case of an
+> > MST master transcoder and in case of SST) the transcoder function must
+> > be first disabled without changing any other field in the register (in
+> > particular leaving the DDI port and mode select fields unchanged) and
+> > clearing the DDI port and mode select fields separately, later during
+> > the disabling sequences. Fix the sequence accordingly.
 > >
-> > Atm, in case of a failure during link training, the transcoder may be
-> > still set to output the TPS1 pattern. Later the transcoder is then set
-> > from TPS1 directly to normal mode in intel_dp_stop_link_train(), leading
-> > to modeset failures later as described above. Fix this by setting the
-> > training patter to TPS2, if the link training failed at any point.
-> >
-> > Cc: stable@vger.kernel.org # v5.18+
+> > Bspec: 54128, 65448, 68849
 > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Fixes: 79a6734cd56e ("drm/i915/ddi: disable trancoder port select for 128b/132b SST")
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > 
-> No bspec link for this?
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> Looks like I've intentionally done it this way. I think I've stumbled on
+> the bspec text "DP v2.0/128b Primary" and the "primary" has convinced me
+> this means MST. In most cases one should just read all things MST as
+> being true for MTP, regardless of 8b/10b or 128b/132b, no matter what
+> the text actually says. :p
 
-The only clue I see for this is PTL's (and other platforms') modeset
-page (68849) "Enable Sequence" 6. n.: "If DP v2.0/128b, set DP_TP_CTL
-link training pattern 2."
+Right, I also understood the spec the same way, i.e. that the 128b/132b
+MST and SST modeset sequences would be different. It's clearer now that
+this can't be the case, as far as the HW is concerned there is no
+difference. The only difference is the extra side-band messaging for the
+MST case, which the HW doesn't "care" about, since it's not aware of
+anything about those SB messages.
 
-Since setting TPS2 is normally part of the link training (described by
-6. l./m.), so the only reason mentioning it as a separate step for
-128b/132b (vs. 8b/10b for which it is not mentioned), could be this HW
-behavior.
+Btw, I'm guessing intel_dp_mst_is_master_trans() could be renamed
+accordingly, intel_dp_is_mst_master_or_uhbr_trans(), or something (and
+crtc_state->mst_master_transcoder accordingly).
 
-It's obscure imo, could've been explained in the spec better. I can
-clarify this in the commit log and also file a bspec ticket for it.
-
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-Thanks.
-
+> Thanks for debugging and fixing these!
+> 
+> BR,
+> Jani.
+> 
 > 
 > > ---
-> >  .../gpu/drm/i915/display/intel_dp_link_training.c | 15 ++++++++++++++-
-> >  1 file changed, 14 insertions(+), 1 deletion(-)
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++----
+> >  1 file changed, 2 insertions(+), 4 deletions(-)
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > index 3cc06c916017d..11953b03bb6aa 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> > @@ -1563,7 +1563,7 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 5082f38b0a02e..7937f4de66cb4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -681,7 +681,6 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> >  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> >  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> > -	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+> >  	u32 ctl;
 > >  
-> >  	if (wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-> >  		lt_err(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clear\n");
-> > -		return false;
-> > +		goto out;
-> >  	}
+> >  	if (DISPLAY_VER(dev_priv) >= 11)
+> > @@ -701,8 +700,7 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+> >  			 TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK);
 > >  
-> >  	if (intel_dp_128b132b_lane_eq(intel_dp, crtc_state) &&
-> > @@ -1575,6 +1575,19 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
-> >  	       passed ? "passed" : "failed",
-> >  	       crtc_state->port_clock, crtc_state->lane_count);
+> >  	if (DISPLAY_VER(dev_priv) >= 12) {
+> > -		if (!intel_dp_mst_is_master_trans(crtc_state) ||
+> > -		    (!is_mst && intel_dp_is_uhbr(crtc_state))) {
+> > +		if (!intel_dp_mst_is_master_trans(crtc_state)) {
+> >  			ctl &= ~(TGL_TRANS_DDI_PORT_MASK |
+> >  				 TRANS_DDI_MODE_SELECT_MASK);
+> >  		}
+> > @@ -3138,7 +3136,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+> >  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
 > >  
-> > +out:
-> > +	/*
-> > +	 * Ensure that the training pattern does get set to TPS2 even in case
-> > +	 * of a failure, as is the case at the end of a passing link training
-> > +	 * and what is expected by the transcoder. Leaving TPS1 set (and
-> > +	 * disabling the link train mode in DP_TP_CTL later from TPS1 directly)
-> > +	 * would result in a stuck transcoder HW state and flip-done timeouts
-> > +	 * later in the modeset sequence.
-> > +	 */
-> > +	if (!passed)
-> > +		intel_dp_program_link_training_pattern(intel_dp, crtc_state,
-> > +						       DP_PHY_DPRX, DP_TRAINING_PATTERN_2);
-> > +
-> >  	return passed;
-> >  }
+> >  	if (DISPLAY_VER(dev_priv) >= 12) {
+> > -		if (is_mst) {
+> > +		if (is_mst || intel_dp_is_uhbr(old_crtc_state)) {
+> >  			enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+> >  
+> >  			intel_de_rmw(dev_priv,
 > 
 > -- 
 > Jani Nikula, Intel
