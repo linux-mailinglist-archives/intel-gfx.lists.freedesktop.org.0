@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E4AA3AAA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 22:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE840A3AAA7
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2025 22:19:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5234310E10A;
-	Tue, 18 Feb 2025 21:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6045010E1C4;
+	Tue, 18 Feb 2025 21:19:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkOs7fMD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJY8RYhv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E489910E10A
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 21:19:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA08D10E1C4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2025 21:19:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739913557; x=1771449557;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4hJc3D1+j+J6G5bZyaKWy7sS1PGLPe2pv3UATxVEmwo=;
- b=dkOs7fMDiM+6sjLO7Q1YvmmnAv3AHrvhxIQqE3PjVitzCoaSiEbqOxWM
- NXk+iCmXTgwWXVAAihw505NOhwZTuQ1PgDHR6TJBgIYw5Z2QXsAVw/qYt
- GnI7yKTa9xJpfFW3lK/IKylYUiDlDgofsVWRnvLXwZ5aqZDuR3rvPnecl
- sYC3JtlUlp/VFX4dbVKvizPvYITz2Q0NTX/RU8K8NcWNOdeyfZgBj2aR3
- uC6FwSHwNenTQIg1nwqEWuZeMh1aAve3Px95CtElDbuPkLI4upby9VVrn
- dTcTobFEwYe8r+hadwRCSSYNkj9hC8vqPLADwLH5mxyFffqeiqztfLDIl g==;
-X-CSE-ConnectionGUID: 8UDSPbX3Rbi+k6s6oAH2gw==
-X-CSE-MsgGUID: G6iGxUcmSjm5aRjbB1AM/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39862244"
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="39862244"
+ t=1739913560; x=1771449560;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/34wpp6yakrzhidCMPsVjwf9R4U+PnmLvidB6UkYHjM=;
+ b=IJY8RYhvJkD8HzoM8t2s4rBkvbtaTelFT8U6/4jWAM240GjGAJWeCEIg
+ 0+1Ik0CDzEWAKtqkaNWIrxUP1AIJC60iNRTHIqURFpNqUYaaAwrFgoNTG
+ L1UE4u/ig+vFBxudEQG/whgZTNrPTwZtsCLI/70ClDFv/jr806Ep/G7z8
+ gGOgvweLF9b4MJb2DcdrJrhEjoE4+mSvCu/x4/JJglM3DsXCzwDen3pfQ
+ lV8zxpCgBTj05Ud1qBX36rJLEcPSunFwZaUlcJGtlxYP0Ad9ACc8Zuu/d
+ KOXvM1VrwCGhwgaUcIgUlU4X4KR2iczWr772SQtvFpoONePnZZ4orzLJh g==;
+X-CSE-ConnectionGUID: g+PTKja0TD+EcLIf0rh/gg==
+X-CSE-MsgGUID: BTKbsZ90Q0iD4KwNBwv3zw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="39862250"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="39862250"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2025 13:19:16 -0800
-X-CSE-ConnectionGUID: md6JCWjqR7WU+WRPvGaaYg==
-X-CSE-MsgGUID: kc9m6ccARQ+krzAK9r2tIg==
+ 18 Feb 2025 13:19:20 -0800
+X-CSE-ConnectionGUID: dZrO6h3wQGq/tSVQ6OJ4tw==
+X-CSE-MsgGUID: yO0yX1GAToSXyBlRtd5kmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114693340"
+X-IronPort-AV: E=Sophos;i="6.13,296,1732608000"; d="scan'208";a="114693347"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 13:19:14 -0800
+ by fmviesa008.fm.intel.com with SMTP; 18 Feb 2025 13:19:17 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Feb 2025 23:19:13 +0200
+ Tue, 18 Feb 2025 23:19:16 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 00/19] drm/i915: cdclk/bw/dbuf readout/sanitation cleanup
-Date: Tue, 18 Feb 2025 23:18:54 +0200
-Message-ID: <20250218211913.27867-1-ville.syrjala@linux.intel.com>
+Cc: stable@vger.kernel.org
+Subject: [PATCH 01/19] drm/i915/cdclk: Do cdclk post plane programming later
+Date: Tue, 18 Feb 2025 23:18:55 +0200
+Message-ID: <20250218211913.27867-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250218211913.27867-1-ville.syrjala@linux.intel.com>
+References: <20250218211913.27867-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,46 +71,47 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I want to clean up the messy interactions between
-cdclk/bw/dbuf/etc. code. Start to making the state
-handling during readout/sanitation a bit more sane.
+We currently call intel_set_cdclk_post_plane_update() far
+too early. When pipes are active during the reprogramming
+the current spot only works for the cd2x divider update
+case, as that is synchronize to the pipe's vblank. Squashing
+and crawling are not synchronized in any way, so doing the
+programming while the pipes/planes are potentially still using
+the old hardware state could lead to underruns.
 
-Ville Syrjälä (19):
-  drm/i915/cdclk: Do cdclk post plane programming later
-  drm/i915: Drop redundant shared_dpll=NULL assignments
-  drm/i915: Don't clobber crtc_state->cpu_transcoder for inactive crtcs
-  drm/i915: Use intel_plane_set_invisible() in
-    intel_plane_disable_noatomic()
-  drm/i915: Extract intel_cdclk_crtc_disable_noatomic()
-  drm/i915: Extract skl_wm_crtc_disable_noatomic()
-  drm/i915: clean up pipe's ddb usage in intel_crtc_disable_noatomic()
-  drm/i915: Add skl_wm_plane_disable_noatomic()
-  drm/i915: Extract intel_bw_crtc_disable_noatomic()
-  drm/i915: Extract intel_cdclk_update_hw_state()
-  drm/i915: Extract intel_bw_update_hw_state()
-  drm/i915: Update bw_state->active_pipes during readout
-  drm/i915: Skip some bw_state readout on pre-icl
-  sem/i915: Simplify intel_cdclk_update_hw_state()
-  drm/i915: Simplify cdclk_disable_noatomic()
-  drm/i915: Split wm sanitize from readout
-  drm/i915: Do wm readout ealier for skl+
-  drm/i915: Move dbuf_state->active_piepes into skl_wm_get_hw_state()
-  drm/i915: Relocate intel_bw_crtc_update()
+Move the post plane reprgramming to a spot where we know
+that the pipes/planes have switched over the new hardware
+state.
 
- drivers/gpu/drm/i915/display/i9xx_wm.c        | 18 +----
- drivers/gpu/drm/i915/display/intel_bw.c       | 76 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_bw.h       |  6 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 30 +++++++-
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 45 +++++------
- .../gpu/drm/i915/display/intel_display_core.h |  1 +
- .../drm/i915/display/intel_modeset_setup.c    | 55 ++++----------
- drivers/gpu/drm/i915/display/intel_wm.c       |  6 ++
- drivers/gpu/drm/i915/display/intel_wm.h       |  1 +
- drivers/gpu/drm/i915/display/skl_watermark.c  | 56 ++++++++++++--
- drivers/gpu/drm/i915/display/skl_watermark.h  |  4 +
- 12 files changed, 193 insertions(+), 109 deletions(-)
+Cc: stable@vger.kernel.org
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 065fdf6dbb88..cb9c6ad3aa11 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7527,9 +7527,6 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 
+ 	intel_program_dpkgc_latency(state);
+ 
+-	if (state->modeset)
+-		intel_set_cdclk_post_plane_update(state);
+-
+ 	intel_wait_for_vblank_workers(state);
+ 
+ 	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
+@@ -7606,6 +7603,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 		intel_verify_planes(state);
+ 
+ 	intel_sagv_post_plane_update(state);
++	if (state->modeset)
++		intel_set_cdclk_post_plane_update(state);
+ 	intel_pmdemand_post_plane_update(state);
+ 
+ 	drm_atomic_helper_commit_hw_done(&state->base);
 -- 
 2.45.3
 
