@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF47A3B95D
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 10:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FF3A3BA68
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 10:42:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03A0C10E7D9;
-	Wed, 19 Feb 2025 09:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 086DB10E7A2;
+	Wed, 19 Feb 2025 09:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YfEjdtux";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jdkIDBfB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0AA610E7D1;
- Wed, 19 Feb 2025 09:32:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D78EE10E26C;
+ Wed, 19 Feb 2025 09:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739957527; x=1771493527;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=NTkaFdqOXt49ggVpaXj+gVSCa/GyDDoh3XBDpGhpmt0=;
- b=YfEjdtuxenWLVnKMHFMUWTGDsmQGfAm2AMKFbZDBTzAjQq3phiH4Hu5x
- 0wGxoOIrcdfWx8AMrQtx7W0LvpPPf9EjCMT7bWezZJZyN5ZNKq5l0QPoA
- ieotD0aHboKNwtyodDHdZSpCKydgrRpbKDapaYkDjayToQpmlNHv+6DEp
- DMdXreygOuX2WbBPtm0QqfvLyXPhE2ysV47/FGNXbS19FiTWv3dHqEObB
- dPduo4BrlL3lKXQvVYb1ysFwF0TSqAdBSQaqhwBK3NcWa/U4k7V0t/c/h
- pxKe0uMWxXW5jXPMmvxLi/70aQd+gjsBk2AO3Kb/ayfIm/hsCWykHkZoK Q==;
-X-CSE-ConnectionGUID: g21WQ89pThyqOvdLsudECQ==
-X-CSE-MsgGUID: Xym6QfZBTGmnSfTEKT5/bg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="40551488"
-X-IronPort-AV: E=Sophos;i="6.13,298,1732608000"; d="scan'208";a="40551488"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 01:32:07 -0800
-X-CSE-ConnectionGUID: KDm2tZ/dRhCpsqFlI6TXDQ==
-X-CSE-MsgGUID: eWKPaJ+CQaCNIrUKVSmk7Q==
+ t=1739958138; x=1771494138;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=vZ5ThLa+M4CJiXonwLYJj62pr2wd7Rplh1Qi71ipHtE=;
+ b=jdkIDBfBQDf2SmZ6+Dtu8R477FTTZtGK3pBl4dC0JEe6+mlnrZRftCu4
+ 4yleNiyDGH5skbSFf3qFgaGYnzqDCWMiCGQMQWockJwleGqFPo2Kge4Gp
+ MqDqCl5PE4jRHcGAlpVWsFwgJzDg0w3ci0o/Qa/fv/8xBmMb8rqUf+yVj
+ cf/a0IH/FbjxpyxwFp4u1je+jOWFziKqiu54vfW+3oFqHMVbX6i5z9p5z
+ I5GpD9ffcUZI+/HDNqO4YHt8BZ26VZnpeoinKmeFvNISR3TsBCRTColZ8
+ f/kyA7URO4NPsoKMeMEtrU2UqKnLHnY8DW072rqSqjikA16UZJw8flG9t A==;
+X-CSE-ConnectionGUID: sQZoBY23Q1KxWxMQPVaRGA==
+X-CSE-MsgGUID: lGadq0EURuK900lU5kzajg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11348"; a="51667482"
+X-IronPort-AV: E=Sophos;i="6.13,298,1732608000"; d="scan'208";a="51667482"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 01:42:18 -0800
+X-CSE-ConnectionGUID: UaRn6aBiQzu1PUwnMn/8mw==
+X-CSE-MsgGUID: +NP8YHU7SlmrV/ng7/C5nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="137910344"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa002.fm.intel.com with ESMTP; 19 Feb 2025 01:32:05 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 19 Feb 2025 14:47:25 +0530
-Subject: [PATCH v6 3/3] drm/i915/display: Add i915 hook for
- format_mod_supported_async
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="119602521"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 01:42:16 -0800
+Date: Wed, 19 Feb 2025 11:43:14 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Mika Kahola <mika.kahola@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH v5 2/2] drm/i915/display: Allow display PHYs to reset
+ power state
+Message-ID: <Z7WnsmT2ZXuXxequ@ideak-desk.fi.intel.com>
+References: <20250218100019.740556-1-mika.kahola@intel.com>
+ <20250218100019.740556-3-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250219-asyn-v6-3-b959e6becb3c@intel.com>
-References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
-In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, Arun R Murthy <arun.r.murthy@intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Naveen Kumar <naveen1.kumar@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250218100019.740556-3-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,108 +67,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hook up the newly added plane function pointer
-format_mod_supported_async to populate the modifiers/formats supported
-by asynchronous flips.
+On Tue, Feb 18, 2025 at 12:00:19PM +0200, Mika Kahola wrote:
+> The dedicated display PHYs reset to a power state that blocks S0ix,
+> increasing idle system power. After a system reset (cold boot,
+> S3/4/5, warm reset) if a dedicated PHY is not being brought up
+> shortly, use these steps to move the PHY to the lowest power state
+> to save power.
+> 
+> 1. Follow the PLL Enable Sequence, using any valid frequency such
+>    as DP 1.62 GHz. This brings lanes out of reset and enables the
+>    PLL to allow powerdown to be moved to the Disable state.
+> 2. Follow PLL Disable Sequence. This moves powerdown to the Disable
+>    state and disables the PLL.
+> 
+> v2: Rename WA function to more descriptive (Jani)
+>     For PTL, only port A needs this wa
+>     Add helpers to check presence of C10 phy and pll enabling (Imre)
+> v3: Rename wa function (Imre)
+>     Check return value of C10 pll tables readout (Imre)
+>     Use PLL request to check pll enabling (Imre)
+> v4: Move intel_cx0_pll_is_enabled() right after
+>     intel_cx0_pll_disable() (Imre)
+>     Add drm_WARN_ON() if C10 state cannot be calculated from
+>     the tables (Imre)
+> v5: Add debug message on PLL enabling (Imre)
+>     Add check for intel_encoder_is_dig_port() (Imre)
+> 
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 
-v5: Correct the if condition for modifier support check (Chaitanya)
-v6: Replace uint32_t/uint64_t with u32/u64 (Jani)
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
- 1 file changed, 41 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index cd9762947f1de227a3abbcd61b7c7b0c9848e439..f8baeb012f5e2423204f3f5ad7ce466666e04def 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -509,6 +509,33 @@ skl_plane_max_stride(struct intel_plane *plane,
- 				modifier, rotation,
- 				max_pixels, max_bytes);
- }
-+static bool intel_plane_async_formats(struct intel_plane *plane, u32 format)
-+{
-+	switch (format) {
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_XRGB2101010:
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
-+						   u32 format,
-+						   u64 modifier)
-+{
-+	if (!intel_plane_can_async_flip(to_intel_plane(plane), modifier))
-+		return false;
-+
-+	return intel_plane_async_formats(to_intel_plane(plane), format);
-+}
- 
- static bool tgl_plane_can_async_flip(u64 modifier)
- {
-@@ -2616,30 +2643,29 @@ static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
- 	}
- }
- 
-+#define INTEL_PLANE_FUNCS \
-+	.update_plane = drm_atomic_helper_update_plane, \
-+	.disable_plane = drm_atomic_helper_disable_plane, \
-+	.destroy = intel_plane_destroy, \
-+	.atomic_duplicate_state = intel_plane_duplicate_state, \
-+	.atomic_destroy_state = intel_plane_destroy_state, \
-+	.format_mod_supported_async = intel_plane_format_mod_supported_async
-+
- static const struct drm_plane_funcs skl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = skl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs icl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = icl_plane_format_mod_supported,
- };
- 
- static const struct drm_plane_funcs tgl_plane_funcs = {
--	.update_plane = drm_atomic_helper_update_plane,
--	.disable_plane = drm_atomic_helper_disable_plane,
--	.destroy = intel_plane_destroy,
--	.atomic_duplicate_state = intel_plane_duplicate_state,
--	.atomic_destroy_state = intel_plane_destroy_state,
-+	INTEL_PLANE_FUNCS,
-+
- 	.format_mod_supported = tgl_plane_format_mod_supported,
- };
- 
-
--- 
-2.25.1
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 61 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  1 +
+>  .../drm/i915/display/intel_display_reset.c    |  2 +
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  3 +
+>  4 files changed, 67 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 8d6fd3f1ac13..22595766eac5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -3294,6 +3294,16 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+>  	intel_cx0_phy_transaction_end(encoder, wakeref);
+>  }
+>  
+> +static bool intel_cx0_pll_is_enabled(struct intel_encoder *encoder)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> +	u8 lane = dig_port->lane_reversal ? INTEL_CX0_LANE1 : INTEL_CX0_LANE0;
+> +
+> +	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
+> +			     intel_cx0_get_pclk_pll_request(lane);
+> +}
+> +
+>  static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
+>  {
+>  	struct intel_display *display = to_intel_display(encoder);
+> @@ -3555,3 +3565,54 @@ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+>  	else
+>  		intel_c20pll_state_verify(new_crtc_state, crtc, encoder, &mpll_hw_state.c20);
+>  }
+> +
+> +/*
+> + * WA 14022081154
+> + * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
+> + * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
+> + * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
+> + * power state to save power. For PTL the workaround is needed only for port A. Port B
+> + * is not connected.
+> + *
+> + * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+> + *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
+> + *    to the Disable state.
+> + * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
+> + */
+> +void intel_cx0_pll_power_save_wa(struct intel_display *display)
+> +{
+> +	struct intel_encoder *encoder;
+> +
+> +	if (DISPLAY_VER(display) != 30)
+> +		return;
+> +
+> +	for_each_intel_encoder(display->drm, encoder) {
+> +		struct intel_cx0pll_state pll_state = {};
+> +		int port_clock = 162000;
+> +
+> +		if (!intel_encoder_is_dig_port(encoder))
+> +			continue;
+> +
+> +		if (!intel_encoder_is_c10phy(encoder))
+> +			continue;
+> +
+> +		if (intel_cx0_pll_is_enabled(encoder))
+> +			continue;
+> +
+> +		if (intel_c10pll_calc_state_from_table(encoder,
+> +						       mtl_c10_edp_tables,
+> +						       true, port_clock,
+> +						       &pll_state) < 0) {
+> +			drm_WARN_ON(display->drm,
+> +				    "Unable to calc C10 state from the tables\n");
+> +			continue;
+> +		}
+> +
+> +		drm_dbg_kms(display->drm,
+> +			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+> +			    encoder->base.base.id, encoder->base.name);
+> +
+> +		__intel_cx0pll_enable(encoder, &pll_state, true, port_clock, 4);
+> +		intel_cx0pll_disable(encoder);
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 573fa7d3e88f..a8f811ca5e7b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -42,5 +42,6 @@ bool intel_cx0pll_compare_hw_state(const struct intel_cx0pll_state *a,
+>  void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *crtc_state);
+>  int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
+> +void intel_cx0_pll_power_save_wa(struct intel_display *display);
+>  
+>  #endif /* __INTEL_CX0_PHY_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+> index 093b386c95e8..a690968885bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include "i915_drv.h"
+>  #include "intel_clock_gating.h"
+> +#include "intel_cx0_phy.h"
+>  #include "intel_display_driver.h"
+>  #include "intel_display_reset.h"
+>  #include "intel_display_types.h"
+> @@ -116,6 +117,7 @@ void intel_display_reset_finish(struct drm_i915_private *i915)
+>  		intel_pps_unlock_regs_wa(display);
+>  		intel_display_driver_init_hw(display);
+>  		intel_clock_gating_init(i915);
+> +		intel_cx0_pll_power_save_wa(display);
+>  		intel_hpd_init(i915);
+>  
+>  		ret = __intel_display_driver_resume(display, state, ctx);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index eb3df25a308c..c825a507b905 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -27,6 +27,7 @@
+>  #include "bxt_dpio_phy_regs.h"
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+> +#include "intel_cx0_phy.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dkl_phy.h"
+> @@ -4571,6 +4572,8 @@ void intel_dpll_sanitize_state(struct intel_display *display)
+>  	struct intel_shared_dpll *pll;
+>  	int i;
+>  
+> +	intel_cx0_pll_power_save_wa(display);
+> +
+>  	for_each_shared_dpll(display, pll, i)
+>  		sanitize_dpll_state(display, pll);
+>  }
+> -- 
+> 2.43.0
+> 
