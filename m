@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA48A3C8DB
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 20:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 717C6A3CBBE
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 22:46:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 446B710E045;
-	Wed, 19 Feb 2025 19:35:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hhmHqpbe";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6AE10E8A1;
+	Wed, 19 Feb 2025 21:46:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A907010E045;
- Wed, 19 Feb 2025 19:35:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739993732; x=1771529732;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=j6DeFoRc0fF7e2Oks35if1gZ6a65rDtTUrU//ykiUzE=;
- b=hhmHqpbe99vJ7eS3o8Zo5rBI88H8BF0rRWUQHPJwEtxRawadtZwuauyl
- bqMfaLXLAMtQ5c7dM6z6JkG3RK4JQZAUkJcthAPhCRgHwFwjzTqGtDU1c
- +n1pzsynrqrYW2U9wFn8ufPGIqi5GUA+oRHQCFW/NXOedTE/HbHB+zBnU
- WG1ropwl3SpIs8VfyphWtJ5NcMhHzgEA70bO4ZLjuyOl8P6Nh/Z8k9/qk
- wuhPZ8ywQdk2STlE9oxjFcGkZ9QsgCArXA8MYLNEUQXzwVr2zZlqPopAa
- i62XU+9mQWQ729qJcEDa3YkVxRzNzkKHBxg1oiRvx9SjO90uzOG/5LMEM Q==;
-X-CSE-ConnectionGUID: aAoc3ET7S6uwoe2leX3MZQ==
-X-CSE-MsgGUID: yDcGNTf8Q6qHcuuVv1l3Ig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44518663"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44518663"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 11:35:31 -0800
-X-CSE-ConnectionGUID: e+8QBiJrTuanDsBQC5xjHA==
-X-CSE-MsgGUID: rcNt279eQzm+o3qVVFZ6cA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114645396"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 11:35:26 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chris Wilson
- <chris.p.wilson@linux.intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Alan Previn
- <alan.previn.teres.alexis@intel.com>, Janusz Krzysztofik
- <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH v2] drm/i915: Fix harmfull driver register/unregister
- assymetry
-In-Reply-To: <20250219183807.713776-2-janusz.krzysztofik@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250219183807.713776-2-janusz.krzysztofik@linux.intel.com>
-Date: Wed, 19 Feb 2025 21:35:19 +0200
-Message-ID: <87o6yxn2x4.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2154A10E8A1;
+ Wed, 19 Feb 2025 21:46:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Fix_harm?=
+ =?utf-8?q?full_driver_register/unregister_assymetry_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Feb 2025 21:46:22 -0000
+Message-ID: <174000158213.4158496.8199683937089550806@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250219183807.713776-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20250219183807.713776-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,30 +37,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Feb 2025, Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index ffc346379cc2c..27a23b1eb9de0 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -347,6 +347,8 @@ struct drm_i915_private {
->  	/* The TTM device structure. */
->  	struct ttm_device bdev;
->  
-> +	bool registered;
-> +
+== Series Details ==
 
-*must* find another way.
+Series: drm/i915: Fix harmfull driver register/unregister assymetry (rev3)
+URL   : https://patchwork.freedesktop.org/series/144436/
+State : warning
 
-BR,
-Jani.
+== Summary ==
+
+Error: dim checkpatch failed
+5b808e0ffe66 drm/i915: Fix harmfull driver register/unregister assymetry
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> [525.823143] i915 0000:00:02.0: [drm] *ERROR* Failed to register driver for
+
+-:172: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 47 lines checked
 
 
->  	I915_SELFTEST_DECLARE(struct i915_selftest_stash selftest;)
->  
->  	/*
-
--- 
-Jani Nikula, Intel
