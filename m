@@ -2,29 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6308BA3C3A5
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 16:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF30A3C3B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 16:33:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5AF310E837;
-	Wed, 19 Feb 2025 15:29:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9819510E103;
+	Wed, 19 Feb 2025 15:33:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72A7210E837;
- Wed, 19 Feb 2025 15:29:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C418810E103;
+ Wed, 19 Feb 2025 15:33:44 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v3.1] drm/xe/display: Fix fbdev GGTT mapping handling.
+Date: Wed, 19 Feb 2025 16:34:40 +0100
+Message-ID: <20250219153441.625352-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Introduce_drm_sharpness_?=
- =?utf-8?q?property_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2025 15:29:23 -0000
-Message-ID: <173997896346.4014158.2825348324185797743@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250219115359.2320992-1-nemesa.garg@intel.com>
-In-Reply-To: <20250219115359.2320992-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +35,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The fbdev vma is a normal unrotated VMA, so add ane explicit check
+before re-using.
 
-Series: Introduce drm sharpness property (rev9)
-URL   : https://patchwork.freedesktop.org/series/138754/
-State : warning
+When re-using, we have to restore the GGTT mapping on resume, so add
+some code to do that too.
 
-== Summary ==
+Fixes: 67a98f7e27ba ("drm/xe/display: Re-use display vmas when possible")
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/display/xe_display.c |  6 +++++-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c  | 24 +++++++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_fb_pin.h  | 13 +++++++++++++
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 02a413a073824..999f25a562c19 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -30,6 +30,7 @@
+ #include "intel_hotplug.h"
+ #include "intel_opregion.h"
+ #include "skl_watermark.h"
++#include "xe_fb_pin.h"
+ #include "xe_module.h"
+ 
+ /* Xe device functions */
+@@ -492,8 +493,11 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 		intel_display_driver_enable_user_access(display);
+ 	}
+ 
+-	if (has_display(xe))
++	if (has_display(xe)) {
++		xe_fb_pin_resume(xe);
++
+ 		intel_hpd_poll_disable(xe);
++	}
+ 
+ 	intel_opregion_resume(display);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 11a6b996d739b..dee1f6531c849 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -12,6 +12,7 @@
+ #include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_pm.h"
+ 
+@@ -398,7 +399,8 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
+ 		goto found;
+ 	}
+ 
+-	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev) &&
++	    new_plane_state->view.gtt.type == I915_GTT_VIEW_NORMAL) {
+ 		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
+ 		if (vma)
+ 			goto found;
+@@ -444,6 +446,26 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 	old_plane_state->ggtt_vma = NULL;
+ }
+ 
++void xe_fb_pin_resume(struct xe_device *xe)
++{
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	struct i915_vma *vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++	struct xe_bo *bo;
++
++	if (!vma)
++		return;
++
++	bo = vma->bo;
++
++	mutex_lock(&ggtt->lock);
++	for (u32 x = 0; x < bo->ttm.base.size; x += XE_PAGE_SIZE) {
++		u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x, xe->pat.idx[XE_CACHE_NONE]);
++
++		ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
++	}
++	mutex_unlock(&ggtt->lock);
++}
++
+ /*
+  * For Xe introduce dummy intel_dpt_create which just return NULL,
+  * intel_dpt_destroy which does nothing, and fake intel_dpt_ofsset returning 0;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+new file mode 100644
+index 0000000000000..39d48ff637002
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_FB_PIN_H_
++#define _XE_FB_PIN_H_
++
++struct xe_device;
++
++void xe_fb_pin_resume(struct xe_device *xe);
++
++#endif /* _XE_FB_PIN_H_ */
+-- 
+2.47.1
 
