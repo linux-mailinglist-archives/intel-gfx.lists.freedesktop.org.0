@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D75A3C398
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 16:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D600A3C3A4
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 16:29:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B236E10E32D;
-	Wed, 19 Feb 2025 15:26:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXq4j3T9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4F2F10E056;
+	Wed, 19 Feb 2025 15:29:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E250E10E32D;
- Wed, 19 Feb 2025 15:26:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739978802; x=1771514802;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CK0AZ7Lpkp/QfXcb02pW83lUn9FRAJI72YGbMp2sIIQ=;
- b=AXq4j3T94k7pJ6pSkhc2RfwAq5ddOCYvXk2Jiqf0mNMQbWzHoBlNL40f
- 8GxbBie1+uNDGHPl7WirikjA+XhiaXHHCh9NMGQ00WXiq44C9vb/w3qvR
- ZrftBVmNCj5SZSw0WTpbRmif0XlPrmiYFD0pN8ydzi4GhUKx0i4YsWum9
- 4vQBtlHGBp0Rg4cEj4Bf3U8q7VCthvTN+aywMalbrIeh3bsdH2ihIOg/9
- NPnhTe32Aw4zskT1rNYurEi+xgxNIqBmGSI0H+W09hVN2jjLK0+p8de4C
- Q8Pjd0UrYDvdo/JJlusfF12ksZkaMqql7H8R2xFM9/HHAXVgEQ+W8h27C Q==;
-X-CSE-ConnectionGUID: T4JyzvKJQq+H+FFZ8xLfSw==
-X-CSE-MsgGUID: JEV8Dn+WTaeaFysdGAoNiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44490308"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44490308"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:26:42 -0800
-X-CSE-ConnectionGUID: hc0YFeZyTfenPRKrf4pPAg==
-X-CSE-MsgGUID: yV91Q3S3TiOssDXVkhcBOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="114941437"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.160])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 07:26:35 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Haoxiang Li <haoxiang_li2024@163.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, gustavo.sousa@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Haoxiang Li
- <haoxiang_li2024@163.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/display: Add check for
- alloc_ordered_workqueue() and alloc_workqueue()
-In-Reply-To: <20250219130800.2638016-1-haoxiang_li2024@163.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250219130800.2638016-1-haoxiang_li2024@163.com>
-Date: Wed, 19 Feb 2025 17:26:28 +0200
-Message-ID: <87wmdmlzvf.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA30010E056;
+ Wed, 19 Feb 2025 15:29:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introduce_drm_sharpn?=
+ =?utf-8?q?ess_property_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Feb 2025 15:29:20 -0000
+Message-ID: <173997896095.4014158.10474880531612765359@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250219115359.2320992-1-nemesa.garg@intel.com>
+In-Reply-To: <20250219115359.2320992-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,47 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Feb 2025, Haoxiang Li <haoxiang_li2024@163.com> wrote:
-> Add check for the return value of alloc_ordered_workqueue()
-> and alloc_workqueue() to catch potential exception.
->
-> Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
+== Series Details ==
 
-Not really. That's just code movement.
+Series: Introduce drm sharpness property (rev9)
+URL   : https://patchwork.freedesktop.org/series/138754/
+State : warning
 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_driver.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 50ec0c3c7588..dfe5b779aefd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -245,6 +245,11 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->  						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
->  	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
->  
-> +	if (!display->wq.modeset || !display->wq.flip || !display->wq.cleanup) {
-> +		ret = -ENOMEM;
-> +		goto cleanup_vga_client_pw_domain_dmc;
-> +	}
-> +
+== Summary ==
 
-Yes, we should check these, but if some of them succeed and some fail,
-we'll never destroy the workqueues whose allocation succeeded.
+Error: dim checkpatch failed
+2a269fc0b119 drm: Introduce sharpness strength property
+1df7f43de7ee drm/i915/display: Compute the scaler filter coefficients
+-:38: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#38: 
+new file mode 100644
 
-BR,
-Jani.
+total: 0 errors, 1 warnings, 0 checks, 235 lines checked
+eb21caa87725 drm/i915/display: Enable the second scaler
+-:64: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#64: FILE: drivers/gpu/drm/i915/display/skl_scaler.c:744:
++	x = y = 0;
+
+total: 0 errors, 0 warnings, 1 checks, 71 lines checked
+e098a01c8fbf drm/i915/display: Configure the second scaler for sharpness
+98d405409f53 drm/i915/display: Add registers and compute the strength
+038e7b4b046f drm/i915/display: Load the lut values and enable sharpness
 
 
->  	intel_mode_config_init(display);
->  
->  	ret = intel_cdclk_init(display);
-
--- 
-Jani Nikula, Intel
