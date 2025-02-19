@@ -2,77 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437A1A3BFFA
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 14:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64494A3C099
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 14:53:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0910E10E802;
-	Wed, 19 Feb 2025 13:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C63C10E801;
+	Wed, 19 Feb 2025 13:53:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ljgxtu6v";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="jS+qh9w5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3D410E7F9
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 13:32:01 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-4399d14334aso5056755e9.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 05:32:01 -0800 (PST)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2AB10E803
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 13:53:16 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-38f3913569fso554965f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2025 05:53:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1739971920; x=1740576720; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1739973195; x=1740577995; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Hhaee7knRiKVL8BNIdwLBrNmxyHdvsdM5IwNqpSg+oA=;
- b=ljgxtu6vW8Bs46qLJ5EaYVkv6g1FCI1L4niC0xGPuXVuUGbv4/ZGT4X631uYrLY4jU
- YPvu1RAKDLluhNPShyvfsCxx7ECCWtZY4dshIy0N0xAGBXUc/d5UeQV0HyGXJ45eWTX5
- MxPzDPT2i/CPGYoziUu3n00EjcM/WlABhM2VM=
+ bh=FyEka5hJeoXHg0os4K6Y2PLLWFiuCF9r77npcdvsS+8=;
+ b=jS+qh9w5X+Ye5jNFASHtCHUYSw11p/biOBFy8EMYccejGvBuqKVr63q97cK3id4yCC
+ tIYp9PWeZCoLFqyDa7SP1vme1swO11MzT0XpXDE54g+ALoXTzod6zH1B2PXwOWzKypP6
+ 1iEbYC1+HRWNp5ooViv6Zl1nZz542OOcQfCts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1739971920; x=1740576720;
+ d=1e100.net; s=20230601; t=1739973195; x=1740577995;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Hhaee7knRiKVL8BNIdwLBrNmxyHdvsdM5IwNqpSg+oA=;
- b=fh1d71j25ADNN2c13RXr/wNU5tI8MmA57X7z7p4B5IdSQuWub3H4PeFv19hTZ6DzYJ
- pfKiJjoR8D7jx8x4Jch9ujaRxx4zme/qTCbIfN8LewqhAwyxdrtO7iAnj/PeOadxUjIz
- wVtfXk5A6yxR1neUUmvQoC31ROQRBZ7UCSyHQO2Ki6MV5AuEzHsx9zVLgR3CCrwqpPAo
- qPkkkafw+bFxkY0NC7X5DNh53sEdYt9mbzdSVdeiYAeCGnD6e0gthuBjsAOvCk5oSA4z
- SaTPpapkDJ2tDURYD9VPmUb7KvjngNejpwS0n7mvoz4fThgKGXQXggN8u0yHGk8F8o8v
- WOuw==
+ bh=FyEka5hJeoXHg0os4K6Y2PLLWFiuCF9r77npcdvsS+8=;
+ b=ly6HFstB3+wSZk6CeLIYLabjVOHLgNcTFEO+c+hmauQA+kuwA0a1F7iuxJX1akbb2y
+ YKSDVM4f4n+UaQTkfKXpmvHH3UCTuQJ7D8aRdnJxPHQyLzKTVHYGVwEQxYFwLbWB2w67
+ lIPupWxOoByV+SkboyMYL0YmtqWElT/DF6Z0cOxDlXFopwx98CEIV6hEzVGZaxwcoH7t
+ pooXrg5ko6kc0KqvwbHiWU2AOZxM4w5XE5l048X1RjZBRPeEA5sm8GyaIuxx3emN40qZ
+ YpIGNXPl0t07HpYbZRi678+8XJifK5ShSluXId0uMi35VGHvi2mLF8QfFsTP1MU/1B/C
+ LEug==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWe1Q+zSAieTLhCh6HujZlfhTNmklXN0EUJYqU1Hjj3kCyghCjOrV8LJsdqhHfhOLXN4SleQg1iSBI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxyNZo28+HoOub4aifARptqao6YUspeXhUXY8eJLxGd4age2yBD
- ZjBphhkT9qczI4GorS9ypIH3x9v1lylfEdjQF89RDb7cM7VsaKoJQV7jVCPo0yI=
-X-Gm-Gg: ASbGncuCW2qWsGgyiWFa1sAgXGHGL4bEMYvoPO9gCcB1ayYIya3NKXk2vxvE/HLzkSr
- fq2yXoZhbn0DI5BR9Hu8N+dKp0q3SpkbyHAl9QohXdSmokLknMo5tSRw7CsSn0qwNJodhG13aei
- jSIwWVjvl/Zona/dq/e/qx5VsKWpEZc/+zZkqBwepIuu3vVuH9wqJEXajZXfDbXg65sa9p/y6YJ
- l1elcB5T5XxatAEkAUEfCDSMue/QKzzfWfCe0xT9vzz8Nk+8EwcRSZQ6zKZKBKT545+xxoCndy+
- lY2HfO2Pb7wmrVyIKu8ATpXzZTg=
-X-Google-Smtp-Source: AGHT+IFgN0FZMlzOxNyXz022ZDpIf8Iarx9k9ShQrCHyoh3SgQeJG0HUfuGX5PSKEQgj34iSRaSUCg==
-X-Received: by 2002:a05:6000:1842:b0:38f:2856:7d9a with SMTP id
- ffacd0b85a97d-38f58782b96mr3380323f8f.3.1739971919542; 
- Wed, 19 Feb 2025 05:31:59 -0800 (PST)
+ AJvYcCVZvWY6RWqppkj8cF7YeaUggm0DK/5/m1f1ChjzNDlm2MfghRZLq3dKSptHrpwwlXC3TqIY0wUiqsI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzjaF5V99RnYNF9UZC+l7U4Q6wQsJ8ADVytSguwFWtFM+xiTQjt
+ XrU3DHWteZSpUbN8MTiN2g/mlcTDSCxiOUJCEO03FJhce/dvooT/NLt82dr93IQ=
+X-Gm-Gg: ASbGnctfB4vGHFhweUu4c9GwY//9kVT7kt2/0z9TNbHogZX/cknFISxqpV2tM+NUL6J
+ H3KzSAGm86Xiq15bvti7aX1GlTArScgBssmhLDsxEnfmePWNmaGLzMT+uFyo7wnlOoxxzTVfRzk
+ /wGFe/NWRq3KJ8aWyFaAul5zdP4EQJ0snHiQw648nY5SqX/TdkK5rfEfr0kbN55OMqF4bb8794c
+ imDyhZOi+L89Dc+txgU1+xTIISXUwCKmHlJNhBl6gecCLw6ejmPuk4Ahoh7J540R/OnBqaFafkm
+ vJ36RdlZ5aDurcbamNAA3kwSZrI=
+X-Google-Smtp-Source: AGHT+IHhxL7NdXguAsHBVaP1UvYcb8rpQV9UAn0iPu3pZhbjhRGsonzEzPwRA956d+9JVoraHQ0pbA==
+X-Received: by 2002:a5d:47c6:0:b0:38b:d807:f3be with SMTP id
+ ffacd0b85a97d-38f57bd9182mr3175939f8f.3.1739973194736; 
+ Wed, 19 Feb 2025 05:53:14 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38f258dd5acsm18120235f8f.35.2025.02.19.05.31.58
+ ffacd0b85a97d-38f259d5923sm18084914f8f.74.2025.02.19.05.53.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2025 05:31:59 -0800 (PST)
-Date: Wed, 19 Feb 2025 14:31:57 +0100
+ Wed, 19 Feb 2025 05:53:14 -0800 (PST)
+Date: Wed, 19 Feb 2025 14:53:12 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- suraj.kandpal@intel.com, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
-Message-ID: <Z7XdTfEgMlW4wrm8@phenom.ffwll.local>
-References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
- <20250128-dpst-v8-1-871b94d777f8@intel.com>
- <20250217120808.708b9b4d@eldfell>
- <Z7NxOVfgvvBt_sj3@phenom.ffwll.local>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
+ Naveen Kumar <naveen1.kumar@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH v6 0/3] Expose modifiers/formats supported by async flips
+Message-ID: <Z7XiSGwsPntwP7bd@phenom.ffwll.local>
+References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z7NxOVfgvvBt_sj3@phenom.ffwll.local>
+In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
 X-Operating-System: Linux phenom 6.12.11-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,171 +87,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2025 at 06:26:17PM +0100, Simona Vetter wrote:
-> On Mon, Feb 17, 2025 at 12:08:08PM +0200, Pekka Paalanen wrote:
-> > Hi Arun,
-> > 
-> > this whole series seems to be missing all the UAPI docs for the DRM
-> > ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
-> > replacement for them, I would assume both are a requirement.
-> > 
-> > Without the ReST docs it is really difficult to see how this new UAPI
-> > should be used.
+On Wed, Feb 19, 2025 at 02:47:22PM +0530, Arun R Murthy wrote:
+> All of the formats/modifiers supported by the plane during synchronous
+> flips are nor supported by asynchronous flips. The formats/modifiers
+> exposed to user by IN_FORMATS exposes all formats/modifiers supported by
+> plane and this list varies for async flips. If the async flip supported
+> formats/modifiers are exposed to the user, user based on this list can
+> take decision to proceed or not and avoid flip failures during async
+> flips.
+> Discussion around this can be located @
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
+> Userspace implementation for IN_FORMARTS_ASYNC under review @
+> https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
 > 
-> Seconded. But really only wanted to comment on the userspace address in
-> drm blobs.
+> TODO: Upon merge of the patch related to async flip
+> https://patchwork.freedesktop.org/patch/626849/?series=139807&rev=6
+> the patch 5 in this series will have to make use of the new function
+> pointer can_async_flip().
 > 
-> > > +/**
-> > > + * struct drm_histogram_config
-> > > + *
-> > > + * @hist_mode_data: address to the histogram mode specific data if any
-> > 
-> > Do I understand correctly that the KMS blob will contain a userspace
-> > virtual memory address (a user pointer)? How does that work? What are
-> > the lifetime requirements for that memory?
-> > 
-> > I do not remember any precedent of this, and I suspect it's not a good
-> > design. I believe all the data should be contained in the blobs, e.g.
-> > how IN_FORMATS does it. I'm not sure what would be the best UAPI here
-> > for returning histogram data to userspace, but at least all the data
-> > sent to the kernel should be contained in the blob itself since it
-> > seems to be quite small. Variable length is ok for blobs.
+> v3: Add new plane->funcs format_mod_supported_async (Ville)
 > 
-> So yeah this doesn't work for a few reasons:
-> 
-> - It's very restrictive what you're allowed to do during an atomic kms
->   commit, and a userspace page fault due to copy_from/to_user is
->   definitely not ok. Which means you need to unconditionally copy before
->   the atomic commit in the synchronous prep phase for the user->kernel
->   direction, and somewhere after the entire thing has finished for the
->   other direction. So this is worse than just more blobs, because with
->   drm blobs you can at least avoid copying if nothing has changed.
-> 
-> - Due to the above you also cannot synchronize with userspace for the
->   kernel->userspace copy. And you can't fix that with a sync_file out
->   fence, because the underlying dma_fence rules are what prevents you from
->   doing userspace page faults in atomic commit, and the same rules apply
->   for any other sync_file fence too.
-> 
-> - More fundamentally, both drm blobs and userspace virtual address spaces
->   (as represented by struct mm_struct) are refconted objects, with
->   entirely decoupled lifetimes. You'll have UAF issues here, and if you
->   fix them by grabbing references you'll break the world.
-> 
-> tldr; this does not work
-> 
-> Alternative A: drm blob
-> -----------------------
-> 
-> This would work for the userspace->kernel direction, but there's some
-> downsides:
-> 
-> - You still copy, although less often than with a userspace pointer.
-> 
-> - The kernel->userspace direction doesn't work, because blob objects are
->   immutable. We have mutable blob properties, but mutability is achieved
->   by exchanging the entire blob object. There's two options to address
->   that:
-> 
->   a) Fundamentally immutable objects is really nice api designs, so I
->      prefer to not change that. But in theory making blob objects mutable
->      would work, and probably break the world.
-> 
->   b) A more benign trick would be to split the blob object id allocation
->      from creating the object itself. We could then allocate and return
->      the blob ID of the new histogram to userspace synchronously from the
->      atomic ioctl, while creating the object for real only in the atomic
->      commit.
-> 
->      As long as we preallocate any memory this doesn't break and dma_fence
->      signalling rules. Which also means we could use the existing atomic
->      out-fence (or a new one for histograms) to signal to userspace when
->      the data is ready, so this is at least somewhat useful for
->      compositors without fundamental issues.
-> 
->      You still suffer from additional copies here.
+> Arun R Murthy (3):
+>   drm/plane: Add new plane property IN_FORMATS_ASYNC
+>   drm/plane: Expose function to create format/modifier blob
+>   drm/i915/display: Populate list of async supported formats/modifiers
 
-Another detail I've forgotten: If you queue an atomic commit and then
-immmediately do a compositor swithc, then the new compositor would end up
-with the very confusing situation of having a blob property pointing at a
-blob which does not yet exist. And since it wont get the drm_event nor has
-a dma_fence out-fence, it also cannot reliably wait.
+Somewhat orthogonal, but in a different atomic kms discussion the much
+bigger question of what are compositors supposed to figure out with
+TEST_ONLY and what are they supposed to figure out through special
+properties cropped up. Might be really good to document that, so that we
+can have some design consistency here.
 
-So this would be awkward at best, and might actually be a cross-compositor
-attack vector.
+I think this patch series should also document why we need this and
+compositors can't figure this out on their own, ideally by linking/quoting
+the relevant discussions in the compositor enabling PR.
 
-So yeah delayed blob object creation also don't look great, and mutable
-blob objects probably break compositors even harder and we'd need to make
-this all opt-in.
+Thanks, Sima
 
-We need an opt-in for all of these I think, but the more I think about it
-the more this alternative looks like the worst.
+> 
+>  drivers/gpu/drm/drm_mode_config.c             |  7 +++
+>  drivers/gpu/drm/drm_plane.c                   | 50 ++++++++++++------
+>  .../drm/i915/display/skl_universal_plane.c    | 51 +++++++++++++++++++
+>  include/drm/drm_mode_config.h                 |  6 +++
+>  include/drm/drm_plane.h                       |  4 ++
+>  5 files changed, 103 insertions(+), 15 deletions(-)
+> 
+> --
+> 2.25.1
+> 
+> ---
+> Arun R Murthy (5):
+>       drm/plane: Add new plane property IN_FORMATS_ASYNC
+>       drm/plane: Expose function to create format/modifier blob
+>       drm/plane: Function to check async supported modifier/format
+>       drm/i915/display: Populate list of async supported formats/modifiers
+>       drm/i915/display: Add function for format_mod_supported_async
+> 
+>  drivers/gpu/drm/drm_mode_config.c                  |   7 ++
+>  drivers/gpu/drm/drm_plane.c                        |  72 +++++++++----
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 113 ++++++++++++++++++---
+>  include/drm/drm_mode_config.h                      |   6 ++
+>  include/drm/drm_plane.h                            |  24 +++++
+>  5 files changed, 188 insertions(+), 34 deletions(-)
+> ---
+> base-commit: 08bd590935a5258ffd79355c59adffd72fb2c642
+> change-id: 20250102-asyn-bf76730501cc
+> 
+> Best regards,
+> --
+> Arun R Murthy <arun.r.murthy@intel.com>
+> 
+> ---
+> Changes in v6:
+> - EDITME: describe what is new in this series revision.
+> - EDITME: use bulletpoints and terse descriptions.
+> - Link to v5: https://lore.kernel.org/r/20250218-asyn-v5-0-7ac5ac4abd4a@intel.com
+> 
+> ---
+> Arun R Murthy (3):
+>       drm/plane: Add new plane property IN_FORMATS_ASYNC
+>       drm/plane: modify create_in_formats to accommodate async
+>       drm/i915/display: Add i915 hook for format_mod_supported_async
+> 
+>  drivers/gpu/drm/drm_mode_config.c                  |  7 +++
+>  drivers/gpu/drm/drm_plane.c                        | 53 +++++++++++++++-----
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 56 ++++++++++++++++------
+>  include/drm/drm_mode_config.h                      |  6 +++
+>  include/drm/drm_plane.h                            | 17 +++++++
+>  5 files changed, 112 insertions(+), 27 deletions(-)
+> ---
+> base-commit: bc7a84cbc968ce97e581e9e3c2d26fb0ac106482
+> change-id: 20250102-asyn-bf76730501cc
+> 
+> Best regards,
+> -- 
+> Arun R Murthy <arun.r.murthy@intel.com>
+> 
 
-> Alternative B: gem_bo
-> ---------------------
-> 
-> One alternative which naturally has mutable data would be gem_bo, maybe
-> wrapped in a drm_fb. The issue with that is that for small histograms you
-> really want cpu access both in userspace and the kernel, while most
-> display hardware wants uncached. And all the display-only kms drivers we
-> have do not have a concept of cached gem_bo, unlike many of the drm
-> drivers with render/accel support. Which means we're adding gem_bo which
-> cannot be used for display, on display-only drivers, and I'd expect this
-> will result in compositors blowing up in funny ways to no end.
-> 
-> So not a good idea either, at least not if your histograms are small and
-> the display hw doesn't dma them in/out already anyway.
-> 
-> This also means that we'll probably need 2 interfaces here, one supporting
-> gem_bo for big histograms and hw that can dma in/out of them, and a 2nd
-> one optimized for the cpu access case.
-> 
-> Alternative C: memfd
-> --------------------
-> 
-> I think a new drm property type that accepts memfd would fit the bill
-> quit well:
-> 
-> - memfd can be mmap(), so you avoid copies.
-> 
-> - their distinct from gem_bo, so no chaos in apis everywhere with imposter
->   gem_bo that cannot ever be used for display.
-> 
-> - memfd can be sealed, so we can validate that they have the right size
-> 
-> - thanks to umdabuf there's already core mm code to properly pin them, so
->   painful to implement this all.
-> 
-> For a driver interface I think the memfd should be pinned as long as it's
-> in a drm_crtc/plane/whatever_state structure, with a kernel vmap void *
-> pointer already set up. That way drivers can't get this wrong.
-> 
-> The uapi has a few options:
-> 
-> - Allow memfd to back drm_framebuffer. This won't result in api chaos
->   since the compositor creates these, and these memfd should never show up
->   in any property that would have a real fb backed by gem_bo. This still
->   feels horrible to me personally, but it would allow to support
->   histograms that need gem_bo in the same api. Personally I think we
->   should just do two flavors, they're too distinct.
-> 
-> - A new memfd kms object like blob objects, which you can create and
->   destroy and which are refcounted. Creation would also pin the memfd and
->   check it has a sealed size (and whatever else we want sealed). This
->   avoids pin/unpin every time you change the memfd property, but no idea
->   whether that's a real use-case.
-> 
-> - memfd properties just get the file descriptor (like in/out fences do)
->   and the drm atomic ioctl layer transparently pins/unpins as needed.
-> 
-> Personally I think option C is neat, A doable, B really only for hw that
-> can dma in/out of histograms and where it's big enough that doing so is a
-> functional requirement.
-
-Also for all these we'd need to make these new properties opt-in and hide
-them from compositors who cannot cope. Just defensive programming best
-practices.
--Sima
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
