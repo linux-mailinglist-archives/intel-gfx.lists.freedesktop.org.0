@@ -2,62 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52425A3CC61
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2025 23:33:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08DC3A3D012
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2025 04:26:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E27A110E088;
-	Wed, 19 Feb 2025 22:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9623610E4A0;
+	Thu, 20 Feb 2025 03:26:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hN4vRtgn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjHwubJ2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5AD210E088;
- Wed, 19 Feb 2025 22:33:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B12810E4A0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2025 03:26:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740004391; x=1771540391;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nr9NDfOFfx39pyiTYhclPbpVenX1eOgKGLy7+OEMM/M=;
- b=hN4vRtgnmCBNiUIjNQw+w/mAzPK0IDUREcPk/j5cPwgctUC2C+RbjjA8
- 7f4b/fAU7/f2CV8Btzqzi0Qjis1M8pxiUxhzguungjMQdWsqrfNnWyzqU
- fsG/CKHDp5NJB0e92j10QmsXbR7osN7A5uxEY5sZZaq30InocxRSsnFLk
- QiTAqFQp0zAKzzOyG+NauGp4bGQuREttpd6M9HgL9s0jmc6ePXjino1Zj
- 76y1WHnMkgbqvpokK6DBp9Dn6eehYKDeiHedP+CBLYX0HUvXawRxIJmPd
- YtlZFskyaQutUE4wtIilSZ+J757Neoz9Zl/xt3rYuFldVYqPN9i0wFXd8 Q==;
-X-CSE-ConnectionGUID: 6C3+ed8UTr+fH15YcHCQGw==
-X-CSE-MsgGUID: xYgtBtSBRESAIqe9uqv5OA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44410556"
-X-IronPort-AV: E=Sophos;i="6.13,299,1732608000"; d="scan'208";a="44410556"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ t=1740021969; x=1771557969;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PWCwQf5tRQb7aywoIgnbIHtJ0T/cKmdoMIAsjihsB5A=;
+ b=ZjHwubJ21O2B9bzIFmbAGKWjjaz47FnBcCCjDKlaj7vBlknfmjJ0tCw9
+ h2/uYq+3sqJKNbgKMgk4dDtOAZSz8BxdZ4Jvsq1jX87KIkLJ+tOO7rOeI
+ IrFPHDyWKD2C5H8JyNHbuVMcsXJL7fp4Z39qwxDniFFrFh7+3lYlM1eg3
+ xdehIjHAprbblqOqlOyg2P5DFrYRWb3+OPefmU6mJneJjf4SGEe7F/C3Z
+ AvmMgFl8mC14nsdSs08HmZFu3QxQ+Icw9iuVnJPGX6JApX9bSAsgG1bZY
+ yvvPfBcSjXBVVeubHqBSel7SxZgCH+pXzCOfxcH8jHwh2K1nGfzYR6C0r Q==;
+X-CSE-ConnectionGUID: CYLZ68AoR8uMT64gOFiUaQ==
+X-CSE-MsgGUID: HEczF6N0RVGELjS4o8reOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="44435505"
+X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="44435505"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2025 14:33:11 -0800
-X-CSE-ConnectionGUID: VT3GnqgHQLO21PRfBBo9pg==
-X-CSE-MsgGUID: P56aq5FaSeSfZMEfOKVSMA==
+ 19 Feb 2025 19:26:08 -0800
+X-CSE-ConnectionGUID: 4MM0hUDjS+S+kEJX0GQhgQ==
+X-CSE-MsgGUID: ZQV+JmGuS4OrWz4XvL1NRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120066165"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 19 Feb 2025 14:33:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Feb 2025 00:33:06 +0200
-Date: Thu, 20 Feb 2025 00:33:06 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com,
- Naveen Kumar <naveen1.kumar@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH v6 0/3] Expose modifiers/formats supported by async flips
-Message-ID: <Z7ZcIs22xv3LGr5M@intel.com>
-References: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,300,1732608000"; d="scan'208";a="138110179"
+Received: from tsengwil-desk2.itwn.intel.com (HELO gar) ([10.225.64.225])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2025 19:26:07 -0800
+From: William Tseng <william.tseng@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: William Tseng <william.tseng@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+Subject: [PATCH] drm/i915/dsc: Change rc parameters calculation for DSC 1.1
+Date: Thu, 20 Feb 2025 11:26:03 +0800
+Message-Id: <20250220032603.434570-1-william.tseng@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250219-asyn-v6-0-b959e6becb3c@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,22 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 19, 2025 at 02:47:22PM +0530, Arun R Murthy wrote:
-> All of the formats/modifiers supported by the plane during synchronous
-> flips are nor supported by asynchronous flips. The formats/modifiers
-> exposed to user by IN_FORMATS exposes all formats/modifiers supported by
-> plane and this list varies for async flips. If the async flip supported
-> formats/modifiers are exposed to the user, user based on this list can
-> take decision to proceed or not and avoid flip failures during async
-> flips.
-> Discussion around this can be located @
-> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#note_2487123
-> Userspace implementation for IN_FORMARTS_ASYNC under review @
-> https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
+When calculating dsc parameters, the rc parameters calculated by
+calculate_rc_params() may be incorrect in the case of DSC 1.1 and
+DISPLAY_VER(dev_priv) >= 13 and cause noise-like lines displayed
+on a MIPI DSI panel supporting DSC 1.1. The calculation seems for
+DSC 1.2 only. So, instead of calculate_rc_params(), calculate the
+rc paramerters with the function drm_dsc_setup_rc_params() for
+DSC 1.1.
 
-FYI I just cooked up support for xorg/modesetting:
-https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1816
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+Signed-off-by: William Tseng <william.tseng@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index b355c479eda3..e3443a1d12e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -320,7 +320,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 	 * upto uncompressed bpp-1, hence add calculations for all the rc
+ 	 * parameters
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 13) {
++	if (DISPLAY_VER(dev_priv) >= 13 && vdsc_cfg->dsc_version_minor == 2) {
+ 		calculate_rc_params(vdsc_cfg);
+ 	} else {
+ 		if ((compressed_bpp == 8 ||
 -- 
-Ville Syrjälä
-Intel
+2.34.1
+
