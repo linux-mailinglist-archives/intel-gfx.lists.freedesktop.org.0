@@ -2,60 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8ADA3DFD3
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2025 17:07:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE96BA3DEE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2025 16:40:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 561AE10E19D;
-	Thu, 20 Feb 2025 16:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524CC10E99F;
+	Thu, 20 Feb 2025 15:40:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amMmghih";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WDFsu/09";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D42710E19D;
- Thu, 20 Feb 2025 16:07:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A131910E99F;
+ Thu, 20 Feb 2025 15:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740067657; x=1771603657;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KXd6HmaYWSKCdFUWjFo6dbjbrQlIxzPrhqN2Q+aeBeg=;
- b=amMmghihAq5onKg3B87q7bYUFs31/A/oAfVDZdoPOmKSOqdiUJYhQLyk
- tI3eXEKTVFmpahgzbOZdvUorJBo8VjDdqWwd5H5T6JWxJcismRS2orlW0
- OK86hrbWV7xDVGhj6WOe9iLIceFDddvkNLEP9flfWI730fJz3QqjODuck
- 6TlzKwyd3XBWahk7C8v8czHBLxrp3pEW/q6/cJ9bKBjOfrPr3XOew0MQg
- 1cvq7j5+NJC54FyjmW0PqQ3/iyYnSS5lztOeKWErRVbpDYhMtxjKNTENm
- 4g1tQNEJXcF6vh+xU2JOsDw6eEdCs2Oy+afAjKL0cyVFYJvbn8ZA4DUpY Q==;
-X-CSE-ConnectionGUID: xPwDtDpXQEi9VvShGRePtg==
-X-CSE-MsgGUID: xea0uw4ZR/6Lk0+Z3UCNAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40041573"
-X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40041573"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 08:07:37 -0800
-X-CSE-ConnectionGUID: P9rw0PJMQPOjnB73mf/YRg==
-X-CSE-MsgGUID: yoaCzzJdTf6r8NYE7bT8Mg==
+ t=1740066044; x=1771602044;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=gNHNt6lCen0DHsSDxtO7RivDVN29tF7Ss1yakXiI1uY=;
+ b=WDFsu/09h94KCzfKTB9+ZbMgVWYt/K/Qq8ZkhVo6+RQGf1EEJ6D1ASng
+ csqo2M3dUzHqKOJ5N8Vez+l7JE/V/yYrKo7q0ES2KHBmIDHarDJXhRuBN
+ is3jB5zwzAknxGtA52G7hHhuZpegfk9jy5oUeCpfP5BJ5Rd+qjVoEiexh
+ +pDyI7xkzbG+g7CBplrotf/Is/Ngn9AdfLKQrnuAqrOG1hFVvpNzS7CXd
+ Aqvpd2b8TCwteR2LNI6q3y2NHZQtHlyb/nZwptUIf9zeV19vOOMFCPu1/
+ bvfdhRUHz30WT8vBv/QODBncJdC9S1+tUDwDkf01DnQDC+rU4SL9smJ4J A==;
+X-CSE-ConnectionGUID: rcAuYbDLREadPsyPapzH3A==
+X-CSE-MsgGUID: bKD9Hz6XTPC1FNh9Bkt/ng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="40707254"
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="40707254"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 07:40:43 -0800
+X-CSE-ConnectionGUID: TP2nwyJqRXuniy2pnl1GBw==
+X-CSE-MsgGUID: Dwg/kEDoRNG/GnkB9vLY+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="152268814"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 08:07:36 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: linux-perf-users@vger.kernel.org, x86@kernel.org,
- linux-kernel@vger.kernel.org
-Cc: dave.hansen@linux.intel.com, Zhang Rui <rui.zhang@intel.com>,
- Kan Liang <kan.liang@linux.intel.com>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Ulisses Furquim <ulisses.furquim@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: [PATCH] perf/x86/rapl: Fix PP1 event for Intel Meteor/Lunar Lake
-Date: Thu, 20 Feb 2025 07:36:30 -0800
-Message-ID: <20250220153857.2593704-6-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.48.1
+X-IronPort-AV: E=Sophos;i="6.13,302,1732608000"; d="scan'208";a="145926313"
+Received: from yakiklei-mobl2.ger.corp.intel.com (HELO [10.245.82.75])
+ ([10.245.82.75])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2025 07:40:40 -0800
+Message-ID: <880db65b-6d17-4adf-ad88-4a9e077aebc4@linux.intel.com>
+Date: Thu, 20 Feb 2025 16:40:36 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915: Add VM_DONTEXPAND to exported buffers
+To: Tvrtko Ursulin <tursulin@ursulin.net>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, karol.wachowski@intel.com,
+ tomasz.rusinowicz@intel.com, Krzysztof Karas <krzysztof.karas@intel.com>
+References: <20250114082303.1319508-1-jacek.lawrynowicz@linux.intel.com>
+ <a712ee97-1851-4f6d-97b1-7d1cc136481f@linux.intel.com>
+ <173996250609.74092.8072729956400006000@jlahtine-mobl>
+ <22fedeac-0919-4d33-b4a3-ade7afce8261@linux.intel.com>
+ <15c019f5-a26b-47e5-9ec5-41746e63cae6@ursulin.net>
+Content-Language: en-US
+From: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <15c019f5-a26b-47e5-9ec5-41746e63cae6@ursulin.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,95 +81,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On some boots the read of MSR_PP1_ENERGY_STATUS msr returns 0, causing
-perf_msr_probe() to make the power/events/energy-gpu event non-visible.
-When that happens, the msr always read 0 until the graphics module (i915
-for Meteor Lake, xe for Lunar Lake) is loaded. Then it starts returning
-something different and re-loading the rapl module "fixes" it.
+Hi,
 
-This is tested on the following platforms with the fail rates before
-this patch:
+On 2/20/2025 2:53 PM, Tvrtko Ursulin wrote:
+> 
+> On 20/02/2025 13:14, Jacek Lawrynowicz wrote:
+>> Hi,
+>>
+>> On 2/19/2025 11:55 AM, Joonas Lahtinen wrote:
+>>> Quoting Jacek Lawrynowicz (2025-02-11 17:57:03)
+>>>> Hi, can I submit this to drm-misc or should someone commit this to drm-intel?
+>>>
+>>> Is the this happening in linux-next or is it still completely out-of-tree?
+>> The patch is not merged so it is happening everywhere.
+>>
+>>> Feels weird that the splat would not have happened in any hybrid GPU
+>>> systems in the past. Did you look what is the difference between your
+>>> driver and amdgpu/nouveau?
+>>
+>> It looks like imported buffers are just never mmaped.
+>>
+>> This is a call chain when mmapping imported buffer in amdgpu:
+>> drm_gem_mmap()->drm_gem_mmap_obj()->amdgpu_gem_object_mmap()->drm_gem_ttm_mmap()->ttm_bo_mmap_obj()
+>>
+>> And this is intel_vpu call chain:
+>> drm_gem_mmap()->drm_gem_mmap_obj()->drm_gem_shmem_object_mmap()->drm_gem_shmem_mmap()->dma_buf_mmap()->i915_gem_dmabuf_mmap()
+>>
+>> amdgpu does not check if the object is imported and just calls drm_gem_ttm_mmap() and dma_buf_mmap() is never called.
+>> Same with xe and nouveau. All drivers using drm_gem_shmem seems ok but besides them only couple small drivers check for import_attach in mmap.
+>> Looks like most drivers do not support mmapping imported buffers.
+>> Is this really possible? Do you have test coverage for this?
+> 
+> Without going into details here, commenting just on the "mmaping imported buffers" part.
+> 
+> My understanding is that mmaping imported buffers should not be supported by design. There was some discussion around this in https://lore.kernel.org/dri-devel/bc7f7844-0aa3-4802-b203-69d58e8be2fa@linux.intel.com/ (The thread is for a patch which added this ability to i915.).
 
-	Alder Lake S	0/20
-	Arrow Lake H	0/20
-	Lunar Lake M	8/20
-	Meteor Lake U	6/20
-	Raptor Lake P	4/20
-	Raptor Lake S	0/20
+If so, these drivers should return an error when mmaping imported buffer instead of happily proceed as if it was an ordinary buffer.
+In my opinion, every driver that doesn't check obj->import_attach in drm_gem_object_funcs->mmap has potential for security vulnerability.
 
-For those platforms failing, use a separate msr list with .no_check
-set so it doesn't check the runtime value to create the event - it will
-just return 0 until the i915/xe module initializes the GPU.
+Thomas, Simona, shouldn't there be a clear policy regarding this for the all drivers?
 
-The issue https://github.com/ulissesf/qmassa/issues/4 is workarounded by
-reading the MSR directly since it works after xe is loaded, but the
-issue with not having the perf event is still there.
-
-Closes: https://github.com/ulissesf/qmassa/issues/4
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4241
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com
----
-
-Maybe a clearer alternative is to just move all the platforms after
-RAPTORLAKE with a gpu to use the new msr list.
-
- arch/x86/events/rapl.c | 26 ++++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
-
-diff --git a/arch/x86/events/rapl.c b/arch/x86/events/rapl.c
-index 4952faf03e82d..18e324b8fa82c 100644
---- a/arch/x86/events/rapl.c
-+++ b/arch/x86/events/rapl.c
-@@ -588,6 +588,14 @@ static struct perf_msr intel_rapl_spr_msrs[] = {
- 	[PERF_RAPL_PSYS] = { MSR_PLATFORM_ENERGY_STATUS, &rapl_events_psys_group,  test_msr, true, RAPL_MSR_MASK },
- };
- 
-+static struct perf_msr intel_rapl_mtl_msrs[] = {
-+	[PERF_RAPL_PP0]  = { MSR_PP0_ENERGY_STATUS,      &rapl_events_cores_group, test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_PKG]  = { MSR_PKG_ENERGY_STATUS,      &rapl_events_pkg_group,   test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_RAM]  = { MSR_DRAM_ENERGY_STATUS,     &rapl_events_ram_group,   test_msr, false, RAPL_MSR_MASK },
-+	[PERF_RAPL_PP1]  = { MSR_PP1_ENERGY_STATUS,      &rapl_events_gpu_group,   test_msr, true,  RAPL_MSR_MASK },
-+	[PERF_RAPL_PSYS] = { MSR_PLATFORM_ENERGY_STATUS, &rapl_events_psys_group,  test_msr, false, RAPL_MSR_MASK },
-+};
-+
- /*
-  * Force to PERF_RAPL_PKG_EVENTS_MAX size due to:
-  * - perf_msr_probe(PERF_RAPL_PKG_EVENTS_MAX)
-@@ -826,6 +834,16 @@ static struct rapl_model model_spr = {
- 	.rapl_pkg_msrs	= intel_rapl_spr_msrs,
- };
- 
-+static struct rapl_model model_rpl = {
-+	.pkg_events	= BIT(PERF_RAPL_PP0) |
-+			  BIT(PERF_RAPL_PKG) |
-+			  BIT(PERF_RAPL_RAM) |
-+			  BIT(PERF_RAPL_PP1) |
-+			  BIT(PERF_RAPL_PSYS),
-+	.msr_power_unit = MSR_RAPL_POWER_UNIT,
-+	.rapl_pkg_msrs  = intel_rapl_mtl_msrs,
-+};
-+
- static struct rapl_model model_amd_hygon = {
- 	.pkg_events	= BIT(PERF_RAPL_PKG),
- 	.core_events	= BIT(PERF_RAPL_CORE),
-@@ -873,13 +891,13 @@ static const struct x86_cpu_id rapl_model_match[] __initconst = {
- 	X86_MATCH_VFM(INTEL_SAPPHIRERAPIDS_X,	&model_spr),
- 	X86_MATCH_VFM(INTEL_EMERALDRAPIDS_X,	&model_spr),
- 	X86_MATCH_VFM(INTEL_RAPTORLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	&model_skl),
-+	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	&model_rpl),
- 	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	&model_skl),
--	X86_MATCH_VFM(INTEL_METEORLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_METEORLAKE_L,	&model_skl),
-+	X86_MATCH_VFM(INTEL_METEORLAKE,		&model_rpl),
-+	X86_MATCH_VFM(INTEL_METEORLAKE_L,	&model_rpl),
- 	X86_MATCH_VFM(INTEL_ARROWLAKE_H,	&model_skl),
- 	X86_MATCH_VFM(INTEL_ARROWLAKE,		&model_skl),
--	X86_MATCH_VFM(INTEL_LUNARLAKE_M,	&model_skl),
-+	X86_MATCH_VFM(INTEL_LUNARLAKE_M,	&model_rpl),
- 	{},
- };
- MODULE_DEVICE_TABLE(x86cpu, rapl_model_match);
--- 
-2.48.1
-
+Jacek
