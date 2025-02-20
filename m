@@ -2,192 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA320A3D4BD
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2025 10:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B185CA3D517
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2025 10:46:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB4410E900;
-	Thu, 20 Feb 2025 09:30:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 421BF10E4B9;
+	Thu, 20 Feb 2025 09:46:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dpOSpuNv";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="X4Noble0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55E4210E900;
- Thu, 20 Feb 2025 09:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740043837; x=1771579837;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=ANKlR8ttb6YCHXU0wpIV1Zuo65AZUwTeh3lAvWP1YYs=;
- b=dpOSpuNvTOt5jCuTNtqavTRNp5eoTWEZjp7Gole8/tdiQ2hvRJrRl56Q
- FO+I3Z1T37uim5zSFTG76zD3ztrSbpPyCc4gudjXMO3BVmUdM2jW8qyCU
- z+MsmNuxDccmkPJmIKQ7vl+LkQT1PjQnGMIEet9/lES1Jlk+lHUx2R1ni
- GGKB+ZsjTLIBxDwTGRHbC88imtr/ySSqe15cMxBq8XvsKBMfKnXJaapJl
- dHrZ+UKsL1sj8Iw/qmbpp9UwFpvDJqJV0sxYOGAfbVrV3Lco0hBMQTGKd
- pEHLcHbiP3jQzRwBwxGQkloB0d+o/HdRDotkZJ4qy5j8FGYgfDaIPg0l4 g==;
-X-CSE-ConnectionGUID: bd49cSwITPO94+ECHIFbMg==
-X-CSE-MsgGUID: F3+nscwGS8eeCMqAcjAx4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11350"; a="43644310"
-X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; d="scan'208";a="43644310"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 01:30:36 -0800
-X-CSE-ConnectionGUID: 9PyxX5QcQz+C64ajfwaVnw==
-X-CSE-MsgGUID: UHOnTMACT7GC8xauegYJ0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,301,1732608000"; d="scan'208";a="119925676"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Feb 2025 01:30:36 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 20 Feb 2025 01:30:35 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 20 Feb 2025 01:30:35 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 20 Feb 2025 01:30:34 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lo2g4Eb1rhtS3/4vAdXlqi+roNE2GZiWITtgQLN7vAqkvPcegE/vIsfkkDC+AlyYh4kmay/zBGlAkXkk5zMaNX4yu2q2P7jZOavFotC6830j7D9+6XE8Zh21RYcaNzu38mPCgbymi9tg0WWvzstJSuXHdr7jZFPnSE397983pStaiFwsmshqpAb4gEBarSgr84JlsQF9BYHIUVXA1e+o/hfWAneBNz9LGgljc56Vxg1oGG73hT9E1mDKF5sxGRo2NSedYO0hcZp9V4sGiIXyhCQ0Ajy/3YhuwJHLOyCpBf4OxXmV1KwEcF2z+tI0xFMAMWR0U+giPwoVj4wiLpIkQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ANKlR8ttb6YCHXU0wpIV1Zuo65AZUwTeh3lAvWP1YYs=;
- b=GAsdVbLAeeSXcotL5ZnrSwdY43suite15wiAUB3gEdNWNwPbbGUx0G+xS+z/2CfY4TrZNnebkPWUbx+gslYnchZXjrVvwYoWaZtNvYQ/VXCStCRJcMs9Y5z/VSltPAWF1gL5eU4RZftYUve9vQqsiNlV8Q18gJ5s8gt66aWhfUZ/rNXG2TcZmqkeFEhEDFNHyj7pdMTnu/q9xWAJSiQnmNwJPaQ7xgWHljdRqFwcEAmE0Tsc9Nkb9gWD5E9g7Qi4im6pHHRF3sZfLb2wn+uLNAh5iWrMncxwCwOTqhkddcSNWhsPTPWYneDjXWkz4uO1zWBlktWZMtfDxwe8Qv+bIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- CY5PR11MB6415.namprd11.prod.outlook.com (2603:10b6:930:35::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.15; Thu, 20 Feb 2025 09:30:01 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::fc1:e80f:134c:5ed2]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::fc1:e80f:134c:5ed2%6]) with mapi id 15.20.8445.017; Thu, 20 Feb 2025
- 09:30:01 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: Re: [PATCH 1/3] drm/i915: Fix scanline_offset for LNL+ and BMG+
-Thread-Topic: [PATCH 1/3] drm/i915: Fix scanline_offset for LNL+ and BMG+
-Thread-Index: AQHbearzRiRaxVyb4E686J4fuA1zzbNQALAA
-Date: Thu, 20 Feb 2025 09:30:01 +0000
-Message-ID: <1143dadb36dc3d3572e4e4b2daca73497589db04.camel@intel.com>
-References: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
- <20250207215406.19348-2-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250207215406.19348-2-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|CY5PR11MB6415:EE_
-x-ms-office365-filtering-correlation-id: 2c5c37f6-ed26-4af4-ea8f-08dd519126b7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|10070799003|376014|38070700018; 
-x-microsoft-antispam-message-info: =?utf-8?B?TFk5U1BYS2xzUkJhbXYxUjh5TUJyd096QmJQVEY3VjNxM0YzN3hQeURaYitE?=
- =?utf-8?B?RW1GQThja0RFM295RE10b0ZaSnQ2UzJ6TjB6NVprQjE0eE01UHZpVFZINVJW?=
- =?utf-8?B?d2JNdkc0bzNPWnI2bmdEOHIrN3VMelBQQjhvYnd3cDZWR21mRjhaazVjcytm?=
- =?utf-8?B?dnhvbTBuL0VhNjRBWTA3dHRWUDRkcUltM1o1T1pnRU5xTjhnZ0xhTlVxekFI?=
- =?utf-8?B?MExINWFJc05NSmNXVzEzNmFYbk12TW13ZitIL1FaUGJUUkZaRzVZZ1BWelhR?=
- =?utf-8?B?VWFyMmJkUFF4b0VsYWxQT3o3QU9EQTh4UVVOZnFNUjFTVmFQQXlxNU5rNmNl?=
- =?utf-8?B?czNmY1NCR3F6azlvU0ZQempIcjB3djZDalpYS3RNZWVsdmswd0gzcjIxSFFm?=
- =?utf-8?B?SWk5NzVWTmJSWmJWSkwzSVJMajIwWG52M0V4Tm5RY0dDcDJRbGg4TEVGWlhG?=
- =?utf-8?B?OUJsejZETGM1SU9XRmNxN1BiQndkWEI3cStZOVlrcGZXU0xJTUtmM0M0N0d4?=
- =?utf-8?B?UkNuclo3M3Vub2o0NVk1cm53YjZRYkpHY2ZxL2E3TTNBbzNJTXZNOTNlUnRq?=
- =?utf-8?B?UHcrRklzU09Sa20ySitrd2lDbzNQL0grU3hyVTVlcE10b1hNbEdETVQycnJN?=
- =?utf-8?B?Q2pjcnpvUW9VQTFPeXlzV3FuN2I2SllRVXdtTkhtZlJ2WlJLaVdrS0w5TmVW?=
- =?utf-8?B?VWlHcjBLTGcrQ09VMjBXL1dFME44d25lNlFCQzRzZHM0dlBLMmRZVTRyTUht?=
- =?utf-8?B?WnNxbmc4dlUrRkozYXp6V0VLekVNS2x5Q010bWlCdUFsV0Izdy8rZFpnZDZG?=
- =?utf-8?B?T05qZnhUUFErbVhvclZGMWFaL0JlZDRVRGRDd2FSZ2tjY253VS85elNZMkZ1?=
- =?utf-8?B?NVFvRFhsckR1RFN5aFJpZTlsQjA2QkprVHJPMmVrRkozTWI1TlhtWFFNblcv?=
- =?utf-8?B?b0o0SVhobFlab3owTjVLSnBFUGRwNm1CbnJmMGFNcTN2Z0xwU3h5cnFia1Yr?=
- =?utf-8?B?OVg2enBzMG9qMlJIVEhoR21Pd2VqNm5KS2tpdVU5dHBuMlY1UmJBd2kvTkxK?=
- =?utf-8?B?Q003RWw3QzdUazJEclFVME0rTVBoTHVHYk9nTG9LdUF6QUZXbzBReHdCUkVk?=
- =?utf-8?B?MHY0MndTcFdpdkVsMXFBeXFlTFB0UlI1ZWNNM1Z2UXY0NEgxNHhXa2l2alZI?=
- =?utf-8?B?WU9PcDFtWDF1c2RXa3pwT2hXZy9oS0NFQTRVMXhXck10MmlyZFo3di95Q3Bl?=
- =?utf-8?B?ZWNnS0NQMjdSSUlGT0FjWVkxeFpQblZzK3FRQVBDLzVab0hLVEs3QnVodkRS?=
- =?utf-8?B?bk1rQTZCOS9sNHhkbDdoV0UvZ1AyNEtGWGR1d2dJK21ENmFYSm52Rm5MUGJy?=
- =?utf-8?B?cUh4d1lkMjRLMFNUN21IOExFSW1BSmxkWTlYeWVuMGlsUFBiWmZmSGl2S0dk?=
- =?utf-8?B?NDVBMUtFTWF4T3NGOHFCSTBjMXpySWNsNWw3ZzlxK0dySE42YWNjcXRZNjhO?=
- =?utf-8?B?MGFsc0VQSDg0U1laWTgyaC9oR3NCajNtdEpoVGU0dUdVMlZVdUg0dVIreWhq?=
- =?utf-8?B?d21LSGMycm4wNEM2ay9kR2RMa0VVQUhOU0ptbldNZkcvaWVkei9PR1crRmxt?=
- =?utf-8?B?aDR1Q2xhQkg1dzVqbkErUXVDdys2QVk1Wlo1Y0pXaHlmN0RtaktMaU92OHNt?=
- =?utf-8?B?VzgrNFc3YXlZOG03WGZzOU1lQnQ1ZjFWcGFXdDMzZTJIVkpyeldvZGJPMlBn?=
- =?utf-8?B?dnU2d1JTRnlPUG5HdmxmQlByc2IxTElkOXZTdVN3QVRud045dzlsWnlBbG1w?=
- =?utf-8?B?SHNZcTRSa1Uzdm1FNE5ZSnN6SFB4RVlzU2NMenhMRU1PZjBhdmpnNFc1QlV5?=
- =?utf-8?B?OW95eUdkcjhnQUVCNnl3Rll6UTBBaVIzbDQ2UEdxVUxuTzVzdjhsVzNLVXF3?=
- =?utf-8?Q?CnCRQheYA2JXgZo8DGTkXb98WkQJ8Ap3?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WU5Yb3BVNlRscmNQdmJ3bnBPZTBqV1VzdFltNWVaenBiUnF3TDk1SGZMN3Y3?=
- =?utf-8?B?WUR4K2JydDhZNFNnSG5sWi9tSDIwTVgyQzBxUS9Ja0NxVjY5OWp2UUFZQWp0?=
- =?utf-8?B?RGJyU3RRaFU0bGhoNnBtTkJoVGh3YTNYRnY3dzlHR05odGFEelV3WTh6akh5?=
- =?utf-8?B?QUVUUEN0Z2JQYmRSM09uQjc3MWsxeTZBcTg3MFdabGVRelhrYUM2RnZ1Z3Y0?=
- =?utf-8?B?VGFpcVJ2NzNEWDFYd3hoY0dsUlIwVWxrYXFSdysxLy84NHZ6aXZsbTF6aVQw?=
- =?utf-8?B?TCt6TlZSVXpVOGs2eTh2R3lHRS84bGdOek5KOUdwMlVINmJta0pnYXdTOFRO?=
- =?utf-8?B?WWYxSDFZeFRxOEZxOWdhUUVtdVhyNzZPMWpNZEw3NnR3S2wxSGFERWlqRlRC?=
- =?utf-8?B?d2dOeVNMcG5wemZnOGluWWZ4S3RwTkhuQ1pxNFluckdRdmFZTGlDSW9ob3RU?=
- =?utf-8?B?VU5MeGp1ekpJVmtzakIwTGp1MkJuKzhRZkUxQWRpZHBvdWdtOUx2RlhZY21o?=
- =?utf-8?B?SWpxK2pLYmR3QW5OaGFySDlXNVJHSFQveVBteVJ4a0RFVDV0UU5ML0pGOERL?=
- =?utf-8?B?cmU4clpBUC9VNzZYVlY2THJHeHVTSENxZnp6N29iak8vTU56T09IWE5Hck5F?=
- =?utf-8?B?b3k3ajg2Umt1bXRNYlBDei9rR0tRNFhJQ2NSbHNzTWJFdHNRWjRhalJkeXBT?=
- =?utf-8?B?cFVkMk5USlRoam4vb2JoNlYzd0U3K2xGWTNpWDh3TkZzQzJac0x4QVlUd1VU?=
- =?utf-8?B?RStMUTVXcVdjMUF0aE9aOHlrbnVGTEhpZGRxczBkdHV4YzIvWGwrcGdDUEJI?=
- =?utf-8?B?ME8vRHdKaEVETlkzTThJcnlMNTFFUi84bWlqM0U1VElhcHQ0dHdzSStvL2U0?=
- =?utf-8?B?M2orWWpUVzR6RStOWjlRUFRKdEh2N3E1TU9uVllQT2M3eGZMam05UUFwdmhL?=
- =?utf-8?B?cUwrU3lrYXRaZS9tMlRUZ3dpcTlkQ3lJYURmazUwYTREdTkxMjkrQTBHZ2Rh?=
- =?utf-8?B?dzA3bnhTVkNxVHJVMTdZTDFEdXVjbXJjdEJtMngyTjRSNmF4SHRaQmJEY3Mx?=
- =?utf-8?B?aDVEd2RXSUZvV1ZjbnQwa3ljSnpJQ1kzalhQem4xYWY5a0tHSnBKdWo1ekJk?=
- =?utf-8?B?U2E3cVZSN3c0aWtBbWt0UGhpK2R2U0c3ZDJhODF2bmlpbzFzRFM3SFNmRDhF?=
- =?utf-8?B?VUJUSG0yMjZzVU9NcC9zb09WLy9qQXpzYWFGVFdYdXNId3hoWGhhRWtQZ1hl?=
- =?utf-8?B?QzlMc25qbEhycEtNQWxHRTdNcUN6bkE2RlB0cG9oNHdWZXpPUkFjNDRpUzBz?=
- =?utf-8?B?VUFCTU5obCsreXhxUHQ5UnlBRzgxdEUzbmFBam9ySW9PYVpScmxRUE5HRkVu?=
- =?utf-8?B?ZlVlSk9CT0lYVXE3TG4raUFqbUoxYloyQkJKOUNBbmk2RlFXdlloWkZDNHJ4?=
- =?utf-8?B?ZGFNMjRjMGFDSnBLdWM2VlRpaEJEWVZ5ZlVJVjhjbTlFclpTTnh6VDEzeGZS?=
- =?utf-8?B?T28rVU9jSHdCcWlhQ0JMWnFOQlIvdktDcjRVM1EvZDArbDdWRFhMQUV1dERx?=
- =?utf-8?B?NVkvemx0L0lhNm16anFjSWdYNjJIaUU5ajhSODQ1MXc3ZGZ4TUNPanM2dnF0?=
- =?utf-8?B?M1kwVFAzZUVZaVRseG1kbVl1c3MrZmt2SVRTVDdwTFR1VUM2d29YTDRNSSsv?=
- =?utf-8?B?TXdaY1pmWnd1QzFFL0h3dTN5cmZjczZvMVZ3bUE4dzN3VUJYVGM1NE14Z1Uz?=
- =?utf-8?B?eWpLb0ppS0kwTzBSbHYrNTExcURoQmI1dTRNOTFXQ3Zxd0RLRTJGODNRTEZG?=
- =?utf-8?B?UjV2bU9CNHZrZ29vUGcvZzlFS1JlRWtrYkt3Vk9OYjVwY3lYYnp3dU5tNnJT?=
- =?utf-8?B?T1B3OUpMSkg5RWxsRm1JVlJZM2k0b1pkd2Z3eHJtVEFtRTMwVTRiUG9XOHF1?=
- =?utf-8?B?UXdzc3FWUFNVQm1IcXJLcU5mRlZ0UG5ZSkwvbUNGTmkxMGhzZy95L2JwSnRz?=
- =?utf-8?B?MG1ZcERFbmlHelZiTFhWNUJxNVloY1pyQlMrQXR1d1Y1MjdoUlFtUzBjNWNX?=
- =?utf-8?B?ZTdQRTM3WEJrZFdiaTRrVFVnOC9ZNUtqRTVFZi8yb2lEaEFhUWgzSG45ejl2?=
- =?utf-8?B?UzNaai80TmdWRW1Sa1NzYktSdVAyOU92TmNQTWNnWEpNT0tOYTBkTUZMMVFV?=
- =?utf-8?B?NE5OWnM5dVpqb014dDdGN0pPaWtycFNKTzRRL09ZRC84UG1HdmpaMTJTemFy?=
- =?utf-8?B?TlJGSXN2cHMrOU1xZ0hmZ3VyWmd3PT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FAC9987145C2074196B0EA19A178D86A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+ [209.85.221.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E299B10E4A7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2025 09:45:58 +0000 (UTC)
+Received: by mail-wr1-f53.google.com with SMTP id
+ ffacd0b85a97d-38f6475f747so224356f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2025 01:45:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1740044757; x=1740649557; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=j/QbdcI7C6XxVE5jz6sKFGZdf665BDupYKEBKSwxSEs=;
+ b=X4Noble0GS90b+QuH2pGjLISpTs1qZFVg9+Ex3gqZEWvXgZKOK9iy6o3cKUhOD8IMZ
+ p1YqODujjEu+2WXBzg01ph/M0+90mWcmorVUy26G12LMSNoQDwWVK1WEFSKzu37qZ0mA
+ +u6pTMJShMecQdrYjkFvHeULxwjmxl6zz15fQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740044757; x=1740649557;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=j/QbdcI7C6XxVE5jz6sKFGZdf665BDupYKEBKSwxSEs=;
+ b=ZmS5WS8MIUiS8TjgwOquR2CwgJNzzWZ3GZeBPziuz7JmeT0PwZgvKQpEh+44aiaj3j
+ mB9AitKY78IBFBgnPKyFI0tWibdYW9xH8wjpOv5UXNz3ZD00g/Ly7kYQKdcOGO0s5Kve
+ XY/z/UN8qNeoOkkiG1WzOObsyx0JRdOmWt63NvY/EINRBaQLJk5FqklVI0x0vjJiIUYz
+ HTaCgV9tEzHCd3RmmvOGhed8xIKAL+UuKX8ofK+yT8pRMS6ODp1ZBFLUI/Bqsuc2Oj11
+ ZxeNoJKvU9zhbXyoIOe2kOdndizryp5sA4sKq8d38XbZy8Qpj1Ou3tcl8CCIGshE9yUi
+ HBsQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXnNZZFXQEeNjDttZqX94zavbMp7txSgAneAGELwbFbPKqUuniBpBX0RnWCuqg12Oo++c7RCct+JaA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwUGhvcjb/qtAT2PJe86sP74KrIyBu+Z9bxEqdFW+3ixieyw2xq
+ 1UECL8OVgf5JYLhmfCWCbU/bFjxu2EQunvpMcf/29TZHPWuc4H4FcgHNLK2QNuw=
+X-Gm-Gg: ASbGncuxmlSpcaMa02KVxW6/t7aom8k/eDWVuiaehaCelRny8tHbHTpedpeSgc3eRAk
+ Rw8YnPGHcmb8KG97XFj0motE9sxqsinfLiwOQ82YAYW9XvEGSAXQS5i8X+7bJ/AJwQNGZh0lqUi
+ U7A7/uASnH+vtPONvDRWf4kbO2F86t7sjmTh4SwInVp7tONU/c1xQdVkFZKpGMwPLsCsSlDWa4h
+ xfiLg70U4tm2c1ou6O+tmsX+wJ5zAVZO/W2nB9mJdwIjuJVnV6EgpfQYbek9hD5Kp/js6TuxUIk
+ vUHD8+tdSGxDceLodRbWXXw7KB8=
+X-Google-Smtp-Source: AGHT+IGpuAwEB4NAeWO90X12ML8FmH1WxKE/6GeffuYce5PPhHcnTL5xNEF5aXBpLAm2OEdPIQ/h0w==
+X-Received: by 2002:a05:6000:1948:b0:38f:218c:f672 with SMTP id
+ ffacd0b85a97d-38f65145d52mr1206188f8f.41.1740044757301; 
+ Thu, 20 Feb 2025 01:45:57 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38f258b434fsm20419757f8f.16.2025.02.20.01.45.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 20 Feb 2025 01:45:56 -0800 (PST)
+Date: Thu, 20 Feb 2025 10:45:54 +0100
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, ukaszb@chromium.org,
+ intel-gfx-trybot@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 00/63] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+Message-ID: <Z7b50rGRA4RuybgC@phenom.ffwll.local>
+Mail-Followup-To: Greg KH <gregkh@linuxfoundation.org>,
+ Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, ukaszb@chromium.org,
+ intel-gfx-trybot@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <2025022012-viscous-cringing-bf88@gregkh>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c5c37f6-ed26-4af4-ea8f-08dd519126b7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2025 09:30:01.7949 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dPeqt6ONpTPaZabS+k2BO2TCgNyjykU4Y7w3BSI0KhNrlQxzQr71VKRn7hixSxLHHrLxMSCR/9He+YVY+fPIDc37yOFOhOlE3gP9S/sY9RM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6415
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2025022012-viscous-cringing-bf88@gregkh>
+X-Operating-System: Linux phenom 6.12.11-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -203,31 +101,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDI1LTAyLTA3IGF0IDIzOjU0ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVHVybnMgb3V0IExOTCsgYW5kIEJNRysgbm8gbG9uZ2VyIGhhdmUgdGhlIHdlaXJkIGV4
-dHJhIHNjYW5saW5lDQo+IG9mZnNldCBmb3IgSERNSSBvdXRwdXRzLiBGaXggaW50ZWxfY3J0Y19z
-Y2FubGluZV9vZmZzZXQoKQ0KPiBhY2NvcmRpbmdseSBzbyB0aGF0IHNjYW5saW5lIGV2YXNpb24v
-ZXRjLiB3b3JrcyBjb3JyZWN0bHkgb24NCj4gSERNSSBvdXRwdXRzIG9uIHRoZXNlIG5ldyBwbGF0
-Zm9ybXMuDQo+IA0KPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZw0KPiBTaWduZWQtb2ZmLWJ5
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0N
-Cj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZibGFuay5jIHwgNCArKyst
-DQo+IMKgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiAN
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmJsYW5r
-LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZibGFuay5jDQo+IGlu
-ZGV4IDRlZmQ0ZjdkNDk3YS4uN2IyNDBjZTY4MWEwIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZibGFuay5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmJsYW5rLmMNCj4gQEAgLTIyMiw3ICsyMjIsOSBAQCBpbnQg
-aW50ZWxfY3J0Y19zY2FubGluZV9vZmZzZXQoY29uc3Qgc3RydWN0DQo+IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUpDQo+IMKgCSAqIEhvd2V2ZXIgaWYgcXVlcmllZCBqdXN0IGJlZm9yZSB0
-aGUgc3RhcnQgb2YgdmJsYW5rIHdlJ2xsDQo+IGdldCBhbg0KPiDCoAkgKiBhbnN3ZXIgdGhhdCdz
-IHNsaWdodGx5IGluIHRoZSBmdXR1cmUuDQo+IMKgCSAqLw0KPiAtCWlmIChESVNQTEFZX1ZFUihk
-aXNwbGF5KSA9PSAyKQ0KPiArCWlmIChESVNQTEFZX1ZFUihkaXNwbGF5KSA+PSAyMCB8fCBkaXNw
-bGF5LQ0KPiA+cGxhdGZvcm0uYmF0dGxlbWFnZSkNCg0KQmFzZWQgb24gd2hhdCBNYXR0IFJvcGVy
-IHdyb3RlIGluIHJlc3BvbnNlIHRvIGNvdmVyIGxldHRlciB5b3UgY291bGQNCmNvbnNpZGVyIGNo
-YW5naW5nIHRoaXMgdG86DQoNCmlmIChESVNQTEFZX1ZFUngxMDAoZGlzcGxheSkgPj0gMTQwMSkN
-Cg0KV2hhdCBkbyB5b3UgdGhpbms/DQoNCkJSLA0KDQpKb3VuaSBIw7ZnYW5kZXINCg0KPiArCQly
-ZXR1cm4gMTsNCj4gKwllbHNlIGlmIChESVNQTEFZX1ZFUihkaXNwbGF5KSA9PSAyKQ0KPiDCoAkJ
-cmV0dXJuIC0xOw0KPiDCoAllbHNlIGlmIChIQVNfRERJKGRpc3BsYXkpICYmIGludGVsX2NydGNf
-aGFzX3R5cGUoY3J0Y19zdGF0ZSwNCj4gSU5URUxfT1VUUFVUX0hETUkpKQ0KPiDCoAkJcmV0dXJu
-IDI7DQoNCg==
+On Thu, Feb 20, 2025 at 09:31:41AM +0100, Greg KH wrote:
+> On Fri, Jan 24, 2025 at 11:45:14PM -0700, Jim Cromie wrote:
+> > This series fixes dynamic-debug's support for DRM debug-categories.
+> > Classmaps-v1 evaded full review, and got committed in 2 chunks:
+> > 
+> >   b7b4eebdba7b..6ea3bf466ac6	# core dyndbg changes
+> >   0406faf25fb1..ee7d633f2dfb	# drm adoption
+> > 
+> > DRM-CI found a regression during init with drm.debug=<initval>; the
+> > static-keys under the drm-dbgs in drm.ko got enabled, but those in
+> > drivers & helpers did not.
+> > 
+> > Root Problem:
+> > 
+> > DECLARE_DYNDBG_CLASSMAP violated a K&R rule "define once, refer
+> > afterwards".  Replace it with DYNDBG_CLASSMAP_DEFINE (invoked once in
+> > drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
+> > helpers).
+> > 
+> > _DEFINE exports the classmap it creates (in drm.ko), other modules
+> > _USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
+> > exported) classmap, in a 2nd __dyndbg_class_users section.
+> > 
+> > So now at modprobe, dyndbg scans the new section after the 1st
+> > __dyndbg_class_maps section, follows the linkage to the _DEFINEr
+> > module, finds the (optional) kernel-param controlling the classmap,
+> > examines its drm.debug=<initval>, and applies it to the module being
+> > initialized.
+> > 
+> > To recapitulate the multi-module problem wo DRM involvement, Add:
+> > 
+> > A. tools/testing/selftests/dynamic_debug/*
+> > 
+> > This alters pr_debugs in the test-modules, counts the results and
+> > checks them against expectations.  It uses this formula to test most
+> > of the control grammar, including the new class keyword.
+> > 
+> > B. test_dynamic_debug_submod.ko
+> > 
+> > This alters the test-module to build both parent & _submod ko's, with
+> > _DEFINE and _USE inside #if/#else blocks.  This recap's DRM's 2 module
+> > failure scenario, allowing A to exersize several cases.
+> > 
+> > The #if/#else puts the 2 macro uses together for clarity, and gives
+> > the 2 modules identical sets of debugs.
+> > 
+> > Recent DRM-CI tests are here:
+> >   https://patchwork.freedesktop.org/series/139147/
+> > 
+> > Previous rev:
+> >   https://lore.kernel.org/lkml/20240716185806.1572048-1-jim.cromie@gmail.com/
+> > 
+> > Noteworthy Additions:
+> > 
+> > 1- drop class "protection" special case, per JBaron's preference.
+> >    only current use is marked BROKEN so nobody to affect.
+> >    now framed as policy-choice:
+> >    #define ddebug_client_module_protects_classes() false
+> >    subsystems wanting protection can change this.
+> > 
+> > 2- compile-time arg-tests in DYNDBG_CLASSMAP_DEFINE
+> >    implement several required constraints, and fail obviously.
+> > 
+> > 3- modprobe time check of conflicting class-id reservations
+> >    only affects 2+classmaps users.
+> >    compile-time solution not apparent.
+> > 
+> > 4- dyndbg can now cause modprobe to fail.
+> >    needed to catch 3.
+> >    maybe some loose ends here on failure.
+> > 
+> > 5- refactor & rename ddebug_attach_*module_classes
+> >    reduce repetetive boilerplate on 2 types: maps, users.
+> >    rework mostly brought forward in patchset to reduce churn
+> >    TBD: maybe squash more.
+> > 
+> > Several recent trybot submissions (against drm-tip) have been passing
+> > CI.BAT, and failing one or few CI.IGT tests randomly; re-tests do not
+> > reliably repeat the failures.
+> > 
+> > its also at github.com:jimc/linux.git
+> >   dd-fix-9[st]-ontip  &  dd-fix-9-13
+> > 
+> > Ive been running it on my desktop w/o issues.
+> > 
+> > The drivers/gpu/drm patches are RFC, I think there might be a single
+> > place to call DRM_CLASSMAP_USE(drm_dedbug_classes) to replace the
+> > sprinkling of _USEs in drivers and helpers.  IIRC, I tried adding a
+> > _DEFINE into drm_drv.c, that didn't do it, so I punted for now.
+> > 
+> > I think the dyndbg core additions are ready for review and merging
+> > into a (next-next) test/integration tree.
+> 
+> So whose tree should this go through?
+
+I'm trying to get some drm folks to review/test this, but thus far not
+much success :-/ I think it's good stuff, but I'm somewhat hesitant if no
+one else agrees that it's useful for CI or in-field crash-recording or
+whatever ...
+
+I guess worst case we can land it and hope it attracts more folks?
+
+Wrt tree I don't care, but I guess we should then also land the drm side
+too.
+-Sima
+
+> And I think the last patch in this series isn't correct, it looks like a
+> 000 email somehow.
+> 
+> thanks,
+> 
+> greg k-h
+
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
