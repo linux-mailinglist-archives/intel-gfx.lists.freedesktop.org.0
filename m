@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10850A3E930
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2025 01:39:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7191AA3E932
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2025 01:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0110510E20A;
-	Fri, 21 Feb 2025 00:38:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6718F10E9FB;
+	Fri, 21 Feb 2025 00:39:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImjvfJGT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WiTkdodm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10A2C89209;
- Fri, 21 Feb 2025 00:38:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E091610E1D2;
+ Fri, 21 Feb 2025 00:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740098337; x=1771634337;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=OmyGzQ+TBF/pUwD3zl/09vNmJn9SjvCcr3Tm//raov4=;
- b=ImjvfJGTgqauEdz1O689TchadGM6YsxPnoroq2kudcu9aNey8gRI01kC
- TaR7jHFMpyud29CYAkMHAQtzpLEfvO6GfJolaRYMwKnmtD4eWTDQVslGv
- sFmJTehYRAuzc3cCcrN4DKEkfJ9M0ae3y64Ye9CheK1nPweTulGW+fA3U
- TPSlxl4VyUZgEylkMll8kav3y6AiouSxsQmXSEvlIaKkmHNKYHJ7o0XSA
- liOllRyH6H9rmTHzDmanXmWP8RmvbdQ4KRyuG0GMrsZNOgNx/1fKVO0nD
- 1BFPBNnYAwBiVT4e29bAmlffAQ4zRYUn3bZ4pu2AZfeo07xKNWFpX5aZJ Q==;
-X-CSE-ConnectionGUID: RI46f4MgTvyqdOGUdw6AEQ==
-X-CSE-MsgGUID: 2JJDa7RQRbajJW/BqpaX8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="44688686"
-X-IronPort-AV: E=Sophos;i="6.13,303,1732608000"; d="scan'208";a="44688686"
+ t=1740098339; x=1771634339;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0zmEJK9xNDGTa3cTtVBOqoV+fxSXnNMjfwBF/uWhVqE=;
+ b=WiTkdodmG/XZtf2eUCHbnLFbvr0VJk0TRWtTxjUUPafGTfFr7qlqN4FJ
+ FvKyToRqc3jECOkck4ay7hT1cATUh+7ngtpmYQckgdT68+3xdsPX0WFi+
+ xCBZPsZaxAWEsn/w1ni18wNC1K+akLoI6GiECsnv4bCYQdlHE/tTE8dxx
+ NNmMSrJK82LrrNp303Uj3OqlA1toC5BxpyX53Lla5MG6EGo3x+/lx/8Eq
+ jIocotpGYmMXmQFfxO38dNMywVOMkMNSp7jAvS2SAPC8KRWLP1h4M0gnh
+ 24xWkxvGVT+EesWJwEj50hNC4zS3xIqIqvy7i3BPBIswpIXKMY1eIppKR A==;
+X-CSE-ConnectionGUID: X3X3siM1T02E0KveRPGogQ==
+X-CSE-MsgGUID: NRCVcLsiSg2mPCysydygMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11351"; a="44688687"
+X-IronPort-AV: E=Sophos;i="6.13,303,1732608000"; d="scan'208";a="44688687"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 16:38:57 -0800
-X-CSE-ConnectionGUID: NicTPUZDS6yHPxX1SgwLDg==
-X-CSE-MsgGUID: aQpK0WkoS42WdxmSBp1qRQ==
+ 20 Feb 2025 16:38:59 -0800
+X-CSE-ConnectionGUID: +hMh3CYXSM22atx2SJQG4g==
+X-CSE-MsgGUID: Fg+svk8HQh+vZc7WMxUqKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120446832"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120446840"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2025 16:38:55 -0800
+ 20 Feb 2025 16:38:57 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: matthew.d.roper@intel.com
-Subject: [PATCH 0/4] Stop accessing display TIMESTAMP_OVERRIDE in GT code
-Date: Thu, 20 Feb 2025 16:38:44 -0800
-Message-ID: <20250221003843.443559-6-matthew.d.roper@intel.com>
+Subject: [PATCH 1/4] drm/i915/display: Make refclk fetching logic reusable
+Date: Thu, 20 Feb 2025 16:38:45 -0800
+Message-ID: <20250221003843.443559-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250221003843.443559-6-matthew.d.roper@intel.com>
+References: <20250221003843.443559-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,49 +68,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When determining the GT command streamer frequency, there are two
-approaches used by i915 and Xe:
+There's cdclk-specific code to obtain the display reference clock,
+either by reading a strap register, or by using a platform-specific
+hardcoded value.  There's at least one other place in our drivers that
+potentially needs this clock frequency, so refactor the logic to make it
+more generally usable.
 
- - Derive the CS frequency from the crystal clock frequency register (or
-   a per-platform hardcoded value).  This is supposed to be the method
-   usually used (and the only method supported at all for Xe2 and later
-   hardware).
+While we're at it, change the fallback frequency we assume if the strap
+readout gives us something unrecognizable to 38.4MHz for platforms with
+display version 14 and above.  38.4MHz seems to be the sole frequency
+that's actually been used in recent history (since MTL), so this is
+probably the safest guess to make going forward.
 
- - Set the CS frequency to exactly the display refclk frequency.  This
-   is supposedly a rare case, and is used only when a setting in
-   CTC_MODE[0] indicates we should use this approach.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 44 +++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_cdclk.h |  1 +
+ 2 files changed, 28 insertions(+), 17 deletions(-)
 
-There's little/no documentation in the hardware specs about these
-approaches (i.e., the display refclk approach is simply referred to as
-"Broadwell Divide Logic" with no further explanation).  It seems most of
-the logic here was originally inherited from the Windows driver a long
-time ago and we've just been carrying it forward ever since.
-
-Currently the second approach (use of display reference clock) is
-accomplished by reading a display debug register (TIMESTAMP_OVERRIDE).
-Given that the display code already has more straightforward logic for
-determining display reference clock (either from strap registers, or
-from a per-platform constant in cases where there's only one possible
-value), it makes sense to just call the display code to get the
-frequency rather than doing direct access to the display hardware inside
-the GT driver.
-
-
-Matt Roper (4):
-  drm/i915/display: Make refclk fetching logic reusable
-  drm/i915/gt: Replace TIMESTAMP_OVERRIDE readout
-  drm/xe: Drop usage of TIMESTAMP_OVERRIDE
-  drm/xe/sriov: Drop TIMESTAMP_OVERRIDE from Xe2 runtime regs
-
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 44 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
- .../gpu/drm/i915/gt/intel_gt_clock_utils.c    | 31 ++++---------
- drivers/gpu/drm/xe/display/xe_display.c       |  6 +++
- drivers/gpu/drm/xe/display/xe_display.h       |  4 ++
- drivers/gpu/drm/xe/xe_gt_clock.c              | 28 ++++--------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c   |  1 -
- 7 files changed, 56 insertions(+), 59 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index c6cfc57a0346..57b01f8a7be8 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1636,38 +1636,48 @@ static u8 xe3lpd_calc_voltage_level(int cdclk)
+ 	return 0;
+ }
+ 
+-static void icl_readout_refclk(struct intel_display *display,
+-			       struct intel_cdclk_config *cdclk_config)
++static u32 icl_readout_refclk(struct intel_display *display)
+ {
+ 	u32 dssm = intel_de_read(display, SKL_DSSM) & ICL_DSSM_CDCLK_PLL_REFCLK_MASK;
+ 
+ 	switch (dssm) {
+-	default:
+-		MISSING_CASE(dssm);
+-		fallthrough;
+ 	case ICL_DSSM_CDCLK_PLL_REFCLK_24MHz:
+-		cdclk_config->ref = 24000;
+-		break;
++		return 24000;
+ 	case ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz:
+-		cdclk_config->ref = 19200;
+-		break;
++		return 19200;
+ 	case ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz:
+-		cdclk_config->ref = 38400;
+-		break;
++		return 38400;
++	default:
++		MISSING_CASE(dssm);
++		return DISPLAY_VER(display) >= 14 ? 38400 : 24000;
+ 	}
+ }
+ 
++/**
++ * intel_display_get_refclk - Returns the display reference clock
++ * @display: display instance
++ *
++ * Returns the display reference clock in KHz.  The display reference clock
++ * is defined by the SoC; on some platforms the proper value should be read
++ * from a hardware strap register, while on others there's only a single
++ * possible value.
++ */
++u32 intel_display_get_refclk(struct intel_display *display)
++{
++	if (display->platform.dg2)
++		return 38400;
++	else if (DISPLAY_VER(display) >= 11)
++		return icl_readout_refclk(display);
++	else
++		return 19200;
++}
++
+ static void bxt_de_pll_readout(struct intel_display *display,
+ 			       struct intel_cdclk_config *cdclk_config)
+ {
+ 	u32 val, ratio;
+ 
+-	if (display->platform.dg2)
+-		cdclk_config->ref = 38400;
+-	else if (DISPLAY_VER(display) >= 11)
+-		icl_readout_refclk(display, cdclk_config);
+-	else
+-		cdclk_config->ref = 19200;
++	cdclk_config->ref = intel_display_get_refclk(display);
+ 
+ 	val = intel_de_read(display, BXT_DE_PLL_ENABLE);
+ 	if ((val & BXT_DE_PLL_PLL_ENABLE) == 0 ||
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
+index 6b0e7a41eba3..3cfbe1f2b6b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.h
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+@@ -65,6 +65,7 @@ void intel_init_cdclk_hooks(struct intel_display *display);
+ void intel_update_max_cdclk(struct intel_display *display);
+ void intel_update_cdclk(struct intel_display *display);
+ u32 intel_read_rawclk(struct intel_display *display);
++u32 intel_display_get_refclk(struct intel_display *display);
+ bool intel_cdclk_clock_changed(const struct intel_cdclk_config *a,
+ 			       const struct intel_cdclk_config *b);
+ int intel_mdclk_cdclk_ratio(struct intel_display *display,
 -- 
 2.48.1
 
