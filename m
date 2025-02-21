@@ -2,58 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64579A3FF04
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2025 19:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6D3A4002B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2025 20:59:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB00910EB1E;
-	Fri, 21 Feb 2025 18:43:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A473310E2EE;
+	Fri, 21 Feb 2025 19:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9Fee2Pf";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="IWfEhErS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E92810EB1E
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 18:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740163425; x=1771699425;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=M7LzX71sJJOSyZ3O5mDAmXDC8Rw13yxWqGy2+AMeW9I=;
- b=C9Fee2Pf1lm/aaOuC9f1ZXlEZotMxhx2ou1sp/TT4SXmvyphEZ+rYa+V
- nRan3yy00K/XhfaoYMfdYYrG5m9xYCKkbwfE49EIN6Eta8rXg7/SZEZmq
- OyiSc+PcfztYI7hjvJzQE7zUvynhowyg56TamUuSuX9Z30hl9jF4xTC6J
- LkqlvshxqXkxzzlhLSg+U7jvmYkk8kXGapcgbsukvNGoeDMW2xGqs/Ye6
- Svt+IgAsKY4tODtIm5U+rcCHEdUqP7WfKLsGBODLGqTufUrQ2UvDmJUG9
- 1Wck8SrbgRC4azJXb80X81dYoszcjmB0+JgimStxi3EHYSxiqVq3wULIF w==;
-X-CSE-ConnectionGUID: WXRVMofCTy+EOxFSFW6DPw==
-X-CSE-MsgGUID: BatD6cYmSgqJrOHv8+k4jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11352"; a="41256509"
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="41256509"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 10:43:44 -0800
-X-CSE-ConnectionGUID: XBO5hnkJR/67xloES0ejRw==
-X-CSE-MsgGUID: +dyosW2+R4KgjM+wFWgXKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,305,1732608000"; d="scan'208";a="116080948"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2025 10:43:44 -0800
-Date: Fri, 21 Feb 2025 20:44:44 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Mohammed Thasleem <mohammed.thasleem@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915/dmc: Create debugfs entry for dc6 counter
-Message-ID: <Z7jJnOwmxum2U_UY@ideak-desk.fi.intel.com>
-References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
- <20250212114935.21231-1-mohammed.thasleem@intel.com>
- <Z7jHVMUYJAKaSPYG@ideak-desk.fi.intel.com>
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1353410E2ED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 19:59:02 +0000 (UTC)
+Received: by mail-lf1-f41.google.com with SMTP id
+ 2adb3069b0e04-5452ca02bdbso2357724e87.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2025 11:59:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1740167940; x=1740772740; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=bnb83UtqsBWTiNAjltn4JLaoZM1hQGViXgrYc69juLI=;
+ b=IWfEhErSeOwzPLVxru0vkBqBa7D0+5P3DHbR90eiyA4lgksA3Iiv62L7zmMN1bH1im
+ 4l6ZFg8PJkkEOpBetdclDY98EYjOHXYduATRN90SVDzDMVFIki5BJnMsO70yWFpheSoU
+ wn//r6fc1FnKUvWJj5HI3q5JAHi4640LzSh5Z1PZhKyraBFHkUcUVYRI2exGYcllrk4a
+ ixqo4DwNvkHknFkA+nLwrQpXLcyOM9m4O2evFZ1ktqZrOywhk8TxtDtd2jFPEHZzHdYR
+ ZX1WMc+dXZdca5Ch8GCmo//WyDaC4Jasfzz35t+YV0/WXvOnm8zJdjEUZM75jQ07aPot
+ q6MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740167940; x=1740772740;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bnb83UtqsBWTiNAjltn4JLaoZM1hQGViXgrYc69juLI=;
+ b=ZR48gF1t50SA5sg1G8SuhGKod3lJ3HUvRN/7SBhduloEQZSXAo71BNqIQGIur5WkdO
+ GrBpQuE71RJ1+AkgA8SVY6pyBx1Ce8CwjNZX2BzXIYvuexo3EjBfa7ZpDZzth7ANEO+u
+ hhsPOVJf4pMtAwMmy1jQYePLH7VydPRChAMw4zRky+rsd8IY2Xa/wFd8w3SxGqw8tDH5
+ J11HhYD4Z3TczTmkeo0fu7jkZCA5iSpCQ219bg5KVvA25GQtj6AvrTrlv4rChSwXX5ZR
+ EeRk5oMH3+UDwpsem8mGvUEgwPOYs253xB6oveJ+0nLXPuom3564Kz71x+xxLURQpa3a
+ kxrQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXCoOMej+zJBwFDj9IDxHkinWY8bmL6Klh0/GDxsbfKiKEyBjPiCEU0d5VujW8zNeBidy3naMxfwqE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzkMd+vgyOsvYZHvloZkdbEWjM5bnEPwTQMmNqB+dnCIvv+XZOM
+ 4sdpUiOynE8v1oUzGzhsVuzwvwVqHGRgknkGIL9gGui7lj24b/MnOSlJmyIaDHw=
+X-Gm-Gg: ASbGncvBGTzwqPUw4HkRRYAC6nM4o2AwsPpsqKhyUNj8F40OQXGT+EGc+Ww3w3/jpiF
+ OfnyoPyaXerRm0I3V7Lce8ncCsmqtvpmIeE/Xi+6mYUSbyId2C7K8+cTsN4PiKs5G6SFIijyRHu
+ quYT9Z1pMpnrpC2DIT+Edq7CB8wWZgbKIzWfxB0cSMeg8fvoBbn69g+WQWKV3wOMqpq8azE80Kb
+ CAPva5vVP+3DPPvsua93c7VvX1mDkPa1s+b18oy6SbCl8KaLA82neD9voXiZBTdTWG7BO82S5Lu
+ N7DW/UHoy879Oq3CMZobIKk5La6TaqJVjO344wgC1nY5QHH4jE/B4OwEZXyampavHfS3Uo73VDb
+ APcdnDg==
+X-Google-Smtp-Source: AGHT+IFrckxDnWKfgAPPHmHclcGmNelQ44VvTcHTs9NzEDZAkR9Zx5tMSuT7N+Xy/eOAfbNq+ITXqw==
+X-Received: by 2002:a05:6512:3183:b0:545:10eb:1ab2 with SMTP id
+ 2adb3069b0e04-54838f5a39dmr2406233e87.33.1740167939939; 
+ Fri, 21 Feb 2025 11:58:59 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-54530a91179sm2128132e87.33.2025.02.21.11.58.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 21 Feb 2025 11:58:59 -0800 (PST)
+Date: Fri, 21 Feb 2025 21:58:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, 
+ Johan Hovold <johan+linaro@kernel.org>, Imre Deak <imre.deak@intel.com>
+Subject: Re: [PATCH v5 0/4] drm/dp: Rework LTTPR transparent mode handling
+ and add support to msm driver
+Message-ID: <frsbcvxcvtp45mh45cld3rzbgl52gomzmzs73crv53pwbc4fns@sygnt6z2avht>
+References: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z7jHVMUYJAKaSPYG@ideak-desk.fi.intel.com>
+In-Reply-To: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,160 +103,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 21, 2025 at 08:35:00PM +0200, Imre Deak wrote:
-> On Wed, Feb 12, 2025 at 05:19:35PM +0530, Mohammed Thasleem wrote:
-> > Starting from MTL we don't have a platform agnostic way to validate
-> > DC6 state due to dc6 counter has been removed to validate DC state.
-> > 
-> > The goal is to validate that the display HW can reach the DC6 power
-> > state. There is no HW DC6 residency counter (and there wasn't such
-> > a counter earlier either), so an alternative way is required. According
-> > to the HW team the display driver has programmed everything correctly in
-> > order to allow the DC6 power state if the DC5 power state is reached
-> > (indicated by the HW DC5 residency counter incrementing) and DC6 is
-> > enabled by the driver.
-> > 
-> > Driver could take a snapshot of the DC5 residency counter right
-> > after it enables DC6 (dc5_residency_start) and increment the SW
-> > DC6 residency counter right before it disables DC6 or when user space
-> > reads the DC6 counter. So the driver would update the counter at these
-> > two points in the following way:
-> > dc6_residency_counter += dc5_current_count - dc5_start_count
-> > 
-> > v2: Update the discription. (Imre)
-> >     Read dc5 count during dc6 enable and disable then and update
-> >     dc6 residency counter. (Imre)
-> >     Remove variable from dmc structure. (Jani)
-> >     Updated the subject title.
-> > 
-> > Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
-> > ---
-> >  .../gpu/drm/i915/display/intel_display_core.h |  2 ++
-> >  .../i915/display/intel_display_power_well.c   | 20 ++++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_dmc.c      | 14 ++++++++++---
-> >  3 files changed, 32 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > index 554870d2494b..0a1e3dc2804f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > @@ -490,6 +490,8 @@ struct intel_display {
-> >  
-> >  		/* perform PHY state sanity checks? */
-> >  		bool chv_phy_assert[2];
-> > +		unsigned int dc6_residency_counter;
-> > +		unsigned int dc5_start_count;
-> >  	} power;
-> >  
-> >  	struct {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > index f45a4f9ba23c..cfa53ee84323 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > @@ -17,6 +17,7 @@
-> >  #include "intel_dkl_phy.h"
-> >  #include "intel_dkl_phy_regs.h"
-> >  #include "intel_dmc.h"
-> > +#include "intel_dmc_regs.h"
-> >  #include "intel_dmc_wl.h"
-> >  #include "intel_dp_aux_regs.h"
-> >  #include "intel_dpio_phy.h"
-> > @@ -755,7 +756,7 @@ void gen9_sanitize_dc_state(struct intel_display *display)
-> >  void gen9_set_dc_state(struct intel_display *display, u32 state)
-> >  {
-> >  	struct i915_power_domains *power_domains = &display->power.domains;
-> > -	u32 val;
-> > +	u32 val, dc5_current_count;
-> >  	u32 mask;
-> >  
-> >  	if (!HAS_DISPLAY(display))
-> > @@ -775,11 +776,28 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
-> >  		drm_err(display->drm, "DC state mismatch (0x%x -> 0x%x)\n",
-> >  			power_domains->dc_state, val & mask);
-> >  
-> > +	if (DISPLAY_VER(display) >= 14) {
-> > +		/* If disabling DC6, update dc6_allowed counter */
-> > +		if (!(state & DC_STATE_EN_UPTO_DC6) && (val & DC_STATE_EN_UPTO_DC6)) {
-> > +			dc5_current_count = intel_de_read(display, DG1_DMC_DEBUG_DC5_COUNT);
-> > +			display->power.dc6_residency_counter += dc5_current_count - display->power.dc5_start_count;
-> > +			display->power.dc5_start_count = dc5_current_count;
+On Mon, Feb 03, 2025 at 12:57:55PM +0200, Abel Vesa wrote:
+> Looking at both i915 and nouveau DP drivers, both are setting the first
+> LTTPR (if found) in transparent mode first and then in non-transparent
+> mode, just like the DP v2.0 specification mentions in section 3.6.6.1.
 > 
-> Would be clearer if you used
-> 
-> enable_dc6 = state & DC_STATE_EN_UPTO_DC6
-> dc6_was_enabled = val & DC_STATE_EN_UPTO_DC6
-> 
-> flags and moved the display version check and counter read/update to a
+> Being part of the standard, setting the LTTPR in a specific operation mode
+> can be easily moved in the generic framework. So do that by adding a new
 > helper.
+> 
+> Then, the msm DP driver is lacking any kind of support for LTTPR handling,
+> so add it by reading the LTTPR caps for figuring out the number of LTTPRs
+> found on plug detect and then do exactly what the i915 and nouveau drivers
+> do with respect to toggling through operating modes, just like the
+> up-mentioned section from DP spec describes.
+> 
+> At some point, link training per sub-segment will probably be needed, but
+> for now, toggling the operating modes seems to be enough at least for the
+> X Elite-based platforms that this patchset has been tested on.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Also, the update above should happen after DC6 is disabled and the
-update below should happen before DC6 is enabled.
+[...]
+> 
+> ---
+> Abel Vesa (4):
+>       drm/dp: Add helper to set LTTPRs in transparent mode
+>       drm/nouveau/dp: Use the generic helper to control LTTPR transparent mode
+>       drm/i915/dp: Use the generic helper to control LTTPR transparent mode
 
-> > +		}
-> > +	}
-> > +
-> >  	val &= ~mask;
-> >  	val |= state;
-> >  
-> >  	gen9_write_dc_state(display, val);
-> >  
-> > +	if (DISPLAY_VER(display) >= 14) {
-> > +		/* If enabling DC6, store DC5 count */
-> > +		if ((state & DC_STATE_EN_UPTO_DC6)) {
-> > +			dc5_current_count = intel_de_read(display, DG1_DMC_DEBUG_DC5_COUNT);
-> > +			display->power.dc5_start_count = dc5_current_count;
-> > +		}
-> > +	}
+Lyude, Jani, what would be your preferred way of merging these patches?
+Would you ack merging of those through drm-misc or would you prefer for
+the first patch only to be landed to drm-misc, which you can then pull
+into nouveau and i915 trees.
+
+>       drm/msm/dp: Add support for LTTPR handling
 > 
-> This could also be in a helper, calling it if !dc6_was_enabled && enable_dc6.
+>  drivers/gpu/drm/display/drm_dp_helper.c            | 61 ++++++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  | 24 ++-------
+>  drivers/gpu/drm/msm/dp/dp_display.c                | 15 ++++++
+>  drivers/gpu/drm/nouveau/nouveau_dp.c               | 17 +-----
+>  include/drm/display/drm_dp_helper.h                |  2 +
+>  5 files changed, 85 insertions(+), 34 deletions(-)
+> ---
+> base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+> change-id: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
 > 
-> > +
-> >  	power_domains->dc_state = val & mask;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > index 221d3abda791..e4d3ce796c99 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -1242,6 +1242,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
-> >  	struct intel_dmc *dmc = display_to_dmc(display);
-> >  	intel_wakeref_t wakeref;
-> >  	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
-> > +	u32 dc5_current_count;
-> >  
-> >  	if (!HAS_DMC(display))
-> >  		return -ENODEV;
-> > @@ -1290,9 +1291,16 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
-> >  	}
-> >  
-> >  	seq_printf(m, "DC3 -> DC5 count: %d\n", intel_de_read(display, dc5_reg));
-> > -	if (i915_mmio_reg_valid(dc6_reg))
-> > -		seq_printf(m, "DC5 -> DC6 count: %d\n",
-> > -			   intel_de_read(display, dc6_reg));
-> > +
-> > +	if (DISPLAY_VER(display) >= 14) {
-> > +		dc5_current_count = intel_de_read(display, dc5_reg);
-> > +		display->power.dc6_residency_counter += dc5_current_count - display->power.dc5_start_count;
+> Best regards,
+> -- 
+> Abel Vesa <abel.vesa@linaro.org>
 > 
-> 
-> The above needs the i915_power_domains::lock, should be done only if DC6
-> is enabled, and needs to also update display->power.dc5_start_count.
-> This is the same update as you do in gen9_set_dc_state(), so could reuse
-> the helper for that here.
-> 
-> > +		seq_printf(m, "DC6 Residency Counter: %d\n", display->power.dc6_residency_counter);
-> > +	} else {
-> > +		if (i915_mmio_reg_valid(dc6_reg))
-> > +			seq_printf(m, "DC5 -> DC6 count: %d\n",
-> > +				   intel_de_read(display, dc6_reg));
-> > +	}
-> >  
-> >  	seq_printf(m, "program base: 0x%08x\n",
-> >  		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
-> > -- 
-> > 2.43.0
-> > 
+
+-- 
+With best wishes
+Dmitry
