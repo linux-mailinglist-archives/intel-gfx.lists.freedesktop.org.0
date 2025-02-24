@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE88A41B8D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 11:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB39EA41BC4
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 11:56:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5D4F10E221;
-	Mon, 24 Feb 2025 10:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4500B10E242;
+	Mon, 24 Feb 2025 10:56:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOmGrJqV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dzfj4jNe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A268410E221;
- Mon, 24 Feb 2025 10:48:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8C4E10E242;
+ Mon, 24 Feb 2025 10:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740394109; x=1771930109;
+ t=1740394551; x=1771930551;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=OMX8ok9HZAHROB3BqfjWy9c4ghvUiTDGhDukSet6xHU=;
- b=QOmGrJqV1Ww5D24gi/NZHWhJ3Lh+GtRTg4aN5//xIyesnz+yr+YWydnw
- pBqBhYG8JNHcb+VHFoB3UwIQT343Lnstjxd+ygfOJmog9xGup632jOsvr
- EcqSLrpgHzRQac72feYWrsAVfvDMJj+pXh88lbzOdcQNJ/e3V0+29HMHo
- PL6dB7J0n1c6yl0mccYfh7fIkNN49dpf7mtoCMJvnNQauwpwsfctTK6c3
- qSJdm0ZNEoUmYU+DY3VxDFnNt3j1w69hdFU8Eeu5MNuS+cCz6UUwApv6x
- WciDLoxFcQHwv06biexSZBUQAZ6UgMtr2PoQu1ix8Qx1aYKLg863+0nvN g==;
-X-CSE-ConnectionGUID: KjIqb9HLQTKkWzxccnF7gw==
-X-CSE-MsgGUID: EX5MpPfZQ+a+5o0TiXY2bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63612291"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63612291"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:48:28 -0800
-X-CSE-ConnectionGUID: s8tQUJbzQEqXT1+9MrixjA==
-X-CSE-MsgGUID: RRqm6R07TNOSYr7uOJGLYQ==
+ bh=IBJgut0mkXcJ9MkV/cWrwLoygn2wW+q0yvQkAW13wrI=;
+ b=Dzfj4jNeZJbp7ltawYa3pnJrxlDzR3i0IFDKwdBTjbepbqDva+X458t/
+ w9SB9lMlk4D6UhiBk4Bbs4dJKZAuulbGX3gZZExl0JeJWJLCmma46DTYS
+ WXEa781Lq4tRwPYpjgt8oXl54hk+VLEenGrTdQ+Y9PkaY2VkYGc/QUJ3k
+ N0wibu8g2uWtpcrmIWSfZcOaAHlKxVPLhbRguURl9xfuoD9OaAllQvnha
+ V84bFTEInE+avQ0+0cFp5jyj2GfHpjug/oCn8rWgUFAIfcQ1gu1mCaUO8
+ HtQLLdlG8nKH57LU9vLrVRMwRHvhHqgQt6idXskNdBVMK8Kt+KCcPrryG A==;
+X-CSE-ConnectionGUID: Kjh/Zfo/RPeTXuwUTLxebw==
+X-CSE-MsgGUID: qRprBF8PSiytvvBwhhe0Tg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="51771575"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="51771575"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:55:50 -0800
+X-CSE-ConnectionGUID: EL8AKFoMSsWr0eetGJC2rQ==
+X-CSE-MsgGUID: Cmjf1F50SK2arnldMmpq7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="139249107"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116528671"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.133])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:48:25 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:55:48 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Animesh Manna <animesh.manna@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
  <animesh.manna@intel.com>
-Subject: Re: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change in
- dependent parameters
-In-Reply-To: <20250224080847.326350-5-animesh.manna@intel.com>
+Subject: Re: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
+In-Reply-To: <20250224080847.326350-6-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-5-animesh.manna@intel.com>
-Date: Mon, 24 Feb 2025 12:48:22 +0200
-Message-ID: <87r03n7h55.fsf@intel.com>
+ <20250224080847.326350-6-animesh.manna@intel.com>
+Date: Mon, 24 Feb 2025 12:55:44 +0200
+Message-ID: <87jz9f7gsv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,80 +72,131 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> For every commit the dependent condition for LOBF is checked
-> and accordingly update has_lobf flag which will be used
-> to update the ALPM_CTL register during commit.
+> Add an interface in debugfs which will help in debugging LOBF
+> feature.
+>
+> v1: Initial version.
+> v2:
+> - Remove FORCE_EN flag. [Jouni]
+> - Change prefix from I915 to INTEL. [Jani]
+> - Use u8 instead of bool for lobf-debug flag. [Jani]
 >
 > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_alpm.h |  1 +
->  drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
->  3 files changed, 19 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_alpm.c     | 51 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  5 ++
+>  2 files changed, 56 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 1438e125cde1..83719ee1721c 100644
+> index 83719ee1721c..5c70677ac3c0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -312,6 +312,22 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  		(first_sdp_position + waketime_in_lines);
->  }
+> @@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+>  	int waketime_in_lines, first_sdp_position;
+>  	int context_latency, guardband;
 >  
-> +void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 alpm_ctl;
-> +
-> +	if (DISPLAY_VER(display) < 20)
+> +	if (intel_dp->alpm_parameters.lobf_debug & INTEL_LOBF_DEBUG_DISABLE)
 > +		return;
 > +
-> +	alpm_ctl = intel_de_read(display, ALPM_CTL(display, cpu_transcoder));
-> +	if (alpm_ctl & ALPM_CTL_LOBF_ENABLE && !crtc_state->has_lobf) {
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+>  
+> @@ -449,6 +452,51 @@ static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
+>  
+>  DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
+>  
+> +static int
+> +i915_edp_lobf_debug_get(void *data, u64 *val)
+> +{
+> +	struct intel_display *display = data;
 
-You don't need to even read the register if crtc_state->has_lobf is
-true.
+Where do you pass display as data? It's connector?
 
-> +		alpm_ctl &= ~ALPM_CTL_LOBF_ENABLE;
-> +		intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
+> +	struct intel_encoder *encoder;
+> +	int ret = -ENODEV;
+> +
+> +	for_each_intel_dp(display->drm, encoder) {
+> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +
+> +		if (!intel_dp_is_edp(intel_dp))
+> +			return ret;
+
+What is this supposed to do?
+
+> +
+> +		// TODO: split to each edp transcoder.
+
+What does this mean?
+
+> +		*val = READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
+
+You read this from all intel_dp and combine into one? What?
+
+> +		ret = 0;
 > +	}
+> +
+> +	return ret;
 > +}
 > +
->  static void lnl_alpm_configure(struct intel_dp *intel_dp,
->  			       const struct intel_crtc_state *crtc_state)
+> +static int
+> +i915_edp_lobf_debug_set(void *data, u64 val)
+> +{
+> +	struct intel_display *display = data;
+> +	struct intel_encoder *encoder;
+> +	int ret = -ENODEV;
+> +
+> +	for_each_intel_dp(display->drm, encoder) {
+> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> +
+> +		if (!intel_dp_is_edp(intel_dp))
+> +			return ret;
+> +
+> +		// TODO: split to each edp transcoder.
+> +		intel_dp->alpm_parameters.lobf_debug = val;
+> +	}
+> +
+> +	return ret;
+
+So this always returns failure?
+
+> +}
+> +
+> +DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
+> +			i915_edp_lobf_debug_get, i915_edp_lobf_debug_set,
+> +			"%llu\n");
+> +
+>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
 >  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index 91f51fb24f98..c6efd25c2062 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -23,6 +23,7 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  				    struct drm_connector_state *conn_state);
->  void intel_alpm_configure(struct intel_dp *intel_dp,
->  			  const struct intel_crtc_state *crtc_state);
-> +void intel_alpm_lobf_update(const struct intel_crtc_state *crtc_state);
->  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
->  				  struct intel_crtc *crtc);
->  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 26aa32d4d50e..44258ba0d951 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -37,6 +37,7 @@
->  #include "icl_dsi.h"
->  #include "intel_alpm.h"
->  #include "intel_audio.h"
-> +#include "intel_alpm.h"
->  #include "intel_audio_regs.h"
->  #include "intel_backlight.h"
->  #include "intel_combo_phy.h"
-> @@ -3621,6 +3622,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
->  	intel_ddi_set_dp_msa(crtc_state, conn_state);
+>  	struct intel_display *display = to_intel_display(connector);
+> @@ -458,6 +506,9 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+>  	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
+>  		return;
 >  
->  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> +	intel_alpm_lobf_update(crtc_state);
+> +	debugfs_create_file("i915_edp_lobf_debug", 0644, root,
+> +			    connector, &i915_edp_lobf_debug_fops);
+> +
+>  	debugfs_create_file("i915_edp_lobf_info", 0444, root,
+>  			    connector, &i915_edp_lobf_info_fops);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index b78721c451b8..b6ec9a8fadd9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1808,6 +1808,11 @@ struct intel_dp {
+>  		u8 aux_less_wake_lines;
+>  		u8 silence_period_sym_clocks;
+>  		u8 lfps_half_cycle_num_of_syms;
+> +
+> +#define INTEL_LOBF_DEBUG_MODE_MASK		0x0f
+> +#define INTEL_LOBF_DEBUG_DEFAULT		0x00
+> +#define INTEL_LOBF_DEBUG_DISABLE		0x01
+> +		u8 lobf_debug;
+
+Just overly complex still.
+
+>  	} alpm_parameters;
 >  
->  	intel_backlight_update(state, encoder, crtc_state, conn_state);
->  	drm_connector_update_privacy_screen(conn_state);
+>  	u8 alpm_dpcd;
 
 -- 
 Jani Nikula, Intel
