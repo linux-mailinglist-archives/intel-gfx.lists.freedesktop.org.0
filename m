@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6163A42742
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 17:05:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D66AA427BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 17:21:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5813F10E330;
-	Mon, 24 Feb 2025 16:05:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEJlVagX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5A5E10E45C;
+	Mon, 24 Feb 2025 16:21:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A963D10E330;
- Mon, 24 Feb 2025 16:05:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740413137; x=1771949137;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7j34VtSDssqy/r0IDklFdkGKSmFY9xKo09+em9kjE2w=;
- b=YEJlVagXroxE1BHuk7y9CZ9zM7Pu+YjuzbRXtrlWaHpH3SYxGoX/+xy+
- cTWqzYJFbOyqhzoyfkrG0emoGlH9WAGOtStn6BIaP8nt4ujAj5dZ3ZJwC
- 4vJyedqVRsIN+k5hHq+EeuxYbGa84zWCCs7aWWRClSe5yHPfl5n8Ij+Vn
- YNaGZ131ybE+XADkZpr2tqpH+7jyYOGU7O3m7WYk+rZXo5VWKNmz2NS8o
- 2sJ6cxGuL1zEg3UInDukAqxbIM4sczNXQS9Gt99ZQhnqCNcWjiLz59ixC
- Y3MBV5l3T9krvlWg7nCKvWMqbqvv+9557+nl9pvRZ/F1Ox06DU+a3jbqo w==;
-X-CSE-ConnectionGUID: fhtcUf7RS0WN2d5cT1c5jg==
-X-CSE-MsgGUID: Uz7/SMnASjO7sEJJa5nB8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40883006"
-X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="40883006"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 08:01:06 -0800
-X-CSE-ConnectionGUID: V4gzXD0hRAKNWshiOBDZyw==
-X-CSE-MsgGUID: fWYqUCtNRaSArQGkMK5fNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121356351"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.133])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 08:01:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/i915: split out i915_gtt_view_types.h from
- i915_vma_types.h
-Date: Mon, 24 Feb 2025 18:00:49 +0200
-Message-Id: <bb31885c32dbddad76d634c6fdb98a73b546b42e.1740412806.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1740412806.git.jani.nikula@intel.com>
-References: <cover.1740412806.git.jani.nikula@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E36C810E45C;
+ Mon, 24 Feb 2025 16:21:23 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5357566967746535511=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Fix_?=
+ =?utf-8?q?encoder_HW_state_readout_for_UHBR_MST?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Feb 2025 16:21:23 -0000
+Message-ID: <174041408392.1650332.14963053014746943709@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250224093242.1859583-1-imre.deak@intel.com>
+In-Reply-To: <20250224093242.1859583-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,279 +37,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In the interest of limiting the display dependencies on i915 core
-headers, split out i915_gtt_view_types.h from i915_vma_types.h, and only
-include the new header from intel_display_types.h.
+--===============5357566967746535511==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reuse the new header from xe compat code too, failing build if partial
-view is used in display code.
+== Series Details ==
 
-Side note: Why would we ever have set enum i915_gtt_view_type values to
-size of each type?! What an insane hack.
+Series: drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST
+URL   : https://patchwork.freedesktop.org/series/145300/
+State : success
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/i915_gtt_view_types.h    | 59 +++++++++++++++
- drivers/gpu/drm/i915/i915_vma_types.h         | 52 +------------
- .../compat-i915-headers/i915_gtt_view_types.h |  7 ++
- .../xe/compat-i915-headers/i915_vma_types.h   | 74 -------------------
- 5 files changed, 69 insertions(+), 125 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_gtt_view_types.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 12723ba13eb6..a856cbcf102f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -42,7 +42,7 @@
- #include <drm/intel/i915_hdcp_interface.h>
- #include <uapi/drm/i915_drm.h>
- 
--#include "i915_vma_types.h"
-+#include "i915_gtt_view_types.h"
- #include "intel_bios.h"
- #include "intel_display.h"
- #include "intel_display_conversion.h"
-diff --git a/drivers/gpu/drm/i915/i915_gtt_view_types.h b/drivers/gpu/drm/i915/i915_gtt_view_types.h
-new file mode 100644
-index 000000000000..c084f67bc880
---- /dev/null
-+++ b/drivers/gpu/drm/i915/i915_gtt_view_types.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __I915_GTT_VIEW_TYPES_H__
-+#define __I915_GTT_VIEW_TYPES_H__
-+
-+#include <linux/types.h>
-+
-+struct intel_remapped_plane_info {
-+	/* in gtt pages */
-+	u32 offset:31;
-+	u32 linear:1;
-+	union {
-+		/* in gtt pages for !linear */
-+		struct {
-+			u16 width;
-+			u16 height;
-+			u16 src_stride;
-+			u16 dst_stride;
-+		};
-+
-+		/* in gtt pages for linear */
-+		u32 size;
-+	};
-+} __packed;
-+
-+struct intel_rotation_info {
-+	struct intel_remapped_plane_info plane[2];
-+} __packed;
-+
-+struct intel_partial_info {
-+	u64 offset;
-+	unsigned int size;
-+} __packed;
-+
-+struct intel_remapped_info {
-+	struct intel_remapped_plane_info plane[4];
-+	/* in gtt pages */
-+	u32 plane_alignment;
-+} __packed;
-+
-+enum i915_gtt_view_type {
-+	I915_GTT_VIEW_NORMAL = 0,
-+	I915_GTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
-+	I915_GTT_VIEW_PARTIAL = sizeof(struct intel_partial_info),
-+	I915_GTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
-+};
-+
-+struct i915_gtt_view {
-+	enum i915_gtt_view_type type;
-+	union {
-+		/* Members need to contain no holes/padding */
-+		struct intel_partial_info partial;
-+		struct intel_rotation_info rotated;
-+		struct intel_remapped_info remapped;
-+	};
-+};
-+
-+#endif /* __I915_GTT_VIEW_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-index 559de74d0b11..a499a3bea874 100644
---- a/drivers/gpu/drm/i915/i915_vma_types.h
-+++ b/drivers/gpu/drm/i915/i915_vma_types.h
-@@ -32,6 +32,8 @@
- 
- #include "gem/i915_gem_object_types.h"
- 
-+#include "i915_gtt_view_types.h"
-+
- /**
-  * DOC: Global GTT views
-  *
-@@ -95,46 +97,6 @@
- 
- struct i915_vma_resource;
- 
--struct intel_remapped_plane_info {
--	/* in gtt pages */
--	u32 offset:31;
--	u32 linear:1;
--	union {
--		/* in gtt pages for !linear */
--		struct {
--			u16 width;
--			u16 height;
--			u16 src_stride;
--			u16 dst_stride;
--		};
--
--		/* in gtt pages for linear */
--		u32 size;
--	};
--} __packed;
--
--struct intel_remapped_info {
--	struct intel_remapped_plane_info plane[4];
--	/* in gtt pages */
--	u32 plane_alignment;
--} __packed;
--
--struct intel_rotation_info {
--	struct intel_remapped_plane_info plane[2];
--} __packed;
--
--struct intel_partial_info {
--	u64 offset;
--	unsigned int size;
--} __packed;
--
--enum i915_gtt_view_type {
--	I915_GTT_VIEW_NORMAL = 0,
--	I915_GTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
--	I915_GTT_VIEW_PARTIAL = sizeof(struct intel_partial_info),
--	I915_GTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
--};
--
- static inline void assert_i915_gem_gtt_types(void)
- {
- 	BUILD_BUG_ON(sizeof(struct intel_rotation_info) != 2 * sizeof(u32) + 8 * sizeof(u16));
-@@ -160,16 +122,6 @@ static inline void assert_i915_gem_gtt_types(void)
- 	}
- }
- 
--struct i915_gtt_view {
--	enum i915_gtt_view_type type;
--	union {
--		/* Members need to contain no holes/padding */
--		struct intel_partial_info partial;
--		struct intel_rotation_info rotated;
--		struct intel_remapped_info remapped;
--	};
--};
--
- /**
-  * DOC: Virtual Memory Address
-  *
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
-new file mode 100644
-index 000000000000..b261910cd6f9
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
-@@ -0,0 +1,7 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#include "../../i915/i915_gtt_view_types.h"
-+
-+/* Partial view not supported in xe, fail build if used. */
-+#define I915_GTT_VIEW_PARTIAL
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-deleted file mode 100644
-index e7aaf50f5485..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-+++ /dev/null
-@@ -1,74 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#include <linux/types.h>
--#include <linux/build_bug.h>
--
--/* XX: Figure out how to handle this vma mapping in xe */
--struct intel_remapped_plane_info {
--	/* in gtt pages */
--	u32 offset:31;
--	u32 linear:1;
--	union {
--		/* in gtt pages for !linear */
--		struct {
--			u16 width;
--			u16 height;
--			u16 src_stride;
--			u16 dst_stride;
--		};
--
--		/* in gtt pages for linear */
--		u32 size;
--	};
--} __packed;
--
--struct intel_remapped_info {
--	struct intel_remapped_plane_info plane[4];
--	/* in gtt pages */
--	u32 plane_alignment;
--} __packed;
--
--struct intel_rotation_info {
--	struct intel_remapped_plane_info plane[2];
--} __packed;
--
--enum i915_gtt_view_type {
--	I915_GTT_VIEW_NORMAL = 0,
--	I915_GTT_VIEW_ROTATED = sizeof(struct intel_rotation_info),
--	I915_GTT_VIEW_REMAPPED = sizeof(struct intel_remapped_info),
--};
--
--static inline void assert_i915_gem_gtt_types(void)
--{
--	BUILD_BUG_ON(sizeof(struct intel_rotation_info) != 2 * sizeof(u32) + 8 * sizeof(u16));
--	BUILD_BUG_ON(sizeof(struct intel_remapped_info) != 5 * sizeof(u32) + 16 * sizeof(u16));
--
--	/* Check that rotation/remapped shares offsets for simplicity */
--	BUILD_BUG_ON(offsetof(struct intel_remapped_info, plane[0]) !=
--		     offsetof(struct intel_rotation_info, plane[0]));
--	BUILD_BUG_ON(offsetofend(struct intel_remapped_info, plane[1]) !=
--		     offsetofend(struct intel_rotation_info, plane[1]));
--
--	/* As we encode the size of each branch inside the union into its type,
--	 * we have to be careful that each branch has a unique size.
--	 */
--	switch ((enum i915_gtt_view_type)0) {
--	case I915_GTT_VIEW_NORMAL:
--	case I915_GTT_VIEW_ROTATED:
--	case I915_GTT_VIEW_REMAPPED:
--		/* gcc complains if these are identical cases */
--		break;
--	}
--}
--
--struct i915_gtt_view {
--	enum i915_gtt_view_type type;
--	union {
--		/* Members need to contain no holes/padding */
--		struct intel_rotation_info rotated;
--		struct intel_remapped_info remapped;
--	};
--};
--- 
-2.39.5
+CI Bug Log - changes from CI_DRM_16170 -> Patchwork_145300v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/index.html
+
+Participating hosts (44 -> 44)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_145300v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#13494])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-mtlp-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_module_load@reload:
+    - bat-dg2-9:          [PASS][3] -> [ABORT][4] ([i915#13465] / [i915#13571])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg2-9/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg2-9/igt@i915_module_load@reload.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adls-6:         [PASS][5] -> [FAIL][6] ([i915#13633])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+    - bat-dg1-7:          [PASS][7] -> [FAIL][8] ([i915#13633])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@perf:
+    - bat-twl-1:          NOTRUN -> [ABORT][9] ([i915#12919])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live@perf.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][10] -> [DMESG-FAIL][11] ([i915#12061]) +1 other test dmesg-fail
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][12] -> [DMESG-FAIL][13] ([i915#12061]) +1 other test dmesg-fail
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][14] -> [SKIP][15] ([i915#9197]) +3 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-adlp-11:        [ABORT][16] -> [PASS][17] +1 other test pass
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-adlp-11/igt@i915_selftest@live.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-adlp-11/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-twl-2:          [INCOMPLETE][18] ([i915#12445]) -> [PASS][19] +1 other test pass
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-2/igt@i915_selftest@live@reset.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-2/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@ring_submission:
+    - bat-twl-1:          [INCOMPLETE][20] -> [PASS][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-1/igt@i915_selftest@live@ring_submission.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live@ring_submission.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [INCOMPLETE][22] -> [ABORT][23] ([i915#12435] / [i915#12919] / [i915#13503])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-1/igt@i915_selftest@live.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
+  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13465]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13465
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
+  [i915#13571]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571
+  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16170 -> Patchwork_145300v1
+
+  CI-20190529: 20190529
+  CI_DRM_16170: be5a404c3344b7d794766f045b8f94aa93c42069 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_145300v1: be5a404c3344b7d794766f045b8f94aa93c42069 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/index.html
+
+--===============5357566967746535511==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145300/">https://patchwork.freedesktop.org/series/145300/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16170 -&gt; Patchwork_145300v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 44)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_145300v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg2-9/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg2-9/igt@i915_module_load@reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13465">i915#13465</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571">i915#13571</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-adls-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
+<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@perf:</p>
+<ul>
+<li>bat-twl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live@perf.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-adlp-11/igt@i915_selftest@live.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-adlp-11/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-2/igt@i915_selftest@live@reset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-2/igt@i915_selftest@live@reset.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@ring_submission:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-1/igt@i915_selftest@live@ring_submission.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live@ring_submission.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16170/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145300v1/bat-twl-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503">i915#13503</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16170 -&gt; Patchwork_145300v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16170: be5a404c3344b7d794766f045b8f94aa93c42069 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_145300v1: be5a404c3344b7d794766f045b8f94aa93c42069 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5357566967746535511==--
