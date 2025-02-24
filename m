@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96440A4212A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A73F8A4216D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:43:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF50D10E426;
-	Mon, 24 Feb 2025 13:41:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E04A10E44D;
+	Mon, 24 Feb 2025 13:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpVUWgJI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqNAQTEE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F7D10E13C;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 598FC10E140;
  Mon, 24 Feb 2025 06:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740378593; x=1771914593;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3YFFGKSxMFP6cKwlU7cWbJYP6Ert094aoacaVxU9IVM=;
- b=WpVUWgJIimmNGqYrv4pAXWL0yQTGNnZoTQBSSxEiA9cQu0mthkMq8xSC
- BfN9qBD3A9fbL2D6RksZwACngU1yTWSWQcFGJPRcRuysg45woY4GZkj7X
- PCV50O9vVX8FmTwu4sQpRIQyni9GCy1eAV3S5rchZL5bczJ5OymU4jW+5
- WlPkbdmzqB9kpa1OYKmlzCBltXFZqz1ks8RczOjx+Nty13tjPYGxP3jfq
- 2fSTfFvs6x08jp/gwbC56k+szov1tdZC0mhM/Pl3Rr2rzDHfCPWXRtsvw
- 2eZTY+YEvR9kkHvJzQDdNgar2z6CeHd5ZI/0DGJaVqh8nL4LGgInxVHSs g==;
-X-CSE-ConnectionGUID: Cpqy5NXFSfqR59EyOJyACw==
-X-CSE-MsgGUID: 1okiIUywQyGM5eow7CiZxA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719671"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719671"
+ bh=tbG4fS6UB52IWIJJ4Z5oLbdFM9tXTqlgu6aJO2vyAoQ=;
+ b=mqNAQTEEzHecoNKGIBrZlacFFrE5LNF1IB0nk+SuVZh4V8Vakm0QOKfk
+ yrRhbYODDx9R46KQvupexjW2Fac9criJheZW2kaJOv6siTZnT59CPr4yc
+ EVXUiZcIKwg/VwgSYeOzHK+X0rjxTQKjfgPFjZcNS/kOcynXD2m0FMOT9
+ wucIowUOZFm3zoNuA5hY3yoZPjGrVVrurlA6cUPiATeRMGPdNNSFj6xw0
+ anEREYqigbcDbxBrboEvfh8YAvSmxCZ9CPmjFeGL12lw+FVnIW4RzLUkA
+ znqrX5O/PWj2UEAe4DF32fK2Bx3goMEqvGnBWDUWJVvIvaTYgOaV0GYMV Q==;
+X-CSE-ConnectionGUID: Dug9+HsQRtq6rZseOJkaxg==
+X-CSE-MsgGUID: tSRg1uNLRhSW3sLOaBaAEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719672"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719672"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Feb 2025 22:29:52 -0800
-X-CSE-ConnectionGUID: QcAeHLF3QtO9Jf5GfDaOzg==
-X-CSE-MsgGUID: F3hyp4HyQMyzfpJi2QIcxg==
+X-CSE-ConnectionGUID: esZPiuIdTk+UAXGfce29Dw==
+X-CSE-MsgGUID: g63XJDvmQa2j0EppsQ2k6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076549"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076554"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:47 -0800
+ 23 Feb 2025 22:29:52 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 09/20] drm/i915/hdmi: Use VRR Timing generator for HDMI
-Date: Mon, 24 Feb 2025 11:47:06 +0530
-Message-ID: <20250224061717.1095226-10-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/20] drm/i915/dp_mst: Use VRR Timing generator for DP MST
+Date: Mon, 24 Feb 2025 11:47:07 +0530
+Message-ID: <20250224061717.1095226-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
 References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
@@ -68,35 +68,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for using VRR Timing generator for HDMI panels.
+Configure VRR timing generator for DP MST for fixed refresh rate.
+Currently the variable timings are supported only for DP and eDP and not
+for DP MST. Call intel_vrr_compute_config for MST which will configure
+fixed refresh rate timings irrespective of whether VRR is supported or
+not.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index ed017d9de920..28130436735f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -64,6 +64,7 @@
- #include "intel_panel.h"
- #include "intel_pfit.h"
- #include "intel_snps_phy.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 167e4a70ab12..2c4a9ac6f61e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -51,6 +51,7 @@
+ #include "intel_link_bw.h"
+ #include "intel_psr.h"
+ #include "intel_vdsc.h"
 +#include "intel_vrr.h"
+ #include "skl_scaler.h"
  
- static void
- assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
-@@ -2384,6 +2385,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		}
- 	}
+ /*
+@@ -709,6 +710,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->lane_lat_optim_mask =
+ 			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
  
 +	intel_vrr_compute_config(pipe_config, conn_state);
 +
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
+ 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
  
+ 	intel_ddi_compute_min_voltage_level(pipe_config);
 -- 
 2.45.2
 
