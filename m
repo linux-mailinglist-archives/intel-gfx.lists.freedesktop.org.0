@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41417A42196
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C28A4219F
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AD310E3C5;
-	Mon, 24 Feb 2025 13:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B40210E412;
+	Mon, 24 Feb 2025 13:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GzP6vrhJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WjWodTSe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 306E910E1FC;
- Mon, 24 Feb 2025 10:34:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C92F10E210;
+ Mon, 24 Feb 2025 10:45:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740393281; x=1771929281;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=zdNflq1GeOQTZuf4UAlceelvEZTDdDaYrA0DEt0INW8=;
- b=GzP6vrhJB/pfH8aRR1txkxbuKwatihEhyzI98RDqsqo7R6Y6r9iNRZtw
- d78GPJLFx1nK53AtdC5efe6QWOm2X4RI+7OPUCqawyOMticbZGQC7yQY9
- 3mlnr5O28xcapN95MQ7ml1gJr+Uhz49TP6POBdv73Q2YriBagTJULplPL
- iA9xdlrDvu3yGmdpleJItJx61VRgGSTLbqyK7uAeJ1iDHDbFbMm0EUpGa
- rL6Smr7aewQPs57Zrr3kwHU0Q/2M7hT7LjiHYjtWc7lDRpH9NFuPxo++u
- rdGLw8d3QRGk12DDE0N0tJ0p7fsDtj6d6yjJexEvFuBx6wJB5396iFPlk w==;
-X-CSE-ConnectionGUID: auvj1pNxRCSXKePlbUZPXw==
-X-CSE-MsgGUID: Zrl1stQjSCCP6dwB5Kk3sQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28739424"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28739424"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:34:40 -0800
-X-CSE-ConnectionGUID: o82CY+xIQ5ix6iuzp42nCg==
-X-CSE-MsgGUID: ke3AQ2tQSEuNq9Nwxl0d3Q==
+ t=1740393906; x=1771929906;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=TC5JKuSwTOwKpgp1iZoA9OkT3PUONHk+kHFW8kXUrhw=;
+ b=WjWodTSeNkMhwhagFYIRkkmbo++rT/3shbjnSJpmE/NT4rz/GpJcsnFh
+ xvZYCUtMfNV15A3Y7D8Z3fTM0/Pcm/cUQKwcIDwKT8gDrfWzh4nXT0wBl
+ 8fx/bO8jrTLcCHJQwPHTGV0V3daHtkEimxPWHOdNWxs7FkH0eXPe2ht45
+ +MRgRDqKlccqk3syB0OSkNj+CJZjXomqT7UAOIsHMaN8klSkm5ZcX6Rbw
+ nPuHJhrCz5HZ/+DMZuvAZfezHvae56AJdE55SRO0K3frA3mQDxTTIUJ7t
+ LO8dwVxw3/T5Gdn9Eki6LD4POJyjc/BK5+G0pBtJlWnBBiSnZdfX25xZh A==;
+X-CSE-ConnectionGUID: yuj6si0uToyFBj0ZFSO10Q==
+X-CSE-MsgGUID: sgmA37BlQOuRvewg/B/XhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63611881"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63611881"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:45:06 -0800
+X-CSE-ConnectionGUID: 67vSYBaSS9W/wFQV3uUYOQ==
+X-CSE-MsgGUID: 9lHnM6ecRfSF/1PN7qWsaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="146906629"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115815470"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.133])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:34:39 -0800
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:45:02 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST
-In-Reply-To: <20250224093242.1859583-1-imre.deak@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
+ <animesh.manna@intel.com>
+Subject: Re: [PATCH v4 2/8] drm/i915/lobf: Disintegrate alpm_disable from
+ psr_disable
+In-Reply-To: <20250224080847.326350-3-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250224093242.1859583-1-imre.deak@intel.com>
-Date: Mon, 24 Feb 2025 12:34:36 +0200
-Message-ID: <8734g38wcj.fsf@intel.com>
+References: <20250224080847.326350-1-animesh.manna@intel.com>
+ <20250224080847.326350-3-animesh.manna@intel.com>
+Date: Mon, 24 Feb 2025 12:45:00 +0200
+Message-ID: <87wmdf7har.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,84 +72,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
-> The encoder HW/SW state verification should use a SW state which stays
-> unchanged while the encoder/output is active. The intel_dp::is_mst flag
-> used during state computation to choose between the DP SST/MST modes can
-> change while the output is active, if the sink gets disconnected or the
-> MST topology is removed for another reason. A subsequent state
-> verification using intel_dp::is_mst leads then to a mismatch if the
-> output is disabled/re-enabled without recomputing its state.
+On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> Currently clearing of alpm registers is done through psr_disable()
+> which is always not correct, without psr also alpm can exist. So
+> dis-integrate alpm_disable() from psr_disable().
 >
-> Use the encoder's active MST link count instead, which will be always
-> non-zero for an active MST output and will be zero for SST.
->
-> Fixes: 35d2e4b75649 ("drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout")
-> Fixes: 40d489fac0e8 ("drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()")
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Do we have a bug for this?
-
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_alpm.c     | 21 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 ++
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 11 ----------
+>  5 files changed, 25 insertions(+), 11 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+> index a53ed83f6b22..d94c96ba46b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -365,6 +365,7 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
+>  			  const struct intel_crtc_state *crtc_state)
+>  {
+>  	lnl_alpm_configure(intel_dp, crtc_state);
+> +	intel_dp->alpm_parameters.transcoder = crtc_state->cpu_transcoder;
+
+Why do we need to store this?
+
+>  }
+>  
+>  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> @@ -440,3 +441,23 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+>  	debugfs_create_file("i915_edp_lobf_info", 0444, root,
+>  			    connector, &i915_edp_lobf_info_fops);
+>  }
+> +
+> +void intel_alpm_disable(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
+> +
+> +	if (DISPLAY_VER(display) < 20)
+> +		return;
+> +
+> +	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) & ALPM_CTL_ALPM_ENABLE))
+> +		return;
+
+Why are we checking the hardware state here? We should know what state
+the hardware is in, right?
+
+> +
+> +	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
+> +		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
+> +		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> +
+> +	intel_de_rmw(display,
+> +		     PORT_ALPM_CTL(cpu_transcoder),
+> +		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+> index 2f862b0476a8..91f51fb24f98 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> @@ -28,4 +28,5 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
+>  bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
+>  bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
+> +void intel_alpm_disable(struct intel_dp *intel_dp);
+>  #endif
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 7937f4de66cb4..8c8b53414da67 100644
+> index 7937f4de66cb..26aa32d4d50e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -890,7 +890,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  			    encoder->base.base.id, encoder->base.name);
+> @@ -35,6 +35,7 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "icl_dsi.h"
+> +#include "intel_alpm.h"
+>  #include "intel_audio.h"
+>  #include "intel_audio_regs.h"
+>  #include "intel_backlight.h"
+> @@ -3570,6 +3571,7 @@ static void intel_ddi_disable_dp(struct intel_atomic_state *state,
+>  	intel_dp->link_trained = false;
 >  
->  	if (!mst_pipe_mask && dp128b132b_pipe_mask) {
-> -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	intel_psr_disable(intel_dp, old_crtc_state);
+> +	intel_alpm_disable(intel_dp);
+
+We have old crtc state here, why do we save the transcoder to intel_dp
+and use that?
+
+>  	intel_edp_backlight_off(old_conn_state);
+>  	/* Disable the decompression in DP Sink */
+>  	intel_dp_sink_disable_decompression(state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 4440521e3e9e..b78721c451b8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1801,6 +1801,7 @@ struct intel_dp {
+>  	struct {
+>  		u8 io_wake_lines;
+>  		u8 fast_wake_lines;
+> +		enum transcoder transcoder;
 >  
->  		/*
->  		 * If we don't have 8b/10b MST, but have more than one
-> @@ -902,7 +902,8 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  		 * we don't expect MST to have been enabled at that point, and
->  		 * can assume it's SST.
->  		 */
-> -		if (hweight8(dp128b132b_pipe_mask) > 1 || intel_dp->is_mst)
-> +		if (hweight8(dp128b132b_pipe_mask) > 1 ||
-> +		    intel_dp_mst_encoder_active_links(dig_port))
-
-I think the reasoning here is valid, but I think we should probably do
-something about the intel_dp_mst_encoder_active_links() naming as
-follow-up. This is confusing. What is an "mst encoder"? The above
-expects the primary digital port, i.e. it assumes enc_to_dig_port()
-already did the right thing. It's all really subtle. Also wrt which
-encoders the intel_ddi_get_encoder_pipes() gets called on.
-
-Maybe we need s/intel_dp_mst_encoder/intel_dp_mst_primary/ for this and
-some other functions? They're not about the "fake" mst stream encoders.
-
-Anyway,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->  			mst_pipe_mask = dp128b132b_pipe_mask;
->  	}
+>  		/* LNL and beyond */
+>  		u8 check_entry_lines;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index c1dd9c739fd4..1d202f2eb356 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2141,17 +2141,6 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+>  	if (intel_dp_is_edp(intel_dp))
+>  		intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
 >  
-> @@ -4131,13 +4132,13 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
->  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST) {
->  		intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
->  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)) {
-> -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->  
->  		/*
->  		 * If this is true, we know we're being called from mst stream
->  		 * encoder's ->get_config().
->  		 */
-> -		if (intel_dp->is_mst)
-> +		if (intel_dp_mst_encoder_active_links(dig_port))
->  			intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
->  		else
->  			intel_ddi_read_func_ctl_dp_sst(encoder, pipe_config, ddi_func_ctl);
+> -	/* Panel Replay on eDP is always using ALPM aux less. */
+> -	if (intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) {
+> -		intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
+> -			     ALPM_CTL_ALPM_ENABLE |
+> -			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> -
+> -		intel_de_rmw(display,
+> -			     PORT_ALPM_CTL(cpu_transcoder),
+> -			     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+> -	}
+> -
+>  	/* Disable PSR on Sink */
+>  	if (!intel_dp->psr.panel_replay_enabled) {
+>  		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
 
 -- 
 Jani Nikula, Intel
