@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D98A42173
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96440A4212A
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 071D210E514;
-	Mon, 24 Feb 2025 13:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF50D10E426;
+	Mon, 24 Feb 2025 13:41:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0j+evg6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WpVUWgJI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEA0010E13C;
- Mon, 24 Feb 2025 06:29:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35F7D10E13C;
+ Mon, 24 Feb 2025 06:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378585; x=1771914585;
+ t=1740378593; x=1771914593;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yMZQYKOctiyCsMD/2BUjTQbDNNX62NkLNLdFnnyQQmo=;
- b=a0j+evg623mFvTkZn72CtcWAWcc9XkW6b8tlzvAzJqkEWbZyJLSrhY2T
- vege3ZIEnHKhxpw//+eADJPeqRaBRd3R6CtNocKRAfJ7QzV3jE/EArbVu
- 5PFkHYKDbqM5HqYLdsvo4RLI6urEB++346PTv2547TscSExvzVTkeJUh3
- A3sqjgKVusbAv4N8cN+uUBftEDYehn2I/cUQt3ki2RINa4b3LagLa+W2p
- mYFqSBpvkv67J2BaLFPYZH224qc8QJCasrLcyeGu5lXaLq1mb1QUG8zgz
- U1Yp6Smq2o4CM1tFvnrEnPt7nwq2VXRyimwR9fyyUY18jB9tqIlgj83g6 Q==;
-X-CSE-ConnectionGUID: VtpzuNHlQPq+AoxScua63w==
-X-CSE-MsgGUID: cYmDKBe4R1uRLejXMw/0qQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719660"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719660"
+ bh=3YFFGKSxMFP6cKwlU7cWbJYP6Ert094aoacaVxU9IVM=;
+ b=WpVUWgJIimmNGqYrv4pAXWL0yQTGNnZoTQBSSxEiA9cQu0mthkMq8xSC
+ BfN9qBD3A9fbL2D6RksZwACngU1yTWSWQcFGJPRcRuysg45woY4GZkj7X
+ PCV50O9vVX8FmTwu4sQpRIQyni9GCy1eAV3S5rchZL5bczJ5OymU4jW+5
+ WlPkbdmzqB9kpa1OYKmlzCBltXFZqz1ks8RczOjx+Nty13tjPYGxP3jfq
+ 2fSTfFvs6x08jp/gwbC56k+szov1tdZC0mhM/Pl3Rr2rzDHfCPWXRtsvw
+ 2eZTY+YEvR9kkHvJzQDdNgar2z6CeHd5ZI/0DGJaVqh8nL4LGgInxVHSs g==;
+X-CSE-ConnectionGUID: Cpqy5NXFSfqR59EyOJyACw==
+X-CSE-MsgGUID: 1okiIUywQyGM5eow7CiZxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719671"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719671"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:45 -0800
-X-CSE-ConnectionGUID: 5KMRQXMYSu2fJzNE4D3rbA==
-X-CSE-MsgGUID: gtfgqy0AS1CYBtRQ7U5ldQ==
+ 23 Feb 2025 22:29:52 -0800
+X-CSE-ConnectionGUID: QcAeHLF3QtO9Jf5GfDaOzg==
+X-CSE-MsgGUID: F3hyp4HyQMyzfpJi2QIcxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076537"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076549"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:29:45 -0800
+ 23 Feb 2025 22:29:47 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 08/20] drm/i915/display: Enable MSA Ignore Timing PAR only
- when in not fixed_rr mode
-Date: Mon, 24 Feb 2025 11:47:05 +0530
-Message-ID: <20250224061717.1095226-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/20] drm/i915/hdmi: Use VRR Timing generator for HDMI
+Date: Mon, 24 Feb 2025 11:47:06 +0530
+Message-ID: <20250224061717.1095226-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
 References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
@@ -69,34 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MSA Ignore Timing PAR enable is set in the DP sink when we enable variable
-refresh rate.
-
-Currently for link training we depend on flipline to decide whether we
-want to ignore the msa timings. With fixed refresh rate we will still
-fill the flipline in all cases whether panel supports VRR or not.
-
-Change the condition for link training to ignore the msa timings if
-vrr.in_range.
+Add support for using VRR Timing generator for HDMI panels.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3cc06c916017..549e4ebd9404 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -725,7 +725,7 @@ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
- 					    const struct intel_crtc_state *crtc_state)
- {
- 	intel_dp_link_training_set_mode(intel_dp,
--					crtc_state->port_clock, crtc_state->vrr.flipline);
-+					crtc_state->port_clock, crtc_state->vrr.in_range);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index ed017d9de920..28130436735f 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -64,6 +64,7 @@
+ #include "intel_panel.h"
+ #include "intel_pfit.h"
+ #include "intel_snps_phy.h"
++#include "intel_vrr.h"
  
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
+ static void
+ assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
+@@ -2384,6 +2385,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		}
+ 	}
+ 
++	intel_vrr_compute_config(pipe_config, conn_state);
++
+ 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
+ 					 conn_state);
+ 
 -- 
 2.45.2
 
