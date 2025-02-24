@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB39EA41BC4
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 11:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59525A41E88
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 13:12:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4500B10E242;
-	Mon, 24 Feb 2025 10:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B2910E37A;
+	Mon, 24 Feb 2025 12:12:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dzfj4jNe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gulBv0xF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8C4E10E242;
- Mon, 24 Feb 2025 10:55:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5764610E37A;
+ Mon, 24 Feb 2025 12:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740394551; x=1771930551;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IBJgut0mkXcJ9MkV/cWrwLoygn2wW+q0yvQkAW13wrI=;
- b=Dzfj4jNeZJbp7ltawYa3pnJrxlDzR3i0IFDKwdBTjbepbqDva+X458t/
- w9SB9lMlk4D6UhiBk4Bbs4dJKZAuulbGX3gZZExl0JeJWJLCmma46DTYS
- WXEa781Lq4tRwPYpjgt8oXl54hk+VLEenGrTdQ+Y9PkaY2VkYGc/QUJ3k
- N0wibu8g2uWtpcrmIWSfZcOaAHlKxVPLhbRguURl9xfuoD9OaAllQvnha
- V84bFTEInE+avQ0+0cFp5jyj2GfHpjug/oCn8rWgUFAIfcQ1gu1mCaUO8
- HtQLLdlG8nKH57LU9vLrVRMwRHvhHqgQt6idXskNdBVMK8Kt+KCcPrryG A==;
-X-CSE-ConnectionGUID: Kjh/Zfo/RPeTXuwUTLxebw==
-X-CSE-MsgGUID: qRprBF8PSiytvvBwhhe0Tg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="51771575"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="51771575"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:55:50 -0800
-X-CSE-ConnectionGUID: EL8AKFoMSsWr0eetGJC2rQ==
-X-CSE-MsgGUID: Cmjf1F50SK2arnldMmpq7A==
+ t=1740399178; x=1771935178;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=csl8vMggEM11TbnwsX6Duk2okTqccOuqlwfdSS2Ijyk=;
+ b=gulBv0xFMBV0d1HZcgplQ4f46Lg7hf0dZGOO2ON6OsGt/7L/MGSieYzv
+ 9lp/V6kFVgZockbZx4b8kQJCE5wrI/7i/NWziN+vtjtuNELRkTj5mgRIy
+ SEus5mAe6hiKhCIOZqXc62XKf/bU8DriP1rNxDWi07pAjqazXx2D83vBX
+ NAFOAzZNU5D8ZWOyd6XPjpIGciLZqJnHatuVRrEKv1QvTwZOQctr/CENM
+ Owe7UWl+ORBKLvP5mGjNMK1/Qf/SBNu4g+q02QpdrQOhtNo48Sw5vyJEb
+ KohCv8mFgCt23ihpcEhlzwayhiobOWcbcAG/pfAu/CWIL90nzAemArigp g==;
+X-CSE-ConnectionGUID: 4RqkHek5Q0SdBBMO44G2pg==
+X-CSE-MsgGUID: zS5CPr38Rm+6vmR1Np0bxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40856537"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40856537"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 04:12:57 -0800
+X-CSE-ConnectionGUID: inUaYSl5SnGwh9XZkf1Fgg==
+X-CSE-MsgGUID: UWbQ3zVGRBCDByNbi83Nkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116528671"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.133])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:55:48 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH v4 5/8] drm/i915/lobf: Add debug interface for lobf
-In-Reply-To: <20250224080847.326350-6-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-6-animesh.manna@intel.com>
-Date: Mon, 24 Feb 2025 12:55:44 +0200
-Message-ID: <87jz9f7gsv.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116670692"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 04:12:55 -0800
+Date: Mon, 24 Feb 2025 14:13:54 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/dp_mst: Fix encoder HW state readout for UHBR MST
+Message-ID: <Z7xigvCH7IxKlQiS@ideak-desk.fi.intel.com>
+References: <20250224093242.1859583-1-imre.deak@intel.com>
+ <8734g38wcj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8734g38wcj.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,135 +65,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> Add an interface in debugfs which will help in debugging LOBF
-> feature.
->
-> v1: Initial version.
-> v2:
-> - Remove FORCE_EN flag. [Jouni]
-> - Change prefix from I915 to INTEL. [Jani]
-> - Use u8 instead of bool for lobf-debug flag. [Jani]
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c     | 51 +++++++++++++++++++
->  .../drm/i915/display/intel_display_types.h    |  5 ++
->  2 files changed, 56 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 83719ee1721c..5c70677ac3c0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  	int waketime_in_lines, first_sdp_position;
->  	int context_latency, guardband;
->  
-> +	if (intel_dp->alpm_parameters.lobf_debug & INTEL_LOBF_DEBUG_DISABLE)
-> +		return;
-> +
->  	if (!intel_dp_is_edp(intel_dp))
->  		return;
->  
-> @@ -449,6 +452,51 @@ static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
->  
->  DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
->  
-> +static int
-> +i915_edp_lobf_debug_get(void *data, u64 *val)
-> +{
-> +	struct intel_display *display = data;
+On Mon, Feb 24, 2025 at 12:34:36PM +0200, Jani Nikula wrote:
+> On Mon, 24 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > The encoder HW/SW state verification should use a SW state which stays
+> > unchanged while the encoder/output is active. The intel_dp::is_mst flag
+> > used during state computation to choose between the DP SST/MST modes can
+> > change while the output is active, if the sink gets disconnected or the
+> > MST topology is removed for another reason. A subsequent state
+> > verification using intel_dp::is_mst leads then to a mismatch if the
+> > output is disabled/re-enabled without recomputing its state.
+> >
+> > Use the encoder's active MST link count instead, which will be always
+> > non-zero for an active MST output and will be zero for SST.
+> >
+> > Fixes: 35d2e4b75649 ("drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout")
+> > Fixes: 40d489fac0e8 ("drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()")
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> Do we have a bug for this?
 
-Where do you pass display as data? It's connector?
+I haven't found a bug filed for it.
 
-> +	struct intel_encoder *encoder;
-> +	int ret = -ENODEV;
-> +
-> +	for_each_intel_dp(display->drm, encoder) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +
-> +		if (!intel_dp_is_edp(intel_dp))
-> +			return ret;
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
+> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 7937f4de66cb4..8c8b53414da67 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -890,7 +890,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+> >  			    encoder->base.base.id, encoder->base.name);
+> >  
+> >  	if (!mst_pipe_mask && dp128b132b_pipe_mask) {
+> > -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> >  
+> >  		/*
+> >  		 * If we don't have 8b/10b MST, but have more than one
+> > @@ -902,7 +902,8 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+> >  		 * we don't expect MST to have been enabled at that point, and
+> >  		 * can assume it's SST.
+> >  		 */
+> > -		if (hweight8(dp128b132b_pipe_mask) > 1 || intel_dp->is_mst)
+> > +		if (hweight8(dp128b132b_pipe_mask) > 1 ||
+> > +		    intel_dp_mst_encoder_active_links(dig_port))
+> 
+> I think the reasoning here is valid, but I think we should probably do
+> something about the intel_dp_mst_encoder_active_links() naming as
+> follow-up. This is confusing. What is an "mst encoder"? The above
+> expects the primary digital port, i.e. it assumes enc_to_dig_port()
+> already did the right thing. It's all really subtle. Also wrt which
+> encoders the intel_ddi_get_encoder_pipes() gets called on.
 
-What is this supposed to do?
+Only a primary encoder object has an embedded digital port
+(intel_digital_port), so the only way to call the function is passing
+the primary digital port to it (IOW there is no fake/stream encoder
+digital port to pass to it). IMO referring to the encoder or the encoder
+type isn't necessary and the function could be renamed to
 
-> +
-> +		// TODO: split to each edp transcoder.
+intel_dp_mst_active_streams()
 
-What does this mean?
+also clarifying that it's about streams not links?
 
-> +		*val = READ_ONCE(intel_dp->alpm_parameters.lobf_debug);
-
-You read this from all intel_dp and combine into one? What?
-
-> +		ret = 0;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +i915_edp_lobf_debug_set(void *data, u64 val)
-> +{
-> +	struct intel_display *display = data;
-> +	struct intel_encoder *encoder;
-> +	int ret = -ENODEV;
-> +
-> +	for_each_intel_dp(display->drm, encoder) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +
-> +		if (!intel_dp_is_edp(intel_dp))
-> +			return ret;
-> +
-> +		// TODO: split to each edp transcoder.
-> +		intel_dp->alpm_parameters.lobf_debug = val;
-> +	}
-> +
-> +	return ret;
-
-So this always returns failure?
-
-> +}
-> +
-> +DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
-> +			i915_edp_lobf_debug_get, i915_edp_lobf_debug_set,
-> +			"%llu\n");
-> +
->  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
->  {
->  	struct intel_display *display = to_intel_display(connector);
-> @@ -458,6 +506,9 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
->  	    connector->base.connector_type != DRM_MODE_CONNECTOR_eDP)
->  		return;
->  
-> +	debugfs_create_file("i915_edp_lobf_debug", 0644, root,
-> +			    connector, &i915_edp_lobf_debug_fops);
-> +
->  	debugfs_create_file("i915_edp_lobf_info", 0444, root,
->  			    connector, &i915_edp_lobf_info_fops);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index b78721c451b8..b6ec9a8fadd9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1808,6 +1808,11 @@ struct intel_dp {
->  		u8 aux_less_wake_lines;
->  		u8 silence_period_sym_clocks;
->  		u8 lfps_half_cycle_num_of_syms;
-> +
-> +#define INTEL_LOBF_DEBUG_MODE_MASK		0x0f
-> +#define INTEL_LOBF_DEBUG_DEFAULT		0x00
-> +#define INTEL_LOBF_DEBUG_DISABLE		0x01
-> +		u8 lobf_debug;
-
-Just overly complex still.
-
->  	} alpm_parameters;
->  
->  	u8 alpm_dpcd;
-
--- 
-Jani Nikula, Intel
+> Maybe we need s/intel_dp_mst_encoder/intel_dp_mst_primary/ for this and
+> some other functions? They're not about the "fake" mst stream encoders.
+> 
+> Anyway,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >  			mst_pipe_mask = dp128b132b_pipe_mask;
+> >  	}
+> >  
+> > @@ -4131,13 +4132,13 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
+> >  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST) {
+> >  		intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+> >  	} else if (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)) {
+> > -		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+> > +		struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> >  
+> >  		/*
+> >  		 * If this is true, we know we're being called from mst stream
+> >  		 * encoder's ->get_config().
+> >  		 */
+> > -		if (intel_dp->is_mst)
+> > +		if (intel_dp_mst_encoder_active_links(dig_port))
+> >  			intel_ddi_read_func_ctl_dp_mst(encoder, pipe_config, ddi_func_ctl);
+> >  		else
+> >  			intel_ddi_read_func_ctl_dp_sst(encoder, pipe_config, ddi_func_ctl);
+> 
+> -- 
+> Jani Nikula, Intel
