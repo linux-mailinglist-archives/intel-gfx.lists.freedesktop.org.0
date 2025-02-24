@@ -2,57 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B74A429A5
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 18:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87261A429BC
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 18:30:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E835510E49E;
-	Mon, 24 Feb 2025 17:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BFF710E4CB;
+	Mon, 24 Feb 2025 17:30:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S25UuhU1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6CmDBD2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6945410E498;
- Mon, 24 Feb 2025 17:27:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12D2610E4A4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 17:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740418041; x=1771954041;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2HF//5vlOKnqTw3amAWY5VdbAzdNNEL5Z3GrC8zDGzg=;
- b=S25UuhU1v5bZyx97qiqXp65f8QX/88Y5UdSgmIo7VrLLWo2GNlGlZvNd
- rcCd7OhLWLtPvvmupnrggI9M2R2/zLsCY1IpDThK/sQkXzTrXCV+Ei8CN
- LI+cCT7W3h27+2XFXvTSTqNqzrHGTNV2jX+6So/06RgMRl5X+Bpe9qlNO
- iOS0Q72DZM7uTvyG85Qf09l5vcuqvWrhPW32Oaa6qT6dBDTzGiVZAqeVe
- hBo3TVk5EMPH1XaNgMA7JKuFCXRXUqZtFoFLFKdZ0kXERUMqxU/Sj7Xu3
- 69/qep0gcUN4aeBzOYt3vbkaWhCuAy9jnZ9CBlJKtH44zthJVfK4k1hej Q==;
-X-CSE-ConnectionGUID: UkLtB+2cT02rs7LJd3clKQ==
-X-CSE-MsgGUID: RAof1UHZQ8aNEt41wL6XAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="58601786"
-X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="58601786"
+ t=1740418221; x=1771954221;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=CMQe2dcR9kWeqbjecUVtzmKpG/nmY7KZZ8Hcv9KGXN8=;
+ b=G6CmDBD2IjI7oEkK464GZa+z7xxFepnl4wzahaZ44hjLciZauCklk0Kc
+ 7tZ85WjA0Sbp1UyP5kBRdY7ogkVpMKSVt5CmLTb4y0VUWmCLT538pMLwD
+ qHPIbQZPxk8oZGg9YjIvVMptPPc86xL+YrRCO8+s8FEAtSxwAiQ2g4KgK
+ 2InnvroBc0sD9k+oGR3vC3odOAXPVY/X/xjXuq6zCUHAL2twamAhYy+G9
+ iq8cTufhLKck75rkCqtP6wCp5i3lvYBLzZcMdn6bsCcqJwBr/b/B6Rh8o
+ Ih6JME47lmVFrbhYEhbLr+Bo1V5tW3AFdKNBrbOnS/1VckW57AF4R4GvZ A==;
+X-CSE-ConnectionGUID: wEp5KZslQDm7m/cKKxW4Ew==
+X-CSE-MsgGUID: TbJ552K3ThGpU/bpRKeujA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="58602247"
+X-IronPort-AV: E=Sophos;i="6.13,312,1732608000"; d="scan'208";a="58602247"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 09:27:21 -0800
-X-CSE-ConnectionGUID: RIaEw/OFTBSqUVvwzrfQMQ==
-X-CSE-MsgGUID: xXMRrctWTXaG5Ed9tyfOaA==
+ 24 Feb 2025 09:30:20 -0800
+X-CSE-ConnectionGUID: S447MQ7gT/6WkDHLm6xVqg==
+X-CSE-MsgGUID: 7XxpELYTS6ma9YnYupE3Cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121374206"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121374575"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 24 Feb 2025 09:27:19 -0800
+ by orviesa005.jf.intel.com with SMTP; 24 Feb 2025 09:30:19 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Feb 2025 19:27:17 +0200
+ Mon, 24 Feb 2025 19:30:17 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 9/9] hax: drm/i915: Disable TPS4 support to force
- POST_LT_ADJ_REQ usage
-Date: Mon, 24 Feb 2025 19:26:45 +0200
-Message-ID: <20250224172645.15763-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915: Fix pipeDMC and ATS fault handling
+Date: Mon, 24 Feb 2025 19:30:17 +0200
+Message-ID: <20250224173017.29500-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250224172645.15763-1-ville.syrjala@linux.intel.com>
-References: <20250224172645.15763-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -73,31 +68,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Disable TPS4 in favor of POST_LT_ADJ_REQ for testing purposes.
+The fault handler is supposed to return true when it
+handles the fault. The pipeDMC and ATS handlers are
+returning false instead which results in the
+"unreported faults" WARN triggering when it shouldn't.
 
+Fixes: f13011a79999 ("drm/i915: Pimp display fault reporting")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3bd15054effe..7ccfa202dbc0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -792,6 +792,13 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp,
- 	source_tps4 = intel_dp_source_supports_tps4(display);
- 	sink_tps4 = dp_phy != DP_PHY_DPRX ||
- 		    drm_dp_tps4_supported(intel_dp->dpcd);
-+
-+	/* hax */
-+	if (dp_phy == DP_PHY_DPRX &&
-+	    drm_dp_post_lt_adj_req_supported(intel_dp->dpcd) &&
-+	    crtc_state->port_clock != 810000)
-+		sink_tps4 = false;
-+
- 	if (source_tps4 && sink_tps4) {
- 		return DP_TRAINING_PATTERN_4;
- 	} else if (crtc_state->port_clock == 810000) {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 99fb7fc7be39..aa23bb817805 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1101,7 +1101,7 @@ static bool handle_plane_ats_fault(struct intel_crtc *crtc, enum plane_id plane_
+ 			    "[CRTC:%d:%s] PLANE ATS fault\n",
+ 			    crtc->base.base.id, crtc->base.name);
+ 
+-	return false;
++	return true;
+ }
+ 
+ static bool handle_pipedmc_ats_fault(struct intel_crtc *crtc, enum plane_id plane_id)
+@@ -1112,7 +1112,7 @@ static bool handle_pipedmc_ats_fault(struct intel_crtc *crtc, enum plane_id plan
+ 			    "[CRTC:%d:%s] PIPEDMC ATS fault\n",
+ 			    crtc->base.base.id, crtc->base.name);
+ 
+-	return false;
++	return true;
+ }
+ 
+ static bool handle_pipedmc_fault(struct intel_crtc *crtc, enum plane_id plane_id)
+@@ -1123,7 +1123,7 @@ static bool handle_pipedmc_fault(struct intel_crtc *crtc, enum plane_id plane_id
+ 			    "[CRTC:%d:%s] PIPEDMC fault\n",
+ 			    crtc->base.base.id, crtc->base.name);
+ 
+-	return false;
++	return true;
+ }
+ 
+ static const struct pipe_fault_handler mtl_pipe_fault_handlers[] = {
 -- 
 2.45.3
 
