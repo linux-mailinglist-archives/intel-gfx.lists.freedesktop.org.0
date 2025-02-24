@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30F7A42125
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3DBA42180
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8AA510E443;
-	Mon, 24 Feb 2025 13:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 491FF10E532;
+	Mon, 24 Feb 2025 13:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gT6nAHbD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KNmGvMjN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5647610E13C;
- Mon, 24 Feb 2025 06:30:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F030610E12A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 06:07:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740378613; x=1771914613;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P9YDMCeBJ9g9JBR7ynrcBr3Jn4rsSSmSGJPm8tnaf2c=;
- b=gT6nAHbDMB5ajsnBs7ymyi0983P6/SvmG/NyxNsFQYQNiKGnQXKAUvHP
- vcJa3Ux9sATxOu/jGUlut4HEbA2OZehvaHwszefxgXLoxMr4FsbKzu0xH
- vLMe5xWBG4T/d1eW4klOUsoWty4odVCbIGMDHyLs3XmReIcAViUCC6xQ6
- wXXGyhCuJlrykSYy70gTPDie90KuzVV5s8QzY5JDtCpxDuaqExn3Aywwl
- G59bYAqf/g8jgq1vNx6ELJeWJV+h0AJy+DLLQkEy4otL2ptueM2n0tp56
- tDYgsijThhPT4S7hctmE4Zm5+cU3KcZWBExXGyoNaj0u8UoLObch3tMT2 w==;
-X-CSE-ConnectionGUID: Wv1czL+mSG+OZEnB3CSRBQ==
-X-CSE-MsgGUID: tUtgd+moRLSfuLo3Vqy2Ww==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="28719721"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="28719721"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:13 -0800
-X-CSE-ConnectionGUID: gbjQdbqBTY+/M1Pmwcuxcw==
-X-CSE-MsgGUID: EnXAEwxjTUCnRE50Y5n39w==
+ t=1740377263; x=1771913263;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6VHWhiEegxCt35w1KI6QrVoasDkZYefpvDND8yT0Rcs=;
+ b=KNmGvMjN6hyMM1Iqev+apD/ZsBrYSOnab0JS6TqHbQbjymlJlj6arpsp
+ L/7M/1qdvrAVTwCx1gbj7eFzD3AGhZG7DLX1VSVDm5vokG3F2Uo2ZJ6Zm
+ BbQOiJBixve5Xb6+6LH3UOgpVCFYxjhZ/EroAOrYsyDuNGom/7Wku91pT
+ ssqZdtagjme2W7U3CPB8jNPZsyfMawso7IiG7hAgjM1bGCoblEAG3ZIgu
+ IVDYjWzzaRm+7kSYbQNUyom8XE9doY1BA9FOX9Hz14FByR2jBH0K2pxqV
+ /BSvxKgXbJ3BVP+EW+J5bjjhaDiWY7GH9ieIsfAEN66n6wDLAwvJLi6sM w==;
+X-CSE-ConnectionGUID: +Otm2bqiT8qwzF7bOBaEHg==
+X-CSE-MsgGUID: QNaEyvrnTWGdivEB7YYX7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="52521421"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="52521421"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:07:43 -0800
+X-CSE-ConnectionGUID: 2H5IfyUaSeSRRZjhYbowTg==
+X-CSE-MsgGUID: Adovw+aKR/yo/hSLFjvYcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120076643"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2025 22:30:13 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="153158582"
+Received: from unknown (HELO nitin-Super-Server.iind.intel.com)
+ ([10.190.238.72])
+ by orviesa001.jf.intel.com with ESMTP; 23 Feb 2025 22:07:41 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 20/20] drm/i915/display: Add fixed_rr to crtc_state dump
-Date: Mon, 24 Feb 2025 11:47:17 +0530
-Message-ID: <20250224061717.1095226-21-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
+Cc: chris.p.wilson@intel.com,
+	andi.shyti@intel.com,
+	nitin.r.gote@intel.com
+Subject: [PATCH] drm/i915/gt: Add a delay to let engine resumes correctly
+Date: Mon, 24 Feb 2025 12:01:04 +0530
+Message-Id: <20250224063104.308242-1-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,53 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add fixed refresh rate mode in crtc_state dump.
+Sometimes engine reset fails because the engine resumes from an
+incorrect RING_HEAD. Engine head failed to set to zero even after
+writing into it. This is a timing issue and we experimented
+different values and found out that 20ms delay works best based
+on testing.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+So, add a 20ms delay to let engine resumes from correct RING_HEAD.
+
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13650
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
- drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
- 3 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 599ddce96371..f204a5830c29 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
-+	drm_printf(&p, "vrr: %s, fixed_rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
-+		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config)),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index b16d277e78c5..ce74bac244fd 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -628,7 +628,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
- }
- 
--static
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->vrr.flipline &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 750a380da9e3..6cc7e6902b08 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -40,5 +40,6 @@ void intel_vrr_update_guardband(const struct intel_crtc_state *crtc_state, bool
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 6e9977b2d180..5576f000e965 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -365,6 +365,13 @@ static void reset_prepare(struct intel_engine_cs *engine)
+ 			     ENGINE_READ_FW(engine, RING_HEAD),
+ 			     ENGINE_READ_FW(engine, RING_TAIL),
+ 			     ENGINE_READ_FW(engine, RING_START));
++		/*
++		 * Sometimes engine head failed to set to zero even after writing into it.
++		 * Use 20ms delay to let engine resumes from correct RING_HEAD.
++		 * Experimented different values and determined that 20ms works best
++		 * based on testing.
++		 */
++		mdelay(20);
+ 		if (!stop_ring(engine)) {
+ 			drm_err(&engine->i915->drm,
+ 				"failed to set %s head to zero "
 -- 
-2.45.2
+2.25.1
 
