@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158D7A4218F
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C2EA42115
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:42:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDBEA10E558;
-	Mon, 24 Feb 2025 13:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55F010E414;
+	Mon, 24 Feb 2025 13:41:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktxvPe6a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QKKV7gux";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF91810E16F;
- Mon, 24 Feb 2025 08:31:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F0A710E195;
+ Mon, 24 Feb 2025 09:07:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740385874; x=1771921874;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UlkRCrN9IheONt4pYGPJHfBHAYUBqH9VFTpklJkAb7c=;
- b=ktxvPe6asSDQg3JU/NVwIHWQPAUtEsIGJbOKyOc15Q2JgD502f2w/7pp
- sbC2xLeNQvSQOAib3ALxHAB16hV91KCn3K0bKIySa6XYsOncZDTP/3ByJ
- CxAS3jxh6244U7HFdwTCVfJnLGHwbc36sKs9r8yu+x+xuO0W0uVNZDs75
- qewqsv+HQltX0jKgqK1GsShOryAwMVLewYvWlCJb6lcS55H+drtFk6xdi
- AhAOrGoOqRLjLcWiGXC7wps/yaP8nVVBC5s8VO0jLNhptMdPuFp2XK7Uu
- /r3xtokbLiu222t4Qoi0VvWC00vGVmqmCZeSKFcETBr19qfirXzhn0DIH A==;
-X-CSE-ConnectionGUID: iPv+K4gnRTiWioYamHnrlw==
-X-CSE-MsgGUID: Od/NKM/OQI6DwzD1RYHTZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="41250289"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="41250289"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 00:31:14 -0800
-X-CSE-ConnectionGUID: 91NGtzrGQZ+z7wz1NcLQyw==
-X-CSE-MsgGUID: IpnHmNEDTjmXJpd0hjkGPQ==
+ t=1740388024; x=1771924024;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=t9ScBW2yGd9SWCJah/1Rmr+E/xvk0XmecLVjTv/K/qE=;
+ b=QKKV7guxd0dnByqMCDU9jDKQbn1SImQ+4ZmSpRy2h6Icgoh7L+LL6A6H
+ tWpYVOVzWWQaJsMgrPRfRVaXCldvOk/hnP25rnNt1L9Dd6umRgR+rGRKY
+ wlLMhT2RNrAOyaJh3A5gVuoier+uVz+lk+sN34O/8SOJn2vVu+miu7l2z
+ Wjh+u7dicxepwpPTTJVBAJ0BLAmvXk4wqwXzZUc9gYIMN2Vy5Gm2ESYrB
+ s+VUhLIUaFSWIs87RjFazUfZs4SiU3kuh1jPDIpRcv0Emb8bfj6xnEeBR
+ /Z6EB+4xFSuVFeplyZE0yrHTBZnVrySdK1z5h1+QMJOG0q9wD1FvfptDR g==;
+X-CSE-ConnectionGUID: mMxj7o/6RIW0+z1DgmXSeg==
+X-CSE-MsgGUID: YYTh02VZT2KHpJljSAPKOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="63602423"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="63602423"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:07:04 -0800
+X-CSE-ConnectionGUID: 3Vz9sllbQgiaBgyPhfb/Bw==
+X-CSE-MsgGUID: ApkaIjXVTSqCaPH0MLeNaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="116630834"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa009.fm.intel.com with ESMTP; 24 Feb 2025 00:31:12 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 8/8] drm/i915/lobf: Add debug print for LOBF
-Date: Mon, 24 Feb 2025 13:38:47 +0530
-Message-Id: <20250224080847.326350-9-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250224080847.326350-1-animesh.manna@intel.com>
-References: <20250224080847.326350-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115979779"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.133])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 01:07:00 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, shawn.c.lee.intel.om@freedesktop.org,
+ william.tseng@intel.com, ankit.k.nautiyal@intel.com, Gareth Yu
+ <gareth.yu@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>, Juha-Pekka
+ Heikkil <juha-pekka.heikkila@intel.com>
+Subject: Re: [PATCH] drm/i915/vdsc: Correct the conditions of DSC1.1 and DSC
+ 1.2 for rc params calculation
+In-Reply-To: <20250221041401.2219258-1-gareth.yu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250221041401.2219258-1-gareth.yu@intel.com>
+Date: Mon, 24 Feb 2025 11:06:57 +0200
+Message-ID: <87ldtv90em.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,31 +72,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Lobf is enabled part of ALPM configuration and if has_lobf
-is set to true respective bit for LOBF will be set. Add debug
-print while setting the bitfield of LOBF.
+On Fri, 21 Feb 2025, gareth.yu@intel.com wrote:
+> From: Gareth Yu <gareth.yu@intel.com>
+>
+> The condition change is because Gen 14 begins to support DSC 1.2
+> and need to check if the sink supports DSC1.2
+>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13719
+>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+> Signed-off-by: Gareth Yu <gareth.yu@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> index b355c479eda3..555180e40b72 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> @@ -320,7 +320,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+>  	 * upto uncompressed bpp-1, hence add calculations for all the rc
+>  	 * parameters
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >= 13) {
+> +	if ((DISPLAY_VER(dev_priv) >= 14) && (vdsc_cfg->dsc_version_minor >= 2)) {
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Please do not add unnecessary parenthesis. They're a distraction.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 5f8c1ec5e21c..cbcee0599e9d 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -385,8 +385,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
- 	}
- 
--	if (crtc_state->has_lobf)
-+	if (crtc_state->has_lobf) {
- 		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
-+		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
-+	}
- 
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
+BR,
+Jani.
+
+>  		calculate_rc_params(vdsc_cfg);
+>  	} else {
+>  		if ((compressed_bpp == 8 ||
+
 -- 
-2.29.0
-
+Jani Nikula, Intel
