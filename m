@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22292A41AB4
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 11:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AEA0A41B76
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 11:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD61710E1ED;
-	Mon, 24 Feb 2025 10:20:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7063610E1FC;
+	Mon, 24 Feb 2025 10:42:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TNlA+BgT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4QBCwVe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3588710E1ED
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2025 10:20:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3FE710E1FC;
+ Mon, 24 Feb 2025 10:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740392426; x=1771928426;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pn+QUh+Aq5G9NL2XDntQx2VKOf5KZXp+XdrgBKLhSI8=;
- b=TNlA+BgTDRsS+l+MNOJfNOmaQVuZPjnZM69rHrYx0DO0dYKaWDalAYhp
- i59ccJmqmnz6lan+9LQPsdAFZWqBzxkNe3W2AtDIEHep/4cRisu405f20
- VmrQtpXPLJ8OIM6In3IBv3YJTcqZoXMtA/UirtVfAu+Z+fK5xS3DFtU0L
- 5mKWuPzw7LBfGuMKu8wvtWi8eVKZycIRbwMLxrrKGu7K2nxAXf6FQxU4L
- d824+IO1TKBvM/uPN+BsLeteIVnsVQcCCR3HDN1Oru1LWAU0H8ZCz4IzN
- tAk/Pzor1P46RhOoUG6ApnU/Bc1uVjgdyBy2ym6aLAk+bGxwUKmNlymJG w==;
-X-CSE-ConnectionGUID: LISLKsFyTwWcr0q4MY+q5A==
-X-CSE-MsgGUID: 5ehE41awRZ2U4cNIQkdnQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="66513510"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="66513510"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:20:26 -0800
-X-CSE-ConnectionGUID: +YrU8GaXSweBJsUP7j+yWw==
-X-CSE-MsgGUID: pEcm+QEfRLWh35XG+dftUQ==
+ t=1740393728; x=1771929728;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=4L5ADrxTXk2BaAx3frJdknexgggOQ7n8k3XywPTYRBw=;
+ b=R4QBCwVeEuCHHOIGr2DBwML+Y+PqbTbAw9Y4INQgzcUjnQy/KXJYD0Is
+ LfBG4BAGPz0H8FaJBw9/2dRSY0vhwt1DRwmnMOGMJaEFVxSPTcnETJqpp
+ LoiyeJXCz00WtE092bl2rHGT8kIyJDdjp3QEJ1khyCpWypAwWvQkdg4OY
+ eIlH70lGiXilt2piOZht9Cg/mhEbkeK7S1BfaPxkcGr/FBclF3DKhoEA6
+ 6lgbvZELtDRT7bE2/9FrK89+9OAAYD4vM3KgoQjmYYMQY2UkEIfeg3XQ6
+ v7FKkcQDRxyFJM8tU11aj5Mv/iFhXT+aJKqedcWAVUHrfu4RlNkbgNvFv g==;
+X-CSE-ConnectionGUID: UzVxgXBHQqGLeu80PsOilQ==
+X-CSE-MsgGUID: 3I8f9EQ7S7S1yNzIwwIjaQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="40329586"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="40329586"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:42:08 -0800
+X-CSE-ConnectionGUID: BYW5VJ8uRbW/tJsGIRfG/A==
+X-CSE-MsgGUID: LdJiczpBTSe1b8lu8Um0cQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="115748785"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.159])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 02:20:24 -0800
-Date: Mon, 24 Feb 2025 11:20:20 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 11/12] drm/i915: Use REG_BIT() & co. for gen9+ timestamp
- freq registers
-Message-ID: <Z7xH5CnCHLZKpquW@ashyti-mobl2.lan>
-References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
- <20250211231941.22769-12-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121293144"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.133])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2025 02:42:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
+ <animesh.manna@intel.com>
+Subject: Re: [PATCH v4 1/8] drm/i915/lobf: Add lobf enablement in post plane
+ update
+In-Reply-To: <20250224080847.326350-2-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250224080847.326350-1-animesh.manna@intel.com>
+ <20250224080847.326350-2-animesh.manna@intel.com>
+Date: Mon, 24 Feb 2025 12:42:02 +0200
+Message-ID: <87zfib7hfp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250211231941.22769-12-ville.syrjala@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,17 +72,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> Enablement of LOBF is added in post plane update whenever
+> has_lobf flag is set. As LOBF can be enabled in non-psr
+> case as well so adding in post plane update. There is no
+> change of configuring alpm with psr path.
+>
+> v1: Initial version.
+> v2: Use encoder-mask to find the associated encoder from
+> crtc-state. [Jani]
+> v3: Remove alpm_configure from intel_psr.c. [Jouni]
+>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_alpm.c    | 25 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_alpm.h    |  4 ++++
+>  drivers/gpu/drm/i915/display/intel_display.c |  3 +++
+>  drivers/gpu/drm/i915/display/intel_psr.c     |  3 ---
+>  4 files changed, 32 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+> index 55f3ae1e68c9..a53ed83f6b22 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -367,6 +367,31 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
+>  	lnl_alpm_configure(intel_dp, crtc_state);
+>  }
+>  
+> +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> +				  struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(state);
+> +	const struct intel_crtc_state *crtc_state =
+> +		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct intel_encoder *encoder;
+> +
+> +	if (!(crtc_state->has_lobf || crtc_state->has_psr))
+> +		return;
 
-On Wed, Feb 12, 2025 at 01:19:39AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Convert the gen9+ timestamo frequency related registers to
-> the modern REG_BIT()/etc. style.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+I think this would read better as "if not lobf and not psr" than "if not
+(lobf or psr)" because of the need to verbalize the parens.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> +
+> +	for_each_intel_encoder_mask(display->drm, encoder,
+> +				    crtc_state->uapi.encoder_mask) {
+> +		struct intel_dp *intel_dp;
+> +
+> +		if (!intel_encoder_is_dp(encoder))
+> +			continue;
+> +
+> +		intel_dp = enc_to_intel_dp(encoder);
+> +
+> +		if (intel_dp_is_edp(intel_dp))
+> +			intel_alpm_configure(intel_dp, crtc_state);
+> +	}
+> +}
+> +
+>  static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
+>  {
+>  	struct intel_connector *connector = m->private;
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+> index 8c409b10dce6..2f862b0476a8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> @@ -12,6 +12,8 @@ struct intel_dp;
+>  struct intel_crtc_state;
+>  struct drm_connector_state;
+>  struct intel_connector;
+> +struct intel_atomic_state;
+> +struct intel_crtc;
+>  
+>  void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
+>  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+> @@ -21,6 +23,8 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+>  				    struct drm_connector_state *conn_state);
+>  void intel_alpm_configure(struct intel_dp *intel_dp,
+>  			  const struct intel_crtc_state *crtc_state);
+> +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> +				  struct intel_crtc *crtc);
+>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
+>  bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
+>  bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 065fdf6dbb88..5d5cee808bff 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -55,6 +55,7 @@
+>  #include "i9xx_plane.h"
+>  #include "i9xx_plane_regs.h"
+>  #include "i9xx_wm.h"
+> +#include "intel_alpm.h"
+>  #include "intel_atomic.h"
+>  #include "intel_atomic_plane.h"
+>  #include "intel_audio.h"
+> @@ -1077,6 +1078,8 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	enum pipe pipe = crtc->pipe;
+>  
+> +	intel_alpm_post_plane_update(state, crtc);
+> +
+>  	intel_psr_post_plane_update(state, crtc);
+>  
+>  	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 4e938bad808c..c1dd9c739fd4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1903,9 +1903,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+>  			     intel_dp->psr.psr2_sel_fetch_enabled ?
+>  			     IGNORE_PSR2_HW_TRACKING : 0);
+>  
+> -	if (intel_dp_is_edp(intel_dp))
+> -		intel_alpm_configure(intel_dp, crtc_state);
+> -
+>  	/*
+>  	 * Wa_16013835468
+>  	 * Wa_14015648006
 
-Thanks,
-Andi
+-- 
+Jani Nikula, Intel
