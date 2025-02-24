@@ -2,64 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B28A41FBB
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 13:56:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E24ECA4217E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2025 14:44:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4872610E288;
-	Mon, 24 Feb 2025 12:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58D610E52B;
+	Mon, 24 Feb 2025 13:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZqny0kx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YtJENO9H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC1DA10E273;
- Mon, 24 Feb 2025 12:56:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DED10E12A;
+ Mon, 24 Feb 2025 06:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740401799; x=1771937799;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DsZ3YiMcbiErhjH2qjp6Omdi7x4kOKfqY3p5K6+BvOk=;
- b=lZqny0kxkDrmvBvIoqbe8HT/hXp3fL+h8GMvzZ5SdO+dQZPz8Tm+IXBN
- pKuOQLypOymse3hJgWgEu5nNtM1KOwwrEEotI9302TPYtMBXRGYYykk+b
- EVrZ/qcVfgLEsXiY5w8sgvEM7RUJ3fNz7V24QSgeuDKAmZZBDCCnHpxCd
- E4PjWze1RfvMxG/FknTDUwNBiAmpTS6p1LWDGMJoVaEOVgAqC6lrybnGN
- +VN9FVqbaCIVfXRTbQGRPZXQXfjrMXCUVJJ1w1/O6UNqQSG2zIrP10g8F
- 28V4mTYuVEV/22bCgEKsCnjVKAnsFHbIKPGJjMWa7CeJk8qIHtZWajmb/ Q==;
-X-CSE-ConnectionGUID: hnNDk7flQResJO986kDOWA==
-X-CSE-MsgGUID: tOo6BcgGQySu0QnmSr01Tg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="51782043"
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="51782043"
+ t=1740377232; x=1771913232;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=JdEkd+bnyB4DRM14pjq1ieFe2dqOq/POV8Ol0pHeyJM=;
+ b=YtJENO9H5Nq2ImBufnYE0fSQzkoj82R6LrQrAryRlbOcvo2bw8Kp+b/b
+ 0eqScZhASTifUx/YaJe9xL8rDs957V9b0kpCofbHMJ+8jQiRMeMHzmYhO
+ 7hLGospeCtk7KyOtV3bBJAw7CpdO8HILLsV83tx49SC0StPnxUdaYch5Z
+ tBoQuWH6oxP0Prmkfjg3Y5bryQOm+9nHhOdTJF/lzYrrY/bnUVbPJZ3Q8
+ pjVt9ZNMFJZSq3WMI/OaKjtR48x8dvwMsiRc+v5XwHVnAfC53yxiB41EL
+ 7xIPK7x3pc7/thnLJO11nutTwUW0q712gr1uLl6h9Z7S3u8kNzfTZOCDZ Q==;
+X-CSE-ConnectionGUID: SG8lnD+0TFig85qnBwuhBQ==
+X-CSE-MsgGUID: 0X1dWf43ShK7jPSf8FlB6w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11354"; a="44897665"
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="44897665"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 04:56:38 -0800
-X-CSE-ConnectionGUID: vYyuYc8sR5K9JRMfNpOY4A==
-X-CSE-MsgGUID: JsmmLFdtSxqwqBJys1Lz7w==
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2025 22:07:11 -0800
+X-CSE-ConnectionGUID: +YY/oj0MRKWeeowQovX5jg==
+X-CSE-MsgGUID: EfvoBwwEQh2JScycpXwGdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="120961761"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.133])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2025 04:56:32 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
- Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 24 Feb 2025 14:56:28 +0200
-Message-ID: <87h64j7b7n.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,309,1732608000"; d="scan'208";a="120877526"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Feb 2025 22:07:11 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Sun, 23 Feb 2025 22:07:10 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Sun, 23 Feb 2025 22:07:10 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Sun, 23 Feb 2025 22:07:08 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TkkU0qI3VDH/Wy6frlEpEDF3af2SHzE+EWq35DjX5hO20pV7PoW6B4jZZODx6/mlp92/2rpWZdM/W9sQIr1cXROEZtmMqOylKa2LuRKR0L/FcIz6hqkJLRQU1d0esJTKRyMi23ksSfsq+ZOWjUSYOv0DUYyxDYuMNhMbRTUdAy+RCWO2w9gHwAWwdwslmgR/cA7A/5bAI3copAQozyqB2BDmvacn7pbd8ry1c84qiG6gsOt+Wy8lUXu1zhmlE7zTIlFZMYuap1rMGjtDRX9Y2CUs2F7AqDy5RTqcIzX0V3sDSYuvH6C3ymdqLzODxmFDEdbEf4pR0/ohgOOXEFq2Ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0Cc9mIP2H0eif96lhwB6eFfptjvZl9JhMkUINzk9fUc=;
+ b=SGNMIJN69maEoaybNSC/nHKk/4IKejcnpCoYtuUc+RB+0hDLlRPST7oybi3x2tNpyPmv1qzoFb32FSl15iqSeuf0Ztyqhw6xvsTh50Jg6w0KcKY7YUQkjeD1Flap6YtTnrS9XENxfkxMNI5b/e5TmBJ9IBAYn6mEa4wtlvVQgYxVdJdrQt64SQnU2ZikwRMsEI8IYPPqu20Dd+nDOncChxECJMJaQ8mS2fwB5RTwHP+ZBXCJzi5XKssFR/dTmiPepP/yxQ2iS0u277pO16iaDqKBKWr/Fv+xK7o9ITnfo26Uunvm7kAsGh2JycOF7tgeEtK2BeDW4h06B+inlLA0zQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by MW4PR11MB7102.namprd11.prod.outlook.com (2603:10b6:303:22b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.17; Mon, 24 Feb
+ 2025 06:06:52 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8466.016; Mon, 24 Feb 2025
+ 06:06:52 +0000
+Message-ID: <f9641756-5d96-4c34-9e93-6a17a20e1677@intel.com>
+Date: Mon, 24 Feb 2025 11:36:41 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/6] drm/i915/display: Compute the scaler filter
+ coefficients
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+CC: Naga Venkata Srikanth V <nagavenkata.srikanth.v@intel.com>
+References: <20250219115359.2320992-1-nemesa.garg@intel.com>
+ <20250219115359.2320992-3-nemesa.garg@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250219115359.2320992-3-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0P287CA0009.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:d9::9) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MW4PR11MB7102:EE_
+X-MS-Office365-Filtering-Correlation-Id: eecfa3ec-0a05-4748-8deb-08dd54996eb9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?c2lHenVqbWc2NmZQOUNGMFUvcktPcXcvWVZhc1Y4cWpDQmF3QWc3WUpPaUdv?=
+ =?utf-8?B?dTVseHZIQTNHN0xtZWhBQmFEWEpzNFBQTkQ5S0hVU1dVVlVKaHRiK0Nnemc2?=
+ =?utf-8?B?K0czeWl0ZjRFMFB4VHhuSmRjUlRhTVl3Y0wxbkl4em9kQ2x6VjlwTWpQSy8r?=
+ =?utf-8?B?MURJVXFKZVFFL3REMUNLdnBLeWlDRFMvK212Z1hRdlNjWUpaRVc1c21oM1R6?=
+ =?utf-8?B?ald2Vk15UThsWEtsOGhlUk5uSHpRaHY0Rm5Oc1dIT3ZCRTNveUUxRmxMQWRK?=
+ =?utf-8?B?NDlWazlYTER2VEhNMVBYUHZRb01GVGgwSVJaR2xQWU1ZNGVKNzVSNU0wcmhk?=
+ =?utf-8?B?eGwwcCt0RWdLQlQvSDBOQjduR3BSaWtXOFJDMW0wMXJ2Y015MHFUVEgzNDhQ?=
+ =?utf-8?B?clBUaVFVTVZ0ZE5lNFJWTEQrZllPU3B2TmZzUHpKSVlMWFE4a2ZkRFZpcjlH?=
+ =?utf-8?B?RHhWZ3RvWDVFMTJHQm9TOTlzMEFyakJCK296Zi9Cci9jV0MzWS9ZSTN2UGxv?=
+ =?utf-8?B?bVBUODA0am1xbENiUmlZYkYwRTlQdVpOMkhtRUs2TDJDcXVPNVZXMmk5N3Jv?=
+ =?utf-8?B?dmd4TyswMGo2TCtzOVNzMjVIUG1OcUJSWjl0c1lxcG5SMmF5UUp6NjNPcjl0?=
+ =?utf-8?B?TCtRbGh3cnN3WEtmbFBDUnltSVU0OEdSNXVkMUhDYno3SjBNSnZqTWk5T2sz?=
+ =?utf-8?B?a04wRy8ya1RHVy9STlNBN3EvNndSdWVvVkMzblRvVmxLSVF4SEc4UW55c1pT?=
+ =?utf-8?B?SXRsTTgxdmRaMDVma1dmTnFnbDREenVwWWpNd0hxZitzMzFveFQwMFQxdDdu?=
+ =?utf-8?B?c0xqbFZGUStIbEs2T0NjdU5OUlNzL0ZuTTdOa0lienF2aHdiUGU5anZaZ0I3?=
+ =?utf-8?B?SjFzWXRXdGxmZ0FHZkU1NFVrOGRYTi9tU21YOFA4TGowVHU4ZDhTdTNybWxh?=
+ =?utf-8?B?R0haQ0pMckJLWGxNUkgvaHVqQ2Jyc2RBblhEd3kvT01UeGxuSEFKaGFIeXcv?=
+ =?utf-8?B?bFVMdWNFY25HMzJ6aktzUVFySFVLb3EvMGJWR3FtTzBDd1V6cTRIckhJa1VV?=
+ =?utf-8?B?MGdOTnZwQ0ZvcU1WYkU5TDcrTFcyR2FQZkcycHBKUFVCUUYydnpYeExxcEFa?=
+ =?utf-8?B?U1l5QXRSWVQ1NFZPd09YUnR5WjNwMllzTEFEQWhoNFhVVzg2Qk4va2szRHg4?=
+ =?utf-8?B?c2R4RXBDcThoTHFaaDVNOU12ZmtzOHo3blNwQVVobEVib3B1bDB4eDljNmVM?=
+ =?utf-8?B?aUZ6R2JYaDZlMGJlUEVIU2ltdUg3SlV5SlJoem91dlR5cXhvaGpoS1JGaUoy?=
+ =?utf-8?B?VjFxcWg5R0ZPblNNQ04rZkM1RHVCdGQvN0ZOa1B2WWttRGtScFFsUm1FRSti?=
+ =?utf-8?B?MFUvc2w0LytFdWMzZGdYR294cEc3ZkdTRC95QTRSYXhnOUlYeWtTc2JNWDBi?=
+ =?utf-8?B?RHRJVUxieWQ3T1FLRlpDQmNNQ2xHWFVDOGthR0NRdm9LOENONkN6NnNpZ2hF?=
+ =?utf-8?B?UFBkWW5qdUErRWt2b0R1VUNZQWtZWXhQSnFPQ3k0UmpJSzVvOGVLdWIrY2Qy?=
+ =?utf-8?B?QzEwUWRxd25KVDVoNlJkWStaTTB1U0djZEk3a0dNUDZ5clJZSGthS3ZVS0VT?=
+ =?utf-8?B?eGdVNytTQWE1Z011dXllY2IxTjNpMFcrblUvNzU4M2hTUk5YWWZ5Y2RILzlV?=
+ =?utf-8?B?UEhGM3NZR1FTMC9tMWJPOUxaQi9tNE5VNVozS3htUi9aLzdlS2pSWFdITm83?=
+ =?utf-8?B?MWtwNTBXRUI0Zjh1VkduVlFMdnNncmpGbkc3RjRPWEQrK3B5Wk5RWUl1Qjc3?=
+ =?utf-8?Q?07zZvlDtCqGvE29K6kepyA1PYR0FyrhBhdPv8=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmlHRXN4NmZqTFp5MzE5eG1oU1Ivd044U01WcklPVHVkdHloS3lGWUFGb2NH?=
+ =?utf-8?B?MkF3VWhKZlRWakN5Ym5odjVOWUc1NXNaVkZBKzVHM3B0U2dYdHNxRXljQmQv?=
+ =?utf-8?B?a29rQTRVbDlzUWJlblVTT1QwMVJQbGF4OXRBU29hdmNYZmJ0MnhRQm5FMUpx?=
+ =?utf-8?B?T1c0ZmZNdUZNYzlsMjlvaVhiVS9lL0pJSzVLbCtCNW1NaUxtYnZuUGpUV1p4?=
+ =?utf-8?B?SnlMbzFLNm5weVlFTGFYQUt3N3NCaExCeHlaN1Z4TEc2NVVSa3NpUVpEM096?=
+ =?utf-8?B?UUNTQlh5eGY1dFVONWxSNHFHWGhyN3pzUW5LdXU1Vk9aSUhqL09ETmpOTUxp?=
+ =?utf-8?B?bGFvRHV2bnBWU1BHK1JLVDEvNVhYUUpxT2g3dGlxS1FIQUJnZXdBaUVTaGdo?=
+ =?utf-8?B?eElQdlRDUEEzaXZTTnYwSVJJSk52WnppTnJSVXh4amhVOVJZVXlxUjVpSTk3?=
+ =?utf-8?B?eGE3cjZPTGo3by9YTTRFQ0trRUVMWWdVcy9weFdxTVV3VFZvb3FaK21BUGZU?=
+ =?utf-8?B?RitPT2FHQXB3cEVJSitxSHl4MjVJdjFlaXViU1l4cVR4cTlHV0txMTh6bXk3?=
+ =?utf-8?B?VDg5eEhxQlQ5ZTZPUXFzaG84WGZ4RW9XMWFucUpLRTloVW9XYmxnaTRWTUt2?=
+ =?utf-8?B?bm5hV2w4WGRuS2Jkc2lPQzl3M0NxRDRtcHVQbGE1ckhkTlUzb1dWVGgxK3hH?=
+ =?utf-8?B?c2lJbzB0RG5KYUV2VmRDd0dVMFhBNzZkRzk1R3JTeEh5dXF3bnpsbWlhQjFK?=
+ =?utf-8?B?MktoUzJDN0VMVVExejdNVUhtWmsyTThQY3BCL1pObDdoYXd1aUhKZnBsYkRC?=
+ =?utf-8?B?MEZJeGJTQ0xlcTVsNjlaQ0M1YnR3azNXYi9WeFBoUGJFSXA2cTB6Y3VjWTBz?=
+ =?utf-8?B?WWowbmp4MjFYUzVIam9zSE9kaTUrbGFFNmwxWGRWbXltZnAwaFJFbU1IMmV2?=
+ =?utf-8?B?YlRCSjR0U0YxejdRYTJVMENXMStFdW1OQjZUT0p5eUp5OE9JS2crZjgzNkUw?=
+ =?utf-8?B?V3phVnFkZjJTYXdtRnowTVltdjZxSWJjdWlreUNrdVNCMzIrOFJ5VlZRdDZN?=
+ =?utf-8?B?ODEyVTMydFRWTEE3S0JFUFdTY2JFb3ozaHp1Ull2bzRMNll3SnFhT283YnVN?=
+ =?utf-8?B?SVltRU5iOHpObFhvdi9WZGhrdm1tdUJ4ZHpUZTVNblVkT0plVkZRSk9xTDJl?=
+ =?utf-8?B?bU5tZlRkc2ZxZHkreE5ZUkRFbDF1RGY0S3dkQ3B1QU9Hc0tHOG8yK2pIbktx?=
+ =?utf-8?B?SnVOS3I3YVZUZC82Y3NUS0NCYVRxMm90Z0kvSTA2cm52K3ppUk4vMmpneUZP?=
+ =?utf-8?B?YVhmMmxtZkRZaVRMSFVMb0Y3NUZLVHdxREhPT2psc1RQVFI3SjRSTG1SVFFa?=
+ =?utf-8?B?U2JYTklZT0U1N2F5QVlab0Q2RzA2RVhjK1ZKUEhNclFFTTVLak5FeExTR0VC?=
+ =?utf-8?B?SjVxYmlybnJPUkNlSTdzeUMyU3BKSE8rZlR5UWROTWM3ekZudXBDUUcyVmU1?=
+ =?utf-8?B?bGlHZUNDMENveEF4dktab0Zqbzdod3B6WVR0WkxOSmlzb1BhU3JtMFFiRERG?=
+ =?utf-8?B?SnZRQ0JIQmFQY2c1dFgrMzZVVUg1RGNRc09VZmF3amhYVEIrMFgwK2VVaEVN?=
+ =?utf-8?B?VGJyd2syYlN2OUJtSzZuWjhPbDBLRFJnSWtnMlRHa0lYb3hlNnV0YmsxVGlO?=
+ =?utf-8?B?UW8yMDFwcHRZZVphVVRFbWlMWFlOaEVVMjV2TVlxaHhoTEdVMXVBNjEzUGgr?=
+ =?utf-8?B?Vm1nbGpQcUp2MnlvWVh3ZEZEMzBFOTZOUDlxSDVySTN6SFdmUVdnZEo2SUxO?=
+ =?utf-8?B?OTRzbmNrR2tYeTFGMU95T2hoRmFXbG5HcU82dDROVFBkTVVyV2tDTmZmelZ4?=
+ =?utf-8?B?cGVybkJsbFN4QTNvVHpuTlZ3NURhOVpyNUlPL2pHZjJvMVM4VGR2TytDTEJG?=
+ =?utf-8?B?TGtveXBpYkNkYThYcUs4Rzg5dTByaTBHeGhTOWVUQlhhTFVyS3BBeEVHY1pG?=
+ =?utf-8?B?RG9vMEhMZldqdjZnK0htOVQraEJqbVdaSDB5RWY0NVFqN1dsQ0h3bUx5K0ti?=
+ =?utf-8?B?SEVSbkhKN1FkUEQvUDFIbVd6Mm1ZUlZGMW52SlBuYUZNMnY3aHo3MHppN0Jq?=
+ =?utf-8?B?MGJISlZnME9LSmV2eHk2d3JRVUdqSUNpQ1JTa1dLVkRsUU5lVUxFOEp0N05w?=
+ =?utf-8?B?VFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: eecfa3ec-0a05-4748-8deb-08dd54996eb9
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2025 06:06:52.2036 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1AxNGK2+alocztCxBrftYRmw+uUQqkeoJP50UqhV3SYtYIrniMsQcQonQAwg6gu/09UvS3kwii8g5MywRlec/ZdkGkk3ZEs5+4vEY5HS9Lc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7102
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,784 +197,333 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-Hi Dave & Sima -
+On 2/19/2025 5:23 PM, Nemesa Garg wrote:
+> The sharpness property requires the use of one of the scaler
+> so need to set the sharpness scaler coefficient values.
+> These values are based on experiments and vary for different
+> tap value/win size. These values are normalized by taking the
+> sum of all values and then dividing each value with a sum.
+>
+> v2: Fix ifndef header naming issue reported by kernel test robot
+> v3: Rename file name[Arun]
+>      Replace array size number with macro[Arun]
+> v4: Correct the register format[Jani]
+>      Add brief comment and expalin about file[Jani]
+>      Remove coefficient value from crtc_state[Jani]
+> v5: Fix build issue
+> v6: Add new function for writing coefficients[Ankit]
+> v7: Add cooments and add a scaler id check [Ankit]
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> Reviewed-by: Naga Venkata Srikanth V <nagavenkata.srikanth.v@intel.com>
+> ---
+>   drivers/gpu/drm/i915/Makefile                 |   1 +
+>   drivers/gpu/drm/i915/display/intel_casf.c     | 154 ++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_casf.h     |  16 ++
+>   .../gpu/drm/i915/display/intel_casf_regs.h    |  19 +++
+>   drivers/gpu/drm/i915/display/intel_display.c  |   1 +
+>   .../drm/i915/display/intel_display_types.h    |  13 ++
+>   drivers/gpu/drm/xe/Makefile                   |   1 +
+>   7 files changed, 205 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ed05b131ed3a..d7550b26cdfb 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -230,6 +230,7 @@ i915-y += \
+>   	display/intel_bios.o \
+>   	display/intel_bo.o \
+>   	display/intel_bw.o \
+> +	display/intel_casf.o \
+>   	display/intel_cdclk.o \
+>   	display/intel_cmtg.o \
+>   	display/intel_color.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> new file mode 100644
+> index 000000000000..1526bebae1b6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -0,0 +1,154 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + *
+> + */
+> +#include "i915_reg.h"
+> +#include "intel_casf.h"
+> +#include "intel_casf_regs.h"
+> +#include "intel_de.h"
+> +#include "intel_display_types.h"
+> +#include "skl_scaler.h"
+> +
+> +#define FILTER_COEFF_0_125 125
+> +#define FILTER_COEFF_0_25 250
+> +#define FILTER_COEFF_0_5 500
+> +#define FILTER_COEFF_1_0 1000
+> +#define FILTER_COEFF_0_0 0
+> +#define SET_POSITIVE_SIGN(x) ((x) & (~SIGN))
+> +
+> +/**
+> + * DOC: Content Adaptive Sharpness Filter (CASF)
+> + *
+> + * From LNL onwards the display engine based adaptive
+> + * sharpening filter is supported. This helps in
+> + * improving the image quality. The display hardware
+> + * uses one of the pipe scaler for implementing casf.
+> + * It works on a region of pixels depending on the
+> + * tap size. The coefficients are used to generate an
+> + * alpha value which is used to blend the sharpened image
+> + * to original image.
+> + */
+> +
+> +const u16 filtercoeff_1[] = {
+> +	FILTER_COEFF_0_0, FILTER_COEFF_0_0, FILTER_COEFF_0_5,
+> +	FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_0,
+> +	FILTER_COEFF_0_0,
+> +};
+> +
+> +const u16 filtercoeff_2[] = {
+> +	FILTER_COEFF_0_0, FILTER_COEFF_0_25, FILTER_COEFF_0_5,
+> +	FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_25,
+> +	FILTER_COEFF_0_0,
+> +};
+> +
+> +const u16 filtercoeff_3[] = {
+> +	FILTER_COEFF_0_125, FILTER_COEFF_0_25, FILTER_COEFF_0_5,
+> +	FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_25,
+> +	FILTER_COEFF_0_125,
+> +};
+> +
+> +static int casf_coeff_tap(int i)
+> +{
+> +	return i % SCALER_FILTER_NUM_TAPS;
+> +}
+> +
+> +static u16 casf_coeff(struct intel_crtc_state *crtc_state, int t)
+> +{
+> +	struct scaler_filter_coeff value;
+> +	u16 coeff;
+> +
+> +	value = crtc_state->hw.casf_params.coeff[t];
+> +	coeff = SET_POSITIVE_SIGN(0) | EXPONENT(value.exp) | MANTISSA(value.mantissa);
+> +
+> +	return coeff;
+> +}
+> +
+> +/*
+> + * 17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
+> + * To enable casf:  program scaler coefficients with the coeffients
+> + * that are calculated and stored in hw.casf_params.coeff as per
+> + * SCALER_COEFFICIENT_FORMAT
+> + *
 
-The first i915 pull request towards v6.15, admittedly later than I'd
-hoped, and thus also quite big in one go. On the plus side, the next one
-is going to be smaller...
-
-The vast majority of changes is display, and I don't expect this trend
-to change. Increasingly, the i915 core changes will be about separating
-display from it.
+Remove extra line here.
 
 
-BR,
-Jani.
+> + */
+> +static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	int id = crtc_state->scaler_state.scaler_id;
+> +	int i;
+> +
+> +	if (id == 0) {
+> +		drm_WARN(display->drm, 0, "Second scaler not enabled\n");
+> +		return;
+> +	}
+
+Perhaps better thing to check here is if (id != 1)
 
 
-drm-intel-next-2025-02-24:
-drm/i915 feature pull for v6.15:
+> +
+> +	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(crtc->pipe, id, 0),
+> +			  PS_COEF_INDEX_AUTO_INC);
+> +
+> +	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(crtc->pipe, id, 1),
+> +			  PS_COEF_INDEX_AUTO_INC);
+> +
+> +	for (i = 0; i < 17 * 7; i += 2) {
 
-Features and functionality:
-- Enable DP 128b/132b SST DSC (Jani, Imre)
-- Allow DSB to perform commits when VRR is enabled (Ville)
-- Compute HDMI PLLs for SNPS/C10 PHYs for rates not in fixed tables (Ankit)
-- Allow DSB usage when PSR is enabled on LNL+ (Jouni)
-- Enable Panel Replay mode change without full modeset (Jouni)
-- Enable async flips with compressed buffers on ICL+ (Ville)
-- Support luminance based brightness control via DPCD for eDP (Suraj)
-- Enable VRR enable/disable without full modeset (Mitul, Ankit)
-- Add debugfs facility for force testing HDCP 1.4 (Suraj)
-- Add scaler tracepoints, improve plane tracepoints (Ville)
-- Improve DMC wakelock debugging facilities (Gustavo)
-- Allow GuC SLPC default strategies on MTL+ for performance (Rodrigo)
-- Provide more information on display faults (Ville)
+Use the macro here.
 
-Refactoring and cleanups:
-- Continue conversions to struct intel_display (Ville, Jani, Suraj, Imre)
-- Joiner and Y plane reorganization (Ville)
-- Move HDCP debugfs to intel_hdcp.c (Jani)
-- Clean up and unify LSPCON interfaces (Jani)
-- Move code out of intel_display.c to reduce its size (Ville)
-- Clean up and simplify DDI port enabling/disabling (Imre)
-- Make LPT LP a dedicated PCH type, refactor (Jani)
-- Simplify DSC range BPG offset calculation (Ankit)
-- Scaler cleanups (Ville)
-- Remove unused code from GVT (David Alan Gilbert)
-- Improve plane debugging (Ville)
-- DSB and VRR refactoring (Ville)
 
-Fixes:
-- Check if vblank is sufficient for DSC prefill and scaler (Mitul)
-- Fix Mesa clear color alignment regression (Ville)
-- Add missing TC DP PHY lane stagger delay (Imre)
-- Fix DSB + VRR usage for PTL+ (Ville)
-- Improve robustness of display VT-d workarounds (Ville)
-- Fix platforms for dbuf tracker state service programming (Ravi)
-- Fix DMC wakelock support conditions (Gustavo)
-- Amend DMC wakelock register ranges (Gustavo)
-- Disable the Common Primary Timing Generator (CMTG) (Gustavo)
-- Enable C20 PHY SSC (Suraj)
-- Add workaround for DKL PHY DP mode write (Nemesa)
-- Fix build warnings on clamp() usage (Guenter Roeck, Ankit)
-- Fix error handling while adding a connector (Imre)
-- Avoid full modeset at probe on vblank delay mismatches (Ville)
-- Fix encoder HDMI check for HDCP line rekeying (Suraj)
-- Fix HDCP repeater authentication during topology change (Suraj)
-- Handle display PHY power state reset for power savings (Mika)
-- Fix typos all over the place (Nitin)
-- Update HDMI TMDS C20 parameters for various platforms (Dnyaneshwar)
-- Guarantee a minimum hblank time for 128b/132b and 8b/10b MST (Arun, Imre)
-- Do not hardcode LSPCON settle timeout (Giedrius Statkevi=C4=8Dius)
+> +		u32 tmp;
+> +		int t;
+> +
+> +		t = casf_coeff_tap(i);
+> +		tmp = casf_coeff(crtc_state, t);
+> +
+> +		t = casf_coeff_tap(i + 1);
+> +		tmp |= casf_coeff(crtc_state, t) << 16;
+> +
+> +		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 0),
+> +				  tmp);
+> +		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 1),
+> +				  tmp);
+> +	}
+> +}
+> +
+> +void intel_casf_enable(struct intel_crtc_state *crtc_state)
+> +{
+> +	intel_casf_write_coeff(crtc_state);
+> +}
+> +
+> +static void convert_sharpness_coef_binary(struct scaler_filter_coeff *coeff,
+> +					  u16 coefficient)
+> +{
+> +	if (coefficient < 25) {
+> +		coeff->mantissa = (coefficient * 2048) / 100;
+> +		coeff->exp = 3;
+> +	} else if (coefficient < 50) {
+> +		coeff->mantissa = (coefficient * 1024) / 100;
+> +		coeff->exp = 2;
+> +	} else if (coefficient < 100) {
+> +		coeff->mantissa = (coefficient * 512) / 100;
+> +		coeff->exp = 1;
+> +	} else {
+> +		coeff->mantissa = (coefficient * 256) / 100;
+> +		coeff->exp = 0;
+> +	}
+> +}
+> +
+> +void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	const u16 *filtercoeff;
+> +	u16 filter_coeff[SCALER_FILTER_NUM_TAPS];
+> +	u16 sumcoeff = 0;
+> +	u8 i;
+> +
+> +	if (crtc_state->hw.casf_params.win_size == 0)
+> +		filtercoeff = filtercoeff_1;
+> +	else if (crtc_state->hw.casf_params.win_size == 1)
+> +		filtercoeff = filtercoeff_2;
+> +	else
+> +		filtercoeff = filtercoeff_3;
+> +
+> +	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++)
+> +		sumcoeff += *(filtercoeff + i);
+> +
+> +	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
+> +		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
+> +		convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
+> +					      filter_coeff[i]);
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> new file mode 100644
+> index 000000000000..840208b277f8
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_CASF_H__
+> +#define __INTEL_CASF_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_crtc_state;
+> +
+> +void intel_casf_enable(struct intel_crtc_state *crtc_state);
+> +void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
+> +
+> +#endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf_regs.h b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> new file mode 100644
+> index 000000000000..0b3fcdb22c0c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
 
-Xe driver changes:
-- Re-use display vmas when possible (Maarten)
-- Remove double pageflip (Maarten)
-- Enable DP tunneling (Imre)
-- Separate i915 and xe tracepoints (Ville)
+2025
 
-DRM core changes:
-- Increase DPCD eDP display control CAP size to 5 bytes (Suraj)
-- Add DPCD eDP version 1.5 definition (Suraj)
-- Add timeout parameter to drm_lspcon_set_mode() (Giedrius Statkevi=C4=8Diu=
-s)
 
-Merges:
-- Backmerge drm-next (Jani)
+> + */
+> +
+> +#ifndef __INTEL_CASF_REGS_H__
+> +#define __INTEL_CASF_REGS_H__
+> +
+> +#include "intel_display_reg_defs.h"
+> +
+> +/* Scaler Coefficient structure */
+> +#define SIGN				REG_BIT(15)
+> +#define EXPONENT_MASK			REG_GENMASK(13, 12)
+> +#define EXPONENT(x)			REG_FIELD_PREP(EXPONENT_MASK, (x))
+> +#define MANTISSA_MASK			REG_GENMASK(11, 3)
+> +#define MANTISSA(x)			REG_FIELD_PREP(MANTISSA_MASK, (x))
+> +
+> +#endif /* __INTEL_CASF_REGS__ */
+> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 065fdf6dbb88..0f3279cfa0f1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -60,6 +60,7 @@
+>   #include "intel_audio.h"
+>   #include "intel_bo.h"
+>   #include "intel_bw.h"
+> +#include "intel_casf.h"
 
-BR,
-Jani.
+This does not belong to this patch.
 
-The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
 
-  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
+Regards,
 
-are available in the Git repository at:
+Ankit
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-20=
-25-02-24
-
-for you to fetch changes up to 5b99dd12fe53c745b40191b9e7fe9a25653b4e7a:
-
-  drm/i915/hdcp: Create force_hdcp14 debug fs entry (2025-02-20 12:47:57 +0=
-530)
-
-----------------------------------------------------------------
-drm/i915 feature pull for v6.15:
-
-Features and functionality:
-- Enable DP 128b/132b SST DSC (Jani, Imre)
-- Allow DSB to perform commits when VRR is enabled (Ville)
-- Compute HDMI PLLs for SNPS/C10 PHYs for rates not in fixed tables (Ankit)
-- Allow DSB usage when PSR is enabled on LNL+ (Jouni)
-- Enable Panel Replay mode change without full modeset (Jouni)
-- Enable async flips with compressed buffers on ICL+ (Ville)
-- Support luminance based brightness control via DPCD for eDP (Suraj)
-- Enable VRR enable/disable without full modeset (Mitul, Ankit)
-- Add debugfs facility for force testing HDCP 1.4 (Suraj)
-- Add scaler tracepoints, improve plane tracepoints (Ville)
-- Improve DMC wakelock debugging facilities (Gustavo)
-- Allow GuC SLPC default strategies on MTL+ for performance (Rodrigo)
-- Provide more information on display faults (Ville)
-
-Refactoring and cleanups:
-- Continue conversions to struct intel_display (Ville, Jani, Suraj, Imre)
-- Joiner and Y plane reorganization (Ville)
-- Move HDCP debugfs to intel_hdcp.c (Jani)
-- Clean up and unify LSPCON interfaces (Jani)
-- Move code out of intel_display.c to reduce its size (Ville)
-- Clean up and simplify DDI port enabling/disabling (Imre)
-- Make LPT LP a dedicated PCH type, refactor (Jani)
-- Simplify DSC range BPG offset calculation (Ankit)
-- Scaler cleanups (Ville)
-- Remove unused code from GVT (David Alan Gilbert)
-- Improve plane debugging (Ville)
-- DSB and VRR refactoring (Ville)
-
-Fixes:
-- Check if vblank is sufficient for DSC prefill and scaler (Mitul)
-- Fix Mesa clear color alignment regression (Ville)
-- Add missing TC DP PHY lane stagger delay (Imre)
-- Fix DSB + VRR usage for PTL+ (Ville)
-- Improve robustness of display VT-d workarounds (Ville)
-- Fix platforms for dbuf tracker state service programming (Ravi)
-- Fix DMC wakelock support conditions (Gustavo)
-- Amend DMC wakelock register ranges (Gustavo)
-- Disable the Common Primary Timing Generator (CMTG) (Gustavo)
-- Enable C20 PHY SSC (Suraj)
-- Add workaround for DKL PHY DP mode write (Nemesa)
-- Fix build warnings on clamp() usage (Guenter Roeck, Ankit)
-- Fix error handling while adding a connector (Imre)
-- Avoid full modeset at probe on vblank delay mismatches (Ville)
-- Fix encoder HDMI check for HDCP line rekeying (Suraj)
-- Fix HDCP repeater authentication during topology change (Suraj)
-- Handle display PHY power state reset for power savings (Mika)
-- Fix typos all over the place (Nitin)
-- Update HDMI TMDS C20 parameters for various platforms (Dnyaneshwar)
-- Guarantee a minimum hblank time for 128b/132b and 8b/10b MST (Arun, Imre)
-- Do not hardcode LSPCON settle timeout (Giedrius Statkevi=C4=8Dius)
-
-Xe driver changes:
-- Re-use display vmas when possible (Maarten)
-- Remove double pageflip (Maarten)
-- Enable DP tunneling (Imre)
-- Separate i915 and xe tracepoints (Ville)
-
-DRM core changes:
-- Increase DPCD eDP display control CAP size to 5 bytes (Suraj)
-- Add DPCD eDP version 1.5 definition (Suraj)
-- Add timeout parameter to drm_lspcon_set_mode() (Giedrius Statkevi=C4=8Diu=
-s)
-
-Merges:
-- Backmerge drm-next (Jani)
-
-----------------------------------------------------------------
-Ankit Nautiyal (10):
-      drm/i915/dsc: Use helper to calculate range_bpg_offset
-      drm/i915/dsc: Remove old comment about DSC 444 support
-      drm/i915/dp: Correct max compressed bpp bounds by using link bpp
-      drm/i915/display: Add support for SNPS PHY HDMI PLL algorithm for DG2
-      drm/i915/snps_phy: Use HDMI PLL algorithm for DG2
-      drm/i915/cx0_phy_regs: Add C10 registers bits
-      drm/i915/intel_snps_hdmi_pll: Compute C10 HDMI PLLs with algorithm
-      drm/i915/cx0_phy: Use HDMI PLL algorithm for C10 PHY
-      drm/i915/dp: fix the Adaptive sync Operation mode for SDP
-      drm/i915/dp: Return min bpc supported by source instead of 0
-
-Arun R Murthy (1):
-      drm/i915/dp: Guarantee a minimum HBlank time
-
-Dnyaneshwar Bhadane (2):
-      drm/i915/display: Add MTL subplatforms definition
-      drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
-
-Dr. David Alan Gilbert (3):
-      drm/i915/gvt: Remove intel_gvt_ggtt_h2g<->index
-      drm/i915/gvt: Remove unused intel_vgpu_decode_sprite_plane
-      drm/i915/gvt: Remove unused intel_gvt_in_force_nonpriv_whitelist
-
-Giedrius Statkevi=C4=8Dius (1):
-      drm/i915/lspcon: do not hardcode settle timeout
-
-Guenter Roeck (1):
-      drm/i915/backlight: Return immediately when scale() finds invalid par=
-ameters
-
-Gustavo Sousa (10):
-      drm/i915/dmc_wl: Use enum values for enable_dmc_wl
-      drm/i915/dmc_wl: Show description string for enable_dmc_wl
-      drm/i915/dmc_wl: Allow enable_dmc_wl=3D2 to mean "match any register"
-      drm/i915/dmc_wl: Allow enable_dmc_wl=3D3 to mean "always locked"
-      drm/i915/display: Use display MMIO functions in intel_display_irq.c
-      drm/i915/display: Wrap IRQ-specific uncore functions
-      drm/i915/dmc_wl: Track pipe interrupt registers
-      drm/i915/cmtg: Disable the CMTG
-      drm/i915/dmc_wl: Track INITIATE_PM_DMD_REQ for DC5
-      drm/i915/dmc_wl: Do not check for DMC payload
-
-Imre Deak (22):
-      drm/xe/dp: Enable DP tunneling
-      drm/xe/dp: Fix non-display builds with DP tunnelling incorrectly enab=
-led
-      drm/i915/dp_mst: Fix error handling while adding a connector
-      drm/i915/dp_mst: Use intel_connector vs. drm_connector pointer in int=
-el_dp_mst.c
-      drm/i915/dp_mst: Simplify using to_intel_display() passing it an inte=
-l_connector pointer
-      drm/i915/dp_mst: Simplify getting a drm_device pointer needed by to_i=
-915()
-      drm/i915/dp_mst: Use intel_display::platform.alderlake_p instead of I=
-S_ALDERLAKE_P()
-      drm/i915/dp_mst: Fix getting display pointer in intel_dp_mst_compute_=
-min_hblank()
-      drm/i915/dp_mst: Fix disabling the minimum HBlank time
-      drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port width macro
-      drm/i915/ddi: Fix HDMI port width programming in DDI_BUF_CTL
-      drm/i915/ddi: Make all the PORT_WIDTH macros work the same way
-      drm/i915/ddi: Set missing TC DP PHY lane stagger delay in DDI_BUF_CTL
-      drm/i915/ddi: Simplify the port enabling via DDI_BUF_CTL
-      drm/i915/ddi: Simplify the port disabling via DDI_BUF_CTL
-      drm/i915/ddi: Simplify waiting for a port to get active/idle via DDI_=
-BUF_CTL
-      drm/i915/ddi: Move platform checks within mtl_ddi_enable/disable_d2d_=
-link()
-      drm/i915/ddi: Unify the platform specific functions disabling a port
-      drm/i915/ddi: Add a helper to enable a port
-      drm/i915/ddi: Sanitize DDI_BUF_CTL register definitions
-      drm/i915/dp: Fix error handling during 128b/132b link training
-      drm/i915/dp: Fix disabling the transcoder function in 128b/132b mode
-
-Jani Nikula (60):
-      drm/i915/gvt: store virtual_dp_monitor_edid in rodata
-      drm/i915/audio: convert to struct intel_display
-      drm/i915/audio: convert LPE audio to struct intel_display
-      drm/i915/audio: rename function prefixes from i915 to intel
-      drm/i915/dp: constify struct link_config_limits pointers
-      drm/i915/dp: change the order of intel_dp_mtp_tu_compute_config() par=
-ams
-      drm/i915/mst: change where lane_count and port_clock are set
-      drm/i915/mst: handle mst pbn_div in intel_dp_mtp_tu_compute_config()
-      drm/i915/mst: remove unnecessary mst_stream_find_vcpi_slots_for_bpp()
-      drm/i915/mst: use min_array() and max_array() instead of hand-rolling
-      drm/i915/dp: Iterate DSC BPP from high to low on all platforms
-      drm/i915/dp: Add intel_dp_dsc_bpp_step_x16() helper to get DSC BPP pr=
-ecision
-      drm/i915/dp: Rename some variables in xelpd_dsc_compute_link_config()
-      drm/i915/dp: Pass .4 BPP values to {icl,xelpd}_dsc_compute_link_confi=
-g()
-      drm/i915/dp: Move max DSC BPP reduction one level higher
-      drm/i915/dp: Change icl_dsc_compute_link_config() DSC BPP iteration
-      drm/i915/dp: Move force_dsc_fractional_bpp_en check to intel_dp_dsc_v=
-alid_bpp()
-      drm/i915/dp: Unify DSC link config functions
-      drm/i915/dp: Inline do_dsc_compute_compressed_bpp()
-      drm/i915/dp: Simplify input BPP checks in intel_dp_dsc_compute_pipe_b=
-pp()
-      drm/i915/dp: Use int for compressed BPP in dsc_compute_link_config()
-      drm/i915/dp: Drop compute_pipe_bpp parameter from intel_dp_dsc_comput=
-e_config()
-      drm/i915/dp: Pass connector state all the way to dsc_compute_link_con=
-fig()
-      drm/i915/mst: Convert intel_dp_mtp_tu_compute_config() to .4 format
-      drm/i915/mst: fix INT_MAX to .4 fixed point conversion mistake
-      drm/i915/dp: Fix potential infinite loop in 128b/132b SST
-      drm/i915/dp: Add support for DP UHBR SST DSC
-      Merge drm/drm-next into drm-intel-next
-      drm/i915/hdmi: move declarations for hsw_read/write_infoframe() to th=
-e right place
-      drm/i915/lspcon: add intel_lspcon_active() and use it
-      drm/i915/lspcon: change signature of lspcon_detect_hdr_capability()
-      drm/i915/lspcon: change signature of lspcon_wait_pcon_mode()
-      drm/i915/lspcon: remove dp_to_lspcon(), hide enc_to_intel_lspcon()
-      drm/i915/lspcon: rename interfaces to intel_lspcon_* to unify
-      drm/i915/display: convert intel_ddi_buf_trans.c to struct intel_displ=
-ay
-      drm/i915/cdclk: switch to new platform checks
-      drm/i915/cx0: convert to struct intel_display based platform checks
-      drm/i915/backlight: convert to use struct intel_display
-      drm/i915/psr: clarify intel_psr_pre_plane_update() conditions
-      drm/i915/hdcp: Move HDCP debugfs to intel_hdcp.c
-      drm/i915/hdcp: rename intel_connector to connector
-      drm/i915/hdcp: Convert platform checks to use display->platform
-      drm/i915/hdcp: Make some functions static
-      drm/i915/pch: Make LPT LP a dedicated PCH type
-      drm/i915/pch: Hide PCH device IDs
-      drm/i915/pch: Remove unused i915->pch_id
-      drm/i915/dp: convert g4x_dp.[ch] to struct intel display
-      drm/i915/hdmi: convert g4x_hdmi.[ch] to struct intel_display
-      drm/i915/ips: convert hsw_ips.c to struct intel_display
-      drm/i915/display: convert assert_transcoder*() to struct intel_display
-      drm/i915/display: convert assert_port_valid() to struct intel_display
-      drm/i915/hpd: drop dev_priv parameter from intel_hpd_pin_default()
-      drm/i915/display: convert intel_set_{cpu,pch}_fifo_underrun_reporting=
-() to intel_display
-      drm/i915/sdvo: convert intel_sdvo.[ch] to struct intel_display
-      drm/i915/display: convert intel_cpu_transcoder_mode_valid() to intel_=
-display
-      drm/i915/display: convert intel_mode_valid_max_plane_size() to intel_=
-display
-      drm/i915/dsi: convert platform checks to display->platform.<platform>=
- style
-      drm/i915/combo-phy: convert intel_combo_phy.[ch] to struct intel_disp=
-lay
-      drm/i915/display: convert intel_fifo_underrun.[ch] to struct intel_di=
-splay
-      drm/i915/display: convert i915_pipestat_enable_mask() to struct intel=
-_display
-
-Jouni H=C3=B6gander (18):
-      drm/i915/psr: Add new function for writing sink panel replay enable b=
-it
-      drm/i915/psr: Enable Panel Replay on sink always when it's supported
-      drm/i915/psr: Make intel_psr_enable_sink as local static function
-      drm/i915/psr: Allow changing Panel Replay mode without full modeset
-      drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
-      drm/i915/psr: Rename psr_force_hw_tracking_exit as intel_psr_force_up=
-date
-      drm/i915/psr: Split setting sff and cff bits away from intel_psr_forc=
-e_update
-      drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL regist=
-ers
-      drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
-      drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
-      drm/i915/psr: Write PSR2_MAN_TRK_CTL on DSB commit as well
-      drm/i915/display: Warn on use_dsb in non-dsb pipe update functions
-      drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
-      drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
-      drm/i915/psr: Add function for triggering "Frame Change" event
-      drm/i915/display: Ensure we have "Frame Change" event in DSB commit
-      drm/i915/psr: Allow DSB usage when PSR is enabled
-      drm/i915/psr: Fix drm_WARN_ON in intel_psr_disable
-
-Maarten Lankhorst (2):
-      drm/xe/display: Re-use display vmas when possible
-      drm/xe: Remove double pageflip
-
-Mika Kahola (2):
-      drm/i915/display: Drop crtc_state from C10/C20 pll programming
-      drm/i915/display: Allow display PHYs to reset power state
-
-Mitul Golani (14):
-      drm/i915/scaler: Add and compute scaling factors
-      drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
-      drm/i915/scaler: Refactor max_scale computation
-      drm/i915/scaler: Compute scaling factors for pipe scaler
-      drm/i915/scaler: Limit pipe scaler downscaling factors for YUV420
-      drm/i915/scaler: Check if vblank is sufficient for scaler
-      drm/i915/dsc: Check if vblank is sufficient for dsc prefill
-      drm/i915/vrr: Add crtc_state dump for vrr.vsync params
-      drm/i915/vrr: Compute vrr.vsync_{start, end} during full modeset
-      drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
-      drm/i915/dp: Compute as_sdp based on if vrr possible
-      drm/i915/display: Move as sdp params change to fastset
-      drm/i915/display: Skip state checker for AS SDP infoframe enable
-      Revert "drm/i915/dp: Compute as_sdp based on if vrr possible"
-
-Nemesa Garg (1):
-      drm/i915/display: Add WA_14018221282
-
-Nitin Gote (8):
-      drm/i915/gt: fix typos in i915/gt files.
-      drm/i915/gvt: fix typos in i915/gvt files
-      drm/i915/gem: fix typos in i915/gem files
-      drm/i915/pxp: fix typos in i915/pxp files
-      drm/i915/selftests: fix typos in i915/selftests files
-      drm/i915/soc: fix typos in i915/soc files
-      drm/i915/display: fix typos in i915/display files
-      drm/i915: fix typos in drm/i915 files
-
-Ravi Kumar Vodapalli (1):
-      drm/i915/display: Update DBUF_TRACKER_STATE_SERVICE only on appropria=
-te platforms
-
-Rodrigo Vivi (2):
-      drm/i915/guc/slpc: Allow GuC SLPC default strategies on MTL+
-      drm/i915/guc/slpc: Print more SLPC debug status information
-
-Suraj Kandpal (20):
-      drm/i915/hdcp: Fix Repeater authentication during topology change
-      drm/i915/hdcp: Use correct function to check if encoder is HDMI
-      drm/i915/cx0: Set ssc_enabled for c20 too
-      drm/dp: Add eDP 1.5 bit definition
-      drm/dp: Increase eDP display control capability size
-      drm/i915/backlight: Use proper interface based on eDP version
-      drm/i915/backlight: Check Luminance based brightness control for VESA
-      drm/i915/backlight: Modify function to get VESA brightness in Nits
-      drm/i915/backlight: Add function to change brightness in nits for VESA
-      drm/i915/backlight: Setup nits based luminance via VESA
-      drm/i915/backlight: Enable nits based luminance
-      drm/i915: Use intel_display wherever possible
-      drm/i915/dpll: Change param to intel_display in for_each_shared_dpll
-      drm/i915/dpll: Use intel_display for dpll dump and compare hw state
-      drm/i915/dpll: Use intel_display possible in shared_dpll_mgr hooks
-      drm/i915/dpll: Use intel_display for asserting pll
-      drm/i915/dpll: Use intel_display for update_refclk hook
-      drm/i915/dpll: Accept intel_display as argument for shared_dpll_init
-      drm/i915/dpll: Replace all other leftover drm_i915_private
-      drm/i915/hdcp: Create force_hdcp14 debug fs entry
-
-Ville Syrj=C3=A4l=C3=A4 (106):
-      drm/i915/scaler: Extract skl_scaler_min_src_size()
-      drm/i915/scaler: Extract skl_scaler_max_src_size()
-      drm/i915/scaler: Extract skl_scaler_min_dst_size()
-      drm/i915/scaler: Extract skl_scaler_max_dst_size()
-      drm/i915/scaler: Nuke redundant code
-      drm/i915/scaler: Pimp scaler debugs
-      drm/i915/scaler: s/excdeed/exceed/
-      drm/i915/scaler: Add scaler tracepoints
-      drm/i915/fb: Relax clear color alignment to 64 bytes
-      drm/i915/fb: Add debug spew for misaligned CC plane
-      drm/i915/fb: Check that the clear color fits within the BO
-      drm/i915: Extract intel_crtc_vblank_delay()
-      drm/i915: Check vblank delay validity
-      drm/i915: Fix include order
-      drm/i915: Introduce intel_vrr_{vmin,vmax}_vtotal()
-      drm/i915: Move framestart/etc. state dump to a better spot
-      drm/i915: Include the vblank delay in the state dump
-      drm/i915/vrr: Improve VRR state dump
-      drm/i915: Include the scanline offset in the state dump
-      drm/i915: Extract intel_mode_vblank_delay()
-      drm/i915: Consolidate intel_pre_commit_crtc_state()
-      drm/i915: Extract intel_crtc_active_timings()
-      drm/i915/vrr: Introduce intel_vrr_vblank_delay()
-      drm/i915/vrr: Drop the extra vmin adjustment for ADL+
-      drm/i915/vrr: Fix vmin/vmax/flipline on TGL when using vblank delay
-      drm/i915/vrr: Add extra vblank delay to estimates
-      drm/i915/vrr: Plumb the DSB into intel_vrr_send_push()
-      drm/i915: Allow async flips with render compression on TGL+
-      drm/i915: Allow async flips with compression on ICL
-      drm/i915: Introduce plane->can_async_flip()
-      drm/i915: Use plane->can_async_flip() for alignment exceptions
-      drm/i915: Reuse vlv_primary_min_alignment() for sprites as well
-      drm/i915: Disable scanout VT-d workaround for TGL+
-      drm/i915: Nuke ADL pre-production Wa_22011186057
-      drm/i915: Relocate xe AUX hack
-      drm/i915: Carve up skl_get_plane_caps()
-      drm/i915: Keep TRANS_VBLANK.vblank_start=3D=3D0 on ADL+ even when doi=
-ng LRR updates
-      drm/i915: Handle interlaced modes in intel_set_transcoder_timings_lrr=
-()
-      drm/i915: Update TRANS_SET_CONTEXT_LATENCY during LRR updates
-      drm/i915: Warn if someone tries to use intel_set_transcoder_timings*(=
-) on DSI outputs
-      drm/i915: Extract lrr_params_changed()
-      drm/i915: Allow fastboot to fix up the vblank delay
-      drm/i915/dsb: Add support for triggering VRR push with DSB
-      drm/i915/dsb: Allow DSB to perform commits when VRR is enabled
-      drm/i915: Drop 64bpp YUV formats from ICL+ SDR planes
-      drm/i915: Drop the extra "plane" from tracepoints
-      drm/i915: Pass the plane state explicitly to tracepoints
-      drm/i915: Include pixel format in plane tracepoints
-      drm/i915: Give i915 and xe each their own display tracepoints
-      drm/i915: Move VT-d alignment into plane->min_alignment()
-      drm/i915: Use more optimal VTd alignment for planes
-      drm/i915: Calculate the VT-d guard size in the display code
-      drm/i915: Use per-plane VT-d guard numbers
-      drm/i915/fbdev: Use fb->normal_view.gtt
-      drm/i915: Pass intel_display to intel_scanout_needs_vtd_wa()
-      drm/i915: Decouple i915_gem_dumb_create() from the display a bit
-      drm/i915: Decouple intel_fb_bo.h interfaces from driver specific types
-      drm/i915: Convert intel_crtc.c to struct intel_display
-      drm/i915: Convert intel_fb.c to struct intel_display
-      drm/i915: Convert intel_display_power_{get,put}*() to intel_display
-      drm/i915: Convert i9xx_plane.c to struct intel_display
-      drm/i915: Finish intel_sprite.c struct intel_display conversion
-      drm/i915: Convert intel_cursor.c to struct intel_display
-      drm/i915: Convert skl_univeral_plane.c to struct intel_display
-      drm/i915: Use DRM_RECT_FMT & co. for plane debugs
-      drm/i915: Pimp plane debugs
-      drm/i915: Fix CONFIG_DRM_I915_DEBUG_RUNTIME_PM=3Dn build
-      drm/i915: Continue intel_display_power struct intel_display conversion
-      drm/i915/dsb: Move the +1 usec adjustment into dsb_wait_usec()
-      drm/i915/vrr: Don't send push for legacy cursor updates
-      drm/i915/vrr: Account for TRANS_PUSH delay
-      drm/i915/dsb: Compute use_dsb earlier
-      drm/i915/dsb: Introduce intel_dsb_poll()
-      drm/i915/vrr: Reorder the DSB "wait for safe window" vs. TRANS_PUSH
-      drm/i915/vrr: Check that the push send bit is clear after delayed vbl=
-ank
-      drm/i915/dsb: Decode DSB error interrupts
-      drm/i915: Make sure all planes in use by the joiner have their crtc i=
-ncluded
-      Revert "drm/i915: Fix NULL ptr deref by checking new_crtc_state"
-      drm/i915: Rework joiner and Y plane dependency handling
-      drm/i915: s/planar_slave/is_y_plane/
-      drm/i915: Extract unlink_nv12_plane()
-      drm/i915: Remove pointless visible check in unlink_nv12_plane()
-      drm/i915: Extract link_nv12_planes()
-      drm/i915: Rename the variables in icl_check_nv12_planes()
-      drm/i915: Move icl+ nv12 plane register mangling into skl_universal_p=
-lane.c
-      drm/i915: Relocate intel_atomic_check_planes()
-      drm/i915: Move modeset_retry stuff into intel_connector.c
-      drm/i915: Always initialize connector->modeset_retry_work
-      drm/i915: Extract intel_connector_cancel_modeset_retry_work()
-      drm/i915: Extract intel_hdcp_cancel_works()
-      drm/i915: Move intel_hpd_poll_fini() into intel_hotplug.c
-      drm/i915: Move intel_plane_destroy() into intel_atomic_plane.c
-      drm/i915: Relocate vlv_wait_port_ready()
-      drm/i915: Simplify vlv_wait_port_ready() arguments
-      drm/i915: Relocate intel_plane_uses_fence()
-      drm/i915: Relocate intel_{rotation,remapped}_info_size()
-      drm/i915: Relocate some other plane fb related stuff into intel_fb.c
-      drm/i915: s/state/plane_state/
-      drm/i915: Add missing else to the if ladder in missing else
-      drm/i915: Introduce a minimal plane error state
-      drm/i915: Pimp display fault reporting
-      drm/i915: Hook in display GTT faults for IVB/HSW
-      drm/i915: Hook in display GTT faults for ILK/SNB
-      drm/i915: Introduce i915_error_regs
-      drm/i915: Un-invert {i9xx,i965}_error_mask()
-      drm/i915: Hook up display fault interrupts for VLV/CHV
-
-Zhenyu Wang (1):
-      MAINTAINERS: switch my mail address for GVT driver
-
- MAINTAINERS                                        |    2 +-
- drivers/gpu/drm/display/drm_dp_dual_mode_helper.c  |    4 +-
- drivers/gpu/drm/i915/Makefile                      |    2 +
- drivers/gpu/drm/i915/display/dvo_ns2501.c          |    2 +-
- drivers/gpu/drm/i915/display/g4x_dp.c              |  112 +--
- drivers/gpu/drm/i915/display/g4x_dp.h              |   14 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c            |  170 ++--
- drivers/gpu/drm/i915/display/g4x_hdmi.h            |    6 +-
- drivers/gpu/drm/i915/display/hsw_ips.c             |   26 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c          |  372 ++++---
- drivers/gpu/drm/i915/display/i9xx_plane.h          |   10 +-
- drivers/gpu/drm/i915/display/i9xx_wm.c             |    6 +-
- drivers/gpu/drm/i915/display/icl_dsi.c             |   40 +-
- drivers/gpu/drm/i915/display/intel_atomic_plane.c  |  352 ++++++-
- drivers/gpu/drm/i915/display/intel_atomic_plane.h  |    7 +
- drivers/gpu/drm/i915/display/intel_audio.c         |  498 +++++-----
- drivers/gpu/drm/i915/display/intel_audio.h         |   14 +-
- drivers/gpu/drm/i915/display/intel_backlight.c     |  501 +++++-----
- drivers/gpu/drm/i915/display/intel_cdclk.c         |  174 ++--
- drivers/gpu/drm/i915/display/intel_cmtg.c          |  189 ++++
- drivers/gpu/drm/i915/display/intel_cmtg.h          |   13 +
- drivers/gpu/drm/i915/display/intel_cmtg_regs.h     |   21 +
- drivers/gpu/drm/i915/display/intel_color.c         |   11 +-
- drivers/gpu/drm/i915/display/intel_combo_phy.c     |  180 ++--
- drivers/gpu/drm/i915/display/intel_combo_phy.h     |    8 +-
- drivers/gpu/drm/i915/display/intel_connector.c     |   42 +
- drivers/gpu/drm/i915/display/intel_connector.h     |    2 +
- drivers/gpu/drm/i915/display/intel_crt.c           |   43 +-
- drivers/gpu/drm/i915/display/intel_crtc.c          |   78 +-
- drivers/gpu/drm/i915/display/intel_crtc.h          |    7 +-
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |   28 +-
- drivers/gpu/drm/i915/display/intel_cursor.c        |  212 ++--
- drivers/gpu/drm/i915/display/intel_cursor.h        |    4 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  299 ++++--
- drivers/gpu/drm/i915/display/intel_cx0_phy.h       |    2 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h  |   33 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  496 +++++-----
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c |   58 +-
- drivers/gpu/drm/i915/display/intel_display.c       |  922 ++++++-----------
- drivers/gpu/drm/i915/display/intel_display.h       |   33 +-
- .../gpu/drm/i915/display/intel_display_debugfs.c   |  261 ++---
- .../gpu/drm/i915/display/intel_display_device.c    |   13 +
- .../gpu/drm/i915/display/intel_display_device.h    |   13 +
- .../gpu/drm/i915/display/intel_display_driver.c    |   16 +-
- drivers/gpu/drm/i915/display/intel_display_irq.c   |  789 +++++++++++----
- drivers/gpu/drm/i915/display/intel_display_irq.h   |    8 +-
- .../gpu/drm/i915/display/intel_display_params.c    |    2 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |  129 +--
- drivers/gpu/drm/i915/display/intel_display_power.h |   71 +-
- .../drm/i915/display/intel_display_power_well.c    |   19 +-
- .../drm/i915/display/intel_display_power_well.h    |    4 +-
- drivers/gpu/drm/i915/display/intel_display_reset.c |    2 +
- drivers/gpu/drm/i915/display/intel_display_trace.h |  150 ++-
- drivers/gpu/drm/i915/display/intel_display_types.h |   45 +-
- drivers/gpu/drm/i915/display/intel_dkl_phy.c       |   54 +-
- drivers/gpu/drm/i915/display/intel_dkl_phy.h       |    9 +-
- drivers/gpu/drm/i915/display/intel_dmc.c           |    7 +-
- drivers/gpu/drm/i915/display/intel_dmc_wl.c        |   76 +-
- drivers/gpu/drm/i915/display/intel_dp.c            |  330 +++----
- drivers/gpu/drm/i915/display/intel_dp.h            |    5 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c        |    5 +-
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  181 +++-
- .../gpu/drm/i915/display/intel_dp_link_training.c  |   19 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |  393 ++++----
- drivers/gpu/drm/i915/display/intel_dp_mst.h        |    3 +-
- drivers/gpu/drm/i915/display/intel_dp_test.c       |    4 +-
- drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |    2 +-
- drivers/gpu/drm/i915/display/intel_dp_tunnel.h     |    5 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.c      |   36 +-
- drivers/gpu/drm/i915/display/intel_dpio_phy.h      |    6 +
- drivers/gpu/drm/i915/display/intel_dpll.c          |   41 +-
- drivers/gpu/drm/i915/display/intel_dpll.h          |    5 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 1044 ++++++++++------=
-----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |   29 +-
- drivers/gpu/drm/i915/display/intel_dsb.c           |  126 ++-
- drivers/gpu/drm/i915/display/intel_dsb.h           |    3 +
- drivers/gpu/drm/i915/display/intel_dsi.c           |    8 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |    2 +-
- drivers/gpu/drm/i915/display/intel_dvo.c           |    8 +-
- drivers/gpu/drm/i915/display/intel_dvo_dev.h       |    2 +-
- drivers/gpu/drm/i915/display/intel_fb.c            |  410 +++++---
- drivers/gpu/drm/i915/display/intel_fb.h            |   31 +-
- drivers/gpu/drm/i915/display/intel_fb_bo.c         |   18 +-
- drivers/gpu/drm/i915/display/intel_fb_bo.h         |    8 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.c        |   23 +-
- drivers/gpu/drm/i915/display/intel_fb_pin.h        |    4 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c         |   12 +-
- drivers/gpu/drm/i915/display/intel_fbdev.h         |    8 +
- drivers/gpu/drm/i915/display/intel_fdi.c           |   21 +-
- drivers/gpu/drm/i915/display/intel_fdi.h           |    7 +-
- drivers/gpu/drm/i915/display/intel_fifo_underrun.c |  183 ++--
- drivers/gpu/drm/i915/display/intel_fifo_underrun.h |   18 +-
- drivers/gpu/drm/i915/display/intel_frontbuffer.c   |    2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c         |   10 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c          |  214 +++-
- drivers/gpu/drm/i915/display/intel_hdcp.h          |   11 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c          |   27 +-
- drivers/gpu/drm/i915/display/intel_hdmi.h          |    9 +
- drivers/gpu/drm/i915/display/intel_hotplug.c       |   31 +-
- drivers/gpu/drm/i915/display/intel_hotplug.h       |    4 +-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c   |    2 +-
- drivers/gpu/drm/i915/display/intel_link_bw.c       |    2 +-
- drivers/gpu/drm/i915/display/intel_lpe_audio.c     |  118 +--
- drivers/gpu/drm/i915/display/intel_lpe_audio.h     |   18 +-
- drivers/gpu/drm/i915/display/intel_lspcon.c        |   30 +-
- drivers/gpu/drm/i915/display/intel_lspcon.h        |   25 +-
- drivers/gpu/drm/i915/display/intel_lvds.c          |   18 +-
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |   19 +-
- drivers/gpu/drm/i915/display/intel_overlay.c       |   22 +-
- drivers/gpu/drm/i915/display/intel_pch_display.c   |   49 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.c    |   34 +-
- drivers/gpu/drm/i915/display/intel_pipe_crc.c      |    5 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c      |    2 +-
- drivers/gpu/drm/i915/display/intel_pps.c           |   34 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  230 +++--
- drivers/gpu/drm/i915/display/intel_psr.h           |   10 +-
- drivers/gpu/drm/i915/display/intel_psr_regs.h      |   10 +
- drivers/gpu/drm/i915/display/intel_sdvo.c          |  300 +++---
- drivers/gpu/drm/i915/display/intel_sdvo.h          |   10 +-
- drivers/gpu/drm/i915/display/intel_sdvo_regs.h     |    2 +-
- drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c |  364 +++++++
- drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h |   17 +
- drivers/gpu/drm/i915/display/intel_snps_phy.c      |   39 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.h      |    1 -
- drivers/gpu/drm/i915/display/intel_sprite.c        |  178 ++--
- drivers/gpu/drm/i915/display/intel_sprite.h        |    6 +-
- drivers/gpu/drm/i915/display/intel_tc.c            |   90 +-
- drivers/gpu/drm/i915/display/intel_tv.c            |    6 +-
- drivers/gpu/drm/i915/display/intel_vblank.c        |   86 +-
- drivers/gpu/drm/i915/display/intel_vblank.h        |    6 +
- drivers/gpu/drm/i915/display/intel_vdsc.c          |   67 +-
- drivers/gpu/drm/i915/display/intel_vga.c           |    5 +-
- drivers/gpu/drm/i915/display/intel_vrr.c           |  172 +++-
- drivers/gpu/drm/i915/display/intel_vrr.h           |    9 +-
- drivers/gpu/drm/i915/display/skl_scaler.c          |  330 ++++---
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  656 +++++++-----
- drivers/gpu/drm/i915/display/skl_universal_plane.h |   14 +-
- drivers/gpu/drm/i915/display/skl_watermark.c       |  113 ++-
- drivers/gpu/drm/i915/display/skl_watermark.h       |    3 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |   14 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c         |   14 +-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.h         |   10 +-
- drivers/gpu/drm/i915/gem/i915_gem_context.c        |    6 +-
- drivers/gpu/drm/i915/gem/i915_gem_context_types.h  |    6 +-
- drivers/gpu/drm/i915/gem/i915_gem_create.c         |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c         |   17 +-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.h         |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_region.c         |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |    4 +-
- drivers/gpu/drm/i915/gem/i915_gem_tiling.c         |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |    2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       |    2 +-
- drivers/gpu/drm/i915/gem/selftests/huge_pages.c    |    2 +-
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c |    2 +-
- drivers/gpu/drm/i915/gt/gen2_engine_cs.c           |    2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |    8 +-
- drivers/gpu/drm/i915/gt/intel_engine_types.h       |    4 +-
- drivers/gpu/drm/i915/gt/intel_gt_irq.c             |    2 +-
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c             |    2 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c              |    6 +-
- drivers/gpu/drm/i915/gt/intel_migrate.c            |    4 +-
- drivers/gpu/drm/i915/gt/intel_mocs.c               |    2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c              |    2 +-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |    2 +-
- drivers/gpu/drm/i915/gt/intel_rps_types.h          |    4 +-
- drivers/gpu/drm/i915/gt/intel_sa_media.c           |    2 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c               |    2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |    2 +-
- drivers/gpu/drm/i915/gt/selftest_execlists.c       |    2 +-
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c       |    2 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c             |    2 +-
- drivers/gpu/drm/i915/gt/selftest_rc6.c             |    2 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c             |    2 +-
- drivers/gpu/drm/i915/gt/shaders/README             |    6 +-
- .../gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm   |    2 +-
- .../gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm   |    2 +-
- drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h      |    4 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |    2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h             |    2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h        |    2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |   39 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |    4 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c              |    2 +-
- .../gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c    |    2 +-
- drivers/gpu/drm/i915/gvt/cmd_parser.c              |   15 +-
- drivers/gpu/drm/i915/gvt/display.c                 |    2 +-
- drivers/gpu/drm/i915/gvt/dmabuf.c                  |    2 +-
- drivers/gpu/drm/i915/gvt/edid.c                    |    2 +-
- drivers/gpu/drm/i915/gvt/fb_decoder.c              |  117 ---
- drivers/gpu/drm/i915/gvt/fb_decoder.h              |    2 -
- drivers/gpu/drm/i915/gvt/gtt.c                     |   68 +-
- drivers/gpu/drm/i915/gvt/gvt.h                     |   14 +-
- drivers/gpu/drm/i915/gvt/handlers.c                |   23 +-
- drivers/gpu/drm/i915/gvt/kvmgt.c                   |    2 +-
- drivers/gpu/drm/i915/gvt/mmio.h                    |    3 -
- drivers/gpu/drm/i915/gvt/mmio_context.c            |    6 +-
- drivers/gpu/drm/i915/gvt/scheduler.c               |   11 +-
- drivers/gpu/drm/i915/gvt/vgpu.c                    |    6 +-
- drivers/gpu/drm/i915/i915_driver.c                 |    2 +-
- drivers/gpu/drm/i915/i915_drv.h                    |    1 -
- drivers/gpu/drm/i915/i915_gem.c                    |    6 +-
- drivers/gpu/drm/i915/i915_irq.c                    |   69 +-
- drivers/gpu/drm/i915/i915_irq.h                    |    4 +
- drivers/gpu/drm/i915/i915_module.c                 |    2 +-
- drivers/gpu/drm/i915/i915_perf.c                   |   19 +-
- drivers/gpu/drm/i915/i915_pmu.h                    |    2 +-
- drivers/gpu/drm/i915/i915_reg.h                    |   71 +-
- drivers/gpu/drm/i915/i915_reg_defs.h               |    8 +
- drivers/gpu/drm/i915/i915_request.c                |    2 +-
- drivers/gpu/drm/i915/i915_request.h                |    4 +-
- drivers/gpu/drm/i915/i915_vma.c                    |   10 +-
- drivers/gpu/drm/i915/intel_clock_gating.c          |    2 +-
- drivers/gpu/drm/i915/intel_gvt.c                   |    2 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c        |    2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.c            |    2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.h            |    2 +-
- drivers/gpu/drm/i915/intel_uncore.c                |    2 +-
- .../gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h  |    2 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h         |    2 +-
- drivers/gpu/drm/i915/selftests/i915_gem.c          |    2 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   21 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c          |   15 +-
- drivers/gpu/drm/i915/soc/intel_pch.c               |   44 +-
- drivers/gpu/drm/i915/soc/intel_pch.h               |   45 +-
- drivers/gpu/drm/xe/Kconfig                         |   14 +
- drivers/gpu/drm/xe/Makefile                        |    5 +
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h  |    3 +
- drivers/gpu/drm/xe/display/ext/i915_irq.c          |   23 +
- drivers/gpu/drm/xe/display/intel_fb_bo.c           |    7 +-
- drivers/gpu/drm/xe/display/xe_display.c            |    2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c             |   49 +-
- drivers/gpu/drm/xe/display/xe_plane_initial.c      |   12 +-
- drivers/gpu/drm/xe/xe_device_types.h               |    1 -
- include/drm/display/drm_dp.h                       |    3 +-
- include/drm/display/drm_dp_dual_mode_helper.h      |    2 +-
- include/drm/intel/pciids.h                         |    7 +-
- 237 files changed, 8250 insertions(+), 5777 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_cmtg_regs.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.h
-
---=20
-Jani Nikula, Intel
+>   #include "intel_cdclk.h"
+>   #include "intel_clock_gating.h"
+>   #include "intel_color.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index a4e3f33f75eb..bb902cb7561f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -926,6 +926,18 @@ struct intel_csc_matrix {
+>   	u16 postoff[3];
+>   };
+>   
+> +struct scaler_filter_coeff {
+> +	u16 sign;
+> +	u16 exp;
+> +	u16 mantissa;
+> +};
+> +
+> +struct intel_casf {
+> +#define SCALER_FILTER_NUM_TAPS 7
+> +	struct scaler_filter_coeff coeff[SCALER_FILTER_NUM_TAPS];
+> +	u8 win_size;
+> +};
+> +
+>   void intel_io_mmio_fw_write(void *ctx, i915_reg_t reg, u32 val);
+>   
+>   typedef void (*intel_io_reg_write)(void *ctx, i915_reg_t reg, u32 val);
+> @@ -966,6 +978,7 @@ struct intel_crtc_state {
+>   		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+>   		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>   		enum drm_scaling_filter scaling_filter;
+> +		struct intel_casf casf_params;
+>   	} hw;
+>   
+>   	/* actual state of LUTs */
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 5ce65ccb3c08..f2418585a498 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -205,6 +205,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>   	i915-display/intel_backlight.o \
+>   	i915-display/intel_bios.o \
+>   	i915-display/intel_bw.o \
+> +	i915-display/intel_casf.o \
+>   	i915-display/intel_cdclk.o \
+>   	i915-display/intel_cmtg.o \
+>   	i915-display/intel_color.o \
