@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F6FCA43181
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 01:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 749D7A431C1
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 01:12:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BB5C10E503;
-	Tue, 25 Feb 2025 00:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D1910E504;
+	Tue, 25 Feb 2025 00:12:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 800BC10E503;
- Tue, 25 Feb 2025 00:02:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0044372080690548033=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8615E10E504;
+ Tue, 25 Feb 2025 00:12:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Fix_pipeDMC_a?=
- =?utf-8?q?nd_ATS_fault_handling?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_some_GT_?=
+ =?utf-8?q?register_fixes_and_cleanups_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 00:02:51 -0000
-Message-ID: <174044177151.1768595.1094610261271029401@b555e5b46a47>
+Date: Tue, 25 Feb 2025 00:12:04 -0000
+Message-ID: <174044232454.1772369.17217901814993036068@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250224173017.29500-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250224173017.29500-1-ville.syrjala@linux.intel.com>
+References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,223 +41,78 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0044372080690548033==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Fix pipeDMC and ATS fault handling
-URL   : https://patchwork.freedesktop.org/series/145349/
-State : success
+Series: drm/i915: some GT register fixes and cleanups (rev3)
+URL   : https://patchwork.freedesktop.org/series/144683/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16174 -> Patchwork_145349v1
-====================================================
+Error: dim checkpatch failed
+067f8029ba78 drm/i915: Bump RING_FAULT engine ID bits
+97af3013b359 drm/i915: Relocate RING_FAULT bits
+63b71db24fe6 drm/i915: Use REG_BIT() & co. for ring fault registers
+d1ae0ace5b0f drm/i915: Document which RING_FAULT bits apply to which platforms
+508078e91db8 drm/i915: Introduce RING_FAULT_VADDR_MASK
+99155f3b698a drm/i915: Extract gen8_report_fault()
+f9f45ccda144 drm/i915: Use REG_BIT() & co. for CHV EU/slice fuse bits
+-:73: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#73: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:339:
++			REG_FIELD_GET(CHV_FGT_EU_DIS_SS0_R1_MASK, fuse) << hweight32(CHV_FGT_EU_DIS_SS0_R0_MASK);
 
-Summary
--------
+-:86: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/i915/gt/intel_sseu.c:348:
++			REG_FIELD_GET(CHV_FGT_EU_DIS_SS1_R1_MASK, fuse) << hweight32(CHV_FGT_EU_DIS_SS1_R0_MASK);
 
-  **SUCCESS**
+total: 0 errors, 2 warnings, 0 checks, 63 lines checked
+dfd190e63803 drm/i915: Reoder CHV EU/slice fuse bits
+87c339b22681 drm/i915: Use REG_BIT() & co. for BDW+ EU/slice fuse bits
+-:43: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/gt/intel_gt_mcr.c:125:
++						      intel_uncore_read(gt->uncore, GEN10_MIRROR_FUSE3));
 
-  No regressions found.
+-:60: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:522:
++#define   GEN10_PGCTL_VALID_SS_MASK(slice)	((slice) == 0 ? REG_GENMASK(6, 0) : REG_GENMASK(4, 0))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/index.html
+total: 0 errors, 2 warnings, 0 checks, 223 lines checked
+7816fcabc2e1 drm/i915: Reoder BDW+ EU/slice fuse bits
+ec39f6499741 drm/i915: Use REG_BIT() & co. for gen9+ timestamp freq registers
+-:72: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:34:
++#define   GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	REG_FIELD_PREP(GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 0)
 
-Participating hosts (43 -> 43)
-------------------------------
+-:73: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#73: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:35:
++#define   GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	REG_FIELD_PREP(GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 1)
 
-  No changes in participating hosts
+-:75: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#75: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:37:
++#define   GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	REG_FIELD_PREP(GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 0)
 
-Known issues
-------------
+-:76: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#76: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:38:
++#define   GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	REG_FIELD_PREP(GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 1)
 
-  Here are the changes found in Patchwork_145349v1 that come from known issues:
+-:77: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#77: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:39:
++#define   GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_38_4_MHZ	REG_FIELD_PREP(GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 2)
 
-### IGT changes ###
+-:78: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#78: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:40:
++#define   GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_25_MHZ	REG_FIELD_PREP(GEN11_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 3)
 
-#### Issues hit ####
+total: 0 errors, 6 warnings, 0 checks, 87 lines checked
+eba59250e005 drm/i915: Reoder gen9+ timestamp freq register bits
+-:32: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#32: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:39:
++#define   GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_19_2_MHZ	REG_FIELD_PREP(GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 0)
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#13633])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#13633])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+-:33: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/gt/intel_gt_regs.h:40:
++#define   GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_24_MHZ	REG_FIELD_PREP(GEN9_RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK, 1)
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][5] -> [SKIP][6] ([i915#9197]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - bat-adls-6:         [PASS][7] -> [SKIP][8] ([i915#12916])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-adls-6/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-adls-6/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_pm_rpm@basic-rte:
-    - bat-adls-6:         [PASS][9] -> [FAIL][10] ([i915#12916])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-adls-6/igt@kms_pm_rpm@basic-rte.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-adls-6/igt@kms_pm_rpm@basic-rte.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [INCOMPLETE][11] ([i915#12904]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@perf:
-    - bat-twl-1:          [INCOMPLETE][13] -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-twl-1/igt@i915_selftest@live@perf.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-twl-1/igt@i915_selftest@live@perf.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-twl-2:          [INCOMPLETE][17] ([i915#12445]) -> [INCOMPLETE][18] ([i915#12435] / [i915#12445])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-twl-2/igt@i915_selftest@live.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-twl-2/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12916]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12916
-  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+total: 0 errors, 2 warnings, 0 checks, 28 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16174 -> Patchwork_145349v1
-
-  CI-20190529: 20190529
-  CI_DRM_16174: 0bd853a9790bbe9c4ccf3bf2c521958d1df41d54 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_145349v1: 0bd853a9790bbe9c4ccf3bf2c521958d1df41d54 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/index.html
-
---===============0044372080690548033==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix pipeDMC and ATS fault handling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145349/">https://patchwork.freedesktop.org/series/145349/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16174 -&gt; Patchwork_145349v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 43)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_145349v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-adls-6/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-adls-6/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12916">i915#12916</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-adls-6/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-adls-6/igt@kms_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12916">i915#12916</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@perf:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-twl-1/igt@i915_selftest@live@perf.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-twl-1/igt@i915_selftest@live@perf.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16174/bat-twl-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145349v1/bat-twl-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16174 -&gt; Patchwork_145349v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16174: 0bd853a9790bbe9c4ccf3bf2c521958d1df41d54 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8246: 2670886863d5821273146d7f94cdd3c8e3a4fe0b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_145349v1: 0bd853a9790bbe9c4ccf3bf2c521958d1df41d54 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0044372080690548033==--
