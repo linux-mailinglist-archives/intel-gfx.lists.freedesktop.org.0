@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE491A43D20
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4018A43D22
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C38E10E61D;
-	Tue, 25 Feb 2025 11:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8346E10E624;
+	Tue, 25 Feb 2025 11:14:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ud1wJ8m/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWwtZFs2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0563910E61D;
- Tue, 25 Feb 2025 11:14:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88B510E61A;
+ Tue, 25 Feb 2025 11:14:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740482078; x=1772018078;
+ t=1740482083; x=1772018083;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VGzG9nOi81PbYBATZAuJ6ELb1kTesX3ZUeL3h/PSidY=;
- b=Ud1wJ8m/lisFxM+sV78nRUwq13wlJ75i4mBrh2IiBYKtTG5csEn2y+vL
- +bsmu8ys0rQmNu/AG+3ak/kyk0+qB7I5dgTBOPDpSMlSY7/kL5BlY9Xwd
- Ve9Dwo3AODLcbEci6usII/ISZ88PJDXrQrHQj8mbVQof9o1XMtkh0ctZN
- pbyayQfnMAzq5CiXZXQJpDV3Ff1moibhTZb0t36VYXQTGIlrCqvjVQ/KE
- BhwGufKlHiLbi1DaqfMeG9jAJxUEb8gxBqSNJJDlGf1dgduMReaBdMiol
- jbUQxaGUlf5reqF7s0mT51Ejw+M3P4r1BpmZR1n3MgDG5fFz+if0lZO0C A==;
-X-CSE-ConnectionGUID: mcI91M9hQcWi8Ga9rELwTg==
-X-CSE-MsgGUID: zcRaV28kRLqCCwQQuIB6jg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106509"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106509"
+ bh=Di0K1wDlQ4HsNUidoG3kz2+4u30DS7rE77dlQyBJpnQ=;
+ b=VWwtZFs2yQd4EnF9thBpToQawq6tezUGEIax8tIjyNr+mwthRj9J+UBx
+ 42RdQIrnNggl51DPU4sjjPSLvRHzzO1hC2dZMACTeFl+sil3XaiaXfIh4
+ vpiixcGRrOjjzZ8ngcX2tFSj8fFD2UK/MTRvpI/Zv8icwtjfqHsO4nLLc
+ n8cwplkE5AjbA2Yfem5kQwuQfEOqiOMqP+gqnVHuIfQMapAow3DVagA53
+ YqkxN7CmSPCrSs+4zRtyDMURkbepuCh19wZglO1b+myN4RCNchtv25kyz
+ skL9lILjM/z7hbsBgBcQ893TN9MZVU26JvDR0bv+86TNAA7i3zsBqukAG g==;
+X-CSE-ConnectionGUID: phVIOTVYSyOOU6sn1iIqFQ==
+X-CSE-MsgGUID: 0sAFdCyzQjGBMwyhl/QWfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106530"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106530"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:38 -0800
-X-CSE-ConnectionGUID: ej5qx+JXQGWYidPeCOPFOQ==
-X-CSE-MsgGUID: C28QurakS8Wy9qMXGGH6mw==
+ 25 Feb 2025 03:14:43 -0800
+X-CSE-ConnectionGUID: RkBksHOoQdeeiaUBmrXDZQ==
+X-CSE-MsgGUID: mL0qjgzLQ5Sg7wKaZNeVqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612117"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612146"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:36 -0800
+ 25 Feb 2025 03:14:41 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 2/8] drm/i915: move pending_fb_pin to struct intel_display
-Date: Tue, 25 Feb 2025 13:14:16 +0200
-Message-Id: <1354a995c83cf66ae3e1fc2d39e4c69c58c25cc0.1740481927.git.jani.nikula@intel.com>
+Subject: [PATCH v2 3/8] drm/i915/reset: add
+ intel_gt_gpu_reset_clobbers_display() helper
+Date: Tue, 25 Feb 2025 13:14:17 +0200
+Message-Id: <2beaff3d4e194e67b35bf91c3e2dc0b36c76d6bd.1740481927.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740481927.git.jani.nikula@intel.com>
 References: <cover.1740481927.git.jani.nikula@intel.com>
@@ -70,175 +71,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-pending_fb_pin is more about display than GPU reset. Move it to struct
-intel_display. The restore sub-struct already contains reset related
-members, so move it there.
+Add a helper for checking the gpu_reset_clobbers_display flag to make it
+easier to relocate the flag later.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h  |  2 ++
- drivers/gpu/drm/i915/display/intel_display_reset.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dpt.c           |  5 +++--
- drivers/gpu/drm/i915/display/intel_fb_pin.c        | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_overlay.c       |  5 ++---
- drivers/gpu/drm/i915/i915_gpu_error.h              |  2 --
- 6 files changed, 14 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c     | 15 +++++++++++----
+ drivers/gpu/drm/i915/gt/intel_reset.h     |  2 ++
+ drivers/gpu/drm/i915/i915_driver.c        |  2 +-
+ 5 files changed, 16 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 554870d2494b..1970d4c15090 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -512,6 +512,8 @@ struct intel_display {
- 		/* restore state for suspend/resume and display reset */
- 		struct drm_atomic_state *modeset_state;
- 		struct drm_modeset_acquire_ctx reset_ctx;
-+		/* modeset stuck tracking for reset */
-+		atomic_t pending_fb_pin;
- 		u32 saveDSPARB;
- 		u32 saveSWF0[16];
- 		u32 saveSWF1[16];
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-index c1e448e8a26e..cef9536c461c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -42,7 +42,7 @@ void intel_display_reset_prepare(struct intel_display *display)
- 	smp_mb__after_atomic();
- 	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
- 
--	if (atomic_read(&dev_priv->gpu_error.pending_fb_pin)) {
-+	if (atomic_read(&display->restore.pending_fb_pin)) {
- 		drm_dbg_kms(display->drm,
- 			    "Modeset potentially stuck, unbreaking through wedging\n");
- 		intel_gt_set_wedged(to_gt(dev_priv));
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-index 8b1f0e92a11c..8254e8a2b82c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -125,6 +125,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 				       unsigned int alignment)
- {
- 	struct drm_i915_private *i915 = vm->i915;
-+	struct intel_display *display = &i915->display;
- 	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
- 	intel_wakeref_t wakeref;
- 	struct i915_vma *vma;
-@@ -137,7 +138,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 		pin_flags |= PIN_MAPPABLE;
- 
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
--	atomic_inc(&i915->gpu_error.pending_fb_pin);
-+	atomic_inc(&display->restore.pending_fb_pin);
- 
- 	for_i915_gem_ww(&ww, err, true) {
- 		err = i915_gem_object_lock(dpt->obj, &ww);
-@@ -167,7 +168,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 
- 	dpt->obj->mm.dirty = true;
- 
--	atomic_dec(&i915->gpu_error.pending_fb_pin);
-+	atomic_dec(&display->restore.pending_fb_pin);
- 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- 
- 	return err ? ERR_PTR(err) : vma;
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-index 204e7e3e48ca..30ac9b089ad6 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-@@ -25,6 +25,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 		    struct i915_address_space *vm)
- {
- 	struct drm_device *dev = fb->dev;
-+	struct intel_display *display = to_intel_display(dev);
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct drm_gem_object *_obj = intel_fb_bo(fb);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-@@ -42,7 +43,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 	if (WARN_ON(!i915_gem_object_is_framebuffer(obj)))
- 		return ERR_PTR(-EINVAL);
- 
--	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_inc(&display->restore.pending_fb_pin);
- 
- 	for_i915_gem_ww(&ww, ret, true) {
- 		ret = i915_gem_object_lock(obj, &ww);
-@@ -97,7 +98,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 
- 	i915_vma_get(vma);
- err:
--	atomic_dec(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_dec(&display->restore.pending_fb_pin);
- 
- 	return vma;
- }
-@@ -112,6 +113,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
- 		     unsigned long *out_flags)
- {
- 	struct drm_device *dev = fb->dev;
-+	struct intel_display *display = to_intel_display(dev);
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct drm_gem_object *_obj = intel_fb_bo(fb);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-@@ -136,7 +138,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index ec136eb12d48..39f6ba4bf1ab 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -677,7 +677,7 @@ void intel_engines_release(struct intel_gt *gt)
+ 	 * in case we aborted before completely initialising the engines.
  	 */
- 	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+ 	GEM_BUG_ON(intel_gt_pm_is_awake(gt));
+-	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (!intel_gt_gpu_reset_clobbers_display(gt))
+ 		intel_gt_reset_all_engines(gt);
  
--	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_inc(&display->restore.pending_fb_pin);
+ 	/* Decouple the backend; but keep the layout for late GPU resets */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 175fa2db0551..3182f19b9837 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -158,7 +158,7 @@ void intel_gt_pm_init(struct intel_gt *gt)
  
- 	/*
- 	 * Valleyview is definitely limited to scanning out the first
-@@ -212,7 +214,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
- 	if (ret)
- 		vma = ERR_PTR(ret);
- 
--	atomic_dec(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_dec(&display->restore.pending_fb_pin);
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- 	return vma;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 4d00db86131b..7d2835228da1 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -799,7 +799,6 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 				      struct drm_intel_overlay_put_image *params)
+ static bool reset_engines(struct intel_gt *gt)
  {
- 	struct intel_display *display = overlay->display;
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct overlay_registers __iomem *regs = overlay->regs;
- 	u32 swidth, swidthsw, sheight, ostride;
- 	enum pipe pipe = overlay->crtc->pipe;
-@@ -814,7 +813,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 	if (ret != 0)
- 		return ret;
+-	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (intel_gt_gpu_reset_clobbers_display(gt))
+ 		return false;
  
--	atomic_inc(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_inc(&display->restore.pending_fb_pin);
+ 	return intel_gt_reset_all_engines(gt) == 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index d937135063ee..835c9081b239 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -986,7 +986,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
+ 	awake = reset_prepare(gt);
  
- 	vma = intel_overlay_pin_fb(new_bo);
- 	if (IS_ERR(vma)) {
-@@ -902,7 +901,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- out_unpin:
- 	i915_vma_unpin(vma);
- out_pin_section:
--	atomic_dec(&dev_priv->gpu_error.pending_fb_pin);
-+	atomic_dec(&display->restore.pending_fb_pin);
+ 	/* Even if the GPU reset fails, it should still stop the engines */
+-	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (!intel_gt_gpu_reset_clobbers_display(gt))
+ 		intel_gt_reset_all_engines(gt);
  
- 	return ret;
+ 	for_each_engine(engine, gt, id)
+@@ -1106,7 +1106,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 
+ 	/* We must reset pending GPU events before restoring our submission */
+ 	ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism desired */
+-	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (!intel_gt_gpu_reset_clobbers_display(gt))
+ 		ok = intel_gt_reset_all_engines(gt) == 0;
+ 	if (!ok) {
+ 		/*
+@@ -1177,6 +1177,13 @@ static int resume(struct intel_gt *gt)
+ 	return 0;
  }
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index 78a8928562a9..749e1c55613e 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -224,8 +224,6 @@ struct i915_gpu_error {
- 	/* Protected by the above dev->gpu_error.lock. */
- 	struct i915_gpu_coredump *first_error;
  
--	atomic_t pending_fb_pin;
--
- 	/** Number of times the device has been reset (global) */
- 	atomic_t reset_count;
++bool intel_gt_gpu_reset_clobbers_display(struct intel_gt *gt)
++{
++	struct drm_i915_private *i915 = gt->i915;
++
++	return INTEL_INFO(i915)->gpu_reset_clobbers_display;
++}
++
+ /**
+  * intel_gt_reset - reset chip after a hang
+  * @gt: #intel_gt to reset
+@@ -1233,7 +1240,7 @@ void intel_gt_reset(struct intel_gt *gt,
+ 		goto error;
+ 	}
+ 
+-	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (intel_gt_gpu_reset_clobbers_display(gt))
+ 		intel_irq_suspend(gt->i915);
+ 
+ 	if (do_reset(gt, stalled_mask)) {
+@@ -1241,7 +1248,7 @@ void intel_gt_reset(struct intel_gt *gt,
+ 		goto taint;
+ 	}
+ 
+-	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
++	if (intel_gt_gpu_reset_clobbers_display(gt))
+ 		intel_irq_resume(gt->i915);
+ 
+ 	intel_overlay_reset(display);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
+index c00de353075c..724ea6d64f33 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.h
++++ b/drivers/gpu/drm/i915/gt/intel_reset.h
+@@ -28,6 +28,8 @@ void intel_gt_handle_error(struct intel_gt *gt,
+ 			   const char *fmt, ...);
+ #define I915_ERROR_CAPTURE BIT(0)
+ 
++bool intel_gt_gpu_reset_clobbers_display(struct intel_gt *gt);
++
+ void intel_gt_reset(struct intel_gt *gt,
+ 		    intel_engine_mask_t stalled_mask,
+ 		    const char *reason);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 1dfd6269b355..9c2eea73ede9 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -200,7 +200,7 @@ static void intel_detect_preproduction_hw(struct drm_i915_private *dev_priv)
+ 
+ static void sanitize_gpu(struct drm_i915_private *i915)
+ {
+-	if (!INTEL_INFO(i915)->gpu_reset_clobbers_display) {
++	if (!intel_gt_gpu_reset_clobbers_display(to_gt(i915))) {
+ 		struct intel_gt *gt;
+ 		unsigned int i;
  
 -- 
 2.39.5
