@@ -2,94 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5DEA4377C
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 09:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0046A4377F
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 09:23:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915EF10E5AA;
-	Tue, 25 Feb 2025 08:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E2C110E5B0;
+	Tue, 25 Feb 2025 08:23:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePeCIoc1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+0jSU4A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 865DA10E5AA;
- Tue, 25 Feb 2025 08:23:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7E410E5B3;
+ Tue, 25 Feb 2025 08:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740471784; x=1772007784;
+ t=1740471818; x=1772007818;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=pzgdvE+I0PrIC8MPL1VKGnFRm1tgLIF75CaXwr+HsBI=;
- b=ePeCIoc1UeR/RtBd4o2PHq6IIvbfD/Q9RV5rcvEcVIWO4VqFox793N1A
- VajkSsNa+M4HT7gFXyY6YkpM4kISgmQENUXCv3oDXjBG4ahQol144sa9p
- v4x0LfCuplB/RE00u9hCi8+eO9fuDY7oxqYsCTgh+lhFBFLhN0uQgiOQZ
- wmYQKyraiVgIsT9hlCeKOTK4jNFXN/vU+n7dKYD0fdSujFn1jVYnyP3Pi
- pjv+8KKFwToxIIsn21c2tNRiRJDf3Cy2K0FGt9FbpmUb/6PJ4hI5xFq+c
- jtzXQDMzMKa8f3ql4mWC9MsFPBW6ksEddYSg7lZ54DKAi30ifVyy1n/nW Q==;
-X-CSE-ConnectionGUID: y7+BAwDwQjmql9r1sC5V/g==
-X-CSE-MsgGUID: 8ZdWQ+zrSFitQzoYBSafyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="41180735"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="41180735"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 00:23:04 -0800
-X-CSE-ConnectionGUID: Vl/T/8h6Rc2W4oyv+Cde+w==
-X-CSE-MsgGUID: OaL4v/Q9QXmeHbCeWpK+sQ==
+ bh=XqDg1LdkJl5o3sHqpmw9ySBPbwIL7xHKNFotWqntDQ8=;
+ b=U+0jSU4AxIPfIkNQaMLsW+EeC3TcpPmeupaaJ8Ffoy9Jowc8ODFwkQHR
+ 1gROENQLmzlvBCSkuwIMuwHEfqfzTyjxtKDQHDHb+BQ+NZyXW7/al146F
+ 558fjKypY47qFOvoX8WfLxltLkcTAhzYJZVheQ5YOObzklDr0XviKPWsR
+ m4gWoTruNMIKBUsoj4yXAYwm2lnvIyrvYQDxI0QtGytWK16E6a14BNh+9
+ jvffy5ftJeK/QDtW6iGdF/HOjwoKKgm2hipmYs1kw/ydKcJakZZk83DbO
+ FEbf8mGXvgLyieda2n7pt3z+XRnDQZURVSfTV6ONLtik8ETpmD6a0pDxx A==;
+X-CSE-ConnectionGUID: D6iLPqllRmap3SPaGHDwmA==
+X-CSE-MsgGUID: 9j+wZszET2yy/MvxvxVtWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="41110909"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="41110909"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 00:23:37 -0800
+X-CSE-ConnectionGUID: BGgRreG1QOqJ+Fo7Vy+6jw==
+X-CSE-MsgGUID: 1OFF7PU6RZuEn5tJ4l0TKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116943628"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116169805"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 00:23:04 -0800
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2025 00:23:37 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 25 Feb 2025 00:23:03 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.2.1544.14; Tue, 25 Feb 2025 00:23:36 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 25 Feb 2025 00:23:03 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Tue, 25 Feb 2025 00:23:36 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 25 Feb 2025 00:23:00 -0800
+ 15.1.2507.44; Tue, 25 Feb 2025 00:23:36 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nUy/X+Myb4yj7XQL0Zqg+iLK4xSv0+nWH3SP2sbpVoU2k509IwXTJjj9UbyAWE/5VdntsWCQcfo9ggb0Jzps+uMWDmnB+ZJE/CPdsMX7d1oifUMomXxGVEQXHD+IJx02jhCbg3LdQD8/Ex7ffbot1HCc9ok6KKxDTr3HUqxhWBhftadd4G8jrVYeK0PAhf78mQ4ZGup15Zp2V12e8TOBiNjadRr/Qo74JaheBSSNHoFT7xb4Yt+fu7jJ6VveKpzwxzgkfhGy56DDo+mkhUMy5VkDDL5866upMFgx98J/BdsVkEjBaaMoTEqypMGiWXn7CUou8M34TYcgqkPl5rEY9Q==
+ b=LY0PnNcQLtDKZlfuS5f7MCheJoIKBq9IjOTf6a7j3RnnUFipk3xHrnJ8q7yADi7/lEBc0C814CBWNMNA98Bhi/rS3RvwXnxG9jj5FgpxTQbmMEJENEIu8fNB53AkejYSAe4KQrJIX83biDqxJZN+jZaKBcCGOi29OJjV6HmgJA0DY+JyWieugeQH1KWjdfDZ1SjyQiZHfS1wcZ7mmZ9Bn2mvSFVWQqaeMI20XkAqZjQRFyZT77axlkyaZdnDGzvq3AqYayTbH63ZWs3xT3q24/rxHEzB1SKUs3U1klmiec6F+ZaMj7gSG1m/G8VwGEXWJ47Bce7Nqc139slGmS9pMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O4tcuo+46g/soTJz3kHR8HszfK2PR2CkXg2DFWdZxwA=;
- b=BKmXmzzX8qKpF0R+ME2h0no0YdiDMAqrHG3pi6zc2VDby6wiA2B0zgMi/8IreqiXM2KTv5cs3QNqeRGymB2rMa8nKP4DY65uvGygdJ6JnAnSuiO5O+KBDL+D5Hf9uB5emkl+uHblzyxiXN1y49SYc/6iP0F/jVJGK+KFbkxaCtyDAHvaQiRyeBsG3SfDTLFxdg2iMxK1KP7QOlApFKL1bGr/Z/EXNJsUr68m8dbmLPzfJbVJKN0fRTMtCePaKP02xNI5EE1n7CCyFJJxhzzywBJz794iQrfYWI5KHZofmO14kcm3RzSFQ/Ko/5Bn4y0AZZetxZfnsjwIiI5HuUEaGA==
+ bh=Fhqy6zKBt57fHOaTTQou1ILgODlMBRLipS9sq9mjLAE=;
+ b=OMpFE9hM2g+ApbfsNZ7i6t/O3GPk+AaQNIusObwAqTvYjXSJNSzD2iY+rXWPKJyufXxpbkFVwhFXpV9jIDBAK8o+0z6VLPdLVbL7tD8k9GW4gKT0bZ6KGErRajHy/iTmZUG193BwUFRl3HAzQgw3ffuCorjbgg9eLwQQW0gvE0LMIPFfBTEyD2/rWfd9N6XaoD7AHGC8E6jfoNOARHlQetbqQk0snoTGx9PoBLkoevPIxVxvKR+PlEd+HcGnt9zTHbebzviPmsXxUy8srRuFJlPwGygudN2K4upv5hSGuQWQ+6yE5aKB+dsT380sUm+O4JfsldM10sNI330Bo5QhbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
- by CO1PR11MB4835.namprd11.prod.outlook.com (2603:10b6:303:9e::22)
+ by MW4PR11MB5936.namprd11.prod.outlook.com (2603:10b6:303:16b::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.16; Tue, 25 Feb
- 2025 08:22:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Tue, 25 Feb
+ 2025 08:23:33 +0000
 Received: from PH7PR11MB5981.namprd11.prod.outlook.com
  ([fe80::40e0:95a6:26e8:8de0]) by PH7PR11MB5981.namprd11.prod.outlook.com
  ([fe80::40e0:95a6:26e8:8de0%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 08:22:17 +0000
+ 08:23:33 +0000
 From: "Manna, Animesh" <animesh.manna@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
 CC: "Hogander, Jouni" <jouni.hogander@intel.com>, "B, Jeevan"
  <jeevan.b@intel.com>
-Subject: RE: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change in
- dependent parameters
-Thread-Topic: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change in
- dependent parameters
-Thread-Index: AQHbhpZzsO3gJ4cfWkOoJmlBg7Tdr7NWRhEAgAFMe7CAABdxgIAABV2A
-Date: Tue, 25 Feb 2025 08:22:17 +0000
-Message-ID: <PH7PR11MB598152F15C3712BF1B54143EF9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v4 1/8] drm/i915/lobf: Add lobf enablement in post plane
+ update
+Thread-Topic: [PATCH v4 1/8] drm/i915/lobf: Add lobf enablement in post plane
+ update
+Thread-Index: AQHbhpZwuPd/9SOZB0SJlU+C0SIlHLNWREwAgAFrgJA=
+Date: Tue, 25 Feb 2025 08:23:33 +0000
+Message-ID: <PH7PR11MB5981ACB4E126266774FB9E97F9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
 References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-5-animesh.manna@intel.com> <87r03n7h55.fsf@intel.com>
- <PH7PR11MB5981971262D74BC11EAA1BEAF9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
- <875xky78qg.fsf@intel.com>
-In-Reply-To: <875xky78qg.fsf@intel.com>
+ <20250224080847.326350-2-animesh.manna@intel.com> <87zfib7hfp.fsf@intel.com>
+In-Reply-To: <87zfib7hfp.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -97,80 +95,80 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|CO1PR11MB4835:EE_
-x-ms-office365-filtering-correlation-id: 399a1b8b-8389-48b6-445a-08dd55758484
+x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|MW4PR11MB5936:EE_
+x-ms-office365-filtering-correlation-id: 8a3830c9-ad9f-4de4-c119-08dd5575b1c2
 x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?dDHWXx+bDWlX+3vpCUYXX7rafIfL+t7dEWmYSco8pNtN+8/zSCsgxhddRiEp?=
- =?us-ascii?Q?kv3kpf5iIrst+Bj2wKRK2adnle9PXauRZJpstK8q3TVuoqCM4oC4ydT0GUFY?=
- =?us-ascii?Q?30Hd9FaiActvCrg+2vohzXbohhH6F0EiDtXastxZzy2RQI9Uyop4YpWXnhGv?=
- =?us-ascii?Q?07jmIhHA028FHr3PA3Ht3V/6DeGwAfDpDfhEvwbdmhcKHPEGHxpmcu25MTwL?=
- =?us-ascii?Q?M+o4gkHDEs4Ipn1chk+rYgWgtKy2a/Bs7X08w/VJlt6v5vO1OSZ5m9DlzyoI?=
- =?us-ascii?Q?vAFJeOJwc/LiCNRPzQW8JUxB0jPGUjGXtiif/V20H7fwxB0gWj0ck7e4CMhh?=
- =?us-ascii?Q?5jit8c9ZbBD4j9P8IGuHr7XxbXWLNQZB16bU+KeOgH9v7oElINB8Htn3IbQ7?=
- =?us-ascii?Q?VogwX80jlqVlHJjkc98XU8JWVOYO9Mg1cN8nTriJXYN1wuQ/aht4G6EYRTeV?=
- =?us-ascii?Q?tkS35QqHOTeougPYnxXOCwrF4ivPyR2vK5xv3CzviW2UBnf4hN2jPCtQsJUw?=
- =?us-ascii?Q?MHQqzw21xKCivkbOh7J6rXVeNAsr9xSC1rBrJUXpbURr0M4Tu0O9mChRlJ0j?=
- =?us-ascii?Q?2F7TyjxjNF/4Qko3x2AbgkW9cwCS6Kh/TagV136qUh01VDSe7+Du01AA9L4Q?=
- =?us-ascii?Q?dm/VKcDK94KltT79jkxDKnWHvQ44gnpbSMyqvNZ98VJp65UZey5gB4ROrMds?=
- =?us-ascii?Q?tzL4PlArja764UBX2mOdkmx8EYoTcCu8/yF9qfMwMvonOhzgjDXg5MYZzH8f?=
- =?us-ascii?Q?g7u4lKAxkgxEPZQ8TP8e8bIsQJDNWd3F25TaPnJaritL0ZgjrXCn0egarjhl?=
- =?us-ascii?Q?cK6mvGTadeNINXEyk2CPO4/fKH9GfU5vNlp7RUUEvFOWPhglGQSdYuYk/Uyl?=
- =?us-ascii?Q?AMq+sTj+j6mz+BRyEEVBmM53gghEt6t215nzTq0oRWbwcmEaUxquKPl4TIYo?=
- =?us-ascii?Q?DIVlzTUhPQj9N2J4KIDuy3kI51h2uRksLTZGINZxLqfqAOFtICvNvuc/CsOJ?=
- =?us-ascii?Q?zz64KX7dWhilOplluHZDozPMFchwZecZYZJcES/VOfmlFwYtXnWR0l2estaH?=
- =?us-ascii?Q?Qo5MK4zSs9/LdcGEaKCZgJ02Q/KJq12uEKZ+tABfN/d/cvOraAaNzGnW+8Xp?=
- =?us-ascii?Q?rWsPLpcy168TC2/UNlUEL8u7f6imRbtZBco8PLRlQ+j48p2sxqRJTFAc/7hV?=
- =?us-ascii?Q?jknpeevxoCVI1qui4bRhIZ/AVBAzVjGNVN6b5j9cBWavT9VLQR9gEdcobwUa?=
- =?us-ascii?Q?Zgfrhvc49XiDsyWBNMqnyyZZFFwRZN522nNNuyaKgtfAzgNNb9QPNuDlUQt2?=
- =?us-ascii?Q?u863NB2wy4GnyAPNtErQS3hAZ7DxKbEAZeSWobw3iIFuHy30dLduLjvJnXAG?=
- =?us-ascii?Q?BDPp1Fmh8r1g3Xo62o7QxxcPECHCTzrK53u8HVSr7qFMISS3fHxzsLaWyCn+?=
- =?us-ascii?Q?g/Npp4ry8yJp4EpZbpRmha+6rzl01igU?=
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?rdofTi6tX5++moWjakpdsNh24xrkHPrrxhg+W3iQ46J6quL5sLbbPvhH2wtb?=
+ =?us-ascii?Q?RDc+bCIdDMlpO4SPTfrYHENEViGcbGG9hXieNMa/UGZg9B1Gsggu9iWSpb7u?=
+ =?us-ascii?Q?uKV5K1DVCGCw8jcoK+Xtw6/1kMzn3Qw8+RU+MhF/gyfwNE9SINLWd7CQ833I?=
+ =?us-ascii?Q?OVjJd5Suav3BZODpJbTGzPJk7S2HOpEjqAKQwCY0WIOcev3xxqDVY640Dkav?=
+ =?us-ascii?Q?HvVOCd4Aj7w665kUneHU1G3/A6xy90Z/guW8cfM9GfCUXk2YXKUnyWskVlbB?=
+ =?us-ascii?Q?0E2UdIvHlGc2Fb22Ge5SOfjTccx3ndL+hBC+hWGMS/0Qdu8xN/XE6v7thQ7b?=
+ =?us-ascii?Q?PkwPUwSGDYxe13ecPaJAfbZwOF+wDAeanyXlRHnH/Nqwyqd4HH+xqFb61aHs?=
+ =?us-ascii?Q?xX6pXuhchRo1bS9p2RHTBqkB9YAwVMhZ859tNZ11rYRSENDa38Zkg0LTBy58?=
+ =?us-ascii?Q?vur+rkG1dJc8wfEWOk6cj2Cus2o4OFdaAp4I8JFt6a4QeP5Tlu5dZcFum0Nw?=
+ =?us-ascii?Q?brDh5MchZdxb+vsJkLDXXKj4pMlHcgv1TMWMAujkHYUfv3np/6NIxZiv/bJI?=
+ =?us-ascii?Q?/3r18PT67Z5ynfeLKD30IORnIz4Ye/vP7btObFbxrKPHq9x0jJVr60DFb0Us?=
+ =?us-ascii?Q?Tfio5o7yh9PHmURjGjtTWNHE3w+Bk8vUYCt8E9qaSmdJW4TrbYxTdnxIJYpL?=
+ =?us-ascii?Q?F6esPvr7icYqiW9czV1ngFeM6Qr9V436Y1JNbXxNGEil4NGXW/6eOWUA4fWp?=
+ =?us-ascii?Q?+YOO7Clws2o1co4Ve233X9UKIe021SNJVu+l6il8RX2hYxJ9qtrgvdaOcJqz?=
+ =?us-ascii?Q?iSd9ksKwoa4E7XTWPy6ew9jgutPvjn5UxTFcvJNYtktVzbKzPdfwDAm3Cgx1?=
+ =?us-ascii?Q?Ou5SMEVbirLMEFHoLilWywK60ZSTIqCPTZReXYA9HkedG/y0iyRJbWTKVHId?=
+ =?us-ascii?Q?Nf2MnFFCtHg8HTUju34tyKRPRnfRwCdD77nf+Ll+DDLNRGfhkbHuedhJnEjQ?=
+ =?us-ascii?Q?Hzh8JegZKR3bmWAy3KqvbZ31/xez2vxfhr/1YKkua4T7e62uNYdvJBBEMvD8?=
+ =?us-ascii?Q?LlohoZ6GchOs13i9ptLS/gPx+CjQltI4+08kgu4GtLNIoA3I9j4bAsfxrZkL?=
+ =?us-ascii?Q?1zGBlfc81YQXI2bBAhv45rFVWoywK+WrDCJoZare8cqPpIILONmJwPpNmIrs?=
+ =?us-ascii?Q?EtJbB9+/tY69xraATiWxp6ZjwFrEzVXDjpQAzftJTlgKBl77VXRSDi24nBmR?=
+ =?us-ascii?Q?/vg7/fKl622P9acC1i15paLmd8o7hrpFuosPZ1/d/WYwyB5M+N9akqclCHTX?=
+ =?us-ascii?Q?Ij/az963cZEeuiYDGTOg9kwd9+TOUPYFvz1arpemHL/D7tK4Q4as7/VIa6fG?=
+ =?us-ascii?Q?mCNnbQfD8z4BtTAC/Gdde/T5h9hJqlcxQfZ6i+TVukH2U2JXEra4QxiqXGp/?=
+ =?us-ascii?Q?JguiETBJkx0shfIY5ummXQeceqFGDRWS?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lzS8dpaxymyl1ZHHzO+W0xUKfMw/FvMWCuDwOadDqjxUpjwVSC6ZZ2OdPweK?=
- =?us-ascii?Q?9DCIuoqQSLxbTKmyQdcWXkUvRlzBsckqU4ifLB3w1zFyA36BYb/sNi6Gx+mx?=
- =?us-ascii?Q?VkJnt+Hm/mXBRzitD+u85kfybqF93IdSiY7fDjqtLuEEQgUMpcjjbH3H6MjN?=
- =?us-ascii?Q?y/UcImiJrHqQaimJZ6qV1/IEZHT/RzuQaEgskLdZlrk8+CV4DtraK5IPlHbz?=
- =?us-ascii?Q?SUkKxx4a7wBVluN1uEzLgTuzqSnh2nYxOred2cNd0CmZrl9miMbHdYHQgQzo?=
- =?us-ascii?Q?P87GoCqWIOPaCklfjwBMAUkyPTnrt0tE5IIyXrv/iZDhPXGp11y3Iaz8VpOW?=
- =?us-ascii?Q?ApJSWIvINMtyzagioN+Q3CbtGJTY8XDuDElnTebYqUNfymUj1Zu/VO3WySAH?=
- =?us-ascii?Q?sgJzsYk2Yrd9pttupOIswvzXN4zvOT0nw3TCrPkxfvKJYoj+zapHhKiBhiI3?=
- =?us-ascii?Q?kq7NIVSryVJghDf1Yxy+GhB6oEknKiVmTpNz6qargkhInEN/IjZLIItOlXYe?=
- =?us-ascii?Q?mEKhJRnbhqdB/NM01Lgr5q/fwK7adXpxOqFt7P8bnjChkgnL8TfiqIc/C3z3?=
- =?us-ascii?Q?arKjbNNoBy16kBVFbGrt2kQFUQiP2anuDAFnlOSWF76FtvMBQwAgOyRVs2Ww?=
- =?us-ascii?Q?nNzJ94qKJVVCf5eSJ3mNkCvo46NYDKW62cxOODBi5uNv0mdn9rwE8xwYXdXY?=
- =?us-ascii?Q?FCtGbs0ERMvJN7lJSjRZ/gvxu2kKKCex+h9nuFhlkvyuMMlJdqISkTv6YPxF?=
- =?us-ascii?Q?4BKbPDf7fYDvDDWUv/Pt4xozbsFBCvWv4zJXV99LfJZOg6e+YVGQp7KJ3ocW?=
- =?us-ascii?Q?xh8QipITaAbWJQpjtZa807qbJsgdVePTxVPBLu9eYRqnSPGEE2bPKflWT+9X?=
- =?us-ascii?Q?CfgMEb5yeudgDBZcbhSicJpXXYeUGujsIhxXhuDpZ8t/XTLqk+0uQL/gjCSR?=
- =?us-ascii?Q?cFSml8v3MmKcmFJugQoFbn1YJ0VFyqKo5fSVgRGxuQn6+jaIkLRpoWuYOkcm?=
- =?us-ascii?Q?vwQ2lKCPdndxBrBdqU9KBh7o0swqFPWYU6+zuO8VvOPkr7MaUBnKfxM+Hcck?=
- =?us-ascii?Q?tymLY+6Eq/gv0Wfxl6cDaTcWRCpxCLMs8ldtwuAq1c3ClfzFu9hVzW7XXJrL?=
- =?us-ascii?Q?wuPWwa+fdqVt4ecCtzUbYLy2/DoHR8dFiEGcd6zncgR+y9/VCoc0ou05Gye0?=
- =?us-ascii?Q?BJjlwbQTEqd1Yubda6MeKqpExsmfjUgUpGdOZnIzBzspGGUJyhB/vVxz+p9m?=
- =?us-ascii?Q?TMxalM5GAXhDd2VCDjbnucmIrxjnCLGGVExWBOaw14BKBIN+Ow/ysbozizK0?=
- =?us-ascii?Q?Fq99AUbqZIzI/2AzsjCToPhcHc6E8wHfKtkn/hIjBizHD4rHrRRfCKpIxdPN?=
- =?us-ascii?Q?6yq2zmHxFcpLyTyAQ8JahYhfZ71rO0TgfGrWhYVoHF3FPPq26uXzSC7FBN9H?=
- =?us-ascii?Q?H2FV2KHnnffmpiwZaxZn7wRmJOdfN/b1bJqt3PBMS1gFAnEzeksViopjGJAl?=
- =?us-ascii?Q?jHGok2SgMVwosnc/dWOlAEEOHDVflKRNWo77ceia6JsUarfAJ6FlYVLeAdHn?=
- =?us-ascii?Q?cS/Lgmq0Aoo8UJ3N0SqhTkQ7xR1sMT5ARRb69LkN?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Pn/eItHryPEXM3J6gmS22q2CU2RRHoacWWN9Bp2MsX56dzPzFEqsIi8l9Zc2?=
+ =?us-ascii?Q?C0AHK9jdH4qMVC2tnRY7p/twuiQ6zMUnh0RuKETJoEf8U1GF9LT8a8KNS5Sf?=
+ =?us-ascii?Q?i4uAPinSFWpahRYxO0QwCnvnhiGnhRGxRQ6NPqB2b8AUQPk2eKfeylU+RbSt?=
+ =?us-ascii?Q?8TsNZ6T0DFUUusqdfJKUYbwHJg2uV0XstHxp9R/c/F8ev3YqAHJ2jHBPBg3B?=
+ =?us-ascii?Q?UcubdDl8L728ETwOjjSIf9ohFHAhRej6lP2yABfo1zVbJsPB0p27tx5keG+O?=
+ =?us-ascii?Q?nJc3D5ZI0nwUsnm2PlkE6Mli09bT6jlCQ9qfnnF8wEeDFXP3RVewQch+MvS7?=
+ =?us-ascii?Q?984Ko0J5z/ZdNcDL9nd6ft0MriZ+Oap8JzH+YvTbgs1Coq44rEIVdpzbm7kz?=
+ =?us-ascii?Q?Cl3ffHPwPjmMrtCboTfFQMnQYZlIxgk34F3zZ2pmqalUxm72AtejJiQEoxmM?=
+ =?us-ascii?Q?9/J9mYMZqvkc9L0rRXJKG3ayG2fSSLjXMrMUtqDC6C7BBlw3RBhYhkk+fU+F?=
+ =?us-ascii?Q?ygQ1Ytr3VQm+1t4MhQ2bqTNhRdDLjLLSu/6WpZm4KBjRWLDnKRRgDU++et5h?=
+ =?us-ascii?Q?qEWUDV7ZiTgO0uwZQ4UqdTmfgWLXJG6X01gnbZgoqXsd3KDO6qjxciMDMXTZ?=
+ =?us-ascii?Q?sz4ZJHzcY6r5pQ/1jCb5svg3xzqeIDKhYD7UZtas+fMHpDU2atnKsB6ZgPY8?=
+ =?us-ascii?Q?8pQZS0BBShK7V/2P4i4TiXeGFZiOlTLKzvIUDfVZF90ALHbERzXqZocx729z?=
+ =?us-ascii?Q?uXKUx+qi0e3i29T0D9NU1PqUCeimBiRsU4HGbX9uE6KVCHmr2qeEjkuhMMOR?=
+ =?us-ascii?Q?9gBaL40GLFlJlrwToi0o6BxwhDrSAZUEHKYkgNXcgZ36LZwwt3xVCcrTWxiw?=
+ =?us-ascii?Q?iXTABflAFUrprW7x66SKlYJiJaWFMibd+pl5e4Htic0KB3b9fSpuvW5Qa2Ib?=
+ =?us-ascii?Q?EjqSVe5mMYzllHxNc4Udr2qiASgz2Y1Ta43OzJ0xeNC+DiAR4FBNW9pmFuW0?=
+ =?us-ascii?Q?yC8+OQchFByMMxCiDCDAvFCJ11lYVwVZjmkPWWQ7Qj/Qm6lzsb0V6rF1mBCo?=
+ =?us-ascii?Q?pNLS61CgSrJjsgiKNxIKwjZ/pn+LP/0nmbdiUfw7G7GCI5vvA9o+PA+GKEtX?=
+ =?us-ascii?Q?oK9eiDwYBY5KUBP3+YjDHszspEfw7VUVF7kicEH1TgzuJ72lsglcMR5/8ccB?=
+ =?us-ascii?Q?ZJ5bUNj0cQm1Knpm6lJsCbGbhKy7BYxE1gdhMRcePkGTemuazohxO48ZU0Xr?=
+ =?us-ascii?Q?+Qg6lI6W7rtKBd//ABP3TBp/Z1k2veqITFzb04eBOOQcn0rscUOok1VTHGBH?=
+ =?us-ascii?Q?MOQWyinZNpHYF/FfbyS/uszyLi0z/UCDiqEHXbt999+aGJpgPnaYXZLc/xnF?=
+ =?us-ascii?Q?6hJnxFHN5pf4rsgFY9f2rgpwCI1L0W1YC4aomob/R7CFdmwuSgxmK7Pu8qGY?=
+ =?us-ascii?Q?ewk/WFhV1ouMWnO5/0ICrBZnIo3gmnUduRKJ2UlgEcWuBRkXVJe8Y8eDXt7w?=
+ =?us-ascii?Q?bNr8tFJMFpOPVn1KH7nVIovN+wljccbtxZqao+Vstj/urayCNpt34FH7rlQA?=
+ =?us-ascii?Q?61U0Fk7iGWCZDdGaMRPVxDMyEkDiWUrXj9StDH4+?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 399a1b8b-8389-48b6-445a-08dd55758484
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2025 08:22:17.8971 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a3830c9-ad9f-4de4-c119-08dd5575b1c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2025 08:23:33.7834 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f6ORAjs4uq/njPMqRvKQD5ZFre9EdwZnu1kR8Vd7+1pOK8XO1XiUOk/STQ7cNZBBj077voZozDzSPaxsAcR7/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4835
+X-MS-Exchange-CrossTenant-userprincipalname: FK1KAGk48oTgJ3L/XR4/0v6YmYJf5e9UFvxpctUrC2GGD0I3t5cLKn/Aer4NW2B0M+kzWrIvSehDlQXpgC4B3Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5936
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -191,146 +189,144 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Tuesday, February 25, 2025 1:32 PM
+> Sent: Monday, February 24, 2025 4:12 PM
 > To: Manna, Animesh <animesh.manna@intel.com>; intel-
 > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
 > Cc: Hogander, Jouni <jouni.hogander@intel.com>; B, Jeevan
-> <jeevan.b@intel.com>
-> Subject: RE: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change in
-> dependent parameters
+> <jeevan.b@intel.com>; Manna, Animesh <animesh.manna@intel.com>
+> Subject: Re: [PATCH v4 1/8] drm/i915/lobf: Add lobf enablement in post
+> plane update
 >=20
-> On Tue, 25 Feb 2025, "Manna, Animesh" <animesh.manna@intel.com>
-> wrote:
-> >> -----Original Message-----
-> >> From: Nikula, Jani <jani.nikula@intel.com>
-> >> Sent: Monday, February 24, 2025 4:18 PM
-> >> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> >> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> >> Cc: Hogander, Jouni <jouni.hogander@intel.com>; B, Jeevan
-> >> <jeevan.b@intel.com>; Manna, Animesh <animesh.manna@intel.com>
-> >> Subject: Re: [PATCH v4 4/8] drm/i915/lobf: Update lobf if any change
-> >> in dependent parameters
-> >>
-> >> On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com>
-> wrote:
-> >> > For every commit the dependent condition for LOBF is checked and
-> >> > accordingly update has_lobf flag which will be used to update the
-> >> > ALPM_CTL register during commit.
-> >> >
-> >> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_alpm.c | 16 ++++++++++++++++
-> >> > drivers/gpu/drm/i915/display/intel_alpm.h |  1 +
-> >> > drivers/gpu/drm/i915/display/intel_ddi.c  |  2 ++
-> >> >  3 files changed, 19 insertions(+)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
-> >> > b/drivers/gpu/drm/i915/display/intel_alpm.c
-> >> > index 1438e125cde1..83719ee1721c 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> >> > @@ -312,6 +312,22 @@ void intel_alpm_lobf_compute_config(struct
-> >> intel_dp *intel_dp,
-> >> >             (first_sdp_position + waketime_in_lines);  }
-> >> >
-> >> > +void intel_alpm_lobf_update(const struct intel_crtc_state
-> >> > +*crtc_state) {
-> >> > +   struct intel_display *display =3D to_intel_display(crtc_state);
-> >> > +   enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> >> > +   u32 alpm_ctl;
-> >> > +
-> >> > +   if (DISPLAY_VER(display) < 20)
-> >> > +           return;
-> >> > +
-> >> > +   alpm_ctl =3D intel_de_read(display, ALPM_CTL(display,
-> >> cpu_transcoder));
-> >> > +   if (alpm_ctl & ALPM_CTL_LOBF_ENABLE && !crtc_state->has_lobf) {
-> >>
-> >> You don't need to even read the register if crtc_state->has_lobf is tr=
-ue.
+> On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
+> > Enablement of LOBF is added in post plane update whenever has_lobf
+> > flag is set. As LOBF can be enabled in non-psr case as well so adding
+> > in post plane update. There is no change of configuring alpm with psr
+> > path.
 > >
-> > Thanks Jani for review.
-> > Reading register to get what is there in ALPM_CTL register, like aux-le=
-ss or
-> aux-wake alpm and etc.
-> > For LOBF we need to touch a specific bit, and don't want to modify othe=
-r
-> bitfields.
+> > v1: Initial version.
+> > v2: Use encoder-mask to find the associated encoder from crtc-state.
+> > [Jani]
+> > v3: Remove alpm_configure from intel_psr.c. [Jouni]
+> >
+> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_alpm.c    | 25 ++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_alpm.h    |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_display.c |  3 +++
+> >  drivers/gpu/drm/i915/display/intel_psr.c     |  3 ---
+> >  4 files changed, 32 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
+> > b/drivers/gpu/drm/i915/display/intel_alpm.c
+> > index 55f3ae1e68c9..a53ed83f6b22 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> > @@ -367,6 +367,31 @@ void intel_alpm_configure(struct intel_dp
+> *intel_dp,
+> >  	lnl_alpm_configure(intel_dp, crtc_state);  }
+> >
+> > +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> > +				  struct intel_crtc *crtc)
+> > +{
+> > +	struct intel_display *display =3D to_intel_display(state);
+> > +	const struct intel_crtc_state *crtc_state =3D
+> > +		intel_atomic_get_new_crtc_state(state, crtc);
+> > +	struct intel_encoder *encoder;
+> > +
+> > +	if (!(crtc_state->has_lobf || crtc_state->has_psr))
+> > +		return;
 >=20
-> You only modify the register if crtc_state->has_lobf is false. You don't =
-need
-> to read the register if crtc_state->has_lobf is true.
+> I think this would read better as "if not lobf and not psr" than "if not =
+(lobf or
+> psr)" because of the need to verbalize the parens.
 
-Ok, will take care in next version.
+Ok.
 
 Regards,
 Animesh
 
 >=20
->=20
-> BR,
-> Jani.
->=20
->=20
+> > +
+> > +	for_each_intel_encoder_mask(display->drm, encoder,
+> > +				    crtc_state->uapi.encoder_mask) {
+> > +		struct intel_dp *intel_dp;
+> > +
+> > +		if (!intel_encoder_is_dp(encoder))
+> > +			continue;
+> > +
+> > +		intel_dp =3D enc_to_intel_dp(encoder);
+> > +
+> > +		if (intel_dp_is_edp(intel_dp))
+> > +			intel_alpm_configure(intel_dp, crtc_state);
+> > +	}
+> > +}
+> > +
+> >  static int i915_edp_lobf_info_show(struct seq_file *m, void *data)  {
+> >  	struct intel_connector *connector =3D m->private; diff --git
+> > a/drivers/gpu/drm/i915/display/intel_alpm.h
+> > b/drivers/gpu/drm/i915/display/intel_alpm.h
+> > index 8c409b10dce6..2f862b0476a8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> > @@ -12,6 +12,8 @@ struct intel_dp;
+> >  struct intel_crtc_state;
+> >  struct drm_connector_state;
+> >  struct intel_connector;
+> > +struct intel_atomic_state;
+> > +struct intel_crtc;
 > >
-> > Regards,
-> > Animesh
+> >  void intel_alpm_init_dpcd(struct intel_dp *intel_dp);  bool
+> > intel_alpm_compute_params(struct intel_dp *intel_dp, @@ -21,6 +23,8
+> @@
+> > void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
+> >  				    struct drm_connector_state *conn_state);
+> void
+> > intel_alpm_configure(struct intel_dp *intel_dp,
+> >  			  const struct intel_crtc_state *crtc_state);
+> > +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
+> > +				  struct intel_crtc *crtc);
+> >  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
+> > bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);  bool
+> > intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp); diff
+> > --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 065fdf6dbb88..5d5cee808bff 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -55,6 +55,7 @@
+> >  #include "i9xx_plane.h"
+> >  #include "i9xx_plane_regs.h"
+> >  #include "i9xx_wm.h"
+> > +#include "intel_alpm.h"
+> >  #include "intel_atomic.h"
+> >  #include "intel_atomic_plane.h"
+> >  #include "intel_audio.h"
+> > @@ -1077,6 +1078,8 @@ static void intel_post_plane_update(struct
+> intel_atomic_state *state,
+> >  		intel_atomic_get_new_crtc_state(state, crtc);
+> >  	enum pipe pipe =3D crtc->pipe;
 > >
-> >>
-> >> > +           alpm_ctl &=3D ~ALPM_CTL_LOBF_ENABLE;
-> >> > +           intel_de_write(display, ALPM_CTL(display,
-> >> > + cpu_transcoder),
-> >> alpm_ctl);
-> >> > +   }
-> >> > +}
-> >> > +
-> >> >  static void lnl_alpm_configure(struct intel_dp *intel_dp,
-> >> >                            const struct intel_crtc_state
-> >> > *crtc_state)  { diff --
-> >> git
-> >> > a/drivers/gpu/drm/i915/display/intel_alpm.h
-> >> > b/drivers/gpu/drm/i915/display/intel_alpm.h
-> >> > index 91f51fb24f98..c6efd25c2062 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> >> > @@ -23,6 +23,7 @@ void intel_alpm_lobf_compute_config(struct
-> >> > intel_dp
-> >> *intel_dp,
-> >> >                                 struct drm_connector_state
-> >> > *conn_state);
-> >> void
-> >> > intel_alpm_configure(struct intel_dp *intel_dp,
-> >> >                       const struct intel_crtc_state *crtc_state);
-> >> > +void intel_alpm_lobf_update(const struct intel_crtc_state
-> >> > +*crtc_state);
-> >> >  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
-> >> >                               struct intel_crtc *crtc);  void
-> >> > intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> > index 26aa32d4d50e..44258ba0d951 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> >> > @@ -37,6 +37,7 @@
-> >> >  #include "icl_dsi.h"
-> >> >  #include "intel_alpm.h"
-> >> >  #include "intel_audio.h"
-> >> > +#include "intel_alpm.h"
-> >> >  #include "intel_audio_regs.h"
-> >> >  #include "intel_backlight.h"
-> >> >  #include "intel_combo_phy.h"
-> >> > @@ -3621,6 +3622,7 @@ static void intel_ddi_update_pipe_dp(struct
-> >> intel_atomic_state *state,
-> >> >     intel_ddi_set_dp_msa(crtc_state, conn_state);
-> >> >
-> >> >     intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
-> >> > +   intel_alpm_lobf_update(crtc_state);
-> >> >
-> >> >     intel_backlight_update(state, encoder, crtc_state, conn_state);
-> >> >     drm_connector_update_privacy_screen(conn_state);
-> >>
-> >> --
-> >> Jani Nikula, Intel
+> > +	intel_alpm_post_plane_update(state, crtc);
+> > +
+> >  	intel_psr_post_plane_update(state, crtc);
+> >
+> >  	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits); diff
+> > --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> > b/drivers/gpu/drm/i915/display/intel_psr.c
+> > index 4e938bad808c..c1dd9c739fd4 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -1903,9 +1903,6 @@ static void intel_psr_enable_source(struct
+> intel_dp *intel_dp,
+> >  			     intel_dp->psr.psr2_sel_fetch_enabled ?
+> >  			     IGNORE_PSR2_HW_TRACKING : 0);
+> >
+> > -	if (intel_dp_is_edp(intel_dp))
+> > -		intel_alpm_configure(intel_dp, crtc_state);
+> > -
+> >  	/*
+> >  	 * Wa_16013835468
+> >  	 * Wa_14015648006
 >=20
 > --
 > Jani Nikula, Intel
