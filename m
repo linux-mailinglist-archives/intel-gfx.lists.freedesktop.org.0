@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D0B7A43D23
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6D5A43D24
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16A7710E622;
-	Tue, 25 Feb 2025 11:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D825310E623;
+	Tue, 25 Feb 2025 11:14:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyI52ev2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iCrrY5ra";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8527010E622;
- Tue, 25 Feb 2025 11:14:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 691EE10E623;
+ Tue, 25 Feb 2025 11:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740482089; x=1772018089;
+ t=1740482094; x=1772018094;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n1BGVYj5ewQvRIVr7u3Pv8TDbsr319OjVEqtbTvDerM=;
- b=lyI52ev2pifNSLTQp8vJDruuB5Nfy3UsSwetUFVSKsjangQdTeRLJOKq
- c/LMG+hbZ+Nm2zCcIWpzr8iLngAE55CmdkODfVGhsmk6e+QgwLaXRRZop
- 9ev2ofGHFfajbmdb8DS3FGx8v6UP6Q4jTaVYKsqLexiKyibQDY26du+RB
- cHuJL47qmR+wZbcJb8OWmx3So6hXsqk2Qkj86SPgJhUs/FxQSsD1A0Kyx
- BEGAmCRRL+Yv5XosFxwdchdKqtbWkhdda63dUisk081yzAFG/tznR83TP
- OZ40cpiH3P5l3rFl/uKgpo6q9uxnhW4CJQBZ04hVuObvKu65JgsFN6m+l g==;
-X-CSE-ConnectionGUID: T2pbNUPRTKmNGUkxzFrkYA==
-X-CSE-MsgGUID: gc7juorqQ7+4enO5XMMK/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106539"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106539"
+ bh=F+qWlkNIqyxME8Xa+k4WSmM6t0L1U3HqW6qlEV1PWJM=;
+ b=iCrrY5ra7qf4MqC+T7UdVNh3ZceKktj+dZ1581Z3i7xjB0rE8tjG/J3A
+ GX9psM9GFOLMc1WkEKnisxKd5l4GadqSqlNiUF79sp3CUhrSZAimUl/pT
+ fvcZT6uJ0k8H7TUqVSENF5O4JMYhBkgEopnBb5EwulilRQLiPHpiA7dak
+ Y7YKTrRwWyqJtRdw59JmQkXSwfQyLKe4xKf8E1aSmqhG3Q3aohr8PTNaE
+ qipgEccw3kB+QbDDl6THVjfgHu++JjisrYlKYJwoLhYZhFK5rdhve10dn
+ 9mnuuOj6ynfU0IC1chcthruoo0ELoY3W/TVLV/bTCY6864ptFiSDH7hui g==;
+X-CSE-ConnectionGUID: iuWgIVLWSaOBYLcJYQ1bag==
+X-CSE-MsgGUID: 2eZatHAbT9iyHRUYzQjPyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106551"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106551"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:48 -0800
-X-CSE-ConnectionGUID: K+bLyaiBQiiBsiX4Kkeamg==
-X-CSE-MsgGUID: LmzLzp4zRzOKnUbcuBlL2g==
+ 25 Feb 2025 03:14:53 -0800
+X-CSE-ConnectionGUID: s0yQEd6nTGWf+CZNguaMtQ==
+X-CSE-MsgGUID: tj1e7ISyRp6AhUs+YQI5sA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612177"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612211"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:46 -0800
+ 25 Feb 2025 03:14:51 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 4/8] drm/i915/reset: add intel_display_reset_test()
-Date: Tue, 25 Feb 2025 13:14:18 +0200
-Message-Id: <1e92734af3c4ab75b487e5f8ef891acee53de9bf.1740481927.git.jani.nikula@intel.com>
+Subject: [PATCH v2 5/8] drm/i915/reset: add wrappers for display reset calls
+Date: Tue, 25 Feb 2025 13:14:19 +0200
+Message-Id: <9619e1fca5599e7703d4847f92a92aef82f847b6.1740481927.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740481927.git.jani.nikula@intel.com>
 References: <cover.1740481927.git.jani.nikula@intel.com>
@@ -70,66 +70,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a helper for checking if we want to test display reset regardless of
-whether it's strictly necessary. This will come in handy in follow-up
-work where we want to check this from gt reset side.
+More of the gt side of display reset will be moved away from
+display. Add small wrappers for display reset calls to not clutter the
+gt reset part of things.
 
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_reset.c | 8 ++++++--
- drivers/gpu/drm/i915/display/intel_display_reset.h | 3 +++
- 2 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-index cef9536c461c..b7962f90c21c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -22,6 +22,11 @@ static bool gpu_reset_clobbers_display(struct intel_display *display)
- 		intel_has_gpu_reset(to_gt(i915)));
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 835c9081b239..d424ffb43aa7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1400,6 +1400,22 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 	return err;
  }
  
-+bool intel_display_reset_test(struct intel_display *display)
++static void display_reset_prepare(struct intel_gt *gt)
 +{
-+	return display->params.force_reset_modeset_test;
++	struct drm_i915_private *i915 = gt->i915;
++	struct intel_display *display = &i915->display;
++
++	intel_display_reset_prepare(display);
 +}
 +
- void intel_display_reset_prepare(struct intel_display *display)
- {
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
-@@ -33,7 +38,7 @@ void intel_display_reset_prepare(struct intel_display *display)
- 		return;
- 
- 	/* reset doesn't touch the display */
--	if (!display->params.force_reset_modeset_test &&
-+	if (!intel_display_reset_test(display) &&
- 	    !gpu_reset_clobbers_display(display))
- 		return;
- 
-@@ -41,7 +46,6 @@ void intel_display_reset_prepare(struct intel_display *display)
- 	set_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags);
- 	smp_mb__after_atomic();
- 	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
--
- 	if (atomic_read(&display->restore.pending_fb_pin)) {
- 		drm_dbg_kms(display->drm,
- 			    "Modeset potentially stuck, unbreaking through wedging\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
-index 9a1fe99bfcd4..c1dd2e8d0914 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-@@ -6,8 +6,11 @@
- #ifndef __INTEL_RESET_H__
- #define __INTEL_RESET_H__
- 
-+#include <linux/types.h>
++static void display_reset_finish(struct intel_gt *gt)
++{
++	struct drm_i915_private *i915 = gt->i915;
++	struct intel_display *display = &i915->display;
 +
- struct intel_display;
++	intel_display_reset_finish(display);
++}
++
+ static void intel_gt_reset_global(struct intel_gt *gt,
+ 				  u32 engine_mask,
+ 				  const char *reason)
+@@ -1417,14 +1433,11 @@ static void intel_gt_reset_global(struct intel_gt *gt,
  
-+bool intel_display_reset_test(struct intel_display *display);
- void intel_display_reset_prepare(struct intel_display *display);
- void intel_display_reset_finish(struct intel_display *display);
+ 	/* Use a watchdog to ensure that our reset completes */
+ 	intel_wedge_on_timeout(&w, gt, 60 * HZ) {
+-		struct drm_i915_private *i915 = gt->i915;
+-		struct intel_display *display = &i915->display;
+-
+-		intel_display_reset_prepare(display);
++		display_reset_prepare(gt);
  
+ 		intel_gt_reset(gt, engine_mask, reason);
+ 
+-		intel_display_reset_finish(display);
++		display_reset_finish(gt);
+ 	}
+ 
+ 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
 -- 
 2.39.5
 
