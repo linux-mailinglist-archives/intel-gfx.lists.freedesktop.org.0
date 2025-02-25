@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37678A436FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 09:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C41DA436FC
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 09:09:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D134710E5A7;
-	Tue, 25 Feb 2025 08:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9E5E10E5AB;
+	Tue, 25 Feb 2025 08:09:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D/cw4npf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rf5WTCau";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9558510E5A7;
- Tue, 25 Feb 2025 08:09:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEBD10E5AB;
+ Tue, 25 Feb 2025 08:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740470988; x=1772006988;
+ t=1740470990; x=1772006990;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CRw+5e4wMIY68FQ/JmtEzb7OdDSMTMHcT9ReAqBkgAE=;
- b=D/cw4npfMGpsUKvmF6ubJ4h1Wp2caX65arVCJ2R7mThW9DJaU/41H7TZ
- bSzRtzhOMsfj//E2XYYlDv6/Yvvgi4LEVLPwq8hH3Y6qDAjimT6vbgJGq
- 3c/qjMmPzHdevd2J2KczktowvMqadQDxvsxnT3a3xo63ryLtajV4iafGQ
- CFvUzcXbNmBcIwO8cTbdpxRLFEb3ihiMsdoXW/bSCta2IBcGs4FVgBBfY
- zkwK9K0jXj2X+ARJcwSuuUt5tyWWPV+wuhCrjGf6KfeqUUq+4lCiRRJCe
- VL+QZTNOZXmfTiSjxw++qEsFJnu5tmW3fdpQ25VmYuRta4LV+X5f/Og69 w==;
-X-CSE-ConnectionGUID: nfuymi6cQMSE8fH+5DnMbQ==
-X-CSE-MsgGUID: 261NGK3VSCSVQdxORSSMRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="66634547"
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="66634547"
+ bh=RcIicXPGD2d7ejytOkxvjoNsPoVzPrVgBl429nS46zI=;
+ b=Rf5WTCauUgkKsf3IWDOnvHSTOVijMmJwM7lm50q2llrq+Awf3vx5j2aZ
+ WNQAbsNhc32ZpXP9lTtFsA1aS11BOTwXZQTdtrb2ukSvBdLdI33+AxEzX
+ vuVYm1Nej2RvBVEEL44KWBpEC1zi2HhMLZctBB5REuKKMZh/N2iFv9SuD
+ UdJJPJrW+qZ7PVJ63Rlt4Q92qFfxbxtnuP01HjD3HvJZXpLYfRYEOZMFC
+ quZAylUy8U1l92UD+fcKrKpZ6mmqV0TxIV2aB6TPqpD4hR1k3bOGlHIR8
+ b6ySo8UeoMqVeRQktEiqpfKWABqusCqRlzySDCt560ejql4KcezRgBFDj g==;
+X-CSE-ConnectionGUID: 6KaCiZaXQRKr/v7t8G6EsA==
+X-CSE-MsgGUID: Cw2c/r7HQvqyTYDrBsb0Rg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="66634551"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="66634551"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 00:09:47 -0800
-X-CSE-ConnectionGUID: QFFqWLAURNa+dgVr7AV/fQ==
-X-CSE-MsgGUID: rqcyPoySQlO9ZVJFBUvDcw==
+ 25 Feb 2025 00:09:50 -0800
+X-CSE-ConnectionGUID: kPkSYdYoQdmTpcjPDFaeyw==
+X-CSE-MsgGUID: OWq2joBlSCSQNO+4XLZ48g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116519374"
+X-IronPort-AV: E=Sophos;i="6.13,313,1732608000"; d="scan'208";a="116519384"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa008.fm.intel.com with ESMTP; 25 Feb 2025 00:09:45 -0800
+ by fmviesa008.fm.intel.com with ESMTP; 25 Feb 2025 00:09:47 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, mika.kahola@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 06/11] drm/i915/dpll: Rename crtc_get_shared_dpll
-Date: Tue, 25 Feb 2025 13:39:22 +0530
-Message-Id: <20250225080927.157437-7-suraj.kandpal@intel.com>
+Subject: [PATCH 07/11] drm/i915/dpll: Change argument for enable hook in
+ intel_global_dpll_funcs
+Date: Tue, 25 Feb 2025 13:39:23 +0530
+Message-Id: <20250225080927.157437-8-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250225080927.157437-1-suraj.kandpal@intel.com>
 References: <20250225080927.157437-1-suraj.kandpal@intel.com>
@@ -68,110 +69,224 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename crtc_get_shared_dpll to take into the individual PLL framework
-which came in at DISPLAY_VER >= 14.
+Change the arguments for enable hook in intel_global_dpll_funcs to only
+accept crtc_state. This is because we really don't need those extra
+arguments everything can be derived from crtc_state and we need
+intel_encoder for PLL enablement when DISPLAY_VER() >= 14.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll.c    | 16 ++++++++--------
- drivers/gpu/drm/i915/display/intel_dpll.h    |  2 +-
- 3 files changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 100 ++++++++++--------
+ 1 file changed, 54 insertions(+), 46 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 36e365cdb33f..8f6f787a911d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4387,7 +4387,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 		crtc_state->update_wm_post = true;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index bd623fdddfdc..c39f7d73a89f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -66,9 +66,8 @@ struct intel_global_dpll_funcs {
+ 	 * Hook for enabling the pll, called from intel_enable_global_dpll() if
+ 	 * the pll is not already enabled.
+ 	 */
+-	void (*enable)(struct intel_display *display,
+-		       struct intel_global_dpll *pll,
+-		       const struct intel_dpll_hw_state *dpll_hw_state);
++	void (*enable)(const struct intel_crtc_state *state,
++		       struct intel_encoder *encoder);
  
- 	if (intel_crtc_needs_modeset(crtc_state)) {
--		ret = intel_dpll_crtc_get_shared_dpll(state, crtc);
-+		ret = intel_dpll_crtc_get_global_dpll(state, crtc);
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 78cdbd54a5ba..3653839d531d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -27,7 +27,7 @@
- struct intel_dpll_funcs {
- 	int (*crtc_compute_clock)(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc);
--	int (*crtc_get_shared_dpll)(struct intel_atomic_state *state,
-+	int (*crtc_get_global_dpll)(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc);
- };
- 
-@@ -1183,7 +1183,7 @@ static int hsw_crtc_compute_clock(struct intel_atomic_state *state,
- 	return 0;
+ 	/*
+ 	 * Hook for disabling the pll, called from intel_disable_global_dpll()
+@@ -226,13 +225,15 @@ intel_tc_pll_enable_reg(struct intel_display *display,
+ 	return MG_PLL_ENABLE(tc_port);
  }
  
--static int hsw_crtc_get_shared_dpll(struct intel_atomic_state *state,
-+static int hsw_crtc_get_global_dpll(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc)
+-static void _intel_enable_shared_dpll(struct intel_display *display,
+-				      struct intel_global_dpll *pll)
++static void _intel_enable_shared_dpll(const struct intel_crtc_state *crtc_state)
  {
- 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-@@ -1416,7 +1416,7 @@ static int ilk_crtc_compute_clock(struct intel_atomic_state *state,
- 	return ret;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++
+ 	if (pll->info->power_domain)
+ 		pll->wakeref = intel_display_power_get(display, pll->info->power_domain);
+ 
+-	pll->info->funcs->enable(display, pll, &pll->state.hw_state);
++	pll->info->funcs->enable(crtc_state, NULL);
+ 	pll->on = true;
  }
  
--static int ilk_crtc_get_shared_dpll(struct intel_atomic_state *state,
-+static int ilk_crtc_get_global_dpll(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc)
- {
- 	struct intel_crtc_state *crtc_state =
-@@ -1716,12 +1716,12 @@ static const struct intel_dpll_funcs dg2_dpll_funcs = {
+@@ -286,7 +287,7 @@ void intel_enable_global_dpll(const struct intel_crtc_state *crtc_state)
  
- static const struct intel_dpll_funcs hsw_dpll_funcs = {
- 	.crtc_compute_clock = hsw_crtc_compute_clock,
--	.crtc_get_shared_dpll = hsw_crtc_get_shared_dpll,
-+	.crtc_get_global_dpll = hsw_crtc_get_global_dpll,
- };
+ 	drm_dbg_kms(display->drm, "enabling %s\n", pll->info->name);
  
- static const struct intel_dpll_funcs ilk_dpll_funcs = {
- 	.crtc_compute_clock = ilk_crtc_compute_clock,
--	.crtc_get_shared_dpll = ilk_crtc_get_shared_dpll,
-+	.crtc_get_global_dpll = ilk_crtc_get_global_dpll,
- };
+-	_intel_enable_shared_dpll(display, pll);
++	_intel_enable_shared_dpll(crtc_state);
  
- static const struct intel_dpll_funcs chv_dpll_funcs = {
-@@ -1774,7 +1774,7 @@ int intel_dpll_crtc_compute_clock(struct intel_atomic_state *state,
- 	return 0;
+ out:
+ 	mutex_unlock(&display->dpll.lock);
+@@ -558,11 +559,12 @@ static void ibx_assert_pch_refclk_enabled(struct intel_display *display)
+ 				 "PCH refclk assertion failure, should be active but is disabled\n");
  }
  
--int intel_dpll_crtc_get_shared_dpll(struct intel_atomic_state *state,
-+int intel_dpll_crtc_get_global_dpll(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc)
+-static void ibx_pch_dpll_enable(struct intel_display *display,
+-				struct intel_global_dpll *pll,
+-				const struct intel_dpll_hw_state *dpll_hw_state)
++static void ibx_pch_dpll_enable(const struct intel_crtc_state *crtc_state,
++				struct intel_encoder *encoder)
  {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
-@@ -1788,10 +1788,10 @@ int intel_dpll_crtc_get_shared_dpll(struct intel_atomic_state *state,
- 	if (!crtc_state->hw.enable || crtc_state->global_dpll)
- 		return 0;
+-	const struct i9xx_dpll_hw_state *hw_state = &dpll_hw_state->i9xx;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct i9xx_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.i9xx;
+ 	const enum intel_dpll_id id = pll->info->id;
  
--	if (!i915->display.funcs.dpll->crtc_get_shared_dpll)
-+	if (!i915->display.funcs.dpll->crtc_get_global_dpll)
- 		return 0;
+ 	/* PCH refclock must be enabled first */
+@@ -689,11 +691,12 @@ static const struct intel_dpll_mgr pch_pll_mgr = {
+ 	.compare_hw_state = ibx_compare_hw_state,
+ };
  
--	ret = i915->display.funcs.dpll->crtc_get_shared_dpll(state, crtc);
-+	ret = i915->display.funcs.dpll->crtc_get_global_dpll(state, crtc);
- 	if (ret) {
- 		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] Couldn't get a shared DPLL\n",
- 			    crtc->base.base.id, crtc->base.name);
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.h b/drivers/gpu/drm/i915/display/intel_dpll.h
-index 21d06cbd2ce7..b3ab01a2cb5c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.h
-@@ -20,7 +20,7 @@ enum pipe;
- void intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv);
- int intel_dpll_crtc_compute_clock(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc);
--int intel_dpll_crtc_get_shared_dpll(struct intel_atomic_state *state,
-+int intel_dpll_crtc_get_global_dpll(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc);
- int i9xx_calc_dpll_params(int refclk, struct dpll *clock);
- u32 i9xx_dpll_compute_fp(const struct dpll *dpll);
+-static void hsw_ddi_wrpll_enable(struct intel_display *display,
+-				 struct intel_global_dpll *pll,
+-				 const struct intel_dpll_hw_state *dpll_hw_state)
++static void hsw_ddi_wrpll_enable(const struct intel_crtc_state *crtc_state,
++				 struct intel_encoder *encoder)
+ {
+-	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
+ 	const enum intel_dpll_id id = pll->info->id;
+ 
+ 	intel_de_write(display, WRPLL_CTL(id), hw_state->wrpll);
+@@ -701,11 +704,11 @@ static void hsw_ddi_wrpll_enable(struct intel_display *display,
+ 	udelay(20);
+ }
+ 
+-static void hsw_ddi_spll_enable(struct intel_display *display,
+-				struct intel_global_dpll *pll,
+-				const struct intel_dpll_hw_state *dpll_hw_state)
++static void hsw_ddi_spll_enable(const struct intel_crtc_state *crtc_state,
++				struct intel_encoder *encoder)
+ {
+-	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
++	struct intel_display *display = to_intel_display(crtc_state);
++	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
+ 
+ 	intel_de_write(display, SPLL_CTL, hw_state->spll);
+ 	intel_de_posting_read(display, SPLL_CTL);
+@@ -1284,9 +1287,8 @@ static const struct intel_global_dpll_funcs hsw_ddi_spll_funcs = {
+ 	.get_freq = hsw_ddi_spll_get_freq,
+ };
+ 
+-static void hsw_ddi_lcpll_enable(struct intel_display *display,
+-				 struct intel_global_dpll *pll,
+-				 const struct intel_dpll_hw_state *hw_state)
++static void hsw_ddi_lcpll_enable(const struct intel_crtc_state *crtc_state,
++				 struct intel_encoder *encoder)
+ {
+ }
+ 
+@@ -1377,11 +1379,12 @@ static void skl_ddi_pll_write_ctrl1(struct intel_display *display,
+ 	intel_de_posting_read(display, DPLL_CTRL1);
+ }
+ 
+-static void skl_ddi_pll_enable(struct intel_display *display,
+-			       struct intel_global_dpll *pll,
+-			       const struct intel_dpll_hw_state *dpll_hw_state)
++static void skl_ddi_pll_enable(const struct intel_crtc_state *crtc_state,
++			       struct intel_encoder *encoder)
+ {
+-	const struct skl_dpll_hw_state *hw_state = &dpll_hw_state->skl;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct skl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.skl;
+ 	const struct skl_dpll_regs *regs = skl_dpll_regs;
+ 	const enum intel_dpll_id id = pll->info->id;
+ 
+@@ -1399,11 +1402,12 @@ static void skl_ddi_pll_enable(struct intel_display *display,
+ 		drm_err(display->drm, "DPLL %d not locked\n", id);
+ }
+ 
+-static void skl_ddi_dpll0_enable(struct intel_display *display,
+-				 struct intel_global_dpll *pll,
+-				 const struct intel_dpll_hw_state *dpll_hw_state)
++static void skl_ddi_dpll0_enable(const struct intel_crtc_state *crtc_state,
++				 struct intel_encoder *encoder)
+ {
+-	const struct skl_dpll_hw_state *hw_state = &dpll_hw_state->skl;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct skl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.skl;
+ 
+ 	skl_ddi_pll_write_ctrl1(display, pll, hw_state);
+ }
+@@ -2037,11 +2041,12 @@ static const struct intel_dpll_mgr skl_pll_mgr = {
+ 	.compare_hw_state = skl_compare_hw_state,
+ };
+ 
+-static void bxt_ddi_pll_enable(struct intel_display *display,
+-			       struct intel_global_dpll *pll,
+-			       const struct intel_dpll_hw_state *dpll_hw_state)
++static void bxt_ddi_pll_enable(const struct intel_crtc_state *crtc_state,
++			       struct intel_encoder *encoder)
+ {
+-	const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct bxt_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.bxt;
+ 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
+ 	enum dpio_phy phy = DPIO_PHY0;
+ 	enum dpio_channel ch = DPIO_CH0;
+@@ -3956,11 +3961,12 @@ static void adlp_cmtg_clock_gating_wa(struct intel_display *display, struct inte
+ 		drm_dbg_kms(display->drm, "Unexpected flags in TRANS_CMTG_CHICKEN: %08x\n", val);
+ }
+ 
+-static void combo_pll_enable(struct intel_display *display,
+-			     struct intel_global_dpll *pll,
+-			     const struct intel_dpll_hw_state *dpll_hw_state)
++static void combo_pll_enable(const struct intel_crtc_state *crtc_state,
++			     struct intel_encoder *encoder)
+ {
+-	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
+ 	i915_reg_t enable_reg = intel_combo_pll_enable_reg(display, pll);
+ 
+ 	icl_pll_power_enable(display, pll, enable_reg);
+@@ -3980,11 +3986,12 @@ static void combo_pll_enable(struct intel_display *display,
+ 	/* DVFS post sequence would be here. See the comment above. */
+ }
+ 
+-static void tbt_pll_enable(struct intel_display *display,
+-			   struct intel_global_dpll *pll,
+-			   const struct intel_dpll_hw_state *dpll_hw_state)
++static void tbt_pll_enable(const struct intel_crtc_state *crtc_state,
++			   struct intel_encoder *encoder)
+ {
+-	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
+ 
+ 	icl_pll_power_enable(display, pll, TBT_PLL_ENABLE);
+ 
+@@ -4001,11 +4008,12 @@ static void tbt_pll_enable(struct intel_display *display,
+ 	/* DVFS post sequence would be here. See the comment above. */
+ }
+ 
+-static void mg_pll_enable(struct intel_display *display,
+-			  struct intel_global_dpll *pll,
+-			  const struct intel_dpll_hw_state *dpll_hw_state)
++static void mg_pll_enable(const struct intel_crtc_state *crtc_state,
++			  struct intel_encoder *encoder)
+ {
+-	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_global_dpll *pll = crtc_state->global_dpll;
++	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
+ 	i915_reg_t enable_reg = intel_tc_pll_enable_reg(display, pll);
+ 
+ 	icl_pll_power_enable(display, pll, enable_reg);
 -- 
 2.34.1
 
