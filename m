@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4018A43D22
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0B7A43D23
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:14:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8346E10E624;
-	Tue, 25 Feb 2025 11:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16A7710E622;
+	Tue, 25 Feb 2025 11:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWwtZFs2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lyI52ev2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E88B510E61A;
- Tue, 25 Feb 2025 11:14:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8527010E622;
+ Tue, 25 Feb 2025 11:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740482083; x=1772018083;
+ t=1740482089; x=1772018089;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Di0K1wDlQ4HsNUidoG3kz2+4u30DS7rE77dlQyBJpnQ=;
- b=VWwtZFs2yQd4EnF9thBpToQawq6tezUGEIax8tIjyNr+mwthRj9J+UBx
- 42RdQIrnNggl51DPU4sjjPSLvRHzzO1hC2dZMACTeFl+sil3XaiaXfIh4
- vpiixcGRrOjjzZ8ngcX2tFSj8fFD2UK/MTRvpI/Zv8icwtjfqHsO4nLLc
- n8cwplkE5AjbA2Yfem5kQwuQfEOqiOMqP+gqnVHuIfQMapAow3DVagA53
- YqkxN7CmSPCrSs+4zRtyDMURkbepuCh19wZglO1b+myN4RCNchtv25kyz
- skL9lILjM/z7hbsBgBcQ893TN9MZVU26JvDR0bv+86TNAA7i3zsBqukAG g==;
-X-CSE-ConnectionGUID: phVIOTVYSyOOU6sn1iIqFQ==
-X-CSE-MsgGUID: 0sAFdCyzQjGBMwyhl/QWfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106530"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106530"
+ bh=n1BGVYj5ewQvRIVr7u3Pv8TDbsr319OjVEqtbTvDerM=;
+ b=lyI52ev2pifNSLTQp8vJDruuB5Nfy3UsSwetUFVSKsjangQdTeRLJOKq
+ c/LMG+hbZ+Nm2zCcIWpzr8iLngAE55CmdkODfVGhsmk6e+QgwLaXRRZop
+ 9ev2ofGHFfajbmdb8DS3FGx8v6UP6Q4jTaVYKsqLexiKyibQDY26du+RB
+ cHuJL47qmR+wZbcJb8OWmx3So6hXsqk2Qkj86SPgJhUs/FxQSsD1A0Kyx
+ BEGAmCRRL+Yv5XosFxwdchdKqtbWkhdda63dUisk081yzAFG/tznR83TP
+ OZ40cpiH3P5l3rFl/uKgpo6q9uxnhW4CJQBZ04hVuObvKu65JgsFN6m+l g==;
+X-CSE-ConnectionGUID: T2pbNUPRTKmNGUkxzFrkYA==
+X-CSE-MsgGUID: gc7juorqQ7+4enO5XMMK/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="44106539"
+X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="44106539"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:43 -0800
-X-CSE-ConnectionGUID: RkBksHOoQdeeiaUBmrXDZQ==
-X-CSE-MsgGUID: mL0qjgzLQ5Sg7wKaZNeVqQ==
+ 25 Feb 2025 03:14:48 -0800
+X-CSE-ConnectionGUID: K+bLyaiBQiiBsiX4Kkeamg==
+X-CSE-MsgGUID: LmzLzp4zRzOKnUbcuBlL2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612146"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121612177"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:14:41 -0800
+ 25 Feb 2025 03:14:46 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 3/8] drm/i915/reset: add
- intel_gt_gpu_reset_clobbers_display() helper
-Date: Tue, 25 Feb 2025 13:14:17 +0200
-Message-Id: <2beaff3d4e194e67b35bf91c3e2dc0b36c76d6bd.1740481927.git.jani.nikula@intel.com>
+Subject: [PATCH v2 4/8] drm/i915/reset: add intel_display_reset_test()
+Date: Tue, 25 Feb 2025 13:14:18 +0200
+Message-Id: <1e92734af3c4ab75b487e5f8ef891acee53de9bf.1740481927.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740481927.git.jani.nikula@intel.com>
 References: <cover.1740481927.git.jani.nikula@intel.com>
@@ -71,124 +70,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a helper for checking the gpu_reset_clobbers_display flag to make it
-easier to relocate the flag later.
+Add a helper for checking if we want to test display reset regardless of
+whether it's strictly necessary. This will come in handy in follow-up
+work where we want to check this from gt reset side.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.c     |  2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c     | 15 +++++++++++----
- drivers/gpu/drm/i915/gt/intel_reset.h     |  2 ++
- drivers/gpu/drm/i915/i915_driver.c        |  2 +-
- 5 files changed, 16 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_reset.c | 8 ++++++--
+ drivers/gpu/drm/i915/display/intel_display_reset.h | 3 +++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index ec136eb12d48..39f6ba4bf1ab 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -677,7 +677,7 @@ void intel_engines_release(struct intel_gt *gt)
- 	 * in case we aborted before completely initialising the engines.
- 	 */
- 	GEM_BUG_ON(intel_gt_pm_is_awake(gt));
--	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (!intel_gt_gpu_reset_clobbers_display(gt))
- 		intel_gt_reset_all_engines(gt);
- 
- 	/* Decouple the backend; but keep the layout for late GPU resets */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-index 175fa2db0551..3182f19b9837 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
-@@ -158,7 +158,7 @@ void intel_gt_pm_init(struct intel_gt *gt)
- 
- static bool reset_engines(struct intel_gt *gt)
- {
--	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (intel_gt_gpu_reset_clobbers_display(gt))
- 		return false;
- 
- 	return intel_gt_reset_all_engines(gt) == 0;
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index d937135063ee..835c9081b239 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -986,7 +986,7 @@ static void __intel_gt_set_wedged(struct intel_gt *gt)
- 	awake = reset_prepare(gt);
- 
- 	/* Even if the GPU reset fails, it should still stop the engines */
--	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (!intel_gt_gpu_reset_clobbers_display(gt))
- 		intel_gt_reset_all_engines(gt);
- 
- 	for_each_engine(engine, gt, id)
-@@ -1106,7 +1106,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 
- 	/* We must reset pending GPU events before restoring our submission */
- 	ok = !HAS_EXECLISTS(gt->i915); /* XXX better agnosticism desired */
--	if (!INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (!intel_gt_gpu_reset_clobbers_display(gt))
- 		ok = intel_gt_reset_all_engines(gt) == 0;
- 	if (!ok) {
- 		/*
-@@ -1177,6 +1177,13 @@ static int resume(struct intel_gt *gt)
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index cef9536c461c..b7962f90c21c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -22,6 +22,11 @@ static bool gpu_reset_clobbers_display(struct intel_display *display)
+ 		intel_has_gpu_reset(to_gt(i915)));
  }
  
-+bool intel_gt_gpu_reset_clobbers_display(struct intel_gt *gt)
++bool intel_display_reset_test(struct intel_display *display)
 +{
-+	struct drm_i915_private *i915 = gt->i915;
-+
-+	return INTEL_INFO(i915)->gpu_reset_clobbers_display;
++	return display->params.force_reset_modeset_test;
 +}
 +
- /**
-  * intel_gt_reset - reset chip after a hang
-  * @gt: #intel_gt to reset
-@@ -1233,7 +1240,7 @@ void intel_gt_reset(struct intel_gt *gt,
- 		goto error;
- 	}
- 
--	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (intel_gt_gpu_reset_clobbers_display(gt))
- 		intel_irq_suspend(gt->i915);
- 
- 	if (do_reset(gt, stalled_mask)) {
-@@ -1241,7 +1248,7 @@ void intel_gt_reset(struct intel_gt *gt,
- 		goto taint;
- 	}
- 
--	if (INTEL_INFO(gt->i915)->gpu_reset_clobbers_display)
-+	if (intel_gt_gpu_reset_clobbers_display(gt))
- 		intel_irq_resume(gt->i915);
- 
- 	intel_overlay_reset(display);
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.h b/drivers/gpu/drm/i915/gt/intel_reset.h
-index c00de353075c..724ea6d64f33 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.h
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.h
-@@ -28,6 +28,8 @@ void intel_gt_handle_error(struct intel_gt *gt,
- 			   const char *fmt, ...);
- #define I915_ERROR_CAPTURE BIT(0)
- 
-+bool intel_gt_gpu_reset_clobbers_display(struct intel_gt *gt);
-+
- void intel_gt_reset(struct intel_gt *gt,
- 		    intel_engine_mask_t stalled_mask,
- 		    const char *reason);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 1dfd6269b355..9c2eea73ede9 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -200,7 +200,7 @@ static void intel_detect_preproduction_hw(struct drm_i915_private *dev_priv)
- 
- static void sanitize_gpu(struct drm_i915_private *i915)
+ void intel_display_reset_prepare(struct intel_display *display)
  {
--	if (!INTEL_INFO(i915)->gpu_reset_clobbers_display) {
-+	if (!intel_gt_gpu_reset_clobbers_display(to_gt(i915))) {
- 		struct intel_gt *gt;
- 		unsigned int i;
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+@@ -33,7 +38,7 @@ void intel_display_reset_prepare(struct intel_display *display)
+ 		return;
+ 
+ 	/* reset doesn't touch the display */
+-	if (!display->params.force_reset_modeset_test &&
++	if (!intel_display_reset_test(display) &&
+ 	    !gpu_reset_clobbers_display(display))
+ 		return;
+ 
+@@ -41,7 +46,6 @@ void intel_display_reset_prepare(struct intel_display *display)
+ 	set_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags);
+ 	smp_mb__after_atomic();
+ 	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
+-
+ 	if (atomic_read(&display->restore.pending_fb_pin)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Modeset potentially stuck, unbreaking through wedging\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
+index 9a1fe99bfcd4..c1dd2e8d0914 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.h
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+@@ -6,8 +6,11 @@
+ #ifndef __INTEL_RESET_H__
+ #define __INTEL_RESET_H__
+ 
++#include <linux/types.h>
++
+ struct intel_display;
+ 
++bool intel_display_reset_test(struct intel_display *display);
+ void intel_display_reset_prepare(struct intel_display *display);
+ void intel_display_reset_finish(struct intel_display *display);
  
 -- 
 2.39.5
