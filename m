@@ -2,57 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD6DA43D39
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 027A8A43D63
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 12:22:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF6310E626;
-	Tue, 25 Feb 2025 11:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63AAA10E636;
+	Tue, 25 Feb 2025 11:22:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlAI3KyH";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Dn1Q95Pb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851B910E634;
- Tue, 25 Feb 2025 11:16:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740482220; x=1772018220;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=zXwZYfWHELaGmBa/j8EPv6dsQksAzrVaxJanri7XAZ0=;
- b=nlAI3KyHtHXuRYRycqKIF1x286lB115aGrUImobbizQcHFjaXTI81OEI
- NwOvHS5+wqzzFc4onh10Obs4jrtgC8wpckk0V3XX2siwUhCq7qnIOuzNH
- 7AEY3XoA502wumxl/kNWD9mcPwDe2hvRWDDEBTIUrfj3h6GDanhaJpzXV
- sLDNqs/62+HmhoI/COEdtiIcy+DRmmlNhSUWoTgiuvQeXEjBHGvmNqwCZ
- ccG0Phs2e86oCQbakJLlkmAPje/DI3Ea3tXNvmZ756jfsPzItXUve/VBc
- YpGIOxiSZ/wo4iZv6qMK8lQSvL4NL3sfojIRCWnck8vcXNmuhYAUic4Pl A==;
-X-CSE-ConnectionGUID: C/ymBI5lSP+MD3ubwguApQ==
-X-CSE-MsgGUID: umNXIN8GSNW2k5rquCdptA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11355"; a="40518393"
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="40518393"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:16:59 -0800
-X-CSE-ConnectionGUID: fyFSVJyvSRWH9lepXgnEHw==
-X-CSE-MsgGUID: L8Y8MDFiQDKbI8nJaroaIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,314,1732608000"; d="scan'208";a="120973399"
-Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 03:16:57 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v2 4/8] drm/i915/reset: add intel_display_reset_test()
-In-Reply-To: <1e92734af3c4ab75b487e5f8ef891acee53de9bf.1740481927.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1740481927.git.jani.nikula@intel.com>
- <1e92734af3c4ab75b487e5f8ef891acee53de9bf.1740481927.git.jani.nikula@intel.com>
-Date: Tue, 25 Feb 2025 13:16:54 +0200
-Message-ID: <87tt8i5l5l.fsf@intel.com>
+X-Greylist: delayed 74034 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Feb 2025 11:22:09 UTC
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
+ [217.70.183.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D32110E632;
+ Tue, 25 Feb 2025 11:22:09 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0C18744213;
+ Tue, 25 Feb 2025 11:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1740482528;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3OxoGQW/kRJUtB8Qz3VUy28/n9V0Il9+Kv1b17NZYT8=;
+ b=Dn1Q95Pbzkqv0u3DJZC1rPF/NK7kyTHUrRuLJWzaaBYMw+YB4jzWVXXYOuO078iLBkZy4W
+ uN8j6/mkv40RPTubFBR3XNCSzN/R14F2Zy7IY5GosJTfIqBqFpeH7P0Cfc0jw/+gJVmq03
+ xAXKMx8/6PHLk6hri5GDN2G11sN/0LF/9P7TI2ZEktC7f4C09gJGH98dYmMhn8ltt59Ug9
+ HOE88L1Shnfu7d8prpQe1VJtbo/kpbjCyIJOpIGWC3G5A4oKwI8KhUREIpG9bmX2Jbzeu4
+ yobpqkHcHr8q1aaKDs4j5QSkJAPDUZlTPshyD7FB5mK42rUI2iuIsAAhbZa2Eg==
+Date: Tue, 25 Feb 2025 12:22:05 +0100
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org
+Cc: intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com,
+ Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Subject: Re: [PATCH 02/63] test-dyndbg: fixup CLASSMAP usage error
+Message-ID: <77a8fdeb-c906-4cd2-ac42-e6a5d3d9e521@bootlin.com>
+Mail-Followup-To: Jim Cromie <jim.cromie@gmail.com>,
+ linux-kernel@vger.kernel.org, jbaron@akamai.com,
+ gregkh@linuxfoundation.org, ukaszb@chromium.org,
+ intel-gfx-trybot@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com,
+ Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <20250125064619.8305-3-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250125064619.8305-3-jim.cromie@gmail.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekudehjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttddunecuhfhrohhmpefnohhuihhsucevhhgruhhvvghtuceolhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudeiffduffeivdejgfejheeuudekkedvjeeuffegfefghfffkeelgffgieevudejnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohhuihhsqdgthhgruhhvvghtqdhlrghpthhophdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduhedprhgtphhtthhopehjihhmrdgtrhhomhhivgesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehjsggrrhhonhesrghkrghmrghirdgtohhmpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnr
+ dhorhhgpdhrtghpthhtohepuhhkrghsiigssegthhhrohhmihhumhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigqdhtrhihsghotheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+X-GND-Sasl: louis.chauvet@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,69 +81,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Feb 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> Add a helper for checking if we want to test display reset regardless of
-> whether it's strictly necessary. This will come in handy in follow-up
-> work where we want to check this from gt reset side.
->
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+
+Le 25/01/2025 à 07:45, Jim Cromie a écrit :
+> A more careful reading of logging output from test_dynamic_debug.ko
+> reveals:
+> 
+> lib/test_dynamic_debug.c:103 [test_dynamic_debug]do_cats =pmf "doing categories\n"
+> lib/test_dynamic_debug.c:105 [test_dynamic_debug]do_cats =p "LOW msg\n" class:MID
+> lib/test_dynamic_debug.c:106 [test_dynamic_debug]do_cats =p "MID msg\n" class:HI
+> lib/test_dynamic_debug.c:107 [test_dynamic_debug]do_cats =_ "HI msg\n" class unknown, _id:13
+> 
+> 107 says: HI is unknown, 105,106 have LOW/MID and MID/HI skew.
+> 
+> The enum's 1st val (explicitly initialized) was wrong; it must be
+> _base, not _base+1 (a DECLARE_DYNDBG_CLASSMAP param).  So the last
+> enumeration exceeded the range of mapped class-id's, which triggered
+> the "class unknown" report.  I coded in an error, intending to verify
+> err detection, then forgot, and missed that it was there.
+> 
+> So this patch fixes a bad usage of DECLARE_DYNDBG_CLASSMAP(), showing
+> that it is too error-prone.  As noted in test-mod comments:
+> 
+>   * Using the CLASSMAP api:
+>   * - classmaps must have corresponding enum
+>   * - enum symbols must match/correlate with class-name strings in the map.
+>   * - base must equal enum's 1st value
+>   * - multiple maps must set their base to share the 0-62 class_id space !!
+> 
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display_reset.c | 8 ++++++--
->  drivers/gpu/drm/i915/display/intel_display_reset.h | 3 +++
->  2 files changed, 9 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-> index cef9536c461c..b7962f90c21c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-> @@ -22,6 +22,11 @@ static bool gpu_reset_clobbers_display(struct intel_display *display)
->  		intel_has_gpu_reset(to_gt(i915)));
->  }
->  
-> +bool intel_display_reset_test(struct intel_display *display)
-> +{
-> +	return display->params.force_reset_modeset_test;
-> +}
-> +
->  void intel_display_reset_prepare(struct intel_display *display)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(display->drm);
-> @@ -33,7 +38,7 @@ void intel_display_reset_prepare(struct intel_display *display)
->  		return;
->  
->  	/* reset doesn't touch the display */
-> -	if (!display->params.force_reset_modeset_test &&
-> +	if (!intel_display_reset_test(display) &&
->  	    !gpu_reset_clobbers_display(display))
->  		return;
->  
-> @@ -41,7 +46,6 @@ void intel_display_reset_prepare(struct intel_display *display)
->  	set_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags);
->  	smp_mb__after_atomic();
->  	wake_up_bit(&to_gt(dev_priv)->reset.flags, I915_RESET_MODESET);
-> -
-
-Gah, a rebase fail.
-
->  	if (atomic_read(&display->restore.pending_fb_pin)) {
->  		drm_dbg_kms(display->drm,
->  			    "Modeset potentially stuck, unbreaking through wedging\n");
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
-> index 9a1fe99bfcd4..c1dd2e8d0914 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_reset.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-> @@ -6,8 +6,11 @@
->  #ifndef __INTEL_RESET_H__
->  #define __INTEL_RESET_H__
->  
-> +#include <linux/types.h>
-> +
->  struct intel_display;
->  
-> +bool intel_display_reset_test(struct intel_display *display);
->  void intel_display_reset_prepare(struct intel_display *display);
->  void intel_display_reset_finish(struct intel_display *display);
+>   lib/test_dynamic_debug.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
+> index 77c2a669b6af..396144cf351b 100644
+> --- a/lib/test_dynamic_debug.c
+> +++ b/lib/test_dynamic_debug.c
+> @@ -75,7 +75,7 @@ DD_SYS_WRAP(disjoint_bits, p);
+>   DD_SYS_WRAP(disjoint_bits, T);
+>   
+>   /* symbolic input, independent bits */
+> -enum cat_disjoint_names { LOW = 11, MID, HI };
+> +enum cat_disjoint_names { LOW = 10, MID, HI };
+>   DECLARE_DYNDBG_CLASSMAP(map_disjoint_names, DD_CLASS_TYPE_DISJOINT_NAMES, 10,
+>   			"LOW", "MID", "HI");
+>   DD_SYS_WRAP(disjoint_names, p);
 
 -- 
-Jani Nikula, Intel
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
