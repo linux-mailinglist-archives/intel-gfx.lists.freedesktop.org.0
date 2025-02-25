@@ -2,173 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67E0A4388C
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 10:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75372A438D7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 10:10:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD3B10E5C3;
-	Tue, 25 Feb 2025 09:02:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46F5A10E5D5;
+	Tue, 25 Feb 2025 09:10:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lcx+d7gH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GrMydcTu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF96910E5C3;
- Tue, 25 Feb 2025 09:02:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9E910E5D4;
+ Tue, 25 Feb 2025 09:10:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740474136; x=1772010136;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7deWdEd+m4vp+7kFq53Zf0xYaeK4FLGxoUWorQZlK1k=;
- b=lcx+d7gHtSYfs0vR0VXAUfKcHg2kMtCVJ8AYS5aBqKpoMRZfPQ1JvRNM
- W+S06lwRMQ9P/2ibEto0fVwyGOQcrHpay1KBB/QFNwyNZfmpKXAr6ZnDe
- vvQ3HMP9KA1hComd4Bw5Md5srHo6ekprlUSeM+lMx9jLRheQLhNHhVXWj
- gcNpKNfd8CQDoMyWjM9Nm6vYZPzso0KOuxcyIjbRtVKVvK4fxWGVn4pif
- rvKFnyB46S6a8BlZHQMJ5AR12gAn3tEpqpQRXWKzn3T7AEhZok0Cok7RV
- UB2svWB9AtCht1Kui+wNBjtxsef65LUYTe6mwnwyjh+mkFG7BuHFwAgJE A==;
-X-CSE-ConnectionGUID: u4VgB7wCS3qYkSgEgJqLeQ==
-X-CSE-MsgGUID: KRUrCrHuR7W3rAyF+w3FRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52694183"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52694183"
+ t=1740474645; x=1772010645;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=RQ0rCYfSYSidg6SQb0SqGyOp3SWsxtDR94p25TqwHRo=;
+ b=GrMydcTu95rhlXbjGzllkekrCvdudMNIh7Aos88cGdPYvYduiM+opS7O
+ QMJUb2yaS6YE9jKUeC2ME5fHPlQ2rwnoJw64sfwuU76kM4b/wYO7LWPx7
+ tP0X78fIXn9BGy+MH1lDDR1KR7q3SKNoYSsoQ8oDHoDE3WddzZf7x95qE
+ l7NhL1G+6PpMy4L0Ow6U7hRFSMcaEro1TdNNr/dVs4GUh/BFR6jW06Jdl
+ YUrtPSV3LEagETisoc08LMbz4Vofx8BiScBqKtGIDaPCxtZ9thsNcM3bn
+ 8Tb928C7pAkEL7Z0DM7BmTJNC3WciIRzL82adSuKFTcgX+LiKTLeXqu0d g==;
+X-CSE-ConnectionGUID: 36p/cME/SBa361AHLo68gA==
+X-CSE-MsgGUID: dtEtlm1DSF6jnL/t86l0AA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52695557"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52695557"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 01:02:15 -0800
-X-CSE-ConnectionGUID: ahTbYgIFTjSm/NW3C5hH5g==
-X-CSE-MsgGUID: DmF2Q9PjTZCh9nXGd4hSdg==
+ 25 Feb 2025 01:10:45 -0800
+X-CSE-ConnectionGUID: q725ov0iRx+d53AkcQ7WRQ==
+X-CSE-MsgGUID: cUCxQibXQXG7oXJezwQRbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120429897"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="120433575"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 01:02:14 -0800
+ 25 Feb 2025 01:10:45 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 25 Feb 2025 01:02:13 -0800
+ 15.2.1544.14; Tue, 25 Feb 2025 01:10:44 -0800
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 25 Feb 2025 01:02:13 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ 15.2.1544.14 via Frontend Transport; Tue, 25 Feb 2025 01:10:44 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
  edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 25 Feb 2025 01:02:13 -0800
+ 15.1.2507.44; Tue, 25 Feb 2025 01:10:44 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qhVAmca/qvz+l37wCSv0QNojLnHJnRPiOIY6cT3IXZ4Cw2UU1e2xTQpT3BprOlFRyQysKt0q3Krr2mdHQ60PqtMAIkk4ISC3vzH+y7alMp59fOj3iqt/PlmvtR4cTM2tlswhLRdJLmiu2mT6dOA39GsCNSaM3NJ5+0GWFJ7QfiaCWnRM3ancLhhJoc87CcFhtdLzsW9eNjZ5Szkz9AKIvJv2bPZ1n2nHaz1IyGVTMTCDlQAda5THjmg4eLUDscOBWLpyjRqePcxSsxR9igs+xzgual5gmQGFV62IVSVDeMOX78s7HOuRd5erac6pUEufZKOnNBld8MzbfrtIkTxCxg==
+ b=obwVo+iHs2QoX61lA6GE4rxhT03mJrYplGg6mVhcUIBwo55jOtn9L0Mp+tHHM2wrwkBFW5Q4ebUYWHngJnKljVLvhdBisFYudCep/5/9HhhurAlBZ/TKt/+0aTJZs3SrFTnOwj7zwWpE6Q5llcSNBaxj3uN32u24+ADntIDHRLy1m183pwFJHwlfiqUOKchPYNXXlS7z/htaPR8hwv5NwzZUKB36UrwqsKDdwQqNH5Y/wbfxS/KJ3RQf6fV7Ac+TNMM7Bw5qK7zDg5DfqD9qVnT9zrzCWZbPUVNoJHXQlYVyQHHBky5K7eypnmUiy7KrvfnGcDznBep0I8zRMK6B1g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/YbQNwi420SKe/XpRrPtUTiubFhIlP05kRL0AvFaE9U=;
- b=yKBEZu5mGB9y607u1InKXGPc4gqBoBXQ/+jqyumn/XbmNn3/fSylmp1meG/JywOxiPXMnEWU05jDTk5Zdi43sCM91q8htABy4ktrxqZNEDCnOXOdztaqHhKoF8U2JMP3FrRCt+v1s/HUFq3jWGCkRQ+3jMNq0iIWop64FePZWL4K0ihCOnVUplxLDsEo4dO2xA2GWCsox4G6b2VIwt5SA5LIjWukWjGb70acGMKPd0eJT6C8Gt6H9oGYxfpoC4FFS/hjeGoM47yNl28E7gho1n8HNpwGV82Cr13Fpy3/wG5fKb1U/HZXSipIJ+oheJcuAbgdGZ1mff+L2Sbq9Fb2dw==
+ bh=NRxj0qewHs/hHTRcN6v8Gd2Zzst5+J24kD2ZQ8J79w0=;
+ b=ZiVa5uAVjJUXsktHLMIp6KznVB1h/kCQECSoU33Y+Kx5vymg82oDwC+38T2toZzmJy+G9VFKM5K2eXjprYMt+X6xu3bcNjfKKWdZn+IUlVGjcBlTKJUHr8yjxrvPF1x9JTG/UAPCGx1LDTwoDmH9EE61DoG9FjwQbBWqKLjxouP7Gpoc7OQL7O4OTBC8S+6clE+PwDIychLepd+En0TFUAucp7IhQ9QAhEN+7KccvAjF6eMIpe0U2LoLzeU494F6nQlhOHP0NYIupoHrIUKZvS//jQevhFZY00pMxcf8u2KbNP73ADUp4F8H4eVIb17PiX+FubEvSwWcPtABjKyFdw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com (2603:10b6:510:1e0::15)
- by SJ0PR11MB8296.namprd11.prod.outlook.com (2603:10b6:a03:47a::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
- 2025 09:02:11 +0000
-Received: from PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::40e0:95a6:26e8:8de0]) by PH7PR11MB5981.namprd11.prod.outlook.com
- ([fe80::40e0:95a6:26e8:8de0%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 09:02:11 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Hogander, Jouni" <jouni.hogander@intel.com>, "B, Jeevan"
- <jeevan.b@intel.com>
-Subject: RE: [PATCH v4 2/8] drm/i915/lobf: Disintegrate alpm_disable from
- psr_disable
-Thread-Topic: [PATCH v4 2/8] drm/i915/lobf: Disintegrate alpm_disable from
- psr_disable
-Thread-Index: AQHbhpZwSO9q1PhhNUuCxKOUgbJjsrNWRSEAgAFsPCA=
-Date: Tue, 25 Feb 2025 09:02:11 +0000
-Message-ID: <PH7PR11MB5981F7169632987B2EB06884F9C32@PH7PR11MB5981.namprd11.prod.outlook.com>
-References: <20250224080847.326350-1-animesh.manna@intel.com>
- <20250224080847.326350-3-animesh.manna@intel.com> <87wmdf7har.fsf@intel.com>
-In-Reply-To: <87wmdf7har.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB5981:EE_|SJ0PR11MB8296:EE_
-x-ms-office365-filtering-correlation-id: eff43013-ee77-421d-a064-08dd557b1762
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?2n/s5oCXMnyRFysE/HEJ3SnevesN8Iw6qRLtFH+zWEhF9HOJ7eAYkqYaGdLu?=
- =?us-ascii?Q?SumkdJd9tRSEO/FmDPWyoak8eqz5gRzEQOS3QHcuN7EF+aO9FNGUk/xEliqG?=
- =?us-ascii?Q?OArHbS6h4PNhc6iLGGmXZsTcrbpKmp1V6bfM8XRISMOQ1N+o3QiS02+ARzH7?=
- =?us-ascii?Q?9ObFapQDu/TmIodMbdhM4weeiK36WxCpPhfYik2yLklFiT3MgWx3Z0xTGOvz?=
- =?us-ascii?Q?OQSHJthL54Ev7k9S3KkG2hj72l7BMaVHDCfnAkGEuhcJ780fgZEse7CWfvm/?=
- =?us-ascii?Q?Blmj2gVpvrdGzbWkwH55qKBxGSkIppjlNVKSDloG0dTJavFiuCndciymm7va?=
- =?us-ascii?Q?QBNLLDXBRPAIlZiVR8PIWgAFTLshMk8oa5vZjIcwG+/gOji6+TlGuZpl0z8S?=
- =?us-ascii?Q?YlaKu/D1ymmZyXf6ksx5nWFdZjykPhKrBmxbPrMNTvnEH0cG09khzNpSSPpP?=
- =?us-ascii?Q?s6pGJXedcRzj7Idtjnx5CAGHrpPlEYtPtrqQV7psCUu4zaEbxvE7IGHHXm5J?=
- =?us-ascii?Q?G18MiY21koLxIv7XR26l42zJIbwho1z0wCOu6U0v8gFFPfH9DbfbSBejWyzG?=
- =?us-ascii?Q?k5MMTl4G05qAG7+ZHPEE0mkdytCc2+6VFmdrAAd520PFlS32hwkgB7KGzNQK?=
- =?us-ascii?Q?IyJCDK2PIOy9o/tOGpJabokBTflCEFXdeelpzpULI7BTC5VlHNBIHSmJa534?=
- =?us-ascii?Q?JBo23fjtxkdOftmmWSvJvx3u0I5YjwlJIiCXOd1eIoPC7jK1JMpxlytWFONg?=
- =?us-ascii?Q?JZJdkDl1zmG4vXio93e9NZ7N0xmeiW0NgFrWb0+cGDXtIU1QUJTahHNICANO?=
- =?us-ascii?Q?pywCSC1gjSG75szoGLCQ9uTB0Xe1FVm3hBCXOuFo3m9GLYpuHaRL9FDePVnY?=
- =?us-ascii?Q?VynN3M590vnnDanYDz9b/rdDW+WxB2wKaEuOPRC8DNHOqr8NDfz9o9C+ywH8?=
- =?us-ascii?Q?GU5G52dKZ9zFX+dzdG55mmUDiI4GNAAZz8nOb/kk9Ma0urKll3tFJtXuNMY7?=
- =?us-ascii?Q?qD+jM9WUCjE5zmwfWzKGpw2q+FZVLiWlgvA6Svo9rYBLHMDJFZVKqjjwnpxh?=
- =?us-ascii?Q?FJd785PSjVrAv8BHck8O5LW553rttDcIFyl7OOZufbtm+86wI/RazBynDJOP?=
- =?us-ascii?Q?d4xBaOl+VkcVXt0Hlx20s84Qqbm1b/pPy9mjCmBmWLCArrH6vX8ikMG3RoFu?=
- =?us-ascii?Q?yCxEto3nFeT1RFQIgVyzc/faltr4PHSJRJ1OYWZ3ET1Z23WOuC+Q7OF9KjdF?=
- =?us-ascii?Q?1QCoqJwQxubBvdIgJiTTW/fE4wRC2BBwbYxtRM7ScDOUuZLK4ySzwbvcU8Oy?=
- =?us-ascii?Q?9en2OybjlUy650NLaD2ZxoOXT2tlLcv3zPzi/f4/G+lqKC58h1RkEgEJ4/H1?=
- =?us-ascii?Q?7yJ00PhIlO8qrSAraI8H5Lkhbna8ysjqGosEKP1e7L2v3lr3BM04JcC4le+L?=
- =?us-ascii?Q?JsnAqJ0lIZXAK9VDWd6zZ9qG+vJs7Z4U?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB5981.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LTQIPEuA/QNd7sZLsa5aihjpEWD68gwwKhLDoED85kntYssVzgQVFqWV4W53?=
- =?us-ascii?Q?55a4A7LztuXaE5g6vW5uZ6ACd7SXdtYSVp5OLUW88n4i8+I/2jXorXMoTYa+?=
- =?us-ascii?Q?svsdaVjJrmqKW/0OgYLmRcSbo+gDh8Cp8Q6EClyggQME2rFdiRv+c0H7KxkG?=
- =?us-ascii?Q?cuJXkTFu+GhGyhxFTk98mOmLSOvKCMhih9Lk5/ARoTyNUGUaiFOun8T+P8BC?=
- =?us-ascii?Q?vDkjv+gjgU7LZfcDmn9b1lNfDmarNyBizh+jlO9a/NZkKNgT05k+gY2Relh2?=
- =?us-ascii?Q?4jnFXcphlvHE/IY9HitSGtZrSOEXFtF+4nven6Z9Tl6tn7vH+WbNcaiMeHZ0?=
- =?us-ascii?Q?3WFlVNBOKXU6DqDKbR/qlNS9WPFXf+3rX703FcopuIpCIQltTyK/RBtqTEYo?=
- =?us-ascii?Q?OQ+M0vNThkMC4NJdTUL6ozrldaalYFBS7FuNA34Afo1TzQMfdT+XBJvYQ2Ag?=
- =?us-ascii?Q?mJOCzZAFCcz0CL5/ZU8BMqEJvJKTeSii8oS5vSE3fEPH7Ew6O88J0z9izdVL?=
- =?us-ascii?Q?5MIzd2g4lvOmvlbiyKNSEbk83Q58eTY6mnG3nHhnjepEzzlscNlMWsfUs1LB?=
- =?us-ascii?Q?bOlj6rpLBzWCwLIR66OWxTIBkOHgrm5kv0qPoz9AjTynipd0sQ71Ed+VX7f6?=
- =?us-ascii?Q?17E1uLnSFMEXxY1SCdSH3v+bn+Fpr06+4v26/No+6kMVcbFrnbJ6CeKioboG?=
- =?us-ascii?Q?zA9jJY2EJ5IZuZG7Nnqt2sQ6ji1OStWpN4QjOqRqoIVGCnoYh9SOSOfMCXdO?=
- =?us-ascii?Q?8RC/epSDGRZ0/4eHsyzZIuMngIGailx2uNIoi7ADv04v6xe/w+HqlqczCyMf?=
- =?us-ascii?Q?8sJXrX/zOS50dbY3xPXUhczSMhZyytH4rBgoWBTmyx5IG/bG85CUeX7+TdiD?=
- =?us-ascii?Q?U7sZphLH6qiYmPJFwwlFhm4e7RX1HmcgnRgxXqVS3KbSYEn4Ikh3c/JdHWQJ?=
- =?us-ascii?Q?0g4UU0Pka1H+lvGrUHv6c48DnSlEchWRc80ylyuJ7/GEdhCYugeFQmwHL/F/?=
- =?us-ascii?Q?i54buaVC2VHkaglxX//EeYtAf9fXQxYtvQ+Y0y0hjEM9XRq8iEP+osE9bvX6?=
- =?us-ascii?Q?0BvQTvQjMS0OLLRzvEZqVIYlVC+pt5nIjbKqp0oGqfAlE0BEnA3h8fmHhFD5?=
- =?us-ascii?Q?3gvDw85MbbPSnqQ7Yb98YYqkT9YR626XKW7wHPlzPcyVICHl4Ql6cIZRnM05?=
- =?us-ascii?Q?gLSZc5lOpIOOFebJARllqGj4s+0+YTjFYdXyZ/QrmcfR+dQ+OZl7Re18H/F1?=
- =?us-ascii?Q?RMTRGf9lvSHYScJZSpImSQ2C/jrBJu/KkZ0ZOfvXogmDWJwde5OpaKusLSQd?=
- =?us-ascii?Q?0uO98gfJoNhd4KdqbHBe0C5Wm1u3s3V6T2TzitScTcx9Ax0sglAlRRd8uxG7?=
- =?us-ascii?Q?FIRyS6tr59M7o47l+mGxxiI/GK7hP1umqIcyif4xUkkqwEhmKqGA+dK9cXYp?=
- =?us-ascii?Q?zdFur858MnI1M0kXIrajZiRCS7Su4iKDjK0sub6rxrH3zc+SimPJSdS2mgmD?=
- =?us-ascii?Q?nVE68TuofaV9IUEhU5F0vYO9o/FGt/9aTnh0qHKjCPYl+4ZmB5EV88Ve+L2q?=
- =?us-ascii?Q?sK4I9LuJ2wfDAIOtAUU3Kv32EnSqJHE55h8HCNwh?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by IA0PR11MB7209.namprd11.prod.outlook.com (2603:10b6:208:441::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
+ 2025 09:10:41 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
+ 09:10:41 +0000
+Message-ID: <00683c9d-4353-4667-b6e3-38c6b9aece96@intel.com>
+Date: Tue, 25 Feb 2025 14:40:33 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/6] drm/i915/display: Add registers and compute the
+ strength
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+References: <20250219115359.2320992-1-nemesa.garg@intel.com>
+ <20250219115359.2320992-6-nemesa.garg@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250219115359.2320992-6-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0092.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ae::16) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7209:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f850a32-89a0-4c75-233f-08dd557c46ea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bnY4WUNMV1BKR1RWRFNhMWdBWU9jQnRWd0NpZWJ4TnZ5UFJNQk1OcHB2aXow?=
+ =?utf-8?B?ZEdLUDc3UE8rWHhVUjJBSkVFcmEycUc1dTBldTNBYzJmeVdDYUFjc3hjZXhO?=
+ =?utf-8?B?bjFTZS94M05Ec3I2Z2RSYlRZOS81NkczZDE5ci8yQVdzcjdkOEI1UGJpSS9q?=
+ =?utf-8?B?K2NmTnFjZVN5T0thaFhGUFhza0taVDdFcDIzWk1HRXJUMmNLUjZuTStvYmVF?=
+ =?utf-8?B?VkhaZHRSQ29hKytpTjBOT3JVbzdHK0V2Qy92Yk9iZHJFOC82OTlLeE5yUnNP?=
+ =?utf-8?B?MUVhaThBNFBlQ0twSG1UZkxCMHM2YnZQei9pTEVwZzE4RFd3bmVNYlhLU0M3?=
+ =?utf-8?B?WDBaYjRGd2xQZzJibVlUemVWTnhVclJxckNDdGxTNnAyV0FUZjUrdzJWSnNN?=
+ =?utf-8?B?NUNaeDhkWVFUODdZdEtNcUljdnNBVERHdVg5Q1lPSDl3L1dPenlKSmxuWnlh?=
+ =?utf-8?B?dWV6a0JYZHowRFcyc05LdTRFaE5sSzdkOTJDUHlCVTZhV0Y4Zkk1eWFqV0dB?=
+ =?utf-8?B?K3AyZ3dHak53L0JVMnVodnRxZG9kajNLN1h6dmp2RXkyQU9IdGg2cm9LQXJ0?=
+ =?utf-8?B?K3JTSFBDVFdiWSt2Y3Y5ellaUlphZ3N6TmRqTkt4YXFVOHpQeldUVVRuY1Zp?=
+ =?utf-8?B?MkJtL0ZpR2NKM2pnYTBBbkdKREFUZDRobWRJWVZINFBLRCs1OFVIUUhOT2tn?=
+ =?utf-8?B?TncwN29Yem9kcUsybWQ3RE1ib0c1dkhnbG0rR1daYjE0eHdMblViV2RwR3or?=
+ =?utf-8?B?dUxSaVdSZjVSaEtlMXRWeU5zSXd3MTFpUUdTWU1GUlJUc21Xbjg3T3VpUi92?=
+ =?utf-8?B?ZVd4ZnV6RDZCcFhpNHBiaUw1Z2g2ajZYLzN4V0tmTEliVEh3d3I4eGpML0dq?=
+ =?utf-8?B?QmJ0YzhjRWlFUGU4cnJ1aU1PamZOTFhHWFFaRGNET3NTR2p1dGpRUTdXQ1or?=
+ =?utf-8?B?VVV0MXlLaGFiNzRCY241RHUyODdncmNBdUJLc2VaeWV0VElpMG9QSUdoOTJP?=
+ =?utf-8?B?dWxQUkhtU3hVS1BZOG1iRW5pNGZCOXJnMWFwU1pGd1luUElwbVgvWlYzakxH?=
+ =?utf-8?B?RGQwcGRtbFNQM0x6L1ZIa1J1NlZUdGRYNGpCc3NXdDVRS3BiWDBLTWtoL2Rr?=
+ =?utf-8?B?WXZ4Q2NBckt3UGNIUGkzcW5wOVhTTW1GSHNRY3l0U2dlMWRzWHB2d3NPUzFj?=
+ =?utf-8?B?UFdTY2pKazJTbytmY3RHa0lOOEZNMlNXOUd1WXVqOG9xMEhTdzlETFRxSDE3?=
+ =?utf-8?B?eHdKMm5sVE9uNndPc2xIR0pFZFVRTXdUWTJ1dDRpY0R0Z2gxN2ZPdW1BNXE4?=
+ =?utf-8?B?RG5WTUZwRHc0dDU2ZUNodENTMlJRVGYwRytNaW0yMTYrSVhHY2VldlBZN00r?=
+ =?utf-8?B?WGVybjNPd1dsaStiZ0FnbC9WRmlULytRc3U0WEZzSTBld0RTMnk2SkRoUUw4?=
+ =?utf-8?B?ZXlEbjJhcXIzWGhHanJrdWN1enBDWTZNMm9BR3BWRVRYNkdBU3lMd2tEZysr?=
+ =?utf-8?B?TkFEV2VHTDQrdWdwckZpK0IvalZucjQzYkd0YWc4UW9oeWoxeHZ6VG54R1k0?=
+ =?utf-8?B?MmorSUQyY0pzOEVQUmFrUDViamdTWWtxemkwZkgvMHhqNWZLMFN4OFdtbnBB?=
+ =?utf-8?B?bFkxemM1eTVLbGVudURTZytMdkZLQXpwVng1UStIOTduSVE1SEJ5MWFyMUZk?=
+ =?utf-8?B?Q1BXUFFnbCs2UlR1NkFKUklnN3pyY25lWDk4aHFZSCtSRU1LREZDUmF0L04x?=
+ =?utf-8?B?K1dHVHROU2IwZWRvOUhXWHhqaEU4WkRFdTNmWUw1bHA1VmM4U0p5dUVLanI3?=
+ =?utf-8?B?T2ozYmoyd2lUTFNCYUphMFJybE1ULzNRTjBzdFlKdFpJdXI3WHJIRlNZWVV4?=
+ =?utf-8?Q?phw61ZDWNddAl?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dlhFdXhWTXZ0SlFNK3Z0dkJDbUVsdlBHSEpUN2JaSjNyZy9VczRkdFhkdnV0?=
+ =?utf-8?B?VURMWmFzd0grbzBock5UOGlKWjNwenRlYWNIMHV1Zlh0RENUeUd5a2E3QzBr?=
+ =?utf-8?B?bjZIT2tYNE5ZaHIwZFlGMXppM0tIOEY0bVFoWm9UQmtkaTNLZXd4SjRGL1Ir?=
+ =?utf-8?B?Q2dqTUd4SGlncDBZMkllMWkwQ3ZFRzR6d1EzdXV0YjlFd1lTdlNSMUxmVlZC?=
+ =?utf-8?B?Z2RJWHJQaWJZS2d0OUtuL1ZSODcweThNd1AzT1hJUFMvY2hOenIxMEdYaU5z?=
+ =?utf-8?B?YU41a21IK0MwMVZQakVFSlIvUWk1cEVuQzZRdFg4bTJLS1V5UHJRc05ZcStH?=
+ =?utf-8?B?UmJDU21mNnoxdWFIYzI1ZGVucmdyWDJWS3BCZzBmdE9aZ1BYc09qRHV5eTJv?=
+ =?utf-8?B?ZXRERDY3RGF4Z0Y0MyswRU9uK2FDMlkwdjlGL1IwNi9yTzJ1anZ5Yk55K25m?=
+ =?utf-8?B?OTR6Y3RMM1VrZEsvZ0FyVFlQSGp0eUFRR2M3NHE3eTBTelFzQ3lYL2JDOGFZ?=
+ =?utf-8?B?MXBkNDNpQWg1SERqTlNySVpyVmU4WGI5TUNGK1NheVgwa1hqSTFXcGpUVE1a?=
+ =?utf-8?B?N2ZhNVJTdFkyWmxlWWZJeUx4VlBFR3F3QVJTS1M5Qk5kSVdiNjF1dDZJZTYz?=
+ =?utf-8?B?ajdscExYNEdOaStDTkY2cjNiMnZlZGptOWovMEZOVzhGSjY0TFVWUjA1SFhT?=
+ =?utf-8?B?aUpXOUIzTENra1RBcE5rNlBpRERlWjBlY2hNdCtIYzg0L20zSVUxNSs3SHUz?=
+ =?utf-8?B?aXV4bm5oMGxEOXFLYjlFd0RqNWkyakpWQ2U2ODJKWHpNcGZXa3ZLcjlsVENM?=
+ =?utf-8?B?bmpzUkd0blRSUlZoU2k2VEdoandodTh6K2dYWVdRNmpmekQ4bWF1YmVtWDhB?=
+ =?utf-8?B?OWdCcWxLTkJ1RzNpL2J4emVlU3JoVW1lV1ZPZVRaMGRRclN2bmpSQ2hUQmFs?=
+ =?utf-8?B?Mlh2YU9kdjluakdLdGZCK1dVdGdBSVBXc1crNEdIbnhXMWYxTDBRZzBFU0NN?=
+ =?utf-8?B?QUttTkxBSnF1WFhHSC9lYWRhMW1XaVdEYkk5eDdCakp0WFJmM0k4aFlac24w?=
+ =?utf-8?B?bG1XZ1NEa0VSaHRGYnJQdmNGczBqR1RyOVhFSEFRdmIwTU1RL2gxZHovTzZE?=
+ =?utf-8?B?RWxmUFRLQ2IwT08zYkRKT2xTUmltdCtjcmFyb0NqZ1RHeFg3blhpMU5PWjkv?=
+ =?utf-8?B?UmtQV3FFdDA1N2pES0tKOW5nYTEvbUc3UXoyZE00ZERRZlJ2MTZudllOWmdz?=
+ =?utf-8?B?MnlaWXdWWXllU1dIV2UrQi83QTI4QW90RE5LTzI2VzlKbU9GSEI3V3o4NDFh?=
+ =?utf-8?B?eTBpUFRxSFZEbTRYejdzbzk3UE5lYVdOUW90UXM0MXM4S1JGcGhaMnhKanov?=
+ =?utf-8?B?Tkh1cnJuelJuNHNTTmxOb2NuNTZLV2lXb3FnR2Z3Q1hDSHJRKzVobW9GYlpr?=
+ =?utf-8?B?OXdVYi9zUmFyN0pHSTIvWnpJUTllbnR0T2tRT3lQaG9UbkQ5NVlWQ2tqdjFM?=
+ =?utf-8?B?cFJNbGt3cUxzRG80OURORFl4R0FSNG1EaTZ2cWZSS2p4cStPOGxwOUp3enhn?=
+ =?utf-8?B?OUhsVUlqWG9rSittemZ4L3psblNpR1ZYVVk3YWE0azVsVVUvRWxNZFR4QUVK?=
+ =?utf-8?B?cHNBZkJ1VENEOC9vM3BxM1ZHcGN2V3kzOUdBTGxwbk5PbDVVYUwxSUVQV3FF?=
+ =?utf-8?B?cS9jMnB4MCsrME9EQjQxcnptQTZJR3JmSVI3aHN5aE5BOXNtRE5yMkJhMkJa?=
+ =?utf-8?B?aWp6K3VDbmh5QUFlRnVISDQ5NWgwM0UwNEJKOG85eHdFbFF2SC9yVERXaC9M?=
+ =?utf-8?B?ZTV3TEtJMDdHYkZGNzc5NWRKOGNnL2IrTW55OHlBRjBzL1JKV3dCMUhpZU1N?=
+ =?utf-8?B?Ullma0o5VEdVRGxwSWNvZHBpeWwvalYyaUxVeWtJNlRGT29GMy9wNmdKQjU4?=
+ =?utf-8?B?VVp0d2JMVkxXMnZQdkpzd2dkVXpiMS8wSVcyc1V5cWRSTVByb2hOYkRtanZh?=
+ =?utf-8?B?QW02czhUV0JBOHVUOEI0dGhPM3huWDZWMVBlNmV3S0R3VERpM2x5bUZ0Ry8z?=
+ =?utf-8?B?Rkk5ZXZrWGc3RWNmeXkyZ21jZk9PcXhkdjV1VjdzV1A2YkZSY0ZmaHdwaFpM?=
+ =?utf-8?B?VDVxTG9aVmsxZEN2aGN5eW5iMXlXK0tPN29oV0lqbE5JQXZFQ1ZaaFE5Nktw?=
+ =?utf-8?B?N3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f850a32-89a0-4c75-233f-08dd557c46ea
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5981.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eff43013-ee77-421d-a064-08dd557b1762
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2025 09:02:11.7877 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SeZ2l0C/L9sOtbu/TLnNic6aRzJ/4vKCklSy6/ltJy3mP0bWfElqpqqARUU34FbcTrpS2OAfs1XSWOysjqRCMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB8296
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 09:10:41.1837 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qVwC1sQ7jdP1THxlSyKfrvOe21CcjPHEbd3PChlcQj8yF+qAeeBZgvREYrihd73c3Ur4VxijAikC3Wm26F/Cm1zxRhSHInnliUMgxEG2Rq0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7209
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -186,171 +197,292 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
+On 2/19/2025 5:23 PM, Nemesa Garg wrote:
+> Add new registers and related bits. Compute the strength
+> value and tap value based on display mode.
+>
+> v2: Replace i915/dev_priv with display[Jani]
+> v3: Create separate file for defining register[Jani]
+>      Add display->drm in debug prints[Jani]
+> v4: Rebase
+> v5: Fix build issue
+> v6: Remove erraneous condition[Ankit]
+> v7: Change the place of compute function
+> v8: Add strength, size in crtc_state_dump.
+>      Add bits for filter size. [Ankit]
+>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_casf.c     | 96 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_casf.h     |  6 +-
+>   .../gpu/drm/i915/display/intel_casf_regs.h    | 22 +++++
+>   .../drm/i915/display/intel_crtc_state_dump.c  |  5 +
+>   drivers/gpu/drm/i915/display/intel_display.c  |  4 +
+>   5 files changed, 131 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+> index f3c5a3f11128..aa38921f27b0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.c
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+> @@ -17,6 +17,9 @@
+>   #define FILTER_COEFF_0_0 0
+>   #define SET_POSITIVE_SIGN(x) ((x) & (~SIGN))
+>   
+> +#define MAX_PIXELS_FOR_3_TAP_FILTER (1920 * 1080)
+> +#define MAX_PIXELS_FOR_5_TAP_FILTER (3840 * 2160)
+> +
+>   /**
+>    * DOC: Content Adaptive Sharpness Filter (CASF)
+>    *
+> @@ -64,6 +67,64 @@ static u16 casf_coeff(struct intel_crtc_state *crtc_state, int t)
+>   	return coeff;
+>   }
+>   
+> +/* Default LUT values to be loaded one time. */
+> +static const u16 lut_data[] = {
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Monday, February 24, 2025 4:15 PM
-> To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Hogander, Jouni <jouni.hogander@intel.com>; B, Jeevan
-> <jeevan.b@intel.com>; Manna, Animesh <animesh.manna@intel.com>
-> Subject: Re: [PATCH v4 2/8] drm/i915/lobf: Disintegrate alpm_disable from
-> psr_disable
->=20
-> On Mon, 24 Feb 2025, Animesh Manna <animesh.manna@intel.com> wrote:
-> > Currently clearing of alpm registers is done through psr_disable()
-> > which is always not correct, without psr also alpm can exist. So
-> > dis-integrate alpm_disable() from psr_disable().
-> >
-> > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_alpm.c     | 21 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 ++
-> >  .../drm/i915/display/intel_display_types.h    |  1 +
-> >  drivers/gpu/drm/i915/display/intel_psr.c      | 11 ----------
-> >  5 files changed, 25 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
-> > b/drivers/gpu/drm/i915/display/intel_alpm.c
-> > index a53ed83f6b22..d94c96ba46b1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> > @@ -365,6 +365,7 @@ void intel_alpm_configure(struct intel_dp
-> *intel_dp,
-> >  			  const struct intel_crtc_state *crtc_state)  {
-> >  	lnl_alpm_configure(intel_dp, crtc_state);
-> > +	intel_dp->alpm_parameters.transcoder =3D crtc_state-
-> >cpu_transcoder;
->=20
-> Why do we need to store this?
+lut_data can be sharpness_lut?
 
-While refactoring found that some places where we don't have access to crtc=
-_state and only intel_dp is passed, using cpu_transcoder we can access ALPM=
- register, will relook again and try to drop the saving of transcoder in in=
-tel_dp.=20
+> +	4095, 2047, 1364, 1022, 816, 678, 579,
+> +	504, 444, 397, 357, 323, 293, 268, 244, 224,
+> +	204, 187, 170, 154, 139, 125, 111, 98, 85,
+> +	73, 60, 48, 36, 24, 12, 0
+> +};
+> +
+> +void intel_filter_lut_load(struct intel_crtc *crtc,
+> +			   const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	int i;
+> +
+> +	intel_de_write(display, SHRPLUT_INDEX(crtc->pipe),
+> +		       INDEX_AUTO_INCR | INDEX_VALUE(0));
+> +
+> +	for (i = 0; i < ARRAY_SIZE(lut_data); i++)
+> +		intel_de_write(display, SHRPLUT_DATA(crtc->pipe),
+> +			       lut_data[i]);
+> +}
+> +
+> +static void intel_casf_size_compute(struct intel_crtc_state *crtc_state)
 
->=20
-> >  }
-> >
-> >  void intel_alpm_post_plane_update(struct intel_atomic_state *state,
-> > @@ -440,3 +441,23 @@ void intel_alpm_lobf_debugfs_add(struct
-> intel_connector *connector)
-> >  	debugfs_create_file("i915_edp_lobf_info", 0444, root,
-> >  			    connector, &i915_edp_lobf_info_fops);  }
-> > +
-> > +void intel_alpm_disable(struct intel_dp *intel_dp) {
-> > +	struct intel_display *display =3D to_intel_display(intel_dp);
-> > +	enum transcoder cpu_transcoder =3D
-> > +intel_dp->alpm_parameters.transcoder;
-> > +
-> > +	if (DISPLAY_VER(display) < 20)
-> > +		return;
-> > +
-> > +	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) &
-> ALPM_CTL_ALPM_ENABLE))
-> > +		return;
->=20
-> Why are we checking the hardware state here? We should know what state
-> the hardware is in, right?
->=20
+Perhaps rename to intel_casf_compute_win_size()?
 
-Agree, we can drop the above read.
 
-> > +
-> > +	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
-> > +		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
-> > +		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-> > +
-> > +	intel_de_rmw(display,
-> > +		     PORT_ALPM_CTL(cpu_transcoder),
-> > +		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0); }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h
-> > b/drivers/gpu/drm/i915/display/intel_alpm.h
-> > index 2f862b0476a8..91f51fb24f98 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> > @@ -28,4 +28,5 @@ void intel_alpm_post_plane_update(struct
-> > intel_atomic_state *state,  void intel_alpm_lobf_debugfs_add(struct
-> > intel_connector *connector);  bool
-> > intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);  bool
-> > intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
-> > +void intel_alpm_disable(struct intel_dp *intel_dp);
-> >  #endif
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 7937f4de66cb..26aa32d4d50e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -35,6 +35,7 @@
-> >  #include "i915_drv.h"
-> >  #include "i915_reg.h"
-> >  #include "icl_dsi.h"
-> > +#include "intel_alpm.h"
-> >  #include "intel_audio.h"
-> >  #include "intel_audio_regs.h"
-> >  #include "intel_backlight.h"
-> > @@ -3570,6 +3571,7 @@ static void intel_ddi_disable_dp(struct
-> intel_atomic_state *state,
-> >  	intel_dp->link_trained =3D false;
-> >
-> >  	intel_psr_disable(intel_dp, old_crtc_state);
-> > +	intel_alpm_disable(intel_dp);
->=20
-> We have old crtc state here, why do we save the transcoder to intel_dp an=
-d
-> use that?
+> +{
+> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> +	u16 total_pixels = mode->hdisplay * mode->vdisplay;
+> +
+> +	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = 0;
+> +	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+> +		crtc_state->hw.casf_params.win_size = 1;
+> +	else
+> +		crtc_state->hw.casf_params.win_size = 2;
 
-Got it, we can drop saving of transcoder in intel_dp here.=20
+Just use SHARPNESS_FILTER_SIZE_*
+
+
+> +}
+> +
+> +void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	u32 sharpness_ctl;
+> +
+> +	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
+
+Strength is introduced in last patch but used here.
+
+In update sharpness the sharpness value will be updated based on user's 
+sharpness requirement, so we should read the rmw only the sharpness in 
+this function.
+
+
+
+> +
+> +	switch (crtc_state->hw.casf_params.win_size) {
+
+Use crtc_state->hw.casf_params.win_size directly instead of the switch case.
+
+
+> +	case 0:
+> +		sharpness_ctl |= SHARPNESS_FILTER_SIZE_3X3;
+> +		break;
+> +	case 1:
+> +		sharpness_ctl |= SHARPNESS_FILTER_SIZE_5X5;
+> +		break;
+> +	default:
+> +		sharpness_ctl |= SHARPNESS_FILTER_SIZE_7X7;
+> +		break;
+> +	}
+> +
+> +	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
+> +}
+> +
+>   /*
+>    * 17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
+>    * To enable casf:  program scaler coefficients with the coeffients
+> @@ -108,6 +169,8 @@ static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
+>   
+>   void intel_casf_enable(struct intel_crtc_state *crtc_state)
+>   {
+> +	intel_casf_update_strength(crtc_state);
+> +
+>   	intel_casf_write_coeff(crtc_state);
+
+
+As per bspec we need to write_coeff first and the configure sharpness 
+control.
+
+
+>   
+>   	skl_scaler_setup_casf(crtc_state);
+> @@ -128,8 +191,33 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>   	if (!HAS_CASF(display))
+>   		return -EINVAL;
+>   
+> +	if (crtc_state->uapi.sharpness_strength == 0) {
+> +		crtc_state->hw.casf_params.casf_enable = false;
+> +		crtc_state->hw.casf_params.strength = 0;
+> +		return 0;
+> +	}
+> +
+> +	/* If panel fitting enabled casf cannot be enabled */
+> +	if (crtc_state->pch_pfit.enabled)
+> +		return -EINVAL;
+> +
+>   	crtc_state->hw.casf_params.casf_enable = true;
+>   
+> +	/*
+> +	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
+> +	 * Strength is from 0.0-14.9375 ie from 0-239.
+> +	 * User can give value from 0-255 but is clamped to 239.
+> +	 * Ex. User gives 85 which is 5.3125 and adding 1.0 gives 6.3125.
+> +	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
+> +	 * Also 85 + 16 = 101.
+> +	 */
+> +	crtc_state->hw.casf_params.strength =
+> +		 min(crtc_state->uapi.sharpness_strength, 0xEF) + 0x10;
+> +
+> +	intel_casf_size_compute(crtc_state);
+> +
+> +	intel_casf_scaler_compute_config(crtc_state);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -174,3 +262,11 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+>   					      filter_coeff[i]);
+>   	}
+>   }
+> +
+> +void intel_casf_disable(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
+> index 6ab30af9d959..26c7f31a8085 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf.h
+> +++ b/drivers/gpu/drm/i915/display/intel_casf.h
+> @@ -9,6 +9,8 @@
+>   #include <linux/types.h>
+>   
+>   struct intel_crtc_state;
+> +struct intel_atomic_state;
+> +struct intel_crtc;
+>   
+>   void intel_casf_enable(struct intel_crtc_state *crtc_state);
+>   void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
+> @@ -16,7 +18,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
+>   bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
+>   void intel_filter_lut_load(struct intel_crtc *crtc,
+>   			   const struct intel_crtc_state *crtc_state);
+> -bool intel_casf_strength_changed(struct intel_crtc_state *new_crtc_state,
+> -				 const struct intel_crtc_state *old_crtc_state);
+> +void intel_casf_update_strength(struct intel_crtc_state *new_crtc_state);
+> +void intel_casf_disable(const struct intel_crtc_state *crtc_state);
+>   
+>   #endif /* __INTEL_CASF_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_casf_regs.h b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> index 0b3fcdb22c0c..f02d01a7a9f1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_casf_regs.h
+> @@ -15,5 +15,27 @@
+>   #define MANTISSA_MASK			REG_GENMASK(11, 3)
+>   #define MANTISSA(x)			REG_FIELD_PREP(MANTISSA_MASK, (x))
+>   
+> +#define _SHARPNESS_CTL_A		0x682B0
+> +#define _SHARPNESS_CTL_B		0x68AB0
+> +#define SHARPNESS_CTL(pipe)		_MMIO_PIPE(pipe, _SHARPNESS_CTL_A, _SHARPNESS_CTL_B)
+> +#define   FILTER_EN			REG_BIT(31)
+> +#define   FILTER_STRENGTH_MASK		REG_GENMASK(15, 8)
+> +#define   FILTER_STRENGTH(x)		REG_FIELD_PREP(FILTER_STRENGTH_MASK, (x))
+> +#define   FILTER_SIZE_MASK		REG_GENMASK(1, 0)
+> +#define   SHARPNESS_FILTER_SIZE_3X3	REG_FIELD_PREP(FILTER_SIZE_MASK, 0)
+> +#define   SHARPNESS_FILTER_SIZE_5X5	REG_FIELD_PREP(FILTER_SIZE_MASK, 1)
+> +#define   SHARPNESS_FILTER_SIZE_7X7	REG_FIELD_PREP(FILTER_SIZE_MASK, 2)
+> +
+> +#define _SHRPLUT_DATA_A			0x682B8
+> +#define _SHRPLUT_DATA_B			0x68AB8
+> +#define SHRPLUT_DATA(pipe)		_MMIO_PIPE(pipe, _SHRPLUT_DATA_A, _SHRPLUT_DATA_B)
+> +
+> +#define _SHRPLUT_INDEX_A		0x682B4
+> +#define _SHRPLUT_INDEX_B		0x68AB4
+> +#define SHRPLUT_INDEX(pipe)		_MMIO_PIPE(pipe, _SHRPLUT_INDEX_A, _SHRPLUT_INDEX_B)
+> +#define   INDEX_AUTO_INCR		REG_BIT(10)
+> +#define   INDEX_VALUE_MASK		REG_GENMASK(4, 0)
+> +#define   INDEX_VALUE(x)		REG_FIELD_PREP(INDEX_VALUE_MASK, (x))
+> +
+>   #endif /* __INTEL_CASF_REGS__ */
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> index 599ddce96371..99f0fbd14c4f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> @@ -372,6 +372,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>   
+>   	intel_vdsc_state_dump(&p, 0, pipe_config);
+>   
+> +	if (HAS_CASF(i915)) {
+> +		drm_printf(&p, "sharpness strength : %d\n",  pipe_config->hw.casf_params.strength);
+> +		drm_printf(&p, "sharpness tap size : %d\n",  pipe_config->hw.casf_params.win_size);
+
+Add all these in one line and include the enable bit too. This should be 
+a separate patch.
+
+
+> +	}
+> +
+>   dump_planes:
+>   	if (!state)
+>   		return;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 0fe710e13ac1..cf807e0931ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4405,6 +4405,10 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>   		return ret;
+>   	}
+>   
+> +	ret = intel_casf_compute_config(crtc_state);
+
+Doesnt seem to be part of this patch.
+
+This patch should be only about adding sharpness registers and bits and 
+functions to set these.
+
 
 Regards,
-Animesh
 
->=20
-> >  	intel_edp_backlight_off(old_conn_state);
-> >  	/* Disable the decompression in DP Sink */
-> >  	intel_dp_sink_disable_decompression(state,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 4440521e3e9e..b78721c451b8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1801,6 +1801,7 @@ struct intel_dp {
-> >  	struct {
-> >  		u8 io_wake_lines;
-> >  		u8 fast_wake_lines;
-> > +		enum transcoder transcoder;
-> >
-> >  		/* LNL and beyond */
-> >  		u8 check_entry_lines;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> > b/drivers/gpu/drm/i915/display/intel_psr.c
-> > index c1dd9c739fd4..1d202f2eb356 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -2141,17 +2141,6 @@ static void intel_psr_disable_locked(struct
-> intel_dp *intel_dp)
-> >  	if (intel_dp_is_edp(intel_dp))
-> >
-> > intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)-
-> >base,
-> > false);
-> >
-> > -	/* Panel Replay on eDP is always using ALPM aux less. */
-> > -	if (intel_dp->psr.panel_replay_enabled &&
-> intel_dp_is_edp(intel_dp)) {
-> > -		intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
-> > -			     ALPM_CTL_ALPM_ENABLE |
-> > -			     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-> > -
-> > -		intel_de_rmw(display,
-> > -			     PORT_ALPM_CTL(cpu_transcoder),
-> > -			     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-> > -	}
-> > -
-> >  	/* Disable PSR on Sink */
-> >  	if (!intel_dp->psr.panel_replay_enabled) {
-> >  		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
->=20
-> --
-> Jani Nikula, Intel
+Ankit
+
+> +	if (ret)
+> +		return ret;
+> +
+>   	if (DISPLAY_VER(dev_priv) >= 9) {
+>   		if (intel_crtc_needs_modeset(crtc_state) ||
+>   		    intel_crtc_needs_fastset(crtc_state) ||
