@@ -2,66 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944F6A442C1
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 15:30:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3526A4439B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 15:55:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B51B10E6E6;
-	Tue, 25 Feb 2025 14:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4723510E6EC;
+	Tue, 25 Feb 2025 14:55:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="V++YC3az";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OHjds/VK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [217.70.183.193])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8DEF10E6E6;
- Tue, 25 Feb 2025 14:30:03 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 856C2442F4;
- Tue, 25 Feb 2025 14:30:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1740493802;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dX/nrWw3K+ooLFYD0Y9TwiiJkU/R1nkRj2uIOyjhUVw=;
- b=V++YC3azumm1UnBRfcC631JH/asdM4eGnJS+D3THHckaUfyVdI+/U65RzROy7z8VBhKIGW
- 6tVaBO+s9mBrEeTAHZmuLM49jqazB6sDMVpLFa6s0EXqA4ix8/N0/GHM0+QDIyfnF6xxud
- dhPDu4dwpWALyujswl4FFau0Y6D2sNkkWGK7diMziwAnst90rd3u5Q724cppHQErMdhI9e
- 50Hpi2H2e5zKxQv7J8jB3utANnbW1YbD/H9LWe8auCbmevjSr340oZg5qj58IAjBxK/VFj
- FMPuOo57VInceeoUKy16spRk/7Ab6kQnGeB5iZeOE/bWVL0zK8Kt7lGOI9+0eA==
-Date: Tue, 25 Feb 2025 15:30:00 +0100
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
- jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org
-Cc: intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 01/63] docs/dyndbg: update examples \012 to \n
-Message-ID: <3f5d7e90-0feb-48ef-8279-1644ce5f3d5b@bootlin.com>
-Mail-Followup-To: Jim Cromie <jim.cromie@gmail.com>,
- linux-kernel@vger.kernel.org, jbaron@akamai.com,
- gregkh@linuxfoundation.org, ukaszb@chromium.org,
- intel-gfx-trybot@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com
-References: <20250125064619.8305-1-jim.cromie@gmail.com>
- <20250125064619.8305-2-jim.cromie@gmail.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E17E710E6EC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2025 14:55:03 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 36CF95C4307;
+ Tue, 25 Feb 2025 14:54:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22ED6C4CEDD;
+ Tue, 25 Feb 2025 14:55:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1740495302;
+ bh=cEr6TrMgGkppuvKMS/H8hpW8RW6Dd+JV+38gs6nABAc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=OHjds/VKXANOFY5Y+NwuYr3Fg5zVcOaR4tgeE935qQBvrxavKEy8OuHI6VTyqpwFB
+ j77hKdmj1rSMIypIVDTnafnEuDwhpqcILluNGs16xF/z5t57xvh4ZZF6OWKCsheQ5c
+ xgBnbBihLMUcsiWN7P84fvIHaEdhOP+6KfsEN+gG2oio4B3nVd8D3qa0C0HOCTFpJK
+ uzxuq9og9lauhrygKgE7nunb8gvumy2YGkVWNwXO+bXiKXoyY1aEBUggom9i9UYtVK
+ WLdysUwI2wGQaMqE+k/x3isFDdaQ5JLKEMrmV+wMNPjkV5WfcUlZjIO8d+fCW4E/8T
+ DuZ8Z5vziQjgQ==
+Date: Tue, 25 Feb 2025 15:54:57 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, 
+ Ville Syrjala <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 09/12] drm/i915: Use REG_BIT() & co. for BDW+ EU/slice
+ fuse bits
+Message-ID: <2ueianfplrtjermhu47wufhrmws355ycleyarwagcxvyiqk5ic@t2gn7juxcqph>
+References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
+ <20250211231941.22769-10-ville.syrjala@linux.intel.com>
+ <Z7xHVpOEvu7tCn6a@ashyti-mobl2.lan> <87bjuq796e.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250125064619.8305-2-jim.cromie@gmail.com>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekudelgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttddunecuhfhrohhmpefnohhuihhsucevhhgruhhvvghtuceolhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudeiffduffeivdejgfejheeuudekkedvjeeuffegfefghfffkeelgffgieevudejnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohhuihhsqdgthhgruhhvvghtqdhlrghpthhophdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehjihhmrdgtrhhomhhivgesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehjsggrrhhonhesrghkrghmrghirdgtohhmpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnr
- dhorhhgpdhrtghpthhtohepuhhkrghsiigssegthhhrohhmihhumhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigqdhtrhihsghotheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-X-GND-Sasl: louis.chauvet@bootlin.com
+In-Reply-To: <87bjuq796e.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,56 +61,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Jani,
 
-
-Le 25/01/2025 à 07:45, Jim Cromie a écrit :
-> commit 47ea6f99d06e ("dyndbg: use ESCAPE_SPACE for cat control")
+On Tue, Feb 25, 2025 at 09:52:41AM +0200, Jani Nikula wrote:
+> On Mon, 24 Feb 2025, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > Hi Ville,
+> >
+> > On Wed, Feb 12, 2025 at 01:19:37AM +0200, Ville Syrjala wrote:
+> >> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >> 
+> >> Convert the BDW+ EU/slice fuse bits to the modern REG_BIT()/etc.
+> >> style.
+> >
+> > using REG_BIT() and co. doesn't alway make it more readable. In
+> > some of the cases below I would have preferred not to use it.
 > 
-> changed the control-file to display format strings with "\n" rather
-> than "\012".  Update the docs to match the new reality.
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> Interesting. I read through the patch and I thought all of it was
+> good. Care to elaborate?
 
-Hi Jim,
+yes you're right, I should have given an example, but I had
+already edited the e-mail and I was lazy to get it back.
 
-I think this patch is incomplete, I just tested and the \012 in [1] 
-needs to be replaced too.
+In any case, this is an example:
 
-[1]:https://elixir.bootlin.com/linux/v6.14-rc3/source/Documentation/admin-guide/dynamic-debug-howto.rst#L39-L46
+-       s_en = intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE) &
+-               GEN11_GT_S_ENA_MASK;
++       s_en = REG_FIELD_GET(GEN11_GT_S_ENA_MASK,
++                            intel_uncore_read(uncore, GEN11_GT_SLICE_ENABLE));
 
-With this change:
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Tested-by: Louis Chauvet<louis.chauvet@bootlin.com>
 
-> ---
->   Documentation/admin-guide/dynamic-debug-howto.rst | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
-> index 7c036590cd07..691e0f7d4de1 100644
-> --- a/Documentation/admin-guide/dynamic-debug-howto.rst
-> +++ b/Documentation/admin-guide/dynamic-debug-howto.rst
-> @@ -57,12 +57,12 @@ query/commands to the control file.  Example::
->     # grease the interface
->     :#> alias ddcmd='echo $* > /proc/dynamic_debug/control'
->   
-> -  :#> ddcmd '-p; module main func run* +p'
-> +  :#> ddcmd '-p; module main func run* +p'	# disable all, then enable main
->     :#> grep =p /proc/dynamic_debug/control
-> -  init/main.c:1424 [main]run_init_process =p "  with arguments:\012"
-> -  init/main.c:1426 [main]run_init_process =p "    %s\012"
-> -  init/main.c:1427 [main]run_init_process =p "  with environment:\012"
-> -  init/main.c:1429 [main]run_init_process =p "    %s\012"
-> +  init/main.c:1424 [main]run_init_process =p "  with arguments:\n"
-> +  init/main.c:1426 [main]run_init_process =p "    %s\n"
-> +  init/main.c:1427 [main]run_init_process =p "  with environment:\n"
-> +  init/main.c:1429 [main]run_init_process =p "    %s\n"
->   
->   Error messages go to console/syslog::
->   
+The removed line to me is clearer than the added line.
 
--- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I'm not saying that it's not good (otherwise I wouldn't have
+r-b'ed it), I'm just saying that not always using the REG_*
+macros makes the code clearer.
 
+For consistency with the rest of the patch is anyway fine.
+
+Thanks,
+Andi
