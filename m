@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9E8A446D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 17:49:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C2BA446D5
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 17:49:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B68C310E765;
-	Tue, 25 Feb 2025 16:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66E6E10E768;
+	Tue, 25 Feb 2025 16:49:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WkW58EUD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GsGh9iUX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C82C10E76D;
- Tue, 25 Feb 2025 16:49:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFD610E74A;
+ Tue, 25 Feb 2025 16:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740502193; x=1772038193;
+ t=1740502198; x=1772038198;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=06jQvgX80+5+veV6jqwFObPEfcSqdjzeGG5lRnecQ1k=;
- b=WkW58EUDra+pbYD47caj6iyxjk8OrfCNtA0eW8/4sAh//cjSIl4Y08HJ
- B9FVdZF1wdKW6tN8KbQ2oxaJaHctN2RPJvM+a77lE+Fqy9EAzb8kXAWMQ
- 6w7A1bdbweTHMPlTPM/UOld/1MTmJM5OmaGxVeGigQ0PPxk7f8T1gNJMj
- CvzbwggwvZOpZZW0u8Obt+tTe3V739i/jzobsQ9FgUMHMUse3kRnHquFF
- 8KgEVZ6fTwJtRFHfDJ0A7dEqNdiwYzJ98mlOSZ4+fyIJfH1P4ecrn49CF
- bBP2p2MmpqIhSc6qBNSlnzHhquBVlkJ21qan44J5T0pMKZaF5TV92M+zw g==;
-X-CSE-ConnectionGUID: xGx+WrDERRq6OQmMep3/fQ==
-X-CSE-MsgGUID: Kqxo2uHRROmWHqhTJNeQ1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52741766"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52741766"
+ bh=+9p5InrNBRZ16Vtan+RZZUmRUOd6WCi5mY0ix5+lF7o=;
+ b=GsGh9iUXZpD9usSusChvB71l7Pl/GZ7pigltK0K85lkj+7HVP09eLCTk
+ 3A1mIvoylChAigah4vbK5gCip1Pm+8rC22OYv7ktD3QIjRwqO8VfHNeSb
+ sLIoLexHK5k35xkdSFOk+HeVulPwQ8/Pt+PKzMzptSi7HA3HNuyj0+xS5
+ w3m2TU/Y2XxzymXTueOmxss8Hr19BdMJYzOT3RZYivSJzH3pT+aopWrXp
+ mbmjOFuNlBo0zzIY2OFJoiHcGPt6a9ikHAvNOf84fkfZZMuK/lXpzNhQn
+ QNRDhI/7LuoJrzlr/AnsNyaQm/I29FSRMNlI1143cZUyaCDqlQ7hdRM/Z g==;
+X-CSE-ConnectionGUID: 1RNDv0CwSeaw2XJ/JnFSgQ==
+X-CSE-MsgGUID: xVlCLaBzRq6ts4KkVINFxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52741767"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52741767"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:53 -0800
-X-CSE-ConnectionGUID: gddgE123SHK4X2qCLkiRSw==
-X-CSE-MsgGUID: blOQ45mkS6ahogw7KwWuZw==
+ 25 Feb 2025 08:49:57 -0800
+X-CSE-ConnectionGUID: frIvNXTQRvWpxowLTXh5Gg==
+X-CSE-MsgGUID: CKM5fsVURgWfjwphnoiZkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121691812"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121691825"
 Received: from monicael-mobl3 (HELO localhost) ([10.245.246.246])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 08:49:51 -0800
+ 25 Feb 2025 08:49:55 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 07/12] drm/i915/display: convert the M/N functions to struct
- intel_display
-Date: Tue, 25 Feb 2025 18:49:08 +0200
-Message-Id: <8ac3472fe8e6647c0da57013c8bef575d8324a88.1740502116.git.jani.nikula@intel.com>
+Subject: [PATCH 08/12] drm/i915/dpt: convert intel_dpt.[ch] interfaces to
+ struct intel_display
+Date: Tue, 25 Feb 2025 18:49:09 +0200
+Message-Id: <df2bf715639caeb662f08b776ba81bfe3c9288b9.1740502116.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1740502116.git.jani.nikula@intel.com>
 References: <cover.1740502116.git.jani.nikula@intel.com>
@@ -71,313 +71,140 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert the functions to set/get M/N values and check for M2/N2
-support to struct intel_display.
+pointer. Convert the intel_dpt.[ch] interfaces to struct intel_display,
+though the file being very i915 specific, it's hard to convert the
+implementation.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  | 88 +++++++++----------
- drivers/gpu/drm/i915/display/intel_display.h  |  6 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     |  8 +-
- .../gpu/drm/i915/display/intel_pch_display.c  | 16 ++--
- 5 files changed, 59 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpt.c | 24 ++++++++++++------------
+ drivers/gpu/drm/i915/display/intel_dpt.h |  7 +++----
+ drivers/gpu/drm/i915/i915_driver.c       |  4 ++--
+ 3 files changed, 17 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 46fb8e088c15..49a67d629c07 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2662,45 +2662,45 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
- 	m_n->tu = 1;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+index 8b1f0e92a11c..fca7294b1def 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.c
++++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+@@ -183,7 +183,7 @@ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
  
--void intel_set_m_n(struct drm_i915_private *i915,
-+void intel_set_m_n(struct intel_display *display,
- 		   const struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+ /**
+  * intel_dpt_resume - restore the memory mapping for all DPT FBs during system resume
+- * @i915: device instance
++ * @display: display device instance
+  *
+  * Restore the memory mapping during system resume for all framebuffers which
+  * are mapped to HW via a GGTT->DPT page table. The content of these page
+@@ -193,26 +193,26 @@ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
+  * This function must be called after the mappings in GGTT have been restored calling
+  * i915_ggtt_resume().
+  */
+-void intel_dpt_resume(struct drm_i915_private *i915)
++void intel_dpt_resume(struct intel_display *display)
  {
--	intel_de_write(i915, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
--	intel_de_write(i915, data_n_reg, m_n->data_n);
--	intel_de_write(i915, link_m_reg, m_n->link_m);
-+	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
-+	intel_de_write(display, data_n_reg, m_n->data_n);
-+	intel_de_write(display, link_m_reg, m_n->link_m);
- 	/*
- 	 * On BDW+ writing LINK_N arms the double buffered update
- 	 * of all the M/N registers, so it must be written last.
- 	 */
--	intel_de_write(i915, link_n_reg, m_n->link_n);
-+	intel_de_write(display, link_n_reg, m_n->link_n);
- }
+ 	struct drm_framebuffer *drm_fb;
  
--bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
-+bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
- 				    enum transcoder transcoder)
- {
--	if (IS_HASWELL(dev_priv))
-+	if (display->platform.haswell)
- 		return transcoder == TRANSCODER_EDP;
- 
--	return IS_DISPLAY_VER(dev_priv, 5, 7) || IS_CHERRYVIEW(dev_priv);
-+	return IS_DISPLAY_VER(display, 5, 7) || display->platform.cherryview;
- }
- 
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (DISPLAY_VER(dev_priv) >= 5)
--		intel_set_m_n(dev_priv, m_n,
--			      PIPE_DATA_M1(dev_priv, transcoder),
--			      PIPE_DATA_N1(dev_priv, transcoder),
--			      PIPE_LINK_M1(dev_priv, transcoder),
--			      PIPE_LINK_N1(dev_priv, transcoder));
-+	if (DISPLAY_VER(display) >= 5)
-+		intel_set_m_n(display, m_n,
-+			      PIPE_DATA_M1(display, transcoder),
-+			      PIPE_DATA_N1(display, transcoder),
-+			      PIPE_LINK_M1(display, transcoder),
-+			      PIPE_LINK_N1(display, transcoder));
- 	else
--		intel_set_m_n(dev_priv, m_n,
-+		intel_set_m_n(display, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
- }
-@@ -2709,16 +2709,16 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
-+	if (!intel_cpu_transcoder_has_m2_n2(display, transcoder))
+-	if (!HAS_DISPLAY(i915))
++	if (!HAS_DISPLAY(display))
  		return;
  
--	intel_set_m_n(dev_priv, m_n,
--		      PIPE_DATA_M2(dev_priv, transcoder),
--		      PIPE_DATA_N2(dev_priv, transcoder),
--		      PIPE_LINK_M2(dev_priv, transcoder),
--		      PIPE_LINK_N2(dev_priv, transcoder));
-+	intel_set_m_n(display, m_n,
-+		      PIPE_DATA_M2(display, transcoder),
-+		      PIPE_DATA_N2(display, transcoder),
-+		      PIPE_LINK_M2(display, transcoder),
-+		      PIPE_LINK_N2(display, transcoder));
- }
+-	mutex_lock(&i915->drm.mode_config.fb_lock);
+-	drm_for_each_fb(drm_fb, &i915->drm) {
++	mutex_lock(&display->drm->mode_config.fb_lock);
++	drm_for_each_fb(drm_fb, display->drm) {
+ 		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
  
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-@@ -3404,33 +3404,33 @@ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp)
- 	return DIV_ROUND_UP(bps, link_bw * 8);
- }
- 
--void intel_get_m_n(struct drm_i915_private *i915,
-+void intel_get_m_n(struct intel_display *display,
- 		   struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
- {
--	m_n->link_m = intel_de_read(i915, link_m_reg) & DATA_LINK_M_N_MASK;
--	m_n->link_n = intel_de_read(i915, link_n_reg) & DATA_LINK_M_N_MASK;
--	m_n->data_m = intel_de_read(i915, data_m_reg) & DATA_LINK_M_N_MASK;
--	m_n->data_n = intel_de_read(i915, data_n_reg) & DATA_LINK_M_N_MASK;
--	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(i915, data_m_reg)) + 1;
-+	m_n->link_m = intel_de_read(display, link_m_reg) & DATA_LINK_M_N_MASK;
-+	m_n->link_n = intel_de_read(display, link_n_reg) & DATA_LINK_M_N_MASK;
-+	m_n->data_m = intel_de_read(display, data_m_reg) & DATA_LINK_M_N_MASK;
-+	m_n->data_n = intel_de_read(display, data_n_reg) & DATA_LINK_M_N_MASK;
-+	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
- }
- 
- void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (DISPLAY_VER(dev_priv) >= 5)
--		intel_get_m_n(dev_priv, m_n,
--			      PIPE_DATA_M1(dev_priv, transcoder),
--			      PIPE_DATA_N1(dev_priv, transcoder),
--			      PIPE_LINK_M1(dev_priv, transcoder),
--			      PIPE_LINK_N1(dev_priv, transcoder));
-+	if (DISPLAY_VER(display) >= 5)
-+		intel_get_m_n(display, m_n,
-+			      PIPE_DATA_M1(display, transcoder),
-+			      PIPE_DATA_N1(display, transcoder),
-+			      PIPE_LINK_M1(display, transcoder),
-+			      PIPE_LINK_N1(display, transcoder));
- 	else
--		intel_get_m_n(dev_priv, m_n,
-+		intel_get_m_n(display, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
- }
-@@ -3439,16 +3439,16 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	if (!intel_cpu_transcoder_has_m2_n2(dev_priv, transcoder))
-+	if (!intel_cpu_transcoder_has_m2_n2(display, transcoder))
- 		return;
- 
--	intel_get_m_n(dev_priv, m_n,
--		      PIPE_DATA_M2(dev_priv, transcoder),
--		      PIPE_DATA_N2(dev_priv, transcoder),
--		      PIPE_LINK_M2(dev_priv, transcoder),
--		      PIPE_LINK_N2(dev_priv, transcoder));
-+	intel_get_m_n(display, m_n,
-+		      PIPE_DATA_M2(display, transcoder),
-+		      PIPE_DATA_N2(display, transcoder),
-+		      PIPE_LINK_M2(display, transcoder),
-+		      PIPE_LINK_N2(display, transcoder));
- }
- 
- static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 91f01e81a8f0..f8b8610b0280 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -481,15 +481,15 @@ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
- bool intel_fuzzy_clock_check(int clock1, int clock2);
- 
- void intel_zero_m_n(struct intel_link_m_n *m_n);
--void intel_set_m_n(struct drm_i915_private *i915,
-+void intel_set_m_n(struct intel_display *display,
- 		   const struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
--void intel_get_m_n(struct drm_i915_private *i915,
-+void intel_get_m_n(struct intel_display *display,
- 		   struct intel_link_m_n *m_n,
- 		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
- 		   i915_reg_t link_m_reg, i915_reg_t link_n_reg);
--bool intel_cpu_transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
-+bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
- 				    enum transcoder transcoder);
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder cpu_transcoder,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index bf96433d63c3..d0fa98628a73 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2943,7 +2943,6 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 			     int link_bpp_x16)
- {
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	const struct drm_display_mode *downclock_mode =
- 		intel_panel_downclock_mode(connector, &pipe_config->hw.adjusted_mode);
- 	int pixel_clock;
-@@ -2956,7 +2955,7 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 		pipe_config->update_m_n = true;
- 
- 	if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
--		if (intel_cpu_transcoder_has_m2_n2(i915, pipe_config->cpu_transcoder))
-+		if (intel_cpu_transcoder_has_m2_n2(display, pipe_config->cpu_transcoder))
- 			intel_zero_m_n(&pipe_config->dp_m2_n2);
- 		return;
+ 		if (fb->dpt_vm)
+ 			i915_ggtt_resume_vm(fb->dpt_vm, true);
  	}
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index bf420400b505..05cd0f6e6d71 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -68,12 +68,10 @@ const char *intel_drrs_type_str(enum drrs_type drrs_type)
- bool intel_cpu_transcoder_has_drrs(struct intel_display *display,
- 				   enum transcoder cpu_transcoder)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (HAS_DOUBLE_BUFFERED_M_N(display))
- 		return true;
- 
--	return intel_cpu_transcoder_has_m2_n2(i915, cpu_transcoder);
-+	return intel_cpu_transcoder_has_m2_n2(display, cpu_transcoder);
+-	mutex_unlock(&i915->drm.mode_config.fb_lock);
++	mutex_unlock(&display->drm->mode_config.fb_lock);
  }
  
- static void
-@@ -110,12 +108,12 @@ bool intel_drrs_is_active(struct intel_crtc *crtc)
- static void intel_drrs_set_state(struct intel_crtc *crtc,
- 				 enum drrs_refresh_rate refresh_rate)
+ /**
+  * intel_dpt_suspend - suspend the memory mapping for all DPT FBs during system suspend
+- * @i915: device instance
++ * @display: display device instance
+  *
+  * Suspend the memory mapping during system suspend for all framebuffers which
+  * are mapped to HW via a GGTT->DPT page table.
+@@ -220,23 +220,23 @@ void intel_dpt_resume(struct drm_i915_private *i915)
+  * This function must be called before the mappings in GGTT are suspended calling
+  * i915_ggtt_suspend().
+  */
+-void intel_dpt_suspend(struct drm_i915_private *i915)
++void intel_dpt_suspend(struct intel_display *display)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_framebuffer *drm_fb;
  
- 	if (refresh_rate == crtc->drrs.refresh_rate)
+-	if (!HAS_DISPLAY(i915))
++	if (!HAS_DISPLAY(display))
  		return;
  
--	if (intel_cpu_transcoder_has_m2_n2(dev_priv, crtc->drrs.cpu_transcoder))
-+	if (intel_cpu_transcoder_has_m2_n2(display, crtc->drrs.cpu_transcoder))
- 		intel_drrs_set_refresh_rate_pipeconf(crtc, refresh_rate);
- 	else
- 		intel_drrs_set_refresh_rate_m_n(crtc, refresh_rate);
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 1abe0a784570..806729ec73c8 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -181,10 +181,10 @@ static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
- static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 					   const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+-	mutex_lock(&i915->drm.mode_config.fb_lock);
++	mutex_lock(&display->drm->mode_config.fb_lock);
  
--	intel_set_m_n(dev_priv, m_n,
-+	intel_set_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
- 		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
- }
-@@ -192,10 +192,10 @@ static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
- static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 					   const struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+-	drm_for_each_fb(drm_fb, &i915->drm) {
++	drm_for_each_fb(drm_fb, display->drm) {
+ 		struct intel_framebuffer *fb = to_intel_framebuffer(drm_fb);
  
--	intel_set_m_n(dev_priv, m_n,
-+	intel_set_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
- 		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
- }
-@@ -203,10 +203,10 @@ static void intel_pch_transcoder_set_m2_n2(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
+ 		if (fb->dpt_vm)
+ 			i915_ggtt_suspend_vm(fb->dpt_vm, true);
+ 	}
  
--	intel_get_m_n(dev_priv, m_n,
-+	intel_get_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M1(pipe), PCH_TRANS_DATA_N1(pipe),
- 		      PCH_TRANS_LINK_M1(pipe), PCH_TRANS_LINK_N1(pipe));
+-	mutex_unlock(&i915->drm.mode_config.fb_lock);
++	mutex_unlock(&display->drm->mode_config.fb_lock);
  }
-@@ -214,10 +214,10 @@ void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
  
--	intel_get_m_n(dev_priv, m_n,
-+	intel_get_m_n(display, m_n,
- 		      PCH_TRANS_DATA_M2(pipe), PCH_TRANS_DATA_N2(pipe),
- 		      PCH_TRANS_LINK_M2(pipe), PCH_TRANS_LINK_N2(pipe));
- }
+ struct i915_address_space *
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.h b/drivers/gpu/drm/i915/display/intel_dpt.h
+index 1f88b0ee17e7..db521401b828 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.h
++++ b/drivers/gpu/drm/i915/display/intel_dpt.h
+@@ -8,18 +8,17 @@
+ 
+ #include <linux/types.h>
+ 
+-struct drm_i915_private;
+-
+ struct i915_address_space;
+ struct i915_vma;
++struct intel_display;
+ struct intel_framebuffer;
+ 
+ void intel_dpt_destroy(struct i915_address_space *vm);
+ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+ 				       unsigned int alignment);
+ void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
+-void intel_dpt_suspend(struct drm_i915_private *i915);
+-void intel_dpt_resume(struct drm_i915_private *i915);
++void intel_dpt_suspend(struct intel_display *display);
++void intel_dpt_resume(struct intel_display *display);
+ struct i915_address_space *
+ intel_dpt_create(struct intel_framebuffer *fb);
+ u64 intel_dpt_offset(struct i915_vma *dpt_vma);
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 1dfd6269b355..613084fd0097 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1070,7 +1070,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	intel_encoder_suspend_all(&dev_priv->display);
+ 
+ 	/* Must be called before GGTT is suspended. */
+-	intel_dpt_suspend(dev_priv);
++	intel_dpt_suspend(display);
+ 	i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
+ 
+ 	i9xx_display_sr_save(display);
+@@ -1187,7 +1187,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 			setup_private_pat(gt);
+ 
+ 	/* Must be called after GGTT is resumed. */
+-	intel_dpt_resume(dev_priv);
++	intel_dpt_resume(display);
+ 
+ 	intel_dmc_resume(display);
+ 
 -- 
 2.39.5
 
