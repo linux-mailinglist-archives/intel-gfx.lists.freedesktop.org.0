@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39050A44116
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 14:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A43A441D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2025 15:08:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D75410E67C;
-	Tue, 25 Feb 2025 13:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B28B510E6C6;
+	Tue, 25 Feb 2025 14:08:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="GH0/jDdP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5879D10E695;
- Tue, 25 Feb 2025 13:41:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2137625372748765144=="
+X-Greylist: delayed 9990 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Feb 2025 14:08:39 UTC
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
+ [217.70.183.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 362FD10E6B3;
+ Tue, 25 Feb 2025 14:08:39 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 68AB3442CE;
+ Tue, 25 Feb 2025 14:08:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1740492517;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Czqb92Brl1EGX23HDpCKV1eCwuLVj6SrAdd+HBGJTxI=;
+ b=GH0/jDdPwO3/z7mmPPbHLfgzMTO7qwKlmAqypasxHd3uoCPqFmgHYADSRHcTKBXMQ8OAk/
+ RIdiB7u5FRXznON51dDomr0eVRO553NjsH+1nfvNLyN57TTLF1QRlxvvwv7f6qMOjiQJ9f
+ SM4ICWZVTvwmjS9/Wi6M8PB5oOhpxJ/kZm+Vmbdgwzpbv7rFpqg63tyVRTLy+e/AlcVtal
+ JMw7fmQg99V+YuW4+wSVZhSuHEQKfWjj6HpxHL4NwblzoOm8pbNTOMCPqIcAVPdJh/6BCZ
+ hrPbDPJQEUAHOFgZLXitgM5JXATh6wVrJd5UZCU/Ee4+2xBVxWALtXQ7fzFnHg==
+Date: Tue, 25 Feb 2025 15:08:35 +0100
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
+ jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org
+Cc: intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 05/63] dyndbg: replace classmap list with a vector
+Message-ID: <22989ed1-90a4-4acd-9ca0-00f65677ad4f@bootlin.com>
+Mail-Followup-To: Jim Cromie <jim.cromie@gmail.com>,
+ linux-kernel@vger.kernel.org, jbaron@akamai.com,
+ gregkh@linuxfoundation.org, ukaszb@chromium.org,
+ intel-gfx-trybot@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <20250125064619.8305-6-jim.cromie@gmail.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/dp=3A_Fix_link_traini?=
- =?utf-8?q?ng_interrupted_by_HPD_pulse_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2025 13:41:55 -0000
-Message-ID: <174049091535.1979544.8135908907842640775@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250224193115.2058512-1-imre.deak@intel.com>
-In-Reply-To: <20250224193115.2058512-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250125064619.8305-6-jim.cromie@gmail.com>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekudeltdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttddunecuhfhrohhmpefnohhuihhsucevhhgruhhvvghtuceolhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepudeiffduffeivdejgfejheeuudekkedvjeeuffegfefghfffkeelgffgieevudejnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohhuihhsqdgthhgruhhvvghtqdhlrghpthhophdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehjihhmrdgtrhhomhhivgesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehjsggrrhhonhesrghkrghmrghirdgtohhmpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnr
+ dhorhhgpdhrtghpthhtohepuhhkrghsiigssegthhhrohhmihhumhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigqdhtrhihsghotheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegurhhiqdguvghvvghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtoheprghmugdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+X-GND-Sasl: louis.chauvet@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,256 +76,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2137625372748765144==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/dp: Fix link training interrupted by HPD pulse (rev3)
-URL   : https://patchwork.freedesktop.org/series/145352/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16178 -> Patchwork_145352v3
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_145352v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_145352v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_145352v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2] +2 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_145352v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][3] -> [DMESG-WARN][4] ([i915#13494])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-mtlp-9/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live:
-    - bat-twl-2:          [PASS][5] -> [ABORT][6] ([i915#12435] / [i915#12919] / [i915#13503])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-twl-2/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-twl-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@memory_region:
-    - bat-twl-2:          [PASS][7] -> [ABORT][8] ([i915#12919])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-twl-2/igt@i915_selftest@live@memory_region.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-twl-2/igt@i915_selftest@live@memory_region.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-atsm-1:         [PASS][9] -> [INCOMPLETE][10] ([i915#12445])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-atsm-1/igt@i915_selftest@live@requests.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-atsm-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061]) +1 other test dmesg-fail
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][13] -> [SKIP][14] ([i915#9197]) +3 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [ABORT][17] ([i915#13679]) -> [INCOMPLETE][18] ([i915#12445])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-atsm-1/igt@i915_selftest@live.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-atsm-1/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
-  [i915#13679]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
 
 
-Build changes
--------------
+Le 25/01/2025 à 07:45, Jim Cromie a écrit :
+> Classmaps are stored in an elf section/array, but are individually
+> list-linked onto dyndbg's per-module ddebug_table for operation.
+> 
+> This is unnecessary; even when ddebug_attach_classmap() is handling
+> the builtin section (with classmaps for multiple builtin modules), its
+> contents are ordered, so a module's possibly multiple classmaps will
+> be consecutive in the section, and could be treated as a vector/block,
+> since both start-address and subrange length are in the ddebug_info arg.
+> 
+> IOW, this treats classmaps similarly to _ddebugs, which are already
+> kept as vector-refs (address+len).
+> 
+> So this changes:
+> 
+> struct ddebug_class_map drops list-head link.
+> 
+> struct ddebug_table drops the list-head maps, and gets: classes &
+> num_classes for the start-address and num_classes, placed to improve
+> struct packing.
+> 
+> The loading: in ddebug_attach_module_classes(), replace the
+> for-the-modname list-add loop, with a forloop that finds the module's
+> subrange (start,length) of matching classmaps within the possibly
+> builtin classmaps vector, and saves those to the ddebug_table.
+> 
+> The reading/using: change list-foreach loops in ddebug_class_name() &
+> ddebug_find_valid_class() to walk the array from start to length.
+> 
+> Also:
+> Move #define __outvar up, above an added use in a fn-prototype.
+> Simplify ddebug_attach_module_classes args, ref has both address & len.
+> 
+> no functional changes
+> 
+> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> ---
+>   include/linux/dynamic_debug.h |  1 -
+>   lib/dynamic_debug.c           | 61 ++++++++++++++++++-----------------
+>   2 files changed, 32 insertions(+), 30 deletions(-)
+> 
+> diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+> index b9afc7731b7c..2b0057058ecf 100644
+> --- a/include/linux/dynamic_debug.h
+> +++ b/include/linux/dynamic_debug.h
+> @@ -83,7 +83,6 @@ enum class_map_type {
+>   };
+>   
+>   struct ddebug_class_map {
+> -	struct list_head link;
+>   	struct module *mod;
+>   	const char *mod_name;	/* needed for builtins */
+>   	const char **class_names;
+> diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+> index 55df35df093b..41cbaa96f83d 100644
+> --- a/lib/dynamic_debug.c
+> +++ b/lib/dynamic_debug.c
+> @@ -45,10 +45,11 @@ extern struct ddebug_class_map __start___dyndbg_classes[];
+>   extern struct ddebug_class_map __stop___dyndbg_classes[];
+>   
+>   struct ddebug_table {
+> -	struct list_head link, maps;
+> +	struct list_head link;
+>   	const char *mod_name;
+> -	unsigned int num_ddebugs;
+>   	struct _ddebug *ddebugs;
+> +	struct ddebug_class_map *classes;
+> +	unsigned int num_ddebugs, num_classes;
+>   };
+>   
+>   struct ddebug_query {
+> @@ -147,13 +148,15 @@ static void vpr_info_dq(const struct ddebug_query *query, const char *msg)
+>   		  query->first_lineno, query->last_lineno, query->class_string);
+>   }
+>   
+> +#define __outvar /* filled by callee */
 
-  * Linux: CI_DRM_16178 -> Patchwork_145352v3
+Hi Jim,
 
-  CI-20190529: 20190529
-  CI_DRM_16178: d5debc4841e604372c74ebda0bbf54bd527c3475 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8247: 8247
-  Patchwork_145352v3: d5debc4841e604372c74ebda0bbf54bd527c3475 @ git://anongit.freedesktop.org/gfx-ci/linux
+What is the goal of this __outvar define? I can't find any other #define 
+of it in the kernel.
 
-== Logs ==
+>   static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table const *dt,
+> -							  const char *class_string, int *class_id)
+> +							const char *class_string,
+> +							__outvar int *class_id)
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/index.html
+The order between __outvar and int is not important? Here you have 
+__outvar before int, but later [1] the __outvar is after int.
 
---===============2137625372748765144==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+[1]:https://elixir.bootlin.com/linux/v6.14-rc3/source/lib/dynamic_debug.c#L183
 
+Thanks,
+Louis Chauvet
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>   {
+>   	struct ddebug_class_map *map;
+> -	int idx;
+> +	int i, idx;
+>   
+> -	list_for_each_entry(map, &dt->maps, link) {
+> +	for (map = dt->classes, i = 0; i < dt->num_classes; i++, map++) {
+>   		idx = match_string(map->class_names, map->length, class_string);
+>   		if (idx >= 0) {
+>   			*class_id = idx + map->base;
+> @@ -164,7 +167,6 @@ static struct ddebug_class_map *ddebug_find_valid_class(struct ddebug_table cons
+>   	return NULL;
+>   }
+>   
+> -#define __outvar /* filled by callee */
+>   /*
+>    * Search the tables for _ddebug's which match the given `query' and
+>    * apply the `flags' and `mask' to them.  Returns number of matching
+> @@ -1114,9 +1116,10 @@ static void *ddebug_proc_next(struct seq_file *m, void *p, loff_t *pos)
+>   
+>   static const char *ddebug_class_name(struct ddebug_iter *iter, struct _ddebug *dp)
+>   {
+> -	struct ddebug_class_map *map;
+> +	struct ddebug_class_map *map = iter->table->classes;
+> +	int i, nc = iter->table->num_classes;
+>   
+> -	list_for_each_entry(map, &iter->table->maps, link)
+> +	for (i = 0; i < nc; i++, map++)
+>   		if (class_in_range(dp->class_id, map))
+>   			return map->class_names[dp->class_id - map->base];
+>   
+> @@ -1200,30 +1203,31 @@ static const struct proc_ops proc_fops = {
+>   	.proc_write = ddebug_proc_write
+>   };
+>   
+> -static void ddebug_attach_module_classes(struct ddebug_table *dt,
+> -					 struct ddebug_class_map *classes,
+> -					 int num_classes)
+> +static void ddebug_attach_module_classes(struct ddebug_table *dt, struct _ddebug_info *di)
+>   {
+>   	struct ddebug_class_map *cm;
+> -	int i, j, ct = 0;
+> +	int i, nc = 0;
+>   
+> -	for (cm = classes, i = 0; i < num_classes; i++, cm++) {
+> +	/*
+> +	 * Find this module's classmaps in a subrange/wholerange of
+> +	 * the builtin/modular classmap vector/section.  Save the start
+> +	 * and length of the subrange at its edges.
+> +	 */
+> +	for (cm = di->classes, i = 0; i < di->num_classes; i++, cm++) {
+>   
+>   		if (!strcmp(cm->mod_name, dt->mod_name)) {
+> -
+> -			v2pr_info("class[%d]: module:%s base:%d len:%d ty:%d\n", i,
+> -				  cm->mod_name, cm->base, cm->length, cm->map_type);
+> -
+> -			for (j = 0; j < cm->length; j++)
+> -				v3pr_info(" %d: %d %s\n", j + cm->base, j,
+> -					  cm->class_names[j]);
+> -
+> -			list_add(&cm->link, &dt->maps);
+> -			ct++;
+> +			if (!nc) {
+> +				v2pr_info("start subrange, class[%d]: module:%s base:%d len:%d ty:%d\n",
+> +					  i, cm->mod_name, cm->base, cm->length, cm->map_type);
+> +				dt->classes = cm;
+> +			}
+> +			nc++;
+>   		}
+>   	}
+> -	if (ct)
+> -		vpr_info("module:%s attached %d classes\n", dt->mod_name, ct);
+> +	if (nc) {
+> +		dt->num_classes = nc;
+> +		vpr_info("module:%s attached %d classes\n", dt->mod_name, nc);
+> +	}
+>   }
+>   
+>   /*
+> @@ -1256,10 +1260,9 @@ static int ddebug_add_module(struct _ddebug_info *di, const char *modname)
+>   	dt->num_ddebugs = di->num_descs;
+>   
+>   	INIT_LIST_HEAD(&dt->link);
+> -	INIT_LIST_HEAD(&dt->maps);
+>   
+>   	if (di->classes && di->num_classes)
+> -		ddebug_attach_module_classes(dt, di->classes, di->num_classes);
+> +		ddebug_attach_module_classes(dt, di);
+>   
+>   	mutex_lock(&ddebug_lock);
+>   	list_add_tail(&dt->link, &ddebug_tables);
+> @@ -1372,8 +1375,8 @@ static void ddebug_remove_all_tables(void)
+>   	mutex_lock(&ddebug_lock);
+>   	while (!list_empty(&ddebug_tables)) {
+>   		struct ddebug_table *dt = list_entry(ddebug_tables.next,
+> -						      struct ddebug_table,
+> -						      link);
+> +						     struct ddebug_table,
+> +						     link);
+>   		ddebug_table_free(dt);
+>   	}
+>   	mutex_unlock(&ddebug_lock);
 
+-- 
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp: Fix link training interrupted by HPD pulse (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145352/">https://patchwork.freedesktop.org/series/145352/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16178 -&gt; Patchwork_145352v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_145352v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_145352v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_145352v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp2.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_145352v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-twl-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-twl-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503">i915#13503</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@memory_region:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-twl-2/igt@i915_selftest@live@memory_region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-twl-2/igt@i915_selftest@live@memory_region.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-atsm-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-atsm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16178/bat-atsm-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679">i915#13679</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145352v3/bat-atsm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16178 -&gt; Patchwork_145352v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16178: d5debc4841e604372c74ebda0bbf54bd527c3475 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8247: 8247<br />
-  Patchwork_145352v3: d5debc4841e604372c74ebda0bbf54bd527c3475 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2137625372748765144==--
