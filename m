@@ -2,55 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0C3A455D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 07:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1156EA457C9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 09:12:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F365610E854;
-	Wed, 26 Feb 2025 06:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C304210E879;
+	Wed, 26 Feb 2025 08:12:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V4PnPDVh";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jSMW2q6E";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20A3C10E854
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 06:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740552170; x=1772088170;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EEfIfNiourpH6qRYYNxP+3qhvtxVD3wf+r5H7qtf53E=;
- b=V4PnPDVhBP78+HEmjMZ/sNhW5ZS9VyTg2DzUm1WuAyfueEs1m+RnAMsL
- L8wqSA9qwTwAm9ipk71jaP3ITqRMNSzyQF1523cVmOvzH9u3P9ViMCaep
- gGwwA8tdLuiSiu0QF46ZHFcprtJjwJtYGdAiRTFBFYFLQ46sPRG92LbvK
- /rtGwqc8iK4V5CpJLlA7AHeaWoVxqAAQX2pGhO6gV96UaPA9dal4MAqVP
- knPzhm63W21Q/GWpB2MS7oVAhGWnWyfqaczuzHZvuADiYV9v80ZRw6xa+
- fMcAMUJXxMrB1Tazz0hJ56DHhvhT+asKgjpoVGW93nxoxKx71FzXU9g05 g==;
-X-CSE-ConnectionGUID: N7zScnbJTE+Fl8AiUEW6Nw==
-X-CSE-MsgGUID: i3RKtMN3Sou4CHHHXdqjIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="41088467"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="41088467"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2025 22:42:49 -0800
-X-CSE-ConnectionGUID: 6X0DArZ2RdCyoirrZO9fdA==
-X-CSE-MsgGUID: obT0pnMlTaS6pbP9tV2nlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="116420732"
-Received: from lnl-rocket-lake-client-platform.iind.intel.com (HELO
- lnl-Tiger-Lake-Client-Platform.iind.intel.com) ([10.145.169.162])
- by fmviesa006.fm.intel.com with ESMTP; 25 Feb 2025 22:42:48 -0800
-From: Mohammed Thasleem <mohammed.thasleem@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
-Subject: [PATCH i-g-t] tests/intel/kms_pm_dc: Add log information to dc5 psr
- test
-Date: Wed, 26 Feb 2025 12:10:37 +0530
-Message-ID: <20250226064037.80089-1-mohammed.thasleem@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1915710E879
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 08:11:57 +0000 (UTC)
+Received: by mail-ej1-f51.google.com with SMTP id
+ a640c23a62f3a-abb7520028bso874755966b.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 00:11:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1740557515; x=1741162315; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Pok0mIvLeITMrChGwDUbCNIfuZyPgW77IlN7F5j/3WM=;
+ b=jSMW2q6Ej0nttj+0rTCVkbWgIg75pN5BnaB73Qh80axGvHlKJxCHXzeFSf5OdKfAM6
+ ykptEwKhuNQL/DIbA8VWVSvAoxBBEBuQmcis9i4zc2dieIj5YpIqhtzqa7lgeh7nPwJa
+ 8oO2ejULfltRfFzvPlOk/CJVAvt9H7IOVxO42U/C8gSrQ5EcQLTwtPgQSZpt/nvfVeQn
+ S1L6rUc0AuKKP32ht0oxOr70jxQcwCN1Wj4zeH+8iGnPwRqSefLJhndw+ioY4QI7GTzr
+ C8849gkna12YQnNDRJtIWHCVZOFl3YmtReNgUN6kkUgMcXCUjSb3ZHY/85wGXdBoLvuo
+ drcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740557515; x=1741162315;
+ h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Pok0mIvLeITMrChGwDUbCNIfuZyPgW77IlN7F5j/3WM=;
+ b=pFgcUDeY8/A9GqY2Z/bDHU5bToOKy9M6pGEVxFUdfd/P9olem2Rh3u4k13AkjDmLq/
+ dtkgneAg0qy1isaUN1YgeA9gLUGjBj4NIQARVlNOVlSu5X39xgvmT8WtsBUAwTiCeajx
+ Qb+ZCD4lfEbUGdv3rGnZZguSK4734EM6UEmBCk5lAJlPokmviyILnqvmMl6F7R89O+jT
+ xzaN0qfJGBQCBoypov2NagmCjC+6pp5QqpFsvCG7QX+g1cvdw/PtxJcwnZjPzGCLvI1X
+ +YiP2gaPamI2LABcU0Hmxg1XqvWip7IlXKaqNF0c3PqkCarbyJu4Y2rKXsTy6BGHVsPE
+ pwpQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV83x0b2ZawYOzaezACEI4pkDGbrYl6Ceizrcs5oID6fbjGQZzs+2KIdRu3i+7F2dKLBxM4eC+akOQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSJeZFal3pkmUGJDZaGC//8GLIGz9YaOvJKf5S9mq7sagJDhum
+ ewWQroFQ0SfYSiAu428uYyLIz0clMR80O9F6vDCHFe8RomiKwyv5UHQ15sJ8i+Q=
+X-Gm-Gg: ASbGnctD1l2/v7ZG+t5sL4lB2Tg40ErflTQCfQeDu8Wl9UdPxtQRSfca8q5/1ffyan8
+ q9DqC+YmOFh3VX2Av3+RERfHOxUIC4iN4vn8qLRCj7ct26SxpSPmSq06lEUGTv56pGMMNSTVBvf
+ NSueYzApxI/304bTDleeHqdGJiDWixuy+ku/HAjlXOmkWar7Z3Ri55MlYOHQg+0ePNS+5ZwRpMy
+ zgDiJrL4Iwk4DuPXVUVzMaUMczySOo+D6IEDpKbCC1mllCdJZuwyUUAtgSCBetg+NIN3xBduise
+ LbnRgpyjd2qlz2rM1pGQjslBlE71Jc0=
+X-Google-Smtp-Source: AGHT+IGFjBlz6ALqfYLoGE9PxwjThSMXDCGpI9ssfGq+g0dABRHwtq/nG1O3LTVG+zq6GwCLFDOijA==
+X-Received: by 2002:a17:907:7f0c:b0:abc:269d:d534 with SMTP id
+ a640c23a62f3a-abeeef34ed6mr250207266b.40.1740557515475; 
+ Wed, 26 Feb 2025 00:11:55 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+ by smtp.gmail.com with UTF8SMTPSA id
+ a640c23a62f3a-abed1da1c2dsm284791366b.77.2025.02.26.00.11.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Feb 2025 00:11:54 -0800 (PST)
+Date: Wed, 26 Feb 2025 11:11:51 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, jouni.hogander@intel.com,
+ jani.nikula@intel.com, jeevan.b@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: Re: [PATCH v4 7/8] drm/i915/lobf: Add mutex for alpm update
+Message-ID: <51d3816e-2201-4d02-a6a7-def3a4398e77@stanley.mountain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250224080847.326350-8-animesh.manna@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,28 +88,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pipe A is required to run the DC5 transaction. Adding log information
-to indicate if any pipe other than Pipe A is selected.
+Hi Animesh,
 
-Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
----
- tests/intel/kms_pm_dc.c | 3 +++
- 1 file changed, 3 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/tests/intel/kms_pm_dc.c b/tests/intel/kms_pm_dc.c
-index bbb29d7d9..1b10c7959 100644
---- a/tests/intel/kms_pm_dc.c
-+++ b/tests/intel/kms_pm_dc.c
-@@ -160,6 +160,9 @@ static void setup_output(data_t *data)
- 	for_each_pipe_with_valid_output(display, pipe, output) {
- 		drmModeConnectorPtr c = output->config.connector;
- 
-+		if (pipe != PIPE_A)
-+			igt_info("Pipe A was not selected for the DC5 transaction.\n");
-+
- 		if (c->connector_type != DRM_MODE_CONNECTOR_eDP)
- 			continue;
- 
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Animesh-Manna/drm-i915-lobf-Add-lobf-enablement-in-post-plane-update/20250224-221647
+base:   v6.14-rc4
+patch link:    https://lore.kernel.org/r/20250224080847.326350-8-animesh.manna%40intel.com
+patch subject: [PATCH v4 7/8] drm/i915/lobf: Add mutex for alpm update
+config: i386-randconfig-141-20250225 (https://download.01.org/0day-ci/archive/20250226/202502261244.aUuaLdTn-lkp@intel.com/config)
+compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202502261244.aUuaLdTn-lkp@intel.com/
+
+smatch warnings:
+drivers/gpu/drm/i915/display/intel_alpm.c:548 intel_alpm_disable() warn: inconsistent returns '&intel_dp->alpm_parameters.lock'.
+
+vim +548 drivers/gpu/drm/i915/display/intel_alpm.c
+
+026d6557dc2749d Animesh Manna 2025-02-24  527  void intel_alpm_disable(struct intel_dp *intel_dp)
+026d6557dc2749d Animesh Manna 2025-02-24  528  {
+026d6557dc2749d Animesh Manna 2025-02-24  529  	struct intel_display *display = to_intel_display(intel_dp);
+026d6557dc2749d Animesh Manna 2025-02-24  530  	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
+026d6557dc2749d Animesh Manna 2025-02-24  531  
+026d6557dc2749d Animesh Manna 2025-02-24  532  	if (DISPLAY_VER(display) < 20)
+026d6557dc2749d Animesh Manna 2025-02-24  533  		return;
+026d6557dc2749d Animesh Manna 2025-02-24  534  
+737b2873a48f3ab Animesh Manna 2025-02-24  535  	mutex_lock(&intel_dp->alpm_parameters.lock);
+737b2873a48f3ab Animesh Manna 2025-02-24  536  
+026d6557dc2749d Animesh Manna 2025-02-24  537  	if (!(intel_de_read(display, ALPM_CTL(display, cpu_transcoder)) & ALPM_CTL_ALPM_ENABLE))
+026d6557dc2749d Animesh Manna 2025-02-24  538  		return;
+
+mutex_unlock(&intel_dp->alpm_parameters.lock) before the return
+
+026d6557dc2749d Animesh Manna 2025-02-24  539  
+026d6557dc2749d Animesh Manna 2025-02-24  540  	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
+026d6557dc2749d Animesh Manna 2025-02-24  541  		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
+026d6557dc2749d Animesh Manna 2025-02-24  542  		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+026d6557dc2749d Animesh Manna 2025-02-24  543  
+026d6557dc2749d Animesh Manna 2025-02-24  544  	intel_de_rmw(display,
+026d6557dc2749d Animesh Manna 2025-02-24  545  		     PORT_ALPM_CTL(cpu_transcoder),
+026d6557dc2749d Animesh Manna 2025-02-24  546  		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
+737b2873a48f3ab Animesh Manna 2025-02-24  547  
+737b2873a48f3ab Animesh Manna 2025-02-24 @548  	mutex_unlock(&intel_dp->alpm_parameters.lock);
+026d6557dc2749d Animesh Manna 2025-02-24  549  }
+
 -- 
-2.43.0
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
