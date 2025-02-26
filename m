@@ -2,56 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD83A457DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 09:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE73A45867
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 09:33:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DFD710E87F;
-	Wed, 26 Feb 2025 08:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D652610E887;
+	Wed, 26 Feb 2025 08:33:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MHWcqHs6";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="P2vP3XoR";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="y2wGj0tq";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cYHnReVT";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2sFZCcjM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9004F10E87C;
- Wed, 26 Feb 2025 08:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=btlP+/Ibje/j/a2g04gbUyuwIMhivKCpTZS695eGk34=; b=MHWcqHs6MhB/0xrpSr3iOGigaY
- 1gEZX+Gdtt+TVTvJwU7bq1bnXbwbS0x2te1I5gmYW8KVUb7mK42Zkd4zJ5Zg3+hcEyPJFKz2OQW1U
- bdpdI51Uh2uLXb09hvqVptQ1dR/r1OGCungSlksAfTmoCd5ujGnuZaFmmVs6z9yTmtGR6FzQ2ZGkt
- utIaQWcifk9BT57IecwOjRsVsxZFyCOddOw/54rfsGgoYvGJIohg59f+JsWCaACnhR/1EU96gJOdI
- T7IqyZ7WJgKyII2KiOBlPHWJSQARDIMiUxSjp3lQb91rd/tPV5Tp3NLzLYReJFkWSx/pPksCCxwPY
- MX38r0+w==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tnCXp-000pv2-TN; Wed, 26 Feb 2025 09:13:35 +0100
-Date: Wed, 26 Feb 2025 08:13:34 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <Z77NLt2mR7SqxJ4u@linux>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E5410E887
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 08:33:23 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E2DE92116C;
+ Wed, 26 Feb 2025 08:33:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1740558802; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nC/H2cuyuVcF1bm+9AJAHRDxXDge73SORGMtEmq6LB0=;
+ b=P2vP3XoRM7uZT+snoQbbmxka88487yAgQSpvfojnC0n1eO+UJTNQ0lcs4+Sj9fwEQ4B9PO
+ 8L/KArvlRZSFGHD34XbQXL6Bt34M0oi+R1re07K0IW4yws6KBh+UTOxZh/DH+AkRKOIWin
+ C4/0657h2/b+JPvzgSZZrqORhxgbyQw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1740558802;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nC/H2cuyuVcF1bm+9AJAHRDxXDge73SORGMtEmq6LB0=;
+ b=y2wGj0tqcVc/Ja/3qtttFNmsIfdg+Z8lzaTfU3iiH0Xi4mba02xaqrGmiP78pNAqSOLLk2
+ 1dwERc9PAyY9cNBQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1740558801; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nC/H2cuyuVcF1bm+9AJAHRDxXDge73SORGMtEmq6LB0=;
+ b=cYHnReVTl7Yr9Vdue3qbwC2hy867Xeteb+3zbFxx2CPZkSxwgEtrwESy+uQIlwyJh2lWtb
+ xVv4OBEsrXMrCUjfdNFadR9CZdi42w5u1I9HMdIUlxiNeBa9szGUZGABZIaw2ZSy4NvE+w
+ ihnKlr0NwjXKE1OgAA+t/zOSAA+cwlA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1740558801;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nC/H2cuyuVcF1bm+9AJAHRDxXDge73SORGMtEmq6LB0=;
+ b=2sFZCcjMBaEBPEMHi18r1j2crwh9pV9xUhWY1wzljfaQyYXlfbrV7ODNsVCRgxwtX5iRib
+ sOub7FKwesCJfLAA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9AEC71377F;
+ Wed, 26 Feb 2025 08:33:21 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id X5WkJNHRvme5SAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 26 Feb 2025 08:33:21 +0000
+Message-ID: <21d7745d-8fcd-484f-b1f2-82fd87dc8079@suse.de>
+Date: Wed, 26 Feb 2025 09:33:21 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] drm/rockchip: stop passing non struct drm_device to
+ drm_err() and friends
+To: Andy Yan <andyshrk@163.com>, Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ sam@ravnborg.org, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+References: <cover.1737644530.git.jani.nikula@intel.com>
+ <f42da4c9943a2f2a9de4272b7849e72236d4c3f9.1737644530.git.jani.nikula@intel.com>
+ <2c0a76c3.618c.19497bb4329.Coremail.andyshrk@163.com>
+ <87plkcbfp0.fsf@intel.com>
+ <730ee1d4.f63.1949b97fc99.Coremail.andyshrk@163.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <730ee1d4.f63.1949b97fc99.Coremail.andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[163.com,intel.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[11]; MIME_TRACE(0.00)[0:+];
+ MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[163.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid]
+X-Spam-Score: -4.30
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,186 +148,246 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi
 
-Hi Dave, Sima,
+Am 25.01.25 um 04:53 schrieb Andy Yan:
+>
+> 在 2025-01-24 19:43:07，"Jani Nikula" <jani.nikula@intel.com> 写道：
+>> On Fri, 24 Jan 2025, "Andy Yan" <andyshrk@163.com> wrote:
+>>> Hi，
+>>>
+>>> At 2025-01-23 23:09:09, "Jani Nikula" <jani.nikula@intel.com> wrote:
+>>>> The expectation is that the struct drm_device based logging helpers get
+>>>> passed an actual struct drm_device pointer rather than some random
+>>>> struct pointer where you can dereference the ->dev member.
+>>>>
+>>>> Convert drm_err(hdmi, ...) to dev_err(hdmi->dev, ...). This matches
+>>>> current usage, but drops "[drm] *ERROR*" prefix from logging.
+>>> Frankly, I prefer the original version of the log.
+>>> It is a platform driver, so it should use its own device.
+>>> It is a driver that works in drm subsystem, so it's better to use "[drm] *ERROR*" prefix when logging
+>> If you need to do struct device based logging that is not the same
+>> device as the struct drm_device dev member, you need to use dev_err()
+>> and friends. You can't and must not use drm_err() and friends.
+>>
+>> It's as simple as that.
+>>
+>> The current drm_err(hdmi, ...) usage is simply abuse of the macros, and
+>> must stop.
+> Perhaps when you initially designed this macros, you intended it to accept only drm_device,
+> but your code implementation didn't enforce this restriction at the beginning.
 
-Here comes the main pull request for 6.15.
+C'mon. Are we really arguing about type safety now?
 
-New sysfs UAPI for configuring the GuC power profiles is probably the most
-interesting addition. Other than that, there is one performance workaround
-for Gen12 platforms and a bunch of fixes, mostly around the GuC code. PMU
-code was consolidated to use kernel facility for CPU hotplug handling which
-required a merge during the development window.
+Patch 5 adds a little getter function that does the type check on the 
+function call's argument.
 
-Other than those just a collection of cleanups and selftest fixes.
 
-Regards,
+> If that's truly what you intended, I suggest just reverting this commit that converting to use these macros[0],
+> as neither drm_err nor dev_err can maintain consistency with the original log of this driver.
+> Alternatively, as suggested by Sam  in the initial submission of your patch 5 years ago,
+> there should also be a macro similar to drm_dev_info(device *, ..).[1]
 
-Tvrtko
+DRM code tends to keep a reference to the drm_device somewhere and 
+fetches it if necessary. For this patch, it should be possible to fetch 
+the DRM device from struct rockchip_hdmi easily. Just do
 
-drm-intel-gt-next-2025-02-26:
-UAPI Changes:
+   drm_err(rockchip_hdmi_drm_dev(hdmi), "...");
 
-- Add sysfs for SLPC power profiles [slpc] (Vinay Belgaumkar)
+This would resolve the problem without new logging functions and keep 
+the "[drm]" prefix to the messages.
 
-Driver Changes:
+Best regards
+Thomas
 
-Fixes/improvements/new stuff:
 
-- Fix zero delta busyness issue [pmu] (Umesh Nerlige Ramappa)
-- Fix page cleanup on DMA remap failure (Brian Geffon)
-- Debug print LRC state entries only if the context is pinned [guc] (Daniele Ceraolo Spurio)
-- Drop custom hotplug code [pmu] (Lucas De Marchi)
-- Use spin_lock_irqsave() in interruptible context [guc] (Krzysztof Karas)
-- Add wait on depth stall done bit handling [gen12] (Juha-Pekka Heikkila)
+>
+>
+> [0]https://lore.kernel.org/linux-rockchip/20240813-dw-hdmi-rockchip-cleanup-v1-1-b3e73b5f4fd6@collabora.com/
+> [1]https://lore.kernel.org/dri-devel/20191212215303.GA11520@ravnborg.org/
+>
+>>
+>> BR,
+>> Jani.
+>>
+>>
+>>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Looks like it's possible to hunt down the struct drm_device in most of
+>>>> these cases, if that's desired. This was the simplest change.
+>>>>
+>>>> Cc: Sandy Huang <hjc@rock-chips.com>
+>>>> Cc: "Heiko Stübner" <heiko@sntech.de>
+>>>> Cc: Andy Yan <andy.yan@rock-chips.com>
+>>>> Cc: dri-devel@lists.freedesktop.org
+>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>> Cc: linux-rockchip@lists.infradead.org
+>>>> ---
+>>>> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c    | 16 ++++++++--------
+>>>> drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 16 ++++++++--------
+>>>> 2 files changed, 16 insertions(+), 16 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> index e7a6669c46b0..f737e7d46e66 100644
+>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> @@ -203,7 +203,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>>
+>>>> 	hdmi->regmap = syscon_regmap_lookup_by_phandle(np, "rockchip,grf");
+>>>> 	if (IS_ERR(hdmi->regmap)) {
+>>>> -		drm_err(hdmi, "Unable to get rockchip,grf\n");
+>>>> +		dev_err(hdmi->dev, "Unable to get rockchip,grf\n");
+>>>> 		return PTR_ERR(hdmi->regmap);
+>>>> 	}
+>>>>
+>>>> @@ -214,7 +214,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>> 	if (IS_ERR(hdmi->ref_clk)) {
+>>>> 		ret = PTR_ERR(hdmi->ref_clk);
+>>>> 		if (ret != -EPROBE_DEFER)
+>>>> -			drm_err(hdmi, "failed to get reference clock\n");
+>>>> +			dev_err(hdmi->dev, "failed to get reference clock\n");
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -222,7 +222,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>> 	if (IS_ERR(hdmi->grf_clk)) {
+>>>> 		ret = PTR_ERR(hdmi->grf_clk);
+>>>> 		if (ret != -EPROBE_DEFER)
+>>>> -			drm_err(hdmi, "failed to get grf clock\n");
+>>>> +			dev_err(hdmi->dev, "failed to get grf clock\n");
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -302,16 +302,16 @@ static void dw_hdmi_rockchip_encoder_enable(struct drm_encoder *encoder)
+>>>>
+>>>> 	ret = clk_prepare_enable(hdmi->grf_clk);
+>>>> 	if (ret < 0) {
+>>>> -		drm_err(hdmi, "failed to enable grfclk %d\n", ret);
+>>>> +		dev_err(hdmi->dev, "failed to enable grfclk %d\n", ret);
+>>>> 		return;
+>>>> 	}
+>>>>
+>>>> 	ret = regmap_write(hdmi->regmap, hdmi->chip_data->lcdsel_grf_reg, val);
+>>>> 	if (ret != 0)
+>>>> -		drm_err(hdmi, "Could not write to GRF: %d\n", ret);
+>>>> +		dev_err(hdmi->dev, "Could not write to GRF: %d\n", ret);
+>>>>
+>>>> 	clk_disable_unprepare(hdmi->grf_clk);
+>>>> -	drm_dbg(hdmi, "vop %s output to hdmi\n", ret ? "LIT" : "BIG");
+>>>> +	dev_dbg(hdmi->dev, "vop %s output to hdmi\n", ret ? "LIT" : "BIG");
+>>>> }
+>>>>
+>>>> static int
+>>>> @@ -574,7 +574,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+>>>> 	ret = rockchip_hdmi_parse_dt(hdmi);
+>>>> 	if (ret) {
+>>>> 		if (ret != -EPROBE_DEFER)
+>>>> -			drm_err(hdmi, "Unable to parse OF data\n");
+>>>> +			dev_err(hdmi->dev, "Unable to parse OF data\n");
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -582,7 +582,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+>>>> 	if (IS_ERR(hdmi->phy)) {
+>>>> 		ret = PTR_ERR(hdmi->phy);
+>>>> 		if (ret != -EPROBE_DEFER)
+>>>> -			drm_err(hdmi, "failed to get phy\n");
+>>>> +			dev_err(hdmi->dev, "failed to get phy\n");
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> index f41151d49fca..3d1dddb34603 100644
+>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> @@ -242,7 +242,7 @@ static void dw_hdmi_qp_rk3588_hpd_work(struct work_struct *work)
+>>>> 	if (drm) {
+>>>> 		changed = drm_helper_hpd_irq_event(drm);
+>>>> 		if (changed)
+>>>> -			drm_dbg(hdmi, "connector status changed\n");
+>>>> +			dev_dbg(hdmi->dev, "connector status changed\n");
+>>>> 	}
+>>>> }
+>>>>
+>>>> @@ -472,7 +472,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>> 		}
+>>>> 	}
+>>>> 	if (hdmi->port_id < 0) {
+>>>> -		drm_err(hdmi, "Failed to match HDMI port ID\n");
+>>>> +		dev_err(hdmi->dev, "Failed to match HDMI port ID\n");
+>>>> 		return hdmi->port_id;
+>>>> 	}
+>>>>
+>>>> @@ -496,20 +496,20 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>> 	hdmi->regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
+>>>> 						       "rockchip,grf");
+>>>> 	if (IS_ERR(hdmi->regmap)) {
+>>>> -		drm_err(hdmi, "Unable to get rockchip,grf\n");
+>>>> +		dev_err(hdmi->dev, "Unable to get rockchip,grf\n");
+>>>> 		return PTR_ERR(hdmi->regmap);
+>>>> 	}
+>>>>
+>>>> 	hdmi->vo_regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
+>>>> 							  "rockchip,vo-grf");
+>>>> 	if (IS_ERR(hdmi->vo_regmap)) {
+>>>> -		drm_err(hdmi, "Unable to get rockchip,vo-grf\n");
+>>>> +		dev_err(hdmi->dev, "Unable to get rockchip,vo-grf\n");
+>>>> 		return PTR_ERR(hdmi->vo_regmap);
+>>>> 	}
+>>>>
+>>>> 	ret = devm_clk_bulk_get_all_enabled(hdmi->dev, &clks);
+>>>> 	if (ret < 0) {
+>>>> -		drm_err(hdmi, "Failed to get clocks: %d\n", ret);
+>>>> +		dev_err(hdmi->dev, "Failed to get clocks: %d\n", ret);
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -517,7 +517,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>> 						    GPIOD_OUT_HIGH);
+>>>> 	if (IS_ERR(hdmi->enable_gpio)) {
+>>>> 		ret = PTR_ERR(hdmi->enable_gpio);
+>>>> -		drm_err(hdmi, "Failed to request enable GPIO: %d\n", ret);
+>>>> +		dev_err(hdmi->dev, "Failed to request enable GPIO: %d\n", ret);
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -525,7 +525,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>> 	if (IS_ERR(hdmi->phy)) {
+>>>> 		ret = PTR_ERR(hdmi->phy);
+>>>> 		if (ret != -EPROBE_DEFER)
+>>>> -			drm_err(hdmi, "failed to get phy: %d\n", ret);
+>>>> +			dev_err(hdmi->dev, "failed to get phy: %d\n", ret);
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> @@ -564,7 +564,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>> 	connector = drm_bridge_connector_init(drm, encoder);
+>>>> 	if (IS_ERR(connector)) {
+>>>> 		ret = PTR_ERR(connector);
+>>>> -		drm_err(hdmi, "failed to init bridge connector: %d\n", ret);
+>>>> +		dev_err(hdmi->dev, "failed to init bridge connector: %d\n", ret);
+>>>> 		return ret;
+>>>> 	}
+>>>>
+>>>> -- 
+>>>> 2.39.5
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> Linux-rockchip mailing list
+>>>> Linux-rockchip@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>> -- 
+>> Jani Nikula, Intel
 
-Miscellaneous:
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
-- Change throttle criteria for rps [selftest] (Raag Jadav)
-- Add debug print about hw config table size (John Harrison)
-- Include requested frequency in slow firmware load messages [uc] (John Harrison)
-- Remove i915_pmu_event_event_idx() [pmu] (Lucas De Marchi)
-- Remove unused live_context_for_engine (Dr. David Alan Gilbert)
-- Add Wa_22010465259 in its respective WA list (Ranu Maurya)
-- Correct frequency handling in RPS power measurement [selftests] (Sk Anirban)
-- Add helper function slpc_measure_power [guc/slpc] (Sk Anirban)
-- Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset" [gt] (Sebastian Brzezinka)
-- Avoid using uninitialized context [selftests] (Krzysztof Karas)
-- Use struct_size() helper in kmalloc() (luoqing)
-- Use prandom in selftest [selftests] (Markus Theil)
-- Replace kmap with its safer kmap_local_page counterpart [gt] (Andi Shyti)
-
-Merges:
-
-- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
-The following changes since commit 2014c95afecee3e76ca4a56956a936e23283f05b:
-
-  Linux 6.14-rc1 (2025-02-02 15:39:26 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-02-26
-
-for you to fetch changes up to 7ded94bd11d47a8ddef051aef1d1a42d8191e09f:
-
-  drm/i915/gt: add wait on depth stall done bit handling (2025-02-18 12:37:04 +0100)
-
-----------------------------------------------------------------
-UAPI Changes:
-
-- Add sysfs for SLPC power profiles [slpc] (Vinay Belgaumkar)
-
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Fix zero delta busyness issue [pmu] (Umesh Nerlige Ramappa)
-- Fix page cleanup on DMA remap failure (Brian Geffon)
-- Debug print LRC state entries only if the context is pinned [guc] (Daniele Ceraolo Spurio)
-- Drop custom hotplug code [pmu] (Lucas De Marchi)
-- Use spin_lock_irqsave() in interruptible context [guc] (Krzysztof Karas)
-- Add wait on depth stall done bit handling [gen12] (Juha-Pekka Heikkila)
-
-Miscellaneous:
-
-- Change throttle criteria for rps [selftest] (Raag Jadav)
-- Add debug print about hw config table size (John Harrison)
-- Include requested frequency in slow firmware load messages [uc] (John Harrison)
-- Remove i915_pmu_event_event_idx() [pmu] (Lucas De Marchi)
-- Remove unused live_context_for_engine (Dr. David Alan Gilbert)
-- Add Wa_22010465259 in its respective WA list (Ranu Maurya)
-- Correct frequency handling in RPS power measurement [selftests] (Sk Anirban)
-- Add helper function slpc_measure_power [guc/slpc] (Sk Anirban)
-- Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset" [gt] (Sebastian Brzezinka)
-- Avoid using uninitialized context [selftests] (Krzysztof Karas)
-- Use struct_size() helper in kmalloc() (luoqing)
-- Use prandom in selftest [selftests] (Markus Theil)
-- Replace kmap with its safer kmap_local_page counterpart [gt] (Andi Shyti)
-
-Merges:
-
-- Merge drm/drm-next into drm-intel-gt-next (Tvrtko Ursulin)
-
-----------------------------------------------------------------
-Andi Shyti (1):
-      drm/i915/gt: Replace kmap with its safer kmap_local_page counterpart
-
-Brian Geffon (1):
-      drm/i915: Fix page cleanup on DMA remap failure
-
-Daniele Ceraolo Spurio (1):
-      drm/i915/guc: Debug print LRC state entries only if the context is pinned
-
-Dr. David Alan Gilbert (1):
-      drm/i915: Remove unused live_context_for_engine
-
-John Harrison (2):
-      drm/i915: Add debug print about hw config table size
-      drm/i915/uc: Include requested frequency in slow firmware load messages
-
-Juha-Pekka Heikkila (1):
-      drm/i915/gt: add wait on depth stall done bit handling
-
-Krzysztof Karas (2):
-      drm/i915/selftests: avoid using uninitialized context
-      drm/i915/gt: Use spin_lock_irqsave() in interruptible context
-
-Lucas De Marchi (2):
-      drm/i915/pmu: Remove i915_pmu_event_event_idx()
-      drm/i915/pmu: Drop custom hotplug code
-
-Markus Theil (1):
-      drm/i915/selftests: use prandom in selftest
-
-Raag Jadav (1):
-      drm/i915/selftest: Change throttle criteria for rps
-
-Ranu Maurya (1):
-      drm/i915: Add Wa_22010465259 in its respective WA list
-
-Sebastian Brzezinka (1):
-      Revert "drm/i915/gt: Log reason for setting TAINT_WARN at reset"
-
-Sk Anirban (2):
-      drm/i915/selftests: Correct frequency handling in RPS power measurement
-      drm/i915/guc/slpc: Add helper function slpc_measure_power
-
-Tvrtko Ursulin (1):
-      Merge drm/drm-next into drm-intel-gt-next
-
-Umesh Nerlige Ramappa (1):
-      drm/i915/pmu: Fix zero delta busyness issue
-
-Vinay Belgaumkar (1):
-      drm/i915/slpc: Add sysfs for SLPC power profiles
-
-luoqing (1):
-      selftests: i915: Use struct_size() helper in kmalloc()
-
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c          |   6 +-
- drivers/gpu/drm/i915/gem/selftests/mock_context.c  |  38 -------
- drivers/gpu/drm/i915/gem/selftests/mock_context.h  |   3 -
- drivers/gpu/drm/i915/gem/selftests/mock_dmabuf.c   |   3 +-
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |   4 +-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h            |   3 +
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c        |  47 ++++++++
- drivers/gpu/drm/i915/gt/intel_reset.c              |   6 +-
- drivers/gpu/drm/i915/gt/intel_rps.c                |   4 +
- drivers/gpu/drm/i915/gt/intel_workarounds.c        |  19 ++--
- drivers/gpu/drm/i915/gt/selftest_rps.c             |  13 +--
- drivers/gpu/drm/i915/gt/selftest_slpc.c            |  17 ++-
- drivers/gpu/drm/i915/gt/shmem_utils.c              |   8 +-
- .../gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h  |   5 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c          |  11 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c    |   3 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c        |  65 +++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h        |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h  |   3 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  40 +++++--
- drivers/gpu/drm/i915/gt/uc/intel_huc.c             |  12 ++-
- drivers/gpu/drm/i915/i915_module.c                 |   2 -
- drivers/gpu/drm/i915/i915_pmu.c                    | 120 +--------------------
- drivers/gpu/drm/i915/i915_pmu.h                    |  11 --
- drivers/gpu/drm/i915/selftests/i915_gem.c          |   7 +-
- drivers/gpu/drm/i915/selftests/i915_gem_gtt.c      |   4 +-
- 26 files changed, 228 insertions(+), 227 deletions(-)
