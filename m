@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D23A46075
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 14:13:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1CDEA46081
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 14:16:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 920D410E90E;
-	Wed, 26 Feb 2025 13:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4942A10E912;
+	Wed, 26 Feb 2025 13:16:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZrNws97y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpK+PVum";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A730110E90E;
- Wed, 26 Feb 2025 13:13:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFDE710E911;
+ Wed, 26 Feb 2025 13:16:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740575605; x=1772111605;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=cAVmhhWhtZQ71b46MHtZPf0cckznGrnjjaZKrvmdcbo=;
- b=ZrNws97ylFPZaLZ9ZuNW2YYUqYeItwSmIxITPXKChB9eW04/Mq9F4J2W
- LDq8zfkr0e62rdKZH1KTjZAARjChwvVSYlQQHJtdIq/nEkbe/sNWBILrA
- kebPK+5oArmt5jD/awTRpmAEcg1dxbEr31PThz/73jhZGgPFQNYA2f3aY
- iGtWuYF8nuTyci4XVDL+Ft0Z5mNQeggc/DlkRWbBKS7oglFya1D35YnHd
- NXdjZG5hfXR+wkKDzKpM3m/yEsucysoGfvgVpId0HaFT2ZVytqmkht/hE
- ynzO2wlXK4S0weDxwiKxEwIRCs3MvjLjW7qlv7ujhK0IFfAVzqCfWNvQn A==;
-X-CSE-ConnectionGUID: Oxk/RVXuQKKIduKNadCipA==
-X-CSE-MsgGUID: 5WN3enKDRLCvBya34r8IOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52052684"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="52052684"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 05:13:24 -0800
-X-CSE-ConnectionGUID: QivU5/L/SJ+SANJZoidARw==
-X-CSE-MsgGUID: RSAnyH6SQ+KViVPOzBX4Ig==
+ t=1740575812; x=1772111812;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=M0KUb1R9ZAxv/fYnGR+wrbHAKhnjFGMnpOXKwgFRw9k=;
+ b=YpK+PVumjFA61F69xgOxm0h1afj9wyWJGtLiPDqka8Dgk+hGtu8+TGhU
+ 17IVEdCVM7BTADqwu5u88rZHlE/c0+NWaP5ZCpfJYH6iIsPDGBxFTOD0J
+ U1C/N9pktpmCrT5ZHsgBJb+tk3jpbTWICEpbtcQlVP2Eq2lm96GzuJtyz
+ 69WK6c73sjytXWvrQMC4uXTvH1LG0mLCq5/HVW7C/NYObYIn1lv0VprFm
+ iUtemm3eoHDzJGEz2dEZ4rkROxMNtcBl1nLIc7XPHY0aI4HdauwiKdNSb
+ tFpvMrpjUS3Qo0+IYe8zjpf5JwTMVmcOOcOwW+dxTqngh/OUzpMuYoQsA A==;
+X-CSE-ConnectionGUID: A3Mkixt6TgGsob++T5/FlQ==
+X-CSE-MsgGUID: 4hmRgq6nQ1ioUzf5Ij3Fkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="52834494"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="52834494"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 05:16:52 -0800
+X-CSE-ConnectionGUID: t6PF8+zvT6qRaziAdPrn4w==
+X-CSE-MsgGUID: Jzsv9cUHT/67Es6jyelu7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121948557"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 05:13:20 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Feb 2025 15:13:19 +0200
-Date: Wed, 26 Feb 2025 15:13:19 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 07/20] drm/i915/vrr: Prepare for fixed refresh rate timings
-Message-ID: <Z78Tb0VoSiMiDXRY@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
- <20250224061717.1095226-8-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121304614"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 05:16:51 -0800
+Date: Wed, 26 Feb 2025 15:17:50 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/5] drm/dp: Fix link training interrupted by HPD pulse
+Message-ID: <Z78UfiHcGTJ7-Hi_@ideak-desk.fi.intel.com>
+References: <20250224193115.2058512-1-imre.deak@intel.com>
+ <87jz9c50hn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250224061717.1095226-8-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <87jz9c50hn.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,134 +65,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2025 at 11:47:04AM +0530, Ankit Nautiyal wrote:
-> Currently we always compute the timings as if vrr is enabled.
-> With this approach the state checker becomes complicated when we
-> introduce fixed refresh rate mode with vrr timing generator.
+On Wed, Feb 26, 2025 at 02:55:32PM +0200, Jani Nikula wrote:
+> On Mon, 24 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > This patchset fixes a problem during Display Port link training, where
+> > the link training is interrupted by a short HPD pulse generated by the
+> > sink. Generally the sink signals a bad link state via such short pulses,
+> > but the sink should prevent such signaling during link training.
+> >
+> > Some sinks do generate a short pulse as above during link training, or a
+> > pulse generated before the link training started may be handled from a
+> > scheduled work during link training. Such a handling may interfere with
+> > the link training (see patch 3 for the reason), so this patchset
+> > prevents the handling of pulses during link training.
 > 
-> To avoid the complications, instead of always computing vrr timings, we
-> compute vrr timings based on uapi.vrr_enable knob.
-> So when the knob is disabled we always compute vmin=flipline=vmax.
+> I'm wondering if this series is made unnecessarily complicated by
+> blocking the hotplug handling at the hpd pin level, while what is
+> actually needed is blocking at the encoder level. I believe that would
+> be simpler too.
 > 
-> v2: Use actual timings without any adjustments while preparing for
-> fixed timings in compute_config. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Thoughts?
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+I think handling it at the HPD pin level makes more sense, since
+handling of the HPD IRQs should still happen after they are unblocked.
+Also in case of encoders sharing an HPD pin the handling of the IRQs
+should be blocked for all the encoders using this pin. The same
+block/unblock functionality is also needed for the CRT encoder, so it
+makes sense to extend that (intel_hpd_disable/enable) to support digital
+ports as well.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 70 ++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
+> BR,
+> Jani.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index b6120ff1a87c..45efcb57c77a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -246,6 +246,65 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
->  	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
->  }
->  
-> +/*
-> + * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
-> + * Vtotal value.
-> + */
-> +static
-> +int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
-> +
-> +	if (DISPLAY_VER(display) >= 13)
-> +		return crtc_vtotal;
-> +	else
-> +		return crtc_vtotal -
-> +			intel_vrr_real_vblank_delay(crtc_state);
-> +}
-> +
-> +static
-> +int intel_vrr_fixed_rr_vmax(const struct intel_crtc_state *crtc_state)
-> +{
-> +	return intel_vrr_fixed_rr_vtotal(crtc_state);
-> +}
-> +
-> +static
-> +int intel_vrr_fixed_rr_vmin(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
-> +	return intel_vrr_fixed_rr_vtotal(crtc_state) -
-> +		intel_vrr_flipline_offset(display);
-> +}
-> +
-> +static
-> +int intel_vrr_fixed_rr_flipline(const struct intel_crtc_state *crtc_state)
-> +{
-> +	return intel_vrr_fixed_rr_vtotal(crtc_state);
-> +}
-> +
-> +static
-> +void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +
-> +	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> +		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
-> +	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> +		       intel_vrr_fixed_rr_vmax(crtc_state) - 1);
-> +	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-> +		       intel_vrr_fixed_rr_flipline(crtc_state) - 1);
-> +}
-> +
-> +static
-> +void intel_vrr_prepare_fixed_timings(struct intel_crtc_state *crtc_state)
-> +{
-> +	crtc_state->vrr.vmax = intel_vrr_vmin_flipline(crtc_state);
-> +	crtc_state->vrr.flipline = intel_vrr_vmin_flipline(crtc_state);
-> +}
-> +
->  static
->  int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
->  {
-> @@ -326,6 +385,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
->  		intel_vrr_compute_vrr_timings(crtc_state);
->  	else if (is_cmrr_frac_required(crtc_state) && is_edp)
->  		intel_vrr_compute_cmrr_timings(crtc_state);
-> +	else
-> +		intel_vrr_prepare_fixed_timings(crtc_state);
->  
->  	if (HAS_AS_SDP(display)) {
->  		crtc_state->vrr.vsync_start =
-> @@ -497,6 +558,13 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
->  	if (!crtc_state->vrr.enable)
->  		return;
->  
-> +	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-> +		       crtc_state->vrr.vmin - 1);
-> +	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-> +		       crtc_state->vrr.vmax - 1);
-> +	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-> +		       crtc_state->vrr.flipline - 1);
-> +
->  	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
->  		       TRANS_PUSH_EN);
->  
-> @@ -524,6 +592,8 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
->  				TRANS_VRR_STATUS(display, cpu_transcoder),
->  				VRR_STATUS_VRR_EN_LIVE, 1000);
->  	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
-> +
-> +	intel_vrr_set_fixed_rr_timings(old_crtc_state);
->  }
->  
->  static
+> >
+> > Imre Deak (5):
+> >   drm/i915/hpd: Let an HPD pin be in the disabled state when handling
+> >     missed IRQs
+> >   drm/i915/hpd: Add support for suspending the IRQ handling on an HPD
+> >     pin
+> >   drm/i915/dp: Fix link training interrupted by a short HPD pulse
+> >   drm/i915/dp: Queue a link check after link training is complete
+> >   drm/i915/crt: Use intel_hpd_suspend/resume() instead of
+> >     intel_hpd_disable/enable()
+> >
+> >  drivers/gpu/drm/i915/display/intel_crt.c      |   7 +-
+> >  .../gpu/drm/i915/display/intel_display_core.h |   2 +
+> >  .../drm/i915/display/intel_dp_link_training.c |  23 +-
+> >  drivers/gpu/drm/i915/display/intel_hotplug.c  | 264 ++++++++++++++----
+> >  drivers/gpu/drm/i915/display/intel_hotplug.h  |   5 +-
+> >  5 files changed, 237 insertions(+), 64 deletions(-)
+> 
 > -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+> Jani Nikula, Intel
