@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AD7A45B1B
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 11:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 633B0A45BEE
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 11:36:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 297C810E8BC;
-	Wed, 26 Feb 2025 10:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F36610E269;
+	Wed, 26 Feb 2025 10:36:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ch/sh8bj";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="mvwR57Kf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDDDA10E8BA;
- Wed, 26 Feb 2025 10:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740564118; x=1772100118;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pvdbFPQStzBwjrXWWHMmCF5LAVVvqRnp0uWGp2hzMO8=;
- b=Ch/sh8bjtq/FweT2OnU4gG7sd6lbycv6fD/qFQBIJ/VVz+cgQaHxyf7i
- AWPNXIluqNUlaCnMv4bAZrpqdChWMqgpvu62j4ojnTb4+g6cYuVHOvwXz
- YcfXyr73ByGeSQb//VLuwOcQqZfFw8mUJ81AfvP40d0P8NIByJxWdYZiU
- gC4ouGcL6jVoMg1I4MusgphfzA9AgzxrGoIEWy/2ryVyW7TAn5Z3eYgHJ
- NIJ245KZWBxTQqQy6j2khpFZGLvb5yAtuEnyxXVW0dcxHE861CUhi/iVZ
- fS0vo33hT+AEh8R/7Ct2LLZfnzxVWO7XyM4UhTWqr4CtJkxXlbZjfl+cq Q==;
-X-CSE-ConnectionGUID: dATtLX0/QbmOiNwwFFDdDw==
-X-CSE-MsgGUID: fkGI3+iJSkieUQ5oTvPcqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11356"; a="28995186"
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="28995186"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 02:01:58 -0800
-X-CSE-ConnectionGUID: zVPV+Z0AQdewsenSTqvleQ==
-X-CSE-MsgGUID: imgUH9JNSD+Ic9NcTrf/OA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,316,1732608000"; d="scan'208";a="121758151"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.74])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 02:01:54 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 5/5] drm/i915/pfit: split out intel_pfit_regs.h
-Date: Wed, 26 Feb 2025 12:01:11 +0200
-Message-Id: <db8952baa3e3e5eaaa8a3a5bc723c4e47aeaa6a7.1740564009.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1740564009.git.jani.nikula@intel.com>
-References: <cover.1740564009.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5212D10E22D;
+ Wed, 26 Feb 2025 10:36:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+ Message-ID; bh=Ehx4CcqBEdq2Of9FudkYfFmDh4IddNb/JKjOV41dWJg=; b=m
+ vwR57KfxKUCI9v+2+8T84DFfVwc+/TGGkFyXdU1jjShrsDu7NH7RGENTV0vos8qo
+ 9Ct2DozWllaD6BPXF4nhpnvY9Z+q58puq4fb/KaM0Tb+5NokOLlsMHwsVzhBrXGM
+ r9m2dPk4yaFCOuolD6Ypgn260Nb8x0hPJlvnjiCI74=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-116 (Coremail) ; Wed, 26 Feb 2025 18:36:26 +0800
+ (CST)
+X-Originating-IP: [58.22.7.114]
+Date: Wed, 26 Feb 2025 18:36:26 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: "Jani Nikula" <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, "Sandy Huang" <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ "Andy Yan" <andy.yan@rock-chips.com>, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, sam@ravnborg.org,
+ "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>
+Subject: Re:Re: [PATCH 2/5] drm/rockchip: stop passing non struct drm_device
+ to drm_err() and friends
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <21d7745d-8fcd-484f-b1f2-82fd87dc8079@suse.de>
+References: <cover.1737644530.git.jani.nikula@intel.com>
+ <f42da4c9943a2f2a9de4272b7849e72236d4c3f9.1737644530.git.jani.nikula@intel.com>
+ <2c0a76c3.618c.19497bb4329.Coremail.andyshrk@163.com>
+ <87plkcbfp0.fsf@intel.com>
+ <730ee1d4.f63.1949b97fc99.Coremail.andyshrk@163.com>
+ <21d7745d-8fcd-484f-b1f2-82fd87dc8079@suse.de>
+X-NTES-SC: AL_Qu2fAvmduUkj4CSbZukfmkcVgOw9UcO5v/Qk3oZXOJF8jD3pyCEAX3ZKMnvX+d2KKxC1vRGeSwBs6NRYe5BmZo4hKW6u00EgW9f9TNLEr4hqCg==
+Content-Transfer-Encoding: base64
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+Message-ID: <f5dc475.a51e.19541d449c5.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: dCgvCgDXP_eq7r5nrXxwAA--.47203W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkAgAXme+63FNJgABsv
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,240 +70,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split out the panel fitter registers to a separate file.
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lvds.c     |  1 +
- drivers/gpu/drm/i915/display/intel_overlay.c  |  1 +
- drivers/gpu/drm/i915/display/intel_pfit.c     |  1 +
- .../gpu/drm/i915/display/intel_pfit_regs.h    | 79 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h               | 70 ----------------
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  1 +
- 6 files changed, 83 insertions(+), 70 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_pfit_regs.h
-
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 12e5064ff7e2..19f52d1659fa 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -53,6 +53,7 @@
- #include "intel_lvds_regs.h"
- #include "intel_panel.h"
- #include "intel_pfit.h"
-+#include "intel_pfit_regs.h"
- #include "intel_pps_regs.h"
- 
- /* Private structure for the integrated LVDS support */
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 4d00db86131b..5c1b20af2a07 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -42,6 +42,7 @@
- #include "intel_frontbuffer.h"
- #include "intel_overlay.h"
- #include "intel_pci_config.h"
-+#include "intel_pfit_regs.h"
- 
- /* Limits for overlay size. According to intel doc, the real limits are:
-  * Y width: 4095, UV width (planar): 2047, Y height: 2047,
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index fa271c87de05..6fc58fbee2f9 100644
---- a/drivers/gpu/drm/i915/display/intel_pfit.c
-+++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -11,6 +11,7 @@
- #include "intel_display_types.h"
- #include "intel_lvds_regs.h"
- #include "intel_pfit.h"
-+#include "intel_pfit_regs.h"
- 
- static int intel_pch_pfit_check_dst_window(const struct intel_crtc_state *crtc_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit_regs.h b/drivers/gpu/drm/i915/display/intel_pfit_regs.h
-new file mode 100644
-index 000000000000..add8ce28004e
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_pfit_regs.h
-@@ -0,0 +1,79 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __INTEL_PFIT_REGS_H__
-+#define __INTEL_PFIT_REGS_H__
-+
-+#include "intel_display_reg_defs.h"
-+
-+/* Panel fitting */
-+#define PFIT_CONTROL(dev_priv)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61230)
-+#define   PFIT_ENABLE			REG_BIT(31)
-+#define   PFIT_PIPE_MASK		REG_GENMASK(30, 29) /* 965+ */
-+#define   PFIT_PIPE(pipe)		REG_FIELD_PREP(PFIT_PIPE_MASK, (pipe))
-+#define   PFIT_SCALING_MASK		REG_GENMASK(28, 26) /* 965+ */
-+#define   PFIT_SCALING_AUTO		REG_FIELD_PREP(PFIT_SCALING_MASK, 0)
-+#define   PFIT_SCALING_PROGRAMMED	REG_FIELD_PREP(PFIT_SCALING_MASK, 1)
-+#define   PFIT_SCALING_PILLAR		REG_FIELD_PREP(PFIT_SCALING_MASK, 2)
-+#define   PFIT_SCALING_LETTER		REG_FIELD_PREP(PFIT_SCALING_MASK, 3)
-+#define   PFIT_FILTER_MASK		REG_GENMASK(25, 24) /* 965+ */
-+#define   PFIT_FILTER_FUZZY		REG_FIELD_PREP(PFIT_FILTER_MASK, 0)
-+#define   PFIT_FILTER_CRISP		REG_FIELD_PREP(PFIT_FILTER_MASK, 1)
-+#define   PFIT_FILTER_MEDIAN		REG_FIELD_PREP(PFIT_FILTER_MASK, 2)
-+#define   PFIT_VERT_INTERP_MASK		REG_GENMASK(11, 10) /* pre-965 */
-+#define   PFIT_VERT_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_VERT_INTERP_MASK, 1)
-+#define   PFIT_VERT_AUTO_SCALE		REG_BIT(9) /* pre-965 */
-+#define   PFIT_HORIZ_INTERP_MASK	REG_GENMASK(7, 6) /* pre-965 */
-+#define   PFIT_HORIZ_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_HORIZ_INTERP_MASK, 1)
-+#define   PFIT_HORIZ_AUTO_SCALE		REG_BIT(5) /* pre-965 */
-+#define   PFIT_PANEL_8TO6_DITHER_ENABLE	REG_BIT(3) /* pre-965 */
-+
-+#define PFIT_PGM_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61234)
-+#define   PFIT_VERT_SCALE_MASK		REG_GENMASK(31, 20) /* pre-965 */
-+#define   PFIT_VERT_SCALE(x)		REG_FIELD_PREP(PFIT_VERT_SCALE_MASK, (x))
-+#define   PFIT_HORIZ_SCALE_MASK		REG_GENMASK(15, 4) /* pre-965 */
-+#define   PFIT_HORIZ_SCALE(x)		REG_FIELD_PREP(PFIT_HORIZ_SCALE_MASK, (x))
-+#define   PFIT_VERT_SCALE_MASK_965	REG_GENMASK(28, 16) /* 965+ */
-+#define   PFIT_HORIZ_SCALE_MASK_965	REG_GENMASK(12, 0) /* 965+ */
-+
-+#define PFIT_AUTO_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61238)
-+
-+/* CPU panel fitter */
-+/* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
-+#define _PFA_CTL_1		0x68080
-+#define _PFB_CTL_1		0x68880
-+#define PF_CTL(pipe)		_MMIO_PIPE(pipe, _PFA_CTL_1, _PFB_CTL_1)
-+#define   PF_ENABLE			REG_BIT(31)
-+#define   PF_PIPE_SEL_MASK_IVB		REG_GENMASK(30, 29) /* ivb/hsw */
-+#define   PF_PIPE_SEL_IVB(pipe)		REG_FIELD_PREP(PF_PIPE_SEL_MASK_IVB, (pipe))
-+#define   PF_FILTER_MASK		REG_GENMASK(24, 23)
-+#define   PF_FILTER_PROGRAMMED		REG_FIELD_PREP(PF_FILTER_MASK, 0)
-+#define   PF_FILTER_MED_3x3		REG_FIELD_PREP(PF_FILTER_MASK, 1)
-+#define   PF_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 2)
-+#define   PF_FILTER_EDGE_SOFTEN		REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 3)
-+
-+#define _PFA_WIN_SZ		0x68074
-+#define _PFB_WIN_SZ		0x68874
-+#define PF_WIN_SZ(pipe)		_MMIO_PIPE(pipe, _PFA_WIN_SZ, _PFB_WIN_SZ)
-+#define   PF_WIN_XSIZE_MASK	REG_GENMASK(31, 16)
-+#define   PF_WIN_XSIZE(w)	REG_FIELD_PREP(PF_WIN_XSIZE_MASK, (w))
-+#define   PF_WIN_YSIZE_MASK	REG_GENMASK(15, 0)
-+#define   PF_WIN_YSIZE(h)	REG_FIELD_PREP(PF_WIN_YSIZE_MASK, (h))
-+
-+#define _PFA_WIN_POS		0x68070
-+#define _PFB_WIN_POS		0x68870
-+#define PF_WIN_POS(pipe)	_MMIO_PIPE(pipe, _PFA_WIN_POS, _PFB_WIN_POS)
-+#define   PF_WIN_XPOS_MASK	REG_GENMASK(31, 16)
-+#define   PF_WIN_XPOS(x)	REG_FIELD_PREP(PF_WIN_XPOS_MASK, (x))
-+#define   PF_WIN_YPOS_MASK	REG_GENMASK(15, 0)
-+#define   PF_WIN_YPOS(y)	REG_FIELD_PREP(PF_WIN_YPOS_MASK, (y))
-+
-+#define _PFA_VSCALE		0x68084
-+#define _PFB_VSCALE		0x68884
-+#define PF_VSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_VSCALE, _PFB_VSCALE)
-+
-+#define _PFA_HSCALE		0x68090
-+#define _PFB_HSCALE		0x68890
-+#define PF_HSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_HSCALE, _PFB_HSCALE)
-+
-+#endif /* __INTEL_PFIT_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b31b26e9a685..8084debd28a2 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1385,38 +1385,6 @@
- /* ADL and later: */
- #define   VIDEO_DIP_ENABLE_AS_ADL	REG_BIT(23)
- 
--/* Panel fitting */
--#define PFIT_CONTROL(dev_priv)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61230)
--#define   PFIT_ENABLE			REG_BIT(31)
--#define   PFIT_PIPE_MASK		REG_GENMASK(30, 29) /* 965+ */
--#define   PFIT_PIPE(pipe)		REG_FIELD_PREP(PFIT_PIPE_MASK, (pipe))
--#define   PFIT_SCALING_MASK		REG_GENMASK(28, 26) /* 965+ */
--#define   PFIT_SCALING_AUTO		REG_FIELD_PREP(PFIT_SCALING_MASK, 0)
--#define   PFIT_SCALING_PROGRAMMED	REG_FIELD_PREP(PFIT_SCALING_MASK, 1)
--#define   PFIT_SCALING_PILLAR		REG_FIELD_PREP(PFIT_SCALING_MASK, 2)
--#define   PFIT_SCALING_LETTER		REG_FIELD_PREP(PFIT_SCALING_MASK, 3)
--#define   PFIT_FILTER_MASK		REG_GENMASK(25, 24) /* 965+ */
--#define   PFIT_FILTER_FUZZY		REG_FIELD_PREP(PFIT_FILTER_MASK, 0)
--#define   PFIT_FILTER_CRISP		REG_FIELD_PREP(PFIT_FILTER_MASK, 1)
--#define   PFIT_FILTER_MEDIAN		REG_FIELD_PREP(PFIT_FILTER_MASK, 2)
--#define   PFIT_VERT_INTERP_MASK		REG_GENMASK(11, 10) /* pre-965 */
--#define   PFIT_VERT_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_VERT_INTERP_MASK, 1)
--#define   PFIT_VERT_AUTO_SCALE		REG_BIT(9) /* pre-965 */
--#define   PFIT_HORIZ_INTERP_MASK	REG_GENMASK(7, 6) /* pre-965 */
--#define   PFIT_HORIZ_INTERP_BILINEAR	REG_FIELD_PREP(PFIT_HORIZ_INTERP_MASK, 1)
--#define   PFIT_HORIZ_AUTO_SCALE		REG_BIT(5) /* pre-965 */
--#define   PFIT_PANEL_8TO6_DITHER_ENABLE	REG_BIT(3) /* pre-965 */
--
--#define PFIT_PGM_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61234)
--#define   PFIT_VERT_SCALE_MASK		REG_GENMASK(31, 20) /* pre-965 */
--#define   PFIT_VERT_SCALE(x)		REG_FIELD_PREP(PFIT_VERT_SCALE_MASK, (x))
--#define   PFIT_HORIZ_SCALE_MASK		REG_GENMASK(15, 4) /* pre-965 */
--#define   PFIT_HORIZ_SCALE(x)		REG_FIELD_PREP(PFIT_HORIZ_SCALE_MASK, (x))
--#define   PFIT_VERT_SCALE_MASK_965	REG_GENMASK(28, 16) /* 965+ */
--#define   PFIT_HORIZ_SCALE_MASK_965	REG_GENMASK(12, 0) /* 965+ */
--
--#define PFIT_AUTO_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61238)
--
- #define PCH_GTC_CTL		_MMIO(0xe7000)
- #define   PCH_GTC_ENABLE	(1 << 31)
- 
-@@ -1911,44 +1879,6 @@
- #define _PIPEB_LINK_N2		0x6104c
- #define PIPE_LINK_N2(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N2)
- 
--/* CPU panel fitter */
--/* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
--#define _PFA_CTL_1		0x68080
--#define _PFB_CTL_1		0x68880
--#define PF_CTL(pipe)		_MMIO_PIPE(pipe, _PFA_CTL_1, _PFB_CTL_1)
--#define   PF_ENABLE			REG_BIT(31)
--#define   PF_PIPE_SEL_MASK_IVB		REG_GENMASK(30, 29) /* ivb/hsw */
--#define   PF_PIPE_SEL_IVB(pipe)		REG_FIELD_PREP(PF_PIPE_SEL_MASK_IVB, (pipe))
--#define   PF_FILTER_MASK		REG_GENMASK(24, 23)
--#define   PF_FILTER_PROGRAMMED		REG_FIELD_PREP(PF_FILTER_MASK, 0)
--#define   PF_FILTER_MED_3x3		REG_FIELD_PREP(PF_FILTER_MASK, 1)
--#define   PF_FILTER_EDGE_ENHANCE	REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 2)
--#define   PF_FILTER_EDGE_SOFTEN		REG_FIELD_PREP(PF_FILTER_EDGE_MASK, 3)
--
--#define _PFA_WIN_SZ		0x68074
--#define _PFB_WIN_SZ		0x68874
--#define PF_WIN_SZ(pipe)		_MMIO_PIPE(pipe, _PFA_WIN_SZ, _PFB_WIN_SZ)
--#define   PF_WIN_XSIZE_MASK	REG_GENMASK(31, 16)
--#define   PF_WIN_XSIZE(w)	REG_FIELD_PREP(PF_WIN_XSIZE_MASK, (w))
--#define   PF_WIN_YSIZE_MASK	REG_GENMASK(15, 0)
--#define   PF_WIN_YSIZE(h)	REG_FIELD_PREP(PF_WIN_YSIZE_MASK, (h))
--
--#define _PFA_WIN_POS		0x68070
--#define _PFB_WIN_POS		0x68870
--#define PF_WIN_POS(pipe)	_MMIO_PIPE(pipe, _PFA_WIN_POS, _PFB_WIN_POS)
--#define   PF_WIN_XPOS_MASK	REG_GENMASK(31, 16)
--#define   PF_WIN_XPOS(x)	REG_FIELD_PREP(PF_WIN_XPOS_MASK, (x))
--#define   PF_WIN_YPOS_MASK	REG_GENMASK(15, 0)
--#define   PF_WIN_YPOS(y)	REG_FIELD_PREP(PF_WIN_YPOS_MASK, (y))
--
--#define _PFA_VSCALE		0x68084
--#define _PFB_VSCALE		0x68884
--#define PF_VSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_VSCALE, _PFB_VSCALE)
--
--#define _PFA_HSCALE		0x68090
--#define _PFB_HSCALE		0x68890
--#define PF_HSCALE(pipe)		_MMIO_PIPE(pipe, _PFA_HSCALE, _PFB_HSCALE)
--
- /*
-  * Skylake scalers
-  */
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 04076316e139..76d84cbb8361 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -18,6 +18,7 @@
- #include "display/intel_fbc_regs.h"
- #include "display/intel_fdi_regs.h"
- #include "display/intel_lvds_regs.h"
-+#include "display/intel_pfit_regs.h"
- #include "display/intel_psr_regs.h"
- #include "display/intel_sprite_regs.h"
- #include "display/skl_universal_plane_regs.h"
--- 
-2.39.5
-
+Ckhp77yMCgrlnKggMjAyNS0wMi0yNiAxNjozMzoyMe+8jCJUaG9tYXMgWmltbWVybWFubiIgPHR6
+aW1tZXJtYW5uQHN1c2UuZGU+IOWGmemBk++8mgo+SGkKPgo+QW0gMjUuMDEuMjUgdW0gMDQ6NTMg
+c2NocmllYiBBbmR5IFlhbjoKPj4KPj4g5ZyoIDIwMjUtMDEtMjQgMTk6NDM6MDfvvIwiSmFuaSBO
+aWt1bGEiIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+IOWGmemBk++8mgo+Pj4gT24gRnJpLCAyNCBK
+YW4gMjAyNSwgIkFuZHkgWWFuIiA8YW5keXNocmtAMTYzLmNvbT4gd3JvdGU6Cj4+Pj4gSGnvvIwK
+Pj4+Pgo+Pj4+IEF0IDIwMjUtMDEtMjMgMjM6MDk6MDksICJKYW5pIE5pa3VsYSIgPGphbmkubmlr
+dWxhQGludGVsLmNvbT4gd3JvdGU6Cj4+Pj4+IFRoZSBleHBlY3RhdGlvbiBpcyB0aGF0IHRoZSBz
+dHJ1Y3QgZHJtX2RldmljZSBiYXNlZCBsb2dnaW5nIGhlbHBlcnMgZ2V0Cj4+Pj4+IHBhc3NlZCBh
+biBhY3R1YWwgc3RydWN0IGRybV9kZXZpY2UgcG9pbnRlciByYXRoZXIgdGhhbiBzb21lIHJhbmRv
+bQo+Pj4+PiBzdHJ1Y3QgcG9pbnRlciB3aGVyZSB5b3UgY2FuIGRlcmVmZXJlbmNlIHRoZSAtPmRl
+diBtZW1iZXIuCj4+Pj4+Cj4+Pj4+IENvbnZlcnQgZHJtX2VycihoZG1pLCAuLi4pIHRvIGRldl9l
+cnIoaGRtaS0+ZGV2LCAuLi4pLiBUaGlzIG1hdGNoZXMKPj4+Pj4gY3VycmVudCB1c2FnZSwgYnV0
+IGRyb3BzICJbZHJtXSAqRVJST1IqIiBwcmVmaXggZnJvbSBsb2dnaW5nLgo+Pj4+IEZyYW5rbHks
+IEkgcHJlZmVyIHRoZSBvcmlnaW5hbCB2ZXJzaW9uIG9mIHRoZSBsb2cuCj4+Pj4gSXQgaXMgYSBw
+bGF0Zm9ybSBkcml2ZXIsIHNvIGl0IHNob3VsZCB1c2UgaXRzIG93biBkZXZpY2UuCj4+Pj4gSXQg
+aXMgYSBkcml2ZXIgdGhhdCB3b3JrcyBpbiBkcm0gc3Vic3lzdGVtLCBzbyBpdCdzIGJldHRlciB0
+byB1c2UgIltkcm1dICpFUlJPUioiIHByZWZpeCB3aGVuIGxvZ2dpbmcKPj4+IElmIHlvdSBuZWVk
+IHRvIGRvIHN0cnVjdCBkZXZpY2UgYmFzZWQgbG9nZ2luZyB0aGF0IGlzIG5vdCB0aGUgc2FtZQo+
+Pj4gZGV2aWNlIGFzIHRoZSBzdHJ1Y3QgZHJtX2RldmljZSBkZXYgbWVtYmVyLCB5b3UgbmVlZCB0
+byB1c2UgZGV2X2VycigpCj4+PiBhbmQgZnJpZW5kcy4gWW91IGNhbid0IGFuZCBtdXN0IG5vdCB1
+c2UgZHJtX2VycigpIGFuZCBmcmllbmRzLgo+Pj4KPj4+IEl0J3MgYXMgc2ltcGxlIGFzIHRoYXQu
+Cj4+Pgo+Pj4gVGhlIGN1cnJlbnQgZHJtX2VycihoZG1pLCAuLi4pIHVzYWdlIGlzIHNpbXBseSBh
+YnVzZSBvZiB0aGUgbWFjcm9zLCBhbmQKPj4+IG11c3Qgc3RvcC4KPj4gUGVyaGFwcyB3aGVuIHlv
+dSBpbml0aWFsbHkgZGVzaWduZWQgdGhpcyBtYWNyb3MsIHlvdSBpbnRlbmRlZCBpdCB0byBhY2Nl
+cHQgb25seSBkcm1fZGV2aWNlLAo+PiBidXQgeW91ciBjb2RlIGltcGxlbWVudGF0aW9uIGRpZG4n
+dCBlbmZvcmNlIHRoaXMgcmVzdHJpY3Rpb24gYXQgdGhlIGJlZ2lubmluZy4KPgo+Qydtb24uIEFy
+ZSB3ZSByZWFsbHkgYXJndWluZyBhYm91dCB0eXBlIHNhZmV0eSBub3c/Cj4KPlBhdGNoIDUgYWRk
+cyBhIGxpdHRsZSBnZXR0ZXIgZnVuY3Rpb24gdGhhdCBkb2VzIHRoZSB0eXBlIGNoZWNrIG9uIHRo
+ZSAKPmZ1bmN0aW9uIGNhbGwncyBhcmd1bWVudC4KPgo+Cj4+IElmIHRoYXQncyB0cnVseSB3aGF0
+IHlvdSBpbnRlbmRlZCwgSSBzdWdnZXN0IGp1c3QgcmV2ZXJ0aW5nIHRoaXMgY29tbWl0IHRoYXQg
+Y29udmVydGluZyB0byB1c2UgdGhlc2UgbWFjcm9zWzBdLAo+PiBhcyBuZWl0aGVyIGRybV9lcnIg
+bm9yIGRldl9lcnIgY2FuIG1haW50YWluIGNvbnNpc3RlbmN5IHdpdGggdGhlIG9yaWdpbmFsIGxv
+ZyBvZiB0aGlzIGRyaXZlci4KPj4gQWx0ZXJuYXRpdmVseSwgYXMgc3VnZ2VzdGVkIGJ5IFNhbSAg
+aW4gdGhlIGluaXRpYWwgc3VibWlzc2lvbiBvZiB5b3VyIHBhdGNoIDUgeWVhcnMgYWdvLAo+PiB0
+aGVyZSBzaG91bGQgYWxzbyBiZSBhIG1hY3JvIHNpbWlsYXIgdG8gZHJtX2Rldl9pbmZvKGRldmlj
+ZSAqLCAuLikuWzFdCj4KPkRSTSBjb2RlIHRlbmRzIHRvIGtlZXAgYSByZWZlcmVuY2UgdG8gdGhl
+IGRybV9kZXZpY2Ugc29tZXdoZXJlIGFuZCAKPmZldGNoZXMgaXQgaWYgbmVjZXNzYXJ5LiBGb3Ig
+dGhpcyBwYXRjaCwgaXQgc2hvdWxkIGJlIHBvc3NpYmxlIHRvIGZldGNoIAo+dGhlIERSTSBkZXZp
+Y2UgZnJvbSBzdHJ1Y3Qgcm9ja2NoaXBfaGRtaSBlYXNpbHkuIEp1c3QgZG8KPgo+IMKgIGRybV9l
+cnIocm9ja2NoaXBfaGRtaV9kcm1fZGV2KGhkbWkpLCAiLi4uIik7Cj4KPlRoaXMgd291bGQgcmVz
+b2x2ZSB0aGUgcHJvYmxlbSB3aXRob3V0IG5ldyBsb2dnaW5nIGZ1bmN0aW9ucyBhbmQga2VlcCAK
+PnRoZSAiW2RybV0iIHByZWZpeCB0byB0aGUgbWVzc2FnZXMuCgpZZXMsIHRoaXMga2VlcHMgdGhl
+ICJbZHJtXSIgcHJlZml4IHRvIHRoZSBsb2cgbWVzc2FnZXMsIGJ1dCBpdCBhbHNvIGNoYW5nZWQg
+aGRtaQpkZXZpY2UgZnJvbSBkcm0gZGV2aWNlIGluIHRoZSBsb2cgbWVzc2FnZXMuCkZvciBtb3Jl
+IGVmZmljaWVudCBkZWJ1Z2dpbmcsIGl0IGlzIHByZWZlcmFibGUgZm9yIGxvZyBlbnRyaWVzIHRv
+IGV4cGxpY2l0bHkgc3BlY2lmeSB3aGljaCBkZXZpY2UgZ2VuZXJhdGVkIHRoZW0sCmVzcGVjaWFs
+bHkgaW4gRFJNIHN5c3RlbXMgd2hlcmUgbXVsdGlwbGUgZGV2aWNlcyhicmlkZ2UvZW5jb2Rlcikg
+bWF5IGJlIHByZXNlbnQuIgoKQW5kIEknbSBvayB3aXRoIHRoaXMgUEFUQ0guIEhvd2V2ZXIsIEkg
+d291bGQgYWxzbyBsaWtlIHRvIGtub3cgeW91ciBhbmQgSmFuaSdzIG9waW5pb25zIG9uIHdoZXRo
+ZXIgd2UgY2FuIGNvbnNpZGVyCmFkZGluZyBhbiBBUEkgc2ltaWxhciB0byBkcm1fZGV2X2luZm/v
+vIxhcyBTYW0gc3VnZ2VzdGVkIGJlZm9yZS4gT2YgY291cnNlLCB0aGlzIGNvdWxkIGJlIGxlZnQg
+Zm9yIGZ1dHVyZSBpbXBsZW1lbnRhdGlvbgpieSBvdGhlcnMuCgoKCj4KPkJlc3QgcmVnYXJkcwo+
+VGhvbWFzCj4KPgo+Pgo+Pgo+PiBbMF1odHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1yb2Nr
+Y2hpcC8yMDI0MDgxMy1kdy1oZG1pLXJvY2tjaGlwLWNsZWFudXAtdjEtMS1iM2U3M2I1ZjRmZDZA
+Y29sbGFib3JhLmNvbS8KPj4gWzFdaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvZHJpLWRldmVsLzIw
+MTkxMjEyMjE1MzAzLkdBMTE1MjBAcmF2bmJvcmcub3JnLwo+Pgo+Pj4KPj4+IEJSLAo+Pj4gSmFu
+aS4KPj4+Cj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFA
+aW50ZWwuY29tPgo+Pj4+Pgo+Pj4+PiAtLS0KPj4+Pj4KPj4+Pj4gTG9va3MgbGlrZSBpdCdzIHBv
+c3NpYmxlIHRvIGh1bnQgZG93biB0aGUgc3RydWN0IGRybV9kZXZpY2UgaW4gbW9zdCBvZgo+Pj4+
+PiB0aGVzZSBjYXNlcywgaWYgdGhhdCdzIGRlc2lyZWQuIFRoaXMgd2FzIHRoZSBzaW1wbGVzdCBj
+aGFuZ2UuCj4+Pj4+Cj4+Pj4+IENjOiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgo+
+Pj4+PiBDYzogIkhlaWtvIFN0w7xibmVyIiA8aGVpa29Ac250ZWNoLmRlPgo+Pj4+PiBDYzogQW5k
+eSBZYW4gPGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+Pj4+PiBDYzogZHJpLWRldmVsQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwo+Pj4+PiBDYzogbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRl
+YWQub3JnCj4+Pj4+IENjOiBsaW51eC1yb2NrY2hpcEBsaXN0cy5pbmZyYWRlYWQub3JnCj4+Pj4+
+IC0tLQo+Pj4+PiBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvZHdfaGRtaS1yb2NrY2hpcC5jICAg
+IHwgMTYgKysrKysrKystLS0tLS0tLQo+Pj4+PiBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvZHdf
+aGRtaV9xcC1yb2NrY2hpcC5jIHwgMTYgKysrKysrKystLS0tLS0tLQo+Pj4+PiAyIGZpbGVzIGNo
+YW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDE2IGRlbGV0aW9ucygtKQo+Pj4+Pgo+Pj4+PiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL2R3X2hkbWktcm9ja2NoaXAuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMKPj4+Pj4gaW5kZXggZTdh
+NjY2OWM0NmIwLi5mNzM3ZTdkNDZlNjYgMTAwNjQ0Cj4+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9yb2NrY2hpcC9kd19oZG1pLXJvY2tjaGlwLmMKPj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3JvY2tjaGlwL2R3X2hkbWktcm9ja2NoaXAuYwo+Pj4+PiBAQCAtMjAzLDcgKzIwMyw3IEBAIHN0
+YXRpYyBpbnQgcm9ja2NoaXBfaGRtaV9wYXJzZV9kdChzdHJ1Y3Qgcm9ja2NoaXBfaGRtaSAqaGRt
+aSkKPj4+Pj4KPj4+Pj4gCWhkbWktPnJlZ21hcCA9IHN5c2Nvbl9yZWdtYXBfbG9va3VwX2J5X3Bo
+YW5kbGUobnAsICJyb2NrY2hpcCxncmYiKTsKPj4+Pj4gCWlmIChJU19FUlIoaGRtaS0+cmVnbWFw
+KSkgewo+Pj4+PiAtCQlkcm1fZXJyKGhkbWksICJVbmFibGUgdG8gZ2V0IHJvY2tjaGlwLGdyZlxu
+Iik7Cj4+Pj4+ICsJCWRldl9lcnIoaGRtaS0+ZGV2LCAiVW5hYmxlIHRvIGdldCByb2NrY2hpcCxn
+cmZcbiIpOwo+Pj4+PiAJCXJldHVybiBQVFJfRVJSKGhkbWktPnJlZ21hcCk7Cj4+Pj4+IAl9Cj4+
+Pj4+Cj4+Pj4+IEBAIC0yMTQsNyArMjE0LDcgQEAgc3RhdGljIGludCByb2NrY2hpcF9oZG1pX3Bh
+cnNlX2R0KHN0cnVjdCByb2NrY2hpcF9oZG1pICpoZG1pKQo+Pj4+PiAJaWYgKElTX0VSUihoZG1p
+LT5yZWZfY2xrKSkgewo+Pj4+PiAJCXJldCA9IFBUUl9FUlIoaGRtaS0+cmVmX2Nsayk7Cj4+Pj4+
+IAkJaWYgKHJldCAhPSAtRVBST0JFX0RFRkVSKQo+Pj4+PiAtCQkJZHJtX2VycihoZG1pLCAiZmFp
+bGVkIHRvIGdldCByZWZlcmVuY2UgY2xvY2tcbiIpOwo+Pj4+PiArCQkJZGV2X2VycihoZG1pLT5k
+ZXYsICJmYWlsZWQgdG8gZ2V0IHJlZmVyZW5jZSBjbG9ja1xuIik7Cj4+Pj4+IAkJcmV0dXJuIHJl
+dDsKPj4+Pj4gCX0KPj4+Pj4KPj4+Pj4gQEAgLTIyMiw3ICsyMjIsNyBAQCBzdGF0aWMgaW50IHJv
+Y2tjaGlwX2hkbWlfcGFyc2VfZHQoc3RydWN0IHJvY2tjaGlwX2hkbWkgKmhkbWkpCj4+Pj4+IAlp
+ZiAoSVNfRVJSKGhkbWktPmdyZl9jbGspKSB7Cj4+Pj4+IAkJcmV0ID0gUFRSX0VSUihoZG1pLT5n
+cmZfY2xrKTsKPj4+Pj4gCQlpZiAocmV0ICE9IC1FUFJPQkVfREVGRVIpCj4+Pj4+IC0JCQlkcm1f
+ZXJyKGhkbWksICJmYWlsZWQgdG8gZ2V0IGdyZiBjbG9ja1xuIik7Cj4+Pj4+ICsJCQlkZXZfZXJy
+KGhkbWktPmRldiwgImZhaWxlZCB0byBnZXQgZ3JmIGNsb2NrXG4iKTsKPj4+Pj4gCQlyZXR1cm4g
+cmV0Owo+Pj4+PiAJfQo+Pj4+Pgo+Pj4+PiBAQCAtMzAyLDE2ICszMDIsMTYgQEAgc3RhdGljIHZv
+aWQgZHdfaGRtaV9yb2NrY2hpcF9lbmNvZGVyX2VuYWJsZShzdHJ1Y3QgZHJtX2VuY29kZXIgKmVu
+Y29kZXIpCj4+Pj4+Cj4+Pj4+IAlyZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUoaGRtaS0+Z3JmX2Ns
+ayk7Cj4+Pj4+IAlpZiAocmV0IDwgMCkgewo+Pj4+PiAtCQlkcm1fZXJyKGhkbWksICJmYWlsZWQg
+dG8gZW5hYmxlIGdyZmNsayAlZFxuIiwgcmV0KTsKPj4+Pj4gKwkJZGV2X2VycihoZG1pLT5kZXYs
+ICJmYWlsZWQgdG8gZW5hYmxlIGdyZmNsayAlZFxuIiwgcmV0KTsKPj4+Pj4gCQlyZXR1cm47Cj4+
+Pj4+IAl9Cj4+Pj4+Cj4+Pj4+IAlyZXQgPSByZWdtYXBfd3JpdGUoaGRtaS0+cmVnbWFwLCBoZG1p
+LT5jaGlwX2RhdGEtPmxjZHNlbF9ncmZfcmVnLCB2YWwpOwo+Pj4+PiAJaWYgKHJldCAhPSAwKQo+
+Pj4+PiAtCQlkcm1fZXJyKGhkbWksICJDb3VsZCBub3Qgd3JpdGUgdG8gR1JGOiAlZFxuIiwgcmV0
+KTsKPj4+Pj4gKwkJZGV2X2VycihoZG1pLT5kZXYsICJDb3VsZCBub3Qgd3JpdGUgdG8gR1JGOiAl
+ZFxuIiwgcmV0KTsKPj4+Pj4KPj4+Pj4gCWNsa19kaXNhYmxlX3VucHJlcGFyZShoZG1pLT5ncmZf
+Y2xrKTsKPj4+Pj4gLQlkcm1fZGJnKGhkbWksICJ2b3AgJXMgb3V0cHV0IHRvIGhkbWlcbiIsIHJl
+dCA/ICJMSVQiIDogIkJJRyIpOwo+Pj4+PiArCWRldl9kYmcoaGRtaS0+ZGV2LCAidm9wICVzIG91
+dHB1dCB0byBoZG1pXG4iLCByZXQgPyAiTElUIiA6ICJCSUciKTsKPj4+Pj4gfQo+Pj4+Pgo+Pj4+
+PiBzdGF0aWMgaW50Cj4+Pj4+IEBAIC01NzQsNyArNTc0LDcgQEAgc3RhdGljIGludCBkd19oZG1p
+X3JvY2tjaGlwX2JpbmQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlICptYXN0ZXIs
+Cj4+Pj4+IAlyZXQgPSByb2NrY2hpcF9oZG1pX3BhcnNlX2R0KGhkbWkpOwo+Pj4+PiAJaWYgKHJl
+dCkgewo+Pj4+PiAJCWlmIChyZXQgIT0gLUVQUk9CRV9ERUZFUikKPj4+Pj4gLQkJCWRybV9lcnIo
+aGRtaSwgIlVuYWJsZSB0byBwYXJzZSBPRiBkYXRhXG4iKTsKPj4+Pj4gKwkJCWRldl9lcnIoaGRt
+aS0+ZGV2LCAiVW5hYmxlIHRvIHBhcnNlIE9GIGRhdGFcbiIpOwo+Pj4+PiAJCXJldHVybiByZXQ7
+Cj4+Pj4+IAl9Cj4+Pj4+Cj4+Pj4+IEBAIC01ODIsNyArNTgyLDcgQEAgc3RhdGljIGludCBkd19o
+ZG1pX3JvY2tjaGlwX2JpbmQoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZGV2aWNlICptYXN0
+ZXIsCj4+Pj4+IAlpZiAoSVNfRVJSKGhkbWktPnBoeSkpIHsKPj4+Pj4gCQlyZXQgPSBQVFJfRVJS
+KGhkbWktPnBoeSk7Cj4+Pj4+IAkJaWYgKHJldCAhPSAtRVBST0JFX0RFRkVSKQo+Pj4+PiAtCQkJ
+ZHJtX2VycihoZG1pLCAiZmFpbGVkIHRvIGdldCBwaHlcbiIpOwo+Pj4+PiArCQkJZGV2X2Vyciho
+ZG1pLT5kZXYsICJmYWlsZWQgdG8gZ2V0IHBoeVxuIik7Cj4+Pj4+IAkJcmV0dXJuIHJldDsKPj4+
+Pj4gCX0KPj4+Pj4KPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9k
+d19oZG1pX3FwLXJvY2tjaGlwLmMgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvZHdfaGRtaV9x
+cC1yb2NrY2hpcC5jCj4+Pj4+IGluZGV4IGY0MTE1MWQ0OWZjYS4uM2QxZGRkYjM0NjAzIDEwMDY0
+NAo+Pj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvZHdfaGRtaV9xcC1yb2NrY2hp
+cC5jCj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9kd19oZG1pX3FwLXJvY2tj
+aGlwLmMKPj4+Pj4gQEAgLTI0Miw3ICsyNDIsNyBAQCBzdGF0aWMgdm9pZCBkd19oZG1pX3FwX3Jr
+MzU4OF9ocGRfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCj4+Pj4+IAlpZiAoZHJtKSB7
+Cj4+Pj4+IAkJY2hhbmdlZCA9IGRybV9oZWxwZXJfaHBkX2lycV9ldmVudChkcm0pOwo+Pj4+PiAJ
+CWlmIChjaGFuZ2VkKQo+Pj4+PiAtCQkJZHJtX2RiZyhoZG1pLCAiY29ubmVjdG9yIHN0YXR1cyBj
+aGFuZ2VkXG4iKTsKPj4+Pj4gKwkJCWRldl9kYmcoaGRtaS0+ZGV2LCAiY29ubmVjdG9yIHN0YXR1
+cyBjaGFuZ2VkXG4iKTsKPj4+Pj4gCX0KPj4+Pj4gfQo+Pj4+Pgo+Pj4+PiBAQCAtNDcyLDcgKzQ3
+Miw3IEBAIHN0YXRpYyBpbnQgZHdfaGRtaV9xcF9yb2NrY2hpcF9iaW5kKHN0cnVjdCBkZXZpY2Ug
+KmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLAo+Pj4+PiAJCX0KPj4+Pj4gCX0KPj4+Pj4gCWlm
+IChoZG1pLT5wb3J0X2lkIDwgMCkgewo+Pj4+PiAtCQlkcm1fZXJyKGhkbWksICJGYWlsZWQgdG8g
+bWF0Y2ggSERNSSBwb3J0IElEXG4iKTsKPj4+Pj4gKwkJZGV2X2VycihoZG1pLT5kZXYsICJGYWls
+ZWQgdG8gbWF0Y2ggSERNSSBwb3J0IElEXG4iKTsKPj4+Pj4gCQlyZXR1cm4gaGRtaS0+cG9ydF9p
+ZDsKPj4+Pj4gCX0KPj4+Pj4KPj4+Pj4gQEAgLTQ5NiwyMCArNDk2LDIwIEBAIHN0YXRpYyBpbnQg
+ZHdfaGRtaV9xcF9yb2NrY2hpcF9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldmlj
+ZSAqbWFzdGVyLAo+Pj4+PiAJaGRtaS0+cmVnbWFwID0gc3lzY29uX3JlZ21hcF9sb29rdXBfYnlf
+cGhhbmRsZShkZXYtPm9mX25vZGUsCj4+Pj4+IAkJCQkJCSAgICAgICAicm9ja2NoaXAsZ3JmIik7
+Cj4+Pj4+IAlpZiAoSVNfRVJSKGhkbWktPnJlZ21hcCkpIHsKPj4+Pj4gLQkJZHJtX2VycihoZG1p
+LCAiVW5hYmxlIHRvIGdldCByb2NrY2hpcCxncmZcbiIpOwo+Pj4+PiArCQlkZXZfZXJyKGhkbWkt
+PmRldiwgIlVuYWJsZSB0byBnZXQgcm9ja2NoaXAsZ3JmXG4iKTsKPj4+Pj4gCQlyZXR1cm4gUFRS
+X0VSUihoZG1pLT5yZWdtYXApOwo+Pj4+PiAJfQo+Pj4+Pgo+Pj4+PiAJaGRtaS0+dm9fcmVnbWFw
+ID0gc3lzY29uX3JlZ21hcF9sb29rdXBfYnlfcGhhbmRsZShkZXYtPm9mX25vZGUsCj4+Pj4+IAkJ
+CQkJCQkgICJyb2NrY2hpcCx2by1ncmYiKTsKPj4+Pj4gCWlmIChJU19FUlIoaGRtaS0+dm9fcmVn
+bWFwKSkgewo+Pj4+PiAtCQlkcm1fZXJyKGhkbWksICJVbmFibGUgdG8gZ2V0IHJvY2tjaGlwLHZv
+LWdyZlxuIik7Cj4+Pj4+ICsJCWRldl9lcnIoaGRtaS0+ZGV2LCAiVW5hYmxlIHRvIGdldCByb2Nr
+Y2hpcCx2by1ncmZcbiIpOwo+Pj4+PiAJCXJldHVybiBQVFJfRVJSKGhkbWktPnZvX3JlZ21hcCk7
+Cj4+Pj4+IAl9Cj4+Pj4+Cj4+Pj4+IAlyZXQgPSBkZXZtX2Nsa19idWxrX2dldF9hbGxfZW5hYmxl
+ZChoZG1pLT5kZXYsICZjbGtzKTsKPj4+Pj4gCWlmIChyZXQgPCAwKSB7Cj4+Pj4+IC0JCWRybV9l
+cnIoaGRtaSwgIkZhaWxlZCB0byBnZXQgY2xvY2tzOiAlZFxuIiwgcmV0KTsKPj4+Pj4gKwkJZGV2
+X2VycihoZG1pLT5kZXYsICJGYWlsZWQgdG8gZ2V0IGNsb2NrczogJWRcbiIsIHJldCk7Cj4+Pj4+
+IAkJcmV0dXJuIHJldDsKPj4+Pj4gCX0KPj4+Pj4KPj4+Pj4gQEAgLTUxNyw3ICs1MTcsNyBAQCBz
+dGF0aWMgaW50IGR3X2hkbWlfcXBfcm9ja2NoaXBfYmluZChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0
+cnVjdCBkZXZpY2UgKm1hc3RlciwKPj4+Pj4gCQkJCQkJICAgIEdQSU9EX09VVF9ISUdIKTsKPj4+
+Pj4gCWlmIChJU19FUlIoaGRtaS0+ZW5hYmxlX2dwaW8pKSB7Cj4+Pj4+IAkJcmV0ID0gUFRSX0VS
+UihoZG1pLT5lbmFibGVfZ3Bpbyk7Cj4+Pj4+IC0JCWRybV9lcnIoaGRtaSwgIkZhaWxlZCB0byBy
+ZXF1ZXN0IGVuYWJsZSBHUElPOiAlZFxuIiwgcmV0KTsKPj4+Pj4gKwkJZGV2X2VycihoZG1pLT5k
+ZXYsICJGYWlsZWQgdG8gcmVxdWVzdCBlbmFibGUgR1BJTzogJWRcbiIsIHJldCk7Cj4+Pj4+IAkJ
+cmV0dXJuIHJldDsKPj4+Pj4gCX0KPj4+Pj4KPj4+Pj4gQEAgLTUyNSw3ICs1MjUsNyBAQCBzdGF0
+aWMgaW50IGR3X2hkbWlfcXBfcm9ja2NoaXBfYmluZChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVj
+dCBkZXZpY2UgKm1hc3RlciwKPj4+Pj4gCWlmIChJU19FUlIoaGRtaS0+cGh5KSkgewo+Pj4+PiAJ
+CXJldCA9IFBUUl9FUlIoaGRtaS0+cGh5KTsKPj4+Pj4gCQlpZiAocmV0ICE9IC1FUFJPQkVfREVG
+RVIpCj4+Pj4+IC0JCQlkcm1fZXJyKGhkbWksICJmYWlsZWQgdG8gZ2V0IHBoeTogJWRcbiIsIHJl
+dCk7Cj4+Pj4+ICsJCQlkZXZfZXJyKGhkbWktPmRldiwgImZhaWxlZCB0byBnZXQgcGh5OiAlZFxu
+IiwgcmV0KTsKPj4+Pj4gCQlyZXR1cm4gcmV0Owo+Pj4+PiAJfQo+Pj4+Pgo+Pj4+PiBAQCAtNTY0
+LDcgKzU2NCw3IEBAIHN0YXRpYyBpbnQgZHdfaGRtaV9xcF9yb2NrY2hpcF9iaW5kKHN0cnVjdCBk
+ZXZpY2UgKmRldiwgc3RydWN0IGRldmljZSAqbWFzdGVyLAo+Pj4+PiAJY29ubmVjdG9yID0gZHJt
+X2JyaWRnZV9jb25uZWN0b3JfaW5pdChkcm0sIGVuY29kZXIpOwo+Pj4+PiAJaWYgKElTX0VSUihj
+b25uZWN0b3IpKSB7Cj4+Pj4+IAkJcmV0ID0gUFRSX0VSUihjb25uZWN0b3IpOwo+Pj4+PiAtCQlk
+cm1fZXJyKGhkbWksICJmYWlsZWQgdG8gaW5pdCBicmlkZ2UgY29ubmVjdG9yOiAlZFxuIiwgcmV0
+KTsKPj4+Pj4gKwkJZGV2X2VycihoZG1pLT5kZXYsICJmYWlsZWQgdG8gaW5pdCBicmlkZ2UgY29u
+bmVjdG9yOiAlZFxuIiwgcmV0KTsKPj4+Pj4gCQlyZXR1cm4gcmV0Owo+Pj4+PiAJfQo+Pj4+Pgo+
+Pj4+PiAtLSAKPj4+Pj4gMi4zOS41Cj4+Pj4+Cj4+Pj4+Cj4+Pj4+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+Pj4+IExpbnV4LXJvY2tjaGlwIG1haWxp
+bmcgbGlzdAo+Pj4+PiBMaW51eC1yb2NrY2hpcEBsaXN0cy5pbmZyYWRlYWQub3JnCj4+Pj4+IGh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtcm9ja2NoaXAK
+Pj4+IC0tIAo+Pj4gSmFuaSBOaWt1bGEsIEludGVsCj4KPi0tIAo+LS0KPlRob21hcyBaaW1tZXJt
+YW5uCj5HcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj5TVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBH
+ZXJtYW55IEdtYkgKPkZyYW5rZW5zdHJhc3NlIDE0NiwgOTA0NjEgTnVlcm5iZXJnLCBHZXJtYW55
+Cj5HRjogSXZvIFRvdGV2LCBBbmRyZXcgTXllcnMsIEFuZHJldyBNY0RvbmFsZCwgQm91ZGllbiBN
+b2VybWFuCj5IUkIgMzY4MDkgKEFHIE51ZXJuYmVyZykKPgo=
