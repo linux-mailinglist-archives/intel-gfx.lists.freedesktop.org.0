@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DC1A467CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 18:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC28A467CB
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 18:18:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDF1A10E97C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC6D10E97A;
 	Wed, 26 Feb 2025 17:18:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyBo/Ffo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KWWKDhy1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A157B10E96F;
- Wed, 26 Feb 2025 17:18:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F5B710E96D;
+ Wed, 26 Feb 2025 17:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1740590310; x=1772126310;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=rYP85rnRXx60XHyQ+lN2Iq0Q6/4ZZWj09sdW6r0YdqA=;
- b=SyBo/Ffo2qmGh22RnkdaO+H6syRatwWx+0rJugheLuavqHe7dsEl2UkC
- x1b8krcj9xwqFte3D4FpEnXrla/bWiUzDxvEyyf2gNkslYKEQQDQebWpn
- 2xm1NPiVPUV9iNHhPYRIvdMDhZB128KoHPyWjSL2uHqYRsnZ1qPRITH8V
- lccXC69W5bPU9SrJG4FElxSANAwCqymmqqxic934+ikGuiWnsK4LhG+DH
- FINVPS2wbjr057eJlJV2ac7d6fR9WSJ4Vo9etEhD0HO+91FcmE+z7idZY
- qV5p5Lreg0iWng6bXUXUfQ+o7OypEw4ugvlaL/Z0GUHmptQ1ipqfqOUhw Q==;
-X-CSE-ConnectionGUID: nwYu5cIPRumvXzbl0SbfDw==
-X-CSE-MsgGUID: I6tclqa9Tje98lTsAnyfbg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40628477"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40628477"
+ bh=9SEzuW0LEKCoI947bLuJEkim9ylxNm9mNR7Z4DpI++4=;
+ b=KWWKDhy19INUMUfNtsAWMDdEjphaOdCMMPORkNIuNMw7OdAvbt4XqSvZ
+ AXLhYSUVZHH/aRQUnGapC9793/yzac+TAQm0ONBIdySUnklrHJKHyxzsd
+ iWIX2PViMHHGPkgvbcaQTNcNXZhmxPnbdIHOGQBC6MMBVXCED0KU5M8sp
+ qOtdsttWuouDSrpAQZmdT8qIU6eFQL1LXc311JSSYlaeYdVGfMvIQlCLj
+ 6vROnMxvdYGZaz4ql0qiABMo9yKUpd4DJJAXI5uQyHt+y1oIqAzuhVqxH
+ jIHyZTJ2j+CU+XlDu3BTP2jOiiuJ3y7R199rVHOVvjDyS38Mbi/QlcCU6 w==;
+X-CSE-ConnectionGUID: 9+gsOVHMTH6gVsnsn4imug==
+X-CSE-MsgGUID: PkaoVOakQjuaocQ58hCEXw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40628484"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40628484"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:18:28 -0800
-X-CSE-ConnectionGUID: nkoaC/7mRXGlspJMZj7C/Q==
-X-CSE-MsgGUID: U7SbiyMqRIe+YS6EX9kGew==
+ 26 Feb 2025 09:18:29 -0800
+X-CSE-ConnectionGUID: p3HHafHkQLKZwX2uo0NicQ==
+X-CSE-MsgGUID: 9pMfTaREQO2KjNpxcVTrrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121371358"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121371385"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:18:27 -0800
+ 26 Feb 2025 09:18:28 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 4/5] drm/i915/dp: Queue a link check after link training is
- complete
-Date: Wed, 26 Feb 2025 19:19:22 +0200
-Message-ID: <20250226171924.2646997-5-imre.deak@intel.com>
+Subject: [PATCH v3 5/5] drm/i915/crt: Use intel_hpd_block/unblock() instead of
+ intel_hpd_disable/enable()
+Date: Wed, 26 Feb 2025 19:19:23 +0200
+Message-ID: <20250226171924.2646997-6-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250226171924.2646997-1-imre.deak@intel.com>
 References: <20250226171924.2646997-1-imre.deak@intel.com>
@@ -68,67 +68,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After link training - both in case of a passing and failing LT result -
-a work is scheduled to check the link state. This check should take
-place after the link training is completed by disabling the link
-training pattern and setting intel_dp::link_trained=true. Atm, the work
-is scheduled before these steps, which may result in checking the link
-state too early (and thus not retraining the link as expected).
+intel_hpd_disable/enable() have the same purpose as
+intel_hpd_block/unblock(), except that disable/enable will drop any HPD
+IRQs which were triggered while the HPD was disabled, while
+block/unblock will handle such IRQs after the IRQ handling is unblocked.
+Use intel_hpd_block/unblock() for crt as well, by adding a helper to
+explicitly clear any pending IRQs before unblocking.
 
-Fix the above by scheduling the link check work after link training is
-complete.
+v2:
+- Handle encoders without a port assigned to them.
+- Rebase on change in intel_hpd_suspend() documentation.
+v3:
+- Rebase on the suspend/resume -> block/unblock rename change.
+- Clear the pending events only after all encoders have unblocked the
+  HPD handling.
+- Clear the short/long port events for all encoders using the given HPD
+  pin.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../gpu/drm/i915/display/intel_dp_link_training.c   | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crt.c     |  7 +--
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 62 +++++++++++---------
+ drivers/gpu/drm/i915/display/intel_hotplug.h |  3 +-
+ 3 files changed, 37 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index ce0601a4f0e20..3316a830e18d1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1109,6 +1109,7 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
- void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 			      const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index 321580b095e7d..e8a2f28e662ec 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -531,8 +531,6 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
  {
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct intel_display *display = to_intel_display(connector->dev);
+ 	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+-	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+-	bool reenable_hpd;
+ 	u32 adpa;
+ 	bool ret;
+ 	u32 save_adpa;
+@@ -549,7 +547,7 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+ 	 *
+ 	 * Just disable HPD interrupts here to prevent this
+ 	 */
+-	reenable_hpd = intel_hpd_disable(dev_priv, crt->base.hpd_pin);
++	intel_hpd_block(&crt->base);
  
- 	intel_dp->link_trained = true;
-@@ -1123,6 +1124,13 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 	}
+ 	save_adpa = adpa = intel_de_read(display, crt->adpa_reg);
+ 	drm_dbg_kms(display->drm,
+@@ -576,8 +574,7 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+ 	drm_dbg_kms(display->drm,
+ 		    "valleyview hotplug adpa=0x%x, result %d\n", adpa, ret);
  
- 	intel_hpd_unblock(encoder);
-+
-+	if (!display->hotplug.ignore_long_hpd &&
-+	    intel_dp->link.seq_train_failures < 2) {
-+		int delay_ms = intel_dp->link.seq_train_failures ? 0 : 2000;
-+
-+		intel_encoder_link_check_queue_work(encoder, delay_ms);
-+	}
+-	if (reenable_hpd)
+-		intel_hpd_enable(dev_priv, crt->base.hpd_pin);
++	intel_hpd_clear_and_unblock(&crt->base);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 6c6b7d661d639..b0079c6efa83d 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -1017,33 +1017,6 @@ void intel_hpd_cancel_work(struct drm_i915_private *dev_priv)
+ 		drm_dbg_kms(&dev_priv->drm, "Hotplug detection work still active\n");
  }
  
- static bool
-@@ -1627,7 +1635,6 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
- 	} else if (passed) {
- 		intel_dp->link.seq_train_failures = 0;
--		intel_encoder_link_check_queue_work(encoder, 2000);
- 		return;
- 	}
- 
-@@ -1650,10 +1657,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 		return;
- 	}
- 
--	if (intel_dp->link.seq_train_failures < 2) {
--		intel_encoder_link_check_queue_work(encoder, 0);
-+	if (intel_dp->link.seq_train_failures < 2)
- 		return;
+-bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin pin)
+-{
+-	bool ret = false;
+-
+-	if (pin == HPD_NONE)
+-		return false;
+-
+-	spin_lock_irq(&dev_priv->irq_lock);
+-	if (dev_priv->display.hotplug.stats[pin].state == HPD_ENABLED) {
+-		dev_priv->display.hotplug.stats[pin].state = HPD_DISABLED;
+-		ret = true;
 -	}
+-	spin_unlock_irq(&dev_priv->irq_lock);
+-
+-	return ret;
+-}
+-
+-void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin)
+-{
+-	if (pin == HPD_NONE)
+-		return;
+-
+-	spin_lock_irq(&dev_priv->irq_lock);
+-	dev_priv->display.hotplug.stats[pin].state = HPD_ENABLED;
+-	spin_unlock_irq(&dev_priv->irq_lock);
+-}
+-
+ static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
+ {
+ 	struct intel_display *display = to_intel_display(&i915->drm);
+@@ -1121,7 +1094,8 @@ static bool unblock_hpd_pin(struct intel_display *display, enum hpd_pin pin)
+  *   drm_connector_funcs::detect()) remains allowed, for instance as part of
+  *   userspace connector probing, or DRM core's connector polling.
+  *
+- * The call must be followed by calling intel_hpd_unblock().
++ * The call must be followed by calling intel_hpd_unblock(), or
++ * intel_hpd_clear_and_unblock().
+  *
+  * Note that the handling of HPD IRQs for another encoder using the same HPD
+  * pin as that of @encoder will be also blocked.
+@@ -1172,6 +1146,38 @@ void intel_hpd_unblock(struct intel_encoder *encoder)
+ 	spin_unlock_irq(&i915->irq_lock);
+ }
  
- 	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
- 		return;
++/**
++ * intel_hpd_clear_and_unblock - Unblock handling of new HPD IRQs on an HPD pin
++ * @encoder: Encoder to unblock the HPD handling for
++ *
++ * Unblock the handling of HPD IRQs on the HPD pin of @encoder, which was
++ * previously blocked by intel_hpd_block(). Any HPD IRQ raised on the
++ * HPD pin while it was blocked will be cleared, handling only new IRQs.
++ */
++void intel_hpd_clear_and_unblock(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	struct intel_hotplug *hotplug = &display->hotplug;
++	u32 blocked_ports;
++
++	if (encoder->hpd_pin == HPD_NONE)
++		return;
++
++	blocked_ports = hpd_pin_mask_to_ports(display, BIT(encoder->hpd_pin));
++
++	spin_lock_irq(&i915->irq_lock);
++
++	if (unblock_hpd_pin(display, encoder->hpd_pin)) {
++		hotplug->event_bits &= ~BIT(encoder->hpd_pin);
++		hotplug->retry_bits &= ~BIT(encoder->hpd_pin);
++		hotplug->short_port_mask &= ~blocked_ports;
++		hotplug->long_port_mask &= ~blocked_ports;
++	}
++
++	spin_unlock_irq(&i915->irq_lock);
++}
++
+ void intel_hpd_enable_detection_work(struct drm_i915_private *i915)
+ {
+ 	spin_lock_irq(&i915->irq_lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
+index 5f9857136f5e3..f189b871904ed 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.h
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
+@@ -26,10 +26,9 @@ void intel_hpd_init(struct drm_i915_private *dev_priv);
+ void intel_hpd_init_early(struct drm_i915_private *i915);
+ void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
+ enum hpd_pin intel_hpd_pin_default(enum port port);
+-bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
+-void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
+ void intel_hpd_block(struct intel_encoder *encoder);
+ void intel_hpd_unblock(struct intel_encoder *encoder);
++void intel_hpd_clear_and_unblock(struct intel_encoder *encoder);
+ void intel_hpd_debugfs_register(struct drm_i915_private *i915);
+ 
+ void intel_hpd_enable_detection_work(struct drm_i915_private *i915);
 -- 
 2.44.2
 
