@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB301A46162
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 14:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79601A46165
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 14:56:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 691E710E34D;
-	Wed, 26 Feb 2025 13:55:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19BD410E378;
+	Wed, 26 Feb 2025 13:56:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F9pM1g6D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BW+PK5AL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27CFB10E225;
- Wed, 26 Feb 2025 13:55:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCCE810E225;
+ Wed, 26 Feb 2025 13:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740578127; x=1772114127;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vS3X5at0w7rhwLeF2ClFz3u4iU4rhrXXOzC03HmJzRw=;
- b=F9pM1g6D/R0kEJzEkLt7XkT+fKE4zo4oHBu0y9GsD1vW2E2sEcFLcRNx
- r3ZrcKQusvilVIhjgkSJILD7G+kchzSayiNvzZIxJLQVClZnE4JT6yENT
- HAo1FeQ7Vh5SEOm0aU/U/OMxhMrHM8TwSQi6CAXoixRA8CLguOEu3ELz7
- kxDvjMUd/TJAjezidHVJ5hlZpAwBJyIkS3LeBgIIe7byBp1ansp/Ped8t
- nbFDQCuAUahLoG/40nnOYheHauKHhOtNzYghyb81Khsnc6XP0a5z6cbuK
- 1k+nD9irzpSmI+PtuVdJjlkZKp1b9it11pb21jRo/lCmu6rM2ePipOfo5 w==;
-X-CSE-ConnectionGUID: kG35lT1ATX6KhacW7NKjGg==
-X-CSE-MsgGUID: jQeVZEn/T2a1djZxJUe4Qw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52813130"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="52813130"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 05:55:27 -0800
-X-CSE-ConnectionGUID: P1QM5UpOTcua4LTV6t1SHg==
-X-CSE-MsgGUID: 41Fi22j4QdW/gGnNQjyfFQ==
+ t=1740578194; x=1772114194;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jTAjUk+9joQGZFsQkt+L+5w+ujSUZbOYL2BHWr7t3WI=;
+ b=BW+PK5ALSFkDqz48rJ6K0GKtfLRGLp6lAE0HTnjWqltrSa1Q1vgRYQne
+ dQM0XoBUblM8IAtro7q7jUw5HuYkmGu15g5ZNqHzu7lO0dVeE1VNaY2Ho
+ qmYW4Urn7qDOV20EMvDcSrCryfRleHA6xzGG8y3xv7UzEPxq8aQuHnxwy
+ N3WU61Pxc719oKSQSjebtl1GGBHbiRSuQoO8e7CR0TTxj5vNb2+KCdgd+
+ 6QDTEDVT98PSbnb/CMyGLsoyHb6DxZcRKKTmP9doS+muvbMxfMYgI8v74
+ e8OEv2FwA7PePUmqUHXc7M4JgjSAqLRaJe7o29EzsfiphCHHLMVYbNpAs g==;
+X-CSE-ConnectionGUID: 9KZZAlvuSZyA3YBZ6KaiTA==
+X-CSE-MsgGUID: 24Ukq+G/Tqi6oqYpUdnXNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="40657623"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="40657623"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 05:56:33 -0800
+X-CSE-ConnectionGUID: 2rkWMhOESB2zubNhmYZHyg==
+X-CSE-MsgGUID: 1zNCwnNERpyxNwXOGRwzFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121955673"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Feb 2025 05:55:23 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Feb 2025 15:55:22 +0200
-Date: Wed, 26 Feb 2025 15:55:22 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 12/20] drm/i915/display: Extend WA 14015406119 for PSR2
-Message-ID: <Z78dSlvSmDfF6zRD@intel.com>
-References: <20250224061717.1095226-1-ankit.k.nautiyal@intel.com>
- <20250224061717.1095226-13-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="121804012"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.123])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 05:56:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, stable@vger.kernel.org,
+ Imre Deak <imre.deak@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915/mst: update max stream count to match number of pipes
+Date: Wed, 26 Feb 2025 15:56:26 +0200
+Message-Id: <20250226135626.1956012-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250224061717.1095226-13-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2025 at 11:47:09AM +0530, Ankit Nautiyal wrote:
-> Wa_14015406119 is required for PSR1/2 while working with fixed refresh
-> rate with VRR timing generator.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 0db84af1063a..752ed44d8892 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2508,8 +2508,9 @@ static bool intel_crtc_needs_wa_14015401596(const struct intel_crtc_state *crtc_
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  
-> -	return intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
-> -		IS_DISPLAY_VER(display, 13, 14);
-> +	return intel_vrr_possible(crtc_state) &&
-> +	       (crtc_state->has_psr || crtc_state->has_sel_update) &&
+We create the stream encoders and attach connectors for each pipe we
+have. As the number of pipes has increased, we've failed to update the
+topology manager maximum number of payloads to match that. Bump up the
+max stream count to match number of pipes, enabling the fourth stream on
+platforms that support four pipes.
 
-I presume you wanted some kind of use_vrr_tg_always() check here instead
-of that has_sel_update thing (which is a nop since it should never be
-set unless has_psr is also set)?
+Cc: stable@vger.kernel.org
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> +	       IS_DISPLAY_VER(display, 13, 14);
->  }
->  
->  static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
-> -- 
-> 2.45.2
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 167e4a70ab12..822218d8cfd4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1896,7 +1896,8 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+ 	/* create encoders */
+ 	mst_stream_encoders_create(dig_port);
+ 	ret = drm_dp_mst_topology_mgr_init(&intel_dp->mst_mgr, display->drm,
+-					   &intel_dp->aux, 16, 3, conn_base_id);
++					   &intel_dp->aux, 16,
++					   INTEL_NUM_PIPES(display), conn_base_id);
+ 	if (ret) {
+ 		intel_dp->mst_mgr.cbs = NULL;
+ 		return ret;
 -- 
-Ville Syrjälä
-Intel
+2.39.5
+
