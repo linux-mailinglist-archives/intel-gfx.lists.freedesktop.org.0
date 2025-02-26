@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA24AA46827
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 18:34:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 662F5A468C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2025 19:01:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E679210E98E;
-	Wed, 26 Feb 2025 17:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7FB10E99D;
+	Wed, 26 Feb 2025 18:01:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U96wshHx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M4qmfF9w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F4F010E990;
- Wed, 26 Feb 2025 17:34:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7AE210E99D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 18:01:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740591243; x=1772127243;
+ t=1740592886; x=1772128886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1O/r3A92yxiugWwMUzoLj1XI35ygJI3Mqp3ADWB/0TA=;
- b=U96wshHx3ZVWoxAJY8/mkoHlviszq4sIX1gQRYkmcvFOXLCwd1WjzVzp
- xTfIHFMDre5mh+Fq5YLP+ejB2awHmXTcAMKectCCjckWkdU2baG3ZP66g
- /8VAGGT33xihqlxRDmrCPCxraBJnjXI3Juh5gWTfSzG0vMDY8LZMWd9C0
- RsOW6nELHzaaSgc+JtLF3Na8b159SaUM6nWZvKYIJCkf2pZUPm/dMBlWf
- vtOP7H/6M6fDBn+PaQnfU7a8CmSJZ1TTPFFAcN3RUxCEQ/HU/V0noj9d2
- tZwJS9daXcaxKbS9n8uJ7yPvHiZ8DoE49/3KAKJLfvGiYopm5rLjVLBty A==;
-X-CSE-ConnectionGUID: n1BaRHVhS4Sff4lXwP6FYw==
-X-CSE-MsgGUID: 1fipfuxSTbm+pHdQjjqIAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="63920456"
-X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="63920456"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:34:02 -0800
-X-CSE-ConnectionGUID: v6PCZs1ySbCZ+ymHOrlK+g==
-X-CSE-MsgGUID: eNLJXJj7SRCFfpkjc7aKvg==
+ bh=rmK9aA6MjcAcQKprs5RKz37aE07z0jn5btddFv3deJU=;
+ b=M4qmfF9werN1+5O4SW8O20iSYQ+4UlvyMEz67cSn6J7lgFTeJEIi/9BL
+ OgHZ+DOeA1d8Y9RjLrxULbEzUMXBmOaZfzISli+cOxDguu+bsQ1udqM9i
+ 4L2nnsftFsyr7KlUANN6ODbAjJGaLpITdtrgYxUL2BIgSFMcMnpnRV1By
+ 6RNTtWAuqCkeEgu+kc6DG7N9EBVTF91qscEHriggOLkg67+JhPxoPXqnu
+ zNZCIm9Cb6nX7Ns7f92oVG5df9w3tdLi14+NwX2dCxqdDcvGKluo8iYKg
+ ZuSPNh5ApXJcPeu6htuCVR6fgd6nFD1aj71EkqVQSxKezRLBNXuZv8YIU A==;
+X-CSE-ConnectionGUID: f0vXwhM8QReLkwhJxH3azQ==
+X-CSE-MsgGUID: sNMq72toRAyTPbrVMaHgNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="41477792"
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="41477792"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 10:01:26 -0800
+X-CSE-ConnectionGUID: SmBWLuDZQHi3rZSNgIdZ/g==
+X-CSE-MsgGUID: aBcNu/lXSTaKQr7RmcFSdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116632466"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2025 09:34:02 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 2/5] drm/i915/hpd: Add support for blocking the IRQ
- handling on an HPD pin
-Date: Wed, 26 Feb 2025 19:35:04 +0200
-Message-ID: <20250226173504.2662552-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20250226171924.2646997-3-imre.deak@intel.com>
-References: <20250226171924.2646997-3-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,317,1732608000"; d="scan'208";a="139991353"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.96])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2025 10:01:23 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Mikolaj Wasiak <mikolaj.wasiak@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com,
+ andi.shyti@intel.com, eugene.kobyak@intel.com
+Subject: Re: [PATCH] i915/selftest/igt_mmap: let mmap tests run in kthread
+Date: Wed, 26 Feb 2025 19:01:20 +0100
+Message-ID: <6774543.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <th33hxf2nabfsjfdo7opte3mv3rkkasmqajguxgwcluvpvwkzq@mtoxcubwzopp>
+References: <mqzn3acyfarzlst3tt3mh5r4bvz4ntjkz5a66pip7qmm6hslb2@qc7g7j7q4z3y>
+ <th33hxf2nabfsjfdo7opte3mv3rkkasmqajguxgwcluvpvwkzq@mtoxcubwzopp>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,413 +72,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for blocking the IRQ handling on the HPD pin of a given
-encoder, handling IRQs that arrived while in the blocked state after
-unblocking the IRQ handling. This will be used by a follow-up change,
-which blocks/unblocks the IRQ handling around DP link training.
+Hi,
 
-This is similar to the intel_hpd_disable/enable() functionality, by also
-handling encoders/ports with a pulse handler (i.e. also
-blocking/unblocking the short/long pulse handling) and handling the IRQs
-arrived in the blocked state after the handling is unblocked (vs. just
-dropping such IRQs).
+On Wednesday, 26 February 2025 13:41:34 CET Krzysztof Niemiec wrote:
+> On 2025-02-25 at 11:41:56 GMT, Mikolaj Wasiak wrote:
+> > When driver is loaded on system with numa nodes it might be run in 
+kthread.
+> > This makes it impossible to use current->mm in selftests which currently
+> > creates null pointer exception.
+> > This patch allows selftest to use current->mm by using active_mm.
+> > 
+> > Signed-off-by: Mikolaj Wasiak <mikolaj.wasiak@intel.com>
+> > ---
+> > 
+> > This patch is mostly damage control. By using active_mm we expose our
+> > test to foreign memory mapping, which sometimes makes the test fail.
+> > That is still better than just having null pointer exception in driver
+> > code.
+> > 
+> 
+> We talked about this offline a bit, I'll recount what we determined here
+> just for the record.
+> 
+> On NUMA systems, the driver might be probed via a kthread consuming a
+> workqueue. This shouldn't be a problem as long as we don't rely on
+> current->mm (i915 usually doesn't, unless it's ioctls where it's fair
+> game) - but this test wasn't written with that in mind, hence the
+> derefs.
+> 
+> We can't just use current->active_mm in place of current->mm inside of
+> the test code, because one of the functions that the test uses
+> (vma_lookup to be exact) ends up using current->mm. That's too deep
+> into the kernel to ever touch it with such a patch.
+> 
+> The problem is, we also can't just set current->mm of the kthread
+> to current->active_mm, because God knows what that value can be (again,
+> we are executing in some random kthread that just happened to work on
+> the probe).
+> 
+> So I don't think this patch is a good idea; it IS better than just
+> having a NULL deref, but since active_mm is being so unreliable here,
+> that kind of defeats the point of running the test. Also, since this is
+> an mmap test and it does stuff like user pointers, it does not really
+> make much sense to run it in a kthread (unless it's explicitly forked
+> from a context, current->mm of which we have control over, but that's
+> not what's happening here).
+> 
+> I have two suggestions for a different fix:
+> 
+> 1. Disable the test on systems with NUMA and/or if it's running in a
+>    kthread, on the premise that it doesn't make sense to run this
+>    specific test in a kthread. This is the easier option.
+> 
+> 2. Find a way to pass an argument to the selftest, so we can pass a
+>    known mm to the test thread. Then set it as current->mm for the
+>    duration of the test like you're doing in your patch. We could pass
+>    the IGT process's mm to "emulate" having it being the initializer of
+>    the test task; this way we're being a good citizen and we don't mess
+>    with some other process memory. I figure this is the harder option.
+> 
+> I'd try 2 and if it doesn't work then just resort to 1 if there's no
+> better idea floating around.
 
-v2:
-- Handle encoders without a port assigned to them.
-- Fix clearing IRQs from intel_hotplug::short_port_mask.
-v3:
-- Rename intel_hpd_suspend/resume() to intel_hpd_block/unblock(). (Jani)
-- Refer to HPD pins as hpd_pin vs. hpd.
-- Flush dig_port_work in intel_hpd_block() if any encoder using the HPD
-  pin has a pulse handler.
-v4:
-- Fix hpd_pin_has_pulse(), actually checking the encoder's HPD pin.
+I agree with both Andi and Krzysztof comments.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |   1 +
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 234 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_hotplug.h  |   2 +
- 3 files changed, 212 insertions(+), 25 deletions(-)
+If the issue is tracked in our bug tracker then please provide a link to its 
+record in a Link: or even Closes: tag.  Do you have call traces on hand?  
+Probably yes, so please consider adding a concise excerpt to your description.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 554870d2494b3..b3b620ac15e6a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -159,6 +159,7 @@ struct intel_hotplug {
- 	struct {
- 		unsigned long last_jiffies;
- 		int count;
-+		int blocked_count;
- 		enum {
- 			HPD_ENABLED = 0,
- 			HPD_DISABLED = 1,
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index ab8e71c4b0f86..06926469cb6f0 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -349,19 +349,84 @@ static bool intel_encoder_has_hpd_pulse(struct intel_encoder *encoder)
- 		enc_to_dig_port(encoder)->hpd_pulse != NULL;
- }
- 
-+static bool hpd_pin_has_pulse(struct intel_display *display, enum hpd_pin pin)
-+{
-+	struct intel_encoder *encoder;
-+
-+	for_each_intel_encoder(display->drm, encoder) {
-+		if (encoder->hpd_pin != pin)
-+			continue;
-+
-+		if (intel_encoder_has_hpd_pulse(encoder))
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
-+static u32 hpd_pin_mask_to_ports(struct intel_display *display, u32 hpd_pin_mask)
-+{
-+	struct intel_encoder *encoder;
-+	u32 ports = 0;
-+
-+	for_each_intel_encoder(display->drm, encoder) {
-+		if (encoder->port == PORT_NONE)
-+			continue;
-+
-+		if (BIT(encoder->hpd_pin) & hpd_pin_mask)
-+			ports |= BIT(encoder->port);
-+	}
-+
-+	return ports;
-+}
-+
-+static u32 get_blocked_hpd_pins(struct intel_display *display)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	enum hpd_pin pin;
-+	u32 hpd_pins = 0;
-+
-+	lockdep_assert_held(&i915->irq_lock);
-+
-+	for_each_hpd_pin(pin) {
-+		if (display->hotplug.stats[pin].blocked_count)
-+			hpd_pins |= BIT(pin);
-+	}
-+
-+	return hpd_pins;
-+}
-+
-+/*
-+ * Get the mask of all the ports using a blocked HPD pin, accounting for
-+ * ports sharing their - blocked - HPD pin with another port.
-+ */
-+static u32 get_blocked_hpd_ports(struct intel_display *display)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
-+	lockdep_assert_held(&i915->irq_lock);
-+	return hpd_pin_mask_to_ports(display, get_blocked_hpd_pins(display));
-+}
-+
- static void i915_digport_work_func(struct work_struct *work)
- {
--	struct drm_i915_private *dev_priv =
--		container_of(work, struct drm_i915_private, display.hotplug.dig_port_work);
-+	struct intel_display *display =
-+		container_of(work, struct intel_display, hotplug.dig_port_work);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
- 	u32 long_port_mask, short_port_mask;
- 	struct intel_encoder *encoder;
-+	u32 blocked_ports;
- 	u32 old_bits = 0;
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
--	long_port_mask = dev_priv->display.hotplug.long_port_mask;
--	dev_priv->display.hotplug.long_port_mask = 0;
--	short_port_mask = dev_priv->display.hotplug.short_port_mask;
--	dev_priv->display.hotplug.short_port_mask = 0;
-+
-+	blocked_ports = get_blocked_hpd_ports(display);
-+	long_port_mask = hotplug->long_port_mask & ~blocked_ports;
-+	hotplug->long_port_mask &= ~long_port_mask;
-+	short_port_mask = hotplug->short_port_mask & ~blocked_ports;
-+	hotplug->short_port_mask &= ~short_port_mask;
-+
- 	spin_unlock_irq(&dev_priv->irq_lock);
- 
- 	for_each_intel_encoder(&dev_priv->drm, encoder) {
-@@ -406,13 +471,17 @@ static void i915_digport_work_func(struct work_struct *work)
-  */
- void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
- {
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_display *display = to_intel_display(dig_port);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
- 
- 	spin_lock_irq(&i915->irq_lock);
--	i915->display.hotplug.short_port_mask |= BIT(dig_port->base.port);
--	spin_unlock_irq(&i915->irq_lock);
- 
--	queue_work(i915->display.hotplug.dp_wq, &i915->display.hotplug.dig_port_work);
-+	hotplug->short_port_mask |= BIT(dig_port->base.port);
-+	if (!(BIT(dig_port->base.port) & get_blocked_hpd_ports(display)))
-+		queue_work(hotplug->dp_wq, &hotplug->dig_port_work);
-+
-+	spin_unlock_irq(&i915->irq_lock);
- }
- 
- /*
-@@ -420,9 +489,10 @@ void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
-  */
- static void i915_hotplug_work_func(struct work_struct *work)
- {
--	struct drm_i915_private *dev_priv =
--		container_of(work, struct drm_i915_private,
--			     display.hotplug.hotplug_work.work);
-+	struct intel_display *display =
-+		container_of(work, struct intel_display, hotplug.hotplug_work.work);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
- 	struct drm_connector_list_iter conn_iter;
- 	struct intel_connector *connector;
- 	u32 changed = 0, retry = 0;
-@@ -430,16 +500,18 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 	u32 hpd_retry_bits;
- 	struct drm_connector *first_changed_connector = NULL;
- 	int changed_connectors = 0;
-+	u32 blocked_hpd_pins;
- 
- 	mutex_lock(&dev_priv->drm.mode_config.mutex);
- 	drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 
--	hpd_event_bits = dev_priv->display.hotplug.event_bits;
--	dev_priv->display.hotplug.event_bits = 0;
--	hpd_retry_bits = dev_priv->display.hotplug.retry_bits;
--	dev_priv->display.hotplug.retry_bits = 0;
-+	blocked_hpd_pins = get_blocked_hpd_pins(display);
-+	hpd_event_bits = hotplug->event_bits & ~blocked_hpd_pins;
-+	hotplug->event_bits &= ~hpd_event_bits;
-+	hpd_retry_bits = hotplug->retry_bits & ~blocked_hpd_pins;
-+	hotplug->retry_bits &= ~hpd_retry_bits;
- 
- 	/* Enable polling for connectors which had HPD IRQ storms */
- 	intel_hpd_irq_storm_switch_to_polling(dev_priv);
-@@ -538,11 +610,13 @@ static void i915_hotplug_work_func(struct work_struct *work)
- void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 			   u32 pin_mask, u32 long_mask)
- {
-+	struct intel_display *display = to_intel_display(&dev_priv->drm);
- 	struct intel_encoder *encoder;
- 	bool storm_detected = false;
- 	bool queue_dig = false, queue_hp = false;
- 	u32 long_hpd_pulse_mask = 0;
- 	u32 short_hpd_pulse_mask = 0;
-+	u32 blocked_hpd_pins;
- 	enum hpd_pin pin;
- 
- 	if (!pin_mask)
-@@ -550,6 +624,8 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 
- 	spin_lock(&dev_priv->irq_lock);
- 
-+	blocked_hpd_pins = get_blocked_hpd_pins(display);
-+
- 	/*
- 	 * Determine whether ->hpd_pulse() exists for each pin, and
- 	 * whether we have a short or a long pulse. This is needed
-@@ -573,7 +649,9 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 			"digital hpd on [ENCODER:%d:%s] - %s\n",
- 			encoder->base.base.id, encoder->base.name,
- 			long_hpd ? "long" : "short");
--		queue_dig = true;
-+
-+		if (!(BIT(pin) & blocked_hpd_pins))
-+			queue_dig = true;
- 
- 		if (long_hpd) {
- 			long_hpd_pulse_mask |= BIT(pin);
-@@ -617,7 +695,9 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 		} else {
- 			dev_priv->display.hotplug.event_bits |= BIT(pin);
- 			long_hpd = true;
--			queue_hp = true;
-+
-+			if (!(BIT(pin) & blocked_hpd_pins))
-+				queue_hp = true;
- 		}
- 
- 		if (intel_hpd_irq_storm_detect(dev_priv, pin, long_hpd)) {
-@@ -915,11 +995,15 @@ static bool cancel_all_detection_work(struct drm_i915_private *i915)
- 
- void intel_hpd_cancel_work(struct drm_i915_private *dev_priv)
- {
-+	struct intel_display *display = to_intel_display(&dev_priv->drm);
-+
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 
-+	drm_WARN_ON(display->drm, get_blocked_hpd_pins(display));
-+
- 	dev_priv->display.hotplug.long_port_mask = 0;
- 	dev_priv->display.hotplug.short_port_mask = 0;
- 	dev_priv->display.hotplug.event_bits = 0;
-@@ -966,19 +1050,22 @@ void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin)
- 
- static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
- {
--	bool queue_work = false;
-+	struct intel_display *display = to_intel_display(&i915->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
-+	bool queue_hp_work = false;
-+	u32 blocked_hpd_pins;
- 	enum hpd_pin pin;
- 
- 	lockdep_assert_held(&i915->irq_lock);
- 
--	if (i915->display.hotplug.event_bits ||
--	    i915->display.hotplug.retry_bits)
--		queue_work = true;
-+	blocked_hpd_pins = get_blocked_hpd_pins(display);
-+	if ((hotplug->event_bits | hotplug->retry_bits) & ~blocked_hpd_pins)
-+		queue_hp_work = true;
- 
- 	for_each_hpd_pin(pin) {
- 		switch (i915->display.hotplug.stats[pin].state) {
- 		case HPD_MARK_DISABLED:
--			queue_work = true;
-+			queue_hp_work = true;
- 			break;
- 		case HPD_DISABLED:
- 		case HPD_ENABLED:
-@@ -988,10 +1075,107 @@ static void queue_work_for_missed_irqs(struct drm_i915_private *i915)
- 		}
- 	}
- 
--	if (queue_work)
-+	if ((hotplug->long_port_mask | hotplug->short_port_mask) &
-+	    ~hpd_pin_mask_to_ports(display, blocked_hpd_pins))
-+		queue_work(hotplug->dp_wq, &hotplug->dig_port_work);
-+
-+	if (queue_hp_work)
- 		queue_delayed_detection_work(i915, &i915->display.hotplug.hotplug_work, 0);
- }
- 
-+static bool block_hpd_pin(struct intel_display *display, enum hpd_pin pin)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
-+
-+	lockdep_assert_held(&i915->irq_lock);
-+
-+	hotplug->stats[pin].blocked_count++;
-+
-+	return hotplug->stats[pin].blocked_count == 1;
-+}
-+
-+static bool unblock_hpd_pin(struct intel_display *display, enum hpd_pin pin)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
-+
-+	lockdep_assert_held(&i915->irq_lock);
-+
-+	drm_WARN_ON(display->drm, hotplug->stats[pin].blocked_count == 0);
-+	hotplug->stats[pin].blocked_count--;
-+
-+	return hotplug->stats[pin].blocked_count == 0;
-+}
-+
-+/**
-+ * intel_hpd_block - Block handling of HPD IRQs on an HPD pin
-+ * @encoder: Encoder to block the HPD handling for
-+ *
-+ * Blocks the handling of HPD IRQs on the HPD pin of @encoder.
-+ *
-+ * On return:
-+ * - It's guaranteed that the blocked encoders' HPD pulse handler
-+ *   (via intel_digital_port::hpd_pulse()) is not running.
-+ * - The hotplug event handling (via intel_encoder::hotplug()) of an
-+ *   HPD IRQ pending at the time this function is called may be still
-+ *   running.
-+ * - Detection on the encoder's connector (via
-+ *   drm_connector_helper_funcs::detect_ctx(),
-+ *   drm_connector_funcs::detect()) remains allowed, for instance as part of
-+ *   userspace connector probing, or DRM core's connector polling.
-+ *
-+ * The call must be followed by calling intel_hpd_unblock().
-+ *
-+ * Note that the handling of HPD IRQs for another encoder using the same HPD
-+ * pin as that of @encoder will be also blocked.
-+ */
-+void intel_hpd_block(struct intel_encoder *encoder)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct intel_hotplug *hotplug = &display->hotplug;
-+	bool do_flush = false;
-+
-+	if (encoder->hpd_pin == HPD_NONE)
-+		return;
-+
-+	spin_lock_irq(&i915->irq_lock);
-+
-+	if (block_hpd_pin(display, encoder->hpd_pin))
-+		do_flush = true;
-+
-+	spin_unlock_irq(&i915->irq_lock);
-+
-+	if (do_flush && hpd_pin_has_pulse(display, encoder->hpd_pin))
-+		flush_work(&hotplug->dig_port_work);
-+}
-+
-+/**
-+ * intel_hpd_unblock - Unblock handling of HPD IRQs on an HPD pin
-+ * @encoder: Encoder to unblock the HPD handling for
-+ *
-+ * Unblock the handling of HPD IRQs on the HPD pin of @encoder, which was
-+ * previously blocked by intel_hpd_block(). Any HPD IRQ raised on the
-+ * HPD pin while it was blocked will be handled for @encoder and for any
-+ * other encoder sharing the same HPD pin.
-+ */
-+void intel_hpd_unblock(struct intel_encoder *encoder)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
-+	if (encoder->hpd_pin == HPD_NONE)
-+		return;
-+
-+	spin_lock_irq(&i915->irq_lock);
-+
-+	if (unblock_hpd_pin(display, encoder->hpd_pin))
-+		queue_work_for_missed_irqs(i915);
-+
-+	spin_unlock_irq(&i915->irq_lock);
-+}
-+
- void intel_hpd_enable_detection_work(struct drm_i915_private *i915)
- {
- 	spin_lock_irq(&i915->irq_lock);
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
-index d6986902b0545..5f9857136f5e3 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.h
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-@@ -28,6 +28,8 @@ void intel_hpd_cancel_work(struct drm_i915_private *dev_priv);
- enum hpd_pin intel_hpd_pin_default(enum port port);
- bool intel_hpd_disable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
- void intel_hpd_enable(struct drm_i915_private *dev_priv, enum hpd_pin pin);
-+void intel_hpd_block(struct intel_encoder *encoder);
-+void intel_hpd_unblock(struct intel_encoder *encoder);
- void intel_hpd_debugfs_register(struct drm_i915_private *i915);
- 
- void intel_hpd_enable_detection_work(struct drm_i915_private *i915);
--- 
-2.44.2
+While looking for similar cases, I've found commit 51104c19d857 ("kunit: test: 
+Add vm_mmap() allocation resource manager") that seems to have resolved a 
+similar issue for then newly added kunit tests accessing current->mm.  Maybe 
+the approach used there is worth of reusing it for i915 selftests.
+
+Thanks,
+Janusz
+
+
+> 
+> Thanks
+> Krzysztof
+> 
+
+
+
 
