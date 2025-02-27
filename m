@@ -2,90 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A32A479F8
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2025 11:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F33A479FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2025 11:18:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB72510EA98;
-	Thu, 27 Feb 2025 10:16:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A73B10EA9A;
+	Thu, 27 Feb 2025 10:18:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KGlpY5/+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntr710hI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9966210EAA8;
- Thu, 27 Feb 2025 10:16:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726C910EA92;
+ Thu, 27 Feb 2025 10:18:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740651400; x=1772187400;
+ t=1740651535; x=1772187535;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Kgn8x1z1e68zXkfQWDFsumsR8yO+Lb4EfxWjBBDV0n8=;
- b=KGlpY5/+c0DvDUJ9/f373aV8iq3Z2+PbiaA9InRqkHF/+Tjs0rJZMqPz
- WhbewPMKL3j+YaiTXosCuq69akZ0oraH6oznxgRnvsd5052XrJ9CS6VDX
- l/n/2zQ7tWwJjzdQTz15n0WM2qMeJLYpSzps7hCD3+LK4ggwyRycpOl0s
- YencFlH8iQ2LaLyCf8dS6curCZq2ASgTOjCgytkdbh+I9af3xoOVidPGN
- 1sPdwRzR9rhtBDC6QLk3f3GjXfcRohscHpKcKNcOMFzeZ8X3JuY7kp4nj
- BFuzsIoMSMHLsy7x5eKBZVDKbHzja80doc6pP8EOKlklr/Hhdc6AVMgNu g==;
-X-CSE-ConnectionGUID: YjyA6cQvR+eX+0bPEvo/Vw==
-X-CSE-MsgGUID: 0/QcsXijTnW7TIkAuZaUdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11357"; a="52520499"
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="52520499"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 02:16:39 -0800
-X-CSE-ConnectionGUID: TZ58D8c3Q+e7eHbl17abrg==
-X-CSE-MsgGUID: S/tYbJ0KQrGll9mIukr0/g==
+ bh=kyhb2e4OQalevlHKIJ6w1wzqfGmAjLuGCJf99ASos70=;
+ b=ntr710hIF/eP0amzJqqllEchQbdhVCl9FxZFR6cNv3SC9vzOJTFrfqBG
+ qzbZHDfCLfbD03iJrXECU5lnNLvqN/3RPPtS6cOuHa4HMV2mYXEL/PRYq
+ 28QvTA+AG3/O8udch104P9gLNHGuC5NqZCuI+P+rAGykZ6leyzzO72R27
+ JZrkIu2ZgzOWeLxmHbi0TKMPRd2MEkmvDcwtImwcKgeJPNvlJQENj8Bdo
+ F4rCV3nJRcgcS4cZJ9K4E73tqbHmNQlfoXgkWNCnPHU/TPSjyr/MTxZUs
+ 4ArVFwfhwXfDVLXaAUzVg+ENylH1zdlY5PDMvIuWcW+YwZPgkZ1Qp2W6i w==;
+X-CSE-ConnectionGUID: gfbjqQ/GRaadtQZcC8swlg==
+X-CSE-MsgGUID: /y0f0XTKT6u0RBK/s/k+nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="41731417"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="41731417"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 02:18:37 -0800
+X-CSE-ConnectionGUID: f24AVl5aQi6+HLSlC8dlKA==
+X-CSE-MsgGUID: /OJAHQfgRYaEQe7yDd8gcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="117160258"
+X-IronPort-AV: E=Sophos;i="6.13,319,1732608000"; d="scan'208";a="116755389"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 02:16:39 -0800
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2025 02:18:36 -0800
 Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Thu, 27 Feb 2025 02:16:38 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.2.1544.14; Thu, 27 Feb 2025 02:18:35 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 27 Feb 2025 02:16:38 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Thu, 27 Feb 2025 02:18:35 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.42) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 27 Feb 2025 02:16:37 -0800
+ 15.1.2507.44; Thu, 27 Feb 2025 02:18:34 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=n9ihe8Uky7diCeF5+6P+sMm2kSaTfW1MM2lFmKgCRUpaob+bPlWFFLz/Ivh0OhcefMloAJfmcB+O9oXz2gttAMBE7B013TEJL1kJiwWq6RCtIMcuxvZhpUhJVwLl/vwBqJ4uiWUix75q9KjAQR9o3jeItJ5thIvxnj0jlEnRLgEh4g32zCvH69NpGoa2KxFNvVLOKjqKXQ/UB4EolVvilqMjPR7baZSH893nQBYUzmQEfrEfZd0BW12xCQSroXUVoWEmMMh/hD7DO6on60pYBUjWxcjIDylUFDeYsVgYcd+v25YIGMF5EAPVODQQoCQtuaJwk7aynhobH5Q/oops8Q==
+ b=NzhCakfUKe2yd0jBV+JhS3asxW49MYGa9pdQJ5f6BAEWjNs+NiDEyywc1yHRDCewh0crpN38iTrULHp4LoKdRnDFP3v5vW0ubomNAmjeOjMaWLmiGm0VRoI0Qv8DAl9mmR3sk2B5tXio5heWf9CQR8XMA6CCkVQzHMVyMdjh60K/nQd2BswtQzehaeAQsT1zdwebfAykpllk55IUApNW/lct2y/N0+5iwVkpcoD+xB4p9uKJKsdU8yhPqx6a2BAjwSVzO8wQipKe8yjQ8nBv6iy3iXsIGfwj+10iuHTUh+um1YwqDFq7yQQ1D9Ak/oAcWx/NluJLBp5qanoy0NLZDg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C7IbxOA/dcn89uqWCoXTXNTNVvI8ZZLOyqdL1Wr0M0E=;
- b=mzc7bbcqARqC03w0L8o+DASkLrNKb5jUE+4d/Thed7utg1uXnRIZpW701vViFtdp9EXZuAYD/N08zMwNk2au7NsTak0t2PVv97XTABREVJQVxqPgyRUMzo4ktWfYoN3nzJAMLXXVlvnV6o2EXbszk0YK9qCFZWW0kmfBQ8ikaUcrtuts4h61uVIh3FnG+mwZozVJDmHfeNB3mZ4seruwnIiyuw6OUPLyKvUi3HS8y6KYqGlW2tevJYtkzTCpMw4wO1B42Z97NOgyLvX7XwCel+NBbXnWyvUDLccOJyQ+OFrbC8Nic4xiRqTHMDFgOoAfx8EPGI48sII2s5a3SKQtNg==
+ bh=wAts/rzkWWA0IH0Ejikx7hNcd2n5mjvpf2FIXd/sra0=;
+ b=a+snKyFLLqWUXLzWgClB+hLKlDk8XdOj5txRGQc6/HjmDSboJcXSIEqeMvPaNROALFbqPBGlzMzppUDZySTr7+F6OOuzk5zQ1ZUPkL35Hij81Re8CHlMBIl8y0KrlUhWuBLmPCXWCQPpNa7EV7t0kzbzSQ6jKlVV9rKrGFFGHZ+Z2hOKFFnNwPlGOjnydmXj4VLw29ihddo7WNQfXzMHddUXtFRdKToYC7VUnIER+k9gUFyVqb9w5Dx2rTywkBsJPoSghbuAumX8GcP+1x9N9S6gwStO7g8qS6jTnf8F4mrJFGDETodeR9RG8bg2eKmAHPFTpf1+KkP7sBuvGObf7w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by BN9PR11MB5274.namprd11.prod.outlook.com (2603:10b6:408:133::21)
+ by PH7PR11MB6521.namprd11.prod.outlook.com (2603:10b6:510:213::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.21; Thu, 27 Feb
- 2025 10:16:35 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.18; Thu, 27 Feb
+ 2025 10:18:32 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
- 10:16:35 +0000
+ 10:18:32 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH 00/12] drm/i915: struct intel_display conversions, part
- 2434235
-Thread-Topic: [PATCH 00/12] drm/i915: struct intel_display conversions, part
- 2434235
-Thread-Index: AQHbh6VE6JZpD52fDUSyr/WecW4sdrNa8etw
-Date: Thu, 27 Feb 2025 10:16:35 +0000
-Message-ID: <SN7PR11MB675029123F2C57E96A96CB27E3CD2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <cover.1740502116.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1740502116.git.jani.nikula@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Shankar, Uma"
+ <uma.shankar@intel.com>, "Kahola, Mika" <mika.kahola@intel.com>
+Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
+Thread-Topic: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
+Thread-Index: AQHbh1ynxA6dtsvJ7kaK/vE1vKqgv7NXtOSAgAAA15CAAA/7gIAAX+cAgALNcwA=
+Date: Thu, 27 Feb 2025 10:18:31 +0000
+Message-ID: <SN7PR11MB67505D632A7CCE485E8FB81FE3CD2@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20250225080927.157437-1-suraj.kandpal@intel.com>
+ <20250225080927.157437-6-suraj.kandpal@intel.com> <8734g276o6.fsf@intel.com>
+ <SN7PR11MB67507C9052363FC4E8E34450E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <SN7PR11MB6750A509052EF04B959BA7C1E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <87ldtu59fb.fsf@intel.com>
+In-Reply-To: <87ldtu59fb.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -93,82 +97,79 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|BN9PR11MB5274:EE_
-x-ms-office365-filtering-correlation-id: eaf20edb-2ed8-491a-12ec-08dd5717d0fa
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|PH7PR11MB6521:EE_
+x-ms-office365-filtering-correlation-id: aa84d75d-e9a0-484d-83b0-08dd57181649
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?Q6WIa4NCl5QWlC1NwbMaYTYd8JDhLEVj0gqdz34DEvmGZDaw6DbgxW5Q3hcF?=
- =?us-ascii?Q?W4Ao8Oo2pGHZ8ez4IgN0wQ3NAy1UCNboiCr+AAhJfBZA8CelARb2BDwypw2+?=
- =?us-ascii?Q?1DLXkPQMNQ9fEgvsz49WOxgj8+mRlfUk7LMwlBT8Uw4kyTni67MDuTw6ZUNU?=
- =?us-ascii?Q?ubEZo5IMnn927f+jFc0k8UJ+tcmXmldaUFk4oBtSpNpVsN6eFyC1ND3XGf75?=
- =?us-ascii?Q?Vn93jMY9J2yMI9x+oEaNdW6d5PW1xmfpWuhfL+dDHMqjsd6Cr+LGDtxNWCl0?=
- =?us-ascii?Q?YjOjnXGslq/OCwXff5g8MbMSshSrDcwAlC6Q2XAEANu8aMyOFKPPYa+yT/O7?=
- =?us-ascii?Q?n4KcxNfRfA7q1s2UM5zDwc5waVDMhobYLt4F/vWtnatEGWDzgPLPoPT6W6Gx?=
- =?us-ascii?Q?002NT3YfNV5W1pVvncuFdrvIxW+AXu8ggLSF/HN7QVwLCzEA0HgofTSMSg6+?=
- =?us-ascii?Q?b3KJLDHa+kQM/yPAoCdQU5ljEjBBwRkIcSYe+sgrJhIcDV8qIXY4AK43kmTH?=
- =?us-ascii?Q?PmvbaWwDgEDmHEehUOi9ou0jC72dwIv7L/l5ApbrSP9jAQ4Y/zgbxnUMXftX?=
- =?us-ascii?Q?aiR8XkGlVLTkUyXu+iDetPCAA7KBKE/4WPK3o6l1i7C6itQH3RUndyJ0y4sW?=
- =?us-ascii?Q?Nwh31ahA9RUduiBdKFGl6oUvwHXLcq7AHFvWXUFQ7W2tqp16Lt/9p0dKkbvd?=
- =?us-ascii?Q?tBoUpmz53Byup7zIT/eDwCef8MA3tqVzFZ4K4pxpgqhK5r3KcwAWJGxs3J5P?=
- =?us-ascii?Q?BcBjU1PIZ38txzVLmASZ13/NiH0wdfdtCD5vWBbP/u0ahtYBCwF093kwbX4V?=
- =?us-ascii?Q?IXShEXWH3eJKNdnDm/PUN/qA1FkQ+IFRcOwBbSpfhErYU4X2h6voDOEpfRY0?=
- =?us-ascii?Q?pQKaLgPIJbBU5PdqLawbZC2OqPFjvtafiA8qIKFARn9fPR8bqOe91U1P2SMp?=
- =?us-ascii?Q?fLklzczOtWyG7R87rMBRSpyBJx62j5zVHdxd54rbfb1KDGH9SQ3YTDa6Jo81?=
- =?us-ascii?Q?ObZuJKBMEHpSN13pPsTAFaHjGx5wr0TyvFui9LLLcdV2FQrjHMVi0ZLxOvTG?=
- =?us-ascii?Q?keC6p0Vb7VwXQICIZDOZgkuG1pRNcMviDP/dnbMX+o6hcLrLT3t8S0QcAKOd?=
- =?us-ascii?Q?axNI/CchQGli7UEEoDiLiF5s+VECogZTAhSLwZ2sDtxZHqtr4l3fA7OjtA8v?=
- =?us-ascii?Q?pIYOXMTPwFuqUlwHROjwLK4uRNx3+wryBE9NiqeRI3cirEpwld/PJN2UHSHp?=
- =?us-ascii?Q?Rek2ZRkExFNWjt21d1hKqTp7f/Zw9Mxp8YGLx+7eMS87wjHj5UHnvuDzF4m6?=
- =?us-ascii?Q?e9FAYDMQo79K6jW5ZJ36A4PzwiMs4RcARXUTc4w5SApklARpyk7SQcgyKbvb?=
- =?us-ascii?Q?rBVYHOLIVQeaDL6LPeBXvjT5lr6MQfYIpOpwUiJsSSeBTKre9dNyBARE9ZbK?=
- =?us-ascii?Q?9YgBnBUTjyvg8IJLJ2vnProj7ziE0ioX?=
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?/hYEirl9Blx6LgZ4kqfeSDreZUtgWSGOAv0s6Od4R9BMWpE9a0MRjdRSUP0O?=
+ =?us-ascii?Q?nyarjcZ7F4Azu8o1ZSbUa3/llPXc4BDnvQ5bFi/mg8GM1f1BSqNrnvD/0X4Q?=
+ =?us-ascii?Q?avyExIK1n3CwNvOH/n0CFoTkfiZBXAMKmUBwccTIvkETlXJDcz+Ntviie8mh?=
+ =?us-ascii?Q?jFKFoa5O1TiZ6cSIouf8tdxXykkk83QmbVqFa+YkemIWxVykjVHWmvmc4Oew?=
+ =?us-ascii?Q?NQaEfP56ntT7MFzvWYxsC15Ri7dBAB/wTYnDB5wKNOvBcBqC/PBPMdRkucyw?=
+ =?us-ascii?Q?CrPTexHQSjt/zK4+f6iSZmwiZU79S4W9rq3kcewDq3TFkc0JyY+nmqe6ETaU?=
+ =?us-ascii?Q?90oBoTeHFeHJ1HVORnzvyypcJWxEvxbvKTjPFWapB0OUWO+ypAaYuuJs6j95?=
+ =?us-ascii?Q?H5+dpgNkoopq8i9OV26sjkPTVnmy2OCsKDisP/AmwpAIJ/1AHrJikK2xa4dS?=
+ =?us-ascii?Q?AKpzHEfYOEyS0ISEsfdxAemYZnimL/SMgKDV6XozqjhtqATB+siqir1rI9eo?=
+ =?us-ascii?Q?oryepZqic6i9EFq+DPWc+uSTg+C3FngyAYNefcXCxKkZAWgUUifTjUpWI25C?=
+ =?us-ascii?Q?Mc0w2KlMRnn1znb2F4wtjrQJ0oLtO09I4Ptf8E76oYbFT6kLQNsTYJcD1PX/?=
+ =?us-ascii?Q?03CVCulAVEXNtEiuEJOluSpI5mniN+04DCZufDVGLh7QuMT2h0UaYh/KoAle?=
+ =?us-ascii?Q?EHbYNQCeknUmH7shXElID79gQckqI/ar3nwKl8AJiWQTEGty1ZFAhXbVYCeG?=
+ =?us-ascii?Q?WBLbmfjrDIQianZfSkRDrHbZ4m7nAmlkBMcDABN8VyJ9eAHoB3iKhoAV9xjw?=
+ =?us-ascii?Q?wZaBq7CcTRIycMySz8XGSpamkAU2KRpR3SSQIs/l8BkdaYTmHFhqqQXy0GnK?=
+ =?us-ascii?Q?DLIZWtTtOxS15Am7FoCPvJpBUKJGEIqZ84yw2ipdV+MctUwvg6IeL57lOPwD?=
+ =?us-ascii?Q?HmqixC7FTGkPqELH8MmlorgsYOprogLiGWxXhBYdCgsboj0Y2xN8+NZ2F6GZ?=
+ =?us-ascii?Q?UCPCwIPF50PoNguKpcVJwqxQPkAIMupTy0nWDsmmCmViH/tYeXnh/WWGEsCD?=
+ =?us-ascii?Q?tN0wVmH+1IqWoC1FCcNTjhDO1vbrHHUUKxkt5V2KxNUih+Qj7uaERDJNrHQt?=
+ =?us-ascii?Q?cWG04t2trRqLdV8gjWSWTlRPB/I9kjpAwQOPAVMaE0rPopqAC/vmw7sqGK++?=
+ =?us-ascii?Q?ItqrXCcSDJoJKkl3TGdCHOtZuDSJS0v4NdByjYMa0QkRVXpTu6XPaS2G4C2G?=
+ =?us-ascii?Q?AIBo6mxk/Fi45jZJho5/i6ZjauuX6BDoOIFhVeUB2eQ90YhMmJMekrpRjzgP?=
+ =?us-ascii?Q?AvgXoUWjoIXbWtfOZGq/KpawBiVgrw5xR3AEcZ2Ui7BQ/TLmZZRTIQgjtJZJ?=
+ =?us-ascii?Q?aREC+PpVruPX5lAVtc1S9ykdk+cLqOlKeAAJ8ZUxOdlF3rkla5962CMIxn13?=
+ =?us-ascii?Q?Vyg1C3KbzhzjCIRvlxkzIcOmA6Jsnmav?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2NzZ7inIgF1tYWk4OnBOZs1ilxFinf7g94MqrtgV6XLIq/dMcvkDkxhf2A4w?=
- =?us-ascii?Q?NGr+8yfSaRL7D+aAqISkYCdIqAqjkegAG1/WJDhk/kgJxBpI0WBfN/3KENLx?=
- =?us-ascii?Q?0KGGPjuQVYXThNBUGGAu/71/+xenE10aFiYd2aAloy0s92PTJmg6QyXpYkqx?=
- =?us-ascii?Q?V64suRoAV/wZVlciW0BZFM+iUeQ5aYeYFJVaBPNlQzw54K3cPnL3beHg8XtQ?=
- =?us-ascii?Q?KgfwcaN4jzBA+10TEG2Jaf0HvPvchzifr9W5TxiP9dFcvBtcSz5bo2as7+EO?=
- =?us-ascii?Q?iOPG9ykROJyVJoMrs0mCqYHJXeToWRf/RXYgBkJsVEE4CTUkyaamq8wgzWjv?=
- =?us-ascii?Q?ciRZQ4rgUlasAkiAkaIU1ZYpi4qPo7YhjbCXF7U/JrhrSaghynfIZKGYjkMN?=
- =?us-ascii?Q?af/6G/NxIwVTqgYWIuH9BOR4ZLrSuKK+/772ArGeblArp5DWc+NSta3bUnnC?=
- =?us-ascii?Q?tEdD7/sQGfWyXBTfLxE24qqFW6lOm/GpCokpeYlJdxonNfLswvgAEK4LQDch?=
- =?us-ascii?Q?CEoiISNBRA3tvy+ZgF7+boYDSBZXVu9CsUH89nJzc8XGn9UN1ii3kj3KFFRl?=
- =?us-ascii?Q?ZoWmf9qQ1tj35LlcdD35lnoolDVmeAJA8RIlVy/Z4yatgXVUmMQ1+KMSEwPw?=
- =?us-ascii?Q?3NASprNrnYovb5AiMxxnbYzpux6TMyCr2yRg39+lepWiwv06/OFi31/DjXlS?=
- =?us-ascii?Q?+ChB4XwUs9MoljbDPWHAIpNyYCc6izq0nYNZqEfTAforDxpHO2TFrWbHd0lG?=
- =?us-ascii?Q?DaWZJMeIb4438RES5LB1+9aBqt4om87amfGUWzkm0matU0YLjrbZjCOU4Omm?=
- =?us-ascii?Q?OR/tnPDvhmra4TxQXTO1n4T4L0L1Wy9i6uOcNaU55bzLEXcvJvuOXuLS7GYU?=
- =?us-ascii?Q?zVbAMNwkqicaFn+DDVvGKi2Qhk/xvfsR8J4ySStZLmdYSAaimWdq4Qq0l/wu?=
- =?us-ascii?Q?mKGa34/vDtDQHG+jEzcOt+lwk9fPvLb7dw4wUqU+21HSK2PR9eeGZEkiCa0T?=
- =?us-ascii?Q?BKVFvcpT45Mfy/VUwRcjCxvWRLjzydo5g/mRWnCtaTtTAZ0sVXPvKsSIUigO?=
- =?us-ascii?Q?ugjNydhzbOzhV3tx1mZII8i6PWQEsvaQ3JpXTxycgcj0+wiTZXq1OqRUwT0L?=
- =?us-ascii?Q?kiW8fKn/j6MJo/nDBWOIGjS2OxrdttDZfu4av54Ktg78kJmzkJyKZGMJsvDb?=
- =?us-ascii?Q?D29oPDLc/tQjP+ipJhiIzHekwtDRUvSnFMlglCGilFwNzuiVNgQZl7+xqGb9?=
- =?us-ascii?Q?7GftWP54Z/2sl4npeLb9MWr3Io+9DZd9TAwfFi52r0XMqNoJfKm4iCjm9gCO?=
- =?us-ascii?Q?8dqlhh1jqt8r50eSN1Qoiva8pO94RfLLA9dkwDBGIMAKLqXUdbjvla0ePBc8?=
- =?us-ascii?Q?azcp4MGN1w+7/Mc4Z5nbBrt302/FhwKD+kzqPYDUowwveZjMl+MBZg8OEfR5?=
- =?us-ascii?Q?0vVILTJvu3GBHQcKbysfFU4ffiUAbxx6FUbl1/X8zvVw1ZwrUVfZvSK9sgsr?=
- =?us-ascii?Q?ovZHDhlf5UAhQhDMJjc7NgsUPmEMRYmz/ReReeJ8O6pLy2yYpLNUyyC+QWGn?=
- =?us-ascii?Q?hfHuCSXVT2g99p4FnSNEsLkBAlrCHwWlF9Ez674r?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4LViKyEkuCKdl3YeZELX0wXiQLHtor/G0jAhJmQbsDS7I+Vi8+hBXKjIRxqx?=
+ =?us-ascii?Q?WSWoeRFcOlXWI/FOU4s+LNSb2LmmDD7JvHDF9E/Q360AFsKrCvaeBNpc6Ir9?=
+ =?us-ascii?Q?BvDikgpcpIzaucpDelgjMvgXueRkqGagHgxZS6FFk6WDy1n+42/nP8BBJVbc?=
+ =?us-ascii?Q?ZnQS3SikqJZV1EYjXGLvuFTKNIKKIM6NFG3SSRUQn9/QYQCJ0SOBJK0vMpin?=
+ =?us-ascii?Q?ZyommkjYsuEjK0UgTCrNLFpAez0Lc3B63364yHNXPWJ/V/HcYmD6x1SAdjcH?=
+ =?us-ascii?Q?R+mUhJ6+Adx3zpYKLzp03entuJlFWEFSy1HjMQDoHAOBny1JRoXwgJ+cHJb4?=
+ =?us-ascii?Q?6h2Ftc/DpCM8W3LXflVJ9wSTPBUGVzIujqhlDemP62QSxxh7NJIj+UXxdwBZ?=
+ =?us-ascii?Q?YRes7qlMbYId6axLDHJBjGRdInPllg3LATGZEjqzRzhGqg3P03Tb05Ede1/S?=
+ =?us-ascii?Q?RPUaNaP8Mqu1QxOotEvJzi7mrWEIPRQeOOA/sLGtXsfJtLaL4Blocuiqv3wk?=
+ =?us-ascii?Q?Zg2Orw2Bv40axa2smfXGzwcciQ2iZQ+NvbLLwrbt0/y9YXD6mpb1s8GwTjRV?=
+ =?us-ascii?Q?cNdYWZy8TTTwAzvB/hkEDijgnF64cQj8tLQE9wFmi+JuSixbJUtbCjyC5P7M?=
+ =?us-ascii?Q?4AxJnJRjYhFTWXdWeRSNqzju3+ix3LGFPC6Smq+HqcKmkICK/dVWcuPolQxf?=
+ =?us-ascii?Q?ASO5ebmUdrtNBjRa7TzmygIXgWg2HE2dPdPMGhSt7oui46CX6ZJ4QcePz9VN?=
+ =?us-ascii?Q?pNBFPC3mPqm15lGekJ215gnOR9DYZZxMC2Cgv2EqsAJJmQL/+BQc8JiVldC0?=
+ =?us-ascii?Q?vl16Ql10CeTkBnHVfcFmmWUE7doVL+Y3/nDgy819S7LvsF8w/9nePs6I21N4?=
+ =?us-ascii?Q?8wfRaSifuZKaIvd4v8RiOGuYG/IOwGWFR9wdIo38t8Fvbbmv/T8jZVPfKhlS?=
+ =?us-ascii?Q?XVDUmZa2dTu6UeKIywmSfZD6na3ybwkboXNy5ahsjQ4qT8rCx7uPvuphwv7l?=
+ =?us-ascii?Q?aM29SA6v5l01EUc6HGkoUdb3+L1dMzVORGeg2bsU3ugVGNGr0zDMcQes9Xc/?=
+ =?us-ascii?Q?2NMFzJxFhJQdawm3mT4qs3IA5xqpgxZtaAtLnYz3mTltEMusF/9q6DNkI8rZ?=
+ =?us-ascii?Q?lxllpDDrvGyh+FWk+OqIRtvv/YAS0EPAuY4HZ8IuxBHuRIl8Ylj7fD91FJRO?=
+ =?us-ascii?Q?9Ttx1Kbqe9L/cJNiACzMYnb9x2ng3OuV8t2bfVVihrMUBhXuKr0M5i8i5DfM?=
+ =?us-ascii?Q?FlmDspxMIpQXfFpRp2mGPsQEccwmYhKZh/+Qsq6eYkRk0iPOLx/NDzwI1YTP?=
+ =?us-ascii?Q?HS9sjfwA1oMeesglhYeOvWanuARc5Vy7kXaUAtZz69aoP8JRPyChTub4sV7S?=
+ =?us-ascii?Q?6S8d+9/5q0jo0qp2Wj4kk+05osRb8dNbT6JoVF23r1Je6N1I04Hzq4OdNQEA?=
+ =?us-ascii?Q?wbzP0gx4watoKP5SF8Nts2t8UoL/PuLmPDKcCxqbTyy/59YXOHsadB7vG5Uy?=
+ =?us-ascii?Q?l000PIOCBVBQ/8rI+8rYLsRSFtp9PMcshng6ZHOJcPDp8qcZ58K6UEsw12eT?=
+ =?us-ascii?Q?ew3DBblx01u6T0xZ2GzxV5rETYu/TSyFyMThVWoD?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eaf20edb-2ed8-491a-12ec-08dd5717d0fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2025 10:16:35.8340 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa84d75d-e9a0-484d-83b0-08dd57181649
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2025 10:18:32.0621 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f228XBEbgAVKn0CBP27wzbl0tOznWRmoStYqv0skb5yHVEW2/4o8rcl+pR3zc+vBnNIvhwdPJZ4lKsuRcjQJFw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5274
+X-MS-Exchange-CrossTenant-userprincipalname: pLF67aoFyJKZ0rpKL1ROUpIajxYvtJfkNREjkJZLLaEzCS67vUyWL59SPLolmTrqVn0bkXoK1F1E2JzJoYuB9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6521
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -188,77 +189,173 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Jani
-> Nikula
-> Sent: Tuesday, February 25, 2025 10:19 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>
-> Subject: [PATCH 00/12] drm/i915: struct intel_display conversions, part
-> 2434235
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Tuesday, February 25, 2025 9:00 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
+org;
+> intel-gfx@lists.freedesktop.org; Syrjala, Ville <ville.syrjala@intel.com>
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
+> Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpl=
+l
 >=20
-> More of the same.
+> On Tue, 25 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+> >> -----Original Message-----
+> >> From: Kandpal, Suraj
+> >> Sent: Tuesday, February 25, 2025 2:25 PM
+> >> To: Jani Nikula <jani.nikula@linux.intel.com>;
+> >> intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> >> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+> >> <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
+> >> Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using shared
+> >> dpll
+> >>
+> >>
+> >>
+> >> > -----Original Message-----
+> >> > From: Jani Nikula <jani.nikula@linux.intel.com>
+> >> > Sent: Tuesday, February 25, 2025 2:17 PM
+> >> > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
+> >> > intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> >> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
+> >> > <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>;
+> >> > Kandpal, Suraj <suraj.kandpal@intel.com>
+> >> > Subject: Re: [PATCH 05/11] drm/i915/dpll: Move away from using
+> >> > shared dpll
+> >> >
+> >> > On Tue, 25 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> >> > > Rename functions to move away from using shared dpll in the dpll
+> >> > > framework as much as possible since dpll may not always be shared.
+> >> > >
+> >> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> >> >
+> >> > ...
+> >> >
+> >> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> >> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> >> > > index 6edd103eda55..ef66aca5da1d 100644
+> >> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> >> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> >> > > @@ -387,24 +387,24 @@ struct intel_global_dpll {  #define
+> >> > > SKL_DPLL2
+> >> > > 2 #define SKL_DPLL3 3
+> >> > >
+> >> > > -/* shared dpll functions */
+> >> > > +/* global dpll functions */
+> >> > >  struct intel_global_dpll *
+> >> > > -intel_get_shared_dpll_by_id(struct intel_display *display,
+> >> > > +intel_get_global_dpll_by_id(struct intel_display *display,
+> >> > >  			    enum intel_dpll_id id);
+> >> > > -void assert_shared_dpll(struct intel_display *display,
+> >> > > +void assert_global_dpll(struct intel_display *display,
+> >> > >  			struct intel_global_dpll *pll,
+> >> > >  			bool state);
+> >> > > -#define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d,
+> >> > > p,
+> >> > > true) -#define assert_shared_dpll_disabled(d, p)
+> >> > > assert_shared_dpll(d, p, false) -int
+> >> > > intel_compute_shared_dplls(struct intel_atomic_state *state,
+> >> > > +#define assert_global_dpll_enabled(d, p) assert_global_dpll(d,
+> >> > > +p,
+> >> > > +true) #define assert_global_dpll_disabled(d, p)
+> >> > > +assert_global_dpll(d, p, false) int
+> >> > > +intel_compute_global_dplls(struct intel_atomic_state *state,
+> >> > >  			       struct intel_crtc *crtc,
+> >> > >  			       struct intel_encoder *encoder); -int
+> >> > > intel_reserve_shared_dplls(struct intel_atomic_state *state,
+> >> > > +int intel_reserve_global_dplls(struct intel_atomic_state *state,
+> >> > >  			       struct intel_crtc *crtc,
+> >> > >  			       struct intel_encoder *encoder); -void
+> >> > > intel_release_shared_dplls(struct intel_atomic_state *state,
+> >> > > +void intel_release_global_dplls(struct intel_atomic_state
+> >> > > +*state,
+> >> > >  				struct intel_crtc *crtc);
+> >> > > -void intel_unreference_shared_dpll_crtc(const struct intel_crtc
+> >> > > *crtc,
+> >> > > +void intel_unreference_global_dpll_crtc(const struct intel_crtc
+> >> > > +*crtc,
+> >> > >  					const struct intel_global_dpll *pll,
+> >> > >  					struct intel_dpll_state
+> >> > *shared_dpll_state);  void
+> >> > > icl_set_active_port_dpll(struct intel_crtc_state *crtc_state, @@
+> >> > > -418,10 +418,10 @@ int intel_dpll_get_freq(struct intel_display
+> >> > > *display,  bool intel_dpll_get_hw_state(struct intel_display *disp=
+lay,
+> >> > >  			     struct intel_global_dpll *pll,
+> >> > >  			     struct intel_dpll_hw_state *dpll_hw_state); -void
+> >> > > intel_enable_shared_dpll(const struct intel_crtc_state
+> >> > > *crtc_state); -void intel_disable_shared_dpll(const struct
+> >> > > intel_crtc_state *crtc_state); -void
+> >> > > intel_shared_dpll_swap_state(struct
+> >> > > intel_atomic_state *state); -void intel_shared_dpll_init(struct
+> >> > > intel_display *display);
+> >> > > +void intel_enable_global_dpll(const struct intel_crtc_state
+> >> > > +*crtc_state); void intel_disable_global_dpll(const struct
+> >> > > +intel_crtc_state *crtc_state); void intel_dpll_swap_state(struct
+> >> > > +intel_atomic_state *state); void intel_global_dpll_init(struct
+> >> > > +intel_display *display);
+> >> > >  void intel_dpll_update_ref_clks(struct intel_display *display);
+> >> > > void intel_dpll_readout_hw_state(struct intel_display *display);
+> >> > > void intel_dpll_sanitize_state(struct intel_display *display); @@
+> >> > > -437,6
+> >> > > +437,6 @@ bool intel_dpll_is_combophy(enum intel_dpll_id id);
+> >> > >
+> >> > >  void intel_dpll_state_verify(struct intel_atomic_state *state,
+> >> > >  			     struct intel_crtc *crtc); -void
+> >> > > intel_shared_dpll_verify_disabled(struct intel_atomic_state
+> >> > > *state);
+> >> > > +void intel_global_dpll_verify_disabled(struct intel_atomic_state
+> >> > > +*state);
+> >> > >
+> >> > >  #endif /* _INTEL_DPLL_MGR_H_ */
+> >> >
+> >> > If you're renaming almost everything anyway, I'd appreciate moving
+> >> > towards naming functions according to the file name, i.e. functions
+> >> > in intel_foo.[ch] would be named intel_foo_*().
+> >> >
+> >> > The dpll mgr is notoriously bad in this regard. I'm also open to
+> >> > renaming the entire file, intel_dpll_mgr.[ch] isn't all that great.
+> >> >
+> >> > I'm not sure if the term "global" (instead of "shared") was very
+> >> > well justified in patch 3. Maybe all of these should be thought out
+> >> > together for the
+> >> naming.
+> >> >
+> >>
+> >> I agree with the renaming I would have very much have to keep the
+> >> naming simple something like Intel_dpll_func but that exits !
+> >> intel_dpll_mgr_funcs but intel_dpll_mgr already has some hooks defined
+> inside It.
+> >> I chose global since that way we will be able to represent both PLL
+> >> using shared PHY and PLL with individual PHY.
+> >> Also renaming intel_dpll_mgr.[ch] we have a intel_dpll.[ch] making it
+> >> a problem What if we renamed the file to intel_global_dpll.[ch]
+> >
+> > Jani what do you think of this ?
+>=20
+> I think Ville probably has opinions on this. Cc'd.
 
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-For the whole series
+Hi Ville,
+Any thoughts ?
+
+Regards,
+Suraj Kandpal
 
 >=20
-> Jani Nikula (12):
->   drm/i915/display: remove leftover struct drm_i915_private forward
->     declarations
->   drm/i915/debugfs: continue display debugfs struct intel_display
->     conversion
->   drm/i915/tdf: convert intel_tdf.[ch] to struct intel_display
->   drm/i915/snps: convert intel_snps_phy.[ch] to struct intel_display
->   drm/i915/dkl: convert intel_dkl_phy.[ch] to struct intel_display
->   drm/i915/drrs: convert intel_drrs.[ch] to struct intel_display
->   drm/i915/display: convert the M/N functions to struct intel_display
->   drm/i915/dpt: convert intel_dpt.[ch] interfaces to struct
->     intel_display
->   drm/i915/fbc: convert intel_fbc.[ch] to struct intel_display
->   drm/i915/rps: convert intel_display_rps.[ch] to struct intel_display
->   drm/i915/ddi: convert intel_wait_ddi_buf_idle() to struct
->     intel_display
->   drm/i915/fdi: convert intel_fdi.[ch] to struct intel_display
+> BR,
+> Jani.
 >=20
->  drivers/gpu/drm/i915/display/intel_atomic.h   |   1 -
->  .../gpu/drm/i915/display/intel_atomic_plane.c |   8 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  11 +-
->  drivers/gpu/drm/i915/display/intel_ddi.h      |   4 +-
->  .../drm/i915/display/intel_ddi_buf_trans.h    |   1 -
->  drivers/gpu/drm/i915/display/intel_display.c  | 102 ++--
->  drivers/gpu/drm/i915/display/intel_display.h  |   8 +-
->  .../drm/i915/display/intel_display_debugfs.c  |  26 +-
->  .../drm/i915/display/intel_display_debugfs.h  |   6 +-
->  .../drm/i915/display/intel_display_driver.c   |   8 +-
->  .../drm/i915/display/intel_display_power.c    |   2 +-
->  .../gpu/drm/i915/display/intel_display_rps.c  |   4 +-
->  .../gpu/drm/i915/display/intel_display_rps.h  |   4 +-
->  drivers/gpu/drm/i915/display/intel_dkl_phy.c  |   8 +-
->  drivers/gpu/drm/i915/display/intel_dkl_phy.h  |   3 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
->  drivers/gpu/drm/i915/display/intel_dpt.c      |  24 +-
->  drivers/gpu/drm/i915/display/intel_dpt.h      |   7 +-
->  drivers/gpu/drm/i915/display/intel_drrs.c     |  45 +-
->  drivers/gpu/drm/i915/display/intel_drrs.h     |  10 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 113 ++---
->  drivers/gpu/drm/i915/display/intel_fbc.h      |   6 +-
->  drivers/gpu/drm/i915/display/intel_fdi.c      | 464 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_fdi.h      |  16 +-
->  .../gpu/drm/i915/display/intel_frontbuffer.c  |  11 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.h     |   1 -
->  .../drm/i915/display/intel_modeset_verify.c   |   3 +-
->  drivers/gpu/drm/i915/display/intel_overlay.h  |   1 -
->  .../gpu/drm/i915/display/intel_pch_display.c  |  35 +-
->  drivers/gpu/drm/i915/display/intel_pipe_crc.h |   1 -
->  drivers/gpu/drm/i915/display/intel_snps_phy.c |  75 ++-
->  drivers/gpu/drm/i915/display/intel_snps_phy.h |   6 +-
->  drivers/gpu/drm/i915/display/intel_tdf.h      |   6 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   4 +-
->  drivers/gpu/drm/xe/display/xe_display_rps.c   |   2 +-
->  drivers/gpu/drm/xe/display/xe_tdf.c           |   6 +-
->  36 files changed, 493 insertions(+), 546 deletions(-)
+> >
+> >>
+> >> Regards,
+> >> Suraj Kandpal
+> >>
+> >> > BR,
+> >> > Jani.
+> >> >
+> >> >
+> >> > --
+> >> > Jani Nikula, Intel
 >=20
 > --
-> 2.39.5
-
+> Jani Nikula, Intel
