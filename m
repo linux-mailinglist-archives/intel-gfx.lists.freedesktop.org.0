@@ -2,152 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F8BA4809F
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2025 15:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D294A484F2
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2025 17:29:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCE810EB1B;
-	Thu, 27 Feb 2025 14:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6C610EB28;
+	Thu, 27 Feb 2025 16:29:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="f8MOLIcl";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="QJvbRy2j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E204D10EB10;
- Thu, 27 Feb 2025 14:11:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v9/feadt6XhCw69tQ7UbD20OQ9744G0WlwOtQF0Eq4GWyCy2MHAQXxIOPn1GJZnC6xARTKPgTm+DoqUWJEgWQxxpgkCZ/vYrp6IilJkTjoUDH7TLIlWmMjk2uqsRp4B6BG7BHxXln4qVcNjXL96mOj5D0T4IaIOzjXcLHWOb2IT/65ILGfh1+PWvFGlqT/WZZ76drLsRzPaNnODXPR0+XZ1Ru7zjHanPeO6So+Sj0TPhbllr1lugTOfmjJGtg48eLL9eOTmp+uITAjNKKy5G3CX918wdIMuosu4s+BbdNdUYKNFhRr7EKrwdwq5yTHk9gvLNoehYm9FwlFwFanxFDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6NUV1hR0XainCcwEiXbyQP9gSmrUhALUAPtof3yHvic=;
- b=esa9DKCmykD0cZRdC3P44+l2qanhC2CFHX9pkysDFUQINeCsoZnVj+H4pbIHgXZwTIHEhO3PB27oYlMtYTdNQhMGXbRstEG4Jy70x/kSZ+ffkk/bcpvblikziKPACdeCqrOcCnf+FZZmox69yaSCqU/E2T4Y8DjtIoeZKfYPIgsJ3oYnrP+iB0l4x9Ugq38WRx7qsda9ARZcqlq5lLLZ9T3tMFlz/SdfSrf6559Gh+gRhn8mrmkg1LT6qoQ94LmShrnArUJb80CkfXo2ERR9W8pa13kAaJQffONj8IWQq7Cwbcdf0xpQbK0IZ7p9Mwke5R/++3/yMiDc0hwiCrka7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6NUV1hR0XainCcwEiXbyQP9gSmrUhALUAPtof3yHvic=;
- b=f8MOLIclAIvCYvbQkPNbODk2umCnCdB8YWKbTa8OOPOaWMLe7wjc0BASwpQJLZckpblaO5W9fmpS0aWUK4z3OJgNX2edd25m+DbaWMAX/Bn757io2cg6vOYviOS49y6jgimkWvQTkuio+274x5rS0Hi6xwssCuQJbusukF2pUwo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH8PR12MB7376.namprd12.prod.outlook.com (2603:10b6:510:214::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.19; Thu, 27 Feb
- 2025 14:11:44 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8466.016; Thu, 27 Feb 2025
- 14:11:44 +0000
-Message-ID: <76445047-a5e8-4590-8e61-5570bd051b13@amd.com>
-Date: Thu, 27 Feb 2025 15:11:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dma-buf: Take a breath during dma-fence-chain subtests
-To: Andi Shyti <andi.shyti@linux.intel.com>,
- Nitin Gote <nitin.r.gote@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250226155534.1099538-1-nitin.r.gote@intel.com>
- <Z8Bf9HRqOg7B3W79@ashyti-mobl2.lan>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <Z8Bf9HRqOg7B3W79@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P265CA0182.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:311::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
+ [209.85.128.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D8AE10EA50
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2025 07:59:49 +0000 (UTC)
+Received: by mail-yw1-f178.google.com with SMTP id
+ 00721157ae682-6fb2a0e4125so4460647b3.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2025 23:59:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1740643188; x=1741247988; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nSc+079+8A2UaaEbdk2s1TkABylJ9XU2/wDzELRwQHM=;
+ b=QJvbRy2jwjkkZWF686xLLMmcZU1Vn3dRPa5PUue8Bn9hGH8qAucMG/EqckKbICVOP5
+ 55aIapaUuvVAX0nX7cLY1+qY+8s3pvFsvJa5uW4m99dZ72olJffOWR7A6mwNX04lM6mh
+ JrDwRaE4tewI4eDpDKY91GH60RRTphOFk0I48nybnM3iHaLiJiyYhXl2Z0Ak5+ZM0YPo
+ Jcosbnvh87fnZN+RLyi12tXF8+0MS7IqmBlT+BvgQ0HFk0uv/1dvqnOjqoI83jV3rOC7
+ sFo9uI9Mq7/TUE4kxq50yPxtShgzRRk/YM2LnJtPLKo47qKFmaiT7ut2RC6AfFgG1Tnd
+ 9pXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740643188; x=1741247988;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nSc+079+8A2UaaEbdk2s1TkABylJ9XU2/wDzELRwQHM=;
+ b=P1nfvhJO9ecxiPPFfcrgSnfS6QRTxF0f4oT5TxdflGOsoq0Lutr7effr8fLGCDJfEo
+ qs9vpD7BPaIJdpq+Q3ziq6VwuPOEX//DrsCCTlUBrRADpwePeAA5pbwIqRHAibQhB1ox
+ keTX/sfOPPPjMCgnrbOQQvD3S7jVwg3Ujj5TdrtJHt46omXt8NVbJh7Dq10A12FmNvsL
+ QmvX5egGFE4215Ffps4MIxK8UUXydnlAuOLR6BptfeQM+mBzTFLjgal7vi8JRRhicTCF
+ Cfi5zyYI8evAORlFNpiaIcEUneiWZc/VEI+XVFWrCKiVVZblDsyvtddAykWODnzW2EAU
+ DB8w==
+X-Gm-Message-State: AOJu0YxSoBCANyAvXyZnQGdhy5+8Ejr2Sfr4pKn7CIuF9DlTn7uZho6X
+ +0secKSshmYJI/c/F91jf5CxOXhZGvMN0e8FZtEBhYxOoDtgR11aPtNMNJ9YhGAP2GY4qKT+B58
+ 9H2La+EoQG5vgC+SDi006APXGSE6S21OKQzAJQA==
+X-Gm-Gg: ASbGncvfBVQNayhtmcHJR/1lizEwGvlUUxy7J8mA4TogOgEASV5kvUAebW/BURlwIly
+ 6gsV79Kg6JwlsWeXp6qKsktIJL85bVy1KIpbW9shAA1K3XK+99vphNmVyCJgt0hzgQwnhcIxxS9
+ qF95LLdyvUMuIPbcuyKL73KFnnx055A0xwcOOhAy4=
+X-Google-Smtp-Source: AGHT+IHVFYt2iVWqDyXx8Mvq/HZWoT02pDpPYRP6V8QTTL/psbz+obrHE062zj/fbkSbC2Zd+7nMGXcjVAVnYQYX01o=
+X-Received: by 2002:a05:690c:62ca:b0:6f9:9e80:46bf with SMTP id
+ 00721157ae682-6fd10ac8628mr101291087b3.29.1740643187897; Wed, 26 Feb 2025
+ 23:59:47 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH8PR12MB7376:EE_
-X-MS-Office365-Filtering-Correlation-Id: 091b2efe-b0b1-40b2-9dba-08dd5738aa79
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?K3h6KzZZVmlUdll1alJNWStsTmRIMDJucXY4cHVzbkk0RHJnNEZoQnRXVUtR?=
- =?utf-8?B?QUdVQSt3VUZpT3lNdW1CcXl3bTgxcVR0VDJVdnZPTmtXWlBFVXpLZGRQUlZR?=
- =?utf-8?B?V3JwT1piZ0lWMUd3WVN3RXl5Uk9yL3lnTW0vNVpxUXVTV2lPOElGUUZBbEV3?=
- =?utf-8?B?aUU0Tzlxb0U5d2VaT0k5NjJWMnNJNEJTQWVDZU5FbUQyTmJwWkUvVG5ZbVpK?=
- =?utf-8?B?ZmhVTXpld3NTSkNYMXMvZHoxeDBoRGwwK3pzc3d5NXY5YjAwTlF3Z0ZiUjdt?=
- =?utf-8?B?dEt2Y0EwdG1QTXVJQXBTQ3EwTC9CU1FnQXY4T0Z1Vi82VnpnenUyWitjUnhN?=
- =?utf-8?B?K3JETU9ieUo5U3V2VFBNVmlUaCtROStrS1V1emdEc2FvR21zRGlYZG9ocWZs?=
- =?utf-8?B?bW9TdDdVbWV2ZTN0UjUvZ1Y2RCs0Zm91KzcrelZxQjhaaGQ2WE5vZlhYamVa?=
- =?utf-8?B?WTRuNERxb01xY2IvUnl6cmsveHdMS3ZVMFB3U01SSEtUQWVEYWQxMEl2SXAv?=
- =?utf-8?B?SEsrWDVFNG9CTFJSM3VsOGNqa003QnVuSXN6cTRhNHM1c04zT1M2OGYzYjg1?=
- =?utf-8?B?ZndDS1A1ZTNrSklXL3ZvaEwybW1nSzNEK2xucDgzZGZnMTkrMVg5R05GV2sy?=
- =?utf-8?B?c2hYak9COWZEdThvMkd5RW1KZ1pzZzVidkJvT0wvVVJIOFpYUTc1ZkR1TFJy?=
- =?utf-8?B?YmgyUlU3K3VvR0prdW44YkVBQU5Ya0NkUUg5NWJxYWhiV1E2aWFuZ3J2VTdq?=
- =?utf-8?B?NDhHVjVvTXZKL2tTZHlSQWtlbGppbDJHYWtaamFWQ3VEd3JtNnh2cERlKzJu?=
- =?utf-8?B?WnJvSm5EY1dGa3Q1QXUvU0dyMjR1ZnVZTjNIdU5KNmpaWUVvZ1RpOTRtSWhw?=
- =?utf-8?B?Ym11aDVkaFZ1Tlg4L1ZxTnZLWHp4WTlCbElDdXJWd0lwdVJnZjRSZ3FqQ0wz?=
- =?utf-8?B?dXAxM2luWWY4OWVGOERHNXlFU2JvczRIdkY5NjRpeDJmeEJwVURhWWphaExT?=
- =?utf-8?B?L0wzOFV1T0NRU21rajMxYmFWOGxGMEwyTFR1VCsvcVVSaFl4NEVJVHFMbkJX?=
- =?utf-8?B?NUp2Sk9CZ25CSEZYYmprOHpKcnZybjAycVl4eldCQkdXRjdCMEZDeFh6OHhE?=
- =?utf-8?B?cnpoZU8zbDAxbWEvTUI3WmNYVVlzem9vTzdLUENXOHNVRUl2NWNtZnVyR1Jh?=
- =?utf-8?B?eHpYUmZYREdNZ1FmbEVXSHJSU1IvWlFyVnBrRmZ3UVZjMlowSmlCR0R1enNN?=
- =?utf-8?B?dkhkTThvWmxsU1VBSGlnNmttNUgvQ3pFdkw0ZGNsSzcrSkx2aGRoS2xnYUdX?=
- =?utf-8?B?RW0xRGxCQTVTZkkwTmpaakVEbi9wVVdqN0ZKZGNGSjU4ZEVjWENyVEIvMVVC?=
- =?utf-8?B?cklZS2VGZjFOeEZMT0wxSkorbUprV3JtS0haU0Z2U3ZUUWc4L1NyK3ZRVm9l?=
- =?utf-8?B?b0oxTTJIQ0g2dnM1Z0FxRHVXTDRsc2V4RC9WZVlkZlpMZmdyQzZaY2EzQjZy?=
- =?utf-8?B?eGFqNXc0Z0I1c2huVEU0TzFFQUg3RjJMdEREOWhrK0tMR0pIR1I0WjJxWTYz?=
- =?utf-8?B?RU9FSEVJOEVId01COUZHUlpsWldFbEYvTmtzbk8rRkltUFRDSnV4ekJpZ3FI?=
- =?utf-8?B?ZUkwYm96MmhmaFlLb3R1OVJuQnJkWGd0c1BaWWZPVjB4ZWtjWlBTS3lqdWdG?=
- =?utf-8?B?NnE3c3Z5SWFEUndFdmwxbEE2WG91RXJmZ3RNQVRLbkZVSGlzUHFiYTMwelFX?=
- =?utf-8?B?RlRrb1djcTE2YTdOVDY1anVrMElMcGt6ZFZnTVNrSWdQbmVmT3dKMGZqWjdi?=
- =?utf-8?B?Ky9lNkw1Y3poSDkvRWZEQT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ckQ1SWkrNVBTMFEwTjdHVzcwdGtwQ0VPdnE5Tm1ENUFsWldsVXZYQ25GWnk5?=
- =?utf-8?B?ZS8zYUFybUlYNlpzY1lrVDN5aHVmMi9OeVMvUkFJNVN0UWNMRUlldzdvV2N2?=
- =?utf-8?B?VTdaZUxzMEUxNFFMUjFDZDhZb0RLMFAwdEJGS3VpTnY3SW9rMmhta1ZnN1ow?=
- =?utf-8?B?R1c0WGlZYjkzRVJzaGpUYm9USm00aDZxRVRKL2JkNHBhdGoyQ1ZRdGNDVXpu?=
- =?utf-8?B?cHZxS1ZZVmxUQ3RTMWl1aFAvOVpGRXc2QmRZZzBIQWtuUEU1d0ZtVjNxUUdV?=
- =?utf-8?B?WWZOTHlEZ1lTTkZPSWNKSFAwczYwTDNLK1RZK1FvWi9vUzdlQ3pIdW8rdzE5?=
- =?utf-8?B?SVNnWEpTYWhjY1Nod2Qwei82ci9JTXA0dVRNa0ZrbElNb1cwc0NIbWNGUVAv?=
- =?utf-8?B?bXdJU0Z6ZXJ3c2h5eS9vRnVCTURUUXZCZ1VML2NjOWYvRE1jUGg4bzErOHQz?=
- =?utf-8?B?S0pPaDVzb3hTZlhIczBwZHdJcnB1c0Z2QTZqUzJOKythV0dTb09kNThNK1Rt?=
- =?utf-8?B?UDVMR3RCcytLTHNZWG0vM1Fsb1RWVGsySi9vaGUvTEJFN3cwVGxZTHNMYmsr?=
- =?utf-8?B?ci96YlYwbytsRGEydzRTOEw2RFJXREFKZTQzTlZuTWx5L1Iwb2VHT0c5UjVW?=
- =?utf-8?B?QVJXWjdES2pRdzhWNjBKQnlFVm5sVEFaVHpsbDRrSEZxcVBJMVdhY3dYQU9i?=
- =?utf-8?B?ZlJiZzd1NGNNVld1SU9jMER5cmJ1akJFNUVDd0RBRFRDYmdDK25QVnBlNGN3?=
- =?utf-8?B?Z0trWnJYNDJ2bXZIV3E0d3puN2x0elJqa21neXJkUzJmME5OZXc5QUhvRjBF?=
- =?utf-8?B?K1JOclE4eXJUbHRtT0x2U0tLdnpBVFJFRUVUSzhJM2pLejBSQUVhdUorZ3FH?=
- =?utf-8?B?YUNTTjE1ZkdkZGlYMGxlb1YwM0RrNXpUQW5LbXNxR3ZIN002bDRUbXZrdVFV?=
- =?utf-8?B?M25EWHRra3F2K0w2d3cxZzlVL3ZiNGhaTjBiSEx0MWc2UnhpU0w2azhIcnc3?=
- =?utf-8?B?VExVejg2a2NQUUpZa01JRkhvUjdEZkZKWGgvRVA4VXZIYnowbENhaWhuelhl?=
- =?utf-8?B?WG1MT3Z6OWdtUitZU2xtdUdtZUVYWjNwYTR1KzNQMTE4NnRWaU1PNjhIcnpB?=
- =?utf-8?B?YmtueGxXazFxTEx0UXVrOHhuM1drcUdVNWlLNStuSTUrd0I1Nk1lUG1RdGtQ?=
- =?utf-8?B?Sy9yNWdqNVA3Y3NScXhRb0J2WVZ5ZzF3dFFFbllyVThoT3E1K3ZXbTRzTUpo?=
- =?utf-8?B?TDdrenQ3Mm54a2JlVWtsOHY0VjVlZ1hnSkJvVHhScUk0UUtBRUFnTjVocGxZ?=
- =?utf-8?B?ZkJWTzFnckF5WE5TTDliRUFLUGhObGVNOWpUQjJjc2ZYMCtuRUh1NU9jM3Mv?=
- =?utf-8?B?dXZaclNNNTZEWFQ5SjlSSUtDSFN3UVhncm0wcytYbU11UDg4akwyd243d2Er?=
- =?utf-8?B?M2IxNTdGL0JLY1lObktqVXlkeWVQL0xybjNhU0twWHRTbkQyaWxIYkh3R0Z1?=
- =?utf-8?B?cXFNYnlRd0RPNkdBVTFBY1FYYm9iVTZxTWY3eEpIbk5oZ0NlSWNNbDlVODNz?=
- =?utf-8?B?cnl0UFhKK0JoRHg5NE52RURURHBmd05WS3pMaVk5N3FuMlFwS1M5UnYycFR0?=
- =?utf-8?B?RWxGVDg1YjVqQnh6Y1VsVUxUTmVHQUEyWUxLb2tkSDY4dE9kTTNndklrdEh3?=
- =?utf-8?B?dXp5d2dJYks1WmgxM1k2Y09GWXFKak5yTkFWUm1aQlNsam5McG9rOEpoSkth?=
- =?utf-8?B?bGVOeUdmc0xYM3AreUcwM3IxTFFNYWREWFdvUzVZaGR0aHFKQnhoa1ltcThi?=
- =?utf-8?B?U3F4d04yYkNBa0VSM0NkTXp1bWhmbXg2ZXpzOWFXNllSbzZZYWtCNTdrckxT?=
- =?utf-8?B?VWhZdXViTUNKcUhUUGQ0ZFBxcXJIV2RScVpvY09odC9HQWMyaEN6TWJEUUt6?=
- =?utf-8?B?MmFxbFZrVHpDZEowTzRnNVREYUF5eWhDb0dkRzBUT0Y1QTM5TmxqK3RzQlQy?=
- =?utf-8?B?bG50MHNhZXhIRTlYZXR3QUdmazB3QVJSRkljRU1TY0FEQkRqSGF4dHJmMmhO?=
- =?utf-8?B?UTJ0cXVKTEpZSUp0bi9ETklvZVdmTGdSUFBkZmdXSElDMTBnRUM0OVZKajdZ?=
- =?utf-8?Q?aMMQ=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 091b2efe-b0b1-40b2-9dba-08dd5738aa79
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2025 14:11:44.8313 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7frCywHZglwsuj4SZzf6y+N7i+zk/VaGTVuoB16lvIIyeyYVZxEvOwng2yXf0AY1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7376
+References: <SJ1PR11MB612979B35DD84F5AFFB789D5B9C22@SJ1PR11MB6129.namprd11.prod.outlook.com>
+In-Reply-To: <SJ1PR11MB612979B35DD84F5AFFB789D5B9C22@SJ1PR11MB6129.namprd11.prod.outlook.com>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Thu, 27 Feb 2025 08:59:37 +0100
+X-Gm-Features: AQ5f1Joh6_ZfrOfMFX8XG1ZiJZIZZWuoVmnN5jaDFgcX94OQDJBurWds9xxECBo
+Message-ID: <CACMJSeseiRfAHQX0+vjL0DO+Xd-+RwW5rs4RkYHCfP6NKz2DLA@mail.gmail.com>
+Subject: Re: Regression on linux-next (next-20250225)
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen,
+ Jani" <jani.saarinen@intel.com>, 
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 27 Feb 2025 16:29:37 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,193 +85,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 27.02.25 um 13:52 schrieb Andi Shyti:
-> Hi Nitin,
+On Wed, 26 Feb 2025 at 21:29, Borah, Chaitanya Kumar
+<chaitanya.kumar.borah@intel.com> wrote:
 >
-> On Wed, Feb 26, 2025 at 09:25:34PM +0530, Nitin Gote wrote:
->> Give the scheduler a chance to breath by calling cond_resched()
->> as some of the loops may take some time on old machines (like apl/bsw/pnv),
->> and so catch the attention of the watchdogs.
->>
->> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
->> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> This patch goes beyond the intel-gfx domain so that you need to
-> add some people in Cc. By running checkpatch, you should add:
+> Hello Bartosz,
 >
-> Sumit Semwal <sumit.semwal@linaro.org> (maintainer:DMA BUFFER SHARING FRAMEWORK)
-> "Christian König" <christian.koenig@amd.com> (maintainer:DMA BUFFER SHARING FRAMEWORK)
-> linux-media@vger.kernel.org (open list:DMA BUFFER SHARING FRAMEWORK)
-> dri-devel@lists.freedesktop.org (open list:DMA BUFFER SHARING FRAMEWORK)
+> Hope you are doing well. I am Chaitanya from the linux graphics team in I=
+ntel.
 >
-> I added them now, but you might still be asked to resend.
+> This mail is regarding a regression we are seeing in our CI runs[1] on li=
+nux-next repository.
 >
-> Said that, at a first glance, I don't have anything against this
-> patch.
-
-There has been some push to deprecate cond_resched() cause it is almost always not appropriate.
-
-Saying that if I'm not completely mistaken that here is also not 100% correct usage.
-
-Question is why is the test taking 26 (busy?) seconds to complete? That sounds really long even for a very old CPU.
-
-Do we maybe have an udelay() here which should have been an usleep() or similar?
-
-Regards,
-Christian.
-
+> Since the version next-20250225 [2], we are seeing the following regressi=
+on
 >
-> Andi
+> `````````````````````````````````````````````````````````````````````````=
+````````
+> <4>[    8.483421] gpio gpiochip1: gpiochip_add_data_with_key: get_directi=
+on failed: -22
+> <4>[    8.483427] ------------[ cut here ]------------
+> <4>[    8.483428] WARNING: CPU: 20 PID: 444 at drivers/gpio/gpiolib.c:349=
+ gpiochip_get_direction+0x63/0x90
+> <4>[    8.483430] Modules linked in: intel_ish_ipc(+) e1000e(+) spi_intel=
+(+) i2c_smbus idma64(+) mei intel_ishtp realtek(+) processor_thermal_device=
+_pci(+) processor_thermal_device processor_thermal_wt_hint video processor_=
+thermal_rfim int3403_thermal intel_pmc_core(+) processor_thermal_rapl intel=
+_rapl_common intel_vpu processor_thermal_wt_req ucsi_acpi(+) processor_ther=
+mal_power_floor drm_shmem_helper pmt_telemetry processor_thermal_mbox pmt_c=
+lass typec_ucsi int3400_thermal drm_kms_helper acpi_tad intel_hid int340x_t=
+hermal_zone thunderbolt(+) acpi_thermal_rel intel_vsec typec pinctrl_meteor=
+point(+) sparse_keymap wmi pinctrl_meteorlake acpi_pad dm_multipath msr nvm=
+e_fabrics fuse efi_pstore nfnetlink ip_tables x_tables autofs4
+> <4>[    8.483465] CPU: 20 UID: 0 PID: 444 Comm: (udev-worker) Tainted: G =
+       W          6.14.0-rc4-next-20250225-next-20250225-g0226d0ce98a4+ #1
+> <4>[    8.483467] Tainted: [W]=3DWARN
+> <4>[    8.483467] Hardware name: Intel Corporation Arrow Lake Client Plat=
+form/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/20=
+24
+> <4>[    8.483468] RIP: 0010:gpiochip_get_direction+0x63/0x90
+> <4>[    8.483470] Code: f8 02 5d 0f 4d c2 31 d2 31 f6 31 ff c3 cc cc cc c=
+c 48 8b 47 08 be ff ff ff ff 48 8d b8 c0 06 00 00 e8 31 2d 95 00 85 c0 75 b=
+9 <0f> 0b 48 8b 43 38 48 85 c0 75 b7 0f 0b b8 a1 ff ff ff 5b 41 5c 5d
+> <4>[    8.483472] RSP: 0018:ffffc9000206f590 EFLAGS: 00010246
+> <4>[    8.483473] RAX: 0000000000000000 RBX: ffff8881087964d0 RCX: 000000=
+0000000000
+> <4>[    8.483474] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000=
+0000000000
+> <4>[    8.483476] RBP: ffffc9000206f5a0 R08: 0000000000000000 R09: 000000=
+0000000000
+> <4>[    8.483477] R10: 0000000000000000 R11: 0000000000000000 R12: 000000=
+00000001a4
+> <4>[    8.483478] R13: ffffffff87f39780 R14: ffff8881087964d0 R15: 000000=
+00000001a4
+> <4>[    8.483479] FS:  00007f4df7e6f8c0(0000) GS:ffff8888dbf09000(0000) k=
+nlGS:0000000000000000
+> <4>[    8.483480] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> <4>[    8.483481] CR2: 00007f4df8003966 CR3: 0000000118522005 CR4: 000000=
+0000f70ef0
+> <4>[    8.483482] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 000000=
+0000000000
+> <4>[    8.483483] DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 000000=
+0000000400
+> <4>[    8.483484] PKRU: 55555554
+> <4>[    8.483485] Call Trace:
+> <4>[    8.483486]  <TASK>
+> <4>[    8.483487]  ? show_regs+0x6c/0x80
+> <4>[    8.483490]  ? __warn+0x93/0x1c0
+> <4>[    8.483492]  ? gpiochip_get_direction+0x63/0x90
+> `````````````````````````````````````````````````````````````````````````=
+````````
+> Detailed log can be found in [3].
 >
->> ---
->> Hi,
->>
->> For reviewer reference, adding here watchdog issue seen on old machines
->> during dma-fence-chain subtests testing. This log is retrieved from device
->> pstore log while testing dam-buf@all-tests:
->>
->> dma-buf: Running dma_fence_chain
->> Panic#1 Part7
->> <6> sizeof(dma_fence_chain)=184
->> <6> dma-buf: Running dma_fence_chain/sanitycheck
->> <6> dma-buf: Running dma_fence_chain/find_seqno
->> <6> dma-buf: Running dma_fence_chain/find_signaled
->> <6> dma-buf: Running dma_fence_chain/find_out_of_order
->> <6> dma-buf: Running dma_fence_chain/find_gap
->> <6> dma-buf: Running dma_fence_chain/find_race
->> <6> Completed 4095 cycles
->> <6> dma-buf: Running dma_fence_chain/signal_forward
->> <6> dma-buf: Running dma_fence_chain/signal_backward
->> <6> dma-buf: Running dma_fence_chain/wait_forward
->> <6> dma-buf: Running dma_fence_chain/wait_backward
->> <0> watchdog: BUG: soft lockup - CPU#2 stuck for 26s! [dmabuf:2263]
->> Panic#1 Part6
->> <4> irq event stamp: 415735
->> <4> hardirqs last  enabled at (415734): [<ffffffff813d3a1b>] handle_softirqs+0xab/0x4d0
->> <4> hardirqs last disabled at (415735): [<ffffffff827c7e31>] sysvec_apic_timer_interrupt+0x11/0xc0
->> <4> softirqs last  enabled at (415728): [<ffffffff813d3f8f>] __irq_exit_rcu+0x13f/0x160
->> <4> softirqs last disabled at (415733): [<ffffffff813d3f8f>] __irq_exit_rcu+0x13f/0x160
->> <4> CPU: 2 UID: 0 PID: 2263 Comm: dmabuf Not tainted 6.14.0-rc2-drm-next_483-g7b91683e7de7+ #1
->> <4> Hardware name: Intel corporation NUC6CAYS/NUC6CAYB, BIOS AYAPLCEL.86A.0056.2018.0926.1100 09/26/2018
->> <4> RIP: 0010:handle_softirqs+0xb1/0x4d0
->> <4> RSP: 0018:ffffc90000154f60 EFLAGS: 00000246
->> <4> RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
->> <4> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
->> <4> RBP: ffffc90000154fb8 R08: 0000000000000000 R09: 0000000000000000
->> <4> R10: 0000000000000000 R11: 0000000000000000 R12: 000000000000000a
->> <4> R13: 0000000000000200 R14: 0000000000000200 R15: 0000000000400100
->> <4> FS:  000077521c5cd940(0000) GS:ffff888277900000(0000) knlGS:0000000000000000
->> Panic#1 Part5
->> <4> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->> <4> CR2: 00005dbfee8c00c4 CR3: 0000000133d38000 CR4: 00000000003526f0
->> <4> Call Trace:
->> <4>  <IRQ>
->> <4>  ? show_regs+0x6c/0x80
->> <4>  ? watchdog_timer_fn+0x247/0x2d0
->> <4>  ? __pfx_watchdog_timer_fn+0x10/0x10
->> <4>  ? __hrtimer_run_queues+0x1d0/0x420
->> <4>  ? hrtimer_interrupt+0x116/0x290
->> <4>  ? __sysvec_apic_timer_interrupt+0x70/0x1e0
->> <4>  ? sysvec_apic_timer_interrupt+0x47/0xc0
->> <4>  ? asm_sysvec_apic_timer_interrupt+0x1b/0x20
->> <4>  ? handle_softirqs+0xb1/0x4d0
->> <4>  __irq_exit_rcu+0x13f/0x160
->> <4>  irq_exit_rcu+0xe/0x20
->> <4>  sysvec_irq_work+0xa0/0xc0
->> <4>  </IRQ>
->> <4>  <TASK>
->> <4>  asm_sysvec_irq_work+0x1b/0x20
->> <4> RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
->> <4> RSP: 0018:ffffc9000292b8f0 EFLAGS: 00000246
->> <4> RAX: 0000000000000000 RBX: ffff88810f235480 RCX: 0000000000000000
->> <4> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
->> <4> RBP: ffffc9000292b900 R08: 0000000000000000 R09: 0000000000000000
->> <4> R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000246
->> <4> R13: 0000000000000000 R14: 0000000000000246 R15: 000000000003828c
->> Panic#1 Part4
->> <4> dma_fence_signal+0x49/0xb0
->> <4> wait_backward+0xf8/0x140 [dmabuf_selftests]
->> <4> __subtests+0x75/0x1f0 [dmabuf_selftests]
->> <4> dma_fence_chain+0x94/0xe0 [dmabuf_selftests]
->> <4> st_init+0x6a/0xff0 [dmabuf_selftests]
->> <4> ? __pfx_st_init+0x10/0x10 [dmabuf_selftests]
->> <4> do_one_initcall+0x79/0x400
->> <4> do_init_module+0x97/0x2a0
->> <4> load_module+0x2c23/0x2f60
->> <4> init_module_from_file+0x97/0xe0
->> <4> ? init_module_from_file+0x97/0xe0
->> <4> idempotent_init_module+0x134/0x350
->> <4> __x64_sys_finit_module+0x77/0x100
->> <4> x64_sys_call+0x1f37/0x2650
->> <4> do_syscall_64+0x91/0x180
->> <4> ? trace_hardirqs_off+0x5d/0xe0
->> <4> ? syscall_exit_to_user_mode+0x95/0x260
->> <4> ? do_syscall_64+0x9d/0x180
->> <4> ? do_syscall_64+0x9d/0x180
->> <4> ? irqentry_exit+0x77/0xb0
->> <4> ? sysvec_apic_timer_interrupt+0x57/0xc0
->> <4> entry_SYSCALL_64_after_hwframe+0x76/0x7e
->> <4> RIP: 0033:0x77521e72725d
->>
->>
->>  drivers/dma-buf/st-dma-fence-chain.c | 14 +++++++++++---
->>  1 file changed, 11 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/dma-buf/st-dma-fence-chain.c b/drivers/dma-buf/st-dma-fence-chain.c
->> index ed4b323886e4..328a66ed59e5 100644
->> --- a/drivers/dma-buf/st-dma-fence-chain.c
->> +++ b/drivers/dma-buf/st-dma-fence-chain.c
->> @@ -505,6 +505,7 @@ static int signal_forward(void *arg)
->>  
->>  	for (i = 0; i < fc.chain_length; i++) {
->>  		dma_fence_signal(fc.fences[i]);
->> +		cond_resched();
->>  
->>  		if (!dma_fence_is_signaled(fc.chains[i])) {
->>  			pr_err("chain[%d] not signaled!\n", i);
->> @@ -537,6 +538,7 @@ static int signal_backward(void *arg)
->>  
->>  	for (i = fc.chain_length; i--; ) {
->>  		dma_fence_signal(fc.fences[i]);
->> +		cond_resched();
->>  
->>  		if (i > 0 && dma_fence_is_signaled(fc.chains[i])) {
->>  			pr_err("chain[%d] is signaled!\n", i);
->> @@ -587,8 +589,10 @@ static int wait_forward(void *arg)
->>  	get_task_struct(tsk);
->>  	yield_to(tsk, true);
->>  
->> -	for (i = 0; i < fc.chain_length; i++)
->> +	for (i = 0; i < fc.chain_length; i++) {
->>  		dma_fence_signal(fc.fences[i]);
->> +		cond_resched();
->> +	}
->>  
->>  	err = kthread_stop_put(tsk);
->>  
->> @@ -616,8 +620,10 @@ static int wait_backward(void *arg)
->>  	get_task_struct(tsk);
->>  	yield_to(tsk, true);
->>  
->> -	for (i = fc.chain_length; i--; )
->> +	for (i = fc.chain_length; i--; ) {
->>  		dma_fence_signal(fc.fences[i]);
->> +		cond_resched();
->> +	}
->>  
->>  	err = kthread_stop_put(tsk);
->>  
->> @@ -663,8 +669,10 @@ static int wait_random(void *arg)
->>  	get_task_struct(tsk);
->>  	yield_to(tsk, true);
->>  
->> -	for (i = 0; i < fc.chain_length; i++)
->> +	for (i = 0; i < fc.chain_length; i++) {
->>  		dma_fence_signal(fc.fences[i]);
->> +		cond_resched();
->> +	}
->>  
->>  	err = kthread_stop_put(tsk);
->>  
->> -- 
->> 2.25.1
+> After bisecting the tree, the following patch [4] seems to be the first "=
+bad"
+> commit
+>
+> `````````````````````````````````````````````````````````````````````````=
+````````````````````````````````
+> commit e623c4303ed112a1fc20aec8427ba8407e2842e6
+> Author: Bartosz Golaszewski mailto:bartosz.golaszewski@linaro.org
+> Date:   Mon Feb 10 11:52:02 2025 +0100
+>
+>     gpiolib: sanitize the return value of gpio_chip::get_direction()
+> `````````````````````````````````````````````````````````````````````````=
+````````````````````````````````
+>
+> We also verified that if we revert the patch the issue is not seen.
+>
+> Could you please check why the patch causes this regression and provide a=
+ fix if necessary?
+>
 
+Hi!
+
+This is fixed in my tree and should be in next tomorrow, sorry for the trou=
+ble.
+
+Bartosz
