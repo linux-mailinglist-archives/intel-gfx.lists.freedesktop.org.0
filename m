@@ -2,183 +2,144 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEFF2A4926F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 08:49:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0A8FA493F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 09:49:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6934B10E217;
-	Fri, 28 Feb 2025 07:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E1610EC1F;
+	Fri, 28 Feb 2025 08:49:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PyH5JYe0";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="NeeBqIVf";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sWvmScyw";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NeeBqIVf";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="sWvmScyw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D757F10E217
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 07:49:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740728988; x=1772264988;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=evk8SXlHkkIyRyubydYcAktwbpQ9mtTOI6gUy9qCL3g=;
- b=PyH5JYe07+q/b+F6PNtZqYW8pTeMKXIVusj2NF6AvFoKgZCFI6hZNVcr
- Ik6XDkvrGYnGCx152aGWVW7/KN8gnq5RneCTd75NuAdz3CKG2QMjePlZI
- xfxzg4uObdi9G7uzDR/iPfae23rVzF2B4bRXCyu6Ybz0x1Pwd0fy9BOu6
- OUSeELsx2LheOmKMijhNWgFwD8aF6egrOmh2RyyftSjRt0N4mjBwkcean
- ZqwJKGZtgPUx1RjInupbnbOs2LOcmxdXk8WyvyMmc01J0Hx+navNZeawY
- xNUQEEBYPYooWVar816/+/7bw1t+l7jOBnWzkwHkHLOoBpwNFzTruN4C+ w==;
-X-CSE-ConnectionGUID: 8npIkkCESDyEz1B5YvjEKg==
-X-CSE-MsgGUID: 4/nPnsfURsqVm/A5ZR21ZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41777175"
-X-IronPort-AV: E=Sophos;i="6.13,321,1732608000"; d="scan'208";a="41777175"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2025 23:49:48 -0800
-X-CSE-ConnectionGUID: OvvAE7nPQ5OrFLRauz2NcA==
-X-CSE-MsgGUID: /HLXpaH4Rhumv5wKiEomXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122500091"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Feb 2025 23:49:47 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 27 Feb 2025 23:49:47 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 27 Feb 2025 23:49:47 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.47) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 27 Feb 2025 23:49:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W2+5678Li/3GmnkodCM3mXCcfT75k8s7UfHmcAuBSX/9jG+Ce5D4JD/xwbnDruZwNP5uHOB4FNWrq7JoLsUcdYheClYdR5xxhjj7y2JE8r1oO4sqLjSUYGCJnZv3uzG4BtZZcv4VOORYnLijL/OK827soulAog9xcO+KcOYxNlcn7LaFOSylKMEDnRRf3XBQ0WW79OIeuVMrd6d0R9XeRFTfLPlu4ZQudKFAycUzHDQyx9fo3iShTvoZ5YlI3ejYLTdRphA6ZCpHXdXqKZwIQw1fKTO0aZag7dBAsX18HY58yCZ94tyr3gmWcSkAPT7j6E+M4tuwF2y1zH7+Etghkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WzlusKj48rVFWr9++uDrkElrnuqKYDAVQaHGZ10rldw=;
- b=Y552fyp+XVgovtCqTd9hawjEflV0CGOSnzTjxZVXNs0lHeKQrbrS+BFNm9qK2vzYpR3r495h+Fs6iRMSMnk2FfkFko8eawBsW4tKvYAT25n8jjlRYCi59tn2pdFmRwC/Zaxn1CgU67XUSr5wCql0xqiih7aVfPpMuI33Cnt4JF63dWWa3uXAZK1jle1L76XOq+p162L/qnYJIBQ7kdRRL/4oB63tK8Umw4z1vj6VnPQf7CQuSrmygik1/JQ4HXQ3sQ5GBU4+1feBpj/4RRhAVKa1D5vQQZZR4kLF8mlJ8WgjWBH6e4K6NbsB61uiGj/LGx46ZQh7CcurqGdxveVrig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6409.namprd11.prod.outlook.com (2603:10b6:208:3b8::18)
- by DM4PR11MB7374.namprd11.prod.outlook.com (2603:10b6:8:102::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.22; Fri, 28 Feb
- 2025 07:49:31 +0000
-Received: from BL3PR11MB6409.namprd11.prod.outlook.com
- ([fe80::74e:6abd:bab0:3d0b]) by BL3PR11MB6409.namprd11.prod.outlook.com
- ([fe80::74e:6abd:bab0:3d0b%3]) with mapi id 15.20.8489.021; Fri, 28 Feb 2025
- 07:49:31 +0000
-Date: Fri, 28 Feb 2025 08:49:21 +0100
-From: Mikolaj Wasiak <mikolaj.wasiak@intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] i915/selftest/igt_mmap: let mmap tests run in kthread
-Message-ID: <2x5mflmsnr2uw4hpximytd6czfia4k7o2gfebyf34ovvb2mgxt@2vqna56iatm5>
-References: <mqzn3acyfarzlst3tt3mh5r4bvz4ntjkz5a66pip7qmm6hslb2@qc7g7j7q4z3y>
- <th33hxf2nabfsjfdo7opte3mv3rkkasmqajguxgwcluvpvwkzq@mtoxcubwzopp>
- <6774543.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6774543.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
-X-ClientProxiedBy: VI1PR0102CA0097.eurprd01.prod.exchangelabs.com
- (2603:10a6:803:15::38) To BL3PR11MB6409.namprd11.prod.outlook.com
- (2603:10b6:208:3b8::18)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F2B10EC1D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2025 08:49:44 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 44F9C2116F;
+ Fri, 28 Feb 2025 08:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1740732583; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cRbPOAjYGYE/WOqs1cTr4mXa/3y0++fgPgo2znHLpY4=;
+ b=NeeBqIVfWJvV0hVsd7FAzn12s4z6jB6r30f3Z3BvJS5GbwvbBcagW2CNN+u36tPqCs1pc/
+ jbvbNEAbMlxUasY4wrgoFAq+ZYFk+uafbZJN4ylA10YHUzDP929IYnYssJPH01oW7sDaxG
+ U4Nf6ANihFFcycp8E0LkGUcR0PSDirM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1740732583;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cRbPOAjYGYE/WOqs1cTr4mXa/3y0++fgPgo2znHLpY4=;
+ b=sWvmScywwIr6j1uIYwlNBtc1k6q5dUdvhIIdP1ey2piDrt7+zBpLpBbaj8HtD3bkMHTV84
+ nQHg4wQw/xqtPQAg==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=NeeBqIVf;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=sWvmScyw
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1740732583; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cRbPOAjYGYE/WOqs1cTr4mXa/3y0++fgPgo2znHLpY4=;
+ b=NeeBqIVfWJvV0hVsd7FAzn12s4z6jB6r30f3Z3BvJS5GbwvbBcagW2CNN+u36tPqCs1pc/
+ jbvbNEAbMlxUasY4wrgoFAq+ZYFk+uafbZJN4ylA10YHUzDP929IYnYssJPH01oW7sDaxG
+ U4Nf6ANihFFcycp8E0LkGUcR0PSDirM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1740732583;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=cRbPOAjYGYE/WOqs1cTr4mXa/3y0++fgPgo2znHLpY4=;
+ b=sWvmScywwIr6j1uIYwlNBtc1k6q5dUdvhIIdP1ey2piDrt7+zBpLpBbaj8HtD3bkMHTV84
+ nQHg4wQw/xqtPQAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D4CC913888;
+ Fri, 28 Feb 2025 08:49:42 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id OUafMqZ4wWc1QQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 28 Feb 2025 08:49:42 +0000
+Message-ID: <084ab2f7-240c-45c5-8bde-7c551546d1ca@suse.de>
+Date: Fri, 28 Feb 2025 09:49:42 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6409:EE_|DM4PR11MB7374:EE_
-X-MS-Office365-Filtering-Correlation-Id: b38f1387-e063-4f13-f70b-08dd57cc6f74
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?a1gvL1lkYWlUNVdFeXpkS3dCbFFWaFNaT3BoQloxcTVmbHVESWVUTEprcnR5?=
- =?utf-8?B?TExEMXlFbzA3RUNxcjAwQWFXMmxEejBZeGVWUVBuYzd4cjBPOFoya3VTZFZ3?=
- =?utf-8?B?KzJva211Qmt2dVpQazdYNHQvMUl0ZkM4RVIwTGlvL01tbXQ2bVZnQm80YjA1?=
- =?utf-8?B?RTV2MlRUbW5jcmFyUHlaNTgxdWhzTjc0d1Z2cjNucUhCU1FGQ2lVeUI0RnhN?=
- =?utf-8?B?L09PQ3liN2ZTa3M4WGw2ZEw5WjlLdjUrQXVOUDRCNkplV0hEaVZhZVlCdzBX?=
- =?utf-8?B?V3RrTFkyczZGVnBUSE5RejhBakVsb3NyTlJoQm5EQ1VBcDlPRDYvOVF2cDh1?=
- =?utf-8?B?aWNDdVRMRkx0UmEvaG5nSEp6VkdkVk12MWpweU04RkRVamxIdldJbXovSXpV?=
- =?utf-8?B?NlIvM2Z4eXpqOFNsMXUxWDdIZWxOTyt2RXYxS1BWb3pNOHdicTlqdkJZdlA1?=
- =?utf-8?B?OUp1a0FOWVcyR2IvRVlzZWJ0b0MzaDU4R1N4TGhPZ2ZCRmU0a3FQOW5yNG9W?=
- =?utf-8?B?Z1BrUnFDMmphZjM1alg3dWtSSkxnQUJtc2R1bjJyNHpiYkxnTFczU2ZPSHN3?=
- =?utf-8?B?RkN4K1dtSHBrTHozaS9HZXQrNjVrcHFpM3RURHNsK1VNQmFZMWplbVUycUxV?=
- =?utf-8?B?N3grczZ0U3M5RWd3MmQvMmRiSW5vcXZVMGdHSjg4U3FUSHpwT2RoekV4aEly?=
- =?utf-8?B?MWc5TURTeVhNTERTU0FBVlJLbVVXYzRaWXViWVZqb3FuNGhjZm9qcWI3Y1BS?=
- =?utf-8?B?ZUp0T1RSRlBMVlBnQmtUMVYxOWVHSHU5Q2NGRXZSNFBBYWNoY3RaRmlXQTBh?=
- =?utf-8?B?SHlwbGJvMk5SVzRkQ3B6K2JicGhWcTByV2xhTUhjTmQzWGpzWE5DQXI0RWxy?=
- =?utf-8?B?OTc5LzVJUW1tSTFQZU42ZGRRenBUUkFRRmpXVVFYdzcvMHRkQnNmNHRMbkcv?=
- =?utf-8?B?QTd0dlE0SUh2NnZnb2c3TnppVmdYSzdLOXhacURvZjhPYkE2Ty9FVlVtRE90?=
- =?utf-8?B?bHJBVFRZQS9HcW9oZXJ3QUd6NVpDWWZsZWJxT09mYmhtZmk2NHh0SEtPWjRI?=
- =?utf-8?B?RU5jMWx0Vmg2RDZidFBNZHpLNzQrV0ZzMStQMmI4N043VUJrd2NuK1R5UDFm?=
- =?utf-8?B?UkZJYUdUZE13a1dtTGo3cFFnZGVRTStvUjRXbkRaTlMvRlpxY1h1a29iNnRD?=
- =?utf-8?B?VWlwb3dJYm9RdFR6cUpTSzhRT1oxTVJ0b3dlak0zNVlnalFFUDJ1NGtlME9U?=
- =?utf-8?B?dTlmWXA1dHo3Z0RMd3ZZS3BwR3FMTHp5T3NCNUdQNHdTSzBndjI2clFxY2x0?=
- =?utf-8?B?M0NxNkY4L084S0xLMm1ya0x3Sk1XNFJtelltNzcrL0lVdVNQZmZ1Z2EzQjRS?=
- =?utf-8?B?QTV4cmpHSjZ1NFZySG9tMDFNTEpXOEdNVmNxTGlKVmdxUHJqcUh6bVJYNWZk?=
- =?utf-8?B?WE1qS3JWNzdiR1FIQ0J3b0xlb2NHRjRSOW5MNU1hcGlaNUVrTUJxRC91Vk5Y?=
- =?utf-8?B?dWE2a2Mvemx4UzVOakNUVFBhYWNzWEl6azFDZnpUa3BOeXZ4U3RPa2RrTUI1?=
- =?utf-8?B?dk02THlKZFRNNmp5NGtCaDloU1RHUUw5VkNWSGcrbmQxRmFVcmNiY1AyZHFS?=
- =?utf-8?B?ZFBGRC9CWXFFZlc2RmorZGNRNE51RFRiczRTeThZbmhIS28ydE9NNWQ5TFhs?=
- =?utf-8?B?b3RLdUplVFNWd0w0bzUwQWtZeGxmODBCWUVlaDdEZGEvYUhvczkxUUQ5Z0J2?=
- =?utf-8?B?Q0RiSGRUQmJOM3RyUWhpbFgzdlovT1Evd0JDVEhrbXp6RU1icmhyeG8zMW1z?=
- =?utf-8?B?RkxHeldoNnhoQWhzekg5UT09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6409.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RDhXY2VqWTEwWFAyd05weVQrNFJ4QkU2bHlzclpwVERBTEt2a0JkNmhOcm1K?=
- =?utf-8?B?aiszYjhLcURLR0syb2dUZEo0eDZBdWFGbnlSdSsyNHNoUmNTRHBQc2FrNWM2?=
- =?utf-8?B?TkFVSUJ3UzFpengvQldPeVdLV3Y3UDRMb2Z1V2JLQkRGRDBUUGVsRllDZDZJ?=
- =?utf-8?B?S3EzUW90M1VPa08vM3Jqb05TSEhOUjZXVkZUSU1PazEwUWE3Vjh0Y05PUEIw?=
- =?utf-8?B?ZW9wSmR4ZG9YdnBaSTltcWZuOWgvZ0VjOEQ3b0FxVEtRbkhZUG9HVHdwZkJ0?=
- =?utf-8?B?cnVWRHpDWFhJcXpzS0dGcmlGZm9vRU5JaDBaanpwZHZTTi9BTDRZSHBmOWdN?=
- =?utf-8?B?SklCSk5ZN1paaWcyT2JjSElkL0dYd0NLNE5yeGR2QTJ1UG9TSmloSnhSd0Qr?=
- =?utf-8?B?TlVkWjAxMXhxZkdZa2t2VGZOUDBWNXpvQjFNd3JFaHlCaW51dVFWOWlXOW5z?=
- =?utf-8?B?UHV2U2N1bzU1cUphQ0VhT2dHOHFSSnlsbzN5bVljb0Q3aHdKK004N1FjcDhq?=
- =?utf-8?B?b1dRdGpxc1FqWEd1M0pqSUdsV2VsOGhVdWd5Ym5BdjVwckEvaWxwVER0ZlIx?=
- =?utf-8?B?YWJ3UnJIVmJJZDJYeHdoUFR2YXJmNVFxNTAzUmZCNTdFbVdrY3ZBMXMrZDBZ?=
- =?utf-8?B?WXRWdllVWXlnM2RJeWY1VDFiM3lCazQ1ZGdlc2pTN2twb3FMZmtmU1BjV0FM?=
- =?utf-8?B?WUo3M1ZObDI0d0ZUUnVNTk5XTzk4NjVZV2hoNlpDc3F1K1E5bFJvYjlUU2Nv?=
- =?utf-8?B?Y05FUGsyeVJMQ3k1MTVxMWpjREwrOFVNUWxpeEZBUkJ0ekVhQVh4UGQzVkhV?=
- =?utf-8?B?YzJRMVVSOWFQaXVBK3RzNlB4UG1nZWJZZmV1b3h1VEVtNUhNdnQycUx6QmpE?=
- =?utf-8?B?dStGZ1dMQTV4M2FSZzdiNUhzSzllSDhWbVhTL29ZNHFWWHkyU3ZGRCtqNE8z?=
- =?utf-8?B?L083R0tSWkxQakVSNFNUbHExd1dhL1dCdkQ4dXBHajJBREdNbUJGckhPOTIy?=
- =?utf-8?B?cjhadEZNUHBoMUtKbGEwb29EM0R6b2JleXdrdWxFbHRrVUh2dFRMN0kvM1RC?=
- =?utf-8?B?bDdpNkVZb3NsNDgvVkhWSUJYMkovQ3FvdytBVGxzYVNnWXBvYXlhdlFxWFpC?=
- =?utf-8?B?VWRwLzYzWWUwcG1pRUpONEpid0p3aU5QVnd2SmRJSkx4QUlNUjFMeHlrSXNZ?=
- =?utf-8?B?WldITVAyWWtySXh5aUFQWlRxNUxVanBUN3JobGxyNnJmanljZ3ppa0ZsOXJ0?=
- =?utf-8?B?cDAxbUMzVFJFSndWNTJ0Q3pZZlJMRHNQU2tMNlhXMTB6WGpFZXducFFDVnNy?=
- =?utf-8?B?QkY1Z0tZbm1TRm1GT0Y5TzVWQnRKdk1hQzkwQ24rdXBGUVNrbGw0clFkam05?=
- =?utf-8?B?L3QxYmJ2dndweHBXUnBwV29yZkVnRDJac3hKWDJFTU5RNzFEekFybE9uVEZL?=
- =?utf-8?B?UldOMFNkcFVmendNMXZVTXBKcGRNS2Q5YzBBeTJaR3V2aVdrSVZ0cEtPT3VK?=
- =?utf-8?B?TUIvcDBhem5oTEhLbDRBa0NPT0taL01BME5BSHEvRHQ3RWxKWTBxMlFrRVQr?=
- =?utf-8?B?OW5lZUVScFhSYnFwcmo5VWxqVGpia3lKQWYwR2liQm1BY3FEcm9qYytUemlC?=
- =?utf-8?B?K1hRY2VHdExNZHdwc2piVFFhVldmbW9TZXBrOFlZbXhySlArZzBDeVFBRjN5?=
- =?utf-8?B?Zzh3cWxMUkoyMWZsYnB0VEtmNkZCLzNqWFFxSTNLRmNuOVV4T0wwMk5iU2h5?=
- =?utf-8?B?dFdMSTJMVzZEejFWNTZnd0FrdUtnOVExenlFUzI5VDg1Y1ZjVjN5aEVRQmFJ?=
- =?utf-8?B?MVZkZDF4Q3ZpK0pUM3ZkSkhqWGlnMXNIUmVzcHVhU0FhdmY1L1hCZUw5Z0kr?=
- =?utf-8?B?K09kRlh6ZGEzd1pvVjFCRzQva3BFUmV1YWdJbU5oaWdzbUdrVk5TcGxHK2lU?=
- =?utf-8?B?VGlMbGFoakdsVkNUaCtZc25xcFAwSGc2RWJCWDUzbVI4aUw5TGlkcGFNeU1u?=
- =?utf-8?B?MFYxb01IZlJSZ0p3UGpjSG45bVdQaUR0Y0RQMVdNbXU4eW9LTjcraEp2eERZ?=
- =?utf-8?B?cVB6WkF4QWlaV1RrbG9nZVdYUjB5anhvejRUQU1XbHFGem9RSEZEUm0xZG0z?=
- =?utf-8?B?V1dXZ2Q2dTAzT0xhaUdmV2NjcTRFQWNPMFBBTEVTc2V0dWNGbnI2MXJ6WERX?=
- =?utf-8?B?blE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b38f1387-e063-4f13-f70b-08dd57cc6f74
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6409.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2025 07:49:31.2796 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qNPUadw/1sFgya7BcoUIcRUveohvV8sbKwasjTnA7fDUwhAmdje8Kam5gOdN7RzFuWjOKe7vnuGwzzzS4W03cRb0zhkdNmGkcQNyY2jRwPA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7374
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] drm/{i915,xe}: Convert to DRM client setup
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, simona@ffwll.ch,
+ airlied@gmail.com, mripard@kernel.org, jfalempe@redhat.com,
+ javierm@redhat.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20241212170913.185939-1-tzimmermann@suse.de>
+ <de8325a9-49b2-48ec-ba56-4349140564b1@suse.de>
+ <7ca7be00-f6d9-43b7-b3d0-0984306ac302@linux.intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <7ca7be00-f6d9-43b7-b3d0-0984306ac302@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 44F9C2116F
+X-Spam-Score: -4.51
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,ffwll.ch,gmail.com,kernel.org,redhat.com];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ ASN(0.00)[asn:25478, ipnet:::/0, country:RU]; ARC_NA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[15]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; MID_RHS_MATCH_FROM(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,27 +155,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+Hi Maarten
 
-> I agree with both Andi and Krzysztof comments.
-> 
-> If the issue is tracked in our bug tracker then please provide a link to its 
-> record in a Link: or even Closes: tag.  Do you have call traces on hand?  
-> Probably yes, so please consider adding a concise excerpt to your description.
-> 
-> While looking for similar cases, I've found commit 51104c19d857 ("kunit: test: 
-> Add vm_mmap() allocation resource manager") that seems to have resolved a 
-> similar issue for then newly added kunit tests accessing current->mm.  Maybe 
-> the approach used there is worth of reusing it for i915 selftests.
-> 
-> Thanks,
-> Janusz
+Am 12.02.25 um 08:28 schrieb Maarten Lankhorst:
+> Hey,
+>
+> I'll give it a spin on xe today. It seems someone already tried on i915,
+> so I expect no issues.
 
-Here is related bug
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679
+Did you get to test the series?
 
-I've seen commit you found. It sadly uses symbols that aren't exported
-outside of mm module and kunit tests and so I can't replicate it in our
-selftest.
+Best regards
+Thomas
 
-Mikołaj
+>
+> The only question I have is do we still inherit the BIOS fb on boot
+> for fbdev?
+>
+> The really active bit seems to be replacing the fbdev stuff with
+> drm_client_setup_with_color_mode
+>
+> Patches themselves look good.
+>
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>
+> On 2025-02-11 08:17, Thomas Zimmermann wrote:
+>> ping for a review
+>>
+>> Am 12.12.24 um 18:08 schrieb Thomas Zimmermann:
+>>> i915 and xe are the last remaining drivers that still implement their
+>>> own fbdev client. All other clients have been mass converted to DRM's
+>>> client setup in in the series at [1]. As Intel drivers require more
+>>> effort than others, their changes have been moved into this separate
+>>> series.
+>>>
+>>> With DRM's client setup, DRM picks the in-kernel client from the
+>>> kernel's config and parameters. Besides fbdev there's also drm_log
+>>> available. For fbdev support, the driver only has to implement struct
+>>> drm_driver.fbdev_probe, a callback that allocates a compatible
+>>> framebuffer.
+>>>
+>>> At first, some details of the Intel implementation have to be rebuild
+>>> for the generic client and fbdev handling. Patches 1 to 6 do that.
+>>> Hotplugging and suspend/resume are then hidden behind callbacks. Some
+>>> Intel-specifics in the restore and suspend code get their own hooks.
+>>>
+>>> Patches 7 to 9 prepare Intel's fbdev implementation ot get things
+>>> out of the way.
+>>>
+>>> Patch 10 converts i915 and xe to DRM's client setup. Patches 11 and
+>>> 12 clean up the remaining code.
+>>>
+>>> Tested with i915 and xe hardware.
+>>>
+>>> [1] https://patchwork.freedesktop.org/series/137391/
+>>>
+>>> Thomas Zimmermann (12):
+>>>    drm/{i915,xe}: Suspend/resume fbdev emulation via client interfaces
+>>>    drm/client: Add client-hotplug helper
+>>>    drm/client: Send pending hotplug events after resume
+>>>    drm/i915/display: Remove fbdev suspend and hotplug tracking
+>>>    drm/i915/display: fbdev: Move custom restore code to new callback
+>>>    drm/i915/display: fbdev: Move custom suspend code to new callback
+>>>    drm/i915/display: Remove preferred_bpp from struct intel_fbdev
+>>>    drm/i915/display: Remove struct drm_fb_helper from struct 
+>>> intel_fbdev
+>>>    drm/i915/display: Move fbdev code around
+>>>    drm/{i915,xe}: Run DRM default client setup
+>>>    drm/i915/display: Remove compile guard around fbdev debugfs output
+>>>    drm/fb-helper: Remove struct drm_fb_helper.fb_probe
+>>>
+>>>   drivers/gpu/drm/drm_client_event.c            |  41 ++-
+>>>   drivers/gpu/drm/drm_fb_helper.c               |  20 +-
+>>>   .../gpu/drm/i915/display/intel_display_core.h |   1 -
+>>>   .../drm/i915/display/intel_display_debugfs.c  |   2 -
+>>>   drivers/gpu/drm/i915/display/intel_fbdev.c    | 338 
+>>> ++++--------------
+>>>   drivers/gpu/drm/i915/display/intel_fbdev.h    |  17 +-
+>>>   drivers/gpu/drm/i915/i915_driver.c            |  10 +-
+>>>   drivers/gpu/drm/xe/display/xe_display.c       |  12 +-
+>>>   include/drm/drm_client.h                      |   8 +
+>>>   include/drm/drm_fb_helper.h                   |  44 ++-
+>>>   10 files changed, 176 insertions(+), 317 deletions(-)
+>>>
+>>>
+>>> base-commit: 7bbcd7df9387f0d9004f997df33f7a9472d9c080
+>>
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
