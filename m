@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B12A4A2E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 20:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3611EA4A30C
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 20:50:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B776510ED2A;
-	Fri, 28 Feb 2025 19:47:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6Oc8mqi";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDCB610ED2F;
+	Fri, 28 Feb 2025 19:50:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC96710ED2A;
- Fri, 28 Feb 2025 19:47:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740772029; x=1772308029;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=QAkzxGNM1gfcRLSdEdADHdTZjxCmVR3HvEf46OPpmrY=;
- b=e6Oc8mqimZX5PLL9klV8BpeoplP2m3UJyU0qrM98n1Lk7FFhgYvmHxr6
- EHlkJm4c9rvP4AuU9Q6AbqlMyvhstu2CZNIsCw0WT/tfBLUBbkMg+5EJh
- sbWcTjlkwZ1JnzBUonRjiEi+YNAPyGF2ehVXK1cVlnuA8QgPnLK+Vqfn+
- gK94nB0UJ6e+CCTTO6ssSOj6fuysUIan3BbGvkMhyzALI3bWdyr8yVstn
- vPZQwDPCCxMILS8wZC03AOroGGtZwfeWFAn4S3hFmMiH7TB2nN29g0isz
- IUJ/cuWIgmhaen4Fs0tH0nI8mYoL0aWAoupiuFbAHFxJnBzoiP3VM8SC/ g==;
-X-CSE-ConnectionGUID: RwoIokMeQIiv+Y21ub18Aw==
-X-CSE-MsgGUID: Wa0YZKVvQR6tGmdG+GW7VQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41415570"
-X-IronPort-AV: E=Sophos;i="6.13,323,1732608000"; d="scan'208";a="41415570"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 11:47:08 -0800
-X-CSE-ConnectionGUID: CXQ7JbJIRFmneUcXojF2kg==
-X-CSE-MsgGUID: ZGje/74sTXGzvwwKxfr9Bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122660125"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 28 Feb 2025 11:47:06 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2025 21:47:05 +0200
-Date: Fri, 28 Feb 2025 21:47:05 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/atomic: Filter out redundant DPMS calls
-Message-ID: <Z8ISuRz2l9Om9tC_@intel.com>
-References: <20250219160239.17502-1-ville.syrjala@linux.intel.com>
- <Z7b7tSabXeLe1ovT@phenom.ffwll.local>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63EDA10ED2F;
+ Fri, 28 Feb 2025 19:50:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z7b7tSabXeLe1ovT@phenom.ffwll.local>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/vdsc=3A_Use?=
+ =?utf-8?q?_the_DSC_config_tables_for_DSI_panels_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Feb 2025 19:50:22 -0000
+Message-ID: <174077222240.3295116.11429830845237279631@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250228152531.403026-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250228152531.403026-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,46 +37,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 20, 2025 at 10:53:57AM +0100, Simona Vetter wrote:
-> On Wed, Feb 19, 2025 at 06:02:39PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > Video players (eg. mpv) do periodic XResetScreenSaver() calls to
-> > keep the screen on while the video playing. The modesetting ddx
-> > plumbs these straight through into the kernel as DPMS setproperty
-> > ioctls, without any filtering whatsoever. When implemented via
-> > atomic these end up as full commits on the crtc, which leads to a
-> > dropped frame every time XResetScreenSaver() is called.
-> 
-> I think you should add here that it's just an empty commit, because we do
-> filter out redundant commits where crtc->active_changed does nothing.
-> Except we still run the entire machinery with timestamps and drm_event and
-> everything.
-> 
-> And I don't think it's worth to filter that out at the atomic level,
-> because it's really only legacy ioctl that had this "complete noop"
-> behaviour.
-> 
-> With the commit message augmented:
-> 
-> Reviewed-by: Simona Vetter <simona.vetter@ffwll.ch>
-> 
-> Might also be nice to have a igt for this?
+== Series Details ==
 
-kms_flip was basically doing everything we want already,
-so added one more subtest for this:
-https://lore.kernel.org/igt-dev/20250228194240.20023-1-ville.syrjala@linux.intel.com/T/#u
+Series: drm/i915/vdsc: Use the DSC config tables for DSI panels (rev5)
+URL   : https://patchwork.freedesktop.org/series/145561/
+State : warning
 
-> Plus also wondering whether we
-> should cc: stable it.
+== Summary ==
 
-I guess we could. I've been running this for who knows how long
-anyway (just never got around to sending it), so should be fairly
-safe.
+Error: dim checkpatch failed
+a0f49a32fec2 drm/i915/vdsc: Use the DSC config tables for DSI panels
+-:26: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
+#26: 
+Co-developed-by: William Tseng <william.tseng@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
--- 
-Ville Syrjälä
-Intel
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
+
+
