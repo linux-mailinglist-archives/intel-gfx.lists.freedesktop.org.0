@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178C9A49AFE
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 14:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B27BA49B02
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 14:53:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B085A10E2A5;
-	Fri, 28 Feb 2025 13:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D299510ECAB;
+	Fri, 28 Feb 2025 13:53:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFBB410E2A5;
- Fri, 28 Feb 2025 13:52:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB6B10ECAB;
+ Fri, 28 Feb 2025 13:53:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_warning_for_drm/i915/display=3A_add_s?=
- =?utf-8?q?ome_sub-structs_for_clarity?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?add_some_sub-structs_for_clarity?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Feb 2025 13:52:56 -0000
-Message-ID: <174075077689.3240992.7279860082668723843@b555e5b46a47>
+Date: Fri, 28 Feb 2025 13:53:57 -0000
+Message-ID: <174075083716.3240952.11311751351754310954@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <cover.1740746939.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1740746939.git.jani.nikula@intel.com>
@@ -49,6 +49,14 @@ State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/145641/revisions/1/mbox/ not found
+Error: dim checkpatch failed
+c1708cdf9cd9 drm/i915/mst: add mst sub-struct to struct intel_dp
+95c39d7c2118 drm/i915/mst: add mst sub-struct to struct intel_connector
+-:278: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#278: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:1216:
++				       drm_atomic_get_mst_payload_state(mst_state, connector->mst.port));
+
+total: 0 errors, 1 warnings, 0 checks, 379 lines checked
+ef6c6a3dd8a7 drm/i915/hdcp: add hdcp sub-struct to struct intel_digital_port
 
 
