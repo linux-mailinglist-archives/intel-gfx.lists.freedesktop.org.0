@@ -2,58 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3ACA49E0E
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 16:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D789A49EAF
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 17:24:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E77410ECE2;
-	Fri, 28 Feb 2025 15:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0458D10ECF3;
+	Fri, 28 Feb 2025 16:24:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjD1nIm2";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="edC3LwA3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB76310ECE0;
- Fri, 28 Feb 2025 15:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740757917; x=1772293917;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=wthU+7zBL85yjZIO8SJUzjbOc9YHJHU0w+v1avIxDoQ=;
- b=MjD1nIm2NYx7M/YGrUslBZCIgpD4ihB6wo7iFIlo3d+HIBVjaL0V8uUG
- UeL4a63sE4KEiK5ZHEpb2kDxQqOeVArsDmH5A9TSOagPS3WhtqloPr2g/
- 3l9mM5hVkf4kioUImwJCRlT2OC0CujZPK4JOjptu6aXOCvm8Qmxqvowo4
- cxElTkwMN8WjtxlnIjMMBdncs5ezThCqbdNuhCv/QQCyrbPHVA8rHvcLj
- rF7ZVH5mOWLaWiHPorjadnY38o9MOMb7SSQtT3KyiHwNCDMwmwoqKWT1W
- pTGhbN11WqwLIdqwDAZYEXWVkuab3bnsHYAJPeM5yCQJiIA79y2Cc2ayS w==;
-X-CSE-ConnectionGUID: nECq/mgSSrOXIytCoKohsA==
-X-CSE-MsgGUID: nwFF5k9bSo+sL4jdPo1Xdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="45342721"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="45342721"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:51:57 -0800
-X-CSE-ConnectionGUID: nV7hjzSrTA2Lifua2txCAw==
-X-CSE-MsgGUID: LIVFF3PTSBqHoiTQWMUiOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="117896174"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 07:51:55 -0800
-Date: Fri, 28 Feb 2025 17:52:57 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/mst: add mst sub-struct to struct
- intel_connector
-Message-ID: <Z8Hb2aOzsFU7oPdq@ideak-desk.fi.intel.com>
-References: <cover.1740746939.git.jani.nikula@intel.com>
- <e2afaf4595ae8e3241aaca1c1bb4d6356b07e44a.1740746939.git.jani.nikula@intel.com>
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
+ [217.70.183.200])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC8810ECF3;
+ Fri, 28 Feb 2025 16:24:22 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9B54A43209;
+ Fri, 28 Feb 2025 16:24:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1740759861;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=Z1IKkm6+PnFpEAaGDs3hByJh2w/s4OJvKkdhV8BI7pE=;
+ b=edC3LwA3ZOzxlMbNW5jOkj/xKOgxgvLzgon2Z/ebWjzgQUi58Dkjm/75rkhuUGW7SpC0tk
+ AHwhVudHAxwtfIIwdBRbKUYUr3evh2KHEQGqlBhZHvVKDTcQP31xiSRZ7lY0wJrEXFxfCv
+ lJt0YEvz3TtNcLkjPIdQbbfiBPBo5WWqoj+msms2+B1B2ptPR0zLFhDPAXhWeB96HSNtGF
+ LTlEob23gTpAc+ul+1YioTJA4xPVxWSq94OfJ1AjOX2OSoOW0uMbOqqdADilVSfoCI+MrK
+ Yk9Erg0FLMROh/6gTe0YXmDEwLNQCctTGAA2eX2VW3FNkLxysdHQhi1Z26eOlA==
+Message-ID: <caba927a-b71b-40bf-96b6-d15418ed705a@bootlin.com>
+Date: Fri, 28 Feb 2025 17:24:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e2afaf4595ae8e3241aaca1c1bb4d6356b07e44a.1740746939.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/63] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
+To: Greg KH <gregkh@linuxfoundation.org>, Jim Cromie <jim.cromie@gmail.com>,
+ linux-kernel@vger.kernel.org, jbaron@akamai.com, ukaszb@chromium.org,
+ intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, tvrtko.ursulin@linux.intel.com,
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+ <2025022012-viscous-cringing-bf88@gregkh>
+ <Z7b50rGRA4RuybgC@phenom.ffwll.local>
+Content-Language: en-US
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
+ 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
+In-Reply-To: <Z7b50rGRA4RuybgC@phenom.ffwll.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdeltdekiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetueetjedtudegtdeftdevtedtgeehhefftdejheduvdfhlefhveekheethfffueenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvtddtudemkeeiudemgedugedtmegtkeeitdemheguiedumeeifeefleemieeirgeimegvtdejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvtddtudemkeeiudemgedugedtmegtkeeitdemheguiedumeeifeefleemieeirgeimegvtdejhedphhgvlhhopeglkffrggeimedvtddtudemkeeiudemgedugedtmegtkeeitdemheguiedumeeifeefleemieeirgeimegvtdejhegnpdhmrghilhhfrhhomheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudefpdhrtghpthhtohepghhrvghgkhhhsehlihhnu
+ higfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtohepjhhimhdrtghrohhmihgvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhgsrghrohhnsegrkhgrmhgrihdrtghomhdprhgtphhtthhopehukhgrshiisgestghhrhhomhhiuhhmrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgidqthhrhigsohhtsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+X-GND-Sasl: louis.chauvet@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,477 +120,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 02:49:30PM +0200, Jani Nikula wrote:
-> Move port and mst_port members of struct intel_connector under an mst
-> sub-struct to group mst related things together.
-> 
-> Rename the latter dp for clarity.
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-> ---
->  .../gpu/drm/i915/display/intel_connector.c    |  4 +-
->  .../drm/i915/display/intel_display_debugfs.c  |  4 +-
->  .../drm/i915/display/intel_display_types.h    | 13 ++--
->  drivers/gpu/drm/i915/display/intel_dp.c       | 12 ++--
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  6 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 72 +++++++++----------
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  8 +--
->  7 files changed, 60 insertions(+), 59 deletions(-)
+Le 20/02/2025 à 10:45, Simona Vetter a écrit :
+> On Thu, Feb 20, 2025 at 09:31:41AM +0100, Greg KH wrote:
+>> On Fri, Jan 24, 2025 at 11:45:14PM -0700, Jim Cromie wrote:
+>>> This series fixes dynamic-debug's support for DRM debug-categories.
+>>> Classmaps-v1 evaded full review, and got committed in 2 chunks:
+>>>
+>>>    b7b4eebdba7b..6ea3bf466ac6	# core dyndbg changes
+>>>    0406faf25fb1..ee7d633f2dfb	# drm adoption
+>>>
+>>> DRM-CI found a regression during init with drm.debug=<initval>; the
+>>> static-keys under the drm-dbgs in drm.ko got enabled, but those in
+>>> drivers & helpers did not.
+>>>
+>>> Root Problem:
+>>>
+>>> DECLARE_DYNDBG_CLASSMAP violated a K&R rule "define once, refer
+>>> afterwards".  Replace it with DYNDBG_CLASSMAP_DEFINE (invoked once in
+>>> drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
+>>> helpers).
+>>>
+>>> _DEFINE exports the classmap it creates (in drm.ko), other modules
+>>> _USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
+>>> exported) classmap, in a 2nd __dyndbg_class_users section.
+>>>
+>>> So now at modprobe, dyndbg scans the new section after the 1st
+>>> __dyndbg_class_maps section, follows the linkage to the _DEFINEr
+>>> module, finds the (optional) kernel-param controlling the classmap,
+>>> examines its drm.debug=<initval>, and applies it to the module being
+>>> initialized.
+>>>
+>>> To recapitulate the multi-module problem wo DRM involvement, Add:
+>>>
+>>> A. tools/testing/selftests/dynamic_debug/*
+>>>
+>>> This alters pr_debugs in the test-modules, counts the results and
+>>> checks them against expectations.  It uses this formula to test most
+>>> of the control grammar, including the new class keyword.
+>>>
+>>> B. test_dynamic_debug_submod.ko
+>>>
+>>> This alters the test-module to build both parent & _submod ko's, with
+>>> _DEFINE and _USE inside #if/#else blocks.  This recap's DRM's 2 module
+>>> failure scenario, allowing A to exersize several cases.
+>>>
+>>> The #if/#else puts the 2 macro uses together for clarity, and gives
+>>> the 2 modules identical sets of debugs.
+>>>
+>>> Recent DRM-CI tests are here:
+>>>    https://patchwork.freedesktop.org/series/139147/
+>>>
+>>> Previous rev:
+>>>    https://lore.kernel.org/lkml/20240716185806.1572048-1-jim.cromie@gmail.com/
+>>>
+>>> Noteworthy Additions:
+>>>
+>>> 1- drop class "protection" special case, per JBaron's preference.
+>>>     only current use is marked BROKEN so nobody to affect.
+>>>     now framed as policy-choice:
+>>>     #define ddebug_client_module_protects_classes() false
+>>>     subsystems wanting protection can change this.
+>>>
+>>> 2- compile-time arg-tests in DYNDBG_CLASSMAP_DEFINE
+>>>     implement several required constraints, and fail obviously.
+>>>
+>>> 3- modprobe time check of conflicting class-id reservations
+>>>     only affects 2+classmaps users.
+>>>     compile-time solution not apparent.
+>>>
+>>> 4- dyndbg can now cause modprobe to fail.
+>>>     needed to catch 3.
+>>>     maybe some loose ends here on failure.
+>>>
+>>> 5- refactor & rename ddebug_attach_*module_classes
+>>>     reduce repetetive boilerplate on 2 types: maps, users.
+>>>     rework mostly brought forward in patchset to reduce churn
+>>>     TBD: maybe squash more.
+>>>
+>>> Several recent trybot submissions (against drm-tip) have been passing
+>>> CI.BAT, and failing one or few CI.IGT tests randomly; re-tests do not
+>>> reliably repeat the failures.
+>>>
+>>> its also at github.com:jimc/linux.git
+>>>    dd-fix-9[st]-ontip  &  dd-fix-9-13
+>>>
+>>> Ive been running it on my desktop w/o issues.
+>>>
+>>> The drivers/gpu/drm patches are RFC, I think there might be a single
+>>> place to call DRM_CLASSMAP_USE(drm_dedbug_classes) to replace the
+>>> sprinkling of _USEs in drivers and helpers.  IIRC, I tried adding a
+>>> _DEFINE into drm_drv.c, that didn't do it, so I punted for now.
+>>>
+>>> I think the dyndbg core additions are ready for review and merging
+>>> into a (next-next) test/integration tree.
+>>
+>> So whose tree should this go through?
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index 358965fc7f55..e42357bd9e80 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -145,8 +145,8 @@ void intel_connector_destroy(struct drm_connector *connector)
->  
->  	drm_connector_cleanup(connector);
->  
-> -	if (intel_connector->port)
-> -		drm_dp_mst_put_port_malloc(intel_connector->port);
-> +	if (intel_connector->mst.port)
-> +		drm_dp_mst_put_port_malloc(intel_connector->mst.port);
->  
->  	kfree(connector);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 408f80194334..510c15a6271f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -261,7 +261,7 @@ static void intel_connector_info(struct seq_file *m,
->  	switch (connector->connector_type) {
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  	case DRM_MODE_CONNECTOR_eDP:
-> -		if (intel_connector->mst_port)
-> +		if (intel_connector->mst.dp)
->  			intel_dp_mst_info(m, intel_connector);
->  		else
->  			intel_dp_info(m, intel_connector);
-> @@ -1341,7 +1341,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->  	intel_dp_link_training_debugfs_add(connector);
->  
->  	if (DISPLAY_VER(display) >= 11 &&
-> -	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst_port) ||
-> +	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
->  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
->  		debugfs_create_file("i915_dsc_fec_support", 0644, root,
->  				    connector, &i915_dsc_fec_support_fops);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2aa8f6264708..b52fca816591 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -534,10 +534,6 @@ struct intel_connector {
->  	   state of connector->polled in case hotplug storm detection changes it */
->  	u8 polled;
->  
-> -	struct drm_dp_mst_port *port;
-> -
-> -	struct intel_dp *mst_port;
-> -
->  	int force_joined_pipes;
->  
->  	struct {
-> @@ -549,6 +545,11 @@ struct intel_connector {
->  		u8 dsc_decompression_enabled:1;
->  	} dp;
->  
-> +	struct {
-> +		struct drm_dp_mst_port *port;
-> +		struct intel_dp *dp;
-> +	} mst;
-> +
->  	/* Work struct to schedule a uevent on link train failure */
->  	struct work_struct modeset_retry_work;
->  
-> @@ -1956,8 +1957,8 @@ static inline struct intel_dp *enc_to_intel_dp(struct intel_encoder *encoder)
->  
->  static inline struct intel_dp *intel_attached_dp(struct intel_connector *connector)
->  {
-> -	if (connector->mst_port)
-> -		return connector->mst_port;
-> +	if (connector->mst.dp)
-> +		return connector->mst.dp;
->  	else
->  		return enc_to_intel_dp(intel_attached_encoder(connector));
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 5e84103c8d54..205ec315b413 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1376,7 +1376,7 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
->  	if (!HAS_DSC(display))
->  		return false;
->  
-> -	if (connector->mst_port && !HAS_DSC_MST(display))
-> +	if (connector->mst.dp && !HAS_DSC_MST(display))
->  		return false;
->  
->  	if (connector->base.connector_type == DRM_MODE_CONNECTOR_eDP &&
-> @@ -3080,7 +3080,7 @@ intel_dp_queue_modeset_retry_for_link(struct intel_atomic_state *state,
->  		if (!conn_state->base.crtc)
->  			continue;
->  
-> -		if (connector->mst_port == intel_dp)
-> +		if (connector->mst.dp == intel_dp)
->  			intel_connector_queue_modeset_retry_work(connector);
->  	}
->  }
-> @@ -3302,8 +3302,8 @@ intel_dp_sink_set_dsc_passthrough(const struct intel_connector *connector,
->  				  bool enable)
->  {
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct drm_dp_aux *aux = connector->port ?
-> -				 connector->port->passthrough_aux : NULL;
-> +	struct drm_dp_aux *aux = connector->mst.port ?
-> +				 connector->mst.port->passthrough_aux : NULL;
->  
->  	if (!aux)
->  		return;
-> @@ -3330,7 +3330,7 @@ static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
->  	 * On SST the decompression AUX device won't be shared, each connector
->  	 * uses for this its own AUX targeting the sink device.
->  	 */
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return connector->dp.dsc_decompression_enabled ? 1 : 0;
->  
->  	for_each_oldnew_connector_in_state(&state->base, _connector_iter,
-> @@ -3338,7 +3338,7 @@ static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
->  		const struct intel_connector *
->  			connector_iter = to_intel_connector(_connector_iter);
->  
-> -		if (connector_iter->mst_port != connector->mst_port)
-> +		if (connector_iter->mst.dp != connector->mst.dp)
->  			continue;
->  
->  		if (!connector_iter->dp.dsc_decompression_enabled)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 00c493cc8a4b..4c9481124c90 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -705,10 +705,10 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
->  
->  	*hdcp_capable = false;
->  	*hdcp2_capable = false;
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return -EINVAL;
->  
-> -	aux = &connector->port->aux;
-> +	aux = &connector->mst.port->aux;
->  	ret =  _intel_dp_hdcp2_get_capability(aux, hdcp2_capable);
->  	if (ret)
->  		drm_dbg_kms(display->drm,
-> @@ -883,7 +883,7 @@ int intel_dp_hdcp_init(struct intel_digital_port *dig_port,
->  	if (!is_hdcp_supported(display, port))
->  		return 0;
->  
-> -	if (intel_connector->mst_port)
-> +	if (intel_connector->mst.dp)
->  		return intel_hdcp_init(intel_connector, dig_port,
->  				       &intel_dp_mst_hdcp_shim);
->  	else if (!intel_dp_is_edp(intel_dp))
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index e96236fbe407..02f95108c637 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -356,7 +356,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->  			crtc_state->dp_m_n.tu = remote_tu;
->  
->  			slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst.mgr,
-> -							      connector->port,
-> +							      connector->mst.port,
->  							      dfixed_trunc(pbn));
->  		} else {
->  			/* Same as above for remote_tu */
-> @@ -509,8 +509,8 @@ hblank_expansion_quirk_needs_dsc(const struct intel_connector *connector,
->  {
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
-> -	bool is_uhbr_sink = connector->mst_port &&
-> -			    drm_dp_128b132b_supported(connector->mst_port->dpcd);
-> +	bool is_uhbr_sink = connector->mst.dp &&
-> +			    drm_dp_128b132b_supported(connector->mst.dp->dpcd);
->  	int hblank_limit = is_uhbr_sink ? 500 : 300;
->  
->  	if (!connector->dp.dsc_hblank_expansion_quirk)
-> @@ -741,7 +741,7 @@ intel_dp_mst_transcoder_mask(struct intel_atomic_state *state,
->  		const struct intel_crtc_state *crtc_state;
->  		struct intel_crtc *crtc;
->  
-> -		if (connector->mst_port != mst_port || !conn_state->base.crtc)
-> +		if (connector->mst.dp != mst_port || !conn_state->base.crtc)
->  			continue;
->  
->  		crtc = to_intel_crtc(conn_state->base.crtc);
-> @@ -769,12 +769,12 @@ static u8 get_pipes_downstream_of_mst_port(struct intel_atomic_state *state,
->  		if (!conn_state->base.crtc)
->  			continue;
->  
-> -		if (&connector->mst_port->mst.mgr != mst_mgr)
-> +		if (&connector->mst.dp->mst.mgr != mst_mgr)
->  			continue;
->  
-> -		if (connector->port != parent_port &&
-> +		if (connector->mst.port != parent_port &&
->  		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
-> -							  connector->port,
-> +							  connector->mst.port,
->  							  parent_port))
->  			continue;
->  
-> @@ -925,7 +925,7 @@ mst_connector_atomic_topology_check(struct intel_connector *connector,
->  		struct intel_crtc_state *crtc_state;
->  		struct intel_crtc *crtc;
->  
-> -		if (connector_iter->mst_port != connector->mst_port ||
-> +		if (connector_iter->mst.dp != connector->mst.dp ||
->  		    connector_iter == connector)
->  			continue;
->  
-> @@ -974,15 +974,15 @@ mst_connector_atomic_check(struct drm_connector *_connector,
->  
->  	if (intel_connector_needs_modeset(state, &connector->base)) {
->  		ret = intel_dp_tunnel_atomic_check_state(state,
-> -							 connector->mst_port,
-> +							 connector->mst.dp,
->  							 connector);
->  		if (ret)
->  			return ret;
->  	}
->  
->  	return drm_dp_atomic_release_time_slots(&state->base,
-> -						&connector->mst_port->mst.mgr,
-> -						connector->port);
-> +						&connector->mst.dp->mst.mgr,
-> +						connector->mst.port);
->  }
->  
->  static void mst_stream_disable(struct intel_atomic_state *state,
-> @@ -1027,9 +1027,9 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
->  	struct drm_dp_mst_topology_state *new_mst_state =
->  		drm_atomic_get_new_mst_topology_state(&state->base, &intel_dp->mst.mgr);
->  	const struct drm_dp_mst_atomic_payload *old_payload =
-> -		drm_atomic_get_mst_payload_state(old_mst_state, connector->port);
-> +		drm_atomic_get_mst_payload_state(old_mst_state, connector->mst.port);
->  	struct drm_dp_mst_atomic_payload *new_payload =
-> -		drm_atomic_get_mst_payload_state(new_mst_state, connector->port);
-> +		drm_atomic_get_mst_payload_state(new_mst_state, connector->mst.port);
->  	struct intel_crtc *pipe_crtc;
->  	bool last_mst_stream;
->  	int i;
-> @@ -1080,7 +1080,7 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
->  	 * Power down mst path before disabling the port, otherwise we end
->  	 * up getting interrupts from the sink upon detecting link loss.
->  	 */
-> -	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->port,
-> +	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port,
->  				     false);
->  
->  	/*
-> @@ -1199,7 +1199,7 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
->  	if (first_mst_stream)
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
->  
-> -	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->port, true);
-> +	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, true);
->  
->  	intel_dp_sink_enable_decompression(state, connector, pipe_config);
->  
-> @@ -1213,7 +1213,7 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
->  	intel_dp->mst.active_links++;
->  
->  	ret = drm_dp_add_payload_part1(&intel_dp->mst.mgr, mst_state,
-> -				       drm_atomic_get_mst_payload_state(mst_state, connector->port));
-> +				       drm_atomic_get_mst_payload_state(mst_state, connector->mst.port));
->  	if (ret < 0)
->  		intel_dp_queue_modeset_retry_for_link(state, primary_encoder, pipe_config);
->  
-> @@ -1339,7 +1339,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
->  
->  	ret = drm_dp_add_payload_part2(&intel_dp->mst.mgr,
->  				       drm_atomic_get_mst_payload_state(mst_state,
-> -									connector->port));
-> +									connector->mst.port));
->  	if (ret < 0)
->  		intel_dp_queue_modeset_retry_for_link(state, primary_encoder, pipe_config);
->  
-> @@ -1392,7 +1392,7 @@ static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	const struct drm_edid *drm_edid;
->  	int ret;
->  
-> @@ -1402,7 +1402,7 @@ static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
->  	if (!intel_display_driver_check_access(display))
->  		return drm_edid_connector_add_modes(&connector->base);
->  
-> -	drm_edid = drm_dp_mst_edid_read(&connector->base, &intel_dp->mst.mgr, connector->port);
-> +	drm_edid = drm_dp_mst_edid_read(&connector->base, &intel_dp->mst.mgr, connector->mst.port);
->  
->  	ret = intel_connector_update_modes(&connector->base, drm_edid);
->  
-> @@ -1417,13 +1417,13 @@ mst_connector_late_register(struct drm_connector *_connector)
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	int ret;
->  
-> -	ret = drm_dp_mst_connector_late_register(&connector->base, connector->port);
-> +	ret = drm_dp_mst_connector_late_register(&connector->base, connector->mst.port);
->  	if (ret < 0)
->  		return ret;
->  
->  	ret = intel_connector_register(&connector->base);
->  	if (ret < 0)
-> -		drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> +		drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
->  
->  	return ret;
->  }
-> @@ -1434,7 +1434,7 @@ mst_connector_early_unregister(struct drm_connector *_connector)
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  
->  	intel_connector_unregister(&connector->base);
-> -	drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> +	drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
->  }
->  
->  static const struct drm_connector_funcs mst_connector_funcs = {
-> @@ -1463,9 +1463,9 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst.mgr;
-> -	struct drm_dp_mst_port *port = connector->port;
-> +	struct drm_dp_mst_port *port = connector->mst.port;
->  	const int min_bpp = 18;
->  	int max_dotclk = display->cdclk.max_dotclk_freq;
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
-> @@ -1576,7 +1576,7 @@ mst_connector_atomic_best_encoder(struct drm_connector *_connector,
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct drm_connector_state *connector_state =
->  		drm_atomic_get_new_connector_state(state, &connector->base);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  	struct intel_crtc *crtc = to_intel_crtc(connector_state->crtc);
->  
->  	return &intel_dp->mst.stream_encoders[crtc->pipe]->base.base;
-> @@ -1588,7 +1588,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct intel_dp *intel_dp = connector->mst_port;
-> +	struct intel_dp *intel_dp = connector->mst.dp;
->  
->  	if (!intel_display_device_enabled(display))
->  		return connector_status_disconnected;
-> @@ -1602,7 +1602,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
->  	intel_dp_flush_connector_commits(connector);
->  
->  	return drm_dp_mst_detect_port(&connector->base, ctx, &intel_dp->mst.mgr,
-> -				      connector->port);
-> +				      connector->mst.port);
->  }
->  
->  static const struct drm_connector_helper_funcs mst_connector_helper_funcs = {
-> @@ -1693,10 +1693,10 @@ static bool detect_dsc_hblank_expansion_quirk(const struct intel_connector *conn
->  	 * A logical port's OUI (at least for affected sinks) is all 0, so
->  	 * instead of that the parent port's OUI is used for identification.
->  	 */
-> -	if (drm_dp_mst_port_is_logical(connector->port)) {
-> -		aux = drm_dp_mst_aux_for_parent(connector->port);
-> +	if (drm_dp_mst_port_is_logical(connector->mst.port)) {
-> +		aux = drm_dp_mst_aux_for_parent(connector->mst.port);
->  		if (!aux)
-> -			aux = &connector->mst_port->aux;
-> +			aux = &connector->mst.dp->aux;
->  	}
->  
->  	if (drm_dp_read_dpcd_caps(aux, dpcd) < 0)
-> @@ -1744,8 +1744,8 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
->  
->  	connector->get_hw_state = mst_connector_get_hw_state;
->  	connector->sync_state = intel_dp_connector_sync_state;
-> -	connector->mst_port = intel_dp;
-> -	connector->port = port;
-> +	connector->mst.dp = intel_dp;
-> +	connector->mst.port = port;
->  	drm_dp_mst_get_port_malloc(port);
->  
->  	ret = drm_connector_dynamic_init(display->drm, &connector->base, &mst_connector_funcs,
-> @@ -1954,11 +1954,11 @@ intel_dp_mst_add_topology_state_for_connector(struct intel_atomic_state *state,
->  {
->  	struct drm_dp_mst_topology_state *mst_state;
->  
-> -	if (!connector->mst_port)
-> +	if (!connector->mst.dp)
->  		return 0;
->  
->  	mst_state = drm_atomic_get_mst_topology_state(&state->base,
-> -						      &connector->mst_port->mst.mgr);
-> +						      &connector->mst.dp->mst.mgr);
->  	if (IS_ERR(mst_state))
->  		return PTR_ERR(mst_state);
->  
-> @@ -2056,7 +2056,7 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
->  		const struct intel_crtc_state *old_crtc_state;
->  		struct intel_crtc *crtc_iter;
->  
-> -		if (connector->mst_port != crtc_connector->mst_port ||
-> +		if (connector->mst.dp != crtc_connector->mst.dp ||
->  		    !conn_state->crtc)
->  			continue;
->  
-> @@ -2079,7 +2079,7 @@ bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *state,
->  		 * case.
->  		 */
->  		if (connector->dp.dsc_decompression_aux ==
-> -		    &connector->mst_port->aux)
-> +		    &connector->mst.dp->aux)
->  			return true;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 100f3fb1c1a0..46f53ade432e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -70,13 +70,13 @@ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
->  	int vcpi = 0;
->  
->  	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
-> -	if (!connector->port)
-> +	if (!connector->mst.port)
->  		return 0;
-> -	mgr = connector->port->mgr;
-> +	mgr = connector->mst.port->mgr;
->  
->  	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
->  	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
-> -	payload = drm_atomic_get_mst_payload_state(mst_state, connector->port);
-> +	payload = drm_atomic_get_mst_payload_state(mst_state, connector->mst.port);
->  	if (drm_WARN_ON(mgr->dev, !payload))
->  		goto out;
->  
-> @@ -2775,7 +2775,7 @@ static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *connec
->  void intel_hdcp_info(struct seq_file *m, struct intel_connector *connector)
->  {
->  	seq_puts(m, "\tHDCP version: ");
-> -	if (connector->mst_port) {
-> +	if (connector->mst.dp) {
->  		__intel_hdcp_info(m, connector, true);
->  		seq_puts(m, "\tMST Hub HDCP version: ");
->  	}
-> -- 
-> 2.39.5
+> I'm trying to get some drm folks to review/test this, but thus far not
+> much success :-/ I think it's good stuff, but I'm somewhat hesitant if no
+
+I tested the VKMS driver with this, and it works!
+
+Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
+
+> one else agrees that it's useful for CI or in-field crash-recording or
+> whatever ...
 > 
+> I guess worst case we can land it and hope it attracts more folks?
+> 
+> Wrt tree I don't care, but I guess we should then also land the drm side
+> too.
+> -Sima
+> 
+>> And I think the last patch in this series isn't correct, it looks like a
+>> 000 email somehow.
+>>
+>> thanks,
+>>
+>> greg k-h
+> 
+
+-- 
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
