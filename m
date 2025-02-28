@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0802DA495D5
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 10:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E2BA49597
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 10:44:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CA7A10EC48;
-	Fri, 28 Feb 2025 09:49:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0116910EC49;
+	Fri, 28 Feb 2025 09:44:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n7qzmQF5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h5UBlL3x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2990D10EC35;
- Fri, 28 Feb 2025 09:49:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74AD410EC43;
+ Fri, 28 Feb 2025 09:44:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740736197; x=1772272197;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=C6pPncxQq6VWOcBlGf+UNeTXUh0W9iZGeSLeSppvz5k=;
- b=n7qzmQF5bfUlR7pvmYCNteLoQxFUyIbnm4oJb3kZ8ff070biSfZLriqQ
- MI7GO/wTASb6NDTjfZdxx3rarZlj5tPPhEQ8uakBySiqLEeW8Fovb21Ei
- fbQr061vydD5oYEkCbtkf7DOxJnP5t0drfnVF8lTLwnWaenTp8F9IFty6
- uMvne/7MphJlq9VTr6PQB0VRqwN/PvncrzzM9AeXYez6tfdbPhx6EAs0X
- omYudZyQeuFp6vBMstbjqXKxIoJNl/DDFng8alLJ2BkTVSa/IKNWBis4I
- 9c8Xy1u8lxGWmLiFzJO/TQrIZw3hDd9NTXjmQSHozUSU1u6zhQJ1W6ekH A==;
-X-CSE-ConnectionGUID: BoKHzRP3Tge/VeeoJM9wIw==
-X-CSE-MsgGUID: LX9VutazTpmY3BJjH8PlZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="59197191"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="59197191"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 01:49:56 -0800
-X-CSE-ConnectionGUID: hgAyYVA8SwyJcnbaXHqKbQ==
-X-CSE-MsgGUID: Co+++8kbQaaShY9QjnidQg==
+ t=1740735843; x=1772271843;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QID8NpX170ELrC0HaYoORlWMpM5ERhgKyzAxvDirRFg=;
+ b=h5UBlL3xCtIUmVVC39pSchLqVNP8EB8dM8ehXcfwRfYdvOe326M43mr9
+ w5jGaRifFkzeKhILesgPqk5rtiLY07mCA13nPveIlxCy23IEMU+p/6ZZ8
+ OO5VVrHdZOMEr16IudZvavOFVWQk3FZH8l9Q9Y+HU8Lr3+NQj7E7YJlpt
+ zWqL7txX/6Zi8ah5QxEjz/oJCGS0lWO9j723RccjpPtXeyawY3La9wMdE
+ O+QaApBAACL40WACumr98qI/RpqNEv/K1IuYV7rh3erXo88t+8HKcFOTO
+ 0TlQx3ATwIFSZG+uHDR1+3FcMCJ0FMeumCxyyr1ksGgr/k6I6UZk2fOBH w==;
+X-CSE-ConnectionGUID: kNlmPakoQL6yVU4bFttClg==
+X-CSE-MsgGUID: OC48cQIzSTS0t4OjDvWUGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11358"; a="41506355"
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="41506355"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 01:44:03 -0800
+X-CSE-ConnectionGUID: Ix0yo7TMRRqv42n1pvdN9w==
+X-CSE-MsgGUID: ITIQt7eoQO+w5IYYjgn2aw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="117269255"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 01:49:56 -0800
-Date: Fri, 28 Feb 2025 11:40:51 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/xe3lpd: Map POWER_DOMAIN_AUDIO_PLAYBACK to DC_off
-In-Reply-To: <20250227-xe3lpd-power-domain-audio-playback-v1-1-5765f21da977@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2502281138120.14041@eliteleevi.tm.intel.com>
-References: <20250227-xe3lpd-power-domain-audio-playback-v1-1-5765f21da977@intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121408326"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.24])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 01:44:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, vinod.govindapillai@intel.com,
+ jani.saarinen@intel.com
+Subject: Re: [PATCH v10 1/9] drm/i915/fbc: remove one duplicate forward
+ declaration
+In-Reply-To: <20250228093802.27091-2-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250228093802.27091-1-vinod.govindapillai@intel.com>
+ <20250228093802.27091-2-vinod.govindapillai@intel.com>
+Date: Fri, 28 Feb 2025 11:43:58 +0200
+Message-ID: <878qpq2yld.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,30 +72,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 28 Feb 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Remove the duplicate "intel_display"declaration from intel_fbc.h
+>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 
-On Thu, 27 Feb 2025, Gustavo Sousa wrote:
+Mea culpa,
 
-> In Xe3_LPD, display audio has the core audio logic located in PG0 and
-> per-transcoder logic in the same power well that provides power for the
-> transcoder [1].
-[...]
-> Since intel_audio_component_get_power() uses
-> POWER_DOMAIN_AUDIO_PLAYBACK, make sure to map that power domain to
-> DC_off power well, so that we disable dynamic DC states (which includes
-> DC6) while the audio driver needs display audio power.
-[...]
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-> @@ -1694,6 +1694,7 @@ I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_dc_off,
->  	XE3LPD_PW_C_POWER_DOMAINS,
->  	XE3LPD_PW_D_POWER_DOMAINS,
->  	POWER_DOMAIN_AUDIO_MMIO,
-> +	POWER_DOMAIN_AUDIO_PLAYBACK,
->  	POWER_DOMAIN_INIT);
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-ack, this looks good and covers audio expectations for 
-drm_audio_component.h usage:
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.h | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+> index df20e63d6102..2e1dd7e8a18f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+> @@ -13,7 +13,6 @@ struct intel_atomic_state;
+>  struct intel_crtc;
+>  struct intel_crtc_state;
+>  struct intel_display;
+> -struct intel_display;
+>  struct intel_fbc;
+>  struct intel_plane;
+>  struct intel_plane_state;
 
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-
-Br, Kai
+-- 
+Jani Nikula, Intel
