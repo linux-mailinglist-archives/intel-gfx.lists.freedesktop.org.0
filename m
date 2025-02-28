@@ -2,57 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48715A49C26
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 15:37:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFB1A49C8A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2025 15:58:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9DEB10ECBA;
-	Fri, 28 Feb 2025 14:37:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C196410ECC2;
+	Fri, 28 Feb 2025 14:58:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOwlX+tH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5v/WYO3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC97A10ECCA;
- Fri, 28 Feb 2025 14:37:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3028C10ECC2;
+ Fri, 28 Feb 2025 14:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740753450; x=1772289450;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=+mHknmHgltSfrl29/OCW6hKROWP7f+Pu/GIGwJkyBPg=;
- b=AOwlX+tHhqPbAPSCVYHPhzVbjnB6oN2l6zB9BJ6uVLKRVOuue7tsbu99
- lGIwT4fV4JsUvBtPMJdNRw851j97bvNAztI2Jp1wsy6DcLqqHZjrgH0cm
- FAyFqze5pmy9zBTESeNjFjT8JCjvx8VMlQibA5G51y1dEUIJqG6jfxNwU
- 4VESNQg2TTEk+FyT6AqHh/b4FcVx1AEdTW6utoCcXDh3/MGv+J5VadLHz
- YFxu3iTPwlwkng4T7kaQ+Z1lLNGdhiO9b315u8U/zVziejwZs6G7HQ8nq
- EIPFwTkTrrWyyLWyZoNwqkwwMNJnLt3Hl+k7QqAOP1ys7ft1KkdLuFluh A==;
-X-CSE-ConnectionGUID: kA2Xh/E8TaGp9y58/9yLpg==
-X-CSE-MsgGUID: M9gyS2o+TCeT/Go8LAxP7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="41569987"
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="41569987"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:37:30 -0800
-X-CSE-ConnectionGUID: 6OeLPxcvSkmrTjjPdn9lPA==
-X-CSE-MsgGUID: 0bT9lpFhQrKcW1P+mJn3Rw==
+ t=1740754691; x=1772290691;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=P3/dKWCrXg9xbyVMzNavco2Gioz53PLfKQWPNVBdltI=;
+ b=O5v/WYO3o++cCaQIQCWjnMo9FT5Ms+ZyutoXCg7UlJQwrFXXsa/flFJN
+ UtuY73gkQHPZFq149do6NeUCMV+Ch/Hjyf6K/49Ztn3XwxZf4axpSJucU
+ dHCL21lK18YMyRAFEc7Zk7P8WcYzhx2Edo3mxuM8mV/WQ2iXxygX78siF
+ mi351q84/g21AN9XeRXm7u1tz0JSY4RlwRFwnB8PLJCzokeqUXpMjJA6k
+ j26aCVyBzLYPtJOWsK3rzcLG1TgGIV0JVE6+AIs2/ZnGysD/+RQpsjN/Q
+ DeM5orz4W3NM/nQ40kyzYZvThttzo2GLb8b6xts8LEY3whySWlpoTz8cD w==;
+X-CSE-ConnectionGUID: DPD4wmCEQmWk6VWl3yWhAg==
+X-CSE-MsgGUID: DDyRQ60xTOKNxkfklC2SNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11359"; a="45335793"
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="45335793"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 06:58:11 -0800
+X-CSE-ConnectionGUID: 0I400npkTeaPtmZdVlAu4g==
+X-CSE-MsgGUID: wON0cZZsTLqP4Z8vtGSuaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="117336314"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.24])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2025 06:37:29 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/plane: convert intel_atomic_plane.[ch] to
- struct intel_display
-In-Reply-To: <20250228142539.3216960-2-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250228142539.3216960-1-jani.nikula@intel.com>
- <20250228142539.3216960-2-jani.nikula@intel.com>
-Date: Fri, 28 Feb 2025 16:37:26 +0200
-Message-ID: <87wmda16ft.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,322,1732608000"; d="scan'208";a="122308263"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2025 06:58:06 -0800
+Date: Fri, 28 Feb 2025 16:58:02 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ 'Christian =?iso-8859-1?Q?K=F6nig'?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
+Subject: Re: [PATCH 2/2] drm/amdgpu: Make use of drm_wedge_app_info
+Message-ID: <Z8HO-s_otb2u44V7@black.fi.intel.com>
+References: <20250228121353.1442591-1-andrealmeid@igalia.com>
+ <20250228121353.1442591-3-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250228121353.1442591-3-andrealmeid@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +75,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Feb 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> Going forward, struct intel_display is the main display device data
-> pointer. Convert intel_atomic_plane.[ch] to struct intel_display.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, Feb 28, 2025 at 09:13:53AM -0300, André Almeida wrote:
+> To notify userspace about which app (if any) made the device get in a
+> wedge state, make use of drm_wedge_app_info parameter, filling it with
+> the app PID and name.
+> 
+> Signed-off-by: André Almeida <andrealmeid@igalia.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 79 +++++++++----------
->  1 file changed, 39 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index 181ad7468d85..4f1ad57ca5ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -42,7 +42,6 @@
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
+>  2 files changed, 22 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 00b9b87dafd8..e06adf6f34fd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -6123,8 +6123,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
 >  
->  #include "gem/i915_gem_object.h"
->  #include "i915_config.h"
-> -#include "i915_drv.h"
->  #include "i915_scheduler_types.h"
->  #include "i9xx_plane_regs.h"
->  #include "intel_atomic_plane.h"
-> @@ -57,6 +56,7 @@
->  #include "skl_universal_plane.h"
->  #include "skl_watermark.h"
+>  	atomic_set(&adev->reset_domain->reset_res, r);
 >  
+> -	if (!r)
+> -		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
+> +	if (!r) {
+> +		struct drm_wedge_app_info aux, *info = NULL;
 > +
+> +		if (job) {
+> +			struct amdgpu_task_info *ti;
+> +
+> +			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
+> +			if (ti) {
+> +				aux.pid = ti->pid;
+> +				aux.comm = ti->process_name;
+> +				info = &aux;
+> +				amdgpu_vm_put_task_info(ti);
+> +			}
+> +		}
 
-Hrmh, it annoys me when other people do this, but it annoys me even more
-when I do it. *facepalm*.
+Is this guaranteed to be guilty app and not some scheduled worker?
 
-
--- 
-Jani Nikula, Intel
+Raag
