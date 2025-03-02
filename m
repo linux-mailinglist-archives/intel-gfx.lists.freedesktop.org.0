@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A5EA4B296
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Mar 2025 16:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D12F0A4B2B0
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Mar 2025 16:47:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC06E10E1BB;
-	Sun,  2 Mar 2025 15:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8118C10E197;
+	Sun,  2 Mar 2025 15:47:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ajNfyG48";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E205F10E19F;
- Sun,  2 Mar 2025 15:22:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7378994454421263215=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E3B110E0CC;
+ Sun,  2 Mar 2025 15:47:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 39DAA5C5622;
+ Sun,  2 Mar 2025 15:44:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4799C4AF09;
+ Sun,  2 Mar 2025 15:47:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1740930422;
+ bh=JeERg6pghrewSane6wSrI4cABMnbqfWKyQVd1SUA9u4=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=ajNfyG48LQIYpuK/uaMthjYIegmCwpdtP72iBjmkS6txGbmNoKBFLelgDjUT5Pw27
+ /VqYoBg+JUyKk8+U/EuqjkafZPqcxj6v/Kh/lL+Wvrqqbmpm4acCUwuuGqJOxlAWFW
+ PS0RQ57mrd5AGOsumdhnrNrr3Wd314yg6l6csb/ZJggpNH3O3mpuI4DTD8/XIRsPN7
+ bj/k//jSFNuESxOr2/mCnVxEjdOWnfHERWuYdL48CHE5E/QiPlZsILNVAy5VI/iW0Y
+ iQfXOEYf81jN60a7j91X1nITcTTaxJSDxEuaWX2flMgLIcEjb/+L5VdPyOvocl4g4Z
+ WlkL0TlqiEaNg==
+Received: by mail-lj1-f174.google.com with SMTP id
+ 38308e7fff4ca-30930b0b420so30595021fa.2; 
+ Sun, 02 Mar 2025 07:47:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWMyT6LjtG4PCmZfjPdJLNv1iH16wsM+ncINN/gXB8/uu5rcD3MHM1xiEb9o/YAwd1VfWeeOpNCpOM=@lists.freedesktop.org,
+ AJvYcCWnmfJnOO+CNFZ8VlVBzj79xNHPNBu8kfJcEJoSzy4ZYdoVklSx2qGvXI+5VPQLLqW0/UAidiaBWb4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzEmzMS/PhcSck0EEF0idDU1UCQumdXd6xjoIcQXNatKEYRFpj8
+ vILj3q1wjeCi2gq7DIpoPw3E8P2nNclQmuimr5MHosJoDDI8eFDW7wDFdTatfLHhGejXpsS/yev
+ /mC6pUAN+hhLpxktq5qREbZMAxV4=
+X-Google-Smtp-Source: AGHT+IFXZJ33Ndhqo2D9PRupJ3mjUUcijXCXcJ2Sv3uNumoaRT3prKO0AuJuiV1KXthw0iy6fYTl+ZRl6kEmlPvv4Ec=
+X-Received: by 2002:a2e:96c2:0:b0:308:e0bd:a091 with SMTP id
+ 38308e7fff4ca-30b934623e4mr27574691fa.36.1740930421332; Sun, 02 Mar 2025
+ 07:47:01 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_mtd=3A_add_driver_for_Int?=
- =?utf-8?q?el_discrete_graphics_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 02 Mar 2025 15:22:57 -0000
-Message-ID: <174092897791.3984249.17678650965585575931@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250302140921.504304-1-alexander.usyskin@intel.com>
-In-Reply-To: <20250302140921.504304-1-alexander.usyskin@intel.com>
+References: <cover.1709898638.git.jani.nikula@intel.com>
+ <ba6527a126daeae8e66e1cd64053580645106612.1709898638.git.jani.nikula@intel.com>
+ <877ci9t0b7.fsf@intel.com>
+In-Reply-To: <877ci9t0b7.fsf@intel.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Mon, 3 Mar 2025 00:46:24 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARJgqADxnOXAX49XzDFD4zT=7i8yTB0o=EmNtxmScq8jA@mail.gmail.com>
+X-Gm-Features: AQ5f1JoAuA4egTQRUYzVSYCTrf3nLieJ9VwUE6V8N0o0E9jqvzeT7Yc3AJF8nGU
+Message-ID: <CAK7LNARJgqADxnOXAX49XzDFD4zT=7i8yTB0o=EmNtxmScq8jA@mail.gmail.com>
+Subject: Re: [PATCH v2 16/16] drm: ensure drm headers are self-contained and
+ pass kernel-doc
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>, 
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ lucas.demarchi@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,179 +76,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7378994454421263215==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: mtd: add driver for Intel discrete graphics (rev6)
-URL   : https://patchwork.freedesktop.org/series/140306/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16209 -> Patchwork_140306v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): bat-dg2-13 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140306v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-2:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061] / [i915#12435])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arlh-2/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arlh-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-2:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-twl-2:          [ABORT][11] ([i915#12919] / [i915#13503]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-twl-2/igt@i915_selftest@live@reset.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-twl-2/igt@i915_selftest@live@reset.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+On Mon, Mar 11, 2024 at 9:33=E2=80=AFPM Jani Nikula <jani.nikula@intel.com>=
+ wrote:
+>
+> On Fri, 08 Mar 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> > Ensure drm headers build, are self-contained, have header guards, and
+> > have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=3Dy.
+> >
+> > The mechanism follows similar patters used in i915, xe, and usr/include=
+.
+> >
+> > To cover include/drm, we need to recurse there using the top level
+> > Kbuild and the new include/Kbuild files.
+> >
+> > Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Masahiro Yamada <masahiroy@kernel.org>
+> > Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Masahiro, ack for merging this?
 
 
-Build changes
--------------
+Sorry, I did not notice that I was pinged so long ago.
 
-  * Linux: CI_DRM_16209 -> Patchwork_140306v6
+I just realized this because I saw it in linux-next.
 
-  CI-20190529: 20190529
-  CI_DRM_16209: 86b4173d08ba1d46c1869ba1fe4b88f8fd52dd9d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8255: 4ef742fae97d2f4af680f9e29f7ea45920f939b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140306v6: 86b4173d08ba1d46c1869ba1fe4b88f8fd52dd9d @ git://anongit.freedesktop.org/gfx-ci/linux
+No, NACK.
 
-== Logs ==
+This was already reverted by
+  fcbb8461fd2376ba3782b5b8bd440c929b8e4980
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/index.html
+Please do not re-add it.
 
---===============7378994454421263215==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The reason is explained in the discussion
+linked in that commit description.
 
+I do not believe all headers in include/drm/
+must be self-contained.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+If we know that <drm/drm-foo.h> is included only
+when CONFIG_DRM_FOO is enabled, it does not
+need to be self-contained when CONFIG_DRM_FOO=3Dn.
+
+So, I am skeptical with this approach, where
+the 'find' command detects all headers and they must
+be self-contained regardless.
+
+The only case I think makes sense is UAPI headers
+(implemented in usr/include/Makefile)
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>mtd: add driver for Intel discrete graphics (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140306/">https://patchwork.freedesktop.org/series/140306/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/index.html</a></td></tr>
-
-</table>
+Masahiro
 
 
-    <h1>CI Bug Log - changes from CI_DRM_16209 -&gt; Patchwork_140306v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): bat-dg2-13 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140306v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arlh-2/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16209/bat-twl-2/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503">i915#13503</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v6/bat-twl-2/igt@i915_selftest@live@reset.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16209 -&gt; Patchwork_140306v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16209: 86b4173d08ba1d46c1869ba1fe4b88f8fd52dd9d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8255: 4ef742fae97d2f4af680f9e29f7ea45920f939b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140306v6: 86b4173d08ba1d46c1869ba1fe4b88f8fd52dd9d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
-</body>
-</html>
+> BR,
+> Jani.
+>
+> > ---
+> >  Kbuild                   |  1 +
+> >  drivers/gpu/drm/Kconfig  | 11 +++++++++++
+> >  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+> >  include/Kbuild           |  1 +
+> >  include/drm/Makefile     | 18 ++++++++++++++++++
+> >  5 files changed, 49 insertions(+)
+> >  create mode 100644 include/Kbuild
+> >  create mode 100644 include/drm/Makefile
+> >
+> > diff --git a/Kbuild b/Kbuild
+> > index 464b34a08f51..f327ca86990c 100644
+> > --- a/Kbuild
+> > +++ b/Kbuild
+> > @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)       +=3D samples/
+> >  obj-$(CONFIG_NET)    +=3D net/
+> >  obj-y                        +=3D virt/
+> >  obj-y                        +=3D $(ARCH_DRIVERS)
+> > +obj-$(CONFIG_DRM_HEADER_TEST)        +=3D include/
+> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> > index c08e18108c2a..dd17685ef6e7 100644
+> > --- a/drivers/gpu/drm/Kconfig
+> > +++ b/drivers/gpu/drm/Kconfig
+> > @@ -429,3 +429,14 @@ config DRM_WERROR
+> >         this config option is disabled by default.
+> >
+> >         If in doubt, say N.
+> > +
+> > +config DRM_HEADER_TEST
+> > +     bool "Ensure DRM headers are self-contained and pass kernel-doc"
+> > +     depends on EXPERT
+> > +     default n
+> > +     help
+> > +       Ensure the DRM subsystem headers both under drivers/gpu/drm and
+> > +       include/drm compile, are self-contained, have header guards, an=
+d have
+> > +       no kernel-doc warnings.
+> > +
+> > +       If in doubt, say N.
+> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> > index a73c04d2d7a3..6605d5686d01 100644
+> > --- a/drivers/gpu/drm/Makefile
+> > +++ b/drivers/gpu/drm/Makefile
+> > @@ -218,3 +218,21 @@ obj-y                    +=3D solomon/
+> >  obj-$(CONFIG_DRM_SPRD) +=3D sprd/
+> >  obj-$(CONFIG_DRM_LOONGSON) +=3D loongson/
+> >  obj-$(CONFIG_DRM_POWERVR) +=3D imagination/
+> > +
+> > +# Ensure drm headers are self-contained and pass kernel-doc
+> > +hdrtest-files :=3D \
+> > +     $(shell cd $(srctree)/$(src) && find . -maxdepth 1 -name 'drm_*.h=
+') \
+> > +     $(shell cd $(srctree)/$(src) && find display lib -name '*.h')
+> > +
+> > +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+> > +     $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> > +
+> > +# Include the header twice to detect missing include guard.
+> > +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> > +      cmd_hdrtest =3D \
+> > +             $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $<=
+ -include $<; \
+> > +             $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WER=
+ROR),-Werror) $<; \
+> > +             touch $@
+> > +
+> > +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> > +     $(call if_changed_dep,hdrtest)
+> > diff --git a/include/Kbuild b/include/Kbuild
+> > new file mode 100644
+> > index 000000000000..5e76a599e2dd
+> > --- /dev/null
+> > +++ b/include/Kbuild
+> > @@ -0,0 +1 @@
+> > +obj-$(CONFIG_DRM_HEADER_TEST)        +=3D drm/
+> > diff --git a/include/drm/Makefile b/include/drm/Makefile
+> > new file mode 100644
+> > index 000000000000..b9f391d7aadd
+> > --- /dev/null
+> > +++ b/include/drm/Makefile
+> > @@ -0,0 +1,18 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +
+> > +# Ensure drm headers are self-contained and pass kernel-doc
+> > +hdrtest-files :=3D \
+> > +     $(shell cd $(srctree)/$(src) && find * -name '*.h' 2>/dev/null)
+> > +
+> > +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+> > +     $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> > +
+> > +# Include the header twice to detect missing include guard.
+> > +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> > +      cmd_hdrtest =3D \
+> > +             $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $<=
+ -include $<; \
+> > +             $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_DRM_WER=
+ROR),-Werror) $<; \
+> > +             touch $@
+> > +
+> > +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> > +     $(call if_changed_dep,hdrtest)
+>
+> --
+> Jani Nikula, Intel
 
---===============7378994454421263215==--
+
+
+--
+Best Regards
+Masahiro Yamada
