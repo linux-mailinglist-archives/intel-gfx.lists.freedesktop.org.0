@@ -2,62 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48705A4BE83
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 12:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E137AA4BF5B
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 12:52:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D8D10E3CD;
-	Mon,  3 Mar 2025 11:29:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nAQVISJR";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04B5A10E28C;
+	Mon,  3 Mar 2025 11:52:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ADD08908B;
- Mon,  3 Mar 2025 11:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741001348; x=1772537348;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KUiKU/RPTj3hqYDr80Ff+w8pTMDfmBqEHmeMnI4ClD0=;
- b=nAQVISJR8TQiMhIdU+BRkHdV3ip9vLMXl1jUoStNAOS0OEKkZLIl0ZPY
- sh8Tj5PWA2H3+CRL7H4+LJ2Tcy4nnc0cra1/2KUWYrMlIraYNgRNMk+az
- IOYbz6i7TgyJbUgRtmSaZBRV0ooKTbgepGA6UDPL7A00gYBqmIvZHduBu
- pC/KnrNYANEruoqeWIG/8JyJFhI8/vr4wsTk5HTu8wdbK6bXpmsBRukS8
- eDtu8Ft72Rnz4zQqnXJoXS/wsU6gscn3V3MM1CUZ2hYne0CTAsCopYd3a
- E+8MKDclb96nd0AfWZTiGunFKTkqyisy3H2G2yyWShUkwY0MC///caw8y A==;
-X-CSE-ConnectionGUID: xLtDv952TuO+dIHWQmHi0g==
-X-CSE-MsgGUID: QX9Zd8PHQiupv1w3VGRXbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41725300"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41725300"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 03:29:07 -0800
-X-CSE-ConnectionGUID: /DWXHT4ISLSFIET8FMtDAg==
-X-CSE-MsgGUID: zuqJFAmvQ4unZ8efHY4c1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="118679851"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 03:29:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 6/8] drm/i915/reset: move gt related stuff out of
- display reset
-In-Reply-To: <20250226234611.GO4460@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1740481927.git.jani.nikula@intel.com>
- <3af6452fb882a17279018c1f1516545634136139.1740481927.git.jani.nikula@intel.com>
- <20250225203512.GK4460@mdroper-desk1.amr.corp.intel.com>
- <87seo13s9b.fsf@intel.com>
- <20250226234611.GO4460@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 03 Mar 2025 13:29:02 +0200
-Message-ID: <87bjui1hfl.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC9010E289;
+ Mon,  3 Mar 2025 11:52:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/client=3A_Build_the_t?=
+ =?utf-8?q?ests_with_CONFIG=5FDRM=5FKUNIT=5FTEST=3Dm?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 03 Mar 2025 11:52:32 -0000
+Message-ID: <174100275212.118223.16006543455148366118@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,64 +37,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 26 Feb 2025, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Wed, Feb 26, 2025 at 12:38:40PM +0200, Jani Nikula wrote:
->> On Tue, 25 Feb 2025, Matt Roper <matthew.d.roper@intel.com> wrote:
->> > On Tue, Feb 25, 2025 at 01:14:20PM +0200, Jani Nikula wrote:
->> >> Move the checks for whether display reset is needed as well as
->> >> I915_RESET_MODESET flag handling to gt side of things.
->> >> 
->> >> Cc: Matt Roper <matthew.d.roper@intel.com>
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >> ---
->> >>  .../drm/i915/display/intel_display_reset.c    | 15 --------------
->> >>  drivers/gpu/drm/i915/gt/intel_reset.c         | 20 +++++++++++++++++++
->> >>  2 files changed, 20 insertions(+), 15 deletions(-)
->> >> 
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
->> >> index b7962f90c21c..362436cd280f 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
->> >> @@ -37,15 +37,6 @@ void intel_display_reset_prepare(struct intel_display *display)
->> >>  	if (!HAS_DISPLAY(display))
->> >>  		return;
->> >>  
->> >> -	/* reset doesn't touch the display */
->> >> -	if (!intel_display_reset_test(display) &&
->> >> -	    !gpu_reset_clobbers_display(display))
->> >> -		return;
->> >> -
->> >> -	/* We have a modeset vs reset deadlock, defensively unbreak it. */
->> >
->> > Doesn't this comment more accurately apply to the 'if' condition below
->> > rather than to the flag updates and wakeup we do before that?  Assuming
->> > I'm understanding correctly, it seems like the comment should stay here
->> > and not move to the other file --- saying "We have a ... deadlock" is
->> > only true if we still have a pending pin after we've done that other
->> > stuff.  The unbreaking part (by wedging) is still located here too.
->> 
->> I'm... not sure.
->> 
->> Commit d59cf7bb73f3 ("drm/i915/display: Use dma_fence interfaces instead
->> of i915_sw_fence") seems relevant. We no longer have anyone waiting on
->> I915_RESET_MODESET, and I think we could probably remove the bit from
->> reset flags altogether, and handle this locally in
->> intel_gt_reset_global(). Right?
->
-> Yeah, I believe you're right.
+== Series Details ==
 
-So I modified the approach again [1]. Sorry, and thanks for bearing with
-me!
+Series: drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+URL   : https://patchwork.freedesktop.org/series/145707/
+State : failure
 
-BR,
-Jani.
+== Summary ==
+
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CHK     kernel/kheaders_data.tar.xz
+  HDRTEST drivers/gpu/drm/xe/generated/xe_wa_oob.h
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  KSYMS   .tmp_vmlinux0.kallsyms.S
+  AS      .tmp_vmlinux0.kallsyms.o
+  LD      .tmp_vmlinux1
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_test_pick_cmdline_named':
+/home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:142:(.text+0x3c9): undefined reference to `drm_helper_probe_single_connector_modes'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:136:(.text+0x4b1): undefined reference to `kunit_unary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:136:(.text+0x4d3): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:136:(.text+0x4db): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:144:(.text+0x4e8): undefined reference to `kunit_binary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:144:(.text+0x50e): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:144:(.text+0x516): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:147:(.text+0x523): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:147:(.text+0x54d): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:147:(.text+0x555): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:150:(.text+0x562): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:150:(.text+0x58c): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:150:(.text+0x594): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:152:(.text+0x5aa): undefined reference to `kunit_unary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:152:(.text+0x5c6): undefined reference to `__kunit_do_failed_assertion'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_test_pick_cmdline_res_1920_1080_60':
+/home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:104:(.text+0x6b0): undefined reference to `drm_helper_probe_single_connector_modes'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:96:(.text+0x76a): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:96:(.text+0x794): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:96:(.text+0x79c): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:98:(.text+0x7a9): undefined reference to `kunit_unary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:98:(.text+0x7cb): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:98:(.text+0x7d3): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:106:(.text+0x7e0): undefined reference to `kunit_binary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:106:(.text+0x806): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:106:(.text+0x80e): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:109:(.text+0x81b): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:109:(.text+0x845): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:109:(.text+0x84d): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:111:(.text+0x863): undefined reference to `kunit_unary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:111:(.text+0x87f): undefined reference to `__kunit_do_failed_assertion'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `kunit_kmalloc':
+/home/kbuild/kernel/./include/kunit/test.h:449:(.text+0xa24): undefined reference to `kunit_kmalloc_array'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_modeset_test_init':
+/home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:63:(.text+0xa50): undefined reference to `drm_kunit_helper_alloc_device'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `__drm_kunit_helper_alloc_drm_device':
+/home/kbuild/kernel/./include/drm/drm_kunit_helpers.h:67:(.text+0xad3): undefined reference to `__drm_kunit_helper_alloc_drm_device_with_driver'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_modeset_test_init':
+/home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:64:(.text+0xb91): undefined reference to `kunit_ptr_not_err_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:64:(.text+0xbaf): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:64:(.text+0xbb7): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:69:(.text+0xbc4): undefined reference to `kunit_ptr_not_err_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:69:(.text+0xbe2): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:69:(.text+0xbea): undefined reference to `__kunit_abort'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:59:(.text+0xbf7): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:59:(.text+0xc21): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:59:(.text+0xc29): undefined reference to `__kunit_abort'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `__drm_kunit_helper_alloc_drm_device':
+/home/kbuild/kernel/./include/drm/drm_kunit_helpers.h:63:(.text+0xc36): undefined reference to `kunit_binary_ptr_assert_format'
+ld: /home/kbuild/kernel/./include/drm/drm_kunit_helpers.h:63:(.text+0xc60): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/./include/drm/drm_kunit_helpers.h:63:(.text+0xc68): undefined reference to `__kunit_abort'
+ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_modeset_test_init':
+/home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:75:(.text+0xc77): undefined reference to `kunit_binary_assert_format'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:75:(.text+0xc9d): undefined reference to `__kunit_do_failed_assertion'
+ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:75:(.text+0xca5): undefined reference to `__kunit_abort'
+make[2]: *** [scripts/Makefile.vmlinux:77: vmlinux] Error 1
+make[1]: *** [/home/kbuild/kernel/Makefile:1226: vmlinux] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+Build failed, no error log produced
 
 
-[1] https://lore.kernel.org/r/cover.1741001054.git.jani.nikula@intel.com
-
-
--- 
-Jani Nikula, Intel
