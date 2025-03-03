@@ -2,65 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62237A4BAD7
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 10:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A35AA4BAEF
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 10:38:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6560B8930B;
-	Mon,  3 Mar 2025 09:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5FBD10E3A6;
+	Mon,  3 Mar 2025 09:38:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="pwJeRG+Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTKz1H9A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9558913D;
- Mon,  3 Mar 2025 09:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LwbSnaacoiJ1tf1QkAGtvJTTnl5irw31jTvUm2dYEck=; b=pwJeRG+Ql/v7To57SrcbD8tzS2
- xtqG0aacX+wfpGGwHRhG8Jn2z4afMta0bg6+015erl5P3ataL2RiL3ybO9Uedw6tFecEX7+9Pe75t
- cn1mamU+oSJBIjQx6AY8dtQnvU5bnTL/cwrmcYyzU6Otd6yv1DtJq7RX5UURX6534VXWGPiOyt3yr
- LEgILAfMSnoxjqWLxwdrfvbcj7naSPc6iJQEZOJjeLcfUicxYMTV/+3rQkFFS2VeObCLvgUSdXqfK
- wsyQIh55LLmz8JMNv8LZYTNg34NiSU86hvdx0AoOxSJbxElUYpJ0p3TdQ7OJds6hh69tbty8h/eVQ
- KQRc434A==;
-Received: from [194.136.85.206] (port=36910 helo=eldfell)
- by whm50.louhi.net with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.98.1)
- (envelope-from <pekka.paalanen@haloniitty.fi>)
- id 1tp2Ai-000000001xE-3d4b; Mon, 03 Mar 2025 11:33:12 +0200
-Date: Mon, 3 Mar 2025 11:33:11 +0200
-From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <suraj.kandpal@intel.com>,
- <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
-Message-ID: <20250303113311.0f65f7b2@eldfell>
-In-Reply-To: <ac4aca52-2822-4b01-95b9-cf66ff6d8107@intel.com>
-References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
- <20250128-dpst-v8-1-871b94d777f8@intel.com>
- <20250217120808.708b9b4d@eldfell> <20250217142750.7da2dcb8@eldfell>
- <ac4aca52-2822-4b01-95b9-cf66ff6d8107@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C722D10E3A6;
+ Mon,  3 Mar 2025 09:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1740994732; x=1772530732;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xZuiZTAfl+ePLGIbfwsBfEl9qSUTfxWm27qZ5m57lbA=;
+ b=NTKz1H9AmV1qIViT1n1Aw7G8RL3M8/NU+y/z/SUbmyoZwr68u8lFXbZ6
+ RunU2VphiPw7Zdzhox353LsMpT8sWUJ2V6L7OW4dKslBH0SwIT9xV+NRQ
+ XgRU9MgZQ0kcIdEJjL2ebck/wnazlb+GlMgJjn22PA7RM5yP8ZOUJIl8Q
+ wkuUC0ZCgpzLtsQln878HNtr/PSaAdWi+W68laHfCc3Bw4Q7BC/RH10qQ
+ t2GFFF3NcSIyA2JFptDg+f7HY+iaRSKGaJjHBcZNY8DV33YPHYoC9g4Mz
+ 4U1oz9SaZM0yJEAJ+pnIQKXIPtIgMbb6ghaXniRyLGQmaDJORb2gVO0s5 w==;
+X-CSE-ConnectionGUID: eRFrJalPQF+vvq3CIOkAdw==
+X-CSE-MsgGUID: rqKTt8o0TfiFMKM5hMEiSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="59405986"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="59405986"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 01:38:51 -0800
+X-CSE-ConnectionGUID: G+HOwPihTkiDD4RICQrpaA==
+X-CSE-MsgGUID: NmylGy58QUivgrsWBI8Ydw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123171515"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 03 Mar 2025 01:38:48 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 03 Mar 2025 11:38:47 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 1/8] drm/client: Constify modes
+Date: Mon,  3 Mar 2025 11:38:47 +0200
+Message-ID: <20250303093847.7698-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250228211454.8138-2-ville.syrjala@linux.intel.com>
+References: <20250228211454.8138-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/FLjnla.zh0Y9tEIlvkXHG2=";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - whm50.louhi.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - haloniitty.fi
-X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
- pekka.paalanen@haloniitty.fi
-X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,123 +70,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/FLjnla.zh0Y9tEIlvkXHG2=
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On Mon, 3 Mar 2025 13:22:29 +0530
-"Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+The modes used by the client code live on the connectors' mode
+lists, which are not owned by the client code, and thus it has
+no business modifying the modes. Mark the modes const to make
+that fact abundantly clear.
 
-> On 17-02-2025 17:57, Pekka Paalanen wrote:
-> > On Mon, 17 Feb 2025 12:08:08 +0200
-> > Pekka Paalanen <pekka.paalanen@haloniitty.fi> wrote:
-> > =20
-> >> Hi Arun,
-> >>
-> >> this whole series seems to be missing all the UAPI docs for the DRM
-> >> ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
-> >> replacement for them, I would assume both are a requirement.
-> >>
-> >> Without the ReST docs it is really difficult to see how this new UAPI
-> >> should be used.
-> >>
-> >>
-> >> On Tue, 28 Jan 2025 21:21:07 +0530
-> >> Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> >> =20
-> >>> Display Histogram is an array of bins and can be generated in many wa=
-ys
-> >>> referred to as modes.
-> >>> Ex: HSV max(RGB), Wighted RGB etc.
-> >>>
-> >>> Understanding the histogram data format(Ex: HSV max(RGB))
-> >>> Histogram is just the pixel count.
-> >>> For a maximum resolution of 10k (10240 x 4320 =3D 44236800)
-> >>> 25 bits should be sufficient to represent this along with a buffer of=
- 7
-> >>> bits(future use) u32 is being considered.
-> >>> max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
-> >>> bits, hence 32 bins.
-> >>> Below mentioned algorithm illustrates the histogram generation in
-> >>> hardware.
-> >>>
-> >>> hist[32] =3D {0};
-> >>> for (i =3D 0; i < resolution; i++) {
-> >>> 	bin =3D max(RGB[i]);
-> >>> 	bin =3D bin >> 3;	/* consider the most significant bits */
-> >>> 	hist[bin]++;
-> >>> }
-> >>> If the entire image is Red color then max(255,0,0) is 255 so the pixel
-> >>> count of each pixels will be placed in the last bin. Hence except
-> >>> hist[31] all other bins will have a value zero.
-> >>> Generated histogram in this case would be hist[32] =3D {0,0,....44236=
-800}
-> >>>
-> >>> Description of the structures, properties defined are documented in t=
-he
-> >>> header file include/uapi/drm/drm_mode.h
-> >>>
-> >>> v8: Added doc for HDR planes, removed reserved variables (Dmitry)
-> >>>
-> >>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> >>> ---
-> >>>   include/uapi/drm/drm_mode.h | 65 ++++++++++++++++++++++++++++++++++=
-+++++++++++
-> >>>   1 file changed, 65 insertions(+)
-> >>>
-> >>> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+v2: Fix up the kunit test
 
-...
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_client_modeset.c          | 39 ++++++++++---------
+ .../gpu/drm/tests/drm_client_modeset_test.c   |  3 +-
+ 2 files changed, 23 insertions(+), 19 deletions(-)
 
-> >>> +/**
-> >>> + * struct drm_histogram_config
-> >>> + *
-> >>> + * @hist_mode_data: address to the histogram mode specific data if a=
-ny =20
-> >> Do I understand correctly that the KMS blob will contain a userspace
-> >> virtual memory address (a user pointer)? How does that work? What are
-> >> the lifetime requirements for that memory?
-> >>
-> >> I do not remember any precedent of this, and I suspect it's not a good
-> >> design. I believe all the data should be contained in the blobs, e.g.
-> >> how IN_FORMATS does it. I'm not sure what would be the best UAPI here
-> >> for returning histogram data to userspace, but at least all the data
-> >> sent to the kernel should be contained in the blob itself since it
-> >> seems to be quite small. Variable length is ok for blobs. =20
-> Sorry forgot to add the reason for choosing u64 based ptr in the UAPI.
-> This histogram is related(something to do) to the color. drm_color is=20
-> also exposing the rgb values as __u64 pointer in the struct=20
-> drm_mode_crtc_lut
+diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+index aca442c25209..b114d1b8793b 100644
+--- a/drivers/gpu/drm/drm_client_modeset.c
++++ b/drivers/gpu/drm/drm_client_modeset.c
+@@ -117,10 +117,10 @@ drm_client_find_modeset(struct drm_client_dev *client, struct drm_crtc *crtc)
+ 	return NULL;
+ }
+ 
+-static struct drm_display_mode *
++static const struct drm_display_mode *
+ drm_connector_get_tiled_mode(struct drm_connector *connector)
+ {
+-	struct drm_display_mode *mode;
++	const struct drm_display_mode *mode;
+ 
+ 	list_for_each_entry(mode, &connector->modes, head) {
+ 		if (mode->hdisplay == connector->tile_h_size &&
+@@ -130,10 +130,10 @@ drm_connector_get_tiled_mode(struct drm_connector *connector)
+ 	return NULL;
+ }
+ 
+-static struct drm_display_mode *
++static const struct drm_display_mode *
+ drm_connector_fallback_non_tiled_mode(struct drm_connector *connector)
+ {
+-	struct drm_display_mode *mode;
++	const struct drm_display_mode *mode;
+ 
+ 	list_for_each_entry(mode, &connector->modes, head) {
+ 		if (mode->hdisplay == connector->tile_h_size &&
+@@ -144,10 +144,10 @@ drm_connector_fallback_non_tiled_mode(struct drm_connector *connector)
+ 	return NULL;
+ }
+ 
+-static struct drm_display_mode *
++static const struct drm_display_mode *
+ drm_connector_preferred_mode(struct drm_connector *connector, int width, int height)
+ {
+-	struct drm_display_mode *mode;
++	const struct drm_display_mode *mode;
+ 
+ 	list_for_each_entry(mode, &connector->modes, head) {
+ 		if (mode->hdisplay > width ||
+@@ -159,16 +159,18 @@ drm_connector_preferred_mode(struct drm_connector *connector, int width, int hei
+ 	return NULL;
+ }
+ 
+-static struct drm_display_mode *drm_connector_first_mode(struct drm_connector *connector)
++static const struct drm_display_mode *
++drm_connector_first_mode(struct drm_connector *connector)
+ {
+ 	return list_first_entry_or_null(&connector->modes,
+ 					struct drm_display_mode, head);
+ }
+ 
+-static struct drm_display_mode *drm_connector_pick_cmdline_mode(struct drm_connector *connector)
++static const struct drm_display_mode *
++drm_connector_pick_cmdline_mode(struct drm_connector *connector)
+ {
+-	struct drm_cmdline_mode *cmdline_mode;
+-	struct drm_display_mode *mode;
++	const struct drm_cmdline_mode *cmdline_mode;
++	const struct drm_display_mode *mode;
+ 	bool prefer_non_interlace;
+ 
+ 	/*
+@@ -266,13 +268,14 @@ static void drm_client_connectors_enabled(struct drm_connector **connectors,
+ static bool drm_client_target_cloned(struct drm_device *dev,
+ 				     struct drm_connector **connectors,
+ 				     unsigned int connector_count,
+-				     struct drm_display_mode **modes,
++				     const struct drm_display_mode **modes,
+ 				     struct drm_client_offset *offsets,
+ 				     bool *enabled, int width, int height)
+ {
+ 	int count, i, j;
+ 	bool can_clone = false;
+-	struct drm_display_mode *dmt_mode, *mode;
++	const struct drm_display_mode *mode;
++	struct drm_display_mode *dmt_mode;
+ 
+ 	/* only contemplate cloning in the single crtc case */
+ 	if (dev->mode_config.num_crtc > 1)
+@@ -351,7 +354,7 @@ static bool drm_client_target_cloned(struct drm_device *dev,
+ static int drm_client_get_tile_offsets(struct drm_device *dev,
+ 				       struct drm_connector **connectors,
+ 				       unsigned int connector_count,
+-				       struct drm_display_mode **modes,
++				       const struct drm_display_mode **modes,
+ 				       struct drm_client_offset *offsets,
+ 				       int idx,
+ 				       int h_idx, int v_idx)
+@@ -386,7 +389,7 @@ static int drm_client_get_tile_offsets(struct drm_device *dev,
+ static bool drm_client_target_preferred(struct drm_device *dev,
+ 					struct drm_connector **connectors,
+ 					unsigned int connector_count,
+-					struct drm_display_mode **modes,
++					const struct drm_display_mode **modes,
+ 					struct drm_client_offset *offsets,
+ 					bool *enabled, int width, int height)
+ {
+@@ -505,7 +508,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
+ 				 struct drm_connector **connectors,
+ 				 unsigned int connector_count,
+ 				 struct drm_crtc **best_crtcs,
+-				 struct drm_display_mode **modes,
++				 const struct drm_display_mode **modes,
+ 				 int n, int width, int height)
+ {
+ 	struct drm_device *dev = client->dev;
+@@ -580,7 +583,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+ 				       struct drm_connector **connectors,
+ 				       unsigned int connector_count,
+ 				       struct drm_crtc **crtcs,
+-				       struct drm_display_mode **modes,
++				       const struct drm_display_mode **modes,
+ 				       struct drm_client_offset *offsets,
+ 				       bool *enabled, int width, int height)
+ {
+@@ -800,7 +803,7 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+ 	struct drm_client_offset *offsets;
+ 	unsigned int connector_count = 0;
+ 	/* points to modes protected by mode_config.mutex */
+-	struct drm_display_mode **modes;
++	const struct drm_display_mode **modes;
+ 	struct drm_crtc **crtcs;
+ 	int i, ret = 0;
+ 	bool *enabled;
+@@ -871,7 +874,7 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+ 	drm_client_modeset_release(client);
+ 
+ 	for (i = 0; i < connector_count; i++) {
+-		struct drm_display_mode *mode = modes[i];
++		const struct drm_display_mode *mode = modes[i];
+ 		struct drm_crtc *crtc = crtcs[i];
+ 		struct drm_client_offset *offset = &offsets[i];
+ 
+diff --git a/drivers/gpu/drm/tests/drm_client_modeset_test.c b/drivers/gpu/drm/tests/drm_client_modeset_test.c
+index 7516f6cb36e4..cd43d2a52a2d 100644
+--- a/drivers/gpu/drm/tests/drm_client_modeset_test.c
++++ b/drivers/gpu/drm/tests/drm_client_modeset_test.c
+@@ -88,7 +88,8 @@ static void drm_test_pick_cmdline_res_1920_1080_60(struct kunit *test)
+ 	struct drm_device *drm = priv->drm;
+ 	struct drm_connector *connector = &priv->connector;
+ 	struct drm_cmdline_mode *cmdline_mode = &connector->cmdline_mode;
+-	struct drm_display_mode *expected_mode, *mode;
++	struct drm_display_mode *expected_mode;
++	const struct drm_display_mode *mode;
+ 	const char *cmdline = "1920x1080@60";
+ 	int ret;
+ 
+-- 
+2.45.3
 
-struct drm_mode_crtc_lut is used in the ioctls DRM_IOCTL_MODE_GETGAMMA
-and DRM_IOCTL_MODE_SETGAMMA. The pointers are used only inside the
-ioctl call for copying the data to/from user, and they are never saved
-for later use in the kernel. That's the fundamental difference. KMS
-blob objects OTOH are by definition saved in the kernel for re-use.
-
-
-Thanks,
-pq
-
---Sig_/FLjnla.zh0Y9tEIlvkXHG2=
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmfFd1cACgkQI1/ltBGq
-qqeo3A//cW2DpzJ5cnpk4w1FBY1FJvSfRw2QlfAT+kHfFRcbAM2BMurKNeQx4gRu
-GYD0jpKo8Ma5gloimMoI5pQg9Q7SmjYXLXPb9OSZoeWay/c8zeqMhiEL6055UvHx
-/fH2Cl86Nm6NwdrNwPqzznOcmlAHUidR5EQm1LJ5GFz2kS5QNbm3/lA30CV56ks5
-oUuRE2ND7FzMZJZrb+P5KYNqogDQDiYa6L6nkA7DAMQuQQUGttAQ8HHIINwjObC5
-InCbdPlUYgEqdjGOf6j7lOnqUl4GVjQJYBYyHenrTm68PtGKRZNu/2e33L60GEI4
-tAPvV5p9EiNYIvBviBzDhF9PeKLIORNStSfh0gDJ3pyk2TGx+Bk8OeAJesGlt4fS
-CiyjPJ2OUHFB8viVkDuSJocyXRoTgLLKYLM/0/xkmojlsVV4Wc3tIZQYbMC47JQF
-M+AEKaeCz01of0KaZRE0YFrrA9WwrMxXZBMDyIaGW3m/XD/gxQSW/fWxpZ6fdKQt
-grcruO5FEsZo1BxhQQ6ehZ76tPmoqUTbH3jZ3ksIpD0W8uD3CodKFYW7UgUnasEr
-TYCpfXkuFcKMrsXI0I7ncpy/2nbvdqIgrQXbeb0uRS2k8ggFP1I9TigtbCc6fV+z
-7BErMR5YUagbX20yG2PTPpOr40HD4wYn012Zmjq5Hd8uPDSd7tI=
-=MYY2
------END PGP SIGNATURE-----
-
---Sig_/FLjnla.zh0Y9tEIlvkXHG2=--
