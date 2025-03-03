@@ -2,73 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5330A4C0FE
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 13:51:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A23A4C122
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 14:00:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2CC10E2DC;
-	Mon,  3 Mar 2025 12:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDD010E41D;
+	Mon,  3 Mar 2025 13:00:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RnS64gcp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nchwyBUw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5048310E148;
- Mon,  3 Mar 2025 12:51:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741006297; x=1772542297;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ACYWUkKVdr+jQ99qBCqGaDoLzPyYHCri4EQNkGHjGbo=;
- b=RnS64gcpI988rK/yVaKNH27BQ0NA7xuVPMZ3fbh+y1iJ4/k6PJPt1v9Z
- SWSg82Un6Hv2hA5HYWiFQJT7N2rYkpKndT9f/a9MzehguiVQWBPd+hWYw
- ITLHiMIyWTTyPDyBvZJsXzjpnMeeFphVBjWolXOOANneY1b3c1c6tnddy
- cJsvmtbvdj74P5wMGRz/VXpzniQ7rG8hy9WjgyZKzEvAJE/dP3A8LjSk3
- 9lqdaibAexWxfdInwv6pu+kIO52aKWt1iFJBQMTjPZ1ZBo+bxya/RPcZH
- 3B0ezl/o5+IfhOC+zGUVtFK3Vsi0acsxPez8RI+NCiEdrxwNGpIS3srSB w==;
-X-CSE-ConnectionGUID: E4Ar0f+UQPKcNhxbHjBF7g==
-X-CSE-MsgGUID: nyiaXKONS4iEmL4DzeZCyw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41732725"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41732725"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 04:51:36 -0800
-X-CSE-ConnectionGUID: ZP2pH8OgQbaStSDK1/EThg==
-X-CSE-MsgGUID: bcpf99q7RsehuEPDwD3pSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123215682"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 03 Mar 2025 04:51:33 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Mar 2025 14:51:32 +0200
-Date: Mon, 3 Mar 2025 14:51:32 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Syrjala, Ville" <ville.syrjala@intel.com>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "Kahola, Mika" <mika.kahola@intel.com>
-Subject: Re: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
-Message-ID: <Z8Wl1KbPnzUfN3z3@intel.com>
-References: <20250225080927.157437-1-suraj.kandpal@intel.com>
- <20250225080927.157437-6-suraj.kandpal@intel.com>
- <8734g276o6.fsf@intel.com>
- <SN7PR11MB67507C9052363FC4E8E34450E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
- <SN7PR11MB6750A509052EF04B959BA7C1E3C32@SN7PR11MB6750.namprd11.prod.outlook.com>
- <87ldtu59fb.fsf@intel.com>
- <SN7PR11MB67505D632A7CCE485E8FB81FE3CD2@SN7PR11MB6750.namprd11.prod.outlook.com>
- <Z8HHsZbQWxr04C9k@intel.com>
- <SN7PR11MB6750E346CE1E741FE225D52CE3CC2@SN7PR11MB6750.namprd11.prod.outlook.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BACE010E40C;
+ Mon,  3 Mar 2025 13:00:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 234D661195;
+ Mon,  3 Mar 2025 13:00:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 531B8C4AF0B;
+ Mon,  3 Mar 2025 13:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1741006811;
+ bh=RVOfscREw4GtPB4azPGZinG7tSiPuv/uEy+UwtEpZQo=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=nchwyBUwicCSYaNel8bwyqk++4HG9lq6UyVsa3Yt5G8sVfsqdOlDxIVPoyBGNjAY1
+ 6Fyz0tkHgx7CPxWbjD8oV6a0c6j86yNWPzRNoVt1s1aj5pYa5XGQKglltX2YAMefzT
+ 1K1+KH8Bn3DnNpE/HpmZ/2xpHfDKpKOrq6A/U6/rAubeS0XvoU/djnPmZmgtnR6FXp
+ 0n3RaP5Z2aFcqk/BsfsOyZKArzD3s6COrbV1Za511dMxae/fewcZ9WY+0VEU+RA4sE
+ nh9j7a6thKqmnNrbigkiZh4sB8f8xF06FpOcd6+pBe++Boi4iDapluZFemeVum5Csb
+ s8maBu1zLlbZA==
+Received: by mail-lf1-f46.google.com with SMTP id
+ 2adb3069b0e04-54298ec925bso6657864e87.3; 
+ Mon, 03 Mar 2025 05:00:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXo4UwyujLvMkg7tC9ZGszsPvVsmizFKU2rLDhrrDfE7syV4qdH3KMkDoHsEM4o0XpbF7oiWKwJ1RQ=@lists.freedesktop.org,
+ AJvYcCXuaQu6rK+qv2E9hWwcFC53w89bq0o/EldJWoSiQkmqrrITKtNIzAieRVU8xP1LMvr4bstKXj5ze7Q=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywl28CtYjyWqUX8z7TsbiuVl9+jF3fSH/ucXI1SQ2YEK/QI9cyP
+ WYdXcWxeofLUCE2YxMJMZjEzus5QPErB3KZpOy3LQqW5xMxpAJK2Evew5Gmf6jDnd/g5xe4xxus
+ zE8tQ4eq14Bb/AXNYU7PQdMpEDpQ=
+X-Google-Smtp-Source: AGHT+IETebjLZgobBPu92rQ56cmnkFN8aUcSOW9fFKm5LgbF9Yc/aA2hoLDU95Na24bCBQRb/Eb0MDiwk5krC3W5jHs=
+X-Received: by 2002:a05:6512:308f:b0:549:6cac:6717 with SMTP id
+ 2adb3069b0e04-5496cac6755mr962478e87.53.1741006809916; Mon, 03 Mar 2025
+ 05:00:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SN7PR11MB6750E346CE1E741FE225D52CE3CC2@SN7PR11MB6750.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+References: <cover.1737556766.git.jani.nikula@intel.com>
+ <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
+ <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
+ <87r03e1lft.fsf@intel.com>
+In-Reply-To: <87r03e1lft.fsf@intel.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Mon, 3 Mar 2025 21:59:33 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
+X-Gm-Features: AQ5f1Jp-xOt0Zjm6RgkHvxBJFiKhzMczkhCsDSwP_YDiPua8QVxnAvviV1MQ_fI
+Message-ID: <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, 
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,193 +81,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2025 at 03:31:39PM +0000, Kandpal, Suraj wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Friday, February 28, 2025 7:57 PM
-> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>; intel-xe@lists.freedesktop.org;
-> > intel-gfx@lists.freedesktop.org; Syrjala, Ville <ville.syrjala@intel.com>;
-> > Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
-> > <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
-> > Subject: Re: [PATCH 05/11] drm/i915/dpll: Move away from using shared dpll
-> > 
-> > On Thu, Feb 27, 2025 at 10:18:31AM +0000, Kandpal, Suraj wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Jani Nikula <jani.nikula@linux.intel.com>
-> > > > Sent: Tuesday, February 25, 2025 9:00 PM
-> > > > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
-> > > > intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org;
-> > > > Syrjala, Ville <ville.syrjala@intel.com>
-> > > > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
-> > > > <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
-> > > > Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using
-> > > > shared dpll
-> > > >
-> > > > On Tue, 25 Feb 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> > > > >> -----Original Message-----
-> > > > >> From: Kandpal, Suraj
-> > > > >> Sent: Tuesday, February 25, 2025 2:25 PM
-> > > > >> To: Jani Nikula <jani.nikula@linux.intel.com>;
-> > > > >> intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > > > >> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar, Uma
-> > > > >> <uma.shankar@intel.com>; Kahola, Mika <mika.kahola@intel.com>
-> > > > >> Subject: RE: [PATCH 05/11] drm/i915/dpll: Move away from using
-> > > > >> shared dpll
-> > > > >>
-> > > > >>
-> > > > >>
-> > > > >> > -----Original Message-----
-> > > > >> > From: Jani Nikula <jani.nikula@linux.intel.com>
-> > > > >> > Sent: Tuesday, February 25, 2025 2:17 PM
-> > > > >> > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
-> > > > >> > intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> > > > >> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Shankar,
-> > > > >> > Uma <uma.shankar@intel.com>; Kahola, Mika
-> > > > >> > <mika.kahola@intel.com>; Kandpal, Suraj
-> > > > >> > <suraj.kandpal@intel.com>
-> > > > >> > Subject: Re: [PATCH 05/11] drm/i915/dpll: Move away from using
-> > > > >> > shared dpll
-> > > > >> >
-> > > > >> > On Tue, 25 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > > > >> > > Rename functions to move away from using shared dpll in the
-> > > > >> > > dpll framework as much as possible since dpll may not always be
-> > shared.
-> > > > >> > >
-> > > > >> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > > >> >
-> > > > >> > ...
-> > > > >> >
-> > > > >> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > > >> > > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > > >> > > index 6edd103eda55..ef66aca5da1d 100644
-> > > > >> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > > >> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > > >> > > @@ -387,24 +387,24 @@ struct intel_global_dpll {  #define
-> > > > >> > > SKL_DPLL2
-> > > > >> > > 2 #define SKL_DPLL3 3
-> > > > >> > >
-> > > > >> > > -/* shared dpll functions */
-> > > > >> > > +/* global dpll functions */
-> > > > >> > >  struct intel_global_dpll *
-> > > > >> > > -intel_get_shared_dpll_by_id(struct intel_display *display,
-> > > > >> > > +intel_get_global_dpll_by_id(struct intel_display *display,
-> > > > >> > >  			    enum intel_dpll_id id); -void
-> > > > >> > > assert_shared_dpll(struct intel_display *display,
-> > > > >> > > +void assert_global_dpll(struct intel_display *display,
-> > > > >> > >  			struct intel_global_dpll *pll,
-> > > > >> > >  			bool state);
-> > > > >> > > -#define assert_shared_dpll_enabled(d, p)
-> > > > >> > > assert_shared_dpll(d, p,
-> > > > >> > > true) -#define assert_shared_dpll_disabled(d, p)
-> > > > >> > > assert_shared_dpll(d, p, false) -int
-> > > > >> > > intel_compute_shared_dplls(struct intel_atomic_state *state,
-> > > > >> > > +#define assert_global_dpll_enabled(d, p)
-> > > > >> > > +assert_global_dpll(d, p,
-> > > > >> > > +true) #define assert_global_dpll_disabled(d, p)
-> > > > >> > > +assert_global_dpll(d, p, false) int
-> > > > >> > > +intel_compute_global_dplls(struct intel_atomic_state *state,
-> > > > >> > >  			       struct intel_crtc *crtc,
-> > > > >> > >  			       struct intel_encoder *encoder); -int
-> > > > >> > > intel_reserve_shared_dplls(struct intel_atomic_state *state,
-> > > > >> > > +int intel_reserve_global_dplls(struct intel_atomic_state
-> > > > >> > > +*state,
-> > > > >> > >  			       struct intel_crtc *crtc,
-> > > > >> > >  			       struct intel_encoder *encoder); -void
-> > > > >> > > intel_release_shared_dplls(struct intel_atomic_state *state,
-> > > > >> > > +void intel_release_global_dplls(struct intel_atomic_state
-> > > > >> > > +*state,
-> > > > >> > >  				struct intel_crtc *crtc); -void
-> > > > >> > > intel_unreference_shared_dpll_crtc(const struct intel_crtc
-> > > > >> > > *crtc,
-> > > > >> > > +void intel_unreference_global_dpll_crtc(const struct
-> > > > >> > > +intel_crtc *crtc,
-> > > > >> > >  					const struct intel_global_dpll
-> > *pll,
-> > > > >> > >  					struct intel_dpll_state
-> > > > >> > *shared_dpll_state);  void
-> > > > >> > > icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
-> > > > >> > > @@
-> > > > >> > > -418,10 +418,10 @@ int intel_dpll_get_freq(struct
-> > > > >> > > intel_display *display,  bool intel_dpll_get_hw_state(struct
-> > intel_display *display,
-> > > > >> > >  			     struct intel_global_dpll *pll,
-> > > > >> > >  			     struct intel_dpll_hw_state *dpll_hw_state);
-> > -void
-> > > > >> > > intel_enable_shared_dpll(const struct intel_crtc_state
-> > > > >> > > *crtc_state); -void intel_disable_shared_dpll(const struct
-> > > > >> > > intel_crtc_state *crtc_state); -void
-> > > > >> > > intel_shared_dpll_swap_state(struct
-> > > > >> > > intel_atomic_state *state); -void
-> > > > >> > > intel_shared_dpll_init(struct intel_display *display);
-> > > > >> > > +void intel_enable_global_dpll(const struct intel_crtc_state
-> > > > >> > > +*crtc_state); void intel_disable_global_dpll(const struct
-> > > > >> > > +intel_crtc_state *crtc_state); void
-> > > > >> > > +intel_dpll_swap_state(struct intel_atomic_state *state);
-> > > > >> > > +void intel_global_dpll_init(struct intel_display *display);
-> > > > >> > >  void intel_dpll_update_ref_clks(struct intel_display
-> > > > >> > > *display); void intel_dpll_readout_hw_state(struct
-> > > > >> > > intel_display *display); void
-> > > > >> > > intel_dpll_sanitize_state(struct intel_display *display); @@
-> > > > >> > > -437,6
-> > > > >> > > +437,6 @@ bool intel_dpll_is_combophy(enum intel_dpll_id id);
-> > > > >> > >
-> > > > >> > >  void intel_dpll_state_verify(struct intel_atomic_state *state,
-> > > > >> > >  			     struct intel_crtc *crtc); -void
-> > > > >> > > intel_shared_dpll_verify_disabled(struct intel_atomic_state
-> > > > >> > > *state);
-> > > > >> > > +void intel_global_dpll_verify_disabled(struct
-> > > > >> > > +intel_atomic_state *state);
-> > > > >> > >
-> > > > >> > >  #endif /* _INTEL_DPLL_MGR_H_ */
-> > > > >> >
-> > > > >> > If you're renaming almost everything anyway, I'd appreciate
-> > > > >> > moving towards naming functions according to the file name,
-> > > > >> > i.e. functions in intel_foo.[ch] would be named intel_foo_*().
-> > > > >> >
-> > > > >> > The dpll mgr is notoriously bad in this regard. I'm also open
-> > > > >> > to renaming the entire file, intel_dpll_mgr.[ch] isn't all that great.
-> > > > >> >
-> > > > >> > I'm not sure if the term "global" (instead of "shared") was
-> > > > >> > very well justified in patch 3. Maybe all of these should be
-> > > > >> > thought out together for the
-> > > > >> naming.
-> > > > >> >
-> > > > >>
-> > > > >> I agree with the renaming I would have very much have to keep the
-> > > > >> naming simple something like Intel_dpll_func but that exits !
-> > > > >> intel_dpll_mgr_funcs but intel_dpll_mgr already has some hooks
-> > > > >> defined
-> > > > inside It.
-> > > > >> I chose global since that way we will be able to represent both
-> > > > >> PLL using shared PHY and PLL with individual PHY.
-> > > > >> Also renaming intel_dpll_mgr.[ch] we have a intel_dpll.[ch]
-> > > > >> making it a problem What if we renamed the file to
-> > > > >> intel_global_dpll.[ch]
-> > > > >
-> > > > > Jani what do you think of this ?
-> > > >
-> > > > I think Ville probably has opinions on this. Cc'd.
-> > >
-> > > Hi Ville,
-> > > Any thoughts ?
-> > 
-> > IMO it should just be intel_dpll_*. We want all PLLs to provide the same
-> > uniform interface for enable/disble/readout/state_dump/etc.
-> > Whether the PLL is shared/global or not isn't interesting outside the actual
-> > modeset sequence and PLL selection logic.
-> 
-> But that still leaves us with the question what would be the most appropriate way to do away with the
-> Intel_shared_dpll_* naming what does it become if not intel_global_dpll_* (since intel_dpll wouldn't be a
-> Straightforward answer to this) intel_dpll_global ? 
+On Mon, Mar 3, 2025 at 7:02=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+> On Mon, 03 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> > +CC: Linus
+> >
+> > On Wed, Jan 22, 2025 at 11:41=E2=80=AFPM Jani Nikula <jani.nikula@intel=
+.com> wrote:
+> >>
+> >> Ensure drm headers build, are self-contained, have header guards, and
+> >> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=3Dy.
+> >>
+> >> The mechanism follows similar patters used in i915, xe, and usr/includ=
+e.
+> >>
+> >> To cover include/drm, we need to recurse there using the top level
+> >> Kbuild and the new include/Kbuild files.
+> >
+> > NACK.
+> >
+> > I replied here:
+> > https://lore.kernel.org/all/CAK7LNARJgqADxnOXAX49XzDFD4zT=3D7i8yTB0o=3D=
+EmNtxmScq8jA@mail.gmail.com/T/#u
+>
+> I really don't find it fair to completely ignore several pings over an
+> extended period of time, and then show up to NAK after the patches have
+> been merged.
 
-What do you mean intel_dpll_* isn't a straightforward answer?
-It is the right answer.
 
--- 
-Ville Syrjälä
-Intel
+Sorry, I didn't mean to ignore it - I simply didn't notice it.
+
+I regularly check linux-kbuild and linux-kernel MLs (though I still miss
+responding to many emails).
+However, I don't check the drm ML at all.
+I need to reconsider my email filtering rules, but in reality,
+I can't respond to all emails in time.
+
+I believe you are re-adding something Linus was negative about:
+https://lore.kernel.org/all/87a7982hwc.fsf@intel.com/
+
+
+
+
+> > I CCed Linus to avoid him accidentally pulling this.
+> > He disliked this misfeature.
+>
+> I believe being able to statically check the headers at build time, both
+> by the developers and CI, depending on a config option, makes for a more
+> pleasant development experience.
+>
+> We've had this in i915 and xe for a long time, and we avoid a lot of
+> build breakage due to missing includes e.g. while refactoring, and we
+> don't get reports about kernel-doc issues either. Because they all fail
+> at build, and we catch the issues pre-merge. We skip a whole class of
+> merge->dammit->fix cycles with this.
+>
+> All of the drm headers are clean and pass. We don't add any exception
+> lists. It's not enabled by default.
+
+I'm not a big fan of the header tests in i915 and xe.
+However, you've built a fence and you are dong what you want
+in driver-local Makefiles, so I can't avoid them.
+
+
+>
+> I can appreciate this might not be the best approach for all of
+> include/linux, but for include/drm, I think it's definitely a win.
+>
+> And one of the underlying goals is to make for minimal headers with
+> minimal includes and minimal dependencies, preferring forward
+> declarations over includes, splitting functionality by header, etc. It's
+> just that doing that often leads to broken headers, unless you actually
+> build test them... and here we are.
+
+
+What I learned from my last attempt is that we cannot avoid
+false positives without adding a lot of exceptions.
+
+We can never be certain whether you are making DRM headers
+self-contained for valid reasons or for hypothetical, invalid ones.
+
+
+
+
+
+
+
+>
+> BR,
+> Jani.
+>
+>
+> >
+> >
+> >
+> >
+> >>
+> >> v4: check for CONFIG_WERROR in addition to CONFIG_DRM_WERROR
+> >>
+> >> v3: adapt to upstream build changes
+> >>
+> >> v2: make DRM_HEADER_TEST depend on DRM
+> >>
+> >> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> >> Cc: David Airlie <airlied@gmail.com>
+> >> Cc: Daniel Vetter <daniel@ffwll.ch>
+> >> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >> Cc: Maxime Ripard <mripard@kernel.org>
+> >> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> >> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> >> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  Kbuild                   |  1 +
+> >>  drivers/gpu/drm/Kconfig  | 11 +++++++++++
+> >>  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
+> >>  include/Kbuild           |  1 +
+> >>  include/drm/Makefile     | 18 ++++++++++++++++++
+> >>  5 files changed, 49 insertions(+)
+> >>  create mode 100644 include/Kbuild
+> >>  create mode 100644 include/drm/Makefile
+> >>
+> >> diff --git a/Kbuild b/Kbuild
+> >> index 464b34a08f51..f327ca86990c 100644
+> >> --- a/Kbuild
+> >> +++ b/Kbuild
+> >> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES) +=3D samples/
+> >>  obj-$(CONFIG_NET)      +=3D net/
+> >>  obj-y                  +=3D virt/
+> >>  obj-y                  +=3D $(ARCH_DRIVERS)
+> >> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D include/
+> >> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> >> index fbef3f471bd0..f9b3ebf63fa9 100644
+> >> --- a/drivers/gpu/drm/Kconfig
+> >> +++ b/drivers/gpu/drm/Kconfig
+> >> @@ -494,6 +494,17 @@ config DRM_WERROR
+> >>
+> >>           If in doubt, say N.
+> >>
+> >> +config DRM_HEADER_TEST
+> >> +       bool "Ensure DRM headers are self-contained and pass kernel-do=
+c"
+> >> +       depends on DRM && EXPERT
+> >> +       default n
+> >> +       help
+> >> +         Ensure the DRM subsystem headers both under drivers/gpu/drm =
+and
+> >> +         include/drm compile, are self-contained, have header guards,=
+ and have
+> >> +         no kernel-doc warnings.
+> >> +
+> >> +         If in doubt, say N.
+> >> +
+> >>  endif
+> >>
+> >>  # Separate option because drm_panel_orientation_quirks.c is shared wi=
+th fbdev
+> >> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> >> index 85af94bb907d..42901f877bf2 100644
+> >> --- a/drivers/gpu/drm/Makefile
+> >> +++ b/drivers/gpu/drm/Makefile
+> >> @@ -222,3 +222,21 @@ obj-y                      +=3D solomon/
+> >>  obj-$(CONFIG_DRM_SPRD) +=3D sprd/
+> >>  obj-$(CONFIG_DRM_LOONGSON) +=3D loongson/
+> >>  obj-$(CONFIG_DRM_POWERVR) +=3D imagination/
+> >> +
+> >> +# Ensure drm headers are self-contained and pass kernel-doc
+> >> +hdrtest-files :=3D \
+> >> +       $(shell cd $(src) && find . -maxdepth 1 -name 'drm_*.h') \
+> >> +       $(shell cd $(src) && find display lib -name '*.h')
+> >> +
+> >> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+> >> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> >> +
+> >> +# Include the header twice to detect missing include guard.
+> >> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> >> +      cmd_hdrtest =3D \
+> >> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include=
+ $< -include $<; \
+> >> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERR=
+OR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> >> +               touch $@
+> >> +
+> >> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> >> +       $(call if_changed_dep,hdrtest)
+> >> diff --git a/include/Kbuild b/include/Kbuild
+> >> new file mode 100644
+> >> index 000000000000..5e76a599e2dd
+> >> --- /dev/null
+> >> +++ b/include/Kbuild
+> >> @@ -0,0 +1 @@
+> >> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D drm/
+> >> diff --git a/include/drm/Makefile b/include/drm/Makefile
+> >> new file mode 100644
+> >> index 000000000000..a7bd15d2803e
+> >> --- /dev/null
+> >> +++ b/include/drm/Makefile
+> >> @@ -0,0 +1,18 @@
+> >> +# SPDX-License-Identifier: GPL-2.0
+> >> +
+> >> +# Ensure drm headers are self-contained and pass kernel-doc
+> >> +hdrtest-files :=3D \
+> >> +       $(shell cd $(src) && find * -name '*.h' 2>/dev/null)
+> >> +
+> >> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
+> >> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
+> >> +
+> >> +# Include the header twice to detect missing include guard.
+> >> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> >> +      cmd_hdrtest =3D \
+> >> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include=
+ $< -include $<; \
+> >> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERR=
+OR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> >> +               touch $@
+> >> +
+> >> +$(obj)/%.hdrtest: $(src)/%.h FORCE
+> >> +       $(call if_changed_dep,hdrtest)
+> >> --
+> >> 2.39.5
+> >>
+>
+> --
+> Jani Nikula, Intel
+
+
+
+--=20
+Best Regards
+Masahiro Yamada
