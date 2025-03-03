@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC4AA4BFFA
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 13:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7070A4C04A
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 13:26:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3846910E283;
-	Mon,  3 Mar 2025 12:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56CC88951B;
+	Mon,  3 Mar 2025 12:26:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZY6Anrz";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89DD710E283;
- Mon,  3 Mar 2025 12:13:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 279538951B;
+ Mon,  3 Mar 2025 12:26:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741004812; x=1772540812;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=TdQIbsH8mqQaDHag5Y+cfV7DxcUvccLSzgI7CxU6a1k=;
+ b=UZY6AnrzpPz6FDF3v91W3zJz9CcBS5ECl9dsT6fY8r7FUYHDePfNafvf
+ j0kAYYkwOfw3ms8qZU+ix6r+DjHNqoZ7mp6SZ0vPfR45HDE9/jyuwl+jR
+ ECQFflYJR1xvxXtDvJM0cZUVI6rKU3FfZ5JKIh/RCBbo9FjiCzqcQggDy
+ J2tA5QPyDC1xzOFYimgJqvqi/0PFOIxPazsNxCaV6dmrAWxr80FLhU3yx
+ N5pAFILo5pSPGgVaUVZ84nSa6PrlDUvt3+RwOBWhHZqzgpUtMpjj5pZsn
+ G+YMral1bq3VLtJFve0pXYeX2G960U+/xYIdGbDuXAH90QXX0zyRO6gLf Q==;
+X-CSE-ConnectionGUID: eFF9WfE2SKq+7S4Og40YlA==
+X-CSE-MsgGUID: hxSEysDGSpSLwFVHFm+69A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41730178"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41730178"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 04:26:51 -0800
+X-CSE-ConnectionGUID: oPHnG1+lQ3yesmC6+1fm6w==
+X-CSE-MsgGUID: kV+xYlv9QB656lMJgu8BnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123208499"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 03 Mar 2025 04:26:49 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 03 Mar 2025 14:26:47 +0200
+Date: Mon, 3 Mar 2025 14:26:47 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, dri-devel@lists.freedesktop.org
+Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJVSUxEOiBmYWls?= =?utf-8?Q?ur?=
+ =?utf-8?Q?e?= for drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+Message-ID: <Z8WgBx5sVVcoLYsk@intel.com>
+References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+ <174100275212.118223.16006543455148366118@b555e5b46a47>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_display_rese?=
- =?utf-8?q?t_cleanups_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 03 Mar 2025 12:13:56 -0000
-Message-ID: <174100403655.118733.9886794931189017369@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1741001054.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1741001054.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <174100275212.118223.16006543455148366118@b555e5b46a47>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +69,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 03, 2025 at 11:52:32AM -0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+> URL   : https://patchwork.freedesktop.org/series/145707/
+> State : failure
+> 
+> == Summary ==
+> 
+> Error: make failed
+>   CALL    scripts/checksyscalls.sh
+>   DESCEND objtool
+>   INSTALL libsubcmd_headers
+>   CHK     kernel/kheaders_data.tar.xz
+>   HDRTEST drivers/gpu/drm/xe/generated/xe_wa_oob.h
+>   UPD     include/generated/utsversion.h
+>   CC      init/version-timestamp.o
+>   KSYMS   .tmp_vmlinux0.kallsyms.S
+>   AS      .tmp_vmlinux0.kallsyms.o
+>   LD      .tmp_vmlinux1
+> ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_test_pick_cmdline_named':
+> /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:142:(.text+0x3c9): undefined reference to `drm_helper_probe_single_connector_modes'
 
-Series: drm/i915: display reset cleanups (rev3)
-URL   : https://patchwork.freedesktop.org/series/143233/
-State : warning
+That comes from drm_kms_helper.ko, but drm_client* goes into
+drm.ko. So this looks like a circular dependency :/
 
-== Summary ==
+> ld: /home/kbuild/kernel/drivers/gpu/drm/tests/drm_client_modeset_test.c:136:(.text+0x4b1): undefined reference to `kunit_unary_assert_format'
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+No idea what is going on with these. Should be coming via CONFIG_KUNT
+and we do seem to depend on that.
 
-
+-- 
+Ville Syrjälä
+Intel
