@@ -2,60 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2DD9A4C241
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 14:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF87A4C270
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 14:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D2110E14C;
-	Mon,  3 Mar 2025 13:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3664010E41B;
+	Mon,  3 Mar 2025 13:53:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JyGo1T/T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxPAwHC2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB33610E14C;
- Mon,  3 Mar 2025 13:42:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D522E10E413;
+ Mon,  3 Mar 2025 13:53:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741009346; x=1772545346;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=JGVVfQ3VupI7IJUoPfF2V8z0J7v1Nc0wRYy5WCZBnnM=;
- b=JyGo1T/TFDx8r/1li3lItKQp3cdyByx5FOTQXp7czyVxlxWz3j5waP1o
- mH8Kp7YMoKJaC4Vvn9GHziIoyy5cDugzcSxlegr8EIl6MxcNMeVLXhqGp
- qIXWOld6R4Wjv8EioUz/2FQNA69yglMuaH4qCM684QQkWcikQDuFvl/n7
- 0tVhBvsz/7JRK+frq645WxGsp44EZkC3m+GR/HX6dD8oFcG/W1zV+/0Hr
- 8fRXcTUt8GPWELRauoMBRtmVaR9aASkniedltktnI+GKcyUQjsj1Smkgk
- 992vM7UXORsECTOTdbrqqyoVHlP3LjLONlfT4jM7xd4beJeuJ3K4KLHmE g==;
-X-CSE-ConnectionGUID: gG8oIP3VQXOPipmoXdoVSg==
-X-CSE-MsgGUID: TikdntflSru0U74cMOQu7w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41590718"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41590718"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 05:42:17 -0800
-X-CSE-ConnectionGUID: 5JuCmvbWROiG2DgaoCTPdQ==
-X-CSE-MsgGUID: ZCXP2DHaRW2hYtzZ15J12Q==
+ t=1741009985; x=1772545985;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=TNhLVKKg7mgrhaXogzcKHNa5uVOgg882a9yCcqvBM3E=;
+ b=SxPAwHC2VPq6ESXOHsiy9QULEsVN1UlOb3PIMnQU4yo2/qvRuhY/8FHs
+ XyxWTBbzkd9dMegxmvaBCqW0S3Bdg2Dgs7A9mmOPKPs0EfcgEQraliYDl
+ KwGNd0wIfYVjp6xB0uMmIzyYUESrOd+RIGAw4miLtJEv49+w+1bM/Ce6O
+ WInDWEPI2u8XXcyDdfFkRUL78aloIIQF22YSUGVs1Tq/vul3oBI+1+3qv
+ wnyw70foBcivVKXGWVB2ORZVIFVSX+TGdWrcdAgz08EH/3J7gPELcNk+h
+ 37mDq7VeNnufFOfq9p0cJk6Nos7/CRNDKuJJLGCxPYXPwpgg7Z1HIoCHc w==;
+X-CSE-ConnectionGUID: h7/rNVtOQumK1KpWYbiq0A==
+X-CSE-MsgGUID: gyq7Glu+RDOluLOR6tSl0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="53276185"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="53276185"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 05:53:05 -0800
+X-CSE-ConnectionGUID: /VL33A33SR26Wi7sCeBEnw==
+X-CSE-MsgGUID: xuAQNdn5QpeVb7F0FusYyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="118703997"
-Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
- by fmviesa009.fm.intel.com with ESMTP; 03 Mar 2025 05:42:15 -0800
-Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tp62v-000IY7-1D;
- Mon, 03 Mar 2025 13:41:43 +0000
-Date: Mon, 3 Mar 2025 21:41:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
-Message-ID: <202503032114.TQkZ0b7R-lkp@intel.com>
-References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="155197923"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.144])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 05:53:01 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, Daniel Vetter
+ <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Linus Torvalds
+ <torvalds@linux-foundation.org>
+Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
+ kernel-doc
+In-Reply-To: <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1737556766.git.jani.nikula@intel.com>
+ <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
+ <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
+ <87r03e1lft.fsf@intel.com>
+ <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
+Date: Mon, 03 Mar 2025 15:52:57 +0200
+Message-ID: <8734fu1arq.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,73 +79,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+On Mon, 03 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> On Mon, Mar 3, 2025 at 7:02=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
+> wrote:
+>>
+>> On Mon, 03 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
+>> And one of the underlying goals is to make for minimal headers with
+>> minimal includes and minimal dependencies, preferring forward
+>> declarations over includes, splitting functionality by header, etc. It's
+>> just that doing that often leads to broken headers, unless you actually
+>> build test them... and here we are.
+>
+>
+> What I learned from my last attempt is that we cannot avoid
+> false positives without adding a lot of exceptions.
 
-kernel test robot noticed the following build errors:
+All of the drm core, xe and i915 headers build fine without
+exceptions. There are no false positives. (*)
 
-[auto build test ERROR on drm-exynos/exynos-drm-next]
-[also build test ERROR on linus/master v6.14-rc5]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> We can never be certain whether you are making DRM headers
+> self-contained for valid reasons or for hypothetical, invalid ones.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-client-Build-the-tests-with-CONFIG_DRM_KUNIT_TEST-m/20250303-175715
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git exynos-drm-next
-patch link:    https://lore.kernel.org/r/20250303094808.11860-1-ville.syrjala%40linux.intel.com
-patch subject: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
-config: riscv-randconfig-002-20250303 (https://download.01.org/0day-ci/archive/20250303/202503032114.TQkZ0b7R-lkp@intel.com/config)
-compiler: riscv32-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250303/202503032114.TQkZ0b7R-lkp@intel.com/reproduce)
+Please enlighten me. What are hypothetical, invalid reasons for making
+headers self-contained?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202503032114.TQkZ0b7R-lkp@intel.com/
+IMO headers should almost invariably be self-contained, instead of
+putting the burden on their users to include other headers to make it
+work. It's a PITA in a project the size of the kernel, or even just the
+drm subsystem, to track these cases when you modify includes in either
+users or the headers being included.
 
-All errors (new ones prefixed by >>):
-
-   riscv32-linux-ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_modeset_test_init':
->> drivers/gpu/drm/tests/drm_client_modeset_test.c:59:(.text.drm_client_modeset_test_init+0xa4): undefined reference to `drm_kunit_helper_alloc_device'
-   riscv32-linux-ld: drivers/gpu/drm/drm_client_modeset.o: in function `__drm_kunit_helper_alloc_drm_device':
->> include/drm/drm_kunit_helpers.h:63:(.text.drm_client_modeset_test_init+0x198): undefined reference to `__drm_kunit_helper_alloc_drm_device_with_driver'
+The exception to this are headers that are not to be included directly
+by users, but rather by other headers as an implementation detail. There
+may be such cases in include/linux, but not under include/drm.
 
 
-vim +59 drivers/gpu/drm/tests/drm_client_modeset_test.c
+BR,
+Jani.
 
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  52  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  53  static int drm_client_modeset_test_init(struct kunit *test)
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  54  {
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  55  	struct drm_client_modeset_test_priv *priv;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  56  	int ret;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  57  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  58  	priv = kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14 @59  	KUNIT_ASSERT_NOT_NULL(test, priv);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  60  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  61  	test->priv = priv;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  62  
-9ecd8045bf64f8 Maxime Ripard 2022-12-01  63  	priv->dev = drm_kunit_helper_alloc_device(test);
-9ecd8045bf64f8 Maxime Ripard 2022-12-01  64  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->dev);
-9ecd8045bf64f8 Maxime Ripard 2022-12-01  65  
-a9143c5852a7a1 Maxime Ripard 2022-12-01  66  	priv->drm = __drm_kunit_helper_alloc_drm_device(test, priv->dev,
-a9143c5852a7a1 Maxime Ripard 2022-12-01  67  							sizeof(*priv->drm), 0,
-a9143c5852a7a1 Maxime Ripard 2022-12-01  68  							DRIVER_MODESET);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  69  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->drm);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  70  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  71  	ret = drmm_connector_init(priv->drm, &priv->connector,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  72  				  &drm_client_modeset_connector_funcs,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  73  				  DRM_MODE_CONNECTOR_Unknown,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  74  				  NULL);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  75  	KUNIT_ASSERT_EQ(test, ret, 0);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  76  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  77  	drm_connector_helper_add(&priv->connector, &drm_client_modeset_connector_helper_funcs);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  78  
-fedcaf726f542b Maxime Ripard 2022-11-17  79  	priv->connector.interlace_allowed = true;
-fedcaf726f542b Maxime Ripard 2022-11-17  80  	priv->connector.doublescan_allowed = true;
-fedcaf726f542b Maxime Ripard 2022-11-17  81  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  82  	return 0;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  83  }
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  84  
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+(*) Fine, there's one *intentional* special case in i915.
+
+--=20
+Jani Nikula, Intel
