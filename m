@@ -2,70 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A23A4C122
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 14:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2DD9A4C241
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 14:42:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABDD010E41D;
-	Mon,  3 Mar 2025 13:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96D2110E14C;
+	Mon,  3 Mar 2025 13:42:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nchwyBUw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JyGo1T/T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BACE010E40C;
- Mon,  3 Mar 2025 13:00:12 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 234D661195;
- Mon,  3 Mar 2025 13:00:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 531B8C4AF0B;
- Mon,  3 Mar 2025 13:00:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1741006811;
- bh=RVOfscREw4GtPB4azPGZinG7tSiPuv/uEy+UwtEpZQo=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=nchwyBUwicCSYaNel8bwyqk++4HG9lq6UyVsa3Yt5G8sVfsqdOlDxIVPoyBGNjAY1
- 6Fyz0tkHgx7CPxWbjD8oV6a0c6j86yNWPzRNoVt1s1aj5pYa5XGQKglltX2YAMefzT
- 1K1+KH8Bn3DnNpE/HpmZ/2xpHfDKpKOrq6A/U6/rAubeS0XvoU/djnPmZmgtnR6FXp
- 0n3RaP5Z2aFcqk/BsfsOyZKArzD3s6COrbV1Za511dMxae/fewcZ9WY+0VEU+RA4sE
- nh9j7a6thKqmnNrbigkiZh4sB8f8xF06FpOcd6+pBe++Boi4iDapluZFemeVum5Csb
- s8maBu1zLlbZA==
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-54298ec925bso6657864e87.3; 
- Mon, 03 Mar 2025 05:00:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXo4UwyujLvMkg7tC9ZGszsPvVsmizFKU2rLDhrrDfE7syV4qdH3KMkDoHsEM4o0XpbF7oiWKwJ1RQ=@lists.freedesktop.org,
- AJvYcCXuaQu6rK+qv2E9hWwcFC53w89bq0o/EldJWoSiQkmqrrITKtNIzAieRVU8xP1LMvr4bstKXj5ze7Q=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywl28CtYjyWqUX8z7TsbiuVl9+jF3fSH/ucXI1SQ2YEK/QI9cyP
- WYdXcWxeofLUCE2YxMJMZjEzus5QPErB3KZpOy3LQqW5xMxpAJK2Evew5Gmf6jDnd/g5xe4xxus
- zE8tQ4eq14Bb/AXNYU7PQdMpEDpQ=
-X-Google-Smtp-Source: AGHT+IETebjLZgobBPu92rQ56cmnkFN8aUcSOW9fFKm5LgbF9Yc/aA2hoLDU95Na24bCBQRb/Eb0MDiwk5krC3W5jHs=
-X-Received: by 2002:a05:6512:308f:b0:549:6cac:6717 with SMTP id
- 2adb3069b0e04-5496cac6755mr962478e87.53.1741006809916; Mon, 03 Mar 2025
- 05:00:09 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB33610E14C;
+ Mon,  3 Mar 2025 13:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741009346; x=1772545346;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JGVVfQ3VupI7IJUoPfF2V8z0J7v1Nc0wRYy5WCZBnnM=;
+ b=JyGo1T/TFDx8r/1li3lItKQp3cdyByx5FOTQXp7czyVxlxWz3j5waP1o
+ mH8Kp7YMoKJaC4Vvn9GHziIoyy5cDugzcSxlegr8EIl6MxcNMeVLXhqGp
+ qIXWOld6R4Wjv8EioUz/2FQNA69yglMuaH4qCM684QQkWcikQDuFvl/n7
+ 0tVhBvsz/7JRK+frq645WxGsp44EZkC3m+GR/HX6dD8oFcG/W1zV+/0Hr
+ 8fRXcTUt8GPWELRauoMBRtmVaR9aASkniedltktnI+GKcyUQjsj1Smkgk
+ 992vM7UXORsECTOTdbrqqyoVHlP3LjLONlfT4jM7xd4beJeuJ3K4KLHmE g==;
+X-CSE-ConnectionGUID: gG8oIP3VQXOPipmoXdoVSg==
+X-CSE-MsgGUID: TikdntflSru0U74cMOQu7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41590718"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41590718"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2025 05:42:17 -0800
+X-CSE-ConnectionGUID: 5JuCmvbWROiG2DgaoCTPdQ==
+X-CSE-MsgGUID: ZCXP2DHaRW2hYtzZ15J12Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="118703997"
+Received: from lkp-server02.sh.intel.com (HELO 76cde6cc1f07) ([10.239.97.151])
+ by fmviesa009.fm.intel.com with ESMTP; 03 Mar 2025 05:42:15 -0800
+Received: from kbuild by 76cde6cc1f07 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tp62v-000IY7-1D;
+ Mon, 03 Mar 2025 13:41:43 +0000
+Date: Mon, 3 Mar 2025 21:41:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+Message-ID: <202503032114.TQkZ0b7R-lkp@intel.com>
+References: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-References: <cover.1737556766.git.jani.nikula@intel.com>
- <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
- <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
- <87r03e1lft.fsf@intel.com>
-In-Reply-To: <87r03e1lft.fsf@intel.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 3 Mar 2025 21:59:33 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
-X-Gm-Features: AQ5f1Jp-xOt0Zjm6RgkHvxBJFiKhzMczkhCsDSwP_YDiPua8QVxnAvviV1MQ_fI
-Message-ID: <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
- kernel-doc
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, simona.vetter@ffwll.ch, 
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,233 +71,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 3, 2025 at 7:02=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
-wrote:
->
-> On Mon, 03 Mar 2025, Masahiro Yamada <masahiroy@kernel.org> wrote:
-> > +CC: Linus
-> >
-> > On Wed, Jan 22, 2025 at 11:41=E2=80=AFPM Jani Nikula <jani.nikula@intel=
-.com> wrote:
-> >>
-> >> Ensure drm headers build, are self-contained, have header guards, and
-> >> have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=3Dy.
-> >>
-> >> The mechanism follows similar patters used in i915, xe, and usr/includ=
-e.
-> >>
-> >> To cover include/drm, we need to recurse there using the top level
-> >> Kbuild and the new include/Kbuild files.
-> >
-> > NACK.
-> >
-> > I replied here:
-> > https://lore.kernel.org/all/CAK7LNARJgqADxnOXAX49XzDFD4zT=3D7i8yTB0o=3D=
-EmNtxmScq8jA@mail.gmail.com/T/#u
->
-> I really don't find it fair to completely ignore several pings over an
-> extended period of time, and then show up to NAK after the patches have
-> been merged.
+Hi Ville,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on drm-exynos/exynos-drm-next]
+[also build test ERROR on linus/master v6.14-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-client-Build-the-tests-with-CONFIG_DRM_KUNIT_TEST-m/20250303-175715
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/daeinki/drm-exynos.git exynos-drm-next
+patch link:    https://lore.kernel.org/r/20250303094808.11860-1-ville.syrjala%40linux.intel.com
+patch subject: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
+config: riscv-randconfig-002-20250303 (https://download.01.org/0day-ci/archive/20250303/202503032114.TQkZ0b7R-lkp@intel.com/config)
+compiler: riscv32-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250303/202503032114.TQkZ0b7R-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202503032114.TQkZ0b7R-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   riscv32-linux-ld: drivers/gpu/drm/drm_client_modeset.o: in function `drm_client_modeset_test_init':
+>> drivers/gpu/drm/tests/drm_client_modeset_test.c:59:(.text.drm_client_modeset_test_init+0xa4): undefined reference to `drm_kunit_helper_alloc_device'
+   riscv32-linux-ld: drivers/gpu/drm/drm_client_modeset.o: in function `__drm_kunit_helper_alloc_drm_device':
+>> include/drm/drm_kunit_helpers.h:63:(.text.drm_client_modeset_test_init+0x198): undefined reference to `__drm_kunit_helper_alloc_drm_device_with_driver'
 
 
-Sorry, I didn't mean to ignore it - I simply didn't notice it.
+vim +59 drivers/gpu/drm/tests/drm_client_modeset_test.c
 
-I regularly check linux-kbuild and linux-kernel MLs (though I still miss
-responding to many emails).
-However, I don't check the drm ML at all.
-I need to reconsider my email filtering rules, but in reality,
-I can't respond to all emails in time.
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  52  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  53  static int drm_client_modeset_test_init(struct kunit *test)
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  54  {
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  55  	struct drm_client_modeset_test_priv *priv;
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  56  	int ret;
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  57  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  58  	priv = kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14 @59  	KUNIT_ASSERT_NOT_NULL(test, priv);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  60  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  61  	test->priv = priv;
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  62  
+9ecd8045bf64f8 Maxime Ripard 2022-12-01  63  	priv->dev = drm_kunit_helper_alloc_device(test);
+9ecd8045bf64f8 Maxime Ripard 2022-12-01  64  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->dev);
+9ecd8045bf64f8 Maxime Ripard 2022-12-01  65  
+a9143c5852a7a1 Maxime Ripard 2022-12-01  66  	priv->drm = __drm_kunit_helper_alloc_drm_device(test, priv->dev,
+a9143c5852a7a1 Maxime Ripard 2022-12-01  67  							sizeof(*priv->drm), 0,
+a9143c5852a7a1 Maxime Ripard 2022-12-01  68  							DRIVER_MODESET);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  69  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->drm);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  70  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  71  	ret = drmm_connector_init(priv->drm, &priv->connector,
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  72  				  &drm_client_modeset_connector_funcs,
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  73  				  DRM_MODE_CONNECTOR_Unknown,
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  74  				  NULL);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  75  	KUNIT_ASSERT_EQ(test, ret, 0);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  76  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  77  	drm_connector_helper_add(&priv->connector, &drm_client_modeset_connector_helper_funcs);
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  78  
+fedcaf726f542b Maxime Ripard 2022-11-17  79  	priv->connector.interlace_allowed = true;
+fedcaf726f542b Maxime Ripard 2022-11-17  80  	priv->connector.doublescan_allowed = true;
+fedcaf726f542b Maxime Ripard 2022-11-17  81  
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  82  	return 0;
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  83  }
+8fc0380f6ba7e9 Maxime Ripard 2022-11-14  84  
 
-I believe you are re-adding something Linus was negative about:
-https://lore.kernel.org/all/87a7982hwc.fsf@intel.com/
-
-
-
-
-> > I CCed Linus to avoid him accidentally pulling this.
-> > He disliked this misfeature.
->
-> I believe being able to statically check the headers at build time, both
-> by the developers and CI, depending on a config option, makes for a more
-> pleasant development experience.
->
-> We've had this in i915 and xe for a long time, and we avoid a lot of
-> build breakage due to missing includes e.g. while refactoring, and we
-> don't get reports about kernel-doc issues either. Because they all fail
-> at build, and we catch the issues pre-merge. We skip a whole class of
-> merge->dammit->fix cycles with this.
->
-> All of the drm headers are clean and pass. We don't add any exception
-> lists. It's not enabled by default.
-
-I'm not a big fan of the header tests in i915 and xe.
-However, you've built a fence and you are dong what you want
-in driver-local Makefiles, so I can't avoid them.
-
-
->
-> I can appreciate this might not be the best approach for all of
-> include/linux, but for include/drm, I think it's definitely a win.
->
-> And one of the underlying goals is to make for minimal headers with
-> minimal includes and minimal dependencies, preferring forward
-> declarations over includes, splitting functionality by header, etc. It's
-> just that doing that often leads to broken headers, unless you actually
-> build test them... and here we are.
-
-
-What I learned from my last attempt is that we cannot avoid
-false positives without adding a lot of exceptions.
-
-We can never be certain whether you are making DRM headers
-self-contained for valid reasons or for hypothetical, invalid ones.
-
-
-
-
-
-
-
->
-> BR,
-> Jani.
->
->
-> >
-> >
-> >
-> >
-> >>
-> >> v4: check for CONFIG_WERROR in addition to CONFIG_DRM_WERROR
-> >>
-> >> v3: adapt to upstream build changes
-> >>
-> >> v2: make DRM_HEADER_TEST depend on DRM
-> >>
-> >> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-> >> Cc: David Airlie <airlied@gmail.com>
-> >> Cc: Daniel Vetter <daniel@ffwll.ch>
-> >> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >> Cc: Maxime Ripard <mripard@kernel.org>
-> >> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> >> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  Kbuild                   |  1 +
-> >>  drivers/gpu/drm/Kconfig  | 11 +++++++++++
-> >>  drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
-> >>  include/Kbuild           |  1 +
-> >>  include/drm/Makefile     | 18 ++++++++++++++++++
-> >>  5 files changed, 49 insertions(+)
-> >>  create mode 100644 include/Kbuild
-> >>  create mode 100644 include/drm/Makefile
-> >>
-> >> diff --git a/Kbuild b/Kbuild
-> >> index 464b34a08f51..f327ca86990c 100644
-> >> --- a/Kbuild
-> >> +++ b/Kbuild
-> >> @@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES) +=3D samples/
-> >>  obj-$(CONFIG_NET)      +=3D net/
-> >>  obj-y                  +=3D virt/
-> >>  obj-y                  +=3D $(ARCH_DRIVERS)
-> >> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D include/
-> >> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> >> index fbef3f471bd0..f9b3ebf63fa9 100644
-> >> --- a/drivers/gpu/drm/Kconfig
-> >> +++ b/drivers/gpu/drm/Kconfig
-> >> @@ -494,6 +494,17 @@ config DRM_WERROR
-> >>
-> >>           If in doubt, say N.
-> >>
-> >> +config DRM_HEADER_TEST
-> >> +       bool "Ensure DRM headers are self-contained and pass kernel-do=
-c"
-> >> +       depends on DRM && EXPERT
-> >> +       default n
-> >> +       help
-> >> +         Ensure the DRM subsystem headers both under drivers/gpu/drm =
-and
-> >> +         include/drm compile, are self-contained, have header guards,=
- and have
-> >> +         no kernel-doc warnings.
-> >> +
-> >> +         If in doubt, say N.
-> >> +
-> >>  endif
-> >>
-> >>  # Separate option because drm_panel_orientation_quirks.c is shared wi=
-th fbdev
-> >> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> >> index 85af94bb907d..42901f877bf2 100644
-> >> --- a/drivers/gpu/drm/Makefile
-> >> +++ b/drivers/gpu/drm/Makefile
-> >> @@ -222,3 +222,21 @@ obj-y                      +=3D solomon/
-> >>  obj-$(CONFIG_DRM_SPRD) +=3D sprd/
-> >>  obj-$(CONFIG_DRM_LOONGSON) +=3D loongson/
-> >>  obj-$(CONFIG_DRM_POWERVR) +=3D imagination/
-> >> +
-> >> +# Ensure drm headers are self-contained and pass kernel-doc
-> >> +hdrtest-files :=3D \
-> >> +       $(shell cd $(src) && find . -maxdepth 1 -name 'drm_*.h') \
-> >> +       $(shell cd $(src) && find display lib -name '*.h')
-> >> +
-> >> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
-> >> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
-> >> +
-> >> +# Include the header twice to detect missing include guard.
-> >> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> >> +      cmd_hdrtest =3D \
-> >> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include=
- $< -include $<; \
-> >> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERR=
-OR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> >> +               touch $@
-> >> +
-> >> +$(obj)/%.hdrtest: $(src)/%.h FORCE
-> >> +       $(call if_changed_dep,hdrtest)
-> >> diff --git a/include/Kbuild b/include/Kbuild
-> >> new file mode 100644
-> >> index 000000000000..5e76a599e2dd
-> >> --- /dev/null
-> >> +++ b/include/Kbuild
-> >> @@ -0,0 +1 @@
-> >> +obj-$(CONFIG_DRM_HEADER_TEST)  +=3D drm/
-> >> diff --git a/include/drm/Makefile b/include/drm/Makefile
-> >> new file mode 100644
-> >> index 000000000000..a7bd15d2803e
-> >> --- /dev/null
-> >> +++ b/include/drm/Makefile
-> >> @@ -0,0 +1,18 @@
-> >> +# SPDX-License-Identifier: GPL-2.0
-> >> +
-> >> +# Ensure drm headers are self-contained and pass kernel-doc
-> >> +hdrtest-files :=3D \
-> >> +       $(shell cd $(src) && find * -name '*.h' 2>/dev/null)
-> >> +
-> >> +always-$(CONFIG_DRM_HEADER_TEST) +=3D \
-> >> +       $(patsubst %.h,%.hdrtest, $(hdrtest-files))
-> >> +
-> >> +# Include the header twice to detect missing include guard.
-> >> +quiet_cmd_hdrtest =3D HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> >> +      cmd_hdrtest =3D \
-> >> +               $(CC) $(c_flags) -fsyntax-only -x c /dev/null -include=
- $< -include $<; \
-> >> +               $(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERR=
-OR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> >> +               touch $@
-> >> +
-> >> +$(obj)/%.hdrtest: $(src)/%.h FORCE
-> >> +       $(call if_changed_dep,hdrtest)
-> >> --
-> >> 2.39.5
-> >>
->
-> --
-> Jani Nikula, Intel
-
-
-
---=20
-Best Regards
-Masahiro Yamada
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
