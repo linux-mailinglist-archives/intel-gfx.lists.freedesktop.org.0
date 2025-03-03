@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E849AA4BB22
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 10:48:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C1AA4BB44
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 10:55:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFB0310E3AE;
-	Mon,  3 Mar 2025 09:48:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W1AbTbTr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE2510E3BC;
+	Mon,  3 Mar 2025 09:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86D4210E265;
- Mon,  3 Mar 2025 09:48:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740995292; x=1772531292;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tdQaaENsWJdVr6hH4KbkruhOlxCer1viA1qztXaHCRg=;
- b=W1AbTbTr1Qicb1QWYJt4lGR2ubduKq/jt0C+Gb3UGjhss4yR+Tz0IplP
- qAbLXNTQJXIAB/b9hpvrRBBaHchhuavYJREXm4jd5G2j4DCBol7nxc2Do
- CIt1pAa/2RSLMQZdHmWomBHLepIZCy9TXyZxSoQSS929VIqGK7pdW9Klg
- FogdfPhPPnNYJOcyrOfjpR6uyVw5KV44q9eId7VN53ULrl7xBcZD/klZ8
- PWj+2sodj8VvTGU75JsKOFpUUcNOMo5gfW2BZx9ehh0pEftweQzq9KP6p
- q1MoX3tPS6ExNAlKcjT+xzWWUQe5XRxFT51djp3xTocyZk7EnIUMKqPGy Q==;
-X-CSE-ConnectionGUID: Aod96dy8QlG6I+Ih23/BdA==
-X-CSE-MsgGUID: TZtfE0CLR5KeD3PITmP2rw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="59407286"
-X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="59407286"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2025 01:48:12 -0800
-X-CSE-ConnectionGUID: y6BZH9aAQzCpQWMTCVKgqA==
-X-CSE-MsgGUID: rc5+/UDBS6e5Gh/cJrCbeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123172792"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 03 Mar 2025 01:48:09 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 Mar 2025 11:48:08 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH] drm/client: Build the tests with CONFIG_DRM_KUNIT_TEST=m
-Date: Mon,  3 Mar 2025 11:48:08 +0200
-Message-ID: <20250303094808.11860-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF1710E3B0;
+ Mon,  3 Mar 2025 09:54:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_LOBF_enablement_fix_?=
+ =?utf-8?q?=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 03 Mar 2025 09:54:59 -0000
+Message-ID: <174099569950.83024.15584361146446018646@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250303083522.845224-1-animesh.manna@intel.com>
+In-Reply-To: <20250303083522.845224-1-animesh.manna@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +37,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Use IS_ENABLED() to check for CONFIG_DRM_KUNIT_TEST so
-that it picks up the modular case as well.
+Series: LOBF enablement fix (rev5)
+URL   : https://patchwork.freedesktop.org/series/141974/
+State : warning
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_client_modeset.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index aca442c25209..27471a4eef21 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -1268,6 +1268,6 @@ int drm_client_modeset_dpms(struct drm_client_dev *client, int mode)
- }
- EXPORT_SYMBOL(drm_client_modeset_dpms);
- 
--#ifdef CONFIG_DRM_KUNIT_TEST
-+#if IS_ENABLED(CONFIG_DRM_KUNIT_TEST)
- #include "tests/drm_client_modeset_test.c"
- #endif
--- 
-2.45.3
+Error: dim checkpatch failed
+6e00c0aa565f drm/i915/lobf: Add lobf enablement in post plane update
+2d2fbd297ebf drm/i915/lobf: Disintegrate alpm_disable from psr_disable
+3bcf9166b6a3 drm/i915/lobf: Add fixed refresh rate check in compute_config()
+a0a45dc5e4e3 drm/i915/lobf: Update lobf if any change in dependent parameters
+b39e17f43f30 drm/i915/lobf: Add debug interface for lobf
+8f6a5d57e21e drm/i915/lobf: Check for sink error and disable LOBF
+52652daf7a14 drm/i915/lobf: Add mutex for alpm update
+-:144: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#144: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1805:
++		struct mutex lock;
+
+total: 0 errors, 0 warnings, 1 checks, 117 lines checked
+c4eaf5cf7b9d drm/i915/lobf: Add debug print for LOBF
+
 
