@@ -2,177 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F76A4B785
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 06:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4D54A4B88E
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Mar 2025 08:50:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C1FF10E201;
-	Mon,  3 Mar 2025 05:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4AEA10E21A;
+	Mon,  3 Mar 2025 07:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EX1ccFn3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oBdCMP2V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABB9E10E201
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Mar 2025 05:20:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAE4910E215;
+ Mon,  3 Mar 2025 07:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1740979219; x=1772515219;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:mime-version;
- bh=s8PdfREonGAqmz4TONJRoNsAjzAv6pmKujnqGbNSA0I=;
- b=EX1ccFn3OhS3JX3WOlqgj9Bi2o8tmEXr4ejQwDJ7EXhiy+i5cUdNuTGI
- 0ZsNs+BOd5p5rFMFnVD2IVONSBr+D/o2QPfhysbfTZpe8pBQsoCkcnlbm
- NrLmNwZqiqK77Ox3Neb7Vcmn0nxClm9rEvmyG0gtwzu+QYUf7R7Y1zV1k
- hj0m+QA/+Dc7NO0FD+k3CqveKvb9FQCj22NLC0wUdfCxpp4ebOHu1vyi/
- D6PH4/PVCY/tVe+N7G6uM0H7Q+fMOuWVCr4XjiRCMAor0jIkHEexzU0Y7
- nwaPQ7ZseGG4ktcc6Aa5Ughvu5BjOpJU2cgEBZE5+l4ZZlJNa5/ZguUht Q==;
-X-CSE-ConnectionGUID: DFqCPGRZSgC3VKAdL9eQiA==
-X-CSE-MsgGUID: ERnXSzSxSoScuNZ9l4vWOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="53230550"
-X-IronPort-AV: E=Sophos;i="6.13,328,1732608000"; d="scan'208,217";a="53230550"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2025 21:20:16 -0800
-X-CSE-ConnectionGUID: YDJ5vQGlQVWurcvu3gKvXQ==
-X-CSE-MsgGUID: k+Yu3fmoQP+HnKcY4e9T5Q==
+ t=1740988246; x=1772524246;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=35zKjd+2yYJ4A8Ah4RDJMmKXHjdj8npyUZODaJYkFT8=;
+ b=oBdCMP2VNztOPW0/XLgkcjgCTVp2GeyRob2Z9Lcu2PWz48xNz+yWLfGL
+ OeHxcJWa9zhpghRN++8sjjK6tC6o72NVrn9QC3P+VQCaWXhySr40U7NG6
+ EY5kPwH+a3lC6sS+C6x6BtcpjQYNuI2gj72TWX2aRldzmttlfVz7c379J
+ 5ChYGAAPhrt/ZyK/5B0m7556rC26rDWp7FrXI4CA3gzm+CfsxnwiFAOLP
+ i7maYAyyfDK80+N62oenZkKX5JyX8XZaQUwWdypGc6zukdzy2UpMr+Jvk
+ 4QO3M/AQhJ/5syr+Oz1Gt2Pc/heK7F5sN9sDZlxJKmN0YlJLGvOv34uM7 Q==;
+X-CSE-ConnectionGUID: OlIemkZmTnyoCUQ2SX8RmQ==
+X-CSE-MsgGUID: uaizzRd3R6Cq6428O7OaKg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11361"; a="41974384"
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="41974384"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2025 23:50:45 -0800
+X-CSE-ConnectionGUID: kAYXoUW9QGKT3e/i9LAv6w==
+X-CSE-MsgGUID: SV68x/TwTuSiV+DnCPPXMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
- d="scan'208,217";a="155079658"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2025 21:20:16 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.13,329,1732608000"; d="scan'208";a="118414623"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2025 23:50:44 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 2 Mar 2025 21:20:16 -0800
+ 15.2.1544.14; Sun, 2 Mar 2025 23:50:43 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Sun, 2 Mar 2025 21:20:16 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Sun, 2 Mar 2025 23:50:43 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.48) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Sun, 2 Mar 2025 21:20:15 -0800
+ 15.1.2507.44; Sun, 2 Mar 2025 23:50:41 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OdLPKVgMsrZ5x2fJC7o3RMbGdctRNG+k7QR4498iDLRats1r13CBWmFE0W6rTfrYpHZXVWQO0SpkNDbAgPdKlDo1jHkFzq9g7w5NHY0tjuLpntHTupFMJlxXoQnkeQgooMAvgRnsmovd8IFyKzWkVuXMbxkCw+4JmpzNfE7EkJt7h676eJebqxu4AqHZInOf5FlI3poDKva7RJjRjvl9H97WshJ4jBBvtV2fctVtKDLCBjV9R0DSrRy0kMEa4ComXMCLkVsqvMrsskmaTD/MhYUTki0wEpIT9D8bMnm9mZQ2/tYXlXh9meRM0matSeJwWJdEX34jfb1hhoA7WJsZYQ==
+ b=eb9HTw24q327Vh66g+dAMcqntZITZor5PE22tD2wOOhKg87vYEpQ4ZMCMdEmEcQWymV8LFUhHuSgAulxUCDpGq3WYmbmSi+bQwoFp8IRCJKksA1BBwiBw+/kzY+ljGqB6TcQhzs8mXBd9AGPfTpc94dNdFilj6dEiKZtgVseJLkIaLfuRlJ6Vpr7gg0gtm8vt+iwOeLNKuqmNt4hu2FlWlePzqy0SPZVh6n6mBEumBXXvVLGEbhOlqlGVOAHxn5AYw6311kSq1ClSXNqYsf6G+oOTlzIzgjx/ck+2+wDyQgcrPg7XwGkcgIuwrdR7vVHc5FZkKBTilEWz5X0JwGY/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O/pKNMuqlI66/hvghkKZQiJxM3GOUoHe00Xae0opZXo=;
- b=SxeE4IUZQbWgG89L3mkvFnjYrb1we353WhRWk3MO9fINxEDisjZXHtFfTFYfSCixS+gZFl/5RylLK27Uo1PkzXVadR5tSjRnRxkzIsbxIolnidrl+QBH5MFbOZt0Cx/0j7YbzeWMzHS7bzZ/UE//JegkhFOXyaDSyWBZ2kLFrEUoC1jSlylsLtk3tGbZeMFua8Smh1KEJNcix1eJC3d7DM1DC0wFpv6e3DE8cmqetjJ6mjAtu6o1zLQNdTFmV1AIdkKsQ1Cs5uHfZ3TJo2ebC+Mu4ae1D6oV7O07tlv9Iqtmjx8ZmH6axAyE73ZzZGNAbF7It7iGU1BCqjNiZiozvQ==
+ bh=jQnht491t4k8uNyRUewffPTjN5RkbqUAe9ronLD6j5Y=;
+ b=Mh+/agLUPT30Ab3Dnu88J752QnsHyQfAPcqhQHEixlfxr0GaTUueeLqTlXkcUG+p3dz3YZup3AbNGLq5/DOJKzJbXHqZxm2qPOMceBfpkhNR9WqSHqXuLVPm9xWKAxBjl4NgvQ2IGkgtNa+RVqEELYPBTR0F4PzQr8ZJV/hcNFIzAkWPLaj0FIyshVWIogfJeLz6m7YqmUZW+nkuauyS9cvO3ViPPYjXW+gTZPTsy59TXlt/GJoeENgd8I4S4Z8AzqXp1ZCU3ahbRkhZk7pANKDsBjCRso2guBorBG3c547imnqERNeslRrSQjMIXr7r2CCTqlb3KRI3eidTGOzOhg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
- by SJ0PR11MB4814.namprd11.prod.outlook.com (2603:10b6:a03:2d8::23)
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by MW4PR11MB6885.namprd11.prod.outlook.com (2603:10b6:303:21b::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.28; Mon, 3 Mar
- 2025 05:19:58 +0000
-Received: from PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::625b:17f6:495f:7ad]) by PH7PR11MB8252.namprd11.prod.outlook.com
- ([fe80::625b:17f6:495f:7ad%4]) with mapi id 15.20.8489.025; Mon, 3 Mar 2025
- 05:19:58 +0000
-From: "Anirban, Sk" <sk.anirban@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Gupta, Anshuman" <anshuman.gupta@intel.com>, "Nilawar, Badal"
- <badal.nilawar@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>, "Poosa,
- Karthik" <karthik.poosa@intel.com>, "Gupta, Varun" <varun.gupta@intel.com>,
- "Wilson, Chris P" <chris.p.wilson@intel.com>
-Subject: Re: [PATCH] drm/i915/selftests: Re-enable power gating after
- live_selftest
-Thread-Topic: [PATCH] drm/i915/selftests: Re-enable power gating after
- live_selftest
-Thread-Index: AQHbg2JwPO8vXDPLCEexGM/edWF9/LNg8PaJ
-Date: Mon, 3 Mar 2025 05:19:58 +0000
-Message-ID: <PH7PR11MB82526B3C905E0D70E54D611980C92@PH7PR11MB8252.namprd11.prod.outlook.com>
-References: <20250220064027.1377797-1-sk.anirban@intel.com>
-In-Reply-To: <20250220064027.1377797-1-sk.anirban@intel.com>
-Accept-Language: en-US
+ 2025 07:50:39 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843%5]) with mapi id 15.20.8489.025; Mon, 3 Mar 2025
+ 07:50:39 +0000
+Message-ID: <ff5cce67-cbbb-48ea-9e44-22fd859ba16f@intel.com>
+Date: Mon, 3 Mar 2025 13:20:33 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 01/14] drm: Define histogram structures exposed to user
+To: Simona Vetter <simona.vetter@ffwll.ch>, Pekka Paalanen
+ <pekka.paalanen@haloniitty.fi>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <suraj.kandpal@intel.com>,
+ <dmitry.baryshkov@linaro.org>
+References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
+ <20250128-dpst-v8-1-871b94d777f8@intel.com> <20250217120808.708b9b4d@eldfell>
+ <Z7NxOVfgvvBt_sj3@phenom.ffwll.local> <Z7XdTfEgMlW4wrm8@phenom.ffwll.local>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8252:EE_|SJ0PR11MB4814:EE_
-x-ms-office365-filtering-correlation-id: f58e36f5-68f8-41bd-de41-08dd5a130acb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|7053199007|8096899003|38070700018; 
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?ebchKuDHByhyQ7xxFaQagQRLsL/msKrLQinaotGJLQ54NLHi+bqf7FCfp9?=
- =?iso-8859-1?Q?kwA5HPHWj7Q095Co358ubDtwYLszVAZ6Q9KOw3mNUSyZcNmfSvAh5lVJd9?=
- =?iso-8859-1?Q?3MIltPTUnw1qVGiMy1hT+z8y08m7rczmEpS8v3Y+kGqJK9hXpsiJhBQ341?=
- =?iso-8859-1?Q?l0sf8NQHYaAhmCOwYD/ndGM+qykqXPk2np5ZuIkHPmp92ZF44RHeDoHstp?=
- =?iso-8859-1?Q?kBDl1c+744hlwKsXV3JqEiDBrrfMa94K190RUCsv7l58cDvuBddtQtEvD0?=
- =?iso-8859-1?Q?bxS4AAY1+bioA01tmm3DpaMtfaCPQ8Qlc2PePqWbc/cFC6sfkB6nw+Gxfp?=
- =?iso-8859-1?Q?1fr2WpvGzk0jFj7ff6orRTTQLpV0tTyxfRmiO/qa+iITxFfNDnxCIB0YrG?=
- =?iso-8859-1?Q?0L8VAbjGS1U+WPcI4UsvHD0O79mc563XBKtbCHhhGeLq8GvEgjcRVQo3C3?=
- =?iso-8859-1?Q?M323PhCeERY9SZ5TSXW0K8OULrTmVLNEAhvOrQSptCM97xXQ2Go2g8BEcy?=
- =?iso-8859-1?Q?Qy3LbLuqIK51+b/qBklKYl6SjCFhPL16EzjXZxxYOTakmPIH911RuVlTrf?=
- =?iso-8859-1?Q?JDZl83Raivy9c7Y/uRPiL6ZmxrCiNsW2D832IMpsT7dgtVOQp08ZdrAQ7z?=
- =?iso-8859-1?Q?pisF5h1KYblcbzxsZAvo+3I4+zV4D7l7xWPj9faLAmJ8EqUVhmC/gESUEN?=
- =?iso-8859-1?Q?e/J/3QtL4+luoeCgBPaewHzbXvvMHn0uYTflNGL8kOfBcFHd2qhQOsDrks?=
- =?iso-8859-1?Q?nbv24I1xy/kZRLBIIcyyC5kyyqUkMgviBecSsM7ZyRNhz9hDVflkNYkdsE?=
- =?iso-8859-1?Q?sUOTVrokrAVC6uyzkMZwd+d0/5npEaU46pu/NciLnefuUU3mESd/WoCe9y?=
- =?iso-8859-1?Q?q7LTSDg9Qox8+qySgKIqMVaLYoAryodYJ/EhogKe0bZksjaq8dLIMvmwl5?=
- =?iso-8859-1?Q?ZwcmIod90IK3yOsBimLzKsVOKyzF2WvhWmIJs82q1nY99AArAQ0vxQNC0H?=
- =?iso-8859-1?Q?08rKoWjqY+WYGMWjxCpUfIUIraJC7rwrFr942NgL5z/3t/l3lYacjac8Mo?=
- =?iso-8859-1?Q?qU6LFY/1cZx8YocioopPlZPm/1WI36b+ATX7QEsfdENmPekLJCL5vGCKBF?=
- =?iso-8859-1?Q?i01BkcK1Jq1b+WZZrZVx7+t/I5YlqeOZrD079PwUg5JaUCt5nFKVXZiSnV?=
- =?iso-8859-1?Q?pHKTWaa3kacnSrn5jf5NhSWarlQr32Adhnv82M1E9Kz9TGA2j6Qf7Hu94u?=
- =?iso-8859-1?Q?UFyFB0/qftpreZn56QnehgIC3w0bQLDV541dqE2eBSFHBXzDRAR0vueUm3?=
- =?iso-8859-1?Q?t1HCiYz7AKGIUN5X2IgQBQ5dw99pbR+rfYub3btSV4bDj09Rix/ZMIWk5J?=
- =?iso-8859-1?Q?/kwcXmuT+yB0EF/yr9bnaD4ql97yZS0O20ljMpSl0NkUbB8OMjYSH/OdEM?=
- =?iso-8859-1?Q?p3yMr6DGqLSaD/qa0sF1vs/otbdGNQLxHmac1K+E07bxbaipgYcqmizwO3?=
- =?iso-8859-1?Q?PeTAOK59Zj4XA3Q9Dnt+3V?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(8096899003)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?rnpibQI9aFrEjAV2d7MJZhUv9Q2MlBjtjp05xQmBAZQhuJ4cA9xB/Nz+st?=
- =?iso-8859-1?Q?0Dt+NwHNZRHkSo9fOyNcmwjsJb5ryqyllgMLQ46OUHTEc5ZL52EuT3+OPc?=
- =?iso-8859-1?Q?5Ny43ky9gNxiJzD6EB1AHHeSENzeJPpWUClYlrpnpEgKFvchZgfolQpG7q?=
- =?iso-8859-1?Q?3HpY7AHa6mOiNBmGvxUjCXTEphWhDQiLcA7OTbnQ6v4d5MXOnjOy9Sk1qy?=
- =?iso-8859-1?Q?ywiQIce/d2hNElDjUDlNeKn1qCKwqFDPkfPfOTd71D612wh3n/P8qqOXjU?=
- =?iso-8859-1?Q?LpK0H8rUfP3NP2T1MBKFH5Qe3hIt2puEwXEw8xq1pi0XjeitNkOwFmlWHc?=
- =?iso-8859-1?Q?W4eC23f6WtdsPedVLHdiqi57DZDjXaIuazLepJ+EaJPqx8/BYbYA8LUjGy?=
- =?iso-8859-1?Q?EtT/JKid5lVXhDDtg6k7tGWE7cZ0QqTpclK2g4dXE57dny7VVExRfItt2c?=
- =?iso-8859-1?Q?x4eYUNAwehWXdLg9KNNinELdGKhnXqbMcUwM60C5w4B7JS/jnKGtAK3uAI?=
- =?iso-8859-1?Q?URjrH08b6y/zkO6XmkhKUGWpIklJUabYjeHFaaiaBQ87D1Ill974jCT/qa?=
- =?iso-8859-1?Q?OJDpSt444VPEVtM6x2A3E9neDio3vbK6dxecikf57FTs3DgsXR1+cgE7L/?=
- =?iso-8859-1?Q?9QE83dkNVcfvUdE7NjjFP2yU8BzjO8zFHut7CqHCd0a1ZY8dtg4r1UGXo1?=
- =?iso-8859-1?Q?Fv7hFRcro5My6oZiKKZJ4SLkT9nOshidbRbP71A/FEg3IfijX3W71m41Bi?=
- =?iso-8859-1?Q?1XkYiCW2/g7zeqSAOa5jwmaYuLLVbb8/K4RshlFiNODayV02Jb5+GoRhW0?=
- =?iso-8859-1?Q?ptKnVW1PKvKk875Hpj5CxbcMqrfmpUrTUcnI1/p4q9Yw36CT5DyR0R0M2O?=
- =?iso-8859-1?Q?a3/TbDYzp2WRFRvy1hliSGnXUgDvcf2ufOzsxyy9G9zhJ4xZCbA88eAbyr?=
- =?iso-8859-1?Q?qhNIEGaNQBoeN4buqp/M7vYnGAqNfFj4Ck3YMBfcA1dqUKUYb4UTpuvY6W?=
- =?iso-8859-1?Q?0S/QosS9+x5FdGQ+v/JLIL6PN+ff59W/MKRS1lWiV5sFFM/Qc15IHiT7nQ?=
- =?iso-8859-1?Q?EObDeXcE5ceGA+AHN4vUteVKtIRsTmsx2zAtyYiOakO5p3MCBmUYODCofd?=
- =?iso-8859-1?Q?rxjp+/PMHr2NWDRj0nyeZRbAWqCGnyCUaT4W1DSkA5iYytM4M4BRH1NrkM?=
- =?iso-8859-1?Q?LRi8FrJ87E6TkzgGY62F8yjrz77lwaBXX8D2iWs7Am8H1hgJDGGCVxpzlg?=
- =?iso-8859-1?Q?1HKRUPw6u5Uiu1lbLmz6pgK5EnTfngtEWNgGyWz8xg0p9T45DAtr/V2eCd?=
- =?iso-8859-1?Q?lTC3RQRORz2iyUVZklYBzLryr3GjEr/xPodoM12hjj8P1SscXfpj8lWvjU?=
- =?iso-8859-1?Q?Cv9FV7wORbWrqDMWTJmJ8riXFIzC8MZmnp3LjgqWqiWcULlTAk4jx6MGLv?=
- =?iso-8859-1?Q?ZPhLUjAPwVj/KYCaEO+xpHPEIARUBQTzugI6VKP+VGI7e6X9d87LUju7JV?=
- =?iso-8859-1?Q?iDjgRiL0Wu8jBtbvTJFCqcox6U7rUoirklhp+IVfvr2ZppAvK+aG8a/xDm?=
- =?iso-8859-1?Q?iP50qJSlK732+c+qkriis6LfL9jXYJ2fZu11zJ9aJcN+q8CGitRbWeK6YW?=
- =?iso-8859-1?Q?dKCWWgLTp9SHEJXWNM9AaRX73Va5Ul1Vx4?=
-Content-Type: multipart/alternative;
- boundary="_000_PH7PR11MB82526B3C905E0D70E54D611980C92PH7PR11MB8252namp_"
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+In-Reply-To: <Z7XdTfEgMlW4wrm8@phenom.ffwll.local>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MAXPR01CA0098.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::16) To IA0PR11MB7307.namprd11.prod.outlook.com
+ (2603:10b6:208:437::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|MW4PR11MB6885:EE_
+X-MS-Office365-Filtering-Correlation-Id: 148e29a9-e74d-4309-fb69-08dd5a28172f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cTZwUlhuSzZCUHRrVU5vVm05ZXNlWVFrRzRYYzZjZDk4amdiOG5Rc2pNVVIw?=
+ =?utf-8?B?OXhUeHpGOVY3dmY4SWpTUXZHcEVZcU1nUmFwY1FHUmM3a1FRaS9xekNFRStX?=
+ =?utf-8?B?c3JTL2hsY3ZZWTRxREt0OVJIR3JGSkoySWphbHFLUDE0MVFOQjBxNVhkdHhT?=
+ =?utf-8?B?TjM1elNjVTh4dGhXb3lLQUNxb3JDU0FCdTUzVjhUaDAvdmRQdWZsNWJQMEly?=
+ =?utf-8?B?UWVGcWtTRnJLcnc0QUpiQkNUcWFYZTRuOWl5OEh6b0JOOGdpVzZlMSswRVdB?=
+ =?utf-8?B?d2Rna0tJeTF0TUdlUHNvUWhtQUdWRjBCSndNdmtSbGRoMkFydll1d2lyQ3hM?=
+ =?utf-8?B?RTBwaG1ZSndEK2VOYU1uU3FSSWNxR3NHd1dBOFNWSS9KSDF2d015enF1RkxN?=
+ =?utf-8?B?MU1ZQ2c3OGtXaE9VcC9tdEpmcmxlUmlXUlZiU1F1enpOcEI3ZjBINnpHL0lk?=
+ =?utf-8?B?YlVvWUc1WlUwTmRESWpsVHBCaXBzNzJHOUFkMVowbm15TlJnU3hPMlA0YWFn?=
+ =?utf-8?B?YnRSRzVRN3VtblhodjlBQi94M0FIOFV1NTZWbEprYzZuRUF6NHRQZFcyQUpN?=
+ =?utf-8?B?dmpEWVFZOENZWGY4ZDZBeVdXUk51QkgrMzJDbEI3UENoUTZ5Nm1TczdYbDFQ?=
+ =?utf-8?B?LzQrN21GTXFGNndFcmxPSkpZdG84dHhrWWd6TXFmSDNVT2htZEJmdHJqWFJ3?=
+ =?utf-8?B?RVdVNGIyd0NOOE9MOU1mNFFXVUtVOG1KREo3eHBrTUwyeXhOekJtbjIxaEx5?=
+ =?utf-8?B?Vnl1QmhnSFNoY3c0a1kwdzg1YnhBN0lYVkE3N2k1enE2MHd1U0dQM3BSbW1S?=
+ =?utf-8?B?YkdvVVYyMnZma1l5c1YvVzFVRWQ2S2xjMzI4S1NCSTRwZVMxTnFRN0xUTlI4?=
+ =?utf-8?B?Wjl1NVdYOFRobThkazlhRkhqaXlzUWhDMnVZdTVHdG1YREp6TVBwZDBiZFAr?=
+ =?utf-8?B?MTJLSkdjLzhsVGtKbTNwcnQrdWJWVlVmUlJ1SGx5NlZyZnF1WU9Ja016a01a?=
+ =?utf-8?B?NzdXdHptY29zNStZb3Q3NWZ6RXA1VS9UdkllazVPVkRXNis5ZVBDNVlJZ29q?=
+ =?utf-8?B?QjQ3VlBjRXJZOWtlUEpOT2tMODB3WFg3VUhIOHM4ekpDTTJ1RVM0SUZrd3Jl?=
+ =?utf-8?B?NG5aQUh0REp5NHdNZUVVU3ZZczgxSE9oY0V1TXNnVGM4YnFXNTVGN0RiVWE3?=
+ =?utf-8?B?K1AzOXpDTThpZzJPMEZ2dU1idE45VW40c2wybytycHZQTnVJRStqbWJwaDFr?=
+ =?utf-8?B?UmYwSC8vaXd4NEZVOVFUSFhoTENRUWtmbUptWm1FdnVMVjNBL29ma2tTWHQy?=
+ =?utf-8?B?YzJ5eW1iWVVsTjIvTjd6QzhURUlGaUFWaGQ5MklsQms4bnpzVjg5ZHdDTWNr?=
+ =?utf-8?B?OVdjUEVFSllscVJ5RU03U3UvNzAxOEtSdFJRLzh0aDJ3aFdLV0RXZW0xcW1T?=
+ =?utf-8?B?SWlmSDJJWnNCQlVVckkrVnRQSU94Z2VZNFhnd2QwbHB1bXU2KzRoWmlDOU5u?=
+ =?utf-8?B?a2NXRktGVlMzNTk0eUxVUEdubmQrOURydmVGSGQvRmV5U0ZEUVBydGZZdmFl?=
+ =?utf-8?B?NlVucGVxcFEyRlVZcnc3MEs0aEg4bkUrVTl1bUtsL2FVdkgwdTVFejliVzYw?=
+ =?utf-8?B?aHFnSlJIanU1dE5hdHVEb0JNVTk2d212SjBPQ3RlNkV3YWs4V2lTeXRUdGhT?=
+ =?utf-8?B?TkVGVWgxbk5WQXMrRyttdkZFMVRwbGZ5eHpmMXlEWkhRTzBSeXlmOEZrWGhh?=
+ =?utf-8?B?dG5IWHAweERTdWVJYU9BaVI2aFFiclFKNHQ5dDRydFdMdjk2Q0IxNWZoTWlr?=
+ =?utf-8?B?eURZcElZTnRoWU5KQWFwY0NXZWZSMnZwMGRnMGdsaWJIWEE3eVVpdDlrTExJ?=
+ =?utf-8?Q?kWw+cU2575nNV?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SGNhSEhiMnU1dndsa2RXWk11T0JEaVpSNjVROTJLamlMT21xMUdxcmJaa3ZL?=
+ =?utf-8?B?eFc4ZTYvekdDaGduTzJSQjN2ZkhKMmxncjNUL0QrRGU2Mm5tTEo2d2U4U3dE?=
+ =?utf-8?B?TWNQR2pYOFAwSytQUjdyb25BSTBadTBqa3lmTmo3RWsyZXRFK3dhVFl0WFZ1?=
+ =?utf-8?B?SG9xOCthT2lYaG9RRUh6d0lRQjJvdnVhMU1wVjdQOSsxMjc3dzkxUWY1OGwx?=
+ =?utf-8?B?R0RPR3NmLzBpTTJNUFdxamZnV0YrRmZrV016NzRWK2FJdFNpNFdQZUluM0Ju?=
+ =?utf-8?B?anMvY0pEZFE0eWhzWEJJNjhBSjFRWE4zcjZ3TWdna3F6cmVIdnhKR1ZtUi9j?=
+ =?utf-8?B?RS8rb3I1TDhEUHBCTDIzWWgyWE1aOGY2WnF5eU5wd3Zwd1lyRmdRcTRsS2tx?=
+ =?utf-8?B?ZU9EZTluTkVnRVRzeU1FQ2hjb0J6dWhWK0V0RG95ZnpLVk1qdW52eEd4YSty?=
+ =?utf-8?B?Lyt3d0kycldYY09ZUzcvQzY3Z1FGUzNhSmJiUjVadlhSanVFUlAxNUEzSnVp?=
+ =?utf-8?B?SXRpcWMwTXlnZHZxZU80TXlydDB3eGt6TVk1TEs2U0s3OUdrMmVXM29BeFlZ?=
+ =?utf-8?B?clpkRFJZckxxQ05ha2tiVVpqRmFpdy8rR2NwTnJFV1lmQWtiWklqY1pTWmpp?=
+ =?utf-8?B?UWFHSlo0MkYyVjVSR0FFUWZLY0NuVWRxd3lCSFhQQ0dINWNvL3J3K2JkbzEy?=
+ =?utf-8?B?dzJyTnlrS3dpSXFBeVdBOGJXcVppUUxjR3Z5cGM5UFl6cXkrZTlpZS9SVWMv?=
+ =?utf-8?B?cjIzdXZ3QnUzS1FBZVBJdGViRXZzZ25yNDlWdGgvSU93bGpJQzBkZXkyYmx2?=
+ =?utf-8?B?VHlrY3hqcC9MTEpyU3h4VFo1OGRrODI0Mkp0SmFzVjE3UGRKUlJDV0trM1lu?=
+ =?utf-8?B?UFRFOGpCdHZlL0JORVRaaXJVS3pQc09rZTNJcVVLREg3dVJhWUQ0Rm04SmNl?=
+ =?utf-8?B?NFZhWWdsSEJaNUpxQVZvck1RcHBKa3dGUVNnMWo2ZFVOa1ZqNm9tSXUrbXBF?=
+ =?utf-8?B?aG5Sb0NPMmtVU2hqb0cwb2xYWGdvYTZzcmNacW5pYk1HbWYxUEU2dUh2bEgv?=
+ =?utf-8?B?QURvTVFSdEpOU1ludVJZTzJ0MGR0NG5VT3FyczhMQk1qd1pVVUwvcXc4dVNq?=
+ =?utf-8?B?eWs4TW1LRkhTV1VqNVZ0eDRxS1c5S3JTNmxxTFZDd0FJVmJoY0NyNnh6WnRT?=
+ =?utf-8?B?VVVlR21ERGFQVkhXbDZadVRhLzhUaGlodUZNZnh0TysyUFBvdm9EYkRSUVpC?=
+ =?utf-8?B?MGlWTEh5U0pScmRweFErYnNRQVpMVVpZRXFTcW8vd2laL3hoS2lMZWlveSs0?=
+ =?utf-8?B?aStta2xJSVhpbi83RTVGY29mUElhVjVja3N4eHM5Z0dvOVUvRjhrNXV0MWNj?=
+ =?utf-8?B?NEg5Nm9ZRklTR3dQSHFBd1RQSndKUHlqcGY2bmtMd3RVNmZqWkRoZWsrSzZP?=
+ =?utf-8?B?d2F4ZHNzUk5YWnZCMjRKVllRajdrN3RLQVpVamxiZkRiUHloWlF6RnVUMnBR?=
+ =?utf-8?B?MW1PZkJRRCs3Nlp5WHR6S01Oc2pxQ0J2bGlPczhYUVBGNS8zV2U5K0NnWkkv?=
+ =?utf-8?B?WWlod2tXZmFQcW1rZDh2SGF6TFlVVGlGeGFtK0xWaExGY0RlK3k3eHkxbEU5?=
+ =?utf-8?B?ZjVQZm5HTUdoLzRBZVZtbERVUWQwSXFBQ1gzMFY4N1g3RHFlZTFYM1EwUFJl?=
+ =?utf-8?B?ZnM5UkpJK2VvNnRObEM5NmM2TkRSeDlxYURUcDV6dHBlUHhaNTNYNVpzYXJ6?=
+ =?utf-8?B?Z280eVNXaXZFZU1rUWZ6Wk5BS3dCck1mbG12QlRjY3JaaTFwbjgycjBucUxM?=
+ =?utf-8?B?RTNsdkh1bjk4U0JqTFJZOXdzRmV2OC9zNjNmS0xYUllIQlRDVW9vdmRLL0VS?=
+ =?utf-8?B?bDlEcjBKYUhpNldWWllaWlVCbmV1LzdFem1zMG1ZaXA3VGhzUjRrSldaWXM1?=
+ =?utf-8?B?VWQyVmxUWTRObVJMNFhGY1ZqcUFzVmcvVnc2QndCck9raldYd1ZNeVE4WC8y?=
+ =?utf-8?B?bjlCMzdaL1pUc2JWaGRCQVZ3a3lpOUp6d3ZyOUtnNGN2WjVQZURZVkk0a3ZQ?=
+ =?utf-8?B?QkhVVjhNTWExbFk0OUxscVdqRmMzQ0x4QnZLc01adjlJS3hFQlJmeDZ2Vnl0?=
+ =?utf-8?B?dU55MFNFTUxGd29paWpVK29FcVZLZHVnTTI2Z3JQanVzT3BnWnZvN3hDU2FW?=
+ =?utf-8?B?OUE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 148e29a9-e74d-4309-fb69-08dd5a28172f
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f58e36f5-68f8-41bd-de41-08dd5a130acb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2025 05:19:58.8439 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EGuCgSXVua+P5sY+O2knz52STcigPef8qBU4xoHIxGryZLmQZLWjPcpVQRCaGPjbF0UH9GqldU+TawOZLsJAmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4814
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2025 07:50:39.3666 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8g8UCjpWsl57An5iST5m4ABQtawpI+QPjPxp0Nx5hz8mc0qqocodBDRikhlgLCTPYPIFfkD9bcD/fOWq+OKbyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6885
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,300 +199,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_PH7PR11MB82526B3C905E0D70E54D611980C92PH7PR11MB8252namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-++
-
-________________________________
-From: Anirban, Sk <sk.anirban@intel.com>
-Sent: Thursday, February 20, 2025 12:10 PM
-To: intel-gfx@lists.freedesktop.org <intel-gfx@lists.freedesktop.org>
-Cc: Gupta, Anshuman <anshuman.gupta@intel.com>; Nilawar, Badal <badal.nilaw=
-ar@intel.com>; Tauro, Riana <riana.tauro@intel.com>; Poosa, Karthik <karthi=
-k.poosa@intel.com>; Gupta, Varun <varun.gupta@intel.com>; Anirban, Sk <sk.a=
-nirban@intel.com>
-Subject: [PATCH] drm/i915/selftests: Re-enable power gating after live_self=
-test
-
-From: Sk Anirban <sk.anirban@intel.com>
-
-The current implementation of live_rc6_manual disables power gating
-after execution due to the deactivation of RC6.
-This update aims to re-enable power gating following the completion
-of the self-test. However, as a temporary workaround
-for forcewake timeouts, power gating will remain disabled for MTL.
-
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rc6.c | 37 ++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/=
-gt/selftest_rc6.c
-index 30bc2ff040ce..b24d3d7de67b 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -34,6 +34,7 @@ int live_rc6_manual(void *arg)
-         struct intel_gt *gt =3D arg;
-         struct intel_rc6 *rc6 =3D &gt->rc6;
-         struct intel_rps *rps =3D &gt->rps;
-+       struct intel_uncore *uncore =3D rc6_to_uncore(rc6);
-         intel_wakeref_t wakeref;
-         u64 sleep_time =3D 1000;
-         u32 rc0_freq =3D 0;
-@@ -42,10 +43,12 @@ int live_rc6_manual(void *arg)
-         u64 rc6_power[3];
-         bool has_power;
-         u64 threshold;
-+       u32 pg_enable;
-         ktime_t dt;
-         u64 res[2];
-         int err =3D 0;
-         u64 diff;
-+       int i;
-
-
-         /*
-@@ -148,6 +151,40 @@ int live_rc6_manual(void *arg)
-         intel_rc6_unpark(rc6);
-
- out_unlock:
-+       if (GRAPHICS_VER(gt->i915) >=3D 9) {
-+               if (!intel_guc_rc_enable(gt_to_guc(gt)))
-+                       rc6->ctl_enable =3D GEN6_RC_CTL_RC6_ENABLE;
-+               else
-+                       rc6->ctl_enable =3D
-+                               GEN6_RC_CTL_HW_ENABLE |
-+                               GEN6_RC_CTL_RC6_ENABLE |
-+                               GEN6_RC_CTL_EI_MODE(1);
-+
-+               if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 74)))
-+                       pg_enable =3D
-+                               GEN9_MEDIA_PG_ENABLE |
-+                               GEN11_MEDIA_SAMPLER_PG_ENABLE;
-+               else
-+                       pg_enable =3D
-+                               GEN9_RENDER_PG_ENABLE |
-+                               GEN9_MEDIA_PG_ENABLE |
-+                               GEN11_MEDIA_SAMPLER_PG_ENABLE;
-+
-+               if (GRAPHICS_VER(gt->i915) >=3D 12 && !IS_DG1(gt->i915)) {
-+                       for (i =3D 0; i < I915_MAX_VCS; i++)
-+                               if (HAS_ENGINE(gt, _VCS(i)))
-+                                       pg_enable |=3D (VDN_HCP_POWERGATE_E=
-NABLE(i) |
-+                                                               VDN_MFX_POW=
-ERGATE_ENABLE(i));
-+               }
-+
-+               if (!NEEDS_WaRsDisableCoarsePowerGating(rc6_to_i915(rc6)) &=
-&
-+                   GRAPHICS_VER(gt->i915) < 11)
-+                       intel_uncore_write_fw(uncore, GEN9_PG_ENABLE,
-+                                             GEN9_RENDER_PG_ENABLE | GEN9_=
-MEDIA_PG_ENABLE);
-+               else
-+                       intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, pg_en=
-able);
-+       }
-+
-         intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-         return err;
- }
---
-2.34.1
-
-
---_000_PH7PR11MB82526B3C905E0D70E54D611980C92PH7PR11MB8252namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
-olor: rgb(0, 0, 0);">
-++</div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
-bri,Helvetica,sans-serif; font-size:11pt; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Anirban, Sk &lt;sk.an=
-irban@intel.com&gt;<br>
-<b>Sent:</b> Thursday, February 20, 2025 12:10 PM<br>
-<b>To:</b> intel-gfx@lists.freedesktop.org &lt;intel-gfx@lists.freedesktop.=
-org&gt;<br>
-<b>Cc:</b> Gupta, Anshuman &lt;anshuman.gupta@intel.com&gt;; Nilawar, Badal=
- &lt;badal.nilawar@intel.com&gt;; Tauro, Riana &lt;riana.tauro@intel.com&gt=
-;; Poosa, Karthik &lt;karthik.poosa@intel.com&gt;; Gupta, Varun &lt;varun.g=
-upta@intel.com&gt;; Anirban, Sk &lt;sk.anirban@intel.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/i915/selftests: Re-enable power gating after li=
-ve_selftest</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+On 19-02-2025 19:01, Simona Vetter wrote:
+> On Mon, Feb 17, 2025 at 06:26:17PM +0100, Simona Vetter wrote:
+>> On Mon, Feb 17, 2025 at 12:08:08PM +0200, Pekka Paalanen wrote:
+>>> Hi Arun,
+>>>
+>>> this whole series seems to be missing all the UAPI docs for the DRM
+>>> ReST files, e.g. drm-kms.rst. The UAPI header doc comments are not a
+>>> replacement for them, I would assume both are a requirement.
+>>>
+>>> Without the ReST docs it is really difficult to see how this new UAPI
+>>> should be used.
+>> Seconded. But really only wanted to comment on the userspace address in
+>> drm blobs.
+>>
+>>>> +/**
+>>>> + * struct drm_histogram_config
+>>>> + *
+>>>> + * @hist_mode_data: address to the histogram mode specific data if any
+>>> Do I understand correctly that the KMS blob will contain a userspace
+>>> virtual memory address (a user pointer)? How does that work? What are
+>>> the lifetime requirements for that memory?
+>>>
+>>> I do not remember any precedent of this, and I suspect it's not a good
+>>> design. I believe all the data should be contained in the blobs, e.g.
+>>> how IN_FORMATS does it. I'm not sure what would be the best UAPI here
+>>> for returning histogram data to userspace, but at least all the data
+>>> sent to the kernel should be contained in the blob itself since it
+>>> seems to be quite small. Variable length is ok for blobs.
+>> So yeah this doesn't work for a few reasons:
+>>
+>> - It's very restrictive what you're allowed to do during an atomic kms
+>>    commit, and a userspace page fault due to copy_from/to_user is
+>>    definitely not ok. Which means you need to unconditionally copy before
+>>    the atomic commit in the synchronous prep phase for the user->kernel
+>>    direction, and somewhere after the entire thing has finished for the
+>>    other direction. So this is worse than just more blobs, because with
+>>    drm blobs you can at least avoid copying if nothing has changed.
+>>
+>> - Due to the above you also cannot synchronize with userspace for the
+>>    kernel->userspace copy. And you can't fix that with a sync_file out
+>>    fence, because the underlying dma_fence rules are what prevents you from
+>>    doing userspace page faults in atomic commit, and the same rules apply
+>>    for any other sync_file fence too.
+>>
+>> - More fundamentally, both drm blobs and userspace virtual address spaces
+>>    (as represented by struct mm_struct) are refconted objects, with
+>>    entirely decoupled lifetimes. You'll have UAF issues here, and if you
+>>    fix them by grabbing references you'll break the world.
+>>
+>> tldr; this does not work
+>>
+>> Alternative A: drm blob
+>> -----------------------
+>>
+>> This would work for the userspace->kernel direction, but there's some
+>> downsides:
+>>
+>> - You still copy, although less often than with a userspace pointer.
+>>
+>> - The kernel->userspace direction doesn't work, because blob objects are
+>>    immutable. We have mutable blob properties, but mutability is achieved
+>>    by exchanging the entire blob object. There's two options to address
+>>    that:
+>>
+>>    a) Fundamentally immutable objects is really nice api designs, so I
+>>       prefer to not change that. But in theory making blob objects mutable
+>>       would work, and probably break the world.
+>>
+>>    b) A more benign trick would be to split the blob object id allocation
+>>       from creating the object itself. We could then allocate and return
+>>       the blob ID of the new histogram to userspace synchronously from the
+>>       atomic ioctl, while creating the object for real only in the atomic
+>>       commit.
+>>
+>>       As long as we preallocate any memory this doesn't break and dma_fence
+>>       signalling rules. Which also means we could use the existing atomic
+>>       out-fence (or a new one for histograms) to signal to userspace when
+>>       the data is ready, so this is at least somewhat useful for
+>>       compositors without fundamental issues.
+>>
+>>       You still suffer from additional copies here.
+> Another detail I've forgotten: If you queue an atomic commit and then
+> immmediately do a compositor swithc, then the new compositor would end up
+> with the very confusing situation of having a blob property pointing at a
+> blob which does not yet exist. And since it wont get the drm_event nor has
+> a dma_fence out-fence, it also cannot reliably wait.
 >
-<div class=3D"PlainText">From: Sk Anirban &lt;sk.anirban@intel.com&gt;<br>
-<br>
-The current implementation of live_rc6_manual disables power gating<br>
-after execution due to the deactivation of RC6.<br>
-This update aims to re-enable power gating following the completion<br>
-of the self-test. However, as a temporary workaround<br>
-for forcewake timeouts, power gating will remain disabled for MTL.<br>
-<br>
-Signed-off-by: Sk Anirban &lt;sk.anirban@intel.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/i915/gt/selftest_rc6.c | 37 +++++++++++++++++++++++++=
-+<br>
-&nbsp;1 file changed, 37 insertions(+)<br>
-<br>
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/=
-gt/selftest_rc6.c<br>
-index 30bc2ff040ce..b24d3d7de67b 100644<br>
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c<br>
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c<br>
-@@ -34,6 +34,7 @@ int live_rc6_manual(void *arg)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_gt *gt =3D ar=
-g;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_rc6 *rc6 =3D =
-&amp;gt-&gt;rc6;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_rps *rps =3D =
-&amp;gt-&gt;rps;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_uncore *uncore =3D rc6_t=
-o_uncore(rc6);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_wakeref_t wakeref;<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 sleep_time =3D 1000;<b=
-r>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 rc0_freq =3D 0;<br>
-@@ -42,10 +43,12 @@ int live_rc6_manual(void *arg)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 rc6_power[3];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bool has_power;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 threshold;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 pg_enable;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ktime_t dt;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 res[2];<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int err =3D 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u64 diff;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
-@@ -148,6 +151,40 @@ int live_rc6_manual(void *arg)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_rc6_unpark(rc6);<br>
-&nbsp;<br>
-&nbsp;out_unlock:<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (GRAPHICS_VER(gt-&gt;i915) &gt;=3D=
- 9) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!intel_guc_rc_enable(gt_to_guc(gt)))<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rc6-&gt;ctl_enab=
-le =3D GEN6_RC_CTL_RC6_ENABLE;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; else<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rc6-&gt;ctl_enab=
-le =3D<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN6_RC_CTL_HW_ENABLE |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN6_RC_CTL_RC6_ENABLE |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN6_RC_CTL_EI_MODE(1);<br>
-+<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 74)))<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pg_enable =3D<br=
+> So this would be awkward at best, and might actually be a cross-compositor
+> attack vector.
 >
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN9_MEDIA_PG_ENABLE |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN11_MEDIA_SAMPLER_PG_ENABLE;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; else<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pg_enable =3D<br=
+> So yeah delayed blob object creation also don't look great, and mutable
+> blob objects probably break compositors even harder and we'd need to make
+> this all opt-in.
 >
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN9_RENDER_PG_ENABLE |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN9_MEDIA_PG_ENABLE |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN11_MEDIA_SAMPLER_PG_ENABLE;<br>
-+<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (GRAPHICS_VER(gt-&gt;i915) &gt;=3D 12 &amp;&amp; !IS_DG1(gt-&=
-gt;i915)) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i =3D 0; i =
-&lt; I915_MAX_VCS; i++)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (HAS_ENGINE(gt, _VCS(i)))<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; pg_enable |=3D (VDN_HCP_POWERGATE_ENABLE(i) |<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; V=
-DN_MFX_POWERGATE_ENABLE(i));<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-+<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (!NEEDS_WaRsDisableCoarsePowerGating(rc6_to_i915(rc6)) &amp;&=
-amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GRAPHICS_VER(gt-&gt;i915) &lt; 11)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_uncore_wri=
-te_fw(uncore, GEN9_PG_ENABLE,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEN9_RENDER_PG_ENABLE | GEN9_MEDIA=
-_PG_ENABLE);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; else<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_uncore_wri=
-te_fw(uncore, GEN9_PG_ENABLE, pg_enable);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intel_runtime_pm_put(gt-&g=
-t;uncore-&gt;rpm, wakeref);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return err;<br>
-&nbsp;}<br>
--- <br>
-2.34.1<br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
+> We need an opt-in for all of these I think, but the more I think about it
+> the more this alternative looks like the worst.
+>
+>> Alternative B: gem_bo
+>> ---------------------
+>>
+>> One alternative which naturally has mutable data would be gem_bo, maybe
+>> wrapped in a drm_fb. The issue with that is that for small histograms you
+>> really want cpu access both in userspace and the kernel, while most
+>> display hardware wants uncached. And all the display-only kms drivers we
+>> have do not have a concept of cached gem_bo, unlike many of the drm
+>> drivers with render/accel support. Which means we're adding gem_bo which
+>> cannot be used for display, on display-only drivers, and I'd expect this
+>> will result in compositors blowing up in funny ways to no end.
+>>
+>> So not a good idea either, at least not if your histograms are small and
+>> the display hw doesn't dma them in/out already anyway.
+>>
+>> This also means that we'll probably need 2 interfaces here, one supporting
+>> gem_bo for big histograms and hw that can dma in/out of them, and a 2nd
+>> one optimized for the cpu access case.
+>>
+>> Alternative C: memfd
+>> --------------------
+>>
+>> I think a new drm property type that accepts memfd would fit the bill
+>> quit well:
+>>
+>> - memfd can be mmap(), so you avoid copies.
+>>
+>> - their distinct from gem_bo, so no chaos in apis everywhere with imposter
+>>    gem_bo that cannot ever be used for display.
+>>
+>> - memfd can be sealed, so we can validate that they have the right size
+>>
+>> - thanks to umdabuf there's already core mm code to properly pin them, so
+>>    painful to implement this all.
+>>
+>> For a driver interface I think the memfd should be pinned as long as it's
+>> in a drm_crtc/plane/whatever_state structure, with a kernel vmap void *
+>> pointer already set up. That way drivers can't get this wrong.
+>>
+>> The uapi has a few options:
+>>
+>> - Allow memfd to back drm_framebuffer. This won't result in api chaos
+>>    since the compositor creates these, and these memfd should never show up
+>>    in any property that would have a real fb backed by gem_bo. This still
+>>    feels horrible to me personally, but it would allow to support
+>>    histograms that need gem_bo in the same api. Personally I think we
+>>    should just do two flavors, they're too distinct.
+>>
+>> - A new memfd kms object like blob objects, which you can create and
+>>    destroy and which are refcounted. Creation would also pin the memfd and
+>>    check it has a sealed size (and whatever else we want sealed). This
+>>    avoids pin/unpin every time you change the memfd property, but no idea
+>>    whether that's a real use-case.
+>>
+>> - memfd properties just get the file descriptor (like in/out fences do)
+>>    and the drm atomic ioctl layer transparently pins/unpins as needed.
+>>
+>> Personally I think option C is neat, A doable, B really only for hw that
+>> can dma in/out of histograms and where it's big enough that doing so is a
+>> functional requirement.
+> Also for all these we'd need to make these new properties opt-in and hide
+> them from compositors who cannot cope. Just defensive programming best
+> practices.
+Thanks for the suggestions, having a new IPC memfd in drm is a great 
+idea and helps not only for this but should also help others like 
+writeback etc. I will explore more on the memfd.
 
---_000_PH7PR11MB82526B3C905E0D70E54D611980C92PH7PR11MB8252namp_--
+Thanks and Regards,
+Arun R Murthy
+--------------------
+
+> -Sima
