@@ -2,73 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A93BA4E4B0
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 17:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F65A4E4BA
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 17:02:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8834810E62E;
-	Tue,  4 Mar 2025 16:02:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4235210E638;
+	Tue,  4 Mar 2025 16:02:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="02p/pp6c";
+	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="dI4OXNu8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4898E10E62D
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 16:02:07 +0000 (UTC)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A7510E62E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 16:02:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=metux.net;
  s=s1-ionos; t=1741104125; x=1741708925; i=info@metux.net;
- bh=KdZuWN9Fp65+jiAwqR607ECfZ0trNaC2EeK2Rsd0PNk=;
+ bh=bR0IXSNJZLIIcGsMXk8jAPZ/JnE7101SkcIprGe6n14=;
  h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
  References:MIME-Version:Content-Transfer-Encoding:cc:
  content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=02p/pp6cRhi1T9LD3XU9sPJMWHSTqhh5XRJQZjhlYOP8jqvgKjVoGoiARZEiK1Ie
- 6T6xA/ByZ6um15KhpXKDDd3FKxACjhtgc9tpTyd4/UYlo685M3RevABZWc1b6pGXY
- FPDMofqU87Phxq9IgCsQjSRaHeJg/7SRyf8dSETsiGbgrck1tPBw5SEsi5xQAZvaK
- aza6ZpyS3Y/rtzgTRIZxHr96rR4zKRaGCLtR069sJ6chOYuC/+AedeYupVyiBkHeT
- GEHvQ1IO81DEN38k7yH4JcWqHgEXaivRyI5Qb0qAppEjiJbOH9wjjE9NuBVGrP3vM
- 0NTIO/y61mklx1PgOA==
+ b=dI4OXNu848uUe6UqfD7+yBhE0Z+kxm0toN80BAx6ACqd30SWMpg4jio8tJoOOwI8
+ 1+swDI/tsr3BdyafJdpfb2qcx0e8iZ3QBChimGvx4AAgKMIidYhdzkls3Xe55hptn
+ k7TmNFjADGUEjcSMvxpEdpBCSk813RHZp1RqEGsKjvu1KOKuVq4t6d0CCnMiB82SG
+ hCfm9/ATT2Ls1tRbvWl8EDM+4s1MDNL/bUTFfSdPncmOtVIrvxqT1R1/nsE21MmbC
+ EGVj3Fd/K7OkSZwgFD1EXt3NGRlYn+2QMPWZ/JjPBaeNTvCa3ziZSTzeCjrofgOAs
+ 3CqnDoSUSpVsEZrFsw==
 X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
 Received: from x1.localdomain ([77.7.107.91]) by mrelayeu.kundenserver.de
  (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MYNaE-1tkaoq0eqw-00Pfyl; Tue, 04 Mar 2025 16:56:34 +0100
+ 1Mv3Ds-1syu0o2Ywy-013wgL; Tue, 04 Mar 2025 16:56:35 +0100
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH 12/16] sna: use xserver's bswap_32()
-Date: Tue,  4 Mar 2025 16:58:05 +0100
-Message-Id: <20250304155809.30399-13-info@metux.net>
+Subject: [PATCH 13/16] meson.build: increase required version
+Date: Tue,  4 Mar 2025 16:58:06 +0100
+Message-Id: <20250304155809.30399-14-info@metux.net>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250304155809.30399-1-info@metux.net>
 References: <20250304155809.30399-1-info@metux.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:c2pjBM+W3XKFVwr4oR8RJoF00ls/JRq6tsCX5M4WcUMrZESjDHp
- ghTkk4JzPsWlhG5r8OGmSlG/51rSXb8A3zvrEF4RSVb62+k5nIr153t+mVRhSO90L6owDjA
- 4eDn8zMTz/sV6UXmkb+iOktAYWrk58o6pi6w4QBmRxR8Jyt4gktMuCfezZPpsaxeT7RJMdl
- pfY6P3LxRwuEukQ0fLslg==
+X-Provags-ID: V03:K1:EAwotnE58s/21inW9dALDZc+4Mt7EzeDQlqz5AF4+XW4cqHhJqQ
+ LfohZKRLXB9kK7kp/UCvEths38vHnoMkD6Ad6KM2QLGt7AQKgFd8kBEGdPOWcQGxA4ItUL7
+ LkgUlUzNQPRTFhnffmqpC3hJOR2kLEz0B3ldZZ38ZGwbSYVbygAL2a8G4NsQBZE5adiUXGQ
+ 6Dc/oJGrRzs4kRtOJoJ6g==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:SUFXpOHsiWs=;rEig1tMkiZnpGdm6E/p03Ms3kA1
- QYAJd1JPUF/Ijj0wUXaFNJlFKNadoSjAIWlCaNS2fAG3zdmQ547pkeees8sbsUq4JJ6QtNf2d
- bK4/GR9UPtQ3BSDVaMPeYwuiEbKLjm63Mw+xwj6ScLN/t2CeKsIqmTQahxZeYZMKIk/oRVoy0
- E1ETQYr3EUs7a9xqjL3NncZBeih1Xqt28XbHHBUEp7FJ+srw8ujdUQLdbVn6Y6n1h8KngikH+
- o9sgD25lO7FHNgoO06BSUIsbCMaHd1hMAIjCyAZFb8oBccQxdx7PvOUWG0T10uaNA152UuJvb
- VEG24c5RTPcP0kYz2zVsERA9XlmdILd9IrqwERdRLTF1UWiw4ahnzCy2SLALwpejs8VYbpZui
- 8OavN2pg8/aTH3JNc+lUoqtBgC3PSsGHdyXDwbT1pYdAE1/ITI8zUonv/GndkzCzY/5HO6UpR
- hcUHvc2fKbtCXM3LEA2g/Fn+aeSJ1EwDYcs2/1neEDsRvSFLFwbG95LNONAdfstpqk2K2T+fg
- 18TTvdjtzHnZAMEHKcsPhEdwqoOfvzoqJYM7NYSV32FUn02RzIWX8/D2TE7L+hs5UdmCW95jF
- t7irScm/dmCmp8uuiRHsaBVSZq9EcuxAMo9jdd9bMsXGJNOOeycYvH7L3+5E0Z0oS3+s2DOEq
- BitkjY+HYguVELTyG0V6BZ21x1lJbJN2LILyMkHvj69SwFzgZ/b1oeOyseiOUAV1DAWxho7pG
- t7paDKhkjRFNMAEgXZu/On3SL1BkdbzA91UFGu9bscQU6UCMq88MXd6OMRCoJO218/Gsq83Xw
- FDHEQqyhm7DwJUIhiKYZSL5MHzx15/8YLJRJTUlq92T1S2WaveBzk/qQRkMzUIym1ql/WyvcQ
- iDsa1izJzX2dNsm+eNQ6b73wDCEsXD+0EsidJBhZphwauFVRwocZxTlnxPFWr3CgcyJHYx8Nh
- eE0+hpJQQvaKPiOU2gWt0ja4vF15SblowvXkvxIy6vKboCjkPBahonRKfHBHWbIF0KdYXqzhE
- H9tOgmeibp1TtAfzIK56uAz0YGz2M+uANIbt4PmzOW3KkUH46QvpAlC+vbJGubxxyXwTfcorr
- bRuINI1pUD5HVPsgpHAj/xHy0z2uQJFUQlXAYG99/lyDvFDUwH+zo8HniG8wTt6FtBm8ESKEE
- sot1Kg3dhkV8ObpzYU4M3trR70lYlT/QIhFHmjTRZgPz+F6KFLPTaQKBDqumiTOB9RykAdSp6
- zDyd2ZX6NDUfQrlB1qhdG1sOHHZVETNpNJO9OTRFByzwHorgav7/GuZ3y+MVapXWDhPGwAvUM
- /WYDOLOKbGSnEEjAGRE7c6oNFUiuE/yBXYbKnmx3eK8GbPmU+iA79IMk3qaEhiW8+plmIzeJ3
- qp6ASiOA9EChUGIg==
+UI-OutboundReport: notjunk:1;M01:P0:GIrHQXfUh7w=;JI0EsI4IA32VmoTHCzLAgsl078C
+ TseTEl+/fiTN/jpIRB1BVn6Ba9O6QkukgipQy4bziuUKrXZdx8HXUrlhY+wVzagF3xT7+9OzO
+ RxQc1FFN38KqgRhBKia4vQJRB+s3m+Jt+fhmSi0eZSmnWw9KcWSGGUwWaljRXbQRv4q7oFhUC
+ itcuQOB/4cSA8Qg0ZhtyNMhZ1zXChYdNGwJvKNhGN9gHT02LwsmKN4oGFz6/5yNYlgo1zoBlU
+ QpaP8AerBsxV6Er7B8cH667EJ1yhTsKiX2cOfL2Coz8HP20m0ecG0i0pQvLymDHc5mhOnpnjx
+ Jw7Jj6fs4JHLZzRqmyjeos5ic1U7uRF72D3F9B5h3eiIN4PG8wozikf+59eS0Hle3mN/j5/LB
+ iYWD3YsxVq+kUlESKjRfxUqQwazAQe3SXx/xNZYlkGvuy4yx0ek525PlP4lFKh+0T0+xeudlg
+ UAjI7II+yGTaFa6yVEpAxT6VP08AGL2p2pvn8gsWbIx1wafxM711z+iaZ3fLWq6FdjNkfLXQE
+ arXzUFl8nUv0DPrvx+FqsjPCqhXSifkR1AH9Dp6A52w71EY7SZET71nOshcJ1d0lzI3OMm/Yx
+ /qT00ve9GEgpSPRBzJrZXH6ZnZDlgB8O88j/ApAGLm2EIP01kGfMs8juTLmXokAmEoh6m7/rg
+ pGl9KW8Lzs3w31p4UVtsaJLZ7u9wC3H+CBtTFWQn3g9aun217SdQLIrf5T791DLB5izHnMl/9
+ anvnsPcUg7wUDjI9+AZ2aYRL1Ddzlu80+tGKOFTuhuMipSSA+ELzBnJ9JPMUOhZ+ddZq7pnzr
+ coa37ai4kiokeu2txC7VPhuTME2ezlkJHRsHVY7YAotR5n7bxIF6cw8XdQxoXfovUKJw0WvQ0
+ BgGqezYom/54l7GFFtrKdFKp1hQuj5vHBQAURNiwC5NQocwQeRn2FmeX7ueb9FPxcFxWJ7mBb
+ EktEQ2f7FFVJCCx7SRPWH5vWSUAt4bwnjUlx6mvK5okZxGQxRJWEaIR2IwhYUU8rCEpp8Y9al
+ a0RoONFwxtfsL3b6kaWukuB79hcXyp7wROPxdJt0selek+4M+q34oodaICXPlt2hSkDJXJK5D
+ yUcDQThxuBFQdQULYrzXVhnK9RoYXADHsAqH52WkMzHdnxJ9CG5StbRR4VMeujTiqXmE7O2Av
+ dcvPdu4uAbLqLSeGZ/ZVBU2Ty9FytMNF1ol2ycA8SrIsUC+H88ARzccOKwWA+QQ6jxNJRv2fg
+ Fy/WG1bZGAGUXOsrU7gApSbgTLesfXB7gQ/JGRdTazG74afCp/w0QYu8rLzBIXtZ78ly/bVB0
+ 7dS9j1IA6nBPx7EqyzP/ykjplpVGzKwVDw5TaDb23gUs7MQa/0JTkb3v/gnpCXaaaU7Z6D8D/
+ wS5smnjGmXa6cxcw==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,28 +84,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some (non-BSD) platforms don't have <byteswap.h>, so better use the
-Xserver's bswap_32() implementation here.
+tools/meson.build:45: WARNING: Project targets '>0.40.0' but uses feature =
+introduced in '0.41.0': capture arg in configure_file.
+377tools/meson.build:45: WARNING: Project targets '>0.40.0' but uses featu=
+re introduced in '0.50.0': install arg in configure_file.
 
 Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
 =2D--
- src/sna/sna_video.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/sna/sna_video.c b/src/sna/sna_video.c
-index b7aa6624..9217a42f 100644
-=2D-- a/src/sna/sna_video.c
-+++ b/src/sna/sna_video.c
-@@ -68,7 +68,8 @@
- #define bswap_32 bswap32
- #endif
- #else
--#include <byteswap.h>
-+/* use Xserver's implementation */
-+#include "misc.h"
- #endif
+diff --git a/meson.build b/meson.build
+index 227ca2eb..fa861401 100644
+=2D-- a/meson.build
++++ b/meson.build
+@@ -5,7 +5,7 @@ project('xf86-video-intel', 'c',
+ 	  'c_std=3Dgnu99',
+ 	],
+ 	license : 'MIT',
+-	meson_version : '>0.40.0')
++	meson_version : '>=3D0.50.0')
 
- #ifdef SNA_XVMC
+ config =3D configuration_data()
+
 =2D-
 2.39.5
 
