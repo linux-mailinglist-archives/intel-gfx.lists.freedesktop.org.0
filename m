@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1752EA4D684
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 09:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DCAA4D689
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 09:33:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A647410E549;
-	Tue,  4 Mar 2025 08:32:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DC810E54A;
+	Tue,  4 Mar 2025 08:33:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z43jB6xh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmsjoKrf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1B8E10E545
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 08:32:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01B7610E54A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 08:33:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741077161; x=1772613161;
+ t=1741077203; x=1772613203;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=HbYJha7B3nO+LFVz5BDHM6bQj/cD4K/qkW076fg6DbY=;
- b=Z43jB6xhlrx6NbgU9Q8tjOVCkVOc/PC5wEz3E+DOMZuaJyjBVyuEYGPC
- aJKprLOk0DQPtI6RUyC5TAGvxpVCeNQ9Os3dhNt1cr22n12Xr9B7uhPyZ
- Y78hoqSZUlEw0MWBQsAn+JH4A/gzOd7Xmt8+JCUXz5IdEaXjjQ+XKkHra
- a+ht9qEnf+wo7GqcrP1NbJO54DjFd00n8fYAeK7X87PKWYHWzV8/B9s5r
- hKneD9PiOUhZwlbZ9S0cvnNFvH6o01bH+x/aJMwWnYDlGq1T2KRJNSv/+
- jFPCtC956WJI2WlWPzuEOJg4tEJcjT65B9aU3zB5I3W+8W+CzdWK3acm+ g==;
-X-CSE-ConnectionGUID: Rt5l8d0SR7Wj4GQ4Jsh1Jw==
-X-CSE-MsgGUID: g5Z3Dgz+S4y24qHaqESmWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="45758456"
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="45758456"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 00:32:21 -0800
-X-CSE-ConnectionGUID: XfaFQDGKRRaDAdywofFj4g==
-X-CSE-MsgGUID: SnJWk/FwQK2zWIOxqmPIXg==
+ bh=r8E6iDo0oj9wRV4YPVfkAbcjH7ge8E3sjbToQsymOt8=;
+ b=fmsjoKrf3LjYgs9USz5UxfYLUnqNrCKQGNOlHETyCFrKP0Qy+xv8V0AS
+ i6z7OsvKaH/tYgj88qpO/xXfoBasFi6RUTyomfTwOdcx2MPT0x69BM7qs
+ 0D/aqVnxwty4VpFJJCYrGOfWVCjPKNwo4sP+kmNbRSvD4+U5VAdbSeCwQ
+ oVuPskb4X/DNedGGOx6bcXqwhaHSknkWfBfCRnvznHs55Dbp1tk1laByJ
+ WKtuhSUZB2MVoj81oLUe2bGVYyt6ONRzVPqMv7AdDZO7njL2vlTy7TC5e
+ 8BTkZQnwNE8pkZGrzT+CT2WkZWfs3nl+0Rvk5dAKQrb+IOb8v9CiPGNHw A==;
+X-CSE-ConnectionGUID: oeP+U3B0T3+L26FCkwFXhA==
+X-CSE-MsgGUID: 1sR7WLp0SA21ToGq1n74qw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="42107957"
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="42107957"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 00:33:23 -0800
+X-CSE-ConnectionGUID: ITf8Pq3DR+6HiadMKtEA7A==
+X-CSE-MsgGUID: jqFDFG61SZ62aDVl9VXLvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="118825343"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123516256"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 00:32:19 -0800
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 00:33:20 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Mohammed Thasleem <mohammed.thasleem@intel.com>,
  intel-gfx@lists.freedesktop.org
@@ -51,8 +51,8 @@ In-Reply-To: <20250303192319.4315-1-mohammed.thasleem@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
  <20250303192319.4315-1-mohammed.thasleem@intel.com>
-Date: Tue, 04 Mar 2025 10:32:15 +0200
-Message-ID: <87wmd5yz5c.fsf@intel.com>
+Date: Tue, 04 Mar 2025 10:33:18 +0200
+Message-ID: <87tt89yz3l.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -131,11 +131,6 @@ On Tue, 04 Mar 2025, Mohammed Thasleem <mohammed.thasleem@intel.com> wrote:
 >  #include "intel_dkl_phy_regs.h"
 >  #include "intel_dmc.h"
 > +#include "intel_dmc_regs.h"
-
-I would prefer to avoid reading DMC registers in
-intel_display_power_well.c. It's intel_dmc.c that's supposed to abstract
-all things DMC.
-
 >  #include "intel_dmc_wl.h"
 >  #include "intel_dp_aux_regs.h"
 >  #include "intel_dpio_phy.h"
@@ -144,12 +139,6 @@ all things DMC.
 >  }
 >  
 > +void update_dc6_count(struct intel_display *display, bool dc6_en_dis)
-
-As a rule of thumb, functions in file intel_foo.c should be named
-intel_foo_something().
-
-What does dc6_en_dis mean? Please name it such that it's understandable.
-
 > +{
 > +	u32 dc5_cur_count;
 > +
@@ -222,6 +211,9 @@ What does dc6_en_dis mean? Please name it such that it's understandable.
 >  #include "intel_step.h"
 >  
 > +
+
+Also, superfluous whitespace.
+
 >  /**
 >   * DOC: DMC Firmware Support
 >   *
@@ -233,13 +225,6 @@ What does dc6_en_dis mean? Please name it such that it's understandable.
 >  	intel_wakeref_t wakeref;
 >  	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
 > +	u32 dc6_was_enabled;
-
-This is used as a bool, the name sounds like a bool, please make it a
-bool. It could also be moved to tighter scope below.
-
-Also, what do you mean "was enabled"? Isn't it "is enabled"? Or just
-"dc6_enabled"?
-
 >  
 >  	if (!HAS_DMC(display))
 >  		return -ENODEV;
@@ -262,22 +247,8 @@ Also, what do you mean "was enabled"? Isn't it "is enabled"? Or just
 > +	} else
 > +		display->power.dc6_count = i915_mmio_reg_valid(dc6_reg) ?
 > +					   intel_de_read(display, dc6_reg) : 0;
-
-I think the whole division of responsibilities between
-intel_display_power.c and intel_dmc.c is messed up here. You add a
-function update_dc6_count() that updates the new members you added, but
-then you also read DMC registers there *and* update the field here
-too. Please consider who does what, and devise the interfaces such that
-they respect the boundaries.
-
-If one arm of an if requires braces, then all of them do.
-
 > +
 > +	seq_printf(m, "DC5 -> DC6 count: %d\n", display->power.dc6_count);
-
-This now starts always printing zero for !i915_mmio_reg_valid(dc6_reg)
-&& display < 14, while previously it was not printed at all.
-
 >  
 >  	seq_printf(m, "program base: 0x%08x\n",
 >  		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
