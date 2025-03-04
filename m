@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7FCA4DA5F
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 11:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E629A4DA61
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 11:27:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E62F10E26E;
-	Tue,  4 Mar 2025 10:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E78CB10E564;
+	Tue,  4 Mar 2025 10:27:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fiD4SxSZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fr+fCisO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A60610E26E;
- Tue,  4 Mar 2025 10:27:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D94B10E564;
+ Tue,  4 Mar 2025 10:27:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741084064; x=1772620064;
+ t=1741084069; x=1772620069;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nZ2VwO6RVg1O9RA0xq8U8jBvyl8D8XUlHaRyt0bKbSc=;
- b=fiD4SxSZrQm6Wp0Z9ur3d7WN4yn6vIYBxl4xwiUTh19tpDP04XoaaH/B
- oKBejJlfFI8fS2pul/0nusJ+NTITaUWKfd2ugHgnDJHPQ5kVGkK8sGGTV
- k35qGgoMoxcsGCbjX+HSsVfncvXCKbFSB83sijFSqdcLN1sxO0ms2sLEw
- sh0GYgd1npX3MKfY0XYMdWSjj/lZtQbaiP4h1pLxQlJl5HiHl7Qk4im2V
- zQm6XuSTm9WkvT0tawRKd+YNC38wBvisPZ7H+JQJ/dn+28kdEOarqrUb3
- jIJlf/ZF2+hVRexEDxGp0YkLBIx6Pz6LOL/JwG+cLx+IXKMPqFOzTFaTj w==;
-X-CSE-ConnectionGUID: xe89a0NnS7WpY423YJ9GSw==
-X-CSE-MsgGUID: r8cXcWPXRBGS+S0i8ssang==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="52632772"
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="52632772"
+ bh=L7UaXohStyLHkSWXw+rhL0OL9pxlJEMR42F2XOWCSXM=;
+ b=fr+fCisOU4UNiS/JBhjxdMwPVJZGFV8EXsbamOUaWD2nhxVR1g4KiGSo
+ NmzFwJlVUmqoYpmRRIg5kgn+i1gd21sMRTyKofTrrDxjvcj7NhiT0S1u5
+ jiIPuLyiupJr34nVUW/gKTmwrzSn9j77elTX7i3t0isdw64hKRf/PEHB1
+ ArpWAiO8XJw0wkG82HajE7UJST1aenkSETDhNOkKm64TZF6HC3dJtBxg+
+ wDj21imWVF0L1uofUwaCxxH8YoM+lUyh+f1mrF6r02eCMn6F52uVQDxmm
+ yjUpJjrRBsiz2PgBexJkemwX/XsoeCg9yik2aDCW/ZPI27a079e8zVk7n Q==;
+X-CSE-ConnectionGUID: Dy0uOrk6RFGkhb7ZKxYRDA==
+X-CSE-MsgGUID: tMgHNa5DQYyxTbPbP0UqZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="52632776"
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="52632776"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 02:27:44 -0800
-X-CSE-ConnectionGUID: D9CskMcJSzuE3TGd6wi1eg==
-X-CSE-MsgGUID: MDHut5WZQoWnlxdbp9fQGQ==
+ 04 Mar 2025 02:27:49 -0800
+X-CSE-ConnectionGUID: pvp3MMdHS6q8N3zNfeK/4Q==
+X-CSE-MsgGUID: h3Yk9dcyQ0WUX1lfiWYSYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="118321674"
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="118321678"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 02:27:43 -0800
+ 04 Mar 2025 02:27:47 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/5] drm/i915/display: convert various port/phy helpers to
- struct intel_display
-Date: Tue,  4 Mar 2025 12:27:30 +0200
-Message-Id: <e28e53bad5014ba3ef17431557b517f1b8530963.1741084010.git.jani.nikula@intel.com>
+Subject: [PATCH 2/5] drm/i915/display: convert some intel_display.[ch]
+ functions to struct intel_display
+Date: Tue,  4 Mar 2025 12:27:31 +0200
+Message-Id: <ee8b108420763cbf47ee77fa35b782a7293f9cfe.1741084010.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1741084010.git.jani.nikula@intel.com>
 References: <cover.1741084010.git.jani.nikula@intel.com>
@@ -73,245 +73,466 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
 pointer. The intel_display.[ch] files are too big to convert in one
-go. Convert the various port/phy helpers to struct intel_display.
+go. Convert the interface towards intel_display_driver.c to struct
+intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     |  5 +--
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 +--
- drivers/gpu/drm/i915/display/intel_display.c  | 40 +++++++++----------
- drivers/gpu/drm/i915/display/intel_display.h  |  7 ++--
- .../i915/display/intel_display_power_well.c   |  9 ++---
- 5 files changed, 31 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 161 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_display.h  |  11 +-
+ .../drm/i915/display/intel_display_driver.c   |  10 +-
+ 3 files changed, 94 insertions(+), 88 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e0e4e9b62d8d..a8d08d7d82b3 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2902,7 +2902,6 @@ init_vbt_panel_defaults(struct intel_panel *panel)
- static void
- init_vbt_missing_defaults(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	unsigned int ports = DISPLAY_RUNTIME_INFO(display)->port_mask;
- 	enum port port;
- 
-@@ -2912,13 +2911,13 @@ init_vbt_missing_defaults(struct intel_display *display)
- 	for_each_port_masked(port, ports) {
- 		struct intel_bios_encoder_data *devdata;
- 		struct child_device_config *child;
--		enum phy phy = intel_port_to_phy(i915, port);
-+		enum phy phy = intel_port_to_phy(display, port);
- 
- 		/*
- 		 * VBT has the TypeC mode (native,TBT/USB) and we don't want
- 		 * to detect it.
- 		 */
--		if (intel_phy_is_tc(i915, phy))
-+		if (intel_phy_is_tc(display, phy))
- 			continue;
- 
- 		/* Create fake child device config */
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 20fc258a4d6d..3b7ec0be9011 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5100,7 +5100,7 @@ void intel_ddi_init(struct intel_display *display,
- 		return;
- 	}
- 
--	phy = intel_port_to_phy(dev_priv, port);
-+	phy = intel_port_to_phy(display, port);
- 
- 	/*
- 	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
-@@ -5160,7 +5160,7 @@ void intel_ddi_init(struct intel_display *display,
- 				 port_name(port - PORT_D_XELPD + PORT_D),
- 				 phy_name(phy));
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
--		enum tc_port tc_port = intel_port_to_tc(dev_priv, port);
-+		enum tc_port tc_port = intel_port_to_tc(display, port);
- 
- 		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
- 				 DRM_MODE_ENCODER_TMDS,
-@@ -5170,7 +5170,7 @@ void intel_ddi_init(struct intel_display *display,
- 				 tc_port != TC_PORT_NONE ? "TC" : "",
- 				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
- 	} else if (DISPLAY_VER(dev_priv) >= 11) {
--		enum tc_port tc_port = intel_port_to_tc(dev_priv, port);
-+		enum tc_port tc_port = intel_port_to_tc(display, port);
- 
- 		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
- 				 DRM_MODE_ENCODER_TMDS,
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c4b0ec60fded..9d4f2dacbbce 100644
+index 9d4f2dacbbce..debf9826fd2f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1834,20 +1834,20 @@ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
+@@ -182,16 +182,17 @@ int vlv_get_cck_clock_hpll(struct drm_i915_private *dev_priv,
+ 	return hpll;
  }
  
- /* Prefer intel_encoder_is_tc() */
--bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy)
-+bool intel_phy_is_tc(struct intel_display *display, enum phy phy)
+-void intel_update_czclk(struct drm_i915_private *dev_priv)
++void intel_update_czclk(struct intel_display *display)
  {
+-	if (!(IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)))
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
++	if (!display->platform.valleyview && !display->platform.cherryview)
+ 		return;
+ 
+ 	dev_priv->czclk_freq = vlv_get_cck_clock_hpll(dev_priv, "czclk",
+ 						      CCK_CZ_CLOCK_CONTROL);
+ 
+-	drm_dbg(&dev_priv->drm, "CZ clock rate: %d kHz\n",
+-		dev_priv->czclk_freq);
++	drm_dbg_kms(display->drm, "CZ clock rate: %d kHz\n", dev_priv->czclk_freq);
+ }
+ 
+ static bool is_hdr_mode(const struct intel_crtc_state *crtc_state)
+@@ -2547,8 +2548,10 @@ intel_link_compute_m_n(u16 bits_per_pixel_x16, int nlanes,
+ 		    0x80000);
+ }
+ 
+-void intel_panel_sanitize_ssc(struct drm_i915_private *dev_priv)
++void intel_panel_sanitize_ssc(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
  	/*
- 	 * Discrete GPU phy's are not attached to FIA's to support TC
- 	 * subsystem Legacy or non-legacy, and only support native DP/HDMI
+ 	 * There may be no VBT; and if the BIOS enabled SSC we can
+ 	 * just keep using it to avoid unnecessary flicker.  Whereas if the
+@@ -2556,16 +2559,16 @@ void intel_panel_sanitize_ssc(struct drm_i915_private *dev_priv)
+ 	 * indicates as much.
  	 */
--	if (IS_DGFX(dev_priv))
-+	if (display->platform.dgfx)
+ 	if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)) {
+-		bool bios_lvds_use_ssc = intel_de_read(dev_priv,
++		bool bios_lvds_use_ssc = intel_de_read(display,
+ 						       PCH_DREF_CONTROL) &
+ 			DREF_SSC1_ENABLE;
+ 
+-		if (dev_priv->display.vbt.lvds_use_ssc != bios_lvds_use_ssc) {
+-			drm_dbg_kms(&dev_priv->drm,
++		if (display->vbt.lvds_use_ssc != bios_lvds_use_ssc) {
++			drm_dbg_kms(display->drm,
+ 				    "SSC %s by BIOS, overriding VBT which says %s\n",
+ 				    str_enabled_disabled(bios_lvds_use_ssc),
+-				    str_enabled_disabled(dev_priv->display.vbt.lvds_use_ssc));
+-			dev_priv->display.vbt.lvds_use_ssc = bios_lvds_use_ssc;
++				    str_enabled_disabled(display->vbt.lvds_use_ssc));
++			display->vbt.lvds_use_ssc = bios_lvds_use_ssc;
+ 		}
+ 	}
+ }
+@@ -7635,37 +7638,39 @@ static u32 intel_encoder_possible_crtcs(struct intel_encoder *encoder)
+ 	return possible_crtcs;
+ }
+ 
+-static bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
++static bool ilk_has_edp_a(struct intel_display *display)
+ {
+-	if (!IS_MOBILE(dev_priv))
++	if (!display->platform.mobile)
  		return false;
  
--	if (DISPLAY_VER(dev_priv) >= 13)
-+	if (DISPLAY_VER(display) >= 13)
- 		return phy >= PHY_F && phy <= PHY_I;
--	else if (IS_TIGERLAKE(dev_priv))
-+	else if (display->platform.tigerlake)
- 		return phy >= PHY_D && phy <= PHY_I;
--	else if (IS_ICELAKE(dev_priv))
-+	else if (display->platform.icelake)
- 		return phy >= PHY_C && phy <= PHY_F;
+-	if ((intel_de_read(dev_priv, DP_A) & DP_DETECTED) == 0)
++	if ((intel_de_read(display, DP_A) & DP_DETECTED) == 0)
+ 		return false;
  
- 	return false;
-@@ -1864,17 +1864,17 @@ bool intel_phy_is_snps(struct intel_display *display, enum phy phy)
+-	if (IS_IRONLAKE(dev_priv) && (intel_de_read(dev_priv, FUSE_STRAP) & ILK_eDP_A_DISABLE))
++	if (display->platform.ironlake && (intel_de_read(display, FUSE_STRAP) & ILK_eDP_A_DISABLE))
+ 		return false;
+ 
+ 	return true;
  }
  
- /* Prefer intel_encoder_to_phy() */
--enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
-+enum phy intel_port_to_phy(struct intel_display *display, enum port port)
+-static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
++static bool intel_ddi_crt_present(struct intel_display *display)
  {
--	if (DISPLAY_VER(i915) >= 13 && port >= PORT_D_XELPD)
-+	if (DISPLAY_VER(display) >= 13 && port >= PORT_D_XELPD)
- 		return PHY_D + port - PORT_D_XELPD;
--	else if (DISPLAY_VER(i915) >= 13 && port >= PORT_TC1)
-+	else if (DISPLAY_VER(display) >= 13 && port >= PORT_TC1)
- 		return PHY_F + port - PORT_TC1;
--	else if (IS_ALDERLAKE_S(i915) && port >= PORT_TC1)
-+	else if (display->platform.alderlake_s && port >= PORT_TC1)
- 		return PHY_B + port - PORT_TC1;
--	else if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >= PORT_TC1)
-+	else if ((display->platform.dg1 || display->platform.rocketlake) && port >= PORT_TC1)
- 		return PHY_C + port - PORT_TC1;
--	else if ((IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915)) &&
-+	else if ((display->platform.jasperlake || display->platform.elkhartlake) &&
- 		 port == PORT_D)
- 		return PHY_A;
+-	if (DISPLAY_VER(dev_priv) >= 9)
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
++	if (DISPLAY_VER(display) >= 9)
+ 		return false;
  
-@@ -1882,12 +1882,12 @@ enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
+-	if (IS_HASWELL_ULT(dev_priv) || IS_BROADWELL_ULT(dev_priv))
++	if (display->platform.haswell_ult || display->platform.broadwell_ult)
+ 		return false;
+ 
+ 	if (HAS_PCH_LPT_H(dev_priv) &&
+-	    intel_de_read(dev_priv, SFUSE_STRAP) & SFUSE_STRAP_CRT_DISABLED)
++	    intel_de_read(display, SFUSE_STRAP) & SFUSE_STRAP_CRT_DISABLED)
+ 		return false;
+ 
+ 	/* DDI E can't be used if DDI A requires 4 lanes */
+-	if (intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_A_4_LANES)
++	if (intel_de_read(display, DDI_BUF_CTL(PORT_A)) & DDI_A_4_LANES)
+ 		return false;
+ 
+-	if (!dev_priv->display.vbt.int_crt_support)
++	if (!display->vbt.int_crt_support)
+ 		return false;
+ 
+ 	return true;
+@@ -7677,24 +7682,24 @@ bool assert_port_valid(struct intel_display *display, enum port port)
+ 			 "Platform does not support port %c\n", port_name(port));
  }
  
- /* Prefer intel_encoder_to_tc() */
--enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum port port)
-+enum tc_port intel_port_to_tc(struct intel_display *display, enum port port)
+-void intel_setup_outputs(struct drm_i915_private *dev_priv)
++void intel_setup_outputs(struct intel_display *display)
  {
--	if (!intel_phy_is_tc(dev_priv, intel_port_to_phy(dev_priv, port)))
-+	if (!intel_phy_is_tc(display, intel_port_to_phy(display, port)))
- 		return TC_PORT_NONE;
+-	struct intel_display *display = &dev_priv->display;
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_encoder *encoder;
+ 	bool dpd_is_edp = false;
  
--	if (DISPLAY_VER(dev_priv) >= 12)
-+	if (DISPLAY_VER(display) >= 12)
- 		return TC_PORT_1 + port - PORT_TC1;
- 	else
- 		return TC_PORT_1 + port - PORT_C;
-@@ -1895,9 +1895,9 @@ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum port port)
+ 	intel_pps_unlock_regs_wa(display);
  
- enum phy intel_encoder_to_phy(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
+-	if (!HAS_DISPLAY(dev_priv))
++	if (!HAS_DISPLAY(display))
+ 		return;
  
--	return intel_port_to_phy(i915, encoder->port);
-+	return intel_port_to_phy(display, encoder->port);
+-	if (HAS_DDI(dev_priv)) {
+-		if (intel_ddi_crt_present(dev_priv))
++	if (HAS_DDI(display)) {
++		if (intel_ddi_crt_present(display))
+ 			intel_crt_init(display);
+ 
+ 		intel_bios_for_each_encoder(display, intel_ddi_init);
+ 
+-		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
++		if (display->platform.geminilake || display->platform.broxton)
+ 			vlv_dsi_init(dev_priv);
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		int found;
+@@ -7709,33 +7714,33 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 
+ 		dpd_is_edp = intel_dp_is_port_edp(display, PORT_D);
+ 
+-		if (ilk_has_edp_a(dev_priv))
++		if (ilk_has_edp_a(display))
+ 			g4x_dp_init(display, DP_A, PORT_A);
+ 
+-		if (intel_de_read(dev_priv, PCH_HDMIB) & SDVO_DETECTED) {
++		if (intel_de_read(display, PCH_HDMIB) & SDVO_DETECTED) {
+ 			/* PCH SDVOB multiplex with HDMIB */
+ 			found = intel_sdvo_init(display, PCH_SDVOB, PORT_B);
+ 			if (!found)
+ 				g4x_hdmi_init(display, PCH_HDMIB, PORT_B);
+-			if (!found && (intel_de_read(dev_priv, PCH_DP_B) & DP_DETECTED))
++			if (!found && (intel_de_read(display, PCH_DP_B) & DP_DETECTED))
+ 				g4x_dp_init(display, PCH_DP_B, PORT_B);
+ 		}
+ 
+-		if (intel_de_read(dev_priv, PCH_HDMIC) & SDVO_DETECTED)
++		if (intel_de_read(display, PCH_HDMIC) & SDVO_DETECTED)
+ 			g4x_hdmi_init(display, PCH_HDMIC, PORT_C);
+ 
+-		if (!dpd_is_edp && intel_de_read(dev_priv, PCH_HDMID) & SDVO_DETECTED)
++		if (!dpd_is_edp && intel_de_read(display, PCH_HDMID) & SDVO_DETECTED)
+ 			g4x_hdmi_init(display, PCH_HDMID, PORT_D);
+ 
+-		if (intel_de_read(dev_priv, PCH_DP_C) & DP_DETECTED)
++		if (intel_de_read(display, PCH_DP_C) & DP_DETECTED)
+ 			g4x_dp_init(display, PCH_DP_C, PORT_C);
+ 
+-		if (intel_de_read(dev_priv, PCH_DP_D) & DP_DETECTED)
++		if (intel_de_read(display, PCH_DP_D) & DP_DETECTED)
+ 			g4x_dp_init(display, PCH_DP_D, PORT_D);
+-	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
++	} else if (display->platform.valleyview || display->platform.cherryview) {
+ 		bool has_edp, has_port;
+ 
+-		if (IS_VALLEYVIEW(dev_priv) && dev_priv->display.vbt.int_crt_support)
++		if (display->platform.valleyview && display->vbt.int_crt_support)
+ 			intel_crt_init(display);
+ 
+ 		/*
+@@ -7755,87 +7760,87 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		 */
+ 		has_edp = intel_dp_is_port_edp(display, PORT_B);
+ 		has_port = intel_bios_is_port_present(display, PORT_B);
+-		if (intel_de_read(dev_priv, VLV_DP_B) & DP_DETECTED || has_port)
++		if (intel_de_read(display, VLV_DP_B) & DP_DETECTED || has_port)
+ 			has_edp &= g4x_dp_init(display, VLV_DP_B, PORT_B);
+-		if ((intel_de_read(dev_priv, VLV_HDMIB) & SDVO_DETECTED || has_port) && !has_edp)
++		if ((intel_de_read(display, VLV_HDMIB) & SDVO_DETECTED || has_port) && !has_edp)
+ 			g4x_hdmi_init(display, VLV_HDMIB, PORT_B);
+ 
+ 		has_edp = intel_dp_is_port_edp(display, PORT_C);
+ 		has_port = intel_bios_is_port_present(display, PORT_C);
+-		if (intel_de_read(dev_priv, VLV_DP_C) & DP_DETECTED || has_port)
++		if (intel_de_read(display, VLV_DP_C) & DP_DETECTED || has_port)
+ 			has_edp &= g4x_dp_init(display, VLV_DP_C, PORT_C);
+-		if ((intel_de_read(dev_priv, VLV_HDMIC) & SDVO_DETECTED || has_port) && !has_edp)
++		if ((intel_de_read(display, VLV_HDMIC) & SDVO_DETECTED || has_port) && !has_edp)
+ 			g4x_hdmi_init(display, VLV_HDMIC, PORT_C);
+ 
+-		if (IS_CHERRYVIEW(dev_priv)) {
++		if (display->platform.cherryview) {
+ 			/*
+ 			 * eDP not supported on port D,
+ 			 * so no need to worry about it
+ 			 */
+ 			has_port = intel_bios_is_port_present(display, PORT_D);
+-			if (intel_de_read(dev_priv, CHV_DP_D) & DP_DETECTED || has_port)
++			if (intel_de_read(display, CHV_DP_D) & DP_DETECTED || has_port)
+ 				g4x_dp_init(display, CHV_DP_D, PORT_D);
+-			if (intel_de_read(dev_priv, CHV_HDMID) & SDVO_DETECTED || has_port)
++			if (intel_de_read(display, CHV_HDMID) & SDVO_DETECTED || has_port)
+ 				g4x_hdmi_init(display, CHV_HDMID, PORT_D);
+ 		}
+ 
+ 		vlv_dsi_init(dev_priv);
+-	} else if (IS_PINEVIEW(dev_priv)) {
++	} else if (display->platform.pineview) {
+ 		intel_lvds_init(dev_priv);
+ 		intel_crt_init(display);
+-	} else if (IS_DISPLAY_VER(dev_priv, 3, 4)) {
++	} else if (IS_DISPLAY_VER(display, 3, 4)) {
+ 		bool found = false;
+ 
+-		if (IS_MOBILE(dev_priv))
++		if (display->platform.mobile)
+ 			intel_lvds_init(dev_priv);
+ 
+ 		intel_crt_init(display);
+ 
+-		if (intel_de_read(dev_priv, GEN3_SDVOB) & SDVO_DETECTED) {
+-			drm_dbg_kms(&dev_priv->drm, "probing SDVOB\n");
++		if (intel_de_read(display, GEN3_SDVOB) & SDVO_DETECTED) {
++			drm_dbg_kms(display->drm, "probing SDVOB\n");
+ 			found = intel_sdvo_init(display, GEN3_SDVOB, PORT_B);
+-			if (!found && IS_G4X(dev_priv)) {
+-				drm_dbg_kms(&dev_priv->drm,
++			if (!found && display->platform.g4x) {
++				drm_dbg_kms(display->drm,
+ 					    "probing HDMI on SDVOB\n");
+ 				g4x_hdmi_init(display, GEN4_HDMIB, PORT_B);
+ 			}
+ 
+-			if (!found && IS_G4X(dev_priv))
++			if (!found && display->platform.g4x)
+ 				g4x_dp_init(display, DP_B, PORT_B);
+ 		}
+ 
+ 		/* Before G4X SDVOC doesn't have its own detect register */
+ 
+-		if (intel_de_read(dev_priv, GEN3_SDVOB) & SDVO_DETECTED) {
+-			drm_dbg_kms(&dev_priv->drm, "probing SDVOC\n");
++		if (intel_de_read(display, GEN3_SDVOB) & SDVO_DETECTED) {
++			drm_dbg_kms(display->drm, "probing SDVOC\n");
+ 			found = intel_sdvo_init(display, GEN3_SDVOC, PORT_C);
+ 		}
+ 
+-		if (!found && (intel_de_read(dev_priv, GEN3_SDVOC) & SDVO_DETECTED)) {
++		if (!found && (intel_de_read(display, GEN3_SDVOC) & SDVO_DETECTED)) {
+ 
+-			if (IS_G4X(dev_priv)) {
+-				drm_dbg_kms(&dev_priv->drm,
++			if (display->platform.g4x) {
++				drm_dbg_kms(display->drm,
+ 					    "probing HDMI on SDVOC\n");
+ 				g4x_hdmi_init(display, GEN4_HDMIC, PORT_C);
+ 			}
+-			if (IS_G4X(dev_priv))
++			if (display->platform.g4x)
+ 				g4x_dp_init(display, DP_C, PORT_C);
+ 		}
+ 
+-		if (IS_G4X(dev_priv) && (intel_de_read(dev_priv, DP_D) & DP_DETECTED))
++		if (display->platform.g4x && (intel_de_read(display, DP_D) & DP_DETECTED))
+ 			g4x_dp_init(display, DP_D, PORT_D);
+ 
+-		if (SUPPORTS_TV(dev_priv))
++		if (SUPPORTS_TV(display))
+ 			intel_tv_init(display);
+-	} else if (DISPLAY_VER(dev_priv) == 2) {
+-		if (IS_I85X(dev_priv))
++	} else if (DISPLAY_VER(display) == 2) {
++		if (display->platform.i85x)
+ 			intel_lvds_init(dev_priv);
+ 
+ 		intel_crt_init(display);
+ 		intel_dvo_init(dev_priv);
+ 	}
+ 
+-	for_each_intel_encoder(&dev_priv->drm, encoder) {
++	for_each_intel_encoder(display->drm, encoder) {
+ 		encoder->base.possible_crtcs =
+ 			intel_encoder_possible_crtcs(encoder);
+ 		encoder->base.possible_clones =
+@@ -7844,7 +7849,7 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 
+ 	intel_init_pch_refclk(dev_priv);
+ 
+-	drm_helper_move_panel_connectors_to_head(&dev_priv->drm);
++	drm_helper_move_panel_connectors_to_head(display->drm);
  }
  
- bool intel_encoder_is_combo(struct intel_encoder *encoder)
-@@ -1916,16 +1916,16 @@ bool intel_encoder_is_snps(struct intel_encoder *encoder)
+ static int max_dotclock(struct drm_i915_private *i915)
+@@ -8061,32 +8066,34 @@ static const struct intel_display_funcs i9xx_display_funcs = {
  
- bool intel_encoder_is_tc(struct intel_encoder *encoder)
+ /**
+  * intel_init_display_hooks - initialize the display modesetting hooks
+- * @dev_priv: device private
++ * @display: display device private
+  */
+-void intel_init_display_hooks(struct drm_i915_private *dev_priv)
++void intel_init_display_hooks(struct intel_display *display)
  {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 
--	return intel_phy_is_tc(i915, intel_encoder_to_phy(encoder));
-+	return intel_phy_is_tc(display, intel_encoder_to_phy(encoder));
+-	if (DISPLAY_VER(dev_priv) >= 9) {
+-		dev_priv->display.funcs.display = &skl_display_funcs;
+-	} else if (HAS_DDI(dev_priv)) {
+-		dev_priv->display.funcs.display = &ddi_display_funcs;
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
++	if (DISPLAY_VER(display) >= 9) {
++		display->funcs.display = &skl_display_funcs;
++	} else if (HAS_DDI(display)) {
++		display->funcs.display = &ddi_display_funcs;
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+-		dev_priv->display.funcs.display = &pch_split_display_funcs;
+-	} else if (IS_CHERRYVIEW(dev_priv) ||
+-		   IS_VALLEYVIEW(dev_priv)) {
+-		dev_priv->display.funcs.display = &vlv_display_funcs;
++		display->funcs.display = &pch_split_display_funcs;
++	} else if (display->platform.cherryview ||
++		   display->platform.valleyview) {
++		display->funcs.display = &vlv_display_funcs;
+ 	} else {
+-		dev_priv->display.funcs.display = &i9xx_display_funcs;
++		display->funcs.display = &i9xx_display_funcs;
+ 	}
  }
  
- enum tc_port intel_encoder_to_tc(struct intel_encoder *encoder)
+-int intel_initial_commit(struct drm_device *dev)
++int intel_initial_commit(struct intel_display *display)
  {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_atomic_state *state = NULL;
+ 	struct drm_modeset_acquire_ctx ctx;
+ 	struct intel_crtc *crtc;
+ 	int ret = 0;
  
--	return intel_port_to_tc(i915, encoder->port);
-+	return intel_port_to_tc(display, encoder->port);
- }
+-	state = drm_atomic_state_alloc(dev);
++	state = drm_atomic_state_alloc(display->drm);
+ 	if (!state)
+ 		return -ENOMEM;
  
- enum intel_display_power_domain
+@@ -8096,7 +8103,7 @@ int intel_initial_commit(struct drm_device *dev)
+ 	to_intel_atomic_state(state)->internal = true;
+ 
+ retry:
+-	for_each_intel_crtc(dev, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			intel_atomic_get_crtc_state(state, crtc);
+ 
+@@ -8120,7 +8127,7 @@ int intel_initial_commit(struct drm_device *dev)
+ 			 */
+ 			crtc_state->uapi.color_mgmt_changed = true;
+ 
+-			for_each_intel_encoder_mask(dev, encoder,
++			for_each_intel_encoder_mask(display->drm, encoder,
+ 						    crtc_state->uapi.encoder_mask) {
+ 				if (encoder->initial_fastset_check &&
+ 				    !encoder->initial_fastset_check(encoder, crtc_state)) {
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index bc9a5a14ca6a..45d70d3e1041 100644
+index 45d70d3e1041..83a820b72a6e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -426,7 +426,7 @@ intel_mode_valid_max_plane_size(struct intel_display *display,
- enum drm_mode_status
- intel_cpu_transcoder_mode_valid(struct intel_display *display,
- 				const struct drm_display_mode *mode);
--enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port);
-+enum phy intel_port_to_phy(struct intel_display *display, enum port port);
- bool is_trans_port_sync_mode(const struct intel_crtc_state *state);
- bool is_trans_port_sync_master(const struct intel_crtc_state *state);
- u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
-@@ -465,10 +465,9 @@ intel_encoder_current_mode(struct intel_encoder *encoder);
- void intel_encoder_get_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *crtc_state);
- bool intel_phy_is_combo(struct intel_display *display, enum phy phy);
--bool intel_phy_is_tc(struct drm_i915_private *dev_priv, enum phy phy);
-+bool intel_phy_is_tc(struct intel_display *display, enum phy phy);
- bool intel_phy_is_snps(struct intel_display *display, enum phy phy);
--enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv,
--			      enum port port);
-+enum tc_port intel_port_to_tc(struct intel_display *display, enum port port);
+@@ -457,7 +457,6 @@ int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
+ 		      const char *name, u32 reg, int ref_freq);
+ int vlv_get_cck_clock_hpll(struct drm_i915_private *dev_priv,
+ 			   const char *name, u32 reg);
+-void intel_init_display_hooks(struct drm_i915_private *dev_priv);
+ bool intel_has_pending_fb_unpin(struct drm_i915_private *dev_priv);
+ void intel_encoder_destroy(struct drm_encoder *encoder);
+ struct drm_display_mode *
+@@ -541,11 +540,11 @@ void intel_modeset_put_crtc_power_domains(struct intel_crtc *crtc,
+ 					  struct intel_power_domain_mask *domains);
  
- enum phy intel_encoder_to_phy(struct intel_encoder *encoder);
- bool intel_encoder_is_combo(struct intel_encoder *encoder);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 5b60db597329..8ec87ffd87d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -549,10 +549,9 @@ static void
- icl_aux_power_well_enable(struct intel_display *display,
- 			  struct i915_power_well *power_well)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+ /* interface for intel_display_driver.c */
+-void intel_setup_outputs(struct drm_i915_private *i915);
+-int intel_initial_commit(struct drm_device *dev);
+-void intel_panel_sanitize_ssc(struct drm_i915_private *i915);
+-void intel_update_czclk(struct drm_i915_private *i915);
+-void intel_atomic_helper_free_state_worker(struct work_struct *work);
++void intel_init_display_hooks(struct intel_display *display);
++void intel_setup_outputs(struct intel_display *display);
++int intel_initial_commit(struct intel_display *display);
++void intel_panel_sanitize_ssc(struct intel_display *display);
++void intel_update_czclk(struct intel_display *display);
+ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 				      const struct drm_display_mode *mode);
+ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 68d0753659e8..31740a677dd8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -199,7 +199,7 @@ void intel_display_driver_early_probe(struct intel_display *display)
+ 	intel_init_cdclk_hooks(display);
+ 	intel_audio_hooks_init(display);
+ 	intel_dpll_init_clock_hook(i915);
+-	intel_init_display_hooks(i915);
++	intel_init_display_hooks(display);
+ 	intel_fdi_init_hook(display);
+ 	intel_dmc_wl_init(display);
+ }
+@@ -431,7 +431,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
  
--	if (intel_phy_is_tc(dev_priv, phy))
-+	if (intel_phy_is_tc(display, phy))
- 		return icl_tc_phy_aux_power_well_enable(display, power_well);
- 	else if (display->platform.icelake)
- 		return icl_combo_phy_aux_power_well_enable(display,
-@@ -565,10 +564,9 @@ static void
- icl_aux_power_well_disable(struct intel_display *display,
- 			   struct i915_power_well *power_well)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+ 	intel_wm_init(i915);
  
--	if (intel_phy_is_tc(dev_priv, phy))
-+	if (intel_phy_is_tc(display, phy))
- 		return hsw_power_well_disable(display, power_well);
- 	else if (display->platform.icelake)
- 		return icl_combo_phy_aux_power_well_disable(display,
-@@ -1829,11 +1827,10 @@ tgl_tc_cold_off_power_well_is_enabled(struct intel_display *display,
- static void xelpdp_aux_power_well_enable(struct intel_display *display,
- 					 struct i915_power_well *power_well)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
- 	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+-	intel_panel_sanitize_ssc(i915);
++	intel_panel_sanitize_ssc(display);
  
--	if (intel_phy_is_tc(dev_priv, phy))
-+	if (intel_phy_is_tc(display, phy))
- 		icl_tc_port_assert_ref_held(display, power_well,
- 					    aux_ch_to_digital_port(display, aux_ch));
+ 	intel_pps_setup(display);
+ 
+@@ -451,7 +451,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 	intel_shared_dpll_init(display);
+ 	intel_fdi_pll_freq_update(display);
+ 
+-	intel_update_czclk(i915);
++	intel_update_czclk(display);
+ 	intel_display_driver_init_hw(display);
+ 	intel_dpll_update_ref_clks(display);
+ 
+@@ -462,7 +462,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 
+ 	/* Just disable it once at startup */
+ 	intel_vga_disable(display);
+-	intel_setup_outputs(i915);
++	intel_setup_outputs(display);
+ 
+ 	ret = intel_dp_tunnel_mgr_init(display);
+ 	if (ret)
+@@ -517,7 +517,7 @@ int intel_display_driver_probe(struct intel_display *display)
+ 	 * are already calculated and there is no assert_plane warnings
+ 	 * during bootup.
+ 	 */
+-	ret = intel_initial_commit(display->drm);
++	ret = intel_initial_commit(display);
+ 	if (ret)
+ 		drm_dbg_kms(display->drm, "Initial modeset failed, %d\n", ret);
  
 -- 
 2.39.5
