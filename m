@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9DBA4EDFF
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 21:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1288DA4EF01
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 22:04:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF73110E090;
-	Tue,  4 Mar 2025 20:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8248810E6AF;
+	Tue,  4 Mar 2025 21:04:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRGeb8Bb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DUufpyI0";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@freedesktop.org
-Delivered-To: intel-gfx@freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B029710E090
- for <intel-gfx@freedesktop.org>; Tue,  4 Mar 2025 20:00:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD4510E6B5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 21:04:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741118438; x=1772654438;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1BNdIDjETlM+F8k5PGqwg8DmfvJXnsU8Mz9PtVgSG8g=;
- b=QRGeb8Bbg/BRe6I+PenWrfL2TUynD7586TKatEb1/YVgKxVI8Z0NWJJX
- qLgDhVoELVND1gQZDZS6D9tCi7kcxQuWzRIdgyfQwfmPiWmc+1wJQ48+W
- Kfs1vVJJttKv8Za5Fxq6u71zSfYfhaDN9Nufa+hV9uP7Q9OncuRxYdFIU
- hRufx9n/KCI6DMzngiQAuzvkELlFAiSdgDaIZD9Sv4574XH4wxFu/uOzg
- 8hUmhBAT4kT6GuWfb4f5jpmlivJ1Ikd9esMeIT4eaczrXEO8EuLIPIyrn
- szQHOyMq9KLWtcFIcoG3CT/Xs6pkwYFq7l4YMVocoK8jlUT4WMQFzbV8S g==;
-X-CSE-ConnectionGUID: hsa+p4vdSm2LgldBR/u5RA==
-X-CSE-MsgGUID: Tx49xTw4QX6NV/QvLH67BQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="45708515"
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="45708515"
+ t=1741122259; x=1772658259;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5tyemKFBMKf+Xq+mKeKHeMxv8AOYPNz410953SFOeUM=;
+ b=DUufpyI07Ebzl1y8eqH3kQidSBZUx9uO6KD/UhcUVwM91kf9raO07O7r
+ j4JMxuPj6O8mLxAYXEsRV+RDDs5XzOG1T1eBNVhT9nuJ3q/OJwppl1uDp
+ /iyM8lKAuNp4HdTV4OyaNxDc2FjIrlUsZlAT2kUkpRiiUjNv4YG33YRuZ
+ U0WUFJzYm37rWKuaRfCEm58iedlRVbhnondkDnT6a8fhoXRXN8sg0PfRC
+ CKdQYVjv6nTKDIiZ0Dlzyxm2eyY0Y0qCitjmLqyKTpvomCWAeETfIJM35
+ L7hP6FvW4Vat4w06NKz+RPSn8gUWe6SsI/jnjxwZYGs7sweZerijqhllv A==;
+X-CSE-ConnectionGUID: 5UCKwKPRS2KBcAFiM2rsUw==
+X-CSE-MsgGUID: t/sgOIrLSCi+HW+vmft2tQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="41242492"
+X-IronPort-AV: E=Sophos;i="6.14,221,1736841600"; d="scan'208";a="41242492"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 12:00:37 -0800
-X-CSE-ConnectionGUID: cMkwdbR2R16dGoHRSy9ajg==
-X-CSE-MsgGUID: ybZDakRcSJi6q+r2PW6rDg==
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 13:04:19 -0800
+X-CSE-ConnectionGUID: Zqni6nY+QvGV7WPv+h3XPw==
+X-CSE-MsgGUID: GcyvsI9ZSqy9EYUSMjmBpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,220,1736841600"; d="scan'208";a="119159899"
-Received: from msatwood-mobl.jf.intel.com ([10.24.12.180])
+X-IronPort-AV: E=Sophos;i="6.14,221,1736841600"; d="scan'208";a="119172018"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.13])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 12:00:36 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH] drm/i915/xe3lpd: Prune modes for YUV420
-Date: Tue,  4 Mar 2025 12:00:31 -0800
-Message-ID: <20250304200032.68292-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
+ 04 Mar 2025 13:04:17 -0800
+Date: Tue, 4 Mar 2025 22:04:14 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 00/12] drm/i915: some GT register fixes and cleanups
+Message-ID: <Z8dqzgKy7hx4gHJ7@ashyti-mobl2.lan>
+References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,56 +69,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+Hi Ville,
 
-We only support resolution upto 4k for single pipe when using
-YUV420 format so we prune these modes and restrict the plane size
-at src.
+> Ville Syrjälä (12):
+>   drm/i915: Bump RING_FAULT engine ID bits
+>   drm/i915: Relocate RING_FAULT bits
+>   drm/i915: Use REG_BIT() & co. for ring fault registers
+>   drm/i915: Document which RING_FAULT bits apply to which platforms
+>   drm/i915: Introduce RING_FAULT_VADDR_MASK
+>   drm/i915: Extract gen8_report_fault()
+>   drm/i915: Use REG_BIT() & co. for CHV EU/slice fuse bits
+>   drm/i915: Reoder CHV EU/slice fuse bits
+>   drm/i915: Use REG_BIT() & co. for BDW+ EU/slice fuse bits
+>   drm/i915: Reoder BDW+ EU/slice fuse bits
+>   drm/i915: Use REG_BIT() & co. for gen9+ timestamp freq registers
+>   drm/i915: Reoder gen9+ timestamp freq register bits
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+merged to drm-intel-gt-next.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 205ec315b413..8bccc6e0b5b3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1396,6 +1396,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	struct intel_display *display = to_intel_display(_connector->dev);
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	enum intel_output_format sink_format;
- 	const struct drm_display_mode *fixed_mode;
- 	int target_clock = mode->clock;
- 	int max_rate, mode_rate, max_lanes, max_link_clock;
-@@ -1429,6 +1430,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 						     mode->hdisplay, target_clock);
- 	max_dotclk *= num_joined_pipes;
- 
-+	sink_format = intel_dp_sink_format(connector, mode);
-+	if (num_joined_pipes == 1) {
-+		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
-+		    mode->hdisplay > 4096)
-+			return MODE_NO_420;
-+	}
-+
- 	if (target_clock > max_dotclk)
- 		return MODE_CLOCK_HIGH;
- 
-@@ -1444,10 +1452,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 					   intel_dp_mode_min_output_bpp(connector, mode));
- 
- 	if (intel_dp_has_dsc(connector)) {
--		enum intel_output_format sink_format, output_format;
-+		enum intel_output_format output_format;
- 		int pipe_bpp;
- 
--		sink_format = intel_dp_sink_format(connector, mode);
- 		output_format = intel_dp_output_format(connector, sink_format);
- 		/*
- 		 * TBD pass the connector BPC,
--- 
-2.45.0
-
+Thanks,
+Andi
