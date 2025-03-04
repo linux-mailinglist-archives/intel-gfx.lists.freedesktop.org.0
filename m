@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0051A4DAB4
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 11:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25871A4DAB6
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 11:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDCC710E58C;
-	Tue,  4 Mar 2025 10:33:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DiSbfp+G";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A00ED10E590;
+	Tue,  4 Mar 2025 10:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B920B10E58E;
- Tue,  4 Mar 2025 10:33:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741084433; x=1772620433;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8FXP/vWbgokGtYchHtCRR7Gk1Sx/Oheb/nhTY+0YG0A=;
- b=DiSbfp+GOUOQRKHPRH3HciGIoRj95DtUGBB5REh7w28S6n5dVeo17zlt
- dz1lXnTF0o6loy+dYZJkBkHbgTEAWEEKEBgSD8MbOacweteulWEuRMALe
- dQ+74YqlRln43uwOL0D30DBGzCJ6NxYsbLjnBLMc6540Oz6gj9o1FxDWr
- JwRwtFW3l9zDFGUe8+NVIwyehTIH+gLbkeF3L0v3sbUMxZXoklSGxDgHN
- q0TkEJ0mUSnK96K6eLwN7DrOPz5bbW5UcC6mH8n4nVEWKJncD/EdOBhnq
- jomocpdaD9y+5ISni1I9vLHSRo29K2k0X8p+JDHX2Vem6vo4HNXob2C0E g==;
-X-CSE-ConnectionGUID: Wm4X3irGQlWofzzd3RopZQ==
-X-CSE-MsgGUID: JQLfjKUERk2U0af3gJJqdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="29584102"
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="29584102"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 02:33:53 -0800
-X-CSE-ConnectionGUID: dp56xFxUR4OsjJ1kURIofQ==
-X-CSE-MsgGUID: 5fGIONzIQyGTdiiTWDec0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="118064073"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa009.jf.intel.com with ESMTP; 04 Mar 2025 02:33:52 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 10/10] drm/i915/display: Expose casf property
-Date: Tue,  4 Mar 2025 15:58:57 +0530
-Message-Id: <20250304102857.326544-11-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250304102857.326544-1-nemesa.garg@intel.com>
-References: <20250304102857.326544-1-nemesa.garg@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FDC110E57C;
+ Tue,  4 Mar 2025 10:33:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Use_VRR_timing_gener?=
+ =?utf-8?q?ator_for_fixed_refresh_rate_modes_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 04 Mar 2025 10:33:54 -0000
+Message-ID: <174108443450.536516.5053080210621806737@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,31 +37,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Expose the drm crtc sharpness property
-which will ultimately enable the sharpness.
+== Series Details ==
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 3 +++
- 1 file changed, 3 insertions(+)
+Series: Use VRR timing generator for fixed refresh rate modes (rev11)
+URL   : https://patchwork.freedesktop.org/series/134383/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 5b2603ef2ff7..b8bd255e9555 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -391,6 +391,9 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
- 
-+	if (HAS_CASF(dev_priv))
-+		drm_crtc_create_sharpness_strength_property(&crtc->base);
-+
- 	return 0;
- 
- fail:
--- 
-2.25.1
+== Summary ==
+
+Error: dim checkpatch failed
+b138b0acc63a drm/i915/vrr: Remove unwanted comment
+fc97f5a882a9 drm/i915:vrr: Separate out functions to compute vmin and vmax
+a3e1aa9769ed drm/i915/vrr: Make helpers for cmrr and vrr timings
+a3cf6df46b12 drm/i915/vrr: Disable CMRR
+50aecbd4cac1 drm/i915/vrr: Track vrr.enable only for variable timing
+917728b82fb7 drm/i915/vrr: Use crtc_vtotal for vmin
+ac0c7fb7312b drm/i915/vrr: Prepare for fixed refresh rate timings
+942e1c80da20 drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
+3479dd4a613a drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
+a1500c79ca66 drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
+7696c45b4518 drm/i915/display: Disable PSR before disabling VRR
+6aed618a1c75 drm/i915/display: Move intel_psr_post_plane_update() at the later
+d83e9ab480b6 drm/i915/vrr: Refactor condition for computing vmax and LRR
+3aacd765b349 drm/i915/vrr: Always set vrr vmax/vmin/flipline in vrr_{enable/disable}
+ab2c5b71fcb9 drm/i915/display: Use fixed_rr timings in modeset sequence
+1b0c9b75ddfe drm/i915/vrr: Use fixed timings for platforms that support VRR
+3ed2e821a55e drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset block
+290c84c55579 drm/i915/display: Use fixed rr timings in intel_set_transcoder_timings_lrr()
+29ae94066481 drm/i915/vrr: Allow fixed_rr with pipe joiner
+399083b9a803 drm/i915/vrr: Always use VRR timing generator for MTL+
+f7555887c57f drm/i915/display: Add fixed_rr to crtc_state dump
+249d4231fc95 drm/i915/display: Avoid use of VTOTAL.Vtotal bits
+-:73: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 24)
+#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:2739:
+ 	if (IS_HASWELL(dev_priv) && cpu_transcoder == TRANSCODER_EDP &&
+[...]
++			intel_crtc_set_vtotal(display, (enum transcoder)pipe,
+
+total: 0 errors, 1 warnings, 0 checks, 135 lines checked
+
 
