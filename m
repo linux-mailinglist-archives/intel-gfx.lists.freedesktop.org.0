@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E65AA4D5CC
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 09:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2744CA4D66A
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 09:32:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 239DA10E303;
-	Tue,  4 Mar 2025 08:08:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1796F10E518;
+	Tue,  4 Mar 2025 08:32:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6JZcEGR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f8fvFM51";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5DE210E303;
- Tue,  4 Mar 2025 08:08:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9635310E302;
+ Tue,  4 Mar 2025 08:31:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741075732; x=1772611732;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=JCz1/pFx+Jsidhto+fJVDOP/XzaYtGJQQ8/cQ1YbcUs=;
- b=R6JZcEGRHcYJlk2PJjDshEQvy3QoIH2EEaHZZ0pJIDVUqFSuEHCXPJbe
- 3lm7MEmH6GifYv+mfFz70L9rGO3Egkt0HM9tBMBIKn/84aADTuFq8QwiA
- GjFybLxf9KxDh/opvm7Qkn7RFnRHXdDad7CsBdi9uCAWJ32Lfmfpd6t9m
- QH+ww/Idkkwgzmyd60uMWTwjuCXoMEmq8F4Osnorb9DBXlgPBX4hyiGb9
- 2v1PQr7a5/RIvsIp3Ncyt6cVKwC/v0a5ezYNuImqq5FQNqs6qQqBKrFnY
- 0rZUQPGFd1hKiS1h4iNrAvVFJg2DEAPJwR5zZlY7sjbjSYVrbG/XLoWsi g==;
-X-CSE-ConnectionGUID: hAZItxvVTOy0s0ZIRJLJew==
-X-CSE-MsgGUID: sM2eYfkRQaWg+nzgN3Dhig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="41890184"
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="41890184"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 00:08:51 -0800
-X-CSE-ConnectionGUID: Flec8PrsTQGZ19xNwJW4rA==
-X-CSE-MsgGUID: UUunbS2wR/63Rq5giKMvVQ==
+ t=1741077120; x=1772613120;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ObZ9fulwKU2l2YhndysDkMMu2uKW+GAogfZVVF8WGik=;
+ b=f8fvFM51CVuhdUqEL0WWDTydnHzDPi3U3KEBMl0XtoRM6tUXuqPxojcY
+ tz5TskJO6w882Z9DQGyuSHqsxBBmnipGUAFx0df2Sd2ilEZHh8s0j5GUR
+ EiL4jnM/OqGL3Bj7JXqsSE+vbJ2I2faZMrvcwuQoHdVkdnUEhGiWEanez
+ v53aDjVAG28tRNlX+QVCi6XDGvgiOntTvx+Z8cptM/MotvdPjaVxGhrfw
+ NRq409es9QPQ+hgm6w2298c+ypiFKGm+0yz+iYNtFXQnwOfIDF6q3nZ9S
+ xxbhBDpHdzl0LEpTXA0iR8nWyXBJCjot2KyzD4oOSBe5OU2HV3paGSjTv w==;
+X-CSE-ConnectionGUID: 3F8rnDZ1R0yOltYJPy5AJg==
+X-CSE-MsgGUID: YYt51lbLTxKVJteVbZJ1eA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11362"; a="45910118"
+X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="45910118"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 00:31:54 -0800
+X-CSE-ConnectionGUID: d3e1KtUqRbeVwQoIex1nyw==
+X-CSE-MsgGUID: J4BkTpnSQcan9J6dsNZeew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,331,1732608000"; d="scan'208";a="123422951"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.192])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 00:08:50 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= i915.CI.BAT: failure for drm/i915:
- display reset cleanups (rev3)
-In-Reply-To: <174100497638.123879.14186429438268449748@b555e5b46a47>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1741001054.git.jani.nikula@intel.com>
- <174100497638.123879.14186429438268449748@b555e5b46a47>
-Date: Tue, 04 Mar 2025 10:08:47 +0200
-Message-ID: <87zfi1z08g.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="155492124"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2025 00:31:52 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 00/22] Use VRR timing generator for fixed refresh rate modes
+Date: Tue,  4 Mar 2025 13:49:26 +0530
+Message-ID: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,136 +67,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 03 Mar 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915: display reset cleanups (rev3)
-> URL   : https://patchwork.freedesktop.org/series/143233/
-> State : failure
->
-> == Summary ==
->
-> CI Bug Log - changes from CI_DRM_16211 -> Patchwork_143233v3
-> ====================================================
->
-> Summary
-> -------
->
->   **FAILURE**
->
->   Serious unknown changes coming with Patchwork_143233v3 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_143233v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
->
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/index.html
->
-> Participating hosts (42 -> 42)
-> ------------------------------
->
->   No changes in participating hosts
->
-> Possible new issues
-> -------------------
->
->   Here are the unknown changes that may have been introduced in Patchwork_143233v3:
->
-> ### IGT changes ###
->
-> #### Possible regressions ####
->
->   * igt@i915_pm_rpm@module-reload:
->     - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
->
->   * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
->     - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/fi-kbl-7567u/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/fi-kbl-7567u/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+Even though the VRR timing generator (TG) is primarily used for
+variable refresh rates, it can be used for fixed refresh rates as
+well. For a fixed refresh rate the Flip Line and Vmax must be equal
+(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
+dependencies between the VRR timings and the legacy timing generator
+registers.
 
-Unrelated, please re-report.
+This series is an attempt to use VRR TG for fixed refresh rate.
+For platforms XE2LPD+, always go with VRR timing generator for both fixed and
+variable refresh rate cases.
 
-BR,
-Jani.
+Rev2:
+-Added support from MTL+ and for HDMI too.
+-Changed VRR VSYNC programming which is required for HDMI.
+-Modified vrr compute config for bigjoiner case. (Still to be tested).
 
->
->   
-> Known issues
-> ------------
->
->   Here are the changes found in Patchwork_143233v3 that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@i915_module_load@load:
->     - bat-mtlp-9:         [PASS][5] -> [DMESG-WARN][6] ([i915#13494])
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-mtlp-9/igt@i915_module_load@load.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-mtlp-9/igt@i915_module_load@load.html
->
->   * igt@i915_pm_rpm@module-reload:
->     - bat-dg2-11:         [PASS][7] -> [FAIL][8] ([i915#13633])
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
->     - bat-adls-6:         [PASS][9] -> [FAIL][10] ([i915#13633])
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-adls-6/igt@i915_pm_rpm@module-reload.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-adls-6/igt@i915_pm_rpm@module-reload.html
->     - bat-rpls-4:         [PASS][11] -> [FAIL][12] ([i915#13633])
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
->
->   * igt@i915_selftest@live@workarounds:
->     - bat-mtlp-6:         [PASS][13] -> [DMESG-FAIL][14] ([i915#12061]) +1 other test dmesg-fail
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
->
->   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
->     - bat-dg2-11:         [PASS][15] -> [SKIP][16] ([i915#9197]) +3 other tests skip
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->
->   
-> #### Possible fixes ####
->
->   * igt@i915_selftest@live@reset:
->     - bat-twl-2:          [ABORT][17] ([i915#12919] / [i915#13503]) -> [PASS][18] +1 other test pass
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-twl-2/igt@i915_selftest@live@reset.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-twl-2/igt@i915_selftest@live@reset.html
->
->   * igt@i915_selftest@live@workarounds:
->     - bat-arls-5:         [DMESG-FAIL][19] ([i915#12061]) -> [PASS][20] +1 other test pass
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-arls-5/igt@i915_selftest@live@workarounds.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
->     - bat-arls-6:         [DMESG-FAIL][21] ([i915#12061]) -> [PASS][22] +1 other test pass
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16211/bat-arls-6/igt@i915_selftest@live@workarounds.html
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/bat-arls-6/igt@i915_selftest@live@workarounds.html
->
->   
->   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
->   [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
->   [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
->   [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
->   [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
->   [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
->
->
-> Build changes
-> -------------
->
->   * Linux: CI_DRM_16211 -> Patchwork_143233v3
->
->   CI-20190529: 20190529
->   CI_DRM_16211: ef9e58a7f9d52f558aaad0e4b02de1d77ff9ca82 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8255: 4ef742fae97d2f4af680f9e29f7ea45920f939b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_143233v3: ef9e58a7f9d52f558aaad0e4b02de1d77ff9ca82 @ git://anongit.freedesktop.org/gfx-ci/linux
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143233v3/index.html
+Rev3:
+-Start support from XE2LPD+ as MTL needs a WA to have PSR +VRR (fixed
+refresh rate)
+-Add changes to enable PSR with VRR with fixed refresh rate.
+
+Rev4:
+-Addressed review comments from Mitul and rebased.
+
+Rev5:
+-Avoid MSA Ignore PAR timing enable bit for fixed refresh rate
+with VRR TG.
+-Skip VRR compute config for HDMI connected via DP-HDMI2.1 PCON.
+-Print fixed_rr along with other VRR parameters in crtc state dump.
+-Rebase
+
+Rev6:
+-Refactor VRR code to have distinct modes in which VRR timing generator
+can be used: VRR, FIXED_RR, CMRR.
+-Bring the cmmr attributes in vrr struct.
+-Remove condition flipline > vmin for LNL.
+-Account for vmax being 0 based while MSA vtotal being 1 based.
+
+Rev7:
+I have added patches from series for AS SDP fixes [1] , as without panels
+that support AS SDP gives a lot of issues.
+There were major changes in design as discussed in last version [2].
+Below are the change logs:
+
+-Change the design to compute vrr state based on actual uapi.vrr.enable
+knob. So when that knob is disabled we always compute vmin=flipline=vmax.
+-Always set vmin=crtc_vtotal instead of the using the current refresh rate
+based approach. This helps to have the same guardband while switching
+between fixed and variable timings.
+-Disable CMRR for now to reduce complexity while changing timings on the
+fly.
+-Change the state computation and add vmin/vmax/flipline reprogramming
+to vrr_{enable,disable}()
+-Introduce the fixed refresh mode from MTL instead of LNL.
+
+[1] https://patchwork.freedesktop.org/series/137035/
+[2] https://patchwork.kernel.org/project/intel-gfx/cover/20241111091221.2992818-1-ankit.k.nautiyal@intel.com/
+
+Rev8:
+-Addressed review comments from Ville.
+-Refactored few patches.
+-Dropped patches:
+1. "drm/i915/vrr: Adjust Vtotal for MSA for fixed timing"
+2. "drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
+refresh rate"
+
+Rev9:
+-Fixed issue seen on BAT bugs.
+
+Rev10:
+-Drop patch for avoiding VRR for DP with HDMI panel.
+-Address comments from Ville.
+-Add VRR compute config for DP MST.
+-Add HAS_VRR() checks and compute fixed timing for all VRR supporting
+platforms.
+-Move guardband and pipeline_full checks
+out from the pure !fastset block in intel_pipe_config_compare().
+
+Rev11:
+-Addressed comments from Ville.
+-Added only fixed_rr for Joiner.
+-Use vrr_possible() before setting fixed timings and before setting
+trans_vrr_ctl.
+-Split patch to remove vrr.guardband/pipeline_full from !fastset block.
+-Add patch to avoid writing into Vtotal.Vtotal bits when always using
+VRRTG.
+
+Ankit Nautiyal (22):
+  drm/i915/vrr: Remove unwanted comment
+  drm/i915:vrr: Separate out functions to compute vmin and vmax
+  drm/i915/vrr: Make helpers for cmrr and vrr timings
+  drm/i915/vrr: Disable CMRR
+  drm/i915/vrr: Track vrr.enable only for variable timing
+  drm/i915/vrr: Use crtc_vtotal for vmin
+  drm/i915/vrr: Prepare for fixed refresh rate timings
+  drm/i915/display: Enable MSA Ignore Timing PAR only when in not
+    fixed_rr mode
+  drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
+  drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
+  drm/i915/display: Disable PSR before disabling VRR
+  drm/i915/display: Move intel_psr_post_plane_update() at the later
+  drm/i915/vrr: Refactor condition for computing vmax and LRR
+  drm/i915/vrr: Always set vrr vmax/vmin/flipline in
+    vrr_{enable/disable}
+  drm/i915/display: Use fixed_rr timings in modeset sequence
+  drm/i915/vrr: Use fixed timings for platforms that support VRR
+  drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset
+    block
+  drm/i915/display: Use fixed rr timings in
+    intel_set_transcoder_timings_lrr()
+  drm/i915/vrr: Allow fixed_rr with pipe joiner
+  drm/i915/vrr: Always use VRR timing generator for MTL+
+  drm/i915/display: Add fixed_rr to crtc_state dump
+  drm/i915/display: Avoid use of VTOTAL.Vtotal bits
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  86 +++--
+ .../drm/i915/display/intel_dp_link_training.c |  15 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 326 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   6 +
+ 8 files changed, 361 insertions(+), 90 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
