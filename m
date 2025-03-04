@@ -2,73 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F37A4E4AE
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 17:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3C8A4E4BB
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 17:02:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D9AD10E323;
-	Tue,  4 Mar 2025 16:02:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59B7910E641;
+	Tue,  4 Mar 2025 16:02:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="AdAPQNfG";
+	dkim=pass (2048-bit key; unprotected) header.d=metux.net header.i=info@metux.net header.b="lWtFvcYe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B3B810E62D
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 16:02:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41A0B10E639
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 16:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=metux.net;
- s=s1-ionos; t=1741104123; x=1741708923; i=info@metux.net;
- bh=X/nFQJql+na/DqwwbynG0M7lUDIV3DZ4s+yKQ+ouU/0=;
+ s=s1-ionos; t=1741104127; x=1741708927; i=info@metux.net;
+ bh=D6cWD8znevIInIEZcXpDwfXug77mfV1HLdsF9rVzKqY=;
  h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
  References:MIME-Version:Content-Transfer-Encoding:cc:
  content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=AdAPQNfGbmboidUZDzDDrfCP+dDI7RGkqPzA21dbYjBBCr9I62V85R8sapYfDkHC
- Le1k5OJfbOio2OwsbN8khHJLzuz9Taxx1uUg0IU3sg6KJcMS1xgnec6Ng+IEHyDFc
- RbE2492Y4q5h4CendzktYOhjqwxXGw+aic3usGfSih4XWNu95uYkLm2tqVxjxJ3Yo
- /g02vu2PMmM7AdHWTkzpgmLK7QOlMSJ1TS4+cx/eaKwca/kd7B6kC35jT5w7Le3oi
- mfvKlTGB7jev62rHRHiOnEWs/CtyC5UdsLajbTCTyPyu+yVeqJLqo2guZewPNGq6F
- 3sZGxHg8xYkHCctm0g==
+ b=lWtFvcYeVWpW38J3ZhE9jN0Gitiz2FXp4a5KlxkwaMqFFPFO7Aed4KD8cJENGR9q
+ HYvUteNy7WF8CDifKZW7aCZuA0UakYOn5cgA4J1/a6ufLBa15HEKlNfOf/gu6spe4
+ 12JTtNqvg/I4mW0HP8pGxrGdf8bA0zkQjWgagiBYj9hQ7K0jteG2lvNap3ly+XXWF
+ ds/HKzDHo5GJxvXbtwk7qf7SYeQawPOp8or7KJ87BizLkrz4tWWam3kPuWkVoJVew
+ tYHjWR0XbLsnOAu1EKpoZ1Jw4NJ26IucQsI3TqCXLs5kawiT0UhOIDM4Z1NvZJgLf
+ jniC3f4ExR22hqA0gg==
 X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
 Received: from x1.localdomain ([77.7.107.91]) by mrelayeu.kundenserver.de
  (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MeTkC-1tFKvp2gzc-00lBNV; Tue, 04 Mar 2025 16:56:29 +0100
+ 1M6UuX-1tvqQG48PB-00ErRA; Tue, 04 Mar 2025 16:56:30 +0100
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com
-Subject: [PATCH 02/16] sna: stop using obsolete type aliases
-Date: Tue,  4 Mar 2025 16:57:55 +0100
-Message-Id: <20250304155809.30399-3-info@metux.net>
+Subject: [PATCH 03/16] tools: fix FTBS on FreeBSD
+Date: Tue,  4 Mar 2025 16:57:56 +0100
+Message-Id: <20250304155809.30399-4-info@metux.net>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250304155809.30399-1-info@metux.net>
 References: <20250304155809.30399-1-info@metux.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Y7a2XpL5xzh5yXVg4vrPgGExH9JWE0rSkhEvrDopDjegZft0mAZ
- a4nmt+XUOAs5LMG/S3lwNBdmuucNxXj45gwTyumwXyFiDpiawFVqP9R3GAILw0PyhYq7Uca
- CL2Cdx9GAy70wdDgnVlMxl4lj9zxPmTDKEXaxx0mKHr60bB6HqZN7R49SXfHvVfvMrMr5Zq
- bmdsfhhP+GEEJXcyOAMUg==
+X-Provags-ID: V03:K1:WrIIr5figTgT9W0YyJ+sAQZ0KLY8ygKJqhiqf2gkJGfG0g6FoB4
+ 5+3mXRxv7ZanJEF5iAYjXMFcv6um6h4S7BMs0sYtYWFErwEWqdu2IlB0Gv1G2YPmRBtmMgu
+ 1GdH2RGrk3XxD4SjRiPm44IJBOJX397Dl3NIJX/OwFt/uw53Vm1i80mDemNNYtmTZ01Atqc
+ mi5JoX0Nn2zCCpAvOsNRA==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:6XQOeC/W7n0=;tQpSUFeIVa79lL4AeieQ8F7pZJz
- V2KIegE+MItBKLzvnsXnRMGcIDFE9nbczA+k9+PGlafSc0MEFjKiKrvVOYpFjC1SfiVPogVw9
- 6wyiMo68x6TbEMPtBcLa6vhOY+0NkUutRLQJCX9xpn2ZMDl7Xdz3YhaF+ClSfAppU5+Ysyv0I
- foE0wEq7ETMM+NHWZBHTUZG4KoH++lOoY8T90rrgLSPlY03zAQIr6Yyl7QUVCjN7UcEDntUWX
- /9EnTQm0OVyBwOOrBB6l+erLsXY3WdQHYjqAhWkqethbawnauG31Sqwq5+HnETwSby1po3xo1
- MxYG21q00qhnyMoIqOKkyxW20HFA0x+763oASVT/f4vvP9KPOGkq3XxFIT0MocIx87wf5D3rP
- LiwheOVW7kQJgg106HncgeIpdVL5y+6EGzkwF52dVqsbChqsK9fY5fa+fufLlGF2oZQzFAjxP
- x7hG5AbToDDFAUKlk9umMk8TXoOvprn/WpZjFH3hgh8zUGQPTUt+yN/xnjY22TntxkHwhW8Gd
- tewEFn6E+DXeHm92MN/UVL1ioIYM+MhMO+LZ65LR6LgQk0t3vUIX3AeBsdV1AOC57E4zgpv2V
- 3611yw/Qd4P9CpOxh7xj9IzifFXlcpHEfJktnU4ZeaEbgcU6Pfr8VNYKDTpiIhvQX4t3AtyLn
- Fr0kVE7dzYkO+5r4n/k0L/sQ3dJLrsBCYdL61KOzOOxv/phoD7NDOVoeiht7NVGE75XfTtbL9
- vqzhfY6ZSqkjo8I/AyfYZoTBamTgJcmBfUZjA2C+toA/6Sqej9Rs2/xFze2i+onT7gxTQ647x
- 8N62iprCEaW7pwP4aRzGWJJeQ1aA08jqNalW7elATc5jKuSgkv/BBFF5NALLdDsuIWlUN/XNM
- J+pY9KjCyMSg+vBZJk5Bac+MEq6AKC4rFrflCKkF4lw55WFVFLzhZoUcMZYtJNAQLMVxYqgqh
- VSo/Q7hkBV5gJRa01Ewycnd/d1ijjQYz6adqnTqwfUL735dTmPHyYrTPr1GIsLu/BDoFFHtC9
- XVuDRRmDbsBUrDl4dGlpuUVfW00nGWdl4vdZENxSeexSjBmIdnR/o9I5sji/LgbgswXEYNhyF
- JB4+8OntCRO7ubtCfqz8OJ5RsuIUu9HTYLasKchjAp7pPeE/NSJ8Kp1TuksbqbBB6o3ScUjE+
- YC8fJPkHCLixzW82xGUWM+E/8I670wTbG3ECtV19jn0tURFxC6A6XEQ3lgVHw+aTi9JD9w3Nb
- /NOsb1ilQypvuXJNanewhR3YErgY31YlMFsXeR5jvpxT+JRk3UqpCNkVL2hOCYLFBZ//N3faD
- S0WdGjhK+Q345f5ZghTjkIZKt+4n4qXb9GSlyHGjBoKbl92/xP7lKY7IBZWshdCr5DaWPIdiO
- QGEBv9zxneacdT+g==
+UI-OutboundReport: notjunk:1;M01:P0:dOz4WBCIqZc=;dEWd2SFw86LwXwJx/72UcMRfxUV
+ IsPCVskxMPu3nMMtdkVDalXVlRcsltHvFYARkNUQe2OnwF+XGAZpfM0BDOJ89Zd/ISkMwayqb
+ bc+9V6r9fLcCiwbYfnW8cMFsLXGqKkUnMAQZ7dHw525Q9xIin9ihyPTLe/SUrG6XdGxXkAcaz
+ hVbL+hmj9pPISnPIPsS8VqbtkYngiqKcikS0NkPSc0RhhXtaYRROysJAKw6LxXYTw7VLxk85Q
+ 6S7RJieNqf0EtG+5miWTge5kpi/kpTIRo4X4wvecz8gp0Mpq15PWHQ1VbdkvHJFrAspapgZrg
+ MoikOFevEigWtyNBv7rtLxwm4QAEV+/Qq3M8t9Qql87f2V3PFcxikv/ohXmtjtROiJjk07UK1
+ ElzLCyI5Cpu5T7qrye2te7GxPwGQsa9kdFXCWIe2WGTvz37PbbGi5TTT18MD681tUiGdM4x03
+ MWrqE/6WQkt/k43GUWvbpCd36ssgu+E2oN9+VYa79nu1lM/lGNdUoAL92CAI1jzh3hk30g1FP
+ 6V6h/qT3eo95GXgxPOEJ1F9enjfl57RYKPdLoFjDDBncUq10ajptMzmOLcsVH+IhG5FrLyBCg
+ e0IVq+5kqGDbYcHlO6YrEnjuAFmWAPvtad9Z0rWYtXaq+EKGwYb8qIekwRjOHoS9cgrPCOr74
+ OfAAhpbfyCPJJXJslXVI3DWojE4rIEyUuuvSGYn05U3IRcmSOGwfQwtcEtWcnk9DnI/wCP+k+
+ qr9jC5fWVpXH5Tjz3XYxJxTCw5v/UKh1Feq7Ksi9o8ZPwqQusPfkEjYXUUhRonV6xQIJT9Alh
+ OPChgdjRbva5klt+MVqrxhJ80y3f/rvZSz+MIWPDGkIzuulZX4leIIYcBR9HykwbkN3r4WmMd
+ DZl9AwQhaN0k8gzQKowiEXG1ls1+kSrDBvLX9dDdlQtcIxBRiTntcCk6ltFh1z7h76wGQBFXv
+ QeeuDJS8CzpuHVgQRWFjDhiKDjiLX+2SUTEfH3s0pzvRitkZsyt7V2h4inrf09UcsZ0ZC7yJB
+ JzG0BNH8hmZRkQjgvAG9WpS3MJQWus0g1fKycXxl+gi/lDf0mjkZGiWCF/wq9HMUrcP36HTgh
+ e7cBIj0AwvNDQUxyln35JC4EhbmRSihmfJK9kFzCWbPTKU4+MJHRjEw2rg0uTrekFHV6H/stQ
+ aHKjbPh0EYM0ELnGgamNrM+7DnGz2YiggmX1ZRqO7qGzRu2pr2PzRs1JpHlmTferSvHjYdcde
+ frhklA2J0xY8LamDhup9YuZHHzhlkZf/6Ak0redKDIRqe4J6k090oV9QpntaupXFxFO8/PLxk
+ ZO8MNoi/2+VLJCqP/1wIGbM+GN/FDE5XdCxs//7tpzWCSFsklY6PLSOI3afO2R5fOERXXTo76
+ 7BUOtm7iXB24zp9A==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,62 +84,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Xserver has been moved to using pixman for all matrix operations, back=
- in
-2008, but left some #define's so drivers still compile. Since 1.5 decades =
-have
-passed now, it's time to fix remaining drivers still using the old name, s=
-o
-we can drop these #define's from the Xserver includes.
+ETIME seems to be missing, so just alias it to ETIMEDOUT
+It's just used by internal functions of the tools.
 
 Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
 =2D--
- src/sna/sna_display.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ tools/virtual.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/src/sna/sna_display.c b/src/sna/sna_display.c
-index d4fa7b0b..d33a88af 100644
-=2D-- a/src/sna/sna_display.c
-+++ b/src/sna/sna_display.c
-@@ -208,7 +208,7 @@ struct sna_crtc {
- 	bool hwcursor;
- 	bool flip_pending;
+diff --git a/tools/virtual.c b/tools/virtual.c
+index 010a3aab..9a4dde8e 100644
+=2D-- a/tools/virtual.c
++++ b/tools/virtual.c
+@@ -69,6 +69,11 @@
+ #include <fcntl.h>
+ #include <assert.h>
 
--	struct pict_f_transform cursor_to_fb, fb_to_cursor;
-+	struct pixman_f_transform cursor_to_fb, fb_to_cursor;
++// for FreeBSD
++#ifndef ETIME
++#define ETIME ETIMEDOUT
++#endif
++
+ #define FORCE_FULL_REDRAW 0
+ #define FORCE_16BIT_XFER 0
 
- 	RegionRec crtc_damage;
- 	uint16_t shadow_bo_width, shadow_bo_height;
-@@ -2383,7 +2383,7 @@ static bool use_shadow(struct sna *sna, xf86CrtcPtr =
-crtc)
- {
- 	RRTransformPtr transform;
- 	PictTransform crtc_to_fb;
--	struct pict_f_transform f_crtc_to_fb, f_fb_to_crtc;
-+	struct pixman_f_transform f_crtc_to_fb, f_fb_to_crtc;
- 	unsigned pitch_limit;
- 	BoxRec b;
-
-@@ -2853,7 +2853,7 @@ affine_is_pixel_exact(const struct pixman_f_transfor=
-m *t)
- static void sna_crtc_randr(xf86CrtcPtr crtc)
- {
- 	struct sna_crtc *sna_crtc =3D to_sna_crtc(crtc);
--	struct pict_f_transform f_crtc_to_fb, f_fb_to_crtc;
-+	struct pixman_f_transform f_crtc_to_fb, f_fb_to_crtc;
- 	PictTransform crtc_to_fb;
- 	PictFilterPtr filter;
- 	xFixed *params;
-@@ -6674,7 +6674,7 @@ sna_set_cursor_position(ScrnInfoPtr scrn, int x, int=
- y)
- 		if (crtc->transform_in_use) {
- 			int xhot =3D sna->cursor.ref->bits->xhot;
- 			int yhot =3D sna->cursor.ref->bits->yhot;
--			struct pict_f_vector v, hot;
-+			struct pixman_f_vector v, hot;
-
- 			v.v[0] =3D x + xhot + .5;
- 			v.v[1] =3D y + yhot + .5;
 =2D-
 2.39.5
 
