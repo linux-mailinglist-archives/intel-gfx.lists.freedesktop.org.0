@@ -2,58 +2,98 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1288DA4EF01
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 22:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA0AEA4EF75
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Mar 2025 22:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8248810E6AF;
-	Tue,  4 Mar 2025 21:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB37F10E6BB;
+	Tue,  4 Mar 2025 21:39:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DUufpyI0";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="XH2/ztvF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD4510E6B5
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 21:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741122259; x=1772658259;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5tyemKFBMKf+Xq+mKeKHeMxv8AOYPNz410953SFOeUM=;
- b=DUufpyI07Ebzl1y8eqH3kQidSBZUx9uO6KD/UhcUVwM91kf9raO07O7r
- j4JMxuPj6O8mLxAYXEsRV+RDDs5XzOG1T1eBNVhT9nuJ3q/OJwppl1uDp
- /iyM8lKAuNp4HdTV4OyaNxDc2FjIrlUsZlAT2kUkpRiiUjNv4YG33YRuZ
- U0WUFJzYm37rWKuaRfCEm58iedlRVbhnondkDnT6a8fhoXRXN8sg0PfRC
- CKdQYVjv6nTKDIiZ0Dlzyxm2eyY0Y0qCitjmLqyKTpvomCWAeETfIJM35
- L7hP6FvW4Vat4w06NKz+RPSn8gUWe6SsI/jnjxwZYGs7sweZerijqhllv A==;
-X-CSE-ConnectionGUID: 5UCKwKPRS2KBcAFiM2rsUw==
-X-CSE-MsgGUID: t/sgOIrLSCi+HW+vmft2tQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="41242492"
-X-IronPort-AV: E=Sophos;i="6.14,221,1736841600"; d="scan'208";a="41242492"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 13:04:19 -0800
-X-CSE-ConnectionGUID: Zqni6nY+QvGV7WPv+h3XPw==
-X-CSE-MsgGUID: GcyvsI9ZSqy9EYUSMjmBpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,221,1736841600"; d="scan'208";a="119172018"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.13])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2025 13:04:17 -0800
-Date: Tue, 4 Mar 2025 22:04:14 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 00/12] drm/i915: some GT register fixes and cleanups
-Message-ID: <Z8dqzgKy7hx4gHJ7@ashyti-mobl2.lan>
-References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBF7710E6BB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Mar 2025 21:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1741124340;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XPWOo20A/TNlKmMNu2g+KBDtR4C82uP2s4+Ztzk3PJo=;
+ b=XH2/ztvFLiNb7yYGfNHPiXFkS2lZ9SurBCszoXc8g+5gio0lwgA1odMM6hAuqew3LnHEI/
+ TKV4MVlpJV4qjPDF5ai6q75gsvhMTiqpLD4kCVG3YgAOi33Kjq1M8GQtuFRDYEXpezEm4G
+ ZHaBiPJpGwKS+qCdy7TUSQuZrXmhXQo=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-586-lHFu796CNFq4qO1-AX8WUA-1; Tue, 04 Mar 2025 16:38:58 -0500
+X-MC-Unique: lHFu796CNFq4qO1-AX8WUA-1
+X-Mimecast-MFC-AGG-ID: lHFu796CNFq4qO1-AX8WUA_1741124337
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-390fd681712so1594010f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Mar 2025 13:38:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741124337; x=1741729137;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=XPWOo20A/TNlKmMNu2g+KBDtR4C82uP2s4+Ztzk3PJo=;
+ b=vp8/bEJdFvpcweWLioZ04hN6kqmWCkVzvhLCHI/j7TcZeePGNqSlOmCCFJyIaRf1dU
+ SXsfuMYEEsvpBV/CxFVFtvHDL42ZsfBYw/Y/fIQcNqltoXKT2vu4a3hucyFcyHDEEFRC
+ SbmurwdyXz40Aik49PKsh1aX23X3phNz570VUbK6f78GMI3KF+SeurLPAfgwNaQxjYCv
+ skGFVGOdL6K6uo6eRdFNErDWxnPChK2Hh5n1pthXnTZhURljcYXimGf6Yyc4/hVstLMZ
+ 0K/Hoih27TokvZ6P/YH4wYvJWErWJ3mNSnk4FRRvaKi3SZfCjuL3UFCADReKSF/2txb4
+ w5jQ==
+X-Gm-Message-State: AOJu0YwAZtmQ36Vxij2vmALuzArzmPvHO8/Onr3f5kfAq8M1SoNpTMcP
+ bXQN/2R/964I7+Fub2XxbAef8ImU2KFDxqveQTo1jbjlOTGnA2TW7BRBkAJZLmkwJABLdznvhtj
+ 5NXQJG37Ae3jHlhDWlOVoEt4vcyGMlB1G++EGNx2pYqdCETOiCauL6USc3RWB3gtfAw==
+X-Gm-Gg: ASbGncsFomvFe3AgmlbBzLKKOExTKRPGdb3CZMv64cmPD6uavYKnvBCG1HyBxO/hRdd
+ daQhod+Dc7Gv0rth+RBf+3+s88npZm6r3xweDIrpXCDbkMmBvlYQ0ftltBQ+cueCRk8lHaUnCxf
+ iii1dmqOQJJxZcBPrMBbQlTkOshNIVR2QPww5SLGXnFCbvvXDphb8U28xEFar5zVhayxl3HNJj8
+ LGWj/YEl0CqjMUTQ+I5q1LTL3hUrfrVMSbtiFWiBx97OcmdQCzj2E5yS042q7EqxvRhkwRUyNWX
+ QkUr93IL491KpIymG7O0igjyFGUC99gGdZqIwhzdPbdV+AYpO31auPs=
+X-Received: by 2002:a05:600c:3b17:b0:439:8a62:db42 with SMTP id
+ 5b1f17b1804b1-43bd29404eemr3185455e9.8.1741124337357; 
+ Tue, 04 Mar 2025 13:38:57 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IErZIgNQ7dxy87GX5JZluyg2tAe6QV0DeyMYaH13GUGrIhPllBBZ3ZaKJ2S30irYIqGcbgztw==
+X-Received: by 2002:a05:600c:3b17:b0:439:8a62:db42 with SMTP id
+ 5b1f17b1804b1-43bd29404eemr3185365e9.8.1741124336980; 
+ Tue, 04 Mar 2025 13:38:56 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43bc9c0fb1esm52916565e9.20.2025.03.04.13.38.55
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 04 Mar 2025 13:38:56 -0800 (PST)
+Message-ID: <6cfb66cb-fe2a-4934-9cac-982315583382@redhat.com>
+Date: Tue, 4 Mar 2025 22:38:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] drm/{i915,xe}: Convert to DRM client setup
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
+ mripard@kernel.org, javierm@redhat.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20241212170913.185939-1-tzimmermann@suse.de>
+ <de8325a9-49b2-48ec-ba56-4349140564b1@suse.de>
+ <7ca7be00-f6d9-43b7-b3d0-0984306ac302@linux.intel.com>
+ <084ab2f7-240c-45c5-8bde-7c551546d1ca@suse.de>
+ <d85b9017-bf18-444e-8d94-8ff66a0d06d2@linux.intel.com>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <d85b9017-bf18-444e-8d94-8ff66a0d06d2@linux.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: xJPK5BlI1fyndraRuVj-Nvz0vKfq1FMxVTVFREuNjng_1741124337
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,23 +109,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+On 04/03/2025 20:40, Maarten Lankhorst wrote:
+> Hey,
+> 
+> On 2025-02-28 09:49, Thomas Zimmermann wrote:
+>> Hi Maarten
+>>
+>> Am 12.02.25 um 08:28 schrieb Maarten Lankhorst:
+>>> Hey,
+>>>
+>>> I'll give it a spin on xe today. It seems someone already tried on i915,
+>>> so I expect no issues.
+>>
+>> Did you get to test the series?
+>> Sorry, should have gotten back to you sooner. Xe was working with the 
+> series applied. :)
 
-> Ville Syrjälä (12):
->   drm/i915: Bump RING_FAULT engine ID bits
->   drm/i915: Relocate RING_FAULT bits
->   drm/i915: Use REG_BIT() & co. for ring fault registers
->   drm/i915: Document which RING_FAULT bits apply to which platforms
->   drm/i915: Introduce RING_FAULT_VADDR_MASK
->   drm/i915: Extract gen8_report_fault()
->   drm/i915: Use REG_BIT() & co. for CHV EU/slice fuse bits
->   drm/i915: Reoder CHV EU/slice fuse bits
->   drm/i915: Use REG_BIT() & co. for BDW+ EU/slice fuse bits
->   drm/i915: Reoder BDW+ EU/slice fuse bits
->   drm/i915: Use REG_BIT() & co. for gen9+ timestamp freq registers
->   drm/i915: Reoder gen9+ timestamp freq register bits
+Hi,
 
-merged to drm-intel-gt-next.
+Is it possible to also review and merge i915 vmap support?
+https://patchwork.freedesktop.org/series/135554/
 
-Thanks,
-Andi
+This is required to have drm_log working on i915
+
+Best regards,
+
+-- 
+
+Jocelyn
+
+
+> 
+> Cheers,
+> ~Maarten
+> 
+
