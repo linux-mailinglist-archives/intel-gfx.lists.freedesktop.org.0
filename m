@@ -2,74 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA18A569AD
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98794A569C1
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01CD910EB8C;
-	Fri,  7 Mar 2025 13:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 937EF10EBA5;
+	Fri,  7 Mar 2025 13:58:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="N12n9sYK";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="FOMuI0JL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-12.smtpout.orange.fr [193.252.22.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7238A10E817;
- Wed,  5 Mar 2025 17:17:34 +0000 (UTC)
-Received: from [172.16.82.72] ([124.33.176.97]) by smtp.orange.fr with ESMTPA
- id psMxtJc0ArlYrpsN1tsZVO; Wed, 05 Mar 2025 18:17:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1741195052;
- bh=mjKe+ryvw34j4ffHLP7uzkbmqMNR5Softa/w5p2heeM=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=N12n9sYK2XIy4AYRo4rRhIwr7fT5AxTN7msq3Aa/Puc4i5eGtI5VqdUd571MJ2Rok
- Bw1jd+GZgxVoRYcSEIhIiKYzoeTJVuOpHjqTP1J1Ks8OD+CpPMWJ7Kqc354mmcOoAc
- Bx/0vzUcS3zi4rwzji5ULu5KS4DIkpsf1q7SwDTLBkHTvCeYwvQbymkdhldUZj6d/o
- y+WI5YV1t2qCsElAqFsSKbekM/RhApTwKMPbvIWrZdw+3zKW+DeFl/jN2C/psOxBmd
- 7XzifnbrXUq+xwoSIbcw0OTn6crTlcUFnGUzDzE5jGPlcpjZuqyuHu+y1XR18noflQ
- bsof5v0HxwwqA==
-X-ME-Helo: [172.16.82.72]
-X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Wed, 05 Mar 2025 18:17:32 +0100
-X-ME-IP: 124.33.176.97
-Message-ID: <824dc1d1-14f0-433e-aa3f-679527b87077@wanadoo.fr>
-Date: Thu, 6 Mar 2025 02:17:18 +0900
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 839BB10E2A9;
+ Wed,  5 Mar 2025 19:33:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id A2982A460C3;
+ Wed,  5 Mar 2025 19:27:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E41F2C4CED1;
+ Wed,  5 Mar 2025 19:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1741203204;
+ bh=BPfPRp4aADTi2I/V/+XctUU/4I51JYtbfIk5APM/ogQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=FOMuI0JL4wjxH1f0wZMY/J0jDC6dxZM5yjzWRfuuwF8V7IK3sNdRrTW4KRScg/rbT
+ MpE3IqwS498l2mi6zo7LnB801hV+p44Y2YIotdtu+wmKyc+/l4BBmK0ajoYJoBZTnj
+ QjMDkE3KZsnXn9158HthiFNA9RPDYmnAqlnX+HMU=
+Date: Wed, 5 Mar 2025 14:33:22 -0500
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: "Knop, Ryszard" <ryszard.knop@intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "rk@dragonic.eu" <rk@dragonic.eu>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "daniel@fooishbar.org" <daniel@fooishbar.org>, Sima Vetter <sima@ffwll.ch>
+Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+Message-ID: <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
+References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
+ <871pvbxt40.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/8] bits: introduce fixed-type BIT
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Yury Norov <yury.norov@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
- <20250305-fixed-type-genmasks-v4-4-1873dcdf6723@wanadoo.fr>
- <Z8hgqOB5Ym-GGykS@smile.fi.intel.com>
- <d7f3150d-0167-44be-90b2-17f8a050687c@wanadoo.fr>
- <Z8hyNXVZxLzhEzNy@smile.fi.intel.com>
-Content-Language: en-US
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
- xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
- LFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI+wrIEExYKAFoC
- GwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQTtj3AFdOZ/IOV06OKrX+uI
- bbuZwgUCZx41XhgYaGtwczovL2tleXMub3BlbnBncC5vcmcACgkQq1/riG27mcIYiwEAkgKK
- BJ+ANKwhTAAvL1XeApQ+2NNNEwFWzipVAGvTRigA+wUeyB3UQwZrwb7jsQuBXxhk3lL45HF5
- 8+y4bQCUCqYGzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrbYZzu0JG5w8gxE6EtQe6LmxKMqP6E
- yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
- CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
- ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <Z8hyNXVZxLzhEzNy@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <871pvbxt40.fsf@intel.com>
 X-Mailman-Approved-At: Fri, 07 Mar 2025 13:57:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,95 +61,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06/03/2025 at 00:48, Andy Shevchenko wrote:
-> On Wed, Mar 05, 2025 at 11:48:10PM +0900, Vincent Mailhol wrote:
->> On 05/03/2025 at 23:33, Andy Shevchenko wrote:
->>> On Wed, Mar 05, 2025 at 10:00:16PM +0900, Vincent Mailhol via B4 Relay wrote:
+On Wed, Mar 05, 2025 at 07:52:31PM +0200, Jani Nikula wrote:
+> > - For each new series on lore.kernel.org a bridge would create a PR by
+> > taking the latest mirrored drm-tip source, then applying a new series
+> > with `b4 shazam`.
 > 
-> ...
-> 
->>>> +#define BIT_U8(b) (BIT_INPUT_CHECK(u8, b) + (unsigned int)BIT(b))
->>>> +#define BIT_U16(b) (BIT_INPUT_CHECK(u16, b) + (unsigned int)BIT(b))
->>>
->>> Why not u8 and u16? This inconsistency needs to be well justified.
->>
->> Because of the C integer promotion rules, if casted to u8 or u16, the
->> expression will immediately become a signed integer as soon as it is get
->> used. For example, if casted to u8
->>
->>   BIT_U8(0) + BIT_U8(1)
->>
->> would be a signed integer. And that may surprise people.
-> 
-> Yes, but wouldn't be better to put it more explicitly like
-> 
-> #define BIT_U8(b)	(BIT_INPUT_CHECK(u8, b) + (u8)BIT(b) + 0 + UL(0)) // + ULL(0) ?
+> There's a small catch here. Patchwork is currently more clever about
+> handling series revisions when only some of the patches in a series are
+> updated by way of replying to the individual patch. For example [1][2].
 
-OK, the final result would be unsigned. But, I do not follow how this is
-more explicit.
+FWIW, b4 does partial rerolls already. E.g., using your own example:
 
-Also, why doing:
+	$ b4 am -o/tmp 20250305114820.3523077-2-imre.deak@intel.com
+	[...]
+	---
+	  ✓ [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead of ports for HPD pulse events
+		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (✓ DKIM/intel.com)
+	  ✓ [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in the disabled state when handling missed IRQs
+		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (✓ DKIM/intel.com)
+	  ✓ [PATCH     v6 3/6] drm/i915/hpd: Add support for blocking the IRQ handling on an HPD pin
+	  ✓ [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interrupted by a short HPD pulse
+		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (✓ DKIM/intel.com)
+	  ✓ [PATCH     v6 5/6] drm/i915/dp: Queue a link check after link training is complete
+	  ✓ [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unblock() instead of intel_hpd_disable/enable()
+	  ---
+	  ✓ Signed: DKIM/intel.com
+	---
+	[...]
+	WARNING: v6 is a partial reroll from previous revisions
+			 Please carefully review the resulting series to ensure correctness
+			 Pass --no-partial-reroll to disable
 
-  (u8)BIT(b) + 0 + UL(0)
-
-and not just:
-
-  (u8)BIT(b) + UL(0)
-
-?
-
-What is that intermediary '+ 0' for?
-
-I am sorry, but I am having a hard time understanding how casting to u8
-and then doing an addition with an unsigned long is more explicit than
-directly doing a cast to the desired type.
-
-As I mentioned in my answer to Yuri, I have a slight preference for the
-unsigned int cast, but I am OK to go back to the u8/u16 cast as it was
-in v3.
-
-However, I really do not see how that '+ 0 + UL(0)' would be an improvement.
-
-> Also, BIT_Uxx() gives different type at the end, shouldn't they all be promoted
-> to unsigned long long at the end? Probably it won't work in real assembly.
-> Can you add test cases which are written in assembly? (Yes, I understand that it will
-> be architecture dependent, but still.)
-
-No. I purposely guarded the definition of the BIT_Uxx() by a
-
-  #if !defined(__ASSEMBLY__)
-
-so that these are never visible in assembly. I actually put a comment to
-explain why the GENMASK_U*() are not available in assembly. I can copy
-paste the same comment to explain why why BIT_U*() are not made
-available either:
-
-  /*
-   * Missing asm support
-   *
-   * BIT_U*() depends on BITS_PER_TYPE() which would not work in the asm
-   * code as BITS_PER_TYPE() relies on sizeof(), something not available
-   * in asm.  Nethertheless, the concept of fixed width integers is a C
-   * thing which does not apply to assembly code.
-   */
-
-I really believe that it would be a mistake to make the GENMASK_U*() or
-the BIT_U*() available to assembly.
-
->> David also pointed this in the v3:
->>
->> https://lore.kernel.org/intel-xe/d42dc197a15649e69d459362849a37f2@AcuMS.aculab.com/
->>
->> and I agree with his comment.
->>
->> I explained this in the changelog below the --- cutter, but it is
->> probably better to make the explanation more visible. I will add a
->> comment in the code to explain this.
->>
->>>> +#define BIT_U32(b) (BIT_INPUT_CHECK(u32, b) + (u32)BIT(b))
->>>> +#define BIT_U64(b) (BIT_INPUT_CHECK(u64, b) + (u64)BIT_ULL(b))
-> 
-
-Yours sincerely,
-Vincent Mailhol
-
+-K
