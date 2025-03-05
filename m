@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5363A5025B
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 15:41:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA56A5026C
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 15:43:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6AB8926F;
-	Wed,  5 Mar 2025 14:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3213C89A1A;
+	Wed,  5 Mar 2025 14:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKTremse";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DjSvBK2B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA091890EB;
- Wed,  5 Mar 2025 14:37:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A12B882AF;
+ Wed,  5 Mar 2025 14:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741185480; x=1772721480;
+ t=1741185792; x=1772721792;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=CSy21FFYCfkrs1Vebz77But+YBdPWb0R0yTM3O4u1EQ=;
- b=kKTremse5eyg9ZXtDJuecfydhipXilq3j1a/MRaUuHOu1LuY3hFMM7US
- rIIxvQ1XAnIEeTlIhrhxafshUDZGctRkbPpxg+IWEb+i0QyYbOv70Eb4H
- PGG9tzo0RmOi9L5gh6enU8xl6/AcznhngW4vdpsIvsbppfLGYdPSHYDHr
- WY+iPthxwkL425XQ4mC85lbS5ntI+ZlLmWwsPNhTDT0ZKDnBs/k234l/I
- hOGKG9q7u8Gd1/AB2sGbgn+nKhDHsBtJrcomVefjTAKh0/rAglmVGIab9
- AInQ2s8AA9A9k1reoQ42TIDBFA+Xcf2EctEf4POwwFV6ncOHS2WTmxmTh w==;
-X-CSE-ConnectionGUID: 3vO4Zn0sRIeCm1mGw52Tvw==
-X-CSE-MsgGUID: 3J6tIF+tSGuPKAzTRwPZjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42350768"
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="42350768"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 06:37:58 -0800
-X-CSE-ConnectionGUID: yba5WHXCRs6NCv7yprlgGg==
-X-CSE-MsgGUID: /XxRzxeSShWGF56o44N/DA==
+ bh=J1i7qe67RESKlvYl+Yda1vlNo50Sk/TQVjKtxyrQbOY=;
+ b=DjSvBK2BL3zW1c5432cWXjL7cWDXZ3gbFLbYFHqrpQHdcM0BI9PlUNxw
+ cHU3aBnY1hxlS725pAXdkuJovj6Qpwb5o8ktREXW5sm8fOxVeJ/d7l14c
+ MzT18aAAPZ6LvmvVH06205NDwnsUvvF0fS3dY6donOpDiC4Zug0yyqHC+
+ 1mlYPIpApV+L+3hwNXgzd9DoyAWMenLSa9Ho9SPwxO3zLdbir3ouj2y6+
+ qm1drPRjmeUcTM+CptCoEM8xROCG0/g+e3ZDJWy9lSIob2CzTrMbAzQ4Z
+ cNFnFmHyOTmH5x9D762LdZMG1vjt81P82Vx/ahmWXCTqgoA5EC9puvwiZ Q==;
+X-CSE-ConnectionGUID: WHECq8sfQmGUDtiQC992tw==
+X-CSE-MsgGUID: WC4FvHulSUiTiaAIkZe+LA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52788176"
+X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="52788176"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 06:43:12 -0800
+X-CSE-ConnectionGUID: Kzd5AkpjSgWt6Wn/gUhwIw==
+X-CSE-MsgGUID: TCsapfVFSsyIUv6V6peZ7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="118526770"
+X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="118420148"
 Received: from smile.fi.intel.com ([10.237.72.58])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 06:37:54 -0800
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 06:41:51 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.98)
  (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tppsc-0000000HRDU-3UrN; Wed, 05 Mar 2025 16:37:50 +0200
-Date: Wed, 5 Mar 2025 16:37:50 +0200
+ id 1tppwR-0000000HRGP-2JQv; Wed, 05 Mar 2025 16:41:47 +0200
+Date: Wed, 5 Mar 2025 16:41:47 +0200
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: mailhol.vincent@wanadoo.fr
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 Cc: Yury Norov <yury.norov@gmail.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  Rasmus Villemoes <linux@rasmusvillemoes.dk>,
@@ -61,15 +61,16 @@ Cc: Yury Norov <yury.norov@gmail.com>,
  David Laight <David.Laight@aculab.com>,
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v4 5/8] drm/i915: Convert REG_GENMASK* to fixed-width
- GENMASK_*
-Message-ID: <Z8hhvovVmX-xLStQ@smile.fi.intel.com>
+Subject: Re: [PATCH v4 3/8] bits: introduce fixed-type genmasks
+Message-ID: <Z8hiqzCMoyxHj9rL@smile.fi.intel.com>
 References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
- <20250305-fixed-type-genmasks-v4-5-1873dcdf6723@wanadoo.fr>
+ <20250305-fixed-type-genmasks-v4-3-1873dcdf6723@wanadoo.fr>
+ <Z8hf7pN84-64LWPv@smile.fi.intel.com>
+ <9f0215c4-62e5-4dfa-8dac-732682600c8c@wanadoo.fr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250305-fixed-type-genmasks-v4-5-1873dcdf6723@wanadoo.fr>
+In-Reply-To: <9f0215c4-62e5-4dfa-8dac-732682600c8c@wanadoo.fr>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,20 +87,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 05, 2025 at 10:00:17PM +0900, Vincent Mailhol via B4 Relay wrote:
-> From: Lucas De Marchi <lucas.demarchi@intel.com>
+On Wed, Mar 05, 2025 at 11:38:19PM +0900, Vincent Mailhol wrote:
+> On 05/03/2025 at 23:30, Andy Shevchenko wrote:
+> > On Wed, Mar 05, 2025 at 10:00:15PM +0900, Vincent Mailhol via B4 Relay wrote:
+
+...
+
+> > Perhaps T or TYPE will suffice. Or perhaps we want
+> > __GENMASK_Uxx() here?
 > 
-> Now that include/linux/bits.h implements fixed-width GENMASK_*, use them
+> If no objection, I have a preference for GENMASK_TYPE().
 
-GENMASK_*()
-
-and in the Subject
-
-REG_GENMASK*()
-
-> to implement the i915/xe specific macros. Converting each driver to use
-> the generic macros are left for later, when/if other driver-specific
-> macros are also generalized.
+No objection from me :-)
 
 -- 
 With Best Regards,
