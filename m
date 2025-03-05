@@ -2,75 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAF3EA569C5
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F532A569D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6436D10EB74;
-	Fri,  7 Mar 2025 13:58:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99FC110EB80;
+	Fri,  7 Mar 2025 13:58:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kcMe3Ctl";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d69aGtOv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4439010E759;
- Wed,  5 Mar 2025 13:01:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 5EAFCA44F16;
- Wed,  5 Mar 2025 12:55:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C9271C4CEEB;
- Wed,  5 Mar 2025 13:01:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1741179663;
- bh=sFDR7+WgjzOmZyYCSPlYKb32BfQtReRlh5+ZY4DqA44=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=kcMe3CtlvQnMolzSNqtS/L/9mQBV3cxkJ3ZhC3RJSwqZcaEPk8fMF1lH3YfJPyT+H
- AkHl5eT8FNj3OXMIpk4CBOMWkN2UoglIJ4itEm1Dyd112z/2QhRAaV7+Aq+9oQaO8n
- grlU0Fe3jvH1i65Xlshufn2c1Zcr+sviH5YWXBt7kB01UKi9k5tCPGWwRwRaV7T5KK
- Odb+FZjldn0Okxcj4/kCQPJZJ7KSyInRRwKMyvwcLJSNqj/6JZOzfYk4B6QfKtLwzo
- 4w6SRw8TJ+KrYxkDl829FrWDMBF/hSdtu3wl40em8CHpAsXjIDdx9xMpoHgbEjoa0P
- 0K+Z/gUC3drfg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id BF0B3C282EC;
- Wed,  5 Mar 2025 13:01:03 +0000 (UTC)
-From: Vincent Mailhol via B4 Relay
- <devnull+mailhol.vincent.wanadoo.fr@kernel.org>
-Date: Wed, 05 Mar 2025 22:00:20 +0900
-Subject: [PATCH v4 8/8] test_bits: add tests for fixed-type BIT
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250305-fixed-type-genmasks-v4-8-1873dcdf6723@wanadoo.fr>
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBEE10E7B8;
+ Wed,  5 Mar 2025 14:30:24 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-22349bb8605so132730125ad.0; 
+ Wed, 05 Mar 2025 06:30:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741185023; x=1741789823; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=IlwlCKrm1BqwlFcITao3/COM3kL1lolnoHqB6b1uB4E=;
+ b=d69aGtOvP+nWBVYgwhs/XfUsUjYqK0fnpHUeXfYHm96Ab6AqOQWwt7ksODom+KbO6m
+ Z48nJ+ZbBtQWsZMhRfbNZ+EKXMhfrfamc8otoD68J8yKOi8A34imZl+urrLBFFIqLKR3
+ zysQEHY76BAfwRCrDx2lZxoLnRtPswXcjCCTFiFvPbcjfpaJqrJkHtMqotl5Tbe+ALzq
+ tSl0qtgZceFGEIro+rDw1rRM48ZW/6W4sWn+wxt2IZ39vRGEFfUtx9Hq22gZahcdaIIn
+ 39e6g6OVq8rOvDA2lyeIH7dFPkkRGILHnDk937BKldgefZ4q8RmDqshcMClAv+T/KOFo
+ ggUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741185023; x=1741789823;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IlwlCKrm1BqwlFcITao3/COM3kL1lolnoHqB6b1uB4E=;
+ b=w3zgPO6eHI/N1IKS266eCZJI/lPq4a0BDk+5yQQt1ZU9D0PNUmQ7SNr3Zwv2qGK5VM
+ HWbqmCKI808sa1v32KEWwifqV1gF5AIdM6bYKblD0UpJj1laAj24w396vGeuZXg+cmqJ
+ ijwvzwZlthE8V/ln3LpmbUiWolFVqVMynPLoQo+dOubPzDnl6L61ySJFHDdwn4Wdr9si
+ kqx3wJAfL2gOGp/Nwxz1GFBIWXHP/0DLzBtMxXKwMwM8FO1tPx/lacFsL+boZQ9Ga47w
+ WiNd68Ez/+u1+mKJv8gkvQF5xxHbNGKm+lwdq8yuezNhj5WHSfcYPntfFm3H5SEeBWax
+ xs1Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVnV7wm+N/+gBPfdAqJNXgf3FyR51T9JXcNmwOYqVl87FbhHYGNV3w9m5eQQSbr/Pw9KHuYHJNCd9gJ@lists.freedesktop.org,
+ AJvYcCW8aUNOhJp2mIZcLq0afZKtzmuKwEakV/hz6V3gYobmEJMNpwAe0e/JPigW4C8tobdPph0jhWyMK18=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwNE/41BE1mV4hSqfqNfqYXDgoSO/niVz/VFwvTISSZWPwtJzwu
+ o2uYXoBd2GypFl2qsi8zi5A7qD7QqpLBaImviBFAHP833VycDHdP
+X-Gm-Gg: ASbGncvp6lratBNDLa0QcP11Riztjt3sDp0o+nPznJLWDzh2y2vDj4ZGHMH712bxC6v
+ PA+WCgPaxjvKLOvaImSD1HJ9lIKoocNk7ye8Lipm5VNfjKV4inITiNRW0XqPn+S3SlDQtmTxWpk
+ 7Pcie5sABW2+eABRgpNeqEWbur/OFZhBuNuhsQ9y9LvOioGTegDu2X98yN0rd4ABHauSiNboLeZ
+ ubAKdSdbUjeRFFKE1eHo+Gh0oeRbWx52naPixQ+VTWLfVfIcdgNVyzhmNXJsY1TJCoNGFgUiMkb
+ 8zwmyHiKAtULQcgv8sxqjMavBwcnLoozRhIndcwDKnF2
+X-Google-Smtp-Source: AGHT+IGOw7ho1UUAoxDldP562F3+Ghc7uXtkeFsOxJJC2qch+UBSxhGnmdxoaMccdDcCbb1p7rm4RQ==
+X-Received: by 2002:aa7:88c1:0:b0:730:d5ca:aee with SMTP id
+ d2e1a72fcca58-73682cd83c7mr5625290b3a.23.1741185023345; 
+ Wed, 05 Mar 2025 06:30:23 -0800 (PST)
+Received: from localhost ([216.228.125.131]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7349fe2a64bsm13411865b3a.11.2025.03.05.06.30.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 05 Mar 2025 06:30:22 -0800 (PST)
+Date: Wed, 5 Mar 2025 09:30:20 -0500
+From: Yury Norov <yury.norov@gmail.com>
+To: mailhol.vincent@wanadoo.fr
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@aculab.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v4 1/8] bits: fix typo 'unsigned __init128' -> 'unsigned
+ __int128'
+Message-ID: <Z8hf_MNL3MeoXW5O@thinkpad>
 References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
-In-Reply-To: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
-To: Yury Norov <yury.norov@gmail.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
- David Laight <David.Laight@ACULAB.COM>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1258;
- i=mailhol.vincent@wanadoo.fr; h=from:subject:message-id;
- bh=0up3uFESGy3X95xnLn4wawoX+zEk4W6rPzSDoRogONM=;
- b=owGbwMvMwCV2McXO4Xp97WbG02pJDOknvLnbrFb2/uWTiXxxiKelgVuB/1Bj79+Qksmtweq5U
- ZtjJ23uKGVhEONikBVTZFlWzsmt0FHoHXboryXMHFYmkCEMXJwCMJFd3xgZXvMzMBya4yV9OIC9
- b7bGwd/2IlcOnjIVb5j4Y637ik9mQBXnHqX5CYqk2T6bffkdm1/YSdOTftnrDwVoh2283qRxgYs
- TAA==
-X-Developer-Key: i=mailhol.vincent@wanadoo.fr; a=openpgp;
- fpr=ED8F700574E67F20E574E8E2AB5FEB886DBB99C2
-X-Endpoint-Received: by B4 Relay for mailhol.vincent@wanadoo.fr/default
- with auth_id=291
-X-Original-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+ <20250305-fixed-type-genmasks-v4-1-1873dcdf6723@wanadoo.fr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250305-fixed-type-genmasks-v4-1-1873dcdf6723@wanadoo.fr>
 X-Mailman-Approved-At: Fri, 07 Mar 2025 13:57:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,43 +98,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: mailhol.vincent@wanadoo.fr
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Hi Vincent!
 
-Add some additional tests in lib/test_bits.c to cover the expected
-results of the BIT_U*() macros.
+On Wed, Mar 05, 2025 at 10:00:13PM +0900, Vincent Mailhol via B4 Relay wrote:
+> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> 
+> "int" was misspelled as "init" in GENMASK_U128() comments. Fix the typo.
+> 
+> Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 
-Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
----
- lib/test_bits.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Thanks for respinning the series. I'll take this fix in bitmap-for-next, so
+if you need v2, you'll not have to bear this thing too.
 
-diff --git a/lib/test_bits.c b/lib/test_bits.c
-index c3a40995a2577322252371eb10ada0c33fb5d9b4..641001a04f21bc3b788ae05c6d2eaaba9052e463 100644
---- a/lib/test_bits.c
-+++ b/lib/test_bits.c
-@@ -9,6 +9,16 @@
- 
- #define assert_type(t, x) _Generic(x, t: x, default: 0)
- 
-+static_assert(assert_type(unsigned int, BIT_U8(0)) == 1u);
-+static_assert(assert_type(unsigned int, BIT_U16(0)) == 1u);
-+static_assert(assert_type(u32, BIT_U32(0)) == 1u);
-+static_assert(assert_type(u64, BIT_U64(0)) == 1ull);
-+
-+static_assert(assert_type(unsigned int, BIT_U8(7)) == 0x80u);
-+static_assert(assert_type(unsigned int, BIT_U16(15)) == 0x8000u);
-+static_assert(assert_type(u32, BIT_U32(31)) == 0x80000000u);
-+static_assert(assert_type(u64, BIT_U64(63)) == 0x8000000000000000ull);
-+
- static_assert(assert_type(unsigned long, GENMASK(31, 0)) == U32_MAX);
- static_assert(assert_type(unsigned long long, GENMASK_ULL(63, 0)) == U64_MAX);
- static_assert(assert_type(unsigned int, GENMASK_U8(7, 0)) == U8_MAX);
+Thanks,
+Yury
 
--- 
-2.45.3
-
-
+> ---
+>  include/linux/bits.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/bits.h b/include/linux/bits.h
+> index 61a75d3f294bfa96267383b5e2fd2a5d4593fcee..14fd0ca9a6cd17339dd2f69e449558312a8a001b 100644
+> --- a/include/linux/bits.h
+> +++ b/include/linux/bits.h
+> @@ -40,7 +40,7 @@
+>   * Missing asm support
+>   *
+>   * __GENMASK_U128() depends on _BIT128() which would not work
+> - * in the asm code, as it shifts an 'unsigned __init128' data
+> + * in the asm code, as it shifts an 'unsigned __int128' data
+>   * type instead of direct representation of 128 bit constants
+>   * such as long and unsigned long. The fundamental problem is
+>   * that a 128 bit constant will get silently truncated by the
+> 
+> -- 
+> 2.45.3
+> 
