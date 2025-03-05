@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC06AA569A3
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B151CA569CB
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0692710EB8D;
-	Fri,  7 Mar 2025 13:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA4510EBAF;
+	Fri,  7 Mar 2025 13:58:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DKBQ3PHm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HK/FeeG4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56FEB89EFF;
- Wed,  5 Mar 2025 15:22:48 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-2234daaf269so13700025ad.3; 
- Wed, 05 Mar 2025 07:22:48 -0800 (PST)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
+ [209.85.216.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B66410E7C7;
+ Wed,  5 Mar 2025 15:47:05 +0000 (UTC)
+Received: by mail-pj1-f41.google.com with SMTP id
+ 98e67ed59e1d1-2f9b91dff71so11423910a91.2; 
+ Wed, 05 Mar 2025 07:47:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741188168; x=1741792968; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1741189624; x=1741794424; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=mrrWcWF0YU7DOHeensr3xXw8xMJox0I/sU8mMGZ4O/8=;
- b=DKBQ3PHmK9iu2QydEw7SJUHixJ1nRZEPfSNlCE7NGRavAhx5aOfqhKFS5OLaLEXg1X
- 36neGxu1L5LjrZ1hNIap4Z1Xg4QFqb4T0K1s5inPZsTIYqPpbcuOJmuc1bserw66nH3B
- +H0DNLdEXeFRqLztrpeiif6YTvGNnFfD5nBsMtl+k9q3uNlj6f6a49wFCkgP/Vc86PTx
- Tp5x8AIn4Bvhs+XHhNrmNcmoGJQzZ5Rh6+QnkU0a2XmojQ+L3Rii4qC+Qw1egCIfBK04
- j57U/yYtQTjSh9DFiMgUHoAcFscTksjZwq5R1dXO/Qdglg/Bp5mtqUAWoBFqYdWG778k
- RZ6g==
+ bh=qbmBv9WPN2ltuxsgR8pg8jbB1hgd+dc954tuEUYQ9Iw=;
+ b=HK/FeeG44eSchQ52BPeA+YuLuHDD+P8FbhMrfCZlcv00jwg/tykhbmYofXNXPHoar4
+ 7j1j0jDKGhPsfg7EdRNfZCXP3xin8EQ69f7PBueT25AVQjLItfHqGImTSexXD8MbAA2n
+ fd+OHXd6ayYAof8iBjp9M21RU1lskltPQ6VrVySNZoDA1791p8Ju20rcFMzjaRqqwYqS
+ lT4TJRKxHhQVXiJOHNZa2biEgyMy63xaEFIFbYY82jBfiSsswwOkQEUZFCbOq/2VdbSx
+ 0OG0wFjbigux+QGUW1JUjHI3kPHjG2h3E1L3Kq3Js4mDAvYhqG5mlsoeK5jsOcknsyg4
+ a5AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741188168; x=1741792968;
+ d=1e100.net; s=20230601; t=1741189624; x=1741794424;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=mrrWcWF0YU7DOHeensr3xXw8xMJox0I/sU8mMGZ4O/8=;
- b=DIoEqU6lGHkfiag0CJ5A+bxgkupOsZFMxDuJmNBJGI5zRRKQRdLZHAWO7u6jAPn660
- 2cV44frt+4majv7j6d/K6zAvUVptUCwvJHKolnRzYKhybcaxX0kosjcr/b0oKKCdFMqH
- wG0m7x7SVlq99xkuTM5jiPAdqgRmSr0QSEf+r4q7cVJ8KqS8vi3D2fXvUqr5S4/kLuaR
- vdQG1Glre1gj0gRcZy6AduPv/cwl2vvf7zuKh1zB0RtGexot0LFqNRenixrmPw/qWpte
- rORuMgYvzLaBQfEK5u9g9xOhDy2z74sGGRYO5Xyd7syg9ma8dizWQS8gvAsbMpRdPDVm
- 6GzA==
+ bh=qbmBv9WPN2ltuxsgR8pg8jbB1hgd+dc954tuEUYQ9Iw=;
+ b=ALJcohb8Q9YQGZ3t1Kqzc00HqiFclLiR0b6yZk6PmVQ6Ekmta2KiUHG3Rah5mDPy9A
+ dCw8+Z51BIEobUSFJPl1eKiuO3yB2ArWokNo4KjXvisUI5JVNDU7srjZN3eFuS5nXfUE
+ qGHB8MLzztD5swpaer6vyh5M4Rsak+AyizE/qdBZgEVfgXezeis/BQtmIrdEjG60RPuf
+ Awmnzmobq7nofp6k4Jq5Gbv3mpjqJZJIQdg3M9TFyVHWXH4WkMLUPalHBobw0loMfH7n
+ qDvNVD5X7oI7K69qR1nkuGouwfv5FzhtkKwOFVGkrgT6fmMgyrOv/QrKObJ7A6tVQV7I
+ 8POg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVwpf+07yozRf/2XgesmL85CY+jrw79NavfigcJQObRUHG70eKaw26HVHTknDL+bOX+Og/fHtTMn+c=@lists.freedesktop.org,
- AJvYcCWaT6g7H0pQk7dfZdnEzy9I73tpMPNj68LdrjbgnvuPQwkyA4N0Vf3sU+jTJ2GWlZRmeYS8IvdL8Bt+@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyiwxk7rGMb5YFO59gmbJCNpEEGQ35YsHR5q99XlSBm/4W9gl+N
- YZ/Yf0R/l+qOJrkLWi3I5aMo/RPAMFQOoE02r6vS7Qi5qghaqLpZ
-X-Gm-Gg: ASbGncumcGAaEDOqiK9uLnDTFCBWXxaCPyp3c9UU0a6DE4vWmyoj57sgjBPGB6Wu2Y7
- nN7IfiDre/T4wqiKapf3PMHOmL1Zw4Zb36M0KODCl8fgdHT9C+gqWzVYyTMRM+kBubY5sQfbH0a
- UtrCZ7CMHgnRV0Gdq3KW6c3eliWbwM4fYngkbmDKXEd3LDteaRNgV3iTHYzimayTtitKIP9zJ6z
- wk6cltWl1ZurObB7WFD7m3zEf3iJUS30cya3ro4UprljEWPczaTh+WB2UzeW3lVcAemfkd9GW1C
- CX2Ulb/fejaoFMZHa23YiMbiwEaf5ibvTCRSp75DmrG+
-X-Google-Smtp-Source: AGHT+IE5Y9x6OMXLQ/Mj+bXe5afzgdLR0y3DfUUZhaNnHvvvOh27pCh2tcKmZ4JZ8zVAr2Ay/rOQxg==
-X-Received: by 2002:a17:902:dac9:b0:223:6254:79b8 with SMTP id
- d9443c01a7336-223f1d4bf89mr53156905ad.47.1741188167525; 
- Wed, 05 Mar 2025 07:22:47 -0800 (PST)
+ AJvYcCUbK4p70dzRZAVj7XZ2d9jSXj+WtpSK0HZRtKfB0JUebCbzEQNQImhO7ts5eiNEJkkkCvMKAoYI+u8=@lists.freedesktop.org,
+ AJvYcCXnA/JAneejqP5SqBxLaoVss6TCSuSToB22F4k3QxAP+R1PpkFDlQpFbBYKVrCeW+VhwlKEXTw4AJnK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqthZC4Dkg0KyM+cfhDn/YelsPNqGujg6yIaQPQv//URwAu/tl
+ bAyFP0INYu29DeOSlRO3Y3fZxmm9sSNUJR6ao4BuAgrzY2GEgu9Z
+X-Gm-Gg: ASbGncsWXfosSU8T489JBa8niRF5gGKCkEvLQq2ulq0Bkew7MRzTdfAMdQBTWoHjl8X
+ ruxK+sycJ4IXjkbDRkCVyO3/Fb9Jy09Usd96x2ZP+Ihc+yEqpa9xN+ebMeGpwZyzyImJd29yKq6
+ wXS77aPCZNOQocNfgZLtDi4hpff4Y49kVCmwHLhCNC3/Ao6/ZzccEqG/ZI3gPaLGv2O9a4+6CAb
+ As+73y8Z6Ad5iUVS3GUumf+28NPNRpSuUvC09nnqvlSHEtMA1ofJGdr3Hp+6cDWkM/vyJtdr954
+ XBqX/kmJqdvsyZ7Pqz3Otf/BK3AzFh9L7PNFwBqycGn4
+X-Google-Smtp-Source: AGHT+IH6GxbgpDkJALxCm31tn74sfA7iweXsWVkgkcuDtN2qWf9CiMByQx77ZiiaPQFQa+lPoaMXpQ==
+X-Received: by 2002:a17:90b:48c7:b0:2fe:a0ac:5fcc with SMTP id
+ 98e67ed59e1d1-2ff497c57ccmr5005442a91.34.1741189622904; 
+ Wed, 05 Mar 2025 07:47:02 -0800 (PST)
 Received: from localhost ([216.228.125.131]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-7349fe6cfd9sm13044953b3a.76.2025.03.05.07.22.45
+ 98e67ed59e1d1-2ff4e7ff9f7sm1491518a91.33.2025.03.05.07.47.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Mar 2025 07:22:46 -0800 (PST)
-Date: Wed, 5 Mar 2025 10:22:44 -0500
+ Wed, 05 Mar 2025 07:47:02 -0800 (PST)
+Date: Wed, 5 Mar 2025 10:47:00 -0500
 From: Yury Norov <yury.norov@gmail.com>
 To: mailhol.vincent@wanadoo.fr
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -76,10 +76,9 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  David Laight <David.Laight@aculab.com>,
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>
+ Jani Nikula <jani.nikula@intel.com>
 Subject: Re: [PATCH v4 3/8] bits: introduce fixed-type genmasks
-Message-ID: <Z8hsRJvpjYoqh9RG@thinkpad>
+Message-ID: <Z8hx9AaUX_GvYq_A@thinkpad>
 References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
  <20250305-fixed-type-genmasks-v4-3-1873dcdf6723@wanadoo.fr>
 MIME-Version: 1.0
@@ -101,28 +100,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-
-+ Anshuman Khandual <anshuman.khandual@arm.com>
-
-Anshuman,
-
-I merged your GENMASK_U128() because you said it's important for your
-projects, and that it will get used in the kernel soon.
-
-Now it's in the kernel for more than 6 month, but no users were added.
-Can you clarify if you still need it, and if so why it's not used?
-
-As you see, people add another fixed-types GENMASK() macros, and their
-implementation differ from GENMASK_U128().
-
-My second concern is that __GENMASK_U128() is declared in uapi, while
-the general understanding for other fixed-type genmasks is that they
-are not exported to users. Do you need this macro to be exported to
-userspace? Can you show how and where it is used there?
-
-Thanks,
-Yury
-
 
 On Wed, Mar 05, 2025 at 10:00:15PM +0900, Vincent Mailhol via B4 Relay wrote:
 > From: Yury Norov <yury.norov@gmail.com>
@@ -149,6 +126,9 @@ On Wed, Mar 05, 2025 at 10:00:15PM +0900, Vincent Mailhol via B4 Relay wrote:
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > Acked-by: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+
+Co-developed-by?
+
 > ---
 > Changelog:
 > 
@@ -164,6 +144,10 @@ On Wed, Mar 05, 2025 at 10:00:15PM +0900, Vincent Mailhol via B4 Relay wrote:
 >     - Make GENMASK_U8() and GENMASK_U16() return an unsigned int. In
 >       v3, due to the integer promotion rules, these were returning a
 >       signed integer. By casting these to unsigned int, at least the
+
+This comment will disappear when I'll apply the patch. Can you comment
+it in the code instead?
+
 >       signedness is kept.
 > ---
 >  include/linux/bitops.h |  1 -
@@ -213,31 +197,64 @@ On Wed, Mar 05, 2025 at 10:00:15PM +0900, Vincent Mailhol via B4 Relay wrote:
 > + * - GENMASK_U32(33, 15): doesn't fit in a u32
 > + */
 > +#define GENMASK_t(t, h, l)				\
+
+Agree with Andy. This should be GENMASK_TYPE, or triple-underscored
+___GENMASK() maybe. This _t thing looks misleading.
+
 > +	(GENMASK_INPUT_CHECK(h, l) +			\
 > +	 (((t)~ULL(0) - ((t)1 << (l)) + 1) &		\
 > +	  ((t)~ULL(0) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-> +
+
+Can you rebase it on top of -next? In this dev cycle I merge a patch
+that reverts the __GENMASK() back to:
+
+#define __GENMASK(h, l) (((~_UL(0)) << (l)) & (~_UL(0) >> (BITS_PER_LONG - 1 - (h))))
+
 > +#define GENMASK(h, l) GENMASK_t(unsigned long,  h, l)
 > +#define GENMASK_ULL(h, l) GENMASK_t(unsigned long long, h, l)
->  
+
+This makes __GENMASK() and __GENMASK_ULL() unused in the kernel, other
+than in uapi. Or I misunderstand it?
+
+Having, in fact, different implementations of the same macro for kernel
+and userspace is a source of problems. Can we move GENMASK_TYPE() to uapi,
+and implement __GENMASK() on top of them? If not, I'd prefer to keep
+GENMASK and GENMASK_ULL untouched.
+
+Can you run bloat-o-meter and ensure there's no unwanted effects on
+code generation?
+
 >  /*
 >   * Missing asm support
 >   *
 > + * __GENMASK_U*() depends on BITS_PER_TYPE() which would not work in the asm
+
+And there's no __GENMASK_U*(), right?
+
 > + * code as BITS_PER_TYPE() relies on sizeof(), something not available in
 > + * asm. Nethertheless, the concept of fixed width integers is a C thing which
 > + * does not apply to assembly code.
 > + */
 > +#define GENMASK_U8(h, l) ((unsigned int)GENMASK_t(u8,  h, l))
 > +#define GENMASK_U16(h, l) ((unsigned int)GENMASK_t(u16, h, l))
+
+Typecast to the type that user provides explicitly?  And maybe do
+in GENMASK_TYPE()
+
 > +#define GENMASK_U32(h, l) GENMASK_t(u32, h, l)
 > +#define GENMASK_U64(h, l) GENMASK_t(u64, h, l)
+
+OK, this looks good. But GENMASK_U128() becomes a special case now.
+The 128-bit GENMASK is unsued, but it's exported in uapi. Is there any
+simple way to end up with a common implementation for all fixed-type
+GENMASKs?
+
 > +
 > +/*
 >   * __GENMASK_U128() depends on _BIT128() which would not work
 >   * in the asm code, as it shifts an 'unsigned __int128' data
 >   * type instead of direct representation of 128 bit constants
-> 
-> -- 
-> 2.45.3
-> 
+
+This comment is duplicated by the previous one. Maybe just join them?
+(Let's wait for a while for updates regarding GENMASK_U128 status before
+doing it.)
