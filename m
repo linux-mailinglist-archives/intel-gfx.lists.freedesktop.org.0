@@ -2,60 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36152A5051F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 17:38:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DADAFA505A7
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 17:51:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D5310E813;
-	Wed,  5 Mar 2025 16:38:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC0F10E814;
+	Wed,  5 Mar 2025 16:51:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WD3xnCq4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OirqN7x9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA0F10E813;
- Wed,  5 Mar 2025 16:38:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B286910E814;
+ Wed,  5 Mar 2025 16:51:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741192720; x=1772728720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hF/BQSCLKvMyo2W8124XbsMyGMBoIwnHYuODNl8NACE=;
- b=WD3xnCq4i/hu/5zRt0qtg/e5XbBx0VbspPdc5/TbR9EquO30imiU3X7s
- 6kczVT14Qstssk8jnoxUX6Lwn/5mkEIDhL/ARh5yHGds21yF5NkDiWmGc
- aDghlzMwbPAzOIgWK3J+z+KJHDSuTZKDSYd9p8geeuEneWf05RldcdgpE
- rrlxGf8E5OtEPqGkDk/iknn0sDNNZVELejaDU19CCOHgRojp77bg2yc6u
- bcGhIm+PdJYte/oHgL2jMdmT5Bsa56+Cb51IqrEolnPPkvubHE+Xz2rOh
- 3/tq2v2tFyJr0pis2aQ6eOlZchAjzUgCoWiMI5W/bBN3NdSxr/rtU9vY+ g==;
-X-CSE-ConnectionGUID: xE+2BbhDT1mQeePDwY5l6w==
-X-CSE-MsgGUID: bei4fCPqSB2sIcsDktSIxQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="44972098"
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="44972098"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 08:38:39 -0800
-X-CSE-ConnectionGUID: qunAGbXeTtmX+XX/k8DpVg==
-X-CSE-MsgGUID: lUDT2NjrRZWIfOTxRsFn8A==
+ t=1741193484; x=1772729484;
+ h=from:to:cc:subject:date:message-id:content-id:
+ content-transfer-encoding:mime-version;
+ bh=8T//xlpj+chyqnBsPARlmbIFvnLzP3SRNlecqY9VxH4=;
+ b=OirqN7x9/S7vt8CDlkkjcU8TiVx2veT4eSpceC76snVbqwGlIQJYMUv2
+ VSmrF7ayEINuH1xHyO20Acm8FIToNS5vbms07Z88N0Kdu1+48XxhnRkNO
+ o3YmiFHyk2X5Y1t/noTqU6Rz+uPKc4BgYlB3GzXLiTHKTGsW6wbHW+pcK
+ gv4iNk6qxGlyTOX3NCEQZvq/EUvdKf/mctTJCdSs8wLsu5XSpghfib6zk
+ iL/TxuFEYkAc+3z+AMfUcS0YQeOSe+0jFBRLuJl9E45yyeaEIdA2l0ol7
+ TSmDNLxAVa+FpGz0a7UG9BPf0+Qnr+zVlX8ef+Qg9xyCg2r4VX8659rLf w==;
+X-CSE-ConnectionGUID: KqKeEUmNT/64ZsGgDlOB0A==
+X-CSE-MsgGUID: XJOeHrXRQVmp7CHS+zv2Iw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52812482"
+X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="52812482"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 08:51:23 -0800
+X-CSE-ConnectionGUID: gVclRNseQ8mf0RCubyc2+w==
+X-CSE-MsgGUID: EhdnMZ+YR96sfcxbHqc5mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="118904868"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.49])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 08:38:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@intel.com,
- rodrigo.vivi@intel.com
-Subject: [PATCH v2 2/2] drm/i915/plane: convert intel_atomic_plane.[ch] to
- struct intel_display
-Date: Wed,  5 Mar 2025 18:38:23 +0200
-Message-Id: <d7e28ad43f67d92e54fb7e14373872b5e561038c.1741192597.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1741192597.git.jani.nikula@intel.com>
-References: <cover.1741192597.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122881621"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 08:51:23 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 5 Mar 2025 08:51:22 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Wed, 5 Mar 2025 08:51:22 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 5 Mar 2025 08:51:22 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pg9n6AK6x3qtEH8G4tWo+SJTA817GuZ+IXaW21RGdgg56Hjkohhdn//f6xa+p8B0hFsBizjrSAWsKKuQJlh1w7jLuALX1nIr/OmYWheo1UfvpwaOIRX0XWP4aasib35bk7pK090MHAyFhZWM7QVxQ/3o3HOyCyH3i6xtXTazLXcKbeqyl7VUNX02vEDHz4QxT0+4rmmhLrq3NnM1Mmf7ZUdL/GjUQnq377ppkEywZvPIViURyuN2kMlEHusA1Vt1YKlMnawUm7InjOKq4wMj1JS+GJLdhNCt5CGe/vycnO4Nd44jCOnOLDxQXOTVg92493o9nOlpgSwMDTQs9gOaZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8T//xlpj+chyqnBsPARlmbIFvnLzP3SRNlecqY9VxH4=;
+ b=imCjqxOFozfJ9SQr7kRTIPgMON5M3gWpaOwN4MsELbTFq6og4R/hnYdkw2S9mtxTaZCHjoU1XeDCXUNnx8Q2qlzXNCj26gKZtIlP5hKnsKyIjwgS0YLX8zkxnyeWwLJLBFM9JeK9t7K/YbZcSwEAjeE3q0hRBSdijaoS8FQINAqCcGDuvAS6oTaj/ZHCxqYbN9AiE8HZt61ShUKXD7sd1Ihp7EuL+hmzzSsoP+3KNInvJ7BsyRU1Z8x8ZaexmzdQlXrGi6BgjUZxFIpgcqOafVW+89aNWhYhEa7HdH+3pfQPxjpnPeEDCoVBJXZR2l27Oan9eNq2pNfJAMJUwYz+gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB5861.namprd11.prod.outlook.com (2603:10b6:510:133::8)
+ by SA0PR11MB4621.namprd11.prod.outlook.com (2603:10b6:806:72::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.17; Wed, 5 Mar
+ 2025 16:51:20 +0000
+Received: from PH7PR11MB5861.namprd11.prod.outlook.com
+ ([fe80::b320:4d74:ffda:ecbf]) by PH7PR11MB5861.namprd11.prod.outlook.com
+ ([fe80::b320:4d74:ffda:ecbf%6]) with mapi id 15.20.8489.028; Wed, 5 Mar 2025
+ 16:51:20 +0000
+From: "Knop, Ryszard" <ryszard.knop@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>
+Subject: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+Thread-Topic: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+Thread-Index: AQHbje7R0v3gGlPcX0aKuyeRUQqryA==
+Date: Wed, 5 Mar 2025 16:51:20 +0000
+Message-ID: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
+Accept-Language: en-US, pl-PL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB5861:EE_|SA0PR11MB4621:EE_
+x-ms-office365-filtering-correlation-id: 2d25dddc-3eef-4b82-2cd6-08dd5c05f462
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?dmdRY09qUVE2YVhBWDdhUldlT1QzMmc3TE9paGhkN3h0QUVPdmh3SU1hUW1U?=
+ =?utf-8?B?VEg5a0ZlMU1jU1ZTTFAzM0QzblFWZWZkSWhSekdhZFFDNVZsNVZIQ2NBczFP?=
+ =?utf-8?B?Mk10b3NzUGRocnh6Wjl2dUFwUytjc1AzTW9GdEFVcXppekorZldSNUVKOWVY?=
+ =?utf-8?B?MlNqaldhM04wdk1SS0hPc2ZyZ045Q1h3Wi80MVNHTkYxQzdDRVJtbDJITDZy?=
+ =?utf-8?B?YlkwaTJ1VDRua2VJbzFPWkpzZG9paWVXQVl6V1I0bXozVjN5dzA5Sjc2RHJy?=
+ =?utf-8?B?SkdxYk1PMFk1K3IyYTNoYUlsTUhCWThVUUQwMVVnV2V3djBvVkVpNVh0VFY2?=
+ =?utf-8?B?cFQ5M3hZN2dnMjJjNVNqZ2hsY05ENFNMalJUVVlyY2pDWTFLeEExSXkyZEJX?=
+ =?utf-8?B?RjV0dkNJVkJOQTIvQmFtVElhdC9pRGdVMisvVFFBa1Y3cE1PYXIxVEVsa2p2?=
+ =?utf-8?B?aTdRdms5QXlRdkkrRmpJVEpOTUh0VFM1MXlBdzhpNmJBdHRUN1RqU3BtR1gy?=
+ =?utf-8?B?VDJDczFhUW1GWUNtOFFGUWo1WU5FejVqVVREYWZURXZ2V1c4bWc5aWYyRUNW?=
+ =?utf-8?B?NHBXeGtzR3dWbHR6ZWJES2UrUEFQenB3aElOR3gzOVhNMzBVa2lkaERPUFgx?=
+ =?utf-8?B?ZFlzZ0VOR3BDMmluUW45UWNPQVUwY2VXSTE2dHVpQ2oxckRzbkNuVkR2MEtC?=
+ =?utf-8?B?SXhTM2V3ZlZZRVgzOVlTemt2cjVFdXYzYW9ZNzhoYUc4SWpUZVptMjh4QzFI?=
+ =?utf-8?B?V2pNaUhkMVlmdkZLT0JlNkc0eDBscDlIQ05WVFNCMmVDRzhLTjFpSGt5Smtt?=
+ =?utf-8?B?QXJjRDFWSTVnR214ektnandKMUxSNmdTRlVTdC9DQVdVUEVHbnE2cjlIeHI1?=
+ =?utf-8?B?ZEd2a2Jia2Q1WDVrL0orMEZYTFc2U2JYMi9lR1pBNmFiVlUvdFpsY1VKZ2Np?=
+ =?utf-8?B?L3lreE14UElNMnZxWEIyYk1Ua3diYXJCTk5DamdKZVlFU1NOMnBIOUNsQ0RY?=
+ =?utf-8?B?QUlEQ0hWVnpLaVk3YTRWVmtJYmd2Q0t3cWRYanBNVFVKcjJ6MG5vYjcrUndo?=
+ =?utf-8?B?ZE5sc1pQeWRXRmR5RzlyMVdtc1lEenVkTzRXSzE2cW9vWXV4bWJXeTY0RjRr?=
+ =?utf-8?B?SGRqc2FPcXVkWjZBT3ZVREFQYlFNNklyNnVtOHRwaVI1ODhiNW4vUXhURHN0?=
+ =?utf-8?B?UjNHczI3eGtnT3kwbkdoT1FEWE03SnQ0TGoyME8vWk1tZ09EdXYvOEE1YTRK?=
+ =?utf-8?B?V2xzTG9LcTVtMGRueGhhZXVQSjMydDhCOThlQnlpQnFEdVlvSU4zb0NVeDd4?=
+ =?utf-8?B?OGhna3AwcUtvNG1kd1JRSzRCVEhCbGlhYjltTlZLTG1rTldBZFJZdHJNWCs2?=
+ =?utf-8?B?UlR1Mkx5c2g2KzRLdGFEZlNPQkowOHRpQ2ZtQW1QUG10aW96Skh6bnJBQ3Zm?=
+ =?utf-8?B?ejFmQllZa2VvZEdEZHZUT3dFbGpsQzhSMVMyWmdBTXJPUWNvcVIyS28ySVQ1?=
+ =?utf-8?B?Wk1ycGZzQjhub2ZvZkdTZ3JVNUxhQ2pRV3JNaFZZd29Lc2VuMXBoWWFFWlU3?=
+ =?utf-8?B?UXJWaFJBVWZNNUxsbFBkUnEvVWhVSVBBWkVyZVJTTVdseHpyK3ZtRllNM0xn?=
+ =?utf-8?B?OUZXdHJNdzVFYm1ZVFc2MmFETjZPUFJCbHhJN0ZSNnJiYXJISXRSQzQ3V0V3?=
+ =?utf-8?B?bmN2MW0vYnJqWmJ6TTEyb3dBQ2M1MEJPQzAzSnRnT1BhdHl5dG9xOFluTHFK?=
+ =?utf-8?B?WEUwWXNaampqSWQ2MjNGQXBZY0RMdDVNRXFwVm0xalhPRml5cGtVUUdNeEg3?=
+ =?utf-8?B?K3J6WHY5TW10MG9EMkd1Y0FpT2xGc2VpY0tIQnEvb2pOclBrUGoxaGxsekRO?=
+ =?utf-8?B?WEx3SzdaSnYzSVVjeVgyMkFMRm9Fc1REcWJ5aWtwQ2V1TGEwVTdLMW83bjRn?=
+ =?utf-8?Q?cwVRfcPRl1D6oIrsj1pdRF+zaQgJraB/?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5861.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bTVMY2FlcFFhYWNEcGVVRzF1d1FmeWJySTRYRDdmYmFUd2tHSFpYWllWdk9O?=
+ =?utf-8?B?NGJWZmJjTmFaOEtScktucG9vQ0Vad21SMzE3aGdmWW1BNkNOY3dKWk1TbkhY?=
+ =?utf-8?B?aHJwQU5LL3dva010MlRtYm5BOXNZdkhhdFdSY0pJL1liZUNNaEhuSC8ySURq?=
+ =?utf-8?B?WkdsR3hZbVRDK0NPNFc2VkpxaUlCdHZDZUx5RUV1bUtLNlF6c1JqWWR3NmFF?=
+ =?utf-8?B?aXkxNWRjRmQ2anVQSHdRTDlSSkxDdC9TY1pXb1Z2a2kzRDdYVENXMmxnVTk1?=
+ =?utf-8?B?YmhRRFpwN0ZJQzJXQURXQnJBNW9MZGVha2dMQm1UZTVVNXNBS3FXWjcvVUVo?=
+ =?utf-8?B?UTVjZFpxUUVMd3YzSk9FSVpqZzJuY2U3SHJ2RjZWU3d5K08rRVNSQUdySVJy?=
+ =?utf-8?B?Zk1YZmxmZkNIRDJoUys1K3ExUUtlN2RBdVhHMHhFeDhXNjY2ZmJwMnpjMGhI?=
+ =?utf-8?B?Wk4zVGNMSTJJcjh1VFZ3amM3NnREdTJqNE4xL0dyVnM0VzJoZ0VBVjdxcW82?=
+ =?utf-8?B?Z3U0K0U2MVdsTnQydlVCaXE2eFNmQm9Rd3pkb29ZSzdaNllRcW9IVmorRlJB?=
+ =?utf-8?B?a2JabFBPTjVBK0lBUTEwYlV4aHY4S28wenBCUjgzTzlQZkNhbGJYUTQ0OTBU?=
+ =?utf-8?B?QmRPcERRUFJyRVBJMzVZaWI1V2JoZFJENXBuakEveHlGZDRGK3J5RVd2MDNa?=
+ =?utf-8?B?SXNkZ0tvNDVzU1pvTTZjdncrVk54Sy9SdE53Tjl6R2JPTUwvdkNmV0MvT2ZZ?=
+ =?utf-8?B?dXlUazV3VlNQcjloREVEaVVWbFFPRDROZnVzMGVZeWh6K25QZlM1d3RWVG85?=
+ =?utf-8?B?ODZKRW41bFBjWFVpMzVGeWdkTi9adnJkdjN3Q2lDc0hEVVdRS0djdUpOVUtJ?=
+ =?utf-8?B?bStDRnNNSXg5a1ZNQTNGdCt5eEREZ3crMTVQTFlHOFlSaUpIZzhSRHZLaThu?=
+ =?utf-8?B?RXBYQ1djNWYyOFNtZWdHbjZrQVZncHd4Y1J1d3dXZmZ4eEJIVGxNMWQ4MW5T?=
+ =?utf-8?B?M2lTREcyZzRHSjNkdWNDMUdVODdpWkdrR3pUYkdYQ0g0cTNEMmY2SFpWWFRj?=
+ =?utf-8?B?ZEw5WnphVWg5RzlqWUdPMG5IVW5JY1pPODhlTmU5TXBFZFRaNnFTQk1Nb0Rh?=
+ =?utf-8?B?c2VlTjdHUkxqN1J1ejBXcjhKRS9abzFBeXQxN1E3akI2WTYzTXB5MSt1RGFr?=
+ =?utf-8?B?RW1lU3dGbWJIN2JTWGRwVWR6SHZHSWhqeFJOV0tYWUVQa1BqTGNsVmVkZFZM?=
+ =?utf-8?B?M1JDRnRlN1BBZVUvU3kwVlFhaS9JSlczbSsrYXRzTWhCMDhGd3d6WjBmZ01P?=
+ =?utf-8?B?UkpldjlFdXZOMkNOYU9IUmVvN3lYUW1FNEp0Ty9PdTdRRGJkbnhDQnNIOXFW?=
+ =?utf-8?B?bkRKWENBNlRoVERwQ3NNV3ZOc2hpeFEyeDJpWWM0UHBSTU44dXNmeWtJS1Iv?=
+ =?utf-8?B?L0ZsZjRYSXl0TDZUYUowVHRqRTlwNC9FZXd0K3NwRmZIMnk0OERGOW8rMkRD?=
+ =?utf-8?B?RTk0bkZDRFRkOFNzcFBvMDdCV0hibFU3MGJOeWhBYjVFYmsraUNZb3pUS0Zt?=
+ =?utf-8?B?RllBeHFLbkh4OXluNUc2Uzk3bXpzeWVPTjRXYXo2SWx2RTdBSnVNeXJKSWdU?=
+ =?utf-8?B?MDczYTR2ZlBBRXJBUmk3MExRU1FXVE5tZk1FTjVvb3VWQittM05zWHVKYWc4?=
+ =?utf-8?B?SFpWdGRKWXowakczVElZSnFOblZVK0NLdVdUek9OK20zd05ZMUp2QWtla05q?=
+ =?utf-8?B?aGhJMkZVWi9rZzMwN1orSjNIZ2t1YnljL1pUQlZGWVd4cHMxdk1oN2NnTTg1?=
+ =?utf-8?B?eHhJYUdhSnZjeVVyK2JtWmhBbzFjcE55eFBzU1ZBWFVuUGJPdjdvL3FObkxi?=
+ =?utf-8?B?QjZGQTQ1bVk1eCtRMk1qSmE2bFd1Nm1wb0RkbGVoZE54WmxOZVVyVm5ET0l2?=
+ =?utf-8?B?bDF0SFUwODlkOW1hYUF0TVhBR0t5UWMxQjlYQUZFQ1ZkTEg4R1ZIamsycVZ6?=
+ =?utf-8?B?cDJNWld4WlEzVk54RGVIKzBiRStRcGZGL0JqZktld2Yrd1B0NXljWnRob2x0?=
+ =?utf-8?B?REVvMmhYa2crMUQ0YlphVjkwdXplb1pDQ1hyTDRTSm1sbUc4WnZXQkQ5eEc1?=
+ =?utf-8?B?TmVVQ0F4NmFCY2hrclFqK3ZLZkNMamRydHd6ajF5Y0IvMTVKUXNuQVBvRklL?=
+ =?utf-8?B?REE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DEF03FB2C3E323408F42F1EF691986B7@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB5861.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d25dddc-3eef-4b82-2cd6-08dd5c05f462
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2025 16:51:20.0592 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AptYOj3orsf3s5wOLtrzaVGsoFVUNbdSr6/HQnQskFbeLgCkxzps4SayOfYDqK8r0hnEotjR+jkNvOWt9++HNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4621
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,319 +197,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Going forward, struct intel_display is the main display device data
-pointer. Convert intel_atomic_plane.[ch] to struct intel_display.
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c | 78 +++++++++----------
- 1 file changed, 38 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index d899c37d80c6..7276179df878 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -43,7 +43,6 @@
- 
- #include "gem/i915_gem_object.h"
- #include "i915_config.h"
--#include "i915_drv.h"
- #include "i915_scheduler_types.h"
- #include "i915_vma.h"
- #include "i9xx_plane_regs.h"
-@@ -169,10 +168,10 @@ intel_plane_destroy_state(struct drm_plane *plane,
- 
- bool intel_plane_needs_physical(struct intel_plane *plane)
- {
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+	struct intel_display *display = to_intel_display(plane);
- 
- 	return plane->id == PLANE_CURSOR &&
--		DISPLAY_INFO(i915)->cursor_needs_physical;
-+		DISPLAY_INFO(display)->cursor_needs_physical;
- }
- 
- bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier)
-@@ -277,7 +276,7 @@ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 			       struct intel_plane *plane,
- 			       bool *need_cdclk_calc)
- {
--	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+	struct intel_display *display = to_intel_display(plane);
- 	const struct intel_plane_state *plane_state =
- 		intel_atomic_get_new_plane_state(state, plane);
- 	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
-@@ -322,7 +321,7 @@ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 	    cdclk_state->min_cdclk[crtc->pipe])
- 		return 0;
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "[PLANE:%d:%s] min cdclk (%d kHz) > [CRTC:%d:%s] min cdclk (%d kHz)\n",
- 		    plane->base.base.id, plane->base.name,
- 		    new_crtc_state->min_cdclk[plane->id],
-@@ -435,7 +434,7 @@ static bool intel_plane_do_async_flip(struct intel_plane *plane,
- 				      const struct intel_crtc_state *old_crtc_state,
- 				      const struct intel_crtc_state *new_crtc_state)
- {
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+	struct intel_display *display = to_intel_display(plane);
- 
- 	if (!plane->async_flip)
- 		return false;
-@@ -456,7 +455,7 @@ static bool intel_plane_do_async_flip(struct intel_plane *plane,
- 	 * extend this so other scanout parameters (stride/etc) could
- 	 * be changed as well...
- 	 */
--	return DISPLAY_VER(i915) < 9 || old_crtc_state->uapi.async_flip;
-+	return DISPLAY_VER(display) < 9 || old_crtc_state->uapi.async_flip;
- }
- 
- static bool i9xx_must_disable_cxsr(const struct intel_crtc_state *new_crtc_state,
-@@ -560,16 +559,16 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
- 					   const struct intel_plane_state *old_plane_state,
- 					   struct intel_plane_state *new_plane_state)
- {
-+	struct intel_display *display = to_intel_display(new_crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
- 	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	bool mode_changed = intel_crtc_needs_modeset(new_crtc_state);
- 	bool was_crtc_enabled = old_crtc_state->hw.active;
- 	bool is_crtc_enabled = new_crtc_state->hw.active;
- 	bool turn_off, turn_on, visible, was_visible;
- 	int ret;
- 
--	if (DISPLAY_VER(dev_priv) >= 9 && plane->id != PLANE_CURSOR) {
-+	if (DISPLAY_VER(display) >= 9 && plane->id != PLANE_CURSOR) {
- 		ret = skl_update_scaler_plane(new_crtc_state, new_plane_state);
- 		if (ret)
- 			return ret;
-@@ -578,7 +577,7 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
- 	was_visible = old_plane_state->uapi.visible;
- 	visible = new_plane_state->uapi.visible;
- 
--	if (!was_crtc_enabled && drm_WARN_ON(&dev_priv->drm, was_visible))
-+	if (!was_crtc_enabled && drm_WARN_ON(display->drm, was_visible))
- 		was_visible = false;
- 
- 	/*
-@@ -602,7 +601,7 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
- 	turn_off = was_visible && (!visible || mode_changed);
- 	turn_on = visible && (!was_visible || mode_changed);
- 
--	drm_dbg_atomic(&dev_priv->drm,
-+	drm_dbg_atomic(display->drm,
- 		       "[CRTC:%d:%s] with [PLANE:%d:%s] visible %i -> %i, off %i, on %i, ms %i\n",
- 		       crtc->base.base.id, crtc->base.name,
- 		       plane->base.base.id, plane->base.name,
-@@ -612,11 +611,11 @@ static int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_cr
- 	if (visible || was_visible)
- 		new_crtc_state->fb_bits |= plane->frontbuffer_bit;
- 
--	if (HAS_GMCH(dev_priv) &&
-+	if (HAS_GMCH(display) &&
- 	    i9xx_must_disable_cxsr(new_crtc_state, old_plane_state, new_plane_state))
- 		new_crtc_state->disable_cxsr = true;
- 
--	if ((IS_IRONLAKE(dev_priv) || IS_SANDYBRIDGE(dev_priv) || IS_IVYBRIDGE(dev_priv)) &&
-+	if ((display->platform.ironlake || display->platform.sandybridge || display->platform.ivybridge) &&
- 	    ilk_must_disable_cxsr(new_crtc_state, old_plane_state, new_plane_state))
- 		new_crtc_state->disable_cxsr = true;
- 
-@@ -709,10 +708,10 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
- struct intel_plane *
- intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
- {
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_plane *plane;
- 
--	for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
-+	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
- 		if (plane->id == plane_id)
- 			return plane;
- 	}
-@@ -961,9 +960,9 @@ void intel_crtc_planes_update_arm(struct intel_dsb *dsb,
- 				  struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
- 
--	if (DISPLAY_VER(i915) >= 9)
-+	if (DISPLAY_VER(display) >= 9)
- 		skl_crtc_planes_update_arm(dsb, state, crtc);
- 	else
- 		i9xx_crtc_planes_update_arm(dsb, state, crtc);
-@@ -974,7 +973,7 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 				      int min_scale, int max_scale,
- 				      bool can_position)
- {
--	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
-+	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_framebuffer *fb = plane_state->hw.fb;
- 	struct drm_rect *src = &plane_state->uapi.src;
-@@ -994,7 +993,7 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 	hscale = drm_rect_calc_hscale(src, dst, min_scale, max_scale);
- 	vscale = drm_rect_calc_vscale(src, dst, min_scale, max_scale);
- 	if (hscale < 0 || vscale < 0) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[PLANE:%d:%s] invalid scaling "DRM_RECT_FP_FMT " -> " DRM_RECT_FMT "\n",
- 			    plane->base.base.id, plane->base.name,
- 			    DRM_RECT_FP_ARG(src), DRM_RECT_ARG(dst));
-@@ -1011,7 +1010,7 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 
- 	if (!can_position && plane_state->uapi.visible &&
- 	    !drm_rect_equals(dst, clip)) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[PLANE:%d:%s] plane (" DRM_RECT_FMT ") must cover entire CRTC (" DRM_RECT_FMT ")\n",
- 			    plane->base.base.id, plane->base.name,
- 			    DRM_RECT_ARG(dst), DRM_RECT_ARG(clip));
-@@ -1026,7 +1025,7 @@ int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
- 
- int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- {
--	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
-+	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	struct drm_rect *src = &plane_state->uapi.src;
-@@ -1060,18 +1059,18 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 	if (fb->format->format == DRM_FORMAT_RGB565 && rotated) {
- 		hsub = 2;
- 		vsub = 2;
--	} else if (DISPLAY_VER(i915) >= 20 &&
-+	} else if (DISPLAY_VER(display) >= 20 &&
- 		   intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
- 		/*
- 		 * This allows NV12 and P0xx formats to have odd size and/or odd
--		 * source coordinates on DISPLAY_VER(i915) >= 20
-+		 * source coordinates on DISPLAY_VER(display) >= 20
- 		 */
- 		hsub = 1;
- 		vsub = 1;
- 
- 		/* Wa_16023981245 */
--		if ((DISPLAY_VERx100(i915) == 2000 ||
--		     DISPLAY_VERx100(i915) == 3000) &&
-+		if ((DISPLAY_VERx100(display) == 2000 ||
-+		     DISPLAY_VERx100(display) == 3000) &&
- 		     src_x % 2 != 0)
- 			hsub = 2;
- 	} else {
-@@ -1083,7 +1082,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 		hsub = vsub = max(hsub, vsub);
- 
- 	if (src_x % hsub || src_w % hsub) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[PLANE:%d:%s] src x/w (%u, %u) must be a multiple of %u (rotated: %s)\n",
- 			    plane->base.base.id, plane->base.name,
- 			    src_x, src_w, hsub, str_yes_no(rotated));
-@@ -1091,7 +1090,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- 	}
- 
- 	if (src_y % vsub || src_h % vsub) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[PLANE:%d:%s] src y/h (%u, %u) must be a multiple of %u (rotated: %s)\n",
- 			    plane->base.base.id, plane->base.name,
- 			    src_y, src_h, vsub, str_yes_no(rotated));
-@@ -1336,14 +1335,13 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 				 struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_plane_state *plane_state;
- 	struct intel_plane *plane;
- 	int i;
- 
--	if (DISPLAY_VER(dev_priv) < 11)
-+	if (DISPLAY_VER(display) < 11)
- 		return 0;
- 
- 	/*
-@@ -1371,7 +1369,7 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 		if ((crtc_state->nv12_planes & BIT(plane->id)) == 0)
- 			continue;
- 
--		for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, y_plane) {
-+		for_each_intel_plane_on_crtc(display->drm, crtc, y_plane) {
- 			if (!icl_is_nv12_y_plane(display, y_plane->id))
- 				continue;
- 
-@@ -1386,7 +1384,7 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 		}
- 
- 		if (!y_plane_state) {
--			drm_dbg_kms(&dev_priv->drm,
-+			drm_dbg_kms(display->drm,
- 				    "[CRTC:%d:%s] need %d free Y planes for planar YUV\n",
- 				    crtc->base.base.id, crtc->base.name,
- 				    hweight8(crtc_state->nv12_planes));
-@@ -1403,10 +1401,10 @@ static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
- 					  struct intel_crtc *crtc,
- 					  u8 plane_ids_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_plane *plane;
- 
--	for_each_intel_plane_on_crtc(&dev_priv->drm, crtc, plane) {
-+	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
- 		struct intel_plane_state *plane_state;
- 
- 		if ((plane_ids_mask & BIT(plane->id)) == 0)
-@@ -1433,12 +1431,12 @@ int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
- 					      new_crtc_state->enabled_planes);
- }
- 
--static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
-+static bool active_planes_affects_min_cdclk(struct intel_display *display)
- {
- 	/* See {hsw,vlv,ivb}_plane_ratio() */
--	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
--		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
--		IS_IVYBRIDGE(dev_priv);
-+	return display->platform.broadwell || display->platform.haswell ||
-+		display->platform.cherryview || display->platform.valleyview ||
-+		display->platform.ivybridge;
- }
- 
- static u8 intel_joiner_affected_planes(struct intel_atomic_state *state,
-@@ -1517,7 +1515,7 @@ static int intel_add_affected_planes(struct intel_atomic_state *state)
- 
- int intel_atomic_check_planes(struct intel_atomic_state *state)
- {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
- 	struct intel_plane_state __maybe_unused *plane_state;
- 	struct intel_plane *plane;
-@@ -1531,7 +1529,7 @@ int intel_atomic_check_planes(struct intel_atomic_state *state)
- 	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
- 		ret = intel_plane_atomic_check(state, plane);
- 		if (ret) {
--			drm_dbg_atomic(&dev_priv->drm,
-+			drm_dbg_atomic(display->drm,
- 				       "[PLANE:%d:%s] atomic driver check failed\n",
- 				       plane->base.base.id, plane->base.name);
- 			return ret;
-@@ -1551,7 +1549,7 @@ int intel_atomic_check_planes(struct intel_atomic_state *state)
- 		 * the planes' minimum cdclk calculation. Add such planes
- 		 * to the state before we compute the minimum cdclk.
- 		 */
--		if (!active_planes_affects_min_cdclk(dev_priv))
-+		if (!active_planes_affects_min_cdclk(display))
- 			continue;
- 
- 		old_active_planes = old_crtc_state->active_planes & ~BIT(PLANE_CURSOR);
--- 
-2.39.5
-
+SGV5IGV2ZXJ5b25lLA0KDQpQYXRjaHdvcmsgaGFzIGJlZW4gaGF2aW5nIGxvdHMgb2YgaXNzdWVz
+IHJlY2VudGx5LCBkcm9wcGluZyBwYXRjaGVzLA0KYmVpbmcgdW51c2FibHkgc2xvdyBhbmQgZ2Vu
+ZXJhbGx5IHN0YXJ0aW5nIHRvIGJlY29tZSBtb3JlIG9mIGEgcGFpbg0KdGhhbiBoZWxwLiBPdmVy
+IG9uIHRoZSBDSSBzaWRlIHdlIGFyZSBhbHNvIG5vdCBzdXBlciBmb25kIG9mIGl0IGFuZCB3ZQ0K
+ZG9uJ3QgaGF2ZSBlbm91Z2ggcmVzb3VyY2VzIHRvIG1haW50YWluIGl0IHByb3Blcmx5LiBMdWNh
+cyBoYXMNCnN1Z2dlc3RlZCB1c2luZyBwdWJsaWMtaW5ib3ggYXJjaGl2ZXMgZGlyZWN0bHksIGFu
+ZCB3aXRoIHNvbWUgcmVjZW50DQp0b29scyBsaWtlIGI0L2xlaSBtYWtpbmcgY29tbW9uIE1MIHdv
+cmtmbG93cyBmZWFzaWJsZSB3aXRob3V0DQpyZWludmVudGluZyB0aGUgd2hlZWwsIHdlIGFyZSBj
+b25zaWRlcmluZyBzZXR0aW5nIHVwIGEgYnJpZGdlIGJldHdlZW4NCk1McyBhbmQgR2l0SHViL0dp
+dExhYiB0byBpbnN0ZWFkIGRyaXZlIENJIHVzaW5nIG1vcmUgbW9kZXJuIHRvb2xzLg0KDQpXZSBo
+YXZlIG5vdCBkZWNpZGVkIHdoZXRoZXIgdG8gZHJvcCBQYXRjaHdvcmsgeWV0IC0gdGhpcyBpcyBh
+IHRocmVhZCB0bw0KZ2F0aGVyIHBlb3BsZSdzIHRob3VnaHRzIGlmIHRoaXMgc291bmRzIGxpa2Ug
+YSBnb29kIGlkZWEuDQoNClRoZSB3b3JrZmxvdyB3b3VsZCBsb29rIGxpa2UgdGhpczoNCg0KLSBB
+IGRybS10aXAgbWlycm9yIHdvdWxkIGJlIHNldCB1cCBvbiBHaXRIdWIvZmQubyBHaXRMYWIsIGF1
+dG9tYXRpY2FsbHkNCnB1bGxpbmcgYWxsIGNoYW5nZXMgZnJvbSBkcm0tdGlwIHVwc3RyZWFtIGZk
+Lm8gR2l0TGFiIGFzIGEgc2Vjb25kYXJ5DQpzb3VyY2UuDQotIEZvciBlYWNoIG5ldyBzZXJpZXMg
+b24gbG9yZS5rZXJuZWwub3JnIGEgYnJpZGdlIHdvdWxkIGNyZWF0ZSBhIFBSIGJ5DQp0YWtpbmcg
+dGhlIGxhdGVzdCBtaXJyb3JlZCBkcm0tdGlwIHNvdXJjZSwgdGhlbiBhcHBseWluZyBhIG5ldyBz
+ZXJpZXMNCndpdGggYGI0IHNoYXphbWAuDQotIFRoYXQgUFIgd291bGQgdGhlbiBnbyB0aHJvdWdo
+IHRoZSBub3JtYWwgQ0kgZmxvdywgd2l0aCBDSSBjaGVja3MNCmJlaW5nIHJlcG9ydGVkIG9uIHRo
+YXQgUFIsIGluc3RlYWQgb2Ygc2VuZGluZyBhbGwgdGhlIHJlcG9ydHMgdG8gdGhlDQptYWlsaW5n
+IGxpc3QuDQotIE9uIHRoZSBtYWlsaW5nIGxpc3QsIHRoZSBicmlkZ2Ugd291bGQgc2VuZCBhbiBh
+Y2sgdGhhdCBhIHNlcmllcyBoYXMNCmJlZW4gc2VlbiBhbmQgd2hlcmUgYXJlIGl0cyByZXN1bHRz
+LiBZb3Ugd291bGQgbm8gbG9uZ2VyIHJlY2VpdmUNCm11bHRpcGxlIGVtYWlscyB3aXRoIEtCcyBv
+ZiBsb2dzIGluIHlvdXIgZW1haWwgY2xpZW50LCBidXQgZXZlcnl0aGluZw0Kd291bGQgYmUgYXZh
+aWxhYmxlIGZyb20gUFIgY2hlY2tzIChhcyBzdGF0dXMgY2hlY2tzIGFuZCBsaW5rcyB0byBmdWxs
+DQpsb2dzIG9ubHksIG5vIHRyaW1taW5nIGFuZCAibGFzdCAxMDAwIGxpbmVzIG9ubHkiKS4NCi0g
+TWlycm9ycywgUFJzIGFuZCBjaGVja3MgZm9yIHB1YmxpYyBtYWlsaW5nIGxpc3RzIHdvdWxkIGJl
+IHB1YmxpYywNCm11Y2ggbGlrZSBvbiB0aGUgY3VycmVudCBwdWJsaWMgUGF0Y2h3b3JrIGluc3Rh
+bmNlLg0KLSBMb2dzIGJlaGluZCBsaW5rcyB3aWxsIGJlIHN0b3JlZCBmb3IgYSBmZXcgbW9udGhz
+ICgzLTYsIGRlcGVuZHMgb24NCnRyYWZmaWMgYW5kIGhvdyB0aGUgc2l0dWF0aW9uIGV2b2x2ZXMp
+LiBHaXRIdWIgQ2hlY2tzIHRoZW1zZWx2ZXMgKGNoZWNrDQpzdGF0dXMsIHNob3J0bG9ncyBhbmQg
+bGlua3MpIGhhdmUgYSBoYXJkIHJldGVudGlvbiBwZXJpb2Qgb2YgNDAwIGRheXMuDQotIE5vdCBz
+dXJlIGFib3V0IFBSIHJldGVudGlvbjogd2UgbmVlZCBhIG1lY2hhbmlzbSB0byBjb3JyZWN0bHkN
+CmlkZW50aWZ5IG1lcmdlZCBzZXJpZXMgc29tZWhvdywgdGhlbiB0byB0cmltIHRoZXNlIGZyb20g
+dGhlIGxpc3QuDQpFeHBlY3RlZCByZXRlbnRpb24gdGltZT8NCi0gTm90IHN1cmUgYWJvdXQgcmVw
+b3J0aW5nIG9uICJDSSBmaW5pc2hlZCI6IE1heWJlIHdlIGNvdWxkIHNlbmQgb25lDQptb3JlIGVt
+YWlsIHdpdGggYSBzdW1tYXJ5IG9mIGNoZWNrcyB3aGVuIHRoZSBlbnRpcmUgd29ya2Zsb3cgaGFz
+IGJlZW4NCmZpbmlzaGVkPw0KDQpPbiBHaXRIdWIgdnMgZmQubyBHaXRMYWI6IEknbSB0aGlua2lu
+ZyBtb3JlIG9mIEdpdEh1YiBoZXJlOg0KDQotIEdpdEh1YiBnZW5lcmFsbHkgcGVyZm9ybXMgYmV0
+dGVyIHdpdGggbGFyZ2UgcmVwb3NpdG9yaWVzLg0KLSBFeHRyYSBmYWxsYmFjayBkcm0tdGlwIHNv
+dXJjZSBmb3IgZmQubyBkb3dudGltZSBwZXJpb2RzLg0KLSBCb251cyBwb2ludHM6IFdlIGNhbiBz
+dG9yZSBwdWJsaWMgSW50ZWwgQ0kgdGFncyBkaXJlY3RseSBpbiB0aGF0DQptaXJyb3IgZm9yIG1v
+ZGVyYXRlIHBlcmlvZHMgb2YgdGltZSB3aXRob3V0IGFidXNpbmcgZmQubyBzZXJ2ZXJzLg0KDQpF
+aXRoZXIgb3B0aW9uIHdvdWxkIHdvcmsgZmluZSB0aG91Z2gsIHNvIG9waW5pb25zIGhlcmUgd291
+bGQgYmUNCmFwcHJlY2lhdGVkIDopDQoNCkNJIGl0c2VsZiB3b3VsZCBub3QgcnVuIGluIHRoZSBu
+YXRpdmUgZm9yZ2UgQ0kgZWl0aGVyIHdheSwgYnV0IHJhdGhlcg0Kb24gb3VyIEplbmtpbnMgaW5m
+cmEsIGFzIGl0IGRvZXMgdG9kYXkuIElmIHRoZXJlJ3MgZXZlciBhIG5lZWQgdG8NCnN3aXRjaCBm
+b3JnZXMsIGl0IHdvdWxkIHJlcXVpcmUgcmV3b3JraW5nIHRoZSBicmlkZ2luZy9yZXBvcnRpbmcg
+Yml0cywNCmJ1dCBub3QgKmFsbCogdGhlIGJpdHMuDQoNCldlIGRvbid0IHdhbnQgdG8gc2VsZi1o
+b3N0IGFub3RoZXIgZm9yZ2UgYXMgd2UgZG9uJ3QgaGF2ZSBlbm91Z2ggcGVvcGxlDQphbmQgZnJl
+ZSB0aW1lIHRvIGRvIHRoYXQgcHJvcGVybHkuIENvZGViZXJnLCBldGMgYXJlIG5vdCBhbiBvcHRp
+b24gZHVlDQp0byB0aGUgZHJtLXRpcCByZXBvIHNpemUuDQoNCkFuZCB0aGF0J3MgdGhlIGluaXRp
+YWwgaWRlYS4gVGhvdWdodHM/IERvIHlvdSBsaWtlIGFueSBvZiB0aGlzLCBvciBkb2VzDQppdCBz
+b3VuZCBsaWtlIGEgZG93bmdyYWRlIGZyb20gd2hhdCB3ZSBoYXZlIHRvZGF5Pw0KDQpUaGFua3Ms
+IFJ5c3phcmQNCg==
