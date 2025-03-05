@@ -2,58 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5606EA4FDF8
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 12:48:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C30BA4FF07
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Mar 2025 13:53:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C93A710E76D;
-	Wed,  5 Mar 2025 11:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C1710E831;
+	Wed,  5 Mar 2025 12:53:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C7XeWw+o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYpFh9pC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 956E110E758;
- Wed,  5 Mar 2025 11:48:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B02210E829;
+ Wed,  5 Mar 2025 12:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741175305; x=1772711305;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ew7xf1Qz7HFth9YOZ7BPUj3mbcSYNjK/cwBNQCmFf8k=;
- b=C7XeWw+o7JSPwXY78QHZbwDHxNBdKdi0f89WgkF8RYvBzgf4Da1bNJHc
- 48nXb1TkLxQVuo940VEV26hKEJocZGR+gciGvpQngFXSvzHCmJg4wa8dE
- oWD9GgqUFmINIurqhJBWaV3vrp0CNXnOLy6tSPFuVcfbV05x6Kv+q/79P
- Fm2dtY//ytGdlbdvr8xnKstp7oMS5wkgUCfWs9IJ/TzAoTMa72dI+t256
- /N/Yi+LXJ3R23mxSAZLZFUN1vTB6BqAlWUmDceJ40xopp1v0lE/sL7kAq
- uIP/1nJm9Bv+yMiaQTIMsSu0rgRqWfFxU8t3xInELyg2bKEqV2A2zG6h8 A==;
-X-CSE-ConnectionGUID: /SEUPuINSRCRgPL+q2n9+w==
-X-CSE-MsgGUID: CDuVF/s9QMSJPlO7c8p2lw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="42042487"
-X-IronPort-AV: E=Sophos;i="6.14,222,1736841600"; d="scan'208";a="42042487"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 03:48:25 -0800
-X-CSE-ConnectionGUID: j6tNN6b2QzauxXGORj7F1w==
-X-CSE-MsgGUID: psqOlUVsSvSzrpy15RHBkw==
+ t=1741179230; x=1772715230;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=h1ek4096IdD/UovnMrFiD6OwKOJUKM8tG1zKsWyjbdA=;
+ b=VYpFh9pC8FrOynj5dsoCf2JfzBlZLKsk2ujpmqS9oqTSqQcacAwZlMB/
+ 6wVxW3wiEbb0Eta35z5Vfc5qc04wW2DOIxaxBeyR+NTszq9EXB/YpzNCT
+ RdpH2IbbQ47ksPoQPwp8PXDH+y0QAXi7L6U6mY5S9BXK48u4XPDlXRcF0
+ N2QLalz53JChRwJ5zDmABdBdCBfcJts5bnIz5+yq2cJC8KB7TgZzcyH8N
+ hAgL0nrb1CW/WF8j4/H3RiBjg5QIVsk7QmEMQ3KYSDZX1SogDk3btNBLF
+ vOy12lRJaQivTlKVaNtiB+S5v3yYt1ZeugbQ1SdMEJ1YQYhm/yZ2eI5BY w==;
+X-CSE-ConnectionGUID: P+WT3EACT4ucTEfkmrqmSg==
+X-CSE-MsgGUID: eCRNCkwJR5OAc/KDIrqORw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="41389575"
+X-IronPort-AV: E=Sophos;i="6.14,223,1736841600"; d="scan'208";a="41389575"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2025 04:53:50 -0800
+X-CSE-ConnectionGUID: v3pXTqy4SYKC9aOO7DNtoQ==
+X-CSE-MsgGUID: N1k+cpaBQRq6nYJYkj9sJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="149627343"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2025 03:48:24 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v6 5/6] drm/i915/dp: Queue a link check after link training is
- complete
-Date: Wed,  5 Mar 2025 13:48:20 +0200
-Message-ID: <20250305114820.3523077-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20250304152917.3407080-6-imre.deak@intel.com>
-References: <20250304152917.3407080-6-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123881497"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 05 Mar 2025 04:53:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 05 Mar 2025 14:53:46 +0200
+Date: Wed, 5 Mar 2025 14:53:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 15/22] drm/i915/display: Use fixed_rr timings in modeset
+ sequence
+Message-ID: <Z8hJWsf51NBUQG9i@intel.com>
+References: <20250304081948.3177034-1-ankit.k.nautiyal@intel.com>
+ <20250304081948.3177034-16-ankit.k.nautiyal@intel.com>
+ <Z8dLXSTwoOFdOm7a@intel.com>
+ <5f674c8e-3ac5-4e8d-9e9b-19e59d28a96b@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5f674c8e-3ac5-4e8d-9e9b-19e59d28a96b@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,80 +75,257 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After link training - both in case of a passing and failing LT result -
-a work is scheduled to check the link state. This check should take
-place after the link training is completed by disabling the link
-training pattern and setting intel_dp::link_trained=true. Atm, the work
-is scheduled before these steps, which may result in checking the link
-state too early (and thus not retraining the link as expected).
+On Wed, Mar 05, 2025 at 02:11:21PM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 3/5/2025 12:20 AM, Ville Syrjälä wrote:
+> > On Tue, Mar 04, 2025 at 01:49:41PM +0530, Ankit Nautiyal wrote:
+> >> During modeset enable sequence, program the fixed timings, and turn on the
+> >> VRR Timing Generator (VRR TG) for platforms that always use VRR TG.
+> >>
+> >> For this intel_vrr_set_transcoder now always programs fixed timings.
+> >> Later if vrr timings are required, vrr_enable() will switch
+> >> to the real VRR timings.
+> >>
+> >> For platforms that will always use VRR TG, the VRR_CTL Enable bit is set
+> >> and reset in the transcoder enable/disable path.
+> >>
+> >> v2: Update intel_vrr_set_transcoder_timings for fixed_rr.
+> >> v3: Update intel_set_transcoder_timings_lrr for fixed_rr. (Ville)
+> >> v4: Have separate functions to enable/disable VRR CTL
+> >> v5:
+> >> -For platforms that do not always have VRRTG on, do write bits other
+> >> than enable bit and also use write the TRANS_VRR_PUSH register. (Ville)
+> >> -Avoid writing trans_ctl_vrr if !vrr_possible().
+> >>
+> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >> ---
+> >>   drivers/gpu/drm/i915/display/intel_ddi.c    |  5 ++
+> >>   drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++
+> >>   drivers/gpu/drm/i915/display/intel_vrr.c    | 59 ++++++++++++++++-----
+> >>   drivers/gpu/drm/i915/display/intel_vrr.h    |  3 ++
+> >>   4 files changed, 57 insertions(+), 14 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> index 20fc258a4d6d..6f083c28c455 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >> @@ -78,6 +78,7 @@
+> >>   #include "intel_tc.h"
+> >>   #include "intel_vdsc.h"
+> >>   #include "intel_vdsc_regs.h"
+> >> +#include "intel_vrr.h"
+> >>   #include "skl_scaler.h"
+> >>   #include "skl_universal_plane.h"
+> >>   
+> >> @@ -3273,6 +3274,8 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+> >>   				   const struct intel_crtc_state *old_crtc_state,
+> >>   				   const struct drm_connector_state *old_conn_state)
+> >>   {
+> >> +	intel_vrr_transcoder_disable(old_crtc_state);
+> >> +
+> > This isn't symmetric with the enable. If we do the enable just after
+> > intel_ddi_enable_transcoder_func() then I would like to see the disable
+> > done just before intel_ddi_disable_transcoder_func().
+> 
+> Yes you are right. But as per bspec it seems enable and disable 
+> sequences are different.
+> For enable the sequence is: TRANS_DDI_FUNC_CTL -> VRR_CTL ->TRANS_CONF
+> 
+> But as per bspec: 49190, and 68849for Disable it is: VRR_CTL -> 
+> TRANS_CONF -> TRANS_DDI_FUNC_CTL
 
-Fix the above by scheduling the link check work after link training is
-complete.
+I don't think that part applies to PTL anymore. In fact looks like
+there's no VRR disable step listed anymore listed. But I think we
+should have one, and the symmetric spot to enable makes most sense
+to me.
 
-v2:
-- Add MAX_SEQ_TRAIN_FAILURES instead of open-coding it. (Jani)
+> 
+> Though I am following the spec, I am getting issues in the disabling 
+> part. Specifically WARN : pipe_off wait timed out for some platforms as 
+> flagged by the CI BAT failures.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_link_training.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+Hmm. I think the hardware should have swithed over to the
+legacy timing generator at that point since the transcoder
+was still active. So not sure what's causing the timeout.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 3906c11acc968..384eb615caf64 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -56,6 +56,8 @@
- 		lt_dbg(_intel_dp, _dp_phy, "Sink disconnected: " _format, ## __VA_ARGS__); \
- } while (0)
- 
-+#define MAX_SEQ_TRAIN_FAILURES 2
-+
- static void intel_dp_reset_lttpr_common_caps(struct intel_dp *intel_dp)
- {
- 	memset(intel_dp->lttpr_common_caps, 0, sizeof(intel_dp->lttpr_common_caps));
-@@ -1110,6 +1112,7 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
- void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 			      const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 
- 	intel_dp->link_trained = true;
-@@ -1124,6 +1127,13 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 	}
- 
- 	intel_hpd_unblock(encoder);
-+
-+	if (!display->hotplug.ignore_long_hpd &&
-+	    intel_dp->link.seq_train_failures < MAX_SEQ_TRAIN_FAILURES) {
-+		int delay_ms = intel_dp->link.seq_train_failures ? 0 : 2000;
-+
-+		intel_encoder_link_check_queue_work(encoder, delay_ms);
-+	}
- }
- 
- static bool
-@@ -1628,7 +1638,6 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
- 	} else if (passed) {
- 		intel_dp->link.seq_train_failures = 0;
--		intel_encoder_link_check_queue_work(encoder, 2000);
- 		return;
- 	}
- 
-@@ -1651,10 +1660,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 		return;
- 	}
- 
--	if (intel_dp->link.seq_train_failures < 2) {
--		intel_encoder_link_check_queue_work(encoder, 0);
-+	if (intel_dp->link.seq_train_failures < MAX_SEQ_TRAIN_FAILURES)
- 		return;
--	}
- 
- 	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
- 		return;
+Did you have the TRANS_VTOTAL=0 patch included in those tests?
+
+> 
+> I can try the change you mentioned to see if it helps.
+> 
+> 
+> >
+> >>   	if (!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DP_MST))
+> >>   		intel_ddi_post_disable_hdmi_or_sst(state, encoder, old_crtc_state,
+> >>   						   old_conn_state);
+> >> @@ -3521,6 +3524,8 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
+> >>   
+> >>   	intel_ddi_enable_transcoder_func(encoder, crtc_state);
+> >>   
+> >> +	intel_vrr_transcoder_enable(crtc_state);
+> >> +
+> >>   	/* Enable/Disable DP2.0 SDP split config before transcoder */
+> >>   	intel_audio_sdp_split_update(crtc_state);
+> >>   
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> index bd47cf127b4c..7dbc9b3bdbe4 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> @@ -1049,6 +1049,8 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
+> >>   		intel_crtc_vblank_off(old_pipe_crtc_state);
+> >>   	}
+> >>   
+> >> +	intel_vrr_transcoder_disable(old_crtc_state);
+> >> +
+> > Same here.
+> >
+> >>   	intel_disable_transcoder(old_crtc_state);
+> >>   
+> >>   	drm_dp_remove_payload_part1(&intel_dp->mst.mgr, new_mst_state, new_payload);
+> >> @@ -1326,6 +1328,8 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+> >>   
+> >>   	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+> >>   
+> >> +	intel_vrr_transcoder_enable(pipe_config);
+> >> +
+> >>   	intel_ddi_clear_act_sent(encoder, pipe_config);
+> >>   
+> >>   	intel_de_rmw(display, TRANS_DDI_FUNC_CTL(display, trans), 0,
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> index c1387d3f60b2..97040ab9ed86 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> >> @@ -456,12 +456,6 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+> >>   		intel_de_rmw(display, CHICKEN_TRANS(display, cpu_transcoder),
+> >>   			     0, PIPE_VBLANK_WITH_DELAY);
+> >>   
+> >> -	if (!intel_vrr_possible(crtc_state)) {
+> >> -		intel_de_write(display,
+> >> -			       TRANS_VRR_CTL(display, cpu_transcoder), 0);
+> >> -		return;
+> >> -	}
+> >> -
+> >>   	if (crtc_state->cmrr.enable) {
+> >>   		intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder),
+> >>   			       upper_32_bits(crtc_state->cmrr.cmrr_m));
+> >> @@ -473,14 +467,7 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+> >>   			       lower_32_bits(crtc_state->cmrr.cmrr_n));
+> >>   	}
+> >>   
+> >> -	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+> >> -		       crtc_state->vrr.vmin - 1);
+> >> -	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+> >> -		       crtc_state->vrr.vmax - 1);
+> >> -	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+> >> -		       trans_vrr_ctl(crtc_state));
+> >> -	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+> >> -		       crtc_state->vrr.flipline - 1);
+> >> +	intel_vrr_set_fixed_rr_timings(crtc_state);
+> >>   
+> >>   	if (HAS_AS_SDP(display))
+> >>   		intel_de_write(display,
+> >> @@ -614,6 +601,50 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+> >>   	intel_vrr_set_fixed_rr_timings(old_crtc_state);
+> >>   }
+> >>   
+> >> +void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
+> >> +{
+> >> +	struct intel_display *display = to_intel_display(crtc_state);
+> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >> +
+> >> +	if (!HAS_VRR(display))
+> >> +		return;
+> >> +
+> >> +	if (!intel_vrr_possible(crtc_state))
+> >> +		return;
+> >> +
+> >> +	if (!intel_vrr_always_use_vrr_tg(display)) {
+> >> +		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+> >> +			       trans_vrr_ctl(crtc_state));
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+> >> +		       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
+> >> +
+> >> +	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+> >> +		       TRANS_PUSH_EN);
+> > IIRC push should generally be set before the VRR_CTL enable.
+> > Perhaps doesn't matter here, since the transcoder is still
+> > not enabled, but would be nice to be consistent with intel_vrr_enable().
+> 
+> You are right will change this.
+> 
+> 
+> >
+> >> +}
+> >> +
+> >> +void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
+> >> +{
+> >> +	struct intel_display *display = to_intel_display(crtc_state);
+> >> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >> +
+> >> +	if (!HAS_VRR(display))
+> >> +		return;
+> >> +
+> >> +	if (!intel_vrr_possible(crtc_state))
+> >> +		return;
+> >> +
+> >> +	if (!intel_vrr_always_use_vrr_tg(display)) {
+> >> +		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+> >> +			       trans_vrr_ctl(crtc_state));
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
+> > Should probably clear the push enable for good measure too.
+> 
+> Will clear the push enable, while disabling.
+> 
+> 
+> PS: I had tried both with and without clearing the PUSH enable after 
+> disabling VRR, but the "pipe_off wait timed out" persisted.
+> 
+> 
+> >
+> >> +}
+> >> +
+> >>   static
+> >>   bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+> >>   {
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> index 514822577e8a..c81f98f83b58 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> >> @@ -12,6 +12,7 @@ struct drm_connector_state;
+> >>   struct intel_atomic_state;
+> >>   struct intel_connector;
+> >>   struct intel_crtc_state;
+> >> +struct intel_display;
+> > Leftover from some other change?
+> 
+> Sorry about this , it was indeed leftover from other patch.
+> 
+> 
+> Regards,
+> 
+> Ankit
+> 
+> >
+> >>   struct intel_dsb;
+> >>   
+> >>   bool intel_vrr_is_capable(struct intel_connector *connector);
+> >> @@ -35,5 +36,7 @@ int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state);
+> >>   int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state);
+> >>   int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
+> >>   int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
+> >> +void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
+> >> +void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
+> >>   
+> >>   #endif /* __INTEL_VRR_H__ */
+> >> -- 
+> >> 2.45.2
+
 -- 
-2.44.2
-
+Ville Syrjälä
+Intel
