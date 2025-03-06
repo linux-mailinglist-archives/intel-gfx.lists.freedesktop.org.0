@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03794A569CD
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF32AA569B6
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75410EBB0;
-	Fri,  7 Mar 2025 13:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3881A10EB9D;
+	Fri,  7 Mar 2025 13:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="mt8RZlBl";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="QqBDPvgZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-15.smtpout.orange.fr [193.252.22.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94BE210E9F2;
- Thu,  6 Mar 2025 15:07:59 +0000 (UTC)
+Received: from out.smtpout.orange.fr (out-17.smtpout.orange.fr [193.252.22.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 496FA10EA0E;
+ Thu,  6 Mar 2025 16:08:16 +0000 (UTC)
 Received: from [172.16.82.72] ([124.33.176.97]) by smtp.orange.fr with ESMTPA
- id qCp8tfVrzYqvfqCpCtQNCR; Thu, 06 Mar 2025 16:07:57 +0100
+ id qDlStMikP0ogTqDlWtO2V5; Thu, 06 Mar 2025 17:08:13 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1741273677;
- bh=AtOARcm7etY/CYGaI1Zh2dF1obFKsR0z+sX6jBAouw8=;
+ s=t20230301; t=1741277293;
+ bh=ntx+3nq4V7yi7gEdsBrCg2/MKlVb0jJAsXsOG3Q1Q6Q=;
  h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=mt8RZlBlKrrvCMNSwkYDS+KCzpYJJxQZSrDmvOkGDkNdM4kTJbuY9R7tCqh45ziVk
- uNJMpGecfHrF1CywkDRiAzWtB7jZOpEem/Lckaerkc2fgA0wuys+A1kBXjmAJACHoW
- MK+NCg+/qpx2inKG+ihiI0G1aNlzsv58fjH79YOG7B6YiR3PusbtPHHVUeCxWjB4VE
- Qh3aRjjFaSUwBeHxj4fuB3hEC3Jwx0EgieImUpvshjwotUsZ/fnh0NZwmVRa6sWJMX
- RYby6COMUSG6BZ4sR1ltucLokXCb/KBKcUoh0oumyRFS4i18Q/G8o2S9YjueL6260H
- MIlr+gkolPdVA==
+ b=QqBDPvgZfeQKlj94cL0sLp7HN6qdX0lxzBcAuLquQCqlcZScYqlaxcOpgUIPpFgUp
+ k41xxGMRz/ZRLYlQG5bJ6sU0X6XJHLEOZ98LRRRU31fF8VUg/9C336KQynoG4qFxv1
+ 39WxtLBfHS91vmpl1YNkx/t60jrmEZF3S95ER+TVUxAW+awdR4Gs8cfRQuE59JhRDD
+ k18bdAgpV4QKuNpnBhGwZtPIqiiUsOjf2KWJ/pYROamSIVakkdfIHvA7Z40W/T0hkF
+ yFeyFGDl7y9fvuijVn0o2ZoAz+EGXm+Apie5YeJzg25q1xVNPATfvLbFNnkCy5CRdy
+ 2zUn3aft7Bztw==
 X-ME-Helo: [172.16.82.72]
 X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 06 Mar 2025 16:07:57 +0100
+X-ME-Date: Thu, 06 Mar 2025 17:08:13 +0100
 X-ME-IP: 124.33.176.97
-Message-ID: <84abfaef-0fb9-4fd4-a657-0cc80eb1de0f@wanadoo.fr>
-Date: Fri, 7 Mar 2025 00:07:45 +0900
+Message-ID: <1c081c07-2833-4fa9-96fb-88a7295d2c14@wanadoo.fr>
+Date: Fri, 7 Mar 2025 01:08:01 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and non-asm
- GENMASK()
+Subject: Re: [PATCH v5 2/7] bits: introduce fixed-type genmasks
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc: Yury Norov <yury.norov@gmail.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -49,10 +48,11 @@ Cc: Yury Norov <yury.norov@gmail.com>,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
  David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jani Nikula <jani.nikula@intel.com>
 References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
- <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
- <Z8mdk3z7t42CWfmZ@smile.fi.intel.com>
+ <20250306-fixed-type-genmasks-v5-2-b443e9dcba63@wanadoo.fr>
+ <Z8meY7NS65_d14og@smile.fi.intel.com>
 Content-Language: en-US
 From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
@@ -65,9 +65,9 @@ Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
  yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
  CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
  ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <Z8mdk3z7t42CWfmZ@smile.fi.intel.com>
+In-Reply-To: <Z8meY7NS65_d14og@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 07 Mar 2025 13:57:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,52 +84,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06/03/2025 at 22:05, Andy Shevchenko wrote:
-> On Thu, Mar 06, 2025 at 08:29:52PM +0900, Vincent Mailhol via B4 Relay wrote:
->> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+On 06/03/2025 à 22:08, Andy Shevchenko wrote:
+> On Thu, Mar 06, 2025 at 08:29:53PM +0900, Vincent Mailhol via B4 Relay wrote:
+>> From: Yury Norov <yury.norov@gmail.com>
 >>
->> In an upcoming change, GENMASK() and its friends will indirectly
->> depend on sizeof() which is not available in asm.
+>> Add GENMASK_TYPE() which generalizes __GENMASK() to support different
+>> types, and implement fixed-types versions of GENMASK() based on it.
+>> The fixed-type version allows more strict checks to the min/max values
+>> accepted, which is useful for defining registers like implemented by
+>> i915 and xe drivers with their REG_GENMASK*() macros.
 >>
->> Instead of adding further complexity to __GENMASK() to make it work
->> for both asm and non asm, just split the definition of the two
->> variants.
+>> The strict checks rely on shift-count-overflow compiler check to fail
+>> the build if a number outside of the range allowed is passed.
+>> Example:
+>>
+>>   #define FOO_MASK GENMASK_U32(33, 4)
+>>
+>> will generate a warning like:
+>>
+>>   include/linux/bits.h:51:27: error: right shift count >= width of type [-Werror=shift-count-overflow]
+>>      51 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+>>         |                           ^~
 > 
-> ...
-> 
->> -/*
->> - * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
->> - * disable the input check if that is the case.
->> - */
-> 
-> I believe this comment is still valid...
-> 
->> +#else /* defined(__ASSEMBLY__) */
-> 
-> 
-> ...here.
-> 
-> Otherwise justify its removal in the commit message.
+> Code LGTM
 
-OK. I will restore the comment in v6, but will move it to the #else
-branch, like this:
+Does this mean I get your Reviewed-by tag? Or will you wait the v6 to
+formally give it?
 
-  #else /* defined(__ASSEMBLY__) */
+> but just to be sure: you prepared your series using histogram
+> diff algo, right?
 
-  /*
-   * BUILD_BUG_ON_ZERO is not available in h files included from asm
-   * files, so no input checks in assembly.
-   */
-  #define GENMASK(h, l)		__GENMASK(h, l)
-  #define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)
+No, I never used the histogram diff. My git config is extremely boring.
+Mostly vanilla.
 
-  #endif /* !defined(__ASSEMBLY__) */
+I remember that Linus even commented on this:
 
->> +#define GENMASK(h, l)		__GENMASK(h, l)
->> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)
->> +
->> +#endif /* !defined(__ASSEMBLY__) */
-> 
+https://lore.kernel.org/all/CAHk-=wiUxm-NZ1si8dXWVTTJ9n3c+1SRTC0V+Lk7hOE4bDVwJQ@mail.gmail.com/
+
+But he made it clear this was *not* a requirement, so I just left the
+diff algorithm to the default. Or did I miss any communication that
+contributors should now use histogram diff?
+
+Regardless, I do not mind activating it. I just did a:
+
+  git config diff.algorithm histogram
+
+The v6 will have histogram diffs.
+
 
 Yours sincerely,
 Vincent Mailhol
