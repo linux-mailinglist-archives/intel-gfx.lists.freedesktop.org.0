@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74AF7A55132
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 17:35:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85588A55133
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 17:35:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB4C510EA1E;
-	Thu,  6 Mar 2025 16:35:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F25D910EA0B;
+	Thu,  6 Mar 2025 16:35:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GVFjadYl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bJfffqd8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB84710EA0B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 16:35:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E285C10EA0B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 16:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741278917; x=1772814917;
+ t=1741278920; x=1772814920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xJ6BKYnOKvJWD38CEkDNJTV445CHjyiGeNmMA2KvEOI=;
- b=GVFjadYlo1TneQxb2wiJKqu/55+jlzQ3RFXwwmrtfG3SPmkGqZZgJ2lK
- YRtb0WYFsuqSCAZ1USzLNoRVgvRauFrXhgWlTEuEhwQqOALck+uERbtmS
- x4/rTQZ2gqLwOI1SyckK0jnRfUI7Le3ynlxtxOJtfO0ZOqbFMi2F66Lwj
- doygqLiSnX3T8+kheEuzy2oh1atlOF8vQTGm/BHnIHBJxJHA27bjgM4OH
- zqIah+XL2ahd3W5h0J+u/BH9CmW4Z5VGOKQp3V9FnK2xYMmeza2OX/Mbl
- EiNhPqxWcixiYayT8N5W2HZnBNbu9UZvumvgGExdKYe7dLoaQOIR/f7UL w==;
-X-CSE-ConnectionGUID: k4CuaecVQJ+t+/UCxdIvRQ==
-X-CSE-MsgGUID: 2eeIj+zKSDW7kK80/AwSfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53704405"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="53704405"
+ bh=F5yNmw4Nmg+muQz5+YonWOUeeQDVvYu/Nkr6QipUTIU=;
+ b=bJfffqd8nJNEu5mwoTyCtyxoAk9uKG7ijbH2rGAquoKrKPFJ4a6FMx6k
+ l1SawWaMo5Sbso9agefC0I9D2I+4cbgTrDu7WZHCjFS4D3idY5YPJqUwK
+ Vx4EsWtFta503b5TRbfutTWBKjyboGjp8RfogkZ1BFd94cbWKv6a2ez5o
+ BsBcg6nxBFfHZ6wLJNDNO1VWV3cBTt1Jj2PEA5gwA8ywcVR/ff0Ri1pVM
+ JsWUFgMrdKOv4sk9SrqThfBXXtbJSRpnHwIJbemxccq2JwWZVcJXQFKzJ
+ Sd8obXn4ZbWBSblJFWPI6PPz5lYzj3aswgTP9I0Sd1X+W7SsKa3RS80ai w==;
+X-CSE-ConnectionGUID: asKUNPriQCqGtEi59ueMVg==
+X-CSE-MsgGUID: ZdZmwfJTSgujH/k3UOPkxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53704411"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="53704411"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 08:35:17 -0800
-X-CSE-ConnectionGUID: trRBojbfRgasAzFWINmaFQ==
-X-CSE-MsgGUID: cHFi4TRsRLigty9VJVjO1A==
+ 06 Mar 2025 08:35:20 -0800
+X-CSE-ConnectionGUID: EeqISK6cSXqgaIURujuazQ==
+X-CSE-MsgGUID: KRs20IDBQHumel7q99M0QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124289271"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124289297"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 06 Mar 2025 08:35:14 -0800
+ by orviesa005.jf.intel.com with SMTP; 06 Mar 2025 08:35:17 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Mar 2025 18:35:13 +0200
+ Thu, 06 Mar 2025 18:35:16 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Subject: [PATCH v2 17/18] drm/i915: Move dbuf_state->active_piepes into
- skl_wm_get_hw_state()
-Date: Thu,  6 Mar 2025 18:34:19 +0200
-Message-ID: <20250306163420.3961-18-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 18/18] drm/i915: Relocate intel_bw_crtc_update()
+Date: Thu,  6 Mar 2025 18:34:20 +0200
+Message-ID: <20250306163420.3961-19-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250306163420.3961-1-ville.syrjala@linux.intel.com>
 References: <20250306163420.3961-1-ville.syrjala@linux.intel.com>
@@ -72,82 +71,70 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the dbuf_state readout parts into skl_wm_get_hw_state()
-so that the details are better hidden from sight.
-
-This will stop updating this on pre-skl, but that's what we want
-since the dbuf state is only used on skl+.
+intel_bw_crtc_update() is only used by the readout path, so relocate
+the function next its only caller. Easier to read the code when related
+things are nearby.
 
 Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 8 --------
- drivers/gpu/drm/i915/display/skl_watermark.c       | 5 ++++-
- 2 files changed, 4 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 36 ++++++++++++-------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 6a4142d7d025..312b21b1ab59 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -693,8 +693,6 @@ static void readout_plane_state(struct drm_i915_private *i915)
- static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index e4d79b496e12..048be2872247 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -806,24 +806,6 @@ static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_state)
+ 	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state), 10), 512);
+ }
+ 
+-static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+-				 const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-
+-	bw_state->data_rate[crtc->pipe] =
+-		intel_bw_crtc_data_rate(crtc_state);
+-	bw_state->num_active_planes[crtc->pipe] =
+-		intel_bw_crtc_num_active_planes(crtc_state);
+-	bw_state->force_check_qgv = true;
+-
+-	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
+-		    pipe_name(crtc->pipe),
+-		    bw_state->data_rate[crtc->pipe],
+-		    bw_state->num_active_planes[crtc->pipe]);
+-}
+-
+ static unsigned int intel_bw_num_active_planes(struct drm_i915_private *dev_priv,
+ 					       const struct intel_bw_state *bw_state)
  {
- 	struct intel_display *display = &i915->display;
--	struct intel_dbuf_state *dbuf_state =
--		to_intel_dbuf_state(i915->display.dbuf.obj.state);
- 	struct intel_pmdemand_state *pmdemand_state =
- 		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
- 	enum pipe pipe;
-@@ -702,7 +700,6 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 	struct intel_encoder *encoder;
- 	struct intel_connector *connector;
- 	struct drm_connector_list_iter conn_iter;
--	u8 active_pipes = 0;
+@@ -1422,6 +1404,24 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	return 0;
+ }
  
- 	for_each_intel_crtc(&i915->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
-@@ -719,17 +716,12 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
- 		crtc->base.enabled = crtc_state->hw.enable;
- 		crtc->active = crtc_state->hw.active;
- 
--		if (crtc_state->hw.active)
--			active_pipes |= BIT(crtc->pipe);
--
- 		drm_dbg_kms(&i915->drm,
- 			    "[CRTC:%d:%s] hw state readout: %s\n",
- 			    crtc->base.base.id, crtc->base.name,
- 			    str_enabled_disabled(crtc_state->hw.active));
- 	}
- 
--	dbuf_state->active_pipes = active_pipes;
--
- 	readout_plane_state(i915);
- 
- 	for_each_intel_encoder(&i915->drm, encoder) {
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 0bd7aa3b2877..2d0de1c63308 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3157,6 +3157,7 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
- 		dbuf_state->joined_mbus = intel_de_read(display, MBUS_CTL) & MBUS_JOIN;
- 
- 	dbuf_state->mdclk_cdclk_ratio = intel_mdclk_cdclk_ratio(display, &display->cdclk.hw);
-+	dbuf_state->active_pipes = 0;
- 
- 	for_each_intel_crtc(display->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
-@@ -3168,8 +3169,10 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
- 
- 		memset(&crtc_state->wm.skl.optimal, 0,
- 		       sizeof(crtc_state->wm.skl.optimal));
--		if (crtc_state->hw.active)
-+		if (crtc_state->hw.active) {
- 			skl_pipe_wm_get_hw_state(crtc, &crtc_state->wm.skl.optimal);
-+			dbuf_state->active_pipes |= BIT(pipe);
-+		}
- 		crtc_state->wm.skl.raw = crtc_state->wm.skl.optimal;
- 
- 		memset(&dbuf_state->ddb[pipe], 0, sizeof(dbuf_state->ddb[pipe]));
++static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
++				 const struct intel_crtc_state *crtc_state)
++{
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++
++	bw_state->data_rate[crtc->pipe] =
++		intel_bw_crtc_data_rate(crtc_state);
++	bw_state->num_active_planes[crtc->pipe] =
++		intel_bw_crtc_num_active_planes(crtc_state);
++	bw_state->force_check_qgv = true;
++
++	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
++		    pipe_name(crtc->pipe),
++		    bw_state->data_rate[crtc->pipe],
++		    bw_state->num_active_planes[crtc->pipe]);
++}
++
+ void intel_bw_update_hw_state(struct intel_display *display)
+ {
+ 	struct intel_bw_state *bw_state =
 -- 
 2.45.3
 
