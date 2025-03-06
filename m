@@ -2,78 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBDEA569B3
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF26A569AA
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1214510EB8F;
-	Fri,  7 Mar 2025 13:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E9B10EB81;
+	Fri,  7 Mar 2025 13:57:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="VhZSLwRR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iEI/2yVX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-13.smtpout.orange.fr [193.252.22.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9F3510E928;
- Thu,  6 Mar 2025 09:38:45 +0000 (UTC)
-Received: from [172.16.82.72] ([124.33.176.97]) by smtp.orange.fr with ESMTPA
- id q7gWtAq3rM2iXq7gatskzm; Thu, 06 Mar 2025 10:38:43 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1741253923;
- bh=TeFwuXaI558YeAA2DS3IrxfJgqUdjuY9B494gVS/IMQ=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=VhZSLwRRGgOF/Ov5Kl4YckowxvwrWf7jCXvU6Vf9CWG1CVBqVGsTP8uAZ/yVFAK3v
- zghYZIzWXTYyPwfP0DKsEU565p9l0sv0hi+3pZpptau8JAIRlCtDFmvtpPXRAGnpOY
- txvasqxnEOlCaatRtUIp3QTN/7Pn+DRmw/bKlqGwvRmgzdiJhSBM43Xe/ex83MVjBW
- EAoPd4rLRNjM2yczQDekkw6TIrqqoPh97YzFB9cOMiGoWJVgo3RbvxWgTX2EbtAMBe
- HT+svuqHqHlG47Y49UUFZ+Timcl2yCRhdyoI+wlSL8PjF00vwkR7AndnaDdkLGcDJ1
- W9SbT1oRZPdFQ==
-X-ME-Helo: [172.16.82.72]
-X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 06 Mar 2025 10:38:43 +0100
-X-ME-IP: 124.33.176.97
-Message-ID: <f45a2a23-6833-492e-b331-30766f1370f8@wanadoo.fr>
-Date: Thu, 6 Mar 2025 18:38:31 +0900
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9D1110E946;
+ Thu,  6 Mar 2025 11:31:11 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id C981C5C5619;
+ Thu,  6 Mar 2025 11:28:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0C6FBC4CEE8;
+ Thu,  6 Mar 2025 11:31:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1741260667;
+ bh=fkA3LgBiZ9P+XFOIZWID3AiDisw4h/M+BwpUezO3WB0=;
+ h=From:Subject:Date:To:Cc:Reply-To:From;
+ b=iEI/2yVXL7kv0R61esJ/3nrrZEDp9VtxZ71OFiWgxHdq42jQuch1EhVLbATfzL7Up
+ bIc8c2yphHNbmKBNnc3OfsQ/jXUT8GCrnYfLBdmiy/JmgRRLqfvuV3iSOFbKm3RM6n
+ /5xZPLkAw8jELi5VyxQz82Q9Wlzc+MCx/4xI96fQZRX2it3rg+0PfXlZRVJJzYEb51
+ tLh0zLOmkdzhykWDRFCCTOHU21PuA2vzXyG7YNwkXFb3r5rSNBl9OSqphkLdkyrg0r
+ 9/tzNKWE4NevUGkeYCA/2SrgpeUs8ZlLFyS3T4La3WyMr3KBJPSxVHsu//hMkcgazy
+ cjOSprmLTJsKg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 014C9C282EC;
+ Thu,  6 Mar 2025 11:31:07 +0000 (UTC)
+From: Vincent Mailhol via B4 Relay
+ <devnull+mailhol.vincent.wanadoo.fr@kernel.org>
+Subject: [PATCH v5 0/7] bits: Fixed-type GENMASK()/BIT()
+Date: Thu, 06 Mar 2025 20:29:51 +0900
+Message-Id: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/8] bits: introduce fixed-type BIT
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- David Laight <david.laight.linux@gmail.com>,
- Yury Norov <yury.norov@gmail.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
- <20250305-fixed-type-genmasks-v4-4-1873dcdf6723@wanadoo.fr>
- <Z8hgqOB5Ym-GGykS@smile.fi.intel.com>
- <d7f3150d-0167-44be-90b2-17f8a050687c@wanadoo.fr>
- <Z8hyNXVZxLzhEzNy@smile.fi.intel.com>
- <824dc1d1-14f0-433e-aa3f-679527b87077@wanadoo.fr>
- <Z8isZodEqhZw5p7-@smile.fi.intel.com> <20250305215027.5d9be1fa@pumpkin>
- <Z8lnFpkVTjpFHZtB@smile.fi.intel.com>
-Content-Language: en-US
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
- xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
- LFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI+wrIEExYKAFoC
- GwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQTtj3AFdOZ/IOV06OKrX+uI
- bbuZwgUCZx41XhgYaGtwczovL2tleXMub3BlbnBncC5vcmcACgkQq1/riG27mcIYiwEAkgKK
- BJ+ANKwhTAAvL1XeApQ+2NNNEwFWzipVAGvTRigA+wUeyB3UQwZrwb7jsQuBXxhk3lL45HF5
- 8+y4bQCUCqYGzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrbYZzu0JG5w8gxE6EtQe6LmxKMqP6E
- yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
- CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
- ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <Z8lnFpkVTjpFHZtB@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAC+HyWcC/22OQQ6DIBQFr9Kw7jeIIKQr79G4IPBR0goGrK0x3
+ r3aprsuJ3lvMivJmDxmcjmtJOHss49hB3E+EdPr0CF4uzNhlAnKmALnX2hhWkaEDsOg8y2DsqU
+ WQriKoyL7c0x4zA7rtd3ZpTjA1CfUPxenjCoquWBlIaSksoYS7g+jc2Fx0Mn0vvFhwnth4nAoe
+ 5+nmJZP58wP8TepouJv0syBQqlkZY11tWRV89RB2xgLl0i7bdsb8fKhDPoAAAA=
+X-Change-ID: 20250228-fixed-type-genmasks-8d1a555f34e8
+To: Yury Norov <yury.norov@gmail.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
+ David Laight <David.Laight@ACULAB.COM>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ Jani Nikula <jani.nikula@intel.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5101;
+ i=mailhol.vincent@wanadoo.fr; h=from:subject:message-id;
+ bh=fkA3LgBiZ9P+XFOIZWID3AiDisw4h/M+BwpUezO3WB0=;
+ b=owGbwMvMwCV2McXO4Xp97WbG02pJDOkn2+Mzt6hqV07xqVjoevnexmONu5TXS0+au/KUWaKug
+ SLfgVz2jlIWBjEuBlkxRZZl5ZzcCh2F3mGH/lrCzGFlAhnCwMUpABOZIc7wPypxXsPk6syfe7Y6
+ L4uQuagT0BagLlhtvnChstBS/9TlyowMCyPaz/3gmWj/L/Xfmd8W2m7v+nV+2TldcVsdvmvdmoo
+ DTAA=
+X-Developer-Key: i=mailhol.vincent@wanadoo.fr; a=openpgp;
+ fpr=ED8F700574E67F20E574E8E2AB5FEB886DBB99C2
+X-Endpoint-Received: by B4 Relay for mailhol.vincent@wanadoo.fr/default
+ with auth_id=291
+X-Original-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 X-Mailman-Approved-At: Fri, 07 Mar 2025 13:57:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,107 +88,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: mailhol.vincent@wanadoo.fr
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 06/03/2025 at 18:12, Andy Shevchenko wrote:
-> On Wed, Mar 05, 2025 at 09:50:27PM +0000, David Laight wrote:
->> On Wed, 5 Mar 2025 21:56:22 +0200
->> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
->>> On Thu, Mar 06, 2025 at 02:17:18AM +0900, Vincent Mailhol wrote:
->>>> On 06/03/2025 at 00:48, Andy Shevchenko wrote:  
->>>>> On Wed, Mar 05, 2025 at 11:48:10PM +0900, Vincent Mailhol wrote:  
->>>>>> On 05/03/2025 at 23:33, Andy Shevchenko wrote:  
->>>>>>> On Wed, Mar 05, 2025 at 10:00:16PM +0900, Vincent Mailhol via B4 Relay wrote:  
-> 
-> ...
-> 
->>>>>>>> +#define BIT_U8(b) (BIT_INPUT_CHECK(u8, b) + (unsigned int)BIT(b))
->>>>>>>> +#define BIT_U16(b) (BIT_INPUT_CHECK(u16, b) + (unsigned int)BIT(b))  
->>>>>>>
->>>>>>> Why not u8 and u16? This inconsistency needs to be well justified.  
->>>>>>
->>>>>> Because of the C integer promotion rules, if casted to u8 or u16, the
->>>>>> expression will immediately become a signed integer as soon as it is get
->>>>>> used. For example, if casted to u8
->>>>>>
->>>>>>   BIT_U8(0) + BIT_U8(1)
->>>>>>
->>>>>> would be a signed integer. And that may surprise people.  
->>>>>
->>>>> Yes, but wouldn't be better to put it more explicitly like
->>>>>
->>>>> #define BIT_U8(b)	(BIT_INPUT_CHECK(u8, b) + (u8)BIT(b) + 0 + UL(0)) // + ULL(0) ?  
->>>>
->>>> OK, the final result would be unsigned. But, I do not follow how this is
->>>> more explicit.
->>>>
->>>> Also, why doing:
->>>>
->>>>   (u8)BIT(b) + 0 + UL(0)
->>>>
->>>> and not just:
->>>>
->>>>   (u8)BIT(b) + UL(0)
->>>>
->>>> ?
->>>>
->>>> What is that intermediary '+ 0' for?
->>>>
->>>> I am sorry, but I am having a hard time understanding how casting to u8
->>>> and then doing an addition with an unsigned long is more explicit than
->>>> directly doing a cast to the desired type.  
->>>
->>> Reading this again, I think we don't need it at all. u8, aka unsigned char,
->>> will be promoted to int, but it will be int with a value < 256, can't be signed
->>> as far as I understand this correctly.
->>
->> The value can't be negative, but the type will be a signed one.
-> 
-> Yes, that's what I mentioned above: "int with the value < 256".
-> 
->> Anything comparing types (and there are a few) will treat it as signed.
->> It really is bad practise to even pretend you can have an expression
->> (rather that a variable) that has a type smaller than 'int'.
->> It wouldn't surprise me if even an 'a = b' assignment promotes 'b' to int.
-> 
-> We have tons of code with u8/u16, what you are proposing here is like
-> "let's get rid of those types and replace all of them by int/unsigned int".
-> We have ISAs that are byte-oriented despite being 32- or 64-bit platforms.
-> 
->> So it is even questionable whether BIT8() and BIT16() should even exist at all.
-> 
-> The point is to check the boundaries and not in the returned value per se.
+Introduce some fixed width variant of the GENMASK() and the BIT()
+macros in bits.h. Note that the main goal is not to get the correct
+type, but rather to enforce more checks at compile time. For example:
 
-+1
+  GENMASK_U16(16, 0)
 
-I will also add that this adds to the readability of the code. In a
-driver, if I see:
+will raise a build bug.
 
-  #define REG_FOO1_MASK GENMASK(6, 2)
-  #define REG_FOO2_MASK GENMASK(12, 7)
+This series is a continuation of:
 
-it does not tell me much about the register. Whereas if I see:
+  https://lore.kernel.org/intel-xe/20240208074521.577076-1-lucas.demarchi@intel.com
 
-  #define REG_FOO1_MASK GENMASK_U16(6, 2)
-  #define REG_FOO2_MASK GENMASK_U16(12, 7)
+from Lucas De Marchi. Above series is one year old. I really think
+that this was a good idea and I do not want this series to die. So I
+am volunteering to revive it.
 
-then I know that this is for a 16 bit register.
+Meanwhile, many changes occurred in bits.h. The most significant
+change is that __GENMASK() was moved to the uapi headers.
 
->> There can be reasons to return 'unsigned int' rather than 'unsigned long'.
->> But with the type definitions that Linux uses (and can't really be changed)
->> you can have BIT32() that is 'unsigned int' and BIT64() that is 'unsigned long
->> long'. These are then the same on 32bit and 64bit.
+In v4 an onward, I introduce one big change: split the definition of
+the asm and non-asm GENMASK(). I think this is controversial.
+Especially, Yury commented that he did not want such split. So I
+initially implemented a first draft in which both the asm and non-asm
+version would rely on the same helper macro, i.e. adding this:
 
-So, at the end, my goal when introducing that unsigned int cast was not
-to confuse people. This had the opposite effect. Nearly all the
-reviewers pointed at that cast.
+  #define __GENMASK_t(t, w, h, l)			\
+  	(((t)~_ULL(0) - ((t)1 << (l)) + 1) &		\
+  	 ((t)~_ULL(0) >> (w - 1 - (h))))
+    
+to uapi/bits.h. And then, the different GENMASK()s would look like
+this:
 
-I will revert this in the v5. The U8 and U16 variants of both GENMASK
-and BIT will return an u8 and u16 respectively. And unless someone
-manages to convince Yury otherwise, I will keep it as such.
+  #define __GENMASK(h, l) __GENMASK_t(unsigned long, __BITS_PER_LONG, h, l)
+    
+and so on.
+    
+I implemented it, and the final result looks quite ugly. Not only do
+we need to manually provide the width each time, the biggest concern
+is that adding this to the uapi is asking for trouble. Who knows how
+people are going to use this? And once it is in the uapi, there is
+virtually no way back.
 
+Finally, I do not think it makes sense to expose the fixed width
+variants to the asm. The fixed width integers type are a C
+concept. For asm, the long and long long variants seems sufficient.
 
-Yours sincerely,
-Vincent Mailhol
+And so, after implementing both, the asm and non-asm split seems way
+more clean and I think this is the best compromise. Let me know what
+you think :)
+
+As requested, here are the bloat-o-meter stats:
+
+  $ ./scripts/bloat-o-meter vmlinux_before.o vmlinux_after.o 
+  add/remove: 0/0 grow/shrink: 4/2 up/down: 5/-4 (1)
+  Function                                     old     new   delta
+  intel_psr_invalidate                         666     668      +2
+  mst_stream_compute_config                   1652    1653      +1
+  intel_psr_flush                              977     978      +1
+  intel_dp_compute_link_config                1327    1328      +1
+  cfg80211_inform_bss_data                    5109    5108      -1
+  intel_drrs_activate                          379     376      -3
+  Total: Before=22723481, After=22723482, chg +0.00%
+
+(done with GCC 12.4.1 on a defconfig)
+
+--
+2.43.0
+
+---
+Changes from v4:
+
+  - Rebase on https://github.com/norov/linux/tree/bitmap-for-next
+
+  - Rename GENMASK_t() to GENMASK_TYPE()
+
+  - First patch of v4 (the typo fix 'init128' -> 'int128') is removed
+    because it was resent separately in:
+    https://lore.kernel.org/all/20250305-fix_init128_typo-v1-1-cbe5b8e54e7d@wanadoo.fr
+
+  - Replace the (t)~ULL(0) by type_max(t). This way, GENMASK_TYPE()
+    can now be used to generate GENMASK_U128().
+
+  - Get rid of the unsigned int cast for the U8 and U16 variants.
+
+  - Add the BIT_TYPE() helper macro.
+
+  - Link to v4: https://lore.kernel.org/r/20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr
+
+Changes from v3:
+
+  - Rebase on v6.14-rc5
+
+  - Fix a typo in GENMASK_U128() comment.
+
+  - Split the asm and non-asm definition of 
+
+  - Replace ~0ULL by ~ULL(0)
+
+  - Since v3, __GENMASK() was moved to the uapi and people started
+    using directly. Introduce GENMASK_t() instead.
+
+  - Link to v3: https://lore.kernel.org/intel-xe/20240208074521.577076-1-lucas.demarchi@intel.com
+
+Changes from v2:
+
+  - Document both in commit message and code about the strict type
+    checking and give examples how it´d break with invalid params.
+
+  - Link to v2: https://lore.kernel.org/intel-xe/20240124050205.3646390-1-lucas.demarchi@intel.com
+
+Link to v1: https://lore.kernel.org/intel-xe/20230509051403.2748545-1-lucas.demarchi@intel.com
+
+---
+Lucas De Marchi (3):
+      bits: introduce fixed-type BIT_U*()
+      drm/i915: Convert REG_GENMASK*() to fixed-width GENMASK_U*()
+      test_bits: add tests for GENMASK_U*()
+
+Vincent Mailhol (3):
+      bits: split the definition of the asm and non-asm GENMASK()
+      test_bits: add tests for __GENMASK() and __GENMASK_ULL()
+      test_bits: add tests for BIT_U*()
+
+Yury Norov (1):
+      bits: introduce fixed-type genmasks
+
+ drivers/gpu/drm/i915/i915_reg_defs.h | 108 ++++-------------------------------
+ include/linux/bitops.h               |   1 -
+ include/linux/bits.h                 |  77 ++++++++++++++++++-------
+ lib/test_bits.c                      |  47 +++++++++++++++
+ 4 files changed, 113 insertions(+), 120 deletions(-)
+---
+base-commit: 0312e94abe484b9ee58c32d2f8ba177e04955b35
+change-id: 20250228-fixed-type-genmasks-8d1a555f34e8
+
+Best regards,
+-- 
+Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+
 
