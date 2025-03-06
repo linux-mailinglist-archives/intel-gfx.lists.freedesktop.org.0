@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0373AA54BFB
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F983A54BFC
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8233B10E986;
-	Thu,  6 Mar 2025 13:23:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC86A10E98C;
+	Thu,  6 Mar 2025 13:23:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUTxgGpO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Beg1UY3I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B79910E986;
- Thu,  6 Mar 2025 13:23:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4692010E988;
+ Thu,  6 Mar 2025 13:23:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741267405; x=1772803405;
+ t=1741267407; x=1772803407;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tmvCnc9s58wM8BwoeBBwcUB3y48arWkHN/04vZDKAEQ=;
- b=nUTxgGpOe3lqZuWTjXj6+dhdMmWDeC+a7Vo74fGjP1uUYVSz1hWa+EIz
- SOP6LAiVwfYQo6KjpgwM/ycqyY+ICuojNHLQFbqVLp38JW0T/Y/n14Zs7
- mkwwkPte2EkjXWzcWrDyEixxFccC7v8CVrF0WuQj+M4gsOlqyyFGNuth+
- LYEE+CtRZ/lrZ1g5K6AuDqk7fbAIZ43rTvcaPB5QfB65x+QPPFwnltBwc
- 1QLTZTZzstmBXQOexE9RjEeQKQZ/X0GLZTHBNfJuOL09/Ksrvmd4+ADIO
- b7zwOdJnQjwZSGqNTLQf+adfNbw+aIgji+Pa3yJd/Dq8udsTU3qClu+yF A==;
-X-CSE-ConnectionGUID: YbvQRISkRdmA8zjNWsr3Rg==
-X-CSE-MsgGUID: 0HfhKNm+SYacR+GJe1lF5Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524658"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524658"
+ bh=TpaEVX86w0S7RmBFIyWzNrWBNn8o+AxcxgN0Dtq7Bpg=;
+ b=Beg1UY3IYP437ZsFxCd3swszF6TpYyq4SQWfBSqGDcct5NCv5acj8nDT
+ npb8KwIxzAhGna0OchWlWcXid5g0YDCIMHKMdGoOps+mINpDbyA8f4xNm
+ u99tAEq+wucugS6YpU0IfuHkZsxwYE5+N+KXCLcG2wmJxboPGkHA5DgBB
+ op42USe1RfWCBd2gVxCf0QZ5nF6/wYYvKTSPuDNZaMYpci3qU6MyFv7h0
+ hgrPLZFJNKU8Yb9N19MXDpMUQPWHejYlRJnBOdkfBPt1Ehyl/oC+xDYmC
+ M1Jj0o0WHtcukJqOY40Sj8vnK6PwipOZk/6EkAQYJnYcGaNc07gYVlkRh Q==;
+X-CSE-ConnectionGUID: r8oz1U5dSOin5bKpm6fHKQ==
+X-CSE-MsgGUID: qO94nMVEQHuLiFIEjEc/sg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524667"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524667"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:25 -0800
-X-CSE-ConnectionGUID: phmFoZSeQ3Wz08SlLOMu4w==
-X-CSE-MsgGUID: 79KSVf8zQ56w8vNh3VhNww==
+ 06 Mar 2025 05:23:27 -0800
+X-CSE-ConnectionGUID: 2l7OHV4RS0qCN43ANTbhqw==
+X-CSE-MsgGUID: 3palNo8lSpCnIBiuoFoPvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243146"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243151"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:23 -0800
+ 06 Mar 2025 05:23:25 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 10/21] drm/i915/dp_mst: Use VRR Timing generator for DP MST
- for fixed_rr
-Date: Thu,  6 Mar 2025 18:40:49 +0530
-Message-ID: <20250306131100.3989503-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/21] drm/i915/display: Disable PSR before disabling VRR
+Date: Thu,  6 Mar 2025 18:40:50 +0530
+Message-ID: <20250306131100.3989503-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
 References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,42 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently the variable timings are supported only for DP and eDP and not
-for DP MST. Call intel_vrr_compute_config() for MST which will configure
-fixed refresh rate timings irrespective of whether VRR is supported or
-not. Since vrr_capable still doesn't have support for DP MST this will be
-just treated as non VRR case and vrr.vmin/vmax/flipline will be all set
-to adjusted_mode->crtc_vtotal.
-
-This will help to move away from the legacy timing generator and
-always use VRR timing generator by default.
+As per bspec 49268: Disable PSR before disabling VRR.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 02f95108c637..bd47cf127b4c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -52,6 +52,7 @@
- #include "intel_pfit.h"
- #include "intel_psr.h"
- #include "intel_vdsc.h"
-+#include "intel_vrr.h"
- #include "skl_scaler.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f7cb38145e9d..e72c6024f33e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1175,6 +1175,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
  
- /*
-@@ -710,6 +711,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
- 		pipe_config->lane_lat_optim_mask =
- 			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
- 
-+	intel_vrr_compute_config(pipe_config, conn_state);
++	intel_psr_pre_plane_update(state, crtc);
 +
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
+ 	if (intel_crtc_vrr_disabling(state, crtc)) {
+ 		intel_vrr_disable(old_crtc_state);
+ 		intel_crtc_update_active_timings(old_crtc_state, false);
+@@ -1185,8 +1187,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
  
- 	intel_ddi_compute_min_voltage_level(pipe_config);
+ 	intel_drrs_deactivate(old_crtc_state);
+ 
+-	intel_psr_pre_plane_update(state, crtc);
+-
+ 	if (hsw_ips_pre_update(state, crtc))
+ 		intel_crtc_wait_for_next_vblank(crtc);
+ 
 -- 
 2.45.2
 
