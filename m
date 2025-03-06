@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CECA55851
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 22:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC431A55856
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 22:08:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 789F710E2C7;
-	Thu,  6 Mar 2025 21:07:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE0310E2E2;
+	Thu,  6 Mar 2025 21:08:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dg5MfaKl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNikLhJ4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3286810E2C7
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 21:07:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A7F10E2E2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 21:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741295265; x=1772831265;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NMDzyEFEq7Tdt7WZDX4UpUNyBopFMvPxnGh/s21M0zY=;
- b=dg5MfaKleFMHuIeUUz8dIAl0v6Pb7aW/zG5q2wtFNneDk7yn43sF6MCd
- td1CFUdRXofU3gC+1knGhZ0j/LGoMHZy+SztiuKEa8LToyqHFhPdu5M59
- r4z9tsPJnmFYMi/uN8qBs3wSP5Lr+VWiMQWWdZb4xQOmBf2bCK/kAY2xd
- 4UBizftvyPQNCqRK3ZFd16+qjYdxTWksT471luiHe6kNZCOZxr5EOG1FV
- qUKDmkHK3prK3cxOZQBB3oGAN1c9DMGeGca46mJy2gJWPFI4wXNCyn5mw
- Kp/sonKO+KL/clB++9d8yWBbaKiSGd2iI+bNR5IKwOgg3qNQDjQSGRWb6 g==;
-X-CSE-ConnectionGUID: ODE7HKjTTemAHqsCYOfhzQ==
-X-CSE-MsgGUID: OE+YcMYhS5aXelJAmJLjkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42529837"
-X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="42529837"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 13:07:44 -0800
-X-CSE-ConnectionGUID: jdwyqicOTvGmpMh/acdlbA==
-X-CSE-MsgGUID: hkRngcWlRneGiyDonJhvMA==
+ t=1741295319; x=1772831319;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vhX0boo8z/y4kmjHUG23/WmnjHJ+Vp0K86Vyzr2qdiw=;
+ b=cNikLhJ4xITh9Js1HfmR1PpxsIfDzzMdujhQzqm7c+IP59V4JmPwZIT2
+ 3aHRoN8hGJxGd18Qdte1h03qFWRLMac0oxg+7hqb9A57O5QoA5ucwhEaf
+ jTiK02YTSKehjcV3oPGM/89B4LE/oi8rKesQ3eWUK2NC2WyCs5sDvrRH9
+ 4vthvDvg5hrQKD9QwmUPRcgAqAtGmK4NxH4ys+VupmWhjuVWGxLivpalS
+ mLu+yMJ/E/MOVAFo3dBA0pKYZMl5f6TrZRPM64A6VlGL9f3oZQ4KXRi31
+ XI7uWyQjbh8HK4Gd67IJ0upnN3nBdHZH2eHPhHza9T4PT4n2BvY8wLURJ A==;
+X-CSE-ConnectionGUID: dl/UhEvDSzaDnGbQlrk2mw==
+X-CSE-MsgGUID: AWD9IDvtTWiVmaf9SkNKTQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="64775835"
+X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="64775835"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 13:08:39 -0800
+X-CSE-ConnectionGUID: QawzxuzcRC60p9P7fzA33g==
+X-CSE-MsgGUID: 7ZLGxOrlQwa+npA238OjgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124339188"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 06 Mar 2025 13:07:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Mar 2025 23:07:40 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="124166960"
+Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 13:08:38 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org,
-	Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PATCH v2 1/2] drm/i915/dp: Reject HBR3 when sink doesn't support TPS4
-Date: Thu,  6 Mar 2025 23:07:40 +0200
-Message-ID: <20250306210740.11886-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250303123952.5669-1-ville.syrjala@linux.intel.com>
-References: <20250303123952.5669-1-ville.syrjala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH] drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to
+ indicate support for partial mmaps
+Date: Thu,  6 Mar 2025 13:08:27 -0800
+Message-ID: <20250306210827.171147-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,110 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for partial memory mapping")
+was the last patch of several patches fixing multiple partial mmaps.
+But without a bump in I915_PARAM_MMAP_GTT_VERSION there is no clean
+way for UMD to know if it can do multiple partial mmaps.
 
-According to the DP spec TPS4 is mandatory for HBR3. We have
-however seen some broken eDP sinks that violate this and
-declare support for HBR3 without TPS4 support.
-
-At least in the case of the icl Dell XPS 13 7390 this results
-in an unstable output.
-
-Reject HBR3 when TPS4 supports is unavailable on the sink.
-
-v2: Leave breadcrumbs in dmesg to avoid head scratching (Jani)
-
-Cc: stable@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Fixes: 255fc1703e42 ("drm/i915/gem: Calculate object page offset for partial memory mapping")
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Nirmoy Das <nirmoy.das@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 49 +++++++++++++++++++++----
- 1 file changed, 42 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 205ec315b413..70f5d1465f81 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -172,10 +172,28 @@ int intel_dp_link_symbol_clock(int rate)
- 
- static int max_dprx_rate(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index 21274aa9bdddc..c3dabb8579605 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -164,6 +164,9 @@ static unsigned int tile_row_pages(const struct drm_i915_gem_object *obj)
+  * 4 - Support multiple fault handlers per object depending on object's
+  *     backing storage (a.k.a. MMAP_OFFSET).
+  *
++ * 5 - Support multiple partial mmaps(mmap part of BO + unmap a offset, multiple
++ *     times with different size and offset).
++ *
+  * Restrictions:
+  *
+  *  * snoopable objects cannot be accessed via the GTT. It can cause machine
+@@ -191,7 +194,7 @@ static unsigned int tile_row_pages(const struct drm_i915_gem_object *obj)
+  */
+ int i915_gem_mmap_gtt_version(void)
  {
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+	int max_rate;
-+
- 	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
--		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
-+		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
-+	else
-+		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
- 
--	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
-+	/*
-+	 * Some broken eDP sinks illegally declare support for
-+	 * HBR3 without TPS4, and are unable to produce a stable
-+	 * output. Reject HBR3 when TPS4 is not available.
-+	 */
-+	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-+		drm_dbg_kms(display->drm,
-+			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-+			    encoder->base.base.id, encoder->base.name);
-+		max_rate = 540000;
-+	}
-+
-+	return max_rate;
+-	return 4;
++	return 5;
  }
  
- static int max_dprx_lane_count(struct intel_dp *intel_dp)
-@@ -4170,6 +4188,9 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
- static void
- intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- {
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+
- 	intel_dp->num_sink_rates = 0;
- 
- 	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
-@@ -4180,10 +4201,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 				 sink_rates, sizeof(sink_rates));
- 
- 		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
--			int val = le16_to_cpu(sink_rates[i]);
--
--			if (val == 0)
--				break;
-+			int rate;
- 
- 			/* Value read multiplied by 200kHz gives the per-lane
- 			 * link rate in kHz. The source rates are, however,
-@@ -4191,7 +4209,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 			 * back to symbols is
- 			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
- 			 */
--			intel_dp->sink_rates[i] = (val * 200) / 10;
-+			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
-+
-+			if (rate == 0)
-+				break;
-+
-+			/*
-+			 * Some broken eDP sinks illegally declare support for
-+			 * HBR3 without TPS4, and are unable to produce a stable
-+			 * output. Reject HBR3 when TPS4 is not available.
-+			 */
-+			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-+				drm_dbg_kms(display->drm,
-+					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-+					    encoder->base.base.id, encoder->base.name);
-+				break;
-+			}
-+
-+			intel_dp->sink_rates[i] = rate;
- 		}
- 		intel_dp->num_sink_rates = i;
- 	}
+ static inline struct i915_gtt_view
 -- 
-2.45.3
+2.48.1
 
