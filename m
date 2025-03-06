@@ -2,68 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B90A549AA
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 12:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71C2A54B3B
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 13:52:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C703F10E951;
-	Thu,  6 Mar 2025 11:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2874D10E195;
+	Thu,  6 Mar 2025 12:52:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="keckk8NZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TWNxVpwE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A3B310E950;
- Thu,  6 Mar 2025 11:40:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B4D310E195
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 12:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741261255; x=1772797255;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bTEUk+6VnBTihhXT4Le7u457efB+7ppYZXXke7+ATxM=;
- b=keckk8NZ6IoSBwFLqniaRNeMso1jJaH+1GJQyD0K0eoFmuTQ4sj8Gbup
- t4U6VKZ3txdv34QHiJ/UQe6l6L1h4oDOGv0Fre0UhkQMFOdmxMkGtVFrA
- s8hXus87FLQwqqXZscO5TLhv3+l5mLne1BT/27pJH2sPQex0aGELQuimc
- YJouiDAEx7oKfrAEo41Y63zYiuTeQFWSQxC63i+UiIDj4cJyUzOGGhYmm
- nI4Wi3Yy1TpW55tuw4Vv9xcxNegxAPbtRbtrwPuJu4wuy5IFjxBNzlWil
- qlHkkX9mV8wKgP8P31vwg3SQmPHgzl/4NqwUEV03Ce4CzNI4TX6GPZE5E g==;
-X-CSE-ConnectionGUID: QUqxeQp1T4u3xfHZuovJ3Q==
-X-CSE-MsgGUID: RH/XiryzROGZWe0SHf3tnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="41514795"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41514795"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 03:40:55 -0800
-X-CSE-ConnectionGUID: +WQR3oquQES/0SENHI01Zw==
-X-CSE-MsgGUID: 1ftJT9LkSkG7XVshHF9WwA==
+ t=1741265550; x=1772801550;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0iCCNJ9RA6gcJxlE3Ccq9kND0hpd3u9GJiXlOztdbKk=;
+ b=TWNxVpwEQIuRJtahmD1BRQ0/rARoeeq93IlkknIAIqVvTGOz/pGPd4rs
+ 0zsFTWp2nRUbufKg0Jtmio27v4jQZfnyZGMIhtO+IJPn62QSZW5rtUKUf
+ Krufjw4u5he3PHZy4sarLEv12BspUHGoL/zTRa1JXiO132katWTjbJ0eF
+ VJUQk2pVehKamcCvgBGd1DMIHgsLW7NsKK2+H95aGv6xyL7alZLiOVE/w
+ sBtOHpjasbqKUPaNAdFV3CiSfR1LDIP0RHyysZi8Fm4jcRqYTfl/j3BMF
+ yyr9jNaqWV4GqB4qHau2YHAHYEdAmqw7wPDquAeuZa+PVCp6l27SgEDr0 A==;
+X-CSE-ConnectionGUID: KrExj9+iQuSbRuATyXwxRA==
+X-CSE-MsgGUID: xSbFCn3SSRKxAubibYZNTQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52909173"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="52909173"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 04:52:29 -0800
+X-CSE-ConnectionGUID: NsdUy7/4RTmaNQ35mx82eQ==
+X-CSE-MsgGUID: jcbTZD3RS0qufV0MAWaygQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="124010411"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.151])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 03:40:52 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: Re: [PATCH v3 0/4] drm/i915: Fix harmfull driver register/unregister
- assymetry
-Date: Thu, 06 Mar 2025 12:40:48 +0100
-Message-ID: <2748512.BddDVKsqQX@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <3de2rgkr5lwzqs2v3rvmyds5zsjtj4eoitsojs5kd4bl545nn4@rzkcinr6f2bi>
-References: <20250305191152.164615-6-janusz.krzysztofik@linux.intel.com>
- <3de2rgkr5lwzqs2v3rvmyds5zsjtj4eoitsojs5kd4bl545nn4@rzkcinr6f2bi>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124228093"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 06 Mar 2025 04:52:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 06 Mar 2025 14:52:24 +0200
+Date: Thu, 6 Mar 2025 14:52:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com,
+ vidya.srinivas@intel.com, matthew.d.roper@intel.com
+Subject: Re: [RFC PATCH] Revert "drm/i915: Disable compression tricks on JSL"
+Message-ID: <Z8maiLd63cK-PUnU@intel.com>
+References: <z6xndjwwwnck67qcv2355v5qejq64qldziqg7saint3eqe6fo2@6sx7xyh5juvc>
+ <Z8htKL3L5ICwXzNb@intel.com> <D88HRP898QST.23MJT5TUM1HFR@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <D88HRP898QST.23MJT5TUM1HFR@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,106 +72,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
-
-Thank you for looking at it.
-
-On Thursday, 6 March 2025 12:00:40 CET Krzysztof Karas wrote:
-> Hi Janusz,
+On Wed, Mar 05, 2025 at 05:00:26PM +0000, Sebastian Brzezinka wrote:
+> Hi Ville
 > 
-> throughout the series you modify the code right after
-> introducing it. 
-
-Yes, that split among patches reflects my way of getting to a solution that 
-not only resolves the issue but also tries to address comments I got and take 
-care of resulting code clarity.  That's why I mentioned the possibility of 
-squashing one or more follow-ups with the initial patch.  Patch 1/4 alone is a 
-minimal fix that actually resolves the issues.  The rest is only about 
-satisfying Andi's comments (patch 2/4) and simplifying the code (patches 
-3-4/4) that we may or may not want to apply or squash.
-
-> How about changing the order of things a bit:
->  1) order the functions in a symmetrical way between
->   register/unregister steps and group them as you see necessary,
->   (At that point you would not be fixing the issue yet, but
->   prepare the code for further changes)
-
-Please note that I still haven't achieved full symmetry.  If I only had clues 
-from authors of patches that introduced asymmetry on why they did it that way 
-then I would think of reordering the steps to achieve full symmetry, each in a 
-separate patch, together with meaningful justification and possibly 
-alternative solutions to issues that asymmetry was trying to address.  Without 
-those clues, more work on analysis and more testing is needed, I believe, and 
-that would be still more beyond the scope of a quick fix I initially intended.
-
+> On Wed Mar 5, 2025 at 3:26 PM UTC, Ville Syrjälä wrote:
+> > On Wed, Mar 05, 2025 at 02:49:46PM +0000, Sebastian Brzezinka wrote:
+> >> This reverts commit 0ddae025ab6cefa9aba757da3cd1d27908d70b0e.
+> >> 
+> >> According to bspec 14181, CACHE_MODE_0 is a register that's under userspace
+> >> control, and DISABLE_REPACKING_FOR_COMPRESSION workaround should be already
+> >> in all recent Mesa releases. So, there is no need to include it in kernel.
+> >
+> > igt doesn't have it.
+> >
+> >> 
+> >> Also, this workaround·sporadically fails to load:
+> >> ```
+> >> ERROR GT0: engine workaround lost on application! (reg[7000]=0x0,
+> >> relevant bits were 0x0 vs expected 0x8000)
+> >> ```
+> >
+> > If it somehow fails to load from the kernel why would it
+> > work from userspace?
+> >
+> > Hmm, apparently CACHE_MODE_0 needs the mcr steering stuff.
+> > Does that fix the verification fail?
 > 
->  2) then introduce the new flag along with all the labels needed
->   for clean unregistration.
+> Thanks for sugestion. Right now I think that I try to move this wa to
+> icl_ctx_workarounds_init as both Mat and Chriss notice that register
+> is a part of the context. 
 
-The flag, or a single global point of indication if device registration 
-succeeded or not, was an idea suggested by Andi, and now objected by Jani from 
-the display code PoV, so not a final solution.
+Hmm, didn't realize there was a separate list for that. It looks to
+me like there are a bunch of context saved registers handled in
+the enging_ctx() stuff currently. I think someone needs to go through
+all this stuff and relocate all the registers to their correct spots.
 
-BTW, have you seen v1 of the series[1]?  How do you find it, compared to v2/3?
-
-Thanks,
-Janusz
-
-[1] https://lore.kernel.org/dri-devel/20250206180927.2237256-5-janusz.krzysztofik@linux.intel.com/
-
-> 
-> I think that way you could reduce number of patches (and changes
-> in code needing review) while also fixing the original issue.
-> 
-> Overall, I believe this is a good effort and much needed change
-> in registration and unregistering process.
-> 
-> Best Regards,
-> Krzysztof
-> 
-> > Starting with commit ec3e00b4ee27 ("drm/i915: stop registering if
-> > drm_dev_register() fails"), we may return from i915_driver_register()
-> > immediately, skipping remaining registration steps.  However, the
-> > _unregister() counterpart called at device remove knows nothing about that
-> > skip and executes reverts of all those steps.  As a consequence, a number
-> > of kernel warnings that taint the kernel are triggered.
-> > 
-> > Introduce a flag that indicates device registration status and raise it on
-> > device registration success.  As a minimum (first patch), when that flag
-> > is found not set while unregistering the driver, jump over those reverts
-> > of registration steps omitted after device registration failure that are
-> > not ready for being called unconditionally (and trigger the kernel
-> > warnings).
-> > 
-> > With the second patch, also jump over reverts of other driver registration
-> > steps that were not called due to device registration failure.  Some
-> > unregister function calls, found implementing additional steps beyond the
-> > register reverts, are still executed.
-> > 
-> > To simplify i915_driver_unregister() code, the third patch makes sure
-> > reverts of driver registration steps executed before potentially
-> > unsuccessful device registration are symmetrically called after
-> > the device unplug.
-> > 
-> > Finally, the last patch further simplifies the i915_driver_unregister()
-> > code by moving two required steps down, right after device unplug.
-> > 
-> > The first patch may be squashed with one or more of its follow-ups if so
-> > decided.
-> > 
-> > Janusz Krzysztofik (4):
-> >   drm/i915: Skip harmful unregister steps if not registered
-> >   drm/i915: Omit unnecessary driver unregister steps
-> >   drm/i915: Fix asymmetry in PMU register/unregister step order
-> >   drm/i915: Group not skipped unregister steps
-> > 
-> >  drivers/gpu/drm/i915/gt/intel_gt.c |  6 ++++++
-> >  drivers/gpu/drm/i915/i915_driver.c | 18 ++++++++++++------
-> >  drivers/gpu/drm/i915/i915_drv.h    |  2 ++
-> >  3 files changed, 20 insertions(+), 6 deletions(-)
-> > 
-> 
-
-
-
-
+-- 
+Ville Syrjälä
+Intel
