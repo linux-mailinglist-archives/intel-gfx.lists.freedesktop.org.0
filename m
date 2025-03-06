@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6830EA55527
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 19:37:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A0FA5564F
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 20:13:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D77AF10EA68;
-	Thu,  6 Mar 2025 18:37:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED7010E8D1;
+	Thu,  6 Mar 2025 19:13:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QpYDtq1v";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 64e06c682a23 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5348B10EA68;
- Thu,  6 Mar 2025 18:37:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7299174088712062327=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E93F610E8D1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 19:13:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741288381; x=1772824381;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wDF4/5xEoiQMRKk2f83lgOrti6+1dhODmUs8KtImcSE=;
+ b=QpYDtq1vdOaGXazOAxoLRF1BwPLsHdvKQRCeEbj7SwHOzQcpAgbdxoQ4
+ f5iMecDkxNHj0pAnYchDFClBgmLtES+NIInrvu9xquF05/Jerv7Jw2cX+
+ 886cHn10MM32IeLtLTA1JzAPjs9PXZ+Qg2/aeezNooU/rD0ZriWqlAvU0
+ KJ4Nij0KrnF4+j3iAWu4R4G8BjdRGIrgXx/iSWxz9B72c7RSCmDSzl25Z
+ YnsWUBC9/hQtzZ/FUb2bGEMDkhULI5oTYMbE7ZCqRzyepiHiqkNHUcB5Q
+ VMeHURwcLQFirga2ELdQW6VP5NET7B7fN8xr02EdmYo9C+hIlVPQlpNFM A==;
+X-CSE-ConnectionGUID: PHmdJamlR5CD0mgU12ggKQ==
+X-CSE-MsgGUID: KZdJ6TfDTJyDY0BV9nga6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="53723861"
+X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="53723861"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 11:12:54 -0800
+X-CSE-ConnectionGUID: WNS5eHkeRjutl0syvAxqNw==
+X-CSE-MsgGUID: UoMl4O1FSoSrpCaERMzmKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,227,1736841600"; d="scan'208";a="142340067"
+Received: from unknown (HELO anirban-Z690I-A-ULTRA-PLUS.iind.intel.com)
+ ([10.190.216.83])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 11:12:50 -0800
+From: sk.anirban@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v3] drm/i915/selftests: Refactor RC6 power measurement and
+ error handling
+Date: Fri,  7 Mar 2025 00:41:10 +0530
+Message-Id: <20250306191110.2582025-1-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_cdclk/bw/dbuf?=
- =?utf-8?q?_readout/sanitation_cleanup_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 06 Mar 2025 18:37:53 -0000
-Message-ID: <174128627333.69069.1309571862159586078@64e06c682a23>
-X-Patchwork-Hint: ignore
-References: <20250306163420.3961-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250306163420.3961-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,210 +65,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7299174088712062327==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Sk Anirban <sk.anirban@intel.com>
 
-== Series Details ==
+Refactor power measurement logic to store and compare energy values.
+Introduce a threshold check to ensure the GPU enters RC6 properly.
 
-Series: drm/i915: cdclk/bw/dbuf readout/sanitation cleanup (rev2)
-URL   : https://patchwork.freedesktop.org/series/145045/
-State : success
+v2:
+  - Improved commit message (Badal)
 
-== Summary ==
+v3:
+ - Reorder threshold check (Badal)
 
-CI Bug Log - changes from CI_DRM_16236 -> Patchwork_145045v2
-====================================================
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 59 +++++++++++++++++---------
+ 1 file changed, 38 insertions(+), 21 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 908483ab0bc8..5364e50be638 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -33,15 +33,20 @@ int live_rc6_manual(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+ 	struct intel_rc6 *rc6 = &gt->rc6;
+-	u64 rc0_power, rc6_power;
++	struct intel_rps *rps = &gt->rps;
+ 	intel_wakeref_t wakeref;
++	u64 sleep_time = 1000;
++	u32 rc0_freq = 0;
++	u32 rc6_freq = 0;
++	u64 rc0_power[3];
++	u64 rc6_power[3];
+ 	bool has_power;
++	u64 threshold;
+ 	ktime_t dt;
+ 	u64 res[2];
+ 	int err = 0;
+-	u32 rc0_freq = 0;
+-	u32 rc6_freq = 0;
+-	struct intel_rps *rps = &gt->rps;
++	u64 diff;
++
+ 
+ 	/*
+ 	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
+@@ -65,9 +70,9 @@ int live_rc6_manual(void *arg)
+ 	res[0] = rc6_residency(rc6);
+ 
+ 	dt = ktime_get();
+-	rc0_power = librapl_energy_uJ();
+-	msleep(1000);
+-	rc0_power = librapl_energy_uJ() - rc0_power;
++	rc0_power[0] = librapl_energy_uJ();
++	msleep(sleep_time);
++	rc0_power[1] = librapl_energy_uJ() - rc0_power[0];
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+ 	rc0_freq = intel_rps_read_actual_frequency_fw(rps);
+@@ -79,11 +84,12 @@ int live_rc6_manual(void *arg)
+ 	}
+ 
+ 	if (has_power) {
+-		rc0_power = div64_u64(NSEC_PER_SEC * rc0_power,
+-				      ktime_to_ns(dt));
+-		if (!rc0_power) {
++		rc0_power[2] = div64_u64(NSEC_PER_SEC * rc0_power[1],
++					 ktime_to_ns(dt));
++
++		if (!rc0_power[2]) {
+ 			if (rc0_freq)
+-				pr_debug("No power measured while in RC0! GPU Freq: %u in RC0\n",
++				pr_debug("No power measured while in RC0! GPU Freq: %uMHz in RC0\n",
+ 					 rc0_freq);
+ 			else
+ 				pr_err("No power and freq measured while in RC0\n");
+@@ -98,10 +104,10 @@ int live_rc6_manual(void *arg)
+ 	res[0] = rc6_residency(rc6);
+ 	intel_uncore_forcewake_flush(rc6_to_uncore(rc6), FORCEWAKE_ALL);
+ 	dt = ktime_get();
+-	rc6_power = librapl_energy_uJ();
+-	msleep(1000);
++	rc6_power[0] = librapl_energy_uJ();
++	msleep(sleep_time);
+ 	rc6_freq = intel_rps_read_actual_frequency_fw(rps);
+-	rc6_power = librapl_energy_uJ() - rc6_power;
++	rc6_power[1] = librapl_energy_uJ() - rc6_power[0];
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+ 	if (res[1] == res[0]) {
+@@ -113,13 +119,24 @@ int live_rc6_manual(void *arg)
+ 	}
+ 
+ 	if (has_power) {
+-		rc6_power = div64_u64(NSEC_PER_SEC * rc6_power,
+-				      ktime_to_ns(dt));
+-		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
+-			rc0_power, rc6_power);
+-		if (2 * rc6_power > rc0_power) {
+-			pr_err("GPU leaked energy while in RC6! GPU Freq: %u in RC6 and %u in RC0\n",
+-			       rc6_freq, rc0_freq);
++		rc6_power[2] = div64_u64(NSEC_PER_SEC * rc6_power[1],
++					 ktime_to_ns(dt));
++		pr_info("GPU consumed %lluuW in RC0 and %lluuW in RC6\n",
++			rc0_power[2], rc6_power[2]);
++
++		if (2 * rc6_power[2] > rc0_power[2]) {
++			pr_err("GPU leaked energy while in RC6!\n"
++			       "GPU Freq: %uMHz in RC6 and %uMHz in RC0\n"
++			       "RC0 energy before & after sleep respectively: %lluuJ %lluuJ\n"
++			       "RC6 energy before & after sleep respectively: %lluuJ %lluuJ\n",
++			       rc6_freq, rc0_freq, rc0_power[0], rc0_power[1],
++			       rc6_power[0], rc6_power[1]);
++
++			diff = res[1] - res[0];
++			threshold = (9 * NSEC_PER_MSEC * sleep_time) / 10;
++			if (diff < threshold)
++				pr_err("Did not enter RC6 properly, RC6 start residency=%lluns, RC6 end residency=%lluns\n",
++				       res[0], res[1]);
+ 			err = -EINVAL;
+ 			goto out_unlock;
+ 		}
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_145045v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][4] -> [FAIL][5] ([i915#13633])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][6] -> [FAIL][7] ([i915#13633])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][8] +34 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-mtlp-8/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-twl-2:          [INCOMPLETE][13] ([i915#12445]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-twl-2/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-twl-2/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16236 -> Patchwork_145045v2
-
-  CI-20190529: 20190529
-  CI_DRM_16236: 7f20d05164065bf88d6b34fec900f63fae45d9fc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8263: 25f60274b3dd14d35a7f32558b489ab7a02b6223 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_145045v2: 7f20d05164065bf88d6b34fec900f63fae45d9fc @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/index.html
-
---===============7299174088712062327==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: cdclk/bw/dbuf readout/sanitation cleanup (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145045/">https://patchwork.freedesktop.org/series/145045/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16236 -&gt; Patchwork_145045v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_145045v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +34 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16236/bat-twl-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145045v2/bat-twl-2/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16236 -&gt; Patchwork_145045v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16236: 7f20d05164065bf88d6b34fec900f63fae45d9fc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8263: 25f60274b3dd14d35a7f32558b489ab7a02b6223 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_145045v2: 7f20d05164065bf88d6b34fec900f63fae45d9fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7299174088712062327==--
