@@ -2,74 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E3EA54B92
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C4ADA54BEF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7547810E953;
-	Thu,  6 Mar 2025 13:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A03DE10E96E;
+	Thu,  6 Mar 2025 13:23:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lZinzr61";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KVvtD0wv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F5110E70E;
- Thu,  6 Mar 2025 13:09:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9BBD10E970;
+ Thu,  6 Mar 2025 13:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741266542; x=1772802542;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=d/J2+mq/GAIy24horHmHsXIcl7aG6z61rC5ACtPrVpI=;
- b=lZinzr61WX1kE0xytmuke/SecdTLULY6I8COsiv36QZlM3EPi4mmS6Ot
- EGLsuIHqTBabSKC9Uys8PJfqT0IoIUwY0YiEMXzTIguEa/XLJJKIZCO2D
- VHg4J8/lbn3f02l+Vz0WU6l374n5vQJoXUMQuPny/ny0vgwqtZUy36YCo
- qCHKfwu3AtLfs96UbDU6iOb+Wgrel96qs4gKmNt83Ls/RvZjf8wx330yC
- /bLt7uLkzbQ35jCmlUN10wdTG4f2jeJ2K0sY/o/FsqJfOwUaHva+UnAdd
- //+bKsoNeLAsbHmK2HRgEndD+TnJ3oJtjh3xBurADGXP+HZB6H9kuWpbY Q==;
-X-CSE-ConnectionGUID: Y4W9K60gRDGPgcz+IdiImw==
-X-CSE-MsgGUID: WXRS9umcST+R6TRgYccgQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52917857"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="52917857"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:09:00 -0800
-X-CSE-ConnectionGUID: H7mWMoRdTLOv4gb+L0QGqw==
-X-CSE-MsgGUID: ldBU1+aHSlKjVO7ibT1o5A==
+ t=1741267384; x=1772803384;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oNb43u1aGxjzaqVS2wC6yh6Uh2dX5UnlvcVYrcHc5pI=;
+ b=KVvtD0wv4Fe6OrDLZYMY6QtxekORtmi1tCnlLq+rdmD6ew8LsV+M7pWX
+ HojnIyiY7fSHTTZ0Cw5/dG+CviUmNF9r+eQBgE+CxMB6Wj4Bt6K5K8dXt
+ pe/BP1Y8Y4CrKNfmGnd77NtZKzF3Wmp10gBtJ85Ls5y0UyOV5a/j/mx4v
+ 0mxqLFyvpPLf0llaTzZcvSF6S56XaUZIowodGVc/h2ZbBMfu5Igolugpb
+ jPKoJ3Twh8/wpr6ckyZt/D8/yYOQq9hm4YNV6wW8blVMOARjQrcEWN7zp
+ N8eGh7nMWRBeCywBVI3M//DH7V1K2HyPdaCw/lc8oVVkn0r5vvYIvbkvj g==;
+X-CSE-ConnectionGUID: gbV4dPNASkmbK6LxAMPQcA==
+X-CSE-MsgGUID: S94qMcvAT7aC5gjQFQroqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524592"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524592"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 05:23:03 -0800
+X-CSE-ConnectionGUID: SWOIDv+3TZCKcLnr546YVw==
+X-CSE-MsgGUID: avVznsAWRAeUu78+vEi4Ew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="119027618"
-Received: from smile.fi.intel.com ([10.237.72.58])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:08:55 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tqAy3-000000007h6-3bfG; Thu, 06 Mar 2025 15:08:51 +0200
-Date: Thu, 6 Mar 2025 15:08:51 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: mailhol.vincent@wanadoo.fr
-Cc: Yury Norov <yury.norov@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v5 2/7] bits: introduce fixed-type genmasks
-Message-ID: <Z8meY7NS65_d14og@smile.fi.intel.com>
-References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
- <20250306-fixed-type-genmasks-v5-2-b443e9dcba63@wanadoo.fr>
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243097"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 05:23:01 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 00/21] Use VRR timing generator for fixed refresh rate modes
+Date: Thu,  6 Mar 2025 18:40:39 +0530
+Message-ID: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250306-fixed-type-genmasks-v5-2-b443e9dcba63@wanadoo.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,32 +67,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 06, 2025 at 08:29:53PM +0900, Vincent Mailhol via B4 Relay wrote:
-> From: Yury Norov <yury.norov@gmail.com>
-> 
-> Add GENMASK_TYPE() which generalizes __GENMASK() to support different
-> types, and implement fixed-types versions of GENMASK() based on it.
-> The fixed-type version allows more strict checks to the min/max values
-> accepted, which is useful for defining registers like implemented by
-> i915 and xe drivers with their REG_GENMASK*() macros.
-> 
-> The strict checks rely on shift-count-overflow compiler check to fail
-> the build if a number outside of the range allowed is passed.
-> Example:
-> 
->   #define FOO_MASK GENMASK_U32(33, 4)
-> 
-> will generate a warning like:
-> 
->   include/linux/bits.h:51:27: error: right shift count >= width of type [-Werror=shift-count-overflow]
->      51 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
->         |                           ^~
+Even though the VRR timing generator (TG) is primarily used for
+variable refresh rates, it can be used for fixed refresh rates as
+well. For a fixed refresh rate the Flip Line and Vmax must be equal
+(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
+dependencies between the VRR timings and the legacy timing generator
+registers.
 
-Code LGTM, but just to be sure: you prepared your series using histogram
-diff algo, right?
+This series is an attempt to use VRR TG for fixed refresh rate.
+For platforms XE2LPD+, always go with VRR timing generator for both fixed and
+variable refresh rate cases.
+
+Rev2:
+-Added support from MTL+ and for HDMI too.
+-Changed VRR VSYNC programming which is required for HDMI.
+-Modified vrr compute config for bigjoiner case. (Still to be tested).
+
+Rev3:
+-Start support from XE2LPD+ as MTL needs a WA to have PSR +VRR (fixed
+refresh rate)
+-Add changes to enable PSR with VRR with fixed refresh rate.
+
+Rev4:
+-Addressed review comments from Mitul and rebased.
+
+Rev5:
+-Avoid MSA Ignore PAR timing enable bit for fixed refresh rate
+with VRR TG.
+-Skip VRR compute config for HDMI connected via DP-HDMI2.1 PCON.
+-Print fixed_rr along with other VRR parameters in crtc state dump.
+-Rebase
+
+Rev6:
+-Refactor VRR code to have distinct modes in which VRR timing generator
+can be used: VRR, FIXED_RR, CMRR.
+-Bring the cmmr attributes in vrr struct.
+-Remove condition flipline > vmin for LNL.
+-Account for vmax being 0 based while MSA vtotal being 1 based.
+
+Rev7:
+I have added patches from series for AS SDP fixes [1] , as without panels
+that support AS SDP gives a lot of issues.
+There were major changes in design as discussed in last version [2].
+Below are the change logs:
+
+-Change the design to compute vrr state based on actual uapi.vrr.enable
+knob. So when that knob is disabled we always compute vmin=flipline=vmax.
+-Always set vmin=crtc_vtotal instead of the using the current refresh rate
+based approach. This helps to have the same guardband while switching
+between fixed and variable timings.
+-Disable CMRR for now to reduce complexity while changing timings on the
+fly.
+-Change the state computation and add vmin/vmax/flipline reprogramming
+to vrr_{enable,disable}()
+-Introduce the fixed refresh mode from MTL instead of LNL.
+
+[1] https://patchwork.freedesktop.org/series/137035/
+[2] https://patchwork.kernel.org/project/intel-gfx/cover/20241111091221.2992818-1-ankit.k.nautiyal@intel.com/
+
+Rev8:
+-Addressed review comments from Ville.
+-Refactored few patches.
+-Dropped patches:
+1. "drm/i915/vrr: Adjust Vtotal for MSA for fixed timing"
+2. "drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
+refresh rate"
+
+Rev9:
+-Fixed issue seen on BAT bugs.
+
+Rev10:
+-Drop patch for avoiding VRR for DP with HDMI panel.
+-Address comments from Ville.
+-Add VRR compute config for DP MST.
+-Add HAS_VRR() checks and compute fixed timing for all VRR supporting
+platforms.
+-Move guardband and pipeline_full checks
+out from the pure !fastset block in intel_pipe_config_compare().
+
+Rev11:
+-Addressed comments from Ville.
+-Added only fixed_rr for Joiner.
+-Use vrr_possible() before setting fixed timings and before setting
+trans_vrr_ctl.
+-Split patch to remove vrr.guardband/pipeline_full from !fastset block.
+-Add patch to avoid writing into Vtotal.Vtotal bits when always using
+VRRTG.
+
+Rev12:
+-Address comments from Ville.
+-Change sequence of Disable VRR.
+-Enable Push before VRR Enable.
+-Clear Push after VRR Disable.
+-Drop patch to remove Vtotal.vtotal bits.
+
+Ankit Nautiyal (21):
+  drm/i915/vrr: Remove unwanted comment
+  drm/i915:vrr: Separate out functions to compute vmin and vmax
+  drm/i915/vrr: Make helpers for cmrr and vrr timings
+  drm/i915/vrr: Disable CMRR
+  drm/i915/vrr: Track vrr.enable only for variable timing
+  drm/i915/vrr: Use crtc_vtotal for vmin
+  drm/i915/vrr: Prepare for fixed refresh rate timings
+  drm/i915/display: Enable MSA Ignore Timing PAR only when in not
+    fixed_rr mode
+  drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
+  drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
+  drm/i915/display: Disable PSR before disabling VRR
+  drm/i915/display: Move intel_psr_post_plane_update() at the later
+  drm/i915/vrr: Refactor condition for computing vmax and LRR
+  drm/i915/vrr: Always set vrr vmax/vmin/flipline in
+    vrr_{enable/disable}
+  drm/i915/display: Use fixed_rr timings in modeset sequence
+  drm/i915/vrr: Use fixed timings for platforms that support VRR
+  drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset
+    block
+  drm/i915/display: Use fixed rr timings in
+    intel_set_transcoder_timings_lrr()
+  drm/i915/vrr: Allow fixed_rr with pipe joiner
+  drm/i915/vrr: Always use VRR timing generator for MTL+
+  drm/i915/display: Add fixed_rr to crtc_state dump
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  18 +-
+ .../drm/i915/display/intel_dp_link_training.c |  15 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 313 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   4 +
+ 8 files changed, 292 insertions(+), 76 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.45.2
 
