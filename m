@@ -2,60 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82350A54817
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 11:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CFE0A5481F
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 11:42:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D251B10E07A;
-	Thu,  6 Mar 2025 10:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE1D10E162;
+	Thu,  6 Mar 2025 10:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JWKh6Bf7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ubzj5dMY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7529610E07A
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Mar 2025 10:41:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE7C10E167;
+ Thu,  6 Mar 2025 10:42:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741257663; x=1772793663;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=uIteHsq/n6OjlAu5DZ5yP0AHi3tH0JvFdtMogY15ZzY=;
- b=JWKh6Bf7W6XQYCKRLwB9jMJ6xySl2jWlrS9BCBe3DuhmH1JWi5BgBKhY
- ZKiO4xmbYqmzgT7xYukWyrmSxQJO305TEW/qMnM6+temV3AkcTRy67nab
- 8/yEtoeWYc4eFVnzANHxTFJ4S8BkG8UXbPrsMoMBvY8z8LthfNH2Kdurs
- UaJtQ/7IJLSdBnFVMu92rXG1wYEcpsKpdPxuZ5kwbIli/knPNylglQS/t
- gHrrq6F2Urd/qTcoDDkM6uHEqrW1liAkqoR5sZsnEgCaTPhWNHiGzWdkc
- hP7qH6Zm+vs6RL6OUFI1v/NWv8e1EXB3ZabcGEmMuossQV6JZSvWI6oDB g==;
-X-CSE-ConnectionGUID: qOWmatE9R12Fn4ydXBzwRw==
-X-CSE-MsgGUID: wpb0NGU0TWuS8/gQY81o+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="29844242"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="29844242"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:41:02 -0800
-X-CSE-ConnectionGUID: Ieh//RYpQ2y+8u/aeyVrig==
-X-CSE-MsgGUID: ARWN+bhVRoW4uE6CSZy3Qg==
+ t=1741257734; x=1772793734;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QzubZ57zch1ALOmmNoMoKdJ9fmuCcVtZQmrFksJPFJk=;
+ b=Ubzj5dMYo7j5umTAuQe2oCx0K8/qP1/OyJkpKRGk2vHVvIAX124rNkVU
+ XZOcGFBpQ1+z9c37nzBUHPlxf2DSWdIj8sOnu/o6gZjJXerTuaKBI5BKe
+ rFHXkY8WX7FGeXRkQ70P3Zaqcp3mxhE6iH9vQJmIIRYX7lGGzzzLjkmrH
+ IzrJ7mMqUWM0o3UReRLtcZGevnMtSEp6z9qfeuNk5e6mW7UkPvILiu2wI
+ gHtK6RrzMOYw091S2/Ank9whhsEzTGrH5CXHrTirR3ArnF6A3i19qn3m6
+ CO7/yd/0NUPfbQ0OYk8iFSwjRFCtGuhNdqTdLDXDDBRqjVSy1u5L18U8Q Q==;
+X-CSE-ConnectionGUID: aOktshCtQW2JBa7hFBYllQ==
+X-CSE-MsgGUID: 5dSCbabtQ3KxvUV1vYWJYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53244801"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="53244801"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:42:14 -0800
+X-CSE-ConnectionGUID: cVlVafwxT2+TMhq8huE9Xw==
+X-CSE-MsgGUID: ZP/SSieUSN2y5wTvZlHaiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="118797018"
-Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.109])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 02:41:01 -0800
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="119485774"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 02:42:11 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+Cc: "Knop, Ryszard" <ryszard.knop@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>,
+ Sima Vetter <sima@ffwll.ch>
+Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
+In-Reply-To: <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
+ <871pvbxt40.fsf@intel.com> <20250305-nonchalant-fresh-stoat-61ea0a@lemur>
+Date: Thu, 06 Mar 2025 12:42:07 +0200
+Message-ID: <87frjqwidc.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <3aa4a0a8-1668-40e4-a57d-5bd983af5ba5@ursulin.net>
-References: <wlnlppj2mmqqv2rrsboy2uddzkxiuxcsevgfkqjvo3f7hdtkxs@arkfgtgqrqyx>
- <3aa4a0a8-1668-40e4-a57d-5bd983af5ba5@ursulin.net>
-Subject: Re: [PATCH] i915/gt/selftest_lrc: Remove timestamp test
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>, chris.p.wilson@intel.com
-To: Mikolaj Wasiak <mikolaj.wasiak@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org
-Date: Thu, 06 Mar 2025 11:37:17 +0100
-Message-ID: <174125743728.766812.11198274438700228285@DEV-409>
-User-Agent: alot/0.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,36 +75,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2025-03-04 16:43:45)
->=20
-> On 04/03/2025 13:09, Mikolaj Wasiak wrote:
-> > This test exposes bug in tigerlake hardware which prevents it from
-> > succeeding. Since the tested feature is only available on bugged hardwa=
-re
-> > and we won't support any new hardware, this test is obsolete and
-> > should be removed.
->=20
-> I randomly clicked on one TGL, one DG2, one MTL and one RKL in the CI=20
-> and only saw test passes. Then I looked at the patch below to see if=20
-> there is a skip condition but don't see one. So I end up confused since=20
-> commit message is making it sound like this only exists on Tigerlake and =
+On Wed, 05 Mar 2025, Konstantin Ryabitsev <konstantin@linuxfoundation.org> =
+wrote:
+> On Wed, Mar 05, 2025 at 07:52:31PM +0200, Jani Nikula wrote:
+>> > - For each new series on lore.kernel.org a bridge would create a PR by
+>> > taking the latest mirrored drm-tip source, then applying a new series
+>> > with `b4 shazam`.
+>>=20
+>> There's a small catch here. Patchwork is currently more clever about
+>> handling series revisions when only some of the patches in a series are
+>> updated by way of replying to the individual patch. For example [1][2].
+>
+> FWIW, b4 does partial rerolls already. E.g., using your own example:
 
-> it's failing all the time. Is it perhaps a sporadic failure? On all=20
-> platforms or just TGL? What am I missing?
+Yay, I upgraded to 0.14 and so it does. Thanks!
 
-The HW issue affects all gen12 platforms currently supported by i915. I
-don't have any data for derivatives, so I cannot confirm if this bug was
-fixed. The lrc_timestamp test was written to demonstrate this HW bug, to
-isolate it from (and explain) the pphwsp runtime discrepancies, covered
-by another selftest. The question is whether we want to keep a selftest
-that is expected to sporadically fail, that exists purely to hunt for
-those failures.
+The point I made is moot, and I agree with Lucas that we should align
+with what b4 does.
 
-In the past, we have kept such selftests, but hidden them behind
-!IS_ENABLED(CONFIG_DRM_I915_SELFTEST_BROKEN).
+> 	$ b4 am -o/tmp 20250305114820.3523077-2-imre.deak@intel.com
+> 	[...]
+> 	---
+> 	  =E2=9C=93 [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead of p=
+orts for HPD pulse events
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in the di=
+sabled state when handling missed IRQs
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH     v6 3/6] drm/i915/hpd: Add support for blocking th=
+e IRQ handling on an HPD pin
+> 	  =E2=9C=93 [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interrupte=
+d by a short HPD pulse
+> 		+ Reviewed-by: Jani Nikula <jani.nikula@intel.com> (=E2=9C=93 DKIM/inte=
+l.com)
+> 	  =E2=9C=93 [PATCH     v6 5/6] drm/i915/dp: Queue a link check after lin=
+k training is complete
+> 	  =E2=9C=93 [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unblock=
+() instead of intel_hpd_disable/enable()
+> 	  ---
+> 	  =E2=9C=93 Signed: DKIM/intel.com
 
-So,
-- keep the selftest and expect sporadic failures in BAT, or
-- remove the selftest and completely forget about the HW issue, or
-- hide the selftest and stop it running on known bad platforms?
--Chris
+Side note, I often pipe messages from my MUA (notmuch-emacs) to b4, as
+it nicely parses the mails and picks up the message-id from
+there. Overall it works great. However, b4 seems to err on the side of
+writing color codes to pipes, and I get this as output:
+
+---
+  [32m=E2=9C=93[0m [PATCH v5->v6 1/6] drm/i915/hpd: Track HPD pins instead =
+of ports for HPD pulse events
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH v5->v6 2/6] drm/i915/hpd: Let an HPD pin be in th=
+e disabled state when handling missed IRQs
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH     v6 3/6] drm/i915/hpd: Add support for blockin=
+g the IRQ handling on an HPD pin
+  [32m=E2=9C=93[0m [PATCH v5->v6 4/6] drm/i915/dp: Fix link training interr=
+upted by a short HPD pulse
+    + Reviewed-by: Jani Nikula <jani.nikula@intel.com> ([32m=E2=9C=93[0m DK=
+IM/intel.com)
+  [32m=E2=9C=93[0m [PATCH     v6 5/6] drm/i915/dp: Queue a link check after=
+ link training is complete
+  [32m=E2=9C=93[0m [PATCH v5->v6 6/6] drm/i915/crt: Use intel_hpd_block/unb=
+lock() instead of intel_hpd_disable/enable()
+  ---
+  [32m=E2=9C=93[0m Signed: DKIM/intel.com
+---
+
+I haven't had the time to dig into b4 source on this, but it would be
+great if it could automatically detect whether sending colors is the
+right thing to do or not. Basically only emit color codes to interactive
+terminals, unless forced also for pipes.
+
+(Alternatively I could try to figure out how to enable colors on emacs
+pipe output, but that's another rabbit hole...)
+
+
+Thanks,
+Jani.
+
+
+--=20
+Jani Nikula, Intel
