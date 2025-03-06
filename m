@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70828A54BFD
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D73A54BFE
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0128410E988;
-	Thu,  6 Mar 2025 13:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D22110E98E;
+	Thu,  6 Mar 2025 13:23:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZBoxotU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZPG4xG0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B20210E988;
- Thu,  6 Mar 2025 13:23:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91A0310E98B;
+ Thu,  6 Mar 2025 13:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741267409; x=1772803409;
+ t=1741267411; x=1772803411;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PcVnZOtLMok+IXO0IhpwgO1A7qLrv1m4NunO+MGhUo8=;
- b=VZBoxotU3Rw7lEBsOYLBRC+0pyDJ5wLUOWcrDZaSYSzosLjPAUSuWoRv
- 8jUeTipMt9YtVge1a951GK4x7rMO5LsEsAvNiaAKpd9a6bvcY4YaAftz2
- ZolQp0iz8xRfjWVPTo2OWqXxDQDNImM+SPAPfuiJcWJeyFVd0u7EHFu5O
- LSWD5s5ujyPLDSH6RWPctXYiE2iNO22lwsgybPWHwEThtwCxloQMd5ID/
- UBqlln7kqf5JmQfnP9LIRB1g4CTug4F4iRFLJLuj9T1L2ydmPtVGD7myV
- T19hxJguj36Epad/fuy3ct4pPtyc9iKnMmUMmm2PMrrB7kfcYj/b4Eh+/ g==;
-X-CSE-ConnectionGUID: q7qqWPT8QRO9KDMicIEUUw==
-X-CSE-MsgGUID: dFAfD+DBQl6I6GWEyGgPbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524672"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524672"
+ bh=AzuUBmK/yl+VlOHOYo9pYYnI1Fltt6Carfn6zie+KsM=;
+ b=HZPG4xG0Q9MWmSuDrkVADkjyPjJlJoKMg+cuLigAP/mQf3qmItHZf9hM
+ KhtTkx7rNj9tSQCWijH9eW8cOMaZI/T4oHaJM+ScD9MbpN0qixM2TLx05
+ xF++W+dw65jI+RIJJbRHarA9fOSXt9TuyI8J2atS1aN7Z61qbFG3nyjit
+ aVa3slTMNWFenUSRvaU6NuktghXzbIiKGitWLI+1s+1oM0GMgNWp8dbvz
+ HpzzeVoNC8px9lyn/gbavrnsa9UplHZmc6RppZ5C4ltREeMsA5r5zDsSj
+ zIwnNLyPgrc5cY5ntKjfNgMOyYHCSmcPlfn5snSfJgjdlJ5L17sLEad3k w==;
+X-CSE-ConnectionGUID: 9cnDd1MhQh2ABDNBq0yTtw==
+X-CSE-MsgGUID: SHd7IMGyQDKRjiaoYGGANw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524675"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524675"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:29 -0800
-X-CSE-ConnectionGUID: 9ND2tiG1QHOGjZjZ3G5y7g==
-X-CSE-MsgGUID: oUGNFSyzSeuw2uCMyZZMhw==
+ 06 Mar 2025 05:23:31 -0800
+X-CSE-ConnectionGUID: /gyaHbWBT96zpNnMngYdww==
+X-CSE-MsgGUID: 1GUmYT+tTjyjGGz/tN1z8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243168"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243173"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:27 -0800
+ 06 Mar 2025 05:23:29 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 12/21] drm/i915/display: Move intel_psr_post_plane_update() at
- the later
-Date: Thu,  6 Mar 2025 18:40:51 +0530
-Message-ID: <20250306131100.3989503-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/21] drm/i915/vrr: Refactor condition for computing vmax and
+ LRR
+Date: Thu,  6 Mar 2025 18:40:52 +0530
+Message-ID: <20250306131100.3989503-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
 References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,39 +69,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In intel_post_plane_update() there are things which might need to do
-vblank waits, so enabling PSR as early as we do now is simply
-counter-productive. Therefore move intel_psr_post_plane_update() at the
-last of intel_post_plane_update().
+LRR and Vmax can be computed only if VRR is supported and vrr.in_range
+is set. Currently we proceed with vrr timings only for VRR supporting
+panels and return otherwise. For using VRR TG with fix timings, need to
+continue even for panels that do not support VRR.
+
+To achieve this, refactor the condition for computing vmax and
+update_lrr so that we can continue for fixed timings for panels that do
+not support VRR.
+
+v2: Set vmax = vmin for non VRR panels. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e72c6024f33e..322a05648f58 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1050,8 +1050,6 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 622a70e21737..310add32781f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -363,14 +363,16 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
  
--	intel_psr_post_plane_update(state, crtc);
+ 	crtc_state->vrr.in_range =
+ 		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
+-	if (!crtc_state->vrr.in_range)
+-		return;
 -
- 	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
+-	if (HAS_LRR(display))
+-		crtc_state->update_lrr = true;
  
- 	if (new_crtc_state->update_wm_post && new_crtc_state->hw.active)
-@@ -1080,6 +1078,8 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
- 
- 	if (audio_enabling(old_crtc_state, new_crtc_state))
- 		intel_encoders_audio_enable(state, crtc);
+ 	vmin = intel_vrr_compute_vmin(crtc_state);
+-	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
 +
-+	intel_psr_post_plane_update(state, crtc);
- }
++	if (crtc_state->vrr.in_range) {
++		if (HAS_LRR(display))
++			crtc_state->update_lrr = true;
++		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
++	} else {
++		vmax = vmin;
++	}
  
- static void intel_post_plane_update_after_readout(struct intel_atomic_state *state,
+ 	if (vmin >= vmax)
+ 		return;
 -- 
 2.45.2
 
