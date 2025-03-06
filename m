@@ -2,78 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8BBA54649
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 10:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 458B9A54686
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 10:38:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0371010E922;
-	Thu,  6 Mar 2025 09:28:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D034210E151;
+	Thu,  6 Mar 2025 09:38:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vd5ZJhEX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6yhuVlR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B45B10E91C;
- Thu,  6 Mar 2025 09:28:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12B8110E151;
+ Thu,  6 Mar 2025 09:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741253309; x=1772789309;
+ t=1741253920; x=1772789920;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=gCm3jqfBHBVDSlHh9e4EYcGIKf1bGwC1Jxmrafx2SwQ=;
- b=Vd5ZJhEXufCfvrXHearb39mULpZrM6GOsC1h9lxy4lnH4fmOPSQAF707
- Y3YI2IKUNnFQLNLCtTczGBrpyGnMzw5+9N1xm7RzU7Q1exZYX7oh1lDrQ
- WPdDGIGgLQ56rNiSC7To7jmHwSnD7sb/xxS/fauSEzfJJ8yF+lHYqGEm2
- c2bkxTUPOhkBSP739TOo1SWVjTDgZ6JyGCtsmBXkt2Bgfxx3zHxOo3Igu
- fUGS9Pulz/cq7dX1QgGn+4jc2Q/XXjlx2MEXfqVLfd8s8ffeGcynmIEjW
- CPiuFxoFdWYfB4mTUNPESerGxCINFBWSyNUsMi52CTcXUVxhNrUdq5FJL g==;
-X-CSE-ConnectionGUID: 8SgDaIZLRZefsSVH+57pjw==
-X-CSE-MsgGUID: Z//IHg3CTNeylzjrXgY74A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="52462541"
-X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="52462541"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 01:28:28 -0800
-X-CSE-ConnectionGUID: 1FeS51RZSbCkwzxABrj+ZA==
-X-CSE-MsgGUID: CIOV+UozSBuSveAsGMymcA==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=yg9a4ShFg0RQ9AlyyGbnp+mN7hb0Beorgdfbkp4r/8c=;
+ b=b6yhuVlRiDYV3s8KRAzTXEydCEaKTWbEc2FeqpjNM3bUi1quJXUgMYVu
+ zha6UDcFliCaoa8vGhmQsJiLr5BbeWRWxBuz+2JBEEA4xZb9p7eREDZBE
+ 08dU2RXqTqHBB/bAFCckBn3rda1qfhOgMUAhuLQgRBcu+3gx7r3oKSACi
+ X1PFxCcyDaJkvZxL82pN4TZGK/rvl176ELzZXVkl/i5GDp9djwd5JXV88
+ v1GVu5HIexMfY66dHBaCDDMk86VcMHr3dZ1uAv7iQCIr5XzHCrV0C4ZqP
+ ZRCyHTG5MCnYBCKZdKuEjeQg2a1K2Y77sSp2WtzLqft+q1FeN95i7JjoY w==;
+X-CSE-ConnectionGUID: 8ePKSHCgT8mZr/sIitIUxQ==
+X-CSE-MsgGUID: X0Mg2yG8QmWHAdh67lHkxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11363"; a="53238516"
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="53238516"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 01:38:40 -0800
+X-CSE-ConnectionGUID: ENgsSW8kRxCB4vdXYvN8gg==
+X-CSE-MsgGUID: cqvygY7dRT+BGoKLY2VSrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123126128"
-Received: from smile.fi.intel.com ([10.237.72.58])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 01:28:23 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tq7We-000000004hV-3KwV; Thu, 06 Mar 2025 11:28:20 +0200
-Date: Thu, 6 Mar 2025 11:28:20 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Cc: Yury Norov <yury.norov@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+X-IronPort-AV: E=Sophos;i="6.14,225,1736841600"; d="scan'208";a="118781449"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 01:38:34 -0800
+Date: Thu, 6 Mar 2025 10:38:31 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: =?iso-8859-15?Q?Asbj=F8rn_Sloth_T=F8nnesen?= <asbjorn@asbjorn.st>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v4 3/8] bits: introduce fixed-type genmasks
-Message-ID: <Z8lqtLrlIv75lK5d@smile.fi.intel.com>
-References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
- <20250305-fixed-type-genmasks-v4-3-1873dcdf6723@wanadoo.fr>
- <Z8hx9AaUX_GvYq_A@thinkpad>
- <8301ecbc-d035-4257-9b04-c6ef9be4ce32@wanadoo.fr>
- <Z8ipvnURG_iejzSX@smile.fi.intel.com>
- <7063c8b4-5869-457d-91b1-3185d9e1181e@wanadoo.fr>
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jouni =?iso-8859-15?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Zhao Liu <zhao1.liu@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915: implement vmap/vunmap GEM object functions
+Message-ID: <Z8ltF3n4n6iwDfxr@ashyti-mobl2.lan>
+References: <20240629182513.78026-1-asbjorn@asbjorn.st>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <7063c8b4-5869-457d-91b1-3185d9e1181e@wanadoo.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240629182513.78026-1-asbjorn@asbjorn.st>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,47 +76,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 06, 2025 at 06:22:33PM +0900, Vincent Mailhol wrote:
-> On 06/03/2025 at 04:45, Andy Shevchenko wrote:
-> >>> But GENMASK_U128() becomes a special case now.
-> >>> The 128-bit GENMASK is unsued, but it's exported in uapi. Is there any
-> >>> simple way to end up with a common implementation for all fixed-type
-> >>> GENMASKs?
-> >>
-> >> What bothers me is that the 128 bit types are not something available on
-> >> all architectures, c.f. the CONFIG_ARCH_SUPPORTS_INT128. So, I would
-> >> need a U128() equivalent to the ULL() but which does not break on
-> >> architectures which do not support 128 bits integers.
-> >>
-> >> This is where I am stuck. If someone can guide me on how to write a
-> >> robust U128() macro, then I think the common implementation could be
-> >> feasible.
-> > 
-> > I think we may leave that U128 stuff alone for now.
-> 
-> I found the solution! The trick is to use type_max() from overflow.h.
-> 
-> With this, GENMASK_TYPE() becomes:
-> 
->   #define GENMASK_TYPE(t, h, l)					\
->   	((t)(GENMASK_INPUT_CHECK(h, l) +			\
->   	     (type_max(t) << (l) &				\
->   	      type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-> 
-> and works with all the GENMASK variants, including the U128 one! The
-> unit tests under lib/test_bits.c are all green.
-> 
-> Of course, this does *not* work in assembly. But as explained before,
-> GENMASK_TYPE() is guarded by a #if !defined(__ASSEMBLY__), so all good!
-> 
-> The question raised by Yury on whether or not we should keep
-> __GENMASK_U128() in the uapi still remains. And in full honesty, I will
-> not touch that one. This is not in the scope of this series.
+Hi Asbjorn,
 
-I vote for not touching it right now independently on its destiny.
+On Sat, Jun 29, 2024 at 06:25:06PM +0000, Asbjørn Sloth Tønnesen wrote:
+> Implement i915_gem_vmap_object() and i915_gem_vunmap_object(),
+> based on i915_gem_dmabuf_vmap() and i915_gem_dmabuf_vunmap().
+> 
+> This enables a drm_client to use drm_client_buffer_vmap() and
+> drm_client_buffer_vunmap() on hardware using the i915 driver.
+> 
+> Tested with a currently out of tree pixelflut drm_client[1] on:
+> - Lenovo ThinkCentre M720q (CoffeeLake-S GT2 / Intel UHD Graphics 630)
+> - Dell Wyse N06D - 3030 LT (ValleyView on Intel Celeron N2807 SOC)
 
--- 
-With Best Regards,
-Andy Shevchenko
+do you mind sharing the tests?
 
+> [1] XDP->DRM pixelflut: https://labitat.dk/wiki/Pixelflut-XDR
+> 
+> Signed-off-by: Asbjørn Sloth Tønnesen <asbjorn@asbjorn.st>
 
+thanks, reviewed and merged to drm-intel-gt-next.
+
+Andi
