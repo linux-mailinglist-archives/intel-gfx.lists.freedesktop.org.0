@@ -2,57 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784B4A54C06
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:23:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D1DA54BA7
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Mar 2025 14:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14B9A10E99F;
-	Thu,  6 Mar 2025 13:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3855B10E963;
+	Thu,  6 Mar 2025 13:11:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P4uvoz5h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C3UaXmGN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA3810E99B;
- Thu,  6 Mar 2025 13:23:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8819110E95C;
+ Thu,  6 Mar 2025 13:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741267429; x=1772803429;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mK57pJrtD3MmVVdGqQAkIMiM2QjY6GnL2mqV+OQsEwc=;
- b=P4uvoz5hGD2KS1fxPEmnsrImGh/5VaWobJH6EMk4ybIwASC1JXM6VSOz
- Qiv7nifOO2xu062a8/cl04Bz2X5TDV6APQuKikOqlbtiWUx97EN/04j1u
- L4iXsCu4uV9ZZoAQnefFL1dOVXBmSlfXsqg1nXec0IfLF7MjAtMLlz3wN
- mU6E9C+M9WhXC6UiWbOP6yHOxWAOzPR5u5XByNWKV8LiR0qJLfMmowvHL
- GLP0C2o1nh0mMTAm3DuIQgZ8FGw/hVJhvHWF/qWg2+D/c9cG42WFfsJvg
- QNgIoE1jCR9uvIpbIFy+LcJ4nkeRbdjky+dlqfI9vj4ot17VKhuQR4lwk Q==;
-X-CSE-ConnectionGUID: cH3lsT6MSgSi2+YH/ya67A==
-X-CSE-MsgGUID: Dj51EnZIR8aYpX53wmFFgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41524698"
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="41524698"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:49 -0800
-X-CSE-ConnectionGUID: ZWfUyXCwQamtOKQDLH6Zww==
-X-CSE-MsgGUID: K/+LmimoRhq7RTsMAcZVqQ==
+ t=1741266699; x=1772802699;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=OW0AABwV4kkghFUrMLhVQ5s89X7j+zKJ/MGBR1bvqJc=;
+ b=C3UaXmGNWkUC3YPwhtDCOaN52jOvVp4WomXiUsxWCchHa5WW2ol1E5o8
+ WMuU3dYPHgGisSxGzQEAmqkhQ5yLbTlKrhNnu9/VeLezxEEazr7QgE2sF
+ Dfh7AZPltNAZtVsLejCmtljNroo4oNAgkjx5LtsxX0M5Gfd5lAv7FIVEI
+ 0VMssFTN5/8MJ2e7+DMa5pJjm59r4ibIh6pCciVS/6cobfI8FU3IawMQd
+ w6gsYh/q2RS6G6CX4321QsAdAok7OQj2SGx+hJdZIXzdOe5IyyjMIRaoQ
+ KBv89Y/4Eo4pGzgEerLM8qdtjzwMacrmrmbZEnn1kk1nieZ0dvRbODLG2 A==;
+X-CSE-ConnectionGUID: L/kV7wUHTFK47ozjMywM6w==
+X-CSE-MsgGUID: taVjOQeSSGiF/t5SYfgR3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42469763"
+X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="42469763"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 05:11:38 -0800
+X-CSE-ConnectionGUID: fqQKbtOCSR2n84cNr4NstA==
+X-CSE-MsgGUID: MfgAeYkFQyWBYaFxQV0Gkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,226,1736841600"; d="scan'208";a="142243219"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2025 05:23:47 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 21/21] drm/i915/display: Add fixed_rr to crtc_state dump
-Date: Thu,  6 Mar 2025 18:41:00 +0530
-Message-ID: <20250306131100.3989503-22-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
-References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124230241"
+Received: from smile.fi.intel.com ([10.237.72.58])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2025 05:11:33 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tqB0b-000000007id-3ppG; Thu, 06 Mar 2025 15:11:29 +0200
+Date: Thu, 6 Mar 2025 15:11:29 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: mailhol.vincent@wanadoo.fr
+Cc: Yury Norov <yury.norov@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@aculab.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v5 7/7] test_bits: add tests for BIT_U*()
+Message-ID: <Z8mfAQGUvm3z86kE@smile.fi.intel.com>
+References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
+ <20250306-fixed-type-genmasks-v5-7-b443e9dcba63@wanadoo.fr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250306-fixed-type-genmasks-v5-7-b443e9dcba63@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +84,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add fixed refresh rate mode in crtc_state dump.
-VRR Timing Generator is running in fixed refresh rate mode when
-vrr.enable is unset and vrr.vmin = vrr.vmax = vrr.flipline.
+On Thu, Mar 06, 2025 at 08:29:58PM +0900, Vincent Mailhol via B4 Relay wrote:
+> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> 
+> Add some additional tests in lib/test_bits.c to cover the expected
+> results of the fixed type BIT_U*() macros.
 
-v2: Add check for vrr.enable.
+Still would be good to have a small assembly test case for GENMASK*() as they
+went split and it will be a good regression test in case somebody decides to
+unify both without much thinking..
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
- drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
- 3 files changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 599ddce96371..974598e29bff 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
-+	drm_printf(&p, "vrr: %s, fixed_rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
-+		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config) && !pipe_config->vrr.enable),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index a1ad9432bc28..fe589092ce53 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -661,7 +661,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- }
- 
--static
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->vrr.flipline &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index d857633bc02c..14a372204a54 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -38,5 +38,6 @@ int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
-+bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_VRR_H__ */
 -- 
-2.45.2
+With Best Regards,
+Andy Shevchenko
+
 
