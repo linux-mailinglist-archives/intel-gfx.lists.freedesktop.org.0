@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45516A56FE2
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 19:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71924A56FE3
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 19:01:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9687210EC25;
-	Fri,  7 Mar 2025 18:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F116110EC21;
+	Fri,  7 Mar 2025 18:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YMCdrUzA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AbYJShW+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B38D210EC2B;
- Fri,  7 Mar 2025 18:01:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD01610E15D;
+ Fri,  7 Mar 2025 18:01:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741370507; x=1772906507;
+ t=1741370512; x=1772906512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4QA+2Vx4eBrteSeJoX/trfkjUK6bxi1Tg3aJPonx3XU=;
- b=YMCdrUzAejxdOcDeQcYuzrp95RDiX0jBlj3oMIj0XH0lkgtrtnXNCa6q
- KHHAdBd3k9viAumOCuDh9Oep0bPfyhTQu07p+PhMg57blrssrCDKP8px5
- SM1Bpu1rbojBxDjm4wNGgC2hqEhlUgPHbJU9YNXAW4twKxAsUEPBg6sSz
- f7/Ym3rp08Ze9sJlC+CdJV2i2lNFmTAIWLCNiB1/im9bsDtxDO0tI+M2O
- gCwc2XSXZRy7jtzdaDgjIT9CJLcfVXsQQXb4Ty4t+5G1GHwizSS0w6dnJ
- ysSZll3o+Ttu1uxQhI6HIHqa23+6GZuQv78ja2YrK86U/PaSIOYsSKgZp g==;
-X-CSE-ConnectionGUID: QdrEsgFQSV2NmLvH7BDcZA==
-X-CSE-MsgGUID: OEJ1b6BaTGGtikad2raeSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637113"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637113"
+ bh=+hMr83SAbjcTA4BExQjluRRdjW0KhwYlsL4WPdFfdU4=;
+ b=AbYJShW+boQ/KJqI3++YzzjpZefMdv8kn+1kkWwdOJ1Mq+ZEH2ju/ccI
+ XKub0vZvMlwBQcN9xcPXECXS6c5NiKiRekE0NZ4sP7x99KIteM97iFSKV
+ 1cWEGMrFCHaS6PqnKEYrowJvWfYKhsRStUoqFFCjflsJzI+mKF26VubTo
+ 0xNE24QQgHg+AsLe7ZDX7mqwXsKKCr5h1jmsXjfKJCESeGbla77QUkMUK
+ bxJ0xOXIaauDcymVSM/62TRA4NejyRMiGs7ml2MCmz8/lKt+6EVurtiHn
+ iXu3hJHJ6HnzzdKWsQ/cxKfB9Vm9HqNgAqwJCF7hUnORfLNMyfpHaFzY1 A==;
+X-CSE-ConnectionGUID: X5aajgqxTCms2u3rpGU4kw==
+X-CSE-MsgGUID: g1pPGjlXSECkOEeAHxuANA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637126"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637126"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 10:01:47 -0800
-X-CSE-ConnectionGUID: lUFjfadXRE22oKXpowR7Jw==
-X-CSE-MsgGUID: CDr7tsptRFi3+vCBrfFdRw==
+ 07 Mar 2025 10:01:52 -0800
+X-CSE-ConnectionGUID: ZWek0KS9Tric45eHN8UjPQ==
+X-CSE-MsgGUID: ms8onMd6Sxa32qXfzvxweg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621065"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621095"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:01:44 -0800
+ by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:01:49 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Mar 2025 20:01:42 +0200
+ Fri, 07 Mar 2025 20:01:47 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/14] drm/i915: Drop the cached per-pipe min_cdclk[] from bw
- state
-Date: Fri,  7 Mar 2025 20:01:26 +0200
-Message-ID: <20250307180139.15744-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/14] drm/i915: s/intel_crtc_bw/intel_dbuf_bw/
+Date: Fri,  7 Mar 2025 20:01:27 +0200
+Message-ID: <20250307180139.15744-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
 References: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
@@ -72,82 +71,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_bw_crtc_min_cdclk() only depends on the pipe data rate,
-which we already have stashed in bw_state->data_rate[]. So
-stashing the resulting min_cdclk[] as well is redundant. Get
-rid of it.
+Rename the intel_crtc_bw struct to intel_dbuf_bw to better
+reflect what it does.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 17 +++++++----------
- drivers/gpu/drm/i915/display/intel_bw.h |  1 -
- 2 files changed, 7 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 048be2872247..7b9ae926c5c4 100644
+index 7b9ae926c5c4..2bc020690515 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -795,15 +795,13 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
- }
+@@ -1124,15 +1124,15 @@ static bool intel_bw_state_changed(struct drm_i915_private *i915,
+ 	enum pipe pipe;
  
- /* "Maximum Pipe Read Bandwidth" */
--static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_state)
-+static int intel_bw_crtc_min_cdclk(struct drm_i915_private *i915,
-+				   unsigned int data_rate)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--
- 	if (DISPLAY_VER(i915) < 12)
- 		return 0;
+ 	for_each_pipe(i915, pipe) {
+-		const struct intel_dbuf_bw *old_crtc_bw =
++		const struct intel_dbuf_bw *old_dbuf_bw =
+ 			&old_bw_state->dbuf_bw[pipe];
+-		const struct intel_dbuf_bw *new_crtc_bw =
++		const struct intel_dbuf_bw *new_dbuf_bw =
+ 			&new_bw_state->dbuf_bw[pipe];
+ 		enum dbuf_slice slice;
  
--	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state), 10), 512);
-+	return DIV_ROUND_UP_ULL(mul_u32_u32(data_rate, 10), 512);
- }
- 
- static unsigned int intel_bw_num_active_planes(struct drm_i915_private *dev_priv,
-@@ -1138,7 +1136,8 @@ static bool intel_bw_state_changed(struct drm_i915_private *i915,
+ 		for_each_dbuf_slice(i915, slice) {
+-			if (old_crtc_bw->max_bw[slice] != new_crtc_bw->max_bw[slice] ||
+-			    old_crtc_bw->active_planes[slice] != new_crtc_bw->active_planes[slice])
++			if (old_dbuf_bw->max_bw[slice] != new_dbuf_bw->max_bw[slice] ||
++			    old_dbuf_bw->active_planes[slice] != new_dbuf_bw->active_planes[slice])
  				return true;
  		}
  
--		if (old_bw_state->min_cdclk[pipe] != new_bw_state->min_cdclk[pipe])
-+		if (intel_bw_crtc_min_cdclk(i915, old_bw_state->data_rate[pipe]) !=
-+		    intel_bw_crtc_min_cdclk(i915, new_bw_state->data_rate[pipe]))
- 			return true;
- 	}
+@@ -1151,7 +1151,7 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
+ 				   unsigned int data_rate)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
++	struct intel_dbuf_bw *dbuf_bw = &bw_state->dbuf_bw[crtc->pipe];
+ 	unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
+ 	enum dbuf_slice slice;
  
-@@ -1238,7 +1237,8 @@ int intel_bw_min_cdclk(struct drm_i915_private *i915,
- 	min_cdclk = intel_bw_dbuf_min_cdclk(i915, bw_state);
- 
- 	for_each_pipe(i915, pipe)
--		min_cdclk = max(min_cdclk, bw_state->min_cdclk[pipe]);
-+		min_cdclk = max(min_cdclk,
-+				intel_bw_crtc_min_cdclk(i915, bw_state->data_rate[pipe]));
- 
- 	return min_cdclk;
- }
-@@ -1266,9 +1266,6 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 		old_bw_state = intel_atomic_get_old_bw_state(state);
- 
- 		skl_crtc_calc_dbuf_bw(new_bw_state, crtc_state);
--
--		new_bw_state->min_cdclk[crtc->pipe] =
--			intel_bw_crtc_min_cdclk(crtc_state);
- 	}
- 
- 	if (!old_bw_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 3313e4eac4f0..e977c3586dc3 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -55,7 +55,6 @@ struct intel_bw_state {
+@@ -1160,8 +1160,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
+ 	 * equal share of the total bw to each plane.
  	 */
- 	bool force_check_qgv;
+ 	for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask) {
+-		crtc_bw->max_bw[slice] = max(crtc_bw->max_bw[slice], data_rate);
+-		crtc_bw->active_planes[slice] |= BIT(plane_id);
++		dbuf_bw->max_bw[slice] = max(dbuf_bw->max_bw[slice], data_rate);
++		dbuf_bw->active_planes[slice] |= BIT(plane_id);
+ 	}
+ }
  
--	int min_cdclk[I915_MAX_PIPES];
- 	unsigned int data_rate[I915_MAX_PIPES];
- 	u8 num_active_planes[I915_MAX_PIPES];
- };
+@@ -1170,10 +1170,10 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+-	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
++	struct intel_dbuf_bw *dbuf_bw = &bw_state->dbuf_bw[crtc->pipe];
+ 	enum plane_id plane_id;
+ 
+-	memset(crtc_bw, 0, sizeof(*crtc_bw));
++	memset(dbuf_bw, 0, sizeof(*dbuf_bw));
+ 
+ 	if (!crtc_state->hw.active)
+ 		return;
+@@ -1215,10 +1215,10 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
+ 		 * equal share of the total bw to each plane.
+ 		 */
+ 		for_each_pipe(i915, pipe) {
+-			const struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[pipe];
++			const struct intel_dbuf_bw *dbuf_bw = &bw_state->dbuf_bw[pipe];
+ 
+-			max_bw = max(crtc_bw->max_bw[slice], max_bw);
+-			num_active_planes += hweight8(crtc_bw->active_planes[slice]);
++			max_bw = max(dbuf_bw->max_bw[slice], max_bw);
++			num_active_planes += hweight8(dbuf_bw->active_planes[slice]);
+ 		}
+ 		max_bw *= num_active_planes;
+ 
 -- 
 2.45.3
 
