@@ -2,186 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E02A568AA
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5789FA569B7
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:58:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5868710EB57;
-	Fri,  7 Mar 2025 13:18:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33C3510EB86;
+	Fri,  7 Mar 2025 13:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C7rQGH4d";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Gd6ot5mL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0F510EB56
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 13:18:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741353503; x=1772889503;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=6GXWUAPs8EdmKtCHwQb9Fz4nWUyKy0HnJ6UAeIXhIas=;
- b=C7rQGH4dENW/aswhmLq7x4/KYbN5LDeME8WprL0FZBkwlj4aZxaYhBD8
- jZuuNVBvzT8DzsKczy7/bJLrCbqLR/+hDQgwCBDxELVg5C2N+PTE/u4Mc
- 1zfjebt4TMENAjIR9uQBT7kqYISSW8Mn6z2YETMmtczSNeGKkqeNeVR7X
- lWHmQke/M0SKPWHlWNcfYLtQGM1dXt0YlPHB2y64X39YEiIsH8Jqle0Xi
- EQtrqRzbbLqv64YGo1L+fF0ZTbbxwKNbhlVmnYM3VCNntG9sZmRgCZevg
- H5QfpoOmE1nrjEEsp/QG2F8Wi2nxJSWnzk0dAYPhk56U3gyMBOMhpeely Q==;
-X-CSE-ConnectionGUID: nm6ZHRqjQ2OwOAYd7W+M5Q==
-X-CSE-MsgGUID: 3I8VADgjSbi1bl1t/rJEAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="46177435"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="46177435"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 05:18:23 -0800
-X-CSE-ConnectionGUID: 3G/wb6txSx2TVcPRqZoLRw==
-X-CSE-MsgGUID: DnC+FcvPSumNIkzWETVgcA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119850233"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 05:18:23 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 7 Mar 2025 05:18:22 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 7 Mar 2025 05:18:22 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 7 Mar 2025 05:18:20 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iuJ9vRhPyYAUb5nUiaERgobVghnJtewo6ACl/cKvcmb50VPMBhOPp5/0xdWZXVB7dnOFW6rCARooWkehIpX4rED3rsbQLJeT9h6fq833dnk5tZoBfk5khWRn03kZjfjgm3CVOUD3dtTU2D277Dh+IwhDgxPNVvDgLIod6IoQy8zkDgd8jkZEdzu243VObUXSsOcR6oAeU/Mu8a8bAiIIiFhCpLyqP7A33ejpuR1U7fNreSq93KXjOVvkKSbbOLVwnWHycSIcDdUpRqJXxAcC8haBlUsTMRhRYWz6sH8CHM0TMivAVxMI07VncuEFkQW02/CbSHVwcGFBk7nQSHjVwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3FJB7KVD1WeKm/Am+5oAvqfynbuIaMuxSa0n7pRROZg=;
- b=NXNe+8vhUVPgz7+i+UaC7plgaWd4puschdQU9o77m5Voat6cb10lHiLr2IpHBfoYk1Xn4p/i67jtDAQacCQ4D1uVCf8MiCtUhx66c/i5dKXuRxuOIBhjWVVJ7xPMFWtUHVQuo0z30R9SuRc+ofJ0NDg22+Km0SoNxzWV7MfD4SOrBAXt79ZNL5zc6R2COz0cxEv8wbahym0C0WmYJkfhAmP8K4gAS7WzuOwteLLEkAfHxv94YfGbTLPOioB/vp3y7MyHuHeQDkstvkiyXIiGGByRT5IIzcSHPMg/if6t2QyKyu7rzgrErEWJL0k8PyKgZOVm4EnpltGbW7mX9Zxjiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8019.namprd11.prod.outlook.com (2603:10b6:8:12e::18)
- by CY8PR11MB7108.namprd11.prod.outlook.com (2603:10b6:930:50::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8511.22; Fri, 7 Mar
- 2025 13:18:18 +0000
-Received: from DS0PR11MB8019.namprd11.prod.outlook.com
- ([fe80::d2ab:ff8b:3430:b695]) by DS0PR11MB8019.namprd11.prod.outlook.com
- ([fe80::d2ab:ff8b:3430:b695%6]) with mapi id 15.20.8511.017; Fri, 7 Mar 2025
- 13:18:17 +0000
-Date: Fri, 7 Mar 2025 14:18:08 +0100
-From: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-To: Chris Wilson <chris.p.wilson@linux.intel.com>
-CC: Mikolaj Wasiak <mikolaj.wasiak@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2] i915/selftest/igt_mmap: let mmap tests run in kthread
-Message-ID: <gfnreumbasvtrdlyqomqwgfyitnr2avg43kgpj7crande2jd4s@acpxxehzgrqg>
-References: <2w6pt2hnemndwmanwhyn3keexa6vtha7rmo6rqoerkmyxhbrh2@ls7lndjpia6z>
- <p7p3dfiuyss4fyu33ll7dl2lovhiga4nrmqtzvmq22nz6qorxb@3cnervmi5h6q>
- <2l2xubl54w5lppc55lvksasp7ged4tactvumqoxvuocbaqnb36@as6ekkdh57zy>
- <174134708564.785137.4586842576093518384@DEV-409>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <174134708564.785137.4586842576093518384@DEV-409>
-X-ClientProxiedBy: WA2P291CA0036.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::9) To DS0PR11MB8019.namprd11.prod.outlook.com
- (2603:10b6:8:12e::18)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BAAA8826D;
+ Fri,  7 Mar 2025 13:27:48 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-390e3b3d3f4so953379f8f.2; 
+ Fri, 07 Mar 2025 05:27:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741354066; x=1741958866; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=85pEC8KCcI89C4WR+hGbDu9vRGoE5Gebzb+PlByP0LU=;
+ b=Gd6ot5mLYp9ZYF33Ury7FcLxMZeNWq5gKw5C6A/gMw5VA7XTxA9gPhdsTJu7i0CuUx
+ wh2mOf8uig9oLNK1R4bkIbbawO5fUWhHKpRoJGwkAcig4nGq+Ccv7tz8PjLeZsE1xcSW
+ Tqn6zf3WHdOx5AzOhB1yH6um9kGWCFUZFde36SDThWpOlW4zY8lI4+06DkVRMfdMh4Md
+ gjp9X6dxH70f/ggIoA/IPbkJ8s9Aj5zv3ha1tvrlm3ErPxv7K0KAH9H1kOYDfr7C+Qx5
+ nYAhTNzCuQrtohWQl7bqM0LSBvxaxy9npz1bQCh4PEbgJtzKzmifBy7rte2vXeIQHSsC
+ ivWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741354066; x=1741958866;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=85pEC8KCcI89C4WR+hGbDu9vRGoE5Gebzb+PlByP0LU=;
+ b=eSfjKwYe51QdypegSlt57+HzWw+DBVDwNTaw4zR3NoNW79lJMnuyGk776VROc/LXRF
+ 9sbwIYfAgKsgPVLqbWU0wrN/QZpq1o0xpJflQxQCCSoyVH87hP8pr7tNeMmULM6VjMPC
+ r3J6pwynAXv2jpV4/VvRkN9KmnS+A0tra3qCUTpBGQtq0TXMVEmf9OE2fg3sXKHgxXXG
+ n3BFUEJHOiU7Gul+RPBM+5D+5wHKx5a1unFaVB0OTnVIhovJcMA6qZHf6H1uYCfBHJ38
+ H3gwWBwhxcjGm28qqL6UY0W0C0d1NK3MUhxim1rmsAUoAbYF9h5VDTcCo+yUK8BPL0ZO
+ cn0A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWpKaCDWF7lbMl5bCTdXYcW+EQjaWZmgAMEPPenYOkjr5wOHUapd4txe2Q5jEFursk8HpkxHNkiAbg+@lists.freedesktop.org,
+ AJvYcCXyOA6abWZJnu1871h9vYUDeSjKD7RoAM8Dn1RONLFgHuxM68AGswh0LFxTVyh0B8qHAY4aYsAI6hk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzCbjlvMEMruNbbpXEAY0MkOZkyEarXIHWy9mN3BYTH0qemcq+f
+ wteFAlRZ1I/pUdyQLl4DyTHylapGvwU23MG7VpC9F2Oex9l2W/7t
+X-Gm-Gg: ASbGncv/N4jpjfXIXDzcTHZ/P2lbdDd31uQTm3kcuQUZ9D/JKPxJmqkGirB5mlINFO4
+ 1IBlxJww4plEuDQyN00Y167ySxleAnW8oulHqB2nhh4ERlHAQckcrUS49hmgLcQfMM+fsD9k5lP
+ L/PR8Wu+gaHGlnKAJPMtPKXo8IS5libIhXwGufMX/A0MOfNGbkiM2SgA/AxDbDpVz9En2DK+6MX
+ uZ1oFIBeBHzBGmmwUK7wpcVtpTE33fx8gC+QMfffIS4VEZroGKkaxvQRqM76HF6uOaihA1ky0/8
+ ZJh2I6d8IjXnRGDBNrGCP6YXtDJ4+3e8y7d0MhYEOlHl9mb220SCT4v35RTlAP/nOOsm2+ux7Vi
+ P12aWRRg=
+X-Google-Smtp-Source: AGHT+IFrmws0QRJibrAQb0TzahsD1hhkLY5E++lh2fAWSvEQc4XtAQW0XxSrln4LJs/Uja5JO15rng==
+X-Received: by 2002:a05:6000:4103:b0:391:3988:1c7c with SMTP id
+ ffacd0b85a97d-39139881e97mr198214f8f.24.1741354066257; 
+ Fri, 07 Mar 2025 05:27:46 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43bd4352fa3sm80977135e9.30.2025.03.07.05.27.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 07 Mar 2025 05:27:45 -0800 (PST)
+Date: Fri, 7 Mar 2025 13:27:42 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: Yury Norov <yury.norov@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@ACULAB.COM>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and
+ non-asm GENMASK()
+Message-ID: <20250307132742.150a3a77@pumpkin>
+In-Reply-To: <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
+References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
+ <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
+ <20250306192331.2701a029@pumpkin>
+ <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8019:EE_|CY8PR11MB7108:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcd745d8-ec85-491f-6d0c-08dd5d7a8648
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|27256017;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S1RIeHJ1NGtoZEppSUJ6RmE2bEFKOEV1YndPUVdUdjI5bUtoUWRWUTRCNHVk?=
- =?utf-8?B?djV5cjloTTNkb0Y5RGYxUE5iNTAwb3h4ZFp6eGcvVnpldUMzQlpOR2JxTUph?=
- =?utf-8?B?VTVqMkx6Q2x6NE5pb2cxQ2M3WlZaaHpYbm80L01kcUhobERYMkxwOEJyK2I0?=
- =?utf-8?B?TW45YU44NHlpby92SWpuTFNiTWhkamlMYVN1YzZTVkJvNFIva1VlRER4TEpm?=
- =?utf-8?B?UFJzQ3B2SEcySjRHc3RJYVhaZDNlenVuVytNeitKRVpYN09oU2RaZTJGRld2?=
- =?utf-8?B?bklmRG9EVEorQ2Z0TGZIODlJM1JVYWZ0RThjZ1BUNkNFQVE4QjNiT1lQc0g5?=
- =?utf-8?B?aHdkMUlQM3pGdjZhdE40Q3NzRXlpSHJZalVvQnlsQWJvaUtXaFZpcTlGR1Bh?=
- =?utf-8?B?R2JpUVl6MUxFd21sLzVydGw3bjdnS05MakFMZDg1TGUxTHMvUmRZMWJLTDJ1?=
- =?utf-8?B?YXRSUUhLbjVSWlQ0ZTRUQUZONFJVQWtsRGNIRVdjK3FnbFJvZG1SVm1Vb1Jn?=
- =?utf-8?B?aWZTZlJUZWhtRHpsL0w5UjBZZmFTb1hZdnJNVXh0Ly9PS1J6R1o1U1pZV1Fs?=
- =?utf-8?B?OTA5RVdON09za2pxTFJwMnpmNStEQWtwVGtsYStxZFhOdjcvT3ZyWjhtU1lQ?=
- =?utf-8?B?cnFKK0phM3A4K2YrU3BFMzlyTHpWY2QyWTYvNUtmeWRlUmxRUys1U3djaVAv?=
- =?utf-8?B?TVNnV2JLRjNzS3Bra3Q4d1ZUanZQUDlOeXo5OVJHd2w5aUlua3lLTG1tOGJI?=
- =?utf-8?B?SVMzK2xCUXVSdE1NbGxrbmhPbGxiN2VoWEtwbjlNTkRSTXJvWFgySWRLWEk1?=
- =?utf-8?B?Z2hEOUw4QnZQcnE1TSt2bGx0a2c2dDBObjYvS3lYdW1qNjlBUUxpN1lBSW5Y?=
- =?utf-8?B?REJQNnVKK1RqTzlRYkdCQ09mdTNxS3hndEs3bVRoMTZJUWN2QWw1ektOdjIy?=
- =?utf-8?B?SUEveVhoeFNTby8vSEl3dDgxbjBoM01tQVpUeVV1VUJieDhXZ01PalMwbElR?=
- =?utf-8?B?OEFrT2gwNDBZRWRvaHdvd1VxTThxajBFYzVSRUMvb0ZUODBYMVdoRkV6dWVB?=
- =?utf-8?B?SThJaWZhdjgvSlpRZDF5cEFBeWNyR3pUblluV29iLzZ0S3VzaDVlZWpYVlhL?=
- =?utf-8?B?VkZ3QmVJYVZIOXdVTm1OVjh1eFk5aTNCK0kzakVzUlM3SVB1WVhrRkZvRHMy?=
- =?utf-8?B?bDFNeUp1THZ4MWVyNHgwMjd5OGxHL2R0KzRMcXdyVG13ZktNdzlqbmZLeXpZ?=
- =?utf-8?B?SWdINmpGZ3ljRngxM1Q4UWJ1a1d4aGRxRTlDdFROL2JqRnVTcDJyZzRyWkJ2?=
- =?utf-8?B?NlM5VUwvUTF0YUpFZm1aUmlnWm9ZZURvS3lKK2h5L2hWdTk2MEpNWVdGUjRM?=
- =?utf-8?B?K2NnK1ZOY2R2cGhidjhkL0xjUkZoTEtCVklTdXo1ZnNLM2diS1l3RzEweE5m?=
- =?utf-8?B?VXhtSHdzNnFWeStHWDFpaFcxOFJ4RTg5VmhUdUVYallBRkEvSlJ5akRYWGhO?=
- =?utf-8?B?NGlObGFnbzNWcUxhQVNTc3hkeHpDdHhDdUQ0V3Flb21RV29oaXlHVnlhTFhW?=
- =?utf-8?B?WEptN1pBN0s4TkFNNHR5WWJHcTZHV0h0WWFybWRHek0wQnN3OXpPSXJBUXhL?=
- =?utf-8?B?cG4xRkNYZDNJVzZMUzRZcEIwTGd4TGFoQStsRjBDTlJxZCtYQkNvQzIvQjNv?=
- =?utf-8?B?cTZoQUVydk9YYXpyNDFnUUx0R2M5enhvbmpjbE1EZ3BYSHZpekhvWjdIUkg0?=
- =?utf-8?B?YWxML2huL09wcWNGSHlnQ0pTeERBYkc2SnNKcGJ3Q1ZyUk1jOVY5SFc5V1BK?=
- =?utf-8?B?Q0xzRm1HWUZnZW80MnY2c0EwamxYVG93aUJ4MjEvOHJpTzdIdVJTOWdiR0lK?=
- =?utf-8?B?R05aMlNraTZUOGRBNlFDd2MybWV4SUVkT1JHUXd2Ni9hbnhmaTJzK3A4aHMr?=
- =?utf-8?Q?S7Q5rWUxaOENX7e/fn5d+awTYcUvm6Yh?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(27256017); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SXhRZHk1Y3g5M01uYm0xZDU4cUZ4UlFmc09RTGoxcWtVcXA0cS9oaE5qUWhi?=
- =?utf-8?B?eWRXeTUraTFOWnJaWFJDVzBWalBITlRBU0FKNE9ydjYwUUp0V0RiN05NRnA4?=
- =?utf-8?B?L2dPU0hWVlhTMzdRV2JTTHAvazVBOFh5SU43YjhrZ3QzQ3R1WFZBNkQ4RU82?=
- =?utf-8?B?NkxBNkZoOUJLd2xDZ1hNSVJwaTNCeHRVaGJPNDFvY29TYWJoSThYQSt1d0JL?=
- =?utf-8?B?ejdxNWd6UkNEanIwSzBJeThIUmZPS2hnSDF4RU8vSHZ5Rzg2S3IrVzJ3OW5P?=
- =?utf-8?B?SVhsd1FoS3RSMHZ5VjliOXpjN0p5TGY0eitwRzFDd0NQcFYzeDhaVExtZXhK?=
- =?utf-8?B?VEo5NzBMcmRWMzJYOFRUd2FQRkxIRzhzcDIyb2RYTDUwZVgzYVAxWENnOGEz?=
- =?utf-8?B?VVlDS2s3YW00d0JFNGJKMGZvNTZNNndnam1DT2pZYUJSeXdGbFdsU2Q0MzZF?=
- =?utf-8?B?WERZWGVEVzVZRjhBUTNQRzE3YnlMWmVESkNWMU42WUFIY2ptbnRZa3hvSjZy?=
- =?utf-8?B?ODM5eTRVZysvTnIvbFh3UUdkMDhvWUtNQmkwZzVPWWllUzRoNTQxdEZEaXBz?=
- =?utf-8?B?RGs4U2RKZ2ZxajU5dTd5VlhHWjBKVW04TUFwQTFKcEtYZmRwR1owU2VmZ3pr?=
- =?utf-8?B?a1hDZFVLRC9rczRpcVd2c0RCSkk3RDFXQmQxbVZ0eTNEb2dKRkh0R2J6YWh0?=
- =?utf-8?B?bW12aTFPcGZxdTVUSlk5RUdiVkluWXN3ejI4b2NoTEpwQTVDUkxGY01ub0o1?=
- =?utf-8?B?ekpyVUE3UklUWDlhYnBQVzBPV2Rtakt3ZzBwRXlkZGdtTFJia3pKMDR1RldY?=
- =?utf-8?B?a3NRbUxmb08wMVpGZkNDcnIwZkNmNkExSzdKVHVTUVg3WTVlbVlOVGtEQm1Z?=
- =?utf-8?B?TWN4SXRmRGtRSlNDLzc4eGhEYzJwZlJXQVlXMDJBaGw2cVF0bUdIQVVJWGNK?=
- =?utf-8?B?N2JReitzQ0tYeDNOTkFWVk1NUUdGQ1N1QjVjY2RqT1VIRldxUk5PdkhjVk5z?=
- =?utf-8?B?cHFPMzhYUUNudkxPd3A5dTRUTXdSN3hGRmFIUU5VNUtXbEg4T0Zzd3dsV1FL?=
- =?utf-8?B?cFdjSFU1TXF5NzhQUWhRVTBQS092cFE1RUxaUi9PZWFyUXR2OVNKS0xLWExG?=
- =?utf-8?B?RTdvd3lwcEtndThJa0pkcEtZMDlvZHgrb1lBTzdiN29nc0N6anB1d3RMWXQ0?=
- =?utf-8?B?eHVvRTJrM0JpN21VTlFmT291WFdHU0swdFRKd09hdUxZKzdsMzNyOGhWYitW?=
- =?utf-8?B?QzhhR3JLUHB3YWJBaEJEKzBGUEtxZ2xXT1A1c3dUS0ZMVFRPUDZjZlZpS1Rz?=
- =?utf-8?B?TVJUcVExQjEwb08rMjFRek5pd3NyeVZtU3ViSlYwdFBJTXF0eXJFMWpXdFlv?=
- =?utf-8?B?Z1NiZEtlNmhNaXBKbzZROTdMUk1ZZG5WVjlkR1pGZjNibmFlTmpPdCsxbXJJ?=
- =?utf-8?B?R3EvSjgrQU00WC9XUy9ZdXNVUHcybzNDU004Y0M3RGl0UDIxVzZVNThOQURl?=
- =?utf-8?B?YVdHc0hJbnl6eG1Nemx6L0tQUitJbUo4bUxZSk5vM1Q2cithWWsyS2xEcU5W?=
- =?utf-8?B?R0pORlZLa3NBZGt6WDdERmZKQXZZOE94bXR3L3RBb2Zyd3VrSGlZZ3AyeDRX?=
- =?utf-8?B?bWs5QytzQmtVU1cxQXRPL2JodWxCQkxlRkljRDJ3NWxsSUhkOHExOXJQVlls?=
- =?utf-8?B?UUlnSGVvRUlUcUlPUkRzWUc0Y0kvZmViUFVGN09tNlhuZnJVY2dDV2NGUlQ1?=
- =?utf-8?B?aFB0RWIvZUxxL20xLytveU1ybmtpbmNrVmtxcVhHV3pHb3BhS3pkUTlGMWhl?=
- =?utf-8?B?WWZkb05UaDZjOFpoenJ4ak1xb3lwdFk5aTErVHlQZE82dGNZNmlYZ0NYVTBQ?=
- =?utf-8?B?R1licGVGMzlCMzVBdVEwY1ZNQ2RKcjdEb1RvL01YSFUySGFQY3JMcmM2M096?=
- =?utf-8?B?SWtRTXladGxEYTNwRmZlNVEvSU51cUIrc1A3b0YyYlBZNUMxL2h1UmFmSjBW?=
- =?utf-8?B?dFNKekFiV2pDU1JwR1BVQmVTS0xLYjNsdk1lZEN6RDJ0RklqWTd6am5oRTBz?=
- =?utf-8?B?SFN5L2ZaWTd2Qmo4VkJCYkJENkRaM3JkZ3JJVXlnMlVzMWI5aXJGM0toWUdX?=
- =?utf-8?B?RlkwMGo4bnNrdzBJL0NVK1E1Ykx4Z2RIRDZGOGhQS0dvemY5SURLcE93MUlV?=
- =?utf-8?B?UlE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcd745d8-ec85-491f-6d0c-08dd5d7a8648
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2025 13:18:17.8497 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FLuOv/p0T9s6+pYmddXTpklyU5TP3MZgdDkRO4Eh31T8tTVRulpBFwXFyR3xi8NMM0kotchC11KAcMTFi2HFGXON1mfnS2vlOtk4f7GcPwg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7108
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 07 Mar 2025 13:57:54 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,61 +105,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2025-03-07 at 12:31:25 GMT, Chris Wilson wrote:
-> Quoting Mikolaj Wasiak (2025-03-07 08:44:29)
-> > Hi Krzysztof,
-> > 
-> > On 2025-03-05 at 17:31:49 +0100, Krzysztof Niemiec wrote:
-> > > Don't we run into the same issue as in V1, meaning we use an unknown
-> > > current->active_mm (since we run in a kthread, and cannot control it) to
-> > > use as the current->mm? Maybe a better approach would be to create a new
-> > > mm for the duration of the test, similarly to how the patch Janusz
-> > > mentioned does it? (51104c19d857)
-> > 
-> > As per discussion with Chris, using active_mm is the correct way of
-> > enabling current->mm in kthread. On the other hand it may also expose
-> > issues with underlying tests because they didn't previously run on such
-> > hardware. I think potential fixes to those tests should be addressed in
-> > separate patch.
-> 
-> We've looked at the tests, and they should all be finding unused space
-> in the mm and cleaning up after themselves...
-> 
+On Fri, 7 Mar 2025 18:58:08 +0900
+Vincent Mailhol <mailhol.vincent@wanadoo.fr> wrote:
 
-If that's the case, then the patch is alright. I was mostly worried
-about messing with userspace memory of a random process.
+> On 07/03/2025 at 04:23, David Laight wrote:
+> > On Thu, 06 Mar 2025 20:29:52 +0900
+> > Vincent Mailhol via B4 Relay <devnull+mailhol.vincent.wanadoo.fr@kernel=
+.org> wrote:
+> >  =20
+> >> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> >>
+> >> In an upcoming change, GENMASK() and its friends will indirectly
+> >> depend on sizeof() which is not available in asm.
+> >>
+> >> Instead of adding further complexity to __GENMASK() to make it work
+> >> for both asm and non asm, just split the definition of the two
+> >> variants. =20
+> > ... =20
+> >> +#else /* defined(__ASSEMBLY__) */
+> >> +
+> >> +#define GENMASK(h, l)		__GENMASK(h, l)
+> >> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l) =20
+> >=20
+> > What do those actually expand to now?
+> > As I've said a few times both UL(0) and ULL(0) are just (0) for __ASSEM=
+BLY__
+> > so the expansions of __GENMASK() and __GENMASK_ULL() contained the
+> > same numeric constants. =20
+>=20
+> Indeed, in asm, the UL(0) and ULL(0) expands to the same thing: 0.
+>=20
+> But the two macros still expand to something different on 32 bits
+> architectures:
+>=20
+>   * __GENMASK:
+>=20
+>       (((~(0)) << (l)) & (~(0) >> (32 - 1 - (h))))
+>=20
+>   * __GENMASK_ULL:
+>=20
+>       (((~(0)) << (l)) & (~(0) >> (64 - 1 - (h))))
+>=20
+> On 64 bits architecture these are the same.
 
-> If we put on our paranoia hats, the biggest problem with borrowing
-> userspace's mm is that it gives them temporary insight into whatever
-> we place into that mm. We don't expose any data, unless by error...
-> Not sure how much effort we want to put on making the selftests paranoia
-> proof, but that (and the surety of cleaning up afterwards) would be a
-> good argument for creating a temporary mm for our use.
+If the assembler is naive and uses the cpu shift instruction for the >>
+then a lot of cpu (including all x86 since the 286) mask off the high bits.
+So __GENMASK_ULL() may well generate the expected pattern - provided it
+is 32bits wide.
 
-I don't think it's really a secret what the selftest puts in that memory
-anyway (assuming normal test operation).
+>=20
+> > This means they should be generating the same values.
+> > I don't know the correct 'sizeof (int_type)' for the shift right of ~0.
+> > My suspicion is that a 32bit assembler used 32bit signed integers and a
+> > 64bit one 64bit signed integers (but a 32bit asm on a 64bit host might
+> > be 64bit).
+> > So the asm versions need to avoid the right shift and only do left shif=
+ts.
+> >=20
+> > Which probably means they need to be enirely separate from the C versio=
+ns.
+> > And then the C ones can have all the ULL() removed. =20
+>=20
+> In this v5, I already have the ULL() removed from the non-uapi C
+> version. And we are left with two distinct variants:
+>=20
+>   - the uapi C & asm
+>   - the non-uapi C (including fix width)
+>=20
+> For the uapi ones, I do not think we can modify it without a risk of
+> breaking some random userland. At least, this is not a risk I=C2=A0will t=
+ake.
+> And if we have to keep the __GENMASK() and __GENMASK_ULL(), then I would
+> rather just reuse these for the asm variant instead of splitting further
+> more and finding ourselves with three variants:
+>=20
+>   - the uapi C
+>   - the asm
+>   - the non-uapi C (including fix width)
+>=20
+> If __GENMASK() and __GENMASK_ULL() were not in the uapi, I would have
+> agreed with you.
+>=20
+> If you believe that the risk of modifying the uapi GENMASK*() is low
+> enough, then you can submit a patch. But I will definitely not touch
+> these myself.
 
-The only problem I can see with using userspace's mm at the moment
-(paranoia-wise) is that we only lock the mm for the vma_lookup() check
-[1], meaning there's a time-of-check-time-of-use situation. IFF
-userspace can somehow unmap the obj from its side after that check is
-done, this can potentially mess with kernel memory. I have no earthly
-idea if this can be really abused though, so it might not even be a real
-issue.
+I don't think you'll break userspace by stopping the uapi .h working
+for asm files (with __ASSEMBLER__ defined).
 
-Besides, to achieve that, a malicious process would have to win the
-kthread active_mm lottery so its mm is used for the selftest, then guess
-the address of the mmapped object (it's technically logged as debug, but
-the loglevel might not be set as such), and then race with the kthread
-so the object is unmapped before use. So a lot of stars have to align.
+But someone else might have a different opinion.
 
-If that is not something we consider a problem, then:
+>=20
+>=20
+> Yours sincerely,
+> Vincent Mailhol
+>=20
 
-Reviewed-by: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-
-[1]: gem/selftests/i915_gem_mman.c:923
-
-> -Chris
-
-Thanks
-Krzysztof
