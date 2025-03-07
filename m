@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61EDA56FF3
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 19:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0B6A56FF5
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 19:02:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC9310EC22;
-	Fri,  7 Mar 2025 18:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1849710EC2E;
+	Fri,  7 Mar 2025 18:02:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="krHYMHiK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k56/CHPH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87A610EC22;
- Fri,  7 Mar 2025 18:02:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4DF10EC27;
+ Fri,  7 Mar 2025 18:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741370547; x=1772906547;
+ t=1741370552; x=1772906552;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fGOlZ+TCOoADui2ApQsPyT3X0HVSqWjmIeteEgLdGtc=;
- b=krHYMHiKZ5twWeG5a7msB71Mdr2WCgirhVINGbDzruuPvPJAna8Yknx/
- FePXQyNMcadCx8XV5nQ/i1EKxzjhmOwhz6hGtcWwt31MNzi7O9P1gpXEf
- WXXxb0Ci95C1UNl0CdRstBq7T+dlpJXkv6GJ6Hf4hRwCI+ENjI2z/WBwr
- q4s5tAGOMt3WJqsJG6trWWIX/nVt0KBcBuYTm+FcHarb0SglqlNvClr1A
- ptp3jLoPymnxza/rtWP/gyITshGTBfmaq6nRFoo08QNtJEMBzITKJ9+2e
- S7isKFztC1nWNhdt2hODKvGT8Q2bnPfqBL56u5Kggx0DzOz4dpw+fuM0f Q==;
-X-CSE-ConnectionGUID: LRPRePf1QCO0L8IBv/JYpA==
-X-CSE-MsgGUID: c7w0w0J9RYaQs4m3LLKsNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637200"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637200"
+ bh=/+OoqdEJGPUk4kSHKIBUcvMKigl5no/pe5QyRTvYYnY=;
+ b=k56/CHPH6wHnsA7iCZMK2WZYpRaOGWYAAoAscY9Wx/yysqVd3+HJOFOX
+ cq6wYi3R/304OSIHl6SCU1v9zRYAg8MZ36yA+DDpTmVxGhGgddWC8v9hW
+ SLnWu69lmEFY3Z2XpajsbkonCMtNBJXN0LELxxUPXdZqlg3pdxsTNssZR
+ rzPScaLynduZtTvP6CKwExJdvRiZ4b8NmqQlzU3QSsbblul6/m54FbVz4
+ Ch/WyacuC9mO8IYyytF37RM0pWhQcV0vWSSGDJbEQe1bVvjkzSVQBu5XM
+ zw7hTYJKlmIN+MzawM5RlNA0CZthpjeD5vF/EtllE5lqXl2FtMYMIhhdo g==;
+X-CSE-ConnectionGUID: kJLGWsnZT7e2bwdZnOXSWw==
+X-CSE-MsgGUID: u6C+LF/sQJuqwbhl/8lqDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637204"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637204"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 10:02:26 -0800
-X-CSE-ConnectionGUID: x5gSqOlhRt+ay4hiVAt0tg==
-X-CSE-MsgGUID: TtdWBnMiRW6yymbk6xrzLA==
+ 07 Mar 2025 10:02:30 -0800
+X-CSE-ConnectionGUID: jk0+WPRTRLeurFLvpp6wuQ==
+X-CSE-MsgGUID: byaDkSuYT5WeKxbjiXE+zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621229"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621271"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:02:24 -0800
+ by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:02:27 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Mar 2025 20:02:22 +0200
+ Fri, 07 Mar 2025 20:02:26 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/14] drm/i915: Make intel_bw_modeset_checks() internal to
- intel_bw_atomic_check()
-Date: Fri,  7 Mar 2025 20:01:37 +0200
-Message-ID: <20250307180139.15744-13-ville.syrjala@linux.intel.com>
+Subject: [PATCH 13/14] drm/i915: Skip bw stuff if per-crtc sagv state doesn't
+ change
+Date: Fri,  7 Mar 2025 20:01:38 +0200
+Message-ID: <20250307180139.15744-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
 References: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
@@ -72,90 +72,78 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that all the sagv computation has been moved from the
-skl+ watermark code into intel_bw_atomic_check() there is
-no point in calling intel_bw_modeset_checks() before the
-wm computation. Hide it within intel_bw_atomic_check().
+If there are no changes to intel_crtc_can_enable_sagv() there
+is no need to do all the sagv bw_state recomputation.
+
+The only slight caveat here is hw state takeover where we
+initially disable SAGV, and want it to get re-enabled once
+we've determined that it's safe to do so.  That can now be
+achieved by having intel_crtc_can_enable_sagv() reject SAGV
+as long as the crtc_state->inherited flag is set. Once the
+flag gets cleared (during initial commit for inactive pipes,
+during the first userspace commit for active pipes), we
+will naturally recompute all the sagv related state.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c      | 10 ++++++++--
- drivers/gpu/drm/i915/display/intel_bw.h      |  3 +--
- drivers/gpu/drm/i915/display/intel_display.c |  8 +-------
- 3 files changed, 10 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c      |  8 +++++++-
+ drivers/gpu/drm/i915/display/skl_watermark.c | 11 +++++++++--
+ 2 files changed, 16 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index a39b75640b03..3407606be461 100644
+index 3407606be461..0429e73d691a 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1379,7 +1379,7 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
- 	return 0;
- }
- 
--int intel_bw_modeset_checks(struct intel_atomic_state *state)
-+static int intel_bw_modeset_checks(struct intel_atomic_state *state)
+@@ -1412,13 +1412,19 @@ static int intel_bw_check_sagv_mask(struct intel_atomic_state *state)
  {
  	struct intel_display *display = to_intel_display(state);
- 	const struct intel_bw_state *old_bw_state;
-@@ -1448,7 +1448,7 @@ static int intel_bw_check_sagv_mask(struct intel_atomic_state *state)
- 	return 0;
- }
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
++	const struct intel_crtc_state *old_crtc_state;
+ 	const struct intel_crtc_state *new_crtc_state;
+ 	const struct intel_bw_state *old_bw_state = NULL;
+ 	struct intel_bw_state *new_bw_state = NULL;
+ 	struct intel_crtc *crtc;
+ 	int ret, i;
  
--int intel_bw_atomic_check(struct intel_atomic_state *state)
-+int intel_bw_atomic_check(struct intel_atomic_state *state, bool any_ms)
- {
- 	bool changed = false;
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
-@@ -1459,6 +1459,12 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	if (DISPLAY_VER(i915) < 9)
- 		return 0;
- 
-+	if (any_ms) {
-+		ret = intel_bw_modeset_checks(state);
-+		if (ret)
-+			return ret;
-+	}
+-	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
++	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
++					    new_crtc_state, i) {
++		if (intel_crtc_can_enable_sagv(old_crtc_state) ==
++		    intel_crtc_can_enable_sagv(new_crtc_state))
++			continue;
 +
- 	ret = intel_bw_check_sagv_mask(state);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index 0efc9858faa1..d5e29599c158 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -67,8 +67,7 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state);
+ 		new_bw_state = intel_atomic_get_bw_state(state);
+ 		if (IS_ERR(new_bw_state))
+ 			return PTR_ERR(new_bw_state);
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 019eda6e3708..ccb312401896 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -431,6 +431,14 @@ bool intel_crtc_can_enable_sagv(const struct intel_crtc_state *crtc_state)
+ 	if (!i915->display.params.enable_sagv)
+ 		return false;
  
- void intel_bw_init_hw(struct drm_i915_private *dev_priv);
- int intel_bw_init(struct drm_i915_private *dev_priv);
--int intel_bw_modeset_checks(struct intel_atomic_state *state);
--int intel_bw_atomic_check(struct intel_atomic_state *state);
-+int intel_bw_atomic_check(struct intel_atomic_state *state, bool any_ms);
- int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
- 				  u32 points_mask);
- int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 69e4c9be28f3..e75a2f167d7d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6423,17 +6423,11 @@ int intel_atomic_check(struct drm_device *dev,
- 	if (ret)
- 		goto fail;
++	/*
++	 * SAGV is initially forced off because its current
++	 * state can't be queried from pcode. Allow SAGV to
++	 * be enabled upon the first real commit.
++	 */
++	if (crtc_state->inherited)
++		return false;
++
+ 	if (DISPLAY_VER(i915) >= 12)
+ 		return tgl_crtc_can_enable_sagv(crtc_state);
+ 	else
+@@ -455,8 +463,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 	struct intel_crtc_state *new_crtc_state;
+ 	int i;
  
--	if (any_ms) {
--		ret = intel_bw_modeset_checks(state);
--		if (ret)
--			goto fail;
--	}
--
- 	ret = intel_compute_global_watermarks(state);
- 	if (ret)
- 		goto fail;
+-	for_each_new_intel_crtc_in_state(state, crtc,
+-					 new_crtc_state, i) {
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
  
--	ret = intel_bw_atomic_check(state);
-+	ret = intel_bw_atomic_check(state, any_ms);
- 	if (ret)
- 		goto fail;
- 
+ 		/*
 -- 
 2.45.3
 
