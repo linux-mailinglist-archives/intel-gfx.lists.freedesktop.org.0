@@ -2,39 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF349A56985
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C566A56984
 	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:54:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD2210EB71;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21BA410EB70;
 	Fri,  7 Mar 2025 13:54:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="P2q4tSdD";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="XY7U93Dx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9EB10EB68
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33F2210EB78
  for <intel-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 13:54:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=+taT2QSuxL8BkaKw5rATlyAdw/O8TmblfYyY8TlzKtQ=; b=P2q4tSdDk1vTyS4yQ8UtnlEgiT
- rTSbqcb1hggXVwczLfNokNr5lTyrPEmcEg9r2Fiddr8Ss/ztL1ISAkKwd3Xp1h1AdltBA8yHGj0zq
- fAN0Aafq6BV5Vzl0gPlbyi25y20AX4pC76CprIgFG86Uo0cmkBkdXFm0Du0za+Tvhkb6/RPJ3uDXo
- LtkaIPnCP5Q8dWNheEuAj2hBm+3seeDOOjbHCSXry/3tcU9f/goxuo4P7bpoQ5glrzpezR87yhSwN
- 3RxFVJGiIlAO3KufL58simBwsjQ9qquBDzYKK5vbatEuLXrmO5uy8zipnmf78uNCrh7kCDzmgrsFg
- cGvenHsA==;
+ References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description;
+ bh=nbz+BLNYgFlD4q+RSS71Ot7C9TdXZjDl9SBqkDnbsow=; b=XY7U93DxQ+cGHvN+aCVMwhd7bD
+ Q5omSA/aDlZZUo4fX5k0l7Bt7oZCdWZFxn3uYSrmnYsV+05wv3PbwCywdxZM18Sbk0MwOcLQWaWIK
+ jKYjpk2VpjpmGP7AC7Z4KtBd4OE8uUFu1LVAs78sznRKKHgeC2KI5uPo6riG9jppW70Zfw1HDACxB
+ zk3tAtFduAuGZ+lMVcXsHpAbD9dU+69tKdaGcCcUAOKATP3I/UZogeaTFNZZQLxYF8VYQ+QBwnzKx
+ 727elCnkPaDIaHy3WvwUUkIBt3aQh6YLeCVtLpZK5MWWOWijpRqVdUkyPZwR/Ml0adWX/Bn9Hud/f
+ /BzBL14g==;
 Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
- Linux)) id 1tqY9X-0000000CXFp-1xdu; Fri, 07 Mar 2025 13:54:15 +0000
+ Linux)) id 1tqY9X-0000000CXFr-2KOb; Fri, 07 Mar 2025 13:54:15 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
 Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>, linux-mm@kvack.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH 00/11] Remove aops->writepage
-Date: Fri,  7 Mar 2025 13:54:00 +0000
-Message-ID: <20250307135414.2987755-1-willy@infradead.org>
+Subject: [PATCH 01/11] f2fs: Remove check for ->writepage
+Date: Fri,  7 Mar 2025 13:54:01 +0000
+Message-ID: <20250307135414.2987755-2-willy@infradead.org>
 X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250307135414.2987755-1-willy@infradead.org>
+References: <20250307135414.2987755-1-willy@infradead.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -52,62 +54,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I was preparing for LSFMM and noticed that actually we're almost done
-with the writepage conversion.  This patchset finishes it off.
-Something changed in my test environment and now it crashes before
-even starting a run, so this is only build tested.
+We're almost able to remove a_ops->writepage.  This check is unnecessary
+as we'll never call into __f2fs_write_data_pages() for character
+devices.
 
-The first five patches (f2fs and vboxsf) are uninteresting.  I'll try
-and get those into linux-next for the imminent merge window.  I think
-the migrate and writeback patches are good, but maybe I've missed
-something.  Then we come to i915 needing to tell shmem to do writeout,
-so I added a module-accessible function to do that.  I also removed
-the setting/clearing of reclaim, which would be easy to bring back if
-it's really needed.  Patch 10 is probably the exciting one where
-pageout() calls swap or shmem directly.  And then patch 11 really just
-removes the op itself and the documentation for it.  I may have
-over-trimmed here, but some of the documentation was so out of date it
-was hard to tell what was worth preserving.
+Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+---
+ fs/f2fs/data.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-Anyway, let's see what the bots make of this.  This is against
-next-20250307.
-
-Matthew Wilcox (Oracle) (11):
-  f2fs: Remove check for ->writepage
-  f2fs: Remove f2fs_write_data_page()
-  f2fs: Remove f2fs_write_meta_page()
-  f2fs: Remove f2fs_write_node_page()
-  vboxsf: Convert to writepages
-  migrate: Remove call to ->writepage
-  writeback: Remove writeback_use_writepage()
-  shmem: Add shmem_writeout()
-  i915: Use writeback_iter()
-  mm: Remove swap_writepage() and shmem_writepage()
-  fs: Remove aops->writepage
-
- Documentation/admin-guide/cgroup-v2.rst   |  2 +-
- Documentation/filesystems/fscrypt.rst     |  2 +-
- Documentation/filesystems/locking.rst     | 54 +--------------------
- Documentation/filesystems/vfs.rst         | 39 ++++------------
- block/blk-wbt.c                           |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 32 ++++---------
- fs/buffer.c                               |  4 +-
- fs/f2fs/checkpoint.c                      |  7 ---
- fs/f2fs/data.c                            | 28 -----------
- fs/f2fs/node.c                            |  8 ----
- fs/vboxsf/file.c                          | 47 ++++++++++---------
- include/linux/fs.h                        |  1 -
- include/linux/shmem_fs.h                  |  7 +--
- mm/migrate.c                              | 57 ++---------------------
- mm/page-writeback.c                       | 28 +----------
- mm/page_io.c                              |  3 +-
- mm/shmem.c                                | 33 ++++++-------
- mm/swap.h                                 |  4 +-
- mm/swap_state.c                           |  1 -
- mm/swapfile.c                             |  2 +-
- mm/vmscan.c                               | 29 ++++++------
- 21 files changed, 93 insertions(+), 297 deletions(-)
-
+diff --git a/fs/f2fs/data.c b/fs/f2fs/data.c
+index c82d949709f4..a80d5ef9acbb 100644
+--- a/fs/f2fs/data.c
++++ b/fs/f2fs/data.c
+@@ -3280,10 +3280,6 @@ static int __f2fs_write_data_pages(struct address_space *mapping,
+ 	int ret;
+ 	bool locked = false;
+ 
+-	/* deal with chardevs and other special file */
+-	if (!mapping->a_ops->writepage)
+-		return 0;
+-
+ 	/* skip writing if there is no dirty page in this inode */
+ 	if (!get_dirty_pages(inode) && wbc->sync_mode == WB_SYNC_NONE)
+ 		return 0;
 -- 
 2.47.2
 
