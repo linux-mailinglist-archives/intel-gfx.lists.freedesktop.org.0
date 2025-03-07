@@ -2,78 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98BCDA56D20
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 17:07:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F081A56D25
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 17:07:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7247510EBE0;
-	Fri,  7 Mar 2025 16:07:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6h/QrYf";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0EDA10E2A2;
+	Fri,  7 Mar 2025 16:07:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA51710EBE0;
- Fri,  7 Mar 2025 16:07:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741363644; x=1772899644;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=pnnr3yVXjXJ58yTtOIaxhRCfVdG1kFVJBYONEQQH3cU=;
- b=W6h/QrYfDPxW/+exce+M+OIUVYUOz/8eJYYW9k/JlTQZRCRIvIyGudsL
- aW6wlg7319YWFeJCfdjDcEm01idVGkVoGA7G2P2JjNiUYpqcQJzndv0os
- nL/WH2U0uJMFgL/R/czOtXjZcRxFKRgwSc0aLli/TApa28F12XGCJdk3n
- UVy829MT9aHXUmJMNhoMGMK51VIBPxxu9ea4lldUFJ2zjrDG9aT9/Jzj5
- asksFaqWozadtxc3TX3UPzcZP2bVG+eWDjAhukaLsL9+b5bUlQqwmSxay
- S/rr+fypD97wkZX/HqpMckBVU1sfttmwwOxUEn3HssWz0WOHF1sVOOzKf A==;
-X-CSE-ConnectionGUID: ybzIy+lATpKCNBlYbyK8Jw==
-X-CSE-MsgGUID: d9bQWDP8QauIhJ6Glwc7CA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42616361"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="42616361"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 08:07:24 -0800
-X-CSE-ConnectionGUID: i9ofbq1LTJuoORwKtHGmqg==
-X-CSE-MsgGUID: XLRy0tlCRPOx572f+D2fuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="119350170"
-Received: from smile.fi.intel.com ([10.237.72.58])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 08:07:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1tqaEG-00000000S60-02V0; Fri, 07 Mar 2025 18:07:16 +0200
-Date: Fri, 7 Mar 2025 18:07:15 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Cc: Yury Norov <yury.norov@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@aculab.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v5 7/7] test_bits: add tests for BIT_U*()
-Message-ID: <Z8sZs_Tfl4G8PoAM@smile.fi.intel.com>
-References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
- <20250306-fixed-type-genmasks-v5-7-b443e9dcba63@wanadoo.fr>
- <Z8mfAQGUvm3z86kE@smile.fi.intel.com>
- <722e147b-fdd1-4098-8d60-48c83e36a7f7@wanadoo.fr>
- <Z8nhdz5FZIHYb4Yi@smile.fi.intel.com>
- <df371256-d981-433b-bcba-00a445e04c41@wanadoo.fr>
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 953C610E2A2;
+ Fri,  7 Mar 2025 16:07:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <df371256-d981-433b-bcba-00a445e04c41@wanadoo.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_bits=3A_Fixed-type_G?=
+ =?utf-8?q?ENMASK=28=29/BIT=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vincent Mailhol via B4 Relay"
+ <devnull+mailhol.vincent.wanadoo.fr@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 07 Mar 2025 16:07:47 -0000
+Message-ID: <174136366760.3031.3112029929590388163@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
+In-Reply-To: <20250305-fixed-type-genmasks-v4-0-1873dcdf6723@wanadoo.fr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,40 +38,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 07, 2025 at 07:11:42PM +0900, Vincent Mailhol wrote:
-> On 07/03/2025 at 02:55, Andy Shevchenko wrote:
-> > On Fri, Mar 07, 2025 at 01:08:15AM +0900, Vincent Mailhol wrote:
-> >> On 06/03/2025 at 22:11, Andy Shevchenko wrote:
-> >>> On Thu, Mar 06, 2025 at 08:29:58PM +0900, Vincent Mailhol via B4 Relay wrote:
-> >>>> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-> >>>>
-> >>>> Add some additional tests in lib/test_bits.c to cover the expected
-> >>>> results of the fixed type BIT_U*() macros.
-> >>>
-> >>> Still would be good to have a small assembly test case for GENMASK*() as they
-> >>> went split and it will be a good regression test in case somebody decides to
-> >>> unify both without much thinking..
-> >>
-> >> Let me confirm that I correctly understood your ask. Would something
-> >> like this meet your expectations?
-> > 
-> > I believe it should be written in asm.
-> 
-> I am not confident enough in my assembly skills to submit asm patches to
-> the kernel. So, I would rather take a pass on that one.
-> 
-> Regardless, if somebody decides to unify both without much thinking as
-> you said, I am fully confident that the patch will get Nack-ed right
+== Series Details ==
 
-As I said above "would be good", if you think it's not feasible by you, perhaps
-a comment (FIXME: ?) in the Kunit test cases that we lack of / need an asm test
-as well.
+Series: bits: Fixed-type GENMASK()/BIT() (rev2)
+URL   : https://patchwork.freedesktop.org/series/145997/
+State : warning
 
--- 
-With Best Regards,
-Andy Shevchenko
+== Summary ==
+
+Error: dim checkpatch failed
+f96fba907aff bits: fix typo 'unsigned __init128' -> 'unsigned __int128'
+fdc85516eb83 bits: split the definition of the asm and non-asm GENMASK()
+3444ee4c6891 bits: introduce fixed-type genmasks
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 't' - possible side-effects?
+#71: FILE: include/linux/bits.h:39:
++#define GENMASK_t(t, h, l)				\
++	(GENMASK_INPUT_CHECK(h, l) +			\
++	 (((t)~ULL(0) - ((t)1 << (l)) + 1) &		\
++	  ((t)~ULL(0) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'h' - possible side-effects?
+#71: FILE: include/linux/bits.h:39:
++#define GENMASK_t(t, h, l)				\
++	(GENMASK_INPUT_CHECK(h, l) +			\
++	 (((t)~ULL(0) - ((t)1 << (l)) + 1) &		\
++	  ((t)~ULL(0) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'l' - possible side-effects?
+#71: FILE: include/linux/bits.h:39:
++#define GENMASK_t(t, h, l)				\
++	(GENMASK_INPUT_CHECK(h, l) +			\
++	 (((t)~ULL(0) - ((t)1 << (l)) + 1) &		\
++	  ((t)~ULL(0) >> (BITS_PER_TYPE(t) - 1 - (h)))))
+
+total: 0 errors, 0 warnings, 3 checks, 56 lines checked
+041791be97ad bits: introduce fixed-type BIT
+-:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#32: FILE: include/linux/bits.h:82:
++#define BIT_U8(b) (BIT_INPUT_CHECK(u8, b) + (unsigned int)BIT(b))
+
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#33: FILE: include/linux/bits.h:83:
++#define BIT_U16(b) (BIT_INPUT_CHECK(u16, b) + (unsigned int)BIT(b))
+
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#34: FILE: include/linux/bits.h:84:
++#define BIT_U32(b) (BIT_INPUT_CHECK(u32, b) + (u32)BIT(b))
+
+-:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'b' - possible side-effects?
+#35: FILE: include/linux/bits.h:85:
++#define BIT_U64(b) (BIT_INPUT_CHECK(u64, b) + (u64)BIT_ULL(b))
+
+total: 0 errors, 0 warnings, 4 checks, 22 lines checked
+a4780cb0f51e drm/i915: Convert REG_GENMASK* to fixed-width GENMASK_*
+669a27a65a3a test_bits: add tests for __GENMASK() and __GENMASK_ULL()
+d734241f0452 test_bits: add tests for fixed-type genmasks
+-:26: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#26: FILE: lib/test_bits.c:10:
++#define assert_type(t, x) _Generic(x, t: x, default: 0)
+                                        ^
+
+-:26: ERROR:SPACING: spaces required around that ':' (ctx:VxW)
+#26: FILE: lib/test_bits.c:10:
++#define assert_type(t, x) _Generic(x, t: x, default: 0)
+                                                    ^
+
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#26: FILE: lib/test_bits.c:10:
++#define assert_type(t, x) _Generic(x, t: x, default: 0)
+
+total: 2 errors, 0 warnings, 1 checks, 37 lines checked
+78ae5fb1ad3d test_bits: add tests for fixed-type BIT
 
 
