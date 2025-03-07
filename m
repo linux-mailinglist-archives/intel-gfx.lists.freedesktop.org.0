@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29106A5697E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BCDA56987
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 14:54:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B06C810EB6B;
-	Fri,  7 Mar 2025 13:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 398E210EB76;
+	Fri,  7 Mar 2025 13:54:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="AiRyjb9p";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="NXceUjf/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F83F10EB7B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9BE10EB70
  for <intel-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 13:54:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=MofhovjlADQCQPqeYMIVdQLieQlnl0tttbSu0oh4ZYs=; b=AiRyjb9pnJivKUulf3/TkIqiUa
- 7bhUXqQ56kgH5be5/6hPtgs3OfvkXoqoxzjwP6dDK1dCxb8eB+fgx4Si+OXoXbWx/4QXbPkcf2f8H
- Tx5q9E1QnRnNoJzPSNY/L6g0oQta0BR7vhffZTsRhpB93XUAkEOKHR0z5mH+o6gXbRpVJdaWM4Uo9
- 5UUVoisF5QVZ5H8bexl780zg4hPo3PCV+RPFrP9zQf2Hk34Mi7a9GHfCGByUnfGbeU/WpgTVjsbcW
- MvndBuaq0WiuOxnS0t0xcPqBydhg6nU8rOrVyZMSsSxwtvudPIMEXontGuVzP4owwFrlrBVWrTH/l
- x4M1cLcA==;
+ bh=mvaOn1iNfnHJjc4gSgVD8D2wLxi5A95q8CNsEb5mKOk=; b=NXceUjf/rN/nE14KGNhSPpVAVh
+ KHf0pdp8XBGLyZVSxh21bmLjKks7mhrikiMkVY1Slftde2kxARF1sJEHTLzOrFGSlukw5i9KQ704K
+ HpJO7LPaZK2IlUHtYN/tQhAJgrAyzc+WxQUajwcgShyq/1aIaCEAJfTAuV7yD4h+h7z+78IzYmkts
+ iIs9QJxhHbfpeAiB7XWLbzfH09Dci81NPYhBAXhqSO0epSfc6DyK+OEyVmuTyMkQAG9MIm2+gXgfC
+ tVBM5KM5M5hTdxnpnhCqQe7XILBlgcx5L1oqVTA5k1Lytpp0twq+bYWonIYYS3fA09Dv730/UJId5
+ QK1+O/Ig==;
 Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
- Linux)) id 1tqY9Y-0000000CXGF-0qyX; Fri, 07 Mar 2025 13:54:16 +0000
+ Linux)) id 1tqY9Y-0000000CXGM-1NhP; Fri, 07 Mar 2025 13:54:16 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: linux-fsdevel@vger.kernel.org
 Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>, linux-mm@kvack.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH 05/11] vboxsf: Convert to writepages
-Date: Fri,  7 Mar 2025 13:54:05 +0000
-Message-ID: <20250307135414.2987755-6-willy@infradead.org>
+Subject: [PATCH 06/11] migrate: Remove call to ->writepage
+Date: Fri,  7 Mar 2025 13:54:06 +0000
+Message-ID: <20250307135414.2987755-7-willy@infradead.org>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250307135414.2987755-1-willy@infradead.org>
 References: <20250307135414.2987755-1-willy@infradead.org>
@@ -54,98 +54,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we add a migrate_folio operation, we can convert the writepage
-operation to writepages.  Further, this lets us optimise by using
-the same write handle for multiple folios.  The large folio support here
-is illusory; we would need to kmap each page in turn for proper support.
-But we do remove a few hidden calls to compound_head().
+The writepage callback is going away; filesystems must implement
+migrate_folio or else dirty folios will not be migratable.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/vboxsf/file.c | 47 +++++++++++++++++++++++++----------------------
- 1 file changed, 25 insertions(+), 22 deletions(-)
+ mm/migrate.c | 57 ++++------------------------------------------------
+ 1 file changed, 4 insertions(+), 53 deletions(-)
 
-diff --git a/fs/vboxsf/file.c b/fs/vboxsf/file.c
-index b780deb81b02..b492794f8e9a 100644
---- a/fs/vboxsf/file.c
-+++ b/fs/vboxsf/file.c
-@@ -262,40 +262,42 @@ static struct vboxsf_handle *vboxsf_get_write_handle(struct vboxsf_inode *sf_i)
- 	return sf_handle;
+diff --git a/mm/migrate.c b/mm/migrate.c
+index c0adea67cd62..3d1d9d49fb8e 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -944,67 +944,18 @@ int filemap_migrate_folio(struct address_space *mapping,
  }
+ EXPORT_SYMBOL_GPL(filemap_migrate_folio);
  
--static int vboxsf_writepage(struct page *page, struct writeback_control *wbc)
-+static int vboxsf_writepages(struct address_space *mapping,
-+		struct writeback_control *wbc)
- {
--	struct inode *inode = page->mapping->host;
-+	struct inode *inode = mapping->host;
-+	struct folio *folio = NULL;
- 	struct vboxsf_inode *sf_i = VBOXSF_I(inode);
- 	struct vboxsf_handle *sf_handle;
--	loff_t off = page_offset(page);
- 	loff_t size = i_size_read(inode);
--	u32 nwrite = PAGE_SIZE;
--	u8 *buf;
--	int err;
+-/*
+- * Writeback a folio to clean the dirty state
+- */
+-static int writeout(struct address_space *mapping, struct folio *folio)
+-{
+-	struct writeback_control wbc = {
+-		.sync_mode = WB_SYNC_NONE,
+-		.nr_to_write = 1,
+-		.range_start = 0,
+-		.range_end = LLONG_MAX,
+-		.for_reclaim = 1
+-	};
+-	int rc;
 -
--	if (off + PAGE_SIZE > size)
--		nwrite = size & ~PAGE_MASK;
-+	int error;
- 
- 	sf_handle = vboxsf_get_write_handle(sf_i);
- 	if (!sf_handle)
- 		return -EBADF;
- 
--	buf = kmap(page);
--	err = vboxsf_write(sf_handle->root, sf_handle->handle,
--			   off, &nwrite, buf);
--	kunmap(page);
-+	while ((folio = writeback_iter(mapping, wbc, folio, &error))) {
-+		loff_t off = folio_pos(folio);
-+		u32 nwrite = folio_size(folio);
-+		u8 *buf;
- 
--	kref_put(&sf_handle->refcount, vboxsf_handle_release);
-+		if (nwrite > size - off)
-+			nwrite = size - off;
- 
--	if (err == 0) {
--		/* mtime changed */
--		sf_i->force_restat = 1;
--	} else {
--		ClearPageUptodate(page);
-+		buf = kmap_local_folio(folio, 0);
-+		error = vboxsf_write(sf_handle->root, sf_handle->handle,
-+				off, &nwrite, buf);
-+		kunmap_local(buf);
-+
-+		folio_unlock(folio);
- 	}
- 
--	unlock_page(page);
--	return err;
-+	kref_put(&sf_handle->refcount, vboxsf_handle_release);
-+
-+	/* mtime changed */
-+	if (error == 0)
-+		sf_i->force_restat = 1;
-+	return error;
- }
- 
- static int vboxsf_write_end(struct file *file, struct address_space *mapping,
-@@ -347,10 +349,11 @@ static int vboxsf_write_end(struct file *file, struct address_space *mapping,
+-	if (!mapping->a_ops->writepage)
+-		/* No write method for the address space */
+-		return -EINVAL;
+-
+-	if (!folio_clear_dirty_for_io(folio))
+-		/* Someone else already triggered a write */
+-		return -EAGAIN;
+-
+-	/*
+-	 * A dirty folio may imply that the underlying filesystem has
+-	 * the folio on some queue. So the folio must be clean for
+-	 * migration. Writeout may mean we lose the lock and the
+-	 * folio state is no longer what we checked for earlier.
+-	 * At this point we know that the migration attempt cannot
+-	 * be successful.
+-	 */
+-	remove_migration_ptes(folio, folio, 0);
+-
+-	rc = mapping->a_ops->writepage(&folio->page, &wbc);
+-
+-	if (rc != AOP_WRITEPAGE_ACTIVATE)
+-		/* unlocked. Relock */
+-		folio_lock(folio);
+-
+-	return (rc < 0) ? -EIO : -EAGAIN;
+-}
+-
+ /*
+  * Default handling if a filesystem does not provide a migration function.
   */
- const struct address_space_operations vboxsf_reg_aops = {
- 	.read_folio = vboxsf_read_folio,
--	.writepage = vboxsf_writepage,
-+	.writepages = vboxsf_writepages,
- 	.dirty_folio = filemap_dirty_folio,
- 	.write_begin = simple_write_begin,
- 	.write_end = vboxsf_write_end,
-+	.migrate_folio = filemap_migrate_folio,
- };
+ static int fallback_migrate_folio(struct address_space *mapping,
+ 		struct folio *dst, struct folio *src, enum migrate_mode mode)
+ {
+-	if (folio_test_dirty(src)) {
+-		/* Only writeback folios in full synchronous migration */
+-		switch (mode) {
+-		case MIGRATE_SYNC:
+-			break;
+-		default:
+-			return -EBUSY;
+-		}
+-		return writeout(mapping, src);
+-	}
++	if (folio_test_dirty(src))
++		return -EBUSY;
  
- static const char *vboxsf_get_link(struct dentry *dentry, struct inode *inode,
+ 	/*
+-	 * Buffers may be managed in a filesystem specific way.
+-	 * We must have no buffers or drop them.
++	 * Filesystem may have private data at folio->private that we
++	 * can't migrate automatically.
+ 	 */
+ 	if (!filemap_release_folio(src, GFP_KERNEL))
+ 		return mode == MIGRATE_SYNC ? -EAGAIN : -EBUSY;
 -- 
 2.47.2
 
