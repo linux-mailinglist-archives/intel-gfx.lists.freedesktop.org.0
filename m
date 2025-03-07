@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0DDA56FEB
+	by mail.lfdr.de (Postfix) with ESMTPS id E67DCA56FED
 	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 19:02:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5D410EC2C;
-	Fri,  7 Mar 2025 18:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D79A10EC1F;
+	Fri,  7 Mar 2025 18:02:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHm/2JK+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huxelrBc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56E9710EC1D;
- Fri,  7 Mar 2025 18:02:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1A610EC27;
+ Fri,  7 Mar 2025 18:02:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741370533; x=1772906533;
+ t=1741370536; x=1772906536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P0o5zF925ruxYhHByx2uoluGqKvxOuGZ7g6y59RR+gY=;
- b=EHm/2JK+cjdfnGFRAPTttEYiasBxaVLxDyWlXo6f1dyVGc51F6j1l/Yq
- y3bZA59Ebp+Y72F3sCkguLEwxhOAf9QtVCkKMeaFj6MT1V1VdweM6TFGK
- WZ+PNfvRcLh4cI0OCGtSEfODYodiLrbSfptzjYUNfu+PeGeYYAGgXoOtV
- b7C4t5GKV+kj1BKRU2xkz5uan3Py4fzX8j/Uv36ey55fjCdy0hw7hWe0r
- sAFr43+52Jv67cRAd05TX53nYZcWpZmIAwpeaFkxSCj7gAGdMlvP+7wcl
- hwdLFE8PowR1lBodEMjPbxkWwxKRwofqe9rIKSfGOKolu/wZpELgtBUER Q==;
-X-CSE-ConnectionGUID: l47xlaylTUmNiLgV7fwB9g==
-X-CSE-MsgGUID: +DOO7TolSKS3H9iWJFy/XQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637161"
-X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637161"
+ bh=PRcN/hLxIdtE12Eb5B3eop823n7rfpeGXDzVbNwyRsQ=;
+ b=huxelrBcLBDoxHEWPb/zsOnyGHf5e89AeuB/X1qiSDMl0AkO/IPZEVug
+ UG9L1Zn8JdwpCO5LDWX53HsjTB6o94Ydr2pUBhrpNJ10M6ctn4mgVRXco
+ 8mXZQYSgPyxulOh/6PWIxkFB4reZUSUkZEpHkbkpIRB+0iIsK83R8rNp8
+ k9EHO0Laxpz2F2Ck6nFvacp8GTVCpp+7AuQmKyWImPQIXrtTOgTdjoQnY
+ kOR2EhTO96tYbrYSQNPNTOvuIYPTcsMbTvrCyvBPA3hqF26HLgdxCrRuM
+ UI8xO+1hhnLinVH72sj+mDKyCgqHfa9jem91h2sQGSClVVQ7AEL2QE6OV Q==;
+X-CSE-ConnectionGUID: ZReP+piHRpOEqPAlbY3snw==
+X-CSE-MsgGUID: MrIOg9MeS2upSzp6gKzbJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="52637170"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="52637170"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 10:02:12 -0800
-X-CSE-ConnectionGUID: ODQKNzaRS1K9wDQRVzdDJQ==
-X-CSE-MsgGUID: 3HWMQkNpTyerwbxDmz277g==
+ 07 Mar 2025 10:02:16 -0800
+X-CSE-ConnectionGUID: dLnPVOmgSh+cKJzu5ayFxA==
+X-CSE-MsgGUID: v2xWARrvSpy2rfdmVaBZOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621172"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="124621179"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:02:10 -0800
+ by orviesa005.jf.intel.com with SMTP; 07 Mar 2025 10:02:13 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Mar 2025 20:02:09 +0200
+ Fri, 07 Mar 2025 20:02:12 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/14] drm/i915: Drop force_check_qgv
-Date: Fri,  7 Mar 2025 20:01:33 +0200
-Message-ID: <20250307180139.15744-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/14] drm/i915: Extract intel_bw_modeset_checks()
+Date: Fri,  7 Mar 2025 20:01:34 +0200
+Message-ID: <20250307180139.15744-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
 References: <20250307180139.15744-1-ville.syrjala@linux.intel.com>
@@ -71,84 +71,107 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Remove the force_check_qgv flag and just fill the pipe_sagv_reject
-bitmask properly during readout. This will cause the initial commit
-to re-enable SAGV if possible.
+Pull the new_bw_state->active_pipes computation out from
+intel_compute_sagv_mask() and move it into the intel_bw.c
+(which is arguably the correct place for it).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 12 ++++++------
- drivers/gpu/drm/i915/display/intel_bw.h |  6 ------
- 2 files changed, 6 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c      | 29 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bw.h      |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c |  6 ++++
+ drivers/gpu/drm/i915/display/skl_watermark.c |  9 ------
+ 4 files changed, 36 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index bbb040be0502..e11fd94e9e29 100644
+index e11fd94e9e29..6fd6c7b535ed 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1399,9 +1399,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	new_bw_state = intel_atomic_get_new_bw_state(state);
- 
- 	if (new_bw_state &&
--	    (intel_can_enable_sagv(i915, old_bw_state) !=
--	     intel_can_enable_sagv(i915, new_bw_state) ||
--	     new_bw_state->force_check_qgv))
-+	    intel_can_enable_sagv(i915, old_bw_state) !=
-+	    intel_can_enable_sagv(i915, new_bw_state))
- 		changed = true;
- 
- 	/*
-@@ -1415,8 +1414,6 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	new_bw_state->force_check_qgv = false;
--
+@@ -1379,6 +1379,35 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
  	return 0;
  }
  
-@@ -1430,7 +1427,6 @@ static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
- 		intel_bw_crtc_data_rate(crtc_state);
- 	bw_state->num_active_planes[crtc->pipe] =
- 		intel_bw_crtc_num_active_planes(crtc_state);
--	bw_state->force_check_qgv = true;
- 
- 	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
- 		    pipe_name(crtc->pipe),
-@@ -1448,6 +1444,7 @@ void intel_bw_update_hw_state(struct intel_display *display)
- 		return;
- 
- 	bw_state->active_pipes = 0;
-+	bw_state->pipe_sagv_reject = 0;
- 
- 	for_each_intel_crtc(display->drm, crtc) {
- 		const struct intel_crtc_state *crtc_state =
-@@ -1461,6 +1458,9 @@ void intel_bw_update_hw_state(struct intel_display *display)
- 			intel_bw_crtc_update(bw_state, crtc_state);
- 
- 		skl_crtc_calc_dbuf_bw(&bw_state->dbuf_bw[pipe], crtc_state);
++int intel_bw_modeset_checks(struct intel_atomic_state *state)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_bw_state *old_bw_state;
++	struct intel_bw_state *new_bw_state;
 +
-+		/* initially SAGV has been forced off */
-+		bw_state->pipe_sagv_reject |= BIT(pipe);
- 	}
- }
- 
++	if (DISPLAY_VER(display) < 9)
++		return 0;
++
++	new_bw_state = intel_atomic_get_bw_state(state);
++	if (IS_ERR(new_bw_state))
++		return PTR_ERR(new_bw_state);
++
++	old_bw_state = intel_atomic_get_old_bw_state(state);
++
++	new_bw_state->active_pipes =
++		intel_calc_active_pipes(state, old_bw_state->active_pipes);
++
++	if (new_bw_state->active_pipes != old_bw_state->active_pipes) {
++		int ret;
++
++		ret = intel_atomic_lock_global_state(&new_bw_state->base);
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
+ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+ 	bool changed = false;
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index e977c3586dc3..d3f92951b057 100644
+index d3f92951b057..0efc9858faa1 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.h
 +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -49,12 +49,6 @@ struct intel_bw_state {
- 	 */
- 	u16 qgv_points_mask;
+@@ -67,6 +67,7 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state);
  
--	/*
--	 * Flag to force the QGV comparison in atomic check right after the
--	 * hw state readout
--	 */
--	bool force_check_qgv;
+ void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+ int intel_bw_init(struct drm_i915_private *dev_priv);
++int intel_bw_modeset_checks(struct intel_atomic_state *state);
+ int intel_bw_atomic_check(struct intel_atomic_state *state);
+ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+ 				  u32 points_mask);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 1d7a396bc4ea..69e4c9be28f3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6423,6 +6423,12 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
+ 
++	if (any_ms) {
++		ret = intel_bw_modeset_checks(state);
++		if (ret)
++			goto fail;
++	}
++
+ 	ret = intel_compute_global_watermarks(state);
+ 	if (ret)
+ 		goto fail;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 2d0de1c63308..58ba99eacd09 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -498,15 +498,6 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
+ 	if (!new_bw_state)
+ 		return 0;
+ 
+-	new_bw_state->active_pipes =
+-		intel_calc_active_pipes(state, old_bw_state->active_pipes);
 -
- 	unsigned int data_rate[I915_MAX_PIPES];
- 	u8 num_active_planes[I915_MAX_PIPES];
- };
+-	if (new_bw_state->active_pipes != old_bw_state->active_pipes) {
+-		ret = intel_atomic_lock_global_state(&new_bw_state->base);
+-		if (ret)
+-			return ret;
+-	}
+-
+ 	if (intel_can_enable_sagv(i915, new_bw_state) !=
+ 	    intel_can_enable_sagv(i915, old_bw_state)) {
+ 		ret = intel_atomic_serialize_global_state(&new_bw_state->base);
 -- 
 2.45.3
 
