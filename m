@@ -2,30 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9330A56EE7
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 18:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C452A56F60
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 18:43:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67A1A10E1C2;
-	Fri,  7 Mar 2025 17:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93EE110EC0F;
+	Fri,  7 Mar 2025 17:43:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LdQD8+j5";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81EA710E1C2;
- Fri,  7 Mar 2025 17:18:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C702310EC0E;
+ Fri,  7 Mar 2025 17:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741369387; x=1772905387;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=+kt9trydWppjyLTS1v06E/6kn1cAIhEtv++sHef4MMw=;
+ b=LdQD8+j53S1L1nXLQXlexG16kMiEZal59aVyrChq/dNESqH32FlMYRp8
+ Y+La2v7tkwkPbWFk7BhzFyCXQeJIsvEATfj2UgO/LtfRVzKqc/E2NnrQ3
+ sf0ixeR1VM2CIMm7yRxSYGKe0/8TLbhNUmcKYHzF4QQs0b3QkV2L7fGTy
+ vP+MhEX/6mHG6N1POAn9WDDtZtkbMYFYKhtmGSL7ly/RHWDZDFWI3fJAP
+ wQMB8eQj0Ua9LP+zueyf/JgppvATJFDI3kVF2ckd87jG62TxXlp9+S9U8
+ a6scXE8OVRfADHl8gkbsy+8QlobCNo4WHRKqdY63h0FUhiX/h8thKP4hH g==;
+X-CSE-ConnectionGUID: kIW3m7TIQZeQs+EMNRnu2w==
+X-CSE-MsgGUID: ywrDGCd1TCC5pSq+AtDsag==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42461689"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="42461689"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 09:43:07 -0800
+X-CSE-ConnectionGUID: RlVyw6roQzWlw+azXoMNUg==
+X-CSE-MsgGUID: 8HzF3/4YSjGNPswqX4cnMg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="120083673"
+Received: from smile.fi.intel.com ([10.237.72.58])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 09:43:02 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tqbis-00000000TVI-4BqQ; Fri, 07 Mar 2025 19:42:59 +0200
+Date: Fri, 7 Mar 2025 19:42:58 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: mailhol.vincent@wanadoo.fr
+Cc: Yury Norov <yury.norov@gmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@aculab.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v6 1/7] bits: split the definition of the asm and non-asm
+ GENMASK()
+Message-ID: <Z8swIt7fqpVAp2P8@smile.fi.intel.com>
+References: <20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr>
+ <20250308-fixed-type-genmasks-v6-1-f59315e73c29@wanadoo.fr>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Increase?=
- =?utf-8?q?_I915=5FPARAM=5FMMAP=5FGTT=5FVERSION_version_to_indicate_support_?=
- =?utf-8?q?for_partial_mmaps_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 17:18:34 -0000
-Message-ID: <174136791452.3577.3228244952216319701@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250306210827.171147-1-jose.souza@intel.com>
-In-Reply-To: <20250306210827.171147-1-jose.souza@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250308-fixed-type-genmasks-v6-1-f59315e73c29@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,24 +82,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sat, Mar 08, 2025 at 01:48:48AM +0900, Vincent Mailhol via B4 Relay wrote:
+> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> 
+> In an upcoming change, GENMASK() and its friends will indirectly
+> depend on sizeof() which is not available in asm.
+> 
+> Instead of adding further complexity to __GENMASK() to make it work
+> for both asm and non asm, just split the definition of the two
+> variants.
 
-Series: drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps (rev2)
-URL   : https://patchwork.freedesktop.org/series/145945/
-State : warning
+...
 
-== Summary ==
+> -/*
+> - * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
+> - * disable the input check if that is the case.
+> - */
 
-Error: dim checkpatch failed
-9631f5af88ec drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for partial memory mapping")
+> +/*
+> + * BUILD_BUG_ON_ZERO() is not available in h files included from asm files, so
+> + * no input checks in assembly.
+> + */
 
-total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+In case of a new version I would reformat this as
+
+/*
+ * BUILD_BUG_ON_ZERO() is not available in h files included from asm files,
+ * so no input checks in assembly.
+ */
+
+It makes easier to review the changes and see that the first line is kept
+the same.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
