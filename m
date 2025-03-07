@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A43A56589
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 11:37:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5023A565C5
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Mar 2025 11:52:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B6AC10EB34;
-	Fri,  7 Mar 2025 10:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6676D10EB37;
+	Fri,  7 Mar 2025 10:52:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dS1g8k8S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k9z2LKOR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67AC010EB34
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Mar 2025 10:36:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB5510EB37;
+ Fri,  7 Mar 2025 10:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741343817; x=1772879817;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=rVVO1zJhCH4bnQdgjdQvLrOrmPGFzMRAoYMhjvyDaKc=;
- b=dS1g8k8SZFSn70PYpuX2kv2vI6W000NChxWFuPeBQNr9ylDPVpHTEexY
- 29FQMuhEZgKB7BOy7oYdemRANr+QabzZIquH+BrwnrcWz9cHjZTQK+FXK
- Aldj63u4IR1F3jPuHByC5jpPW3YcJSHVJcZODlhyJ9b+pidulsvZ2IjHb
- f7ZxdOpvnpudYNHtQ2YTzK+A6R+FFprAznOLKjER5hcfrMwxFDq998OK+
- fuGgtXGAM+27ZDb/uoHSzNEKnAFv6PBaghMhyXpFtQdVXqlBIjN3KCscH
- Ab13yYpP35o7yEj3/8aGHAA3WuiTVvnPsci/PVeK1HNixhv5eQK5JnGCM w==;
-X-CSE-ConnectionGUID: doSkSVWRSxSz3kab2QwFbA==
-X-CSE-MsgGUID: 3XD7Sk6FRPOBRFceqCi2qg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="41642291"
-X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="41642291"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 02:36:57 -0800
-X-CSE-ConnectionGUID: xXIGgWzmQ2iKI8Uij3oY3g==
-X-CSE-MsgGUID: QnPrQ8qaTsCg6W3xUyNJ4Q==
+ t=1741344769; x=1772880769;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iGMug1wTgdSZJY1bEQGapxDFZEp3XBuD6Z3D20OU3Ug=;
+ b=k9z2LKORgnwlDrFXpjP5NEbax7W+2r2TNvEINgrldtXbuXMEa7F1p0iM
+ juwurPXPjfhmCUy/CIsU0MhCwy6ENzGZ3r6maNGASLTXAo0GAl665WAw6
+ GYHB6Bib0ENIcPPGPXbkXE3Hax7wdJDVVTnxOjb4PM6wEnjtJHS1CqzIs
+ 0fQJa5erlMHhuTfT4qXDNpVnxslTPhzbQwvF5zkKNqkyb6F0+xNLJptti
+ RajSbR1lZ7zfnVbMCA4Ie2aKJgAYMgjm4x/MEANAY4OcAJlCn6fFcmIJX
+ ewmdR0OI4jCWO2w+fz/i1H/FHtlwWmvhIZPfdnrJQYPdpqXta2ihxCMiR g==;
+X-CSE-ConnectionGUID: 0jpPOER0Q8i+1QwL7kApjw==
+X-CSE-MsgGUID: J5mhu8kqS2OzdJvGXNWZ8A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11365"; a="42301643"
+X-IronPort-AV: E=Sophos;i="6.14,229,1736841600"; d="scan'208";a="42301643"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 02:52:48 -0800
+X-CSE-ConnectionGUID: VGBw3ngIR2yXy8NJh3rRMQ==
+X-CSE-MsgGUID: XkZ8rGTDSz2GXWPrr1sQdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,228,1736841600"; d="scan'208";a="119795925"
-Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.109])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2025 02:36:55 -0800
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="123481552"
+Received: from mlehtone-mobl.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.100])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Mar 2025 02:52:47 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [RFC PATCH 00/11] Underrun on idle PSR workaround
+Date: Fri,  7 Mar 2025 12:52:26 +0200
+Message-ID: <20250307105237.2909849-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250214155712.2849848-2-juhapekka.heikkila@gmail.com>
-References: <20250214155712.2849848-1-juhapekka.heikkila@gmail.com>
- <20250214155712.2849848-2-juhapekka.heikkila@gmail.com>
-Subject: Re: [PATCH v2 1/1] drm/i915/xehp: add wait on depth stall done bit
- handling
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, andi.shyti@intel.com
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 07 Mar 2025 11:33:11 +0100
-Message-ID: <174134359113.784355.2932820900396562370@DEV-409>
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,57 +69,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Juha-Pekka Heikkila (2025-02-14 16:57:11)
-> Add writing of WAIT_ON_DEPTH_STALL_DONE_DISABLE for gen12, this
-> is performance optimization.
->=20
-> Bspec: 46132
->=20
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12411
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_regs.h     | 3 +++
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
->  2 files changed, 9 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i9=
-15/gt/intel_gt_regs.h
-> index 6dba65e54cdb..a6e50af44b46 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-> @@ -409,6 +409,9 @@
->  #define GEN7_SO_PRIM_STORAGE_NEEDED(n)         _MMIO(0x5240 + (n) * 8)
->  #define GEN7_SO_PRIM_STORAGE_NEEDED_UDW(n)     _MMIO(0x5240 + (n) * 8 + =
-4)
-> =20
-> +#define GEN8_WM_CHICKEN2                       MCR_REG(0x5584)
-> +#define   WAIT_ON_DEPTH_STALL_DONE_DISABLE     REG_BIT(5)
-> +
->  #define GEN9_WM_CHICKEN3                       _MMIO(0x5588)
->  #define   GEN9_FACTOR_IN_CLR_VAL_HIZ           (1 << 9)
-> =20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
-m/i915/gt/intel_workarounds.c
-> index db04c3ee02e2..116683ebe074 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -742,6 +742,12 @@ static void gen12_ctx_workarounds_init(struct intel_=
-engine_cs *engine,
->                 /* Wa_1606376872 */
->                 wa_masked_en(wal, COMMON_SLICE_CHICKEN4, DISABLE_TDC_LOAD=
-_BALANCING_CALC);
->         }
+This patchset is implementing workaround for underrun on idle PSR HW bug.
 
-Do we not have an "optional" tuning section?
+It is adding notification mechanisms toward PSR for pipe
+enable/disable, vblank enable/disable and enabling disabling
+DC5/DC6. These notifications are used to apply/remove the workaround.
 
-> +
-> +       /*
-> +        * This bit must be set to enable performance optimization for fa=
-st
-> +        * clears.
-> +        */
-> +       wa_mcr_write_or(wal, GEN8_WM_CHICKEN2, WAIT_ON_DEPTH_STALL_DONE_D=
-ISABLE);
+Current mechanism to block DC states while vblank is enabled on Panel Replay capable system is extended to work for this new workaround as well.
 
-This should only be applied to rcs contexts, not all.
--Chris
+Jouni Högander (11):
+  drm/i915/display: Add new interface for getting dc_state
+  drm/i915/psr: Store enabled non-psr pipes into intel_crtc_state
+  drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
+  drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
+  drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR
+  drm/i915/psr: Add mechanism to notify PSR of pipe enable/disable
+  drm/i915/psr: Add mechanism to notify PSR of DC5/6 enable disable
+  drm/i915/psr: Add interface to notify PSR of vblank enable/disable
+  drm/i915/psr: Apply underrun on PSR idle workaround
+  drm/i915/display: Rename intel_psr_needs_block_dc_vblank
+  drm/i915/display: Rename vblank DC workaround functions and variables
+
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +
+ .../gpu/drm/i915/display/intel_display_core.h |   6 +-
+ .../drm/i915/display/intel_display_driver.c   |   3 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
+ .../drm/i915/display/intel_display_power.c    |  29 ++
+ .../drm/i915/display/intel_display_power.h    |   1 +
+ .../i915/display/intel_display_power_well.c   |   4 +
+ .../drm/i915/display/intel_display_types.h    |   5 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  14 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 271 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr.h      |   8 +-
+ 12 files changed, 348 insertions(+), 30 deletions(-)
+
+-- 
+2.43.0
+
