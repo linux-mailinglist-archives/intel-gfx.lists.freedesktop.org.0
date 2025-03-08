@@ -2,75 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2448AA596F4
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 15:02:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA5FA596F9
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 15:02:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E04610E45D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D993410E468;
 	Mon, 10 Mar 2025 14:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SAIIQp9g";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="DP9QJhXX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C206C10EBEF;
- Fri,  7 Mar 2025 16:49:39 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 3C2A2A44224;
- Fri,  7 Mar 2025 16:44:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 671BBC4CEEC;
- Fri,  7 Mar 2025 16:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1741366178;
- bh=40sefDO3ErWdymEjyIPiUMmoQgDhxbnjHW9ZvkfKYfM=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=SAIIQp9gkoMDx9l9b7kkLiIegQSTwEIOIE5sbnccSoClgpLNlk7mmUB4PBBN/RxVR
- qg3GKEJ/ek2jSOe2f0DkEAO7NwuFT/ys2UsRYUusGmP2nDeBtgF/tWz1Wz81ALK1/u
- AfPmui7HLzUW8CY3mZ/MOCcNW1B1U68LVV3c4sOLwsXVXcmYU2iI5iaOIphuH0uDa1
- yzsgBDJk3ci6R3JXyXxZbMOLzXOmA4YGeobMWEAoVS9NX1YOzF9XHbTakySVMYLBLn
- Q4Xp7wP8YvCIimLUQLxUFjfoZdbHeOFHL+rpYv7009hCEjhTerp3b9AYBWLQm4v4Lq
- /YIYWRSFNIDZQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 5E8BAC19F32;
- Fri,  7 Mar 2025 16:49:38 +0000 (UTC)
-From: Vincent Mailhol via B4 Relay
- <devnull+mailhol.vincent.wanadoo.fr@kernel.org>
-Date: Sat, 08 Mar 2025 01:48:54 +0900
-Subject: [PATCH v6 7/7] test_bits: add tests for BIT_U*()
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Sat, 08 Mar 2025 05:37:09 UTC
+Received: from out30-131.freemail.mail.aliyun.com
+ (out30-131.freemail.mail.aliyun.com [115.124.30.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B39A910E1FB
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 Mar 2025 05:37:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux.alibaba.com; s=default;
+ t=1741412227; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+ bh=QwGokHK8MWELbszfeUznitYDMBt/G0N6Dzae0aons/k=;
+ b=DP9QJhXXtN8oUBRQXnZpF2hMr2W3hGgGdfWzE5j1FylkQp5W15649pOQMiUKu20RiLFhnTTEkE3ztcR0Fh7EEHh6DMMxKyxHtKCBUXVLtg0Ov10L3ZUnZ6IwO1m+Fk3Ng+uDTb+bxxfO38lnR8O6VhOnDEM44NTPZNpTinD+xQY=
+Received: from 30.221.80.100(mailfrom:baolin.wang@linux.alibaba.com
+ fp:SMTPD_---0WQu7mhO_1741411914 cluster:ay36) by smtp.aliyun-inc.com;
+ Sat, 08 Mar 2025 13:31:55 +0800
+Message-ID: <88098e5c-1514-4d8d-a220-531a9b473ae3@linux.alibaba.com>
+Date: Sat, 8 Mar 2025 13:31:54 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/11] shmem: Add shmem_writeout()
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ linux-fsdevel@vger.kernel.org
+Cc: linux-mm@kvack.org, intel-gfx@lists.freedesktop.org
+References: <20250307135414.2987755-1-willy@infradead.org>
+ <20250307135414.2987755-9-willy@infradead.org>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <20250307135414.2987755-9-willy@infradead.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250308-fixed-type-genmasks-v6-7-f59315e73c29@wanadoo.fr>
-References: <20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr>
-In-Reply-To: <20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr>
-To: Yury Norov <yury.norov@gmail.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
- David Laight <David.Laight@ACULAB.COM>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1376;
- i=mailhol.vincent@wanadoo.fr; h=from:subject:message-id;
- bh=ICSy7DSYe3wHM8cbD8PtyLiEgBieXZJqpYz/Vpj4sZM=;
- b=owGbwMvMwCV2McXO4Xp97WbG02pJDOmnledszz72Ttn4QdrmR3oPxVZEB1d21Nv/ja1gmhpxK
- UjFqfFORykLgxgXg6yYIsuyck5uhY5C77BDfy1h5rAygQxh4OIUgInMes3wV/h2xjVDyfyj07tM
- Y3i/TN5q8yrEI2LOpeqPTVO/JJwLqmdk2FQ3S3b6//OuvL3Wt392VHbut8heay/TV9X7nTn9+i1
- 5DgA=
-X-Developer-Key: i=mailhol.vincent@wanadoo.fr; a=openpgp;
- fpr=ED8F700574E67F20E574E8E2AB5FEB886DBB99C2
-X-Endpoint-Received: by B4 Relay for mailhol.vincent@wanadoo.fr/default
- with auth_id=291
-X-Original-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 X-Mailman-Approved-At: Mon, 10 Mar 2025 14:02:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,57 +53,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: mailhol.vincent@wanadoo.fr
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-
-Add some additional tests in lib/test_bits.c to cover the expected
-results of the fixed type BIT_U*() macros.
-
-Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
----
-Changelog:
-
-  v5 -> v6:
-
-    - No changes.
-
-  v4 -> v5:
-
-    - BIT_U8()/BIT_U16() are now back to u8/u16.
-
-  v3 -> v4:
-
-    - New patch.
----
- lib/test_bits.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/lib/test_bits.c b/lib/test_bits.c
-index 87112d1895194da33c0ffdf0a6fe6df43ce6b1e7..ab88e50d2edfa2b011f07d50460ac8ea6ff99923 100644
---- a/lib/test_bits.c
-+++ b/lib/test_bits.c
-@@ -9,6 +9,16 @@
- 
- #define assert_type(t, x) _Generic(x, t: x, default: 0)
- 
-+static_assert(assert_type(u8, BIT_U8(0)) == 1u);
-+static_assert(assert_type(u16, BIT_U16(0)) == 1u);
-+static_assert(assert_type(u32, BIT_U32(0)) == 1u);
-+static_assert(assert_type(u64, BIT_U64(0)) == 1ull);
-+
-+static_assert(assert_type(u8, BIT_U8(7)) == 0x80u);
-+static_assert(assert_type(u16, BIT_U16(15)) == 0x8000u);
-+static_assert(assert_type(u32, BIT_U32(31)) == 0x80000000u);
-+static_assert(assert_type(u64, BIT_U64(63)) == 0x8000000000000000ull);
-+
- static_assert(assert_type(unsigned long, GENMASK(31, 0)) == U32_MAX);
- static_assert(assert_type(unsigned long long, GENMASK_ULL(63, 0)) == U64_MAX);
- static_assert(assert_type(u8, GENMASK_U8(7, 0)) == U8_MAX);
-
--- 
-2.45.3
 
 
+On 2025/3/7 21:54, Matthew Wilcox (Oracle) wrote:
+> This will be the replacement for shmem_writepage().
+> 
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+
+LGTM.
+Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+
+> ---
+>   include/linux/shmem_fs.h |  7 ++++---
+>   mm/shmem.c               | 20 ++++++++++++++------
+>   2 files changed, 18 insertions(+), 9 deletions(-)
+> 
+> diff --git a/include/linux/shmem_fs.h b/include/linux/shmem_fs.h
+> index 0b273a7b9f01..5f03a39a26f7 100644
+> --- a/include/linux/shmem_fs.h
+> +++ b/include/linux/shmem_fs.h
+> @@ -104,10 +104,11 @@ static inline bool shmem_mapping(struct address_space *mapping)
+>   	return false;
+>   }
+>   #endif /* CONFIG_SHMEM */
+> -extern void shmem_unlock_mapping(struct address_space *mapping);
+> -extern struct page *shmem_read_mapping_page_gfp(struct address_space *mapping,
+> +void shmem_unlock_mapping(struct address_space *mapping);
+> +struct page *shmem_read_mapping_page_gfp(struct address_space *mapping,
+>   					pgoff_t index, gfp_t gfp_mask);
+> -extern void shmem_truncate_range(struct inode *inode, loff_t start, loff_t end);
+> +int shmem_writeout(struct folio *folio, struct writeback_control *wbc);
+> +void shmem_truncate_range(struct inode *inode, loff_t start, loff_t end);
+>   int shmem_unuse(unsigned int type);
+>   
+>   #ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> diff --git a/mm/shmem.c b/mm/shmem.c
+> index ba162e991285..427b7f70fffb 100644
+> --- a/mm/shmem.c
+> +++ b/mm/shmem.c
+> @@ -1536,12 +1536,20 @@ int shmem_unuse(unsigned int type)
+>   	return error;
+>   }
+>   
+> -/*
+> - * Move the page from the page cache to the swap cache.
+> - */
+>   static int shmem_writepage(struct page *page, struct writeback_control *wbc)
+>   {
+> -	struct folio *folio = page_folio(page);
+> +	return shmem_writeout(page_folio(page), wbc);
+> +}
+> +
+> +/**
+> + * shmem_writeout - Write the folio to swap
+> + * @folio: The folio to write
+> + * @wbc: How writeback is to be done
+> + *
+> + * Move the folio from the page cache to the swap cache.
+> + */
+> +int shmem_writeout(struct folio *folio, struct writeback_control *wbc)
+> +{
+>   	struct address_space *mapping = folio->mapping;
+>   	struct inode *inode = mapping->host;
+>   	struct shmem_inode_info *info = SHMEM_I(inode);
+> @@ -1586,9 +1594,8 @@ static int shmem_writepage(struct page *page, struct writeback_control *wbc)
+>   try_split:
+>   		/* Ensure the subpages are still dirty */
+>   		folio_test_set_dirty(folio);
+> -		if (split_huge_page_to_list_to_order(page, wbc->list, 0))
+> +		if (split_folio_to_list(folio, wbc->list))
+>   			goto redirty;
+> -		folio = page_folio(page);
+>   		folio_clear_dirty(folio);
+>   	}
+>   
+> @@ -1660,6 +1667,7 @@ static int shmem_writepage(struct page *page, struct writeback_control *wbc)
+>   	folio_unlock(folio);
+>   	return 0;
+>   }
+> +EXPORT_SYMBOL_GPL(shmem_writeout);
+>   
+>   #if defined(CONFIG_NUMA) && defined(CONFIG_TMPFS)
+>   static void shmem_show_mpol(struct seq_file *seq, struct mempolicy *mpol)
