@@ -2,75 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0838DA57C33
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 Mar 2025 18:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7923A58043
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Mar 2025 02:59:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 680FE10E214;
-	Sat,  8 Mar 2025 17:05:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3520810E2BB;
+	Sun,  9 Mar 2025 01:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DRsKL1aW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KMpETyiU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E270410E214;
- Sat,  8 Mar 2025 17:05:42 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 17EBC5C6203;
- Sat,  8 Mar 2025 17:03:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1719BC4CEE4;
- Sat,  8 Mar 2025 17:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1741453538;
- bh=spD0x337wJctW2/W0LOakh/QP95xehRUlEjwpgN4CeM=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=DRsKL1aWZPZ4nMoNZ3J3eN8DotDY0BGtTXEwgYFrVNmy0XbHxLwOAZnaAUhLMeRY9
- Dnzn2SaziUAUZXBjpp0NLQffUHZ+bvIYTTq03tMnlx7BnuVBS2SuQ2RSe9gIZdZDgR
- K2pLKJXdnTJJPbiwfoB/sNtB6RF6gDc0npT7+3Cql76HguGqZqefhaYO5PyGrfy914
- fOtnqZUfEqWy/WOz13/P8V63coMmY9PLApxpWx+jX6yx9hW7hQad5Mw1bwJiSfOI3k
- ztYC5gW/7vH6lHUaAu1yC41I+Hkcy4rTDiK6BdjVIf+YsgyiziTCJyY7fOKdrW3P4q
- r85ItPhaP09qg==
-Received: by mail-lf1-f54.google.com with SMTP id
- 2adb3069b0e04-5499da759e8so237232e87.0; 
- Sat, 08 Mar 2025 09:05:38 -0800 (PST)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09A8810E2BB;
+ Sun,  9 Mar 2025 01:59:01 +0000 (UTC)
+Received: by mail-ej1-f44.google.com with SMTP id
+ a640c23a62f3a-ac27cb35309so94723866b.2; 
+ Sat, 08 Mar 2025 17:59:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741485539; x=1742090339; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CQPV71ADDI/mWsm8CeKOioi3PQYjTezoJGiR28RCRSY=;
+ b=KMpETyiUr7+w3gYSJi3mPIxv+3M2CMurPaRtZy1U0ReJv94GL063CqUZ/unZduxBCl
+ yxGasaYjizpCE6+nk/TOuWpPbG9gX6LLjq5OXbety9WtVPzZKp17LL7LLhwRZk9n37W3
+ 7nVy/c/MDx8Ifo0Mrqunc7Bd93hHNyxkloZ6bUFGWEv63Ddg50nC+4HEEEyupDnFKFeW
+ tEkEyqAPAASg8YQSX8s9oEhq97BZvztlx32aJR0wP6yl8mz0T+HND2XJz0SfAHE0EiS3
+ AAfOwYpkI2uBLgUWsjADvft2KT8Pudo5uxKCMRdNbqkv2O0BmK4k9Y0QKnXmHVM+WyO1
+ grGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741485539; x=1742090339;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=CQPV71ADDI/mWsm8CeKOioi3PQYjTezoJGiR28RCRSY=;
+ b=Rge2NLSD7YyNinHWTHV7dp9m+jeLGgQZoa/Cr/4nd7ZSHoxtP0EOTlPceecil4xlnC
+ r7xiXvmPJqOia30SzV4B2NiHpooX6JUkTHyU0pspiy+Kbiyp5iWwnRwugsejSpTn/MTD
+ RfmsHwb/ZXSDu0zSiz1yNqOUSUwdqHPLxvHrjo/GewSSno7q/D2T+6MXFB2ft/q6ThBR
+ e6eMfBY95srqTZJ6utalhWvdxdrr7ZCLuqt63hh0e57sCYAD93AWwnI8mhW/bjMQvktJ
+ zs51i4u2+a0WQv099/aGhFhTmfGmzAA5lv5onl/8GSdtW47z5/BZr/ckrIPqwov7Q7sL
+ EuSw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW/K8UciR6lVrocK3+umgbmAnHpdl+x9M1TCAZIPuSh0yagJJG+gz+yajmQcQbjzzUTpGswqhO5Tb0p@lists.freedesktop.org,
- AJvYcCW2+UVeNsT89S8ohmcrvZOBePe98Q9BgSzpw0LJT6NipcnD6Ap+j5wdetBdnZjSfkR4z73P9EYKEpQ=@lists.freedesktop.org,
- AJvYcCWRM6KZz/ltqE5rAzpU/xSzZOGJMi/NWQAebUfBsskNooiRbS2SjPfcojxfJHQJVhYHDo/+FKRDdxE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyAKg5eaToQWsSW2EQmi8lfWYK6f+TKBp3gd4+h6BVzcQgmwYQi
- cTdI5gRCrKKRKu9jKr3UMsXdCvzOznTlT8V+lqoAt4ZHpJoUGUOMHNLz+MqoyxaTaSDyJhkSlYx
- 6lHXeVML9YMWzvEvgGmfsLrui4dw=
-X-Google-Smtp-Source: AGHT+IENRDKmWLj+WY1kfGBN4ed7jrzyXk1/GC6kfk4gFHHLgxv9+VUf8rHCwp6m0ZhTErnGKHWA7HZfwQszV/MeyKA=
-X-Received: by 2002:a05:6512:b0a:b0:549:8c0c:ea15 with SMTP id
- 2adb3069b0e04-54997d99dbemr1648551e87.0.1741453536762; Sat, 08 Mar 2025
- 09:05:36 -0800 (PST)
+ AJvYcCUkHVQJtB3N+a722YpYWSTzZGvfyAT6Va34hQlgdPq8D89y2Z8c8dfFEX597ZcgiR15mOAWK7bNiCoy@lists.freedesktop.org,
+ AJvYcCVOUc0kunYgUdroqrnHJax72Lxb0tZy9Zcm7bL26AVo8LbtT3Q50gf2Mr9t/eyjrBJbthC+NGfmuTs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRbGl8j5yU+nfnGxZqjoOzAPywQNH2MWzIUmmc0S/4UR3Oc53z
+ aQhxFAMHktAtF8q30MPypOYDCxgx1WoSOktRshhHuS+ZPP2DPI6r
+X-Gm-Gg: ASbGnctuvL3oZzWY/ua1Nnk73ubPuDQnAgWVedL+Db6ZzDgdlGJuNoRd1qvcc5lxIeM
+ q9Suwp489HBMIxnIWXAHqecRqgmrmvDaZ3IOqY4Evxd2lumLuCTrNINNLBhe3bu3BtXdmBygHcZ
+ rJjAledQkgWOivhlvQZtis8WtKV+hxgaMSg4wKtwwN9Ak3GXjsFQyojaTR0obxx72rNtVB2yiX1
+ VUQxDaH6t5oM9TOCpO5Pn/i+4TF4enoTFKKvXJkOPCeROye2Uy31nWBT602+kj6iMXIIpYDt3SP
+ HAthy3wzrV3w5ZU3fB3n5yc/blW5nJccyvWp1h5LVZbQQr2akUBQzlDo/n3vh5awBM7TCMX0G07
+ xtLDdYLH3ZLw9NZ4sDQ==
+X-Google-Smtp-Source: AGHT+IHm3r6u0Tc1JavXfFI/s+U8dwCNj8qWrGb6bQH+IsLrTWsHG6S8/8z8ZR3B4eeZ93W15hty9A==
+X-Received: by 2002:a17:907:7255:b0:abf:51b7:608a with SMTP id
+ a640c23a62f3a-ac252738131mr911910566b.5.1741485539107; 
+ Sat, 08 Mar 2025 17:58:59 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-ac287653d1esm79429666b.125.2025.03.08.17.58.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 08 Mar 2025 17:58:58 -0800 (PST)
+Date: Sun, 9 Mar 2025 01:58:53 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: Yury Norov <yury.norov@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@ACULAB.COM>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and
+ non-asm GENMASK()
+Message-ID: <20250309015853.01412484@pumpkin>
+In-Reply-To: <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
+References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
+ <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
+ <20250306192331.2701a029@pumpkin>
+ <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-References: <cover.1737556766.git.jani.nikula@intel.com>
- <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
- <CAK7LNATHXwEkjJHP7b-ZmhzLfyyuOdsyimna-=r-sJk+DxigrA@mail.gmail.com>
- <87r03e1lft.fsf@intel.com>
- <CAK7LNARYBtpwkJxbf84+bzBYn05Kk2zvdVLDZMMBg=B_zzFokg@mail.gmail.com>
- <8734fu1arq.fsf@intel.com>
- <CAK7LNATu9OLEANiSzY3Smo=Bm_9M75EDyvmD6HT5kaS2sxRorw@mail.gmail.com>
- <20250305-modest-finch-of-genius-917605@houat>
-In-Reply-To: <20250305-modest-finch-of-genius-917605@houat>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sun, 9 Mar 2025 02:05:00 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATYi5HPR+J0cdS33itHUdq5Qd+543X=z+AFyHxQssSJRw@mail.gmail.com>
-X-Gm-Features: AQ5f1JrcpiwPWbOqe8DUcKJzIYj3izGyKq0j-4vGn25dcPlBNvrmPcAy1roUDQ8
-Message-ID: <CAK7LNATYi5HPR+J0cdS33itHUdq5Qd+543X=z+AFyHxQssSJRw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
- kernel-doc
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- simona.vetter@ffwll.ch, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,57 +104,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 5, 2025 at 10:59=E2=80=AFPM Maxime Ripard <mripard@kernel.org> =
-wrote:
->
-> On Wed, Mar 05, 2025 at 03:05:25AM +0900, Masahiro Yamada wrote:
-> > > IMO headers should almost invariably be self-contained, instead of
-> > > putting the burden on their users to include other headers to make it
-> > > work. It's a PITA in a project the size of the kernel, or even just t=
-he
-> > > drm subsystem, to track these cases when you modify includes in eithe=
-r
-> > > users or the headers being included.
-> > >
-> > > The exception to this are headers that are not to be included directl=
-y
-> > > by users, but rather by other headers as an implementation detail. Th=
-ere
-> > > may be such cases in include/linux, but not under include/drm.
-> >
-> > This results in a false check for include/linux/.
-> >
-> > I don=E2=80=99t see much sense in doing this exceptionally for include/=
-drm/
-> > after we've learned that it doesn't work globally.
->
-> As far as I'm concerned, I find this extremely helpful for DRM. If only
-> to ensure that the huge amount of work that went into cleaning up our
-> headers doesn't get lost.
->
-> Nobody here claims that it should be enabled globally, just that it
-> should be enabled for DRM. We already have plenty of exceptions like
-> that for compiler flags, checkpatch, contribution process, etc. so I'm
-> not sure why those would be ok, but additional checks limited to a
-> subsystem wouldn't.
->
-> Maxime
+On Fri, 7 Mar 2025 18:58:08 +0900
+Vincent Mailhol <mailhol.vincent@wanadoo.fr> wrote:
 
-Because we learned this feature is broken.
-It was broken under include/linux/, so it will be broken under include/drm/=
- too.
+> On 07/03/2025 at 04:23, David Laight wrote:
+> > On Thu, 06 Mar 2025 20:29:52 +0900
+> > Vincent Mailhol via B4 Relay <devnull+mailhol.vincent.wanadoo.fr@kernel.org> wrote:
+> >   
+> >> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> >>
+> >> In an upcoming change, GENMASK() and its friends will indirectly
+> >> depend on sizeof() which is not available in asm.
+> >>
+> >> Instead of adding further complexity to __GENMASK() to make it work
+> >> for both asm and non asm, just split the definition of the two
+> >> variants.  
+> > ...  
+> >> +#else /* defined(__ASSEMBLY__) */
+> >> +
+> >> +#define GENMASK(h, l)		__GENMASK(h, l)
+> >> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)  
+> > 
+> > What do those actually expand to now?
+> > As I've said a few times both UL(0) and ULL(0) are just (0) for __ASSEMBLY__
+> > so the expansions of __GENMASK() and __GENMASK_ULL() contained the
+> > same numeric constants.  
+> 
+> Indeed, in asm, the UL(0) and ULL(0) expands to the same thing: 0.
+> 
+> But the two macros still expand to something different on 32 bits
+> architectures:
+> 
+>   * __GENMASK:
+> 
+>       (((~(0)) << (l)) & (~(0) >> (32 - 1 - (h))))
+> 
+>   * __GENMASK_ULL:
+> 
+>       (((~(0)) << (l)) & (~(0) >> (64 - 1 - (h))))
+> 
+> On 64 bits architecture these are the same.
 
-Headers are included conditionally.
-There is no need to make them self-contained in all cases
-by compile-testing every header detected by the 'find' command.
+I've just fed those into godbolt (https://www.godbolt.org/z/Ter6WE9qE) as:
+int fi(void)
+{
+    int v;
+    asm("mov $(((~(0)) << (8)) & (~(0) >> (32 - 1 - (15)))),%0": "=r" (v));
+    return v -(((~(0u)) << (8)) & (~(0u) >> (32 - 1 - (15))));
+}
 
-I am very negative about this patch.
-I hope the upstream maintainers and Linus will not pull this.
+gas warns:
+<source>:4: Warning: 0xffffffffff00 shortened to 0xffffff00
 
+unsigned long long fll(void)
+{
+    unsigned long long v;
+    asm("mov $(((~(0)) << (8)) & (~(0) >> (64 - 1 - (15)))),%0": "=r" (v));
+    return v -(((~(0ull)) << (8)) & (~(0ull) >> (64 - 1 - (15))));
+}
 
+(for other architectures you'll need to change the opcode)
 
+For x86 and x86-32 the assembler seems to be doing 64bit maths with unsigned
+right shifts - so the second function (with the 64 in it) generates 0xff00.
+I doubt a 32bit only assembler does 64bit maths, but the '>> 48' above
+might get masked to a '>> 16' by the cpu and generate the correct result.
 
+So __GENMASK() is likely to be broken for any assembler that supports 64bits
+when generating 32bit code.
+__GENMASK_ULL() works (assuming all have unsigned >>) on 64bit assemblers
+(even when generating 32bit code). It may work on some 32bit assemblers.
 
---
-Best Regards
-Masahiro Yamada
+Since most uses in the header files will be GENMASK() I doubt (hope) no
+asm code actually uses the values!
+The headers assemble - but that is about all that can be said.
+
+Bags of worms :-)
+
+	David
+
