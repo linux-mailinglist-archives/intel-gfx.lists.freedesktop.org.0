@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C651CA596FA
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 15:02:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C5BA596FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 15:02:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D751110E466;
-	Mon, 10 Mar 2025 14:02:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="kio8/h+n";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8591710E2A6;
+	Mon, 10 Mar 2025 14:02:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out30-119.freemail.mail.aliyun.com
- (out30-119.freemail.mail.aliyun.com [115.124.30.119])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058AC10E20A
- for <intel-gfx@lists.freedesktop.org>; Sat,  8 Mar 2025 05:39:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux.alibaba.com; s=default;
- t=1741412381; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
- bh=HTIcER/dyIswpMrv6blznZFW77d+UzEIvHyZ7/F+fAM=;
- b=kio8/h+n58JbwZ8JAZilQb+q7myuB0deRRUB+3AGR6DKh9+Y9pKeBpk3iTM95W+lozks3hsUymtaBgcfU+NJOdTWkXE1m62ZjFjDO8HFdlBFz7cWCN6VE7kmeOQ3YVyhxM+7t5TS22dfBHH5xPAofQPA7mAMDj5UGghc1BAjW7k=
-Received: from 30.221.80.100(mailfrom:baolin.wang@linux.alibaba.com
- fp:SMTPD_---0WQu4qrn_1741412069 cluster:ay36) by smtp.aliyun-inc.com;
- Sat, 08 Mar 2025 13:34:30 +0800
-Message-ID: <315f4426-0ed0-4ce6-8b12-ca4e79ee00ee@linux.alibaba.com>
-Date: Sat, 8 Mar 2025 13:34:29 +0800
+X-Greylist: delayed 446 seconds by postgrey-1.36 at gabe;
+ Sun, 09 Mar 2025 16:12:18 UTC
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61D4310E244
+ for <intel-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:12:18 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40] (unknown
+ [IPv6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 057753F1DF
+ for <intel-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 17:04:40 +0100 (CET)
+Message-ID: <aa90481c-8cb4-4d5b-a440-7e1930543c9d@hogyros.de>
+Date: Mon, 10 Mar 2025 01:04:36 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/11] mm: Remove swap_writepage() and shmem_writepage()
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
- linux-fsdevel@vger.kernel.org
-Cc: linux-mm@kvack.org, intel-gfx@lists.freedesktop.org
-References: <20250307135414.2987755-1-willy@infradead.org>
- <20250307135414.2987755-11-willy@infradead.org>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <20250307135414.2987755-11-willy@infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+To: intel-gfx@lists.freedesktop.org
+From: Simon Richter <Simon.Richter@hogyros.de>
+Subject: B580 on POWER9: Unable to handle kernel data access on read at
+ 0xc00a0000000003cc
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------KFgmTTYioB3Gi4tCW8wB3JzI"
 X-Mailman-Approved-At: Mon, 10 Mar 2025 14:02:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -54,14 +49,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------KFgmTTYioB3Gi4tCW8wB3JzI
+Content-Type: multipart/mixed; boundary="------------zEG0hxjHHrKiboUSkm2k0zU1";
+ protected-headers="v1"
+From: Simon Richter <Simon.Richter@hogyros.de>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <aa90481c-8cb4-4d5b-a440-7e1930543c9d@hogyros.de>
+Subject: B580 on POWER9: Unable to handle kernel data access on read at
+ 0xc00a0000000003cc
 
+--------------zEG0hxjHHrKiboUSkm2k0zU1
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On 2025/3/7 21:54, Matthew Wilcox (Oracle) wrote:
-> Call swap_writeout() and shmem_writeout() from pageout() instead.
-> 
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+SGksDQoNCkkndmUgYnVpbHQgYSBob3JyaWJsZSBjb250cmFwdGlvbiBhbmQgcmVjZWl2ZWQg
+dGhlIGZvbGxvd2luZyBvdXRwdXQ6DQoNCkJVRzogVW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwg
+ZGF0YSBhY2Nlc3Mgb24gcmVhZCBhdCAweGMwMGEwMDAwMDAwMDAzY2MNCkZhdWx0aW5nIGlu
+c3RydWN0aW9uIGFkZHJlc3M6IDB4YzAwODAwMDAwZGQ0NjQ4NA0KT29wczogS2VybmVsIGFj
+Y2VzcyBvZiBiYWQgYXJlYSwgc2lnOiAxMSBbIzFdDQpMRSBQQUdFX1NJWkU9NEsgTU1VPVJh
+ZGl4IFNNUCBOUl9DUFVTPTIwNDggTlVNQSBQb3dlck5WDQpNb2R1bGVzIGxpbmtlZCBpbjog
+eGUoKykgeHRfY29ubnRyYWNrIG5mdF9jaGFpbl9uYXQgeHRfTUFTUVVFUkFERSBuZl9uYXQg
+DQpuZl9jb25udHJhY2tfbmV0bGluayBuZl9jb25udHJhY2sgbmZfZGVmcmFnX2lwdjYgbmZf
+ZGVmcmFnX2lwdjQgDQp4ZnJtX3VzZXIgeGZybV9hbGdvIHh0X2FkZHJ0eXBlIG5mdF9jb21w
+YXQgeF90YWJsZXMgbmZfdGFibGVzIGxpYmNyYzMyYyANCm5mbmV0bGluayBicl9uZXRmaWx0
+ZXIgYnJpZGdlIHN0cCBsbGMgb3ZlcmxheSBiaW5mbXRfbWlzYyBldmRldiBqb3lkZXYgDQpo
+aWRfZ2VuZXJpYyB1c2JoaWQgaGlkIGNlYyByY19jb3JlIGRybV9ncHV2bSBkcm1fZXhlYyBk
+cm1fYnVkZHkgDQpncHVfc2NoZWQgZHJtX3N1YmFsbG9jX2hlbHBlciBkcm1fZGlzcGxheV9o
+ZWxwZXIgYXN0IGRybV90dG1faGVscGVyIHR0bSANCnNuZF9oZGFfaW50ZWwgZHJtX3NobWVt
+X2hlbHBlciBzbmRfaW50ZWxfZHNwY2ZnIGRybV9rbXNfaGVscGVyIA0Kc25kX2hkYV9jb2Rl
+YyBzbmRfaGRhX2NvcmUgZHJtIG9mcGFydCBzbmRfaHdkZXAgc25kX3BjbSB4dHMgaXBtaV9w
+b3dlcm52IA0Kc25kX3RpbWVyIGlwbWlfZGV2aW50ZiBwb3dlcm52X2ZsYXNoIHNuZCB2bXhf
+Y3J5cHRvIGdmMTI4bXVsIG10ZCANCmlwbWlfbXNnaGFuZGxlciBvcGFsX3ByZCBzb3VuZGNv
+cmUgYXQyNCBkcm1fcGFuZWxfb3JpZW50YXRpb25fcXVpcmtzIA0KaTJjX2FsZ29fYml0IHJl
+Z21hcF9pMmMgZXh0NCBjcmMxNiBtYmNhY2hlIGpiZDIgY3JjMzJjX2dlbmVyaWMgZG1fbW9k
+IA0KeGhjaV9wY2kgeGhjaV9oY2QgdGczIG52bWUgY3JjMzJjX3ZwbXN1bSB1c2Jjb3JlIG52
+bWVfY29yZSBsaWJwaHkgDQp1c2JfY29tbW9uIG52bWVfYXV0aCBbbGFzdCB1bmxvYWRlZDog
+eGVdDQpDUFU6IDMyIFVJRDogMCBQSUQ6IDQ1MyBDb21tOiBrd29ya2VyLzMyOjEgTm90IHRh
+aW50ZWQgDQo2LjEyLjEyK2Jwby1wb3dlcnBjNjRsZSAjMSAgRGViaWFuIDYuMTIuMTItMX5i
+cG8xMisxDQpIYXJkd2FyZSBuYW1lOiBUMlA5RDAxIFJFViAxLjAxIFBPV0VSOSAweDRlMTIw
+MiBvcGFsOnNraWJvb3QtOTg1ODE4NiBQb3dlck5WDQpXb3JrcXVldWU6IGV2ZW50cyB3b3Jr
+X2Zvcl9jcHVfZm4NCk5JUDogIGMwMDgwMDAwMGRkNDY0ODQgTFI6IGMwMDgwMDAwMGRkNDYz
+ODQgQ1RSOiAwMDAwMDAwMDMwMDZjMzk0DQpSRUdTOiBjMDAwMjAwMDBhNjM3NjYwIFRSQVA6
+IDAzMDAgICBOb3QgdGFpbnRlZCANCig2LjEyLjEyK2Jwby1wb3dlcnBjNjRsZSBEZWJpYW4g
+Ni4xMi4xMi0xfmJwbzEyKzEpDQpNU1I6ICA5MDAwMDAwMDAwMDA5MDMzIDxTRixIVixFRSxN
+RSxJUixEUixSSSxMRT4gIENSOiAyNDAwODQ4OCAgWEVSOiANCjIwMDQwMDAwDQpDRkFSOiBj
+MDA4MDAwMDBkZDQ2Mzk4IERBUjogYzAwYTAwMDAwMDAwMDNjYyBEU0lTUjogNDAwMDAwMDAg
+SVJRTUFTSzogMA0KR1BSMDA6IGMwMDgwMDAwMGRkNDYzODQgYzAwMDIwMDAwYTYzNzkwMCBj
+MDA4MDAwMDBkYjMwNjAwIGMwMGEwMDAwMDAwMDAzY2MNCkdQUjA0OiAwMDAwMDAwMDAwMDAw
+MDAwIDAwMDAwMDAwMDAwMDAwMDQgMDAwMDAwMDAzNWMyMDA2MCAwMDAwMDAwMDM1YzIwMDYw
+DQpHUFIwODogMDAwMDAwMDAwMDAwMDAwMCBjMDBhMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAw
+MDAwMDAgMDAwMDAwMDAwMDAwODAwMA0KR1BSMTI6IDAwMDAwMDAwMDAwMDAwMDAgYzAwMDIw
+MDdmZjdmZmIwMCBjMDAwMDAwMDAwMTdkMWNjIGMwMDAyMDAwMDVkNWMyMDANCkdQUjE2OiAw
+MDAwMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAwMDAwMDAwMDAwMCAwMDAw
+MDAwMDAwMDAwMDAwDQpHUFIyMDogMDAwMDAwMDAwMDAwMDAwMCBjMDAwMjAwN2ZiZWViMjgw
+IGMwMDgwMDAwMGRmMzUzNTAgYzAwODAwMDAwZGYzNTcwMA0KR1BSMjQ6IGMwMDgwMDAwMGRm
+MzU3MzAgYzAwMDIwMDAwNmY2MDAwMCAwMDAwMDAwMDAwMDAwMDAxIGMwMDAyMDAwMDZmNjE2
+MjgNCkdQUjI4OiAwMDAwMDAwMDAwMDAwMDAxIGMwMDAwMDAwMDI3NzAzZTAgMDAwMDAwMDAw
+MDAwMDAwMCBjMDAwMDAwMDBjMTY3MDAwDQpOSVAgW2MwMDgwMDAwMGRkNDY0ODRdIGludGVs
+X3ZnYV9yZXNldF9pb19tZW0rMHgxNDAvMHgxODggW3hlXQ0KTFIgW2MwMDgwMDAwMGRkNDYz
+ODRdIGludGVsX3ZnYV9yZXNldF9pb19tZW0rMHg0MC8weDE4OCBbeGVdDQpDYWxsIFRyYWNl
+Og0KW2MwMDAyMDAwMGE2Mzc5MDBdIFtjMDA4MDAwMDBkZDQ2Mzg0XSBpbnRlbF92Z2FfcmVz
+ZXRfaW9fbWVtKzB4NDAvMHgxODggDQpbeGVdICh1bnJlbGlhYmxlKQ0KW2MwMDAyMDAwMGE2
+Mzc5NDBdIFtjMDA4MDAwMDBkY2JiZDg4XSBoc3dfcG93ZXJfd2VsbF9lbmFibGUrMHgxZjAv
+MHgyMzggW3hlXQ0KW2MwMDAyMDAwMGE2Mzc5OTBdIFtjMDA4MDAwMDBkY2JlNDcwXSBpbnRl
+bF9wb3dlcl93ZWxsX2VuYWJsZSsweDhjLzB4YjggW3hlXQ0KW2MwMDAyMDAwMGE2MzdhMDBd
+IFtjMDA4MDAwMDBkY2I2ZDA4XSANCl9faW50ZWxfZGlzcGxheV9wb3dlcl9nZXRfZG9tYWlu
+LnBhcnQuMCsweDk4LzB4ZjQgW3hlXQ0KW2MwMDAyMDAwMGE2MzdhNTBdIFtjMDA4MDAwMDBk
+Y2I5MjYwXSANCmludGVsX3Bvd2VyX2RvbWFpbnNfaW5pdF9odysweDk0LzB4M2E4IFt4ZV0N
+CltjMDAwMjAwMDBhNjM3YWYwXSBbYzAwODAwMDAwZGNhZmNhNF0gDQppbnRlbF9kaXNwbGF5
+X2RyaXZlcl9wcm9iZV9ub2lycSsweGY0LzB4MzAwIFt4ZV0NCltjMDAwMjAwMDBhNjM3Yjcw
+XSBbYzAwODAwMDAwZGM0ZjEyNF0geGVfZGlzcGxheV9pbml0X25vaXJxKzB4ODAvMHgxMjQg
+W3hlXQ0KW2MwMDAyMDAwMGE2MzdiYTBdIFtjMDA4MDAwMDBkYmNlZTk4XSB4ZV9kZXZpY2Vf
+cHJvYmUrMHg0MTQvMHg3NjggW3hlXQ0KW2MwMDAyMDAwMGE2MzdjMzBdIFtjMDA4MDAwMDBk
+YzEzMzcwXSB4ZV9wY2lfcHJvYmUrMHg3N2MvMHhjNjAgW3hlXQ0KW2MwMDAyMDAwMGE2Mzdk
+OTBdIFtjMDAwMDAwMDAwOWY0NTQwXSBsb2NhbF9wY2lfcHJvYmUrMHg2OC8weGY0DQpbYzAw
+MDIwMDAwYTYzN2UxMF0gW2MwMDAwMDAwMDAxNjljZGNdIHdvcmtfZm9yX2NwdV9mbisweDM4
+LzB4NTQNCltjMDAwMjAwMDBhNjM3ZTQwXSBbYzAwMDAwMDAwMDE2ZmYyNF0gcHJvY2Vzc19v
+bmVfd29yaysweDFmYy8weDRkNA0KW2MwMDAyMDAwMGE2MzdlZjBdIFtjMDAwMDAwMDAwMTcw
+ZTNjXSB3b3JrZXJfdGhyZWFkKzB4MzNjLzB4NTA0DQpbYzAwMDIwMDAwYTYzN2Y5MF0gW2Mw
+MDAwMDAwMDAxN2QyZmNdIGt0aHJlYWQrMHgxMzgvMHgxNDANCltjMDAwMjAwMDBhNjM3ZmUw
+XSBbYzAwMDAwMDAwMDAwZGU1OF0gc3RhcnRfa2VybmVsX3RocmVhZCsweDE0LzB4MTgNCkNv
+ZGU6IGViYzFmZmYwIGViZTFmZmY4IDdjMDgwM2E2IDRlODAwMDIwIDYwMDAwMDAwIDYwMDAw
+MDAwIDYwNDIwMDAwIA0KM2QyMjAwMDAgZTkyOTE4MDAgZTkyOTAwMDAgMzg2OTAzY2MgN2Mw
+MDA0YWMgPDhiYzkwM2NjPiAwYzFlMDAwMCANCjRjMDAwMTJjIDU3YzkwNjNlDQotLS1bIGVu
+ZCB0cmFjZSAwMDAwMDAwMDAwMDAwMDAwIF0tLS0NCg0Kbm90ZToga3dvcmtlci8zMjoxWzQ1
+M10gZXhpdGVkIHdpdGggaXJxcyBkaXNhYmxlZA0KDQpUaGUgZmF1bHRpbmcgbGluZSBpcw0K
+DQogICAgIG91dGIoaW5iKFZHQV9NSVNfUiksIFZHQV9NSVNfVyk7DQoNCmluIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmdhLmMNCg0KVGhlIDB4M2NjIG9mZnNldCBp
+cyBWR0FfTUlTX1IsIGFuZCBSOSBwb2ludHMgdG8gYzAwYTAwMDAwMDAwMDAwMCwgd2hlcmUg
+DQp0aGUgSS9PIHBvcnRzIGFyZSBtYXBwZWQgLS0gaG93ZXZlciB0aGUgbGVnYWN5IHBvcnRz
+IGRvbid0IHNlZW0gdG8gYmUgDQphY3RpdmUgaWYgdGhlIGNhcmQgd2FzIG5ldmVyIGluaXRp
+YWxpemVkIGF0IGJvb3QsIHdoaWNoIGl0IGlzbid0LCANCmJlY2F1c2UgdGhlIEJNQydzIFZH
+QSBlbXVsYXRpb24gaXMgcHJlZmVycmVkLg0KDQpDb21tZW50aW5nIG91dCB0aGUgY2FsbCB0
+byBpbnRlbF92Z2FfcmVzZXRfaW9fbWVtIHNvbHZlcyB0aGUgcHJvYmxlbSwgDQphbmQgSSBn
+ZXQgd29uZGVyZnVsIDEwODBwNjAgb3V0cHV0IC0tIGJ1dCBvYnZpb3VzbHkgdGhhdCBpcyBu
+b3QgYSANCmdlbmVyaWMgc29sdXRpb24uDQoNCiAgICBTaW1vbg0K
 
-I tested shmem swap-out and swap-in with your patch set, and works well. 
-So feel free to add:
-Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
-Tested-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+--------------zEG0hxjHHrKiboUSkm2k0zU1--
+
+--------------KFgmTTYioB3Gi4tCW8wB3JzI
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEtjuqOJSXmNjSiX3Tfr04e7CZCBEFAmfNvBQACgkQfr04e7CZ
+CBEcdAf/VxuIYVxPE9llydspExlCeljSpQZqQGhtQ/UR54bFHWPvBkvVFwBRYnhM
+72mKaPnwAkGLwMmUyN0SzWyjRYVzwAUjMy3tWCwZ61S9aLnBUCK4lc2Ybki85PyO
+JSZHXXUtQpYY60m7Iu2oXF+tBLKIzmG8nkm/JhaEab1JtbxPFM/Pqc8Aodz+tW4T
+halfQu3qkK7taSAa/kUF0rtdk3O8WP/ojvc/3DNB5Jzscdvz6tsiGWg1STu9kFrF
+RDKP9JiTfqil1L7S4CilF/etu3nPWH8Lm6XdOMXZN5KEQoik5SCE2TJ+LL6Dhzjp
+QWaWpLWbdvKL/+uJQ5C5FIBpF/9qRQ==
+=0hVH
+-----END PGP SIGNATURE-----
+
+--------------KFgmTTYioB3Gi4tCW8wB3JzI--
