@@ -2,93 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7923A58043
-	for <lists+intel-gfx@lfdr.de>; Sun,  9 Mar 2025 02:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4EA8A58177
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Mar 2025 09:10:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3520810E2BB;
-	Sun,  9 Mar 2025 01:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE7B810E2F9;
+	Sun,  9 Mar 2025 08:10:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KMpETyiU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hjIU/p0V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
- [209.85.218.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09A8810E2BB;
- Sun,  9 Mar 2025 01:59:01 +0000 (UTC)
-Received: by mail-ej1-f44.google.com with SMTP id
- a640c23a62f3a-ac27cb35309so94723866b.2; 
- Sat, 08 Mar 2025 17:59:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741485539; x=1742090339; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CQPV71ADDI/mWsm8CeKOioi3PQYjTezoJGiR28RCRSY=;
- b=KMpETyiUr7+w3gYSJi3mPIxv+3M2CMurPaRtZy1U0ReJv94GL063CqUZ/unZduxBCl
- yxGasaYjizpCE6+nk/TOuWpPbG9gX6LLjq5OXbety9WtVPzZKp17LL7LLhwRZk9n37W3
- 7nVy/c/MDx8Ifo0Mrqunc7Bd93hHNyxkloZ6bUFGWEv63Ddg50nC+4HEEEyupDnFKFeW
- tEkEyqAPAASg8YQSX8s9oEhq97BZvztlx32aJR0wP6yl8mz0T+HND2XJz0SfAHE0EiS3
- AAfOwYpkI2uBLgUWsjADvft2KT8Pudo5uxKCMRdNbqkv2O0BmK4k9Y0QKnXmHVM+WyO1
- grGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741485539; x=1742090339;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=CQPV71ADDI/mWsm8CeKOioi3PQYjTezoJGiR28RCRSY=;
- b=Rge2NLSD7YyNinHWTHV7dp9m+jeLGgQZoa/Cr/4nd7ZSHoxtP0EOTlPceecil4xlnC
- r7xiXvmPJqOia30SzV4B2NiHpooX6JUkTHyU0pspiy+Kbiyp5iWwnRwugsejSpTn/MTD
- RfmsHwb/ZXSDu0zSiz1yNqOUSUwdqHPLxvHrjo/GewSSno7q/D2T+6MXFB2ft/q6ThBR
- e6eMfBY95srqTZJ6utalhWvdxdrr7ZCLuqt63hh0e57sCYAD93AWwnI8mhW/bjMQvktJ
- zs51i4u2+a0WQv099/aGhFhTmfGmzAA5lv5onl/8GSdtW47z5/BZr/ckrIPqwov7Q7sL
- EuSw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUkHVQJtB3N+a722YpYWSTzZGvfyAT6Va34hQlgdPq8D89y2Z8c8dfFEX597ZcgiR15mOAWK7bNiCoy@lists.freedesktop.org,
- AJvYcCVOUc0kunYgUdroqrnHJax72Lxb0tZy9Zcm7bL26AVo8LbtT3Q50gf2Mr9t/eyjrBJbthC+NGfmuTs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyRbGl8j5yU+nfnGxZqjoOzAPywQNH2MWzIUmmc0S/4UR3Oc53z
- aQhxFAMHktAtF8q30MPypOYDCxgx1WoSOktRshhHuS+ZPP2DPI6r
-X-Gm-Gg: ASbGnctuvL3oZzWY/ua1Nnk73ubPuDQnAgWVedL+Db6ZzDgdlGJuNoRd1qvcc5lxIeM
- q9Suwp489HBMIxnIWXAHqecRqgmrmvDaZ3IOqY4Evxd2lumLuCTrNINNLBhe3bu3BtXdmBygHcZ
- rJjAledQkgWOivhlvQZtis8WtKV+hxgaMSg4wKtwwN9Ak3GXjsFQyojaTR0obxx72rNtVB2yiX1
- VUQxDaH6t5oM9TOCpO5Pn/i+4TF4enoTFKKvXJkOPCeROye2Uy31nWBT602+kj6iMXIIpYDt3SP
- HAthy3wzrV3w5ZU3fB3n5yc/blW5nJccyvWp1h5LVZbQQr2akUBQzlDo/n3vh5awBM7TCMX0G07
- xtLDdYLH3ZLw9NZ4sDQ==
-X-Google-Smtp-Source: AGHT+IHm3r6u0Tc1JavXfFI/s+U8dwCNj8qWrGb6bQH+IsLrTWsHG6S8/8z8ZR3B4eeZ93W15hty9A==
-X-Received: by 2002:a17:907:7255:b0:abf:51b7:608a with SMTP id
- a640c23a62f3a-ac252738131mr911910566b.5.1741485539107; 
- Sat, 08 Mar 2025 17:58:59 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ac287653d1esm79429666b.125.2025.03.08.17.58.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 08 Mar 2025 17:58:58 -0800 (PST)
-Date: Sun, 9 Mar 2025 01:58:53 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Cc: Yury Norov <yury.norov@gmail.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@ACULAB.COM>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and
- non-asm GENMASK()
-Message-ID: <20250309015853.01412484@pumpkin>
-In-Reply-To: <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
-References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
- <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
- <20250306192331.2701a029@pumpkin>
- <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D247810E2F9
+ for <intel-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 08:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741507809; x=1773043809;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=v0/7x49P4AuMtRBaBh2R95VarKDa3sBeof9pcp3Px58=;
+ b=hjIU/p0Vozy/rXiJbMvK2eaLRNFNVUIlJ1UzfmbBU3AtapgoAWxw31Cs
+ 1ID9Mgn6ko3wHmytFdrx1FMULFZR2hWHYq+eyIjI/rna8OfzHfR1Q3292
+ LNty4RhE14bdWi7sVt8S4sR3dg1X2lsvMaZS0h5z4n/3CTGfBzA5N/7eV
+ QSMcQkymnOQPwXnYgDEmfGUm0jvuEl7yHHkMOaGbIsp4zoSKWjT+WmcdU
+ zlJisgwC4pVTtQdMiNw7GysB5WY6OO6qo93Hz1L+egUwtLQY8M+ZVPFtY
+ /aR/8o17YZzBNXAQ1Y0k0Gr/y2c2iDSRbC22LwNBOiHOSAHrmy4iALYvU A==;
+X-CSE-ConnectionGUID: vm0SJPNgQ+WaKBJPTupCUQ==
+X-CSE-MsgGUID: 9pSHJhSpSX2NRh7/bW0oJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11367"; a="42221837"
+X-IronPort-AV: E=Sophos;i="6.14,233,1736841600"; d="scan'208";a="42221837"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2025 00:10:09 -0800
+X-CSE-ConnectionGUID: 6gQslKF0QQK940JGqpN3jQ==
+X-CSE-MsgGUID: G4A+ea0OR4W4l2O+DWZm6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="156911565"
+Received: from lnl-rocket-lake-client-platform.iind.intel.com (HELO
+ lnl-Tiger-Lake-Client-Platform.iind.intel.com) ([10.145.169.162])
+ by orviesa001.jf.intel.com with ESMTP; 09 Mar 2025 00:10:06 -0800
+From: Mohammed Thasleem <mohammed.thasleem@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	Mohammed Thasleem <mohammed.thasleem@intel.com>
+Subject: [PATCH v4] drm/i915/dmc: Create debugfs entry for dc6 counter
+Date: Sun,  9 Mar 2025 13:40:02 +0530
+Message-ID: <20250309081002.4174-1-mohammed.thasleem@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250303192319.4315-1-mohammed.thasleem@intel.com>
+References: <20250303192319.4315-1-mohammed.thasleem@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,82 +68,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 7 Mar 2025 18:58:08 +0900
-Vincent Mailhol <mailhol.vincent@wanadoo.fr> wrote:
+Starting from MTL we don't have a platform agnostic way to validate
+DC6 state due to dc6 counter has been removed to validate DC state.
 
-> On 07/03/2025 at 04:23, David Laight wrote:
-> > On Thu, 06 Mar 2025 20:29:52 +0900
-> > Vincent Mailhol via B4 Relay <devnull+mailhol.vincent.wanadoo.fr@kernel.org> wrote:
-> >   
-> >> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-> >>
-> >> In an upcoming change, GENMASK() and its friends will indirectly
-> >> depend on sizeof() which is not available in asm.
-> >>
-> >> Instead of adding further complexity to __GENMASK() to make it work
-> >> for both asm and non asm, just split the definition of the two
-> >> variants.  
-> > ...  
-> >> +#else /* defined(__ASSEMBLY__) */
-> >> +
-> >> +#define GENMASK(h, l)		__GENMASK(h, l)
-> >> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)  
-> > 
-> > What do those actually expand to now?
-> > As I've said a few times both UL(0) and ULL(0) are just (0) for __ASSEMBLY__
-> > so the expansions of __GENMASK() and __GENMASK_ULL() contained the
-> > same numeric constants.  
-> 
-> Indeed, in asm, the UL(0) and ULL(0) expands to the same thing: 0.
-> 
-> But the two macros still expand to something different on 32 bits
-> architectures:
-> 
->   * __GENMASK:
-> 
->       (((~(0)) << (l)) & (~(0) >> (32 - 1 - (h))))
-> 
->   * __GENMASK_ULL:
-> 
->       (((~(0)) << (l)) & (~(0) >> (64 - 1 - (h))))
-> 
-> On 64 bits architecture these are the same.
+The goal is to validate that the display HW can reach the DC6 power
+state. There is no HW DC6 residency counter (and there wasn't such
+a counter earlier either), so an alternative way is required. According
+to the HW team the display driver has programmed everything correctly in
+order to allow the DC6 power state if the DC5 power state is reached
+(indicated by the HW DC5 residency counter incrementing) and DC6 is
+enabled by the driver.
 
-I've just fed those into godbolt (https://www.godbolt.org/z/Ter6WE9qE) as:
-int fi(void)
-{
-    int v;
-    asm("mov $(((~(0)) << (8)) & (~(0) >> (32 - 1 - (15)))),%0": "=r" (v));
-    return v -(((~(0u)) << (8)) & (~(0u) >> (32 - 1 - (15))));
-}
+Driver could take a snapshot of the DC5 residency counter right
+after it enables DC6 (dc5_residency_start) and increment the SW
+DC6 residency counter right before it disables DC6 or when user space
+reads the DC6 counter. So the driver would update the counter at these
+two points in the following way:
+dc6_residency_counter += dc5_current_count - dc5_start_count
 
-gas warns:
-<source>:4: Warning: 0xffffffffff00 shortened to 0xffffff00
+v2: Update the discription. (Imre)
+    Read dc5 count during dc6 enable and disable then and update
+    dc6 residency counter. (Imre)
+    Remove variable from dmc structure. (Jani)
+    Updated the subject title.
+v3: Add i915_power_domains lock to updated dc6 count in debugfs. (Imre)
+    Use flags to check dc6 enable/disable states. (Imre)
+    Move the display version check and counter read/update to
+    a helper. (Imre)
+    Resize the variable length. (Rodrigo)
+    Use old dc6 debugfs entry for every platform. (Rodrigo)
+v4: Remove superfluous whitespace. (Jani)
+    Read DMC registers in intel_dmc.c (Jani)
+    Rename dc6_en_dis to dc6_enabled and change its type to bool. (Jani)
+    Rename update_dc6_count and move it to intel_dmc.c (Jani)
+    Rename dc6_en_dis to start_tracking. (Imre)
+    Have lock for dc6 state read aswelll. (Imre)
+    Keep the existing way print 'DC5 -> DC6 count' along with
+    new 'DC6 Allowed Count' print. (Imre)
+    Add counters in intel_dmc struct. (Imre)
+    Have interface to return dc6 allowed count. (Imre)
+    Rename dc6_count to dc6_allowed_count. (Rodrigo)
 
-unsigned long long fll(void)
-{
-    unsigned long long v;
-    asm("mov $(((~(0)) << (8)) & (~(0) >> (64 - 1 - (15)))),%0": "=r" (v));
-    return v -(((~(0ull)) << (8)) & (~(0ull) >> (64 - 1 - (15))));
-}
+Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
+---
+ .../i915/display/intel_display_power_well.c   |  9 ++++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 46 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  1 +
+ 3 files changed, 53 insertions(+), 3 deletions(-)
 
-(for other architectures you'll need to change the opcode)
-
-For x86 and x86-32 the assembler seems to be doing 64bit maths with unsigned
-right shifts - so the second function (with the 64 in it) generates 0xff00.
-I doubt a 32bit only assembler does 64bit maths, but the '>> 48' above
-might get masked to a '>> 16' by the cpu and generate the correct result.
-
-So __GENMASK() is likely to be broken for any assembler that supports 64bits
-when generating 32bit code.
-__GENMASK_ULL() works (assuming all have unsigned >>) on 64bit assemblers
-(even when generating 32bit code). It may work on some 32bit assemblers.
-
-Since most uses in the header files will be GENMASK() I doubt (hope) no
-asm code actually uses the values!
-The headers assemble - but that is about all that can be said.
-
-Bags of worms :-)
-
-	David
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 8ec87ffd87d2..4d97b71cfe11 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -754,6 +754,7 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
+ 	struct i915_power_domains *power_domains = &display->power.domains;
+ 	u32 val;
+ 	u32 mask;
++	bool dc6_was_enabled, enable_dc6;
+ 
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+@@ -772,11 +773,19 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
+ 		drm_err(display->drm, "DC state mismatch (0x%x -> 0x%x)\n",
+ 			power_domains->dc_state, val & mask);
+ 
++	enable_dc6 = state & DC_STATE_EN_UPTO_DC6;
++	dc6_was_enabled = val & DC_STATE_EN_UPTO_DC6;
++	if (!dc6_was_enabled && enable_dc6)
++		intel_dmc_update_dc6_allowed_count(display, false);
++
+ 	val &= ~mask;
+ 	val |= state;
+ 
+ 	gen9_write_dc_state(display, val);
+ 
++	if (!enable_dc6 && dc6_was_enabled)
++		intel_dmc_update_dc6_allowed_count(display, true);
++
+ 	power_domains->dc_state = val & mask;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index fa6944e55d95..f560349ddb6b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -28,6 +28,7 @@
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_de.h"
++#include "intel_display_power_well.h"
+ #include "intel_dmc.h"
+ #include "intel_dmc_regs.h"
+ #include "intel_step.h"
+@@ -57,6 +58,8 @@ struct intel_dmc {
+ 	const char *fw_path;
+ 	u32 max_fw_size; /* bytes */
+ 	u32 version;
++	u32 dc5_start_count;
++	u32 dc6_allowed_count;
+ 	struct dmc_fw_info {
+ 		u32 mmio_count;
+ 		i915_reg_t mmioaddr[20];
+@@ -1232,11 +1235,36 @@ void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct
+ 			   DMC_VERSION_MINOR(snapshot->version));
+ }
+ 
++void intel_dmc_update_dc6_allowed_count(struct intel_display *display,
++					bool start_tracking)
++{
++	struct intel_dmc *dmc = display_to_dmc(display);
++	u32 dc5_cur_count;
++
++	if (DISPLAY_VER(dmc->display) < 14)
++		return;
++
++	dc5_cur_count = intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_COUNT);
++
++	if (start_tracking)
++		dmc->dc6_allowed_count += dc5_cur_count - dmc->dc5_start_count;
++
++	dmc->dc5_start_count = dc5_cur_count;
++}
++
++static u32 intel_dmc_get_dc6_allowed_count(struct intel_display *display)
++{
++	struct intel_dmc *dmc = display_to_dmc(display);
++
++	return dmc->dc6_allowed_count;
++}
++
+ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+ {
+ 	struct intel_display *display = m->private;
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_dmc *dmc = display_to_dmc(display);
++	struct i915_power_domains *power_domains = &display->power.domains;
+ 	intel_wakeref_t wakeref;
+ 	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
+ 
+@@ -1287,9 +1315,21 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+ 	}
+ 
+ 	seq_printf(m, "DC3 -> DC5 count: %d\n", intel_de_read(display, dc5_reg));
+-	if (i915_mmio_reg_valid(dc6_reg))
+-		seq_printf(m, "DC5 -> DC6 count: %d\n",
+-			   intel_de_read(display, dc6_reg));
++
++	if (DISPLAY_VER(display) >= 14) {
++		mutex_lock(&power_domains->lock);
++		bool dc6_enabled = DC_STATE_EN_UPTO_DC6 &
++				   intel_de_read(display, DC_STATE_EN);
++		if (dc6_enabled)
++			intel_dmc_update_dc6_allowed_count(display, true);
++
++		mutex_unlock(&power_domains->lock);
++		seq_printf(m, "DC6 Allowed Count : %d\n", intel_dmc_get_dc6_allowed_count(display));
++	} else {
++		if (i915_mmio_reg_valid(dc6_reg)) {
++			seq_printf(m, "DC5 -> DC6 count: %d\n",
++				   intel_de_read(display, dc6_reg)); }
++	}
+ 
+ 	seq_printf(m, "program base: 0x%08x\n",
+ 		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index 44cecef98e73..c78426eb4cd5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -26,6 +26,7 @@ void intel_dmc_debugfs_register(struct intel_display *display);
+ 
+ struct intel_dmc_snapshot *intel_dmc_snapshot_capture(struct intel_display *display);
+ void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct drm_printer *p);
++void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool start_tracking);
+ 
+ void assert_dmc_loaded(struct intel_display *display);
+ 
+-- 
+2.43.0
 
