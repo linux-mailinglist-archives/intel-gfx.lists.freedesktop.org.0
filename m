@@ -2,29 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A07AA582B1
-	for <lists+intel-gfx@lfdr.de>; Sun,  9 Mar 2025 10:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 127BCA582FB
+	for <lists+intel-gfx@lfdr.de>; Sun,  9 Mar 2025 11:23:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697F210E303;
-	Sun,  9 Mar 2025 09:28:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3FBD10E30B;
+	Sun,  9 Mar 2025 10:23:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CrzByx8T";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45E5C10E301;
- Sun,  9 Mar 2025 09:28:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2201546395894866870=="
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAA0510E30B;
+ Sun,  9 Mar 2025 10:23:16 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-43bc48ff815so18836405e9.0; 
+ Sun, 09 Mar 2025 03:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1741515795; x=1742120595; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jOrSY62ly9MyAZzU/mRzG/6yK32MDIUREu5DDgJTTrs=;
+ b=CrzByx8TGE7eVz1Y7ZuGhCekcEbNOk82iA3GH4ZFFfTHp1idBL2zT/ch36N1oy/WXT
+ XQtFE2v86zC+jnhUOpIsPOfH82QPU2LkDLJ3XS/RGhlWksE2Fdec0dM7eEQlydruRAbT
+ pUKayKWDqvUrV+vncl9ESLYtgkz++UgctV8ZA8qHzzUjENmAPCu0j/lI1o/4OlK0WN8r
+ /ho3EDCtqUFX4a5480XTX1fWgYOsk1Ax0a1WQAZnmMZtpBmWSEWG1B++5Mhf7bSg0e+c
+ HAm13DevAL+ePR70Jvf/xZ6NfgcpgpCuCbKQa/BfOnOTG9B7yafrvMoNXNAtX1OEJRTU
+ JYEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741515795; x=1742120595;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=jOrSY62ly9MyAZzU/mRzG/6yK32MDIUREu5DDgJTTrs=;
+ b=SUmqZJtoMG/HmSfmQdgiLeLnC9edTToSDMgydq3RwjAM+aEeLIAjwSUxYVV9NcLHUh
+ hAhNzOJO2qZcKRKt69klvuAIJAglGzlnHtOmAPotFwu7Y8vUQKTcCrDv+psm2ca52rj2
+ iq0Cw3AZpG3X5jYu4+ScE/0Vk32s9J7dT1vpCvCbBuk462VivoR+va4lmccdxOxAwVGC
+ 0YQJK2FC0yMPr7mwF1hanYS/kqUyPRq4Wo8GahQNwHVvzkuuAbn3pgUaUxhVQuPsYoVI
+ o5oTHN3TsXG1US84iTcfcJLLZd9Bt+CFKYAhgPQi17TJz2va7iMHcyu05+Zi6xhkpCx6
+ Qtow==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWheI9uBCs3kQ7fOBXt9IqXgGC3oy/HETbIjcHy0OB/X+nBbB0ed966eZmrVMqZPVY9dRblULtus+k=@lists.freedesktop.org,
+ AJvYcCX7Qi3s0pRB7EOkiycTzVHXetn6C/Mv7TwNfUocdknu8NwZ3KtH+dU5atONihGas198yt/OYfRYo9kY@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YywR9lgOxSm3qm0XCXHZ1mKg0yZpw6pL97xu9RJTluV9/Sdjbeg
+ cXin4JQzsTKXd51l3in/paDkVwIpK7yNkpYG8KSY54xxkN5N/8gp
+X-Gm-Gg: ASbGncvANc4/tF0T4cMXXCI/9jI7HGTtvBX3Wyof0yFON5ta61+rg1PTdVaTnXzWd2/
+ vN3N2je2nRSp2mkL+hzYPHRxGLWtKJsgmiHdydx//0r5lhBoGVscDuHWTUXZB3BObmtuLeW3gg+
+ BboyHK6RHnH4dD8c+xSkhZ6bDr3SlyxVQQ+nuCkxPyYHx4/8PKnH760A0145Oc6dSBOf4J1kLHv
+ FMaLz2sr8IuITZ3bH+b0QJP1d5PNKf3pnqAk2PK6Y/mhxQS9ZUT/U3I5xEinkyDnrHjJ2N9P4iW
+ 98VC88zJtJawyw4haGAyToS3SgOqy0/X/mvXQeP5j84ww2vQAv7ytHkQc5a+bwXguJd/dfNvWPX
+ OYXuxNWk=
+X-Google-Smtp-Source: AGHT+IHbscHwInTJT24NNcdcbyXR3Qc8dNdzXdp1UDpEDUqPcYTQseTkyV6/M+R7pmGC6z1uWCUoyw==
+X-Received: by 2002:a05:600c:754:b0:43b:bfa7:c7d with SMTP id
+ 5b1f17b1804b1-43ce4aa8771mr34972875e9.2.1741515794376; 
+ Sun, 09 Mar 2025 03:23:14 -0700 (PDT)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43cf0c42eb6sm21134605e9.16.2025.03.09.03.23.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 Mar 2025 03:23:13 -0700 (PDT)
+Date: Sun, 9 Mar 2025 10:23:12 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: Yury Norov <yury.norov@gmail.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@ACULAB.COM>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and
+ non-asm GENMASK()
+Message-ID: <20250309102312.4ff08576@pumpkin>
+In-Reply-To: <20250309015853.01412484@pumpkin>
+References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
+ <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
+ <20250306192331.2701a029@pumpkin>
+ <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
+ <20250309015853.01412484@pumpkin>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dmc=3A_Add_debug?=
- =?utf-8?q?fs_for_dc6_counter_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mohammed Thasleem" <mohammed.thasleem@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 09 Mar 2025 09:28:43 -0000
-Message-ID: <174151252327.8575.2090598794235403983@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
-In-Reply-To: <20250203085613.236340-1-mohammed.thasleem@intel.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,252 +102,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2201546395894866870==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sun, 9 Mar 2025 01:58:53 +0000
+David Laight <david.laight.linux@gmail.com> wrote:
 
-== Series Details ==
+> On Fri, 7 Mar 2025 18:58:08 +0900
+> Vincent Mailhol <mailhol.vincent@wanadoo.fr> wrote:
+> 
+> > On 07/03/2025 at 04:23, David Laight wrote:  
+> > > On Thu, 06 Mar 2025 20:29:52 +0900
+> > > Vincent Mailhol via B4 Relay <devnull+mailhol.vincent.wanadoo.fr@kernel.org> wrote:
+> > >     
+> > >> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> > >>
+> > >> In an upcoming change, GENMASK() and its friends will indirectly
+> > >> depend on sizeof() which is not available in asm.
+> > >>
+> > >> Instead of adding further complexity to __GENMASK() to make it work
+> > >> for both asm and non asm, just split the definition of the two
+> > >> variants.    
+> > > ...    
+> > >> +#else /* defined(__ASSEMBLY__) */
+> > >> +
+> > >> +#define GENMASK(h, l)		__GENMASK(h, l)
+> > >> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)    
+> > > 
+> > > What do those actually expand to now?
+> > > As I've said a few times both UL(0) and ULL(0) are just (0) for __ASSEMBLY__
+> > > so the expansions of __GENMASK() and __GENMASK_ULL() contained the
+> > > same numeric constants.    
+> > 
+> > Indeed, in asm, the UL(0) and ULL(0) expands to the same thing: 0.
+> > 
+> > But the two macros still expand to something different on 32 bits
+> > architectures:
+> > 
+> >   * __GENMASK:
+> > 
+> >       (((~(0)) << (l)) & (~(0) >> (32 - 1 - (h))))
+> > 
+> >   * __GENMASK_ULL:
+> > 
+> >       (((~(0)) << (l)) & (~(0) >> (64 - 1 - (h))))
+> > 
+> > On 64 bits architecture these are the same.  
+> 
+> I've just fed those into godbolt (https://www.godbolt.org/z/Ter6WE9qE) as:
+> int fi(void)
+> {
+>     int v;
+>     asm("mov $(((~(0)) << (8)) & (~(0) >> (32 - 1 - (15)))),%0": "=r" (v));
+>     return v -(((~(0u)) << (8)) & (~(0u) >> (32 - 1 - (15))));
+> }
+> 
+> gas warns:
+> <source>:4: Warning: 0xffffffffff00 shortened to 0xffffff00
+> 
+> unsigned long long fll(void)
+> {
+>     unsigned long long v;
+>     asm("mov $(((~(0)) << (8)) & (~(0) >> (64 - 1 - (15)))),%0": "=r" (v));
+>     return v -(((~(0ull)) << (8)) & (~(0ull) >> (64 - 1 - (15))));
+> }
+> 
+> (for other architectures you'll need to change the opcode)
+> 
+> For x86 and x86-32 the assembler seems to be doing 64bit maths with unsigned
+> right shifts - so the second function (with the 64 in it) generates 0xff00.
+> I doubt a 32bit only assembler does 64bit maths, but the '>> 48' above
+> might get masked to a '>> 16' by the cpu and generate the correct result.
+> 
+> So __GENMASK() is likely to be broken for any assembler that supports 64bits
+> when generating 32bit code.
+> __GENMASK_ULL() works (assuming all have unsigned >>) on 64bit assemblers
+> (even when generating 32bit code). It may work on some 32bit assemblers.
 
-Series: drm/i915/dmc: Add debugfs for dc6 counter (rev4)
-URL   : https://patchwork.freedesktop.org/series/144240/
-State : failure
+I've remembered my 'pi' has a 32bit userspace (on a 64bit kernel).
+I quick test of "mov %0,#(...)" and bits 11..8 gives the correct output
+for size '32' but the error message:
+/tmp/ccPB7bWh.s:26: Warning: shift count out of range (56 is not between 0 and 31)
+with size '64'.
 
-== Summary ==
+Assuming that part of the gnu assembler is consistent across architectures
+you can't use either GENMASK in asm for 32bit architectures.
 
-CI Bug Log - changes from CI_DRM_16247 -> Patchwork_144240v4
-====================================================
+Any change (probably including removing the asm support for the uapi) isn't
+going to make things worse!
 
-Summary
--------
+	David
 
-  **FAILURE**
+> 
+> Since most uses in the header files will be GENMASK() I doubt (hope) no
+> asm code actually uses the values!
+> The headers assemble - but that is about all that can be said.
+> 
+> Bags of worms :-)
+> 
+> 	David
+> 
 
-  Serious unknown changes coming with Patchwork_144240v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_144240v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_144240v4:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_flip@basic-plain-flip@c-dp1:
-    - bat-apl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-apl-1/igt@kms_flip@basic-plain-flip@c-dp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-apl-1/igt@kms_flip@basic-plain-flip@c-dp1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_144240v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] ([i915#1849])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][4] ([i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][6] -> [DMESG-WARN][7] ([i915#13494])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-mtlp-9/igt@i915_module_load@load.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][8] +34 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [INCOMPLETE][11] ([i915#12904]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-apl-1/igt@dmabuf@all-tests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-apl-1/igt@dmabuf@all-tests.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [DMESG-FAIL][13] ([i915#12061]) -> [DMESG-FAIL][14] ([i915#12061] / [i915#12435])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-arlh-3/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-arlh-3/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16247 -> Patchwork_144240v4
-
-  CI-20190529: 20190529
-  CI_DRM_16247: 23e0800ae0844e14894062d767edd6d50cab35f7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8265: bfefe166535d69ca10d32e6ba0093260df21ee3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_144240v4: 23e0800ae0844e14894062d767edd6d50cab35f7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/index.html
-
---===============2201546395894866870==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Add debugfs for dc6 counter (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144240/">https://patchwork.freedesktop.org/series/144240/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16247 -&gt; Patchwork_144240v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_144240v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_144240v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_144240v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_flip@basic-plain-flip@c-dp1:<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-apl-1/igt@kms_flip@basic-plain-flip@c-dp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-apl-1/igt@kms_flip@basic-plain-flip@c-dp1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_144240v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +34 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@dmabuf@all-tests:<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16247/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v4/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16247 -&gt; Patchwork_144240v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16247: 23e0800ae0844e14894062d767edd6d50cab35f7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8265: bfefe166535d69ca10d32e6ba0093260df21ee3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_144240v4: 23e0800ae0844e14894062d767edd6d50cab35f7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2201546395894866870==--
