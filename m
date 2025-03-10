@@ -2,63 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFAEA59A64
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 16:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D21A8A59B25
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 17:37:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C016910E483;
-	Mon, 10 Mar 2025 15:52:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D16F910E418;
+	Mon, 10 Mar 2025 16:37:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="neYaKKCu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilJOqpRq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9247610E480;
- Mon, 10 Mar 2025 15:52:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48F610E418;
+ Mon, 10 Mar 2025 16:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741621931; x=1773157931;
+ t=1741624640; x=1773160640;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=9hRtz3LYpwJ6Wy9v2dvZe3fOq9VWstYw+TA2eVsSmcM=;
- b=neYaKKCuRmhrBSPJA6HW8zi88l0YAbIsv0pLPJQhlHvqCTL5xvHqUNmS
- hrVsOnp5dOsaxw0/suVQcb755L5XkfGLh++Bsyl3fEKsYAgXaivPk3hfc
- 5kc0sngjg4lVDJjj9ASuC4UpquExbvY9L8notGPAMsTx1iiz8fGT0kBn3
- AmgBPkDMFLvyQamgHAj1LnrqmXBr/Gvday7mT++8nr5lHmSO9YRe6uVP5
- Fgi8Hnc5F31wGMwQGgI31MH8TLrY8qrPtZIZqR2Nwbd6skU7aaxMskZSO
- ci7E07nHfb95F01ol55A7/sQP4D/MDTz12LWC3/0vy4YCoVPM55qMQ3eK w==;
-X-CSE-ConnectionGUID: X7LK7xYzT9aJF/kRkm8Ayw==
-X-CSE-MsgGUID: KsGhXLURRxCHpRGZWxE5mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="65080436"
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="65080436"
+ bh=0Oif3LeK+3ZMo3wWuqn0d7iovtvCxPfLouFcjMhfJG0=;
+ b=ilJOqpRqAWXyGhCv5nExzFhR6owQQKS4A3n68CESQY7Cknqh254gFVXF
+ FBe7qZQCwmhH75N6s1tfPKLzjFCr4WX8FVQifv2nUGohbv47i+sJjgV3U
+ GdFGuNVQ1q03h3xTauwrYqVKfEJFhGzXqJmbtylYYRvO4DbLpO1Ho3CNv
+ jX4K7LO/Ujpk1IfhcmEtoTpWKJXikW7sD0w3HTwi/bN6soqAohAAUmXTd
+ mGOmdhuH7xn42WeH1+BASWtaJsd8DM0Xm7pdkpPB0jUkNgpwb9r6uRyr0
+ MCys2zmdJVtvJUHrEtquig8c+hgXbLd16htuLL8XLTNWtDhaEo47b02Bv A==;
+X-CSE-ConnectionGUID: /Tb54euWR86sMlNlbfnrUg==
+X-CSE-MsgGUID: 75fS6TV0TCaxmkPtkIsPrg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="42762549"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="42762549"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2025 08:52:10 -0700
-X-CSE-ConnectionGUID: SAzD0fIVSd2yFvNnDOBWJg==
-X-CSE-MsgGUID: bSUMX9nXTAufsFTzermV6A==
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 09:37:19 -0700
+X-CSE-ConnectionGUID: GV9jDnvuRIqRFJap3dU8kg==
+X-CSE-MsgGUID: 22I8h3MqQLeETxY3AqUZog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125259570"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="125267999"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 10 Mar 2025 08:52:08 -0700
+ by orviesa005.jf.intel.com with SMTP; 10 Mar 2025 09:37:17 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 10 Mar 2025 17:52:06 +0200
-Date: Mon, 10 Mar 2025 17:52:06 +0200
+ Mon, 10 Mar 2025 18:37:15 +0200
+Date: Mon, 10 Mar 2025 18:37:15 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 17/21] drm/i915/display: Move vrr.guardband/pipeline_full
- out of !fastset block
-Message-ID: <Z88Kpk7Pcl_YCDRV@intel.com>
-References: <20250306131100.3989503-1-ankit.k.nautiyal@intel.com>
- <20250306131100.3989503-18-ankit.k.nautiyal@intel.com>
- <Z8sCIb37gtdczFtx@intel.com>
- <49d75934-ea02-45e1-a8ec-862af3aee5b1@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH v3 0/3] drm/i915/xe3lpd: Update bandwidth parameters
+Message-ID: <Z88VOxMunnhE_koL@intel.com>
+References: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
+ <87ldtdghbo.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <49d75934-ea02-45e1-a8ec-862af3aee5b1@intel.com>
+In-Reply-To: <87ldtdghbo.fsf@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,70 +73,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 09, 2025 at 10:05:48PM +0530, Nautiyal, Ankit K wrote:
-> 
-> On 3/7/2025 7:56 PM, Ville Syrjälä wrote:
-> > On Thu, Mar 06, 2025 at 06:40:56PM +0530, Ankit Nautiyal wrote:
-> >> The vrr.guardband/pipeline_full depend on the vrr.vmin. Since we have
-> >> set vrr.vmin to adjusted_mode->crtc_vtotal, this shouldn't change on the
-> >> fly. With this we can move vrr.guardband/pipeline_full out from !fastset
-> >> block.
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
-> >>   1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index 322a05648f58..a642496e366c 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -5393,8 +5393,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> >>   		PIPE_CONF_CHECK_I(vrr.vmin);
-> >>   		PIPE_CONF_CHECK_I(vrr.vmax);
-> >>   		PIPE_CONF_CHECK_I(vrr.flipline);
-> >> -		PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> >> -		PIPE_CONF_CHECK_I(vrr.guardband);
-> >>   		PIPE_CONF_CHECK_I(vrr.vsync_start);
-> >>   		PIPE_CONF_CHECK_I(vrr.vsync_end);
-> >>   		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
-> >> @@ -5402,6 +5400,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
-> >>   		PIPE_CONF_CHECK_BOOL(cmrr.enable);
-> >>   	}
-> >>   
-> >> +	PIPE_CONF_CHECK_I(vrr.pipeline_full);
-> >> +	PIPE_CONF_CHECK_I(vrr.guardband);
+On Mon, Mar 10, 2025 at 03:12:43PM +0200, Jani Nikula wrote:
+> On Fri, 07 Mar 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> > Bandwidth parameters for Xe3_LPD have been updated with respect to
+> > previous display releases. Encode them into xe3lpd_sa_info and use that
+> > new struct.
 > >
-> > Assuming we can't reprogram the guardband safely live
-> > I think this would have to become
-> >
-> > if (!fastset || always_use_vrr_tg()) {
-> >          ...
-> > }
-> >
-> > which avoids breaking the LRR fastset on older platforms.
-> >
-> > Whether we can still risk the fastboot exception for the new
-> > platforms I don't know. I guess leave it out for now and
-> > ponder it further later.
-> >
-> > In the future I guess one option to resurrecting the fastsets
-> > would be to somehow use a more fixed size gurdband instead of
-> > the full vblank length, but that would need a lot of thought
-> > and work, so definitely not something we can just do right
-> > now.
+> > Since we are touching intel_bw.c, also take the opportunity convert it
+> > to intel_display.
 > 
-> 
-> Yes I agree.
-> 
-> Will have the guardband under the new check.
-> 
-> Do we need to let pipeline_full as it is in !fastset since 
-> always_use_vrr_tg() is anyways false for older platforms? Or we keep it 
-> along with guardband?
+> In case you didn't notice already, this series and [1] from Ville will
+> conflict badly with each other. Please collaborate to sort out which
+> series to merge first.
 
-I think we want to keep the two together. That way we can also
-easily test the always_use_vrr_tg() codepaths on older platforms.
+I can rebase my stuff, so no worries.
+
+> 
+> Thanks,
+> Jani.
+> 
+> 
+> [1] https://lore.kernel.org/r/20250307180139.15744-1-ville.syrjala@linux.intel.com
+> 
+> 
+> >
+> > Changes in v2:
+> >   - Fix typo in patch #2.
+> >
+> > Changes in v3:
+> > - Squash patches #1 and #2 into a single one and modify it to convert
+> >   intel_bw.c internally to intel_display (new patch subject is
+> >   "drm/i915/display: Convert intel_bw.c internally to intel_display").
+> > - Add a new patch #2 to convert intel_bw.c externally to intel_display.
+> > - Link to v2: https://lore.kernel.org/r/20250217153550.43909-1-gustavo.sousa@intel.com
+> >
+> > ---
+> > Gustavo Sousa (3):
+> >       drm/i915/display: Convert intel_bw.c internally to intel_display
+> >       drm/i915/display: Convert intel_bw.c externally to intel_display
+> >       drm/i915/xe3lpd: Update bandwidth parameters
+> >
+> >  drivers/gpu/drm/i915/display/intel_bw.c            | 440 +++++++++++----------
+> >  drivers/gpu/drm/i915/display/intel_bw.h            |   9 +-
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c         |   3 +-
+> >  .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
+> >  drivers/gpu/drm/i915/display/skl_watermark.c       |  10 +-
+> >  drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+> >  drivers/gpu/drm/xe/display/xe_display.c            |   2 +-
+> >  7 files changed, 245 insertions(+), 223 deletions(-)
+> > ---
+> > base-commit: f811577f424491a57b1e8669bde62998227d6907
+> > change-id: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
+> >
+> > Best regards,
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
 Ville Syrjälä
