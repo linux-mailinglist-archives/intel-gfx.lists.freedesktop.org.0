@@ -2,38 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C5BA596FB
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 15:02:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 603DDA595C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 14:12:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8591710E2A6;
-	Mon, 10 Mar 2025 14:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCE9310E10C;
+	Mon, 10 Mar 2025 13:12:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IF4CYs+a";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 446 seconds by postgrey-1.36 at gabe;
- Sun, 09 Mar 2025 16:12:18 UTC
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61D4310E244
- for <intel-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 16:12:18 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40] (unknown
- [IPv6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 057753F1DF
- for <intel-gfx@lists.freedesktop.org>; Sun,  9 Mar 2025 17:04:40 +0100 (CET)
-Message-ID: <aa90481c-8cb4-4d5b-a440-7e1930543c9d@hogyros.de>
-Date: Mon, 10 Mar 2025 01:04:36 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67B9D10E10C;
+ Mon, 10 Mar 2025 13:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741612369; x=1773148369;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=NTHGTjRi1exVd897t8sWiUtIxuH4kifkvWoN83TppSU=;
+ b=IF4CYs+aq/SE7L0xR7IV8/Z4Gwf6EI9y+Z1EJobquCs1BknWLyg/yoHU
+ bnmWcCk1DNrPh7/FbREeJxad67sSD4/absuac/fLzrLvRBJ4CJZ4pXwkT
+ 4n25R5JNXUvifJC091aadY7wkeZbQ8x/pVJ3Qq9rYC3zPfF35jspEYiTn
+ vmclzfQz+LsC1iK7SGRcZ5WIYhHh0HCxI3lEAU0fOuXvvCJ4GDyBVoVNa
+ +W5xwxsNcRx0dXOi5g8WohqjPesdUd6pwaQVa4MCnmQs7dU9rk6zSssiY
+ JYYpXp+08BcIMeBQgmU7xjCZgqykKKQMeMTgNKbxSikvc0PYptmYSNI0y g==;
+X-CSE-ConnectionGUID: ZMA+FsONRc+h0e/xPNSnuQ==
+X-CSE-MsgGUID: hBqKnNVbSieFIed/4RBzUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="67967998"
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="67967998"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 06:12:49 -0700
+X-CSE-ConnectionGUID: 38xtLZFPT1WizGQpBVIBVA==
+X-CSE-MsgGUID: VueUsPTKT8yHNlL8HDBGCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,236,1736841600"; d="scan'208";a="124996968"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.97])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 06:12:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v3 0/3] drm/i915/xe3lpd: Update bandwidth parameters
+In-Reply-To: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250307-xe3lpd-bandwidth-update-v3-0-58bbe81f65bf@intel.com>
+Date: Mon, 10 Mar 2025 15:12:43 +0200
+Message-ID: <87ldtdghbo.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: intel-gfx@lists.freedesktop.org
-From: Simon Richter <Simon.Richter@hogyros.de>
-Subject: B580 on POWER9: Unable to handle kernel data access on read at
- 0xc00a0000000003cc
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------KFgmTTYioB3Gi4tCW8wB3JzI"
-X-Mailman-Approved-At: Mon, 10 Mar 2025 14:02:27 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,120 +70,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------KFgmTTYioB3Gi4tCW8wB3JzI
-Content-Type: multipart/mixed; boundary="------------zEG0hxjHHrKiboUSkm2k0zU1";
- protected-headers="v1"
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <aa90481c-8cb4-4d5b-a440-7e1930543c9d@hogyros.de>
-Subject: B580 on POWER9: Unable to handle kernel data access on read at
- 0xc00a0000000003cc
+On Fri, 07 Mar 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Bandwidth parameters for Xe3_LPD have been updated with respect to
+> previous display releases. Encode them into xe3lpd_sa_info and use that
+> new struct.
+>
+> Since we are touching intel_bw.c, also take the opportunity convert it
+> to intel_display.
 
---------------zEG0hxjHHrKiboUSkm2k0zU1
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+In case you didn't notice already, this series and [1] from Ville will
+conflict badly with each other. Please collaborate to sort out which
+series to merge first.
 
-SGksDQoNCkkndmUgYnVpbHQgYSBob3JyaWJsZSBjb250cmFwdGlvbiBhbmQgcmVjZWl2ZWQg
-dGhlIGZvbGxvd2luZyBvdXRwdXQ6DQoNCkJVRzogVW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwg
-ZGF0YSBhY2Nlc3Mgb24gcmVhZCBhdCAweGMwMGEwMDAwMDAwMDAzY2MNCkZhdWx0aW5nIGlu
-c3RydWN0aW9uIGFkZHJlc3M6IDB4YzAwODAwMDAwZGQ0NjQ4NA0KT29wczogS2VybmVsIGFj
-Y2VzcyBvZiBiYWQgYXJlYSwgc2lnOiAxMSBbIzFdDQpMRSBQQUdFX1NJWkU9NEsgTU1VPVJh
-ZGl4IFNNUCBOUl9DUFVTPTIwNDggTlVNQSBQb3dlck5WDQpNb2R1bGVzIGxpbmtlZCBpbjog
-eGUoKykgeHRfY29ubnRyYWNrIG5mdF9jaGFpbl9uYXQgeHRfTUFTUVVFUkFERSBuZl9uYXQg
-DQpuZl9jb25udHJhY2tfbmV0bGluayBuZl9jb25udHJhY2sgbmZfZGVmcmFnX2lwdjYgbmZf
-ZGVmcmFnX2lwdjQgDQp4ZnJtX3VzZXIgeGZybV9hbGdvIHh0X2FkZHJ0eXBlIG5mdF9jb21w
-YXQgeF90YWJsZXMgbmZfdGFibGVzIGxpYmNyYzMyYyANCm5mbmV0bGluayBicl9uZXRmaWx0
-ZXIgYnJpZGdlIHN0cCBsbGMgb3ZlcmxheSBiaW5mbXRfbWlzYyBldmRldiBqb3lkZXYgDQpo
-aWRfZ2VuZXJpYyB1c2JoaWQgaGlkIGNlYyByY19jb3JlIGRybV9ncHV2bSBkcm1fZXhlYyBk
-cm1fYnVkZHkgDQpncHVfc2NoZWQgZHJtX3N1YmFsbG9jX2hlbHBlciBkcm1fZGlzcGxheV9o
-ZWxwZXIgYXN0IGRybV90dG1faGVscGVyIHR0bSANCnNuZF9oZGFfaW50ZWwgZHJtX3NobWVt
-X2hlbHBlciBzbmRfaW50ZWxfZHNwY2ZnIGRybV9rbXNfaGVscGVyIA0Kc25kX2hkYV9jb2Rl
-YyBzbmRfaGRhX2NvcmUgZHJtIG9mcGFydCBzbmRfaHdkZXAgc25kX3BjbSB4dHMgaXBtaV9w
-b3dlcm52IA0Kc25kX3RpbWVyIGlwbWlfZGV2aW50ZiBwb3dlcm52X2ZsYXNoIHNuZCB2bXhf
-Y3J5cHRvIGdmMTI4bXVsIG10ZCANCmlwbWlfbXNnaGFuZGxlciBvcGFsX3ByZCBzb3VuZGNv
-cmUgYXQyNCBkcm1fcGFuZWxfb3JpZW50YXRpb25fcXVpcmtzIA0KaTJjX2FsZ29fYml0IHJl
-Z21hcF9pMmMgZXh0NCBjcmMxNiBtYmNhY2hlIGpiZDIgY3JjMzJjX2dlbmVyaWMgZG1fbW9k
-IA0KeGhjaV9wY2kgeGhjaV9oY2QgdGczIG52bWUgY3JjMzJjX3ZwbXN1bSB1c2Jjb3JlIG52
-bWVfY29yZSBsaWJwaHkgDQp1c2JfY29tbW9uIG52bWVfYXV0aCBbbGFzdCB1bmxvYWRlZDog
-eGVdDQpDUFU6IDMyIFVJRDogMCBQSUQ6IDQ1MyBDb21tOiBrd29ya2VyLzMyOjEgTm90IHRh
-aW50ZWQgDQo2LjEyLjEyK2Jwby1wb3dlcnBjNjRsZSAjMSAgRGViaWFuIDYuMTIuMTItMX5i
-cG8xMisxDQpIYXJkd2FyZSBuYW1lOiBUMlA5RDAxIFJFViAxLjAxIFBPV0VSOSAweDRlMTIw
-MiBvcGFsOnNraWJvb3QtOTg1ODE4NiBQb3dlck5WDQpXb3JrcXVldWU6IGV2ZW50cyB3b3Jr
-X2Zvcl9jcHVfZm4NCk5JUDogIGMwMDgwMDAwMGRkNDY0ODQgTFI6IGMwMDgwMDAwMGRkNDYz
-ODQgQ1RSOiAwMDAwMDAwMDMwMDZjMzk0DQpSRUdTOiBjMDAwMjAwMDBhNjM3NjYwIFRSQVA6
-IDAzMDAgICBOb3QgdGFpbnRlZCANCig2LjEyLjEyK2Jwby1wb3dlcnBjNjRsZSBEZWJpYW4g
-Ni4xMi4xMi0xfmJwbzEyKzEpDQpNU1I6ICA5MDAwMDAwMDAwMDA5MDMzIDxTRixIVixFRSxN
-RSxJUixEUixSSSxMRT4gIENSOiAyNDAwODQ4OCAgWEVSOiANCjIwMDQwMDAwDQpDRkFSOiBj
-MDA4MDAwMDBkZDQ2Mzk4IERBUjogYzAwYTAwMDAwMDAwMDNjYyBEU0lTUjogNDAwMDAwMDAg
-SVJRTUFTSzogMA0KR1BSMDA6IGMwMDgwMDAwMGRkNDYzODQgYzAwMDIwMDAwYTYzNzkwMCBj
-MDA4MDAwMDBkYjMwNjAwIGMwMGEwMDAwMDAwMDAzY2MNCkdQUjA0OiAwMDAwMDAwMDAwMDAw
-MDAwIDAwMDAwMDAwMDAwMDAwMDQgMDAwMDAwMDAzNWMyMDA2MCAwMDAwMDAwMDM1YzIwMDYw
-DQpHUFIwODogMDAwMDAwMDAwMDAwMDAwMCBjMDBhMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAw
-MDAwMDAgMDAwMDAwMDAwMDAwODAwMA0KR1BSMTI6IDAwMDAwMDAwMDAwMDAwMDAgYzAwMDIw
-MDdmZjdmZmIwMCBjMDAwMDAwMDAwMTdkMWNjIGMwMDAyMDAwMDVkNWMyMDANCkdQUjE2OiAw
-MDAwMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAwMDAwMDAwMDAwMCAwMDAw
-MDAwMDAwMDAwMDAwDQpHUFIyMDogMDAwMDAwMDAwMDAwMDAwMCBjMDAwMjAwN2ZiZWViMjgw
-IGMwMDgwMDAwMGRmMzUzNTAgYzAwODAwMDAwZGYzNTcwMA0KR1BSMjQ6IGMwMDgwMDAwMGRm
-MzU3MzAgYzAwMDIwMDAwNmY2MDAwMCAwMDAwMDAwMDAwMDAwMDAxIGMwMDAyMDAwMDZmNjE2
-MjgNCkdQUjI4OiAwMDAwMDAwMDAwMDAwMDAxIGMwMDAwMDAwMDI3NzAzZTAgMDAwMDAwMDAw
-MDAwMDAwMCBjMDAwMDAwMDBjMTY3MDAwDQpOSVAgW2MwMDgwMDAwMGRkNDY0ODRdIGludGVs
-X3ZnYV9yZXNldF9pb19tZW0rMHgxNDAvMHgxODggW3hlXQ0KTFIgW2MwMDgwMDAwMGRkNDYz
-ODRdIGludGVsX3ZnYV9yZXNldF9pb19tZW0rMHg0MC8weDE4OCBbeGVdDQpDYWxsIFRyYWNl
-Og0KW2MwMDAyMDAwMGE2Mzc5MDBdIFtjMDA4MDAwMDBkZDQ2Mzg0XSBpbnRlbF92Z2FfcmVz
-ZXRfaW9fbWVtKzB4NDAvMHgxODggDQpbeGVdICh1bnJlbGlhYmxlKQ0KW2MwMDAyMDAwMGE2
-Mzc5NDBdIFtjMDA4MDAwMDBkY2JiZDg4XSBoc3dfcG93ZXJfd2VsbF9lbmFibGUrMHgxZjAv
-MHgyMzggW3hlXQ0KW2MwMDAyMDAwMGE2Mzc5OTBdIFtjMDA4MDAwMDBkY2JlNDcwXSBpbnRl
-bF9wb3dlcl93ZWxsX2VuYWJsZSsweDhjLzB4YjggW3hlXQ0KW2MwMDAyMDAwMGE2MzdhMDBd
-IFtjMDA4MDAwMDBkY2I2ZDA4XSANCl9faW50ZWxfZGlzcGxheV9wb3dlcl9nZXRfZG9tYWlu
-LnBhcnQuMCsweDk4LzB4ZjQgW3hlXQ0KW2MwMDAyMDAwMGE2MzdhNTBdIFtjMDA4MDAwMDBk
-Y2I5MjYwXSANCmludGVsX3Bvd2VyX2RvbWFpbnNfaW5pdF9odysweDk0LzB4M2E4IFt4ZV0N
-CltjMDAwMjAwMDBhNjM3YWYwXSBbYzAwODAwMDAwZGNhZmNhNF0gDQppbnRlbF9kaXNwbGF5
-X2RyaXZlcl9wcm9iZV9ub2lycSsweGY0LzB4MzAwIFt4ZV0NCltjMDAwMjAwMDBhNjM3Yjcw
-XSBbYzAwODAwMDAwZGM0ZjEyNF0geGVfZGlzcGxheV9pbml0X25vaXJxKzB4ODAvMHgxMjQg
-W3hlXQ0KW2MwMDAyMDAwMGE2MzdiYTBdIFtjMDA4MDAwMDBkYmNlZTk4XSB4ZV9kZXZpY2Vf
-cHJvYmUrMHg0MTQvMHg3NjggW3hlXQ0KW2MwMDAyMDAwMGE2MzdjMzBdIFtjMDA4MDAwMDBk
-YzEzMzcwXSB4ZV9wY2lfcHJvYmUrMHg3N2MvMHhjNjAgW3hlXQ0KW2MwMDAyMDAwMGE2Mzdk
-OTBdIFtjMDAwMDAwMDAwOWY0NTQwXSBsb2NhbF9wY2lfcHJvYmUrMHg2OC8weGY0DQpbYzAw
-MDIwMDAwYTYzN2UxMF0gW2MwMDAwMDAwMDAxNjljZGNdIHdvcmtfZm9yX2NwdV9mbisweDM4
-LzB4NTQNCltjMDAwMjAwMDBhNjM3ZTQwXSBbYzAwMDAwMDAwMDE2ZmYyNF0gcHJvY2Vzc19v
-bmVfd29yaysweDFmYy8weDRkNA0KW2MwMDAyMDAwMGE2MzdlZjBdIFtjMDAwMDAwMDAwMTcw
-ZTNjXSB3b3JrZXJfdGhyZWFkKzB4MzNjLzB4NTA0DQpbYzAwMDIwMDAwYTYzN2Y5MF0gW2Mw
-MDAwMDAwMDAxN2QyZmNdIGt0aHJlYWQrMHgxMzgvMHgxNDANCltjMDAwMjAwMDBhNjM3ZmUw
-XSBbYzAwMDAwMDAwMDAwZGU1OF0gc3RhcnRfa2VybmVsX3RocmVhZCsweDE0LzB4MTgNCkNv
-ZGU6IGViYzFmZmYwIGViZTFmZmY4IDdjMDgwM2E2IDRlODAwMDIwIDYwMDAwMDAwIDYwMDAw
-MDAwIDYwNDIwMDAwIA0KM2QyMjAwMDAgZTkyOTE4MDAgZTkyOTAwMDAgMzg2OTAzY2MgN2Mw
-MDA0YWMgPDhiYzkwM2NjPiAwYzFlMDAwMCANCjRjMDAwMTJjIDU3YzkwNjNlDQotLS1bIGVu
-ZCB0cmFjZSAwMDAwMDAwMDAwMDAwMDAwIF0tLS0NCg0Kbm90ZToga3dvcmtlci8zMjoxWzQ1
-M10gZXhpdGVkIHdpdGggaXJxcyBkaXNhYmxlZA0KDQpUaGUgZmF1bHRpbmcgbGluZSBpcw0K
-DQogICAgIG91dGIoaW5iKFZHQV9NSVNfUiksIFZHQV9NSVNfVyk7DQoNCmluIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmdhLmMNCg0KVGhlIDB4M2NjIG9mZnNldCBp
-cyBWR0FfTUlTX1IsIGFuZCBSOSBwb2ludHMgdG8gYzAwYTAwMDAwMDAwMDAwMCwgd2hlcmUg
-DQp0aGUgSS9PIHBvcnRzIGFyZSBtYXBwZWQgLS0gaG93ZXZlciB0aGUgbGVnYWN5IHBvcnRz
-IGRvbid0IHNlZW0gdG8gYmUgDQphY3RpdmUgaWYgdGhlIGNhcmQgd2FzIG5ldmVyIGluaXRp
-YWxpemVkIGF0IGJvb3QsIHdoaWNoIGl0IGlzbid0LCANCmJlY2F1c2UgdGhlIEJNQydzIFZH
-QSBlbXVsYXRpb24gaXMgcHJlZmVycmVkLg0KDQpDb21tZW50aW5nIG91dCB0aGUgY2FsbCB0
-byBpbnRlbF92Z2FfcmVzZXRfaW9fbWVtIHNvbHZlcyB0aGUgcHJvYmxlbSwgDQphbmQgSSBn
-ZXQgd29uZGVyZnVsIDEwODBwNjAgb3V0cHV0IC0tIGJ1dCBvYnZpb3VzbHkgdGhhdCBpcyBu
-b3QgYSANCmdlbmVyaWMgc29sdXRpb24uDQoNCiAgICBTaW1vbg0K
+Thanks,
+Jani.
 
---------------zEG0hxjHHrKiboUSkm2k0zU1--
 
---------------KFgmTTYioB3Gi4tCW8wB3JzI
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+[1] https://lore.kernel.org/r/20250307180139.15744-1-ville.syrjala@linux.intel.com
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEtjuqOJSXmNjSiX3Tfr04e7CZCBEFAmfNvBQACgkQfr04e7CZ
-CBEcdAf/VxuIYVxPE9llydspExlCeljSpQZqQGhtQ/UR54bFHWPvBkvVFwBRYnhM
-72mKaPnwAkGLwMmUyN0SzWyjRYVzwAUjMy3tWCwZ61S9aLnBUCK4lc2Ybki85PyO
-JSZHXXUtQpYY60m7Iu2oXF+tBLKIzmG8nkm/JhaEab1JtbxPFM/Pqc8Aodz+tW4T
-halfQu3qkK7taSAa/kUF0rtdk3O8WP/ojvc/3DNB5Jzscdvz6tsiGWg1STu9kFrF
-RDKP9JiTfqil1L7S4CilF/etu3nPWH8Lm6XdOMXZN5KEQoik5SCE2TJ+LL6Dhzjp
-QWaWpLWbdvKL/+uJQ5C5FIBpF/9qRQ==
-=0hVH
------END PGP SIGNATURE-----
+>
+> Changes in v2:
+>   - Fix typo in patch #2.
+>
+> Changes in v3:
+> - Squash patches #1 and #2 into a single one and modify it to convert
+>   intel_bw.c internally to intel_display (new patch subject is
+>   "drm/i915/display: Convert intel_bw.c internally to intel_display").
+> - Add a new patch #2 to convert intel_bw.c externally to intel_display.
+> - Link to v2: https://lore.kernel.org/r/20250217153550.43909-1-gustavo.sousa@intel.com
+>
+> ---
+> Gustavo Sousa (3):
+>       drm/i915/display: Convert intel_bw.c internally to intel_display
+>       drm/i915/display: Convert intel_bw.c externally to intel_display
+>       drm/i915/xe3lpd: Update bandwidth parameters
+>
+>  drivers/gpu/drm/i915/display/intel_bw.c            | 440 +++++++++++----------
+>  drivers/gpu/drm/i915/display/intel_bw.h            |   9 +-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c         |   3 +-
+>  .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.c       |  10 +-
+>  drivers/gpu/drm/i915/i915_driver.c                 |   2 +-
+>  drivers/gpu/drm/xe/display/xe_display.c            |   2 +-
+>  7 files changed, 245 insertions(+), 223 deletions(-)
+> ---
+> base-commit: f811577f424491a57b1e8669bde62998227d6907
+> change-id: 20250228-xe3lpd-bandwidth-update-f011599c0c3e
+>
+> Best regards,
 
---------------KFgmTTYioB3Gi4tCW8wB3JzI--
+-- 
+Jani Nikula, Intel
