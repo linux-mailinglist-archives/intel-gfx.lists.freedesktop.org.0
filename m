@@ -2,75 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC891A5918F
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 11:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 851A4A59222
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Mar 2025 12:00:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F34B10E3EC;
-	Mon, 10 Mar 2025 10:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5AD10E3F3;
+	Mon, 10 Mar 2025 11:00:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="MKsE1Ajc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jK2yaWHy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-18.smtpout.orange.fr [193.252.22.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA2610E3EC;
- Mon, 10 Mar 2025 10:46:53 +0000 (UTC)
-Received: from [172.16.82.72] ([124.33.176.97]) by smtp.orange.fr with ESMTPA
- id raebt34wJACDNraeftbFlA; Mon, 10 Mar 2025 11:46:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1741603609;
- bh=SM+GH4W9Mgpq6UbMamTcytvpYPgAzdTWefneB42yE/0=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=MKsE1Ajc+m6LGBqtCOp+fWLgINX4uVO2Wrtli0Wf+5I3+tbC5y8eUDQpVvSr+sVVq
- LGT5lUHG3IOlheI+5av6dg7E+H+0dAGJ9PmK1E3z4ldjAqjbTNpWRlcModsGvkIBPK
- McEgwDJzub0wiygpF9OLg8yJkqz4zrzyRupxB2fdmvNSwVVbeynkkDf1dMT4h/QfzF
- anmuTlXxHZ6Y3C0MFmb/Nmz76K5aADaLEu1rl0GYuQbLqM89s9tFFezxlxTjRqYZl6
- N7de4kkml1YTIY+mUr4sBP5yGotFwTIY862lumo4VGXwgMSi0hlFMI0ujKlRCKXBst
- 4aDTEeuoMWKIA==
-X-ME-Helo: [172.16.82.72]
-X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Mon, 10 Mar 2025 11:46:49 +0100
-X-ME-IP: 124.33.176.97
-Message-ID: <d3c88533-2af7-4dc4-87e3-e6d03cd965b5@wanadoo.fr>
-Date: Mon, 10 Mar 2025 19:46:36 +0900
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B307510E3DD;
+ Mon, 10 Mar 2025 11:00:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741604410; x=1773140410;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=XaQBs1Nr/FchWKiFTmuwev64vfYgVRJ7ab2aDhqhA1c=;
+ b=jK2yaWHyCPuIveCQt/jmb/LEJUfoW7aJnFuNKL4a8mggiYlszBL1WcEU
+ OUo451MoXsF1AWDbamkBEACiLb+cZcFK36tYZsKFZ0eBXppusbnNSNG+P
+ GAJJJ2+6VR89y9llSa8PbAB85yHvK5Xz0SOJKp50RUsCs7cq6fvjNRJBZ
+ 0aV0UzOztUBTy1ifoOpSTNtSzG9iJT3G3IBWLVo0C9KPViwhDRc9VMHWd
+ TdKBGkN9AQlrFOEVg9GaZZ7l7ELXdub8C/vdx+AxwTYAl0vwkhAahFHWu
+ lWzryDjj4IGyNG1d25X6VHO2XdcWEbEhCBNYkGpSSglmoHrrYntMVQUkr A==;
+X-CSE-ConnectionGUID: KiUp07q4QZeezzB04gcxoQ==
+X-CSE-MsgGUID: +sSmggxNTOq/KqTFS9tF6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11368"; a="45388096"
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="45388096"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 04:00:10 -0700
+X-CSE-ConnectionGUID: +puv9aV/T96CmqylHz8mCQ==
+X-CSE-MsgGUID: R6tdX17yTEC6VyKioWEyMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,235,1736841600"; d="scan'208";a="120665810"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2025 04:00:08 -0700
+Date: Mon, 10 Mar 2025 13:00:05 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Lin, Wayne" <Wayne.Lin@amd.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Lyude Paul <lyude@redhat.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/dp_mst: Fix locking when skipping CSN before
+ topology probing
+Message-ID: <Z87GNTziGPAl6UCv@ideak-desk.fi.intel.com>
+References: <20250307183152.3822170-1-imre.deak@intel.com>
+ <CO6PR12MB5489FF5590A559FD1B48A34EFCD62@CO6PR12MB5489.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/7] bits: split the definition of the asm and non-asm
- GENMASK()
-To: David Laight <david.laight.linux@gmail.com>
-Cc: Yury Norov <yury.norov@gmail.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- David Laight <David.Laight@ACULAB.COM>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
- <20250306-fixed-type-genmasks-v5-1-b443e9dcba63@wanadoo.fr>
- <20250306192331.2701a029@pumpkin>
- <bdce7d99-7f02-4667-acda-9ffc62c92af2@wanadoo.fr>
- <20250309015853.01412484@pumpkin> <20250309102312.4ff08576@pumpkin>
-Content-Language: en-US
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
- xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
- LFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI+wrIEExYKAFoC
- GwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQTtj3AFdOZ/IOV06OKrX+uI
- bbuZwgUCZx41XhgYaGtwczovL2tleXMub3BlbnBncC5vcmcACgkQq1/riG27mcIYiwEAkgKK
- BJ+ANKwhTAAvL1XeApQ+2NNNEwFWzipVAGvTRigA+wUeyB3UQwZrwb7jsQuBXxhk3lL45HF5
- 8+y4bQCUCqYGzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrbYZzu0JG5w8gxE6EtQe6LmxKMqP6E
- yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
- CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
- ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <20250309102312.4ff08576@pumpkin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CO6PR12MB5489FF5590A559FD1B48A34EFCD62@CO6PR12MB5489.namprd12.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,138 +70,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 09/03/2025 at 19:23, David Laight wrote:
-> On Sun, 9 Mar 2025 01:58:53 +0000
-> David Laight <david.laight.linux@gmail.com> wrote:
+On Mon, Mar 10, 2025 at 08:59:51AM +0000, Lin, Wayne wrote:
 > 
->> On Fri, 7 Mar 2025 18:58:08 +0900
->> Vincent Mailhol <mailhol.vincent@wanadoo.fr> wrote:
->>
->>> On 07/03/2025 at 04:23, David Laight wrote:  
->>>> On Thu, 06 Mar 2025 20:29:52 +0900
->>>> Vincent Mailhol via B4 Relay <devnull+mailhol.vincent.wanadoo.fr@kernel.org> wrote:
->>>>     
->>>>> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
->>>>>
->>>>> In an upcoming change, GENMASK() and its friends will indirectly
->>>>> depend on sizeof() which is not available in asm.
->>>>>
->>>>> Instead of adding further complexity to __GENMASK() to make it work
->>>>> for both asm and non asm, just split the definition of the two
->>>>> variants.    
->>>> ...    
->>>>> +#else /* defined(__ASSEMBLY__) */
->>>>> +
->>>>> +#define GENMASK(h, l)		__GENMASK(h, l)
->>>>> +#define GENMASK_ULL(h, l)	__GENMASK_ULL(h, l)    
->>>>
->>>> What do those actually expand to now?
->>>> As I've said a few times both UL(0) and ULL(0) are just (0) for __ASSEMBLY__
->>>> so the expansions of __GENMASK() and __GENMASK_ULL() contained the
->>>> same numeric constants.    
->>>
->>> Indeed, in asm, the UL(0) and ULL(0) expands to the same thing: 0.
->>>
->>> But the two macros still expand to something different on 32 bits
->>> architectures:
->>>
->>>   * __GENMASK:
->>>
->>>       (((~(0)) << (l)) & (~(0) >> (32 - 1 - (h))))
->>>
->>>   * __GENMASK_ULL:
->>>
->>>       (((~(0)) << (l)) & (~(0) >> (64 - 1 - (h))))
->>>
->>> On 64 bits architecture these are the same.  
->>
->> I've just fed those into godbolt (https://www.godbolt.org/z/Ter6WE9qE) as:
->> int fi(void)
->> {
->>     int v;
->>     asm("mov $(((~(0)) << (8)) & (~(0) >> (32 - 1 - (15)))),%0": "=r" (v));
->>     return v -(((~(0u)) << (8)) & (~(0u) >> (32 - 1 - (15))));
->> }
->>
->> gas warns:
->> <source>:4: Warning: 0xffffffffff00 shortened to 0xffffff00
->>
->> unsigned long long fll(void)
->> {
->>     unsigned long long v;
->>     asm("mov $(((~(0)) << (8)) & (~(0) >> (64 - 1 - (15)))),%0": "=r" (v));
->>     return v -(((~(0ull)) << (8)) & (~(0ull) >> (64 - 1 - (15))));
->> }
->>
->> (for other architectures you'll need to change the opcode)
->>
->> For x86 and x86-32 the assembler seems to be doing 64bit maths with unsigned
->> right shifts - so the second function (with the 64 in it) generates 0xff00.
->> I doubt a 32bit only assembler does 64bit maths, but the '>> 48' above
->> might get masked to a '>> 16' by the cpu and generate the correct result.
->>
->> So __GENMASK() is likely to be broken for any assembler that supports 64bits
->> when generating 32bit code.
->> __GENMASK_ULL() works (assuming all have unsigned >>) on 64bit assemblers
->> (even when generating 32bit code). It may work on some 32bit assemblers.>
-> I've remembered my 'pi' has a 32bit userspace (on a 64bit kernel).
-> I quick test of "mov %0,#(...)" and bits 11..8 gives the correct output
-> for size '32' but the error message:
-> /tmp/ccPB7bWh.s:26: Warning: shift count out of range (56 is not between 0 and 31)
-> with size '64'.
+> > -----Original Message-----
+> > From: Imre Deak <imre.deak@intel.com>
+> > Sent: Saturday, March 8, 2025 2:32 AM
+> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; dri-
+> > devel@lists.freedesktop.org
+> > Cc: Lin, Wayne <Wayne.Lin@amd.com>; Lyude Paul <lyude@redhat.com>;
+> > stable@vger.kernel.org
+> > Subject: [PATCH] drm/dp_mst: Fix locking when skipping CSN before topology
+> > probing
+> >
+> > The handling of the MST Connection Status Notify message is skipped if the probing
+> > of the topology is still pending. Acquiring the drm_dp_mst_topology_mgr::probe_lock
+> > for this in
+> > drm_dp_mst_handle_up_req() is problematic: the task/work this function is called
+> > from is also responsible for handling MST down-request replies (in
+> > drm_dp_mst_handle_down_rep()). Thus drm_dp_mst_link_probe_work() - holding
+> > already probe_lock - could be blocked waiting for an MST down-request reply while
+> > drm_dp_mst_handle_up_req() is waiting for probe_lock while processing a CSN
+> > message. This leads to the probe work's down-request message timing out.
+> >
+> > A scenario similar to the above leading to a down-request timeout is handling a CSN
+> > message in drm_dp_mst_handle_conn_stat(), holding the probe_lock and sending
+> > down-request messages while a second CSN message sent by the sink
+> > subsequently is handled by drm_dp_mst_handle_up_req().
+> >
+> > Fix the above by moving the logic to skip the CSN handling to
+> > drm_dp_mst_process_up_req(). This function is called from a work (separate from
+> > the task/work handling new up/down messages), already holding probe_lock. This
+> > solves the above timeout issue, since handling of down-request replies won't be
+> > blocked by probe_lock.
+> >
+> > Fixes: ddf983488c3e ("drm/dp_mst: Skip CSN if topology probing is not done yet")
+> > Cc: Wayne Lin <Wayne.Lin@amd.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: stable@vger.kernel.org # v6.6+
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 40 +++++++++++--------
+> >  1 file changed, 24 insertions(+), 16 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > index 8b68bb3fbffb0..3a1f1ffc7b552 100644
+> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> > @@ -4036,6 +4036,22 @@ static int drm_dp_mst_handle_down_rep(struct
+> > drm_dp_mst_topology_mgr *mgr)
+> >       return 0;
+> >  }
+> >
+> > +static bool primary_mstb_probing_is_done(struct drm_dp_mst_topology_mgr
+> > +*mgr) {
+> > +     bool probing_done = false;
+> > +
+> > +     mutex_lock(&mgr->lock);
 > 
-> Assuming that part of the gnu assembler is consistent across architectures
-> you can't use either GENMASK in asm for 32bit architectures.
-> 
-> Any change (probably including removing the asm support for the uapi) isn't
-> going to make things worse!
-> 
-> 	David
-> 
->>
->> Since most uses in the header files will be GENMASK() I doubt (hope) no
->> asm code actually uses the values!
+> Thanks for catching this, Imre!
+>
+> Here I think using mgr->lock is not sufficient for determining probing
+> is done or not by mst_primary->link_address_sent. Since it might still
+> be probing the rest of the topology with mst_primary probed. Use
+> probe_lock instead? Thanks!
 
-After reading your message, I wanted to understand where these
-GENMASK*() were used in asm code. It happens that most of the
-architectures simply don't use it!
+mgr->lock is taken here to guard the mgr->mst_primary access.
 
-I see these are using in aarch64, but that's about it.
+probe_lock is also held, taken already by the caller in
+drm_dp_mst_up_req_work().
 
-I couldn't find any use of neither GENMASK() nor GENMASK_ULL() in x86,
-arm 32 bits, m68k or powerpc asm code (I did not check the other
-architectures).
-
-aarch64 uses both the long and long long variants, but this being a 64
-bits architecture, these are the same. So OK.
-
-So, this goes into the same direction as you: I guess that the fact that
-no one noticed the issue is that no one uses this on a 32 bits arch,
-probably for historical reasons, i.e. the asm code was written before
-the introduction of the GENMASK() macros.
-
->> The headers assemble - but that is about all that can be said.
->>
->> Bags of worms :-)
-
-+1 (I will not open that bag)
-
-I think that the asm and non asm variant should have used a different
-implementation from the begining. By wanting to have a single variant
-that fit both the asm and the C code, we have a complex result that is
-hard to understand and maintain (c.f. the bug which you pointed out
-which have been unnoticed for ever).
-
-But now that it is in the uapi, I am not sure of what is the best
-approach. I sincerely hope that we can just modify it with no userland
-impact.
-
-Well, just to make it clear, I am not touching the asm part. I
-acknowledge the issue, but I do not think that I have the skill to fix it.
-
-
-Yours sincerely,
-Vincent Mailhol
+> > +
+> > +     if (mgr->mst_primary && drm_dp_mst_topology_try_get_mstb(mgr-> >mst_primary)) {
+> > +             probing_done = mgr->mst_primary->link_address_sent;
+> > +             drm_dp_mst_topology_put_mstb(mgr->mst_primary);
+> > +     }
+> > +
+> > +     mutex_unlock(&mgr->lock);
+> > +
+> > +     return probing_done;
+> > +}
