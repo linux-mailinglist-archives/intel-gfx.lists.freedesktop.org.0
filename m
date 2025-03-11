@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB13A5D010
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 20:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9DCA5D011
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 20:56:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 937D710E658;
-	Tue, 11 Mar 2025 19:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76B5710E674;
+	Tue, 11 Mar 2025 19:56:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xyf8NN/F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JnqDQdVl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE33810E658
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 19:56:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E517410E674
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Mar 2025 19:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741722993; x=1773258993;
+ t=1741722997; x=1773258997;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WVxReDaIh2Ofs7OIhU0ypvXOBMDjIR8LI0is+TMiaCI=;
- b=Xyf8NN/FiP7MszqBantvYNkT3r5yiwqXZDQbl4gzPIRifTkkPU1WFqXX
- 2wIexZP7CxWHrEcLUOIoiLBltNAOuJRcBIis1EguCh68WAOlPQ47LsKfK
- Zu4HmBHljKusbQKaB2TdS15kPaj9wmHnaWPfdOfAWUGkpbqqMpPJs8cgT
- /7R8RyFQfnAnSAf4+7PfllRo2YkeoUoJcANzuI1PFAnkSgeSTpwjPIRL7
- D1Vl9FEpjpdlaQ13m4lyH0PxMaGyApNYJKBY2m62BzfzteW2lbYySwE0j
- Ec+MI3Oe05RZzN4t+Em3nGIl9vOuO5Rcvd8cF5nU0Iyj76LMgnpi3A2c/ A==;
-X-CSE-ConnectionGUID: XHj6wG0jT4CpH7osCP9zNw==
-X-CSE-MsgGUID: x7pq1warS4amkHMtFPXMRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="60183855"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="60183855"
+ bh=LFYV2y/FsXxKCK5k99PiIl+3Wk5WTBGIw27Fqd8QZW0=;
+ b=JnqDQdVlE0tdSy0NWeMy0zW+I2KBxiXPo2SuAam++L74UTT7o/oMdt8V
+ yseo3EBiw2cNl6nER5W7fBNKRlAdlVhhzC8hY3rXBthjj7XQFzqQ8XWV6
+ 106NNXWvmVMcObl8KRrZJePvyLuDIInKBJRcErJx3zZ0MoxMFJQeu7tSf
+ 7bVpT64CcSiarZyRXuiLfoG18beh7G/bhBYICHuChMQ0Yoq1BkIts8bPq
+ bXFdbMUkqkfM7RFvwjHUgEQ7xycOaCwcbmSmux2FhDercrBux323a4eDS
+ MV489A5cFZ1OqM2LVxv3Xo3cfGkxcEACYITLiam5z1xwHVeZaVPgD4prN g==;
+X-CSE-ConnectionGUID: LpwbNWsQRoWWrTkO/2We9w==
+X-CSE-MsgGUID: /GxLJu9tSgOOwuDuq2uo8A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="60183857"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="60183857"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 12:56:33 -0700
-X-CSE-ConnectionGUID: YEwnLSCTSY2DwGfYs6Dugw==
-X-CSE-MsgGUID: gHC4L+YvTzSA4IHq6q9JkQ==
+ 11 Mar 2025 12:56:36 -0700
+X-CSE-ConnectionGUID: W3qg50nERwaMMF6OMdpmsQ==
+X-CSE-MsgGUID: JuYqYSj3S+qyCa7YYzsCQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="125617210"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="125617223"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 11 Mar 2025 12:56:29 -0700
+ by orviesa005.jf.intel.com with SMTP; 11 Mar 2025 12:56:32 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Mar 2025 21:56:30 +0200
+ Tue, 11 Mar 2025 21:56:33 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 2/6] drm/i915/pm: Hoist
- pci_save_state()+pci_set_power_state() to the end of pm _late() hook
-Date: Tue, 11 Mar 2025 21:56:20 +0200
-Message-ID: <20250311195624.22420-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 3/6] drm/i915/pm: Move the hibernate+D3 quirk stuff into
+ noirq() pm hooks
+Date: Tue, 11 Mar 2025 21:56:21 +0200
+Message-ID: <20250311195624.22420-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250311195624.22420-1-ville.syrjala@linux.intel.com>
 References: <20250311195624.22420-1-ville.syrjala@linux.intel.com>
@@ -72,76 +72,180 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-drivers/pci does the pci_save_state()+pci_set_power_state() from
-the _noirq() pm hooks. Move our manual calls (needed for the
-hibernate vs. D3 workaround with buggy BIOSes) towards that same
-point. We currently have no _noirq() hooks, so end of _late()
-hooks is the best we can do right now.
+If the driver doesn't call pci_save_state() drivers/pci will
+normally save+power manage the device from the _noirq() pm hooks.
+
+We can't let that happen as some old BIOSes fail to hibernate
+when the device is in D3. However, we can get very close to
+the standard behaviour by doing our explicit pci_save_state()
+and pci_set_power_state() stuff from driver provided _noirq()
+hooks.
+
+This results in a change of behaviour where we no longer go
+into D3 at the end of freeze_late, so when it comes time
+to thaw() we'll already be in D0, and thus we can drop the
+explicit pci_set_power_state(D0) call.
+
+Presumably switcheroo suspend will want to go into D3 so
+call the _noirq() stuff from the switcheroo suspend hook,
+and since we dropped the pci_set_power_state(D0) from
+resume_early() we'll need to add one back into the
+switcheroo resume hook.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c | 76 ++++++++++++++++++++----------
+ 1 file changed, 51 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index be232caef9df..e06f2956382c 100644
+index e06f2956382c..995205e24ebf 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1045,7 +1045,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_display *display = &dev_priv->display;
--	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	pci_power_t opregion_target_state;
+@@ -1124,6 +1124,21 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
  
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-@@ -1059,8 +1058,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- 		intel_display_driver_disable_user_access(display);
- 	}
+ 	pci_disable_device(pdev);
  
--	pci_save_state(pdev);
--
- 	intel_display_driver_suspend(display);
- 
- 	intel_irq_suspend(dev_priv);
-@@ -1117,10 +1114,16 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 		drm_err(&dev_priv->drm, "Suspend complete failed: %d\n", ret);
- 		intel_display_power_resume_early(display);
- 
--		goto out;
-+		goto fail;
- 	}
- 
-+	enable_rpm_wakeref_asserts(rpm);
++	return 0;
 +
++fail:
++	enable_rpm_wakeref_asserts(rpm);
 +	if (!dev_priv->uncore.user_forcewake_count)
 +		intel_runtime_pm_driver_release(rpm);
 +
- 	pci_disable_device(pdev);
++	return ret;
++}
++
++static int i915_drm_suspend_noirq(struct drm_device *dev, bool hibernation)
++{
++	struct drm_i915_private *dev_priv = to_i915(dev);
++	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
 +
  	/*
  	 * During hibernation on some platforms the BIOS may try to access
  	 * the device even though it's already in D3 and hang the machine. So
-@@ -1132,11 +1135,17 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	 * Lenovo Thinkpad X301, X61s, X60, T60, X41
- 	 * Fujitsu FSC S7110
- 	 * Acer Aspire 1830T
-+	 *
-+	 * pci_save_state() prevents drivers/pci from
-+	 * automagically putting the device into D3.
- 	 */
-+	pci_save_state(pdev);
- 	if (!(hibernation && GRAPHICS_VER(dev_priv) < 6))
+@@ -1144,13 +1159,6 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
  		pci_set_power_state(pdev, PCI_D3hot);
  
--out:
-+	return 0;
+ 	return 0;
+-
+-fail:
+-	enable_rpm_wakeref_asserts(rpm);
+-	if (!dev_priv->uncore.user_forcewake_count)
+-		intel_runtime_pm_driver_release(rpm);
+-
+-	return ret;
+ }
+ 
+ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
+@@ -1169,7 +1177,15 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
+ 	if (error)
+ 		return error;
+ 
+-	return i915_drm_suspend_late(&i915->drm, false);
++	error = i915_drm_suspend_late(&i915->drm, false);
++	if (error)
++		return error;
 +
-+fail:
- 	enable_rpm_wakeref_asserts(rpm);
- 	if (!dev_priv->uncore.user_forcewake_count)
- 		intel_runtime_pm_driver_release(rpm);
++	error = i915_drm_suspend_noirq(&i915->drm, false);
++	if (error)
++		return error;
++
++	return 0;
+ }
+ 
+ static int i915_drm_resume(struct drm_device *dev)
+@@ -1277,23 +1293,6 @@ static int i915_drm_resume_early(struct drm_device *dev)
+ 	 * similar so that power domains can be employed.
+ 	 */
+ 
+-	/*
+-	 * Note that we need to set the power state explicitly, since we
+-	 * powered off the device during freeze and the PCI core won't power
+-	 * it back up for us during thaw. Powering off the device during
+-	 * freeze is not a hard requirement though, and during the
+-	 * suspend/resume phases the PCI core makes sure we get here with the
+-	 * device powered on. So in case we change our freeze logic and keep
+-	 * the device powered we can also remove the following set power state
+-	 * call.
+-	 */
+-	ret = pci_set_power_state(pdev, PCI_D0);
+-	if (ret) {
+-		drm_err(&dev_priv->drm,
+-			"failed to set PCI D0 power state (%d)\n", ret);
+-		return ret;
+-	}
+-
+ 	/*
+ 	 * Note that pci_enable_device() first enables any parent bridge
+ 	 * device and only then sets the power state for this device. The
+@@ -1331,11 +1330,16 @@ static int i915_drm_resume_early(struct drm_device *dev)
+ 
+ int i915_driver_resume_switcheroo(struct drm_i915_private *i915)
+ {
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+ 	int ret;
+ 
+ 	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+ 
++	ret = pci_set_power_state(pdev, PCI_D0);
++	if (ret)
++		return ret;
++
+ 	ret = i915_drm_resume_early(&i915->drm);
+ 	if (ret)
+ 		return ret;
+@@ -1392,6 +1396,16 @@ static int i915_pm_suspend_late(struct device *kdev)
+ 	return i915_drm_suspend_late(&i915->drm, false);
+ }
+ 
++static int i915_pm_suspend_noirq(struct device *kdev)
++{
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
++
++	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
++		return 0;
++
++	return i915_drm_suspend_noirq(&i915->drm, false);
++}
++
+ static int i915_pm_poweroff_late(struct device *kdev)
+ {
+ 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
+@@ -1402,6 +1416,16 @@ static int i915_pm_poweroff_late(struct device *kdev)
+ 	return i915_drm_suspend_late(&i915->drm, true);
+ }
+ 
++static int i915_pm_poweroff_noirq(struct device *kdev)
++{
++	struct drm_i915_private *i915 = kdev_to_i915(kdev);
++
++	if (i915->drm.switch_power_state == DRM_SWITCH_POWER_OFF)
++		return 0;
++
++	return i915_drm_suspend_noirq(&i915->drm, true);
++}
++
+ static int i915_pm_resume_early(struct device *kdev)
+ {
+ 	struct drm_i915_private *i915 = kdev_to_i915(kdev);
+@@ -1667,6 +1691,7 @@ const struct dev_pm_ops i915_pm_ops = {
+ 	.prepare = i915_pm_prepare,
+ 	.suspend = i915_pm_suspend,
+ 	.suspend_late = i915_pm_suspend_late,
++	.suspend_noirq = i915_pm_suspend_noirq,
+ 	.resume_early = i915_pm_resume_early,
+ 	.resume = i915_pm_resume,
+ 	.complete = i915_pm_complete,
+@@ -1692,6 +1717,7 @@ const struct dev_pm_ops i915_pm_ops = {
+ 	.thaw = i915_pm_thaw,
+ 	.poweroff = i915_pm_suspend,
+ 	.poweroff_late = i915_pm_poweroff_late,
++	.poweroff_noirq = i915_pm_poweroff_noirq,
+ 	.restore_early = i915_pm_restore_early,
+ 	.restore = i915_pm_restore,
+ 
 -- 
 2.45.3
 
