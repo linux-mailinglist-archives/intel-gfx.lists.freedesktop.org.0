@@ -2,60 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D9EA5CBA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 18:06:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E3BA5CBC0
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 18:11:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9418E10E645;
-	Tue, 11 Mar 2025 17:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8010E10E62B;
+	Tue, 11 Mar 2025 17:11:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hzhB3tix";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UqD3PbXd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A99A10E644;
- Tue, 11 Mar 2025 17:06:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0733510E62B;
+ Tue, 11 Mar 2025 17:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741712816; x=1773248816;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pyBbzBsZGYgztsaua7SpPec77ADaonppVtD8lLLNHCE=;
- b=hzhB3tixtzrDQzBCdqQJ+v4U2pL0VXXJq+dX3s9ccV1zEEDPYgxhbC8q
- 7UXmmCVpT4zX0KqNcf0yzeiuis/8pv2UEyDDrjz5a80U4tizj3NZDpvxX
- 84S7+QVajmQtye58xv6ZGIDPeJLtEaFCDGaRR2AKvqAs3uPe4IsaOu7fQ
- JLgXRTuqz5FANvhwZIazXmoPPms9y+wgomsYNIYDVtLYfCaeVtrA7p0sL
- is7VcUhmTOPOiK2qkvvHB5xDxHk8qXavtQMgh+qSsiF6qFjN0TaqAneVW
- Zqrjt+C3sVUvSPEKCnljcz06grrvFhmz61Aau1g6M+nweyovs8p7TL6on Q==;
-X-CSE-ConnectionGUID: bMLCjn4IQX+2+94QS0Hx7g==
-X-CSE-MsgGUID: df8t0cwXT9yw3lcmw5jzHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="60167904"
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="60167904"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:06:56 -0700
-X-CSE-ConnectionGUID: ieuziStMSqiJhLrMMSxmUA==
-X-CSE-MsgGUID: 6TYI5rQFQpmDcA/2nl/mCA==
+ t=1741713067; x=1773249067;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QA4pFW1oxdkWwb6tOCXzPFVdqvzGDBgMwXg9IWYanfI=;
+ b=UqD3PbXdB3yg1M6skBnqGWrftJyGZRdAKzEb8DhtjlQSC3dgQ9AGFmKT
+ /aCErLB8kol6YF4RttbLuYHnrNFZoM1QkumD6eUv+SjsvmjwgPjjRzQwT
+ PkHuf9D9HWMIXjzAWyNRWasghdEhDpq7jF2MQm2rLJoDnWN3IEPg1eudB
+ qQvLv/NMCDh6mGeTf+QXuShhWYMpP9UOtZzDy42zaYOfAIAlJ3LT2L0vd
+ 6jN195hWKBPHjQpKJbYP8FAL7WEK1X79DMWsq+lOk/DkZsGqlx5Y5DyP0
+ jmALt8sEaZePdLc19AD9gUIgqsBj770EFWbunTOvaMlO0VbRwWq3/yOmA Q==;
+X-CSE-ConnectionGUID: S+4UmAFZRJeKnL0nQaYzQA==
+X-CSE-MsgGUID: wHtnMbbnSSmBW2Hj24vdpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11370"; a="42676076"
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="42676076"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 10:10:49 -0700
+X-CSE-ConnectionGUID: fNbKLCRzRoyzfzsju+JhNg==
+X-CSE-MsgGUID: qhOq77r8RHqgvWz9Guzl+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="124998641"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.184])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 10:06:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [RFC 7/7] drm/xe: drop intel_display_core/device.h include from
- xe_device_types.h
-Date: Tue, 11 Mar 2025 19:06:14 +0200
-Message-Id: <4228ad970ef818e260ed998b190894cb2e350616.1741712601.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1741712601.git.jani.nikula@intel.com>
-References: <cover.1741712601.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,239,1736841600"; d="scan'208";a="120407156"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2025 10:09:42 -0700
+Date: Tue, 11 Mar 2025 19:09:39 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ 'Christian =?iso-8859-1?Q?K=F6nig'?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>
+Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
+Message-ID: <Z9BuU3RzMkEE_FL1@black.fi.intel.com>
+References: <20250228121353.1442591-1-andrealmeid@igalia.com>
+ <20250228121353.1442591-2-andrealmeid@igalia.com>
+ <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
+ <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
+ <Z8KgwswQQyGxhsR1@black.fi.intel.com>
+ <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,91 +80,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make xe->display opaque.
+On Mon, Mar 10, 2025 at 06:27:53PM -0300, André Almeida wrote:
+> Em 01/03/2025 02:53, Raag Jadav escreveu:
+> > On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
+> > > Hi Raag,
+> > > 
+> > > On 2/28/25 11:20, Raag Jadav wrote:
+> > > > Cc: Lucas
+> > > > 
+> > > > On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
+> > > > > When a device get wedged, it might be caused by a guilty application.
+> > > > > For userspace, knowing which app was the cause can be useful for some
+> > > > > situations, like for implementing a policy, logs or for giving a chance
+> > > > > for the compositor to let the user know what app caused the problem.
+> > > > > This is an optional argument, when `PID=-1` there's no information about
+> > > > > the app caused the problem, or if any app was involved during the hang.
+> > > > > 
+> > > > > Sometimes just the PID isn't enough giving that the app might be already
+> > > > > dead by the time userspace will try to check what was this PID's name,
+> > > > > so to make the life easier also notify what's the app's name in the user
+> > > > > event.
+> > > > > 
+> > > > > Signed-off-by: André Almeida <andrealmeid@igalia.com>
+> 
+> [...]
+> 
+> > > > >    	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
+> > > > > @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+> > > > >    	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
+> > > > >    		 "but recovered through reset" : "needs recovery");
+> > > > > +	if (info) {
+> > > > > +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
+> > > > > +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
+> > > > > +	} else {
+> > > > > +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
+> > > > > +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
+> > > > > +	}
+> > > > This is not much use for wedge cases that needs recovery, since at that point
+> > > > the userspace will need to clean house anyway.
+> > > > 
+> > > > Which leaves us with only 'none' case and perhaps the need for standardization
+> > > > of "optional telemetry collection".
+> > > > 
+> > > > Thoughts?
+> > > 
+> > > I had the feeling that 'none' was already meant to be used for that. Do you
+> > > think we should move to another naming? Given that we didn't reach the merge
+> > > window yet we could potentially change that name without much damage.
+> > 
+> > No, I meant thoughts on possible telemetry data that the drivers might
+> > think is useful for userspace (along with PID) and can be presented in
+> > a vendor agnostic manner (just like wedged event).
+> 
+> I'm not if I agree that this will only be used for telemetry and for the
+> `none` use case. As stated by Xaver, there's use case to know which app
+> caused the device to get wedged (like switching to software rendering) and
+> to display something for the user after the recovery is done (e.g. "The game
+> <app name> stopped working and Plasma has reset").
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/display/xe_display.c       | 1 +
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 1 +
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 1 +
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 1 +
- drivers/gpu/drm/xe/display/xe_tdf.c           | 1 +
- drivers/gpu/drm/xe/xe_device_types.h          | 2 --
- 6 files changed, 5 insertions(+), 2 deletions(-)
+Sure, but since this information is already available in coredump, I was
+hoping to have something like a standardized DRM level coredump with both
+vendor specific and agnostic sections, which the drivers can (and hopefully
+transition to) use in conjunction with wedged event to provide wider
+telemetry and is useful for all wedge cases.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 258518e65bdc..ec4f31754256 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -20,6 +20,7 @@
- #include "intel_audio.h"
- #include "intel_bw.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_driver.h"
- #include "intel_display_irq.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 9d734a18cd36..f244a74a8a9a 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -6,6 +6,7 @@
- #include <drm/ttm/ttm_bo.h>
- 
- #include "i915_vma.h"
-+#include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index e47b8d1c95ab..5fccd091576c 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -8,6 +8,7 @@
- #include <linux/delay.h>
- 
- #include "abi/gsc_command_header_abi.h"
-+#include "intel_display_core.h"
- #include "intel_hdcp_gsc.h"
- #include "intel_hdcp_gsc_message.h"
- #include "xe_bo.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 4ca0cb571194..87774dee8b37 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -14,6 +14,7 @@
- #include "intel_atomic_plane.h"
- #include "intel_crtc.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_tdf.c b/drivers/gpu/drm/xe/display/xe_tdf.c
-index 2a7fccbeb1d5..2807bb1dbf97 100644
---- a/drivers/gpu/drm/xe/display/xe_tdf.c
-+++ b/drivers/gpu/drm/xe/display/xe_tdf.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include "xe_device.h"
-+#include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_tdf.h"
- 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 454975cd3327..f9b6572c78e0 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -32,8 +32,6 @@
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include "soc/intel_pch.h"
--#include "intel_display_core.h"
--#include "intel_display_device.h"
- #endif
- 
- struct xe_ggtt;
--- 
-2.39.5
+Would that serve the usecase here?
 
+Raag
