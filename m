@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DAE2A5BCB6
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 10:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1329A5BCB7
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Mar 2025 10:50:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C739D10E54D;
-	Tue, 11 Mar 2025 09:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDC910E55A;
+	Tue, 11 Mar 2025 09:50:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sqq8ivF6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SsgxExVg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9D610E55B;
- Tue, 11 Mar 2025 09:50:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA92710E55D;
+ Tue, 11 Mar 2025 09:50:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741686604; x=1773222604;
+ t=1741686606; x=1773222606;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x1wLjvXb1MarPI0GiaBIc2T4/JKfJO+Te9F1cFWo0BA=;
- b=Sqq8ivF6rweVO/SbLfn9NrOV2l2/lGDCF3LGH2zz0z1HFUk9+dnWcIGf
- tkPTyGdJvI+kuK1OPB/Aqb7VF1oISfOcsGkG3FZizsnyBfl8wGN7z1IP/
- M1vHtVJ7Me4YB+2OVWoH4FxnqoZZGssLI2Zere9RdXURs3rm1HKCzQotq
- WL9VtVKYzJsKHLV/0LMvAQG2w36ClmEaFXVzeRMEcVnq9rflPkPC+gWsI
- 3rJxgsuFkoLBgPKEdTheXN4fIJpXF42qW9d2+S/csz5sOiOe4q5lMRTmn
- mIzTnBlMO93TXVm6A3sgXzQkDWnM7gUxfJMNmihnMsQlHR+qLwJTEibeF g==;
-X-CSE-ConnectionGUID: 3O1lRmk9SvSgiN0IHYEcbQ==
-X-CSE-MsgGUID: la3EivaYQIyfogKxNhsWdg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45499817"
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="45499817"
+ bh=6dZ2OpBbtUUXXDeUeQ9msPYZevlCi12xW4A1jqA90FU=;
+ b=SsgxExVg+YCaAREawPzpXb2+h0jCqdiI2olUUeJqbuk3bnU+DoOpKU8I
+ B/LJkGxbQkbhfft/Gs3pExRiQg6NWxuYeEtKsOblF4OMq3IJiBgshyb2H
+ sgJkq+Cx9W7i7Gxj1ZaeF4bT2s06mozaEsxR7vEfymp0IaVLuaCSa7Pds
+ kjHD6QNBZRnPaMW9S0mCLVIZMKCFp5BUhXu/eYqQOeLKQm+Ge40MUHvlr
+ NSNm3D4/gMqdKdZ+ZKaLppX39lXpJ2F3GD5L0kcHMUF1+Kbti6+/ga/X2
+ OathF1JoC6iNw0QzRWHLrAGhpZ4CkO0L0H0rTchYqDJWyYLt9LE0JcoNP Q==;
+X-CSE-ConnectionGUID: t5NflHM5QUSKKvQZQHmBbg==
+X-CSE-MsgGUID: iD2m/2s3TVC1Q7B6+pBFtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11369"; a="45499819"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="45499819"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 02:50:04 -0700
-X-CSE-ConnectionGUID: 6141cJhHS7eMw8v1veBwoQ==
-X-CSE-MsgGUID: QB/0GgBeT3mEH2DSLjgOqw==
+ 11 Mar 2025 02:50:06 -0700
+X-CSE-ConnectionGUID: 654sOen6SLW5YdbO2S0CZA==
+X-CSE-MsgGUID: EU9Xo/xVTzuj5i2nPDvEHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="125319670"
+X-IronPort-AV: E=Sophos;i="6.14,238,1736841600"; d="scan'208";a="125319676"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2025 02:50:02 -0700
+ 11 Mar 2025 02:50:04 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [RESEND PATCH 7/8] drm/i915/vrr: Prepare for fixed refresh rate
- timings
-Date: Tue, 11 Mar 2025 15:07:50 +0530
-Message-ID: <20250311093751.1329043-8-ankit.k.nautiyal@intel.com>
+Subject: [RESEND PATCH 8/8] drm/i915/display: Enable MSA Ignore Timing PAR
+ only when in not fixed_rr mode
+Date: Tue, 11 Mar 2025 15:07:51 +0530
+Message-ID: <20250311093751.1329043-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250311093751.1329043-1-ankit.k.nautiyal@intel.com>
 References: <20250311093751.1329043-1-ankit.k.nautiyal@intel.com>
@@ -70,151 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we always compute the timings as if vrr is enabled.
-With this approach the state checker becomes complicated when we
-introduce fixed refresh rate mode with vrr timing generator.
+MSA Ignore Timing PAR enable is set in the DP sink when we enable variable
+refresh rate.
 
-To avoid the complications, instead of always computing vrr timings, we
-compute vrr timings based on uapi.vrr_enable knob.
-So when the knob is disabled we always compute vmin=flipline=vmax.
+Currently for link training we depend on flipline to decide whether we
+want to ignore the msa timings. With fixed refresh rate we will still
+fill the flipline in all cases whether panel supports VRR or not.
 
-v2: Use actual timings without any adjustments while preparing for
-fixed timings in compute_config. (Ville)
-v3: Avoid setting fixed timings if !vrr_possible().
-v4: Move vmin adjustement after all other timings are complete. (Ville)
+Change the condition for link training to ignore the msa timings if
+vrr.in_range.
+
+v2: Add more documentation and a #TODO for readout of vrr.in_range.
+(Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com> (#v2)
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 87 ++++++++++++++++++++++--
- 1 file changed, 82 insertions(+), 5 deletions(-)
+ .../gpu/drm/i915/display/intel_dp_link_training.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index e0573e28014b..622a70e21737 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -246,6 +246,72 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
- 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
- 
-+/*
-+ * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
-+ * Vtotal value.
-+ */
-+static
-+int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+
-+	if (DISPLAY_VER(display) >= 13)
-+		return crtc_vtotal;
-+	else
-+		return crtc_vtotal -
-+			intel_vrr_real_vblank_delay(crtc_state);
-+}
-+
-+static
-+int intel_vrr_fixed_rr_vmax(const struct intel_crtc_state *crtc_state)
-+{
-+	return intel_vrr_fixed_rr_vtotal(crtc_state);
-+}
-+
-+static
-+int intel_vrr_fixed_rr_vmin(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return intel_vrr_fixed_rr_vtotal(crtc_state) -
-+		intel_vrr_flipline_offset(display);
-+}
-+
-+static
-+int intel_vrr_fixed_rr_flipline(const struct intel_crtc_state *crtc_state)
-+{
-+	return intel_vrr_fixed_rr_vtotal(crtc_state);
-+}
-+
-+static
-+void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	if (!intel_vrr_possible(crtc_state))
-+		return;
-+
-+	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-+		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
-+	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-+		       intel_vrr_fixed_rr_vmax(crtc_state) - 1);
-+	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-+		       intel_vrr_fixed_rr_flipline(crtc_state) - 1);
-+}
-+
-+static
-+void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
-+{
-+	/*
-+	 * For fixed rr,  vmin = vmax = flipline.
-+	 * vmin is already set to crtc_vtotal set vmax and flipline the same.
-+	 */
-+	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+	crtc_state->vrr.flipline = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+}
-+
- static
- int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 2966f5b39392..ea225496a96e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -711,8 +711,21 @@ void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, b
+ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
+ 					    const struct intel_crtc_state *crtc_state)
  {
-@@ -314,6 +380,13 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 
- 	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
- 
-+	if (crtc_state->uapi.vrr_enabled)
-+		intel_vrr_compute_vrr_timings(crtc_state);
-+	else if (is_cmrr_frac_required(crtc_state) && is_edp)
-+		intel_vrr_compute_cmrr_timings(crtc_state);
-+	else
-+		intel_vrr_compute_fixed_rr_timings(crtc_state);
-+
- 	/*
- 	 * flipline determines the min vblank length the hardware will
- 	 * generate, and on ICL/TGL flipline>=vmin+1, hence we reduce
-@@ -321,11 +394,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	 */
- 	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
- 
--	if (crtc_state->uapi.vrr_enabled)
--		intel_vrr_compute_vrr_timings(crtc_state);
--	else if (is_cmrr_frac_required(crtc_state) && is_edp)
--		intel_vrr_compute_cmrr_timings(crtc_state);
--
- 	if (HAS_AS_SDP(display)) {
- 		crtc_state->vrr.vsync_start =
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
-@@ -496,6 +564,13 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
-+	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-+		       crtc_state->vrr.vmin - 1);
-+	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-+		       crtc_state->vrr.vmax - 1);
-+	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-+		       crtc_state->vrr.flipline - 1);
-+
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
- 		       TRANS_PUSH_EN);
- 
-@@ -523,6 +598,8 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 				TRANS_VRR_STATUS(display, cpu_transcoder),
- 				VRR_STATUS_VRR_EN_LIVE, 1000);
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
-+
-+	intel_vrr_set_fixed_rr_timings(old_crtc_state);
++	 /*
++	  * Currently, we set the MSA ignore bit based on vrr.in_range.
++	  * We can't really read that out during driver load since we don't have
++	  * the connector information read in yet. So if we do end up doing a
++	  * modeset during initial_commit() we'll clear the MSA ignore bit.
++	  * GOP likely wouldn't have set this bit so after the initial commit,
++	  * if there are no modesets and we enable VRR mode seamlessly
++	  * (without a full modeset), the MSA ignore bit might never get set.
++	  *
++	  * #TODO: Implement readout of vrr.in_range.
++	  * We need fastset support for setting the MSA ignore bit in DPCD,
++	  * especially on the first real commit when clearing the inherited flag.
++	  */
+ 	intel_dp_link_training_set_mode(intel_dp,
+-					crtc_state->port_clock, crtc_state->vrr.flipline);
++					crtc_state->port_clock, crtc_state->vrr.in_range);
  }
  
- static
+ void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
 -- 
 2.45.2
 
