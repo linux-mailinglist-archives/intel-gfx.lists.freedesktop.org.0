@@ -2,28 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C5CA5D754
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 08:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDE2A5D7A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 08:56:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0711A10E705;
-	Wed, 12 Mar 2025 07:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 663F110E730;
+	Wed, 12 Mar 2025 07:56:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51AC610E705;
- Wed, 12 Mar 2025 07:32:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3349546608697331903=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A31B10E73C;
+ Wed, 12 Mar 2025 07:56:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_VRR_Refactor_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Plane_Color_Pipeline?=
+ =?utf-8?q?_support_for_Intel_platforms_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: "Uma Shankar" <uma.shankar@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 07:32:36 -0000
-Message-ID: <174176475632.23331.13956009749647325912@18a75f3d1eae>
+Date: Wed, 12 Mar 2025 07:56:34 -0000
+Message-ID: <174176619442.23599.10798363240948727319@18a75f3d1eae>
 X-Patchwork-Hint: ignore
-References: <20250311093751.1329043-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250311093751.1329043-1-ankit.k.nautiyal@intel.com>
+References: <20250312072425.3099205-1-uma.shankar@intel.com>
+In-Reply-To: <20250312072425.3099205-1-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,495 +41,945 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3349546608697331903==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: VRR Refactor (rev2)
-URL   : https://patchwork.freedesktop.org/series/146126/
-State : success
+Series: Plane Color Pipeline support for Intel platforms (rev4)
+URL   : https://patchwork.freedesktop.org/series/129811/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16263 -> Patchwork_146126v2
-====================================================
+Error: dim checkpatch failed
+143840575449 drm: color pipeline base work
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
 
-Summary
--------
+-:669: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#669: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1243:
++__set_colorop_in_tf_1d_curve(struct dc_plane_state *dc_plane_state,
++		       struct drm_colorop_state *colorop_state)
 
-  **SUCCESS**
+-:749: CHECK:SPACING: No space is necessary after a cast
+#749: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1323:
++			ctm = blob ? (struct drm_color_ctm_3x4 *) blob->data : NULL;
 
-  No regressions found.
+-:753: CHECK:BRACES: Unbalanced braces around else statement
+#753: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1327:
++		} else
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/index.html
+-:803: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#803: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1377:
++	uint32_t shaper_size;
 
-Participating hosts (43 -> 43)
-------------------------------
+-:819: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#819: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1393:
++		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(colorop_state->curve_1d_type);
 
-  Additional (1): bat-arlh-2 
-  Missing    (1): fi-snb-2520m 
+-:847: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "shaper_lut"
+#847: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1421:
++		shaper_size = shaper_lut != NULL ? shaper_size : 0;
 
-Known issues
-------------
+-:868: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#868: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1442:
++				uint32_t drm_lut3d_size,
 
-  Here are the changes found in Patchwork_146126v2 that come from known issues:
+-:884: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#884: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1458:
++
++}
 
-### IGT changes ###
+-:899: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#899: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1473:
++	uint32_t lut3d_size;
 
-#### Issues hit ####
+-:920: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "lut3d"
+#920: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1494:
++		lut3d_size = lut3d != NULL ? lut3d_size : 0;
 
-  * igt@core_auth@basic-auth:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][1] ([i915#10462]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@core_auth@basic-auth.html
+-:949: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#949: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1523:
++	uint32_t blend_size;
 
-  * igt@debugfs_test@basic-hwmon:
-    - bat-arlh-2:         NOTRUN -> [SKIP][2] ([i915#11346] / [i915#9318])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@debugfs_test@basic-hwmon.html
+-:966: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#966: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1540:
++		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(colorop_state->curve_1d_type);
 
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][3] -> [INCOMPLETE][4] ([i915#12904]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-apl-1/igt@dmabuf@all-tests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-apl-1/igt@dmabuf@all-tests.html
+-:994: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "blend_lut"
+#994: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1568:
++		blend_size = blend_lut != NULL ? blend_size : 0;
 
-  * igt@fbdev@eof:
-    - bat-arlh-2:         NOTRUN -> [SKIP][5] ([i915#11345] / [i915#11346]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@fbdev@eof.html
+-:1013: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1013: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c:1630:
++amdgpu_dm_plane_set_colorop_properties(struct drm_plane_state *plane_state,
++		       struct dc_plane_state *dc_plane_state)
 
-  * igt@fbdev@info:
-    - bat-arlh-2:         NOTRUN -> [SKIP][6] ([i915#11346] / [i915#1849])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@fbdev@info.html
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] ([i915#1849])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@fbdev@info.html
+-:1177: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1177: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:64:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][8] ([i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][9] ([i915#2190])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
+-:1196: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1196: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:83:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@gem_lmem_swapping@basic:
-    - bat-arlh-2:         NOTRUN -> [SKIP][10] ([i915#10213] / [i915#11346] / [i915#11671]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_lmem_swapping@basic.html
+-:1207: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1207: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:94:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][11] ([i915#4613]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
+-:1212: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1212: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:99:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][12] ([i915#4613]) +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
+-:1223: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1223: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:110:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@gem_mmap@basic:
-    - bat-arlh-2:         NOTRUN -> [SKIP][13] ([i915#11343] / [i915#11346])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_mmap@basic.html
+-:1228: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1228: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:115:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@gem_render_tiled_blits@basic:
-    - bat-arlh-2:         NOTRUN -> [SKIP][14] ([i915#10197] / [i915#10211] / [i915#11346] / [i915#11725])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_render_tiled_blits@basic.html
+-:1241: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1241: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:128:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@gem_tiled_blits@basic:
-    - bat-arlh-2:         NOTRUN -> [SKIP][15] ([i915#11346] / [i915#12637]) +4 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_tiled_blits@basic.html
+-:1246: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1246: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:133:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@gem_tiled_pread_basic:
-    - bat-arlh-2:         NOTRUN -> [SKIP][16] ([i915#10206] / [i915#11346] / [i915#11724])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_tiled_pread_basic.html
+-:1259: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1259: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:146:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@i915_module_load@load:
-    - bat-arlh-2:         NOTRUN -> [SKIP][17] ([i915#11346]) +33 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_module_load@load.html
+-:1264: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1264: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:151:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][18] -> [FAIL][19] ([i915#13901])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][20] -> [FAIL][21] ([i915#13901])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+-:1276: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1276: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:163:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-arlh-2:         NOTRUN -> [SKIP][22] ([i915#10209] / [i915#11346] / [i915#11681])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_pm_rps@basic-api.html
+-:1281: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1281: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:168:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][23] -> [DMESG-FAIL][24] ([i915#12061] / [i915#12435])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arlh-3/igt@i915_selftest@live.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-3/igt@i915_selftest@live.html
-    - bat-arlh-2:         NOTRUN -> [DMESG-FAIL][25] ([i915#12061] / [i915#12435])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_selftest@live.html
+-:1294: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1294: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:181:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][26] -> [DMESG-FAIL][27] ([i915#12061])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arls-5:         [PASS][28] -> [DMESG-FAIL][29] ([i915#12061]) +1 other test dmesg-fail
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-arlh-2:         NOTRUN -> [DMESG-FAIL][30] ([i915#12061])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+-:1299: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*ops[i])...) over kzalloc(sizeof(struct drm_colorop)...)
+#1299: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:186:
++	ops[i] = kzalloc(sizeof(struct drm_colorop), GFP_KERNEL);
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-arlh-2:         NOTRUN -> [SKIP][31] ([i915#10200] / [i915#11346] / [i915#11666] / [i915#12203])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+-:1312: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#1312: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:199:
++	drm_colorop_set_next_property(ops[i-1], ops[i]);
+ 	                                   ^
 
-  * igt@kms_addfb_basic@basic-x-tiled-legacy:
-    - bat-arlh-2:         NOTRUN -> [SKIP][32] ([i915#10200] / [i915#11346] / [i915#11666]) +8 other tests skip
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_addfb_basic@basic-x-tiled-legacy.html
+-:1391: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around pipelines[len]
+#1391: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c:1801:
++	ret = amdgpu_dm_initialize_default_pipeline(plane, &(pipelines[len]));
 
-  * igt@kms_addfb_basic@too-high:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][33] ([i915#13903]) +2 other tests fail
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html
+-:1393: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#1393: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c:1803:
++		DRM_ERROR("Failed to create color pipeline for plane %d: %d\n", plane->base.id, ret);
 
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][34] +62 other tests skip
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][35] +10 other tests skip
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
+-:1476: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1476: FILE: drivers/gpu/drm/drm_atomic.c:591:
+ 
++
 
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][36] ([i915#13905])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html
+-:1533: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1533: FILE: drivers/gpu/drm/drm_atomic.c:780:
+ 
++
 
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-FAIL][37] ([i915#13905])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html
+-:1536: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1536: FILE: drivers/gpu/drm/drm_atomic.c:783:
++static void drm_atomic_colorop_print_state(struct drm_printer *p,
++		const struct drm_colorop_state *state)
 
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][38] ([i915#13904])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html
+-:1726: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1726: FILE: drivers/gpu/drm/drm_atomic_uapi.c:260:
+ 
++
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][39] -> [SKIP][40] ([i915#9197]) +3 other tests skip
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+-:1755: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1755: FILE: drivers/gpu/drm/drm_atomic_uapi.c:289:
++
++
 
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-arlh-2:         NOTRUN -> [SKIP][41] ([i915#10208] / [i915#11346] / [i915#8809])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_setmode@basic-clone-single-crtc.html
+-:1797: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1797: FILE: drivers/gpu/drm/drm_atomic_uapi.c:697:
++static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
++		struct drm_colorop_state *state,
 
-  * igt@prime_vgem@basic-fence-read:
-    - bat-arlh-2:         NOTRUN -> [SKIP][42] ([i915#10212] / [i915#11346] / [i915#11726])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-fence-read.html
+-:1829: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1829: FILE: drivers/gpu/drm/drm_atomic_uapi.c:729:
++static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
++		struct drm_colorop_state *state, struct drm_file *file_priv,
 
-  * igt@prime_vgem@basic-read:
-    - bat-arlh-2:         NOTRUN -> [SKIP][43] ([i915#10214] / [i915#11346] / [i915#11726])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-read.html
+-:1854: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1854: FILE: drivers/gpu/drm/drm_atomic_uapi.c:754:
++drm_atomic_colorop_get_property(struct drm_colorop *colorop,
++		const struct drm_colorop_state *state,
 
-  * igt@prime_vgem@basic-write:
-    - bat-arlh-2:         NOTRUN -> [SKIP][44] ([i915#10216] / [i915#11346] / [i915#11723])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-write.html
+-:1857: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#1857: FILE: drivers/gpu/drm/drm_atomic_uapi.c:757:
++	if (property == colorop->type_property) {
+[...]
++	} else if (property == colorop->bypass_property) {
+[...]
++	} else if (property == colorop->curve_1d_type_property) {
+[...]
++	} else if (property == colorop->multiplier_property) {
+[...]
++	} else if (property == colorop->lut_size_property) {
+[...]
++	} else if (property == colorop->lut3d_interpolation_property) {
+[...]
++	} else if (property == colorop->data_property) {
+[...]
++	} else {
+[...]
 
-  
-#### Possible fixes ####
+-:1892: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1892: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1051:
++		ret = drm_atomic_colorop_get_property(colorop,
++				colorop->state, property, val);
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][45] ([i915#12061]) -> [PASS][46] +1 other test pass
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+-:1922: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1922: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1270:
++		ret = drm_atomic_colorop_set_property(colorop,
++				colorop_state, file_priv,
 
-  
-  [i915#10197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197
-  [i915#10200]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200
-  [i915#10206]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206
-  [i915#10208]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208
-  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
-  [i915#10211]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211
-  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
-  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
-  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
-  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
-  [i915#10462]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462
-  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
-  [i915#11345]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11345
-  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
-  [i915#11666]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666
-  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
-  [i915#11724]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724
-  [i915#11725]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725
-  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12203
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12637]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12637
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13901]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13901
-  [i915#13903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903
-  [i915#13904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904
-  [i915#13905]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+-:2026: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2026: FILE: drivers/gpu/drm/drm_colorop.c:86:
++
++
+
+-:2080: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2080: FILE: drivers/gpu/drm/drm_colorop.c:140:
++		drm_object_attach_property(&colorop->base,
++					colorop->bypass_property,
+
+-:2192: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2192: FILE: drivers/gpu/drm/drm_colorop.c:252:
++
++
+
+-:2215: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2215: FILE: drivers/gpu/drm/drm_colorop.c:275:
++	prop = drm_property_create(dev, DRM_MODE_PROP_ATOMIC | DRM_MODE_PROP_BLOB,
++					"DATA", 0);
+
+-:2316: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2316: FILE: drivers/gpu/drm/drm_colorop.c:376:
++int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
++			      struct drm_plane *plane, bool allow_bypass)
+
+-:2341: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#2341: FILE: drivers/gpu/drm/drm_colorop.c:401:
++			   uint32_t lut_size,
+
+-:2410: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2410: FILE: drivers/gpu/drm/drm_colorop.c:470:
++
++
+
+-:2435: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2435: FILE: drivers/gpu/drm/drm_colorop.c:495:
++		drm_object_property_get_default_value(&colorop->base,
++						colorop->curve_1d_type_property,
+
+-:3127: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#3127: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:344:
++
++
+
+-:3202: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#3202: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:419:
++
++
+
+-:3222: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#3222: FILE: drivers/gpu/drm/vkms/tests/vkms_color_test.c:439:
++
++}
+
+-:3467: ERROR:SWITCH_CASE_INDENT_LEVEL: switch and case should be at the same indent
+#3467: FILE: drivers/gpu/drm/vkms/vkms_composer.c:167:
++		switch (colorop_state->curve_1d_type) {
++			case DRM_COLOROP_1D_CURVE_SRGB_INV_EOTF:
+[...]
++			case DRM_COLOROP_1D_CURVE_SRGB_EOTF:
+[...]
++			default:
+
+-:3469: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#3469: FILE: drivers/gpu/drm/vkms/vkms_composer.c:169:
++				pixel->r = apply_lut_to_channel_value(&srgb_inv_eotf, pixel->r, LUT_RED);
+
+-:3470: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#3470: FILE: drivers/gpu/drm/vkms/vkms_composer.c:170:
++				pixel->g = apply_lut_to_channel_value(&srgb_inv_eotf, pixel->g, LUT_GREEN);
+
+-:3471: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#3471: FILE: drivers/gpu/drm/vkms/vkms_composer.c:171:
++				pixel->b = apply_lut_to_channel_value(&srgb_inv_eotf, pixel->b, LUT_BLUE);
+
+-:3474: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#3474: FILE: drivers/gpu/drm/vkms/vkms_composer.c:174:
++				pixel->r = apply_lut_to_channel_value(&srgb_eotf, pixel->r, LUT_RED);
+
+-:3475: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#3475: FILE: drivers/gpu/drm/vkms/vkms_composer.c:175:
++				pixel->g = apply_lut_to_channel_value(&srgb_eotf, pixel->g, LUT_GREEN);
+
+-:3476: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#3476: FILE: drivers/gpu/drm/vkms/vkms_composer.c:176:
++				pixel->b = apply_lut_to_channel_value(&srgb_eotf, pixel->b, LUT_BLUE);
+
+-:3480: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#3480: FILE: drivers/gpu/drm/vkms/vkms_composer.c:180:
++				DRM_WARN_ONCE("unknown colorop 1D curve type %d\n",
++						colorop_state->curve_1d_type);
+
+-:3486: CHECK:SPACING: No space is necessary after a cast
+#3486: FILE: drivers/gpu/drm/vkms/vkms_composer.c:186:
++					 (struct drm_color_ctm_3x4 *) colorop_state->data->data);
+
+-:3491: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#3491: FILE: drivers/gpu/drm/vkms/vkms_composer.c:191:
++static void pre_blend_color_transform(const struct vkms_plane_state *plane_state,
++		struct line_buffer *output_buffer)
+
+-:4510: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4510: FILE: include/drm/drm_atomic.h:766:
+ 
++
+
+-:4524: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#4524: FILE: include/drm/drm_atomic.h:780:
++drm_atomic_get_existing_colorop_state(struct drm_atomic_state *state,
++				    struct drm_colorop *colorop)
+
+-:4539: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#4539: FILE: include/drm/drm_atomic.h:795:
++drm_atomic_get_old_colorop_state(struct drm_atomic_state *state,
++			       struct drm_colorop *colorop)
+
+-:4554: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#4554: FILE: include/drm/drm_atomic.h:810:
++drm_atomic_get_new_colorop_state(struct drm_atomic_state *state,
++			       struct drm_colorop *colorop)
+
+-:4588: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#4588: FILE: include/drm/drm_atomic.h:1077:
++#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
+
+-:4588: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#4588: FILE: include/drm/drm_atomic.h:1077:
++#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;		\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4588: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#4588: FILE: include/drm/drm_atomic.h:1077:
++#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;		\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4588: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'colorop' - possible side-effects?
+#4588: FILE: include/drm/drm_atomic.h:1077:
++#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;		\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4588: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#4588: FILE: include/drm/drm_atomic.h:1077:
++#define for_each_oldnew_colorop_in_state(__state, colorop, old_colorop_state, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;		\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (old_colorop_state) = (__state)->colorops[__i].old_state,\
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4592: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#4592: FILE: include/drm/drm_atomic.h:1081:
++		for_each_if ((__state)->colorops[__i].ptr &&		\
+
+-:4598: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4598: FILE: include/drm/drm_atomic.h:1087:
++
++
+
+-:4610: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#4610: FILE: include/drm/drm_atomic.h:1099:
++#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;	\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4610: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__state' - possible side-effects?
+#4610: FILE: include/drm/drm_atomic.h:1099:
++#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;	\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4610: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'colorop' - possible side-effects?
+#4610: FILE: include/drm/drm_atomic.h:1099:
++#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;	\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4610: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#4610: FILE: include/drm/drm_atomic.h:1099:
++#define for_each_new_colorop_in_state(__state, colorop, new_colorop_state, __i) \
++	for ((__i) = 0;							\
++	     (__i) < (__state)->dev->mode_config.num_colorop;	\
++	     (__i)++)							\
++		for_each_if ((__state)->colorops[__i].ptr &&		\
++			     ((colorop) = (__state)->colorops[__i].ptr,	\
++			      (void)(colorop) /* Only to avoid unused-but-set-variable warning */, \
++			      (new_colorop_state) = (__state)->colorops[__i].new_state, 1))
+
+-:4614: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#4614: FILE: include/drm/drm_atomic.h:1103:
++		for_each_if ((__state)->colorops[__i].ptr &&		\
+
+-:4682: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4682: FILE: include/drm/drm_colorop.h:34:
++
++
+
+-:4768: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4768: FILE: include/drm/drm_colorop.h:120:
++
++
+
+-:4790: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#4790: FILE: include/drm/drm_colorop.h:142:
++	uint64_t multiplier;
+
+-:4920: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#4920: FILE: include/drm/drm_colorop.h:272:
++	uint32_t lut_size;
+
+-:4995: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4995: FILE: include/drm/drm_colorop.h:347:
++
++
+
+-:4997: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4997: FILE: include/drm/drm_colorop.h:349:
++
++
+
+-:5009: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#5009: FILE: include/drm/drm_colorop.h:361:
++static inline struct drm_colorop *drm_colorop_find(struct drm_device *dev,
++		struct drm_file *file_priv,
+
+-:5030: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#5030: FILE: include/drm/drm_colorop.h:382:
++int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
++			      struct drm_plane *plane, bool allow_bypass);
+
+-:5033: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#5033: FILE: include/drm/drm_colorop.h:385:
++			   uint32_t lut_size,
+
+-:5064: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#5064: FILE: include/drm/drm_colorop.h:416:
++
++
+
+-:5085: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#5085: FILE: include/drm/drm_colorop.h:437:
++const char *drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_type type);
+
+-:5086: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#5086: FILE: include/drm/drm_colorop.h:438:
++const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
+
+-:5133: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#5133: FILE: include/drm/drm_fixed.h:97:
++
++}
+
+-:5372: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 4 errors, 14 warnings, 76 checks, 5101 lines checked
+b80900e1285f drm: Add support for 3x3 CTM
+b062719c032c drm: Add Enhanced LUT precision structure
+c8420a7899f0 drm: Add Color lut range attributes
+2426a3959abb drm: Add Color ops capability property
+427cafe7b20c drm: Add 1D LUT multi-segmented color op
+-:23: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#23: FILE: drivers/gpu/drm/drm_atomic.c:804:
++		drm_printf(p, "\thw cap blob id=%d\n", state->hw_caps ? state->hw_caps->base.id : 0);
+
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
+d10fa0f1b486 drm: Define helper to initialize segmented 1D LUT
+fd8dce2f2807 drm/i915: Add identifiers for intel color blocks
+3e9e93c72c25 drm/i915: Add intel_color_op
+-:19: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#19: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1530:
++#define intel_fb_obj(x) ((x) ? to_intel_bo((x)->obj[0]) : NULL)
+
+total: 0 errors, 0 warnings, 1 checks, 31 lines checked
+695c45cfbb48 drm/i915/color: Add helper to create intel colorop
+22a2f0684a93 drm/i915/color: Create a transfer function color pipeline
+5b4a3318c16c drm/i915/color: Add and attach COLORPIPELINE plane property
+943b8dee9574 drm/i915/color: Add framework to set colorop
+5eff15398692 drm/i915/color: Add callbacks to set plane CTM
+28dfdb9b3650 drm/i915/color: Add new color callbacks for Xelpd
+aa0afea34da2 drm/i915/color: Add plane CTM callback for D13 and beyond
+65176f77e4fa drm/i915: Add register definitions for Plane Degamma
+-:35: ERROR:CODE_INDENT: code indent should use tabs where possible
+#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_1_B)$
+
+-:35: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#35: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_1_B)$
+
+-:37: ERROR:CODE_INDENT: code indent should use tabs where possible
+#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2_B)$
+
+-:37: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2_B)$
+
+-:38: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#38: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
++#define PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, i)   \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \
++               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:39: ERROR:CODE_INDENT: code indent should use tabs where possible
+#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \$
+
+-:39: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_ENH_1(pipe), \$
+
+-:40: ERROR:CODE_INDENT: code indent should use tabs where possible
+#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
++               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))$
+
+-:40: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
++               _PLANE_PRE_CSC_GAMC_INDEX_ENH_2(pipe))$
+
+-:48: ERROR:CODE_INDENT: code indent should use tabs where possible
+#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
++                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_1_B)$
+
+-:48: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#48: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
++                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_1_B)$
+
+-:50: ERROR:CODE_INDENT: code indent should use tabs where possible
+#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
++                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_2_B)$
+
+-:50: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#50: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
++                                               _PLANE_PRE_CSC_GAMC_DATA_ENH_2_B)$
+
+-:51: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:318:
++#define PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, i)    \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \
++               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:52: ERROR:CODE_INDENT: code indent should use tabs where possible
+#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \$
+
+-:52: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_ENH_1(pipe), \$
+
+-:53: ERROR:CODE_INDENT: code indent should use tabs where possible
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
++               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))$
+
+-:53: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:320:
++               _PLANE_PRE_CSC_GAMC_DATA_ENH_2(pipe))$
+
+-:60: ERROR:CODE_INDENT: code indent should use tabs where possible
+#60: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_1_B)$
+
+-:60: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#60: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:327:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_1_B)$
+
+-:62: ERROR:CODE_INDENT: code indent should use tabs where possible
+#62: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_2_B)$
+
+-:62: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#62: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
++                                               _PLANE_PRE_CSC_GAMC_INDEX_2_B)$
+
+-:63: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:330:
++#define PLANE_PRE_CSC_GAMC_INDEX(pipe, plane, i)       \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \
++               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))
+
+-:64: ERROR:CODE_INDENT: code indent should use tabs where possible
+#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \$
+
+-:64: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_INDEX_1(pipe), \$
+
+-:65: ERROR:CODE_INDENT: code indent should use tabs where possible
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
++               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))$
+
+-:65: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:332:
++               _PLANE_PRE_CSC_GAMC_INDEX_2(pipe))$
+
+-:72: ERROR:CODE_INDENT: code indent should use tabs where possible
+#72: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
++                                               _PLANE_PRE_CSC_GAMC_DATA_1_B)$
+
+-:72: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#72: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:339:
++                                               _PLANE_PRE_CSC_GAMC_DATA_1_B)$
+
+-:74: ERROR:CODE_INDENT: code indent should use tabs where possible
+#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
++                                               _PLANE_PRE_CSC_GAMC_DATA_2_B)$
+
+-:74: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#74: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
++                                               _PLANE_PRE_CSC_GAMC_DATA_2_B)$
+
+-:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:342:
++#define PLANE_PRE_CSC_GAMC_DATA(pipe, plane, i)        \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \
++               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))
+
+-:76: ERROR:CODE_INDENT: code indent should use tabs where possible
+#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \$
+
+-:76: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_PRE_CSC_GAMC_DATA_1(pipe), \$
+
+-:77: ERROR:CODE_INDENT: code indent should use tabs where possible
+#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
++               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))$
+
+-:77: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:344:
++               _PLANE_PRE_CSC_GAMC_DATA_2(pipe))$
+
+total: 16 errors, 16 warnings, 4 checks, 65 lines checked
+bd6f18ba5d50 drm/i915/color: Add framework to program PRE/POST CSC LUT
+f2a1e8d0a761 drm/i915: Add register definitions for Plane Post CSC
+-:24: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#24: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:301:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe)    _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_A, \
+
+-:25: ERROR:CODE_INDENT: code indent should use tabs where possible
+#25: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_B)$
+
+-:25: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#25: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:302:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1_B)$
+
+-:26: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#26: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:303:
++#define _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe)    _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_A, \
+
+-:27: ERROR:CODE_INDENT: code indent should use tabs where possible
+#27: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_B)$
+
+-:27: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#27: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:304:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2_B)$
+
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:305:
++#define PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, i)     \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \
++               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))
+
+-:29: ERROR:CODE_INDENT: code indent should use tabs where possible
+#29: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \$
+
+-:29: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#29: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:306:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_1(pipe), \$
+
+-:30: ERROR:CODE_INDENT: code indent should use tabs where possible
+#30: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
++               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))$
+
+-:30: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#30: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:307:
++               _PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH_2(pipe))$
+
+-:36: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#36: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:313:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe)     _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_A, \
+
+-:37: ERROR:CODE_INDENT: code indent should use tabs where possible
+#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:314:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_B)$
+
+-:37: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#37: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:314:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1_B)$
+
+-:38: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#38: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:315:
++#define _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe)     _PIPE(pipe, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_A, \
+
+-:39: ERROR:CODE_INDENT: code indent should use tabs where possible
+#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_B)$
+
+-:39: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#39: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:316:
++                                                       _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2_B)$
+
+-:40: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:317:
++#define PLANE_POST_CSC_GAMC_SEG0_DATA_ENH(pipe, plane, i)      \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \
++               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))
+
+-:41: ERROR:CODE_INDENT: code indent should use tabs where possible
+#41: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:318:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \$
+
+-:41: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#41: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:318:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_1(pipe), \$
+
+-:42: ERROR:CODE_INDENT: code indent should use tabs where possible
+#42: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
++               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))$
+
+-:42: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#42: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:319:
++               _PLANE_POST_CSC_GAMC_SEG0_DATA_ENH_2(pipe))$
+
+-:49: ERROR:CODE_INDENT: code indent should use tabs where possible
+#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:326:
++                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_1_B)$
+
+-:49: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:326:
++                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_1_B)$
+
+-:51: ERROR:CODE_INDENT: code indent should use tabs where possible
+#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:328:
++                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_2_B)$
+
+-:51: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#51: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:328:
++                                               _PLANE_POST_CSC_GAMC_INDEX_ENH_2_B)$
+
+-:52: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:329:
++#define PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, i)  \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \
++               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))
+
+-:53: ERROR:CODE_INDENT: code indent should use tabs where possible
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:330:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \$
+
+-:53: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#53: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:330:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_ENH_1(pipe), \$
+
+-:54: ERROR:CODE_INDENT: code indent should use tabs where possible
+#54: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
++               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))$
+
+-:54: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#54: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:331:
++               _PLANE_POST_CSC_GAMC_INDEX_ENH_2(pipe))$
+
+-:61: ERROR:CODE_INDENT: code indent should use tabs where possible
+#61: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++                                               _PLANE_POST_CSC_GAMC_DATA_ENH_1_B)$
+
+-:61: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#61: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:338:
++                                               _PLANE_POST_CSC_GAMC_DATA_ENH_1_B)$
+
+-:63: ERROR:CODE_INDENT: code indent should use tabs where possible
+#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:340:
++                                               _PLANE_POST_CSC_GAMC_DATA_ENH_2_B)$
+
+-:63: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#63: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:340:
++                                               _PLANE_POST_CSC_GAMC_DATA_ENH_2_B)$
+
+-:64: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#64: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:341:
++#define PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, i)   \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \
++               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))
+
+-:65: ERROR:CODE_INDENT: code indent should use tabs where possible
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:342:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \$
+
+-:65: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#65: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:342:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_ENH_1(pipe), \$
+
+-:66: ERROR:CODE_INDENT: code indent should use tabs where possible
+#66: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
++               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))$
+
+-:66: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#66: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:343:
++               _PLANE_POST_CSC_GAMC_DATA_ENH_2(pipe))$
+
+-:73: ERROR:CODE_INDENT: code indent should use tabs where possible
+#73: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:350:
++                                               _PLANE_POST_CSC_GAMC_INDEX_1_B)$
+
+-:73: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#73: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:350:
++                                               _PLANE_POST_CSC_GAMC_INDEX_1_B)$
+
+-:75: ERROR:CODE_INDENT: code indent should use tabs where possible
+#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:352:
++                                               _PLANE_POST_CSC_GAMC_INDEX_2_B)$
+
+-:75: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#75: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:352:
++                                               _PLANE_POST_CSC_GAMC_INDEX_2_B)$
+
+-:76: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#76: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:353:
++#define PLANE_POST_CSC_GAMC_INDEX(pipe, plane, i)      \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \
++               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))
+
+-:77: ERROR:CODE_INDENT: code indent should use tabs where possible
+#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:354:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \$
+
+-:77: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#77: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:354:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_INDEX_1(pipe), \$
+
+-:78: ERROR:CODE_INDENT: code indent should use tabs where possible
+#78: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:355:
++               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))$
+
+-:78: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#78: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:355:
++               _PLANE_POST_CSC_GAMC_INDEX_2(pipe))$
+
+-:85: ERROR:CODE_INDENT: code indent should use tabs where possible
+#85: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:362:
++                                               _PLANE_POST_CSC_GAMC_DATA_1_B)$
+
+-:85: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#85: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:362:
++                                               _PLANE_POST_CSC_GAMC_DATA_1_B)$
+
+-:87: ERROR:CODE_INDENT: code indent should use tabs where possible
+#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:364:
++                                               _PLANE_POST_CSC_GAMC_DATA_2_B)$
+
+-:87: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#87: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:364:
++                                               _PLANE_POST_CSC_GAMC_DATA_2_B)$
+
+-:88: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#88: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:365:
++#define PLANE_POST_CSC_GAMC_DATA(pipe, plane, i)       \
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \
++               _PLANE_POST_CSC_GAMC_DATA_2(pipe))
+
+-:89: ERROR:CODE_INDENT: code indent should use tabs where possible
+#89: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:366:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \$
+
+-:89: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#89: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:366:
++               _MMIO_PLANE_GAMC(plane, i, _PLANE_POST_CSC_GAMC_DATA_1(pipe), \$
+
+-:90: ERROR:CODE_INDENT: code indent should use tabs where possible
+#90: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:367:
++               _PLANE_POST_CSC_GAMC_DATA_2(pipe))$
+
+-:90: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#90: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:367:
++               _PLANE_POST_CSC_GAMC_DATA_2(pipe))$
+
+total: 24 errors, 28 warnings, 6 checks, 79 lines checked
+56b161846bcb drm/i915/color: Program Pre-CSC registers
+dd143ec63827 drm/i915/xelpd: Program Plane Post CSC Registers
+36b342af12b4 drm/i915/color: Enable Plane Color Pipelines
+0938c1ff3e6f drm/doc/rfc: Add documentation for multi-segmented 1D LUT
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16263 -> Patchwork_146126v2
-
-  CI-20190529: 20190529
-  CI_DRM_16263: f8df428b3850ed87a1e2f3b12b6025328d8a6373 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_146126v2: f8df428b3850ed87a1e2f3b12b6025328d8a6373 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/index.html
-
---===============3349546608697331903==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>VRR Refactor (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146126/">https://patchwork.freedesktop.org/series/146126/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16263 -&gt; Patchwork_146126v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/index.html</p>
-<h2>Participating hosts (43 -&gt; 43)</h2>
-<p>Additional (1): bat-arlh-2 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_146126v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462">i915#10462</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@debugfs_test@basic-hwmon.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318">i915#9318</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11345">i915#11345</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213">i915#10213</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671">i915#11671</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343">i915#11343</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197">i915#10197</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211">i915#10211</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725">i915#11725</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12637">i915#12637</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206">i915#10206</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724">i915#11724</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>) +33 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13901">i915#13901</a>)</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13901">i915#13901</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209">i915#10209</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200">i915#10200</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666">i915#11666</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12203">i915#12203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-x-tiled-legacy:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_addfb_basic@basic-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200">i915#10200</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666">i915#11666</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-high:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903">i915#13903</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +62 other tests skip</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904">i915#13904</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208">i915#10208</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809">i915#8809</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212">i915#10212</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726">i915#11726</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214">i915#10214</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726">i915#11726</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-arlh-2/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723">i915#11723</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16263/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146126v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16263 -&gt; Patchwork_146126v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16263: f8df428b3850ed87a1e2f3b12b6025328d8a6373 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8270: 49751c5c11723262ec66e564c76503f74a9fa831 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_146126v2: f8df428b3850ed87a1e2f3b12b6025328d8a6373 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3349546608697331903==--
