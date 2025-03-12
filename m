@@ -2,169 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368B2A5E4DC
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 20:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AED5CA5E4FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 21:06:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61C6B10E165;
-	Wed, 12 Mar 2025 19:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47E3910E1AD;
+	Wed, 12 Mar 2025 20:06:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MJpwCxmn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DXdOLwkd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5073F10E165;
- Wed, 12 Mar 2025 19:57:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC3CB10E6B0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 20:06:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741809464; x=1773345464;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=/CGBZc0w5xqY6hEHD5gelpmyO5VP/rJt4H2bfc1I7o8=;
- b=MJpwCxmn7K0vDdQmVnrFTO5jV4K9mFbslYceWGdsTuPl0wVD7SlsAtjQ
- PNqdocxTXHSpA9iAfiWWTvNFktxoZPuq3OhKIKzHbNf6P9zniAMSrme87
- OIO0mdVjUrGetZxpd4URtgB31lVeKl40vik0NlOlC+Kx9DXaEFXmd3eiE
- Ka/loy3KnWunHCWc9MXQbgRj0PD9JxC/Fcn8J5URAGbRuWTvzjLxOCMiU
- vkJx30OIFr1XxXXsIeVbmkeyIo7pXKS8KTmBrI3U2LaiPnDnuHGl7hm98
- H0LJngOgwImepcB7773GpvqXlD+93L3lE3qZIy4c7yFttvWc/m0eJrmZc A==;
-X-CSE-ConnectionGUID: jDn7/c0lSZ2XEu7NV4WZBA==
-X-CSE-MsgGUID: S7Notd+kS3244W5kFwVKPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="60305311"
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="60305311"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 12:57:44 -0700
-X-CSE-ConnectionGUID: 1sNHIR3mRzSIbd596LJEgA==
-X-CSE-MsgGUID: g7hnYsQlQuugNSw2qWsauQ==
+ t=1741809987; x=1773345987;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=0TW7UvQkCWkexakTA7U4bCrkr4nZFt4nxXaUAJnfK5c=;
+ b=DXdOLwkd0Xe4sr7Yj9FDW81ZdvCngLL71nRR6d5i97UaXJ4cjn4km2te
+ IfwWwAvtUrmu0ArLEiLRMN0h3CibQ4hWTDS/fhdj5huDcIbSvN1L0oknC
+ Afrdv5I7Z4Kvy521T5jH8q2mm2V5TO1svNRsXXMxbIQ6tDeIGOOZfJoTn
+ 38U4MW/XDNAIj0+PXGL3WQd51Ztabh4Zvb6YrOSlOr3OSJBEYM/p5hNBz
+ 8W9aU3RP50DqNntTMhBhBoZ5+TJcgFCu2inl5OfQOrSdy02aWniH+Rnnn
+ RxiR6lLlsRNfQxZY0FPWlyFCaAqtJRzMaleY4k5HeYuZOPAHMoGMlHqEm Q==;
+X-CSE-ConnectionGUID: PikNVPD4Rd2CouhcbE1xdw==
+X-CSE-MsgGUID: Dc61xLBFQDi7PyYg7S4aHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="42769318"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="42769318"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 13:06:27 -0700
+X-CSE-ConnectionGUID: /T9kSZF0R16bgNRA4Vf0yg==
+X-CSE-MsgGUID: mT90ZtSGSieTIMdl5r16ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="120542831"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Mar 2025 12:57:44 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 12 Mar 2025 12:57:43 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 12 Mar 2025 12:57:43 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 12 Mar 2025 12:57:43 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IjhAUDZWf37RnaB6oJKAbcUsdTp1MFdRamsG0PB3j3LxGgqAYdDfJm+3dwq2XEh8Nhb7BsvaJNc1cb3xYj9gQ9QKvRV/TGKjg7zwZlxwcQxFzFrHtEu65LgNkrSaqfmaBpD1POV5R7IjR3eXhT+YH4g5fQPYk4Ode2dZilbf871vQzu9+JL46F+rip4vONA2rPEVS7Hl1HxIkAOVddEDue9mzJBT/Ne2ZmEBw5uvbJO0kXnfMxXauBG8RVKs8Epgp3sbE6XVwTVuMh39ROD6Sflv4Vo5bSVNh1PqTEI+++e4WYLen7dgyPiiSRVyS90VnmE3GqulhOYcprUkOqiWbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=huVwa3rKqP4g29T1i3wjJEjQ4t5Ak43PsGJdI/v0skM=;
- b=KUdqGo8BBnkMaSZmyCcinaYbMu7xf16I06Aq6jhxxMkzbu8zM7WkOdSilAAsjoo0RmP4GdCSRvz5HmNddA9V4OBkrp/mYw15MljTsSgHl62dHuMVmSH4Z9KOnMGC7CG2MWqxPRZfMa+tK6FxemDTh98YSneWmuOkOqXziVhlig38AOCHWBrkbaAMWQhsmzwhECgCp4+TAC0U0VZcTUZEO/+NaBYrpHmMPczSwuUN3OGCmXuVrGnLjBFP4wvVX9tRFz+UjxsoeCoKIree1T3/MJ8dQfM7FQ0IdOmQdL9sX+H0bqXQOq4u6VwjqpAq8UqhhwYoPZwNeL/OuykkZe9p5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by DM3PR11MB8715.namprd11.prod.outlook.com (2603:10b6:0:1e::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8511.27; Wed, 12 Mar 2025 19:57:36 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%4]) with mapi id 15.20.8511.026; Wed, 12 Mar 2025
- 19:57:35 +0000
-Date: Wed, 12 Mar 2025 15:57:32 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <imre.deak@intel.com>, <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 4/6] drm/i915/display: convert to display runtime PM
- interfaces
-Message-ID: <Z9HnLPyGAtz6Z0G6@intel.com>
-References: <cover.1741694400.git.jani.nikula@intel.com>
- <9888586a1e2b479ddef6519818bdb170f7b037d2.1741694400.git.jani.nikula@intel.com>
- <Z9CghEcsFEmCPipt@intel.com> <87msdqfs0x.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87msdqfs0x.fsf@intel.com>
-X-ClientProxiedBy: MW4PR03CA0066.namprd03.prod.outlook.com
- (2603:10b6:303:b6::11) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="120775672"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 13:06:26 -0700
+Date: Wed, 12 Mar 2025 22:06:25 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Naladala, Ramanaidu" <Ramanaidu.naladala@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v5] drm/i915/dmc: Create debugfs entry for dc6 counter
+Message-ID: <Z9HpQSrfoaRm0m30@ideak-desk.fi.intel.com>
+References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
+ <20250312144310.7610-1-mohammed.thasleem@intel.com>
+ <Z9GjYgbLPQA0ZM9b@ideak-desk.fi.intel.com>
+ <29cd2d2d-5c10-4188-82e7-be83590426a1@intel.com>
+ <Z9HXKtt30--kwB2Q@ideak-desk.fi.intel.com>
+ <040232c9-1928-4324-a05f-07a879848734@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DM3PR11MB8715:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e8a003b-d3bb-45bb-d31f-08dd61a02264
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WasLXrXAz+nazeHjRe1EYTXAbNrKyqri+Si4t4AerU+iZvtjhPxnW+4ilNJ/?=
- =?us-ascii?Q?trs6//ki9xwzL99lB391qMhMzwbuLpOMuknmCq4HZx6wOuwrn1K8+3F3mStw?=
- =?us-ascii?Q?BeUFkMqoFdiyFP4qhMpwTCp7yEwMCvLtC6ffdtsSBX/+FLf+Grc5er+HUC2q?=
- =?us-ascii?Q?P6FHN208c0HuIFbzxe46n5aGElRemBnR6lUC5mGkyk0+QDH6PLEJCFhUd1c/?=
- =?us-ascii?Q?l48ZfK4hE3W2VyVoT+y1i4Cf6he8oMmdopI8R4NTR3hIGoQb6qu0dkJq03W+?=
- =?us-ascii?Q?oqc4/IVuxacEp1OxrulRpCLQ9GjPxC/nBTwVr6pINTanpdQDlrLYnmVHisHP?=
- =?us-ascii?Q?2wIEH05wEWsxQWgOZjQT35d4C2/PtE0FJkdhErhobOv+ulqgngWA5uyKZ0/c?=
- =?us-ascii?Q?37W/Ae4l/0pNwIIJ86Fo5sjpzu1+drgUZKLYhTfqPRVJ2rVlwApFnFNtlmuG?=
- =?us-ascii?Q?vFNkMbTLxhSpDeThtWBNapB4VwxRD5QKtXbWUyytcexqHCgCheMv/lldB+DH?=
- =?us-ascii?Q?2ovexI53/xQU5ie72FxWCkaO5f8okIxvjpcjtF2eYeBacIWqvSWnOvHywSFD?=
- =?us-ascii?Q?v/mFQVT0zlmN1DKZOzCiom8XrOhsmInMFoslSF7psRf/ep/uudKzkeGecTMk?=
- =?us-ascii?Q?qJgAsJ+wEHNsJjnFdRvb+4M31TDnWGufTcffi1eaEV2wVCBm7PRY/+h4OfjI?=
- =?us-ascii?Q?DtcGGrAyivxUnUDXDGMqk7kkxa2MAwoMgoAd6ikVj/lWXHVHhvykc9qbfCIl?=
- =?us-ascii?Q?q8s63/2KKJmx/o2+CriyNfz3HvTgzkdVcM7Vm6azCKHWU7hUOgMlIK10X24s?=
- =?us-ascii?Q?M+JsEdchyfP+bueA2IczGvHcjrR/WFz27KqA3BCZkVtPgGjthn+moAZmTqzF?=
- =?us-ascii?Q?14psMpc5nEbIZ/rzU7SR+XcQLj89hlyYn6fmao8bmSut2ivf0F9kPk4TSyfJ?=
- =?us-ascii?Q?Ry515dwR7xfslwE3GKDo3xTr5O/NLek22IynywU3jTuRQ6KrYPZbD3badR4D?=
- =?us-ascii?Q?2tFYr1FwdEfORy5u40fxDhVntGcYYqQEBUd9Hj1yDMAO66uYALUa/GaVqEjn?=
- =?us-ascii?Q?WGboj1G9NrzPbESmWYnTJrSK9q4gi3BwjtXfPdeGCdgFWcwp7iArsqhOjQLE?=
- =?us-ascii?Q?0yB9C0xDZOQFpq3TdHa2qcr3l8JX4RChc2j0ajYFLPcEPJ+4Fc9v6Qcp2D95?=
- =?us-ascii?Q?N66lR8/bKu0O85DH7Di9HgxZDT+jyjDgHvOKQ3kkgMrcI10kY4zkpq/FWs79?=
- =?us-ascii?Q?dqK54SBIi50LY2rL0UJPFvp2TtpIFv5V/dgUJmzLD2maLqOI+DAsRNPoa/pO?=
- =?us-ascii?Q?c8GFYnznGMNvlqPl/IfoiKRCP8BXb6tm4n3PLU13lQIFR0iDajNcnA/GznI4?=
- =?us-ascii?Q?kxIBvHeRgyqv4bb5ovCPr/5A5D8n?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7J9jteP9cwop/hUJqYRfFVflE+f48KG9jp/j1AQfPi7r06g88JuovNAeZfcr?=
- =?us-ascii?Q?TCwLh1+sOd6uLArVwGe1+PfQrppwGpVPTMfdHnzlPGhi8Cd3nS1ZewI2vPVJ?=
- =?us-ascii?Q?emGR2Z40sKaTyQuRKl65G9SqG/Cv79nsyiYn1zGJ9Jfed7KK//gLLVAxfH0Y?=
- =?us-ascii?Q?XVLsC6emk91UNagJitYE9iv0Eg1x5VaPK3YhsACT8zD2szY//+s6dSsnGDqz?=
- =?us-ascii?Q?Ho2QDb/1MH5kphgzLU4qhZ8pI0OvcI7Ctzpc8/aJdy5TOPcSZTkvcP6TV6i6?=
- =?us-ascii?Q?H6Lmcw3z4pA3GALVuJ14T/BBpajWyuxaL/QfG2FPmpdjLzlD8YhrYsaWMBnX?=
- =?us-ascii?Q?kqyhQUXs+F62klY6th6Cu9z1qnjPS0zQzAbWiR/b3yTYQTmnWYA2eZCQVNSr?=
- =?us-ascii?Q?HKtCijq9LoRniEyELxnIo4rw3ll3DGdV1dorCr4BiXi8ylHgGB2uNtF8dAuw?=
- =?us-ascii?Q?yy89BsK8Pdwf6WlQq6i+ioumBkNEVQUuQUuTOLRTW8o4CqOEhca5H56XEiMs?=
- =?us-ascii?Q?CoJZ0UzO2F3Yd2xci96fG7mlMlrUWNvR48Xsxj4YQrUki2j4lwZ9xinXg3gR?=
- =?us-ascii?Q?C4nm7BwtYj/fLdO2M/m6XWjEdRwTs1swB9dVMtUebuIdtMT+frRsWJ5mEGkM?=
- =?us-ascii?Q?y6q/K3HI3BGPaDaCdRQ4FVSfNhgj3bgwsTLMbi48sosQZEfv4qAhzBSmFFTZ?=
- =?us-ascii?Q?AUY6LWPLRFKMPUATCQBcXxdBgWH/hP1cmOw983sPCk9ji5mKjUgFPpvS7W5D?=
- =?us-ascii?Q?5FRbYeVaELBqewqyCfKvxBW3EnTrtlFYmSIKnzyUC1CXpdZBzcvnyQEIxcc3?=
- =?us-ascii?Q?lAWh1flwL5kZ9/pxcV6c+NpYQOjr970Nqps9n2A0gMMUU8e7Wo0Ou3SI2psM?=
- =?us-ascii?Q?8Y3p6dhoNSWSrDusTlIGVGApo3hSF0MXsVhD5ribTyOzvUE5uEfFYyQB+WYT?=
- =?us-ascii?Q?mCUlaWy8j8GkU766Edd35Hk9vlsDCxWZpbL+lniKbOV065DO73UQN748aM/t?=
- =?us-ascii?Q?WqQwaPwFrShEp66mclor6vjGctH7R0F3k0xCJ4BujF2N/VHNbnKKtaq9TPWe?=
- =?us-ascii?Q?IYlzLpxWspq0FEEW+nvDgUXBRZA7d0HFSej7YaEvGNZBlJWSNBN/7o7hr6Da?=
- =?us-ascii?Q?+nZ1v9pjgTNUsrnGhA1x1Uxp9UfOhU3U+OO19WgUVYcG1e8Ut9J9wAO60+ar?=
- =?us-ascii?Q?5CzOpLsZaDlPWVCR1T8u4QMk+oce4hr8+ePqBQTYUQOqjRJZKibyyFgTPIGm?=
- =?us-ascii?Q?HcASd/IWSsGKRN/fTC2queAhjysyrOkMEhfsDcgo2M39qXwbmpFXTMHIpys8?=
- =?us-ascii?Q?l5CxqcDac9hHQV4Rr0DJaQGsuy15Qxlr9VBoysqXdnoJCz2qT7D2edW9w55L?=
- =?us-ascii?Q?GTgPX0gm1drCeghOipaVuGT8FRuHPsuxeMoBvcsRXD/hIDP48g+XJ33d4T7w?=
- =?us-ascii?Q?dx4rZZJ7oywChesiwY04o3PJP1p1b3/rHL7f3lLZ3jng7BMkeSi5Y7IRVOsm?=
- =?us-ascii?Q?NtRaQLc8eQ4x6jr3PcxY3Teq2o4alPVsP/o++CjhRwDJTvNsNrU+2iFiTKow?=
- =?us-ascii?Q?x8jT5CpY2hGcpuA+vMaJUCbJVUnP6OUWCSsX6UiX78KN4T69uAoEVBLjcSxv?=
- =?us-ascii?Q?kg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e8a003b-d3bb-45bb-d31f-08dd61a02264
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2025 19:57:35.8859 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fPW0K5SkOXxS8gSXGuWrodWpdZKwzpegGsE4OXMub44eiTZtIVILiYr+9IAubZNmgXN2Sl52lEk/RSm/9STjDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR11MB8715
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <040232c9-1928-4324-a05f-07a879848734@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,79 +69,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 12, 2025 at 12:43:42PM +0200, Jani Nikula wrote:
-> On Tue, 11 Mar 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Tue, Mar 11, 2025 at 02:05:38PM +0200, Jani Nikula wrote:
-> >> -	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> >> -	is_enabled = intel_display_power_well_is_enabled(display,
-> >> -							 power_well_id);
-> >> -	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> >> +	with_intel_display_rpm(display)
-> >> +		is_enabled = intel_display_power_well_is_enabled(display,
-> >> +								 power_well_id);
-> >>  
-> >
-> > looking this here... I really dislike the 'with_' macro...
-> > I really prefer the explicit get and put, even with the ref_tracker
-> > declaration.
+On Thu, Mar 13, 2025 at 01:02:09AM +0530, Naladala, Ramanaidu wrote:
 > 
-> We might consider defining our own guard classes for runtime PM and
-> other things, and use scoped_guard() and guard() with them.
+> On 3/13/2025 12:19 AM, Imre Deak wrote:
+> > On Wed, Mar 12, 2025 at 11:44:20PM +0530, Naladala, Ramanaidu wrote:
+> > > [...]
+> > > > > +static u32 intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *count)
+> > > > The return type isn't compatible with the -ENODEV returned value. I'd
+> > > > just return a bool, since the reason for an error is always the same.
+> > > > 
+> > > > > +{
+> > > > > +	struct i915_power_domains *power_domains = &display->power.domains;
+> > > > > +	struct intel_dmc *dmc = display_to_dmc(display);
+> > > > > +
+> > > > > +	if (DISPLAY_VER(display) < 14)
+> > > > > +		return -ENODEV;
+> > > > > +
+> > > > > +	mutex_lock(&power_domains->lock);
+> > > > > +	bool dc6_enabled = DC_STATE_EN_UPTO_DC6 &
+> > > > > +			   intel_de_read(display, DC_STATE_EN);
+> > > The dc6_enabled flag indicates only the DC state limit. If all conditions
+> > > are met, the DMC can entry/exits DC6.
+> > > 
+> > > However, if the DC6 conditions are not met, the DMC can perform entry/exits
+> > > up to DC5. Entry/exits from DC5 to DC3 can also change the DG1_DMC_DEBUG_DC5_COUNT
+> > > counter values. It is better to add a pc10 check along with the dc6_enabled flag.
+> > > 
+> > > Correct me if my understanding is wrong.
+> > According to HW people, the conditions for DC6 are met from the
+> > _display_ side if the conditions for DC5 are met and DC6 is enabled. The
+> > problem of making this dependent on package C states is that those
+> > states also depend on non-display IPs. The purpose of this counter (DC6
+> > allowed) is validating the display driver's DC6 programming, without
+> > depending on the validity of the programming for all other IPs (by
+> > non-display drivers) that could block actual DC6 transitions.
 > 
-> Something like:
+> In that case, we have the DC3 entry/exit counter DG1_DMC_DEBUG_DC1_COUNT.
+> Add a check to ensure it does not change when the DC5 counters are changing.
 > 
-> DEFINE_GUARD(display_rpm, struct intel_display *, intel_display_rpm_get(_T), intel_display_rpm_put(_T))
-> 
-> And the above code would become:
-> 
-> 	scoped_guard(display_rpm, display) {
-> 		// ...
-> 	}
-> 
-> which is already gaining a lot of traction in kernel:
-> 
-> $ git grep scoped_guard | wc -l
-> 527
-> 
-> It's still magic, but at least it's kernel common magic, not our own.
+> It will confirm the transaction entry/exits are between DC5 and DC6. If DC3
+> counter is changed, don't increment the dc6 counter value.
 
-Indeed.
-I mean, I'm still not in love with the idea of the scope_guard thing, but
-at least it is a true kernel thing and getting more traction lately.
+We are using the DG1_DMC_DEBUG_DC5_COUNT (0x134154) register to check
+for DC5 _entries_. This matches the bspec (49786) definition of the
+register:
 
-Well, in some sense we could also compare them with the for_each, since
-they are "imported" concepts of python, rust and other languages right?!
+"Residency counter for DC5 state. Indicates the number of DC5 entries."
 
-For some reason I like the for_each :)
+In fact all other DMC_DEBUG_ registers are specified in a similar way,
+indicating the residency for a given state, that is entries. Counting
+both entries and exits in the same counter would be ultimately broken in
+any case.
 
-> 
-> Additionally, you could use:
-> 
-> 	guard(display_rpm)(display);
-> 
-> which automatically releases the reference when going out of scope.
-> 
-> I'm not quite sure how to plug that into the ref_tracker, though, so
-> need to give it some more thought.
-
-yeap, one possibility is to try to slowly get rid of the ref_tracker? ;)
-
-> 
-> I sent an RFC about using guard() and scoped_guard() for HDCP mutexes
-> [1] to demonstrate this with the pre-defined mutex guard class.
-> 
-> [1] https://lore.kernel.org/r/20250224101428.204519-1-jani.nikula@intel.com
-> 
-> > But well, not a blocker:
-> >
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Thanks,
-> Jani.
-> 
-> 
-> -- 
-> Jani Nikula, Intel
+> > 
+> > > > > +	if (dc6_enabled)
+> > > > > +		intel_dmc_update_dc6_allowed_count(display, false);
+> > > > > +
+> > > > > +	*count = dmc->dc6_allowed.count;
+> > > > > +	mutex_unlock(&power_domains->lock);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
