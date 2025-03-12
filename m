@@ -2,29 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C7EA5E6C7
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 22:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53F9A5E6DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 22:59:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B11FA10E192;
-	Wed, 12 Mar 2025 21:52:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2A2410E7BD;
+	Wed, 12 Mar 2025 21:59:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="itoovOte";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D98D10E192;
- Wed, 12 Mar 2025 21:52:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8801593086226651094=="
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC42B10E01F;
+ Wed, 12 Mar 2025 21:59:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=A4+dae+3XRFxt7BM6x0GYCiu6QUc2mn4pIrP/UI5HVM=; b=itoovOtej8S0qr3N3mADZ9xGap
+ KbZrqsyHO0qQUGDS3jPjMyxlFSfnmgXAsBLMMaS9nvIVfRTYba3Y/7SV0plu0sp1hemmFQGoLdi5t
+ hsSbeU9f2xMaF7VSEupjRjdHwyCxTL0kpTXl3kUrfJMRl6nDmKVJTCgtQdv/X4vjOfbSd8zROvHYw
+ 81dCvdv0iIMSuy9i1R8GfiZggj+4wZ8E3LfAbJ1P7mMh51hixTm0fNGp2Kx3BZtROP8lcC9YgqbqW
+ lOWlgdtMmILD2KSFTdvFBYT+TAyeTH9IeoQsjWO+naUTO86kUiZVkOEgirRUY0iNQ1Xr6qGZLnHB/
+ OxhgTgYw==;
+Received: from [179.98.221.3] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tsU6v-007o7i-7Q; Wed, 12 Mar 2025 22:59:39 +0100
+Message-ID: <ef926ea5-ac0e-4f95-b260-84c4102c93ad@igalia.com>
+Date: Wed, 12 Mar 2025 18:59:33 -0300
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dmc=3A_Add_debug?=
- =?utf-8?q?fs_for_dc6_counter_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mohammed Thasleem" <mohammed.thasleem@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 21:52:09 -0000
-Message-ID: <174181632911.26889.6933844883481137344@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
-In-Reply-To: <20250203085613.236340-1-mohammed.thasleem@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm: Create an app info option for wedge events
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?B?J0NocmlzdGlhbiBLw7ZuaWcn?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ lucas.demarchi@intel.com, Xaver Hugl <xaver.hugl@kde.org>,
+ Pierre-Loup Griffais <pgriffais@valvesoftware.com>
+References: <20250228121353.1442591-1-andrealmeid@igalia.com>
+ <20250228121353.1442591-2-andrealmeid@igalia.com>
+ <Z8HGFRGOYvyCCWWu@black.fi.intel.com>
+ <58763d8e-46a1-4753-9401-987fb3dac50b@igalia.com>
+ <Z8KgwswQQyGxhsR1@black.fi.intel.com>
+ <db27ee44-f480-475b-be7e-710bd30eb7a5@igalia.com>
+ <Z9BuU3RzMkEE_FL1@black.fi.intel.com> <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <Z9FcmDzSmBbVAsqD@black.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,346 +71,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8801593086226651094==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Em 12/03/2025 07:06, Raag Jadav escreveu:
+> On Tue, Mar 11, 2025 at 07:09:45PM +0200, Raag Jadav wrote:
+>> On Mon, Mar 10, 2025 at 06:27:53PM -0300, André Almeida wrote:
+>>> Em 01/03/2025 02:53, Raag Jadav escreveu:
+>>>> On Fri, Feb 28, 2025 at 06:54:12PM -0300, André Almeida wrote:
+>>>>> Hi Raag,
+>>>>>
+>>>>> On 2/28/25 11:20, Raag Jadav wrote:
+>>>>>> Cc: Lucas
+>>>>>>
+>>>>>> On Fri, Feb 28, 2025 at 09:13:52AM -0300, André Almeida wrote:
+>>>>>>> When a device get wedged, it might be caused by a guilty application.
+>>>>>>> For userspace, knowing which app was the cause can be useful for some
+>>>>>>> situations, like for implementing a policy, logs or for giving a chance
+>>>>>>> for the compositor to let the user know what app caused the problem.
+>>>>>>> This is an optional argument, when `PID=-1` there's no information about
+>>>>>>> the app caused the problem, or if any app was involved during the hang.
+>>>>>>>
+>>>>>>> Sometimes just the PID isn't enough giving that the app might be already
+>>>>>>> dead by the time userspace will try to check what was this PID's name,
+>>>>>>> so to make the life easier also notify what's the app's name in the user
+>>>>>>> event.
+>>>>>>>
+>>>>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+>>>
+>>> [...]
+>>>
+>>>>>>>     	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
+>>>>>>> @@ -562,6 +564,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
+>>>>>>>     	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
+>>>>>>>     		 "but recovered through reset" : "needs recovery");
+>>>>>>> +	if (info) {
+>>>>>>> +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
+>>>>>>> +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
+>>>>>>> +	} else {
+>>>>>>> +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
+>>>>>>> +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
+>>>>>>> +	}
+>>>>>> This is not much use for wedge cases that needs recovery, since at that point
+>>>>>> the userspace will need to clean house anyway.
+>>>>>>
+>>>>>> Which leaves us with only 'none' case and perhaps the need for standardization
+>>>>>> of "optional telemetry collection".
+>>>>>>
+>>>>>> Thoughts?
+>>>>>
+>>>>> I had the feeling that 'none' was already meant to be used for that. Do you
+>>>>> think we should move to another naming? Given that we didn't reach the merge
+>>>>> window yet we could potentially change that name without much damage.
+>>>>
+>>>> No, I meant thoughts on possible telemetry data that the drivers might
+>>>> think is useful for userspace (along with PID) and can be presented in
+>>>> a vendor agnostic manner (just like wedged event).
+>>>
+>>> I'm not if I agree that this will only be used for telemetry and for the
+>>> `none` use case. As stated by Xaver, there's use case to know which app
+>>> caused the device to get wedged (like switching to software rendering) and
+>>> to display something for the user after the recovery is done (e.g. "The game
+>>> <app name> stopped working and Plasma has reset").
+>>
+>> Sure, but since this information is already available in coredump, I was
+>> hoping to have something like a standardized DRM level coredump with both
+>> vendor specific and agnostic sections, which the drivers can (and hopefully
+>> transition to) use in conjunction with wedged event to provide wider
+>> telemetry and is useful for all wedge cases.
+> 
+> This is more useful because,
+> 
+> 1. It gives drivers an opportunity to present the telemetry that they are
+>     interested in without needing to add a new event string (like PID or APP)
+>     for their case.
+> 
+> 2. When we consider wedging as a usecase, there's a lot more that goes
+>     into it than an application that might be behaving strangely. So a wider
+>     telemetry is what I would hope to look at in such a scenario.
+> 
 
-== Series Details ==
+I agree that coredump is the way to go for telemetry, we already have 
+the name and PID of the guilty app there, along with more information 
+about the GPU state. But I don't think it should be consumed like an 
+uAPI. Even if we wire up some common DRM code for that, I don't think we 
+can guarantee the stability of it as we can do for an uevent. coredump 
+can be disabled and by default is only accessible by root.
 
-Series: drm/i915/dmc: Add debugfs for dc6 counter (rev7)
-URL   : https://patchwork.freedesktop.org/series/144240/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16274 -> Patchwork_144240v7
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_144240v7 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_144240v7, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_144240v7:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-apl-1:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-apl-1/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-apl-1/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-apl-1:          [PASS][3] -> [DMESG-WARN][4] +3 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-apl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-apl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_144240v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_auth@basic-auth:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][5] ([i915#10462]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@core_auth@basic-auth.html
-
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][6] ([i915#1849])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] ([i915#2190])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][8] ([i915#2190])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][9] ([i915#4613]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][10] ([i915#4613]) +3 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][11] -> [ABORT][12] ([i915#13571])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][13] -> [DMESG-FAIL][14] ([i915#12061]) +1 other test dmesg-fail
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][15] ([i915#13903]) +2 other tests fail
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][16] +62 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][17] +10 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][18] ([i915#13905])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-FAIL][19] ([i915#13905])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][20] ([i915#13904])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][21] -> [SKIP][22] ([i915#9197]) +2 other tests skip
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][23] ([i915#12061]) -> [PASS][24] +1 other test pass
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [ABORT][25] ([i915#13679]) -> [ABORT][26] ([i915#13465] / [i915#13679]) +1 other test abort
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#10462]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13465]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13465
-  [i915#13571]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571
-  [i915#13679]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679
-  [i915#13903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903
-  [i915#13904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904
-  [i915#13905]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16274 -> Patchwork_144240v7
-
-  CI-20190529: 20190529
-  CI_DRM_16274: e2e6ad67ea058d5b08490a2b3dab2152fcfcc24e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8271: 8271
-  Patchwork_144240v7: e2e6ad67ea058d5b08490a2b3dab2152fcfcc24e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/index.html
-
---===============8801593086226651094==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Add debugfs for dc6 counter (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144240/">https://patchwork.freedesktop.org/series/144240/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16274 -&gt; Patchwork_144240v7</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_144240v7 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_144240v7, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_144240v7:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-apl-1/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-apl-1/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-apl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-apl-1/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_144240v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462">i915#10462</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571">i915#13571</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-high:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903">i915#13903</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +62 other tests skip</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904">i915#13904</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@mman:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16274/bat-atsm-1/igt@i915_selftest@live@mman.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679">i915#13679</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v7/bat-atsm-1/igt@i915_selftest@live@mman.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13465">i915#13465</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679">i915#13679</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16274 -&gt; Patchwork_144240v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16274: e2e6ad67ea058d5b08490a2b3dab2152fcfcc24e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8271: 8271<br />
-  Patchwork_144240v7: e2e6ad67ea058d5b08490a2b3dab2152fcfcc24e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8801593086226651094==--
+So I think that coredump is really good after the fact and if the user 
+is willing to go ahead and report a bug somewhere. But for the goal of 
+notifying the compositor, the same uevent that the compositor is already 
+listening to will have everything they need to deal with this reset.
