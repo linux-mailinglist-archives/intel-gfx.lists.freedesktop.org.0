@@ -2,29 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1859CA5E204
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 17:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF47AA5E21D
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 17:58:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77E910E6F2;
-	Wed, 12 Mar 2025 16:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798A010E1A3;
+	Wed, 12 Mar 2025 16:58:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDU9WXSZ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C01010E7AC;
- Wed, 12 Mar 2025 16:48:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3559816932736595061=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B162D10E1A3;
+ Wed, 12 Mar 2025 16:58:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741798701; x=1773334701;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=l0RNbAtcJf/5rcQ5xgoHizmMWn6NBfdwFGqEu+DDPdI=;
+ b=CDU9WXSZgrfM+sfYQkwyNMegH9kBrAwFfDfFiEKwovs0IVZCam2dsybh
+ ZopcoITtIgbibRaPCXTSSrU6Pq/R4x9WThr758KRxYS9nwNLf2GTdSaOm
+ cAnprqNG6WXrKOCTdsAuGzAn6NhZB7dM21skznfCjzJhi/ZjTHg/seVC2
+ QP9GPTxbXJr5x1GE1NgvHUIbjZuXxtHSlLBaqQfksXhYkAMzi8UhO8jNQ
+ /Ug6sUJJrn54iVOz/QSsIGpfxI97h6TzjH6xo64NIxGtOy2cwjbiPp1bm
+ 9OFqbPoQEA4axbGPm1IyBop4/h4pSNe2x3xGhi0t6nbEkkkzXXDx7StKp w==;
+X-CSE-ConnectionGUID: jThTzjO2Qk+n7Ebs+KbD9A==
+X-CSE-MsgGUID: aMZS8KjHSUeRGkWgd/1nBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="42617149"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="42617149"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 09:58:19 -0700
+X-CSE-ConnectionGUID: A4Txc/2VTu6L/eyZHu7/OQ==
+X-CSE-MsgGUID: XpIKhCiOSQaLOJg8nSAJEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="121198122"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.11])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 09:58:16 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH v4] drm/i915: Fix harmful driver register/unregister
+ asymmetry
+Date: Wed, 12 Mar 2025 17:58:13 +0100
+Message-ID: <3330897.aV6nBDHxoP@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <bqek2zam4zle4ilp3fcce4tnkocqdj7vfczvpswr6sswjbn3kr@a6pmh5uofyf3>
+References: <20250311200550.637383-2-janusz.krzysztofik@linux.intel.com>
+ <bqek2zam4zle4ilp3fcce4tnkocqdj7vfczvpswr6sswjbn3kr@a6pmh5uofyf3>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dmc=3A_Add_debug?=
- =?utf-8?q?fs_for_dc6_counter_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mohammed Thasleem" <mohammed.thasleem@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Mar 2025 16:48:55 -0000
-Message-ID: <174179813510.26064.3184843854194409154@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
-In-Reply-To: <20250203085613.236340-1-mohammed.thasleem@intel.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,385 +76,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3559816932736595061==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Krzysztof,
 
-== Series Details ==
+Thanks for looking at this.
 
-Series: drm/i915/dmc: Add debugfs for dc6 counter (rev5)
-URL   : https://patchwork.freedesktop.org/series/144240/
-State : failure
+On Wednesday, 12 March 2025 16:06:15 CET Krzysztof Niemiec wrote:
+> On 2025-03-11 at 21:04:56 GMT, Janusz Krzysztofik wrote:
+> > Starting with commit ec3e00b4ee27 ("drm/i915: stop registering if
+> > drm_dev_register() fails"), we return from i915_driver_register()
+> > immediately if drm_dev_register() fails, skipping remaining registration
+> > steps, and continue only with remaining probe steps.  However, the
+> > _unregister() counterpart called at driver remove knows nothing about that
+> > skip and executes reverts of all those steps, with some of those reverts
+> > possibly added or modified later.  As a consequence, a number of kernel
+> > warnings that taint the kernel are triggered:
+> > 
+> > <3> [525.823143] i915 0000:00:02.0: [drm] *ERROR* Failed to register driver for
+> > userspace access!
+> > ...
+> > <4> [525.831069] ------------[ cut here ]------------
+> > <4> [525.831071] i915 0000:00:02.0: [drm] drm_WARN_ON(power_domains->init_wakere
+> > f)
+> > <4> [525.831095] WARNING: CPU: 6 PID: 3440 at drivers/gpu/drm/i915/display/intel
+> > _display_power.c:2074 intel_power_domains_disable+0xc2/0xd0 [i915]
+> > ...
+> > <4> [525.831328] CPU: 6 UID: 0 PID: 3440 Comm: i915_module_loa Tainted: G     U
+> >             6.14.0-rc1-CI_DRM_16076-g7a632b6798b6+ #1
+> > ...
+> > <4> [525.831334] RIP: 0010:intel_power_domains_disable+0xc2/0xd0 [i915]
+> > ...
+> > <4> [525.831483] Call Trace:
+> > <4> [525.831484]  <TASK>
+> > ...
+> > <4> [525.831943]  i915_driver_remove+0x4b/0x140 [i915]
+> > <4> [525.832028]  i915_pci_remove+0x1e/0x40 [i915]
+> > <4> [525.832099]  pci_device_remove+0x3e/0xb0
+> > <4> [525.832103]  device_remove+0x40/0x80
+> > <4> [525.832107]  device_release_driver_internal+0x215/0x280
+> > ...
+> > <4> [525.947666] ------------[ cut here ]------------
+> > <4> [525.947669] kobject: '(null)' (ffff88814f62a218): is not initialized, yet kobject_put() is being called.
+> > <4> [525.947707] WARNING: CPU: 6 PID: 3440 at lib/kobject.c:734 kobject_put+0xe4/0x200
+> > ...
+> > <4> [525.947875] RIP: 0010:kobject_put+0xe4/0x200
+> > ...
+> > <4> [525.947909] Call Trace:
+> > <4> [525.947911]  <TASK>
+> > ...
+> > <4> [525.947963]  intel_gt_sysfs_unregister+0x25/0x40 [i915]
+> > <4> [525.948133]  intel_gt_driver_unregister+0x14/0x80 [i915]
+> > <4> [525.948291]  i915_driver_remove+0x6c/0x140 [i915]
+> > <4> [525.948411]  i915_pci_remove+0x1e/0x40 [i915]
+> > ...
+> > <4> [526.441186] ------------[ cut here ]------------
+> > <4> [526.441191] kernfs: can not remove 'error', no directory
+> > <4> [526.441211] WARNING: CPU: 1 PID: 3440 at fs/kernfs/dir.c:1684 kernfs_remove_by_name_ns+0xbc/0xc0
+> > ...
+> > <4> [526.441536] RIP: 0010:kernfs_remove_by_name_ns+0xbc/0xc0
+> > ...
+> > <4> [526.441578] Call Trace:
+> > <4> [526.441581]  <TASK>
+> > ...
+> > <4> [526.441686]  sysfs_remove_bin_file+0x17/0x30
+> > <4> [526.441691]  i915_gpu_error_sysfs_teardown+0x1d/0x30 [i915]
+> > <4> [526.442226]  i915_teardown_sysfs+0x1c/0x60 [i915]
+> > <4> [526.442369]  i915_driver_remove+0x9d/0x140 [i915]
+> > <4> [526.442473]  i915_pci_remove+0x1e/0x40 [i915]
+> > ...
+> > <4> [526.685700] ------------[ cut here ]------------
+> > <4> [526.685706] i915 0000:00:02.0: [drm] i915 raw-wakerefs=1 wakelocks=1 on cle
+> > anup
+> > <4> [526.685734] WARNING: CPU: 1 PID: 3440 at drivers/gpu/drm/i915/intel_runtime
+> > _pm.c:443 intel_runtime_pm_driver_release+0x75/0x90 [i915]
+> > ...
+> > <4> [526.686090] RIP: 0010:intel_runtime_pm_driver_release+0x75/0x90 [i915]
+> > ...
+> > <4> [526.686294] Call Trace:
+> > <4> [526.686296]  <TASK>
+> > ...
+> > <4> [526.687025]  i915_driver_release+0x7e/0xb0 [i915]
+> > <4> [526.687243]  drm_dev_put.part.0+0x47/0x90
+> > <4> [526.687250]  devm_drm_dev_init_release+0x13/0x30
+> > <4> [526.687255]  devm_action_release+0x12/0x30
+> > <4> [526.687261]  release_nodes+0x3a/0x120
+> > <4> [526.687268]  devres_release_all+0x97/0xe0
+> > <4> [526.687277]  device_unbind_cleanup+0x12/0x80
+> > <4> [526.687282]  device_release_driver_internal+0x23a/0x280
+> > ...
+> > 
+> > A call to intel_power_domains_disable() was already there.  It triggers
+> > the drm_WARN_ON() when it finds a reference to a wakeref taken on device
+> > probe and not released after device register failure.  That wakeref is
+> > then left held forever once its handle gets lost overwritten with another
+> > wakeref, hence the WARN() called from intel_runtime_pm_driver_release().
+> > 
+> > The WARN() triggered by kernfs_remove_by_name_ns() from
+> > i915_teardown_sysfs()->i915_gpu_error_sysfs_teardown(), formerly
+> > i915_teardown_error_capture(), was also there when the return was added.
+> > 
+> > A call to intel_gt_sysfs_unregister() that triggers the WARN() from
+> > kobject_put() was added to intel_gt_driver_unregister() with commit
+> > 69d6bf5c3754ff ("drm/i915/gt: Fix memory leaks in per-gt sysfs").
+> > 
+> > Fix the asymmetry by failing the driver probe on device registration
+> > failure and going through rewind paths.
+> > 
+> > For that to work as expected, we apparently need to start the rewind path
+> > of i915_driver_register() with drm_dev_unregister(), even if
+> > drm_dev_register() returned an error.
+> > 
+> > Also, in rewind path of the i915_driver_probe() we need to clean up PXP
+> > initialization before it's safe to call other hardware cleanup routines.
+> > The intel_pxp_init() without a corresponding cleanup was added to
+> > i915_driver_probe() with commit f67986b0119c04 ("drm/i915/pxp: Promote pxp
+> > subsystem to top-level of i915").
+> > 
+> > v4: Switch to taking an error rewind path on device registration failure
+> >     (Krzysztof, Lucas).
+> > v3: Based on Andi's commitment on introducing a flag, try to address
+> >     Jani's "must find another way" by finding a better place and name for
+> >     the flag (in hope that's what Jani had on mind),
+> >   - split into a series of patches and limit the scope of the first (this)
+> >     one to a minimum of omitting conditionally only those unregister
+> >     (sub)steps that trigger kernel warnings when not registered.
+> > v2: Check in _unregister whether the drm_dev_register has succeeded and
+> >     skip some of the _unregister() steps. (Andi)
+> > 
+> > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10047
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9820
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10131
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10887
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12817
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> > Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> > Cc: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_driver.c | 22 +++++++++++++++-------
+> >  1 file changed, 15 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > index ce3cc93ea211b..dcf723da8d409 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -622,11 +622,11 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
+> >   * Perform any steps necessary to make the driver available via kernel
+> >   * internal or userspace interfaces.
+> >   */
+> > -static void i915_driver_register(struct drm_i915_private *dev_priv)
+> > +static int i915_driver_register(struct drm_i915_private *dev_priv)
+> >  {
+> >  	struct intel_display *display = &dev_priv->display;
+> >  	struct intel_gt *gt;
+> > -	unsigned int i;
+> > +	unsigned int i, ret;
+> 
+> drm_dev_register() returns int, i915_driver_probe() expects int from
+> from the functions it calls (including this one), and this one is
+> defined as static int, so dropping the unsigned keyword for ret feels
+> more appropriate.
 
-== Summary ==
+Right, my bad.  I'll fix it exactly as you suggest if the whole idea standing 
+behind this patch is accepted.
 
-CI Bug Log - changes from CI_DRM_16273 -> Patchwork_144240v5
-====================================================
+> >  
+> >  	i915_gem_driver_register(dev_priv);
+> >  	i915_pmu_register(dev_priv);
+> > @@ -634,10 +634,12 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
+> >  	intel_vgpu_register(dev_priv);
+> >  
+> >  	/* Reveal our presence to userspace */
+> > -	if (drm_dev_register(&dev_priv->drm, 0)) {
+> > -		drm_err(&dev_priv->drm,
+> > -			"Failed to register driver for userspace access!\n");
+> > -		return;
+> > +	ret = drm_dev_register(&dev_priv->drm, 0);
+> > +	if (ret) {
+> > +		drm_dev_unregister(&dev_priv->drm);
+> > +		i915_pmu_unregister(dev_priv);
+> > +		i915_gem_driver_unregister(dev_priv);
+> > +		return ret;
+> >  	}
+> >  
+> 
+> I'd keep the "Failed to register driver for userspace access" error
+> message.
 
-Summary
--------
+OK, but would you still keep it if you knew that with this error message kept,
+CI would still report dmesg-warn as a result of 
+igt@i915_module_load@reload-with-fault-injection test?
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_144240v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_144240v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_144240v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_16273 and Patchwork_144240v5:
-
-### New IGT tests (1) ###
-
-  * igt@i915_selftest@basic-busy:
-    - Statuses :
-    - Exec time: [None] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_144240v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_auth@basic-auth:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][3] ([i915#10462]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@core_auth@basic-auth.html
-
-  * igt@fbdev@info:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][4] ([i915#1849])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@fbdev@info.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][6] ([i915#2190])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][7] ([i915#4613]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][8] ([i915#4613]) +3 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061]) +1 other test dmesg-fail
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-mtlp-8/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-arlh-3:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061] / [i915#12435])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arlh-3/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-atsm-1:         [PASS][13] -> [INCOMPLETE][14] ([i915#12445])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-atsm-1/igt@i915_selftest@live@requests.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-atsm-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][15] -> [DMESG-FAIL][16] ([i915#12061])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][17] ([i915#13903]) +2 other tests fail
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][18] +62 other tests skip
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][19] +10 other tests skip
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-WARN][20] ([i915#13905])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@force-edid:
-    - fi-kbl-8809g:       NOTRUN -> [DMESG-FAIL][21] ([i915#13905])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-8809g:       NOTRUN -> [FAIL][22] ([i915#13904])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][23] -> [SKIP][24] ([i915#9197]) +3 other tests skip
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [INCOMPLETE][25] ([i915#12904]) -> [PASS][26] +1 other test pass
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-apl-1/igt@dmabuf@all-tests.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][27] ([i915#12061]) -> [PASS][28] +1 other test pass
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [ABORT][29] ([i915#13679]) -> [INCOMPLETE][30] ([i915#12445])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-atsm-1/igt@i915_selftest@live.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-atsm-1/igt@i915_selftest@live.html
-
-  
-  [i915#10462]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13679]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679
-  [i915#13903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903
-  [i915#13904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904
-  [i915#13905]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16273 -> Patchwork_144240v5
-
-  CI-20190529: 20190529
-  CI_DRM_16273: ab32fa5b833c1887c0809109b3c8f910031a361d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8271: 8271
-  Patchwork_144240v5: ab32fa5b833c1887c0809109b3c8f910031a361d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/index.html
-
---===============3559816932736595061==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Thanks,
+Janusz
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Add debugfs for dc6 counter (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144240/">https://patchwork.freedesktop.org/series/144240/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+> Thanks
+> Krzysztof
+> 
+> >  	i915_debugfs_register(dev_priv);
+> > @@ -660,6 +662,8 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
+> >  
+> >  	if (i915_switcheroo_register(dev_priv))
+> >  		drm_err(&dev_priv->drm, "Failed to register vga switcheroo!\n");
+> > +
+> > +	return 0;
+> >  }
+> >  
+> >  /**
+> > @@ -834,7 +838,9 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  	if (ret)
+> >  		goto out_cleanup_gem;
+> >  
+> > -	i915_driver_register(i915);
+> > +	ret = i915_driver_register(i915);
+> > +	if (ret)
+> > +		goto out_cleanup_pxp;
+> >  
+> >  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+> >  
+> > @@ -844,6 +850,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >  
+> >  	return 0;
+> >  
+> > +out_cleanup_pxp:
+> > +	intel_pxp_fini(i915);
+> >  out_cleanup_gem:
+> >  	i915_gem_suspend(i915);
+> >  	i915_gem_driver_remove(i915);
+> 
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/index.html</a></td></tr>
-
-</table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_16273 -&gt; Patchwork_144240v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_144240v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_144240v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_144240v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_16273 and Patchwork_144240v5:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@i915_selftest@basic-busy:<ul>
-<li>Statuses :</li>
-<li>Exec time: [None] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_144240v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10462">i915#10462</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@fbdev@info:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-atsm-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-atsm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-high:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_addfb_basic@too-high.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13903">i915#13903</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +62 other tests skip</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_force_connector_basic@force-connector-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-edid:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_force_connector_basic@force-edid.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13905">i915#13905</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/fi-kbl-8809g/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13904">i915#13904</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16273/bat-atsm-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13679">i915#13679</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144240v5/bat-atsm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16273 -&gt; Patchwork_144240v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16273: ab32fa5b833c1887c0809109b3c8f910031a361d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8271: 8271<br />
-  Patchwork_144240v5: ab32fa5b833c1887c0809109b3c8f910031a361d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
-</body>
-</html>
-
---===============3559816932736595061==--
