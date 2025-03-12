@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6DBA5E55D
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 21:30:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D6EA5E5AB
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Mar 2025 21:55:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD2110E1B1;
-	Wed, 12 Mar 2025 20:30:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD1810E0D6;
+	Wed, 12 Mar 2025 20:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jslV5gVu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gX4BONv6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1481710E1B1
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 20:30:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC42510E0D6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Mar 2025 20:54:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741811444; x=1773347444;
+ t=1741812899; x=1773348899;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RgS0IBounr3m26+dqlbi60oko/E1Lj9RcrErrCxfQ+E=;
- b=jslV5gVurdTrXLQVcVlvAWhEPij2HsU7qIlCvF0D4hddLeq/t6vLd0JB
- C0XFU6MqRRVU7wuTDhZYZH3Kf9/YbqKUyRaa4+p6HKyRShQigmz5mLVCJ
- OVw7oTPQlFqDyfBOO2AcLjZCeK9doUOWM3J0UehAovL8eAU8VVlL3oztA
- NDd5mw01TJHhS4SP572vZxMFuIp84OnxuS4d4GHvVuvO8zGWp1SB7iNAi
- xFJY3kaULWE5XtCw6oAko4LjX6mcUQdRPwIhe/ytWoWYnyqJg1TVnm1Qn
- qp4JClWXyJaYetRzF8oZhzcr2JpFXbR6mICIduF3qtcr/wey0NAgt3yZI A==;
-X-CSE-ConnectionGUID: qPct/VMKQYqUIBh5QyMIyw==
-X-CSE-MsgGUID: a0Obe+8kRrS7YYRgO1o6EA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="53540977"
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="53540977"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2025 13:30:43 -0700
-X-CSE-ConnectionGUID: 1h+IIcTlS4+S7af9IVDpEg==
-X-CSE-MsgGUID: L6T4pgcnTHKFu2OGsRdnFA==
+ bh=ZO4L9XtnyTmgXX+ObVsTYmdxzRt+48OCRy+FEtHoMeA=;
+ b=gX4BONv6ggP29VoDtTcam+zvQ5xr6cexgdaYjvLy6IubZA6g41A4DXb6
+ X30qYUFpSpy3vIhnyLeMu5kkXHx370heO5OlP1V4+ESpRB5ykQVbKb0mB
+ vbYq1la496WBxyGEdaSZmYMf7PQFsqbDvT2x50AZlHazn7hYCRRRErKd2
+ kjBS8vCFNWCebprxD/ymC8J3wvvrwv2lh+Xbkx6cc9eFyFNYwx7g7SfK+
+ epkaoD1L+rKZvJmWfcOTjJ2tjNUjwbspKIf4fQylnQEeswUOTygNO5IGc
+ fX4P5qeG1jOw7jvAXnw6SVGJpvSSCOZTvI8qBZKsWkSjcsDqgGaqpBqMC g==;
+X-CSE-ConnectionGUID: Pvq0zFbTRq2ncghlXCI8UA==
+X-CSE-MsgGUID: EhfJ2E7iTP6jCaGt3jfYUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="45685272"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="45685272"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 13:54:59 -0700
+X-CSE-ConnectionGUID: bph8iP01SxeT+0Wt5lsdjw==
+X-CSE-MsgGUID: f8ksW/rhSd6mgmQAxkjFHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="120549250"
+X-IronPort-AV: E=Sophos;i="6.14,242,1736841600"; d="scan'208";a="151702820"
 Received: from lnl-rocket-lake-client-platform.iind.intel.com (HELO
  lnl-Tiger-Lake-Client-Platform.iind.intel.com) ([10.145.169.162])
- by fmviesa006.fm.intel.com with ESMTP; 12 Mar 2025 13:30:42 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 12 Mar 2025 13:54:55 -0700
 From: Mohammed Thasleem <mohammed.thasleem@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: imre.deak@intel.com,
 	Mohammed Thasleem <mohammed.thasleem@intel.com>
-Subject: [PATCH v6] drm/i915/dmc: Create debugfs entry for dc6 counter
-Date: Thu, 13 Mar 2025 02:00:39 +0530
-Message-ID: <20250312203039.6093-1-mohammed.thasleem@intel.com>
+Subject: [PATCH v7] drm/i915/dmc: Create debugfs entry for dc6 counter
+Date: Thu, 13 Mar 2025 02:24:52 +0530
+Message-ID: <20250312205452.3785-1-mohammed.thasleem@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250203085613.236340-1-mohammed.thasleem@intel.com>
 References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
@@ -115,14 +115,15 @@ v5: Rename counters and move in to dc6_allowed structure. (Imre)
 v6: Change intel_dmc_get_dc6_allowed_count return type to bool. (Imre)
     Update debugfs print to better allien with old print. (Imre)
     Remove braces at if/else for signle line statements. (Imre)
+v7: Remove in line variable declaration. (Imre)
 
 Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   | 11 ++++-
- drivers/gpu/drm/i915/display/intel_dmc.c      | 49 ++++++++++++++++++-
+ .../i915/display/intel_display_power_well.c   | 11 +++-
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 50 ++++++++++++++++++-
  drivers/gpu/drm/i915/display/intel_dmc.h      |  1 +
- 3 files changed, 59 insertions(+), 2 deletions(-)
+ 3 files changed, 60 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
 index 8ec87ffd87d2..574352439573 100644
@@ -160,7 +161,7 @@ index 8ec87ffd87d2..574352439573 100644
  }
  
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index fa6944e55d95..e2f4d7ac0207 100644
+index fa6944e55d95..f9fae88e46d2 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
 @@ -28,6 +28,7 @@
@@ -182,7 +183,7 @@ index fa6944e55d95..e2f4d7ac0207 100644
  	struct dmc_fw_info {
  		u32 mmio_count;
  		i915_reg_t mmioaddr[20];
-@@ -1232,6 +1237,43 @@ void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct
+@@ -1232,6 +1237,44 @@ void intel_dmc_snapshot_print(const struct intel_dmc_snapshot *snapshot, struct
  			   DMC_VERSION_MINOR(snapshot->version));
  }
  
@@ -207,13 +208,14 @@ index fa6944e55d95..e2f4d7ac0207 100644
 +{
 +	struct i915_power_domains *power_domains = &display->power.domains;
 +	struct intel_dmc *dmc = display_to_dmc(display);
++	bool dc6_enabled;
 +
 +	if (DISPLAY_VER(display) < 14)
 +		return false;
 +
 +	mutex_lock(&power_domains->lock);
-+	bool dc6_enabled = DC_STATE_EN_UPTO_DC6 &
-+			   intel_de_read(display, DC_STATE_EN);
++	dc6_enabled = intel_de_read(display, DC_STATE_EN) &
++		      DC_STATE_EN_UPTO_DC6;
 +	if (dc6_enabled)
 +		intel_dmc_update_dc6_allowed_count(display, false);
 +
@@ -226,7 +228,7 @@ index fa6944e55d95..e2f4d7ac0207 100644
  static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
  {
  	struct intel_display *display = m->private;
-@@ -1239,6 +1281,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+@@ -1239,6 +1282,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
  	struct intel_dmc *dmc = display_to_dmc(display);
  	intel_wakeref_t wakeref;
  	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
@@ -234,7 +236,7 @@ index fa6944e55d95..e2f4d7ac0207 100644
  
  	if (!HAS_DMC(display))
  		return -ENODEV;
-@@ -1287,7 +1330,11 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+@@ -1287,7 +1331,11 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
  	}
  
  	seq_printf(m, "DC3 -> DC5 count: %d\n", intel_de_read(display, dc5_reg));
