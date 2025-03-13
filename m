@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF94A5F10C
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 11:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0C39A5F153
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 11:49:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4072210E834;
-	Thu, 13 Mar 2025 10:40:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WHQib0yd";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807C710E839;
+	Thu, 13 Mar 2025 10:49:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4835410E82E;
- Thu, 13 Mar 2025 10:40:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741862431; x=1773398431;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xuBhfvn01b4So4XBTk4GuAxPxxnnAOrXoL279U6Br94=;
- b=WHQib0ydP/lkHf+1+4MCJNXLObMmHM4EWUM9RYGTZCanNEvSXJVDICIN
- 9tsrnVo+n5iOx5vvqiq+Pb/fU+yyQU1MeLTkHUXw4gOirVhU/+exyLjl1
- eJGbKoU9myI4RL5HG4ULlCwtCSzH7gUVd55307kc0kkqmSVzrN4qIb7GZ
- GqJl7sHrFh/y+vFnWQIt1Ip45Z09exjhyIIxQGDehShaMgcdhgRHcU86O
- wwJtCVAwyoYKvfbG3dPd1lBlOcS2piS6pyExaOnUvmeK+2E2NO9rxDz94
- ihTc2mbJzREwQSm53+0z/dYu4DYJw2qRuyvApMzeytvmp5VO+p50snTBo g==;
-X-CSE-ConnectionGUID: Qrdl+FrASUylLWfrnxU8XA==
-X-CSE-MsgGUID: GbgjzKHFRWK8KxuuAxKEgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="65429773"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="65429773"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 03:40:29 -0700
-X-CSE-ConnectionGUID: 5+ody089Sqqnke0uiMYUoQ==
-X-CSE-MsgGUID: vbOIP8Y9RvKnkKQhnb3W5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="121416415"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.115])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 03:40:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Knop, Ryszard" <ryszard.knop@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "rk@dragonic.eu" <rk@dragonic.eu>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "daniel@fooishbar.org" <daniel@fooishbar.org>
-Subject: Re: Discussion: Moving away from Patchwork for Intel i915/Xe CI
-In-Reply-To: <87ecz1dybg.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <814f9bcb9c7ee22af45bd5278255af247c6664fa.camel@intel.com>
- <87ecz1dybg.fsf@intel.com>
-Date: Thu, 13 Mar 2025 12:40:23 +0200
-Message-ID: <87bju5dxig.fsf@intel.com>
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E304F10E839;
+ Thu, 13 Mar 2025 10:49:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7383568362619786599=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/watermark=3A_Ch?=
+ =?utf-8?q?eck_bounds_for_scaler=5Fusers_for_dsc_prefill_latency_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Mar 2025 10:49:20 -0000
+Message-ID: <174186296092.28580.5092239964029576950@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <20250227034106.1638203-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250227034106.1638203-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,21 +37,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Mar 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> We currently add Link: tags to commits pointing at patchwork. There's
-> already been requests to switch to use Lore links instead, and I think
-> we should probably do that.
+--===============7383568362619786599==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I created a MR to do just that.
+== Series Details ==
 
-https://gitlab.freedesktop.org/drm/maintainer-tools/-/merge_requests/74
+Series: drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency (rev2)
+URL   : https://patchwork.freedesktop.org/series/145540/
+State : success
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16270_full -> Patchwork_145540v2_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
 
 
--- 
-Jani Nikula, Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16270 -> Patchwork_145540v2
+
+  CI_DRM_16270: a10560f530360b8e6c4ff4b4ee70148f82cbcaab @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8271: 8271
+  Patchwork_145540v2: a10560f530360b8e6c4ff4b4ee70148f82cbcaab @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145540v2/index.html
+
+--===============7383568362619786599==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145540/">https://patchwork.freedesktop.org/series/145540/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145540v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145540v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16270_full -&gt; Patchwork_145540v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16270 -&gt; Patchwork_145540v2</li>
+</ul>
+<p>CI_DRM_16270: a10560f530360b8e6c4ff4b4ee70148f82cbcaab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8271: 8271<br />
+  Patchwork_145540v2: a10560f530360b8e6c4ff4b4ee70148f82cbcaab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============7383568362619786599==--
