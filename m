@@ -2,57 +2,176 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84080A5E85B
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 00:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE05FA5EA6C
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 05:11:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 169CB10E0F6;
-	Wed, 12 Mar 2025 23:24:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD51E10E1A2;
+	Thu, 13 Mar 2025 04:11:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OdIDQoRS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CBMgz27e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4B910E0F6;
- Wed, 12 Mar 2025 23:24:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=UG0QUj+/F5+iHlDvlkjoHha5ViuzaUsXPRlMDLy6Qkw=; b=OdIDQoRSsOqSy4znaL05QmSl2O
- QQ7KC4wBUQwDjcxCFYy21XDHI37n0mJfWY26iRAEui1v7We8u52titD8Y7Zg3H7a6Eq72UNq9iDsq
- OfZb87WI6lbghBG+Lrqf6mN4U4G+m43Bd4C5/SNxeul/7nRGult9mGiERHl/9/gcHBlg2zAZXc70g
- GCBnaCNVplQ4ozz700Fm6uj4P0YqnAO2Vb27K/pryqNeQTXuggd/kmotid0tvnpHYo7YKzfshRwCu
- WqDYnyt4rKfvhD7MkW4P+9BPtdgcbLT4b3iJQPxlB857VDCxNwE1EqKZ1bWqaCOKDEJMwx1RT1sOQ
- b+vFXNkw==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tsVR8-007plu-Po; Thu, 13 Mar 2025 00:24:36 +0100
-Date: Wed, 12 Mar 2025 23:24:35 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <Z9IXs5CzHHKScuQn@linux>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDB7E10E1A2;
+ Thu, 13 Mar 2025 04:11:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1741839068; x=1773375068;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Dli5cN8HLpdH4GOpN44C2BdgOp44qkeWmFWO1y3hCgE=;
+ b=CBMgz27e6NU5unub+LTDLiYqwn6YsktelzP04k/AZSA0siVluWC6Kol2
+ C2P8jKCVwXKQSauVkiY+vBgy7lrQiiW62EOBpaheM05C4AdjnNA/rJlpt
+ IxTl5IADhr8o/gXQzcqUEasdhfZGCjE2v2s2C6XJ1VbCmjF8kbsQowfGZ
+ KDyeA9ruYbO+zWw1ytfQTEQC6CtoqVpL+zWm0JP3r39tT64LD8Slv7JG7
+ R0z3NlNiXt5rItbeZADzwkcUWtPLSlZDjjS4DrAR9HAv9vwEzUyQlu34d
+ akeJa+EjbRC20V7UFCNIP077WOXFyQM+nyEq0Z7RT4ulZZcG9+6ZVjKwe A==;
+X-CSE-ConnectionGUID: DMnn3Zl0S2maUI1pjMKldA==
+X-CSE-MsgGUID: XG3AGy35RRqmaTcCFVF7QA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11371"; a="43073752"
+X-IronPort-AV: E=Sophos;i="6.14,243,1736841600"; d="scan'208";a="43073752"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 21:11:07 -0700
+X-CSE-ConnectionGUID: 0QDilnA0SH63kevqCH9+sQ==
+X-CSE-MsgGUID: 1w18sqY/Qua0X6MwL7rVZQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,243,1736841600"; d="scan'208";a="121326328"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2025 21:11:07 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 12 Mar 2025 21:11:06 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Wed, 12 Mar 2025 21:11:06 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 12 Mar 2025 21:11:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M8YLeSTF17oujcN3Sk+hebRnvHXBlTeGwS0WplX/Eami3nHwJsAVKufwn5DoyXgmBpZSVpUiHRPFi3irvMOP7Fh+vNTMrTizNzo4xqjY6LALru3qWcrf1insuhxGLGbJPDQkMPsXeV/+bKLfIt4IbbrwxfxaSvBhMRnd8Rne8vyJekg2qRi5qsU2Hq1AV6bOmsKvYVi97TPHoKYA6tbaaBCqf4Fp786Z9+v+/SWqhjDNnV5ypzCZHJsnMtsEzEfKyL0H0zqO+DJeT45i0SAXuCkBcPvTeRnFbv1bejyOtoEJ9jTPUHaXJGmwA/dts6x5+j+TDISfqA11q6Tigb0uZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Dli5cN8HLpdH4GOpN44C2BdgOp44qkeWmFWO1y3hCgE=;
+ b=EpRafmn1/WO6sMCCzhmJwQh2fn7oNiH0Lp9xaXZe9rRxDPq3weMcDkJF5by7PRu8OkbEl/jfkEhzhZqD3ycxQwQGU8yUXRu3TcczkUCDEHoIWnN+RXVpD6S/sU11Eaajesba9BXorfD25RtGC4oi1T3jP+X/4SmYGBWulNOkJwdJJYUDJbJ4tTBfEswcOmr+eO7fKaFs8dnQIc9fKjML5aKrFJ1msaT23W7qJbF3PPbJs1dLfXaExeVbHCzpRfLREhiXC8IQA7M61dQgWbTSGtKOSOdJPRpQ2Ar3XlNkq1G/OgqlwzIoGhaNBeilq5UeHpagn+xQvGsYfS/Zkc42UQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by DS0PR11MB7925.namprd11.prod.outlook.com (2603:10b6:8:f8::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Thu, 13 Mar
+ 2025 04:10:50 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::3225:d4ad:74a:6d7a%7]) with mapi id 15.20.8511.026; Thu, 13 Mar 2025
+ 04:10:50 +0000
+Date: Wed, 12 Mar 2025 23:10:44 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <mailhol.vincent@wanadoo.fr>
+CC: Yury Norov <yury.norov@gmail.com>, Rasmus Villemoes
+ <linux@rasmusvillemoes.dk>, Jani Nikula <jani.nikula@linux.intel.com>,
+ "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Andrew Morton
+ <akpm@linux-foundation.org>, <linux-kernel@vger.kernel.org>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Andi
+ Shyti" <andi.shyti@linux.intel.com>, David Laight <David.Laight@aculab.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v5 7/7] test_bits: add tests for BIT_U*()
+Message-ID: <xtbwpcwd37n62zbqifnpxa2xcwylkzvebyegrebuquvbgfztes@oy5k4op5lhn3>
+References: <20250306-fixed-type-genmasks-v5-0-b443e9dcba63@wanadoo.fr>
+ <20250306-fixed-type-genmasks-v5-7-b443e9dcba63@wanadoo.fr>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250306-fixed-type-genmasks-v5-7-b443e9dcba63@wanadoo.fr>
+X-ClientProxiedBy: MW4PR04CA0108.namprd04.prod.outlook.com
+ (2603:10b6:303:83::23) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|DS0PR11MB7925:EE_
+X-MS-Office365-Filtering-Correlation-Id: cc67e5af-b448-473f-fd35-08dd61e50a76
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|7416014|1800799024|366016|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hpdGyDJC8VfzTB8/0eq9jp+vWw2ztg+mQM8mrseZZ49b4y0N7z/nIMfQRPLj?=
+ =?us-ascii?Q?vrZ0mplYxsN0750Y2+psRBNlFV0cS9nqXBUAJycee7U150tIc4ab9Tm4yuHK?=
+ =?us-ascii?Q?3Q1O2clgorcE/AMz19aknTMTnzj22x3ALAUYouEu0AH9p8iNM4CF4dC9YYIO?=
+ =?us-ascii?Q?ljKl6CfHKwbVhleegkoceV+rvxUWtY+/kNUtLSNIRCvgZ5vo+jy8R4P7FCZP?=
+ =?us-ascii?Q?4XhWAl+MaPgsS2qKGMH2/HULRaS6czpjnH7sC80Fv2uPQb0PQM9G5G0a5PIj?=
+ =?us-ascii?Q?7j4xdESqXmklLBB9DJoRrhV9DBTQKospvEXkxqz+ue6GGNQ0GL74o/GcOIbr?=
+ =?us-ascii?Q?iw3ZU8Ai3mxh+sDfSrneRZ45w2MdHHSIEvft4inNmV5puSQF6wG/nK7N3BU5?=
+ =?us-ascii?Q?kFSabadKixzq7EZXLfHbKUkiOW0CDQ8z6kxVsWi9bNu3tgH5ucdmFN+kJwj5?=
+ =?us-ascii?Q?pTKQQtJXmi1iVOBi/tTOeRIlhzUKiLwUWCmY8UR9sJfIrpxP2Hxi9x0H0ILE?=
+ =?us-ascii?Q?1MWdibJ1oQKFj6X2NMKseVxDV0P4MvgZ1l5dw+K2F8CWEvVA2xhZ1DjZULkM?=
+ =?us-ascii?Q?OtdyDP6zx7Cj3DWFuOwap8S8L7IxUx/4Utdb3DRYU8P+OJSPBpJOITju2HbC?=
+ =?us-ascii?Q?2DuR2ZJUvA5MO3jYUspjxvwSsjKfX6ob8A6v9N7MrMCSij2w0ZM2KNbwZn2n?=
+ =?us-ascii?Q?Nq5HGjFmfrGtyxt5ZKAU8vAzozf8Hsm9JTNE3w1uDgAUFFmZd+TucHI67r5v?=
+ =?us-ascii?Q?7GtDcfOVNtno5zZzb07tE7E9+l7Sz2L0ybwsuD3ucWt9tXUu9rQWsFY3AnFp?=
+ =?us-ascii?Q?rByJodMM9s1r9YjfWUxjwW1Gzf6LKt+76uzt5Zt+fQXGZ2MAu7znvpIQXCQU?=
+ =?us-ascii?Q?Hr7bIkPINzrqZrJImJ+p/HOfSiOOvLhXPInv5tnFv68WovNgMnHbS8OF0JnP?=
+ =?us-ascii?Q?FolNvJdzsRgHICFdmNtBWuZP7CxMGV2mQ1eh8sNexptYJFBH0xIp1PHrZRqe?=
+ =?us-ascii?Q?/isHL3M/ti11KsYSyEHsL36rZkEFPkCDSFnOvWUVbRTJ3vd0BAzo3jUbhsky?=
+ =?us-ascii?Q?6Wv7cgXK2sFUIu8/ZAlPGU+nAipjlj4BHKH/tFxq1cyfrHcwx7QmiyPZ5Vj8?=
+ =?us-ascii?Q?dxAPm+prn43MlsyLNGWjgQKE7qrbZnDmL32hqzC4uBMb478QgWvvHhdUoMa3?=
+ =?us-ascii?Q?voDUcU0fkFWP6mt9XWtqO6TdNTjhzppPfOjA19NtYjPZ08PbC1iojMlDPqbJ?=
+ =?us-ascii?Q?Q7XRZx3ratoi2bqiUiCs9n8CLB+eaouN3dBQsQHvpqwR2Qa7q1VnSirgnPXu?=
+ =?us-ascii?Q?DmiqXSjalufpzMU/H0GsxCtiZRhBT/VPR3VIl7mh5Uw8IFb9AmEYaSNtoPc6?=
+ =?us-ascii?Q?zb49CD23vu3ucWW8fjYuegBt8NCf?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(1800799024)(366016)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0yniwqfT8cGqLc3zYZUS9xMfJB4/6GBVLiEkYmGLeMZtDCEKfOhVyFZqcHnZ?=
+ =?us-ascii?Q?WLCOJ2cv+uZSyxp759yCTjn8NknHGE0xdkqeQLODvokpQMaT5kcZ14KoNExt?=
+ =?us-ascii?Q?jVdtU8qZAJfItXLtmzQc3WK6jSGpayitanLpbfTyEh7khVnr4Ys+hEa1a7c2?=
+ =?us-ascii?Q?fCC2k9vVFRJvI2ed8QrnuT3EJbCHJL5K/EHvfAX/9Voq4pvXWHRPlk952VTr?=
+ =?us-ascii?Q?sitJzh/XntahiGbvtZbbsjdU+lseczeO9CvlpvQx3UyQddPB7MvjjmHcOzHP?=
+ =?us-ascii?Q?SzM05yelZeiEFpQiHcC8ZPMADCWAqNtSgz0g9/GIMiPMkda8Zy2IUrF3obTw?=
+ =?us-ascii?Q?VFMCH+rZBlH/kKhX47QpVEE4VLsnngph6DRM+DVKwou7lz2nK0ian2D1BLgn?=
+ =?us-ascii?Q?LScBdqjEC5AxkdzfS2WW8EkmQ2inbbxK9zstAATsESOCLBR/XBhTgZgzTbcF?=
+ =?us-ascii?Q?zvH6bW+IH43KIiqpUcQ3+Qw+tw4e+iElz33uLgKBlOmLpXMgXPdG1ICJF9W8?=
+ =?us-ascii?Q?OJy7Y/zjbFRj2BfJaFuX+Oaxhwpn7+BHADM7NdS3BZwm3u0B9Jxj/RPhSXhv?=
+ =?us-ascii?Q?hiIlOxUwqHG385NWdfzQrEi0np8QYaNRN+jg//PtUYyzSGTqHb08FJZvk51o?=
+ =?us-ascii?Q?uUWUMBMHm6YzXcyCMktZt3+5w6VeIYcuOPhOwsIVtRrNM+m+Ca+oC4h9+9xI?=
+ =?us-ascii?Q?aQ+cccdqJ8SWdwyczN7s5R6aMD1TWlu99K08OJHoMntLV9YZQK1/zvx/QFPD?=
+ =?us-ascii?Q?r51asH5DFZp2C0/QSGClyAbbjsNVBTBxAlVlh4GtTOZxdBi5YMIvyvOzSqP6?=
+ =?us-ascii?Q?1Kp1PCubP0uRglRxKVE/usuojiJ5WcLNZtk/+gMcKJNTL+ecaRrq2BlwbkTY?=
+ =?us-ascii?Q?GdkCpQ+iKnNS09TK4iPOBGZErcuoKYrdMiKd/EVTELAi2u++PR2q36B1JnpN?=
+ =?us-ascii?Q?0BoHw/v3vO2mETC0a2NNDi6oX9v15dpu1cUd5Pf10+1/d626hQeNGQi+rxQG?=
+ =?us-ascii?Q?nxG+NKVw8d6W5MUNPFOo2lexxffZtNUd1y7ep+gf5WylbVg/eV8r5VzDLlAl?=
+ =?us-ascii?Q?fmUS7eLYGdRvyR9oqoiDYP0wzShiojeVmNGwkCHDHjY/hsebGlIn2V43bINm?=
+ =?us-ascii?Q?ClrILT2SS7+diw0qpR654v7Y/MP5Ui5lVdoRPABpbdpDCCjgkqyueSuLIuFC?=
+ =?us-ascii?Q?1OLUV7t86FYUNc/mhdO4owIdXJOUDdoaLxTZ7I28ixn35+YB3DliHxz0wN1B?=
+ =?us-ascii?Q?obisABAlvBsAkqbNOmqwV1GMAE+0rOBI40zTuI4koJGiiEnqegpXCYN6jtcu?=
+ =?us-ascii?Q?uSy2jbokYW07f+/hMIWgFUtCIGj+6SkDBmMzasfHFCcnf2W4sV8eTVaZnmjS?=
+ =?us-ascii?Q?cG+J66oQzlL7rooZ9vVrHehgFmT8OF1PHMaw0ztT8XwTirG/iwVcMvGXX8GL?=
+ =?us-ascii?Q?jPVHr4DsuyYoV/EBtMbENb5s6DzK5vzmSCyULIvmBysne9ecYxU5PX+O7w3r?=
+ =?us-ascii?Q?mCPDstD2x61Wyxt6NiOmu0bBrOedkZZyPhn55JxNf2ExjzzPD/FfWdJpNczJ?=
+ =?us-ascii?Q?n/tRGwejC9Oe05tmz2+mQbtR6o4Y6CdQvHh+t4nQPFPAB/ptwfUgZnWxCsOk?=
+ =?us-ascii?Q?cg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc67e5af-b448-473f-fd35-08dd61e50a76
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2025 04:10:50.8843 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LL9GTn+kHAewtoyFv0bcA1CniIXrKstSe8u9b7SUE0W7NutKQ84m6qvjK1UXsFrtBYCnB+hOHI1b/WfqemkzoHe1+aQ4RrseWHP196hlqVY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7925
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,94 +187,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Mar 06, 2025 at 08:29:58PM +0900, Vincent Mailhol via B4 Relay wrote:
+>From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+>
+>Add some additional tests in lib/test_bits.c to cover the expected
+>results of the fixed type BIT_U*() macros.
+>
+>Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 
-Hi Dave, Sima,
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Here comes the final pull request for 6.15.
-
-Main thing is the bump of the reported mmap ioctl feature level, which
-enables Mesa to reliably detect full partial mmap support. Then the DRM
-client implementation gains vmap support and the remaining changes are just
-some refactors and cleanups.
-
-Regards,
-
-Tvrtko
-
-drm-intel-gt-next-2025-03-12:
-UAPI Changes:
-
-- Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps (José Roberto de Souza)
-
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Implement vmap/vunmap GEM object functions (Asbjørn Sloth Tønnesen)
-
-Miscellaneous:
-
-- Various register definition cleanups (Ville Syrjälä)
-- Fix typo in a comment [gt/uc] (Yuichiro Tsuji)
-The following changes since commit 7ded94bd11d47a8ddef051aef1d1a42d8191e09f:
-
-  drm/i915/gt: add wait on depth stall done bit handling (2025-02-18 12:37:04 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-03-12
-
-for you to fetch changes up to bfef148f3680e6b9d28e7fca46d9520f80c5e50e:
-
-  drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps (2025-03-11 07:04:51 -0700)
-
-----------------------------------------------------------------
-UAPI Changes:
-
-- Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps (José Roberto de Souza)
-
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Implement vmap/vunmap GEM object functions (Asbjørn Sloth Tønnesen)
-
-Miscellaneous:
-
-- Various register definition cleanups (Ville Syrjälä)
-- Fix typo in a comment [gt/uc] (Yuichiro Tsuji)
-
-----------------------------------------------------------------
-Asbjørn Sloth Tønnesen (1):
-      drm/i915: implement vmap/vunmap GEM object functions
-
-José Roberto de Souza (1):
-      drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version to indicate support for partial mmaps
-
-Ville Syrjälä (12):
-      drm/i915: Bump RING_FAULT engine ID bits
-      drm/i915: Relocate RING_FAULT bits
-      drm/i915: Use REG_BIT() & co. for ring fault registers
-      drm/i915: Document which RING_FAULT bits apply to which platforms
-      drm/i915: Introduce RING_FAULT_VADDR_MASK
-      drm/i915: Extract gen8_report_fault()
-      drm/i915: Use REG_BIT() & co. for CHV EU/slice fuse bits
-      drm/i915: Reoder CHV EU/slice fuse bits
-      drm/i915: Use REG_BIT() & co. for BDW+ EU/slice fuse bits
-      drm/i915: Reoder BDW+ EU/slice fuse bits
-      drm/i915: Use REG_BIT() & co. for gen9+ timestamp freq registers
-      drm/i915: Reoder gen9+ timestamp freq register bits
-
-Yuichiro Tsuji (1):
-      drm/i915/gt/uc: Fix typo in a comment
-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c          |   5 +-
- drivers/gpu/drm/i915/gem/i915_gem_object.c        |  26 +++++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c         |   5 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                |  89 ++++++--------
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c    |  10 +-
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c            |   5 +-
- drivers/gpu/drm/i915/gt/intel_gt_regs.h           | 136 ++++++++++------------
- drivers/gpu/drm/i915/gt/intel_sseu.c              |  56 +++++----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c |   9 +-
- 9 files changed, 166 insertions(+), 175 deletions(-)
+thanks
+Lucas De Marchi
