@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F32A5F74A
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 15:09:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E7AA5F74B
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Mar 2025 15:09:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D07310E8A6;
-	Thu, 13 Mar 2025 14:09:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B124B10E8A9;
+	Thu, 13 Mar 2025 14:09:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THPbFeMZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gEPv4RZF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B41CA10E8A4
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Mar 2025 14:09:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E8110E8A8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Mar 2025 14:09:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741874968; x=1773410968;
+ t=1741874970; x=1773410970;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=FwX5tbXTWQiZGGoEVJuoFJoFBHFutETnCIS9lJs7djg=;
- b=THPbFeMZ272LlDhTO7uDmnZRAuxw7d4xxtrU/MnvHDGRvk3/e/gVZuMC
- CBRd3PcmVHDRHoMcy6mhdpbU7khCgIASyRcu2Fe5RVKegN68MgaQ4ubXg
- VbqhFu29hy3vRUAVzLIFSxu7/RlNOSadk5ssLjUE1EQNQai7LipodNXLn
- aYQrFyaLUwuvLaihOfjY4UuSj2BwUfNTpx1lDwG4tQc08loA+V/Xw/V0E
- cy6SsWOyGOjSfn27BfJ+pIXcRAjTAQ5ZUjSO4mnw2xtomVZe6pxzz/HIJ
- Jwg/K3K2JtK1qHalTTWEyjvmAjkQImJhD3mJ00heQwxKctCxER8ir5X/1 w==;
-X-CSE-ConnectionGUID: NSAqqOo4TuqFz60Rl39obw==
-X-CSE-MsgGUID: hANvwJe8SkyicoOvkrWltQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="42854971"
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="42854971"
+ bh=4HshW08S+O5vq1Li665lEFRLoyZhTFJrMMFWATfdMT4=;
+ b=gEPv4RZF711ROlBd3b60S7n7myyio44GBe5Rge10c2TrSX868KYw2vR0
+ IPJ/AO4q4fCGK2XOT4AGkrv9HQA10PJtUCDEDRDl+ThQ3R010V115SHMJ
+ 6YqTEuYzqREgxFajfSqtF7ilRcB6MjxA//oCUN+d4Y4dOTkp63SyXvkhY
+ u2VjTsFSZU0pz31w9HF6y5AChIsVzvF6Hn83IEx6yzj256a/M7S4YbCcJ
+ KCheobBtln9F4//Vy+37E/0YtYOTYukXFkKCmFDEgx5W8XoxA2Ed0e1UP
+ LBPbfiNImjykZK8k+TmysnAldtSmk2L4mVtauPi18jk+8kUz61OQdD+li w==;
+X-CSE-ConnectionGUID: 25qwnOjvQ32hJAg0p3R4Dg==
+X-CSE-MsgGUID: L9YQFtt1Sd248W+yos40hQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="42854991"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="42854991"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 07:08:57 -0700
-X-CSE-ConnectionGUID: TrKdfkg0Qea5rf/yv/h6WA==
-X-CSE-MsgGUID: BEWaX84lS9y6AZL6hW+JNw==
+ 13 Mar 2025 07:09:00 -0700
+X-CSE-ConnectionGUID: wY/lHdVPTRCWu6I8F/ouZA==
+X-CSE-MsgGUID: ++INOAJcQ8KrHm7UBLDoOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="126138436"
+X-IronPort-AV: E=Sophos;i="6.14,244,1736841600"; d="scan'208";a="126138439"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 13 Mar 2025 07:08:56 -0700
+ by orviesa005.jf.intel.com with SMTP; 13 Mar 2025 07:08:59 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 13 Mar 2025 16:08:55 +0200
+ Thu, 13 Mar 2025 16:08:58 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 06/10] drm/i915: Verify the BIOS FB first PTE on non-LMEMBAR
- systems
-Date: Thu, 13 Mar 2025 16:08:34 +0200
-Message-ID: <20250313140838.29742-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 07/10] drm/i915: Use a nicer way to lookup the memory region
+ in BIOS FB takeover
+Date: Thu, 13 Mar 2025 16:08:35 +0200
+Message-ID: <20250313140838.29742-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250313140838.29742-1-ville.syrjala@linux.intel.com>
 References: <20250313140838.29742-1-ville.syrjala@linux.intel.com>
@@ -71,72 +71,85 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that we have intel_ggtt_read_entry() we can easily read out the
-first PTE of the BIOS FB and verify that it looks correct. We'll
-also use the extracted dma address to figure out where in stolen
-the FB lives (so far we've just assumed that it sits at offset 0,
-and in practice that does seem to be true, but better safe than
-sorry).
+Use intel_memory_region_by_type() to find the appropriate memory
+region for the BIOS FB takeover.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_plane_initial.c    | 31 +++++++++++++++++--
- 1 file changed, 29 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_plane_initial.c    | 28 ++++++++++++++-----
+ 1 file changed, 21 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-index 2989a5d76c1c..cf7d1a5ab524 100644
+index cf7d1a5ab524..5f75ef4ba3b1 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
 +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-@@ -115,11 +115,28 @@ initial_plane_phys_smem(struct intel_display *display,
+@@ -52,6 +52,17 @@ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+ 	return false;
+ }
+ 
++static enum intel_memory_type
++initial_plane_memory_type(struct drm_i915_private *i915)
++{
++	if (IS_DGFX(i915))
++		return INTEL_MEMORY_LOCAL;
++	else if (HAS_LMEMBAR_SMEM_STOLEN(i915))
++		return INTEL_MEMORY_STOLEN_LOCAL;
++	else
++		return INTEL_MEMORY_STOLEN_SYSTEM;
++}
++
+ static bool
+ initial_plane_phys_lmem(struct intel_display *display,
  			struct intel_initial_plane_config *plane_config)
- {
+@@ -59,6 +70,7 @@ initial_plane_phys_lmem(struct intel_display *display,
  	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
  	struct intel_memory_region *mem;
-+	bool is_present, is_local;
-+	dma_addr_t dma_addr;
++	enum intel_memory_type mem_type;
+ 	bool is_present, is_local;
+ 	dma_addr_t dma_addr;
  	u32 base;
- 
- 	base = round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
- 
-+	dma_addr = intel_ggtt_read_entry(&ggtt->vm, base, &is_present, &is_local);
-+
-+	if (!is_present) {
-+		drm_err(display->drm,
-+			"Initial plane FB PTE not present\n");
-+		return false;
-+	}
-+
-+	if (is_local) {
-+		drm_err(display->drm,
-+			"Initial plane FB PTE LMEM\n");
-+		return false;
-+	}
-+
- 	mem = i915->mm.stolen_region;
- 	if (!mem) {
- 		drm_dbg_kms(display->drm,
-@@ -127,8 +144,18 @@ initial_plane_phys_smem(struct intel_display *display,
+@@ -79,13 +91,12 @@ initial_plane_phys_lmem(struct intel_display *display,
  		return false;
  	}
  
--	/* FIXME get and validate the dma_addr from the PTE */
--	plane_config->phys_base = base;
-+	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
-+		drm_err(display->drm,
-+			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
-+			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
-+		return false;
-+	}
-+
-+	drm_dbg(display->drm,
-+		"Using dma_addr=%pa, based on initial plane programming\n",
-+		&dma_addr);
-+
-+	plane_config->phys_base = dma_addr - mem->region.start;
- 	plane_config->mem = mem;
+-	if (IS_DGFX(i915))
+-		mem = i915->mm.regions[INTEL_REGION_LMEM_0];
+-	else
+-		mem = i915->mm.stolen_region;
++	mem_type = initial_plane_memory_type(i915);
++	mem = intel_memory_region_by_type(i915, mem_type);
+ 	if (!mem) {
+ 		drm_dbg_kms(display->drm,
+-			    "Initial plane memory region not initialized\n");
++			    "Initial plane memory region (type %s) not initialized\n",
++			    intel_memory_type_str(mem_type));
+ 		return false;
+ 	}
  
- 	return true;
+@@ -117,6 +128,7 @@ initial_plane_phys_smem(struct intel_display *display,
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+ 	struct intel_memory_region *mem;
++	enum intel_memory_type mem_type;
+ 	bool is_present, is_local;
+ 	dma_addr_t dma_addr;
+ 	u32 base;
+@@ -137,10 +149,12 @@ initial_plane_phys_smem(struct intel_display *display,
+ 		return false;
+ 	}
+ 
+-	mem = i915->mm.stolen_region;
++	mem_type = initial_plane_memory_type(i915);
++	mem = intel_memory_region_by_type(i915, mem_type);
+ 	if (!mem) {
+ 		drm_dbg_kms(display->drm,
+-			    "Initial plane memory region not initialized\n");
++			    "Initial plane memory region (type %s) not initialized\n",
++			    intel_memory_type_str(mem_type));
+ 		return false;
+ 	}
+ 
 -- 
 2.45.3
 
