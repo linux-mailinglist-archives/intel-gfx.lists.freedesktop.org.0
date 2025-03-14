@@ -2,170 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E4A2A61DD6
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Mar 2025 22:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98F7FA61E1F
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Mar 2025 22:31:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC6C910E170;
-	Fri, 14 Mar 2025 21:17:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B4FB10E323;
+	Fri, 14 Mar 2025 21:31:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NLro6S2l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iozuNfLG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDD810E170;
- Fri, 14 Mar 2025 21:17:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F61B10E0E6;
+ Fri, 14 Mar 2025 21:30:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741987066; x=1773523066;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=rEMrstmgtC+DrxZc5XgxQNkVSzSNionsH4Q31qeYoKk=;
- b=NLro6S2lkOz+MHNmOj1xLWbq3ziNavhJtgXWDKlhxAyXorpau4utY2j/
- 5LMbb2Fgw2Wbm9qO78UncYkhUCXRhmAFR50kNv9u0eNiUNKEw5/JgnkTF
- IGpKpFxo7TP+ZuTVPdbG/R6mmDwd6Yj+GR9tf6xb1VhRsiDIawVFDIz8A
- RtGYW5F4Y3pIHQlKnLsuag+MGTuYTmiJ8aMDJ8PLbNkzbCu0nm/0MSCxZ
- XvDStClhyrmI/SqycNMZcQmZBMKB5RYVJ6EDtBKjkCBM/RAkg0uz/rD5b
- 4keC5pQ8Cpxepqad+5cY6xEoE8A8ZzxpkV35ztTFnh/++q4IougDU8A0S A==;
-X-CSE-ConnectionGUID: 3RqrJMBKT4yZio1+Q+Z+ug==
-X-CSE-MsgGUID: GiKprFfgT5+EGmYd9sI7cQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11373"; a="43253681"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="43253681"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2025 14:17:45 -0700
-X-CSE-ConnectionGUID: 9uEo9rCoQvid9f0xbdWI6A==
-X-CSE-MsgGUID: r45n+zHcRBaXHmnwSirs8Q==
+ t=1741987860; x=1773523860;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=Pufdo+UrEMb7ff04ApNstfPYDVzFw646S3SDdlt1yIo=;
+ b=iozuNfLGKBxNoowokGJhbTfUuS+ZAsuPfT8aCaoJvbAkNoopOKeW3JtV
+ JhmJ5tcMBdPtXMfVYw9fPy0ij65f6Zfln92P2/24NkAyNoTkh+IjIq9yS
+ Pkik/M47W8SSX2PjgZ88NLSLslcB7cWFV7sd7JphBZdFWL/jKmKIdD7vH
+ 0sL+jT2POV0Zcq2d53FkQp2qbGMpzMw2u1hnn7mqMjpUBjmlSQZetXmw6
+ culMHzs8GKviZLCAeYFx60zGkjIQ5hv93FILcj14ws+6HM5e7HtSGcIEt
+ bzSObkhYrISxVQ7WmTLf1xt98dY78rvQrb+uGfyVEi21TlRuZ49rqjRcF g==;
+X-CSE-ConnectionGUID: c/z+Jo8MSLWnyx6oc7DPew==
+X-CSE-MsgGUID: hF/YEuUvQbGzaj+DT/Hgrw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11373"; a="43191379"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="43191379"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Mar 2025 14:30:24 -0700
+X-CSE-ConnectionGUID: JYlGM+TRTnmeo+6mfz0BqQ==
+X-CSE-MsgGUID: Gxj1IeOSRueP6n3PMNHaPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="121197702"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Mar 2025 14:17:45 -0700
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="122116077"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Mar 2025 14:30:23 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 14 Mar 2025 14:17:45 -0700
+ 15.1.2507.44; Fri, 14 Mar 2025 14:30:22 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Fri, 14 Mar 2025 14:17:45 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.2.1544.14 via Frontend Transport; Fri, 14 Mar 2025 14:30:22 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 14 Mar 2025 14:17:44 -0700
+ 15.1.2507.44; Fri, 14 Mar 2025 14:30:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oP2mIPj+7858r7y2o/YJxuK58bHROwsYpuotLNV9ieL4LtB8QU+be0r7qvlBlExkmaR3smtQrYPR+vWQRzSf17V/sX7oEs1p+Chp/JiMwhhe+T+slYKCXlOm8K4ajJIROKS/eLK6T0OOSzY4jcxFbFUGD6EhuzhsvZ6pdssVYtVnxKBncwY479aOLuah1FB6to4pMVEFunXQSj3KjEDgTWTa7up38ggD1yi4t75LmR1re9T7u9wJkd5VTzWVdcfpH69TJgKeKuHZgemYSAZoficPurhclBtrEsyADzxnUKQjjyGclNPTkyGuSjOv0y7Wi4iABllWPkQkIMBsQYkjyw==
+ b=gV3ozBIkm7jzT0R2PANAd0FYY63uh8QrCfgNs5vIRFp1C3AOyGbyjgdMlW7RprUakVQLPMIMiNRpmk6RYL9cs33749FY0hIqPHdpFwb7aMngY5vYk/cNo4rC9fjrg2qK5RjhK86YU+ZsxxyKE0mxU4gq41q/qNFVIp7I8b9AOgqed0QJDBsvnMBptNER3xKGNL8SSzD8/YihjPG8AE+Hm+HNfOZQhXx9nP60HYG4Cm8MoeYF2mpL7nki/zg/NI31vLJvu9aQFLfX1dosk7en0wCZZeOBc9C4/gFcK1S+ERfeLqedlD2EfVi72tc4q7ElMGBV89rXJF/ytbzKlIWRMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PxhVRu1s38MSptYtj7QKa71nOhAaCoH4oOeldh/ZvIk=;
- b=sCNuhzjdh56awRZLTXRKD+xveOSrOGQPFKB7Zk9GWivaOQlOrwGfMTwyg7fIN3x0ulqbZSU2xeewZymJjfqbdS78GYrC1697BwHcm/X4+FmBQcJSxMZGzN/ElTASzI91DMEjPIcxp9PbGQP7zPrmnj1N/BjzyDKppixM6yM3VeUhvExxfpJe3D3bmaq7/GHk9PcEzMM8LdAIsSW1pvEdDYYz6X8DeWyUqX4kbuzmpHJHG4Jk9rDeOsZejcfpCOjcwkFw5KdVWXRdWXDWBFHXWnX8ryuJApQMzzFqhIVbW0dFHdho/TglzmiRtmDVKxgm969ryEmEnQ+GhgOVzPlOvQ==
+ bh=F5kx4GljxbjxBZqyP7zViVuQroLiBYJWX1bGGtKIKkA=;
+ b=lan4Hpi/0KySosG8/8JM7eMhvaC3yY5N3hI/EBDrcFRnyylvD1Ogt0XXnnpX+RaNl0QOFLSB4KM0+RXx4CCCGnRtD15p9Zze7fActAROqXskCaOoC0ske7omLmChp3O56wSvDt1oFkG3qm+Qz3F63tFGBw+JzFvzQHL5noMz5nDW2ViKBksckxcfiEExTBtYXnv7MgQaHS9C68MiTW0zazZaem0xqn0vBgbwh5WcUh7cXZRnk2s9+OdurTP2RcJlIhtAU7O7YK3JtX4pJtsp+tNifdwlXIgfX8XzE2AgmzW1nXVBCoQj3J9Om1cEheT07HWqGXs5JszEceC9blHDiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH0PR11MB4934.namprd11.prod.outlook.com (2603:10b6:510:30::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.27; Fri, 14 Mar
- 2025 21:17:40 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8534.027; Fri, 14 Mar 2025
- 21:17:40 +0000
-Date: Fri, 14 Mar 2025 14:17:37 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Ville
- =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v5 1/3] drm/i915/display: Convert intel_bw.c internally
- to intel_display
-Message-ID: <20250314211737.GC1439735@mdroper-desk1.amr.corp.intel.com>
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SA1PR11MB6712.namprd11.prod.outlook.com (2603:10b6:806:25c::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.28; Fri, 14 Mar
+ 2025 21:30:03 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%7]) with mapi id 15.20.8534.027; Fri, 14 Mar 2025
+ 21:30:03 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250314211737.GC1439735@mdroper-desk1.amr.corp.intel.com>
 References: <20250311-xe3lpd-bandwidth-update-v5-0-a95a9d90ad71@intel.com>
  <20250311-xe3lpd-bandwidth-update-v5-1-a95a9d90ad71@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250311-xe3lpd-bandwidth-update-v5-1-a95a9d90ad71@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0044.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::19) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+ <20250314211737.GC1439735@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH v5 1/3] drm/i915/display: Convert intel_bw.c internally to
+ intel_display
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, Ville
+ =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Date: Fri, 14 Mar 2025 18:29:57 -0300
+Message-ID: <174198779709.24757.15213554631082714012@intel.com>
+User-Agent: alot/0.12.dev27+gd21c920b07eb
+X-ClientProxiedBy: MW4PR04CA0191.namprd04.prod.outlook.com
+ (2603:10b6:303:86::16) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH0PR11MB4934:EE_
-X-MS-Office365-Filtering-Correlation-Id: df9301bf-c371-4061-f270-08dd633da6c6
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA1PR11MB6712:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbb0fef6-8550-46a2-5cf7-08dd633f617b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?QWeXX44Bk+sUj+XpMZx8ODr3gSMLu3vR9argFdvBifWL2Juf12TCr7Zsj5?=
- =?iso-8859-1?Q?fnEtgHM3uoBQluOzk1oWZJ2eRlVXTEEFUB6SskqQSNhpP3myP90c3/zD+Z?=
- =?iso-8859-1?Q?CgxUWSI7kmDIim/QKKqfFGnMBFdpBEDkKBzrba6m6rrXuEe32mYBaNUr12?=
- =?iso-8859-1?Q?IHj1ZD3yADaB3JBLNcygYw62VHofmcESNlssFZTiB0tlXMR/OvspRtFm43?=
- =?iso-8859-1?Q?b1PLEhuTGYoEWsCqE+Dha+1KQcvCYOLXTeuClpYHPRnda1+cYJNVEL6+Ls?=
- =?iso-8859-1?Q?axC8gC1LOpMaWK/hFE4hQAna8178MyEWFiVacDUsnDSsm3EzSf9UiqfLl0?=
- =?iso-8859-1?Q?288r6lYnu1sT0SA87ZV+YFv4gSSKaMEHdIm3H1txNPW9KrAZxF63UQAEe2?=
- =?iso-8859-1?Q?T+cX3+s1OM8e/pJH7MvzA46JZAq03tO8Tf2UA0dtc4bm3/C6wbCSYhwBAi?=
- =?iso-8859-1?Q?fzWZ3DYmCQwWECmSrPdBv+XkSOgUdaZN3r+yZH9E6IbTQETjFfNpUOC25T?=
- =?iso-8859-1?Q?aeigW5z9NM3NIy57nSmCwSG7BsC3TEeUoEfX5Kmf5MW8Oetn92mDnIJV0p?=
- =?iso-8859-1?Q?T29mXulpEiY8MKBOXfYuemYCoTq0vVYi5KU+cL4zkBNQyee0JbkDnQ3cAw?=
- =?iso-8859-1?Q?DBB/QUxNW2wRMMpi6yqY4s4XoFIut8QqLYAUbxvnNDpYuecy8sFe/UzzvI?=
- =?iso-8859-1?Q?ikCzivHyu/w5czdhcagqI2+iRpIz1zBCYznRG+F+7f462k68ND7X/fRe5i?=
- =?iso-8859-1?Q?g55jI/HYVPKO5u9EpiyGACKmijNSUkfIbOzaMewndoUR0hr8mf/ZLQNdjU?=
- =?iso-8859-1?Q?KQSgWeB77P96KZXjrmoibY5Gx78Arfbpvx2MHUspgxDjqZ2H7N5GvhBjnz?=
- =?iso-8859-1?Q?5mbXguTENNA3/xLjj7sK0s/jQohcymp/KpG7I6Li7TD7H7v8FFPPgT71rx?=
- =?iso-8859-1?Q?dycZgSvy0CXexB1B8+Z4nsXNU/42i3pf3MY4puTFTuMHk7Ecq45i1xMaa4?=
- =?iso-8859-1?Q?6tuxoOJXnn010IXP53fI+GPyfSvmK9qKAdl7JBM19TXhLjsPaKOv+wNMWt?=
- =?iso-8859-1?Q?KtsK3vYKFLacqJZBWpbdwAv6PJ7k4humLjT7S7xhOAYs5NyKkNoBtCK/XR?=
- =?iso-8859-1?Q?wVyZTCmNsM5m886JoMWu0IongoOOjP984uynX1enGRa+tOLCj7lqT7A9M4?=
- =?iso-8859-1?Q?QRRcC70PUROHPP3P4Dn9HS/uNBwXU3EG8LygLvuiWBbRFgXxnwjigrQtnQ?=
- =?iso-8859-1?Q?caLd+RqfgpikUaaLYNDyOenq6uxrZHDP4+7BFxfxZJskJxys7MxwqzvUdA?=
- =?iso-8859-1?Q?K1EK6nN6rdYnSMu6GF9Q7lDSTP0nyWuYGihM9dCz1S/S2tcUKYuBJB5btL?=
- =?iso-8859-1?Q?b8LIMTihLQAnpAuwcu4LIUGR4TJ4OVRlVwwDQl8ZCA7APBCiKs/QsdOfE4?=
- =?iso-8859-1?Q?2neJnccrLz25A5O4?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TXNyL2p6bUZnRHk3RjEyQ1pLUEFUNnc0NHo5ZjdwYnh2QzBJa3hCMTZQK3Zl?=
+ =?utf-8?B?QUswUlZ3ZE5XbTI1MUR3SHExRHVKbGdqeCtDeXBEeDduSWdRWHBGQWhFN1FD?=
+ =?utf-8?B?THJ6dEpvcWhyVkRJM0ZYeVVjalRkK3EvNDNja3NaMi9PdHdodW1NRmhTOXNP?=
+ =?utf-8?B?UDRGUWdCeW1VbWpMdFJsRlhJcG9mM0V1WVRJOXZjNU5ycFV6SzV5RVI0eXJ3?=
+ =?utf-8?B?cWdycEd6V0EzOXZOZmtDTllhRlY3dmM0d2tyVmVxTFU3dlUvS2FXR2JCTG9N?=
+ =?utf-8?B?MW01eFlRa3FncmpvNW9GTnNMTytiQ28yazREZFFEQmFJdjhZSzZUUTluSkpS?=
+ =?utf-8?B?RVVlL1Z2S0dCR2p0RDVsWm5RdThPaHpLQ1M0aVZ2V2JIMzJVbnRTaml3UFp3?=
+ =?utf-8?B?dHA4dnhNVHZVZFlCMkFDMG1jZXlVYTgzM3FDQVptOFR6Q2Z3Tk4zSVU3bGtC?=
+ =?utf-8?B?cFBQZ0t5RTBOT0c0cFNBN3dZbDFUVHdCQWNXWVNxcWhPSTQwWkxaNlp2T1NO?=
+ =?utf-8?B?eFFpTXFEMjYxNWlkYXJqYnFJdDBqTml4WUdqUENLeVEvNks4Q0FZcEo4elJt?=
+ =?utf-8?B?M2RHNGxkWThxVTYxNkF1eGRDNTRCQ3hkSnluUmd4aVRZWXJ3b1JuRkRwOUNH?=
+ =?utf-8?B?Nmd1ZGUwMFdZUVkvdVVOdmNlcWE3M0w4ZWJLKzhUaWJBMHREZVFoa0EzWS9X?=
+ =?utf-8?B?bStxQjZlL2RUSjF5VlF0Q3lhN0RnNUJCRVl0eXdxOTlxUUtBUWhlMEoxUFFq?=
+ =?utf-8?B?TEluK3hxckZMT1dQMG1YU29GME5aZ09xdnZBR1dCQTJleVBLejVRbkxNTlFI?=
+ =?utf-8?B?d3huSVBIRDh0Z1hTSkFPcHVCdktoOVgvYi9TT2Izekk4cVI2MlRKUzRIL3Fp?=
+ =?utf-8?B?TWtQcHp5bHJMc2ZIVU9sTlVUNllmUytzZ2VwTTRUZTRsNi93U0ZkTjc2OUVS?=
+ =?utf-8?B?Nmlnd1RnUUdnR1BkL3pHdUVIYmUyUTRaYlVwRGdoMlpZZ2xrOTFhOXg1NzdC?=
+ =?utf-8?B?TXNJMnY1NmhWMkVBMkZVSkVwUTZvMklhNW1XNFdBUXJmbzZPMmo4UzZub0Vz?=
+ =?utf-8?B?UENYdS9Td3hNL2xzTXNnYUJuZkRlbnAyclJOR3NaT3c4NVR0c0NSZjlpOUtp?=
+ =?utf-8?B?VGtRWFZla1JSY2J0V0lzcjBZMUV1YlJtRmZjb25tcDFxNmNzbmxSSlA4ejRD?=
+ =?utf-8?B?anZWSW1mcUdsRWloNGlhVUpvUVpjclo2NWVadTEzV0xac3ZMNXZvTXp2enNI?=
+ =?utf-8?B?NlJBVE9MWXZRaGw4SmRaOW5NeXFVam1rYTdPRWFNOFA1YTFwM2tiSkZ6bjZw?=
+ =?utf-8?B?SWMzYmcrT1dzbzJoV29hTnB4akJUVzFwdmpKbmcyN3hqYzVyZzFWN0ZZa1ha?=
+ =?utf-8?B?Y1pJcEdzTk5mOVNuL0ZxYzJka05EMmNtN0tKQk11MkVCcDBSSnE5RU43ZTBx?=
+ =?utf-8?B?OXg0QThkcU5yS3VIUzE4U09nUml6UmhPV1R1eWRsZUhJa2JIajcrcm0wK0Fl?=
+ =?utf-8?B?blB3UG1vSUdVMHZUZW9HTGVGOUlwRmFoTGNpQUZaRmhnbXRZUXJFWHVxMTVF?=
+ =?utf-8?B?NEZVUm41UmR2TnNkcWtKL3E1ZFpGdE9nNUFDV0FDd085WWU0RVJQYktCK2xL?=
+ =?utf-8?B?ZzZ3d2VicmtJQzhMVldrRlVaVmg3VHF2SVpWM2JvTDBPRkZXOVBvSlZMUEwz?=
+ =?utf-8?B?VE1TVi9iTUcya05GZmo0MG5WSXBkV3hLaGdla3BIUjVHWVNkdU44VlRNaVlF?=
+ =?utf-8?B?TUo4eTdudGNGRWc3Qlp3dzd2dFN5b2hDQXZaazhWUzdLaGRRV25PMEptekZ2?=
+ =?utf-8?B?V21xaVU3UWFjRmxSRXF6UGYvZTdNOEYvcmhZdHpRN05Bc3JBTlgyS29vaDEz?=
+ =?utf-8?Q?MUyeJw63ua0cE?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?acfxxqMquZkyU2eTMwNlZqwlStjzdPj/RFNfMliOYpEW3qySCzdS0Y30ks?=
- =?iso-8859-1?Q?9/O8wqFyKSL5wY3llqEjp69iFoJjm15+U6o2r1LknJWVpSOQJ7vfsrcDsF?=
- =?iso-8859-1?Q?yoLTtGsH2g1p4cnjA5H6k01FRCk4NihRJtWt0CPoYfKRgi/P2D1pfEZ+Ia?=
- =?iso-8859-1?Q?iHtIgrpVJfcM2hn3n2l2EVBOERB//dF2ClNh/qBLIZV+RC9bnBGog5XRI9?=
- =?iso-8859-1?Q?H3aIoZygcYz6khZn3E2Dpsr17ykcWKfvx60ANewPltbGyMM/17nSQ4M4EL?=
- =?iso-8859-1?Q?Ju6jtw6q5Ss5+PJ5tnUM9eSGY594np5mpRWeKC6eEqIkKqbOn5tUP75gll?=
- =?iso-8859-1?Q?206Bus+LpZ8lVQ5uzZKEsNg8PBh2+qN9b2euyA+T6ub066O1gqazRk5h8l?=
- =?iso-8859-1?Q?sQHtbMghmB7kv3jB0FZbG8vh6oVMIjAb3DEECgSos0fsYchLB1OZgcSvrw?=
- =?iso-8859-1?Q?rEn72Y1bvQezwubrYmsXm9YN3NGhSaNs2DqGEaXvxL9nCjKr3I22tNkbR9?=
- =?iso-8859-1?Q?AzLmxUJpbMmkc/PDG5pvpj7Xq4ZouivQPuBzSwXf9urXi1InRUwYiSD1uE?=
- =?iso-8859-1?Q?tA9T4c7RgT4oLMySr/fmDQvQMl9lveXQqkNDSF6OmqLxKgp/PAPWuZGYP9?=
- =?iso-8859-1?Q?HLDYH2Ktr+pAnkoRkHzkxd1q04/sFKV8D0w3kQo3gssj7Bx2knmp26gR3F?=
- =?iso-8859-1?Q?moUjXCBB5y/oLcCYu1C4R5gk/i2rP/oL/XNEub+epMZzFcOjpGP14109PB?=
- =?iso-8859-1?Q?oAtd6zSGNXTPkuPdIjhCToI6fbJAOdI9SLRekjxg9w76AHfCsAzMDo29Mh?=
- =?iso-8859-1?Q?mXC6gUqYv0eX7x9IdamuCVcS5Kv0s8uzjMVXNaclKxDgQmaSBotJ/vrq0H?=
- =?iso-8859-1?Q?Vf/sSAm6UsSR+6lvhTS9XkjyrQSJDz/mTRQQ7F7AJl+Tx2e4EiOTRC1K4w?=
- =?iso-8859-1?Q?Gxs0LX4n1JfvLD2XAhP9TYsQ/+hKPI7QGOxEOntiimeAcdyyQxXyVQqqb3?=
- =?iso-8859-1?Q?PJn4uRDpmUaOP+VH1hTAfy7qlWZ0lRjRiQBq4JTK/zWwy58RRNv2oLBXqe?=
- =?iso-8859-1?Q?ZGSEJmtcFcskk9B27JVfrimWeAsdEhjgGoZ6yRrQwkfE+cFzUhsPr4Rlev?=
- =?iso-8859-1?Q?mndAHynlXq5QoxnjfY9UDtuqily3WNSDRDmhb635JgGluXY3vbk4siWxta?=
- =?iso-8859-1?Q?ACvjQUFkFiN2xF8Oue4NgQbkrJ1gVHGsCZ67sSHneDnwqU8yienjXrEAdy?=
- =?iso-8859-1?Q?aDXI1Tx6anAjT8lMS25mr/x3t/yHBa6sTwpmk1ZFeDl3Fae5gfp+g65A+z?=
- =?iso-8859-1?Q?UxmV+GUqhi08V8miPnmsnGJtDLnMgbKTbOdYDMVZ4wnX+t4KfE/v2Y959C?=
- =?iso-8859-1?Q?inYzzX+KsteWXtaCx5Mo2YahUmAlzC0UopfGE6DF6q2uLE7d4vC+P/K8pW?=
- =?iso-8859-1?Q?ZdHOjlc3pGGkufTufmzHL8Y3tprI6Vl2J6C0WJaRjNFPKHNyA4QQQal4p3?=
- =?iso-8859-1?Q?9aU0dQROdfVLHHEUC/GVybpktvO+4EkLm1A+gEOa481xipsFwr69q5P6s3?=
- =?iso-8859-1?Q?v8kiMb2I00eZiJDPZbk1Doo7d3C4jG23D6hOUxJWNpOlkxwTyD6sOQq+Ek?=
- =?iso-8859-1?Q?IPEVgo80KrIRsq57yFLRZ7pqvLtemXR9VaCGp0CCvB0q7STzWDK96bbQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: df9301bf-c371-4061-f270-08dd633da6c6
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXBrNDBETko1eVJaWnVRWWlVZ1IrVFVSS0VOUDk5aU5wQU5LbklYV2ZMNFJy?=
+ =?utf-8?B?TTJOalZNMFdRSitUbEg0Y3ZUY21PWjU0dDM4VlNTREdGUE50OHBZTXBqbUR0?=
+ =?utf-8?B?eEF3ZjlWWSt6dGlmc09QdkNyY0hYbi9vMDhtd2hnMXZ1VXhpUVlPcGl6K01E?=
+ =?utf-8?B?cWxNVDRTbEQvYVcremc5eFFSR1VNK09YbVhBVDQ3cXRGaVNkbmVBNEU1VHVY?=
+ =?utf-8?B?Y2ZWcmRLZFhNa2NPbk5nR2haWDR3SXJiSFF3MHBaRDhJVm82REd5cEF0YUtZ?=
+ =?utf-8?B?ODN4OGx6VUJUbXZZSHd5aURqdy95QkorRDVYeHM2VUlnWDQ0TU9vQldPNlcy?=
+ =?utf-8?B?Z3dmTU52WW0yOWRIUnNyckZ0bXFYOFpRMlNvWXMrem1sVUNsUTFqVTg2ckNU?=
+ =?utf-8?B?UE0veDJUblRtVHVVbFR2SUUvMUZCVDQ0UStiOVdidGM0NFNLVGNQWGJvWm5D?=
+ =?utf-8?B?OE9NVldHbVlDdlhUMUZiT1ZFYm5DMWExUWNRbWx5WkZhd3hreGgycXI4dlhV?=
+ =?utf-8?B?S0dDQ1hFblI1ZWs4QTBzbGFNU21yR0pDRUtTYnloMkw5UWZOUklQV1dNTytR?=
+ =?utf-8?B?YU5Tc1pZSVgxcFhobDdZZi9ZN2wzSmNldUpiZWhiNGVyWUUzZFpXTWNyNlFB?=
+ =?utf-8?B?SGpnU2p1RHRmSXY5dVRETDZORkZuWjk5VTVsc0F3WHdkcUE1c1ZEWG9uUnc3?=
+ =?utf-8?B?cU4vM3Uva0ppS1BneElNajUvR0R6ZWFrdmxYTnZPSnQ0blNxampkZnJHQVUy?=
+ =?utf-8?B?S1ZxQThSVEhRUllzdHc2dlg2T2pKOEp0Mk1xQjZ4d3hkbjRWbVJuU2ZEM2dI?=
+ =?utf-8?B?ZTJkUWRGV3VKdUhiSDJhc0VkL1NDTW13dkJ5RjlTME8zU2x2Rnd0S3o4QVNw?=
+ =?utf-8?B?L0I5NTNVdDBjKzlOTWdJT3psRk15NitKa1NudDdSazQ4bndDaGJUaVJVMlNX?=
+ =?utf-8?B?cVJyVEw2TEh2M2xKbzhobjhhU0o5MTBLbzFlVTgvR0p0MDlYOFRmTDQ0aDNU?=
+ =?utf-8?B?ZXJwdkJZa3N1aWNqZWE3TFlFZmFqTkZhQlp1KzRSd3FET3hsWEJuaUpnZjRs?=
+ =?utf-8?B?cHYzYkp0WG1uTGF2d0ZKaWRBclYzcmdqS2R3RTlkMjR0UmxpY2V3amJUL0Iw?=
+ =?utf-8?B?dGhCcWZUWXh5ODNBTFg2VGNWVjFXYWxwYktRaG1idDFzK2FkNDdWWmdBMHdR?=
+ =?utf-8?B?SFZEWFFGM1NVMXdpU25EWEVSajMvMUxwWTJFY0pYajh4NVJDbnJKR3pJSS9S?=
+ =?utf-8?B?SHFrVytadjFPaVlRZ0NrNDFoc1p3eEhPK1dkdENxMDMwdEpwWDY3VStEQ0hF?=
+ =?utf-8?B?WHluU0hna0h0UmVTcnhsT3JWWDN0T2Q5VThqM2czaVRyeFU3YmxwcGZJaitN?=
+ =?utf-8?B?c3ZSQzREeWF5dWNGdXprZk1FSm00WE5vNmkydmpyN1cvcnF6ZXB6T0Jza1JX?=
+ =?utf-8?B?cnkzeXlrc3czM3dkRXlYanF5SFcyMHAvV2s4bjUrZHRCNHc5SFRwUHhIU1ll?=
+ =?utf-8?B?c01QbXFkalZMcmVRZDIvWFNYVUNGRXpXVnN0YUJ3S1pKcHdROWdjRVc5OUNG?=
+ =?utf-8?B?cTh0eVNmSUpxU2NPWnkrWXB0c2NVVXJvdWpYYStRb0tmeHd0VkJyV1g2cjRM?=
+ =?utf-8?B?eUdmRS8xSFBSaVZxNkM4S2lWQXR4OVFWYkJWN2ExVkd5NVZnSmtuMUsvbmJj?=
+ =?utf-8?B?YklzZlVXeVZ4eFpNYytvK3d6VEgvZE9zTjRFeGp5OXFwQUYwWmU0TUhKeThY?=
+ =?utf-8?B?U3hKdlBqd0kvbk9LS0F1SWcweTVlWFR6bXFKSkhLWXRwVkhzbnV6U3NodFB2?=
+ =?utf-8?B?Z3YyTWhtYVpLUVliY3JYSS9GV0tOWDRNMGVRVWdhQ0xURHV2VTBCQWlnV3Bu?=
+ =?utf-8?B?bDZQVFArdFNkZVhOWmIwZ0xXand6MHV0cFpQK0FjcnJvOHFxM20yZHNHM3hN?=
+ =?utf-8?B?RFBaUFdsVHRVVWhXNlBCWVRTeXpRMVROdGVNcWl3cXNvTmZkT3EwMWU4cHY3?=
+ =?utf-8?B?N2xDUlJLc3gyTndxTE5FZFU4cWJadWJ6MlIyMnVES0I5VDJnSWREblcreHhF?=
+ =?utf-8?B?U3V0WXBCR0U5VG1SektqeEVhL0VyZ0ozeTM1V2NZOWR2Z0xxTDZqVXRqNEVu?=
+ =?utf-8?B?VUpPTDJLa0hyTWppRURZZy9kSEFmYzBNdkRTZXpISjZMRGt3a2c0STR1VTV4?=
+ =?utf-8?B?UGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbb0fef6-8550-46a2-5cf7-08dd633f617b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 21:17:40.0955 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2025 21:30:03.1537 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DPvZ0PodhotwvgO56GxERw43KupU788lqFX8ju5kkvR9I1x1bd/gjdsj46ELf/iKxk9FiKuWkCLTP9S1WZmG9xn77pxHgYlQ1kpbXwDX8K8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4934
+X-MS-Exchange-CrossTenant-UserPrincipalName: TEDe0IEjxj4HuymhAe+8rAKsuoWzyzaYAtYIXWU2pa7eINmi3pT6xlChXe8gBx8iWEZab5T72U4PUpfbdkSIKg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6712
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,1228 +198,1512 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 11, 2025 at 02:04:50PM -0300, Gustavo Sousa wrote:
-> Update intel_bw.c internally use intel_display. Conversion of the public
-> interface will come as a follow-up.
-> 
-> v2:
->   - Prefer intel_uncore_read() for MCHBAR registers. (Ville)
-> v3:
->   - Remove the unnecessary inclusion of intel_de.h after changes from
->     v2. (Ville)
-> 
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 416 +++++++++++++++++---------------
->  1 file changed, 217 insertions(+), 199 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 048be287224774110d94fe2944daa580d8dc20a6..6f805af32926d3608929655de97699747d7a5798 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -39,14 +39,15 @@ struct intel_qgv_info {
->  	u8 deinterleave;
->  };
->  
-> -static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +static int dg1_mchbar_read_qgv_point_info(struct intel_display *display,
->  					  struct intel_qgv_point *sp,
->  					  int point)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 dclk_ratio, dclk_reference;
->  	u32 val;
->  
-> -	val = intel_uncore_read(&dev_priv->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
-> +	val = intel_uncore_read(&i915->uncore, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
->  	dclk_ratio = REG_FIELD_GET(DG1_QCLK_RATIO_MASK, val);
->  	if (val & DG1_QCLK_REFERENCE)
->  		dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
-> @@ -54,18 +55,18 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
->  		dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
->  	sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
->  
-> -	val = intel_uncore_read(&dev_priv->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
-> +	val = intel_uncore_read(&i915->uncore, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
->  	if (val & DG1_GEAR_TYPE)
->  		sp->dclk *= 2;
->  
->  	if (sp->dclk == 0)
->  		return -EINVAL;
->  
-> -	val = intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
-> +	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR);
->  	sp->t_rp = REG_FIELD_GET(DG1_DRAM_T_RP_MASK, val);
->  	sp->t_rdpre = REG_FIELD_GET(DG1_DRAM_T_RDPRE_MASK, val);
->  
-> -	val = intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
-> +	val = intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0_0_0_MCHBAR_HIGH);
->  	sp->t_rcd = REG_FIELD_GET(DG1_DRAM_T_RCD_MASK, val);
->  	sp->t_ras = REG_FIELD_GET(DG1_DRAM_T_RAS_MASK, val);
->  
-> @@ -74,22 +75,23 @@ static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_priv,
->  	return 0;
->  }
->  
-> -static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +static int icl_pcode_read_qgv_point_info(struct intel_display *display,
->  					 struct intel_qgv_point *sp,
->  					 int point)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val = 0, val2 = 0;
->  	u16 dclk;
->  	int ret;
->  
-> -	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-> +	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
->  			     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
->  			     &val, &val2);
->  	if (ret)
->  		return ret;
->  
->  	dclk = val & 0xffff;
-> -	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_priv) >= 12 ? 500 : 0),
-> +	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(display) >= 12 ? 500 : 0),
->  				1000);
->  	sp->t_rp = (val & 0xff0000) >> 16;
->  	sp->t_rcd = (val & 0xff000000) >> 24;
-> @@ -102,14 +104,15 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
->  	return 0;
->  }
->  
-> -static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
-> -					    struct intel_psf_gv_point *points)
-> +static int adls_pcode_read_psf_gv_point_info(struct intel_display *display,
-> +					     struct intel_psf_gv_point *points)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val = 0;
->  	int ret;
->  	int i;
->  
-> -	ret = snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-> +	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
->  			     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
->  	if (ret)
->  		return ret;
-> @@ -122,10 +125,10 @@ static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
->  	return 0;
->  }
->  
-> -static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
-> +static u16 icl_qgv_points_mask(struct intel_display *display)
->  {
-> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
-> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
->  	u16 qgv_points = 0, psf_points = 0;
->  
->  	/*
-> @@ -142,18 +145,19 @@ static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
->  	return ICL_PCODE_REQ_QGV_PT(qgv_points) | ADLS_PCODE_REQ_PSF_PT(psf_points);
->  }
->  
-> -static bool is_sagv_enabled(struct drm_i915_private *i915, u16 points_mask)
-> +static bool is_sagv_enabled(struct intel_display *display, u16 points_mask)
->  {
-> -	return !is_power_of_2(~points_mask & icl_qgv_points_mask(i915) &
-> +	return !is_power_of_2(~points_mask & icl_qgv_points_mask(display) &
->  			      ICL_PCODE_REQ_QGV_PT_MASK);
->  }
->  
->  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
->  				  u32 points_mask)
->  {
-> +	struct intel_display *display = &dev_priv->display;
->  	int ret;
->  
-> -	if (DISPLAY_VER(dev_priv) >= 14)
-> +	if (DISPLAY_VER(display) >= 14)
->  		return 0;
->  
->  	/* bspec says to keep retrying for at least 1 ms */
-> @@ -164,27 +168,28 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
->  				1);
->  
->  	if (ret < 0) {
-> -		drm_err(&dev_priv->drm,
-> +		drm_err(display->drm,
->  			"Failed to disable qgv points (0x%x) points: 0x%x\n",
->  			ret, points_mask);
->  		return ret;
->  	}
->  
-> -	dev_priv->display.sagv.status = is_sagv_enabled(dev_priv, points_mask) ?
-> +	display->sagv.status = is_sagv_enabled(display, points_mask) ?
->  		I915_SAGV_ENABLED : I915_SAGV_DISABLED;
->  
->  	return 0;
->  }
->  
-> -static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +static int mtl_read_qgv_point_info(struct intel_display *display,
->  				   struct intel_qgv_point *sp, int point)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	u32 val, val2;
->  	u16 dclk;
->  
-> -	val = intel_uncore_read(&dev_priv->uncore,
-> +	val = intel_uncore_read(&i915->uncore,
+Quoting Matt Roper (2025-03-14 18:17:37-03:00)
+>On Tue, Mar 11, 2025 at 02:04:50PM -0300, Gustavo Sousa wrote:
+>> Update intel_bw.c internally use intel_display. Conversion of the public
+>> interface will come as a follow-up.
+>>=20
+>> v2:
+>>   - Prefer intel_uncore_read() for MCHBAR registers. (Ville)
+>> v3:
+>>   - Remove the unnecessary inclusion of intel_de.h after changes from
+>>     v2. (Ville)
+>>=20
+>> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bw.c | 416 +++++++++++++++++--------=
+-------
+>>  1 file changed, 217 insertions(+), 199 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i=
+915/display/intel_bw.c
+>> index 048be287224774110d94fe2944daa580d8dc20a6..6f805af32926d3608929655d=
+e97699747d7a5798 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>> @@ -39,14 +39,15 @@ struct intel_qgv_info {
+>>          u8 deinterleave;
+>>  };
+>> =20
+>> -static int dg1_mchbar_read_qgv_point_info(struct drm_i915_private *dev_=
+priv,
+>> +static int dg1_mchbar_read_qgv_point_info(struct intel_display *display=
+,
+>>                                            struct intel_qgv_point *sp,
+>>                                            int point)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          u32 dclk_ratio, dclk_reference;
+>>          u32 val;
+>> =20
+>> -        val =3D intel_uncore_read(&dev_priv->uncore, SA_PERF_STATUS_0_0=
+_0_MCHBAR_PC);
+>> +        val =3D intel_uncore_read(&i915->uncore, SA_PERF_STATUS_0_0_0_M=
+CHBAR_PC);
+>>          dclk_ratio =3D REG_FIELD_GET(DG1_QCLK_RATIO_MASK, val);
+>>          if (val & DG1_QCLK_REFERENCE)
+>>                  dclk_reference =3D 6; /* 6 * 16.666 MHz =3D 100 MHz */
+>> @@ -54,18 +55,18 @@ static int dg1_mchbar_read_qgv_point_info(struct drm=
+_i915_private *dev_priv,
+>>                  dclk_reference =3D 8; /* 8 * 16.666 MHz =3D 133 MHz */
+>>          sp->dclk =3D DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference)=
+ + 500, 1000);
+>> =20
+>> -        val =3D intel_uncore_read(&dev_priv->uncore, SKL_MC_BIOS_DATA_0=
+_0_0_MCHBAR_PCU);
+>> +        val =3D intel_uncore_read(&i915->uncore, SKL_MC_BIOS_DATA_0_0_0=
+_MCHBAR_PCU);
+>>          if (val & DG1_GEAR_TYPE)
+>>                  sp->dclk *=3D 2;
+>> =20
+>>          if (sp->dclk =3D=3D 0)
+>>                  return -EINVAL;
+>> =20
+>> -        val =3D intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_P=
+RE_0_0_0_MCHBAR);
+>> +        val =3D intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0=
+_0_0_MCHBAR);
+>>          sp->t_rp =3D REG_FIELD_GET(DG1_DRAM_T_RP_MASK, val);
+>>          sp->t_rdpre =3D REG_FIELD_GET(DG1_DRAM_T_RDPRE_MASK, val);
+>> =20
+>> -        val =3D intel_uncore_read(&dev_priv->uncore, MCHBAR_CH0_CR_TC_P=
+RE_0_0_0_MCHBAR_HIGH);
+>> +        val =3D intel_uncore_read(&i915->uncore, MCHBAR_CH0_CR_TC_PRE_0=
+_0_0_MCHBAR_HIGH);
+>>          sp->t_rcd =3D REG_FIELD_GET(DG1_DRAM_T_RCD_MASK, val);
+>>          sp->t_ras =3D REG_FIELD_GET(DG1_DRAM_T_RAS_MASK, val);
+>> =20
+>> @@ -74,22 +75,23 @@ static int dg1_mchbar_read_qgv_point_info(struct drm=
+_i915_private *dev_priv,
+>>          return 0;
+>>  }
+>> =20
+>> -static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_p=
+riv,
+>> +static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+>>                                           struct intel_qgv_point *sp,
+>>                                           int point)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          u32 val =3D 0, val2 =3D 0;
+>>          u16 dclk;
+>>          int ret;
+>> =20
+>> -        ret =3D snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSY=
+STEM_INFO |
+>> +        ret =3D snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM=
+_INFO |
+>>                               ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point=
+),
+>>                               &val, &val2);
+>>          if (ret)
+>>                  return ret;
+>> =20
+>>          dclk =3D val & 0xffff;
+>> -        sp->dclk =3D DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(dev_pri=
+v) >=3D 12 ? 500 : 0),
+>> +        sp->dclk =3D DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(display=
+) >=3D 12 ? 500 : 0),
+>>                                  1000);
+>>          sp->t_rp =3D (val & 0xff0000) >> 16;
+>>          sp->t_rcd =3D (val & 0xff000000) >> 24;
+>> @@ -102,14 +104,15 @@ static int icl_pcode_read_qgv_point_info(struct dr=
+m_i915_private *dev_priv,
+>>          return 0;
+>>  }
+>> =20
+>> -static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *d=
+ev_priv,
+>> -                                            struct intel_psf_gv_point *=
+points)
+>> +static int adls_pcode_read_psf_gv_point_info(struct intel_display *disp=
+lay,
+>> +                                             struct intel_psf_gv_point =
+*points)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          u32 val =3D 0;
+>>          int ret;
+>>          int i;
+>> =20
+>> -        ret =3D snb_pcode_read(&dev_priv->uncore, ICL_PCODE_MEM_SUBSYSY=
+STEM_INFO |
+>> +        ret =3D snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM=
+_INFO |
+>>                               ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, N=
+ULL);
+>>          if (ret)
+>>                  return ret;
+>> @@ -122,10 +125,10 @@ static int adls_pcode_read_psf_gv_point_info(struc=
+t drm_i915_private *dev_priv,
+>>          return 0;
+>>  }
+>> =20
+>> -static u16 icl_qgv_points_mask(struct drm_i915_private *i915)
+>> +static u16 icl_qgv_points_mask(struct intel_display *display)
+>>  {
+>> -        unsigned int num_psf_gv_points =3D i915->display.bw.max[0].num_=
+psf_gv_points;
+>> -        unsigned int num_qgv_points =3D i915->display.bw.max[0].num_qgv=
+_points;
+>> +        unsigned int num_psf_gv_points =3D display->bw.max[0].num_psf_g=
+v_points;
+>> +        unsigned int num_qgv_points =3D display->bw.max[0].num_qgv_poin=
+ts;
+>>          u16 qgv_points =3D 0, psf_points =3D 0;
+>> =20
+>>          /*
+>> @@ -142,18 +145,19 @@ static u16 icl_qgv_points_mask(struct drm_i915_pri=
+vate *i915)
+>>          return ICL_PCODE_REQ_QGV_PT(qgv_points) | ADLS_PCODE_REQ_PSF_PT=
+(psf_points);
+>>  }
+>> =20
+>> -static bool is_sagv_enabled(struct drm_i915_private *i915, u16 points_m=
+ask)
+>> +static bool is_sagv_enabled(struct intel_display *display, u16 points_m=
+ask)
+>>  {
+>> -        return !is_power_of_2(~points_mask & icl_qgv_points_mask(i915) =
+&
+>> +        return !is_power_of_2(~points_mask & icl_qgv_points_mask(displa=
+y) &
+>>                                ICL_PCODE_REQ_QGV_PT_MASK);
+>>  }
+>> =20
+>>  int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
+>>                                    u32 points_mask)
+>>  {
+>> +        struct intel_display *display =3D &dev_priv->display;
+>>          int ret;
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) >=3D 14)
+>> +        if (DISPLAY_VER(display) >=3D 14)
+>>                  return 0;
+>> =20
+>>          /* bspec says to keep retrying for at least 1 ms */
+>> @@ -164,27 +168,28 @@ int icl_pcode_restrict_qgv_points(struct drm_i915_=
+private *dev_priv,
+>>                                  1);
+>> =20
+>>          if (ret < 0) {
+>> -                drm_err(&dev_priv->drm,
+>> +                drm_err(display->drm,
+>>                          "Failed to disable qgv points (0x%x) points: 0x=
+%x\n",
+>>                          ret, points_mask);
+>>                  return ret;
+>>          }
+>> =20
+>> -        dev_priv->display.sagv.status =3D is_sagv_enabled(dev_priv, poi=
+nts_mask) ?
+>> +        display->sagv.status =3D is_sagv_enabled(display, points_mask) =
+?
+>>                  I915_SAGV_ENABLED : I915_SAGV_DISABLED;
+>> =20
+>>          return 0;
+>>  }
+>> =20
+>> -static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>> +static int mtl_read_qgv_point_info(struct intel_display *display,
+>>                                     struct intel_qgv_point *sp, int poin=
+t)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          u32 val, val2;
+>>          u16 dclk;
+>> =20
+>> -        val =3D intel_uncore_read(&dev_priv->uncore,
+>> +        val =3D intel_uncore_read(&i915->uncore,
+>
+>I know it was suggested not to convert the MCHBAR registers since those
+>ones aren't technically display registers, but was it intentional to
+>also keep these MTL ones on intel_uncore?  These are part of the display
+>IP itself.  If these were just overlooked, we might want to send a
+>follow-up patch for those.
 
-I know it was suggested not to convert the MCHBAR registers since those
-ones aren't technically display registers, but was it intentional to
-also keep these MTL ones on intel_uncore?  These are part of the display
-IP itself.  If these were just overlooked, we might want to send a
-follow-up patch for those.
+My bad on not verifying that those offsets belong to the display IP.
 
+I'll prepare a patch. Thanks for catching this!
 
-Matt
+--
+Gustavo Sousa
 
->  				MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
-> -	val2 = intel_uncore_read(&dev_priv->uncore,
-> +	val2 = intel_uncore_read(&i915->uncore,
->  				 MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
->  	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
->  	sp->dclk = DIV_ROUND_CLOSEST(16667 * dclk, 1000);
-> @@ -200,29 +205,30 @@ static int mtl_read_qgv_point_info(struct drm_i915_private *dev_priv,
->  }
->  
->  static int
-> -intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
-> +intel_read_qgv_point_info(struct intel_display *display,
->  			  struct intel_qgv_point *sp,
->  			  int point)
->  {
-> -	if (DISPLAY_VER(dev_priv) >= 14)
-> -		return mtl_read_qgv_point_info(dev_priv, sp, point);
-> -	else if (IS_DG1(dev_priv))
-> -		return dg1_mchbar_read_qgv_point_info(dev_priv, sp, point);
-> +	if (DISPLAY_VER(display) >= 14)
-> +		return mtl_read_qgv_point_info(display, sp, point);
-> +	else if (display->platform.dg1)
-> +		return dg1_mchbar_read_qgv_point_info(display, sp, point);
->  	else
-> -		return icl_pcode_read_qgv_point_info(dev_priv, sp, point);
-> +		return icl_pcode_read_qgv_point_info(display, sp, point);
->  }
->  
-> -static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
-> +static int icl_get_qgv_points(struct intel_display *display,
->  			      struct intel_qgv_info *qi,
->  			      bool is_y_tile)
->  {
-> -	const struct dram_info *dram_info = &dev_priv->dram_info;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	const struct dram_info *dram_info = &i915->dram_info;
->  	int i, ret;
->  
->  	qi->num_points = dram_info->num_qgv_points;
->  	qi->num_psf_points = dram_info->num_psf_gv_points;
->  
-> -	if (DISPLAY_VER(dev_priv) >= 14) {
-> +	if (DISPLAY_VER(display) >= 14) {
->  		switch (dram_info->type) {
->  		case INTEL_DRAM_DDR4:
->  			qi->t_bl = 4;
-> @@ -250,7 +256,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			MISSING_CASE(dram_info->type);
->  			return -EINVAL;
->  		}
-> -	} else if (DISPLAY_VER(dev_priv) >= 12) {
-> +	} else if (DISPLAY_VER(display) >= 12) {
->  		switch (dram_info->type) {
->  		case INTEL_DRAM_DDR4:
->  			qi->t_bl = is_y_tile ? 8 : 4;
-> @@ -265,7 +271,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			qi->deinterleave = is_y_tile ? 1 : 2;
->  			break;
->  		case INTEL_DRAM_LPDDR4:
-> -			if (IS_ROCKETLAKE(dev_priv)) {
-> +			if (display->platform.rocketlake) {
->  				qi->t_bl = 8;
->  				qi->max_numchannels = 4;
->  				qi->channel_width = 32;
-> @@ -284,39 +290,39 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->  			qi->max_numchannels = 1;
->  			break;
->  		}
-> -	} else if (DISPLAY_VER(dev_priv) == 11) {
-> -		qi->t_bl = dev_priv->dram_info.type == INTEL_DRAM_DDR4 ? 4 : 8;
-> +	} else if (DISPLAY_VER(display) == 11) {
-> +		qi->t_bl = dram_info->type == INTEL_DRAM_DDR4 ? 4 : 8;
->  		qi->max_numchannels = 1;
->  	}
->  
-> -	if (drm_WARN_ON(&dev_priv->drm,
-> +	if (drm_WARN_ON(display->drm,
->  			qi->num_points > ARRAY_SIZE(qi->points)))
->  		qi->num_points = ARRAY_SIZE(qi->points);
->  
->  	for (i = 0; i < qi->num_points; i++) {
->  		struct intel_qgv_point *sp = &qi->points[i];
->  
-> -		ret = intel_read_qgv_point_info(dev_priv, sp, i);
-> +		ret = intel_read_qgv_point_info(display, sp, i);
->  		if (ret) {
-> -			drm_dbg_kms(&dev_priv->drm, "Could not read QGV %d info\n", i);
-> +			drm_dbg_kms(display->drm, "Could not read QGV %d info\n", i);
->  			return ret;
->  		}
->  
-> -		drm_dbg_kms(&dev_priv->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "QGV %d: DCLK=%d tRP=%d tRDPRE=%d tRAS=%d tRCD=%d tRC=%d\n",
->  			    i, sp->dclk, sp->t_rp, sp->t_rdpre, sp->t_ras,
->  			    sp->t_rcd, sp->t_rc);
->  	}
->  
->  	if (qi->num_psf_points > 0) {
-> -		ret = adls_pcode_read_psf_gv_point_info(dev_priv, qi->psf_points);
-> +		ret = adls_pcode_read_psf_gv_point_info(display, qi->psf_points);
->  		if (ret) {
-> -			drm_err(&dev_priv->drm, "Failed to read PSF point data; PSF points will not be considered in bandwidth calculations.\n");
-> +			drm_err(display->drm, "Failed to read PSF point data; PSF points will not be considered in bandwidth calculations.\n");
->  			qi->num_psf_points = 0;
->  		}
->  
->  		for (i = 0; i < qi->num_psf_points; i++)
-> -			drm_dbg_kms(&dev_priv->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "PSF GV %d: CLK=%d \n",
->  				    i, qi->psf_points[i].clk);
->  	}
-> @@ -398,20 +404,21 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
->  	/* Other values not used by simplified algorithm */
->  };
->  
-> -static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
-> +static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_qgv_info qi = {};
->  	bool is_y_tile = true; /* assume y tile may be used */
-> -	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
-> +	int num_channels = max_t(u8, 1, i915->dram_info.num_channels);
->  	int ipqdepth, ipqdepthpch = 16;
->  	int dclk_max;
->  	int maxdebw;
-> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
-> +	int num_groups = ARRAY_SIZE(display->bw.max);
->  	int i, ret;
->  
-> -	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
-> +	ret = icl_get_qgv_points(display, &qi, is_y_tile);
->  	if (ret) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
->  		return ret;
->  	}
-> @@ -422,7 +429,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
->  
->  	for (i = 0; i < num_groups; i++) {
-> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
-> +		struct intel_bw_info *bi = &display->bw.max[i];
->  		int clpchgroup;
->  		int j;
->  
-> @@ -449,7 +456,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  			bi->deratedbw[j] = min(maxdebw,
->  					       bw * (100 - sa->derating) / 100);
->  
-> -			drm_dbg_kms(&dev_priv->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
->  				    i, j, bi->num_planes, bi->deratedbw[j]);
->  		}
-> @@ -460,44 +467,45 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  	 * as it will fail and pointless anyway.
->  	 */
->  	if (qi.num_points == 1)
-> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
-> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
->  	else
-> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
-> +		display->sagv.status = I915_SAGV_ENABLED;
->  
->  	return 0;
->  }
->  
-> -static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
-> +static int tgl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_qgv_info qi = {};
-> -	const struct dram_info *dram_info = &dev_priv->dram_info;
-> +	const struct dram_info *dram_info = &i915->dram_info;
->  	bool is_y_tile = true; /* assume y tile may be used */
-> -	int num_channels = max_t(u8, 1, dev_priv->dram_info.num_channels);
-> +	int num_channels = max_t(u8, 1, dram_info->num_channels);
->  	int ipqdepth, ipqdepthpch = 16;
->  	int dclk_max;
->  	int maxdebw, peakbw;
->  	int clperchgroup;
-> -	int num_groups = ARRAY_SIZE(dev_priv->display.bw.max);
-> +	int num_groups = ARRAY_SIZE(display->bw.max);
->  	int i, ret;
->  
-> -	ret = icl_get_qgv_points(dev_priv, &qi, is_y_tile);
-> +	ret = icl_get_qgv_points(display, &qi, is_y_tile);
->  	if (ret) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
->  		return ret;
->  	}
->  
-> -	if (DISPLAY_VER(dev_priv) < 14 &&
-> +	if (DISPLAY_VER(display) < 14 &&
->  	    (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5))
->  		num_channels *= 2;
->  
->  	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
->  
-> -	if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) >= 12)
-> +	if (num_channels < qi.max_numchannels && DISPLAY_VER(display) >= 12)
->  		qi.deinterleave = max(DIV_ROUND_UP(qi.deinterleave, 2), 1);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 12 && num_channels > qi.max_numchannels)
-> -		drm_warn(&dev_priv->drm, "Number of channels exceeds max number of channels.");
-> +	if (DISPLAY_VER(display) >= 12 && num_channels > qi.max_numchannels)
-> +		drm_warn(display->drm, "Number of channels exceeds max number of channels.");
->  	if (qi.max_numchannels != 0)
->  		num_channels = min_t(u8, num_channels, qi.max_numchannels);
->  
-> @@ -514,7 +522,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  	clperchgroup = 4 * DIV_ROUND_UP(8, num_channels) * qi.deinterleave;
->  
->  	for (i = 0; i < num_groups; i++) {
-> -		struct intel_bw_info *bi = &dev_priv->display.bw.max[i];
-> +		struct intel_bw_info *bi = &display->bw.max[i];
->  		struct intel_bw_info *bi_next;
->  		int clpchgroup;
->  		int j;
-> @@ -522,7 +530,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
->  
->  		if (i < num_groups - 1) {
-> -			bi_next = &dev_priv->display.bw.max[i + 1];
-> +			bi_next = &display->bw.max[i + 1];
->  
->  			if (clpchgroup < clperchgroup)
->  				bi_next->num_planes = (ipqdepth - clpchgroup) /
-> @@ -554,7 +562,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  							  num_channels *
->  							  qi.channel_width, 8);
->  
-> -			drm_dbg_kms(&dev_priv->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
->  				    i, j, bi->num_planes, bi->deratedbw[j],
->  				    bi->peakbw[j]);
-> @@ -565,7 +573,7 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  
->  			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
->  
-> -			drm_dbg_kms(&dev_priv->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
->  				    i, j, bi->num_planes, bi->psf_bw[j]);
->  		}
-> @@ -577,17 +585,17 @@ static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
->  	 * as it will fail and pointless anyway.
->  	 */
->  	if (qi.num_points == 1)
-> -		dev_priv->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
-> +		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
->  	else
-> -		dev_priv->display.sagv.status = I915_SAGV_ENABLED;
-> +		display->sagv.status = I915_SAGV_ENABLED;
->  
->  	return 0;
->  }
->  
-> -static void dg2_get_bw_info(struct drm_i915_private *i915)
-> +static void dg2_get_bw_info(struct intel_display *display)
->  {
-> -	unsigned int deratedbw = IS_DG2_G11(i915) ? 38000 : 50000;
-> -	int num_groups = ARRAY_SIZE(i915->display.bw.max);
-> +	unsigned int deratedbw = display->platform.dg2_g11 ? 38000 : 50000;
-> +	int num_groups = ARRAY_SIZE(display->bw.max);
->  	int i;
->  
->  	/*
-> @@ -598,7 +606,7 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
->  	 * whereas DG2-G11 platforms have 38 GB/s.
->  	 */
->  	for (i = 0; i < num_groups; i++) {
-> -		struct intel_bw_info *bi = &i915->display.bw.max[i];
-> +		struct intel_bw_info *bi = &display->bw.max[i];
->  
->  		bi->num_planes = 1;
->  		/* Need only one dummy QGV point per group */
-> @@ -606,20 +614,21 @@ static void dg2_get_bw_info(struct drm_i915_private *i915)
->  		bi->deratedbw[0] = deratedbw;
->  	}
->  
-> -	i915->display.sagv.status = I915_SAGV_NOT_CONTROLLED;
-> +	display->sagv.status = I915_SAGV_NOT_CONTROLLED;
->  }
->  
-> -static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
-> +static int xe2_hpd_get_bw_info(struct intel_display *display,
->  			       const struct intel_sa_info *sa)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_qgv_info qi = {};
->  	int num_channels = i915->dram_info.num_channels;
->  	int peakbw, maxdebw;
->  	int ret, i;
->  
-> -	ret = icl_get_qgv_points(i915, &qi, true);
-> +	ret = icl_get_qgv_points(display, &qi, true);
->  	if (ret) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Failed to get memory subsystem information, ignoring bandwidth limits");
->  		return ret;
->  	}
-> @@ -631,33 +640,33 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
->  		const struct intel_qgv_point *point = &qi.points[i];
->  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
->  
-> -		i915->display.bw.max[0].deratedbw[i] =
-> +		display->bw.max[0].deratedbw[i] =
->  			min(maxdebw, (100 - sa->derating) * bw / 100);
-> -		i915->display.bw.max[0].peakbw[i] = bw;
-> +		display->bw.max[0].peakbw[i] = bw;
->  
-> -		drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
-> -			    i, i915->display.bw.max[0].deratedbw[i],
-> -			    i915->display.bw.max[0].peakbw[i]);
-> +		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
-> +			    i, display->bw.max[0].deratedbw[i],
-> +			    display->bw.max[0].peakbw[i]);
->  	}
->  
->  	/* Bandwidth does not depend on # of planes; set all groups the same */
-> -	i915->display.bw.max[0].num_planes = 1;
-> -	i915->display.bw.max[0].num_qgv_points = qi.num_points;
-> -	for (i = 1; i < ARRAY_SIZE(i915->display.bw.max); i++)
-> -		memcpy(&i915->display.bw.max[i], &i915->display.bw.max[0],
-> -		       sizeof(i915->display.bw.max[0]));
-> +	display->bw.max[0].num_planes = 1;
-> +	display->bw.max[0].num_qgv_points = qi.num_points;
-> +	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
-> +		memcpy(&display->bw.max[i], &display->bw.max[0],
-> +		       sizeof(display->bw.max[0]));
->  
->  	/*
->  	 * Xe2_HPD should always have exactly two QGV points representing
->  	 * battery and plugged-in operation.
->  	 */
-> -	drm_WARN_ON(&i915->drm, qi.num_points != 2);
-> -	i915->display.sagv.status = I915_SAGV_ENABLED;
-> +	drm_WARN_ON(display->drm, qi.num_points != 2);
-> +	display->sagv.status = I915_SAGV_ENABLED;
->  
->  	return 0;
->  }
->  
-> -static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
-> +static unsigned int icl_max_bw_index(struct intel_display *display,
->  				     int num_planes, int qgv_point)
->  {
->  	int i;
-> @@ -667,9 +676,9 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
->  	 */
->  	num_planes = max(1, num_planes);
->  
-> -	for (i = 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
-> +	for (i = 0; i < ARRAY_SIZE(display->bw.max); i++) {
->  		const struct intel_bw_info *bi =
-> -			&dev_priv->display.bw.max[i];
-> +			&display->bw.max[i];
->  
->  		/*
->  		 * Pcode will not expose all QGV points when
-> @@ -685,7 +694,7 @@ static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
->  	return UINT_MAX;
->  }
->  
-> -static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
-> +static unsigned int tgl_max_bw_index(struct intel_display *display,
->  				     int num_planes, int qgv_point)
->  {
->  	int i;
-> @@ -695,9 +704,9 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
->  	 */
->  	num_planes = max(1, num_planes);
->  
-> -	for (i = ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >= 0; i--) {
-> +	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
->  		const struct intel_bw_info *bi =
-> -			&dev_priv->display.bw.max[i];
-> +			&display->bw.max[i];
->  
->  		/*
->  		 * Pcode will not expose all QGV points when
-> @@ -713,52 +722,54 @@ static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
->  	return 0;
->  }
->  
-> -static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
-> +static unsigned int adl_psf_bw(struct intel_display *display,
->  			       int psf_gv_point)
->  {
->  	const struct intel_bw_info *bi =
-> -			&dev_priv->display.bw.max[0];
-> +			&display->bw.max[0];
->  
->  	return bi->psf_bw[psf_gv_point];
->  }
->  
-> -static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
-> +static unsigned int icl_qgv_bw(struct intel_display *display,
->  			       int num_active_planes, int qgv_point)
->  {
->  	unsigned int idx;
->  
-> -	if (DISPLAY_VER(i915) >= 12)
-> -		idx = tgl_max_bw_index(i915, num_active_planes, qgv_point);
-> +	if (DISPLAY_VER(display) >= 12)
-> +		idx = tgl_max_bw_index(display, num_active_planes, qgv_point);
->  	else
-> -		idx = icl_max_bw_index(i915, num_active_planes, qgv_point);
-> +		idx = icl_max_bw_index(display, num_active_planes, qgv_point);
->  
-> -	if (idx >= ARRAY_SIZE(i915->display.bw.max))
-> +	if (idx >= ARRAY_SIZE(display->bw.max))
->  		return 0;
->  
-> -	return i915->display.bw.max[idx].deratedbw[qgv_point];
-> +	return display->bw.max[idx].deratedbw[qgv_point];
->  }
->  
->  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
->  {
-> -	if (!HAS_DISPLAY(dev_priv))
-> +	struct intel_display *display = &dev_priv->display;
-> +
-> +	if (!HAS_DISPLAY(display))
->  		return;
->  
-> -	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
-> -		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
-> -	else if (DISPLAY_VER(dev_priv) >= 14)
-> -		tgl_get_bw_info(dev_priv, &mtl_sa_info);
-> -	else if (IS_DG2(dev_priv))
-> -		dg2_get_bw_info(dev_priv);
-> -	else if (IS_ALDERLAKE_P(dev_priv))
-> -		tgl_get_bw_info(dev_priv, &adlp_sa_info);
-> -	else if (IS_ALDERLAKE_S(dev_priv))
-> -		tgl_get_bw_info(dev_priv, &adls_sa_info);
-> -	else if (IS_ROCKETLAKE(dev_priv))
-> -		tgl_get_bw_info(dev_priv, &rkl_sa_info);
-> -	else if (DISPLAY_VER(dev_priv) == 12)
-> -		tgl_get_bw_info(dev_priv, &tgl_sa_info);
-> -	else if (DISPLAY_VER(dev_priv) == 11)
-> -		icl_get_bw_info(dev_priv, &icl_sa_info);
-> +	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
-> +		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
-> +	else if (DISPLAY_VER(display) >= 14)
-> +		tgl_get_bw_info(display, &mtl_sa_info);
-> +	else if (display->platform.dg2)
-> +		dg2_get_bw_info(display);
-> +	else if (display->platform.alderlake_p)
-> +		tgl_get_bw_info(display, &adlp_sa_info);
-> +	else if (display->platform.alderlake_s)
-> +		tgl_get_bw_info(display, &adls_sa_info);
-> +	else if (display->platform.rocketlake)
-> +		tgl_get_bw_info(display, &rkl_sa_info);
-> +	else if (DISPLAY_VER(display) == 12)
-> +		tgl_get_bw_info(display, &tgl_sa_info);
-> +	else if (DISPLAY_VER(display) == 11)
-> +		icl_get_bw_info(display, &icl_sa_info);
->  }
->  
->  static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_state *crtc_state)
-> @@ -772,8 +783,8 @@ static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_stat
->  
->  static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	unsigned int data_rate = 0;
->  	enum plane_id plane_id;
->  
-> @@ -787,7 +798,7 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
->  
->  		data_rate += crtc_state->data_rate[plane_id];
->  
-> -		if (DISPLAY_VER(i915) < 11)
-> +		if (DISPLAY_VER(display) < 11)
->  			data_rate += crtc_state->data_rate_y[plane_id];
->  	}
->  
-> @@ -797,37 +808,37 @@ static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_state *crtc_
->  /* "Maximum Pipe Read Bandwidth" */
->  static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  
-> -	if (DISPLAY_VER(i915) < 12)
-> +	if (DISPLAY_VER(display) < 12)
->  		return 0;
->  
->  	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state), 10), 512);
->  }
->  
-> -static unsigned int intel_bw_num_active_planes(struct drm_i915_private *dev_priv,
-> +static unsigned int intel_bw_num_active_planes(struct intel_display *display,
->  					       const struct intel_bw_state *bw_state)
->  {
->  	unsigned int num_active_planes = 0;
->  	enum pipe pipe;
->  
-> -	for_each_pipe(dev_priv, pipe)
-> +	for_each_pipe(display, pipe)
->  		num_active_planes += bw_state->num_active_planes[pipe];
->  
->  	return num_active_planes;
->  }
->  
-> -static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
-> +static unsigned int intel_bw_data_rate(struct intel_display *display,
->  				       const struct intel_bw_state *bw_state)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	unsigned int data_rate = 0;
->  	enum pipe pipe;
->  
-> -	for_each_pipe(dev_priv, pipe)
-> +	for_each_pipe(display, pipe)
->  		data_rate += bw_state->data_rate[pipe];
->  
-> -	if (DISPLAY_VER(dev_priv) >= 13 && i915_vtd_active(dev_priv))
-> +	if (DISPLAY_VER(display) >= 13 && i915_vtd_active(i915))
->  		data_rate = DIV_ROUND_UP(data_rate * 105, 100);
->  
->  	return data_rate;
-> @@ -836,10 +847,10 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
->  struct intel_bw_state *
->  intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_display *display = to_intel_display(state);
->  	struct intel_global_state *bw_state;
->  
-> -	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->display.bw.obj);
-> +	bw_state = intel_atomic_get_old_global_obj_state(state, &display->bw.obj);
->  
->  	return to_intel_bw_state(bw_state);
->  }
-> @@ -847,10 +858,10 @@ intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
->  struct intel_bw_state *
->  intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_display *display = to_intel_display(state);
->  	struct intel_global_state *bw_state;
->  
-> -	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->display.bw.obj);
-> +	bw_state = intel_atomic_get_new_global_obj_state(state, &display->bw.obj);
->  
->  	return to_intel_bw_state(bw_state);
->  }
-> @@ -858,27 +869,27 @@ intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
->  struct intel_bw_state *
->  intel_atomic_get_bw_state(struct intel_atomic_state *state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	struct intel_display *display = to_intel_display(state);
->  	struct intel_global_state *bw_state;
->  
-> -	bw_state = intel_atomic_get_global_obj_state(state, &dev_priv->display.bw.obj);
-> +	bw_state = intel_atomic_get_global_obj_state(state, &display->bw.obj);
->  	if (IS_ERR(bw_state))
->  		return ERR_CAST(bw_state);
->  
->  	return to_intel_bw_state(bw_state);
->  }
->  
-> -static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
-> +static unsigned int icl_max_bw_qgv_point_mask(struct intel_display *display,
->  					      int num_active_planes)
->  {
-> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
->  	unsigned int max_bw_point = 0;
->  	unsigned int max_bw = 0;
->  	int i;
->  
->  	for (i = 0; i < num_qgv_points; i++) {
->  		unsigned int max_data_rate =
-> -			icl_qgv_bw(i915, num_active_planes, i);
-> +			icl_qgv_bw(display, num_active_planes, i);
->  
->  		/*
->  		 * We need to know which qgv point gives us
-> @@ -897,23 +908,23 @@ static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *i915,
->  	return max_bw_point;
->  }
->  
-> -static u16 icl_prepare_qgv_points_mask(struct drm_i915_private *i915,
-> +static u16 icl_prepare_qgv_points_mask(struct intel_display *display,
->  				       unsigned int qgv_points,
->  				       unsigned int psf_points)
->  {
->  	return ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
-> -		 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_mask(i915);
-> +		 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_mask(display);
->  }
->  
-> -static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
-> +static unsigned int icl_max_bw_psf_gv_point_mask(struct intel_display *display)
->  {
-> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
->  	unsigned int max_bw_point_mask = 0;
->  	unsigned int max_bw = 0;
->  	int i;
->  
->  	for (i = 0; i < num_psf_gv_points; i++) {
-> -		unsigned int max_data_rate = adl_psf_bw(i915, i);
-> +		unsigned int max_data_rate = adl_psf_bw(display, i);
->  
->  		if (max_data_rate > max_bw) {
->  			max_bw_point_mask = BIT(i);
-> @@ -926,29 +937,31 @@ static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_private *i915)
->  	return max_bw_point_mask;
->  }
->  
-> -static void icl_force_disable_sagv(struct drm_i915_private *i915,
-> +static void icl_force_disable_sagv(struct intel_display *display,
->  				   struct intel_bw_state *bw_state)
->  {
-> -	unsigned int qgv_points = icl_max_bw_qgv_point_mask(i915, 0);
-> -	unsigned int psf_points = icl_max_bw_psf_gv_point_mask(i915);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	unsigned int qgv_points = icl_max_bw_qgv_point_mask(display, 0);
-> +	unsigned int psf_points = icl_max_bw_psf_gv_point_mask(display);
->  
-> -	bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(i915,
-> +	bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(display,
->  								qgv_points,
->  								psf_points);
->  
-> -	drm_dbg_kms(&i915->drm, "Forcing SAGV disable: mask 0x%x\n",
-> +	drm_dbg_kms(display->drm, "Forcing SAGV disable: mask 0x%x\n",
->  		    bw_state->qgv_points_mask);
->  
->  	icl_pcode_restrict_qgv_points(i915, bw_state->qgv_points_mask);
->  }
->  
-> -static int mtl_find_qgv_points(struct drm_i915_private *i915,
-> +static int mtl_find_qgv_points(struct intel_display *display,
->  			       unsigned int data_rate,
->  			       unsigned int num_active_planes,
->  			       struct intel_bw_state *new_bw_state)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	unsigned int best_rate = UINT_MAX;
-> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
->  	unsigned int qgv_peak_bw  = 0;
->  	int i;
->  	int ret;
-> @@ -964,7 +977,7 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
->  	 */
->  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
->  		new_bw_state->qgv_point_peakbw = U16_MAX;
-> -		drm_dbg_kms(&i915->drm, "No SAGV, use UINT_MAX as peak bw.");
-> +		drm_dbg_kms(display->drm, "No SAGV, use UINT_MAX as peak bw.");
->  		return 0;
->  	}
->  
-> @@ -974,27 +987,27 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
->  	 */
->  	for (i = 0; i < num_qgv_points; i++) {
->  		unsigned int bw_index =
-> -			tgl_max_bw_index(i915, num_active_planes, i);
-> +			tgl_max_bw_index(display, num_active_planes, i);
->  		unsigned int max_data_rate;
->  
-> -		if (bw_index >= ARRAY_SIZE(i915->display.bw.max))
-> +		if (bw_index >= ARRAY_SIZE(display->bw.max))
->  			continue;
->  
-> -		max_data_rate = i915->display.bw.max[bw_index].deratedbw[i];
-> +		max_data_rate = display->bw.max[bw_index].deratedbw[i];
->  
->  		if (max_data_rate < data_rate)
->  			continue;
->  
->  		if (max_data_rate - data_rate < best_rate) {
->  			best_rate = max_data_rate - data_rate;
-> -			qgv_peak_bw = i915->display.bw.max[bw_index].peakbw[i];
-> +			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
->  		}
->  
-> -		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
-> +		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
->  			    i, max_data_rate, data_rate, qgv_peak_bw);
->  	}
->  
-> -	drm_dbg_kms(&i915->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
-> +	drm_dbg_kms(display->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
->  		    qgv_peak_bw, data_rate);
->  
->  	/*
-> @@ -1002,7 +1015,7 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
->  	 * satisfying the required data rate is found
->  	 */
->  	if (qgv_peak_bw == 0) {
-> -		drm_dbg_kms(&i915->drm, "No QGV points for bw %d for display configuration(%d active planes).\n",
-> +		drm_dbg_kms(display->drm, "No QGV points for bw %d for display configuration(%d active planes).\n",
->  			    data_rate, num_active_planes);
->  		return -EINVAL;
->  	}
-> @@ -1013,14 +1026,15 @@ static int mtl_find_qgv_points(struct drm_i915_private *i915,
->  	return 0;
->  }
->  
-> -static int icl_find_qgv_points(struct drm_i915_private *i915,
-> +static int icl_find_qgv_points(struct intel_display *display,
->  			       unsigned int data_rate,
->  			       unsigned int num_active_planes,
->  			       const struct intel_bw_state *old_bw_state,
->  			       struct intel_bw_state *new_bw_state)
->  {
-> -	unsigned int num_psf_gv_points = i915->display.bw.max[0].num_psf_gv_points;
-> -	unsigned int num_qgv_points = i915->display.bw.max[0].num_qgv_points;
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	unsigned int num_psf_gv_points = display->bw.max[0].num_psf_gv_points;
-> +	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
->  	u16 psf_points = 0;
->  	u16 qgv_points = 0;
->  	int i;
-> @@ -1031,22 +1045,22 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  		return ret;
->  
->  	for (i = 0; i < num_qgv_points; i++) {
-> -		unsigned int max_data_rate = icl_qgv_bw(i915,
-> +		unsigned int max_data_rate = icl_qgv_bw(display,
->  							num_active_planes, i);
->  		if (max_data_rate >= data_rate)
->  			qgv_points |= BIT(i);
->  
-> -		drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d required %d\n",
-> +		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d\n",
->  			    i, max_data_rate, data_rate);
->  	}
->  
->  	for (i = 0; i < num_psf_gv_points; i++) {
-> -		unsigned int max_data_rate = adl_psf_bw(i915, i);
-> +		unsigned int max_data_rate = adl_psf_bw(display, i);
->  
->  		if (max_data_rate >= data_rate)
->  			psf_points |= BIT(i);
->  
-> -		drm_dbg_kms(&i915->drm, "PSF GV point %d: max bw %d"
-> +		drm_dbg_kms(display->drm, "PSF GV point %d: max bw %d"
->  			    " required %d\n",
->  			    i, max_data_rate, data_rate);
->  	}
-> @@ -1057,14 +1071,14 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  	 * reasons.
->  	 */
->  	if (qgv_points == 0) {
-> -		drm_dbg_kms(&i915->drm, "No QGV points provide sufficient memory"
-> +		drm_dbg_kms(display->drm, "No QGV points provide sufficient memory"
->  			    " bandwidth %d for display configuration(%d active planes).\n",
->  			    data_rate, num_active_planes);
->  		return -EINVAL;
->  	}
->  
->  	if (num_psf_gv_points > 0 && psf_points == 0) {
-> -		drm_dbg_kms(&i915->drm, "No PSF GV points provide sufficient memory"
-> +		drm_dbg_kms(display->drm, "No PSF GV points provide sufficient memory"
->  			    " bandwidth %d for display configuration(%d active planes).\n",
->  			    data_rate, num_active_planes);
->  		return -EINVAL;
-> @@ -1076,8 +1090,8 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  	 * cause.
->  	 */
->  	if (!intel_can_enable_sagv(i915, new_bw_state)) {
-> -		qgv_points = icl_max_bw_qgv_point_mask(i915, num_active_planes);
-> -		drm_dbg_kms(&i915->drm, "No SAGV, using single QGV point mask 0x%x\n",
-> +		qgv_points = icl_max_bw_qgv_point_mask(display, num_active_planes);
-> +		drm_dbg_kms(display->drm, "No SAGV, using single QGV point mask 0x%x\n",
->  			    qgv_points);
->  	}
->  
-> @@ -1085,7 +1099,7 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  	 * We store the ones which need to be masked as that is what PCode
->  	 * actually accepts as a parameter.
->  	 */
-> -	new_bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(i915,
-> +	new_bw_state->qgv_points_mask = icl_prepare_qgv_points_mask(display,
->  								    qgv_points,
->  								    psf_points);
->  	/*
-> @@ -1101,38 +1115,38 @@ static int icl_find_qgv_points(struct drm_i915_private *i915,
->  	return 0;
->  }
->  
-> -static int intel_bw_check_qgv_points(struct drm_i915_private *i915,
-> +static int intel_bw_check_qgv_points(struct intel_display *display,
->  				     const struct intel_bw_state *old_bw_state,
->  				     struct intel_bw_state *new_bw_state)
->  {
-> -	unsigned int data_rate = intel_bw_data_rate(i915, new_bw_state);
-> +	unsigned int data_rate = intel_bw_data_rate(display, new_bw_state);
->  	unsigned int num_active_planes =
-> -			intel_bw_num_active_planes(i915, new_bw_state);
-> +			intel_bw_num_active_planes(display, new_bw_state);
->  
->  	data_rate = DIV_ROUND_UP(data_rate, 1000);
->  
-> -	if (DISPLAY_VER(i915) >= 14)
-> -		return mtl_find_qgv_points(i915, data_rate, num_active_planes,
-> +	if (DISPLAY_VER(display) >= 14)
-> +		return mtl_find_qgv_points(display, data_rate, num_active_planes,
->  					   new_bw_state);
->  	else
-> -		return icl_find_qgv_points(i915, data_rate, num_active_planes,
-> +		return icl_find_qgv_points(display, data_rate, num_active_planes,
->  					   old_bw_state, new_bw_state);
->  }
->  
-> -static bool intel_bw_state_changed(struct drm_i915_private *i915,
-> +static bool intel_bw_state_changed(struct intel_display *display,
->  				   const struct intel_bw_state *old_bw_state,
->  				   const struct intel_bw_state *new_bw_state)
->  {
->  	enum pipe pipe;
->  
-> -	for_each_pipe(i915, pipe) {
-> +	for_each_pipe(display, pipe) {
->  		const struct intel_dbuf_bw *old_crtc_bw =
->  			&old_bw_state->dbuf_bw[pipe];
->  		const struct intel_dbuf_bw *new_crtc_bw =
->  			&new_bw_state->dbuf_bw[pipe];
->  		enum dbuf_slice slice;
->  
-> -		for_each_dbuf_slice(i915, slice) {
-> +		for_each_dbuf_slice(display, slice) {
->  			if (old_crtc_bw->max_bw[slice] != new_crtc_bw->max_bw[slice] ||
->  			    old_crtc_bw->active_planes[slice] != new_crtc_bw->active_planes[slice])
->  				return true;
-> @@ -1151,7 +1165,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  				   const struct skl_ddb_entry *ddb,
->  				   unsigned int data_rate)
->  {
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = to_intel_display(crtc);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
->  	unsigned int dbuf_mask = skl_ddb_dbuf_slice_mask(i915, ddb);
->  	enum dbuf_slice slice;
-> @@ -1160,7 +1175,7 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  	 * The arbiter can only really guarantee an
->  	 * equal share of the total bw to each plane.
->  	 */
-> -	for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask) {
-> +	for_each_dbuf_slice_in_mask(display, slice, dbuf_mask) {
->  		crtc_bw->max_bw[slice] = max(crtc_bw->max_bw[slice], data_rate);
->  		crtc_bw->active_planes[slice] |= BIT(plane_id);
->  	}
-> @@ -1169,8 +1184,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  				  const struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[crtc->pipe];
->  	enum plane_id plane_id;
->  
-> @@ -1191,7 +1206,7 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  				       &crtc_state->wm.skl.plane_ddb[plane_id],
->  				       crtc_state->data_rate[plane_id]);
->  
-> -		if (DISPLAY_VER(i915) < 11)
-> +		if (DISPLAY_VER(display) < 11)
->  			skl_plane_calc_dbuf_bw(bw_state, crtc, plane_id,
->  					       &crtc_state->wm.skl.plane_ddb_y[plane_id],
->  					       crtc_state->data_rate[plane_id]);
-> @@ -1200,13 +1215,13 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
->  
->  /* "Maximum Data Buffer Bandwidth" */
->  static int
-> -intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
-> +intel_bw_dbuf_min_cdclk(struct intel_display *display,
->  			const struct intel_bw_state *bw_state)
->  {
->  	unsigned int total_max_bw = 0;
->  	enum dbuf_slice slice;
->  
-> -	for_each_dbuf_slice(i915, slice) {
-> +	for_each_dbuf_slice(display, slice) {
->  		int num_active_planes = 0;
->  		unsigned int max_bw = 0;
->  		enum pipe pipe;
-> @@ -1215,7 +1230,7 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
->  		 * The arbiter can only really guarantee an
->  		 * equal share of the total bw to each plane.
->  		 */
-> -		for_each_pipe(i915, pipe) {
-> +		for_each_pipe(display, pipe) {
->  			const struct intel_dbuf_bw *crtc_bw = &bw_state->dbuf_bw[pipe];
->  
->  			max_bw = max(crtc_bw->max_bw[slice], max_bw);
-> @@ -1232,12 +1247,13 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
->  int intel_bw_min_cdclk(struct drm_i915_private *i915,
->  		       const struct intel_bw_state *bw_state)
->  {
-> +	struct intel_display *display = &i915->display;
->  	enum pipe pipe;
->  	int min_cdclk;
->  
-> -	min_cdclk = intel_bw_dbuf_min_cdclk(i915, bw_state);
-> +	min_cdclk = intel_bw_dbuf_min_cdclk(display, bw_state);
->  
-> -	for_each_pipe(i915, pipe)
-> +	for_each_pipe(display, pipe)
->  		min_cdclk = max(min_cdclk, bw_state->min_cdclk[pipe]);
->  
->  	return min_cdclk;
-> @@ -1246,6 +1262,7 @@ int intel_bw_min_cdclk(struct drm_i915_private *i915,
->  int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
->  			    bool *need_cdclk_calc)
->  {
-> +	struct intel_display *display = to_intel_display(state);
->  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_bw_state *new_bw_state = NULL;
->  	const struct intel_bw_state *old_bw_state = NULL;
-> @@ -1255,7 +1272,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
->  	struct intel_crtc *crtc;
->  	int i;
->  
-> -	if (DISPLAY_VER(dev_priv) < 9)
-> +	if (DISPLAY_VER(display) < 9)
->  		return 0;
->  
->  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> @@ -1274,7 +1291,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
->  	if (!old_bw_state)
->  		return 0;
->  
-> -	if (intel_bw_state_changed(dev_priv, old_bw_state, new_bw_state)) {
-> +	if (intel_bw_state_changed(display, old_bw_state, new_bw_state)) {
->  		int ret = intel_atomic_lock_global_state(&new_bw_state->base);
->  		if (ret)
->  			return ret;
-> @@ -1309,7 +1326,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
->  	if (new_min_cdclk <= cdclk_state->bw_min_cdclk)
->  		return 0;
->  
-> -	drm_dbg_kms(&dev_priv->drm,
-> +	drm_dbg_kms(display->drm,
->  		    "new bandwidth min cdclk (%d kHz) > old min cdclk (%d kHz)\n",
->  		    new_min_cdclk, cdclk_state->bw_min_cdclk);
->  	*need_cdclk_calc = true;
-> @@ -1319,7 +1336,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
->  
->  static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *changed)
->  {
-> -	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> +	struct intel_display *display = to_intel_display(state);
->  	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
->  	struct intel_crtc *crtc;
->  	int i;
-> @@ -1353,7 +1370,7 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
->  
->  		*changed = true;
->  
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "[CRTC:%d:%s] data rate %u num active planes %u\n",
->  			    crtc->base.base.id, crtc->base.name,
->  			    new_bw_state->data_rate[crtc->pipe],
-> @@ -1365,14 +1382,15 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
->  
->  int intel_bw_atomic_check(struct intel_atomic_state *state)
->  {
-> +	struct intel_display *display = to_intel_display(state);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	bool changed = false;
-> -	struct drm_i915_private *i915 = to_i915(state->base.dev);
->  	struct intel_bw_state *new_bw_state;
->  	const struct intel_bw_state *old_bw_state;
->  	int ret;
->  
->  	/* FIXME earlier gens need some checks too */
-> -	if (DISPLAY_VER(i915) < 11)
-> +	if (DISPLAY_VER(display) < 11)
->  		return 0;
->  
->  	ret = intel_bw_check_data_rate(state, &changed);
-> @@ -1395,7 +1413,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  	if (!changed)
->  		return 0;
->  
-> -	ret = intel_bw_check_qgv_points(i915, old_bw_state, new_bw_state);
-> +	ret = intel_bw_check_qgv_points(display, old_bw_state, new_bw_state);
->  	if (ret)
->  		return ret;
->  
-> @@ -1407,8 +1425,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->  				 const struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  
->  	bw_state->data_rate[crtc->pipe] =
->  		intel_bw_crtc_data_rate(crtc_state);
-> @@ -1416,7 +1434,7 @@ static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->  		intel_bw_crtc_num_active_planes(crtc_state);
->  	bw_state->force_check_qgv = true;
->  
-> -	drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes %u\n",
-> +	drm_dbg_kms(display->drm, "pipe %c data rate %u num active planes %u\n",
->  		    pipe_name(crtc->pipe),
->  		    bw_state->data_rate[crtc->pipe],
->  		    bw_state->num_active_planes[crtc->pipe]);
-> @@ -1499,8 +1517,8 @@ int intel_bw_init(struct drm_i915_private *i915)
->  	 * Limit this only if we have SAGV. And for Display version 14 onwards
->  	 * sagv is handled though pmdemand requests
->  	 */
-> -	if (intel_has_sagv(i915) && IS_DISPLAY_VER(i915, 11, 13))
-> -		icl_force_disable_sagv(i915, state);
-> +	if (intel_has_sagv(i915) && IS_DISPLAY_VER(display, 11, 13))
-> +		icl_force_disable_sagv(display, state);
->  
->  	return 0;
->  }
-> 
-> -- 
-> 2.48.1
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+>
+>Matt
+>
+>>                                  MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
+>> -        val2 =3D intel_uncore_read(&dev_priv->uncore,
+>> +        val2 =3D intel_uncore_read(&i915->uncore,
+>>                                   MTL_MEM_SS_INFO_QGV_POINT_HIGH(point))=
+;
+>>          dclk =3D REG_FIELD_GET(MTL_DCLK_MASK, val);
+>>          sp->dclk =3D DIV_ROUND_CLOSEST(16667 * dclk, 1000);
+>> @@ -200,29 +205,30 @@ static int mtl_read_qgv_point_info(struct drm_i915=
+_private *dev_priv,
+>>  }
+>> =20
+>>  static int
+>> -intel_read_qgv_point_info(struct drm_i915_private *dev_priv,
+>> +intel_read_qgv_point_info(struct intel_display *display,
+>>                            struct intel_qgv_point *sp,
+>>                            int point)
+>>  {
+>> -        if (DISPLAY_VER(dev_priv) >=3D 14)
+>> -                return mtl_read_qgv_point_info(dev_priv, sp, point);
+>> -        else if (IS_DG1(dev_priv))
+>> -                return dg1_mchbar_read_qgv_point_info(dev_priv, sp, poi=
+nt);
+>> +        if (DISPLAY_VER(display) >=3D 14)
+>> +                return mtl_read_qgv_point_info(display, sp, point);
+>> +        else if (display->platform.dg1)
+>> +                return dg1_mchbar_read_qgv_point_info(display, sp, poin=
+t);
+>>          else
+>> -                return icl_pcode_read_qgv_point_info(dev_priv, sp, poin=
+t);
+>> +                return icl_pcode_read_qgv_point_info(display, sp, point=
+);
+>>  }
+>> =20
+>> -static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>> +static int icl_get_qgv_points(struct intel_display *display,
+>>                                struct intel_qgv_info *qi,
+>>                                bool is_y_tile)
+>>  {
+>> -        const struct dram_info *dram_info =3D &dev_priv->dram_info;
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>> +        const struct dram_info *dram_info =3D &i915->dram_info;
+>>          int i, ret;
+>> =20
+>>          qi->num_points =3D dram_info->num_qgv_points;
+>>          qi->num_psf_points =3D dram_info->num_psf_gv_points;
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) >=3D 14) {
+>> +        if (DISPLAY_VER(display) >=3D 14) {
+>>                  switch (dram_info->type) {
+>>                  case INTEL_DRAM_DDR4:
+>>                          qi->t_bl =3D 4;
+>> @@ -250,7 +256,7 @@ static int icl_get_qgv_points(struct drm_i915_privat=
+e *dev_priv,
+>>                          MISSING_CASE(dram_info->type);
+>>                          return -EINVAL;
+>>                  }
+>> -        } else if (DISPLAY_VER(dev_priv) >=3D 12) {
+>> +        } else if (DISPLAY_VER(display) >=3D 12) {
+>>                  switch (dram_info->type) {
+>>                  case INTEL_DRAM_DDR4:
+>>                          qi->t_bl =3D is_y_tile ? 8 : 4;
+>> @@ -265,7 +271,7 @@ static int icl_get_qgv_points(struct drm_i915_privat=
+e *dev_priv,
+>>                          qi->deinterleave =3D is_y_tile ? 1 : 2;
+>>                          break;
+>>                  case INTEL_DRAM_LPDDR4:
+>> -                        if (IS_ROCKETLAKE(dev_priv)) {
+>> +                        if (display->platform.rocketlake) {
+>>                                  qi->t_bl =3D 8;
+>>                                  qi->max_numchannels =3D 4;
+>>                                  qi->channel_width =3D 32;
+>> @@ -284,39 +290,39 @@ static int icl_get_qgv_points(struct drm_i915_priv=
+ate *dev_priv,
+>>                          qi->max_numchannels =3D 1;
+>>                          break;
+>>                  }
+>> -        } else if (DISPLAY_VER(dev_priv) =3D=3D 11) {
+>> -                qi->t_bl =3D dev_priv->dram_info.type =3D=3D INTEL_DRAM=
+_DDR4 ? 4 : 8;
+>> +        } else if (DISPLAY_VER(display) =3D=3D 11) {
+>> +                qi->t_bl =3D dram_info->type =3D=3D INTEL_DRAM_DDR4 ? 4=
+ : 8;
+>>                  qi->max_numchannels =3D 1;
+>>          }
+>> =20
+>> -        if (drm_WARN_ON(&dev_priv->drm,
+>> +        if (drm_WARN_ON(display->drm,
+>>                          qi->num_points > ARRAY_SIZE(qi->points)))
+>>                  qi->num_points =3D ARRAY_SIZE(qi->points);
+>> =20
+>>          for (i =3D 0; i < qi->num_points; i++) {
+>>                  struct intel_qgv_point *sp =3D &qi->points[i];
+>> =20
+>> -                ret =3D intel_read_qgv_point_info(dev_priv, sp, i);
+>> +                ret =3D intel_read_qgv_point_info(display, sp, i);
+>>                  if (ret) {
+>> -                        drm_dbg_kms(&dev_priv->drm, "Could not read QGV=
+ %d info\n", i);
+>> +                        drm_dbg_kms(display->drm, "Could not read QGV %=
+d info\n", i);
+>>                          return ret;
+>>                  }
+>> =20
+>> -                drm_dbg_kms(&dev_priv->drm,
+>> +                drm_dbg_kms(display->drm,
+>>                              "QGV %d: DCLK=3D%d tRP=3D%d tRDPRE=3D%d tRA=
+S=3D%d tRCD=3D%d tRC=3D%d\n",
+>>                              i, sp->dclk, sp->t_rp, sp->t_rdpre, sp->t_r=
+as,
+>>                              sp->t_rcd, sp->t_rc);
+>>          }
+>> =20
+>>          if (qi->num_psf_points > 0) {
+>> -                ret =3D adls_pcode_read_psf_gv_point_info(dev_priv, qi-=
+>psf_points);
+>> +                ret =3D adls_pcode_read_psf_gv_point_info(display, qi->=
+psf_points);
+>>                  if (ret) {
+>> -                        drm_err(&dev_priv->drm, "Failed to read PSF poi=
+nt data; PSF points will not be considered in bandwidth calculations.\n");
+>> +                        drm_err(display->drm, "Failed to read PSF point=
+ data; PSF points will not be considered in bandwidth calculations.\n");
+>>                          qi->num_psf_points =3D 0;
+>>                  }
+>> =20
+>>                  for (i =3D 0; i < qi->num_psf_points; i++)
+>> -                        drm_dbg_kms(&dev_priv->drm,
+>> +                        drm_dbg_kms(display->drm,
+>>                                      "PSF GV %d: CLK=3D%d \n",
+>>                                      i, qi->psf_points[i].clk);
+>>          }
+>> @@ -398,20 +404,21 @@ static const struct intel_sa_info xe2_hpd_sa_info =
+=3D {
+>>          /* Other values not used by simplified algorithm */
+>>  };
+>> =20
+>> -static int icl_get_bw_info(struct drm_i915_private *dev_priv, const str=
+uct intel_sa_info *sa)
+>> +static int icl_get_bw_info(struct intel_display *display, const struct =
+intel_sa_info *sa)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          struct intel_qgv_info qi =3D {};
+>>          bool is_y_tile =3D true; /* assume y tile may be used */
+>> -        int num_channels =3D max_t(u8, 1, dev_priv->dram_info.num_chann=
+els);
+>> +        int num_channels =3D max_t(u8, 1, i915->dram_info.num_channels)=
+;
+>>          int ipqdepth, ipqdepthpch =3D 16;
+>>          int dclk_max;
+>>          int maxdebw;
+>> -        int num_groups =3D ARRAY_SIZE(dev_priv->display.bw.max);
+>> +        int num_groups =3D ARRAY_SIZE(display->bw.max);
+>>          int i, ret;
+>> =20
+>> -        ret =3D icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+>> +        ret =3D icl_get_qgv_points(display, &qi, is_y_tile);
+>>          if (ret) {
+>> -                drm_dbg_kms(&dev_priv->drm,
+>> +                drm_dbg_kms(display->drm,
+>>                              "Failed to get memory subsystem information=
+, ignoring bandwidth limits");
+>>                  return ret;
+>>          }
+>> @@ -422,7 +429,7 @@ static int icl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>>          qi.deinterleave =3D DIV_ROUND_UP(num_channels, is_y_tile ? 4 : =
+2);
+>> =20
+>>          for (i =3D 0; i < num_groups; i++) {
+>> -                struct intel_bw_info *bi =3D &dev_priv->display.bw.max[=
+i];
+>> +                struct intel_bw_info *bi =3D &display->bw.max[i];
+>>                  int clpchgroup;
+>>                  int j;
+>> =20
+>> @@ -449,7 +456,7 @@ static int icl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>>                          bi->deratedbw[j] =3D min(maxdebw,
+>>                                                 bw * (100 - sa->derating=
+) / 100);
+>> =20
+>> -                        drm_dbg_kms(&dev_priv->drm,
+>> +                        drm_dbg_kms(display->drm,
+>>                                      "BW%d / QGV %d: num_planes=3D%d der=
+atedbw=3D%u\n",
+>>                                      i, j, bi->num_planes, bi->deratedbw=
+[j]);
+>>                  }
+>> @@ -460,44 +467,45 @@ static int icl_get_bw_info(struct drm_i915_private=
+ *dev_priv, const struct intel
+>>           * as it will fail and pointless anyway.
+>>           */
+>>          if (qi.num_points =3D=3D 1)
+>> -                dev_priv->display.sagv.status =3D I915_SAGV_NOT_CONTROL=
+LED;
+>> +                display->sagv.status =3D I915_SAGV_NOT_CONTROLLED;
+>>          else
+>> -                dev_priv->display.sagv.status =3D I915_SAGV_ENABLED;
+>> +                display->sagv.status =3D I915_SAGV_ENABLED;
+>> =20
+>>          return 0;
+>>  }
+>> =20
+>> -static int tgl_get_bw_info(struct drm_i915_private *dev_priv, const str=
+uct intel_sa_info *sa)
+>> +static int tgl_get_bw_info(struct intel_display *display, const struct =
+intel_sa_info *sa)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          struct intel_qgv_info qi =3D {};
+>> -        const struct dram_info *dram_info =3D &dev_priv->dram_info;
+>> +        const struct dram_info *dram_info =3D &i915->dram_info;
+>>          bool is_y_tile =3D true; /* assume y tile may be used */
+>> -        int num_channels =3D max_t(u8, 1, dev_priv->dram_info.num_chann=
+els);
+>> +        int num_channels =3D max_t(u8, 1, dram_info->num_channels);
+>>          int ipqdepth, ipqdepthpch =3D 16;
+>>          int dclk_max;
+>>          int maxdebw, peakbw;
+>>          int clperchgroup;
+>> -        int num_groups =3D ARRAY_SIZE(dev_priv->display.bw.max);
+>> +        int num_groups =3D ARRAY_SIZE(display->bw.max);
+>>          int i, ret;
+>> =20
+>> -        ret =3D icl_get_qgv_points(dev_priv, &qi, is_y_tile);
+>> +        ret =3D icl_get_qgv_points(display, &qi, is_y_tile);
+>>          if (ret) {
+>> -                drm_dbg_kms(&dev_priv->drm,
+>> +                drm_dbg_kms(display->drm,
+>>                              "Failed to get memory subsystem information=
+, ignoring bandwidth limits");
+>>                  return ret;
+>>          }
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) < 14 &&
+>> +        if (DISPLAY_VER(display) < 14 &&
+>>              (dram_info->type =3D=3D INTEL_DRAM_LPDDR4 || dram_info->typ=
+e =3D=3D INTEL_DRAM_LPDDR5))
+>>                  num_channels *=3D 2;
+>> =20
+>>          qi.deinterleave =3D qi.deinterleave ? : DIV_ROUND_UP(num_channe=
+ls, is_y_tile ? 4 : 2);
+>> =20
+>> -        if (num_channels < qi.max_numchannels && DISPLAY_VER(dev_priv) =
+>=3D 12)
+>> +        if (num_channels < qi.max_numchannels && DISPLAY_VER(display) >=
+=3D 12)
+>>                  qi.deinterleave =3D max(DIV_ROUND_UP(qi.deinterleave, 2=
+), 1);
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) >=3D 12 && num_channels > qi.max_numc=
+hannels)
+>> -                drm_warn(&dev_priv->drm, "Number of channels exceeds ma=
+x number of channels.");
+>> +        if (DISPLAY_VER(display) >=3D 12 && num_channels > qi.max_numch=
+annels)
+>> +                drm_warn(display->drm, "Number of channels exceeds max =
+number of channels.");
+>>          if (qi.max_numchannels !=3D 0)
+>>                  num_channels =3D min_t(u8, num_channels, qi.max_numchan=
+nels);
+>> =20
+>> @@ -514,7 +522,7 @@ static int tgl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>>          clperchgroup =3D 4 * DIV_ROUND_UP(8, num_channels) * qi.deinter=
+leave;
+>> =20
+>>          for (i =3D 0; i < num_groups; i++) {
+>> -                struct intel_bw_info *bi =3D &dev_priv->display.bw.max[=
+i];
+>> +                struct intel_bw_info *bi =3D &display->bw.max[i];
+>>                  struct intel_bw_info *bi_next;
+>>                  int clpchgroup;
+>>                  int j;
+>> @@ -522,7 +530,7 @@ static int tgl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>>                  clpchgroup =3D (sa->deburst * qi.deinterleave / num_cha=
+nnels) << i;
+>> =20
+>>                  if (i < num_groups - 1) {
+>> -                        bi_next =3D &dev_priv->display.bw.max[i + 1];
+>> +                        bi_next =3D &display->bw.max[i + 1];
+>> =20
+>>                          if (clpchgroup < clperchgroup)
+>>                                  bi_next->num_planes =3D (ipqdepth - clp=
+chgroup) /
+>> @@ -554,7 +562,7 @@ static int tgl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>>                                                            num_channels =
+*
+>>                                                            qi.channel_wi=
+dth, 8);
+>> =20
+>> -                        drm_dbg_kms(&dev_priv->drm,
+>> +                        drm_dbg_kms(display->drm,
+>>                                      "BW%d / QGV %d: num_planes=3D%d der=
+atedbw=3D%u peakbw: %u\n",
+>>                                      i, j, bi->num_planes, bi->deratedbw=
+[j],
+>>                                      bi->peakbw[j]);
+>> @@ -565,7 +573,7 @@ static int tgl_get_bw_info(struct drm_i915_private *=
+dev_priv, const struct intel
+>> =20
+>>                          bi->psf_bw[j] =3D adl_calc_psf_bw(sp->clk);
+>> =20
+>> -                        drm_dbg_kms(&dev_priv->drm,
+>> +                        drm_dbg_kms(display->drm,
+>>                                      "BW%d / PSF GV %d: num_planes=3D%d =
+bw=3D%u\n",
+>>                                      i, j, bi->num_planes, bi->psf_bw[j]=
+);
+>>                  }
+>> @@ -577,17 +585,17 @@ static int tgl_get_bw_info(struct drm_i915_private=
+ *dev_priv, const struct intel
+>>           * as it will fail and pointless anyway.
+>>           */
+>>          if (qi.num_points =3D=3D 1)
+>> -                dev_priv->display.sagv.status =3D I915_SAGV_NOT_CONTROL=
+LED;
+>> +                display->sagv.status =3D I915_SAGV_NOT_CONTROLLED;
+>>          else
+>> -                dev_priv->display.sagv.status =3D I915_SAGV_ENABLED;
+>> +                display->sagv.status =3D I915_SAGV_ENABLED;
+>> =20
+>>          return 0;
+>>  }
+>> =20
+>> -static void dg2_get_bw_info(struct drm_i915_private *i915)
+>> +static void dg2_get_bw_info(struct intel_display *display)
+>>  {
+>> -        unsigned int deratedbw =3D IS_DG2_G11(i915) ? 38000 : 50000;
+>> -        int num_groups =3D ARRAY_SIZE(i915->display.bw.max);
+>> +        unsigned int deratedbw =3D display->platform.dg2_g11 ? 38000 : =
+50000;
+>> +        int num_groups =3D ARRAY_SIZE(display->bw.max);
+>>          int i;
+>> =20
+>>          /*
+>> @@ -598,7 +606,7 @@ static void dg2_get_bw_info(struct drm_i915_private =
+*i915)
+>>           * whereas DG2-G11 platforms have 38 GB/s.
+>>           */
+>>          for (i =3D 0; i < num_groups; i++) {
+>> -                struct intel_bw_info *bi =3D &i915->display.bw.max[i];
+>> +                struct intel_bw_info *bi =3D &display->bw.max[i];
+>> =20
+>>                  bi->num_planes =3D 1;
+>>                  /* Need only one dummy QGV point per group */
+>> @@ -606,20 +614,21 @@ static void dg2_get_bw_info(struct drm_i915_privat=
+e *i915)
+>>                  bi->deratedbw[0] =3D deratedbw;
+>>          }
+>> =20
+>> -        i915->display.sagv.status =3D I915_SAGV_NOT_CONTROLLED;
+>> +        display->sagv.status =3D I915_SAGV_NOT_CONTROLLED;
+>>  }
+>> =20
+>> -static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
+>> +static int xe2_hpd_get_bw_info(struct intel_display *display,
+>>                                 const struct intel_sa_info *sa)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          struct intel_qgv_info qi =3D {};
+>>          int num_channels =3D i915->dram_info.num_channels;
+>>          int peakbw, maxdebw;
+>>          int ret, i;
+>> =20
+>> -        ret =3D icl_get_qgv_points(i915, &qi, true);
+>> +        ret =3D icl_get_qgv_points(display, &qi, true);
+>>          if (ret) {
+>> -                drm_dbg_kms(&i915->drm,
+>> +                drm_dbg_kms(display->drm,
+>>                              "Failed to get memory subsystem information=
+, ignoring bandwidth limits");
+>>                  return ret;
+>>          }
+>> @@ -631,33 +640,33 @@ static int xe2_hpd_get_bw_info(struct drm_i915_pri=
+vate *i915,
+>>                  const struct intel_qgv_point *point =3D &qi.points[i];
+>>                  int bw =3D num_channels * (qi.channel_width / 8) * poin=
+t->dclk;
+>> =20
+>> -                i915->display.bw.max[0].deratedbw[i] =3D
+>> +                display->bw.max[0].deratedbw[i] =3D
+>>                          min(maxdebw, (100 - sa->derating) * bw / 100);
+>> -                i915->display.bw.max[0].peakbw[i] =3D bw;
+>> +                display->bw.max[0].peakbw[i] =3D bw;
+>> =20
+>> -                drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=3D%u peakbw:=
+ %u\n",
+>> -                            i, i915->display.bw.max[0].deratedbw[i],
+>> -                            i915->display.bw.max[0].peakbw[i]);
+>> +                drm_dbg_kms(display->drm, "QGV %d: deratedbw=3D%u peakb=
+w: %u\n",
+>> +                            i, display->bw.max[0].deratedbw[i],
+>> +                            display->bw.max[0].peakbw[i]);
+>>          }
+>> =20
+>>          /* Bandwidth does not depend on # of planes; set all groups the=
+ same */
+>> -        i915->display.bw.max[0].num_planes =3D 1;
+>> -        i915->display.bw.max[0].num_qgv_points =3D qi.num_points;
+>> -        for (i =3D 1; i < ARRAY_SIZE(i915->display.bw.max); i++)
+>> -                memcpy(&i915->display.bw.max[i], &i915->display.bw.max[=
+0],
+>> -                       sizeof(i915->display.bw.max[0]));
+>> +        display->bw.max[0].num_planes =3D 1;
+>> +        display->bw.max[0].num_qgv_points =3D qi.num_points;
+>> +        for (i =3D 1; i < ARRAY_SIZE(display->bw.max); i++)
+>> +                memcpy(&display->bw.max[i], &display->bw.max[0],
+>> +                       sizeof(display->bw.max[0]));
+>> =20
+>>          /*
+>>           * Xe2_HPD should always have exactly two QGV points representi=
+ng
+>>           * battery and plugged-in operation.
+>>           */
+>> -        drm_WARN_ON(&i915->drm, qi.num_points !=3D 2);
+>> -        i915->display.sagv.status =3D I915_SAGV_ENABLED;
+>> +        drm_WARN_ON(display->drm, qi.num_points !=3D 2);
+>> +        display->sagv.status =3D I915_SAGV_ENABLED;
+>> =20
+>>          return 0;
+>>  }
+>> =20
+>> -static unsigned int icl_max_bw_index(struct drm_i915_private *dev_priv,
+>> +static unsigned int icl_max_bw_index(struct intel_display *display,
+>>                                       int num_planes, int qgv_point)
+>>  {
+>>          int i;
+>> @@ -667,9 +676,9 @@ static unsigned int icl_max_bw_index(struct drm_i915=
+_private *dev_priv,
+>>           */
+>>          num_planes =3D max(1, num_planes);
+>> =20
+>> -        for (i =3D 0; i < ARRAY_SIZE(dev_priv->display.bw.max); i++) {
+>> +        for (i =3D 0; i < ARRAY_SIZE(display->bw.max); i++) {
+>>                  const struct intel_bw_info *bi =3D
+>> -                        &dev_priv->display.bw.max[i];
+>> +                        &display->bw.max[i];
+>> =20
+>>                  /*
+>>                   * Pcode will not expose all QGV points when
+>> @@ -685,7 +694,7 @@ static unsigned int icl_max_bw_index(struct drm_i915=
+_private *dev_priv,
+>>          return UINT_MAX;
+>>  }
+>> =20
+>> -static unsigned int tgl_max_bw_index(struct drm_i915_private *dev_priv,
+>> +static unsigned int tgl_max_bw_index(struct intel_display *display,
+>>                                       int num_planes, int qgv_point)
+>>  {
+>>          int i;
+>> @@ -695,9 +704,9 @@ static unsigned int tgl_max_bw_index(struct drm_i915=
+_private *dev_priv,
+>>           */
+>>          num_planes =3D max(1, num_planes);
+>> =20
+>> -        for (i =3D ARRAY_SIZE(dev_priv->display.bw.max) - 1; i >=3D 0; =
+i--) {
+>> +        for (i =3D ARRAY_SIZE(display->bw.max) - 1; i >=3D 0; i--) {
+>>                  const struct intel_bw_info *bi =3D
+>> -                        &dev_priv->display.bw.max[i];
+>> +                        &display->bw.max[i];
+>> =20
+>>                  /*
+>>                   * Pcode will not expose all QGV points when
+>> @@ -713,52 +722,54 @@ static unsigned int tgl_max_bw_index(struct drm_i9=
+15_private *dev_priv,
+>>          return 0;
+>>  }
+>> =20
+>> -static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
+>> +static unsigned int adl_psf_bw(struct intel_display *display,
+>>                                 int psf_gv_point)
+>>  {
+>>          const struct intel_bw_info *bi =3D
+>> -                        &dev_priv->display.bw.max[0];
+>> +                        &display->bw.max[0];
+>> =20
+>>          return bi->psf_bw[psf_gv_point];
+>>  }
+>> =20
+>> -static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
+>> +static unsigned int icl_qgv_bw(struct intel_display *display,
+>>                                 int num_active_planes, int qgv_point)
+>>  {
+>>          unsigned int idx;
+>> =20
+>> -        if (DISPLAY_VER(i915) >=3D 12)
+>> -                idx =3D tgl_max_bw_index(i915, num_active_planes, qgv_p=
+oint);
+>> +        if (DISPLAY_VER(display) >=3D 12)
+>> +                idx =3D tgl_max_bw_index(display, num_active_planes, qg=
+v_point);
+>>          else
+>> -                idx =3D icl_max_bw_index(i915, num_active_planes, qgv_p=
+oint);
+>> +                idx =3D icl_max_bw_index(display, num_active_planes, qg=
+v_point);
+>> =20
+>> -        if (idx >=3D ARRAY_SIZE(i915->display.bw.max))
+>> +        if (idx >=3D ARRAY_SIZE(display->bw.max))
+>>                  return 0;
+>> =20
+>> -        return i915->display.bw.max[idx].deratedbw[qgv_point];
+>> +        return display->bw.max[idx].deratedbw[qgv_point];
+>>  }
+>> =20
+>>  void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+>>  {
+>> -        if (!HAS_DISPLAY(dev_priv))
+>> +        struct intel_display *display =3D &dev_priv->display;
+>> +
+>> +        if (!HAS_DISPLAY(display))
+>>                  return;
+>> =20
+>> -        if (DISPLAY_VERx100(dev_priv) >=3D 1401 && IS_DGFX(dev_priv))
+>> -                xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
+>> -        else if (DISPLAY_VER(dev_priv) >=3D 14)
+>> -                tgl_get_bw_info(dev_priv, &mtl_sa_info);
+>> -        else if (IS_DG2(dev_priv))
+>> -                dg2_get_bw_info(dev_priv);
+>> -        else if (IS_ALDERLAKE_P(dev_priv))
+>> -                tgl_get_bw_info(dev_priv, &adlp_sa_info);
+>> -        else if (IS_ALDERLAKE_S(dev_priv))
+>> -                tgl_get_bw_info(dev_priv, &adls_sa_info);
+>> -        else if (IS_ROCKETLAKE(dev_priv))
+>> -                tgl_get_bw_info(dev_priv, &rkl_sa_info);
+>> -        else if (DISPLAY_VER(dev_priv) =3D=3D 12)
+>> -                tgl_get_bw_info(dev_priv, &tgl_sa_info);
+>> -        else if (DISPLAY_VER(dev_priv) =3D=3D 11)
+>> -                icl_get_bw_info(dev_priv, &icl_sa_info);
+>> +        if (DISPLAY_VERx100(display) >=3D 1401 && display->platform.dgf=
+x)
+>> +                xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
+>> +        else if (DISPLAY_VER(display) >=3D 14)
+>> +                tgl_get_bw_info(display, &mtl_sa_info);
+>> +        else if (display->platform.dg2)
+>> +                dg2_get_bw_info(display);
+>> +        else if (display->platform.alderlake_p)
+>> +                tgl_get_bw_info(display, &adlp_sa_info);
+>> +        else if (display->platform.alderlake_s)
+>> +                tgl_get_bw_info(display, &adls_sa_info);
+>> +        else if (display->platform.rocketlake)
+>> +                tgl_get_bw_info(display, &rkl_sa_info);
+>> +        else if (DISPLAY_VER(display) =3D=3D 12)
+>> +                tgl_get_bw_info(display, &tgl_sa_info);
+>> +        else if (DISPLAY_VER(display) =3D=3D 11)
+>> +                icl_get_bw_info(display, &icl_sa_info);
+>>  }
+>> =20
+>>  static unsigned int intel_bw_crtc_num_active_planes(const struct intel_=
+crtc_state *crtc_state)
+>> @@ -772,8 +783,8 @@ static unsigned int intel_bw_crtc_num_active_planes(=
+const struct intel_crtc_stat
+>> =20
+>>  static unsigned int intel_bw_crtc_data_rate(const struct intel_crtc_sta=
+te *crtc_state)
+>>  {
+>> +        struct intel_display *display =3D to_intel_display(crtc_state);
+>>          struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc=
+);
+>> -        struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>>          unsigned int data_rate =3D 0;
+>>          enum plane_id plane_id;
+>> =20
+>> @@ -787,7 +798,7 @@ static unsigned int intel_bw_crtc_data_rate(const st=
+ruct intel_crtc_state *crtc_
+>> =20
+>>                  data_rate +=3D crtc_state->data_rate[plane_id];
+>> =20
+>> -                if (DISPLAY_VER(i915) < 11)
+>> +                if (DISPLAY_VER(display) < 11)
+>>                          data_rate +=3D crtc_state->data_rate_y[plane_id=
+];
+>>          }
+>> =20
+>> @@ -797,37 +808,37 @@ static unsigned int intel_bw_crtc_data_rate(const =
+struct intel_crtc_state *crtc_
+>>  /* "Maximum Pipe Read Bandwidth" */
+>>  static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_=
+state)
+>>  {
+>> -        struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc=
+);
+>> -        struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(crtc_state);
+>> =20
+>> -        if (DISPLAY_VER(i915) < 12)
+>> +        if (DISPLAY_VER(display) < 12)
+>>                  return 0;
+>> =20
+>>          return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crt=
+c_state), 10), 512);
+>>  }
+>> =20
+>> -static unsigned int intel_bw_num_active_planes(struct drm_i915_private =
+*dev_priv,
+>> +static unsigned int intel_bw_num_active_planes(struct intel_display *di=
+splay,
+>>                                                 const struct intel_bw_st=
+ate *bw_state)
+>>  {
+>>          unsigned int num_active_planes =3D 0;
+>>          enum pipe pipe;
+>> =20
+>> -        for_each_pipe(dev_priv, pipe)
+>> +        for_each_pipe(display, pipe)
+>>                  num_active_planes +=3D bw_state->num_active_planes[pipe=
+];
+>> =20
+>>          return num_active_planes;
+>>  }
+>> =20
+>> -static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_pri=
+v,
+>> +static unsigned int intel_bw_data_rate(struct intel_display *display,
+>>                                         const struct intel_bw_state *bw_=
+state)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          unsigned int data_rate =3D 0;
+>>          enum pipe pipe;
+>> =20
+>> -        for_each_pipe(dev_priv, pipe)
+>> +        for_each_pipe(display, pipe)
+>>                  data_rate +=3D bw_state->data_rate[pipe];
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) >=3D 13 && i915_vtd_active(dev_priv))
+>> +        if (DISPLAY_VER(display) >=3D 13 && i915_vtd_active(i915))
+>>                  data_rate =3D DIV_ROUND_UP(data_rate * 105, 100);
+>> =20
+>>          return data_rate;
+>> @@ -836,10 +847,10 @@ static unsigned int intel_bw_data_rate(struct drm_=
+i915_private *dev_priv,
+>>  struct intel_bw_state *
+>>  intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+>>  {
+>> -        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(state);
+>>          struct intel_global_state *bw_state;
+>> =20
+>> -        bw_state =3D intel_atomic_get_old_global_obj_state(state, &dev_=
+priv->display.bw.obj);
+>> +        bw_state =3D intel_atomic_get_old_global_obj_state(state, &disp=
+lay->bw.obj);
+>> =20
+>>          return to_intel_bw_state(bw_state);
+>>  }
+>> @@ -847,10 +858,10 @@ intel_atomic_get_old_bw_state(struct intel_atomic_=
+state *state)
+>>  struct intel_bw_state *
+>>  intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+>>  {
+>> -        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(state);
+>>          struct intel_global_state *bw_state;
+>> =20
+>> -        bw_state =3D intel_atomic_get_new_global_obj_state(state, &dev_=
+priv->display.bw.obj);
+>> +        bw_state =3D intel_atomic_get_new_global_obj_state(state, &disp=
+lay->bw.obj);
+>> =20
+>>          return to_intel_bw_state(bw_state);
+>>  }
+>> @@ -858,27 +869,27 @@ intel_atomic_get_new_bw_state(struct intel_atomic_=
+state *state)
+>>  struct intel_bw_state *
+>>  intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>>  {
+>> -        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(state);
+>>          struct intel_global_state *bw_state;
+>> =20
+>> -        bw_state =3D intel_atomic_get_global_obj_state(state, &dev_priv=
+->display.bw.obj);
+>> +        bw_state =3D intel_atomic_get_global_obj_state(state, &display-=
+>bw.obj);
+>>          if (IS_ERR(bw_state))
+>>                  return ERR_CAST(bw_state);
+>> =20
+>>          return to_intel_bw_state(bw_state);
+>>  }
+>> =20
+>> -static unsigned int icl_max_bw_qgv_point_mask(struct drm_i915_private *=
+i915,
+>> +static unsigned int icl_max_bw_qgv_point_mask(struct intel_display *dis=
+play,
+>>                                                int num_active_planes)
+>>  {
+>> -        unsigned int num_qgv_points =3D i915->display.bw.max[0].num_qgv=
+_points;
+>> +        unsigned int num_qgv_points =3D display->bw.max[0].num_qgv_poin=
+ts;
+>>          unsigned int max_bw_point =3D 0;
+>>          unsigned int max_bw =3D 0;
+>>          int i;
+>> =20
+>>          for (i =3D 0; i < num_qgv_points; i++) {
+>>                  unsigned int max_data_rate =3D
+>> -                        icl_qgv_bw(i915, num_active_planes, i);
+>> +                        icl_qgv_bw(display, num_active_planes, i);
+>> =20
+>>                  /*
+>>                   * We need to know which qgv point gives us
+>> @@ -897,23 +908,23 @@ static unsigned int icl_max_bw_qgv_point_mask(stru=
+ct drm_i915_private *i915,
+>>          return max_bw_point;
+>>  }
+>> =20
+>> -static u16 icl_prepare_qgv_points_mask(struct drm_i915_private *i915,
+>> +static u16 icl_prepare_qgv_points_mask(struct intel_display *display,
+>>                                         unsigned int qgv_points,
+>>                                         unsigned int psf_points)
+>>  {
+>>          return ~(ICL_PCODE_REQ_QGV_PT(qgv_points) |
+>> -                 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_ma=
+sk(i915);
+>> +                 ADLS_PCODE_REQ_PSF_PT(psf_points)) & icl_qgv_points_ma=
+sk(display);
+>>  }
+>> =20
+>> -static unsigned int icl_max_bw_psf_gv_point_mask(struct drm_i915_privat=
+e *i915)
+>> +static unsigned int icl_max_bw_psf_gv_point_mask(struct intel_display *=
+display)
+>>  {
+>> -        unsigned int num_psf_gv_points =3D i915->display.bw.max[0].num_=
+psf_gv_points;
+>> +        unsigned int num_psf_gv_points =3D display->bw.max[0].num_psf_g=
+v_points;
+>>          unsigned int max_bw_point_mask =3D 0;
+>>          unsigned int max_bw =3D 0;
+>>          int i;
+>> =20
+>>          for (i =3D 0; i < num_psf_gv_points; i++) {
+>> -                unsigned int max_data_rate =3D adl_psf_bw(i915, i);
+>> +                unsigned int max_data_rate =3D adl_psf_bw(display, i);
+>> =20
+>>                  if (max_data_rate > max_bw) {
+>>                          max_bw_point_mask =3D BIT(i);
+>> @@ -926,29 +937,31 @@ static unsigned int icl_max_bw_psf_gv_point_mask(s=
+truct drm_i915_private *i915)
+>>          return max_bw_point_mask;
+>>  }
+>> =20
+>> -static void icl_force_disable_sagv(struct drm_i915_private *i915,
+>> +static void icl_force_disable_sagv(struct intel_display *display,
+>>                                     struct intel_bw_state *bw_state)
+>>  {
+>> -        unsigned int qgv_points =3D icl_max_bw_qgv_point_mask(i915, 0);
+>> -        unsigned int psf_points =3D icl_max_bw_psf_gv_point_mask(i915);
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>> +        unsigned int qgv_points =3D icl_max_bw_qgv_point_mask(display, =
+0);
+>> +        unsigned int psf_points =3D icl_max_bw_psf_gv_point_mask(displa=
+y);
+>> =20
+>> -        bw_state->qgv_points_mask =3D icl_prepare_qgv_points_mask(i915,
+>> +        bw_state->qgv_points_mask =3D icl_prepare_qgv_points_mask(displ=
+ay,
+>>                                                                  qgv_poi=
+nts,
+>>                                                                  psf_poi=
+nts);
+>> =20
+>> -        drm_dbg_kms(&i915->drm, "Forcing SAGV disable: mask 0x%x\n",
+>> +        drm_dbg_kms(display->drm, "Forcing SAGV disable: mask 0x%x\n",
+>>                      bw_state->qgv_points_mask);
+>> =20
+>>          icl_pcode_restrict_qgv_points(i915, bw_state->qgv_points_mask);
+>>  }
+>> =20
+>> -static int mtl_find_qgv_points(struct drm_i915_private *i915,
+>> +static int mtl_find_qgv_points(struct intel_display *display,
+>>                                 unsigned int data_rate,
+>>                                 unsigned int num_active_planes,
+>>                                 struct intel_bw_state *new_bw_state)
+>>  {
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          unsigned int best_rate =3D UINT_MAX;
+>> -        unsigned int num_qgv_points =3D i915->display.bw.max[0].num_qgv=
+_points;
+>> +        unsigned int num_qgv_points =3D display->bw.max[0].num_qgv_poin=
+ts;
+>>          unsigned int qgv_peak_bw  =3D 0;
+>>          int i;
+>>          int ret;
+>> @@ -964,7 +977,7 @@ static int mtl_find_qgv_points(struct drm_i915_priva=
+te *i915,
+>>           */
+>>          if (!intel_can_enable_sagv(i915, new_bw_state)) {
+>>                  new_bw_state->qgv_point_peakbw =3D U16_MAX;
+>> -                drm_dbg_kms(&i915->drm, "No SAGV, use UINT_MAX as peak =
+bw.");
+>> +                drm_dbg_kms(display->drm, "No SAGV, use UINT_MAX as pea=
+k bw.");
+>>                  return 0;
+>>          }
+>> =20
+>> @@ -974,27 +987,27 @@ static int mtl_find_qgv_points(struct drm_i915_pri=
+vate *i915,
+>>           */
+>>          for (i =3D 0; i < num_qgv_points; i++) {
+>>                  unsigned int bw_index =3D
+>> -                        tgl_max_bw_index(i915, num_active_planes, i);
+>> +                        tgl_max_bw_index(display, num_active_planes, i)=
+;
+>>                  unsigned int max_data_rate;
+>> =20
+>> -                if (bw_index >=3D ARRAY_SIZE(i915->display.bw.max))
+>> +                if (bw_index >=3D ARRAY_SIZE(display->bw.max))
+>>                          continue;
+>> =20
+>> -                max_data_rate =3D i915->display.bw.max[bw_index].derate=
+dbw[i];
+>> +                max_data_rate =3D display->bw.max[bw_index].deratedbw[i=
+];
+>> =20
+>>                  if (max_data_rate < data_rate)
+>>                          continue;
+>> =20
+>>                  if (max_data_rate - data_rate < best_rate) {
+>>                          best_rate =3D max_data_rate - data_rate;
+>> -                        qgv_peak_bw =3D i915->display.bw.max[bw_index].=
+peakbw[i];
+>> +                        qgv_peak_bw =3D display->bw.max[bw_index].peakb=
+w[i];
+>>                  }
+>> =20
+>> -                drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d requir=
+ed %d qgv_peak_bw: %d\n",
+>> +                drm_dbg_kms(display->drm, "QGV point %d: max bw %d requ=
+ired %d qgv_peak_bw: %d\n",
+>>                              i, max_data_rate, data_rate, qgv_peak_bw);
+>>          }
+>> =20
+>> -        drm_dbg_kms(&i915->drm, "Matching peaks QGV bw: %d for required=
+ data rate: %d\n",
+>> +        drm_dbg_kms(display->drm, "Matching peaks QGV bw: %d for requir=
+ed data rate: %d\n",
+>>                      qgv_peak_bw, data_rate);
+>> =20
+>>          /*
+>> @@ -1002,7 +1015,7 @@ static int mtl_find_qgv_points(struct drm_i915_pri=
+vate *i915,
+>>           * satisfying the required data rate is found
+>>           */
+>>          if (qgv_peak_bw =3D=3D 0) {
+>> -                drm_dbg_kms(&i915->drm, "No QGV points for bw %d for di=
+splay configuration(%d active planes).\n",
+>> +                drm_dbg_kms(display->drm, "No QGV points for bw %d for =
+display configuration(%d active planes).\n",
+>>                              data_rate, num_active_planes);
+>>                  return -EINVAL;
+>>          }
+>> @@ -1013,14 +1026,15 @@ static int mtl_find_qgv_points(struct drm_i915_p=
+rivate *i915,
+>>          return 0;
+>>  }
+>> =20
+>> -static int icl_find_qgv_points(struct drm_i915_private *i915,
+>> +static int icl_find_qgv_points(struct intel_display *display,
+>>                                 unsigned int data_rate,
+>>                                 unsigned int num_active_planes,
+>>                                 const struct intel_bw_state *old_bw_stat=
+e,
+>>                                 struct intel_bw_state *new_bw_state)
+>>  {
+>> -        unsigned int num_psf_gv_points =3D i915->display.bw.max[0].num_=
+psf_gv_points;
+>> -        unsigned int num_qgv_points =3D i915->display.bw.max[0].num_qgv=
+_points;
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>> +        unsigned int num_psf_gv_points =3D display->bw.max[0].num_psf_g=
+v_points;
+>> +        unsigned int num_qgv_points =3D display->bw.max[0].num_qgv_poin=
+ts;
+>>          u16 psf_points =3D 0;
+>>          u16 qgv_points =3D 0;
+>>          int i;
+>> @@ -1031,22 +1045,22 @@ static int icl_find_qgv_points(struct drm_i915_p=
+rivate *i915,
+>>                  return ret;
+>> =20
+>>          for (i =3D 0; i < num_qgv_points; i++) {
+>> -                unsigned int max_data_rate =3D icl_qgv_bw(i915,
+>> +                unsigned int max_data_rate =3D icl_qgv_bw(display,
+>>                                                          num_active_plan=
+es, i);
+>>                  if (max_data_rate >=3D data_rate)
+>>                          qgv_points |=3D BIT(i);
+>> =20
+>> -                drm_dbg_kms(&i915->drm, "QGV point %d: max bw %d requir=
+ed %d\n",
+>> +                drm_dbg_kms(display->drm, "QGV point %d: max bw %d requ=
+ired %d\n",
+>>                              i, max_data_rate, data_rate);
+>>          }
+>> =20
+>>          for (i =3D 0; i < num_psf_gv_points; i++) {
+>> -                unsigned int max_data_rate =3D adl_psf_bw(i915, i);
+>> +                unsigned int max_data_rate =3D adl_psf_bw(display, i);
+>> =20
+>>                  if (max_data_rate >=3D data_rate)
+>>                          psf_points |=3D BIT(i);
+>> =20
+>> -                drm_dbg_kms(&i915->drm, "PSF GV point %d: max bw %d"
+>> +                drm_dbg_kms(display->drm, "PSF GV point %d: max bw %d"
+>>                              " required %d\n",
+>>                              i, max_data_rate, data_rate);
+>>          }
+>> @@ -1057,14 +1071,14 @@ static int icl_find_qgv_points(struct drm_i915_p=
+rivate *i915,
+>>           * reasons.
+>>           */
+>>          if (qgv_points =3D=3D 0) {
+>> -                drm_dbg_kms(&i915->drm, "No QGV points provide sufficie=
+nt memory"
+>> +                drm_dbg_kms(display->drm, "No QGV points provide suffic=
+ient memory"
+>>                              " bandwidth %d for display configuration(%d=
+ active planes).\n",
+>>                              data_rate, num_active_planes);
+>>                  return -EINVAL;
+>>          }
+>> =20
+>>          if (num_psf_gv_points > 0 && psf_points =3D=3D 0) {
+>> -                drm_dbg_kms(&i915->drm, "No PSF GV points provide suffi=
+cient memory"
+>> +                drm_dbg_kms(display->drm, "No PSF GV points provide suf=
+ficient memory"
+>>                              " bandwidth %d for display configuration(%d=
+ active planes).\n",
+>>                              data_rate, num_active_planes);
+>>                  return -EINVAL;
+>> @@ -1076,8 +1090,8 @@ static int icl_find_qgv_points(struct drm_i915_pri=
+vate *i915,
+>>           * cause.
+>>           */
+>>          if (!intel_can_enable_sagv(i915, new_bw_state)) {
+>> -                qgv_points =3D icl_max_bw_qgv_point_mask(i915, num_acti=
+ve_planes);
+>> -                drm_dbg_kms(&i915->drm, "No SAGV, using single QGV poin=
+t mask 0x%x\n",
+>> +                qgv_points =3D icl_max_bw_qgv_point_mask(display, num_a=
+ctive_planes);
+>> +                drm_dbg_kms(display->drm, "No SAGV, using single QGV po=
+int mask 0x%x\n",
+>>                              qgv_points);
+>>          }
+>> =20
+>> @@ -1085,7 +1099,7 @@ static int icl_find_qgv_points(struct drm_i915_pri=
+vate *i915,
+>>           * We store the ones which need to be masked as that is what PC=
+ode
+>>           * actually accepts as a parameter.
+>>           */
+>> -        new_bw_state->qgv_points_mask =3D icl_prepare_qgv_points_mask(i=
+915,
+>> +        new_bw_state->qgv_points_mask =3D icl_prepare_qgv_points_mask(d=
+isplay,
+>>                                                                      qgv=
+_points,
+>>                                                                      psf=
+_points);
+>>          /*
+>> @@ -1101,38 +1115,38 @@ static int icl_find_qgv_points(struct drm_i915_p=
+rivate *i915,
+>>          return 0;
+>>  }
+>> =20
+>> -static int intel_bw_check_qgv_points(struct drm_i915_private *i915,
+>> +static int intel_bw_check_qgv_points(struct intel_display *display,
+>>                                       const struct intel_bw_state *old_b=
+w_state,
+>>                                       struct intel_bw_state *new_bw_stat=
+e)
+>>  {
+>> -        unsigned int data_rate =3D intel_bw_data_rate(i915, new_bw_stat=
+e);
+>> +        unsigned int data_rate =3D intel_bw_data_rate(display, new_bw_s=
+tate);
+>>          unsigned int num_active_planes =3D
+>> -                        intel_bw_num_active_planes(i915, new_bw_state);
+>> +                        intel_bw_num_active_planes(display, new_bw_stat=
+e);
+>> =20
+>>          data_rate =3D DIV_ROUND_UP(data_rate, 1000);
+>> =20
+>> -        if (DISPLAY_VER(i915) >=3D 14)
+>> -                return mtl_find_qgv_points(i915, data_rate, num_active_=
+planes,
+>> +        if (DISPLAY_VER(display) >=3D 14)
+>> +                return mtl_find_qgv_points(display, data_rate, num_acti=
+ve_planes,
+>>                                             new_bw_state);
+>>          else
+>> -                return icl_find_qgv_points(i915, data_rate, num_active_=
+planes,
+>> +                return icl_find_qgv_points(display, data_rate, num_acti=
+ve_planes,
+>>                                             old_bw_state, new_bw_state);
+>>  }
+>> =20
+>> -static bool intel_bw_state_changed(struct drm_i915_private *i915,
+>> +static bool intel_bw_state_changed(struct intel_display *display,
+>>                                     const struct intel_bw_state *old_bw_=
+state,
+>>                                     const struct intel_bw_state *new_bw_=
+state)
+>>  {
+>>          enum pipe pipe;
+>> =20
+>> -        for_each_pipe(i915, pipe) {
+>> +        for_each_pipe(display, pipe) {
+>>                  const struct intel_dbuf_bw *old_crtc_bw =3D
+>>                          &old_bw_state->dbuf_bw[pipe];
+>>                  const struct intel_dbuf_bw *new_crtc_bw =3D
+>>                          &new_bw_state->dbuf_bw[pipe];
+>>                  enum dbuf_slice slice;
+>> =20
+>> -                for_each_dbuf_slice(i915, slice) {
+>> +                for_each_dbuf_slice(display, slice) {
+>>                          if (old_crtc_bw->max_bw[slice] !=3D new_crtc_bw=
+->max_bw[slice] ||
+>>                              old_crtc_bw->active_planes[slice] !=3D new_=
+crtc_bw->active_planes[slice])
+>>                                  return true;
+>> @@ -1151,7 +1165,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw=
+_state *bw_state,
+>>                                     const struct skl_ddb_entry *ddb,
+>>                                     unsigned int data_rate)
+>>  {
+>> -        struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(crtc);
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          struct intel_dbuf_bw *crtc_bw =3D &bw_state->dbuf_bw[crtc->pipe=
+];
+>>          unsigned int dbuf_mask =3D skl_ddb_dbuf_slice_mask(i915, ddb);
+>>          enum dbuf_slice slice;
+>> @@ -1160,7 +1175,7 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw=
+_state *bw_state,
+>>           * The arbiter can only really guarantee an
+>>           * equal share of the total bw to each plane.
+>>           */
+>> -        for_each_dbuf_slice_in_mask(i915, slice, dbuf_mask) {
+>> +        for_each_dbuf_slice_in_mask(display, slice, dbuf_mask) {
+>>                  crtc_bw->max_bw[slice] =3D max(crtc_bw->max_bw[slice], =
+data_rate);
+>>                  crtc_bw->active_planes[slice] |=3D BIT(plane_id);
+>>          }
+>> @@ -1169,8 +1184,8 @@ static void skl_plane_calc_dbuf_bw(struct intel_bw=
+_state *bw_state,
+>>  static void skl_crtc_calc_dbuf_bw(struct intel_bw_state *bw_state,
+>>                                    const struct intel_crtc_state *crtc_s=
+tate)
+>>  {
+>> +        struct intel_display *display =3D to_intel_display(crtc_state);
+>>          struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc=
+);
+>> -        struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>>          struct intel_dbuf_bw *crtc_bw =3D &bw_state->dbuf_bw[crtc->pipe=
+];
+>>          enum plane_id plane_id;
+>> =20
+>> @@ -1191,7 +1206,7 @@ static void skl_crtc_calc_dbuf_bw(struct intel_bw_=
+state *bw_state,
+>>                                         &crtc_state->wm.skl.plane_ddb[pl=
+ane_id],
+>>                                         crtc_state->data_rate[plane_id])=
+;
+>> =20
+>> -                if (DISPLAY_VER(i915) < 11)
+>> +                if (DISPLAY_VER(display) < 11)
+>>                          skl_plane_calc_dbuf_bw(bw_state, crtc, plane_id=
+,
+>>                                                 &crtc_state->wm.skl.plan=
+e_ddb_y[plane_id],
+>>                                                 crtc_state->data_rate[pl=
+ane_id]);
+>> @@ -1200,13 +1215,13 @@ static void skl_crtc_calc_dbuf_bw(struct intel_b=
+w_state *bw_state,
+>> =20
+>>  /* "Maximum Data Buffer Bandwidth" */
+>>  static int
+>> -intel_bw_dbuf_min_cdclk(struct drm_i915_private *i915,
+>> +intel_bw_dbuf_min_cdclk(struct intel_display *display,
+>>                          const struct intel_bw_state *bw_state)
+>>  {
+>>          unsigned int total_max_bw =3D 0;
+>>          enum dbuf_slice slice;
+>> =20
+>> -        for_each_dbuf_slice(i915, slice) {
+>> +        for_each_dbuf_slice(display, slice) {
+>>                  int num_active_planes =3D 0;
+>>                  unsigned int max_bw =3D 0;
+>>                  enum pipe pipe;
+>> @@ -1215,7 +1230,7 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private *i=
+915,
+>>                   * The arbiter can only really guarantee an
+>>                   * equal share of the total bw to each plane.
+>>                   */
+>> -                for_each_pipe(i915, pipe) {
+>> +                for_each_pipe(display, pipe) {
+>>                          const struct intel_dbuf_bw *crtc_bw =3D &bw_sta=
+te->dbuf_bw[pipe];
+>> =20
+>>                          max_bw =3D max(crtc_bw->max_bw[slice], max_bw);
+>> @@ -1232,12 +1247,13 @@ intel_bw_dbuf_min_cdclk(struct drm_i915_private =
+*i915,
+>>  int intel_bw_min_cdclk(struct drm_i915_private *i915,
+>>                         const struct intel_bw_state *bw_state)
+>>  {
+>> +        struct intel_display *display =3D &i915->display;
+>>          enum pipe pipe;
+>>          int min_cdclk;
+>> =20
+>> -        min_cdclk =3D intel_bw_dbuf_min_cdclk(i915, bw_state);
+>> +        min_cdclk =3D intel_bw_dbuf_min_cdclk(display, bw_state);
+>> =20
+>> -        for_each_pipe(i915, pipe)
+>> +        for_each_pipe(display, pipe)
+>>                  min_cdclk =3D max(min_cdclk, bw_state->min_cdclk[pipe])=
+;
+>> =20
+>>          return min_cdclk;
+>> @@ -1246,6 +1262,7 @@ int intel_bw_min_cdclk(struct drm_i915_private *i9=
+15,
+>>  int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+>>                              bool *need_cdclk_calc)
+>>  {
+>> +        struct intel_display *display =3D to_intel_display(state);
+>>          struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+>>          struct intel_bw_state *new_bw_state =3D NULL;
+>>          const struct intel_bw_state *old_bw_state =3D NULL;
+>> @@ -1255,7 +1272,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_st=
+ate *state,
+>>          struct intel_crtc *crtc;
+>>          int i;
+>> =20
+>> -        if (DISPLAY_VER(dev_priv) < 9)
+>> +        if (DISPLAY_VER(display) < 9)
+>>                  return 0;
+>> =20
+>>          for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+>> @@ -1274,7 +1291,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_st=
+ate *state,
+>>          if (!old_bw_state)
+>>                  return 0;
+>> =20
+>> -        if (intel_bw_state_changed(dev_priv, old_bw_state, new_bw_state=
+)) {
+>> +        if (intel_bw_state_changed(display, old_bw_state, new_bw_state)=
+) {
+>>                  int ret =3D intel_atomic_lock_global_state(&new_bw_stat=
+e->base);
+>>                  if (ret)
+>>                          return ret;
+>> @@ -1309,7 +1326,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_st=
+ate *state,
+>>          if (new_min_cdclk <=3D cdclk_state->bw_min_cdclk)
+>>                  return 0;
+>> =20
+>> -        drm_dbg_kms(&dev_priv->drm,
+>> +        drm_dbg_kms(display->drm,
+>>                      "new bandwidth min cdclk (%d kHz) > old min cdclk (=
+%d kHz)\n",
+>>                      new_min_cdclk, cdclk_state->bw_min_cdclk);
+>>          *need_cdclk_calc =3D true;
+>> @@ -1319,7 +1336,7 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_st=
+ate *state,
+>> =20
+>>  static int intel_bw_check_data_rate(struct intel_atomic_state *state, b=
+ool *changed)
+>>  {
+>> -        struct drm_i915_private *i915 =3D to_i915(state->base.dev);
+>> +        struct intel_display *display =3D to_intel_display(state);
+>>          const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+>>          struct intel_crtc *crtc;
+>>          int i;
+>> @@ -1353,7 +1370,7 @@ static int intel_bw_check_data_rate(struct intel_a=
+tomic_state *state, bool *chan
+>> =20
+>>                  *changed =3D true;
+>> =20
+>> -                drm_dbg_kms(&i915->drm,
+>> +                drm_dbg_kms(display->drm,
+>>                              "[CRTC:%d:%s] data rate %u num active plane=
+s %u\n",
+>>                              crtc->base.base.id, crtc->base.name,
+>>                              new_bw_state->data_rate[crtc->pipe],
+>> @@ -1365,14 +1382,15 @@ static int intel_bw_check_data_rate(struct intel=
+_atomic_state *state, bool *chan
+>> =20
+>>  int intel_bw_atomic_check(struct intel_atomic_state *state)
+>>  {
+>> +        struct intel_display *display =3D to_intel_display(state);
+>> +        struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>          bool changed =3D false;
+>> -        struct drm_i915_private *i915 =3D to_i915(state->base.dev);
+>>          struct intel_bw_state *new_bw_state;
+>>          const struct intel_bw_state *old_bw_state;
+>>          int ret;
+>> =20
+>>          /* FIXME earlier gens need some checks too */
+>> -        if (DISPLAY_VER(i915) < 11)
+>> +        if (DISPLAY_VER(display) < 11)
+>>                  return 0;
+>> =20
+>>          ret =3D intel_bw_check_data_rate(state, &changed);
+>> @@ -1395,7 +1413,7 @@ int intel_bw_atomic_check(struct intel_atomic_stat=
+e *state)
+>>          if (!changed)
+>>                  return 0;
+>> =20
+>> -        ret =3D intel_bw_check_qgv_points(i915, old_bw_state, new_bw_st=
+ate);
+>> +        ret =3D intel_bw_check_qgv_points(display, old_bw_state, new_bw=
+_state);
+>>          if (ret)
+>>                  return ret;
+>> =20
+>> @@ -1407,8 +1425,8 @@ int intel_bw_atomic_check(struct intel_atomic_stat=
+e *state)
+>>  static void intel_bw_crtc_update(struct intel_bw_state *bw_state,
+>>                                   const struct intel_crtc_state *crtc_st=
+ate)
+>>  {
+>> +        struct intel_display *display =3D to_intel_display(crtc_state);
+>>          struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc=
+);
+>> -        struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
+>> =20
+>>          bw_state->data_rate[crtc->pipe] =3D
+>>                  intel_bw_crtc_data_rate(crtc_state);
+>> @@ -1416,7 +1434,7 @@ static void intel_bw_crtc_update(struct intel_bw_s=
+tate *bw_state,
+>>                  intel_bw_crtc_num_active_planes(crtc_state);
+>>          bw_state->force_check_qgv =3D true;
+>> =20
+>> -        drm_dbg_kms(&i915->drm, "pipe %c data rate %u num active planes=
+ %u\n",
+>> +        drm_dbg_kms(display->drm, "pipe %c data rate %u num active plan=
+es %u\n",
+>>                      pipe_name(crtc->pipe),
+>>                      bw_state->data_rate[crtc->pipe],
+>>                      bw_state->num_active_planes[crtc->pipe]);
+>> @@ -1499,8 +1517,8 @@ int intel_bw_init(struct drm_i915_private *i915)
+>>           * Limit this only if we have SAGV. And for Display version 14 =
+onwards
+>>           * sagv is handled though pmdemand requests
+>>           */
+>> -        if (intel_has_sagv(i915) && IS_DISPLAY_VER(i915, 11, 13))
+>> -                icl_force_disable_sagv(i915, state);
+>> +        if (intel_has_sagv(i915) && IS_DISPLAY_VER(display, 11, 13))
+>> +                icl_force_disable_sagv(display, state);
+>> =20
+>>          return 0;
+>>  }
+>>=20
+>> --=20
+>> 2.48.1
+>>=20
+>
+>--=20
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
