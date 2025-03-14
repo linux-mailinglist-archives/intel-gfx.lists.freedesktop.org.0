@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8B9A60761
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Mar 2025 03:12:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A61A60763
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Mar 2025 03:13:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2ED10E259;
-	Fri, 14 Mar 2025 02:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D3010E279;
+	Fri, 14 Mar 2025 02:12:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NKn1JqbO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WboljFim";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47F3210E260
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 02:12:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DEC210E268
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Mar 2025 02:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1741918364; x=1773454364;
+ t=1741918377; x=1773454377;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/lqT8gLl7+CpgxfEKD5YRVqzd/RhDdqJOfK0eGBYtQ0=;
- b=NKn1JqbOkWp4t/KX5dGyBXcAwYHpX0NOOJnoVOmjQtw7YUbIFd8nLW2s
- 7BDr/rbc17uwaFaevPpTJLlNWezWnpEIGfycY9GrynwSgK0TLaHGPMQ+C
- ZE6McZcPYSP23LKyEX99MdHmOacT4HPHth3bqTZJY2NORe/6U+WrcjoWJ
- 6V1TPaMVWjstDFAuAJgoIqhm0QVtwCQHWelNaIysL/efxRWriuusXscjh
- 6518pNjAht4VwAOJFZzMztzbAp5wzb8ajjumms/f7E/ZPDMtjiRN8iHoG
- RMfAcVgrxjcnO6hZh/P2znWMrUBDo0LKQPqXnwNl49hjpDR2MHCEQY+ej Q==;
-X-CSE-ConnectionGUID: Ob8Xb1CRQwKqzwGWx7f4yg==
-X-CSE-MsgGUID: 0Rq+v0WiThW7RSv80FONVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="65520027"
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="65520027"
+ bh=ky7O6+FyvXiZZ+OB1hnLpEzKIO7WyvCGRm6JG0g1Wdo=;
+ b=WboljFima2LjZI19XJYSNfc7T1YKMqS4LFn9EvglV+2TlUkLvGZvInKz
+ Ov4qpi0HfY11JF4xCAAhbLTakEMCW+LFnDTlQtU9FyL1JS2N7sGhLhAQM
+ 0n4QHzW2ERp0PsL115VzBqr76Ek55H2cZwfnVc0sxmC/B5aNVSVop9oVT
+ itQ6XEKdPid4ByNkZxu20N9rhmZ1G1HI9924aoPxaApiGMAMnGZetCRsD
+ IeDuPAsfmNtYhTN0NqSjsZt63z08K5ww/vqtjem757CPUKu+DUQMLl0Nf
+ xIv9SU8GwexACanavKvxXHi4QU5glAnNEtUz28Ls2KEnVAIcc5BvbonjO A==;
+X-CSE-ConnectionGUID: eJL5PVlNRsS6vXqN1Geocg==
+X-CSE-MsgGUID: pZnWRSnRSAqp+WLdfunUMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11372"; a="65520036"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="65520036"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 19:12:44 -0700
-X-CSE-ConnectionGUID: 0ZlfkpRTQA6nVm88ilPKGA==
-X-CSE-MsgGUID: jzP1C8SWTv+48l62ZKhImA==
+ 13 Mar 2025 19:12:49 -0700
+X-CSE-ConnectionGUID: BwFkdLK8QHaj4uqfob0MwQ==
+X-CSE-MsgGUID: wIUL7dVMSuOHRY58PhacCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="126009277"
+X-IronPort-AV: E=Sophos;i="6.14,246,1736841600"; d="scan'208";a="126009286"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.159])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2025 19:12:42 -0700
+ 13 Mar 2025 19:12:47 -0700
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: intel-gfx <intel-gfx@lists.freedesktop.org>
 Cc: Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH 2/4] drm/i915/gt: Fix SPDX license format
-Date: Fri, 14 Mar 2025 03:12:22 +0100
-Message-ID: <20250314021225.11813-3-andi.shyti@linux.intel.com>
+Subject: [PATCH 3/4] drm/i915/gt: Remove trailing blank lines
+Date: Fri, 14 Mar 2025 03:12:23 +0100
+Message-ID: <20250314021225.11813-4-andi.shyti@linux.intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250314021225.11813-1-andi.shyti@linux.intel.com>
 References: <20250314021225.11813-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,26 +68,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Header files need to declare the SPDX under /* ... */ style
-comments at the beginning of the file.
+Remove useless blank lines before and after the brackets.
 
 Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_wopcm.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gtt.c  | 1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c  | 1 -
+ drivers/gpu/drm/i915/gt/intel_mocs.c | 1 -
+ 3 files changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_wopcm.h b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-index 17d6aa86008a..d2038b6de5e7 100644
---- a/drivers/gpu/drm/i915/gt/intel_wopcm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_wopcm.h
-@@ -1,6 +1,5 @@
-+/* SPDX-License-Identifier: MIT */
- /*
-- * SPDX-License-Identifier: MIT
-- *
-  * Copyright © 2017-2018 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index 30b128b1fde7..afbc5c769308 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -176,7 +176,6 @@ static void clear_vm_list(struct list_head *list)
+ 			i915_vma_destroy_locked(vma);
+ 			i915_gem_object_put(obj);
+ 		}
+-
+ 	}
+ }
  
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 51847a846002..c481b56fa67d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -751,7 +751,6 @@ static int lrc_ring_indirect_offset(const struct intel_engine_cs *engine)
+ 
+ static int lrc_ring_cmd_buf_cctl(const struct intel_engine_cs *engine)
+ {
+-
+ 	if (GRAPHICS_VER_FULL(engine->i915) >= IP_VER(12, 55))
+ 		/*
+ 		 * Note that the CSFE context has a dummy slot for CMD_BUF_CCTL
+diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+index cf41d325712e..5dd8121f4b15 100644
+--- a/drivers/gpu/drm/i915/gt/intel_mocs.c
++++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+@@ -314,7 +314,6 @@ static const struct drm_i915_mocs_entry icl_mocs_table[] = {
+ };
+ 
+ static const struct drm_i915_mocs_entry dg1_mocs_table[] = {
+-
+ 	/* UC */
+ 	MOCS_ENTRY(1, 0, L3_1_UC),
+ 	/* WB - L3 */
 -- 
 2.47.2
 
