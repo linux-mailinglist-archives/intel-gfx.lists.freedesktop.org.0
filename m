@@ -2,105 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B57A631C5
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 Mar 2025 19:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 528F5A6335E
+	for <lists+intel-gfx@lfdr.de>; Sun, 16 Mar 2025 03:37:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B574610E055;
-	Sat, 15 Mar 2025 18:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1831E10E2B1;
+	Sun, 16 Mar 2025 02:37:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="jU4XwRs1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCXvtSHm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B22510E055
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 18:41:21 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52FHfPJ5009120
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 18:41:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=o0tTtRexBT3cn0DTrpRBX0/7
- a8BLgsj2fyG79FB5G/E=; b=jU4XwRs1hgbCrhE+NKJs8UZqOlBtF1QCtbqV6g+w
- 815B918PB2fWjj+zzp74pb8r/P3O5dfYPIvqxUTIghascRkEbAdDrTAWXsbPKa8n
- vhWDWoQkNuO5shJSdo2B1t/iSP6KydiGoCadBWjRI7eFJYlXDtc0HQ/DdhSYLXjJ
- MMGfzsSagpIXqpGPDRAp522QsNjuIQg+ld2v3oR6wu/+0X33rbcGugKTZuNbKVVx
- rffY7opTBL49dg6WCv4qIcKJU/ppkWYmino/mzHUQRVU8ac2nRiHqZLDmTwPPcb9
- bjLl3iQX949L0Yq3jMe0QOryMWVIOlQMl9Z1ksnJryadUA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45d1r113dr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 18:41:20 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-6e917965e3eso49141066d6.3
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Mar 2025 11:41:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742064079; x=1742668879;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=o0tTtRexBT3cn0DTrpRBX0/7a8BLgsj2fyG79FB5G/E=;
- b=W+m8GtOkGURXD/HHOasD4HQMilPL9iNsTgIdwKER5UDQBPlnImfwhKibbXai2jI/mT
- fLbIU5uNYTMfMDrQ+XHNn+FSnY1fjJRWLSkWajdTXqBJ6JQgghYzcwXzV2b7SAM3lJo3
- 8YEmO5BfDMknOSMB/4xNcKkBb5/PHUyw0IZnebUk4+asZCpX6R1RRxP6hoOrs9xKC2fq
- rJ5FcGn3ltmScVaGHJjY5OYZw83wkDSx1sKDOpLKga1kPY+vwdQhTTn4ADUpICfq7elv
- tu4hIrxUXZ4i96uXbL/wmgNurwELxaHSLFaVpWdqya3/0lIiIAm/fu1xRHbEbsc4NF/2
- B5Tw==
-X-Gm-Message-State: AOJu0YzrAzdlvMGrRcgPpFPwXbM30SHzilcwgJ2gI4612YffNaICKaod
- TIVljv68O3YsqmXuKC3Cz8r0flCoOmLa4nTjjlFyNy1GawSCzQFTSGvBNYz1eDmu6fsgISDraNW
- 7kDg1ZApaymfb1LDVTnDf1iJOM6JFpqLkmGftb6c6VyW/jFmrzm4QISKZaQEps/bQ8z7qzp2pWS
- Y=
-X-Gm-Gg: ASbGncticim2+eLRRL4B+N4Fm8Gawo/yRQA0Mhvex8hHG1dSf7+UJ8J6fDvCgJBYgwv
- SuDQ8zxek4FLZqgr18aV8a1/uDu2j82qtpvsF32vx2+zWlwwNNp/9rz7w5/NCZckbiXYYWGQiyY
- ByTpZ9F8D9218Jpm23AI2a7zHCF1MEFvWnb15CJ21rDoYtPv0NBz0NngSkMjjGYabUi1661KG+k
- OLAbPiWPlSU6ndrXJ4vzDprYsg3RxpKtBXCpt9fKoGoZpS+VRw7yut/jz6gRnePcjSzR7VcRahm
- kqcEDBPlJNtjNaoX6/mWXed7QlNlhUBgsdToImDDFS5L7BK+NZoJD4URJPpRTV+nshszgxuBmkU
- 5Hvk=
-X-Received: by 2002:a05:6214:21cc:b0:6e1:a4ed:4b0c with SMTP id
- 6a1803df08f44-6eaeaa8ddf1mr69921926d6.26.1742064079046; 
- Sat, 15 Mar 2025 11:41:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEfkTOClxTLK3x/K0rLf64ks+7dDSLg2K8EAemXh/RvwB8wQhGyzUIPfQQUV/C/3SM+CBFlyg==
-X-Received: by 2002:a05:6214:21cc:b0:6e1:a4ed:4b0c with SMTP id
- 6a1803df08f44-6eaeaa8ddf1mr69921786d6.26.1742064078708; 
- Sat, 15 Mar 2025 11:41:18 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-30c3f1dbf7bsm9993721fa.103.2025.03.15.11.41.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Mar 2025 11:41:16 -0700 (PDT)
-Date: Sat, 15 Mar 2025 20:41:13 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: =?utf-8?B?4pyXIGk5MTUuQ0kuQkFUOiBmYWlsdXI=?= =?utf-8?Q?e?= for
- drm/display: dp: add new DPCD access functions (rev2)
-Message-ID: <q4kq4ttvxarmjalqrygxzbh75iq5fqiow6ba7w53fj6awdmju2@bamu4lj65zq4>
-References: <20250314-drm-rework-dpcd-access-v4-0-e86ef6fc6d76@oss.qualcomm.com>
- <174197274966.36102.3170728683267694163@18a75f3d1eae>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A54510E0E2;
+ Sun, 16 Mar 2025 02:37:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742092620; x=1773628620;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=otsR9NvXZuAsfzL0AifKh/SLKbS6GcELgn6XttISFJU=;
+ b=CCXvtSHmOJs/xW0FyJb/O2FF38JzmJL6pVuA78o/pK+FJ+PLDjioE01V
+ eU3S5OVd+XYvE1YCTYuU1hVps2IXjOX4M19Xone6TS+RaK2AQLDMaynF9
+ 1MCBxW8opR1u+d8PvGcP58IvuRF6Tg9e6Kg1/IHfW5hokq74iNUaD2RCz
+ TA1rz5Hqg/pfrDKS5lOpJlWdNEkDy/G7h/g7QJH+Isg9jTN3f9NPCD7ZZ
+ niEEelqJmz1ZZ0Fbkl8GdQ5WtFE9Gr9xOSZV/kmYnWEgF4Ac2iDUJBR8g
+ 54IXpWBAKBtHi7a0BD9M8BLF8XPyUsX4fz+bWVeX015hAkzqjv6s5pvo1 A==;
+X-CSE-ConnectionGUID: d0Mqz+RORG+EkWhEG890/A==
+X-CSE-MsgGUID: h6cmKYkISrqOE8Es50SbiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11374"; a="53875896"
+X-IronPort-AV: E=Sophos;i="6.14,251,1736841600"; d="scan'208";a="53875896"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2025 19:36:56 -0700
+X-CSE-ConnectionGUID: zClBcTayTFKC/YOGbpMhEw==
+X-CSE-MsgGUID: H4rZ3c0/So6Ff86aXBYRfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,251,1736841600"; d="scan'208";a="122561626"
+Received: from allen-sbox.sh.intel.com (HELO [10.239.159.30]) ([10.239.159.30])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2025 19:36:52 -0700
+Message-ID: <5e6d65b6-4f9a-4d23-925c-75be7c4bd561@linux.intel.com>
+Date: Sun, 16 Mar 2025 10:33:31 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174197274966.36102.3170728683267694163@18a75f3d1eae>
-X-Authority-Analysis: v=2.4 cv=LuaSymdc c=1 sm=1 tr=0 ts=67d5c9d0 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Vs1iUdzkB0EA:10 a=5KLPUuaC_9wA:10 a=e5mUnYsNAAAA:8 a=i3X5FwGiAAAA:8
- a=Q1adhBtR66OsueDpMuIA:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=Vxmtnl_E_bksehYqCbjh:22 a=mmqRlSCDY2ywfjPLJ4af:22
-X-Proofpoint-GUID: 0QdyCuV38BDMLE59IpmTRVWoRUP-yP-d
-X-Proofpoint-ORIG-GUID: 0QdyCuV38BDMLE59IpmTRVWoRUP-yP-d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-03-15_07,2025-03-14_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0 adultscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 mlxlogscore=999
- malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2503150134
+User-Agent: Mozilla Thunderbird
+Subject: Re: Regression on drm-tip
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>
+References: <SJ1PR11MB612953431F94F18C954C4A9CB9D32@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <4951eb3c-aa2b-46cf-87bd-37b09447748d@linux.intel.com>
+ <SJ1PR11MB6129AAF87542D06B7A23C0FCB9D22@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: Baolu Lu <baolu.lu@linux.intel.com>
+In-Reply-To: <SJ1PR11MB6129AAF87542D06B7A23C0FCB9D22@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,88 +73,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 14, 2025 at 05:19:09PM +0000, Patchwork wrote:
-> == Series Details ==
+On 3/14/25 17:04, Borah, Chaitanya Kumar wrote:
 > 
-> Series: drm/display: dp: add new DPCD access functions (rev2)
-> URL   : https://patchwork.freedesktop.org/series/145998/
-> State : failure
 > 
-> == Summary ==
+>> -----Original Message-----
+>> From: Baolu Lu <baolu.lu@linux.intel.com>
+>> Sent: Thursday, March 13, 2025 7:53 PM
+>> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
+>> Cc: baolu.lu@linux.intel.com; intel-gfx@lists.freedesktop.org; intel-
+>> xe@lists.freedesktop.org; iommu@lists.linux.dev
+>> Subject: Re: Regression on drm-tip
+>>
+>> On 2025/3/13 16:51, Borah, Chaitanya Kumar wrote:
+>>> Hello Lu,
+>>>
+>>> Hope you are doing well. I am Chaitanya from the linux graphics team in
+>> Intel.
+>>>
+>>> This mail is regarding a regression we are seeing in our CI runs[1] on drm-tip
+>> repository.
+>>>
+>>> ``````````````````````````````````````````````````````````````````````
+>>> ``````````` <4>[    2.856622] WARNING: possible circular locking
+>>> dependency detected <4>[    2.856631]
+>>> 6.14.0-rc5-CI_DRM_16217-gc55ef90b69d3+ #1 Tainted: G          I <4>[
+>>> 2.856642] ------------------------------------------------------
+>>> <4>[    2.856650] swapper/0/1 is trying to acquire lock:
+>>> <4>[    2.856657] ffffffff8360ecc8
+>>> (iommu_probe_device_lock){+.+.}-{3:3}, at:
+>>> iommu_probe_device+0x1d/0x70 <4>[    2.856679]
+>>>                     but task is already holding lock:
+>>> <4>[    2.856686] ffff888102ab6fa8
+>>> (&device->physical_node_lock){+.+.}-{3:3}, at:
+>>> intel_iommu_init+0xea1/0x1220
+>>> ``````````````````````````````````````````````````````````````````````
+>>> ```````````
+>>> Details log can be found in [2].
+>>>
+>>> After bisecting the tree, the following patch [3] seems to be the
+>>> first "bad" commit
+>>>
+>>> ``````````````````````````````````````````````````````````````````````
+>>> ```````````````````````````````````
+>>> commit b150654f74bf0df8e6a7936d5ec51400d9ec06d8
+>>> Author: Lu Baolumailto:baolu.lu@linux.intel.com
+>>> Date:   Fri Feb 28 18:27:26 2025 +0800
+>>>
+>>>       iommu/vt-d: Fix suspicious RCU usage
+>>>
+>>> ``````````````````````````````````````````````````````````````````````
+>>> ```````````````````````````````````
+>>>
+>>> We also verified that if we revert the patch the issue is not seen.
+>>>
+>>> Could you please check why the patch causes this regression and provide a
+>> fix if necessary?
+>>
+>> Can you please take a quick test to check if the following fix works?
+>>
+>> diff --git a/drivers/iommu/intel/dmar.c b/drivers/iommu/intel/dmar.c index
+>> e540092d664d..06debeaec643 100644
+>> --- a/drivers/iommu/intel/dmar.c
+>> +++ b/drivers/iommu/intel/dmar.c
+>> @@ -2051,8 +2051,13 @@ int enable_drhd_fault_handling(unsigned int cpu)
+>>                   if (iommu->irq || iommu->node != cpu_to_node(cpu))
+>>                           continue;
+>>
+>> +               /*
+>> +                * Call dmar_alloc_hwirq() with dmar_global_lock held,
+>> +                * could cause possible lock race condition.
+>> +                */
+>> +               up_read(&dmar_global_lock);
+>>                   ret = dmar_set_interrupt(iommu);
+>> -
+>> +               down_read(&dmar_global_lock);
+>>                   if (ret) {
+>>                           pr_err("DRHD %Lx: failed to enable fault, interrupt, ret %d\n",
+>>                                  (unsigned long long)drhd->reg_base_addr, ret);
+>>
+>> Thanks,
+>> baolu
 > 
-> CI Bug Log - changes from CI_DRM_16290 -> Patchwork_145998v2
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_145998v2 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_145998v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v2/index.html
-> 
-> Participating hosts (44 -> 43)
-> ------------------------------
-> 
->   Missing    (1): fi-snb-2520m 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_145998v2:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_flip@basic-flip-vs-modeset@a-dp1:
->     - bat-apl-1:          [PASS][1] -> [ABORT][2] +1 other test abort
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16290/bat-apl-1/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v2/bat-apl-1/igt@kms_flip@basic-flip-vs-modeset@a-dp1.html
-> 
+> We still see the issue with this change.
 
-Hmm, any comments on this one? Is it because of the DPCD code that I
-changed or due to some other reasons?
+I am attempting to reproduce this issue with my MTL machine. I pulled
+the test branch from:
 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_145998v2 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Possible fixes ####
-> 
->   * igt@kms_pm_rpm@basic-rte:
->     - bat-rpls-4:         [DMESG-WARN][3] ([i915#13400]) -> [PASS][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16290/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v2/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
-> 
->   
->   [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_16290 -> Patchwork_145998v2
-> 
->   CI-20190529: 20190529
->   CI_DRM_16290: 83417b23792d937795320a8804fd97d50c4c6233 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8274: 8274
->   Patchwork_145998v2: 83417b23792d937795320a8804fd97d50c4c6233 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v2/index.html
+https://anongit.freedesktop.org/git/drm-tip.git
 
--- 
-With best wishes
-Dmitry
+and built the test kernel image using the configuration file from:
+
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16217/kconfig.txt
+
+But I did not observe the lockdep splat mentioned above after booting.
+
+Is there anything I might have missed?
+
+Thanks,
+baolu
