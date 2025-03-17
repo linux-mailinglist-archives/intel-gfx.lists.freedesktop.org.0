@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1932A64501
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 09:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B41F1A64500
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 09:19:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF2510E36F;
-	Mon, 17 Mar 2025 08:19:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA30E10E359;
+	Mon, 17 Mar 2025 08:19:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nr219Z0r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BULeztNx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A0B110E029;
- Mon, 17 Mar 2025 08:19:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF4E10E023;
+ Mon, 17 Mar 2025 08:19:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742199557; x=1773735557;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2driyWxYbrULLkghZGlLy6stJYrns8PZl+mRoojqh9c=;
- b=Nr219Z0rsh5x9Mmoad6GORpccpAFeSEdtXlYGwwTtrjKesDc07xndoeB
- d96n78spj7GgW55xWyJbyoA2Mh722d/webfnz7tFgM29KqqkT0NjyyJgb
- L3EJLrNLYTbFmKre8/BIccArlZYQ10iAN1a8wodGG9fAbzV20DeGeX34Y
- 0vtT9o2uXB/w52zl6R/kilr//Vng46xlPpb9YaKKi+vNnrBVYMXcgAvdi
- klsBcBufR7bAOlW5gFMvonQMqi9+QtQRdjg7BtqSjIUqkv64ktHpKyCTP
- lvFdUtacsrwqCj5Lv3nsH8P13emX2Ul+5dMgFKFUav5uinSkVnrmdOxNE g==;
-X-CSE-ConnectionGUID: oztnkybuQHmOfPTfx/Xp8w==
-X-CSE-MsgGUID: opkNlCoURxyLZ+TC5pi5wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="54653485"
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="54653485"
+ t=1742199558; x=1773735558;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=K82t/6Pbwlux40PvWz7hJIvAzAPgkkGeoPgRnM71C60=;
+ b=BULeztNxzAznuuP6l+wojbxvS0PUgUZTSvlbkDqw4VrvIFmsRD69ulHK
+ s3WzzCHqHlP+I7d7sCqvH8Qx4H2wM9lFgUUlHuQJaD7T93mnW3dmM6O94
+ MNX44ZQCDIBZm06JsU5n71IxcS9Fqp5GSHI7xm0tKZ+W8BJ2OHnwCZdD/
+ RJ/i86ls8ljlqTpLt+WGYyE8DLDo6CrknlwSlpGbtaDsDf7/A99Ijv6Ce
+ RHFp/qu8pAbucWLWSMAoEIrG3iNr8v1Q5eaWNu6DrOvejL8l0BNVZZ1Xj
+ 8eiT7O9qDQa8MvANoR9HvyG1cKP52YHECHFJeDTJTupF5F2RFZUGfm6+/ A==;
+X-CSE-ConnectionGUID: zbEzapfLTAGslwUdvoqBSw==
+X-CSE-MsgGUID: tsGREJZbQZauq6BozRlEzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="54653487"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="54653487"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 01:19:17 -0700
-X-CSE-ConnectionGUID: hlqZw3kYQqa05BzBuktkRA==
-X-CSE-MsgGUID: uptAQqBpTse3fAOG0UM55Q==
+ 17 Mar 2025 01:19:18 -0700
+X-CSE-ConnectionGUID: 8KSAZZJpQ32pE4KvMtcgrQ==
+X-CSE-MsgGUID: 6ddPyumkT5OJRlr7BXYCuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="121677108"
+X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="121677130"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.231])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 01:19:15 -0700
+ 17 Mar 2025 01:19:16 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 00/11] Underrun on idle PSR workaround
-Date: Mon, 17 Mar 2025 10:18:54 +0200
-Message-ID: <20250317081905.3683654-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 01/11] drm/i915/display: Add new interface for getting
+ dc_state
+Date: Mon, 17 Mar 2025 10:18:55 +0200
+Message-ID: <20250317081905.3683654-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250317081905.3683654-1-jouni.hogander@intel.com>
+References: <20250317081905.3683654-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,48 +72,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patchset is implementing workaround for underrun on idle PSR HW
-bug (Wa_16025596647).
+To implement workaround for underrun on idle PSR HW issue (Wa_16025596647)
+we need to have current configured DC state available. Add new interface
+for this purpose.
 
-It is adding notification mechanisms towards PSR for pipe
-enable/disable, vblank enable/disable and enabling disabling
-DC5/DC6. These notifications are used to apply/remove the workaround.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ .../drm/i915/display/intel_display_power.c    | 29 +++++++++++++++++++
+ .../drm/i915/display/intel_display_power.h    |  1 +
+ 2 files changed, 30 insertions(+)
 
-Current mechanism to block DC states while vblank is enabled on Panel
-Replay capable system is extended to work for this new workaround as
-well.
-
-v2:
-  - remove patch mistakenly added to the set
-  - add missing patch
-
-Jouni Högander (11):
-  drm/i915/display: Add new interface for getting dc_state
-  drm/i915/psr: Store enabled non-psr pipes into intel_crtc_state
-  drm/i915/dmc: Add PIPEDMC_EVT_CTL register definition
-  drm/i915/dmc: Add PIPEDMC_BLOCK_PKGC_SW definitions
-  drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR
-  drm/i915/psr: Add mechanism to notify PSR of pipe enable/disable
-  drm/i915/psr: Add mechanism to notify PSR of DC5/6 enable disable
-  drm/i915/psr: Add interface to notify PSR of vblank enable/disable
-  drm/i915/psr: Apply underrun on PSR idle workaround
-  drm/i915/display: Rename intel_psr_needs_block_dc_vblank
-  drm/i915/display: Rename vblank DC workaround functions and variables
-
- drivers/gpu/drm/i915/display/intel_crtc.c     |   6 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   4 +
- .../gpu/drm/i915/display/intel_display_core.h |   6 +-
- .../drm/i915/display/intel_display_driver.c   |   3 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  27 +-
- .../drm/i915/display/intel_display_power.c    |  29 ++
- .../drm/i915/display/intel_display_power.h    |   1 +
- .../i915/display/intel_display_power_well.c   |   4 +
- .../drm/i915/display/intel_display_types.h    |   5 +-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h |  14 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 273 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_psr.h      |   8 +-
- 12 files changed, 350 insertions(+), 30 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index f7171e6932dc3..6dfe85a5528fc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -322,6 +322,35 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
+ 	mutex_unlock(&power_domains->lock);
+ }
+ 
++/**
++ * intel_display_power_get_current_dc_state - Set target dc state.
++ * @display: display device
++ *
++ * This function set the "DC off" power well target_dc_state,
++ * based upon this target_dc_stste, "DC off" power well will
++ * enable desired DC state.
++ */
++u32 intel_display_power_get_current_dc_state(struct intel_display *display)
++{
++	struct i915_power_well *power_well;
++	struct i915_power_domains *power_domains = &display->power.domains;
++	u32 current_dc_state = DC_STATE_DISABLE;
++
++	mutex_lock(&power_domains->lock);
++	power_well = lookup_power_well(display, SKL_DISP_DC_OFF);
++
++	if (drm_WARN_ON(display->drm, !power_well))
++		goto unlock;
++
++	current_dc_state = intel_power_well_is_enabled(display, power_well) ?
++		DC_STATE_DISABLE : power_domains->target_dc_state;
++
++unlock:
++	mutex_unlock(&power_domains->lock);
++
++	return current_dc_state;
++}
++
+ static void __async_put_domains_mask(struct i915_power_domains *power_domains,
+ 				     struct intel_power_domain_mask *mask)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index 1b53d67f9b60d..f8813b0e16dfb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -183,6 +183,7 @@ void intel_display_power_suspend(struct intel_display *display);
+ void intel_display_power_resume(struct intel_display *display);
+ void intel_display_power_set_target_dc_state(struct intel_display *display,
+ 					     u32 state);
++u32 intel_display_power_get_current_dc_state(struct intel_display *display);
+ 
+ bool intel_display_power_is_enabled(struct intel_display *display,
+ 				    enum intel_display_power_domain domain);
 -- 
 2.43.0
 
