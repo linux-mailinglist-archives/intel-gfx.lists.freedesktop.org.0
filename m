@@ -2,60 +2,134 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B759A64330
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 08:17:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE8E1A644BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 09:09:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCBEF10E329;
-	Mon, 17 Mar 2025 07:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4CE10E374;
+	Mon, 17 Mar 2025 08:09:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3zcbQar";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="X+km7m3T";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qngA0eAx";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="X+km7m3T";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qngA0eAx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E13410E329
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 07:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742195852; x=1773731852;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0NfLvn2j8hSeot7rbjydCnjaje1Bb0JcJgnaMtfPH5I=;
- b=R3zcbQarx+uAl3wA7Z3XRak0LqhLb435MEa6fUt85+Q8BCPoHJ0TeTEe
- lVmwWYFFN/afOcUx7cLqDXc8Xw2IBaIpoREjDV5YKHCDiK8DdoTpDqFpw
- YxrlHWIz+1xUXAvA1j9Bc6KHFb+dWdiUyFutC89jiTOwrnxQ1tPlgNrPJ
- d28rGrx0wpCHFfowV1rnm66ARS5q0EciLEWZlz4A1+G0aWPNlxaI3UL0f
- 8jwzBmjHncsHD8RD1Nh93qqpRXVjhCFCE35XmLcOehPVXqWZ2/3cyFejX
- IHcDDHxqmJhpx4FM3va3KXccc4S4apvbzQPE6nrny4Nplti0oBeckATgr g==;
-X-CSE-ConnectionGUID: tcIsD+NSTRqjRSUS8b0xMA==
-X-CSE-MsgGUID: 6FQ/krmQRo2NvGNS59NACQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11375"; a="54648221"
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="54648221"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 00:17:32 -0700
-X-CSE-ConnectionGUID: fVFs6D/JRM6I4Thh9p7+fA==
-X-CSE-MsgGUID: vUkNc9MFSTu1RBUzSy5Jjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,253,1736841600"; d="scan'208";a="122035193"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2025 00:17:31 -0700
-Date: Mon, 17 Mar 2025 09:17:27 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- anshuman.gupta@intel.com
-Subject: Re: [PATCH v2 2/6] drm/i915/pm: Hoist
- pci_save_state()+pci_set_power_state() to the end of pm _late() hook
-Message-ID: <Z9fMh-TVLGzTG4xw@black.fi.intel.com>
-References: <20250311195624.22420-1-ville.syrjala@linux.intel.com>
- <20250311195624.22420-3-ville.syrjala@linux.intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 503CE10E029
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 08:09:42 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 2323D22006;
+ Mon, 17 Mar 2025 08:09:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1742198979; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rXRQ/emhIb2I9c0u7jQxhIwQqoPFpVA6Pspwj45/DTY=;
+ b=X+km7m3Tmdi+bWFoIQeos+dtK3my+jWR9tBfdK/bGgBdatMefl2IflTYY1knh0RUfwcOLG
+ BA80bt463TJG9nE8hS7BTASUGoM5Ox5ReMKybnccCisplEdGa95YI89QhzjUelM11pElki
+ hniUern8nl7z83MzYuR9M9mIbY7oSv4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1742198979;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rXRQ/emhIb2I9c0u7jQxhIwQqoPFpVA6Pspwj45/DTY=;
+ b=qngA0eAxDtN1jn8JWqOGktZXAdbgc1Pk/eKyXl0clZxMFqGPGHk95gTR6dme2V01gSYpcq
+ SewMUzgHWSLHq5BA==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1742198979; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rXRQ/emhIb2I9c0u7jQxhIwQqoPFpVA6Pspwj45/DTY=;
+ b=X+km7m3Tmdi+bWFoIQeos+dtK3my+jWR9tBfdK/bGgBdatMefl2IflTYY1knh0RUfwcOLG
+ BA80bt463TJG9nE8hS7BTASUGoM5Ox5ReMKybnccCisplEdGa95YI89QhzjUelM11pElki
+ hniUern8nl7z83MzYuR9M9mIbY7oSv4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1742198979;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=rXRQ/emhIb2I9c0u7jQxhIwQqoPFpVA6Pspwj45/DTY=;
+ b=qngA0eAxDtN1jn8JWqOGktZXAdbgc1Pk/eKyXl0clZxMFqGPGHk95gTR6dme2V01gSYpcq
+ SewMUzgHWSLHq5BA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AED7B132CF;
+ Mon, 17 Mar 2025 08:09:38 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6moRKcLY12cRdQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 17 Mar 2025 08:09:38 +0000
+Message-ID: <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
+Date: Mon, 17 Mar 2025 09:09:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH -next] drm/i915/display: Fix build error without
+ DRM_FBDEV_EMULATION
+To: Yue Haibing <yuehaibing@huawei.com>, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, dev@lankhorst.se
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20250315120143.2344958-1-yuehaibing@huawei.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20250315120143.2344958-1-yuehaibing@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250311195624.22420-3-ville.syrjala@linux.intel.com>
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-0.983]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[huawei.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lankhorst.se];
+ RCPT_COUNT_TWELVE(0.00)[12]; MID_RHS_MATCH_FROM(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email, suse.de:mid,
+ imap1.dmz-prg2.suse.org:helo, huawei.com:email]
+X-Spam-Score: -4.30
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,78 +145,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 11, 2025 at 09:56:20PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj�l� <ville.syrjala@linux.intel.com>
-> 
-> drivers/pci does the pci_save_state()+pci_set_power_state() from
-> the _noirq() pm hooks. Move our manual calls (needed for the
-> hibernate vs. D3 workaround with buggy BIOSes) towards that same
-> point. We currently have no _noirq() hooks, so end of _late()
-> hooks is the best we can do right now.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Ville Syrj�l� <ville.syrjala@linux.intel.com>
+
+
+Am 15.03.25 um 13:01 schrieb Yue Haibing:
+> In file included from <command-line>:
+> ./drivers/gpu/drm/i915/display/intel_fbdev.h: In function ‘intel_fbdev_framebuffer’:
+> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: error: ‘NULL’ undeclared (first use in this function)
+>     32 |         return NULL;
+>        |                ^~~~
+> ./drivers/gpu/drm/i915/display/intel_fbdev.h:1:1: note: ‘NULL’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?
+>    +++ |+#include <stddef.h>
+>      1 | /* SPDX-License-Identifier: MIT */
+> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: note: each undeclared identifier is reported only once for each function it appears in
+>     32 |         return NULL;
+>        |                ^~~~
+>
+> Build fails if CONFIG_DRM_FBDEV_EMULATION is n, add missing header file.
+>
+> Fixes: 9fa154f40eb6 ("drm/{i915,xe}: Run DRM default client setup")
+> Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
 > ---
->  drivers/gpu/drm/i915/i915_driver.c | 19 ++++++++++++++-----
->  1 file changed, 14 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index be232caef9df..e06f2956382c 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1045,7 +1045,6 @@ static int i915_drm_suspend(struct drm_device *dev)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_display *display = &dev_priv->display;
-> -	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
->  	pci_power_t opregion_target_state;
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> @@ -1059,8 +1058,6 @@ static int i915_drm_suspend(struct drm_device *dev)
->  		intel_display_driver_disable_user_access(display);
->  	}
->  
-> -	pci_save_state(pdev);
-> -
->  	intel_display_driver_suspend(display);
->  
->  	intel_irq_suspend(dev_priv);
-> @@ -1117,10 +1114,16 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
->  		drm_err(&dev_priv->drm, "Suspend complete failed: %d\n", ret);
->  		intel_display_power_resume_early(display);
->  
-> -		goto out;
-> +		goto fail;
->  	}
->  
-> +	enable_rpm_wakeref_asserts(rpm);
+>   drivers/gpu/drm/i915/display/intel_fbdev.h | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> index ca2c8c438f02..89bad3a2b01a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> @@ -6,6 +6,8 @@
+>   #ifndef __INTEL_FBDEV_H__
+>   #define __INTEL_FBDEV_H__
+>   
+> +#include <linux/types.h>
 > +
-> +	if (!dev_priv->uncore.user_forcewake_count)
-> +		intel_runtime_pm_driver_release(rpm);
-> +
->  	pci_disable_device(pdev);
-> +
->  	/*
->  	 * During hibernation on some platforms the BIOS may try to access
->  	 * the device even though it's already in D3 and hang the machine. So
-> @@ -1132,11 +1135,17 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
->  	 * Lenovo Thinkpad X301, X61s, X60, T60, X41
->  	 * Fujitsu FSC S7110
->  	 * Acer Aspire 1830T
-> +	 *
-> +	 * pci_save_state() prevents drivers/pci from
-> +	 * automagically putting the device into D3.
->  	 */
-> +	pci_save_state(pdev);
+>   struct drm_fb_helper;
+>   struct drm_fb_helper_surface_size;
+>   struct drm_i915_private;
 
-I might be missing something, but looking at the comment it seems like
-the problem is with certain gens and their BIOS? Not sure why we need
-to do it for all gens.
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
-Shouldn't we let PCI PM take care of it, atleast for devices that don't
-have this problem?
-
->  	if (!(hibernation && GRAPHICS_VER(dev_priv) < 6))
->  		pci_set_power_state(pdev, PCI_D3hot);
-
-Raag
