@@ -2,82 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132C1A64FE6
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 13:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52867A64FDE
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Mar 2025 13:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03C3D10E3FB;
-	Mon, 17 Mar 2025 12:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80DA510E3E7;
+	Mon, 17 Mar 2025 12:54:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nmTmIqEO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WgEieH7S";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com
- [209.85.219.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A7A10E071;
- Sun, 16 Mar 2025 21:15:05 +0000 (UTC)
-Received: by mail-yb1-f177.google.com with SMTP id
- 3f1490d57ef6-e53a91756e5so3404178276.1; 
- Sun, 16 Mar 2025 14:15:05 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8293810E252
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Mar 2025 01:08:59 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2240b4de12bso20214135ad.2
+ for <intel-gfx@lists.freedesktop.org>; Sun, 16 Mar 2025 18:08:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742159704; x=1742764504; darn=lists.freedesktop.org;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mJ0iedY83PktwSR1mgUyCs52q1xVK/VA615tH5z8bWM=;
- b=nmTmIqEOn0gcnEft6WwUb05oySu8hbeBV1InMQd/D9vqnnYhCG/sjVth0WXAePy4te
- R2Id7r5YlkBaJRwQEtB2VPr9tYasXchej4QlzrPiuXTkD19OmYzDuUE5EZEJOpY7x/hZ
- Sls5f7h93y7evV+x/0+0aH7OCNmoCNBmf4PAdOTpc1UBcsbl99mUWiIML8PjqwFxBcAC
- ZHoAUyuF503DDD5OJoMQQ8phk1r91qhyAUKqVr8Iyva5WwlG9SrWpRq7u9x1kubVCmzZ
- 22jFNzPr5oydHZzoZCryGpH5EBhq51RUGlZ48cgTfkp05JiIvmswnjdRS3iviVbljKKI
- K3uA==
+ d=gmail.com; s=20230601; t=1742173739; x=1742778539; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:date:from:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=+xgAMxTm7HfigOCMkwcZ9gBPb1kqXdvU5TNojxRRc20=;
+ b=WgEieH7SKPFIuGW3KjRLOamoI8BpXVJ2aKakSLbQ0/h7FZ9DGHXlLqECs0thKfKeGO
+ Zc1WoQJT1P35JIhDcxkzaaR6StJ+0KPDlB6S+JFvyfQ6qBR1TOhS3g6oTvKst6Hd/mWk
+ VR5I7BoXLsN2fa/2uy+k4OIwA8VHVEfgNGywNZW5ECkGYxLvWhB9s+el2Y/4fhIV4sHN
+ 9DfYACVNs0cEzMS+6QS5NUlBGB0uzZRQltZ2buRBrtbVPgFu9iy2+F+kBnSoPqLik6Mp
+ iVoECXxBLQHSSNn2tuLL9ldzSErispLUMyGcNxpl4qJRjrDt69VEO51AG5j4Q/PAtXsF
+ QirQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742159704; x=1742764504;
- h=content-transfer-encoding:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mJ0iedY83PktwSR1mgUyCs52q1xVK/VA615tH5z8bWM=;
- b=ArqMll5VjOMPRI3Z7ac2DCixsVhdY+S8bGZWcd8RqsuWY8ssTyMLHsduTNX1cSWJeZ
- lZKHEutDo8wKVl3Tjh8NBGUXJwaxRFlkltzqGVaKhf5UgP1uLH6mijDyIA7BUKxmpx/z
- PMqQLVeWj18SH3sxVzrDhXM4N2pHgTx715Zc37GUfsjEFT+KLTrLAr0Yz9aWBhOMrpkz
- QWZQB+JrGHSZELQ4B33NtT+So/wwvoyvHNpwZ/5XJXKXpx09aoFluNN4gf/diGV3bpZr
- inNRNj2GTHt8mCUY5dp7nSJuh+a4gp4qX8FfuLoISiL81SyhxEDXMrPPZqDhuLotr+09
- iEHw==
+ d=1e100.net; s=20230601; t=1742173739; x=1742778539;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:date:from
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=+xgAMxTm7HfigOCMkwcZ9gBPb1kqXdvU5TNojxRRc20=;
+ b=D5ztHvkYGU5dVlCAx+3/UX4zLNzVeOOP7QK1m6GGXK1S5G5/XaOLsDSbzBWO/eVST+
+ CApqkZwMw/jS5rUAsdBAIagt4bBtaLLJVDptUPCeXsj31etbbgRHyC0O542kY7uZrgJ6
+ 63hhdxWYFbLMknb2tNclFKElsDgd8Wpcd4zotalbhmJ1NTRWnYkXnnU5n0DGISzvXEMm
+ oobA6Kk5rR5cO+ZSLnvrLNf0Ne/Aqyk6SE/I4VWzwFWldOf0RypRRldCOrvQb+GZNxAc
+ T+qOJZ4oOn7A89KuE7lNEIsibt9O67XoR13md+Hme505rgKRb1APxMp2iOxta2Atyy+2
+ M6ww==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUbvmsPpO5WW4fDPqalIl4uFHU1P7E5xhUc9BXUeBj/dy7tizpTdcc4Bi89sbntOXbScZ3RYf/l@lists.freedesktop.org,
- AJvYcCWhhf/Gq4QG4yuuidILXtdP7gummAj900opwvzeLQ7K5hMQVq1hoJftNfa3FFXhizQO77nXB3TjZyuj0azEDbmi4A==@lists.freedesktop.org,
- AJvYcCWsXmlmfO0Tqg4KxtmqRfbTFZPsCLMhsn0dTrdfmRnTj4f6GIGMhxM9828+jmb/cIrpKcV8uoxqZNgv@lists.freedesktop.org,
- AJvYcCX5YYHFrxlHA3NZUtn6P6cjZSNiYTcf1qFPYCRdc4uO5NgsYZ+RxmlUnZa4GpZaH1tVpsDH8Ncdf3y9VvhuwQ==@lists.freedesktop.org,
- AJvYcCXF6oBExBURB13rwu2mHCv+FCefEZOAm9qGWxjhW8rr8Uq40MHR2tU66YtiNqoRv30Li6XtOvGV7IOi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx6QC6stEbVuKlyGcQbL4Pigp0//bOCkY9QWhqgayjw4aY6sxmw
- SUzZ3hBJhxAaWW0MgTz+R9oBll9H/IwEUcTkudE1O15DMB6kjSnqOh9aJWsp6Ek9SPE0ni5+pOB
- DpzcrCEUQ4KUZSq60ElY3L9sp3Ps=
-X-Gm-Gg: ASbGncuDXubnqwYX+WXXZtMJwr+HEeuyofPL3YAacWo9werDJcenFDy3YNTV+oT+haH
- CnS85V4YQc+5QzwZ8j+vD1fPx4XiGtKehLCUX7s9I/poLcSQm2dxrgKDq3VbamHCScryvWmHzm+
- Acrt6jYcC4r8xdMRSV8Gia7Boe
-X-Google-Smtp-Source: AGHT+IGVZEKhbzRRB7b8iQ9JkJu9Ea4Af0T19my2L8K9f+zEimO3KVOKZS46WO9f1nD9MLfml5I9dnjZ8ZGyGNO0Boo=
-X-Received: by 2002:a05:690c:670f:b0:6fd:346f:97ba with SMTP id
- 00721157ae682-6ff45eb2623mr158025737b3.11.1742159704356; Sun, 16 Mar 2025
- 14:15:04 -0700 (PDT)
+ AJvYcCUxABKDq7xEq74ZXaxRQas7idZDtPSuTFUZgepMvQHjb4eeWL9H/slCKBoh+9f9a8funzwmkdhxr6A=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyX7fwiad+l3AS16cG7ZE9GS5nZQK8eea6l+WyOXl2hGr8/EIuR
+ mhTAKRBWM4LTTBG4aO8tX4ixZSjJeahoRs++8QNMaf3XcRi22Rzh
+X-Gm-Gg: ASbGncsaXLn2+loyS5QmRN487dyRuTYzeX2lTu9tNZZb8Rv4ukB7i5v82cghg1Vdxjq
+ umQgJZaKLFbF9rYPMYkIBl2aJKuVLa7fAIzKHpA2jJ+BZs9RAqgKJGR3eanB8TS+xZ28SZ1V3zt
+ 8j/E92hBYwCcl05y2rMyZNsa5VOx6e84G5Koy0soy0TEM+7RSydoHsiAqZ5GdQ87P7nrtQSGdyy
+ LqxX6sAsM6PBu1P7Fn49wjm3EXelDu1ElD3TliJFCjWU/+j90m9JAtHDL/ll5Gvh6bHEpn2CBcf
+ eNUTlfgc8zlYvMkmM6emRyQE0yi/6l915Q==
+X-Google-Smtp-Source: AGHT+IE/cCFlfGwrOgbban+cifwtkZH2e1irfVNzdXM6ynsdeqb6iM61hNrMTX1FOVcYWx2Wvv7NZg==
+X-Received: by 2002:a17:902:e5cb:b0:21f:7a8b:d675 with SMTP id
+ d9443c01a7336-225e0a62f94mr140029755ad.4.1742173739146; 
+ Sun, 16 Mar 2025 18:08:59 -0700 (PDT)
+Received: from fan ([2601:646:8f03:9fee:1b48:1bbe:f0ea:f17])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-225c6888414sm63116515ad.21.2025.03.16.18.08.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 16 Mar 2025 18:08:58 -0700 (PDT)
+From: Fan Ni <nifan.cxl@gmail.com>
+X-Google-Original-From: Fan Ni <fan.ni@samsung.com>
+Date: Sun, 16 Mar 2025 18:08:52 -0700
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Cc: linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 11/11] fs: Remove aops->writepage
+Message-ID: <Z9d2JH33sLeCuzfE@fan>
+References: <20250307135414.2987755-1-willy@infradead.org>
+ <20250307135414.2987755-12-willy@infradead.org>
 MIME-Version: 1.0
-References: <20250125064619.8305-1-jim.cromie@gmail.com>
- <20250125064619.8305-29-jim.cromie@gmail.com>
- <160ec360-918d-414f-aef9-606cfa1749df@bootlin.com>
-In-Reply-To: <160ec360-918d-414f-aef9-606cfa1749df@bootlin.com>
-From: jim.cromie@gmail.com
-Date: Sun, 16 Mar 2025 15:14:38 -0600
-X-Gm-Features: AQ5f1Jo1CuizZwKHzkpnExetUtPcGleC7A5ti5g3B8ZX2NtRYyv2ffSYdWqvB7o
-Message-ID: <CAJfuBxxzXoKummiBDGODidpRj7Fm2UDip-T0qkB7L9tscK0zCQ@mail.gmail.com>
-Subject: Re: [PATCH 28/63] dyndbg-API: promote DYNDBG_CLASSMAP_PARAM to API
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
- jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
- intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, 
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
- ville.syrjala@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250307135414.2987755-12-willy@infradead.org>
 X-Mailman-Approved-At: Mon, 17 Mar 2025 12:54:50 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,393 +92,298 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2025 at 7:29=E2=80=AFAM Louis Chauvet <louis.chauvet@bootli=
-n.com> wrote:
->
->
->
-> Le 25/01/2025 =C3=A0 07:45, Jim Cromie a =C3=A9crit :
-> > move the DYNDBG_CLASSMAP_PARAM macro from test-dynamic-debug.c into
-> > the header, and refine it, by distinguishing the 2 use cases:
-> >
-> > 1.DYNDBG_CLASSMAP_PARAM_REF
-> >      for DRM, to pass in extern __drm_debug by name.
-> >      dyndbg keeps bits in it, so drm can still use it as before
-> >
-> > 2.DYNDBG_CLASSMAP_PARAM
-> >      new user (test_dynamic_debug) doesn't need to share state,
-> >      decls a static long unsigned int to store the bitvec.
-> >
-> > __DYNDBG_CLASSMAP_PARAM
-> >     bottom layer - allocate,init a ddebug-class-param, module-param-cb.
-> >
-> > Modify ddebug_sync_classbits() argtype deref inside the fn, to give
-> > access to all kp members.
-> >
-> > Also clean up and improve comments in test-code, and add
-> > MODULE_DESCRIPTIONs.
-> >
-> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-> > ---
-> >
-> > -v9
-> >   - fixup drm-print.h  add PARAM_REF forwarding macros
-> >     with DYNDBG_CLASSMAP_PARAM_REF in the API, add DRM_ variant
-> > ---
-> >   include/linux/dynamic_debug.h   | 38 +++++++++++++++++++++
-> >   lib/dynamic_debug.c             | 60 ++++++++++++++++++++++----------=
--
-> >   lib/test_dynamic_debug.c        | 59 +++++++++++++-------------------
-> >   lib/test_dynamic_debug_submod.c |  9 ++++-
-> >   4 files changed, 111 insertions(+), 55 deletions(-)
-> >
-> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
-g.h
-> > index 48d76a273f68..b47d1088b7ad 100644
-> > --- a/include/linux/dynamic_debug.h
-> > +++ b/include/linux/dynamic_debug.h
-> > @@ -205,6 +205,44 @@ struct ddebug_class_param {
-> >       const struct ddebug_class_map *map;
-> >   };
-> >
-> > +/**
-> > + * DYNDBG_CLASSMAP_PARAM - control a ddebug-classmap from a sys-param
-> > + * @_name:  sysfs node name
-> > + * @_var:   name of the classmap var defining the controlled classes/b=
-its
-> > + * @_flags: flags to be toggled, typically just 'p'
-> > + *
-> > + * Creates a sysfs-param to control the classes defined by the
-> > + * exported classmap, with bits 0..N-1 mapped to the classes named.
-> > + * This version keeps class-state in a private long int.
-> > + */
-> > +#define DYNDBG_CLASSMAP_PARAM(_name, _var, _flags)                   \
-> > +     static unsigned long _name##_bvec;                              \
-> > +     __DYNDBG_CLASSMAP_PARAM(_name, _name##_bvec, _var, _flags)
-> > +
-> > +/**
-> > + * DYNDBG_CLASSMAP_PARAM_REF - wrap a classmap with a controlling sys-=
-param
-> > + * @_name:  sysfs node name
-> > + * @_bits:  name of the module's unsigned long bit-vector, ex: __drm_d=
-ebug
-> > + * @_var:   name of the (exported) classmap var defining the classes/b=
-its
-> > + * @_flags: flags to be toggled, typically just 'p'
-> > + *
-> > + * Creates a sysfs-param to control the classes defined by the
-> > + * exported clasmap, with bits 0..N-1 mapped to the classes named.
-> > + * This version keeps class-state in user @_bits.  This lets drm check
-> > + * __drm_debug elsewhere too.
-> > + */
-> > +#define DYNDBG_CLASSMAP_PARAM_REF(_name, _bits, _var, _flags)         =
-       \
-> > +     __DYNDBG_CLASSMAP_PARAM(_name, _bits, _var, _flags)
-> > +
-> > +#define __DYNDBG_CLASSMAP_PARAM(_name, _bits, _var, _flags)          \
-> > +     static struct ddebug_class_param _name##_##_flags =3D {          =
- \
-> > +             .bits =3D &(_bits),                                      =
- \
-> > +             .flags =3D #_flags,                                      =
- \
-> > +             .map =3D &(_var),                                        =
- \
-> > +     };                                                              \
-> > +     module_param_cb(_name, &param_ops_dyndbg_classes,               \
-> > +                     &_name##_##_flags, 0600)
-> > +
-> >   /*
-> >    * pr_debug() and friends are globally enabled or modules have select=
-ively
-> >    * enabled them.
-> > diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> > index 781781835094..9283f2866415 100644
-> > --- a/lib/dynamic_debug.c
-> > +++ b/lib/dynamic_debug.c
-> > @@ -660,6 +660,30 @@ static int ddebug_apply_class_bitmap(const struct =
-ddebug_class_param *dcp,
-> >
-> >   #define CLASSMAP_BITMASK(width) ((1UL << (width)) - 1)
-> >
-> > +static void ddebug_class_param_clamp_input(unsigned long *inrep, const=
- struct kernel_param *kp)
-> > +{
-> > +     const struct ddebug_class_param *dcp =3D kp->arg;
-> > +     const struct ddebug_class_map *map =3D dcp->map;
-> > +
-> > +     switch (map->map_type) {
-> > +     case DD_CLASS_TYPE_DISJOINT_BITS:
-> > +             /* expect bits. mask and warn if too many */
-> > +             if (*inrep & ~CLASSMAP_BITMASK(map->length)) {
-> > +                     pr_warn("%s: input: 0x%lx exceeds mask: 0x%lx, ma=
-sking\n",
-> > +                             KP_NAME(kp), *inrep, CLASSMAP_BITMASK(map=
-->length));
-> > +                     *inrep &=3D CLASSMAP_BITMASK(map->length);
-> > +             }
-> > +             break;
-> > +     case DD_CLASS_TYPE_LEVEL_NUM:
-> > +             /* input is bitpos, of highest verbosity to be enabled */
-> > +             if (*inrep > map->length) {
-> > +                     pr_warn("%s: level:%ld exceeds max:%d, clamping\n=
-",
-> > +                             KP_NAME(kp), *inrep, map->length);
-> > +                     *inrep =3D map->length;
-> > +             }
-> > +             break;
-> > +     }
-> > +}
-> >   static int param_set_dyndbg_module_classes(const char *instr,
-> >                                          const struct kernel_param *kp,
-> >                                          const char *modnm)
-> > @@ -678,26 +702,15 @@ static int param_set_dyndbg_module_classes(const =
-char *instr,
-> >               pr_err("expecting numeric input, not: %s > %s\n", instr, =
-KP_NAME(kp));
-> >               return -EINVAL;
-> >       }
-> > +     ddebug_class_param_clamp_input(&inrep, kp);
-> >
-> >       switch (map->map_type) {
-> >       case DD_CLASS_TYPE_DISJOINT_BITS:
-> > -             /* expect bits. mask and warn if too many */
-> > -             if (inrep & ~CLASSMAP_BITMASK(map->length)) {
-> > -                     pr_warn("%s: input: 0x%lx exceeds mask: 0x%lx, ma=
-sking\n",
-> > -                             KP_NAME(kp), inrep, CLASSMAP_BITMASK(map-=
->length));
-> > -                     inrep &=3D CLASSMAP_BITMASK(map->length);
-> > -             }
-> >               v2pr_info("bits:0x%lx > %s.%s\n", inrep, modnm ?: "*", KP=
-_NAME(kp));
-> >               totct +=3D ddebug_apply_class_bitmap(dcp, &inrep, *dcp->b=
-its, modnm);
-> >               *dcp->bits =3D inrep;
-> >               break;
-> >       case DD_CLASS_TYPE_LEVEL_NUM:
-> > -             /* input is bitpos, of highest verbosity to be enabled */
-> > -             if (inrep > map->length) {
-> > -                     pr_warn("%s: level:%ld exceeds max:%d, clamping\n=
-",
-> > -                             KP_NAME(kp), inrep, map->length);
-> > -                     inrep =3D map->length;
-> > -             }
-> >               old_bits =3D CLASSMAP_BITMASK(*dcp->lvl);
-> >               new_bits =3D CLASSMAP_BITMASK(inrep);
-> >               v2pr_info("lvl:%ld bits:0x%lx > %s\n", inrep, new_bits, K=
-P_NAME(kp));
-> > @@ -1163,15 +1176,24 @@ static const struct proc_ops proc_fops =3D {
-> >   static void ddebug_sync_classbits(const struct kernel_param *kp, cons=
-t char *modname)
-> >   {
-> >       const struct ddebug_class_param *dcp =3D kp->arg;
-> > +     unsigned long new_bits;
-> >
-> > -     /* clamp initial bitvec, mask off hi-bits */
-> > -     if (*dcp->bits & ~CLASSMAP_BITMASK(dcp->map->length)) {
-> > -             *dcp->bits &=3D CLASSMAP_BITMASK(dcp->map->length);
-> > -             v2pr_info("preset classbits: %lx\n", *dcp->bits);
-> > +     ddebug_class_param_clamp_input(dcp->bits, kp);
-> > +
-> > +     switch (dcp->map->map_type) {
-> > +     case DD_CLASS_TYPE_DISJOINT_BITS:
-> > +             v2pr_info("  %s: classbits: 0x%lx\n", KP_NAME(kp), *dcp->=
-bits);
-> > +             ddebug_apply_class_bitmap(dcp, dcp->bits, 0UL, modname);
-> > +             break;
-> > +     case DD_CLASS_TYPE_LEVEL_NUM:
-> > +             new_bits =3D CLASSMAP_BITMASK(*dcp->lvl);
-> > +             v2pr_info("  %s: lvl:%ld bits:0x%lx\n", KP_NAME(kp), *dcp=
-->lvl, new_bits);
-> > +             ddebug_apply_class_bitmap(dcp, &new_bits, 0UL, modname);
-> > +             break;
-> > +     default:
-> > +             pr_err("bad map type %d\n", dcp->map->map_type);
-> > +             return;
-> >       }
-> > -     /* force class'd prdbgs (in USEr module) to match (DEFINEr module=
-) class-param */
-> > -     ddebug_apply_class_bitmap(dcp, dcp->bits, ~0, modname);
-> > -     ddebug_apply_class_bitmap(dcp, dcp->bits, 0, modname);
->
-> Hi Jim,
->
-> We lost the double call with ~0/0, is it normal?
+On Fri, Mar 07, 2025 at 01:54:11PM +0000, Matthew Wilcox (Oracle) wrote:
+> All callers and implementations are now removed, so remove the operation
+> and update the documentation to match.
+> 
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+> ---
 
-Good catch,
+Hi Matthew,
 
-I thought so, since it guarantees the pr_debugs' state to
-comport with sysfs settings on modprobe.
+Tried to apply the remaining patches in the patchest (Patch 5-11)  which
+have not picked up by linux-next. It seems we have more to cleanup.
 
-I will review.
+For example, I hit the following issue when try to compile
+----------------------------------------------------------------
+drivers/gpu/drm/ttm/ttm_backup.c: In function ‘ttm_backup_backup_page’:
+drivers/gpu/drm/ttm/ttm_backup.c:139:39: error: ‘const struct address_space_operations’ has no member named ‘writepage’; did you mean ‘writepages’?
+  139 |                 ret = mapping->a_ops->writepage(folio_file_page(to_folio, idx), &wbc);
+      |                                       ^~~~~~~~~
+      |                                       writepages
 
->
-> Thanks a lot for your work,
-> Louis Chauvet
->
-> >   }
-> >
-> >   static void ddebug_match_apply_kparam(const struct kernel_param *kp,
-> > diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
-> > index 5cfc156ca4bb..32a9d49a7a3b 100644
-> > --- a/lib/test_dynamic_debug.c
-> > +++ b/lib/test_dynamic_debug.c
-> > @@ -1,6 +1,7 @@
-> >   // SPDX-License-Identifier: GPL-2.0-only
-> >   /*
-> > - * Kernel module for testing dynamic_debug
-> > + * Kernel module to test/demonstrate dynamic_debug features,
-> > + * particularly classmaps and their support for subsystems like DRM.
-> >    *
-> >    * Authors:
-> >    *      Jim Cromie  <jim.cromie@gmail.com>
-> > @@ -43,36 +44,21 @@ module_param_cb(do_prints, &param_ops_do_prints, NU=
-LL, 0600);
-> >
-> >   #define CLASSMAP_BITMASK(width, base) (((1UL << (width)) - 1) << (bas=
-e))
-> >
-> > -/* sysfs param wrapper, proto-API */
-> > -#define DYNDBG_CLASSMAP_PARAM_(_model, _flags, _init)                 =
-       \
-> > -     static unsigned long bits_##_model =3D _init;                    =
- \
-> > -     static struct ddebug_class_param _flags##_##_model =3D {         =
- \
-> > -             .bits =3D &bits_##_model,                                =
- \
-> > -             .flags =3D #_flags,                                      =
- \
-> > -             .map =3D &map_##_model,                                  =
- \
-> > -     };                                                              \
-> > -     module_param_cb(_flags##_##_model, &param_ops_dyndbg_classes,   \
-> > -                     &_flags##_##_model, 0600)
-> > -#ifdef DEBUG
-> > -#define DYNDBG_CLASSMAP_PARAM(_model, _flags)  DYNDBG_CLASSMAP_PARAM_(=
-_model, _flags, ~0)
-> > -#else
-> > -#define DYNDBG_CLASSMAP_PARAM(_model, _flags)  DYNDBG_CLASSMAP_PARAM_(=
-_model, _flags, 0)
-> > -#endif
-> > -
-> >   /*
-> > - * Demonstrate/test all 4 class-typed classmaps with a sys-param.
-> > + * Demonstrate/test both types of classmaps, each with a sys-param.
-> >    *
-> >    * Each is 3 part: client-enum decl, _DEFINE, _PARAM.
-> > - * Declare them in blocks to show patterns of use (repetitions and
-> > - * changes) within each.
-> > + * Pair the 6 parts by type, to show the pattern of repetition and
-> > + * change within each.
-> >    *
-> > - * 1st, dyndbg expects a client-provided enum-type as source of
-> > - * category/classid truth.  DRM has DRM_UT_<CORE,DRIVER,KMS,etc>.
-> > + * 1st, dyndbg classmaps follows drm.debug convention, and expects a
-> > + * client-provided enum-type as source of category/classid truth.  DRM
-> > + * gives DRM_UT_<CORE,DRIVER,KMS,etc>.
-> >    *
-> >    * Modules with multiple CLASSMAPS must have enums with distinct
-> >    * value-ranges, arranged below with explicit enum_sym =3D X inits.
-> >    *
-> > - * Declare all 4 enums now, for different types
-> > + * Declare the 2 enums now.
-> >    */
-> >
-> >   /* numeric input, independent bits */
-> > @@ -91,12 +77,15 @@ enum cat_disjoint_bits {
-> >   /* numeric verbosity, V2 > V1 related */
-> >   enum cat_level_num { V0 =3D 16, V1, V2, V3, V4, V5, V6, V7 };
-> >
-> > -/* recapitulate DRM's parent(drm.ko) <-- _submod(drivers,helpers) */
-> > +/*
-> > + * use/demonstrate multi-module-group classmaps, as for DRM
-> > + */
-> >   #if !defined(TEST_DYNAMIC_DEBUG_SUBMOD)
-> >   /*
-> > - * In single user, or parent / coordinator (drm.ko) modules, define
-> > - * classmaps on the client enums above, and then declares the PARAMS
-> > - * ref'g the classmaps.  Each is exported.
-> > + * For module-groups of 1+, define classmaps with names (stringified
-> > + * enum-symbols) copied from above. 1-to-1 mapping is recommended.
-> > + * The classmap is exported, so that other modules in the group can
-> > + * link to it and control their prdbgs.
-> >    */
-> >
-> >   DYNDBG_CLASSMAP_DEFINE(map_disjoint_bits, DD_CLASS_TYPE_DISJOINT_BITS=
-,
-> > @@ -116,11 +105,12 @@ DYNDBG_CLASSMAP_DEFINE(map_level_num, DD_CLASS_TY=
-PE_LEVEL_NUM,
-> >                      V0, "V0", "V1", "V2", "V3", "V4", "V5", "V6", "V7"=
-);
-> >
-> >   /*
-> > - * now add the sysfs-params
-> > + * for use-cases that want it, provide a sysfs-param to set the
-> > + * classes in the classmap.  It is at this interface where the
-> > + * "v3>v2" property is applied to DD_CLASS_TYPE_LEVEL_NUM inputs.
-> >    */
-> > -
-> > -DYNDBG_CLASSMAP_PARAM(disjoint_bits, p);
-> > -DYNDBG_CLASSMAP_PARAM(level_num, p);
-> > +DYNDBG_CLASSMAP_PARAM(p_disjoint_bits,       map_disjoint_bits, p);
-> > +DYNDBG_CLASSMAP_PARAM(p_level_num,   map_level_num, p);
-> >
-> >   #ifdef FORCE_CLASSID_CONFLICT_MODPROBE
-> >   /*
-> > @@ -131,12 +121,10 @@ DYNDBG_CLASSMAP_DEFINE(classid_range_conflict, 0,=
- D2_CORE + 1, "D3_CORE");
-> >   #endif
-> >
-> >   #else /* TEST_DYNAMIC_DEBUG_SUBMOD */
-> > -
-> >   /*
-> > - * in submod/drm-drivers, use the classmaps defined in top/parent
-> > - * module above.
-> > + * the +1 members of a multi-module group refer to the classmap
-> > + * DEFINEd (and exported) above.
-> >    */
-> > -
-> >   DYNDBG_CLASSMAP_USE(map_disjoint_bits);
-> >   DYNDBG_CLASSMAP_USE(map_level_num);
-> >
-> > @@ -211,6 +199,7 @@ static void __exit test_dynamic_debug_exit(void)
-> >   module_init(test_dynamic_debug_init);
-> >   module_exit(test_dynamic_debug_exit);
-> >
-> > +MODULE_DESCRIPTION("test/demonstrate dynamic-debug features");
-> >   MODULE_AUTHOR("Jim Cromie <jim.cromie@gmail.com>");
-> >   MODULE_DESCRIPTION("Kernel module for testing dynamic_debug");
-> >   MODULE_LICENSE("GPL");
-> > diff --git a/lib/test_dynamic_debug_submod.c b/lib/test_dynamic_debug_s=
-ubmod.c
-> > index 9a893402ce1a..0d15f3ffe466 100644
-> > --- a/lib/test_dynamic_debug_submod.c
-> > +++ b/lib/test_dynamic_debug_submod.c
-> > @@ -1,6 +1,9 @@
-> >   // SPDX-License-Identifier: GPL-2.0
-> >   /*
-> > - * Kernel module for testing dynamic_debug
-> > + * Kernel module to test/demonstrate dynamic_debug features,
-> > + * particularly classmaps and their support for subsystems, like DRM,
-> > + * which defines its drm_debug classmap in drm module, and uses it in
-> > + * helpers & drivers.
-> >    *
-> >    * Authors:
-> >    *      Jim Cromie  <jim.cromie@gmail.com>
-> > @@ -8,3 +11,7 @@
-> >
-> >   #define TEST_DYNAMIC_DEBUG_SUBMOD
-> >   #include "test_dynamic_debug.c"
-> > +
-> > +MODULE_DESCRIPTION("test/demonstrate dynamic-debug subsystem support")=
-;
-> > +MODULE_AUTHOR("Jim Cromie <jim.cromie@gmail.com>");
-> > +MODULE_LICENSE("GPL");
->
-> --
-> Louis Chauvet, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
->
+----------------------------------------------------------------
+
+Fan
+
+>  Documentation/admin-guide/cgroup-v2.rst |  2 +-
+>  Documentation/filesystems/fscrypt.rst   |  2 +-
+>  Documentation/filesystems/locking.rst   | 54 +------------------------
+>  Documentation/filesystems/vfs.rst       | 39 +++++-------------
+>  fs/buffer.c                             |  4 +-
+>  include/linux/fs.h                      |  1 -
+>  mm/vmscan.c                             |  1 -
+>  7 files changed, 15 insertions(+), 88 deletions(-)
+> 
+> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/admin-guide/cgroup-v2.rst
+> index 77d80a7e975b..4e10b4084381 100644
+> --- a/Documentation/admin-guide/cgroup-v2.rst
+> +++ b/Documentation/admin-guide/cgroup-v2.rst
+> @@ -3028,7 +3028,7 @@ Filesystem Support for Writeback
+>  --------------------------------
+>  
+>  A filesystem can support cgroup writeback by updating
+> -address_space_operations->writepage[s]() to annotate bio's using the
+> +address_space_operations->writepages() to annotate bio's using the
+>  following two functions.
+>  
+>    wbc_init_bio(@wbc, @bio)
+> diff --git a/Documentation/filesystems/fscrypt.rst b/Documentation/filesystems/fscrypt.rst
+> index e80329908549..3d22e2db732d 100644
+> --- a/Documentation/filesystems/fscrypt.rst
+> +++ b/Documentation/filesystems/fscrypt.rst
+> @@ -1409,7 +1409,7 @@ read the ciphertext into the page cache and decrypt it in-place.  The
+>  folio lock must be held until decryption has finished, to prevent the
+>  folio from becoming visible to userspace prematurely.
+>  
+> -For the write path (->writepage()) of regular files, filesystems
+> +For the write path (->writepages()) of regular files, filesystems
+>  cannot encrypt data in-place in the page cache, since the cached
+>  plaintext must be preserved.  Instead, filesystems must encrypt into a
+>  temporary buffer or "bounce page", then write out the temporary
+> diff --git a/Documentation/filesystems/locking.rst b/Documentation/filesystems/locking.rst
+> index 0ec0bb6eb0fb..2e567e341c3b 100644
+> --- a/Documentation/filesystems/locking.rst
+> +++ b/Documentation/filesystems/locking.rst
+> @@ -249,7 +249,6 @@ address_space_operations
+>  ========================
+>  prototypes::
+>  
+> -	int (*writepage)(struct page *page, struct writeback_control *wbc);
+>  	int (*read_folio)(struct file *, struct folio *);
+>  	int (*writepages)(struct address_space *, struct writeback_control *);
+>  	bool (*dirty_folio)(struct address_space *, struct folio *folio);
+> @@ -280,7 +279,6 @@ locking rules:
+>  ======================	======================== =========	===============
+>  ops			folio locked		 i_rwsem	invalidate_lock
+>  ======================	======================== =========	===============
+> -writepage:		yes, unlocks (see below)
+>  read_folio:		yes, unlocks				shared
+>  writepages:
+>  dirty_folio:		maybe
+> @@ -309,54 +307,6 @@ completion.
+>  
+>  ->readahead() unlocks the folios that I/O is attempted on like ->read_folio().
+>  
+> -->writepage() is used for two purposes: for "memory cleansing" and for
+> -"sync".  These are quite different operations and the behaviour may differ
+> -depending upon the mode.
+> -
+> -If writepage is called for sync (wbc->sync_mode != WBC_SYNC_NONE) then
+> -it *must* start I/O against the page, even if that would involve
+> -blocking on in-progress I/O.
+> -
+> -If writepage is called for memory cleansing (sync_mode ==
+> -WBC_SYNC_NONE) then its role is to get as much writeout underway as
+> -possible.  So writepage should try to avoid blocking against
+> -currently-in-progress I/O.
+> -
+> -If the filesystem is not called for "sync" and it determines that it
+> -would need to block against in-progress I/O to be able to start new I/O
+> -against the page the filesystem should redirty the page with
+> -redirty_page_for_writepage(), then unlock the page and return zero.
+> -This may also be done to avoid internal deadlocks, but rarely.
+> -
+> -If the filesystem is called for sync then it must wait on any
+> -in-progress I/O and then start new I/O.
+> -
+> -The filesystem should unlock the page synchronously, before returning to the
+> -caller, unless ->writepage() returns special WRITEPAGE_ACTIVATE
+> -value. WRITEPAGE_ACTIVATE means that page cannot really be written out
+> -currently, and VM should stop calling ->writepage() on this page for some
+> -time. VM does this by moving page to the head of the active list, hence the
+> -name.
+> -
+> -Unless the filesystem is going to redirty_page_for_writepage(), unlock the page
+> -and return zero, writepage *must* run set_page_writeback() against the page,
+> -followed by unlocking it.  Once set_page_writeback() has been run against the
+> -page, write I/O can be submitted and the write I/O completion handler must run
+> -end_page_writeback() once the I/O is complete.  If no I/O is submitted, the
+> -filesystem must run end_page_writeback() against the page before returning from
+> -writepage.
+> -
+> -That is: after 2.5.12, pages which are under writeout are *not* locked.  Note,
+> -if the filesystem needs the page to be locked during writeout, that is ok, too,
+> -the page is allowed to be unlocked at any point in time between the calls to
+> -set_page_writeback() and end_page_writeback().
+> -
+> -Note, failure to run either redirty_page_for_writepage() or the combination of
+> -set_page_writeback()/end_page_writeback() on a page submitted to writepage
+> -will leave the page itself marked clean but it will be tagged as dirty in the
+> -radix tree.  This incoherency can lead to all sorts of hard-to-debug problems
+> -in the filesystem like having dirty inodes at umount and losing written data.
+> -
+>  ->writepages() is used for periodic writeback and for syscall-initiated
+>  sync operations.  The address_space should start I/O against at least
+>  ``*nr_to_write`` pages.  ``*nr_to_write`` must be decremented for each page
+> @@ -364,8 +314,8 @@ which is written.  The address_space implementation may write more (or less)
+>  pages than ``*nr_to_write`` asks for, but it should try to be reasonably close.
+>  If nr_to_write is NULL, all dirty pages must be written.
+>  
+> -writepages should _only_ write pages which are present on
+> -mapping->io_pages.
+> +writepages should _only_ write pages which are present in
+> +mapping->i_pages.
+>  
+>  ->dirty_folio() is called from various places in the kernel when
+>  the target folio is marked as needing writeback.  The folio cannot be
+> diff --git a/Documentation/filesystems/vfs.rst b/Documentation/filesystems/vfs.rst
+> index ae79c30b6c0c..f66a4e706b17 100644
+> --- a/Documentation/filesystems/vfs.rst
+> +++ b/Documentation/filesystems/vfs.rst
+> @@ -716,9 +716,8 @@ page lookup by address, and keeping track of pages tagged as Dirty or
+>  Writeback.
+>  
+>  The first can be used independently to the others.  The VM can try to
+> -either write dirty pages in order to clean them, or release clean pages
+> -in order to reuse them.  To do this it can call the ->writepage method
+> -on dirty pages, and ->release_folio on clean folios with the private
+> +release clean pages in order to reuse them.  To do this it can call 
+> +->release_folio on clean folios with the private
+>  flag set.  Clean pages without PagePrivate and with no external references
+>  will be released without notice being given to the address_space.
+>  
+> @@ -731,8 +730,8 @@ maintains information about the PG_Dirty and PG_Writeback status of each
+>  page, so that pages with either of these flags can be found quickly.
+>  
+>  The Dirty tag is primarily used by mpage_writepages - the default
+> -->writepages method.  It uses the tag to find dirty pages to call
+> -->writepage on.  If mpage_writepages is not used (i.e. the address
+> +->writepages method.  It uses the tag to find dirty pages to
+> +write back.  If mpage_writepages is not used (i.e. the address
+>  provides its own ->writepages) , the PAGECACHE_TAG_DIRTY tag is almost
+>  unused.  write_inode_now and sync_inode do use it (through
+>  __sync_single_inode) to check if ->writepages has been successful in
+> @@ -756,23 +755,23 @@ pages, however the address_space has finer control of write sizes.
+>  
+>  The read process essentially only requires 'read_folio'.  The write
+>  process is more complicated and uses write_begin/write_end or
+> -dirty_folio to write data into the address_space, and writepage and
+> +dirty_folio to write data into the address_space, and
+>  writepages to writeback data to storage.
+>  
+>  Adding and removing pages to/from an address_space is protected by the
+>  inode's i_mutex.
+>  
+>  When data is written to a page, the PG_Dirty flag should be set.  It
+> -typically remains set until writepage asks for it to be written.  This
+> +typically remains set until writepages asks for it to be written.  This
+>  should clear PG_Dirty and set PG_Writeback.  It can be actually written
+>  at any point after PG_Dirty is clear.  Once it is known to be safe,
+>  PG_Writeback is cleared.
+>  
+>  Writeback makes use of a writeback_control structure to direct the
+> -operations.  This gives the writepage and writepages operations some
+> +operations.  This gives the writepages operation some
+>  information about the nature of and reason for the writeback request,
+>  and the constraints under which it is being done.  It is also used to
+> -return information back to the caller about the result of a writepage or
+> +return information back to the caller about the result of a
+>  writepages request.
+>  
+>  
+> @@ -819,7 +818,6 @@ cache in your filesystem.  The following members are defined:
+>  .. code-block:: c
+>  
+>  	struct address_space_operations {
+> -		int (*writepage)(struct page *page, struct writeback_control *wbc);
+>  		int (*read_folio)(struct file *, struct folio *);
+>  		int (*writepages)(struct address_space *, struct writeback_control *);
+>  		bool (*dirty_folio)(struct address_space *, struct folio *);
+> @@ -848,25 +846,6 @@ cache in your filesystem.  The following members are defined:
+>  		int (*swap_rw)(struct kiocb *iocb, struct iov_iter *iter);
+>  	};
+>  
+> -``writepage``
+> -	called by the VM to write a dirty page to backing store.  This
+> -	may happen for data integrity reasons (i.e. 'sync'), or to free
+> -	up memory (flush).  The difference can be seen in
+> -	wbc->sync_mode.  The PG_Dirty flag has been cleared and
+> -	PageLocked is true.  writepage should start writeout, should set
+> -	PG_Writeback, and should make sure the page is unlocked, either
+> -	synchronously or asynchronously when the write operation
+> -	completes.
+> -
+> -	If wbc->sync_mode is WB_SYNC_NONE, ->writepage doesn't have to
+> -	try too hard if there are problems, and may choose to write out
+> -	other pages from the mapping if that is easier (e.g. due to
+> -	internal dependencies).  If it chooses not to start writeout, it
+> -	should return AOP_WRITEPAGE_ACTIVATE so that the VM will not
+> -	keep calling ->writepage on that page.
+> -
+> -	See the file "Locking" for more details.
+> -
+>  ``read_folio``
+>  	Called by the page cache to read a folio from the backing store.
+>  	The 'file' argument supplies authentication information to network
+> @@ -909,7 +888,7 @@ cache in your filesystem.  The following members are defined:
+>  	given and that many pages should be written if possible.  If no
+>  	->writepages is given, then mpage_writepages is used instead.
+>  	This will choose pages from the address space that are tagged as
+> -	DIRTY and will pass them to ->writepage.
+> +	DIRTY and will write them back.
+>  
+>  ``dirty_folio``
+>  	called by the VM to mark a folio as dirty.  This is particularly
+> diff --git a/fs/buffer.c b/fs/buffer.c
+> index c7abb4a029dc..b99dc69dba37 100644
+> --- a/fs/buffer.c
+> +++ b/fs/buffer.c
+> @@ -2695,7 +2695,7 @@ int block_truncate_page(struct address_space *mapping,
+>  EXPORT_SYMBOL(block_truncate_page);
+>  
+>  /*
+> - * The generic ->writepage function for buffer-backed address_spaces
+> + * The generic write folio function for buffer-backed address_spaces
+>   */
+>  int block_write_full_folio(struct folio *folio, struct writeback_control *wbc,
+>  		void *get_block)
+> @@ -2715,7 +2715,7 @@ int block_write_full_folio(struct folio *folio, struct writeback_control *wbc,
+>  
+>  	/*
+>  	 * The folio straddles i_size.  It must be zeroed out on each and every
+> -	 * writepage invocation because it may be mmapped.  "A file is mapped
+> +	 * writeback invocation because it may be mmapped.  "A file is mapped
+>  	 * in multiples of the page size.  For a file that is not a multiple of
+>  	 * the page size, the remaining memory is zeroed when mapped, and
+>  	 * writes to that region are not written out to the file."
+> diff --git a/include/linux/fs.h b/include/linux/fs.h
+> index 110d95d04299..26ce65c4a003 100644
+> --- a/include/linux/fs.h
+> +++ b/include/linux/fs.h
+> @@ -433,7 +433,6 @@ static inline bool is_sync_kiocb(struct kiocb *kiocb)
+>  }
+>  
+>  struct address_space_operations {
+> -	int (*writepage)(struct page *page, struct writeback_control *wbc);
+>  	int (*read_folio)(struct file *, struct folio *);
+>  
+>  	/* Write back some dirty pages from this mapping. */
+> diff --git a/mm/vmscan.c b/mm/vmscan.c
+> index e9f84fa31b9a..7e79ca975c9d 100644
+> --- a/mm/vmscan.c
+> +++ b/mm/vmscan.c
+> @@ -643,7 +643,6 @@ typedef enum {
+>  
+>  /*
+>   * pageout is called by shrink_folio_list() for each dirty folio.
+> - * Calls ->writepage().
+>   */
+>  static pageout_t pageout(struct folio *folio, struct address_space *mapping,
+>  			 struct swap_iocb **plug, struct list_head *folio_list)
+> -- 
+> 2.47.2
+> 
+
+-- 
+Fan Ni
