@@ -2,150 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E2DA67179
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 11:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF5BA67189
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 11:39:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70BC410E14F;
-	Tue, 18 Mar 2025 10:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 955C410E460;
+	Tue, 18 Mar 2025 10:39:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="GEaiDJwS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMZmxYqA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2044.outbound.protection.outlook.com [40.107.102.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19BAD10E14F;
- Tue, 18 Mar 2025 10:37:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F05A110E460
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Mar 2025 10:39:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742294393; x=1773830393;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=lL4oeUy0WPDInoguY42q3TN7sCbkSPweWG8yo4xNM2M=;
+ b=lMZmxYqASxwnBcqL0//voNLiXW1Yg6zMBAhsE2gRyzrzRiiYAbfjNjxO
+ c9P+kVJ8VIVa/vguzitlPF2uSP5gwFJHj3AII80zz3YgGIEts6WoSfYsS
+ 4bFhP+ld9pNcsNkQUw2U5+tKJTF14ZHi4M4JlvOYN811mE/cJNGdHc94k
+ TYvRDcz8xPKYhv3AdGYD8UxuJQ/SOz+T1Hwa4KpOqNqQG1ovVxTG/sFKP
+ ljijzI2Q8IZD7jjma5MYefteihjevTjDHsmqojv1/l1JOQu3VwqudTaPn
+ TY/dAW267Fa/t6lRcLfs4eyMko9VTSnk/1T4L1QJbGNiacmKoI8zFHdGb g==;
+X-CSE-ConnectionGUID: TRgkL/exQ5SidkJl+zYvHA==
+X-CSE-MsgGUID: 6jyLrLZRTl+gn8oqaePzbQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="54056781"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="54056781"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 03:39:52 -0700
+X-CSE-ConnectionGUID: ZtrkpkygRYSYkyK5H/ioFw==
+X-CSE-MsgGUID: DajW3VP0QRa/VinB96Bn2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="122385660"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 03:39:52 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 18 Mar 2025 03:39:52 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Tue, 18 Mar 2025 03:39:52 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 18 Mar 2025 03:39:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jcli5KlC0JNgZkhBnWKhvXDKXYoxx/XkIys+FzVNc7g09Au9sLSbzonYCd+eow33zqdFwxzs8TUvuw7XO2/pU/0P34Y/x8ThN9ReeoKtFT+Gohw2DmM3c3EYLLsNTbeLW/8ldsg9Uw2mPSIwQrLNNLWF3veqzzwsOUT76PokfYKhmx5JLtGhPpM3xx1UGaWcM7k5NNVTZqor+ZGlnGEX+VyHzw7uDAlFCfkZlIDz+oXNZYY7E2h+t6Xn07M6uBjKbQRSoTGCYXFWmFftdWtyft9QOSuJkFOkWXtZcSgjj5/Q9NH96y9NYqhbo8IuaSTX8Ga7HrXV3R85BO5jMfOlSw==
+ b=qe3OFaAQY778J33eJPYIfjyU/QfPGAkizqlq2htwI62QNipKTEaF1iOy1EIABODlUHv0vzZZzumeZoBclv96uohIe3bEUio+5p0UcTTNuq/Ph8YbcdV6vXRys4DSp64FuaKJ4thWPe3MUdYsY4vrrEDQBQdrg6OcCAQvct+Q5kUugZL6zMYl9svOrzqF6GRFFOSyAI4FGad431KdXQlrNdLJyZrKcGaxZye7R/zdBQQHBTb0vT+8bvVhIS90RiLeH7AmE4nNZ7qqsCEXxVzl3StYKNOU3X8DUlLhVW8S91KmkAEH2Vh5f2l5pvgEDWUkRCUwoar8wZ37yFpCMv0M1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bgsHhyVT6ZrdPTDWZctopaP6R8TN5dtCsWBlYdmbhtM=;
- b=v9P6wcg+eUobrdHZBWcEko1jIElzJkW7o4RXU0G5EcokQDETk94lAVxV/nAAjXJ3zndm51zoAc9HB51V6AThrkGWeGVyDU8fCoqSPY3Ein8vHZeB3PtT4Wrpqd03Imwv4oswweASgiRUQtOWPMgWUmGOXozCAG8jEIu7Hfl8GaHnyutM+JZU8lWb9Os3UekMjm1BfAXDpxeHFXjPmqJ6n5OKMRf/Ilm9gvW3n3+BGU28xiL5O9FpuxXnoh3IUrvb3qqjEaUx16Rtg3PDnmESgAdlsmsWgZ/vZ12VlJdAERQa3hcK9lqhyuyTtODfjfGC5X0nv8QJ1zahe5zXNuv04g==
+ bh=Bknwini08R5xB6QohyxWCXDMC6OGIgsIaLArWHKp+XY=;
+ b=aQNQ+aCx7N6PiGcVZ4SSIN43bbW6rv1pFvph3m0HB7jkejlWd+I7Mz+iUvx40sECd9WEp8fb1Jk4bq6LdAg5LuWz815LpLv1QPCykMA8TffRtctm243eroL2czjxP3mrWgjFcucr/+QIoB1ubPVwz3yF1wWPuAkgzviWGivc7+BVE6DEpnfTs94IIJscssxxQLszHXPVvMoIpwYmOtoJMuvcISwm0a2VSO0TgE67Q7KRGwCny8UDPF25yp2y1IWb5wWPMXmDbJXWTpW87kebagy+7JtV3ZsfNbMAPILIRKC/YoquvZ0QbSxTK2/4eJKT11jFb7AYPHAQaORf68HKJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bgsHhyVT6ZrdPTDWZctopaP6R8TN5dtCsWBlYdmbhtM=;
- b=GEaiDJwSfmM9R/Gq7g+h8sY9ikE5Y4TwSCmcAseh2L8ag+y/MLvEqabD+BLoPHc2pCq0D30ga4DlTzpmbOL6WmOGwNP6fVkn+JBxLjuacPilxRrEZmMEi0g1OJ/556T06wQR7kR6wnonjNfbXyuaHpmXDs76tsAiqRf1wCHGT20=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7781.namprd12.prod.outlook.com (2603:10b6:806:31a::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.33; Tue, 18 Mar
- 2025 10:37:54 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8511.026; Tue, 18 Mar 2025
- 10:37:53 +0000
-Message-ID: <9a1dddba-7020-482e-8636-4f0f31c3bbfc@amd.com>
-Date: Tue, 18 Mar 2025 11:37:47 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dma-buf: Take a breath during dma-fence-chain subtests
-To: Nitin Gote <nitin.r.gote@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- chris.p.wilson@intel.com, andi.shyti@intel.com
-References: <20250318103408.3566010-1-nitin.r.gote@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20250318103408.3566010-1-nitin.r.gote@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0113.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9d::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
+ by SA2PR11MB5193.namprd11.prod.outlook.com (2603:10b6:806:fa::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.33; Tue, 18 Mar
+ 2025 10:39:50 +0000
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548]) by CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548%3]) with mapi id 15.20.8534.031; Tue, 18 Mar 2025
+ 10:39:50 +0000
+Date: Tue, 18 Mar 2025 10:39:41 +0000
+From: Krzysztof Karas <krzysztof.karas@intel.com>
+To: Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+CC: Mikolaj Wasiak <mikolaj.wasiak@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, Andi Shyti <andi.shyti@intel.com>
+Subject: Re: [PATCH] drm/i915/selftest: allow larger memory allocation
+Message-ID: <qphk2egnvvuaavj3g34vdfkf64sahttxdwqpi7m2mbyneoyo4u@a23mww3t4o3d>
+"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
+References: <wv4aw6syqjox52lpgkddxykr5namvan4eb7b4obj3rligwyp7m@33c3ko2mj7sp>
+ <wf7iikxwpvqx77267aaxqhdtg5qjisdowuh5bnnv2o47jowzvb@avicp6k6yjtj>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <wf7iikxwpvqx77267aaxqhdtg5qjisdowuh5bnnv2o47jowzvb@avicp6k6yjtj>
+X-ClientProxiedBy: ZR0P278CA0011.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:16::21) To CO1PR11MB5057.namprd11.prod.outlook.com
+ (2603:10b6:303:6c::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7781:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32c38e7d-d8ea-4357-b0f1-08dd6608f05c
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|SA2PR11MB5193:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2aa38220-57c7-4069-c54f-08dd660935a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MGIxR3F2eWp0aXVzSUhscjdYS2ZIRytLbWxCZWUrZXpua2RUcHdEbkxkM3NC?=
- =?utf-8?B?WVIyaDZ2S1BWcm9wYzMyNTJKZVFVNVJIUEF5WEdBV1JwbnlqYnJzd1JGV2Vv?=
- =?utf-8?B?VXdvNFdOdHZUNUxJSVJ0dndadlpyZGpQSWJ2c0VrZUZDblBqSU5BSi9KV3NR?=
- =?utf-8?B?MjIvS2R4MDMxclNuMnY5M2pmc1JsdGZiZjdLQ2NxMUNqYmN2ZkZ5TU44TUtw?=
- =?utf-8?B?dkplZnQvb3N4MW5LWDdhNUx5MGVBeXJySHJ5M0pvWG5SeG9YSkxUdk5id0kv?=
- =?utf-8?B?QWtRTllrZkxhbEE0eVpDR1pVOWhEdCtEUTloWWZrY3Z2UmhPTWYxYUVNak05?=
- =?utf-8?B?YlIyRjhyVTNsQjJ4ak00R1hiblZlOWtkVSsyVkdxeG1IKzVPb0pjMmh4amF6?=
- =?utf-8?B?Mmo3amQzK3BVL1NtSDYrNGd0V2xuM20yM2NlNGdQbWR4T0YycWQrL2dYdWNI?=
- =?utf-8?B?QitpbjBlYmVpMUZ4NVpoeW1vc3k1MUZpTC9aS1VXNGZEZFk2d3BVTU5IbDBS?=
- =?utf-8?B?MFg5WUs1Q1MzanJvNC96ZFdHemlMTWZ2eHZsakw5aG5WOWZLNUFJcVFHMEtm?=
- =?utf-8?B?WkppNi9UUG1sUWZpQm1QQkJqU0U4cXBic0FsTzNoeUdWaEFUTlMzajJwZXlL?=
- =?utf-8?B?TlRRejZQOUY2ZFljK2VER25tS1dBdFgzbUUybzJCTnpBaDA5d1NyMXBrRlR0?=
- =?utf-8?B?dEszOTk5UDVHVGhLeHk1Rm9YcXNJS2FRKy83c2lPcVZzaWFJQk1Xb3NMWGpB?=
- =?utf-8?B?cEhmaWJ1aDJLMkQwbitxTCtpcE1DOUlKZDJLd2NvbFYyVHRhdmZCQjg1L1lw?=
- =?utf-8?B?WlZwUkk5ZTh5RXNDQmdFOHNHQ3lzUnQ5eGNTMk1pK0lFLytLWTFXZ0ZjWnhk?=
- =?utf-8?B?MG5qUEYyT3FKRU9aVkNJRzY1MmEwREZjR2dhWldPNGYwM2J2UGdtTmd0M0Mv?=
- =?utf-8?B?VG0vN3ViV0xYUDlLOTZmNTRxcEJBZ0NyemRlaUZseWNNOE44Q1VlK3VLQkRv?=
- =?utf-8?B?WHMzUGgzcVFJSEdEOEw2Yk0wWGpyMWhTYXp1YjBIYTlMSVl2SWltTUZESTdr?=
- =?utf-8?B?N1MySkpRZE5ybnRFSzlGRVBsam5kdldXYWk0NVg5c1RGTENNWE55YXhJb08z?=
- =?utf-8?B?anUyY2pWdlhKRFhYelRkMkE2dzdXemVoc29OU3BMb3FOZTZIOUxTNzJBNWtj?=
- =?utf-8?B?bUpFQUhMQUFXSVd3eUx6OTY5TlIxcDV3SUtSMTdxQUs3ZDZpeWZVMFpGdkg0?=
- =?utf-8?B?ajFMbVhMTjQ1TzNtWWdFY1NNL3VCajNzdFpaMHhaUFZGOSt4THVPRlVQRXh6?=
- =?utf-8?B?RDF2RXMzbUE0UFltZ3hMWEdCYkVrZy9TdXZKR2VtWktQbHR0MHV3TWI5V25R?=
- =?utf-8?B?dkxiUVJSRkljWXQyVWNxU3A4Nk5lbS8vYmlmck1qMUdnYjdtd2l2dmorSXVV?=
- =?utf-8?B?dDVjUlRybDlxYkpHU1pCNlIxbnY3OTBVODlkRUpPZ29pNXA1OEJqTDg4VWxD?=
- =?utf-8?B?aG8wbFNTdDJ5N2ZRblFGM3ZFeDM3U0tLaGRMaDhnR0M1NTdjV3d1UFpWZU8y?=
- =?utf-8?B?ZkpmazA5WXNOTGg2RUhJS3NUQ0xPVUJ6U0tTOVAwdDJzUklCbTBUaVc1RDNR?=
- =?utf-8?B?VUJBVGVESDlyazZZRlhCYnFlTFRNYng2SU5JREJ1K0E4UWxORkFzMnovQzk5?=
- =?utf-8?B?eFNkRi81MC9YS0R0aUMwR1BNcWhtTzRoYkthV3J1Q0tqNnZncmZLOTRiS3l5?=
- =?utf-8?B?OGhpNmEvZUQ1alJ0UXVZMkhqcFRSd3RlMDdaWFAwQW1UR2JKdE9abUNZQk9X?=
- =?utf-8?B?NGJ6N2pLeVF4K2VtREkwQT09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TFBvTDdHamRGa1pTb2pkU2dlUFREODYyT09qVnZib0ZtQjc3emFnS1BzTFVR?=
+ =?utf-8?B?cWpZL3BlMzhMQzJIOXZjUkprNmg4bUVUajRZTUVPWEFWS2loRXVYUDVnbGoy?=
+ =?utf-8?B?a2FTa2hMdUhORjZwNVBaNXlwcWdCU3FZaWNyN1dMNEl5eTRFdFd6NFhHUmtE?=
+ =?utf-8?B?NmNjQW1tS3BST1pNVkhJTGpPOEJkRHZrZHBVaU9BVk5XQm1RZmlJVHk1K0RU?=
+ =?utf-8?B?dDJVdlF1NTBOZmxodklHUEJFMVBrWnIxTEp0YXkwdWYzUWtWeWdzSnMrOUpt?=
+ =?utf-8?B?Q1FTZEN4eGpkeFVOT0xTcnQ5bCtFY1FIWGt2UEhFUkVBK2tMRzR3aHo2MVhh?=
+ =?utf-8?B?b0xCRnJyWlI2Z0JYUVd2SUdBblFMcXRrYVhoTGYxSitlS2taZ2ZzKzYvak1C?=
+ =?utf-8?B?TWRZNjljWjQwYkZKcEdXc2VjdEpYOG5EZXF0czh3YnVCL3RhNkpnTWVNYkEv?=
+ =?utf-8?B?VDNyUXYzUWtUMnhqR1R3QnFTWDJDUXVPTFVZT1FONCt1VjFIVk94czB3R1d3?=
+ =?utf-8?B?bVBkUWJOK3F6cjhaVnVsU2RTdEVUK3ZrNEJuUENObWRuYll5MnE1a0tXNER6?=
+ =?utf-8?B?ZWE2bDBkRWNycFVPS1JWK0pHU3NCQ2Z4dTZMbGNRV2oxVEJlamtFWHgzbWt4?=
+ =?utf-8?B?NWdBcjhnMjlHam1oOUVBOXpnTVRiKzJlZEJsVnFPN25MS1RwUzh0M00vTnM5?=
+ =?utf-8?B?ZXFTcHpTbVl6MzVaTENtS0pha21YWjAxYUlYWnNKVzd5cCtSM1ZTZ0NnaVgv?=
+ =?utf-8?B?SXdxS3BZZWEzZDNPVzdmdFFZb1BTRGdQVmR3cTlBSDZoNHBZS1dRL25BRysv?=
+ =?utf-8?B?bVJTK2pqeUdFZ1dYVnU3Nm1YdFk5MFArQ0tDR1pCeG4yRXZtNkdTeVRCajVY?=
+ =?utf-8?B?WUZ6dUZrVXZnb2dsTmhjVUs4d0JtSWlENnI3TkdQZ1NHRjNtMXQ5ZmIyMlQr?=
+ =?utf-8?B?ZmdPMXJGemxYbTN1T2NkUlZIS2dlRXVrNEIyTmR6MFl2MnR4MlMxV01uZEV4?=
+ =?utf-8?B?dmZmRE81b3I1QmVFOGNINnZNZTlmYWxFSm42aXNLZHdLb3IvUkp3WkxSMS9s?=
+ =?utf-8?B?WUtWUzEra3JDb3BoRWFHNzk4dG9LQVNKbkUxdzN1SWE5WUJuK0tJdFNNdTJT?=
+ =?utf-8?B?RU5DOTVsbmtMMUlNMjRWRlpmK29nSERkSzhKUGR6Z3kxTldKZmN3VllMaFBB?=
+ =?utf-8?B?ajJIZTR1aExrK3ZUQi9tWmg1QU1pSU1FZTJSMjd4aGdDOXpPeVo3eS9KV1RV?=
+ =?utf-8?B?Mm85VXREKzNsczFmck1Xa0RLVEVmZzE4VnNFTlppS2crWVVmSjlBSVF4TUZK?=
+ =?utf-8?B?anNQLzlUUDlIQ1pwbEZUSWxmZVNKYWxNTDRzSkIreHV4L2psNEFuMWZvYk56?=
+ =?utf-8?B?Q0x0OUlhaC9xK2hCRE1mdWFnekJTSVo1QXRQeW5SU0wyc2FOeWFkZlZEZmxn?=
+ =?utf-8?B?UEIwbUVSSlFtOXNCSEN2cjBiUDJVMzM4Tm1uR0RYK0hUOFg5RnFCWDNjTVJw?=
+ =?utf-8?B?UWRtemxwZEtieHV3YW9TM3poNURBRnpUUjBmOGZseUJjMTEyOFpESFdic2pk?=
+ =?utf-8?B?VGsyTzg3djlWcFlleTlBMCs4MWxBZUQwVkxiUEZxYzZ2cTVES05PMHV5OEdn?=
+ =?utf-8?B?NDRtTG1jUDZOeVZ4NEtPZk9wcDlkUXI3aTZRc295T1BQbUhhcENUUjlrREpy?=
+ =?utf-8?B?ZGREVm9zMjRnZHZQTjBMQzAwTlRKRWgzdFJ4RVlYZDFYa3U3MmY0c0hJOGZo?=
+ =?utf-8?B?b2Q4b0NmSmdnaWgvSUY0U3pxdmMvNjZBVGlRZU9tK3pEaEd3VXF0cGRURElL?=
+ =?utf-8?B?MmtVRE5iWUQ5M1VBQVFXT2tyNy9vcVk0eVgwQUQzVXYrblhIaGNIMU10RDBZ?=
+ =?utf-8?Q?HleAxgMHY4Zx7?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXlnekcyWXA2MVhWcW0yR0RZU3grS281cTRtVjhlNmhMSFB6enZSMmE2Y1V3?=
- =?utf-8?B?QjU3bklDMURUVUlnUUR1NWVBNWpvK0tZNjJITlVnQ1dzYS9vZjZhSHhad05i?=
- =?utf-8?B?MTJyR1k0TWkzUkl6cHpENG1mcHJ4UG5tVHJQVnJsNTgzTW9iMlNsVGN4UGlW?=
- =?utf-8?B?U3ZvNzIzYk10b3hxMGJWSEtLWHc5by9lSTdrVHpZNWFianBYOEhCaEduTlBw?=
- =?utf-8?B?M3V1UjhQcDRta1c0Yi9NOWRZYW51K09ub0V0MzRmZ3k2SmVyUk5jQUhtb2VX?=
- =?utf-8?B?YUsxNk14WmQ0cTFleVBCOU1qS2Z0WkxFK1ZIbHp0RWNrLzF0dlI5K2dVeGJH?=
- =?utf-8?B?ZHZtelpTNjBadURuK0I3ejk4bHR1UWJqUUowQUU5RDJXSjBmUUc0VXNjN2Qx?=
- =?utf-8?B?RUpqVG9sQk5hVkhRblpTWXMyQ0gzS3Bid3JNeUkyTmZkUmdjVG55dkYvVDJh?=
- =?utf-8?B?YUl4dWtEM3dHSFgrRmdOcUswQkF6T1JBL2U5d2pabTRhSjQ1dmovbktKQVFa?=
- =?utf-8?B?M290THhDMTJ6Zk5zU0krMGNCS1BVdUU3Q2ZScVdrNlJQK2JjUGEyemQwTnBP?=
- =?utf-8?B?eDhOVmpXQldxSUxvNm1mcmNWUjAvM0xnV2F0alQzT0ZLQmxQZ083MWRscVZh?=
- =?utf-8?B?OWtrZ3pJRldCUHZsTFNIaHh4Y0xOS2ZHWEk2Qk5xVWhiZGpQU1dCSm1BSlVQ?=
- =?utf-8?B?SitSd2t6LzdGc2FEQ3R4OWVMeGs3aUQ1aytXeWFTVG9FYjI5OWZDbHZRWU0r?=
- =?utf-8?B?SVVyZUIwd2xPWVJJelFhRmlRV01lSDNOODhYRG9wbmNBSlU1OGNiUEJWQzNs?=
- =?utf-8?B?S2kwTDJ4VnJWcGh5R3I2bDRldlJTaWdwYzk1OHdadC9NZFRpWWp4N3JwbVls?=
- =?utf-8?B?QWc2OWIzclZrRy9qVldTcEhmeTQ5WkFodUZ4dTY3ZWZoL1BWS2VlNDdSWnp5?=
- =?utf-8?B?MVVBd05rT1EvTnpndGJhc2FGVEV6dWVFV2FQcWF1aWhmSXVZVkozbEtHVkly?=
- =?utf-8?B?OG93bm5nTjVhUmtxcDZFbnRIU3FOT1NNTkdsay9lYVpNbkptdmJzWjZGMnJT?=
- =?utf-8?B?c3pZS3FwTTFHVmo5eWEyRUpGYVR3bndhZmlzSXgweTRHWXo3Y2t1SFc4ZEw5?=
- =?utf-8?B?NEMweTNnS2ZoMkR2NHNORThPV000d3NaakpMMXJSRVBKekFOM2k4RFFiL3JQ?=
- =?utf-8?B?cC9UeEt2d0JaOWJaYVVLUTJJenBrOU9jRTdmU2YwQ0VWM3R1aUlYWG1pdkNW?=
- =?utf-8?B?MmIxRWwxbU5sSkVpMDUwYmNmc0EvcGZTYjVTTHRCbEFaZUpUY2taenVYazJB?=
- =?utf-8?B?enJaUUlmL21vYk4xVHRBL3FWMWIybUc5OHNrdHFBbWR4Mmg2dFRtYmhiMkI4?=
- =?utf-8?B?VFQwZUdoL1FWQ3RpTUVCRDU0NmZKRWxQNmxjZ0ZSSDFudGU3aDluM3QzZlV4?=
- =?utf-8?B?WUY3MlprUTRJbk5wV3VxU1E0QWs0VFlrQm9YaVNUQVJsV0p2MVdWb241Y3ZJ?=
- =?utf-8?B?alJjamE0UC8zVlREOGNUQ0l3eW5tdGd4d0lXOExOZENpeE11NWNubFRqaG5u?=
- =?utf-8?B?Ujlvb1c1RlVJS21tNXQvc2MvWXhGbW1MMks5WU80dnRaZ2JBQjIzNmJVL3ln?=
- =?utf-8?B?NnBpRDkrTHc4UytSZnpFMzVlanIxR0JUMzBYL0dRUXd1a3NlR2ovanRVcFNI?=
- =?utf-8?B?L0Jod2tGQmYveHVHcVJ4elJLTXRGRThwWG5yWWVpK01ZU29MVW5SNTRwdHdN?=
- =?utf-8?B?WnlPYnQzOGk5aWN2TnFMZFlKMHdxdlM0WWRhY2lKVGZJNzJYV2tIZ0dGUEx5?=
- =?utf-8?B?WnpDOUN1b2Mwd24vMEdOTXF3bFpOTmZPczFwbUZxU0kzUWVvM3ZXejJlN3lC?=
- =?utf-8?B?VllycHBxdlJsUlZYd1Q4b0g0QW52MWMvaEdiN2FVTFdlV29UVDlrUGdrQ2Vn?=
- =?utf-8?B?aUd1SEltNU12alc2ZjNoQUZvNmpFQ1NmZ0RCamRrcy9uM2tycDlJUmJqUXpG?=
- =?utf-8?B?NzN5ZE1XbVpnL2d4emlYa3BDeW8vTHZxTFJndjNua1ZEZHNWeEhHSG9KVStt?=
- =?utf-8?B?QUxiRSt5emtoZlNLUDZtdElpZlhJc1lTVHZqUFB3clcvTUowa1hucXpMelpm?=
- =?utf-8?Q?wMlAv/QqowfOGyRSYxBiyb8h8?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32c38e7d-d8ea-4357-b0f1-08dd6608f05c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cnVmL2o4NXFVM1MrQkZsdk82S0xWckNiMFJ1V2ZKOG1BWnhlZzEwQWQ2YW55?=
+ =?utf-8?B?N2hrK2hDdHBtUU82Q09hWEZrWnVNYTBHbEJWc0U2cXZMdWE2MjFuSjhRYzRD?=
+ =?utf-8?B?aFNwQjRyei9OMVJaOWt4b0Q2UzZobEpmQ0JKcU1HVU9VeVQ4SngyVzZJbGZM?=
+ =?utf-8?B?VGx4VFlkU3RZMkpvZm9ld2pkY1RaSHByWE5xVEFhS29NZHNvV2p6Z0xVV3Mx?=
+ =?utf-8?B?MFkyRG1zTzIrKzZEY3ljNy85bzVWeG9zMU1TdStIcURvR1laN1pCa3FlTUQy?=
+ =?utf-8?B?azVyeG56SVBZYXRNSlB5Y0ZsWFhFanFNTElnN1AyY0hkZXZZTWZQamxDTGxv?=
+ =?utf-8?B?c05WTDVGdU9ISUJrVmNCSVBrQ1lnY3Bvc25LdjJKazFIeUliWXNuREF0cjRp?=
+ =?utf-8?B?a1Fjb1UxWGJsYzZteXl2TVN2R0VFc0YxV3JDTzBJR3RqR3BSbWF3allEQWlM?=
+ =?utf-8?B?eFZtNlJUUXU5Tzg1cEtzZlZpdGxxNjMybTFTNnpaMkJ5YUtYUzNnaEZOQndv?=
+ =?utf-8?B?TzhTRldUVmVVZC9QajJKdVJzZDdaOUE0bU1NdTg3UHdBTWZnUlJqaGJBVzRm?=
+ =?utf-8?B?WG05R3haeVhwWHJVcGJUL1JhMEtEcXhPdG9MNmVUdVdodXIyQnhvc0UxcWhu?=
+ =?utf-8?B?NWdvVWdhejJ6dHI2cUVRZW9ZdU5yaDZEVitpUU4xdzAycHkzWVBFQkE3SjBZ?=
+ =?utf-8?B?Sys5cWljdWdCcExsTzM3c3dPS2hMUHlwdjRZUkJHbk95WHg2K1BTMVZLbCto?=
+ =?utf-8?B?MHAzUGRxVzJpVlZaRzBaeXhOZk5UZWMyUkJKZFhYdzlnNzd4aHVhaG1Jeiti?=
+ =?utf-8?B?b3ZPQ1RwcjRaclFyV01sSS9ycWMzbWpHc3VrcDR5ZmVMTXdMZ0tDZnRFRGVi?=
+ =?utf-8?B?SDRuZ1p2a2xjeDhTakJSdFdiVk4ranYwYlFsVnJqdkh5Qm9qVitzNUhSRU0z?=
+ =?utf-8?B?YzQzWm50VTM2L2pRTmNTbGNhVG9NQVVRTzcrNHcvZFZ1clVrU0RHc3JnM24w?=
+ =?utf-8?B?WmxEdStDcVVoZW1XTHpkb28xN1FRd0FhOTJFZEJ4K1RwYVp5RGpXQ01SOEZR?=
+ =?utf-8?B?QWhoNFRzMDNYNTNNVlZKTG92MjgxZ1ExWkxjUUtKN1dNUHdRM1FMZWY5dDU2?=
+ =?utf-8?B?RTRhVUwrdG1VWkg2TDNsMVR6YWQxOTdvQjExaGMvWU9rMWdQRkJXTGNJb2tF?=
+ =?utf-8?B?SjFFVmZXN1BPNnJIdDY2VEREN3cyeHpFTWE4SGNYbG90UEpwQWgvSmY2RHd1?=
+ =?utf-8?B?azczR3ZoMlUvcXZ4eHJQVXFyKytsMUJvcnFleVZaWUdFWmQ0MmZwOFBCZHRR?=
+ =?utf-8?B?TFhPaVNpNUR0cjNvbXhVcnpLMFJyelpZY2xEWFFpWW0xYmhYc1RvV0FKcXNX?=
+ =?utf-8?B?WlU1R0ZQMEV4VFBXeHNLMFc0bFUxbXlWczl3TW1BbVdQUitVTmJnSlc2Uzg3?=
+ =?utf-8?B?eUVNZGE2bnk2QjQvQ0JVREYzbHNUUnFhUHo5SmlMRWpzTWkxQ01mbzhDbEw0?=
+ =?utf-8?B?R3BCbm5xU3hLMGQzYjNncWRHbHN4T0JWSWV0bkJlSjh0alczT1RCMEpKUzRM?=
+ =?utf-8?B?T3AxUXdibC82WXdlQkwwUEsrSkw3MHdGcWphOUFnUVozSWU0NXVuWTRVcmRw?=
+ =?utf-8?B?YnJETGQwL3BXZGVWbkY3RHg3eU1oMWdkaFBiS25lWUVxWElSRVc4cnA2MTFH?=
+ =?utf-8?B?TEgxQXh2WFNNNE9NTHlSeGM1ZlpWWjNDdGcwNmxPV1pGL2FBYU40MEZZMlpM?=
+ =?utf-8?B?Q3VubkR3ZjBJQzRMOTliQ0pvcS9Ea2o2VjAzZ1VLbWJtS0d3TWVCNzBVK1Nk?=
+ =?utf-8?B?c3Z5d3BMaHB6ZW1YMmdweEtMRm1PaTNWOXUrRjhjM0g2T3B2UmZUS3F2bUpB?=
+ =?utf-8?B?YWJQc3dFUGdXcUdVd2YzbGpEd2lwdkZHL1plWm4veXAzSWc0R280WkVaY1Nh?=
+ =?utf-8?B?ZHZpZUJubEVYL1BrNnR4UjdHTkV0ekNGVmJiZTN4c2l1UG5ya3pGWkNjNWx0?=
+ =?utf-8?B?MmRIT0NldVhydUdzZ0lRY0lLSmVGU2FGRGdkZFhrOVNJUXd1WW5nUm44cTl5?=
+ =?utf-8?B?VUcvN2wzR2FKQms4ZStQT1hSbjNyQ1RsM2NIYW5Lcml6WFJTTG5sSktvWldE?=
+ =?utf-8?B?ZFdNWk9qTkNjcmI2MmJxdTAzWVBGUGJteXptUGVtL29XcDFQakhFR2creHhS?=
+ =?utf-8?B?SHc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2aa38220-57c7-4069-c54f-08dd660935a4
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2025 10:37:53.7928 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2025 10:39:50.0663 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4vNtcLgxFJtpdkKGHg8EYFaC59KI57zutzolLIovRhTP3DGFO9Of7dSmMTb5ZW6F
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7781
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZQBAXOlWpTKgJ1SBBLFjLPufMpHtK/FDvnAW31AhoOUC0RYbUs/iCFS/pqPhBsgsXROXqPu7z76zy0MTg2b2tKG8YrS5P/ofyvxAydVTeXE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5193
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,101 +196,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 18.03.25 um 11:34 schrieb Nitin Gote:
-> Give the scheduler a chance to breathe by calling cond_resched()
-> as some of the loops may take some time on old machines (apl/bsw/pnv), and
-> so catch the attention of the watchdogs.
->
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
-> ---
-> Cc: Christian Konig <christian.koenig@amd.com>
->
-> Hi Konig,
->
-> This is not a functional issue in test.
+Hi Krzysztof,
 
-Exactly that doesn't sounds correct to me.
+> > -	/*
+> > -	 * While we should be able allocate everything without any flag
+> > -	 * restrictions, if we consider I915_BO_ALLOC_CONTIGUOUS then we are
+> > -	 * actually limited to the largest power-of-two for the region size i.e
+> > -	 * max_order, due to the inner workings of the buddy allocator. So make
+> > -	 * sure that does indeed hold true.
+> > -	 */
+> > -
+> >  	obj = igt_object_create(mem, &objects, size, I915_BO_ALLOC_CONTIGUOUS);
+> > -	if (!IS_ERR(obj)) {
+> > -		pr_err("%s too large contiguous allocation was not rejected\n",
+> > +	if (!IS_ERR(obj) && !is_contiguous(obj)) {
+> > +		pr_err("%s large allocation was not contiguous\n",
+> >  		       __func__);
+> >  		err = -EINVAL;
+> >  		goto out_close;
+> >  	}
+> >  
+> 
+> If I understand the test correctly, the goal of the part that you're
+> changing is to see if an attempt at allocating more memory than
+> max_order is properly rejected. Since the allocations are more granular
+> now (not only limited to powers of two), and size doesn't get rounded up
+> to the higher power of two, we should be able to allocate 'size'
+> exactly. Meaning we lose the intended functionality of the test (check
+> if we can't allocate too big of an object), because we're not allocating
+> too big of an object anymore.
 
-> We wish to prevent softlock and allow the
-> dma-fence-chain test run to completion to verify it's functional correctness.
->
-> The performance issue takes about 5ms for the dma-fence-chain to be signalled on
-> older hardware which is an orthogonal issue and to be debugged separately for
-> which the test has to run to completion.
->
-> So, reverting to cond_resched() which fixes the issue instead of
-> delay functions.
+Since the allocator is a lot more lenient now, we could focus on
+getting a contiguous object instead.
 
-See what the warning is all about is that the CPU *busy* on something for more than 26seconds. Even on older hardware that should absolutely not happen.
+> I guess a check for contiguousness does not hurt, but the test behavior
+> is fundamentally different here. Maybe manually rounding size up to the
+> nearest larger power of two would be a better idea here?
 
-So what we either have is a bug in the test case (perfectly possible) or we have a bug in the dma-fence-chain implementation.
+Before changes were made to the allocator we knew that there
+was a corner case with rounding size to the power of two. Now,
+we know that the allocator will take in any appropriate size and
+give us a valid object (correct me if I'm wrong here) - if that
+is the case, then this should just be a check if we fail on a
+size that is too large (unless this is covered by some other
+test).
 
-As long as you don't come with a good explanation why the test case keeps the CPU busy for that long this patch here is a clear NAK from my side.
+> 
+> > +	if (!IS_ERR(obj))
+> > +		close_objects(mem, &objects);
+> > +
 
-Regards,
-Christian.
+This code would obfuscate the original purpose of this test and
+just pass regardless of successful or failed object allocation.
 
->
-> - Nitin
->
->  drivers/dma-buf/st-dma-fence-chain.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/dma-buf/st-dma-fence-chain.c b/drivers/dma-buf/st-dma-fence-chain.c
-> index ed4b323886e4..328a66ed59e5 100644
-> --- a/drivers/dma-buf/st-dma-fence-chain.c
-> +++ b/drivers/dma-buf/st-dma-fence-chain.c
-> @@ -505,6 +505,7 @@ static int signal_forward(void *arg)
->  
->  	for (i = 0; i < fc.chain_length; i++) {
->  		dma_fence_signal(fc.fences[i]);
-> +		cond_resched();
->  
->  		if (!dma_fence_is_signaled(fc.chains[i])) {
->  			pr_err("chain[%d] not signaled!\n", i);
-> @@ -537,6 +538,7 @@ static int signal_backward(void *arg)
->  
->  	for (i = fc.chain_length; i--; ) {
->  		dma_fence_signal(fc.fences[i]);
-> +		cond_resched();
->  
->  		if (i > 0 && dma_fence_is_signaled(fc.chains[i])) {
->  			pr_err("chain[%d] is signaled!\n", i);
-> @@ -587,8 +589,10 @@ static int wait_forward(void *arg)
->  	get_task_struct(tsk);
->  	yield_to(tsk, true);
->  
-> -	for (i = 0; i < fc.chain_length; i++)
-> +	for (i = 0; i < fc.chain_length; i++) {
->  		dma_fence_signal(fc.fences[i]);
-> +		cond_resched();
-> +	}
->  
->  	err = kthread_stop_put(tsk);
->  
-> @@ -616,8 +620,10 @@ static int wait_backward(void *arg)
->  	get_task_struct(tsk);
->  	yield_to(tsk, true);
->  
-> -	for (i = fc.chain_length; i--; )
-> +	for (i = fc.chain_length; i--; ) {
->  		dma_fence_signal(fc.fences[i]);
-> +		cond_resched();
-> +	}
->  
->  	err = kthread_stop_put(tsk);
->  
-> @@ -663,8 +669,10 @@ static int wait_random(void *arg)
->  	get_task_struct(tsk);
->  	yield_to(tsk, true);
->  
-> -	for (i = 0; i < fc.chain_length; i++)
-> +	for (i = 0; i < fc.chain_length; i++) {
->  		dma_fence_signal(fc.fences[i]);
-> +		cond_resched();
-> +	}
->  
->  	err = kthread_stop_put(tsk);
->  
+> >  	obj = igt_object_create(mem, &objects, rounddown_pow_of_two(size),
+> >  				I915_BO_ALLOC_CONTIGUOUS);
+> >  	if (IS_ERR(obj)) {
+> 
+> I'll paste some more lines from that test here:
+> 
+>         obj = igt_object_create(mem, &objects, rounddown_pow_of_two(size),
+>                                 I915_BO_ALLOC_CONTIGUOUS);
+>         if (IS_ERR(obj)) {
+>                 pr_err("%s largest possible contiguous allocation failed\n",
+>                        __func__);
+>                 err = PTR_ERR(obj);
+>                 goto out_close;
+>         }
+> 
+> This is the next check - we see if the largest possible allocation
+> (according to the old logic, it would be 'size' rounded down to the
+> largest smaller or equal power of two) _does_ go through. The success of
+> this particular check isn't affected by the allocator changes, but since
+> rounddown_pow_of_two(size) is not the largest possible allocation
+> anymore, maybe it's better to change this too (e.g. drop the rounddown
+> function). This way we keep the intended test behavior here as well.
+> I suppose this is still in scope of the patch.
 
+Yes, this would be a bit different than the original behavior,
+but we'd be sure to fail object allocation. If no other test
+checks this condition then this test could do that here.
+
+Best Regards,
+Krzysztof
