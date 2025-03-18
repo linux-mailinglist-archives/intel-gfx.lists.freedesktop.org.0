@@ -2,67 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CB6A678FE
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 17:19:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A179A678B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 17:06:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0036E10E1DE;
-	Tue, 18 Mar 2025 16:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D87810E4B0;
+	Tue, 18 Mar 2025 16:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="fM5q+AK1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HZzYOqSi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB8910E1DE;
- Tue, 18 Mar 2025 16:19:30 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net
- [IPv6:2001:4b98:dc4:8::227])
- by mslow3.mail.gandi.net (Postfix) with ESMTP id C251058265C;
- Tue, 18 Mar 2025 16:02:38 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B84CF4431C;
- Tue, 18 Mar 2025 16:02:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1742313755;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=baOMbasIHySzN1tAztBhKFZtQWvc7C7Z2zw5B3J1lYM=;
- b=fM5q+AK1CwYjUwitI0Cpn3nkCc3ChML/bUVxQAO4WCOPMQBJbDA2kT6ZDrE3s9xL9XkiXa
- tidgSSlZ7Nupi/KYPMSJKw0HhIrPemspSi4GI5uaaPpZTDS4B3llqyLOMUbQcNXYW5zFz7
- 1Zw8Tsa83IG1i1MN8kFMc86gDOEiejrvSKL9rJIASf2dGidPgfBJnUsh4sCRr1N4/zuBC/
- 6BKmhNR7WCWdoPbbKnPSwIVzuA+C854HLUpohwXgGw0opkc9L0pV95P71bIHb4h+SlXDMJ
- OpYza+rkGP9mKQah9G3CMEk9LBt9a0q/gx+h5nNvkUXnL9V+z7ZwB0CYpMVKgA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Lucas De Marchi <lucas.demarchi@intel.com>,  Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,  Rodrigo
- Vivi <rodrigo.vivi@intel.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jani Nikula
- <jani.nikula@linux.intel.com>,  Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>,  Reuven Abliyev
- <reuven.abliyev@intel.com>,  Oren Weil <oren.jer.weil@intel.com>,
- linux-mtd@lists.infradead.org,  dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/11] mtd: add driver for Intel discrete graphics
-In-Reply-To: <20250302140921.504304-1-alexander.usyskin@intel.com> (Alexander
- Usyskin's message of "Sun, 2 Mar 2025 16:09:10 +0200")
-References: <20250302140921.504304-1-alexander.usyskin@intel.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Tue, 18 Mar 2025 17:02:33 +0100
-Message-ID: <87frja72ee.fsf@bootlin.com>
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2417A10E4B0;
+ Tue, 18 Mar 2025 16:06:27 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-2255003f4c6so104785235ad.0; 
+ Tue, 18 Mar 2025 09:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742313986; x=1742918786; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=z6e2c0Qk/BdFEUgDNlLPZ7gWsKGT2P7lxLRmr+kXCn0=;
+ b=HZzYOqSiglw4m6J3srkCqHDGTH7Np6ydI9VbwR4QXmjcFDrzR4Qfps+2UMT3ZRKlNq
+ U8BkbI7uGHrqUVtZqklU3HSF/rJiLmwxemqWD9UPz3xmV5ZqmmUHu2BOAxgQt5/MBDPJ
+ umTgAu73XgX/BcRKmPnYVF5fcOigzMVb7ni71qlmVAkwRzQNJhzhTgiGbWZlx6ZGEDCs
+ Qfta+Dj4TbLy1AI3AEEX718NI219HYuipi9eiG4l0lehwmT/pZ7qH9MPSACsx1MuPgGN
+ ee1BuK5s6jKNvDV/RlxkqDcrS5TSE0GUBTmi2LHT6MgrNB/H9oszIuse/Zdkb1fxkNzA
+ Vh5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742313986; x=1742918786;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=z6e2c0Qk/BdFEUgDNlLPZ7gWsKGT2P7lxLRmr+kXCn0=;
+ b=nZ34FpAy4CvatwTX1A6I1x89LFfDtmMoGXxqVmo/eYRkpCR5gg2XBpD6rMPKVgQ0Ac
+ YBuZjKcL891wobObJgtl80cKeBtnZvH7cqQLM5HmTsHQoQnbtfE0ZYIYLszg1qUFItxo
+ EuAw/fVh2JsfuomTl7mO6rM0kFZxQhx1S86GlE1nScTRroC4ZamLOS1QHji5PyAlt7sN
+ hKJaYIhe57igfVVrDuClazKxWFK4ry8uWChLcYxVcHR9iGmSTEHep86uTlGI/8esqfyc
+ CFAMSeQp5ggmqsSPBf5sTJXviqOygxpsRDY6I0/ITQXwM128DnRDyDBCnqjGPe+DcmtG
+ NIcQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV38R1Ld5zk1h3P+j4x1iABKksZOUJVivzVtwRL1VPeuPqrFpRzmUnBssYUYOqJ7Sa7avt4mzfCyAAs@lists.freedesktop.org,
+ AJvYcCVbycmKmxICj6JAx1wjygxiDcNpioj4xboEiMtQQU3yx8OiEUOzvPbn0PgjP7+YRV5Tl37qG0bI4JM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzRJI0jmfkSiBiZzaXFKDtKgYgxxcsMJsPvbYl0yzS8K/bPuBdY
+ WoIR90t3ulbkGTtzYHQ4bWCpARrKC6ly3LEd9Dyw4qoERaLLGOy3
+X-Gm-Gg: ASbGnctIMU+qpelU/LANlXS7nQlMOL0lMSV3W/LmAuwOAMNTiOOwCGIapKEgG7TYe/A
+ lPN5gp49qnOOOLds/QWCDDOFAXOMggHRBy2ZGDx6MMorh9l4qtJu3LJTWuB/aLI0OTioWVZIgOx
+ L9ScxXlDxsrg/1m8FjCHzmKqvyO5Muvr8RFHkPACwe7xWUw1dxDFvzUaYgWuxbSE1ZkAM01tf4+
+ qGc67FKTf/tSoCRtnpl7TlPLij76Cj0R+MT+cI6orm8Ro3lzRPCeNT09OrNYO4KZkgLLXwZy9Va
+ F5eHiRXYbdzXp1f3ToAThw+AVdxuz7+qOi4mMGxEbawKobIDR48NZms/kPQWgWfrOXMc
+X-Google-Smtp-Source: AGHT+IGW5/tNqjQ0xTitfPIj7GeM/eN4Wy3Jsl0PgukZG9i0xnTDK3BvONiq3fuytb5V/HKrSq4TFQ==
+X-Received: by 2002:a05:6a21:9006:b0:1f3:40a9:2c36 with SMTP id
+ adf61e73a8af0-1f5c118107emr24562658637.10.1742313986538; 
+ Tue, 18 Mar 2025 09:06:26 -0700 (PDT)
+Received: from localhost (maglev-oncall.nvidia.com. [216.228.125.128])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-737116b102fsm9758563b3a.166.2025.03.18.09.06.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 18 Mar 2025 09:06:25 -0700 (PDT)
+Date: Tue, 18 Mar 2025 12:06:23 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@aculab.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v6 1/7] bits: split the definition of the asm and non-asm
+ GENMASK()
+Message-ID: <Z9mZ_xIMyqUg2Vs9@thinkpad>
+References: <20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr>
+ <20250308-fixed-type-genmasks-v6-1-f59315e73c29@wanadoo.fr>
+ <Z8swIt7fqpVAp2P8@smile.fi.intel.com>
+ <85639227-68ed-4a8a-8084-1ae0ffcaa638@wanadoo.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugedvkeejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvuddprhgtphhtthhopegrlhgvgigrnhguvghrrdhushihshhkihhnsehinhhtvghlrdgtohhmpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomhdprhgtphhtthhopehluhgtrghsrdguvghmrghrtghhihesihhnthgvlhdrtghomhdprhgtphhtthhopehthhhomhgrshdrhhgvlhhlshhtrhhomheslhhinhhugidrihhnthgvlhdrt
- ghomhdprhgtphhtthhopehrohgurhhighhordhvihhvihesihhnthgvlhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhg
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85639227-68ed-4a8a-8084-1ae0ffcaa638@wanadoo.fr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,29 +103,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Alexander,
+On Sat, Mar 08, 2025 at 06:10:25PM +0900, Vincent Mailhol wrote:
+> On 08/03/2025 at 02:42, Andy Shevchenko wrote:
+> > On Sat, Mar 08, 2025 at 01:48:48AM +0900, Vincent Mailhol via B4 Relay wrote:
+> >> From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> >>
+> >> In an upcoming change, GENMASK() and its friends will indirectly
+> >> depend on sizeof() which is not available in asm.
+> >>
+> >> Instead of adding further complexity to __GENMASK() to make it work
+> >> for both asm and non asm, just split the definition of the two
+> >> variants.
+> > 
+> > ...
+> > 
+> >> -/*
+> >> - * BUILD_BUG_ON_ZERO is not available in h files included from asm files,
+> >> - * disable the input check if that is the case.
+> >> - */
+> > 
+> >> +/*
+> >> + * BUILD_BUG_ON_ZERO() is not available in h files included from asm files, so
+> >> + * no input checks in assembly.
+> >> + */
+> > 
+> > In case of a new version I would reformat this as
+> > 
+> > /*
+> >  * BUILD_BUG_ON_ZERO() is not available in h files included from asm files,
+> >  * so no input checks in assembly.
+> >  */
+> > 
+> > It makes easier to review the changes and see that the first line is kept
+> > the same.
+> 
+> Not fully convinced, but why not. I staged this change locally, it will
+> be in v7.
 
-On 02/03/2025 at 16:09:10 +02, Alexander Usyskin <alexander.usyskin@intel.c=
-om> wrote:
-
-> Add driver for access to Intel discrete graphics card
-> internal NVM device.
-> Expose device on auxiliary bus by i915 and Xe drivers and
-> provide mtd driver to register this device with MTD framework.
->
-> This is a rewrite of "drm/i915/spi: spi access for discrete graphics"
-> and "spi: add driver for Intel discrete graphics"
-> series with connection to the Xe driver and splitting
-> the spi driver part to separate module in mtd subsystem.
->
-> This series intended to be pushed through drm-xe-next.
-
-I need to test patch 1, sorry for the delay, I will do that and if I'm
-happy with the result I'll apply this patch to mtd/next at -rc1 (better
-having this kind of change early in the cycle).
-
-The other patches can go through drm I guess, regardless of the presence
-of patch 1. I'll send my acks after testing.
-
-Thanks,
-Miqu=C3=A8l
+I don't understand why this change is needed at all. The comment
+states the same thing before and after, but the history gets wiped.
+Maybe just don't touch it?
