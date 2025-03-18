@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E94AA66C74
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 08:47:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B97F0A66C77
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 08:47:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F18D10E349;
-	Tue, 18 Mar 2025 07:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C77610E354;
+	Tue, 18 Mar 2025 07:47:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="msh+3u9A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7rsBRpq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE1D10E1FF;
- Tue, 18 Mar 2025 07:47:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8169410E34A;
+ Tue, 18 Mar 2025 07:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742284064; x=1773820064;
+ t=1742284067; x=1773820067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dIVP8wt3LRdkorY6ZkZEN9MdlyK7ZaQW1023vxFZqY0=;
- b=msh+3u9ACf89sn/WtwS1GI9pMX7YxIflsaGQCv+aFvT0igP4Q1lB9j37
- 75RPJkJslrcNyQwQymbov+sZOiL+MoHrFf2a5zbi91tT4AIHX2vQBwSW2
- WU2LMH1sO5Y+PWtOqXn7hN6tJlp0be/jXEsTw/6o5+HxZNsMNFgtYAk52
- 2948hnRb1kjJ2b4N9s2SMFlPCKJgUy0s6ScWDOYLpfb5CRrgRHH2pJrGA
- 8pEwzJE9KqBOxwsYr0/A3uVQHKIOnXenEfDP4/iZW7OvpliqC1CZ0sjdd
- i5IljVVl4BjNLNmd7IPZg7DzsulOT+xKAar72u73DH9PGhoY6UFGMwUP4 g==;
-X-CSE-ConnectionGUID: l5S/xIucTxWAzjmvZGgM1g==
-X-CSE-MsgGUID: GBY8ZqwYQaW08rU82FKndQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="46173781"
-X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="46173781"
+ bh=fjRQI7+XyuhqlYNzouiLm9YBnas0Hb1ABgzhKBNhcU4=;
+ b=W7rsBRpqICw6mZM2TFjGwK91Xo0pylFv0m1MKvsZ0sU5WQeIPiRF8h2q
+ n5yA1/WOU1NuLywrk/plBKms43s63HTDb3J9DfQZ4cW+0OkEN5nOBwReU
+ hL/lvSZYblPBNO1YBck5Q9dvi2OHVyuB3O8tvAJ+jnIXWA7CZ06GJEyWh
+ eUtbTE5YoxLBQmRHGHAmNM8KmYUyUIAiWX76U/Gc4Wf4X1uo81d3fxgRA
+ FKF5aJZtbv7jA7OcufgoIKAZi7quTHXsmagT0anxrzap5XWmns+tF1PGX
+ +26B/LogWSw5+OBtRQHijScJ9YT3+I91/gGmFyCh5Jjuyj0gWzbjlZrks A==;
+X-CSE-ConnectionGUID: ApNzsAA2RJmp3yWuidEzLw==
+X-CSE-MsgGUID: /2KX1CluRCO1DWiY+rpWOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="46173787"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="46173787"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 00:47:44 -0700
-X-CSE-ConnectionGUID: iNooPMnBQ3+rxzHa/KJfAw==
-X-CSE-MsgGUID: Mvc4cVs6QZKYYAPRhY1pzQ==
+ 18 Mar 2025 00:47:46 -0700
+X-CSE-ConnectionGUID: 1yg46hGjT9qKwC/gaIB5SQ==
+X-CSE-MsgGUID: LYSQe9q0REaAI2Ayeqj6Sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="122681583"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="122681613"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 00:47:43 -0700
+ 18 Mar 2025 00:47:45 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 05/16] drm/i915/display: Disable PSR before disabling VRR
-Date: Tue, 18 Mar 2025 13:05:29 +0530
-Message-ID: <20250318073540.2773890-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 06/16] drm/i915/display: Move intel_psr_post_plane_update() at
+ the later
+Date: Tue, 18 Mar 2025 13:05:30 +0530
+Message-ID: <20250318073540.2773890-7-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
 References: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
@@ -69,36 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per bspec 49268: Disable PSR before disabling VRR.
+In intel_post_plane_update() there are things which might need to do
+vblank waits, so enabling PSR as early as we do now is simply
+counter-productive. Therefore move intel_psr_post_plane_update() at the
+last of intel_post_plane_update().
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
  drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3afb85fe8536..246da49af00b 100644
+index 246da49af00b..4a0083fdfb05 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1173,6 +1173,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+@@ -1048,8 +1048,6 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
  		intel_atomic_get_new_crtc_state(state, crtc);
  	enum pipe pipe = crtc->pipe;
  
-+	intel_psr_pre_plane_update(state, crtc);
-+
- 	if (intel_crtc_vrr_disabling(state, crtc)) {
- 		intel_vrr_disable(old_crtc_state);
- 		intel_crtc_update_active_timings(old_crtc_state, false);
-@@ -1183,8 +1185,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 
- 	intel_drrs_deactivate(old_crtc_state);
- 
--	intel_psr_pre_plane_update(state, crtc);
+-	intel_psr_post_plane_update(state, crtc);
 -
- 	if (hsw_ips_pre_update(state, crtc))
- 		intel_crtc_wait_for_next_vblank(crtc);
+ 	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
  
+ 	if (new_crtc_state->update_wm_post && new_crtc_state->hw.active)
+@@ -1078,6 +1076,8 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 
+ 	if (audio_enabling(old_crtc_state, new_crtc_state))
+ 		intel_encoders_audio_enable(state, crtc);
++
++	intel_psr_post_plane_update(state, crtc);
+ }
+ 
+ static void intel_post_plane_update_after_readout(struct intel_atomic_state *state,
 -- 
 2.45.2
 
