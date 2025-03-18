@@ -2,63 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4253A6DB11
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 14:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D87CCA6DB09
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 14:24:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A8E10E34A;
-	Mon, 24 Mar 2025 13:24:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78AB10E343;
+	Mon, 24 Mar 2025 13:24:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RzSZ0j81";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Tue, 18 Mar 2025 07:10:13 UTC
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D432710E02B;
- Tue, 18 Mar 2025 07:10:13 +0000 (UTC)
-X-UUID: 4f57fb3203c711f0a216b1d71e6e1362-20250318
-X-CTIC-Tags: HR_CC_COUNT, HR_CC_DOMAIN_COUNT, HR_CC_NAME, HR_CC_NO_NAME,
- HR_CTE_8B
- HR_CTT_MISS, HR_DATE_H, HR_DATE_WKD, HR_DATE_ZONE, HR_FROM_NAME
- HR_SJ_DIGIT_LEN, HR_SJ_LANG, HR_SJ_LEN, HR_SJ_LETTER, HR_SJ_NOR_SYM
- HR_SJ_PHRASE, HR_SJ_PHRASE_LEN, HR_SJ_WS, HR_TO_COUNT, HR_TO_DOMAIN_COUNT
- HR_TO_NO_NAME, IP_TRUSTED, SRC_TRUSTED, DN_TRUSTED, SA_TRUSTED
- SA_EXISTED, SN_TRUSTED, SN_EXISTED, SPF_NOPASS, DKIM_NOPASS
- DMARC_NOPASS, CIE_BAD, CIE_GOOD_SPF, GTI_FG_BS, GTI_RG_INFO
- GTI_C_BU, AMN_T1, AMN_GOOD, AMN_C_TI, AMN_C_BU ABX_MISS_RDNS
-X-CID-UNFAMILIAR: 1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:85aa7888-d63a-4a57-a857-a3ba91eaaf8d, IP:10,
- URL:0,TC:0,Content:0,EDM:0,RT:0,SF:12,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
- N:release,TS:22
-X-CID-INFO: VERSION:1.1.45, REQID:85aa7888-d63a-4a57-a857-a3ba91eaaf8d, IP:10,
- UR
- L:0,TC:0,Content:0,EDM:0,RT:0,SF:12,FILE:0,BULK:0,RULE:Release_HamU,ACTION
- :release,TS:22
-X-CID-META: VersionHash:6493067, CLOUDID:53507ddbc0bb982542202a760e475476,
- BulkI
- D:250318150502PDHC138U,BulkQuantity:0,Recheck:0,SF:16|19|25|38|44|66|78|10
- 2,TC:nil,Content:0|50,EDM:-3,IP:-2,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:ni
- l,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:
- 0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_USA, TF_CID_SPAM_FSD, TF_CID_SPAM_FSI,
- TF_CID_SPAM_ULN, TF_CID_SPAM_SNR
-X-UUID: 4f57fb3203c711f0a216b1d71e6e1362-20250318
-X-User: yaolu@kylinos.cn
-Received: from localhost.localdomain [(116.128.244.169)] by mailgw.kylinos.cn
- (envelope-from <yaolu@kylinos.cn>) (Generic MTA)
- with ESMTP id 2139052546; Tue, 18 Mar 2025 15:05:01 +0800
-From: Lu Yao <yaolu@kylinos.cn>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Lu Yao <yaolu@kylinos.cn>
-Subject: [PATCH] drm/i915/display: add audio dis/enable when connector hotplug
-Date: Tue, 18 Mar 2025 15:04:35 +0800
-Message-Id: <20250318070435.347383-1-yaolu@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+ [209.85.167.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3912710E257;
+ Tue, 18 Mar 2025 18:59:35 +0000 (UTC)
+Received: by mail-lf1-f50.google.com with SMTP id
+ 2adb3069b0e04-549644ae382so6829292e87.1; 
+ Tue, 18 Mar 2025 11:59:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742324373; x=1742929173; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bWQIFqFySy/IfLYoZhnI0jbbYfw0624lPJKYBJtLI3Q=;
+ b=RzSZ0j811fFjU0ZurOBQ9kxXtzt5yxyWo36oI0Uasfl/FrR95PAWlyOtd7cmV1eHrX
+ NerQEg9kyaDMzU/dR6+K2v8n6U+Bxv/v9WZHiolD6qpD4p7yed7a0BjljDtSAk35F7tP
+ AhXaM86FYT02TnMembVu8N9r1BEy7Nd1/o741BX6Y4GP6FbDBPplnXp5O/HfDAZSayZ1
+ 3mgPKtt4OSueja4Qg6t+ZBc5uWVQTcrOhL3htyBbsNk+6p/euXhJmPaIYiMIUv+y0avg
+ IZ2V9giPKDz2kVCDr3aFQl0TO7YYG13nB20HSYbAWtu2C2gzw1rxRpYWJn03n5JHZoEP
+ W5OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742324373; x=1742929173;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bWQIFqFySy/IfLYoZhnI0jbbYfw0624lPJKYBJtLI3Q=;
+ b=LUY1Ruy1/sQ/2sLYr1z3JAxi4CZ0AswS5yVLavx0mg9mDpEkFrZ/yaqZVq0qTat+15
+ LlLKwrWUQkklXAl7qYji3OQRyaJRqEIyNm4B+3U1ajrux17OHNF0gGoJW/5YoBHLA4Dd
+ xLVBhs1MKRbgQ0Oy7WvIhqk1ZwSs6CDK/7sjdmYNDI9tniDYVQNF+BCGMGFkBbe/kxpW
+ 4zGkHd7r8C5fK5uOwQ4CICs+aMlGwZtPZnIXjNK8QWOUM65KMy5dUle94xtfdS39vMiL
+ kUPUecPPqy3eO04zxAArXxCeK1WUNlp2Z/sM+3/ewOWZl1/1+IVnGz4OZNjrj31oAKRl
+ YXrQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUDmmMYFUZvdmfDgdPgvfAXxiix16iHPLb84hDNSZJkmclYFCR8TTCfdF+N0DKNKyU23sKBgO0ofAWn@lists.freedesktop.org,
+ AJvYcCXo/3SlQVVrdnZTg99A5j9W6aYgUKoAS+Vkr3XdYNmXPrZtIf6t/y+Kdp3yqwvEmz/dWVa4571A@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw9mvzCEbUiozd9TSMztJKMEGuA8S7hb50Qui4rKg6VaeHCj8Jg
+ rQTnYDl075H63b4eK/KNZrpgzSa/+N+EUtd33GxvALeGnGt6YZPu4ZL0zm1N9DLbZjvhIZTHlNg
+ uw2bWJQOGbwB4Vwee5PicgL79Di665DOe
+X-Gm-Gg: ASbGncuBZSQHX1097ITeA1suVc28HhqffBsCXLhyazbuWHuLvPm8+V7xAUpvgJKyhyC
+ ASksD3CdNUB5Bg5TV78Ar48nlH8+Vi67HhW+OkL9qb26Vqyvw1UgR7pVT1GWYSaJZ+af/rEMJ91
+ +4QCqGyKp+8KlvyVouWKEyRgeElis=
+X-Google-Smtp-Source: AGHT+IF3HMeQuFdSa1rMaY2I95QSEZkVa9h37tEZOQ7kmaxIHPwgTnYTGyw+26GvMzhykh7UFEmjoOUoWy6NBQEGFEI=
+X-Received: by 2002:a05:6402:b1c:b0:5e5:b388:2a0d with SMTP id
+ 4fb4d7f45d1cf-5e89f642f5amr15214939a12.15.1742323985585; Tue, 18 Mar 2025
+ 11:53:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250314085858.39328-1-vignesh.raman@collabora.com>
+ <20250314085858.39328-2-vignesh.raman@collabora.com>
+In-Reply-To: <20250314085858.39328-2-vignesh.raman@collabora.com>
+From: Helen Mae Koike Fornazier <helen.fornazier@gmail.com>
+Date: Tue, 18 Mar 2025 15:52:53 -0300
+X-Gm-Features: AQ5f1JryVWVSZD4bokLEXIuAhpHUWqpv08ifu3W4ADTENE5nPzsfoYNxd0R1AD0
+Message-ID: <CAPW4XYZ6+kc+Pj61_Kz8-CEy0Aed92XeXDnUiDAEGNBU+SPxAg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] drm/ci: uprev mesa
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, airlied@gmail.com, 
+ simona.vetter@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, valentine.burley@collabora.com, 
+ lumag@kernel.org, quic_abhinavk@quicinc.com, mripard@kernel.org, 
+ jani.nikula@linux.intel.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 24 Mar 2025 13:24:21 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,78 +93,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now audio enable/disable depends on an atomic commit, it doesn't make
-sence. For wayland, there will trigering an atomic commit, so it
-works well. But for Xorg using modesetting, there won't. In this
-case, unplug the HDMI/DP and the audio jack event is not triggered,
-resulting in still having a HDMI/DP audio output choice.
+Em sex., 14 de mar. de 2025 =C3=A0s 05:59, Vignesh Raman
+<vignesh.raman@collabora.com> escreveu:
+>
+> LAVA was recently patched [1] with a fix on how parameters are parsed in
+> `lava-test-case`, so we don't need to repeat quotes to send the
+> arguments properly to it. Uprev mesa to fix this issue.
+>
+> [1] https://gitlab.com/lava/lava/-/commit/18c9cf79
+>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+>  drivers/gpu/drm/ci/build.sh       | 16 ++++++++--------
+>  drivers/gpu/drm/ci/build.yml      |  8 ++++++++
+>  drivers/gpu/drm/ci/container.yml  | 24 +++++++++++++++++++++++
+>  drivers/gpu/drm/ci/gitlab-ci.yml  | 32 ++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/ci/image-tags.yml |  4 +++-
+>  drivers/gpu/drm/ci/lava-submit.sh |  3 ++-
+>  drivers/gpu/drm/ci/test.yml       |  2 +-
+>  7 files changed, 77 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/ci/build.sh b/drivers/gpu/drm/ci/build.sh
+> index 19fe01257ab9..284873e94d8d 100644
+> --- a/drivers/gpu/drm/ci/build.sh
+> +++ b/drivers/gpu/drm/ci/build.sh
+> @@ -98,14 +98,14 @@ done
+>
+>  make ${KERNEL_IMAGE_NAME}
+>
+> -mkdir -p /lava-files/
+> +mkdir -p /kernel/
 
-Signed-off-by: Lu Yao <yaolu@kylinos.cn>
----
- drivers/gpu/drm/i915/display/intel_hotplug.c | 31 ++++++++++++++++++++
- 1 file changed, 31 insertions(+)
----
-Test hardware:
-  CPU: i5-12500
-  GPU: UHD Graphics 770
+the folder is not lava specific, correct?
+
+>  for image in ${KERNEL_IMAGE_NAME}; do
+> -    cp arch/${KERNEL_ARCH}/boot/${image} /lava-files/.
+> +    cp arch/${KERNEL_ARCH}/boot/${image} /kernel/.
+>  done
+>
+>  if [[ -n ${DEVICE_TREES} ]]; then
+>      make dtbs
+> -    cp ${DEVICE_TREES} /lava-files/.
+> +    cp ${DEVICE_TREES} /kernel/.
+>  fi
+>
+>  make modules
+> @@ -121,11 +121,11 @@ if [[ ${DEBIAN_ARCH} =3D "arm64" ]]; then
+>          -d arch/arm64/boot/Image.lzma \
+>          -C lzma\
+>          -b arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dtb \
+> -        /lava-files/cheza-kernel
+> +        /kernel/cheza-kernel
+>      KERNEL_IMAGE_NAME+=3D" cheza-kernel"
+>
+>      # Make a gzipped copy of the Image for db410c.
+> -    gzip -k /lava-files/Image
+> +    gzip -k /kernel/Image
+>      KERNEL_IMAGE_NAME+=3D" Image.gz"
+>  fi
+>
+> @@ -139,7 +139,7 @@ cp -rfv drivers/gpu/drm/ci/* install/.
+>  . .gitlab-ci/container/container_post_build.sh
+>
+>  if [[ "$UPLOAD_TO_MINIO" =3D "1" ]]; then
+> -    xz -7 -c -T${FDO_CI_CONCURRENT:-4} vmlinux > /lava-files/vmlinux.xz
+> +    xz -7 -c -T${FDO_CI_CONCURRENT:-4} vmlinux > /kernel/vmlinux.xz
+>      FILES_TO_UPLOAD=3D"$KERNEL_IMAGE_NAME vmlinux.xz"
+>
+>      if [[ -n $DEVICE_TREES ]]; then
+> @@ -148,7 +148,7 @@ if [[ "$UPLOAD_TO_MINIO" =3D "1" ]]; then
+>
+>      ls -l "${S3_JWT_FILE}"
+>      for f in $FILES_TO_UPLOAD; do
+> -        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /lava-files/$f \
+> +        ci-fairy s3cp --token-file "${S3_JWT_FILE}" /kernel/$f \
+>                  https://${PIPELINE_ARTIFACTS_BASE}/${DEBIAN_ARCH}/$f
+>      done
+>
+> @@ -165,7 +165,7 @@ ln -s common artifacts/install/ci-common
+>  cp .config artifacts/${CI_JOB_NAME}_config
+>
+>  for image in ${KERNEL_IMAGE_NAME}; do
+> -    cp /lava-files/$image artifacts/install/.
+> +    cp /kernel/$image artifacts/install/.
+>  done
+>
+>  tar -C artifacts -cf artifacts/install.tar install
+> diff --git a/drivers/gpu/drm/ci/build.yml b/drivers/gpu/drm/ci/build.yml
+> index 6c0dc10b547c..8eb56ebcf4aa 100644
+> --- a/drivers/gpu/drm/ci/build.yml
+> +++ b/drivers/gpu/drm/ci/build.yml
+> @@ -143,6 +143,10 @@ debian-arm64-release:
+>    rules:
+>      - when: never
+>
+> +debian-arm64-ubsan:
+> +  rules:
+> +    - when: never
+> +
+>  debian-build-testing:
+>    rules:
+>      - when: never
+> @@ -183,6 +187,10 @@ debian-testing-msan:
+>    rules:
+>      - when: never
+>
+> +debian-testing-ubsan:
+> +  rules:
+> +    - when: never
+> +
+>  debian-vulkan:
+>    rules:
+>      - when: never
+> diff --git a/drivers/gpu/drm/ci/container.yml b/drivers/gpu/drm/ci/contai=
+ner.yml
+> index 07dc13ff865d..56c95c2f91ae 100644
+> --- a/drivers/gpu/drm/ci/container.yml
+> +++ b/drivers/gpu/drm/ci/container.yml
+> @@ -24,6 +24,18 @@ alpine/x86_64_build:
+>    rules:
+>      - when: never
+>
+> +debian/arm32_test-base:
+> +  rules:
+> +    - when: never
+> +
+> +debian/arm32_test-gl:
+> +  rules:
+> +    - when: never
+> +
+> +debian/arm32_test-vk:
+> +  rules:
+> +    - when: never
+> +
+>  debian/arm64_test-gl:
+>    rules:
+>      - when: never
+> @@ -32,6 +44,10 @@ debian/arm64_test-vk:
+>    rules:
+>      - when: never
+>
+> +debian/baremetal_arm32_test:
+> +  rules:
+> +    - when: never
+> +
+>  debian/ppc64el_build:
+>    rules:
+>      - when: never
+> @@ -40,6 +56,14 @@ debian/s390x_build:
+>    rules:
+>      - when: never
+>
+> +debian/x86_32_build:
+> +  rules:
+> +    - when: never
+> +
+> +debian/x86_64_test-android:
+> +  rules:
+> +    - when: never
+> +
+>  debian/x86_64_test-vk:
+>    rules:
+>      - when: never
+> diff --git a/drivers/gpu/drm/ci/gitlab-ci.yml b/drivers/gpu/drm/ci/gitlab=
+-ci.yml
+> index b06b9e7d3d09..55b540c4cf92 100644
+> --- a/drivers/gpu/drm/ci/gitlab-ci.yml
+> +++ b/drivers/gpu/drm/ci/gitlab-ci.yml
+> @@ -1,6 +1,6 @@
+>  variables:
+>    DRM_CI_PROJECT_PATH: &drm-ci-project-path mesa/mesa
+> -  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 7d3062470f3ccc6cb40540e772e902c7=
+e2248024
+> +  DRM_CI_COMMIT_SHA: &drm-ci-commit-sha 82ab58f6c6f94fa80ca7e1615146f083=
+56e3ba69
+>
+>    UPSTREAM_REPO: https://gitlab.freedesktop.org/drm/kernel.git
+>    TARGET_BRANCH: drm-next
+> @@ -187,6 +187,36 @@ stages:
+>      - when: manual
+>
+>
+> +# Repeat of the above but with `when: on_success` replaced with
+> +# `when: delayed` + `start_in:`, for build-only jobs.
+> +# Note: make sure the branches in this list are the same as in
+> +# `.container+build-rules` above.
+> +.build-only-delayed-rules:
+> +  rules:
+> +    - !reference [.common-rules, rules]
+> +    # Run when re-enabling a disabled farm, but not when disabling it
+> +    - !reference [.disable-farm-mr-rules, rules]
+> +    # Never run immediately after merging, as we just ran everything
+> +    - !reference [.never-post-merge-rules, rules]
+> +    # Build everything in merge pipelines
+> +    - if: *is-merge-attempt
+> +      when: delayed
+> +      start_in: &build-delay 5 minutes
+> +    # Same as above, but for pre-merge pipelines
+> +    - if: *is-pre-merge
+> +      when: manual
+> +    # Build everything after someone bypassed the CI
+> +    - if: *is-direct-push
+> +      when: manual
+> +    # Build everything in scheduled pipelines
+> +    - if: *is-scheduled-pipeline
+> +      when: delayed
+> +      start_in: *build-delay
+> +    # Allow building everything in fork pipelines, but build nothing unl=
+ess
+> +    # manually triggered
+> +    - when: manual
+> +
+
+Do you think we could avoid repeating code by using anchor (&) and
+reference (*) ?
+
+https://docs.gitlab.com/ci/yaml/yaml_optimization/#yaml-anchors-for-scripts
+
+Regards,
+Helen
+
+> +
+>  .ci-deqp-artifacts:
+>    artifacts:
+>      name: "${CI_PROJECT_NAME}_${CI_JOB_NAME}"
+> diff --git a/drivers/gpu/drm/ci/image-tags.yml b/drivers/gpu/drm/ci/image=
+-tags.yml
+> index 20049f3626b2..c04ba0e69935 100644
+> --- a/drivers/gpu/drm/ci/image-tags.yml
+> +++ b/drivers/gpu/drm/ci/image-tags.yml
+> @@ -1,5 +1,5 @@
+>  variables:
+> -   CONTAINER_TAG: "20250204-mesa-uprev"
+> +   CONTAINER_TAG: "20250307-mesa-uprev"
+>     DEBIAN_X86_64_BUILD_BASE_IMAGE: "debian/x86_64_build-base"
+>     DEBIAN_BASE_TAG: "${CONTAINER_TAG}"
+>
+> @@ -20,3 +20,5 @@ variables:
+>     DEBIAN_PYUTILS_TAG: "${CONTAINER_TAG}"
+>
+>     ALPINE_X86_64_LAVA_SSH_TAG: "${CONTAINER_TAG}"
+> +
+> +   CONDITIONAL_BUILD_ANGLE_TAG: fec96cc945650c5fe9f7188cabe80d8a
+> diff --git a/drivers/gpu/drm/ci/lava-submit.sh b/drivers/gpu/drm/ci/lava-=
+submit.sh
+> index 6e5ac51e8c0a..f22720359b33 100755
+> --- a/drivers/gpu/drm/ci/lava-submit.sh
+> +++ b/drivers/gpu/drm/ci/lava-submit.sh
+> @@ -48,7 +48,8 @@ ROOTFS_URL=3D"$(get_path_to_artifact lava-rootfs.tar.zs=
+t)"
+>  rm -rf results
+>  mkdir -p results/job-rootfs-overlay/
+>
+> -artifacts/ci-common/generate-env.sh > results/job-rootfs-overlay/set-job=
+-env-vars.sh
+> +artifacts/ci-common/export-gitlab-job-env-for-dut.sh \
+> +    > results/job-rootfs-overlay/set-job-env-vars.sh
+>  cp artifacts/ci-common/init-*.sh results/job-rootfs-overlay/
+>  cp "$SCRIPTS_DIR"/setup-test-env.sh results/job-rootfs-overlay/
+>
+> diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
+> index dbc4ff50d8ff..84a25f0e783b 100644
+> --- a/drivers/gpu/drm/ci/test.yml
+> +++ b/drivers/gpu/drm/ci/test.yml
+> @@ -112,7 +112,7 @@
+>      - kvm
+>    script:
+>      - ln -sf $CI_PROJECT_DIR/install /install
+> -    - mv install/bzImage /lava-files/bzImage
+> +    - mv install/bzImage /kernel/bzImage
+>      - mkdir -p /lib/modules
+>      - install/crosvm-runner.sh install/igt_runner.sh
+>    needs:
+> --
+> 2.47.2
+>
 
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 3adc791d3776..332d6e1a99cd 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -32,6 +32,7 @@
- #include "intel_display_types.h"
- #include "intel_hotplug.h"
- #include "intel_hotplug_irq.h"
-+#include "intel_audio.h"
- 
- /**
-  * DOC: Hotplug
-@@ -415,6 +416,35 @@ void intel_hpd_trigger_irq(struct intel_digital_port *dig_port)
- 	queue_work(i915->display.hotplug.dp_wq, &i915->display.hotplug.dig_port_work);
- }
- 
-+/*
-+ * when connector hotplug state changed, audio need changed too.
-+ */
-+static void i915_audio_hotplug(struct intel_connector *connector)
-+{
-+	struct drm_crtc *crtc;
-+	struct drm_device *dev = connector->base.dev;
-+
-+	drm_for_each_crtc(crtc, dev) {
-+		if (connector->base.state->crtc == crtc) {
-+			struct intel_crtc *intel_crtc = to_intel_crtc(crtc);
-+			struct intel_crtc_state *pipe_config =
-+				to_intel_crtc_state(intel_crtc->base.state);
-+			struct intel_encoder *encoder =
-+				intel_attached_encoder(connector);
-+
-+			if (pipe_config && pipe_config->has_audio) {
-+				if (connector->base.status == connector_status_disconnected)
-+					intel_audio_codec_disable(encoder, pipe_config,
-+								  connector->base.state);
-+				else if (connector->base.status == connector_status_connected)
-+					intel_audio_codec_enable(encoder, pipe_config,
-+								 connector->base.state);
-+			}
-+			break;
-+		}
-+	}
-+}
-+
- /*
-  * Handle hotplug events outside the interrupt handler proper.
-  */
-@@ -487,6 +517,7 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 					drm_connector_get(&connector->base);
- 					first_changed_connector = &connector->base;
- 				}
-+				i915_audio_hotplug(connector);
- 				break;
- 			case INTEL_HOTPLUG_RETRY:
- 				retry |= hpd_bit;
--- 
-2.25.1
-
+--=20
+Helen Koike
