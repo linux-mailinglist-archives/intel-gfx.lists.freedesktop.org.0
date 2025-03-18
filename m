@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3EEA66C6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 08:47:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6805A66C6F
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 08:47:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD7210E1E8;
-	Tue, 18 Mar 2025 07:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6EDC10E1F2;
+	Tue, 18 Mar 2025 07:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AspYtMhb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WsG+9Bzh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89F2310E1E8;
- Tue, 18 Mar 2025 07:47:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 370F810E1EC;
+ Tue, 18 Mar 2025 07:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742284055; x=1773820055;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Pf/1T4RBJBr5ZdLRokyrtg1oRm6foLFjYYrk72Tn8pk=;
- b=AspYtMhb5cETiKdUGXTsPx7vJ9sKaTKYFf156KTpY3MphSGjXQNBSXl6
- 2fxZsMH3iKWm9wiFLQaKegx8BZPuB2soP5z3BF9ere3xsJ6pTE9WRWYhN
- z0RJLcHW3lu1AbyFVE3Zfs0CpY4RQUYGMTBc59HprIgxe7xtGB8aOqXEs
- ETyOyA/4jU0KVrUtgQEyqkdR6NMgftef2YJ6vL7r/TGqaR3E2t09dqBW0
- /c+rNMuCRLOs47plLRDpzjLF/I1ECVIH6W3tc87azdZClFI8H2ydyoOUZ
- Zbty3rCloALvsJbG/qlpAoUnCZOxIb22U2nEEKF0SmWhJpeOxkieeduEK w==;
-X-CSE-ConnectionGUID: 1QaBTj2KSeaM8M6EzHBP3A==
-X-CSE-MsgGUID: ggtuBvrFRGKZ5ijVcODUKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="46173752"
-X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="46173752"
+ t=1742284056; x=1773820056;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/yNPE81NMApOvEupywJTF+47d0HwDx/Qska3+uzh4qk=;
+ b=WsG+9BzhKz2CLgSnWMKBlqhos8PQ1tNtCUxqk0N1+zAuV8mJ3Rw6Mn9i
+ xFZe2tcHsodKxSLdYo0L6CaxqzGqWluaTZn/kHT//nPJouWndWVXcFWrK
+ Xn9C/E9pyAbgDQiFmdEpZwQM+8wOOy+FUhRypEiUUbGeGNb0Z5gp1VCcE
+ 7wk2SMozw4OO5xIe7wIUZ88HTZFDl7inXEF+7PK6JzjQLlVohslnof9Bm
+ nm5LGh1yot3X+FxJt09nF7757ZU4VBOvjQkzRvHXPiVc3qjikEFWt0cxS
+ p+zkxvzu062iYKfY59908t36vGjkCzyN1IzOirYX5q846+u1RiEUKkYEh Q==;
+X-CSE-ConnectionGUID: OH2+MQd9QYGiS5BQ1bArHQ==
+X-CSE-MsgGUID: jSH9F/lORsCsz78zDZ5tyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11376"; a="46173760"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="46173760"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 00:47:34 -0700
-X-CSE-ConnectionGUID: /CrRwnaTTl+KeMpppubU9g==
-X-CSE-MsgGUID: 1AR9lGHbTauDTha0Xjq+OQ==
+ 18 Mar 2025 00:47:36 -0700
+X-CSE-ConnectionGUID: 3NfWgcxJRXmEjiS/yz6YwQ==
+X-CSE-MsgGUID: /c05H3P4S+iygfQNc3tu+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="122681498"
+X-IronPort-AV: E=Sophos;i="6.14,256,1736841600"; d="scan'208";a="122681512"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 00:47:32 -0700
+ 18 Mar 2025 00:47:34 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 00/16] Use VRR timing generator for fixed refresh rate modes
-Date: Tue, 18 Mar 2025 13:05:24 +0530
-Message-ID: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/16] drm/i915/display: Add fixed_rr to crtc_state dump
+Date: Tue, 18 Mar 2025 13:05:25 +0530
+Message-ID: <20250318073540.2773890-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
+References: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,141 +69,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Even though the VRR timing generator (TG) is primarily used for
-variable refresh rates, it can be used for fixed refresh rates as
-well. For a fixed refresh rate the Flip Line and Vmax must be equal
-(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
-dependencies between the VRR timings and the legacy timing generator
-registers.
+Add fixed refresh rate mode in crtc_state dump.
+VRR Timing Generator is running in fixed refresh rate mode when
+vrr.vmin = vrr.vmax = vrr.flipline.
 
-This series is an attempt to use VRR TG for fixed refresh rate.
-For platforms PTL+, always go with VRR timing generator for both fixed and
-variable refresh rate cases.
+v2: s/fixed_rr/fixed rr for consistency with the other stuff. (Ville)
 
-Rev2:
--Added support from MTL+ and for HDMI too.
--Changed VRR VSYNC programming which is required for HDMI.
--Modified vrr compute config for bigjoiner case. (Still to be tested).
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c             | 1 -
+ drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
+ 3 files changed, 3 insertions(+), 2 deletions(-)
 
-Rev3:
--Start support from XE2LPD+ as MTL needs a WA to have PSR +VRR (fixed
-refresh rate)
--Add changes to enable PSR with VRR with fixed refresh rate.
-
-Rev4:
--Addressed review comments from Mitul and rebased.
-
-Rev5:
--Avoid MSA Ignore PAR timing enable bit for fixed refresh rate
-with VRR TG.
--Skip VRR compute config for HDMI connected via DP-HDMI2.1 PCON.
--Print fixed_rr along with other VRR parameters in crtc state dump.
--Rebase
-
-Rev6:
--Refactor VRR code to have distinct modes in which VRR timing generator
-can be used: VRR, FIXED_RR, CMRR.
--Bring the cmmr attributes in vrr struct.
--Remove condition flipline > vmin for LNL.
--Account for vmax being 0 based while MSA vtotal being 1 based.
-
-Rev7:
-I have added patches from series for AS SDP fixes [1] , as without panels
-that support AS SDP gives a lot of issues.
-There were major changes in design as discussed in last version [2].
-Below are the change logs:
-
--Change the design to compute vrr state based on actual uapi.vrr.enable
-knob. So when that knob is disabled we always compute vmin=flipline=vmax.
--Always set vmin=crtc_vtotal instead of the using the current refresh rate
-based approach. This helps to have the same guardband while switching
-between fixed and variable timings.
--Disable CMRR for now to reduce complexity while changing timings on the
-fly.
--Change the state computation and add vmin/vmax/flipline reprogramming
-to vrr_{enable,disable}()
--Introduce the fixed refresh mode from MTL instead of LNL.
-
-[1] https://patchwork.freedesktop.org/series/137035/
-[2] https://patchwork.kernel.org/project/intel-gfx/cover/20241111091221.2992818-1-ankit.k.nautiyal@intel.com/
-
-Rev8:
--Addressed review comments from Ville.
--Refactored few patches.
--Dropped patches:
-1. "drm/i915/vrr: Adjust Vtotal for MSA for fixed timing"
-2. "drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
-refresh rate"
-
-Rev9:
--Fixed issue seen on BAT bugs.
-
-Rev10:
--Drop patch for avoiding VRR for DP with HDMI panel.
--Address comments from Ville.
--Add VRR compute config for DP MST.
--Add HAS_VRR() checks and compute fixed timing for all VRR supporting
-platforms.
--Move guardband and pipeline_full checks
-out from the pure !fastset block in intel_pipe_config_compare().
-
-Rev11:
--Addressed comments from Ville.
--Added only fixed_rr for Joiner.
--Use vrr_possible() before setting fixed timings and before setting
-trans_vrr_ctl.
--Split patch to remove vrr.guardband/pipeline_full from !fastset block.
--Add patch to avoid writing into Vtotal.Vtotal bits when always using
-VRRTG.
-
-Rev12:
--Address comments from Ville.
--Change sequence of Disable VRR.
--Enable Push before VRR Enable.
--Clear Push after VRR Disable.
--Drop patch to remove Vtotal.vtotal bits.
-
-Rev13:
--Reset trans_vrr_ctl in disable transcoder path.
--Do not allow vrr.guardband live programming without modeset for
-platform that always have VRR TG on.
-
-Rev14:
--Add fix for an issue seen after merge of first few refactoring patches.
--Add fix for issue seen on CI.
--Address comments from Ville on last revision.
--Use VRR timing generator by default from PTL
-
-Ankit Nautiyal (16):
-  drm/i915/display: Add fixed_rr to crtc_state dump
-  drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr check
-  drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
-  drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
-  drm/i915/display: Disable PSR before disabling VRR
-  drm/i915/display: Move intel_psr_post_plane_update() at the later
-  drm/i915/vrr: Refactor condition for computing vmax and LRR
-  drm/i915/vrr: Always set vrr vmax/vmin/flipline in
-    vrr_{enable/disable}
-  drm/i915/vrr: Set vrr.enable for VRR TG with fixed_rr
-  drm/i915/display: Use fixed_rr timings in modeset sequence
-  drm/i915/vrr: Use fixed timings for platforms that support VRR
-  drm/i915/display: Use fixed rr timings in
-    intel_set_transcoder_timings_lrr()
-  drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset
-    block
-  drm/i915/vrr: Allow fixed_rr with pipe joiner
-  drm/i915/vrr: Always use VRR timing generator for PTL+
-  drm/i915/vrr: Set trans_vrr_ctl in intel_vrr_set_transcoder_timings()
-
- .../drm/i915/display/intel_crtc_state_dump.c  |   3 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
- drivers/gpu/drm/i915/display/intel_display.c  |  18 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   7 +
- drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 +
- drivers/gpu/drm/i915/display/intel_vrr.c      | 143 ++++++++++++------
- drivers/gpu/drm/i915/display/intel_vrr.h      |   6 +
- 7 files changed, 135 insertions(+), 50 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 599ddce96371..0f0fad329b89 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -294,8 +294,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
+ 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+ 
+-	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
++	drm_printf(&p, "vrr: %s, fixed rr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d vsync start: %d, vsync end: %d\n",
+ 		   str_yes_no(pipe_config->vrr.enable),
++		   str_yes_no(intel_vrr_is_fixed_rr(pipe_config)),
+ 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
+ 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
+ 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 622a70e21737..aa65a6933ddb 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -602,7 +602,6 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	intel_vrr_set_fixed_rr_timings(old_crtc_state);
+ }
+ 
+-static
+ bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+ {
+ 	return crtc_state->vrr.flipline &&
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+index 514822577e8a..65d2b0eead51 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+@@ -35,5 +35,6 @@ int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state);
+ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state);
+ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
+ int intel_vrr_vblank_delay(const struct intel_crtc_state *crtc_state);
++bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_VRR_H__ */
 -- 
 2.45.2
 
