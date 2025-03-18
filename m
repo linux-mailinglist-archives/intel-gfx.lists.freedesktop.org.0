@@ -2,55 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509E6A67F38
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 23:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C238A67FD3
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Mar 2025 23:32:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8310310E4CB;
-	Tue, 18 Mar 2025 22:04:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A57B410E4D5;
+	Tue, 18 Mar 2025 22:32:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fohN1Rfj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijDZHJQM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47DF710E4CB
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Mar 2025 22:04:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B485210E4D4;
+ Tue, 18 Mar 2025 22:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742335444; x=1773871444;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yBGLzjrQFGlRVFWTLdF3mrf1P1AWK6VrVdDBsqvPkic=;
- b=fohN1RfjnyuoY3rqA3xc4E3BCpLiFwww3qwrkrAs4ou59eUUB16S1+UP
- 1bWBczCe63iJwan0/3Syrc8Jnbd5JT1uMzN39Ed4tOAeHNdiHEvgTpJPB
- vfL1WHh3SzfhYuqeUpOtFCtKC6fApEX7+TKN+pf0Kzc65D1I0f7eLCloN
- KZ1WHiO25wlbITq2esk27NYJO4lHBRNBWA/ou1DNl/LUwjFGwwGdRlldV
- ZK9dEkRMqpIfzmKwmoplJ5w7AtsASoUcS0baLbnt5xl1iurjAZdQpnvWr
- J+IxBwtaX50PMN4nICtnFQeA1Izt8mdfdRQmst2rBxK1Kq2nnanN4Q9pw g==;
-X-CSE-ConnectionGUID: Tcf2zvesT3+JEcOssLAfBw==
-X-CSE-MsgGUID: 0koHCHu/QQCSIRy98ZpgPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="31078007"
-X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="31078007"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2025 15:04:04 -0700
-X-CSE-ConnectionGUID: BWp8kym6S1y9EEQ6Gzmw7A==
-X-CSE-MsgGUID: rgPzxpw0TN2LU6E+TGDHyQ==
+ t=1742337170; x=1773873170;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Zz2IldKLM9Obe+OrFKf035q1HtZbGiurWxoXFchIsvM=;
+ b=ijDZHJQMhUsfLTg5NKOrqsbsB0HcScsfnFNdfBzSpQDJlLoGE6uh2K7v
+ N4GXFrNN0fSs5Hd8ElXO07kAmhUQKoz1zOLWAr+cAOlz6Qc/79kGpZuG5
+ ++ZPRCKrhkCG352k7PkSepMF5ybdI7enBCIjS7QX+ZwwhuGzPF0oIq/vg
+ 0zYFS6u1U5mBacKMzvDrM8npCxAVoBroD2/SUGzu+fxixwL0svYaHj4Qr
+ dDI0MZnrOhhQglKKtqg9AWf/q29lpHa3DviIVa1PFm9jXQDQqoCRAUyn7
+ CM3UwOkf0mHg4wfhN0Ri7vuBdfjf8nQ/AmIkTNMCBIrTEtOhVkxEZ2I+B w==;
+X-CSE-ConnectionGUID: hdhzzDKhQ2mic6Caeo3y4g==
+X-CSE-MsgGUID: 2UAWkcTRQEyRjhcq34H1hQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11377"; a="53718131"
+X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="53718131"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 15:32:50 -0700
+X-CSE-ConnectionGUID: 3VarUKRaQL2DxkW/3ySj3Q==
+X-CSE-MsgGUID: ugltZV4CQ/GrJMXqsIfxXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="153235449"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by orviesa002.jf.intel.com with ESMTP; 18 Mar 2025 15:04:04 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH] drm/i915/display: Add link rate and lane count to
- i915_display_info
-Date: Tue, 18 Mar 2025 15:04:01 -0700
-Message-ID: <20250318220401.3904871-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.14,258,1736841600"; d="scan'208";a="123324307"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.228])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2025 15:32:43 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Yury Norov <yury.norov@gmail.com>, mailhol.vincent@wanadoo.fr
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Rasmus Villemoes
+ <linux@rasmusvillemoes.dk>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton
+ <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Andi
+ Shyti <andi.shyti@linux.intel.com>, David Laight
+ <David.Laight@aculab.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v6 4/7] drm/i915: Convert REG_GENMASK*() to fixed-width
+ GENMASK_U*()
+In-Reply-To: <Z9mqUZX4H-CzqbW4@thinkpad>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr>
+ <20250308-fixed-type-genmasks-v6-4-f59315e73c29@wanadoo.fr>
+ <Z9mqUZX4H-CzqbW4@thinkpad>
+Date: Wed, 19 Mar 2025 00:32:40 +0200
+Message-ID: <87ldt2c6lz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,45 +80,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Adding link rate and lane count information to i915_display_info makes it
-easier and faster to access this data compared to checking kernel logs.
-This is particularly beneficial for individuals who are not familiar with
-i915 in the following scenarios:
+On Tue, 18 Mar 2025, Yury Norov <yury.norov@gmail.com> wrote:
+> On Sat, Mar 08, 2025 at 01:48:51AM +0900, Vincent Mailhol via B4 Relay wrote:
+>> From: Lucas De Marchi <lucas.demarchi@intel.com>
+>> 
+>> Now that include/linux/bits.h implements fixed-width GENMASK_U*(), use
+>> them to implement the i915/xe specific macros. Converting each driver
+>> to use the generic macros are left for later, when/if other
+>> driver-specific macros are also generalized.
+>> 
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+>> ---
+>> Changelog:
+>> 
+>>   v5 -> v6:
+>> 
+>>     - No changes.
+>> 
+>>   v4 -> v5:
+>> 
+>>     - Add braket to macro names in patch description,
+>>       e.g. 'REG_GENMASK*' -> 'REG_GENMASK*()'
+>> 
+>>   v3 -> v4:
+>> 
+>>     - Remove the prefixes in macro parameters,
+>>       e.g. 'REG_GENMASK(__high, __low)' -> 'REG_GENMASK(high, low)'
+>> ---
+>>  drivers/gpu/drm/i915/i915_reg_defs.h | 108 ++++-------------------------------
+>>  1 file changed, 11 insertions(+), 97 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+>> index e251bcc0c89f5710125bc70f07851b2cb978c89c..39e5ed9511174b8757b9201bff735fa362651b34 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg_defs.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+>> @@ -9,76 +9,19 @@
+>>  #include <linux/bitfield.h>
+>>  #include <linux/bits.h>
+>>  
+>> -/**
+>> - * REG_BIT() - Prepare a u32 bit value
+>> - * @__n: 0-based bit number
+>> - *
+>> - * Local wrapper for BIT() to force u32, with compile time checks.
+>> - *
+>> - * @return: Value with bit @__n set.
+>> +/*
+>> + * Wrappers over the generic BIT_* and GENMASK_* implementations,
+>> + * for compatibility reasons with previous implementation
+>>   */
+>> -#define REG_BIT(__n)							\
+>> -	((u32)(BIT(__n) +						\
+>> -	       BUILD_BUG_ON_ZERO(__is_constexpr(__n) &&		\
+>> -				 ((__n) < 0 || (__n) > 31))))
+>> +#define REG_GENMASK(high, low)		GENMASK_U32(high, low)
+>> +#define REG_GENMASK64(high, low)	GENMASK_U64(high, low)
+>> +#define REG_GENMASK16(high, low)	GENMASK_U16(high, low)
+>> +#define REG_GENMASK8(high, low)		GENMASK_U8(high, low)
+>
+> Nit. Maybe just
+>
+>  #define REG_GENMASK		GENMASK_U32
 
-* Debugging DP tunnel bandwidth usage in the Thunderbolt driver.
-* During USB4 certification, it is necessary to know the link rate used by
-  the monitor to prove that the DP tunnel can handle required rates.
-* In PHY CTS, when the connector probes are not mounted correctly,
-  some display lanes may not appear in the DP Oscilloscope, leading to CTS
-  failures.
+Please just keep it as it is for clarity.
 
-This change provides validation teams with an easy way to identify and
-troubleshoot issues.
+BR,
+Jani.
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index fdedf65bee53..bda7751472e2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -551,9 +551,10 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
- 	seq_printf(m, "\tpipe__mode=" DRM_MODE_FMT "\n",
- 		   DRM_MODE_ARG(&crtc_state->hw.pipe_mode));
- 
--	seq_printf(m, "\tpipe src=" DRM_RECT_FMT ", dither=%s, bpp=%d\n",
-+	seq_printf(m, "\tpipe src=" DRM_RECT_FMT ", dither=%s, bpp=%d, port_clock=%d, lane_count=%d\n",
- 		   DRM_RECT_ARG(&crtc_state->pipe_src),
--		   str_yes_no(crtc_state->dither), crtc_state->pipe_bpp);
-+		   str_yes_no(crtc_state->dither), crtc_state->pipe_bpp,
-+		   crtc_state->port_clock, crtc_state->lane_count);
- 
- 	intel_scaler_info(m, crtc);
- 
 -- 
-2.43.0
-
+Jani Nikula, Intel
