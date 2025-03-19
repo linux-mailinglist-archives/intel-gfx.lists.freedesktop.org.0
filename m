@@ -2,58 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02A1A695F4
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Mar 2025 18:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7867A69613
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Mar 2025 18:13:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A79110E557;
-	Wed, 19 Mar 2025 17:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7968210E55B;
+	Wed, 19 Mar 2025 17:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ETg2fDrX";
+	dkim=pass (1024-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b="V9hZbCuI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6F010E557
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 17:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742404270; x=1773940270;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=TQHe30DJP+dpAmxcefhO9aTEZvy6xb/xDAdskDfjumY=;
- b=ETg2fDrXmSdgJnm+QHt6tSmbP705eZn1xe73LYq8E47QnQVvIxtZbbfm
- RvyKaMyoCMzgoMvHy/Ai7epbVBPLjiwO1u5mtmjFlluw8KB9iOsIb8Mv1
- ooszVEv8v5+pRAghKu2kOn6ZCgjfSBRPWQafC6kpZTUp8K1rwuUYfWlbI
- Wz7fQnXFu4qIv08hQIKjERt7kIeP5KzP9/nv0hA52WhzB1s5Dwg19kXyo
- /44zVV0UuneOW9krXn1H3Ho9F9bQJxQYSQ5FgdDDfWaJbuqWDtsrkK5IZ
- E80fHBmMfHZ8dub6soS5BDRhDc8+m6+QtVuQ9XoB/EwulFg400LBuzfKq w==;
-X-CSE-ConnectionGUID: fy8LpRidQriKbY7ayts8vw==
-X-CSE-MsgGUID: XSs63yRzRk63t9VtOL6BDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="68961191"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="68961191"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2025 10:11:10 -0700
-X-CSE-ConnectionGUID: MeE1FKmwSgGkmuCLqsPgUw==
-X-CSE-MsgGUID: m+3SpbemT+OauKvX9dsAtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="127405418"
-Received: from unknown (HELO anirban-Z690I-A-ULTRA-PLUS.iind.intel.com)
- ([10.190.216.83])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2025 10:11:08 -0700
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com,
-	badal.nilawar@intel.com,
-	sk.anirban@intel.com
-Subject: [PATCH v5] drm/i915/selftests: Refactor RC6 power measurement and
- error handling
-Date: Wed, 19 Mar 2025 22:38:33 +0530
-Message-Id: <20250319170833.3666096-1-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C796F10E55B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Mar 2025 17:13:37 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 54730A4924A;
+ Wed, 19 Mar 2025 17:08:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2540C4CEE9;
+ Wed, 19 Mar 2025 17:13:35 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="V9hZbCuI"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1742404414;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ezPW8Ofll5jcvPOM6XGPTr1u1TQa1b4BIgp62sYV2Oo=;
+ b=V9hZbCuIKbNh2yo4Rio59GzMwMrTXLGYBYQenS3/BjJcent7rcxiADyKHRY1TBhfNbN4xD
+ lQvl3aDfhRCsnB87O19jWcftG8jD09Nx5fK7wQsxNQth0OO/Jps3aZEpX5VniaiGSr56xl
+ BmZM3I+d4zomsVUol/OMthurcaTEUYU=
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 1495fefb
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Wed, 19 Mar 2025 17:13:33 +0000 (UTC)
+Date: Wed, 19 Mar 2025 18:13:29 +0100
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Markus Theil <theil.markus@gmail.com>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, tytso@mit.edu
+Subject: Re: [PATCH v2 1/3] drm/i915/selftests: use prandom in selftest
+Message-ID: <Z9r7ORwztMxsNyF4@zx2c4.com>
+References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
+ <20250211063332.16542-1-theil.markus@gmail.com>
+ <20250211063332.16542-2-theil.markus@gmail.com>
+ <Z64pkN7eU6yHPifn@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Z64pkN7eU6yHPifn@ashyti-mobl2.lan>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,128 +65,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Revise the power measurement logic to save and evaluate energy values.
-Previously, the test only checked whether the system had entered the RC6
-state, without considering any potential interruptions in that state.
-This update introduces a threshold check to ensure that the GPU remains
-in the RC6 state properly during the specified sleep duration.
+Hi Andi,
 
-v3:
-  - Reorder threshold check (Badal)
+On Thu, Feb 13, 2025 at 06:19:12PM +0100, Andi Shyti wrote:
+> Hi Markus,
+> 
+> On Tue, Feb 11, 2025 at 07:33:30AM +0100, Markus Theil wrote:
+> > This is part of a prandom cleanup, which removes
+> > next_pseudo_random32 and replaces it with the standard PRNG.
+> > 
+> > Signed-off-by: Markus Theil <theil.markus@gmail.com>
+> 
+> I merged just this patch in drm-intel-gt-next.
 
-v4:
-  - Improved commit message (Anshuman)
+This is minorly annoying for me... What am I supposed to do with patches
+2 and 3? Take them through my tree for 6.16 in like half a year? Can I
+just take the v1 into my tree and we can get this done with straight
+forwardly? Or do you have a different suggestion for me?
 
-v5:
-  - Rename variables for improved readability (Anshuman)
-
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rc6.c | 51 ++++++++++++++++++--------
- 1 file changed, 35 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 908483ab0bc8..77c1774ddf37 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -33,15 +33,22 @@ int live_rc6_manual(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_rc6 *rc6 = &gt->rc6;
--	u64 rc0_power, rc6_power;
-+	struct intel_rps *rps = &gt->rps;
- 	intel_wakeref_t wakeref;
-+	u64 rc0_sample_energy[2];
-+	u64 rc6_sample_energy[2];
-+	u64 sleep_time = 1000;
-+	u32 rc0_freq = 0;
-+	u32 rc6_freq = 0;
-+	u64 rc0_power;
-+	u64 rc6_power;
- 	bool has_power;
-+	u64 threshold;
- 	ktime_t dt;
- 	u64 res[2];
- 	int err = 0;
--	u32 rc0_freq = 0;
--	u32 rc6_freq = 0;
--	struct intel_rps *rps = &gt->rps;
-+	u64 diff;
-+
- 
- 	/*
- 	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
-@@ -65,9 +72,9 @@ int live_rc6_manual(void *arg)
- 	res[0] = rc6_residency(rc6);
- 
- 	dt = ktime_get();
--	rc0_power = librapl_energy_uJ();
--	msleep(1000);
--	rc0_power = librapl_energy_uJ() - rc0_power;
-+	rc0_sample_energy[0] = librapl_energy_uJ();
-+	msleep(sleep_time);
-+	rc0_sample_energy[1] = librapl_energy_uJ() - rc0_sample_energy[0];
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
- 	rc0_freq = intel_rps_read_actual_frequency_fw(rps);
-@@ -79,11 +86,12 @@ int live_rc6_manual(void *arg)
- 	}
- 
- 	if (has_power) {
--		rc0_power = div64_u64(NSEC_PER_SEC * rc0_power,
-+		rc0_power = div64_u64(NSEC_PER_SEC * rc0_sample_energy[1],
- 				      ktime_to_ns(dt));
-+
- 		if (!rc0_power) {
- 			if (rc0_freq)
--				pr_debug("No power measured while in RC0! GPU Freq: %u in RC0\n",
-+				pr_debug("No power measured while in RC0! GPU Freq: %uMHz in RC0\n",
- 					 rc0_freq);
- 			else
- 				pr_err("No power and freq measured while in RC0\n");
-@@ -98,10 +106,10 @@ int live_rc6_manual(void *arg)
- 	res[0] = rc6_residency(rc6);
- 	intel_uncore_forcewake_flush(rc6_to_uncore(rc6), FORCEWAKE_ALL);
- 	dt = ktime_get();
--	rc6_power = librapl_energy_uJ();
--	msleep(1000);
-+	rc6_sample_energy[0] = librapl_energy_uJ();
-+	msleep(sleep_time);
- 	rc6_freq = intel_rps_read_actual_frequency_fw(rps);
--	rc6_power = librapl_energy_uJ() - rc6_power;
-+	rc6_sample_energy[1] = librapl_energy_uJ() - rc6_sample_energy[0];
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
- 	if (res[1] == res[0]) {
-@@ -113,13 +121,24 @@ int live_rc6_manual(void *arg)
- 	}
- 
- 	if (has_power) {
--		rc6_power = div64_u64(NSEC_PER_SEC * rc6_power,
-+		rc6_power = div64_u64(NSEC_PER_SEC * rc6_sample_energy[1],
- 				      ktime_to_ns(dt));
--		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
-+		pr_info("GPU consumed %lluuW in RC0 and %lluuW in RC6\n",
- 			rc0_power, rc6_power);
-+
- 		if (2 * rc6_power > rc0_power) {
--			pr_err("GPU leaked energy while in RC6! GPU Freq: %u in RC6 and %u in RC0\n",
--			       rc6_freq, rc0_freq);
-+			pr_err("GPU leaked energy while in RC6!\n"
-+			       "GPU Freq: %uMHz in RC6 and %uMHz in RC0\n"
-+			       "RC0 energy before & after sleep respectively: %lluuJ %lluuJ\n"
-+			       "RC6 energy before & after sleep respectively: %lluuJ %lluuJ\n",
-+			       rc6_freq, rc0_freq, rc0_sample_energy[0], rc0_sample_energy[1],
-+			       rc6_sample_energy[0], rc6_sample_energy[1]);
-+
-+			diff = res[1] - res[0];
-+			threshold = (9 * NSEC_PER_MSEC * sleep_time) / 10;
-+			if (diff < threshold)
-+				pr_err("Did not enter RC6 properly, RC6 start residency=%lluns, RC6 end residency=%lluns\n",
-+				       res[0], res[1]);
- 			err = -EINVAL;
- 			goto out_unlock;
- 		}
--- 
-2.34.1
-
+Jason
