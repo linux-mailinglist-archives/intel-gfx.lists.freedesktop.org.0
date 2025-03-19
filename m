@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBC2A68E3F
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Mar 2025 14:51:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB8DA68E40
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Mar 2025 14:51:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5B810E506;
-	Wed, 19 Mar 2025 13:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEEF10E503;
+	Wed, 19 Mar 2025 13:51:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcLjkwof";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uchfmef5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32E610E500;
- Wed, 19 Mar 2025 13:51:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB67910E503;
+ Wed, 19 Mar 2025 13:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742392310; x=1773928310;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=enOeT0PlSEVb1gUp2uQSlsibxECoX0b1n3pYPBUF6nQ=;
- b=LcLjkwofvtAkI/UGhnNkvhWVIhNDZ9nsvYA5TgurzTDkbHTi9WxPjSs6
- oBUW4yH8kGBNqsNUsxDy7gDjz2wtMFjF3ZSoaeU2XdkGJgYcrTDahNVZL
- RRETuDlCUG5kEOxL85q3DlzMvyLmP3T6ISzpfbusxI7pwUJfiRYslq/4C
- qWnCfE3LILzCqp29WaMu+606H5xq1k6Mqgfn1Y+cznYV6/zK5CNoXxc7f
- 6UshGnlAyM2QI4HlktSPag8QHaP1zakZQFlFVecZPFcz52FaLraIri5ZR
- ubLkXZwTYj9ytm3vvDN8UaoUe5e50gNp/uxOVPwTEY/nD6h0NRTLMYosm A==;
-X-CSE-ConnectionGUID: BYIPdv8OSsulivylyL+NKQ==
-X-CSE-MsgGUID: yG1q+RQFRvKSmRu/9LJNSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="53796094"
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="53796094"
+ t=1742392315; x=1773928315;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fkyg0tCKgmIz9Z1RYoL/mKTgniplwGuVfJx/dAieoYE=;
+ b=Uchfmef5mQmtw8GlZanYhGbraIeJLMA8ufiiTcm6xfSRM1kv1fpqclrt
+ Gp5HuiT5Da7gtx+mBv1V6swOhkVNMzKAlCCqsPZX/8FtqYV12Bczg11wN
+ XGb5I0eIxhaDm7rEDzbu2vPNI8ledUFA4qB/dWkrKE8c3N43JCu12yoKq
+ 70opC0114+K3v8Tq6OEYENw7DXE0QB1SGIYCTZGTx8IS/OYDTgTT8Y1/K
+ hjGJpS9gnDQeKP5G4r7gUnelCRg8gAUVKd6KgS35wXVBf9UXDWkjEY5bc
+ cq6sNA4S6er8pmzAZhscFr3mZ5yvSl9//uEoFJRdF2VBLGDDyYn9l6npl g==;
+X-CSE-ConnectionGUID: m2ArJDL1T/qiMm3MS+nVtQ==
+X-CSE-MsgGUID: Xv4/K0R0TUKO0yb9d4Zqow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11378"; a="53796101"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="53796101"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2025 06:51:49 -0700
-X-CSE-ConnectionGUID: 4sLErQA4SVu3MY8Cf3ST2Q==
-X-CSE-MsgGUID: 6lv+X84FSdivaPEY647lLg==
+ 19 Mar 2025 06:51:55 -0700
+X-CSE-ConnectionGUID: h4MMZFMsTgWprOXh5+bJTw==
+X-CSE-MsgGUID: VCl/LHEAQeykVoRT7fGcnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="123121437"
+X-IronPort-AV: E=Sophos;i="6.14,259,1736841600"; d="scan'208";a="123121441"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO vgovind2-mobl3.intel.com)
  ([10.245.246.3])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2025 06:51:46 -0700
+ 19 Mar 2025 06:51:52 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, jouni.hogander@intel.com,
  ville.syrjala@intel.com, uma.shankar@intel.com, jani.saarinen@intel.com,
  jeevan.b@intel.com
-Subject: [PATCH v2 0/2] update to FBC, PSR combo handling in xe2lpd
-Date: Wed, 19 Mar 2025 15:51:28 +0200
-Message-ID: <20250319135130.122703-1-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 1/2] drm/i915/fbc: keep FBC disabled if selective update is
+ on in xe2lpd
+Date: Wed, 19 Mar 2025 15:51:29 +0200
+Message-ID: <20250319135130.122703-2-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250319135130.122703-1-vinod.govindapillai@intel.com>
+References: <20250319135130.122703-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -70,18 +73,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Keep FBC disabled in case selective update is on in xe2lpd onwards
-as well as we are still seeing some strange underruns in some panels
-while disabling PSR2 if FBC is enabled. Also get rid of the redundant
-panel replay dependency check.
+FBC was disabled in case PSR2 selective update in display 12 to
+14 as part of a wa. From xe2lpd onwards there is a logic to be
+implemented to decide between FBC and selective update. Until
+that logic is implemented keep FBC disabled in case selective
+update is enabled.
 
-Vinod Govindapillai (2):
-  drm/i915/fbc: keep FBC disabled if selective update is on in xe2lpd
-  drm/i915/fbc: remove panel_replay dependency from fbc wa checks
+v1: updated patch description and some explanation and todo
 
- drivers/gpu/drm/i915/display/intel_fbc.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index b6978135e8ad..92b00da4c0ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1464,13 +1464,15 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 	 * Recommendation is to keep this combination disabled
+ 	 * Bspec: 50422 HSD: 14010260002
+ 	 *
+-	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
+-	 * coexist. So if PSR2 selective fetch is supported then mark that
+-	 * FBC is not supported.
+-	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
++	 * TODO: Implement a logic to select between PSR2 selective fetch and
++	 * FBC based on Bspec: 68881 in xe2lpd onwards.
++	 *
++	 * As we still see some strange underruns in those platforms while
++	 * disabling PSR2, keep FBC disabled in case of selective update is on
++	 * until the selection logic is implemented.
+ 	 */
+-	if ((IS_DISPLAY_VER(display, 12, 14) || HAS_FBC_DIRTY_RECT(display)) &&
+-	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
++	if (DISPLAY_VER(display) >= 12 && crtc_state->has_sel_update &&
++	    !crtc_state->has_panel_replay) {
+ 		plane_state->no_fbc_reason = "PSR2 enabled";
+ 		return 0;
+ 	}
 -- 
 2.43.0
 
