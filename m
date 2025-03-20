@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975D3A6A956
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 16:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCDCA6A957
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 16:04:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1F3910E63E;
-	Thu, 20 Mar 2025 15:04:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EBE10E642;
+	Thu, 20 Mar 2025 15:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PahKcilA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XKAPMynR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D049610E63C;
- Thu, 20 Mar 2025 15:04:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6930D10E642;
+ Thu, 20 Mar 2025 15:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742483050; x=1774019050;
+ t=1742483054; x=1774019054;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nQhZvnM/iPU4UTbkSMnDhFSrBJ1p8xqvPHmI5Kqmhsk=;
- b=PahKcilAGvYyro7hgXZMSIYrq17YukrJJbo8UCviO6vJ297UJ8enTk46
- wzm87s0/XaFQKBwcyhWp8HTmI+N/NWx3e0E2bA25VmHG+XCAKzfdemhW3
- 6vOj+yl/WyjeSHtxHiqGjNtl0J+66m0ZAe1C+ObMsAaNaQI7nhU1kclpW
- iXBSwRXr70wCGATZpKL2arls7ghbkntnLc3BM80Fbkz8MM0e+tIcxMKDs
- saCh8niJCGZ5V6qB9lcPFN0pf1zLMmxpKQYjoNUSiT5n6UPu8WtpWt9UL
- aaabd1Smjr15LxLQiYN3czP11B4WOUzR7QrXooJS/GhaW9MdayovF3mnL A==;
-X-CSE-ConnectionGUID: YTrUgeWXQWimNJ1AkMSfcg==
-X-CSE-MsgGUID: xUw95vk3Ss+diK1QS4vVzQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="31311157"
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="31311157"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 08:04:09 -0700
-X-CSE-ConnectionGUID: 1zWIiRlsTVaRc02pkrjV0Q==
-X-CSE-MsgGUID: rrVnZzLfRDWOw8Aa3e4JxQ==
+ bh=3hjtpddOTWUMuZITWP7RNycbTDTwyaGLpmQ9foU+uTo=;
+ b=XKAPMynR9ISMEFM5anlsxXsQfipLJG0OPdF2oR1W8wKKbyRMTZRCKQpp
+ yI3cOIPSzBeavCqq+8i85REWW3gl/7Kkcfa6ryCbo3AcnogIkUKBzw4Mm
+ Qc9kpfOe+q3cbCns10un4uVm7T/SilmuJjF+Mh69j6uAxsGnSrQ2sEKOL
+ nyiachHdthk2gXe4Yk25eGk9rPIVcm4nWXkU8lylIU5xf8cX2whnQl+up
+ BHeFlTFJa2bym9Xjd7qxsZrDIBdDUUYGtZt8jdN+TGD9MQ4DG5UV5mDG3
+ iCp4sgxjhe8NZ8VnaFXdD4wcnKhi+lC17lxmnsbhbq+mDT0Qg8cmtrhAp g==;
+X-CSE-ConnectionGUID: GaCWoOGqR+Gz0/wDakJ1DA==
+X-CSE-MsgGUID: YLy4F96OSNmUkv0/zWBS1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43852649"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="43852649"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 08:04:14 -0700
+X-CSE-ConnectionGUID: WGRv/oH4RyuxYWskfFCWAw==
+X-CSE-MsgGUID: 0enEjogxSC2o9NGi1DP4hQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="146335967"
+X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="123578246"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 08:04:08 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 08:04:12 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 1/6] drm/i915/display: add display specific runtime PM wrappers
-Date: Thu, 20 Mar 2025 17:03:55 +0200
-Message-Id: <086b312367fa0fbd8de92e9764117aa7ff4a8cc5.1742483007.git.jani.nikula@intel.com>
+Subject: [CI 2/6] drm/i915/display: conversions to with_intel_display_rpm()
+Date: Thu, 20 Mar 2025 17:03:56 +0200
+Message-Id: <888566433ca5f31b3fa3c0a192fd495d86c2f201.1742483007.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1742483007.git.jani.nikula@intel.com>
 References: <cover.1742483007.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,244 +70,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add display specific wrappers around the i915 and xe dedicated runtime
-PM interfaces. There are no conversions here, just the wrappers.
-
-Implement with_intel_display_rpm() without needing to provide a local
-variable, which neatly narrows the scope and hides the type of the
-wakeref cookie.
+Convert all with_intel_runtime_pm() uses to with_intel_display_rpm().
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../gpu/drm/i915/display/intel_display_rpm.c  | 68 ++++++++++++++++++
- .../gpu/drm/i915/display/intel_display_rpm.h  | 37 ++++++++++
- drivers/gpu/drm/xe/Makefile                   |  1 +
- drivers/gpu/drm/xe/display/xe_display_rpm.c   | 71 +++++++++++++++++++
- 5 files changed, 178 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rpm.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_rpm.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_rpm.c
+ drivers/gpu/drm/i915/display/intel_backlight.c | 5 ++---
+ drivers/gpu/drm/i915/display/intel_bios.c      | 6 +++---
+ drivers/gpu/drm/i915/display/intel_hdcp.c      | 5 ++---
+ drivers/gpu/drm/i915/display/skl_watermark.c   | 9 +++++----
+ 4 files changed, 12 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index ed05b131ed3a..c8fc271b33b7 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -247,6 +247,7 @@ i915-y += \
- 	display/intel_display_power_map.o \
- 	display/intel_display_power_well.o \
- 	display/intel_display_reset.o \
-+	display/intel_display_rpm.o \
- 	display/intel_display_rps.o \
- 	display/intel_display_snapshot.o \
- 	display/intel_display_wa.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_rpm.c b/drivers/gpu/drm/i915/display/intel_display_rpm.c
-new file mode 100644
-index 000000000000..48da67dd0136
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_rpm.c
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2025 Intel Corporation */
-+
-+#include "i915_drv.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 178dc6c8de80..4f3fa966c537 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -16,6 +16,7 @@
+ #include "intel_backlight_regs.h"
+ #include "intel_connector.h"
+ #include "intel_de.h"
 +#include "intel_display_rpm.h"
-+#include "intel_runtime_pm.h"
-+
-+static struct intel_runtime_pm *display_to_rpm(struct intel_display *display)
-+{
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
-+	return &i915->runtime_pm;
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_raw(struct intel_display *display)
-+{
-+	return intel_runtime_pm_get_raw(display_to_rpm(display));
-+}
-+
-+void intel_display_rpm_put_raw(struct intel_display *display, struct ref_tracker *wakeref)
-+{
-+	intel_runtime_pm_put_raw(display_to_rpm(display), wakeref);
-+}
-+
-+struct ref_tracker *intel_display_rpm_get(struct intel_display *display)
-+{
-+	return intel_runtime_pm_get(display_to_rpm(display));
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_if_in_use(struct intel_display *display)
-+{
-+	return intel_runtime_pm_get_if_in_use(display_to_rpm(display));
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_noresume(struct intel_display *display)
-+{
-+	return intel_runtime_pm_get_noresume(display_to_rpm(display));
-+}
-+
-+void intel_display_rpm_put(struct intel_display *display, struct ref_tracker *wakeref)
-+{
-+	intel_runtime_pm_put(display_to_rpm(display), wakeref);
-+}
-+
-+void intel_display_rpm_put_unchecked(struct intel_display *display)
-+{
-+	intel_runtime_pm_put_unchecked(display_to_rpm(display));
-+}
-+
-+bool intel_display_rpm_suspended(struct intel_display *display)
-+{
-+	return intel_runtime_pm_suspended(display_to_rpm(display));
-+}
-+
-+void assert_display_rpm_held(struct intel_display *display)
-+{
-+	assert_rpm_wakelock_held(display_to_rpm(display));
-+}
-+
-+void intel_display_rpm_assert_block(struct intel_display *display)
-+{
-+	disable_rpm_wakeref_asserts(display_to_rpm(display));
-+}
-+
-+void intel_display_rpm_assert_unblock(struct intel_display *display)
-+{
-+	enable_rpm_wakeref_asserts(display_to_rpm(display));
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_rpm.h b/drivers/gpu/drm/i915/display/intel_display_rpm.h
-new file mode 100644
-index 000000000000..6ef48515f84b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_display_rpm.h
-@@ -0,0 +1,37 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __INTEL_DISPLAY_RPM__
-+#define __INTEL_DISPLAY_RPM__
-+
-+#include <linux/types.h>
-+
-+struct intel_display;
-+struct ref_tracker;
-+
-+struct ref_tracker *intel_display_rpm_get(struct intel_display *display);
-+void intel_display_rpm_put(struct intel_display *display, struct ref_tracker *wakeref);
-+
-+#define __with_intel_display_rpm(__display, __wakeref) \
-+	for (struct ref_tracker *(__wakeref) = intel_display_rpm_get(__display); (__wakeref); \
-+	     intel_display_rpm_put((__display), (__wakeref)), (__wakeref) = NULL)
-+
-+#define with_intel_display_rpm(__display) \
-+	__with_intel_display_rpm((__display), __UNIQUE_ID(wakeref))
-+
-+/* Only for special cases. */
-+bool intel_display_rpm_suspended(struct intel_display *display);
-+
-+void assert_display_rpm_held(struct intel_display *display);
-+void intel_display_rpm_assert_block(struct intel_display *display);
-+void intel_display_rpm_assert_unblock(struct intel_display *display);
-+
-+/* Only for display power implementation. */
-+struct ref_tracker *intel_display_rpm_get_raw(struct intel_display *display);
-+void intel_display_rpm_put_raw(struct intel_display *display, struct ref_tracker *wakeref);
-+
-+struct ref_tracker *intel_display_rpm_get_if_in_use(struct intel_display *display);
-+struct ref_tracker *intel_display_rpm_get_noresume(struct intel_display *display);
-+void intel_display_rpm_put_unchecked(struct intel_display *display);
-+
-+#endif /* __INTEL_DISPLAY_RPM__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9699b08585f7..cd464fe26eb8 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -185,6 +185,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	display/intel_fbdev_fb.o \
- 	display/xe_display.o \
- 	display/xe_display_misc.o \
-+	display/xe_display_rpm.o \
- 	display/xe_display_rps.o \
- 	display/xe_display_wa.o \
- 	display/xe_dsb_buffer.o \
-diff --git a/drivers/gpu/drm/xe/display/xe_display_rpm.c b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-new file mode 100644
-index 000000000000..1955153aadba
---- /dev/null
-+++ b/drivers/gpu/drm/xe/display/xe_display_rpm.c
-@@ -0,0 +1,71 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2025 Intel Corporation */
-+
+ #include "intel_display_types.h"
+ #include "intel_dp_aux_backlight.h"
+ #include "intel_dsi_dcs_backlight.h"
+@@ -901,11 +902,9 @@ static int intel_backlight_device_get_brightness(struct backlight_device *bd)
+ {
+ 	struct intel_connector *connector = bl_get_data(bd);
+ 	struct intel_display *display = to_intel_display(connector);
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+-	intel_wakeref_t wakeref;
+ 	int ret = 0;
+ 
+-	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
++	with_intel_display_rpm(display) {
+ 		u32 hw_level;
+ 
+ 		drm_modeset_lock(&display->drm->mode_config.connection_mutex, NULL);
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index a8d08d7d82b3..fabfcf2caa69 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -37,6 +37,7 @@
+ 
+ #include "i915_drv.h"
+ #include "intel_display.h"
 +#include "intel_display_rpm.h"
-+#include "xe_device_types.h"
-+#include "xe_pm.h"
-+
-+static struct xe_device *display_to_xe(struct intel_display *display)
-+{
-+	return container_of(display, struct xe_device, display);
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_raw(struct intel_display *display)
-+{
-+	return intel_display_rpm_get(display);
-+}
-+
-+void intel_display_rpm_put_raw(struct intel_display *display, struct ref_tracker *wakeref)
-+{
-+	intel_display_rpm_put(display, wakeref);
-+}
-+
-+struct ref_tracker *intel_display_rpm_get(struct intel_display *display)
-+{
-+	return xe_pm_runtime_resume_and_get(display_to_xe(display)) ? INTEL_WAKEREF_DEF : NULL;
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_if_in_use(struct intel_display *display)
-+{
-+	return xe_pm_runtime_get_if_in_use(display_to_xe(display)) ? INTEL_WAKEREF_DEF : NULL;
-+}
-+
-+struct ref_tracker *intel_display_rpm_get_noresume(struct intel_display *display)
-+{
-+	xe_pm_runtime_get_noresume(display_to_xe(display));
-+
-+	return INTEL_WAKEREF_DEF;
-+}
-+
-+void intel_display_rpm_put(struct intel_display *display, struct ref_tracker *wakeref)
-+{
-+	if (wakeref)
-+		xe_pm_runtime_put(display_to_xe(display));
-+}
-+
-+void intel_display_rpm_put_unchecked(struct intel_display *display)
-+{
-+	xe_pm_runtime_put(display_to_xe(display));
-+}
-+
-+bool intel_display_rpm_suspended(struct intel_display *display)
-+{
-+	struct xe_device *xe = display_to_xe(display);
-+
-+	return pm_runtime_suspended(xe->drm.dev);
-+}
-+
-+void assert_display_rpm_held(struct intel_display *display)
-+{
-+	/* FIXME */
-+}
-+
-+void intel_display_rpm_assert_block(struct intel_display *display)
-+{
-+	/* FIXME */
-+}
-+
-+void intel_display_rpm_assert_unblock(struct intel_display *display)
-+{
-+	/* FIXME */
-+}
+ #include "intel_display_types.h"
+ #include "intel_gmbus.h"
+ 
+@@ -3115,7 +3116,6 @@ static const struct vbt_header *intel_bios_get_vbt(struct intel_display *display
+ {
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const struct vbt_header *vbt = NULL;
+-	intel_wakeref_t wakeref;
+ 
+ 	vbt = firmware_get_vbt(display, sizep);
+ 
+@@ -3127,11 +3127,11 @@ static const struct vbt_header *intel_bios_get_vbt(struct intel_display *display
+ 	 * through MMIO or PCI mapping
+ 	 */
+ 	if (!vbt && IS_DGFX(i915))
+-		with_intel_runtime_pm(&i915->runtime_pm, wakeref)
++		with_intel_display_rpm(display)
+ 			vbt = oprom_get_vbt(display, intel_rom_spi(i915), sizep, "SPI flash");
+ 
+ 	if (!vbt)
+-		with_intel_runtime_pm(&i915->runtime_pm, wakeref)
++		with_intel_display_rpm(display)
+ 			vbt = oprom_get_vbt(display, intel_rom_pci(i915), sizep, "PCI ROM");
+ 
+ 	return vbt;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 1bf424a822f3..72a43ef6e4d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -22,6 +22,7 @@
+ #include "intel_de.h"
+ #include "intel_display_power.h"
+ #include "intel_display_power_well.h"
++#include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+ #include "intel_hdcp.h"
+ #include "intel_hdcp_gsc.h"
+@@ -334,9 +335,7 @@ static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *dig_port,
+ 
+ static bool hdcp_key_loadable(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	enum i915_power_well_id id;
+-	intel_wakeref_t wakeref;
+ 	bool enabled = false;
+ 
+ 	/*
+@@ -349,7 +348,7 @@ static bool hdcp_key_loadable(struct intel_display *display)
+ 		id = SKL_DISP_PW_1;
+ 
+ 	/* PG1 (power well #1) needs to be enabled */
+-	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
++	with_intel_display_rpm(display)
+ 		enabled = intel_display_power_well_is_enabled(display, id);
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 91ab8537347f..a6af5e4ba4d4 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -19,6 +19,7 @@
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_display_power.h"
++#include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+ #include "intel_fb.h"
+ #include "intel_fixed.h"
+@@ -4057,7 +4058,7 @@ static ssize_t skl_watermark_ipc_status_write(struct file *file,
+ {
+ 	struct seq_file *m = file->private_data;
+ 	struct drm_i915_private *i915 = m->private;
+-	intel_wakeref_t wakeref;
++	struct intel_display *display = &i915->display;
+ 	bool enable;
+ 	int ret;
+ 
+@@ -4065,11 +4066,11 @@ static ssize_t skl_watermark_ipc_status_write(struct file *file,
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
++	with_intel_display_rpm(display) {
+ 		if (!skl_watermark_ipc_enabled(i915) && enable)
+-			drm_info(&i915->drm,
++			drm_info(display->drm,
+ 				 "Enabling IPC: WM will be proper only after next commit\n");
+-		i915->display.wm.ipc_enabled = enable;
++		display->wm.ipc_enabled = enable;
+ 		skl_watermark_ipc_update(i915);
+ 	}
+ 
 -- 
 2.39.5
 
