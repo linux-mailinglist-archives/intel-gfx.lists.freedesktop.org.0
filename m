@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25FB9A6A8E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 15:46:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46935A6A8EB
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 15:46:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96FB110E630;
-	Thu, 20 Mar 2025 14:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF01110E634;
+	Thu, 20 Mar 2025 14:46:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XDLZ958T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ma8LYYtW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBDFF10E639;
- Thu, 20 Mar 2025 14:46:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A4C110E636;
+ Thu, 20 Mar 2025 14:46:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742481971; x=1774017971;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bnW0oAYJ9AwD/jiWQcQ8ELv9l7Uruama3Nan+FpMCSw=;
- b=XDLZ958TJsHVLOx9nnvCjVFLrCvEVw7Qt3j2yZeQJZ9M2/9gnahfQh9R
- RBjy8bvrBglDc1F+ABKrvbUDvJR/sIGj2RCAKRr4/nT6mnOof2oWrSsqC
- xGeT9iUPtTZUw8N3Y9C+Xj6r2MsCJvd6vrm9mGtDnYqynRMyR+OXO3jiQ
- jkS4g0TJq9CROKg4/tlQ9rlWPgp/1s/ZJ8B/z1HSVcXJrwNRf0isHamW8
- SCwguSCRICG78UZU7LNHVhulgZ/eI6CXXNEnC6RatNkfIIEsF7MJg3H2C
- jdWq0f8I1cHqb3pKSRsqzn2h5ERraP6RwYcKlEq9ODoeVai79VvOXqbkU Q==;
-X-CSE-ConnectionGUID: bzAAHargTVqK3Yoh9iCR9g==
-X-CSE-MsgGUID: zr3SZyrQR+2SlmH966HGRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43599865"
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="43599865"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 07:46:10 -0700
-X-CSE-ConnectionGUID: 545doXwnS6uSGnTQX4+tRQ==
-X-CSE-MsgGUID: OVqxsFy7Raa+fQSlTnxJ0g==
+ t=1742481983; x=1774017983;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uWz1vp2Muw1hGpm9TdpzxdEJdT+2LcWUr6pOKE9gPFg=;
+ b=ma8LYYtWGuSTXQDThdGvkhvSRnpfH31BgP5nrJG+ZhnAEVqBqb3MT5A0
+ uVOOI8YMhMrFHooGgswWrOBl+tQPbqphn3hQsQGMmPj7ZEHuPAtUCeOiH
+ 5XnFWw9k9EjcAiImT+sbobORMDqjQp+KjIQMAVr+a6M2eIVImWkmjsnGE
+ yqzTsDoICfHcCJ2/B1QQ5o3RwFWGVHVhdntnSvJVyZ4p9iLd6kno6yYBW
+ XGdDX84DS/I/ONucOxUQKZGgJdvHvJlH8UG38AatSrE0ren8Sz11LhI/5
+ Z31s1W0sBvlo5jdF5udyIJcbPyfD47G7eFtzr6DQwniVj39NkXsA7dher w==;
+X-CSE-ConnectionGUID: 7ylFAJOHTNSq49SZFTSPXA==
+X-CSE-MsgGUID: cbAs/2wDQzKbHsYQ89GOwQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="42964299"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="42964299"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 07:46:15 -0700
+X-CSE-ConnectionGUID: InaQXZmvRiSjSz5Eermndw==
+X-CSE-MsgGUID: VKFOZ7Z0QZihRWpVAamiLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="146326765"
+X-IronPort-AV: E=Sophos;i="6.14,261,1736841600"; d="scan'208";a="128337230"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 07:46:09 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2025 07:46:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [CI 0/9] drm/i915/display: conversions to struct intel_display
-Date: Thu, 20 Mar 2025 16:45:56 +0200
-Message-Id: <cover.1742481923.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com, Uma Shankar <uma.shankar@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [CI 1/9] drm/i915/color: prefer display->platform.<platform> checks
+Date: Thu, 20 Mar 2025 16:45:57 +0200
+Message-Id: <d57fd6444c512b3cc35c0e216c86eeb95124eead.1742481923.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1742481923.git.jani.nikula@intel.com>
+References: <cover.1742481923.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -68,49 +71,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Resend for CI.
+This let's us drop the dependency on i915_drv.h.
 
-Jani Nikula (9):
-  drm/i915/color: prefer display->platform.<platform> checks
-  drm/i915/connector: convert intel_connector.c to struct intel_display
-  drm/i915/hotplug: convert intel_hotplug.[ch] to struct intel_display
-  drm/i915/hotplug: convert hotplug debugfs to struct intel_display
-  drm/i915/hotplug: convert hotplug irq handling to intel_de_*()
-  drm/i915/hotplug: convert intel_hotplug_irq.[ch] to struct
-    intel_display
-  drm/i915/irq: convert intel_display_irq.[ch] interfaces to struct
-    intel_display
-  drm/i915/irq: convert rest of intel_display_irq.[ch] to struct
-    intel_display
-  drm/i915/display: rename I915_HAS_HOTPLUG() to HAS_HOTPLUG
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_color.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  24 +-
- drivers/gpu/drm/i915/display/intel_color.c    |  16 +-
- .../gpu/drm/i915/display/intel_connector.c    |  45 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
- .../drm/i915/display/intel_display_debugfs.c  |   2 +-
- .../drm/i915/display/intel_display_device.h   |   2 +-
- .../drm/i915/display/intel_display_driver.c   |  16 +-
- .../gpu/drm/i915/display/intel_display_irq.c  | 742 +++++++++---------
- .../gpu/drm/i915/display/intel_display_irq.h  |  75 +-
- .../i915/display/intel_display_power_well.c   |  18 +-
- .../drm/i915/display/intel_display_reset.c    |   4 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
- .../drm/i915/display/intel_fifo_underrun.c    |  27 +-
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 348 ++++----
- drivers/gpu/drm/i915/display/intel_hotplug.h  |  26 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  | 623 +++++++--------
- .../gpu/drm/i915/display/intel_hotplug_irq.h  |  28 +-
- drivers/gpu/drm/i915/display/intel_pipe_crc.c |   3 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   4 +-
- .../drm/i915/display/skl_universal_plane.c    |   6 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |   6 +-
- drivers/gpu/drm/i915/i915_driver.c            |  14 +-
- drivers/gpu/drm/i915/i915_irq.c               | 123 +--
- drivers/gpu/drm/xe/display/xe_display.c       |  38 +-
- 25 files changed, 1118 insertions(+), 1086 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index cfe14162231d..bbf6df7ebb95 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -22,7 +22,7 @@
+  *
+  */
+ 
+-#include "i915_drv.h"
++#include "i915_utils.h"
+ #include "i9xx_plane_regs.h"
+ #include "intel_color.h"
+ #include "intel_color_regs.h"
+@@ -405,14 +405,13 @@ static void icl_read_csc(struct intel_crtc_state *crtc_state)
+ static bool ilk_limited_range(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	/* icl+ have dedicated output CSC */
+ 	if (DISPLAY_VER(display) >= 11)
+ 		return false;
+ 
+ 	/* pre-hsw have TRANSCONF_COLOR_RANGE_SELECT */
+-	if (DISPLAY_VER(display) < 7 || IS_IVYBRIDGE(i915))
++	if (DISPLAY_VER(display) < 7 || display->platform.ivybridge)
+ 		return false;
+ 
+ 	return crtc_state->limited_color_range;
+@@ -516,7 +515,6 @@ static void ilk_csc_convert_ctm(const struct intel_crtc_state *crtc_state,
+ static void ilk_assign_csc(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	bool limited_color_range = ilk_csc_limited_range(crtc_state);
+ 
+ 	if (crtc_state->hw.ctm) {
+@@ -538,7 +536,7 @@ static void ilk_assign_csc(struct intel_crtc_state *crtc_state)
+ 		 * LUT is needed but CSC is not we need to load an
+ 		 * identity matrix.
+ 		 */
+-		drm_WARN_ON(display->drm, !IS_GEMINILAKE(i915));
++		drm_WARN_ON(display->drm, !display->platform.geminilake);
+ 
+ 		ilk_csc_copy(display, &crtc_state->csc, &ilk_csc_matrix_identity);
+ 	} else {
+@@ -3983,12 +3981,10 @@ int intel_color_init(struct intel_display *display)
+ 
+ void intel_color_init_hooks(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (HAS_GMCH(display)) {
+-		if (IS_CHERRYVIEW(i915))
++		if (display->platform.cherryview)
+ 			display->funcs.color = &chv_color_funcs;
+-		else if (IS_VALLEYVIEW(i915))
++		else if (display->platform.valleyview)
+ 			display->funcs.color = &vlv_color_funcs;
+ 		else if (DISPLAY_VER(display) >= 4)
+ 			display->funcs.color = &i965_color_funcs;
+@@ -4005,7 +4001,7 @@ void intel_color_init_hooks(struct intel_display *display)
+ 			display->funcs.color = &skl_color_funcs;
+ 		else if (DISPLAY_VER(display) == 8)
+ 			display->funcs.color = &bdw_color_funcs;
+-		else if (IS_HASWELL(i915))
++		else if (display->platform.haswell)
+ 			display->funcs.color = &hsw_color_funcs;
+ 		else if (DISPLAY_VER(display) == 7)
+ 			display->funcs.color = &ivb_color_funcs;
 -- 
 2.39.5
 
