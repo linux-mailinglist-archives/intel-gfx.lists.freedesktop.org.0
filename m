@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838BBA6ACEB
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 19:13:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B86BA6B035
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Mar 2025 22:58:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09A3E10E67C;
-	Thu, 20 Mar 2025 18:13:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdemRSzV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD73E10E2EA;
+	Thu, 20 Mar 2025 21:58:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF09410E67C;
- Thu, 20 Mar 2025 18:12:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742494380; x=1774030380;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=mnq7slaAdZ5/GC5OU3Sg3+Z9jNWu9768OgvO8AvdeKs=;
- b=hdemRSzVAL1vM53/R4O/5+9cuaXJpAgIrsKPVLjGftix8x0EE3x5NuUw
- +1ks+neUpGa/vnOqIh1/t+3ZlBKX5LeBXLgBvMvI7bIMvNf7mKvuTtsU5
- cTzVqicUhT1ax1Ks6ykBA2BM6bjs/A9e/YsvzH9/6mIVPh/hHmV9dxgp5
- m/KBUNZH04a4U6LxIixcn5Fpzc3PnPNg4B1MjGAFAnYELeRYGGORiMr4s
- rKmyLez9+5feJ2xCYi/3v2ftatnyZgIhOuiq30Dmsy7U4tpdAqGQKWPnO
- 71PMXTBFSy6sNS/3V5wpf03gnF9u7yPGDZTLmdZdCWiY85TusU7EoCzFK A==;
-X-CSE-ConnectionGUID: 2AcMmcmPTli/YqrGkuifxA==
-X-CSE-MsgGUID: SV4RwOeuR+WRw8+d9PrXCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="61141408"
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="61141408"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 11:13:00 -0700
-X-CSE-ConnectionGUID: aBmKhgSbTiiPoSYuHpmn4g==
-X-CSE-MsgGUID: YUqkYmkaQKuMNn55HDOiCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,262,1736841600"; d="scan'208";a="160405340"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.246.115])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 11:12:56 -0700
-Date: Thu, 20 Mar 2025 19:12:36 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <Z9xalLaCWsNbh0P0@fedora>
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5766D10E2EA;
+ Thu, 20 Mar 2025 21:58:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?add_display_specific_runtime_PM_interface_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Mar 2025 21:58:19 -0000
+Message-ID: <174250789935.61229.6934599853891416931@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <cover.1742483007.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1742483007.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +37,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona!
+== Series Details ==
 
-Rodrigo is out this week, but sending a PR for a single fix.
+Series: drm/i915/display: add display specific runtime PM interface (rev3)
+URL   : https://patchwork.freedesktop.org/series/146134/
+State : warning
 
-Thanks,
-Thomas
+== Summary ==
 
-drm-xe-fixes-2025-03-20:
-Driver Changes:
-- Fix for an error if exporting a dma-buf multiple time (Tomasz)
-The following changes since commit f5d4e81774c42d9c2ea3980e570f3330ff2ed5d2:
+Error: dim checkpatch failed
+10e7f1e05625 drm/i915/display: add display specific runtime PM wrappers
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
 
-  drm/xe: remove redundant check in xe_vm_create_ioctl() (2025-03-10 14:01:43 -0400)
+-:122: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#122: FILE: drivers/gpu/drm/i915/display/intel_display_rpm.h:15:
++#define __with_intel_display_rpm(__display, __wakeref) \
++	for (struct ref_tracker *(__wakeref) = intel_display_rpm_get(__display); (__wakeref); \
++	     intel_display_rpm_put((__display), (__wakeref)), (__wakeref) = NULL)
 
-are available in the Git repository at:
+-:122: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__wakeref' - possible side-effects?
+#122: FILE: drivers/gpu/drm/i915/display/intel_display_rpm.h:15:
++#define __with_intel_display_rpm(__display, __wakeref) \
++	for (struct ref_tracker *(__wakeref) = intel_display_rpm_get(__display); (__wakeref); \
++	     intel_display_rpm_put((__display), (__wakeref)), (__wakeref) = NULL)
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-03-20
+total: 0 errors, 1 warnings, 2 checks, 190 lines checked
+6c6d868ad9e7 drm/i915/display: conversions to with_intel_display_rpm()
+955fdbdadcd1 drm/i915/display: use display runtime PM interfaces for for atomic state
+f188d44786ed drm/i915/display: convert to display runtime PM interfaces
+39f3b1c8e34d drm/i915/power: convert to display runtime PM interfaces
+f636fce09e18 drm/xe/compat: remove intel_runtime_pm.h
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+deleted file mode 100644
 
-for you to fetch changes up to 50af7cab7520e46680cf4633bba6801443b75856:
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
 
-  drm/xe: Fix exporting xe buffers multiple times (2025-03-20 17:59:49 +0100)
 
-----------------------------------------------------------------
-Driver Changes:
-- Fix for an error if exporting a dma-buf multiple time (Tomasz)
-
-----------------------------------------------------------------
-Tomasz Rusinowicz (1):
-      drm/xe: Fix exporting xe buffers multiple times
-
- drivers/gpu/drm/xe/xe_bo.h      | 2 --
- drivers/gpu/drm/xe/xe_dma_buf.c | 2 +-
- 2 files changed, 1 insertion(+), 3 deletions(-)
