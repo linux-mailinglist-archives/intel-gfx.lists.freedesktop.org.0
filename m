@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053C8A6BAD9
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2619EA6BADE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:41:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AABF10E7BA;
-	Fri, 21 Mar 2025 12:40:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 996FE10E7BE;
+	Fri, 21 Mar 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PgfSVOtb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ec7ew6+t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36C8B10E7BA;
- Fri, 21 Mar 2025 12:40:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6F5410E7BC;
+ Fri, 21 Mar 2025 12:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742560807; x=1774096807;
+ t=1742560869; x=1774096869;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=Z1YQnoXve8vInvOh7mhVh01I36/jYecykrFIZLw5ta4=;
- b=PgfSVOtbLAuiPCPhkTJErxdt1m1ZTRbJ447it9MQBN5bm+E0POEzD0IR
- kslnEwJtuoni/F6A/UdOHu3/aAifOkLi5O7mjsXISkfZE//iIuCHcb7om
- BOZti6XMC3Tr+B1F+z9I2obeKpINoOFrL/y6/ZYwhad3uar3FiyMc9kUj
- ZrmIHfEf7WD7bRoE+6WmCTQjvW+H035w+p27MdcBy+h4KKIQjxWXaaVuq
- oS0kv3YEXMt9yCE0SUMl29iD/hM1TxHtR4JTfLrCMCq1YyA/QhFst4KTQ
- S5txa7zojEA5cnqkCIo9iODaeVMl35977s3SsvUamxab32sUyRYZfJyMX w==;
-X-CSE-ConnectionGUID: OGSAsSIeR4W+05eSvEIK8g==
-X-CSE-MsgGUID: qBF4+PA8S5yYamVXE5XQKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54493346"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="54493346"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:40:06 -0700
-X-CSE-ConnectionGUID: YrQ3OFUnTfOfc4aSfeF7lg==
-X-CSE-MsgGUID: G+hv3k7SRA2ifLfktzJ7LQ==
+ bh=Y2846tBuL2mWBVQlc560xA5UiYRZ8PX5caGQUYX3m5o=;
+ b=Ec7ew6+tIevrsYQPXqDnjx+zMHZXHqiLEmkUXpqb0KvfwqCdRgUuFIkX
+ lUJCiuKCbt0grkxgyzjVHCFppxvffECa2U5Oiy7CruyzEPPo9WLu8L4xu
+ JSa8JjyADZiT8f6HXetnssd6Go7pYBN5IRvIaT2dos0V/kyj0JwdDNnQl
+ jIwSn8FZJU9psg3sHxpjjcxta1zzxzqv4SVv9hKN/teQtr6vziQESY93x
+ ocVCjjdBnXe/2wAc5ZH/A3d6NL7NMfvomMNxKBTDQRsxuo2Rmcoo+FQEb
+ +LvfWvRAQEpJx06dtd6Ybja0MHxya11qMgJVWYCrAKGCFCwt7Wjj621Q6 A==;
+X-CSE-ConnectionGUID: 1aHRvC9sRsaaGAFR51pZBg==
+X-CSE-MsgGUID: gHlbvb50StWyxP9SXYmS5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="31416198"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="31416198"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:41:08 -0700
+X-CSE-ConnectionGUID: xnWMy0feS82fNJIl+FCjBw==
+X-CSE-MsgGUID: OaH24dpNSFmCPYM51NjsrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="154399878"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128502379"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:39:57 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:41:05 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2 05/11] drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when
- enabling PSR
-In-Reply-To: <20250317081905.3683654-6-jouni.hogander@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, Yue Haibing
+ <yuehaibing@huawei.com>, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, dev@lankhorst.se
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH -next] drm/i915/display: Fix build error without
+ DRM_FBDEV_EMULATION
+In-Reply-To: <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250317081905.3683654-1-jouni.hogander@intel.com>
- <20250317081905.3683654-6-jouni.hogander@intel.com>
-Date: Fri, 21 Mar 2025 14:39:55 +0200
-Message-ID: <871puqd0bo.fsf@intel.com>
+References: <20250315120143.2344958-1-yuehaibing@huawei.com>
+ <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
+Date: Fri, 21 Mar 2025 14:41:02 +0200
+Message-ID: <87y0wyblpd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,66 +75,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 Mar 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR as described in workaround
-> for underrun on idle PSR HW issue (Wa_16025596647).
+On Mon, 17 Mar 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> Am 15.03.25 um 13:01 schrieb Yue Haibing:
+>> In file included from <command-line>:
+>> ./drivers/gpu/drm/i915/display/intel_fbdev.h: In function =E2=80=98intel=
+_fbdev_framebuffer=E2=80=99:
+>> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: error: =E2=80=98NULL=
+=E2=80=99 undeclared (first use in this function)
+>>     32 |         return NULL;
+>>        |                ^~~~
+>> ./drivers/gpu/drm/i915/display/intel_fbdev.h:1:1: note: =E2=80=98NULL=E2=
+=80=99 is defined in header =E2=80=98<stddef.h>=E2=80=99; did you forget to=
+ =E2=80=98#include <stddef.h>=E2=80=99?
+>>    +++ |+#include <stddef.h>
+>>      1 | /* SPDX-License-Identifier: MIT */
+>> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: note: each undeclare=
+d identifier is reported only once for each function it appears in
+>>     32 |         return NULL;
+>>        |                ^~~~
+>>
+>> Build fails if CONFIG_DRM_FBDEV_EMULATION is n, add missing header file.
+>>
+>> Fixes: 9fa154f40eb6 ("drm/{i915,xe}: Run DRM default client setup")
+>> Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
 >
-> Bspec: 74151
->
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index 1415e1e7aaf2c..a3946eef44f0d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -37,6 +37,7 @@
->  #include "intel_de.h"
->  #include "intel_display_irq.h"
->  #include "intel_display_types.h"
-> +#include "intel_dmc_regs.h"
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-Mildly annoying to poke at dmc registers from psr code.
+Merged to drm-intel-next, thanks for the patch and ack.
 
 BR,
 Jani.
 
->  #include "intel_dp.h"
->  #include "intel_dp_aux.h"
->  #include "intel_frontbuffer.h"
-> @@ -1961,6 +1962,13 @@ static void intel_psr_enable_source(struct intel_d=
-p *intel_dp,
->  			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
->  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
->  	}
-> +
-> +	/* Wa_16025596647 */
-> +	if ((DISPLAY_VER(display) =3D=3D 20 ||
-> +	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
-> +	    !intel_dp->psr.panel_replay_enabled)
-> +		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe), 0,
-> +			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS);
->  }
->=20=20
->  static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
-> @@ -2186,6 +2194,13 @@ static void intel_psr_disable_locked(struct intel_=
-dp *intel_dp)
->  					   DP_RECEIVER_ALPM_CONFIG, 0);
->  	}
->=20=20
-> +	/* Wa_16025596647 */
-> +	if ((DISPLAY_VER(display) =3D=3D 20 ||
-> +	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
-> +	    !intel_dp->psr.panel_replay_enabled)
-> +		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe),
-> +			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS, 0);
-> +
->  	intel_dp->psr.enabled =3D false;
->  	intel_dp->psr.panel_replay_enabled =3D false;
->  	intel_dp->psr.sel_update_enabled =3D false;
+>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_fbdev.h | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/dr=
+m/i915/display/intel_fbdev.h
+>> index ca2c8c438f02..89bad3a2b01a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+>> @@ -6,6 +6,8 @@
+>>   #ifndef __INTEL_FBDEV_H__
+>>   #define __INTEL_FBDEV_H__
+>>=20=20=20
+>> +#include <linux/types.h>
+>> +
+>>   struct drm_fb_helper;
+>>   struct drm_fb_helper_surface_size;
+>>   struct drm_i915_private;
 
 --=20
 Jani Nikula, Intel
