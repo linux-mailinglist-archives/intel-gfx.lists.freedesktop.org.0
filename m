@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D26A6BAC7
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:37:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 053C8A6BAD9
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:40:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C03FC10E7B8;
-	Fri, 21 Mar 2025 12:37:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AABF10E7BA;
+	Fri, 21 Mar 2025 12:40:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JSeEXfDo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PgfSVOtb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB3010E7B8
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:37:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36C8B10E7BA;
+ Fri, 21 Mar 2025 12:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742560641; x=1774096641;
+ t=1742560807; x=1774096807;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=oQyGiV78LEK+tbLWGXm5etpWS3sUCPu5H0kZTYpo8lU=;
- b=JSeEXfDorT4Hr3B1AJ3xLYcmydbsYrPWpHqU3dYGlYc1QrgmF7IanzKh
- wzpCyREff9c2ebeMqqQ4lfLlJtAbuTPR1Kwks1fk3KjRiaXB9EgKqwCfO
- qKd5RokRdq7hIVr0l0veEDU1sWMjyuLpb0c0Ry3NNguQOShyN0/FUz0/a
- H/00GVWgB77mmwftoPJONOt2eFAxlOKZCSmPz1wO3vIux69Sr5zSoCC6X
- WXvf+rXpM662mGlYxDbh0JvJBCATMjoZDi4QTQglXD6b41a4NFm4mY7jm
- +MxfqGjdEdF1bB04s5mBMkX8uc8uA8Uh/hX5xQKcHfJyBOYdOYQBfm+RG g==;
-X-CSE-ConnectionGUID: Iw2ekctURueoczGKYgim4w==
-X-CSE-MsgGUID: VFCbBKFQRCuKDVoIAuVeoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="31415834"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="31415834"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:37:21 -0700
-X-CSE-ConnectionGUID: fN2LIwPEQj+XS2avHEyG7g==
-X-CSE-MsgGUID: kaLgaq4RTxebwSNATqk6Qg==
+ message-id:mime-version:content-transfer-encoding;
+ bh=Z1YQnoXve8vInvOh7mhVh01I36/jYecykrFIZLw5ta4=;
+ b=PgfSVOtbLAuiPCPhkTJErxdt1m1ZTRbJ447it9MQBN5bm+E0POEzD0IR
+ kslnEwJtuoni/F6A/UdOHu3/aAifOkLi5O7mjsXISkfZE//iIuCHcb7om
+ BOZti6XMC3Tr+B1F+z9I2obeKpINoOFrL/y6/ZYwhad3uar3FiyMc9kUj
+ ZrmIHfEf7WD7bRoE+6WmCTQjvW+H035w+p27MdcBy+h4KKIQjxWXaaVuq
+ oS0kv3YEXMt9yCE0SUMl29iD/hM1TxHtR4JTfLrCMCq1YyA/QhFst4KTQ
+ S5txa7zojEA5cnqkCIo9iODaeVMl35977s3SsvUamxab32sUyRYZfJyMX w==;
+X-CSE-ConnectionGUID: OGSAsSIeR4W+05eSvEIK8g==
+X-CSE-MsgGUID: qBF4+PA8S5yYamVXE5XQKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54493346"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="54493346"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:40:06 -0700
+X-CSE-ConnectionGUID: YrQ3OFUnTfOfc4aSfeF7lg==
+X-CSE-MsgGUID: G+hv3k7SRA2ifLfktzJ7LQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="127535785"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="154399878"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:37:19 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:39:57 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>, Andi Shyti
- <andi.shyti@linux.intel.com>
-Cc: Markus Theil <theil.markus@gmail.com>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, tytso@mit.edu
-Subject: Re: [PATCH v2 1/3] drm/i915/selftests: use prandom in selftest
-In-Reply-To: <Z9r7ORwztMxsNyF4@zx2c4.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH v2 05/11] drm/i915/psr: Write PIPEDMC_BLOCK_PKGC_SW when
+ enabling PSR
+In-Reply-To: <20250317081905.3683654-6-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
- <20250211063332.16542-1-theil.markus@gmail.com>
- <20250211063332.16542-2-theil.markus@gmail.com>
- <Z64pkN7eU6yHPifn@ashyti-mobl2.lan> <Z9r7ORwztMxsNyF4@zx2c4.com>
-Date: Fri, 21 Mar 2025 14:37:15 +0200
-Message-ID: <874izmd0g4.fsf@intel.com>
+References: <20250317081905.3683654-1-jouni.hogander@intel.com>
+ <20250317081905.3683654-6-jouni.hogander@intel.com>
+Date: Fri, 21 Mar 2025 14:39:55 +0200
+Message-ID: <871puqd0bo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,29 +72,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Mar 2025, "Jason A. Donenfeld" <Jason@zx2c4.com> wrote:
-> Hi Andi,
+On Mon, 17 Mar 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Write PIPEDMC_BLOCK_PKGC_SW when enabling PSR as described in workaround
+> for underrun on idle PSR HW issue (Wa_16025596647).
 >
-> On Thu, Feb 13, 2025 at 06:19:12PM +0100, Andi Shyti wrote:
->> Hi Markus,
->> 
->> On Tue, Feb 11, 2025 at 07:33:30AM +0100, Markus Theil wrote:
->> > This is part of a prandom cleanup, which removes
->> > next_pseudo_random32 and replaces it with the standard PRNG.
->> > 
->> > Signed-off-by: Markus Theil <theil.markus@gmail.com>
->> 
->> I merged just this patch in drm-intel-gt-next.
+> Bspec: 74151
 >
-> This is minorly annoying for me... What am I supposed to do with patches
-> 2 and 3? Take them through my tree for 6.16 in like half a year? Can I
-> just take the v1 into my tree and we can get this done with straight
-> forwardly? Or do you have a different suggestion for me?
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 1415e1e7aaf2c..a3946eef44f0d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -37,6 +37,7 @@
+>  #include "intel_de.h"
+>  #include "intel_display_irq.h"
+>  #include "intel_display_types.h"
+> +#include "intel_dmc_regs.h"
 
-Feel free to apply it to your tree too. It's not ideal to have two
-commits for the same thing, but oh well.
+Mildly annoying to poke at dmc registers from psr code.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+BR,
+Jani.
 
--- 
+>  #include "intel_dp.h"
+>  #include "intel_dp_aux.h"
+>  #include "intel_frontbuffer.h"
+> @@ -1961,6 +1962,13 @@ static void intel_psr_enable_source(struct intel_d=
+p *intel_dp,
+>  			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
+>  				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+>  	}
+> +
+> +	/* Wa_16025596647 */
+> +	if ((DISPLAY_VER(display) =3D=3D 20 ||
+> +	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+> +	    !intel_dp->psr.panel_replay_enabled)
+> +		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe), 0,
+> +			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS);
+>  }
+>=20=20
+>  static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+> @@ -2186,6 +2194,13 @@ static void intel_psr_disable_locked(struct intel_=
+dp *intel_dp)
+>  					   DP_RECEIVER_ALPM_CONFIG, 0);
+>  	}
+>=20=20
+> +	/* Wa_16025596647 */
+> +	if ((DISPLAY_VER(display) =3D=3D 20 ||
+> +	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+> +	    !intel_dp->psr.panel_replay_enabled)
+> +		intel_de_rmw(display, PIPEDMC_BLOCK_PKGC_SW(intel_dp->psr.pipe),
+> +			     PIPEDMC_BLOCK_PKGC_SW_BLOCK_PKGC_ALWAYS, 0);
+> +
+>  	intel_dp->psr.enabled =3D false;
+>  	intel_dp->psr.panel_replay_enabled =3D false;
+>  	intel_dp->psr.sel_update_enabled =3D false;
+
+--=20
 Jani Nikula, Intel
