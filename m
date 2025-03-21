@@ -2,56 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5077A6BB30
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDCEA6BB42
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:54:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFFB10E0BC;
-	Fri, 21 Mar 2025 12:52:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F54D10E7C1;
+	Fri, 21 Mar 2025 12:54:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b="SWEnqRYe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPh9q0dM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 588CB10E79F
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:52:25 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 694015C6BA1;
- Fri, 21 Mar 2025 12:50:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E8DC4CEE3;
- Fri, 21 Mar 2025 12:52:23 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="SWEnqRYe"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1742561541;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iBEsa6g1RBoSR0J0Kh1JDeWbWAeUk9HC8KUOCLyfPJc=;
- b=SWEnqRYezPlf1E+iZomGlmtJq8Gz+rfAumlre6h7c18OJEcuJ4KtkGml//SFMb2XME2nNm
- HSXdKIdcS9scfPpO1trtdon3a+KYMkSIlGNj04dk46QWfMuxFyMAfKQJTfmoLjvl4vEAjU
- DRtuBxODEY438a851a6a+dzfHYMp1cI=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 991796b3
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Fri, 21 Mar 2025 12:52:21 +0000 (UTC)
-Date: Fri, 21 Mar 2025 13:52:19 +0100
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Markus Theil <theil.markus@gmail.com>, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, tytso@mit.edu
-Subject: Re: [PATCH v2 1/3] drm/i915/selftests: use prandom in selftest
-Message-ID: <Z91hA0q-uC04asw2@zx2c4.com>
-References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
- <20250211063332.16542-1-theil.markus@gmail.com>
- <20250211063332.16542-2-theil.markus@gmail.com>
- <Z64pkN7eU6yHPifn@ashyti-mobl2.lan> <Z9r7ORwztMxsNyF4@zx2c4.com>
- <874izmd0g4.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0876710E7C3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:54:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742561690; x=1774097690;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=FxjHxItMXfWJbQHJoBosfVemUP8dVNT90s/kgmD52Bs=;
+ b=bPh9q0dMMjV1XqW1EEqxIl5nOKaW5aFbKeKX8fuHhVC9T6gd1Dqsc6dY
+ jM0dVjRtInSyI2khgOISjN/Jn2e05xNNnhtLifh+w2CEwiN5C0MDqWDv9
+ LIOyr8brmeVQLorh2jBlwk5973UPBT/HtMGFxEXXQWOa4y408EPvK3rgW
+ UoxZmA0mY9YKDjXyjDvXsMxgLFPGXrmo8sD+umjxMT+ZfgCxK2y68T5xB
+ 0xDBKvNwZL7NijiieT7wNSuedSTbte1vtXOXG2zOE7dM3RRyT2tEzKIlm
+ rmo+Z8CHbgdDRr7Klg3Cnczu4hg6M5JRrN/tCB8sMbdMmzCAGJYy4pCO6 A==;
+X-CSE-ConnectionGUID: Z14YI+AWSTeeVEM4vg4fGw==
+X-CSE-MsgGUID: Fgjsvan2QnSheaGjS/5Zwg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="31417578"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="31417578"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:54:50 -0700
+X-CSE-ConnectionGUID: yii9XOC3S1isvnkkJXCZgg==
+X-CSE-MsgGUID: 7OqMPjFTToaBkbOCAecW3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128504741"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.204])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:54:47 -0700
+Date: Fri, 21 Mar 2025 13:54:44 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: =?iso-8859-15?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Subject: Re: [PATCH] drm/i915: Increase I915_PARAM_MMAP_GTT_VERSION version
+ to indicate support for partial mmaps
+Message-ID: <Z91hlFGB7ukxrWyG@ashyti-mobl2.lan>
+References: <20250306210827.171147-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <874izmd0g4.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250306210827.171147-1-jose.souza@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,31 +72,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 21, 2025 at 02:37:15PM +0200, Jani Nikula wrote:
-> On Wed, 19 Mar 2025, "Jason A. Donenfeld" <Jason@zx2c4.com> wrote:
-> > Hi Andi,
-> >
-> > On Thu, Feb 13, 2025 at 06:19:12PM +0100, Andi Shyti wrote:
-> >> Hi Markus,
-> >> 
-> >> On Tue, Feb 11, 2025 at 07:33:30AM +0100, Markus Theil wrote:
-> >> > This is part of a prandom cleanup, which removes
-> >> > next_pseudo_random32 and replaces it with the standard PRNG.
-> >> > 
-> >> > Signed-off-by: Markus Theil <theil.markus@gmail.com>
-> >> 
-> >> I merged just this patch in drm-intel-gt-next.
-> >
-> > This is minorly annoying for me... What am I supposed to do with patches
-> > 2 and 3? Take them through my tree for 6.16 in like half a year? Can I
-> > just take the v1 into my tree and we can get this done with straight
-> > forwardly? Or do you have a different suggestion for me?
-> 
-> Feel free to apply it to your tree too. It's not ideal to have two
-> commits for the same thing, but oh well.
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+Hi Jose,
 
-Oh that's a good idea. Thanks!
+On Thu, Mar 06, 2025 at 01:08:27PM -0800, José Roberto de Souza wrote:
+> Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for partial memory mapping")
+> was the last patch of several patches fixing multiple partial mmaps.
+> But without a bump in I915_PARAM_MMAP_GTT_VERSION there is no clean
+> way for UMD to know if it can do multiple partial mmaps.
 
-Jason
+right! Thanks for taking care of this.
+
+> Fixes: 255fc1703e42 ("drm/i915/gem: Calculate object page offset for partial memory mapping")
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: Nirmoy Das <nirmoy.das@intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Andi
