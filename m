@@ -2,166 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 683D5A6B476
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 07:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8186A6B58D
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 08:55:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6647110E117;
-	Fri, 21 Mar 2025 06:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38C9710E64E;
+	Fri, 21 Mar 2025 07:55:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jusgPMD3";
+	dkim=pass (2048-bit key; unprotected) header.d=canonical.com header.i=@canonical.com header.b="cVKcWHHp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA3810E0D3;
- Fri, 21 Mar 2025 06:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742538931; x=1774074931;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=tDd4VCZkbZxSr3kylnP94OXIGJvIhWM5y78avF1S+XM=;
- b=jusgPMD3y/Y4y1APXN2n76UpgHWdvpiGSzUe50M2LYti8Pv2OUVnYiKL
- qWa4wo+izGN5QKFCzoKuAnXcRwEJwFjJIx7uOBIIf53ifljcJ8xU8zYd8
- RlXUre6Qtzk9sfmhwUXwJNDgg2I+Uj4Y+HaSNfdDDY1DsXfadv2XfTkC4
- kAj9cMfo5xNTWQ7kKlRMx3AcOmFtktg2/oQwhmSjeRmlICi9lQzh0r9Cv
- TxpfVtlRcYDMwg0DHuCK42oCoSJG5EFhUOdTfWdsfKFsAoEKkeZwUL8Q9
- zloJBTxSvbVooQtw9fNMbRZLUWp6Xh8aDIQBHoPrDPZOjVc97DQ5liuTB w==;
-X-CSE-ConnectionGUID: 7UA79iYMQ2e/BEhwD1lolg==
-X-CSE-MsgGUID: tCG4KlnuR7O2K1PTMdoznw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="47571066"
-X-IronPort-AV: E=Sophos;i="6.14,263,1736841600"; d="scan'208";a="47571066"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2025 23:35:29 -0700
-X-CSE-ConnectionGUID: 6WfTkhu6RvigD7S9tw2Wjg==
-X-CSE-MsgGUID: 46CjitB0QkiU1nbzei/EQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,263,1736841600"; d="scan'208";a="128546264"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Mar 2025 23:35:29 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 20 Mar 2025 23:35:28 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 20 Mar 2025 23:35:28 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 20 Mar 2025 23:35:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fnVR+n0fxiHNuVU2gbFphBhX7L4kGkRuVCEoyUEUE07217QVDtG9NybubFkMskrYgQUqsBJz97275mvyhoNDDsX3CI0zqJYdeWqM6tqo1nXlFRJU+sBH5O/VTVM4God67KBgBJUjyDCgBTFarN8w3i+Ue81wzvNVKuwoxtbgsr4TcYVqgDQ/8TDnwfO5Nd9H6pMXGMCvSL3fR4Eew/6dhK92eO4v4qUc6sGbfXuFYvAD10Aa3Aii7lC90JTh6+m62QGO6XJ7Spo8l+66S+qmya1/2iDY805oUirMBeE7wYIOVmGpmgc9X91IJVBBjPmXoogon77Cdb3aJC2GJw6Z0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f8Sx1XuLMMZBcbW65QtAEiRtJL3G/DpmRSlW1V5/ouc=;
- b=ee2ddFoaxh5OUkupuTMN3a29THC6mrD+0mFJOn6fowqEyJ/6xKUb77+qKFp7plkzCCsXsV0wQcEV7RsyTV0fz5o47JSkyeUSpW3Y3QVbgNGYVZaqsrjT/ZlPmhomhwWI82i/H/QfgGvnZnL3b4rGhH2l1sVyQEP7/wBNtHeJUyDfY7DSBhQeyOondjx/nxWkn1RwuuLON42p4PMYGBVhadRDo0kjRprPLs5JsjgOwlPrOaF6A27uerA4E0eh8MWhqX5Mi3tXwpoq4pQGBbmG0fdfgqMRqvFi66nwks7PISoURrgvp5NkQh6zURF75nEtOQaIXgsRvgPrUs4ZDgiErg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CH3PR11MB8591.namprd11.prod.outlook.com (2603:10b6:610:1af::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.36; Fri, 21 Mar
- 2025 06:35:20 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%3]) with mapi id 15.20.8534.036; Fri, 21 Mar 2025
- 06:35:19 +0000
-Date: Fri, 21 Mar 2025 01:35:16 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Vivek Kasireddy <vivek.kasireddy@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Matt
- Roper" <matthew.d.roper@intel.com>
-Subject: Re: [PATCH] drm/i915/xe2hpd: Identify the memory type for SKUs with
- GDDR + ECC
-Message-ID: <q7jpiuuu65zrmhdwjs27o77yat3rtmreqgg6urkqp4l6fce4wy@7y64f5ga7has>
-References: <20250214215944.187407-1-vivek.kasireddy@intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250214215944.187407-1-vivek.kasireddy@intel.com>
-X-ClientProxiedBy: MW4P220CA0003.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:303:115::8) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-Greylist: delayed 516 seconds by postgrey-1.36 at gabe;
+ Fri, 21 Mar 2025 07:55:51 UTC
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95AE910E64E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 07:55:51 +0000 (UTC)
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+ [209.85.214.198])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0D3893FCCB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 07:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1742543234;
+ bh=WjL8iAZiIWqERvoFylQUGeXXKtNQg3t8LQFWbJd2T2E=;
+ h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+ Content-Type:In-Reply-To;
+ b=cVKcWHHpoDzCRaO3HJpDFxVUhOqUTlx4R1iKlBPmVxpjtGcFOrwyjLLx5NOB4yqdB
+ buac/h6jRWnypAjKERBa4n920Hm1jjOan/yiMwN+PiwPspyyYPfeDaNxWL4wL3945b
+ 8k/9/E5vXeoPJ5MT4eetqhvCnzxaR7OviwNs5c1xhEt+CpChfA3QA8TClEwtzNSlI0
+ SdFVeI/rkbOeEy+PTl47G3VufhPIC4zMaL669PYDwiwwyL5Af3mVGNL5ST/YM7Zh3C
+ cpmzvlTtcK8AItfOP0G4E9MhkWi88nC+vwd4FhnQrM82zJ7WVe+HwLOPL3mA/EzEG9
+ S5cXNo928scdA==
+Received: by mail-pl1-f198.google.com with SMTP id
+ d9443c01a7336-2254e500a73so20499795ad.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 00:47:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742543232; x=1743148032;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=WjL8iAZiIWqERvoFylQUGeXXKtNQg3t8LQFWbJd2T2E=;
+ b=XK2Dnj8VXWa11oHjq5CwB/dJoyiQbeB68VkXLk2RCtftw91T0Gl0Q1NxBu3NnZO+yU
+ tsfKn3j4StdTPZrVdoEu1ZjLmyoWnxo7FSChWXF6vRD/dhnVIHiTNgQmz8RhA2w0+Cka
+ V5CBH8RVeqlEfg56tZcwDSUgw0YHAHUvucSDhvsH9utghAS5mqcDUWUM7g4OKezF1/A+
+ 9bo6GcbKqv5xnkzxHyBEJBeFsM0xYFaJyF+XVdsTB223DQ0uhc3ae1/bvMTivC2CtlMb
+ T7f71mTRPfIVmoHrCQv8XgrtcCi1KjH6jPWQtnuZ3sI04K70W+e8fkIvNxaGslaSB5D3
+ 22Aw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYWyKkjdArkA7oMk0CeRWXzXdtrd1+ELkbxKJlGRhMsY3LSv/yvNBBGE3Bnog2Uvm0IWkhD8SyoDc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzPI4TrkAoGik8g4N+5vRB2Lr4x3mHDnSyxEQfRF01EyZWVNNJK
+ oGe2DpYaUCZEHpnv4NA5bl4gpSruIxsIiHmcM5bBWTj2rPRfIz8agXeXXPFqkMiLt9fS7WB5AN7
+ 2tnfmS6cAhtQP6mohpxH3UAqmLfDfGT+990Dl8Limc9QLbcJyG6dUZMUYdz51CnyGnJWb+n3YlS
+ aUDZZGzg==
+X-Gm-Gg: ASbGncurJKZXuvzjoKsfnMnNowaBv2YpmqrQowLk8jx+3qd/+5CPzXkRO/HD5U0fmqT
+ JvrlUW7RzvzLucxOZ4uNmwBTL35ShU5PF8PahpPztTThxzwxznXEFLDoUmwFDAwmbXe5kkPuy86
+ bfTwkAmpOqp+vkD6vfeTBPMRnDTWnK9XnSJhzXCzBTT978Vf9og2vr6U/T+eflnPxdYsqy8Fn94
+ aJG9O9MMujQ2xD3JraMHW4AiDvPRc15Yjfem5st5sa+pt88pAjfwyZO2ng9sSdvhGWRhvd623A+
+ kE89U7X8YuG4RrNyA4IAVb4=
+X-Received: by 2002:a17:902:cec4:b0:219:e4b0:4286 with SMTP id
+ d9443c01a7336-22780db462fmr36097305ad.29.1742543232232; 
+ Fri, 21 Mar 2025 00:47:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG5Mvh4aBkhywQOx/Vf8f0nV5E26CI+uDLTwyCMKGbXc5xeJt01y/v7ypELXBLur6PmwWo0FA==
+X-Received: by 2002:a17:902:cec4:b0:219:e4b0:4286 with SMTP id
+ d9443c01a7336-22780db462fmr36096905ad.29.1742543231808; 
+ Fri, 21 Mar 2025 00:47:11 -0700 (PDT)
+Received: from acelan-precision5470 ([2001:67c:1562:8007::aac:4468])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-22780f3964bsm10198955ad.32.2025.03.21.00.47.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 21 Mar 2025 00:47:11 -0700 (PDT)
+Date: Fri, 21 Mar 2025 15:46:54 +0800
+From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
+To: Baokun Li <libaokun1@huawei.com>
+Cc: linux-block@vger.kernel.org, axboe@kernel.dk, 
+ Christoph Hellwig <hch@infradead.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>, 
+ yangerkun@huawei.com, houtao1@huawei.com, yukuai3@huawei.com, 
+ Dirk Su <dirk.su@canonical.com>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, 
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, intel-gfx@lists.freedesktop.org
+Subject: Re: Regression found in memory stress test with stress-ng
+Message-ID: <hshsylujj64nlrakfeboyriwhnfvmo2kodju6mrznrf56mttmv@3nuxifxmo6yc>
+Mail-Followup-To: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>, 
+ Baokun Li <libaokun1@huawei.com>, linux-block@vger.kernel.org, axboe@kernel.dk,
+ Christoph Hellwig <hch@infradead.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>, 
+ yangerkun@huawei.com, houtao1@huawei.com, yukuai3@huawei.com, 
+ Dirk Su <dirk.su@canonical.com>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, 
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, intel-gfx@lists.freedesktop.org
+References: <CAFv23QnqgTVoB-XRe5yNndRz4-Z_3y38+QpKRxQMeZ2xQTg=gw@mail.gmail.com>
+ <180d8a88-52d9-4b83-83de-0184ed7cb4a5@huawei.com>
+ <z6wlwwcbrmr3mcws6wmn5r6z45kosinvq6wyfq6hxfvcuxdjp5@ucjecgmhqp42>
+ <59a1fa13-888e-4fe0-9de0-cd0e63c91265@huawei.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CH3PR11MB8591:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a72f60f-00e0-4d8e-df09-08dd68428cc3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4fhNTvERCM3FOnwCE2oDDJznKLIVj8Qi+/B/bZRi7Uvr7zgXoPuhMIjf6WI1?=
- =?us-ascii?Q?441C2cRHD26i+G7iZs/0lcFejUVyC5jz7yL07GJbELNA9bnocNcqjLivVPXU?=
- =?us-ascii?Q?900aqFn3Dxh9oWdQJjSPjzoAI2jaUjvP9LtBEI/mLhOryfVcIiY4+JyX5Ta1?=
- =?us-ascii?Q?SSYvESTUQGaDDJXrG86CYPJhLWr/FFupHEQlOTJDE6aXhp4M0wuJ0IR6OHcQ?=
- =?us-ascii?Q?M/CPbSMEo2ZMzXPArL0YT3fJ+BCIUwGKC2ccFJhSm1G8NaQ7Q0czz7NRuP/c?=
- =?us-ascii?Q?Bxle2TdhNV2c2xoxymqeabtzE4tLGfGANlMUSMxGOOyW/eHhl/RreOKuk0QS?=
- =?us-ascii?Q?Kv4Pu8IudvRlPpmFLt49EFcP4mCvwq1cHof+y1ftFnaxBsyPkiknp2rQakrg?=
- =?us-ascii?Q?zrGiqCO/gRx6Bau5hZC4nNSFsHBMsN7zqOv2x10H3Xm3e/K0Oqr/u+iAdzjC?=
- =?us-ascii?Q?OvH5mtwHNMFCjDNbBN98edGHm+WDcha1+d7NAYTTo3IddcWLBA8/9GAi0lSY?=
- =?us-ascii?Q?kBj1Mv0hxiSiO7hh9Zv6SCx8P3FfRoZGXSmkahlhMW9VMf8KWpIpXOAUdA1d?=
- =?us-ascii?Q?0/LJXPEMZYg2uV+envD8qNk5rC2j3jsTt7roZ92yVNnFzoG1QQFEuoizBBMr?=
- =?us-ascii?Q?M1WfZWym2OlMGwCm9muYxf5LdDmRC8+uDKtKRFFc1ayZp04JzNpVrwsEVnkb?=
- =?us-ascii?Q?SXAi5wsH8lzrGq+5vyuza1jgF9PJg8xfW5OQLVpQ7UoiriHzTX9ehZVgwQkB?=
- =?us-ascii?Q?2b1XtotbJYMBPtpnOjOP3IfodT0l9LAUYv4OvlCe65OFC+HuNA974khiooPC?=
- =?us-ascii?Q?6K4OsJKQIP+OzQOEIWgXc7FEXZwFG6k4xvWoeuwAVWEbskxP+ij17dBd7jbQ?=
- =?us-ascii?Q?97mXS8xjyTQPfBvQyUCGu5r/BTzkQzGLlTJUrSKaRs4HwHYDefrSlqPGh4UX?=
- =?us-ascii?Q?r/XfVzCP6qeLPn5YTm8m1lC9LvfP1/lzHCN66BpWrGB7cOgqu4B6R1+3yOuZ?=
- =?us-ascii?Q?jSoldW9TmxW6Ia08O8+KojNafGOC6TMZmVYqHXt55q4mCEsmnHLXa9dbaNal?=
- =?us-ascii?Q?JH4wUU0WkVeT15qDItrqkCLAVnNjo6DxmDkdx2jAGD1NufMEC5Qb+F3p2bnV?=
- =?us-ascii?Q?xItl9B0i4emhR1dfKnnr2TNGVHT9MpXiXe5TObB+pWRQal66hDb/sbSSzIvq?=
- =?us-ascii?Q?zyaoWoIaYhuj6I5sXnBXfUiABJzFgtmcqc40nQpzLRjeE6h14BJ//W44o+Gf?=
- =?us-ascii?Q?mSZLUtKW+X2kVzuidGNcbKbMLmvIg4PqUbaTgf7YxNerjDyPz6Y0J5UmjhCd?=
- =?us-ascii?Q?fzxQCQaF9fu5GftqPhUe99LaAcjqniWPxog7K4E+EmOVVgkwJMK4kgqbKoeX?=
- =?us-ascii?Q?eIEqkqB5ISg5Fbfgtm4r0XgvGMC5?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?B5Nu6L9RXAiGBBzNhjrRvTYwn36+mlfrNsRMSZuc96lup7O7Yz9Wixr8SaEr?=
- =?us-ascii?Q?piGSLWm9271GQsxQDFkm7bAsq+FV8JROH87Sgi85WkXeUF8TTUVS/CUQy3WU?=
- =?us-ascii?Q?kqlrJ3SCtKcslJcrvqRTRL5//gQH54W0N7swl5ULxfY2oEpkrhqAUzkwb88Z?=
- =?us-ascii?Q?PTaT+WJGk2GtOuaHPkcyqLT5KB5AzSGz7DptgH+VmvFkRFifLteHyqLWDPrO?=
- =?us-ascii?Q?7CVAIHKXQNAiKYpmiJobQ3AoV5uOWbgazG4vUnVU1vrQn1NIyLS1tN5D684K?=
- =?us-ascii?Q?1Tbcc2n74H9gBClp6skWi31Ou8MlgiJJjkLlkKJI8IERTbHFVsp9WQr3hC0P?=
- =?us-ascii?Q?iQKctoHQF3Jge/CgRDwc5btCGGovN4okWtgu3Vi/6mCx7FBKvNJ/cGgj8j/v?=
- =?us-ascii?Q?k7ePG7nwS2ilq7GU1coaI5z0t0t33z7Qki4MD4xqCLU6HuD5OMCeua4paG4Y?=
- =?us-ascii?Q?cg20kyKV8VCnXZWpiQntMavtnJrJF7HsKCuvLRZHGE+4sDIavym1PaZYh27A?=
- =?us-ascii?Q?1Oy7+O33sgv7XJfhF8lbvHkdmMKMFz8HIyF5wKwZflhGEqweyU5o4kwfnV2f?=
- =?us-ascii?Q?5yFU/4DUPzQcEoWP5ef4oeNTViuqyScjmOaqgcTIGo1SPkFjqpZtf/9bEGB1?=
- =?us-ascii?Q?a4bD7nCoNOXHHH+jmeRH98rpUUTIVfnXeZECr9x3LRn4qgWs3p3J8PlKbEBk?=
- =?us-ascii?Q?0qdy/GJcvtG/St5EYTVdJaT4Ud0YqPp/69hywazdJzQdGLpGmyF1dUxaSK2n?=
- =?us-ascii?Q?l1r9L68PEfRF/dTJQRnvsB0PyqmCg93JjvC1JvJuSArlgD2H9kxT0IbKcoEM?=
- =?us-ascii?Q?t9SG3rH30yUsNh9w5+9pzhdQDTHpLONCCxrs0OkoDnVzNmzYlzMLpGgsfbwR?=
- =?us-ascii?Q?g90VBk+aFNl2MD3CwsB7cOgty2rLo4fBe+hik+l9o157yUY8NwKZGG9oRrXa?=
- =?us-ascii?Q?XTsAwQvDBLi0LeotcXrQk3/qd2qIk7HGCJk567P0NP1wg9vaCzUEQn28VC+o?=
- =?us-ascii?Q?sJULYr03pVGBF5+aLbtLY0xSDFslC3/rR/GQOhTS3ydZ7MAR/mPwsGAd31Ey?=
- =?us-ascii?Q?dqpxOJlqFUmFuUlM50tWLxMpcCu7oQaStwT7luFrIbmSWNCCA8EIBzMhS3eV?=
- =?us-ascii?Q?P/yBUyO/MVZ69OrwrqyY3PYSye6nSx3wPsr+pe1dLHVnOxBy14kMyF+VxiJ/?=
- =?us-ascii?Q?31HctCvV5v6rwVojLi3A5ulkYLVD3m5JdLD8SOH7PsfikO1UKb3gFP3YU7tQ?=
- =?us-ascii?Q?qlz3j+foEf8DJ1XUdvHrCuxzt3a7s9NimwThXl1btUCrjuMn+CUFTQIsxUlL?=
- =?us-ascii?Q?uaCGjIzydKPOIwb46qIvQyERbx6dlGjyV6707sWfeH1zKionWP2p3dKqR+m9?=
- =?us-ascii?Q?GLFSnrok+KxKNfuQPkW/sQprAGw9l17isErDFOaXBz/L+MphG9IzVw18LMG+?=
- =?us-ascii?Q?H8MkiojRwn7ohtmxFo9tX57RQtfGmKMZUQwveoVL9ueh5VfH/7hKIzBV+vCQ?=
- =?us-ascii?Q?ccdrR/w8Wk3nOAsr8dI8QF5qIRDnvS9sLU87TGhK/KdB9kzUdeG+8Wxm2QEZ?=
- =?us-ascii?Q?L/2QQIfiGARCQZlR1yyb64DwGU7rVHvbwDI/bMfFR2iO2rREPbvKSUJ+QUQ9?=
- =?us-ascii?Q?FA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a72f60f-00e0-4d8e-df09-08dd68428cc3
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Mar 2025 06:35:19.7220 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hUPgCLXqoXIq13/8bPwf2onIZzjL6pbmeOnKjoBsFHhFOQjI4mLhm6en2Bc2DUuB72wkKSekred6oUbdhCYQMQBEhQJUZmSjUsrj0KbKkFU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8591
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <59a1fa13-888e-4fe0-9de0-cd0e63c91265@huawei.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,103 +119,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 14, 2025 at 01:59:44PM -0800, Vivek Kasireddy wrote:
->Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
->with ECC enabled. We need to identify this scenario and add a new
->case in xelpdp_get_dram_info() to handle it. In addition, the
->derating value needs to be adjusted accordingly to compensate for
->the limited bandwidth.
->
->Bspec: 64602
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_bw.c | 5 ++++-
-> drivers/gpu/drm/i915/i915_drv.h         | 1 +
-> drivers/gpu/drm/i915/soc/intel_dram.c   | 4 ++++
-> drivers/gpu/drm/xe/xe_device_types.h    | 1 +
-> 4 files changed, 10 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
->index 23edc81741de..b8a9651b74d3 100644
->--- a/drivers/gpu/drm/i915/display/intel_bw.c
->+++ b/drivers/gpu/drm/i915/display/intel_bw.c
->@@ -244,6 +244,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
-> 			qi->deinterleave = 4;
-> 			break;
-> 		case INTEL_DRAM_GDDR:
->+		case INTEL_DRAM_GDDR_ECC:
-> 			qi->channel_width = 32;
-> 			break;
-> 		default:
->@@ -630,9 +631,11 @@ static int xe2_hpd_get_bw_info(struct drm_i915_private *i915,
-> 	for (i = 0; i < qi.num_points; i++) {
-> 		const struct intel_qgv_point *point = &qi.points[i];
-> 		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
->+		u8 derating = i915->dram_info.type == INTEL_DRAM_GDDR_ECC ?
->+				45 : sa->derating;
+On Thu, Mar 20, 2025 at 02:32:55PM +0800, Baokun Li wrote:
+> On 2025/3/20 13:23, Chia-Lin Kao (AceLan) wrote:
+> > On Thu, Mar 20, 2025 at 11:52:20AM +0800, Baokun Li wrote:
+> > > On 2025/3/20 10:49, AceLan Kao wrote:
+> > > > Hi all,
+> > > > 
+> > > > We have found a regression while doing a memory stress test using
+> > > > stress-ng with the following command
+> > > >      sudo stress-ng --aggressive --verify --timeout 300 --mmapmany 0
+> > > > 
+> > > > This issue occurs on recent kernel versions, and we have found that
+> > > > the following commit leads to the issue
+> > > >      4e63aeb5d010 ("blk-wbt: don't throttle swap writes in direct reclaim")
+> > > > 
+> > > > Before reverting the commit directly, I wonder if we can identify the
+> > > > issue and implement a solution quickly.
+> > > > Currently, I'm unable to provide logs, as the system becomes
+> > > > unresponsive during testing. If you have any idea to capture logs,
+> > > > please let me know, I'm willing to help.
+> > > Hi AceLan,
+> > > 
+> > > I cannot reproduce this issue. The above command will trigger OOM.
+> > > Have you enabled panic_on_oom? (You can check by sysctl vm.panic_on_oom).
+> > > Or are there more kernel Oops reports in dmesg?
+> > Actually, there is no kernel panic during the testing.
+> > I tried using kernel magic key to trigger crash and this is what I
+> > got.
+> > It repeats the "Purging GPU memory" message over and over again.
+> > 
+> > [ 3605.341706] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> 
+> The messages are coming from i915_gem_shrinker_oom(), so it looks like
+> it's still an OOM issue. I'm just not sure why the OOM is happening so
+> often, like every 0.05 seconds.
+> 
+> I'm not familiar with gpu/drm/i915/gem, so I CCed the relevant maintainers
+> to see if they have any thoughts.
+Hi Baokun,
 
-looks wrong to leave the sa->derating with the wrong value and just
-patch it here.
+Right, how the i915 shrinks its memory may need some tweak to check if
+it can really shrink the memory.
+But this issue is more likely from the swap.
 
-By the time intel_bw_init_hw() is called, we already have i915->dram_info->type.
-So maybe it'd be better to fork a struct intel_sa_info for this case and
-have the correct derating consistently? Otherwise, at least moving this
-out of the loop would be appropriate IMO.
+We found the issue can't be reproduced after reverts that commit, and
+the issue can't be reproduced if we run swapoff to disable swap.
+I'm worrying that there might be a bug in the swap code that it can't
+handle the OOM situation well.
 
-Matt, thoughts?
-
-There was a small conflict due to the move to intel_display, but
-otherwise this commit still applies.
-
-Lucas De Marchi
-
->
-> 		i915->display.bw.max[0].deratedbw[i] =
->-			min(maxdebw, (100 - sa->derating) * bw / 100);
->+			min(maxdebw, (100 - derating) * bw / 100);
-> 		i915->display.bw.max[0].peakbw[i] = bw;
->
-> 		drm_dbg_kms(&i915->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->index ffc346379cc2..54538b6f85df 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -305,6 +305,7 @@ struct drm_i915_private {
-> 			INTEL_DRAM_DDR5,
-> 			INTEL_DRAM_LPDDR5,
-> 			INTEL_DRAM_GDDR,
->+			INTEL_DRAM_GDDR_ECC,
-> 		} type;
-> 		u8 num_qgv_points;
-> 		u8 num_psf_gv_points;
->diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
->index 9e310f4099f4..f60eedb0e92c 100644
->--- a/drivers/gpu/drm/i915/soc/intel_dram.c
->+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
->@@ -687,6 +687,10 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915)
-> 		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-> 		dram_info->type = INTEL_DRAM_GDDR;
-> 		break;
->+	case 9:
->+		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
->+		dram_info->type = INTEL_DRAM_GDDR_ECC;
->+		break;
-> 	default:
-> 		MISSING_CASE(val);
-> 		return -EINVAL;
->diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->index 4656305dd45a..0921e957d784 100644
->--- a/drivers/gpu/drm/xe/xe_device_types.h
->+++ b/drivers/gpu/drm/xe/xe_device_types.h
->@@ -575,6 +575,7 @@ struct xe_device {
-> 			INTEL_DRAM_DDR5,
-> 			INTEL_DRAM_LPDDR5,
-> 			INTEL_DRAM_GDDR,
->+			INTEL_DRAM_GDDR_ECC,
-> 		} type;
-> 		u8 num_qgv_points;
-> 		u8 num_psf_gv_points;
->-- 
->2.47.1
->
+Do you think should we try adding some debug messages to the block driver
+to see if we can find any clues?
+> 
+> > [ 3605.346295] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.350815] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.355463] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.360105] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.364743] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.369426] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.374044] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.378467] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.382958] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.387534] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.392130] [   T5739] Purging GPU memory, 0 pages freed, 0 pages still pinned, 2787 pages left available.
+> > [ 3605.394571] [     C11] sysrq: Trigger a crash
+> > [ 3605.394575] [     C11] Kernel panic - not syncing: sysrq triggered crash
+> > [ 3605.394580] [     C11] CPU: 11 UID: 0 PID: 0 Comm: swapper/11 Kdump: loaded Not tainted 6.11.0-1016-oem #16-Ubuntu
+> > [ 3605.394586] [     C11] Hardware name: HP HP ZBook Fury 16 G11 Mobile Workstation PC/8CA7, BIOS W98 Ver. 01.01.12 11/25/2024
+> > [ 3605.394588] [     C11] Call Trace:
+> > [ 3605.394591] [     C11]  <IRQ>
+> > [ 3605.394596] [     C11]  dump_stack_lvl+0x27/0xa0
+> > [ 3605.394605] [     C11]  dump_stack+0x10/0x20
+> > [ 3605.394608] [     C11]  panic+0x352/0x3e0
+> > [ 3605.394613] [     C11]  sysrq_handle_crash+0x1a/0x20
+> > [ 3605.394618] [     C11]  __handle_sysrq+0xf0/0x290
+> > [ 3605.394623] [     C11]  sysrq_handle_keypress+0x2f4/0x550
+> > [ 3605.394627] [     C11]  sysrq_filter+0x45/0xa0
+> > [ 3605.394631] [     C11]  ? sched_balance_find_src_group+0x51/0x280
+> > [ 3605.394637] [     C11]  input_handle_events_filter+0x46/0xb0
+> > [ 3605.394643] [     C11]  input_pass_values+0x142/0x170
+> > [ 3605.394647] [     C11]  input_event_dispose+0x167/0x170
+> > [ 3605.394651] [     C11]  input_handle_event+0x41/0x80
+> > [ 3605.394656] [     C11]  input_event+0x51/0x80
+> > [ 3605.394659] [     C11]  atkbd_receive_byte+0x805/0x8f0
+> > [ 3605.394664] [     C11]  ps2_interrupt+0xb4/0x1b0
+> > [ 3605.394668] [     C11]  serio_interrupt+0x49/0xa0
+> > [ 3605.394673] [     C11]  i8042_interrupt+0x196/0x4c0
+> > [ 3605.394677] [     C11]  ? enqueue_hrtimer+0x4d/0xc0
+> > [ 3605.394682] [     C11]  ? ktime_get+0x3f/0xf0
+> > [ 3605.394686] [     C11]  ? lapic_next_deadline+0x2c/0x50
+> > [ 3605.394691] [     C11]  __handle_irq_event_percpu+0x4c/0x1b0
+> > [ 3605.394696] [     C11]  ? sched_clock_noinstr+0x9/0x10
+> > [ 3605.394700] [     C11]  handle_irq_event+0x39/0x80
+> > [ 3605.394706] [     C11]  handle_edge_irq+0x8c/0x250
+> > [ 3605.394710] [     C11]  __common_interrupt+0x4e/0x110
+> > [ 3605.394715] [     C11]  common_interrupt+0xb1/0xe0
+> > [ 3605.394718] [     C11]  </IRQ>
+> > [ 3605.394720] [     C11]  <TASK>
+> > [ 3605.394721] [     C11]  asm_common_interrupt+0x27/0x40
+> > [ 3605.394726] [     C11] RIP: 0010:poll_idle+0x4f/0xac
+> > [ 3605.394731] [     C11] Code: 00 00 65 4c 8b 3d a1 78 7b 63 f0 41 80 4f 02 20 49 8b 07 a8 08 75 32 4c 89 ef 48 89 de e8 d9 fe ff ff 49 89 c5 b8 c9 00 00 00 <49> 8b 17 83 e2 08 75 17 f3 90 83 e8 01 75 f1 e8 bd d1 ff ff 4c 29
+> > [ 3605.394735] [     C11] RSP: 0000:ffff9c57001f7dc8 EFLAGS: 00000206
+> > [ 3605.394740] [     C11] RAX: 000000000000003c RBX: ffffbc56ff59b618 RCX: 0000000000000000
+> > [ 3605.394743] [     C11] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+> > [ 3605.394744] [     C11] RBP: ffff9c57001f7df0 R08: 0000000000000000 R09: 0000000000000000
+> > [ 3605.394747] [     C11] R10: 0000000000000000 R11: 0000000000000000 R12: 0000034772423b38
+> > [ 3605.394749] [     C11] R13: 000000000000f424 R14: 0000000000000000 R15: ffff912c8122a900
+> > [ 3605.394754] [     C11]  ? poll_idle+0x63/0xac
+> > [ 3605.394757] [     C11]  cpuidle_enter_state+0x8e/0x720
+> > [ 3605.394762] [     C11]  ? sysvec_apic_timer_interrupt+0x57/0xc0
+> > [ 3605.394766] [     C11]  cpuidle_enter+0x2e/0x50
+> > [ 3605.394771] [     C11]  call_cpuidle+0x22/0x60
+> > [ 3605.394775] [     C11]  cpuidle_idle_call+0x119/0x190
+> > [ 3605.394778] [     C11]  do_idle+0x82/0xe0
+> > [ 3605.394781] [     C11]  cpu_startup_entry+0x29/0x30
+> > [ 3605.394784] [     C11]  start_secondary+0x127/0x160
+> > [ 3605.394788] [     C11]  common_startup_64+0x13e/0x141
+> > [ 3605.394794] [     C11]  </TASK>
+> > 
+> > > 
+> > > Regards,
+> > > Baokun
+> > > > Best regards,
+> > > > AceLan Kao.
+> > > > 
+> 
