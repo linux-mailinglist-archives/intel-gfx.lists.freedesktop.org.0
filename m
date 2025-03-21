@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62DDA6C58B
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 22:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB09A6C59B
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 23:05:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4253910E0B5;
-	Fri, 21 Mar 2025 21:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1062E10E838;
+	Fri, 21 Mar 2025 22:05:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMy33LZ/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K65z1LS6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 384D610E0B5
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 21:58:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E96510E838
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 22:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742594281; x=1774130281;
+ t=1742594735; x=1774130735;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Xc7POnnSXI7Jr8CG3J9mWCQG8Mjkdmwsgj1mwxMxOt0=;
- b=ZMy33LZ/fKNTPuvEljQQ9oyEhl1d2EnViNnr9Ue+w2+yUlJtg0en0Zkn
- dIsVGBW+NOlMxNjHCtWN1wprChwl+RWcnocB2/V6tZ+9APeXHEgu1wuac
- 2PLyESJHlXGUlSQh0fDn7enVE/FmEK0AbN5zmeQgq98K2lh6Jq3888Ef5
- V0Xzo0XEtIM1Qw6YMyy/rBEqMNk2rhLHCS9NwlKCEFuvnR1w7N0KCapuT
- PggQzCMIZpdxoKIX7nj7b/PB1vLFFKvxm9tZgv/ez7j0arYbJN91UWkla
- zJBOr+E2thNDwmYLWQIEfLo76oJ1qr5D/F1HF3N35ll6b3NKCZG6xGTJU w==;
-X-CSE-ConnectionGUID: MNa7s/RyQk2+BTtl9GGDpQ==
-X-CSE-MsgGUID: iJPlc3sVRxq29Munf5RJPw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43600261"
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="43600261"
+ bh=J4Z3TrnCanL10Q05e1VRQWdnkFQ+w63I5kQYZKxeRyQ=;
+ b=K65z1LS6iw5se5HOcGRjrhjxoh/t7bEPm122iKYUX5ClKerI1ndI9S2u
+ 7xinIq4Vv7GghIMyMbNnbn8sCrn/cimK4kbStVcar35xI5BZWJSTdxbdn
+ RnlpKOmXqQ+8N5yyyH1IRmXeaU4KlZX/4gW1/LJrqZbzFvLyBv4qOxjx0
+ ofqe+4bd+YSaJ7aIr9XKoUxQxtU6VwkcdGWa4j6gRagDA3uXQ0yHaexcS
+ H4pVcNsNgqKM9i1zL55/ncLK3SvibWM3AvwLSxvNzJ4Nrm1EgUhNOPpPw
+ 6mgi+BMbfU1/+tzWAGvC4ig+LX+y9a6L8CeyqW7tujQIrX4+rruHryvjg g==;
+X-CSE-ConnectionGUID: MCTwqDGhR+WlN9jaCq8/Tw==
+X-CSE-MsgGUID: cgw6ygMDQFuWkUSkcahBOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="43600948"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="43600948"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 14:58:01 -0700
-X-CSE-ConnectionGUID: 7TTD6lH1SgyPtnz9KncNpw==
-X-CSE-MsgGUID: U30tksazQJqfKLmH8qshOQ==
+ 21 Mar 2025 15:05:34 -0700
+X-CSE-ConnectionGUID: 3qZUWS5wQFuYStKMNPBRyw==
+X-CSE-MsgGUID: GO3DEbgZS1q0rSvy54xYzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="128735621"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="128737658"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 14:57:58 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 15:05:32 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 21 Mar 2025 23:57:58 +0200
-Date: Fri, 21 Mar 2025 23:57:58 +0200
+ Sat, 22 Mar 2025 00:05:31 +0200
+Date: Sat, 22 Mar 2025 00:05:31 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Enrico Weigelt, metux IT consult" <info@metux.net>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/16] sna: stop using obsolete type aliases
-Message-ID: <Z93g5lPz-hOQF3RR@intel.com>
+Subject: Re: [PATCH 05/16] sna: use GCPtr instead of GC *
+Message-ID: <Z93iq-zXg30blvVT@intel.com>
 References: <20250304155809.30399-1-info@metux.net>
- <20250304155809.30399-3-info@metux.net>
+ <20250304155809.30399-6-info@metux.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304155809.30399-3-info@metux.net>
+In-Reply-To: <20250304155809.30399-6-info@metux.net>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,60 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 04, 2025 at 04:57:55PM +0100, Enrico Weigelt, metux IT consult wrote:
-> The Xserver has been moved to using pixman for all matrix operations, back in
-> 2008, but left some #define's so drivers still compile. Since 1.5 decades have
-> passed now, it's time to fix remaining drivers still using the old name, so
-> we can drop these #define's from the Xserver includes.
-
-Can you list the relevant xserver commit(s) here?
-
+On Tue, Mar 04, 2025 at 04:57:58PM +0100, Enrico Weigelt, metux IT consult wrote:
+> Xserver includes have explicit pointer types for quite all kind of structs
+> (at least those used by drivers), which are used all over the Xserver.
+> Thus it's much cleaner to use those everywhere.
+> 
+> This commit also clears the road to fix a horrible nightmare of hacks just
+> needed to circumvent naming clashes between Xserver and Xlib (affecting all
+> DDXes that are painting on another Xserver): we can simply rename Xserver's
+> own "GC" type to "GCRec" (the usual naming convention here) and so no trouble
+> with Xlib's "GC" type anymore. Once this has landed, we're free to do that
+> without breaking this driver.
 > 
 > Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
 > ---
->  src/sna/sna_display.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  src/sna/sna_accel.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/src/sna/sna_display.c b/src/sna/sna_display.c
-> index d4fa7b0b..d33a88af 100644
-> --- a/src/sna/sna_display.c
-> +++ b/src/sna/sna_display.c
-> @@ -208,7 +208,7 @@ struct sna_crtc {
->  	bool hwcursor;
->  	bool flip_pending;
-> 
-> -	struct pict_f_transform cursor_to_fb, fb_to_cursor;
-> +	struct pixman_f_transform cursor_to_fb, fb_to_cursor;
-> 
->  	RegionRec crtc_damage;
->  	uint16_t shadow_bo_width, shadow_bo_height;
-> @@ -2383,7 +2383,7 @@ static bool use_shadow(struct sna *sna, xf86CrtcPtr crtc)
+> diff --git a/src/sna/sna_accel.c b/src/sna/sna_accel.c
+> index 89b82afa..90a61ab3 100644
+> --- a/src/sna/sna_accel.c
+> +++ b/src/sna/sna_accel.c
+> @@ -14300,7 +14300,7 @@ static void
+>  sna_poly_fill_rect_stippled_n_box__imm(struct sna *sna,
+>  				       struct kgem_bo *bo,
+>  				       uint32_t br00, uint32_t br13,
+> -				       const GC *gc,
+> +				       const GCPtr gc,
+
+These two are not the same. One is a non-const pointer to a
+const GC, the other is a const pointer to a non-const GC.
+
+>  				       const BoxRec *box,
+>  				       const DDXPointRec *origin)
 >  {
->  	RRTransformPtr transform;
->  	PictTransform crtc_to_fb;
-> -	struct pict_f_transform f_crtc_to_fb, f_fb_to_crtc;
-> +	struct pixman_f_transform f_crtc_to_fb, f_fb_to_crtc;
->  	unsigned pitch_limit;
->  	BoxRec b;
-> 
-> @@ -2853,7 +2853,7 @@ affine_is_pixel_exact(const struct pixman_f_transform *t)
->  static void sna_crtc_randr(xf86CrtcPtr crtc)
+> @@ -14412,7 +14412,7 @@ sna_poly_fill_rect_stippled_n_box(struct sna *sna,
+>  				  struct kgem_bo *bo,
+>  				  struct kgem_bo **tile,
+>  				  uint32_t br00, uint32_t br13,
+> -				  const GC *gc,
+> +				  const GCPtr gc,
+>  				  const BoxRec *box,
+>  				  const DDXPointRec *origin)
 >  {
->  	struct sna_crtc *sna_crtc = to_sna_crtc(crtc);
-> -	struct pict_f_transform f_crtc_to_fb, f_fb_to_crtc;
-> +	struct pixman_f_transform f_crtc_to_fb, f_fb_to_crtc;
->  	PictTransform crtc_to_fb;
->  	PictFilterPtr filter;
->  	xFixed *params;
-> @@ -6674,7 +6674,7 @@ sna_set_cursor_position(ScrnInfoPtr scrn, int x, int y)
->  		if (crtc->transform_in_use) {
->  			int xhot = sna->cursor.ref->bits->xhot;
->  			int yhot = sna->cursor.ref->bits->yhot;
-> -			struct pict_f_vector v, hot;
-> +			struct pixman_f_vector v, hot;
-> 
->  			v.v[0] = x + xhot + .5;
->  			v.v[1] = y + yhot + .5;
 > --
 > 2.39.5
 
