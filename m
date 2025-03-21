@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E98FBA6B929
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 11:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9835A6B92A
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 11:53:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6712B10E79B;
-	Fri, 21 Mar 2025 10:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A9510E7A1;
+	Fri, 21 Mar 2025 10:53:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X+rAnvt7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iau8PUw3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8958F10E79B;
- Fri, 21 Mar 2025 10:53:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D518A10E79F;
+ Fri, 21 Mar 2025 10:53:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742554429; x=1774090429;
+ t=1742554433; x=1774090433;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1u9bfGp0AoEXKISqQluC2+kUwHY6XaZi7qq02GXg42A=;
- b=X+rAnvt7Uku3mRk7xhzW9xhnSW+HEASOvXFg7vPb+NzVx+LTfifeC3mg
- hox4P1sNdcK4/p2YhZDUGuu5Q78lzclwjbNlQnSeXEWqmi+DjiStT5hKo
- 5HscY7LO72iFHev/ImPEukMvY32ntAMq5Ob7n7CdEgmi4SCkxOETWm3VG
- zCV4srd5oaAucw3ktc0/wlpOSAjW0u6eRW2FIMkI8NmfuwlZ12jv5T3n2
- 66QADu+Kmhd2Lrl0O/hXWvq60gnDmhr1RmwKUbDTZZG2YKi8yek5difSl
- HKm6vWK92EwFkbjPv/MYuAdZly/3dxBkAYeqdh+0R5yh0/rLIepQZT84l A==;
-X-CSE-ConnectionGUID: W4SSRA9bRJqti+77or7czA==
-X-CSE-MsgGUID: IC30F9tTQnq/iTbWUYXmqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="47697626"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="47697626"
+ bh=96yJpuxT5omf4G/mlWlagykejm3csI3Rs7mGSjcxfUo=;
+ b=iau8PUw3AoSXSkcrC+/J6P6FsozvgaIT7h+x/8vDwZAQ3BUyawCEJt4c
+ H2iEc7h8GakbzBXUilBv0OYchY3/3QzwdSEAqDTnafL0i7k7JtECabqlj
+ 8ZcBNijI3cShWiBKDChxbwSXuTQGzb2YL75bGDxoHLN04SUEvxull9XPE
+ D4j/S88T3jr2U8yH2jZO/iFp5A6t0TF/5Mzf5EG9v8cfp0KbhT0/1bnPS
+ Rg/G151qD3kDM0z7kn69q4kis2tkGLbSxPnvNLMRZhbF3Kopb2WfkVyYU
+ 5K82bIZBQY1wTBX70hqohdmpbukM9x13AWEy/PLrqW7FXBcDlpEowYNS+ w==;
+X-CSE-ConnectionGUID: 3OZevGyRR3eRdeihcCisEw==
+X-CSE-MsgGUID: MngFEyO2RXqoPjeO4wIUuw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="47697631"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="47697631"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 03:53:49 -0700
-X-CSE-ConnectionGUID: YNKGuHsGQR62jhZiMN44lg==
-X-CSE-MsgGUID: gm+VwH+TTySxz5b5z/R+Ig==
+ 21 Mar 2025 03:53:53 -0700
+X-CSE-ConnectionGUID: sLeejXfQT5KUvwkyyoFXMQ==
+X-CSE-MsgGUID: wVUfh2jwTTuEr06EN3NIsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="146595825"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="146595830"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 03:53:47 -0700
+ 21 Mar 2025 03:53:51 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 11/12] drm/i915/pch: convert intel_pch_display.[ch] to struct
+Subject: [PATCH 12/12] drm/i915/pch: convert intel_pch_refclk.c to struct
  intel_display
-Date: Fri, 21 Mar 2025 12:52:55 +0200
-Message-Id: <0341f0c14a4770cfd41708200cd6c5416b8a17b9.1742554320.git.jani.nikula@intel.com>
+Date: Fri, 21 Mar 2025 12:52:56 +0200
+Message-Id: <1bf35f05dc921e0ca548b0d0d8d7f5b7098e8140.1742554320.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1742554320.git.jani.nikula@intel.com>
 References: <cover.1742554320.git.jani.nikula@intel.com>
@@ -72,494 +72,508 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert as much as possible of intel_pch_display.[ch] to struct
+pointer. Convert as much as possible of intel_pch_refclk.[ch] to struct
 intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_fifo_underrun.c    |   4 +-
- .../drm/i915/display/intel_modeset_setup.c    |   2 +-
- .../gpu/drm/i915/display/intel_pch_display.c  | 160 +++++++++---------
- .../gpu/drm/i915/display/intel_pch_display.h  |  10 +-
- 4 files changed, 88 insertions(+), 88 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   6 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   6 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 126 ++++++++++--------
+ .../gpu/drm/i915/display/intel_pch_refclk.h   |  18 +--
+ drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+ 7 files changed, 85 insertions(+), 81 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 3f47a3beb2e6..451cd26024f7 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -470,8 +470,6 @@ void intel_init_fifo_underrun_reporting(struct intel_display *display,
- 					struct intel_crtc *crtc,
- 					bool enable)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	crtc->cpu_fifo_underrun_disabled = !enable;
- 
- 	/*
-@@ -483,6 +481,6 @@ void intel_init_fifo_underrun_reporting(struct intel_display *display,
- 	 * PCH transcoders B and C would prevent enabling the south
- 	 * error interrupt (see cpt_can_enable_serr_int()).
- 	 */
--	if (intel_has_pch_trancoder(i915, crtc->pipe))
-+	if (intel_has_pch_trancoder(display, crtc->pipe))
- 		crtc->pch_fifo_underrun_disabled = !enable;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 312b21b1ab59..3cc915739677 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -947,7 +947,7 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
- 	/* HW state is read out, now we need to sanitize this mess. */
- 	get_encoder_power_domains(i915);
- 
--	intel_pch_sanitize(i915);
-+	intel_pch_sanitize(display);
- 
- 	intel_cmtg_sanitize(display);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 0bfa84c758af..2c8a6673fa81 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -20,9 +20,11 @@
- #include "intel_pps.h"
- #include "intel_sdvo.h"
- 
--bool intel_has_pch_trancoder(struct drm_i915_private *i915,
-+bool intel_has_pch_trancoder(struct intel_display *display,
- 			     enum pipe pch_transcoder)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
- 	return HAS_PCH_IBX(i915) || HAS_PCH_CPT(i915) ||
- 		(HAS_PCH_LPT_H(i915) && pch_transcoder == PIPE_A);
- }
-@@ -37,11 +39,11 @@ enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc)
- 		return crtc->pipe;
- }
- 
--static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
-+static void assert_pch_dp_disabled(struct intel_display *display,
- 				   enum pipe pipe, enum port port,
- 				   i915_reg_t dp_reg)
- {
--	struct intel_display *display = &dev_priv->display;
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum pipe port_pipe;
- 	bool state;
- 
-@@ -57,11 +59,11 @@ static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
- 				 port_name(port));
- }
- 
--static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
-+static void assert_pch_hdmi_disabled(struct intel_display *display,
- 				     enum pipe pipe, enum port port,
- 				     i915_reg_t hdmi_reg)
- {
--	struct intel_display *display = &dev_priv->display;
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum pipe port_pipe;
- 	bool state;
- 
-@@ -77,15 +79,14 @@ static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
- 				 port_name(port));
- }
- 
--static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
-+static void assert_pch_ports_disabled(struct intel_display *display,
- 				      enum pipe pipe)
- {
--	struct intel_display *display = &dev_priv->display;
- 	enum pipe port_pipe;
- 
--	assert_pch_dp_disabled(dev_priv, pipe, PORT_B, PCH_DP_B);
--	assert_pch_dp_disabled(dev_priv, pipe, PORT_C, PCH_DP_C);
--	assert_pch_dp_disabled(dev_priv, pipe, PORT_D, PCH_DP_D);
-+	assert_pch_dp_disabled(display, pipe, PORT_B, PCH_DP_B);
-+	assert_pch_dp_disabled(display, pipe, PORT_C, PCH_DP_C);
-+	assert_pch_dp_disabled(display, pipe, PORT_D, PCH_DP_D);
- 
- 	INTEL_DISPLAY_STATE_WARN(display,
- 				 intel_crt_port_enabled(display, PCH_ADPA, &port_pipe) && port_pipe == pipe,
-@@ -98,15 +99,14 @@ static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
- 				 pipe_name(pipe));
- 
- 	/* PCH SDVOB multiplex with HDMIB */
--	assert_pch_hdmi_disabled(dev_priv, pipe, PORT_B, PCH_HDMIB);
--	assert_pch_hdmi_disabled(dev_priv, pipe, PORT_C, PCH_HDMIC);
--	assert_pch_hdmi_disabled(dev_priv, pipe, PORT_D, PCH_HDMID);
-+	assert_pch_hdmi_disabled(display, pipe, PORT_B, PCH_HDMIB);
-+	assert_pch_hdmi_disabled(display, pipe, PORT_C, PCH_HDMIC);
-+	assert_pch_hdmi_disabled(display, pipe, PORT_D, PCH_HDMID);
- }
- 
--static void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
-+static void assert_pch_transcoder_disabled(struct intel_display *display,
- 					   enum pipe pipe)
- {
--	struct intel_display *display = &dev_priv->display;
- 	u32 val;
- 	bool enabled;
- 
-@@ -117,45 +117,45 @@ static void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
- 				 pipe_name(pipe));
- }
- 
--static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
-+static void ibx_sanitize_pch_hdmi_port(struct intel_display *display,
- 				       enum port port, i915_reg_t hdmi_reg)
- {
--	u32 val = intel_de_read(dev_priv, hdmi_reg);
-+	u32 val = intel_de_read(display, hdmi_reg);
- 
- 	if (val & SDVO_ENABLE ||
- 	    (val & SDVO_PIPE_SEL_MASK) == SDVO_PIPE_SEL(PIPE_A))
- 		return;
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Sanitizing transcoder select for HDMI %c\n",
- 		    port_name(port));
- 
- 	val &= ~SDVO_PIPE_SEL_MASK;
- 	val |= SDVO_PIPE_SEL(PIPE_A);
- 
--	intel_de_write(dev_priv, hdmi_reg, val);
-+	intel_de_write(display, hdmi_reg, val);
- }
- 
--static void ibx_sanitize_pch_dp_port(struct drm_i915_private *dev_priv,
-+static void ibx_sanitize_pch_dp_port(struct intel_display *display,
- 				     enum port port, i915_reg_t dp_reg)
- {
--	u32 val = intel_de_read(dev_priv, dp_reg);
-+	u32 val = intel_de_read(display, dp_reg);
- 
- 	if (val & DP_PORT_EN ||
- 	    (val & DP_PIPE_SEL_MASK) == DP_PIPE_SEL(PIPE_A))
- 		return;
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Sanitizing transcoder select for DP %c\n",
- 		    port_name(port));
- 
- 	val &= ~DP_PIPE_SEL_MASK;
- 	val |= DP_PIPE_SEL(PIPE_A);
- 
--	intel_de_write(dev_priv, dp_reg, val);
-+	intel_de_write(display, dp_reg, val);
- }
- 
--static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
-+static void ibx_sanitize_pch_ports(struct intel_display *display)
- {
- 	/*
- 	 * The BIOS may select transcoder B on some of the PCH
-@@ -168,14 +168,14 @@ static void ibx_sanitize_pch_ports(struct drm_i915_private *dev_priv)
- 	 * (see. intel_dp_link_down(), intel_disable_hdmi(),
- 	 * intel_disable_sdvo()).
- 	 */
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_B, PCH_DP_B);
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_C, PCH_DP_C);
--	ibx_sanitize_pch_dp_port(dev_priv, PORT_D, PCH_DP_D);
-+	ibx_sanitize_pch_dp_port(display, PORT_B, PCH_DP_B);
-+	ibx_sanitize_pch_dp_port(display, PORT_C, PCH_DP_C);
-+	ibx_sanitize_pch_dp_port(display, PORT_D, PCH_DP_D);
- 
- 	/* PCH SDVOB multiplex with HDMIB */
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_B, PCH_HDMIB);
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_C, PCH_HDMIC);
--	ibx_sanitize_pch_hdmi_port(dev_priv, PORT_D, PCH_HDMID);
-+	ibx_sanitize_pch_hdmi_port(display, PORT_B, PCH_HDMIB);
-+	ibx_sanitize_pch_hdmi_port(display, PORT_C, PCH_HDMIC);
-+	ibx_sanitize_pch_hdmi_port(display, PORT_D, PCH_HDMID);
- }
- 
- static void intel_pch_transcoder_set_m1_n1(struct intel_crtc *crtc,
-@@ -225,31 +225,30 @@ void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- static void ilk_pch_transcoder_set_timings(const struct intel_crtc_state *crtc_state,
- 					   enum pipe pch_transcoder)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
--	intel_de_write(dev_priv, PCH_TRANS_HTOTAL(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_HTOTAL(dev_priv, cpu_transcoder)));
--	intel_de_write(dev_priv, PCH_TRANS_HBLANK(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_HBLANK(dev_priv, cpu_transcoder)));
--	intel_de_write(dev_priv, PCH_TRANS_HSYNC(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_HSYNC(dev_priv, cpu_transcoder)));
--
--	intel_de_write(dev_priv, PCH_TRANS_VTOTAL(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_VTOTAL(dev_priv, cpu_transcoder)));
--	intel_de_write(dev_priv, PCH_TRANS_VBLANK(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_VBLANK(dev_priv, cpu_transcoder)));
--	intel_de_write(dev_priv, PCH_TRANS_VSYNC(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_VSYNC(dev_priv, cpu_transcoder)));
--	intel_de_write(dev_priv, PCH_TRANS_VSYNCSHIFT(pch_transcoder),
--		       intel_de_read(dev_priv, TRANS_VSYNCSHIFT(dev_priv, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_HTOTAL(pch_transcoder),
-+		       intel_de_read(display, TRANS_HTOTAL(display, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_HBLANK(pch_transcoder),
-+		       intel_de_read(display, TRANS_HBLANK(display, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_HSYNC(pch_transcoder),
-+		       intel_de_read(display, TRANS_HSYNC(display, cpu_transcoder)));
-+
-+	intel_de_write(display, PCH_TRANS_VTOTAL(pch_transcoder),
-+		       intel_de_read(display, TRANS_VTOTAL(display, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_VBLANK(pch_transcoder),
-+		       intel_de_read(display, TRANS_VBLANK(display, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_VSYNC(pch_transcoder),
-+		       intel_de_read(display, TRANS_VSYNC(display, cpu_transcoder)));
-+	intel_de_write(display, PCH_TRANS_VSYNCSHIFT(pch_transcoder),
-+		       intel_de_read(display, TRANS_VSYNCSHIFT(display, cpu_transcoder)));
- }
- 
- static void ilk_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 	i915_reg_t reg;
-@@ -326,18 +325,18 @@ static void ilk_disable_pch_transcoder(struct intel_crtc *crtc)
- 	assert_fdi_rx_disabled(display, pipe);
- 
- 	/* Ports must be off as well */
--	assert_pch_ports_disabled(dev_priv, pipe);
-+	assert_pch_ports_disabled(display, pipe);
- 
- 	reg = PCH_TRANSCONF(pipe);
--	intel_de_rmw(dev_priv, reg, TRANS_ENABLE, 0);
-+	intel_de_rmw(display, reg, TRANS_ENABLE, 0);
- 	/* wait for PCH transcoder off, transcoder state */
--	if (intel_de_wait_for_clear(dev_priv, reg, TRANS_STATE_ENABLE, 50))
--		drm_err(&dev_priv->drm, "failed to disable transcoder %c\n",
-+	if (intel_de_wait_for_clear(display, reg, TRANS_STATE_ENABLE, 50))
-+		drm_err(display->drm, "failed to disable transcoder %c\n",
- 			pipe_name(pipe));
- 
- 	if (HAS_PCH_CPT(dev_priv))
- 		/* Workaround: Clear the timing override chicken bit again. */
--		intel_de_rmw(dev_priv, TRANS_CHICKEN2(pipe),
-+		intel_de_rmw(display, TRANS_CHICKEN2(pipe),
- 			     TRANS_CHICKEN2_TIMING_OVERRIDE, 0);
- }
- 
-@@ -366,14 +365,14 @@ void ilk_pch_pre_enable(struct intel_atomic_state *state,
- void ilk_pch_enable(struct intel_atomic_state *state,
- 		    struct intel_crtc *crtc)
- {
--	struct intel_display *display = to_intel_display(state);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
- 	u32 temp;
- 
--	assert_pch_transcoder_disabled(dev_priv, pipe);
-+	assert_pch_transcoder_disabled(display, pipe);
- 
- 	/* For PCH output, training FDI link */
- 	intel_fdi_link_train(crtc, crtc_state);
-@@ -459,6 +458,7 @@ void ilk_pch_disable(struct intel_atomic_state *state,
- void ilk_pch_post_disable(struct intel_atomic_state *state,
- 			  struct intel_crtc *crtc)
- {
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 
-@@ -466,12 +466,12 @@ void ilk_pch_post_disable(struct intel_atomic_state *state,
- 
- 	if (HAS_PCH_CPT(dev_priv)) {
- 		/* disable TRANS_DP_CTL */
--		intel_de_rmw(dev_priv, TRANS_DP_CTL(pipe),
-+		intel_de_rmw(display, TRANS_DP_CTL(pipe),
- 			     TRANS_DP_OUTPUT_ENABLE | TRANS_DP_PORT_SEL_MASK,
- 			     TRANS_DP_PORT_SEL_NONE);
- 
- 		/* disable DPLL_SEL */
--		intel_de_rmw(dev_priv, PCH_DPLL_SEL,
-+		intel_de_rmw(display, PCH_DPLL_SEL,
- 			     TRANS_DPLL_ENABLE(pipe) | TRANS_DPLLB_SEL(pipe), 0);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a24206535772..48282611db3e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7815,7 +7815,7 @@ void intel_setup_outputs(struct intel_display *display)
+ 			intel_encoder_possible_clones(encoder);
  	}
  
-@@ -497,8 +497,8 @@ static void ilk_pch_clock_get(struct intel_crtc_state *crtc_state)
+-	intel_init_pch_refclk(dev_priv);
++	intel_init_pch_refclk(display);
  
- void ilk_pch_get_config(struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_shared_dpll *pll;
- 	enum pipe pipe = crtc->pipe;
-@@ -550,8 +550,6 @@ void ilk_pch_get_config(struct intel_crtc_state *crtc_state)
- static void lpt_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	u32 val, pipeconf_val;
+ 	drm_helper_move_panel_connectors_to_head(display->drm);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index adeb4408eb49..c78315eb44fa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1373,18 +1373,18 @@ static void hsw_enable_pc8(struct intel_display *display)
+ 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
+ 			     PCH_LP_PARTITION_LEVEL_DISABLE, 0);
  
-@@ -559,49 +557,49 @@ static void lpt_enable_pch_transcoder(const struct intel_crtc_state *crtc_state)
- 	assert_fdi_tx_enabled(display, (enum pipe)cpu_transcoder);
- 	assert_fdi_rx_enabled(display, PIPE_A);
- 
--	val = intel_de_read(dev_priv, TRANS_CHICKEN2(PIPE_A));
-+	val = intel_de_read(display, TRANS_CHICKEN2(PIPE_A));
- 	/* Workaround: set timing override bit. */
- 	val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
- 	/* Configure frame start delay to match the CPU */
- 	val &= ~TRANS_CHICKEN2_FRAME_START_DELAY_MASK;
- 	val |= TRANS_CHICKEN2_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
--	intel_de_write(dev_priv, TRANS_CHICKEN2(PIPE_A), val);
-+	intel_de_write(display, TRANS_CHICKEN2(PIPE_A), val);
- 
- 	val = TRANS_ENABLE;
--	pipeconf_val = intel_de_read(dev_priv,
--				     TRANSCONF(dev_priv, cpu_transcoder));
-+	pipeconf_val = intel_de_read(display,
-+				     TRANSCONF(display, cpu_transcoder));
- 
- 	if ((pipeconf_val & TRANSCONF_INTERLACE_MASK_HSW) == TRANSCONF_INTERLACE_IF_ID_ILK)
- 		val |= TRANS_INTERLACE_INTERLACED;
- 	else
- 		val |= TRANS_INTERLACE_PROGRESSIVE;
- 
--	intel_de_write(dev_priv, LPT_TRANSCONF, val);
--	if (intel_de_wait_for_set(dev_priv, LPT_TRANSCONF,
-+	intel_de_write(display, LPT_TRANSCONF, val);
-+	if (intel_de_wait_for_set(display, LPT_TRANSCONF,
- 				  TRANS_STATE_ENABLE, 100))
--		drm_err(&dev_priv->drm, "Failed to enable PCH transcoder\n");
-+		drm_err(display->drm, "Failed to enable PCH transcoder\n");
+-	lpt_disable_clkout_dp(dev_priv);
++	lpt_disable_clkout_dp(display);
+ 	hsw_disable_lcpll(display, true, true);
  }
  
--static void lpt_disable_pch_transcoder(struct drm_i915_private *dev_priv)
-+static void lpt_disable_pch_transcoder(struct intel_display *display)
+ static void hsw_disable_pc8(struct intel_display *display)
  {
--	intel_de_rmw(dev_priv, LPT_TRANSCONF, TRANS_ENABLE, 0);
-+	intel_de_rmw(display, LPT_TRANSCONF, TRANS_ENABLE, 0);
- 	/* wait for PCH transcoder off, transcoder state */
--	if (intel_de_wait_for_clear(dev_priv, LPT_TRANSCONF,
-+	if (intel_de_wait_for_clear(display, LPT_TRANSCONF,
- 				    TRANS_STATE_ENABLE, 50))
--		drm_err(&dev_priv->drm, "Failed to disable PCH transcoder\n");
-+		drm_err(display->drm, "Failed to disable PCH transcoder\n");
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
++	struct drm_i915_private __maybe_unused *dev_priv = to_i915(display->drm);
  
- 	/* Workaround: clear timing override bit. */
--	intel_de_rmw(dev_priv, TRANS_CHICKEN2(PIPE_A), TRANS_CHICKEN2_TIMING_OVERRIDE, 0);
-+	intel_de_rmw(display, TRANS_CHICKEN2(PIPE_A), TRANS_CHICKEN2_TIMING_OVERRIDE, 0);
+ 	drm_dbg_kms(display->drm, "Disabling package C8+\n");
+ 
+ 	hsw_restore_lcpll(display);
+-	intel_init_pch_refclk(dev_priv);
++	intel_init_pch_refclk(display);
+ 
+ 	/* Many display registers don't survive PC8+ */
+ #ifdef I915 /* FIXME */
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index c825a507b905..953cac2bd1dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -715,7 +715,6 @@ static void hsw_ddi_spll_enable(struct intel_display *display,
+ static void hsw_ddi_wrpll_disable(struct intel_display *display,
+ 				  struct intel_shared_dpll *pll)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const enum intel_dpll_id id = pll->info->id;
+ 
+ 	intel_de_rmw(display, WRPLL_CTL(id), WRPLL_PLL_ENABLE, 0);
+@@ -726,13 +725,12 @@ static void hsw_ddi_wrpll_disable(struct intel_display *display,
+ 	 * that depend on it have been shut down.
+ 	 */
+ 	if (display->dpll.pch_ssc_use & BIT(id))
+-		intel_init_pch_refclk(i915);
++		intel_init_pch_refclk(display);
  }
  
- void lpt_pch_enable(struct intel_atomic_state *state,
- 		    struct intel_crtc *crtc)
+ static void hsw_ddi_spll_disable(struct intel_display *display,
+ 				 struct intel_shared_dpll *pll)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	enum intel_dpll_id id = pll->info->id;
  
--	assert_pch_transcoder_disabled(dev_priv, PIPE_A);
-+	assert_pch_transcoder_disabled(display, PIPE_A);
+ 	intel_de_rmw(display, SPLL_CTL, SPLL_PLL_ENABLE, 0);
+@@ -743,7 +741,7 @@ static void hsw_ddi_spll_disable(struct intel_display *display,
+ 	 * that depend on it have been shut down.
+ 	 */
+ 	if (display->dpll.pch_ssc_use & BIT(id))
+-		intel_init_pch_refclk(i915);
++		intel_init_pch_refclk(display);
+ }
  
- 	lpt_program_iclkip(crtc_state);
- 
-@@ -614,25 +612,27 @@ void lpt_pch_enable(struct intel_atomic_state *state,
- void lpt_pch_disable(struct intel_atomic_state *state,
+ static bool hsw_ddi_wrpll_get_hw_state(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+index 2c8a6673fa81..27fb386c84c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+@@ -613,18 +613,16 @@ void lpt_pch_disable(struct intel_atomic_state *state,
  		     struct intel_crtc *crtc)
  {
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
  
--	lpt_disable_pch_transcoder(dev_priv);
-+	lpt_disable_pch_transcoder(display);
+ 	lpt_disable_pch_transcoder(display);
  
- 	lpt_disable_iclkip(dev_priv);
+-	lpt_disable_iclkip(dev_priv);
++	lpt_disable_iclkip(display);
  }
  
  void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
  {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 tmp;
+ 
+ 	if ((intel_de_read(display, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
+@@ -639,7 +637,7 @@ void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
+ 	intel_cpu_transcoder_get_m1_n1(crtc, crtc_state->cpu_transcoder,
+ 				       &crtc_state->fdi_m_n);
+ 
+-	crtc_state->hw.adjusted_mode.crtc_clock = lpt_get_iclkip(dev_priv);
++	crtc_state->hw.adjusted_mode.crtc_clock = lpt_get_iclkip(display);
+ }
+ 
+ void intel_pch_sanitize(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+index 33467de3d115..1307a478861a 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
+@@ -11,27 +11,28 @@
+ #include "intel_pch_refclk.h"
+ #include "intel_sbi.h"
+ 
+-static void lpt_fdi_reset_mphy(struct drm_i915_private *dev_priv)
++static void lpt_fdi_reset_mphy(struct intel_display *display)
+ {
+-	intel_de_rmw(dev_priv, SOUTH_CHICKEN2, 0, FDI_MPHY_IOSFSB_RESET_CTL);
++	intel_de_rmw(display, SOUTH_CHICKEN2, 0, FDI_MPHY_IOSFSB_RESET_CTL);
+ 
+-	if (wait_for_us(intel_de_read(dev_priv, SOUTH_CHICKEN2) &
++	if (wait_for_us(intel_de_read(display, SOUTH_CHICKEN2) &
+ 			FDI_MPHY_IOSFSB_RESET_STATUS, 100))
+-		drm_err(&dev_priv->drm, "FDI mPHY reset assert timeout\n");
++		drm_err(display->drm, "FDI mPHY reset assert timeout\n");
+ 
+-	intel_de_rmw(dev_priv, SOUTH_CHICKEN2, FDI_MPHY_IOSFSB_RESET_CTL, 0);
++	intel_de_rmw(display, SOUTH_CHICKEN2, FDI_MPHY_IOSFSB_RESET_CTL, 0);
+ 
+-	if (wait_for_us((intel_de_read(dev_priv, SOUTH_CHICKEN2) &
++	if (wait_for_us((intel_de_read(display, SOUTH_CHICKEN2) &
+ 			 FDI_MPHY_IOSFSB_RESET_STATUS) == 0, 100))
+-		drm_err(&dev_priv->drm, "FDI mPHY reset de-assert timeout\n");
++		drm_err(display->drm, "FDI mPHY reset de-assert timeout\n");
+ }
+ 
+ /* WaMPhyProgramming:hsw */
+-static void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
++static void lpt_fdi_program_mphy(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 tmp;
+ 
+-	lpt_fdi_reset_mphy(dev_priv);
++	lpt_fdi_reset_mphy(display);
+ 
+ 	tmp = intel_sbi_read(dev_priv, 0x8008, SBI_MPHY);
+ 	tmp &= ~(0xFF << 24);
+@@ -103,11 +104,12 @@ static void lpt_fdi_program_mphy(struct drm_i915_private *dev_priv)
+ 	intel_sbi_write(dev_priv, 0x21EC, tmp, SBI_MPHY);
+ }
+ 
+-void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
++void lpt_disable_iclkip(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 temp;
+ 
+-	intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_GATE);
++	intel_de_write(display, PIXCLK_GATE, PIXCLK_GATE_GATE);
+ 
+ 	intel_sbi_lock(dev_priv);
+ 
+@@ -175,24 +177,25 @@ int lpt_iclkip(const struct intel_crtc_state *crtc_state)
+ /* Program iCLKIP clock to the desired frequency */
+ void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
+ {
 +	struct intel_display *display = to_intel_display(crtc_state);
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	u32 tmp;
+ 	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
+ 	struct iclkip_params p;
+ 	u32 temp;
  
--	if ((intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
-+	if ((intel_de_read(display, LPT_TRANSCONF) & TRANS_ENABLE) == 0)
+-	lpt_disable_iclkip(dev_priv);
++	lpt_disable_iclkip(display);
+ 
+ 	lpt_compute_iclkip(&p, clock);
+-	drm_WARN_ON(&dev_priv->drm, lpt_iclkip_freq(&p) != clock);
++	drm_WARN_ON(display->drm, lpt_iclkip_freq(&p) != clock);
+ 
+ 	/* This should not happen with any sane values */
+-	drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIVSEL(p.divsel) &
++	drm_WARN_ON(display->drm, SBI_SSCDIVINTPHASE_DIVSEL(p.divsel) &
+ 		    ~SBI_SSCDIVINTPHASE_DIVSEL_MASK);
+-	drm_WARN_ON(&dev_priv->drm, SBI_SSCDIVINTPHASE_DIR(p.phasedir) &
++	drm_WARN_ON(display->drm, SBI_SSCDIVINTPHASE_DIR(p.phasedir) &
+ 		    ~SBI_SSCDIVINTPHASE_INCVAL_MASK);
+ 
+-	drm_dbg_kms(&dev_priv->drm,
++	drm_dbg_kms(display->drm,
+ 		    "iCLKIP clock: found settings for %dKHz refresh rate: auxdiv=%x, divsel=%x, phasedir=%x, phaseinc=%x\n",
+ 		    clock, p.auxdiv, p.divsel, p.phasedir, p.phaseinc);
+ 
+@@ -224,15 +227,16 @@ void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
+ 	/* Wait for initialization time */
+ 	udelay(24);
+ 
+-	intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_UNGATE);
++	intel_de_write(display, PIXCLK_GATE, PIXCLK_GATE_UNGATE);
+ }
+ 
+-int lpt_get_iclkip(struct drm_i915_private *dev_priv)
++int lpt_get_iclkip(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct iclkip_params p;
+ 	u32 temp;
+ 
+-	if ((intel_de_read(dev_priv, PIXCLK_GATE) & PIXCLK_GATE_UNGATE) == 0)
++	if ((intel_de_read(display, PIXCLK_GATE) & PIXCLK_GATE_UNGATE) == 0)
+ 		return 0;
+ 
+ 	iclkip_params_init(&p);
+@@ -268,15 +272,16 @@ int lpt_get_iclkip(struct drm_i915_private *dev_priv)
+  * - Sequence to enable CLKOUT_DP without spread
+  * - Sequence to enable CLKOUT_DP for FDI usage and configure PCH FDI I/O
+  */
+-static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
++static void lpt_enable_clkout_dp(struct intel_display *display,
+ 				 bool with_spread, bool with_fdi)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 reg, tmp;
+ 
+-	if (drm_WARN(&dev_priv->drm, with_fdi && !with_spread,
++	if (drm_WARN(display->drm, with_fdi && !with_spread,
+ 		     "FDI requires downspread\n"))
+ 		with_spread = true;
+-	if (drm_WARN(&dev_priv->drm, HAS_PCH_LPT_LP(dev_priv) &&
++	if (drm_WARN(display->drm, HAS_PCH_LPT_LP(dev_priv) &&
+ 		     with_fdi, "LP PCH doesn't have FDI\n"))
+ 		with_fdi = false;
+ 
+@@ -295,7 +300,7 @@ static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
+ 		intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
+ 
+ 		if (with_fdi)
+-			lpt_fdi_program_mphy(dev_priv);
++			lpt_fdi_program_mphy(display);
+ 	}
+ 
+ 	reg = HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
+@@ -307,8 +312,9 @@ static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
+ }
+ 
+ /* Sequence to disable CLKOUT_DP */
+-void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
++void lpt_disable_clkout_dp(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 reg, tmp;
+ 
+ 	intel_sbi_lock(dev_priv);
+@@ -364,15 +370,16 @@ static const u16 sscdivintphase[] = {
+  * < 0 slow down the clock, > 0 speed up the clock, 0 == no bend (135MHz)
+  * change in clock period = -(steps / 10) * 5.787 ps
+  */
+-static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int steps)
++static void lpt_bend_clkout_dp(struct intel_display *display, int steps)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 tmp;
+ 	int idx = BEND_IDX(steps);
+ 
+-	if (drm_WARN_ON(&dev_priv->drm, steps % 5 != 0))
++	if (drm_WARN_ON(display->drm, steps % 5 != 0))
  		return;
  
- 	crtc_state->has_pch_encoder = true;
+-	if (drm_WARN_ON(&dev_priv->drm, idx >= ARRAY_SIZE(sscdivintphase)))
++	if (drm_WARN_ON(display->drm, idx >= ARRAY_SIZE(sscdivintphase)))
+ 		return;
  
--	tmp = intel_de_read(dev_priv, FDI_RX_CTL(PIPE_A));
-+	tmp = intel_de_read(display, FDI_RX_CTL(PIPE_A));
- 	crtc_state->fdi_lanes = ((FDI_DP_PORT_WIDTH_MASK & tmp) >>
- 				 FDI_DP_PORT_WIDTH_SHIFT) + 1;
+ 	intel_sbi_lock(dev_priv);
+@@ -393,10 +400,10 @@ static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int steps)
  
-@@ -642,8 +642,10 @@ void lpt_pch_get_config(struct intel_crtc_state *crtc_state)
- 	crtc_state->hw.adjusted_mode.crtc_clock = lpt_get_iclkip(dev_priv);
- }
+ #undef BEND_IDX
  
--void intel_pch_sanitize(struct drm_i915_private *i915)
-+void intel_pch_sanitize(struct intel_display *display)
+-static bool spll_uses_pch_ssc(struct drm_i915_private *dev_priv)
++static bool spll_uses_pch_ssc(struct intel_display *display)
  {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+
- 	if (HAS_PCH_IBX(i915))
--		ibx_sanitize_pch_ports(i915);
-+		ibx_sanitize_pch_ports(display);
+-	u32 fuse_strap = intel_de_read(dev_priv, FUSE_STRAP);
+-	u32 ctl = intel_de_read(dev_priv, SPLL_CTL);
++	u32 fuse_strap = intel_de_read(display, FUSE_STRAP);
++	u32 ctl = intel_de_read(display, SPLL_CTL);
+ 
+ 	if ((ctl & SPLL_PLL_ENABLE) == 0)
+ 		return false;
+@@ -405,18 +412,17 @@ static bool spll_uses_pch_ssc(struct drm_i915_private *dev_priv)
+ 	    (fuse_strap & HSW_CPU_SSC_ENABLE) == 0)
+ 		return true;
+ 
+-	if (IS_BROADWELL(dev_priv) &&
++	if (display->platform.broadwell &&
+ 	    (ctl & SPLL_REF_MASK) == SPLL_REF_PCH_SSC_BDW)
+ 		return true;
+ 
+ 	return false;
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.h b/drivers/gpu/drm/i915/display/intel_pch_display.h
-index 35f8288af3d1..cd6b3ed05887 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.h
-@@ -9,14 +9,14 @@
+ 
+-static bool wrpll_uses_pch_ssc(struct drm_i915_private *dev_priv,
+-			       enum intel_dpll_id id)
++static bool wrpll_uses_pch_ssc(struct intel_display *display, enum intel_dpll_id id)
+ {
+-	u32 fuse_strap = intel_de_read(dev_priv, FUSE_STRAP);
+-	u32 ctl = intel_de_read(dev_priv, WRPLL_CTL(id));
++	u32 fuse_strap = intel_de_read(display, FUSE_STRAP);
++	u32 ctl = intel_de_read(display, WRPLL_CTL(id));
+ 
+ 	if ((ctl & WRPLL_PLL_ENABLE) == 0)
+ 		return false;
+@@ -424,7 +430,7 @@ static bool wrpll_uses_pch_ssc(struct drm_i915_private *dev_priv,
+ 	if ((ctl & WRPLL_REF_MASK) == WRPLL_REF_PCH_SSC)
+ 		return true;
+ 
+-	if ((IS_BROADWELL(dev_priv) || IS_HASWELL_ULT(dev_priv)) &&
++	if ((display->platform.broadwell || display->platform.haswell_ult) &&
+ 	    (ctl & WRPLL_REF_MASK) == WRPLL_REF_MUXED_SSC_BDW &&
+ 	    (fuse_strap & HSW_CPU_SSC_ENABLE) == 0)
+ 		return true;
+@@ -432,12 +438,12 @@ static bool wrpll_uses_pch_ssc(struct drm_i915_private *dev_priv,
+ 	return false;
+ }
+ 
+-static void lpt_init_pch_refclk(struct drm_i915_private *dev_priv)
++static void lpt_init_pch_refclk(struct intel_display *display)
+ {
+ 	struct intel_encoder *encoder;
+ 	bool has_fdi = false;
+ 
+-	for_each_intel_encoder(&dev_priv->drm, encoder) {
++	for_each_intel_encoder(display->drm, encoder) {
+ 		switch (encoder->type) {
+ 		case INTEL_OUTPUT_ANALOG:
+ 			has_fdi = true;
+@@ -462,37 +468,37 @@ static void lpt_init_pch_refclk(struct drm_i915_private *dev_priv)
+ 	 * clock hierarchy. That would also allow us to do
+ 	 * clock bending finally.
+ 	 */
+-	dev_priv->display.dpll.pch_ssc_use = 0;
++	display->dpll.pch_ssc_use = 0;
+ 
+-	if (spll_uses_pch_ssc(dev_priv)) {
+-		drm_dbg_kms(&dev_priv->drm, "SPLL using PCH SSC\n");
+-		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_SPLL);
++	if (spll_uses_pch_ssc(display)) {
++		drm_dbg_kms(display->drm, "SPLL using PCH SSC\n");
++		display->dpll.pch_ssc_use |= BIT(DPLL_ID_SPLL);
+ 	}
+ 
+-	if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL1)) {
+-		drm_dbg_kms(&dev_priv->drm, "WRPLL1 using PCH SSC\n");
+-		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL1);
++	if (wrpll_uses_pch_ssc(display, DPLL_ID_WRPLL1)) {
++		drm_dbg_kms(display->drm, "WRPLL1 using PCH SSC\n");
++		display->dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL1);
+ 	}
+ 
+-	if (wrpll_uses_pch_ssc(dev_priv, DPLL_ID_WRPLL2)) {
+-		drm_dbg_kms(&dev_priv->drm, "WRPLL2 using PCH SSC\n");
+-		dev_priv->display.dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL2);
++	if (wrpll_uses_pch_ssc(display, DPLL_ID_WRPLL2)) {
++		drm_dbg_kms(display->drm, "WRPLL2 using PCH SSC\n");
++		display->dpll.pch_ssc_use |= BIT(DPLL_ID_WRPLL2);
+ 	}
+ 
+-	if (dev_priv->display.dpll.pch_ssc_use)
++	if (display->dpll.pch_ssc_use)
+ 		return;
+ 
+ 	if (has_fdi) {
+-		lpt_bend_clkout_dp(dev_priv, 0);
+-		lpt_enable_clkout_dp(dev_priv, true, true);
++		lpt_bend_clkout_dp(display, 0);
++		lpt_enable_clkout_dp(display, true, true);
+ 	} else {
+-		lpt_disable_clkout_dp(dev_priv);
++		lpt_disable_clkout_dp(display);
+ 	}
+ }
+ 
+-static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
++static void ilk_init_pch_refclk(struct intel_display *display)
+ {
+-	struct intel_display *display = &dev_priv->display;
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_encoder *encoder;
+ 	struct intel_shared_dpll *pll;
+ 	int i;
+@@ -607,7 +613,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
+ 
+ 		/* SSC must be turned on before enabling the CPU output  */
+ 		if (intel_panel_use_ssc(display) && can_ssc) {
+-			drm_dbg_kms(&dev_priv->drm, "Using SSC on panel\n");
++			drm_dbg_kms(display->drm, "Using SSC on panel\n");
+ 			val |= DREF_SSC1_ENABLE;
+ 		} else {
+ 			val &= ~DREF_SSC1_ENABLE;
+@@ -623,7 +629,7 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
+ 		/* Enable CPU source on CPU attached eDP */
+ 		if (has_cpu_edp) {
+ 			if (intel_panel_use_ssc(display) && can_ssc) {
+-				drm_dbg_kms(&dev_priv->drm,
++				drm_dbg_kms(display->drm,
+ 					    "Using SSC on eDP\n");
+ 				val |= DREF_CPU_SOURCE_OUTPUT_DOWNSPREAD;
+ 			} else {
+@@ -670,10 +676,12 @@ static void ilk_init_pch_refclk(struct drm_i915_private *dev_priv)
+ /*
+  * Initialize reference clocks when the driver loads
+  */
+-void intel_init_pch_refclk(struct drm_i915_private *dev_priv)
++void intel_init_pch_refclk(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
+ 	if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv))
+-		ilk_init_pch_refclk(dev_priv);
++		ilk_init_pch_refclk(display);
+ 	else if (HAS_PCH_LPT(dev_priv))
+-		lpt_init_pch_refclk(dev_priv);
++		lpt_init_pch_refclk(display);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.h b/drivers/gpu/drm/i915/display/intel_pch_refclk.h
+index ae3403c0ced8..25cc53c568bc 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_refclk.h
++++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.h
+@@ -8,25 +8,25 @@
+ 
  #include <linux/types.h>
  
- enum pipe;
 -struct drm_i915_private;
- struct intel_atomic_state;
- struct intel_crtc;
  struct intel_crtc_state;
 +struct intel_display;
- struct intel_link_m_n;
  
  #ifdef I915
--bool intel_has_pch_trancoder(struct drm_i915_private *i915,
-+bool intel_has_pch_trancoder(struct intel_display *display,
- 			     enum pipe pch_transcoder);
- enum pipe intel_crtc_pch_transcoder(struct intel_crtc *crtc);
+ void lpt_program_iclkip(const struct intel_crtc_state *crtc_state);
+-void lpt_disable_iclkip(struct drm_i915_private *dev_priv);
+-int lpt_get_iclkip(struct drm_i915_private *dev_priv);
++void lpt_disable_iclkip(struct intel_display *display);
++int lpt_get_iclkip(struct intel_display *display);
+ int lpt_iclkip(const struct intel_crtc_state *crtc_state);
  
-@@ -41,9 +41,9 @@ void intel_pch_transcoder_get_m1_n1(struct intel_crtc *crtc,
- void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 				    struct intel_link_m_n *m_n);
- 
--void intel_pch_sanitize(struct drm_i915_private *i915);
-+void intel_pch_sanitize(struct intel_display *display);
+-void intel_init_pch_refclk(struct drm_i915_private *dev_priv);
+-void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv);
++void intel_init_pch_refclk(struct intel_display *display);
++void lpt_disable_clkout_dp(struct intel_display *display);
  #else
--static inline bool intel_has_pch_trancoder(struct drm_i915_private *i915,
-+static inline bool intel_has_pch_trancoder(struct intel_display *display,
- 					   enum pipe pch_transcoder)
- {
- 	return false;
-@@ -90,7 +90,7 @@ static inline void intel_pch_transcoder_get_m2_n2(struct intel_crtc *crtc,
- 						  struct intel_link_m_n *m_n)
+ static inline void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
  {
  }
--static inline void intel_pch_sanitize(struct drm_i915_private *i915)
-+static inline void intel_pch_sanitize(struct intel_display *display)
+-static inline void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
++static inline void lpt_disable_iclkip(struct intel_display *display)
+ {
+ }
+-static inline int lpt_get_iclkip(struct drm_i915_private *dev_priv)
++static inline int lpt_get_iclkip(struct intel_display *display)
+ {
+ 	return 0;
+ }
+@@ -34,10 +34,10 @@ static inline int lpt_iclkip(const struct intel_crtc_state *crtc_state)
+ {
+ 	return 0;
+ }
+-static inline void intel_init_pch_refclk(struct drm_i915_private *dev_priv)
++static inline void intel_init_pch_refclk(struct intel_display *display)
+ {
+ }
+-static inline void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
++static inline void lpt_disable_clkout_dp(struct intel_display *display)
  {
  }
  #endif
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index fcb5a6adf570..d78de7f620dd 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1211,7 +1211,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	intel_pps_unlock_regs_wa(display);
+ 
+-	intel_init_pch_refclk(dev_priv);
++	intel_init_pch_refclk(display);
+ 
+ 	/*
+ 	 * Interrupts have to be enabled before any batches are run. If not the
 -- 
 2.39.5
 
