@@ -2,62 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF69A6B7E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 10:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EB9BA6B8C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 11:27:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07BBD10E76D;
-	Fri, 21 Mar 2025 09:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8EBC10E781;
+	Fri, 21 Mar 2025 10:27:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f3xQPKEn";
+	dkim=pass (2048-bit key; unprotected) header.d=fooishbar.org header.i=@fooishbar.org header.b="UsncP2e9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1DBA10E76D;
- Fri, 21 Mar 2025 09:45:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742550355; x=1774086355;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bTwJ3bG2L3LjQ242WKkTjZjxQSUt0E1NBq6mKBH5em4=;
- b=f3xQPKEn9VLOqSc/zrwRXqDl/mzNZLOf8avHhpDhieqHIA+iW9x5Zmel
- XShetQh41yxysebHVI8dS7ZVk9djkEXDXTOSD2z9LKIJhDBI06Y+uDesX
- FNwAn/ohor7q/1XWa/o9fKb1BK5As4D+vTS09lXeoJkKKshhkZqwYoy60
- EwpPURuCf0TXNteuIYsu3z9dUMZPTZ8Aa+VJRNsgTs1ky/Zzbpg3lmuZO
- ZUvq2smPS109Skxltu1DOnaKQKDz4ypu5mwb2R86m7rVz5rjRDHPwYqZH
- vAbuEmkhHKgIprR1bMmVqAD+UPE2vx6N7euS4m9N1oSnEoNPnmFweFTQc w==;
-X-CSE-ConnectionGUID: ArzgvpRoQ6Ga8wtiBqBh7A==
-X-CSE-MsgGUID: iodhk3OcQwCpdd5VSO6GKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11379"; a="43974531"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="43974531"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 02:45:54 -0700
-X-CSE-ConnectionGUID: RS1MrXXNQpywInyksiwtdw==
-X-CSE-MsgGUID: mh2dccRZR52/DtMjBbjcMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="124132839"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.179])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 02:45:51 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, jouni.hogander@intel.com,
- ville.syrjala@intel.com, uma.shankar@intel.com, jani.saarinen@intel.com,
- jeevan.b@intel.com
-Subject: [PATCH v2 2/2] drm/i915/fbc: update the panel_replay dependency in
- fbc wa's
-Date: Fri, 21 Mar 2025 11:45:29 +0200
-Message-ID: <20250321094529.197397-3-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250321094529.197397-1-vinod.govindapillai@intel.com>
-References: <20250321094529.197397-1-vinod.govindapillai@intel.com>
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
+ [209.85.222.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A68E410E781
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 10:27:04 +0000 (UTC)
+Received: by mail-qk1-f175.google.com with SMTP id
+ af79cd13be357-7c5ba363f1aso106926185a.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 03:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar.org; s=google; t=1742552823; x=1743157623;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=C6XBFDQAIe6jgF6F40xRB15uQkrbHzlxj9SySg4AP08=;
+ b=UsncP2e9n3QNbKNxZR9VuO0EAMPJbvKSYfFP1ZrgDxZcz93zOv/jaLFIWidxpfe7Oj
+ vCWo9ZgtxCdavBaeguknpbzXxjVVfrf//zmC1Phd6eRPKrrUxiDNCtotg5BNtnPhThgY
+ GMlqnQo9e2WDFoFLNeBtJhpnbV6qkNBwrAwErTZoC/PRbCDjvBqa/87HGn65lwvxvsqk
+ UBeJN/cRvZx+zH/IsIGWFYwQ2JWTRSrTS9S50sqEyEykyla6gax6cZ6ZqNu3HVpU6tZE
+ r3OihHp3BHjebgW3DnH2d6E9rLjtmYUUbe9lZqThPl+alpzH1agT72Xzh8sI+d0NimFI
+ YYIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742552823; x=1743157623;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=C6XBFDQAIe6jgF6F40xRB15uQkrbHzlxj9SySg4AP08=;
+ b=eYoFlCUwBxz0Y1bMXuYaCXDUN/FeZbpPYs1bFmWOsIKpyXX2Ia9gUeR28boh5yIWjD
+ KPpw844ewGhr7O8SPtPWKqVRZWMQHJ+QTpxYXNYhk1PWZU+3YvLMJWoHMFIXPktgjtAp
+ tMKe2GHVr8I6JJgSOM3UjByT5v5osjZfqOQmQdlNolT4zCwpyANX5D6g9UdAFxNQqxuq
+ l8imeVRTBo01Z/5N4XJa/eHM5qe5EzhIEbef0c5UZWmhyWEZ7Lnh3Pwl9XKLAHJ51iq1
+ P1v6vXsIdgo4MXwO409WVVD4xbHl4EOj4m2/sN9fGAojwx0BQvy3vjo/ADjOoY8X/wA9
+ 05KA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVCylocSHZdmY1FKUqRbnjtMTu+dpHWNVZdmZymu5euvHhlAa31TB5uWY7Nr7CAYYs/M46hNcRxdnI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwAIkrg7C3x1GZyPNLzUlXO8kokkYKYhtULbAWRlqA2Rs35VSvg
+ CFWUlg/VyIL9o6Aoz2ZZx8e3hTynU3GoKmt6AXAv+5Ij5kB8D4zEFACLZ1zaN0RwvaAZuOzyyvf
+ agcskm45ctWBf1NRySmIafGJojCexF55LskVQvw==
+X-Gm-Gg: ASbGncsvakByiDvt0RYKXstyfkgFuGq7gtfMuQCGRlZtB6NnVkcS/+RtAbxtws6UpOZ
+ Lbfm7t/kUrtreTJQLm8vIok4C9WIUGIKBD/hAZnzwPEfWkAtJJLdrC5WfIPnHEIAl24232KfCa9
+ NU7tqbGzMpOkr386UNAb6wHQLc
+X-Google-Smtp-Source: AGHT+IGtKZxKAoZgtR0aBlIVmyFJdz4vLgELnLl5z6u4LuYLjXNoyuq0UVrTF+CIIc7xPDTVRmAHZ+SRVPvG/7TyZXI=
+X-Received: by 2002:a05:620a:4055:b0:7c5:a423:f5b0 with SMTP id
+ af79cd13be357-7c5ba13361dmr406693385a.7.1742552823192; Fri, 21 Mar 2025
+ 03:27:03 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20250314085858.39328-1-vignesh.raman@collabora.com>
+ <20250314085858.39328-2-vignesh.raman@collabora.com>
+In-Reply-To: <20250314085858.39328-2-vignesh.raman@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Fri, 21 Mar 2025 10:26:52 +0000
+X-Gm-Features: AQ5f1JpymW7UP78_0g_Z-sNByprYGBFX-xYqr_OlbVrsK0-Hob7Zk88vIu6Znbc
+Message-ID: <CAPj87rMjF84yyPqBshuGu=8qx6Xhq9Z-HgEnQe=tRtbu3E8OtQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] drm/ci: uprev mesa
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch, 
+ robdclark@gmail.com, guilherme.gallo@collabora.com, 
+ sergi.blanch.torne@collabora.com, valentine.burley@collabora.com, 
+ lumag@kernel.org, quic_abhinavk@quicinc.com, mripard@kernel.org, 
+ jani.nikula@linux.intel.com, linux-mediatek@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,41 +91,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There are two panel_replay scenarios fbc wa need to be aware of,
-panel replay with and without selective update capability.
-Panel replay without selective update don't have any fbc wa.
-So keep the fbc psr1 wa as it is.
+Hi Vignesh,
 
-The current fbc psr2 wa is mainly about selective fetch and we
-need to apply the fbc wa if selective fetch is on - irrespective
-of panel replay. Hence we can't exclude panel replay from the
-fbc psr2 wa.
+On Fri, 14 Mar 2025 at 08:59, Vignesh Raman <vignesh.raman@collabora.com> wrote:
+> LAVA was recently patched [1] with a fix on how parameters are parsed in
+> `lava-test-case`, so we don't need to repeat quotes to send the
+> arguments properly to it. Uprev mesa to fix this issue.
 
-v1: keep panel_replay exclusion in PSR1 case (Jouni)
-    Patch description updated
+Thanks a lot; the series is:
+Acked-by: Daniel Stone <daniels@collabora.com>
 
-Bspec: 66624, 50442
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 92b00da4c0ab..3c72047bf1a2 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1471,9 +1471,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * disabling PSR2, keep FBC disabled in case of selective update is on
- 	 * until the selection logic is implemented.
- 	 */
--	if (DISPLAY_VER(display) >= 12 && crtc_state->has_sel_update &&
--	    !crtc_state->has_panel_replay) {
--		plane_state->no_fbc_reason = "PSR2 enabled";
-+	if (DISPLAY_VER(display) >= 12 && crtc_state->has_sel_update) {
-+		plane_state->no_fbc_reason = "Selective update enabled";
- 		return 0;
- 	}
- 
--- 
-2.43.0
-
+Cheers,
+Daniel
