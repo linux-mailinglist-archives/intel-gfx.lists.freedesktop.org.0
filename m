@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0488A6C612
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 23:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA1EA6C613
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 23:50:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 087A010E11A;
-	Fri, 21 Mar 2025 22:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F78510E844;
+	Fri, 21 Mar 2025 22:50:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="burk3Yol";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCcOQhCz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFBD610E11A
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 22:49:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24ACA10E844
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 22:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742597351; x=1774133351;
+ t=1742597403; x=1774133403;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=UW/1NwxMoRcJcEXqq6ujaswM9/2aPFRJhYDhcBlgga0=;
- b=burk3Yol4/hTLm0pgAy4eVNxxTPUWQE7wA6icvGZ9jOtm5dQRafLCHs8
- 9FVb67wImOZffPYwcCrcLwO/cWrWthvHxBcSkfYiyV9bs+LYOvf2pJhK2
- wi4xLJX0KcsrCYVqT70JKC+iD2XnUa47O5WJjfDyKLaJH5csQBbs7MgWg
- NPfiXNwT6cQvHJcxcbs1O34xfEfJqxmLWOYXYzdqyePGWZdtx1hTggIR9
- /vrOFTGC3TisMq5sWsK2MdrRZpqCMMzWe94Wdixcj5y34ku3o+x1B99sz
- jGo7cfdk8r0KWjGdAgZJ1wCXrFlH6JOVQFvZf+TXZphd5bKHa0mnzD80t Q==;
-X-CSE-ConnectionGUID: Z4VDixGISMWlCVKSLGW8DQ==
-X-CSE-MsgGUID: 18wIQ+e7RCWPepSlBcqNaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54091601"
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="54091601"
+ bh=yKB4RFCdZBAyCUR8sbfb4K3OHWhKPCGYIzz7AecKJDw=;
+ b=HCcOQhCzMzriGF37W4W+E0hcDsHh56kaambXPrTKexZbNRqprtr0E+AR
+ 74q3FWeMU43Mw4/v5mKwvbUWDWddwNjaJljIZHhowwyGFr0pWbI+U9FQz
+ v26lRfgl4j64Cce4xMogONAzCE+eco8H5MaIRk4YtYeOjPjvLmCY+SESC
+ Nu5lC6oTNXq93iucfaXRio6XmOQeKAMoj5vJ6fhR5Jt4DsdjJ547Bffv9
+ HcaWtHF3SuyKbZ3syCoZJzSAGdKl/E5kClSOGmr1tVXyRgIV9JDVdlE20
+ dKqbuudB4/OfxWEsAvR81f7ulKwv/iYut0ze6tghbtYRQBKrfgUEf4zVa Q==;
+X-CSE-ConnectionGUID: QfHdPgG5RPedOJaihN8WYg==
+X-CSE-MsgGUID: W1M7dXphS6+nDyunqhaPmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="44002461"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="44002461"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 15:49:11 -0700
-X-CSE-ConnectionGUID: V9uRI/v9T7mFR+sq9L0FUQ==
-X-CSE-MsgGUID: HNgtaK0xSCOffXf/5/5zQg==
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 15:50:03 -0700
+X-CSE-ConnectionGUID: 4X8dUFLRR/2nWjA9n9QRyg==
+X-CSE-MsgGUID: JLiQV3/hQN2PzhopSS25fQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="128745820"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="128745874"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 15:49:10 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 15:50:01 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 22 Mar 2025 00:49:08 +0200
-Date: Sat, 22 Mar 2025 00:49:08 +0200
+ Sat, 22 Mar 2025 00:49:59 +0200
+Date: Sat, 22 Mar 2025 00:49:59 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc: intel-gfx@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 04/16] backlight: use system() instead of System()
-Message-ID: <Z93s5Fo3uasxq6jG@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 09/16] uxa: stop calling deprecated xf86_reload_cursors()
+Message-ID: <Z93tFxt0c4AkJOMr@intel.com>
 References: <20250304155809.30399-1-info@metux.net>
- <20250304155809.30399-5-info@metux.net>
+ <20250304155809.30399-10-info@metux.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304155809.30399-5-info@metux.net>
+In-Reply-To: <20250304155809.30399-10-info@metux.net>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,47 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 04, 2025 at 04:57:57PM +0100, Enrico Weigelt, metux IT consult wrote:
-> The Xserver's System() function is a special wrapper for calling a program
-> (xkbcomp) as an unprivileged user, when the Xserver is running as suid-root.
-> (which today only needed on a few platforms, eg. Solaris). Therefore it's
-> not suited for being called by arbitrary drivers.
-> 
-> In this specific context it doesn't even much sense, since it's just used
-> for checking whether pkexec command is present at all (and just should be
-> used), while the actual exec'ing of the helper is done directly by fork()
-> and exec() syscalls.
-> 
-> Thus we can safely use standard system() call instead - clearing the road
-> for dropping System() from Xserver's public/driver API.
+On Tue, Mar 04, 2025 at 04:58:02PM +0100, Enrico Weigelt, metux IT consult wrote:
+> the function has become a no-op, it's former duties are done automatically.
+
+s/the function/xf86_reload_cursors()/
+
+Could use xserver commit references as well.
+
 > 
 > Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
 > ---
->  src/backlight.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  src/uxa/intel_display.c | 3 ---
+>  1 file changed, 3 deletions(-)
 > 
-> diff --git a/src/backlight.c b/src/backlight.c
-> index fcbb279f..f416f2a4 100644
-> --- a/src/backlight.c
-> +++ b/src/backlight.c
-> @@ -366,7 +366,7 @@ static int __backlight_helper_init(struct backlight *b, char *iface)
->  		return 0;
+> diff --git a/src/uxa/intel_display.c b/src/uxa/intel_display.c
+> index 409cbbcf..2a544779 100644
+> --- a/src/uxa/intel_display.c
+> +++ b/src/uxa/intel_display.c
+> @@ -394,9 +394,6 @@ intel_crtc_apply(xf86CrtcPtr crtc)
+>  		}
+>  	}
 > 
->  	if ((st.st_mode & (S_IFREG | S_ISUID | S_IXUSR)) != (S_IFREG | S_ISUID | S_IXUSR)) {
-> -		if (System("pkexec --version"))
-> +		if (system("pkexec --version"))
-
-The exact opposite was done by Hans in commit 27a9dc4ce8fa ("backlight:
-Use System instead of system when checking for pkexec"). The commit
-msg isn't super helpful but I assume it was just to avoid running
-random stuff as root.
-
-I guess one option would be to hand roll the whole
-fork()+drop_privs+exec() for this early pkexec check as well.
-
->  			return 0;
-> 
->  		use_pkexec = 1;
+> -	if (scrn->pScreen)
+> -		xf86_reload_cursors(scrn->pScreen);
+> -
+>  done:
+>  	free(output_ids);
+>  	return ret;
 > --
 > 2.39.5
 
