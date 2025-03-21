@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55511A6BB22
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5077A6BB30
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:52:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6425410E799;
-	Fri, 21 Mar 2025 12:51:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EFFB10E0BC;
+	Fri, 21 Mar 2025 12:52:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAwVMYBk";
+	dkim=pass (1024-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b="SWEnqRYe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00FF310E799
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:51:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742561482; x=1774097482;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Nr/po7nwl16Sz3/kWMlb/ATvHGMtSpq66RQE+t8sTEI=;
- b=LAwVMYBk5SVyZZwz2mpvKPMnUSbOieCiE+uGeb1GWad3q/oLtUszdWak
- SrtYfxGFDE7Qs7kI/xArKyw7EhIwzOiBSOc8gVDgpZZ/TtOLDtBR4wrE9
- 3N0FKG0YUwvJtM3+UxYw7s2liA4gZHcWyiATEkySRY6qsrxRwtrJG3rof
- 769Agwjr8sGZQqzFmlgmRHRKOe+oJv4wU/cN1GJB9lavClWD+ajO458vv
- Z/762agPtPgWa8iWPndtwP2uw5TM7oovGLQRjnWF2p0QzCk0XoHTOzw0o
- yFbHofuNCPl/I92Ove2se7bB1DwqlT+4cydrwA1e+zCXufM/p6qKRAagE Q==;
-X-CSE-ConnectionGUID: XyMNcMCOS6mnrC8NEUSYdA==
-X-CSE-MsgGUID: AL3uQXtdQVS8DX8N140Htw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54494208"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="54494208"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:51:20 -0700
-X-CSE-ConnectionGUID: XVtveZLpTnSha2DG77NRPA==
-X-CSE-MsgGUID: q0Q2ihi4SW2JgKaH9CNe2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="154402178"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:51:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [RESEND] drm/i915/gvt: use hardcoded reference clocks
-Date: Fri, 21 Mar 2025 14:51:14 +0200
-Message-Id: <20250321125114.750062-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 588CB10E79F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:52:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 694015C6BA1;
+ Fri, 21 Mar 2025 12:50:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E8DC4CEE3;
+ Fri, 21 Mar 2025 12:52:23 +0000 (UTC)
+Authentication-Results: smtp.kernel.org;
+ dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
+ header.b="SWEnqRYe"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
+ t=1742561541;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=iBEsa6g1RBoSR0J0Kh1JDeWbWAeUk9HC8KUOCLyfPJc=;
+ b=SWEnqRYezPlf1E+iZomGlmtJq8Gz+rfAumlre6h7c18OJEcuJ4KtkGml//SFMb2XME2nNm
+ HSXdKIdcS9scfPpO1trtdon3a+KYMkSIlGNj04dk46QWfMuxFyMAfKQJTfmoLjvl4vEAjU
+ DRtuBxODEY438a851a6a+dzfHYMp1cI=
+Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 991796b3
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Fri, 21 Mar 2025 12:52:21 +0000 (UTC)
+Date: Fri, 21 Mar 2025 13:52:19 +0100
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Markus Theil <theil.markus@gmail.com>, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, netdev@vger.kernel.org, tytso@mit.edu
+Subject: Re: [PATCH v2 1/3] drm/i915/selftests: use prandom in selftest
+Message-ID: <Z91hA0q-uC04asw2@zx2c4.com>
+References: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
+ <20250211063332.16542-1-theil.markus@gmail.com>
+ <20250211063332.16542-2-theil.markus@gmail.com>
+ <Z64pkN7eU6yHPifn@ashyti-mobl2.lan> <Z9r7ORwztMxsNyF4@zx2c4.com>
+ <874izmd0g4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <874izmd0g4.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,42 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Usually I'd argue hardcoding values is the wrong thing to do, but in
-this case, GVT looking deep into the guts of the DPLL manager for the
-reference clocks is worse. This is done for BDW and BXT only, and there
-shouldn't be any reason to try to be so dynamic about it.
+On Fri, Mar 21, 2025 at 02:37:15PM +0200, Jani Nikula wrote:
+> On Wed, 19 Mar 2025, "Jason A. Donenfeld" <Jason@zx2c4.com> wrote:
+> > Hi Andi,
+> >
+> > On Thu, Feb 13, 2025 at 06:19:12PM +0100, Andi Shyti wrote:
+> >> Hi Markus,
+> >> 
+> >> On Tue, Feb 11, 2025 at 07:33:30AM +0100, Markus Theil wrote:
+> >> > This is part of a prandom cleanup, which removes
+> >> > next_pseudo_random32 and replaces it with the standard PRNG.
+> >> > 
+> >> > Signed-off-by: Markus Theil <theil.markus@gmail.com>
+> >> 
+> >> I merged just this patch in drm-intel-gt-next.
+> >
+> > This is minorly annoying for me... What am I supposed to do with patches
+> > 2 and 3? Take them through my tree for 6.16 in like half a year? Can I
+> > just take the v1 into my tree and we can get this done with straight
+> > forwardly? Or do you have a different suggestion for me?
+> 
+> Feel free to apply it to your tree too. It's not ideal to have two
+> commits for the same thing, but oh well.
+> 
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-This helps reduce the direct pokes at display guts from non-display
-code.
+Oh that's a good idea. Thanks!
 
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gvt/handlers.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 4efee6797873..5e08f4df172c 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -513,7 +513,7 @@ static u32 bdw_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- 
- 		switch (wrpll_ctl & WRPLL_REF_MASK) {
- 		case WRPLL_REF_PCH_SSC:
--			refclk = vgpu->gvt->gt->i915->display.dpll.ref_clks.ssc;
-+			refclk = 135000;
- 			break;
- 		case WRPLL_REF_LCPLL:
- 			refclk = 2700000;
-@@ -544,7 +544,7 @@ static u32 bdw_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- static u32 bxt_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- {
- 	u32 dp_br = 0;
--	int refclk = vgpu->gvt->gt->i915->display.dpll.ref_clks.nssc;
-+	int refclk = 100000;
- 	enum dpio_phy phy = DPIO_PHY0;
- 	enum dpio_channel ch = DPIO_CH0;
- 	struct dpll clock = {};
--- 
-2.39.5
-
+Jason
