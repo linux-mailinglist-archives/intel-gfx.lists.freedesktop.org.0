@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1583DA6BDC2
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 15:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B71D8A6BDF8
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 16:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 933C110E7E9;
-	Fri, 21 Mar 2025 14:56:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZY/ZkuFU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A16810E7A2;
+	Fri, 21 Mar 2025 15:08:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8FBB10E7E8;
- Fri, 21 Mar 2025 14:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742568990; x=1774104990;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=sqhJ/jnRdSpzlakVI2xEsHsR74fCaZ3Uq9RQ9tQwXGU=;
- b=ZY/ZkuFUDF4giwFaAnet02JAIuy271J79obK/1drwKupbnNRaHxyszwj
- n/bo+GMN2v2XbCHBfxl80JogCe56uIdXTpWe3EqmHgz4D+vIIyQG1owVz
- xxBU/YcIUe8VmXMSOGpZhMox3+I68zpvjikIWnOaQdltjF+JxGQnMcRYl
- OKPQA+0UVwPh1n97mHC25WSj+ER20HDcECi3QEpoXP4OMYUlasKSsNAmz
- Z+SZsY/KaJrJl/fOES5en/DWrvu4G+hgQz9YT8HndPGcP0ADuuj4GBvf1
- aQQhFH5bmZhiJ6bikK4qfCXhALXDAAqmBe993au0HgX7bvdVKH0rI9+Gj Q==;
-X-CSE-ConnectionGUID: 6SyvfIF7Tl2y3PLFvf6ktw==
-X-CSE-MsgGUID: 1wDjR7YqRT2YCHpEBHsZtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="47617969"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="47617969"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 07:56:30 -0700
-X-CSE-ConnectionGUID: F+doec4bQWSlJHGZfK+H0w==
-X-CSE-MsgGUID: qrdZQ9KJQRWQe/Ox8UqI5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128478351"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 07:56:28 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/pps: Use intel_pps_is_pipe_instance() instead of
- open-coding it
-Date: Fri, 21 Mar 2025 16:56:26 +0200
-Message-ID: <20250321145626.94101-4-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20250321145626.94101-1-imre.deak@intel.com>
-References: <20250321145626.94101-1-imre.deak@intel.com>
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990D410E7A2;
+ Fri, 21 Mar 2025 15:08:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4210804936795982730=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftest=3A_allo?=
+ =?utf-8?q?w_larger_memory_allocation_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mikolaj Wasiak" <mikolaj.wasiak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Mar 2025 15:08:03 -0000
+Message-ID: <174256968361.65026.9407732900642823976@18a75f3d1eae>
+X-Patchwork-Hint: ignore
+References: <2vie3dumx3ajb7lwhiotxs4wj6zcr2fq6on3ebd2vsm2qb3k6l@s5uny4fry4gr>
+In-Reply-To: <2vie3dumx3ajb7lwhiotxs4wj6zcr2fq6on3ebd2vsm2qb3k6l@s5uny4fry4gr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,162 +37,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use intel_pps_is_pipe_instance() instead of open-coding the same for all
-conditional PPS programming required for a pipe instance PPS.
+--===============4210804936795982730==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/g4x_dp.c    |  6 +++---
- drivers/gpu/drm/i915/display/intel_dp.c  |  2 +-
- drivers/gpu/drm/i915/display/intel_pps.c | 18 +++++++++---------
- drivers/gpu/drm/i915/display/intel_pps.h |  2 ++
- 4 files changed, 15 insertions(+), 13 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 55b9e9bfcc4d0..f527b455ce904 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -474,7 +474,7 @@ intel_dp_link_down(struct intel_encoder *encoder,
- 
- 	msleep(intel_dp->pps.panel_power_down_delay);
- 
--	if (display->platform.valleyview || display->platform.cherryview)
-+	if (intel_pps_is_pipe_instance(display))
- 		vlv_pps_port_disable(encoder, old_crtc_state);
- }
- 
-@@ -685,7 +685,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
- 		return;
- 
- 	with_intel_pps_lock(intel_dp, wakeref) {
--		if (display->platform.valleyview || display->platform.cherryview)
-+		if (intel_pps_is_pipe_instance(display))
- 			vlv_pps_port_enable_unlocked(encoder, pipe_config);
- 
- 		intel_dp_enable_port(intel_dp, pipe_config);
-@@ -1265,7 +1265,7 @@ static void intel_dp_encoder_reset(struct drm_encoder *encoder)
- 	intel_dp->reset_link_params = true;
- 	intel_dp_invalidate_source_oui(intel_dp);
- 
--	if (display->platform.valleyview || display->platform.cherryview)
-+	if (intel_pps_is_pipe_instance(display))
- 		vlv_pps_pipe_reset(intel_dp);
- 
- 	intel_pps_encoder_reset(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e3821ccfabe30..b4a0e3775b7b4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6518,7 +6518,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 	intel_dp_set_default_sink_rates(intel_dp);
- 	intel_dp_set_default_max_sink_lane_count(intel_dp);
- 
--	if (display->platform.valleyview || display->platform.cherryview)
-+	if (intel_pps_is_pipe_instance(display))
- 		vlv_pps_pipe_init(intel_dp);
- 
- 	intel_dp_aux_init(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 7d7157983f25e..7b47346d4d559 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -26,7 +26,7 @@ static void vlv_steal_power_sequencer(struct intel_display *display,
- static void pps_init_delays(struct intel_dp *intel_dp);
- static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd);
- 
--static bool intel_pps_is_pipe_instance(struct intel_display *display)
-+bool intel_pps_is_pipe_instance(struct intel_display *display)
- {
- 	return display->platform.valleyview || display->platform.cherryview;
- }
-@@ -36,7 +36,7 @@ static const char *pps_name(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_pps *pps = &intel_dp->pps;
- 
--	if (display->platform.valleyview || display->platform.cherryview) {
-+	if (intel_pps_is_pipe_instance(display)) {
- 		switch (pps->vlv_pps_pipe) {
- 		case INVALID_PIPE:
- 			/*
-@@ -411,7 +411,7 @@ pps_initial_setup(struct intel_dp *intel_dp)
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if (display->platform.valleyview || display->platform.cherryview) {
-+	if (intel_pps_is_pipe_instance(display)) {
- 		vlv_initial_power_sequencer_setup(intel_dp);
- 		return true;
- 	}
-@@ -510,7 +510,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
- 
- 	memset(regs, 0, sizeof(*regs));
- 
--	if (display->platform.valleyview || display->platform.cherryview)
-+	if (intel_pps_is_pipe_instance(display))
- 		pps_idx = vlv_power_sequencer_pipe(intel_dp);
- 	else if (display->platform.geminilake || display->platform.broxton)
- 		pps_idx = bxt_power_sequencer_idx(intel_dp);
-@@ -556,7 +556,7 @@ static bool edp_have_panel_power(struct intel_dp *intel_dp)
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if ((display->platform.valleyview || display->platform.cherryview) &&
-+	if (intel_pps_is_pipe_instance(display) &&
- 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
- 		return false;
- 
-@@ -569,7 +569,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if ((display->platform.valleyview || display->platform.cherryview) &&
-+	if (intel_pps_is_pipe_instance(display) &&
- 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
- 		return false;
- 
-@@ -1758,7 +1758,7 @@ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
- 		 * Reinit the power sequencer also on the resume path, in case
- 		 * BIOS did something nasty with it.
- 		 */
--		if (display->platform.valleyview || display->platform.cherryview)
-+		if (intel_pps_is_pipe_instance(display))
- 			vlv_initial_power_sequencer_setup(intel_dp);
- 
- 		pps_init_delays(intel_dp);
-@@ -1797,7 +1797,7 @@ static void pps_init_late(struct intel_dp *intel_dp)
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 
--	if (display->platform.valleyview || display->platform.cherryview)
-+	if (intel_pps_is_pipe_instance(display))
- 		return;
- 
- 	if (intel_num_pps(display) < 2)
-@@ -1931,7 +1931,7 @@ void assert_pps_unlocked(struct intel_display *display, enum pipe pipe)
- 			MISSING_CASE(port_sel);
- 			break;
- 		}
--	} else if (display->platform.valleyview || display->platform.cherryview) {
-+	} else if (intel_pps_is_pipe_instance(display)) {
- 		/* presumably write lock depends on pipe, not port select */
- 		pp_reg = PP_CONTROL(display, pipe);
- 		panel_pipe = pipe;
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-index 4390d05892325..1f4eed5fc55b8 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.h
-+++ b/drivers/gpu/drm/i915/display/intel_pps.h
-@@ -17,6 +17,8 @@ struct intel_display;
- struct intel_dp;
- struct intel_encoder;
- 
-+bool intel_pps_is_pipe_instance(struct intel_display *display);
-+
- intel_wakeref_t intel_pps_lock(struct intel_dp *intel_dp);
- intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp, intel_wakeref_t wakeref);
- 
--- 
-2.44.2
+Series: drm/i915/selftest: allow larger memory allocation (rev2)
+URL   : https://patchwork.freedesktop.org/series/146321/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16299 -> Patchwork_146321v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): bat-arlh-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_146321v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16299 -> Patchwork_146321v2
+
+  CI-20190529: 20190529
+  CI_DRM_16299: b15a87713d14b1c2986f47a622c5a8c5458e2396 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8277: 8277
+  Patchwork_146321v2: b15a87713d14b1c2986f47a622c5a8c5458e2396 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/index.html
+
+--===============4210804936795982730==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftest: allow larger memory allocation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146321/">https://patchwork.freedesktop.org/series/146321/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16299 -&gt; Patchwork_146321v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Missing    (1): bat-arlh-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_146321v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16299/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16299 -&gt; Patchwork_146321v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16299: b15a87713d14b1c2986f47a622c5a8c5458e2396 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8277: 8277<br />
+  Patchwork_146321v2: b15a87713d14b1c2986f47a622c5a8c5458e2396 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4210804936795982730==--
