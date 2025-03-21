@@ -2,64 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2619EA6BADE
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55511A6BB22
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 13:51:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 996FE10E7BE;
-	Fri, 21 Mar 2025 12:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6425410E799;
+	Fri, 21 Mar 2025 12:51:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ec7ew6+t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAwVMYBk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F5410E7BC;
- Fri, 21 Mar 2025 12:41:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00FF310E799
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 12:51:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742560869; x=1774096869;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Y2846tBuL2mWBVQlc560xA5UiYRZ8PX5caGQUYX3m5o=;
- b=Ec7ew6+tIevrsYQPXqDnjx+zMHZXHqiLEmkUXpqb0KvfwqCdRgUuFIkX
- lUJCiuKCbt0grkxgyzjVHCFppxvffECa2U5Oiy7CruyzEPPo9WLu8L4xu
- JSa8JjyADZiT8f6HXetnssd6Go7pYBN5IRvIaT2dos0V/kyj0JwdDNnQl
- jIwSn8FZJU9psg3sHxpjjcxta1zzxzqv4SVv9hKN/teQtr6vziQESY93x
- ocVCjjdBnXe/2wAc5ZH/A3d6NL7NMfvomMNxKBTDQRsxuo2Rmcoo+FQEb
- +LvfWvRAQEpJx06dtd6Ybja0MHxya11qMgJVWYCrAKGCFCwt7Wjj621Q6 A==;
-X-CSE-ConnectionGUID: 1aHRvC9sRsaaGAFR51pZBg==
-X-CSE-MsgGUID: gHlbvb50StWyxP9SXYmS5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="31416198"
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="31416198"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:41:08 -0700
-X-CSE-ConnectionGUID: xnWMy0feS82fNJIl+FCjBw==
-X-CSE-MsgGUID: OaH24dpNSFmCPYM51NjsrA==
+ t=1742561482; x=1774097482;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Nr/po7nwl16Sz3/kWMlb/ATvHGMtSpq66RQE+t8sTEI=;
+ b=LAwVMYBk5SVyZZwz2mpvKPMnUSbOieCiE+uGeb1GWad3q/oLtUszdWak
+ SrtYfxGFDE7Qs7kI/xArKyw7EhIwzOiBSOc8gVDgpZZ/TtOLDtBR4wrE9
+ 3N0FKG0YUwvJtM3+UxYw7s2liA4gZHcWyiATEkySRY6qsrxRwtrJG3rof
+ 769Agwjr8sGZQqzFmlgmRHRKOe+oJv4wU/cN1GJB9lavClWD+ajO458vv
+ Z/762agPtPgWa8iWPndtwP2uw5TM7oovGLQRjnWF2p0QzCk0XoHTOzw0o
+ yFbHofuNCPl/I92Ove2se7bB1DwqlT+4cydrwA1e+zCXufM/p6qKRAagE Q==;
+X-CSE-ConnectionGUID: XyMNcMCOS6mnrC8NEUSYdA==
+X-CSE-MsgGUID: AL3uQXtdQVS8DX8N140Htw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54494208"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="54494208"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:51:20 -0700
+X-CSE-ConnectionGUID: XVtveZLpTnSha2DG77NRPA==
+X-CSE-MsgGUID: q0Q2ihi4SW2JgKaH9CNe2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="128502379"
+X-IronPort-AV: E=Sophos;i="6.14,264,1736841600"; d="scan'208";a="154402178"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 05:41:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Yue Haibing
- <yuehaibing@huawei.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, dev@lankhorst.se
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH -next] drm/i915/display: Fix build error without
- DRM_FBDEV_EMULATION
-In-Reply-To: <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250315120143.2344958-1-yuehaibing@huawei.com>
- <12145722-609e-41d0-b02b-059df5b6d17f@suse.de>
-Date: Fri, 21 Mar 2025 14:41:02 +0200
-Message-ID: <87y0wyblpd.fsf@intel.com>
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 05:51:18 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [RESEND] drm/i915/gvt: use hardcoded reference clocks
+Date: Fri, 21 Mar 2025 14:51:14 +0200
+Message-Id: <20250321125114.750062-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,56 +69,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 Mar 2025, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Am 15.03.25 um 13:01 schrieb Yue Haibing:
->> In file included from <command-line>:
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h: In function =E2=80=98intel=
-_fbdev_framebuffer=E2=80=99:
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: error: =E2=80=98NULL=
-=E2=80=99 undeclared (first use in this function)
->>     32 |         return NULL;
->>        |                ^~~~
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:1:1: note: =E2=80=98NULL=E2=
-=80=99 is defined in header =E2=80=98<stddef.h>=E2=80=99; did you forget to=
- =E2=80=98#include <stddef.h>=E2=80=99?
->>    +++ |+#include <stddef.h>
->>      1 | /* SPDX-License-Identifier: MIT */
->> ./drivers/gpu/drm/i915/display/intel_fbdev.h:32:16: note: each undeclare=
-d identifier is reported only once for each function it appears in
->>     32 |         return NULL;
->>        |                ^~~~
->>
->> Build fails if CONFIG_DRM_FBDEV_EMULATION is n, add missing header file.
->>
->> Fixes: 9fa154f40eb6 ("drm/{i915,xe}: Run DRM default client setup")
->> Signed-off-by: Yue Haibing <yuehaibing@huawei.com>
->
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+Usually I'd argue hardcoding values is the wrong thing to do, but in
+this case, GVT looking deep into the guts of the DPLL manager for the
+reference clocks is worse. This is done for BDW and BXT only, and there
+shouldn't be any reason to try to be so dynamic about it.
 
-Merged to drm-intel-next, thanks for the patch and ack.
+This helps reduce the direct pokes at display guts from non-display
+code.
 
-BR,
-Jani.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gvt/handlers.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_fbdev.h | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/dr=
-m/i915/display/intel_fbdev.h
->> index ca2c8c438f02..89bad3a2b01a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
->> @@ -6,6 +6,8 @@
->>   #ifndef __INTEL_FBDEV_H__
->>   #define __INTEL_FBDEV_H__
->>=20=20=20
->> +#include <linux/types.h>
->> +
->>   struct drm_fb_helper;
->>   struct drm_fb_helper_surface_size;
->>   struct drm_i915_private;
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 4efee6797873..5e08f4df172c 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -513,7 +513,7 @@ static u32 bdw_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
+ 
+ 		switch (wrpll_ctl & WRPLL_REF_MASK) {
+ 		case WRPLL_REF_PCH_SSC:
+-			refclk = vgpu->gvt->gt->i915->display.dpll.ref_clks.ssc;
++			refclk = 135000;
+ 			break;
+ 		case WRPLL_REF_LCPLL:
+ 			refclk = 2700000;
+@@ -544,7 +544,7 @@ static u32 bdw_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
+ static u32 bxt_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
+ {
+ 	u32 dp_br = 0;
+-	int refclk = vgpu->gvt->gt->i915->display.dpll.ref_clks.nssc;
++	int refclk = 100000;
+ 	enum dpio_phy phy = DPIO_PHY0;
+ 	enum dpio_channel ch = DPIO_CH0;
+ 	struct dpll clock = {};
+-- 
+2.39.5
 
---=20
-Jani Nikula, Intel
