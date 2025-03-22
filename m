@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA1EA6C613
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Mar 2025 23:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC4CBA6C7A2
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Mar 2025 05:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F78510E844;
-	Fri, 21 Mar 2025 22:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D14410E2B6;
+	Sat, 22 Mar 2025 04:55:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCcOQhCz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iB5iZUkD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24ACA10E844
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Mar 2025 22:50:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E97DA10E2A0;
+ Sat, 22 Mar 2025 04:55:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742597403; x=1774133403;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=yKB4RFCdZBAyCUR8sbfb4K3OHWhKPCGYIzz7AecKJDw=;
- b=HCcOQhCzMzriGF37W4W+E0hcDsHh56kaambXPrTKexZbNRqprtr0E+AR
- 74q3FWeMU43Mw4/v5mKwvbUWDWddwNjaJljIZHhowwyGFr0pWbI+U9FQz
- v26lRfgl4j64Cce4xMogONAzCE+eco8H5MaIRk4YtYeOjPjvLmCY+SESC
- Nu5lC6oTNXq93iucfaXRio6XmOQeKAMoj5vJ6fhR5Jt4DsdjJ547Bffv9
- HcaWtHF3SuyKbZ3syCoZJzSAGdKl/E5kClSOGmr1tVXyRgIV9JDVdlE20
- dKqbuudB4/OfxWEsAvR81f7ulKwv/iYut0ze6tghbtYRQBKrfgUEf4zVa Q==;
-X-CSE-ConnectionGUID: QfHdPgG5RPedOJaihN8WYg==
-X-CSE-MsgGUID: W1M7dXphS6+nDyunqhaPmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="44002461"
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="44002461"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Mar 2025 15:50:03 -0700
-X-CSE-ConnectionGUID: 4X8dUFLRR/2nWjA9n9QRyg==
-X-CSE-MsgGUID: JLiQV3/hQN2PzhopSS25fQ==
+ t=1742619342; x=1774155342;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O0u1f2Ivsm2MQslx/kmB8f6FC7M6h6113eup1od2cFI=;
+ b=iB5iZUkDesOAtE7TpEx1wHqIEfxHTQotjuaglMCFx4b74FjVu5XZhvHm
+ NQvXuRIlqBxSzuP6Nf/hMCLZbE+Xz5S0JH5x7k2BrGWi0c77XLANN7SAz
+ b2TTfOypK1qjD+RuLwT2wzEY+0k9wk9dx5xhf0s4z/CYi+LZi1g2mhThr
+ inRb1hZ+cGH7YuoH7WbtYcr5omMiIVYo/tBeUpJ+5UVkUPaCDS9iVVlUe
+ OtQoNo8zKlm2uv1KBti1o2S9GFhsyRWRYkzv1aXlBpAlnZc86XyS0vvVg
+ Gh3ijZC7x0I2z5YCaJGVS4B8fqaOHzkrdkRNOKOhjv9Zg/PMIsECwFbJf Q==;
+X-CSE-ConnectionGUID: zjKAnTirRMeUGbGrhIlFrA==
+X-CSE-MsgGUID: PX7DjsR7TwmKKKc+UTUO2w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11380"; a="54526772"
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="54526772"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 21:55:36 -0700
+X-CSE-ConnectionGUID: azs+t67dS3GrqmPm6PGU2w==
+X-CSE-MsgGUID: OMJB0JB9R9G/7X5faEe5Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="128745874"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 21 Mar 2025 15:50:01 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 22 Mar 2025 00:49:59 +0200
-Date: Sat, 22 Mar 2025 00:49:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Enrico Weigelt, metux IT consult" <info@metux.net>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 09/16] uxa: stop calling deprecated xf86_reload_cursors()
-Message-ID: <Z93tFxt0c4AkJOMr@intel.com>
-References: <20250304155809.30399-1-info@metux.net>
- <20250304155809.30399-10-info@metux.net>
+X-IronPort-AV: E=Sophos;i="6.14,266,1736841600"; d="scan'208";a="124353796"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Mar 2025 21:55:34 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [RESEND 0/2] Fix vrr.enable handling and add logging for fixed_rr
+Date: Sat, 22 Mar 2025 10:13:43 +0530
+Message-ID: <20250322044345.3827137-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250304155809.30399-10-info@metux.net>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,36 +67,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 04, 2025 at 04:58:02PM +0100, Enrico Weigelt, metux IT consult wrote:
-> the function has become a no-op, it's former duties are done automatically.
+This series is split from the main series [1] for merging the fixes early,
+while other patches of the series are still in review:
 
-s/the function/xf86_reload_cursors()/
+The commit:
+a27217f9d1856 ("drm/i915/vrr: Track vrr.enable only for variable timing")
+adds a change in reading the vrr.enable, which is causing issue when GOP
+enables VRR timing generator with fixed timings.
 
-Could use xserver commit references as well.
+Add the fixed_rr status in crtc_state_dump and remove the check for
+fixed_rr during readout.
 
-> 
-> Signed-off-by: Enrico Weigelt, metux IT consult <info@metux.net>
-> ---
->  src/uxa/intel_display.c | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-> diff --git a/src/uxa/intel_display.c b/src/uxa/intel_display.c
-> index 409cbbcf..2a544779 100644
-> --- a/src/uxa/intel_display.c
-> +++ b/src/uxa/intel_display.c
-> @@ -394,9 +394,6 @@ intel_crtc_apply(xf86CrtcPtr crtc)
->  		}
->  	}
-> 
-> -	if (scrn->pScreen)
-> -		xf86_reload_cursors(scrn->pScreen);
-> -
->  done:
->  	free(output_ids);
->  	return ret;
-> --
-> 2.39.5
+[1] Use VRR timing generator for fixed refresh rate modes
+https://patchwork.freedesktop.org/series/134383/
+
+Ankit Nautiyal (2):
+  drm/i915/display: Add fixed_rr to crtc_state dump
+  drm/i915/vrr: Avoid reading vrr.enable based on fixed_rr check
+
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c             | 4 +---
+ drivers/gpu/drm/i915/display/intel_vrr.h             | 1 +
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
