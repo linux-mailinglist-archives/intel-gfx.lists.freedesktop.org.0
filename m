@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBDEA6DA3A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 13:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34115A6DA6E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 13:54:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 144F110E2FA;
-	Mon, 24 Mar 2025 12:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 285AF10E2EC;
+	Mon, 24 Mar 2025 12:54:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cjqGr3+m";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7896710E2FA;
- Mon, 24 Mar 2025 12:45:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5148119721221512844=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4B7310E2EC;
+ Mon, 24 Mar 2025 12:54:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742820885; x=1774356885;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=5Yofkm1dNa6vGniR8xlKP/z1QwhPxmHysFr4OgO1Qtk=;
+ b=cjqGr3+m94657UAMQLtc5dieGJiIS9TGNrVmcPeWCHxonAzFoWvgzKC7
+ oSA1NoGK3s4tb8MfTVtFk7tnFn91Ehd/+tfihgLuk/NEspALOADXCQHQO
+ iw5rUlIOMX7wfIs9SXxcrKpteJNuibdYOFTjK4s0f/oTpB4Oz6/b6rkUf
+ KWNHXCqv4hbDYd9hBe6QkpnT+5sJSVC47yvgsgeJl9tOdPglfBN+gKtjM
+ 36IFyU9Pv3BBednbov7TmpTHc5vXm2Yj7HUvbMWa0A6s8yViGHrkMWQ7H
+ UqMzx3qGzM1tv9OjAaJHp2W/i18PkAtxRp+OUPyMyR2/jp7P9TY/kadl5 Q==;
+X-CSE-ConnectionGUID: wYQAu+gSQsCeUqJXvGHcIw==
+X-CSE-MsgGUID: ZkhTfKS/Q8ewIJdbZQRriw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="43178732"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="43178732"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 05:54:44 -0700
+X-CSE-ConnectionGUID: YsdPNGcISjGrFVNme+iMeg==
+X-CSE-MsgGUID: IBn7zjQUQz60GGLw/GwisQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="147243419"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.30])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 05:54:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Damian Tometzki <damian@riscv-rocks.de>, Kees Cook <kees@kernel.org>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang
+ <zhi.wang.linux@gmail.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gvt: Add __nonstring annotations for
+ unterminated strings
+In-Reply-To: <01070195c306db7f-9f28efdd-9456-4db3-b6c6-343298bd571b-000000@eu-central-1.amazonses.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250310222355.work.417-kees@kernel.org>
+ <01070195c306db7f-9f28efdd-9456-4db3-b6c6-343298bd571b-000000@eu-central-1.amazonses.com>
+Date: Mon, 24 Mar 2025 14:54:36 +0200
+Message-ID: <87r02ma8s3.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/display=3A_dp=3A_add_?=
- =?utf-8?q?new_DPCD_access_functions_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dmitry Baryshkov" <lumag@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Mar 2025 12:45:54 -0000
-Message-ID: <174282035448.71804.471783783380909194@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
-In-Reply-To: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,215 +74,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5148119721221512844==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sun, 23 Mar 2025, Damian Tometzki <damian@riscv-rocks.de> wrote:
+> On Mon, 10. Mar 15:23, Kees Cook wrote:
+>> When a character array without a terminating NUL character has a static
+>> initializer, GCC 15's -Wunterminated-string-initialization will only
+>> warn if the array lacks the "nonstring" attribute[1]. Mark the arrays
+>> with __nonstring to and correctly identify the char array as "not a C
+>> string" and thereby eliminate the warning.
+>>=20
+>> Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=3D117178 [1]
+>> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+>> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Simona Vetter <simona@ffwll.ch>
+>> Cc: intel-gvt-dev@lists.freedesktop.org
+>> Cc: intel-gfx@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org
+>> Signed-off-by: Kees Cook <kees@kernel.org>
+>> ---
+>>  drivers/gpu/drm/i915/gvt/opregion.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/=
+gvt/opregion.c
+>> index 509f9ccae3a9..f701638d3145 100644
+>> --- a/drivers/gpu/drm/i915/gvt/opregion.c
+>> +++ b/drivers/gpu/drm/i915/gvt/opregion.c
+>> @@ -43,7 +43,7 @@
+>>  #define DEVICE_TYPE_EFP4   0x10
+>>=20=20
+>>  struct opregion_header {
+>> -	u8 signature[16];
+>> +	u8 signature[16] __nonstring;
 
-== Series Details ==
+Why would this annotation be needed? It's not treated as a string
+anywhere, and it's u8 not char.
 
-Series: drm/display: dp: add new DPCD access functions (rev3)
-URL   : https://patchwork.freedesktop.org/series/145998/
-State : failure
+>>  	u32 size;
+>>  	u32 opregion_ver;
+>>  	u8 bios_ver[32];
+>> @@ -222,7 +222,7 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+>>  	u8 *buf;
+>>  	struct opregion_header *header;
+>>  	struct vbt v;
+>> -	const char opregion_signature[16] =3D OPREGION_SIGNATURE;
+>> +	const char opregion_signature[16] __nonstring =3D OPREGION_SIGNATURE;
+>>=20=20
+>>  	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
+>>  	vgpu_opregion(vgpu)->va =3D (void *)__get_free_pages(GFP_KERNEL |
+>> --=20
+>> 2.34.1
+>>=20
+> Hello together,
+>
+> it doesnt resolve the build issue with gcc15 gcc (GCC) 15.0.1 20250228
+>
+> CC [M]  drivers/gpu/drm/i915/gvt/scheduler.o
+> /home/damian/kernel/linux/drivers/gpu/drm/i915/gvt/opregion.c: In functio=
+n =E2=80=98intel_vgpu_init_opregion=E2=80=99:
+> /home/damian/kernel/linux/drivers/gpu/drm/i915/gvt/opregion.c:35:28: erro=
+r: initializer-string for array of =E2=80=98char=E2=80=99 is too long [-Wer=
+ror=3Dunterminated-string-initialization]
+>    35 | #define OPREGION_SIGNATURE "IntelGraphicsMem"
+>       |                            ^~~~~~~~~~~~~~~~~~
+> /home/damian/kernel/linux/drivers/gpu/drm/i915/gvt/opregion.c:225:57: not=
+e: in expansion of macro =E2=80=98OPREGION_SIGNATURE=E2=80=99
+>   225 |         const char opregion_signature[16] __nonstring =3D OPREGIO=
+N_SIGNATURE;
+>       |                                                         ^~~~~~~~~=
+~~~~~~~~~
+>   CC [M]  drivers/gpu/drm/i915/gvt/trace_points.o
+> cc1: all warnings being treated as errors
+> make[7]: *** [/home/damian/kernel/linux/scripts/Makefile.build:207: drive=
+rs/gpu/drm/i915/gvt/opregion.o] Error 1
+> make[7]: *** Waiting for unfinished jobs....
+>   CC [M]  drivers/gpu/drm/i915/gvt/vgpu.o
+> make[6]: *** [/home/damian/kernel/linux/scripts/Makefile.build:465: drive=
+rs/gpu/drm/i915] Error 2
+> make[5]: *** [/home/damian/kernel/linux/s
 
-== Summary ==
+What about this?
 
-CI Bug Log - changes from CI_DRM_16306 -> Patchwork_145998v3
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_145998v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_145998v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_145998v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/fi-hsw-4770/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/fi-hsw-4770/igt@i915_selftest@live.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_145998v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - bat-arlh-2:         NOTRUN -> [INCOMPLETE][5] ([i915#12445])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arlh-2/igt@i915_selftest@live@late_gt_pm.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [INCOMPLETE][6] ([i915#12904]) -> [PASS][7] +1 other test pass
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-apl-1/igt@dmabuf@all-tests.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - bat-arlh-2:         [INCOMPLETE][8] ([i915#12445]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-arlh-2/igt@i915_selftest@live@guc_multi_lrc.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arlh-2/igt@i915_selftest@live@guc_multi_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [DMESG-FAIL][10] ([i915#12061]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+IMO it's anyway good practice to use sizeof(dest) rather than
+sizeof(src) for memcpy.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16306 -> Patchwork_145998v3
-
-  CI-20190529: 20190529
-  CI_DRM_16306: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8278: b6673db372bd8987f65948d3a97f8dcd2ef42b01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_145998v3: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/index.html
-
---===============5148119721221512844==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt=
+/opregion.c
+index 509f9ccae3a9..dbad4d853d3a 100644
+--- a/drivers/gpu/drm/i915/gvt/opregion.c
++++ b/drivers/gpu/drm/i915/gvt/opregion.c
+@@ -222,7 +222,6 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+ 	u8 *buf;
+ 	struct opregion_header *header;
+ 	struct vbt v;
+-	const char opregion_signature[16] =3D OPREGION_SIGNATURE;
+=20
+ 	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
+ 	vgpu_opregion(vgpu)->va =3D (void *)__get_free_pages(GFP_KERNEL |
+@@ -236,8 +235,10 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+ 	/* emulated opregion with VBT mailbox only */
+ 	buf =3D (u8 *)vgpu_opregion(vgpu)->va;
+ 	header =3D (struct opregion_header *)buf;
+-	memcpy(header->signature, opregion_signature,
+-	       sizeof(opregion_signature));
++
++	static_assert(sizeof(header->signature) =3D=3D sizeof(OPREGION_SIGNATURE)=
+ - 1);
++	memcpy(header->signature, OPREGION_SIGNATURE, sizeof(header->signature));
++
+ 	header->size =3D 0x8;
+ 	header->opregion_ver =3D 0x02000000;
+ 	header->mboxes =3D MBOX_VBT;
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/display: dp: add new DPCD access functions (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/145998/">https://patchwork.freedesktop.org/series/145998/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16306 -&gt; Patchwork_145998v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_145998v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_145998v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_145998v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/fi-hsw-4770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/fi-hsw-4770/igt@i915_selftest@live.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_145998v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arlh-2/igt@i915_selftest@live@late_gt_pm.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-arlh-2/igt@i915_selftest@live@guc_multi_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arlh-2/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16306/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_145998v3/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16306 -&gt; Patchwork_145998v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16306: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8278: b6673db372bd8987f65948d3a97f8dcd2ef42b01 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_145998v3: f8c17a63ca147e008f36d1efd80206d4ce4e8ce1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5148119721221512844==--
+--=20
+Jani Nikula, Intel
