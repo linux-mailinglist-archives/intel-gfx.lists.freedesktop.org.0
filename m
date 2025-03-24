@@ -2,166 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC3AA6D9AB
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 13:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78474A6D9DE
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 13:11:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC2010E2D4;
-	Mon, 24 Mar 2025 12:01:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24E1210E21C;
+	Mon, 24 Mar 2025 12:10:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OQ/wUFwa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SO50jqaH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F03A10E2D4;
- Mon, 24 Mar 2025 12:01:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2441310E21C;
+ Mon, 24 Mar 2025 12:10:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742817684; x=1774353684;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=s8DzCwj2SdCg7g2ep2uT6FQLJYd9V9w6zzVrjDYdjr0=;
- b=OQ/wUFwa5oTRGhk814ZrWayIIjJB+gqKwwHB6rvEt4rk5iYkKvwjMni6
- DSZX13FvHRjdFUnGMoVCQ0sLyskiiFpF0rKvz/g+l2virWKp5ZXjhKy9C
- clZAK9ZIACN3ua1dHPpRYWTRu2vv6qCaHeXl70F9SkwUHxpYRPS9yTBVm
- mx9nu+B6oST71lh0JHj8ztkP5Au/mBNlNQY97DJqZFIFFDSWTD7RQlBWV
- PBWB6YjlLaPbKNHU5jT3Ca/+MxtOwOtl6SYVvGSeQGzh+KvpYE7JKL+AJ
- Ls1ZIKkGzchv4GzijZOwY+Hfd1ETpqlipV8vr84m4pebmeroKZIZRoiRx g==;
-X-CSE-ConnectionGUID: aSs9oDpnTQiosTIbCpa7OA==
-X-CSE-MsgGUID: q7QvFEZcSZC1DghPeyHw4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="43894862"
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="43894862"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 05:01:24 -0700
-X-CSE-ConnectionGUID: C/jhImL6SxqH3ZnnffLdCg==
-X-CSE-MsgGUID: 7TfyWVJNQQq4tNEGrO8gTQ==
+ t=1742818258; x=1774354258;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=wGBniAZIFITVSnd7kMTdnROakyIUhUjmtMX/6SPkKfY=;
+ b=SO50jqaH6LxLaBYyMDndnjBQv9uIzECzX/t6akQBB9L85kNLPXGAabVC
+ 451lE+f5n8wk6Pz/n672Zmfib2Pnc5mp30vhYe7ULfSKopzLbtV+EBLMo
+ LkTcEWaFAMSH948GHEBLU9f+xtqojxZp4c3gE9MnP9XJGa43f6/H8lRGR
+ d29dL04JbPFN2+j6A/hPQSvtUWD7zZZerXZVJhLGiMlcLl+3m7CmQIko9
+ Q0IwoqhS59zJcN9skRkvsHX7O8EJUR3xgThyb/OeXx8G/rMwgtK16HNIs
+ gsudo7xmKh4CmbQ/1dBCT9uv4sCiyw4FC0dXo1xOdgot40NgcsNUqBo/f g==;
+X-CSE-ConnectionGUID: Zt7qDS/dSVCRdPLiCvIUkA==
+X-CSE-MsgGUID: jC5MzkkKR92hB4CPSDQDhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="61541199"
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="61541199"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 05:10:54 -0700
+X-CSE-ConnectionGUID: puhZQzj8TLejLGGjJTOHIw==
+X-CSE-MsgGUID: 57FFZB/sQq29fCmUyehT/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="124551639"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Mar 2025 05:01:24 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="147234842"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 05:10:54 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 24 Mar 2025 05:01:23 -0700
+ 15.2.1544.14; Mon, 24 Mar 2025 05:10:53 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Mon, 24 Mar 2025 05:10:53 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 24 Mar 2025 05:01:23 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 24 Mar 2025 05:01:22 -0700
+ 15.1.2507.44; Mon, 24 Mar 2025 05:10:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KX6W8RGV3e/kUx0DI2h/idye/sQtwmEh9LHYiGbQybg6g9mxnvBaJ2rBzsEbVnmRSYbjD5fCsEnvMXoDJLzExUqEfLA3Mc2bSjIxjQQh9UMpDSm3BJSTcqbh0NBKTFe1QK2BKVHLQAEtlyDJPikUkhSHV0IF45DNmFIhGlwivvlTqNDqsivDPaImuBm6YxoI8+oPy64jFTceLZMDRU633F8jvSJ5Xeb2lSmTlWZIGKl/I5pTKU0iC1Jz7H9CkbYyLBEvolsq00UXOFqqCAQYMigy15VOwJFxKcmuXbaI9vF6pbLhl5sJ8CrHXCQZ5t4Z6ET2A55ZxAR1nzJSDgmBtw==
+ b=ZnE/ewyOf1TjSEAZt/0Z0wRCpXUI72PJyiwAhlCrIXdLqSqX3g5uS3lujdDWlm+KBKszj4USFC5D+jf0YFYmYB2M9TehyQ9TeZYcP25ZRSY017aM8ce6rcmVOLBxXeweLxdLA9HPip462t2Ot5MaZMdytrhk0kmrXtnSyXYzHfP4wRkqkjgHAS3PGjkJJmPXkBUlrgtMP2TBNs5r1dKYgX3vfOEdVNwksql6g+lW2oSyzIilDcXV9yWup9ad8TMPGjfcSSkIHgeLS0qDd39KYQmAXyLsgWnRHaKIjf+uKm5IuggB77Gk88TzndcELU/68N2UE78SwnHrKEW4256CPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TZyUzFI6N9lAq+c8+LK2pdFGn6HkFbCSrD3tW7QX6Ow=;
- b=mYfVgsER8CwY+n9j5YRCJrMZUJ0Up8Xia6+wi1Az5IrIQQwjPswLDu+CIb4ryTFGXZHyZNvaIaY9nrHtZQzyHQN93nFnlzeCtKsKrULQz/apj+tbMudstByt5QTcu2UjzGeq3OX0Xu7HmjTUDZGGQW949wlzy/LLmfAnL167YuSYPvsfZZ0p/5Pt6p51siyx/lGPpOMk8SfHV0sYNds4Ml//WdI1HkgyILv6HR1tAh6KUASx2fiSa0DpRlmsDrtFtkkHWRg8sCIUyxWHnrwwSJ2XJgD2Uz2e4JNuJQBZdOS/3LH0/U74cB626leG3DaTs2aCrIXTVGOmLFmudfsYWw==
+ bh=3vAStrq3HTz6cTZeZZMb6kuMtYhGudNj7cWUaW11aZs=;
+ b=uNojbiTcGWlQZM2TKbM86JQ35LvvfvuEB4xjIonn5qzbOFa9DKBRrxe6ScuMA0PM0f5BZodBXSrn2GUU+pNvmRybiI+x4pamJJboWwGi0Tsu9qzNoX3OyzXX/PWVPpnLvbek2/aslcCj93fKcyHznryzJhyzFGoTidRvhwnKwGa/tNI3oq054Ik+JcI2j3+CN1PGuts+MRu/nZgyWO4JsbIEerWPh5Wg4AwtP2mDraeD5AvKOmy4DIObBvdoLu7Lu82Q3NkAekG5GqHuGP+HuqqZBTixKqBvOcSo2DrH0/1Sh+LqybjTNzy3GGeY5U1y+coky9cNRsGcRlaBGCqFwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by DM4PR11MB6094.namprd11.prod.outlook.com (2603:10b6:8:ab::11) with
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by MW3PR11MB4762.namprd11.prod.outlook.com (2603:10b6:303:5d::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.42; Mon, 24 Mar
- 2025 12:01:20 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8534.040; Mon, 24 Mar 2025
- 12:01:18 +0000
-Date: Mon, 24 Mar 2025 14:01:17 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
+ 2025 12:10:24 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8511.026; Mon, 24 Mar 2025
+ 12:10:24 +0000
+Message-ID: <19562d7b-97d7-4e5a-bc8f-1ed4956590af@intel.com>
+Date: Mon, 24 Mar 2025 17:40:17 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/16] drm/i915/display: Use fixed_rr timings in modeset
+ sequence
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/pps: Add helpers to lock PPS for AUX
- transfers
-Message-ID: <Z-FJjXyOjHEvXZz7@ideak-desk.fi.intel.com>
-References: <20250321145626.94101-1-imre.deak@intel.com>
- <20250321145626.94101-2-imre.deak@intel.com>
- <874izibtvx.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <874izibtvx.fsf@intel.com>
-X-ClientProxiedBy: AM6P192CA0096.EURP192.PROD.OUTLOOK.COM
- (2603:10a6:209:8d::37) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+ <jani.nikula@linux.intel.com>, <mitulkumar.ajitkumar.golani@intel.com>
+References: <20250318073540.2773890-1-ankit.k.nautiyal@intel.com>
+ <20250318073540.2773890-11-ankit.k.nautiyal@intel.com>
+ <Z9rWb5WfuRd6FWoP@intel.com> <f29191ca-b3e8-4cad-b23f-3010c82c0e6f@intel.com>
+Content-Language: en-US
+In-Reply-To: <f29191ca-b3e8-4cad-b23f-3010c82c0e6f@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA1PR01CA0158.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:71::28) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DM4PR11MB6094:EE_
-X-MS-Office365-Filtering-Correlation-Id: ecdb27a6-892d-4678-2db7-08dd6acb95c2
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MW3PR11MB4762:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f8ec03e-c6a9-4ab3-0e95-08dd6accdb15
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?iVBKvP1ZDg4tSb7oEXi+LNj/nb9cuw1mCkCl67jBOKBqRozThTzrLGc/Pm86?=
- =?us-ascii?Q?rfbFR2UQdh0CEMzJ8oCmBsQxhohXQjr+gRBPw0FoSfhrY2snBKmgpAZdI+B/?=
- =?us-ascii?Q?OjxvSJaFp4GKZPyeFtjTyfLeMeF5zUtPVoSMo/cz+S7Pg5lhkzupwaKqCqfK?=
- =?us-ascii?Q?pcgOfWgQHLnpi8VybrauKZkQEKl7kqXAGCAiHj/OwI/aODBeZfEfRyPl3Tss?=
- =?us-ascii?Q?e1JghZy758IcYFD0GApkJxJjBC/ptp5CeLCmjgakonZksvSqNIiM7tT0Uf5A?=
- =?us-ascii?Q?KqI+md6yEJTVZ0KbOQM4P5ylhI7RgtDausYriAGjcKj2hZYI32RqhsOBn5q1?=
- =?us-ascii?Q?Io33c09tn3IVhvLkrlfReiThuZs9vx68ha2fYmilrlX5wdsJVTC1kHtoTCF6?=
- =?us-ascii?Q?mJEagEAQkOwAcHOzEkV2QkX6+oZeLAzTpsqUO9ay+h3o+mdFYzyeIOT22eyX?=
- =?us-ascii?Q?Zg1T0S+hCrO3Oo8C3vLukoAhbvr2DCFg1zgC1tqQ1jh0Nprrv7enlCbGj+Wp?=
- =?us-ascii?Q?vToqtj8/AfpI0a8oOU8jBxeGfpVVuj/uuYL5EwclmAOw/eYmeXWs37egSIN6?=
- =?us-ascii?Q?uToSlafTbWEZ0lvkgA3qaL1rt1W7VZSLe0PGY/KLZvBmh1rThfSVDIYqLANs?=
- =?us-ascii?Q?XIFrmhNvmoke18xHcbXp8djWi7QxLkgYbFUBEavPejIoEOlZG2T2JzfNveak?=
- =?us-ascii?Q?dWb4jFLw5KIhiv58AdFJZJBoXdRN7WrzoxnD6Zn4mPA8pZQ8ypIgQL0ApAXH?=
- =?us-ascii?Q?AAfMS55YjHoNbGZiT3jDx1VC994ZPLbffip7CW56yWWOZk37VhGFBTWeCb3R?=
- =?us-ascii?Q?xZSmKcFtBNoTv/UaksWsBn/6uB/RnujtTBhWNWP71UxkHr7gctHSQM1ZWths?=
- =?us-ascii?Q?efDUd4mXHsbu71sn7ygu1i0HFJxx8iWk5881pOtNIFQ4ZCmCsik2Sy2Pgtnu?=
- =?us-ascii?Q?pSCJiIIPDz94D5dN+ZqRjpFxB0nk30+24dmuRrcfkJOIVAJi38Esx/iGghQj?=
- =?us-ascii?Q?7a1+Bp9FkIAxFqI3Wbzc6PW59C/KQbL+vJZvoJILF89AExAPkpm1xbz/y6+Y?=
- =?us-ascii?Q?sdCZc+VeSLwqHcmmWDPPpeEnnAqqJfaZbhqUExDTaHWSDszihUeki9wTlZ85?=
- =?us-ascii?Q?eDYXdAZx5YLgt1NzKOA0bD67rJQq90Ceci8JKXnsrJ6zCSrl4K1vIG6jjiGG?=
- =?us-ascii?Q?o814aEyBx1zhmfwLLxKOi4mqKaOaUYIXl2o6G0Q45Qi1rRJy+9WEV5HNEcNI?=
- =?us-ascii?Q?r4L5PUDjb3d2nZNlztNSyiHAmhcw5JFPblLEtiGg6G4C88IxqRgWyTzPFZgo?=
- =?us-ascii?Q?qNe9B7BXRq6qq4Fllm8Z7O1rOpGTcaVqUNxByTzhJ/MXADvruta6q97clCD5?=
- =?us-ascii?Q?+Ejygmr6BJGvxG3s612O4B9v9c0M?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WUdWMVVlTXM1RXZudEk5Z1VEVy9FMnFYNnN2Y3JwQkxrZjI2V2o4d3hZaC9Q?=
+ =?utf-8?B?NTc2VFZybklzcmFhWEsxL2tnYXNjVXNETXVEdzUxT1pHTWxSNnZCUlh3TnZx?=
+ =?utf-8?B?bFlXOWtmb0FwS3JXQ2F3R05CVnRXQWZJbTVkR2prR2VUS0paRkF1VVVERHpH?=
+ =?utf-8?B?QlZ4aUNxOHkvT1NyL0dPNGVxb280S2F2THlIQkxyeDdNTGJKTis0Z3I2ZEhW?=
+ =?utf-8?B?MG9nVEVtQ1BHcE11ckFhWlZIOWs3OWJQQ2MrZE5YOHcyc2t6M0ViQVUyWkFz?=
+ =?utf-8?B?OEx4UWROWVVRcm9JaWNpL3JQcXlodjdSWmhtNUlSdTUwWkZYY21FMG9udi9u?=
+ =?utf-8?B?TjJwMUdMRWFhQUtLU2ZqNWQzUXp4Y3V1NlNOODArRHY2dVJJcFZwaityRnQw?=
+ =?utf-8?B?cGVyZktjVkJjaUZ6VWdmM09MdjRPOFlIcWxRYSs3ZDAxN0dQTHUxSzhyVjBF?=
+ =?utf-8?B?MGdaZkFFQU00RmI5RFNjaDh2UTBTejNEczFwNWFacm55NXc1bUMyM1Z5ZWhM?=
+ =?utf-8?B?RlRHWEsxbEZ3RVNiKys1WkpkWWdqbEdyVElkdkpsaFB5d2JqcnAvaksxaUYz?=
+ =?utf-8?B?eWxTRVlzbE1vNEtCOW9PaHJ5SGkyVGJCb1p1WkpGdWlXT1RxcS9lRE5uek50?=
+ =?utf-8?B?b1dmR05aQ3M0NDRHNDh2Q3ZnY2ZCa0U1RGxGdExxRUhXd3VuYi9iWXBJdS9W?=
+ =?utf-8?B?b0dFNWwyTU1maFFBTEtkd1dHdENoOVNLVlZZNzlOZ204bGdRNkNVemJrOURM?=
+ =?utf-8?B?SmtiTW85U01kbnBRWi8zK0NYemF2QkVkVGVDMHFZODZOcm9jTlcxSFRwaU02?=
+ =?utf-8?B?MnE2a3FkTk5haVU0bWxZbTZnaTN0Q2dja3dZdWlnaFZtbzFXbWFQYjhmczlO?=
+ =?utf-8?B?YitZUHNCazhsNHo1YnVXZzAzd0VsTy9xZGpkV3V6VllhNXgrREl5VnNOb2FC?=
+ =?utf-8?B?eEFORUJFZFh2RGJNZEVCVUhNaEE0Y1Mxd2hSTDVMNHJxR0hiZ3NuYUMyUHFm?=
+ =?utf-8?B?WmxJUytxUG9oclRTOFFMdEozTm5vY1VqNC9WWnUvQkUyRmRMT0RlZElhQ28y?=
+ =?utf-8?B?MGJjeHdRQUdSZ0xuczVLb2FnU1FVSzJZTVlCNEdBYVFLdUdHTkpzd09UV3ZN?=
+ =?utf-8?B?MXpFaHpMRU9MdStuN2h2OVdmY0oyeGpWYWtJeS84WEIyZjAxSFc1b0VMWktj?=
+ =?utf-8?B?dTdWUmZqYlhmRStvQnVRdHVVY09FckJqSVBLbUQxRVBQalZ2UzF2dVFhaVBE?=
+ =?utf-8?B?RGtpVG94MGI4ZWJZaXRCNVhQRDdFSTFBUHBqMitZZjZWZkNDM2Z6M252eVRQ?=
+ =?utf-8?B?L3Vxa1ovWlNpT2ttaUJwczErMnR6WmVNYzBodlNWMUtUU3ZmeGYxSXh0RDFW?=
+ =?utf-8?B?Mm12b2FSZERtMkh5clg3elkrSUNFNEhrQm05VU1sU3RFdWE0aU5ONDkzbTBM?=
+ =?utf-8?B?R2M2czc1RUNNVlZmZ243b3hBRDdqM2JpcHhHMXE3VjRRR2VUb2ZMYk8vZnB4?=
+ =?utf-8?B?dFFtVGFSbWV0ZDZVZUx4WnJHOWtOeFJzSjBuQ0ZURGg4T1hMb2pTT0p5SXQy?=
+ =?utf-8?B?K2VIelRlUzhqbWhkM1p3WjZPNG5ZMCswZmJSazJUb1EzaXVjNm5EdU5uZlN0?=
+ =?utf-8?B?ZGlCbkJNdHNDUGJVN0Y5VXZpZUxDTlpmV3hPSnVhR0ludUM5dy9Camc4U1c5?=
+ =?utf-8?B?WTM4YXdrSXNTNjZoV1NWSnV6WnVGRnVHL1RIdGV6T2p2TStSalI3a04yeWli?=
+ =?utf-8?B?YVhyVFRhNElXQVE4MmlCdVF2cXk5L1YxUGNtcjgyWi9YSll4ZUxMUThjcHRS?=
+ =?utf-8?B?NkdFZS91NFZsUVNoekNVUT09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h4sqVOWQPn1f/Iukxbk1+FzpM6jgWWhmANoWQrbGig5YTQABBH2A6WGMxcar?=
- =?us-ascii?Q?+t7GZAKFUvQidnWJ6/upnwRzrUECsCY5TEpMbAPzIRtKAp1b2+9jNUuKWJw2?=
- =?us-ascii?Q?hPNqwidI5fgW5C7AdWkQwuNkWdzkbn3liAKBVspx9L7fRY9sOzNcHZbT0rOT?=
- =?us-ascii?Q?KPw3Zt9f76nUQjFtK12yiWfkf00Lx2ph5jWhthnwHFdPSMLBjrOqRF1kwZm6?=
- =?us-ascii?Q?lsStZBW/HBmFiyEHvHRjg1iAoj3kmPXhSv+wHFWLDYIqAfu5nl3UXPI1eALX?=
- =?us-ascii?Q?jEEHDF8m85acXchrsXnfBNQGsjwNEbE6H1oN+80uwYLsVDKHNVLt/LBF9RQK?=
- =?us-ascii?Q?4harbltg3WRTk2vDrMrBns9R6QUcfn9F3dIKXQ8/tg6USj6npsrIolxqsz54?=
- =?us-ascii?Q?XuG6xDyDJW2JYKTJzwU+M4XX6hHpATvyThWhzl3emQnbNk26P2tvrJ5p63MS?=
- =?us-ascii?Q?mbbZrIpRofUn96fCOhFniLjHum7lLO1L97Cbtmq8hAOLn8c4UguCydrz2n4C?=
- =?us-ascii?Q?wexaViz4J8FBXzCmZVAF2pxwUaZXdsBjqPi6+hWBrNdYAXLn3G9uX3e6Nt/h?=
- =?us-ascii?Q?vUNvmiuaAfEZPcKg86iSjpse3Ug8DRWhuhIXznrg/DMbksp6AIhhhHcffFh2?=
- =?us-ascii?Q?QsDyKrZNi79QSaTIR9h/8I9GJ75sOzk5xTr4s1RL/NxdbzXGhvA1SqyRJTR/?=
- =?us-ascii?Q?uI1eJgbhW3yN69sdDmoWOBzBmbQNygEXN3jAMf5zJK59LFe+gcAOzkIuoBIb?=
- =?us-ascii?Q?12fXozbWlySskVa/Z0FtqWO3rDkDVQ1JhUAaPqbNMWEcU2ZVq7Lxd0dNTrrA?=
- =?us-ascii?Q?v7FjENhUvBxwAuVIjtPUdv1kccc1kmHIX/x2SBwIeXTVKD1Bb247UHRIM+qt?=
- =?us-ascii?Q?iuaSOgAdYgsEOsLWr5y0lT8sxQYmGcKqhOdSYqkh9oZJ6ZmX1QQShhbc7v2S?=
- =?us-ascii?Q?c4rX6mDcrEoWT+dBde/5TPSI7yjoKJbpvvr9HX3dFRF8Hs3UgLAPXsamG2m7?=
- =?us-ascii?Q?V7OZAkddZYzSB821wpL+fsOEXLtW+c9G60gMHlDjs0H/d4V1O8p+04Cukfwj?=
- =?us-ascii?Q?sbhNLr/TQVppcrJF/zxgj1qYgkgVNaNPVjky3OkEd4q2Myn7CrqT7lYslgsb?=
- =?us-ascii?Q?KMh/yw3XIC7beeOGxTI6s+i1ouvzewclAOH6d0v3OPZTJIbi6iannsIytukd?=
- =?us-ascii?Q?vlCoACWuAz86X/BvC0dZogL9AVfKtEYdJDJQDHvh6zeLy6RisDl5gZK3LmEB?=
- =?us-ascii?Q?/cs5XV8ybxJJ7Qfkf/AYY3cQZTef2k17WK0HmL5ZV/e0FHM6Ln597BUhJTjL?=
- =?us-ascii?Q?I9VYInqTtB6HwGvcWcfDclsfaZMWN+x+b48veWUGe1fqG3tEcjEYmRs5abCd?=
- =?us-ascii?Q?6Y4GnLX/gCs4aZVrxAaY9vBpZ7fYnSvR5rh9cewkPgiFvpyZr+NE9zwdKnYn?=
- =?us-ascii?Q?KDpDSIGjRv0PgjrgLb+0pMSMAgEDpXF5ULNGIMbRrt0RYPiFknIHRzyu0hgH?=
- =?us-ascii?Q?/lbukP1kbOS80X3hcGqs/2/I5140FMsm5HOsPPg4AANKjXq46QmeAMNxLIB0?=
- =?us-ascii?Q?WpSSOpVZ9n/ZUYkVmgS/rZ5/6cisuI/kzvp0SWbm?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ecdb27a6-892d-4678-2db7-08dd6acb95c2
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXMvS0xiRjkwbGlORUg0UHYxdWVONnFTdG5OSjd6ZFExejR6eE5Iam9GYkIz?=
+ =?utf-8?B?VitUMnlDNjF5ZHJxQXRJVnJXdnh6Q2E0ME56M2VYeDVDR0JmeWh5L0JFR3Yw?=
+ =?utf-8?B?angreVZHbjk4SjVoMmlwbmhsYys2VmtreWxWaEU3WlRHQUp6eHVaeis1U0p2?=
+ =?utf-8?B?MHFLMUxpMFJjTkEzcEFwdVE2OHpXdjgwbkptMFFZb2xaMXVoZVNWQUZTMk1v?=
+ =?utf-8?B?S2tkVnVLckZ0eHZlbStoUnlneUQyVDRMQzFBdnJ2bnRncXZ3ek1PUmpmd1BV?=
+ =?utf-8?B?anZuek52eUl6NzF6U01HaXVBOXRsN2pUK0RRekl5aVF4Y3NNNkR6TWtmR3gv?=
+ =?utf-8?B?V25PcHRaekJTNndBMG1pUmJNY3FhcHU1ei9EZjlIWUtZY3FiVENFbHo0dVMr?=
+ =?utf-8?B?UEpVa2x4MFVqUmQzRThMUHByTko3UHI0Z09XZ09zdHhGSS8vb2Y0b0VOL21j?=
+ =?utf-8?B?TzhWaEpuRmQ1OE53d05WdXU5Z2tPSU4wZ3JWdmpFWlpHaVVwaEJxU2VHNVE0?=
+ =?utf-8?B?QmI3K1lCcjcwM3Q5bEJaWG1HN0c4SUlTak1VdEYvc0piYitaMXZZN3JQcTds?=
+ =?utf-8?B?U095Vmxob0pJM09CZzZ1QzlqTmFGd3N4djR4RGxRVDVrd1lNTzM0cnloaXdv?=
+ =?utf-8?B?MWFoN2JoY2JZVlhPd29pZHM4TXBqamVMTG94dzZUQ1ZMOC9WUXY3b2JjOGQy?=
+ =?utf-8?B?T1FCTTE1V1doTEVIbExKa2J5Y1psS2t0emNqbGJ6elhwYVl5cXJ6QThZTG5O?=
+ =?utf-8?B?L1FWS0dRTWVBd2pVUzE5LzB3ZkkyY3UvbGZoeEZXSWRqR24xK0w0Z1ZIdlZn?=
+ =?utf-8?B?eDZCOFV5Q1dDT2NQTEVldytiZTB1a2lDQitkUFFUbTA2WkRWZ0M3dmRhcDhh?=
+ =?utf-8?B?Vi9MM3VJL2VNcmh0MVM3am9jaHFRbS90eWZSYTNWbmpieVVGYy9HeXZ0UFJn?=
+ =?utf-8?B?b1QrNVpZRkFjcXZGOG84YlI1TThhYXF4MUk0L1AveVRwbWk5Mk1Tb1hkUDFG?=
+ =?utf-8?B?RDBFRUdQOG5QNHcrMFV4dmpMUG13eTBadHFvbVNOSmY0MXdIVUN0SWNwMGov?=
+ =?utf-8?B?UHlnbVhqS2hWcjZPSyt1R1oybUgzdDMvNVFhdkRua3QxMEhtajYwR04xbjRC?=
+ =?utf-8?B?WUVnRmNWd3VRK2Z0NUNrWWxkRXJBTDV0dHNCb2c3VWxWRk1MVll6QlRRZmwy?=
+ =?utf-8?B?ZENQWDhreTRCbUt1SWVaMnVVbWJDZXBlb3NvSmRuNE1ucVRFWFgwWElwekxK?=
+ =?utf-8?B?azBWVWpwNnB1WDdjZkg4dkxsVjdKdkV0aU9ucUFzc3JrRDU3TXpJdTNXZ09k?=
+ =?utf-8?B?SDNSOHRsYnJXS3c0eVo2ZXpvQnJwNFl5dE55SjRQT1k0TS9HZkp4OGxmOENp?=
+ =?utf-8?B?UW8zTzNsOGhjMHZxTlRQd2t5dE55WnQ3MWd4dDA5Q2xPbmlscHMyVHFXRDVU?=
+ =?utf-8?B?QStJejJ4eDBMWml1dmZsYTlocE5tL29mNDNBMVdDeU1VR3c5UnJHeVplVHlI?=
+ =?utf-8?B?VDNjeDVnUEdZNWQ1K0l3N3lDWmVWbFJOOXAzUXlsZ2hiaXNBVDNReWlEQmk3?=
+ =?utf-8?B?c3B2YllTVWEzNmtFZVVVOWVSdllLRUZLSVh4L2IySldFdDF3cXR3cHhoVHBZ?=
+ =?utf-8?B?V09SN29BTUFRTXA0UnJFY3NVU3h1RkJnZTBiSldzYmNQRXVxVjl6b0xwdytz?=
+ =?utf-8?B?QWh0bmZ3akZROVNxVWdaUVNKNkNSUjZNb1RYRmg1SXpKc2N0WVNFSlFWSjRK?=
+ =?utf-8?B?MWFxNmIwRWpVYkMreE4wc3RCQzdXZmhFZGNHU1JVKzdNWHlFRHhjMVFTN2kz?=
+ =?utf-8?B?NVhDMlE0OGtsM2lWQmJOWWdhRG5LV3ZSRkErWDI4UkZ1V2V6Y2hub2xJNDVx?=
+ =?utf-8?B?dmNJUE9TQ0g3L3lDbzZOcGw4SlVLa1V6YUsrY25ZOGowRlhKc05EbFBnRmJG?=
+ =?utf-8?B?VkxXd0Q0N3R3SlgxZlVSN2dFMGd5MVBrcjc1UEloNHRFb2tIam9xeThXT2kx?=
+ =?utf-8?B?SFJ2UzlBVjFBa2NMT3gvT2xmcjJBbXE5MWtYdjFrVk1HZ0h0UWJFelRvcVR0?=
+ =?utf-8?B?T3pBUjE4YjlzZ2VUZ09aZ1RtTjlob2lkRk15RDlHYnhqR2wwaEV6bytac21L?=
+ =?utf-8?B?cXBjOXozV2VRdHo4K3dqMnExZlhtLzZjRnppZjNlUCsyN3VmOCs0cVFSL0Q0?=
+ =?utf-8?B?c1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f8ec03e-c6a9-4ab3-0e95-08dd6accdb15
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 12:01:18.1643 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2025 12:10:24.1592 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Eil7qQCyKz0kBrS6+8bnqDp9Eu5bp3uDRbTf7PTp7VTqi2GzfUiO+ERN7Wr9Ocub5J1kL4GLmTozfeGvoJPFlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6094
+X-MS-Exchange-CrossTenant-UserPrincipalName: qdCyS44Euj68NlP17tHpqjvlaYMDGGUpC6N5ox4zsxvGMXRNgAuCovpEpY7RUqp0i5jvq+gp3BITP7eYttY8LxmhNwUORG1Kke+D8U5NEcU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4762
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,213 +194,243 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 24, 2025 at 12:33:22PM +0200, Jani Nikula wrote:
-> On Fri, 21 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
-> > Factor out from the DP AUX transfer function the logic to lock/unlock
-> > the Panel Power Sequencer state and enable/disable the VDD power
-> > required for the AUX transfer, adding these to helpers in intel_pps.c .
-> > This prepares for a follow-up change making these steps dependent on the
-> > platform and output type.
-> >
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_aux.c | 16 ++----------
-> >  drivers/gpu/drm/i915/display/intel_pps.c    | 29 ++++++++++++++++++++-
-> >  drivers/gpu/drm/i915/display/intel_pps.h    |  3 ++-
-> >  3 files changed, 32 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > index ec27bbd70bcf0..bf5ccfa24ca0b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > @@ -272,15 +272,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	aux_domain = intel_aux_power_domain(dig_port);
-> >  
-> >  	aux_wakeref = intel_display_power_get(display, aux_domain);
-> > -	pps_wakeref = intel_pps_lock(intel_dp);
-> > -
-> > -	/*
-> > -	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
-> > -	 * In such cases we want to leave VDD enabled and it's up to upper layers
-> > -	 * to turn it off. But for eg. i2c-dev access we need to turn it on/off
-> > -	 * ourselves.
-> > -	 */
-> > -	vdd = intel_pps_vdd_on_unlocked(intel_dp);
-> > +	pps_wakeref = intel_pps_lock_for_aux(intel_dp, &vdd);
-> >  
-> >  	/*
-> >  	 * dp aux is extremely sensitive to irq latency, hence request the
-> > @@ -289,8 +281,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	 */
-> >  	cpu_latency_qos_update_request(&intel_dp->pm_qos, 0);
-> >  
-> > -	intel_pps_check_power_unlocked(intel_dp);
-> > -
-> >  	/*
-> >  	 * FIXME PSR should be disabled here to prevent
-> >  	 * it using the same AUX CH simultaneously
-> > @@ -427,10 +417,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  out:
-> >  	cpu_latency_qos_update_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
-> >  
-> > -	if (vdd)
-> > -		intel_pps_vdd_off_unlocked(intel_dp, false);
-> > +	intel_pps_unlock_for_aux(intel_dp, pps_wakeref, vdd);
-> >  
-> > -	intel_pps_unlock(intel_dp, pps_wakeref);
-> >  	intel_display_power_put_async(display, aux_domain, aux_wakeref);
-> >  out_unlock:
-> >  	intel_digital_port_unlock(encoder);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-> > index 617ce49931726..3c078fd53fbfa 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> > @@ -571,7 +571,7 @@ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
-> >  	return intel_de_read(display, _pp_ctrl_reg(intel_dp)) & EDP_FORCE_VDD;
-> >  }
-> >  
-> > -void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
-> > +static void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > @@ -955,6 +955,33 @@ void intel_pps_vdd_off(struct intel_dp *intel_dp)
-> >  		intel_pps_vdd_off_unlocked(intel_dp, false);
-> >  }
-> >  
-> > +intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref)
-> > +{
-> > +	intel_wakeref_t wakeref;
-> > +
-> > +	wakeref = intel_pps_lock(intel_dp);
-> > +
-> > +	/*
-> > +	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
-> > +	 * In such cases we want to leave VDD enabled and it's up to upper layers
-> > +	 * to turn it off. But for eg. i2c-dev access we need to turn it on/off
-> > +	 * ourselves.
-> > +	 */
-> > +	*vdd_ref = intel_pps_vdd_on_unlocked(intel_dp);
-> > +
-> > +	intel_pps_check_power_unlocked(intel_dp);
-> > +
-> > +	return wakeref;
-> > +}
-> > +
-> > +void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wakeref_t wakeref, bool vdd_ref)
-> > +{
-> > +	if (vdd_ref)
-> > +		intel_pps_vdd_off_unlocked(intel_dp, false);
-> > +
-> > +	intel_pps_unlock(intel_dp, wakeref);
-> > +}
-> 
-> It took me a while to pinpoint what exactly I don't like about this
-> interface.
-> 
-> And I mean the whole intel_pps.h interface is already really difficult
-> to understand.
-> 
-> This flips the lock/unlock and vdd on/off logic inside out.
-> 
-> Normally you have functions for doing vdd or power or backlight, or
-> anything PPS really, and they're either unlocked (assuming the caller
-> handles PPS lock) or locked (the function itself takes the lock).
 
-The PPS and VDD handling steps are dependent (PPS must be locked for
-enabling VDD) and both are skipped for the same reason during AUX
-transfers. So I thought it makes sense to move these to a separate
-function and skip both based on the same platform/output type check.
+On 3/20/2025 11:09 AM, Nautiyal, Ankit K wrote:
+>
+> On 3/19/2025 8:06 PM, Ville Syrjälä wrote:
+>> On Tue, Mar 18, 2025 at 01:05:34PM +0530, Ankit Nautiyal wrote:
+>>> During modeset enable sequence, program the fixed timings, and turn 
+>>> on the
+>>> VRR Timing Generator (VRR TG) for platforms that always use VRR TG.
+>>>
+>>> For this intel_vrr_set_transcoder now always programs fixed timings.
+>>> Later if vrr timings are required, vrr_enable() will switch
+>>> to the real VRR timings.
+>>>
+>>> For platforms that will always use VRR TG, the VRR_CTL Enable bit is 
+>>> set
+>>> and reset in the transcoder enable/disable path.
+>>>
+>>> v2: Update intel_vrr_set_transcoder_timings for fixed_rr.
+>>> v3: Update intel_set_transcoder_timings_lrr for fixed_rr. (Ville)
+>>> v4: Have separate functions to enable/disable VRR CTL
+>>> v5:
+>>> -For platforms that do not always have VRRTG on, do write bits other
+>>> than enable bit and also use write the TRANS_VRR_PUSH register. (Ville)
+>>> -Avoid writing trans_ctl_vrr if !vrr_possible().
+>>> v6:
+>>> -Disable VRR just before intel_ddi_disable_transcoder_func(). (Ville)
+>>> -Correct the sequence of configuring PUSH and VRR Enable/Disable. 
+>>> (Ville)
+>>> v7: Reset trans_vrr_ctl to 0 unconditionally in
+>>> intel_vrr_transcoder_disable(). (Ville)
+>>>
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_ddi.c    |  5 ++
+>>>   drivers/gpu/drm/i915/display/intel_dp_mst.c |  4 ++
+>>>   drivers/gpu/drm/i915/display/intel_vrr.c    | 57 
+>>> ++++++++++++++++-----
+>>>   drivers/gpu/drm/i915/display/intel_vrr.h    |  2 +
+>>>   4 files changed, 54 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c 
+>>> b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> index f38c998935b9..44f4465c27e2 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>> @@ -78,6 +78,7 @@
+>>>   #include "intel_tc.h"
+>>>   #include "intel_vdsc.h"
+>>>   #include "intel_vdsc_regs.h"
+>>> +#include "intel_vrr.h"
+>>>   #include "skl_scaler.h"
+>>>   #include "skl_universal_plane.h"
+>>>   @@ -3249,6 +3250,8 @@ static void 
+>>> intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
+>>>           drm_dp_dpcd_poll_act_handled(&intel_dp->aux, 0);
+>>>       }
+>>>   +    intel_vrr_transcoder_disable(old_crtc_state);
+>>> +
+>>>       intel_ddi_disable_transcoder_func(old_crtc_state);
+>>>         for_each_pipe_crtc_modeset_disable(display, pipe_crtc, 
+>>> old_crtc_state, i) {
+>>> @@ -3522,6 +3525,8 @@ static void intel_ddi_enable(struct 
+>>> intel_atomic_state *state,
+>>>         intel_ddi_enable_transcoder_func(encoder, crtc_state);
+>>>   +    intel_vrr_transcoder_enable(crtc_state);
+>>> +
+>>>       /* Enable/Disable DP2.0 SDP split config before transcoder */
+>>>       intel_audio_sdp_split_update(crtc_state);
+>>>   diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c 
+>>> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>>> index bd47cf127b4c..d2988b9a6e7b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>>> @@ -1065,6 +1065,8 @@ static void mst_stream_post_disable(struct 
+>>> intel_atomic_state *state,
+>>>       drm_dp_remove_payload_part2(&intel_dp->mst.mgr, new_mst_state,
+>>>                       old_payload, new_payload);
+>>>   +    intel_vrr_transcoder_disable(old_crtc_state);
+>>> +
+>>>       intel_ddi_disable_transcoder_func(old_crtc_state);
+>>>         for_each_pipe_crtc_modeset_disable(display, pipe_crtc, 
+>>> old_crtc_state, i) {
+>>> @@ -1326,6 +1328,8 @@ static void mst_stream_enable(struct 
+>>> intel_atomic_state *state,
+>>>         intel_ddi_enable_transcoder_func(encoder, pipe_config);
+>>>   +    intel_vrr_transcoder_enable(pipe_config);
+>>> +
+>>>       intel_ddi_clear_act_sent(encoder, pipe_config);
+>>>         intel_de_rmw(display, TRANS_DDI_FUNC_CTL(display, trans), 0,
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c 
+>>> b/drivers/gpu/drm/i915/display/intel_vrr.c
+>>> index 66afa66c66af..d4912199c3ac 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+>>> @@ -460,12 +460,6 @@ void intel_vrr_set_transcoder_timings(const 
+>>> struct intel_crtc_state *crtc_state)
+>>>           intel_de_rmw(display, CHICKEN_TRANS(display, cpu_transcoder),
+>>>                    0, PIPE_VBLANK_WITH_DELAY);
+>>>   -    if (!intel_vrr_possible(crtc_state)) {
+>>> -        intel_de_write(display,
+>>> -                   TRANS_VRR_CTL(display, cpu_transcoder), 0);
+>>> -        return;
+>>> -    }
+>>> -
+>> Seems to me that removing this is what causes the state checker woes
+>> in BAT. I think we can leave this in, as our own computed state should
+>> always have a valid flipline and it's only the GOP that doesn't have 
+>> one.
+>
+> Yeah makes sense. I was wondering what was missing, thanks for 
+> spotting this.
+>
+> I have sent revised patch in reply to this patch.
+>
+> With this last patch will not be required, I'll remove the last patch.
 
-> This one purports to be an interface for lock/unlock, but in reality it
-> also does VDD internally. And that feels really quite wrong to me.
-> 
-> ---
-> 
-> These are a single-use interface that I think make intel_pps.[ch] more
-> difficult to understand. I'd suggest checking how you'd implement this
-> logic inside intel_dp_aux_xfer() *without* changing the intel_pps.[ch]
-> interface at all.
-> 
-> Okay, took a quick stab at it, and unless I'm missing something it's
-> super easy:
+I guess we still need the last patch without that for case where 
+platforms do not always have  VRR TG enabled.
 
-I still think it'd be better to have a separate function for both
-locking PPS and enabling VDD for the reason I described above, that is
-to clarify that the PPS state must be locked to enable VDD.
+For such platforms if full modeset happens, the trans_vrr_ctl gets 
+filled, but if it doesn't happen trans_vrr_ctl is not filled, but VRR 
+timings are all filled.
 
-I guess the above could be done separately later in any case, so I can
-inline the fix as you suggest.
+Since we depend on FLIPLINE_EN in trans_vrr to be set before reading 
+VRR.flipline/vmin/vmax, we get a mismatch.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index ec27bbd70bcf..a5608659df59 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -247,7 +247,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	u32 aux_clock_divider;
->  	enum intel_display_power_domain aux_domain;
->  	intel_wakeref_t aux_wakeref;
-> -	intel_wakeref_t pps_wakeref;
-> +	intel_wakeref_t pps_wakeref = NULL;
->  	int i, ret, recv_bytes;
->  	int try, clock = 0;
->  	u32 status;
-> @@ -272,7 +272,10 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	aux_domain = intel_aux_power_domain(dig_port);
->  
->  	aux_wakeref = intel_display_power_get(display, aux_domain);
-> -	pps_wakeref = intel_pps_lock(intel_dp);
-> +
-> +	if (intel_dp_is_edp(intel_dp) ||
-> +	    (display->platform.valleyview || display->platform.cherryview))
-> +		pps_wakeref = intel_pps_lock(intel_dp);
->  
->  	/*
->  	 * We will be called with VDD already enabled for dpcd/edid/oui reads.
-> @@ -430,7 +433,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->  	if (vdd)
->  		intel_pps_vdd_off_unlocked(intel_dp, false);
->  
-> -	intel_pps_unlock(intel_dp, pps_wakeref);
-> +	if (pps_wakeref)
-> +		intel_pps_unlock(intel_dp, pps_wakeref);
->  	intel_display_power_put_async(display, aux_domain, aux_wakeref);
->  out_unlock:
->  	intel_digital_port_unlock(encoder);
-> 
-> 
-> Please let's not make intel_pps.[ch] harder to understand.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> > +
-> >  void intel_pps_on_unlocked(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/i915/display/intel_pps.h
-> > index c83007152f07d..4390d05892325 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pps.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_pps.h
-> > @@ -31,10 +31,11 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp);
-> >  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync);
-> >  void intel_pps_on_unlocked(struct intel_dp *intel_dp);
-> >  void intel_pps_off_unlocked(struct intel_dp *intel_dp);
-> > -void intel_pps_check_power_unlocked(struct intel_dp *intel_dp);
-> >  
-> >  void intel_pps_vdd_on(struct intel_dp *intel_dp);
-> >  void intel_pps_vdd_off(struct intel_dp *intel_dp);
-> > +intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp, bool *vdd_ref);
-> > +void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wakeref_t wakeref, bool vdd_ref);
-> >  void intel_pps_on(struct intel_dp *intel_dp);
-> >  void intel_pps_off(struct intel_dp *intel_dp);
-> >  void intel_pps_vdd_off_sync(struct intel_dp *intel_dp);
-> 
-> -- 
-> Jani Nikula, Intel
+E.g: 
+https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_146621v1/bat-rplp-1/igt@i915_module_load@load.html
+
+
+Regards,
+
+Ankit
+
+
+>
+> Regards,
+>
+> Ankit
+>
+>
+>>
+>>>       if (crtc_state->cmrr.enable) {
+>>>           intel_de_write(display, TRANS_CMRR_M_HI(display, 
+>>> cpu_transcoder),
+>>> upper_32_bits(crtc_state->cmrr.cmrr_m));
+>>> @@ -477,14 +471,7 @@ void intel_vrr_set_transcoder_timings(const 
+>>> struct intel_crtc_state *crtc_state)
+>>> lower_32_bits(crtc_state->cmrr.cmrr_n));
+>>>       }
+>>>   -    intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+>>> -               crtc_state->vrr.vmin - 1);
+>>> -    intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+>>> -               crtc_state->vrr.vmax - 1);
+>>> -    intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>>> -               trans_vrr_ctl(crtc_state));
+>>> -    intel_de_write(display, TRANS_VRR_FLIPLINE(display, 
+>>> cpu_transcoder),
+>>> -               crtc_state->vrr.flipline - 1);
+>>> +    intel_vrr_set_fixed_rr_timings(crtc_state);
+>>>         if (HAS_AS_SDP(display))
+>>>           intel_de_write(display,
+>>> @@ -618,6 +605,48 @@ void intel_vrr_disable(const struct 
+>>> intel_crtc_state *old_crtc_state)
+>>>       intel_vrr_set_fixed_rr_timings(old_crtc_state);
+>>>   }
+>>>   +void intel_vrr_transcoder_enable(const struct intel_crtc_state 
+>>> *crtc_state)
+>>> +{
+>>> +    struct intel_display *display = to_intel_display(crtc_state);
+>>> +    enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>> +
+>>> +    if (!HAS_VRR(display))
+>>> +        return;
+>>> +
+>>> +    if (!intel_vrr_possible(crtc_state))
+>>> +        return;
+>>> +
+>>> +    if (!intel_vrr_always_use_vrr_tg(display)) {
+>>> +        intel_de_write(display, TRANS_VRR_CTL(display, 
+>>> cpu_transcoder),
+>>> +                   trans_vrr_ctl(crtc_state));
+>>> +        return;
+>>> +    }
+>>> +
+>>> +    intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+>>> +               TRANS_PUSH_EN);
+>>> +
+>>> +    intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>>> +               VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
+>>> +}
+>>> +
+>>> +void intel_vrr_transcoder_disable(const struct intel_crtc_state 
+>>> *crtc_state)
+>>> +{
+>>> +    struct intel_display *display = to_intel_display(crtc_state);
+>>> +    enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>> +
+>>> +    if (!HAS_VRR(display))
+>>> +        return;
+>>> +
+>>> +    if (!intel_vrr_possible(crtc_state))
+>>> +        return;
+>>> +
+>>> +    intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 
+>>> 0);
+>>> +
+>>> +    intel_de_wait_for_clear(display, TRANS_VRR_STATUS(display, 
+>>> cpu_transcoder),
+>>> +                VRR_STATUS_VRR_EN_LIVE, 1000);
+>>> +    intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
+>>> +}
+>>> +
+>>>   bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state)
+>>>   {
+>>>       return crtc_state->vrr.flipline &&
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h 
+>>> b/drivers/gpu/drm/i915/display/intel_vrr.h
+>>> index 65d2b0eead51..859f1dc8a6d7 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+>>> @@ -36,5 +36,7 @@ int intel_vrr_vmax_vblank_start(const struct 
+>>> intel_crtc_state *crtc_state);
+>>>   int intel_vrr_vmin_vblank_start(const struct intel_crtc_state 
+>>> *crtc_state);
+>>>   int intel_vrr_vblank_delay(const struct intel_crtc_state 
+>>> *crtc_state);
+>>>   bool intel_vrr_is_fixed_rr(const struct intel_crtc_state 
+>>> *crtc_state);
+>>> +void intel_vrr_transcoder_enable(const struct intel_crtc_state 
+>>> *crtc_state);
+>>> +void intel_vrr_transcoder_disable(const struct intel_crtc_state 
+>>> *crtc_state);
+>>>     #endif /* __INTEL_VRR_H__ */
+>>> -- 
+>>> 2.45.2
