@@ -2,79 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE40A6D88D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 11:47:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2F9A6D8AF
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 11:55:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E500010E237;
-	Mon, 24 Mar 2025 10:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C82E210E2D3;
+	Mon, 24 Mar 2025 10:55:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ree0Pcsk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVj/nPA+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com
- [209.85.160.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDCB110E237;
- Mon, 24 Mar 2025 10:47:37 +0000 (UTC)
-Received: by mail-oa1-f49.google.com with SMTP id
- 586e51a60fabf-2c72cb91e9cso2971312fac.1; 
- Mon, 24 Mar 2025 03:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742813255; x=1743418055; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5jw7vEOJd9+kVHxfxG1vL7hag7BbqohE0PbGawFjKs4=;
- b=Ree0PcskcAGp9kFdWEBFQXuntEQ2rHpn3cHwy/offbiOyPYF4FLV68Im12I5kKKRq8
- ws+Um1Ouj6OeBpuJ4VoqOnf1PyK4TiHcF7jM3V5kr1rYX0+fTs1f5Q9oI5lRqY0rVIye
- KdwhH+P3SawFcmSqzox5Gt9ZtXt/cMnOcPgxlWnqqv37loVu+id3mX6W/WaXvWNuzz2W
- KcyGbzinWx854uDzMtOwf1FUbkrdQuLII8Ya+kJ9k9Q9Z0j9VBwDYMJ7SrnZt6q2yoHr
- Wcq66wuCuq91SNZQB3uKxsmGuCyWmaQXRCKn5mQ0yn97I6OgE5oPbTwUglWFqCqGsYM1
- T7Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742813255; x=1743418055;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5jw7vEOJd9+kVHxfxG1vL7hag7BbqohE0PbGawFjKs4=;
- b=DsFLsE+mCOLJr+ORW6kFF0HcMaVgca/d/J+hyS8TBp9gyraRUuUvmm2mhDrLIZIU9z
- dpIfRMbnCfiCdYYThEEEmI5roIWHwZcu4tzg76HxGDJbQpp+Dsih/pNLr6hMHddfM0PP
- yGvfPCQdw/x6crEtYNw3TryUHUKRjqDUFcUzSGILxh37mg2sdnERNtSm5FGl5DH7y0T8
- wKnXG8IpzcrFgMt5W+kwgT/Yj+4fwFR4nGYtxrQhi/+RLtCZhrDstOwYML6rNlbCygAp
- 7U28+uI/p1yNjJFfG9CzyOPOJcwH0ICZEiUmkwoH1C+3XctdaWEQuoslD8Xp1OonHEll
- oOVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVRLgpNnrbbv5W2Hjp+/DoFb4RQFwPv03J9pDUezjImZxLmODBFp+xCYjL+DlEhhkvfJUYJiRn5heqEGv/D8g==@lists.freedesktop.org,
- AJvYcCW/gy0rGSiowdqwIJvZkIJbW/2tSKmKySsz2GnPoQlkf4/SKpGsIzVaoUOBadmynpwDSq2z9c4YuDk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwrKHrkKAFgS9jgGL6EDhTTIIZyhPxX2X01S6O/w5GbleOirnIn
- G09bRoD+mhkP1I9Ls6mqa1vgRO578vKLB/OzHln3ljY+yeD0BKKQbmOGbkwy7kJ61TrBUatTxHn
- qKgzEoTzIvuYuKl3i6HFB+evT8D4=
-X-Gm-Gg: ASbGnctAK8zl5kYPIbxL8zuH2V6LF0PAV5JKG4hS+/vAlwuFnNBxdbnTtufVtGr6Ngq
- 3fpjp73LbItIn0j9wuHz9sHcFdllVR0bTCzrFkYZa3H8YceBWZPFc8gPcKbl/a9E9MVbtfFMn4X
- KOggf25E8mrht/XJAcoy3wtbc=
-X-Google-Smtp-Source: AGHT+IHdRQL4CSzJPpXSBIfWZCaqqx9IsDza48gb58MoU4sbd7mv0bZ+NfyczdL84bXw8ET1tmLi6+9Sj6+qfwbCaK4=
-X-Received: by 2002:a05:6870:3c89:b0:2b8:41ef:2ca with SMTP id
- 586e51a60fabf-2c780289b26mr7641268fac.6.1742813254753; Mon, 24 Mar 2025
- 03:47:34 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7228C10E250
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Mar 2025 10:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742813726; x=1774349726;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=J05ppLwk5reC6/uCugpHE1tVmGxJrbCWZy33NMCNw4Y=;
+ b=HVj/nPA+Ohbo8dCEpSUsk2iknIEl7OW50z5xXPP0+mRkO9k+LHNVlxkf
+ x7PcleJ2XS7vKuG0QYo1sl7va8U8ixMfhfcx2xeVa8XEcrRJDrg1pcO+c
+ lSoNLfg+AEPvGtYGR9/BshqNguzU5ELgRBUF0Ld2tolCfTFZ+qEpqb6Yj
+ Z6rbHb5fuIvyY2XGvhq1v1mWEFgtApZYEo6wYXVw0wgmz/gdwTx36cbBs
+ jUbBhZiU8l9P74FKE8EwEO+zVJGspqo0VRPhW79AC26qCKfGOs0EOoXqe
+ yxqZkRoFQqQsBxvXDXdJa4AZ8Zw+WSmu3tUs0zeFcRI5LEEu+H+h6C5Aq g==;
+X-CSE-ConnectionGUID: ZhsWwf1OS72rgNUOgTIbtQ==
+X-CSE-MsgGUID: zneTUL1tQ3exkdcIwTd33w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="66478493"
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="66478493"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 03:55:24 -0700
+X-CSE-ConnectionGUID: qXV3xdHYSseA8mnURoo8cA==
+X-CSE-MsgGUID: Q2L3mDG1SyiKl8WMQx9TAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="124467245"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.30])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 03:55:20 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>, Imre Deak
+ <imre.deak@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Add link rate and lane count to
+ i915_display_info
+In-Reply-To: <20250318220401.3904871-1-khaled.almahallawy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250318220401.3904871-1-khaled.almahallawy@intel.com>
+Date: Mon, 24 Mar 2025 12:55:18 +0200
+Message-ID: <87y0wuaeax.fsf@intel.com>
 MIME-Version: 1.0
-References: <20250324083755.12489-1-kwizart@gmail.com>
- <20250324083755.12489-3-kwizart@gmail.com>
- <87pli6bwxi.fsf@intel.com> <87h63ibwma.fsf@intel.com>
-In-Reply-To: <87h63ibwma.fsf@intel.com>
-From: Nicolas Chauvet <kwizart@gmail.com>
-Date: Mon, 24 Mar 2025 11:47:23 +0100
-X-Gm-Features: AQ5f1Jpv52Yi-NV796ol6p6RUqVLUgoluSjVAoOFPu6MP-olcZdD_Qf9lZ9zltk
-Message-ID: <CABr+WTmQ3rZ-UZH2Wv0R6qKegyjCovn3R7PWBeWiciAj+NbtnQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] [RFC] drm/i915/gvt: Fix opregion_header->signature
- size
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,30 +71,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Le lun. 24 mars 2025 =C3=A0 10:34, Jani Nikula
-<jani.nikula@linux.intel.com> a =C3=A9crit :
+On Tue, 18 Mar 2025, Khaled Almahallawy <khaled.almahallawy@intel.com> wrote:
+> Adding link rate and lane count information to i915_display_info makes it
+> easier and faster to access this data compared to checking kernel logs.
+> This is particularly beneficial for individuals who are not familiar with
+> i915 in the following scenarios:
 >
-> On Mon, 24 Mar 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > On Mon, 24 Mar 2025, Nicolas Chauvet <kwizart@gmail.com> wrote:
-> >> Enlarge the signature field to accept the string termination.
-> >>
-> >> Cc: stable@vger.kernel.org
-> >> Fixes: 93615d59912 ("Revert drm/i915/gvt: Fix out-of-bounds buffer wri=
-te into opregion->signature[]")
-> >> Signed-off-by: Nicolas Chauvet <kwizart@gmail.com>
-> >
-> > Nope, can't do that. The packed struct is used for parsing data in
-> > memory.
+> * Debugging DP tunnel bandwidth usage in the Thunderbolt driver.
+> * During USB4 certification, it is necessary to know the link rate used by
+>   the monitor to prove that the DP tunnel can handle required rates.
+> * In PHY CTS, when the connector probes are not mounted correctly,
+>   some display lanes may not appear in the DP Oscilloscope, leading to CTS
+>   failures.
 >
-> Okay, so I mixed this up with display/intel_opregion.c. So it's not used
-> for parsing here... but it's used for generating the data in memory, and
-> we can't change the layout or contents.
+> This change provides validation teams with an easy way to identify and
+> troubleshoot issues.
 >
-> Regardless, we can't do either patch 2 or patch 3.
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index fdedf65bee53..bda7751472e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -551,9 +551,10 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
+>  	seq_printf(m, "\tpipe__mode=" DRM_MODE_FMT "\n",
+>  		   DRM_MODE_ARG(&crtc_state->hw.pipe_mode));
+>  
+> -	seq_printf(m, "\tpipe src=" DRM_RECT_FMT ", dither=%s, bpp=%d\n",
+> +	seq_printf(m, "\tpipe src=" DRM_RECT_FMT ", dither=%s, bpp=%d, port_clock=%d, lane_count=%d\n",
+>  		   DRM_RECT_ARG(&crtc_state->pipe_src),
+> -		   str_yes_no(crtc_state->dither), crtc_state->pipe_bpp);
+> +		   str_yes_no(crtc_state->dither), crtc_state->pipe_bpp,
+> +		   crtc_state->port_clock, crtc_state->lane_count);
 
-Thanks for review.
-So does it means the only "Fix" is to drop Werror, at least for intel/gvt c=
-ode ?
-I have CONFIG_DRM_I915_WERROR not set but CONFIG_DRM_WERROR=3Dy, (same as F=
-edora)
-Unsure why the current Fedora kernel is unaffected by this build failure.
+Maybe deserves to be a separate line instead of bundling it with pipe
+src etc?
+
+Also, lane_count is bound to be 0 for a lot of outputs where it's
+irrelevant.
+
+BR,
+Jani.
+
+>  
+>  	intel_scaler_info(m, crtc);
+
+-- 
+Jani Nikula, Intel
