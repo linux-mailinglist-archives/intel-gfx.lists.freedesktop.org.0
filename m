@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE0FA6DF80
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 17:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E50A6DFF4
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 17:39:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2ED10E3C1;
-	Mon, 24 Mar 2025 16:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E05510E49C;
+	Mon, 24 Mar 2025 16:39:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="inZ+K/0E";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="plw1bbqE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-68.smtpout.orange.fr [193.252.22.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A23D899B3;
- Mon, 24 Mar 2025 16:23:37 +0000 (UTC)
+Received: from out.smtpout.orange.fr (out-69.smtpout.orange.fr [193.252.22.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15C8A10E49B;
+ Mon, 24 Mar 2025 16:39:44 +0000 (UTC)
 Received: from [172.16.82.72] ([124.33.176.97]) by smtp.orange.fr with ESMTPA
- id wkaBtZDD8cvxXwkaFtVg8z; Mon, 24 Mar 2025 17:23:34 +0100
+ id wkphtqyvuqGhjwkpntp5DD; Mon, 24 Mar 2025 17:39:42 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1742833414;
- bh=P9nD5PsBLzgHZd2DYjYHZ+C8TI1hL0ZPCCvHPL1SFBM=;
+ s=t20230301; t=1742834382;
+ bh=fWDg5sAJRa5yGnJsUjCGug0MakuT+w++shbZerB1ON4=;
  h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=inZ+K/0EgTl/soIXsWxEWQb6xdeBc/Rx5cqjYRIjKiweIln1j7GhCIAOlLVAEiJee
- PUhFCb7py0OhvcDzXafVXIZPpWvSHdN5p/sD0e6oKJbTYo22HXnonZr2PacIYvdEBp
- VfQ41VxsX1xLT2ko2TJ4x1lt+j0S5NuyBUUA7Pua8LzN+x4nkFGBvJiNU6Et1xrXYB
- USm0ZcLJ9so+g0k949Zb/sgT0WBSpGBhXgQarJdd8L1takI4dBRSuvyHKPwqqdWW0v
- WOgdyB5J+GZy5ef+Vyigyc4/eUySAkhk99I3KQymFSxkdWILUPG9VDePy98WL+cXcL
- 5UuNStq0YyJKQ==
+ b=plw1bbqE0z5rfrjQQw+4DOFlYoe4aXV3HOaYnSLm4RqTOwzMgwQKESyqhPy7pOEzI
+ RzgjMUqxC8ZfAHGz5LF9ADf/97gKqsFaQHLOpeDQdBoj4wEjt64flQbW5nouKULz4h
+ 93zAhY4igdCOqZ4ALMnPyRm7wTEm2NxGiFBIckIwP30Sw8w6NISDz4h2kjuJfSikGp
+ jxqoEh4a/Cd8GSM30qRtkSdvYka3Cbow7j8N4sYl43NVW1kqgfg5H+HN8Fna2ogrA1
+ KA7ghA72CgLM2GpLM8NRIsgQ88QLvJBI8rk4/9xmMj4RW6KI9x4skpd9321SXaLNBp
+ ozWdbaJ0vBkRQ==
 X-ME-Helo: [172.16.82.72]
 X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Mon, 24 Mar 2025 17:23:34 +0100
+X-ME-Date: Mon, 24 Mar 2025 17:39:42 +0100
 X-ME-IP: 124.33.176.97
-Message-ID: <7e114fdb-0340-4a3c-956f-b26c9373041d@wanadoo.fr>
-Date: Tue, 25 Mar 2025 01:23:22 +0900
+Message-ID: <1f9ea3e3-e348-46d7-9b15-8c017762b12f@wanadoo.fr>
+Date: Tue, 25 Mar 2025 01:39:25 +0900
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/5] bits: Fixed-type GENMASK_U*() and BIT_U*()
+Subject: Re: [PATCH 0/3] bits: Split asm and non-asm GENMASK*() and unify
+ definitions
 To: Yury Norov <yury.norov@gmail.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Rasmus Villemoes <linux@rasmusvillemoes.dk>,
@@ -48,9 +49,11 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
  David Laight <David.Laight@aculab.com>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20250322-fixed-type-genmasks-v7-0-da380ff1c5b9@wanadoo.fr>
- <Z-FsJPA1aq7KyTlm@thinkpad>
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Catalin Marinas <catalin.marinas@arm.com>
+References: <20250322-consolidate-genmask-v1-0-54bfd36c5643@wanadoo.fr>
+ <Z-GEFcciqCwxL88W@thinkpad>
 Content-Language: en-US
 From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
@@ -63,9 +66,9 @@ Autocrypt: addr=mailhol.vincent@wanadoo.fr; keydata=
  yR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDldOjiq1/riG27mcIFAmceMvMCGwwF
  CQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8VzsZwr/S44HCzcz5+jkxnVVQ5LZ4B
  ANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <Z-FsJPA1aq7KyTlm@thinkpad>
+In-Reply-To: <Z-GEFcciqCwxL88W@thinkpad>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,33 +84,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 24/03/2025 at 23:28, Yury Norov wrote:
-> On Sat, Mar 22, 2025 at 06:23:11PM +0900, Vincent Mailhol via B4 Relay wrote:
->> Introduce some fixed width variant of the GENMASK() and the BIT()
->> macros in bits.h. Note that the main goal is not to get the correct
->> type, but rather to enforce more checks at compile time. For example:
+On 25/03/2025 at 01:11, Yury Norov wrote:
+> + Anshuman Khandual, Catalin Marinas, linux-arm-kernel@lists.infradead.org
 > 
-> You say this, and then typecast both BIT and GENMASK. This may confuse
-> readers. Maybe add few words about promotion rules in C standard, or
-> just drop this note entirely? Doesn't require new submission, of
-> course.
+> This series moves GENMASK_U128 out of uapi. ARM is the only proposed
+> user. Add ARM people for visibility.
 
-I do not want to into this level of details in the cover letter, so I
-will remove. Instead, I can add below paragraph to the "bits: introduce
-fixed-type GENMASK_U*()" patch:
+Actually, not yet. Here, I am decoupling GENMASK_U128() from
+__GENMASK_U128(), but I did not touch the uapi.
 
-  The result is casted to the corresponding fixed width type. For
-  example, GENMASK_U8() returns an u8. Note that because of the C
-  promotion rules, GENMASK_U8() and GENMASK_U16() will immediately be
-  promoted to int if used in an expression. Regardless, the main goal is
-  not to get the correct type, but rather to enforce more checks at
-  compile time.
+After this series, __GENMASK_U128() is not used anymore in the kernel,
+but I am not brave enough to remove it myself because there is always a
+risk that some userland code somewhere is relying on it…
 
-I staged this change in the v8 together with the other nitpicks from
-Andy. If you want that v8, let me know, it is ready. If you are happy
-enough with the v7 (and if it doesn't receive more comments), then go
-with it!
-
+(...)
 
 Yours sincerely,
 Vincent Mailhol
