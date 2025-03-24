@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D481A6E0C1
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 18:24:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8870A6E134
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 18:42:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D239510E4A1;
-	Mon, 24 Mar 2025 17:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC11B10E1E0;
+	Mon, 24 Mar 2025 17:42:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QCZoHtE3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PJBmGFid";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 216B410E43B;
- Mon, 24 Mar 2025 17:24:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AAA910E17F;
+ Mon, 24 Mar 2025 17:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742837040; x=1774373040;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=65W/GePM1H/ICF2PcTOgaH636Q+aPXrrzB0iltev/Lw=;
- b=QCZoHtE3wKPIKw8VkwNiLO7bU2v1iSNNsH6xVrxsL7tSBBmm4Ty/neYj
- Qp2xDg4UCOtBgLsH4nH6bOyyvjx1HHJVFsRlApeKv7s8c8mtb2VRk0QpG
- TRRmWPaZIEtL3pkJ9ShgXryY6IMeN8NYMRVMOylyyVFQnaCZKTMzT/Llb
- Uz/FP/+nxbTmez7lc4OfELgOVyWA929xw1NdahSU1UuvQMpJBv5p6qpf1
- Bh0naNZRlNXvd3j6+kwkyIA/248aJIZe8kcK9qUc2AW22WVHuO1FXvPWW
- StMq7xGF+j4cpjLhQkichZs+iLm2Z4V11w6iXsdDzLDGJykm4j0oB9usP Q==;
-X-CSE-ConnectionGUID: PL9p/xW0SXWmNCMycZDt0Q==
-X-CSE-MsgGUID: CyRvVvdPTEuppZSC679DYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44074047"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="44074047"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 10:24:00 -0700
-X-CSE-ConnectionGUID: iwhdbD+NR3qKv+luB1eF5Q==
-X-CSE-MsgGUID: tm95WdshT8aKckebLQ7Xnw==
+ t=1742838149; x=1774374149;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tLLI+d9hbMEdL33RWsB83G/WtDVNQw09KSW8rFNXVpg=;
+ b=PJBmGFidSWryLa4yDb4RIhLQrrsP3l7Deph/L0PaJ8z5m2kt/i2JmN44
+ x00iALOPek1BTQRJPprGO2P5QssQN4Fmz3TtY8i05XY0w7TxtfouGmjl3
+ tT/36gcFD32YyWZv7ny96C3I0fh1JdzQN/aFOYFShwpOYGGrDXLCsrh/2
+ EN6VVwfKIPaBHz7uHxfl4I6k1zaSFBPNtNxZkY/+I3NSDBUs+2umOT80o
+ trYTRT0NIpkyAcA78QeJwGGBFOWvZiQi9e6q9RvYkps313UnN7fjN/nOb
+ wp/V4X3j3ZsQKAJXHeWofWrrbGAXl77RzYbKtZfLeOohIbPPQU0i9aZc+ A==;
+X-CSE-ConnectionGUID: 8Nqx+k7rS26eIlH0laLJNw==
+X-CSE-MsgGUID: VY5j8IR7RtGi/3tyDJFDTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="43947581"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="43947581"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 10:42:29 -0700
+X-CSE-ConnectionGUID: 7nsTWlxYQxCzRXK5n5mhPw==
+X-CSE-MsgGUID: XqvU4p9TQ1+BOB/vf4dexQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="147309727"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 10:23:59 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: <intel-xe@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, stable@vger.kernel.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v2] drm/i915/xe2hpd: Identify the memory type for SKUs with
- GDDR + ECC
-Date: Mon, 24 Mar 2025 10:22:33 -0700
-Message-ID: <20250324-tip-v2-1-38397de319f8@intel.com>
-X-Mailer: git-send-email 2.48.1
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="129312898"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 24 Mar 2025 10:42:27 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Mar 2025 19:42:25 +0200
+Date: Mon, 24 Mar 2025 19:42:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: Re: [PATCH 02/16] drm/i915/dp_mst: Use VRR Timing generator for DP
+ MST for fixed_rr
+Message-ID: <Z-GZgQMTdRgTD585@intel.com>
+References: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
+ <20250324133248.4071909-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20250321-tip-23d2af2e3291
-X-Mailer: b4 0.15-dev-c25d1
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250324133248.4071909-3-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,129 +73,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>=0D
-=0D
-Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type=0D
-with ECC enabled. We need to identify this scenario and add a new=0D
-case in xelpdp_get_dram_info() to handle it. In addition, the=0D
-derating value needs to be adjusted accordingly to compensate for=0D
-the limited bandwidth.=0D
-=0D
-Bspec: 64602=0D
-Cc: Matt Roper <matthew.d.roper@intel.com>=0D
-Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")=0D
-Cc: stable@vger.kernel.org=0D
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>=0D
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>=0D
----=0D
-Changes in v2:=0D
-- Add a separate sa_info for the ecc case (Lucas)=0D
-- Link to v1: https://lore.kernel.org/r/20250214215944.187407-1-vivek.kasir=
-eddy@intel.com=0D
----=0D
- drivers/gpu/drm/i915/display/intel_bw.c | 12 ++++++++++++=0D
- drivers/gpu/drm/i915/i915_drv.h         |  1 +=0D
- drivers/gpu/drm/i915/soc/intel_dram.c   |  4 ++++=0D
- drivers/gpu/drm/xe/xe_device_types.h    |  1 +=0D
- 4 files changed, 18 insertions(+)=0D
-=0D
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915=
-/display/intel_bw.c=0D
-index dc7612658a9da..bb81efec08a01 100644=0D
---- a/drivers/gpu/drm/i915/display/intel_bw.c=0D
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c=0D
-@@ -250,6 +250,7 @@ static int icl_get_qgv_points(struct intel_display *dis=
-play,=0D
- 			qi->deinterleave =3D 4;=0D
- 			break;=0D
- 		case INTEL_DRAM_GDDR:=0D
-+		case INTEL_DRAM_GDDR_ECC:=0D
- 			qi->channel_width =3D 32;=0D
- 			break;=0D
- 		default:=0D
-@@ -404,6 +405,12 @@ static const struct intel_sa_info xe2_hpd_sa_info =3D =
-{=0D
- 	/* Other values not used by simplified algorithm */=0D
- };=0D
- =0D
-+static const struct intel_sa_info xe2_hpd_ecc_sa_info =3D {=0D
-+	.derating =3D 45,=0D
-+	.deprogbwlimit =3D 53,=0D
-+	/* Other values not used by simplified algorithm */=0D
-+};=0D
-+=0D
- static const struct intel_sa_info xe3lpd_sa_info =3D {=0D
- 	.deburst =3D 32,=0D
- 	.deprogbwlimit =3D 65, /* GB/s */=0D
-@@ -756,11 +763,16 @@ static unsigned int icl_qgv_bw(struct intel_display *=
-display,=0D
- =0D
- void intel_bw_init_hw(struct intel_display *display)=0D
- {=0D
-+	const struct dram_info *dram_info =3D &to_i915(display->drm)->dram_info;=
-=0D
-+=0D
- 	if (!HAS_DISPLAY(display))=0D
- 		return;=0D
- =0D
- 	if (DISPLAY_VER(display) >=3D 30)=0D
- 		tgl_get_bw_info(display, &xe3lpd_sa_info);=0D
-+	else if (DISPLAY_VERx100(display) >=3D 1401 && display->platform.dgfx &&=
-=0D
-+		 dram_info->type =3D=3D INTEL_DRAM_GDDR_ECC)=0D
-+		xe2_hpd_get_bw_info(display, &xe2_hpd_ecc_sa_info);=0D
- 	else if (DISPLAY_VERx100(display) >=3D 1401 && display->platform.dgfx)=0D
- 		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);=0D
- 	else if (DISPLAY_VER(display) >=3D 14)=0D
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_dr=
-v.h=0D
-index ffc346379cc2c..54538b6f85df5 100644=0D
---- a/drivers/gpu/drm/i915/i915_drv.h=0D
-+++ b/drivers/gpu/drm/i915/i915_drv.h=0D
-@@ -305,6 +305,7 @@ struct drm_i915_private {=0D
- 			INTEL_DRAM_DDR5,=0D
- 			INTEL_DRAM_LPDDR5,=0D
- 			INTEL_DRAM_GDDR,=0D
-+			INTEL_DRAM_GDDR_ECC,=0D
- 		} type;=0D
- 		u8 num_qgv_points;=0D
- 		u8 num_psf_gv_points;=0D
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/s=
-oc/intel_dram.c=0D
-index 9e310f4099f42..f60eedb0e92cf 100644=0D
---- a/drivers/gpu/drm/i915/soc/intel_dram.c=0D
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c=0D
-@@ -687,6 +687,10 @@ static int xelpdp_get_dram_info(struct drm_i915_privat=
-e *i915)=0D
- 		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));=0D
- 		dram_info->type =3D INTEL_DRAM_GDDR;=0D
- 		break;=0D
-+	case 9:=0D
-+		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));=0D
-+		dram_info->type =3D INTEL_DRAM_GDDR_ECC;=0D
-+		break;=0D
- 	default:=0D
- 		MISSING_CASE(val);=0D
- 		return -EINVAL;=0D
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_d=
-evice_types.h=0D
-index 1334174388afe..20239d6a2e985 100644=0D
---- a/drivers/gpu/drm/xe/xe_device_types.h=0D
-+++ b/drivers/gpu/drm/xe/xe_device_types.h=0D
-@@ -587,6 +587,7 @@ struct xe_device {=0D
- 			INTEL_DRAM_DDR5,=0D
- 			INTEL_DRAM_LPDDR5,=0D
- 			INTEL_DRAM_GDDR,=0D
-+			INTEL_DRAM_GDDR_ECC,=0D
- 		} type;=0D
- 		u8 num_qgv_points;=0D
- 		u8 num_psf_gv_points;=0D
-=0D
----=0D
-base-commit: 74f632d1bd3b90ed79883361ca25f1225c0aee58=0D
-change-id: 20250321-tip-23d2af2e3291=0D
-=0D
-Best regards,=0D
--- =0D
-Lucas De Marchi <lucas.demarchi@intel.com>=0D
-=0D
+On Mon, Mar 24, 2025 at 07:02:34PM +0530, Ankit Nautiyal wrote:
+> Currently the variable timings are supported only for DP and eDP and not
+> for DP MST. Call intel_vrr_compute_config() for MST which will configure
+> fixed refresh rate timings irrespective of whether VRR is supported or
+> not. Since vrr_capable still doesn't have support for DP MST this will be
+> just treated as non VRR case and vrr.vmin/vmax/flipline will be all set
+> to adjusted_mode->crtc_vtotal.
+> 
+> This will help to move away from the legacy timing generator and
+> always use VRR timing generator by default.
+> 
+> With this change, we need to exclude MST in intel_vrr_is_capable for
+> now, to avoid having LRR with MST.
+> 
+> v2: Exclude MST in intel_vrr_is_capable() for now. (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 +++
+>  drivers/gpu/drm/i915/display/intel_vrr.c    | 2 ++
+>  2 files changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 02f95108c637..bd47cf127b4c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -52,6 +52,7 @@
+>  #include "intel_pfit.h"
+>  #include "intel_psr.h"
+>  #include "intel_vdsc.h"
+> +#include "intel_vrr.h"
+>  #include "skl_scaler.h"
+>  
+>  /*
+> @@ -710,6 +711,8 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+>  		pipe_config->lane_lat_optim_mask =
+>  			bxt_dpio_phy_calc_lane_lat_optim_mask(pipe_config->lane_count);
+>  
+> +	intel_vrr_compute_config(pipe_config, conn_state);
+> +
+>  	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
+>  
+>  	intel_ddi_compute_min_voltage_level(pipe_config);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 6bdcdfed4b9b..c682c487eb25 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -32,6 +32,8 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+>  			return false;
+>  		fallthrough;
+>  	case DRM_MODE_CONNECTOR_DisplayPort:
+> +		if (connector->mst.dp)
+> +			return false;
+
+The DP spec is pretty vague about this, but it looks to me like it's
+saying that the last MST branch device must support the "ignore MSA"
+bit in order to support adaptive sync. I guess we might need to do that
+stuff via remote DPCD. Or perhaps in the worst case we'd have iterate
+through the whole MST chain.
+
+Looks like there's at least this MST hub that claims adaptive sync
+support:
+https://club-3d.com/en/detail/2486/usb_type_c_3.2_gen_1_multi_stream_transport_(mst)hub_displayport1.4_triple_monitor/
+We should probably get one and see if we can get this working.
+
+In the meantime
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  		intel_dp = intel_attached_dp(connector);
+>  
+>  		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
