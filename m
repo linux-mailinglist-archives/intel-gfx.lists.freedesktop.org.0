@@ -2,64 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EFCA6DB9F
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 14:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BDCA6DBDC
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 14:44:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C217410E411;
-	Mon, 24 Mar 2025 13:32:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81EC610E370;
+	Mon, 24 Mar 2025 13:44:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLpDr9p6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlB6Z7Jv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD8D10E40E;
- Mon, 24 Mar 2025 13:32:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C5D110E356;
+ Mon, 24 Mar 2025 13:44:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742823122; x=1774359122;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=92l6FArlYG7KWJ7HEUNaMMrZ2E5B106tBpHBnZs79uU=;
- b=lLpDr9p6FNHczF1v0BlGzW9DlbTPYwGuo5oR2C5gaEFyt5CXXV0kEs3o
- E/MQuCXEkJnEC2X8f1N2V6kbiHgb84MfupKPypIDDGJS/QWu+On04uSJR
- bkUxN+cmWHpA2GDjHOFGEZyJEE//IIyisXSLHA5sgijunDfkYf1zMUaLc
- uEHP9v6Hzzwr1eOpnFD3RqFkV8FEiwamQgsEE3z4rjnZ6TBntKagaCg5E
- DNmUwnLk+x24V3GJcMS8rQsSecokIQHcViEPLS+fx77W6EGuwZyijr4en
- gCnrL6Hj3Fypx6so08IrXf74o9GdVv6svifizyrP0Svk654BGwTMCMR3E w==;
-X-CSE-ConnectionGUID: 93+RGvJKSiin4YeDmLn+Hg==
-X-CSE-MsgGUID: MXog9HOARhqghltVHZG6hQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="66493475"
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="66493475"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 06:32:01 -0700
-X-CSE-ConnectionGUID: D0UQ/YLqSCuLac1K6jBGEQ==
-X-CSE-MsgGUID: Jfb1NZdxRvWy1VN2i7580A==
+ t=1742823880; x=1774359880;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rLvapDWwKKi2XSfF3q6mt4rOC8gVi9nuyYQP5nDg2kc=;
+ b=JlB6Z7JvSRefFpJ+L1FXqKTraxZ0BhMWw/Z7XGOj6T2bRtk+k4A6wtN3
+ wb+K5fnTLVnvG2meZdSq7E2JohCples6FQ214puf1RFiiW3Z3EdwofJ9d
+ OKkd5n/S9815RCRubb11SwxcDTCCbIx8eoO0A6aQVcSQKHnhvvzanpios
+ 2RnHrkYpQJwr8Dc9BGbPYKf2x2SVSCXQ6UklMroWPqIxe/aijz27AL/v6
+ BZgEZ0fcZITeLPm1dc22+4CbBVgpOJ50S8f5kkOjYKYAsBFt6U17ReZiw
+ pFdK8UXQ1p0/EGyRDKd+EMXqpN3mZVsV8Ztfe+aPUzyHGw7Wk+6ZM59OX w==;
+X-CSE-ConnectionGUID: MFeSuznVSZiIeA2F6/2Shg==
+X-CSE-MsgGUID: S1dEWEqxTHmf9WyTpK4aMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="43955689"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="43955689"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 06:44:38 -0700
+X-CSE-ConnectionGUID: uyVY8BIFRJKMH6t9JzOJEg==
+X-CSE-MsgGUID: YuHIPpqnSo+4Ln6iCyBfwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="123847292"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.252])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 06:31:57 -0700
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Arshad Mehmood <arshad.mehmood@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH v4 15/15] drm/i915/gt: Allow the user to change the CCS mode
- through sysfs
-Date: Mon, 24 Mar 2025 14:29:51 +0100
-Message-ID: <20250324132952.1075209-16-andi.shyti@linux.intel.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250324132952.1075209-1-andi.shyti@linux.intel.com>
-References: <20250324132952.1075209-1-andi.shyti@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="124040435"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 06:44:36 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 00/16] Use VRR timing generator for fixed refresh rate modes
+Date: Mon, 24 Mar 2025 19:02:32 +0530
+Message-ID: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,144 +67,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create the 'ccs_mode' file under
+Even though the VRR timing generator (TG) is primarily used for
+variable refresh rates, it can be used for fixed refresh rates as
+well. For a fixed refresh rate the Flip Line and Vmax must be equal
+(TRANS_VRR_FLIPLINE = TRANS_VRR_VMAX). Beyond that, there are some
+dependencies between the VRR timings and the legacy timing generator
+registers.
 
-/sys/class/drm/cardX/gt/gt0/ccs_mode
+This series is an attempt to use VRR TG for fixed refresh rate.
+For platforms PTL+, always go with VRR timing generator for both fixed and
+variable refresh rate cases.
 
-This file allows the user to read and set the current CCS mode.
+Rev2:
+-Added support from MTL+ and for HDMI too.
+-Changed VRR VSYNC programming which is required for HDMI.
+-Modified vrr compute config for bigjoiner case. (Still to be tested).
 
- - Reading: The user can read the current CCS mode, which can be
-   1, 2, or 4. This value is derived from the current engine
-   mask.
+Rev3:
+-Start support from XE2LPD+ as MTL needs a WA to have PSR +VRR (fixed
+refresh rate)
+-Add changes to enable PSR with VRR with fixed refresh rate.
 
- - Writing: The user can set the CCS mode to 1, 2, or 4,
-   depending on the desired number of exposed engines and the
-   required load balancing.
+Rev4:
+-Addressed review comments from Mitul and rebased.
 
-The interface will return -EBUSY if other clients are connected
-to i915, or -EINVAL if an invalid value is set.
+Rev5:
+-Avoid MSA Ignore PAR timing enable bit for fixed refresh rate
+with VRR TG.
+-Skip VRR compute config for HDMI connected via DP-HDMI2.1 PCON.
+-Print fixed_rr along with other VRR parameters in crtc state dump.
+-Rebase
 
-Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c | 82 ++++++++++++++++++++-
- 1 file changed, 80 insertions(+), 2 deletions(-)
+Rev6:
+-Refactor VRR code to have distinct modes in which VRR timing generator
+can be used: VRR, FIXED_RR, CMRR.
+-Bring the cmmr attributes in vrr struct.
+-Remove condition flipline > vmin for LNL.
+-Account for vmax being 0 based while MSA vtotal being 1 based.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-index cbabeb503d3b..8364523f2730 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_ccs_mode.c
-@@ -6,6 +6,7 @@
- #include "i915_drv.h"
- #include "intel_engine_user.h"
- #include "intel_gt_ccs_mode.h"
-+#include "intel_gt_pm.h"
- #include "intel_gt_print.h"
- #include "intel_gt_regs.h"
- #include "intel_gt_sysfs.h"
-@@ -172,7 +173,7 @@ static int rb_engine_cmp(struct rb_node *rb_new, const struct rb_node *rb_old)
- 	return new->uabi_class - old->uabi_class;
- }
- 
--static void __maybe_unused add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mode)
-+static void add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mode)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	intel_engine_mask_t new_ccs_mask, tmp;
-@@ -234,7 +235,7 @@ static void __maybe_unused add_uabi_ccs_engines(struct intel_gt *gt, u32 ccs_mod
- 	mutex_unlock(&i915->uabi_engines_mutex);
- }
- 
--static void __maybe_unused remove_uabi_ccs_engines(struct intel_gt *gt, u8 ccs_mode)
-+static void remove_uabi_ccs_engines(struct intel_gt *gt, u8 ccs_mode)
- {
- 	struct drm_i915_private *i915 = gt->i915;
- 	intel_engine_mask_t new_ccs_mask, tmp;
-@@ -277,8 +278,85 @@ static ssize_t num_cslices_show(struct device *dev,
- }
- static DEVICE_ATTR_RO(num_cslices);
- 
-+static ssize_t ccs_mode_show(struct device *dev,
-+			     struct device_attribute *attr, char *buff)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	u32 ccs_mode;
-+
-+	ccs_mode = hweight32(gt->ccs.id_mask);
-+
-+	return sysfs_emit(buff, "%u\n", ccs_mode);
-+}
-+
-+static ssize_t ccs_mode_store(struct device *dev,
-+			      struct device_attribute *attr,
-+			      const char *buff, size_t count)
-+{
-+	struct intel_gt *gt = kobj_to_gt(&dev->kobj);
-+	int num_cslices = hweight32(CCS_MASK(gt));
-+	int ccs_mode = hweight32(gt->ccs.id_mask);
-+	ssize_t ret;
-+	u32 val;
-+
-+	ret = kstrtou32(buff, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * As of now possible values to be set are 1, 2, 4,
-+	 * up to the maximum number of available slices
-+	 */
-+	if (!val || val > num_cslices || (num_cslices % val))
-+		return -EINVAL;
-+
-+	/* Let's wait until the GT is no longer in use */
-+	ret = intel_gt_pm_wait_for_idle(gt);
-+	if (ret)
-+		return ret;
-+
-+	mutex_lock(&gt->wakeref.mutex);
-+
-+	/*
-+	 * Let's check again that the GT is idle,
-+	 * we don't want to change the CCS mode
-+	 * while someone is using the GT
-+	 */
-+	if (intel_gt_pm_is_awake(gt)) {
-+		ret = -EBUSY;
-+		goto out;
-+	}
-+
-+	/*
-+	 * Nothing to do if the requested setting
-+	 * is the same as the current one
-+	 */
-+	if (val == ccs_mode)
-+		goto out;
-+	else if (val > ccs_mode)
-+		add_uabi_ccs_engines(gt, val);
-+	else
-+		remove_uabi_ccs_engines(gt, val);
-+
-+out:
-+	mutex_unlock(&gt->wakeref.mutex);
-+
-+	return ret ?: count;
-+}
-+static DEVICE_ATTR_RW(ccs_mode);
-+
- void intel_gt_sysfs_ccs_init(struct intel_gt *gt)
- {
- 	if (sysfs_create_file(&gt->sysfs_gt, &dev_attr_num_cslices.attr))
- 		gt_warn(gt, "Failed to create sysfs num_cslices files\n");
-+
-+	/*
-+	 * Do not create the ccs_mode file for non DG2 platforms
-+	 * because they don't need it as they have only one CCS engine
-+	 */
-+	if (!IS_DG2(gt->i915))
-+		return;
-+
-+	if (sysfs_create_file(&gt->sysfs_gt, &dev_attr_ccs_mode.attr))
-+		gt_warn(gt, "Failed to create sysfs ccs_mode files\n");
- }
+Rev7:
+I have added patches from series for AS SDP fixes [1] , as without panels
+that support AS SDP gives a lot of issues.
+There were major changes in design as discussed in last version [2].
+Below are the change logs:
+
+-Change the design to compute vrr state based on actual uapi.vrr.enable
+knob. So when that knob is disabled we always compute vmin=flipline=vmax.
+-Always set vmin=crtc_vtotal instead of the using the current refresh rate
+based approach. This helps to have the same guardband while switching
+between fixed and variable timings.
+-Disable CMRR for now to reduce complexity while changing timings on the
+fly.
+-Change the state computation and add vmin/vmax/flipline reprogramming
+to vrr_{enable,disable}()
+-Introduce the fixed refresh mode from MTL instead of LNL.
+
+[1] https://patchwork.freedesktop.org/series/137035/
+[2] https://patchwork.kernel.org/project/intel-gfx/cover/20241111091221.2992818-1-ankit.k.nautiyal@intel.com/
+
+Rev8:
+-Addressed review comments from Ville.
+-Refactored few patches.
+-Dropped patches:
+1. "drm/i915/vrr: Adjust Vtotal for MSA for fixed timing"
+2. "drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed
+refresh rate"
+
+Rev9:
+-Fixed issue seen on BAT bugs.
+
+Rev10:
+-Drop patch for avoiding VRR for DP with HDMI panel.
+-Address comments from Ville.
+-Add VRR compute config for DP MST.
+-Add HAS_VRR() checks and compute fixed timing for all VRR supporting
+platforms.
+-Move guardband and pipeline_full checks
+out from the pure !fastset block in intel_pipe_config_compare().
+
+Rev11:
+-Addressed comments from Ville.
+-Added only fixed_rr for Joiner.
+-Use vrr_possible() before setting fixed timings and before setting
+trans_vrr_ctl.
+-Split patch to remove vrr.guardband/pipeline_full from !fastset block.
+-Add patch to avoid writing into Vtotal.Vtotal bits when always using
+VRRTG.
+
+Rev12:
+-Address comments from Ville.
+-Change sequence of Disable VRR.
+-Enable Push before VRR Enable.
+-Clear Push after VRR Disable.
+-Drop patch to remove Vtotal.vtotal bits.
+
+Rev13:
+-Reset trans_vrr_ctl in disable transcoder path.
+-Do not allow vrr.guardband live programming without modeset for
+platform that always have VRR TG on.
+
+Rev14:
+-Add fix for an issue seen after merge of first few refactoring patches.
+-Add fix for issue seen on CI.
+-Address comments from Ville on last revision.
+-Use VRR timing generator by default from PTL
+
+Rev15:
+-Address review comment on Patch: Use fixed_rr timings in modeset sequence
+
+Rev16:
+-Rebase
+-Address review comments from Ville.
+-Re-introduce patch to avoid using VTotal.Vtotal bits for PTL+
+
+Ankit Nautiyal (16):
+  drm/i915/hdmi: Use VRR Timing generator for HDMI for fixed_rr
+  drm/i915/dp_mst: Use VRR Timing generator for DP MST for fixed_rr
+  drm/i915/display: Disable PSR before disabling VRR
+  drm/i915/display: Move intel_psr_post_plane_update() at the later
+  drm/i915/vrr: Refactor condition for computing vmax and LRR
+  drm/i915/vrr: Always set vrr vmax/vmin/flipline in
+    vrr_{enable/disable}
+  drm/i915/vrr: Set vrr.enable for VRR TG with fixed_rr
+  drm/i915/display: Use fixed_rr timings in modeset sequence
+  drm/i915/vrr: Use fixed timings for platforms that support VRR
+  drm/i915/display: Use fixed rr timings in
+    intel_set_transcoder_timings_lrr()
+  drm/i915/display: Move vrr.guardband/pipeline_full out of !fastset
+    block
+  drm/i915/vrr: Allow fixed_rr with pipe joiner
+  drm/i915/vrr: Always use VRR timing generator for PTL+
+  drm/i915/vrr: Set trans_vrr_ctl in intel_vrr_set_transcoder_timings()
+  drm/i915/display: Separate out functions to get/set VTOTAL register
+  drm/i915/display: Avoid use of VTOTAL.Vtotal bits
+
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c |  82 ++++++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  |   7 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c    |   3 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 145 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_vrr.h     |   6 +
+ 6 files changed, 193 insertions(+), 55 deletions(-)
+
 -- 
-2.47.2
+2.45.2
 
