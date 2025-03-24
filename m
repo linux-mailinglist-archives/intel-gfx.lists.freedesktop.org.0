@@ -2,112 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC44EA6DE84
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 16:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F02A6DF0B
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 16:53:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 181E510E497;
-	Mon, 24 Mar 2025 15:24:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="HzRntRTI";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D9310E256;
+	Mon, 24 Mar 2025 15:53:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net
- [217.70.183.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7377F10E495;
- Mon, 24 Mar 2025 15:24:31 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7F580431EA;
- Mon, 24 Mar 2025 15:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1742829870;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qq8EpEiG1aC5Z/IjfsMqD91CxuYdkrpsKElewh0trrc=;
- b=HzRntRTIKg4fLJyjgfZTixNKmLhq822wf0K5foYb4X2cRUgxn0PLQUU4hPLxst0D35OdE+
- CqYuSaBhmof4OO/roafXPdPVcIT9ZV2Oj7iaNssm3lWouInC/EOod+m3KzDFW7XhOerlXW
- tCIGRxXb98yNFm6L7LidILYeKfWeuT0ZVcCljYOBnxe+rxYtQQKVaNhi7LS2QuolizWOES
- vbmDUtul2gNsSmnHZfaJIZSoCTH3bjGrUi3+WSceOJw/M7KjJir/tNXBAdRbs6U64pgQ0N
- 7cW7xziJHn7jY13PAUOIkrPnY0z3mJZDglSyV0v013GZvm8lkj/eKGCsm0mZQg==
-Message-ID: <d8af7ba3-d7c9-4ed9-b3ed-118ea189ea49@bootlin.com>
-Date: Mon, 24 Mar 2025 16:24:29 +0100
+Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C8E10E3B4;
+ Mon, 24 Mar 2025 15:53:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH v2 40/59] drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
-To: Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-gfx-trybot@lists.freedesktop.org
-Cc: jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org,
- daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C01/59=5D_vmlinux=2Elds=2Eh=3A_fixup_HEADERED=5FSECTION=7B=2C?=
+ =?utf-8?q?=5FBY=7D_macros?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jim Cromie" <jim.cromie@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Mar 2025 15:53:00 -0000
+Message-ID: <174283158099.73023.6300076346921784512@18a75f3d1eae>
+X-Patchwork-Hint: ignore
 References: <20250320185238.447458-1-jim.cromie@gmail.com>
- <20250320185238.447458-41-jim.cromie@gmail.com>
-Content-Language: en-US
-Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
- 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
-In-Reply-To: <20250320185238.447458-41-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdduiedtudefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfhuffvvehfjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetfffhtdeigfehffduuedvkeefgfdvuddugfffteetffdvteffgfejvedugffgffenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddvtdgnpdhmrghilhhfrhhomheplhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtohepjhhimhdrtghrohhmihgvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopegrmhguqdhgfhigsehlihhsthhsr
- dhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhvthdquggvvheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgidqthhrhigsohhtsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpthhtohepjhgsrghrohhnsegrkhgrmhgrihdrtghomh
-X-GND-Sasl: louis.chauvet@bootlin.com
+In-Reply-To: <20250320185238.447458-1-jim.cromie@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,56 +38,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: series starting with [v2,01/59] vmlinux.lds.h: fixup HEADERED_SECTION{,_BY} macros
+URL   : https://patchwork.freedesktop.org/series/146666/
+State : failure
 
-Le 20/03/2025 à 19:52, Jim Cromie a écrit :
-> Following the dyndbg-api-fix, replace DECLARE_DYNDBG_CLASSMAP with
-> DRM_CLASSMAP_USE.  This refs the defined & exported classmap, rather
-> than re-declaring it redundantly, and error-prone-ly.
-> 
-> This resolves the appearance of "class:_UNKNOWN_" in the control file
-> for the driver's drm_dbg()s.
-> 
-> Fixes: f158936b60a7 ("drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.")
-> 
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+== Summary ==
 
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-
-> ---
->   drivers/gpu/drm/i915/i915_params.c | 12 +-----------
->   1 file changed, 1 insertion(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 37746dd619fd..2dc0e2c06e09 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -29,17 +29,7 @@
->   #include "i915_params.h"
->   #include "i915_drv.h"
->   
-> -DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS, 0,
-> -			"DRM_UT_CORE",
-> -			"DRM_UT_DRIVER",
-> -			"DRM_UT_KMS",
-> -			"DRM_UT_PRIME",
-> -			"DRM_UT_ATOMIC",
-> -			"DRM_UT_VBL",
-> -			"DRM_UT_STATE",
-> -			"DRM_UT_LEASE",
-> -			"DRM_UT_DP",
-> -			"DRM_UT_DRMRES");
-> +DRM_CLASSMAP_USE(drm_debug_classes);
->   
->   #define i915_param_named(name, T, perm, desc) \
->   	module_param_named(name, i915_modparams.name, T, perm); \
-
--- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/146666/revisions/1/mbox/ not applied
+Applying: vmlinux.lds.h: fixup HEADERED_SECTION{,_BY} macros
+Applying: docs/dyndbg: update examples \012 to \n
+Applying: test-dyndbg: fixup CLASSMAP usage error
+Applying: dyndbg: reword "class unknown, " to "class:_UNKNOWN_"
+Applying: dyndbg: make ddebug_class_param union members same size
+Applying: dyndbg: drop NUM_TYPE_ARRAY
+Applying: dyndbg: reduce verbose/debug clutter
+Applying: dyndbg: refactor param_set_dyndbg_classes and below
+Applying: dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+Applying: dyndbg: replace classmap list with a vector
+Applying: dyndbg: macrofy a 2-index for-loop pattern
+Applying: dyndbg, module: make proper substructs in _ddebug_info
+Applying: dyndbg: add 2 new _DPRINTK_FLAGS_: INCL_LOOKUP, PREFIX_CACHED
+Applying: dyndbg: split _emit_lookup() out of dynamic_emit_prefix()
+Applying: dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
+Applying: dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+Applying: dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+Applying: selftests-dyndbg: add tools/testing/selftests/dynamic_debug/*
+Applying: dyndbg: detect class_id reservation conflicts
+Applying: dyndbg: check DYNDBG_CLASSMAP_DEFINE args at compile-time
+Applying: dyndbg-test: change do_prints testpoint to accept a loopct
+Applying: dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
+Applying: dyndbg: move .mod_name from/to structs ddebug_table/_ddebug_info
+Applying: dyndbg: treat comma as a token separator
+Applying: selftests-dyndbg: add comma_terminator_tests
+Applying: dyndbg: split multi-query strings with %
+Applying: selftests-dyndbg: test_percent_splitting
+Applying: selftests-dyndbg: add test_mod_submod
+Applying: dyndbg: change __dynamic_func_call_cls* macros into expressions
+Applying: dyndbg: drop "protection" of class'd pr_debugs from legacy queries
+Applying: docs/dyndbg: explain new delimiters: comma, percent
+Applying: docs/dyndbg: explain flags parse 1st
+Applying: docs/dyndbg: add classmap info to howto (TBD)
+Applying: checkpatch: dont warn about unused macro arg on empty body
+Applying: drm: use correct ccflags-y spelling
+Applying: drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+Applying: drm-dyndbg: adapt DRM to invoke DYNAMIC_DEBUG_CLASSMAP_PARAM
+Applying: drm-print: fix config-dependent unused variable
+Applying: drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+Applying: drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+Applying: drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+Applying: drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+Applying: drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+Applying: drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+Applying: drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/Kconfig
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/Kconfig
+CONFLICT (content): Merge conflict in drivers/gpu/drm/Kconfig
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0058 drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
