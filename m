@@ -2,62 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D384AA6D863
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 11:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE40A6D88D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 11:47:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF75410E2C6;
-	Mon, 24 Mar 2025 10:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E500010E237;
+	Mon, 24 Mar 2025 10:47:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NanXHyIP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ree0Pcsk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1532E10E297;
- Mon, 24 Mar 2025 10:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742812600; x=1774348600;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Q5+ax9qwm6M5CKQYPrCIRrhk/iY5pKWIy3gGxsqxcUk=;
- b=NanXHyIPHAqR/33Oxp9ymiiu5q8dkCJjwA0kB8XKgSJ3Rkx9MOER/kWj
- r4D86tlJEkM4tRTNOzn7ZTKVUQZzYSQT/yJyfit/nnbqFOXj+kk474W29
- /6ZFPIs5Y0vih1JvHogpIi1qXCfSwE1eCVR/7z9BZasCfHUMkr6rMk87I
- 3vbuYysrs+FRMkO/gXbfdCXhblcq54rRqMoybnH9UglIFKO0KzopXefMY
- Ljcvj94oP33ILaeRa66O+T0eF/BmAQ7Ar7d0Mpqft+YhPKJRLyoCB7zw/
- WxbKvc9wLfItUOnlinIHPSTq8kZP/nNoxcqNslQC8/bHWvGlvZR1WzDz8 g==;
-X-CSE-ConnectionGUID: 4YMcZf40S3aS2z+XOK/4Cw==
-X-CSE-MsgGUID: 5EXEYUkYR8m+6GRApQO/EA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11382"; a="46755747"
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="46755747"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 03:36:40 -0700
-X-CSE-ConnectionGUID: ZIlu9JntQ0GUS0KAyGKoEQ==
-X-CSE-MsgGUID: 9RLFULHySlq4/rkr1bVVJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,271,1736841600"; d="scan'208";a="124537412"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.30])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2025 03:36:38 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/dp_mst: Fix side-band message timeouts due
- to long PPS delays
-In-Reply-To: <Z9251V5a9C6HsGNZ@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250321145626.94101-1-imre.deak@intel.com>
- <20250321145626.94101-3-imre.deak@intel.com> <Z92pPajId5OECQR7@intel.com>
- <Z92yNcPjrwmhC0ub@ideak-desk.fi.intel.com> <Z92zhpTXr_pg0FOW@intel.com>
- <Z9251V5a9C6HsGNZ@ideak-desk.fi.intel.com>
-Date: Mon, 24 Mar 2025 12:36:34 +0200
-Message-ID: <8734f2btql.fsf@intel.com>
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com
+ [209.85.160.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDCB110E237;
+ Mon, 24 Mar 2025 10:47:37 +0000 (UTC)
+Received: by mail-oa1-f49.google.com with SMTP id
+ 586e51a60fabf-2c72cb91e9cso2971312fac.1; 
+ Mon, 24 Mar 2025 03:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742813255; x=1743418055; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5jw7vEOJd9+kVHxfxG1vL7hag7BbqohE0PbGawFjKs4=;
+ b=Ree0PcskcAGp9kFdWEBFQXuntEQ2rHpn3cHwy/offbiOyPYF4FLV68Im12I5kKKRq8
+ ws+Um1Ouj6OeBpuJ4VoqOnf1PyK4TiHcF7jM3V5kr1rYX0+fTs1f5Q9oI5lRqY0rVIye
+ KdwhH+P3SawFcmSqzox5Gt9ZtXt/cMnOcPgxlWnqqv37loVu+id3mX6W/WaXvWNuzz2W
+ KcyGbzinWx854uDzMtOwf1FUbkrdQuLII8Ya+kJ9k9Q9Z0j9VBwDYMJ7SrnZt6q2yoHr
+ Wcq66wuCuq91SNZQB3uKxsmGuCyWmaQXRCKn5mQ0yn97I6OgE5oPbTwUglWFqCqGsYM1
+ T7Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742813255; x=1743418055;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5jw7vEOJd9+kVHxfxG1vL7hag7BbqohE0PbGawFjKs4=;
+ b=DsFLsE+mCOLJr+ORW6kFF0HcMaVgca/d/J+hyS8TBp9gyraRUuUvmm2mhDrLIZIU9z
+ dpIfRMbnCfiCdYYThEEEmI5roIWHwZcu4tzg76HxGDJbQpp+Dsih/pNLr6hMHddfM0PP
+ yGvfPCQdw/x6crEtYNw3TryUHUKRjqDUFcUzSGILxh37mg2sdnERNtSm5FGl5DH7y0T8
+ wKnXG8IpzcrFgMt5W+kwgT/Yj+4fwFR4nGYtxrQhi/+RLtCZhrDstOwYML6rNlbCygAp
+ 7U28+uI/p1yNjJFfG9CzyOPOJcwH0ICZEiUmkwoH1C+3XctdaWEQuoslD8Xp1OonHEll
+ oOVA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVRLgpNnrbbv5W2Hjp+/DoFb4RQFwPv03J9pDUezjImZxLmODBFp+xCYjL+DlEhhkvfJUYJiRn5heqEGv/D8g==@lists.freedesktop.org,
+ AJvYcCW/gy0rGSiowdqwIJvZkIJbW/2tSKmKySsz2GnPoQlkf4/SKpGsIzVaoUOBadmynpwDSq2z9c4YuDk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwrKHrkKAFgS9jgGL6EDhTTIIZyhPxX2X01S6O/w5GbleOirnIn
+ G09bRoD+mhkP1I9Ls6mqa1vgRO578vKLB/OzHln3ljY+yeD0BKKQbmOGbkwy7kJ61TrBUatTxHn
+ qKgzEoTzIvuYuKl3i6HFB+evT8D4=
+X-Gm-Gg: ASbGnctAK8zl5kYPIbxL8zuH2V6LF0PAV5JKG4hS+/vAlwuFnNBxdbnTtufVtGr6Ngq
+ 3fpjp73LbItIn0j9wuHz9sHcFdllVR0bTCzrFkYZa3H8YceBWZPFc8gPcKbl/a9E9MVbtfFMn4X
+ KOggf25E8mrht/XJAcoy3wtbc=
+X-Google-Smtp-Source: AGHT+IHdRQL4CSzJPpXSBIfWZCaqqx9IsDza48gb58MoU4sbd7mv0bZ+NfyczdL84bXw8ET1tmLi6+9Sj6+qfwbCaK4=
+X-Received: by 2002:a05:6870:3c89:b0:2b8:41ef:2ca with SMTP id
+ 586e51a60fabf-2c780289b26mr7641268fac.6.1742813254753; Mon, 24 Mar 2025
+ 03:47:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20250324083755.12489-1-kwizart@gmail.com>
+ <20250324083755.12489-3-kwizart@gmail.com>
+ <87pli6bwxi.fsf@intel.com> <87h63ibwma.fsf@intel.com>
+In-Reply-To: <87h63ibwma.fsf@intel.com>
+From: Nicolas Chauvet <kwizart@gmail.com>
+Date: Mon, 24 Mar 2025 11:47:23 +0100
+X-Gm-Features: AQ5f1Jpv52Yi-NV796ol6p6RUqVLUgoluSjVAoOFPu6MP-olcZdD_Qf9lZ9zltk
+Message-ID: <CABr+WTmQ3rZ-UZH2Wv0R6qKegyjCovn3R7PWBeWiciAj+NbtnQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] [RFC] drm/i915/gvt: Fix opregion_header->signature
+ size
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,166 +90,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 21 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, Mar 21, 2025 at 08:44:22PM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
->> On Fri, Mar 21, 2025 at 08:38:45PM +0200, Imre Deak wrote:
->> > On Fri, Mar 21, 2025 at 08:00:29PM +0200, Ville Syrj=C3=A4l=C3=A4 wrot=
-e:
->> > > On Fri, Mar 21, 2025 at 04:56:25PM +0200, Imre Deak wrote:
->> > > > The Panel Power Sequencer lock held on an eDP port (a) blocks a DP=
- AUX
->> > > > transfer on another port (b), since the PPS lock is device global,=
- thus
->> > > > shared by all ports. The PPS lock can be held on port (a) for a lo=
-nger
->> > > > period due to the various PPS delays (panel/backlight on/off,
->> > > > power-cycle delays). This in turn can cause an MST down-message re=
-quest
->> > > > on port (b) time out, if the above PPS delay defers the handling o=
-f the
->> > > > reply to the request by more than 100ms: the MST branch device sen=
-ding
->> > > > the reply (signaling this via the DP_DOWN_REP_MSG_RDY flag in the
->> > > > DP_DEVICE_SERVICE_IRQ_VECTOR DPCD register) may cancel the reply
->> > > > (clearing DP_DOWN_REP_MSG_RDY and the reply message buffer) after =
-110
->> > > > ms, if the reply is not processed by that time.
->> > > >=20
->> > > > Avoid MST down-message timeouts described above, by locking the PPS
->> > > > state for AUX transfers only if this is actually required: on eDP =
-ports,
->> > > > where the VDD power depends on the PPS state and on all DP and eDP=
- ports
->> > > > on VLV/CHV, where the PPS is a pipe instance and hence a modeset o=
-n any
->> > > > port possibly affecting the PPS state.
->> > > >=20
->> > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > > > ---
->> > > >  drivers/gpu/drm/i915/display/intel_pps.c | 34 +++++++++++++++++++=
-+++++
->> > > >  1 file changed, 34 insertions(+)
->> > > >=20
->> > > > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gp=
-u/drm/i915/display/intel_pps.c
->> > > > index 3c078fd53fbfa..7d7157983f25e 100644
->> > > > --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> > > > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> > > > @@ -26,6 +26,11 @@ static void vlv_steal_power_sequencer(struct in=
-tel_display *display,
->> > > >  static void pps_init_delays(struct intel_dp *intel_dp);
->> > > >  static void pps_init_registers(struct intel_dp *intel_dp, bool fo=
-rce_disable_vdd);
->> > > >=20=20
->> > > > +static bool intel_pps_is_pipe_instance(struct intel_display *disp=
-lay)
->> > > > +{
->> > > > +	return display->platform.valleyview || display->platform.cherryv=
-iew;
->> > > > +}
->> > > > +
->> > > >  static const char *pps_name(struct intel_dp *intel_dp)
->> > > >  {
->> > > >  	struct intel_display *display =3D to_intel_display(intel_dp);
->> > > > @@ -955,10 +960,32 @@ void intel_pps_vdd_off(struct intel_dp *inte=
-l_dp)
->> > > >  		intel_pps_vdd_off_unlocked(intel_dp, false);
->> > > >  }
->> > > >=20=20
->> > > > +static bool aux_needs_pps_lock(struct intel_dp *intel_dp)
->> > > > +{
->> > > > +	struct intel_display *display =3D to_intel_display(intel_dp);
->> > > > +
->> > > > +	/*
->> > > > +	 * The PPS state needs to be locked for:
->> > > > +	 * - eDP on all platforms, since AUX transfers on eDP need VDD p=
-ower
->> > > > +	 *   (either forced or via panel power) which depends on the PPS
->> > > > +	 *   state.
->> > > > +	 * - non-eDP on platforms where the PPS is a pipe instance (VLV/=
-CHV),
->> > > > +	 *   since changing the PPS state (via a parallel modeset for
->> > > > +	 *   instance) may interfere with the AUX transfers on a non-eDP
->> > > > +	 *   output as well.
->> > > > +	 */
->> > > > +	return intel_dp_is_edp(intel_dp) || intel_pps_is_pipe_instance(d=
-isplay);
->> > > > +}
->> > > > +
->> > > >  intel_wakeref_t intel_pps_lock_for_aux(struct intel_dp *intel_dp,=
- bool *vdd_ref)
->> > > >  {
->> > > >  	intel_wakeref_t wakeref;
->> > > >=20=20
->> > > > +	if (!aux_needs_pps_lock(intel_dp)) {
->> > > > +		*vdd_ref =3D false;
->> > > > +		return NULL;
->> > >=20
->> > > I was pondering if we need a define for this since intel_wakeref_t
->> > > doesn't look like a pointer, but apparently we use NULLs elsewhere
->> > > as well for this stuff.
->> >=20
->> > Ok, makes sense. It is a bigger a change though, so is it ok to do that
->> > as a follow up?
->>=20
->> I'm not sure what we even should do about it. Should all the
->> naked NULLs be hidden, or should we make the thing look like the
->> pointer it actually is?
+Le lun. 24 mars 2025 =C3=A0 10:34, Jani Nikula
+<jani.nikula@linux.intel.com> a =C3=A9crit :
 >
-> The latter, i.e.
+> On Mon, 24 Mar 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > On Mon, 24 Mar 2025, Nicolas Chauvet <kwizart@gmail.com> wrote:
+> >> Enlarge the signature field to accept the string termination.
+> >>
+> >> Cc: stable@vger.kernel.org
+> >> Fixes: 93615d59912 ("Revert drm/i915/gvt: Fix out-of-bounds buffer wri=
+te into opregion->signature[]")
+> >> Signed-off-by: Nicolas Chauvet <kwizart@gmail.com>
+> >
+> > Nope, can't do that. The packed struct is used for parsing data in
+> > memory.
 >
-> #define INTEL_WAKEREF_NONE ((intel_wakeref_t)0)
-
-I've been leaning towards making it the pointer it actually is,
-i.e. struct ref_tracker *. See the new intel_display_rpm.[ch].
-
-But I have much stronger objections to patches 1 and 2 than this [1].
-
-
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/874izibtvx.fsf@intel.com
-
-
-
-
+> Okay, so I mixed this up with display/intel_opregion.c. So it's not used
+> for parsing here... but it's used for generating the data in memory, and
+> we can't change the layout or contents.
 >
-> ?
->
->> > > > +	}
->> > > > +
->> > > >  	wakeref =3D intel_pps_lock(intel_dp);
->> > > >=20=20
->> > > >  	/*
->> > > > @@ -976,6 +1003,13 @@ intel_wakeref_t intel_pps_lock_for_aux(struc=
-t intel_dp *intel_dp, bool *vdd_ref)
->> > > >=20=20
->> > > >  void intel_pps_unlock_for_aux(struct intel_dp *intel_dp, intel_wa=
-keref_t wakeref, bool vdd_ref)
->> > > >  {
->> > > > +	struct intel_display *display =3D to_intel_display(intel_dp);
->> > > > +
->> > > > +	if (!wakeref) {
->> > > > +		drm_WARN_ON(display->drm, vdd_ref || aux_needs_pps_lock(intel_d=
-p));
->> > > > +		return;
->> > > > +	}
->> > > > +
->> > > >  	if (vdd_ref)
->> > > >  		intel_pps_vdd_off_unlocked(intel_dp, false);
->> > > >=20=20
->> > > > --=20
->> > > > 2.44.2
->> > >=20
->> > > --=20
->> > > Ville Syrj=C3=A4l=C3=A4
->> > > Intel
->>=20
->> --=20
->> Ville Syrj=C3=A4l=C3=A4
->> Intel
+> Regardless, we can't do either patch 2 or patch 3.
 
---=20
-Jani Nikula, Intel
+Thanks for review.
+So does it means the only "Fix" is to drop Werror, at least for intel/gvt c=
+ode ?
+I have CONFIG_DRM_I915_WERROR not set but CONFIG_DRM_WERROR=3Dy, (same as F=
+edora)
+Unsure why the current Fedora kernel is unaffected by this build failure.
