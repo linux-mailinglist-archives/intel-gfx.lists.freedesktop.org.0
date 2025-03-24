@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3666A6DFF7
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 17:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E83A6E01F
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Mar 2025 17:48:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C2310E49E;
-	Mon, 24 Mar 2025 16:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A804410E448;
+	Mon, 24 Mar 2025 16:47:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNd9s1Oj";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 18a75f3d1eae (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC96D10E49D;
- Mon, 24 Mar 2025 16:39:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7844103583633603683=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB0C10E171;
+ Mon, 24 Mar 2025 16:47:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1742834878; x=1774370878;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=X6tpuLfuJnHc+UciAKwWN7KOlAmZbY2ncUKWCsOlboo=;
+ b=SNd9s1OjkhkCmR+C8XgXIAhH1nCdt1IX4zwENhFpVIIl/+j9E3VT0rii
+ dUzF52U9Q+nT/tz/6lcE/cQlTsF/1Pu/uA/nSuxZ9bazzmSSmWHJtFxz0
+ 5WtOBgAMWWtzbsRlxcQYjDLTBq+8+trZb2NeHtdOr2lblqrqtYgKPx4eC
+ S2GAX6FUonO6uOFxo7XVaAXwoX7jzmIw+WbTVlOW/bAq5AFlLfekNimoi
+ bd9bxPGIiP2ekYpfkGkblefRVuPOEOoYkp8ABBiOUmPLjs5Bq8FR6X11K
+ Wmne3uy3HeiG0izJIBIYHsW3+SdGFndLZhTXZrTfheWw8gGMb/kgeqrRe Q==;
+X-CSE-ConnectionGUID: LNZsqCt/RbyAZvrKwrKVZA==
+X-CSE-MsgGUID: rTcqjNVpTTK3HpVpDOnFVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44240122"
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="44240122"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2025 09:47:57 -0700
+X-CSE-ConnectionGUID: qJGsdFboTSCZiLJB5AsNYw==
+X-CSE-MsgGUID: R5wJr3oMS6iruP6PlqWvwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,272,1736841600"; d="scan'208";a="129298232"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 24 Mar 2025 09:47:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 24 Mar 2025 18:47:53 +0200
+Date: Mon, 24 Mar 2025 18:47:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 00/12] drm/i915/display: yet another batch of struct
+ intel_display conversions
+Message-ID: <Z-GMuR8Okww3Bgku@intel.com>
+References: <cover.1742554320.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Use_VRR_timing_generator_?=
- =?utf-8?q?for_fixed_refresh_rate_modes_=28rev17=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Mar 2025 16:39:59 -0000
-Message-ID: <174283439996.74320.6733856678956344438@18a75f3d1eae>
-X-Patchwork-Hint: ignore
-References: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1742554320.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,228 +68,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7844103583633603683==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 21, 2025 at 12:52:44PM +0200, Jani Nikula wrote:
+> More conversions to struct intel_display.
+> 
+> Jani Nikula (12):
+>   drm/i915/dsi: convert vlv_dsi.[ch] to struct intel_display
+>   drm/i915/dsi: convert vlv_dsi_pll.[ch] to struct intel_display
+>   drm/i915/dsi: convert parameter printing to drm_printer
+>   drm/i915/dsi: convert intel_dsi_vbt.[ch] to struct intel_display
+>   drm/i915/dsi: convert intel_dsi_dcs_backlight.c to struct
+>     intel_display
+>   drm/i915/dvo: convert intel_dvo.[ch] to struct intel_display
+>   drm/i915/lvds: convert intel_lvds.[ch] to struct intel_display
+>   drm/i915/tc: convert intel_tc.c to struct intel_display
+>   drm/i915/atomic: convert intel_atomic.c to struct intel_display
+>   drm/i915/display: convert intel_crtc_state_dump.c to struct
+>     intel_display
+>   drm/i915/pch: convert intel_pch_display.[ch] to struct intel_display
+>   drm/i915/pch: convert intel_pch_refclk.c to struct intel_display
 
-== Series Details ==
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: Use VRR timing generator for fixed refresh rate modes (rev17)
-URL   : https://patchwork.freedesktop.org/series/134383/
-State : success
+> 
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  23 +-
+>  .../drm/i915/display/intel_crtc_state_dump.c  |  44 +--
+>  drivers/gpu/drm/i915/display/intel_display.c  |  22 +-
+>  .../drm/i915/display/intel_display_power.c    |   6 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |  13 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   6 +-
+>  .../i915/display/intel_dsi_dcs_backlight.c    |   7 +-
+>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 211 +++++++-------
+>  drivers/gpu/drm/i915/display/intel_dvo.c      |  63 ++---
+>  drivers/gpu/drm/i915/display/intel_dvo.h      |   6 +-
+>  .../drm/i915/display/intel_fifo_underrun.c    |   4 +-
+>  drivers/gpu/drm/i915/display/intel_lvds.c     | 142 +++++-----
+>  drivers/gpu/drm/i915/display/intel_lvds.h     |  18 +-
+>  .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+>  .../gpu/drm/i915/display/intel_pch_display.c  | 168 +++++------
+>  .../gpu/drm/i915/display/intel_pch_display.h  |  10 +-
+>  .../gpu/drm/i915/display/intel_pch_refclk.c   | 126 +++++----
+>  .../gpu/drm/i915/display/intel_pch_refclk.h   |  18 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |   4 +-
+>  drivers/gpu/drm/i915/display/intel_tc.c       | 265 +++++++++---------
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        | 160 +++++------
+>  drivers/gpu/drm/i915/display/vlv_dsi.h        |   6 +-
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    | 118 ++++----
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.h    |   5 +-
+>  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+>  26 files changed, 709 insertions(+), 742 deletions(-)
+> 
+> -- 
+> 2.39.5
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16308 -> Patchwork_134383v17
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_134383v17:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_module_load@load:
-    - {bat-jsl-4}:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-jsl-4/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-jsl-4/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_134383v17 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][3] -> [INCOMPLETE][4] ([i915#12904]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-apl-1/igt@dmabuf@all-tests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-apl-1/igt@dmabuf@all-tests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-8/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-adlp-9:         [INCOMPLETE][7] ([i915#9413]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-adlp-9/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-adlp-9/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-mtlp-9:         [INCOMPLETE][9] ([i915#12445]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-9/igt@i915_selftest@live@gt_lrc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-9/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-twl-2:          [INCOMPLETE][11] ([i915#12445] / [i915#9413]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16308 -> Patchwork_134383v17
-
-  CI-20190529: 20190529
-  CI_DRM_16308: 22207465b01fddd050a84720407d4d14c227372c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8279: 8279
-  Patchwork_134383v17: 22207465b01fddd050a84720407d4d14c227372c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/index.html
-
---===============7844103583633603683==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use VRR timing generator for fixed refresh rate modes (rev17)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134383/">https://patchwork.freedesktop.org/series/134383/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16308 -&gt; Patchwork_134383v17</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_134383v17:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>{bat-jsl-4}:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-jsl-4/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-jsl-4/igt@i915_module_load@load.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_134383v17 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@dmabuf@all-tests:<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-adlp-9/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-adlp-9/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-9/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-9/igt@i915_selftest@live@gt_lrc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-twl-2/igt@i915_selftest@live@gt_mocs.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445">i915#12445</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-twl-2/igt@i915_selftest@live@gt_mocs.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16308/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v17/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16308 -&gt; Patchwork_134383v17</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16308: 22207465b01fddd050a84720407d4d14c227372c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8279: 8279<br />
-  Patchwork_134383v17: 22207465b01fddd050a84720407d4d14c227372c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7844103583633603683==--
+-- 
+Ville Syrjälä
+Intel
