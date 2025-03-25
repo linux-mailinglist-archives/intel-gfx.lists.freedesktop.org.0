@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 647C2A7039D
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 15:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DCAA70431
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 15:49:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CADF510E586;
-	Tue, 25 Mar 2025 14:26:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jkc3AjHf";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A40A10E3A8;
+	Tue, 25 Mar 2025 14:49:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 280B910E586;
- Tue, 25 Mar 2025 14:26:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742912793; x=1774448793;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=tQqhUpeG8SF2/KnVwLfZIQuf1DtSyv0t4rIx7Q7xjrM=;
- b=Jkc3AjHfCU/vm6MdxREWwDXiE/sitOzJjCLzh4CEqL0Na8iIBxAEuj36
- 6lVDSam6iW9kn6u6byo9U6NFPb22JO0d25ZddK7/v071WMgaGZCBTsIg4
- tf2kWmL0nxphcs+6+cplPi/0JE9nsSOZbJk6522evZHIRSeX/Qp+Oc0ye
- gXOBlJYWz9oz5Y20GgKsDc1ePvFpsa2V7BqFUVFSYSYxElnfkmD6adlwI
- YatU83vWXMlrDGHd7ZJaakY5PWKTmMAecV1qfbtnYdkGQz6cuEqL118MT
- c/jfPRqvm+NZ0hrdXSdZA3bQvt2qELrPaYXczGfcD5xlc6W1YnSBPid+p A==;
-X-CSE-ConnectionGUID: kiOPgx3qRJ+QyE/C2erHJw==
-X-CSE-MsgGUID: Y7B7IYHuRSWhlwFl00DruA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="44088013"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="44088013"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 07:26:32 -0700
-X-CSE-ConnectionGUID: 72B7rNLxRsWWh3gSbL0ZWg==
-X-CSE-MsgGUID: O3RxF1smTxutf+sU17wOtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129061752"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.149])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 07:26:30 -0700
-Date: Tue, 25 Mar 2025 15:26:24 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Arshad Mehmood <arshad.mehmood@intel.com>
-Subject: Re: [PATCH] drm/i915/gt: Avoid duplicating CCS mode workaround
-Message-ID: <Z-K9EKc3v3rYdZhK@ashyti-mobl2.lan>
-References: <20250325120137.1302748-1-andi.shyti@linux.intel.com>
- <174290746252.1245393.5239853097693701739@DEV-409>
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 954AB10E3A8;
+ Tue, 25 Mar 2025 14:49:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1525928230394479065=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174290746252.1245393.5239853097693701739@DEV-409>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Avoid_dupl?=
+ =?utf-8?q?icating_CCS_mode_workaround?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 25 Mar 2025 14:49:10 -0000
+Message-ID: <174291415060.1553.5243740261901306534@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250325120137.1302748-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20250325120137.1302748-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,62 +37,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 01:57:42PM +0100, Chris Wilson wrote:
-> Quoting Andi Shyti (2025-03-25 13:01:37)
-> > When generating workarounds for the CCS engine, specifically for
-> > setting the CCS mode related to compute load balancing, the
-> > function 'ccs_engine_wa_mode()' is called twice: once for the
-> > render engine and once for the compute engine.
-> > 
-> > Add a check to ensure the engine class is compute before applying
-> > the workaround to avoid redundant programming.
-> > 
-> > Suggested-by: Arshad Mehmood <arshad.mehmood@intel.com>
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index 116683ebe074..37251546b755 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -2897,7 +2897,9 @@ engine_init_workarounds(struct intel_engine_cs *engine, struct i915_wa_list *wal
-> >          */
-> >         if (engine->flags & I915_ENGINE_FIRST_RENDER_COMPUTE) {
-> >                 general_render_compute_wa_init(engine, wal);
-> > -               ccs_engine_wa_mode(engine, wal);
-> > +
-> > +               if (engine->class == COMPUTE_CLASS)
-> > +                       ccs_engine_wa_mode(engine, wal);
-> 
-> FIRST_RENDER_COMPUTE is meant to only be on the first engine of either
-> rcs or ccs (which share certain register domains), one engine.
-> 
-> It looks like that was broken by
-> 
-> 	commit 1bfc03b1375244f9029bb448ee8224b3b6dae99f
-> 	Author: Lucas De Marchi <lucas.demarchi@intel.com>
-> 	Date:   Tue Mar 19 23:03:03 2024 -0700
-> 
-> 	    drm/i915: Remove special handling for !RCS_MASK()
+--===============1525928230394479065==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Aha! So the logic here[*] breaks the meaning of
-I915_ENGINE_FIRST_RENDER_COMPUTE, becasue, other than PVC, we
-forgot that we have DG2 that needs the special check that uses
-!RCS_MASK().
+== Series Details ==
 
-I need then to restore the original check.
+Series: drm/i915/gt: Avoid duplicating CCS mode workaround
+URL   : https://patchwork.freedesktop.org/series/146727/
+State : failure
 
-Thanks Chris!
-Andi
+== Summary ==
 
-[*]
--       if ((engine->class == COMPUTE_CLASS && !RCS_MASK(engine->gt) &&
--            __ffs(CCS_MASK(engine->gt)) == engine->instance) ||
--            engine->class == RENDER_CLASS)
-+       if ((engine->class == COMPUTE_CLASS || engine->class == RENDER_CLASS) &&
-+           __ffs(CCS_MASK(engine->gt) | RCS_MASK(engine->gt)) == engine->instance)
+CI Bug Log - changes from CI_DRM_16313 -> Patchwork_146727v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_146727v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_146727v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_146727v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-twl-1/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-twl-1/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_146727v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-2:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16313 -> Patchwork_146727v1
+
+  CI-20190529: 20190529
+  CI_DRM_16313: 3184acdb71d9b0b23a0876f3bc0aaf9e471b88cc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8283: e4eb2265f06fc69e37e56cb6b609e019b6071435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_146727v1: 3184acdb71d9b0b23a0876f3bc0aaf9e471b88cc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/index.html
+
+--===============1525928230394479065==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Avoid duplicating CCS mode workaround</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146727/">https://patchwork.freedesktop.org/series/146727/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16313 -&gt; Patchwork_146727v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_146727v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_146727v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_146727v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-twl-1/igt@i915_selftest@live.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_146727v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16313/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146727v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16313 -&gt; Patchwork_146727v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16313: 3184acdb71d9b0b23a0876f3bc0aaf9e471b88cc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8283: e4eb2265f06fc69e37e56cb6b609e019b6071435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_146727v1: 3184acdb71d9b0b23a0876f3bc0aaf9e471b88cc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1525928230394479065==--
