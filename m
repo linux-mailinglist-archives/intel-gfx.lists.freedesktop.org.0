@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53F24A6F43F
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 12:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB458A6FA96
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 13:01:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC1210E570;
-	Tue, 25 Mar 2025 11:35:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31C2010E206;
+	Tue, 25 Mar 2025 12:01:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eltu1xLd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LPY+6Bhu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C1910E562;
- Tue, 25 Mar 2025 11:35:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC3210E206;
+ Tue, 25 Mar 2025 12:01:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742902509; x=1774438509;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pYbWBOWmX5gyvkyMWTM3++v3XQtXa74Eb67UTDw/e+Q=;
- b=Eltu1xLdnpkDgc01MPTHvgOnxPfVTkoX6w2rEKNwnUovNx3PJl27omXp
- adWdonBRWJpQ5rajiRWwIwYPcjKqFjNbelid5sohhd90x4Q+fh1vbgMAB
- JmbuLWik4GzhmOXNCzI5bhK2TcjPXO8tNAUhknV6OPFE20KdYTSOhKy8M
- Y9UF7ZRxWv+wjB0RuHeu7PQdPygVc2A85G0TaDOr65NrhILVJ7mt1lFWc
- aDHHzR5WTTu2bDzI0rHaYC+uw2W4//Yn8AvyJDwNi14PmoDguWlXgWaUP
- lBGU9zr91J2hU34ZFb35UjOSDf1kGyTpzGMcF0vzW8Eez8k3UWvKzAEid A==;
-X-CSE-ConnectionGUID: 4qTZoWduTrma+x+v0pb69w==
-X-CSE-MsgGUID: d1BCJVLMRUGyOg3iWH619Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266946"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266946"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:09 -0700
-X-CSE-ConnectionGUID: pU3HycGFQryCz9sJy6u1iw==
-X-CSE-MsgGUID: IeR1WOipSPGA+GB+9B4acg==
+ t=1742904108; x=1774440108;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=urBxdLCO9dgOqWgWTaVsenH58Dakyaq8qm220jHHPeQ=;
+ b=LPY+6BhuQL7O93ySfa1HmLCBdvzas7LqQLgizyCYQdXVUB3Hemuub8JA
+ ON+UlWHzb0M445GGvjcrigO3rojQRiAhQ8iQWeGawRwLSn+Wg4nzn3Ait
+ BCm4/BHhVXmFO1K0gqiD1S2UPYakbu5G3RuNcxWqloY4qpwaDWAzqX7Ll
+ 6DHjlM6gt+zxLnVKGXWX6bGHwE+SC/7gXRskoBBmUOLTnArbljRuYwzRk
+ SDZIJw2xVnTgFMiqMbBCsFs7+FL4eCvTbCAIuRFIlLjls2FsCUkcCZKj9
+ wehTyiYr8ens6Pdk6YEl3Goaxt+EXenGWDempdclR2Zul+OhX96jDkIAF g==;
+X-CSE-ConnectionGUID: XtZyMjziQoeTWMvMKXUELg==
+X-CSE-MsgGUID: ZBfYvswOTBW1b3Xkhl67gw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="61537566"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="61537566"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 05:01:47 -0700
+X-CSE-ConnectionGUID: 46zTmrDBRL+AQX9cTz53jQ==
+X-CSE-MsgGUID: SeZUqG10RaqiqnmxCRv3yw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070669"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:07 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 16/16] drm/i915/display: Introduce transcoder_has_vrr() helper
-Date: Tue, 25 Mar 2025 16:52:49 +0530
-Message-ID: <20250325112249.228444-17-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
-References: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="129033562"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.149])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 05:01:45 -0700
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Arshad Mehmood <arshad.mehmood@intel.com>
+Subject: [PATCH] drm/i915/gt: Avoid duplicating CCS mode workaround
+Date: Tue, 25 Mar 2025 13:01:37 +0100
+Message-ID: <20250325120137.1302748-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,60 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To avoid having VRR read/write for DSI transcoders, we currently use
-!transcoder_is_dsi() in many places.
-Instead introduce a new helper to check transcoder_has_vrr() and use
-that to exclude transcoders which do not support VRR.
+When generating workarounds for the CCS engine, specifically for
+setting the CCS mode related to compute load balancing, the
+function 'ccs_engine_wa_mode()' is called twice: once for the
+render engine and once for the compute engine.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Add a check to ensure the engine class is compute before applying
+the workaround to avoid redundant programming.
+
+Suggested-by: Arshad Mehmood <arshad.mehmood@intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7e06b7e6e4e3..6849e63104ff 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2638,6 +2638,12 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
- 		      PIPE_LINK_N2(display, transcoder));
- }
- 
-+static bool
-+transcoder_has_vrr(enum transcoder cpu_transcoder)
-+{
-+	return !transcoder_is_dsi(cpu_transcoder);
-+}
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 116683ebe074..37251546b755 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2897,7 +2897,9 @@ engine_init_workarounds(struct intel_engine_cs *engine, struct i915_wa_list *wal
+ 	 */
+ 	if (engine->flags & I915_ENGINE_FIRST_RENDER_COMPUTE) {
+ 		general_render_compute_wa_init(engine, wal);
+-		ccs_engine_wa_mode(engine, wal);
 +
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -2649,7 +2655,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 	u32 vtotal_bits;
- 	int vsyncshift = 0;
++		if (engine->class == COMPUTE_CLASS)
++			ccs_engine_wa_mode(engine, wal);
+ 	}
  
--	drm_WARN_ON(display->drm, transcoder_is_dsi(cpu_transcoder));
-+	drm_WARN_ON(display->drm, !transcoder_has_vrr(cpu_transcoder));
- 
- 	/* We need to be careful not to changed the adjusted mode, for otherwise
- 	 * the hw state checker will get angry at the mismatch. */
-@@ -2744,7 +2750,7 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
- 	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
- 	u32 vtotal_bits;
- 
--	drm_WARN_ON(display->drm, transcoder_is_dsi(cpu_transcoder));
-+	drm_WARN_ON(display->drm, !transcoder_has_vrr(cpu_transcoder));
- 
- 	crtc_vdisplay = adjusted_mode->crtc_vdisplay;
- 	crtc_vtotal = adjusted_mode->crtc_vtotal;
-@@ -3957,7 +3963,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
- 	    DISPLAY_VER(display) >= 11)
- 		intel_get_transcoder_timings(crtc, pipe_config);
- 
--	if (HAS_VRR(display) && !transcoder_is_dsi(pipe_config->cpu_transcoder))
-+	if (HAS_VRR(display) && transcoder_has_vrr(pipe_config->cpu_transcoder))
- 		intel_vrr_get_config(pipe_config);
- 
- 	intel_get_pipe_src_size(crtc, pipe_config);
+ 	if (engine->class == COMPUTE_CLASS)
 -- 
-2.45.2
+2.47.2
 
