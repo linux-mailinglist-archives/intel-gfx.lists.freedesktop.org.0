@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EFF4A6EC39
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 10:07:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45164A6EC73
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 10:27:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E226710E524;
-	Tue, 25 Mar 2025 09:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C6A10E52D;
+	Tue, 25 Mar 2025 09:27:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfWUmpbv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C4QeKt1z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEBCC10E520;
- Tue, 25 Mar 2025 09:07:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB20B10E52C;
+ Tue, 25 Mar 2025 09:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742893665; x=1774429665;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=tMYT1Zmqo1e/bzJZP5RPRqAVdsFwWA2Q0zJKFDYXwi4=;
- b=EfWUmpbvl8MPqW2zMYEJYuN4geuHDyJ8mhmTO+sXgzDtjI0Ok9YZTxJf
- ScT/E4nI67GTZdodVjJsAY1J8VL074bhXWLJI43Jl7lSBhprD7YLtoAdI
- GHXJI/cZhviWh7lK1goVRVQJH3PZQY+ks5FJ3vq13DtAttHlXnyElXJhX
- O5BCINpGVQstdwkiRjqdEC+rHOv8TJn0gWoPn7b3bAAikSRvnuncIx2Cl
- 9c2Sj1K1yFckSkC2U5oLO8X4ZDysxRcRj8P98eGXH6KpyXiCCZ2t/ocIM
- 8bueaK1WgLEK/QtJsgurg7U/yoM+Il+mQ9rJ1NNfdmADkJ+UfPISMn0ni g==;
-X-CSE-ConnectionGUID: tKK1ONAJRmqNXG/OCIfKfA==
-X-CSE-MsgGUID: fxwUoMnBSFib8TDX9/JuZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="47784284"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47784284"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:07:43 -0700
-X-CSE-ConnectionGUID: ufDtzgCQSz2Qrcbb84vXnA==
-X-CSE-MsgGUID: OjdVuXGoTDqiemG6wUWO2A==
+ t=1742894829; x=1774430829;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/5gZ5VxCL8g0RJz4ODGPdjEBgLvzUrfvsCoCS39Cy1g=;
+ b=C4QeKt1z7JxAyVOq5ec/Z7NCRiV9rnrucr4lvu0zz4XeICkhirgI3OQp
+ EZ6am1dkneRA/+y0iQq+1VqPt7OA6O5knLOqzWBIGrXGYj+Y4ti3D7Nb9
+ Moe9w1dFoPNZmsaQi4mbWKQMXsj1NGJeV+6Kvam04uibnHcV5R8BjHwD3
+ 6XjQKi2h7zu2YK+HLjGqPXh5FKiXpB77d4XzuJi/IGLvrZuXbXSwP1RKx
+ Nep4feUXmtCwO5oUoWI4PJpJXM/NiT/plwBCLqHzcSOb3ZP/eYCa8xvY7
+ QiB3a06YurQdZaPz2rKxxsQlukauJmb4l0C2i/CdLGUAcbFJgrsdL+e1I Q==;
+X-CSE-ConnectionGUID: 3PYwjuliQe6QnlFxFUDFiA==
+X-CSE-MsgGUID: wEb8eDlVTdiN61y/2/PQXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="31734446"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="31734446"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:27:08 -0700
+X-CSE-ConnectionGUID: H/1YEbWfQ2C3ddpS6no4gQ==
+X-CSE-MsgGUID: 5o5coKVnSKWUczk4ACLQ1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155218256"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="129417187"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.134])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:07:38 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:27:07 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
- Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 0/2] drm/i915: Fix DP MST DB message timeouts due to
+ PPS delays
+In-Reply-To: <20250324180145.142884-1-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 25 Mar 2025 11:07:34 +0200
-Message-ID: <878qota36x.fsf@intel.com>
+References: <20250324180145.142884-1-imre.deak@intel.com>
+Date: Tue, 25 Mar 2025 11:27:04 +0200
+Message-ID: <8734f1a2af.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,44 +71,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 24 Mar 2025, Imre Deak <imre.deak@intel.com> wrote:
+> This is v2 of [1], dropping the change to lock PPS and enable VDD from a
+> separate function, as requested by Jani.
 
-Hi Dave & Sima -
+Thanks for doing this!
 
-drm-intel-next-fixes-2025-03-25:
-drm/i915 fixes for v6.15 merge window:
-- Bounds check for scalers in DSC prefill latency computation
-- Fix build by adding a missing include
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-BR,
-Jani.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> [1] https://lore.kernel.org/all/20250321145626.94101-1-imre.deak@intel.com
+>
+> Imre Deak (2):
+>   drm/i915/pps: Let calling intel_pps_vdd_{on,off}_unlocked() w/o PPS
+>     lock held
+>   drm/i915/dp_mst: Fix side-band message timeouts due to long PPS delays
+>
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 21 ++++++++++++++++++---
+>  drivers/gpu/drm/i915/display/intel_pps.c    |  8 ++++----
+>  2 files changed, 22 insertions(+), 7 deletions(-)
 
-The following changes since commit 5da39dce1fa3c81dc6552a16a9f748ba2980d630:
-
-  Merge tag 'drm-xe-next-fixes-2025-03-12' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-03-14 17:02:11 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-03-25
-
-for you to fetch changes up to af9ec6e4682c089028d763b0b77c04fa2ddae268:
-
-  drm/i915/display: Fix build error without DRM_FBDEV_EMULATION (2025-03-20 18:27:21 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v6.15 merge window:
-- Bounds check for scalers in DSC prefill latency computation
-- Fix build by adding a missing include
-
-----------------------------------------------------------------
-Ankit Nautiyal (1):
-      drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency
-
-Yue Haibing (1):
-      drm/i915/display: Fix build error without DRM_FBDEV_EMULATION
-
- drivers/gpu/drm/i915/display/intel_fbdev.h   | 2 ++
- drivers/gpu/drm/i915/display/skl_watermark.c | 5 ++++-
- 2 files changed, 6 insertions(+), 1 deletion(-)
-
--- 
+--=20
 Jani Nikula, Intel
