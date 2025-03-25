@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEC1A6F43D
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE69A6F43E
 	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 12:35:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD0310E56A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12E1910E568;
 	Tue, 25 Mar 2025 11:35:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VEZ8X92P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxZbaQex";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8982810E55B;
- Tue, 25 Mar 2025 11:35:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 980DB10E55C;
+ Tue, 25 Mar 2025 11:35:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742902503; x=1774438503;
+ t=1742902505; x=1774438505;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZSYEFdR3p4jiZ4YeiONbG6vOnWHVd1yPOOQwl9o6bMI=;
- b=VEZ8X92P71lvzrwcFOhnyPHINBh1fYqbnvxxc9s2Ll5TvMPjWmhiu0wC
- fINdm/a7SRZcG/O4x03aSq64hVCxBm4g07Zl7moddl225axvWBgEOLEG0
- bvDrUuuL71jaLq5AKO22euHCayxTYUzoLZNlH/CybVTFsP4ZSudM1Ag5/
- +5Wzj6ytQdb8miOk1pALBxOyPU2D9hPnETeXFmfbbMpB/IopBndlNU1HW
- HMr8K/faLQRqIttgfc4GmtyqW1LmqDcK7zt7JJenCuAj/TGRJnEiaygQ1
- EB6Y3FhhFymod6BU5eunzG4w6iXmMRoNuWZoiA6WUqMNy0YqhwPaDbkpY Q==;
-X-CSE-ConnectionGUID: 38TLx2ECTAm96tB4c6WLTQ==
-X-CSE-MsgGUID: XzPT/9NcQXWRElNsLr8fNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266938"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266938"
+ bh=L/0LBo3c24Uq6hZ6DuG7+qONYxSWG2mR5yiLhqiEM5A=;
+ b=SxZbaQexZoyNnzg/iP0e2hXcK/DOMhw/yGhLn5u6LVhV3awvlCEJh8v7
+ rPx0RRoj9p5PuwpD7phYhpilIx1BaJ2nz/5MMUbE3Yu1CHUYe8hgGThdU
+ BYAY8Yv7xfeKNbrJpTB/zlathWWD6vR0LKmDasrwyD+m7+WTUHoJCJWUS
+ V24Z82M88yAEVoEpf/3IaJEmglT2rrv5P2X9/0d2xC24W+T6tVxcfBavj
+ eqwrxn0NH3YcZ/V3dtIuad4mHJly1N1dnucNFDoeAXC0a1TyRwyKylGrs
+ JuSec0xBlJhnwjwm2xncLC06XSNYkT5fQNkGG8hYSJNq7FDeD/ysyAsbq w==;
+X-CSE-ConnectionGUID: ss40h/W0T5KTtKH0EGHfvg==
+X-CSE-MsgGUID: SS/w9ascQFSpnh8wUH4ITA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="44266942"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="44266942"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:03 -0700
-X-CSE-ConnectionGUID: 3uS8mo3/TeigbwgjpDjupw==
-X-CSE-MsgGUID: /XSt+ZfQQcSJWDhsb53pCA==
+ 25 Mar 2025 04:35:05 -0700
+X-CSE-ConnectionGUID: tZjymCb9ThqU57hMF2yMuQ==
+X-CSE-MsgGUID: QAjUKTCoQ3u+fYRKvC2qQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070632"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="124070640"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 04:35:01 -0700
+ 25 Mar 2025 04:35:03 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 13/16] drm/i915/vrr: Always use VRR timing generator for PTL+
-Date: Tue, 25 Mar 2025 16:52:46 +0530
-Message-ID: <20250325112249.228444-14-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 14/16] drm/i915/vrr: Set trans_vrr_ctl in
+ intel_vrr_set_transcoder_timings()
+Date: Tue, 25 Mar 2025 16:52:47 +0530
+Message-ID: <20250325112249.228444-15-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
 References: <20250325112249.228444-1-ankit.k.nautiyal@intel.com>
@@ -69,40 +70,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, the VRR timing generator is used only when VRR is enabled by
-userspace for sinks that support VRR. Starting with PTL+, gradually move
-away from the legacy timing generator and use the VRR timing generator
-for both variable and fixed timings.
+We now always set vrr.flipline, vmin, and vmax for all platforms that
+support VRR. Therefore, we should set all TRANS_VRR_CTL bits except
+VRR_ENABLE. Without this, the readback for these bits will fail because we
+only read vrr.flipline, vmin, and vmax if TRANS_VRR_CTL has the
+FLIPLINE_EN bit set.
 
-Note: For platforms where we always enable the VRR timing generator,
-the LRR fastset is not allowed to avoid live programming of vrr.guardband
-with VRR TG enabled. This effectively breaks the LRR fastset functionality
-for these platforms and needs to be addressed.
+For platforms that always have the VRR Timing Generator enabled,
+the FLIPLINE_EN bit is always set in TRANS_VRR_CTL during
+intel_transcoder_vrr_enable(). However, for the remaining platforms
+(that do not always have the VRR Timing Generator enabled) if a full
+modeset doesn't occur and VRR is not enabled, the bit is not set.
 
-v2: Use this for PTL for now to avoid losing LRR fastset for older
-platforms. (Ville)
+This results in a mismatch between the software state and hardware state
+because the software state expects VRR timings like flipline, vmin, and
+vmax to be set, but the readout for these doesn't happen since the
+FLIPLINE_EN bit is not set in TRANS_VRR_CTL.
+
+To avoid this mismatch, write trans_vrr_ctl in
+intel_vrr_set_transcoder_timings() even when VRR is not enabled
+for platforms that do not have the VRR Timing Generator always enabled.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index dda42522f461..5e60da2bb0c3 100644
+index 5e60da2bb0c3..414f93851059 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -561,7 +561,9 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
- 	if (!HAS_VRR(display))
- 		return false;
+@@ -484,6 +484,10 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
  
--	/* #TODO return true for platforms supporting fixed_rr */
-+	if (DISPLAY_VER(display) >= 30)
-+		return true;
+ 	intel_vrr_set_fixed_rr_timings(crtc_state);
+ 
++	if (!intel_vrr_always_use_vrr_tg(display) && !crtc_state->vrr.enable)
++		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
++			       trans_vrr_ctl(crtc_state));
 +
- 	return false;
- }
- 
+ 	if (HAS_AS_SDP(display))
+ 		intel_de_write(display,
+ 			       TRANS_VRR_VSYNC(display, cpu_transcoder),
 -- 
 2.45.2
 
