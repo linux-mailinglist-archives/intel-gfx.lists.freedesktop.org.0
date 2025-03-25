@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF2AA6FC95
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 13:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C82AA6FC97
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 13:37:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F11410E55C;
-	Tue, 25 Mar 2025 12:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D694010E38F;
+	Tue, 25 Mar 2025 12:37:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JOK8y8B+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="blwztAgV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0E110E536;
- Tue, 25 Mar 2025 12:37:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2958A10E38F;
+ Tue, 25 Mar 2025 12:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742906220; x=1774442220;
+ t=1742906224; x=1774442224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1tOaNaY8UCiX2hjsSbYBbc0H11K5zVX2LxqpW16VvAs=;
- b=JOK8y8B+ziWGCtZaOWNUKazxkpGD3pHSnIjjuAdW72wWZIpSKCeEwuvp
- iZwfGMZcWWjxY+a4p8NJlt/585/9B6G2sVtHOsZ07Asn7LT7JWcj+jtpD
- GO7dUYmMBOVibDF8t0JNb3aWdb7uD3rD5e4f9Kf6dH2+Wz2h/41/2co3B
- UCmBvez0yz0WTJUJW87V0J1JP/upDrbJ1mnSFd3O3hcS3Mx3c7k57nG25
- DEBb+HM/K02U49ayjY/BihCFJTkMVet2GEmT4E1VnTiL78NruiHkZbxG/
- mjm22FGHxBRlr0sstbKsGCh5gxHvVlgFU2zcP/HzAKK513vS3S6WfFJvW g==;
-X-CSE-ConnectionGUID: xCUNwpv5TSOR9YHmwTL+yA==
-X-CSE-MsgGUID: sgiYmExfTziqYM5GqEMIag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="47933218"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47933218"
+ bh=HSxYLolQIA8+5dECnavOSC3x3eJHDMGUsjazpSJ85Lw=;
+ b=blwztAgVqkt3feTc1E+/eGSJIvSrMvEQUtLbUuem9z8Kw+FDbzQZHTKM
+ QEXMO5J1uxooOJCG3Z808v8L55jA01KMnS8zsSTVr90aZpSNcWWrLmCQV
+ mGg3su2D4hB7BEnwu3Jh+LTPBCJ56MY/H8o/JC/7WnF1M2KnS87AaIMud
+ BUW+KZsv1wopu48zJQu4/OGYaQ6ina1WsAJz5E7T8p1+iZJy6XLX1QUPK
+ fffaJ11SB1FlIQRoYGGab+XEUIOXQeGIxfepBcPtzNnkEmjVk+iIrUu94
+ sIa8Qj4vAOp9qmzrZG7cqKba7W7cnw6j4ZVGNOwIacE+ALwk6O809s82V A==;
+X-CSE-ConnectionGUID: 3Q0LfeJcTt6prq4st4wimQ==
+X-CSE-MsgGUID: 4OxKz0B/S0uBud9gLfBixA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="47933234"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47933234"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 05:37:00 -0700
-X-CSE-ConnectionGUID: +gp5hp/IRL2xf0Aqj9N0PA==
-X-CSE-MsgGUID: LyewmK+eRG6mFIWZTm1iHg==
+ 25 Mar 2025 05:37:04 -0700
+X-CSE-ConnectionGUID: ver0gYlVTxmWLh00GJ55yQ==
+X-CSE-MsgGUID: /EQyOh/2TiOTcKh9BqtU5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155274830"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155274862"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.134])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 05:36:58 -0700
+ 25 Mar 2025 05:37:02 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/6] drm/i915/crc: convert intel_pipe_crc.c to struct
- intel_display
-Date: Tue, 25 Mar 2025 14:36:35 +0200
-Message-Id: <9bb18395d57d5353535e0d385119366821162a86.1742906146.git.jani.nikula@intel.com>
+Subject: [PATCH 4/6] drm/i915/psr: further conversions to struct intel_display
+Date: Tue, 25 Mar 2025 14:36:36 +0200
+Message-Id: <7d032bd621a56536b4d53c5c415cad624e5dc628.1742906146.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
 References: <cover.1742906146.git.jani.nikula@intel.com>
@@ -71,429 +70,378 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Going forward, struct intel_display is the main display device data
-pointer. Convert as much as possible of intel_pipe_crc.c to struct
-intel_display.
+intel_psr.c still uses the old platform identification macros. Convert
+them and some other stragglers to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pipe_crc.c | 137 +++++++++---------
- 1 file changed, 68 insertions(+), 69 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 85 +++++++++---------------
+ 1 file changed, 30 insertions(+), 55 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-index 65f60615f387..6182f484b5bd 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-@@ -75,7 +75,7 @@ static int i8xx_pipe_crc_ctl_reg(enum intel_pipe_crc_source *source,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 708fbcfa9089..c4be3f46511f 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -464,8 +464,8 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+ 		if (DISPLAY_VER(display) >= 9) {
+ 			u32 val;
  
--static void i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
-+static void i9xx_pipe_crc_auto_source(struct intel_display *display,
- 				      enum pipe pipe,
- 				      enum intel_pipe_crc_source *source)
+-			val = intel_de_rmw(dev_priv,
+-					   PSR_EVENT(dev_priv, cpu_transcoder),
++			val = intel_de_rmw(display,
++					   PSR_EVENT(display, cpu_transcoder),
+ 					   0, 0);
+ 
+ 			psr_event_print(display, val, intel_dp->psr.sel_update_enabled);
+@@ -690,7 +690,6 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
+ static void hsw_psr_setup_aux(struct intel_dp *intel_dp)
  {
-@@ -85,8 +85,8 @@ static void i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 aux_clock_divider, aux_ctl;
+ 	/* write DP_SET_POWER=D0 */
+@@ -705,7 +704,7 @@ static void hsw_psr_setup_aux(struct intel_dp *intel_dp)
  
- 	*source = INTEL_PIPE_CRC_SOURCE_PIPE;
+ 	BUILD_BUG_ON(sizeof(aux_msg) > 20);
+ 	for (i = 0; i < sizeof(aux_msg); i += 4)
+-		intel_de_write(dev_priv,
++		intel_de_write(display,
+ 			       psr_aux_data_reg(display, cpu_transcoder, i >> 2),
+ 			       intel_dp_aux_pack(&aux_msg[i], sizeof(aux_msg) - i));
  
--	drm_modeset_lock_all(&dev_priv->drm);
--	for_each_intel_encoder(&dev_priv->drm, encoder) {
-+	drm_modeset_lock_all(display->drm);
-+	for_each_intel_encoder(display->drm, encoder) {
- 		if (!encoder->base.crtc)
- 			continue;
- 
-@@ -113,7 +113,7 @@ static void i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
- 				*source = INTEL_PIPE_CRC_SOURCE_DP_D;
- 				break;
- 			default:
--				drm_WARN(&dev_priv->drm, 1, "nonexisting DP port %c\n",
-+				drm_WARN(display->drm, 1, "nonexisting DP port %c\n",
- 					 port_name(dig_port->base.port));
- 				break;
- 			}
-@@ -122,10 +122,10 @@ static void i9xx_pipe_crc_auto_source(struct drm_i915_private *dev_priv,
- 			break;
- 		}
- 	}
--	drm_modeset_unlock_all(&dev_priv->drm);
-+	drm_modeset_unlock_all(display->drm);
- }
- 
--static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
-+static int vlv_pipe_crc_ctl_reg(struct intel_display *display,
- 				enum pipe pipe,
- 				enum intel_pipe_crc_source *source,
- 				u32 *val)
-@@ -133,7 +133,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	bool need_stable_symbols = false;
- 
- 	if (*source == INTEL_PIPE_CRC_SOURCE_AUTO)
--		i9xx_pipe_crc_auto_source(dev_priv, pipe, source);
-+		i9xx_pipe_crc_auto_source(display, pipe, source);
- 
- 	switch (*source) {
- 	case INTEL_PIPE_CRC_SOURCE_PIPE:
-@@ -148,7 +148,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 		need_stable_symbols = true;
- 		break;
- 	case INTEL_PIPE_CRC_SOURCE_DP_D:
--		if (!IS_CHERRYVIEW(dev_priv))
-+		if (!display->platform.cherryview)
- 			return -EINVAL;
- 		*val = PIPE_CRC_ENABLE | PIPE_CRC_SOURCE_DP_D_VLV;
- 		need_stable_symbols = true;
-@@ -170,7 +170,7 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	 *   - DisplayPort scrambling: used for EMI reduction
- 	 */
- 	if (need_stable_symbols) {
--		u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
-+		u32 tmp = intel_de_read(display, PORT_DFT2_G4X(display));
- 
- 		tmp |= DC_BALANCE_RESET_VLV;
- 		switch (pipe) {
-@@ -186,26 +186,26 @@ static int vlv_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 		default:
- 			return -EINVAL;
- 		}
--		intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
-+		intel_de_write(display, PORT_DFT2_G4X(display), tmp);
- 	}
- 
- 	return 0;
- }
- 
--static int i9xx_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
-+static int i9xx_pipe_crc_ctl_reg(struct intel_display *display,
- 				 enum pipe pipe,
- 				 enum intel_pipe_crc_source *source,
- 				 u32 *val)
+@@ -840,7 +839,6 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
  {
- 	if (*source == INTEL_PIPE_CRC_SOURCE_AUTO)
--		i9xx_pipe_crc_auto_source(dev_priv, pipe, source);
-+		i9xx_pipe_crc_auto_source(display, pipe, source);
- 
- 	switch (*source) {
- 	case INTEL_PIPE_CRC_SOURCE_PIPE:
- 		*val = PIPE_CRC_ENABLE | PIPE_CRC_SOURCE_PIPE_I9XX;
- 		break;
- 	case INTEL_PIPE_CRC_SOURCE_TV:
--		if (!SUPPORTS_TV(dev_priv))
-+		if (!SUPPORTS_TV(display))
- 			return -EINVAL;
- 		*val = PIPE_CRC_ENABLE | PIPE_CRC_SOURCE_TV_PRE;
- 		break;
-@@ -229,10 +229,10 @@ static int i9xx_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	return 0;
- }
- 
--static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
-+static void vlv_undo_pipe_scramble_reset(struct intel_display *display,
- 					 enum pipe pipe)
- {
--	u32 tmp = intel_de_read(dev_priv, PORT_DFT2_G4X(dev_priv));
-+	u32 tmp = intel_de_read(display, PORT_DFT2_G4X(display));
- 
- 	switch (pipe) {
- 	case PIPE_A:
-@@ -249,7 +249,7 @@ static void vlv_undo_pipe_scramble_reset(struct drm_i915_private *dev_priv,
- 	}
- 	if (!(tmp & PIPE_SCRAMBLE_RESET_MASK))
- 		tmp &= ~DC_BALANCE_RESET_VLV;
--	intel_de_write(dev_priv, PORT_DFT2_G4X(dev_priv), tmp);
-+	intel_de_write(display, PORT_DFT2_G4X(display), tmp);
- }
- 
- static int ilk_pipe_crc_ctl_reg(enum intel_pipe_crc_source *source,
-@@ -282,18 +282,17 @@ static void
- intel_crtc_crc_setup_workarounds(struct intel_crtc *crtc, bool enable)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *pipe_config;
- 	struct drm_atomic_state *state;
- 	struct drm_modeset_acquire_ctx ctx;
- 	int ret;
- 
--	if (IS_I945GM(dev_priv) || IS_I915GM(dev_priv))
-+	if (display->platform.i945gm || display->platform.i915gm)
- 		i915gm_irq_cstate_wa(display, enable);
- 
- 	drm_modeset_acquire_init(&ctx, 0);
- 
--	state = drm_atomic_state_alloc(&dev_priv->drm);
-+	state = drm_atomic_state_alloc(display->drm);
- 	if (!state) {
- 		ret = -ENOMEM;
- 		goto unlock;
-@@ -312,7 +311,7 @@ intel_crtc_crc_setup_workarounds(struct intel_crtc *crtc, bool enable)
- 	pipe_config->uapi.mode_changed = pipe_config->has_psr;
- 	pipe_config->crc_enabled = enable;
- 
--	if (IS_HASWELL(dev_priv) &&
-+	if (display->platform.haswell &&
- 	    pipe_config->hw.active && crtc->pipe == PIPE_A &&
- 	    pipe_config->cpu_transcoder == TRANSCODER_EDP)
- 		pipe_config->uapi.mode_changed = true;
-@@ -328,13 +327,13 @@ intel_crtc_crc_setup_workarounds(struct intel_crtc *crtc, bool enable)
- 
- 	drm_atomic_state_put(state);
- unlock:
--	drm_WARN(&dev_priv->drm, ret,
-+	drm_WARN(display->drm, ret,
- 		 "Toggling workaround to %i returns %i\n", enable, ret);
- 	drm_modeset_drop_locks(&ctx);
- 	drm_modeset_acquire_fini(&ctx);
- }
- 
--static int ivb_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
-+static int ivb_pipe_crc_ctl_reg(struct intel_display *display,
- 				enum pipe pipe,
- 				enum intel_pipe_crc_source *source,
- 				u32 *val)
-@@ -362,7 +361,7 @@ static int ivb_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	return 0;
- }
- 
--static int skl_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
-+static int skl_pipe_crc_ctl_reg(struct intel_display *display,
- 				enum pipe pipe,
- 				enum intel_pipe_crc_source *source,
- 				u32 *val)
-@@ -405,22 +404,22 @@ static int skl_pipe_crc_ctl_reg(struct drm_i915_private *dev_priv,
- 	return 0;
- }
- 
--static int get_new_crc_ctl_reg(struct drm_i915_private *dev_priv,
-+static int get_new_crc_ctl_reg(struct intel_display *display,
- 			       enum pipe pipe,
- 			       enum intel_pipe_crc_source *source, u32 *val)
- {
--	if (DISPLAY_VER(dev_priv) == 2)
-+	if (DISPLAY_VER(display) == 2)
- 		return i8xx_pipe_crc_ctl_reg(source, val);
--	else if (DISPLAY_VER(dev_priv) < 5)
--		return i9xx_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
--	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
--		return vlv_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
--	else if (IS_IRONLAKE(dev_priv) || IS_SANDYBRIDGE(dev_priv))
-+	else if (DISPLAY_VER(display) < 5)
-+		return i9xx_pipe_crc_ctl_reg(display, pipe, source, val);
-+	else if (display->platform.valleyview || display->platform.cherryview)
-+		return vlv_pipe_crc_ctl_reg(display, pipe, source, val);
-+	else if (display->platform.ironlake || display->platform.sandybridge)
- 		return ilk_pipe_crc_ctl_reg(source, val);
--	else if (DISPLAY_VER(dev_priv) < 9)
--		return ivb_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
-+	else if (DISPLAY_VER(display) < 9)
-+		return ivb_pipe_crc_ctl_reg(display, pipe, source, val);
- 	else
--		return skl_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
-+		return skl_pipe_crc_ctl_reg(display, pipe, source, val);
- }
- 
- static int
-@@ -448,7 +447,7 @@ void intel_crtc_crc_init(struct intel_crtc *crtc)
- 	spin_lock_init(&pipe_crc->lock);
- }
- 
--static int i8xx_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int i8xx_crc_source_valid(struct intel_display *display,
- 				 const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -460,7 +459,7 @@ static int i8xx_crc_source_valid(struct drm_i915_private *dev_priv,
- 	}
- }
- 
--static int i9xx_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int i9xx_crc_source_valid(struct intel_display *display,
- 				 const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -473,7 +472,7 @@ static int i9xx_crc_source_valid(struct drm_i915_private *dev_priv,
- 	}
- }
- 
--static int vlv_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int vlv_crc_source_valid(struct intel_display *display,
- 				const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -488,7 +487,7 @@ static int vlv_crc_source_valid(struct drm_i915_private *dev_priv,
- 	}
- }
- 
--static int ilk_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int ilk_crc_source_valid(struct intel_display *display,
- 				const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -502,7 +501,7 @@ static int ilk_crc_source_valid(struct drm_i915_private *dev_priv,
- 	}
- }
- 
--static int ivb_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int ivb_crc_source_valid(struct intel_display *display,
- 				const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -516,7 +515,7 @@ static int ivb_crc_source_valid(struct drm_i915_private *dev_priv,
- 	}
- }
- 
--static int skl_crc_source_valid(struct drm_i915_private *dev_priv,
-+static int skl_crc_source_valid(struct intel_display *display,
- 				const enum intel_pipe_crc_source source)
- {
- 	switch (source) {
-@@ -536,21 +535,21 @@ static int skl_crc_source_valid(struct drm_i915_private *dev_priv,
- }
- 
- static int
--intel_is_valid_crc_source(struct drm_i915_private *dev_priv,
-+intel_is_valid_crc_source(struct intel_display *display,
- 			  const enum intel_pipe_crc_source source)
- {
--	if (DISPLAY_VER(dev_priv) == 2)
--		return i8xx_crc_source_valid(dev_priv, source);
--	else if (DISPLAY_VER(dev_priv) < 5)
--		return i9xx_crc_source_valid(dev_priv, source);
--	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
--		return vlv_crc_source_valid(dev_priv, source);
--	else if (IS_IRONLAKE(dev_priv) || IS_SANDYBRIDGE(dev_priv))
--		return ilk_crc_source_valid(dev_priv, source);
--	else if (DISPLAY_VER(dev_priv) < 9)
--		return ivb_crc_source_valid(dev_priv, source);
-+	if (DISPLAY_VER(display) == 2)
-+		return i8xx_crc_source_valid(display, source);
-+	else if (DISPLAY_VER(display) < 5)
-+		return i9xx_crc_source_valid(display, source);
-+	else if (display->platform.valleyview || display->platform.cherryview)
-+		return vlv_crc_source_valid(display, source);
-+	else if (display->platform.ironlake || display->platform.sandybridge)
-+		return ilk_crc_source_valid(display, source);
-+	else if (DISPLAY_VER(display) < 9)
-+		return ivb_crc_source_valid(display, source);
- 	else
--		return skl_crc_source_valid(dev_priv, source);
-+		return skl_crc_source_valid(display, source);
- }
- 
- const char *const *intel_crtc_get_crc_sources(struct drm_crtc *crtc,
-@@ -563,16 +562,16 @@ const char *const *intel_crtc_get_crc_sources(struct drm_crtc *crtc,
- int intel_crtc_verify_crc_source(struct drm_crtc *crtc, const char *source_name,
- 				 size_t *values_cnt)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
-+	struct intel_display *display = to_intel_display(crtc->dev);
- 	enum intel_pipe_crc_source source;
- 
- 	if (display_crc_ctl_parse_source(source_name, &source) < 0) {
--		drm_dbg(&dev_priv->drm, "unknown source %s\n", source_name);
-+		drm_dbg_kms(display->drm, "unknown source %s\n", source_name);
- 		return -EINVAL;
- 	}
- 
- 	if (source == INTEL_PIPE_CRC_SOURCE_AUTO ||
--	    intel_is_valid_crc_source(dev_priv, source) == 0) {
-+	    intel_is_valid_crc_source(display, source) == 0) {
- 		*values_cnt = 5;
- 		return 0;
- 	}
-@@ -584,7 +583,6 @@ int intel_crtc_set_crc_source(struct drm_crtc *_crtc, const char *source_name)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
- 	enum intel_display_power_domain power_domain;
- 	enum intel_pipe_crc_source source;
-@@ -595,14 +593,14 @@ int intel_crtc_set_crc_source(struct drm_crtc *_crtc, const char *source_name)
- 	bool enable;
- 
- 	if (display_crc_ctl_parse_source(source_name, &source) < 0) {
--		drm_dbg(&dev_priv->drm, "unknown source %s\n", source_name);
-+		drm_dbg_kms(display->drm, "unknown source %s\n", source_name);
- 		return -EINVAL;
- 	}
- 
- 	power_domain = POWER_DOMAIN_PIPE(pipe);
- 	wakeref = intel_display_power_get_if_enabled(display, power_domain);
- 	if (!wakeref) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Trying to capture CRC while pipe is off\n");
- 		return -EIO;
- 	}
-@@ -611,17 +609,17 @@ int intel_crtc_set_crc_source(struct drm_crtc *_crtc, const char *source_name)
- 	if (enable)
- 		intel_crtc_crc_setup_workarounds(crtc, true);
- 
--	ret = get_new_crc_ctl_reg(dev_priv, pipe, &source, &val);
-+	ret = get_new_crc_ctl_reg(display, pipe, &source, &val);
- 	if (ret != 0)
- 		goto out;
- 
- 	pipe_crc->source = source;
--	intel_de_write(dev_priv, PIPE_CRC_CTL(dev_priv, pipe), val);
--	intel_de_posting_read(dev_priv, PIPE_CRC_CTL(dev_priv, pipe));
-+	intel_de_write(display, PIPE_CRC_CTL(display, pipe), val);
-+	intel_de_posting_read(display, PIPE_CRC_CTL(display, pipe));
- 
- 	if (!source) {
--		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
--			vlv_undo_pipe_scramble_reset(dev_priv, pipe);
-+		if (display->platform.valleyview || display->platform.cherryview)
-+			vlv_undo_pipe_scramble_reset(display, pipe);
- 	}
- 
- 	pipe_crc->skipped = 0;
-@@ -637,7 +635,7 @@ int intel_crtc_set_crc_source(struct drm_crtc *_crtc, const char *source_name)
- 
- void intel_crtc_enable_pipe_crc(struct intel_crtc *crtc)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
- 	enum pipe pipe = crtc->pipe;
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
  	u32 val = 0;
-@@ -645,19 +643,20 @@ void intel_crtc_enable_pipe_crc(struct intel_crtc *crtc)
- 	if (!crtc->base.crc.opened)
- 		return;
  
--	if (get_new_crc_ctl_reg(dev_priv, pipe, &pipe_crc->source, &val) < 0)
-+	if (get_new_crc_ctl_reg(display, pipe, &pipe_crc->source, &val) < 0)
- 		return;
- 
- 	/* Don't need pipe_crc->lock here, IRQs are not generated. */
- 	pipe_crc->skipped = 0;
- 
--	intel_de_write(dev_priv, PIPE_CRC_CTL(dev_priv, pipe), val);
--	intel_de_posting_read(dev_priv, PIPE_CRC_CTL(dev_priv, pipe));
-+	intel_de_write(display, PIPE_CRC_CTL(display, pipe), val);
-+	intel_de_posting_read(display, PIPE_CRC_CTL(display, pipe));
- }
- 
- void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
+ 	if (DISPLAY_VER(display) >= 11)
+@@ -874,7 +872,7 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
+ 	 * WA 0479: hsw,bdw
+ 	 * "Do not skip both TP1 and TP2/TP3"
+ 	 */
+-	if (DISPLAY_VER(dev_priv) < 9 &&
++	if (DISPLAY_VER(display) < 9 &&
+ 	    connector->panel.vbt.psr.tp1_wakeup_time_us == 0 &&
+ 	    connector->panel.vbt.psr.tp2_tp3_wakeup_time_us == 0)
+ 		val |= EDP_PSR_TP2_TP3_TIME_100us;
+@@ -910,7 +908,6 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
+ static void hsw_activate_psr1(struct intel_dp *intel_dp)
  {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
- 	enum pipe pipe = crtc->pipe;
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 max_sleep_time = 0x1f;
+ 	u32 val = EDP_PSR_ENABLE;
+@@ -920,7 +917,7 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+ 	if (DISPLAY_VER(display) < 20)
+ 		val |= EDP_PSR_MAX_SLEEP_TIME(max_sleep_time);
  
-@@ -666,7 +665,7 @@ void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc)
- 	pipe_crc->skipped = INT_MIN;
- 	spin_unlock_irq(&pipe_crc->lock);
+-	if (IS_HASWELL(dev_priv))
++	if (display->platform.haswell)
+ 		val |= EDP_PSR_MIN_LINK_ENTRY_TIME_8_LINES;
  
--	intel_de_write(dev_priv, PIPE_CRC_CTL(dev_priv, pipe), 0);
--	intel_de_posting_read(dev_priv, PIPE_CRC_CTL(dev_priv, pipe));
-+	intel_de_write(display, PIPE_CRC_CTL(display, pipe), 0);
-+	intel_de_posting_read(display, PIPE_CRC_CTL(display, pipe));
- 	intel_synchronize_irq(dev_priv);
+ 	if (intel_dp->psr.link_standby)
+@@ -1014,14 +1011,13 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 val = EDP_PSR2_ENABLE;
+ 	u32 psr_val = 0;
+ 
+ 	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
+ 
+-	if (DISPLAY_VER(display) < 14 && !IS_ALDERLAKE_P(dev_priv))
++	if (DISPLAY_VER(display) < 14 && !display->platform.alderlake_p)
+ 		val |= EDP_SU_TRACK_ENABLE;
+ 
+ 	if (DISPLAY_VER(display) >= 10 && DISPLAY_VER(display) < 13)
+@@ -1039,7 +1035,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	}
+ 
+ 	/* Wa_22012278275:adl-p */
+-	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(display, STEP_A0, STEP_E0)) {
++	if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0, STEP_E0)) {
+ 		static const u8 map[] = {
+ 			2, /* 5 lines */
+ 			1, /* 6 lines */
+@@ -1104,9 +1100,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ static bool
+ transcoder_has_psr2(struct intel_display *display, enum transcoder cpu_transcoder)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14)
++	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14)
+ 		return cpu_transcoder == TRANSCODER_A || cpu_transcoder == TRANSCODER_B;
+ 	else if (DISPLAY_VER(display) >= 12)
+ 		return cpu_transcoder == TRANSCODER_A;
+@@ -1184,10 +1178,9 @@ dc3co_is_pipe_port_compatible(struct intel_dp *intel_dp,
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+ 	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum port port = dig_port->base.port;
+ 
+-	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14)
++	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14)
+ 		return pipe <= PIPE_B && port <= PORT_B;
+ 	else
+ 		return pipe == PIPE_A && port == PORT_A;
+@@ -1198,7 +1191,6 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+ 				  struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	const u32 crtc_vdisplay = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
+ 	struct i915_power_domains *power_domains = &display->power.domains;
+ 	u32 exit_scanlines;
+@@ -1224,7 +1216,7 @@ tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 
+ 	/* Wa_16011303918:adl-p */
+-	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0))
++	if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0))
+ 		return;
+ 
+ 	/*
+@@ -1265,7 +1257,6 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+ 	const int crtc_hdisplay = crtc_state->hw.adjusted_mode.crtc_hdisplay;
+ 	const int crtc_vdisplay = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+@@ -1287,7 +1278,7 @@ static bool psr2_granularity_check(struct intel_dp *intel_dp,
+ 	 * For other platforms with SW tracking we can adjust the y coordinates
+ 	 * to match sink requirement if multiple of 4.
+ 	 */
+-	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14)
++	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14)
+ 		y_granularity = intel_dp->psr.su_y_granularity;
+ 	else if (intel_dp->psr.su_y_granularity <= 2)
+ 		y_granularity = 4;
+@@ -1413,7 +1404,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	int crtc_hdisplay = crtc_state->hw.adjusted_mode.crtc_hdisplay;
+ 	int crtc_vdisplay = crtc_state->hw.adjusted_mode.crtc_vdisplay;
+ 	int psr_max_h = 0, psr_max_v = 0, max_bpp = 0;
+@@ -1422,20 +1412,20 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 		return false;
+ 
+ 	/* JSL and EHL only supports eDP 1.3 */
+-	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
++	if (display->platform.jasperlake || display->platform.elkhartlake) {
+ 		drm_dbg_kms(display->drm, "PSR2 not supported by phy\n");
+ 		return false;
+ 	}
+ 
+ 	/* Wa_16011181250 */
+-	if (IS_ROCKETLAKE(dev_priv) || IS_ALDERLAKE_S(dev_priv) ||
+-	    IS_DG2(dev_priv)) {
++	if (display->platform.rocketlake || display->platform.alderlake_s ||
++	    display->platform.dg2) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR2 is defeatured for this platform\n");
+ 		return false;
+ 	}
+ 
+-	if (IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)) {
++	if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR2 not completely functional in this stepping\n");
+ 		return false;
+@@ -1454,7 +1444,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 	 * over PSR2.
+ 	 */
+ 	if (crtc_state->dsc.compression_enable &&
+-	    (DISPLAY_VER(display) < 14 && !IS_ALDERLAKE_P(dev_priv))) {
++	    (DISPLAY_VER(display) < 14 && !display->platform.alderlake_p)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR2 cannot be enabled since DSC is enabled\n");
+ 		return false;
+@@ -1487,7 +1477,7 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+ 
+ 	/* Wa_16011303918:adl-p */
+ 	if (crtc_state->vrr.enable &&
+-	    IS_ALDERLAKE_P(dev_priv) && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)) {
++	    display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR2 not enabled, not compatible with HW stepping + VRR\n");
+ 		return false;
+@@ -1828,7 +1818,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 				    const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 	u32 mask = 0;
+ 
+@@ -1867,7 +1856,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		 * As a workaround leave LPSP unmasked to prevent PSR entry
+ 		 * when external displays are active.
+ 		 */
+-		if (DISPLAY_VER(display) >= 8 || IS_HASWELL_ULT(dev_priv))
++		if (DISPLAY_VER(display) >= 8 || display->platform.haswell_ult)
+ 			mask |= EDP_PSR_DEBUG_MASK_LPSP;
+ 
+ 		if (DISPLAY_VER(display) < 20)
+@@ -1881,7 +1870,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 			mask |= EDP_PSR_DEBUG_MASK_DISP_REG_WRITE;
+ 
+ 		/* allow PSR with sprite enabled */
+-		if (IS_HASWELL(dev_priv))
++		if (display->platform.haswell)
+ 			mask |= EDP_PSR_DEBUG_MASK_SPRITE_ENABLE;
+ 	}
+ 
+@@ -1926,7 +1915,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		 */
+ 		if (!intel_dp->psr.panel_replay_enabled &&
+ 		    (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
+-		     IS_ALDERLAKE_P(dev_priv)))
++		     display->platform.alderlake_p))
+ 			intel_de_rmw(display, CHICKEN_TRANS(display, cpu_transcoder),
+ 				     0, ADLP_1_BASED_X_GRANULARITY);
+ 
+@@ -1937,7 +1926,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
+ 				     0,
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS);
+-		else if (IS_ALDERLAKE_P(dev_priv))
++		else if (display->platform.alderlake_p)
+ 			intel_de_rmw(display, CLKGATE_DIS_MISC, 0,
+ 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS);
+ 	}
+@@ -2105,7 +2094,6 @@ static void intel_psr_wait_exit_locked(struct intel_dp *intel_dp)
+ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+ 
+ 	lockdep_assert_held(&intel_dp->psr.lock);
+@@ -2137,7 +2125,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 			intel_de_rmw(display,
+ 				     MTL_CLKGATE_DIS_TRANS(display, cpu_transcoder),
+ 				     MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS, 0);
+-		else if (IS_ALDERLAKE_P(dev_priv))
++		else if (display->platform.alderlake_p)
+ 			intel_de_rmw(display, CLKGATE_DIS_MISC,
+ 				     CLKGATE_DIS_MISC_DMASC_GATING_DIS, 0);
+ 	}
+@@ -2315,35 +2303,27 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
+ 
+ static u32 man_trk_ctl_enable_bit_get(struct intel_display *display)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14 ? 0 :
++	return display->platform.alderlake_p || DISPLAY_VER(display) >= 14 ? 0 :
+ 		PSR2_MAN_TRK_CTL_ENABLE;
  }
+ 
+ static u32 man_trk_ctl_single_full_frame_bit_get(struct intel_display *display)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14 ?
++	return display->platform.alderlake_p || DISPLAY_VER(display) >= 14 ?
+ 	       ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME :
+ 	       PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME;
+ }
+ 
+ static u32 man_trk_ctl_partial_frame_bit_get(struct intel_display *display)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14 ?
++	return display->platform.alderlake_p || DISPLAY_VER(display) >= 14 ?
+ 	       ADLP_PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE :
+ 	       PSR2_MAN_TRK_CTL_SF_PARTIAL_FRAME_UPDATE;
+ }
+ 
+ static u32 man_trk_ctl_continuos_full_frame(struct intel_display *display)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	return IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14 ?
++	return display->platform.alderlake_p || DISPLAY_VER(display) >= 14 ?
+ 	       ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME :
+ 	       PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
+ }
+@@ -2406,8 +2386,6 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 				  bool full_update)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 val = man_trk_ctl_enable_bit_get(display);
+ 
+ 	/* SF partial frame enable has to be set even on full update */
+@@ -2421,7 +2399,7 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 	if (crtc_state->psr2_su_area.y1 == -1)
+ 		goto exit;
+ 
+-	if (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14) {
++	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14) {
+ 		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_START_ADDR(crtc_state->psr2_su_area.y1);
+ 		val |= ADLP_PSR2_MAN_TRK_CTL_SU_REGION_END_ADDR(crtc_state->psr2_su_area.y2 - 1);
+ 	} else {
+@@ -2475,13 +2453,12 @@ static void clip_area_update(struct drm_rect *overlap_damage_area,
+ static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+ 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+ 	u16 y_alignment;
+ 
+ 	/* ADLP aligns the SU region to vdsc slice height in case dsc is enabled */
+ 	if (crtc_state->dsc.compression_enable &&
+-	    (IS_ALDERLAKE_P(dev_priv) || DISPLAY_VER(display) >= 14))
++	    (display->platform.alderlake_p || DISPLAY_VER(display) >= 14))
+ 		y_alignment = vdsc_cfg->slice_height;
+ 	else
+ 		y_alignment = crtc_state->su_y_granularity;
+@@ -2602,12 +2579,11 @@ static void
+ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+ 
+ 	/* Wa_14014971492 */
+ 	if (!crtc_state->has_panel_replay &&
+ 	    ((IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B0) ||
+-	      IS_ALDERLAKE_P(i915) || IS_TIGERLAKE(i915))) &&
++	      display->platform.alderlake_p || display->platform.tigerlake)) &&
+ 	    crtc_state->splitter.enable)
+ 		crtc_state->psr2_su_area.y1 = 0;
+ 
+@@ -2808,7 +2784,6 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 				struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(state);
+-	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_crtc_state *old_crtc_state =
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+ 	const struct intel_crtc_state *new_crtc_state =
+@@ -2840,7 +2815,7 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
+ 			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
+ 			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
+-			    (DISPLAY_VER(i915) < 11 && new_crtc_state->wm_level_disabled))
++			    (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled))
+ 				intel_psr_disable_locked(intel_dp);
+ 			else if (new_crtc_state->wm_level_disabled)
+ 				/* Wa_14015648006 */
 -- 
 2.39.5
 
