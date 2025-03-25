@@ -2,29 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DA5AA70A18
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 20:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85F9AA70A51
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 20:25:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A889010E5E3;
-	Tue, 25 Mar 2025 19:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BEA410E5E7;
+	Tue, 25 Mar 2025 19:25:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="u09sutxW";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3368D10E5E2;
- Tue, 25 Mar 2025 19:16:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1530028650743119702=="
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D81410E5E1;
+ Tue, 25 Mar 2025 19:25:15 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7957343F92;
+ Tue, 25 Mar 2025 19:25:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F170C4CEE8;
+ Tue, 25 Mar 2025 19:25:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1742930715;
+ bh=gWkyMtHS0xcBwH8pzvQMA99qjRWL1D1RwXbikwYpbbQ=;
+ h=Date:From:To:Subject:References:In-Reply-To:From;
+ b=u09sutxWpIKsjUQ+MH69yUowYtWZxZ4KGn3wLnw2xE7v6LvUD3MAoZ2hewgTTWe63
+ mHH3gj2ujyiTyWwt+r1P4IkG2/xiKiB6aQrZAXbIayd49rgkfOkX/McMC8hCKOXQ1x
+ cvEnMZRvBkWfWFWbYGE9iig2CQ886gNfIsYhBZYEMvxWrXdZocp+KQOsu+FLqIzqbS
+ IW/Z+eqdXx8NJ70r2DBL+IUinTSJ/oqgO0lQko7jQDf/0T+znkW2bGXGuBS6vCFnmI
+ 6tyJWdCoEdHWsXRGCTmRCWNcP0vGV2zrpa4T/w+1ObsWUYMoRdZ3+UPy/7MIHQYvje
+ aDBUBdfEP0a9Q==
+Date: Tue, 25 Mar 2025 12:25:12 -0700
+From: Kees Cook <kees@kernel.org>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gvt-dev@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gvt: Add __nonstring annotations for
+ unterminated strings
+Message-ID: <202503251224.F128AE971@keescook>
+References: <20250310222355.work.417-kees@kernel.org>
+ <01070195c306db7f-9f28efdd-9456-4db3-b6c6-343298bd571b-000000@eu-central-1.amazonses.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_dpll=2C_ddi?=
- =?utf-8?q?=2C_crc=2C_psr_etc_conversions_to_struct_intel=5Fdisplay?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Mar 2025 19:16:09 -0000
-Message-ID: <174293016920.1924.7940171201673506109@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <cover.1742906146.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <01070195c306db7f-9f28efdd-9456-4db3-b6c6-343298bd571b-000000@eu-central-1.amazonses.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,153 +62,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1530028650743119702==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Sun, Mar 23, 2025 at 12:42:41PM +0000, Damian Tometzki wrote:
+> On Mon, 10. Mar 15:23, Kees Cook wrote:
+> > When a character array without a terminating NUL character has a static
+> > initializer, GCC 15's -Wunterminated-string-initialization will only
+> > warn if the array lacks the "nonstring" attribute[1]. Mark the arrays
+> > with __nonstring to and correctly identify the char array as "not a C
+> > string" and thereby eliminate the warning.
+> > 
+> > Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=117178 [1]
+> > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Simona Vetter <simona@ffwll.ch>
+> > Cc: intel-gvt-dev@lists.freedesktop.org
+> > Cc: intel-gfx@lists.freedesktop.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Signed-off-by: Kees Cook <kees@kernel.org>
+> > ---
+> >  drivers/gpu/drm/i915/gvt/opregion.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
+> > index 509f9ccae3a9..f701638d3145 100644
+> > --- a/drivers/gpu/drm/i915/gvt/opregion.c
+> > +++ b/drivers/gpu/drm/i915/gvt/opregion.c
+> > @@ -43,7 +43,7 @@
+> >  #define DEVICE_TYPE_EFP4   0x10
+> >  
+> >  struct opregion_header {
+> > -	u8 signature[16];
+> > +	u8 signature[16] __nonstring;
+> >  	u32 size;
+> >  	u32 opregion_ver;
+> >  	u8 bios_ver[32];
+> > @@ -222,7 +222,7 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+> >  	u8 *buf;
+> >  	struct opregion_header *header;
+> >  	struct vbt v;
+> > -	const char opregion_signature[16] = OPREGION_SIGNATURE;
+> > +	const char opregion_signature[16] __nonstring = OPREGION_SIGNATURE;
+> >  
+> >  	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
+> >  	vgpu_opregion(vgpu)->va = (void *)__get_free_pages(GFP_KERNEL |
+> > -- 
+> > 2.34.1
+> > 
+> Hello together,
+> 
+> it doesnt resolve the build issue with gcc15 gcc (GCC) 15.0.1 20250228
 
-== Series Details ==
+This was a recent enhancement to GCC, and that 20250228 build does not
+include it. (GCC 15 is not actually released yet...)
 
-Series: drm/i915: dpll, ddi, crc, psr etc conversions to struct intel_display
-URL   : https://patchwork.freedesktop.org/series/146730/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16317 -> Patchwork_146730v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): bat-arlh-2 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_146730v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#13494])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-9/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16317 -> Patchwork_146730v1
-
-  CI-20190529: 20190529
-  CI_DRM_16317: 8de9ba4a4539f21e6809b9fb42c04cb3be9c1e76 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8283: e4eb2265f06fc69e37e56cb6b609e019b6071435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_146730v1: 8de9ba4a4539f21e6809b9fb42c04cb3be9c1e76 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/index.html
-
---===============1530028650743119702==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: dpll, ddi, crc, psr etc conversions to struct intel_display</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146730/">https://patchwork.freedesktop.org/series/146730/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16317 -&gt; Patchwork_146730v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): bat-arlh-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_146730v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16317/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146730v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16317 -&gt; Patchwork_146730v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16317: 8de9ba4a4539f21e6809b9fb42c04cb3be9c1e76 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8283: e4eb2265f06fc69e37e56cb6b609e019b6071435 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_146730v1: 8de9ba4a4539f21e6809b9fb42c04cb3be9c1e76 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1530028650743119702==--
+-- 
+Kees Cook
