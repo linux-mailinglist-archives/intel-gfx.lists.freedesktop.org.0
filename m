@@ -2,63 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9362EA7026C
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 14:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 352EBA7036B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 15:18:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EB5D10E582;
-	Tue, 25 Mar 2025 13:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD20810E580;
+	Tue, 25 Mar 2025 14:18:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iAaXgX+k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZPlpkrR2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B202710E06E;
- Tue, 25 Mar 2025 13:45:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4D310E57F;
+ Tue, 25 Mar 2025 14:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742910335; x=1774446335;
+ t=1742912321; x=1774448321;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ebSAhZQtbSs8XJNG39ZQYu1rwYjiWavUzqPI//QVjV8=;
- b=iAaXgX+k+I0fHfB8HWmlZRi6WkxmODhFF1gg9qoFhSk7BOCNLlL6CW9j
- L0QbCTdAVzTvSNquj0OQTxLoUud34Rqe+oPXNXCMvbvrnXUqCXktMt7TJ
- UNV62oqaytJVVLr6T8QE5uBduxwwARFQqRf6pF/WMq9/EW8dugN3I7+Am
- fvA7jeclJZrmxPhnrkl5kC0fhVlADX/YmQI2HrOZV8+9bCZDmdIHT9vzw
- SyQ4WSP5bTvKUeAxzhxonykeAoINPdaPaWCPluDstZffT2Jbfmue0zl/0
- /rYl6NmNAOubQ8nHcLoU5e+TWsLKPhKnN4hGNS1XXPV4ox1BwWGvj4FnR Q==;
-X-CSE-ConnectionGUID: VmAJ0Nh6SjySURBVMebUKw==
-X-CSE-MsgGUID: cCx4cIKlQfaaYAkV16XX6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="54359883"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="54359883"
+ bh=YxCw4TpOAYGNuEqQPCU4x5ZqXCOku1Qr9B0GsKTyjQ0=;
+ b=ZPlpkrR2h93n3jF7pKwA6xMXiz/oWXlLG+D7BT3nyFfLxL1Us0krRAlk
+ P6p1g63bVuqpa19qqNzdRXDVomhO3YLUxQCatRPxioPiZPuCvAF7D4AIC
+ 1VdmrjRKwDazK8NkAWyFlNb1GwomLXElEoyM2VfXXqgYnkElEvGShrD6o
+ 7HiH3Cfv9yHilXzfCldmzU++rPTgU8aH9xMw+qEdexqhQfaEOlEUBiqYK
+ ZUZKSjf9ONCm7c+ddXfWi8PR64+NCgN0cTsRw/mZmzUELptLLgBko0zuv
+ z7lx0USSwTUeEMEHKhPXiwoflS5pmXROpfHY2c6HiL8vVW+CSj72L9HJ5 g==;
+X-CSE-ConnectionGUID: 7NDR7c4/SyKvex1NmuRDOQ==
+X-CSE-MsgGUID: l73PotrESoubxXH4ypBMzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="46898444"
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="46898444"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 06:45:35 -0700
-X-CSE-ConnectionGUID: GARYtHA7R965rHYkAIizLw==
-X-CSE-MsgGUID: CLVIMeohRPKar80KcdBbnQ==
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 07:18:40 -0700
+X-CSE-ConnectionGUID: KKibKXCpQv+2BD63oR9JBw==
+X-CSE-MsgGUID: +eJhr3O6QjaP5UxKIlSlKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129561923"
+X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129578494"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 25 Mar 2025 06:45:33 -0700
+ by orviesa005.jf.intel.com with SMTP; 25 Mar 2025 07:18:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Mar 2025 15:45:31 +0200
-Date: Tue, 25 Mar 2025 15:45:31 +0200
+ Tue, 25 Mar 2025 16:18:37 +0200
+Date: Tue, 25 Mar 2025 16:18:37 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 15/16] drm/i915/display: Separate out functions to
- get/set VTOTAL register
-Message-ID: <Z-Kze5WxTVVs5bbi@intel.com>
-References: <20250324133248.4071909-1-ankit.k.nautiyal@intel.com>
- <20250324133248.4071909-16-ankit.k.nautiyal@intel.com>
- <Z-GeIi5I0R9U4EGS@intel.com>
- <28b1b129-f84d-4d15-97b0-3ef3e05002d5@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: use display snapshot mechanism for display irq
+ regs
+Message-ID: <Z-K7PcIQy_4xF6aN@intel.com>
+References: <20250325125954.1805212-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <28b1b129-f84d-4d15-97b0-3ef3e05002d5@intel.com>
+In-Reply-To: <20250325125954.1805212-1-jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,100 +71,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 11:52:24AM +0530, Nautiyal, Ankit K wrote:
+On Tue, Mar 25, 2025 at 02:59:54PM +0200, Jani Nikula wrote:
+> Move more display specific parts of GPU error logging behind the display
+> snapshot interface.
 > 
-> On 3/24/2025 11:32 PM, Ville Syrjälä wrote:
-> > On Mon, Mar 24, 2025 at 07:02:47PM +0530, Ankit Nautiyal wrote:
-> >> Introduce helpers to get and set TRANS_VTOTAL registers.
-> >> This will pave way to avoid reading/writing VTOTAL.Vtotal bits for
-> >> platforms that always use VRR timing generator.
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_display.c | 41 +++++++++++++-------
-> >>   1 file changed, 27 insertions(+), 14 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index ae1dc32044fb..fa9c6793357e 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -2638,6 +2638,15 @@ void intel_cpu_transcoder_set_m2_n2(struct intel_crtc *crtc,
-> >>   		      PIPE_LINK_N2(display, transcoder));
-> >>   }
-> >>   
-> >> +static void intel_crtc_set_vtotal(struct intel_display *display,
-> >> +				  enum transcoder cpu_transcoder,
-> >> +				  u32 crtc_vdisplay, u32 crtc_vtotal)
-> >> +{
-> >> +	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
-> >> +		       VACTIVE(crtc_vdisplay - 1) |
-> >> +		       VTOTAL(crtc_vtotal - 1));
-> >> +}
-> >> +
-> >>   static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
-> >>   {
-> >>   	struct intel_display *display = to_intel_display(crtc_state);
-> >> @@ -2702,9 +2711,8 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
-> >>   		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
-> >>   		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
-> >>   
-> >> -	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
-> >> -		       VACTIVE(crtc_vdisplay - 1) |
-> >> -		       VTOTAL(crtc_vtotal - 1));
-> >> +	intel_crtc_set_vtotal(display, cpu_transcoder, crtc_vdisplay, crtc_vtotal);
-> >> +
-> >>   	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
-> >>   		       VBLANK_START(crtc_vblank_start - 1) |
-> >>   		       VBLANK_END(crtc_vblank_end - 1));
-> >> @@ -2718,9 +2726,8 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
-> >>   	 * bits. */
-> >>   	if (display->platform.haswell && cpu_transcoder == TRANSCODER_EDP &&
-> >>   	    (pipe == PIPE_B || pipe == PIPE_C))
-> >> -		intel_de_write(display, TRANS_VTOTAL(display, pipe),
-> >> -			       VACTIVE(crtc_vdisplay - 1) |
-> >> -			       VTOTAL(crtc_vtotal - 1));
-> >> +		intel_crtc_set_vtotal(display, (enum transcoder)pipe,
-> >> +				      crtc_vdisplay, crtc_vtotal);
-> >>   }
-> >>   
-> >>   static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc_state)
-> >> @@ -2766,9 +2773,7 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
-> >>   	 * The double buffer latch point for TRANS_VTOTAL
-> >>   	 * is the transcoder's undelayed vblank.
-> >>   	 */
-> >> -	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
-> >> -		       VACTIVE(crtc_vdisplay - 1) |
-> >> -		       VTOTAL(crtc_vtotal - 1));
-> >> +	intel_crtc_set_vtotal(display, cpu_transcoder, crtc_vdisplay, crtc_vtotal);
-> > Not really a fan of special casing this that much. I think we should
-> > probably handle it the same way we deal with the VBLANK_START vs.
-> > TRANS_SET_CONTEXT_LATENCY.
-> Hmm I can do away with the helper, and avoid having VTOTAL.Vtotal bits 
-> set for specific cases in intel_vrr_set_transcoder_{timings, timings_lrr}.
-> >
-> > The readount should perhaps just be handled in intel_vrr_get_config().
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 43 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_display_irq.h  |  5 +++
+>  .../drm/i915/display/intel_display_snapshot.c |  5 +++
+>  drivers/gpu/drm/i915/i915_gpu_error.c         | 30 -------------
+>  drivers/gpu/drm/i915/i915_gpu_error.h         |  2 -
+>  5 files changed, 53 insertions(+), 32 deletions(-)
 > 
-> I can try this out.
-> 
-> 
-> > But I think we'll need somehting like transcoder_has_vrr() to exclude
-> > the DSI transcoders in a consistent way.
-> 
-> If I understand correctly you mean that wherever we are avoiding VRR 
-> related register read/write for DSI, use trans_has_vrr() instead of 
-> !transcoder_is_dsi(),
-> 
-> with trans_has_vrr having call to transcoder_is_dsi()?
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index d2a35e3630b1..832aa03f211b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -2329,3 +2329,46 @@ void intel_display_irq_init(struct intel_display *display)
+>  
+>  	INIT_WORK(&display->irq.vblank_dc_work, intel_display_vblank_dc_work);
+>  }
+> +
+> +struct intel_display_irq_snapshot {
+> +	u32 ier;
+> +	u32 derrmr;
+> +};
+> +
+> +struct intel_display_irq_snapshot *
+> +intel_display_irq_snapshot_capture(struct intel_display *display)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+> +	struct intel_display_irq_snapshot *snapshot;
+> +
+> +	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
+> +	if (!snapshot)
+> +		return NULL;
+> +
+> +	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20)
+> +		snapshot->derrmr = intel_uncore_read(uncore, DERRMR);
+> +
+> +	if (DISPLAY_VER(display) >= 8)
+> +		snapshot->ier = intel_uncore_read(uncore, GEN8_DE_MISC_IER);
+> +	else if (display->platform.valleyview)
+> +		snapshot->ier = intel_uncore_read(uncore, VLV_IER);
+> +	else if (HAS_PCH_SPLIT(i915))
+> +		snapshot->ier = intel_uncore_read(uncore, DEIER);
+> +	else if (DISPLAY_VER(display) == 2)
+> +		snapshot->ier = intel_uncore_read16(uncore, GEN2_IER);
 
-Yeah something like that.
+Looks like I failed to eliminate all the 16 bit accesses...
 
-> 
-> Will perhaps add this as a separate patch.
+> +	else
+> +		snapshot->ier = intel_uncore_read(uncore, GEN2_IER);
 
-These two last patches aren't needed to get this stuff actually
-working right? Or is the GOP leaving TRANS_VOTAL.vtotal unset?
-So yeah, if not needed right now probably best to leave this
-stuff for a seaprate series.
+DERRMR is pretty much the only register here that actually matters
+for the GT stuff. The rest look like mostly nonsense to me.
+I suppose GEN2_IER might make sense for pre-ilk since that's where
+the engine interrupts live on those platforms (but maybe that should
+be captured into gtier[0]?)
+
+I would just nuke the rest.
+
+> +
+> +	return snapshot;
+> +}
+> +
+> +void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot,
+> +				      struct drm_printer *p)
+> +{
+> +	if (!snapshot)
+> +		return;
+> +
+> +	drm_printf(p, "IER: 0x%08x\n", snapshot->ier);
+> +	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> index f72727768351..4f0e27a37854 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> @@ -12,7 +12,9 @@
+>  
+>  enum pipe;
+>  struct drm_crtc;
+> +struct drm_printer;
+>  struct intel_display;
+> +struct intel_display_irq_snapshot;
+>  
+>  void valleyview_enable_display_irqs(struct intel_display *display);
+>  void valleyview_disable_display_irqs(struct intel_display *display);
+> @@ -82,4 +84,7 @@ void intel_display_irq_init(struct intel_display *display);
+>  
+>  void i915gm_irq_cstate_wa(struct intel_display *display, bool enable);
+>  
+> +struct intel_display_irq_snapshot *intel_display_irq_snapshot_capture(struct intel_display *display);
+> +void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot, struct drm_printer *p);
+> +
+>  #endif /* __INTEL_DISPLAY_IRQ_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_snapshot.c b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
+> index 25ba043cbb65..66087302fdbc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_snapshot.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include "intel_display_core.h"
+>  #include "intel_display_device.h"
+> +#include "intel_display_irq.h"
+>  #include "intel_display_params.h"
+>  #include "intel_display_snapshot.h"
+>  #include "intel_dmc.h"
+> @@ -20,6 +21,7 @@ struct intel_display_snapshot {
+>  	struct intel_display_params params;
+>  	struct intel_overlay_snapshot *overlay;
+>  	struct intel_dmc_snapshot *dmc;
+> +	struct intel_display_irq_snapshot *irq;
+>  };
+>  
+>  struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_display *display)
+> @@ -38,6 +40,7 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
+>  
+>  	intel_display_params_copy(&snapshot->params);
+>  
+> +	snapshot->irq = intel_display_irq_snapshot_capture(display);
+>  	snapshot->overlay = intel_overlay_snapshot_capture(display);
+>  	snapshot->dmc = intel_dmc_snapshot_capture(display);
+>  
+> @@ -57,6 +60,7 @@ void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
+>  	intel_display_device_info_print(&snapshot->info, &snapshot->runtime_info, p);
+>  	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
+>  
+> +	intel_display_irq_snapshot_print(snapshot->irq, p);
+>  	intel_overlay_snapshot_print(snapshot->overlay, p);
+>  	intel_dmc_snapshot_print(snapshot->dmc, p);
+>  }
+> @@ -68,6 +72,7 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
+>  
+>  	intel_display_params_free(&snapshot->params);
+>  
+> +	kfree(snapshot->irq);
+>  	kfree(snapshot->overlay);
+>  	kfree(snapshot->dmc);
+>  	kfree(snapshot);
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 819ab933bb10..4d90331c41ef 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -726,13 +726,6 @@ static void err_print_gt_info(struct drm_i915_error_state_buf *m,
+>  	intel_sseu_print_topology(gt->_gt->i915, &gt->info.sseu, &p);
+>  }
+>  
+> -static void err_print_gt_display(struct drm_i915_error_state_buf *m,
+> -				 struct intel_gt_coredump *gt)
+> -{
+> -	err_printf(m, "IER: 0x%08x\n", gt->ier);
+> -	err_printf(m, "DERRMR: 0x%08x\n", gt->derrmr);
+> -}
+> -
+>  static void err_print_gt_global_nonguc(struct drm_i915_error_state_buf *m,
+>  				       struct intel_gt_coredump *gt)
+>  {
+> @@ -878,7 +871,6 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
+>  		if (error->gt->uc && error->gt->uc->guc.is_guc_capture)
+>  			print_guc_capture = true;
+>  
+> -		err_print_gt_display(m, error->gt);
+>  		err_print_gt_global_nonguc(m, error->gt);
+>  		err_print_gt_fences(m, error->gt);
+>  
+> @@ -1767,27 +1759,6 @@ gt_record_uc(struct intel_gt_coredump *gt,
+>  	return error_uc;
+>  }
+>  
+> -/* Capture display registers. */
+> -static void gt_record_display_regs(struct intel_gt_coredump *gt)
+> -{
+> -	struct intel_uncore *uncore = gt->_gt->uncore;
+> -	struct drm_i915_private *i915 = uncore->i915;
+> -
+> -	if (DISPLAY_VER(i915) >= 6 && DISPLAY_VER(i915) < 20)
+> -		gt->derrmr = intel_uncore_read(uncore, DERRMR);
+> -
+> -	if (GRAPHICS_VER(i915) >= 8)
+> -		gt->ier = intel_uncore_read(uncore, GEN8_DE_MISC_IER);
+> -	else if (IS_VALLEYVIEW(i915))
+> -		gt->ier = intel_uncore_read(uncore, VLV_IER);
+> -	else if (HAS_PCH_SPLIT(i915))
+> -		gt->ier = intel_uncore_read(uncore, DEIER);
+> -	else if (GRAPHICS_VER(i915) == 2)
+> -		gt->ier = intel_uncore_read16(uncore, GEN2_IER);
+> -	else
+> -		gt->ier = intel_uncore_read(uncore, GEN2_IER);
+> -}
+> -
+>  /* Capture all other registers that GuC doesn't capture. */
+>  static void gt_record_global_nonguc_regs(struct intel_gt_coredump *gt)
+>  {
+> @@ -2043,7 +2014,6 @@ intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags)
+>  	gc->_gt = gt;
+>  	gc->awake = intel_gt_pm_is_awake(gt);
+>  
+> -	gt_record_display_regs(gc);
+>  	gt_record_global_nonguc_regs(gc);
+>  
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+> index 749e1c55613e..004e7ad52a4a 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+> @@ -146,7 +146,6 @@ struct intel_gt_coredump {
+>  	/* Generic register state */
+>  	u32 eir;
+>  	u32 pgtbl_er;
+> -	u32 ier;
+>  	u32 gtier[6], ngtier;
+>  	u32 forcewake;
+>  	u32 error; /* gen6+ */
+> @@ -165,7 +164,6 @@ struct intel_gt_coredump {
+>  	u32 clock_period_ns;
+>  
+>  	/* Display related */
+> -	u32 derrmr;
+>  	u32 sfc_done[I915_MAX_SFC]; /* gen12 */
+>  
+>  	u32 nfence;
+> -- 
+> 2.39.5
 
 -- 
 Ville Syrjälä
