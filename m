@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C44A6EC14
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 10:03:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EFF4A6EC39
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 10:07:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 663E010E51D;
-	Tue, 25 Mar 2025 09:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E226710E524;
+	Tue, 25 Mar 2025 09:07:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXqsdoUj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfWUmpbv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E295510E51D;
- Tue, 25 Mar 2025 09:03:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEBCC10E520;
+ Tue, 25 Mar 2025 09:07:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742893398; x=1774429398;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=UvzxqcOL6OUkTtr4lFFzh6hnAD3fKjSDEzEco6HYaHk=;
- b=kXqsdoUjwEdQ2mtU6R/mXnh6fODolahLr4mcf2iwYsjPX+tpkrddPfSd
- jUY2U8eH+4eDbXza4q5ILxaALfA1OkB4Z/cS9GOBIt84c4Z6D5lado9Nc
- DtOQyqmEQXiSFDfFu4PReanyvLAGL/MAZkqR7za/nnV3YLqnsvistAZJ3
- 6Sw2uh0F5jxYGh1fPoevaxx92r3x3JRRnNdZ0pZAkRTvYO8Q8/EDS6w4y
- pqfV/Llp/oF7jp98ZIblI7JCZeLy7aa+36b78VSaa4FeJfP8aRb8742BC
- fxR9Gc5YUZH8iNrOV3XDJ+y7WM8m8nLmsau1okHRWXJ99ntau0mVDR6Xh w==;
-X-CSE-ConnectionGUID: ROaBJmrwRs2ihnUz1R2rnQ==
-X-CSE-MsgGUID: Ji+IY+/GSVe3jjOdPEFuXg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="46868686"
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="46868686"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:03:17 -0700
-X-CSE-ConnectionGUID: luqqJcHrQk6tUwGnEbb1tA==
-X-CSE-MsgGUID: huEGemd5QLq1wid3od2j/w==
+ t=1742893665; x=1774429665;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=tMYT1Zmqo1e/bzJZP5RPRqAVdsFwWA2Q0zJKFDYXwi4=;
+ b=EfWUmpbvl8MPqW2zMYEJYuN4geuHDyJ8mhmTO+sXgzDtjI0Ok9YZTxJf
+ ScT/E4nI67GTZdodVjJsAY1J8VL074bhXWLJI43Jl7lSBhprD7YLtoAdI
+ GHXJI/cZhviWh7lK1goVRVQJH3PZQY+ks5FJ3vq13DtAttHlXnyElXJhX
+ O5BCINpGVQstdwkiRjqdEC+rHOv8TJn0gWoPn7b3bAAikSRvnuncIx2Cl
+ 9c2Sj1K1yFckSkC2U5oLO8X4ZDysxRcRj8P98eGXH6KpyXiCCZ2t/ocIM
+ 8bueaK1WgLEK/QtJsgurg7U/yoM+Il+mQ9rJ1NNfdmADkJ+UfPISMn0ni g==;
+X-CSE-ConnectionGUID: tKK1ONAJRmqNXG/OCIfKfA==
+X-CSE-MsgGUID: fxwUoMnBSFib8TDX9/JuZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11383"; a="47784284"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="47784284"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:07:43 -0700
+X-CSE-ConnectionGUID: ufDtzgCQSz2Qrcbb84vXnA==
+X-CSE-MsgGUID: OjdVuXGoTDqiemG6wUWO2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="125091586"
+X-IronPort-AV: E=Sophos;i="6.14,274,1736841600"; d="scan'208";a="155218256"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.134])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 02:03:15 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Vivek
- Kasireddy <vivek.kasireddy@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v2] drm/i915/xe2hpd: Identify the memory type for SKUs
- with GDDR + ECC
-In-Reply-To: <32lakxysapix2hgoh5e7n2b6zlv544nh6vcvmg6zllzjnlikmd@7k37w7pqy4p2>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2025 02:07:38 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-next-fixes
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250324-tip-v2-1-38397de319f8@intel.com>
- <20250324200207.GN3175483@mdroper-desk1.amr.corp.intel.com>
- <32lakxysapix2hgoh5e7n2b6zlv544nh6vcvmg6zllzjnlikmd@7k37w7pqy4p2>
-Date: Tue, 25 Mar 2025 11:03:13 +0200
-Message-ID: <87bjtpa3e6.fsf@intel.com>
+Date: Tue, 25 Mar 2025 11:07:34 +0200
+Message-ID: <878qota36x.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,47 +73,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Mar 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Mon, Mar 24, 2025 at 01:02:07PM -0700, Matt Roper wrote:
->>On Mon, Mar 24, 2025 at 10:22:33AM -0700, Lucas De Marchi wrote:
->>> From: Vivek Kasireddy <vivek.kasireddy@intel.com>
->>>
->>> Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
->>> with ECC enabled. We need to identify this scenario and add a new
->>> case in xelpdp_get_dram_info() to handle it. In addition, the
->>> derating value needs to be adjusted accordingly to compensate for
->>> the limited bandwidth.
->>>
->>> Bspec: 64602
->>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>> Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")
->>> Cc: stable@vger.kernel.org
 
-FYI, this does not cherry-pick cleanly to drm-intel-next-fixes, and
-needs a backport.
+Hi Dave & Sima -
 
-There are dependencies on at least
-
-4051c59e2a6a ("drm/i915/xe3lpd: Update bandwidth parameters")
-9377c00cfdb5 ("drm/i915/display: Convert intel_bw.c internally to intel_display")
-d706998b6da6 ("drm/i915/display: Convert intel_bw.c externally to intel_display")
-
-but I don't think we want to backport those.
+drm-intel-next-fixes-2025-03-25:
+drm/i915 fixes for v6.15 merge window:
+- Bounds check for scalers in DSC prefill latency computation
+- Fix build by adding a missing include
 
 BR,
 Jani.
 
+The following changes since commit 5da39dce1fa3c81dc6552a16a9f748ba2980d630:
 
+  Merge tag 'drm-xe-next-fixes-2025-03-12' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-03-14 17:02:11 +1000)
 
+are available in the Git repository at:
 
->>> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
->>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>
->>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->
-> Thanks. Patch pushed to drm-intel-next.
->
-> Lucas De Marchi
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-03-25
+
+for you to fetch changes up to af9ec6e4682c089028d763b0b77c04fa2ddae268:
+
+  drm/i915/display: Fix build error without DRM_FBDEV_EMULATION (2025-03-20 18:27:21 +0200)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.15 merge window:
+- Bounds check for scalers in DSC prefill latency computation
+- Fix build by adding a missing include
+
+----------------------------------------------------------------
+Ankit Nautiyal (1):
+      drm/i915/watermark: Check bounds for scaler_users for dsc prefill latency
+
+Yue Haibing (1):
+      drm/i915/display: Fix build error without DRM_FBDEV_EMULATION
+
+ drivers/gpu/drm/i915/display/intel_fbdev.h   | 2 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 5 ++++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
 -- 
 Jani Nikula, Intel
