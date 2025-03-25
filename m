@@ -2,60 +2,128 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352EBA7036B
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 15:18:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF34A70385
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Mar 2025 15:22:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD20810E580;
-	Tue, 25 Mar 2025 14:18:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3315F10E585;
+	Tue, 25 Mar 2025 14:22:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZPlpkrR2";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="TO/ZQV6Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4D310E57F;
- Tue, 25 Mar 2025 14:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1742912321; x=1774448321;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=YxCw4TpOAYGNuEqQPCU4x5ZqXCOku1Qr9B0GsKTyjQ0=;
- b=ZPlpkrR2h93n3jF7pKwA6xMXiz/oWXlLG+D7BT3nyFfLxL1Us0krRAlk
- P6p1g63bVuqpa19qqNzdRXDVomhO3YLUxQCatRPxioPiZPuCvAF7D4AIC
- 1VdmrjRKwDazK8NkAWyFlNb1GwomLXElEoyM2VfXXqgYnkElEvGShrD6o
- 7HiH3Cfv9yHilXzfCldmzU++rPTgU8aH9xMw+qEdexqhQfaEOlEUBiqYK
- ZUZKSjf9ONCm7c+ddXfWi8PR64+NCgN0cTsRw/mZmzUELptLLgBko0zuv
- z7lx0USSwTUeEMEHKhPXiwoflS5pmXROpfHY2c6HiL8vVW+CSj72L9HJ5 g==;
-X-CSE-ConnectionGUID: 7NDR7c4/SyKvex1NmuRDOQ==
-X-CSE-MsgGUID: l73PotrESoubxXH4ypBMzA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11384"; a="46898444"
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="46898444"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2025 07:18:40 -0700
-X-CSE-ConnectionGUID: KKibKXCpQv+2BD63oR9JBw==
-X-CSE-MsgGUID: +eJhr3O6QjaP5UxKIlSlKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,275,1736841600"; d="scan'208";a="129578494"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 25 Mar 2025 07:18:38 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Mar 2025 16:18:37 +0200
-Date: Tue, 25 Mar 2025 16:18:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: use display snapshot mechanism for display irq
- regs
-Message-ID: <Z-K7PcIQy_4xF6aN@intel.com>
-References: <20250325125954.1805212-1-jani.nikula@intel.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8231510E581
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 14:22:00 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 52PDG7aP002939
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 14:22:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ Kp3yGWdT4AV6kkrdyjO2FJdT8nOV4kJcKTIpcQc7Pgs=; b=TO/ZQV6ZSOOIQO6/
+ EtuY3avalnKyKRDIYJ5L4diQO64ei0GCwfEGLTRLRfVAUZ/dzhogZfZsGwr9LOfG
+ 6TsfxYd6uqNSrVZNUlLTFuv07jCOec/l3ioo50XpUDWxWIYIRkN7L3dr850X+yIj
+ HNHk3Gu+WKCv8y5y1u+nxfPs/LGlnGX5jev1//5a2WihdrtiE8NxMe1Blu7DCzR1
+ am8P3+vZrj7jB6YzVh40dx/1uVJIwXjjB4hDQKb5Dx190G4OrLdmfaSNIRlfSgM8
+ 7HORa5z9tbLv2cqroJ8L3F7PUPAVoqWOGQp3NkI4MSprpbK3KVzwcDLasnSUFOLz
+ ygOT8w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45kmd4hurx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 14:21:59 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-7c3c5e92d41so945589585a.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Mar 2025 07:21:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742912518; x=1743517318;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Kp3yGWdT4AV6kkrdyjO2FJdT8nOV4kJcKTIpcQc7Pgs=;
+ b=awTbxNGVKa1SNbTz4pyfv012WuDUCFgqISj1nzen4YWfI0XHf4GvhmU6/nJXQol9Bn
+ thLoJojbK/U2ydWNfgO2tH+x2jBsVZMbcijgLqgbLEyCTdJoaAEH/j0HRtbberqW+HyV
+ r0cbgLDhStuNIIygYc2ZgnV0Ed3URhNj3SCSUwhK2jkKyBhJTXkvGKdzE5CtaLjHU4kw
+ idmnF+tyu9QKPIkP0FEnp79wQOGiuZ44YnoWPm/ed34HzEK048x9C0Xv21LDaBgWzxkI
+ a8zjksyA6Dsal3IlazvNJHxJKzEKhc10Q8GQXuzzKep7mO4AbSscAAB5nwvA+avE368g
+ 4rAg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUK486tnuL85A53kiki+XMyoOBw0mqxcXsIb6meyIbFJVMOjnPieCfamr+wRKdzA48+yfPTpxD5GUg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxMCWn2KzWgvjOyFQc8LMh6kFM0i9R1Q5cfzf42vwZcPHQrhLQn
+ 7ZgitUZFt+uK8yd0k0dCPy6n5c2tDggUOwJQi1VaYwjuMSXqL2bVYBQIaxXVBdgojrU+FCe6rbB
+ SiTBmPx84zdp7ROR7jOLSt48pW10GZYtY1Dv9Uuq6qVfyh2M2+SZ8+ta7RA1gnumZVtM=
+X-Gm-Gg: ASbGncvQhgzK7Pdt3hZs9bFJaj9rsylANGzorAOjd+aTcj7kjakYeBHcUL9h3BtJAgL
+ WDEQb9h/DWxwrq1CXsJje0d5AntAkcb8Cnghs8Tj1ja+WvgiE21qeI3ik/pXO78d1dEy+9wNsz4
+ bQq9I3s4kNnhi4cEkvX0xDFBIRcyEycwhHlvFTANvrceEr22bPfmg6r/bOWwSnnVR4ODLnPUweq
+ CIlHPfG8h8bgoBCbtH5jjGyu5x5GHwGnnWLMqL76sWX9zLqczFInNY9BCH9PPrZckQ6AqZAvQuG
+ lsafsZWx5eWFdUDstPjpHPVIwba+G2r48n9TZAuSht0bzmZxE4x3oY3tzBhZIVuPQLg=
+X-Received: by 2002:a05:620a:4082:b0:7c5:4194:bbcc with SMTP id
+ af79cd13be357-7c5ba1a5851mr2078812585a.29.1742912518302; 
+ Tue, 25 Mar 2025 07:21:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHE3gf2K5kIjZtYjJH4qhQtLNFCQgnGxwMyKEgZu4Q/N9eWpJ5iD6eXdGIpzuGP7y89fDMGrg==
+X-Received: by 2002:a05:620a:4082:b0:7c5:4194:bbcc with SMTP id
+ af79cd13be357-7c5ba1a5851mr2078805785a.29.1742912517757; 
+ Tue, 25 Mar 2025 07:21:57 -0700 (PDT)
+Received: from eriador.lan (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00::7a1]) by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-54ad65083e4sm1508348e87.171.2025.03.25.07.21.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 Mar 2025 07:21:56 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Yongqin Liu <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [RFC PATCH RESEND v4 0/6] drm/display: dp: add new DPCD access
+ functions
+Date: Tue, 25 Mar 2025 16:21:55 +0200
+Message-ID: <174291251084.2000243.209850835590674876.b4-ty@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
+References: <20250324-drm-rework-dpcd-access-v4-0-e80ff89593df@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250325125954.1805212-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+X-Proofpoint-ORIG-GUID: WN8uE9MUIdjrNuZIQA-9Z6PhT4VlNpng
+X-Proofpoint-GUID: WN8uE9MUIdjrNuZIQA-9Z6PhT4VlNpng
+X-Authority-Analysis: v=2.4 cv=QLZoRhLL c=1 sm=1 tr=0 ts=67e2bc07 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Vs1iUdzkB0EA:10 a=DZoDOQWOqP-ft6bgs5oA:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1093,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-03-25_06,2025-03-25_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ priorityscore=1501 adultscore=0 malwarescore=0 phishscore=0
+ mlxlogscore=999 mlxscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
+ bulkscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
+ definitions=main-2503250101
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,233 +139,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 25, 2025 at 02:59:54PM +0200, Jani Nikula wrote:
-> Move more display specific parts of GPU error logging behind the display
-> snapshot interface.
+On Mon, 24 Mar 2025 13:51:18 +0200, Dmitry Baryshkov wrote:
+> Existing DPCD access functions return an error code or the number of
+> bytes being read / write in case of partial access. However a lot of
+> drivers either (incorrectly) ignore partial access or mishandle error
+> codes. In other cases this results in a boilerplate code which compares
+> returned value with the size.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 43 +++++++++++++++++++
->  .../gpu/drm/i915/display/intel_display_irq.h  |  5 +++
->  .../drm/i915/display/intel_display_snapshot.c |  5 +++
->  drivers/gpu/drm/i915/i915_gpu_error.c         | 30 -------------
->  drivers/gpu/drm/i915/i915_gpu_error.h         |  2 -
->  5 files changed, 53 insertions(+), 32 deletions(-)
+> As suggested by Jani implement new set of DPCD access helpers, which
+> ignore partial access, always return 0 or an error code. Implement
+> new helpers using existing functions to ensure backwards compatibility
+> and to assess necessity to handle incomplete reads on a global scale.
+> Currently only one possible place has been identified, dp-aux-dev, which
+> needs to handle possible holes in DPCD.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index d2a35e3630b1..832aa03f211b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -2329,3 +2329,46 @@ void intel_display_irq_init(struct intel_display *display)
->  
->  	INIT_WORK(&display->irq.vblank_dc_work, intel_display_vblank_dc_work);
->  }
-> +
-> +struct intel_display_irq_snapshot {
-> +	u32 ier;
-> +	u32 derrmr;
-> +};
-> +
-> +struct intel_display_irq_snapshot *
-> +intel_display_irq_snapshot_capture(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-> +	struct intel_display_irq_snapshot *snapshot;
-> +
-> +	snapshot = kzalloc(sizeof(*snapshot), GFP_ATOMIC);
-> +	if (!snapshot)
-> +		return NULL;
-> +
-> +	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20)
-> +		snapshot->derrmr = intel_uncore_read(uncore, DERRMR);
-> +
-> +	if (DISPLAY_VER(display) >= 8)
-> +		snapshot->ier = intel_uncore_read(uncore, GEN8_DE_MISC_IER);
-> +	else if (display->platform.valleyview)
-> +		snapshot->ier = intel_uncore_read(uncore, VLV_IER);
-> +	else if (HAS_PCH_SPLIT(i915))
-> +		snapshot->ier = intel_uncore_read(uncore, DEIER);
-> +	else if (DISPLAY_VER(display) == 2)
-> +		snapshot->ier = intel_uncore_read16(uncore, GEN2_IER);
+> [...]
 
-Looks like I failed to eliminate all the 16 bit accesses...
+Applied to drm-misc-next, thanks!
 
-> +	else
-> +		snapshot->ier = intel_uncore_read(uncore, GEN2_IER);
+[1/6] drm/display: dp: implement new access helpers
+      commit: d8343e115658fb35115e0720f4761ffa0147329a
+[2/6] drm/display: dp: change drm_dp_dpcd_read_link_status() return value
+      commit: fcbb93f1e48a150159534a1e6ec19e6fdf9196df
+[3/6] drm/display: dp: use new DCPD access helpers
+      commit: af67978ee37e543e62d6d3f7eba58f8f259423a7
+[4/6] drm/display: dp-cec: use new DCPD access helpers
+      commit: 97f37939881327e118d6252289973c186377a075
+[5/6] drm/display: dp-mst-topology: use new DCPD access helpers
+      commit: 2554da0de3e8312c7149d03d702ddc6c1ff5e3de
+[6/6] drm/display: dp-tunnel: use new DCPD access helpers
+      commit: 95c4ea2e0329b370a53a041a19227f8da3f47481
 
-DERRMR is pretty much the only register here that actually matters
-for the GT stuff. The rest look like mostly nonsense to me.
-I suppose GEN2_IER might make sense for pre-ilk since that's where
-the engine interrupts live on those platforms (but maybe that should
-be captured into gtier[0]?)
-
-I would just nuke the rest.
-
-> +
-> +	return snapshot;
-> +}
-> +
-> +void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot,
-> +				      struct drm_printer *p)
-> +{
-> +	if (!snapshot)
-> +		return;
-> +
-> +	drm_printf(p, "IER: 0x%08x\n", snapshot->ier);
-> +	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> index f72727768351..4f0e27a37854 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> @@ -12,7 +12,9 @@
->  
->  enum pipe;
->  struct drm_crtc;
-> +struct drm_printer;
->  struct intel_display;
-> +struct intel_display_irq_snapshot;
->  
->  void valleyview_enable_display_irqs(struct intel_display *display);
->  void valleyview_disable_display_irqs(struct intel_display *display);
-> @@ -82,4 +84,7 @@ void intel_display_irq_init(struct intel_display *display);
->  
->  void i915gm_irq_cstate_wa(struct intel_display *display, bool enable);
->  
-> +struct intel_display_irq_snapshot *intel_display_irq_snapshot_capture(struct intel_display *display);
-> +void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot, struct drm_printer *p);
-> +
->  #endif /* __INTEL_DISPLAY_IRQ_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_snapshot.c b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-> index 25ba043cbb65..66087302fdbc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
-> @@ -7,6 +7,7 @@
->  
->  #include "intel_display_core.h"
->  #include "intel_display_device.h"
-> +#include "intel_display_irq.h"
->  #include "intel_display_params.h"
->  #include "intel_display_snapshot.h"
->  #include "intel_dmc.h"
-> @@ -20,6 +21,7 @@ struct intel_display_snapshot {
->  	struct intel_display_params params;
->  	struct intel_overlay_snapshot *overlay;
->  	struct intel_dmc_snapshot *dmc;
-> +	struct intel_display_irq_snapshot *irq;
->  };
->  
->  struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_display *display)
-> @@ -38,6 +40,7 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
->  
->  	intel_display_params_copy(&snapshot->params);
->  
-> +	snapshot->irq = intel_display_irq_snapshot_capture(display);
->  	snapshot->overlay = intel_overlay_snapshot_capture(display);
->  	snapshot->dmc = intel_dmc_snapshot_capture(display);
->  
-> @@ -57,6 +60,7 @@ void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
->  	intel_display_device_info_print(&snapshot->info, &snapshot->runtime_info, p);
->  	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
->  
-> +	intel_display_irq_snapshot_print(snapshot->irq, p);
->  	intel_overlay_snapshot_print(snapshot->overlay, p);
->  	intel_dmc_snapshot_print(snapshot->dmc, p);
->  }
-> @@ -68,6 +72,7 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
->  
->  	intel_display_params_free(&snapshot->params);
->  
-> +	kfree(snapshot->irq);
->  	kfree(snapshot->overlay);
->  	kfree(snapshot->dmc);
->  	kfree(snapshot);
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 819ab933bb10..4d90331c41ef 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -726,13 +726,6 @@ static void err_print_gt_info(struct drm_i915_error_state_buf *m,
->  	intel_sseu_print_topology(gt->_gt->i915, &gt->info.sseu, &p);
->  }
->  
-> -static void err_print_gt_display(struct drm_i915_error_state_buf *m,
-> -				 struct intel_gt_coredump *gt)
-> -{
-> -	err_printf(m, "IER: 0x%08x\n", gt->ier);
-> -	err_printf(m, "DERRMR: 0x%08x\n", gt->derrmr);
-> -}
-> -
->  static void err_print_gt_global_nonguc(struct drm_i915_error_state_buf *m,
->  				       struct intel_gt_coredump *gt)
->  {
-> @@ -878,7 +871,6 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
->  		if (error->gt->uc && error->gt->uc->guc.is_guc_capture)
->  			print_guc_capture = true;
->  
-> -		err_print_gt_display(m, error->gt);
->  		err_print_gt_global_nonguc(m, error->gt);
->  		err_print_gt_fences(m, error->gt);
->  
-> @@ -1767,27 +1759,6 @@ gt_record_uc(struct intel_gt_coredump *gt,
->  	return error_uc;
->  }
->  
-> -/* Capture display registers. */
-> -static void gt_record_display_regs(struct intel_gt_coredump *gt)
-> -{
-> -	struct intel_uncore *uncore = gt->_gt->uncore;
-> -	struct drm_i915_private *i915 = uncore->i915;
-> -
-> -	if (DISPLAY_VER(i915) >= 6 && DISPLAY_VER(i915) < 20)
-> -		gt->derrmr = intel_uncore_read(uncore, DERRMR);
-> -
-> -	if (GRAPHICS_VER(i915) >= 8)
-> -		gt->ier = intel_uncore_read(uncore, GEN8_DE_MISC_IER);
-> -	else if (IS_VALLEYVIEW(i915))
-> -		gt->ier = intel_uncore_read(uncore, VLV_IER);
-> -	else if (HAS_PCH_SPLIT(i915))
-> -		gt->ier = intel_uncore_read(uncore, DEIER);
-> -	else if (GRAPHICS_VER(i915) == 2)
-> -		gt->ier = intel_uncore_read16(uncore, GEN2_IER);
-> -	else
-> -		gt->ier = intel_uncore_read(uncore, GEN2_IER);
-> -}
-> -
->  /* Capture all other registers that GuC doesn't capture. */
->  static void gt_record_global_nonguc_regs(struct intel_gt_coredump *gt)
->  {
-> @@ -2043,7 +2014,6 @@ intel_gt_coredump_alloc(struct intel_gt *gt, gfp_t gfp, u32 dump_flags)
->  	gc->_gt = gt;
->  	gc->awake = intel_gt_pm_is_awake(gt);
->  
-> -	gt_record_display_regs(gc);
->  	gt_record_global_nonguc_regs(gc);
->  
->  	/*
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-> index 749e1c55613e..004e7ad52a4a 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-> @@ -146,7 +146,6 @@ struct intel_gt_coredump {
->  	/* Generic register state */
->  	u32 eir;
->  	u32 pgtbl_er;
-> -	u32 ier;
->  	u32 gtier[6], ngtier;
->  	u32 forcewake;
->  	u32 error; /* gen6+ */
-> @@ -165,7 +164,6 @@ struct intel_gt_coredump {
->  	u32 clock_period_ns;
->  
->  	/* Display related */
-> -	u32 derrmr;
->  	u32 sfc_done[I915_MAX_SFC]; /* gen12 */
->  
->  	u32 nfence;
-> -- 
-> 2.39.5
-
+Best regards,
 -- 
-Ville Syrjälä
-Intel
+With best wishes
+Dmitry
+
