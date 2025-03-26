@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8EFA71BD4
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Mar 2025 17:26:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D63A71BD5
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Mar 2025 17:26:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053C910E739;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE34410E73A;
 	Wed, 26 Mar 2025 16:26:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V1jLSUYM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2WIZWBB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D2AE10E732;
- Wed, 26 Mar 2025 16:26:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A360310E739;
+ Wed, 26 Mar 2025 16:26:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743006383; x=1774542383;
+ t=1743006386; x=1774542386;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ujutl2fS1drs/vU5RSh3FkCtSSWucUmWYGhqOH7HiNw=;
- b=V1jLSUYMvEkrepLvHYzRykfeqH5/b3Ud1QiUEM6M6OWLGAf8Xk9/XTmh
- eFb4lqM6dMoUmNU//HSc2Q2z2WZ4nCM7cpi0ZO8TZGYGZqerPchM2dOB8
- rxNgJLbQFMuUIZpkKdcypwJMUBWV8AwtwQXQ0G+ujuTQhlTQT/Apgb9cy
- ZEaD2d9Z+uTVXTRgz1zm47tos2zbHKw0gSdYKWeKr8ZRvS1fM6WA7UXng
- xTjEFbVTIC4tDWwHXEE8WAcB7MfRn1e4EbeVXAdsy7nU7t/tLXkvq8OBv
- 2JgMLLS3g4sSXQTrH5cyrG9esKL6f75r+dSYkMtYpBSAK+Px9n/Grwtx8 A==;
-X-CSE-ConnectionGUID: 96ywn7kATQGIPSJ5xGsMDA==
-X-CSE-MsgGUID: OExrpl5QR1OTBinXgcgcIQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44029586"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44029586"
+ bh=4dS+lrzpXhEu1uzFtFItCu2WMkZ24SQK1vUML0Z1TKo=;
+ b=X2WIZWBByOCti5mDl/maNUUsT5cWxVzFgRdeLOuCxs2TrPd0J4pGRYzT
+ nl9WQznZEKcoidmTDZIsHLVPdykg9ANPtYLO9DZO3uLoKPpqiQCLWlUJb
+ dohcNnTx4ZkCyBM/qV70IL2/D1k7ao5XL8Auw3KwWD6LIFIfGk8Aj0Cs/
+ 2pj0FGqyDnRs1mT2VNkhOnOwDpw28nS6EKdEu7N+kxBJlxgPgEnOHtjlt
+ Lw46A55rNIzqSCICMbdnEYXJnHKAh76ynZaN5o7zehQ3tlM6+GHegDUpV
+ yhOJPIreajrVwhBNWKguyNOfXt2SqZ54UYe+N9cpA9F4venuCSHZ+nAG2 A==;
+X-CSE-ConnectionGUID: MVNNyUHPSBSccVS7U/NbXA==
+X-CSE-MsgGUID: vR7Yf5Q9TeKUFdH53OagLQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44029592"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44029592"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 09:26:23 -0700
-X-CSE-ConnectionGUID: nwN09xVdTL6zY3a3eD/GMg==
-X-CSE-MsgGUID: nHzpqowPQSW51B4JXoxjPw==
+ 26 Mar 2025 09:26:26 -0700
+X-CSE-ConnectionGUID: sfkkPxMxSpq5fds9RqhtnQ==
+X-CSE-MsgGUID: 85hVnBT1QLSXdKwRvu95vQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130016441"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130016452"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 09:26:21 -0700
+ by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 09:26:24 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Mar 2025 18:26:19 +0200
+ Wed, 26 Mar 2025 18:26:22 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 11/14] drm/i915: Make intel_bw_check_sagv_mask() internal
- to intel_bw.c
-Date: Wed, 26 Mar 2025 18:25:41 +0200
-Message-ID: <20250326162544.3642-12-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 12/14] drm/i915: Make intel_bw_modeset_checks() internal to
+ intel_bw_atomic_check()
+Date: Wed, 26 Mar 2025 18:25:42 +0200
+Message-ID: <20250326162544.3642-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
 References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
@@ -72,80 +72,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The only thing between the current intel_bw_check_sagv_mask() call
-site and intel_bw_atomic_check() is skl_wm_add_affected_planes()
-which no longer depends on the sagv mask, so we can make life
-a lot less confusing by calling intel_bw_check_sagv_mask() from
-intel_bw_atomic_check() instead.
+Now that all the sagv computation has been moved from the
+skl+ watermark code into intel_bw_atomic_check() there is
+no point in calling intel_bw_modeset_checks() before the
+wm computation. Hide it within intel_bw_atomic_check().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c      | 9 ++++++++-
- drivers/gpu/drm/i915/display/intel_bw.h      | 1 -
- drivers/gpu/drm/i915/display/skl_watermark.c | 5 -----
- 3 files changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c      | 10 ++++++++--
+ drivers/gpu/drm/i915/display/intel_bw.h      |  3 +--
+ drivers/gpu/drm/i915/display/intel_display.c |  8 +-------
+ 3 files changed, 10 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 0553e902727e..b54704f9af4e 100644
+index b54704f9af4e..b8bb2e395bb7 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1443,7 +1443,7 @@ int intel_bw_modeset_checks(struct intel_atomic_state *state)
+@@ -1414,7 +1414,7 @@ static int intel_bw_check_data_rate(struct intel_atomic_state *state, bool *chan
  	return 0;
  }
  
--int intel_bw_check_sagv_mask(struct intel_atomic_state *state)
-+static int intel_bw_check_sagv_mask(struct intel_atomic_state *state)
+-int intel_bw_modeset_checks(struct intel_atomic_state *state)
++static int intel_bw_modeset_checks(struct intel_atomic_state *state)
+ {
+ 	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_bw_state *old_bw_state;
+@@ -1483,7 +1483,7 @@ static int intel_bw_check_sagv_mask(struct intel_atomic_state *state)
+ 	return 0;
+ }
+ 
+-int intel_bw_atomic_check(struct intel_atomic_state *state)
++int intel_bw_atomic_check(struct intel_atomic_state *state, bool any_ms)
  {
  	struct intel_display *display = to_intel_display(state);
  	struct drm_i915_private *i915 = to_i915(display->drm);
-@@ -1492,6 +1492,13 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	const struct intel_bw_state *old_bw_state;
- 	int ret;
- 
-+	if (DISPLAY_VER(i915) < 9)
-+		return 0;
-+
-+	ret = intel_bw_check_sagv_mask(state);
-+	if (ret)
-+		return ret;
-+
- 	/* FIXME earlier gens need some checks too */
- 	if (DISPLAY_VER(display) < 11)
+@@ -1495,6 +1495,12 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 	if (DISPLAY_VER(i915) < 9)
  		return 0;
+ 
++	if (any_ms) {
++		ret = intel_bw_modeset_checks(state);
++		if (ret)
++			return ret;
++	}
++
+ 	ret = intel_bw_check_sagv_mask(state);
+ 	if (ret)
+ 		return ret;
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
-index ee1d437340f3..ac435674c3ed 100644
+index ac435674c3ed..eb2cc883e9c1 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.h
 +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-@@ -67,7 +67,6 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state);
+@@ -66,8 +66,7 @@ intel_atomic_get_bw_state(struct intel_atomic_state *state);
+ 
  void intel_bw_init_hw(struct intel_display *display);
  int intel_bw_init(struct intel_display *display);
- int intel_bw_modeset_checks(struct intel_atomic_state *state);
--int intel_bw_check_sagv_mask(struct intel_atomic_state *state);
- int intel_bw_atomic_check(struct intel_atomic_state *state);
+-int intel_bw_modeset_checks(struct intel_atomic_state *state);
+-int intel_bw_atomic_check(struct intel_atomic_state *state);
++int intel_bw_atomic_check(struct intel_atomic_state *state, bool any_ms);
  int icl_pcode_restrict_qgv_points(struct intel_display *display,
  				  u32 points_mask);
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 747b2b5c31bd..baf345039deb 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -454,7 +454,6 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	int ret;
- 	struct intel_crtc *crtc;
- 	struct intel_crtc_state *new_crtc_state;
- 	int i;
-@@ -485,10 +484,6 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 			intel_crtc_can_enable_sagv(new_crtc_state);
- 	}
+ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0ecfcb68e56d..a7884051c7fd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6416,17 +6416,11 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
  
--	ret = intel_bw_check_sagv_mask(state);
--	if (ret)
--		return ret;
+-	if (any_ms) {
+-		ret = intel_bw_modeset_checks(state);
+-		if (ret)
+-			goto fail;
+-	}
 -
- 	return 0;
- }
+ 	ret = intel_compute_global_watermarks(state);
+ 	if (ret)
+ 		goto fail;
+ 
+-	ret = intel_bw_atomic_check(state);
++	ret = intel_bw_atomic_check(state, any_ms);
+ 	if (ret)
+ 		goto fail;
  
 -- 
 2.45.3
