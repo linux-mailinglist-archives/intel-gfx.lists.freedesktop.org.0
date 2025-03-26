@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8BBA71CAD
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Mar 2025 18:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D21BA71CEE
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Mar 2025 18:19:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBDB10E762;
-	Wed, 26 Mar 2025 17:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A90F310E761;
+	Wed, 26 Mar 2025 17:19:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2Jy9ZbA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuVf/x7y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2922910E761;
- Wed, 26 Mar 2025 17:09:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF6FD10E17C;
+ Wed, 26 Mar 2025 17:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743008960; x=1774544960;
+ t=1743009569; x=1774545569;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=IkNElz21i0nsKXHDASAuGEUpKYD3WSVDvoga52GMoM0=;
- b=E2Jy9ZbARIgkalVxPQJKfqPRGTfg+U2y/wOOjBeOd7yv1I5kggfMaex/
- iqtGCkYr1h533XuNGzsodCjyR6rIAiohJbN5awmtBGwv28xPualzjT406
- 69d+Od0wCjaINbjrtpdrLvo3cu1jLuE8EfHgsNE/qJ0XZ9qxoqRo+NaIq
- sFH0aMlixVgtrZnjhJovBL3sOJEZWTivJE5Xv09fuDG/UFpT5NBjoU42H
- BwQsUDzg0N9fC2pZE/1JW+pdrOr962Yd3QnG/b0dn6+/z6tIXEgs/VzM6
- nfqxManL1yeFxw348D8sWztZH9fSnPi+F7KazG3w3mlcRI7QYK5OQcEbs Q==;
-X-CSE-ConnectionGUID: iuIk3qWlQ0aeRTKgbVICMQ==
-X-CSE-MsgGUID: 3l5rkbP9Q8mK6ZDRw8nDzg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44201404"
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44201404"
+ bh=z09e1tWoyMfmnOxFDpDhdMbpNGPjINO4Wu1Rg0gJhrg=;
+ b=kuVf/x7yM6EexcS9navd+FAsmc3UYpk+vRJ6DRuRrX9h3k9ZqPht8588
+ OOnytFPTivRbTQsMzY3l9elDP67/KAIEYJzWh10RDz5VNYxg3okTaubbI
+ xU956aI4LcVsHCt2GGkvlg69qBOwycc22LvZICezJNNW+/Dj0JlD/mVmX
+ hsnpJ5DqKF7GjGUqtCkEA8vgT/kOf27a4WNoNV4qShwchSw8VxzTN6eXl
+ +8dHbZ6OvtvOZGxFuJ9Uie3HwmKA32r0ASk8n71FgZ2hul5W21Z25t3Jo
+ NSUhWgvSZPtqGStUFE9ocqj+1XRtJ5FE+R9kI8IfMdKMGyjGOaoI3rZZf A==;
+X-CSE-ConnectionGUID: 8zp50BCTTTOQZwmPxRgYpw==
+X-CSE-MsgGUID: bdtz2SciT06X5Dp1Kcjlkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44202839"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="44202839"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2025 10:09:20 -0700
-X-CSE-ConnectionGUID: U4LZQJWHSHe/HuVZJwnxYw==
-X-CSE-MsgGUID: Mape+4WXRBekVHVlp4pl5A==
+ 26 Mar 2025 10:19:29 -0700
+X-CSE-ConnectionGUID: TdRAqeeCT9K8TVm1z2e0ow==
+X-CSE-MsgGUID: wGHt7v/mQsOxy94FxG6NuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130032367"
+X-IronPort-AV: E=Sophos;i="6.14,278,1736841600"; d="scan'208";a="130036129"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 10:09:17 -0700
+ by orviesa005.jf.intel.com with SMTP; 26 Mar 2025 10:19:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Mar 2025 19:09:16 +0200
-Date: Wed, 26 Mar 2025 19:09:16 +0200
+ Wed, 26 Mar 2025 19:19:24 +0200
+Date: Wed, 26 Mar 2025 19:19:24 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: Re: [PATCH 2/2] drm/i915/display: Avoid use of VTOTAL.Vtotal bits
-Message-ID: <Z-Q0vCeByHofHFdv@intel.com>
-References: <20250326160321.550753-1-ankit.k.nautiyal@intel.com>
- <20250326160321.550753-3-ankit.k.nautiyal@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, chaitanya.kumar.borah@intel.com
+Subject: Re: [PATCH v9 3/3] drm/i915/display: Add i915 hook for
+ format_mod_supported_async
+Message-ID: <Z-Q3HGnu01fEpgs4@intel.com>
+References: <20250319-asyn-v9-0-629d1ece63e7@intel.com>
+ <20250319-asyn-v9-3-629d1ece63e7@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250326160321.550753-3-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250319-asyn-v9-3-629d1ece63e7@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,117 +73,222 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 26, 2025 at 09:33:21PM +0530, Ankit Nautiyal wrote:
-> For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> bits are not required. Since the support for these bits is going to
-> be deprecated in upcoming platforms, avoid writing these bits for the
-> platforms that do not use legacy Timing Generator.
+On Wed, Mar 19, 2025 at 04:02:17PM +0530, Arun R Murthy wrote:
+> Hook up the newly added plane function pointer
+> format_mod_supported_async to populate the modifiers/formats supported
+> by asynchronous flips.
 > 
-> Since for these platforms TRAN_VMIN is always filled with crtc_vtotal,
-> use TRAN_VRR_VMIN to get the vtotal for adjusted_mode.
+> v5: Correct the if condition for modifier support check (Chaitanya)
+> v6: Replace uint32_t/uint64_t with u32/u64 (Jani)
+> v7: Move plannar check from intel_async_flip_check_hw() to
+> intel_plane_format_mod_supported_async() (Ville)
+> v8: In case of error print format/modifier (Chaitanya)
+> v9: Exclude C8 format as its not supported by hardware
 > 
-> v2: Avoid having a helper for manipulating VTOTAL register, and instead
-> just make the change where required. (Ville)
-> v3: Set `crtc_vtotal` instead of working with the bits directly (Ville).
-> Use intel_vrr_vmin_vtotal() to set the vtotal during readout. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 31 +++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_vrr.c     | 10 +++++++
->  2 files changed, 40 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/i9xx_plane.c          |  6 ++--
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 32 +++++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.h  |  6 +++-
+>  drivers/gpu/drm/i915/display/intel_display.c       | 14 +++-------
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  5 +++-
+>  5 files changed, 48 insertions(+), 15 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index 013295f66d56ec5e919b3a0c904034bf7985986a..6bd09adb8a30ba002ef334261d7638f398587a3e 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -820,7 +820,7 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+>  
+> -	if (intel_plane_can_async_flip(plane, fb->modifier))
+> +	if (intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
+>  		return 256 * 1024;
+>  
+>  	/* FIXME undocumented so not sure what's actually needed */
+> @@ -844,7 +844,7 @@ static unsigned int g4x_primary_min_alignment(struct intel_plane *plane,
+>  {
+>  	struct intel_display *display = to_intel_display(plane);
+>  
+> -	if (intel_plane_can_async_flip(plane, fb->modifier))
+> +	if (intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
+>  		return 256 * 1024;
+>  
+>  	if (intel_scanout_needs_vtd_wa(display))
+> @@ -889,6 +889,7 @@ static const struct drm_plane_funcs i965_plane_funcs = {
+>  	.atomic_duplicate_state = intel_plane_duplicate_state,
+>  	.atomic_destroy_state = intel_plane_destroy_state,
+>  	.format_mod_supported = i965_plane_format_mod_supported,
+> +	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>  };
+>  
+>  static const struct drm_plane_funcs i8xx_plane_funcs = {
+> @@ -898,6 +899,7 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
+>  	.atomic_duplicate_state = intel_plane_duplicate_state,
+>  	.atomic_destroy_state = intel_plane_destroy_state,
+>  	.format_mod_supported = i8xx_plane_format_mod_supported,
+> +	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>  };
+>  
+>  struct intel_plane *
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index 7276179df878658b7053fe6d8dc37b69f19625e3..ce6bf6fe8f241a9517e8f74fb002b835c3f0853a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -174,11 +174,41 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
+>  		DISPLAY_INFO(display)->cursor_needs_physical;
+>  }
+>  
+> -bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier)
+> +bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
+> +				u64 modifier)
+
+Please split this change into a separate patch.
+
+>  {
+> +	struct intel_display *display = to_intel_display(plane);
+> +
+> +	if ((DISPLAY_VER(display) <= 14 ?
+> +	    drm_format_info(format)->is_yuv :
+> +	    intel_format_info_is_yuv_semiplanar(drm_format_info(format),
+> +						modifier)) ||
+> +	    format == DRM_FORMAT_C8) {
+> +		drm_dbg_kms(plane->base.dev,
+> +			    "[PLANE:%d:%s] Planar formats do not support async flips\n",
+> +			    plane->base.base.id, plane->base.name);
+> +		return false;
+
+This is introducing functional changes. Those should be separate
+patches.
+
+I also don't know what this pre-mtl vs. mtl+ stuff is about. I'm
+pretty sure planar formats are the only thing that actually can't do
+async flips (in the sense that we can't atomically async flip both
+luma and chroma). 
+
+I suppose we may want to reject C8 as well since it depends on
+the LUT and we can't update that atomically with an async flip.
+
+> +	}
+> +
+>  	return plane->can_async_flip && plane->can_async_flip(modifier);
+>  }
+>  
+> +bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
+> +					    u32 format,
+> +					    u64 modifier)
+> +{
+> +	if (plane->funcs->format_mod_supported &&
+> +	    !plane->funcs->format_mod_supported(plane, format, modifier)) {
+> +		drm_dbg_kms(plane->dev,
+> +			    "[PLANE:%d:%s](format %p4cc) modifier 0x%llx not in universal list\n",
+> +			    plane->base.id, plane->name, &format, modifier);
+> +		return false;
+> +	}
+> +
+> +	return intel_plane_can_async_flip(to_intel_plane(plane),
+> +					format, modifier);
+> +}
+> +
+>  unsigned int intel_adjusted_rate(const struct drm_rect *src,
+>  				 const struct drm_rect *dst,
+>  				 unsigned int rate)
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> index 6efac923dcbc757e6f68564cbef2919c920f13cb..512c251cc153753a4808cf177c8bcce2178bb862 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> @@ -21,7 +21,8 @@ enum plane_id;
+>  
+>  struct intel_plane *
+>  intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id);
+> -bool intel_plane_can_async_flip(struct intel_plane *plane, u64 modifier);
+> +bool intel_plane_can_async_flip(struct intel_plane *plane, u32 format,
+> +				u64 modifier);
+>  unsigned int intel_adjusted_rate(const struct drm_rect *src,
+>  				 const struct drm_rect *dst,
+>  				 unsigned int rate);
+> @@ -87,6 +88,9 @@ void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_sta
+>  int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+>  				     struct intel_crtc *crtc);
+>  int intel_atomic_check_planes(struct intel_atomic_state *state);
+> +bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
+> +					    u32 format,
+> +					    u64 modifier);
+>  
+>  u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state);
+>  
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 0db1cd4fc963..6796dd0307a6 100644
+> index 3afb85fe8536dfffd55dbaa07f6727112cc876b7..5d0bab1f8ff8294716ca5843c856032d2b9ccd5b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2698,9 +2698,19 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
->  		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
->  		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
+> @@ -6005,22 +6005,16 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+>  		if (!plane->async_flip)
+>  			continue;
 >  
-> +	/*
-> +	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> +	 * bits are not required. Since the support for these bits is going to
-> +	 * be deprecated in upcoming platforms, avoid writing these bits for the
-> +	 * platforms that do not use legacy Timing Generator.
-> +	 */
-> +	if (intel_vrr_always_use_vrr_tg(display))
-> +		crtc_vtotal = 1;
-> +
->  	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
->  		       VACTIVE(crtc_vdisplay - 1) |
->  		       VTOTAL(crtc_vtotal - 1));
-> +
-
-spurious whitespace change
-
->  	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
->  		       VBLANK_START(crtc_vblank_start - 1) |
->  		       VBLANK_END(crtc_vblank_end - 1));
-> @@ -2758,6 +2768,15 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
->  	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
->  		       VBLANK_START(crtc_vblank_start - 1) |
->  		       VBLANK_END(crtc_vblank_end - 1));
-> +	/*
-> +	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> +	 * bits are not required. Since the support for these bits is going to
-> +	 * be deprecated in upcoming platforms, avoid writing these bits for the
-> +	 * platforms that do not use legacy Timing Generator.
-> +	 */
-> +	if (intel_vrr_always_use_vrr_tg(display))
-> +		crtc_vtotal = 1;
-> +
->  	/*
->  	 * The double buffer latch point for TRANS_VTOTAL
->  	 * is the transcoder's undelayed vblank.
-> @@ -2827,7 +2846,17 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+> -		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->modifier)) {
+> +		if (!intel_plane_can_async_flip(plane, new_plane_state->hw.fb->format->format,
+> +						new_plane_state->hw.fb->modifier)) {
+>  			drm_dbg_kms(display->drm,
+> -				    "[PLANE:%d:%s] Modifier 0x%llx does not support async flip\n",
+> +				    "[PLANE:%d:%s] Format %p4cc Modifier 0x%llx does not support async flip\n",
+>  				    plane->base.base.id, plane->base.name,
+> +				    &new_plane_state->hw.fb->format->format,
+>  				    new_plane_state->hw.fb->modifier);
+>  			return -EINVAL;
+>  		}
 >  
->  	tmp = intel_de_read(display, TRANS_VTOTAL(display, cpu_transcoder));
->  	adjusted_mode->crtc_vdisplay = REG_FIELD_GET(VACTIVE_MASK, tmp) + 1;
-> -	adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
-> +
-> +	/*
-> +	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> +	 * bits are not filled. The value for adjusted_mode->crtc_vtotal is read
-> +	 * from VRR_VMIN register in intel_vrr_get_config.
-> +	 * Just set this to 0 here.
-> +	 */
-> +	if (intel_vrr_always_use_vrr_tg(display))
-
-This one either needs the transcoder_has_vrr() check, or we could just
-keep on blindly reading this anyway, and let intel_vrr_get_config()
-overwrite it afterwards. That's kinda how we deal with
-TRANS_SET_CONTEXT_LATENCY as well.
-
-> +		adjusted_mode->crtc_vtotal = 0;
-> +	else
-> +		adjusted_mode->crtc_vtotal = REG_FIELD_GET(VTOTAL_MASK, tmp) + 1;
+> -		if (intel_format_info_is_yuv_semiplanar(new_plane_state->hw.fb->format,
+> -							new_plane_state->hw.fb->modifier)) {
+> -			drm_dbg_kms(display->drm,
+> -				    "[PLANE:%d:%s] Planar formats do not support async flips\n",
+> -				    plane->base.base.id, plane->base.name);
+> -			return -EINVAL;
+> -		}
+> -
+>  		/*
+>  		 * We turn the first async flip request into a sync flip
+>  		 * so that we can reconfigure the plane (eg. change modifier).
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 70e550539bb21393c7173c7b3904e7790eab25f4..f61e1eff30bb4820ccb17daa5d4b2b073a5d4078 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -601,7 +601,7 @@ static u32 tgl_plane_min_alignment(struct intel_plane *plane,
+>  	 * Figure out what's going on here...
+>  	 */
+>  	if (display->platform.alderlake_p &&
+> -	    intel_plane_can_async_flip(plane, fb->modifier))
+> +	    intel_plane_can_async_flip(plane, fb->format->format, fb->modifier))
+>  		return mult * 16 * 1024;
 >  
->  	/* FIXME TGL+ DSI transcoders have this! */
->  	if (!transcoder_is_dsi(cpu_transcoder)) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 414f93851059..7359d66fc091 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -708,6 +708,16 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
->  		crtc_state->vrr.vmin = intel_de_read(display,
->  						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+>  	switch (fb->modifier) {
+> @@ -2666,6 +2666,7 @@ static const struct drm_plane_funcs skl_plane_funcs = {
+>  	.atomic_duplicate_state = intel_plane_duplicate_state,
+>  	.atomic_destroy_state = intel_plane_destroy_state,
+>  	.format_mod_supported = skl_plane_format_mod_supported,
+> +	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>  };
 >  
-> +		/*
-> +		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> +		 * bits are not filled. Since for these platforms TRAN_VMIN is always
-> +		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
-> +		 * adjusted_mode.
-> +		 */
-> +		if (intel_vrr_always_use_vrr_tg(display))
-> +			crtc_state->hw.adjusted_mode.crtc_vtotal =
-> +				intel_vrr_vmin_vtotal(crtc_state);
-> +
->  		if (HAS_AS_SDP(display)) {
->  			trans_vrr_vsync =
->  				intel_de_read(display,
+>  static const struct drm_plane_funcs icl_plane_funcs = {
+> @@ -2675,6 +2676,7 @@ static const struct drm_plane_funcs icl_plane_funcs = {
+>  	.atomic_duplicate_state = intel_plane_duplicate_state,
+>  	.atomic_destroy_state = intel_plane_destroy_state,
+>  	.format_mod_supported = icl_plane_format_mod_supported,
+> +	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>  };
+>  
+>  static const struct drm_plane_funcs tgl_plane_funcs = {
+> @@ -2684,6 +2686,7 @@ static const struct drm_plane_funcs tgl_plane_funcs = {
+>  	.atomic_duplicate_state = intel_plane_duplicate_state,
+>  	.atomic_destroy_state = intel_plane_destroy_state,
+>  	.format_mod_supported = tgl_plane_format_mod_supported,
+> +	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>  };
+>  
+>  static void
+> 
 > -- 
-> 2.45.2
+> 2.25.1
 
 -- 
 Ville Syrjälä
