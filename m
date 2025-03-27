@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63E2A72AA0
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 08:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A936AA72AE3
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 08:56:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B607B10E08B;
-	Thu, 27 Mar 2025 07:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E21E10E864;
+	Thu, 27 Mar 2025 07:56:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YUp2PcTJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b/Sl61FY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FEF710E08B
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 07:36:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3817A10E860;
+ Thu, 27 Mar 2025 07:56:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743060962; x=1774596962;
+ t=1743062206; x=1774598206;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=yrY8VfjNeosBxXXkOauKnIhZOnR93pLSzmdIVaLmK3o=;
- b=YUp2PcTJRlL40XbEeeH6NlaAoKNl5WaILSx+S2vMJf3WaX3mGSfwCxO1
- 259QjtbWJUcnRIV/8dHrZQ44NOc0ohRllhBhyjdH/wRveOeajJJbSWkQg
- Wr9p32M2Jn029J0FpMAdVLEycFuGfcrDey115Or6Nt3fiQxhWq0Z2gKjR
- ij57rzTHaAuxQSrDL3U9xQ0z/gUUWSfbf1PUMq35p3zYRxR/FgFkhb2qh
- kILmcBNo9hvYHqMW9r16pMGoQO9QVJsZc8fcgeSThmd03WkwjZWQ5Whyb
- 7lRZm/xMh4oSWVw2hvjBgKhG6T0zDZ2LgogmsJE14RYdT9aoCFGtGUH1S g==;
-X-CSE-ConnectionGUID: hLPZ2Dj2Qjyi3h4S35ma/Q==
-X-CSE-MsgGUID: vTEOCE0KRLSfu2sofhUNWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44297071"
-X-IronPort-AV: E=Sophos;i="6.14,279,1736841600"; d="scan'208";a="44297071"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 00:36:01 -0700
-X-CSE-ConnectionGUID: rvqhyw/1TaqgLYess/peMw==
-X-CSE-MsgGUID: 7pjgDcxfTh+aro5gLqyw8w==
+ bh=Hk5wwWr6FgprKIKYssGs22nrCcPa/+/aue4dME9Ptv0=;
+ b=b/Sl61FYUQYXNeVY6gLsCF1F+ycmzChI6HtDXBFAEk/thAlEpk99uQj0
+ +NeVfy38tcJcDA6VE4EwqPR3gw+6LZfIQ0Jt065V/uM/gYWL+qPwuUQcc
+ o6bRrjPMO6lRNTni8bZjtuaJTCnTf8z9/tF83sZTeknx0qgt+k987cnuM
+ RQS16KNriTkI5fPEDq+fizsxgjWTg7Qu31ZKC3WKD7zlPa4har+0l06kM
+ Nci2hC7kDnmPdGDCp4WBCaacRHBvcFBwc7N7OmvnG7+kc/cTakpGXWdKP
+ jNQZyU1206jUXOdw9m3sRTtm0lA2Yl0veUKfK84ti6ppkxqgWzRKokOqs g==;
+X-CSE-ConnectionGUID: as5QYG8sQuW4+qx0l828Aw==
+X-CSE-MsgGUID: vNiZ+XhHTmyBp0/McRRGyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="61774540"
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="61774540"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 00:56:45 -0700
+X-CSE-ConnectionGUID: O/ldccTXSuaUgvwLzHaDVA==
+X-CSE-MsgGUID: RqX7WhiKR321XIXlgoDNLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,279,1736841600"; d="scan'208";a="125029781"
+X-IronPort-AV: E=Sophos;i="6.14,279,1736841600"; d="scan'208";a="124827107"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.17])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 00:35:59 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 00:56:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] drm/i915/dp: Reject HBR3 when sink doesn't
- support TPS4
-In-Reply-To: <20250306210740.11886-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 01/14] drm/i915: Drop the cached per-pipe min_cdclk[]
+ from bw state
+In-Reply-To: <20250326162544.3642-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250303123952.5669-1-ville.syrjala@linux.intel.com>
- <20250306210740.11886-1-ville.syrjala@linux.intel.com>
-Date: Thu, 27 Mar 2025 09:35:56 +0200
-Message-ID: <87h63f6i3n.fsf@intel.com>
+References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
+ <20250326162544.3642-2-ville.syrjala@linux.intel.com>
+Date: Thu, 27 Mar 2025 09:56:41 +0200
+Message-ID: <87a5967vpi.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,117 +72,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 06 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+On Wed, 26 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> According to the DP spec TPS4 is mandatory for HBR3. We have
-> however seen some broken eDP sinks that violate this and
-> declare support for HBR3 without TPS4 support.
->
-> At least in the case of the icl Dell XPS 13 7390 this results
-> in an unstable output.
->
-> Reject HBR3 when TPS4 supports is unavailable on the sink.
->
-> v2: Leave breadcrumbs in dmesg to avoid head scratching (Jani)
->
-> Cc: stable@vger.kernel.org
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> intel_bw_crtc_min_cdclk() only depends on the pipe data rate,
+> which we already have stashed in bw_state->data_rate[]. So
+> stashing the resulting min_cdclk[] as well is redundant. Get
+> rid of it.
+
+Yay, always a fan of removing intermediate state.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 49 +++++++++++++++++++++----
->  1 file changed, 42 insertions(+), 7 deletions(-)
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 205ec315b413..70f5d1465f81 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -172,10 +172,28 @@ int intel_dp_link_symbol_clock(int rate)
->=20=20
->  static int max_dprx_rate(struct intel_dp *intel_dp)
->  {
-> +	struct intel_display *display =3D to_intel_display(intel_dp);
-> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
-> +	int max_rate;
-> +
->  	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
-> +		max_rate =3D drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
-> +	else
-> +		max_rate =3D drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RA=
-TE]);
->=20=20
-> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
-> +	/*
-> +	 * Some broken eDP sinks illegally declare support for
-> +	 * HBR3 without TPS4, and are unable to produce a stable
-> +	 * output. Reject HBR3 when TPS4 is not available.
-> +	 */
-> +	if (max_rate >=3D 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-> +		drm_dbg_kms(display->drm,
-> +			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-> +			    encoder->base.base.id, encoder->base.name);
-> +		max_rate =3D 540000;
-> +	}
-> +
-> +	return max_rate;
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 17 ++++++++---------
+>  drivers/gpu/drm/i915/display/intel_bw.h |  1 -
+>  2 files changed, 8 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
+15/display/intel_bw.c
+> index bb81efec08a0..15c2377193f7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -825,14 +825,13 @@ static unsigned int intel_bw_crtc_data_rate(const s=
+truct intel_crtc_state *crtc_
 >  }
 >=20=20
->  static int max_dprx_lane_count(struct intel_dp *intel_dp)
-> @@ -4170,6 +4188,9 @@ static void intel_edp_mso_init(struct intel_dp *int=
-el_dp)
->  static void
->  intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  /* "Maximum Pipe Read Bandwidth" */
+> -static int intel_bw_crtc_min_cdclk(const struct intel_crtc_state *crtc_s=
+tate)
+> +static int intel_bw_crtc_min_cdclk(struct intel_display *display,
+> +				   unsigned int data_rate)
 >  {
-> +	struct intel_display *display =3D to_intel_display(intel_dp);
-> +	struct intel_encoder *encoder =3D &dp_to_dig_port(intel_dp)->base;
-> +
->  	intel_dp->num_sink_rates =3D 0;
->=20=20
->  	if (intel_dp->edp_dpcd[0] >=3D DP_EDP_14) {
-> @@ -4180,10 +4201,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->  				 sink_rates, sizeof(sink_rates));
->=20=20
->  		for (i =3D 0; i < ARRAY_SIZE(sink_rates); i++) {
-> -			int val =3D le16_to_cpu(sink_rates[i]);
+> -	struct intel_display *display =3D to_intel_display(crtc_state);
 > -
-> -			if (val =3D=3D 0)
-> -				break;
-> +			int rate;
+>  	if (DISPLAY_VER(display) < 12)
+>  		return 0;
 >=20=20
->  			/* Value read multiplied by 200kHz gives the per-lane
->  			 * link rate in kHz. The source rates are, however,
-> @@ -4191,7 +4209,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->  			 * back to symbols is
->  			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
->  			 */
-> -			intel_dp->sink_rates[i] =3D (val * 200) / 10;
-> +			rate =3D le16_to_cpu(sink_rates[i]) * 200 / 10;
-> +
-> +			if (rate =3D=3D 0)
-> +				break;
-> +
-> +			/*
-> +			 * Some broken eDP sinks illegally declare support for
-> +			 * HBR3 without TPS4, and are unable to produce a stable
-> +			 * output. Reject HBR3 when TPS4 is not available.
-> +			 */
-> +			if (rate >=3D 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-> +				drm_dbg_kms(display->drm,
-> +					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-> +					    encoder->base.base.id, encoder->base.name);
-> +				break;
-> +			}
-> +
-> +			intel_dp->sink_rates[i] =3D rate;
+> -	return DIV_ROUND_UP_ULL(mul_u32_u32(intel_bw_crtc_data_rate(crtc_state)=
+, 10), 512);
+> +	return DIV_ROUND_UP_ULL(mul_u32_u32(data_rate, 10), 512);
+>  }
+>=20=20
+>  static unsigned int intel_bw_num_active_planes(struct intel_display *dis=
+play,
+> @@ -1170,7 +1169,8 @@ static bool intel_bw_state_changed(struct intel_dis=
+play *display,
+>  				return true;
 >  		}
->  		intel_dp->num_sink_rates =3D i;
+>=20=20
+> -		if (old_bw_state->min_cdclk[pipe] !=3D new_bw_state->min_cdclk[pipe])
+> +		if (intel_bw_crtc_min_cdclk(display, old_bw_state->data_rate[pipe]) !=
+=3D
+> +		    intel_bw_crtc_min_cdclk(display, new_bw_state->data_rate[pipe]))
+>  			return true;
 >  	}
+>=20=20
+> @@ -1271,7 +1271,9 @@ int intel_bw_min_cdclk(struct intel_display *displa=
+y,
+>  	min_cdclk =3D intel_bw_dbuf_min_cdclk(display, bw_state);
+>=20=20
+>  	for_each_pipe(display, pipe)
+> -		min_cdclk =3D max(min_cdclk, bw_state->min_cdclk[pipe]);
+> +		min_cdclk =3D max(min_cdclk,
+> +				intel_bw_crtc_min_cdclk(display,
+> +							bw_state->data_rate[pipe]));
+>=20=20
+>  	return min_cdclk;
+>  }
+> @@ -1299,9 +1301,6 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_sta=
+te *state,
+>  		old_bw_state =3D intel_atomic_get_old_bw_state(state);
+>=20=20
+>  		skl_crtc_calc_dbuf_bw(new_bw_state, crtc_state);
+> -
+> -		new_bw_state->min_cdclk[crtc->pipe] =3D
+> -			intel_bw_crtc_min_cdclk(crtc_state);
+>  	}
+>=20=20
+>  	if (!old_bw_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
+15/display/intel_bw.h
+> index c18126c83d2e..3e4397c85774 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -54,7 +54,6 @@ struct intel_bw_state {
+>  	 */
+>  	bool force_check_qgv;
+>=20=20
+> -	int min_cdclk[I915_MAX_PIPES];
+>  	unsigned int data_rate[I915_MAX_PIPES];
+>  	u8 num_active_planes[I915_MAX_PIPES];
+>  };
 
 --=20
 Jani Nikula, Intel
