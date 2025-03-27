@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AA5A731DF
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 13:06:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E113CA7327B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 13:47:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6C610E8AF;
-	Thu, 27 Mar 2025 12:06:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA4310E8B5;
+	Thu, 27 Mar 2025 12:47:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTmuz300";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fWs42Mky";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B742810E8AE;
- Thu, 27 Mar 2025 12:06:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3863510E8B5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 12:47:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743077178; x=1774613178;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mlGgGzm765iNgrMfQqVgnBmA33HTsj3cbX6uSVDSkWg=;
- b=ZTmuz300mAaXdmQ3Y9GbVsC3OGHWh1dFUv/QM5SghmWBIIVa1RruksJv
- DNucmGjKxtBvetZdV/ZeOAaYElB2n60TS8X9PA7DO9wgDYaSK5eIkk2xG
- mCq7FdFOV8KzjxJhDMx51OvNS6+6OsMvxX4fcmU7dZW8AWCkl00rFV6//
- CHf1mCxxqPD65zS4Y8gWsu/GdyoksME6dB760514Fo5118FbH9I37A7Jr
- VAY1e9GZkkieDFShEt0sfUpVeDfEiZv5XMVAezX5nHGmH8ktdi8hn4XSa
- h7lad5mdbyvKsTOrPX9Tw3WN9oPHku1zc2loYimDlMP4F0fvrCGleHwAv A==;
-X-CSE-ConnectionGUID: AOrrxb1jTNuq0FBcE2aVCw==
-X-CSE-MsgGUID: W8twonI1Q12TkVqCKH1mGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="61798403"
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="61798403"
+ t=1743079665; x=1774615665;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dPTgiceUwjafHwdSnWa1VDkHBvutgxCyLTWXMroYQ7s=;
+ b=fWs42MkyT5Mb+Cn5HkDnN3YxZPZGse1KZSb16DsXKKUj6UkqVYgl6UhY
+ nH6kNxpsKOT6ZwI7MFaBqcCfwaw2eEI7gFtQz1AyBfEUehH2dk1nBmtHg
+ 6z1eBVW8EwZjgHSLTzscwbC+uxj6lkeWxBCaWSxIur+FPjnG8Qm/01CgD
+ 7/uPdNx2y+EXOUagnbJGrcIO2Eac4iXIG9+OBcVDf3I+edGGwKcKOkbor
+ IOsXIUnEVD0lcV7N4DG2IvCK/2UNqBn35RoRxUF2hxoeFYDCt2wlLH9Pn
+ 2GWPofsMQFhZC9WcJ6462w9/vQczwzNJRa8RZIVwrg5VPrS3xa6cQ49L7 Q==;
+X-CSE-ConnectionGUID: cwXMVc02Qem77SUCkcVhhw==
+X-CSE-MsgGUID: hJzMh+nITWGnHQaLqn0RdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="61938114"
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="61938114"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 05:06:16 -0700
-X-CSE-ConnectionGUID: zImeuglCRIGF8vrEbpxkvQ==
-X-CSE-MsgGUID: VZN5+cEMReGteBCnjXCQAg==
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 05:47:45 -0700
+X-CSE-ConnectionGUID: etJtt3kDRQqY2UT27GZXKQ==
+X-CSE-MsgGUID: pKlRY0cXSwS1XXbuh4p78A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="130315434"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 27 Mar 2025 05:06:13 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Mar 2025 14:06:12 +0200
-Date: Thu, 27 Mar 2025 14:06:12 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 05/14] drm/i915: Avoid triggering unwanted cdclk
- changes due to dbuf bandwidth changes
-Message-ID: <Z-U_NLpqX9vpJs76@intel.com>
-References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
- <20250326162544.3642-6-ville.syrjala@linux.intel.com>
- <87y0wq6gz0.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="130324033"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.17])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 05:47:43 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Kees Cook <kees@kernel.org>,
+ Nicolas Chauvet <kwizart@gmail.com>,
+ Damian Tometzki <damian@riscv-rocks.de>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/gvt: fix unterminated-string-initialization warning
+Date: Thu, 27 Mar 2025 14:47:39 +0200
+Message-Id: <20250327124739.2609656-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87y0wq6gz0.fsf@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,81 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 27, 2025 at 10:00:19AM +0200, Jani Nikula wrote:
-> On Wed, 26 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Currently intel_bw_calc_min_cdclk() always adds the bw_state
-> > to the atomic state. Not only does it result in potentially
-> > redundant work later, it's also currently causing unwanted cdclk
-> > changes during driver load.
-> 
-> Can you elaborate how we currently end up changing cdclk even if the
-> dbuf bw isn't changing? Different rules wrt to GOP?
+Initializing const char opregion_signature[16] = OPREGION_SIGNATURE
+(which is "IntelGraphicsMem") drops the NUL termination of the
+string. This is intentional, but the compiler doesn't know this.
 
-Older GOP versions always use the max cdclk. IIRC newer ones
-might be using a more optimal value.
+Switch to initializing header->signature directly from the string
+litaral, with sizeof destination rather than source. We don't treat the
+signature as a string other than for initialization; it's really just a
+blob of binary data.
 
-> 
-> Anyway, the change make sense no matter what,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> >
-> > Check if the dbuf bw is actually changing before we decide to
-> > pull in the bw state.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 17 +++++++++++++----
-> >  1 file changed, 13 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> > index 67d088da1f38..19b516084fac 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -1294,7 +1294,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
-> >  	struct intel_bw_state *new_bw_state = NULL;
-> >  	const struct intel_bw_state *old_bw_state = NULL;
-> >  	const struct intel_cdclk_state *cdclk_state;
-> > -	const struct intel_crtc_state *crtc_state;
-> > +	const struct intel_crtc_state *old_crtc_state;
-> > +	const struct intel_crtc_state *new_crtc_state;
-> >  	int old_min_cdclk, new_min_cdclk;
-> >  	struct intel_crtc *crtc;
-> >  	int i;
-> > @@ -1302,15 +1303,23 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
-> >  	if (DISPLAY_VER(display) < 9)
-> >  		return 0;
-> >  
-> > -	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> > +					    new_crtc_state, i) {
-> > +		struct intel_dbuf_bw old_dbuf_bw, new_dbuf_bw;
-> > +
-> > +		skl_crtc_calc_dbuf_bw(&old_dbuf_bw, old_crtc_state);
-> > +		skl_crtc_calc_dbuf_bw(&new_dbuf_bw, new_crtc_state);
-> > +
-> > +		if (!intel_dbuf_bw_changed(display, &old_dbuf_bw, &new_dbuf_bw))
-> > +			continue;
-> > +
-> >  		new_bw_state = intel_atomic_get_bw_state(state);
-> >  		if (IS_ERR(new_bw_state))
-> >  			return PTR_ERR(new_bw_state);
-> >  
-> >  		old_bw_state = intel_atomic_get_old_bw_state(state);
-> >  
-> > -		skl_crtc_calc_dbuf_bw(&new_bw_state->dbuf_bw[crtc->pipe],
-> > -				      crtc_state);
-> > +		new_bw_state->dbuf_bw[crtc->pipe] = new_dbuf_bw;
-> >  	}
-> >  
-> >  	if (!old_bw_state)
-> 
-> -- 
-> Jani Nikula, Intel
+Add a static assert for good measure to cross-check the sizes.
 
+Reported-by: Kees Cook <kees@kernel.org>
+Closes: https://lore.kernel.org/r/20250310222355.work.417-kees@kernel.org
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13934
+Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+Tested-by: Damian Tometzki <damian@riscv-rocks.de>
+Cc: stable@vger.kernel.org
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/gvt/opregion.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
+index 509f9ccae3a9..dbad4d853d3a 100644
+--- a/drivers/gpu/drm/i915/gvt/opregion.c
++++ b/drivers/gpu/drm/i915/gvt/opregion.c
+@@ -222,7 +222,6 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+ 	u8 *buf;
+ 	struct opregion_header *header;
+ 	struct vbt v;
+-	const char opregion_signature[16] = OPREGION_SIGNATURE;
+ 
+ 	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
+ 	vgpu_opregion(vgpu)->va = (void *)__get_free_pages(GFP_KERNEL |
+@@ -236,8 +235,10 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+ 	/* emulated opregion with VBT mailbox only */
+ 	buf = (u8 *)vgpu_opregion(vgpu)->va;
+ 	header = (struct opregion_header *)buf;
+-	memcpy(header->signature, opregion_signature,
+-	       sizeof(opregion_signature));
++
++	static_assert(sizeof(header->signature) == sizeof(OPREGION_SIGNATURE) - 1);
++	memcpy(header->signature, OPREGION_SIGNATURE, sizeof(header->signature));
++
+ 	header->size = 0x8;
+ 	header->opregion_ver = 0x02000000;
+ 	header->mboxes = MBOX_VBT;
 -- 
-Ville Syrjälä
-Intel
+2.39.5
+
