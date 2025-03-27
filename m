@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11D6A72E68
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 12:05:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7AA5A731DF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 13:06:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D2610E031;
-	Thu, 27 Mar 2025 11:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6C610E8AF;
+	Thu, 27 Mar 2025 12:06:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hbm4H2LK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTmuz300";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4FCF10E031;
- Thu, 27 Mar 2025 11:05:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B742810E8AE;
+ Thu, 27 Mar 2025 12:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743073540; x=1774609540;
+ t=1743077178; x=1774613178;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=cM5umJHRd2oQhLm2MKzIt8XqtEeKsBlo+aE8AkGekJ4=;
- b=Hbm4H2LKixDcvO7cP1kj2b0yCbLuFi0Wom7ZdwOWS56Lg2CXzcbvk9DB
- uLmWA9nd69fCsEqlWP+p8GLyGcW0tEuBIoPTQcZpLeyFq3hONBCBsxjPL
- CeW9bFq2z/CrP/fMUCgwsdaZiJ4OnxgBaZjk10UbswfYJ+79TvpZypbPa
- +ciXyb8wcxSCeRjNE298FqbJ6PCSm+rjDntJQFN7dRFWxhJVmAZXmQs92
- qu9PPSAFYiyLhL2+xvLbCEhW5Wd0dgRbEgjs7HdMwO/zmtcfiLcT14d7k
- MggJRwgOK+MAG+L6gG2LjJOKlFdkUNv1Y5hQKUDUCW4xa+rhvzF/QvhIQ A==;
-X-CSE-ConnectionGUID: p6tcmp9tQmSP1bv0M086fQ==
-X-CSE-MsgGUID: ygeWq73TQPaoV82/hSIM/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="69760580"
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="69760580"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 04:05:40 -0700
-X-CSE-ConnectionGUID: nDOZNRrLTw2DpV00eyRs3Q==
-X-CSE-MsgGUID: C8VW7jklQIS+r0mnFfdU3Q==
+ bh=mlGgGzm765iNgrMfQqVgnBmA33HTsj3cbX6uSVDSkWg=;
+ b=ZTmuz300mAaXdmQ3Y9GbVsC3OGHWh1dFUv/QM5SghmWBIIVa1RruksJv
+ DNucmGjKxtBvetZdV/ZeOAaYElB2n60TS8X9PA7DO9wgDYaSK5eIkk2xG
+ mCq7FdFOV8KzjxJhDMx51OvNS6+6OsMvxX4fcmU7dZW8AWCkl00rFV6//
+ CHf1mCxxqPD65zS4Y8gWsu/GdyoksME6dB760514Fo5118FbH9I37A7Jr
+ VAY1e9GZkkieDFShEt0sfUpVeDfEiZv5XMVAezX5nHGmH8ktdi8hn4XSa
+ h7lad5mdbyvKsTOrPX9Tw3WN9oPHku1zc2loYimDlMP4F0fvrCGleHwAv A==;
+X-CSE-ConnectionGUID: AOrrxb1jTNuq0FBcE2aVCw==
+X-CSE-MsgGUID: W8twonI1Q12TkVqCKH1mGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="61798403"
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="61798403"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 05:06:16 -0700
+X-CSE-ConnectionGUID: zImeuglCRIGF8vrEbpxkvQ==
+X-CSE-MsgGUID: VZN5+cEMReGteBCnjXCQAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="156039618"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.3])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2025 04:05:38 -0700
-Date: Thu, 27 Mar 2025 12:05:34 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="130315434"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 27 Mar 2025 05:06:13 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 27 Mar 2025 14:06:12 +0200
+Date: Thu, 27 Mar 2025 14:06:12 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Arshad Mehmood <arshad.mehmood@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH v2 1/6] drm/i915: Add the FIRST_CCS() helper
-Message-ID: <Z-Uw_r1Z-T8y3r43@ashyti-mobl2.lan>
-References: <20250326234005.1574688-1-andi.shyti@linux.intel.com>
- <20250326234005.1574688-2-andi.shyti@linux.intel.com>
- <87ldsq69g5.fsf@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 05/14] drm/i915: Avoid triggering unwanted cdclk
+ changes due to dbuf bandwidth changes
+Message-ID: <Z-U_NLpqX9vpJs76@intel.com>
+References: <20250326162544.3642-1-ville.syrjala@linux.intel.com>
+ <20250326162544.3642-6-ville.syrjala@linux.intel.com>
+ <87y0wq6gz0.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ldsq69g5.fsf@intel.com>
+In-Reply-To: <87y0wq6gz0.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,44 +73,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 27, 2025 at 12:42:50PM +0200, Jani Nikula wrote:
-> On Thu, 27 Mar 2025, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> > From: Andi Shyti <andi.shyti@intel.com>
+On Thu, Mar 27, 2025 at 10:00:19AM +0200, Jani Nikula wrote:
+> On Wed, 26 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > >
-> > Some GPUs, like DG2, can host more than one CCS engine. Some
-> > workarounds or enablements need to happen only once for all the
-> > engines in the GTâ€”for example, on the engine with the lowest
-> > instance.
-> >
-> > The FIRST_CCS() helper first checks if the engine is a Compute
-> > engine, and then whether it's the one with the lowest instance.
-> >
-> > Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_drv.h | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 54538b6f85df..5cb501393c4b 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -619,6 +619,9 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-> >  #define CCS_MASK(gt) \
-> >  	ENGINE_INSTANCES_MASK(gt, CCS0, I915_MAX_CCS)
-> >  
-> > +#define FIRST_CCS(e__) \
-> > +	(CCS_MASK(e__->gt) && (__ffs(CCS_MASK(e__->gt)) == e__->instance))
-> > +
+> > Currently intel_bw_calc_min_cdclk() always adds the bw_state
+> > to the atomic state. Not only does it result in potentially
+> > redundant work later, it's also currently causing unwanted cdclk
+> > changes during driver load.
 > 
-> Could I persuade you to find a more specific header file for this, along
-> with the CCS_MASK etc.?
+> Can you elaborate how we currently end up changing cdclk even if the
+> dbuf bw isn't changing? Different rules wrt to GOP?
 
-yes, sure, I think this should go inside the gt/ (I don't also
-like the name FIRST_CCS but could not come out with anything
-better).
+Older GOP versions always use the max cdclk. IIRC newer ones
+might be using a more optimal value.
 
-All the engine related defines should go inside the gt/, I will
-take care of it, but that's argument for another patch.
+> 
+> Anyway, the change make sense no matter what,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >
+> > Check if the dbuf bw is actually changing before we decide to
+> > pull in the bw state.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.c | 17 +++++++++++++----
+> >  1 file changed, 13 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> > index 67d088da1f38..19b516084fac 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> > @@ -1294,7 +1294,8 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+> >  	struct intel_bw_state *new_bw_state = NULL;
+> >  	const struct intel_bw_state *old_bw_state = NULL;
+> >  	const struct intel_cdclk_state *cdclk_state;
+> > -	const struct intel_crtc_state *crtc_state;
+> > +	const struct intel_crtc_state *old_crtc_state;
+> > +	const struct intel_crtc_state *new_crtc_state;
+> >  	int old_min_cdclk, new_min_cdclk;
+> >  	struct intel_crtc *crtc;
+> >  	int i;
+> > @@ -1302,15 +1303,23 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
+> >  	if (DISPLAY_VER(display) < 9)
+> >  		return 0;
+> >  
+> > -	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> > +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > +					    new_crtc_state, i) {
+> > +		struct intel_dbuf_bw old_dbuf_bw, new_dbuf_bw;
+> > +
+> > +		skl_crtc_calc_dbuf_bw(&old_dbuf_bw, old_crtc_state);
+> > +		skl_crtc_calc_dbuf_bw(&new_dbuf_bw, new_crtc_state);
+> > +
+> > +		if (!intel_dbuf_bw_changed(display, &old_dbuf_bw, &new_dbuf_bw))
+> > +			continue;
+> > +
+> >  		new_bw_state = intel_atomic_get_bw_state(state);
+> >  		if (IS_ERR(new_bw_state))
+> >  			return PTR_ERR(new_bw_state);
+> >  
+> >  		old_bw_state = intel_atomic_get_old_bw_state(state);
+> >  
+> > -		skl_crtc_calc_dbuf_bw(&new_bw_state->dbuf_bw[crtc->pipe],
+> > -				      crtc_state);
+> > +		new_bw_state->dbuf_bw[crtc->pipe] = new_dbuf_bw;
+> >  	}
+> >  
+> >  	if (!old_bw_state)
+> 
+> -- 
+> Jani Nikula, Intel
 
-Thanks, Jani,
-Andi
+-- 
+Ville Syrjälä
+Intel
