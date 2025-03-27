@@ -2,111 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA09A73433
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 15:18:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 316DAA73523
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Mar 2025 15:58:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 622C710E8EA;
-	Thu, 27 Mar 2025 14:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 845A210E331;
+	Thu, 27 Mar 2025 14:58:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Jr6sjJMr";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Gu1hNPQ1";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="vYfk6Bar";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="kROhuoCn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1RaulIW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 609F510E8EA
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Mar 2025 14:18:39 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id D2C2E1F786;
- Thu, 27 Mar 2025 14:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1743085118; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oHDUk5d5m1G0uGmpSfw/G6GtxuKRMzWpxSOvf8LUe6Q=;
- b=Jr6sjJMrHwaUs2NCGenzhr/1Psowzab9C43iR6VRECgG2OMrMmQkbgK9mh4xmkf0DF733h
- VboP0qjSdhAbg6t2CKx3CramVWLzRcpzoRZ4rC1d4tF2pXyi6hOGqgBimVH+s3sg72mE8g
- dhFtQn3wgVRoBqD0guOzg2YAPt6BksA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1743085118;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oHDUk5d5m1G0uGmpSfw/G6GtxuKRMzWpxSOvf8LUe6Q=;
- b=Gu1hNPQ19PB4r5f9EC6VMKvmX85zjhEdvhDGHieHIkkOp4OxctTYupCyBjQihPnv/sx/DX
- 7cG35lVn3AicJLCA==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=vYfk6Bar;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=kROhuoCn
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1743085117; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oHDUk5d5m1G0uGmpSfw/G6GtxuKRMzWpxSOvf8LUe6Q=;
- b=vYfk6BarQ/4w08tIZ2lUqYUPTC/mkD+yAFym6MRsYbgTlurxPcHsBlc7aBrvf2ORLLHMKp
- Fsncdy4oi/1yOgHPhrf52a20hBVcujj8EEPQRrTcIHfdY6lsEO7Pv9TRFCexfyQp7q2K3Q
- Gy7+auTtndJ/j0q+xqFYXCMuWnLy2LY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1743085117;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=oHDUk5d5m1G0uGmpSfw/G6GtxuKRMzWpxSOvf8LUe6Q=;
- b=kROhuoCn+dWuIvESBrcM8XLDEQwX0b4SJiGQaftUyHAPJ36qAjstS1SnZk75KseAxv4U8L
- F4LUJrVjBtkL+vAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5BD11139D4;
- Thu, 27 Mar 2025 14:18:37 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 7Ou2FD1e5WdnXwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 27 Mar 2025 14:18:37 +0000
-Date: Thu, 27 Mar 2025 15:18:35 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250327141835.GA96037@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E3210E068;
+ Thu, 27 Mar 2025 14:58:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743087497; x=1774623497;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FpRTlUjXyyDeErV22FlcsUV2W9Y9MIG5SBpruucK8qw=;
+ b=b1RaulIWdS9qaDkZPtSMDQFrFzSRAmx3oIpXAaD75rVCSZqVfvM8UxwC
+ k4aUqs45ok1LBTxUDi1ejJNd41Z0K1hKXT+Q6coS7+jC48d0HY4kjITv6
+ KcAJvDZ/22qoh1uVq1N0J6fEVVonEYbv2+oaAqSB7TAiqNXfoCKF7zc2v
+ 7amuY7D/Oci9D6xgcCIGhIIbvSF/u2gqL7izNNRCUoCCXKPh/ucpkEQi0
+ TB3qZfbrsiI4hUQZzcliltbaq7LNesbbxdA2i5PtOw8YXUmKUmHGYNrvt
+ w0hBZwlooZAOnFRKWX8EP7I8sJZtXe4k0Nd2ZP7z7Z7XPVDyHHHfQG2R5 g==;
+X-CSE-ConnectionGUID: l/x+NVulSvGjkY2gXEwxAQ==
+X-CSE-MsgGUID: hMULdBx/Tv2DkG1oRPbX3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="69788013"
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="69788013"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 07:58:16 -0700
+X-CSE-ConnectionGUID: piyfXA7uQze7gRr4T3us0g==
+X-CSE-MsgGUID: TZN8FLlPTOqUnbL0T7Rt8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,280,1736841600"; d="scan'208";a="125381238"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2025 07:58:14 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 0/2] VRR Register Read/Write Updates
+Date: Thu, 27 Mar 2025 20:16:27 +0530
+Message-ID: <20250327144629.648306-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Rspamd-Queue-Id: D2C2E1F786
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; RCVD_COUNT_TWO(0.00)[2];
- ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MISSING_XM_UA(0.00)[];
- TO_DN_SOME(0.00)[]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,48 +66,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Now that we have switched to VRR Timing generator from PTL onwards, we
+no longer need to program VTOTAL.Vtotal bits, which were used by Legacy
+Timing Generator.
+This patch series is a continuation from discussion of another patch for
+avoid reading/writing VTOTAL.Vtotal bits [1].
+First patch introduces a macro to exclude DSI transcoded from VRR
+programming in a consistent manner. The next patch actually modifies
+reading/writing VTOTAL register.
 
-here's the PR from drm-misc-next-fixes for this week. There's a single
-trivial fix for the new adp driver.
+[1] https://patchwork.freedesktop.org/patch/644683/?series=134383&rev=17
 
-Best regards
-Thomas
+Rev2: Address comments from Ville.
+Rev3: Fix the BAT issues due to incorrect check.
+Keep the readout for vtotal intact, and just overwrite for cases where
+we dont want to read vtotal. (Ville)
 
-drm-misc-next-fixes-2025-03-27:
-Short summary of fixes pull:
+Ankit Nautiyal (2):
+  drm/i915/display: Introduce transcoder_has_vrr() helper
+  drm/i915/display: Avoid use of VTOTAL.Vtotal bits
 
-adp:
-- Fix error handling in plane setup
-The following changes since commit 914ee6e730e134410b77edc453b629767e84c32c:
-
-  drm/appletbdrm: Fix ref-counting on dmadev (2025-03-10 10:54:24 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-03-27
-
-for you to fetch changes up to ee20c69c789b6cb2179a535cf440d72b98f4a134:
-
-  drm: adp: Fix NULL vs IS_ERR() check in adp_plane_new() (2025-03-14 09:42:11 -0400)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-adp:
-- Fix error handling in plane setup
-
-----------------------------------------------------------------
-Dan Carpenter (1):
-      drm: adp: Fix NULL vs IS_ERR() check in adp_plane_new()
-
- drivers/gpu/drm/adp/adp_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 29 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 10 +++++++
+ 2 files changed, 38 insertions(+), 1 deletion(-)
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.45.2
+
