@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE56A748A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Mar 2025 11:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F37A748CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Mar 2025 11:58:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D35910E9DA;
-	Fri, 28 Mar 2025 10:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 228ED10E9DD;
+	Fri, 28 Mar 2025 10:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZL6EmQk+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL3Chbil";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6F610E9DA;
- Fri, 28 Mar 2025 10:46:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A6910E0F3;
+ Fri, 28 Mar 2025 10:58:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743158795; x=1774694795;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pkCIVidlW+xUA8a12iAvYcIOv3QWSvZNAy+X7yunKNs=;
- b=ZL6EmQk+lW1i0401Ho9zwyK7PzIECFukjtHRrJVaUPzNRR7EB5IgIvB8
- OnEstarsPEzuGEVdCqNY1tJYYvtViYrY8mkU2xAB3ndM8OpeYIcyH9YuN
- 6iiUH2n0kHLV2deeTCik0eEQPKe/5Z1GI2u0koe/jr1hyAiCLQyyLUUlA
- LLfaLTt3Q9Qkq4YF5rq2CIwSu5P6OoHjwXCteid+i61BfB/HKhLcF8sI1
- 928IZzCnuH/9b35CHeDbDrZvt0nmYRUqjU0PwI7TFJzKFRQXtZDwSVm7N
- 8jCvSs+L8nDqDjs2yKhcNx182rYhyJvd8VIL1AVKl2RrF8VOzcXUhM2iJ Q==;
-X-CSE-ConnectionGUID: OcsjMycTQuunv5LGhd6NTA==
-X-CSE-MsgGUID: W0lPBf1zTc6ZYiJz+Z8zZw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="44432598"
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="44432598"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 03:46:35 -0700
-X-CSE-ConnectionGUID: uhEZ4ZJhSX+3IShoAxy1uQ==
-X-CSE-MsgGUID: bXys1AR8R5+MBbTh44mHWQ==
+ t=1743159490; x=1774695490;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=NBKMdXHbffNW2abK9cwB0JDAAEwFJMABJxQQhGo+3yA=;
+ b=mL3Chbil8HxTlMo/NZwWJe+SJq0R8IQgjnWaMIXe9Od+OQ6H262PIVvi
+ ONTLud50e2P8+3UIvrCOtht63tuZG6J4YuOGolxmo4j3LJBJULhizVhn5
+ igk4uYf7sDjDD8ZoAaj5TIKCd5XxyOHo2eNmPK6Xehp5WuWZyzRr+ytMC
+ EgtAixw8gLjHSQetPfYU+kBYvNx5DF8XlZ5XGZIcZHQXB9SpEOvsq8yzG
+ ImOSj2rozHySTMm+u1vZ34Cyy+x8rHzqEthSnHzKNkdGobVHlHrCA+WA9
+ HqsjgLQrZSrgJFPVBgMPw7IkUJa9QtKp2cT2epD634PVSMrYSS0YvJBp6 Q==;
+X-CSE-ConnectionGUID: 3FfrgvWKSc6sHqZx2WVpIQ==
+X-CSE-MsgGUID: 120S8aBaSiupNMG0xaePvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11385"; a="55886157"
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="55886157"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2025 03:58:09 -0700
+X-CSE-ConnectionGUID: Iek/3Mw4SHWMNeo2r+T/fw==
+X-CSE-MsgGUID: 0KXJWNuWR9aKUWsq/u/qWg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="126337752"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.94])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2025 03:46:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel
- <dri-devel@lists.freedesktop.org>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Andi Shyti
- <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH] drm/i915/gem: Convert SPDX headers to single-line format
-In-Reply-To: <20250327232629.2939-1-andi.shyti@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250327232629.2939-1-andi.shyti@linux.intel.com>
-Date: Fri, 28 Mar 2025 12:46:29 +0200
-Message-ID: <87msd54em2.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.14,283,1736841600"; d="scan'208";a="130625460"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 28 Mar 2025 03:58:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Mar 2025 12:58:06 +0200
+Date: Fri, 28 Mar 2025 12:58:06 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/6] drm/i915: dpll, ddi, crc, psr etc conversions to
+ struct intel_display
+Message-ID: <Z-aAvijGRTTANm0_@intel.com>
+References: <cover.1742906146.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1742906146.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,15 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 28 Mar 2025, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> Replace multi-line SPDX license headers with single-line
-> equivalents (// SPDX-License-Identifier: MIT or /* ... */ for
-> headers), as preferred by current kernel coding style.
->
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+On Tue, Mar 25, 2025 at 02:36:32PM +0200, Jani Nikula wrote:
+> We're getting there!
+> 
+> Jani Nikula (6):
+>   drm/i915/dpll: convert intel_dpll.[ch] to struct intel_display
+>   drm/i915/ddi: convert intel_ddi.c to struct intel_display
+>   drm/i915/crc: convert intel_pipe_crc.c to struct intel_display
+>   drm/i915/psr: further conversions to struct intel_display
+>   drm/i915/wa: convert intel_display_wa.[ch] to struct intel_display
+>   drm/i915/display: drop some unnecessary intel_de_* compatibility
+>     wrappers
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+> 
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 904 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_de.h       |  16 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
+>  .../drm/i915/display/intel_display_driver.c   |   7 +-
+>  .../gpu/drm/i915/display/intel_display_wa.c   |  30 +-
+>  .../gpu/drm/i915/display/intel_display_wa.h   |  11 +-
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 312 +++---
+>  drivers/gpu/drm/i915/display/intel_dpll.h     |  13 +-
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+>  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 137 ++-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |   5 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  85 +-
+>  drivers/gpu/drm/xe/display/xe_display_wa.c    |   6 +-
+>  13 files changed, 729 insertions(+), 803 deletions(-)
+> 
+> -- 
+> 2.39.5
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
