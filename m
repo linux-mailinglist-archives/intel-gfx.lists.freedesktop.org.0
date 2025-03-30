@@ -2,77 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74731A75A65
-	for <lists+intel-gfx@lfdr.de>; Sun, 30 Mar 2025 16:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D83A75B60
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Mar 2025 19:26:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D8A10E1C0;
-	Sun, 30 Mar 2025 14:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD3F10E314;
+	Sun, 30 Mar 2025 17:26:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F0WTdha1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H77tzUKH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA4610E1C0
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Mar 2025 14:53:14 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-223f4c06e9fso67773155ad.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 30 Mar 2025 07:53:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1743346394; x=1743951194; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=1gpBpp857KGUKkj2FFhAtCqlWpQJppTa6XQGxc0B3vY=;
- b=F0WTdha1Gs+3ImNcwE+rXg7/dfxpuGW+pcR1xDIIGKyNqvKEI+9Seiyr7HQ1rbVtkg
- b2BrCRIbkQtTZIcMgPM4MbqdUZvuJux5NFPAwlzVmpcvgVSLRn17ElD0B3jQaymCtXAz
- sTUDPnxABCWUBuyKNrxK5Kn3gfaa+npN3Qxim/1PBYP/FRUJ9+/hmtEZ6/z9OnkDJkuD
- gqQwnZuCfRd7UJFjuxjiviLqOsh5NHsKFk3sUSp5uyulqQJLLi48CpbsmVyD1RTV7pbQ
- lDg6Jmt9sP4kgGJGsRxe6irLZ00oYWcTGLUxNntvL/khblBBi5Q8afF+CCx0JiTdok8Y
- 8m+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1743346394; x=1743951194;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1gpBpp857KGUKkj2FFhAtCqlWpQJppTa6XQGxc0B3vY=;
- b=uf1tUMzBGkIEVvZmqQzsEY4gT/clszlgry+Vs9l2xT1i9idbsLpVwIf3T6VPJXl894
- 5PpCJ3QazzhlaYZCs6eKQdqr941yaAaH+8rztxdS+OsBe0U7pArihT1GJspZDnsQr3FF
- iLxOcErH1AMZw7GHUM0t7XfaJ0qy15niW6Wi9mfw04Jxagz99lv9RMqT/uX4va5nhAFs
- W7mkUNumglRmctvDCQrwv2BtFx0cD/7TvMuD8XuuyLt49jUf63KArXL8RkCDGu95xjBK
- ca5L9aB96Prmn/L1Dzdf+yjkoMOrTHBEgZhtB/ZSPE3YtqrLrhZx1SDCyLPau5xg6ZdY
- cwWA==
-X-Gm-Message-State: AOJu0YwT9Zkol2drxoIxxcYjaJPL7Vaa+3TpBbHNP5b2xYfzeuZh8Ro1
- XjFRnBerDpufoBHkecz2dco3reviuzmOkdrSghme3tKUYGYYfoy8
-X-Gm-Gg: ASbGncuyYzRPBUYLNFAzvzRKQ8cC1FWCbMlLv1UNPSnvAVGpJRmxc8eGjzoZrfFZmpT
- XyOnFJ20y2FlOdLD7sTPLVnBWIbOKaPspmqbnDehIs1Kj6B/6kIdL5PtcShu1Zyy/TGHHdOOutt
- 7a5ho3/n96J0WlXx8xzejd40l+ngL/btYP5VPbGRwJ4w7nJ6D1Id1M4u8X3l/vBBxPqflkhR/lf
- LspjvLPeHH7wQwCP+25noNnh7OapSasmi5FabLR6I5V7kvsFjPSQUzQe1hLF/l4JHXtwr9gSgic
- CpBdOSE5HNsGcKdnfVCj91RrtXyN63W0t0X+poJAVV4HBroUi6A+sqtQxmXSd8FXICoLykYQcAE
- f7EsI2Jc=
-X-Google-Smtp-Source: AGHT+IGu9HKANB/ggGladsYzfGeGJ99b5Mg3rsHMq3G79NuqEoNtlnzVXXVYjeAGCo8eMt4EAoYRfQ==
-X-Received: by 2002:a17:902:ec90:b0:221:1356:10c5 with SMTP id
- d9443c01a7336-22921ca4193mr129887945ad.9.1743346394332; 
- Sun, 30 Mar 2025 07:53:14 -0700 (PDT)
-Received: from localhost (om126233180002.36.openmobile.ne.jp. [126.233.180.2])
- by smtp.gmail.com with UTF8SMTPSA id
- 98e67ed59e1d1-3039e10baa2sm8653661a91.24.2025.03.30.07.53.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 30 Mar 2025 07:53:14 -0700 (PDT)
-Date: Sun, 30 Mar 2025 23:53:10 +0900
-From: Zhenyu Wang <zhenyuw.linux@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Kees Cook <kees@kernel.org>,
- Nicolas Chauvet <kwizart@gmail.com>,
- Damian Tometzki <damian@riscv-rocks.de>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/gvt: fix unterminated-string-initialization
- warning
-Message-ID: <Z-la1kFHvH4zu_X5@dell-wzy>
-References: <20250327124739.2609656-1-jani.nikula@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 319D510E314;
+ Sun, 30 Mar 2025 17:26:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743355591; x=1774891591;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5Po3JG2S9sbqBxuXPCmafclabzdq645cW4b9ZZs2W6c=;
+ b=H77tzUKH2GRXmPFpKQlTwtjXOlSYoyl15DosRMxwOUCPfBPCDaejNTis
+ 9Jr3hqLygozAOUzOcJ+KwvYjZP36pkzeGn4ZNk7xNpaibF3B1IPvAesHb
+ sc3RjZGG+ERYNIn++s+jiDh+m46WE8ufmHPRU0viVdUIK5WAs3Pc34/PQ
+ 4FbxdAm4YbvNsOgWdJtLeq5hJPNG/lQ4plZPVPKP6WF8c1iYldGdM6mqd
+ OXccA99CXkjwdMfjAmsOWwnJD+Jeb+51OnGaLIJaMJnhzRz07NUj20DH3
+ 4lfSrM9IetsSXNtP0kv30uI9ne4qV1o4bEWBr53VanDeY+bY3iAW+OZUT A==;
+X-CSE-ConnectionGUID: KAGMxmzeTMS1HyafegKuZg==
+X-CSE-MsgGUID: 0vWp2S1EQOmVIqdlNjp3ZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11389"; a="67129575"
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="67129575"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 10:26:31 -0700
+X-CSE-ConnectionGUID: Tc0+i3gKRdutU9tG96gMLg==
+X-CSE-MsgGUID: KGELH9VXQMyoX8SabrjbuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.14,289,1736841600"; d="scan'208";a="126367949"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.159])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2025 10:26:27 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com,
+ jani.nikula@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v3] drm/i915/display: implement wa_18038517565
+Date: Sun, 30 Mar 2025 20:26:16 +0300
+Message-ID: <20250330172616.718188-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250327124739.2609656-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,60 +69,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 27, 2025 at 02:47:39PM +0200, Jani Nikula wrote:
-> Initializing const char opregion_signature[16] = OPREGION_SIGNATURE
-> (which is "IntelGraphicsMem") drops the NUL termination of the
-> string. This is intentional, but the compiler doesn't know this.
->
+Disable FBC compressor clock gating before enabling FBC and
+clear it after disabling FBC.
 
-Indeed...
+v2: update the DG2 registers for this wa
 
-> Switch to initializing header->signature directly from the string
-> litaral, with sizeof destination rather than source. We don't treat the
-> signature as a string other than for initialization; it's really just a
-> blob of binary data.
-> 
-> Add a static assert for good measure to cross-check the sizes.
-> 
-> Reported-by: Kees Cook <kees@kernel.org>
-> Closes: https://lore.kernel.org/r/20250310222355.work.417-kees@kernel.org
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13934
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
-> Tested-by: Damian Tometzki <damian@riscv-rocks.de>
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
+v3: use local variable and single line reg definition (Jani)
 
-Reviewed-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
+Bspec: 74212, 72197, 69741, 65555
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h          |  6 ++++++
+ 2 files changed, 28 insertions(+)
 
->  drivers/gpu/drm/i915/gvt/opregion.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
-> index 509f9ccae3a9..dbad4d853d3a 100644
-> --- a/drivers/gpu/drm/i915/gvt/opregion.c
-> +++ b/drivers/gpu/drm/i915/gvt/opregion.c
-> @@ -222,7 +222,6 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
->  	u8 *buf;
->  	struct opregion_header *header;
->  	struct vbt v;
-> -	const char opregion_signature[16] = OPREGION_SIGNATURE;
->  
->  	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
->  	vgpu_opregion(vgpu)->va = (void *)__get_free_pages(GFP_KERNEL |
-> @@ -236,8 +235,10 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
->  	/* emulated opregion with VBT mailbox only */
->  	buf = (u8 *)vgpu_opregion(vgpu)->va;
->  	header = (struct opregion_header *)buf;
-> -	memcpy(header->signature, opregion_signature,
-> -	       sizeof(opregion_signature));
-> +
-> +	static_assert(sizeof(header->signature) == sizeof(OPREGION_SIGNATURE) - 1);
-> +	memcpy(header->signature, OPREGION_SIGNATURE, sizeof(header->signature));
-> +
->  	header->size = 0x8;
->  	header->opregion_ver = 0x02000000;
->  	header->mboxes = MBOX_VBT;
-> -- 
-> 2.39.5
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index e89cee323d8b..ce5b1e3f1c20 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -520,6 +520,20 @@ static void ilk_fbc_activate(struct intel_fbc *fbc)
+ 		       DPFC_CTL_EN | g4x_dpfc_ctl(fbc));
+ }
+ 
++static void fbc_compressor_clkgate_disable_wa(struct intel_fbc *fbc,
++					      bool disable)
++{
++	struct intel_display *display = fbc->display;
++
++	if (display->platform.dg2)
++		intel_de_rmw(display, GEN9_CLKGATE_DIS_4, DG2_DPFC_GATING_DIS,
++			     disable ? DG2_DPFC_GATING_DIS : 0);
++	else if (DISPLAY_VER(display) >= 14)
++		intel_de_rmw(display, MTL_PIPE_CLKGATE_DIS2(fbc->id),
++			     MTL_DPFC_GATING_DIS,
++			     disable ? MTL_DPFC_GATING_DIS : 0);
++}
++
+ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
+ {
+ 	struct intel_display *display = fbc->display;
+@@ -533,6 +547,10 @@ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
+ 	if (dpfc_ctl & DPFC_CTL_EN) {
+ 		dpfc_ctl &= ~DPFC_CTL_EN;
+ 		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
++
++		/* wa_18038517565 Enable DPFC clock gating after FBC disable */
++		if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
++			fbc_compressor_clkgate_disable_wa(fbc, false);
+ 	}
+ }
+ 
+@@ -922,6 +940,10 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
+ 	if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
+ 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+ 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
++
++	/* wa_18038517565 Disable DPFC clock gating before FBC enable */
++	if (display->platform.dg2 || DISPLAY_VER(display) >= 14)
++		fbc_compressor_clkgate_disable_wa(fbc, true);
+ }
+ 
+ static void __intel_fbc_cleanup_cfb(struct intel_fbc *fbc)
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c5064eebe063..49beab8e324d 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1077,6 +1077,7 @@
+ 
+ #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
+ #define   BXT_GMBUS_GATING_DIS		(1 << 14)
++#define   DG2_DPFC_GATING_DIS		REG_BIT(31)
+ 
+ #define GEN9_CLKGATE_DIS_5		_MMIO(0x46540)
+ #define   DPCE_GATING_DIS		REG_BIT(17)
+@@ -4242,6 +4243,11 @@ enum skl_power_gate {
+ #define MTL_CLKGATE_DIS_TRANS(dev_priv, trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
+ #define  MTL_CLKGATE_DIS_TRANS_DMASC_GATING_DIS		REG_BIT(7)
+ 
++#define _MTL_PIPE_CLKGATE_DIS2_A		0x60114
++#define _MTL_PIPE_CLKGATE_DIS2_B		0x61114
++#define MTL_PIPE_CLKGATE_DIS2(pipe)		_MMIO_PIPE(pipe, _MTL_PIPE_CLKGATE_DIS2_A, _MTL_PIPE_CLKGATE_DIS2_B)
++#define   MTL_DPFC_GATING_DIS			REG_BIT(6)
++
+ #define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+ #define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+ #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+-- 
+2.43.0
+
