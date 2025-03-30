@@ -2,59 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21338A75497
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Mar 2025 08:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22193A75A4C
+	for <lists+intel-gfx@lfdr.de>; Sun, 30 Mar 2025 16:13:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46C3C10E1A8;
-	Sat, 29 Mar 2025 07:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 195E510E18B;
+	Sun, 30 Mar 2025 14:13:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ORkDQQ50";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kXVjuHyJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE6BC10E1A8
- for <intel-gfx@lists.freedesktop.org>; Sat, 29 Mar 2025 07:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743232719; x=1774768719;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=T4KeE3pDtNqJyppuq7x4u519+/Et9sWcnD5hTV1bvak=;
- b=ORkDQQ50iR/I8iw3KILUEbGfS4b1io8ll8T3B8KQBVjk4DoJdfSJ9Kdx
- Q1pLHR3Wll7h83v/1KxCwsFz8i1ovkGEbiwIJIT2UUKeVihGCdlRBGxg6
- YX52cxaiROuHrK77PxT1Id5UQHzgkykCEa2GSyZhhsp2mypMY20ZHCZX1
- vDUfg1taNml6cGSnP1dRkRk9i7FwY8WbRTl98Z/V8oCac/iHElgUY9agn
- DiY4XynKQQciJMKiqmlPWWHplwMoTVzQm9fzPSoCwHuDO36TFioIHfAYI
- z/nNg70cbqslH2OtaKYNnOjoQpQUe/XY9YkczTVNc3kByD6HkN7XTnBZr A==;
-X-CSE-ConnectionGUID: 7yOqQrjKQ4W9zPcXasg/Aw==
-X-CSE-MsgGUID: jWf/DxXrTUeR7M3AhSMxQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11387"; a="54794265"
-X-IronPort-AV: E=Sophos;i="6.14,285,1736841600"; d="scan'208";a="54794265"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2025 00:18:39 -0700
-X-CSE-ConnectionGUID: Pd0WyBo+TxmVU13ZlHVGxg==
-X-CSE-MsgGUID: y8ngFBEVREqE1vXRUiCplQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,285,1736841600"; d="scan'208";a="130858208"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.116])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2025 00:18:37 -0700
-Date: Sat, 29 Mar 2025 08:18:33 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Mikolaj Wasiak <mikolaj.wasiak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: Re: [PATCH v2] drm/i915/selftest: allow larger memory allocation
-Message-ID: <Z-eeySKZOXVESzy1@ashyti-mobl2.lan>
-References: <2vie3dumx3ajb7lwhiotxs4wj6zcr2fq6on3ebd2vsm2qb3k6l@s5uny4fry4gr>
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+ [209.85.214.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2157E10E246;
+ Sun, 30 Mar 2025 14:13:14 +0000 (UTC)
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-2240b4de12bso40813785ad.2; 
+ Sun, 30 Mar 2025 07:13:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1743343993; x=1743948793; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=2Nx8vPnxajDWa/k8RJzbsW2uXLdAUtSH4tESU6OSGGY=;
+ b=kXVjuHyJ6PfRKp21kvoWGLfa6Lvr5/YVe7vs8Igb4evQ5c+2n3U9a66NfXKHdHrfwa
+ SIxm8EirvSZtJ81LCcMM5LSixP+UpwphA3g3UMw2CeGleY+isnqoD+s8AnZHRBrmmU55
+ JI3n3oaCFrhNh32USi2it/c1QgTqrbVulaT0BYT8oLj/sxTvNVFEF5ARZ/1be8Tr/1pS
+ guL7XCdcTxTlQDMDpeOtjfhGOlaTNanDPffxEEjUQx0gM39em8nz5WlKCdv83OXZT59i
+ yu6V2ZNjiz8yC41WZbvYwn/WA/8yJQC4l1xdF4MGUk4oMHQeQFoFgo2o30JkdBmIKIWr
+ dq0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1743343993; x=1743948793;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2Nx8vPnxajDWa/k8RJzbsW2uXLdAUtSH4tESU6OSGGY=;
+ b=aks8GjiN4uwaZiRO9Y0h4iXpabM2J2hk6/+GSdoqYNZASoibn4pwPNx01/LePnAZm5
+ zIke8VCRQJcPsobKEehBmWzJOJjgdxs3M0pBgYumpXaMzXBSOfL/dMs74Cjl45BxtHGm
+ Kfw4hJtKiF0b+4Y+b66cPb63PAdfHnqLLN8B9AMcaUHP8fnmczZR4yyj+Fe/VcWaoxek
+ DhMUELms2zDahtjpyecDzzfnP7zphtIl+IPiPCNtgeUU9VeOcWJOvStmpqX8O4iMy9ns
+ j6gSNuCx+vpjnMLV913M9HGkNEt9FlowXcx83zK1XsgRCYy+JPYkllf/tKLtgZgh0MLt
+ +WOA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUWfNWqYp/kBCb0ykRU4HTDPd1lf6STq2KH94CWazaEECG7jRrhLjgX1RU8PmhtFajz2/8B1EhEY+Y=@lists.freedesktop.org,
+ AJvYcCVTZmWqF/f9yqgVHPc25HrX09sbkhXx+4X5Zd5/bjpvD8DRv9TfGRMcrldIuqDfWGoU5j3syDYMrTs8NeRsQw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzXD3f3IZUMobPEeh4D+hCPGzSDVfpvRxEJAVoJwo27+/nxa0mu
+ pFL6lNsvFk2tCRb/ASy0SA/xmRQ87YV/JssN/HSsCzWuqJJpTDmLVBBF6Q==
+X-Gm-Gg: ASbGncvPCCYtEIzZiDg5xNGT1PSv9fxGuhVAcnDB/uGk+7BHMztWMrqtsv3BmxUArpc
+ 6jiARlUzLej5LaOuupy9wfJ9+ib8IdqqRmvqnypj+wGVpTdNiVXINNfbK+kq+wtUvUhPDrVG1iC
+ ePemd47vVDSxeByNUMqWO4ooLEnEmoYfN83qYMZ8VTYI7oj/tBHx69AKRTpjO7GJiOz2x6z6wir
+ zO/t1Q2OX/VkzapYeY9lc6ZqtOv7k2jpnvULcM5x/DLEawkjedr+1sxS2wqSLl6U7eto7IauGNQ
+ I0lC309/pgsGCKhgkP152Ec9IsrCO6kWoNJr7Fo0HAF5H12S/3cJVGEB/5puVLcYe/ZdUr5P2cz
+ pQzWdz5U=
+X-Google-Smtp-Source: AGHT+IHWwlOnQkYLWScexb/klDOaANwyyCGzTceTKgTXJ7oydhM5+BJ97edgW53oBzkCOVIEIR7fAQ==
+X-Received: by 2002:a05:6a21:3a8a:b0:1ee:ef0b:7bf7 with SMTP id
+ adf61e73a8af0-2009f640527mr8487129637.19.1743343993395; 
+ Sun, 30 Mar 2025 07:13:13 -0700 (PDT)
+Received: from localhost (om126233180002.36.openmobile.ne.jp. [126.233.180.2])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 41be03b00d2f7-af93ba10863sm4816856a12.74.2025.03.30.07.13.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 30 Mar 2025 07:13:13 -0700 (PDT)
+Date: Sun, 30 Mar 2025 23:13:07 +0900
+From: Zhenyu Wang <zhenyuw.linux@gmail.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, Dave Airlie <airlied@gmail.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Zhi Wang <zhi.wang.linux@gmail.com>
+Subject: Re: [PATCH] drm/i915/gvt: update MAINTAINERS
+Message-ID: <Z-lRc1uD6sVvawHZ@dell-wzy>
+References: <20250227093805.2217658-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2vie3dumx3ajb7lwhiotxs4wj6zcr2fq6on3ebd2vsm2qb3k6l@s5uny4fry4gr>
+In-Reply-To: <20250227093805.2217658-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,24 +93,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Mikolaj,
+On Thu, Feb 27, 2025 at 11:38:05AM +0200, Jani Nikula wrote:
+> Update GVT-g MAINTAINERS entry to reflect the current status of
+> maintenance and repositories.
+> 
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Zhenyu Wang <zhenyuw.linux@gmail.com>
+> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-On Fri, Mar 21, 2025 at 03:02:49PM +0100, Mikolaj Wasiak wrote:
-> Due to changes in allocator, the size of the allocation for
+Sorry for late reply. I was quite busy on personal things during last month
+that almost no chance to put hands on keyboard. ;)
 
-which change in the allocator?
+As I think both Zhi and I agreed before, this is totally fine with me.
 
-> contiguous region is not rounded up to a power-of-two and
-> instead allocated as is.
+Acked-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
 
-The allocator has always been rounded up instead of a power of
-two round up.
+Thanks!
 
-> Thus, change the part of test that
-> expected the allocation to fail.
-
-Is the failure part of the test?
-
-Andi
-
-> Signed-off-by: Mikolaj Wasiak <mikolaj.wasiak@intel.com>
+>  MAINTAINERS | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5b69b93f63c6..98374661f5a8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11649,13 +11649,10 @@ F:	drivers/gpio/gpio-tangier.c
+>  F:	drivers/gpio/gpio-tangier.h
+>  
+>  INTEL GVT-g DRIVERS (Intel GPU Virtualization)
+> -M:	Zhenyu Wang <zhenyuw.linux@gmail.com>
+> -M:	Zhi Wang <zhi.wang.linux@gmail.com>
+> -L:	intel-gvt-dev@lists.freedesktop.org
+> -L:	intel-gfx@lists.freedesktop.org
+> -S:	Supported
+> +R:	Zhenyu Wang <zhenyuw.linux@gmail.com>
+> +R:	Zhi Wang <zhi.wang.linux@gmail.com>
+> +S:	Odd Fixes
+>  W:	https://github.com/intel/gvt-linux/wiki
+> -T:	git https://github.com/intel/gvt-linux.git
+>  F:	drivers/gpu/drm/i915/gvt/
+>  
+>  INTEL HID EVENT DRIVER
+> -- 
+> 2.39.5
+> 
