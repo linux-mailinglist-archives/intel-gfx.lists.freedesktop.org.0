@@ -2,64 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554F7A776BB
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Apr 2025 10:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C7CA776C4
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Apr 2025 10:46:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D518910E520;
-	Tue,  1 Apr 2025 08:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2EC10E518;
+	Tue,  1 Apr 2025 08:46:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZunZtjGb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DGEceyJo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA2F10E518;
- Tue,  1 Apr 2025 08:46:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1CD10E518
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Apr 2025 08:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743497170; x=1775033170;
+ t=1743497203; x=1775033203;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Q7VbP+OM6RZM51VIVzDa4IreTwBZkx3kkLxPIuuKwFQ=;
- b=ZunZtjGbMHckHlY8/OQJ6Kr54TmyVMFBJmXP25ngK3R3U2fh3cD2gTIi
- bmvKnPRadBPhyBWvErZR12WP+KMSO6pOH9zaLtVwoJgpQ7v58oT8E4KAg
- U4x4N8FY37BvK4NzBhV39EExakh1lXzSxkY+cyfQiKNQ5notoSQIeSTxj
- 6ZRF1cRd0GTtYQcQbK8ENLtiUSr87q+649lvtPlveoYfqLlfQwMrVjyJc
- TUp01kJ+VWCiP891H2dQDkiQMGqqf6BDQNQhIshi5jdzSF5JlyFDQ3ae1
- 7gs7cLu8RBdYVueDlOIdBzE6pivZSpcUET+NvotaVqZtdd8JJ6rV5voND Q==;
-X-CSE-ConnectionGUID: FIliFjTlTvWi0NOOEU0l3g==
-X-CSE-MsgGUID: QcgnWlW3RL2CATMk3rv6hQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44718587"
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="44718587"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 01:46:10 -0700
-X-CSE-ConnectionGUID: qTj9HiagTA6x9dSJxwZcIw==
-X-CSE-MsgGUID: LSxATFcBRZWdu+Owe3rvZQ==
+ bh=PsGkjwijO7QZJn7Tb41UnkWLgAytQqDzIVDErOmndxE=;
+ b=DGEceyJoKjoRvROLyIp2SI6/aS1tDqiqr/eKuAarE3yLjtrgnEnp8Cei
+ Z6yDLod/1GZxMWofk/WUibYzkkViBvB36HjOaIL23Z5Q0h3wueEOgT0sV
+ vvhndxAiFSWug8PG6LysnCdGrDtodVzDDzjKmlYt9/nMf7Euy6/7VGL7S
+ QTf3JWZkhrZCEMxwIAgcyUDu0PPTb71lOnmzBkhKfsyqvqt1j1LpbnVqo
+ IxdKQ3ET4qAejppdIVUj8NJovFYLG31/AI2GZPkd4L7BTcz0OqHw9g0ZK
+ jsu5i/VjJTkcLZDDwpQIdx4oMCmO6x8AqeVQDtbC+pXvd/CWjYT+xE2Nl A==;
+X-CSE-ConnectionGUID: cOjPL5uwQ5SI7bwW8s/8AA==
+X-CSE-MsgGUID: 4/BWU/qmT2Oxhb6vTSvABw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11390"; a="44522764"
+X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="44522764"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 01:46:43 -0700
+X-CSE-ConnectionGUID: ktFo+2eeRGaQq03HgzqcFA==
+X-CSE-MsgGUID: 5nS/a4vKTqKtV1fSTywAcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="131041277"
+X-IronPort-AV: E=Sophos;i="6.14,292,1736841600"; d="scan'208";a="157253689"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.7])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 01:46:06 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thorsten Leemhuis <linux@leemhuis.info>, Kees Cook <kees@kernel.org>,
- Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Zhi Wang <zhi.wang.linux@gmail.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, Justin
- Forbes <jforbes@redhat.com>, Nicolas Chauvet <kwizart@gmail.com>
-Subject: Re: [PATCH] drm/i915/gvt: Add __nonstring annotations for
- unterminated strings
-In-Reply-To: <37e1da82-736f-44a4-af51-036f9e3182f4@leemhuis.info>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2025 01:46:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw.linux@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org, Kees Cook <kees@kernel.org>, Nicolas
+ Chauvet <kwizart@gmail.com>, Damian Tometzki <damian@riscv-rocks.de>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gvt: fix unterminated-string-initialization
+ warning
+In-Reply-To: <Z-la1kFHvH4zu_X5@dell-wzy>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250310222355.work.417-kees@kernel.org>
- <37e1da82-736f-44a4-af51-036f9e3182f4@leemhuis.info>
-Date: Tue, 01 Apr 2025 11:46:03 +0300
-Message-ID: <87ecyc46d0.fsf@intel.com>
+References: <20250327124739.2609656-1-jani.nikula@intel.com>
+ <Z-la1kFHvH4zu_X5@dell-wzy>
+Date: Tue, 01 Apr 2025 11:46:37 +0300
+Message-ID: <87bjtg46c2.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -77,40 +72,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 31 Mar 2025, Thorsten Leemhuis <linux@leemhuis.info> wrote:
-> On 10.03.25 23:23, Kees Cook wrote:
->> When a character array without a terminating NUL character has a static
->> initializer, GCC 15's -Wunterminated-string-initialization will only
->> warn if the array lacks the "nonstring" attribute[1]. Mark the arrays
->> with __nonstring to and correctly identify the char array as "not a C
->> string" and thereby eliminate the warning.
+On Sun, 30 Mar 2025, Zhenyu Wang <zhenyuw.linux@gmail.com> wrote:
+> On Thu, Mar 27, 2025 at 02:47:39PM +0200, Jani Nikula wrote:
+>> Initializing const char opregion_signature[16] = OPREGION_SIGNATURE
+>> (which is "IntelGraphicsMem") drops the NUL termination of the
+>> string. This is intentional, but the compiler doesn't know this.
+>>
+>
+> Indeed...
+>
+>> Switch to initializing header->signature directly from the string
+>> litaral, with sizeof destination rather than source. We don't treat the
+>> signature as a string other than for initialization; it's really just a
+>> blob of binary data.
 >> 
->> Link: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=117178 [1]
->> [...]
->> Signed-off-by: Kees Cook <kees@kernel.org>
+>> Add a static assert for good measure to cross-check the sizes.
+>> 
+>> Reported-by: Kees Cook <kees@kernel.org>
+>> Closes: https://lore.kernel.org/r/20250310222355.work.417-kees@kernel.org
+>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13934
+>> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
+>> Tested-by: Damian Tometzki <damian@riscv-rocks.de>
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
 >
-> To provide another small data point:
->
-> Tested-by: Thorsten Leemhuis <linux@leemhuis.info>
->
-> A "Compile-Tested-by", to be precise: after a handful similar patches
-> reached mainline recently this is the only one I still need to compile
-> the pretty broad Fedora rawhide config on rawhide using the GCC 15
-> pre-release it currently includes. The latter or the final will
-> hopefully soon also reach Fedora 42 beta as well and bring the "[1]"
-> mentioned in the patch description above to F42 -- which will be
-> released in a few weeks, so I guess it would be nice to have this patch
-> mainlined rather sooner that later to avoid more people running into this.
+> Reviewed-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
 
-Thanks for testing, though I've merged [1] instead.
+Thanks for the review, pushed to din.
 
 BR,
 Jani.
 
-
-
-[1] https://lore.kernel.org/r/20250327124739.2609656-1-jani.nikula@intel.com
-
+>
+>>  drivers/gpu/drm/i915/gvt/opregion.c | 7 ++++---
+>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
+>> index 509f9ccae3a9..dbad4d853d3a 100644
+>> --- a/drivers/gpu/drm/i915/gvt/opregion.c
+>> +++ b/drivers/gpu/drm/i915/gvt/opregion.c
+>> @@ -222,7 +222,6 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+>>  	u8 *buf;
+>>  	struct opregion_header *header;
+>>  	struct vbt v;
+>> -	const char opregion_signature[16] = OPREGION_SIGNATURE;
+>>  
+>>  	gvt_dbg_core("init vgpu%d opregion\n", vgpu->id);
+>>  	vgpu_opregion(vgpu)->va = (void *)__get_free_pages(GFP_KERNEL |
+>> @@ -236,8 +235,10 @@ int intel_vgpu_init_opregion(struct intel_vgpu *vgpu)
+>>  	/* emulated opregion with VBT mailbox only */
+>>  	buf = (u8 *)vgpu_opregion(vgpu)->va;
+>>  	header = (struct opregion_header *)buf;
+>> -	memcpy(header->signature, opregion_signature,
+>> -	       sizeof(opregion_signature));
+>> +
+>> +	static_assert(sizeof(header->signature) == sizeof(OPREGION_SIGNATURE) - 1);
+>> +	memcpy(header->signature, OPREGION_SIGNATURE, sizeof(header->signature));
+>> +
+>>  	header->size = 0x8;
+>>  	header->opregion_ver = 0x02000000;
+>>  	header->mboxes = MBOX_VBT;
+>> -- 
+>> 2.39.5
+>> 
 
 -- 
 Jani Nikula, Intel
