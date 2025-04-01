@@ -2,60 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1F4A77E13
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Apr 2025 16:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA96AA77EFB
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Apr 2025 17:32:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B58810E5E2;
-	Tue,  1 Apr 2025 14:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 328D110E5E9;
+	Tue,  1 Apr 2025 15:32:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cOmAXulF";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="GMFYHBDm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E67D10E5EB;
- Tue,  1 Apr 2025 14:43:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743518600; x=1775054600;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=K6WJY3tfkFhz/muLLbEhJ7qHN/xkLBt2I7DVfEWfKWw=;
- b=cOmAXulFoWVJwxPq2MYzsUm42Ork1EhgE9efyl1BobzmKHU9xD61l2VQ
- 5CEG8vWkQcjg0A97ELr+eqEk6Z9YNKuFDKwWNikm7pyaFy9tGJKkL/T7x
- CkoPt8CcrfUJdpgpqOr1MvHO/Ck6RcClXBC6flZRS0da5LyUElEREA/BJ
- 9RY0dPtvAZXL3Yn2WvZ3lYcAi2HW9tfQ5y8KVez4H71dz8/17KoyKinQk
- XyKTRHQl3ZTNPQI5M2O4VYIN+myMQDQr4flKhGnftlF7J1FUNT9WKhMNv
- CV3Fb85kA/gfVI0AZf9FaoMfd619qowRZpj4KAyt2bpUlubN2HMGVS7k0 A==;
-X-CSE-ConnectionGUID: E/4GTyeOQsuo90sdZzycJA==
-X-CSE-MsgGUID: xpXoUQTORIWG+dzZsUeMUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11391"; a="44095946"
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="44095946"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 07:43:19 -0700
-X-CSE-ConnectionGUID: rfAdMOvnSAy03oJnx0kCmg==
-X-CSE-MsgGUID: 3ySWbYOHTWquYSPc0wG4Sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.14,293,1736841600"; d="scan'208";a="131543480"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.7])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2025 07:43:17 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 1/2] drm/dp_mst: Fix GUID DPCD write to non-root MST
- branch devices
-In-Reply-To: <20250401103846.686408-1-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250401103846.686408-1-imre.deak@intel.com>
-Date: Tue, 01 Apr 2025 17:43:13 +0300
-Message-ID: <87ikno2b9a.fsf@intel.com>
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D9510E5E3;
+ Tue,  1 Apr 2025 15:32:28 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net
+ [217.70.183.194])
+ by mslow3.mail.gandi.net (Postfix) with ESMTP id 26CAE5814B4;
+ Tue,  1 Apr 2025 15:00:47 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 921F5441C8;
+ Tue,  1 Apr 2025 15:00:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1743519646;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=z6SUzGcMkPKel2Eccn/jYaKzkfn5nDr4VwnUJsYHcl0=;
+ b=GMFYHBDmkQqPnwkmOAvUpfp7X/+LmL7dcjdsCjsTdJynnH4itkSn1hQxCz5+SCHo1uaclf
+ DhgtZjY4wTeHh3eozM/vo5clyziidRAKCKFpzukdJ18oiayB6OHyD0IAd2+Luv1CSMp1gD
+ zY/JN/ez/OxbyQY0KoB1rJxDH4cgB5kVBny+R9Xqxu+BqgxnjIxQ7QpvHp8Jrrz21EIWBv
+ 8JOX6UARWLuysU9uR3cJezATqmPZbdx1VtrBi/dHC/aKYZWjiGqymqvGJBV9Qw7YGDO25i
+ GAc2Rla0P/hRZ+f7DASVPsS87VlZylgntjN5l/aSlpNhYftOGqddTvQHiMmsfA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Lucas De Marchi <lucas.demarchi@intel.com>,  Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,  Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jani Nikula
+ <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karthik Poosa <karthik.poosa@intel.com>,  Reuven Abliyev
+ <reuven.abliyev@intel.com>,  Oren Weil <oren.jer.weil@intel.com>,
+ linux-mtd@lists.infradead.org,  dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 01/12] mtd: core: always create master device
+In-Reply-To: <20250326152623.3897204-2-alexander.usyskin@intel.com> (Alexander
+ Usyskin's message of "Wed, 26 Mar 2025 17:26:12 +0200")
+References: <20250326152623.3897204-1-alexander.usyskin@intel.com>
+ <20250326152623.3897204-2-alexander.usyskin@intel.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Tue, 01 Apr 2025 17:00:43 +0200
+Message-ID: <87ecycrko4.fsf@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddukeeftdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufgjfhgffffkgggtgfesthhqredttderjeenucfhrhhomhepofhiqhhuvghlucftrgihnhgrlhcuoehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeffgefhjedtfeeigeduudekudejkedtiefhleelueeiueevheekvdeludehiedvfeenucfkphepledvrddukeegrdduuddtrdduleefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledvrddukeegrdduuddtrdduleefpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmihhquhgvlhdrrhgrhihnrghlsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvuddprhgtphhtthhopegrlhgvgigrnhguvghrrdhushihshhkihhnsehinhhtvghlrdgtohhmpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomhdprhgtphhtthhopehluhgtrghsrdguvghmrghrtghhihesihhnthgvlhdrtghomhdprhgtphhtthhopehthhhomhgrshdrhhgvlhhlshhtrhhomheslhhinhhugidrihhnthgvl
+ hdrtghomhdprhgtphhtthhopehrohgurhhighhordhvihhvihesihhnthgvlhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,39 +79,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 01 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
-> The return value on success of drm_dp_send_dpcd_write() called for
-> non-root MST branch devices from drm_dp_check_mstb_guid() is the number
-> of bytes transferred. Atm this return value (in case of a complete read)
-> will be regarded incorrectly as an error by the caller of
-> drm_dp_check_mstb_guid(). Fix this by converting the return value for a
-> complete read to the expected success code (0) and for a partial read to
-> a failure code (-EPROTO).
+Hello Alexander,
+
+On 26/03/2025 at 17:26:12 +02, Alexander Usyskin <alexander.usyskin@intel.c=
+om> wrote:
+
+> Create master device without partition when
+> CONFIG_MTD_PARTITIONED_MASTER flag is unset.
 >
-> Fixes: 2554da0de3e8 ("drm/display: dp-mst-topology: use new DCPD access helpers")
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 2 ++
->  1 file changed, 2 insertions(+)
+> This streamlines device tree and allows to anchor
+> runtime power management on master device in all cases.
 >
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> index de3fc6090c906..619f461e02f76 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -2200,6 +2200,8 @@ static int drm_dp_check_mstb_guid(struct drm_dp_mst_branch *mstb, guid_t *guid)
->  			ret = drm_dp_send_dpcd_write(mstb->mgr,
->  						     mstb->port_parent,
->  						     DP_GUID, sizeof(buf), buf);
-> +			if (ret >= 0)
-> +				ret = ret == sizeof(buf) ? 0 : -EPROTO;
->  		} else {
->  			ret = drm_dp_dpcd_write_data(mstb->mgr->aux,
->  						     DP_GUID, buf, sizeof(buf));
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 
--- 
-Jani Nikula, Intel
+I successfully tested it, this patch will be applied at -rc1 to the
+mtd/next tree.
+
+I was wondering, do you think it would be possible to keep the creation
+of mtd_master and make it a symbolic link to mtdx when
+MTD_PARTITIONED_MASTER=3Dy or when there is no partition? In short, always
+having mtd_masterx, because I fear at some point we'll have problems
+otherwise :-)
+
+Right now we have:
+
+- Without partition:
+mtd0 (mtd0ro mtdblock0)
+- With partition and MTD_PARTITIONED_MASTER=3Dn
+mtd0 (mtd0ro mtdblock0)
+mtd_master0
+- With partition and MTD_PARTITIONED_MASTER=3Dy
+mtd0 (mtd0ro mtdblock0) [this is the master]
+mtd1 (mtd1ro mtdblock1)
+
+I am suggesting:
+- Without partition:
+mtd0 (mtd0ro mtdblock0)
+mtd_master0 -> link to mtd0
+- With partition and MTD_PARTITIONED_MASTER=3Dn
+mtd0 (mtd0ro mtdblock0)
+mtd_master0
+- With partition and MTD_PARTITIONED_MASTER=3Dy
+mtd0 (mtd0ro mtdblock0) [this is the master]
+mtd1 (mtd1ro mtdblock1)
+mtd_master0 -> link to mtd0
+
+What do you think? Or maybe even always mtd_master in the first place.
+
+Richard, your point of view on this?
+
+Thanks,
+Miqu=C3=A8l
