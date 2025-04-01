@@ -2,70 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702CFA78F1E
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 14:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E0B6A78F21
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 14:53:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F184010E788;
-	Wed,  2 Apr 2025 12:53:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3917C10E78A;
+	Wed,  2 Apr 2025 12:53:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="FoUhMXTZ";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="+GH2ZSeq";
+	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="WuPUg7LZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 541 seconds by postgrey-1.36 at gabe;
- Tue, 01 Apr 2025 18:52:34 UTC
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5983310E0F0;
- Tue,  1 Apr 2025 18:52:34 +0000 (UTC)
-Date: Tue, 01 Apr 2025 18:43:08 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1743532998;
- h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=b2Q2L/7rj3cxpaE4j8vthf2ql42MJVGYI7kIRx6ocME=;
- b=FoUhMXTZbUiOhY0VHQPoFysfCgG3Xllk/+Q0XfPVi5kf9cn3RzmKd8sHf2ivjW2xq/mDG2
- Clg/QYRQsRYL9XN/A9L/6FnXIl6tOAGpXRPqfOKiOs0JXj9XLL86i2L+BBUig47YViCrf4
- PxZHjcToej7UC77sX/CIN94w01HbeU3JJudQC4rL7JoKWXSdSRj2qOjiti0xRciNoQZAw0
- Trlko38JPkIgRKQz35oDNAE5NeThZFZg6ujKtDFoXrbl4vR5tP/uOuUsTzVEdyLaNYK8/P
- YJZSB9/rwzUuHNePa5BeLdMXrE1Hsx+eLNaAr5ms0LVOfuecKQcza1HJer3QGA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1743532998;
- h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=b2Q2L/7rj3cxpaE4j8vthf2ql42MJVGYI7kIRx6ocME=;
- b=+GH2ZSeqiwFfyrkQ/RSVLF7sH4K5kMrG82hu57BCMr9pNgYZWriN0Tdc2WeiaWW4AtQhj4
- QvPT1HuxsrGxN3CQ==
-From: "tip-bot2 for Dr. David Alan Gilbert" <tip-bot2@linutronix.de>
-To: linux-tip-commits@vger.kernel.org
-Subject: [tip: x86/urgent] x86/platform/iosf_mbi: Remove unused
- iosf_mbi_unregister_pmic_bus_access_notifier()
-Cc: "Dr. David Alan Gilbert" <linux@treblig.org>,
- Ingo Molnar <mingo@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241225175010.91783-1-linux@treblig.org>
+Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA72810E173;
+ Tue,  1 Apr 2025 21:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
+ ; s=bytemarkmx;
+ h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
+ :Subject; bh=g6StCyFpesYqaHVFLkyaouJmKdU5BfnU8LCrhZCDOCE=; b=WuPUg7LZBd19mvjU
+ ZIGuJrVfFNtMuEjPcGLLx5VymD7xLMsLJNVHURqDPSNskBzNOpknpQlYefSYPGLwSBI/QpZf1eEoV
+ PdNA+hIZf9lr8sBKCiL3p2V012JKYq6H1c22JHZ7TwJT188AyOh8mau8eeFt99CHLOczjksqHZdHD
+ TgUNmMSRgo24r5Pez7w7PHu59TfvV5D2WGB8ObEFyUr3VRoqF3S8yQD8PNuZlDaoRPkVuoPsYoNNA
+ Om0HFfxYHm2hZ3d0TGNt4W6u7B2anWSwNnm4Qz5ucK7t4nV3AG6y4MnuhV6kDCsSSDknly3ZxeEp1
+ ikJ0mztKAV3jAZ4eRQ==;
+Received: from dg by mx.treblig.org with local (Exim 4.96)
+ (envelope-from <dg@treblig.org>) id 1tzikn-008RMK-1P;
+ Tue, 01 Apr 2025 21:02:37 +0000
+Date: Tue, 1 Apr 2025 21:02:37 +0000
+From: "Dr. David Alan Gilbert" <linux@treblig.org>
+To: Ingo Molnar <mingo@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, tglx@linutronix.de,
+ mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, x86@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] x86/platform/iosf_mbi: Remove unused
+ iosf_mbi_unregister_pmic_bus_access_notifier
+Message-ID: <Z-xUbXnU40c5ZkYQ@gallifrey>
 References: <20241225175010.91783-1-linux@treblig.org>
+ <Z7416P1rZPNMHQq7@gmail.com> <Z-vP7-PaLhsHozbw@gallifrey>
+ <Z-wxRln0avv8Fz55@gmail.com>
 MIME-Version: 1.0
-Message-ID: <174353299389.14745.950743351956667262.tip-bot2@tip-bot2>
-Robot-ID: <tip-bot2@linutronix.de>
-Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from
- these emails
-Precedence: bulk
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+In-Reply-To: <Z-wxRln0avv8Fz55@gmail.com>
+X-Chocolate: 70 percent or better cocoa solids preferably
+X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
+X-Uptime: 21:01:18 up 328 days,  8:15,  1 user,  load average: 0.00, 0.00, 0.00
+User-Agent: Mutt/2.2.12 (2023-09-09)
 X-Mailman-Approved-At: Wed, 02 Apr 2025 12:53:44 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
+Precedence: list
 List-Id: Intel graphics driver community testing & development
  <intel-gfx.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
@@ -75,103 +63,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: linux-kernel@vger.kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The following commit has been merged into the x86/urgent branch of tip:
+* Ingo Molnar (mingo@kernel.org) wrote:
+> 
+> * Dr. David Alan Gilbert <linux@treblig.org> wrote:
+> 
+> > * Ingo Molnar (mingo@kernel.org) wrote:
+> > > 
+> > > * linux@treblig.org <linux@treblig.org> wrote:
+> > > 
+> > > > From: "Dr. David Alan Gilbert" <linux@treblig.org>
+> > > > 
+> > > > The last use of iosf_mbi_unregister_pmic_bus_access_notifier() was
+> > > > removed in 2017 by
+> > > > commit a5266db4d314 ("drm/i915: Acquire PUNIT->PMIC bus for
+> > > > intel_uncore_forcewake_reset()")
+> > > > 
+> > > > Remove it.
+> > > > 
+> > > > Note the '_unlocked' version is still used.
+> > > > 
+> > > > Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
+> > > > ---
+> > > >  arch/x86/include/asm/iosf_mbi.h      |  7 -------
+> > > >  arch/x86/platform/intel/iosf_mbi.c   | 13 -------------
+> > > >  drivers/gpu/drm/i915/i915_iosf_mbi.h |  6 ------
+> > > >  3 files changed, 26 deletions(-)
+> > > 
+> > > Acked-by: Ingo Molnar <mingo@kernel.org>
+> > 
+> > Thanks!
+> > Any idea who might pick this one up?
+> > 
+> > Dave
+> 
+> We can certainly do it via the x86 tree - I've added GPU/DRM 
+> maintainers to the commit's Cc: list.
 
-Commit-ID:     d0ebf4c7eb91fe73981d5250b50e9d22db8fb946
-Gitweb:        https://git.kernel.org/tip/d0ebf4c7eb91fe73981d5250b50e9d22db8fb946
-Author:        Dr. David Alan Gilbert <linux@treblig.org>
-AuthorDate:    Wed, 25 Dec 2024 17:50:10 
-Committer:     Ingo Molnar <mingo@kernel.org>
-CommitterDate: Tue, 01 Apr 2025 20:31:39 +02:00
+Thanks again! (hardly urgent, but just trying to clean up 
+my backlog).
 
-x86/platform/iosf_mbi: Remove unused iosf_mbi_unregister_pmic_bus_access_notifier()
+Dave
 
-The last use of iosf_mbi_unregister_pmic_bus_access_notifier() was
-removed in 2017 by:
-
-  a5266db4d314 ("drm/i915: Acquire PUNIT->PMIC bus for intel_uncore_forcewake_reset()")
-
-Remove it.
-
-(Note that the '_unlocked' version is still used.)
-
-Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
-Signed-off-by: Ingo Molnar <mingo@kernel.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Link: https://lore.kernel.org/r/20241225175010.91783-1-linux@treblig.org
----
- arch/x86/include/asm/iosf_mbi.h      |  7 -------
- arch/x86/platform/intel/iosf_mbi.c   | 13 -------------
- drivers/gpu/drm/i915/i915_iosf_mbi.h |  6 ------
- 3 files changed, 26 deletions(-)
-
-diff --git a/arch/x86/include/asm/iosf_mbi.h b/arch/x86/include/asm/iosf_mbi.h
-index af7541c..8ace655 100644
---- a/arch/x86/include/asm/iosf_mbi.h
-+++ b/arch/x86/include/asm/iosf_mbi.h
-@@ -168,13 +168,6 @@ void iosf_mbi_unblock_punit_i2c_access(void);
- int iosf_mbi_register_pmic_bus_access_notifier(struct notifier_block *nb);
- 
- /**
-- * iosf_mbi_register_pmic_bus_access_notifier - Unregister PMIC bus notifier
-- *
-- * @nb: notifier_block to unregister
-- */
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb);
--
--/**
-  * iosf_mbi_unregister_pmic_bus_access_notifier_unlocked - Unregister PMIC bus
-  *                                                         notifier, unlocked
-  *
-diff --git a/arch/x86/platform/intel/iosf_mbi.c b/arch/x86/platform/intel/iosf_mbi.c
-index c81cea2..40ae94d 100644
---- a/arch/x86/platform/intel/iosf_mbi.c
-+++ b/arch/x86/platform/intel/iosf_mbi.c
-@@ -422,19 +422,6 @@ int iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(
- }
- EXPORT_SYMBOL(iosf_mbi_unregister_pmic_bus_access_notifier_unlocked);
- 
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb)
--{
--	int ret;
--
--	/* Wait for the bus to go inactive before unregistering */
--	iosf_mbi_punit_acquire();
--	ret = iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(nb);
--	iosf_mbi_punit_release();
--
--	return ret;
--}
--EXPORT_SYMBOL(iosf_mbi_unregister_pmic_bus_access_notifier);
--
- void iosf_mbi_assert_punit_acquired(void)
- {
- 	WARN_ON(iosf_mbi_pmic_punit_access_count == 0);
-diff --git a/drivers/gpu/drm/i915/i915_iosf_mbi.h b/drivers/gpu/drm/i915/i915_iosf_mbi.h
-index 8f81b76..317075d 100644
---- a/drivers/gpu/drm/i915/i915_iosf_mbi.h
-+++ b/drivers/gpu/drm/i915/i915_iosf_mbi.h
-@@ -31,12 +31,6 @@ iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(struct notifier_block *nb)
- {
- 	return 0;
- }
--
--static inline
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb)
--{
--	return 0;
--}
- #endif
- 
- #endif /* __I915_IOSF_MBI_H__ */
+> Thanks,
+> 
+> 	Ingo
+-- 
+ -----Open up your eyes, open up your mind, open up your code -------   
+/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
+\        dave @ treblig.org |                               | In Hex /
+ \ _________________________|_____ http://www.treblig.org   |_______/
