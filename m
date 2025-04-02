@@ -2,63 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28C6A78EE8
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 14:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B10AA78F4A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 15:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3504610E780;
-	Wed,  2 Apr 2025 12:47:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAC6F10E795;
+	Wed,  2 Apr 2025 13:01:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AsgEZQbn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZOvv5SEV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7992810E789;
- Wed,  2 Apr 2025 12:47:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67DEA10E787;
+ Wed,  2 Apr 2025 13:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743598059; x=1775134059;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MNKJsSRnjJAwRVHrkPsVIyVWKLfaiUr0E2NtE6MVLzE=;
- b=AsgEZQbnPgcO7n+PYL96hPmRulcW5fhrVEfQhvJ7ukVVQc32WAW3u0Sz
- b1iWWElX1ptMepet1xShLsDhUsC0cKBG4NwKUSvoobIPLT97WYgIHcKb8
- rqHoLB0n55VbpOTbeXAo2DPQW5x90KtvlN/lPxkmPog1aR63/COggniy8
- vvFgoORVOUKKXXybcH7sBi36Ohy00KfyKRVUZZZe1DY7yO15HLrZVs+El
- vJM2Uz1cUuSdNk0S9GpGBJ85eYaLzzf8c1t2e0unn3unvY5Zr8jecxlJy
- nsD3tHX4opAMO28/6jzbr+yjxdIElC4JPfhKrkmGd0Y8xp18RGJ/XctyB A==;
-X-CSE-ConnectionGUID: oZFjlAxrQUSEEgdYn/2zyQ==
-X-CSE-MsgGUID: uQQTOT2WSL+kaHtmP8cjQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55953499"
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="55953499"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 05:47:38 -0700
-X-CSE-ConnectionGUID: L5jQPIugQJyHySXuhhDJCg==
-X-CSE-MsgGUID: 4g2ibqrQSCqmz7pBywSHdQ==
+ t=1743598913; x=1775134913;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HCFl5k9I0wIgmvuMRCjwSH0FGKRRqoVUihsZPCcZldQ=;
+ b=ZOvv5SEV0eBXFaHdS1FzZuMwDJR0CYu9+KHaI8TYPNKJl0lrdKgV2YN3
+ 5FBoLt/qL8ffxq9bkw/Sk6nh6DYfeQNa9foeTEF5qY656AQ6Z5g4FURvK
+ nB6u+eRo7uU7CunsA2ejzWR7f6BYBaZnGXo9OZICwb5X0dXnD+I8Pitxm
+ fXhJUbSL/CVYOt5+TQbNFL6J0XRW8tJZZXaEmoNRrf/zsbh7BfCAKWF1q
+ JQxRCFDu7jxB2EoTHhbHDB6YMHUSQgDvYNv9ed/cScOQ33MmKh2TewT1e
+ A1XjZuHign8vLz8nHLSG5oW08iPmKoH7F8FbZUPaZq/KGueRkl0+gXW7C g==;
+X-CSE-ConnectionGUID: vt+RxAxHTreZUaAx0Yv4eQ==
+X-CSE-MsgGUID: axRGXZmnQzikNizdagpkJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44219005"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="44219005"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 06:01:44 -0700
+X-CSE-ConnectionGUID: K0hw9xF/TEGD6c7oCKDwqA==
+X-CSE-MsgGUID: n54u48CNRi2K/CjcMfkPsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127180661"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.73])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2025 05:47:34 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Linus Torvalds <torvalds@linux-foundation.org>,
- linux-kernel@vger.kernel.org
-Cc: jani.nikula@intel.com, Jason Gunthorpe <jgg@nvidia.com>,
- Masahiro Yamada <masahiroy@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, linux-kbuild@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH v2 4/4] drm/xe: switch to generic header check facility
-Date: Wed,  2 Apr 2025 15:46:56 +0300
-Message-Id: <20250402124656.629226-5-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250402124656.629226-1-jani.nikula@intel.com>
-References: <20250402124656.629226-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127528150"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa009.fm.intel.com with ESMTP; 02 Apr 2025 06:01:40 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 00/10]  Introduce drm sharpness property
+Date: Wed,  2 Apr 2025 18:26:37 +0530
+Message-Id: <20250402125647.361295-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,74 +65,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch to the generic header check facility, and sunset the copy-pasted
-local version.
+ Many a times images are blurred or upscaled content is also not as
+crisp as original rendered image. Traditional sharpening techniques often
+apply a uniform level of enhancement across entire image, which sometimes
+result in over-sharpening of some areas and potential loss of natural details. 
 
-Keep the header checks gated on CONFIG_DRM_XE_WERROR as before. To be
-unified later.
+Intel has come up with Display Engine based adaptive sharpening filter 
+with minimal power and performance impact. From LNL onwards, the Display
+hardware can use one of the pipe scaler for adaptive sharpness filter.
+This can be used for both gaming and non-gaming use cases like photos,
+image viewing. It works on a region of pixels depending on the tap size.
 
-While at it, fix a header missing header guards that was not caught by
-the local version.
-
-Reported-by: Linus Torvalds <torvalds@linux-foundation.org>
-Closes: https://lore.kernel.org/r/CAHk-=wjMrqzuUmH-mFbR_46EWEFS=bB=J7h9ABMVy56Vi81PKQ@mail.gmail.com
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
----
-
-Cc: linux-kbuild@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
----
- drivers/gpu/drm/xe/Makefile       | 10 ++--------
- drivers/gpu/drm/xe/xe_pcode_api.h |  4 ++++
- 2 files changed, 6 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9699b08585f7..2a1854024c84 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -326,14 +326,8 @@ ifneq ($(CONFIG_DRM_XE_DISPLAY),y)
- 	hdrtest_find_args += -not -path display/\* -not -path compat-i915-headers/\* -not -path xe_display.h
- endif
+This is an attempt to introduce an adaptive sharpness solution which
+helps in improving the image quality. For this new CRTC property is added.
+The user can set this property with desired sharpness strength value with
+0-255. A value of 1 representing minimum sharpening strength and 255
+representing maximum sharpness strength. A strength value of 0 means no
+sharpening or sharpening feature disabled.
+It works on a region of pixels depending on the tap size. The coefficients
+are used to generate an alpha value which is used to blend the sharpened
+image to original image.
  
--always-$(CONFIG_DRM_XE_WERROR) += \
--	$(patsubst %.h,%.hdrtest, $(shell cd $(src) && find * -name '*.h' $(hdrtest_find_args)))
--
--quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
--      cmd_hdrtest = $(CC) -DHDRTEST $(filter-out $(CFLAGS_GCOV), $(c_flags)) -S -o /dev/null -x c /dev/null -include $<; touch $@
--
--$(obj)/%.hdrtest: $(src)/%.h FORCE
--	$(call if_changed_dep,hdrtest)
-+header-check-$(CONFIG_DRM_XE_WERROR) += \
-+	$(shell cd $(src) && find * -name '*.h' $(hdrtest_find_args))
- 
- uses_generated_oob := $(addprefix $(obj)/, $(xe-y))
- $(uses_generated_oob): $(obj)/generated/xe_wa_oob.h
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 2bae9afdbd35..4fd58b3c0d9a 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -3,6 +3,9 @@
-  * Copyright © 2022 Intel Corporation
-  */
- 
-+#ifndef _XE_PCODE_API_H_
-+#define _XE_PCODE_API_H_
-+
- /* Internal to xe_pcode */
- 
- #include "regs/xe_reg_defs.h"
-@@ -68,3 +71,4 @@ struct pcode_err_decode {
- 	const char *str;
- };
- 
-+#endif
+Middleware MR link: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3665
+IGT patchwork link: https://patchwork.freedesktop.org/series/130218/
+
+Continuing discussions from:  https://patchwork.freedesktop.org/series/129888/
+
+Nemesa Garg (10):
+  drm/i915/display: Introduce sharpness strength property
+  drm/i915/display: Introduce HAS_CASF for sharpness support
+  drm/i915/display: Add strength and winsize register
+  drm/i915/display: Add filter lut values
+  drm/i915/display: Compute the scaler coefficients
+  drm/i915/display: Add and compute scaler parameter
+  drm/i915/display: Configure the second scaler
+  drm/i915/display: Set and get the casf config
+  drm/i915/display: Enable/disable casf
+  drm/i915/display: Expose sharpness strength property
+
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_crtc.c                    |  35 +++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_casf.c     | 280 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_casf.h     |  24 ++
+ .../gpu/drm/i915/display/intel_casf_regs.h    |  40 +++
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   3 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  37 ++-
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |  15 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  90 +++++-
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   1 +
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  17 ++
+ 15 files changed, 543 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_casf_regs.h
+
 -- 
-2.39.5
+2.25.1
 
