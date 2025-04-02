@@ -2,66 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45104A793A2
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 19:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E714A793AE
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 19:17:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 438AB10E7F5;
-	Wed,  2 Apr 2025 17:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE35010E856;
+	Wed,  2 Apr 2025 17:17:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ZWprK5I5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqRTg0Ga";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D516610E7F5
- for <intel-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 17:10:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1743613853;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=XiTG0FByjC9Rs16rt52doAGprRUtZJNgSviOZz6x1o8=;
- b=ZWprK5I5v6wpi/9k/OgcRSBR/AyRmRow0iYlmj1tv4V1IvJr0kyRTCHopwkD3uPH2dDBKb
- c1erDlKp0e6KOQiKnaYykcLK+Cd6uUQgxRqMaF/vZV0mCv8sknjgBnUkSkmyXyoYHywD/e
- ymw7ru/8WrzkzI3cH7r1kGzMVjPihYE=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-264-2p6AgTrvMp695wiKCVs6Iw-1; Wed,
- 02 Apr 2025 13:10:48 -0400
-X-MC-Unique: 2p6AgTrvMp695wiKCVs6Iw-1
-X-Mimecast-MFC-AGG-ID: 2p6AgTrvMp695wiKCVs6Iw_1743613843
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 47E8E180AF52; Wed,  2 Apr 2025 17:10:43 +0000 (UTC)
-Received: from warthog.procyon.org.uk (unknown [10.42.28.40])
- by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id EB43D195DF85; Wed,  2 Apr 2025 17:10:40 +0000 (UTC)
-Organization: Red Hat UK Ltd. Registered Address: Red Hat UK Ltd, Amberley
- Place, 107-111 Peascod Street, Windsor, Berkshire, SI4 1TE, United
- Kingdom.
- Registered in England and Wales under Company Registration No. 3798903
-From: David Howells <dhowells@redhat.com>
-In-Reply-To: <20250402150005.2309458-2-willy@infradead.org>
-References: <20250402150005.2309458-2-willy@infradead.org>
- <20250402150005.2309458-1-willy@infradead.org>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Cc: dhowells@redhat.com, linux-fsdevel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
- v9fs@lists.linux.dev
-Subject: Re: [PATCH v2 1/9] 9p: Add a migrate_folio method
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D449B10E856
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Apr 2025 17:17:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743614244; x=1775150244;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=TFHWa1NL7JicP/6HgGe8lklssQHV0+N9LU5eBClnbG4=;
+ b=GqRTg0GaDqzSJ3Y6SAPq16Qwn7WLz4fH3lgdQRuKAllBG2VqXemltuv4
+ vcIFHxDzjVm/bXp23Rus+hUrUHQhYsnJAW6xSPFhbWytmj5iyGBJdnJkW
+ RsZYoeTxQCwDdHLnOiiaDna5IzyqaQfPb4QPiQ+fJePqfk+uldr9DXt2/
+ d9lZr0GdDYlI25lLZbhcSTVrXHhDAfeSrKx69ttLL3MwsKRF3zkTfF50w
+ hz4Ba5K0iFhxFvEw0wsBwu7EnVyM8JLyxbiA9UUOCRv02UGP9KBcsB5Cy
+ kOY8uRYds5ozRZzqD7bCaedKew3t5DGOD+PcGx545wfeZ1QbmhBrOz4k6 g==;
+X-CSE-ConnectionGUID: is37OBt9QcSh85+frjh/eA==
+X-CSE-MsgGUID: PSKHp0SxQauXy0VCm8x+EA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44890612"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="44890612"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 10:17:24 -0700
+X-CSE-ConnectionGUID: pdatJnn6Tcm5HadqmrSQvQ==
+X-CSE-MsgGUID: 7bV6qQb/RE+etOwQ4jCrSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="131963936"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 02 Apr 2025 10:17:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Apr 2025 20:17:20 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 2/4] drm/i915: Simplify combo PLL frac w/a
+Date: Wed,  2 Apr 2025 20:17:20 +0300
+Message-ID: <20250402171720.9350-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250401163752.6412-3-ville.syrjala@linux.intel.com>
+References: <20250401163752.6412-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <803464.1743613839.1@warthog.procyon.org.uk>
-Date: Wed, 02 Apr 2025 18:10:39 +0100
-Message-ID: <803465.1743613839@warthog.procyon.org.uk>
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,19 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Matthew Wilcox (Oracle) <willy@infradead.org> wrote:
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> The migration code used to be able to migrate dirty 9p folios by writing
-> them back using writepage.  When the writepage method was removed,
-> we neglected to add a migrate_folio method, which means that dirty 9p
-> folios have been unmovable ever since.  This reduced our success at
-> defragmenting memory on machines which use 9p heavily.
-> 
-> Fixes: 80105ed2fd27 (9p: Use netfslib read/write_iter)
-> Cc: stable@vger.kernel.org
-> Cc: David Howells <dhowells@redhat.com>
-> Cc: v9fs@lists.linux.dev
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+We are applying the combo PLL frac w/a to all TGL+ platforms, except
+RKL. I *think* all RKL machines use a 24 MHz refclk (certainly all
+machines in our CI do) and so technically never need the adjustment.
+But let's assume the hardware is exactly the same anyway and simplify
+the code by applying the w/a to all TGL+ platforms.
 
-Reviewed-by: David Howells <dhowells@redhat.com>
+v2: Keep the 38.4 MHz check
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 76ab55ee4b80..84df41086a89 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -2604,11 +2604,8 @@ ehl_combo_pll_div_frac_wa_needed(struct intel_display *display)
+ {
+ 	return ((display->platform.elkhartlake &&
+ 		 IS_DISPLAY_STEP(display, STEP_B0, STEP_FOREVER)) ||
+-		 display->platform.dg1 ||
+-		 display->platform.tigerlake ||
+-		 display->platform.alderlake_s ||
+-		 display->platform.alderlake_p) &&
+-		 display->dpll.ref_clks.nssc == 38400;
++		DISPLAY_VER(display) >= 12) &&
++		display->dpll.ref_clks.nssc == 38400;
+ }
+ 
+ struct icl_combo_pll_params {
+-- 
+2.45.3
 
