@@ -2,55 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0B6A78F21
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 14:53:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B88A78EDE
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Apr 2025 14:47:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3917C10E78A;
-	Wed,  2 Apr 2025 12:53:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B00E10E77F;
+	Wed,  2 Apr 2025 12:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="WuPUg7LZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A0GvEm2A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA72810E173;
- Tue,  1 Apr 2025 21:02:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
- :Subject; bh=g6StCyFpesYqaHVFLkyaouJmKdU5BfnU8LCrhZCDOCE=; b=WuPUg7LZBd19mvjU
- ZIGuJrVfFNtMuEjPcGLLx5VymD7xLMsLJNVHURqDPSNskBzNOpknpQlYefSYPGLwSBI/QpZf1eEoV
- PdNA+hIZf9lr8sBKCiL3p2V012JKYq6H1c22JHZ7TwJT188AyOh8mau8eeFt99CHLOczjksqHZdHD
- TgUNmMSRgo24r5Pez7w7PHu59TfvV5D2WGB8ObEFyUr3VRoqF3S8yQD8PNuZlDaoRPkVuoPsYoNNA
- Om0HFfxYHm2hZ3d0TGNt4W6u7B2anWSwNnm4Qz5ucK7t4nV3AG6y4MnuhV6kDCsSSDknly3ZxeEp1
- ikJ0mztKAV3jAZ4eRQ==;
-Received: from dg by mx.treblig.org with local (Exim 4.96)
- (envelope-from <dg@treblig.org>) id 1tzikn-008RMK-1P;
- Tue, 01 Apr 2025 21:02:37 +0000
-Date: Tue, 1 Apr 2025 21:02:37 +0000
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
-To: Ingo Molnar <mingo@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>, tglx@linutronix.de,
- mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, x86@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] x86/platform/iosf_mbi: Remove unused
- iosf_mbi_unregister_pmic_bus_access_notifier
-Message-ID: <Z-xUbXnU40c5ZkYQ@gallifrey>
-References: <20241225175010.91783-1-linux@treblig.org>
- <Z7416P1rZPNMHQq7@gmail.com> <Z-vP7-PaLhsHozbw@gallifrey>
- <Z-wxRln0avv8Fz55@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF4810E77E;
+ Wed,  2 Apr 2025 12:47:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743598036; x=1775134036;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Gj2aB2JqBmqXPO78uNKvPd/l2jxWVWHHMd/bVheBitA=;
+ b=A0GvEm2ASQdClm4umbZDKin41Vf0GX3vO0v/3U6WtqlSXomrYI5hyQM1
+ rD2cW4CBddOTBj05KfhoiIqpdpEFje6s35CPvzuU1y3CpB2nQsLQlR9iX
+ Is0DTT+tLPqY+Gpo/cCdo0GEfI3PFCPZ3isnhhfpBxkq+zmBC7vEW6RFz
+ KSIY3sHJ7CxZ5LuHGaqYNeaWlRD5xPUJY7EO19bQ9o85cVPcQ7L7sYK1K
+ 6l7Yjl2G1HGtqnoJrHSVQivzqq0zi1KKsxbXAQ/7iRXSwkK8wU5HEEPAj
+ gsZcAvkv/HIHwpoVRmtDf/2+2cis52HG0ZKFOcbXL7ABmrugkozFsrO+Q A==;
+X-CSE-ConnectionGUID: aW4t6a2aSvCg4wRwsfJq5Q==
+X-CSE-MsgGUID: B3ZT9gB5Q7STmFmxrzlkoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55953437"
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="55953437"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 05:47:11 -0700
+X-CSE-ConnectionGUID: gPJlNXYbQLS1e6N7A65cbg==
+X-CSE-MsgGUID: xLyK4DAQQ6S0hlKPTGmchw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,182,1739865600"; d="scan'208";a="127180570"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.73])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2025 05:47:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>,
+ linux-kernel@vger.kernel.org
+Cc: jani.nikula@intel.com, Jason Gunthorpe <jgg@nvidia.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, linux-kbuild@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 0/4] kbuild: resurrect generic header check facility
+Date: Wed,  2 Apr 2025 15:46:52 +0300
+Message-Id: <20250402124656.629226-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <Z-wxRln0avv8Fz55@gmail.com>
-X-Chocolate: 70 percent or better cocoa solids preferably
-X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
-X-Uptime: 21:01:18 up 328 days,  8:15,  1 user,  load average: 0.00, 0.00, 0.00
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-Mailman-Approved-At: Wed, 02 Apr 2025 12:53:44 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,52 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-* Ingo Molnar (mingo@kernel.org) wrote:
-> 
-> * Dr. David Alan Gilbert <linux@treblig.org> wrote:
-> 
-> > * Ingo Molnar (mingo@kernel.org) wrote:
-> > > 
-> > > * linux@treblig.org <linux@treblig.org> wrote:
-> > > 
-> > > > From: "Dr. David Alan Gilbert" <linux@treblig.org>
-> > > > 
-> > > > The last use of iosf_mbi_unregister_pmic_bus_access_notifier() was
-> > > > removed in 2017 by
-> > > > commit a5266db4d314 ("drm/i915: Acquire PUNIT->PMIC bus for
-> > > > intel_uncore_forcewake_reset()")
-> > > > 
-> > > > Remove it.
-> > > > 
-> > > > Note the '_unlocked' version is still used.
-> > > > 
-> > > > Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
-> > > > ---
-> > > >  arch/x86/include/asm/iosf_mbi.h      |  7 -------
-> > > >  arch/x86/platform/intel/iosf_mbi.c   | 13 -------------
-> > > >  drivers/gpu/drm/i915/i915_iosf_mbi.h |  6 ------
-> > > >  3 files changed, 26 deletions(-)
-> > > 
-> > > Acked-by: Ingo Molnar <mingo@kernel.org>
-> > 
-> > Thanks!
-> > Any idea who might pick this one up?
-> > 
-> > Dave
-> 
-> We can certainly do it via the x86 tree - I've added GPU/DRM 
-> maintainers to the commit's Cc: list.
+Another go at hiding the turds.
 
-Thanks again! (hardly urgent, but just trying to clean up 
-my backlog).
+In v1 [1] I hid the build artifacts under .hdrtest subdirectories, one in each
+$(obj) directory, but the feedback from Linus [2] was to have one top level
+directory for this.
 
-Dave
+This is not possible without turning the whole thing back into a generic header
+check facility. Personally, I think this is a good thing. Just look at patches
+2-4, it's great.
 
-> Thanks,
-> 
-> 	Ingo
+The main reason we've been doing this in the subsystem/driver level at all is
+the opposition from the kbuild maintainer. We'd very much like for Masahiro to
+support us in our efforts, but without that support, we're limited to hacking in
+the subsystem/driver Makefiles.
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/20250401121830.21696-1-jani.nikula@intel.com
+
+[2] https://lore.kernel.org/r/CAHk-=wiP0ea7xq2P3ryYs6xGWoqTw1E4jha67ZbJkaFrjqUdkQ@mail.gmail.com
+
+
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: linux-kbuild@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+
+
+Jani Nikula (4):
+  kbuild: add generic header check facility
+  drm: switch to generic header check facility
+  drm/i915: switch to generic header check facility
+  drm/xe: switch to generic header check facility
+
+ drivers/gpu/drm/Kconfig           |  2 +-
+ drivers/gpu/drm/Makefile          | 15 +--------------
+ drivers/gpu/drm/i915/Makefile     | 14 ++------------
+ drivers/gpu/drm/xe/Makefile       | 10 ++--------
+ drivers/gpu/drm/xe/xe_pcode_api.h |  4 ++++
+ include/drm/Makefile              | 15 +--------------
+ init/Kconfig                      | 25 +++++++++++++++++++++++++
+ scripts/Makefile.build            | 13 +++++++++++++
+ scripts/Makefile.lib              |  7 +++++++
+ 9 files changed, 56 insertions(+), 49 deletions(-)
+
 -- 
- -----Open up your eyes, open up your mind, open up your code -------   
-/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-\        dave @ treblig.org |                               | In Hex /
- \ _________________________|_____ http://www.treblig.org   |_______/
+2.39.5
+
