@@ -2,48 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FBFA79AA7
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 05:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C518A79E28
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 10:29:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05BE610E113;
-	Thu,  3 Apr 2025 03:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8664510E91E;
+	Thu,  3 Apr 2025 08:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="ZXf9CJuv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ivf1EvL3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D414210E113;
- Thu,  3 Apr 2025 03:53:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=j98rwQL7G8di/BtMjoHWfEqONBrRzM9ADm8HabBJsPs=; b=ZXf9CJuvoUH/YE50tXTG4O7y7B
- rgnnIdzHH4ih+uy9q+Zxo+7Bycoq/fP9k7VVNa89ePhRcOL6u3/fY/0qMnMssb+xaTLwHZgMR7e6h
- tEzEDVFicwQVGYeucAIE2BgpVdl/BcTayDpYZYejpY4HgBrrT/PLkoS3ED4PbzhupuG8PrkfYXJxG
- 7IH30YgiWnEqITe6xTrx6b6fNflMNeHp3uBRsfLxd/7u+hcQ/gFnxD/lZp8k53eAf42bm51EDsrgf
- Cj88ngx2F139E/LMxJ4YlS1/vMQZ8WWC9AE52UurF+GhIU1CZvYHdkahDQNrcfyee89PBN7aPll4k
- qY+38SkQ==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.1 #2 (Red
- Hat Linux)) id 1u0Be4-0000000Aw2v-1G9j;
- Thu, 03 Apr 2025 03:53:36 +0000
-Date: Thu, 3 Apr 2025 04:53:36 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Dominique Martinet <asmadeus@codewreck.org>
-Cc: linux-fsdevel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org, David Howells <dhowells@redhat.com>,
- v9fs@lists.linux.dev
-Subject: Re: [PATCH v2 1/9] 9p: Add a migrate_folio method
-Message-ID: <Z-4GQO_HcmcRqWnD@casper.infradead.org>
-References: <20250402150005.2309458-1-willy@infradead.org>
- <20250402150005.2309458-2-willy@infradead.org>
- <Z-4EiVQ6klHkkMoy@codewreck.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC44610E1F8;
+ Thu,  3 Apr 2025 08:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743668950; x=1775204950;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=9wASSCDtHfWTQS1ibqq2+/aBIDXmnwME9Xqva2ktERg=;
+ b=Ivf1EvL394UO2vK20DAVBDfZ+lSzDnyUHjzNzWmuGED3B5PrfUEZsvRm
+ gNLp9mV9aAduOeRQkyw4k1zmf9cFsKring5zBHPlKc78LCmip4b0EqFG5
+ EXvuD7Ps8vR1zFkOjOLe01sZsp6hJuJbh5a9A65SJQnJYuBPX0VbPoVmw
+ 41k+fnqqdjKgVgUbSrh/XbAtJ9Q/F3jKdgS32KYPJ52EKoKYUfhiZltMY
+ zsc3J1qRTQu1DwMw66OTSGqoqeofA0DJI1VdYgLjz3MVmwNDEh2teHfSK
+ qTyspQjUsYatUEi5MrVNaRZDNfucA+LPUFprWDQU2mAZbNs1HjTz0hiZh Q==;
+X-CSE-ConnectionGUID: WDoIi/I+QPKK/NTLXyMrug==
+X-CSE-MsgGUID: VvKh2/g3QrutVpjfsuAJWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55261222"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="55261222"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 01:29:10 -0700
+X-CSE-ConnectionGUID: miVzOfg2T26Z04ziHYbRnQ==
+X-CSE-MsgGUID: 0ZUmn2DZTg+y069X9BqQwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="157901448"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.158])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 01:29:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/6] drm/i915: Nuke intel_plane_ggtt_offset()
+In-Reply-To: <20250402172240.9275-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250402172240.9275-1-ville.syrjala@linux.intel.com>
+ <20250402172240.9275-3-ville.syrjala@linux.intel.com>
+Date: Thu, 03 Apr 2025 11:29:04 +0300
+Message-ID: <87o6xd1wdr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z-4EiVQ6klHkkMoy@codewreck.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,32 +71,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 03, 2025 at 12:46:17PM +0900, Dominique Martinet wrote:
-> Matthew Wilcox (Oracle) wrote on Wed, Apr 02, 2025 at 03:59:55PM +0100:
-> > The migration code used to be able to migrate dirty 9p folios by writing
-> > them back using writepage.  When the writepage method was removed,
-> > we neglected to add a migrate_folio method, which means that dirty 9p
-> > folios have been unmovable ever since.  This reduced our success at
-> > defragmenting memory on machines which use 9p heavily.
-> 
-> Given I'm not in Cc of the whole series I'm lacking context but I assume
-> that means I'm not supposed to take this in.
+On Wed, 02 Apr 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We don't really need the extra intel_plane_ggtt_offset() wrapper
+> anymore. Get rid of it.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 5 -----
+>  drivers/gpu/drm/i915/display/intel_atomic_plane.h  | 2 --
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c        | 2 +-
+>  drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c             | 2 +-
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c      | 2 +-
+>  6 files changed, 4 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
+gpu/drm/i915/display/intel_atomic_plane.c
+> index 7276179df878..264a50b29c16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -1565,8 +1565,3 @@ int intel_atomic_check_planes(struct intel_atomic_s=
+tate *state)
+>=20=20
+>  	return 0;
+>  }
+> -
+> -u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state)
+> -{
+> -	return i915_ggtt_offset(plane_state->ggtt_vma);
+> -}
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/=
+gpu/drm/i915/display/intel_atomic_plane.h
+> index 6efac923dcbc..65edd88d28a9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> @@ -88,6 +88,4 @@ int intel_atomic_add_affected_planes(struct intel_atomi=
+c_state *state,
+>  				     struct intel_crtc *crtc);
+>  int intel_atomic_check_planes(struct intel_atomic_state *state);
+>=20=20
+> -u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state);
+> -
+>  #endif /* __INTEL_ATOMIC_PLANE_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/dr=
+m/i915/display/intel_fb_pin.c
+> index fb7d0c8b9302..f2d8675dd98a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+> @@ -311,7 +311,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
+e_state,
+>  		plane_state->surf =3D i915_gem_object_get_dma_address(obj, 0) +
+>  			plane->surf_offset(plane_state);
+>  	} else {
+> -		plane_state->surf =3D intel_plane_ggtt_offset(plane_state) +
+> +		plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma) +
+>  			plane->surf_offset(plane_state);
+>  	}
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers=
+/gpu/drm/i915/display/intel_plane_initial.c
+> index 1c49610eb42f..3afff528a7bd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+> @@ -356,7 +356,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+>  	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
+>  		plane_state->flags |=3D PLANE_HAS_FENCE;
+>=20=20
+> -	plane_state->surf =3D intel_plane_ggtt_offset(plane_state);
+> +	plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma);
+>=20=20
+>  	plane_state->uapi.src_x =3D 0;
+>  	plane_state->uapi.src_y =3D 0;
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
+display/xe_fb_pin.c
+> index b9c45a5a3d82..b2e979805455 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -438,7 +438,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
+plane_state,
+>=20=20
+>  	new_plane_state->ggtt_vma =3D vma;
+>=20=20
+> -	new_plane_state->surf =3D intel_plane_ggtt_offset(new_plane_state) +
+> +	new_plane_state->surf =3D i915_ggtt_offset(new_plane_state->ggtt_vma) +
+>  		plane->surf_offset(new_plane_state);
 
-Right; I'm routing this whole series via Christian.  There's various
-bits of the VFS that need to be touched as part of this series, and
-it'd take forever to get it all merged by going through individual
-maintainer trees.
+I don't think xe specific code should be calling i915 compat functions
+directly.
 
-> I won't pretend I understand folios anyway, but commit messages makes
-> sense to me:
-> Acked-by: Dominique Martinet <asmadeus@codewreck.org>
+>=20=20
+>  	return 0;
+> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/=
+drm/xe/display/xe_plane_initial.c
+> index a15f60835239..c563edf14b1a 100644
+> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+> @@ -239,7 +239,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+>=20=20
+>  	plane_state->ggtt_vma =3D vma;
+>=20=20
+> -	plane_state->surf =3D intel_plane_ggtt_offset(plane_state);
+> +	plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma);
 
-Thanks!  Folios aren't really that hard a concept for a filesystem
-developer to understand, but dhowells has done a great job of insulating
-you from even having to understand them with netfs.  All they are is
-a container of one-or-more pages which maintain all the filesystem
-state which used to be managed per-page.  eg dirty, writeback, locked,
-offset-in-file, number-of-mappings.
+Ditto.
 
-There's more to it from a MM point of view, but as a filesystem
-developer, that's all you really need to understand.
+>=20=20
+>  	plane_state->uapi.src_x =3D 0;
+>  	plane_state->uapi.src_y =3D 0;
+
+--=20
+Jani Nikula, Intel
