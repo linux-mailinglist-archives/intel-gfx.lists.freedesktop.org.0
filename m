@@ -2,57 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2E0A7A07B
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 11:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB3DA7A037
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 11:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEDB310E988;
-	Thu,  3 Apr 2025 09:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A094A10E956;
+	Thu,  3 Apr 2025 09:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WANdknB/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BXpPlxoE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB8AE10E98F;
- Thu,  3 Apr 2025 09:51:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD79210E956;
+ Thu,  3 Apr 2025 09:41:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743673894; x=1775209894;
+ t=1743673290; x=1775209290;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=stxkcjTWDPjlgf6IqdJHjnvelzxCBaC7dtwcAtgZc0k=;
- b=WANdknB/rYND9g+K+Upin8N0tdKzPQshlrBsZoRc7+4yLZc8aUOfEAiY
- CNF/zzI3s4c6cmnkvtutQF/YmZ/GvHyeCRnFv1QrRHIMqDJPcPGmjbYRt
- Ai4ds/llWFQ5wex07QTVjjxWsCdeIFC3XuBs8pGWhheOoR7TkAIQ+iHje
- BvcugJUOndycEir4yULqJELA+IKun2riNQ6EU31zh9YLFKwo3WNyuuukN
- 5+MgGND06FIN447X1VdFLAyfrFUZSzYGYyDT6lEvh+wM77zfzvqHTIXFL
- 5cA/X39cCNshWskqCK1zfV3wmem2MSrMSrbSO5a8GZlWh74iSeOhiISUv g==;
-X-CSE-ConnectionGUID: tJ9OpRorT0WRwqlxQiznKQ==
-X-CSE-MsgGUID: IXssYzxYQgqnEsbtwbEf2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="45196670"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="45196670"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ bh=0N71E9OmVLY4RitS7I3se71yRpFvU2M1iUNUvDB7EaU=;
+ b=BXpPlxoEkqAiu6zhsS3w8+k0yupBn4y7k2l+weer/+1NDkkU0VEBxDf+
+ qlfpXksbpAsry1sIaCjgxuVjp8OttreuHyFl22Kx5aT8Duzh51UndilrZ
+ cmegGO+HRO9e7djoZFQqFB6Be3ycngecLc+h6A2Hz2BUNS8GwkEO0qDvb
+ mjAdFjeJz6oW9eeCyZrmFxxWrQCrRrEZud0E5INit97PT/vUdY7zM8xPR
+ ixvjUwzt/VJ3whHCrCCu7MH18RyRKcczlTpmY4z7obTcFoHppUYdZP3NN
+ QtJx1BrfIvv2LtMDLbvuP9YcMwnkQhScMMGpNxAvrtazSLKq7MzCvXDfO g==;
+X-CSE-ConnectionGUID: x/ef1DrFQTGMatYkg1M7uA==
+X-CSE-MsgGUID: VoBd+qQvQMKl9NNHN62Zbw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="45195162"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="45195162"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 02:51:34 -0700
-X-CSE-ConnectionGUID: WWcqEZhxSDKwxUn9VWvG/A==
-X-CSE-MsgGUID: oYpUCaGgStuYWnnmlRYHzQ==
+ 03 Apr 2025 02:41:29 -0700
+X-CSE-ConnectionGUID: YclFKZwVTX2/DNruYGBFRA==
+X-CSE-MsgGUID: b5NioH2OSI6/jFrElvXs6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127463855"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 03 Apr 2025 02:51:31 -0700
-From: Animesh Manna <animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="157947490"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.164])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:35:40 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v7 8/8] drm/i915/lobf: Check for sink error and disable LOBF
-Date: Thu,  3 Apr 2025 14:58:25 +0530
-Message-Id: <20250403092825.484347-9-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250403092825.484347-1-animesh.manna@intel.com>
-References: <20250403092825.484347-1-animesh.manna@intel.com>
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: Re: [PATCH] drm/i915/huc: Fix fence not released on early probe errors
+Date: Thu, 03 Apr 2025 11:35:38 +0200
+Message-ID: <1820024.VLH7GnMWUR@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <c1b77ca1-1851-4e3b-be37-267388a7501c@intel.com>
+References: <20250402172057.209924-2-janusz.krzysztofik@linux.intel.com>
+ <c1b77ca1-1851-4e3b-be37-267388a7501c@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,149 +74,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable LOBF/ALPM for any erroneous condition from sink side.
+Hi Daniele,
 
-v1: Initial version.
-v2: Add centralized alpm error handling. [Jouni]
-v3: Improve debug print. [Jouni]
-v4: Disable alpm permanently for sink error. [Jouni]
+Thanks for review.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c     | 29 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  5 ++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 18 ++----------
- 5 files changed, 38 insertions(+), 16 deletions(-)
+On Thursday, 3 April 2025 11:12:12 CEST Daniele Ceraolo Spurio wrote:
+> 
+> On 4/2/2025 10:20 AM, Janusz Krzysztofik wrote:
+> > HuC delayed loading fence, introduced with commit 27536e03271da
+> > ("drm/i915/huc: track delayed HuC load with a fence"), is registered with
+> > object tracker early on driver probe but unregistered only from driver
+> > remove, which is not called on early probe errors.  Since its memory is
+> > allocated under devres, then released anyway, it may happen to be
+> > allocated again to the fence and reused on future driver probes, resulting
+> > in kernel warnings that taint the kernel:
+> >
+> > <4> [309.731371] ------------[ cut here ]------------
+> > <3> [309.731373] ODEBUG: init destroyed (active state 0) object: 
+ffff88813d7dd2e0 object type: i915_sw_fence hint: 
+sw_fence_dummy_notify+0x0/0x20 [i915]
+> > <4> [309.731575] WARNING: CPU: 2 PID: 3161 at lib/debugobjects.c:612 
+debug_print_object+0x93/0xf0
+> > ...
+> > <4> [309.731693] CPU: 2 UID: 0 PID: 3161 Comm: i915_module_loa Tainted: G     
+U             6.14.0-CI_DRM_16362-gf0fd77956987+ #1
+> > ...
+> > <4> [309.731700] RIP: 0010:debug_print_object+0x93/0xf0
+> > ...
+> > <4> [309.731728] Call Trace:
+> > <4> [309.731730]  <TASK>
+> > ...
+> > <4> [309.731949]  __debug_object_init+0x17b/0x1c0
+> > <4> [309.731957]  debug_object_init+0x34/0x50
+> > <4> [309.732126]  __i915_sw_fence_init+0x34/0x60 [i915]
+> > <4> [309.732256]  intel_huc_init_early+0x4b/0x1d0 [i915]
+> > <4> [309.732468]  intel_uc_init_early+0x61/0x680 [i915]
+> > <4> [309.732667]  intel_gt_common_init_early+0x105/0x130 [i915]
+> > <4> [309.732804]  intel_root_gt_init_early+0x63/0x80 [i915]
+> > <4> [309.732938]  i915_driver_probe+0x1fa/0xeb0 [i915]
+> > <4> [309.733075]  i915_pci_probe+0xe6/0x220 [i915]
+> > <4> [309.733198]  local_pci_probe+0x44/0xb0
+> > <4> [309.733203]  pci_device_probe+0xf4/0x270
+> > <4> [309.733209]  really_probe+0xee/0x3c0
+> > <4> [309.733215]  __driver_probe_device+0x8c/0x180
+> > <4> [309.733219]  driver_probe_device+0x24/0xd0
+> > <4> [309.733223]  __driver_attach+0x10f/0x220
+> > <4> [309.733230]  bus_for_each_dev+0x7d/0xe0
+> > <4> [309.733236]  driver_attach+0x1e/0x30
+> > <4> [309.733239]  bus_add_driver+0x151/0x290
+> > <4> [309.733244]  driver_register+0x5e/0x130
+> > <4> [309.733247]  __pci_register_driver+0x7d/0x90
+> > <4> [309.733251]  i915_pci_register_driver+0x23/0x30 [i915]
+> > <4> [309.733413]  i915_init+0x34/0x120 [i915]
+> > <4> [309.733655]  do_one_initcall+0x62/0x3f0
+> > <4> [309.733667]  do_init_module+0x97/0x2a0
+> > <4> [309.733671]  load_module+0x25ff/0x2890
+> > <4> [309.733688]  init_module_from_file+0x97/0xe0
+> > <4> [309.733701]  idempotent_init_module+0x118/0x330
+> > <4> [309.733711]  __x64_sys_finit_module+0x77/0x100
+> > <4> [309.733715]  x64_sys_call+0x1f37/0x2650
+> > <4> [309.733719]  do_syscall_64+0x91/0x180
+> > <4> [309.733763]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> > <4> [309.733792]  </TASK>
+> > ...
+> > <4> [309.733806] ---[ end trace 0000000000000000 ]---
+> >
+> > That scenario is most easily reproducible with
+> > igt@i915_module_load@reload-with-fault-injection.
+> >
+> > Fix the issue by moving the cleanup step to driver release path.
+> >
+> > Fixes: 27536e03271da ("drm/i915/huc: track delayed HuC load with a fence")
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13592
+> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> > Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> 
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> 
+> I'm kind of surprised that this issue only showed up in the last few 
+> months, given that the code has been there for 2+ years. Did we change 
+> something that caused this to show up? I had a quick look at the patches 
+> merged around the time this issue was first reported but I didn't spot 
+> anything that could impact this.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 55eaf2ba996c..22a06753a760 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -5,6 +5,7 @@
- 
- #include <linux/debugfs.h>
- 
-+#include <drm/drm_print.h>
- #include "intel_alpm.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-@@ -280,6 +281,9 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
- 	if (intel_dp->alpm_parameters.lobf_disable_debug)
- 		return;
- 
-+	if (intel_dp->alpm_parameters.sink_alpm_error)
-+		return;
-+
- 	if (!intel_dp_is_edp(intel_dp))
- 		return;
- 
-@@ -506,5 +510,30 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 		     PORT_ALPM_CTL(cpu_transcoder),
- 		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
- 
-+	drm_dbg_kms(display->drm, "Disabling ALPM\n");
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
-+
-+bool intel_alpm_get_error(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct drm_dp_aux *aux = &intel_dp->aux;
-+	u8 val;
-+	int r;
-+
-+	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
-+	if (r != 1) {
-+		drm_err(display->drm, "Error reading ALPM status\n");
-+		return true;
-+	}
-+
-+	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+		drm_dbg_kms(display->drm, "ALPM lock timeout error\n");
-+
-+		/* Clearing error */
-+		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		return true;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 012b0b1d17ff..4f86322a9995 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -29,4 +29,5 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
- bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
- void intel_alpm_disable(struct intel_dp *intel_dp);
-+bool intel_alpm_get_error(struct intel_dp *intel_dp);
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index f7500fd1ee8c..617dcd3c2656 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1814,6 +1814,7 @@ struct intel_dp {
- 		u8 silence_period_sym_clocks;
- 		u8 lfps_half_cycle_num_of_syms;
- 		bool lobf_disable_debug;
-+		bool sink_alpm_error;
- 	} alpm_parameters;
- 
- 	u8 alpm_dpcd;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0d986d624d8c..9e8cdb699248 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5393,6 +5393,11 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
- 
- 	intel_psr_short_pulse(intel_dp);
- 
-+	if (intel_alpm_get_error(intel_dp)) {
-+		intel_alpm_disable(intel_dp);
-+		intel_dp->alpm_parameters.sink_alpm_error = true;
-+	}
-+
- 	if (intel_dp_test_short_pulse(intel_dp))
- 		reprobe_needed = true;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1bd2fcd0fa4b..43ed166007eb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3384,29 +3384,15 @@ static int psr_get_status_and_error_status(struct intel_dp *intel_dp,
- 
- static void psr_alpm_check(struct intel_dp *intel_dp)
- {
--	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_dp_aux *aux = &intel_dp->aux;
- 	struct intel_psr *psr = &intel_dp->psr;
--	u8 val;
--	int r;
- 
- 	if (!psr->sel_update_enabled)
- 		return;
- 
--	r = drm_dp_dpcd_readb(aux, DP_RECEIVER_ALPM_STATUS, &val);
--	if (r != 1) {
--		drm_err(display->drm, "Error reading ALPM status\n");
--		return;
--	}
--
--	if (val & DP_ALPM_LOCK_TIMEOUT_ERROR) {
-+	if (intel_alpm_get_error(intel_dp)) {
- 		intel_psr_disable_locked(intel_dp);
- 		psr->sink_not_reliable = true;
--		drm_dbg_kms(display->drm,
--			    "ALPM lock timeout error, disabling PSR\n");
--
--		/* Clearing error */
--		drm_dp_dpcd_writeb(aux, DP_RECEIVER_ALPM_STATUS, val);
-+		intel_alpm_disable(intel_dp);
- 	}
- }
- 
--- 
-2.29.0
+I didn't either.  I think that may come from the fact that sporadically 
+triggered issues are often hidden behind others, more persistent, and 
+automatically closed rather than worked on if not reported for some time.  A 
+couple of weeks ago I fixed a few long lasting issues that were triggered with 
+the same test more frequently than this one.
+
+Thanks,
+Janusz
+
+> 
+> Daniele
+> 
+> > ---
+> >   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 11 +++++------
+> >   drivers/gpu/drm/i915/gt/uc/intel_huc.h |  1 +
+> >   drivers/gpu/drm/i915/gt/uc/intel_uc.c  |  1 +
+> >   3 files changed, 7 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/
+i915/gt/uc/intel_huc.c
+> > index f30c90650b7ec..9659e6a301e19 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> > @@ -317,6 +317,11 @@ void intel_huc_init_early(struct intel_huc *huc)
+> >   	}
+> >   }
+> >   
+> > +void intel_huc_fini_late(struct intel_huc *huc)
+> > +{
+> > +	delayed_huc_load_fini(huc);
+> > +}
+> > +
+> >   #define HUC_LOAD_MODE_STRING(x) (x ? "GSC" : "legacy")
+> >   static int check_huc_loading_mode(struct intel_huc *huc)
+> >   {
+> > @@ -414,12 +419,6 @@ int intel_huc_init(struct intel_huc *huc)
+> >   
+> >   void intel_huc_fini(struct intel_huc *huc)
+> >   {
+> > -	/*
+> > -	 * the fence is initialized in init_early, so we need to clean it up
+> > -	 * even if HuC loading is off.
+> > -	 */
+> > -	delayed_huc_load_fini(huc);
+> > -
+> >   	if (huc->heci_pkt)
+> >   		i915_vma_unpin_and_release(&huc->heci_pkt, 0);
+> >   
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/
+i915/gt/uc/intel_huc.h
+> > index d5e441b9e08d6..921ad4b1687f0 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> > @@ -55,6 +55,7 @@ struct intel_huc {
+> >   
+> >   int intel_huc_sanitize(struct intel_huc *huc);
+> >   void intel_huc_init_early(struct intel_huc *huc);
+> > +void intel_huc_fini_late(struct intel_huc *huc);
+> >   int intel_huc_init(struct intel_huc *huc);
+> >   void intel_huc_fini(struct intel_huc *huc);
+> >   int intel_huc_auth(struct intel_huc *huc, enum 
+intel_huc_authentication_type type);
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/
+gt/uc/intel_uc.c
+> > index 90ba1b0b4c9d2..4a3493e8d4333 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> > @@ -136,6 +136,7 @@ void intel_uc_init_late(struct intel_uc *uc)
+> >   
+> >   void intel_uc_driver_late_release(struct intel_uc *uc)
+> >   {
+> > +	intel_huc_fini_late(&uc->huc);
+> >   }
+> >   
+> >   /**
+> 
+> 
+
+
+
 
