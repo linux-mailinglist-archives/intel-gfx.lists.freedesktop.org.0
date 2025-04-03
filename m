@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF39AA7A9F7
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 21:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C87CEA7AA67
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 21:13:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0867810EA6B;
-	Thu,  3 Apr 2025 19:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E6610EA6F;
+	Thu,  3 Apr 2025 19:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V8j/FwGX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J4nhbtwx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B35F10EA6B;
- Thu,  3 Apr 2025 19:05:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743707152; x=1775243152;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HdISfgb4oMSAsFrQV4Fxpf9OU1QKqFGGdHkFELMdJII=;
- b=V8j/FwGX4Sgj21ig1W5Z8IVRjQ6AHkR0GYkDsOYwOrEwDQzAEDAuSPb0
- HHivQNfZIjX7tDppzWPQ7DEO7R21VvHKdSF8Hy60kF4w4fQynbR+oOr5g
- saqgqgaMoC9TcqqbZu+oAHjdCP+C6Kn0bCIhq1XC9xRDXuNkzRh+674DX
- InlpiLnPkM4a80ZpC/yOa3P96EqPTXeHyf+0KlIO97l/oGqK9S7kAOCE4
- 7VfZoV6W0viB6U6/DxYyq9raJw340bM/EhekCdaJq81t0Xx1wIb1U4iaa
- +tF4phj1p+pR0LDBwWE6wwVgeVrMNb4sq8yBDTZXPQdW8HgXVGoRCe6Rv w==;
-X-CSE-ConnectionGUID: Y8NtJjD8QqazUyu71y0qrg==
-X-CSE-MsgGUID: c8m1KMRCRqeZJUT+SZsRAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="56502166"
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="56502166"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 12:05:51 -0700
-X-CSE-ConnectionGUID: 5ZtGGJxsRaq+a5l6RyK23Q==
-X-CSE-MsgGUID: BAHpTNDAQQu2GMOEYA8Wzg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,186,1739865600"; d="scan'208";a="132304411"
-Received: from sowmya001-nuc10i7fnh (HELO localhost.localdomain)
- ([10.223.165.176])
- by orviesa005.jf.intel.com with ESMTP; 03 Apr 2025 12:05:50 -0700
-From: shantam.yashashvi@intel.com
-To: intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	shantam.yashashvi@intel.com
-Subject: drm/i915: Add DSC/FEC support info to debugfs
-Date: Fri,  4 Apr 2025 00:34:48 +0530
-Message-Id: <20250403190448.29795-1-shantam.yashashvi@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C319A10EA4D;
+ Thu,  3 Apr 2025 19:13:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 31E93614B5;
+ Thu,  3 Apr 2025 19:13:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43347C4CEE9;
+ Thu,  3 Apr 2025 19:13:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1743707604;
+ bh=EKdo6glVJ5uwfI//1+P8dkxEj9XhjdNxCeuyPd/eAPg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=J4nhbtwxVtFV98KFbap5pev82KSlYL52LiWhtk8yKSdQaFJ2ImEehxKXZ6Aey3k/Q
+ 5aj+GUl1JStMZeh6nXuUG/gszDD7GUd0s2NBYobcHWPokubqAjxgH28mxN4sBj1GXU
+ eeq+2N8tlIjRmbWbWgg+U1G+9QFECrJ4RSwPcMVrCCVjxYKuWLImucbELIaobVgUqD
+ /vIZ50nE+22XxtZGZBBLYzUqMFU8J47k2aQmjM+VXvQcdbQf+M0c+p2+ThhS1Lm2Y4
+ 1+hoC1sKNW5QKneKYy9eRZddJDNbcA/q3vN38LZFjQ4jHajFeRpspWwgjd5xPM9OZC
+ 0DkoCrh/p0pPQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>,
+ Clint Taylor <Clinton.A.Taylor@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.14 04/44] drm/xe/bmg: Add new PCI IDs
+Date: Thu,  3 Apr 2025 15:12:33 -0400
+Message-Id: <20250403191313.2679091-4-sashal@kernel.org>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250403191313.2679091-1-sashal@kernel.org>
+References: <20250403191313.2679091-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.14
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,42 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Shantam Yashashvi <shantam.yashashvi@intel.com>
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Signed-off-by: Shantam Yashashvi <shantam.yashashvi@intel.com>
+[ Upstream commit fa8ffaae1b15236b8afb0fbbc04117ff7c900a83 ]
+
+Add 3 new PCI IDs for BMG.
+
+v2: Fix typo -> Replace '.' with ','
+
+Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20250128162015.3288675-1-shekhar.chauhan@intel.com
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ include/drm/intel/pciids.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 057a8ce0c2c97..b8d3a438a34d9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -276,6 +276,7 @@ static void intel_connector_info(struct seq_file *m,
- 	struct intel_encoder *encoder =
- 		to_intel_encoder(conn_state->best_encoder);
- 	const struct drm_display_mode *mode;
-+	struct intel_dp *intel_dp;
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 77c826589ec11..4035e215c962a 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -846,7 +846,10 @@
+ 	MACRO__(0xE20B, ## __VA_ARGS__), \
+ 	MACRO__(0xE20C, ## __VA_ARGS__), \
+ 	MACRO__(0xE20D, ## __VA_ARGS__), \
+-	MACRO__(0xE212, ## __VA_ARGS__)
++	MACRO__(0xE210, ## __VA_ARGS__), \
++	MACRO__(0xE212, ## __VA_ARGS__), \
++	MACRO__(0xE215, ## __VA_ARGS__), \
++	MACRO__(0xE216, ## __VA_ARGS__)
  
- 	seq_printf(m, "[CONNECTOR:%d:%s]: status: %s\n",
- 		   connector->base.id, connector->name,
-@@ -301,6 +302,16 @@ static void intel_connector_info(struct seq_file *m,
- 			intel_dp_mst_info(m, intel_connector);
- 		else
- 			intel_dp_info(m, intel_connector);
-+
-+		/* Add DSC and FEC Support Information for DisplayPort / eDP Connectors */
-+		intel_dp = intel_attached_dp(intel_connector);
-+		if (intel_dp){
-+			seq_printf(m, "\tDSC_Sink_Support: %s\n",
-+                str_yes_no(drm_dp_sink_supports_dsc(intel_connector->dp.dsc_dpcd)));
-+			if (!intel_dp_is_edp(intel_dp))
-+				    seq_printf(m, "\tFEC_Sink_Support: %s\n",
-+				        str_yes_no(drm_dp_sink_supports_fec(intel_connector->dp.fec_capability)));
-+		}
- 		break;
- 	case DRM_MODE_CONNECTOR_HDMIA:
- 		if (encoder->type == INTEL_OUTPUT_HDMI ||
+ /* PTL */
+ #define INTEL_PTL_IDS(MACRO__, ...) \
 -- 
-2.25.1
+2.39.5
 
