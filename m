@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24772A79FD0
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 11:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C075A7A072
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 11:51:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8CF010E976;
-	Thu,  3 Apr 2025 09:17:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0245F10E8CD;
+	Thu,  3 Apr 2025 09:51:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UrfzR9w9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYydhKtr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CCD110E1C5;
- Thu,  3 Apr 2025 09:17:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0620A10E8CD;
+ Thu,  3 Apr 2025 09:51:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743671874; x=1775207874;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=whjmuLAfPSGumj6s9WrPRPqMKf9aWAmdkwWwTeJbMiU=;
- b=UrfzR9w9GQSWoqFgQ08Fdsz8mFaS8bH8olbynvE1U0O82CnJwGKHSarj
- x8UdHvfOyYTf9u5YclgjSA+u4D0jg0ytsk9XzZ2REahGWYcwoDcEVUQ5z
- LOjUgIugnxtRDVLBriwc9y7PGDhxV1FzwJSz1PXJvDtk41WtjjSNujytj
- aMkwrKkqsJZd3cOcOMsA6NJ/4xi+I5aEVT6zr983H0CFH/rJz4ROAYHIX
- u6Ud/we9DxEkFp2YRGx0EYWE0xhWv1BGyW7YC+xzA9ksPezGkI16zYwBs
- bSecFOg52qMxJD6nApDkq5X4Bzry/C95RwetcezO1LDKZb/7LtMYC8vqr g==;
-X-CSE-ConnectionGUID: zpXqr8TUQdKVg0MeQnvp3g==
-X-CSE-MsgGUID: HRgc6TCMSmCiVbIC3n8mMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="56433782"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="56433782"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 02:17:54 -0700
-X-CSE-ConnectionGUID: RSNd5wVLSl+InZPq4vcKZg==
-X-CSE-MsgGUID: NGBGiiEgQ1C1hCPC0ukvmg==
+ t=1743673869; x=1775209869;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SlCBseJxs2fsdye2idHo0+QST0u82JakH23RRCDAJHY=;
+ b=YYydhKtrR3GHSqpshIvrmdfV95IQMnxw/ETSDCoJcFB2EBgvDXxuwzQm
+ GU7Si2lsCoJz8eiZtYpty7PyQH6hQIfGHvwyeOCusJV1FaF9GJUvHJlJq
+ LB8G1blKGK7JBII5oK3E00ELN5tw2UhpcM8LQToLeWGbN+PcSTg8sBwqL
+ h1jyq6/oyTxZkPm31q5MJ64OretoQTrtLxNj0P6zVaGwTjAZtVctFd7Hr
+ EL+qH0kiH69rkSJUzXPTcyaPU4twwvMzrI4mnS5nBJr6ud4XxYwqCS6Ly
+ Inn5ie8/i/pnlV44zOndIE8kuhUFZKtBwsnHE6puGwvr9WA80FGDb2gj+ Q==;
+X-CSE-ConnectionGUID: wChWylRKRW624aPGceK5pA==
+X-CSE-MsgGUID: tOOfI7AaTmK/ZdVp5AvAtA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="45196627"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="45196627"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:51:09 -0700
+X-CSE-ConnectionGUID: 8sBKPgljQ2KtHKD4VW/w8g==
+X-CSE-MsgGUID: 2fheufHuShyv7qHnGp9sNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="126717756"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.164])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 02:17:53 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: =?UTF-8?B?4pyX?= i915.CI.Full: failure for drm/i915/huc: Fix
- fence not released on early probe errors
-Date: Thu, 03 Apr 2025 11:17:49 +0200
-Message-ID: <10633950.nUPlyArG6x@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <174362548435.30316.6853241837141883790@e6b6f09ec485>
-References: <20250402172057.209924-2-janusz.krzysztofik@linux.intel.com>
- <174362548435.30316.6853241837141883790@e6b6f09ec485>
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127463679"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa010.fm.intel.com with ESMTP; 03 Apr 2025 02:51:06 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v7 0/8] LOBF enablement fix
+Date: Thu,  3 Apr 2025 14:58:17 +0530
+Message-Id: <20250403092825.484347-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,59 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi I915-ci-infra@lists.freedesktop.org,
+v1: Initial version.
+v2: Addressed review comments from Jani.
+v3: Addressed review comments from Jouni.
+v4: Addressed review comments received on v3.
+v5: Addressed review comments received on v4.
+v6: Addressed review comments received on v5.
+v7: Addressed review comments received on v6.
 
-On Wednesday, 2 April 2025 22:24:44 CEST Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/huc: Fix fence not released on early probe errors
-> URL   : https://patchwork.freedesktop.org/series/147160/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_16364_full -> Patchwork_147160v1_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_147160v1_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_147160v1_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (10 -> 11)
-> ------------------------------
-> 
->   Additional (1): pig-kbl-iris 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_147160v1_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_atomic_transition@plane-all-modeset-transition-fencing:
->     - shard-tglu:         [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16364/shard-tglu-3/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147160v1/shard-tglu-8/igt@kms_atomic_transition@plane-all-modeset-transition-fencing.html
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-The change can interfere only with module load/unload / driver probe/remove 
-paths, while looking at the code of that test I can't see it doing such 
-operations, then that incomplete is rather not related to the change.  Please 
-update CBL filters and re-report.
+Animesh Manna (8):
+  drm/i915/lobf: Add lobf enablement in post plane update
+  drm/i915/lobf: Add debug print for LOBF
+  drm/i915/lobf: Disintegrate alpm_disable from psr_disable
+  drm/i915/lobf: Add fixed refresh rate check in compute_config()
+  drm/i915/lobf: Update lobf if any change in dependent parameters
+  drm/i915/lobf: Add debug interface for lobf
+  drm/i915/lobf: Add mutex for alpm update
+  drm/i915/lobf: Check for sink error and disable LOBF
 
-Thanks,
-Janusz
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 126 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_alpm.h     |   8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  32 +----
+ 7 files changed, 148 insertions(+), 34 deletions(-)
 
+-- 
+2.29.0
 
