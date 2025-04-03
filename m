@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6001A7A437
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 15:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B31BA7A2B4
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 14:21:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D788910EA11;
-	Thu,  3 Apr 2025 13:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7072D10E9A7;
+	Thu,  3 Apr 2025 12:21:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=codewreck.org header.i=@codewreck.org header.b="0HBoscdF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLjEeTf8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 514 seconds by postgrey-1.36 at gabe;
- Thu, 03 Apr 2025 03:55:18 UTC
-Received: from submarine.notk.org (submarine.notk.org [62.210.214.84])
- by gabe.freedesktop.org (Postfix) with ESMTP id F241210E8F8;
- Thu,  3 Apr 2025 03:55:18 +0000 (UTC)
-Received: from gaia.codewreck.org (localhost [127.0.0.1])
- by submarine.notk.org (Postfix) with ESMTPS id 67B0E14C2DB;
- Thu,  3 Apr 2025 05:46:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codewreck.org;
- s=2; t=1743651996;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=ITcMLIFP5tKAjz41ehoKWCF5eQQiDYMOb1fN5yVdzj8=;
- b=0HBoscdFpgxuQgZl92opSENbMA9Pk+zXKbOYbpRJnb2fOIuhEQ1bwZ5rGPvmlYb+8wVHw8
- wHc2273ChihnbkPMTZ1/DAooFHD2hJ+0yffsGhHC9Cy9veCKiE8j7cW1KdfmCPrBKGxCoy
- Qn3m8QJ0MYx70hWGhV57dz2ZTADFzPnA6CZqQO0W6iJCwIBiDSjDSOwrvW/d4+WTVhVAcH
- g6HcnkJSY+HEZzS8B0uR8bH0QBVA+A0ZU2VyhxlEvsqXe3FXAMaHh6g4yHfkceyrco8IVL
- 7ipXZTHnksTxDqR7U3ceJDpBoPzzk84gVw3dN7X3aD3CMOZtc1b/HQqenuVM/Q==
-Received: from localhost (gaia.codewreck.org [local])
- by gaia.codewreck.org (OpenSMTPD) with ESMTPA id 72519fa4;
- Thu, 3 Apr 2025 03:46:32 +0000 (UTC)
-Date: Thu, 3 Apr 2025 12:46:17 +0900
-From: Dominique Martinet <asmadeus@codewreck.org>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Cc: linux-fsdevel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org, David Howells <dhowells@redhat.com>,
- v9fs@lists.linux.dev
-Subject: Re: [PATCH v2 1/9] 9p: Add a migrate_folio method
-Message-ID: <Z-4EiVQ6klHkkMoy@codewreck.org>
-References: <20250402150005.2309458-1-willy@infradead.org>
- <20250402150005.2309458-2-willy@infradead.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38DE410E23A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Apr 2025 12:21:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743682905; x=1775218905;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JVvNHg3Y8EwbWmWBfjdQ+nDnQPlx77Kxa/3oNZ+ZAzE=;
+ b=PLjEeTf85JyYL3NPPFBwfux6wylxmyADHFwABrrQjYX5aFgrAT108WVX
+ JDIOTnuIj+ZPhbo5YL9qAwqCF/e9x1qT90qMpaYdFL5egj++yRNhHTOdb
+ 5XlZc+qPaaIl3jfM/aYohgAu3ts9HD+PEhFMdttyhs7fNxmjMarUVQ5AN
+ /uc+oHejuFiaPCq9TCw3BKa57nLSD9CiWxM0LjTVjCbOMgcF9eNGAyf9p
+ 0l3IiWrFSS5lNxbcHgyFkUb1uZOaSFcnPqYyNI/evjKg7KQN1F5rVFci1
+ LOH4ZxbCVnhR8V+frJn1zzAMVCLYXfy8sw9WSbLoTFLoTZpD5p1ryEW2o g==;
+X-CSE-ConnectionGUID: 70K+XS/MSJ67R75X9Sb2Hw==
+X-CSE-MsgGUID: 3Zmb+pp0Sj2fESWch97ujw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="47804508"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="47804508"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 05:21:41 -0700
+X-CSE-ConnectionGUID: AQR+PKEJSLyG3kK9HnWpFA==
+X-CSE-MsgGUID: sDNy73JBS6yF9UVSqKggWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="126764504"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 05:21:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	William Tseng <william.tseng@intel.com>
+Subject: [PATCH 0/2] drm/i915/dsi: couple of fixing
+Date: Thu,  3 Apr 2025 15:21:32 +0300
+Message-Id: <cover.1743682608.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250402150005.2309458-2-willy@infradead.org>
-X-Mailman-Approved-At: Thu, 03 Apr 2025 13:46:32 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,26 +67,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Matthew Wilcox (Oracle) wrote on Wed, Apr 02, 2025 at 03:59:55PM +0100:
-> The migration code used to be able to migrate dirty 9p folios by writing
-> them back using writepage.  When the writepage method was removed,
-> we neglected to add a migrate_folio method, which means that dirty 9p
-> folios have been unmovable ever since.  This reduced our success at
-> defragmenting memory on machines which use 9p heavily.
-> 
-> Fixes: 80105ed2fd27 (9p: Use netfslib read/write_iter)
-> Cc: stable@vger.kernel.org
-> Cc: David Howells <dhowells@redhat.com>
-> Cc: v9fs@lists.linux.dev
-> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+When I was reviewing [1] these oddities caught my eye.
 
-Given I'm not in Cc of the whole series I'm lacking context but I assume
-that means I'm not supposed to take this in.
+BR,
+Jani.
 
-I won't pretend I understand folios anyway, but commit messages makes
-sense to me:
-Acked-by: Dominique Martinet <asmadeus@codewreck.org>
+[1] https://lore.kernel.org/r/20250311100626.533888-1-william.tseng@intel.com
 
-Thanks,
+Cc: William Tseng <william.tseng@intel.com>
+
+Jani Nikula (2):
+  drm/i915/dsi: separate clock and data lane prepare timing
+  drm/i915/dsi: unify naming and simplify checks for dphy params
+
+ drivers/gpu/drm/i915/display/icl_dsi.c | 90 ++++++++------------------
+ 1 file changed, 26 insertions(+), 64 deletions(-)
+
 -- 
-Dominique Martinet | Asmadeus
+2.39.5
+
