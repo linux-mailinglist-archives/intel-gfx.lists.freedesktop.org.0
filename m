@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 038A8A7AAF1
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 21:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C450AA7ABEB
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 21:29:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58C4C10EACC;
-	Thu,  3 Apr 2025 19:17:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LBjgtHTm";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 314BD10E277;
+	Thu,  3 Apr 2025 19:29:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD31810EACC;
- Thu,  3 Apr 2025 19:17:07 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 179C7614B8;
- Thu,  3 Apr 2025 19:17:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26815C4CEE8;
- Thu,  3 Apr 2025 19:17:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1743707826;
- bh=yUpA0qjHvZKAAfgwXDObkqFQ3RYg+pih7cXGpVy1gts=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=LBjgtHTmW9JVQFmazjM9TFTdcpxl8Q692kxX2gRuo0tdScc8BWycK6+7NdT5DlV+1
- hCnG1tZtIrH6ibC/wGXMibR7XPNbOkACll9uEqoRpDc/gFMZgbk4U9qFwBzdqoWEyu
- hJvgUPRiTSdZOIuPgafJ6u10fQ+6aRPjuCHONvUlay1dCAgqH9uDoxZb+7x/qhNO7O
- gmYqRc1vcuYK6/myIgVpfgq569W8P7/ufpid+KJDvfY2O9FksVc6pj+49quAaTfkVW
- LIDifJNsvmPgxH8R4fwP3PyBD5arnK9vU2QA9NZnCxMZhmwez8n8BqgkHko4/jUHaa
- 4YMf/gANHSI6g==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Clint Taylor <Clinton.A.Taylor@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 02/33] drm/xe/bmg: Add new PCI IDs
-Date: Thu,  3 Apr 2025 15:16:25 -0400
-Message-Id: <20250403191656.2680995-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250403191656.2680995-1-sashal@kernel.org>
-References: <20250403191656.2680995-1-sashal@kernel.org>
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E331010E277;
+ Thu,  3 Apr 2025 19:29:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.12.21
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915=3A_Add_DSC/FEC_s?=
+ =?utf-8?q?upport_info_to_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: shantam.yashashvi@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 03 Apr 2025 19:29:34 -0000
+Message-ID: <174370857492.35140.7231086105900481373@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250403190448.29795-1-shantam.yashashvi@intel.com>
+In-Reply-To: <20250403190448.29795-1-shantam.yashashvi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +37,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+== Series Details ==
 
-[ Upstream commit fa8ffaae1b15236b8afb0fbbc04117ff7c900a83 ]
+Series: drm/i915: Add DSC/FEC support info to debugfs
+URL   : https://patchwork.freedesktop.org/series/147237/
+State : failure
 
-Add 3 new PCI IDs for BMG.
+== Summary ==
 
-v2: Fix typo -> Replace '.' with ','
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/147237/revisions/1/mbox/ not applied
+Applying: drm/i915: Add DSC/FEC support info to debugfs
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display_debugfs.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915: Add DSC/FEC support info to debugfs
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
-Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20250128162015.3288675-1-shekhar.chauhan@intel.com
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- include/drm/intel/i915_pciids.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
-index f35534522d333..dacea289acaf5 100644
---- a/include/drm/intel/i915_pciids.h
-+++ b/include/drm/intel/i915_pciids.h
-@@ -809,6 +809,9 @@
- 	MACRO__(0xE20B, ## __VA_ARGS__), \
- 	MACRO__(0xE20C, ## __VA_ARGS__), \
- 	MACRO__(0xE20D, ## __VA_ARGS__), \
--	MACRO__(0xE212, ## __VA_ARGS__)
-+	MACRO__(0xE210, ## __VA_ARGS__), \
-+	MACRO__(0xE212, ## __VA_ARGS__), \
-+	MACRO__(0xE215, ## __VA_ARGS__), \
-+	MACRO__(0xE216, ## __VA_ARGS__)
- 
- #endif /* _I915_PCIIDS_H */
--- 
-2.39.5
 
