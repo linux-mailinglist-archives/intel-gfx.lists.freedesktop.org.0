@@ -2,60 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C518A79E28
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 10:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7CC7A79FAC
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Apr 2025 11:12:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8664510E91E;
-	Thu,  3 Apr 2025 08:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDFA10E957;
+	Thu,  3 Apr 2025 09:11:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ivf1EvL3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3eoYa1V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC44610E1F8;
- Thu,  3 Apr 2025 08:29:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA7010E956;
+ Thu,  3 Apr 2025 09:11:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743668950; x=1775204950;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=9wASSCDtHfWTQS1ibqq2+/aBIDXmnwME9Xqva2ktERg=;
- b=Ivf1EvL394UO2vK20DAVBDfZ+lSzDnyUHjzNzWmuGED3B5PrfUEZsvRm
- gNLp9mV9aAduOeRQkyw4k1zmf9cFsKring5zBHPlKc78LCmip4b0EqFG5
- EXvuD7Ps8vR1zFkOjOLe01sZsp6hJuJbh5a9A65SJQnJYuBPX0VbPoVmw
- 41k+fnqqdjKgVgUbSrh/XbAtJ9Q/F3jKdgS32KYPJ52EKoKYUfhiZltMY
- zsc3J1qRTQu1DwMw66OTSGqoqeofA0DJI1VdYgLjz3MVmwNDEh2teHfSK
- qTyspQjUsYatUEi5MrVNaRZDNfucA+LPUFprWDQU2mAZbNs1HjTz0hiZh Q==;
-X-CSE-ConnectionGUID: WDoIi/I+QPKK/NTLXyMrug==
-X-CSE-MsgGUID: VvKh2/g3QrutVpjfsuAJWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="55261222"
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="55261222"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 01:29:10 -0700
-X-CSE-ConnectionGUID: miVzOfg2T26Z04ziHYbRnQ==
-X-CSE-MsgGUID: 0ZUmn2DZTg+y069X9BqQwg==
+ t=1743671506; x=1775207506;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aUEQroovJ6vRQA7UBSnMx4Fc2GF1cLqOsFQIGNVHq0I=;
+ b=k3eoYa1V8M7ltyUNzeacevIT14RR8ExrRhEja1kFmxbui3AyiOwwP+YH
+ 1dLxPVcxFtZwK5IgRtKVsLctr3z+196FkoD9QYs7bV1ckEjpbKAUKm/Jf
+ W26RZHjp42zrl5DbelkbZ1l7R/zawbly609L7N8jrZq7F8yKAhv7BFAns
+ 4J7leDTvd3Kt/Yeig6UjEqUAhCzaWGTswvqyjqZmeJazw9l9gbc52nebS
+ fmo4XVplkCaidfqZS3geoXX+lZtIax9CVwUtKroywdC+talq0yawb20BX
+ YyksrnuQB0u2XSCGBUz7/+Ql47CZj7sP5GHgUgCiLsP+bzt1GJd+DhtRV A==;
+X-CSE-ConnectionGUID: UWWCT22oSlWQsPyH3N3N7g==
+X-CSE-MsgGUID: sSM78bBPR92sYGys9ihy4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11392"; a="44960735"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="44960735"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:11:46 -0700
+X-CSE-ConnectionGUID: Hsust/IGSpey11qMuyPpyQ==
+X-CSE-MsgGUID: 099+VDxrTteJOlzxFYC2TA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="157901448"
+X-IronPort-AV: E=Sophos;i="6.15,184,1739865600"; d="scan'208";a="127447960"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.158])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2025 01:29:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/6] drm/i915: Nuke intel_plane_ggtt_offset()
-In-Reply-To: <20250402172240.9275-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250402172240.9275-1-ville.syrjala@linux.intel.com>
- <20250402172240.9275-3-ville.syrjala@linux.intel.com>
-Date: Thu, 03 Apr 2025 11:29:04 +0300
-Message-ID: <87o6xd1wdr.fsf@intel.com>
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2025 02:11:44 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/7] drm/i915/wm: convert to struct intel_display
+Date: Thu,  3 Apr 2025 12:11:32 +0300
+Message-Id: <cover.1743671373.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,115 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 02 Apr 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> We don't really need the extra intel_plane_ggtt_offset() wrapper
-> anymore. Get rid of it.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 5 -----
->  drivers/gpu/drm/i915/display/intel_atomic_plane.h  | 2 --
->  drivers/gpu/drm/i915/display/intel_fb_pin.c        | 2 +-
->  drivers/gpu/drm/i915/display/intel_plane_initial.c | 2 +-
->  drivers/gpu/drm/xe/display/xe_fb_pin.c             | 2 +-
->  drivers/gpu/drm/xe/display/xe_plane_initial.c      | 2 +-
->  6 files changed, 4 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.c
-> index 7276179df878..264a50b29c16 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -1565,8 +1565,3 @@ int intel_atomic_check_planes(struct intel_atomic_s=
-tate *state)
->=20=20
->  	return 0;
->  }
-> -
-> -u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state)
-> -{
-> -	return i915_ggtt_offset(plane_state->ggtt_vma);
-> -}
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.h
-> index 6efac923dcbc..65edd88d28a9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -88,6 +88,4 @@ int intel_atomic_add_affected_planes(struct intel_atomi=
-c_state *state,
->  				     struct intel_crtc *crtc);
->  int intel_atomic_check_planes(struct intel_atomic_state *state);
->=20=20
-> -u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state);
-> -
->  #endif /* __INTEL_ATOMIC_PLANE_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/dr=
-m/i915/display/intel_fb_pin.c
-> index fb7d0c8b9302..f2d8675dd98a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
-> @@ -311,7 +311,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
-e_state,
->  		plane_state->surf =3D i915_gem_object_get_dma_address(obj, 0) +
->  			plane->surf_offset(plane_state);
->  	} else {
-> -		plane_state->surf =3D intel_plane_ggtt_offset(plane_state) +
-> +		plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma) +
->  			plane->surf_offset(plane_state);
->  	}
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers=
-/gpu/drm/i915/display/intel_plane_initial.c
-> index 1c49610eb42f..3afff528a7bd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> @@ -356,7 +356,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
->  	    i915_vma_pin_fence(vma) =3D=3D 0 && vma->fence)
->  		plane_state->flags |=3D PLANE_HAS_FENCE;
->=20=20
-> -	plane_state->surf =3D intel_plane_ggtt_offset(plane_state);
-> +	plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma);
->=20=20
->  	plane_state->uapi.src_x =3D 0;
->  	plane_state->uapi.src_y =3D 0;
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
-display/xe_fb_pin.c
-> index b9c45a5a3d82..b2e979805455 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -438,7 +438,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
-plane_state,
->=20=20
->  	new_plane_state->ggtt_vma =3D vma;
->=20=20
-> -	new_plane_state->surf =3D intel_plane_ggtt_offset(new_plane_state) +
-> +	new_plane_state->surf =3D i915_ggtt_offset(new_plane_state->ggtt_vma) +
->  		plane->surf_offset(new_plane_state);
+The wm code is one of the last big holdouts of struct drm_i915_private
+usage. Convert them all to struct intel_display, as much as possible
+anyway.
 
-I don't think xe specific code should be calling i915 compat functions
-directly.
+After this, we're really starting to get down to the bottom of the
+barrel.
 
->=20=20
->  	return 0;
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/=
-drm/xe/display/xe_plane_initial.c
-> index a15f60835239..c563edf14b1a 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -239,7 +239,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
->=20=20
->  	plane_state->ggtt_vma =3D vma;
->=20=20
-> -	plane_state->surf =3D intel_plane_ggtt_offset(plane_state);
-> +	plane_state->surf =3D i915_ggtt_offset(plane_state->ggtt_vma);
 
-Ditto.
+Jani Nikula (7):
+  drm/i915/wm: convert intel_wm.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert intel_wm.c internally to struct intel_display
+  drm/i915/wm: convert skl_watermark.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert skl_watermarks.c internally to struct
+    intel_display
+  drm/i915/wm: convert intel_wm.h external interfaces to struct
+    intel_display
+  drm/i915/wm: convert i9xx_wm.c to intel_de_*() register interface
+  drm/i915/wm: convert i9xx_wm.c internally to struct intel_display
 
->=20=20
->  	plane_state->uapi.src_x =3D 0;
->  	plane_state->uapi.src_y =3D 0;
+ drivers/gpu/drm/i915/display/i9xx_wm.c        | 1222 ++++++++---------
+ drivers/gpu/drm/i915/display/i9xx_wm.h        |   18 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |   17 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |    4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |   22 +-
+ .../gpu/drm/i915/display/intel_display_core.h |    6 +-
+ .../drm/i915/display/intel_display_debugfs.c  |    3 +-
+ .../drm/i915/display/intel_display_driver.c   |   12 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |    4 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   11 +-
+ drivers/gpu/drm/i915/display/intel_wm.c       |  166 +--
+ drivers/gpu/drm/i915/display/intel_wm.h       |   14 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  623 ++++-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   23 +-
+ drivers/gpu/drm/i915/i915_driver.c            |    2 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |    2 +-
+ 16 files changed, 1053 insertions(+), 1096 deletions(-)
 
---=20
-Jani Nikula, Intel
+-- 
+2.39.5
+
