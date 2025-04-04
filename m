@@ -2,103 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45ECA7B7FE
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 08:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59071A7B8A8
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 10:17:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFBD110E311;
-	Fri,  4 Apr 2025 06:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E38410EA61;
+	Fri,  4 Apr 2025 08:17:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="boYZmGZy";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8Bpv8bro";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="boYZmGZy";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8Bpv8bro";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MOlDocqH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 111F810EA53
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 06:51:09 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 949F1211C4;
- Fri,  4 Apr 2025 06:51:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1743749467; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
- b=boYZmGZyifW3xCiPqqYo5S5EmFpeUqs2UZPrAx53H2xWh8Rk4eftK51K/1u3viMeTJ9//L
- 3A8+1hg/mSxx35xVi1jB6eMNey+3jSbj/UFSqtwkEqDrJCDyloEH1rf2gdsLD5ATSy1+YC
- kYdV8ZO/1iEcHGzp1BwO5wKI57W7mNg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1743749467;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
- b=8Bpv8bro85Fkmwdh5T0UIpPc90dQXIRq/G3Pjo/8tYT05jB1qN4rafZalujI3nIz6ASE24
- T8kbAH36UfL91uAg==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1743749467; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
- b=boYZmGZyifW3xCiPqqYo5S5EmFpeUqs2UZPrAx53H2xWh8Rk4eftK51K/1u3viMeTJ9//L
- 3A8+1hg/mSxx35xVi1jB6eMNey+3jSbj/UFSqtwkEqDrJCDyloEH1rf2gdsLD5ATSy1+YC
- kYdV8ZO/1iEcHGzp1BwO5wKI57W7mNg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1743749467;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=SjpAnnOxN0Q1H004weBg/wRQGuQae06E5nKdJp7hhjI=;
- b=8Bpv8bro85Fkmwdh5T0UIpPc90dQXIRq/G3Pjo/8tYT05jB1qN4rafZalujI3nIz6ASE24
- T8kbAH36UfL91uAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 30DEE13691;
- Fri,  4 Apr 2025 06:51:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id x2afCluB72cgWgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 04 Apr 2025 06:51:07 +0000
-Date: Fri, 4 Apr 2025 08:51:05 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250404065105.GA27699@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 720EE10EA61
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 08:17:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743754644; x=1775290644;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=e02cM4R1rabkKdpv0fMVX5NelBsQhTZnE1vEIOu25tQ=;
+ b=MOlDocqHRXDzzCqPffcNLQ7BbR3P2Ln7c7zfWr98DEWkImNO9BQQrRQw
+ Lx5HuJvmeZlbQtI7zWJihHjAKjWweVTLyZwxMrzL4qYAXrvzheeONteOS
+ Rh1wsrfa7K5SNhuIAFMZpOdnFWUjMZtuvj/FBD3xIzwPNdLilhSFoIin8
+ jCuhsk38nDh9x6cNCgMjeIo2x+q7XoKSi4nt7Qh0tSeKrHjqQ91sHOH4c
+ FWALxDtxWCRk2IgK5li0Bz3fuPg7DsWdnJ1feVt0dtMLsVAmTdsqyCPbL
+ Io6Eu6LqVbb6sFgPWzFcwmVO6bKXld3060RRymrTQFgGrIN8I5pDtD028 g==;
+X-CSE-ConnectionGUID: RpJVWyrdRaGl/5jLiG4O4A==
+X-CSE-MsgGUID: wmG2uNb/ReeuxljVvHmeaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11393"; a="45078275"
+X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; d="scan'208";a="45078275"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 01:17:23 -0700
+X-CSE-ConnectionGUID: hcnaVYezRkKOHWodik+HRw==
+X-CSE-MsgGUID: jBT1B4KuQ3ulxn2lV0uSXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,187,1739865600"; d="scan'208";a="132453241"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 01:17:21 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com,
+ arun.r.murthy@intel.com, stable@vger.kernel.org,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH] drm/i915/vrr: Add vrr.vsync_{start, end} in vrr_params_changed
+Date: Fri,  4 Apr 2025 13:35:40 +0530
+Message-ID: <20250404080540.2059511-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.992]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -4.30
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,47 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Add the missing vrr parameters in vrr_params_changed() helper.
+This ensures that changes in vrr.vsync_{start,end} trigger a call to
+appropriate helpers to update the VRR registers.
 
-this is the final PR for this release cycle's drm-misc-next-fixes.
+Fixes: e8cd188e91bb ("drm/i915/display: Compute vrr_vsync params")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v6.10+
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Best regards
-Thomas
-
-drm-misc-next-fixes-2025-04-04:
-Short summary of fixes pull:
-
-bridge:
-- tda998x: Select CONFIG_DRM_KMS_HELPER
-The following changes since commit ee20c69c789b6cb2179a535cf440d72b98f4a134:
-
-  drm: adp: Fix NULL vs IS_ERR() check in adp_plane_new() (2025-03-14 09:42:11 -0400)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-04-04
-
-for you to fetch changes up to 85a063b8b281e144ed96463936fb4e6b3d4fe9e4:
-
-  drm/i2c: tda998x: select CONFIG_DRM_KMS_HELPER (2025-03-30 21:02:06 +0300)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-bridge:
-- tda998x: Select CONFIG_DRM_KMS_HELPER
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/i2c: tda998x: select CONFIG_DRM_KMS_HELPER
-
- drivers/gpu/drm/bridge/Kconfig | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c540e2cae1f0..ced8ba0f8d6d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -969,7 +969,9 @@ static bool vrr_params_changed(const struct intel_crtc_state *old_crtc_state,
+ 		old_crtc_state->vrr.vmin != new_crtc_state->vrr.vmin ||
+ 		old_crtc_state->vrr.vmax != new_crtc_state->vrr.vmax ||
+ 		old_crtc_state->vrr.guardband != new_crtc_state->vrr.guardband ||
+-		old_crtc_state->vrr.pipeline_full != new_crtc_state->vrr.pipeline_full;
++		old_crtc_state->vrr.pipeline_full != new_crtc_state->vrr.pipeline_full ||
++		old_crtc_state->vrr.vsync_start != new_crtc_state->vrr.vsync_start ||
++		old_crtc_state->vrr.vsync_end != new_crtc_state->vrr.vsync_end;
+ }
+ 
+ static bool cmrr_params_changed(const struct intel_crtc_state *old_crtc_state,
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.45.2
+
