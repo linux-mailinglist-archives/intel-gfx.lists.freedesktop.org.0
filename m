@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464C5A7BDA3
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 15:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 293FBA7BDA7
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 15:21:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA57F10EBA8;
-	Fri,  4 Apr 2025 13:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9CFF10EBAC;
+	Fri,  4 Apr 2025 13:21:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EDjTNvfq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5EQi0Mj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5231810EBA8
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 13:21:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE3A510EBAC
+ for <intel-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 13:21:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743772868; x=1775308868;
+ t=1743772917; x=1775308917;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=4WNsJMuQHc5UUsW7KUn16fmcLC4KlQhoWQcgmE6OlBc=;
- b=EDjTNvfq4U8b4mEmYOgBLhQ3YDkow/w4KhtdFzRUaho3fFSPVvOQIGZj
- 72sJ7eE6TKoG8x/QY+hubiTkE7rPGYdJi8+PtW6aeVJQH1VsoQoelyhpb
- TXkmGJUMpW5tazQBJLnRc10vQLnBrJqgz1W6nvjkucZlBMbebn1q80E0h
- XBry1fNTav9i2ZZfSFUpESSShoGq2EYyaM4YpaOB4ej5w5yTHTi0JpolQ
- +7TdvnBSsmHqB9KqLl6lBRDVLZnFY88r9jwqTwF1x/LC2ps0Ox5jsCv3o
- scFvxvHDrWpod8y2iyPNcN3sYEvArnBAKcuq4d9kBioMjk9ttNvKu+CRd g==;
-X-CSE-ConnectionGUID: zGWMMjmUQFiQzKO0cbmRnw==
-X-CSE-MsgGUID: suzAH9ZbRUCt8E3BIvtcgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="56581922"
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="56581922"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 06:21:08 -0700
-X-CSE-ConnectionGUID: mtBWIspzTcW0MKfMAGbMWA==
-X-CSE-MsgGUID: w+jp9qnFSDCEMhM1IuoCDg==
+ bh=GbEORVM1BEPED3RrsWMWznLyA4eRzdyXOTAPhGjU1c4=;
+ b=H5EQi0Mjb637s83Nbi58PBvPBwh1MdvgNeRyIjS7iardw/q7oFYZyNO8
+ P8E2HJ87XhQoTEwuvKP6u+ZvqcE0eJ//sjvDWI2+s61MJ3BWONpmV9KBW
+ SRzV/2zQTbi726KYHOKaRPBbjrOkYnV9x/6Qyj25c2Ukxy2bfZuglF7AV
+ sraQmo3I/uHj1MjzcUL+5KfGux1umMvWtphvpizJ2jR4qSD7CByXPyRIk
+ uQ//iakHn8Y5injiuNHlWJrKffX6DUdb4CQvUiRIEuxYm9IIAgXSDpAcZ
+ NuwZbkgVohyAo3OybJlXn5KnV9plCyar3lKUDBlI8dhj0i4O32jeo1JrQ w==;
+X-CSE-ConnectionGUID: +ri7u5uUSJy6y6wVoUm+Hw==
+X-CSE-MsgGUID: gWzxb9MnSvSH9JDlTVjORw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="45102510"
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="45102510"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 06:21:56 -0700
+X-CSE-ConnectionGUID: 8ZIkDkp0SaeE79YfjHCXdw==
+X-CSE-MsgGUID: zWxzRX7YQXSmrVZ3ivUpVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="132017404"
+X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="128220345"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.234])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 06:21:06 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 06:21:55 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/dsi: Don't set/read the DSI C clock
- divider on GLK
-In-Reply-To: <20250314150136.22564-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/3] drm/i915/dsi: Assert that vfp+vsync+vbp == vtotal
+ on BXT/GLK
+In-Reply-To: <20250314150136.22564-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250314150136.22564-1-ville.syrjala@linux.intel.com>
- <20250314150136.22564-2-ville.syrjala@linux.intel.com>
-Date: Fri, 04 Apr 2025 16:21:03 +0300
-Message-ID: <87cydsyse8.fsf@intel.com>
+ <20250314150136.22564-3-ville.syrjala@linux.intel.com>
+Date: Fri, 04 Apr 2025 16:21:51 +0300
+Message-ID: <87a58wyscw.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,54 +74,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Fri, 14 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> GLK doesn't use the DSI C clock at all, no need to program
-> the divider for it. Bspec even says: "Do not program this field".
->
-> However looks like some firmware versions program this and
-> some do not. In order to avoid bogus fastset mismatches
-> we should also filter it out during readout.
+> Windows code seems to do some dodgy looking +/-1 adjustments
+> to some of the vertical timings. Not sure if that's correct
+> or not, but let's at least cross check some of the values
+> we got from the hardware to double check whether the GOP
+> did the same or not.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
 > ---
->  drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/vlv_dsi.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm=
-/i915/display/vlv_dsi_pll.c
-> index 2ed47e7d1051..0c88924bc2cd 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-> @@ -356,6 +356,8 @@ u32 bxt_dsi_get_pclk(struct intel_encoder *encoder,
->  	u32 pclk;
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
+5/display/vlv_dsi.c
+> index 661de51dfd22..cdab04727c7d 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> @@ -1024,7 +1024,7 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
+coder *encoder,
+>  	unsigned int lane_count =3D intel_dsi->lane_count;
+>  	unsigned int bpp, fmt;
+>  	enum port port;
+> -	u16 hactive, hfp, hsync, hbp, vfp, vsync;
+> +	u16 hactive, hfp, hsync, hbp, vfp, vsync, vbp;
+>  	u16 hfp_sw, hsync_sw, hbp_sw;
+>  	u16 crtc_htotal_sw, crtc_hsync_start_sw, crtc_hsync_end_sw,
+>  				crtc_hblank_start_sw, crtc_hblank_end_sw;
+> @@ -1088,6 +1088,7 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
+coder *encoder,
 >=20=20
->  	config->dsi_pll.ctrl =3D intel_de_read(dev_priv, BXT_DSI_PLL_CTL);
-> +	if (IS_GEMINILAKE(dev_priv))
-> +		config->dsi_pll.ctrl &=3D ~BXT_DSIC_16X_BY2;
-
-~BXT_DSIC_16X_MASK ?
-
-Other than that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-Also needs a rebase on struct intel_display changes...
-
-
+>  	/* vertical values are in terms of lines */
+>  	vfp =3D intel_de_read(display, MIPI_VFP_COUNT(display, port));
+> +	vbp =3D intel_de_read(display, MIPI_VBP_COUNT(display, port));
+>  	vsync =3D intel_de_read(display, MIPI_VSYNC_PADDING_COUNT(display, port=
+));
 >=20=20
->  	pclk =3D bxt_dsi_pclk(encoder, config);
+>  	adjusted_mode->crtc_htotal =3D hactive + hfp + hsync + hbp;
+> @@ -1096,6 +1097,8 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
+coder *encoder,
+>  	adjusted_mode->crtc_hblank_start =3D adjusted_mode->crtc_hdisplay;
+>  	adjusted_mode->crtc_hblank_end =3D adjusted_mode->crtc_htotal;
 >=20=20
-> @@ -514,7 +516,9 @@ int bxt_dsi_pll_compute(struct intel_encoder *encoder,
->  	 * Spec says both have to be programmed, even if one is not getting
->  	 * used. Configure MIPI_CLOCK_CTL dividers in modeset
->  	 */
-> -	config->dsi_pll.ctrl =3D dsi_ratio | BXT_DSIA_16X_BY2 | BXT_DSIC_16X_BY=
-2;
-> +	config->dsi_pll.ctrl =3D dsi_ratio | BXT_DSIA_16X_BY2;
-> +	if (!IS_GEMINILAKE(dev_priv))
-> +		config->dsi_pll.ctrl |=3D BXT_DSIC_16X_BY2;
->=20=20
->  	/* As per recommendation from hardware team,
->  	 * Prog PVD ratio =3D1 if dsi ratio <=3D 50
+> +	drm_WARN_ON(display->drm, adjusted_mode->crtc_vdisplay +
+> +		    vfp + vsync + vbp !=3D adjusted_mode->crtc_vtotal);
+>  	adjusted_mode->crtc_vsync_start =3D vfp + adjusted_mode->crtc_vdisplay;
+>  	adjusted_mode->crtc_vsync_end =3D vsync + adjusted_mode->crtc_vsync_sta=
+rt;
+>  	adjusted_mode->crtc_vblank_start =3D adjusted_mode->crtc_vdisplay;
 
 --=20
 Jani Nikula, Intel
