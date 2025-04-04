@@ -2,60 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293FBA7BDA7
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 15:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7257DA7BE14
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Apr 2025 15:40:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9CFF10EBAC;
-	Fri,  4 Apr 2025 13:21:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C772210EBC7;
+	Fri,  4 Apr 2025 13:40:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5EQi0Mj";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="Dwd9ER4f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE3A510EBAC
- for <intel-gfx@lists.freedesktop.org>; Fri,  4 Apr 2025 13:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743772917; x=1775308917;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=GbEORVM1BEPED3RrsWMWznLyA4eRzdyXOTAPhGjU1c4=;
- b=H5EQi0Mjb637s83Nbi58PBvPBwh1MdvgNeRyIjS7iardw/q7oFYZyNO8
- P8E2HJ87XhQoTEwuvKP6u+ZvqcE0eJ//sjvDWI2+s61MJ3BWONpmV9KBW
- SRzV/2zQTbi726KYHOKaRPBbjrOkYnV9x/6Qyj25c2Ukxy2bfZuglF7AV
- sraQmo3I/uHj1MjzcUL+5KfGux1umMvWtphvpizJ2jR4qSD7CByXPyRIk
- uQ//iakHn8Y5injiuNHlWJrKffX6DUdb4CQvUiRIEuxYm9IIAgXSDpAcZ
- NuwZbkgVohyAo3OybJlXn5KnV9plCyar3lKUDBlI8dhj0i4O32jeo1JrQ w==;
-X-CSE-ConnectionGUID: +ri7u5uUSJy6y6wVoUm+Hw==
-X-CSE-MsgGUID: gWzxb9MnSvSH9JDlTVjORw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="45102510"
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="45102510"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 06:21:56 -0700
-X-CSE-ConnectionGUID: 8ZIkDkp0SaeE79YfjHCXdw==
-X-CSE-MsgGUID: zWxzRX7YQXSmrVZ3ivUpVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,188,1739865600"; d="scan'208";a="128220345"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.234])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 06:21:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] drm/i915/dsi: Assert that vfp+vsync+vbp == vtotal
- on BXT/GLK
-In-Reply-To: <20250314150136.22564-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250314150136.22564-1-ville.syrjala@linux.intel.com>
- <20250314150136.22564-3-ville.syrjala@linux.intel.com>
-Date: Fri, 04 Apr 2025 16:21:51 +0300
-Message-ID: <87a58wyscw.fsf@intel.com>
+Received: from casper.infradead.org (unknown [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6E210EBBF;
+ Fri,  4 Apr 2025 13:40:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=pImUKw3M0PMcHdkWuYJ7D8sB/fzB+idx0s4djWcXKZQ=; b=Dwd9ER4f9M//fOrC7g8V+L/B+J
+ wh7pwfrTC+243uBCbeTuappR+0W/kdLGj4rQvO3Iq2eL00rYyvCzQ4hra5f0vDgWoc/ezq2TJDHtQ
+ ts5X0W3naA/uWGIvQA5dI6M7HlMJfS+cwtSV8k4GJhP1DzS1D1ekIss18q2w/i5OjepMZXcyvQ1Gq
+ SNZucgzw+6AcKP23JEOQGgmxpPXHjBJOdnXbp8mocTBIlzsUzrakuoK0l5ghv2xfioCG7/mIiKD1M
+ is3sFX1TIj63rFoHvSew0p8JWNvt32zBLfmy+NvPRi5iSqIi1HbZExLb9aoeuaf7rujMHNefCyY/5
+ WZonuwjw==;
+Received: from willy by casper.infradead.org with local (Exim 4.98.1 #2 (Red
+ Hat Linux)) id 1u0hHP-0000000FZyo-3NRd;
+ Fri, 04 Apr 2025 13:40:19 +0000
+Date: Fri, 4 Apr 2025 14:40:19 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Christoph Hellwig <hch@infradead.org>
+Cc: linux-fsdevel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-mm@kvack.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 6/9] i915: Use writeback_iter()
+Message-ID: <Z-_hQwNeiOnNYJVp@casper.infradead.org>
+References: <20250402150005.2309458-1-willy@infradead.org>
+ <20250402150005.2309458-7-willy@infradead.org>
+ <Z--XtaM7Z3zbjzAu@infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z--XtaM7Z3zbjzAu@infradead.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,60 +57,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 14 Mar 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Windows code seems to do some dodgy looking +/-1 adjustments
-> to some of the vertical timings. Not sure if that's correct
-> or not, but let's at least cross check some of the values
-> we got from the hardware to double check whether the GOP
-> did the same or not.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Fri, Apr 04, 2025 at 01:26:29AM -0700, Christoph Hellwig wrote:
+> On Wed, Apr 02, 2025 at 04:00:00PM +0100, Matthew Wilcox (Oracle) wrote:
+> > Convert from an inefficient loop to the standard writeback iterator.
+> 
+> Not for this patch but a follow on:  we really need to improve the
+> abstraction for using shmem for driver a bit.  Drivers implementing
+> their own writeback_iter based loop is a bad idea.   Instead the
+> code here in __shmem_writeback and the similar version in ttm need to
+> be consolidated into a nicely abstracted highlevel API in shmem.c.
+> 
+> Similarly for the mess these drivers cause by calling into the
+> write_begin and write_end aops.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+Yes, I agree, we need an API for "I want to use some pagable memory"
+that's almost certainly built on shmem but doesn't expose nearly as much
+of the innards of shmem as this does.  I've been vaguely thinking about
+what that might look like ever since Darrick came up with xfile for xfs
+online scrub.  The GPUs have similar requirements, so that's three users.
 
-
-> ---
->  drivers/gpu/drm/i915/display/vlv_dsi.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
-5/display/vlv_dsi.c
-> index 661de51dfd22..cdab04727c7d 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1024,7 +1024,7 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
-coder *encoder,
->  	unsigned int lane_count =3D intel_dsi->lane_count;
->  	unsigned int bpp, fmt;
->  	enum port port;
-> -	u16 hactive, hfp, hsync, hbp, vfp, vsync;
-> +	u16 hactive, hfp, hsync, hbp, vfp, vsync, vbp;
->  	u16 hfp_sw, hsync_sw, hbp_sw;
->  	u16 crtc_htotal_sw, crtc_hsync_start_sw, crtc_hsync_end_sw,
->  				crtc_hblank_start_sw, crtc_hblank_end_sw;
-> @@ -1088,6 +1088,7 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
-coder *encoder,
->=20=20
->  	/* vertical values are in terms of lines */
->  	vfp =3D intel_de_read(display, MIPI_VFP_COUNT(display, port));
-> +	vbp =3D intel_de_read(display, MIPI_VBP_COUNT(display, port));
->  	vsync =3D intel_de_read(display, MIPI_VSYNC_PADDING_COUNT(display, port=
-));
->=20=20
->  	adjusted_mode->crtc_htotal =3D hactive + hfp + hsync + hbp;
-> @@ -1096,6 +1097,8 @@ static void bxt_dsi_get_pipe_config(struct intel_en=
-coder *encoder,
->  	adjusted_mode->crtc_hblank_start =3D adjusted_mode->crtc_hdisplay;
->  	adjusted_mode->crtc_hblank_end =3D adjusted_mode->crtc_htotal;
->=20=20
-> +	drm_WARN_ON(display->drm, adjusted_mode->crtc_vdisplay +
-> +		    vfp + vsync + vbp !=3D adjusted_mode->crtc_vtotal);
->  	adjusted_mode->crtc_vsync_start =3D vfp + adjusted_mode->crtc_vdisplay;
->  	adjusted_mode->crtc_vsync_end =3D vsync + adjusted_mode->crtc_vsync_sta=
-rt;
->  	adjusted_mode->crtc_vblank_start =3D adjusted_mode->crtc_vdisplay;
-
---=20
-Jani Nikula, Intel
+I don't have anything concrete to talk about yet.
