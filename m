@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 361B3A7C71D
-	for <lists+intel-gfx@lfdr.de>; Sat,  5 Apr 2025 02:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19578A7C73E
+	for <lists+intel-gfx@lfdr.de>; Sat,  5 Apr 2025 03:23:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0EBE10E34A;
-	Sat,  5 Apr 2025 00:34:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DEAIWKIv";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E3E10E021;
+	Sat,  5 Apr 2025 01:23:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF08210E291
- for <intel-gfx@lists.freedesktop.org>; Sat,  5 Apr 2025 00:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1743813278; x=1775349278;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YlsctkxpcVLambWSM0uNW8Oja2Ri37lslG+VkxxXSaQ=;
- b=DEAIWKIvjserlcr86QGj5G5BJ7JtQHXScJfmFnZhSK94m0i/hLYZuMJO
- cTCrmc5AxgKSxraN88o2EKtbPcfTDDVR3Bl6IpOkzQkKuv+BbENiJa2GS
- e4ixeeF8jnYJwkdQkbG3qOnzNOxx+oj0gqUkXden/Umu/zqPHiulveQ8Z
- 5yl0TYCurFfC5Qs/jNkcMS8dlGdDOkhDoS9q1yBVdLcNDe7fHU/VwvL9P
- PuyBQWsfCDisbbEU2Wxxw/ULBg7OpNG2xkAPuIuulgx0cheW6FEWj0YtE
- AFQ6VuquFTWg60o7/7cCMiTn3lJrCL1uFYBPIc+4wltruiFtqsWHJd8Bl Q==;
-X-CSE-ConnectionGUID: jEz4ieF4Q1aC0ZYqLxUP5g==
-X-CSE-MsgGUID: igKpmzS5TPuUeLql7RFfgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="62812765"
-X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; d="scan'208";a="62812765"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Apr 2025 17:34:37 -0700
-X-CSE-ConnectionGUID: MzgNcFHKS4qiIW96SOvmNA==
-X-CSE-MsgGUID: dEX9iZtuSTm+ou6FWDSWWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; d="scan'208";a="158429496"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by orviesa002.jf.intel.com with ESMTP; 04 Apr 2025 17:34:37 -0700
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Charlton Lin <charlton.lin@intel.com>
-Subject: [PATCH v2 2/2] drm/i915/dp: Handle LT fallback modes when sink/lttpr
- changes supported config
-Date: Fri,  4 Apr 2025 17:34:34 -0700
-Message-ID: <20250405003434.641638-2-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250405003434.641638-1-khaled.almahallawy@intel.com>
-References: <20250405003434.641638-1-khaled.almahallawy@intel.com>
+Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04A8310E021;
+ Sat,  5 Apr 2025 01:23:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0746003219167207671=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/2=5D_drm/i915/dp=3A_Enable_SST_LT_fallback_between_UHBR_and?=
+ =?utf-8?q?_non-UHBR_link_rates?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 05 Apr 2025 01:23:23 -0000
+Message-ID: <174381620399.39951.9402177655968680778@e6b6f09ec485>
+X-Patchwork-Hint: ignore
+References: <20250405003434.641638-1-khaled.almahallawy@intel.com>
+In-Reply-To: <20250405003434.641638-1-khaled.almahallawy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,55 +38,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During LT fallback, sometimes the sink/LTTPR reports a different lane
-count than what it reported previously. This can cause
-intel_dp->link.num_configs to have a different value than before,
-meaning that the previous link_rate/lane_config no longer exists, which
-results in the LT fallback failing prematurely and blank screen.
+--===============0746003219167207671==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This issue was observed on an MTL RVP using an Asus DP2.1 monitor:
+== Series Details ==
 
-[  226.207376] AUX USBC2/DDI TC2/PHY TC2: 0xf0000 AUX -> (ret=  8) 20 1e 80 aa 04 00 01 03
-[  226.222334] AUX USBC2/DDI TC2/PHY TC2: 0x00000 AUX -> (ret= 15) 12 14 c4 81 01 00 03 c0 02 00 06 00 00 00 82
-[  226.236312] intel_dp_link_config_init 711 num_common_rates=5 num_common_lanes_configs=3 num_configs=15
+Series: series starting with [v2,1/2] drm/i915/dp: Enable SST LT fallback between UHBR and non-UHBR link rates
+URL   : https://patchwork.freedesktop.org/series/147287/
+State : success
 
-[  227.305515] AUX USBC2/DDI TC2/PHY TC2: 0xf0000 AUX -> (ret=  8) 20 1e 62 aa 01 00 01 00
-[  227.308100] AUX USBC2/DDI TC2/PHY TC2: 0x00000 AUX -> (ret= 15) 12 14 c4 81 01 00 03 c0 02 00 06 00 00 00 82
-[  227.315679] intel_dp_link_config_init 711 num_common_rates=5 num_common_lanes_configs=1 num_configs=5
+== Summary ==
 
-Fix this by choosing the lowest config (link_rate/lane_count).
+CI Bug Log - changes from CI_DRM_16374 -> Patchwork_147287v1
+====================================================
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Charlton Lin <charlton.lin@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 26db4c49deec..7d2f1e540699 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1199,6 +1199,15 @@ static bool reduce_link_params_in_bw_order(struct intel_dp *intel_dp,
- 	int i;
- 
- 	i = intel_dp_link_config_index(intel_dp, crtc_state->port_clock, crtc_state->lane_count);
-+
-+	if (i < 0) {
-+		/* Old config is not located. Skip to the lowest*/
-+		intel_dp_link_config_get(intel_dp, 0, &link_rate, &lane_count);
-+		*new_link_rate = link_rate;
-+		*new_lane_count = lane_count;
-+		return true;
-+	}
-+
- 	for (i--; i >= 0; i--) {
- 		intel_dp_link_config_get(intel_dp, i, &link_rate, &lane_count);
- 
--- 
-2.43.0
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/index.html
+
+Participating hosts (44 -> 41)
+------------------------------
+
+  Missing    (3): fi-glk-j4005 bat-arlh-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_147287v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][3] ([i915#13494]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-arlh-3:         [INCOMPLETE][5] ([i915#13999]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#13999]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13999
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16374 -> Patchwork_147287v1
+
+  CI-20190529: 20190529
+  CI_DRM_16374: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_147287v1: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/index.html
+
+--===============0746003219167207671==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/dp: Enable SST LT fallback between UHBR and non-UHBR link rates</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147287/">https://patchwork.freedesktop.org/series/147287/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16374 -&gt; Patchwork_147287v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 41)</h2>
+<p>Missing    (3): fi-glk-j4005 bat-arlh-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_147287v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13999">i915#13999</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147287v1/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16374 -&gt; Patchwork_147287v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16374: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_147287v1: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0746003219167207671==--
