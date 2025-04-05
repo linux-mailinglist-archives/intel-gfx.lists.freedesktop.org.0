@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74A3FA7C6F7
-	for <lists+intel-gfx@lfdr.de>; Sat,  5 Apr 2025 02:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C258A7C71C
+	for <lists+intel-gfx@lfdr.de>; Sat,  5 Apr 2025 02:34:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63ED010E354;
-	Sat,  5 Apr 2025 00:15:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F188610E2EA;
+	Sat,  5 Apr 2025 00:34:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dJmC74Kc";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F260010E34F;
- Sat,  5 Apr 2025 00:15:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6094748890352894468=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC8C10E291
+ for <intel-gfx@lists.freedesktop.org>; Sat,  5 Apr 2025 00:34:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1743813277; x=1775349277;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KPHUAZ4nsFtOVddwTeGgdEG7XGkQc9fY05wabv32lGg=;
+ b=dJmC74KccubnybMvLF5nCplzmD19eh4//zylx1t5AYTHyXrzXgSKehvY
+ +TpRrRpQj8nBvQ6QNZlH2BAzHePpMK2JHAio64iHeJMd77AwGxep3N4Jd
+ ScDlhZl2Gk71gnXbMJpVRbqoyuebxEH4c3TXeTF/703m50qY01njSmGR2
+ kel6+gsGSkyG3avvGrs2Sbo82YwRjYX7mWAZiuArHKYcOAPGak/z2xb3s
+ piuXeJqJY9O+xzjVVwL/tcUS+kT3tLpBElvVjqV0rB88UxqM15HvYgjqJ
+ TnnT2yMjMLD7TcBfHvmUpGTKPN4u3vyQWu8JvK3811Ue4il5jOeKv7JUy w==;
+X-CSE-ConnectionGUID: OkM+/v2FQXuHZdvvnG7uMg==
+X-CSE-MsgGUID: dMCP43rsTgmHY+NPl4Xy2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11394"; a="62812764"
+X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; d="scan'208";a="62812764"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Apr 2025 17:34:36 -0700
+X-CSE-ConnectionGUID: /ZBm8hTMTji7Ptv9r9k4jQ==
+X-CSE-MsgGUID: KLpJzAPHRzqs3NubBbwvNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,189,1739865600"; d="scan'208";a="158429490"
+Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
+ by orviesa002.jf.intel.com with ESMTP; 04 Apr 2025 17:34:36 -0700
+From: Khaled Almahallawy <khaled.almahallawy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ Imre Deak <imre.deak@intel.com>, Jani Nikula <jani.nikula@intel.com>,
+ Charlton Lin <charlton.lin@intel.com>
+Subject: [PATCH v2 1/2] drm/i915/dp: Enable SST LT fallback between UHBR and
+ non-UHBR link rates
+Date: Fri,  4 Apr 2025 17:34:33 -0700
+Message-ID: <20250405003434.641638-1-khaled.almahallawy@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/xe=3A_Cleanup_GGTT_us?=
- =?utf-8?q?age_outside_of_xe=5Fggtt=2Ec?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 05 Apr 2025 00:15:51 -0000
-Message-ID: <174381215198.39927.706538858832373138@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250404205028.620300-1-dev@lankhorst.se>
-In-Reply-To: <20250404205028.620300-1-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,158 +64,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6094748890352894468==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+With all the pieces for UHBR SST LT implemented, we can now enable LT
+fallback switching between SST UHBR and non-UHBR link rates.
 
-== Series Details ==
+Testing with an Asus DP2.1 monitor confirms it follows the specs [1].
 
-Series: drm/xe: Cleanup GGTT usage outside of xe_ggtt.c
-URL   : https://patchwork.freedesktop.org/series/147282/
-State : success
+> ./kms_dp_linktrain_fallback --run-subtest dp-fallback
 
-== Summary ==
+Mode 3840x2160@160 on output DP-3
+Current link rate: 1000000, Current lane count: 4
+Current link rate: 810000, Current lane count: 4
+Current link rate: 1000000, Current lane count: 2
+Current link rate: 540000, Current lane count: 4
+Current link rate: 810000, Current lane count: 2
+Current link rate: 1000000, Current lane count: 1
+Current link rate: 540000, Current lane count: 2
+Current link rate: 270000, Current lane count: 4
+Current link rate: 810000, Current lane count: 1
+Current link rate: 162000, Current lane count: 4
+Current link rate: 540000, Current lane count: 1
+Current link rate: 270000, Current lane count: 2
+Current link rate: 162000, Current lane count: 2
+Current link rate: 270000, Current lane count: 1
+Current link rate: 162000, Current lane count: 1
 
-CI Bug Log - changes from CI_DRM_16374 -> Patchwork_147282v1
-====================================================
+Testing by intentionally hacking the LT code to send incorrect training
+patterns to cause LT failures seems to confirm that this approach
+is working:
 
-Summary
--------
+128b/132b Link Training failed at link rate = 1000000, lane count = 4
+128b/132b Link Training failed at link rate = 1000000, lane count = 4
+Link Training failed at link rate = 810000, lane count = 4
+128b/132b Link Training failed at link rate = 1000000, lane count = 2
+Link Training failed at link rate = 540000, lane count = 4
+Link Training failed at link rate = 810000, lane count = 2
+128b/132b Link Training failed at link rate = 1000000, lane count = 1
+Link Training failed at link rate = 540000, lane count = 2
+Link Training failed at link rate = 270000, lane count = 4
+Link Training failed at link rate = 810000, lane count = 1
+Link Training failed at link rate = 162000, lane count = 4
+Link Training failed at link rate = 540000, lane count = 1
+Link Training failed at link rate = 270000, lane count = 2
+Link Training failed at link rate = 162000, lane count = 2
+Link Training failed at link rate = 270000, lane count = 1
+Link Training passed at link rate = 162000, lane count = 1
 
-  **SUCCESS**
+[1]: DP2.1 Specs - Table 3-31: DPTX Fallback Mandates
 
-  No regressions found.
+v2: Modify commit message
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/index.html
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Charlton Lin <charlton.lin@intel.com>
+Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+---
+ .../drm/i915/display/intel_dp_link_training.c | 72 +------------------
+ 1 file changed, 1 insertion(+), 71 deletions(-)
 
-Participating hosts (44 -> 43)
-------------------------------
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 6fc76c424f46..26db4c49deec 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -1220,76 +1220,6 @@ static bool reduce_link_params_in_bw_order(struct intel_dp *intel_dp,
+ 	return true;
+ }
+ 
+-static int reduce_link_rate(struct intel_dp *intel_dp, int current_rate)
+-{
+-	int rate_index;
+-	int new_rate;
+-
+-	if (intel_dp->link.force_rate)
+-		return -1;
+-
+-	rate_index = intel_dp_rate_index(intel_dp->common_rates,
+-					 intel_dp->num_common_rates,
+-					 current_rate);
+-
+-	if (rate_index <= 0)
+-		return -1;
+-
+-	new_rate = intel_dp_common_rate(intel_dp, rate_index - 1);
+-
+-	/* TODO: Make switching from UHBR to non-UHBR rates work. */
+-	if (drm_dp_is_uhbr_rate(current_rate) != drm_dp_is_uhbr_rate(new_rate))
+-		return -1;
+-
+-	return new_rate;
+-}
+-
+-static int reduce_lane_count(struct intel_dp *intel_dp, int current_lane_count)
+-{
+-	if (intel_dp->link.force_lane_count)
+-		return -1;
+-
+-	if (current_lane_count == 1)
+-		return -1;
+-
+-	return current_lane_count >> 1;
+-}
+-
+-static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
+-						  const struct intel_crtc_state *crtc_state,
+-						  int *new_link_rate, int *new_lane_count)
+-{
+-	int link_rate;
+-	int lane_count;
+-
+-	lane_count = crtc_state->lane_count;
+-	link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
+-	if (link_rate < 0) {
+-		lane_count = reduce_lane_count(intel_dp, crtc_state->lane_count);
+-		link_rate = intel_dp_max_common_rate(intel_dp);
+-	}
+-
+-	if (lane_count < 0)
+-		return false;
+-
+-	*new_link_rate = link_rate;
+-	*new_lane_count = lane_count;
+-
+-	return true;
+-}
+-
+-static bool reduce_link_params(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state,
+-			       int *new_link_rate, int *new_lane_count)
+-{
+-	/* TODO: Use the same fallback logic on SST as on MST. */
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
+-		return reduce_link_params_in_bw_order(intel_dp, crtc_state,
+-						      new_link_rate, new_lane_count);
+-	else
+-		return reduce_link_params_in_rate_lane_order(intel_dp, crtc_state,
+-							     new_link_rate, new_lane_count);
+-}
+-
+ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 						   const struct intel_crtc_state *crtc_state)
+ {
+@@ -1303,7 +1233,7 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 		return 0;
+ 	}
+ 
+-	if (!reduce_link_params(intel_dp, crtc_state, &new_link_rate, &new_lane_count))
++	if (!reduce_link_params_in_bw_order(intel_dp, crtc_state, &new_link_rate, &new_lane_count))
+ 		return -1;
+ 
+ 	if (intel_dp_is_edp(intel_dp) &&
+-- 
+2.43.0
 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147282v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [DMESG-WARN][3] ([i915#13494]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-arlh-3:         [INCOMPLETE][5] ([i915#13999]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-arlh-3/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#13999]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13999
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16374 -> Patchwork_147282v1
-
-  CI-20190529: 20190529
-  CI_DRM_16374: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_147282v1: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/index.html
-
---===============6094748890352894468==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Cleanup GGTT usage outside of xe_ggtt.c</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147282/">https://patchwork.freedesktop.org/series/147282/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16374 -&gt; Patchwork_147282v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147282v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16374/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13999">i915#13999</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147282v1/bat-arlh-3/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16374 -&gt; Patchwork_147282v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16374: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_147282v1: 60b7ecc2c5c979cfb8863272348bd6724559b5be @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6094748890352894468==--
