@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 266CFA7E20E
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 16:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DEFA7E210
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 16:39:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7F110E4BB;
-	Mon,  7 Apr 2025 14:39:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E097610E4B0;
+	Mon,  7 Apr 2025 14:39:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kb6Hteak";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hntl0RhL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E23AD10E4B9;
- Mon,  7 Apr 2025 14:39:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAD9B10E4BD;
+ Mon,  7 Apr 2025 14:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744036762; x=1775572762;
+ t=1744036764; x=1775572764;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5Nn1RfBkK6vMPO3CDgAcB9Qt+fDF5OPkBbm1b1jFAMA=;
- b=Kb6HteakOuNpHoaSGwTiflxB/9FuIcWPLF8UB+oZOXpxyjA1tsB6c3uW
- IfSoN4Pfp/6qZejcCg9uGdNuYk6UH879jHzJEPbNrOhdrIEDTBygmsOZB
- OV6HQSfqzSmpL06Bqo8Sqmsm1siHUf18RQYUMkNObYJcRGJ+HzFTgGDH5
- mi0HPgh7+ZfEIBY19VkXvPxzdGXl/W/BpSZgg0q2DVXyuIcUawSRIoTFL
- 18HjHBC+6K6qhB308K7KzhNJ0LnyVzk6452v75yrs5iIV7Sl+ahXo6OwY
- LqSPvkNsO8QdRO8FyM+o/DnkT+O9UNQ+1xcUgxmdlD7d8BGIt9Ybc3PZq Q==;
-X-CSE-ConnectionGUID: oAShbt0HRGWdettHMhFm9w==
-X-CSE-MsgGUID: n5D5ASswRYykmRZ4BTzljg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44572423"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="44572423"
+ bh=usMAJ2Mxv0bBhPq+ePDSN2aPARo9WUXUse2/mLugf0w=;
+ b=hntl0RhLyjWrEmqwN2R3tta4SeE4O5p+tuROpr44qhmMGRXwt0WumxHJ
+ 5MrGyui/u1PRfQraeRsAc5KoipwFa9Hqbwh3XIe++HUlD0lz32J5N4Hj4
+ HQO/q4+Q2erQ0eOYggfhjRg1O0EodFTw6Y7+5XKGOrWVE474FZB3rIHV/
+ 9jehT6fnBlCJBSrNVhb506wDRQeILc/NCwkYxEAjlfwwcYbhby1zJMWW1
+ NQ9kaM/QBeNb45GBCd8chXHFQcFdl8nKlWrmC+G2x8Gb9edyNbOVc/zu2
+ d0FuTSluV+BiiRZ3XPXicAESsrTmxHFTQ6gyYB1Xc+cHCyCVizleA9OPx w==;
+X-CSE-ConnectionGUID: mepeHiqBQdKhKYJKYZs/VQ==
+X-CSE-MsgGUID: I+lpwoa3TpSiA8uobuLiIg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44572427"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="44572427"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 07:39:22 -0700
-X-CSE-ConnectionGUID: 7/ZTOKDRSdKp4g4hUQUw1g==
-X-CSE-MsgGUID: +jDoXracRm2jEymzCP8FTw==
+ 07 Apr 2025 07:39:24 -0700
+X-CSE-ConnectionGUID: wfIdsJjSR06Qbwp9dqav2w==
+X-CSE-MsgGUID: 9djreVpFRt2Mnv2fCWmTng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="158963692"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="158963704"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa001.fm.intel.com with ESMTP; 07 Apr 2025 07:39:20 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 07 Apr 2025 07:39:22 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com, animesh.manna@intel.com
-Subject: [PATCH 05/11] drm/i915/dsb: add intel_dsb_gosub_finish()
-Date: Mon,  7 Apr 2025 19:53:53 +0530
-Message-Id: <20250407142359.1398410-6-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 06/11] drm/i915/dsb: Add support for GOSUB interrupt
+Date: Mon,  7 Apr 2025 19:53:54 +0530
+Message-Id: <20250407142359.1398410-7-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
 References: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
@@ -68,47 +68,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A DSB buffer which will be used for GOSUB execution does not need
-the DEWAKE mechanism but still need to be 64 bit aligned. Add helper
-to finish preparation of a dsb buffer to be executed with GOSUB
-instruction.
+DSB raises an interrupt when there is a nested GOSUB command or
+illegal Head/Tail. Add support to log such errors in the DSB
+interrupt handler.
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dsb.h | 1 +
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 5 ++++-
+ drivers/gpu/drm/i915/display/intel_dsb_regs.h | 2 ++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 2cda6fc7857b..bffa02a0442c 100644
+index bffa02a0442c..da58f1c821c3 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -585,6 +585,13 @@ void intel_dsb_gosub(struct intel_dsb *dsb,
- 	intel_dsb_align_tail(dsb);
- }
+@@ -787,7 +787,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
  
-+void intel_dsb_gosub_finish(struct intel_dsb *dsb)
-+{
-+	intel_dsb_align_tail(dsb);
-+
-+	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
-+}
-+
- void intel_dsb_finish(struct intel_dsb *dsb)
- {
- 	struct intel_crtc *crtc = dsb->crtc;
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 8b2cf0a7b7e6..6900acd603b8 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -31,6 +31,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 				    enum intel_dsb_id dsb_id,
- 				    unsigned int max_cmds);
- void intel_dsb_finish(struct intel_dsb *dsb);
-+void intel_dsb_gosub_finish(struct intel_dsb *dsb);
- void intel_dsb_cleanup(struct intel_dsb *dsb);
- void intel_dsb_reg_write(struct intel_dsb *dsb,
- 			 i915_reg_t reg, u32 val);
+ 	intel_de_write_fw(display, DSB_INTERRUPT(pipe, dsb->id),
+ 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS |
+-			  dsb_error_int_en(display) | DSB_PROG_INT_EN);
++			  dsb_error_int_en(display) | DSB_PROG_INT_EN | DSB_GOSUB_INT_EN);
+ 
+ 	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
+ 			  intel_dsb_head(dsb));
+@@ -980,4 +980,7 @@ void intel_dsb_irq_handler(struct intel_display *display,
+ 	if (errors & DSB_POLL_ERR_INT_STATUS)
+ 		drm_err(display->drm, "[CRTC:%d:%s] DSB %d poll error\n",
+ 			crtc->base.base.id, crtc->base.name, dsb_id);
++	if (errors & DSB_GOSUB_INT_STATUS)
++		drm_err(display->drm, "[CRTC:%d:%s] DSB %d gosub int error\n",
++			crtc->base.base.id, crtc->base.name, dsb_id);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb_regs.h b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+index cb6e0e5624a6..230104f36145 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb_regs.h
+@@ -51,11 +51,13 @@
+ #define   DSB_RESET_SM_STATE_MASK	REG_GENMASK(5, 4)
+ #define   DSB_RUN_SM_STATE_MASK		REG_GENMASK(2, 0)
+ #define DSB_INTERRUPT(pipe, id)		_MMIO(DSBSL_INSTANCE(pipe, id) + 0x28)
++#define   DSB_GOSUB_INT_EN		REG_BIT(21) /* ptl+ */
+ #define   DSB_ATS_FAULT_INT_EN		REG_BIT(20) /* mtl+ */
+ #define   DSB_GTT_FAULT_INT_EN		REG_BIT(19)
+ #define   DSB_RSPTIMEOUT_INT_EN		REG_BIT(18)
+ #define   DSB_POLL_ERR_INT_EN		REG_BIT(17)
+ #define   DSB_PROG_INT_EN		REG_BIT(16)
++#define   DSB_GOSUB_INT_STATUS		REG_BIT(5) /* ptl+ */
+ #define   DSB_ATS_FAULT_INT_STATUS	REG_BIT(4) /* mtl+ */
+ #define   DSB_GTT_FAULT_INT_STATUS	REG_BIT(3)
+ #define   DSB_RSPTIMEOUT_INT_STATUS	REG_BIT(2)
 -- 
 2.25.1
 
