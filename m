@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D372A7D4F4
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 09:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79587A7D509
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 09:10:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C50410E2CA;
-	Mon,  7 Apr 2025 07:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0305E10E2F1;
+	Mon,  7 Apr 2025 07:10:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55EEE10E2CA;
- Mon,  7 Apr 2025 07:08:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4FF10E2DE;
+ Mon,  7 Apr 2025 07:09:58 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4661781094587525340=="
+ boundary="===============2684589584953750284=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Expose_modifiers/formats_?=
  =?utf-8?q?supported_by_async_flips_=28rev15=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 07 Apr 2025 07:08:20 -0000
-Message-ID: <174400970092.42128.6087838805057604497@e6b6f09ec485>
+Date: Mon, 07 Apr 2025 07:09:58 -0000
+Message-ID: <174400979851.42132.14272449510548852945@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
 In-Reply-To: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4661781094587525340==
+--===============2684589584953750284==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,7 +115,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140935v15/index.html
 
---===============4661781094587525340==
+--===============2684589584953750284==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -181,4 +181,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============4661781094587525340==--
+--===============2684589584953750284==--
