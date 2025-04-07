@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BAFA7E20D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 16:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 266CFA7E20E
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Apr 2025 16:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F9910E4B8;
-	Mon,  7 Apr 2025 14:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7F110E4BB;
+	Mon,  7 Apr 2025 14:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nTbjKn44";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kb6Hteak";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC8B710E4B9;
- Mon,  7 Apr 2025 14:39:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E23AD10E4B9;
+ Mon,  7 Apr 2025 14:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744036760; x=1775572760;
+ t=1744036762; x=1775572762;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hr8e+gyrDYvVWnYtttP1dVh+Rj6nKMUGG6hx8TlljY0=;
- b=nTbjKn44i0m1z1jIzPWq2ML7WlsI61JkXxxT5P/KtfwCsnHKOMeCkVn+
- ieVDls+5+JMHgOEDadZpZiE1ignte32/En6UBhhl46lNpXueC188V0PDs
- 2EJyFFU7owgI7T7Kc+fQNYcaSRm/z1gJPulzSfqkYko4ZRQe8VC5rliE3
- 8cdtuhBr9n8VOdSqCFcVC4HR09ita6L/fNsmVmqHQX72Smt4OHvQqLklj
- qNgiqUGdNBtj2ukxQ59fWTfaODSLb8sqCD2Z3aXc0deHKIsY6j6AF7lfv
- 6vbq4RmUynrgPlkMpiXxPXgPdZo+5yCp0/n12AoBLuIIwnNqQPibJel2a Q==;
-X-CSE-ConnectionGUID: nvIHeEtFQE+UBEC5bG5TBA==
-X-CSE-MsgGUID: fa9IQPFLQgW25OeTH1zDPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44572417"
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="44572417"
+ bh=5Nn1RfBkK6vMPO3CDgAcB9Qt+fDF5OPkBbm1b1jFAMA=;
+ b=Kb6HteakOuNpHoaSGwTiflxB/9FuIcWPLF8UB+oZOXpxyjA1tsB6c3uW
+ IfSoN4Pfp/6qZejcCg9uGdNuYk6UH879jHzJEPbNrOhdrIEDTBygmsOZB
+ OV6HQSfqzSmpL06Bqo8Sqmsm1siHUf18RQYUMkNObYJcRGJ+HzFTgGDH5
+ mi0HPgh7+ZfEIBY19VkXvPxzdGXl/W/BpSZgg0q2DVXyuIcUawSRIoTFL
+ 18HjHBC+6K6qhB308K7KzhNJ0LnyVzk6452v75yrs5iIV7Sl+ahXo6OwY
+ LqSPvkNsO8QdRO8FyM+o/DnkT+O9UNQ+1xcUgxmdlD7d8BGIt9Ybc3PZq Q==;
+X-CSE-ConnectionGUID: oAShbt0HRGWdettHMhFm9w==
+X-CSE-MsgGUID: n5D5ASswRYykmRZ4BTzljg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44572423"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="44572423"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 07:39:20 -0700
-X-CSE-ConnectionGUID: vd4Bc4QbRqOUJ4g/DK6Low==
-X-CSE-MsgGUID: 2/AL+MakR9OZYkFPPd8+Mg==
+ 07 Apr 2025 07:39:22 -0700
+X-CSE-ConnectionGUID: 7/ZTOKDRSdKp4g4hUQUw1g==
+X-CSE-MsgGUID: +jDoXracRm2jEymzCP8FTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="158963673"
+X-IronPort-AV: E=Sophos;i="6.15,194,1739865600"; d="scan'208";a="158963692"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa001.fm.intel.com with ESMTP; 07 Apr 2025 07:39:17 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 07 Apr 2025 07:39:20 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com, animesh.manna@intel.com
-Subject: [PATCH 04/11] drm/i915/dsb: Implement intel_dsb_gosub()
-Date: Mon,  7 Apr 2025 19:53:52 +0530
-Message-Id: <20250407142359.1398410-5-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 05/11] drm/i915/dsb: add intel_dsb_gosub_finish()
+Date: Mon,  7 Apr 2025 19:53:53 +0530
+Message-Id: <20250407142359.1398410-6-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
 References: <20250407142359.1398410-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,107 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+A DSB buffer which will be used for GOSUB execution does not need
+the DEWAKE mechanism but still need to be 64 bit aligned. Add helper
+to finish preparation of a dsb buffer to be executed with GOSUB
+instruction.
 
-Add support for the new GOSUB DSB instruction (available on ptl+),
-which instructs the DSB to jump to a different buffer, executie
-the commands there, and then return execution to the next
-instruction in the original buffer.
-
-There are a few alignment related workarounds that need to
-be dealt with when emitting GOSUB instruction.
-
-v2: Right shift head and tail pointer passed to gosub command (chaitanya)
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 52 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dsb.h |  2 +
- 2 files changed, 54 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 7 +++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h | 1 +
+ 2 files changed, 8 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 0de15e3a9a56..2cda6fc7857b 100644
+index 2cda6fc7857b..bffa02a0442c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -93,6 +93,9 @@ struct intel_dsb {
- /* see DSB_REG_VALUE_MASK */
- #define DSB_OPCODE_POLL			0xA
- /* see DSB_REG_VALUE_MASK */
-+#define DSB_OPCODE_GOSUB		0xC /* ptl+ */
-+#define   DSB_GOSUB_HEAD_SHIFT		26
-+#define   DSB_GOSUB_TAIL_SHIFT		0
- 
- static bool pre_commit_is_vrr_active(struct intel_atomic_state *state,
- 				     struct intel_crtc *crtc)
-@@ -533,6 +536,55 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
- 	dsb->free_pos = aligned_tail / 4;
+@@ -585,6 +585,13 @@ void intel_dsb_gosub(struct intel_dsb *dsb,
+ 	intel_dsb_align_tail(dsb);
  }
  
-+static void intel_dsb_gosub_align(struct intel_dsb *dsb)
++void intel_dsb_gosub_finish(struct intel_dsb *dsb)
 +{
-+	u32 aligned_tail, tail;
-+
-+	intel_dsb_ins_align(dsb);
-+
-+	tail = dsb->free_pos * 4;
-+	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
-+
-+	/*
-+	 * "The GOSUB instruction cannot be placed in
-+	 *  cacheline QW slot 6 or 7 (numbered 0-7)"
-+	 */
-+	if (aligned_tail - tail <= 2 * 8)
-+		intel_dsb_buffer_memset(&dsb->dsb_buf, dsb->free_pos, 0,
-+					aligned_tail - tail);
-+
-+	dsb->free_pos = aligned_tail / 4;
-+}
-+
-+void intel_dsb_gosub(struct intel_dsb *dsb,
-+		     struct intel_dsb *sub_dsb)
-+{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	struct intel_display *display = to_intel_display(crtc->base.dev);
-+	u64 head_tail;
-+
-+	if (drm_WARN_ON(display->drm, dsb->id != sub_dsb->id))
-+		return;
-+
-+	if (!assert_dsb_tail_is_aligned(sub_dsb))
-+		return;
-+
-+	intel_dsb_gosub_align(dsb);
-+
-+	head_tail = ((u64)(intel_dsb_head(sub_dsb) >> 6) << DSB_GOSUB_HEAD_SHIFT) |
-+		((u64)(intel_dsb_tail(sub_dsb) >> 6) << DSB_GOSUB_TAIL_SHIFT);
-+
-+	intel_dsb_emit(dsb, lower_32_bits(head_tail),
-+		       (DSB_OPCODE_GOSUB << DSB_OPCODE_SHIFT) |
-+		       upper_32_bits(head_tail));
-+
-+	/*
-+	 * "NOTE: the instructions within the cacheline
-+	 *  FOLLOWING the GOSUB instruction must be NOPs."
-+	 */
 +	intel_dsb_align_tail(dsb);
++
++	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
 +}
 +
  void intel_dsb_finish(struct intel_dsb *dsb)
  {
  	struct intel_crtc *crtc = dsb->crtc;
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index e843c52bf97c..8b2cf0a7b7e6 100644
+index 8b2cf0a7b7e6..6900acd603b8 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.h
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -57,6 +57,8 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
- void intel_dsb_poll(struct intel_dsb *dsb,
- 		    i915_reg_t reg, u32 mask, u32 val,
- 		    int wait_us, int count);
-+void intel_dsb_gosub(struct intel_dsb *dsb,
-+		     struct intel_dsb *sub_dsb);
- void intel_dsb_chain(struct intel_atomic_state *state,
- 		     struct intel_dsb *dsb,
- 		     struct intel_dsb *chained_dsb,
+@@ -31,6 +31,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 				    enum intel_dsb_id dsb_id,
+ 				    unsigned int max_cmds);
+ void intel_dsb_finish(struct intel_dsb *dsb);
++void intel_dsb_gosub_finish(struct intel_dsb *dsb);
+ void intel_dsb_cleanup(struct intel_dsb *dsb);
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
+ 			 i915_reg_t reg, u32 val);
 -- 
 2.25.1
 
