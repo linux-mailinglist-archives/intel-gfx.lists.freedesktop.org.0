@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A50A817C2
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 23:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E55CA817C3
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 23:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2A9910E76D;
-	Tue,  8 Apr 2025 21:44:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2EC910E770;
+	Tue,  8 Apr 2025 21:44:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kb6k8puD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XR2WdJPR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBCEA10E769;
- Tue,  8 Apr 2025 21:44:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1594B10E76F;
+ Tue,  8 Apr 2025 21:44:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744148657; x=1775684657;
+ t=1744148658; x=1775684658;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=vdQeU8Ygxnxa1/T/dXYtNIjOpTaRg4LlbfyGvTCJYeM=;
- b=kb6k8puDj4XYwpp0Fri27t+pSVhCJJ2eCcdCpBIYefHHUsPSHCr70BAP
- 1Oy4lT86HrSpJVDRT5WZ7S/nMdelrrq8xTrDUkr41H8lf9AOQEwa9NoPV
- 1NDLqPzD8Tb1kL18HejIA5yX12Yld65qjkgsLwwKIOkf1hA1mk4X3WXQ5
- seVm7outlftNlusUTe5RQEajAaSaVPRZZ4jQPFBUTns6vtKmtKzePSwlN
- 9AH5+NBTUXWu5IdFnZKllcSs2Kdp3LJ/EyVQlY+Qpnp6enyLhs35s/BLe
- nMT9RZKk9hfkp7Rg3ay9dcQCIC7RpEPWvT7eCJ5lQiQEhRAO1ynWiJxOJ g==;
-X-CSE-ConnectionGUID: EaMRPhUhROOGWrUm+QZPIA==
-X-CSE-MsgGUID: AKLq30t5QQyX0yFgQneB1g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44746762"
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="44746762"
+ bh=BDl9p7KHp4pIvi8iAyu/6zPoM4meydAh5bKRzmXElFs=;
+ b=XR2WdJPR4ZSBOoqgULwXqJiZabxSo22icRYU1/YP6zK4pQNfiuQKj7du
+ iqKw5m4W+DWl23E21IY5CFWkaVM30yKjF/kNXHkN8PdPgsbqxlBwjmKID
+ af9SVrmat71VlAxr5A0FVH8kIxZRK5BgOgy+t5RFl8RDedy2e2v/EAXZR
+ hvajQJKHvl16QK0cvSNDyR9W4pQpY31HIKble146EC1xpgeElwoNszWZY
+ uWzTPFd/zeAK7fX95Pu/IekAVDC6VdGXcI5o6l23UlVp808sVKlbozGJ6
+ gr7kxi6WNPZmzWxc7LwR5KaCWY+aOS3zdwf+NZ3xECSFsGx4mU573AFTb g==;
+X-CSE-ConnectionGUID: zkzAPRPfRp6k8Avx2K0fxQ==
+X-CSE-MsgGUID: 5ZAOjxZATZyFf0BYX4N/3w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44746768"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="44746768"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 14:44:16 -0700
-X-CSE-ConnectionGUID: /g4LO0ssSiip78ihCMJGXw==
-X-CSE-MsgGUID: yoMIR89uQRqmhLpdqwxMGQ==
+ 08 Apr 2025 14:44:18 -0700
+X-CSE-ConnectionGUID: +HH9OTcAQ/qlmnifggM4kg==
+X-CSE-MsgGUID: CO24pHdjROOcH1Wig9wZew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128381232"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128381241"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 14:44:16 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ 08 Apr 2025 14:44:18 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.1544.14; Tue, 8 Apr 2025 14:44:15 -0700
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Tue, 8 Apr 2025 14:44:17 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 8 Apr 2025 14:44:15 -0700
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Tue, 8 Apr 2025 14:44:17 -0700
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 8 Apr 2025 14:44:13 -0700
+ 15.1.2507.44; Tue, 8 Apr 2025 14:44:16 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c/k6Ucd3SLqK1meXRnU3Af1k3z3OE/9Aoklpc3fIUSDtOX2JhWyffeW1lM8bDbo0KznI+ev9utgX0HfzbSPZ2dtddSa28XXWTUK9Iu5plubfStSHJv9Lc+6Bx1rkod9NKRdTj7Th5XG1Fh8Z7ggKNKrSOlVo1+U945SXWnbZxqUb6EMDLeo9TF0agg+WjRwdXzmgiC9SM7vcdEvcmraB2uQSsTuu8MF7sDwN7/LYHpT4oUUUhhBtVqi2kQIZo68IxTmqY3sOIkml71Qez/x4EnzA0if5X454K4ev3ftY7UKBI8m8zWp9shB2v9I+fW7eSHQX6lW36D4kn7Mx8EV0cA==
+ b=MNIdzJcpfHtaOvLPYIT5kLGx2wgWrY7+tP/IRG0CYJX8SYEAG+tp1vx/KWuAf0C2aXQuL81yzFZaf2Oo3DwF/lKvTQvmRZyFS5ADaTxEUkvKUsoPo3FOW/pXDJ4c5DuZj4jTR+uxO4jR865JWLJ6knni9lW5xAJ3ux36TlaKSTwPvRCBe4mkEX6XWughAhnUdZZh395+/daau0IseavezTGO8FS2LXBLWn7pAYLFexf3NZfjbHwbbccgjPz4NMgHR/yk7/0JyMnO1Lsoj2U10CCfQ/RQX+j0AR+gITqFJCGc9gKd+00tdDjyKdcP0ZjkrF8g8t+TF6YDm4RpXVSeaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h8R7YRNE3HEuY0v5n8JEUnqV9XRtSHEd8h37jZfGyI0=;
- b=N6DrxhVNnotmljqAogZQA0AbqRR9wbD49tnr6Lfj9mdj1GYBx9r8KdFnUFQmi0x6Mu0ldLpB8YJlkSbru+7XKGrRd1xrEoPl4DEFH3ZwfzTuxT7KApBm0sCTu5iBtiDS/nfbKu2jXPLFwiw94owyCX6M+PCrOGy3/EmvUgNSMjndh5tuOBKVmbpfIDi0/tDjxdOixyC5hiDExuBQLKhMgiyZ6ym7vU8RVnYSkZzZ6Zqtlq0MY55dwaFR49BMCVuGNvJkbc9eneIgXWfn2yCdrAyiCDkoQjiJ17W/Zzf6ewsb2Co8Z9MIy3zT09+CSctczixDrmcg3+IHeSPMfhF5xg==
+ bh=RMY6D4xCdkT4NiqrrHr5/MIg7rNBLh9TPohueQ40+RA=;
+ b=kOfu6MrV1YHoiq9iF8YYeXGf0qq4WPdaMTR9w0Du4tliOkUWdrz9zvTs6X/J+bSyL9Julcj3/Quw6joz54G3WDeETnqAeDwj+hLPuduWnZIIVhHrRs9sSUsf6t6XQNxzm1n/zV/vSeFBxZksLhKPhPH6zstrBJv0bycHVJdIn9BJyzf229+xh9OxuRhMhPaQ6aFLtZT0zDm6DboZBzXMl2ds+7zIKUnA2yn9mdHM2B2GxoQDXnzPadZvDmMCFXHvAt0HqV6k38+1seVTp9U3+FyZGLDcLjMhKLsZmfW09G0y12yqMilMvnVeJDZPmlSm9DiaNZ56VeyZiFKh38AFGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,94 +69,112 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
  by MW4PR11MB7101.namprd11.prod.outlook.com (2603:10b6:303:219::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.27; Tue, 8 Apr
- 2025 21:43:58 +0000
+ 2025 21:44:00 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8606.033; Tue, 8 Apr 2025
- 21:43:58 +0000
+ 21:44:00 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 08/10] drm/i915/hdmi: Use an intel_connector pointer everywhere
-Date: Wed, 9 Apr 2025 00:43:38 +0300
-Message-ID: <20250408214342.1953197-9-imre.deak@intel.com>
+Subject: [PATCH 09/10] drm/i915: Add support for forcing the link bpp on a
+ connector
+Date: Wed, 9 Apr 2025 00:43:39 +0300
+Message-ID: <20250408214342.1953197-10-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250408214342.1953197-1-imre.deak@intel.com>
 References: <20250408214342.1953197-1-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-ClientProxiedBy: DU2PR04CA0060.eurprd04.prod.outlook.com
  (2603:10a6:10:234::35) To SJ0PR11MB4845.namprd11.prod.outlook.com
  (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MW4PR11MB7101:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5ee6dc8e-a826-4e43-8d28-08dd76e67698
+X-MS-Office365-Filtering-Correlation-Id: e8a072e1-c637-435e-7f02-08dd76e678c7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?wHCtSt5vwpPaw+wPjrPp/Bfe9B6QuaOtS9zTosy9w7Sk2yf5aiV5xlddgpEx?=
- =?us-ascii?Q?rffhvZHyQloVrOqvWvqnmtOpJp7i7HzK/uDKKDQdrifpAbSLDZxH8EAO+JFQ?=
- =?us-ascii?Q?MfIPjVBAh3Ji99dclMpqpvzt5PUswg/V921EXyQ6V4gx9h71B+U31fzudPog?=
- =?us-ascii?Q?bv16pjc5M5jy2TEIELhjqmsrGTOIvVyeMwTeb8UslIIAcqZkTJrjdo80MWMA?=
- =?us-ascii?Q?YenZJCARguc0sqSBwoItilRmRKd1C9Y8axhjFeOj5LBQMf+dOQCSey9ErIK6?=
- =?us-ascii?Q?nDG4/hUwvvgHdnH/8qLDYonOCsCJaS29wx8Z97kGb6y1OQHrqF4c7oBaYHDB?=
- =?us-ascii?Q?w66fP0EMaa0Ow2U6BZ8DnRCLJOHrzTCzKaLdhg42jw61hvbNAXSItBxWTNil?=
- =?us-ascii?Q?g83cgQt++7H9nk9krw4YGrAgBdsHYgOfYt2N3vkKSNeXES8cgOur5lE+D7ar?=
- =?us-ascii?Q?0nFQNtSuCssyPscX0iHMc8DrqeAkyI4kWufwhwbYQ2Y7XRax5oa0VTFV1iwr?=
- =?us-ascii?Q?a8LKBIJXeLbPiUnxFJM32O5HYWSInQ3nqcp4fz/+ltF094u2Gcf0GjXUwJWh?=
- =?us-ascii?Q?F6TnfQC+1NsQAQ/RFuHjhdBbY6N9z8inXIRgzsJYnHvZkjMlX+HUV9hKHGCE?=
- =?us-ascii?Q?YAWpoSnfxwLTJmaLgsHiVMvvnsxwwK4kVL6IrY8egR50nzfu5g13vvmRyrmP?=
- =?us-ascii?Q?HppTRJxfoqfD5Eys3+cNeI1X/A95+LBEwX6pvTLuU9BVdlup+VKAu9QqQWwS?=
- =?us-ascii?Q?rF+GX/LFN/Yg2zvPBwTN+Yjzw6mJToSrvKEV1JC/hcQbM5Gi3u7o7K21fC51?=
- =?us-ascii?Q?X1TEE2xQgLj9DcKsOBRZVH6Ad+UW0DgWBHIocaZ2/yP/HZeiWEUCQTnWgVT7?=
- =?us-ascii?Q?revDGGmCpcgOT7fEijkZqjGCZKkvBpXRBYJb47luxFR0lbqIPbC4ZLhjFRoH?=
- =?us-ascii?Q?R6Q1mUbvQNPGvtrTIxNlC/elTXDS3IJVPYvho6fICQIEYAr320Nr8p1n9ZJF?=
- =?us-ascii?Q?ujZkeGWG0/4VyetzGfcGzYJQU3tLXCZhGI8fqEBpWimdyGbQJXur1p4dvJJF?=
- =?us-ascii?Q?fBHZe1r67Z29bG0WzowNLbtTz0ZtGsrHDHHxzC4V2AFi3Qz2xsDQrXSXdrwy?=
- =?us-ascii?Q?JHVmb7Yg4i+p0HjIWXngHtbay0HsKM82xj68F5nxnpn+mr6M10Gmag9sfZ66?=
- =?us-ascii?Q?grJdj0cKDvMy2LRl3U5lIriJFVdRTIVZeqfNXm25XSYW9X3kXrzT4s1faw2x?=
- =?us-ascii?Q?AX+RVjuSsqcs9Ak3SFf5sl/SXqsCz8tQ0/84sJ31QeMSGWq/0IvnwZfiR/Bc?=
- =?us-ascii?Q?Ri7aVaTybwhwZ0EzJKaucayM627pje+V48wO8lBz4Qn0Xzo6sPfPV9x95kXX?=
- =?us-ascii?Q?H40/m9RbybDCiZ7Q7Gh1Gym3ZCnZ?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dnR4Y1AyUHJQU3pObVp0bWZId1Z0LzhJYUY2dTgzVDIxUEFHWHRweUtmMTl5?=
+ =?utf-8?B?c1FNRUhXNHd6MkpQZjBIdnowMndxV3M0U1hNK084YzFkMUdhZGpSL0MyT3V4?=
+ =?utf-8?B?R3g4QWdCSm9ZU0hYWlJ2WWRpK3pkYkJHdVBxaGlQQkhSMVAreWl2YUlzdW9u?=
+ =?utf-8?B?YmZoaEl6Uk5QcUc0ZGRramJQaFAwTUVQYlp6bG8rMW1IT3lGZzJnTGJ4Q1J6?=
+ =?utf-8?B?YUhJcFc3M2R4WlU0RXRzUGw4eldYZ3puQ2p3Wlc0Y01rOEQrazgrNW5KODNG?=
+ =?utf-8?B?dXJ3aHRZK3pLaSt3UkVMTGtQcUxtT3EwU2dma240MWNGc2hrb2JaVVUvRGFy?=
+ =?utf-8?B?ZG56Ujc0eWtSelIrRVRYMWttdjZ3T0thOUxhbGpQZXRKcmc3c1dabkJCNzZs?=
+ =?utf-8?B?TzhMcDJzbzUvWkYrcU93OWpBRHp1YWZuc2srRXhGcFlRV3ByZjNlOWQxUVVR?=
+ =?utf-8?B?VVYyVzRxQ3ZCcERmeEtkUEs4RmhTRGl4WTJIZlEwRHFCdk02SVJVeVgzZnRT?=
+ =?utf-8?B?S2RXSStjbXFOVnY5N1c2djE4UEVDYTdkNmpNaEhiNWxPU0tqYzAwVjl5STBQ?=
+ =?utf-8?B?bDk5Tll3a282cS9CZTgrYjZsZDJSMm9ZOHJsMGlEcVNlRHJTOHBBV1I2L3B0?=
+ =?utf-8?B?dnRucmRpNEt2T1NQOGlWVEJmMEZsc0RUVHBvRjRCL3lXRFZna045b0ZzTDFw?=
+ =?utf-8?B?WDB2SzhEeFdpL3RDTFc1MldFdVo2ZUxaY1VNZDBmL3ZMYTZ5S2lmbUlrWlVv?=
+ =?utf-8?B?OTJldXpxY005VHZtWFBOVmx5OHdWTkQ2VmxSWDgwNEFmQU45ZXFhN3hlTzhG?=
+ =?utf-8?B?ZGxJYVBkVERIbW91a1hPcDI4bFlFR3RQdXEyQkNMUlBzcnRyOFh6NnErVVhF?=
+ =?utf-8?B?ZVdWU25LSkpiNmI2UnBkS0dSVHRvZFgwNVNDT2VDb1BzZnpDai9PU2VSM0xZ?=
+ =?utf-8?B?NzhuS0txekJYTExGUVl0dmc0UmczdmpoUnp6SzBuWVBJb2RjZ3d3Q3NOdkpm?=
+ =?utf-8?B?bDJRSU4rMnVoS3IzcUgrUHVQWlp0UUVVRnFsL2lKTEFobHl2Z0x0amtCaWRN?=
+ =?utf-8?B?VFlFdE41UldHS3gwazNFejVsVm10Ukp5NEpVVStXTW9aMTZRYStIVllPck1j?=
+ =?utf-8?B?cVVWcGNYWVVtazJya29jUlJQdkRRMnZKU1RtL0wwTFJza1R2RHN0TFY1a2l2?=
+ =?utf-8?B?bmwxbnlwZVc2RzJhZVl5TDhIbW94NkRPc0RaS0RBNHRkeGhSM09memdmTkhw?=
+ =?utf-8?B?SWJDNmlrWSthR0tPbDEvODV5OGswTW9KV1d2bkJwdlFhT1NIRHZGQnlnbEs3?=
+ =?utf-8?B?N2YyY1c0c3ZrTmVTL2o1TjBwWG5XS2ZVNDJsQ09kSlBJV2hsSlRXc3R1bjJE?=
+ =?utf-8?B?WUczVnNWSnlWVlJ6TnZQbUFCOE1hdFcyZ2RoSlhxWUN6VHF2cnEwVDVBVmRj?=
+ =?utf-8?B?REplcXZ2bmhXQmN4by9YVXo3RWprNXBRTTl0L1dUMVgxTHpodXJpbk1QVHhn?=
+ =?utf-8?B?SC9SVnhKekdVQS9jdkdCSzlxUjl4V3dtSTVEQWNOL1o4Q3ZzTUZkQlpsem55?=
+ =?utf-8?B?aHdPQzNtWHo3aTkyNzRzZGloK1hQc2NIczlGN3pQVURIY2VvblE1ZHJvaDBV?=
+ =?utf-8?B?OW54T3Nqc24xMm53RW45TnFyWXNtNTd2czFnWWxqSGVRRlh5WjBtdmphdTZz?=
+ =?utf-8?B?YmdIS1prcVlLQnAyMlRhc0dCdDFnVTdDT1pCQVZXd2xzQVlvMkRQVEpYTVYz?=
+ =?utf-8?B?RTdOZ2E0ejk4S0FZc2xwaWt6dVRSNjAzSlU3cFdLaUdMSWgvSzloajFCUzBS?=
+ =?utf-8?B?bWt0TjRhbkRqZ2hod2U4UUk1ZDA5MXQwaS9sUkNmbTdodEQrbkdYUklhRVRY?=
+ =?utf-8?Q?aEOmtGW2pr5AD?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yFYjdVALuKf5KsLrGmgKhFsdgmVm7hwALMZYo6IU3D0/k5HxYROi9v3wr55o?=
- =?us-ascii?Q?+6AsKWv/McGfrgUwmjybRtVKLka4eUKD3iQYYo6UIeL26FOT/ynJlwBWj0wf?=
- =?us-ascii?Q?PKLhgZpoNVx6tfgJBpdZfIx2LDWm+rWRtKnpjstqsqPLxxVzFuyH2xUC1Owm?=
- =?us-ascii?Q?rTmak8NhbdASrplbt+Kr2PtXAxzff+eppr1W725hmuUkW/tUCU+5iSFhI+zh?=
- =?us-ascii?Q?SfeEyAR8hpiqV8E7xLKT5aJzC7JYN5KptRutL/0moVLRyUygpIVrl+MSGEOw?=
- =?us-ascii?Q?2c8upnIIAcMXjaDqLtttxtjOIMhaUcY8CzgjHGgJki8LhY6m/QCImkqkNJV4?=
- =?us-ascii?Q?xY1Dt9dU8uDxaSTcUHAYGWp+5JNfGJY9/ldZ/r6m7NlWqWzVsF5RINDAOGpR?=
- =?us-ascii?Q?tzwEVgyqjvenYPTYqc9Qyj64Rp9uMML3po2WO7GXclhNyxZsZoOKAavl2Ts8?=
- =?us-ascii?Q?Mf2LXiiRVhYy6MXEWv7ASSx3nIrNtKm9WJVJ0SUAvc123kEclRmFMT3ckMEH?=
- =?us-ascii?Q?05MCM70wM+xQlb0p0OA4Duol6VSlCmoay5NopVVhesbm3sZhzIzDEBBpeFn9?=
- =?us-ascii?Q?W0KxG25V+dZV7AwH7TPISjk/RR7UERZ9NAD4kbx/FTNpQAPZ5gGkyzJslGOw?=
- =?us-ascii?Q?BLQPdj4KJAHhAFfZxyiIM5scdaaEPKKxk7uVGy/ya6hp6xZ/p2qObFLqxKOC?=
- =?us-ascii?Q?ZayA8bKeo24fY8bGXSG/18euuAdnnjueO6FPiIjqyAu1dCGwlGurMrkWbs+5?=
- =?us-ascii?Q?0ZXmAz1PCs4J4fq/rFyuVUIWJ/3wx0/1NNso3SCwc1eu8PDCpJgsJ0wjUfJN?=
- =?us-ascii?Q?owVM0XQ8EeacSLRr7+XkBGBYjeVWWx9paKrCiPk7uQLKJcQzDxcWrWZORTMb?=
- =?us-ascii?Q?NtNsFvGtV9nMSQrVL+VKEWes8vK6MCqHyijw3fEt772xAyAY08ceuBopNpr5?=
- =?us-ascii?Q?UOULEuoDjqERXpVbzxnvTFx9xIt+R3PFV/55c+RyqYPxwSOHn8IAIV/Zlo8d?=
- =?us-ascii?Q?YqVhkoNEq04xE+PCfVWLqqR8wCOLXVgZRyfRcU84DEQiXeqB3hIUxCM0otFw?=
- =?us-ascii?Q?6j8gtpAP1mVmACRifntDh7LZqz2V1jYLJv4KsxIb+7DljjSlQEs40SCicSyE?=
- =?us-ascii?Q?02mwuDnlznootU5ubeIkt5P3HZlrinKicNyJrwZ2W1qgIBz5z93WFKqCDVlh?=
- =?us-ascii?Q?2MFxxKo7IB7VfoPxmpt5oPVgMNXiW/cj/fNOpJWMKo85q6Rq3r5ixDqiSdUg?=
- =?us-ascii?Q?yPHxDqpr9yGqOav4uTnzJ5dxqstqirRgfaHtsqYUQmJt3oT/3w9yB5pHQHt6?=
- =?us-ascii?Q?2RzAi/ewx5sjGeXgKQimlAn7MzFwWvssIJgCMfDTDuQyTjixC/6FI2MQ5h2I?=
- =?us-ascii?Q?LV790R5L7H7zLqb5ZmZ0rkcFGWsh7uP89I3KflY5FgSGLeUzNip/vCFNnIE3?=
- =?us-ascii?Q?AFIouFdlelFY364yK/tVEqwRFUu3VuefsGP6ysVi0BGJ3aw13YcZvQD4+9dz?=
- =?us-ascii?Q?KMphpO0yY0zmwTjMSPW/O/s4noqzfAdOoB2WAr8ZET7vInrpHUjZ8C4FLOYb?=
- =?us-ascii?Q?N8o+OF2woLrQ1CAW28bPlpMTSv3Cyt9ckbC/zqz/?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ee6dc8e-a826-4e43-8d28-08dd76e67698
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkhxU2JpcWpCRXE1VHVpTXFJbnJmRTNOVFFBYWhIYmxLNzA5enBkcUVBTlpV?=
+ =?utf-8?B?TXpKVXZ4SzE2RU5meVNJOXN6SG5ITFRpWGRsL1pyMHZ3T0lVN2JFZTFKU3dj?=
+ =?utf-8?B?Mmx1ZVMzSlFwVk1rMlBrbHVVQUw3bnI4cExWK0dFQmltWEJkMTg1UlBJZ3pO?=
+ =?utf-8?B?UDdNN25nQUpBVUdxcnZxYWQ5WCtiN2VkTmw5Vnl0MnppL3JJbVhCVGRSUCtr?=
+ =?utf-8?B?QkZLQVRwUy9hUFBOcHJlUXZQQnRHNDJMWXR0WFRVRXQ0VDh3enVMQUl5MTVx?=
+ =?utf-8?B?cldxQkw1d1kvL0RzQzkzZnYveGlzM3JUQU82cmpmZVc3MmlPaFB4dWZ0b2Z5?=
+ =?utf-8?B?bm9rR2FCVmRxSmdSa0RPM25tbnlSRGFPL1hzZEl2ZHZzeTlQLzkxbllaZXpF?=
+ =?utf-8?B?b292dTZvRko4QXVWYXBuT3FRLzRiTHR0TzNWYTduMUpKa1gwSkxpL0pzT2d5?=
+ =?utf-8?B?eWJSSzVKWEF4aTEzR3hKdkRPanhZR1JQeVBqQkNkaVhvRGgxV3IyUTVXR2hU?=
+ =?utf-8?B?MWFQRHBHTGJjYXNzSXZrS1JZeEYySUh6RGlKcmQxVktOYXo5cVpZOGxVdHcy?=
+ =?utf-8?B?MzJqZUovaTh2L3luZkttWGlzcG04MDJhcWVhQUg2a2lrOGNOSzIwMTVzUTFB?=
+ =?utf-8?B?MUJ2anFCbGtoRDFLY09YZmxMNThHNGFnUDBRNFZWeTdSakJmd0lsdkpVTGhP?=
+ =?utf-8?B?bjJpRGdpdHlCdm85N2ZjclQ4eDRYNlRRSjJZcHRic1Y2WWk4alpJdFRnTWNP?=
+ =?utf-8?B?TlBWNkhyTGhncW1BblowUTg1M08xWGNxMFl1TmdNazRrT0hIQ1d3N1hrenhV?=
+ =?utf-8?B?WVlSUTZsbHNGNGpFcjNPM1piWTI2RXkxa1o5RFdBTkh3MGtLVTlzaUdVL2Zh?=
+ =?utf-8?B?anF6Y0RETEg2QW9OcXdQS2Zoemx5WTZMdjUraFhTTVVvaHlrYlhUZDNhdnQ2?=
+ =?utf-8?B?UXB3THUvV1RGMzBWaGNFZ2JNZlZUT1NxVGZmQlZJMDlkWWJ1RGh1Y0ZxQ09C?=
+ =?utf-8?B?SVBGRTdjdjFPajRwVXA0RC9KQnloYWl3eVkvODdlVHN2WDI5RWQxb2g2VmNZ?=
+ =?utf-8?B?azVDSVB1TUUzM2QyVTFYaldRWFJpTGZQZW9NQ1ZON2hWc3ZzaDIvM2dscHhm?=
+ =?utf-8?B?ODBURVJFZWhid09xZWI1VjVqWEVhR2tTRm1hL1Q3TmppZFhkaXNLSmlaR3Z4?=
+ =?utf-8?B?QVkwK0wyTkZzWXYwcjV4Y3JjdHF1eS84TjdVeERKR2xFUitoeWRaUWdNOWQ5?=
+ =?utf-8?B?aTVER21RWDQ0YWswdk84Y3IxblVVdzVJdm5kNmhiU0UyOHNxUnhoYitGRS9w?=
+ =?utf-8?B?NFpzc1cyMFpYbFBSQnYvSnNFSkozREZjVW01ZDJtelNRb09LK2htZEZhemNs?=
+ =?utf-8?B?WkYrbkJLcFUxaVBndnZMUW02eTB1cktEU1lwcnJ2Z0t5SUZsVDZqc2tvakdD?=
+ =?utf-8?B?eU8xcExBV0UvekZaNXBXdFRhU0phdFlsRVBjK1hNL2hpNHhSc0k0clRtL2lM?=
+ =?utf-8?B?YkVpTmpIdnlDL2hNTzNleGdkaFlHdFN1R2ExU1dRZWg0Y2JITG1JTWFJTEZJ?=
+ =?utf-8?B?akxQSStjdXExVVAwMDM0TjcvKzcrc3hieGtjaldjVGVFNlNwYTAyWlBORXJF?=
+ =?utf-8?B?WkpXeElEUmtHdGN5U2Y3bGtXT1BRTkpUbmltVXFyWnVUVXhrRmtyVHREL082?=
+ =?utf-8?B?SE5VODdsc0xVSTlmRzE0VmQrR2NuamFwT3ZwRXFaMW1seTN0OWQzb3NNYnNC?=
+ =?utf-8?B?bnk3TGw5MmZGSTJJbnJHQ0pUYWhVOFB4VENSbTFhZG9HS3FwcGlYTjFRYktt?=
+ =?utf-8?B?UG12WklYdTZJRFlkRHJWR1dENTVadmN4Wnh2Q1pkSXVTN2lTM0M1NnI3Rk9K?=
+ =?utf-8?B?MVZ2Tmw5VUtGRkdWVWhFRENtWUhaTlBZVWZiTC9hTmFJM29Yc2FSajNCOWNj?=
+ =?utf-8?B?VnBhSTBEKzZtV1cwb1Y4ZHhQOWxRQkcwQ2dmL3NvTC9EODM2N2ZXaDY3cGhE?=
+ =?utf-8?B?Mk52dkhycEFCUlVPVE5TZDBpVFJOVVY2bWtxeldHSFAyQUFVN21PS2dGY3pp?=
+ =?utf-8?B?czhvR1VJZWlndUtMUnJualBVaXZnS2dyWXVxbVVUNEFDVjAvTXRQL3plNmtk?=
+ =?utf-8?Q?f6rqv12XYSowD9N4Sxn7M+ByC?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8a072e1-c637-435e-7f02-08dd76e678c7
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 21:43:58.0896 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 21:43:59.9731 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YdTPpeiSmpUJEJRRlohHzmM9gEL1Uzhlji00CNmYNxZNqaPse/BaDg0z/mMyTQNEfsxRdfprsLkQIHKPyqMP4w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zNq36mi3Yd1/lq6rUKEq1E1Yseh0kUyuxjBT1ojquCFHBaD9J0nGmkDNI6kYaHD4DQmx0+LDz3FEWeM8c0fXWQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7101
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -174,488 +192,326 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Following the convention, convert intel_hdmi.c to use an intel_connector
-pointer everywhere, calling this pointer connector. If the intel
-connector must be casted from a drm_connector, call this pointer
-_connector and use this pointer only for the casting.
+Add support for forcing the link bpp on a connector via a connector
+debugfs entry. During reducing link bpps due to a link BW limit, keep
+bpps close to their forced value.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 187 ++++++++++++----------
- 1 file changed, 103 insertions(+), 84 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_link_bw.c  | 204 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_link_bw.h  |   2 +
+ 3 files changed, 203 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index f9fa17e1f584b..8f2cef36bdf79 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -715,7 +715,7 @@ intel_hdmi_compute_avi_infoframe(struct intel_encoder *encoder,
- 	struct hdmi_avi_infoframe *frame = &crtc_state->infoframes.avi.avi;
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
--	struct drm_connector *connector = conn_state->connector;
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 94468a9d2e0d3..6862cb4885b18 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -550,6 +550,10 @@ struct intel_connector {
+ 		struct intel_dp *dp;
+ 	} mst;
  
- 	if (!crtc_state->has_infoframe)
-@@ -724,7 +724,7 @@ intel_hdmi_compute_avi_infoframe(struct intel_encoder *encoder,
- 	crtc_state->infoframes.enable |=
- 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_AVI);
++	struct {
++		int force_bpp_x16;
++	} link;
++
+ 	/* Work struct to schedule a uevent on link train failure */
+ 	struct work_struct modeset_retry_work;
  
--	ret = drm_hdmi_avi_infoframe_from_display_mode(frame, connector,
-+	ret = drm_hdmi_avi_infoframe_from_display_mode(frame, &connector->base,
- 						       adjusted_mode);
- 	if (ret)
- 		return false;
-@@ -743,7 +743,7 @@ intel_hdmi_compute_avi_infoframe(struct intel_encoder *encoder,
- 		    crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB);
+diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
+index a10cd39926075..2a05fac53aa78 100644
+--- a/drivers/gpu/drm/i915/display/intel_link_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+@@ -3,6 +3,9 @@
+  * Copyright © 2023 Intel Corporation
+  */
  
- 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_RGB) {
--		drm_hdmi_avi_infoframe_quant_range(frame, connector,
-+		drm_hdmi_avi_infoframe_quant_range(frame, &connector->base,
- 						   adjusted_mode,
- 						   crtc_state->limited_color_range ?
- 						   HDMI_QUANTIZATION_RANGE_LIMITED :
-@@ -1943,11 +1943,12 @@ static bool intel_hdmi_source_bpc_possible(struct intel_display *display, int bp
- 	}
- }
++#include <linux/debugfs.h>
++#include <linux/math.h>
++
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_print.h>
  
--static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
-+static bool intel_hdmi_sink_bpc_possible(struct drm_connector *_connector,
- 					 int bpc, bool has_hdmi_sink,
- 					 enum intel_output_format sink_format)
- {
--	const struct drm_display_info *info = &connector->display_info;
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	const struct drm_display_info *info = &connector->base.display_info;
- 	const struct drm_hdmi_info *hdmi = &info->hdmi;
+@@ -10,11 +13,35 @@
+ #include "intel_crtc.h"
+ #include "intel_display_core.h"
+ #include "intel_display_types.h"
++#include "intel_dp.h"
+ #include "intel_dp_mst.h"
+ #include "intel_dp_tunnel.h"
+ #include "intel_fdi.h"
+ #include "intel_link_bw.h"
  
- 	switch (bpc) {
-@@ -1976,12 +1977,13 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *connector,
- }
- 
- static enum drm_mode_status
--intel_hdmi_mode_clock_valid(struct drm_connector *connector, int clock,
-+intel_hdmi_mode_clock_valid(struct drm_connector *_connector, int clock,
- 			    bool has_hdmi_sink,
- 			    enum intel_output_format sink_format)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
--	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
- 	enum drm_mode_status status = MODE_OK;
- 	int bpc;
- 
-@@ -1996,7 +1998,8 @@ intel_hdmi_mode_clock_valid(struct drm_connector *connector, int clock,
- 		if (!intel_hdmi_source_bpc_possible(display, bpc))
- 			continue;
- 
--		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink, sink_format))
-+		if (!intel_hdmi_sink_bpc_possible(&connector->base, bpc, has_hdmi_sink,
-+						  sink_format))
- 			continue;
- 
- 		status = hdmi_port_clock_valid(hdmi, tmds_clock, true, has_hdmi_sink);
-@@ -2011,15 +2014,16 @@ intel_hdmi_mode_clock_valid(struct drm_connector *connector, int clock,
- }
- 
- static enum drm_mode_status
--intel_hdmi_mode_valid(struct drm_connector *connector,
-+intel_hdmi_mode_valid(struct drm_connector *_connector,
- 		      const struct drm_display_mode *mode)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
--	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
- 	enum drm_mode_status status;
- 	int clock = mode->clock;
--	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
--	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->state);
-+	int max_dotclk = display->cdclk.max_dotclk_freq;
-+	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->base.state);
- 	bool ycbcr_420_only;
- 	enum intel_output_format sink_format;
- 
-@@ -2048,22 +2052,23 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 	if (clock > 600000)
- 		return MODE_CLOCK_HIGH;
- 
--	ycbcr_420_only = drm_mode_is_420_only(&connector->display_info, mode);
-+	ycbcr_420_only = drm_mode_is_420_only(&connector->base.display_info, mode);
- 
- 	if (ycbcr_420_only)
- 		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
- 	else
- 		sink_format = INTEL_OUTPUT_FORMAT_RGB;
- 
--	status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, sink_format);
-+	status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
- 	if (status != MODE_OK) {
- 		if (ycbcr_420_only ||
--		    !connector->ycbcr_420_allowed ||
--		    !drm_mode_is_420_also(&connector->display_info, mode))
-+		    !connector->base.ycbcr_420_allowed ||
-+		    !drm_mode_is_420_also(&connector->base.display_info, mode))
- 			return status;
- 
- 		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--		status = intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sink, sink_format);
-+		status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink,
-+						     sink_format);
- 		if (status != MODE_OK)
- 			return status;
- 	}
-@@ -2076,14 +2081,16 @@ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
- {
- 	struct drm_atomic_state *state = crtc_state->uapi.state;
- 	struct drm_connector_state *connector_state;
--	struct drm_connector *connector;
++static int get_forced_link_bpp_x16(struct intel_atomic_state *state,
++				   const struct intel_crtc *crtc)
++{
++	struct drm_connector_state *conn_state;
 +	struct drm_connector *_connector;
- 	int i;
- 
--	for_each_new_connector_in_state(state, connector, connector_state, i) {
-+	for_each_new_connector_in_state(state, _connector, connector_state, i) {
++	int force_bpp_x16 = INT_MAX;
++	int i;
++
++	for_each_new_connector_in_state(&state->base, _connector, conn_state, i) {
 +		struct intel_connector *connector = to_intel_connector(_connector);
 +
- 		if (connector_state->crtc != crtc_state->uapi.crtc)
- 			continue;
- 
--		if (!intel_hdmi_sink_bpc_possible(connector, bpc, has_hdmi_sink,
-+		if (!intel_hdmi_sink_bpc_possible(&connector->base, bpc, has_hdmi_sink,
- 						  crtc_state->sink_format))
- 			return false;
- 	}
-@@ -2211,7 +2218,7 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
- 				 const struct intel_crtc_state *crtc_state,
- 				 const struct drm_connector_state *conn_state)
- {
--	struct drm_connector *connector = conn_state->connector;
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	const struct intel_digital_connector_state *intel_conn_state =
- 		to_intel_digital_connector_state(conn_state);
- 
-@@ -2219,7 +2226,7 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
- 		return false;
- 
- 	if (intel_conn_state->force_audio == HDMI_AUDIO_AUTO)
--		return connector->display_info.has_audio;
-+		return connector->base.display_info.has_audio;
- 	else
- 		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
- }
-@@ -2323,14 +2330,14 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
--	struct drm_connector *connector = conn_state->connector;
--	struct drm_scdc *scdc = &connector->display_info.hdmi.scdc;
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-+	struct drm_scdc *scdc = &connector->base.display_info.hdmi.scdc;
- 	int ret;
- 
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
- 
--	if (!connector->interlace_allowed &&
-+	if (!connector->base.interlace_allowed &&
- 	    adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
- 		return -EINVAL;
- 
-@@ -2425,25 +2432,27 @@ void intel_hdmi_encoder_shutdown(struct intel_encoder *encoder)
- }
- 
- static void
--intel_hdmi_unset_edid(struct drm_connector *connector)
-+intel_hdmi_unset_edid(struct drm_connector *_connector)
- {
--	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(to_intel_connector(connector));
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(connector);
- 
- 	intel_hdmi->dp_dual_mode.type = DRM_DP_DUAL_MODE_NONE;
- 	intel_hdmi->dp_dual_mode.max_tmds_clock = 0;
- 
--	drm_edid_free(to_intel_connector(connector)->detect_edid);
--	to_intel_connector(connector)->detect_edid = NULL;
-+	drm_edid_free(connector->detect_edid);
-+	connector->detect_edid = NULL;
- }
- 
- static void
--intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector)
-+intel_hdmi_dp_dual_mode_detect(struct drm_connector *_connector)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
--	struct drm_i915_private *dev_priv = to_i915(connector->dev);
--	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
- 	struct intel_encoder *encoder = &hdmi_to_dig_port(hdmi)->base;
--	struct i2c_adapter *ddc = connector->ddc;
-+	struct i2c_adapter *ddc = connector->base.ddc;
- 	enum drm_dp_dual_mode_type type;
- 
- 	type = drm_dp_dual_mode_detect(display->drm, ddc);
-@@ -2458,7 +2467,7 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector)
- 	 * if the port is a dual mode capable DP port.
- 	 */
- 	if (type == DRM_DP_DUAL_MODE_UNKNOWN) {
--		if (!connector->force &&
-+		if (!connector->base.force &&
- 		    intel_bios_encoder_supports_dp_dual_mode(encoder->devdata)) {
- 			drm_dbg_kms(display->drm,
- 				    "Assuming DP dual mode adaptor presence based on VBT\n");
-@@ -2490,34 +2499,35 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector)
- }
- 
- static bool
--intel_hdmi_set_edid(struct drm_connector *connector)
-+intel_hdmi_set_edid(struct drm_connector *_connector)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
--	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(to_intel_connector(connector));
--	struct i2c_adapter *ddc = connector->ddc;
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(connector);
-+	struct i2c_adapter *ddc = connector->base.ddc;
- 	intel_wakeref_t wakeref;
- 	const struct drm_edid *drm_edid;
- 	bool connected = false;
- 
- 	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
- 
--	drm_edid = drm_edid_read_ddc(connector, ddc);
-+	drm_edid = drm_edid_read_ddc(&connector->base, ddc);
- 
- 	if (!drm_edid && !intel_gmbus_is_forced_bit(ddc)) {
- 		drm_dbg_kms(display->drm,
- 			    "HDMI GMBUS EDID read failed, retry using GPIO bit-banging\n");
- 		intel_gmbus_force_bit(ddc, true);
--		drm_edid = drm_edid_read_ddc(connector, ddc);
-+		drm_edid = drm_edid_read_ddc(&connector->base, ddc);
- 		intel_gmbus_force_bit(ddc, false);
- 	}
- 
- 	/* Below we depend on display info having been updated */
--	drm_edid_connector_update(connector, drm_edid);
-+	drm_edid_connector_update(&connector->base, drm_edid);
- 
--	to_intel_connector(connector)->detect_edid = drm_edid;
-+	connector->detect_edid = drm_edid;
- 
- 	if (drm_edid_is_digital(drm_edid)) {
--		intel_hdmi_dp_dual_mode_detect(connector);
-+		intel_hdmi_dp_dual_mode_detect(&connector->base);
- 
- 		connected = true;
- 	}
-@@ -2525,28 +2535,29 @@ intel_hdmi_set_edid(struct drm_connector *connector)
- 	intel_display_power_put(display, POWER_DOMAIN_GMBUS, wakeref);
- 
- 	cec_notifier_set_phys_addr(intel_hdmi->cec_notifier,
--				   connector->display_info.source_physical_address);
-+				   connector->base.display_info.source_physical_address);
- 
- 	return connected;
- }
- 
- static enum drm_connector_status
--intel_hdmi_detect(struct drm_connector *connector, bool force)
-+intel_hdmi_detect(struct drm_connector *_connector, bool force)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
- 	enum drm_connector_status status = connector_status_disconnected;
--	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(to_intel_connector(connector));
-+	struct intel_hdmi *intel_hdmi = intel_attached_hdmi(connector);
- 	struct intel_encoder *encoder = &hdmi_to_dig_port(intel_hdmi)->base;
- 	intel_wakeref_t wakeref;
- 
- 	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s]\n",
--		    connector->base.id, connector->name);
-+		    connector->base.base.id, connector->base.name);
- 
- 	if (!intel_display_device_enabled(display))
- 		return connector_status_disconnected;
- 
- 	if (!intel_display_driver_check_access(display))
--		return connector->status;
-+		return connector->base.status;
- 
- 	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
- 
-@@ -2554,9 +2565,9 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
- 	    !intel_digital_port_connected(encoder))
- 		goto out;
- 
--	intel_hdmi_unset_edid(connector);
-+	intel_hdmi_unset_edid(&connector->base);
- 
--	if (intel_hdmi_set_edid(connector))
-+	if (intel_hdmi_set_edid(&connector->base))
- 		status = connector_status_connected;
- 
- out:
-@@ -2569,49 +2580,54 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
- }
- 
- static void
--intel_hdmi_force(struct drm_connector *connector)
-+intel_hdmi_force(struct drm_connector *_connector)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
- 
- 	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s]\n",
--		    connector->base.id, connector->name);
-+		    connector->base.base.id, connector->base.name);
- 
- 	if (!intel_display_driver_check_access(display))
- 		return;
- 
--	intel_hdmi_unset_edid(connector);
-+	intel_hdmi_unset_edid(&connector->base);
- 
--	if (connector->status != connector_status_connected)
-+	if (connector->base.status != connector_status_connected)
- 		return;
- 
--	intel_hdmi_set_edid(connector);
-+	intel_hdmi_set_edid(&connector->base);
- }
- 
--static int intel_hdmi_get_modes(struct drm_connector *connector)
-+static int intel_hdmi_get_modes(struct drm_connector *_connector)
- {
-+	struct intel_connector *connector = to_intel_connector(_connector);
++		if (conn_state->crtc != &crtc->base)
++			continue;
 +
- 	/* drm_edid_connector_update() done in ->detect() or ->force() */
--	return drm_edid_connector_add_modes(connector);
-+	return drm_edid_connector_add_modes(&connector->base);
++		if (!connector->link.force_bpp_x16)
++			continue;
++
++		force_bpp_x16 = min(force_bpp_x16, connector->link.force_bpp_x16);
++	}
++
++	return force_bpp_x16 < INT_MAX ? force_bpp_x16 : 0;
++}
++
+ /**
+  * intel_link_bw_init_limits - initialize BW limits
+  * @state: Atomic state
+@@ -31,9 +58,10 @@ void intel_link_bw_init_limits(struct intel_atomic_state *state,
+ 	limits->force_fec_pipes = 0;
+ 	limits->bpp_limit_reached_pipes = 0;
+ 	for_each_pipe(display, pipe) {
++		struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 		const struct intel_crtc_state *crtc_state =
+-			intel_atomic_get_new_crtc_state(state,
+-							intel_crtc_for_pipe(display, pipe));
++			intel_atomic_get_new_crtc_state(state, crtc);
++		int forced_bpp_x16 = get_forced_link_bpp_x16(state, crtc);
+ 
+ 		if (state->base.duplicated && crtc_state) {
+ 			limits->max_bpp_x16[pipe] = crtc_state->max_link_bpp_x16;
+@@ -42,15 +70,19 @@ void intel_link_bw_init_limits(struct intel_atomic_state *state,
+ 		} else {
+ 			limits->max_bpp_x16[pipe] = INT_MAX;
+ 		}
++
++		if (forced_bpp_x16)
++			limits->max_bpp_x16[pipe] = min(limits->max_bpp_x16[pipe], forced_bpp_x16);
+ 	}
  }
  
- static int
--intel_hdmi_connector_register(struct drm_connector *connector)
-+intel_hdmi_connector_register(struct drm_connector *_connector)
- {
-+	struct intel_connector *connector = to_intel_connector(_connector);
- 	int ret;
- 
--	ret = intel_connector_register(connector);
-+	ret = intel_connector_register(&connector->base);
- 	if (ret)
- 		return ret;
- 
- 	return ret;
- }
- 
--static void intel_hdmi_connector_unregister(struct drm_connector *connector)
-+static void intel_hdmi_connector_unregister(struct drm_connector *_connector)
- {
--	struct cec_notifier *n = intel_attached_hdmi(to_intel_connector(connector))->cec_notifier;
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct cec_notifier *n = intel_attached_hdmi(connector)->cec_notifier;
- 
- 	cec_notifier_conn_unregister(n);
- 
--	intel_connector_unregister(connector);
-+	intel_connector_unregister(&connector->base);
- }
- 
- static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
-@@ -2627,15 +2643,16 @@ static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- };
- 
--static int intel_hdmi_connector_atomic_check(struct drm_connector *connector,
-+static int intel_hdmi_connector_atomic_check(struct drm_connector *_connector,
- 					     struct drm_atomic_state *state)
- {
--	struct intel_display *display = to_intel_display(connector->dev);
-+	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_display *display = to_intel_display(connector);
- 
- 	if (HAS_DDI(display))
--		return intel_digital_connector_atomic_check(connector, state);
-+		return intel_digital_connector_atomic_check(&connector->base, state);
- 	else
--		return g4x_hdmi_connector_atomic_check(connector, state);
-+		return g4x_hdmi_connector_atomic_check(&connector->base, state);
- }
- 
- static const struct drm_connector_helper_funcs intel_hdmi_connector_helper_funcs = {
-@@ -2645,22 +2662,23 @@ static const struct drm_connector_helper_funcs intel_hdmi_connector_helper_funcs
- };
- 
- static void
--intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *connector)
-+intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *_connector)
- {
-+	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_display *display = to_intel_display(intel_hdmi);
- 
--	intel_attach_force_audio_property(connector);
--	intel_attach_broadcast_rgb_property(connector);
--	intel_attach_aspect_ratio_property(connector);
-+	intel_attach_force_audio_property(&connector->base);
-+	intel_attach_broadcast_rgb_property(&connector->base);
-+	intel_attach_aspect_ratio_property(&connector->base);
- 
--	intel_attach_hdmi_colorspace_property(connector);
--	drm_connector_attach_content_type_property(connector);
-+	intel_attach_hdmi_colorspace_property(&connector->base);
-+	drm_connector_attach_content_type_property(&connector->base);
- 
- 	if (DISPLAY_VER(display) >= 10)
--		drm_connector_attach_hdr_output_metadata_property(connector);
-+		drm_connector_attach_hdr_output_metadata_property(&connector->base);
- 
- 	if (!HAS_GMCH(display))
--		drm_connector_attach_max_bpc_property(connector, 8, 12);
-+		drm_connector_attach_max_bpc_property(&connector->base, 8, 12);
- }
- 
- /*
-@@ -2682,25 +2700,26 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
-  * True on success, false on failure.
+ /**
+- * intel_link_bw_reduce_bpp - reduce maximum link bpp for a selected pipe
++ * __intel_link_bw_reduce_bpp - reduce maximum link bpp for a selected pipe
+  * @state: atomic state
+  * @limits: link BW limits
+  * @pipe_mask: mask of pipes to select from
+  * @reason: explanation of why bpp reduction is needed
++ * @reduce_forced_bpp: allow reducing bpps below their forced link bpp
+  *
+  * Select the pipe from @pipe_mask with the biggest link bpp value and set the
+  * maximum of link bpp in @limits below this value. Modeset the selected pipe,
+@@ -64,10 +96,11 @@ void intel_link_bw_init_limits(struct intel_atomic_state *state,
+  *   - %-ENOSPC if no pipe can further reduce its link bpp
+  *   - Other negative error, if modesetting the selected pipe failed
   */
- bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
--				       struct drm_connector *connector,
-+				       struct drm_connector *_connector,
- 				       bool high_tmds_clock_ratio,
- 				       bool scrambling)
+-int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
+-			     struct intel_link_bw_limits *limits,
+-			     u8 pipe_mask,
+-			     const char *reason)
++static int __intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
++				      struct intel_link_bw_limits *limits,
++				      u8 pipe_mask,
++				      const char *reason,
++				      bool reduce_forced_bpp)
  {
-+	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_scrambling *sink_scrambling =
--		&connector->display_info.hdmi.scdc.scrambling;
-+		&connector->base.display_info.hdmi.scdc.scrambling;
+ 	struct intel_display *display = to_intel_display(state);
+ 	enum pipe max_bpp_pipe = INVALID_PIPE;
+@@ -97,6 +130,10 @@ int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
+ 			 */
+ 			link_bpp_x16 = fxp_q4_from_int(crtc_state->pipe_bpp);
  
- 	if (!sink_scrambling->supported)
- 		return true;
- 
- 	drm_dbg_kms(display->drm,
- 		    "[CONNECTOR:%d:%s] scrambling=%s, TMDS bit clock ratio=1/%d\n",
--		    connector->base.id, connector->name,
-+		    connector->base.base.id, connector->base.name,
- 		    str_yes_no(scrambling), high_tmds_clock_ratio ? 40 : 10);
- 
- 	/* Set TMDS bit clock ratio to 1/40 or 1/10, and enable/disable scrambling */
--	return drm_scdc_set_high_tmds_clock_ratio(connector, high_tmds_clock_ratio) &&
--		drm_scdc_set_scrambling(connector, scrambling);
-+	return drm_scdc_set_high_tmds_clock_ratio(&connector->base, high_tmds_clock_ratio) &&
-+		drm_scdc_set_scrambling(&connector->base, scrambling);
++		if (!reduce_forced_bpp &&
++		    link_bpp_x16 <= get_forced_link_bpp_x16(state, crtc))
++			continue;
++
+ 		if (link_bpp_x16 > max_bpp_x16) {
+ 			max_bpp_x16 = link_bpp_x16;
+ 			max_bpp_pipe = crtc->pipe;
+@@ -112,6 +149,21 @@ int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
+ 						 BIT(max_bpp_pipe));
  }
  
- static u8 chv_encoder_to_ddc_pin(struct intel_encoder *encoder)
++int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
++			     struct intel_link_bw_limits *limits,
++			     u8 pipe_mask,
++			     const char *reason)
++{
++	int ret;
++
++	/* Try to keep any forced link BPP. */
++	ret = __intel_link_bw_reduce_bpp(state, limits, pipe_mask, reason, false);
++	if (ret == -ENOSPC)
++		ret = __intel_link_bw_reduce_bpp(state, limits, pipe_mask, reason, true);
++
++	return ret;
++}
++
+ /**
+  * intel_link_bw_set_bpp_limit_for_pipe - set link bpp limit for a pipe to its minimum
+  * @state: atomic state
+@@ -245,3 +297,141 @@ int intel_link_bw_atomic_check(struct intel_atomic_state *state,
+ 
+ 	return -EAGAIN;
+ }
++
++static int force_link_bpp_show(struct seq_file *m, void *data)
++{
++	struct intel_connector *connector = m->private;
++
++	seq_printf(m, FXP_Q4_FMT "\n", FXP_Q4_ARGS(connector->link.force_bpp_x16));
++
++	return 0;
++}
++
++static int str_to_fxp_q4_uint(const char *str, int *val_x16)
++{
++	unsigned int val;
++	int err;
++
++	err = kstrtouint(str, 10, &val);
++	if (err)
++		return err;
++
++	if (val > INT_MAX >> 4)
++		return -ERANGE;
++
++	*val_x16 = fxp_q4_from_int(val);
++
++	return 0;
++}
++
++/* modifies str */
++static int str_to_fxp_q4(char *str, int *val_x16)
++{
++	const char *int_str;
++	char *frac_str;
++	int frac_val;
++	int err;
++
++	int_str = strim(str);
++	frac_str = strchr(int_str, '.');
++
++	if (frac_str)
++		*frac_str++ = '\0';
++
++	err = str_to_fxp_q4_uint(int_str, val_x16);
++	if (err)
++		return err;
++
++	if (!frac_str)
++		return 0;
++
++	if (*frac_str == '+')   /* otherwise valid in front of an unsigned integer */
++		return -EINVAL;
++
++	err = str_to_fxp_q4_uint(frac_str, &frac_val);
++	if (err)
++		return err;
++
++	*val_x16 += DIV_ROUND_CLOSEST(frac_val, int_pow(10, strlen(frac_str)));
++
++	return 0;
++}
++
++static int user_str_to_fxp_q4(const char __user *ubuf, size_t len, int *val_x16)
++{
++	char *kbuf;
++	int err;
++
++	kbuf = memdup_user_nul(ubuf, len);
++	if (IS_ERR(kbuf))
++		return PTR_ERR(kbuf);
++
++	err = str_to_fxp_q4(kbuf, val_x16);
++
++	kfree(kbuf);
++
++	return err;
++}
++
++static bool connector_supports_dsc(struct intel_connector *connector)
++{
++	struct intel_display *display = to_intel_display(connector);
++
++	switch (connector->base.connector_type) {
++	case DRM_MODE_CONNECTOR_eDP:
++		return intel_dp_has_dsc(connector);
++	case DRM_MODE_CONNECTOR_DisplayPort:
++		if (connector->mst.dp)
++			return HAS_DSC_MST(display);
++
++		return HAS_DSC(display);
++	default:
++		return false;
++	}
++}
++
++static ssize_t
++force_link_bpp_write(struct file *file, const char __user *ubuf, size_t len, loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	struct intel_connector *connector = m->private;
++	struct intel_display *display = to_intel_display(connector);
++	int min_bpp;
++	int bpp_x16;
++	int err;
++
++	err = user_str_to_fxp_q4(ubuf, len, &bpp_x16);
++	if (err)
++		return err;
++
++	if (connector_supports_dsc(connector))
++		min_bpp = intel_dp_dsc_min_src_compressed_bpp();
++	else
++		min_bpp = intel_display_min_pipe_bpp();
++
++	if (bpp_x16 &&
++	    (bpp_x16 < fxp_q4_from_int(min_bpp) ||
++	     bpp_x16 > fxp_q4_from_int(intel_display_max_pipe_bpp(display))))
++		return -EINVAL;
++
++	err = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
++	if (err)
++		return err;
++
++	connector->link.force_bpp_x16 = bpp_x16;
++
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
++
++	*offp += len;
++
++	return len;
++}
++DEFINE_SHOW_STORE_ATTRIBUTE(force_link_bpp);
++
++void intel_link_bw_connector_debugfs_add(struct intel_connector *connector)
++{
++	struct dentry *root = connector->base.debugfs_entry;
++
++	debugfs_create_file("i915_force_link_bpp", 0644, root,
++			    connector, &force_link_bpp_fops);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.h b/drivers/gpu/drm/i915/display/intel_link_bw.h
+index e69049cf178f6..b499042e62b13 100644
+--- a/drivers/gpu/drm/i915/display/intel_link_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_link_bw.h
+@@ -11,6 +11,7 @@
+ #include "intel_display_limits.h"
+ 
+ struct intel_atomic_state;
++struct intel_connector;
+ struct intel_crtc_state;
+ 
+ struct intel_link_bw_limits {
+@@ -32,5 +33,6 @@ bool intel_link_bw_set_bpp_limit_for_pipe(struct intel_atomic_state *state,
+ 					  enum pipe pipe);
+ int intel_link_bw_atomic_check(struct intel_atomic_state *state,
+ 			       struct intel_link_bw_limits *new_limits);
++void intel_link_bw_connector_debugfs_add(struct intel_connector *connector);
+ 
+ #endif
 -- 
 2.44.2
 
