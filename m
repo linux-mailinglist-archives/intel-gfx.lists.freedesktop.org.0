@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636DFA7F490
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 08:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79136A7F522
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 08:40:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BF9310E5CA;
-	Tue,  8 Apr 2025 06:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F7FC10E5D0;
+	Tue,  8 Apr 2025 06:40:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZKGeRjm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJ4nM5NM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C70910E5CA;
- Tue,  8 Apr 2025 06:05:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19B1910E5D0;
+ Tue,  8 Apr 2025 06:40:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744092352; x=1775628352;
+ t=1744094436; x=1775630436;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=McEkw4zbCW5b4WOGTjlWaKrrzeQOzS7t0z3lVq088ZI=;
- b=GZKGeRjm3U9qirgO3cZ8vKWWCgAq1DiSOg6++z/eXQR6Bt5t/iOdw4wz
- LYWgL/wPRTyCfsrgEV+9bMYVlNLlFtkbFc8kyGcm1quv9LZug9GKw9MXu
- L4Te8ycNBL8PokjSldY0YKT0NTyydxUK6Ij67TI9Bo98IwHEJ7vDlnTSq
- 2KRfaYiDuQqtOhP7l51wZ1qd3nmxMKs4I9WCXpKAY8YTjj7sFoImRqz4r
- c9QxyPYJXifR11TToOBR5usvuLWAie916nNVusJGC074Iewn9HyLUPHZA
- 2ggjIzO2KKeiALwmEipaY3xCKOyHHENZXlguCDvV63KtGrEz7mYiidRi3 w==;
-X-CSE-ConnectionGUID: Kb6O9I7URfG8BzK47/h2cw==
-X-CSE-MsgGUID: yLwqAxDgTJGKd140cP0V2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49352977"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="49352977"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 23:05:51 -0700
-X-CSE-ConnectionGUID: 52Mx0dnWS/a1c/PS30Ah7g==
-X-CSE-MsgGUID: 7154YVyAR6eUjzpVxOeeSg==
+ bh=MVfUqwddhEACu0q+MNsTuOCG7qDhNDYe60T2n44uZQ8=;
+ b=hJ4nM5NMwvHmubQ3ATN6GprCN98CjFdBieISn6bp2GtSXlDOw2GvPNKQ
+ MlpcJkJrBM95KUq/CLBN4uEwSyFK7EeBAGIpTPspPQJzEXaz0JMBsxqG1
+ C3aAgIFL8BvYQwLI+MvdCTKO2QntTfMK51SGhSfIM0D4MkOqoIBF/omKN
+ aO2mp1o0dl70aeNHEZPzy3rt1WzFXrn+/fa1kJ5GRMLx2swPSiet1FnW9
+ XTr1efo2df1zb2Wd90xRM92eWYrV1wLHRw7wB30nniDP4M32szzwz4Ve8
+ C5vTJVpwC0/GSRHh7HQR8VhzGxRXt8SeSd1Bk5JxSgnVXz6SM0+43gbTs g==;
+X-CSE-ConnectionGUID: viA436ObTbCCsRIxOgkfSw==
+X-CSE-MsgGUID: oYmUie5FSEu2u/1gwJGjZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="44759489"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="44759489"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2025 23:40:36 -0700
+X-CSE-ConnectionGUID: TRJVxZQyTOmFXwffa19kTA==
+X-CSE-MsgGUID: Zv8TzJsgRYqnquJ9ksY5JQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133374822"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.58])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2025 23:05:50 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/alpm: use variable from intel_crtc_state instead of
- intel_psr
-Date: Tue,  8 Apr 2025 09:05:39 +0300
-Message-ID: <20250408060539.4167353-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="128043547"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa006.fm.intel.com with ESMTP; 07 Apr 2025 23:40:34 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [core-for-CI] Revert "panel/auo-a030jtn01: Use refcounted allocation
+ in place of devm_kzalloc()"
+Date: Tue,  8 Apr 2025 11:55:24 +0530
+Message-Id: <20250408062524.1825048-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,36 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently code is making assumption that PSR is enabled when
-intel_alpm_configure is called. This doesn't work if alpm is configured
-before PSR is enabled.
+This reverts commit 9d7d7c3c9a191864367b28e05b312ab3ac34ef0a.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+The patch causes build errors in our CI. Revert it till a fix is found.
+
+  CC [M]  drivers/gpu/drm/solomon/ssd130x-spi.o
+  CC [M]  drivers/gpu/drm/panel/panel-auo-a030jtn01.o
+drivers/gpu/drm/panel/panel-auo-a030jtn01.c: In function ‘a030jtn01_probe’:
+drivers/gpu/drm/panel/panel-auo-a030jtn01.c:203:9: error: ‘panel’ undeclared (first use in this function)
+  203 |         panel = devm_drm_panel_alloc(dev, struct a030jtn01, panel,
+      |         ^~~~~
+drivers/gpu/drm/panel/panel-auo-a030jtn01.c:203:9: note: each undeclared identifier is reported only once for each function it appears in
+make[6]: *** [scripts/Makefile.build:203: drivers/gpu/drm/panel/panel-auo-a030jtn01.o] Error 1
+make[5]: *** [scripts/Makefile.build:461: drivers/gpu/drm/panel] Error 2
+make[4]: *** [scripts/Makefile.build:461: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:461: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:461: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2006: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+Link: https://lore.kernel.org/all/Z_P0A9lxWD0aAdjp@ideak-desk.fi.intel.com/
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14039
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/panel/panel-auo-a030jtn01.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index eba49263e2fb8..746495ac675be 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -317,14 +317,14 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 	u32 alpm_ctl;
+diff --git a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+index 83529b1c2bac..77604d6a4e72 100644
+--- a/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
++++ b/drivers/gpu/drm/panel/panel-auo-a030jtn01.c
+@@ -200,10 +200,9 @@ static int a030jtn01_probe(struct spi_device *spi)
  
- 	if (DISPLAY_VER(display) < 20 ||
--	    (!intel_dp->psr.sel_update_enabled && !intel_dp_is_edp(intel_dp)))
-+	    (!crtc_state->has_sel_update && !intel_dp_is_edp(intel_dp)))
- 		return;
+ 	spi->mode |= SPI_MODE_3 | SPI_3WIRE;
  
- 	/*
- 	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
- 	 * check panel support at this point.
- 	 */
--	if ((intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) ||
-+	if ((crtc_state->has_panel_replay && intel_dp_is_edp(intel_dp)) ||
- 	    (crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp))) {
- 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
- 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
+-	panel = devm_drm_panel_alloc(dev, struct a030jtn01, panel,
+-				     &a030jtn01_funcs, DRM_MODE_CONNECTOR_DPI);
+-	if (IS_ERR(panel))
+-		return PTR_ERR(panel);
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
+ 
+ 	priv->spi = spi;
+ 	spi_set_drvdata(spi, priv);
+@@ -224,6 +223,9 @@ static int a030jtn01_probe(struct spi_device *spi)
+ 	if (IS_ERR(priv->reset_gpio))
+ 		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio), "Failed to get reset GPIO");
+ 
++	drm_panel_init(&priv->panel, dev, &a030jtn01_funcs,
++		       DRM_MODE_CONNECTOR_DPI);
++
+ 	err = drm_panel_of_backlight(&priv->panel);
+ 	if (err)
+ 		return err;
 -- 
-2.43.0
+2.25.1
 
