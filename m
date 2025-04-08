@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9490FA81341
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 19:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6777A814DD
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 20:42:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0B410E28D;
-	Tue,  8 Apr 2025 17:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 913EB10E2D7;
+	Tue,  8 Apr 2025 18:42:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjCD8Fa0";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A1B10E28D;
- Tue,  8 Apr 2025 17:09:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6524290591312029352=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B32910E2D5;
+ Tue,  8 Apr 2025 18:42:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744137769; x=1775673769;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Gk2fzlQjUCLt/ACS0iGbHiEoJLXRFDn3gd/CajWFMrU=;
+ b=VjCD8Fa0q0AkmAYAovpyJYKPnGMNQZZjXUPuMyfKRswhm4zwlHTwuGdb
+ /DGkAQ90vLRgebWCjX5wr6X5Xm4DxWI8Rrpb5mEZX0vFBuCsZCVstX+ix
+ oDdS1q1BTpegp+VkIIJIuLZA7wfkV7s+MBlQj3kKAGZ35Os/u0PyeTHfB
+ 3En4ANe0aRjR3z4MYV3wJv9OngoBHsV7NdEdmdPNTc4goudu78CA06LFM
+ vLFT06UMMmCKtuk6y34a7Tm3ckIy7OvIG+OJDNHiydLnjsYp1Pg4vsgPM
+ Alci5EAVPa0n9UyL/TtW7/zjJQu/ZtFjar3njedpTn7UvAS3lLYJLOXDB A==;
+X-CSE-ConnectionGUID: q4hDUFdXRj+Y3UsZ6MDQSg==
+X-CSE-MsgGUID: 1Pv0dyBPQ/K9mbxsZcv+dg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49385086"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="49385086"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 11:42:43 -0700
+X-CSE-ConnectionGUID: iCCNA21DQBKQORjCd8kn8A==
+X-CSE-MsgGUID: bvmlVMOTTxaX/KP11+a2QA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="133219858"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.137])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 11:42:39 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>, Linus Torvalds
+ <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ linux-kbuild@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 0/4] kbuild: resurrect generic header check facility
+In-Reply-To: <20250408160127.GD1778492@nvidia.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250402124656.629226-1-jani.nikula@intel.com>
+ <CAK7LNAS6o_66bUB6-qj6NnaTRNKvu5ycxOP+kGfizYVBNjZAyw@mail.gmail.com>
+ <878qoczbhn.fsf@intel.com> <20250407171209.GJ1557073@nvidia.com>
+ <871pu3ys4x.fsf@intel.com> <20250408160127.GD1778492@nvidia.com>
+Date: Tue, 08 Apr 2025 21:42:36 +0300
+Message-ID: <87friixzoj.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/plane=3A_file_an?=
- =?utf-8?q?d_function_renames?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 08 Apr 2025 17:09:53 -0000
-Message-ID: <174413219355.49225.15628608991032371691@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <cover.1744129283.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744129283.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,267 +72,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6524290591312029352==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 08 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
+> On Tue, Apr 08, 2025 at 11:27:58AM +0300, Jani Nikula wrote:
+>> On Mon, 07 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
+>> > On Mon, Apr 07, 2025 at 10:17:40AM +0300, Jani Nikula wrote:
+>> >
+>> >> Even with Jason's idea [1], you *still* have to start small and opt-in
+>> >> (i.e. the patch series at hand). You can't just start off by testing
+>> >> every header in one go, because it's a flag day switch. 
+>> >
+>> > You'd add something like 'make header_check' that does not run
+>> > automatically. Making it run automatically after everything is fixed
+>> > to keep it fixed would be the flag day change. It is how we have
+>> > managed to introduce other warning levels in the past.
+>> 
+>> That approach does not help *me* or drm, i915 and xe in the least. They
+>> are already fixed, and we want a way to keep them fixed. This is how all
+>> of this got started.
+>
+> I imagine you'd include a way to have the 'make header_check' run on
+> some subset of files only, then use that in your CI for the interm.
+>
+>> Your goal may be to make everything self-contained, but AFAICS there is
+>> no agreement on that goal. As long as there's no buy-in to this, it's
+>> not possible fix everything, it's an unreachable goal.
+>
+> I didn't see that. I saw technical problems with the implementation
+> that was presented. I'd be shocked if there was broad opposition to
+> adding missing includes and forward declaration to most headers. It is
+> a pretty basic C thing. :\
 
-== Series Details ==
+Unless I'm mistaken, both Linus and Masahiro have said they disagree
+with headers having to be self-contained as a general rule, regardless
+of the issues with kconfig and the build artifacts.
 
-Series: drm/i915/plane: file and function renames
-URL   : https://patchwork.freedesktop.org/series/147416/
-State : failure
+We actually had header checks back in 2019 but it was reverted basically
+without discussion with commit fcbb8461fd23 ("kbuild: remove header
+compile test"). Sure, there were issues, but still removed without an
+attempt to address the issues. Since then it's been skunkworks in
+i915. There's a reason this has felt like an uphill battle, and why I'm
+reluctant to putting effort into much more than small incremental steps
+at a time.
 
-== Summary ==
+> Until someone sends a series trying to add missing includes and
+> forward declarations we can't really know..
+>
+>> Arguably the situation is similar to W=1 builds. We can't run W=1 in our
+>> CI, because of failures outside of the drivers we maintain. 
+>
+> You can run W=1 using a subdirectory build just for your drivers.
 
-CI Bug Log - changes from CI_DRM_16377 -> Patchwork_147416v1
-====================================================
+I don't think there's a way to build the entire kernel while limiting
+W=1 warnings to a subdirectory, is there? Mixing W=1 and regular builds
+causes everything to be rebuilt due to dependencies. It's not only for
+CI, it's also for developers.
 
-Summary
--------
+>> Even if I put in the effort to generalize this the way you prefer, I
+>> guess a few kernel releases from now, it still would not do what we have
+>> already in place in i915 and xe. And, no offense, but I think your
+>> proposal is technically vague to start with. I really don't know where
+>> the goal posts are.
+>
+> Well, I spent a little bit and wrote a mock up and did some looking at
+> how much work is here. Focusing on allnoconfig as a starting point,
+> 293 out of 1858 headers failed to build, and with some fiddling I got
+> it down to 150, a couple of hours would get patches made for the vast
+> majority of it.
+>
+> https://github.com/jgunthorpe/linux/commits/hdrcheck/
+>
+> I don't see the same dire view as you do, it seems reasonable and doable.
 
-  **FAILURE**
+Thanks for the proof-of-concept. It's just that I don't see how that
+could be bolted to kbuild, with dependency tracking. I don't want to
+have to rebuild the world every time something changes.
 
-  Serious unknown changes coming with Patchwork_147416v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_147416v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Additional (1): fi-hsw-4770 
-  Missing    (2): bat-adlp-11 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_147416v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-arlh-3/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-arlh-3/igt@i915_selftest@live.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-2:         [INCOMPLETE][3] ([i915#13971]) -> [INCOMPLETE][4] +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-arlh-2/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-arlh-2/igt@i915_selftest@live.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147416v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_softpin@allocator-basic-reserve:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][5] +14 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#13735]) +82 other tests dmesg-warn
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][10] ([i915#5190])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - fi-cfl-8109u:       [PASS][11] -> [DMESG-WARN][12] ([i915#13735] / [i915#13890]) +49 other tests dmesg-warn
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - fi-hsw-4770:        NOTRUN -> [SKIP][13] ([i915#1072]) +3 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [INCOMPLETE][14] ([i915#12904]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-apl-1/igt@dmabuf@all-tests.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][16] ([i915#12061]) -> [PASS][17] +1 other test pass
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
-  [i915#13971]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13971
-  [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
+Say, I'm refactoring stuff, and I want to ensure headers are okay every
+step of the way. git rebase -i origin -x 'make header_check'. How do you
+only check the headers whose dependencies were changed since the
+previous commit? That requires looking at the .cmd again.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16377 -> Patchwork_147416v1
-
-  CI-20190529: 20190529
-  CI_DRM_16377: a33da369e8cde6c7208381a592866cd61f1ce188 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_147416v1: a33da369e8cde6c7208381a592866cd61f1ce188 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/index.html
-
---===============6524290591312029352==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/plane: file and function renames</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147416/">https://patchwork.freedesktop.org/series/147416/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16377 -&gt; Patchwork_147416v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_147416v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_147416v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Additional (1): fi-hsw-4770 <br />
-  Missing    (2): bat-adlp-11 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_147416v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-arlh-3/igt@i915_selftest@live.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13971">i915#13971</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147416v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_softpin@allocator-basic-reserve:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@gem_softpin@allocator-basic-reserve.html">SKIP</a> +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) +82 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>) +49 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/fi-hsw-4770/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16377/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16377 -&gt; Patchwork_147416v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16377: a33da369e8cde6c7208381a592866cd61f1ce188 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8309: fb77fb2d8d58a2539c9d67d00e1747351eec0bea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_147416v1: a33da369e8cde6c7208381a592866cd61f1ce188 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6524290591312029352==--
+-- 
+Jani Nikula, Intel
