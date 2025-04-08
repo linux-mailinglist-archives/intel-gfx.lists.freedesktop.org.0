@@ -2,64 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6777A814DD
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 20:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF1EA815FE
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 21:43:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 913EB10E2D7;
-	Tue,  8 Apr 2025 18:42:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6983110E72C;
+	Tue,  8 Apr 2025 19:43:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjCD8Fa0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6HJ5WBC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B32910E2D5;
- Tue,  8 Apr 2025 18:42:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D867010E72B;
+ Tue,  8 Apr 2025 19:43:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744137769; x=1775673769;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Gk2fzlQjUCLt/ACS0iGbHiEoJLXRFDn3gd/CajWFMrU=;
- b=VjCD8Fa0q0AkmAYAovpyJYKPnGMNQZZjXUPuMyfKRswhm4zwlHTwuGdb
- /DGkAQ90vLRgebWCjX5wr6X5Xm4DxWI8Rrpb5mEZX0vFBuCsZCVstX+ix
- oDdS1q1BTpegp+VkIIJIuLZA7wfkV7s+MBlQj3kKAGZ35Os/u0PyeTHfB
- 3En4ANe0aRjR3z4MYV3wJv9OngoBHsV7NdEdmdPNTc4goudu78CA06LFM
- vLFT06UMMmCKtuk6y34a7Tm3ckIy7OvIG+OJDNHiydLnjsYp1Pg4vsgPM
- Alci5EAVPa0n9UyL/TtW7/zjJQu/ZtFjar3njedpTn7UvAS3lLYJLOXDB A==;
-X-CSE-ConnectionGUID: q4hDUFdXRj+Y3UsZ6MDQSg==
-X-CSE-MsgGUID: 1Pv0dyBPQ/K9mbxsZcv+dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49385086"
-X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="49385086"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 11:42:43 -0700
-X-CSE-ConnectionGUID: iCCNA21DQBKQORjCd8kn8A==
-X-CSE-MsgGUID: bvmlVMOTTxaX/KP11+a2QA==
+ t=1744141424; x=1775677424;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+KpwIW/+tIcXshez6NXrLs+X+YlJ5qRWshh+Tna3PCI=;
+ b=V6HJ5WBC3HpH1WdLYjfnzBlyiLF3J6gXVwA1s0uOnrT0V2darYhb1avA
+ ZoR78VEIe8ENeoXk2FaqgdQ0qpS8Q+zZytKRaomthWP5Rq8Ht1L1375ts
+ DPT9Wjne8pf0dW/klHfSbFcH7Y4Wqlen8I5ucUn7wpzTqjW4pGMTZYCiE
+ KipjFOyVY6Q0XRpHNJMV0hW3+rPVPHFkAXbJQQ2ypb0T0D2a9BBBJggEj
+ ITAUXy5zXRsmGu1kc1beOjk4hsYjXYXLuc+QRh50ujBgB+2Exc0N8UjMU
+ 63QIa/VqGBO6TwHQWS2KS5CZC3WurcVnHUEOJTlz4f0YnnEeXgYiCmA8U g==;
+X-CSE-ConnectionGUID: PaDhRfs+RemrRqHYWlFXJA==
+X-CSE-MsgGUID: kmlmw1U6RVybsuxuRnphrg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45726700"
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="45726700"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 12:43:44 -0700
+X-CSE-ConnectionGUID: 3rGTWpP6Qa+3t3i7fWY5tw==
+X-CSE-MsgGUID: WwTkthAmRU+/N1OZeO0HIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="133219858"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.137])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 11:42:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>, Linus Torvalds
- <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- linux-kbuild@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/4] kbuild: resurrect generic header check facility
-In-Reply-To: <20250408160127.GD1778492@nvidia.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250402124656.629226-1-jani.nikula@intel.com>
- <CAK7LNAS6o_66bUB6-qj6NnaTRNKvu5ycxOP+kGfizYVBNjZAyw@mail.gmail.com>
- <878qoczbhn.fsf@intel.com> <20250407171209.GJ1557073@nvidia.com>
- <871pu3ys4x.fsf@intel.com> <20250408160127.GD1778492@nvidia.com>
-Date: Tue, 08 Apr 2025 21:42:36 +0300
-Message-ID: <87friixzoj.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,198,1739865600"; d="scan'208";a="128102843"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 12:43:43 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: <intel-xe@lists.freedesktop.org>,
+	intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: [PATCH topic/core-for-CI] Revert "libata: Downgrade unsupported
+ feature warnings to notifications"
+Date: Tue,  8 Apr 2025 12:43:31 -0700
+Message-ID: <20250408194331.11046-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,90 +68,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 08 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> On Tue, Apr 08, 2025 at 11:27:58AM +0300, Jani Nikula wrote:
->> On Mon, 07 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
->> > On Mon, Apr 07, 2025 at 10:17:40AM +0300, Jani Nikula wrote:
->> >
->> >> Even with Jason's idea [1], you *still* have to start small and opt-in
->> >> (i.e. the patch series at hand). You can't just start off by testing
->> >> every header in one go, because it's a flag day switch. 
->> >
->> > You'd add something like 'make header_check' that does not run
->> > automatically. Making it run automatically after everything is fixed
->> > to keep it fixed would be the flag day change. It is how we have
->> > managed to introduce other warning levels in the past.
->> 
->> That approach does not help *me* or drm, i915 and xe in the least. They
->> are already fixed, and we want a way to keep them fixed. This is how all
->> of this got started.
->
-> I imagine you'd include a way to have the 'make header_check' run on
-> some subset of files only, then use that in your CI for the interm.
->
->> Your goal may be to make everything self-contained, but AFAICS there is
->> no agreement on that goal. As long as there's no buy-in to this, it's
->> not possible fix everything, it's an unreachable goal.
->
-> I didn't see that. I saw technical problems with the implementation
-> that was presented. I'd be shocked if there was broad opposition to
-> adding missing includes and forward declaration to most headers. It is
-> a pretty basic C thing. :\
+This reverts commit 3f412047c54e28ecd50c10bdcec698f166c861e8.
 
-Unless I'm mistaken, both Linus and Masahiro have said they disagree
-with headers having to be self-contained as a general rule, regardless
-of the issues with kconfig and the build artifacts.
+Tentative removal from topic/core-for-CI.
 
-We actually had header checks back in 2019 but it was reverted basically
-without discussion with commit fcbb8461fd23 ("kbuild: remove header
-compile test"). Sure, there were issues, but still removed without an
-attempt to address the issues. Since then it's been skunkworks in
-i915. There's a reason this has felt like an uphill battle, and why I'm
-reluctant to putting effort into much more than small incremental steps
-at a time.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/ata/libata-core.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-> Until someone sends a series trying to add missing includes and
-> forward declarations we can't really know..
->
->> Arguably the situation is similar to W=1 builds. We can't run W=1 in our
->> CI, because of failures outside of the drivers we maintain. 
->
-> You can run W=1 using a subdirectory build just for your drivers.
-
-I don't think there's a way to build the entire kernel while limiting
-W=1 warnings to a subdirectory, is there? Mixing W=1 and regular builds
-causes everything to be rebuilt due to dependencies. It's not only for
-CI, it's also for developers.
-
->> Even if I put in the effort to generalize this the way you prefer, I
->> guess a few kernel releases from now, it still would not do what we have
->> already in place in i915 and xe. And, no offense, but I think your
->> proposal is technically vague to start with. I really don't know where
->> the goal posts are.
->
-> Well, I spent a little bit and wrote a mock up and did some looking at
-> how much work is here. Focusing on allnoconfig as a starting point,
-> 293 out of 1858 headers failed to build, and with some fiddling I got
-> it down to 150, a couple of hours would get patches made for the vast
-> majority of it.
->
-> https://github.com/jgunthorpe/linux/commits/hdrcheck/
->
-> I don't see the same dire view as you do, it seems reasonable and doable.
-
-Thanks for the proof-of-concept. It's just that I don't see how that
-could be bolted to kbuild, with dependency tracking. I don't want to
-have to rebuild the world every time something changes.
-
-Say, I'm refactoring stuff, and I want to ensure headers are okay every
-step of the way. git rebase -i origin -x 'make header_check'. How do you
-only check the headers whose dependencies were changed since the
-previous commit? That requires looking at the .cmd again.
-
-
-BR,
-Jani.
-
-
+diff --git a/drivers/ata/libata-core.c b/drivers/ata/libata-core.c
+index 14bed90d83367..773799cfd4430 100644
+--- a/drivers/ata/libata-core.c
++++ b/drivers/ata/libata-core.c
+@@ -2178,7 +2178,7 @@ static bool ata_identify_page_supported(struct ata_device *dev, u8 page)
+ 		 * for drives which implement this ATA level or above.
+ 		 */
+ 		if (ata_id_major_version(dev->id) >= 10)
+-			ata_dev_notice(dev,
++			ata_dev_warn(dev,
+ 				"ATA Identify Device Log not supported\n");
+ 		dev->quirks |= ATA_QUIRK_NO_ID_DEV_LOG;
+ 		return false;
+@@ -2249,7 +2249,7 @@ static void ata_dev_config_ncq_send_recv(struct ata_device *dev)
+ 	unsigned int err_mask;
+ 
+ 	if (!ata_log_supported(dev, ATA_LOG_NCQ_SEND_RECV)) {
+-		ata_dev_notice(dev, "NCQ Send/Recv Log not supported\n");
++		ata_dev_warn(dev, "NCQ Send/Recv Log not supported\n");
+ 		return;
+ 	}
+ 	err_mask = ata_read_log_page(dev, ATA_LOG_NCQ_SEND_RECV,
+@@ -2273,8 +2273,8 @@ static void ata_dev_config_ncq_non_data(struct ata_device *dev)
+ 	unsigned int err_mask;
+ 
+ 	if (!ata_log_supported(dev, ATA_LOG_NCQ_NON_DATA)) {
+-		ata_dev_notice(dev,
+-			       "NCQ Non-Data Log not supported\n");
++		ata_dev_warn(dev,
++			     "NCQ Non-Data Log not supported\n");
+ 		return;
+ 	}
+ 	err_mask = ata_read_log_page(dev, ATA_LOG_NCQ_NON_DATA,
+@@ -2937,14 +2937,14 @@ int ata_dev_configure(struct ata_device *dev)
+ 		if (ata_id_is_cfa(id)) {
+ 			/* CPRM may make this media unusable */
+ 			if (id[ATA_ID_CFA_KEY_MGMT] & 1)
+-				ata_dev_notice(dev,
++				ata_dev_warn(dev,
+ 	"supports DRM functions and may not be fully accessible\n");
+ 			snprintf(revbuf, 7, "CFA");
+ 		} else {
+ 			snprintf(revbuf, 7, "ATA-%d", ata_id_major_version(id));
+ 			/* Warn the user if the device has TPM extensions */
+ 			if (ata_id_has_tpm(id))
+-				ata_dev_notice(dev,
++				ata_dev_warn(dev,
+ 	"supports DRM functions and may not be fully accessible\n");
+ 		}
+ 
+@@ -3100,8 +3100,8 @@ int ata_dev_configure(struct ata_device *dev)
+ 	}
+ 
+ 	if ((dev->quirks & ATA_QUIRK_FIRMWARE_WARN) && print_info) {
+-		ata_dev_notice(dev, "WARNING: device requires firmware update to be fully functional\n");
+-		ata_dev_notice(dev, "         contact the vendor or visit http://ata.wiki.kernel.org\n");
++		ata_dev_warn(dev, "WARNING: device requires firmware update to be fully functional\n");
++		ata_dev_warn(dev, "         contact the vendor or visit http://ata.wiki.kernel.org\n");
+ 	}
+ 
+ 	return 0;
 -- 
-Jani Nikula, Intel
+2.49.0
+
