@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296BAA7FEBB
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 13:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F20DA7FEBC
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 13:15:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 769A510E65D;
-	Tue,  8 Apr 2025 11:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 027AE10E662;
+	Tue,  8 Apr 2025 11:15:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H38GsqhN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ClAEn504";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5967810E660;
- Tue,  8 Apr 2025 11:15:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D5610E660;
+ Tue,  8 Apr 2025 11:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744110938; x=1775646938;
+ t=1744110941; x=1775646941;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+f2VD6I1HJb49xVuDR0quwpQ60KE9eLOLMy6x8GhTRE=;
- b=H38GsqhNo7LLkjGrZ+7ZQ+coYavy2D/Mg4djcCDhak3P27rCnK4iqd1H
- xGgfHaqP8Ad3BE610vlENFrD7VmrTv2YCIomYFtLtDgKl7lUToqAkg4aQ
- O/pPCdWyiXHG/uYtkC7iHCLEuW+0nzDPd2tak34fXu7U4UsvcLNEXSXUJ
- AYz4kmmoZBwFuHYFtdcAaqrE+MLolJ9ieWqtnClbpqJPdk30A6APRDVFx
- hEavRKaoLKuMh/zlOjlbdgDS51pyMHcTQInY09aVsOzEDV0T/y9bHZikB
- zSZgI8T6umV3PgtmoEG8QJq8q18VLEDBkcuN4ziBkPv3UqnMxSzjG9Qb+ Q==;
-X-CSE-ConnectionGUID: Dwt/ayGhSDugkC+h69VV/A==
-X-CSE-MsgGUID: Xna/Y/KQTsaeI++uYcnxjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45655914"
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="45655914"
+ bh=314mqfDtjNu5mtNipiXbkfIWSGIVATmO2SWZYbJ+pPA=;
+ b=ClAEn504MhiVQOzmBvwUm5Ud0J+PZfmJ7QFVEQoLRQdpPsfmGeNQB1PG
+ AOxtcWYgFZd3o5qAoewcFwtFYd7N1Bgmq81cmOVqfioB333fiSuSMUUxr
+ mcJa+DG84PTiBGbpaLgK9oUgREtbXzDJrmPYUN3hnRkBfU+2LKIWCNiPF
+ 3RvGO7ygxIS4jUhJDXWgvsa+UqZkAEqMsP2Gt6gJf70pQWmzkh8rWAQhT
+ 7pOXjKrV5LCzFHZdtU8xIk6kYOjSXhK9lCQmqSe2XXqty9/67nKh5Lk2h
+ Z9yRjJ3Hog2f8Syd4FDe9QWyIIrLR8d6kORvhJy4cv0Sbf/3N+Lx28qiZ Q==;
+X-CSE-ConnectionGUID: ABoWMecAQnSTJThoGaCBCQ==
+X-CSE-MsgGUID: 8N2IoNSpTRaAB0BODQX6tg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45655918"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="45655918"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2025 04:15:38 -0700
-X-CSE-ConnectionGUID: B3vdNGGRRXapCTLIlJUkFQ==
-X-CSE-MsgGUID: Qkl/t/U+Sya3AYndb4IoDQ==
+ 08 Apr 2025 04:15:41 -0700
+X-CSE-ConnectionGUID: xHRrEsK0QPmc7ipc8H8omw==
+X-CSE-MsgGUID: H/zS+wRGTnGzdTbF8yg1pQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133209966"
+X-IronPort-AV: E=Sophos;i="6.15,197,1739865600"; d="scan'208";a="133209975"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa004.jf.intel.com with ESMTP; 08 Apr 2025 04:15:36 -0700
+ by orviesa004.jf.intel.com with ESMTP; 08 Apr 2025 04:15:38 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com, animesh.manna@intel.com
-Subject: [PATCH 02/11] drm/i915/dsb: Extract assert_dsb_tail_is_aligned()
-Date: Tue,  8 Apr 2025 16:30:13 +0530
-Message-Id: <20250408110022.1907802-3-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 03/11] drm/i915/dsb: Extract intel_dsb_{head,tail}()
+Date: Tue,  8 Apr 2025 16:30:14 +0530
+Message-Id: <20250408110022.1907802-4-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
 References: <20250408110022.1907802-1-chaitanya.kumar.borah@intel.com>
@@ -71,62 +71,98 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the DSB tail alignment checks into helper. We already
-have two uses of this, and soo we'll get a third.
+Extract the code that calculates the DSB_HEAD/TAIL register
+values into small helpers. We already have two copies of this,
+and soon there will be a third.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 24 ++++++++++++++----------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index c166e02b8af0..08e3bbea1a67 100644
+index 08e3bbea1a67..0de15e3a9a56 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -204,6 +204,15 @@ static bool assert_dsb_has_room(struct intel_dsb *dsb)
- 			 crtc->base.base.id, crtc->base.name, dsb->id);
+@@ -237,6 +237,16 @@ static bool is_dsb_busy(struct intel_display *display, enum pipe pipe,
+ 	return intel_de_read_fw(display, DSB_CTRL(pipe, dsb_id)) & DSB_STATUS_BUSY;
  }
  
-+static bool assert_dsb_tail_is_aligned(struct intel_dsb *dsb)
++static unsigned int intel_dsb_head(struct intel_dsb *dsb)
 +{
-+	struct intel_crtc *crtc = dsb->crtc;
-+	struct intel_display *display = to_intel_display(crtc->base.dev);
-+
-+	return !drm_WARN_ON(display->drm,
-+			    !IS_ALIGNED(dsb->free_pos * 4, CACHELINE_BYTES));
++	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
 +}
 +
- static void intel_dsb_dump(struct intel_dsb *dsb)
++static unsigned int intel_dsb_tail(struct intel_dsb *dsb)
++{
++	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + dsb->free_pos * 4;
++}
++
+ static void intel_dsb_ins_align(struct intel_dsb *dsb)
  {
+ 	/*
+@@ -625,7 +635,6 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 	struct intel_display *display = to_intel_display(state->base.dev);
  	struct intel_crtc *crtc = dsb->crtc;
-@@ -621,10 +630,11 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 	enum pipe pipe = crtc->pipe;
+-	u32 tail;
+ 
  	if (drm_WARN_ON(display->drm, dsb->id == chained_dsb->id))
+ 		return;
+@@ -633,8 +642,6 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 	if (!assert_dsb_tail_is_aligned(chained_dsb))
  		return;
  
 -	tail = chained_dsb->free_pos * 4;
--	if (drm_WARN_ON(display->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
-+	if (!assert_dsb_tail_is_aligned(chained_dsb))
- 		return;
- 
-+	tail = chained_dsb->free_pos * 4;
-+
+-
  	intel_dsb_reg_write(dsb, DSB_CTRL(pipe, chained_dsb->id),
  			    ctrl | DSB_ENABLE);
  
-@@ -695,10 +705,11 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
- 	enum pipe pipe = crtc->pipe;
- 	u32 tail;
+@@ -655,10 +662,10 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 	}
  
--	tail = dsb->free_pos * 4;
--	if (drm_WARN_ON(display->drm, !IS_ALIGNED(tail, CACHELINE_BYTES)))
-+	if (!assert_dsb_tail_is_aligned(dsb))
+ 	intel_dsb_reg_write(dsb, DSB_HEAD(pipe, chained_dsb->id),
+-			    intel_dsb_buffer_ggtt_offset(&chained_dsb->dsb_buf));
++			    intel_dsb_head(chained_dsb));
+ 
+ 	intel_dsb_reg_write(dsb, DSB_TAIL(pipe, chained_dsb->id),
+-			    intel_dsb_buffer_ggtt_offset(&chained_dsb->dsb_buf) + tail);
++			    intel_dsb_tail(chained_dsb));
+ 
+ 	if (ctrl & DSB_WAIT_FOR_VBLANK) {
+ 		/*
+@@ -703,13 +710,10 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 	struct intel_crtc *crtc = dsb->crtc;
+ 	struct intel_display *display = to_intel_display(crtc->base.dev);
+ 	enum pipe pipe = crtc->pipe;
+-	u32 tail;
+ 
+ 	if (!assert_dsb_tail_is_aligned(dsb))
  		return;
  
-+	tail = dsb->free_pos * 4;
-+
+-	tail = dsb->free_pos * 4;
+-
  	if (is_dsb_busy(display, pipe, dsb->id)) {
  		drm_err(display->drm, "[CRTC:%d:%s] DSB %d is busy\n",
  			crtc->base.base.id, crtc->base.name, dsb->id);
+@@ -727,7 +731,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 			  dsb_error_int_en(display) | DSB_PROG_INT_EN);
+ 
+ 	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
+-			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf));
++			  intel_dsb_head(dsb));
+ 
+ 	if (hw_dewake_scanline >= 0) {
+ 		int diff, position;
+@@ -749,7 +753,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+ 	}
+ 
+ 	intel_de_write_fw(display, DSB_TAIL(pipe, dsb->id),
+-			  intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + tail);
++			  intel_dsb_tail(dsb));
+ }
+ 
+ /**
 -- 
 2.25.1
 
