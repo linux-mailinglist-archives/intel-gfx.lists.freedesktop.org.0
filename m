@@ -2,140 +2,189 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20DAA8169E
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 22:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C21A816CB
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Apr 2025 22:23:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEB5610E740;
-	Tue,  8 Apr 2025 20:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E3210E749;
+	Tue,  8 Apr 2025 20:23:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Y9fwznix";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YahgGlhg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4486D10E73B;
- Tue,  8 Apr 2025 20:15:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0AC910E747;
+ Tue,  8 Apr 2025 20:23:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744143831; x=1775679831;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=dTzoRrFAJgBL9nEzt5bqNEpG7l0iLV8xJfvgKVnImtA=;
+ b=YahgGlhgGwJ2zdUsg9zQSivceq/viR6ncOFyJ/WerGOLKoE1c2jZAv1q
+ KbDWR7GiKzHHB3qSmzgx6Ovc2DiONa9okvvpdTVgtpzkW4V3Ngu/W38uD
+ 7QM5QMNG0Tsr7RgqaqR3mZU77bJhDodN0w0SRtia0kBHcd9WesgWjsX0A
+ n+7p12RBfh5wjSsYkgHEQTgSlDaIFZ/hg8Zb76HFRdvLVRU6a2oC4YLPY
+ WAoKTNFUDjcmIvwIwFDwq9z6A0sVlrByvUwHHk22HSsBi9sng0jwDl6Cq
+ I2bUQfsLs1Za5SWnzCgIhSHJKyldjQ+bWFkskj3PrCuAGPCzh78U92RUI Q==;
+X-CSE-ConnectionGUID: at3ab9jjTZuagqYsNu/IHA==
+X-CSE-MsgGUID: ULWdH1nlSIiQAGFdL53VMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45689731"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="45689731"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 13:23:51 -0700
+X-CSE-ConnectionGUID: NN2pYMjyQAeBdgM8M8i1XQ==
+X-CSE-MsgGUID: KqrlCQfqQ1mXGDWu88qs/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="128279572"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Apr 2025 13:23:52 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 8 Apr 2025 13:23:50 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Tue, 8 Apr 2025 13:23:50 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Tue, 8 Apr 2025 13:23:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NjJ9jCq5LLBr5BCRp4Cew74eMTZn3BeMCXZedCoLIUu6KW+BSy/wDan1EyKE+8DFJClYA49yNWyDCtHs0PPPUHmY0Kv5cny37lgItmH6iyt+qa34DOAuafiatVngIxEmR0w5GHcFFVKbqktclxyKBRZDGmdSrJUm7AyixCSvkcxDoeb1djasxMeV1XkIT3SIfv2raYJLjOkrgU56dLyJP3AjX0MD23xnrvkCjezFwBosnwsGXKaQiLOdYoGwAeyeOlmGcWr6KbwAH7pvsnX+UuyM3o+/VTAgvsYzfIrJoBSWOAMHYzWjDIK9wSasdqMTZC5SBn4qCA/EMBMj9O8CkA==
+ b=Mzxfc9nJJ7wbw5q/4pHBmD4ucuscRMRnZ/7+Dcr8TyMIT+W6X6v16oX2uQDv55UrrZASOtSxAsZHxGIiab3MgdnXbhlkDWK82VjP/gNP1tKEu6+eXbj3s7FUMkzBrVe8Juw/ASiXuSqVvDpu3Wl1sbeqASiyx1dZLWq8BoM+oEbUZ3bkkW1kGeVnessjbEODpmWv3etMChkEdo6EWdp87TGFEKmrjYhw9Ru3vbav+1QPMzVbQO2/ug7og6eyvXtC13Tb+k8Cj0r9NgoDs4FvxuK9ZkwciwgmKnenbdh91vAFdn3OKzI78KtyxxQ0ykBqv5krQQXesjwdaQBDs5PRVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=22z+dJ+9N5V3RbvkDI+5IevITqHIMTMyOLozZiw8+jI=;
- b=RDdSV68Sua9NDx4lpWfWpPco5FtvhukTyfSzkmeruKNnNByB/CaBeNib/Hkqd9zYDQqlj2RCmuruGPi/WfQC35KxKpAye4LxpggPXZ/x0Z0TQMu87tUJzxs6HJOgvzxYIUUAuBOdGQXcdg3fRM4+leLE9c4dl2UJEN8lYZ9X+MiBF1PGbp/VrSuuiEwV1yrw/Q0ZH8FQCqMD/6ShOn/3phl0mJareFXWYwROZJuVOaesXfBQKQa8h4ULI7qb2XRZwtAOPoIWgLsiVQZyS3rT1rhkU1bps3kOYp2ODFrYI/lMcaCsZ8lqZ2KXBwe3sDea+TDXK1qbgO20GPqyn81DBw==
+ bh=pTyKgFGKrMiXM/eR/mRB3EoW0VAtZxOWBN5YMDAckow=;
+ b=Mq+qkbznqb2g0RwtxDUQhRy8koHMKKhDgpZCVzcECPy00elF2SVokDVLcDnlwUf5VJUSuVQeGgfBXi+r8qnWsBy8+JoEyIcor1S/TWeKqEWKaWq3FTHK55YUHjiFtBgz0vhmknI/ihUFWjQzfRK30jTfqDRbZD9NDd8pQD3lQovYo07e4eNeNHhW5EwtgUNnGiDsB4xbMvzhFb0Knn5zhEfG2EzG8ekCfawKA9lLWFAZZzMPjd+uLtWuKLL3ZlmXaMeYXM9QYMTM2O6EWPNQYGXvx6PMXgxJzMOfVu512n/c6PDqJRrbRPyk2aqU5pt+w+6P5Bv43t84MjNc83iPCA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=22z+dJ+9N5V3RbvkDI+5IevITqHIMTMyOLozZiw8+jI=;
- b=Y9fwznixrZpBnUwqZQOPzzC8V5Yl8hyrld3BOU17UbJufLljFf1BGL2Qg3D6N64e56lMcPyxC8kWh+sJxQHo4wK5N4dw8EzOXBZBmqKGfuYKHVM0MTnLmIY8UlgayW9voWkSNc+LxlkYO9FHSn2v4yvQgFUUk81PBnZ9A0U+flqROBIZMlYyn5pZOBvrjwe9g3N6lC2ff2MJvax2EB+gMxB8BC9QhOFLAvjaqGWTwaxepdwDk/zygxLglYQwpOnwk6zjy5EYFPLAVdpS8Lqw6IZzgTcXWVaZZgtGLh3KFP6clO5dA2YB5wU59bpgV2Tf3F11FqhQ3DoH75Yuetv+5g==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH3PR12MB8659.namprd12.prod.outlook.com (2603:10b6:610:17c::13)
- by MN2PR12MB4126.namprd12.prod.outlook.com (2603:10b6:208:199::12)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by CH3PR11MB7675.namprd11.prod.outlook.com (2603:10b6:610:122::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.33; Tue, 8 Apr
- 2025 20:15:51 +0000
-Received: from CH3PR12MB8659.namprd12.prod.outlook.com
- ([fe80::6eb6:7d37:7b4b:1732]) by CH3PR12MB8659.namprd12.prod.outlook.com
- ([fe80::6eb6:7d37:7b4b:1732%4]) with mapi id 15.20.8606.028; Tue, 8 Apr 2025
- 20:15:51 +0000
-Date: Tue, 8 Apr 2025 17:15:50 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- linux-kbuild@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/4] kbuild: resurrect generic header check facility
-Message-ID: <20250408201550.GH1778492@nvidia.com>
-References: <20250402124656.629226-1-jani.nikula@intel.com>
- <CAK7LNAS6o_66bUB6-qj6NnaTRNKvu5ycxOP+kGfizYVBNjZAyw@mail.gmail.com>
- <878qoczbhn.fsf@intel.com> <20250407171209.GJ1557073@nvidia.com>
- <871pu3ys4x.fsf@intel.com> <20250408160127.GD1778492@nvidia.com>
- <87friixzoj.fsf@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87friixzoj.fsf@intel.com>
-X-ClientProxiedBy: BN9PR03CA0259.namprd03.prod.outlook.com
- (2603:10b6:408:ff::24) To CH3PR12MB8659.namprd12.prod.outlook.com
- (2603:10b6:610:17c::13)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.34; Tue, 8 Apr
+ 2025 20:23:48 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::d720:25db:67bb:6f50%5]) with mapi id 15.20.8606.033; Tue, 8 Apr 2025
+ 20:23:48 +0000
+Message-ID: <db1ca8a8-a4ce-471e-aba6-7d43be1db08c@intel.com>
+Date: Tue, 8 Apr 2025 13:23:50 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/huc: Fix fence not released on early probe errors
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <dri-devel@lists.freedesktop.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Alan Previn
+ <alan.previn.teres.alexis@intel.com>
+References: <20250402172057.209924-2-janusz.krzysztofik@linux.intel.com>
+ <c1b77ca1-1851-4e3b-be37-267388a7501c@intel.com>
+ <1889382.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
+Content-Language: en-US
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <1889382.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR05CA0002.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::7) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB8659:EE_|MN2PR12MB4126:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f0ce1e7-d100-434b-a3a0-08dd76da2877
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|CH3PR11MB7675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e5ee342-f66b-46b6-5d7c-08dd76db44da
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?WaOlOyPnGCZ5ZE6UrK8EnTgMoePWECbwBrtfAI/UCv+/KyarkMC5B7B+ywm9?=
- =?us-ascii?Q?A5L1oamd4mIuaggZu6OCZnGKuB9warVgOyIjXzROoiVntG8y/g8f40Jc2cum?=
- =?us-ascii?Q?DUNFBVXY61nLT6AdpgrZo/tUsi8iO81pAMJD+GSGYetJICQvS4FLIlhYL2kW?=
- =?us-ascii?Q?yzPqbaljxjasY2NEaSCbDJQJSMEicKCOGKbFJOafHe8LgYRC2dV0wF/tbZrs?=
- =?us-ascii?Q?nCoKvn/8iVLEXB4tfhbdB3nB7S5yhXq+G5Vizh6jr2ndyKShRwxf7BF6TjGk?=
- =?us-ascii?Q?mhkinbnvZGHHYIBDd1pUP09YJehky4iLcJIz5Nh9q1zJL8bhCC9cNOsa7xpy?=
- =?us-ascii?Q?9uxP94WTyM4tusD/T6Pvrihf3E3JJPKeCzLK87eUw2JPDXOhTLLPXYSShv3l?=
- =?us-ascii?Q?pMdOCTiqyrCwOV5MP/T7y0fGWQ43eGvSSWOFgZMjYiP5dSyZIuRTxCvEI6ij?=
- =?us-ascii?Q?pmahPt8sOyg3AI3VV7xMlUwEXUtAqfwCICdRSY1cW9ELPR4uxFqFH+uuorxP?=
- =?us-ascii?Q?f4I/luMlRIlo+ONX2M/tddsYYI6doj3Hpl+1Xqf1aE312ObZGlATwhyEeGYx?=
- =?us-ascii?Q?Fwv32hNn9KmUTiVxJ/6WowuYs32UJOxPjvjLO5qDM0Hbu9nLe/djma0nOCGl?=
- =?us-ascii?Q?oNljScF/8uEWuDmmrLUNfNn3lYQG3bVbpgor77H6Z76t26I2CqJ/NJI9dLKR?=
- =?us-ascii?Q?6ToUa3hvlIsZCPL3RCjCPQhh6hrWCt6IBEbjrYEbUdvPKCsQbaU3vPDcs1hM?=
- =?us-ascii?Q?Diq15+bdfUOE9PnWn6NCtTN3LI7JDKnPNl8bgaVGUBwyO8Zep61LpRTp0guL?=
- =?us-ascii?Q?3OTZC8mTIbUT5jTYW9ZAIl/INJC3E4NhswWoGjzWYlv2USZJZ2hedKmpWBcO?=
- =?us-ascii?Q?A1ctZjVj/vO9lNoDT4AGJMtkLar6IIXxVK40Mc+3jDpZjEuPzHNxPQ8m3s1+?=
- =?us-ascii?Q?9iz27O6nqMZ0rTdqfSOFaR3MhXyrfn2HV8jfBuRh0HW60aqO4VaOjqM/LNod?=
- =?us-ascii?Q?Zsjva3hSSid04fUclPt2pmzNulBxQDYwijnjWZhGvlckehA1iiMyhbcIKogr?=
- =?us-ascii?Q?plgH3MbdWhhFeDSos7K7ofKUArQ2QxzaG7ekcHeTIARIczMpgXYuknhaFAEx?=
- =?us-ascii?Q?2iL5V7PhtGP0bPWqTfY7ZKxodsfJ8n2HvNIvS1kwkyJzKk5mhE1GodedjsN3?=
- =?us-ascii?Q?hpdjmnLcsg1mRk6TjE3ryf7WU74qBiO/EJy98dszTqbyz3UegHq7VlFVMGwK?=
- =?us-ascii?Q?9RgtT1KPQgLr1reAxvrcoxM7Ys1xbOhWsbtkP5fccuj1TOd10je581qADXTc?=
- =?us-ascii?Q?yiHxFOjNcHHl0adTyQSKQZuNO0krw6hAeFkiis+B7I2Ax/Ouxpx/9vt/7QDn?=
- =?us-ascii?Q?Idzzje3n+pbQWq3CP/3UXuCIN9Ip?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?STV4YW5JU1RNVGZoSmhsOWtnN0tmTWM4KzRGUW1tejJhUlNORmt5SldXZERx?=
+ =?utf-8?B?bzgxQ3ltZVYwN1drbnF1K25hNTVQSk1TNUpiSFJ6WlJkczZSZzViZmk5REFV?=
+ =?utf-8?B?TkdPR0R2RSt2aldlY3llRy93UllNRlZxVmxycWpJOG9OaUtWTHZrbzF1STQz?=
+ =?utf-8?B?SU5FZ3lweDFQdHZYR21Ob1VvZDJHVmNzOGlGT3ZLQlJuK2hjeU01ZU1mdFY1?=
+ =?utf-8?B?NXFpY0tQYVdJNHhPeXZKNWVrVXpGYXVRUEZOQjZNZjNUWW5kdW12MS9iOFhz?=
+ =?utf-8?B?dnRsdzhVd3pqMEZ1b2p6QnJhVWd3UldWMzRMejhLeVNoV1BQZEtsMkUrYlBs?=
+ =?utf-8?B?VW4zQk1PRHVJZmI0ZUt1TVVlSWZpSEFVSVBhVGRHOWlVeGlQbnNaZ1cwK2NQ?=
+ =?utf-8?B?YUdtNUIwRThBVzRLcnViNGR4K21id2VoT0xmSzArV1R5NG1lOXRNNUNrS3du?=
+ =?utf-8?B?TlZOQmZSVFZXd3poSHh0cllGdyt4U2lNYkJTc2g4UjJ3ZFY0UXVkUHJCSHdU?=
+ =?utf-8?B?K2hYd0toakhpTEVBZ3YyZERkTUpJaVZwNTFnRmRZcVUzOGQxQ1lQcXR2VFlC?=
+ =?utf-8?B?UEUwQWQrQkwxSEZlQm5iNmx3RVA5dmlkS0ZIR001elJxUndkcWlZYklQOTVv?=
+ =?utf-8?B?YzVKamxDMG5HN0JJRk1FUW9seEE2amYrT0VLNklyMHZqOG42TG1QQmtLamdn?=
+ =?utf-8?B?Znc4bitDUFV6U1pXZU5KRWxNMGVjMERJL21lR1FXWTI1cFozeVdDYXFmaStD?=
+ =?utf-8?B?RkxBRmg3Tm1pVVVGb1lzZ0QzV05MVG53UENJVUdYdVVXL0M4cUtEMFgrRlgy?=
+ =?utf-8?B?dTFseVBVcnZucUlYU1UwaWxMdlUwbS9RVmU2UEc4aWFTc2YrYWlLM1ppbklM?=
+ =?utf-8?B?UzVOVFIxTm52K2FzS3owUHpaUkljQ2xqTUwyQzRYMk1HRWRTMmQrSmcyd1lH?=
+ =?utf-8?B?dWhPRGhZdU8rdHh2ZmI3aSt6UXp6TUlmeUpTWXdZMjl5RVZXanhLZEwycEhD?=
+ =?utf-8?B?R09za3FtWlNMajNJaGVPSVBEK1l0QUtEMHEwaDJYNGVwenMwcGdDU0VjL2kr?=
+ =?utf-8?B?cGxNL1RIU1BKZkgrYjVmL1dKU0hBWWltYW9nZWt0YzZGRkZEM0JlSHJnUGxH?=
+ =?utf-8?B?NDdscUUxQ1Via25zNjdjbFFZRlozTjJWWEVkOFlRdDRNVCtHWkZBZ2VWNmcy?=
+ =?utf-8?B?NDdsd2R2MkJkYmZsYTdKTDBCZEF1RjZHV0U0L245MVY1djUwNk5IK0U5YzFz?=
+ =?utf-8?B?Sng5cTZQTHUxVEpVd0pOcXBLWTR2TjdFTW43R1NoRnQ0YmpqZUh6eDcxRk16?=
+ =?utf-8?B?OWlOWU9MTi9JdUFzVFZ4MXpkUjU0TThGbFdiaDFrYXdjVzVUQWI2RG82dWtB?=
+ =?utf-8?B?TFg1NWhPNmdFRzBpMG9pUGsrQ3drMkVTanNCL1NhbFQ3WWZybjJTY0JLN1Qz?=
+ =?utf-8?B?YjIxUk5FQlBSWHpMaThVQXpIdXZDaE5hWGJOb2NUV0pMcjFkWUwySmIrVnc3?=
+ =?utf-8?B?QkVEU3N4MUFjekpuZlR6SklBZ3Vka1UyajNKRXg3cWlEQmFNZ2RiRHFVZFNK?=
+ =?utf-8?B?TE5vSTlyKzErUmNzbTk5c0FSSTJBc2dXNXVncEdHTlloWUk2MS82YWhmUm56?=
+ =?utf-8?B?cUp6VkpQcGwxdU4xYUlDMDFPdEd4NGw5L041aHJSd3poblFVVi9BSUpIbURF?=
+ =?utf-8?B?MFBjYzFMRG42Z1FwQ3JjRnFWVzMzR3BQR0ZSMXJtMXhZMXRpRHZpTXZQREJK?=
+ =?utf-8?B?VGRDZ1Q0cXc3OFJoWlU3UnNaeVlZbjJVeG9JK0o0c3h6aWRjcVVLaWhSbzNk?=
+ =?utf-8?B?ZjJoZEFPN3kvMFJza0RwZz09?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR12MB8659.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Hee4xbMkjjZUidYFd+0rfhcv3sR6dHYXPPXRl5UYFEiSGV5D/ydaKVplAN9Z?=
- =?us-ascii?Q?fZwQMO31c+tVkQczsgEEZRXKOd4EtXFwN6Sj44AwFbRz1wqoPzIbM/X8tjGo?=
- =?us-ascii?Q?CrtBd8ot5Z/W+PXgifY3fJxBu+2HO0E8buFcF2T8LY2G3i/h5s0b4pgmnX0M?=
- =?us-ascii?Q?Nvd4dIMMCMmZFr+Cm1Jm7eOYBFSslyqen7d/IYu4BL+dUDyruScO0AnBWb2F?=
- =?us-ascii?Q?T1VS5poqOFwaYSx6NZDbKUibkurevAh6EL7xS4bEqMxlCD4Ay7BabBGjJoVj?=
- =?us-ascii?Q?ujLRMFs+WPQrXwh10UEAPUtp9wG1FKD/iuAjkvuzpWHz7bipKMJfFv9mWOYm?=
- =?us-ascii?Q?woBda3yb5kL7t6is+FRJZKU5OyRKdkSe9AJoMJEs44phbbhz6X7yMAnInLBD?=
- =?us-ascii?Q?Q+bxiDQfHCk7rFkr/486gyOeTYlIeAm7M+1tNYECfe6iHuen28qOPec0C7UZ?=
- =?us-ascii?Q?8dfnTgn5yojwnmcWyBcyxIXHmDLN2aA7qc3WHnl1unimHNsPt34sEon5Rsab?=
- =?us-ascii?Q?T3B4RxwN/TmRT1eWeFNz5+VVHC8Edv8jDR4uBuBAORdPzkOVlAdIHvqR9S+s?=
- =?us-ascii?Q?/MUNNd2E/+HShw93ywyeZZZtHvdvPHin7yGtCzuFyoBDc/AJwjzV6qThvf9Z?=
- =?us-ascii?Q?f0s6Fv5BUgdsyJzfjbaBiHgIBD7iVJ7SI5oP3nuOkeBNKVa+o9RNmkJ1o3XI?=
- =?us-ascii?Q?Ra+M8NKXR9L49TxBxAVNmoPTvdNJwW75wuqTOl4dabJWoa7GLufR3Q8r2bDi?=
- =?us-ascii?Q?CHjSiPh6NYW6B3ph63H/8njdDK6qg61afFvWqp+D6tRmq4BKenswL3Yq6+t/?=
- =?us-ascii?Q?6rs3icgcgQrWHQsaBcweczKs5wbOTZrFdhTVirVGCER/znZz2LPiPvZwm9wk?=
- =?us-ascii?Q?osbIA1YoGa22BNfbOFnlpaNc3Yi97k9V3TScJgZgVQesR1Y+6qRQ4ymPJ/WO?=
- =?us-ascii?Q?si+Me+/fTQ2I0XaY4f4/7nkRzWlygd3M6dBgtPkUK9tRVeEenBEkVc4hSKxc?=
- =?us-ascii?Q?veV2UnqM+bYFpttL3Kmeo4+bSXgjP1CL3+aLhW2M3O/aeclLHhywdKAAYUUf?=
- =?us-ascii?Q?niIRpBFMLl+76QYSKyjuGTyEs5/HfxdmovXmKeAgtmw1l8QgkaFJLhZDRLb9?=
- =?us-ascii?Q?5R+KqN63CcLUK6Frq0EQPSU7jlGTSFUJnS3ZshecqB236JZjQzw2vxjLEgWV?=
- =?us-ascii?Q?3KcgcxTbpAvOjhTp7c0jrXY5oJWvnDmCODmBbGPeog13eOWAEh7br62jA+mK?=
- =?us-ascii?Q?v5XBYxrzIYtIqVMX5WFISAbD5q2Yf6DUqyQ/DnLRBU14yt+/3EiQ1kyjVSGv?=
- =?us-ascii?Q?/O0qqFzBdaqkh+SEhxpjunK2xOHc4KnxrhgJjQnbxwV17O8WGAIb44JJqiUO?=
- =?us-ascii?Q?sO/5gzpfs4U6/K99LHUpvC/BTOqC9c6RQqEuVnnLnccX+ssk3PA5BnZ7d1DU?=
- =?us-ascii?Q?AWRfXBM3E1I6bhl8llKDvJZ4mVm+pb6VeRUyV4L/6kUkwPyjC5VnLc8EvTJy?=
- =?us-ascii?Q?P4gYS97bAswiqeWmNEKQHIDA0GqNinyat248ENLDU0L4+AFuAo/VmGTMHHPT?=
- =?us-ascii?Q?87YJMmS1VaZ7S0kPcCGUFVmheSgmQfyJ8nLUB0Gx?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f0ce1e7-d100-434b-a3a0-08dd76da2877
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8659.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnNFSUdMekFsMytybWFQbXplbHVxNUxuazVOTDZGeFRtTEtRRkRFbWFWNW96?=
+ =?utf-8?B?ZTJIc0x2RmZxZms4ejRpT2xxcStxSGhCdDlyMkI1UkhvOHUvL1NZUVR3cDFm?=
+ =?utf-8?B?YUlwOUJsbUNxL1drVzZGWkVHdkZkYnlqVkk5YkpMbnpkWXk1U3pNbUVDeVVs?=
+ =?utf-8?B?dGVyLzJxbGpIdS82YlRMWlVYcFBxMmt2S2pxdm9wTCthcWV0M2NON1FqTThL?=
+ =?utf-8?B?ZENpYkMvRTFoVi9SaUptNWVvNHRER1NZc3FkdmgzaVR6SmJyVDQzT0Y1a0ds?=
+ =?utf-8?B?Q0Vod0V3UUVBYmZrWVUyeEU1QnVGclo1bjA2bGh0Um5BYytDbHF6d1RIdTJx?=
+ =?utf-8?B?U29hMW5HTXJUZEtpMFYwRFRpTjgxcG5kZlNXSS9Sc21YUjhBQlVsOUt5K280?=
+ =?utf-8?B?ZnFPQnJBbzY4UU51SVRoWHQ2RTRRb1VjVTErRkROL1dwbG8xQ2s1eXVOeXN1?=
+ =?utf-8?B?QlZiMFkxR21Ob213clZiZW1JaVRtQ0xoWnZvRDJBNkRMRnM4M3B1aEFQeG5S?=
+ =?utf-8?B?TTkwTWpRQi9ZaG5sbWpBTEdnWVliZkdHUGw2SkdsdkxxRHR3OWxtK2U3ZGto?=
+ =?utf-8?B?UkRTZ3JPY0VwZkJwNWg0cDRLMlJyQ0ZWcEJIY0ZkbjdscnBqVGh2ZWc3NzlJ?=
+ =?utf-8?B?ZFVoZ0ZKemhmaXZaRnFnOVhEb0d1OWdGUEcwRGExNmtpVG5mWE9mVnVseG8w?=
+ =?utf-8?B?SStpY28zcEJvVTd5Tk90OUk4MjRGeWwrVlBORVpDRm9wbU80NlVBZXV1bjUy?=
+ =?utf-8?B?Q0lwdWcwMGIvMjFtcytDMVFVZ3FjRXIwQ29iSHQ5TzNJb2FKQ0JZY3g1bWRY?=
+ =?utf-8?B?RjR5NFJ4aURaSnNZZUNhbmpua3RadGZ4RjhnYUxUWWdwMzc4bnNkUmxoMDhY?=
+ =?utf-8?B?QlRTZmtJQjhRdFNXU1g1MllyU291VHFDWXU0YWNBYVVmY3JHODFqZ0VPOUlG?=
+ =?utf-8?B?Q0tadVJGVTkvNFJCVDI2MkI0WDFkTFZCWERrdFlUbHRzN1hEQko5alJhRUtM?=
+ =?utf-8?B?SVpUdzlVQjhGUDBFaU9IdzhLenczOGtnaThFSVJuNlhKRWtpWkpzU0IxeEJs?=
+ =?utf-8?B?ZzhhK25jNkt3RUNuUy91YlVLUzdpTHdOR0JPdmtHMzA2a2dUMU1jamljY2tj?=
+ =?utf-8?B?akx0Qy9DZHZYYmRwNGFZUlNLWUpvOURpK1NRMmh2M1lPZ0o1SFJMT2xmTkhz?=
+ =?utf-8?B?SEFpeUEyUVFFZU51cTZEdEVtVVRjaXY5YXphSHc1R29hUlY5QllHTXJUMXd1?=
+ =?utf-8?B?TTlRM01ISEtEa3VkbHZzaFk5cXJibTg2UG5zU20zektOdWpSeHlocHd3MWFn?=
+ =?utf-8?B?dUg4QkdsSGlXOWxDd256empTSzNPb1dpRlliZ213dzZYcFRJNGRjc2dRYTNx?=
+ =?utf-8?B?aVNRS0hIdWwwOW1RaU8zZHlEWkR1OUZIVTRtM2RFWGEwWjgrUnh2Q01QMWVJ?=
+ =?utf-8?B?Z2ZyVy9USmVDa282djhMelUwaklPa2VoblJTdUhBWUJiY0hVMWNlZ29QTzNS?=
+ =?utf-8?B?VmljUjF0OXpqYWdSWkpIMS9uM1dZa05acGQ3SW1YcG1xRDQrUHJXbVh0MlFU?=
+ =?utf-8?B?VFU5eEQwaHlLZmVmM3VFNUUxZ3N6SFhhRStXZ0hLUkxWMXpPUjc1S2J6Vy9G?=
+ =?utf-8?B?VGNkMDcwdjBDS0tldnF2c0drMGFQdnp1QnkxdERVdW0yZVM2Z2I0dm40RmV0?=
+ =?utf-8?B?QzBvZjlsZVIxRW5DZ3dvY1dGYW9JaTFkSnM5T3JFeUEwZlhhNU1tajJvamlo?=
+ =?utf-8?B?YUt4NW1FSUNkT2VIazRySmFyUlJibUVzRjR3NUlhcW13YjN6UGRWdVNGR29i?=
+ =?utf-8?B?U2owK25RWlFJeTkwSzRTOTlGQ3N6NWt4SVVFOVJLUkxCS0t5QVVYbEZFN2ty?=
+ =?utf-8?B?WDh1UUJmL3oyd1JxeWRBbjI5ZjgxSWFaU25UanZkellWTGREUDVDMHoyWXBR?=
+ =?utf-8?B?MjNjQ2paaE5BeXJta0VmN3hZUTF1dGh5YytKcHVxZTlaU2hDWi9hOU0xYW5r?=
+ =?utf-8?B?NVBJOFl2dXFwbE94elJqSi9KZktJRHIyRGdGdjZCaTdzaS9MMHo1NTVLYlJO?=
+ =?utf-8?B?TzBNTUNmOVBwQVFDb25McVlEYUcxdHV4NjhQL3VKT0JNZ3Q3T0oza1V1eTNM?=
+ =?utf-8?B?R0hqWDVmWFZXTVBUQzh0ZmM3YWdCaTZDd01YT25aRTNoMU5HaTZTL3JmNW1C?=
+ =?utf-8?Q?b72BUBn//10ZEq1wwYy6rmA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e5ee342-f66b-46b6-5d7c-08dd76db44da
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 20:15:51.4211 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2025 20:23:48.3191 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AJpCE0QcOuwd8VzXNZNCKKpb5eTcT0Cng03pyPdzrCFgqHFOwssf0ljdGD5mGS0M
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4126
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6u/JrfhNLQTv43hzDHkvxHjX6+MWLfELuDLCojLWnJgWe3wc8sP4c9txENbbG3iEkGVLY5zRFEUEWDkFUYvajtpvo0iJBDjETmOHCPsmgy0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7675
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,92 +200,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 08, 2025 at 09:42:36PM +0300, Jani Nikula wrote:
-> On Tue, 08 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> > On Tue, Apr 08, 2025 at 11:27:58AM +0300, Jani Nikula wrote:
-> >> On Mon, 07 Apr 2025, Jason Gunthorpe <jgg@nvidia.com> wrote:
-> >> > On Mon, Apr 07, 2025 at 10:17:40AM +0300, Jani Nikula wrote:
-> >> >
-> >> >> Even with Jason's idea [1], you *still* have to start small and opt-in
-> >> >> (i.e. the patch series at hand). You can't just start off by testing
-> >> >> every header in one go, because it's a flag day switch. 
-> >> >
-> >> > You'd add something like 'make header_check' that does not run
-> >> > automatically. Making it run automatically after everything is fixed
-> >> > to keep it fixed would be the flag day change. It is how we have
-> >> > managed to introduce other warning levels in the past.
-> >> 
-> >> That approach does not help *me* or drm, i915 and xe in the least. They
-> >> are already fixed, and we want a way to keep them fixed. This is how all
-> >> of this got started.
-> >
-> > I imagine you'd include a way to have the 'make header_check' run on
-> > some subset of files only, then use that in your CI for the interm.
-> >
-> >> Your goal may be to make everything self-contained, but AFAICS there is
-> >> no agreement on that goal. As long as there's no buy-in to this, it's
-> >> not possible fix everything, it's an unreachable goal.
-> >
-> > I didn't see that. I saw technical problems with the implementation
-> > that was presented. I'd be shocked if there was broad opposition to
-> > adding missing includes and forward declaration to most headers. It is
-> > a pretty basic C thing. :\
-> 
-> Unless I'm mistaken, both Linus and Masahiro have said they disagree
-> with headers having to be self-contained as a general rule, regardless
-> of the issues with kconfig and the build artifacts.
 
-Right, no general rule.
 
-But the data I just ran shows the vast majority are already self
-contained (~15% are not) and many are trivially fixable to be self
-contained. There is a fairly small minority that will not and should
-not be self contained.
+On 4/8/2025 7:07 AM, Janusz Krzysztofik wrote:
+> Hi Daniele,
+>
+> On Thursday, 3 April 2025 11:12:12 CEST Daniele Ceraolo Spurio wrote:
+>> On 4/2/2025 10:20 AM, Janusz Krzysztofik wrote:
+>>> HuC delayed loading fence, introduced with commit 27536e03271da
+>>> ("drm/i915/huc: track delayed HuC load with a fence"), is registered with
+>>> object tracker early on driver probe but unregistered only from driver
+>>> remove, which is not called on early probe errors.  Since its memory is
+>>> allocated under devres, then released anyway, it may happen to be
+>>> allocated again to the fence and reused on future driver probes, resulting
+>>> in kernel warnings that taint the kernel:
+>>>
+>>> <4> [309.731371] ------------[ cut here ]------------
+>>> <3> [309.731373] ODEBUG: init destroyed (active state 0) object: ffff88813d7dd2e0 object type: i915_sw_fence hint: sw_fence_dummy_notify+0x0/0x20 [i915]
+>>> <4> [309.731575] WARNING: CPU: 2 PID: 3161 at lib/debugobjects.c:612 debug_print_object+0x93/0xf0
+>>> ...
+>>> <4> [309.731693] CPU: 2 UID: 0 PID: 3161 Comm: i915_module_loa Tainted: G     U             6.14.0-CI_DRM_16362-gf0fd77956987+ #1
+>>> ...
+>>> <4> [309.731700] RIP: 0010:debug_print_object+0x93/0xf0
+>>> ...
+>>> <4> [309.731728] Call Trace:
+>>> <4> [309.731730]  <TASK>
+>>> ...
+>>> <4> [309.731949]  __debug_object_init+0x17b/0x1c0
+>>> <4> [309.731957]  debug_object_init+0x34/0x50
+>>> <4> [309.732126]  __i915_sw_fence_init+0x34/0x60 [i915]
+>>> <4> [309.732256]  intel_huc_init_early+0x4b/0x1d0 [i915]
+>>> <4> [309.732468]  intel_uc_init_early+0x61/0x680 [i915]
+>>> <4> [309.732667]  intel_gt_common_init_early+0x105/0x130 [i915]
+>>> <4> [309.732804]  intel_root_gt_init_early+0x63/0x80 [i915]
+>>> <4> [309.732938]  i915_driver_probe+0x1fa/0xeb0 [i915]
+>>> <4> [309.733075]  i915_pci_probe+0xe6/0x220 [i915]
+>>> <4> [309.733198]  local_pci_probe+0x44/0xb0
+>>> <4> [309.733203]  pci_device_probe+0xf4/0x270
+>>> <4> [309.733209]  really_probe+0xee/0x3c0
+>>> <4> [309.733215]  __driver_probe_device+0x8c/0x180
+>>> <4> [309.733219]  driver_probe_device+0x24/0xd0
+>>> <4> [309.733223]  __driver_attach+0x10f/0x220
+>>> <4> [309.733230]  bus_for_each_dev+0x7d/0xe0
+>>> <4> [309.733236]  driver_attach+0x1e/0x30
+>>> <4> [309.733239]  bus_add_driver+0x151/0x290
+>>> <4> [309.733244]  driver_register+0x5e/0x130
+>>> <4> [309.733247]  __pci_register_driver+0x7d/0x90
+>>> <4> [309.733251]  i915_pci_register_driver+0x23/0x30 [i915]
+>>> <4> [309.733413]  i915_init+0x34/0x120 [i915]
+>>> <4> [309.733655]  do_one_initcall+0x62/0x3f0
+>>> <4> [309.733667]  do_init_module+0x97/0x2a0
+>>> <4> [309.733671]  load_module+0x25ff/0x2890
+>>> <4> [309.733688]  init_module_from_file+0x97/0xe0
+>>> <4> [309.733701]  idempotent_init_module+0x118/0x330
+>>> <4> [309.733711]  __x64_sys_finit_module+0x77/0x100
+>>> <4> [309.733715]  x64_sys_call+0x1f37/0x2650
+>>> <4> [309.733719]  do_syscall_64+0x91/0x180
+>>> <4> [309.733763]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>>> <4> [309.733792]  </TASK>
+>>> ...
+>>> <4> [309.733806] ---[ end trace 0000000000000000 ]---
+>>>
+>>> That scenario is most easily reproducible with
+>>> igt@i915_module_load@reload-with-fault-injection.
+>>>
+>>> Fix the issue by moving the cleanup step to driver release path.
+>>>
+>>> Fixes: 27536e03271da ("drm/i915/huc: track delayed HuC load with a fence")
+>>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13592
+>>> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> May I ask you to push this change?
 
-So I expect there is alot of headers where people would agree to add
-the missing #include <linux/types.h> for example, which I found
-about 20 of in about 10 mins.
+Sure, I've pushed the patch to drm-intel-gt-next.
 
-And a smallish exclusion list to ignore the special cases. Ie I
-started by just regex ignoring all of asm because there was lots of
-interesting stuff in there.
+Daniele
 
-The point is we can probably get to a full kernel check, with a
-minority of special headers excluded, that does not have any errors.
+>
+> Thanks,
+> Janusz
+>
+>
+>> I'm kind of surprised that this issue only showed up in the last few
+>> months, given that the code has been there for 2+ years. Did we change
+>> something that caused this to show up? I had a quick look at the patches
+>> merged around the time this issue was first reported but I didn't spot
+>> anything that could impact this.
+>>
+>> Daniele
+>>
+>>> ---
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc.c | 11 +++++------
+>>>    drivers/gpu/drm/i915/gt/uc/intel_huc.h |  1 +
+>>>    drivers/gpu/drm/i915/gt/uc/intel_uc.c  |  1 +
+>>>    3 files changed, 7 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> index f30c90650b7ec..9659e6a301e19 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>> @@ -317,6 +317,11 @@ void intel_huc_init_early(struct intel_huc *huc)
+>>>    	}
+>>>    }
+>>>    
+>>> +void intel_huc_fini_late(struct intel_huc *huc)
+>>> +{
+>>> +	delayed_huc_load_fini(huc);
+>>> +}
+>>> +
+>>>    #define HUC_LOAD_MODE_STRING(x) (x ? "GSC" : "legacy")
+>>>    static int check_huc_loading_mode(struct intel_huc *huc)
+>>>    {
+>>> @@ -414,12 +419,6 @@ int intel_huc_init(struct intel_huc *huc)
+>>>    
+>>>    void intel_huc_fini(struct intel_huc *huc)
+>>>    {
+>>> -	/*
+>>> -	 * the fence is initialized in init_early, so we need to clean it up
+>>> -	 * even if HuC loading is off.
+>>> -	 */
+>>> -	delayed_huc_load_fini(huc);
+>>> -
+>>>    	if (huc->heci_pkt)
+>>>    		i915_vma_unpin_and_release(&huc->heci_pkt, 0);
+>>>    
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+>>> index d5e441b9e08d6..921ad4b1687f0 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+>>> @@ -55,6 +55,7 @@ struct intel_huc {
+>>>    
+>>>    int intel_huc_sanitize(struct intel_huc *huc);
+>>>    void intel_huc_init_early(struct intel_huc *huc);
+>>> +void intel_huc_fini_late(struct intel_huc *huc);
+>>>    int intel_huc_init(struct intel_huc *huc);
+>>>    void intel_huc_fini(struct intel_huc *huc);
+>>>    int intel_huc_auth(struct intel_huc *huc, enum intel_huc_authentication_type type);
+>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>> index 90ba1b0b4c9d2..4a3493e8d4333 100644
+>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+>>> @@ -136,6 +136,7 @@ void intel_uc_init_late(struct intel_uc *uc)
+>>>    
+>>>    void intel_uc_driver_late_release(struct intel_uc *uc)
+>>>    {
+>>> +	intel_huc_fini_late(&uc->huc);
+>>>    }
+>>>    
+>>>    /**
+>>
+>
+>
+>
 
-As I said in my first email I think this brings real actual value to
-people using clangd. AFAICT there is no good reason that every day
-normal headers should be missing their #include <linux/types.h> (which
-seems to be the most common error)
-
-This is where I think it is constructive to present what the actual
-proposed header files changes would be.
-
-> > You can run W=1 using a subdirectory build just for your drivers.
-> 
-> I don't think there's a way to build the entire kernel while limiting
-> W=1 warnings to a subdirectory, is there? Mixing W=1 and regular builds
-> causes everything to be rebuilt due to dependencies. It's not only for
-> CI, it's also for developers.
-
-You'd have to do the W=0 build then a subdirectory W=1 build.
-
-I agree this is annoying and I do wish kbuild had a better solution
-here.
-
-> Thanks for the proof-of-concept. It's just that I don't see how that
-> could be bolted to kbuild, with dependency tracking. I don't want to
-> have to rebuild the world every time something changes.
-
-I used ninja to run this because it is very easy to get setup and
-going and doesn't leave behind the 'turds'. The main point was to show
-that the .cmd processing and so on works sensibly and does avoid the
-kconfig issues.
-
-If people agree to stick with ninja for this then you'd use the -MD
-option to gcc and the depfile=foo.d instruction then you get full
-dependency tracking and incremental compilation. Along with a rule to
-rebuild the rule file if any .cmd file changes. I did not show this,
-but it is very easy.
-
-Jason
