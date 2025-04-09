@@ -2,48 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183C3A81A07
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 02:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 631F3A81B57
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 04:56:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8170710E7AA;
-	Wed,  9 Apr 2025 00:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA8810E7B8;
+	Wed,  9 Apr 2025 02:56:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="GVs/iIyO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFrCpgf6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D30E010E7A9;
- Wed,  9 Apr 2025 00:46:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1744159580;
- bh=fj4z+jwqUz9HAkrp3iXCm4kGifaxbWJ+n8E7OIJrNTg=;
- h=Date:From:To:Cc:Subject:From;
- b=GVs/iIyOhOEWBjz5ExtZd4IasR1JkT8R/gCQdsUGwKlin6hZSq9Icrkp5fAgTtLqZ
- n0rRjlZRdqtkL1OzHEz8vlzfN6WcQBzbyq57c9rs3Uu7hxrdagASkAtmP4OmTzvSgH
- lt3uP/oEUASpzvsEY5fnK3lp/YFfDbRCtwXGXOjDxN57BElv/m72aphJXK5Mx86xFg
- StnQ63YUB1Ru3O1QQHO60cn4OCyErDnqzNywNU6oIzPAPLW0J5ycZOn1ItKxpqSz2K
- TqOODcOswJhftEr1svTCIbwe7eB/hTQ2xt7pijVykFKNSQmKOs5h/7pTPZceS0XkY9
- vDLSt/7KkqvAw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4ZXPQN0qRcz4wbv;
- Wed,  9 Apr 2025 10:46:19 +1000 (AEST)
-Date: Wed, 9 Apr 2025 10:46:18 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>
-Subject: linux-next: manual merge of the drm-misc tree with the
- drm-misc-fixes tree
-Message-ID: <20250409104618.55387b4b@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 449C110E1D3;
+ Wed,  9 Apr 2025 02:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744167397; x=1775703397;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=T3RkhrnpKT7SqKCWSL5Ldt/b1GthSKY8cecXZIi+lwE=;
+ b=PFrCpgf6O2Hr5c07Onc80pInkn5Pc1bl2oRHdjdYcp7H74SOFo0XYBzl
+ NH7MowwLbZU6bchTlzrxlkUzP9cEkT3U9QHreC7RYg13TLFd0DnD6dpQU
+ a+353q4NrCg2k70OqywbdWho8GfPrqtFS+sCrtOiR2Wf8HviLTY9GDEPV
+ 8RpE2C8e3x3BJpIdFMnLH+7ov4qELL3snpl+WWBlAWimjrMqJmr8ptGUQ
+ ngDwhYgt68f/mbeXQaeWeGwYRkBUcRmc0TeAXIftcAyBZuJqbJzcOBgT0
+ HOh+84apaFI0cN4tgH09GEcweKhYStXSjX9Y0zPIzhBbY3sZVi5E2uTZJ w==;
+X-CSE-ConnectionGUID: Q/kza2CkRV2uaY/4HqTfKw==
+X-CSE-MsgGUID: 0rGHZmBvQwG/IhOwn0/Dqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="48331885"
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="48331885"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2025 19:56:37 -0700
+X-CSE-ConnectionGUID: TR7Mp3BuT4mYTCxb5sL0Hw==
+X-CSE-MsgGUID: dm0jXmI5S3m3bx706QIdsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,199,1739865600"; d="scan'208";a="133656439"
+Received: from lkp-server01.sh.intel.com (HELO b207828170a5) ([10.239.97.150])
+ by orviesa005.jf.intel.com with ESMTP; 08 Apr 2025 19:56:35 -0700
+Received: from kbuild by b207828170a5 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1u2Lc8-0008DF-35;
+ Wed, 09 Apr 2025 02:56:32 +0000
+Date: Wed, 9 Apr 2025 10:55:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 09/10] drm/i915: Add support for forcing the link bpp on
+ a connector
+Message-ID: <202504091033.XYeu9dAP-lkp@intel.com>
+References: <20250408214342.1953197-10-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/YKIWsIhWe7WzZE3Mv8tAKKR";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250408214342.1953197-10-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,75 +71,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/YKIWsIhWe7WzZE3Mv8tAKKR
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hi Imre,
 
-Hi all,
+kernel test robot noticed the following build errors:
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
+[auto build test ERROR on next-20250408]
+[also build test ERROR on v6.15-rc1]
+[cannot apply to linus/master v6.15-rc1 v6.14 v6.14-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-  include/drm/drm_kunit_helpers.h
+url:    https://github.com/intel-lab-lkp/linux/commits/Imre-Deak/drm-i915-dp-Use-the-correct-connector-while-computing-the-link-BPP-limit-on-MST/20250409-055536
+base:   next-20250408
+patch link:    https://lore.kernel.org/r/20250408214342.1953197-10-imre.deak%40intel.com
+patch subject: [PATCH 09/10] drm/i915: Add support for forcing the link bpp on a connector
+config: i386-buildonly-randconfig-006-20250409 (https://download.01.org/0day-ci/archive/20250409/202504091033.XYeu9dAP-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250409/202504091033.XYeu9dAP-lkp@intel.com/reproduce)
 
-between commit:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504091033.XYeu9dAP-lkp@intel.com/
 
-  13c1d5f3a7fa ("drm/tests: helpers: Create kunit helper to destroy a drm_d=
-isplay_mode")
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-from the drm-misc-fixes tree and commit:
+>> ERROR: modpost: "__udivdi3" [drivers/gpu/drm/i915/i915.ko] undefined!
+ERROR: modpost: "__udivdi3" [drivers/gpu/drm/xe/xe.ko] undefined!
 
-  e4e3de631d14 ("drm/tests: helpers: Create new helper to enable output")
-
-from the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc include/drm/drm_kunit_helpers.h
-index 1c62d1d4458c,1cda7281f300..000000000000
---- a/include/drm/drm_kunit_helpers.h
-+++ b/include/drm/drm_kunit_helpers.h
-@@@ -118,9 -119,13 +119,16 @@@ drm_kunit_helper_create_crtc(struct kun
-  			     const struct drm_crtc_funcs *funcs,
-  			     const struct drm_crtc_helper_funcs *helper_funcs);
- =20
-+ int drm_kunit_helper_enable_crtc_connector(struct kunit *test,
-+ 					   struct drm_device *drm,
-+ 					   struct drm_crtc *crtc,
-+ 					   struct drm_connector *connector,
-+ 					   const struct drm_display_mode *mode,
-+ 					   struct drm_modeset_acquire_ctx *ctx);
-+=20
- +int drm_kunit_add_mode_destroy_action(struct kunit *test,
- +				      struct drm_display_mode *mode);
- +
-  struct drm_display_mode *
-  drm_kunit_display_mode_from_cea_vic(struct kunit *test, struct drm_device=
- *dev,
-  				    u8 video_code);
-
---Sig_/YKIWsIhWe7WzZE3Mv8tAKKR
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmf1w1oACgkQAVBC80lX
-0Gx6JAf+JbuQC1niQEhpYqJHkvlr4X8gfepMRKYQ2dh3PQXJUIesnkZ8+3PvJsiZ
-jxTgAGExYiH6gJVapSnVWPYke2D01Lz6cvEyr7OubrYgHPBWE7dkPsl4uMCtnE6N
-Ln8QL8Z9M54TwR1evo69OKTcphdl0qjG9pwS8KcTap0ad+6NJegXoHc4WUMVm7NH
-8Rvd3VCwwBxE3pzXVTVDw1UyB7t2EPcckgv1Q6wZVU3iJw3Z/LGzvrlk+x4uNoC1
-U40SQS5vNhoX9wYfigBbBVy8sfVko6zdA6TcbcFbQyEFihCE8efSdvhHxXTlXxb2
-YGIP/3gmWoUvEYceK66INaaS5HN/+w==
-=La3O
------END PGP SIGNATURE-----
-
---Sig_/YKIWsIhWe7WzZE3Mv8tAKKR--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
