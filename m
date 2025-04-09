@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754C2A82CC6
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 18:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3630DA82D54
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 19:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF1B010E00B;
-	Wed,  9 Apr 2025 16:46:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE4F10E25D;
+	Wed,  9 Apr 2025 17:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A5C10E00B;
- Wed,  9 Apr 2025 16:46:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C8D810E258;
+ Wed,  9 Apr 2025 17:11:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3340896473636248724=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_LOBF_enablement_fix_?=
- =?utf-8?q?=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_LOBF_enablement_fix_=28re?=
+ =?utf-8?q?v8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Animesh Manna" <animesh.manna@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 16:46:24 -0000
-Message-ID: <174421718455.53450.831563818067131874@e6b6f09ec485>
+Date: Wed, 09 Apr 2025 17:11:31 -0000
+Message-ID: <174421869143.53739.848147870530489394@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <20250409140258.785834-1-animesh.manna@intel.com>
 In-Reply-To: <20250409140258.785834-1-animesh.manna@intel.com>
@@ -41,28 +41,124 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============3340896473636248724==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: LOBF enablement fix (rev8)
 URL   : https://patchwork.freedesktop.org/series/141974/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim checkpatch failed
-3cada3f5730e drm/i915/alpm: use variable from intel_crtc_state instead of intel_psr
-e7e64dde1752 drm/i915/lobf: Add lobf enablement in post plane update
-7a314259f89d drm/i915/lobf: Add debug print for LOBF
-9929f531ffef drm/i915/lobf: Disintegrate alpm_disable from psr_disable
-f88ac4349eb4 drm/i915/lobf: Add fixed refresh rate check in compute_config()
-ec8d58012952 drm/i915/lobf: Update lobf if any change in dependent parameters
-d1e12b0d303d drm/i915/lobf: Add debug interface for lobf
-211db911acf2 drm/i915/lobf: Add mutex for alpm update
--:89: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#89: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1809:
-+		struct mutex lock;
+CI Bug Log - changes from CI_DRM_16391 -> Patchwork_141974v8
+====================================================
 
-total: 0 errors, 0 warnings, 1 checks, 66 lines checked
-ad2e471af8c5 drm/i915/lobf: Check for sink error and disable LOBF
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-arlh-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141974v8 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][1] ([i915#12061]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16391/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_16391 -> Patchwork_141974v8
+
+  CI-20190529: 20190529
+  CI_DRM_16391: c142c0202fe1fd68dbd8f2464b76203b940298b7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141974v8: c142c0202fe1fd68dbd8f2464b76203b940298b7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/index.html
+
+--===============3340896473636248724==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>LOBF enablement fix (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141974/">https://patchwork.freedesktop.org/series/141974/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16391 -&gt; Patchwork_141974v8</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-arlh-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_141974v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16391/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v8/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16391 -&gt; Patchwork_141974v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16391: c142c0202fe1fd68dbd8f2464b76203b940298b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_141974v8: c142c0202fe1fd68dbd8f2464b76203b940298b7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3340896473636248724==--
