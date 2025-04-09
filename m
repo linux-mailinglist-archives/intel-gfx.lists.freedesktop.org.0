@@ -2,64 +2,209 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93897A82524
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 14:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A255A825D5
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 15:14:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 160D710E885;
-	Wed,  9 Apr 2025 12:42:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C032A10E8B8;
+	Wed,  9 Apr 2025 13:14:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WAw9bfgD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ziuxw+SU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2525010E885;
- Wed,  9 Apr 2025 12:42:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744202562; x=1775738562;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ki+9+JPvZ4eaJOhF7yzkrpj1WnUqw2+6ywY7TGkVRf0=;
- b=WAw9bfgDXcvhpbwwukhrTvhGoWb6PYki7DTvotgxtiiyy0ZNBMMdG853
- sPwkHnvYlvmURpaSx1EhB9WNs3ogdg6x228TfFVdZLkVQLIOG232ccXBT
- iP2YGPetj+vTchdbVBVw8pvR2EC3AGbyYrOnd58xmHmF9JksgjUgAk2XH
- G9sfBuAxuwglCXtev0S72cQd0yV7LX9ncpvDpTjvgpTy/SzWR8NlkwkVK
- zcc/kwKM+JWXUB7kNDRH0mpv4HNa8FgD2qgq3SRQRfs/dVr6Ml+WBPBVV
- gieIA7YvtY0Pp3rpzDdbeA3SsJXHgxi22SD4eZtpL1OdtTNaDep+UXkCg A==;
-X-CSE-ConnectionGUID: SuHisFS2QuWUdkiJ4jAHpQ==
-X-CSE-MsgGUID: qCgULDrqSKip91ZMpLbDTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="63072446"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="63072446"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 05:42:41 -0700
-X-CSE-ConnectionGUID: T+5dnIkfSxmlXUW9y9eweQ==
-X-CSE-MsgGUID: WbnKjzHoT/SMvbsxMxtLAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="133561524"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 05:42:39 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Vivek Kasireddy
- <vivek.kasireddy@intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v2] drm/i915/xe2hpd: Identify the memory type for SKUs
- with GDDR + ECC
-In-Reply-To: <3lydvtc7tikmhr4cmtzkt23bgjehmzucfyjvdbcitejwax5vkp@epdi3bkvq7fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250324-tip-v2-1-38397de319f8@intel.com>
- <20250324200207.GN3175483@mdroper-desk1.amr.corp.intel.com>
- <32lakxysapix2hgoh5e7n2b6zlv544nh6vcvmg6zllzjnlikmd@7k37w7pqy4p2>
- <87bjtpa3e6.fsf@intel.com>
- <3lydvtc7tikmhr4cmtzkt23bgjehmzucfyjvdbcitejwax5vkp@epdi3bkvq7fr>
-Date: Wed, 09 Apr 2025 15:42:35 +0300
-Message-ID: <87ikndwlok.fsf@intel.com>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C16310E8A6;
+ Wed,  9 Apr 2025 13:14:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yGfxgKvFAGgwkk6gmZOeei1K/SCTzIS9Mt/HWjv901b9OIZWtE+vMdIgVKD9Y1IgYUlC1Ydry+RklR0gwfRGbqg0nFpewAHzRgXpZEFb2ZC156J5BuLnm52tVKzUvi+MxO+3TPd2Fi/bd/OwAgC39YIjlC3MFZ2wALoXs1ZhVwr+lOT6zGF4J5OTGsrZ2Byu4Kj3ZErL1U5oiExTQ2eExGp5AmFrqVBZewWboD97Qr0BlKaBKGMah4KY7GATwOsX6dPiqobG9zP+e+Uiy4bWX/B06HIIbVxnF/9t0Gx/Dp7zWZChG3JD6mHaCt8g1ZyAKPqCvYzi/zluzvx14Ayqmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZMt8IhWXjfKKNSe/YUAi2Bwdd4Ynu5BMzPeY66KYb7k=;
+ b=HRFpmKlgvhIZUEa9iLYZ6oShYvGSyDVm9eLPxl8HtZpge72fXvfskU5BGH18BlANIBOD0Ri/uWGEYFvfxNthi8txeyk7fMrkHr4iT/1/xmoXX+Lswq6cvXPt0+EuR4Gl66ndH4cNq5T5EpZUa5trdPFbgqWy50Up9otlpNVoRVirpLKoNMzkMEtnQhNKTVCWQutmof30S3PfV292KSIrbf0D1Km3mgOVnjoVC1W8OiD3E+U24yaIprBwBiFfMUUVo3ZotdZcK2TIGfulslMhm61nCbz7sBGT9/37XlbEBXUJOk10lS2hMUb1HEUVYSzwXwMVD8tNmF1GbfkLII+vzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZMt8IhWXjfKKNSe/YUAi2Bwdd4Ynu5BMzPeY66KYb7k=;
+ b=Ziuxw+SUz6wk9Z0qJxeR2lPXUP81o1XEr+3qKbkvWvZR54vc5Hq/Rw8rltt7Nb+b7BHCGqcz6PAqc7DK3G190hVGnuIXNtEUrSWcLSRH+qfpEqp0mmdc4pMD4vs4s6qeaJQSMigNpbIS0ShVbA3H9gU8eAG8frwyEFfPcGt9O+0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA0PR12MB8352.namprd12.prod.outlook.com (2603:10b6:208:3dd::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.35; Wed, 9 Apr
+ 2025 13:14:42 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8632.021; Wed, 9 Apr 2025
+ 13:14:42 +0000
+Message-ID: <ab7d1937-d0e9-45f8-8f7d-ddd7a1a9d3d5@amd.com>
+Date: Wed, 9 Apr 2025 15:14:17 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dma-fence: Rename dma_fence_is_signaled()
+To: phasta@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Gustavo Padovan <gustavo@padovan.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>, Qiang Yu <yuq825@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>, Lyude Paul
+ <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Matthew Brost <matthew.brost@intel.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Zack Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Yang Wang <kevinyang.wang@amd.com>, Jesse Zhang <jesse.zhang@amd.com>,
+ Tim Huang <tim.huang@amd.com>,
+ Sathishkumar S <sathishkumar.sundararaju@amd.com>,
+ Saleemkhan Jamadar <saleemkhan.jamadar@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Yunxiang Li <Yunxiang.Li@amd.com>, Eric Huang <jinhuieric.huang@amd.com>,
+ Asad Kamal <asad.kamal@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Jack Xiao <Jack.Xiao@amd.com>, Friedrich Vock <friedrich.vock@gmx.de>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <mdaenzer@redhat.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Dan Carpenter <dan.carpenter@linaro.org>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ lima@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+References: <20250409120640.106408-2-phasta@kernel.org>
+ <20250409120640.106408-3-phasta@kernel.org>
+ <20250409143917.31303d22@collabora.com>
+ <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
+ <72eb974dfea8fa1167cf97e29848672223f6fc5b.camel@mailbox.org>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <72eb974dfea8fa1167cf97e29848672223f6fc5b.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0132.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b9::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB8352:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75da6efb-51ca-475b-8897-08dd77687d4e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UjBqNXgzbkhLaU5rdTVpRFRjQy9KZkhZdHMyRU9EMUxzRWQ3THRiYkRTZkds?=
+ =?utf-8?B?LzNNQ1pQS285Wmx6RTVxR1ltSzRVbXhrV3ZxZTdPY0QzcEdlaVVQdld5Qks0?=
+ =?utf-8?B?SUFkSk1UYWdOOXNWLzZweFNVQVpzejdyRFFXc05ST1Y0ZWt6UDJneXZQYk4w?=
+ =?utf-8?B?STBhaFI0ZjNVUi80ajZWRVFJTXFrMkNkTGQ3ZHhwWUxPb2NoQWN4aE4wV2Z4?=
+ =?utf-8?B?NFV4d09GcEVmQk1JdGV1aVl6Z3paM0dta0FHditZbjFXSDN5RVFTUndCWW4r?=
+ =?utf-8?B?U0JlaHZ0SHRPZmpLN1pJVVEwSXVqRXRGQzFJTkFOa2ZOWG8zSmFaUWJEUWhi?=
+ =?utf-8?B?S0o2OGdUOGtxQi9lbzRZZURsOEdBNkQ3MGZOQWJZMkV1Um1OVENpbjFUZDFm?=
+ =?utf-8?B?M0Q1MlJlQ244b2N5MDEwSmZWdHBkYzNpTmgrTUl2NUZyVmFyTmlrM3hzcllB?=
+ =?utf-8?B?NXVIcGRWcG1DcGlJQU11VVJzRVQ0V2RHajUzZW1LR2FGMVMvaDJhK05xc3ll?=
+ =?utf-8?B?cENIV3dYcUZPckRkaHV1U1JaSG9XbVhJcDF1ZnhqOTh6ZVFPMnV4c1NZU2Js?=
+ =?utf-8?B?ZnNWd1pPT3FCR20xR1FTTGdwNitmUWNBSWNKWmgvY3hmOVdzcUFFZHdzRmEv?=
+ =?utf-8?B?WGthUmJuL1U4SExTZWNGYmJ4WVp0MzY5U3FIOVNnOVo2cFcwclZOZFB3a29M?=
+ =?utf-8?B?L1B1YWFzVVhhcmt3QUxxU2p3SUUrNmt0Y2Zna2VLOVZSbFl1OTRXSVJqSjYy?=
+ =?utf-8?B?R1Zwc29aWEdrLzB0RVdxZ2RkeExqSFVyOGF6OXl3ZzVvYVhOKy9rd2VQU0Nw?=
+ =?utf-8?B?OGhOZ0VtUTdsOUdHd3V5cUJmZWVTS2VGMG9xL01JWmRJbHRkRklLbFV1UVZP?=
+ =?utf-8?B?bk4yWGRDVngxZzViTEs4V1Y0cnNpeXIrb29QL0J6aGtiemxPYjkxRUdrOEov?=
+ =?utf-8?B?VmFlVldjUnVUWXdTK2VxVzhlSkZUbjd2eFRraU5FKzl1YjBhRDE0Y0JodG9W?=
+ =?utf-8?B?dTFwQlI0L2tINm93NVlEVk8wRGovT1pNOXBHTzBhaTdIMHJDT2pxMFBobGVo?=
+ =?utf-8?B?ZXI2eS8zbEtDci9ZVjlxQXY3bXY5YkNjY1RkZXEwOEpDZlRxbXNOTkdvcFVt?=
+ =?utf-8?B?SWZZVm5ObHVyeEo3T0tJekZWQi9ITDkya2UvdXF5RWpxeCsrK0Fsa2JiTC9a?=
+ =?utf-8?B?Z09CaCt6dlo4NFZLUWVtaitwenhrYU9tVE41QStVY1RHTG81UEsyOGw0T25K?=
+ =?utf-8?B?cVl6MGdibVAvbXlTeXNZaUZ0ME5ESk5IQk9LSWU0YzlrSlAyQlpIZytCNm9v?=
+ =?utf-8?B?TWZoRmdtcUNCeE5Mb2xINks4MUdNeVpCWDdlS2NmaFNoQWdEZXhWVkI3akJl?=
+ =?utf-8?B?L2liYldyYmxvZUZNOHpiRFBuNXRTS0hHSndoeFpwVWpIK0h1QVlXaVRCQjg2?=
+ =?utf-8?B?L0dHeVg4RWpIZ2xwb0s2VGlQRmpqKzJIY1Qxd2F0bDhiUEduMk9kTWIzUmRl?=
+ =?utf-8?B?WGQrQjd2cnFXUFZCdFExZE1kclFvWTlxZHZvTTN1TTd1WFlRRE4wM09Xc3Z3?=
+ =?utf-8?B?Qjg1OWlwNFQ5MEppbkoremNoWk9GT0I5MjdSSjE1S3V1VVhtUDYrL3RGVm9C?=
+ =?utf-8?B?QTc1MTdrbkRsS1dlR3RJZ3k2N21BeElxeEdrZEROMVhHa3VIOFpOeVVOdjhk?=
+ =?utf-8?B?L2ZrS01SK3VVbGZGSU10dkJUa0QzbE04dE9nTDlCK0N5eGJ2RXRBMGEydGdL?=
+ =?utf-8?B?NkJKR1N6UysvMjFSMFQxYk5sbEo4NGR2dTcvcnBhQ0xFMkt0OHFDdHFQajYr?=
+ =?utf-8?B?eXpnaGoxUGN1OCtJaEpqd2VucnVudVBaLzk2NHE3OWJlWDAxbytJWHpkSGdN?=
+ =?utf-8?B?bFg3T2RQcGpycTltSi9vS1FlYjh4dUMvSDBRL2xqNXVhdm1IbEJWd3J5dEUw?=
+ =?utf-8?Q?3zvaB5TSbLY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SFVXQlJLTHpjNzJoYi9mWVhiZmNYaDZFa1RoZS9Jc2FkOFpwWnJHQnNTOVNt?=
+ =?utf-8?B?TTRUSGlkZElpcVpIaFFrQ3lrOGFVM0VhUEdhL2NxZ2M5R1ZHMHlxci9iMnpG?=
+ =?utf-8?B?cFRSeWh2ekYxdy84Rld4SmFpMDg5aUJMRXNpNHlzWndCbEZnazhURFBnM25z?=
+ =?utf-8?B?bEV5N1lpM24yR2Qwd25HS202Yis0MkU3SXJwTFFNNVJteStkS3NoYUh6SzdR?=
+ =?utf-8?B?NzlWc05yZ2lPRXBML3ZERW5KUWtnQWt5V1QyRHlVQ2h1VXlGV2RnNUpDRWVI?=
+ =?utf-8?B?NWJrRlN5U3p4MytYa2Q4L3ZTZFBNSG9nOUZBZGNLY2hQaG02aG9UUlRSNkJh?=
+ =?utf-8?B?cTlYZ3NsTmdvL0prSU4xUXgzYlJBL1cwMW1xVDE2SEEwWDduRGFQYXpORUpE?=
+ =?utf-8?B?MSs4ZTZsK0Y2T1FtK0FPQkJzcHlGZDBWa29lcWNJZDNaNFdTVTUxNDkzU1Rn?=
+ =?utf-8?B?TGpPd0FKekwvWVNCaWFsVUQyR1cxby94RStHM1djMk5ydUdTdm1FK3N3bkFE?=
+ =?utf-8?B?dFBHb1hYZnBvZHRRZWgzTzRzNDB5Z0twM0Y4Y205ZWU1NU9mamFEYmpzaWxL?=
+ =?utf-8?B?SkJaSzZ3cFU2Q3F5R3NXaHU3WFdJMnRpbWNFTkl1ODZEb2JmQWxaZkZST2l2?=
+ =?utf-8?B?QWJVYktDWDIzc3BZU0krRDd4RVJNQzFqQkoyK1lDb0oxTSs5Qk9xclNkY1pH?=
+ =?utf-8?B?cTlmUlNlall4clBnaFRjUC8xRWsxWTRZclFqV2UwUGV2Y0p5NVZxeGNGZG1m?=
+ =?utf-8?B?dDQwUVJzWlFIZWhKUmUyYXI0V3lkSU5kc3ZWZGFhNzRZSnUwQmMwZ1hzZWZ0?=
+ =?utf-8?B?UzVPSGkyQTNuUkVkUFlUYnh4cGtXU0hsRXEyVnlmM0srMnVpem9YT3B2bWhH?=
+ =?utf-8?B?aGVMSGsyYUlkak52UjI2WjdhMndWNTlSNS9wdWZwN1VhVG01clo4WExoNVk5?=
+ =?utf-8?B?UmtqaTlxVDhiMUlqa1RPNjZ2cnNxNUVHMmRwalJYWEJTMkpDRmlLTDZqRk03?=
+ =?utf-8?B?bUh3M0ZKNjNRN3k3clVuK0V4OFJuNmhBOFRhSWtVY1VZc1NJUVpLQlB2MWRr?=
+ =?utf-8?B?ckp2NXR2RmxGZ09ZdlVVdWdTRHpOQ2ltd0I2aE8yU04xYmNNM29GS25XZUxy?=
+ =?utf-8?B?NHhLRlNXSFBReGdNbm9mQnlUMEMzUjJHalhKb0hEUGl6bWRkdndjUHFvUHBK?=
+ =?utf-8?B?U1VRV2M5WUhDUnVDY0dOeFY4ay94WitjcjhsSFZ3eGhBQ3E0blplNXlVbHg0?=
+ =?utf-8?B?NFBIeSs3UVZlTjRheWM1UnIvdzIyZS9BSGVnVE1nY24wdHVLWC9KTWRJMnph?=
+ =?utf-8?B?KzFpYithVkl2MFdEdEJLQ1RINDRDZmNjaXVxTDNUTHM4SjFOd1hYbEl0ZWw1?=
+ =?utf-8?B?VGQ5RDJFYjFrUlk4ZmVzNlJlYm1pakJLcENKSTU1OTdSQXU0MU9VeGpmdHpu?=
+ =?utf-8?B?QjFKTDdhd04ySjZOY3dPaS85RXZwTkZGUmxJczVMdXNlMGZIODMrQ28rZjVs?=
+ =?utf-8?B?cVgvQ1FURzc1TFhtbEVkU1ZmdEhEK0plT1hEclhZVUIxYnU2TVp0alh4ZDdr?=
+ =?utf-8?B?Q2trclN5eEptSWdwWGMvdWt4amowZWlTYWpENjlSclRvb1BrbEVjZDVRREk2?=
+ =?utf-8?B?UGc4RTdLTFExZmV2QzJaQ3VPMVN6RTNGdU9uVnhZMmZnLzhWTlFGbExXclJO?=
+ =?utf-8?B?OTBQWWJsc0hKYVUzaG5nbHJqK2g4V0paektwRzRKd2tjaWhsd0RnWmUrT1Fo?=
+ =?utf-8?B?VDFjb1JLQ2hHc0YwRW1CMFFOdnVUZ3hpL1BQbElNQlUwcDJVZzRkYU1YZzcv?=
+ =?utf-8?B?VXZPZk00bWNhWHBIOFd3WXpvR0ZRQXFRYnBXd1dOOTR0SVd2anRUMVhmMnhy?=
+ =?utf-8?B?WXZXaUljY1pLU09nSnh6TDg1NVQ4S2xLN01na3RzQndvYjJmdUpCUEZYZHp3?=
+ =?utf-8?B?b0toNStFUXFEL0hKdTgzODFxa3ZwbzhtdmpENnpFS29UeVppRU5xaUc3czVM?=
+ =?utf-8?B?VDBNalBIaXF3UUxFNFJrUkMvQXNIZWRQSFU0SHF0cWJlTzNCNFh2TEFiNjB5?=
+ =?utf-8?B?aTlkSTRsMW5wSjB0WFl4cWJWeWFHZDlrdU5mODY0WklFZ1lnMHdTa2Ewb1do?=
+ =?utf-8?Q?r8gw=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75da6efb-51ca-475b-8897-08dd77687d4e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 13:14:42.2808 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Cwf+4Ijyeu9sD7MROrsq1lN1XEEQrMsc2l+l2+likNJmA+nXh7J80XOHgLCckfIQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8352
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,164 +220,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Mar 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Mar 25, 2025 at 11:03:13AM +0200, Jani Nikula wrote:
->>On Mon, 24 Mar 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> On Mon, Mar 24, 2025 at 01:02:07PM -0700, Matt Roper wrote:
->>>>On Mon, Mar 24, 2025 at 10:22:33AM -0700, Lucas De Marchi wrote:
->>>>> From: Vivek Kasireddy <vivek.kasireddy@intel.com>
->>>>>
->>>>> Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
->>>>> with ECC enabled. We need to identify this scenario and add a new
->>>>> case in xelpdp_get_dram_info() to handle it. In addition, the
->>>>> derating value needs to be adjusted accordingly to compensate for
->>>>> the limited bandwidth.
->>>>>
->>>>> Bspec: 64602
->>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>>> Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")
->>>>> Cc: stable@vger.kernel.org
+Am 09.04.25 um 14:56 schrieb Philipp Stanner:
+> On Wed, 2025-04-09 at 14:51 +0200, Philipp Stanner wrote:
+>> On Wed, 2025-04-09 at 14:39 +0200, Boris Brezillon wrote:
+>>> Hi Philipp,
+>>>
+>>> On Wed,  9 Apr 2025 14:06:37 +0200
+>>> Philipp Stanner <phasta@kernel.org> wrote:
+>>>
+>>>> dma_fence_is_signaled()'s name strongly reads as if this function
+>>>> were
+>>>> intended for checking whether a fence is already signaled. Also
+>>>> the
+>>>> boolean it returns hints at that.
+>>>>
+>>>> The function's behavior, however, is more complex: it can check
+>>>> with a
+>>>> driver callback whether the hardware's sequence number indicates
+>>>> that
+>>>> the fence can already be treated as signaled, although the
+>>>> hardware's /
+>>>> driver's interrupt handler has not signaled it yet. If that's the
+>>>> case,
+>>>> the function also signals the fence.
+>>>>
+>>>> (Presumably) this has caused a bug in Nouveau (unknown commit),
+>>>> where
+>>>> nouveau_fence_done() uses the function to check a fence, which
+>>>> causes a
+>>>> race.
+>>>>
+>>>> Give the function a more obvious name.
+>>> This is just my personal view on this, but I find the new name just
+>>> as
+>>> confusing as the old one. It sounds like something is checked, but
+>>> it's
+>>> clear what, and then the fence is forcibly signaled like it would
+>>> be
+>>> if
+>>> you call drm_fence_signal(). Of course, this clarified by the doc,
+>>> but
+>>> given the goal was to make the function name clearly reflect what
+>>> it
+>>> does, I'm not convinced it's significantly better.
+>>>
+>>> Maybe dma_fence_check_hw_state_and_propagate(), though it might be
+>>> too long of name. Oh well, feel free to ignore this comments if a
+>>> majority is fine with the new name.
+>> Yoa, the name isn't perfect (the perfect name describing the whole
+>> behavior would be
+>> dma_fence_check_if_already_signaled_then_check_hardware_state_and_pro
+>> pa
+>> gate() ^^'
 >>
->>FYI, this does not cherry-pick cleanly to drm-intel-next-fixes, and
->>needs a backport.
+>> My intention here is to have the reader realize "watch out, the fence
+>> might get signaled here!", which is probably the most important event
+>> regarding fences, which can race, invoke the callbacks and so on.
 >>
->>There are dependencies on at least
+>> For details readers will then check the documentation.
 >>
->>4051c59e2a6a ("drm/i915/xe3lpd: Update bandwidth parameters")
->>9377c00cfdb5 ("drm/i915/display: Convert intel_bw.c internally to intel_display")
->>d706998b6da6 ("drm/i915/display: Convert intel_bw.c externally to intel_display")
+>> But I'm of course open to see if there's a majority for this or that
+>> name.
+> how about:
+>
+> dma_fence_check_hw_and_signal() ?
+
+I don't think that renaming the function is a good idea in the first place.
+
+What the function does internally is an implementation detail of the framework.
+
+For the code using this function it's completely irrelevant if the function might also signal the fence, what matters for the caller is the returned status of the fence. I think this also counts for the dma_fence_is_signaled() documentation.
+
+What we should improve is the documentation of the dma_fence_ops->enable_signaling and dma_fence_ops->signaled callbacks.
+
+Especially see the comment about reference counts on enable_signaling which is missing on the signaled callback. That is most likely the root cause why nouveau implemented enable_signaling correctly but not the other one.
+
+But putting that aside I think we should make nails with heads and let the framework guarantee that the fences stay alive until they are signaled (one way or another). This completely removes the burden to keep a reference on unsignaled fences from the drivers / implementations and make things more over all more defensive.
+
+Regards,
+Christian.
+
+>
+> P.
+>
+>> P.
 >>
->>but I don't think we want to backport those.
->
-> yeah, I expected issues like that and was going to provide the specific
-> patch for stable. However I thought it would at least apply to
-> drm-intel-next-fixes :(. Below is the patch to drm-intel-next-fixes. It
-> also applies cleanly to 6.13. For 6.12 there's an additional small
-> conflict due to the DISPLAY_VER_FULL conversion.
+>>
+>>> Regards,
+>>>
+>>> Boris
 
-Thanks, just sent a fixes pull request with this.
-
-BR,
-Jani.
-
-
->
-> Also available at https://gitlab.freedesktop.org/demarchi/xe/-/commit/14cb226dc4526971fb7cfd1e79bb3196734f2ab4
->
-> Thanks
-> Lucas De Marchi
-> -------
->
->  From f61fd762498be6291626cb9cfcb8da28be6485e3 Mon Sep 17 00:00:00 2001
-> From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> Date: Mon, 24 Mar 2025 10:22:33 -0700
-> Subject: [PATCH] drm/i915/xe2hpd: Identify the memory type for SKUs with GDDR
->   + ECC
->
-> Some SKUs of Xe2_HPD platforms (such as BMG) have GDDR memory type
-> with ECC enabled. We need to identify this scenario and add a new
-> case in xelpdp_get_dram_info() to handle it. In addition, the
-> derating value needs to be adjusted accordingly to compensate for
-> the limited bandwidth.
->
-> Bspec: 64602
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Fixes: 3adcf970dc7e ("drm/xe/bmg: Drop force_probe requirement")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Acked-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/20250324-tip-v2-1-38397de319f8@intel.com
-> (cherry picked from commit 327e30123cafcb45c0fc5843da0367b90332999d)
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_bw.c | 14 +++++++++++++-
->   drivers/gpu/drm/i915/i915_drv.h         |  1 +
->   drivers/gpu/drm/i915/soc/intel_dram.c   |  4 ++++
->   drivers/gpu/drm/xe/xe_device_types.h    |  1 +
->   4 files changed, 19 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 048be28722477..5e49f8f7c9804 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -244,6 +244,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
->   			qi->deinterleave = 4;
->   			break;
->   		case INTEL_DRAM_GDDR:
-> +		case INTEL_DRAM_GDDR_ECC:
->   			qi->channel_width = 32;
->   			break;
->   		default:
-> @@ -398,6 +399,12 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
->   	/* Other values not used by simplified algorithm */
->   };
->   
-> +static const struct intel_sa_info xe2_hpd_ecc_sa_info = {
-> +	.derating = 45,
-> +	.deprogbwlimit = 53,
-> +	/* Other values not used by simplified algorithm */
-> +};
-> +
->   static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
->   {
->   	struct intel_qgv_info qi = {};
-> @@ -740,10 +747,15 @@ static unsigned int icl_qgv_bw(struct drm_i915_private *i915,
->   
->   void intel_bw_init_hw(struct drm_i915_private *dev_priv)
->   {
-> +	const struct dram_info *dram_info = &dev_priv->dram_info;
-> +
->   	if (!HAS_DISPLAY(dev_priv))
->   		return;
->   
-> -	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
-> +	if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv) &&
-> +	    dram_info->type == INTEL_DRAM_GDDR_ECC)
-> +		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_ecc_sa_info);
-> +	else if (DISPLAY_VERx100(dev_priv) >= 1401 && IS_DGFX(dev_priv))
->   		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
->   	else if (DISPLAY_VER(dev_priv) >= 14)
->   		tgl_get_bw_info(dev_priv, &mtl_sa_info);
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index ffc346379cc2c..54538b6f85df5 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -305,6 +305,7 @@ struct drm_i915_private {
->   			INTEL_DRAM_DDR5,
->   			INTEL_DRAM_LPDDR5,
->   			INTEL_DRAM_GDDR,
-> +			INTEL_DRAM_GDDR_ECC,
->   		} type;
->   		u8 num_qgv_points;
->   		u8 num_psf_gv_points;
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> index 9e310f4099f42..f60eedb0e92cf 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -687,6 +687,10 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915)
->   		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
->   		dram_info->type = INTEL_DRAM_GDDR;
->   		break;
-> +	case 9:
-> +		drm_WARN_ON(&i915->drm, !IS_DGFX(i915));
-> +		dram_info->type = INTEL_DRAM_GDDR_ECC;
-> +		break;
->   	default:
->   		MISSING_CASE(val);
->   		return -EINVAL;
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 72ef0b6fc4250..9f8667ebba853 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -585,6 +585,7 @@ struct xe_device {
->   			INTEL_DRAM_DDR5,
->   			INTEL_DRAM_LPDDR5,
->   			INTEL_DRAM_GDDR,
-> +			INTEL_DRAM_GDDR_ECC,
->   		} type;
->   		u8 num_qgv_points;
->   		u8 num_psf_gv_points;
-
--- 
-Jani Nikula, Intel
