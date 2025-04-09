@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03776A82E63
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 20:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56877A82E65
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 20:18:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CDC210E23E;
-	Wed,  9 Apr 2025 18:18:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C127810E2DC;
+	Wed,  9 Apr 2025 18:18:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fZkN1ZPX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gzl663to";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9835310E23E;
- Wed,  9 Apr 2025 18:18:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48EE310E2D5;
+ Wed,  9 Apr 2025 18:18:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744222696; x=1775758696;
+ t=1744222700; x=1775758700;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=l9t08YBoh8DoaPHcxxIiDOhCAL+09ZBVZh/3wc11Mos=;
- b=fZkN1ZPXoe/WbfR23ynylZYcua0L/k8Z/+KNp/rdxjJ21Q/Z3AHexz1R
- VPs0wSOo7a1YJp6RqhIqP6xZFocGfZjCMeYoh5F5t5XUD651Q9sNW0CeE
- H9kMQpmseuDK33b2FdhRtoUu0nti9u6NFJg1iYQpszPTuOu89Oj26oWJS
- q3ZAVGrn9ZgzpUfiEsm+NXqHOvSl2wpwJcOp8ryU/87lKAEeWm5ZcykFd
- KI5w9THACFiooEvqazStu6bITlvhTTszKVRBZWEtgjq2qNPV3lU8UqpIl
- iZAJMWJzJFCZyDVH5d88haS/UEVuVyr+BvfFXtgKW27H7b25K9euR4YrR g==;
-X-CSE-ConnectionGUID: fMB2nT60TkaRX9DcRO6I3Q==
-X-CSE-MsgGUID: 6oUo1QrkS9y7qqALwvwoVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088322"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088322"
+ bh=Afi9QEOdH/W9Di0DqHSPOvAmXiGFML1UOiEIxn1z4hE=;
+ b=gzl663tokjFATroPg29E7alwql44tTH2Q1nLJcO6ZbzjL6re7cBw50/o
+ 3w1YH0Q1nl3b6QfwKxTmW+hVdZgnQcCVQXAO740YR3qBo+yzKDDrjKOnw
+ eOuU6LZPrwsW0rnjXqSsQ47Zc2fM6g/Ciw6l96VOUwmcVmrhk7V4h7NNo
+ VmwVzP/kM9Rg21ppj75k02yCZ3DSa91QzGyaxWkSJWM+DtdbLBFXXsmhL
+ vzTbVkJGqubEUofTPXLqonoLyyRWnEdjAxHrISFmBfZYuv1hYAEWB+vDB
+ txKzhN+Ip8fmYLcyYcQ5lmQHqTw5ycTG6UUKL0G0K3/9gVEPc25HtON5b A==;
+X-CSE-ConnectionGUID: CTsGWzWJTcK8dYep9TmT/Q==
+X-CSE-MsgGUID: ESRlpoLCTKGGvoBlvGGj6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="57088327"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="57088327"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:15 -0700
-X-CSE-ConnectionGUID: bbhg42YoSjCZ4ri0rzM/nw==
-X-CSE-MsgGUID: wnGfrH4IQiSwVARFDsBucA==
+ 09 Apr 2025 11:18:20 -0700
+X-CSE-ConnectionGUID: WJEJIEBaQHKOILtbyPcEyg==
+X-CSE-MsgGUID: vmdBX56PQo+MdzOETKZnCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785287"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="133785298"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:13 -0700
+ 09 Apr 2025 11:18:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 01/14] drm/i915/fb: convert intel_fbdev.[ch] and
- intel_fbdev_fb.[ch] to struct intel_display
-Date: Wed,  9 Apr 2025 21:17:42 +0300
-Message-Id: <49651754f3716041f97984e47c15d331851870a5.1744222449.git.jani.nikula@intel.com>
+Subject: [PATCH 02/14] drm/i915/display: convert intel_modeset_setup.[ch] to
+ struct intel_display
+Date: Wed,  9 Apr 2025 21:17:43 +0300
+Message-Id: <21d51387a36f027313a0687d09a14586eb8f71a6.1744222449.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
 References: <cover.1744222449.git.jani.nikula@intel.com>
@@ -72,440 +72,727 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Going forward, struct intel_display is the main display device data
-pointer. Convert intel_fbdev.[ch] and as much as possible of
-intel_fbdev_fb.[ch] to struct intel_display.
+pointer. Convert intel_modeset_setup.[ch] to struct intel_display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_driver.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 74 +++++++++----------
- drivers/gpu/drm/i915/display/intel_fbdev.h    |  6 +-
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 13 ++--
- drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  4 +-
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  6 +-
- 6 files changed, 51 insertions(+), 55 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   |   6 +-
+ .../drm/i915/display/intel_modeset_setup.c    | 192 +++++++++---------
+ .../drm/i915/display/intel_modeset_setup.h    |   4 +-
+ 3 files changed, 97 insertions(+), 105 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index efee8925987e..7c65fc1cce34 100644
+index 7c65fc1cce34..6fbaacea8af0 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -525,7 +525,6 @@ int intel_display_driver_probe(struct intel_display *display)
- 
- void intel_display_driver_register(struct intel_display *display)
+@@ -415,7 +415,6 @@ bool intel_display_driver_check_access(struct intel_display *display)
+ /* part #2: call after irq install, but before gem init */
+ int intel_display_driver_probe_nogem(struct intel_display *display)
  {
 -	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct drm_printer p = drm_dbg_printer(display->drm, DRM_UT_KMS,
- 					       "i915 display info:");
+ 	enum pipe pipe;
+ 	int ret;
  
-@@ -552,7 +551,7 @@ void intel_display_driver_register(struct intel_display *display)
- 	drm_kms_helper_poll_init(display->drm);
- 	intel_hpd_poll_disable(display);
+@@ -464,7 +463,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 	intel_display_driver_disable_user_access(display);
  
--	intel_fbdev_setup(i915);
-+	intel_fbdev_setup(display);
+ 	drm_modeset_lock_all(display->drm);
+-	intel_modeset_setup_hw_state(i915, display->drm->mode_config.acquire_ctx);
++	intel_modeset_setup_hw_state(display, display->drm->mode_config.acquire_ctx);
+ 	intel_acpi_assign_connector_fwnodes(display);
+ 	drm_modeset_unlock_all(display->drm);
  
- 	intel_display_device_info_print(DISPLAY_INFO(display),
- 					DISPLAY_RUNTIME_INFO(display), &p);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 369f46286e95..2dc4029d71ed 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -47,9 +47,9 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
+@@ -686,12 +685,11 @@ __intel_display_driver_resume(struct intel_display *display,
+ 			      struct drm_atomic_state *state,
+ 			      struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_crtc *crtc;
+ 	int ret, i;
+ 
+-	intel_modeset_setup_hw_state(i915, ctx);
++	intel_modeset_setup_hw_state(display, ctx);
+ 	intel_vga_redisable(display);
+ 
+ 	if (!state)
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 9e963bce340f..5d5ade7fdd77 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -6,11 +6,11 @@
+  * state.
+  */
+ 
+-#include <drm/drm_atomic_uapi.h>
+ #include <drm/drm_atomic_state_helper.h>
++#include <drm/drm_atomic_uapi.h>
++#include <drm/drm_print.h>
+ #include <drm/drm_vblank.h>
  
 -#include "i915_drv.h"
- #include "i915_vma.h"
- #include "intel_bo.h"
-+#include "intel_display_core.h"
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
-@@ -66,9 +66,9 @@ struct intel_fbdev {
- 
- static struct intel_fbdev *to_intel_fbdev(struct drm_fb_helper *fb_helper)
+ #include "i915_reg.h"
+ #include "i9xx_wm.h"
+ #include "intel_atomic.h"
+@@ -37,7 +37,7 @@
+ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 					      struct drm_modeset_acquire_ctx *ctx)
  {
--	struct drm_i915_private *i915 = to_i915(fb_helper->client.dev);
-+	struct intel_display *display = to_intel_display(fb_helper->client.dev);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_state *crtc_state =
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct intel_plane *plane;
+@@ -48,7 +48,7 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 	if (!crtc_state->hw.active)
+ 		return;
  
--	return i915->display.fbdev.fbdev;
-+	return display->fbdev.fbdev;
- }
+-	for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
++	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
+ 		const struct intel_plane_state *plane_state =
+ 			to_intel_plane_state(plane->base.state);
  
- static struct intel_frontbuffer *to_frontbuffer(struct intel_fbdev *ifbdev)
-@@ -210,11 +210,9 @@ static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
- int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 				   struct drm_fb_helper_surface_size *sizes)
- {
-+	struct intel_display *display = to_intel_display(helper->dev);
- 	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
- 	struct intel_framebuffer *fb = ifbdev->fb;
--	struct drm_device *dev = helper->dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_display *display = to_intel_display(dev);
- 	struct ref_tracker *wakeref;
- 	struct fb_info *info;
- 	struct i915_vma *vma;
-@@ -228,7 +226,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 	if (fb &&
- 	    (sizes->fb_width > fb->base.width ||
- 	     sizes->fb_height > fb->base.height)) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "BIOS fb too small (%dx%d), we require (%dx%d),"
- 			    " releasing it\n",
- 			    fb->base.width, fb->base.height,
-@@ -236,14 +234,14 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 		drm_framebuffer_put(&fb->base);
- 		fb = NULL;
- 	}
--	if (!fb || drm_WARN_ON(dev, !intel_fb_bo(&fb->base))) {
--		drm_dbg_kms(&dev_priv->drm,
-+	if (!fb || drm_WARN_ON(display->drm, !intel_fb_bo(&fb->base))) {
-+		drm_dbg_kms(display->drm,
- 			    "no BIOS fb, allocating a new one\n");
- 		fb = intel_fbdev_fb_alloc(helper, sizes);
- 		if (IS_ERR(fb))
- 			return PTR_ERR(fb);
- 	} else {
--		drm_dbg_kms(&dev_priv->drm, "re-using BIOS fb\n");
-+		drm_dbg_kms(display->drm, "re-using BIOS fb\n");
- 		prealloc = true;
- 		sizes->fb_width = fb->base.width;
- 		sizes->fb_height = fb->base.height;
-@@ -267,7 +265,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 
- 	info = drm_fb_helper_alloc_info(helper);
- 	if (IS_ERR(info)) {
--		drm_err(&dev_priv->drm, "Failed to allocate fb_info (%pe)\n", info);
-+		drm_err(display->drm, "Failed to allocate fb_info (%pe)\n", info);
- 		ret = PTR_ERR(info);
- 		goto out_unpin;
- 	}
-@@ -279,11 +277,11 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 
- 	obj = intel_fb_bo(&fb->base);
- 
--	ret = intel_fbdev_fb_fill_info(dev_priv, info, obj, vma);
-+	ret = intel_fbdev_fb_fill_info(display, info, obj, vma);
- 	if (ret)
- 		goto out_unpin;
- 
--	drm_fb_helper_fill_info(info, dev->fb_helper, sizes);
-+	drm_fb_helper_fill_info(info, display->drm->fb_helper, sizes);
- 
- 	/* If the object is shmemfs backed, it will have given us zeroed pages.
- 	 * If the object is stolen however, it will be full of whatever
-@@ -294,7 +292,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 
- 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
- 
--	drm_dbg_kms(&dev_priv->drm, "allocated %dx%d fb: 0x%08x\n",
-+	drm_dbg_kms(display->drm, "allocated %dx%d fb: 0x%08x\n",
- 		    fb->base.width, fb->base.height,
- 		    i915_ggtt_offset(vma));
- 	ifbdev->fb = fb;
-@@ -322,16 +320,15 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-  * Note we only support a single fb shared across pipes for boot (mostly for
-  * fbcon), so we just find the biggest and use that.
-  */
--static bool intel_fbdev_init_bios(struct drm_device *dev,
-+static bool intel_fbdev_init_bios(struct intel_display *display,
- 				  struct intel_fbdev *ifbdev)
- {
--	struct drm_i915_private *i915 = to_i915(dev);
- 	struct intel_framebuffer *fb = NULL;
- 	struct intel_crtc *crtc;
- 	unsigned int max_size = 0;
- 
- 	/* Find the largest fb */
--	for_each_intel_crtc(dev, crtc) {
-+	for_each_intel_crtc(display->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			to_intel_crtc_state(crtc->base.state);
- 		struct intel_plane *plane =
-@@ -341,21 +338,21 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 		struct drm_gem_object *obj = intel_fb_bo(plane_state->uapi.fb);
- 
- 		if (!crtc_state->uapi.active) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "[CRTC:%d:%s] not active, skipping\n",
- 				    crtc->base.base.id, crtc->base.name);
- 			continue;
- 		}
- 
- 		if (!obj) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "[PLANE:%d:%s] no fb, skipping\n",
- 				    plane->base.base.id, plane->base.name);
- 			continue;
- 		}
- 
- 		if (obj->size > max_size) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "found possible fb from [PLANE:%d:%s]\n",
- 				    plane->base.base.id, plane->base.name);
- 			fb = to_intel_framebuffer(plane_state->uapi.fb);
-@@ -364,13 +361,13 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
+@@ -56,9 +56,9 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 			intel_plane_disable_noatomic(crtc, plane);
  	}
  
- 	if (!fb) {
+-	state = drm_atomic_state_alloc(&i915->drm);
++	state = drm_atomic_state_alloc(display->drm);
+ 	if (!state) {
 -		drm_dbg_kms(&i915->drm,
 +		drm_dbg_kms(display->drm,
- 			    "no active fbs found, not using BIOS config\n");
- 		goto out;
+ 			    "failed to disable [CRTC:%d:%s], out of memory",
+ 			    crtc->base.base.id, crtc->base.name);
+ 		return;
+@@ -68,7 +68,7 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 	to_intel_atomic_state(state)->internal = true;
+ 
+ 	/* Everything's already locked, -EDEADLK can't happen. */
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc,
++	for_each_intel_crtc_in_pipe_mask(display->drm, temp_crtc,
+ 					 BIT(pipe) |
+ 					 intel_crtc_joiner_secondary_pipes(crtc_state)) {
+ 		struct intel_crtc_state *temp_crtc_state =
+@@ -77,14 +77,14 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 
+ 		ret = drm_atomic_add_affected_connectors(state, &temp_crtc->base);
+ 
+-		drm_WARN_ON(&i915->drm, IS_ERR(temp_crtc_state) || ret);
++		drm_WARN_ON(display->drm, IS_ERR(temp_crtc_state) || ret);
  	}
  
- 	/* Now make sure all the pipes will fit into it */
--	for_each_intel_crtc(dev, crtc) {
-+	for_each_intel_crtc(display->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			to_intel_crtc_state(crtc->base.state);
- 		struct intel_plane *plane =
-@@ -378,13 +375,13 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 		unsigned int cur_size;
+-	i915->display.funcs.display->crtc_disable(to_intel_atomic_state(state), crtc);
++	display->funcs.display->crtc_disable(to_intel_atomic_state(state), crtc);
  
- 		if (!crtc_state->uapi.active) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "[CRTC:%d:%s] not active, skipping\n",
- 				    crtc->base.base.id, crtc->base.name);
+ 	drm_atomic_state_put(state);
+ 
+-	drm_dbg_kms(&i915->drm,
++	drm_dbg_kms(display->drm,
+ 		    "[CRTC:%d:%s] hw state adjusted, was enabled, now disabled\n",
+ 		    crtc->base.base.id, crtc->base.name);
+ 
+@@ -118,13 +118,12 @@ static void set_encoder_for_connector(struct intel_connector *connector,
+ static void reset_encoder_connector_state(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_pmdemand_state *pmdemand_state =
+-		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
++		to_intel_pmdemand_state(display->pmdemand.obj.state);
+ 	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+ 		if (connector->base.encoder != &encoder->base)
  			continue;
- 		}
+@@ -143,10 +142,10 @@ static void reset_encoder_connector_state(struct intel_encoder *encoder)
  
--		drm_dbg_kms(&i915->drm, "checking [PLANE:%d:%s] for BIOS fb\n",
-+		drm_dbg_kms(display->drm, "checking [PLANE:%d:%s] for BIOS fb\n",
+ static void reset_crtc_encoder_state(struct intel_crtc *crtc)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_encoder *encoder;
+ 
+-	for_each_encoder_on_crtc(&i915->drm, &crtc->base, encoder) {
++	for_each_encoder_on_crtc(display->drm, &crtc->base, encoder) {
+ 		reset_encoder_connector_state(encoder);
+ 		encoder->base.crtc = NULL;
+ 	}
+@@ -183,13 +182,13 @@ static void intel_crtc_disable_noatomic_complete(struct intel_crtc *crtc)
+  * Return all the pipes using a transcoder in @transcoder_mask.
+  * For joiner configs return only the joiner primary.
+  */
+-static u8 get_transcoder_pipes(struct drm_i915_private *i915,
++static u8 get_transcoder_pipes(struct intel_display *display,
+ 			       u8 transcoder_mask)
+ {
+ 	struct intel_crtc *temp_crtc;
+ 	u8 pipes = 0;
+ 
+-	for_each_intel_crtc(&i915->drm, temp_crtc) {
++	for_each_intel_crtc(display->drm, temp_crtc) {
+ 		struct intel_crtc_state *temp_crtc_state =
+ 			to_intel_crtc_state(temp_crtc->base.state);
+ 
+@@ -214,7 +213,6 @@ static void get_portsync_pipes(struct intel_crtc *crtc,
+ 			       u8 *master_pipe_mask, u8 *slave_pipes_mask)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	struct intel_crtc_state *crtc_state =
+ 		to_intel_crtc_state(crtc->base.state);
+ 	struct intel_crtc *master_crtc;
+@@ -233,20 +231,20 @@ static void get_portsync_pipes(struct intel_crtc *crtc,
+ 	else
+ 		master_transcoder = crtc_state->master_transcoder;
+ 
+-	*master_pipe_mask = get_transcoder_pipes(i915, BIT(master_transcoder));
+-	drm_WARN_ON(&i915->drm, !is_power_of_2(*master_pipe_mask));
++	*master_pipe_mask = get_transcoder_pipes(display, BIT(master_transcoder));
++	drm_WARN_ON(display->drm, !is_power_of_2(*master_pipe_mask));
+ 
+ 	master_crtc = intel_crtc_for_pipe(display, ffs(*master_pipe_mask) - 1);
+ 	master_crtc_state = to_intel_crtc_state(master_crtc->base.state);
+-	*slave_pipes_mask = get_transcoder_pipes(i915, master_crtc_state->sync_mode_slaves_mask);
++	*slave_pipes_mask = get_transcoder_pipes(display, master_crtc_state->sync_mode_slaves_mask);
+ }
+ 
+-static u8 get_joiner_secondary_pipes(struct drm_i915_private *i915, u8 primary_pipes_mask)
++static u8 get_joiner_secondary_pipes(struct intel_display *display, u8 primary_pipes_mask)
+ {
+ 	struct intel_crtc *primary_crtc;
+ 	u8 pipes = 0;
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, primary_crtc, primary_pipes_mask) {
++	for_each_intel_crtc_in_pipe_mask(display->drm, primary_crtc, primary_pipes_mask) {
+ 		struct intel_crtc_state *primary_crtc_state =
+ 			to_intel_crtc_state(primary_crtc->base.state);
+ 
+@@ -259,45 +257,45 @@ static u8 get_joiner_secondary_pipes(struct drm_i915_private *i915, u8 primary_p
+ static void intel_crtc_disable_noatomic(struct intel_crtc *crtc,
+ 					struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
++	struct intel_crtc *temp_crtc;
+ 	u8 portsync_master_mask;
+ 	u8 portsync_slaves_mask;
+ 	u8 joiner_secondaries_mask;
+-	struct intel_crtc *temp_crtc;
+ 
+ 	/* TODO: Add support for MST */
+ 	get_portsync_pipes(crtc, &portsync_master_mask, &portsync_slaves_mask);
+-	joiner_secondaries_mask = get_joiner_secondary_pipes(i915,
++	joiner_secondaries_mask = get_joiner_secondary_pipes(display,
+ 							     portsync_master_mask |
+ 							     portsync_slaves_mask);
+ 
+-	drm_WARN_ON(&i915->drm,
++	drm_WARN_ON(display->drm,
+ 		    portsync_master_mask & portsync_slaves_mask ||
+ 		    portsync_master_mask & joiner_secondaries_mask ||
+ 		    portsync_slaves_mask & joiner_secondaries_mask);
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, joiner_secondaries_mask)
++	for_each_intel_crtc_in_pipe_mask(display->drm, temp_crtc, joiner_secondaries_mask)
+ 		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, portsync_slaves_mask)
++	for_each_intel_crtc_in_pipe_mask(display->drm, temp_crtc, portsync_slaves_mask)
+ 		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc, portsync_master_mask)
++	for_each_intel_crtc_in_pipe_mask(display->drm, temp_crtc, portsync_master_mask)
+ 		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, temp_crtc,
++	for_each_intel_crtc_in_pipe_mask(display->drm, temp_crtc,
+ 					 joiner_secondaries_mask |
+ 					 portsync_slaves_mask |
+ 					 portsync_master_mask)
+ 		intel_crtc_disable_noatomic_complete(temp_crtc);
+ }
+ 
+-static void intel_modeset_update_connector_atomic_state(struct drm_i915_private *i915)
++static void intel_modeset_update_connector_atomic_state(struct intel_display *display)
+ {
+ 	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+ 		struct drm_connector_state *conn_state = connector->base.state;
+ 		struct intel_encoder *encoder =
+@@ -319,7 +317,7 @@ static void intel_modeset_update_connector_atomic_state(struct drm_i915_private
+ 
+ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
++	struct intel_display *display = to_intel_display(crtc_state);
+ 
+ 	if (intel_crtc_is_joiner_secondary(crtc_state))
+ 		return;
+@@ -332,7 +330,7 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
+ 	crtc_state->uapi.adjusted_mode = crtc_state->hw.adjusted_mode;
+ 	crtc_state->uapi.scaling_filter = crtc_state->hw.scaling_filter;
+ 
+-	if (DISPLAY_INFO(i915)->color.degamma_lut_size) {
++	if (DISPLAY_INFO(display)->color.degamma_lut_size) {
+ 		/* assume 1:1 mapping */
+ 		drm_property_replace_blob(&crtc_state->hw.degamma_lut,
+ 					  crtc_state->pre_csc_lut);
+@@ -347,7 +345,7 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
+ 		 * to gamma_lut as that is the only valid source of LUTs
+ 		 * in the uapi.
+ 		 */
+-		drm_WARN_ON(&i915->drm, crtc_state->post_csc_lut &&
++		drm_WARN_ON(display->drm, crtc_state->post_csc_lut &&
+ 			    crtc_state->pre_csc_lut);
+ 
+ 		drm_property_replace_blob(&crtc_state->hw.degamma_lut,
+@@ -366,15 +364,14 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
+ }
+ 
+ static void
+-intel_sanitize_plane_mapping(struct drm_i915_private *i915)
++intel_sanitize_plane_mapping(struct intel_display *display)
+ {
+-	struct intel_display *display = &i915->display;
+ 	struct intel_crtc *crtc;
+ 
+-	if (DISPLAY_VER(i915) >= 4)
++	if (DISPLAY_VER(display) >= 4)
+ 		return;
+ 
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_plane *plane =
+ 			to_intel_plane(crtc->base.primary);
+ 		struct intel_crtc *plane_crtc;
+@@ -386,7 +383,7 @@ intel_sanitize_plane_mapping(struct drm_i915_private *i915)
+ 		if (pipe == crtc->pipe)
+ 			continue;
+ 
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[PLANE:%d:%s] attached to the wrong pipe, disabling plane\n",
  			    plane->base.base.id, plane->base.name);
  
- 		/*
-@@ -395,7 +392,7 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 		cur_size = crtc_state->uapi.adjusted_mode.crtc_hdisplay;
- 		cur_size = cur_size * fb->base.format->cpp[0];
- 		if (fb->base.pitches[0] < cur_size) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "fb not wide enough for [PLANE:%d:%s] (%d vs %d)\n",
- 				    plane->base.base.id, plane->base.name,
- 				    cur_size, fb->base.pitches[0]);
-@@ -406,7 +403,7 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 		cur_size = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
- 		cur_size = intel_fb_align_height(&fb->base, 0, cur_size);
- 		cur_size *= fb->base.pitches[0];
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "[CRTC:%d:%s] area: %dx%d, bpp: %d, size: %d\n",
- 			    crtc->base.base.id, crtc->base.name,
- 			    crtc_state->uapi.adjusted_mode.crtc_hdisplay,
-@@ -415,7 +412,7 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 			    cur_size);
+@@ -423,12 +420,12 @@ static bool intel_crtc_needs_link_reset(struct intel_crtc *crtc)
  
- 		if (cur_size > max_size) {
--			drm_dbg_kms(&i915->drm,
-+			drm_dbg_kms(display->drm,
- 				    "fb not big enough for [PLANE:%d:%s] (%d vs %d)\n",
- 				    plane->base.base.id, plane->base.name,
- 				    cur_size, max_size);
-@@ -423,14 +420,14 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
+ static struct intel_connector *intel_encoder_find_connector(struct intel_encoder *encoder)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_connector *connector;
+ 	struct intel_connector *found_connector = NULL;
+ 
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+ 		if (&encoder->base == connector->base.encoder) {
+ 			found_connector = connector;
+@@ -466,7 +463,7 @@ static void intel_sanitize_fifo_underrun_reporting(const struct intel_crtc_state
+ static bool intel_sanitize_crtc(struct intel_crtc *crtc,
+ 				struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
+ 	bool needs_link_reset;
+ 
+@@ -474,7 +471,7 @@ static bool intel_sanitize_crtc(struct intel_crtc *crtc,
+ 		struct intel_plane *plane;
+ 
+ 		/* Disable everything but the primary plane */
+-		for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
++		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
+ 			const struct intel_plane_state *plane_state =
+ 				to_intel_plane_state(plane->base.state);
+ 
+@@ -515,7 +512,7 @@ static bool intel_sanitize_crtc(struct intel_crtc *crtc,
+ 	return true;
+ }
+ 
+-static void intel_sanitize_all_crtcs(struct drm_i915_private *i915,
++static void intel_sanitize_all_crtcs(struct intel_display *display,
+ 				     struct drm_modeset_acquire_ctx *ctx)
+ {
+ 	struct intel_crtc *crtc;
+@@ -530,7 +527,7 @@ static void intel_sanitize_all_crtcs(struct drm_i915_private *i915,
+ 	for (;;) {
+ 		u32 old_mask = crtcs_forced_off;
+ 
+-		for_each_intel_crtc(&i915->drm, crtc) {
++		for_each_intel_crtc(display->drm, crtc) {
+ 			u32 crtc_mask = drm_crtc_mask(&crtc->base);
+ 
+ 			if (crtcs_forced_off & crtc_mask)
+@@ -543,7 +540,7 @@ static void intel_sanitize_all_crtcs(struct drm_i915_private *i915,
  			break;
- 		}
- 
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "fb big enough [PLANE:%d:%s] (%d >= %d)\n",
- 			    plane->base.base.id, plane->base.name,
- 			    max_size, cur_size);
  	}
  
- 	if (!fb) {
--		drm_dbg_kms(&i915->drm,
-+		drm_dbg_kms(display->drm,
- 			    "BIOS fb not suitable for all pipes, not using\n");
- 		goto out;
- 	}
-@@ -440,7 +437,7 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 	drm_framebuffer_get(&ifbdev->fb->base);
- 
- 	/* Final pass to check if any active pipes don't have fbs */
--	for_each_intel_crtc(dev, crtc) {
+-	for_each_intel_crtc(&i915->drm, crtc) {
 +	for_each_intel_crtc(display->drm, crtc) {
  		struct intel_crtc_state *crtc_state =
  			to_intel_crtc_state(crtc->base.state);
- 		struct intel_plane *plane =
-@@ -451,13 +448,13 @@ static bool intel_fbdev_init_bios(struct drm_device *dev,
- 		if (!crtc_state->uapi.active)
- 			continue;
  
--		drm_WARN(dev, !plane_state->uapi.fb,
-+		drm_WARN(display->drm, !plane_state->uapi.fb,
- 			 "re-used BIOS config but lost an fb on [PLANE:%d:%s]\n",
- 			 plane->base.base.id, plane->base.name);
- 	}
+@@ -553,7 +550,7 @@ static void intel_sanitize_all_crtcs(struct drm_i915_private *i915,
  
- 
--	drm_dbg_kms(&i915->drm, "using BIOS fb for initial console\n");
-+	drm_dbg_kms(display->drm, "using BIOS fb for initial console\n");
- 	return true;
- 
- out:
-@@ -482,26 +479,25 @@ static unsigned int intel_fbdev_color_mode(const struct drm_format_info *info)
- 	}
- }
- 
--void intel_fbdev_setup(struct drm_i915_private *i915)
-+void intel_fbdev_setup(struct intel_display *display)
+ static bool has_bogus_dpll_config(const struct intel_crtc_state *crtc_state)
  {
--	struct drm_device *dev = &i915->drm;
- 	struct intel_fbdev *ifbdev;
- 	unsigned int preferred_bpp = 0;
+-	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
++	struct intel_display *display = to_intel_display(crtc_state);
  
--	if (!HAS_DISPLAY(i915))
-+	if (!HAS_DISPLAY(display))
- 		return;
+ 	/*
+ 	 * Some SNB BIOSen (eg. ASUS K53SV) are known to misprogram
+@@ -565,7 +562,7 @@ static bool has_bogus_dpll_config(const struct intel_crtc_state *crtc_state)
+ 	 * without several WARNs, but for now let's take the easy
+ 	 * road.
+ 	 */
+-	return IS_SANDYBRIDGE(i915) &&
++	return display->platform.sandybridge &&
+ 		crtc_state->hw.active &&
+ 		crtc_state->shared_dpll &&
+ 		crtc_state->port_clock == 0;
+@@ -574,13 +571,12 @@ static bool has_bogus_dpll_config(const struct intel_crtc_state *crtc_state)
+ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_connector *connector;
+ 	struct intel_crtc *crtc = to_intel_crtc(encoder->base.crtc);
+ 	struct intel_crtc_state *crtc_state = crtc ?
+ 		to_intel_crtc_state(crtc->base.state) : NULL;
+ 	struct intel_pmdemand_state *pmdemand_state =
+-		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
++		to_intel_pmdemand_state(display->pmdemand.obj.state);
  
--	ifbdev = drmm_kzalloc(dev, sizeof(*ifbdev), GFP_KERNEL);
-+	ifbdev = drmm_kzalloc(display->drm, sizeof(*ifbdev), GFP_KERNEL);
- 	if (!ifbdev)
- 		return;
+ 	/*
+ 	 * We need to check both for a crtc link (meaning that the encoder is
+@@ -591,7 +587,7 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+ 		crtc_state->hw.active;
  
--	i915->display.fbdev.fbdev = ifbdev;
--	if (intel_fbdev_init_bios(dev, ifbdev))
-+	display->fbdev.fbdev = ifbdev;
-+	if (intel_fbdev_init_bios(display, ifbdev))
- 		preferred_bpp = intel_fbdev_color_mode(ifbdev->fb->base.format);
- 	if (!preferred_bpp)
- 		preferred_bpp = 32;
+ 	if (crtc_state && has_bogus_dpll_config(crtc_state)) {
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "BIOS has misprogrammed the hardware. Disabling pipe %c\n",
+ 			    pipe_name(crtc->pipe));
+ 		has_active_crtc = false;
+@@ -599,7 +595,7 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
  
--	drm_client_setup_with_color_mode(dev, preferred_bpp);
-+	drm_client_setup_with_color_mode(display->drm, preferred_bpp);
+ 	connector = intel_encoder_find_connector(encoder);
+ 	if (connector && !has_active_crtc) {
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[ENCODER:%d:%s] has active connectors but no active pipe!\n",
+ 			    encoder->base.base.id,
+ 			    encoder->base.name);
+@@ -616,7 +612,7 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+ 		if (crtc_state) {
+ 			struct drm_encoder *best_encoder;
+ 
+-			drm_dbg_kms(&i915->drm,
++			drm_dbg_kms(display->drm,
+ 				    "[ENCODER:%d:%s] manually disabled\n",
+ 				    encoder->base.base.id,
+ 				    encoder->base.name);
+@@ -650,18 +646,17 @@ static void intel_sanitize_encoder(struct intel_encoder *encoder)
+ 	/* notify opregion of the sanitized encoder state */
+ 	intel_opregion_notify_encoder(encoder, connector && has_active_crtc);
+ 
+-	if (HAS_DDI(i915))
++	if (HAS_DDI(display))
+ 		intel_ddi_sanitize_encoder_pll_mapping(encoder);
  }
  
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 89bad3a2b01a..a15e3e222a0c 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -10,7 +10,7 @@
+ /* FIXME read out full plane state for all planes */
+-static void readout_plane_state(struct drm_i915_private *i915)
++static void readout_plane_state(struct intel_display *display)
+ {
+-	struct intel_display *display = &i915->display;
+ 	struct intel_plane *plane;
+ 	struct intel_crtc *crtc;
  
- struct drm_fb_helper;
- struct drm_fb_helper_surface_size;
+-	for_each_intel_plane(&i915->drm, plane) {
++	for_each_intel_plane(display->drm, plane) {
+ 		struct intel_plane_state *plane_state =
+ 			to_intel_plane_state(plane->base.state);
+ 		struct intel_crtc_state *crtc_state;
+@@ -675,13 +670,13 @@ static void readout_plane_state(struct drm_i915_private *i915)
+ 
+ 		intel_set_plane_visible(crtc_state, plane_state, visible);
+ 
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[PLANE:%d:%s] hw state readout: %s, pipe %c\n",
+ 			    plane->base.base.id, plane->base.name,
+ 			    str_enabled_disabled(visible), pipe_name(pipe));
+ 	}
+ 
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 
+@@ -689,18 +684,17 @@ static void readout_plane_state(struct drm_i915_private *i915)
+ 	}
+ }
+ 
+-static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
++static void intel_modeset_readout_hw_state(struct intel_display *display)
+ {
+-	struct intel_display *display = &i915->display;
+ 	struct intel_pmdemand_state *pmdemand_state =
+-		to_intel_pmdemand_state(i915->display.pmdemand.obj.state);
++		to_intel_pmdemand_state(display->pmdemand.obj.state);
+ 	enum pipe pipe;
+ 	struct intel_crtc *crtc;
+ 	struct intel_encoder *encoder;
+ 	struct intel_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 
+@@ -715,15 +709,15 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 		crtc->base.enabled = crtc_state->hw.enable;
+ 		crtc->active = crtc_state->hw.active;
+ 
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[CRTC:%d:%s] hw state readout: %s\n",
+ 			    crtc->base.base.id, crtc->base.name,
+ 			    str_enabled_disabled(crtc_state->hw.active));
+ 	}
+ 
+-	readout_plane_state(i915);
++	readout_plane_state(display);
+ 
+-	for_each_intel_encoder(&i915->drm, encoder) {
++	for_each_intel_encoder(display->drm, encoder) {
+ 		struct intel_crtc_state *crtc_state = NULL;
+ 
+ 		pipe = 0;
+@@ -742,7 +736,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 				/* encoder should read be linked to joiner primary */
+ 				WARN_ON(intel_crtc_is_joiner_secondary(crtc_state));
+ 
+-				for_each_intel_crtc_in_pipe_mask(&i915->drm, secondary_crtc,
++				for_each_intel_crtc_in_pipe_mask(display->drm, secondary_crtc,
+ 								 intel_crtc_joiner_secondary_pipes(crtc_state)) {
+ 					struct intel_crtc_state *secondary_crtc_state;
+ 
+@@ -765,7 +759,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 		if (encoder->sync_state)
+ 			encoder->sync_state(encoder, crtc_state);
+ 
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[ENCODER:%d:%s] hw state readout: %s, pipe %c\n",
+ 			    encoder->base.base.id, encoder->base.name,
+ 			    str_enabled_disabled(encoder->base.crtc),
+@@ -774,7 +768,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 
+ 	intel_dpll_readout_hw_state(display);
+ 
+-	drm_connector_list_iter_begin(&i915->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	for_each_intel_connector_iter(connector, &conn_iter) {
+ 		struct intel_crtc_state *crtc_state = NULL;
+ 
+@@ -808,14 +802,14 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 		if (connector->sync_state)
+ 			connector->sync_state(connector, crtc_state);
+ 
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "[CONNECTOR:%d:%s] hw state readout: %s\n",
+ 			    connector->base.base.id, connector->base.name,
+ 			    str_enabled_disabled(connector->base.encoder));
+ 	}
+ 	drm_connector_list_iter_end(&conn_iter);
+ 
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 		struct intel_plane *plane;
+@@ -838,7 +832,7 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 			intel_crtc_copy_hw_to_uapi_state(crtc_state);
+ 		}
+ 
+-		for_each_intel_plane_on_crtc(&i915->drm, crtc, plane) {
++		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
+ 			const struct intel_plane_state *plane_state =
+ 				to_intel_plane_state(plane->base.state);
+ 
+@@ -854,14 +848,14 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ 			 * use plane->min_cdclk() :(
+ 			 */
+ 			if (plane_state->uapi.visible && plane->min_cdclk) {
+-				if (crtc_state->double_wide || DISPLAY_VER(i915) >= 10)
++				if (crtc_state->double_wide || DISPLAY_VER(display) >= 10)
+ 					crtc_state->min_cdclk[plane->id] =
+ 						DIV_ROUND_UP(crtc_state->pixel_rate, 2);
+ 				else
+ 					crtc_state->min_cdclk[plane->id] =
+ 						crtc_state->pixel_rate;
+ 			}
+-			drm_dbg_kms(&i915->drm,
++			drm_dbg_kms(display->drm,
+ 				    "[PLANE:%d:%s] min_cdclk %d kHz\n",
+ 				    plane->base.base.id, plane->base.name,
+ 				    crtc_state->min_cdclk[plane->id]);
+@@ -882,11 +876,11 @@ static void intel_modeset_readout_hw_state(struct drm_i915_private *i915)
+ }
+ 
+ static void
+-get_encoder_power_domains(struct drm_i915_private *i915)
++get_encoder_power_domains(struct intel_display *display)
+ {
+ 	struct intel_encoder *encoder;
+ 
+-	for_each_intel_encoder(&i915->drm, encoder) {
++	for_each_intel_encoder(display->drm, encoder) {
+ 		struct intel_crtc_state *crtc_state;
+ 
+ 		if (!encoder->get_power_domains)
+@@ -904,47 +898,47 @@ get_encoder_power_domains(struct drm_i915_private *i915)
+ 	}
+ }
+ 
+-static void intel_early_display_was(struct drm_i915_private *i915)
++static void intel_early_display_was(struct intel_display *display)
+ {
+ 	/*
+ 	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
+ 	 * Also known as Wa_14010480278.
+ 	 */
+-	if (IS_DISPLAY_VER(i915, 10, 12))
+-		intel_de_rmw(i915, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
++	if (IS_DISPLAY_VER(display, 10, 12))
++		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0, DARBF_GATING_DIS);
+ 
+ 	/*
+ 	 * WaRsPkgCStateDisplayPMReq:hsw
+ 	 * System hang if this isn't done before disabling all planes!
+ 	 */
+-	if (IS_HASWELL(i915))
+-		intel_de_rmw(i915, CHICKEN_PAR1_1, 0, FORCE_ARB_IDLE_PLANES);
++	if (display->platform.haswell)
++		intel_de_rmw(display, CHICKEN_PAR1_1, 0, FORCE_ARB_IDLE_PLANES);
+ 
+-	if (IS_KABYLAKE(i915) || IS_COFFEELAKE(i915) || IS_COMETLAKE(i915)) {
++	if (display->platform.kabylake || display->platform.coffeelake ||
++	    display->platform.cometlake) {
+ 		/* Display WA #1142:kbl,cfl,cml */
+-		intel_de_rmw(i915, CHICKEN_PAR1_1,
++		intel_de_rmw(display, CHICKEN_PAR1_1,
+ 			     KBL_ARB_FILL_SPARE_22, KBL_ARB_FILL_SPARE_22);
+-		intel_de_rmw(i915, CHICKEN_MISC_2,
++		intel_de_rmw(display, CHICKEN_MISC_2,
+ 			     KBL_ARB_FILL_SPARE_13 | KBL_ARB_FILL_SPARE_14,
+ 			     KBL_ARB_FILL_SPARE_14);
+ 	}
+ }
+ 
+-void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
++void intel_modeset_setup_hw_state(struct intel_display *display,
+ 				  struct drm_modeset_acquire_ctx *ctx)
+ {
+-	struct intel_display *display = &i915->display;
+ 	struct intel_encoder *encoder;
+ 	struct intel_crtc *crtc;
+ 	intel_wakeref_t wakeref;
+ 
+ 	wakeref = intel_display_power_get(display, POWER_DOMAIN_INIT);
+ 
+-	intel_early_display_was(i915);
+-	intel_modeset_readout_hw_state(i915);
++	intel_early_display_was(display);
++	intel_modeset_readout_hw_state(display);
+ 
+ 	/* HW state is read out, now we need to sanitize this mess. */
+-	get_encoder_power_domains(i915);
++	get_encoder_power_domains(display);
+ 
+ 	intel_pch_sanitize(display);
+ 
+@@ -954,7 +948,7 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
+ 	 * intel_sanitize_plane_mapping() may need to do vblank
+ 	 * waits, so we need vblank interrupts restored beforehand.
+ 	 */
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 
+@@ -968,20 +962,20 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
+ 		}
+ 	}
+ 
+-	intel_fbc_sanitize(&i915->display);
++	intel_fbc_sanitize(display);
+ 
+-	intel_sanitize_plane_mapping(i915);
++	intel_sanitize_plane_mapping(display);
+ 
+-	for_each_intel_encoder(&i915->drm, encoder)
++	for_each_intel_encoder(display->drm, encoder)
+ 		intel_sanitize_encoder(encoder);
+ 
+ 	/*
+ 	 * Sanitizing CRTCs needs their connector atomic state to be
+ 	 * up-to-date, so ensure that already here.
+ 	 */
+-	intel_modeset_update_connector_atomic_state(i915);
++	intel_modeset_update_connector_atomic_state(display);
+ 
+-	intel_sanitize_all_crtcs(i915, ctx);
++	intel_sanitize_all_crtcs(display, ctx);
+ 
+ 	intel_dpll_sanitize_state(display);
+ 
+@@ -990,13 +984,13 @@ void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
+ 		intel_wm_get_hw_state(display);
+ 	intel_wm_sanitize(display);
+ 
+-	for_each_intel_crtc(&i915->drm, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state =
+ 			to_intel_crtc_state(crtc->base.state);
+ 		struct intel_power_domain_mask put_domains;
+ 
+ 		intel_modeset_get_crtc_power_domains(crtc_state, &put_domains);
+-		if (drm_WARN_ON(&i915->drm, !bitmap_empty(put_domains.bits, POWER_DOMAIN_NUM)))
++		if (drm_WARN_ON(display->drm, !bitmap_empty(put_domains.bits, POWER_DOMAIN_NUM)))
+ 			intel_modeset_put_crtc_power_domains(crtc, &put_domains);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.h b/drivers/gpu/drm/i915/display/intel_modeset_setup.h
+index 3beff67b33d0..f5e6f3ae9572 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.h
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.h
+@@ -6,10 +6,10 @@
+ #ifndef __INTEL_MODESET_SETUP_H__
+ #define __INTEL_MODESET_SETUP_H__
+ 
 -struct drm_i915_private;
-+struct intel_display;
- struct intel_fbdev;
- struct intel_framebuffer;
- 
-@@ -19,14 +19,14 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 				   struct drm_fb_helper_surface_size *sizes);
- #define INTEL_FBDEV_DRIVER_OPS \
- 	.fbdev_probe = intel_fbdev_driver_fbdev_probe
--void intel_fbdev_setup(struct drm_i915_private *dev_priv);
-+void intel_fbdev_setup(struct intel_display *display);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
- struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
- 
- #else
- #define INTEL_FBDEV_DRIVER_OPS \
- 	.fbdev_probe = NULL
--static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
-+static inline void intel_fbdev_setup(struct intel_display *display)
- {
- }
- static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-index 4991c35a2632..5f4cb3328265 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -15,9 +15,9 @@
- struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 					       struct drm_fb_helper_surface_size *sizes)
- {
-+	struct intel_display *display = to_intel_display(helper->dev);
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct drm_framebuffer *fb;
--	struct drm_device *dev = helper->dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct drm_mode_fb_cmd2 mode_cmd = {};
- 	struct drm_i915_gem_object *obj;
- 	int size;
-@@ -50,14 +50,14 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 		 *
- 		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
- 		 */
--		if (!(IS_METEORLAKE(dev_priv)) && size * 2 < dev_priv->dsm.usable_size)
-+		if (!display->platform.meteorlake && size * 2 < dev_priv->dsm.usable_size)
- 			obj = i915_gem_object_create_stolen(dev_priv, size);
- 		if (IS_ERR(obj))
- 			obj = i915_gem_object_create_shmem(dev_priv, size);
- 	}
- 
- 	if (IS_ERR(obj)) {
--		drm_err(&dev_priv->drm, "failed to allocate framebuffer (%pe)\n", obj);
-+		drm_err(display->drm, "failed to allocate framebuffer (%pe)\n", obj);
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
-@@ -67,9 +67,10 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 	return to_intel_framebuffer(fb);
- }
- 
--int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
-+int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
- 			     struct drm_gem_object *_obj, struct i915_vma *vma)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
- 	struct i915_gem_ww_ctx ww;
- 	void __iomem *vaddr;
-@@ -101,7 +102,7 @@ int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info
- 
- 		vaddr = i915_vma_pin_iomap(vma);
- 		if (IS_ERR(vaddr)) {
--			drm_err(&i915->drm,
-+			drm_err(display->drm,
- 				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
- 			ret = PTR_ERR(vaddr);
- 			continue;
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-index e502ae375fc0..cb7957272715 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
-@@ -9,13 +9,13 @@
- struct drm_fb_helper;
- struct drm_fb_helper_surface_size;
- struct drm_gem_object;
--struct drm_i915_private;
- struct fb_info;
- struct i915_vma;
+ struct drm_modeset_acquire_ctx;
 +struct intel_display;
  
- struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 					       struct drm_fb_helper_surface_size *sizes);
--int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
-+int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
- 			     struct drm_gem_object *obj, struct i915_vma *vma);
+-void intel_modeset_setup_hw_state(struct drm_i915_private *i915,
++void intel_modeset_setup_hw_state(struct intel_display *display,
+ 				  struct drm_modeset_acquire_ctx *ctx);
  
- #endif
-diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-index 267f31697343..e8191562d122 100644
---- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-+++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-@@ -79,11 +79,11 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
- 	return ERR_CAST(fb);
- }
- 
--int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
--			      struct drm_gem_object *_obj, struct i915_vma *vma)
-+int intel_fbdev_fb_fill_info(struct intel_display *display, struct fb_info *info,
-+			     struct drm_gem_object *_obj, struct i915_vma *vma)
- {
- 	struct xe_bo *obj = gem_to_xe_bo(_obj);
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
- 
- 	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
- 		if (obj->flags & XE_BO_FLAG_STOLEN)
+ #endif /* __INTEL_MODESET_SETUP_H__ */
 -- 
 2.39.5
 
