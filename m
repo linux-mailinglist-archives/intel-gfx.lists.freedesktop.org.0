@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD98A82E67
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 20:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EA41A82E6C
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 20:18:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 217B310E2FB;
-	Wed,  9 Apr 2025 18:18:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FB910E6CC;
+	Wed,  9 Apr 2025 18:18:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gU6KdkGH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NnJB+XD4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE9A10E2FA;
- Wed,  9 Apr 2025 18:18:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11E5E10E6AB;
+ Wed,  9 Apr 2025 18:18:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744222724; x=1775758724;
+ t=1744222728; x=1775758728;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EllBjm9rjP8Lyx7UVt4DzITqVbxkWCvqwJOEUKpEcnQ=;
- b=gU6KdkGH8osQZF1J6p/Z5Un5/ST5vfRe2TL4gTt1UGknLGoV05SH8a7g
- wYL4y6tCRF7vc3YHJIBJnQcvhsdUzwO2a4TodbhoXKTSE2MGN+vCZbTC/
- 7UPCB6NwE3o9CN6kOIOXT/zdKvRS70vpbMclvN4kQjCyDR3tC9nTWoJhD
- 5w7sFQ6uPLh0GutI91YPaGVOYtll9fpquXTKqKtBpiT+v7IJiGA3VqFnC
- UQpoEX+l37a8brRInVefjBiQ1G7artov/PDcNxSaxgBWRGUWK525S88e4
- e5ipCptd5mAxXlYpXJgizh7KhfPwGMxpYCixt0afjh4XLnc7ZcFRBpVLR w==;
-X-CSE-ConnectionGUID: 46jD9F4hRvKZpzUxTcy1Nw==
-X-CSE-MsgGUID: H+5VYmouS8+N7/X/hSC0hQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45729940"
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="45729940"
+ bh=9UoEgr6Mlz7C5Kzhz/W4fPmaHsBXCkR9Cl7dNn9VV6U=;
+ b=NnJB+XD49gO1dwd93Gm245UgTYuZ9yTkg0QfOg04AFYHE6qZ6XICJIim
+ 9yRjiGgwMHBf8zYijqUA84E82c/b0bLeboRAgMK+b255zl+13t4vAknYY
+ orAOuSHZb3Y+WmpGbgZ5j1X7m7BlkkJOUNFxCz8BIoEwCP4O4lA4ZAN2L
+ wbo2hP3yZgakHoIPGUwno5Le/kunYBY8chMUg/dUd7gMmuVTZSEhdtRUS
+ xzmrSNkjdtFNidiqUiHZcbeMkr0xkz+tbZj7e5nKLM02twHoJ1HBRhyKj
+ MRNfYDTqKzlp1D4dATHbg+jDokWU6e17F+LBgX4NBLKl4kVDwtm2HpfSB Q==;
+X-CSE-ConnectionGUID: yUV7OTL7S+epMjCTHBgspQ==
+X-CSE-MsgGUID: 91j6cPAlRDelu+SU8sZeaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11399"; a="45729956"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="45729956"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:43 -0700
-X-CSE-ConnectionGUID: 46QAf3E+TCaxn3X7/6F51A==
-X-CSE-MsgGUID: 0NSVcsnJRpq++snHgE5ZZg==
+ 09 Apr 2025 11:18:48 -0700
+X-CSE-ConnectionGUID: TFcLfehYTUW4Q8ZyXAuy0A==
+X-CSE-MsgGUID: o+atZmE1Si++ZHesjM/i3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="165879024"
+X-IronPort-AV: E=Sophos;i="6.15,201,1739865600"; d="scan'208";a="165879036"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 11:18:41 -0700
+ 09 Apr 2025 11:18:46 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 07/14] drm/i915/dmc: switch to display->platform based
+Subject: [PATCH 08/14] drm/i915/dp-aux: switch to display->platform based
  platform detection
-Date: Wed,  9 Apr 2025 21:17:48 +0300
-Message-Id: <eda2b6cd285ec76d57d91ea3fe33158852aaec22.1744222449.git.jani.nikula@intel.com>
+Date: Wed,  9 Apr 2025 21:17:49 +0300
+Message-Id: <a5cde717001eb2843344beb21ca8907ab2e43d4f.1744222449.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744222449.git.jani.nikula@intel.com>
 References: <cover.1744222449.git.jani.nikula@intel.com>
@@ -76,154 +76,46 @@ macros.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 45 ++++++++++--------------
- 1 file changed, 19 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 98f80a6c63e8..ff2b97a752b1 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -173,7 +173,6 @@ MODULE_FIRMWARE(BXT_DMC_PATH);
- 
- static const char *dmc_firmware_default(struct intel_display *display, u32 *size)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 0496061203fb..3245a15935db 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -177,12 +177,11 @@ static u32 g4x_get_aux_send_ctl(struct intel_dp *intel_dp,
+ 				int send_bytes,
+ 				u32 aux_clock_divider)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const char *fw_path = NULL;
- 	u32 max_fw_size = 0;
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
++	struct intel_display *display = to_intel_display(intel_dp);
+ 	u32 timeout;
  
-@@ -189,39 +188,39 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
- 	} else if (DISPLAY_VERx100(display) == 1400) {
- 		fw_path = MTL_DMC_PATH;
- 		max_fw_size = XELPDP_DMC_MAX_FW_SIZE;
--	} else if (IS_DG2(i915)) {
-+	} else if (display->platform.dg2) {
- 		fw_path = DG2_DMC_PATH;
- 		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_P(i915)) {
-+	} else if (display->platform.alderlake_p) {
- 		fw_path = ADLP_DMC_PATH;
- 		max_fw_size = DISPLAY_VER13_DMC_MAX_FW_SIZE;
--	} else if (IS_ALDERLAKE_S(i915)) {
-+	} else if (display->platform.alderlake_s) {
- 		fw_path = ADLS_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_DG1(i915)) {
-+	} else if (display->platform.dg1) {
- 		fw_path = DG1_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_ROCKETLAKE(i915)) {
-+	} else if (display->platform.rocketlake) {
- 		fw_path = RKL_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
--	} else if (IS_TIGERLAKE(i915)) {
-+	} else if (display->platform.tigerlake) {
- 		fw_path = TGL_DMC_PATH;
- 		max_fw_size = DISPLAY_VER12_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VER(display) == 11) {
- 		fw_path = ICL_DMC_PATH;
- 		max_fw_size = ICL_DMC_MAX_FW_SIZE;
--	} else if (IS_GEMINILAKE(i915)) {
-+	} else if (display->platform.geminilake) {
- 		fw_path = GLK_DMC_PATH;
- 		max_fw_size = GLK_DMC_MAX_FW_SIZE;
--	} else if (IS_KABYLAKE(i915) ||
--		   IS_COFFEELAKE(i915) ||
--		   IS_COMETLAKE(i915)) {
-+	} else if (display->platform.kabylake ||
-+		   display->platform.coffeelake ||
-+		   display->platform.cometlake) {
- 		fw_path = KBL_DMC_PATH;
- 		max_fw_size = KBL_DMC_MAX_FW_SIZE;
--	} else if (IS_SKYLAKE(i915)) {
-+	} else if (display->platform.skylake) {
- 		fw_path = SKL_DMC_PATH;
- 		max_fw_size = SKL_DMC_MAX_FW_SIZE;
--	} else if (IS_BROXTON(i915)) {
-+	} else if (display->platform.broxton) {
- 		fw_path = BXT_DMC_PATH;
- 		max_fw_size = BXT_DMC_MAX_FW_SIZE;
- 	}
-@@ -541,8 +540,6 @@ static bool disable_dmc_evt(struct intel_display *display,
- 			    enum intel_dmc_id dmc_id,
- 			    i915_reg_t reg, u32 data)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
- 		return false;
- 
-@@ -551,12 +548,12 @@ static bool disable_dmc_evt(struct intel_display *display,
- 		return true;
- 
- 	/* also disable the flip queue event on the main DMC on TGL */
--	if (IS_TIGERLAKE(i915) &&
-+	if (display->platform.tigerlake &&
- 	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_CLK_MSEC)
- 		return true;
- 
- 	/* also disable the HRR event on the main DMC on TGL/ADLS */
--	if ((IS_TIGERLAKE(i915) || IS_ALDERLAKE_S(i915)) &&
-+	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
- 	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_VBLANK_A)
- 		return true;
- 
-@@ -588,7 +585,6 @@ static u32 dmc_mmiodata(struct intel_display *display,
-  */
- void intel_dmc_load_program(struct intel_display *display)
- {
--	struct drm_i915_private *i915 __maybe_unused = to_i915(display->drm);
- 	struct i915_power_domains *power_domains = &display->power.domains;
- 	struct intel_dmc *dmc = display_to_dmc(display);
- 	enum intel_dmc_id dmc_id;
-@@ -1012,9 +1008,7 @@ static void intel_dmc_runtime_pm_put(struct intel_display *display)
- 
- static const char *dmc_fallback_path(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	if (IS_ALDERLAKE_P(i915))
-+	if (display->platform.alderlake_p)
- 		return ADLP_DMC_FALLBACK_PATH;
- 
- 	return NULL;
-@@ -1279,7 +1273,6 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
- static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- {
- 	struct intel_display *display = m->private;
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_dmc *dmc = display_to_dmc(display);
- 	struct ref_tracker *wakeref;
- 	i915_reg_t dc5_reg, dc6_reg = INVALID_MMIO_REG;
-@@ -1299,7 +1292,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	seq_printf(m, "Pipe A fw loaded: %s\n",
- 		   str_yes_no(has_dmc_id_fw(display, DMC_FW_PIPEA)));
- 	seq_printf(m, "Pipe B fw needed: %s\n",
--		   str_yes_no(IS_ALDERLAKE_P(i915) ||
-+		   str_yes_no(display->platform.alderlake_p ||
- 			      DISPLAY_VER(display) >= 14));
- 	seq_printf(m, "Pipe B fw loaded: %s\n",
- 		   str_yes_no(has_dmc_id_fw(display, DMC_FW_PIPEB)));
-@@ -1313,7 +1306,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	if (DISPLAY_VER(display) >= 12) {
- 		i915_reg_t dc3co_reg;
- 
--		if (IS_DGFX(i915) || DISPLAY_VER(display) >= 14) {
-+		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
- 			dc3co_reg = DG1_DMC_DEBUG3;
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
-@@ -1325,9 +1318,9 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		seq_printf(m, "DC3CO count: %d\n",
- 			   intel_de_read(display, dc3co_reg));
+ 	/* Max timeout value on G4x-BDW: 1.6ms */
+-	if (IS_BROADWELL(i915))
++	if (display->platform.broadwell)
+ 		timeout = DP_AUX_CH_CTL_TIME_OUT_600us;
+ 	else
+ 		timeout = DP_AUX_CH_CTL_TIME_OUT_400us;
+@@ -804,7 +803,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+ 	} else if (HAS_PCH_SPLIT(i915)) {
+ 		intel_dp->aux_ch_ctl_reg = ilk_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = ilk_aux_data_reg;
+-	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
++	} else if (display->platform.valleyview || display->platform.cherryview) {
+ 		intel_dp->aux_ch_ctl_reg = vlv_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = vlv_aux_data_reg;
  	} else {
--		dc5_reg = IS_BROXTON(i915) ? BXT_DMC_DC3_DC5_COUNT :
-+		dc5_reg = display->platform.broxton ? BXT_DMC_DC3_DC5_COUNT :
- 			SKL_DMC_DC3_DC5_COUNT;
--		if (!IS_GEMINILAKE(i915) && !IS_BROXTON(i915))
-+		if (!display->platform.geminilake && !display->platform.broxton)
- 			dc6_reg = SKL_DMC_DC5_DC6_COUNT;
- 	}
+@@ -814,7 +813,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
  
+ 	if (DISPLAY_VER(display) >= 9)
+ 		intel_dp->get_aux_clock_divider = skl_get_aux_clock_divider;
+-	else if (IS_BROADWELL(i915) || IS_HASWELL(i915))
++	else if (display->platform.broadwell || display->platform.haswell)
+ 		intel_dp->get_aux_clock_divider = hsw_get_aux_clock_divider;
+ 	else if (HAS_PCH_SPLIT(i915))
+ 		intel_dp->get_aux_clock_divider = ilk_get_aux_clock_divider;
 -- 
 2.39.5
 
