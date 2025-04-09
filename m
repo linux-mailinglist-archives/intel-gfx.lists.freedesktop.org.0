@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C2D3A81FB2
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 10:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F31BA81FD8
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 10:29:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E463910E80C;
-	Wed,  9 Apr 2025 08:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E32510E805;
+	Wed,  9 Apr 2025 08:29:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="clvJh3aq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W3+FVNa8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B711210E80B;
- Wed,  9 Apr 2025 08:26:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C95E10E047;
+ Wed,  9 Apr 2025 08:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744187212; x=1775723212;
+ t=1744187376; x=1775723376;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=mhs6n4Jbdg/HQ+yaYc/f9MnfYaklD9RT6xLMNMNTMhY=;
- b=clvJh3aqSLypj4uu1p78ykHEESPykhZv8ghMl/X6wCVZSrpM5pqL7Gd/
- IYwi6cxIoMi4gf3s1B8Oe11RN+xURN3gMR2TH4HEBl3DSnfwvNB7UeFvl
- egVpUQY1FtekuqR7RWN49p+c46bshaz6tfLCewzjaisjiKf7OcLNJRSKP
- jlMPEMF9bdxignKPJo9g2UGP/gOvk0LPpp+fQifpjzd+hwL0zlqgW9yIt
- h2bs7sW/q+CPoHeSioHsfmkippc/5OonC68AzeeWeAr5h+55Wh+a5ndnQ
- mmB0njrqd64iX7fXS6otpEeD2TuzE+gThBlUd3CxUonPWRdsxI4g3nHq0 w==;
-X-CSE-ConnectionGUID: S8sJDvonQEadd7rX91XQ2A==
-X-CSE-MsgGUID: NLy7ZIY7QMeU0262iJcOUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="48353827"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="48353827"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 01:26:51 -0700
-X-CSE-ConnectionGUID: lMJFwvFQRj2UWmdIMUvIQg==
-X-CSE-MsgGUID: TcSKDbGvSmyvYL4vexjixA==
+ mime-version; bh=UKt5tRY7ThNljbQkWWwd+5INIze53uv33QlxVAp3WFE=;
+ b=W3+FVNa8G2NJFWeua4f5q8rX7uOqnRz/7hldTWT2qkMmLBILXptlzSYV
+ Lx8J5e9Ic93N4EPayXkJXthJIhs3WuDwYJuFwKNIWCCgx/kfNZKWvm7x0
+ jhsHQJaktD39zJHs1uCO5TplO0+p48ZqXCeDY5WrYZl0l5a1Lg/8c1VQy
+ lvNkeU2sPl/1PPb8e1B6CZGE1TTdb1EU0zxjbdT4xlwutRfLEdk/Nnk2h
+ +CltCjJxg5aajIVdJ5A2iZaWBjlybIRvsuG0/ahkgZpbc3I9Wlyoq6YXC
+ 2kJ9n0MLAycTjzhAiD1UYspGyDMVPNRT1QlkCvzCbPOeUHKBCEellD6ZH g==;
+X-CSE-ConnectionGUID: N+xmTKqxRu6nXd9VhqRRlA==
+X-CSE-MsgGUID: 1KTABw7bRYy9f/S8Xh+H4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45366108"
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="45366108"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 01:29:36 -0700
+X-CSE-ConnectionGUID: raNhD/QNT3iaGqqZrCnXNQ==
+X-CSE-MsgGUID: OgaSgtclSfKEt1dO6q0k3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="133728293"
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="129061788"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 01:26:49 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 01:29:33 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 07/10] drm/i915/dp: Use an intel_connector pointer
+Subject: Re: [PATCH 08/10] drm/i915/hdmi: Use an intel_connector pointer
  everywhere
-In-Reply-To: <20250408214342.1953197-8-imre.deak@intel.com>
+In-Reply-To: <20250408214342.1953197-9-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250408214342.1953197-1-imre.deak@intel.com>
- <20250408214342.1953197-8-imre.deak@intel.com>
-Date: Wed, 09 Apr 2025 11:26:46 +0300
-Message-ID: <87wmbtwxix.fsf@intel.com>
+ <20250408214342.1953197-9-imre.deak@intel.com>
+Date: Wed, 09 Apr 2025 11:29:30 +0300
+Message-ID: <87tt6xwxed.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,27 +70,28 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 09 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
-> Following the convention, convert intel_dp.c to use an intel_connector
+> Following the convention, convert intel_hdmi.c to use an intel_connector
 > pointer everywhere, calling this pointer connector. If the intel
 > connector must be casted from a drm_connector, call this pointer
 > _connector and use this pointer only for the casting.
 >
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-
-> @@ -5979,21 +5982,22 @@ static int intel_modeset_tile_group(struct intel_atomic_state *state,
+> @@ -2076,14 +2081,16 @@ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
 >  {
->  	struct intel_display *display = to_intel_display(state);
->  	struct drm_connector_list_iter conn_iter;
+>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+>  	struct drm_connector_state *connector_state;
 > -	struct drm_connector *connector;
 > +	struct drm_connector *_connector;
->  	int ret = 0;
+>  	int i;
 >  
->  	drm_connector_list_iter_begin(display->drm, &conn_iter);
-> -	drm_for_each_connector_iter(connector, &conn_iter) {
-> +	drm_for_each_connector_iter(_connector, &conn_iter) {
+> -	for_each_new_connector_in_state(state, connector, connector_state, i) {
+> +	for_each_new_connector_in_state(state, _connector, connector_state, i) {
 
-for_each_intel_connector_iter()
+Can we use for_each_new_intel_connector_in_state() here?
+
+BR,
+Jani.
 
 
 -- 
