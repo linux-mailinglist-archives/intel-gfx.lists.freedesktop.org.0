@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD9CA8290E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 16:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 009A3A82910
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 16:59:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB78B10E943;
-	Wed,  9 Apr 2025 14:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77EEF10E95F;
+	Wed,  9 Apr 2025 14:59:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2683D10E946;
- Wed,  9 Apr 2025 14:59:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8749010E94A;
+ Wed,  9 Apr 2025 14:59:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_error_ca?=
- =?utf-8?q?pture_cleanups_and_refactor?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_error_captur?=
+ =?utf-8?q?e_cleanups_and_refactor?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 14:59:21 -0000
-Message-ID: <174421076115.52982.3809425216145977620@e6b6f09ec485>
+Date: Wed, 09 Apr 2025 14:59:24 -0000
+Message-ID: <174421076454.52982.4337149703634216437@e6b6f09ec485>
 X-Patchwork-Hint: ignore
 References: <cover.1744208554.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1744208554.git.jani.nikula@intel.com>
@@ -49,20 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-ee6e791f7146 drm/i915: use 32-bit access for gen2 irq registers
-d51c657e9bac drm/i915: record GEN2_IER in gtier[0] for pre-ilk error capture
-c267baccadc2 drm/i915: stop recording IER in error capture
-08c0b7320bf2 drm/i915: use display snapshot mechanism for display irq regs
--:70: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#70: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:87:
-+struct intel_display_irq_snapshot *intel_display_irq_snapshot_capture(struct intel_display *display);
-
--:71: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#71: FILE: drivers/gpu/drm/i915/display/intel_display_irq.h:88:
-+void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot, struct drm_printer *p);
-
-total: 0 errors, 2 warnings, 0 checks, 131 lines checked
-55011e49d62f drm/i915: use graphics version instead of PCH split in error capture
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
