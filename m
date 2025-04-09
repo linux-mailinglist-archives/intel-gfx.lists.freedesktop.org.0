@@ -2,29 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE14A830A1
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 21:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 979D6A831A9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 22:11:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B993310E0CA;
-	Wed,  9 Apr 2025 19:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A196510E6FD;
+	Wed,  9 Apr 2025 20:11:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="H8xaZ04G";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from e6b6f09ec485 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7434410E0CA;
- Wed,  9 Apr 2025 19:37:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0950449537407759522=="
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
+ [136.143.188.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2EE510E6FD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Apr 2025 20:11:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1744229493; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=i62oqfMynSoK3AZ+XDfbhpmwuBSTerAcRIf7BzMbqzTCpVD/dd2RsB/75SMoUoI9DWMe3p9Y1fz+kpZ3qSwphjNsxjXi//+XnvMdRS4kcx8KrMd18D2471kWVBDU6WXi9UD4YZzgeDs4pjkznd8EccH2eQN327mPzMpTY5RHv8s=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1744229493;
+ h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=X6lihRsP1LSoDA5ZquXUmKmb4bdNc2Eg/Y5qK5T68X4=; 
+ b=QBh+8qDc5hfcfK3C9cBQPZbkuyAilqdbdOcQpQxvTz1cTN8v363xRQakqHXZhbt5qkhoHsjHYXGsmkT5hhWSZbinqe4Q7TgBkD6QYdyMyZoHHv8vcc7cPPHqtQL8++UBvGlCLPobbx1NxEXQeWyCrlzUXaF9458Vy02TTLQF3M4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744229493; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=X6lihRsP1LSoDA5ZquXUmKmb4bdNc2Eg/Y5qK5T68X4=;
+ b=H8xaZ04G5WP2eg8zGkStBThq9s0L7g0CEpCea1VddNqU/Glpa5Nyws3GBlXarV2m
+ opCds8rITScwaGqDqC9F7pIY8XueM10+7gsk2EWxaZTIl5mIyGkGbOSFYOpcn23bL10
+ SzIoX9SSdjWU6n8QMsAVQ0CiHTnSsN5wOB1aTSzI=
+Received: by mx.zohomail.com with SMTPS id 1744229491773425.85742697738124;
+ Wed, 9 Apr 2025 13:11:31 -0700 (PDT)
+Message-ID: <1bbbce9489d0160cd643e03866a86b70416e388e.camel@collabora.com>
+Subject: Reminder: Seeking nominations for the 2025 X.Org Board of Directors
+ Elections
+From: Mark Filion <mark.filion@collabora.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 16:11:30 -0400
+Content-Type: multipart/alternative; boundary="=-zeu2xqnAoXLUnj8RzW61"
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41app1) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/irq=3A_convert_i?=
- =?utf-8?q?bx=5Firq=5Freset=28=29_into_ibx=5Fdisplay=5Firq=5Freset=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 19:37:42 -0000
-Message-ID: <174422746246.54007.11981496172998050528@e6b6f09ec485>
-X-Patchwork-Hint: ignore
-References: <20250409184702.3790548-1-jani.nikula@intel.com>
-In-Reply-To: <20250409184702.3790548-1-jani.nikula@intel.com>
+X-ZohoMailClient: External
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +59,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0950449537407759522==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--=-zeu2xqnAoXLUnj8RzW61
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hello!
 
-Series: drm/i915/irq: convert ibx_irq_reset() into ibx_display_irq_reset()
-URL   : https://patchwork.freedesktop.org/series/147491/
-State : success
+The nomination period is currently open for the upcoming election to
+the X.Org Foundation Board of Directors. All X.Org Foundation members
+are eligible for election to the board.
 
-== Summary ==
+Nominations for the 2025 election are now open and will remain open
+until 23:59 UTC on 16 April 2025.
 
-CI Bug Log - changes from CI_DRM_16392 -> Patchwork_147491v1
-====================================================
+The Board consists of directors elected from the membership. Each year,
+an election is held to bring the total number of directors to eight.
+The four members receiving the highest vote totals will serve as
+directors for two year terms.
 
-Summary
--------
+The directors who received two year terms starting in 2024 were Erik
+Faye-Lund, Mark Filion, Neal Gompa and Simon Ser. They will continue to
+serve until their term ends in 2026. Current directors whose term
+expires in 2025 are Lyude Paul, Arkadiusz Hiler and Christopher
+Michael. Additionally, a fourth board position is open following the
+resignation of Simona Vetter in Q3 2024.
 
-  **SUCCESS**
+A director is expected to participate in the bi-weekly BBB meeting to
+discuss current business and to attend the annual meeting of the X.Org
+Foundation, which will be held at a location determined in advance by
+the Board of Directors.
 
-  No regressions found.
+A member may nominate themselves or any other member they feel is
+qualified. Nominations should be sent to the Election Committee
+at=C2=A0elections@x.org.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/index.html
+Nominees shall be required to be current members of the X.Org
+Foundation, and submit a personal statement of up to 200 words that
+will be provided to prospective voters. The collected statements, along
+with the statement of contribution to the X.Org Foundation in the
+member's account page on=C2=A0http://members.x.org, will be made available
+to all voters to help them make their voting decisions.
 
-Participating hosts (42 -> 41)
-------------------------------
+Nominations, membership applications or renewals and completed personal
+statements must be received no later than 23:59 UTC on 16 April 2025.
 
-  Missing    (1): fi-snb-2520m 
+The slate of candidates will be published 23 April 2025 and candidate
+Q&A will begin then. The deadline for Xorg membership applications and
+renewals is 28 April 2025.
 
-Known issues
-------------
+Best,=C2=A0
 
-  Here are the changes found in Patchwork_147491v1 that come from known issues:
+Mark Filion, on behalf of the X.Org BoD
 
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-n3050:       [INCOMPLETE][1] ([i915#12904]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16392/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16392/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16392 -> Patchwork_147491v1
-
-  CI-20190529: 20190529
-  CI_DRM_16392: ef33117e4583fab700ac35903cf68dd5309fa947 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_147491v1: ef33117e4583fab700ac35903cf68dd5309fa947 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/index.html
-
---===============0950449537407759522==
+--=-zeu2xqnAoXLUnj8RzW61
 Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
+ 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webk=
+it-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px;=
+ text-decoration: none; unicode-bidi: plaintext;">Hello!</div><div style=3D=
+"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; fo=
+nt-style: normal; font-variant-caps: normal; font-weight: 400; letter-spaci=
+ng: normal; text-align: start; text-indent: 0px; text-transform: none; whit=
+e-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0,=
+ 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bi=
+di: plaintext;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: r=
+gb(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps:=
+ normal; font-weight: 400; letter-spacing: normal; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; =
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width:=
+ 0px; text-decoration: none; unicode-bidi: plaintext;">The nomination perio=
+d is currently open for the upcoming election to the X.Org Foundation Board=
+ of Directors. All X.Org Foundation members are eligible for election to th=
+e board.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);=
+ font-family: Cantarell; font-style: normal; font-variant-caps: normal; fon=
+t-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-=
+highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-d=
+ecoration: none; unicode-bidi: plaintext;"><br></div><div style=3D"caret-co=
+lor: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style:=
+ normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norma=
+l; text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4);=
+ -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi: plain=
+text;">Nominations for the 2025 election are now open and will remain open =
+until 23:59 UTC on 16 April 2025.</div><div style=3D"caret-color: rgb(0, 0,=
+ 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; font-=
+variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; word-s=
+pacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-=
+stroke-width: 0px; text-decoration: none; unicode-bidi: plaintext;"><br></d=
+iv><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-famil=
+y: Cantarell; font-style: normal; font-variant-caps: normal; font-weight: 4=
+00; letter-spacing: normal; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-c=
+olor: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: =
+none; unicode-bidi: plaintext;">The Board consists of directors elected fro=
+m the membership. Each year, an election is held to bring the total number =
+of directors to eight. The four members receiving the highest vote totals w=
+ill serve as directors for two year terms.</div><div style=3D"caret-color: =
+rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: norm=
+al; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -web=
+kit-text-stroke-width: 0px; text-decoration: none; unicode-bidi: plaintext;=
+"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); f=
+ont-family: Cantarell; font-style: normal; font-variant-caps: normal; font-=
+weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-hi=
+ghlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-dec=
+oration: none; unicode-bidi: plaintext;">The directors who received two yea=
+r terms starting in 2024 were Erik Faye-Lund, Mark Filion, Neal Gompa and S=
+imon Ser. They will continue to serve until their term ends in 2026. Curren=
+t directors whose term expires in 2025 are Lyude Paul, Arkadiusz Hiler and =
+Christopher Michael. Additionally, a fourth board position is open followin=
+g the resignation of Simona Vetter in Q3 2024.</div><div style=3D"caret-col=
+or: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: =
+normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal=
+; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
+ormal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); =
+-webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi: plaint=
+ext;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0=
+); font-family: Cantarell; font-style: normal; font-variant-caps: normal; f=
+ont-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-ta=
+p-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text=
+-decoration: none; unicode-bidi: plaintext;">A director is expected to part=
+icipate in the bi-weekly BBB meeting to discuss current business and to att=
+end the annual meeting of the X.Org Foundation, which will be held at a loc=
+ation determined in advance by the Board of Directors.</div><div style=3D"c=
+aret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font=
+-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0=
+, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi=
+: plaintext;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb=
+(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: n=
+ormal; font-weight: 400; letter-spacing: normal; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -w=
+ebkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0=
+px; text-decoration: none; unicode-bidi: plaintext;">A member may nominate =
+themselves or any other member they feel is qualified. Nominations should b=
+e sent to the Election Committee at<span class=3D"Apple-converted-space">&n=
+bsp;</span><a href=3D"mailto:elections@x.org" title=3D"Click to mail electi=
+ons@x.org" style=3D"color: rgb(46, 52, 54);">elections@x.org</a>.</div><div=
+ style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cant=
+arell; font-style: normal; font-variant-caps: normal; font-weight: 400; let=
+ter-spacing: normal; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: r=
+gba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; u=
+nicode-bidi: plaintext;"><br></div><div style=3D"caret-color: rgb(0, 0, 0);=
+ color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; font-vari=
+ant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: sta=
+rt; text-indent: 0px; text-transform: none; white-space: normal; word-spaci=
+ng: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stro=
+ke-width: 0px; text-decoration: none; unicode-bidi: plaintext;">Nominees sh=
+all be required to be current members of the X.Org Foundation, and submit a=
+ personal statement of up to 200 words that will be provided to prospective=
+ voters. The collected statements, along with the statement of contribution=
+ to the X.Org Foundation in the member's account page on<span class=3D"Appl=
+e-converted-space">&nbsp;</span><a href=3D"http://members.x.org/" title=3D"=
+Click to open http://members.x.org/" style=3D"color: rgb(46, 52, 54);">http=
+://members.x.org</a>, will be made available to all voters to help them mak=
+e their voting decisions.</div><div style=3D"caret-color: rgb(0, 0, 0); col=
+or: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; font-variant-=
+caps: normal; font-weight: 400; letter-spacing: normal; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; word-spacing: =
+0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-w=
+idth: 0px; text-decoration: none; unicode-bidi: plaintext;"><br></div><div =
+style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Canta=
+rell; font-style: normal; font-variant-caps: normal; font-weight: 400; lett=
+er-spacing: normal; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rg=
+ba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; un=
+icode-bidi: plaintext;">Nominations, membership applications or renewals an=
+d completed personal statements must be received no later than 23:59 UTC on=
+ 16 April 2025.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
+ 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webk=
+it-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px;=
+ text-decoration: none; unicode-bidi: plaintext;"><br></div><div style=3D"c=
+aret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font=
+-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0=
+, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi=
+: plaintext;">The slate of candidates will be published 23 April 2025 and c=
+andidate Q&amp;A will begin then. The deadline for Xorg membership applicat=
+ions and renewals is 28 April 2025.</div><div style=3D"caret-color: rgb(0, =
+0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font-style: normal; fon=
+t-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-alig=
+n: start; text-indent: 0px; text-transform: none; white-space: normal; word=
+-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-tex=
+t-stroke-width: 0px; text-decoration: none; unicode-bidi: plaintext;"><br><=
+/div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-fam=
+ily: Cantarell; font-style: normal; font-variant-caps: normal; font-weight:=
+ 400; letter-spacing: normal; text-align: start; text-indent: 0px; text-tra=
+nsform: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight=
+-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration=
+: none; unicode-bidi: plaintext;">Best,<span class=3D"Apple-converted-space=
+">&nbsp;</span></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
+ 0, 0); font-family: Cantarell; font-style: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webk=
+it-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px;=
+ text-decoration: none; unicode-bidi: plaintext;"><br></div><div style=3D"c=
+aret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Cantarell; font=
+-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing=
+: normal; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0=
+, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi=
+: plaintext;">Mark Filion, on behalf of the X.Org BoD</div><div><span></spa=
+n></div></body></html>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/irq: convert ibx_irq_reset() into ibx_display_irq_reset()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147491/">https://patchwork.freedesktop.org/series/147491/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16392 -&gt; Patchwork_147491v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 41)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147491v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16392/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16392/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147491v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16392 -&gt; Patchwork_147491v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16392: ef33117e4583fab700ac35903cf68dd5309fa947 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8311: 851a9c1cb1a690d8c527f26c49c250ec583af65e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_147491v1: ef33117e4583fab700ac35903cf68dd5309fa947 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0950449537407759522==--
+--=-zeu2xqnAoXLUnj8RzW61--
