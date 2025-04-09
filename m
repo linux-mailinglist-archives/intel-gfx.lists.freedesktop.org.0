@@ -2,60 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0A1A826DD
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 16:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2080A826E5
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Apr 2025 16:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D865A10E8CB;
-	Wed,  9 Apr 2025 14:00:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 752EF10E8D4;
+	Wed,  9 Apr 2025 14:01:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ebQKO5VB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dTRWWByS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC44A10E8CA;
- Wed,  9 Apr 2025 14:00:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83A8310E8FF;
+ Wed,  9 Apr 2025 14:01:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744207223; x=1775743223;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=YIsWyqZCeRziEKi/72DMvMzC3IxYS4dNXIXSIzrs7SM=;
- b=ebQKO5VByaybKLs1KsBypIsbSuiEc6goczuh02twxz+flRqemHBThuWD
- GZ1WcD4CDf/gCgIYz0SdzeK1z5pXbbsT0dABARHhreRiFzoS/bFoXZ/WH
- 2ldrOo42mSskwpYj8So4Hs5Q1jbsn/Xc/xsOeGy10/v4n4E2nzZYkKUK+
- cIjNekZp9Kl+qMPxzUtKk2z1/1JhrxU6ZykiQksHXgrcEcoZIg4gRD1Da
- 7o85gpUHO9eugLnsVXtC7fD09fwQreoo47RKCpuKPrN3cHyI+TYhkMWfu
- Oh0FaYgH+wPG1RdGLboJ3ypnr85BVC4biOU/CzebHfSEtpdU4wGxf1Mob A==;
-X-CSE-ConnectionGUID: ja47+nsgSnifJgKMCqMMrQ==
-X-CSE-MsgGUID: 09C3L02USJG0DtvVm3TuLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="45570111"
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="45570111"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 07:00:22 -0700
-X-CSE-ConnectionGUID: agFPSZFXTdiYt0H+HTD9rA==
-X-CSE-MsgGUID: hWf7wLrHTDeHsHm43s19rA==
+ t=1744207281; x=1775743281;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=LfINXOp/b+stBwBSKQ8iw8UplSLCWZFeaM2gcXMT1lE=;
+ b=dTRWWBySaSz4g6eVOu6rG/c7l2jEHpnKnLtKtyr4Dr/N6scYJF6s3i7r
+ VbTW2WRxObkL9PirIQ+Yv52KaBrWWkiE3mU6T+ZSqlGk5452kW7KIjXQe
+ 2RV7v4gPJj7F/1kU0kZniqgjyfQfS7Gge5Ec018hfDLzgD53ezDDkQe5T
+ n0SUXwndHB/Y9f8VtgR5U3U6BKcIvkn8T4He7O+es7dWQt8YiI5cfTSbU
+ 20IWlxH5yMFc/J7509cWrb+hi6T133GWjxkCC8y0DHgiYpJoglaTUWrhJ
+ Uk1MPtH3a1x6U9M3OzVAK+D/nEYWSydVWav8pyUgkYXDGo+V/4/UKjQYn A==;
+X-CSE-ConnectionGUID: OM34TFJ1TpWKdQpVQeAynA==
+X-CSE-MsgGUID: LY5/wA2VRXWa6YNerNAwmg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11397"; a="49530442"
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="49530442"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 07:01:21 -0700
+X-CSE-ConnectionGUID: xmzZUR+SSxe0XOaJ7iBDpw==
+X-CSE-MsgGUID: Wv5mRXh4T9i2E9jNAPlkFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="133729710"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2025 07:00:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 10/10] drm/i915: Add force link bpp debugfs entry to
- connectors
-In-Reply-To: <Z_Z4ENIrN-czndqa@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.15,200,1739865600"; d="scan'208";a="129115554"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2025 07:01:21 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Wed, 9 Apr 2025 07:01:20 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Wed, 9 Apr 2025 07:01:20 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 9 Apr 2025 07:01:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PmcfFO9Dw6ba87hT12TKkED4IgVrXQ/4G3ksOFUZc9PtQKmQ3yEjsyb8rsODO7y/snYpM+Ig+3StbnHC3RSTufu73IbUHvTgRREMVnJwOdptEo7qpfHrM9n0K+BCsckiU7jxLOtLYN4vJ9fmuwyTKh6KSp1eAa8jGxSegG+47oTejNLm1gQg6F97yeiJ5uHyzvNgD1kniCXa0NwmR3m1zOJWjBPGmw1ETIEl78+G5KofQvS6h+MMizN5RgBEabMhMwWKj/ealJG4K84ergkZUjkWvpjHXO7/lw9ofQsqCoVQIX/vm+vVPsUh5avDyfEko0ooNb2RZg0Q9DuUx4AYgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FnfPLPRYoxD+MSAMkcVs12CFIPly9+qRg0PTeYzHAXE=;
+ b=Meg4I+Z3HjfAGG7GDBkyuGRx58BJQt10zfdddmirHUKqgffiwGvGc31PYz2647MB/bYzJ4w8AzVxU3RFAWu+V2ogVOOjwW1W0x6MORlEGhg6s4GlKUYm+Qj+jQINRXCSaq5IQsLvJTy6dcYFyMiNYv8713t783mqVzIJTLM/50Qod6gGPJtVV45dss+62Jbas95BfnydnqD9IwTcyHhwu0XUL0ONCpmyoaV78kX5M0kQbjs5rSixW2vnfZMNp9MQjfQqR+1mi8CSTzNfYGnAtq/2ysTg9iQ2b7/4T70KFUSUwKJYFfjOo2LTxcKccr0HY2zW15IT85BYMyoHOFv17Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by SJ5PPF2E3E6CCA8.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::81b) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.21; Wed, 9 Apr
+ 2025 14:01:17 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%6]) with mapi id 15.20.8606.033; Wed, 9 Apr 2025
+ 14:01:17 +0000
+Date: Wed, 9 Apr 2025 17:01:20 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 08/10] drm/i915/hdmi: Use an intel_connector pointer
+ everywhere
+Message-ID: <Z_Z9sP2FQfclJ2cL@ideak-desk.fi.intel.com>
 References: <20250408214342.1953197-1-imre.deak@intel.com>
- <20250408214342.1953197-11-imre.deak@intel.com> <87zfgpwxz9.fsf@intel.com>
- <Z_Z4ENIrN-czndqa@ideak-desk.fi.intel.com>
-Date: Wed, 09 Apr 2025 17:00:18 +0300
-Message-ID: <87frihwi31.fsf@intel.com>
+ <20250408214342.1953197-9-imre.deak@intel.com>
+ <87tt6xwxed.fsf@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87tt6xwxed.fsf@intel.com>
+X-ClientProxiedBy: DUZPR01CA0289.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b7::20) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SJ5PPF2E3E6CCA8:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73e0841f-233d-40bf-52d7-08dd776eff3e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?voarkzPzQ6TcJb3FNwNAggiToVV2SzfjQ4EFrR9Lv06aStJ5pfWUhkyCZ/Sq?=
+ =?us-ascii?Q?uPPi//CVZRpgrxDXpVW53Wz0ULHZbI1gCI61BUjVyEQK+RULbJ+v/iH6JC6u?=
+ =?us-ascii?Q?dJljydrZKQqN1rC8jqz0Z8FayEfooohrROPqJmy+dtaQsbqoWtgRvsrf0Gy/?=
+ =?us-ascii?Q?WFL0VNbM/xEvvtrgWUyBvt+tHCTShXirBK8Q0hk1J4y0x5GUWyaUZrXJyhIa?=
+ =?us-ascii?Q?S+UmTRJgg+I7ns7O9ljhUoIJUdFkbujGrVn4ugfUK82i+qCSQ5/uTsAd+InU?=
+ =?us-ascii?Q?15npH1xRUSC3/vZlfwEJhBYq1168zhImVv6q6ocrAZnOYeJhhdysQycOndWm?=
+ =?us-ascii?Q?52HgO5iO0zM2BkLq9ALNB8io+AW9h02CRlLVEBnBUCM/9FKbGWCuZzLyQLpa?=
+ =?us-ascii?Q?LjxpCpsAYpwh1WckXqrxeiBIpoEbNV6AuVm8/WnXw/7mtelYM8JybEFvQ9ax?=
+ =?us-ascii?Q?Ji55VZgZEOdDa19ID+Vq0HSh1iBGEEOGQ7eXm2gLdaLHqTVzKTYx0MW6/6c+?=
+ =?us-ascii?Q?9WzQbLqs7D56apl+LCV4YPvAkwKyPQNsQSHs3/ovr9x5qZ/Do2QdzFfpFwu8?=
+ =?us-ascii?Q?60ryEM/+5F2RMxQu9WdPCL/3Nn2T4bSOpc9uyfW9lCtDNpIzys2P4sdrox4f?=
+ =?us-ascii?Q?JF2tdt5a3JUL6227ouLlapePAB5wnLa/fHE3aaQO0amDFA+zLlbP8WGwnhq4?=
+ =?us-ascii?Q?y+adsfo+FNPNdpFwCe6A1iOuhPmYFVVI+eMh0LtviIgwW0L6lAz8LoDuE8mi?=
+ =?us-ascii?Q?6VpRVmIslJ33qHMraPAfrrnUUWGS+IQsBDLNOWax/9ykjhm4RHyb9cPdZGIo?=
+ =?us-ascii?Q?pV5+4Lb/IzgwTflUbwDoAKs2OxgQ0gs7fkr/L3VU3ay9rRYluTOZKuWg4nK7?=
+ =?us-ascii?Q?/sGm3kHuiE3Ys+avKL0WhJtZ6ruMF2cKlTM3ctBuutccVgsl89upb9fr/tBT?=
+ =?us-ascii?Q?UZuO+zli+K3OesUD1dcpj0N2cTQDvWV9lv6RfOOMqaiVzdW9oYE6moawqZh/?=
+ =?us-ascii?Q?oSKKNvvRZ4jjB+4muOVdDP4KPRsZwptLT9FRzW6LbOyrArzETYlio57zyPSK?=
+ =?us-ascii?Q?bq8Ax0tsbSYV0ANimN4fQ8V/yFo301qZPNyV+/2cFZtXy0UFmOY7EDo7IPLt?=
+ =?us-ascii?Q?dB4p2WpC0TE7HX0aJnUVrz96YPqefMF0g0fKHJzgBzRNkE9IlPWAA/d6roVz?=
+ =?us-ascii?Q?CcjXp15taPsYgVT99ysL0KFrwIS2SGytJ8xqNKvNI5NOODVinXOFuz/CGdcM?=
+ =?us-ascii?Q?+a9wUT6D/MrgA+qER5eE+WHUqs6/hvKqlhBXMk5A565ipwNC2GJqohZo7WV/?=
+ =?us-ascii?Q?2Y6iZ3ChVjy/DvZ1z96JXQQ+GQiT5d9H0//yLCjuDkk6pQxzZ6MJcExj3MO5?=
+ =?us-ascii?Q?1oTqaX74020YBHdL3OG1bM0x+1Bl+LTnEQKCeJ0Mvg+H/rYD8+r8fH3TR7us?=
+ =?us-ascii?Q?m9SgdnnR3Gw=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?laqf9GVJ1tzo4BQGc9EoSzTLf/BYJ3aUOnOe36i7fGdSe6Xj5wRCn2ICnJiJ?=
+ =?us-ascii?Q?x58++UhbY50s/xb/zgG59LRVOTPFHuKuXYtukzfpr2ad+yWgBzatNTYhZhGs?=
+ =?us-ascii?Q?Q8m1vvq8LxlmFXzYJRs//RfZOeibPUXxN1u6rtRKEciLUBcQkItgCCsFDO5e?=
+ =?us-ascii?Q?Ymz35OrbLuvsTcQ0IFmn/68tYaFpfepJ4JD7oen5R6S46RXhpYfGK6bdW2/h?=
+ =?us-ascii?Q?cNPmZz8PWYnDo+qcUJu4QtnEqsJhV5jjgL/k3TEOEzAbtWJyXbldkxjA7/Wk?=
+ =?us-ascii?Q?oBck9TNl8nBQVoMfBNuEJVMPMa4v3baVmFGt434gBZ+auI/ca1dcZ12661cK?=
+ =?us-ascii?Q?BKNPGUZG0dcwpTvU+ci64VAaXSkCeagDmuz0mIiyfaMGStLJlxpcGSVCtZK+?=
+ =?us-ascii?Q?cyHftuHi/TSipXzjn7Iy1Mdeh255yLR/kGhAPX5ec7rGFhLDL30/VfZcfm3D?=
+ =?us-ascii?Q?s2U75ULF116W3vFPkwWy+/2soHa6d1QTuCTz2fw2BkrgFvlX3XijkZSQwVdt?=
+ =?us-ascii?Q?tWBmr65gRTioARorBuf2zj5RYBASwgxKjofNpT08AP4C27xb1e3ka6byHr0N?=
+ =?us-ascii?Q?t+QJBxA3EB6TzbJ3sbkfBCF1u7saMh/NNG5TQk8I8KO37DErOPsGsDbsDfiL?=
+ =?us-ascii?Q?QSuS1/Pg5w1qmlcKopd0WoQzj3Ds0UpeNF61ZLFaP4WT8SOB7cyp5/g6lXQV?=
+ =?us-ascii?Q?l6K9qzBrE5x0y4YPkn8axfn4fpwDk+ZloPzXWWumrAQLgIrDEXvBdmMU3sJ6?=
+ =?us-ascii?Q?lsjqNGukGjWvjRfKvM0WjIUgVkG0GTENAkwAXh3pbHOldJOK2IJXuZ5cUCZa?=
+ =?us-ascii?Q?HeoFDb15ZMicxGOYzMUgyoBCkVXHP7wprS7iASkzC7coR7ItT5rItLCyfnC7?=
+ =?us-ascii?Q?vgt9sJPSPq67ubC8GLp2n0LQEAsA54v/KyE8KeZQpp3FIOFPeP4ZK4kzD6tz?=
+ =?us-ascii?Q?t+zfLp5dRmjked1ZLkTOG6EEx9pMu8f43qzw8HiKm92QxY6jHF7GETwxczR/?=
+ =?us-ascii?Q?/WGVK1nnqK951mWpf+NRPyShmKyF9OzJABkMO5ObzsSwLgbTQR3sYGG6d5Au?=
+ =?us-ascii?Q?SLB55pzxWSC3JvWuhx/Q3VCUWFDRbnQ60efeMvleTKasFlhj499x9dRKOauT?=
+ =?us-ascii?Q?Q1Oj4s/B3po3/ijbuoFu2GQPTPk+mbKmhUxftBjjq+pLivx0ai9q6eUkE9t/?=
+ =?us-ascii?Q?T84OpbO1spF6LHdNJKm/fc/18CA6sZKnXz/UCJ7uS908lMHD5/+ScdF1Cd/2?=
+ =?us-ascii?Q?X2Cx5yoWVht9fMef8Bp/lAVQt9ddQ2x/mfFo7usJnPBPSLt88XVhMyeIKv/E?=
+ =?us-ascii?Q?mMoOshHUls9Drj1W8YqGFeSxK0/ptwqvPtE3aokvlX9wHkAFHBX9zj7JFgkV?=
+ =?us-ascii?Q?yRswbnIaYDEEZh4Lr7KvflxkWijgoavbHzI3ulS6lXJqNCcrjmF9KTlV0Bb6?=
+ =?us-ascii?Q?VPw5bnTgZravX1FTnSENLGxaiaoOZaD5tAyHVFSIpsbm7T4DSUYhqAYsupZH?=
+ =?us-ascii?Q?WtQbZK3OUxunYrVg+lFa53W+Pt6MTkOFFdPYmASpjcrgfFyP4DnQk85PGmiH?=
+ =?us-ascii?Q?ZY4Kb+xEMicMDBdY7jdyVaFCh4KHo2lXzWfMwa/7?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73e0841f-233d-40bf-52d7-08dd776eff3e
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2025 14:01:16.9816 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MCesb2PRXdoOoCYkLq4J+hLD+wYH+9NtR7F3NdDnByWZKd9srA7oDutbtlDOgiXEYm3ldMoDREoIVxxbUwuIWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF2E3E6CCA8
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,319 +175,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Wed, Apr 09, 2025 at 11:16:58AM +0300, Jani Nikula wrote:
->> On Wed, 09 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > Add the debugfs entry to force a link bpp to all relevant connectors:
->> > all DP connectors and on an FDI link CRT/SDVO/LVDS/HDMI connectors.
->> 
->> This deviates from the current approach of intel_connector_register()
->> calling intel_connector_debugfs_add() which checks for connector types
->> and other conditions before registering debugfs files.
->> 
->> In many cases intel_connector_debugfs_add() unconditionally calls
->> feature specific debugfs functions such as
->> intel_hdcp_connector_debugfs_add() which then check the connector type.
->> 
->> I understand the motivation in this patch, being more object oriented
->> and all, but it's still a deviation. I prefer the same approach for
->> all. Currently it's obvious where all connector debugfs files get
->> registered. After this patch, it's not, and it's no longer clear cut
->> where connector debugfs files should be created.
->
-> I think the better approach is each connector adding the debugfs entries
-> relevant to them, even for the existing hdcp, pps, psr etc. entries. That
-> would avoid all the connector_type checks, replicated now in all the
-> *_connector_debugfs_add() functions. It's also odd to recheck the
-> connector type on a code path the connector type is already known to the
-> caller.
+On Wed, Apr 09, 2025 at 11:29:30AM +0300, Jani Nikula wrote:
+> On Wed, 09 Apr 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > Following the convention, convert intel_hdmi.c to use an intel_connector
+> > pointer everywhere, calling this pointer connector. If the intel
+> > connector must be casted from a drm_connector, call this pointer
+> > _connector and use this pointer only for the casting.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> > @@ -2076,14 +2081,16 @@ bool intel_hdmi_bpc_possible(const struct intel_crtc_state *crtc_state,
+> >  {
+> >  	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >  	struct drm_connector_state *connector_state;
+> > -	struct drm_connector *connector;
+> > +	struct drm_connector *_connector;
+> >  	int i;
+> >  
+> > -	for_each_new_connector_in_state(state, connector, connector_state, i) {
+> > +	for_each_new_connector_in_state(state, _connector, connector_state, i) {
+> 
+> Can we use for_each_new_intel_connector_in_state() here?
 
-I'm not saying that's not a valid argument. And I said I understand the
-motivation.
+Ok, can use it.
 
-I just don't want this done for a single debugfs entry in a series about
-something completely different, essentially leaving behind a mix of two
-entirely different approaches.
+It depends on 'base' being the first field in
+intel_digital_connector_state, I think that assumption is acceptable
+(and used elsewhere already).
 
-In the past switching to your proposed approach wasn't really even an
-option because everything was still in intel_display_debugfs.c. We've
-gradually moved away from that. And arguably the work of moving the
-debugfs next to the functionality should be completed first, before
-starting another refactoring. intel_connector_debugfs_add() should just
-be a function calling intel_*_connector_debugfs_add() functions instead
-of having inlined debugfs creation.
-
-BR,
-Jani.
-
-
-
->
-> This approach would also match how the connector specific properties are
-> added.
->
->> Please add the connector type checks in
->> intel_link_bw_connector_debugfs_add() and call it from
->> intel_connector_debugfs_add().
->> 
->> 
->> BR,
->> Jani.
->> 
->> 
->> >
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_crt.c      | 20 ++++++++++++++++++-
->> >  .../drm/i915/display/intel_display_device.h   |  1 +
->> >  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +++
->> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 ++
->> >  drivers/gpu/drm/i915/display/intel_hdmi.c     |  8 +++++++-
->> >  drivers/gpu/drm/i915/display/intel_lvds.c     | 20 ++++++++++++++++++-
->> >  drivers/gpu/drm/i915/display/intel_sdvo.c     | 20 ++++++++++++++++++-
->> >  7 files changed, 70 insertions(+), 4 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
->> > index cca22d2402e88..69831d6f68912 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
->> > @@ -43,6 +43,7 @@
->> >  #include "intel_ddi.h"
->> >  #include "intel_ddi_buf_trans.h"
->> >  #include "intel_de.h"
->> > +#include "intel_display_device.h"
->> >  #include "intel_display_driver.h"
->> >  #include "intel_display_types.h"
->> >  #include "intel_fdi.h"
->> > @@ -51,6 +52,7 @@
->> >  #include "intel_gmbus.h"
->> >  #include "intel_hotplug.h"
->> >  #include "intel_hotplug_irq.h"
->> > +#include "intel_link_bw.h"
->> >  #include "intel_load_detect.h"
->> >  #include "intel_pch_display.h"
->> >  #include "intel_pch_refclk.h"
->> > @@ -986,13 +988,29 @@ void intel_crt_reset(struct drm_encoder *encoder)
->> >  
->> >  }
->> >  
->> > +static int intel_crt_connector_register(struct drm_connector *_connector)
->> > +{
->> > +	struct intel_connector *connector = to_intel_connector(_connector);
->> > +	struct intel_display *display = to_intel_display(connector);
->> > +	int err;
->> > +
->> > +	err = intel_connector_register(&connector->base);
->> > +	if (err)
->> > +		return err;
->> > +
->> > +	if (HAS_FDI(display))
->> > +		intel_link_bw_connector_debugfs_add(connector);
->> > +
->> > +	return 0;
->> > +}
->> > +
->> >  /*
->> >   * Routines for controlling stuff on the analog port
->> >   */
->> >  
->> >  static const struct drm_connector_funcs intel_crt_connector_funcs = {
->> >  	.fill_modes = drm_helper_probe_single_connector_modes,
->> > -	.late_register = intel_connector_register,
->> > +	.late_register = intel_crt_connector_register,
->> >  	.early_unregister = intel_connector_unregister,
->> >  	.destroy = intel_connector_destroy,
->> >  	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
->> > index 368b0d3417c26..a84bdc83417f1 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
->> > @@ -171,6 +171,7 @@ struct intel_display_platforms {
->> >  #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
->> >  #define HAS_GMBUS_IRQ(__display)	(DISPLAY_VER(__display) >= 4)
->> >  #define HAS_GMCH(__display)		(DISPLAY_INFO(__display)->has_gmch)
->> > +#define HAS_FDI(__display)		(IS_DISPLAY_VER((__display), 5, 8) && !HAS_GMCH(__display))
->> >  #define HAS_HOTPLUG(__display)		(DISPLAY_INFO(__display)->has_hotplug)
->> >  #define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
->> >  #define HAS_IPC(__display)		(DISPLAY_INFO(__display)->has_ipc)
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> > index 8ca33ebedce27..0b19a9b5adda5 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > @@ -80,6 +80,7 @@
->> >  #include "intel_hdmi.h"
->> >  #include "intel_hotplug.h"
->> >  #include "intel_hotplug_irq.h"
->> > +#include "intel_link_bw.h"
->> >  #include "intel_lspcon.h"
->> >  #include "intel_lvds.h"
->> >  #include "intel_modeset_lock.h"
->> > @@ -5890,6 +5891,8 @@ intel_dp_connector_register(struct drm_connector *_connector)
->> >  	if (ret)
->> >  		return ret;
->> >  
->> > +	intel_link_bw_connector_debugfs_add(connector);
->> > +
->> >  	drm_dbg_kms(display->drm, "registering %s bus for %s\n",
->> >  		    intel_dp->aux.name, connector->base.kdev->kobj.name);
->> >  
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > index 35214d9a8c781..7508aa4e3695f 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
->> > @@ -1445,6 +1445,8 @@ mst_connector_late_register(struct drm_connector *_connector)
->> >  	if (ret < 0)
->> >  		drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
->> >  
->> > +	intel_link_bw_connector_debugfs_add(connector);
->> > +
->> >  	return ret;
->> >  }
->> >  
->> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> > index 8f2cef36bdf79..0747ef8d6c0ca 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> > @@ -52,6 +52,7 @@
->> >  #include "intel_cx0_phy.h"
->> >  #include "intel_ddi.h"
->> >  #include "intel_de.h"
->> > +#include "intel_display_device.h"
->> >  #include "intel_display_driver.h"
->> >  #include "intel_display_types.h"
->> >  #include "intel_dp.h"
->> > @@ -60,6 +61,7 @@
->> >  #include "intel_hdcp_regs.h"
->> >  #include "intel_hdcp_shim.h"
->> >  #include "intel_hdmi.h"
->> > +#include "intel_link_bw.h"
->> >  #include "intel_lspcon.h"
->> >  #include "intel_panel.h"
->> >  #include "intel_pfit.h"
->> > @@ -2611,13 +2613,17 @@ static int
->> >  intel_hdmi_connector_register(struct drm_connector *_connector)
->> >  {
->> >  	struct intel_connector *connector = to_intel_connector(_connector);
->> > +	struct intel_display *display = to_intel_display(connector);
->> >  	int ret;
->> >  
->> >  	ret = intel_connector_register(&connector->base);
->> >  	if (ret)
->> >  		return ret;
->> >  
->> > -	return ret;
->> > +	if (HAS_FDI(display))
->> > +		intel_link_bw_connector_debugfs_add(connector);
->> > +
->> > +	return 0;
->> >  }
->> >  
->> >  static void intel_hdmi_connector_unregister(struct drm_connector *_connector)
->> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
->> > index 89d26913e2539..3ac6aaa025434 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
->> > @@ -45,10 +45,12 @@
->> >  #include "intel_backlight.h"
->> >  #include "intel_connector.h"
->> >  #include "intel_de.h"
->> > +#include "intel_display_device.h"
->> >  #include "intel_display_types.h"
->> >  #include "intel_dpll.h"
->> >  #include "intel_fdi.h"
->> >  #include "intel_gmbus.h"
->> > +#include "intel_link_bw.h"
->> >  #include "intel_lvds.h"
->> >  #include "intel_lvds_regs.h"
->> >  #include "intel_panel.h"
->> > @@ -501,6 +503,22 @@ static int intel_lvds_get_modes(struct drm_connector *_connector)
->> >  	return intel_panel_get_modes(connector);
->> >  }
->> >  
->> > +static int intel_lvds_connector_register(struct drm_connector *_connector)
->> > +{
->> > +	struct intel_connector *connector = to_intel_connector(_connector);
->> > +	struct intel_display *display = to_intel_display(connector);
->> > +	int err;
->> > +
->> > +	err = intel_connector_register(&connector->base);
->> > +	if (err)
->> > +		return err;
->> > +
->> > +	if (HAS_FDI(display))
->> > +		intel_link_bw_connector_debugfs_add(connector);
->> > +
->> > +	return 0;
->> > +}
->> > +
->> >  static const struct drm_connector_helper_funcs intel_lvds_connector_helper_funcs = {
->> >  	.get_modes = intel_lvds_get_modes,
->> >  	.mode_valid = intel_lvds_mode_valid,
->> > @@ -512,7 +530,7 @@ static const struct drm_connector_funcs intel_lvds_connector_funcs = {
->> >  	.fill_modes = drm_helper_probe_single_connector_modes,
->> >  	.atomic_get_property = intel_digital_connector_atomic_get_property,
->> >  	.atomic_set_property = intel_digital_connector_atomic_set_property,
->> > -	.late_register = intel_connector_register,
->> > +	.late_register = intel_lvds_connector_register,
->> >  	.early_unregister = intel_connector_unregister,
->> >  	.destroy = intel_connector_destroy,
->> >  	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
->> > index 757b9ce7e3b1c..ab7caaa4f287f 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
->> > @@ -45,6 +45,7 @@
->> >  #include "intel_connector.h"
->> >  #include "intel_crtc.h"
->> >  #include "intel_de.h"
->> > +#include "intel_display_device.h"
->> >  #include "intel_display_driver.h"
->> >  #include "intel_display_types.h"
->> >  #include "intel_fdi.h"
->> > @@ -52,6 +53,7 @@
->> >  #include "intel_gmbus.h"
->> >  #include "intel_hdmi.h"
->> >  #include "intel_hotplug.h"
->> > +#include "intel_link_bw.h"
->> >  #include "intel_panel.h"
->> >  #include "intel_sdvo.h"
->> >  #include "intel_sdvo_regs.h"
->> > @@ -2502,12 +2504,28 @@ intel_sdvo_connector_duplicate_state(struct drm_connector *connector)
->> >  	return &state->base.base;
->> >  }
->> >  
->> > +static int intel_sdvo_connector_register(struct drm_connector *_connector)
->> > +{
->> > +	struct intel_connector *connector = to_intel_connector(_connector);
->> > +	struct intel_display *display = to_intel_display(connector);
->> > +	int err;
->> > +
->> > +	err = intel_connector_register(&connector->base);
->> > +	if (err)
->> > +		return err;
->> > +
->> > +	if (HAS_FDI(display))
->> > +		intel_link_bw_connector_debugfs_add(connector);
->> > +
->> > +	return 0;
->> > +}
->> > +
->> >  static const struct drm_connector_funcs intel_sdvo_connector_funcs = {
->> >  	.detect = intel_sdvo_detect,
->> >  	.fill_modes = drm_helper_probe_single_connector_modes,
->> >  	.atomic_get_property = intel_sdvo_connector_atomic_get_property,
->> >  	.atomic_set_property = intel_sdvo_connector_atomic_set_property,
->> > -	.late_register = intel_connector_register,
->> > +	.late_register = intel_sdvo_connector_register,
->> >  	.early_unregister = intel_connector_unregister,
->> >  	.destroy = intel_connector_destroy,
->> >  	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->> 
->> -- 
->> Jani Nikula, Intel
-
--- 
-Jani Nikula, Intel
+> 
+> BR,
+> Jani.
+> 
+> 
+> -- 
+> Jani Nikula, Intel
