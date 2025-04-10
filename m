@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7800A84A0A
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 18:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8976A84AB0
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 19:07:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4785B10EA52;
-	Thu, 10 Apr 2025 16:34:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wd4JHyTk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA1610E34B;
+	Thu, 10 Apr 2025 17:07:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAF3610EA51;
- Thu, 10 Apr 2025 16:34:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744302841; x=1775838841;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iXkFpIjkNQupDHIbKTtZG5uBDm4sQMU34vpCb8rCbNQ=;
- b=Wd4JHyTk01C+tcnD69jy2VonxzzyS66a4r6S57IBNUaGMHV2F9cL42kD
- 3qibxax5g5Goukh9ujUwd20bU40bVTBOtIgDwICUvRJ8goHbibxZxtHvB
- /SiOMFezzI9c0/ZHi/qdI24PMQcrKgcKP2UXaSjtGGwC98r0oUyN6jlbs
- qqtOz0tIjz/2/FPAAdA5nsTF+/nkKhjqCO/mvp2yEZkvZYsZ/ss2/42Yg
- bUsjlM8YY9QvhLGGroTs8Gezbm0e4cgeMfZGIKTF2a+BR1uSmHUunJsS8
- Tsqg4L06yiyurnrFhdnWyPoZCux8guI6htw4ZYY0JjCA5zhdNL1Y+0PEL A==;
-X-CSE-ConnectionGUID: fcCEncVnTLeUrkS4jeRvGQ==
-X-CSE-MsgGUID: Iq3bK9jFREiRBC1xzsDeVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="57220165"
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="57220165"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 09:34:00 -0700
-X-CSE-ConnectionGUID: FDBloIzISW+dvK4UH9iHdQ==
-X-CSE-MsgGUID: cdvE9WyoS6S4ickvN44/lQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="134129442"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 10 Apr 2025 09:33:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Apr 2025 19:33:57 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 19/19] drm: Make passing of format info to
- drm_helper_mode_fill_fb_struct() mandatory
-Date: Thu, 10 Apr 2025 19:32:18 +0300
-Message-ID: <20250410163218.15130-20-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
-References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C1FC10E34B;
+ Thu, 10 Apr 2025 17:07:28 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm=3A_Eliminate_red?=
+ =?utf-8?q?undant_drm=5Fformat=5Finfo_lookups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Apr 2025 17:07:28 -0000
+Message-ID: <174430484804.366.5669900463310260411@32c37dd7f93d>
+X-Patchwork-Hint: ignore
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +37,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Now that everyone passes along the format info to
-drm_helper_mode_fill_fb_struct() we can make this behaviour
-mandatory and drop the extra lookup.
+Series: drm: Eliminate redundant drm_format_info lookups
+URL   : https://patchwork.freedesktop.org/series/147544/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_modeset_helper.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/drm_modeset_helper.c
-index ae2a83ecb1cf..3c153d420822 100644
---- a/drivers/gpu/drm/drm_modeset_helper.c
-+++ b/drivers/gpu/drm/drm_modeset_helper.c
-@@ -86,8 +86,7 @@ void drm_helper_mode_fill_fb_struct(struct drm_device *dev,
- 	int i;
- 
- 	fb->dev = dev;
--	fb->format = info ? : drm_get_format_info(dev, mode_cmd->pixel_format,
--						  mode_cmd->modifier[0]);
-+	fb->format = info;
- 	fb->width = mode_cmd->width;
- 	fb->height = mode_cmd->height;
- 	for (i = 0; i < 4; i++) {
--- 
-2.49.0
+Error: dim checkpatch failed
+ef446fee01d7 drm: Pass pixel_format+modifier to .get_format_info()
+38547e9c8681 drm: Pass pixel_format+modifier directly to drm_get_format_info()
+9e94a892ea72 drm: Look up the format info earlier
+2e868d525e92 drm: Pass the format info to .fb_create()
+-:101: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#101: 
+                                     const struct drm_mode_fb_cmd2 *mode_cmd);
+
+total: 0 errors, 1 warnings, 0 checks, 412 lines checked
+27608bd0b77e drm: Allow the caller to pass in the format info to drm_helper_mode_fill_fb_struct()
+-:26: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#26: 
+                                    const struct drm_mode_fb_cmd2 *mode_cmd)
+
+total: 0 errors, 1 warnings, 0 checks, 157 lines checked
+fc4ef53cdbab drm/malidp: Pass along the format info from .fb_create() malidp_verify_afbc_framebuffer_size()
+241ee444d762 drm/gem: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+f1367dbd20be drm/gem/afbc: Eliminate redundant drm_get_format_info()
+c83e62965bdf drm/amdgpu: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+f6f83e507988 drm/armada: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+5d5d6d379df0 drm/exynos: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+08658efcfef5 drm/gma500: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+35809f0fc563 drm/i915: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+268d83aa2b31 drm/komeda: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+4ba5181f4cec drm/msm: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+aeee68377f89 drm/tegra: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+9c308662eb4c drm/virtio: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+d652c4213bec drm/vmwgfx: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()
+5ca183878535 drm: Make passing of format info to drm_helper_mode_fill_fb_struct() mandatory
+
 
