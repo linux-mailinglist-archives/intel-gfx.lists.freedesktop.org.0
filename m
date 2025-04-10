@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98505A84AF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 19:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6A3A84C0A
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 20:24:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E33210EA50;
-	Thu, 10 Apr 2025 17:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEA0B10E389;
+	Thu, 10 Apr 2025 18:24:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/rJXIvu";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 32c37dd7f93d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBDBA10E38C;
- Thu, 10 Apr 2025 17:27:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6003836182540682585=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACB910E388;
+ Thu, 10 Apr 2025 18:24:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744309487; x=1775845487;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=PZIvuvFE1M/EMAM6emZiOOgwsQ+OlTBy+cdF/JDgfII=;
+ b=G/rJXIvuKeEjqgSDBy6KJluTgJTZHt5RjrYM+CMAfmbZ4Gj+jso0XMBf
+ SogarkGLtDWUD/GlJn9W5KInT9SGcLIzuYYeCKSDIYntxfaeH24C+0lXy
+ 2uNLuI/RFLVXOMh5yu81nVmLp5yfKKlrA51UomD+iqQDnGEU1zUyajLgH
+ G53fGLj/TaBCxzb9AMl2YWwNZT8H+iHWcZqcXtFy+5jA3TNml0PC2ZO1t
+ kuRf7ng1Z+fLhOHS/suMwpjnRFn+oSTxmtNndEl040UqPWff3K+f6eha2
+ K8rI4olVdotbKKUhGA3Y3qE/PBee921wfeG9luflTlEHOWcNZu5sPhQhv w==;
+X-CSE-ConnectionGUID: aqx2sYfzS1W4fAiRMnz/Uw==
+X-CSE-MsgGUID: GsJXdiJISIehexH1zD2ppg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="45746932"
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="45746932"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 11:24:46 -0700
+X-CSE-ConnectionGUID: DAc6FlbZRqCuxsOFhCtKBQ==
+X-CSE-MsgGUID: FWZoDj7+T9CP6xOHRpQRAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="129824098"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by fmviesa009-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2025 11:24:44 -0700
+Date: Thu, 10 Apr 2025 20:24:42 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: Re: [PATCH i-g-t 1/2] lib/xe_gt: Move get/set GT freq utils to lib
+Message-ID: <20250410182442.erxihdnvaojxdhf3@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
+ Riana Tauro <riana.tauro@intel.com>
+References: <20250410013314.613109-1-vinay.belgaumkar@intel.com>
+ <20250410013314.613109-2-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm=3A_Eliminate_redundan?=
- =?utf-8?q?t_drm=5Fformat=5Finfo_lookups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Apr 2025 17:27:39 -0000
-Message-ID: <174430605975.366.9006976349776036464@32c37dd7f93d>
-X-Patchwork-Hint: ignore
-References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250410013314.613109-2-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,147 +70,451 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6003836182540682585==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Vinay,
+On 2025-04-09 at 18:33:13 -0700, Vinay Belgaumkar wrote:
+> Add utils to get/set GT frequency attributes. These are per GT
+> and exposed via sysfs already.
+> 
+> v2: Review comments (Kamil)
+> 
+> Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+> Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> ---
+>  lib/xe/xe_gt.c           |  61 ++++++++++++++
+>  lib/xe/xe_gt.h           |   2 +
+>  tests/intel/xe_gt_freq.c | 166 +++++++++++++++------------------------
+>  3 files changed, 128 insertions(+), 101 deletions(-)
+> 
+> diff --git a/lib/xe/xe_gt.c b/lib/xe/xe_gt.c
+> index 6f1475be0..5d6bcdd0b 100644
+> --- a/lib/xe/xe_gt.c
+> +++ b/lib/xe/xe_gt.c
+> @@ -4,6 +4,7 @@
+>   */
+>  
+>  #include <fcntl.h>
+> +#include <limits.h>
+>  #include <sys/stat.h>
+>  
+>  #include "igt_core.h"
+> @@ -241,3 +242,63 @@ int xe_gt_count_engines_by_class(int fd, int gt, int class)
+>  
+>  	return n;
+>  }
+> +
+> +/**
+> + * xe_gt_set_freq:
+> + * @fd: pointer to xe drm fd
+> + * @gt_id: GT id
+> + * @freq_name: which GT freq(min, max) to change
+> + * @freq: value of freq to set
+> + *
+> + * Set GT min/max frequency. Function will assert if the sysfs node is
+> + * not found.
+> + *
+> + * Return: success or failure
+> + */
+> +int xe_gt_set_freq(int fd, int gt_id, const char *freq_name, uint32_t freq)
+> +{
+> +	int ret = -EAGAIN;
+> +	char freq_attr[NAME_MAX];
+> +	int gt_fd;
+> +
+> +	snprintf(freq_attr, sizeof(freq_attr), "freq0/%s_freq", freq_name);
+> +	gt_fd = xe_sysfs_gt_open(fd, gt_id);
+> +	igt_assert_lte(0, gt_fd);
+> +
+> +	while (ret == -EAGAIN)
+> +		ret = igt_sysfs_printf(gt_fd, freq_attr, "%u", freq);
+> +
+> +	close(gt_fd);
 
-== Series Details ==
+Please add newline here.
 
-Series: drm: Eliminate redundant drm_format_info lookups
-URL   : https://patchwork.freedesktop.org/series/147544/
-State : success
+> +	return ret;
+> +}
+> +
+> +/**
+> + * xe_gt_get_freq:
+> + * @fd: pointer to xe drm fd
+> + * @gt_id: GT id
+> + * @freq_name: which GT freq(min, max, act, cur) to read
+> + *
+> + * Read the min/max/act/cur/rp0/rpn/rpe GT frequencies. Function will
+> + * assert if the sysfs node is not found.
+> + *
+> + * Return: GT frequency value
+> + */
+> +uint32_t xe_gt_get_freq(int fd, int gt_id, const char *freq_name)
+> +{
+> +	uint32_t freq;
+> +	int err = -EAGAIN;
+> +	char freq_attr[NAME_MAX];
+> +	int gt_fd;
+> +
+> +	snprintf(freq_attr, sizeof(freq_attr), "freq0/%s_freq", freq_name);
+> +	gt_fd = xe_sysfs_gt_open(fd, gt_id);
+> +	igt_assert_lte(0, gt_fd);
+> +
+> +	while (err == -EAGAIN)
+> +		err = igt_sysfs_scanf(gt_fd, freq_attr, "%u", &freq);
+> +
+> +	igt_debug("gt%d: %s freq %u\n", gt_id, freq_name, freq);
+> +
+> +	close(gt_fd);
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16397 -> Patchwork_147544v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147544v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16397 -> Patchwork_147544v1
-
-  CI-20190529: 20190529
-  CI_DRM_16397: 457049ad31ee5b64dd86230518144d366c32bc04 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8313: 8313
-  Patchwork_147544v1: 457049ad31ee5b64dd86230518144d366c32bc04 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/index.html
-
---===============6003836182540682585==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Eliminate redundant drm_format_info lookups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147544/">https://patchwork.freedesktop.org/series/147544/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/index.html</a></td></tr>
-
-</table>
+Same here, add newline, with this fixed:
+Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_16397 -&gt; Patchwork_147544v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147544v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16397/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147544v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16397 -&gt; Patchwork_147544v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16397: 457049ad31ee5b64dd86230518144d366c32bc04 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8313: 8313<br />
-  Patchwork_147544v1: 457049ad31ee5b64dd86230518144d366c32bc04 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6003836182540682585==--
+> +	return freq;
+> +}
+> diff --git a/lib/xe/xe_gt.h b/lib/xe/xe_gt.h
+> index 511b31149..06a59281c 100644
+> --- a/lib/xe/xe_gt.h
+> +++ b/lib/xe/xe_gt.h
+> @@ -23,4 +23,6 @@ int xe_gt_fill_engines_by_class(int fd, int gt, int class,
+>  				struct drm_xe_engine_class_instance eci[static XE_MAX_ENGINE_INSTANCE]);
+>  int xe_gt_count_engines_by_class(int fd, int gt, int class);
+>  
+> +int xe_gt_set_freq(int fd, int gt_id, const char *freq_name, uint32_t freq);
+> +uint32_t xe_gt_get_freq(int fd, int gt_id, const char *freq_name);
+>  #endif
+> diff --git a/tests/intel/xe_gt_freq.c b/tests/intel/xe_gt_freq.c
+> index 843144ad2..689e0296a 100644
+> --- a/tests/intel/xe_gt_freq.c
+> +++ b/tests/intel/xe_gt_freq.c
+> @@ -13,8 +13,9 @@
+>   */
+>  
+>  #include "igt.h"
+> -#include "lib/igt_syncobj.h"
+>  #include "igt_sysfs.h"
+> +#include "lib/igt_syncobj.h"
+> +#include "lib/xe/xe_gt.h"
+>  
+>  #include "xe_drm.h"
+>  #include "xe/xe_gt.h"
+> @@ -36,43 +37,6 @@
+>   */
+>  #define SLPC_FREQ_LATENCY_US 100000
+>  
+> -static int set_freq(int fd, int gt_id, const char *freq_name, uint32_t freq)
+> -{
+> -	int ret = -EAGAIN;
+> -	char freq_attr[22];
+> -	int gt_fd;
+> -
+> -	snprintf(freq_attr, sizeof(freq_attr), "freq0/%s_freq", freq_name);
+> -	gt_fd = xe_sysfs_gt_open(fd, gt_id);
+> -	igt_assert_lte(0, gt_fd);
+> -
+> -	while (ret == -EAGAIN)
+> -		ret = igt_sysfs_printf(gt_fd, freq_attr, "%u", freq);
+> -
+> -	close(gt_fd);
+> -	return ret;
+> -}
+> -
+> -static uint32_t get_freq(int fd, int gt_id, const char *freq_name)
+> -{
+> -	uint32_t freq;
+> -	int err = -EAGAIN;
+> -	char freq_attr[22];
+> -	int gt_fd;
+> -
+> -	snprintf(freq_attr, sizeof(freq_attr), "freq0/%s_freq", freq_name);
+> -	gt_fd = xe_sysfs_gt_open(fd, gt_id);
+> -	igt_assert_lte(0, gt_fd);
+> -
+> -	while (err == -EAGAIN)
+> -		err = igt_sysfs_scanf(gt_fd, freq_attr, "%u", &freq);
+> -
+> -	igt_debug("gt%d: %s freq %u\n", gt_id, freq_name, freq);
+> -
+> -	close(gt_fd);
+> -	return freq;
+> -}
+> -
+>  static bool within_expected_range(uint32_t freq, uint32_t val)
+>  {
+>  	/*
+> @@ -134,8 +98,8 @@ static void test_throttle_basic_api(int fd, int gt_id)
+>  
+>  static void test_freq_basic_api(int fd, int gt_id)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = xe_gt_get_freq(fd, gt_id, "rp0");
+>  	uint32_t rpmid = (rp0 + rpn) / 2;
+>  	uint32_t min_freq, max_freq;
+>  
+> @@ -144,29 +108,29 @@ static void test_freq_basic_api(int fd, int gt_id)
+>  	 * RPn is the floor
+>  	 * RP0 is the ceiling
+>  	 */
+> -	igt_assert_lt(set_freq(fd, gt_id, "min", rpn - 1), 0);
+> -	igt_assert_lt(set_freq(fd, gt_id, "min", rp0 + 1), 0);
+> -	igt_assert_lt(set_freq(fd, gt_id, "max", rpn - 1), 0);
+> -	igt_assert_lt(set_freq(fd, gt_id, "max", rp0 + 1), 0);
+> +	igt_assert_lt(xe_gt_set_freq(fd, gt_id, "min", rpn - 1), 0);
+> +	igt_assert_lt(xe_gt_set_freq(fd, gt_id, "min", rp0 + 1), 0);
+> +	igt_assert_lt(xe_gt_set_freq(fd, gt_id, "max", rpn - 1), 0);
+> +	igt_assert_lt(xe_gt_set_freq(fd, gt_id, "max", rp0 + 1), 0);
+>  
+>  	/* Assert min requests are respected from rp0 to rpn */
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rp0));
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "min"), rp0);
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpmid));
+> -	min_freq = get_freq(fd, gt_id, "min");
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rp0));
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "min"), rp0);
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpmid));
+> +	min_freq = xe_gt_get_freq(fd, gt_id, "min");
+>  	/* SLPC can set min higher than rpmid - as it follows RPe */
+>  	igt_assert_lte_u32((rpmid - FREQ_UNIT_MHZ), min_freq);
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpn));
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "min"), rpn);
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpn));
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "min"), rpn);
+>  
+>  	/* Assert max requests are respected from rpn to rp0 */
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpn));
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "max"), rpn);
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpmid));
+> -	max_freq = get_freq(fd, gt_id, "max");
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpn));
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "max"), rpn);
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpmid));
+> +	max_freq = xe_gt_get_freq(fd, gt_id, "max");
+>  	igt_assert(within_expected_range(max_freq, rpmid));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rp0));
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "max"), rp0);
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rp0));
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "max"), rp0);
+>  }
+>  
+>  /**
+> @@ -179,8 +143,8 @@ static void test_freq_basic_api(int fd, int gt_id)
+>  
+>  static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = xe_gt_get_freq(fd, gt_id, "rp0");
+>  	uint32_t rpmid = (rp0 + rpn) / 2;
+>  	uint32_t cur_freq, act_freq;
+>  
+> @@ -192,50 +156,50 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>  	 * And let's do this for all the 2 known Render Performance (RP) values
+>  	 * RP0 and RPn and something in between.
+>  	 */
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpn));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpn));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "cur"), rpn);
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "cur"), rpn);
+>  
+>  	if (gt_idle) {
+> -		/* Wait for GT to go in C6 as previous get_freq wakes up GT*/
+> +		/* Wait for GT to go in C6 as previous xe_gt_get_freq wakes up GT*/
+>  		igt_assert_f(igt_wait(xe_gt_is_in_c6(fd, gt_id), 1000, 10),
+>  			     "GT %d should be in C6\n", gt_id);
+> -		igt_assert(get_freq(fd, gt_id, "act") == 0);
+> +		igt_assert(xe_gt_get_freq(fd, gt_id, "act") == 0);
+>  	} else {
+> -		igt_assert_eq_u32(get_freq(fd, gt_id, "act"), rpn);
+> +		igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "act"), rpn);
+>  	}
+>  
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpmid));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpmid));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpmid));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpmid));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+> -	cur_freq = get_freq(fd, gt_id, "cur");
+> +	cur_freq = xe_gt_get_freq(fd, gt_id, "cur");
+>  	/* If rpmid is around RPe, we could see SLPC follow it */
+>  	igt_assert_lte_u32((rpmid - FREQ_UNIT_MHZ), cur_freq);
+>  
+>  	if (gt_idle) {
+>  		igt_assert_f(igt_wait(xe_gt_is_in_c6(fd, gt_id), 1000, 10),
+>  			     "GT %d should be in C6\n", gt_id);
+> -		igt_assert(get_freq(fd, gt_id, "act") == 0);
+> +		igt_assert(xe_gt_get_freq(fd, gt_id, "act") == 0);
+>  	} else {
+> -		act_freq = get_freq(fd, gt_id, "act");
+> +		act_freq = xe_gt_get_freq(fd, gt_id, "act");
+>  		igt_assert_lte_u32(act_freq, cur_freq + FREQ_UNIT_MHZ);
+>  	}
+>  
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rp0));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rp0));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rp0));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rp0));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+>  	/*
+>  	 * It is unlikely that PCODE will *always* respect any request above RPe
+>  	 * So for this level let's only check if GuC PC is doing its job
+>  	 * and respecting our request, by propagating it to the hardware.
+>  	 */
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "cur"), rp0);
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "cur"), rp0);
+>  
+>  	if (gt_idle) {
+>  		igt_assert_f(igt_wait(xe_gt_is_in_c6(fd, gt_id), 1000, 10),
+>  			     "GT %d should be in C6\n", gt_id);
+> -		igt_assert(get_freq(fd, gt_id, "act") == 0);
+> +		igt_assert(xe_gt_get_freq(fd, gt_id, "act") == 0);
+>  	}
+>  
+>  	igt_debug("Finished testing fixed request\n");
+> @@ -250,25 +214,25 @@ static void test_freq_fixed(int fd, int gt_id, bool gt_idle)
+>   */
+>  static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = xe_gt_get_freq(fd, gt_id, "rp0");
+>  	uint32_t rpmid = (rp0 + rpn) / 2;
+>  	uint32_t cur, act;
+>  
+>  	igt_debug("Starting testing range request\n");
+>  
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpn));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpmid));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpmid));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+> -	cur = get_freq(fd, gt_id, "cur");
+> +	cur = xe_gt_get_freq(fd, gt_id, "cur");
+>  	igt_assert(rpn <= cur && cur <= rpmid + FREQ_UNIT_MHZ);
+>  
+>  	if (gt_idle) {
+>  		igt_assert_f(igt_wait(xe_gt_is_in_c6(fd, gt_id), 1000, 10),
+>  			     "GT %d should be in C6\n", gt_id);
+> -		igt_assert(get_freq(fd, gt_id, "act") == 0);
+> +		igt_assert(xe_gt_get_freq(fd, gt_id, "act") == 0);
+>  	} else {
+> -		act = get_freq(fd, gt_id, "act");
+> +		act = xe_gt_get_freq(fd, gt_id, "act");
+>  		igt_assert((rpn <= act) && (act <= cur + FREQ_UNIT_MHZ));
+>  	}
+>  
+> @@ -282,21 +246,21 @@ static void test_freq_range(int fd, int gt_id, bool gt_idle)
+>  
+>  static void test_freq_low_max(int fd, int gt_id)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> -	uint32_t rp0 = get_freq(fd, gt_id, "rp0");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+> +	uint32_t rp0 = xe_gt_get_freq(fd, gt_id, "rp0");
+>  	uint32_t rpmid = (rp0 + rpn) / 2;
+>  
+>  	/*
+>  	 *  When max request < min request, max is ignored and min works like
+>  	 * a fixed one. Let's assert this assumption
+>  	 */
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpmid));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpmid));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpn));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+>  
+>  	/* Cur freq will follow RPe, which could be higher than min freq */
+>  	igt_assert_lte_u32((rpmid - FREQ_UNIT_MHZ),
+> -			   get_freq(fd, gt_id, "cur"));
+> +			   xe_gt_get_freq(fd, gt_id, "cur"));
+>  }
+>  
+>  /**
+> @@ -306,18 +270,18 @@ static void test_freq_low_max(int fd, int gt_id)
+>  
+>  static void test_suspend(int fd, int gt_id)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+>  
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "min", rpn));
+> -	igt_assert_lt(0, set_freq(fd, gt_id, "max", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "min", rpn));
+> +	igt_assert_lt(0, xe_gt_set_freq(fd, gt_id, "max", rpn));
+>  	usleep(SLPC_FREQ_LATENCY_US);
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "cur"), rpn);
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "cur"), rpn);
+>  
+>  	igt_system_suspend_autoresume(SUSPEND_STATE_S3,
+>  				      SUSPEND_TEST_NONE);
+>  
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "min"), rpn);
+> -	igt_assert_eq_u32(get_freq(fd, gt_id, "max"), rpn);
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "min"), rpn);
+> +	igt_assert_eq_u32(xe_gt_get_freq(fd, gt_id, "max"), rpn);
+>  }
+>  
+>  /**
+> @@ -330,24 +294,24 @@ static void test_suspend(int fd, int gt_id)
+>  
+>  static void test_reset(int fd, int gt_id, int cycles)
+>  {
+> -	uint32_t rpn = get_freq(fd, gt_id, "rpn");
+> +	uint32_t rpn = xe_gt_get_freq(fd, gt_id, "rpn");
+>  
+>  	for (int i = 0; i < cycles; i++) {
+> -		igt_assert_f(set_freq(fd, gt_id, "min", rpn) > 0,
+> +		igt_assert_f(xe_gt_set_freq(fd, gt_id, "min", rpn) > 0,
+>  			     "Failed after %d good cycles\n", i);
+> -		igt_assert_f(set_freq(fd, gt_id, "max", rpn) > 0,
+> +		igt_assert_f(xe_gt_set_freq(fd, gt_id, "max", rpn) > 0,
+>  			     "Failed after %d good cycles\n", i);
+>  		usleep(SLPC_FREQ_LATENCY_US);
+> -		igt_assert_f(get_freq(fd, gt_id, "cur") == rpn,
+> +		igt_assert_f(xe_gt_get_freq(fd, gt_id, "cur") == rpn,
+>  			     "Failed after %d good cycles\n", i);
+>  
+>  		xe_force_gt_reset_sync(fd, gt_id);
+>  
+>  		usleep(SLPC_FREQ_LATENCY_US);
+>  
+> -		igt_assert_f(get_freq(fd, gt_id, "min") == rpn,
+> +		igt_assert_f(xe_gt_get_freq(fd, gt_id, "min") == rpn,
+>  			     "Failed after %d good cycles\n", i);
+> -		igt_assert_f(get_freq(fd, gt_id, "max") == rpn,
+> +		igt_assert_f(xe_gt_get_freq(fd, gt_id, "max") == rpn,
+>  			     "Failed after %d good cycles\n", i);
+>  	}
+>  }
+> @@ -448,8 +412,8 @@ igt_main
+>  		stash_max = (uint32_t *) malloc(sizeof(uint32_t) * num_gts);
+>  
+>  		xe_for_each_gt(fd, gt) {
+> -			stash_min[gt] = get_freq(fd, gt, "min");
+> -			stash_max[gt] = get_freq(fd, gt, "max");
+> +			stash_min[gt] = xe_gt_get_freq(fd, gt, "min");
+> +			stash_max[gt] = xe_gt_get_freq(fd, gt, "max");
+>  		}
+>  	}
+>  
+> @@ -525,8 +489,8 @@ igt_main
+>  
+>  	igt_fixture {
+>  		xe_for_each_gt(fd, gt) {
+> -			set_freq(fd, gt, "max", stash_max[gt]);
+> -			set_freq(fd, gt, "min", stash_min[gt]);
+> +			xe_gt_set_freq(fd, gt, "max", stash_max[gt]);
+> +			xe_gt_set_freq(fd, gt, "min", stash_min[gt]);
+>  		}
+>  		free(stash_min);
+>  		free(stash_max);
+> -- 
+> 2.38.1
+> 
