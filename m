@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6A3A84C0A
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 20:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F33C9A84C8B
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Apr 2025 21:01:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEA0B10E389;
-	Thu, 10 Apr 2025 18:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 366CF10E39B;
+	Thu, 10 Apr 2025 19:01:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/rJXIvu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FX7TZTSv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACB910E388;
- Thu, 10 Apr 2025 18:24:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69ADF10E39B;
+ Thu, 10 Apr 2025 19:01:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744309487; x=1775845487;
+ t=1744311679; x=1775847679;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=PZIvuvFE1M/EMAM6emZiOOgwsQ+OlTBy+cdF/JDgfII=;
- b=G/rJXIvuKeEjqgSDBy6KJluTgJTZHt5RjrYM+CMAfmbZ4Gj+jso0XMBf
- SogarkGLtDWUD/GlJn9W5KInT9SGcLIzuYYeCKSDIYntxfaeH24C+0lXy
- 2uNLuI/RFLVXOMh5yu81nVmLp5yfKKlrA51UomD+iqQDnGEU1zUyajLgH
- G53fGLj/TaBCxzb9AMl2YWwNZT8H+iHWcZqcXtFy+5jA3TNml0PC2ZO1t
- kuRf7ng1Z+fLhOHS/suMwpjnRFn+oSTxmtNndEl040UqPWff3K+f6eha2
- K8rI4olVdotbKKUhGA3Y3qE/PBee921wfeG9luflTlEHOWcNZu5sPhQhv w==;
-X-CSE-ConnectionGUID: aqx2sYfzS1W4fAiRMnz/Uw==
-X-CSE-MsgGUID: GsJXdiJISIehexH1zD2ppg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="45746932"
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="45746932"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2025 11:24:46 -0700
-X-CSE-ConnectionGUID: DAc6FlbZRqCuxsOFhCtKBQ==
-X-CSE-MsgGUID: FWZoDj7+T9CP6xOHRpQRAw==
+ bh=RKTCCNMVINNcw2RkQNQr5DRhQFz6wAWSxs15TzYWC4g=;
+ b=FX7TZTSvKG6Qr+i99se3weROariZKva7xHkeCyCNL4JaImcTGG/qeO0Z
+ ZE3ixaEzz0tWgfJHlAiBi9ZN7/70VSlEJjfWeldmCmGgq6p0kP8E9YuAb
+ cNPQnuP5J18VsQ7SWkgLt7N+K8ppnEcY+BM9oflfOwXUdtWdctx7+oUFT
+ mmpY9cJqLaZ1QTQAf53ppZQ+6TwH7/FLksJ3P17vha1hAqczmoSNNjeeY
+ ljeuHBxDylpTevAas3Yc2VH+ikmH6yLWMpEmjlSCzSP5OCYdM8aJuH13I
+ tgR5EMPFcC28Za8ufUJwAnM4s/yS1YFyE5kyZOosd3Bdl5IZalerqqaKB g==;
+X-CSE-ConnectionGUID: JplY7RLqSiGPe7/JAjhMHQ==
+X-CSE-MsgGUID: XJelG0bYSjagrdwE0JMDyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="33462696"
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="33462696"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2025 12:01:17 -0700
+X-CSE-ConnectionGUID: k3shnkmZTPaFZuBEKb/QWw==
+X-CSE-MsgGUID: YoBsjg2NQcaBaBRCjHxwdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,202,1739865600"; d="scan'208";a="129824098"
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="152166056"
 Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by fmviesa009-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2025 11:24:44 -0700
-Date: Thu, 10 Apr 2025 20:24:42 +0200
+ by fmviesa002-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Apr 2025 12:01:16 -0700
+Date: Thu, 10 Apr 2025 21:01:12 +0200
 From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
  Riana Tauro <riana.tauro@intel.com>
 Subject: Re: [PATCH i-g-t 1/2] lib/xe_gt: Move get/set GT freq utils to lib
-Message-ID: <20250410182442.erxihdnvaojxdhf3@kamilkon-DESK.igk.intel.com>
+Message-ID: <20250410190112.y67a632rrp2r3w3z@kamilkon-DESK.igk.intel.com>
 Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
  Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
@@ -80,6 +80,9 @@ On 2025-04-09 at 18:33:13 -0700, Vinay Belgaumkar wrote:
 > 
 > v2: Review comments (Kamil)
 > 
+
+One more nit, see below.
+
 > Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 > Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 > Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
@@ -132,9 +135,6 @@ On 2025-04-09 at 18:33:13 -0700, Vinay Belgaumkar wrote:
 > +		ret = igt_sysfs_printf(gt_fd, freq_attr, "%u", freq);
 > +
 > +	close(gt_fd);
-
-Please add newline here.
-
 > +	return ret;
 > +}
 > +
@@ -164,13 +164,16 @@ Please add newline here.
 > +		err = igt_sysfs_scanf(gt_fd, freq_attr, "%u", &freq);
 > +
 > +	igt_debug("gt%d: %s freq %u\n", gt_id, freq_name, freq);
+
+Add here:
+
+	igt_assert_eq(err, 0);
+
+Regards,
+Kamil
+
 > +
 > +	close(gt_fd);
-
-Same here, add newline, with this fixed:
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-
-
 > +	return freq;
 > +}
 > diff --git a/lib/xe/xe_gt.h b/lib/xe/xe_gt.h
