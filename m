@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2C1A854DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Apr 2025 09:00:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B61A854DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Apr 2025 09:02:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3CB410E230;
-	Fri, 11 Apr 2025 07:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 274DF10EAE4;
+	Fri, 11 Apr 2025 07:02:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hhiLY4KA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NspSH7k8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57E4310E230;
- Fri, 11 Apr 2025 07:00:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B23D510EAE4;
+ Fri, 11 Apr 2025 07:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744354850; x=1775890850;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=7ejzPXWz07hFJwiBrRQwdVwF2imwDBNBOp7Tk+s5Dsc=;
- b=hhiLY4KApCYWAd3IMWMgwz1UYULRsU5uxvWI21ro6/JDzQOlfcYpPgsC
- czCxE3yizXnn1vpy8+SbxH++rVsQlCoBTrZOlfHTUpS9RbLWjYwFuLzlQ
- o3PgJeFwuYs6eCEsWIZNQHhyqRPSp4zH1ebQy8ifaIt1D1x3kwvqqm9Vw
- +hQpHHrwwC7FkijgyHGLgCirLMqEERH8hQ52irz0xB3HNNom3n1LdRluF
- aQZIQWn3HwhJR2EWRNT8LudCdOzXoUQBVJpReaq40YhzJq6diHP71Nh2g
- N0RVHxZIYdkB9/bwyity/c4OplVtNp7f9NdtoYSwv9kpGkQ+WPpJ1Y/Zx A==;
-X-CSE-ConnectionGUID: ZcbGGSdgRkepLWXIWLqCng==
-X-CSE-MsgGUID: mXLldLBYTWCkfzsC2q7dDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="57271526"
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="57271526"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 00:00:49 -0700
-X-CSE-ConnectionGUID: o+trTijQTCerZmzU2ZCPWA==
-X-CSE-MsgGUID: 6rAfQMdYSHqnvuHDd/FrVQ==
+ t=1744354922; x=1775890922;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Ce50Klw8qTMBvZ13mLURazDTyliGqDfo02M5DDg2NjM=;
+ b=NspSH7k8C+C7eZuGFyk3xjaHstWrGrDvGmUeq+D13qZW4MLKJ5Mz2uW0
+ 4VZ4J0j2JN85Ji8C7IT0tYWWsWzMi9oVU7vUrTcmkmrCkGqjaQZn3h/7Z
+ c4veaF4uUOjzEJKFY0NzmXEQROP+g+S3hF5Ln3qLG4AIocqlhDyl8Hac5
+ jrtGowtEZSkg/AL/86CQr1oSFWTtOYI4oNjcFujjKIbzIsfv9wxut/fik
+ 17cki0TRWPD6Q52Zh35UFajazg5+mNvKF5kawMwwx+aAZBE/io9zpErCq
+ THOsx7G8si0CGQKzxPvJwavOwJrSTo5q6hrLAhAf6u//5Y4AB4OrkRnig w==;
+X-CSE-ConnectionGUID: nvZ3vhkMQYGhOFVRt12qyg==
+X-CSE-MsgGUID: zraVgs1LQHC40aZ+6WX0Eg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11400"; a="45786110"
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="45786110"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2025 00:02:01 -0700
+X-CSE-ConnectionGUID: AAL89XJnTEGFjCvoBevqLg==
+X-CSE-MsgGUID: BnfnqPpHSeGxygHvhiY2sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="128887578"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.67])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 00:00:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/i915/debugfs: move PCH type to display caps
-In-Reply-To: <SN7PR11MB6750754539172AEC6845950EE3B62@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1744295009.git.jani.nikula@intel.com>
- <a864b7a577ea7a3bd2435e9734e023593edbfd5a.1744295009.git.jani.nikula@intel.com>
- <SN7PR11MB6750754539172AEC6845950EE3B62@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Fri, 11 Apr 2025 10:00:42 +0300
-Message-ID: <878qo7uqqt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,203,1739865600"; d="scan'208";a="134279582"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orviesa005.jf.intel.com with SMTP; 11 Apr 2025 00:01:58 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 11 Apr 2025 10:01:58 +0300
+Date: Fri, 11 Apr 2025 10:01:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 03/19] drm: Look up the format info earlier
+Message-ID: <Z_i-Zniclef5dkUD@intel.com>
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+ <20250410163218.15130-4-ville.syrjala@linux.intel.com>
+ <20250410193302.GC27834@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250410193302.GC27834@pendragon.ideasonboard.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +73,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Apr 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Thursday, April 10, 2025 7:54 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH 2/2] drm/i915/debugfs: move PCH type to display caps
->> 
->> Arguably PCH is more relevant to display. Move the information to display caps
->> debugfs.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+On Thu, Apr 10, 2025 at 10:33:02PM +0300, Laurent Pinchart wrote:
+> Hi Ville,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Apr 10, 2025 at 07:32:02PM +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Looks up the format info in already drm_internal_framebuffer_create()
+> > so that we can later pass it along to .fb_create(). Currently various
+> > drivers are doing additional lookups in their .fb_create()
+> > implementations, and these lookups are rather expensive now (given
+> > how many different pixel formats we have).
+> 
+> That's a separate issue, but would it be worth using a data structure
+> that supports more efficient lookup ?
 
-Thanks for the review, both pushed to drm-intel-next.
+I think the obvious solution would be to to just sort the array
+and use a binary search. Ideally we'd get the compiler to do that
+for us at build time and then get rid of the unsorted array entirely,
+but sadly we can't do that in C. The alternative of keeping the array
+sorted by hand sounds very annoying (at least without having a way
+to validate that it is correctly sorted at build time).
 
-BR,
-Jani.
-
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 +++
->>  drivers/gpu/drm/i915/i915_debugfs.c                  | 2 --
->>  2 files changed, 3 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index d43ae6729f21..4c208fdb9137 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -53,8 +53,11 @@ static struct intel_display *node_to_intel_display(struct
->> drm_info_node *node)  static int intel_display_caps(struct seq_file *m, void
->> *data)  {
->>  	struct intel_display *display = node_to_intel_display(m->private);
->> +	struct drm_i915_private *i915 = to_i915(display->drm);
->>  	struct drm_printer p = drm_seq_file_printer(m);
->> 
->> +	drm_printf(&p, "PCH type: %d\n", INTEL_PCH_TYPE(i915));
->> +
->>  	intel_display_device_info_print(DISPLAY_INFO(display),
->>  					DISPLAY_RUNTIME_INFO(display), &p);
->>  	intel_display_params_dump(&display->params, display->drm->driver-
->> >name, &p); diff --git a/drivers/gpu/drm/i915/i915_debugfs.c
->> b/drivers/gpu/drm/i915/i915_debugfs.c
->> index 0d9e263913ff..967c0501e91e 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -66,8 +66,6 @@ static int i915_capabilities(struct seq_file *m, void *data)
->>  	struct drm_i915_private *i915 = node_to_i915(m->private);
->>  	struct drm_printer p = drm_seq_file_printer(m);
->> 
->> -	seq_printf(m, "pch: %d\n", INTEL_PCH_TYPE(i915));
->> -
->>  	intel_device_info_print(INTEL_INFO(i915), RUNTIME_INFO(i915), &p);
->>  	i915_print_iommu_status(i915, &p);
->>  	intel_gt_info_print(&to_gt(i915)->info, &p);
->> --
->> 2.39.5
->
+> 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> 
+> > ---
+> >  drivers/gpu/drm/drm_framebuffer.c | 25 +++++++++++++------------
+> >  1 file changed, 13 insertions(+), 12 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
+> > index 18a0267e374e..ae09ef6977b2 100644
+> > --- a/drivers/gpu/drm/drm_framebuffer.c
+> > +++ b/drivers/gpu/drm/drm_framebuffer.c
+> > @@ -153,18 +153,11 @@ int drm_mode_addfb_ioctl(struct drm_device *dev,
+> >  }
+> >  
+> >  static int framebuffer_check(struct drm_device *dev,
+> > +			     const struct drm_format_info *info,
+> >  			     const struct drm_mode_fb_cmd2 *r)
+> >  {
+> > -	const struct drm_format_info *info;
+> >  	int i;
+> >  
+> > -	/* check if the format is supported at all */
+> > -	if (!__drm_format_info(r->pixel_format)) {
+> > -		drm_dbg_kms(dev, "bad framebuffer format %p4cc\n",
+> > -			    &r->pixel_format);
+> > -		return -EINVAL;
+> > -	}
+> > -
+> >  	if (r->width == 0) {
+> >  		drm_dbg_kms(dev, "bad framebuffer width %u\n", r->width);
+> >  		return -EINVAL;
+> > @@ -175,9 +168,6 @@ static int framebuffer_check(struct drm_device *dev,
+> >  		return -EINVAL;
+> >  	}
+> >  
+> > -	/* now let the driver pick its own format info */
+> > -	info = drm_get_format_info(dev, r->pixel_format, r->modifier[0]);
+> > -
+> >  	for (i = 0; i < info->num_planes; i++) {
+> >  		unsigned int width = drm_format_info_plane_width(info, r->width, i);
+> >  		unsigned int height = drm_format_info_plane_height(info, r->height, i);
+> > @@ -272,6 +262,7 @@ drm_internal_framebuffer_create(struct drm_device *dev,
+> >  				struct drm_file *file_priv)
+> >  {
+> >  	struct drm_mode_config *config = &dev->mode_config;
+> > +	const struct drm_format_info *info;
+> >  	struct drm_framebuffer *fb;
+> >  	int ret;
+> >  
+> > @@ -297,7 +288,17 @@ drm_internal_framebuffer_create(struct drm_device *dev,
+> >  		return ERR_PTR(-EINVAL);
+> >  	}
+> >  
+> > -	ret = framebuffer_check(dev, r);
+> > +	/* check if the format is supported at all */
+> > +	if (!__drm_format_info(r->pixel_format)) {
+> > +		drm_dbg_kms(dev, "bad framebuffer format %p4cc\n",
+> > +			    &r->pixel_format);
+> > +		return ERR_PTR(-EINVAL);
+> > +	}
+> > +
+> > +	/* now let the driver pick its own format info */
+> > +	info = drm_get_format_info(dev, r->pixel_format, r->modifier[0]);
+> > +
+> > +	ret = framebuffer_check(dev, info, r);
+> >  	if (ret)
+> >  		return ERR_PTR(ret);
+> >  
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
