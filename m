@@ -2,74 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D1DA88941
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 19:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CABA88936
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 19:02:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE81910E63F;
-	Mon, 14 Apr 2025 17:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25C6D10E280;
+	Mon, 14 Apr 2025 17:02:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="iVzE4vQU";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="XKRlE1WR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 376 seconds by postgrey-1.36 at gabe;
- Fri, 11 Apr 2025 10:59:52 UTC
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 118B810EB6C;
- Fri, 11 Apr 2025 10:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1744369174;
- bh=NmDXTK+4Kxgs42S2SDvzBSL3QLhh5lqVdK90DWHJpMQ=;
- h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=iVzE4vQU3oWbZgV0Yc0M0Yp+b4D0PTtqV+6PvvChzV9q/15NrBmsfn8kCrguxHn17
- OBbJPpxzPmJOz7s4gtEuy5TFsGf3B7yQTo6TJ6jDEm47ojOdz1QJ2xFiOcXKnVJfVp
- YyibTs1qlsmiYj66F3bQ1UR/iOUpasqEVIoQ3S9g=
-X-QQ-mid: bizesmtp23t1744368955tc9900ee
-X-QQ-Originating-IP: E+95eiCIMfMVh6UVqQOHgjo4HzQI0WCrSHwCW4L7S7I=
-Received: from localhost.localdomain ( [113.57.152.160])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Fri, 11 Apr 2025 18:55:48 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 12124381483811632618
-EX-QQ-RecipientCnt: 10
-From: Chen Linxuan <chenlinxuan@uniontech.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Chen Linxuan <chenlinxuan@uniontech.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 4/7] drm/i915/pxp: fix undefined reference to
- `intel_pxp_gsccs_is_ready_for_sessions'
-Date: Fri, 11 Apr 2025 18:54:52 +0800
-Message-ID: <8921351F23CD8948+20250411105459.90782-4-chenlinxuan@uniontech.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250411105459.90782-1-chenlinxuan@uniontech.com>
-References: <31F42D8141CDD2D0+20250411105142.89296-1-chenlinxuan@uniontech.com>
- <20250411105459.90782-1-chenlinxuan@uniontech.com>
+X-Greylist: delayed 516 seconds by postgrey-1.36 at gabe;
+ Fri, 11 Apr 2025 17:26:43 UTC
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38C610EC51;
+ Fri, 11 Apr 2025 17:26:42 +0000 (UTC)
+Received: from wse-pc.fritz.box (host-88-217-226-44.customer.m-online.net
+ [88.217.226.44]) (Authenticated sender: wse@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPA id 79C3B2FC0055;
+ Fri, 11 Apr 2025 19:18:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1744391882;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=NyVZJW2evaHgtQ9r9PhHJ1mjUqOm15rHIODTnDeP2QE=;
+ b=XKRlE1WR+vCbKsn8N8zDxBRE4HN5QNfzn+h2KNJ5Kx8Awv8CfwOyKpntQDWX6du/OgyMkC
+ f+K4GtzemR9ou4IgsA8StiloOH+Cr5cuqRi4G3DWHlnUbHZV7F2XGpYbDqbgdRikJuAysI
+ hU7GBikI5DPKcfDeN+bo86bj6MGGHjE=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=wse@tuxedocomputers.com
+ smtp.mailfrom=wse@tuxedocomputers.com
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Werner Sembach <wse@tuxedocomputers.com>
+Subject: [PATCH 0/1] drm/i915/display: Add quirk to force backlight type on
+ some TUXEDO devices
+Date: Fri, 11 Apr 2025 17:55:07 +0200
+Message-ID: <20250411171756.142777-1-wse@tuxedocomputers.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-QQ-XMAILINFO: NRkWGnbnkwTmyhcwGdrhPHlggXz5G9kgY6MjCZLFNLFGYbQ9q66KdArH
- z0ZhSjyaTMmZItuKTLBSYdP9Rwsu2BeQap5I55i9sbdjjL6o+YhqoEiQDRW58fjBr52jZew
- Xh8/A35JpkeDMZbp0HB2wXhtJ9lDY0YNgUpIFu7mg5AhyC4ZUL+CRgzRRnRdiK8CSoXOM9U
- kvQZAq5rXrMV3m/XhonJZsrFYDQWXIj7qdc6HKzXtznZJfD18UWpORLzdLYry88PkgHi/Ph
- ekDtrZHO4XQ2fnEpSU5/bYsrM4ZT1VjdM5TjOd9A9yznuy9AlGti23SwTiAbhHTcqMObJ6c
- 0/iYm/Zlb+bi9RkMJHEHuz6Ei2HZt+s5leeRJHeuim4PQwfLHDj4vvcg41rGuhZCDxxncN1
- lTYWNGuycRJztc0ZQuDFNc1c2eIFd+e1TmL7ZBBtsKNsJOpUUarIoGqVtAODJAvbe/odlpJ
- BQriGyVMmtlkYg/iHAw3GXzb1+UH6E4Ostqkes3NbgDl2xGcHwGSJL2XD2kLvR38R0SNoTN
- gjqqRZryvWXbSOAY8ihI1dna5xbp0vIZh6e7jyAl7CGG3hZTk1JQGCfcS4IDKutsxNz/PJR
- lr20zl9lV+bC8Ei16eORd5lmMRMYMk7+AyPK9ckclARsXc3efyCsLvWiL3GjKGdcGZiUo5r
- 8sPeAkBHDWnRV9WwSoEzyOWn6coU4EbOFuIWl9dG9wOHkNkueKz6OTqkvp7ZMa7kxUf2eJk
- mSid14n1CMCk+oz6ZSTcKe3vyq7Xh8TcVGu55o/2BK2sLRX5WarIz2iybpRrWqZ+KAUhuOu
- j83WJ3fHo3iPnD2o2XjiRSxu9gDn0KlbStYIHGJZhyA+B+pX4DSeh/yY36WCFe1DJ/jdG2D
- nOwOpEmnRW+6eITZfilPRmDGQAozRlbaXyLUDV3ua3Dp/5UJPv9gvQNnh6Jogpfj0NthDay
- +V3d1A+8LooM7paJL6D2nKchstPpcRwPdg8aW8uLiv/a3xg==
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Mon, 14 Apr 2025 17:01:59 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,50 +64,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On x86_64 with gcc version 13.3.0, I compile kernel with:
+This is a quirk we currently manually apply via our installer via the boot
+parameter, but we don't have this exact device + panel configuration in our
+archive anymore so I could only test the qurik moking in other ids. This is
+the same situation we have here:
+https://lore.kernel.org/all/20250409163029.130651-1-wse@tuxedocomputers.com/
 
-  make defconfig
-  ./scripts/kconfig/merge_config.sh .config <(
-    echo CONFIG_COMPILE_TEST=y
-  )
-  make KCFLAGS="-fno-inline-functions -fno-inline-small-functions -fno-inline-functions-called-once"
+Werner Sembach (1):
+  drm/i915/display: Add quirk to force backlight type on some TUXEDO
+    devices
 
-Then I get a linker error:
+ .../drm/i915/display/intel_dp_aux_backlight.c | 14 ++++++-
+ drivers/gpu/drm/i915/display/intel_quirks.c   | 42 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
+ 3 files changed, 56 insertions(+), 1 deletion(-)
 
-  ld: vmlinux.o: in function `pxp_fw_dependencies_completed':
-  kintel_pxp.c:(.text+0x95728f): undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'
-
-Signed-off-by: Chen Linxuan <chenlinxuan@uniontech.com>
----
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-index 9aae779c4da3..4969d3de2bac 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-@@ -23,6 +23,7 @@ int intel_pxp_gsccs_init(struct intel_pxp *pxp);
- 
- int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_session_id);
- void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
-+bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
- 
- #else
- static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
-@@ -34,8 +35,11 @@ static inline int intel_pxp_gsccs_init(struct intel_pxp *pxp)
- 	return 0;
- }
- 
--#endif
-+static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp)
-+{
-+	return false;
-+}
- 
--bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
-+#endif
- 
- #endif /*__INTEL_PXP_GSCCS_H__ */
 -- 
-2.48.1
+2.43.0
 
