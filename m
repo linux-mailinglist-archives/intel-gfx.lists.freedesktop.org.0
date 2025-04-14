@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23021A87CE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 12:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F190A87CE7
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 12:05:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDE9710E559;
-	Mon, 14 Apr 2025 10:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC24410E566;
+	Mon, 14 Apr 2025 10:05:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fydaQYm2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTio2/fA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE0310E559;
- Mon, 14 Apr 2025 10:05:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 226ED10E55B;
+ Mon, 14 Apr 2025 10:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744625142; x=1776161142;
+ t=1744625144; x=1776161144;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+/QQKPmtJmfxrQMYJouTgouhtwHqIpBTv2H4lrQqGkw=;
- b=fydaQYm2v0gaZKez2FSyMssO2IJMbFhauwi0YIPZPWSOzCYYrV0daHO2
- 3AvhdhXlMfnIy7QTi816/hEA+pOUSTYSMAEsxSRpfIRE3Ed9DWwDR/5Hz
- OdBOlsH32Ns5lBKFaq8Jrlv7KiHK0bt3VY4PFpFU7V3vCCkhUdcSSnsiG
- 3ad++HNF/I+ZGH/W3tp5J6v+y9R9yop3tUdjRGl0dkwXVszg8wgFN/Jmh
- Z3uDM/1hyaGq0HGn5NdeepbuQ++/hfcp37lqYy6GMzlJq2gnldlWQdLHy
- PGh95DdJFyvbw4ykCO9J2pOlr0ZOA/+I5tNba7yTylBhGU0DGchRyRrUy g==;
-X-CSE-ConnectionGUID: TdNo0O3yRj2EatoZifbt5w==
-X-CSE-MsgGUID: I5lckNxSTtSNIa7Zp4Cl1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="48789132"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="48789132"
+ bh=2gBNtFKaJD0t9dLcbmxOCPgf26EZg7sMLTwWVg0IFGc=;
+ b=TTio2/fAU3q71qzhjl4Q79fwSoFEiJuSq7ja8SPeQCXlTdqCnj2Ov0et
+ LDSnVOdTxQmwS4Ptoup7zz4O9LYW8Fx5CEKg4bOXfPGtuD3sZ0yH68hnV
+ Hcv8O0fFLHG135KeCkR4Dc2w7MerPtAatnq3R/3hI8qjgfH52GxZgCRfj
+ SCkvgRpDJAhPuAt0+g8zUUVzDnSmUx51EuMWWoZOFto2NeESjiB5LqkAl
+ YVFhuQ9A4g8Zw3qZEYfwsPlDC1CAKXV0XAUszDJWQvDj9ZugVIfXYcDMu
+ VdJH85TNuF8+mvNVD9Qt2NIuYLI35uKShyW13Ve61xKm8GmZreH8lffS8 Q==;
+X-CSE-ConnectionGUID: evQaKT1lT8ui7NOB/6EaiQ==
+X-CSE-MsgGUID: FG4HrLwCTgmbXCNY5QCzAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="48789134"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="48789134"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 03:05:42 -0700
-X-CSE-ConnectionGUID: LrSstV5XQlGkhVzcltDkWw==
-X-CSE-MsgGUID: YL3p4TucQH2P9oDt4GeLGQ==
+ 14 Apr 2025 03:05:44 -0700
+X-CSE-ConnectionGUID: BPcfd6pHRvS8eQjYMlwyBA==
+X-CSE-MsgGUID: jS6n7kVJSxiOoqxisd5IJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129743222"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129743227"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.194])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 03:05:41 -0700
+ 14 Apr 2025 03:05:43 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 12/13] drm/i915/display: Rename
- intel_psr_needs_block_dc_vblank
-Date: Mon, 14 Apr 2025 13:05:07 +0300
-Message-ID: <20250414100508.1208774-13-jouni.hogander@intel.com>
+Subject: [PATCH v3 13/13] drm/i915/display: Rename vblank DC workaround
+ functions and variables
+Date: Mon, 14 Apr 2025 13:05:08 +0300
+Message-ID: <20250414100508.1208774-14-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250414100508.1208774-1-jouni.hogander@intel.com>
 References: <20250414100508.1208774-1-jouni.hogander@intel.com>
@@ -73,115 +73,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Scope of intel_psr_needs_block_dc_vblank has changed now. Rename it as
-intel_psr_needs_vblank_notification. Also rename
-intel_crtc::block_dc_for_vblank as intel_crtc:vblank_psr_notify
+We have extended using vblank DC workaround mechanism for
+Wa_16025596647. Rename related functions and variables:
+
+vblank_wa_num_pipes -> vblank_enable_count
+vblank_dc_work -> vblank_notify_work
+intel_display_vblank_dc_work -> intel_display_vblank_notify_work
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c          | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_irq.c   | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_types.h | 2 +-
- drivers/gpu/drm/i915/display/intel_psr.c           | 8 +++++---
- drivers/gpu/drm/i915/display/intel_psr.h           | 2 +-
- 5 files changed, 11 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
+ .../gpu/drm/i915/display/intel_display_core.h |  4 ++--
+ .../gpu/drm/i915/display/intel_display_irq.c  | 19 ++++++++++---------
+ 3 files changed, 13 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 5b2603ef2ff7..bdf30ab96396 100644
+index bdf30ab96396..537859630363 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -124,7 +124,7 @@ void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -156,7 +156,7 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
  
--	crtc->block_dc_for_vblank = intel_psr_needs_block_dc_vblank(crtc_state);
-+	crtc->vblank_psr_notify = intel_psr_needs_vblank_notification(crtc_state);
+ 	crtc->vblank_psr_notify = false;
  
- 	assert_vblank_disabled(&crtc->base);
- 	drm_crtc_set_max_vblank_count(&crtc->base,
-@@ -154,7 +154,7 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
- 	drm_crtc_vblank_off(&crtc->base);
- 	assert_vblank_disabled(&crtc->base);
- 
--	crtc->block_dc_for_vblank = false;
-+	crtc->vblank_psr_notify = false;
- 
- 	flush_work(&display->irq.vblank_dc_work);
+-	flush_work(&display->irq.vblank_dc_work);
++	flush_work(&display->irq.vblank_notify_work);
  }
+ 
+ struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 650ab055e148..613af57abd1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -470,9 +470,9 @@ struct intel_display {
+ 		/* For i915gm/i945gm vblank irq workaround */
+ 		u8 vblank_enabled;
+ 
+-		int vblank_wa_num_pipes;
++		int vblank_enable_count;
+ 
+-		struct work_struct vblank_dc_work;
++		struct work_struct vblank_notify_work;
+ 
+ 		u32 de_irq_mask[I915_MAX_PIPES];
+ 		u32 pipestat_irq_mask[I915_MAX_PIPES];
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index ab68fe675a51..7d301f9eb960 100644
+index 7d301f9eb960..240cbed5f9e2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1721,7 +1721,7 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
+@@ -1701,13 +1701,13 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
+ 	return true;
+ }
+ 
+-static void intel_display_vblank_dc_work(struct work_struct *work)
++static void intel_display_vblank_notify_work(struct work_struct *work)
+ {
+ 	struct intel_display *display =
+-		container_of(work, typeof(*display), irq.vblank_dc_work);
+-	int vblank_wa_num_pipes = READ_ONCE(display->irq.vblank_wa_num_pipes);
++		container_of(work, typeof(*display), irq.vblank_notify_work);
++	int vblank_enable_count = READ_ONCE(display->irq.vblank_enable_count);
+ 
+-	intel_psr_notify_vblank_enable_disable(display, vblank_wa_num_pipes);
++	intel_psr_notify_vblank_enable_disable(display, vblank_enable_count);
+ }
+ 
+ int bdw_enable_vblank(struct drm_crtc *_crtc)
+@@ -1721,8 +1721,8 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
  	if (gen11_dsi_configure_te(crtc, true))
  		return 0;
  
--	if (crtc->block_dc_for_vblank && display->irq.vblank_wa_num_pipes++ == 0)
-+	if (crtc->vblank_psr_notify && display->irq.vblank_wa_num_pipes++ == 0)
- 		schedule_work(&display->irq.vblank_dc_work);
+-	if (crtc->vblank_psr_notify && display->irq.vblank_wa_num_pipes++ == 0)
+-		schedule_work(&display->irq.vblank_dc_work);
++	if (crtc->vblank_psr_notify && display->irq.vblank_enable_count++ == 0)
++		schedule_work(&display->irq.vblank_notify_work);
  
  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
-@@ -1752,7 +1752,7 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
+ 	bdw_enable_pipe_irq(display, pipe, GEN8_PIPE_VBLANK);
+@@ -1752,8 +1752,8 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
  	bdw_disable_pipe_irq(display, pipe, GEN8_PIPE_VBLANK);
  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
  
--	if (crtc->block_dc_for_vblank && --display->irq.vblank_wa_num_pipes == 0)
-+	if (crtc->vblank_psr_notify && --display->irq.vblank_wa_num_pipes == 0)
- 		schedule_work(&display->irq.vblank_dc_work);
+-	if (crtc->vblank_psr_notify && --display->irq.vblank_wa_num_pipes == 0)
+-		schedule_work(&display->irq.vblank_dc_work);
++	if (crtc->vblank_psr_notify && --display->irq.vblank_enable_count == 0)
++		schedule_work(&display->irq.vblank_notify_work);
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 0e2945aa6057..ee84c1215e54 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1440,7 +1440,7 @@ struct intel_crtc {
- 	struct intel_pipe_crc pipe_crc;
- #endif
+ static u32 vlv_dpinvgtt_pipe_fault_mask(enum pipe pipe)
+@@ -2320,5 +2320,6 @@ void intel_display_irq_init(struct intel_display *display)
  
--	bool block_dc_for_vblank;
-+	bool vblank_psr_notify;
- };
+ 	intel_hotplug_irq_init(display);
  
- struct intel_plane_error {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ae60a9d346cd..127eec4272fd 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2325,15 +2325,17 @@ void intel_psr_resume(struct intel_dp *intel_dp)
+-	INIT_WORK(&display->irq.vblank_dc_work, intel_display_vblank_dc_work);
++	INIT_WORK(&display->irq.vblank_notify_work,
++		  intel_display_vblank_notify_work);
  }
- 
- /**
-- * intel_psr_needs_block_dc_vblank - Check if block dc entry is needed
-+ * intel_psr_needs_vblank_notification - Check if PSR need vblank enable/disable
-+ * notification.
-  * @crtc_state: CRTC status
-  *
-  * We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
-  * prevent it in case of Panel Replay. Panel Replay switches main link off on
-  * DC entry. This means vblank interrupts are not fired and is a problem if
-- * user-space is polling for vblank events.
-+ * user-space is polling for vblank events. Also Wa_16025596647 needs
-+ * information when vblank is enabled/disabled.
-  */
--bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state)
-+bool intel_psr_needs_vblank_notification(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_display *display = to_intel_display(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index a914b7ee3756..c61384bb7382 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -59,7 +59,7 @@ void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 					  const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
--bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
-+bool intel_psr_needs_vblank_notification(const struct intel_crtc_state *crtc_state);
- void intel_psr_notify_pipe_change(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc, bool enable);
- void intel_psr_notify_dc5_dc6(struct intel_display *display);
 -- 
 2.43.0
 
