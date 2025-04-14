@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53FDFA87F09
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E169A87F07
 	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 13:30:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFC510E588;
-	Mon, 14 Apr 2025 11:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F80C10E593;
+	Mon, 14 Apr 2025 11:30:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ACZFxu7y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P2HwZ+MX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54C1110E587;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 802E210E588;
  Mon, 14 Apr 2025 11:30:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1744630207; x=1776166207;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=R6XJ/5knbIS4fJuepN6GxKWbgCV58k2bbDo5jLCbcw4=;
- b=ACZFxu7yVHalroDlyjqhRm63D/BuzPH7d2LPW6KJqv1CzHLHtyw+Ucdp
- vZEoQh72BIbTg3JTF1b8qCI2mtwZHfl8CkVG7jg0x8t/YIrLG860zKNIr
- F8p5HAwNDZTEiVW6TPL8MWrkYqu6+NFfX5U1Vk0ApXc5gHtKtMKy0q2bB
- GMNgV6PP+rNpU8MQqVs18TwCDpKwiPej+MBoQAU+YuXUuobKQKqCd7ZT2
- xjMdFxrRg8oiskLhps3NimeDBmUsYVW5Cx7IHB2GtHepV3yh8o4274u+J
- 5fLJWe3HP+MhKOGQQJLgK+HU+kYnbbUiINHaQYpcxLuOWveht6POWZPKC A==;
-X-CSE-ConnectionGUID: mr0r7D1ESUOSuK/MvlbgSw==
-X-CSE-MsgGUID: w0O8S4C5RfaMZ2s/ewdplA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="57481045"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="57481045"
+ bh=TqsR0YwdQjQtz80f8EbFek0wptrlCQLzmMpU3VZY2/I=;
+ b=P2HwZ+MXWYO/jrmDiT6l9ssEbiqDXC9vIwamvxd5UCaP+V3UhA2rSjpY
+ P4o875WaLM0SRokb8HcsOTQaSjCfi2ghE7yFe86HSIQrLRwpnKhelw8ts
+ YZmRF+fJu4+QObAk1j8sk4srMXOrmFCRH1sB+QhAfG6dC0Dtu2kyCQde0
+ ibtZgHR/5anOlSFMgtIqSTIPLlxG8AT0MLQaK2FeXFKRoAO3R8VTNW4It
+ +uZ53eOUYXWT/pzsse3b0HVL82AlzSCX+PnneJUFXCew1OlnDJrftotC1
+ wTXPoVYlAMQuImlLCZqpRejfaxmXUNMslcBhlzhYT2fJkQAEBh6ecWrGm A==;
+X-CSE-ConnectionGUID: 3V0TLCsNTfyRRRRCcnNnag==
+X-CSE-MsgGUID: tsOBOHL5R9CFoQCf5osmtA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="57481051"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="57481051"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 04:29:58 -0700
-X-CSE-ConnectionGUID: FlcOKWuqSZ6/NcU7HCKSIA==
-X-CSE-MsgGUID: cR0X4W3XQLezTwLne+wLIA==
+ 14 Apr 2025 04:30:03 -0700
+X-CSE-ConnectionGUID: yDAoGecBRdmS86RFWXDLNA==
+X-CSE-MsgGUID: aj18Z4xBSEyLDxU5+hjhJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129761594"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129761678"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.205])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 04:29:56 -0700
+ 14 Apr 2025 04:30:01 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [CI v3 1/6] drm/i915: use 32-bit access for gen2 irq registers
-Date: Mon, 14 Apr 2025 14:29:43 +0300
-Message-Id: <5a56286c94e08a02435c60ce0fbff13aca6c0d1f.1744630147.git.jani.nikula@intel.com>
+Subject: [CI v3 2/6] drm/i915: record GEN2_IER in gtier[0] for pre-ilk error
+ capture
+Date: Mon, 14 Apr 2025 14:29:44 +0300
+Message-Id: <f637219fe3accb69963266773b9ef7c1131875e4.1744630147.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744630147.git.jani.nikula@intel.com>
 References: <cover.1744630147.git.jani.nikula@intel.com>
@@ -72,28 +73,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've previously switched from 16-bit to 32-bit access for gen2 irq
-registers, but one was left behind. Fix it.
+In pre-ilk platforms the engine interrupts live in GEN2_IER. Capture it
+as part of gtier instead of display.
 
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_gpu_error.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/i915_gpu_error.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index a6613eed3398..cf31e8fecd8d 100644
+index cf31e8fecd8d..64c760e7b7ee 100644
 --- a/drivers/gpu/drm/i915/i915_gpu_error.c
 +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
 @@ -1782,8 +1782,6 @@ static void gt_record_display_regs(struct intel_gt_coredump *gt)
  		gt->ier = intel_uncore_read(uncore, VLV_IER);
  	else if (HAS_PCH_SPLIT(i915))
  		gt->ier = intel_uncore_read(uncore, DEIER);
--	else if (GRAPHICS_VER(i915) == 2)
--		gt->ier = intel_uncore_read16(uncore, GEN2_IER);
- 	else
- 		gt->ier = intel_uncore_read(uncore, GEN2_IER);
+-	else
+-		gt->ier = intel_uncore_read(uncore, GEN2_IER);
  }
+ 
+ /* Capture all other registers that GuC doesn't capture. */
+@@ -1822,6 +1820,9 @@ static void gt_record_global_nonguc_regs(struct intel_gt_coredump *gt)
+ 	} else if (HAS_PCH_SPLIT(i915)) {
+ 		gt->gtier[0] = intel_uncore_read(uncore, GTIER);
+ 		gt->ngtier = 1;
++	} else {
++		gt->gtier[0] = intel_uncore_read(uncore, GEN2_IER);
++		gt->ngtier = 1;
+ 	}
+ 
+ 	gt->eir = intel_uncore_read(uncore, EIR);
 -- 
 2.39.5
 
