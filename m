@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADAA8A87DE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 12:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11677A87E36
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 12:57:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A47010E0CB;
-	Mon, 14 Apr 2025 10:46:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B02A10E569;
+	Mon, 14 Apr 2025 10:57:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7122B10E0CB;
- Mon, 14 Apr 2025 10:46:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2963583219131677565=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65CE010E569;
+ Mon, 14 Apr 2025 10:56:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Macro_for_3_DSC_engines_p?=
- =?utf-8?q?er_pipe_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_mtd=3A_add_driver_fo?=
+ =?utf-8?q?r_Intel_discrete_graphics_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 14 Apr 2025 10:46:34 -0000
-Message-ID: <174462759445.800.17496929864029741710@b68e5b3b99e1>
+Date: Mon, 14 Apr 2025 10:56:59 -0000
+Message-ID: <174462821941.801.6379510242597013751@b68e5b3b99e1>
 X-Patchwork-Hint: ignore
-References: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
+References: <20250414093803.2133463-1-alexander.usyskin@intel.com>
+In-Reply-To: <20250414093803.2133463-1-alexander.usyskin@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,152 +41,51 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2963583219131677565==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Macro for 3 DSC engines per pipe (rev2)
-URL   : https://patchwork.freedesktop.org/series/147643/
-State : success
+Series: mtd: add driver for Intel discrete graphics (rev9)
+URL   : https://patchwork.freedesktop.org/series/140306/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16412 -> Patchwork_147643v2
-====================================================
+Error: dim checkpatch failed
+fe60bf200020 mtd: core: always create master device
+decd81f2f016 mtd: add driver for intel graphics non-volatile memory device
+-:69: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#69: 
+new file mode 100644
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 202 lines checked
+aa31d5a4e3c8 mtd: intel-dg: implement region enumeration
+78318aeb2c56 mtd: intel-dg: implement access functions
+ea0ac0601d38 mtd: intel-dg: register with mtd
+d23932bfcab6 mtd: intel-dg: align 64bit read and write
+2b6a956ff273 mtd: intel-dg: wake card on operations
+e26faa86d35a drm/i915/nvm: add nvm device for discrete graphics
+-:96: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#96: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 163 lines checked
+5bb73d1b272f drm/i915/nvm: add support for access mode
+9723c7c52246 drm/xe/nvm: add on-die non-volatile memory device
+-:87: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#87: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 212 lines checked
+91982d484a2e drm/xe/nvm: add support for access mode
+04afa357fd40 drm/xe/nvm: add support for non-posted erase
+-:121: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#121: FILE: drivers/mtd/devices/mtd_intel_dg.c:392:
++			while (!(reg & NVM_NON_POSTED_ERASE_DONE) &&
++				++iter < NVM_NON_POSTED_ERASE_DONE_ITER) {
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/index.html
+-:122: WARNING:MSLEEP: msleep < 20ms can sleep for up to 20ms; see function description of msleep().
+#122: FILE: drivers/mtd/devices/mtd_intel_dg.c:393:
++				msleep(10);
 
-Participating hosts (46 -> 45)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147643v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-apl-1:          NOTRUN -> [SKIP][1] +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-apl-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-apl-1:          [ABORT][2] ([i915#14097]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16412/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [DMESG-WARN][4] ([i915#13494]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16412/bat-mtlp-9/igt@i915_module_load@load.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-mtlp-9/igt@i915_module_load@load.html
-
-  
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#14097]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14097
+total: 0 errors, 1 warnings, 1 checks, 150 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16412 -> Patchwork_147643v2
-
-  CI-20190529: 20190529
-  CI_DRM_16412: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8317: 8317
-  Patchwork_147643v2: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/index.html
-
---===============2963583219131677565==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Macro for 3 DSC engines per pipe (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147643/">https://patchwork.freedesktop.org/series/147643/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16412 -&gt; Patchwork_147643v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147643v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_lmem_swapping@parallel-random-engines:<ul>
-<li>bat-apl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-apl-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16412/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14097">i915#14097</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16412/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147643v2/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16412 -&gt; Patchwork_147643v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16412: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8317: 8317<br />
-  Patchwork_147643v2: 8d0b26a073a34e4eeef766fb53b62e7ec19f9456 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2963583219131677565==--
