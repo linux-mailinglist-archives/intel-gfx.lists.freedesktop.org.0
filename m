@@ -2,145 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F0AA89B50
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 12:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3293DA8806C
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 14:33:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB84F10E72C;
-	Tue, 15 Apr 2025 10:59:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25EE310E59B;
+	Mon, 14 Apr 2025 12:33:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HWdF4X73";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GQrOLZ6B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D60EC10E72C
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 10:59:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35D5810E59B;
+ Mon, 14 Apr 2025 12:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744714755; x=1776250755;
- h=resent-to:resent-from:resent-date:resent-message-id:from:
- to:cc:subject:date:message-id:in-reply-to:references:
- content-transfer-encoding:mime-version;
+ t=1744634006; x=1776170006;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
  bh=0c6z7N702Ae9CN0+13UZUxqRErL7cKfRRekcagPEbTQ=;
- b=HWdF4X73TP3HrihqTmA7+5na0GYeqvmbryE+T+EEsBuABuZY49rwKsh1
- gbk8dEP4ck75gkeWB8jPEre2XdKNhRfEyEqwHYbL9WzKEPOH4K5J7jKsP
- 86I51szc3flisO74lpJI53f3nFH0TK2Lal6MLOOHwJzFg/i8f3hRYDIOI
- M4PUX/i3IdDgnBF+Bi5N0A8TgjfdqhB1oDcBa2hxjf0CBT0hWgCx4IEr3
- Kqk2CaoTcprLDExIlh3dFx42OwQVKrXh4D8vlDd9TNQdzHxvBJ1Ot7uyX
- YmOpoUuz7rrsybCiaH5p9h45z4qNMqwyxeo5zkeuF7mFmay7Uu8rzGqhF w==;
-X-CSE-ConnectionGUID: B7YhtlnJT8mATXqgRYZc5g==
-X-CSE-MsgGUID: cMu0e0wVQ6KzRXQv8yYTbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="63759057"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="63759057"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 03:59:14 -0700
-X-CSE-ConnectionGUID: 8mkiVn3BRAia7ls1f7Amsw==
-X-CSE-MsgGUID: 91geNre+QbehTRe9cPnmHg==
-X-ExtLoopCount2: 2 from 10.245.246.35
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="129942617"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.35])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 03:59:13 -0700
-Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
- 02160 Espoo
-Resent-To: intel-gfx@lists.freedesktop.org
-Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Tue, 15 Apr 2025 13:59:10 +0300
-Resent-Message-ID: <87bjsxsnb5.fsf@intel.com>
-Received: from DS7PR11MB8827.namprd11.prod.outlook.com (2603:10b6:8:254::21)
- by PH7PR11MB6428.namprd11.prod.outlook.com with HTTPS; Mon, 14 Apr 2025
- 12:33:38 +0000
-Received: from BY1P220CA0026.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:5c3::17)
- by DS7PR11MB8827.namprd11.prod.outlook.com (2603:10b6:8:254::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.34; Mon, 14 Apr
- 2025 12:33:37 +0000
-Received: from MWH0EPF000971E6.namprd02.prod.outlook.com
- (2603:10b6:a03:5c3:cafe::3d) by BY1P220CA0026.outlook.office365.com
- (2603:10b6:a03:5c3::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8632.33 via Frontend Transport; Mon,
- 14 Apr 2025 12:33:37 +0000
-Authentication-Results: spf=fail (sender IP is 134.134.137.103)
- smtp.mailfrom=intel.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=intel.com;
-Received: from edgegateway.intel.com (134.134.137.103) by
- MWH0EPF000971E6.mail.protection.outlook.com (10.167.243.74) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8655.12 via Frontend Transport; Mon, 14 Apr 2025 12:33:36 +0000
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- edgegateway.intel.com (10.7.248.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 14 Apr 2025 05:33:25 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 14 Apr 2025 05:33:25 -0700
-Received: from orviesa004.jf.intel.com (10.64.159.144) by
- ORSMSX902.amr.corp.intel.com (10.22.229.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 14 Apr 2025 05:33:25 -0700
+ b=GQrOLZ6B4hRBLEWRAjOks+2Ko7fju4Gu1BKW1aSSqdrEN3SGRyaNouf4
+ 3qtJtsAe1vbthfywZZW8TEHFfcqqo1va0WXxY0t/VFYSQYZCO+ytz2kyj
+ vbVZg9hLVLNFKJc1EAYj7npqoGkJ0MlGySXux8bmmwUzKRQ0WVLx1FRyJ
+ 5XpVeVuoARZ0V3tGVtw0wYiGCuB1UKzLjzrAq1CKEzOvYgmpDVfx7h+J6
+ pnvLUe1iOz7D2sCrk+LkGvQgVQ0QkMkBu+hZnzliUjp81M4JhbXWd3rj3
+ Bt5fkq/oX4n7z1vBOG0Z6ETQ04XqbsotuT2zKLL2YxV7HMtSrKeP6zAOj Q==;
+X-CSE-ConnectionGUID: scps01rtTVGVrNLuHYp4Vw==
+X-CSE-MsgGUID: N6ge1CCXTQ6DrF8s4FkWvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46011912"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="46011912"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 05:33:26 -0700
 X-CSE-ConnectionGUID: Z/joAHIiQFir60QxybcL3A==
 X-CSE-MsgGUID: ZPT4oU2YS6eFk9RJmkI63A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134781620"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134781621"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205]) by orviesa004-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Apr 2025 05:33:24 -0700
+ ([10.245.246.205])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 05:33:24 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Subject: [PATCH 2/3] drm/i915/display: drop lots of unnecessary #include
  i915_drv.h
 Date: Mon, 14 Apr 2025 15:33:08 +0300
-Message-ID: <86f07ef5f0f8065f2b6e8b29619fd34350cf3ac6.1744633934.git.jani.nikula@intel.com>
+Message-Id: <86f07ef5f0f8065f2b6e8b29619fd34350cf3ac6.1744633934.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744633934.git.jani.nikula@intel.com>
 References: <cover.1744633934.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-OrganizationHeadersPreserved: ORSMSX903.amr.corp.intel.com
-X-MS-Exchange-Organization-ExpirationStartTime: 14 Apr 2025 12:33:36.9636 (UTC)
-X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
-X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
-X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
-X-MS-Exchange-Organization-Network-Message-Id: 074be392-11ac-4aea-9918-08dd7b509426
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Organization-MessageDirectionality: Originating
-X-MS-Exchange-Organization-AuthSource: ORSMSX902.amr.corp.intel.com
-X-MS-Exchange-Organization-AuthAs: Internal
-X-MS-Exchange-Organization-AuthMechanism: 10
-X-MS-Exchange-Organization-SCL: 1
-X-CrossPremisesHeadersPromoted: MWH0EPF000971E6.namprd02.prod.outlook.com
-X-CrossPremisesHeadersFiltered: MWH0EPF000971E6.namprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000971E6:EE_|DS7PR11MB8827:EE_|PH7PR11MB6428:EE_
-X-OriginatorOrg: intel.onmicrosoft.com
-X-MS-Office365-Filtering-Correlation-Id: 074be392-11ac-4aea-9918-08dd7b509426
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|366016|7053199007|41050700001; 
-X-Forefront-Antispam-Report: CIP:134.134.137.103; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:edgegateway.intel.com; PTR:edgegateway.intel.com;
- CAT:NONE; SFS:(13230040)(82310400026)(366016)(7053199007)(41050700001);
- DIR:INT; 
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2025 12:33:36.9323 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 074be392-11ac-4aea-9918-08dd7b509426
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=46c98d88-e344-4ed4-8496-4ed7712e255d; Ip=[134.134.137.103];
- Helo=[edgegateway.intel.com]
-X-MS-Exchange-CrossTenant-AuthSource: ORSMSX902.amr.corp.intel.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB8827
-X-MS-Exchange-Transport-EndToEndLatency: 00:00:01.9552744
-X-MS-Exchange-Processed-By-BccFoldering: 15.20.8632.030
-X-Microsoft-Antispam-Mailbox-Delivery: ucf:0; jmr:0; auth:0; dest:I;
- ENG:(910005)(944506478)(944626604)(920097)(425001)(930097)(140003); 
-X-Microsoft-Antispam-Message-Info: j0UwXqoW6sQ0GunwhHmaQdfcihah+EJwr2kIfEZi4lNl22kPq/rvHq0X+MEJdfJxbPqvSzk1mP8c6+/2fbjwBeKq8vwT8a+4weycG6m5quXsrpnrr6IGbkmzCr/BF+ySlUc4v3IQGZ6CBYMagE9CU5+ILkWL+0XBL2SId/6ijmqSnl503RO1lOpnJV4CgKBuUi6fSGyECV0gF3c/JZuc1kzckJUx8YvqZ+Tjnmc8Ck4szZ7PxxAL7Fz+byHgQJUUY6KqqLmKbwGUg8UJzQsQ80cUYIzPOo8QrVeVxU/Xl6ER6006Pd/5aYijMbtXH2sLBMjHmXx+tUWjIUT/dBGFCC8CoW9mCGPE2kmEo4CY2Zd9aVsCbZXtPekFXhbiNghjTa0PFE4OqBFmRMEID11WO7syyDX9g8S1L+f96ATt6VIZ61J6YUTYGxAg6vvAdMngw4a011thF5P20aacKqLi8vJrAO9EVHOofzj15EY2RB4xYsDMUqGoiqkKbj/fT6oltwQw0hcth0DtCwDMk3GkuaXCkImvxdVAJEsfsdLwbI+dPjauopseogsqb6IzZvbWGQHC/a9sYMKS4Ohq0rGLTP/in97OaKAm+7girr9/vjDOSyqBdXirzB5bmZcQh3EJXsLZOJl5O2rrvV2nwpUdkx3IsE9XVkW4fxszk0wUlEYC9ZZ3AkK6YgY0cLZHiEG7ceTIE4dH1pzLltJpTTAa7GRjisF4OIDxaPiqwG2MMe2+ClAwjg9Ft0L/DuRDCVW/aiQy4C65gB8g6NJGRgi1lBW4etUUR+oz1Iq7GDm+bOVrh65CUVunSl754Dadp5EG2rgt8SIYjBv5sEI2Yewjzw==
 MIME-Version: 1.0
-X-TUID: Z+tb9nzITI51
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
