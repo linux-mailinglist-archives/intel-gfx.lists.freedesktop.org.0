@@ -2,55 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FA9A88BB3
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 20:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D0DA89B24
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 12:53:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8FA10E26B;
-	Mon, 14 Apr 2025 18:46:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ui5TwQOG";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6FC810E739;
+	Tue, 15 Apr 2025 10:53:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA7EE10E164;
- Mon, 14 Apr 2025 18:46:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744656415; x=1776192415;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=TZYqZ9jkjwVe12KhZFuEG95vPfd+NfZNtVzUiQTF0Qo=;
- b=Ui5TwQOGRF5u4yM71wUcViVyBqVtskwh/KK/6ThJVV8Ny92+vCnvoRbb
- gBd8io0VZo71KcJjFQROUOmEtPSn7rS+96qGgF2O6rjlp708GFD0K77qg
- 2VKICKut/GQPplalascmWjEF8cBKMVv5JAeo0TuKdAcIVAYWh6jh9r/y8
- D7jF9PdRe23yB6YY7lXcv5rPpDgbsT2PxwBSODA1hpGpytQhW9j2fCwi9
- p938gl2WJRZ5EIIrVLcHPexy80X4h1oECQ9Iy6bUOkQIh1xTDXdfaYlfE
- R+4xpfm4jB+yQFzzBredF6gE9ONU4A5DIRnH0hWFeiPpui10F2reQC5le w==;
-X-CSE-ConnectionGUID: BbdfgwgNTwmOGrmMWpHpHQ==
-X-CSE-MsgGUID: vfVrXW7VRA6COQiJ/GJ2SA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45374735"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="45374735"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 11:46:54 -0700
-X-CSE-ConnectionGUID: A6NpG6cgRPKA0IqQirc6Pw==
-X-CSE-MsgGUID: bP8q0Uk7TuKmovyR4kiu6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="134875551"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.205])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 11:46:53 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [CI v3 0/6] drm/i915: error capture cleanups and refactor
-In-Reply-To: <cover.1744630147.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1744630147.git.jani.nikula@intel.com>
-Date: Mon, 14 Apr 2025 21:46:49 +0300
-Message-ID: <8734eatwbq.fsf@intel.com>
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Mon, 14 Apr 2025 19:07:17 UTC
+Received: from sdore.me (unknown [95.165.1.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8902010E2FC;
+ Mon, 14 Apr 2025 19:07:17 +0000 (UTC)
+Received: from [192.168.1.2] (Beast.lan [192.168.1.2])
+ by sdore.me (Postfix) with ESMTPSA id 51230F923E00D;
+ Mon, 14 Apr 2025 22:00:01 +0300 (MSK)
+Message-ID: <7e2cb3cdcee84975a439980cb94d93eac14bae11.camel@sdore.me>
+Subject: Re: =?UTF-8?Q?=E2=9C=97?= i915.CI.BAT: failure for series starting
+ with [v3,1/2] drm/edid: Implement DisplayID Type IX & X timing blocks
+ parsing
+From: Egor Vorontsov <sdoregor@sdore.me>
+To: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Egor Vorontsov <sdoregor@sdore.me>
+Date: Mon, 14 Apr 2025 22:00:01 +0300
+In-Reply-To: <173955656648.2118687.12350276607296168996@b555e5b46a47>
+References: <20250214110643.506740-1-sdoregor@sdore.me>
+ <173955656648.2118687.12350276607296168996@b555e5b46a47>
+Autocrypt: addr=sdoregor@sdore.me; prefer-encrypt=mutual;
+ keydata=mQINBGDSFnMBEADfvtLiuRL6CHdMzETKrux7sNHWG+eJ2+pgRZ3Nc9pH/YWqjoed8OpFx
+ OLeUxr9YSQ3uMD//JEe3+Sgte29Z3PAAHVkCwKBIucCnhHpXbcQZgC9xYMCd6GWR5+DpXN9szOIyb
+ kvnEtuqTddz6Q7fYsaFDs0pH3jUUWmSAyCn2JCIRfT22XgO44B/yoqnM3JXHAayeHbEAQOzMe81q3
+ deauI9W7SC9ScRT6VkgLuc+SxqH99el/OkiKTe/QpO6I6cVS8leesqnOGffkRPos/o2eRonqgDu0e
+ Mw4YTu0x5iNr8Lbr4TefU2W1l6M3MNwOsLmI+58+3fK1vh0QqZ70NC4eyD9UEXk3mJyV7epfNU6fY
+ 0mFJbAhGV1TXomcy2MlOD1rDixw85zdK5uUwp0tfEkpxqKtihJmrTdApOTTVed303CLzgDsMokTIe
+ aUOPqVZoWFDkvOzq6IppBkApJHBf1lcLlgwEn3cLQlGpYRSSi5NY3+UYtcOEZLDbF3TO6ncY8W2h3
+ yQH/sAcSllfKKvkhdqEz4/Mha3GbZQXWgjrLy9BcISsQFj+DBN54I6a6kLm2n5wXH99sOp7s3jMeN
+ zSU6PtuxZq4Gkt2K5JGT8yrIdfJfOH7yRUVm+8JqKNKqd6oczlDKV+lzRk9M/kjb8VQivaNSNwTo9
+ 3NxEuft0+tZgwARAQABtCJFZ29yIFZvcm9udHNvdiA8c2RvcmVnb3JAc2RvcmUubWU+iQJOBBMBCA
+ A4FiEEXlTCjXwaPBiJP3U33a9iH2xv60MFAmDSFnMCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4A
+ ACgkQ3a9iH2xv60OquRAAgbgenXi+Ud0tYoAz6giuFKYqzuEYuoSVkjxYvZq90ODrzbu7EdvMVuKA
+ qNqYjs3VRBPBMHXhJKEftKbX4bZwCoC2o2wB5oV5O13jVN083r49FTLCxmOoufCkaqscBBxi/X2T6
+ +i0n5Nqx5NLBL0kE4NMTk1jxEEyuEjv7bBMs196G/d3EpNJT3YGkLXBUibpaSaVjE6zBr3UygieLD
+ 2QXNkRJubx2d0FoD8TezSt5hsHWg9FOElsW6ZImRI+5q+ptL39K3cpjxHMKyhmo7xypD5XNWdmsmV
+ 1+STnK7R+id18xs7JUDxHBtG7Z/3K6txgF5CPbPvtaEi9fB3K/uS03BnIzsY2/cY3r9UHHrHa/sP6
+ DhDwj9dr2xIFG5w6ZNh4mUTHEJoWKEEsYKwXy2eJCB3XvP7GURAm8fXdIapONbHDYj7XX49Mj+LBr
+ s4PNBuKaZTFgGQ6RSc7LpAR56xaEDR93m7zNy84mQtpab/owaox1A+BEujzKK/vEDvj9f8EWlWZRa
+ DH2auNNAxdr2ACR8RzkojcFDCErAgc5sFQrgVUlvNmMdn3VL0CWmndzEQxsOdgVk9SwoHHYpHf4Cg
+ gtchq3pTQ5XSRaP/wxOtQpzqJWq5uFERBTLU8WRXYv3mM3KMdvtTJadF8+P+KSSnn+/yHahR0HKVx
+ PtHSH7Px/vI=
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Mailman-Approved-At: Tue, 15 Apr 2025 10:53:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +70,11 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sdoregor@sdore.me
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 14 Apr 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> Resend for clean CI.
+The patchset seems stalled, presumably because of this CI dead end.
 
-And pushed to din, thanks for the review.
-
->
-> Jani Nikula (6):
->   drm/i915: use 32-bit access for gen2 irq registers
->   drm/i915: record GEN2_IER in gtier[0] for pre-ilk error capture
->   drm/i915: stop recording IER in error capture
->   drm/i915: use display snapshot mechanism for display irq regs
->   drm/i915: don't capture DERRMR for VLV/CHV
->   drm/i915: use graphics version instead of PCH split in error capture
->
->  .../gpu/drm/i915/display/intel_display_irq.c  | 28 +++++++++++++++
->  .../gpu/drm/i915/display/intel_display_irq.h  |  5 +++
->  .../drm/i915/display/intel_display_snapshot.c |  5 +++
->  drivers/gpu/drm/i915/i915_gpu_error.c         | 35 +++----------------
->  drivers/gpu/drm/i915/i915_gpu_error.h         |  3 --
->  5 files changed, 42 insertions(+), 34 deletions(-)
-
--- 
-Jani Nikula, Intel
+Is there anything I can do about this issue, or did the thread just get
+lost? Some are even pinging me directly on the state of this now.
