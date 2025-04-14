@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDDD5A86DDE
-	for <lists+intel-gfx@lfdr.de>; Sat, 12 Apr 2025 16:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84190A875ED
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 04:54:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10C2910E14F;
-	Sat, 12 Apr 2025 14:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF7B10E44F;
+	Mon, 14 Apr 2025 02:54:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXod7ZSz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IsdbLynr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F397310E14F
- for <intel-gfx@lists.freedesktop.org>; Sat, 12 Apr 2025 14:54:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2334210E25F;
+ Mon, 14 Apr 2025 02:54:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744469673; x=1776005673;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=ZkwWBw7pGcBWXxlfY+tu/bkDMWI/yq9zIJ0BeFauSPQ=;
- b=HXod7ZSzES7/nqM7X5OFpJUR9kF8LGiISOQA5iKrenm48YAcoNea+ZBp
- 8mFD3p/KA23T+TcerHi5u6+fFJu9lzAMqIPH+pUlw+KHls6YOhKBYcbiS
- CQeG21wa53BHIoUcYqtwAAVcNy1bSBCtAB0IZ+lS0MTj5h2HExkWByyCC
- BPKtmsHpGbbIhWlbnMu9bq/fr8idTVqN9OqZVGnApzsfQfYMajf48WNvn
- pFAu7J2Oex5G6gf37RAzjT27AAiI1cWEKKpq8SDYF5+ghCww7vdaNSINt
- nnT5CC5kuW/r/icTdmIuvsGMaZvI6ZbTjqMJXM924TutvIfVekmnPjwE2 A==;
-X-CSE-ConnectionGUID: uHzdOOIpQZyFU8Gtt5ctNw==
-X-CSE-MsgGUID: atjvHjzeT7iIXw0GhYDTsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="49651866"
-X-IronPort-AV: E=Sophos;i="6.15,208,1739865600"; d="scan'208";a="49651866"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2025 07:54:26 -0700
-X-CSE-ConnectionGUID: 82+979a2S2CXjZGTSjHSAA==
-X-CSE-MsgGUID: ryRHFeyiTKSuuZH0j9ROiw==
+ t=1744599272; x=1776135272;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iUAHst3zI6fEf7PtpM5r+6Q34eoySQdVHpTtIfkQwcg=;
+ b=IsdbLynrsJpgMisM+X8Gs1mwO12q0H3XscvE3pquBHVOwn0K9owVYxAT
+ kr3p9KrOsi9ZyfH+6gNidksV/RTf+UgeLQ+glOaM5QUmvDoUh6I6bGf+6
+ fgy6s8DXb4g/w9od4+UaLW4ZXZK+27pmqerI//QCular+K7cMIAAWgZfK
+ ijfsE9mDGuWepanlQkS4fPvGwHzZHdx43v6FRxhvziW70djs/WmXiXZjn
+ /iHoZshrbWC/V6DxBTOes6elau6xZJAALwgl2miti8A7vzPuLKZSWlIEg
+ qHS0zA6Pa8499a+H5WopOyMFM9KOIIaVU+5ocmXFtnxvVgwK5Xq/giGok Q==;
+X-CSE-ConnectionGUID: MW+UZmPiT9iT4SoL733EbQ==
+X-CSE-MsgGUID: T4AzzEXpScmRr92El2sAsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="46189563"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="46189563"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2025 19:54:29 -0700
+X-CSE-ConnectionGUID: 31aSWBO1QjayrxyaezRigQ==
+X-CSE-MsgGUID: +Qw0VttASQCth+FLqF5yEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,208,1739865600"; d="scan'208";a="129437742"
-Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.109])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2025 07:54:25 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="130016209"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2025 19:54:27 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, stable@vger.kernel.org, ankit.k.nautiyal@intel.com
+Subject: [PATCH 0/2] Macro for 3 DSC engines per pipe
+Date: Mon, 14 Apr 2025 08:12:54 +0530
+Message-ID: <20250414024256.2782702-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <lirio6uzqw4v62akcfcoo7w37gai24nbgefoyzxviysjape7aj@ck7iwwcnvpx4>
-References: <lirio6uzqw4v62akcfcoo7w37gai24nbgefoyzxviysjape7aj@ck7iwwcnvpx4>
-Subject: Re: [PATCH] drm/i915/selftest/mmap_migrate: wait for clear memory
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-To: Mikolaj Wasiak <mikolaj.wasiak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Sat, 12 Apr 2025 16:54:14 +0200
-Message-ID: <174446965487.2426228.1861093609601132073@DEV-409>
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,15 +66,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mikolaj Wasiak (2025-04-11 12:48:16)
-> Mmap_migrate test runs multiple times filling GPU memory
-> with objects. Those objects are deleted after each run
-> but cleaning pages takes some time after the objects are
-> put. This patch lets tests to wait for cleanup after previous test
-> if they need to allocate whole memory with new objects.
+3 DSC engines are supported only for BMG to be used in specific cases
+where 12 DSC slices might be required.
+Add macro for the same and use that while configuring DSC slices.
 
-That's a fundamental bug if pages are available on the system but not
-being allocated [just because they are currently being freed]. That
-breaks the understanding that clients can allocate any and all local
-memory.
--Chris
+Ankit Nautiyal (2):
+  drm/i915/display: Add macro for checking 3 DSC engines
+  drm/i915/dp: Check for HAS_DSC_3ENGINES while configuring DSC slices
+
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp.c             | 7 ++++---
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
+
