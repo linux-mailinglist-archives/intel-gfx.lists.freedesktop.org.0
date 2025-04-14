@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49C9A87F0D
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 13:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83437A87F0E
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Apr 2025 13:30:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D44410E550;
-	Mon, 14 Apr 2025 11:30:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0753610E58C;
+	Mon, 14 Apr 2025 11:30:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K0iNWs06";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FE8PJ6xo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB7D710E589;
- Mon, 14 Apr 2025 11:30:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A6B810E58C;
+ Mon, 14 Apr 2025 11:30:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744630218; x=1776166218;
+ t=1744630223; x=1776166223;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U242x1vAU2NFV3Qbr8wUlA1X+qzHSNCzfqqg52VmghE=;
- b=K0iNWs06nMPgo24vz3UJV5McF1BRF9Ok55tj28E+rA5zhHnhJ/piThS4
- R/lC9o4OMkJhiNkqG+eaZOzzvkaky1fNPkj+4s6DIFRmnEC7XqWhWjkHK
- c4YILjhqymS+ruYnsY0RcUry921Bq5RhPfMuC3LETJcecvkF1cjuuJhVg
- EbCzO6UuZAHBTK41ESS3yVb6p+TpeNZOlDjSMjy1yME7jSL5l2emD2pwh
- ksteWun3yrs50gDi9/SRle0wScaZqKKhJvxUyK2mdAbRT6guBia85WJyF
- R6W+FYxhE4yHh5Li7CDGcaZgg2VV5fm+KvkrXJRbQDp4gY+1GaLklUm0/ A==;
-X-CSE-ConnectionGUID: 0da+K2rWTJiGc9L/8rESwg==
-X-CSE-MsgGUID: /XJxrGgwRSGuphAbp6T/JA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="57481075"
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="57481075"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 04:30:18 -0700
-X-CSE-ConnectionGUID: 37D+/RpbSAmYCUhyioi/1w==
-X-CSE-MsgGUID: lpDeRA4+TAml+zPIAj966Q==
+ bh=61+CIJVx6TEWrhaF9DHG6UIOVojOY9b+XfpnS48yYf4=;
+ b=FE8PJ6xoBQMcAmOsP7aSepuT89yXuDQFv86HGOyqXtx3I25gBRg/H23f
+ 80u4IZ9e7iGEKne4/p/sxbwdAwFCcX3ek3eijig1g9ZpIkUoRX2c3ewIQ
+ OBNkeFfSrtEdr5Rst9cISgN+UA6rp3l09z4xMnFFKZiwSu/nzGXJCepf7
+ wCVZGXzwMf/HLAxFvnyGICaW1pjTryehc4e372Fpl0mDOPtAi7KHSCSVX
+ ynuzYG2SmyNxT1JRYQM2xLgaaY6C9b6HRkOj5FM7Dgn52zoWWBcd/NRks
+ xB0qMN5FqaoUP+In4q+RVGjpKvbS/g/EryD/rqFcKiKyK19MyAZmaysuC w==;
+X-CSE-ConnectionGUID: TgdWqGReRiSAKsSJIpjJ5Q==
+X-CSE-MsgGUID: S1jrYs5LTdS778iPdo1QQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="45802042"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="45802042"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 04:30:23 -0700
+X-CSE-ConnectionGUID: 1x0IJcS2StOUHGGOBEuRuQ==
+X-CSE-MsgGUID: 7NpUWF48REyqfqcICDu5qQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="129761723"
+X-IronPort-AV: E=Sophos;i="6.15,212,1739865600"; d="scan'208";a="130338031"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.205])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2025 04:30:16 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2025 04:30:21 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [CI v3 5/6] drm/i915: don't capture DERRMR for VLV/CHV
-Date: Mon, 14 Apr 2025 14:29:47 +0300
-Message-Id: <4563cc7eb567ac508b84717c3708a4e48aa8b7bb.1744630147.git.jani.nikula@intel.com>
+Subject: [CI v3 6/6] drm/i915: use graphics version instead of PCH split in
+ error capture
+Date: Mon, 14 Apr 2025 14:29:48 +0300
+Message-Id: <8d73eb1d56603210003554bc6a875c53ed4c692a.1744630147.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1744630147.git.jani.nikula@intel.com>
 References: <cover.1744630147.git.jani.nikula@intel.com>
@@ -72,27 +73,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DERRMR isn't valid for VLV/CHV. Don't capture it for them.
+Avoid using PCH checks in core i915 code, in preparation for moving PCH
+handling to display.
 
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index f5dc050a6344..5d07b6a9e59e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -2343,7 +2343,7 @@ intel_display_irq_snapshot_capture(struct intel_display *display)
- 	if (!snapshot)
- 		return NULL;
- 
--	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 && !HAS_GMCH(display))
- 		snapshot->derrmr = intel_de_read(display, DERRMR);
- 
- 	return snapshot;
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 62e4a293ed9b..aa2cad910902 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1792,7 +1792,7 @@ static void gt_record_global_nonguc_regs(struct intel_gt_coredump *gt)
+ 			gt->gtier[i] =
+ 				intel_uncore_read(uncore, GEN8_GT_IER(i));
+ 		gt->ngtier = 4;
+-	} else if (HAS_PCH_SPLIT(i915)) {
++	} else if (GRAPHICS_VER(i915) >= 5) {
+ 		gt->gtier[0] = intel_uncore_read(uncore, GTIER);
+ 		gt->ngtier = 1;
+ 	} else {
 -- 
 2.39.5
 
