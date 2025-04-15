@@ -2,79 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6403CA89FBC
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 15:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D217BA8A075
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 16:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E30C10E795;
-	Tue, 15 Apr 2025 13:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F76910E7A1;
+	Tue, 15 Apr 2025 14:01:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="E3GQRXB6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJJ3xVc4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 371 seconds by postgrey-1.36 at gabe;
- Tue, 15 Apr 2025 13:40:35 UTC
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com
- [51.81.35.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE66810E795
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 13:40:34 +0000 (UTC)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
- by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 129602143F
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 13:34:19 +0000 (UTC)
-Received: from relay1.mymailcheap.com (relay1.mymailcheap.com
- [144.217.248.100])
- by relay5.mymailcheap.com (Postfix) with ESMTPS id 27ABA2005F
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 13:34:13 +0000 (UTC)
-Received: from nf1.mymailcheap.com (nf1.mymailcheap.com [51.75.14.91])
- by relay1.mymailcheap.com (Postfix) with ESMTPS id 681FB3E8C9;
- Tue, 15 Apr 2025 13:33:56 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
- by nf1.mymailcheap.com (Postfix) with ESMTPSA id 083A540009;
- Tue, 15 Apr 2025 13:33:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
- t=1744724034; bh=D8QE8JgrUBczpSJWqnmRKCNqoinTq+e1JucXx1W1WZQ=;
- h=From:To:Cc:Subject:Date:From;
- b=E3GQRXB6izAkdBxeI74SACdHR7L6l2Yf8MEeWrrO94EtzA8nsTm+3ERCO3/TaMc71
- BKfcoZhtaFH5PXs1WtAva6yeWSMacyTmu/lUH4fx9e1vyCtqN/hFae4Euf6n1bfDre
- HP6xpZJ9CY41O3c5Cz2usbwyebRfejbuYqNyqsjA=
-Received: from JellyZhongke.localdomain (unknown [203.175.14.48])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mail20.mymailcheap.com (Postfix) with ESMTPSA id 5BBC74073B;
- Tue, 15 Apr 2025 13:33:49 +0000 (UTC)
-From: Mingcong Bai <jeffbai@aosc.io>
-To: Lu Baolu <baolu.lu@linux.intel.com>
-Cc: Kexy Biscuit <kexybiscuit@aosc.io>, intel-gfx@lists.freedesktop.org,
- Mingcong Bai <jeffbai@aosc.io>, stable@vger.kernel.org,
- Wenhao Sun <weiguangtwk@outlook.com>,
- David Woodhouse <dwmw2@infradead.org>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Kevin Tian <kevin.tian@intel.com>, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] iommu: intel: apply quirk_iommu_igfx for 8086:0044 (QM57/QS57)
-Date: Tue, 15 Apr 2025 21:33:29 +0800
-Message-ID: <20250415133330.12528-1-jeffbai@aosc.io>
-X-Mailer: git-send-email 2.49.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF6D10E7A1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 14:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744725712; x=1776261712;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=pGtnbJpEocXVmUhqBdX9hG/ME4diF5ZxO9/33UCqJCU=;
+ b=HJJ3xVc48erWo4Db7czMSFaDiHEjAXyUGl/7qfqRczqHSTB5oYCrcGNp
+ vX1rGMkzJc/1JGGlWQbXFAtV1HnUX4uimwQDfyW6Z6nnmBFRQcR4dO/qe
+ sMPjDHHZNxP94RCgBm+vGg8dJThQK9fstteHdFZBCx8j1KfYIUd+Gi6BM
+ E6+Cjb4fn9fPMiaNS/YukdvrHrjSk1MUELsKLkST4tnE/+uWgrX16S+vr
+ 4re/R07FZ0pUhfFvt8AIpK4QXLo4K0of/t3+k/2YduIn5xN6rO+mKiF3t
+ QmT2AkQd/wjGNeN1urpUEQsHZBCFphLh/31DegpLK4I/QZus2GvjZ1jug w==;
+X-CSE-ConnectionGUID: BcSum4FbTVyqRpuWT1XkxA==
+X-CSE-MsgGUID: 2Zrn7xTXQhGCc2z6OhN6bQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46324609"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="46324609"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 07:01:52 -0700
+X-CSE-ConnectionGUID: Rvx7b0IwTYGxvJbAAC4Ymg==
+X-CSE-MsgGUID: nkb9DFjpSIW8qt6B1tPBCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="131104061"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.35])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 07:01:50 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/irq: convert ibx_irq_reset() into
+ ibx_display_irq_reset()
+In-Reply-To: <Z_5eQIUKBRn3PDy7@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250409184702.3790548-1-jani.nikula@intel.com>
+ <Z_5eQIUKBRn3PDy7@intel.com>
+Date: Tue, 15 Apr 2025 17:01:47 +0300
+Message-ID: <87a58hr0ac.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 083A540009
-X-Rspamd-Server: nf1.mymailcheap.com
-X-Spamd-Result: default: False [3.19 / 10.00]; BAYES_SPAM(1.79)[85.81%];
- MID_CONTAINS_FROM(1.00)[]; R_MISSING_CHARSET(0.50)[];
- MIME_GOOD(-0.10)[text/plain]; ARC_NA(0.00)[];
- ASN(0.00)[asn:16276, ipnet:51.83.0.0/16, country:FR];
- RCVD_COUNT_ONE(0.00)[1]; RCPT_COUNT_TWELVE(0.00)[13];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com];
- FREEMAIL_CC(0.00)[aosc.io,lists.freedesktop.org,vger.kernel.org,outlook.com,infradead.org,8bytes.org,kernel.org,arm.com,intel.com,lists.linux.dev];
- FROM_HAS_DN(0.00)[];
- SPFBL_URIBL_EMAIL_FAIL(0.00)[jeffbai.aosc.io:server
- fail,weiguangtwk.outlook.com:server fail,stable.vger.kernel.org:server fail]; 
- FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_SOME(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[outlook.com]; RCVD_TLS_ALL(0.00)[]
-X-Rspamd-Action: no action
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,97 +71,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On the Lenovo ThinkPad X201, when Intel VT-d is enabled in the BIOS, the
-kernel boots with errors related to DMAR, the graphical interface appeared
-quite choppy, and the system resets erratically within a minute after it
-booted:
+On Tue, 15 Apr 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Wed, Apr 09, 2025 at 09:47:02PM +0300, Jani Nikula wrote:
+>> Observe that ibx_irq_reset() is really ibx_display_irq_reset(). Make it
+>> so. Move to display, and call it directly from gen8_display_irq_reset()
+>> instead of gen8_irq_reset().
+>>=20
+>> Remove a nearby ancient stale comment while at it.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../gpu/drm/i915/display/intel_display_irq.c  | 17 ++++++++++++++
+>>  .../gpu/drm/i915/display/intel_display_irq.h  |  1 +
+>>  drivers/gpu/drm/i915/i915_irq.c               | 22 ++-----------------
+>>  3 files changed, 20 insertions(+), 20 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/=
+gpu/drm/i915/display/intel_display_irq.c
+>> index d2a35e3630b1..0acb3b46d909 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> @@ -1960,8 +1960,22 @@ void vlv_display_irq_postinstall(struct intel_dis=
+play *display)
+>>  	intel_display_irq_regs_init(display, VLV_IRQ_REGS, dev_priv->irq_mask,=
+ enable_mask);
+>>  }
+>>=20=20
+>> +void ibx_display_irq_reset(struct intel_display *display)
+>> +{
+>> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+>> +
+>> +	if (HAS_PCH_NOP(i915))
+>> +		return;
+>> +
+>> +	gen2_irq_reset(to_intel_uncore(display->drm), SDE_IRQ_REGS);
+>> +
+>> +	if (HAS_PCH_CPT(i915) || HAS_PCH_LPT(i915))
+>> +		intel_de_write(display, SERR_INT, 0xffffffff);
+>> +}
+>> +
+>>  void gen8_display_irq_reset(struct intel_display *display)
+>>  {
+>> +	struct drm_i915_private *i915 =3D to_i915(display->drm);
+>>  	enum pipe pipe;
+>>=20=20
+>>  	if (!HAS_DISPLAY(display))
+>> @@ -1977,6 +1991,9 @@ void gen8_display_irq_reset(struct intel_display *=
+display)
+>>=20=20
+>>  	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
+>>  	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
+>> +
+>> +	if (HAS_PCH_SPLIT(i915))
+>> +		ibx_display_irq_reset(display);
+>>  }
+>>=20=20
+>>  void gen11_display_irq_reset(struct intel_display *display)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/=
+gpu/drm/i915/display/intel_display_irq.h
+>> index f72727768351..c0efda1c949c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+>> @@ -54,6 +54,7 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *displa=
+y, const u32 master_ctl);
+>>  void gen11_gu_misc_irq_handler(struct intel_display *display, const u32=
+ iir);
+>>=20=20
+>>  void i9xx_display_irq_reset(struct intel_display *display);
+>> +void ibx_display_irq_reset(struct intel_display *display);
+>>  void vlv_display_irq_reset(struct intel_display *display);
+>>  void gen8_display_irq_reset(struct intel_display *display);
+>>  void gen11_display_irq_reset(struct intel_display *display);
+>> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915=
+_irq.c
+>> index c1f938a1da44..d06694d6531e 100644
+>> --- a/drivers/gpu/drm/i915/i915_irq.c
+>> +++ b/drivers/gpu/drm/i915/i915_irq.c
+>> @@ -658,23 +658,9 @@ static irqreturn_t dg1_irq_handler(int irq, void *a=
+rg)
+>>  	return IRQ_HANDLED;
+>>  }
+>>=20=20
+>> -static void ibx_irq_reset(struct drm_i915_private *dev_priv)
+>> -{
+>> -	struct intel_uncore *uncore =3D &dev_priv->uncore;
+>> -
+>> -	if (HAS_PCH_NOP(dev_priv))
+>> -		return;
+>> -
+>> -	gen2_irq_reset(uncore, SDE_IRQ_REGS);
+>> -
+>> -	if (HAS_PCH_CPT(dev_priv) || HAS_PCH_LPT(dev_priv))
+>> -		intel_uncore_write(&dev_priv->uncore, SERR_INT, 0xffffffff);
+>> -}
+>> -
+>> -/* drm_dma.h hooks
+>> -*/
+>>  static void ilk_irq_reset(struct drm_i915_private *dev_priv)
+>>  {
+>> +	struct intel_display *display =3D &dev_priv->display;
+>>  	struct intel_uncore *uncore =3D &dev_priv->uncore;
+>>=20=20
+>>  	gen2_irq_reset(uncore, DE_IRQ_REGS);
+>> @@ -690,7 +676,7 @@ static void ilk_irq_reset(struct drm_i915_private *d=
+ev_priv)
+>>=20=20
+>>  	gen5_gt_irq_reset(to_gt(dev_priv));
+>>=20=20
+>> -	ibx_irq_reset(dev_priv);
+>> +	ibx_display_irq_reset(display);
+>
+> I guess we should extract ilk_display_irq_reset() at some point...
 
-DMAR: DRHD: handling fault status reg 3
-DMAR: [DMA Write NO_PASID] Request device [00:02.0] fault addr 0xb97ff000
-[fault reason 0x05] PTE Write access is not set
+One thing at a time...
 
-Upon comparing boot logs with VT-d on/off, I found that the Intel Calpella
-quirk (`quirk_calpella_no_shadow_gtt()') correctly applied the igfx IOMMU
-disable/quirk correctly:
+> This one is
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-pci 0000:00:00.0: DMAR: BIOS has allocated no shadow GTT; disabling IOMMU
-for graphics
+Thanks, pushed to din.
 
-Whereas with VT-d on, it went into the "else" branch, which then
-triggered the DMAR handling fault above:
+BR,
+Jani.
 
-... else if (!disable_igfx_iommu) {
-	/* we have to ensure the gfx device is idle before we flush */
-	pci_info(dev, "Disabling batched IOTLB flush on Ironlake\n");
-	iommu_set_dma_strict();
-}
+>
+>>  }
+>>=20=20
+>>  static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+>> @@ -717,10 +703,6 @@ static void gen8_irq_reset(struct drm_i915_private =
+*dev_priv)
+>>  	gen8_gt_irq_reset(to_gt(dev_priv));
+>>  	gen8_display_irq_reset(display);
+>>  	gen2_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
+>> -
+>> -	if (HAS_PCH_SPLIT(dev_priv))
+>> -		ibx_irq_reset(dev_priv);
+>> -
+>>  }
+>>=20=20
+>>  static void gen11_irq_reset(struct drm_i915_private *dev_priv)
+>> --=20
+>> 2.39.5
 
-Now, this is not exactly scientific, but moving 0x0044 to quirk_iommu_igfx
-seems to have fixed the aforementioned issue. Running a few `git blame'
-runs on the function, I have found that the quirk was originally
-introduced as a fix specific to ThinkPad X201:
-
-commit 9eecabcb9a92 ("intel-iommu: Abort IOMMU setup for igfx if BIOS gave
-no shadow GTT space")
-
-Which was later revised twice to the "else" branch we saw above:
-
-- 2011: commit 6fbcfb3e467a ("intel-iommu: Workaround IOTLB hang on
-  Ironlake GPU")
-- 2024: commit ba00196ca41c ("iommu/vt-d: Decouple igfx_off from graphic
-  identity mapping")
-
-I'm uncertain whether further testings on this particular laptops were
-done in 2011 and (honestly I'm not sure) 2024, but I would be happy to do
-some distro-specific testing if that's what would be required to verify
-this patch.
-
-P.S., I also see IDs 0x0040, 0x0062, and 0x006a listed under the same
-`quirk_calpella_no_shadow_gtt()' quirk, but I'm not sure how similar these
-chipsets are (if they share the same issue with VT-d or even, indeed, if
-this issue is specific to a bug in the Lenovo BIOS). With regards to
-0x0062, it seems to be a Centrino wireless card, but not a chipset?
-
-I have also listed a couple (distro and kernel) bug reports below as
-references (some of them are from 7-8 years ago!), as they seem to be
-similar issue found on different Westmere/Ironlake, Haswell, and Broadwell
-hardware setups.
-
-Cc: stable@vger.kernel.org
-Fixes: 6fbcfb3e467a ("intel-iommu: Workaround IOTLB hang on Ironlake GPU")
-Fixes: ba00196ca41c ("iommu/vt-d: Decouple igfx_off from graphic identity mapping")
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=197029
-Link: https://groups.google.com/g/qubes-users/c/4NP4goUds2c?pli=1
-Link: https://bugs.archlinux.org/task/65362
-Link: https://bbs.archlinux.org/viewtopic.php?id=230323
-Reported-by: Wenhao Sun <weiguangtwk@outlook.com>
-Signed-off-by: Mingcong Bai <jeffbai@aosc.io>
----
- drivers/iommu/intel/iommu.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/iommu/intel/iommu.c b/drivers/iommu/intel/iommu.c
-index b29da2d96d0b..64935e14b9ec 100644
---- a/drivers/iommu/intel/iommu.c
-+++ b/drivers/iommu/intel/iommu.c
-@@ -4432,6 +4432,9 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x2e30, quirk_iommu_igfx);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x2e40, quirk_iommu_igfx);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x2e90, quirk_iommu_igfx);
- 
-+/* QM57/QS57 integrated gfx malfunctions with dmar */
-+DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x0044, quirk_iommu_igfx);
-+
- /* Broadwell igfx malfunctions with dmar */
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x1606, quirk_iommu_igfx);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x160B, quirk_iommu_igfx);
-@@ -4509,7 +4512,6 @@ static void quirk_calpella_no_shadow_gtt(struct pci_dev *dev)
- 	}
- }
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x0040, quirk_calpella_no_shadow_gtt);
--DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x0044, quirk_calpella_no_shadow_gtt);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x0062, quirk_calpella_no_shadow_gtt);
- DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x006a, quirk_calpella_no_shadow_gtt);
- 
--- 
-2.49.0
-
+--=20
+Jani Nikula, Intel
