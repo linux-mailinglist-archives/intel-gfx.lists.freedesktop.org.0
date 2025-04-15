@@ -2,72 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCB6A8A40B
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 18:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA02A8A463
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 18:42:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A3410E7F4;
-	Tue, 15 Apr 2025 16:25:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=emersion.fr header.i=@emersion.fr header.b="CdA/KFEJ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A183710E80F;
+	Tue, 15 Apr 2025 16:42:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1A4A10E7F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 16:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1744734318; x=1744993518;
- bh=6vA73BnoIbPzed7iHmcw3N0AhaPwWy4e7axyKqB+Nfo=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=CdA/KFEJ4Z4vs8oxCk5FqDymTSS1GAmpbOR2AYnmx9WV0ANzrwUzZQQ9CbQRqXXWz
- 381i33NJZLoHV8ONpGsFNpsrJ15H3od0HBEZWOmcGKxDgAYCONznVtKEM9jPROViU3
- /i+fEC9VGfqYQHYe9kDhkWxbnWTdA7vAx5JUPGrciqquNb9XyWeGIy10WjSh4p/jmO
- YHDOtU3oqQpNNtISbKydoDasu1fBwwQEq9E3lX3miguNCEET1YBVlCl4H5szJ6R0bl
- RBO21Z99G4RD9GUKE4yURsPLluagl+NQXLUZ3VnRPhh2k90uApsOPMzhs1xotD+DCj
- 4Wv4651bG16/w==
-Date: Tue, 15 Apr 2025 16:25:12 +0000
-To: Harry Wentland <harry.wentland@amd.com>
-From: Simon Ser <contact@emersion.fr>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>, Alex Hung <alex.hung@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
- "leo.liu@amd.com" <leo.liu@amd.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "pekka.paalanen@collabora.com" <pekka.paalanen@collabora.com>,
- "mwen@igalia.com" <mwen@igalia.com>, "jadahl@redhat.com" <jadahl@redhat.com>,
- "sebastian.wick@redhat.com" <sebastian.wick@redhat.com>,
- "shashank.sharma@amd.com" <shashank.sharma@amd.com>,
- "agoins@nvidia.com" <agoins@nvidia.com>, "joshua@froggi.es" <joshua@froggi.es>,
- "mdaenzer@redhat.com" <mdaenzer@redhat.com>,
- "aleixpol@kde.org" <aleixpol@kde.org>,
- "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>,
- "victoria@system76.com" <victoria@system76.com>, "daniel@ffwll.ch"
- <daniel@ffwll.ch>, "quic_naseer@quicinc.com" <quic_naseer@quicinc.com>,
- "quic_cbraga@quicinc.com" <quic_cbraga@quicinc.com>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>,
- "marcan@marcan.st" <marcan@marcan.st>,
- "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>,
- "sashamcintosh@google.com" <sashamcintosh@google.com>, "Borah,
- Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
-Message-ID: <ZqHOWK3X_Ici9wNgijgeUt9r3asi4jhqw-0-keIfXYAFxbsGLaFTIozGHHR64SnkAzPA4CM-zmc6OwVtrKMKjVyoblti88KpRf9wEu8daP0=@emersion.fr>
-In-Reply-To: <3ca1958f-62e0-4a5c-837b-3cd705acc181@amd.com>
-References: <20250326234748.2982010-1-alex.hung@amd.com>
- <20250326234748.2982010-33-alex.hung@amd.com>
- <CY5PR11MB63441E057180C043C51230A3F4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
- <fzuE3KXuocsKA0I9kWXruyw7IVbw3jwH2yeh59SfE0Qb0SGxa29rrj9X_XgNCdmj1vWgxLO619xyJY3r5R3hsZK6ElIkTvbyNfu40x1SiZM=@emersion.fr>
- <CY5PR11MB63449DBA54519766E345CADAF4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
- <3ca1958f-62e0-4a5c-837b-3cd705acc181@amd.com>
-Feedback-ID: 1358184:user:proton
-X-Pm-Message-ID: ce74abd530ae676c8cf1a893f529c06d4b12a4be
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9774E10E804;
+ Tue, 15 Apr 2025 16:42:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2038820176868585111=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/pch=3A_conversio?=
+ =?utf-8?q?n_to_struct_intel=5Fdisplay_use=2C_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Apr 2025 16:42:53 -0000
+Message-ID: <174473537361.7529.2391418617493806665@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <cover.1744633934.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744633934.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,63 +37,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tuesday, April 15th, 2025 at 17:05, Harry Wentland <harry.wentland@amd.c=
-om> wrote:
+--===============2038820176868585111==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > > > We want to have just one change in the way we expose the hardware
-> > > > capabilities else all looks good in general.
-> > >=20
-> > > I would really recommend leaving this as a follow-up extension. It's =
-a complicated
-> > > addition that requires more discussion.
-> >=20
-> > Hi Simon,
-> > We have tried to solve the complex part and made it simple to understan=
-d and implement
-> > along with a reference implementation [1] (can also help add the same f=
-or AMD case as well).
-> > Without this we will end up with up 2 interfaces for 1dL Lut which is n=
-ot nice where the one above
-> > will be able to cover the current one. Let us know the problems with th=
-e proposed interface and we can
-> > work to fix the same. But having a common and single interface is good =
-and the current one will not fit
-> > Intel's color pipeline distribution so the generic one anyways will be =
-needed, and it will benefit userspace
-> > to know the underlying LUT distribution to compute the LUT samples.
-> >=20
-> > [1] https://patchwork.freedesktop.org/series/129812/
->=20
-> I think there is a lot of value in giving userspace a simple LUT
-> to work with. There are many compositors and many compositor
-> maintainers. When someone new jumps into color management usually
-> same thing happens. It starts with "it's not too complicated",
-> and then over a period of time progresses to "this is very much
-> non-trivial" as understanding one bit usually opens ten more
-> questions.
->=20
-> Forcing people to deal with another level of complexity will
-> discourage implementations and be counterproductive to furthering
-> adoption of color operations for HW acceleration, IMO.
->=20
-> I'm am not opposed to a complex LUT definition but I don't think
-> it should replace a simple and well-understood definition.
+== Series Details ==
 
-Agreed. To add on this, I think shipping many additional features from
-day one significantly increases the work load (more code to write,
-review, test at once) and we'd also need to go through supplementary
-rounds to validate the API design and ensure it's not too
-Intel-specific. Also adding this feature as a second step will prove
-that the API is as extensible as we desire.=20
+Series: drm/i915/pch: conversion to struct intel_display use, cleanups
+URL   : https://patchwork.freedesktop.org/series/147675/
+State : success
 
-I don't really understand why it's important to have this feature in
-the first version. Intel has been converting simple LUTs into the
-fancy distribution for the existing GAMMA_LUT and DEGAMMA_LUT for a
-while, so can do it for colorop as well. The upsides of the fancy
-distribution is more precise and smaller LUTs, but that doesn't seem
-critical?
+== Summary ==
 
-Simon
+CI Bug Log - changes from CI_DRM_16422 -> Patchwork_147675v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_147675v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#13494])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-mtlp-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-2:         [INCOMPLETE][3] ([i915#14046]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-arlh-2/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-11:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#14046]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16422 -> Patchwork_147675v1
+
+  CI-20190529: 20190529
+  CI_DRM_16422: b61f5de7570012cb79e72624a97b216d395f7380 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_147675v1: b61f5de7570012cb79e72624a97b216d395f7380 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/index.html
+
+--===============2038820176868585111==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pch: conversion to struct intel_display use, cleanups</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147675/">https://patchwork.freedesktop.org/series/147675/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16422 -&gt; Patchwork_147675v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_147675v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046">i915#14046</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16422/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147675v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16422 -&gt; Patchwork_147675v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16422: b61f5de7570012cb79e72624a97b216d395f7380 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8320: cd3b5612be3cef838f16e074bf1bc421399d584d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_147675v1: b61f5de7570012cb79e72624a97b216d395f7380 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2038820176868585111==--
