@@ -2,58 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7118DA89770
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 11:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C02A0A89781
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 11:08:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED66E10E36D;
-	Tue, 15 Apr 2025 09:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E73E910E69B;
+	Tue, 15 Apr 2025 09:08:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkuX9bFu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jaoT9aKT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02B5010E36D
- for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 09:06:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931A910E69A;
+ Tue, 15 Apr 2025 09:08:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744707982; x=1776243982;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=R7iw34kjv2BT6omGEdmJSZYtwei6N+bfjIHUORefy7o=;
- b=dkuX9bFuqUGrTSDj+kzKWikAG+LkqjDDfJIkdfHIo2GwZNWy3CR9vTyh
- JCSOav4NwzYDpF9O66icr8ID7ToTgBMFIVHg4PsYPBVGgjdrX+QmrOkE8
- mJvlKLiiwllW9iHtMr6MmIXv0yW8AlwyNMIIIFDRsWpFvHDpG2RjhvLko
- /mq+Usr22m3o7l17fRFtS8EUjGaxAIcTdhxzPOEYpZZVjrsE2vNDxFwXp
- sa3yr8mxTPUkilsb/7ZM+STtLNOYLQ2GMSjFr2bV/Z6MftfsftHuwCjOf
- stTOLFnMBWVgISJgnKVUwoTIzmXjtq2avApdymxkObw7ZfAT7fQcXHnvt g==;
-X-CSE-ConnectionGUID: RAV/hq5fQXWNW9T3jaLLuQ==
-X-CSE-MsgGUID: HDiN0xh2TaqXpJEflTNF2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="68696817"
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="68696817"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 02:06:21 -0700
-X-CSE-ConnectionGUID: KxdEUA5aSeuZ9jHy0eoDPg==
-X-CSE-MsgGUID: yZrr8BZnT9exeRwmybHv9g==
+ t=1744708084; x=1776244084;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=oMGn+Uvpm63tpBWdMLqAzsaYy5MGQUBVh3XFJ4N+pY4=;
+ b=jaoT9aKTsKSEpYW8laXyfr+1a/6PRKWNXUtIKwHzjmVZ8PmSq+Jy21+2
+ drKIxHGr02+KTBW+/8ZyrgMJVQS+jBAGGRwQEAPjlhwfzK40dHikzhizF
+ J9JynHPtcypFLOa0VnaAeFPhYDIw28nFUe6RHDJP4jNXZUWkOk6D81hSa
+ RO8z6G5ZV0UXs9Uubu8MT3LCgQY5O01uHT/zfNdPI86LHSPYgEKqez3pP
+ SIRj1GR4+0Q0cuRMzp9nL+w/OUK5hKARXZ70eSlvvRwC7tWR++EiACnt0
+ G6ePvy1VFWvC3O7QWvFr3VWkacjzd3f8XFJqy+8Pv8tH4y31T+MvMGyad Q==;
+X-CSE-ConnectionGUID: W784cUoARu+RdRlmOjuoNg==
+X-CSE-MsgGUID: DHcwX7suRlWNnuuW6T9QVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="46370516"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="46370516"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 02:08:04 -0700
+X-CSE-ConnectionGUID: PWdu4CxjQrGoEVn4JNCM2Q==
+X-CSE-MsgGUID: Ko5iN2FuRuy0a2/a9weotQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="134857767"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="130595799"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.35])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 02:06:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Chen Linxuan <chenlinxuan@uniontech.com>
-Subject: [PATCH] drm/i915/pxp: fix undefined reference to
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 02:08:00 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chen Linxuan <chenlinxuan@uniontech.com>
+Cc: Chen Linxuan <chenlinxuan@uniontech.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Alan Previn
+ <alan.previn.teres.alexis@intel.com>, Daniele Ceraolo Spurio
+ <daniele.ceraolospurio@intel.com>
+Subject: Re: [RFC PATCH 4/7] drm/i915/pxp: fix undefined reference to
  `intel_pxp_gsccs_is_ready_for_sessions'
-Date: Tue, 15 Apr 2025 12:06:16 +0300
-Message-Id: <20250415090616.2649889-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
+In-Reply-To: <CAC1kPDMuAmfoJfL4wjrBEcK+rpgbWk7kYEWJjvps=2UJ6-_WHw@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <31F42D8141CDD2D0+20250411105142.89296-1-chenlinxuan@uniontech.com>
+ <20250411105459.90782-1-chenlinxuan@uniontech.com>
+ <8921351F23CD8948+20250411105459.90782-4-chenlinxuan@uniontech.com>
+ <87sem9svmn.fsf@intel.com>
+ <CAC1kPDMuAmfoJfL4wjrBEcK+rpgbWk7kYEWJjvps=2UJ6-_WHw@mail.gmail.com>
+Date: Tue, 15 Apr 2025 12:07:56 +0300
+Message-ID: <87mschssgj.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,58 +80,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chen Linxuan <chenlinxuan@uniontech.com>
+On Tue, 15 Apr 2025, Chen Linxuan <chenlinxuan@uniontech.com> wrote:
+> Jani Nikula <jani.nikula@linux.intel.com> =E4=BA=8E2025=E5=B9=B44=E6=9C=
+=8815=E6=97=A5=E5=91=A8=E4=BA=8C 15:59=E5=86=99=E9=81=93=EF=BC=9A
+>>
+>> On Fri, 11 Apr 2025, Chen Linxuan <chenlinxuan@uniontech.com> wrote:
+>> > On x86_64 with gcc version 13.3.0, I compile kernel with:
+>> >
+>> >   make defconfig
+>> >   ./scripts/kconfig/merge_config.sh .config <(
+>> >     echo CONFIG_COMPILE_TEST=3Dy
+>> >   )
+>> >   make KCFLAGS=3D"-fno-inline-functions -fno-inline-small-functions -f=
+no-inline-functions-called-once"
+>>
+>> The change looks good, but I'm guessing the real explanation is that you
+>> have CONFIG_DRM_I915_PXP=3Dn and that appears to be broken.
+>>
+>> Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup=
+")
+>> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>>
+>> But how do you want this merged?
+>>
+>
+> As patch 5 has been merged into rdma-next, I think it's OK to merge
+> this single patch into your tree.
 
-On x86_64 with gcc version 13.3.0, I compile kernel with:
+Thanks. I amended the commit message a little, and resent this to
+intel-gfx [1], and will merge it via drm-intel-next.
 
-  make defconfig
-  ./scripts/kconfig/merge_config.sh .config <(
-    echo CONFIG_COMPILE_TEST=y
-  )
-  make KCFLAGS="-fno-inline-functions -fno-inline-small-functions -fno-inline-functions-called-once"
+BR,
+Jani.
 
-Then I get a linker error:
 
-  ld: vmlinux.o: in function `pxp_fw_dependencies_completed':
-  kintel_pxp.c:(.text+0x95728f): undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'
 
-This is caused by not having a intel_pxp_gsccs_is_ready_for_sessions()
-header stub for CONFIG_DRM_I915_PXP=n. Add it.
+[1] https://lore.kernel.org/r/20250415090616.2649889-1-jani.nikula@intel.com
 
-Signed-off-by: Chen Linxuan <chenlinxuan@uniontech.com>
-Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-index 9aae779c4da3..4969d3de2bac 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-@@ -23,6 +23,7 @@ int intel_pxp_gsccs_init(struct intel_pxp *pxp);
- 
- int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_session_id);
- void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
-+bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
- 
- #else
- static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
-@@ -34,8 +35,11 @@ static inline int intel_pxp_gsccs_init(struct intel_pxp *pxp)
- 	return 0;
- }
- 
--#endif
-+static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp)
-+{
-+	return false;
-+}
- 
--bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
-+#endif
- 
- #endif /*__INTEL_PXP_GSCCS_H__ */
--- 
-2.39.5
 
+--=20
+Jani Nikula, Intel
