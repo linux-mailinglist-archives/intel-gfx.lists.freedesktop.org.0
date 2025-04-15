@@ -2,94 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43C9DA89B25
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 12:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A03A1A89647
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Apr 2025 10:17:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D32B10E738;
-	Tue, 15 Apr 2025 10:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A1410E686;
+	Tue, 15 Apr 2025 08:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="NgaHgYnv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LaSr1X4j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEFA510E681;
- Tue, 15 Apr 2025 08:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
- s=onoh2408; t=1744704597;
- bh=iNh5evHJUywRwTG+40vvBkWAew+FHIXObMQAM9x50Ig=;
- h=MIME-Version:From:Date:Message-ID:Subject:To;
- b=NgaHgYnvkWSE1UJhdOyUApCzHs+z4wQ/tQggdrL7Y5jmpZFxADiVbMkqkkCkD/uUa
- pg3MsA1Od0YIaE5sRzbrS8C93ZH9u/+7CJ3epdzXRXN9aztyvwL8HBeLrMP8WS4U2o
- 47+Xm7hsLjupHv4amATTsEke2Olw3A26yqg1m4Ec=
-X-QQ-mid: zesmtpsz4t1744704592te3135b3a
-X-QQ-Originating-IP: it5IqF99Gt3HL/ewKO0fg6+cNcYxA3sxiPflAiEM+ok=
-Received: from mail-yb1-f169.google.com ( [209.85.219.169])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 15 Apr 2025 16:09:50 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4846207634195593150
-Received: by mail-yb1-f169.google.com with SMTP id
- 3f1490d57ef6-e6df4507690so4605565276.0; 
- Tue, 15 Apr 2025 01:09:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVm2UIz7CSog7EsvhvqITKjIxxBM+CweJdLr7fbsBtSPfr5ILBfNlOMEO3cPSWRabvs+nIt5MFFGI80@lists.freedesktop.org,
- AJvYcCXf8Bu0j2bdoZL5aQy9Ay3l8UuYVxv9+S1zrrVch9BW43z64SD3zIqI9gKqxDKgnGc2gKpHXjjKzew=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzXNEwGFUpVNazqDa+wPNOV6iGYkEPguy84QAsdwNNcDBtgzPQW
- pzraQ7NLjbij6jIq5KvayHjA5N5yVzOQV3/M5PzF1fKXl+w/z2Z0f2FsBsOG0rxfI3RWnTIJkZy
- Lk0TRfrpI83htnAL7vYIjPe+TrX4=
-X-Google-Smtp-Source: AGHT+IF44p1Tl1fp8b57iSl2LN3MmmbjsUksYboLirN5uKzIqEc9Wg6NTY7B4YCgu9/aQ2qBxW8fFjV63/YhrNc1n+A=
-X-Received: by 2002:a05:6902:4a2:b0:e63:cfb7:5da5 with SMTP id
- 3f1490d57ef6-e70a600de9amr2485436276.9.1744704589570; Tue, 15 Apr 2025
- 01:09:49 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A14A10E686
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Apr 2025 08:17:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744705028; x=1776241028;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7qvg2Il73Tg4I41I1EjqSmgZzzxH9ctpfroNgvrYDKk=;
+ b=LaSr1X4jc5Dr283fmrFnEHcfDgCRDiTFVmo8qk/fZj84qe6cYOOa4A39
+ YDPoSPdB9ocKuSQTat19Ap1Hh63vQNawp6e4Cr7FtS8mLnz8tzvHaWMqh
+ R9mSLLXxZggvQkjIZA3/hIP4UP3A4QXG7YB3nYSNWlhPJNSZzH9+4kdrl
+ dm6koctAeIzAb4HnNNgCFw2DuABzeGGBDi0uJy/ZX5ABpi35HGnYoMGSU
+ oOWv9+s55Gps2qzBvefayg5ONibrxwBNzO9GP8xZMa3hpumwAfoE9Rb0E
+ o/qg1HaOahIE0ukxUiHUATIALRr4bMXRVQhlRYbhCVY/1q/hVhV/KaYow g==;
+X-CSE-ConnectionGUID: jMgwgzLvTnmIehck0TxNFQ==
+X-CSE-MsgGUID: orqtaue9QjS/KnYPZYPmcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11403"; a="45434943"
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="45434943"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 01:17:06 -0700
+X-CSE-ConnectionGUID: Lgl/ryUtRDO8GJuL7NjBtQ==
+X-CSE-MsgGUID: xu3SQpipRCGJ95tHhLt+Uw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,213,1739865600"; d="scan'208";a="161030254"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.249])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2025 01:17:05 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>, Imre Deak
+ <imre.deak@intel.com>
+Subject: Re: [PATCH v3] drm/i915/display: Add link rate and lane count to
+ i915_display_info
+In-Reply-To: <20250409230214.963999-1-khaled.almahallawy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250409230214.963999-1-khaled.almahallawy@intel.com>
+Date: Tue, 15 Apr 2025 11:17:01 +0300
+Message-ID: <87plhdsute.fsf@intel.com>
 MIME-Version: 1.0
-References: <31F42D8141CDD2D0+20250411105142.89296-1-chenlinxuan@uniontech.com>
- <20250411105459.90782-1-chenlinxuan@uniontech.com>
- <8921351F23CD8948+20250411105459.90782-4-chenlinxuan@uniontech.com>
- <87sem9svmn.fsf@intel.com>
-In-Reply-To: <87sem9svmn.fsf@intel.com>
-From: Chen Linxuan <chenlinxuan@uniontech.com>
-Date: Tue, 15 Apr 2025 16:09:38 +0800
-X-Gmail-Original-Message-ID: <E03CDF8280BA0401+CAC1kPDMuAmfoJfL4wjrBEcK+rpgbWk7kYEWJjvps=2UJ6-_WHw@mail.gmail.com>
-X-Gm-Features: ATxdqUGMt5t8NoBhtiULJMPe9lwTrkhJZn98DpdX0RPcQenV938hZ2QVLR5IOU8
-Message-ID: <CAC1kPDMuAmfoJfL4wjrBEcK+rpgbWk7kYEWJjvps=2UJ6-_WHw@mail.gmail.com>
-Subject: Re: [RFC PATCH 4/7] drm/i915/pxp: fix undefined reference to
- `intel_pxp_gsccs_is_ready_for_sessions'
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Chen Linxuan <chenlinxuan@uniontech.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Alan Previn <alan.previn.teres.alexis@intel.com>, 
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, 
- Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
-X-QQ-XMAILINFO: N7zE+17nr98T7G4a9Ai8Ezs2J351uv8jqUSg0FofJPciVF+Vbwz3nuWR
- UNfvdtYegL6PnrsWjqXp7hL03vUfKinM52tIVA9T0yGjYbLXq5v8H+yDUWuWK6t1V8Tlb1h
- x/4JhmMKbG6dAXLtKKYXVYKHfSLcVzcTfwR+S0sA/cnnexkiJ1OsW34yDd/GEI0GP2+FAMG
- 2JkZuVifPWDQ3ORARpZS8OqC/GFMcNSgLZgZT3MexjqqpFGduG9uZkDKJDSVwnzz+4cnkZf
- oTnmnILQO1zSXO7VWs+xzBm3CDsuj/bin5wVArSzqLO2/j5yl7lniIKpsM2B3sEng+wArFR
- YtPmfqaFPoCMc636w4gFEHrVRdHVB9fDHB4f8QGCT7Bsh9mjLpjsK/dFYwRCOMt2KxG4fTl
- oaiAy9n9Ssh26X6EwSIzRewC8Wj2OdTCmuLO42k//S+tFeJgFZ2QcRpN1hQ5Rk2xRrh1X4G
- h5LMkeXBROeIa46mmuE7OB5iYqrglNK7zGf8lQJQlf0gAVykdcEPXtVX0dad/OS3BVHvMb3
- tBraBnZlA9iE50xC0GD2ZxOyqFb5k9IDUR41YAdaaL7VuEe21MbQBIBTnC1xnZGWZqnjUkb
- XvDExc75nF7rbj7eAS5I/oJeMMMrjmRYPwTfHTLx9b5auqRdBMsArJ0OF88orT7vwxCFFub
- /4/mQFtvPnwoaJY/sxQsfRE5afQXWEgMOdqTeh6ycVVydbZ2yDWauR+WG7KhgIuTIQ7kAPj
- i3ABCR/NXB4+5/bSJeXlFiDRJNZOLzA0IdtOXXzbdkTCxnSqxQP3WDF8dmol+ShF2fwl1py
- O4b3BweEzf/lcOlccMslJF83q5BKvEwazPrbeN6Qt3EMThtvDeV5N2SwyzCeYzc0BB7kuLb
- AFLsWYjPp+hRqC/P1T5RSrEswoQsrSuM1hY8uV8E1yaCWIPAKSkQ9MxFXwonzSDgrPRrR62
- Rp9TO+0EPo2JShZnzEVVmO6GUxsoJlzvBVx+A1W8ZrZgO6xTxff9tAJVwfKp/UkvSYvkF7f
- BCYYLaibXA8YZLncxiF/Tg+exmyLeZFre/DJQ6Wcdlyt6EBXFlbxJvJWwGPWrADimZALfF8
- PJOmr+k+fs9ZSJCMKfCgt7V92pwkoKrIA==
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-X-QQ-RECHKSPAM: 0
-X-Mailman-Approved-At: Tue, 15 Apr 2025 10:53:34 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,81 +71,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Jani Nikula <jani.nikula@linux.intel.com> =E4=BA=8E2025=E5=B9=B44=E6=9C=881=
-5=E6=97=A5=E5=91=A8=E4=BA=8C 15:59=E5=86=99=E9=81=93=EF=BC=9A
+On Wed, 09 Apr 2025, Khaled Almahallawy <khaled.almahallawy@intel.com> wrote:
+> Adding link rate and lane count information to i915_display_info makes it
+> easier and faster to access this data compared to checking kernel logs.
+> This is particularly beneficial for individuals who are not familiar with
+> i915 in the following scenarios:
 >
-> On Fri, 11 Apr 2025, Chen Linxuan <chenlinxuan@uniontech.com> wrote:
-> > On x86_64 with gcc version 13.3.0, I compile kernel with:
-> >
-> >   make defconfig
-> >   ./scripts/kconfig/merge_config.sh .config <(
-> >     echo CONFIG_COMPILE_TEST=3Dy
-> >   )
-> >   make KCFLAGS=3D"-fno-inline-functions -fno-inline-small-functions -fn=
-o-inline-functions-called-once"
+> * Debugging DP tunnel bandwidth usage in the Thunderbolt driver.
+> * During USB4 certification, it is necessary to know the link rate used by
+>   the monitor to prove that the DP tunnel can handle required rates.
+> * In PHY CTS, when the connector probes are not mounted correctly,
+>   some display lanes may not appear in the DP Oscilloscope, leading to CTS
+>   failures.
 >
-> The change looks good, but I'm guessing the real explanation is that you
-> have CONFIG_DRM_I915_PXP=3Dn and that appears to be broken.
+> This change provides validation teams with an easy way to identify and
+> troubleshoot issues.
 >
-> Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup"=
-)
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> v2: separate seq_printf line (Jani)
+> v3: separate output line (Jani)
 >
-> But how do you want this merged?
->
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 
-As patch 5 has been merged into rdma-next, I think it's OK to merge
-this single patch into your tree.
+Thanks, pushed to din.
 
+BR,
+Jani.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> BR,
-> Jani.
->
-> >
-> > Then I get a linker error:
-> >
-> >   ld: vmlinux.o: in function `pxp_fw_dependencies_completed':
-> >   kintel_pxp.c:(.text+0x95728f): undefined reference to `intel_pxp_gscc=
-s_is_ready_for_sessions'
-> >
-> > Signed-off-by: Chen Linxuan <chenlinxuan@uniontech.com>
-> > ---
-> >  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
-> >  1 file changed, 6 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/d=
-rm/i915/pxp/intel_pxp_gsccs.h
-> > index 9aae779c4da3..4969d3de2bac 100644
-> > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-> > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-> > @@ -23,6 +23,7 @@ int intel_pxp_gsccs_init(struct intel_pxp *pxp);
-> >
-> >  int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_sess=
-ion_id);
-> >  void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb=
-_session_id);
-> > +bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
-> >
-> >  #else
-> >  static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
-> > @@ -34,8 +35,11 @@ static inline int intel_pxp_gsccs_init(struct intel_=
-pxp *pxp)
-> >       return 0;
-> >  }
-> >
-> > -#endif
-> > +static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_=
-pxp *pxp)
-> > +{
-> > +     return false;
-> > +}
-> >
-> > -bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
-> > +#endif
-> >
-> >  #endif /*__INTEL_PXP_GSCCS_H__ */
->
-> --
-> Jani Nikula, Intel
->
->
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 8f1f95637e09..ff7419ca7d56 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -555,6 +555,8 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
+>  	seq_printf(m, "\tpipe src=" DRM_RECT_FMT ", dither=%s, bpp=%d\n",
+>  		   DRM_RECT_ARG(&crtc_state->pipe_src),
+>  		   str_yes_no(crtc_state->dither), crtc_state->pipe_bpp);
+> +	seq_printf(m, "\tport_clock=%d, lane_count=%d\n",
+> +		   crtc_state->port_clock, crtc_state->lane_count);
+>  
+>  	intel_scaler_info(m, crtc);
+
+-- 
+Jani Nikula, Intel
