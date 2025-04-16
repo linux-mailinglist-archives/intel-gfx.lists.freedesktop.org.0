@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1AAA8B04F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 08:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D66A8B051
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 08:29:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7359B10E836;
-	Wed, 16 Apr 2025 06:29:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16C8510E839;
+	Wed, 16 Apr 2025 06:29:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lCE9D0YU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fagoa0OP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3174A10E835
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 06:29:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 099E910E835
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 06:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744784989; x=1776320989;
+ t=1744784990; x=1776320990;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Pl2x/T6PKNfYhn51fVQX2JwhwmcRSN6HIcRfULhpzF0=;
- b=lCE9D0YUmU6t3PnAvKLUcnbhvefONQUZROfKAv7hC/qC71rgQtHtXX78
- sdjAYnMQ/yt5mhdF9l2Tn/FjiP+O3QfBp4W3amwC9rK2wwQztx5eRUIUu
- TjiBYH3H9OTsIx58yAcB00M+0yz56v8NLSRynETWncL6nRT3NwDp7dc1p
- 2FKrYQqnA5siNvCnp6BcRFazUv4erHdGI8bDHsWAPST8hY0Nu5VNG/jnq
- K+ND+U/ytRwwzO8ybtMi68VX8rWtUq7V28iXsp1LSiPNf3GW2Iw7Ekp2d
- IwiMhenpMRw9sMM36//mzrGfSS9YErbg+FVfDW5hXnDc7ZrL6UBguqhm2 Q==;
-X-CSE-ConnectionGUID: 6GApf1FaRhqiZSxe+5JiKQ==
-X-CSE-MsgGUID: 9YB/x6AoRoO/v8q9WWVGJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="71710242"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="71710242"
+ bh=eLJ4hMzDV6NEEtXFgmkxMHB14LcepMTlVMckV085N5k=;
+ b=Fagoa0OPq8Mx2uurt/ZwsZ4ueHyCPSVHAxYi2pXXE91xYN1r9GrgjTNb
+ NmM18kHwdhUvMnRuDqg9NfHYFbgGDDU+b4H/dsSjiTBrM/PFsDhgr244W
+ z6KRoX/Yo0UJIrg+ZzlJosOeoh9aA1cnTrmbpF6DqRj/cDSHXHwOGue2V
+ i6S5l5o5Ng6FZguckRvGuG9GSHW+jPObOCpWMh6XOnQms0rmHNfFsiZLi
+ 14F35R7++Nm2Mal2yBXM+Ft/uicjERQljhqT6tekhAXuni90GG7F07qrg
+ pfjRBH9AW/QKcDVrx09wkoY39PO9MmdCi9RZzyrudVu8M8sgD2z4pa5yd Q==;
+X-CSE-ConnectionGUID: eYyC8EkYR7OEyS5qZEbg2A==
+X-CSE-MsgGUID: q5nIKCCzRV+/hmWS3BnM0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="71710243"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="71710243"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 23:29:49 -0700
-X-CSE-ConnectionGUID: JXANON9fQ8qarLLmFtVc2w==
-X-CSE-MsgGUID: YCjmA4D0Rza5G3zeBCnZZg==
+ 15 Apr 2025 23:29:50 -0700
+X-CSE-ConnectionGUID: UQxjqYEoSTqXOrSriJ8e1w==
+X-CSE-MsgGUID: vCs03yDZQD6bmCW7WK+Xug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130880175"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130880178"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa007.jf.intel.com with ESMTP; 15 Apr 2025 23:29:47 -0700
+ by orviesa007.jf.intel.com with ESMTP; 15 Apr 2025 23:29:49 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v1 2/8] drm/i915/dmc: Add pipe DMC DC balance registers
-Date: Wed, 16 Apr 2025 11:57:31 +0530
-Message-ID: <20250416062737.1766703-3-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v1 3/8] drm/i915/vrr: Refactor vmin/vmax stuff
+Date: Wed, 16 Apr 2025 11:57:32 +0530
+Message-ID: <20250416062737.1766703-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -66,59 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add pipe registers to access pipe DMC DC Balance registers.
+Refactor vmin/vmax functions for better computation.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 42 +++++++++++-------------
+ 1 file changed, 20 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 1bf446f96a10..5ac409fbbc4e 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -103,4 +103,41 @@
- #define  DMC_WAKELOCK_CTL_REQ	 REG_BIT(31)
- #define  DMC_WAKELOCK_CTL_ACK	 REG_BIT(15)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index c6565baf815a..afa1728837d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -146,37 +146,42 @@ static int intel_vrr_vblank_exit_length(const struct intel_crtc_state *crtc_stat
+ 		return crtc_state->vrr.pipeline_full + crtc_state->framestart_delay + 1;
+ }
  
-+#define _PIPEDMC_DCB_CTL_A		0x5f1a0
-+#define _PIPEDMC_DCB_CTL_B		0x5f5a0
-+#define PIPEDMC_DCB_CTL(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_CTL_A, _PIPEDMC_DCB_CTL_B)
-+#define PIPEDMC_ADAPTIVE_DCB_ENABLE	REG_BIT(31)
+-int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
++static int intel_vrr_vtotal(const struct intel_crtc_state *crtc_state, int vmin_vmax)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	/* Min vblank actually determined by flipline */
+ 	if (DISPLAY_VER(display) >= 13)
+-		return intel_vrr_vmin_flipline(crtc_state);
++		return vmin_vmax;
+ 	else
+-		return intel_vrr_vmin_flipline(crtc_state) +
+-			intel_vrr_real_vblank_delay(crtc_state);
++		return vmin_vmax + intel_vrr_real_vblank_delay(crtc_state);
+ }
+ 
+-int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
 +
-+#define _PIPEDMC_DCB_VMIN_A		0x5f1a4
-+#define _PIPEDMC_DCB_VMIN_B		0x5f5a4
-+#define PIPEDMC_DCB_VMIN(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMIN_A, _PIPEDMC_DCB_VMIN_B)
++static int intel_vrr_vblank_start(const struct intel_crtc_state *crtc_state,
++	int vmin_vmax)
+ {
+-	struct intel_display *display = to_intel_display(crtc_state);
++	return intel_vrr_vtotal(crtc_state, vmin_vmax) -
++			intel_vrr_vblank_exit_length(crtc_state);
++}
+ 
+-	if (DISPLAY_VER(display) >= 13)
+-		return crtc_state->vrr.vmax;
+-	else
+-		return crtc_state->vrr.vmax +
+-			intel_vrr_real_vblank_delay(crtc_state);
++int intel_vrr_vmin_vtotal(const struct intel_crtc_state *crtc_state)
++{
++	return intel_vrr_vtotal(crtc_state, intel_vrr_vmin_flipline(crtc_state));
++}
 +
-+#define _PIPEDMC_DCB_VMAX_A		0x5f1a8
-+#define _PIPEDMC_DCB_VMAX_B		0x5f5a8
-+#define PIPEDMC_DCB_VMAX(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_VMAX_A, _PIPEDMC_DCB_VMAX_B)
-+
-+#define _PIPEDMC_DCB_MAX_INCREASE_A	0x5f1ac
-+#define _PIPEDMC_DCB_MAX_INCREASE_B	0x5f5ac
-+#define PIPEDMC_DCB_MAX_INCREASE(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_INCREASE_A, _PIPEDMC_DCB_MAX_INCREASE_B)
-+
-+#define _PIPEDMC_DCB_MAX_DECREASE_A	0x5f1b0
-+#define _PIPEDMC_DCB_MAX_DECREASE_B	0x5f5b0
-+#define PIPEDMC_DCB_MAX_DECREASE(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_DECREASE_A, _PIPEDMC_DCB_MAX_DECREASE_B)
-+
-+#define _PIPEDMC_DCB_GUARDBAND_A	0x5f1b4
-+#define _PIPEDMC_DCB_GUARDBAND_B	0x5f5b4
-+#define PIPEDMC_DCB_GUARDBAND(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_GUARDBAND_A, _PIPEDMC_DCB_GUARDBAND_B)
-+
-+#define _PIPEDMC_DCB_SLOPE_A		0x5f1b8
-+#define _PIPEDMC_DCB_SLOPE_B		0x5f5b8
-+#define PIPEDMC_DCB_SLOPE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_SLOPE_A, _PIPEDMC_DCB_SLOPE_B)
-+
-+#define _PIPEDMC_DCB_VBLANK_A		0x5f1bc
-+#define _PIPEDMC_DCB_VBLANK_B		0x5f5bc
-+#define PIPEDMC_DCB_VBLANK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_VBLANK_A, _PIPEDMC_DCB_VBLANK_B)
-+
-+#define _PIPEDMC_DCB_DEBUG_A		0x5f1c0
-+#define _PIPEDMC_DCB_DEBUG_B		0x5f5c0
-+#define PIPEDMC_DCB_DEBUG(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_DEBUG_A, _PIPEDMC_DCB_DEBUG_B)
-+
- #endif /* __INTEL_DMC_REGS_H__ */
++int intel_vrr_vmax_vtotal(const struct intel_crtc_state *crtc_state)
++{
++	return intel_vrr_vtotal(crtc_state, crtc_state->vrr.vmax);
+ }
+ 
+ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmin_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vblank_start(crtc_state, intel_vrr_vmin_flipline(crtc_state));
+ }
+ 
+ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state)
+ {
+-	return intel_vrr_vmax_vtotal(crtc_state) - intel_vrr_vblank_exit_length(crtc_state);
++	return intel_vrr_vblank_start(crtc_state, crtc_state->vrr.vmax);
+ }
+ 
+ static bool
+@@ -257,14 +262,7 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state)
+ static
+ int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
+ {
+-	struct intel_display *display = to_intel_display(crtc_state);
+-	int crtc_vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
+-
+-	if (DISPLAY_VER(display) >= 13)
+-		return crtc_vtotal;
+-	else
+-		return crtc_vtotal -
+-			intel_vrr_real_vblank_delay(crtc_state);
++	return intel_vrr_vtotal(crtc_state, crtc_state->hw.adjusted_mode.crtc_vtotal);
+ }
+ 
+ static
 -- 
 2.48.1
 
