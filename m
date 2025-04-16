@@ -2,59 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 623C5A8B3C6
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 10:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC09EA8B3F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 10:34:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA5A810E243;
-	Wed, 16 Apr 2025 08:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8816210E884;
+	Wed, 16 Apr 2025 08:34:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZGHTnA9i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BPoYFEk0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D64310E243
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 08:29:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1E810E883;
+ Wed, 16 Apr 2025 08:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744792156; x=1776328156;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=s0ZwstaiplANHTak3gUM/G+CDzQv7oZYSoRkfpkg/q4=;
- b=ZGHTnA9iczfkiSQubHBYBNMHLn6xz1oARIZ0DIiwh0nKIbGXJAfAFrQ3
- KchpqRdB2Xq6FicF4GthdraSHign2lLFYbXJGNtVlrQFRGYvIU5616tgW
- qHA+DK5fTgGUt8WIa4kgiG3DhBV8gIKqjU9rc61kJBPRFwT9bI/06LdId
- /GiMCbsOADYx3hY50qylIp5iLNhutmcVPaBdykYNWuUGTjFLoIgeoqwsY
- Mo1U6d+Qh/CGH4pQotT0qgK3rV6XD5XNumHeyNxWQKJGbMHSdGlYdTSmi
- 8g63o3a78Rh/NKNQybESZWdE+qlwu//IRn7cafFQ5I79yKcESeVnkDfEO Q==;
-X-CSE-ConnectionGUID: WsoLcguBTLCwhJpv+2bPqg==
-X-CSE-MsgGUID: mbXtwot+SMWpLZzRYkslKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46455142"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="46455142"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 01:29:06 -0700
-X-CSE-ConnectionGUID: Lgv7SGwhRiGsrlUI7MlaQQ==
-X-CSE-MsgGUID: nirKD5I9R6ao9etSVNlZbA==
+ t=1744792467; x=1776328467;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ndLpCVsPDQ53RFlJHDrB2oFUglcdoN6fweLm3J6ZP5k=;
+ b=BPoYFEk0e8ffHbG05RvKyMKcuxqUPulXk3kkUn8VDrvYhWaIpfC+F0kR
+ /VPSnJCRUQRjsXkDDjuV0M5DBtxjKH451EFSRbMfEgszk73NH9B9LChbx
+ 4Vi07XsFTpmQLjpSq75z8ernBDxGUSj+pcicq8OSKCNTcn4UmC4/sqYkU
+ Hnk7HJe1xDrEc7xjWp8FtX4WvgDgnojtnfFAkCruEFmEBsoDp02SvWuCq
+ 9ao6aSvspeTcAjV80LTN2HHj6xcGH3Ec28og1mY/DMtjIup33mXWhLg4q
+ xYRg2aXHLeIr14I3tvsAaXgCP/xVWwrAan3CWUgdzHA669bWAIpn3+YHi g==;
+X-CSE-ConnectionGUID: XuQMx+lITIGuGI6BMCYhZg==
+X-CSE-MsgGUID: Q1NMoYb/TYCFCIEm+4Rq6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="57322882"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="57322882"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 01:34:26 -0700
+X-CSE-ConnectionGUID: 44MKtmDVR8GjGPYWbh7Ddg==
+X-CSE-MsgGUID: gO7j7/VySBmt52m/Rwfmug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="131294474"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="153593714"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.96])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 01:29:04 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 01:34:19 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v1 1/8] drm/i915/vrr: Add DC balance registers
-In-Reply-To: <20250416062737.1766703-2-mitulkumar.ajitkumar.golani@intel.com>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Linux Doc Mailing
+ List <linux-doc@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@intel.com>, David Airlie <airlied@gmail.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
+ <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
+ Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
+In-Reply-To: <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
- <20250416062737.1766703-2-mitulkumar.ajitkumar.golani@intel.com>
-Date: Wed, 16 Apr 2025 11:29:01 +0300
-Message-ID: <87wmbkpl0y.fsf@intel.com>
+References: <cover.1744789777.git.mchehab+huawei@kernel.org>
+ <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
+Date: Wed, 16 Apr 2025 11:34:16 +0300
+Message-ID: <87tt6opks7.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,93 +80,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Apr 2025, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> w=
-rote:
-> Add register to access DC Balance registers.
-
-Please read the comment near the top of i915_reg.h.
-
-BR,
-Jani.
-
-
+On Wed, 16 Apr 2025, Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
+> As reported by Andy, kernel-doc.py is creating a __pycache__
+> directory at build time.
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Disable creation of __pycache__ for the libraries used by
+> kernel-doc.py, when excecuted via the build system or via
+> scripts/find-unused-docs.sh.
+>
+> Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
+>  drivers/gpu/drm/Makefile      | 2 +-
+>  drivers/gpu/drm/i915/Makefile | 2 +-
+>  include/drm/Makefile          | 2 +-
+>  scripts/Makefile.build        | 2 +-
+>  scripts/find-unused-docs.sh   | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/=
-drm/i915/display/intel_vrr_regs.h
-> index 6ed0e0dc97e7..6297108f1357 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> @@ -9,6 +9,20 @@
->  #include "intel_display_reg_defs.h"
->=20=20
->  /* VRR registers */
-> +#define _TRANS_VRR_VMAX_DCB_A			0x60414 /* lnl+ */
-> +#define _TRANS_VRR_VMAX_DCB_B			0x61414 /* lnl+ */
-> +#define TRANS_VRR_VMAX_DCB(trans)		_MMIO_TRANS((trans), \
-> +							    _TRANS_VRR_VMAX_DCB_A, \
-> +							    _TRANS_VRR_VMAX_DCB_B)
-> +#define VRR_VMAX_DCB_MASK			REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_FLIPLINE_DCB_A		0x60418 /* lnl+ */
-> +#define _TRANS_VRR_FLIPLINE_DCB_B		0x61418 /* lnl+ */
-> +#define TRANS_VRR_FLIPLINE_DCB(trans)		_MMIO_TRANS((trans), \
-> +							    _TRANS_VRR_FLIPLINE_DCB_A, \
-> +							    _TRANS_VRR_FLIPLINE_DCB_B)
-> +#define VRR_FLIPLINE_DCB_MASK			REG_GENMASK(19, 0)
-> +
->  #define _TRANS_VRR_CTL_A			0x60420
->  #define _TRANS_VRR_CTL_B			0x61420
->  #define _TRANS_VRR_CTL_C			0x62420
-> @@ -17,6 +31,7 @@
->  #define  VRR_CTL_VRR_ENABLE			REG_BIT(31)
->  #define  VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
->  #define  VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
-> +#define  VRR_CTL_DCB_ADJ_ENABLE			REG_BIT(28) /* lnl+ */
->  #define  VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
->  #define  VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_=
-MASK, (x))
->  #define  VRR_CTL_PIPELINE_FULL_OVERRIDE		REG_BIT(0)
-> @@ -93,6 +108,34 @@
->  #define TRANS_VRR_STATUS2(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans,=
- _TRANS_VRR_STATUS2_A)
->  #define  VRR_STATUS2_VERT_LN_CNT_MASK		REG_GENMASK(19, 0)
->=20=20
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A		0x604c0 /* lnl+ */
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B		0x614c0 /* lnl+ */
-> +#define TRANS_ADAPTIVE_SYNC_DCB_CTL(trans)	_MMIO_TRANS((trans), \
-> +							    _TRANS_ADAPTIVE_SYNC_DCB_CTL_A, \
-> +							    _TRANS_ADAPTIVE_SYNC_DCB_CTL_B)
-> +#define  ADAPTIVE_SYNC_COUNTER_EN			REG_BIT(31)
-> +#define  ADAPTIVE_SYNC_COUNTER_RESET			REG_BIT(30)
-> +#define  ADAPTIVE_SYNC_ODD_COUNTER_OVERFLOW		REG_BIT(15)
-> +#define  ADAPTIVE_SYNC_EVEN_COUNTER_OVERFLOW		REG_BIT(14)
-> +#define  ADAPTIVE_SYNC_ODD_LINE_COUNTER_OVERFLOW	REG_BIT(13)
-> +#define  ADAPTIVE_SYNC_EVEN_LINE_COUNTER_OVERFLOW	REG_BIT(12)
-> +
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A	0x604d4 /* lnl+ */
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B	0x614d4 /* lnl+ */
-> +#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(trans)	_MMIO_TRANS((trans), \
-> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A, \
-> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B)
-> +#define  VRR_DCB_ADJ_FLIPLINE_CNT_MASK		REG_GENMASK(31, 24)
-> +#define  VRR_DCB_ADJ_FLIPLINE_MASK		REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A		0x604d8 /* lnl+ */
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B		0x614d8 /* lnl+ */
-> +#define TRANS_VRR_DCB_ADJ_VMAX_CFG(trans)	_MMIO_TRANS((trans), \
-> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_A, \
-> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_B)
-> +#define  VRR_DCB_ADJ_VMAX_CNT_MASK		REG_GENMASK(31, 24)
-> +#define  VRR_DCB_ADJ_VMAX_MASK			REG_GENMASK(19, 0)
-> +
->  #define _TRANS_PUSH_A				0x60a70
->  #define _TRANS_PUSH_B				0x61a70
->  #define _TRANS_PUSH_C				0x62a70
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index ed54a546bbe2..d21d0cd2c752 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+>  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>        cmd_hdrtest = \
+>  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		 PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
 
---=20
+KERNELDOC is not set here.
+
+/bin/sh: 1: -none: not found
+
+
+>  		touch $@
+>  
+>  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ed05b131ed3a..ab6b89a163e7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
+>  #
+>  # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
+>  ifdef CONFIG_DRM_I915_WERROR
+> -    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
+> +    cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none -Werror $<
+>  endif
+>  
+>  # header test
+> diff --git a/include/drm/Makefile b/include/drm/Makefile
+> index a7bd15d2803e..1df6962556ef 100644
+> --- a/include/drm/Makefile
+> +++ b/include/drm/Makefile
+> @@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+>  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>        cmd_hdrtest = \
+>  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+>  		touch $@
+>  
+>  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
+> index 13dcd86e74ca..884dc86ce04e 100644
+> --- a/scripts/Makefile.build
+> +++ b/scripts/Makefile.build
+> @@ -83,7 +83,7 @@ else ifeq ($(KBUILD_CHECKSRC),2)
+>  endif
+>  
+>  ifneq ($(KBUILD_EXTRA_WARN),)
+> -  cmd_checkdoc = $(srctree)/scripts/kernel-doc -none $(KDOCFLAGS) \
+> +  cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(KDOCFLAGS) \
+>          $(if $(findstring 2, $(KBUILD_EXTRA_WARN)), -Wall) \
+>          $<
+>  endif
+> diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
+> index ee6a50e33aba..d6d397fbf917 100755
+> --- a/scripts/find-unused-docs.sh
+> +++ b/scripts/find-unused-docs.sh
+> @@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
+>  	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
+>  	continue;
+>  	fi
+> -	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
+> +	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
+>  	if [[ -n "$str" ]]; then
+>  	echo "$file"
+>  	fi
+
+-- 
 Jani Nikula, Intel
