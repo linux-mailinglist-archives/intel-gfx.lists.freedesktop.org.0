@@ -2,69 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC09EA8B3F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 10:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1FBA8B44B
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 10:48:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8816210E884;
-	Wed, 16 Apr 2025 08:34:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BPoYFEk0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D156510E898;
+	Wed, 16 Apr 2025 08:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1E810E883;
- Wed, 16 Apr 2025 08:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744792467; x=1776328467;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ndLpCVsPDQ53RFlJHDrB2oFUglcdoN6fweLm3J6ZP5k=;
- b=BPoYFEk0e8ffHbG05RvKyMKcuxqUPulXk3kkUn8VDrvYhWaIpfC+F0kR
- /VPSnJCRUQRjsXkDDjuV0M5DBtxjKH451EFSRbMfEgszk73NH9B9LChbx
- 4Vi07XsFTpmQLjpSq75z8ernBDxGUSj+pcicq8OSKCNTcn4UmC4/sqYkU
- Hnk7HJe1xDrEc7xjWp8FtX4WvgDgnojtnfFAkCruEFmEBsoDp02SvWuCq
- 9ao6aSvspeTcAjV80LTN2HHj6xcGH3Ec28og1mY/DMtjIup33mXWhLg4q
- xYRg2aXHLeIr14I3tvsAaXgCP/xVWwrAan3CWUgdzHA669bWAIpn3+YHi g==;
-X-CSE-ConnectionGUID: XuQMx+lITIGuGI6BMCYhZg==
-X-CSE-MsgGUID: Q1NMoYb/TYCFCIEm+4Rq6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="57322882"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="57322882"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 01:34:26 -0700
-X-CSE-ConnectionGUID: 44MKtmDVR8GjGPYWbh7Ddg==
-X-CSE-MsgGUID: gO7j7/VySBmt52m/Rwfmug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="153593714"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.96])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 01:34:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Linux Doc Mailing
- List <linux-doc@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@intel.com>, David Airlie <airlied@gmail.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
- <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
- Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
- <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
-In-Reply-To: <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1744789777.git.mchehab+huawei@kernel.org>
- <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
-Date: Wed, 16 Apr 2025 11:34:16 +0300
-Message-ID: <87tt6opks7.fsf@intel.com>
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39B9610E06B;
+ Wed, 16 Apr 2025 08:48:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/edid=3A_more_dis?=
+ =?utf-8?q?playid_timing_parsing_and_cleanups_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Apr 2025 08:48:17 -0000
+Message-ID: <174479329722.9490.1564900730864102724@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <cover.1744708239.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1744708239.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,99 +37,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Apr 2025, Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
-> As reported by Andy, kernel-doc.py is creating a __pycache__
-> directory at build time.
->
-> Disable creation of __pycache__ for the libraries used by
-> kernel-doc.py, when excecuted via the build system or via
-> scripts/find-unused-docs.sh.
->
-> Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  drivers/gpu/drm/Makefile      | 2 +-
->  drivers/gpu/drm/i915/Makefile | 2 +-
->  include/drm/Makefile          | 2 +-
->  scripts/Makefile.build        | 2 +-
->  scripts/find-unused-docs.sh   | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index ed54a546bbe2..d21d0cd2c752 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
->  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
->        cmd_hdrtest = \
->  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> +		 PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+== Series Details ==
 
-KERNELDOC is not set here.
+Series: drm/edid: more displayid timing parsing and cleanups (rev3)
+URL   : https://patchwork.freedesktop.org/series/147738/
+State : warning
 
-/bin/sh: 1: -none: not found
+== Summary ==
+
+Error: dim checkpatch failed
+f9dfaa630f67 drm/edid: Implement DisplayID Type IX & X timing blocks parsing
+-:64: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#64: FILE: drivers/gpu/drm/drm_edid.c:6837:
++							   const struct displayid_formula_timings_9 *timings,
+
+-:80: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#80: FILE: drivers/gpu/drm/drm_edid.c:6853:
++	mode = drm_cvt_mode(dev, hactive, vactive, timings->vrefresh + 1, timing_formula == 1, false, false);
+
+-:95: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#95: FILE: drivers/gpu/drm/drm_edid.c:6868:
++	const struct displayid_formula_timing_block *formula_block = (struct displayid_formula_timing_block *)block;
+
+total: 0 errors, 3 warnings, 0 checks, 100 lines checked
+7c236aa5254e drm/edid: Refactor DisplayID timing block structs
+-:56: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/drm_edid.c:6763:
++							    const struct displayid_detailed_timings_1 *timings,
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
 
 
->  		touch $@
->  
->  $(obj)/%.hdrtest: $(src)/%.h FORCE
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index ed05b131ed3a..ab6b89a163e7 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
->  #
->  # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
->  ifdef CONFIG_DRM_I915_WERROR
-> -    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
-> +    cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none -Werror $<
->  endif
->  
->  # header test
-> diff --git a/include/drm/Makefile b/include/drm/Makefile
-> index a7bd15d2803e..1df6962556ef 100644
-> --- a/include/drm/Makefile
-> +++ b/include/drm/Makefile
-> @@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
->  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
->        cmd_hdrtest = \
->  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> +		PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
->  		touch $@
->  
->  $(obj)/%.hdrtest: $(src)/%.h FORCE
-> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-> index 13dcd86e74ca..884dc86ce04e 100644
-> --- a/scripts/Makefile.build
-> +++ b/scripts/Makefile.build
-> @@ -83,7 +83,7 @@ else ifeq ($(KBUILD_CHECKSRC),2)
->  endif
->  
->  ifneq ($(KBUILD_EXTRA_WARN),)
-> -  cmd_checkdoc = $(srctree)/scripts/kernel-doc -none $(KDOCFLAGS) \
-> +  cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(KDOCFLAGS) \
->          $(if $(findstring 2, $(KBUILD_EXTRA_WARN)), -Wall) \
->          $<
->  endif
-> diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
-> index ee6a50e33aba..d6d397fbf917 100755
-> --- a/scripts/find-unused-docs.sh
-> +++ b/scripts/find-unused-docs.sh
-> @@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
->  	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
->  	continue;
->  	fi
-> -	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
-> +	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
->  	if [[ -n "$str" ]]; then
->  	echo "$file"
->  	fi
-
--- 
-Jani Nikula, Intel
