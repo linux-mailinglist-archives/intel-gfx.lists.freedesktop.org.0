@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122B6A8B4FB
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 11:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FC0A90417
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 15:16:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1AB10E8A1;
-	Wed, 16 Apr 2025 09:16:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A3C710E907;
+	Wed, 16 Apr 2025 13:15:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hF6yAXCP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OO9fL/pU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44AF310E24E
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 09:15:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744794958; x=1776330958;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=xk/WogVH8OViHpRT/+5eJhd137uBvbcut6mhfR9AhC8=;
- b=hF6yAXCPgSXwKQjdrWWPA575EEVlQ9TBqNaz7ypZ8+4mZ1l0NuDYCqk/
- xlynwQMWDQNYdJPsZo2ojktS9C2RQaUFqjl2PmIRerkivcU/pg5rvb7Xv
- 7+RsYBI4IUxQrN0xYnUTNWFi4ap4tHhdNj1bqYF5AriNiZZ2w+011W84b
- v8nmFV1Hu/ss49LDo7gCj8bfMmCrcmMEL5/kJJ+/oHxdAZMu2LaGmRfor
- nZ8QGbws6t2DKP/PZxdFv8HKfZMOBBS3JSe+wMFzHy89ACem5gJcz2x1d
- AS8vxRmT33E5rvXGxhAVjTL5zqdp5Ni9zls629mw2W6oBou8jh9HuqSjc A==;
-X-CSE-ConnectionGUID: R6j1Z21eSmyJWM6A1T9iOQ==
-X-CSE-MsgGUID: whCZEkDgTfq6tXdjUb37Nw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46494379"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="46494379"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 02:15:57 -0700
-X-CSE-ConnectionGUID: 0OUe6N/kQUiSmKc2XtwcTg==
-X-CSE-MsgGUID: ByUHMy4EQIivnex3CffNig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130242631"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.96])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 02:15:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Chen Linxuan <chenlinxuan@uniontech.com>
-Subject: Re: [PATCH] drm/i915/pxp: fix undefined reference to
- `intel_pxp_gsccs_is_ready_for_sessions'
-In-Reply-To: <20250415090616.2649889-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250415090616.2649889-1-jani.nikula@intel.com>
-Date: Wed, 16 Apr 2025 12:15:53 +0300
-Message-ID: <87o6wwpiuu.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F5D810E049;
+ Wed, 16 Apr 2025 09:19:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id D46B15C5B33;
+ Wed, 16 Apr 2025 09:17:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DBCBC4CEE2;
+ Wed, 16 Apr 2025 09:19:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1744795182;
+ bh=3IzjhMKt3C/Wjt/0qk13UqqN5hoOSs+vGT3liSo6GvI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=OO9fL/pUj0PmyztYhGQC0YKRuzcSnYK7Sib01pp7086unFIPzfMyFuzjMb2obH+hi
+ UQxdF68uNvzqphRvvWoINuTeGaEDd3r+bbpUu1w7jGHFZfsrr9pCgERW06XLl3yRtI
+ /SgQv63ZEzkJhHmvjyMSCbg7n303VUdpR8uYC+QYN8cYgAFqHVX4aNIyVJtyjVcRzy
+ sCNuqf+1/iJdwM9XSfUHW28hHni0EbOsr9ftDIfnh69oaVtKW6X1IibMY0M0T5Mg8+
+ vzk2HfEL30Uh5b13Hn3rL/O6w69cXIif8xk8aPjJWffbo8YGONdguhc5An3RZuhfFI
+ PfiW3qQQXsL2Q==
+Date: Wed, 16 Apr 2025 17:19:17 +0800
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Linux Doc Mailing List <linux-doc@vger.kernel.org>, Jonathan Corbet
+ <corbet@lwn.net>, Andy Shevchenko <andriy.shevchenko@intel.com>, David
+ Airlie <airlied@gmail.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
+ <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
+ Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
+Message-ID: <20250416171917.0985c0eb@sal.lan>
+In-Reply-To: <87tt6opks7.fsf@intel.com>
+References: <cover.1744789777.git.mchehab+huawei@kernel.org>
+ <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
+ <87tt6opks7.fsf@intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 16 Apr 2025 13:15:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,65 +71,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 15 Apr 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> From: Chen Linxuan <chenlinxuan@uniontech.com>
->
-> On x86_64 with gcc version 13.3.0, I compile kernel with:
->
->   make defconfig
->   ./scripts/kconfig/merge_config.sh .config <(
->     echo CONFIG_COMPILE_TEST=y
->   )
->   make KCFLAGS="-fno-inline-functions -fno-inline-small-functions -fno-inline-functions-called-once"
->
-> Then I get a linker error:
->
->   ld: vmlinux.o: in function `pxp_fw_dependencies_completed':
->   kintel_pxp.c:(.text+0x95728f): undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'
->
-> This is caused by not having a intel_pxp_gsccs_is_ready_for_sessions()
-> header stub for CONFIG_DRM_I915_PXP=n. Add it.
->
-> Signed-off-by: Chen Linxuan <chenlinxuan@uniontech.com>
-> Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Em Wed, 16 Apr 2025 11:34:16 +0300
+Jani Nikula <jani.nikula@linux.intel.com> escreveu:
 
-Pushed to drm-intel-next, thanks for the patch.
+> On Wed, 16 Apr 2025, Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
+> > As reported by Andy, kernel-doc.py is creating a __pycache__
+> > directory at build time.
+> >
+> > Disable creation of __pycache__ for the libraries used by
+> > kernel-doc.py, when excecuted via the build system or via
+> > scripts/find-unused-docs.sh.
+> >
+> > Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> >  drivers/gpu/drm/Makefile      | 2 +-
+> >  drivers/gpu/drm/i915/Makefile | 2 +-
+> >  include/drm/Makefile          | 2 +-
+> >  scripts/Makefile.build        | 2 +-
+> >  scripts/find-unused-docs.sh   | 2 +-
+> >  5 files changed, 5 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> > index ed54a546bbe2..d21d0cd2c752 100644
+> > --- a/drivers/gpu/drm/Makefile
+> > +++ b/drivers/gpu/drm/Makefile
+> > @@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+> >  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> >        cmd_hdrtest = \
+> >  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> > -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> > +		 PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \  
+> 
+> KERNELDOC is not set here.
 
-BR,
-Jani.
+> 
+> /bin/sh: 1: -none: not found
 
-> ---
->  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-> index 9aae779c4da3..4969d3de2bac 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
-> @@ -23,6 +23,7 @@ int intel_pxp_gsccs_init(struct intel_pxp *pxp);
->  
->  int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_session_id);
->  void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
-> +bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
->  
->  #else
->  static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
-> @@ -34,8 +35,11 @@ static inline int intel_pxp_gsccs_init(struct intel_pxp *pxp)
->  	return 0;
->  }
->  
-> -#endif
-> +static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp)
-> +{
-> +	return false;
-> +}
->  
-> -bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
-> +#endif
->  
->  #endif /*__INTEL_PXP_GSCCS_H__ */
+Weird. This is set on Documentation/Makefile:
 
--- 
-Jani Nikula, Intel
+	$ grep KERNELDOC Documentation/Makefile 
+	KERNELDOC       = $(srctree)/scripts/kernel-doc.py
+	...
+
+drivers/gpu/drm/Makefile should be able to see this variable there...
+
+> 
+> >  		touch $@
+> >  
+> >  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> > index ed05b131ed3a..ab6b89a163e7 100644
+> > --- a/drivers/gpu/drm/i915/Makefile
+> > +++ b/drivers/gpu/drm/i915/Makefile
+> > @@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
+> >  #
+> >  # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
+> >  ifdef CONFIG_DRM_I915_WERROR
+> > -    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
+> > +    cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none -Werror $<
+> >  endif
+> >  
+> >  # header test
+> > diff --git a/include/drm/Makefile b/include/drm/Makefile
+> > index a7bd15d2803e..1df6962556ef 100644
+> > --- a/include/drm/Makefile
+> > +++ b/include/drm/Makefile
+> > @@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+> >  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+> >        cmd_hdrtest = \
+> >  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> > -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> > +		PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> >  		touch $@
+> >  
+> >  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> > diff --git a/scripts/Makefile.build b/scripts/Makefile.build
+> > index 13dcd86e74ca..884dc86ce04e 100644
+> > --- a/scripts/Makefile.build
+> > +++ b/scripts/Makefile.build
+> > @@ -83,7 +83,7 @@ else ifeq ($(KBUILD_CHECKSRC),2)
+> >  endif
+> >  
+> >  ifneq ($(KBUILD_EXTRA_WARN),)
+> > -  cmd_checkdoc = $(srctree)/scripts/kernel-doc -none $(KDOCFLAGS) \
+> > +  cmd_checkdoc = PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(KDOCFLAGS) \
+> >          $(if $(findstring 2, $(KBUILD_EXTRA_WARN)), -Wall) \
+> >          $<
+> >  endif
+> > diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
+> > index ee6a50e33aba..d6d397fbf917 100755
+> > --- a/scripts/find-unused-docs.sh
+> > +++ b/scripts/find-unused-docs.sh
+> > @@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
+> >  	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
+> >  	continue;
+> >  	fi
+> > -	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
+> > +	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
+> >  	if [[ -n "$str" ]]; then
+> >  	echo "$file"
+> >  	fi  
+> 
