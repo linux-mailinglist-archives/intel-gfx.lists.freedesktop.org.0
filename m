@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AB1A907A4
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 17:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1928A90844
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 18:05:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 879D010E0B4;
-	Wed, 16 Apr 2025 15:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4349F10E0F9;
+	Wed, 16 Apr 2025 16:05:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fCKrSspa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKUHx8cp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D1F10E263;
- Wed, 16 Apr 2025 15:25:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD27410E070
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 16:05:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744817145; x=1776353145;
+ t=1744819504; x=1776355504;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=lliIcOjFaA66AN4v++DJERdmP+aBNUzpbtsIiKJUKdg=;
- b=fCKrSspacdeZsDQ+ur73IPASLNDx+u/NAl96sMIljaXVyFr1b69i4bJ0
- 11dPHPnx6puEIilvmDFkDe2417+s392ixlyS2PMQDfGe3Ob7vJmFtlkb8
- cV/p+P/1KyuxhFF7jnjr/yjQBDw+KBNJeI4jMybPaiTsvLgvIH0N3+Pkw
- ZACV2EJyOPbGp5Xbwrm9E+2w/PkJKNTM/LIyWOY45syaHyVB6JXrmzcBN
- rov+ySdjYIxqQ1eQWslf0Q2s/NvLmmzLMUSfe6ktT5nkAKh7PWiJW/mXs
- l2lvJBbanJa1NhHj6Lba7bAwRJsYpwRswtjxklk9VOpwJZH1BoIkVs1Q+ w==;
-X-CSE-ConnectionGUID: /rcRplV0QCudNLJOpFPvOg==
-X-CSE-MsgGUID: 5YPBjPPXQdu1hdlmJS1Ofg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="33991804"
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="33991804"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 08:25:44 -0700
-X-CSE-ConnectionGUID: RSD0jJQOTJ+6p1S8iF59fg==
-X-CSE-MsgGUID: CDlWtjN/T/CfTbMLaec68A==
+ bh=yFWjMxs3Gc+h7rrfOJsLgfQi2YuAQqe9WcGSFEDuKfc=;
+ b=kKUHx8cp2Knj5O8em7YDwNLnTL5R8zSxhofapLJ5FBXNDGvQGIfA4D1x
+ ilNpxGB3PyXt/TZpwhnbwV8Oe+Rru1VmuPg/dvRfNDSZG+UPOcnSvcJKW
+ OnZKFjbPnPG554G3x8onPz9YdctMJt1WMUMuRe74XGf4WDbEYRZTYeO5q
+ ti2fPgFeYcoapHLD01KwlEClTLAW9PcADloy58eCAFdiMKstEWpvpNTvf
+ QbUBWjwNty0kLlh35coWyRuwinWNlP8zw9LRTJ5A5B49k3AMJzWxVuCTf
+ xhdt01xHKoYzuf+STgi7i6KKy/nZHKrIn2LfJugwFgBd5po52CQYte/1i g==;
+X-CSE-ConnectionGUID: rTLhvxvCRGKDDi8mviEQ9Q==
+X-CSE-MsgGUID: MPjhDqHTQ4CePzgAirE5KA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46390538"
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="46390538"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 09:04:58 -0700
+X-CSE-ConnectionGUID: cfkbLg6SSmmCaGOSuESUNA==
+X-CSE-MsgGUID: zC76jfIbTwCqC3UE6x8I6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="134623286"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa003.fm.intel.com with ESMTP; 16 Apr 2025 08:25:42 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- mika.kahola@intel.com
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v2] drm/i915/display: Implement wa_14024400148
-Date: Wed, 16 Apr 2025 20:50:44 +0530
-Message-Id: <20250416152044.2668249-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="131428850"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 09:04:56 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH v2] drm/xe/pxp: do not queue unneeded terminations from debugfs
+Date: Wed, 16 Apr 2025 09:04:49 -0700
+Message-ID: <20250416160449.1293068-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,61 +66,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Workaround recommend use polling method
-for pm_demand to finish as to avoid timeout.
+The PXP terminate debugfs currently unconditionally simulates a
+termination, no matter what the HW status is. This is unneeded if PXP is
+not in use and can cause errors if the HW init hasn't completed yet.
+To solve these issues, we can simply limit the terminations to the cases
+where PXP is fully initialized and in use.
 
-v2: Add polling method within pmdemand_wait.
-    Update error message[Jani]	
+v2: s/pxp_status/ready/ to avoid confusion with pxp->status (John)
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Fixes: 385a8015b214 ("drm/xe/pxp: Add PXP debugfs support")
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4749
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 31 ++++++++++++++++---
- 1 file changed, 26 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_pxp_debugfs.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index d22b5469672d..1253376c7654 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -478,13 +478,34 @@ static bool intel_pmdemand_req_complete(struct intel_display *display)
- 		 XELPDP_PMDEMAND_REQ_ENABLE);
- }
- 
--static void intel_pmdemand_wait(struct intel_display *display)
-+static void intel_pmdemand_poll(struct intel_display *display)
+diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+index ccfbacf08efc..525a2f6bb076 100644
+--- a/drivers/gpu/drm/xe/xe_pxp_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
+@@ -66,9 +66,18 @@ static int pxp_terminate(struct seq_file *m, void *data)
  {
--	if (!wait_event_timeout(display->pmdemand.waitqueue,
--				intel_pmdemand_req_complete(display),
--				msecs_to_jiffies_timeout(10)))
-+	const unsigned int timeout_ms = 10;
-+	u32 status;
-+	int ret;
-+
-+	ret = intel_de_wait_custom(display, XELPDP_INITIATE_PMDEMAND_REQUEST(1),
-+				   XELPDP_PMDEMAND_REQ_ENABLE, 0,
-+				   50, timeout_ms, &status);
-+
-+	if (ret == -ETIMEDOUT)
- 		drm_err(display->drm,
--			"timed out waiting for Punit PM Demand Response\n");
-+			"timed out waiting for Punit PM Demand Response within %ums (status 0x%08x)\n",
-+			timeout_ms, status);
-+}
-+
-+static void intel_pmdemand_wait(struct intel_display *display)
-+{
-+	/* Wa_14024400148 For lnl use polling method */
-+	if (DISPLAY_VER(display) == 20) {
-+		intel_pmdemand_poll(display);
-+	} else {
-+		if (!wait_event_timeout(display->pmdemand.waitqueue,
-+					intel_pmdemand_req_complete(display),
-+					msecs_to_jiffies_timeout(10)))
-+			drm_err(display->drm,
-+				"timed out waiting for Punit PM Demand Response\n");
-+	}
- }
+ 	struct xe_pxp *pxp = node_to_pxp(m->private);
+ 	struct drm_printer p = drm_seq_file_printer(m);
++	int ready = xe_pxp_get_readiness_status(pxp);
  
- /* Required to be programmed during Display Init Sequences. */
+-	if (!xe_pxp_is_enabled(pxp))
+-		return -ENODEV;
++	if (ready < 0)
++		return ready; /* disabled or error occurred */
++	else if (!ready)
++		return -EBUSY; /* init still in progress */
++
++	/* no need for a termination if PXP is not active */
++	if (pxp->status != XE_PXP_ACTIVE) {
++		drm_printf(&p, "PXP not active\n");
++		return 0;
++	}
+ 
+ 	/* simulate a termination interrupt */
+ 	spin_lock_irq(&pxp->xe->irq.lock);
 -- 
-2.25.1
+2.43.0
 
