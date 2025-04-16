@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E906A90413
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 15:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BD7A8B0B7
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 08:45:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6878910E902;
-	Wed, 16 Apr 2025 13:15:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 437A510E845;
+	Wed, 16 Apr 2025 06:45:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KMTfEoTc";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="BSITgQOc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF7910E852;
- Wed, 16 Apr 2025 06:43:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id E317A44F1A;
- Wed, 16 Apr 2025 06:43:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1024C4CEE2;
- Wed, 16 Apr 2025 06:43:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1744785808;
- bh=3fxTh2/IW45q1FIh85eFha6W/n2T/3ziJzmCR16YX+c=;
- h=From:To:Cc:Subject:Date:From;
- b=KMTfEoTcPQtmfDXORRmyBAJ4SiLXvcDP3abUGTVrC/4wLWH8aAWlePEBkIKHX3j4E
- POaEnPNUlKobt7eBUtRos1N+VpHY9luWZE6rKHARZYsZPxT2aq67FLlo9Taf48+qlW
- DfbzePm0DzvQjvYvXQR5y2AWp3ta0V6zWsYN9ey2FPyRorM/izc+GQ02UcQqsZkJ7d
- 5o6dgT/ifWSm1EmNiZoitaCempRsAxKf/ioiukXcnFIBm6CbEpPZu/+7eKkgNtZcDp
- sIwsG8oLbkHR/fjoZnjqrjNncGk6YwzwMNNhN9fLlcAlkzPbYbEIRFf2iixguo+uwa
- 0+czBCLXsiTvA==
-Received: from mchehab by mail.kernel.org with local (Exim 4.98.2)
- (envelope-from <mchehab@kernel.org>) id 1u4wUD-00000002jyH-3Qul;
- Wed, 16 Apr 2025 14:43:05 +0800
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- "Andy Shevchenko" <andriy.shevchenko@intel.com>,
- David Airlie <airlied@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] scripts/kernel-doc.py: don't create *.pyc files
-Date: Wed, 16 Apr 2025 14:42:57 +0800
-Message-ID: <432f17b785d35122753d4b210874d78ee84e1bb5.1744785773.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.49.0
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFC8D10E845;
+ Wed, 16 Apr 2025 06:44:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1744785896; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=Y3eiYJ6e8CgDbGLWRWvY3Dk5F8nrgnFh39kUZ2kV7SgwkMY7ohmJY+QUNQr5gNzOrTfoM5ibf+y6t9l6S7u4HodwlK3FEIUvFNLbTUbKq80Za8EWzw0iDJYOyklPxb34N7IlCzgS+G+HbClWtJA9WRQxaHwoCrUZPsabJ9IiAek=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1744785896;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=9/nvMzXrROYeNn4+PCWslifty45CG46gd92CWnrTo3k=; 
+ b=YIbsTbuW0ZGA0zvqLbu22Hnir+mIo7Rs/E6/3yA5bCBeNuWKewEyvRFFahzw6xWx/KU+roI8kTIC0OkyJ9dOhgq6oAfxHANFoG2Zedr1pFalokAoTM9dr2B6LJNuYG/wb+0kHUYNp7/GojlU7jYVoH1RmeME8nsctdTRZxsMpaI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+ dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1744785896; 
+ s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com; 
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=9/nvMzXrROYeNn4+PCWslifty45CG46gd92CWnrTo3k=;
+ b=BSITgQOcWomUuQpCD/SRhpGD3RbmSANlIS7Bu7+4Xjp4pgy9EqW/dbQb/q9W7u4y
+ ZvhGWz7SmBI/EN40zDUZR2qjNtezbtE/XgXWZh17BVgLB51/JsQINReYveTpKsdXmH9
+ 2sUqE00RIvkoE/CRN0x/S0uPdNrb0LaiO974t7eo=
+Received: by mx.zohomail.com with SMTPS id 1744785895561587.3497358810888;
+ Tue, 15 Apr 2025 23:44:55 -0700 (PDT)
+Message-ID: <103b62c9-18e2-43b9-866a-4dace75df422@collabora.com>
+Date: Wed, 16 Apr 2025 09:44:52 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/19] drm/virtio: Pass along the format info from
+ .fb_create() to drm_helper_mode_fill_fb_struct()
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
+ <olvaffe@gmail.com>, virtualization@lists.linux.dev
+References: <20250410163218.15130-1-ville.syrjala@linux.intel.com>
+ <20250410163218.15130-18-ville.syrjala@linux.intel.com>
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250410163218.15130-18-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 16 Apr 2025 13:15:46 +0000
+X-ZohoMailClient: External
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,75 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As reported by Andy, kernel-doc.py is creating a __pycache__
-directory at build time.
+On 4/10/25 19:32, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Plumb the format info from .fb_create() all the way to
+> drm_helper_mode_fill_fb_struct() to avoid the redundant
+> lookup.
+> 
+> Cc: David Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Cc: Gurchetan Singh <gurchetansingh@chromium.org>
+> Cc: Chia-I Wu <olvaffe@gmail.com>
+> Cc: virtualization@lists.linux.dev
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/virtio/virtgpu_display.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
+> index 93763b91bab5..e5805ca646c7 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_display.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_display.c
+> @@ -66,6 +66,7 @@ static const struct drm_framebuffer_funcs virtio_gpu_fb_funcs = {
+>  static int
+>  virtio_gpu_framebuffer_init(struct drm_device *dev,
+>  			    struct virtio_gpu_framebuffer *vgfb,
+> +			    const struct drm_format_info *info,
+>  			    const struct drm_mode_fb_cmd2 *mode_cmd,
+>  			    struct drm_gem_object *obj)
+>  {
+> @@ -73,7 +74,7 @@ virtio_gpu_framebuffer_init(struct drm_device *dev,
+>  
+>  	vgfb->base.obj[0] = obj;
+>  
+> -	drm_helper_mode_fill_fb_struct(dev, &vgfb->base, NULL, mode_cmd);
+> +	drm_helper_mode_fill_fb_struct(dev, &vgfb->base, info, mode_cmd);
+>  
+>  	ret = drm_framebuffer_init(dev, &vgfb->base, &virtio_gpu_fb_funcs);
+>  	if (ret) {
+> @@ -315,7 +316,7 @@ virtio_gpu_user_framebuffer_create(struct drm_device *dev,
+>  		return ERR_PTR(-ENOMEM);
+>  	}
+>  
+> -	ret = virtio_gpu_framebuffer_init(dev, virtio_gpu_fb, mode_cmd, obj);
+> +	ret = virtio_gpu_framebuffer_init(dev, virtio_gpu_fb, info, mode_cmd, obj);
+>  	if (ret) {
+>  		kfree(virtio_gpu_fb);
+>  		drm_gem_object_put(obj);
 
-Disable creation of __pycache__ for the libraries used by
-kernel-doc.py, when excecuted via the build system or via
-scripts/find-unused-docs.sh.
+Acked-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
 
-Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- drivers/gpu/drm/Makefile      | 2 +-
- drivers/gpu/drm/i915/Makefile | 2 +-
- include/drm/Makefile          | 2 +-
- scripts/find-unused-docs.sh   | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index ed54a546bbe2..1469d64f8783 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
- quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-       cmd_hdrtest = \
- 		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
--		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-+		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
- 		touch $@
- 
- $(obj)/%.hdrtest: $(src)/%.h FORCE
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index ed05b131ed3a..bb873f9cc2aa 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
- #
- # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
- ifdef CONFIG_DRM_I915_WERROR
--    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
-+    cmd_checkdoc = $(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none -Werror $<
- endif
- 
- # header test
-diff --git a/include/drm/Makefile b/include/drm/Makefile
-index a7bd15d2803e..6088ea458f44 100644
---- a/include/drm/Makefile
-+++ b/include/drm/Makefile
-@@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
- quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-       cmd_hdrtest = \
- 		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
--		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-+		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
- 		touch $@
- 
- $(obj)/%.hdrtest: $(src)/%.h FORCE
-diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
-index ee6a50e33aba..d6d397fbf917 100755
---- a/scripts/find-unused-docs.sh
-+++ b/scripts/find-unused-docs.sh
-@@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
- 	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
- 	continue;
- 	fi
--	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
-+	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
- 	if [[ -n "$str" ]]; then
- 	echo "$file"
- 	fi
 -- 
-2.49.0
-
+Best regards,
+Dmitry
