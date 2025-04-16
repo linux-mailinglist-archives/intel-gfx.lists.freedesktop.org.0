@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1FBA8B44B
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 10:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 122B6A8B4FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 11:16:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D156510E898;
-	Wed, 16 Apr 2025 08:48:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1AB10E8A1;
+	Wed, 16 Apr 2025 09:16:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hF6yAXCP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B9610E06B;
- Wed, 16 Apr 2025 08:48:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44AF310E24E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 09:15:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744794958; x=1776330958;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=xk/WogVH8OViHpRT/+5eJhd137uBvbcut6mhfR9AhC8=;
+ b=hF6yAXCPgSXwKQjdrWWPA575EEVlQ9TBqNaz7ypZ8+4mZ1l0NuDYCqk/
+ xlynwQMWDQNYdJPsZo2ojktS9C2RQaUFqjl2PmIRerkivcU/pg5rvb7Xv
+ 7+RsYBI4IUxQrN0xYnUTNWFi4ap4tHhdNj1bqYF5AriNiZZ2w+011W84b
+ v8nmFV1Hu/ss49LDo7gCj8bfMmCrcmMEL5/kJJ+/oHxdAZMu2LaGmRfor
+ nZ8QGbws6t2DKP/PZxdFv8HKfZMOBBS3JSe+wMFzHy89ACem5gJcz2x1d
+ AS8vxRmT33E5rvXGxhAVjTL5zqdp5Ni9zls629mw2W6oBou8jh9HuqSjc A==;
+X-CSE-ConnectionGUID: R6j1Z21eSmyJWM6A1T9iOQ==
+X-CSE-MsgGUID: whCZEkDgTfq6tXdjUb37Nw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46494379"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="46494379"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 02:15:57 -0700
+X-CSE-ConnectionGUID: 0OUe6N/kQUiSmKc2XtwcTg==
+X-CSE-MsgGUID: ByUHMy4EQIivnex3CffNig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130242631"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.96])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 02:15:56 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Chen Linxuan <chenlinxuan@uniontech.com>
+Subject: Re: [PATCH] drm/i915/pxp: fix undefined reference to
+ `intel_pxp_gsccs_is_ready_for_sessions'
+In-Reply-To: <20250415090616.2649889-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250415090616.2649889-1-jani.nikula@intel.com>
+Date: Wed, 16 Apr 2025 12:15:53 +0300
+Message-ID: <87o6wwpiuu.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/edid=3A_more_dis?=
- =?utf-8?q?playid_timing_parsing_and_cleanups_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Apr 2025 08:48:17 -0000
-Message-ID: <174479329722.9490.1564900730864102724@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <cover.1744708239.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1744708239.git.jani.nikula@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,38 +66,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 15 Apr 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> From: Chen Linxuan <chenlinxuan@uniontech.com>
+>
+> On x86_64 with gcc version 13.3.0, I compile kernel with:
+>
+>   make defconfig
+>   ./scripts/kconfig/merge_config.sh .config <(
+>     echo CONFIG_COMPILE_TEST=y
+>   )
+>   make KCFLAGS="-fno-inline-functions -fno-inline-small-functions -fno-inline-functions-called-once"
+>
+> Then I get a linker error:
+>
+>   ld: vmlinux.o: in function `pxp_fw_dependencies_completed':
+>   kintel_pxp.c:(.text+0x95728f): undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'
+>
+> This is caused by not having a intel_pxp_gsccs_is_ready_for_sessions()
+> header stub for CONFIG_DRM_I915_PXP=n. Add it.
+>
+> Signed-off-by: Chen Linxuan <chenlinxuan@uniontech.com>
+> Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/edid: more displayid timing parsing and cleanups (rev3)
-URL   : https://patchwork.freedesktop.org/series/147738/
-State : warning
+Pushed to drm-intel-next, thanks for the patch.
 
-== Summary ==
+BR,
+Jani.
 
-Error: dim checkpatch failed
-f9dfaa630f67 drm/edid: Implement DisplayID Type IX & X timing blocks parsing
--:64: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#64: FILE: drivers/gpu/drm/drm_edid.c:6837:
-+							   const struct displayid_formula_timings_9 *timings,
+> ---
+>  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+> index 9aae779c4da3..4969d3de2bac 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
+> @@ -23,6 +23,7 @@ int intel_pxp_gsccs_init(struct intel_pxp *pxp);
+>  
+>  int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_session_id);
+>  void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
+> +bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
+>  
+>  #else
+>  static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
+> @@ -34,8 +35,11 @@ static inline int intel_pxp_gsccs_init(struct intel_pxp *pxp)
+>  	return 0;
+>  }
+>  
+> -#endif
+> +static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp)
+> +{
+> +	return false;
+> +}
+>  
+> -bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
+> +#endif
+>  
+>  #endif /*__INTEL_PXP_GSCCS_H__ */
 
--:80: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#80: FILE: drivers/gpu/drm/drm_edid.c:6853:
-+	mode = drm_cvt_mode(dev, hactive, vactive, timings->vrefresh + 1, timing_formula == 1, false, false);
-
--:95: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#95: FILE: drivers/gpu/drm/drm_edid.c:6868:
-+	const struct displayid_formula_timing_block *formula_block = (struct displayid_formula_timing_block *)block;
-
-total: 0 errors, 3 warnings, 0 checks, 100 lines checked
-7c236aa5254e drm/edid: Refactor DisplayID timing block structs
--:56: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
-#56: FILE: drivers/gpu/drm/drm_edid.c:6763:
-+							    const struct displayid_detailed_timings_1 *timings,
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-
-
+-- 
+Jani Nikula, Intel
