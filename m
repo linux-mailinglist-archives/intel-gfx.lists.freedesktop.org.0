@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCC3FA8B22F
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 09:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EACE8A8B232
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 09:33:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2473D10E86F;
-	Wed, 16 Apr 2025 07:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B19810E870;
+	Wed, 16 Apr 2025 07:33:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aQJLDxHt";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E787310E86E;
- Wed, 16 Apr 2025 07:33:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D43AA10E86E;
+ Wed, 16 Apr 2025 07:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744788833; x=1776324833;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=U5Ljm6Cc1olV1V3vTS0InLgRqxmIInWyZodg/84UWxM=;
+ b=aQJLDxHta0gv7iFYrzxoGvf9Q74VbbA4Qpz3I/ucICnr7ksNr8rGPX+v
+ 4dXA1DUMNFDOCW7MMlwCHFByRpRigLii8IdymjkD3XYf98cf6y5CyjDLA
+ SkawXGD1lbFvPe4QxXP6Nxns9IMWf1YtQOLjnQgGbGWZQFSpZtrQkmeZr
+ ZaISi5mb8hcNoj8MZRpNGXWqNgbSFFU5O8G+K6aHfzpzTNwQ06DElJgCS
+ 11krUCA6bJbptUY5YuqcKGU4FloH78PGiWIwAnlxsr6L1ncqr5aOf1Heq
+ koFkQkKHlvJ7aZG1StbyVON9sEixI0uhaR+eT0cB9CdKyBT/oFKs9Hv06 g==;
+X-CSE-ConnectionGUID: RhvUWRBIRNWkKNmUiPohmw==
+X-CSE-MsgGUID: si5hyQihQV6aSnZbWiUSxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="57712012"
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="57712012"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 00:33:52 -0700
+X-CSE-ConnectionGUID: c9hDXfp+SsqyixZ3TCJHxA==
+X-CSE-MsgGUID: xvi8p0pORVCzFgn4JxV6BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130210117"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.96])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2025 00:33:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Linux Doc Mailing
+ List <linux-doc@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Andy Shevchenko
+ <andriy.shevchenko@intel.com>, David Airlie <airlied@gmail.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] scripts/kernel-doc.py: don't create *.pyc files
+In-Reply-To: <432f17b785d35122753d4b210874d78ee84e1bb5.1744786420.git.mchehab+huawei@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1744786420.git.mchehab+huawei@kernel.org>
+ <432f17b785d35122753d4b210874d78ee84e1bb5.1744786420.git.mchehab+huawei@kernel.org>
+Date: Wed, 16 Apr 2025 10:33:44 +0300
+Message-ID: <8734e8r25j.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable/Disable_DC_ba?=
- =?utf-8?q?lance_along_with_VRR_DSB?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Apr 2025 07:33:40 -0000
-Message-ID: <174478882066.9294.17348055983905073562@b68e5b3b99e1>
-X-Patchwork-Hint: ignore
-References: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,84 +74,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 16 Apr 2025, Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
+> As reported by Andy, kernel-doc.py is creating a __pycache__
+> directory at build time.
+>
+> Disable creation of __pycache__ for the libraries used by
+> kernel-doc.py, when excecuted via the build system or via
+> scripts/find-unused-docs.sh.
+>
+> Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+> Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  drivers/gpu/drm/Makefile      | 2 +-
+>  drivers/gpu/drm/i915/Makefile | 2 +-
+>  include/drm/Makefile          | 2 +-
+>  scripts/find-unused-docs.sh   | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index ed54a546bbe2..1469d64f8783 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+>  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>        cmd_hdrtest = \
+>  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
 
-Series: Enable/Disable DC balance along with VRR DSB
-URL   : https://patchwork.freedesktop.org/series/147799/
-State : warning
+It doesn't work to put PYTHONDONTWRITEBYTECODE=1 as a parameter to
+kernel-doc...
 
-== Summary ==
-
-Error: dim checkpatch failed
-7b2e46a2d56f drm/i915/vrr: Add DC balance registers
--:80: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 61 lines checked
-8ef5cb29300f drm/i915/dmc: Add pipe DMC DC balance registers
--:36: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#36: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:121:
-+#define PIPEDMC_DCB_MAX_INCREASE(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_INCREASE_A, _PIPEDMC_DCB_MAX_INCREASE_B)
-
--:40: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#40: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:125:
-+#define PIPEDMC_DCB_MAX_DECREASE(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_MAX_DECREASE_A, _PIPEDMC_DCB_MAX_DECREASE_B)
-
--:44: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#44: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:129:
-+#define PIPEDMC_DCB_GUARDBAND(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_GUARDBAND_A, _PIPEDMC_DCB_GUARDBAND_B)
-
--:48: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#48: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:133:
-+#define PIPEDMC_DCB_SLOPE(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_SLOPE_A, _PIPEDMC_DCB_SLOPE_B)
-
--:52: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#52: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:137:
-+#define PIPEDMC_DCB_VBLANK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_DCB_VBLANK_A, _PIPEDMC_DCB_VBLANK_B)
-
--:56: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#56: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:141:
-+#define PIPEDMC_DCB_DEBUG(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_DCB_DEBUG_A, _PIPEDMC_DCB_DEBUG_B)
-
--:58: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 6 warnings, 0 checks, 41 lines checked
-a478f2e5dc6e drm/i915/vrr: Refactor vmin/vmax stuff
--:37: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#37: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:159:
- 
-+
-
--:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#39: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:161:
-+static int intel_vrr_vblank_start(const struct intel_crtc_state *crtc_state,
-+	int vmin_vmax)
-
--:89: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 2 checks, 71 lines checked
-1d2dc6503782 drm/i915/vrr: Add functions to read out vmin/vmax stuff
--:97: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 73 lines checked
-d6066260ed78 drm/i915: Extract vrr_vblank_start()
--:43: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 25 lines checked
-4e957667b701 drm/i915/vrr: Implement vblank evasion with DC balancing
--:106: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 78 lines checked
-ed86467997cd drm/i915/dsb: Add pipedmc dc balance enable/disable
--:66: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 42 lines checked
-30dc1e414952 drm/i915/vrr: Pause DC balancing for DSB commits
--:130: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>'
-
-total: 1 errors, 0 warnings, 0 checks, 103 lines checked
+BR,
+Jani.
 
 
+>  		touch $@
+>  
+>  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ed05b131ed3a..bb873f9cc2aa 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
+>  #
+>  # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
+>  ifdef CONFIG_DRM_I915_WERROR
+> -    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
+> +    cmd_checkdoc = $(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none -Werror $<
+>  endif
+>  
+>  # header test
+> diff --git a/include/drm/Makefile b/include/drm/Makefile
+> index a7bd15d2803e..6088ea458f44 100644
+> --- a/include/drm/Makefile
+> +++ b/include/drm/Makefile
+> @@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+>  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+>        cmd_hdrtest = \
+>  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+> -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+> +		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+>  		touch $@
+>  
+>  $(obj)/%.hdrtest: $(src)/%.h FORCE
+> diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
+> index ee6a50e33aba..d6d397fbf917 100755
+> --- a/scripts/find-unused-docs.sh
+> +++ b/scripts/find-unused-docs.sh
+> @@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
+>  	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
+>  	continue;
+>  	fi
+> -	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
+> +	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
+>  	if [[ -n "$str" ]]; then
+>  	echo "$file"
+>  	fi
+
+-- 
+Jani Nikula, Intel
