@@ -2,75 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7490EA8B5C0
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 11:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C59A8B67A
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 12:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D19C10E8B9;
-	Wed, 16 Apr 2025 09:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 914F610E8C1;
+	Wed, 16 Apr 2025 10:11:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9Xr+Qzd";
+	dkim=pass (1024-bit key; unprotected) header.d=uniontech.com header.i=@uniontech.com header.b="I5PRx6nJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49D1010E8B9;
- Wed, 16 Apr 2025 09:41:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744796497; x=1776332497;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=AoNhNoPjPMwVxdK0S/wXtvG9FCv+5FT+NuSD7HNXUqM=;
- b=m9Xr+Qzdo6WFCyFKG/CrYJGHhaVNikoFWbmY6BBckBkKjbI8Dylt2ApB
- nY43pDds4fxrZLtHTfvaUb+Ly1AjDgiaohJQHZ7Qlu1qMsXXeyC3pQ+FK
- UtbRQLHQRgfGsOUyJsErUMPnLeHjwLUY1fniSln59fTGBWObVwTbd9ELI
- D5nJfneFkt2aWvgmWDUKw1otwwk9bwfC+vTMJvhT0g22oQ5wwGOODNANE
- yrJUenizkAiBJHebSCm0oxGidEnOK/gtsquY8IbvS8FrKCyOpSRr4vp0V
- wBnq/LWBTdDf599BqphrXJ+cicL1kDCP/RcHPLU1+ozLMeO92D9UdLqx7 A==;
-X-CSE-ConnectionGUID: ydjgwS8yRIi48ongaVa2WQ==
-X-CSE-MsgGUID: XgDapbD+QXKXSKnoeGx8og==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="46469868"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="46469868"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 02:41:37 -0700
-X-CSE-ConnectionGUID: lPbXkUJqTEGp/PB5o3PQ1Q==
-X-CSE-MsgGUID: 0SlJYQCHRKiaWMv6fQqysA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="134494528"
-Received: from smile.fi.intel.com ([10.237.72.58])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 02:41:32 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
- (envelope-from <andriy.shevchenko@intel.com>)
- id 1u4zGr-0000000CoME-2iHK; Wed, 16 Apr 2025 12:41:29 +0300
-Date: Wed, 16 Apr 2025 12:41:29 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Masahiro Yamada <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>,
- Nicolas Schier <nicolas.schier@linux.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
-Message-ID: <Z_97SbBwVp29MNzL@smile.fi.intel.com>
-References: <cover.1744789777.git.mchehab+huawei@kernel.org>
- <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
- <87tt6opks7.fsf@intel.com> <20250416171917.0985c0eb@sal.lan>
- <20250416172901.60104103@sal.lan> <20250416173811.71c3c345@sal.lan>
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 666C810E8C0;
+ Wed, 16 Apr 2025 10:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1744798273;
+ bh=K5EIWptPNf+bD6TCzDb13Bmy9OoJJigove2+9RXxBVM=;
+ h=MIME-Version:From:Date:Message-ID:Subject:To;
+ b=I5PRx6nJoic27KYtAOcNbeMau9M/QTdcBt7xmfH5ako/cgUC2H3IsFU2sj4nP3+5X
+ pI85FHYuDR854/7UC5qs4ejtGX6JNoR6NjFzwMNkGC6+kmR7Cpz+zqCmwymnNt+nOX
+ bO72Wn9uf8zCXzP05N/FDfDcDUJp3oH8rxfMBdmM=
+X-QQ-mid: izesmtp27t1744798177t37bdd6e0
+X-QQ-Originating-IP: c6bMcLBaknpeJudSLgcfGNCr5kNfv09wQR1rbeFJkZ8=
+Received: from mail-yb1-f175.google.com ( [209.85.219.175])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Wed, 16 Apr 2025 18:09:35 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4125910165612876229
+Received: by mail-yb1-f175.google.com with SMTP id
+ 3f1490d57ef6-e573136107bso5785999276.3; 
+ Wed, 16 Apr 2025 03:09:36 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX/LM/DkVFTE3MbvWNKRov/o/+v+DtY75SJxbPhBkWXzghOqrm/Lo3Sv1bHP6DXrGd5aW5GlNa6xcbJ@lists.freedesktop.org,
+ AJvYcCX8rJ6i9kBAf+RuQ6L+hjZ9OvSX4AxNJo0M+xtCzPPUJ0B9tEQFbvqO/1Rj/NpFABpnRm5hwxJ/DSU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YznJ7XZb2bakRe25csQs3tajm7rNNTBGFRCfCXVLxFX6dOxNDjf
+ Pr1orojJjv+iWku27QriXJhMvgVspYJZ4dcLoqz3t9/vJ92MW6ChdU4B+ntRSZrrYfYFbu/R+ME
+ dbTpAwa72R5NomsXGctIRbfrjn3o=
+X-Google-Smtp-Source: AGHT+IFxOQerwyXR4s01cKj1FQCmW5mZBGS8EUkxg2eBy2yn8PQm4fMpJOhxMxu+WrXOTx3w5ulHOeUcX04b8xnFFTA=
+X-Received: by 2002:a05:6902:2b8a:b0:e6d:eb74:272 with SMTP id
+ 3f1490d57ef6-e7275967af8mr1257382276.22.1744798174393; Wed, 16 Apr 2025
+ 03:09:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250416173811.71c3c345@sal.lan>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <E9B8B40E39453E89+20250411105306.89756-1-chenlinxuan@uniontech.com>
+ <20250416044827.GA24153@lst.de>
+In-Reply-To: <20250416044827.GA24153@lst.de>
+From: Chen Linxuan <chenlinxuan@uniontech.com>
+Date: Wed, 16 Apr 2025 18:09:22 +0800
+X-Gmail-Original-Message-ID: <45D187D71349584D+CAC1kPDPYiUKqRmqW=hzOyGudvUXcwxo0kgDU_j40+t7rYHsU-g@mail.gmail.com>
+X-Gm-Features: ATxdqUHphIIrq227AoMvNzUOdxFn7upg3kfvytoiynDmEPipLLJsDaFiQeVe_To
+Message-ID: <CAC1kPDPYiUKqRmqW=hzOyGudvUXcwxo0kgDU_j40+t7rYHsU-g@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/7] kernel-hacking: introduce CONFIG_NO_AUTO_INLINE
+To: Christoph Hellwig <hch@lst.de>
+Cc: Chen Linxuan <chenlinxuan@uniontech.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, 
+ Nathan Chancellor <nathan@kernel.org>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Peter Huewe <peterhuewe@gmx.de>, Jarkko Sakkinen <jarkko@kernel.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Chengchang Tang <tangchengchang@huawei.com>, 
+ Junxian Huang <huangjunxian6@hisilicon.com>, Leon Romanovsky <leon@kernel.org>,
+ Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+ Sagi Grimberg <sagi@grimberg.me>, Yishai Hadas <yishaih@nvidia.com>, 
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Kevin Tian <kevin.tian@intel.com>, 
+ Alex Williamson <alex.williamson@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, 
+ Justin Stitt <justinstitt@google.com>, linux-kbuild@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-rdma@vger.kernel.org, linux-nvme@lists.infradead.org, 
+ kvm@vger.kernel.org, virtualization@lists.linux.dev, linux-mm@kvack.org, 
+ llvm@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+X-QQ-SENDSIZE: 520
+Feedback-ID: izesmtp:uniontech.com:qybglogicsvrgz:qybglogicsvrgz5a-1
+X-QQ-XMAILINFO: M94I2jolx1v3dFgSFVksbdON838YK1CwXxyiTMLXiOOQ3BG+Ld0EgNkS
+ v4Ibj5OkTyj27cxOrUChG4T3BlKWSdHzGEqApIHb64x73AEFZrT0aZReJAxgLOLZN/X6rQx
+ ce1HnL9H9ZhG3US3Cr0tw8FntQwW6TNAOFzU5ly6x7BDS83ZWbn3XQ5934KUT9jLTn7n7SD
+ zIHdmLe8UF8cxWVMgKxIRH13oo5DGNgAwT+9Bn/i4OX3b2yj6YcBI/2yimv4vr6r1mGYD5E
+ PiyZTRpJe7HKfCENdxOQ5PQIa51mrjEf8PzvsPRhSlWhOutFc1yODn8rC24I5Ge1jhwW4Cn
+ iHGZobUi9IwrfDj+adzYxwr7UgwTJO+vF4xEbX9ItMiU5+HExmSms6GShhKq95p12dfxP0y
+ tsTa+3uKeLgdxiZ76VjwM7jfH5DkhiHgmIDC7L7mDGTaFdvL/rgUIV1FR5VT1uPr7YWFfcg
+ GdqWah5YMmjkBvVovv74HDcrttOXypD+bmYP2OyYJzCJkPV6+fKb1HRcENaNQO10JoereAN
+ 6l7ObMHsXB/YVCQmmHHNhTsxJjmNS8qkfFgnCLgB69KnEUJJ2oan44IbnkqNR+5U8kREqqh
+ aF3+voGybKKYIzidF6QH3D/rfh7yBiFvZgN/AbURHGWVKtcED4SZn/3AzEJzLCYjcYaxVNB
+ 0umc/ki2TAeCVJ8nJQQVaCbsVKHvJugNit9wn26UVTegBS9dMxrZ9kaTtl7i1JTHx1PMPG+
+ 5DW1qvcyAJkrAjPItesKj7ZGVHpUJZn1B8+xlDOugYueikVRwkOd7YQ8qtWYXpcM9VGsbM1
+ ea8MFiRCR7yZ7w23d8y650zv4wPeIoIvOLuQ8AAWUcAk0viZfSG+O9jL+83nyCuJALd6a5l
+ DQmsVMT3u2EJ/+XXgEPYVUuVdyzC6jDkZDflVIqBT+eGZnFMCS7ZKiYxVouIV7raB/fs/Ms
+ iFkDGfYvyaoX557uOLhaiYDE0Z2bDOgtR4BCrm81KdnkMYjDoxl4Z+0KMEKRbwbfn4OT+PS
+ 0QyzLw5x47hCZhA4pbOULDZwQC5+XOSI9Hy77ag0zoJWJ/Hrc47twcHTzBTOkabmbP+rkjX
+ kNshwjJEfB1
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,21 +117,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 16, 2025 at 05:38:11PM +0800, Mauro Carvalho Chehab wrote:
-> Em Wed, 16 Apr 2025 17:29:01 +0800
-> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
+Sorry for the mistake, v2 has been send:
 
-...
-
-> Heh, trying to quickly write a patch before calling it a day is
-> usually not a good idea ;-)
-> 
-> I'll send a fix tomorrow.
-
-Take your time, we still have a couple or so weeks to address this.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+https://lore.kernel.org/all/20250416-noautoinline-v2-0-e69a2717530f@uniontech.com/
