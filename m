@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1928A90844
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 18:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73074A90912
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 18:32:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4349F10E0F9;
-	Wed, 16 Apr 2025 16:05:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKUHx8cp";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E492810E0EF;
+	Wed, 16 Apr 2025 16:32:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD27410E070
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 16:05:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744819504; x=1776355504;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yFWjMxs3Gc+h7rrfOJsLgfQi2YuAQqe9WcGSFEDuKfc=;
- b=kKUHx8cp2Knj5O8em7YDwNLnTL5R8zSxhofapLJ5FBXNDGvQGIfA4D1x
- ilNpxGB3PyXt/TZpwhnbwV8Oe+Rru1VmuPg/dvRfNDSZG+UPOcnSvcJKW
- OnZKFjbPnPG554G3x8onPz9YdctMJt1WMUMuRe74XGf4WDbEYRZTYeO5q
- ti2fPgFeYcoapHLD01KwlEClTLAW9PcADloy58eCAFdiMKstEWpvpNTvf
- QbUBWjwNty0kLlh35coWyRuwinWNlP8zw9LRTJ5A5B49k3AMJzWxVuCTf
- xhdt01xHKoYzuf+STgi7i6KKy/nZHKrIn2LfJugwFgBd5po52CQYte/1i g==;
-X-CSE-ConnectionGUID: rTLhvxvCRGKDDi8mviEQ9Q==
-X-CSE-MsgGUID: MPjhDqHTQ4CePzgAirE5KA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46390538"
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="46390538"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 09:04:58 -0700
-X-CSE-ConnectionGUID: cfkbLg6SSmmCaGOSuESUNA==
-X-CSE-MsgGUID: zC76jfIbTwCqC3UE6x8I6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,216,1739865600"; d="scan'208";a="131428850"
-Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2025 09:04:56 -0700
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- John Harrison <John.C.Harrison@Intel.com>
-Subject: [PATCH v2] drm/xe/pxp: do not queue unneeded terminations from debugfs
-Date: Wed, 16 Apr 2025 09:04:49 -0700
-Message-ID: <20250416160449.1293068-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F91010E0EF;
+ Wed, 16 Apr 2025 16:32:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3827542266592087005=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Imple?=
+ =?utf-8?q?ment_wa=5F14024400148_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 16 Apr 2025 16:32:56 -0000
+Message-ID: <174482117644.10984.16633857999022469899@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250416152044.2668249-1-nemesa.garg@intel.com>
+In-Reply-To: <20250416152044.2668249-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,50 +37,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The PXP terminate debugfs currently unconditionally simulates a
-termination, no matter what the HW status is. This is unneeded if PXP is
-not in use and can cause errors if the HW init hasn't completed yet.
-To solve these issues, we can simply limit the terminations to the cases
-where PXP is fully initialized and in use.
+--===============3827542266592087005==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: s/pxp_status/ready/ to avoid confusion with pxp->status (John)
+== Series Details ==
 
-Fixes: 385a8015b214 ("drm/xe/pxp: Add PXP debugfs support")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4749
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
----
- drivers/gpu/drm/xe/xe_pxp_debugfs.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+Series: drm/i915/display: Implement wa_14024400148 (rev2)
+URL   : https://patchwork.freedesktop.org/series/147744/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-index ccfbacf08efc..525a2f6bb076 100644
---- a/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-@@ -66,9 +66,18 @@ static int pxp_terminate(struct seq_file *m, void *data)
- {
- 	struct xe_pxp *pxp = node_to_pxp(m->private);
- 	struct drm_printer p = drm_seq_file_printer(m);
-+	int ready = xe_pxp_get_readiness_status(pxp);
- 
--	if (!xe_pxp_is_enabled(pxp))
--		return -ENODEV;
-+	if (ready < 0)
-+		return ready; /* disabled or error occurred */
-+	else if (!ready)
-+		return -EBUSY; /* init still in progress */
-+
-+	/* no need for a termination if PXP is not active */
-+	if (pxp->status != XE_PXP_ACTIVE) {
-+		drm_printf(&p, "PXP not active\n");
-+		return 0;
-+	}
- 
- 	/* simulate a termination interrupt */
- 	spin_lock_irq(&pxp->xe->irq.lock);
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_16427 -> Patchwork_147744v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): bat-arlh-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_147744v2 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][1] ([i915#12904]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_chamelium_frames@dp-crc-fast:
+    - bat-dg2-13:         [FAIL][5] ([i915#13775]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13775]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13775
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16427 -> Patchwork_147744v2
+
+  CI-20190529: 20190529
+  CI_DRM_16427: e38369229d42b6f201130d0ab3a549ab814caa0e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8322: 8322
+  Patchwork_147744v2: e38369229d42b6f201130d0ab3a549ab814caa0e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/index.html
+
+--===============3827542266592087005==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Implement wa_14024400148 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147744/">https://patchwork.freedesktop.org/series/147744/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16427 -&gt; Patchwork_147744v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/index.html</p>
+<h2>Participating hosts (45 -&gt; 43)</h2>
+<p>Missing    (2): bat-arlh-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_147744v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
+<ul>
+<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16427/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13775">i915#13775</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147744v2/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16427 -&gt; Patchwork_147744v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16427: e38369229d42b6f201130d0ab3a549ab814caa0e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8322: 8322<br />
+  Patchwork_147744v2: e38369229d42b6f201130d0ab3a549ab814caa0e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3827542266592087005==--
