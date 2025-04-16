@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0570A8B055
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 08:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E906A90413
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Apr 2025 15:15:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39F9810E83E;
-	Wed, 16 Apr 2025 06:29:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6878910E902;
+	Wed, 16 Apr 2025 13:15:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bEkDxGKE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KMTfEoTc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A19E10E83E
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Apr 2025 06:29:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744784996; x=1776320996;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=3IOt+DwfGSpfZvdCiPMsvNMPq1EYjhhvymj1GTx39go=;
- b=bEkDxGKEd9zxzBCBPOK2LhbIfst7kUzsj6yMtz69K6hKDgXEZUxqDK5d
- Bw/GIghFC0TUUcukVhj25FwZ7n4uTZ8wQNTyksGzMjNymlxLa2F4knXYn
- zr1Si/RxPhRqa4cZeX/CwLsj8cr6BDnG3P1M3MGtBe133gzK64AVlHe8w
- 2zE+WKLeuw//KZulL/YhISYWKObZSsFWvZ1qFJE+rM7o4NA99wJT3PBOP
- gfTKUlUdtwcJY8nJnRL27LCuiYOas+R9Ow76x0eoZhWSXvxn5biGIXT/L
- VWZ5oMkaQKszHICB45xpacxN6o5/6UwdCRqvhgKkWhaSafQcw8qIAN2rG A==;
-X-CSE-ConnectionGUID: 9pvRFS3MTQ+cXrmekmy3rw==
-X-CSE-MsgGUID: vr/4sIu7SACmRUIFPCoZGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11404"; a="71710256"
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="71710256"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2025 23:29:55 -0700
-X-CSE-ConnectionGUID: 3q4+NyLwSiuDdCS/AEJNiQ==
-X-CSE-MsgGUID: unFwNh9pTg6fQj9tLJdtbQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,215,1739865600"; d="scan'208";a="130880218"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa007.jf.intel.com with ESMTP; 15 Apr 2025 23:29:54 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v1 8/8] drm/i915/vrr: Pause DC balancing for DSB commits
-Date: Wed, 16 Apr 2025 11:57:37 +0530
-Message-ID: <20250416062737.1766703-9-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20250416062737.1766703-1-mitulkumar.ajitkumar.golani@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF7910E852;
+ Wed, 16 Apr 2025 06:43:32 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id E317A44F1A;
+ Wed, 16 Apr 2025 06:43:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1024C4CEE2;
+ Wed, 16 Apr 2025 06:43:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1744785808;
+ bh=3fxTh2/IW45q1FIh85eFha6W/n2T/3ziJzmCR16YX+c=;
+ h=From:To:Cc:Subject:Date:From;
+ b=KMTfEoTcPQtmfDXORRmyBAJ4SiLXvcDP3abUGTVrC/4wLWH8aAWlePEBkIKHX3j4E
+ POaEnPNUlKobt7eBUtRos1N+VpHY9luWZE6rKHARZYsZPxT2aq67FLlo9Taf48+qlW
+ DfbzePm0DzvQjvYvXQR5y2AWp3ta0V6zWsYN9ey2FPyRorM/izc+GQ02UcQqsZkJ7d
+ 5o6dgT/ifWSm1EmNiZoitaCempRsAxKf/ioiukXcnFIBm6CbEpPZu/+7eKkgNtZcDp
+ sIwsG8oLbkHR/fjoZnjqrjNncGk6YwzwMNNhN9fLlcAlkzPbYbEIRFf2iixguo+uwa
+ 0+czBCLXsiTvA==
+Received: from mchehab by mail.kernel.org with local (Exim 4.98.2)
+ (envelope-from <mchehab@kernel.org>) id 1u4wUD-00000002jyH-3Qul;
+ Wed, 16 Apr 2025 14:43:05 +0800
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ "Andy Shevchenko" <andriy.shevchenko@intel.com>,
+ David Airlie <airlied@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] scripts/kernel-doc.py: don't create *.pyc files
+Date: Wed, 16 Apr 2025 14:42:57 +0800
+Message-ID: <432f17b785d35122753d4b210874d78ee84e1bb5.1744785773.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 16 Apr 2025 13:15:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,132 +68,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pause the DMC DC balancing for the remainder of the
-commit so that vmin/vmax won't change after we've baked
-them into the DSB vblank evasion commands.
+As reported by Andy, kernel-doc.py is creating a __pycache__
+directory at build time.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Disable creation of __pycache__ for the libraries used by
+kernel-doc.py, when excecuted via the build system or via
+scripts/find-unused-docs.sh.
+
+Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 13 ++++++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 43 +++++++++++++++-----
- 2 files changed, 45 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/Makefile      | 2 +-
+ drivers/gpu/drm/i915/Makefile | 2 +-
+ include/drm/Makefile          | 2 +-
+ scripts/find-unused-docs.sh   | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index db524d01e574..7373c11e6e8d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7195,6 +7195,17 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 	}
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index ed54a546bbe2..1469d64f8783 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+       cmd_hdrtest = \
+ 		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+-		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
++		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+ 		touch $@
  
- 	if (new_crtc_state->use_dsb) {
-+		/*
-+		 * Pause the DMC DC balancing for the remainder of the
-+		 * commit so that vmin/vmax won't change after we've baked
-+		 * them into the DSB vblank evasion commands.
-+		 *
-+		 * FIXME maybe need a small delay here to make sure DMC has
-+		 * finished updating the values? Or we need a better DMC<->driver
-+		 * protocol that gives is real guarantees about that...
-+		 */
-+		intel_pipedmc_dcb_disable(NULL, crtc);
-+
- 		if (intel_crtc_needs_color_update(new_crtc_state))
- 			intel_color_commit_noarm(new_crtc_state->dsb_commit,
- 						 new_crtc_state);
-@@ -7231,6 +7242,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
- 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
- 			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
-+			if (new_crtc_state->vrr.dc_balance)
-+				intel_pipedmc_dcb_enable(new_crtc_state->dsb_commit, crtc);
- 			intel_dsb_interrupt(new_crtc_state->dsb_commit);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 03405c274b8c..18c38afb9108 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -9,6 +9,7 @@
- #include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-+#include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_vrr.h"
- #include "intel_vrr_regs.h"
-@@ -576,7 +577,9 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 ctl;
+ $(obj)/%.hdrtest: $(src)/%.h FORCE
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index ed05b131ed3a..bb873f9cc2aa 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -408,7 +408,7 @@ obj-$(CONFIG_DRM_I915_GVT_KVMGT) += kvmgt.o
+ #
+ # Enable locally for CONFIG_DRM_I915_WERROR=y. See also scripts/Makefile.build
+ ifdef CONFIG_DRM_I915_WERROR
+-    cmd_checkdoc = $(srctree)/scripts/kernel-doc -none -Werror $<
++    cmd_checkdoc = $(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none -Werror $<
+ endif
  
- 	if (!crtc_state->vrr.enable)
- 		return;
-@@ -587,33 +590,51 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 		       crtc_state->vrr.vmax - 1);
- 	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
- 		       crtc_state->vrr.flipline - 1);
-+	if (!intel_vrr_always_use_vrr_tg(display))
-+		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), TRANS_PUSH_EN);
+ # header test
+diff --git a/include/drm/Makefile b/include/drm/Makefile
+index a7bd15d2803e..6088ea458f44 100644
+--- a/include/drm/Makefile
++++ b/include/drm/Makefile
+@@ -11,7 +11,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
+ quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
+       cmd_hdrtest = \
+ 		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
+-		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
++		$(KERNELDOC) PYTHONDONTWRITEBYTECODE=1 -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
+ 		touch $@
  
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
- 		       TRANS_PUSH_EN);
- 
--	if (!intel_vrr_always_use_vrr_tg(display)) {
--		if (crtc_state->cmrr.enable) {
--			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
--				       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
--				       trans_vrr_ctl(crtc_state));
--		} else {
--			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
--				       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
--		}
-+	ctl = VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state);
-+	if (crtc_state->cmrr.enable)
-+		ctl |= VRR_CTL_CMRR_ENABLE;
-+	if (crtc_state->vrr.dc_balance)
-+		ctl |= VRR_CTL_DCB_ADJ_ENABLE;
-+
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), ctl);
-+
-+	if (crtc_state->vrr.dc_balance) {
-+		/* FIXME reset counters? */
-+		intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder),
-+			       ADAPTIVE_SYNC_COUNTER_EN);
-+		/* FIMXE configure pipedmc DC balance parameters somewhere */
-+		intel_pipedmc_dcb_enable(NULL, crtc);
- 	}
- }
- 
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_display *display = to_intel_display(old_crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
- 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
-+	u32 ctl;
- 
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
-+	if (old_crtc_state->vrr.dc_balance) {
-+		intel_pipedmc_dcb_disable(NULL, crtc);
-+		intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(cpu_transcoder), 0);
-+	}
-+
-+	ctl = trans_vrr_ctl(old_crtc_state);
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		ctl |= VRR_CTL_VRR_ENABLE;
-+
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), ctl);
-+
- 	if (!intel_vrr_always_use_vrr_tg(display)) {
--		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
--			       trans_vrr_ctl(old_crtc_state));
- 		intel_de_wait_for_clear(display,
- 					TRANS_VRR_STATUS(display, cpu_transcoder),
- 					VRR_STATUS_VRR_EN_LIVE, 1000);
+ $(obj)/%.hdrtest: $(src)/%.h FORCE
+diff --git a/scripts/find-unused-docs.sh b/scripts/find-unused-docs.sh
+index ee6a50e33aba..d6d397fbf917 100755
+--- a/scripts/find-unused-docs.sh
++++ b/scripts/find-unused-docs.sh
+@@ -54,7 +54,7 @@ for file in `find $1 -name '*.c'`; do
+ 	if [[ ${FILES_INCLUDED[$file]+_} ]]; then
+ 	continue;
+ 	fi
+-	str=$(scripts/kernel-doc -export "$file" 2>/dev/null)
++	str=$(PYTHONDONTWRITEBYTECODE=1 scripts/kernel-doc -export "$file" 2>/dev/null)
+ 	if [[ -n "$str" ]]; then
+ 	echo "$file"
+ 	fi
 -- 
-2.48.1
+2.49.0
 
