@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF780A91415
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 08:32:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA067A914AF
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 09:05:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52CA210E15B;
-	Thu, 17 Apr 2025 06:32:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C00C10EA12;
+	Thu, 17 Apr 2025 07:05:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i1X0TxiQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huoOTdbj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1144B10E00C;
- Thu, 17 Apr 2025 06:32:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A608568430;
- Thu, 17 Apr 2025 06:31:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3796AC4CEE4;
- Thu, 17 Apr 2025 06:32:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1744871535;
- bh=ynTXwFihEEN4bWQSiOjx5PziQ0jr0xeEIjU1wRMCN5s=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=i1X0TxiQOZSCNkdxdA84ZA0me1j+dxbHbsBHgMZp5Be5+ygw6IfsQbY/N2W4/VcBx
- dr3KbLsUdqif2zDHKAFKmH0y3i5/88KAw30eAVb9fUYsmaIkCTfl6GBIkF6E9OAASQ
- WpFagCAj69cBVVoN2EjPstIrVOEhHz8io9ETBiGIpbPGi0cvjbqAN5stIvibK0z8az
- 87dl5WDaXXlE5wDQImRmf/Ma9g4wPoOYBBgLuWAI4CpJizOin1q2upAlpeHfIivRWv
- VI+Uh3FaHhdZXNaNT2E8z2k9YVc1dMc5G6HztFRXQfajDSlYn6D1z+8uuaZsWXw9C2
- GBe9TWNwNhY8Q==
-Date: Thu, 17 Apr 2025 14:31:52 +0800
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Linux Doc Mailing List
- <linux-doc@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>, David Airlie
- <airlied@gmail.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
- <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
- Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
- <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
-Message-ID: <20250417143152.24371d26@sal.lan>
-In-Reply-To: <Z_96BpMMOzcotJqI@smile.fi.intel.com>
-References: <cover.1744789777.git.mchehab+huawei@kernel.org>
- <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
- <87tt6opks7.fsf@intel.com> <20250416171917.0985c0eb@sal.lan>
- <20250416172901.60104103@sal.lan>
- <Z_96BpMMOzcotJqI@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC5210EA12;
+ Thu, 17 Apr 2025 07:04:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744873499; x=1776409499;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=S85qOTIAWTMFSMY52x11uuRjoV35ODWKZdWrJ3EVpX0=;
+ b=huoOTdbjRfSRHTgscKFbv1IRjY2zPlm1LHWBfcRCWb1nNP8gNJ80Z1MD
+ RMnSt4YDlNXIYgt68sN7UpQimhOtBrg0WppnbwXS71Oy31KRmcd+5tamT
+ PBBwrzjrK6xObgvvllODgorb2N9h1pETVFEcnjqfKkMHXps1hXvMgYJ9a
+ tA0aLULP4xuBp1maplO6S66rjUqlvhIM++wGEToFGFxfUcyVFupj9n/CH
+ GSwDGDYYZwT1E6q0rY0qpuvx1A1efOzxaOUb2Rgon5oCHbzZ6YU76UwyK
+ jY1IcakCJCkD9L+TfXtZngEfFGZle2WhG3wGsFzZtW9Z9erVsNW+M+mPC g==;
+X-CSE-ConnectionGUID: 0sDOn44RQzO7VEtE9kkSZA==
+X-CSE-MsgGUID: IZcY7OVSTj6qtgjuX0q5Dw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="63983894"
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="63983894"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 00:04:59 -0700
+X-CSE-ConnectionGUID: d6qiPzc0Tg6cj1FU82/tcw==
+X-CSE-MsgGUID: 2WAmhbxhTXOY6PKq5k9cTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,218,1739865600"; d="scan'208";a="135688880"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 00:04:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded
+ Gabbay <ogabbay@kernel.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Thu, 17 Apr 2025 10:04:50 +0300
+Message-ID: <87fri7p8tp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,76 +73,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Wed, 16 Apr 2025 12:36:06 +0300
-Andy Shevchenko <andriy.shevchenko@intel.com> escreveu:
 
-> On Wed, Apr 16, 2025 at 05:29:01PM +0800, Mauro Carvalho Chehab wrote:
-> > Em Wed, 16 Apr 2025 17:19:17 +0800
-> > Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:  
-> > > Em Wed, 16 Apr 2025 11:34:16 +0300
-> > > Jani Nikula <jani.nikula@linux.intel.com> escreveu:  
-> > > > On Wed, 16 Apr 2025, Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:  
-> 
-> ...
-> 
-> > > > >  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> > > > >        cmd_hdrtest = \
-> > > > >  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-> > > > > -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> > > > > +		 PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \    
-> > > > 
-> > > > KERNELDOC is not set here.  
-> > >   
-> > > > 
-> > > > /bin/sh: 1: -none: not found  
-> > > 
-> > > Weird. This is set on Documentation/Makefile:
-> > > 
-> > > 	$ grep KERNELDOC Documentation/Makefile 
-> > > 	KERNELDOC       = $(srctree)/scripts/kernel-doc.py
-> > > 	...
-> > > 
-> > > drivers/gpu/drm/Makefile should be able to see this variable there...  
-> > 
-> > I suspect that the building system tries to confine variables to
-> > sub-directories, so maybe one solution would be to move it to the
-> > main makefile.
-> > 
-> > could you please check if this patch solves the issue?
-> > 
-> > [PATCH] Makefile: move KERNELDOC macro to the main Makefile
-> > 
-> > As kernel-doc script is used not only on Documentation, but
-> > also on scripts and drivers/drm Makefiles, move it to the
-> > main makefile, as otherwise sub-makefiles may not have it.
-> > 
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > 
-> > diff --git a/Documentation/Makefile b/Documentation/Makefile
-> > index c022b97c487e..7a2069e87dbd 100644
-> > --- a/Documentation/Makefile
-> > +++ b/Documentation/Makefile
-> > @@ -60,7 +60,6 @@ endif #HAVE_LATEXMK
-> >  # Internal variables.
-> >  PAPEROPT_a4     = -D latex_paper_size=a4
-> >  PAPEROPT_letter = -D latex_paper_size=letter
-> > -KERNELDOC       = $(srctree)/scripts/kernel-doc.py
-> >  KERNELDOC_CONF  = -D kerneldoc_srctree=$(srctree) -D kerneldoc_bin=$(KERNELDOC)  
-> 
-> In this case the _CONF makes sense to move together as they are coupled
-> semantically.
+Hi Dave & Sima -
 
-In a matter of fact, it doesn't...
+drm-intel-fixes-2025-04-17:
+drm/i915 fixes for v6.15-rc3:
+- Fix DP DSC configurations that require 3 DSC engines per pipe
 
-> >  ALLSPHINXOPTS   =  $(KERNELDOC_CONF) $(PAPEROPT_$(PAPER)) $(SPHINXOPTS)
+BR,
+Jani.
 
-This is just part of ALLSPHINXOPTS, where it places two definitions
-to be used by the Sphinx kerneldoc extension. I need to double-check
-it, but I suspect that this is not even used there anymore. If it is
-still used, it can be cleaned up after we remove the Perl version.
+The following changes since commit 8ffd015db85fea3e15a77027fda6c02ced4d2444:
 
-So, I prefer to keep this (perhaps with a different name) at the
-documentation makefile.
+  Linux 6.15-rc2 (2025-04-13 11:54:49 -0700)
 
-Regards,
-Mauro
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2025-04-17
+
+for you to fetch changes up to 3a47280b768748992ee34bd52c394c60b2845af3:
+
+  drm/i915/dp: Check for HAS_DSC_3ENGINES while configuring DSC slices (2025-04-15 10:33:37 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v6.15-rc3:
+- Fix DP DSC configurations that require 3 DSC engines per pipe
+
+----------------------------------------------------------------
+Ankit Nautiyal (2):
+      drm/i915/display: Add macro for checking 3 DSC engines
+      drm/i915/dp: Check for HAS_DSC_3ENGINES while configuring DSC slices
+
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ drivers/gpu/drm/i915/display/intel_dp.c             | 7 ++++---
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+-- 
+Jani Nikula, Intel
