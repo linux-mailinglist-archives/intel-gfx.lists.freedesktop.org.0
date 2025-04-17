@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21027A91D03
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 14:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE88A91D4B
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 15:07:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AC210EAFC;
-	Thu, 17 Apr 2025 12:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 386F910EAFE;
+	Thu, 17 Apr 2025 13:07:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WgoObMBC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kfV44Ys8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A92310EAFC
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Apr 2025 12:53:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB0010EAFE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Apr 2025 13:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744894429; x=1776430429;
+ t=1744895234; x=1776431234;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=hwjse1T3GgyjbNULKoAVxJI0lUsg6luXlRhkoLxlWB8=;
- b=WgoObMBCVBzeJHArKMssj/NxJ0457RsgQTYeQYeVRqxZyG7Zlcgqno4t
- 8A2Quac8nAiHV7HzuO8gRDcf3jQhdweslpXdBkNA+Ov+byttdF5Th3wYp
- sZ2Ymfo0bNrkzT0JeJOdTf2JZ9NxpdPbYPP2LDpj4MSRMsQlKqGcbrpHs
- uw8okNkyWc8R+esunmwq7SZwuGERqcI6aPHIUPSlFI0c1rqi5Y8hQIlkU
- +wvMjCizYWoXo/MM7VoCW/q8jkOZo2kLKR+DT5HGlYxdTeHgL1PbeA/7k
- 9//9ZFzLZlKZtHThelWhEdHit9ZB0Onte1QGWzh2QCeBfTJkplTMY6Y2z g==;
-X-CSE-ConnectionGUID: iaDOM4TzTHqyKzj1ifYWUA==
-X-CSE-MsgGUID: LW5YYUGCReO1eDnPMfd3lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="57864006"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="57864006"
+ bh=z2M8/UICOjVysVGO9Mai9ajjIMC5/gpOPmMp3janmHw=;
+ b=kfV44Ys8ADrBg6tfpiU3KPHQsgO3qmcrhP9JS7jDWbec5vm4vf2rzq5d
+ yhY0dg8trR40gGqNqc01QO7Dml9gF461//2XPx+D+iJoMqHi6USg0lrca
+ 3X+TZfcvfk3+iIsVPNEVD5Msc9N7lvQsv/CkRj2YzhTXm6n8Rgjf4AbE0
+ /Rx0/WEaq2gG59cG5/VJUKdHuWqKt6o7qgWN/UqmhTo+lpj75nm12wKJ0
+ 02KtnmJ+t8OeoSpacIJRTvbGdJhrTRngmUzmp7+PU0OwCvVVWd6XdxyLy
+ EcWWsZ7wpR1zG3eTuVrEQVQK5J6IWtg6V5CWp4sb/o5d3GmP00hHji7nr w==;
+X-CSE-ConnectionGUID: zPZMKl24Siat0c8BhYNk5g==
+X-CSE-MsgGUID: 1cF+FwViRlaDpGJT0DX73Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="57147771"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="57147771"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 05:53:49 -0700
-X-CSE-ConnectionGUID: 7GBme3K7RGa5bOz7okuVZQ==
-X-CSE-MsgGUID: pXfR5hgqSWeF+YTByTMh2Q==
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2025 06:05:59 -0700
+X-CSE-ConnectionGUID: Uryn2Dw9QCajv7AXIu5ruA==
+X-CSE-MsgGUID: cD6QDjJgSe+Ky3VA4m9nmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="161751041"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="161753969"
 Received: from unknown (HELO localhost) ([10.237.66.160])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 05:53:47 -0700
+ 17 Apr 2025 06:05:56 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/6] drm/i915/vga: Include the current pipe in the VGA
- disable debug message
-In-Reply-To: <20250417114454.12836-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 5/6] drm/i915/vga: Nuke vga_redisable_power_on()
+In-Reply-To: <20250417114454.12836-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250417114454.12836-1-ville.syrjala@linux.intel.com>
- <20250417114454.12836-5-ville.syrjala@linux.intel.com>
-Date: Thu, 17 Apr 2025 15:53:44 +0300
-Message-ID: <87ikn3ne3r.fsf@intel.com>
+ <20250417114454.12836-6-ville.syrjala@linux.intel.com>
+Date: Thu, 17 Apr 2025 16:05:52 +0300
+Message-ID: <87fri7ndjj.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,78 +72,82 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 17 Apr 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Add some debugs to the VGA plane disable so that we can at least
-> see from the logs when it happens (and on which pipe). I was curious
-> about this at some point when I was seeing some random underruns
-> near the time when we disable the VGA plane, but I think in the end
-> that turned out to be a red herring.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Now that intel_vga_disable() itself will print a debug
+> message, intel_vga_redisable_power_on() is completely redudant.
+
+*redundant
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_vga.c | 29 +++++++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
+
+> Get rid of it.
 >
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_power_well.c |  2 +-
+>  drivers/gpu/drm/i915/display/intel_vga.c            | 13 +------------
+>  drivers/gpu/drm/i915/display/intel_vga.h            |  1 -
+>  3 files changed, 2 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
+ivers/gpu/drm/i915/display/intel_display_power_well.c
+> index b9b4359751cc..9641fb5b846b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1252,7 +1252,7 @@ static void vlv_display_power_well_init(struct inte=
+l_display *display)
+>  			intel_crt_reset(&encoder->base);
+>  	}
+>=20=20
+> -	intel_vga_redisable_power_on(display);
+> +	intel_vga_disable(display);
+>=20=20
+>  	intel_pps_unlock_regs_wa(display);
+>  }
 > diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i=
 915/display/intel_vga.c
-> index 56047f701798..7ee689a9da92 100644
+> index 7ee689a9da92..d01de61105c1 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vga.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-> @@ -12,6 +12,7 @@
->  #include "i915_drv.h"
->  #include "i915_reg.h"
->  #include "intel_de.h"
-> +#include "intel_display.h"
->  #include "intel_vga.h"
->  #include "intel_vga_regs.h"
->=20=20
-> @@ -25,16 +26,42 @@ static i915_reg_t intel_vga_cntrl_reg(struct intel_di=
-splay *display)
->  		return VGACNTRL;
+> @@ -74,17 +74,6 @@ void intel_vga_disable(struct intel_display *display)
+>  	intel_de_posting_read(display, vga_reg);
 >  }
 >=20=20
-> +static bool has_vga_pipe_sel(struct intel_display *display)
-> +{
-> +	if (display->platform.i845g ||
-> +	    display->platform.i865g)
-> +		return false;
-> +
-> +	if (display->platform.valleyview ||
-> +	    display->platform.cherryview)
-> +		return true;
-> +
-> +	return DISPLAY_VER(display) < 7;
-> +}
-> +
->  /* Disable the VGA plane that we never use */
->  void intel_vga_disable(struct intel_display *display)
+> -void intel_vga_redisable_power_on(struct intel_display *display)
+> -{
+> -	i915_reg_t vga_reg =3D intel_vga_cntrl_reg(display);
+> -
+> -	if (!(intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)) {
+> -		drm_dbg_kms(display->drm,
+> -			    "Something enabled VGA plane, disabling it\n");
+> -		intel_vga_disable(display);
+> -	}
+> -}
+> -
+>  void intel_vga_redisable(struct intel_display *display)
 >  {
->  	struct pci_dev *pdev =3D to_pci_dev(display->drm->dev);
->  	i915_reg_t vga_reg =3D intel_vga_cntrl_reg(display);
-> +	enum pipe pipe;
-> +	u32 tmp;
->  	u8 sr1;
->=20=20
-> -	if (intel_de_read(display, vga_reg) & VGA_DISP_DISABLE)
-> +	tmp =3D intel_de_read(display, vga_reg);
-> +	if (tmp & VGA_DISP_DISABLE)
+>  	intel_wakeref_t wakeref;
+> @@ -102,7 +91,7 @@ void intel_vga_redisable(struct intel_display *display)
+>  	if (!wakeref)
 >  		return;
 >=20=20
-> +	if (display->platform.cherryview)
-> +		pipe =3D REG_FIELD_GET(VGA_PIPE_SEL_MASK_CHV, tmp);
-> +	else if (has_vga_pipe_sel(display))
-> +		pipe =3D REG_FIELD_GET(VGA_PIPE_SEL_MASK, tmp);
-> +	else
-> +		pipe =3D PIPE_A;
-> +
-> +	drm_dbg_kms(display->drm, "Disabling VGA plane on pipe %c\n",
-> +		    pipe_name(pipe));
-> +
->  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
->  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
->  	outb(0x01, VGA_SEQ_I);
+> -	intel_vga_redisable_power_on(display);
+> +	intel_vga_disable(display);
+>=20=20
+>  	intel_display_power_put(display, POWER_DOMAIN_VGA, wakeref);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_vga.h b/drivers/gpu/drm/i=
+915/display/intel_vga.h
+> index 824dfc32a199..d0716782c1f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vga.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vga.h
+> @@ -11,7 +11,6 @@ struct intel_display;
+>  void intel_vga_reset_io_mem(struct intel_display *display);
+>  void intel_vga_disable(struct intel_display *display);
+>  void intel_vga_redisable(struct intel_display *display);
+> -void intel_vga_redisable_power_on(struct intel_display *display);
+>  int intel_vga_register(struct intel_display *display);
+>  void intel_vga_unregister(struct intel_display *display);
 
 --=20
 Jani Nikula, Intel
