@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FEE9A91B24
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 13:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA12CA91B25
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Apr 2025 13:45:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D9910EAD7;
-	Thu, 17 Apr 2025 11:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 254EE10EADA;
+	Thu, 17 Apr 2025 11:45:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="byKAMcOh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fs7NqfIB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFB810EAD7
- for <intel-gfx@lists.freedesktop.org>; Thu, 17 Apr 2025 11:44:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C8E410EAD8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Apr 2025 11:45:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744890298; x=1776426298;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n0dBslelAjMlSWi68xW3BkppThX4Vofj78gKAAPPu7I=;
- b=byKAMcOhAXVjJ8w31bhmwoEgXYBC310EubopuudwOIV2VYiRTGYVOyof
- eX4s8AGvbzKxQwamdFJ+I0oxov45cB2fIag+BIS8jv4VaXlyimp/W3CW+
- Adqh6XJTIB059cKQAzbGvAkYPkpTFddRsinbuCu/dFMuu7DWlmln1Cg6A
- sVDgSJ/RmHWsHRDtkrq+ZEVXBaIu3eqnlMYoFmSIkqeAsfDpCCNYBH3li
- DPPRATGnR2KFMtFLIgiq/Y2X4GaN3JqgFM8ZpvYsX0GXvdLJ3wf2udEn+
- U8a3j5KrfFoY6oN23v44Nrtqu8RSOTqRwfIlGT64YZbWNrs7Fqnnr4CzV Q==;
-X-CSE-ConnectionGUID: EHT9yWGsQZqEE8ImYA3P7w==
-X-CSE-MsgGUID: Q3hwyuJWQviysJuOrNxhSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46638233"
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="46638233"
+ t=1744890301; x=1776426301;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=NObvFPHtUcjsfZmWyfSWP86janfUZ22MtQb6vC6rqHk=;
+ b=fs7NqfIB4RQaX1mYv0MWmKvaaKKshBMFUXU0/oIwilhMSRoXoeMUXMW1
+ kRPFww/3CS9T7by96idyBUTjkAHzRlp9segPHFLenrgVliedPzRZewJWr
+ A3AXIV4Y8ejcF1T7mx5NpArW/PyugogfzmluE2HkQ91g35O9fyyi+Qw60
+ oaAqoYKZLyuPDEn4MvUCKIR868Fnig7DLNCmaklZ6cCmO0OhDFYqLKwNC
+ oqQgArgQk6iKQbaIYTofT+R6g0yDpDyXH3RCtvwACMIG1cnEAvH0lenYQ
+ uxinPaXp1zeg7dTLrYQ8AASgQL+++Psrjc7V/M9Do+jgGir455Nv55ktr g==;
+X-CSE-ConnectionGUID: n9QzpHaYSsmppkJEf1fMsw==
+X-CSE-MsgGUID: cVjfw9fFQWyqbYtJ6hQQBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11405"; a="46638239"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="46638239"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2025 04:44:58 -0700
-X-CSE-ConnectionGUID: 7oeGPUxuQxqCBp1QJ4+Vjw==
-X-CSE-MsgGUID: bSNLTPLgTO2dRVajLbspKw==
+ 17 Apr 2025 04:45:00 -0700
+X-CSE-ConnectionGUID: Pl59+z4kRhGiCSQlpX5FaA==
+X-CSE-MsgGUID: Hk63wjtqSiWY8gr19ZmyfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="135943574"
+X-IronPort-AV: E=Sophos;i="6.15,219,1739865600"; d="scan'208";a="135943581"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 17 Apr 2025 04:44:56 -0700
+ by orviesa005.jf.intel.com with SMTP; 17 Apr 2025 04:44:59 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Apr 2025 14:44:54 +0300
+ Thu, 17 Apr 2025 14:44:57 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/6] drm/i915/vga: Clean up VGA plane handling
-Date: Thu, 17 Apr 2025 14:44:48 +0300
-Message-ID: <20250417114454.12836-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/6] drm/i915/vga: Clean up VGACNTRL bits
+Date: Thu, 17 Apr 2025 14:44:49 +0300
+Message-ID: <20250417114454.12836-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250417114454.12836-1-ville.syrjala@linux.intel.com>
+References: <20250417114454.12836-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,30 +70,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Clean up the VGA plane related stuff.
+Use REG_BIT() & co. for the VGACNTRL register bits.
 
-Ville Syrjälä (6):
-  drm/i915/vga: Clean up VGACNTRL bits
-  drm/i915/vga: Add more VGACNTRL bits
-  drm/i915/vga: Extract intel_vga_regs.h
-  drm/i915/vga: Include the current pipe in the VGA disable debug
-    message
-  drm/i915/vga: Nuke vga_redisable_power_on()
-  drm/i915/vga: Consolidate intel_vga_disable() calls
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
- .../drm/i915/display/intel_display_driver.c   |  3 -
- .../i915/display/intel_display_power_well.c   |  2 +-
- .../drm/i915/display/intel_modeset_setup.c    |  3 +
- drivers/gpu/drm/i915/display/intel_vga.c      | 63 +++++++++----------
- drivers/gpu/drm/i915/display/intel_vga.h      |  2 -
- drivers/gpu/drm/i915/display/intel_vga_regs.h | 38 +++++++++++
- drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
- drivers/gpu/drm/i915/i915_driver.c            |  3 -
- drivers/gpu/drm/i915/i915_reg.h               | 12 ----
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  1 +
- 10 files changed, 73 insertions(+), 55 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_vga_regs.h
-
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 49beab8e324d..81765f27b258 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1814,9 +1814,10 @@
+ 
+ /* VBIOS regs */
+ #define VGACNTRL		_MMIO(0x71400)
+-# define VGA_DISP_DISABLE			(1 << 31)
+-# define VGA_2X_MODE				(1 << 30)
+-# define VGA_PIPE_B_SELECT			(1 << 29)
++#define   VGA_DISP_DISABLE			REG_BIT(31)
++#define   VGA_2X_MODE				REG_BIT(30)
++#define   VGA_PIPE_SEL_MASK			REG_BIT(29)
++#define   VGA_PIPE_SEL(pipe)			REG_FIELD_PREP(VGA_PIPE_SEL_MASK, (pipe))
+ 
+ #define VLV_VGACNTRL		_MMIO(VLV_DISPLAY_BASE + 0x71400)
+ 
 -- 
 2.49.0
 
