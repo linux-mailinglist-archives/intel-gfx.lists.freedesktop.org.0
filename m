@@ -2,61 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F9BA93BBC
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Apr 2025 19:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAEFEA93C99
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Apr 2025 20:13:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ACA110E228;
-	Fri, 18 Apr 2025 17:14:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C21C310E23F;
+	Fri, 18 Apr 2025 18:13:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o3mhSmBh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePEFyP2g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52DCA10E228;
- Fri, 18 Apr 2025 17:14:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 59EBE4A5DC;
- Fri, 18 Apr 2025 17:14:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A84C4CEEE;
- Fri, 18 Apr 2025 17:14:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1744996442;
- bh=By9Z3/GOKSo9jX2bX288pITAL8QKbK/wJaL2Y5toa+E=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=o3mhSmBhtFASWfZ2KgiYlj9LA0feGsF/AkkLLSTsVzOjwzhRui6ckoIjUD0clMiXV
- fVcpDewtRdZ2lQFbgsE5oAR1OjzVmZlAFoj2c1i8KWqlNlIzfcKumjn1KNwnNTowBV
- Mq8LrA+ihQjZuvb9Caac8zjHo/CEev2NA9mmovs/RUMVqb4XPwApFXqofzpVcmaYdC
- gw5a571GjZkGK8y3YELHQSSQsa6wDJvz1svYHuIV7o8sStTmIVhTqxqf52kc0ve+MA
- LM8/8lJEHe68SlMLEUBw5i6+ag3mnDP02Q93nP1fj1EhJWA0WuZtK1Bi/15McraAHq
- oDPIZqZRwM6LQ==
-Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
- id DF494CE0F4D; Fri, 18 Apr 2025 10:14:01 -0700 (PDT)
-From: "Paul E. McKenney" <paulmck@kernel.org>
-To: linux-kernel@vger.kernel.org
-Cc: kernel-team@meta.com, Andrew Morton <akpm@linux-foundation.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>, Mateusz Guzik <mjguzik@gmail.com>,
- Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>,
- John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jon Pan-Doh <pandoh@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Karolina Stolarek <karolina.stolarek@oracle.com>,
- "Paul E. McKenney" <paulmck@kernel.org>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730B810E23F;
+ Fri, 18 Apr 2025 18:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1744999984; x=1776535984;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=QmVNNm0yCXUzgegJjSuzQSEat+pAuOJqxBaJs9whs1k=;
+ b=ePEFyP2gVbIzrwgCfKg/eppAeRk42OM86JRHYLesaMHnM7NjsqKJJhGT
+ floRlfeRo2JOsyDHDAgOro0P/Yx1OC9x86hvSwzNubm+fZFT+03YRnokv
+ pdOnGmXohZWkQGNzXe/rc6QmAq/cPOWG/lZxizoyEByPMYpmaP9Olt/nv
+ r8J949eGsf59Th4ZZIgw1V5mwNa4a2+fSCCv/SFOPZtd+oGHgfqe9HuDU
+ lCJ6/Lxu3Iq/abdKAXJv31ayeRd8myO4UwlTEza3L1/TzMaze64sVflfq
+ mARQQhFeo28YnA74DFJRY309u/+dPc7D2afF9vfd89FMun97ibNiWIe6D g==;
+X-CSE-ConnectionGUID: ceyWP6orRM+4YijHaBoqFQ==
+X-CSE-MsgGUID: BkCOSy/FQeSxA7gR9YicDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11407"; a="57296080"
+X-IronPort-AV: E=Sophos;i="6.15,222,1739865600"; d="scan'208";a="57296080"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Apr 2025 11:13:02 -0700
+X-CSE-ConnectionGUID: /IqsmET/QzyMnsLY4JUGdg==
+X-CSE-MsgGUID: i6LVBPnvQBGrpL7TnOsFdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,222,1739865600"; d="scan'208";a="131041341"
+Received: from lkp-server01.sh.intel.com (HELO 61e10e65ea0f) ([10.239.97.150])
+ by fmviesa006.fm.intel.com with ESMTP; 18 Apr 2025 11:12:57 -0700
+Received: from kbuild by 61e10e65ea0f with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1u5qCt-0003Ax-12;
+ Fri, 18 Apr 2025 18:12:55 +0000
+Date: Sat, 19 Apr 2025 02:12:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@intel.com>,
+ David Airlie <airlied@gmail.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 ratelimit 04/14] drm/i915: Avoid open-coded use of
- ratelimit_state structure's ->missed field
-Date: Fri, 18 Apr 2025 10:13:49 -0700
-Message-Id: <20250418171359.1187719-4-paulmck@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <4edcefb0-cdbd-4422-8a08-ffc091de158e@paulmck-laptop>
-References: <4edcefb0-cdbd-4422-8a08-ffc091de158e@paulmck-laptop>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Masahiro Yamada <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>,
+ Nicolas Schier <nicolas.schier@linux.dev>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
+Message-ID: <202504190154.lSj16P1a-lkp@intel.com>
+References: <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,51 +85,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The i915_oa_stream_destroy() function directly accesses the
-ratelimit_state structure's ->missed field, which work, but which also
-makes it more difficult to change this field.  Therefore, make use of
-the ratelimit_state_get_miss() function instead of directly accessing
-the ->missed field.
+Hi Mauro,
 
-Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: <intel-gfx@lists.freedesktop.org>
-Cc: <dri-devel@lists.freedesktop.org>
----
- drivers/gpu/drm/i915/i915_perf.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index de0b413600a15..1658f1246c6fa 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1666,6 +1666,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	struct i915_perf *perf = stream->perf;
- 	struct intel_gt *gt = stream->engine->gt;
- 	struct i915_perf_group *g = stream->engine->oa_group;
-+	int m;
- 
- 	if (WARN_ON(stream != g->exclusive_stream))
- 		return;
-@@ -1690,10 +1691,9 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
- 	free_oa_configs(stream);
- 	free_noa_wait(stream);
- 
--	if (perf->spurious_report_rs.missed) {
--		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n",
--			  perf->spurious_report_rs.missed);
--	}
-+	m = ratelimit_state_get_miss(&perf->spurious_report_rs);
-+	if (m)
-+		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n", m);
- }
- 
- static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
+[auto build test ERROR on lwn/docs-next]
+[also build test ERROR on drm-i915/for-linux-next drm-i915/for-linux-next-fixes linus/master v6.15-rc2 next-20250417]
+[cannot apply to masahiroy-kbuild/for-next masahiroy-kbuild/fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Mauro-Carvalho-Chehab/scripts-kernel-doc-py-don-t-create-pyc-files/20250416-155336
+base:   git://git.lwn.net/linux.git docs-next
+patch link:    https://lore.kernel.org/r/4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab%2Bhuawei%40kernel.org
+patch subject: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
+config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20250419/202504190154.lSj16P1a-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250419/202504190154.lSj16P1a-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202504190154.lSj16P1a-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> /bin/bash: line 1: -none: command not found
+
 -- 
-2.40.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
