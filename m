@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC9EA94079
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Apr 2025 01:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E028A9408B
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Apr 2025 02:08:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC0B210E437;
-	Fri, 18 Apr 2025 23:52:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J8D7Ijsy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6B510E43A;
+	Sat, 19 Apr 2025 00:08:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1B610E437;
- Fri, 18 Apr 2025 23:52:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 6D446A4B659;
- Fri, 18 Apr 2025 23:46:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77690C4CEE2;
- Fri, 18 Apr 2025 23:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1745020318;
- bh=wLPohTXGJoWF6jYaqWx8ve/2ZkRtBlSg3hR6/76xmgQ=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=J8D7Ijsy0qGDz3jclp8CIAWOAySfgRsIfiJV8hl6byKyn8/wmiDBAUt56cga94/KY
- bVC6ZLpkjUyF7VVbwVaMxUvVuw5oNJpxM60tAWGd8j7mbDM3To16egN2ZvBE5J3Sxj
- u2nJe1b/Ig1SFrBzkfXIX8B0L6cXJBXDoRRbi30AO8FG6Tsjs2061GjMpjJyvgNc+R
- pgGOnkAtychBl+BNoda9QGbmO+xOsB0R2OEY+CmSTrafq9aXaUlnavl4NH56S4Vzmv
- eAfg9P/IKwQiEASwUshViSDppakdmJzlYaPUXaIUOm8QLmQm3HMjh2KUSkFQPfsbB9
- 9H9zgZAQl+79A==
-Date: Sat, 19 Apr 2025 07:51:41 +0800
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Linux Doc Mailing List
- <linux-doc@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>, David Airlie
- <airlied@gmail.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
- <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
- Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
- <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] scripts/kernel-doc.py: don't create *.pyc files
-Message-ID: <20250419075141.720970a8@sal.lan>
-In-Reply-To: <Z_97SbBwVp29MNzL@smile.fi.intel.com>
-References: <cover.1744789777.git.mchehab+huawei@kernel.org>
- <4ad5eb8d4b819997c1615d2401581c22a32bb2c1.1744789777.git.mchehab+huawei@kernel.org>
- <87tt6opks7.fsf@intel.com> <20250416171917.0985c0eb@sal.lan>
- <20250416172901.60104103@sal.lan> <20250416173811.71c3c345@sal.lan>
- <Z_97SbBwVp29MNzL@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+Received: from b68e5b3b99e1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4094410E43A;
+ Sat, 19 Apr 2025 00:08:56 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/guc=3A_Enab?=
+ =?utf-8?q?le_DUAL=5FQUEUE=5FWA_for_newer_platforms?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 19 Apr 2025 00:08:56 -0000
+Message-ID: <174502133625.18651.10117111892494120577@b68e5b3b99e1>
+X-Patchwork-Hint: ignore
+References: <20250418233918.2217759-1-julia.filipchuk@intel.com>
+In-Reply-To: <20250418233918.2217759-1-julia.filipchuk@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,28 +37,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andy,
+== Series Details ==
 
-Em Wed, 16 Apr 2025 12:41:29 +0300
-Andy Shevchenko <andriy.shevchenko@intel.com> escreveu:
+Series: drm/i915/guc: Enable DUAL_QUEUE_WA for newer platforms
+URL   : https://patchwork.freedesktop.org/series/147987/
+State : warning
 
-> On Wed, Apr 16, 2025 at 05:38:11PM +0800, Mauro Carvalho Chehab wrote:
-> > Em Wed, 16 Apr 2025 17:29:01 +0800
-> > Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:  
-> 
-> ...
-> 
-> > Heh, trying to quickly write a patch before calling it a day is
-> > usually not a good idea ;-)
-> > 
-> > I'll send a fix tomorrow.  
-> 
-> Take your time, we still have a couple or so weeks to address this.
+== Summary ==
 
-Sent a v3. Please check.
+Error: dim checkpatch failed
+c5649d6a3089 drm/i915/guc: Enable DUAL_QUEUE_WA for newer platforms
+-:25: WARNING:TYPO_SPELLING: 'atleast' may be misspelled - perhaps 'at least'?
+#25: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:28:
++ * Check that the GT is a graphics GT and has atleast minimum IP version.
+                                               ^^^^^^^
 
-Regards,
-Mauro
+-:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt' - possible side-effects?
+#27: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:30:
++#define IS_GFX_GT_IP_ATLEAST(gt, from) ( \
++	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
++	((gt)->type != GT_MEDIA && \
++	 GRAPHICS_VER_FULL((gt)->i915) >= (from)))
+
+-:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
+#27: FILE: drivers/gpu/drm/i915/gt/intel_gt.h:30:
++#define IS_GFX_GT_IP_ATLEAST(gt, from) ( \
++	BUILD_BUG_ON_ZERO((from) < IP_VER(2, 0)) + \
++	((gt)->type != GT_MEDIA && \
++	 GRAPHICS_VER_FULL((gt)->i915) >= (from)))
+
+total: 0 errors, 1 warnings, 2 checks, 36 lines checked
+
+
