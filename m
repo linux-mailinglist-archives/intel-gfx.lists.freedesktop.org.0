@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D411A953BF
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Apr 2025 17:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1B5A953C0
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Apr 2025 17:51:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F88B10E270;
-	Mon, 21 Apr 2025 15:51:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 529F810E478;
+	Mon, 21 Apr 2025 15:51:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QiIfullV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsztAPNz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 364BA10E031;
- Mon, 21 Apr 2025 15:51:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4811310E490;
+ Mon, 21 Apr 2025 15:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745250682; x=1776786682;
+ t=1745250685; x=1776786685;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OYsUgVZdr5hFwtT5NdQS9WIWULz1RcYmL1FojwKUPxk=;
- b=QiIfullV7gATq1SSzYXXfAgoPCvFZR0fB0tsjqHkpZTwG/OOiKw4B+E2
- eVG4BKqCcc2o2XrMEGrgBljwvOn2SVV4vIN7ZfMhetxpr8pLtDLCpXVO5
- P1ZQCi/Owir92Cx9Cp0Sx0EMXubDRZa5nccZvGKke0E+tlxgCnQhiWqJj
- 1+MpGvrZR52CO/Rki0JwHxQjC6jhpFGOXsABW12wq0ZUgnKhDXiKkGw1F
- fjwt9iMztZDaX0Cf+ghmvMp2ivb2iWZ/sBTGOiSOJ0F7g+xa+Rz/KfX83
- OF94p2s9PTSIGyFyzrubRb4s0Q7ZlNxVlHh9iBEr0uI1o7aflnnmmiPrE w==;
-X-CSE-ConnectionGUID: r+0TF80kSROpxASnGNDs7w==
-X-CSE-MsgGUID: ir3+fVXbR/ywDEHA5avsGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434079"
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434079"
+ bh=+X5ZbR1TvF5/rnbKYV3p1ENBE16qz+NlKjzzNChLmyE=;
+ b=FsztAPNzZkLGfIFE4Fv06DCFsze1TIFcrMpSdRp7fo94np/OOvVBzVcc
+ 0wfAGLqBvQdLXi2HwQFD3iTwNjFmUcfkC7w65jy/KGLfltSG8Yly1ECEE
+ vX6cxv+Q9Gwp38UcPc0MMiK64bPgocgJLczHvalxZI0WUNa2ZQyksnU71
+ y0FLOsCcbM9R4smsHZVgOxQ5fjC9l6E5eE2bOO4KDwIFhnYwIJHpRFOph
+ CTrGbjdfEDcXqt7L3AFPEINMYF4U3F8WI3xENM8TD19Fb8XdQVLf/1p1V
+ 9b3ZX1zQYKTv5ZY98TDXbeo2jPZY3J44zT42t/g9UCnlTm9G933UTlWVE Q==;
+X-CSE-ConnectionGUID: IyVH/Uc0TjeWGJ1ToQT+3w==
+X-CSE-MsgGUID: xW/7aIwrQ76lCdjcGc+plQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11410"; a="57434082"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="57434082"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2025 08:51:22 -0700
-X-CSE-ConnectionGUID: bTaQdFi0QcOEO2uK5FG6BA==
-X-CSE-MsgGUID: SYNIgSDxSxeRQ7mYbPSb5Q==
+ 21 Apr 2025 08:51:25 -0700
+X-CSE-ConnectionGUID: fGC+59DWT2qcwmMPxDKGDg==
+X-CSE-MsgGUID: dz4KdnzETHqflMvD2L7Xdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725640"
+X-IronPort-AV: E=Sophos;i="6.15,228,1739865600"; d="scan'208";a="162725656"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:20 -0700
+ by orviesa002.jf.intel.com with ESMTP; 21 Apr 2025 08:51:22 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com,
 	ankit.k.nautiyal@intel.com
-Subject: [PATCH v2 09/13] drm/i915/dsb: Add pipedmc dc balance enable/disable
-Date: Mon, 21 Apr 2025 21:18:56 +0530
-Message-ID: <20250421154900.2095202-10-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v2 10/13] drm/i915/vrr: Pause DC balancing for DSB commits
+Date: Mon, 21 Apr 2025 21:18:57 +0530
+Message-ID: <20250421154900.2095202-11-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250421154900.2095202-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -71,96 +71,174 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add function to control DC balance enable/disable bit via DSB.
+Pause the DMC DC balancing for the remainder of the
+commit so that vmin/vmax won't change after we've baked
+them into the DSB vblank evasion commands.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      | 24 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc.h      |  5 ++++
- drivers/gpu/drm/i915/display/intel_dmc_regs.h |  9 +++++++
- 3 files changed, 38 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c  | 13 +++++++
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 38 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 12 ++++++
+ 3 files changed, 51 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index ff2b97a752b1..e32599a4f68f 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -30,6 +30,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 33c09999c42e..274d01552ccf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7194,6 +7194,17 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 	}
+ 
+ 	if (new_crtc_state->use_dsb) {
++		/*
++		 * Pause the DMC DC balancing for the remainder of the
++		 * commit so that vmin/vmax won't change after we've baked
++		 * them into the DSB vblank evasion commands.
++		 *
++		 * FIXME maybe need a small delay here to make sure DMC has
++		 * finished updating the values? Or we need a better DMC<->driver
++		 * protocol that gives is real guarantees about that...
++		 */
++		intel_pipedmc_dcb_disable(NULL, crtc);
++
+ 		if (intel_crtc_needs_color_update(new_crtc_state))
+ 			intel_color_commit_noarm(new_crtc_state->dsb_commit,
+ 						 new_crtc_state);
+@@ -7230,6 +7241,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+ 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
+ 			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
++			if (new_crtc_state->vrr.dc_balance.enable)
++				intel_pipedmc_dcb_enable(new_crtc_state->dsb_commit, crtc);
+ 			intel_dsb_interrupt(new_crtc_state->dsb_commit);
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 383024dc2784..fb96d03bbf03 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -9,6 +9,7 @@
+ #include "i915_reg.h"
  #include "intel_de.h"
- #include "intel_display_rpm.h"
- #include "intel_display_power_well.h"
-+#include "intel_display_types.h"
- #include "intel_dmc.h"
+ #include "intel_display_types.h"
++#include "intel_dmc.h"
+ #include "intel_dp.h"
  #include "intel_dmc_regs.h"
- #include "intel_step.h"
-@@ -1355,3 +1356,26 @@ void intel_dmc_debugfs_register(struct intel_display *display)
- 	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
- 			    display, &intel_dmc_debugfs_status_fops);
+ #include "intel_vrr.h"
+@@ -598,7 +599,9 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
+ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 ctl;
+ 
+ 	if (!crtc_state->vrr.enable)
+ 		return;
+@@ -609,20 +612,19 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 		       crtc_state->vrr.vmax - 1);
+ 	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+ 		       crtc_state->vrr.flipline - 1);
++	if (!intel_vrr_always_use_vrr_tg(display))
++		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), TRANS_PUSH_EN);
+ 
+ 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+ 		       TRANS_PUSH_EN);
+ 
+-	if (!intel_vrr_always_use_vrr_tg(display)) {
+-		if (crtc_state->cmrr.enable) {
+-			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-				       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
+-				       trans_vrr_ctl(crtc_state));
+-		} else {
+-			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-				       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
+-		}
+-	}
++	ctl = VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state);
++	if (crtc_state->cmrr.enable)
++		ctl |= VRR_CTL_CMRR_ENABLE;
++	if (crtc_state->vrr.dc_balance.enable)
++		ctl |= VRR_CTL_DCB_ADJ_ENABLE;
++
++	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), ctl);
+ 
+ 	if (crtc_state->vrr.dc_balance.enable && HAS_DC_BALANCE(display)) {
+ 		intel_de_write(display, PIPEDMC_DCB_VMIN(display, cpu_transcoder),
+@@ -639,18 +641,26 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 			       crtc_state->vrr.dc_balance.slope);
+ 		intel_de_write(display, PIPEDMC_DCB_VBLANK(display, cpu_transcoder),
+ 			       crtc_state->vrr.dc_balance.vblank_target);
++		/* FIXME reset counters? */
++		intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(display, cpu_transcoder),
++			       ADAPTIVE_SYNC_COUNTER_EN);
++		/* FIMXE configure pipedmc DC balance parameters somewhere */
++		intel_pipedmc_dcb_enable(NULL, crtc);
+ 	}
  }
-+
-+void intel_pipedmc_dcb_enable(struct intel_dsb *dsb, struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_crtc_state *crtc_state =
-+		to_intel_crtc_state(crtc->base.state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	intel_de_write_dsb(display, dsb,
-+			   PIPEDMC_DCB_CTL(display, cpu_transcoder),
-+			   PIPEDMC_ADAPTIVE_DCB_ENABLE);
-+}
-+
-+void intel_pipedmc_dcb_disable(struct intel_dsb *dsb, struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_crtc_state *crtc_state =
-+		to_intel_crtc_state(crtc->base.state);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+
-+	intel_de_write_dsb(display, dsb,
-+			   PIPEDMC_DCB_CTL(display, cpu_transcoder), 0);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index c78426eb4cd5..74dcd142f5b1 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -10,8 +10,10 @@
  
- enum pipe;
- struct drm_printer;
-+struct intel_crtc;
- struct intel_display;
- struct intel_dmc_snapshot;
-+struct intel_dsb;
+ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(old_crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
++	u32 ctl;
  
- void intel_dmc_init(struct intel_display *display);
- void intel_dmc_load_program(struct intel_display *display);
-@@ -30,4 +32,7 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool star
+ 	if (!old_crtc_state->vrr.enable)
+ 		return;
  
- void assert_dmc_loaded(struct intel_display *display);
+ 	if (old_crtc_state->vrr.dc_balance.enable && HAS_DC_BALANCE(display)) {
++		intel_pipedmc_dcb_disable(NULL, crtc);
+ 		intel_de_write(display, TRANS_ADAPTIVE_SYNC_DCB_CTL(display, cpu_transcoder), 0);
+ 		intel_de_write(display, PIPEDMC_DCB_VMIN(display, cpu_transcoder), 0);
+ 		intel_de_write(display, PIPEDMC_DCB_VMAX(display, cpu_transcoder), 0);
+@@ -661,9 +671,13 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 		intel_de_write(display, PIPEDMC_DCB_VBLANK(display, cpu_transcoder), 0);
+ 	}
  
-+void intel_pipedmc_dcb_enable(struct intel_dsb *dsb, struct intel_crtc *crtc);
-+void intel_pipedmc_dcb_disable(struct intel_dsb *dsb, struct intel_crtc *crtc);
++	ctl = trans_vrr_ctl(old_crtc_state);
++	if (intel_vrr_always_use_vrr_tg(display))
++		ctl |= VRR_CTL_VRR_ENABLE;
 +
- #endif /* __INTEL_DMC_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 39e4f70005ab..6788afb816ea 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -174,4 +174,13 @@
- #define _PIPEDMC_DCB_VMAX_F			0x555A8
- #define PIPEDMC_DCB_VMAX(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, _PIPEDMC_DCB_VMAX_A)
- 
-+#define _PIPEDMC_DCB_CTL_A			0x5F1A0
-+#define _PIPEDMC_DCB_CTL_B			0x5F5A0
-+#define _PIPEDMC_DCB_CTL_C			0x5F9A0
-+#define _PIPEDMC_DCB_CTL_D			0x5FDA0
-+#define _PIPEDMC_DCB_CTL_E			0x551A0
-+#define _PIPEDMC_DCB_CTL_F			0x555A0
-+#define PIPEDMC_DCB_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, _PIPEDMC_DCB_CTL_A)
-+#define PIPEDMC_ADAPTIVE_DCB_ENABLE		REG_BIT(31)
++	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), ctl);
 +
- #endif /* __INTEL_DMC_REGS_H__ */
+ 	if (!intel_vrr_always_use_vrr_tg(display)) {
+-		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+-			       trans_vrr_ctl(old_crtc_state));
+ 		intel_de_wait_for_clear(display,
+ 					TRANS_VRR_STATUS(display, cpu_transcoder),
+ 					VRR_STATUS_VRR_EN_LIVE, 1000);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 2db477325c83..a88fcd69111f 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -63,6 +63,17 @@
+ 								     trans, \
+ 								     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A)
+ 
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A			0x604C0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B			0x614C0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_C			0x624C0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_D			0x634C0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_E			0x6B4C0
++#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_F			0x6C4C0
++#define TRANS_ADAPTIVE_SYNC_DCB_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
++								     trans, \
++								     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A)
++#define  ADAPTIVE_SYNC_COUNTER_EN			REG_BIT(31)
++
+ #define _TRANS_VRR_CTL_A			0x60420
+ #define _TRANS_VRR_CTL_B			0x61420
+ #define _TRANS_VRR_CTL_C			0x62420
+@@ -71,6 +82,7 @@
+ #define  VRR_CTL_VRR_ENABLE			REG_BIT(31)
+ #define  VRR_CTL_IGN_MAX_SHIFT			REG_BIT(30)
+ #define  VRR_CTL_FLIP_LINE_EN			REG_BIT(29)
++#define  VRR_CTL_DCB_ADJ_ENABLE			REG_BIT(28)
+ #define  VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
+ #define  VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
+ #define  VRR_CTL_PIPELINE_FULL_OVERRIDE		REG_BIT(0)
 -- 
 2.48.1
 
