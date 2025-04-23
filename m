@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB463A98665
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38E64A9866D
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:52:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46E2E10E670;
-	Wed, 23 Apr 2025 09:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD27910E658;
+	Wed, 23 Apr 2025 09:52:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZyWxgpT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ILItbBj7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2DE10E65F;
- Wed, 23 Apr 2025 09:47:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE0610E658;
+ Wed, 23 Apr 2025 09:52:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745401638; x=1776937638;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B+keq1QL3PGyTgDS7B/sct8EaEoPmWn5PzxQ3yt+kyE=;
- b=XZyWxgpTq+SIeo36YmKf3eR6R4YtZe+N9L2c+2IsKY2GlSRUpjX/a0tD
- TamluvWCexDIG4qinugpQRGptIEF6ndI1pKUDma9fo87XxDPfe1xtHZu5
- ZeDQYzbBFRe59963QLENXz0CgnuMAiZmzZ7Ew0CoWgsXcdY87Fjp816IU
- b9CEgGTH9UB8G0zS0N8sdmuFjVs1XCF1k8mPTDVcFz/7aG4wrTOh3ljkc
- pHOLJ47pjj+//Hn4WfTGda2D3/LCz6VI0A+HjfXrzzabk/Fxtk1iLZwkH
- HWftsDZjO5s/LQPA8fWHxQIIm6ULU7WD0PE6/R+Islq+iA52X3kfJEbv5 g==;
-X-CSE-ConnectionGUID: pZEV+osnRfCYjQroaiS7zg==
-X-CSE-MsgGUID: 5c5+UZgwTKS+ZVBXeWh5VQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="58358027"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="58358027"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:47:15 -0700
-X-CSE-ConnectionGUID: cweKkNbRRgOj//ZuRX+UVQ==
-X-CSE-MsgGUID: he6ugolPTFaEsjuj45XOMg==
+ t=1745401934; x=1776937934;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=ffaWTA861PvXBG7qetBvydmdZela/cIhNbYOklxd+3s=;
+ b=ILItbBj73ixSlky1X8uOKxOSaXkrrioOII9YDjSZfSWUq73UkRYo/rMO
+ 1OKgXTzMRTHwuCjnF8zxBJPkXV9xM0OHn4EoJs8tZ7TgKoqCXTNUY6Tjq
+ U/V/I0Kb8bQLi4W2dtUJCPVsxFwJrLeGZdwsoLEMUKkY5ZwAy6H0GwSav
+ r+kENscuWtkkVNkmA4M/ZD1IoFZBjM2UffqKcpN6qfysLkXckAdW2/bev
+ Vp71CpmraoFkRTQitdloSq4CK1IGTDMDYV+NfdzQrkyR0c7Rg0n6BlkCd
+ WbOdj74aioOTJvO+JKB8hJkTu6WNw32KgpxtT8Kg2hccElNdhlKhGJwF5 g==;
+X-CSE-ConnectionGUID: DAmMTCBITHGn+54wEwFyug==
+X-CSE-MsgGUID: dUsGQU5bTXuVipQ8g/XSig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46221930"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46221930"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 02:52:14 -0700
+X-CSE-ConnectionGUID: V081JWnmR6q1Sijk4Hug6g==
+X-CSE-MsgGUID: kFnw9N8TRRufa7xy14Kj4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132811253"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 23 Apr 2025 02:47:13 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v10 11/11] drm/i915/display: Disintegrate sink alpm enable
- from psr with lobf
-Date: Wed, 23 Apr 2025 14:53:34 +0530
-Message-Id: <20250423092334.2294483-12-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20250423092334.2294483-1-animesh.manna@intel.com>
-References: <20250423092334.2294483-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163327158"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa001.fm.intel.com with ESMTP; 23 Apr 2025 02:52:11 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v4 0/2] Rework/Correction on minimum hblank calculation
+Date: Wed, 23 Apr 2025 15:07:38 +0530
+Message-Id: <20250423-hblank-v4-0-8e513cc54652@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOK0CGgC/13MSwrCMBSF4a2UjI3k1aZx5D7EQR5XG9RUkhKU0
+ r2bFlqKw3O53z+iBNFDQqdqRBGyT74PZYhDhWynwx2wd2UjRlhNBJG4M08dHlgowwXRYDSnqDy
+ /I9z8ZwldrmV3Pg19/C7dTOfrmmjXRKaYYGE0lSUD0NRnHwZ4Hm3/QnMisx2j9cZYYVQzDsopy
+ Rvyz8SOMbYxUZhxRhqnrGgbu2fTNP0AEMVFlgoBAAA=
+X-Change-ID: 20250407-hblank-49b340aeba31
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: imre.deak@intel.com, vinod.govindapillai@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,96 +72,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make a generic alpm enable function for sink which can be used for
-PSR2/PR/Lobf.
-
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 25 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_psr.c  | 23 ---------------------
- 2 files changed, 24 insertions(+), 24 deletions(-)
+Changes in v5:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v4: https://lore.kernel.org/r/20250422-hblank-v4-0-bdb7bd9c486c@intel.com
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c4b6da2e6ccf..d1f3852e51b5 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -426,6 +426,27 @@ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
- 	}
- }
- 
-+static void intel_alpm_enable_sink(struct intel_dp *intel_dp,
-+				   const struct intel_crtc_state *crtc_state)
-+{
-+	u8 val;
-+
-+	/*
-+	 * eDP Panel Replay uses always ALPM
-+	 * PSR2 uses ALPM but PSR1 doesn't
-+	 */
-+	if (!intel_psr_needs_alpm(intel_dp, crtc_state) && !crtc_state->has_lobf)
-+		return;
-+
-+	val = DP_ALPM_ENABLE | DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE;
-+
-+	if (crtc_state->has_panel_replay || (crtc_state->has_lobf &&
-+					     intel_alpm_aux_less_wake_supported(intel_dp)))
-+		val |= DP_ALPM_MODE_AUX_LESS;
-+
-+	drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, val);
-+}
-+
- void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 				  struct intel_crtc *crtc)
- {
-@@ -449,8 +470,10 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 
- 		intel_dp = enc_to_intel_dp(encoder);
- 
--		if (intel_dp_is_edp(intel_dp))
-+		if (intel_dp_is_edp(intel_dp)) {
-+			intel_alpm_enable_sink(intel_dp, crtc_state);
- 			intel_alpm_configure(intel_dp, crtc_state);
-+		}
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1c5ec3f0b066..b034cb2e0975 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -794,32 +794,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
- 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, val);
- }
- 
--static void intel_psr_enable_sink_alpm(struct intel_dp *intel_dp,
--				       const struct intel_crtc_state *crtc_state)
--{
--	u8 val;
--
--	/*
--	 * eDP Panel Replay uses always ALPM
--	 * PSR2 uses ALPM but PSR1 doesn't
--	 */
--	if (!intel_dp_is_edp(intel_dp) || (!crtc_state->has_panel_replay &&
--					   !crtc_state->has_sel_update))
--		return;
--
--	val = DP_ALPM_ENABLE | DP_ALPM_LOCK_ERROR_IRQ_HPD_ENABLE;
--
--	if (crtc_state->has_panel_replay)
--		val |= DP_ALPM_MODE_AUX_LESS;
--
--	drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, val);
--}
--
- static void intel_psr_enable_sink(struct intel_dp *intel_dp,
- 				  const struct intel_crtc_state *crtc_state)
- {
--	intel_psr_enable_sink_alpm(intel_dp, crtc_state);
--
- 	crtc_state->has_panel_replay ?
- 		_panel_replay_enable_sink(intel_dp, crtc_state) :
- 		_psr_enable_sink(intel_dp, crtc_state);
+Changes in v3:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v2: https://lore.kernel.org/r/20250415-hblank-v2-0-1a23e9d97360@intel.com
+
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250408-hblank-v1-0-4ba17aebee65@intel.com
+
+---
+Arun R Murthy (2):
+      drm/display/dp: Export fn to calculate link symbol cycles
+      drm/i915/display: move min_hblank from dp_mst.c to dp.c
+
+ drivers/gpu/drm/display/drm_dp_helper.c      | 51 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++
+ drivers/gpu/drm/i915/display/intel_dp.c      | 76 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h      |  3 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 57 +++------------------
+ include/drm/display/drm_dp_helper.h          |  2 +
+ 6 files changed, 137 insertions(+), 69 deletions(-)
+---
+base-commit: ada794bd93930fd265c2df8f38196994173e1fde
+change-id: 20250407-hblank-49b340aeba31
+
+Best regards,
 -- 
-2.29.0
+Arun R Murthy <arun.r.murthy@intel.com>
 
