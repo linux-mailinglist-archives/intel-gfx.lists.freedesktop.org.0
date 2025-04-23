@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175FAA984EF
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D01A98651
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:46:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7248B10E422;
-	Wed, 23 Apr 2025 09:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2919C10E0C4;
+	Wed, 23 Apr 2025 09:46:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Moz6P6Kc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mtW5igM2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0DB10E64E;
- Wed, 23 Apr 2025 09:10:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 693CA10E0C4;
+ Wed, 23 Apr 2025 09:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745399416; x=1776935416;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FeA6rLz2sSPWSi0F9Xn82U+zVB7OnZ4fe/pNo8JsGik=;
- b=Moz6P6Kc64f+trG+ffFiuvUU594km/td2kZWnWde6ApMXywo8AXLxKLI
- WtWKhEdl2F5/jPp/GD8EtdAq843AeMrmsxUUGiCXfg+hb0GYKf1nHHaE7
- BWeqXk/rGxY+a+Twy+8DP2ECwwAXmW6ZEUE9O/F0J1LHO4oWXLOkh1hbh
- C9Pz2BIOCC66WNkqede/YHEMA3/1+PdF57D7n4KWllfa09tcK65tFDul1
- W/b45i9S46Cc6b/7dw4SJEyR5ioTcwdIix2cRT/0Rkxj1600C0crZhxxy
- zkUuiWrVABv+ZVYnFNPk8ykE1AXHp7Zs0hYxSBJ7yPFvxiS+oE0FQq06B w==;
-X-CSE-ConnectionGUID: 8BJ7Tj4fSmSb3acsG6i+9w==
-X-CSE-MsgGUID: wXy4aea+RlG26V4Wv/LQ/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46686959"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46686959"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:10:16 -0700
-X-CSE-ConnectionGUID: YWh6KauFT8265ioJM9l56g==
-X-CSE-MsgGUID: tW+rEW1eQP+4E6s214gRxw==
+ t=1745401600; x=1776937600;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7ZsfwTNKk+Y7PxT5+WNA9AJ7ABVJE7FhzcYdFpxJiVY=;
+ b=mtW5igM2y3ywzMtzmJe/pZcnLmGLk+Wjgv3rYjCemR519Vpl2q9bWWfW
+ 0aW+b86gLVDRgRoapdVFUvHaWftbwNmlKCGW4fGKRm155KyZMlMLrehOR
+ kT4XCYz64MykCevDwUv4I/shaCM4f6WsZirth5xf7LnngFMIVL9cTJsGq
+ mrKlQmw14n/5iMarMNVMEzTnHTmzKXH9ByhOLgG6PFpz+R01Jf8JANrAx
+ /5eFL2kXQGnChI2MIXkkuVm6wOABXugN6OQW1JBxrYF3O7JSowdLoJMRd
+ dNdwQejDwMILwIzHmYpku0Vlq0R9UbXbpCpaD5n0FFn7zqqVI05hjcSUJ w==;
+X-CSE-ConnectionGUID: wHatYDvRRFmYlmSeHUlTaA==
+X-CSE-MsgGUID: CLXA2sreSBK+ixV8uA/P4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="58357927"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="58357927"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 02:46:40 -0700
+X-CSE-ConnectionGUID: lleSh8k+RweTkpO+3TzXrw==
+X-CSE-MsgGUID: KzsTUDuTRXqyldG/1DHDcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163317724"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.175])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:10:14 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132811095"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa010.fm.intel.com with ESMTP; 23 Apr 2025 02:46:38 -0700
+From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/de: drop drm_i915_private compat wrappers from
- intel_de_*()
-Date: Wed, 23 Apr 2025 12:09:48 +0300
-Message-Id: <c8dc8fdd8815b9e0ef233b4aa6f071cd84c2a867.1745399318.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1745399318.git.jani.nikula@intel.com>
-References: <cover.1745399318.git.jani.nikula@intel.com>
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v10 00/11] LOBF enablement fix
+Date: Wed, 23 Apr 2025 14:53:23 +0530
+Message-Id: <20250423092334.2294483-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,91 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All the users of intel_de_*() functions now pass in struct
-intel_display, and we can remove the __to_intel_display() _Generic()
-compat wrappers.
+v1: Initial version.
+v2: Addressed review comments from Jani.
+v3: Addressed review comments from Jouni.
+v4: Addressed review comments received on v3.
+v5: Addressed review comments received on v4.
+v6: Addressed review comments received on v5.
+v7: Addressed review comments received on v6.
+v8: Addressed review comments received on v7.
+v9: Addressed review comments received on v8.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_de.h | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 655467a6ba87..54ce3e4f8fd9 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -6,7 +6,6 @@
- #ifndef __INTEL_DE_H__
- #define __INTEL_DE_H__
- 
--#include "intel_display_conversion.h"
- #include "intel_display_core.h"
- #include "intel_dmc_wl.h"
- #include "intel_dsb.h"
-@@ -19,7 +18,7 @@ static inline struct intel_uncore *__to_uncore(struct intel_display *display)
- }
- 
- static inline u32
--__intel_de_read(struct intel_display *display, i915_reg_t reg)
-+intel_de_read(struct intel_display *display, i915_reg_t reg)
- {
- 	u32 val;
- 
-@@ -31,7 +30,6 @@ __intel_de_read(struct intel_display *display, i915_reg_t reg)
- 
- 	return val;
- }
--#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
- 
- static inline u8
- intel_de_read8(struct intel_display *display, i915_reg_t reg)
-@@ -66,7 +64,7 @@ intel_de_read64_2x32(struct intel_display *display,
- }
- 
- static inline void
--__intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
-+intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
- {
- 	intel_dmc_wl_get(display, reg);
- 
-@@ -74,10 +72,9 @@ __intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
- 
- 	intel_dmc_wl_put(display, reg);
- }
--#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
- 
- static inline void
--__intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
-+intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
- {
- 	intel_dmc_wl_get(display, reg);
- 
-@@ -85,7 +82,6 @@ __intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
- 
- 	intel_dmc_wl_put(display, reg);
- }
--#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
- 
- static inline u32
- __intel_de_rmw_nowl(struct intel_display *display, i915_reg_t reg,
-@@ -95,8 +91,7 @@ __intel_de_rmw_nowl(struct intel_display *display, i915_reg_t reg,
- }
- 
- static inline u32
--__intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
--	       u32 set)
-+intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear, u32 set)
- {
- 	u32 val;
- 
-@@ -108,7 +103,6 @@ __intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
- 
- 	return val;
- }
--#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
- 
- static inline int
- __intel_de_wait_for_register_nowl(struct intel_display *display,
+Animesh Manna (10):
+  drm/i915/lobf: Add lobf enablement in post plane update
+  drm/i915/lobf: Add debug print for LOBF
+  drm/i915/lobf: Disintegrate alpm_disable from psr_disable
+  drm/i915/lobf: Add fixed refresh rate check in compute_config()
+  drm/i915/lobf: Update lobf if any change in dependent parameters
+  drm/i915/lobf: Add debug interface for lobf
+  drm/i915/lobf: Add mutex for alpm update
+  drm/i915/lobf: Check for sink error and disable LOBF
+  drm/i915/alpm: Add intel_psr_need_alpm() to simplify alpm check
+  drm/i915/display: Disintegrate sink alpm enable from psr with lobf
+
+Jouni Högander (1):
+  drm/i915/alpm: use variable from intel_crtc_state instead of intel_psr
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 195 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_alpm.h     |  10 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   4 +
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  61 +-----
+ drivers/gpu/drm/i915/display/intel_psr.h      |   1 +
+ 8 files changed, 224 insertions(+), 60 deletions(-)
+
 -- 
-2.39.5
+2.29.0
 
