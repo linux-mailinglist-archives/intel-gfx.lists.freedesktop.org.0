@@ -2,59 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0327FA9D12A
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37204A9D126
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73FAA10E9A4;
-	Fri, 25 Apr 2025 19:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 136BB10E9A0;
+	Fri, 25 Apr 2025 19:08:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OwLPmdoH";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE79010E64E;
- Wed, 23 Apr 2025 07:37:58 +0000 (UTC)
-X-UUID: d7167a20201511f0a216b1d71e6e1362-20250423
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45, REQID:33cd0147-34a3-4f24-984a-a4e121dbc89e, IP:0,
- U
- RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
- N:release,TS:-25
-X-CID-META: VersionHash:6493067, CLOUDID:dc5f91aaf089f4ed07a4a1a74b6f7ce4,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:1,IP:nil,URL
- :0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SP
- R:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: d7167a20201511f0a216b1d71e6e1362-20250423
-Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
- (envelope-from <liujiajia@kylinos.cn>) (Generic MTA)
- with ESMTP id 1662382807; Wed, 23 Apr 2025 15:37:42 +0800
-Received: from mail.kylinos.cn (localhost [127.0.0.1])
- by mail.kylinos.cn (NSMail) with SMTP id 1E31AE028E9B;
- Wed, 23 Apr 2025 15:37:42 +0800 (CST)
-X-ns-mid: postfix-680898C5-967027406
-Received: from kylin.lan (unknown [172.25.120.81])
- by mail.kylinos.cn (NSMail) with ESMTPA id A3623E028EA0;
- Wed, 23 Apr 2025 15:37:39 +0800 (CST)
-From: Jiajia Liu <liujiajia@kylinos.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Nemesa Garg <nemesa.garg@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Nitin Gote <nitin.r.gote@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Jiajia Liu <liujiajia@kylinos.cn>
-Subject: [PATCH RESEND] drm/i915/pch: fix warning for coffeelake on
- SunrisePoint PCH
-Date: Wed, 23 Apr 2025 15:37:30 +0800
-Message-Id: <20250423073730.585181-1-liujiajia@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E15910E0A6;
+ Wed, 23 Apr 2025 09:30:54 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-22c33677183so72393345ad.2; 
+ Wed, 23 Apr 2025 02:30:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1745400653; x=1746005453; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language:subject
+ :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=muxam2SUiy8I7jXTK3ORRV5V0hJy9KAAZUT8IGI2dzg=;
+ b=OwLPmdoHjm38r/tnkXfBCxwpqDNCqNQJ98WIqiGugB7xHU3uXydN7J9IL94xsHCpeL
+ lpuWQXuulcQtnrcEOBMuaD1ccH9zHQHxr5s+qtB6WDbRL8eMbVjPOmU2IqQZ/TDzJuPz
+ wgAzxmESOtbRlZS16Fqz8wuIVUR58SpjBuywXNB8+cxRy0/+3+z5H3i9yYLdUeOZOIGI
+ bORG39x7M7gH6xSxBMOay61osgAvu/wjiBouU/wx2xiCH9ZvOBgOcICBmgGXqQ7/BXWV
+ vFtoRRb8M01ZKErSrdIn8t0qcSb+AMWNjsuaVReYRrY4/3g2JmXt9Q+p2BM+5j7R4Lm1
+ BAfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745400653; x=1746005453;
+ h=content-transfer-encoding:in-reply-to:from:content-language:subject
+ :references:cc:to:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=muxam2SUiy8I7jXTK3ORRV5V0hJy9KAAZUT8IGI2dzg=;
+ b=gEC5h10btRHLxHTQjMr8RDLQg0FSHqEukWKPUeN+oCUIVBtyb0X8AMD0S/AMi3++Sf
+ xF7flhq56nhVGA/7LsxrMX81qhLtWY7VmIABbr8PczNVHivqgos82CYydmhEkvQ6Q7iD
+ S0X/j8EVEuFlWzTvaX3GudiOFhYMtmRA82C3u0uS+fqFAnk0Chn4WAIO9Ey+1bsrnOyy
+ HbFqwxPCkOzhAHTedfkufnQwgUaPietOlk3kshLsx+oE1yqP+CS8epLeSk/xw+08OPjQ
+ A6oXGFCqx/RlEGWH74IAMbwBf23ViDFLACdvrAmsphZlSRYz/55MJHD7ENtdT+2WhcK0
+ xpng==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX6+n3Sgz0SlxX/8g5W2hie5STtcppZuvba51vZC11cEWwcS6DGRWggj6WV/6m8d87gb7neZzCjKSb2@lists.freedesktop.org,
+ AJvYcCXsQSDaH2s/A/VfX02YmTmpOQa4RT9aSJ0HnZTY6EFEfR1NesmCl87POXYA1KhWgTRw/weYJFF23/M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxwv9JMsCqjmr6MOBIl94e8THJe9wJvBeTiXzjvCCELiA3h63uH
+ rp02MZGBnF5LYHB732gJ58prQud7ZPPTglInMOq/ULDAeLIeBudu
+X-Gm-Gg: ASbGncvljoxYSTMReyS1cZyuVtZBiZJs2UTMfoaUwwOGmMtWtob/Oc4yUWl/S8w+rRe
+ IGIs/eq/lSNJxm65Zw7LGDjJ7tgIKAVb5ml81tggpMt0iZDH7bE1I6ELuxRSSPbbV7dhX9KXafq
+ CvlmU/0CZ7gC4OGw2wpJHe9/LePXYcqsbGE3olFzND68Jb2iYgYv38943CSAM1203jene+sw3Ni
+ mwIJpNToXKvBK9Lsdx6Cn5cRscf3XbzBhl4+urjYkDoguHD+3Dudf1wvTMEA4WOpm+o659yDIcx
+ LO0KM5624SQ7+VVWB3dhP1/SZRSpcZdpYnzW4e/r+QjlyWtMCDIRfFw3TrGyuHgMpY1mNfhXoBL
+ iYcoQIfnLgwA=
+X-Google-Smtp-Source: AGHT+IG88n4B+Zz7jvsF/amnEc51F/XmSyRSZhLIy5SSMySrK3N+aaQMKVm7LW4VWbvpbZndJX7ocw==
+X-Received: by 2002:a17:903:98c:b0:224:1780:c1ec with SMTP id
+ d9443c01a7336-22c5360dc12mr325231335ad.35.1745400653408; 
+ Wed, 23 Apr 2025 02:30:53 -0700 (PDT)
+Received: from [10.0.2.15] (KD106167137155.ppp-bb.dion.ne.jp.
+ [106.167.137.155]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-22c50eb64fbsm99667675ad.158.2025.04.23.02.30.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 23 Apr 2025 02:30:52 -0700 (PDT)
+Message-ID: <5cc4d9dd-496e-4512-a683-272b1b84d98b@gmail.com>
+Date: Wed, 23 Apr 2025 18:30:48 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+To: andriy.shevchenko@intel.com
+Cc: airlied@gmail.com, corbet@lwn.net, dmitry.baryshkov@oss.qualcomm.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ masahiroy@kernel.org, mchehab+huawei@kernel.org, mripard@kernel.org,
+ nathan@kernel.org, nicolas.schier@linux.dev, rodrigo.vivi@intel.com,
+ simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
+References: <aAdL7aEcbulV9lsA@smile.fi.intel.com>
+Subject: Re: [PATCH v3 0/2] Don't create Python bytecode when building the
+ kernel
+Content-Language: en-US
+From: Akira Yokosawa <akiyks@gmail.com>
+In-Reply-To: <aAdL7aEcbulV9lsA@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:12 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,42 +100,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915/pch reports a warning on a mini PC which has a CoffeeLake-S GT2
-[UHD Graphics 630] [8086:3e92] and an ISA bridge - H110 LPC Controller
-[8086:a143].
+Hi Andy,
 
-[5.608723] i915 0000:00:02.0: [drm] Found coffeelake (device ID 3e92) int=
-egrated display version 9.00 stepping N/A
-[5.608969] ------------[ cut here ]------------
-[5.608972] i915 0000:00:02.0: [drm] drm_WARN_ON(!display->platform.skylak=
-e && !display->platform.kabylake)
-[5.608995] WARNING: CPU: 3 PID: 440 at drivers/gpu/drm/i915/display/intel=
-_pch.c:126 intel_pch_type+0x1af/0xae0 [i915]
-[5.609317] CPU: 3 UID: 0 PID: 440 Comm: (udev-worker) Not tainted 6.15.0-=
-rc3-drm-tip-2fa6469c618d #3 PREEMPT(voluntary)
+On Tue, 22 Apr 2025 10:57:33 +0300, Andy Shevchenko wrote:
+> On Mon, Apr 21, 2025 at 10:35:29AM -0600, Jonathan Corbet wrote:
+>> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> writes:
+[...]
 
-Signed-off-by: Jiajia Liu <liujiajia@kylinos.cn>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pch.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+>> > Would it be possible to properly support O= and create pyc / pycache
+>> > inside the object/output dir?
+>> 
+>> I have to confess, I've been wondering if we should be treating the .pyc
+>> files like we treat .o files or other intermediate products.  Rather
+>> than trying to avoid their creation entirely, perhaps we should just be
+>> sure they end up in the right place and are properly cleaned up...?
+>> 
+>> To answer Dmitry's question, it seems that setting PYTHONPYCACHEPREFIX
+>> should do the trick?
+> 
+> It's not so easy. The Python is written in a way that it thinks it will never
+> runs object files separately from the source. Hence that variable sets only
+> the folder per script as _home_ for the cache. It's completely unusable. They
+> took it wrong. It still can be _painfully_ used, but it will make Makefiles
+> uglier.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i=
-915/display/intel_pch.c
-index 5035b63a4889..469e8a3cfb49 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch.c
-@@ -125,7 +125,8 @@ intel_pch_type(const struct intel_display *display, u=
-nsigned short id)
- 		drm_dbg_kms(display->drm, "Found SunrisePoint PCH\n");
- 		drm_WARN_ON(display->drm,
- 			    !display->platform.skylake &&
--			    !display->platform.kabylake);
-+			    !display->platform.kabylake &&
-+			    !display->platform.coffeelake);
- 		return PCH_SPT;
- 	case INTEL_PCH_SPT_LP_DEVICE_ID_TYPE:
- 		drm_dbg_kms(display->drm, "Found SunrisePoint LP PCH\n");
---=20
-2.25.1
+But, PYTHONPYCACHEPREFIX can be set as an environment variable.
+
+For example, try:
+
+    export PYTHONPYCACHEPREFIX="$HOME/.cache/__pycache__"
+
+Wouldn't it be good enough for you?
+
+Regards,
+Akira
 
