@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0853A98749
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 12:27:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40C5A9874A
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 12:27:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD6410E67D;
-	Wed, 23 Apr 2025 10:27:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6077810E67E;
+	Wed, 23 Apr 2025 10:27:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lUW0jFmt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MH6LxGra";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2F610E67C;
- Wed, 23 Apr 2025 10:27:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2B4C10E67E;
+ Wed, 23 Apr 2025 10:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745404038; x=1776940038;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=c0pvlJ+CFC6hzLl62hsaRvkS3kBTNsjCylTien/eQWw=;
- b=lUW0jFmtzFVwK/YRSQPS5TgPMkk7p/xkro8fTekHaN4B6Mii9bwnTj2K
- Zr89VdFaG5sKxYahGAjKVvKB9dArctaSOBzxCYBqQIb2VJ9CbJqhIPfHy
- ncZJpI5vYDC9Dqfda26bCG2kqRp91ywikZ2SxQj76HNe1/8mebLEP1reB
- F6eKfgniVjgPDckEeFglD2MxpcvUj9ZHwOcJ66+agDuCmHAErKY45C6Ki
- 5llqOdURnQj484XQiKehJixxL6TCegJPxaxYvbAscUVrWl1w003MUKCZN
- 0SSFIEQI4upn1xWaKTBI8vo3EOrXYfEYQ1bwW0hZI/Ptpa/lMdYsMDunU w==;
-X-CSE-ConnectionGUID: VN/Rj53BRt6EBpb0nk1ZqA==
-X-CSE-MsgGUID: crChr6CeTvO1MIBTkbqtbw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46225792"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46225792"
+ t=1745404040; x=1776940040;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LSlsKTYcVFQLSkRL6RPkfZlHVthWJbnyE1eS/IQ0YSY=;
+ b=MH6LxGraZzwi39H3T2plRVLHNJdubbPMszqsSfGxVao0qP9G+gSLcFc9
+ jqlkx/6oDngy5XNQWptnYwpwWqpSgGUbt6ER36mc05QRJ8RdAss+itEOg
+ XfDmeX+iC79U6azUnzc04R4Aa5TkqnmBlIWmUIWVwlFbvOfJpTq9VEgcA
+ ScWGeaGWH2bWl1aJJ7ehO4sWJb9kQxYLZwduyYOptzT9+hro0FeVPADk/
+ ga7d0t6yqkRTpQtvNjx8QhnrBuTTwjjEfGHd1NqV+wutIWyi22B7hRs8n
+ ZXGrsfKPWwrBxhAMhIXPD6AO7ODSrehy88mpfaul9bOZjRyVPdS1N7eYD Q==;
+X-CSE-ConnectionGUID: +Gk8pCtITl2/MK7d4AvA9A==
+X-CSE-MsgGUID: q/GXpyBnQqmqPA5czL4Adw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46225793"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46225793"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 03:27:18 -0700
-X-CSE-ConnectionGUID: iVyqY2HSRAOIYb2hcduhUQ==
-X-CSE-MsgGUID: z6vHwu5MTeCMH4g+jY+ljg==
+ 23 Apr 2025 03:27:19 -0700
+X-CSE-ConnectionGUID: crW1cNnkR16cA4c4AN+CyA==
+X-CSE-MsgGUID: pOeF4hYXRDO0BHwRNnsEYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="137269111"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="137269115"
 Received: from opintica-mobl1 (HELO jhogande-mobl1..) ([10.245.245.227])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 03:27:17 -0700
+ 23 Apr 2025 03:27:18 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 1/2] drm/i915/display: Ensure enough lines between delayed
- VBlank and VBlank
-Date: Wed, 23 Apr 2025 13:27:03 +0300
-Message-ID: <20250423102704.1368310-1-jouni.hogander@intel.com>
+Subject: [PATCH v3 2/2] drm/i915/psr: Move PSR workaround to intel_psr.c
+Date: Wed, 23 Apr 2025 13:27:04 +0300
+Message-ID: <20250423102704.1368310-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250423102704.1368310-1-jouni.hogander@intel.com>
+References: <20250423102704.1368310-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,99 +70,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To deterministically capture the transition of the state machine going from
-SRDOFFACK to IDLE, the delayed V. Blank should be at least one line after
-the non-delayed V. Blank.
+Logical place for PSR workaround needing vblank delay is in
+intel_psr_min_vblank_delay. Move it there.
 
-Ensure this by adding new interface into intel_psr to query number of lines
-needed for vblank delay and call it from intel_crtc_vblank_delay.
-
-v3: use existing intel_crtc_vblank_delay mechanism
-v2: apply limits only when needed (VRR TG vs. Legacy TG)
-
-Bspec: 69897
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 39 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h     |  1 +
- 3 files changed, 42 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 12 ------------
+ drivers/gpu/drm/i915/display/intel_psr.c     | 11 ++++++++++-
+ 2 files changed, 10 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6bd55fd9dff85..a7b35fc13d7c8 100644
+index a7b35fc13d7c8..c931e76c2fa11 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2422,6 +2422,8 @@ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
- 	if (intel_crtc_needs_wa_14015401596(crtc_state))
- 		vblank_delay = max(vblank_delay, 1);
- 
-+	vblank_delay = max(vblank_delay, intel_psr_min_vblank_delay(crtc_state));
-+
- 	return vblank_delay;
+@@ -2402,14 +2402,6 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
+ 	return 0;
  }
  
+-static bool intel_crtc_needs_wa_14015401596(const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_display *display = to_intel_display(crtc_state);
+-
+-	return intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
+-		IS_DISPLAY_VER(display, 13, 14);
+-}
+-
+ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -2418,10 +2410,6 @@ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
+ 	if (!HAS_DSB(display))
+ 		return 0;
+ 
+-	/* Wa_14015401596 */
+-	if (intel_crtc_needs_wa_14015401596(crtc_state))
+-		vblank_delay = max(vblank_delay, 1);
+-
+ 	vblank_delay = max(vblank_delay, intel_psr_min_vblank_delay(crtc_state));
+ 
+ 	return vblank_delay;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 127eec4272fda..1058134422bcf 100644
+index 1058134422bcf..ca91c7033714c 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2385,6 +2385,45 @@ void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- 				   CURSURFLIVE(display, crtc->pipe), 0);
- }
+@@ -48,6 +48,7 @@
+ #include "intel_psr_regs.h"
+ #include "intel_snps_phy.h"
+ #include "intel_vblank.h"
++#include "intel_vrr.h"
+ #include "skl_universal_plane.h"
  
-+/**
-+ * intel_psr_min_vblank_delay - Minimum vblank delay needed by PSR
-+ * @crtc_state: the crtc state
-+ *
-+ * Return minimum vblank delay needed by PSR.
-+ */
-+int intel_psr_min_vblank_delay(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	if (!crtc_state->has_psr || DISPLAY_VER(display) < 20)
-+		return 0;
-+
-+	/*
-+	 * Comment on SRD_STATUS register in Bspec for LunarLake and onwards:
-+	 *
-+	 * To deterministically capture the transition of the state machine
-+	 * going from SRDOFFACK to IDLE, the delayed V. Blank should be at least
-+	 * one line after the non-delayed V. Blank.
-+	 *
-+	 * Legacy TG: TRANS_SET_CONTEXT_LATENCY > 0
-+	 * VRR TG: TRANS_VRR_CTL[ VRR Guardband ] < (TRANS_VRR_VMAX[ VRR Vmax ]
-+	 * - TRANS_VTOTAL[ Vertical Active ])
-+	 *
-+	 * SRD_STATUS is used only by PSR1 on PantherLake.
-+	 * SRD_STATUS is used by PSR1 and Panel Replay DP on LunarLake.
-+	 */
-+
-+	if (DISPLAY_VER(display) >= 30 && (crtc_state->has_panel_replay ||
-+					   crtc_state->has_sel_update))
-+		return 0;
-+	else if (DISPLAY_VER(display) < 30 && (crtc_state->has_sel_update ||
-+					       intel_crtc_has_type(crtc_state,
-+								   INTEL_OUTPUT_EDP)))
-+		return 0;
-+	else
-+		return 1;
-+}
-+
- static u32 man_trk_ctl_enable_bit_get(struct intel_display *display)
+ /**
+@@ -2395,7 +2396,15 @@ int intel_psr_min_vblank_delay(const struct intel_crtc_state *crtc_state)
  {
- 	return display->platform.alderlake_p || DISPLAY_VER(display) >= 14 ? 0 :
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index c61384bb7382a..3838f01d1619c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -73,6 +73,7 @@ void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
- void intel_psr_trigger_frame_change_event(struct intel_dsb *dsb,
- 					  struct intel_atomic_state *state,
- 					  struct intel_crtc *crtc);
-+int intel_psr_min_vblank_delay(const struct intel_crtc_state *crtc_state);
- void intel_psr_connector_debugfs_add(struct intel_connector *connector);
- void intel_psr_debugfs_register(struct intel_display *display);
+ 	struct intel_display *display = to_intel_display(crtc_state);
  
+-	if (!crtc_state->has_psr || DISPLAY_VER(display) < 20)
++	if (!crtc_state->has_psr)
++		return 0;
++
++	/* Wa_14015401596 */
++	if (intel_vrr_possible(crtc_state) && IS_DISPLAY_VER(display, 13, 14))
++		return 1;
++
++	/* Rest is for SRD_STATUS needed on LunarLake and onwards */
++	if (DISPLAY_VER(display) < 20)
+ 		return 0;
+ 
+ 	/*
 -- 
 2.43.0
 
