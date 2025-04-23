@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D01A98651
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2EFA98653
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:46:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2919C10E0C4;
-	Wed, 23 Apr 2025 09:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAA9F10E448;
+	Wed, 23 Apr 2025 09:46:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mtW5igM2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nufewSs/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 693CA10E0C4;
- Wed, 23 Apr 2025 09:46:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0826C10E447;
+ Wed, 23 Apr 2025 09:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745401600; x=1776937600;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7ZsfwTNKk+Y7PxT5+WNA9AJ7ABVJE7FhzcYdFpxJiVY=;
- b=mtW5igM2y3ywzMtzmJe/pZcnLmGLk+Wjgv3rYjCemR519Vpl2q9bWWfW
- 0aW+b86gLVDRgRoapdVFUvHaWftbwNmlKCGW4fGKRm155KyZMlMLrehOR
- kT4XCYz64MykCevDwUv4I/shaCM4f6WsZirth5xf7LnngFMIVL9cTJsGq
- mrKlQmw14n/5iMarMNVMEzTnHTmzKXH9ByhOLgG6PFpz+R01Jf8JANrAx
- /5eFL2kXQGnChI2MIXkkuVm6wOABXugN6OQW1JBxrYF3O7JSowdLoJMRd
- dNdwQejDwMILwIzHmYpku0Vlq0R9UbXbpCpaD5n0FFn7zqqVI05hjcSUJ w==;
-X-CSE-ConnectionGUID: wHatYDvRRFmYlmSeHUlTaA==
-X-CSE-MsgGUID: CLXA2sreSBK+ixV8uA/P4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="58357927"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="58357927"
+ t=1745401603; x=1776937603;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=15qz6NOaWUSQT2GML6BEdzNB6wVG8f3hPD38/kjbB5o=;
+ b=nufewSs/oOc7gh1yUdbftjXBZFsCJ+ah3ophqT3eZikYDyb+uOkLgGgC
+ mhqv+YDxljVBikRV8hSfT62VM5mGROE4wlWQd01RzhdqSWzSZ7RGcyibm
+ 3wlWbr7uj1H+wDPr5TIuWFmG966AFDrJdugUFCydOu3uadfmL37gtkMGq
+ tqw4LrSACl3AJMhZGs7heTCwXr5uSj8blp2Ri8OdJRkxZsJayY/z3rXKB
+ ErivxioTDmNidwDIboBUKIJMm+3zc+MT5oWpiE//UWz2N8DArambKZtvR
+ 9W+H846XLf0ajlOk8MpxU5RvefrjBXXez0hwpLwjbh/eArcXztBdMANIK w==;
+X-CSE-ConnectionGUID: PTaUQZO4SpKYtRF9BFL2sA==
+X-CSE-MsgGUID: Ex6bXnkNRwiF8SlrD7aN/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="58357929"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="58357929"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:46:40 -0700
-X-CSE-ConnectionGUID: lleSh8k+RweTkpO+3TzXrw==
-X-CSE-MsgGUID: KzsTUDuTRXqyldG/1DHDcg==
+ 23 Apr 2025 02:46:43 -0700
+X-CSE-ConnectionGUID: xn9qqDlbRhKE59rB0Gc6RA==
+X-CSE-MsgGUID: XEYPp6GwSM+Lh1fQ5ZsDSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132811095"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="132811100"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 23 Apr 2025 02:46:38 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 23 Apr 2025 02:46:41 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, jeevan.b@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v10 00/11] LOBF enablement fix
-Date: Wed, 23 Apr 2025 14:53:23 +0530
-Message-Id: <20250423092334.2294483-1-animesh.manna@intel.com>
+Subject: [PATCH v10 01/11] drm/i915/alpm: use variable from intel_crtc_state
+ instead of intel_psr
+Date: Wed, 23 Apr 2025 14:53:24 +0530
+Message-Id: <20250423092334.2294483-2-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20250423092334.2294483-1-animesh.manna@intel.com>
+References: <20250423092334.2294483-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,43 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-v1: Initial version.
-v2: Addressed review comments from Jani.
-v3: Addressed review comments from Jouni.
-v4: Addressed review comments received on v3.
-v5: Addressed review comments received on v4.
-v6: Addressed review comments received on v5.
-v7: Addressed review comments received on v6.
-v8: Addressed review comments received on v7.
-v9: Addressed review comments received on v8.
+From: Jouni Högander <jouni.hogander@intel.com>
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Currently code is making assumption that PSR is enabled when
+intel_alpm_configure is called. This doesn't work if alpm is configured
+before PSR is enabled.
 
-Animesh Manna (10):
-  drm/i915/lobf: Add lobf enablement in post plane update
-  drm/i915/lobf: Add debug print for LOBF
-  drm/i915/lobf: Disintegrate alpm_disable from psr_disable
-  drm/i915/lobf: Add fixed refresh rate check in compute_config()
-  drm/i915/lobf: Update lobf if any change in dependent parameters
-  drm/i915/lobf: Add debug interface for lobf
-  drm/i915/lobf: Add mutex for alpm update
-  drm/i915/lobf: Check for sink error and disable LOBF
-  drm/i915/alpm: Add intel_psr_need_alpm() to simplify alpm check
-  drm/i915/display: Disintegrate sink alpm enable from psr with lobf
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Jouni Högander (1):
-  drm/i915/alpm: use variable from intel_crtc_state instead of intel_psr
-
- drivers/gpu/drm/i915/display/intel_alpm.c     | 195 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_alpm.h     |  10 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +
- drivers/gpu/drm/i915/display/intel_display.c  |   4 +
- .../drm/i915/display/intel_display_types.h    |   4 +
- drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  61 +-----
- drivers/gpu/drm/i915/display/intel_psr.h      |   1 +
- 8 files changed, 224 insertions(+), 60 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 55f3ae1e68c9..1dbaa8f250aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -317,14 +317,14 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 	u32 alpm_ctl;
+ 
+ 	if (DISPLAY_VER(display) < 20 ||
+-	    (!intel_dp->psr.sel_update_enabled && !intel_dp_is_edp(intel_dp)))
++	    (!crtc_state->has_sel_update && !intel_dp_is_edp(intel_dp)))
+ 		return;
+ 
+ 	/*
+ 	 * Panel Replay on eDP is always using ALPM aux less. I.e. no need to
+ 	 * check panel support at this point.
+ 	 */
+-	if ((intel_dp->psr.panel_replay_enabled && intel_dp_is_edp(intel_dp)) ||
++	if ((crtc_state->has_panel_replay && intel_dp_is_edp(intel_dp)) ||
+ 	    (crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp))) {
+ 		alpm_ctl = ALPM_CTL_ALPM_ENABLE |
+ 			ALPM_CTL_ALPM_AUX_LESS_ENABLE |
 -- 
 2.29.0
 
