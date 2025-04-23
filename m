@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D8AA984F0
+	by mail.lfdr.de (Postfix) with ESMTPS id 175FAA984EF
 	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 11:10:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82CE110E426;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7248B10E422;
 	Wed, 23 Apr 2025 09:10:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P5NZ6LrW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Moz6P6Kc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5B810E422;
- Wed, 23 Apr 2025 09:10:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0DB10E64E;
+ Wed, 23 Apr 2025 09:10:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745399411; x=1776935411;
+ t=1745399416; x=1776935416;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tkVxw8XoHhMxLmgb84SnGaq5JBhhyQtFgrdIKYjR7yM=;
- b=P5NZ6LrW6RawEpCOf26/5Xn0ZH9MsAjwDc794grngLKyKHbHwa7e78pt
- B0EnQv51daYrTPJ6BdSHkWw/B+7ViBWUDYwiLSpVl/CSTY9kvK7Y5N5Lh
- M1CnkUSBqdriSI/MlLfGn81na+UWLq+BuKlRn4ZHrsvbRBN68JW+7RdkF
- o81xY4cg21oMGxvUrqTmquI3Qjk+6Q+TdNvXhcm8s+iYesX2U3Kyz4bWT
- bd/RTXnsJKBReRPt0IIk5GAkRBgrJ/HzXC2t+ylsTyp35OSRyFb3ZuMi6
- isBW4VheB/Z5LyhLZk1htTK2HSHUr50cgwmNeOJAQQ5T8/a+zPNTyJ5Oi w==;
-X-CSE-ConnectionGUID: WWy9oJ8NS16biMnUc2BPUQ==
-X-CSE-MsgGUID: xtx5gqsfTFugXqJjtNACvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46686954"
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46686954"
+ bh=FeA6rLz2sSPWSi0F9Xn82U+zVB7OnZ4fe/pNo8JsGik=;
+ b=Moz6P6Kc64f+trG+ffFiuvUU594km/td2kZWnWde6ApMXywo8AXLxKLI
+ WtWKhEdl2F5/jPp/GD8EtdAq843AeMrmsxUUGiCXfg+hb0GYKf1nHHaE7
+ BWeqXk/rGxY+a+Twy+8DP2ECwwAXmW6ZEUE9O/F0J1LHO4oWXLOkh1hbh
+ C9Pz2BIOCC66WNkqede/YHEMA3/1+PdF57D7n4KWllfa09tcK65tFDul1
+ W/b45i9S46Cc6b/7dw4SJEyR5ioTcwdIix2cRT/0Rkxj1600C0crZhxxy
+ zkUuiWrVABv+ZVYnFNPk8ykE1AXHp7Zs0hYxSBJ7yPFvxiS+oE0FQq06B w==;
+X-CSE-ConnectionGUID: 8BJ7Tj4fSmSb3acsG6i+9w==
+X-CSE-MsgGUID: wXy4aea+RlG26V4Wv/LQ/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11411"; a="46686959"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="46686959"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:10:11 -0700
-X-CSE-ConnectionGUID: HaRvs+tPSVCPS4Nh4vMmrg==
-X-CSE-MsgGUID: x1AOPM0qSvasoF7avpkRbg==
+ 23 Apr 2025 02:10:16 -0700
+X-CSE-ConnectionGUID: YWh6KauFT8265ioJM9l56g==
+X-CSE-MsgGUID: tW+rEW1eQP+4E6s214gRxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163317718"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="163317724"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.175])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2025 02:10:08 -0700
+ 23 Apr 2025 02:10:14 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/3] drm/i915/hdmi: convert rest of intel_hdmi.c to struct
- intel_display
-Date: Wed, 23 Apr 2025 12:09:47 +0300
-Message-Id: <7e3bb01cdc5b0c78dfd260a3cea23ca58081e299.1745399318.git.jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/i915/de: drop drm_i915_private compat wrappers from
+ intel_de_*()
+Date: Wed, 23 Apr 2025 12:09:48 +0300
+Message-Id: <c8dc8fdd8815b9e0ef233b4aa6f071cd84c2a867.1745399318.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1745399318.git.jani.nikula@intel.com>
 References: <cover.1745399318.git.jani.nikula@intel.com>
@@ -71,72 +71,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the last uses of struct drm_i915_private from intel_hdmi.c, and
-drop the dependency on i915_drv.h.
+All the users of intel_de_*() functions now pass in struct
+intel_display, and we can remove the __to_intel_display() _Generic()
+compat wrappers.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_de.h | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index e08c01e5b9d3..7fc01ba19afc 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -38,14 +38,15 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/intel/intel_lpe_audio.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index 655467a6ba87..54ce3e4f8fd9 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -6,7 +6,6 @@
+ #ifndef __INTEL_DE_H__
+ #define __INTEL_DE_H__
  
- #include <media/cec-notifier.h>
+-#include "intel_display_conversion.h"
+ #include "intel_display_core.h"
+ #include "intel_dmc_wl.h"
+ #include "intel_dsb.h"
+@@ -19,7 +18,7 @@ static inline struct intel_uncore *__to_uncore(struct intel_display *display)
+ }
  
- #include "g4x_hdmi.h"
--#include "i915_drv.h"
- #include "i915_reg.h"
-+#include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_connector.h"
-@@ -1567,7 +1568,6 @@ bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *dig_port,
- 				     struct intel_connector *connector)
+ static inline u32
+-__intel_de_read(struct intel_display *display, i915_reg_t reg)
++intel_de_read(struct intel_display *display, i915_reg_t reg)
  {
- 	struct intel_display *display = to_intel_display(dig_port);
--	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	enum port port = dig_port->base.port;
- 	enum transcoder cpu_transcoder = connector->hdcp.cpu_transcoder;
- 	int ret;
-@@ -1580,15 +1580,15 @@ bool intel_hdmi_hdcp_check_link_once(struct intel_digital_port *dig_port,
- 	if (ret)
- 		return false;
+ 	u32 val;
  
--	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
-+	intel_de_write(display, HDCP_RPRIME(display, cpu_transcoder, port), ri.reg);
+@@ -31,7 +30,6 @@ __intel_de_read(struct intel_display *display, i915_reg_t reg)
  
- 	/* Wait for Ri prime match */
--	if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
-+	if (wait_for((intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)) &
- 		      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
- 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
- 		drm_dbg_kms(display->drm, "Ri' mismatch detected (%x)\n",
--			    intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
--							    port)));
-+			    intel_de_read(display, HDCP_STATUS(display, cpu_transcoder,
-+							       port)));
- 		return false;
- 	}
- 	return true;
-@@ -2013,7 +2013,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 	struct intel_hdmi *hdmi = intel_attached_hdmi(to_intel_connector(connector));
- 	enum drm_mode_status status;
- 	int clock = mode->clock;
--	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
-+	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->state);
- 	bool ycbcr_420_only;
- 	enum intel_output_format sink_format;
+ 	return val;
+ }
+-#define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
+ 
+ static inline u8
+ intel_de_read8(struct intel_display *display, i915_reg_t reg)
+@@ -66,7 +64,7 @@ intel_de_read64_2x32(struct intel_display *display,
+ }
+ 
+ static inline void
+-__intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
++intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
+ {
+ 	intel_dmc_wl_get(display, reg);
+ 
+@@ -74,10 +72,9 @@ __intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
+ 
+ 	intel_dmc_wl_put(display, reg);
+ }
+-#define intel_de_posting_read(p,...) __intel_de_posting_read(__to_intel_display(p), __VA_ARGS__)
+ 
+ static inline void
+-__intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
++intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
+ {
+ 	intel_dmc_wl_get(display, reg);
+ 
+@@ -85,7 +82,6 @@ __intel_de_write(struct intel_display *display, i915_reg_t reg, u32 val)
+ 
+ 	intel_dmc_wl_put(display, reg);
+ }
+-#define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
+ 
+ static inline u32
+ __intel_de_rmw_nowl(struct intel_display *display, i915_reg_t reg,
+@@ -95,8 +91,7 @@ __intel_de_rmw_nowl(struct intel_display *display, i915_reg_t reg,
+ }
+ 
+ static inline u32
+-__intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
+-	       u32 set)
++intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear, u32 set)
+ {
+ 	u32 val;
+ 
+@@ -108,7 +103,6 @@ __intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear,
+ 
+ 	return val;
+ }
+-#define intel_de_rmw(p,...) __intel_de_rmw(__to_intel_display(p), __VA_ARGS__)
+ 
+ static inline int
+ __intel_de_wait_for_register_nowl(struct intel_display *display,
 -- 
 2.39.5
 
