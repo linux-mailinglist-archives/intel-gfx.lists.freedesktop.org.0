@@ -2,85 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54498A99096
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 17:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C50C9A99526
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Apr 2025 18:31:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B314610E6E2;
-	Wed, 23 Apr 2025 15:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B9B10E219;
+	Wed, 23 Apr 2025 16:31:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q+tZqSog";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hlvTPiQd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87ADE10E6E2;
- Wed, 23 Apr 2025 15:21:30 +0000 (UTC)
-Received: by mail-pj1-f48.google.com with SMTP id
- 98e67ed59e1d1-2ff53b26af2so912107a91.0; 
- Wed, 23 Apr 2025 08:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1745421690; x=1746026490; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fmyi5vZZ7mGUn2QC3T8ka63Rf5qEN3cGUQLOCWVEt1U=;
- b=Q+tZqSogVsPF1MxV0rQew5K+81EQabHmkjnweNJpzX4p10tDdAGmUbARUHRag/tL+W
- z6ubh0+ZarMATyOIe/9yqRn3/sy5nyKnlMPm76x4JEzZ8OAQ46SnM1eB2jrkmQHybRGc
- 5BvMTBLUVuDiCUjZVRaCHjCH8sD1Imo7sPIzimze8Fg9cFa9iKjqNvUyUWv4SLA/jpCy
- i7flIYKl9tiKbRG5647M6KrZOvVM6jSc21SaOXwkpR4RoxktBmKJby6fhNTkbN4tPAEC
- 1SY35N2DJNWDKLS4/t5AAyLOS+/FoKnz6QpVl3/qP25s5LTnERsaUZ6Qo4CFi3CKrThF
- LRmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745421690; x=1746026490;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=fmyi5vZZ7mGUn2QC3T8ka63Rf5qEN3cGUQLOCWVEt1U=;
- b=lG8a/9c7v9WLsytc0FS6rgikNhs4NI4neHG1ceLPHgPQ6DGEczxO+EYdl8ML5sH66w
- IdRxljbhFUrtbFnvpexLB2N/Uiv2KeEjgHRwxZCWWWW136w0En2dqAAb02RhkP9ZGaBm
- NoTtuSvkp+g/1r4zqtJbAPxX64ghtSN/tcy5USx+beevYJEsTNudoUe0SVyXN+8HFDt6
- Jb3MAeuFF+pfv8HLyq5sbo0yWmG0h05LSxiaWyZgap3D8ErLyLv0+h+XDtGcnCK/pK0Y
- gJSfmsBtxDCPNnmx2n0zZVC5ACdc4zaHCQf7C8EXerbny+nZdfltHccPwfWCPA+rSVC1
- 6puA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+0OwQW1b5eKAV9/h2eXR+ITym+CMZpW0DFyitzYopwzI/eJvfzCZKkkbFhSAhU0GguKW4IXRlbQI9@lists.freedesktop.org,
- AJvYcCWCa6sYSA79/pHIH7ZUhz6T6/iQ1rZNMGliL5bBKo/k1VN8GGS9Ro7hIoTdskkzjZvzJFwlIwefCiE=@lists.freedesktop.org,
- AJvYcCXA3TVqpsPmo9v5yeGU5s0XxABlSJLiL5WpR8e26a/tkL5l7q5yoweCNX1DWpvQpaGMke2RTCQTcRU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzbYb36HQolXS7n0BlyfJTnZ6GdB7GqhC1vEEaxOFCVQjWXK9VA
- Rg4kmm01r/M1kTuo+plxluQrqKz2C26qsHiNiy5oPFSnqxX1o79t/d4D/d0T1dtVkTt1ciaI0Pl
- NSNWElMF6KpfhhWqRWuctQ6ZlwK8=
-X-Gm-Gg: ASbGncs4lJlC+TdFYzkmLPuW6L5oAM7TrwXrcErvqBzoi38vpZU1/6o4E/pNweA8yuq
- 4qsBfG1fc/7ns1ZXC6lps1a00viYaNTb3Z2JYBUZgmSMF3IXkL+h2VjV3yV4BxZ1GdcqwY79lo9
- JIlS17T0JMWkxHdG+DZX+mEw==
-X-Google-Smtp-Source: AGHT+IF8AjqdfMjic0pSLtgVDlsQvTB5k11mnthsWR/JGmuDXps66QWl4LK60Wb4UuTG6xr/3hPGpniN7EwidLSVCg0=
-X-Received: by 2002:a17:90b:4d05:b0:306:e75e:dbc7 with SMTP id
- 98e67ed59e1d1-309debc7ce6mr2004009a91.0.1745421689972; Wed, 23 Apr 2025
- 08:21:29 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C10610E219;
+ Wed, 23 Apr 2025 16:31:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745425906; x=1776961906;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=rHHe/8RhyPpADAv2wMNhicCGW725SUetgJ9BCqcDqjo=;
+ b=hlvTPiQdzoIL0kWzctuYARFsIG5qYFAZMKyaO9Z3I3N9GtrkahbozY5h
+ XzkkPvPMSgr2JpegPJbE589iV11E5ZZY8v+7/i98yHhcNLLysBPqi8qjw
+ RK+XG7d/57aG94XEBxHOlJr01cipjtjovzezTyT9XNjT/Pc4dVnzCgqGZ
+ 0HC+19xN8oYzsTMlGo0LKpJCRNXy3oDD2CCs5MeLuTqdxm98Dcx/AGvos
+ 9dXJn1jivbpEiOGShMrecVZerLmq652Jww5B4TjsNZYqYgEIEVLGIUitO
+ ofgbZv+yBshnrR/23Q+mciFE0Jtf9qLWcC7TsPuVuhIHFZg3L/3HFdEUz g==;
+X-CSE-ConnectionGUID: nlurddbgQ9a/eD4s8m50WA==
+X-CSE-MsgGUID: OcF3gdOBRQug+TkxuzBS/A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11412"; a="50830451"
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="50830451"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 09:31:46 -0700
+X-CSE-ConnectionGUID: uLr7sJu1QAGKYY4H1GMrRw==
+X-CSE-MsgGUID: Rzl/IukPSwmtIFv8RfavZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,233,1739865600"; d="scan'208";a="137220613"
+Received: from smile.fi.intel.com ([10.237.72.58])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Apr 2025 09:31:41 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+ (envelope-from <andriy.shevchenko@intel.com>)
+ id 1u7d0a-0000000F7Fm-3nZd; Wed, 23 Apr 2025 19:31:36 +0300
+Date: Wed, 23 Apr 2025 19:31:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Akira Yokosawa <akiyks@gmail.com>
+Cc: airlied@gmail.com, corbet@lwn.net, dmitry.baryshkov@oss.qualcomm.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ masahiroy@kernel.org, mchehab+huawei@kernel.org, mripard@kernel.org,
+ nathan@kernel.org, nicolas.schier@linux.dev, rodrigo.vivi@intel.com,
+ simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
+Subject: Re: [PATCH v3 0/2] Don't create Python bytecode when building the
+ kernel
+Message-ID: <aAkV6Kl3BX1TmMxl@smile.fi.intel.com>
+References: <aAdL7aEcbulV9lsA@smile.fi.intel.com>
+ <5cc4d9dd-496e-4512-a683-272b1b84d98b@gmail.com>
 MIME-Version: 1.0
-References: <20250407-asyn-v13-0-b93ef83076c5@intel.com>
- <SJ1PR11MB6129BDF34CF14847EEE77168B9BD2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB6129BDF34CF14847EEE77168B9BD2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 23 Apr 2025 11:21:18 -0400
-X-Gm-Features: ATxdqUHW08BKqAI3d2gZcamBlcwWcvdH_ZBpx1HYv8qjGY0-e5DhpcLcGhwhjsU
-Message-ID: <CADnq5_P3_usd9RDdLfjshz-o+nzkVSBrHmrqRUQThtX4X3jP9g@mail.gmail.com>
-Subject: Re: [PATCH RESEND v13 0/5] Expose modifiers/formats supported by
- async flips
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- "Wentland, Harry" <Harry.Wentland@amd.com>,
- "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- "Syrjala, Ville" <ville.syrjala@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
- "Kumar, Naveen1" <naveen1.kumar@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5cc4d9dd-496e-4512-a683-272b1b84d98b@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,63 +80,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ Harry and Leo
+On Wed, Apr 23, 2025 at 06:30:48PM +0900, Akira Yokosawa wrote:
+> On Tue, 22 Apr 2025 10:57:33 +0300, Andy Shevchenko wrote:
+> > On Mon, Apr 21, 2025 at 10:35:29AM -0600, Jonathan Corbet wrote:
+> >> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> writes:
 
-On Wed, Apr 16, 2025 at 2:33=E2=80=AFAM Borah, Chaitanya Kumar
-<chaitanya.kumar.borah@intel.com> wrote:
->
-> Hello Alexander,
->
-> > -----Original Message-----
-> > From: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Sent: Monday, April 7, 2025 11:14 AM
-> > To: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; i=
-ntel-
-> > xe@lists.freedesktop.org
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>; Borah, Chaitanya Kumar
-> > <chaitanya.kumar.borah@intel.com>; Syrjala, Ville <ville.syrjala@intel.=
-com>;
-> > Murthy, Arun R <arun.r.murthy@intel.com>; Ville Syrj=C3=A4l=C3=A4
-> > <ville.syrjala@linux.intel.com>; Kumar, Naveen1
-> > <naveen1.kumar@intel.com>
-> > Subject: [PATCH RESEND v13 0/5] Expose modifiers/formats supported by
-> > async flips
-> >
-> > All of the formats/modifiers supported by the plane during synchronous =
-flips
-> > are nor supported by asynchronous flips. The formats/modifiers exposed =
-to
-> > user by IN_FORMATS exposes all formats/modifiers supported by plane and
-> > this list varies for async flips. If the async flip supported formats/m=
-odifiers are
-> > exposed to the user, user based on this list can take decision to proce=
-ed or
-> > not and avoid flip failures during async flips.
-> > Discussion around this can be located @
-> > https://gitlab.freedesktop.org/mesa/mesa/-
-> > /merge_requests/29618#note_2487123
-> > Mutter implementation for IN_FORMARTS_ASYNC under review @
-> > https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
-> > Xorg/modesetting patch
-> > https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/1816
-> >
->
-> We have added a new drm plane property to expose the format modifier pair=
-s supported by a plane for async flip.
-> Can you please let us know if this implementation looks good to you? If s=
-o, kindly provide an Ack.
->
-> IGT implementation: https://patchwork.freedesktop.org/series/146853/
+[...]
 
-Seems reasonable to me, but I'm not as involved in the display side
-anymore.  I'd defer to Harry and Leo.  @Wentland, Harry, @Leo
-(Sunpeng) Li can you take a look?
+> >> > Would it be possible to properly support O= and create pyc / pycache
+> >> > inside the object/output dir?
+> >> 
+> >> I have to confess, I've been wondering if we should be treating the .pyc
+> >> files like we treat .o files or other intermediate products.  Rather
+> >> than trying to avoid their creation entirely, perhaps we should just be
+> >> sure they end up in the right place and are properly cleaned up...?
+> >> 
+> >> To answer Dmitry's question, it seems that setting PYTHONPYCACHEPREFIX
+> >> should do the trick?
+> > 
+> > It's not so easy. The Python is written in a way that it thinks it will never
+> > runs object files separately from the source. Hence that variable sets only
+> > the folder per script as _home_ for the cache. It's completely unusable. They
+> > took it wrong. It still can be _painfully_ used, but it will make Makefiles
+> > uglier.
+> 
+> But, PYTHONPYCACHEPREFIX can be set as an environment variable.
+> 
+> For example, try:
+> 
+>     export PYTHONPYCACHEPREFIX="$HOME/.cache/__pycache__"
+> 
+> Wouldn't it be good enough for you?
 
-Thanks,
+Of course not. We have _many_ scripts in python in kernel and having a cache
+there for _all_ of them is simply WRONG. You never know what clashes can be
+there with two complicated enough scripts which may have same module names,
+etc.
 
-Alex
+-- 
+With Best Regards,
+Andy Shevchenko
 
->
-> Regards
->
-> Chaitanya
+
