@@ -2,70 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3E4A9CC75
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 17:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0327FA9D12A
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 757B210E980;
-	Fri, 25 Apr 2025 15:11:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baYhuRbw";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FAA10E9A4;
+	Fri, 25 Apr 2025 19:08:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B91A510E326;
- Fri, 25 Apr 2025 15:11:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745593864; x=1777129864;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5aYTKnW1uf91zxpbLRkRmehpF7E6EkPj5cYjxOKlKlk=;
- b=baYhuRbwiiqA2AChG4qXecoHzpgexUB0q56qyd9huBy+iNmKKB2z6Bjd
- rDTRq9CBFJV7zpqtgm0H0JOHHxWEd1/ftDM/AgX81Va5Lhq0l8nu80Z9o
- 94FrN95NWZC8nxjpkBf2sMILkPuiy7XuBWWd2uZuEAB3Syg4b62Vq+aEn
- w98viHngeocplrfWguncGq1HrCRMO6Pj8BaM4LkKJH1te1JS3UCDx32nf
- /6BDg328cWBIey0nzGseYj7vuL/nDJFF5CE0+GMV0R2+s1bpN+lodaXBS
- L76zwy7zVrNkF5RNh4l/uFTIGajrW9vKCYVhrOGhrGYTAlg9hSpLPUMbq w==;
-X-CSE-ConnectionGUID: NgbutLmETQCU474cpa9ELQ==
-X-CSE-MsgGUID: W9LA0es/R/yax2r9dj1tYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="47133760"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="47133760"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 08:11:04 -0700
-X-CSE-ConnectionGUID: XWU8z64fTNawiwnxY2teIg==
-X-CSE-MsgGUID: /VdhN3htTS6WdDeoB86ywg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="137916047"
-Received: from junxiaochang.bj.intel.com ([10.238.157.86])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 08:10:59 -0700
-From: Junxiao Chang <junxiao.chang@intel.com>
-To: tomas.winkler@intel.com, Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE79010E64E;
+ Wed, 23 Apr 2025 07:37:58 +0000 (UTC)
+X-UUID: d7167a20201511f0a216b1d71e6e1362-20250423
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:33cd0147-34a3-4f24-984a-a4e121dbc89e, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-25
+X-CID-META: VersionHash:6493067, CLOUDID:dc5f91aaf089f4ed07a4a1a74b6f7ce4,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:1,IP:nil,URL
+ :0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SP
+ R:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d7167a20201511f0a216b1d71e6e1362-20250423
+Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
+ (envelope-from <liujiajia@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1662382807; Wed, 23 Apr 2025 15:37:42 +0800
+Received: from mail.kylinos.cn (localhost [127.0.0.1])
+ by mail.kylinos.cn (NSMail) with SMTP id 1E31AE028E9B;
+ Wed, 23 Apr 2025 15:37:42 +0800 (CST)
+X-ns-mid: postfix-680898C5-967027406
+Received: from kylin.lan (unknown [172.25.120.81])
+ by mail.kylinos.cn (NSMail) with ESMTPA id A3623E028EA0;
+ Wed, 23 Apr 2025 15:37:39 +0800 (CST)
+From: Jiajia Liu <liujiajia@kylinos.cn>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Vitaly Lubart <vitaly.lubart@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
-Cc: junxiao.chang@intel.com,
-	furong.zhou@intel.com
-Subject: [PATCH] drm/i915/gsc: mei interrupt top half should be in irq
- disabled context
-Date: Fri, 25 Apr 2025 23:11:07 +0800
-Message-Id: <20250425151108.643649-1-junxiao.chang@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250424065609.624457-1-junxiao.chang@intel.com>
-References: <20250424065609.624457-1-junxiao.chang@intel.com>
+ Simona Vetter <simona@ffwll.ch>, Nemesa Garg <nemesa.garg@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Jiajia Liu <liujiajia@kylinos.cn>
+Subject: [PATCH RESEND] drm/i915/pch: fix warning for coffeelake on
+ SunrisePoint PCH
+Date: Wed, 23 Apr 2025 15:37:30 +0800
+Message-Id: <20250423073730.585181-1-liujiajia@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:12 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,38 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MEI GSC interrupt comes from i915. It has top half and bottom half.
-Top half is called from i915 interrupt handler. It should be in
-irq disabled context.
+i915/pch reports a warning on a mini PC which has a CoffeeLake-S GT2
+[UHD Graphics 630] [8086:3e92] and an ISA bridge - H110 LPC Controller
+[8086:a143].
 
-With RT kernel, by default i915 IRQ handler is in threaded IRQ. MEI GSC
-top half might be in threaded IRQ context. generic_handle_irq_safe API
-could be called from either IRQ or process context, it disables local
-IRQ then calls MEI GSC interrupt top half.
+[5.608723] i915 0000:00:02.0: [drm] Found coffeelake (device ID 3e92) int=
+egrated display version 9.00 stepping N/A
+[5.608969] ------------[ cut here ]------------
+[5.608972] i915 0000:00:02.0: [drm] drm_WARN_ON(!display->platform.skylak=
+e && !display->platform.kabylake)
+[5.608995] WARNING: CPU: 3 PID: 440 at drivers/gpu/drm/i915/display/intel=
+_pch.c:126 intel_pch_type+0x1af/0xae0 [i915]
+[5.609317] CPU: 3 UID: 0 PID: 440 Comm: (udev-worker) Not tainted 6.15.0-=
+rc3-drm-tip-2fa6469c618d #3 PREEMPT(voluntary)
 
-This change fixes A380/A770 GPU boot hang issue with RT kernel.
-
-Fixes: 1e3dc1d8622b ("drm/i915/gsc: add gsc as a mei auxiliary device")
-Tested-by: Furong Zhou <furong.zhou@intel.com>
-Suggested-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
+Signed-off-by: Jiajia Liu <liujiajia@kylinos.cn>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gsc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_pch.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
-index 1e925c75fb080..c43febc862dc3 100644
---- a/drivers/gpu/drm/i915/gt/intel_gsc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
-@@ -284,7 +284,7 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
- 	if (gt->gsc.intf[intf_id].irq < 0)
- 		return;
- 
--	ret = generic_handle_irq(gt->gsc.intf[intf_id].irq);
-+	ret = generic_handle_irq_safe(gt->gsc.intf[intf_id].irq);
- 	if (ret)
- 		gt_err_ratelimited(gt, "error handling GSC irq: %d\n", ret);
- }
--- 
-2.34.1
+diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i=
+915/display/intel_pch.c
+index 5035b63a4889..469e8a3cfb49 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch.c
++++ b/drivers/gpu/drm/i915/display/intel_pch.c
+@@ -125,7 +125,8 @@ intel_pch_type(const struct intel_display *display, u=
+nsigned short id)
+ 		drm_dbg_kms(display->drm, "Found SunrisePoint PCH\n");
+ 		drm_WARN_ON(display->drm,
+ 			    !display->platform.skylake &&
+-			    !display->platform.kabylake);
++			    !display->platform.kabylake &&
++			    !display->platform.coffeelake);
+ 		return PCH_SPT;
+ 	case INTEL_PCH_SPT_LP_DEVICE_ID_TYPE:
+ 		drm_dbg_kms(display->drm, "Found SunrisePoint LP PCH\n");
+--=20
+2.25.1
 
