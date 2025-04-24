@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86B11A9B8B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Apr 2025 22:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DE8A9B8B5
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Apr 2025 22:02:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 065DD10E870;
-	Thu, 24 Apr 2025 20:02:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1E310E873;
+	Thu, 24 Apr 2025 20:02:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cMYNUAYs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n1J7Ddpl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB27810E870;
- Thu, 24 Apr 2025 20:02:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64A3910E872;
+ Thu, 24 Apr 2025 20:02:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745524946; x=1777060946;
+ t=1745524951; x=1777060951;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qcjhbdiBZWdq1yMo8fXYIw+8GpZWuAfkHHfpheb4Kfk=;
- b=cMYNUAYsdqDfz3U91mE+NmP7MIpquN+eTXAenleil4bmr4aNsgARvGyf
- nrhOzTpAkxOE1zh1SAG9pW6uKhVk7yOtpLmVgwC0YNXrD0PyApPGKJR76
- esxnpqQPZ+KtQ+G6iWONSK8QAZvnjgqK2aumB4/rwvLntbTY6oTWyO8Vd
- Im2bnE0+V0E2HcFQ2CNlcnV8iMGWbf9sEA1ahFdUbOoLOmwjrwoU/pAVx
- kRj9j+YrEziMVQVU+y9wvJHDpPlKcRXd7ZRJGc8Wj5f9/wLrPKXIHw9zA
- w/5ki57GuNqkK06Bobxt8iDIWXRdMPJvO4ay98lNPlAxdVxhGg/uMe+HD w==;
-X-CSE-ConnectionGUID: EPqCmaJhQ+yKg+97eAMIUw==
-X-CSE-MsgGUID: u16i+FzpRTagrLG49c2CBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="58543436"
-X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="58543436"
+ bh=qPuvzBkK0t77eoAFZqoBRMQhKKmMwduKD2oJOP/ItF8=;
+ b=n1J7DdplAUpJXLTImi0pAOJ/WTjuOHIGnHqWlz8ISpnnWDWwWZfY0f5t
+ oWSVBqDYq6990QPIE325IL1GJOfwf+sKnDcjOrpDx7AEnYsp+iPLzPkM8
+ pAbTEz0eKxE7pmwtdXUKuvm8yYvgAbtsimnGdzKdh71G6NCDouFH9Wj3G
+ pzK1w+cYsT7WfgAWaHCXpSQLvraPb17h3sbo0sJqHpSegPEgzNvo4qpe3
+ dvm1F+IEHBf21l06WOD2PcXuLUXtcU1+gzcBMYlXkg9e51ql0cUA9O5vz
+ W0QHp5I7pKtin9ZxY0uO9hUcyyCrzfhI+BargdUcN48pJSEO/3T7h4/6X Q==;
+X-CSE-ConnectionGUID: 1ZDndsUaS8aOwzrcw7lYaA==
+X-CSE-MsgGUID: Hw/5LIsHTw6y3yeexNOErA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="58543445"
+X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="58543445"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 13:02:26 -0700
-X-CSE-ConnectionGUID: vET2Evr5TT25mYUGvPHGRA==
-X-CSE-MsgGUID: J0/8eAnSQ+Wsjt+xcUSujg==
+ 24 Apr 2025 13:02:31 -0700
+X-CSE-ConnectionGUID: U2NxykhrR8abPRJx5tiWmQ==
+X-CSE-MsgGUID: ZF6GvTqKTPC64Hv5M0fLdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="133637167"
+X-IronPort-AV: E=Sophos;i="6.15,237,1739865600"; d="scan'208";a="133637185"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.48])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2025 13:02:24 -0700
+ 24 Apr 2025 13:02:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 07/10] drm/i915/hdcp: switch the HDCP GSC message interface
- from u8* to void*
-Date: Thu, 24 Apr 2025 23:01:39 +0300
-Message-Id: <ea005adb713e85b797d83204c80de0a2a8e5ab47.1745524803.git.jani.nikula@intel.com>
+Subject: [PATCH 08/10] drm/i915/hdcp: simplify HDCP GSC firmware usage
+ selection
+Date: Thu, 24 Apr 2025 23:01:40 +0300
+Message-Id: <a1d031bfbff7073e576dfe8d3d3d5a28d7bb2c15.1745524803.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1745524803.git.jani.nikula@intel.com>
 References: <cover.1745524803.git.jani.nikula@intel.com>
@@ -72,196 +72,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The in/out buffers are just opaque data, and don't need to be considered
-u8*. Switching to void* lets us drop a ton of unnecessary casts.
+Just localize the GSC decision inside intel_hdcp.c, and deduplicate the
+conditions.
 
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  4 +-
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  4 +-
- .../drm/i915/display/intel_hdcp_gsc_message.c | 44 +++++++++----------
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  4 +-
- 4 files changed, 28 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  5 -----
+ drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  1 -
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  5 -----
+ 4 files changed, 6 insertions(+), 15 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 4857685c4020..39bcf8f3d810 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -32,6 +32,8 @@
+ #include "intel_hdcp_shim.h"
+ #include "intel_pcode.h"
+ 
++#define USE_HDCP_GSC(__display)		(DISPLAY_VER(__display) >= 14)
++
+ #define KEY_LOAD_TRIES	5
+ #define HDCP2_LC_RETRY_CNT			3
+ 
+@@ -251,7 +253,7 @@ static bool intel_hdcp2_prerequisite(struct intel_connector *connector)
+ 		return false;
+ 
+ 	/* If MTL+ make sure gsc is loaded and proxy is setup */
+-	if (intel_hdcp_gsc_cs_required(display)) {
++	if (USE_HDCP_GSC(display)) {
+ 		if (!intel_hdcp_gsc_check_status(display))
+ 			return false;
+ 	}
+@@ -2340,7 +2342,7 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
+ 
+ static bool is_hdcp2_supported(struct intel_display *display)
+ {
+-	if (intel_hdcp_gsc_cs_required(display))
++	if (USE_HDCP_GSC(display))
+ 		return true;
+ 
+ 	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
+@@ -2364,7 +2366,7 @@ void intel_hdcp_component_init(struct intel_display *display)
+ 
+ 	display->hdcp.comp_added = true;
+ 	mutex_unlock(&display->hdcp.hdcp_mutex);
+-	if (intel_hdcp_gsc_cs_required(display))
++	if (USE_HDCP_GSC(display))
+ 		ret = intel_hdcp_gsc_init(display);
+ 	else
+ 		ret = component_add_typed(display->drm->dev, &i915_hdcp_ops,
+@@ -2639,7 +2641,7 @@ void intel_hdcp_component_fini(struct intel_display *display)
+ 	display->hdcp.comp_added = false;
+ 	mutex_unlock(&display->hdcp.hdcp_mutex);
+ 
+-	if (intel_hdcp_gsc_cs_required(display))
++	if (USE_HDCP_GSC(display))
+ 		intel_hdcp_gsc_fini(display);
+ 	else
+ 		component_del(display->drm->dev, &i915_hdcp_ops);
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-index 77c4df6c6181..1ea2c7204444 100644
+index 1ea2c7204444..4194ef77f7c3 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-@@ -174,8 +174,8 @@ static int intel_gsc_send_sync(struct drm_i915_private *i915,
-  * will follow
-  */
- ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
--				u8 *msg_in, size_t msg_in_len,
--				u8 *msg_out, size_t msg_out_len)
-+				void *msg_in, size_t msg_in_len,
-+				void *msg_out, size_t msg_out_len)
+@@ -19,11 +19,6 @@ struct intel_hdcp_gsc_context {
+ 	void *hdcp_cmd_out;
+ };
+ 
+-bool intel_hdcp_gsc_cs_required(struct intel_display *display)
+-{
+-	return DISPLAY_VER(display) >= 14;
+-}
+-
+ bool intel_hdcp_gsc_check_status(struct intel_display *display)
  {
- 	struct drm_i915_private *i915 = gsc_context->i915;
- 	struct intel_gt *gt = i915->media_gt;
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-index 7133e631a938..fbef56db54f2 100644
+index fbef56db54f2..e963c1fcc39e 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-@@ -14,8 +14,8 @@ struct intel_hdcp_gsc_context;
+@@ -12,7 +12,6 @@
+ struct intel_display;
+ struct intel_hdcp_gsc_context;
  
- bool intel_hdcp_gsc_cs_required(struct intel_display *display);
+-bool intel_hdcp_gsc_cs_required(struct intel_display *display);
  ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
--				u8 *msg_in, size_t msg_in_len,
--				u8 *msg_out, size_t msg_out_len);
-+				void *msg_in, size_t msg_in_len,
-+				void *msg_out, size_t msg_out_len);
- bool intel_hdcp_gsc_check_status(struct intel_display *display);
- 
- struct intel_hdcp_gsc_context *intel_hdcp_gsc_context_alloc(struct intel_display *display);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-index d87f61d773ca..4226e8705d2b 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-@@ -44,9 +44,9 @@ intel_hdcp_gsc_initiate_session(struct device *dev, struct hdcp_port_data *data,
- 	session_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 	session_init_in.protocol = data->protocol;
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&session_init_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &session_init_in,
- 				       sizeof(session_init_in),
--				       (u8 *)&session_init_out,
-+				       &session_init_out,
- 				       sizeof(session_init_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -106,9 +106,9 @@ intel_hdcp_gsc_verify_receiver_cert_prepare_km(struct device *dev,
- 	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
- 	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps, HDCP_2_2_RXCAPS_LEN);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&verify_rxcert_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &verify_rxcert_in,
- 				       sizeof(verify_rxcert_in),
--				       (u8 *)&verify_rxcert_out,
-+				       &verify_rxcert_out,
- 				       sizeof(verify_rxcert_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed: %zd\n", byte);
-@@ -169,9 +169,9 @@ intel_hdcp_gsc_verify_hprime(struct device *dev, struct hdcp_port_data *data,
- 	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
- 	       HDCP_2_2_H_PRIME_LEN);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&send_hprime_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &send_hprime_in,
- 				       sizeof(send_hprime_in),
--				       (u8 *)&send_hprime_out,
-+				       &send_hprime_out,
- 				       sizeof(send_hprime_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -220,9 +220,9 @@ intel_hdcp_gsc_store_pairing_info(struct device *dev, struct hdcp_port_data *dat
- 	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
- 	       HDCP_2_2_E_KH_KM_LEN);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&pairing_info_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &pairing_info_in,
- 				       sizeof(pairing_info_in),
--				       (u8 *)&pairing_info_out,
-+				       &pairing_info_out,
- 				       sizeof(pairing_info_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -269,8 +269,8 @@ intel_hdcp_gsc_initiate_locality_check(struct device *dev,
- 	lc_init_in.port.physical_port = (u8)data->hdcp_ddi;
- 	lc_init_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&lc_init_in, sizeof(lc_init_in),
--				       (u8 *)&lc_init_out, sizeof(lc_init_out));
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &lc_init_in, sizeof(lc_init_in),
-+				       &lc_init_out, sizeof(lc_init_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
-@@ -321,9 +321,9 @@ intel_hdcp_gsc_verify_lprime(struct device *dev, struct hdcp_port_data *data,
- 	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
- 	       HDCP_2_2_L_PRIME_LEN);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&verify_lprime_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &verify_lprime_in,
- 				       sizeof(verify_lprime_in),
--				       (u8 *)&verify_lprime_out,
-+				       &verify_lprime_out,
- 				       sizeof(verify_lprime_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -370,8 +370,8 @@ intel_hdcp_gsc_get_session_key(struct device *dev,
- 	get_skey_in.port.physical_port = (u8)data->hdcp_ddi;
- 	get_skey_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&get_skey_in, sizeof(get_skey_in),
--				       (u8 *)&get_skey_out, sizeof(get_skey_out));
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &get_skey_in, sizeof(get_skey_in),
-+				       &get_skey_out, sizeof(get_skey_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
- 		return byte;
-@@ -434,9 +434,9 @@ intel_hdcp_gsc_repeater_check_flow_prepare_ack(struct device *dev,
- 	memcpy(verify_repeater_in.receiver_ids, rep_topology->receiver_ids,
- 	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&verify_repeater_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &verify_repeater_in,
- 				       sizeof(verify_repeater_in),
--				       (u8 *)&verify_repeater_out,
-+				       &verify_repeater_out,
- 				       sizeof(verify_repeater_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -504,8 +504,8 @@ intel_hdcp_gsc_verify_mprime(struct device *dev,
- 
- 	verify_mprime_in->k = cpu_to_be16(data->k);
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)verify_mprime_in, cmd_size,
--				       (u8 *)&verify_mprime_out,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, verify_mprime_in, cmd_size,
-+				       &verify_mprime_out,
- 				       sizeof(verify_mprime_out));
- 	kfree(verify_mprime_in);
- 	if (byte < 0) {
-@@ -552,9 +552,9 @@ static int intel_hdcp_gsc_enable_authentication(struct device *dev,
- 	enable_auth_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 	enable_auth_in.stream_type = data->streams[0].stream_type;
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&enable_auth_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &enable_auth_in,
- 				       sizeof(enable_auth_in),
--				       (u8 *)&enable_auth_out,
-+				       &enable_auth_out,
- 				       sizeof(enable_auth_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
-@@ -599,9 +599,9 @@ intel_hdcp_gsc_close_session(struct device *dev, struct hdcp_port_data *data)
- 	session_close_in.port.physical_port = (u8)data->hdcp_ddi;
- 	session_close_in.port.attached_transcoder = (u8)data->hdcp_transcoder;
- 
--	byte = intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&session_close_in,
-+	byte = intel_hdcp_gsc_msg_send(gsc_context, &session_close_in,
- 				       sizeof(session_close_in),
--				       (u8 *)&session_close_out,
-+				       &session_close_out,
- 				       sizeof(session_close_out));
- 	if (byte < 0) {
- 		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed. %zd\n", byte);
+ 				void *msg_in, size_t msg_in_len,
+ 				void *msg_out, size_t msg_out_len);
 diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 7b8237a5aeee..7712d53627f0 100644
+index 7712d53627f0..078916072c10 100644
 --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
 +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -161,8 +161,8 @@ static int xe_gsc_send_sync(struct xe_device *xe,
- }
+@@ -30,11 +30,6 @@ struct intel_hdcp_gsc_context {
  
- ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
--				u8 *msg_in, size_t msg_in_len,
--				u8 *msg_out, size_t msg_out_len)
-+				void *msg_in, size_t msg_in_len,
-+				void *msg_out, size_t msg_out_len)
+ #define HDCP_GSC_HEADER_SIZE sizeof(struct intel_gsc_mtl_header)
+ 
+-bool intel_hdcp_gsc_cs_required(struct intel_display *display)
+-{
+-	return DISPLAY_VER(display) >= 14;
+-}
+-
+ bool intel_hdcp_gsc_check_status(struct intel_display *display)
  {
- 	struct xe_device *xe = gsc_context->xe;
- 	const size_t max_msg_size = PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
+ 	struct xe_device *xe = to_xe_device(display->drm);
 -- 
 2.39.5
 
