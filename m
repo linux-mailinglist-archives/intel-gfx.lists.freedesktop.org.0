@@ -2,90 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F09A9D127
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B676DA9D128
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1E3210E997;
-	Fri, 25 Apr 2025 19:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2BA110E9A2;
+	Fri, 25 Apr 2025 19:08:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F0ZKoJFZ";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="LKodL/4w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4097310E137;
- Thu, 24 Apr 2025 02:07:11 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-2295d78b433so5100615ad.2; 
- Wed, 23 Apr 2025 19:07:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1745460431; x=1746065231; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=qQNbrZUbkkakbD9h0kzAkS4WI87+xA7QvTn2xWNikNQ=;
- b=F0ZKoJFZlVZbJV6yHDd3EKZa9JNE6ak54Ye/yQfrgfHf9yMrR6dXqdsqP3szqhVVxl
- Vhd9awjImgQsT2+lJyKRrfers4IGPn6DsnycNHqzAckWjhHdQuP4TiiEJGeHOlG6TN93
- Ui0M0f7Zom5DylGbrn3Ck4LkWlgGaXReCgRqpGxonRLXSdopQq+0FmUEzxWe+9CDkxV9
- bbIHS9NPoS80AOU0YT7vVrCCG+nrAqj/DyCJeggHGITUpngIG17Mb38VludDXw6jEHqh
- tdsupd1LYBrczwi/5ENGLEQGwFT/3sGohM0upFX0hYxHOU3G92cyzNJeF7ITvqXqebiJ
- NdBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745460431; x=1746065231;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qQNbrZUbkkakbD9h0kzAkS4WI87+xA7QvTn2xWNikNQ=;
- b=gdp/ctlteVO/+QsAQz1jBdBkrja0K44A25OxRtzhrSMOR4kHxkYQ6X/qYw0dXhVMX6
- lHBqmKUoDuOx6nGwhZHjlnscyGSI+zRgu/SNF/HF2H7o3oijQ0+LxnBg7VlvSExPzhM0
- wxGJfB1D/DON6El2bNY0wAyVyelJCkbrbczLzOwm3zYSCfe7ODdf4QkWq9UVRRE0I+IS
- SxmwMkoayZgvjkk4q+8u/GUJnrn8a5JEZHY44HTuylvi5vcupf+d8ybrPCPfksHJ87Dl
- ftJvOwHf4ElXb1fcTkdD2kNJh4e48pinR8B5RQtb5++n+z7VPSeq/9nVtQ9XerJ4o+Om
- hCSw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX5+iRZ3dy4sRKOau1jiGrUBM5ijiVLpQ8lxS2BS8rH3NIqGpp8O9tLtoHeQY7r7hT+nqqRfrS/Ph8u@lists.freedesktop.org,
- AJvYcCXhCb4po/SOqD7g3ILavSZDYUNrW6wpOvYZArblODAyXc49zFzUxkQslXP70BOWBB4OTfCgfB3BXDU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyS1HtvCUbUIRuyBfHcqg1bfYSZVlyyEYlToT4WG0ndWInaxaie
- ALGeeVGGrlWZU6UA/fPCu5S/vlaoz4rLqJvvAhk6uLbaSFLMJsge
-X-Gm-Gg: ASbGncuwpiIfReWaEB2aVD6wGdHSDCPLeicmNCPMHjfC+6qyi5MGeQLyXpq9Ozz2dyj
- EYWiYWpD6Kfai7g18F+9yeYumE6jKIxxRhzh4EQNS73uDnGwgxHAIyEh1A+E8jLUoBFoAd7PrY0
- Pni+8NyMm6dOGFnsX8OLEZfuqunotfTzW5h+VFEUmSJbzK11wad0tw4ELRV4/Pi7ntq835cXKEh
- Bi6E1FhOrwB3XQFShhRxJAKHhUYH5kINoonLw3uCKsq7+RYOZRedKPmwKwDzA5mKg6YPxXgbAQs
- /JQiKUftE5jYFL88JHFR64fF10wdtVvxFbcfU2AFUs4Br1pqgVG/4zgrmhinI/fZvQTY396M3ry
- slH4Hzt0qV+A=
-X-Google-Smtp-Source: AGHT+IFick/RvCWrsUpCfBaatj0rWffF+kCXlQbfG2Ln6b4jn4SMp+K32TykDwB6VaXqRnxR49uiTQ==
-X-Received: by 2002:a17:902:d4c2:b0:227:eb61:34b8 with SMTP id
- d9443c01a7336-22db3c0e5d8mr12065925ad.25.1745460430909; 
- Wed, 23 Apr 2025 19:07:10 -0700 (PDT)
-Received: from [10.0.2.15] (KD106167137155.ppp-bb.dion.ne.jp.
- [106.167.137.155]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-22db5102548sm1589505ad.168.2025.04.23.19.07.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Apr 2025 19:07:10 -0700 (PDT)
-Message-ID: <5a8f0fc7-a2aa-4554-a603-3537d735dc9f@gmail.com>
-Date: Thu, 24 Apr 2025 11:07:05 +0900
+X-Greylist: delayed 931 seconds by postgrey-1.36 at gabe;
+ Thu, 24 Apr 2025 03:11:21 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A12D110E716
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Apr 2025 03:11:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ZyWGd
+ L4fQntO+YSj4uhZTWjk9DIBPdHQjqeylVNy+pc=; b=LKodL/4w1+PguPYD/a3LM
+ SjgoRzu9HO0CRJT7QC+pduMeRqc/IC5iSvLCYK8vK16Dego7BtrD7pwNObI6ExLH
+ MAuT7PpH+VlN/yHbinMKwsdpkl48RooPbuUhdgmVoq0+ClJ1UynBEXuvV9WloZwf
+ MeFZBi1SkGVYnVqC6BbxAc=
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [])
+ by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id
+ _____wB3U1csqAloHYubCA--.21713S4; 
+ Thu, 24 Apr 2025 10:55:42 +0800 (CST)
+From: Haoxiang Li <haoxiang_li2024@163.com>
+To: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
+ gustavo.sousa@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Haoxiang Li <haoxiang_li2024@163.com>, stable@vger.kernel.org
+Subject: [PATCH v2 RESEND] drm/i915/display: Add check for
+ alloc_ordered_workqueue() and alloc_workqueue()
+Date: Thu, 24 Apr 2025 10:55:39 +0800
+Message-Id: <20250424025539.3504019-1-haoxiang_li2024@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Don't create Python bytecode when building the
- kernel
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: airlied@gmail.com, corbet@lwn.net, dmitry.baryshkov@oss.qualcomm.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
- masahiroy@kernel.org, mchehab+huawei@kernel.org, mripard@kernel.org,
- nathan@kernel.org, nicolas.schier@linux.dev, rodrigo.vivi@intel.com,
- simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
-References: <aAdL7aEcbulV9lsA@smile.fi.intel.com>
- <5cc4d9dd-496e-4512-a683-272b1b84d98b@gmail.com>
- <aAkV6Kl3BX1TmMxl@smile.fi.intel.com>
-Content-Language: en-US
-From: Akira Yokosawa <akiyks@gmail.com>
-In-Reply-To: <aAkV6Kl3BX1TmMxl@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: _____wB3U1csqAloHYubCA--.21713S4
+X-Coremail-Antispam: 1Uf129KBjvJXoWxAF4xGw1xAF18WrykKryfZwb_yoW5Ar1xpw
+ 4fXFyUArW5XFs2kay7Xa18uFyxW3409w15GF1fC3Wqq3WUAw4jg3W0kFyUXryDGF1xXF1f
+ AFWqyF429r1DCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pimhF7UUUUU=
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/1tbiqAQ5bmgJpmBSsgAAs8
 X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:12 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,97 +64,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 23 Apr 2025 19:31:36 +0300, Andy Shevchenko wrote:
-> On Wed, Apr 23, 2025 at 06:30:48PM +0900, Akira Yokosawa wrote:
->> On Tue, 22 Apr 2025 10:57:33 +0300, Andy Shevchenko wrote:
->>> On Mon, Apr 21, 2025 at 10:35:29AM -0600, Jonathan Corbet wrote:
->>>> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> writes:
-> 
-> [...]
-> 
->>>>> Would it be possible to properly support O= and create pyc / pycache
->>>>> inside the object/output dir?
->>>>
->>>> I have to confess, I've been wondering if we should be treating the .pyc
->>>> files like we treat .o files or other intermediate products.  Rather
->>>> than trying to avoid their creation entirely, perhaps we should just be
->>>> sure they end up in the right place and are properly cleaned up...?
->>>>
->>>> To answer Dmitry's question, it seems that setting PYTHONPYCACHEPREFIX
->>>> should do the trick?
->>>
->>> It's not so easy. The Python is written in a way that it thinks it will never
->>> runs object files separately from the source. Hence that variable sets only
->>> the folder per script as _home_ for the cache. It's completely unusable. They
->>> took it wrong. It still can be _painfully_ used, but it will make Makefiles
->>> uglier.
->>
->> But, PYTHONPYCACHEPREFIX can be set as an environment variable.
->>
->> For example, try:
->>
->>     export PYTHONPYCACHEPREFIX="$HOME/.cache/__pycache__"
->>
->> Wouldn't it be good enough for you?
-> 
-> Of course not. We have _many_ scripts in python in kernel and having a cache
-> there for _all_ of them is simply WRONG. You never know what clashes can be
-> there with two complicated enough scripts which may have same module names,
-> etc.
-> 
+Add check for the return value of alloc_ordered_workqueue()
+and alloc_workqueue(). Furthermore, if some allocations fail,
+cleanup works are added to avoid potential memory leak problem.
 
-Interesting...
+Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
+Cc: stable@vger.kernel.org
+Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
+---
+Changes in v2:
+- Split the compound conditional statement into separate
+  conditional statements to facilitate cleanup works.
+- Add cleanup works to destory work queues if allocations fail,
+  and modify the later goto destination to do the full excercise.
+- modify the patch description. Thanks, Jani!
+---
+ .../drm/i915/display/intel_display_driver.c   | 30 +++++++++++++++----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
 
-I'm suspecting you replied without having tried the setting...
-
-FYI, this is an excerpt from list of .pyc files under __pycache__ after
-building defconfig kernel and "make htmldocs"; and running
-
-$ find . -name *.pyc" -print" under ~/.cache/__pycache__
----------------------------------------------------------------------
-./home/.../git/linux/scripts/lib/kdoc/kdoc_files.cpython-312.pyc
-./home/.../git/linux/scripts/lib/kdoc/kdoc_parser.cpython-312.pyc
-./home/.../git/linux/scripts/lib/kdoc/kdoc_re.cpython-312.pyc
-./home/.../git/linux/scripts/lib/kdoc/kdoc_output.cpython-312.pyc
-[...]
-./usr/lib/python3.12/xml/__init__.cpython-312.pyc
-./usr/lib/python3.12/xml/parsers/expat.cpython-312.pyc
-./usr/lib/python3.12/xml/parsers/__init__.cpython-312.pyc
-./usr/lib/python3.12/xml/etree/ElementPath.cpython-312.pyc
-./usr/lib/python3.12/xml/etree/__init__.cpython-312.pyc
-./usr/lib/python3.12/xml/etree/cElementTree.cpython-312.pyc
-./usr/lib/python3.12/xml/etree/ElementTree.cpython-312.pyc
-./usr/lib/python3.12/mimetypes.cpython-312.pyc
-[...]
-./usr/lib/python3/dist-packages/sphinx/deprecation.cpython-312.pyc
-./usr/lib/python3/dist-packages/sphinx/highlighting.cpython-312.pyc
-./usr/lib/python3/dist-packages/sphinx/pycode/ast.cpython-312.pyc
-./usr/lib/python3/dist-packages/sphinx/pycode/__init__.cpython-312.pyc
-./usr/lib/python3/dist-packages/sphinx/pycode/parser.cpython-312.pyc
-./usr/lib/python3/dist-packages/sphinx/config.cpython-312.pyc
-[...]
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/deprecation.cpython-312.pyc
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/highlighting.cpython-312.pyc
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/pycode/ast.cpython-312.pyc
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/pycode/__init__.cpython-312.pyc
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/pycode/parser.cpython-312.pyc
-./home/.../sphinx-WIP/lib/python3.12/site-packages/sphinx/config.cpython-312.pyc
-[...]
--------------------------------------------------------------------------
-
-As you see, each of them are stored at a path corresponding to its original
-.py file.  The final part of the excerpt came from me running in-development
-Sphinx in a python venv with the same PYTHONPYCACHEPREFIX setting.
-
-I don't see any possibility of clashes as you mentioned above, quoting again:
-
->                We have _many_ scripts in python in kernel and having a cache
-> there for _all_ of them is simply WRONG. You never know what clashes can be
-> there with two complicated enough scripts which may have same module names,
-> etc.
-
-Or my imagination might be too limited to see your point ...
-
-Regards,
-Akira
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 31740a677dd8..ac94561715dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -241,31 +241,45 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 	intel_dmc_init(display);
+ 
+ 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
++	if (!display->wq.modeset) {
++		ret = -ENOMEM;
++		goto cleanup_vga_client_pw_domain_dmc;
++	}
++
+ 	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
+ 						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
++	if (!display->wq.flip) {
++		ret = -ENOMEM;
++		goto cleanup_wq_modeset;
++	}
++
+ 	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
++	if (!display->wq.cleanup) {
++		ret = -ENOMEM;
++		goto cleanup_wq_flip;
++	}
+ 
+ 	intel_mode_config_init(display);
+ 
+ 	ret = intel_cdclk_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_color_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_dbuf_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_bw_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	ret = intel_pmdemand_init(display);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_dmc;
++		goto cleanup_wq_cleanup;
+ 
+ 	intel_init_quirks(display);
+ 
+@@ -273,6 +287,12 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 
+ 	return 0;
+ 
++cleanup_wq_cleanup:
++	destroy_workqueue(display->wq.cleanup);
++cleanup_wq_flip:
++	destroy_workqueue(display->wq.flip);
++cleanup_wq_modeset:
++	destroy_workqueue(display->wq.modeset);
+ cleanup_vga_client_pw_domain_dmc:
+ 	intel_dmc_fini(display);
+ 	intel_power_domains_driver_remove(display);
+-- 
+2.25.1
 
