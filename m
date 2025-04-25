@@ -2,52 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B676DA9D128
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7BAA9D129
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:08:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2BA110E9A2;
-	Fri, 25 Apr 2025 19:08:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF0E10E9A3;
+	Fri, 25 Apr 2025 19:08:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="LKodL/4w";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="HG0avtgt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 931 seconds by postgrey-1.36 at gabe;
- Thu, 24 Apr 2025 03:11:21 UTC
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
- by gabe.freedesktop.org (Postfix) with ESMTP id A12D110E716
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Apr 2025 03:11:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ZyWGd
- L4fQntO+YSj4uhZTWjk9DIBPdHQjqeylVNy+pc=; b=LKodL/4w1+PguPYD/a3LM
- SjgoRzu9HO0CRJT7QC+pduMeRqc/IC5iSvLCYK8vK16Dego7BtrD7pwNObI6ExLH
- MAuT7PpH+VlN/yHbinMKwsdpkl48RooPbuUhdgmVoq0+ClJ1UynBEXuvV9WloZwf
- MeFZBi1SkGVYnVqC6BbxAc=
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [])
- by gzga-smtp-mtada-g0-3 (Coremail) with SMTP id
- _____wB3U1csqAloHYubCA--.21713S4; 
- Thu, 24 Apr 2025 10:55:42 +0800 (CST)
-From: Haoxiang Li <haoxiang_li2024@163.com>
-To: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
- gustavo.sousa@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Haoxiang Li <haoxiang_li2024@163.com>, stable@vger.kernel.org
-Subject: [PATCH v2 RESEND] drm/i915/display: Add check for
- alloc_ordered_workqueue() and alloc_workqueue()
-Date: Thu, 24 Apr 2025 10:55:39 +0800
-Message-Id: <20250424025539.3504019-1-haoxiang_li2024@163.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D09E10E8A0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 07:36:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1745566590; x=1745825790;
+ bh=pzB+ULPjZJoXWNCIbG47lG7lxSlV7q022ronMCkd2Co=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
+ List-Unsubscribe:List-Unsubscribe-Post;
+ b=HG0avtgtjX1JJplmZ2W+xPmQcxNkKBLhOg5j0EHiybAfRtWMWBmgyWc7J+sACxz0L
+ R9lHs89Py8lV2OveRBpvGfGmn1ttoBTbngs99N0ue/vD1CIvGJkuRZiIzoijQWelRa
+ rDwXt1bv3YIzoUcegnBYrd/pYq9y9p2t1yyo4bGMPp1yp3QT/W4uUwdprHofNPAHpk
+ LWRtYy2cZfFCmffg2nHgSL4+ihoF4XeEBpPij3zWLHNSlH4hw8CNjpkff1U8P8oFQG
+ Moewtq6Rp9sB6j63t+9HQU0VZr8Q101D7BO0QEPsDJ++uSbQtdCkMhuBIzow/xHe13
+ UBPlHVw22Vu3w==
+Date: Fri, 25 Apr 2025 07:36:23 +0000
+To: intel-xe@lists.freedesktop.org
+From: Harry Austen <hpausten@protonmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Harry Austen <hpausten@protonmail.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH v2] drm/xe: Allow building as kernel built-in
+Message-ID: <20250425073534.101976-1-hpausten@protonmail.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: d1dccf1a1237e941559f5aa11cd9a2ed1b6e14c6
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wB3U1csqAloHYubCA--.21713S4
-X-Coremail-Antispam: 1Uf129KBjvJXoWxAF4xGw1xAF18WrykKryfZwb_yoW5Ar1xpw
- 4fXFyUArW5XFs2kay7Xa18uFyxW3409w15GF1fC3Wqq3WUAw4jg3W0kFyUXryDGF1xXF1f
- AFWqyF429r1DCF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pimhF7UUUUU=
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: xkdr5xpdqjszblsqjki6rwjhhfrp/1tbiqAQ5bmgJpmBSsgAAs8
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 25 Apr 2025 19:08:12 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,92 +58,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add check for the return value of alloc_ordered_workqueue()
-and alloc_workqueue(). Furthermore, if some allocations fail,
-cleanup works are added to avoid potential memory leak problem.
+Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+too.
 
-Fixes: 40053823baad ("drm/i915/display: move modeset probe/remove functions to intel_display_driver.c")
-Cc: stable@vger.kernel.org
-Signed-off-by: Haoxiang Li <haoxiang_li2024@163.com>
----
-Changes in v2:
-- Split the compound conditional statement into separate
-  conditional statements to facilitate cleanup works.
-- Add cleanup works to destory work queues if allocations fail,
-  and modify the later goto destination to do the full excercise.
-- modify the patch description. Thanks, Jani!
----
- .../drm/i915/display/intel_display_driver.c   | 30 +++++++++++++++----
- 1 file changed, 25 insertions(+), 5 deletions(-)
+Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+isn't, since that results in duplicate symbol errors.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 31740a677dd8..ac94561715dc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -241,31 +241,45 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	intel_dmc_init(display);
- 
- 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
-+	if (!display->wq.modeset) {
-+		ret = -ENOMEM;
-+		goto cleanup_vga_client_pw_domain_dmc;
-+	}
-+
- 	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
- 						WQ_UNBOUND, WQ_UNBOUND_MAX_ACTIVE);
-+	if (!display->wq.flip) {
-+		ret = -ENOMEM;
-+		goto cleanup_wq_modeset;
-+	}
-+
- 	display->wq.cleanup = alloc_workqueue("i915_cleanup", WQ_HIGHPRI, 0);
-+	if (!display->wq.cleanup) {
-+		ret = -ENOMEM;
-+		goto cleanup_wq_flip;
-+	}
- 
- 	intel_mode_config_init(display);
- 
- 	ret = intel_cdclk_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_color_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_dbuf_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_bw_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	ret = intel_pmdemand_init(display);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_dmc;
-+		goto cleanup_wq_cleanup;
- 
- 	intel_init_quirks(display);
- 
-@@ -273,6 +287,12 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	return 0;
- 
-+cleanup_wq_cleanup:
-+	destroy_workqueue(display->wq.cleanup);
-+cleanup_wq_flip:
-+	destroy_workqueue(display->wq.flip);
-+cleanup_wq_modeset:
-+	destroy_workqueue(display->wq.modeset);
- cleanup_vga_client_pw_domain_dmc:
- 	intel_dmc_fini(display);
- 	intel_power_domains_driver_remove(display);
--- 
-2.25.1
+Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Harry Austen <hpausten@protonmail.com>
+---
+v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+
+ drivers/gpu/drm/xe/Kconfig | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 9bce047901b22..bc63c396d7fef 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_XE
+ =09tristate "Intel Xe Graphics"
+-=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
++=09depends on DRM && PCI && MMU && (m || (y && KUNIT!=3Dm))
+ =09select INTERVAL_TREE
+ =09# we need shmfs for the swappable backing store, and in particular
+ =09# the shmem_readpage() which depends upon tmpfs
+@@ -51,7 +51,7 @@ config DRM_XE
+=20
+ config DRM_XE_DISPLAY
+ =09bool "Enable display support"
+-=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
++=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+ =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+ =09select I2C
+ =09select I2C_ALGOBIT
+--=20
+2.49.0
+
 
