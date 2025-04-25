@@ -2,69 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E847A9C1E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF526A9C24D
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:54:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3D0F10E8D1;
-	Fri, 25 Apr 2025 08:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7828210E8DA;
+	Fri, 25 Apr 2025 08:54:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGtzMlES";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Yq49QPNm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED1410E8D1;
- Fri, 25 Apr 2025 08:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745570922; x=1777106922;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Z6Vt1Z3I1guU2hYZHvh38GC960N/SVGBXhEuV6XKHd8=;
- b=HGtzMlES7d5tFzWtLJnN5Wunrq2q7xQMa4EMJexVJLU6T8+LGMkLtO/4
- vcHHMzpRpuLr+85GyV0/7BLSuplsmM6Rd4hSfLBerT2DhFEpjUq45alIn
- CptVgHjF0hNmKJ4AFwnSyENnoGhFx97Q5W4atwrMlvd7YDc/wqf/9CadL
- j6teJyHhc1q3VWutm9L6uqdjAQzVBHHmly2l27VWBHXynM5iAMkkftxhZ
- cwfQSJRcyPheXXwPrYyusJ2j9snOd54k+6meFwX+596hSUaepzW5AkLP+
- XzI6CyhfrDEiiF/ZYsMEgG8IuFIc8ONavzJ6y2LW1p1uaXcLGlerCdE3h w==;
-X-CSE-ConnectionGUID: BuBavXynQHOAsHJgjcT8TQ==
-X-CSE-MsgGUID: +CrutbDHQjCTlf4Fx5hqwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11413"; a="51047838"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="51047838"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 01:48:42 -0700
-X-CSE-ConnectionGUID: vre/oGHZT5aTBp+dRxeO/Q==
-X-CSE-MsgGUID: ZPjFH3Z0Tne3nrt8JpseLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="132741259"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.83])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 01:48:35 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Paul E. McKenney" <paulmck@kernel.org>, linux-kernel@vger.kernel.org
-Cc: kernel-team@meta.com, Andrew Morton <akpm@linux-foundation.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>, Mateusz Guzik <mjguzik@gmail.com>,
- Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>, John
- Ogness <john.ogness@linutronix.de>, Sergey Senozhatsky
- <senozhatsky@chromium.org>, Jon Pan-Doh <pandoh@google.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Karolina Stolarek <karolina.stolarek@oracle.com>,
- "Paul E. McKenney" <paulmck@kernel.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 04/20] drm/i915: Avoid open-coded use of
- ratelimit_state structure's ->missed field
-In-Reply-To: <20250425002826.3431914-4-paulmck@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <72ee57b8-9e2a-4cad-aaa0-1e3353d146d8@paulmck-laptop>
- <20250425002826.3431914-4-paulmck@kernel.org>
-Date: Fri, 25 Apr 2025 11:48:31 +0300
-Message-ID: <87selwy6cg.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0916310E8D9;
+ Fri, 25 Apr 2025 08:54:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 501615C64A0;
+ Fri, 25 Apr 2025 08:52:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 993C5C4CEE4;
+ Fri, 25 Apr 2025 08:54:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1745571284;
+ bh=byos0KBTq/TSuKpnONmQSZ/S7MqfhwZ6bkrEWjklef8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Yq49QPNm8JISyJIWA2gTjzx9WngHH+jHBnH+w++QZ4pLMPSVcKMh0Ut10d2/xzj7u
+ DHBPjAgGLWsLqEba9tvqZ60cDvalmVmpUC0shPA/dfsmSMelBP/17e4an3ddQJxLZJ
+ 9PVdU9hqvVyqjF91HUSMPadBgv/Yy/GhiJNOEpJpM3Mg6f52UlfpguAqQzY1o/b7FV
+ yESvey9PKaic4QrnwGUnY/tD+pTwnEQluFLVZqjr3akxgz2J33cQ+0+zVzRf3kNL6S
+ G6eKTst6v2EoKA75j2SpeC2gRocKxR7Ua0Um4vA9GT+1140PqAUvt/5qTml+9HmhFO
+ Rt5+CrLgQldkA==
+Date: Fri, 25 Apr 2025 10:54:35 +0200
+From: Ingo Molnar <mingo@kernel.org>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
+Subject: Re: [PATCH v1 00/11] mm: rewrite pfnmap tracking and remove VM_PAT
+Message-ID: <aAtNy6VjUvOrOC7r@gmail.com>
+References: <20250425081715.1341199-1-david@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250425081715.1341199-1-david@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,61 +76,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 24 Apr 2025, "Paul E. McKenney" <paulmck@kernel.org> wrote:
-> The i915_oa_stream_destroy() function directly accesses the
-> ratelimit_state structure's ->missed field, which work, but which also
-> makes it more difficult to change this field.  Therefore, make use of
-> the ratelimit_state_get_miss() function instead of directly accessing
-> the ->missed field.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+* David Hildenbrand <david@redhat.com> wrote:
 
-For merging via whichever tree is convenient for you. Please let us know
-if you want us to pick it up via drm-intel.
+> On top of mm-unstable.
+> 
+> VM_PAT annoyed me too much and wasted too much of my time, let's clean
+> PAT handling up and remove VM_PAT.
+> 
+> This should sort out various issues with VM_PAT we discovered recently,
+> and will hopefully make the whole code more stable and easier to maintain.
+> 
+> In essence: we stop letting PAT mode mess with VMAs and instead lift
+> what to track/untrack to the MM core. We remember per VMA which pfn range
+> we tracked in a new struct we attach to a VMA (we have space without
+> exceeding 192 bytes), use a kref to share it among VMAs during
+> split/mremap/fork, and automatically untrack once the kref drops to 0.
 
->
-> Link: https://lore.kernel.org/all/fbe93a52-365e-47fe-93a4-44a44547d601@paulmck-laptop/
-> Link: https://lore.kernel.org/all/20250423115409.3425-1-spasswolf@web.de/
-> Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
-> Reviewed-by: Petr Mladek <pmladek@suse.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: <intel-gfx@lists.freedesktop.org>
-> Cc: <dri-devel@lists.freedesktop.org>
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index de0b413600a15..1658f1246c6fa 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -1666,6 +1666,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
->  	struct i915_perf *perf = stream->perf;
->  	struct intel_gt *gt = stream->engine->gt;
->  	struct i915_perf_group *g = stream->engine->oa_group;
-> +	int m;
->  
->  	if (WARN_ON(stream != g->exclusive_stream))
->  		return;
-> @@ -1690,10 +1691,9 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
->  	free_oa_configs(stream);
->  	free_noa_wait(stream);
->  
-> -	if (perf->spurious_report_rs.missed) {
-> -		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n",
-> -			  perf->spurious_report_rs.missed);
-> -	}
-> +	m = ratelimit_state_get_miss(&perf->spurious_report_rs);
-> +	if (m)
-> +		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n", m);
->  }
->  
->  static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
+Yay!
 
--- 
-Jani Nikula, Intel
+The extra pointer in vm_area_struct is a small price to pay IMHO.
+
+> This implies that we'll keep tracking a full pfn range even after partially
+> unmapping it, until fully unmapping it; but as that case was mostly broken
+> before, this at least makes it work in a way that is least intrusive to
+> VMA handling.
+> 
+> Shrinking with mremap() used to work in a hacky way, now we'll similarly
+> keep the original pfn range tacked even after this form of partial unmap.
+> Does anybody care about that? Unlikely. If we run into issues, we could
+> likely handled that (adjust the tracking) when our kref drops to 1 while
+> freeing a VMA. But it adds more complexity, so avoid that for now.
+> 
+> Briefly tested
+> 
+> There will be some clash with [1], but nothing that cannot be sorted out
+> easily by moving the functions added to kernel/fork.c to wherever the vma
+> bits will live.
+> 
+> Briefly tested with some basic /dev/mem test I crafted. I want to convert
+> them to selftests, but that might or might not require a bit of
+> more work (e.g., /dev/mem accessibility).
+
+So for the x86 bits, once it passes review by the fine MM folks:
+
+  Acked-by: Ingo Molnar <mingo@kernel.org>
+
+And I suppose this rewrite will be carried in -mm?
+
+Thanks,
+
+	Ingo
