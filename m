@@ -2,75 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61805A9C0B2
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:17:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058DEA9C0B4
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 436DB10E8C9;
-	Fri, 25 Apr 2025 08:17:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7936F10E8BD;
+	Fri, 25 Apr 2025 08:17:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="h/JKD8sN";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bQ4LT7Aw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04AD810E8C8
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 08:17:39 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C94310E8D7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 08:17:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745569059;
+ s=mimecast20190719; t=1745569061;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=LXejfGAknVxklqhHCW/V9liutcQQAQcJcrhEqzVyY78=;
- b=h/JKD8sNeMheMSLSli8r2DtuVz2osJDmqHn4tk0QHZjzo89VqusVQPqDzpLyzSO/whL7yC
- lyFrkJsr0RH6A5/zv3WaimApKLGcHlRcfxRQ9GdMyF+WEiF8V5kVSAETlmtSWsKJa0W0Yt
- yDI61RNXErmv91E2TjCMdwWx1t+BfrA=
+ bh=rqCDzyJE3N7q1dfRPTJIKewHsgjJcYj+B7llEZA1rCc=;
+ b=bQ4LT7AwLAyp+GymBcgrzB1KEPSTOrTBjzh7//b8kM+1yZyoPtY+WszSunzZvU1IWlKQeT
+ fvaU30jLkvdv/3JBRgqx5KEy9qBMA8XBXdKIg8XQ/CAKnjV/Xn1eH7ZRb1EWkL7fCXQGmL
+ 4whdAxWJEsmoKJzeGo/LVLeEIjTVtKA=
 Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
  [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-213-YMJ2xWMRPfe-8BX1o6ZjGQ-1; Fri, 25 Apr 2025 04:17:37 -0400
-X-MC-Unique: YMJ2xWMRPfe-8BX1o6ZjGQ-1
-X-Mimecast-MFC-AGG-ID: YMJ2xWMRPfe-8BX1o6ZjGQ_1745569056
+ us-mta-386-cciqr7LEOYSOYMycC6ot9A-1; Fri, 25 Apr 2025 04:17:40 -0400
+X-MC-Unique: cciqr7LEOYSOYMycC6ot9A-1
+X-Mimecast-MFC-AGG-ID: cciqr7LEOYSOYMycC6ot9A_1745569059
 Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-39d917b105bso999046f8f.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 01:17:37 -0700 (PDT)
+ ffacd0b85a97d-3912fe32b08so817861f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 01:17:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745569056; x=1746173856;
+ d=1e100.net; s=20230601; t=1745569059; x=1746173859;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=LXejfGAknVxklqhHCW/V9liutcQQAQcJcrhEqzVyY78=;
- b=aiCccjb4keln4rEBk/LjfSN/wfq6x/DlW8tvuiyx6c/N/zITKLgjd0/q1SpZpHIxPT
- 69LYfVryw3vpah/V2Hm0fOQB2ZC9HX/4VkM73dx61ooWB6tlTv2WafUTmzQHsIQta305
- /KLo9eQX3KwKYGpxwCoITa6JXKzgte8Boj+snaCSVXJUgAo/+8IZLEZ//y9JpMa4QFS6
- 3ADDcpRBQSywU+iBxvK5mdYXMsqzqWf93kgwLAsDAXPTeuCXObIyKP3vxcx1gCYcwhDw
- HWggBZw6sBfTGr84PF8D3DdLMJW8waKkRkeLoM2wwRjtkhBFnMY80ScGmHwj5HjHPFuc
- wIdA==
+ bh=rqCDzyJE3N7q1dfRPTJIKewHsgjJcYj+B7llEZA1rCc=;
+ b=AdCBXoqTq1XN0tBMELmEblsa7a5KphU8kwT/Tt4JU/kv0IvCB5RyT/UvJ0ixirlEa3
+ +9NMrlCBuXgL1Gsv6+CrjOzNPQP9NZn/QtqL9huQvOABbOxhM5umsrGszYSOFq+rQYR5
+ 9SdcAwcUt1DmkxRLbc5zv9LEq76Me/jriG33LENXYiWam10gGJY3ZLDRSyDSjYKcDpfO
+ yM45fvBplWptmYfLHvprYx7oVOKBG6ZwfrbJJ3hFtDqSWrJAdTMPNOSEaFeHIiVjT+qW
+ jm14l+qUEAsQjJdy3cmCpTy0Ubo+VrTsHJXFcC/QE7Lw+oOuVjDezicdTYeOwFdb2gEc
+ pcuA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXZqXwesueyEW3yqfgc3OzKkaow645KaywRqWqG5K4Ln2vUn+CAKWc9jSfX9wx0F1aKmha65PULnGs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz3Q4Ps2QE01bBUsM+nU2suJeJYRNTCPzufM4NWvL0mFiXFJSjV
- EuetkKyNKxM3PfPaPeU380OsLTWA6tDtQ8mQr2lfu6XVBHacx67yfnpfukMf5M7qlXJJomaudWj
- 7PVdh3CmXxfLpzxyEPqm5HS2KPoFtcp54HzMg8MRJ2ktl4LNJS7ONbl2amWXpwuEMuw==
-X-Gm-Gg: ASbGncumrtDbsOC1nSNZ+zIf1T+h6HCRLn24aE2K66FqcSbIA6nh5aI/QJ+VGpJprh2
- ePw1FIY00uVpMRr2JrY9bswIG3et9RvR1t+Wg6hvkG4W/iWmlGRaHXfNQx5keRncNkLChTWjN5H
- YdTnoI6TLxtlfzEn3w5meClSC7RGu1CeCLeYKY1MOMy5sdbDs4h7T8HWlOBfGrU5S5zh9nKCO6G
- GTL89H4zvGt6m3RyDmBR+qWRyWfQjV6b0ytjoP5MBy/z3bZlfuX4BiySPqjCJ7Sx3KPOK1ygWQx
- JV+xA8M1L//jumhBrnWSkGoUFSrCffeRmiIOA1n2IqB1m7sw42zUjeq7uzhTqdjSc9Qd3Wk=
-X-Received: by 2002:a05:6000:4028:b0:391:2c0c:1247 with SMTP id
- ffacd0b85a97d-3a074e0e4d1mr832134f8f.1.1745569056470; 
- Fri, 25 Apr 2025 01:17:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEU1X+NuNfEcvtfeCEnq/l8/EdxH0+aUnwVbo8Kq4KyW0RucKtS6876psW/EjwOajf1KdVRgA==
-X-Received: by 2002:a05:6000:4028:b0:391:2c0c:1247 with SMTP id
- ffacd0b85a97d-3a074e0e4d1mr832108f8f.1.1745569056044; 
- Fri, 25 Apr 2025 01:17:36 -0700 (PDT)
+ AJvYcCXTwdTbVpJngjCdJhBWz3ep7XujH8jNRPdFUJqlqbqpT3xbfqf5lKeWV3ywqAINnT0knnT28GfXNuY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFW0wDA8LBsIIg6++tBm1HPjlexviMr2WXU1yQA+5JXAyvw2zQ
+ c0NfGAo5IAfwds5VUJaRLdRPhuXtV/JOFFMyANMt8HTW+rnDy7olJn+l+4rHC13LJBAB3erZU0T
+ PVavZHnEghWnux7sT+FsRnwYbVSRJa14X0l/Unj6ZYnCngFYlXD8ctNLVttGa2EdI0w==
+X-Gm-Gg: ASbGncsemPZJTEl+lgMrQ9N87htK4y7v+ZqDNGiGWYodYKfEfK6PJ0zHxcj/sU9zNDG
+ KliboyIy13d8D+QCggtM2XQoXCZuWbMrke0nTeExP8NjyPtXoyZqsivikclXvF2ZX5IeUBASy76
+ dQHmsJvaMVdC/ihoK+wfIE4kVvElokcR2eorrbX5mEXwam8NhiSliL/UcR/cnnF+YLyZ3Aox7t5
+ HwgzfqUECo1Tezh6NCuezEMCAyrhQvB8G3SUHiRvsByalNlRmUGLm63ZIBGmpubep2N/zznrBwN
+ boFiAc1aYx+DhnXeI4unfuyTCCMuuF/g0Gq5GKTyyQXYwPOzXPu83bvd1jUyQvbkX3iKBtg=
+X-Received: by 2002:a05:6000:4026:b0:38d:badf:9df5 with SMTP id
+ ffacd0b85a97d-3a074e1e7c1mr893873f8f.17.1745569059279; 
+ Fri, 25 Apr 2025 01:17:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEeMJVro3CtNN/nAt/kzydgqpqMLMz4QDAdVYj55uYz4S+yOKx9n2ojCFKF9ThYiE7nLuy7NA==
+X-Received: by 2002:a05:6000:4026:b0:38d:badf:9df5 with SMTP id
+ ffacd0b85a97d-3a074e1e7c1mr893849f8f.17.1745569058900; 
+ Fri, 25 Apr 2025 01:17:38 -0700 (PDT)
 Received: from localhost
  (p200300cbc70f69006c5680f80c146d2a.dip0.t-ipconnect.de.
  [2003:cb:c70f:6900:6c56:80f8:c14:6d2a])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3a073ca52e5sm1657353f8f.36.2025.04.25.01.17.34
+ 5b1f17b1804b1-4408d8d191bsm78695765e9.1.2025.04.25.01.17.36
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Apr 2025 01:17:35 -0700 (PDT)
+ Fri, 25 Apr 2025 01:17:38 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
@@ -92,16 +92,15 @@ Cc: linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
  Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
-Subject: [PATCH v1 08/11] x86/mm/pat: remove strict_prot parameter from
- reserve_pfn_range()
-Date: Fri, 25 Apr 2025 10:17:12 +0200
-Message-ID: <20250425081715.1341199-9-david@redhat.com>
+Subject: [PATCH v1 09/11] x86/mm/pat: remove MEMTYPE_*_MATCH
+Date: Fri, 25 Apr 2025 10:17:13 +0200
+Message-ID: <20250425081715.1341199-10-david@redhat.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250425081715.1341199-1-david@redhat.com>
 References: <20250425081715.1341199-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: xmdJv2UwvtBKYo_mrkT8MOeB9xZCjOwqE3uOP4WKZHY_1745569056
+X-Mimecast-MFC-PROC-ID: Bh3oJAUR4thfdc52RX5swsIxCfo3Vm9-5DCt16l5GP8_1745569059
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -120,57 +119,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Always set to 0, so let's remove it.
+The "memramp() shrinking" scenario no longer applies, so let's remove
+that now-unnecessary handling.
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- arch/x86/mm/pat/memtype.c | 12 +++---------
- 1 file changed, 3 insertions(+), 9 deletions(-)
+ arch/x86/mm/pat/memtype_interval.c | 44 ++++--------------------------
+ 1 file changed, 6 insertions(+), 38 deletions(-)
 
-diff --git a/arch/x86/mm/pat/memtype.c b/arch/x86/mm/pat/memtype.c
-index 668ebf0065157..57e3ced4c28cb 100644
---- a/arch/x86/mm/pat/memtype.c
-+++ b/arch/x86/mm/pat/memtype.c
-@@ -858,8 +858,7 @@ int memtype_kernel_map_sync(u64 base, unsigned long size,
-  * Reserved non RAM regions only and after successful memtype_reserve,
-  * this func also keeps identity mapping (if any) in sync with this new prot.
-  */
--static int reserve_pfn_range(u64 paddr, unsigned long size, pgprot_t *vma_prot,
--				int strict_prot)
-+static int reserve_pfn_range(u64 paddr, unsigned long size, pgprot_t *vma_prot)
- {
- 	int is_ram = 0;
- 	int ret;
-@@ -895,8 +894,7 @@ static int reserve_pfn_range(u64 paddr, unsigned long size, pgprot_t *vma_prot,
- 		return ret;
+diff --git a/arch/x86/mm/pat/memtype_interval.c b/arch/x86/mm/pat/memtype_interval.c
+index 645613d59942a..9d03f0dbc4715 100644
+--- a/arch/x86/mm/pat/memtype_interval.c
++++ b/arch/x86/mm/pat/memtype_interval.c
+@@ -49,26 +49,15 @@ INTERVAL_TREE_DEFINE(struct memtype, rb, u64, subtree_max_end,
  
- 	if (pcm != want_pcm) {
--		if (strict_prot ||
--		    !is_new_memtype_allowed(paddr, size, want_pcm, pcm)) {
-+		if (!is_new_memtype_allowed(paddr, size, want_pcm, pcm)) {
- 			memtype_free(paddr, paddr + size);
- 			pr_err("x86/PAT: %s:%d map pfn expected mapping type %s for [mem %#010Lx-%#010Lx], got %s\n",
- 			       current->comm, current->pid,
-@@ -906,10 +904,6 @@ static int reserve_pfn_range(u64 paddr, unsigned long size, pgprot_t *vma_prot,
- 			       cattr_name(pcm));
- 			return -EINVAL;
- 		}
--		/*
--		 * We allow returning different type than the one requested in
--		 * non strict case.
--		 */
- 		pgprot_set_cachemode(vma_prot, pcm);
+ static struct rb_root_cached memtype_rbroot = RB_ROOT_CACHED;
+ 
+-enum {
+-	MEMTYPE_EXACT_MATCH	= 0,
+-	MEMTYPE_END_MATCH	= 1
+-};
+-
+-static struct memtype *memtype_match(u64 start, u64 end, int match_type)
++static struct memtype *memtype_match(u64 start, u64 end)
+ {
+ 	struct memtype *entry_match;
+ 
+ 	entry_match = interval_iter_first(&memtype_rbroot, start, end-1);
+ 
+ 	while (entry_match != NULL && entry_match->start < end) {
+-		if ((match_type == MEMTYPE_EXACT_MATCH) &&
+-		    (entry_match->start == start) && (entry_match->end == end))
+-			return entry_match;
+-
+-		if ((match_type == MEMTYPE_END_MATCH) &&
+-		    (entry_match->start < start) && (entry_match->end == end))
++		if (entry_match->start == start && entry_match->end == end)
+ 			return entry_match;
+-
+ 		entry_match = interval_iter_next(entry_match, start, end-1);
  	}
  
-@@ -959,7 +953,7 @@ int pfnmap_track(unsigned long pfn, unsigned long size, pgprot_t *prot)
+@@ -132,32 +121,11 @@ struct memtype *memtype_erase(u64 start, u64 end)
  {
- 	const resource_size_t paddr = (resource_size_t)pfn << PAGE_SHIFT;
+ 	struct memtype *entry_old;
  
--	return reserve_pfn_range(paddr, size, prot, 0);
-+	return reserve_pfn_range(paddr, size, prot);
+-	/*
+-	 * Since the memtype_rbroot tree allows overlapping ranges,
+-	 * memtype_erase() checks with EXACT_MATCH first, i.e. free
+-	 * a whole node for the munmap case.  If no such entry is found,
+-	 * it then checks with END_MATCH, i.e. shrink the size of a node
+-	 * from the end for the mremap case.
+-	 */
+-	entry_old = memtype_match(start, end, MEMTYPE_EXACT_MATCH);
+-	if (!entry_old) {
+-		entry_old = memtype_match(start, end, MEMTYPE_END_MATCH);
+-		if (!entry_old)
+-			return ERR_PTR(-EINVAL);
+-	}
+-
+-	if (entry_old->start == start) {
+-		/* munmap: erase this node */
+-		interval_remove(entry_old, &memtype_rbroot);
+-	} else {
+-		/* mremap: update the end value of this node */
+-		interval_remove(entry_old, &memtype_rbroot);
+-		entry_old->end = start;
+-		interval_insert(entry_old, &memtype_rbroot);
+-
+-		return NULL;
+-	}
++	entry_old = memtype_match(start, end);
++	if (!entry_old)
++		return ERR_PTR(-EINVAL);
+ 
++	interval_remove(entry_old, &memtype_rbroot);
+ 	return entry_old;
  }
  
- void pfnmap_untrack(unsigned long pfn, unsigned long size)
 -- 
 2.49.0
 
