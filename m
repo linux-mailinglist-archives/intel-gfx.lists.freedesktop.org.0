@@ -2,152 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05445A9C360
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 11:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0FDA9C41F
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 11:50:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6D610E2FA;
-	Fri, 25 Apr 2025 09:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C790810E0DF;
+	Fri, 25 Apr 2025 09:50:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O2tgU9sJ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fqZHBmsL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7FD410E8DD
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 09:27:06 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F81C10E0DF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 09:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745573225;
+ s=mimecast20190719; t=1745574621;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=8eqLytJIQY/pnCK/wv0GRjy/uV2gVRfHwFR8LZ6llRk=;
- b=O2tgU9sJJMmRZ/OVQu/dRQCeNcEfyxXcTn4cnIj/D5GymwUM23O6OXINdXljLNMdzsIONW
- 2QVCiOFT/cqOhAt/tIeLP871+YTwrtuqlWvlCax/zc2E7frOAmVan1tD8wceJVP67VdoFq
- NYCADOFDViFCAMmnsAvsv4CZksGh1NM=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-455-9TyEXbwIN4GmIbDS08YCZQ-1; Fri, 25 Apr 2025 05:27:04 -0400
-X-MC-Unique: 9TyEXbwIN4GmIbDS08YCZQ-1
-X-Mimecast-MFC-AGG-ID: 9TyEXbwIN4GmIbDS08YCZQ_1745573223
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-43efa869b19so11230205e9.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 02:27:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745573223; x=1746178023;
- h=content-transfer-encoding:in-reply-to:organization:autocrypt
- :content-language:from:references:cc:to:subject:user-agent
- :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=8eqLytJIQY/pnCK/wv0GRjy/uV2gVRfHwFR8LZ6llRk=;
- b=o7/HuPP7vWcl94bAU6cmrbsMjbKdYOhFPA6wx6J1de6R/O9anOkDh+BD/HIgwCzlws
- HVwaoUIGZVkx63bM0sjCufgJOAQKp63RtUkSFqnvSQt1+l8C+HD2jJ7Vmd4nGG4QRuFk
- kuld/VodAix4dlswNFXrWdHokk+OJ/u6/txw8ekjqT/d8R0tZ2Y4TOBO69pYSDX4GD6M
- BkW46YlTdgb+1p7cDtCmcEBxTTiMQAHPLZiKoankw5VU+2tyqHkSPWoJqog+UbyBUjpx
- 37OQxCEgwFWrcrC8RmO9r65GVoIix3Or3e7CA+3AenitPBC0cjdzzP7lk8g5D/Sgf/sa
- blYQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXqDwZvBramKWqvNLBOHImHFFr3XvSAhMAfpWbTZ6ZxYnRzA5hb/4AyBKG8Fyl39mppv/KyYb/hhxA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx70OKDAX/FgB+o3pFNiu1K+IOtdY/STiZc9wn5Tb2Uvr2/mUf+
- 0guvQUcctJJxYG6YujZJH/C166PjN5x4o1erYS9OvpJxFjIjxb6t3N5RmZRTm8E/pkyMtUW1Qnx
- TU7vSkNgCrAkhpePQuPGnjGL5arTat8/JkRC/XDgBtRfl//6bRvNSMjxA+IjwfOGDVA==
-X-Gm-Gg: ASbGncvJ1zD2mJU+Fba7aaXKUVNpWYu1ZsNw+ibd/YXk/E2aJKvHFkqJTJwTg+TfDXK
- axGUxjL6MAS1xZewqYLaNJ7Ph22nt33f4Ff+qIIu2/zGvhq9EuSODiw5itLJv42YW8wf2Gq66tG
- 6umqkCve5S3SOSApBQjC0TZbuIo4BowwAMgyb6HoBF28uzQY79H73Fe+8G+i7HlBvjivd6ibgqk
- dSw1N/nPvQfGavOK2cxQCZ+KfpyVLlTPY93Q+tJXhRwCtqx11iVeiEVPARIOce/U6ZqdPc0CDvC
- C9tdJeEwa1P2AMciKpAjFtUkKYb4L7RuTIw3v/7JWA==
-X-Received: by 2002:a05:600c:1f82:b0:43d:b85:1831 with SMTP id
- 5b1f17b1804b1-440a6347ff9mr13026465e9.0.1745573222954; 
- Fri, 25 Apr 2025 02:27:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFY7LbS9YRQ5wCXB84Jy7eT6u2rOjZc7kKIwIhV5LjW+hBQBfoI1k6U1ecprzUpbxRl2y0xrg==
-X-Received: by 2002:a05:600c:1f82:b0:43d:b85:1831 with SMTP id
- 5b1f17b1804b1-440a6347ff9mr13026355e9.0.1745573222548; 
- Fri, 25 Apr 2025 02:27:02 -0700 (PDT)
-Received: from [192.168.3.141] (p4ff23df8.dip0.t-ipconnect.de. [79.242.61.248])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-440a52f8915sm18804175e9.7.2025.04.25.02.27.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Apr 2025 02:27:02 -0700 (PDT)
-Message-ID: <c69f782b-798d-459d-b7fb-c2d7c7e30372@redhat.com>
-Date: Fri, 25 Apr 2025 11:27:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 00/11] mm: rewrite pfnmap tracking and remove VM_PAT
-To: Ingo Molnar <mingo@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-trace-kernel@vger.kernel.org, Dave Hansen
- <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ content-transfer-encoding:content-transfer-encoding;
+ bh=WbO8sDKR1DYgNfD0PC4T5pYoJ24jGI0MZMOqn7zpeAc=;
+ b=fqZHBmsLMVRPwwFIUmKws6GjW44AGHL7xd9qJGpCfaEkbyEqV1H0voC/2j2of0cUvrAfDo
+ n2O49sJpHdw1wl00gIaXZfXpMVkhOt1n+jKMnbihaJu+WOnv3CJpyoFc83A+hOQgEcBlaV
+ /po5Rxkme+fUocXhY2m6rUj3G9AxfNY=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-472-bwYedG-9MYqo-s-gtvjDmw-1; Fri,
+ 25 Apr 2025 05:50:17 -0400
+X-MC-Unique: bwYedG-9MYqo-s-gtvjDmw-1
+X-Mimecast-MFC-AGG-ID: bwYedG-9MYqo-s-gtvjDmw_1745574616
+Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id B554F1956078; Fri, 25 Apr 2025 09:50:15 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.44.34.172])
+ by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 2EA0F195608D; Fri, 25 Apr 2025 09:50:08 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
-References: <20250425081715.1341199-1-david@redhat.com>
- <aAtNy6VjUvOrOC7r@gmail.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- WNyWQQ==
-Organization: Red Hat
-In-Reply-To: <aAtNy6VjUvOrOC7r@gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 9UgoRnP-jinkvX0AZbh0HT3i5gj73TyUWylGofy-BuY_1745573223
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH v7 0/8] drm/i915: Add drm_panic support
+Date: Fri, 25 Apr 2025 11:37:46 +0200
+Message-ID: <20250425094949.473060-1-jfalempe@redhat.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,29 +74,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->> There will be some clash with [1], but nothing that cannot be sorted out
->> easily by moving the functions added to kernel/fork.c to wherever the vma
->> bits will live.
->>
->> Briefly tested with some basic /dev/mem test I crafted. I want to convert
->> them to selftests, but that might or might not require a bit of
->> more work (e.g., /dev/mem accessibility).
-> 
-> So for the x86 bits, once it passes review by the fine MM folks:
-> 
->    Acked-by: Ingo Molnar <mingo@kernel.org>
-> 
+This is a draft of drm_panic support for i915.
 
-Thanks!
+I've tested it on the 4 intel laptops I have at my disposal.
+ * Haswell with 128MB of eDRAM.
+ * Comet Lake  i7-10850H
+ * Raptor Lake i7-1370P (with DPT, and Y-tiling).
+ * Lunar Lake Ultra 5 228V (with DPT, and 4-tiling, and using the Xe driver.
 
-> And I suppose this rewrite will be carried in -mm?
+I tested panic in both fbdev console and gnome desktop.
 
-Yes, will make conflicts with Lorenzo's work easier to resolve (in 
-whatever order this ends up going in). I suspect there are not many PAT 
-related things on the horizon.
+Best regards,
 
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
+
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
+v4:
+ * Add support for Xe driver, which shares most of the code.
+ * Add support for 4-tiled framebuffer found in newest GPU.
+
+v5:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private.
+ * Use iosys_map for intel_bo_panic_map().
+
+v6:
+ * Rebase on top of git@gitlab.freedesktop.org:drm/i915/kernel.git drm-intel-next
+ * Use struct intel_display instead of drm_i915_private for intel_atomic_plane.c
+
+v7:
+ * Fix mismatch {} in intel_panic_flush() (Jani Nikula)
+ * Return int for i915_gem_object_panic_map() (Ville Syrjälä)
+ * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+
+Jocelyn Falempe (8):
+  drm/i915/fbdev: Add intel_fbdev_get_map()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: Add i915_gem_object_panic_map()
+  drm/i915/display: Add drm_panic support
+  drm/i915/display: Flush the front buffer in panic handler
+  drm/i915/display: Add drm_panic support for Y-tiling with DPT
+  drm/i915/display: Add drm_panic support for 4-tiling with DPT
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 172 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |   5 +
+ drivers/gpu/drm/i915/display/intel_bo.h       |   1 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   2 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +-
+ .../drm/i915/display/skl_universal_plane.c    |  27 +++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  29 +++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/xe/display/intel_bo.c         |   7 +
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ 15 files changed, 294 insertions(+), 2 deletions(-)
+
+
+base-commit: 93d33af699f271b908d3eacf7e5872a8784e5a6d
 -- 
-Cheers,
-
-David / dhildenb
+2.49.0
 
