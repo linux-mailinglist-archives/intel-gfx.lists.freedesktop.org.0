@@ -2,76 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7C3A9D22F
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6FD9A9D27F
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 21:56:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3CD010E9B1;
-	Fri, 25 Apr 2025 19:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE80D10E9BC;
+	Fri, 25 Apr 2025 19:56:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O+t1bQU4";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UAULLfte";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA6810E9B1
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 19:48:56 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88F2810E027
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 19:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745610535;
+ s=mimecast20190719; t=1745610998;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Iyio0+rdGGHZ3rJEpArzIbX1q77xWWWNHXXnWo3MTWI=;
- b=O+t1bQU41M+2cIK0CrRj1GH+/nN8ZWeWkjCX7E9U9RKtm9WyRVhGIz06TLtkbBiFKkMA67
- /Bwd9mk2ovTPx16+Uj2oUU2H7rtUPNhuehfRTi+jVINHC3t1G+taZhnAjMcE2tv0LToRMs
- OImxAX0pLQd6uEiC81mKlse7AghMK0Y=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=bE2Dp5Yo0pObZA0Gc62tH8dA81bjnFJ9ScY4Xen6Glg=;
+ b=UAULLfteh0HWaVIQ9RhjgnIveRioHIiJVDk5zWR80Wr72A4b1nnJFLG9y9npYNJM4QYFiO
+ dAbdwUrVmhAoGlxIYau1sLTWQe0i/8evUuGiEZ+mznmEWD3fiMWZxSuyOodo4nPcKlt3wO
+ wBpmHD/WTvMLp0E0jfMCOnzVS9bSXUc=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-479-fnb0q0pYNxWrpM_PiC0tcA-1; Fri, 25 Apr 2025 15:48:54 -0400
-X-MC-Unique: fnb0q0pYNxWrpM_PiC0tcA-1
-X-Mimecast-MFC-AGG-ID: fnb0q0pYNxWrpM_PiC0tcA_1745610533
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-43e9b0fd00cso12794075e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 12:48:54 -0700 (PDT)
+ us-mta-228-oktZ4HZ4MBeuNPMVYaoN9A-1; Fri, 25 Apr 2025 15:56:37 -0400
+X-MC-Unique: oktZ4HZ4MBeuNPMVYaoN9A-1
+X-Mimecast-MFC-AGG-ID: oktZ4HZ4MBeuNPMVYaoN9A_1745610996
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-43d08915f61so13733575e9.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 12:56:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745610533; x=1746215333;
+ d=1e100.net; s=20230601; t=1745610996; x=1746215796;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=Iyio0+rdGGHZ3rJEpArzIbX1q77xWWWNHXXnWo3MTWI=;
- b=SZFtHJkLBaKAfQqtuaY5WRZxBquhuR1kXluTIw+nXi1MSBLFrJ5WKioEBUkEk4vD9V
- EsweMuFMgu7GmeoxJusOepa+6v+uRIFsPJJCoVtJ7xd+XKyb6/juO8z7diBzXBJAJgWI
- jBDCaBVKCdor3QUe8cqCcrTobvBxNWWKtGp5sNmdpzANg+PGrEpW4mjI+BziH/021arn
- HosCN+6rfR8vevxdPA0GdfFwTcJUu2Q0z14Y5L8GBmMiNhcJrqyCb9je1O3FgGg0JJMe
- F5n7mxYfO/OzsQwvViAQr9ajM8ai78+j8YgPKEJXhPk+dIZuL9Py4AYkPJiO9EEiFMfn
- KQzw==
+ bh=bE2Dp5Yo0pObZA0Gc62tH8dA81bjnFJ9ScY4Xen6Glg=;
+ b=qKxsRotAm0GONfe1mUWT86oaX2RTNE6JReykxbCZ3K4d4EoVeBIaa9jLzql2D4UlIi
+ pHRIcKlEkT5cwllo35njeW+GmKucdaoaUaMdqNCoNNT7eSQSrw+BCfVvTwcSv6GjVff/
+ pYWRxka4XLt4eOOtaFoA3LmnmH30+3U3ZIl/bg+rV6t21EJW8AWxrumxxRTZis8TSB/s
+ 9xdP+S8caVmoZF9KmeU/jFJ2RRRCX6yzVuVpUQZ6fPFdprh/nyggZ7/OiA0na+9iuTpy
+ Ua+/YtIM/lPnEFALwC6AU8MJUzZLqgs3cIR2QLzjisGEQG+wuOtcpOMsI8tX7FFZU1Ei
+ FK8A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVC3SF2jIBCaqWBTM5DchZaTZ0yJ/8EPIiq8N97CZ6PWzlJO/6sxCqKQ98bPeeRw3Qt8lOM0dfefh8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyQYCJeEMjUN7UTbulzN6wItrIsgvmKqSSzv1EHNbOnv/pFqkC0
- 4nJIzpgAp3mU1bxRuwZ6oJjYiSE4Bst2VpRnOaUPgiT1MZI0WavUwEGBwdWE6NGiFMk1VQg/WOV
- UMoyUU3KMu949eMxshMk104LQviUAHkXBRxqEmYXRFvdP7bwwm84ad69JfW9inYSAAw==
-X-Gm-Gg: ASbGncvx8sA59Hf78wB5OFP+2x7ogH1zeBQhDwi8g14wHO/CsLp08SGUCjtluoLDBMB
- q59XRbeQB8BBfbvznfY1iaIXR5DgmUE0CtyuejbNOhMPTE70aULvqWUFKl1sTIR35ut8MYf+1OV
- Q9Pb4RW4XB46LYOZZlaYdu412AZVwyAAwsRVv5oR1Xundg3+FcbAWFgrL86frGMnoR/3uL4B4xS
- w3p6ouIQUW754CmoCpQ0NQ18Qg4hWD31k6t6vnG0BfzlCYvq5McxAM7Ph4xrJW2Ak5FUXLXugnJ
- HHNVKiHck/X+lPgW+HS2EyZLoR9Yy6IGusiNuTczNw==
-X-Received: by 2002:a05:600c:45d0:b0:43d:5264:3cf0 with SMTP id
- 5b1f17b1804b1-4409c4de02dmr67828855e9.11.1745610533027; 
- Fri, 25 Apr 2025 12:48:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHCFfrtzSc+UtPRGo0BIvDxCf3n2hnwRdIbAoPATpGWLsnc5w/p+CDOEbj1RMEvVgHKgNRMBw==
-X-Received: by 2002:a05:600c:45d0:b0:43d:5264:3cf0 with SMTP id
- 5b1f17b1804b1-4409c4de02dmr67828555e9.11.1745610532645; 
- Fri, 25 Apr 2025 12:48:52 -0700 (PDT)
-Received: from [192.168.3.141] (p4ff23df8.dip0.t-ipconnect.de. [79.242.61.248])
+ AJvYcCVsDMKuY+dEqO3kq6aXQxVm3DP/FLZ6zEvutwb6spIgSW1c7MJ9gE7l3dtVvnErJzplnY0AwGKqLh8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwMpQfRCPwT6e9r48jb8p696Uf4RpBciBmuk4+iDIM9dk2YTcww
+ awyxHkVY//FXs0G52T1mUoOtRIM1hPbVXgegyxpnhfaNSQUCRwJ81jspBEZlbKOgcJG5FjgElZx
+ rsdbO3z71xhO1ZzElCcBngy6LG5geFGHDN4kFme4SX+is/WlK0kGy0PXGbgkY/1ZhQA8URequSs
+ Nu
+X-Gm-Gg: ASbGncuuhVz83i3hiFMXl9GnSRLFwF1JYW0GLPHozo7mdYtWo4MZxVeT2DWQzeCH5FL
+ HJc6anRi0EYeOmkFqFULdYscSBhex3Jv5u3Fn7NhNKLm8nCN6qJ0jwgz56VwtK+cWXHK3bknJY7
+ ks3uVdJ+e61ei/j2DSy2mtQZPnJTbIs40nKRDXyxrJbpKS48JzOZat4sg7pCNpNp7DvfhtTlXx4
+ UwHrKD6QFZiJbEsoF23ynEK4SDLZiPMKMIyBebmzwSHrii/q3pDifI8b30L7tjyeGVb7CSK+/p4
+ vcC+yDI41VBv8yFQAwzQH93KyIbz98plF2xNKMEVO/NePPZU3Tyu6LPdJp8HruirEd+zGe7m3C6
+ sUk07SjkhZsRADMww45uKtDyCKKJz5o+QQk0H
+X-Received: by 2002:a05:600c:a4d:b0:440:68db:9fef with SMTP id
+ 5b1f17b1804b1-440a669b52cmr29619665e9.20.1745610996270; 
+ Fri, 25 Apr 2025 12:56:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHDTvNhYItxE+4Y0RI+qao1NGVdbXY23J5yiDp5FychjNVZxG0vly/CBGVBOu3qdA9XOIO6hw==
+X-Received: by 2002:a05:600c:a4d:b0:440:68db:9fef with SMTP id
+ 5b1f17b1804b1-440a669b52cmr29619355e9.20.1745610995912; 
+ Fri, 25 Apr 2025 12:56:35 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c70f:6900:6c56:80f8:c14:6d2a?
+ (p200300cbc70f69006c5680f80c146d2a.dip0.t-ipconnect.de.
+ [2003:cb:c70f:6900:6c56:80f8:c14:6d2a])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-440a5310ad2sm34335985e9.21.2025.04.25.12.48.51
+ 5b1f17b1804b1-4409d2d86f7sm66114125e9.32.2025.04.25.12.56.33
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Apr 2025 12:48:52 -0700 (PDT)
-Message-ID: <78f88303-6b00-42cf-8977-bf7541fa45a9@redhat.com>
-Date: Fri, 25 Apr 2025 21:48:50 +0200
+ Fri, 25 Apr 2025 12:56:34 -0700 (PDT)
+Message-ID: <519e3bbf-b198-4e55-81e8-0a77d8ab03d3@redhat.com>
+Date: Fri, 25 Apr 2025 21:56:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 02/11] mm: convert track_pfn_insert() to
@@ -144,7 +148,7 @@ Autocrypt: addr=david@redhat.com; keydata=
 Organization: Red Hat
 In-Reply-To: <aAvjJOmvm5GsZ-JN@x1.local>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 0TN7kpeSGo8ToEJSzFUkiYQBcomlT2lWvblOz7eFasw_1745610533
+X-Mimecast-MFC-PROC-ID: TmfArSRQ8GUFjgp3hcYbYBQEcgtHWZfN4nd_VAvvvjg_1745610996
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -164,75 +168,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 25.04.25 21:31, Peter Xu wrote:
-> On Fri, Apr 25, 2025 at 10:17:06AM +0200, David Hildenbrand wrote:
->> ... by factoring it out from track_pfn_remap().
->>
->> For PMDs/PUDs, actually check the full range, and trigger a fallback
->> if we run into this "different memory types / cachemodes" scenario.
-> 
-> The current patch looks like to still pass PAGE_SIZE into the new helper at
-> all track_pfn_insert() call sites, so it seems this comment does not 100%
-> match with the code?  Or I may have misread somewhere.
-
-No, you're right, while reshuffling the patches I forgot to add the 
-actual PMD/PUD size.
-
-> 
-> Maybe it's still easier to keep the single-pfn lookup to never fail..  more
-> below.
-> 
-
-[...]
-
->>   /*
->> @@ -1556,8 +1553,23 @@ static inline void untrack_pfn_clear(struct vm_area_struct *vma)
->>   extern int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
->>   			   unsigned long pfn, unsigned long addr,
->>   			   unsigned long size);
->> -extern void track_pfn_insert(struct vm_area_struct *vma, pgprot_t *prot,
->> -			     pfn_t pfn);
->> +
->> +/**
->> + * pfnmap_sanitize_pgprot - sanitize the pgprot for a pfn range
-> 
-> Nit: s/sanitize/update|setup|.../?
-> 
-> But maybe you have good reason to use sanitize.  No strong opinions.
-
-What it does on PAT (only implementation so far ...) is looking up the 
-memory type to select the caching mode that can be use.
-
-"sanitize" was IMHO a good fit, because we must make sure that we don't 
-use the wrong caching mode.
-
-update/setup/... don't make that quite clear. Any other suggestions?
-
-> 
->> + * @pfn: the start of the pfn range
->> + * @size: the size of the pfn range
->> + * @prot: the pgprot to sanitize
->> + *
->> + * Sanitize the given pgprot for a pfn range, for example, adjusting the
->> + * cachemode.
->> + *
->> + * This function cannot fail for a single page, but can fail for multiple
->> + * pages.
->> + *
->> + * Returns 0 on success and -EINVAL on error.
->> + */
->> +int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size,
->> +		pgprot_t *prot);
->>   extern int track_pfn_copy(struct vm_area_struct *dst_vma,
->>   		struct vm_area_struct *src_vma, unsigned long *pfn);
->>   extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
->> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
->> index fdcf0a6049b9f..b8ae5e1493315 100644
->> --- a/mm/huge_memory.c
->> +++ b/mm/huge_memory.c
->> @@ -1455,7 +1455,9 @@ vm_fault_t vmf_insert_pfn_pmd(struct vm_fault *vmf, pfn_t pfn, bool write)
->>   			return VM_FAULT_OOM;
->>   	}
 >>   
 >> -	track_pfn_insert(vma, &pgprot, pfn);
 >> +	if (pfnmap_sanitize_pgprot(pfn_t_to_pfn(pfn), PAGE_SIZE, &pgprot))
@@ -240,20 +175,10 @@ update/setup/... don't make that quite clear. Any other suggestions?
 > 
 > Would "pgtable" leak if it fails?  If it's PAGE_SIZE, IIUC it won't ever
 > trigger, though.
-> 
-> Maybe we could have a "void pfnmap_sanitize_pgprot_pfn(&pgprot, pfn)" to
-> replace track_pfn_insert() and never fail?  Dropping vma ref is definitely
-> a win already in all cases.
 
-It could be a simple wrapper around pfnmap_sanitize_pgprot(), yes. 
-That's certainly helpful for the single-page case.
+Missed that comment. I can document that pgprot will only be touched if 
+the function succeeds.
 
-Regarding never failing here: we should check the whole range. We have 
-to make sure that none of the pages has a memory type / caching mode 
-that is incompatible with what we setup.
-
-
-Thanks a bunch for the review!
 -- 
 Cheers,
 
