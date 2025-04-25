@@ -2,63 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72ED9A9CBA9
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 16:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3E4A9CC75
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 17:11:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E737C10E302;
-	Fri, 25 Apr 2025 14:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757B210E980;
+	Fri, 25 Apr 2025 15:11:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XK8cC/1J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="baYhuRbw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (unknown [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19BEF10E2FB;
- Fri, 25 Apr 2025 14:27:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EB5075C110C;
- Fri, 25 Apr 2025 14:24:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5F4AC4CEE4;
- Fri, 25 Apr 2025 14:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1745591232;
- bh=+Khgswb4ycfEe63uGiPULJ9rhp6/pWoWuzGOliOHJsw=;
- h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
- b=XK8cC/1JQsw+QmMpSYDevbuERmsHOZ432HwIkCgz1LS+dLwja5JMn0cOWKtERKNeZ
- D2BLyuy/6Q1PVl0XrZejWxXiMbD4G9uOhTAw0RE6286dHt2anwfui5qDCX7gNw+7ER
- 64U8zQcbSgi6LV5QqUkxXFghZsjYa8nvEbjhIHXWUFTOsDOVDJfWOZEVIjnthPGo3g
- Yr/85zxfM32Y7TwcmGTuiGKWeYsExRxmiBQH+C2o7vet71I4ZgjeZfy8gFI2KRrmpz
- rwQTe/XrfELM9Tl/+Hz6E7OZ6gQBjfBAL8FQ9B6NiOCzG93ODCAzvEMTHP+hjIQt5N
- v9I3IqXvABBBw==
-Received: by paulmck-ThinkPad-P17-Gen-1.home (Postfix, from userid 1000)
- id 57E9FCE0485; Fri, 25 Apr 2025 07:27:12 -0700 (PDT)
-Date: Fri, 25 Apr 2025 07:27:12 -0700
-From: "Paul E. McKenney" <paulmck@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: linux-kernel@vger.kernel.org, kernel-team@meta.com,
- Andrew Morton <akpm@linux-foundation.org>,
- Kuniyuki Iwashima <kuniyu@amazon.com>,
- Mateusz Guzik <mjguzik@gmail.com>, Petr Mladek <pmladek@suse.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- John Ogness <john.ogness@linutronix.de>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Jon Pan-Doh <pandoh@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Karolina Stolarek <karolina.stolarek@oracle.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B91A510E326;
+ Fri, 25 Apr 2025 15:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1745593864; x=1777129864;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5aYTKnW1uf91zxpbLRkRmehpF7E6EkPj5cYjxOKlKlk=;
+ b=baYhuRbwiiqA2AChG4qXecoHzpgexUB0q56qyd9huBy+iNmKKB2z6Bjd
+ rDTRq9CBFJV7zpqtgm0H0JOHHxWEd1/ftDM/AgX81Va5Lhq0l8nu80Z9o
+ 94FrN95NWZC8nxjpkBf2sMILkPuiy7XuBWWd2uZuEAB3Syg4b62Vq+aEn
+ w98viHngeocplrfWguncGq1HrCRMO6Pj8BaM4LkKJH1te1JS3UCDx32nf
+ /6BDg328cWBIey0nzGseYj7vuL/nDJFF5CE0+GMV0R2+s1bpN+lodaXBS
+ L76zwy7zVrNkF5RNh4l/uFTIGajrW9vKCYVhrOGhrGYTAlg9hSpLPUMbq w==;
+X-CSE-ConnectionGUID: NgbutLmETQCU474cpa9ELQ==
+X-CSE-MsgGUID: W9LA0es/R/yax2r9dj1tYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="47133760"
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="47133760"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2025 08:11:04 -0700
+X-CSE-ConnectionGUID: XWU8z64fTNawiwnxY2teIg==
+X-CSE-MsgGUID: /VdhN3htTS6WdDeoB86ywg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="137916047"
+Received: from junxiaochang.bj.intel.com ([10.238.157.86])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Apr 2025 08:10:59 -0700
+From: Junxiao Chang <junxiao.chang@intel.com>
+To: tomas.winkler@intel.com, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 04/20] drm/i915: Avoid open-coded use of
- ratelimit_state structure's ->missed field
-Message-ID: <99be31c6-2a01-44fe-9043-8ec7909cd3e8@paulmck-laptop>
-References: <72ee57b8-9e2a-4cad-aaa0-1e3353d146d8@paulmck-laptop>
- <20250425002826.3431914-4-paulmck@kernel.org>
- <87selwy6cg.fsf@intel.com>
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev
+Cc: junxiao.chang@intel.com,
+	furong.zhou@intel.com
+Subject: [PATCH] drm/i915/gsc: mei interrupt top half should be in irq
+ disabled context
+Date: Fri, 25 Apr 2025 23:11:07 +0800
+Message-Id: <20250425151108.643649-1-junxiao.chang@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250424065609.624457-1-junxiao.chang@intel.com>
+References: <20250424065609.624457-1-junxiao.chang@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87selwy6cg.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,72 +78,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: paulmck@kernel.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 25, 2025 at 11:48:31AM +0300, Jani Nikula wrote:
-> On Thu, 24 Apr 2025, "Paul E. McKenney" <paulmck@kernel.org> wrote:
-> > The i915_oa_stream_destroy() function directly accesses the
-> > ratelimit_state structure's ->missed field, which work, but which also
-> > makes it more difficult to change this field.  Therefore, make use of
-> > the ratelimit_state_get_miss() function instead of directly accessing
-> > the ->missed field.
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
+MEI GSC interrupt comes from i915. It has top half and bottom half.
+Top half is called from i915 interrupt handler. It should be in
+irq disabled context.
 
-Thank you, Jani!  I will apply this on my next rebase later today.
+With RT kernel, by default i915 IRQ handler is in threaded IRQ. MEI GSC
+top half might be in threaded IRQ context. generic_handle_irq_safe API
+could be called from either IRQ or process context, it disables local
+IRQ then calls MEI GSC interrupt top half.
 
-> For merging via whichever tree is convenient for you. Please let us know
-> if you want us to pick it up via drm-intel.
+This change fixes A380/A770 GPU boot hang issue with RT kernel.
 
-This one depends on a commit earlier in the series, so I will very
-happily take you up on your kind offer of letting me push it.  ;-)
+Fixes: 1e3dc1d8622b ("drm/i915/gsc: add gsc as a mei auxiliary device")
+Tested-by: Furong Zhou <furong.zhou@intel.com>
+Suggested-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_gsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-							Thanx, Paul
+diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+index 1e925c75fb080..c43febc862dc3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gsc.c
++++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+@@ -284,7 +284,7 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
+ 	if (gt->gsc.intf[intf_id].irq < 0)
+ 		return;
+ 
+-	ret = generic_handle_irq(gt->gsc.intf[intf_id].irq);
++	ret = generic_handle_irq_safe(gt->gsc.intf[intf_id].irq);
+ 	if (ret)
+ 		gt_err_ratelimited(gt, "error handling GSC irq: %d\n", ret);
+ }
+-- 
+2.34.1
 
-> > Link: https://lore.kernel.org/all/fbe93a52-365e-47fe-93a4-44a44547d601@paulmck-laptop/
-> > Link: https://lore.kernel.org/all/20250423115409.3425-1-spasswolf@web.de/
-> > Signed-off-by: Paul E. McKenney <paulmck@kernel.org>
-> > Reviewed-by: Petr Mladek <pmladek@suse.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: <intel-gfx@lists.freedesktop.org>
-> > Cc: <dri-devel@lists.freedesktop.org>
-> > ---
-> >  drivers/gpu/drm/i915/i915_perf.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> > index de0b413600a15..1658f1246c6fa 100644
-> > --- a/drivers/gpu/drm/i915/i915_perf.c
-> > +++ b/drivers/gpu/drm/i915/i915_perf.c
-> > @@ -1666,6 +1666,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
-> >  	struct i915_perf *perf = stream->perf;
-> >  	struct intel_gt *gt = stream->engine->gt;
-> >  	struct i915_perf_group *g = stream->engine->oa_group;
-> > +	int m;
-> >  
-> >  	if (WARN_ON(stream != g->exclusive_stream))
-> >  		return;
-> > @@ -1690,10 +1691,9 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
-> >  	free_oa_configs(stream);
-> >  	free_noa_wait(stream);
-> >  
-> > -	if (perf->spurious_report_rs.missed) {
-> > -		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n",
-> > -			  perf->spurious_report_rs.missed);
-> > -	}
-> > +	m = ratelimit_state_get_miss(&perf->spurious_report_rs);
-> > +	if (m)
-> > +		gt_notice(gt, "%d spurious OA report notices suppressed due to ratelimiting\n", m);
-> >  }
-> >  
-> >  static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
-> 
-> -- 
-> Jani Nikula, Intel
