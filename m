@@ -2,75 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA52A9C0AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F215DA9C0A9
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 10:17:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0A4110E8B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6682D10E8B1;
 	Fri, 25 Apr 2025 08:17:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="b24ML1bc";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NnS5L8Ln";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 131CD10E8BF
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 08:17:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF46810E8C2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 08:17:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745569050;
+ s=mimecast20190719; t=1745569051;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=KCYBdpwfjCOhXvT2DzVINMJSRWNfDi2B6w/Q4Y3NEy8=;
- b=b24ML1bcw3jcx52x25mm1NO1g9Azpvs14sIQ4jKfsM5SOwXI7b8WXmkEbKbwho4pm9ctPl
- viwSN+H+folEotg+iSQBgl48771YxOalHaSwfJyxx6yf1GlX7HRKLILMJyzlD8pZZh8ZNV
- CTm6Icd1qS2D5iZPiwj8uUkFUVAv/yc=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=uu4FlIS5Nl76bZjUZyw21YomTVSJoQk7KVvTvA60Mww=;
+ b=NnS5L8LnbABPF6PKGBAMQRhUTUfmfiXeu+5Gy8QdOwqV18OOazirWV6Fh98eiPERrlK6JY
+ Xhg6/uHJoV0nqjWjY88hqq2m2Pa80Dba+Benqaph5/pNk15KQDsohjm3gJnO7ruyu/y9bU
+ R3n8tXEYJ1+xRAaP8NZYTdrxM2fB+8I=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-474-WDTzuWvEObmdDtEgK72FLw-1; Fri, 25 Apr 2025 04:17:27 -0400
-X-MC-Unique: WDTzuWvEObmdDtEgK72FLw-1
-X-Mimecast-MFC-AGG-ID: WDTzuWvEObmdDtEgK72FLw_1745569046
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-39c1b1c0969so1244840f8f.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 01:17:26 -0700 (PDT)
+ us-mta-90-D6wjTwqkOhSfV5cXtg94SQ-1; Fri, 25 Apr 2025 04:17:29 -0400
+X-MC-Unique: D6wjTwqkOhSfV5cXtg94SQ-1
+X-Mimecast-MFC-AGG-ID: D6wjTwqkOhSfV5cXtg94SQ_1745569048
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-43f405810b4so9965725e9.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Apr 2025 01:17:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745569046; x=1746173846;
+ d=1e100.net; s=20230601; t=1745569048; x=1746173848;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=KCYBdpwfjCOhXvT2DzVINMJSRWNfDi2B6w/Q4Y3NEy8=;
- b=aBaxvPc2hN2UTHGTDRr9HCvwF0ukaCfMUfDjkdD/tt2yC7/uFRfMtsizIyUSt3C574
- EGyq/Uj7MAJx6x0HbVctH8bVJfz+pAYkPpGCd9SBPCeItn9JzsZAg7F8nHm0QhSd2RfZ
- mGn1Y0VKFoHwbu+6jmleQHoDX/BxLaQEHy1wqiLryQ1cL/fAow38J3zsDxhUV4EtT8FG
- zqAtNXX59wrhEiZaPmAfJkoAe1Hsoit5lY/3Y/5+NwRyDUENe/CO8a5ihtJ05oJ5J9LT
- lRe15t2/8+M2AWBPJfaFQlB0VpIdaNpCXB7ThONmewgK5Knc2KeqBmFckYjwSNLzJZsR
- B9Ag==
+ bh=uu4FlIS5Nl76bZjUZyw21YomTVSJoQk7KVvTvA60Mww=;
+ b=a3EhFpXwwnGiXPESNvvU1ysAV6JIBJZ+rVOfcAApqcdgbmJUsVHz8YnVrq/sI4dLXv
+ VbBRCLkmwZ99mv8HIAVZ3NSQ75LMxeH5aUebrCMeOTf9atmDfijhmR7npKOpD9BGpfg1
+ +3pI3/ZmpWUp64O31ObkEno5KLsmiWdy09KoSdPLQNBUvOGVuXP1ltBB1pXaP5qOqa5O
+ wvMH5SboIeF5PiVLkvbLQQcY0GlleDZfb1qWyLtnUp8CX8zTSoGpvLg64qTIRoFzrJnj
+ RZ7FfrLARganfHyNfIsGQRZIla39nGLGopr4jEsd1T/N0CftJtOKgpgFmKHXrb2xvdiJ
+ LIaw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWb53q9wa1FJ2Iwen31TqcMQKb0HPWMdIasuVxfHbAp7fdbB3sgq3bA9xcY74KltPL71wIWqV/q/JQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwiTc3lqWj/KSyjWDcxUq9bdG8Meg6ck21G71Mg+upCWEDPDka5
- UArOXTsaNCzFvLuldBG9frJCnPUsyKprfJ8vr0I8ZoTeBpE2vpIAMhoIHEI5LpoNJn1HNW68DA8
- y1VvWY3JmIR+jQOrFqxuoZ6dyMNKbGQJzvNzXFEDt4lzMWR5x6eCKACTuxgYiro6iMA==
-X-Gm-Gg: ASbGncsZ8P2AxTpPlkwvzSBCId48YWjK71K4X2QQg3tLSZlgd+7e/ODQ6voUITq99ny
- iXGQnGCxVNhorDJC7+8V3FpJLvKEbNOt9zEbQo8E4MVLyklSAKUGxx5BRMGq1d/klS+HoSD61Mc
- rlhLO/lQ5i5DuXfnygtubkQXtZESNNc2DrEYzRkUAetPU7uYk/rIXop7vkwCvTHr8Shu0wXGdVD
- OCF4U2wowFk0Sec9zW4VL7W9yaw14IZFs8GtkcAZ4pb+7ucABGH63QGP+1L9+c0CGS0/z+yqK+R
- 5qdDKlpvVYDxaxhiF0N9NAAfhrUkfPY9b3GUi7YC47SJo4t2jwFv7rUDq+kX8WhZOi/jJtU=
-X-Received: by 2002:a05:6000:2903:b0:39e:cbc7:ad33 with SMTP id
- ffacd0b85a97d-3a074e1eb67mr881029f8f.21.1745569045892; 
- Fri, 25 Apr 2025 01:17:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFrgRXf9wKgkj7MYbnIuzIHmMlVWh7AZlbAu3PZR/ooKrImfXiUSMtbZSGOay0ZI4PJDGOvtg==
-X-Received: by 2002:a05:6000:2903:b0:39e:cbc7:ad33 with SMTP id
- ffacd0b85a97d-3a074e1eb67mr880983f8f.21.1745569045483; 
- Fri, 25 Apr 2025 01:17:25 -0700 (PDT)
+ AJvYcCX3/xEnznSa51HWJql9O4ZhM77ie/kWXVlnchEgkD1YpryUni621/IoIl3NyM7qqUp42IE6u6dd6sA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzHjcxI1MzvmQz0ISGxouXL/Z5eqC75uP+phgVGyN4XZ0GfZbf9
+ m4rcxMqImcnljTp8W+z5EDh7K09oByMSfAJPmy1fkZU4sWvfNw6f4+NCtUK0Z+g9AkghAUiYgXL
+ UBMYjeUUfQjz50HgnUc1rH4tHcJ38AIxx9laagKLTYZRvbpI14OC9VcLO87AOgAqGAw==
+X-Gm-Gg: ASbGncu7CZDV88u39RMMD6FBEfYesSG/TJ/jPE+W+8FTDy04kNv8YcQCDY3cSeaiYXI
+ OJu4L8d3+QtcBr8j0pO0EDrNNhaWG/1PQ/E03slRWlrTB9IPB87qo6cRhWJuzkJ+gycGsABTOEf
+ 6Kp3xOcV1ORt+OinKhV5OHunxDF9ur0Pj/RAhUP7OgcWYe5JnrIf+EowJe+g1pl8lfHXTQmXZL2
+ AcGQBneXa0KAwp05z8UBIzCrDZa1HNptdUkLB9buVW5skFEKIwLiJWY4AME6thU0sLnjFps1pnG
+ pUF28FyQzd2CtzUjIhJpbmawBg3/U0nh0ceUPDD4MtRtHQ7YtLnoPgf91fjJyXEjo/BhS1Y=
+X-Received: by 2002:a05:600c:1387:b0:43b:ce36:7574 with SMTP id
+ 5b1f17b1804b1-440a65d8120mr8181485e9.11.1745569048269; 
+ Fri, 25 Apr 2025 01:17:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFv6bx4rw9BX60sw1RHVhWJrGaS8iH8UMCeEA8nv3vLsrOwHOvFftOe6l4h5umdYWufDrsURA==
+X-Received: by 2002:a05:600c:1387:b0:43b:ce36:7574 with SMTP id
+ 5b1f17b1804b1-440a65d8120mr8181055e9.11.1745569047938; 
+ Fri, 25 Apr 2025 01:17:27 -0700 (PDT)
 Received: from localhost
  (p200300cbc70f69006c5680f80c146d2a.dip0.t-ipconnect.de.
  [2003:cb:c70f:6900:6c56:80f8:c14:6d2a])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3a073c8ca72sm1597057f8f.4.2025.04.25.01.17.23
+ 5b1f17b1804b1-4409d2a1dc3sm47748735e9.13.2025.04.25.01.17.26
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Apr 2025 01:17:25 -0700 (PDT)
+ Fri, 25 Apr 2025 01:17:27 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
@@ -92,16 +92,16 @@ Cc: linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
  Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
-Subject: [PATCH v1 03/11] x86/mm/pat: introduce pfnmap_track() and
+Subject: [PATCH v1 04/11] mm/memremap: convert to pfnmap_track() +
  pfnmap_untrack()
-Date: Fri, 25 Apr 2025 10:17:07 +0200
-Message-ID: <20250425081715.1341199-4-david@redhat.com>
+Date: Fri, 25 Apr 2025 10:17:08 +0200
+Message-ID: <20250425081715.1341199-5-david@redhat.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250425081715.1341199-1-david@redhat.com>
 References: <20250425081715.1341199-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: S-D2XOtdIQWVAALrQfW_0ntt0D79jbkjt7-7vAzGd70_1745569046
+X-Mimecast-MFC-PROC-ID: Dmb5sLNEB0T_-2TRIRarBXsxvZZ0t6JjZlga1J9oL4U_1745569048
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -120,93 +120,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let's provide variants of track_pfn_remap() and untrack_pfn() that won't
-mess with VMAs, to replace the existing interface step-by-step.
-
-Add some documentation.
+Let's use the new, cleaner interface.
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- arch/x86/mm/pat/memtype.c | 14 ++++++++++++++
- include/linux/pgtable.h   | 33 +++++++++++++++++++++++++++++++++
- 2 files changed, 47 insertions(+)
+ mm/memremap.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/x86/mm/pat/memtype.c b/arch/x86/mm/pat/memtype.c
-index 193e33251b18f..c011d8dd8f441 100644
---- a/arch/x86/mm/pat/memtype.c
-+++ b/arch/x86/mm/pat/memtype.c
-@@ -1068,6 +1068,20 @@ int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size, pgprot_t *prot
- 	return 0;
+diff --git a/mm/memremap.c b/mm/memremap.c
+index 2aebc1b192da9..c417c843e9b1f 100644
+--- a/mm/memremap.c
++++ b/mm/memremap.c
+@@ -130,7 +130,7 @@ static void pageunmap_range(struct dev_pagemap *pgmap, int range_id)
+ 	}
+ 	mem_hotplug_done();
+ 
+-	untrack_pfn(NULL, PHYS_PFN(range->start), range_len(range), true);
++	pfnmap_untrack(PHYS_PFN(range->start), range_len(range));
+ 	pgmap_array_delete(range);
  }
  
-+int pfnmap_track(unsigned long pfn, unsigned long size, pgprot_t *prot)
-+{
-+	const resource_size_t paddr = (resource_size_t)pfn << PAGE_SHIFT;
-+
-+	return reserve_pfn_range(paddr, size, prot, 0);
-+}
-+
-+void pfnmap_untrack(unsigned long pfn, unsigned long size)
-+{
-+	const resource_size_t paddr = (resource_size_t)pfn << PAGE_SHIFT;
-+
-+	free_pfn_range(paddr, size);
-+}
-+
- /*
-  * untrack_pfn is called while unmapping a pfnmap for a region.
-  * untrack can be called for a specific region indicated by pfn and size or
-diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
-index 91aadfe2515a5..898a3ab195578 100644
---- a/include/linux/pgtable.h
-+++ b/include/linux/pgtable.h
-@@ -1506,6 +1506,16 @@ static inline int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size,
- 	return 0;
- }
+@@ -211,8 +211,8 @@ static int pagemap_range(struct dev_pagemap *pgmap, struct mhp_params *params,
+ 	if (nid < 0)
+ 		nid = numa_mem_id();
  
-+static inline int pfnmap_track(unsigned long pfn, unsigned long size,
-+		pgprot_t *prot)
-+{
-+	return 0;
-+}
-+
-+static inline void pfnmap_untrack(unsigned long pfn, unsigned long size)
-+{
-+}
-+
- /*
-  * track_pfn_copy is called when a VM_PFNMAP VMA is about to get the page
-  * tables copied during copy_page_range(). Will store the pfn to be
-@@ -1570,6 +1580,29 @@ extern int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
-  */
- int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size,
- 		pgprot_t *prot);
-+
-+/**
-+ * pfnmap_track - track a pfn range
-+ * @pfn: the start of the pfn range
-+ * @size: the size of the pfn range
-+ * @prot: the pgprot to track
-+ *
-+ * Tracking a pfnmap range involves conditionally reserving a pfn range and
-+ * sanitizing the pgprot -- see pfnmap_sanitize_pgprot().
-+ *
-+ * Returns 0 on success and -EINVAL on error.
-+ */
-+int pfnmap_track(unsigned long pfn, unsigned long size, pgprot_t *prot);
-+
-+/**
-+ * pfnmap_untrack - untrack a pfn range
-+ * @pfn: the start of the pfn range
-+ * @size: the size of the pfn range
-+ *
-+ * Untrack a pfn range previously tracked through pfnmap_track(), for example,
-+ * un-doing any reservation.
-+ */
-+void pfnmap_untrack(unsigned long pfn, unsigned long size);
- extern int track_pfn_copy(struct vm_area_struct *dst_vma,
- 		struct vm_area_struct *src_vma, unsigned long *pfn);
- extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
+-	error = track_pfn_remap(NULL, &params->pgprot, PHYS_PFN(range->start), 0,
+-			range_len(range));
++	error = pfnmap_track(PHYS_PFN(range->start), range_len(range),
++			     &params->pgprot);
+ 	if (error)
+ 		goto err_pfn_remap;
+ 
+@@ -277,7 +277,7 @@ static int pagemap_range(struct dev_pagemap *pgmap, struct mhp_params *params,
+ 	if (!is_private)
+ 		kasan_remove_zero_shadow(__va(range->start), range_len(range));
+ err_kasan:
+-	untrack_pfn(NULL, PHYS_PFN(range->start), range_len(range), true);
++	pfnmap_untrack(PHYS_PFN(range->start), range_len(range));
+ err_pfn_remap:
+ 	pgmap_array_delete(range);
+ 	return error;
 -- 
 2.49.0
 
