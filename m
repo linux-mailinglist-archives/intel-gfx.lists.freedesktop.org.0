@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15658A9CAB9
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 15:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DAFBA9CB22
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Apr 2025 16:08:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F327310E2AD;
-	Fri, 25 Apr 2025 13:44:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VJXEwa6X";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C918410E136;
+	Fri, 25 Apr 2025 14:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 757C710E2AD;
- Fri, 25 Apr 2025 13:44:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745588656; x=1777124656;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/OJB8qkTcvfUUEe3I9ibsi+57PjJd+lRSp6q8UZg+eI=;
- b=VJXEwa6XJl3W5hXP4oid60pCdKr0RlWu3099+zcauzzF+aeoA4ONWZ5l
- jKyzRtONpEXba3n+NqQT/Ec7OFxIkCYv+nePhd00y+IaaJu5IrruXXzU7
- 2OHOgAzX1osG7R/GF+56pISlmqwQInr035x1nkdKd3T/3YoWyCRmZ8e05
- zbVW5lK1hujLKdLMOe5wwDYeNEof0o+0VoiPualGWXPSn2lQx+ttYzb9t
- Fj6ZRUK3KGkuwzqu0kyrFs1BxnqdfhgyJKCcuCuYEOaw1fm1i8XdiD9sl
- G0oqmq+wJm8WV37nHxHi89PzHzrkC5/bGzgbCvjFQK18rMqwkXZ4Z1o5o w==;
-X-CSE-ConnectionGUID: y5f9EupsT4SYj9DgJajrnQ==
-X-CSE-MsgGUID: IE7JTyfpSRqsfHqTXKk55g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11414"; a="47378287"
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="47378287"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Apr 2025 06:44:15 -0700
-X-CSE-ConnectionGUID: DGm+yn9JRZOCHemuwKKO1A==
-X-CSE-MsgGUID: 2uvAWTnNQwymtBZeIsvqVg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,238,1739865600"; d="scan'208";a="132826233"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa006.jf.intel.com with ESMTP; 25 Apr 2025 06:44:14 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jouni.hogander@intel.com,
-	Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH] drm/i915/alpm: Check for alpm support before accessing alpm
- register
-Date: Fri, 25 Apr 2025 18:51:07 +0530
-Message-Id: <20250425132107.2926759-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 836D710E2ED;
+ Fri, 25 Apr 2025 14:08:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_refactor?=
+ =?utf-8?q?_VLV_IOSF_SB_for_display_usage?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 25 Apr 2025 14:08:01 -0000
+Message-ID: <174559008153.11342.7509821434103385758@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <cover.1745587049.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1745587049.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,30 +37,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently as EDP only support alpm and check for alpm support will
-prevent DP connector to access alpm register.
+== Series Details ==
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: drm/i915: refactor VLV IOSF SB for display usage
+URL   : https://patchwork.freedesktop.org/series/148266/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 482dd192d47d..1bf08b80c23f 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -556,7 +556,7 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
- 
--	if (DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
- 		return;
- 
- 	mutex_lock(&intel_dp->alpm_parameters.lock);
--- 
-2.29.0
+== Summary ==
+
+Error: dim checkpatch failed
+8d12bc3f7133 drm/i915: rename vlv_sideband*.[ch] to vlv_iosf_sb*.[ch]
+-:236: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#236: 
+rename from drivers/gpu/drm/i915/vlv_sideband.c
+
+total: 0 errors, 1 warnings, 0 checks, 207 lines checked
+6acb4974bc81 drm/i915: add generic read/write functions for VLV IOSF SB
+-:70: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#70: FILE: drivers/gpu/drm/i915/vlv_iosf_sb.c:177:
++	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
++	    return 0;
+
+-:71: WARNING:TABSTOP: Statements should start on a tabstop
+#71: FILE: drivers/gpu/drm/i915/vlv_iosf_sb.c:178:
++	    return 0;
+
+-:86: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 12)
+#86: FILE: drivers/gpu/drm/i915/vlv_iosf_sb.c:193:
++	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
++	    return -EINVAL;
+
+-:87: WARNING:TABSTOP: Statements should start on a tabstop
+#87: FILE: drivers/gpu/drm/i915/vlv_iosf_sb.c:194:
++	    return -EINVAL;
+
+-:146: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#146: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:31:
++static inline u32 vlv_iosf_sb_read(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr)
+
+-:146: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#146: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:31:
+ }
++static inline u32 vlv_iosf_sb_read(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr)
+
+-:152: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#152: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:35:
++static inline int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
+
+-:152: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#152: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:35:
+ }
++static inline int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
+
+total: 0 errors, 6 warnings, 2 checks, 130 lines checked
+f09031009bae drm/i915: rewrite VLV IOSF SB unit specific read/write functions
+5ed15ac4a69c drm/i915: switch i915 core to generic VLV IOSF SB functions
+2d9a25d9d985 drm/i915: move VLV IOSF SB unit specific helpers under display
+-:162: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#162: 
+new file mode 100644
+
+-:307: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#307: FILE: drivers/gpu/drm/i915/display/vlv_sideband.h:90:
++}
++static inline void vlv_dpio_write(struct drm_i915_private *i915,
+
+total: 0 errors, 1 warnings, 1 checks, 599 lines checked
+df2a8542e9a7 drm/i915: convert VLV IOSF SB interface to struct drm_device
+-:1827: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#1827: FILE: drivers/gpu/drm/i915/display/vlv_sideband.h:90:
+ }
++static inline void vlv_dpio_write(struct drm_device *drm,
+
+-:2252: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#2252: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:30:
+ }
++static inline u32 vlv_iosf_sb_read(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 addr)
+
+-:2257: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#2257: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:34:
++static inline int vlv_iosf_sb_write(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
+
+-:2257: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#2257: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:34:
+ }
++static inline int vlv_iosf_sb_write(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
+
+-:2262: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#2262: FILE: drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h:38:
+ }
++static inline void vlv_iosf_sb_put(struct drm_device *drm, unsigned long ports)
+
+total: 0 errors, 1 warnings, 4 checks, 2084 lines checked
+
 
