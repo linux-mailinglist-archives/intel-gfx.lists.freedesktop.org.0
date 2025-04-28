@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BC2A9F7EE
+	by mail.lfdr.de (Postfix) with ESMTPS id BAB17A9F7F1
 	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 20:03:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4A2C10E655;
-	Mon, 28 Apr 2025 18:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE6AC10E65E;
+	Mon, 28 Apr 2025 18:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 548BE10E655;
- Mon, 28 Apr 2025 18:03:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE70610E65E;
+ Mon, 28 Apr 2025 18:03:08 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0714732162624492502=="
+ boundary="===============3913273770365445714=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dp=5Fmst=3A_Add_?=
  =?utf-8?q?support_for_fractional_link_bpps_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 18:03:02 -0000
-Message-ID: <174586338232.21364.8613267146051855618@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 18:03:08 -0000
+Message-ID: <174586338867.21387.7385516251302529759@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250428133135.3396080-1-imre.deak@intel.com>
 In-Reply-To: <20250428133135.3396080-1-imre.deak@intel.com>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0714732162624492502==
+--===============3913273770365445714==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -160,7 +160,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147435v2/index.html
 
---===============0714732162624492502==
+--===============3913273770365445714==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,4 +273,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============0714732162624492502==--
+--===============3913273770365445714==--
