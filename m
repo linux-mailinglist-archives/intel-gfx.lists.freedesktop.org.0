@@ -2,58 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA32CA9E957
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 09:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2950A9E96D
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 09:35:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD1410E3BE;
-	Mon, 28 Apr 2025 07:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5A3710E3B6;
+	Mon, 28 Apr 2025 07:35:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nxffPgHa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J9rOlgI6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91A6410E1D0;
- Mon, 28 Apr 2025 07:31:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E0910E3B5;
+ Mon, 28 Apr 2025 07:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745825513; x=1777361513;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=yYagYxpuEuB1EXTQkvFTGZWN2WTlWMZP6v5ZS6zTjTE=;
- b=nxffPgHay/qWIySkAW2LoFKk2E+BwdP1YncnlWNBOFTWGHvafm+YBYNR
- owWX+KE0QfF/ttUcRGGja9fVoLxymERShTzIeGKzPVwCiI7oGUf/Aio9o
- KmGFnAtCKu964w6rGBOO/O+xKus04v8Z3g4OoffLPPlKUKGe0xVY5bnDj
- IfzKIdvkm/ganHwGYhFv6BAknk4b9n31vQApQtjiditLHj6wOrDadrADy
- fYPY5lvwC3nQzsZJeTgKJ2mycjO4FR8ZPnCkByOIy4M1tlWOnH2O/D0x6
- BwGvl1sdnmPNXivJWiPSup0e7miyu/kOHhNOJnltI389jnmC3JU4/H/rT g==;
-X-CSE-ConnectionGUID: PcSCbjSCSaOC4BCAmpWTJg==
-X-CSE-MsgGUID: xoj8Mo2ERCa6/6NiUbhluw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="64817246"
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="64817246"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 00:31:35 -0700
-X-CSE-ConnectionGUID: HyqZ3A7mTKa0RHqd0fI4pQ==
-X-CSE-MsgGUID: SBCzH+LuQ8CbP8KGWmrSRA==
+ t=1745825724; x=1777361724;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=mxdki93guRrPUqMnNg4vPPRG6mXLaz09PPXd+0S8V6E=;
+ b=J9rOlgI6AciWCmXxtToIPSIfqRu3ooOY/Hwk29E4XwJclfYg/7WUV/Ke
+ 1jXMLIuIwbF2v/S+Mi1cl3C7TMxRVnFN++NXjEuuy9jzmWi9bAoyLBxex
+ aHWwhIMbGoPCTd62jG1Pd1N4gh1YVie/5WlSWAZbuRGp0U/yh6OISSxQ9
+ 6ws5sJP2HVUsYHxVRjDFycG6OBsuWHXenM0SeOpo4kVYcb4upEQ6HUx7x
+ 8+Hk6rk0WC49yTOsjjqU0plhKaju8DWEG98Z0yQM5VsgcwLOQW8d4a2Uq
+ jjT0ClbkWgh0B86ODo9pnGy4Sb3ivEaNbxSpk7irNNwDUhnn7OY3czjv3 A==;
+X-CSE-ConnectionGUID: gvhibaVmRviDYsnhjkzaIg==
+X-CSE-MsgGUID: 5xvsPDvmTDaiBaLc0xCtZg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11416"; a="50058868"
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="50058868"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 00:35:24 -0700
+X-CSE-ConnectionGUID: tFG6ORSjTd2nkwZlwgLrJA==
+X-CSE-MsgGUID: vdPhjXp7RgOB/g6AJCI/RQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="133750458"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.174])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 00:31:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, ville.syrjala@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: Rare divide error during display resume
-In-Reply-To: <aA5xvOhy9qKiVcE0@black.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <aA5xvOhy9qKiVcE0@black.fi.intel.com>
-Date: Mon, 28 Apr 2025 10:31:23 +0300
-Message-ID: <87ldrkyc6s.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,245,1739865600"; d="scan'208";a="137491544"
+Received: from smile.fi.intel.com ([10.237.72.55])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2025 00:35:19 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+ (envelope-from <andriy.shevchenko@intel.com>)
+ id 1u9J1I-000000011Cw-0lnE; Mon, 28 Apr 2025 10:35:16 +0300
+Date: Mon, 28 Apr 2025 10:35:15 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc: Akira Yokosawa <akiyks@gmail.com>, airlied@gmail.com, corbet@lwn.net,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+ masahiroy@kernel.org, mripard@kernel.org, nathan@kernel.org,
+ nicolas.schier@linux.dev, rodrigo.vivi@intel.com, simona@ffwll.ch,
+ tursulin@ursulin.net, tzimmermann@suse.de
+Subject: Re: [PATCH v4 0/4] Don't create Python bytecode when building the
+ kernel
+Message-ID: <aA8vs8gw75aAfwYb@smile.fi.intel.com>
+References: <cover.1745453655.git.mchehab+huawei@kernel.org>
+ <22d7bca2-cdfb-4e06-acb2-41363ba13333@gmail.com>
+ <20250426205708.4f90a83d@sal.lan>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250426205708.4f90a83d@sal.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,76 +81,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Sat, Apr 26, 2025 at 08:57:08PM +0800, Mauro Carvalho Chehab wrote:
+> Em Sat, 26 Apr 2025 11:39:05 +0900
+> Akira Yokosawa <akiyks@gmail.com> escreveu:
+> 
+> > Bothering with might-become-incompatilbe-in-the-future python environment
+> > variables in kernel Makefiles looks over-engineering to me.
+> > Also, as Mauro says in 3/4, it is incomplete in that it does not cover
+> > the cases where those scripts are invoked outside of kernel build.
+> > And it will interfere with existing developers who want the benefit of
+> > bytecode caching.
+> > 
+> > I'm not precluding the possibility of incoherent bytecode cache; for example
+> > by using a shared kernel source tree among several developers, and only
+> > one of them (owner) has a write permission of it.  In that case, said
+> > owner might update the tree without running relevant python scripts.
+> > 
+> > I don't know if python can notice outdated cache and disregard it.
+> > 
+> > In such a situation, setting PYTHONPYCACHEPREFIX as an environment
+> > variable should help, for sure, but only in such special cases.
+> > 
+> > Andy, what do you say if I ask reverts of 1/4, 2/4/, and 3/4?
+> 
+> Patches 1 and 2 are, IMO, needed anyway, as they fix a problem:
+> KERNELDOC environment is not used consistently.
+> 
+> Now, patch 3 is the one that may require more thinking.
+> 
+> I agree with Andy that, when O=<dir> is used, nothing shall be
+> written to source dir.
+> 
+> There are a couple of reasons for that:
+> 
+> 1. source dir may be read only;
+> 2. one may want to do cross compilation and use multiple output
+>    directories, one for each version;
+> 3. the source dir could be mapped via NFS to multiple machines
+>    with different architectures.
+> 
+> For (3), it could mean that multiple machines may have different
+> Python versions, so, sharing the Python bytecode from source dir doesn't
+> sound a good idea. Also, I'm not sure if the pyc from different archs
+> would be identical.
+> 
+> With that, there are two options:
+> 
+> a. disable cache;
+> b. set PYTHONCACHEPREFIX.
 
-PCI ID of the platform? 
+Thanks, Mauro, for replying. I'm with you on all of it.
 
-On Sun, 27 Apr 2025, Raag Jadav <raag.jadav@intel.com> wrote:
-> I came across this while testing an unrelated feature. It's not easily
-> reproducible so thought I'd share here.
->
-> [ 1802.992726] PM: suspend entry (s2idle)
-> [ 1802.993986] Filesystems sync: 0.001 seconds
-> [ 1826.223060] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
-> [ 1826.315308] xe 0000:03:00.0: [drm] *ERROR* DC state mismatch (0x0 -> 0x4000000b)
-> [ 1830.528929] xe 0000:03:00.0: [drm] *ERROR* Writing dc state to 0xbffffff4 failed, now 0xffffffff
-> [ 1831.130028] xe 0000:03:00.0: [drm] *ERROR* timeout waiting for CDCLK PLL unlock
-> [ 1831.140420] Oops: divide error: 0000 [#1] PREEMPT SMP NOPTI
-> [ 1831.145976] CPU: 14 UID: 0 PID: 9834 Comm: kworker/u128:32 Kdump: loaded Tainted: G     U  W          6.14.0-xe+ #14
-> [ 1831.156426] Tainted: [U]=USER, [W]=WARN
-> [ 1831.160246] Hardware name: Intel Corporation Raptor Lake Client Platform/RPL-S ADP-S DDR5 UDIMM CRB, BIOS RPLSFWI1.R00.5045.A00.2401260733 01/26/2024
-> [ 1831.173536] Workqueue: async async_run_entry_fn
-> [ 1831.178051] RIP: 0010:bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
-> [ 1831.183599] Code: c2 c1 e1 04 0f b7 f8 f3 0f b8 c7 90 0f af c3 85 c0 40 0f 9e c6 85 c9 0f 9f c2 40 38 d6 89 ca 0f 84 71 01 00 00 d1 fa 01 d0 99 <f7> f9 83 f8 04 0f 84 71 01 00 00 0f 8f 90 00 00 00 45 31 ff 83 f8
-> [ 1831.202219] RSP: 0018:ffffc9000b69fa18 EFLAGS: 00010246
-> [ 1831.207419] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-> [ 1831.214515] RDX: 0000000000000000 RSI: 0000000000000001 RDI: 000000000000ffff
-> [ 1831.221611] RBP: ffffc9000b69fa58 R08: 0000000000000000 R09: ffffc9000b69f858
-> [ 1831.228706] R10: ffffc9000b69f850 R11: ffff88888c5fffe8 R12: 0000000000000000
-> [ 1831.235796] R13: ffff888173adb3f0 R14: ffffffffffffffff R15: 0000000000000000
-> [ 1831.242891] FS:  0000000000000000(0000) GS:ffff88888d500000(0000) knlGS:0000000000000000
-> [ 1831.250931] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [ 1831.256647] CR2: 00005632ddf55000 CR3: 0000000003258001 CR4: 0000000000f72ef0
-> [ 1831.263741] PKRU: 55555554
-> [ 1831.266450] Call Trace:
-> [ 1831.268900]  <TASK>
-> [ 1831.271006]  ? show_regs+0x6d/0x80
-> [ 1831.274400]  ? die+0x3c/0xa0
-> [ 1831.277276]  ? do_trap+0xcf/0xf0
-> [ 1831.280497]  ? do_error_trap+0x7a/0x100
-> [ 1831.284319]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
-> [ 1831.289264]  ? exc_divide_error+0x3f/0x60
-> [ 1831.293260]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
-> [ 1831.298200]  ? asm_exc_divide_error+0x1f/0x30
-> [ 1831.302539]  ? bxt_cdclk_ctl.isra.0+0x6c/0x2a0 [xe]
-> [ 1831.307479]  ? bxt_cdclk_ctl.isra.0+0x35/0x2a0 [xe]
-> [ 1831.312421]  ? cdclk_squash_waveform+0x9f/0xc0 [xe]
-> [ 1831.317361]  _bxt_set_cdclk+0x295/0x650 [xe]
-> [ 1831.321699]  bxt_set_cdclk+0x80/0x570 [xe]
-> [ 1831.325863]  ? bxt_calc_cdclk_pll_vco+0xa2/0xc0 [xe]
-> [ 1831.330890]  intel_cdclk_init_hw+0x238/0x470 [xe]
-> [ 1831.335655]  icl_display_core_init+0xde/0x800 [xe]
-> [ 1831.340513]  intel_power_domains_init_hw+0x1bc/0x660 [xe]
-> [ 1831.345972]  intel_power_domains_resume+0xa4/0x100 [xe]
-> [ 1831.351256]  intel_display_power_resume_early+0x5a/0xf0 [xe]
-> [ 1831.356971]  xe_display_pm_resume_early+0x27/0x30 [xe]
-> [ 1831.362172]  xe_pm_resume+0x12c/0x280 [xe]
-> [ 1831.366324]  ? __pfx_pci_pm_resume+0x10/0x10
-> [ 1831.370580]  xe_pci_resume+0x60/0x70 [xe]
-> [ 1831.374645]  pci_pm_resume+0x78/0x110
-> [ 1831.378300]  dpm_run_callback+0x58/0x100
-> [ 1831.382213]  device_resume+0x13c/0x350
-> [ 1831.385950]  ? __pfx_dpm_watchdog_handler+0x10/0x10
-> [ 1831.390808]  async_resume+0x22/0x40
-> [ 1831.394287]  async_run_entry_fn+0x36/0x140
-> [ 1831.398368]  process_one_work+0x217/0x680
-> [ 1831.402365]  worker_thread+0x1a2/0x340
-> [ 1831.406103]  ? __pfx_worker_thread+0x10/0x10
-> [ 1831.410358]  kthread+0x10b/0x270
-> [ 1831.413585]  ? __pfx_kthread+0x10/0x10
-> [ 1831.417324]  ret_from_fork+0x3d/0x60
-> [ 1831.420894]  ? __pfx_kthread+0x10/0x10
-> [ 1831.424632]  ret_from_fork_asm+0x1a/0x30
-> [ 1831.428546]  </TASK>
+> We're currently doing (a). I guess everybody agrees that this is
+> is not ideal.
+
+Yes, I also prefer to have cache working if it's possible. The only BUT here is
+that users should not suffer from it.
+
+> So, ideally, we should move to (b). For Spinx, the easiest solution
+> is just to place it under Documentation/output, but this is not
+> generic enough: ideally, we should revert patch 3 and set
+> PYTHONCACHEPREFIX when O is used. Eventually, we can apply my
+> patch for Documentation/output, while we craft such logic.
 
 -- 
-Jani Nikula, Intel
+With Best Regards,
+Andy Shevchenko
+
+
