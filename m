@@ -2,92 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B6AA9FA64
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6AF3A9FA68
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:23:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86AEF10EA09;
-	Mon, 28 Apr 2025 20:21:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6340C10EA06;
+	Mon, 28 Apr 2025 20:23:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gZjf05V/";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bSLs4dKf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30C810EA09
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 20:21:43 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0213410EA06
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 20:23:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745871702;
+ s=mimecast20190719; t=1745871830;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=LrYFRIG+5naiBlbX+9CjgCvO3T2uyab9clc4dalicFs=;
- b=gZjf05V/tERnBQdT7aeLUkJfZDQDziAJ4MMoEorGo1yQ8o6Ab6/ig+0bjE2KNUwjYWoJxE
- 9HrM86KKsahsS4jG5b7FnQAUjb1J+0qVIFI2HpHu9kWf/CsmkFs8Ikds/i0hdOGp+IyVr6
- 8GUKF5L+8CyNZ9CeMcJIuzAAfl9j24A=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=rkEtrqEhBS4XY4MnxLuPuVZCrKNUqZ8c+beG4mFgbns=;
+ b=bSLs4dKfggWz+q3KSLZgWhNGIBs0Ln8904BBhSwW9UsIT7ap+FpZG9kzGhhnbMRnP7KdDg
+ THRKd0gMK41bt9P2ikjyGCKHEltCeIyk35WGUbG9kaNjvHXnUWz8knQrmttdeaSoD5ZJbH
+ TBYd60TP4lTjffec6eCuWDlfUgcTzcQ=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-192-CsML-efGMTOltwCTKYc63Q-1; Mon, 28 Apr 2025 16:21:39 -0400
-X-MC-Unique: CsML-efGMTOltwCTKYc63Q-1
-X-Mimecast-MFC-AGG-ID: CsML-efGMTOltwCTKYc63Q_1745871698
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-43d08915f61so26905505e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 13:21:39 -0700 (PDT)
+ us-mta-517-xVVJ-gNzOFGr5fAM4TJjYQ-1; Mon, 28 Apr 2025 16:23:46 -0400
+X-MC-Unique: xVVJ-gNzOFGr5fAM4TJjYQ-1
+X-Mimecast-MFC-AGG-ID: xVVJ-gNzOFGr5fAM4TJjYQ_1745871825
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3a07a867a4dso1282279f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 13:23:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745871698; x=1746476498;
+ d=1e100.net; s=20230601; t=1745871825; x=1746476625;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=LrYFRIG+5naiBlbX+9CjgCvO3T2uyab9clc4dalicFs=;
- b=NVzl8XRIv7lHIjqvaVp4MwXBWN27PmW4FlUOSMu5YWuWU3uhqRhAs3SGitigbj8kxX
- S4xbTSrtAsRtzPIZ1p+RmXPQFnSBxT85OPDp5Xy3VvB5mNwW9WNiDk1M32WMQ8biVwgq
- Wz3ZQspFY3Vhwmy4HZX1UJkqqh7zW7ohHYHkgFsnVgmMVFJu7MUISemTJdWNLozbDjsr
- J9FBOJk1aKA+6LFFb3nzhc7vZWPdizpkYPOpb8Uyw19ae/69av3Q3TpghYBTmR5EHKdO
- 2zieqzazB3yf+jHM/DpQhCRUwinJ8BzQO0VH9wt80BixIpn8HgteTp1WhbEriOxp5W60
- GmUg==
+ bh=rkEtrqEhBS4XY4MnxLuPuVZCrKNUqZ8c+beG4mFgbns=;
+ b=G4iMIvPgSITKGoOUSOyzmjnolIn+oyEUSRJnDohGt31atXKsMphZbr+OvHmhvgT+o0
+ AqSAmtu484BrKL/yqZjJ6x5MUJ7DqKx0HH3DodDOUon7ODqDIodXZFAwcej4WbdXw3Yv
+ nKBqRhNuNV7dVjWHgXqUKq0pZYQEJZtyaNS6CmWM+viThdA2stOFOwHgC9aiP48SUrOH
+ EhOqYjZBqtVeXHEA/Rmd/R57xv1opw1zvUVh0g0CSnNyCPDjTw9x/zgXetaORoD3dyjH
+ fZGGtDd+qyjQDgSqsZ0NnzfpeIhe5kmcUefbzz3hlKlDdlVuymXsWt02XVgO7gq9a3jx
+ h5Sw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV8E8lHxYvxnyWqJn+q2ELz41tmA4qzyh9QeoC3uo+EGpalt30bgzdSzEnDQXs2BcEj+GKz+tOFjiM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwfQR78gR8HJCtWTz9VLSU46CdQlBHtvaxc7xQab3eCZnyYhItd
- q9t9PPMnfY/LrsBi/kbJmxjG0k+Xsgdmds3neCNpmeyrfUmRlIm4QdWArK3XFQvwcSthj5pypjn
- zCIJSTjcQxq28MZgKSVbj91eBKUgTOVAEBIB/kcCvWwbwY09w4pGsImbZNQSCKP3Mjg==
-X-Gm-Gg: ASbGncvaE48gdoEfTTl+Um8q1IGGtiEGB3TK6ebsgFCT7dkAoDLk12VpNQ6zG1otXeo
- Uqb1qlqUayNGaER3X7macaMSqHUAcFC22+OdO6ZmejSM3INV75ys8dDfMfmP0v6dwAoTxmGqdyL
- PVI0+1ceRwMW5U+CBzkiOJyi9A83gN434JeVrer70PqV2BcYDtor4767OvnkWIm+2YZuXkyoJec
- XnBYXilrtWXO6lVJ1m2gxeW8XdaxJO+3BYIzibk142kLwbSTxE4Hptz5bgS7upUsoBhpXezdICI
- AGfNHvf+UUfosHY40bCLJLzGPje9pP/Bw5Vk8eQOnbEHvT0sLrl20OI0YnlpGnXxKq8jOq6kGyE
- n4CWRoA3QwReftdr+tAIMA6taPrz0ozS6Nic9ffk=
-X-Received: by 2002:a05:600c:a06:b0:43d:fa59:cc8f with SMTP id
- 5b1f17b1804b1-441ac89558fmr4580855e9.33.1745871698131; 
- Mon, 28 Apr 2025 13:21:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGpSf09RRSheP3E2kXomQow4GricntzgKsoJCPbpu2kgpQbD4Ec+VYPptiAm17v8S7ArcU8Xg==
-X-Received: by 2002:a05:600c:a06:b0:43d:fa59:cc8f with SMTP id
- 5b1f17b1804b1-441ac89558fmr4580665e9.33.1745871697810; 
- Mon, 28 Apr 2025 13:21:37 -0700 (PDT)
+ AJvYcCVSvYEa9FBMbHXYkQ190XDr+xewWGmQ9L7IOf3JyzyDNVxfSVonWu7Bn/EFVzG35MOPOEdaqWsum/g=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyzJrI8tc5URToTyPXIHd/enFS97gjYfFjMfxKTy8zFyOLoyBIc
+ yKw1olQrzJZVm6W7ivTqGBx9I0gCm7ea1ZG7ijiH3vRtPRyLNvVpOks+fFJBPBzUJK8A2WWKQH2
+ EUZ3dm6bISZ20CBvxVl92orGRTrUlUYmPm8YDRumlMv33KcOc/DHD1y8lwFWuuBeJJQ==
+X-Gm-Gg: ASbGncuTPMvSreDCyDNixfDbe6XB1/lZ3g2FRjz86H3CLkMBrDgQ15GzH4IcRM2KQDy
+ q9LUQqceeV44vkioBRrCABjMm1vUtDuF0Kz6Sr6EpBM7ya40TIxpCCNjM5igPJ/pEb1oqXhPZru
+ zAuhA6rKp+xKDUE7sGedPo621u4kffHlUg5Bt16hARZh1jvWYT/MEPBTewW8ZaDCH/umvRqoPwR
+ PQ4WmR6oku6DzBMoRl/Z6ZhZ8sn4ZiBLN56ZFOK67w0GvDfyod3ZQVymabdfeGlnkNR87FHjvW6
+ T8RhidTB76e05FEHyWeGoqUs5jDc/R6SANk3ZMGeGqAjCgTmVbyN8vbp9Kl/OCuaLxoaVefsnnY
+ reJlGOnbtu8xgGXHcKPFXzFuwDD9ycbPQ7WMWNC4=
+X-Received: by 2002:a05:6000:b4e:b0:39e:cc5e:147 with SMTP id
+ ffacd0b85a97d-3a0894a1aa8mr941301f8f.55.1745871825197; 
+ Mon, 28 Apr 2025 13:23:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHi9BeKEw90HGojYH0uYj++rRWoQl9Ep0UCTEuLPP1j3Ci9jqWDeYDWhMBAhQ1IJFvMvOz7CA==
+X-Received: by 2002:a05:6000:b4e:b0:39e:cc5e:147 with SMTP id
+ ffacd0b85a97d-3a0894a1aa8mr941276f8f.55.1745871824797; 
+ Mon, 28 Apr 2025 13:23:44 -0700 (PDT)
 Received: from ?IPV6:2003:cb:c72f:ea00:2f00:e7e5:8875:a0ea?
  (p200300cbc72fea002f00e7e58875a0ea.dip0.t-ipconnect.de.
  [2003:cb:c72f:ea00:2f00:e7e5:8875:a0ea])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-440a536a1e8sm135663205e9.28.2025.04.28.13.21.36
+ ffacd0b85a97d-3a073cbf04dsm12236556f8f.52.2025.04.28.13.23.43
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Apr 2025 13:21:37 -0700 (PDT)
-Message-ID: <5a2103cb-08c7-4085-ad88-3d373562047e@redhat.com>
-Date: Mon, 28 Apr 2025 22:21:35 +0200
+ Mon, 28 Apr 2025 13:23:44 -0700 (PDT)
+Message-ID: <bd8ce421-cf2a-451b-a3eb-613e6856bb9e@redhat.com>
+Date: Mon, 28 Apr 2025 22:23:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to pfnmap_track()
  + pfnmap_untrack()
 To: Suren Baghdasaryan <surenb@google.com>,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-trace-kernel@vger.kernel.org, Dave Hansen
- <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+Cc: Peter Xu <peterx@redhat.com>, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-trace-kernel@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski
+ <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
  <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
@@ -96,11 +97,14 @@ Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
  <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
  <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
+ Pedro Falcato <pfalcato@suse.de>
 References: <20250425081715.1341199-1-david@redhat.com>
- <20250425081715.1341199-6-david@redhat.com>
- <8131940c-8b22-4856-947b-62ca64e2f417@lucifer.local>
- <CAJuCfpFTgXu+RtbzAis4C0kV=hjFQH39BZrKJsQbjnZRMR2tbw@mail.gmail.com>
+ <20250425081715.1341199-6-david@redhat.com> <aAvvQ1h9bg11hiqI@x1.local>
+ <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com> <aA-n9hvSX9JLsRM-@x1.local>
+ <7a26e29c-d889-450a-a5e1-ce671f09e4c8@redhat.com> <aA-rtji7ujQgckbM@x1.local>
+ <884fab29-e16a-4663-8e33-885bc70ca2f7@redhat.com>
+ <f08118b3-0736-4a5d-b780-8e3d88f45c02@lucifer.local>
+ <CAJuCfpEtnBrAkSV-6PDv4Au5gs02vWYeMNHo3OxZb8NB0sy8cw@mail.gmail.com>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -147,9 +151,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <CAJuCfpFTgXu+RtbzAis4C0kV=hjFQH39BZrKJsQbjnZRMR2tbw@mail.gmail.com>
+In-Reply-To: <CAJuCfpEtnBrAkSV-6PDv4Au5gs02vWYeMNHo3OxZb8NB0sy8cw@mail.gmail.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: SF-tMhcT4-WAzVblHl4z_4W0teejuB_UJA4pdyfmyZE_1745871698
+X-Mimecast-MFC-PROC-ID: 6iKWkNVn8gKSEjav3dIarYTGeo6MDxZMtlxCBF51IV0_1745871825
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -169,22 +173,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28.04.25 22:00, Suren Baghdasaryan wrote:
-> On Mon, Apr 28, 2025 at 12:47 PM Lorenzo Stoakes
+On 28.04.25 21:57, Suren Baghdasaryan wrote:
+> On Mon, Apr 28, 2025 at 12:37 PM Lorenzo Stoakes
 > <lorenzo.stoakes@oracle.com> wrote:
 >>
->> +cc Suren, who has worked HEAVILY on VMA field manipulation and such :)
+>> On Mon, Apr 28, 2025 at 07:23:18PM +0200, David Hildenbrand wrote:
+>>> On 28.04.25 18:24, Peter Xu wrote:
+>>>> On Mon, Apr 28, 2025 at 06:16:21PM +0200, David Hildenbrand wrote:
+>>>>>> Probably due to what config you have.  E.g., when I'm looking mine it's
+>>>>>> much bigger and already consuming 256B, but it's because I enabled more
+>>>>>> things (userfaultfd, lockdep, etc.).
+>>>>>
+>>>>> Note that I enabled everything that you would expect on a production system
+>>>>> (incld. userfaultfd, mempolicy, per-vma locks), so I didn't enable lockep.
+>>>>
+>>>> I still doubt whether you at least enabled userfaultfd, e.g., your previous
+>>>> paste has:
+>>>>
+>>>>     struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
+>>>>
+>>>> Not something that matters.. but just in case you didn't use the expected
+>>>> config file you wanted to use..
+>>>
+>>> You're absolutely right. I only briefly rechecked for this purpose here on
+>>> my notebook, and only looked for the existence of members, not expecting
+>>> that we have confusing stuff like vm_userfaultfd_ctx.
+>>>
+>>> I checked again and the size stays at 192 with allyesconfig and then
+>>> disabling debug options.
 >>
->> Suren - David is proposing adding a new field. AFAICT this does not add a
->> new cache line so I think we're all good.
->>
->> But FYI!
+>> I think a reasonable case is everything on, except CONFIG_DEBUG_LOCK_ALLOC and I
+>> don't care about nommu.
 > 
-> Thanks! Yes, there should be some space in the last cacheline after my
-> last field reshuffling.
+> I think it's safe to assume that production systems would disable
+> lockdep due to the performance overhead. At least that's what we do on
+> Android - enable it on development branches but disable in production.
 
-That explains why -- that last time I looked at this -- there was no 
-easy space available. Thanks for that!
+Right, and "struct lockdep_map" is ... significantly larger than 8 
+bytes. With that enabled, one is already paying for extra VMA space ...
 
 -- 
 Cheers,
