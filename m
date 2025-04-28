@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA36FA9F297
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 15:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7598AA9F29E
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 15:46:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5065210E0BD;
-	Mon, 28 Apr 2025 13:45:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA25610E1DA;
+	Mon, 28 Apr 2025 13:46:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0133710E004;
- Mon, 28 Apr 2025 13:45:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6175E10E1BE;
+ Mon, 28 Apr 2025 13:46:45 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2759797049173418942=="
+ boundary="===============0233169490978463562=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Remove_con?=
  =?utf-8?q?st_from_struct_i915=5Fwa_list_allocation?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Kees Cook" <kees@kernel.org>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Apr 2025 13:45:27 -0000
-Message-ID: <174584792793.20288.4447276829815660569@c664b1dc75d1>
+Date: Mon, 28 Apr 2025 13:46:38 -0000
+Message-ID: <174584799817.20290.14920642037316417041@c664b1dc75d1>
 X-Patchwork-Hint: ignore
 References: <20250426061357.work.749-kees@kernel.org>
 In-Reply-To: <20250426061357.work.749-kees@kernel.org>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2759797049173418942==
+--===============0233169490978463562==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,7 +152,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148306v1/index.html
 
---===============2759797049173418942==
+--===============0233169490978463562==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,4 +255,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============2759797049173418942==--
+--===============0233169490978463562==--
