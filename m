@@ -2,67 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A71C9A9F519
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 18:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A2BA9F52D
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 18:08:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D780310E605;
-	Mon, 28 Apr 2025 16:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA30A10E1AE;
+	Mon, 28 Apr 2025 16:08:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cF/qAgSX";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UyNvYQQe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B22D10E5FF;
- Mon, 28 Apr 2025 16:03:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745856219; x=1777392219;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=9MVOWoUBnHaDYw7OejNBwzP4OLieGeOiM9uL1QginAo=;
- b=cF/qAgSX7mDU6sKyLnQyU9fMDRgNSyD6d/WaZrPRPOLXjINcBDtg0DEV
- 6kTG4x3ODoZlbE8m1vcRe2M3i8bcXtY0e92YIsZSfZsQIunP/v7eYQSin
- GBrlaHwi0A6Mki4/20N2wlxhDhE6bbNx45KXmLjjIMV6k+Y1sWWoHIj/p
- PnPlYYh1veRtF+Gp5MwBSxUM8YOX/q/Lq5qx1FgjQxZzcmVcBixn/eOmv
- qJTfmIRfDBo5ncQlQSjSGIbUtjccr77SSAHVcPhX/IeHy1/TN9MO/hKag
- 3MNZOUYB1X4KZVyKCuR+oO/uDcPVNtfgBPXEa47bQoWFfMG81RJ7JH7f8 Q==;
-X-CSE-ConnectionGUID: 1me9+WYzTkmgU6k1AaN4qg==
-X-CSE-MsgGUID: 6SrubAexSfiAMYtw082tgQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="51124651"
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="51124651"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 09:03:30 -0700
-X-CSE-ConnectionGUID: 9MaCJbWySiWG7N/A9Y1wrw==
-X-CSE-MsgGUID: NG5gqInUREubMEn3V1rQHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,246,1739865600"; d="scan'208";a="133524997"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.246.179])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2025 09:03:25 -0700
-Date: Mon, 28 Apr 2025 18:03:09 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E86510E507
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 16:08:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1745856510;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=RjlHZlqdBLidaHviO2ndJKZu4KjLnMsljSpmBM9kRPM=;
+ b=UyNvYQQeYRoijryXqswUbs92HIwLvDg79JzsNRRZJjzU3iUsR8kVlaCvujbCEUlY29q2Hp
+ 7COa+v7q2snPB2lof6PNMGbVhO7fA1KCKjaMvSoy0ykoNP4/Uo2JANVtGmxxpLJOseOj8R
+ mg+HvgkFVSQmvG3EUzo2vCaXtpfBPBI=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-524-SfuJ2KksPKKAZZTlcgIQmQ-1; Mon, 28 Apr 2025 12:08:29 -0400
+X-MC-Unique: SfuJ2KksPKKAZZTlcgIQmQ-1
+X-Mimecast-MFC-AGG-ID: SfuJ2KksPKKAZZTlcgIQmQ_1745856508
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-7c5f3b94827so745796685a.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 09:08:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745856508; x=1746461308;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RjlHZlqdBLidaHviO2ndJKZu4KjLnMsljSpmBM9kRPM=;
+ b=bXTKAcraizmWFDyuNAwyxnGD02Uw48hqeG4rkhVHOq7S5xLjkmpXJ3G4lhl0HQ2y1u
+ PaaWkS4Kv3ug8MwsaPgpcmxhtbP407qeqO46yCIn7ufduM1y656+HQzjt+wLiwyIowni
+ cLh2zLtMA9Rh+M1BmlPEEZhVmUYLOw5OYEGY5fFylZrmGH8ojOcxVcXkc9O+5DqSqESF
+ RkX0llQ0bDDe5PPfQoaHN8dU5mmOpyCa8wf0zTXZKKNeJTM4LbGi+9ChR41FHW+xvYSR
+ FAI+IzsuOkFzEmAQ5Wi+IoM22cb2tFFdzErpogh7ZOVeCFGTQj8xrHa5+5YjPalzycph
+ H5iA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW55enVu8gpIFjzOufFLWFG4uuCkygmTkhwecmeVV+88/gm7a+26Wykxb6CH1fftnXU8piamuaMx30=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzwyRpq40fw5WK6GxuVkNzrzSxpn44Uili38oxTOuR+1TsAreeB
+ dJvxqBIOjJ3RlxGA8jnUWOzJ4kY6HM89oRUrXpMoCba9nXdberHtuZnpQ3cmR2AN3bNDnCIHK2g
+ WUrrq1BJ/rAcBqndB1HBmCTkkes2bnSXC+D1+WJlp8LYKqZ6V8NnIlOKJe0wrGkLnYA==
+X-Gm-Gg: ASbGncs09v3OX/e7NyWt+fLf/MFVhXIu72hCS1r4m20VWBf1Q9qUMD4HOpj5oOa8XYE
+ /g/hhgcSdv+LFNrgbBMgTzekpHSM9jp9QOqTBQa80oH5GdnhUVE9+QfySS3baTE+F9U8W5woTlS
+ VCF5+i5qZcG/D5Wzcdy0vbHOtSHE3lFzTK1oNYybNRcgSbawt0Hx62Nk/PSeirYjq4koyGMzyWc
+ FJNz2xzeoNh8RqdinQxsebkx91lsoNhAg21CDh+Yl8q2IsWHFaRA1tcO7xBOwvDPA/HHMqxFqeH
+ q7M=
+X-Received: by 2002:a05:620a:10a1:b0:7c5:5768:409f with SMTP id
+ af79cd13be357-7c9619fa9a7mr1645602285a.57.1745856507678; 
+ Mon, 28 Apr 2025 09:08:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGW5BlJDkcwxdtW1DAIlXgy/Si+TW6ulb7oYDt7LUfQf0Ngyzow9trm051yins+fPxPd9qHkw==
+X-Received: by 2002:a05:620a:10a1:b0:7c5:5768:409f with SMTP id
+ af79cd13be357-7c9619fa9a7mr1645595485a.57.1745856507123; 
+ Mon, 28 Apr 2025 09:08:27 -0700 (PDT)
+Received: from x1.local ([85.131.185.92]) by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7c958e9f111sm636846285a.93.2025.04.28.09.08.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 28 Apr 2025 09:08:26 -0700 (PDT)
+Date: Mon, 28 Apr 2025 12:08:22 -0400
+From: Peter Xu <peterx@redhat.com>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next
-Message-ID: <aA-mvTb6s909V8hu@fedora>
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>
+Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to
+ pfnmap_track() + pfnmap_untrack()
+Message-ID: <aA-n9hvSX9JLsRM-@x1.local>
+References: <20250425081715.1341199-1-david@redhat.com>
+ <20250425081715.1341199-6-david@redhat.com>
+ <aAvvQ1h9bg11hiqI@x1.local>
+ <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+In-Reply-To: <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: JIbWVrg2J_2CyVOY9iTHXb3Y5pKjG__OiRldQe64_KM_1745856508
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,162 +120,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+On Fri, Apr 25, 2025 at 10:36:55PM +0200, David Hildenbrand wrote:
+> On 25.04.25 22:23, Peter Xu wrote:
+> > On Fri, Apr 25, 2025 at 10:17:09AM +0200, David Hildenbrand wrote:
+> > > Let's use our new interface. In remap_pfn_range(), we'll now decide
+> > > whether we have to track (full VMA covered) or only sanitize the pgprot
+> > > (partial VMA covered).
+> > > 
+> > > Remember what we have to untrack by linking it from the VMA. When
+> > > duplicating VMAs (e.g., splitting, mremap, fork), we'll handle it similar
+> > > to anon VMA names, and use a kref to share the tracking.
+> > > 
+> > > Once the last VMA un-refs our tracking data, we'll do the untracking,
+> > > which simplifies things a lot and should sort our various issues we saw
+> > > recently, for example, when partially unmapping/zapping a tracked VMA.
+> > > 
+> > > This change implies that we'll keep tracking the original PFN range even
+> > > after splitting + partially unmapping it: not too bad, because it was
+> > > not working reliably before. The only thing that kind-of worked before
+> > > was shrinking such a mapping using mremap(): we managed to adjust the
+> > > reservation in a hacky way, now we won't adjust the reservation but
+> > > leave it around until all involved VMAs are gone.
+> > > 
+> > > Signed-off-by: David Hildenbrand <david@redhat.com>
+> > > ---
+> > >   include/linux/mm_inline.h |  2 +
+> > >   include/linux/mm_types.h  | 11 ++++++
+> > >   kernel/fork.c             | 54 ++++++++++++++++++++++++--
+> > >   mm/memory.c               | 81 +++++++++++++++++++++++++++++++--------
+> > >   mm/mremap.c               |  4 --
+> > >   5 files changed, 128 insertions(+), 24 deletions(-)
+> > > 
+> > > diff --git a/include/linux/mm_inline.h b/include/linux/mm_inline.h
+> > > index f9157a0c42a5c..89b518ff097e6 100644
+> > > --- a/include/linux/mm_inline.h
+> > > +++ b/include/linux/mm_inline.h
+> > > @@ -447,6 +447,8 @@ static inline bool anon_vma_name_eq(struct anon_vma_name *anon_name1,
+> > >   #endif  /* CONFIG_ANON_VMA_NAME */
+> > > +void pfnmap_track_ctx_release(struct kref *ref);
+> > > +
+> > >   static inline void init_tlb_flush_pending(struct mm_struct *mm)
+> > >   {
+> > >   	atomic_set(&mm->tlb_flush_pending, 0);
+> > > diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+> > > index 56d07edd01f91..91124761cfda8 100644
+> > > --- a/include/linux/mm_types.h
+> > > +++ b/include/linux/mm_types.h
+> > > @@ -764,6 +764,14 @@ struct vma_numab_state {
+> > >   	int prev_scan_seq;
+> > >   };
+> > > +#ifdef __HAVE_PFNMAP_TRACKING
+> > > +struct pfnmap_track_ctx {
+> > > +	struct kref kref;
+> > > +	unsigned long pfn;
+> > > +	unsigned long size;
+> > > +};
+> > > +#endif
+> > > +
+> > >   /*
+> > >    * This struct describes a virtual memory area. There is one of these
+> > >    * per VM-area/task. A VM area is any part of the process virtual memory
+> > > @@ -877,6 +885,9 @@ struct vm_area_struct {
+> > >   	struct anon_vma_name *anon_name;
+> > >   #endif
+> > >   	struct vm_userfaultfd_ctx vm_userfaultfd_ctx;
+> > > +#ifdef __HAVE_PFNMAP_TRACKING
+> > > +	struct pfnmap_track_ctx *pfnmap_track_ctx;
+> > > +#endif
+> > 
+> > So this was originally the small concern (or is it small?) that this will
+> > grow every vma on x86, am I right?
+> 
+> Yeah, and last time I looked into this, it would have grown it such that it would
+> require a bigger slab. Right now:
 
-An additional drm-xe-next PR as requested on IRC.
-Take 2, This time with a normal-looking diffstat.
+Probably due to what config you have.  E.g., when I'm looking mine it's
+much bigger and already consuming 256B, but it's because I enabled more
+things (userfaultfd, lockdep, etc.).
 
-A lot of fixes but some new stuff as detailed below.
+> 
+> Before this change:
+> 
+> struct vm_area_struct {
+> 	union {
+> 		struct {
+> 			long unsigned int vm_start;      /*     0     8 */
+> 			long unsigned int vm_end;        /*     8     8 */
+> 		};                                       /*     0    16 */
+> 		freeptr_t          vm_freeptr;           /*     0     8 */
+> 	};                                               /*     0    16 */
+> 	struct mm_struct *         vm_mm;                /*    16     8 */
+> 	pgprot_t                   vm_page_prot;         /*    24     8 */
+> 	union {
+> 		const vm_flags_t   vm_flags;             /*    32     8 */
+> 		vm_flags_t         __vm_flags;           /*    32     8 */
+> 	};                                               /*    32     8 */
+> 	unsigned int               vm_lock_seq;          /*    40     4 */
+> 
+> 	/* XXX 4 bytes hole, try to pack */
+> 
+> 	struct list_head           anon_vma_chain;       /*    48    16 */
+> 	/* --- cacheline 1 boundary (64 bytes) --- */
+> 	struct anon_vma *          anon_vma;             /*    64     8 */
+> 	const struct vm_operations_struct  * vm_ops;     /*    72     8 */
+> 	long unsigned int          vm_pgoff;             /*    80     8 */
+> 	struct file *              vm_file;              /*    88     8 */
+> 	void *                     vm_private_data;      /*    96     8 */
+> 	atomic_long_t              swap_readahead_info;  /*   104     8 */
+> 	struct mempolicy *         vm_policy;            /*   112     8 */
+> 	struct vma_numab_state *   numab_state;          /*   120     8 */
+> 	/* --- cacheline 2 boundary (128 bytes) --- */
+> 	refcount_t                 vm_refcnt __attribute__((__aligned__(64))); /*   128     4 */
+> 
+> 	/* XXX 4 bytes hole, try to pack */
+> 
+> 	struct {
+> 		struct rb_node     rb __attribute__((__aligned__(8))); /*   136    24 */
+> 		long unsigned int  rb_subtree_last;      /*   160     8 */
+> 	} __attribute__((__aligned__(8))) shared __attribute__((__aligned__(8)));        /*   136    32 */
+> 	struct anon_vma_name *     anon_name;            /*   168     8 */
+> 	struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
+> 
+> 	/* size: 192, cachelines: 3, members: 18 */
+> 	/* sum members: 168, holes: 2, sum holes: 8 */
+> 	/* padding: 16 */
+> 	/* forced alignments: 2, forced holes: 1, sum forced holes: 4 */
+> } __attribute__((__aligned__(64)));
+> 
+> After this change:
+> 
+> struct vm_area_struct {
+> 	union {
+> 		struct {
+> 			long unsigned int vm_start;      /*     0     8 */
+> 			long unsigned int vm_end;        /*     8     8 */
+> 		};                                       /*     0    16 */
+> 		freeptr_t          vm_freeptr;           /*     0     8 */
+> 	};                                               /*     0    16 */
+> 	struct mm_struct *         vm_mm;                /*    16     8 */
+> 	pgprot_t                   vm_page_prot;         /*    24     8 */
+> 	union {
+> 		const vm_flags_t   vm_flags;             /*    32     8 */
+> 		vm_flags_t         __vm_flags;           /*    32     8 */
+> 	};                                               /*    32     8 */
+> 	unsigned int               vm_lock_seq;          /*    40     4 */
+> 
+> 	/* XXX 4 bytes hole, try to pack */
+> 
+> 	struct list_head           anon_vma_chain;       /*    48    16 */
+> 	/* --- cacheline 1 boundary (64 bytes) --- */
+> 	struct anon_vma *          anon_vma;             /*    64     8 */
+> 	const struct vm_operations_struct  * vm_ops;     /*    72     8 */
+> 	long unsigned int          vm_pgoff;             /*    80     8 */
+> 	struct file *              vm_file;              /*    88     8 */
+> 	void *                     vm_private_data;      /*    96     8 */
+> 	atomic_long_t              swap_readahead_info;  /*   104     8 */
+> 	struct mempolicy *         vm_policy;            /*   112     8 */
+> 	struct vma_numab_state *   numab_state;          /*   120     8 */
+> 	/* --- cacheline 2 boundary (128 bytes) --- */
+> 	refcount_t                 vm_refcnt __attribute__((__aligned__(64))); /*   128     4 */
+> 
+> 	/* XXX 4 bytes hole, try to pack */
+> 
+> 	struct {
+> 		struct rb_node     rb __attribute__((__aligned__(8))); /*   136    24 */
+> 		long unsigned int  rb_subtree_last;      /*   160     8 */
+> 	} __attribute__((__aligned__(8))) shared __attribute__((__aligned__(8)));        /*   136    32 */
+> 	struct anon_vma_name *     anon_name;            /*   168     8 */
+> 	struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
+> 	struct pfnmap_track_ctx *  pfnmap_track_ctx;     /*   176     8 */
+> 
+> 	/* size: 192, cachelines: 3, members: 19 */
+> 	/* sum members: 176, holes: 2, sum holes: 8 */
+> 	/* padding: 8 */
+> 	/* forced alignments: 2, forced holes: 1, sum forced holes: 4 */
+> } __attribute__((__aligned__(64)));
+> 
+> Observe that we allocate 192 bytes with or without pfnmap_track_ctx. (IIRC,
+> slab sizes are ... 128, 192, 256, 512, ...)
 
-Please note that the top commit,
-
-"Drop force_alloc from xe_bo_evict in selftests"
-
-carries a Fixes tag that is not an ancestor, but that
-commit is in drm-next so should not be a problem once
-merged, I hope.
+True. I just double checked, vm_area_cachep has SLAB_HWCACHE_ALIGN set, I
+think it means it's working like that on x86_64 at least indeed.  So looks
+like the new field at least isn't an immediate concern.
 
 Thanks,
-Thomas
 
-drm-xe-next-2025-04-28-1:
-Core Changes:
-- Add drm_coredump_printer_is_full() (Matt Brost)
+-- 
+Peter Xu
 
-Driver Changes:
-- Do not queue unneeded terminations from debugfs (Daniele)
-- Fix out-of-bound while enabling engine activity stats (Michal)
-- Use GT oriented message to report engine activity error (Michal)
-- Some fault-injection additions (Satyanarayana)
-- Fix an error pointer dereference (Harshit)
-- Fix capture of steering registers (John)
-- Use the steering flag when printing registers (John)
-- Cache DSS info when creating capture register list (John)
-- Backup VRAM in PM notifier instead of in the suspend / freeze
-  callbacks (Matt Auld)
-- Fix CFI violation when accessing sysfs files (Jeevaka)
-- Fix kernel version docs for temperature and fan speed (Lucas)
-- Add devcoredump chunking (Matt Brost)
-- Update xe_ttm_access_memory to use GPU for non-visible access
-  (Matt Brost)
-- Abort printing coredump in VM printer output if full (Matt Brost)
-- Resolve a possible circular locking dependency (Harish)
-- Don't support EU stall on SRIOV VF (Harish)
-- Drop force_alloc from xe_bo_evict in selftests (Matt Brost)
-The following changes since commit d2b9e2f8a15d53121ae8f2c67b69cf06b6fa586c:
-
-  Merge tag 'drm-xe-next-2025-04-17' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-04-26 08:06:14 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-04-28-1
-
-for you to fetch changes up to 1bb53d05ba71b684f61bd11df8b99fe75ce52754:
-
-  Merge drm/drm-next into drm-xe-next (2025-04-28 17:42:49 +0200)
-
-----------------------------------------------------------------
-Core Changes:
-- Add drm_coredump_printer_is_full() (Matt Brost)
-
-Driver Changes:
-- Do not queue unneeded terminations from debugfs (Daniele)
-- Fix out-of-bound while enabling engine activity stats (Michal)
-- Use GT oriented message to report engine activity error (Michal)
-- Some fault-injection additions (Satyanarayana)
-- Fix an error pointer dereference (Harshit)
-- Fix capture of steering registers (John)
-- Use the steering flag when printing registers (John)
-- Cache DSS info when creating capture register list (John)
-- Backup VRAM in PM notifier instead of in the suspend / freeze
-  callbacks (Matt Auld)
-- Fix CFI violation when accessing sysfs files (Jeevaka)
-- Fix kernel version docs for temperature and fan speed (Lucas)
-- Add devcoredump chunking (Matt Brost)
-- Update xe_ttm_access_memory to use GPU for non-visible access
-  (Matt Brost)
-- Abort printing coredump in VM printer output if full (Matt Brost)
-- Resolve a possible circular locking dependency (Harish)
-- Don't support EU stall on SRIOV VF (Harish)
-- Drop force_alloc from xe_bo_evict in selftests (Matt Brost)
-
-----------------------------------------------------------------
-Daniele Ceraolo Spurio (1):
-      drm/xe/pxp: do not queue unneeded terminations from debugfs
-
-Harish Chegondi (2):
-      drm/xe/eustall: Resolve a possible circular locking dependency
-      drm/xe/eustall: Do not support EU stall on SRIOV VF
-
-Harshit Mogalapalli (1):
-      drm/xe/svm: fix dereferencing error pointer in drm_gpusvm_range_alloc()
-
-Jeevaka Prabu Badrappan (1):
-      drm/xe: Fix CFI violation when accessing sysfs files
-
-John Harrison (3):
-      drm/xe/guc: Fix capture of steering registers
-      drm/xe/guc: Use the steering flag when printing registers
-      drm/xe/guc: Cache DSS info when creating capture register list
-
-Lucas De Marchi (2):
-      drm/xe/hwmon: Fix kernel version documentation for temperature
-      drm/xe/hwmon: Fix kernel version documentation for fan speed
-
-Matthew Auld (3):
-      drm/xe: evict user memory in PM notifier
-      drm/xe: share bo dma-resv with backup object
-      drm/xe: handle pinned memory in PM notifier
-
-Matthew Brost (5):
-      drm/xe: Add devcoredump chunking
-      drm/xe: Update xe_ttm_access_memory to use GPU for non-visible access
-      drm/print: Add drm_coredump_printer_is_full
-      drm/xe: Abort printing coredump in VM printer output if full
-      drm/xe: Drop force_alloc from xe_bo_evict in selftests
-
-Michal Wajdeczko (2):
-      drm/xe/guc: Fix out-of-bound while enabling engine activity stats
-      drm/xe: Use GT oriented message to report engine activity error
-
-Satyanarayana K V P (2):
-      drm/xe: Introduce fault injection for guc mmio send/recv.
-      drm/xe: Introduce fault injection for guc CTB send/recv
-
-Thomas Hellström (2):
-      Merge drm/drm-next into drm-xe-next
-      Merge drm/drm-next into drm-xe-next
-
- .../ABI/testing/sysfs-driver-intel-xe-hwmon        |  10 +-
- drivers/gpu/drm/xe/tests/xe_bo.c                   |   2 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c              |   2 +-
- drivers/gpu/drm/xe/tests/xe_migrate.c              |   2 +-
- drivers/gpu/drm/xe/xe_bo.c                         | 152 +++++++++++---
- drivers/gpu/drm/xe/xe_bo.h                         |   2 +
- drivers/gpu/drm/xe/xe_bo_evict.c                   |  96 +++++++--
- drivers/gpu/drm/xe/xe_bo_evict.h                   |   3 +
- drivers/gpu/drm/xe/xe_bo_types.h                   |   2 +
- drivers/gpu/drm/xe/xe_devcoredump.c                |  57 ++++--
- drivers/gpu/drm/xe/xe_devcoredump_types.h          |   2 +
- drivers/gpu/drm/xe/xe_device_types.h               |   3 +
- drivers/gpu/drm/xe/xe_eu_stall.c                   |  14 +-
- drivers/gpu/drm/xe/xe_eu_stall.h                   |   3 +-
- drivers/gpu/drm/xe/xe_gt_freq.c                    |  82 ++++----
- drivers/gpu/drm/xe/xe_gt_idle.c                    |  28 +--
- drivers/gpu/drm/xe/xe_gt_throttle.c                |  90 ++++-----
- drivers/gpu/drm/xe/xe_guc.c                        |   1 +
- drivers/gpu/drm/xe/xe_guc_capture.c                | 102 +++++-----
- drivers/gpu/drm/xe/xe_guc_capture_types.h          |   2 +
- drivers/gpu/drm/xe/xe_guc_ct.c                     |   1 +
- drivers/gpu/drm/xe/xe_guc_engine_activity.c        |   7 +-
- drivers/gpu/drm/xe/xe_migrate.c                    | 218 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_migrate.h                    |   4 +
- drivers/gpu/drm/xe/xe_pci.c                        |   2 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c                  |   5 +-
- drivers/gpu/drm/xe/xe_pm.c                         |  68 ++++++-
- drivers/gpu/drm/xe/xe_pm.h                         |   2 +-
- drivers/gpu/drm/xe/xe_pxp_debugfs.c                |  13 +-
- drivers/gpu/drm/xe/xe_svm.c                        |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                         |   3 +
- include/drm/drm_print.h                            |  20 ++
- 32 files changed, 756 insertions(+), 244 deletions(-)
