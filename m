@@ -2,91 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D5F9A9FA14
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F480A9FA31
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:10:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C228810E713;
-	Mon, 28 Apr 2025 20:01:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="r1HU/lhZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A72B910E9F5;
+	Mon, 28 Apr 2025 20:10:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
- [209.85.160.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B018A10E713
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 20:01:10 +0000 (UTC)
-Received: by mail-qt1-f178.google.com with SMTP id
- d75a77b69052e-4774611d40bso63231cf.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 13:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1745870470; x=1746475270;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VJybhQX+mtsA+JCLNM6FgFt4VcVPgczSDExJzTxfhFQ=;
- b=r1HU/lhZxUszh/EwAfJGiZYklE1vLAN9K4vipWYytc0UL62ixT4mOWv779tIwuGCHn
- f4iDkTB5R+WVN9iRBAmpnsM0NjqI4axs4hngJS9Hp9cqDmWtcMh2cu4EIcWA6alKOqGc
- wC5ylCX4HB72etSOoRNm4R2j0TZ/wLB9tLH5R0WirB5bY4nGVh3IFrs8ALcQztT6gYJb
- ost4goPdNtJBGkXZ7pB3Ki47uhtLHtrrecz17pkZFTZvLnQMmuNX4GGt8BVteSjtGQEK
- zsRI6JoVRNcwf4cjO4k+SZ1bnuIhcGXI14LK+oT32Yuf1uls4qhW+Tm1FDfwSYoXjFpL
- kXqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745870470; x=1746475270;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VJybhQX+mtsA+JCLNM6FgFt4VcVPgczSDExJzTxfhFQ=;
- b=viRmj+S1nn3WiVvnBLL5JZLLOKNmuxbNVrrESxeviHKbd7WOGR3hVMSNHLMHrY9lqL
- UljrENJHKOtHttoIC5Clka3GT+jAp4uVmvgx4HyljhnmoZbFq/X0c8abEc/eNEqF2VxO
- aZFc0+J40c+xDYwaxlQthKQFDqlJmbSkBJzXshEwg3wGGN/9X3UVx4V9T9X2l7LKrTIL
- Qk6Su9QOoPYWzKIxkhjbgLcD7HDzpyty9DEaXpaJScdcn21k+qbXI7L4ztNDPmhjbMao
- fpxjfbS+iraocxrHzpMfXuM6ckWSDbDACWFSCv3LTzLr3FqSHOQJUW3WCjQghki2okB9
- ukWw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGELAw9P8MiuOrsXy8z2v9M9wqRpQGbHeXka+Bto39OPmJeAnmwpHrOPz6NK8LKsPOAr2xFmZJHaA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxuBJsiiOFCS3bjLkC8fwdmoJOmYWtBd8SoA8IWdz9MCbtO/12B
- XJa/axrfxklt4LEZPXTJSORZPHpMN5UJiCWnP63TXxiyj/CcmZyj7eGR7FP5mjysz3/VVqWMwdx
- e8YQqeAVBhIUKSwGqJaQ1Uc3LPSdWLoNxfh2A
-X-Gm-Gg: ASbGncuZ9riY1doLD3LOz56iTAocsOhOSTpb8nXTkrj80JUbwHi5YvDF9kB9RWZvr6P
- 9Gudnd1v6KIA908z6y2J3pjUjiRAx9j0Q/2wVceadj0qQNwrjmFsoLmM8xN1fOB927g176Y1PeS
- e6qR/zzVPXzy8qpEZ/cjMZ
-X-Google-Smtp-Source: AGHT+IGGX805tNN1FfFiEFOchaakv5NY8Ys+vkzyi3lPHWYF87xZoteOkyrR931CQ/lcrijlBEjyDE79ZFOslGdLmbQ=
-X-Received: by 2002:a05:622a:54e:b0:47b:840:7f5b with SMTP id
- d75a77b69052e-48866bc4b7cmr724121cf.29.1745870469322; Mon, 28 Apr 2025
- 13:01:09 -0700 (PDT)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D57210E9F2;
+ Mon, 28 Apr 2025 20:10:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0290872647114425779=="
 MIME-Version: 1.0
-References: <20250425081715.1341199-1-david@redhat.com>
- <20250425081715.1341199-6-david@redhat.com>
- <8131940c-8b22-4856-947b-62ca64e2f417@lucifer.local>
-In-Reply-To: <8131940c-8b22-4856-947b-62ca64e2f417@lucifer.local>
-From: Suren Baghdasaryan <surenb@google.com>
-Date: Mon, 28 Apr 2025 13:00:58 -0700
-X-Gm-Features: ATxdqUHOhJ-hIQqSTjS_MDyVVtLFB6JwqHLrl6lHfgnOs5bz7Sa9PO5BAiYKY_U
-Message-ID: <CAJuCfpFTgXu+RtbzAis4C0kV=hjFQH39BZrKJsQbjnZRMR2tbw@mail.gmail.com>
-Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to pfnmap_track()
- + pfnmap_untrack()
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: David Hildenbrand <david@redhat.com>, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-trace-kernel@vger.kernel.org, 
- Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, 
- Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, 
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>, 
- Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>,
- Jann Horn <jannh@google.com>, 
- Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Use_intel=5Fc?=
+ =?utf-8?q?onnector_for_DP_and_HDMI?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 28 Apr 2025 20:10:46 -0000
+Message-ID: <174587104638.21948.15836617097698882359@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250428134716.3396802-1-imre.deak@intel.com>
+In-Reply-To: <20250428134716.3396802-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,357 +37,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 28, 2025 at 12:47=E2=80=AFPM Lorenzo Stoakes
-<lorenzo.stoakes@oracle.com> wrote:
->
-> +cc Suren, who has worked HEAVILY on VMA field manipulation and such :)
->
-> Suren - David is proposing adding a new field. AFAICT this does not add a
-> new cache line so I think we're all good.
->
-> But FYI!
+--===============0290872647114425779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks! Yes, there should be some space in the last cacheline after my
-last field reshuffling.
+== Series Details ==
 
->
-> On Fri, Apr 25, 2025 at 10:17:09AM +0200, David Hildenbrand wrote:
-> > Let's use our new interface. In remap_pfn_range(), we'll now decide
-> > whether we have to track (full VMA covered) or only sanitize the pgprot
-> > (partial VMA covered).
-> >
-> > Remember what we have to untrack by linking it from the VMA. When
-> > duplicating VMAs (e.g., splitting, mremap, fork), we'll handle it simil=
-ar
-> > to anon VMA names, and use a kref to share the tracking.
-> >
-> > Once the last VMA un-refs our tracking data, we'll do the untracking,
-> > which simplifies things a lot and should sort our various issues we saw
-> > recently, for example, when partially unmapping/zapping a tracked VMA.
-> >
-> > This change implies that we'll keep tracking the original PFN range eve=
-n
-> > after splitting + partially unmapping it: not too bad, because it was
-> > not working reliably before. The only thing that kind-of worked before
-> > was shrinking such a mapping using mremap(): we managed to adjust the
-> > reservation in a hacky way, now we won't adjust the reservation but
-> > leave it around until all involved VMAs are gone.
-> >
-> > Signed-off-by: David Hildenbrand <david@redhat.com>
-> > ---
-> >  include/linux/mm_inline.h |  2 +
-> >  include/linux/mm_types.h  | 11 ++++++
-> >  kernel/fork.c             | 54 ++++++++++++++++++++++++--
-> >  mm/memory.c               | 81 +++++++++++++++++++++++++++++++--------
-> >  mm/mremap.c               |  4 --
-> >  5 files changed, 128 insertions(+), 24 deletions(-)
-> >
-> > diff --git a/include/linux/mm_inline.h b/include/linux/mm_inline.h
-> > index f9157a0c42a5c..89b518ff097e6 100644
-> > --- a/include/linux/mm_inline.h
-> > +++ b/include/linux/mm_inline.h
-> > @@ -447,6 +447,8 @@ static inline bool anon_vma_name_eq(struct anon_vma=
-_name *anon_name1,
-> >
-> >  #endif  /* CONFIG_ANON_VMA_NAME */
-> >
-> > +void pfnmap_track_ctx_release(struct kref *ref);
-> > +
-> >  static inline void init_tlb_flush_pending(struct mm_struct *mm)
-> >  {
-> >       atomic_set(&mm->tlb_flush_pending, 0);
-> > diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-> > index 56d07edd01f91..91124761cfda8 100644
-> > --- a/include/linux/mm_types.h
-> > +++ b/include/linux/mm_types.h
-> > @@ -764,6 +764,14 @@ struct vma_numab_state {
-> >       int prev_scan_seq;
-> >  };
-> >
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> > +struct pfnmap_track_ctx {
-> > +     struct kref kref;
-> > +     unsigned long pfn;
-> > +     unsigned long size;
-> > +};
-> > +#endif
-> > +
-> >  /*
-> >   * This struct describes a virtual memory area. There is one of these
-> >   * per VM-area/task. A VM area is any part of the process virtual memo=
-ry
-> > @@ -877,6 +885,9 @@ struct vm_area_struct {
-> >       struct anon_vma_name *anon_name;
-> >  #endif
-> >       struct vm_userfaultfd_ctx vm_userfaultfd_ctx;
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> > +     struct pfnmap_track_ctx *pfnmap_track_ctx;
-> > +#endif
-> >  } __randomize_layout;
-> >
-> >  #ifdef CONFIG_NUMA
-> > diff --git a/kernel/fork.c b/kernel/fork.c
-> > index 168681fc4b25a..ae518b8fe752c 100644
-> > --- a/kernel/fork.c
-> > +++ b/kernel/fork.c
-> > @@ -481,7 +481,51 @@ static void vm_area_init_from(const struct vm_area=
-_struct *src,
-> >  #ifdef CONFIG_NUMA
-> >       dest->vm_policy =3D src->vm_policy;
-> >  #endif
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> > +     dest->pfnmap_track_ctx =3D NULL;
-> > +#endif
-> > +}
-> > +
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> > +static inline int vma_pfnmap_track_ctx_dup(struct vm_area_struct *orig=
-,
-> > +             struct vm_area_struct *new)
-> > +{
-> > +     struct pfnmap_track_ctx *ctx =3D orig->pfnmap_track_ctx;
-> > +
-> > +     if (likely(!ctx))
-> > +             return 0;
-> > +
-> > +     /*
-> > +      * We don't expect to ever hit this. If ever required, we would h=
-ave
-> > +      * to duplicate the tracking.
-> > +      */
-> > +     if (unlikely(kref_read(&ctx->kref) >=3D REFCOUNT_MAX))
-> > +             return -ENOMEM;
-> > +     kref_get(&ctx->kref);
-> > +     new->pfnmap_track_ctx =3D ctx;
-> > +     return 0;
-> > +}
-> > +
-> > +static inline void vma_pfnmap_track_ctx_release(struct vm_area_struct =
-*vma)
-> > +{
-> > +     struct pfnmap_track_ctx *ctx =3D vma->pfnmap_track_ctx;
-> > +
-> > +     if (likely(!ctx))
-> > +             return;
-> > +
-> > +     kref_put(&ctx->kref, pfnmap_track_ctx_release);
-> > +     vma->pfnmap_track_ctx =3D NULL;
-> > +}
-> > +#else
-> > +static inline int vma_pfnmap_track_ctx_dup(struct vm_area_struct *orig=
-,
-> > +             struct vm_area_struct *new)
-> > +{
-> > +     return 0;
-> >  }
-> > +static inline void vma_pfnmap_track_ctx_release(struct vm_area_struct =
-*vma)
-> > +{
-> > +}
-> > +#endif
-> >
-> >  struct vm_area_struct *vm_area_dup(struct vm_area_struct *orig)
-> >  {
-> > @@ -493,6 +537,11 @@ struct vm_area_struct *vm_area_dup(struct vm_area_=
-struct *orig)
-> >       ASSERT_EXCLUSIVE_WRITER(orig->vm_flags);
-> >       ASSERT_EXCLUSIVE_WRITER(orig->vm_file);
-> >       vm_area_init_from(orig, new);
-> > +
-> > +     if (vma_pfnmap_track_ctx_dup(orig, new)) {
-> > +             kmem_cache_free(vm_area_cachep, new);
-> > +             return NULL;
-> > +     }
-> >       vma_lock_init(new, true);
-> >       INIT_LIST_HEAD(&new->anon_vma_chain);
-> >       vma_numab_state_init(new);
-> > @@ -507,6 +556,7 @@ void vm_area_free(struct vm_area_struct *vma)
-> >       vma_assert_detached(vma);
-> >       vma_numab_state_free(vma);
-> >       free_anon_vma_name(vma);
-> > +     vma_pfnmap_track_ctx_release(vma);
-> >       kmem_cache_free(vm_area_cachep, vma);
-> >  }
-> >
-> > @@ -669,10 +719,6 @@ static __latent_entropy int dup_mmap(struct mm_str=
-uct *mm,
-> >               if (!tmp)
-> >                       goto fail_nomem;
-> >
-> > -             /* track_pfn_copy() will later take care of copying inter=
-nal state. */
-> > -             if (unlikely(tmp->vm_flags & VM_PFNMAP))
-> > -                     untrack_pfn_clear(tmp);
-> > -
-> >               retval =3D vma_dup_policy(mpnt, tmp);
-> >               if (retval)
-> >                       goto fail_nomem_policy;
-> > diff --git a/mm/memory.c b/mm/memory.c
-> > index c737a8625866a..eb2b3f10a97ec 100644
-> > --- a/mm/memory.c
-> > +++ b/mm/memory.c
-> > @@ -1370,7 +1370,7 @@ copy_page_range(struct vm_area_struct *dst_vma, s=
-truct vm_area_struct *src_vma)
-> >       struct mm_struct *dst_mm =3D dst_vma->vm_mm;
-> >       struct mm_struct *src_mm =3D src_vma->vm_mm;
-> >       struct mmu_notifier_range range;
-> > -     unsigned long next, pfn =3D 0;
-> > +     unsigned long next;
-> >       bool is_cow;
-> >       int ret;
-> >
-> > @@ -1380,12 +1380,6 @@ copy_page_range(struct vm_area_struct *dst_vma, =
-struct vm_area_struct *src_vma)
-> >       if (is_vm_hugetlb_page(src_vma))
-> >               return copy_hugetlb_page_range(dst_mm, src_mm, dst_vma, s=
-rc_vma);
-> >
-> > -     if (unlikely(src_vma->vm_flags & VM_PFNMAP)) {
-> > -             ret =3D track_pfn_copy(dst_vma, src_vma, &pfn);
-> > -             if (ret)
-> > -                     return ret;
-> > -     }
-> > -
-> >       /*
-> >        * We need to invalidate the secondary MMU mappings only when
-> >        * there could be a permission downgrade on the ptes of the
-> > @@ -1427,8 +1421,6 @@ copy_page_range(struct vm_area_struct *dst_vma, s=
-truct vm_area_struct *src_vma)
-> >               raw_write_seqcount_end(&src_mm->write_protect_seq);
-> >               mmu_notifier_invalidate_range_end(&range);
-> >       }
-> > -     if (ret && unlikely(src_vma->vm_flags & VM_PFNMAP))
-> > -             untrack_pfn_copy(dst_vma, pfn);
-> >       return ret;
-> >  }
-> >
-> > @@ -1923,9 +1915,6 @@ static void unmap_single_vma(struct mmu_gather *t=
-lb,
-> >       if (vma->vm_file)
-> >               uprobe_munmap(vma, start, end);
-> >
-> > -     if (unlikely(vma->vm_flags & VM_PFNMAP))
-> > -             untrack_pfn(vma, 0, 0, mm_wr_locked);
-> > -
-> >       if (start !=3D end) {
-> >               if (unlikely(is_vm_hugetlb_page(vma))) {
-> >                       /*
-> > @@ -2871,6 +2860,36 @@ int remap_pfn_range_notrack(struct vm_area_struc=
-t *vma, unsigned long addr,
-> >       return error;
-> >  }
-> >
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> > +static inline struct pfnmap_track_ctx *pfnmap_track_ctx_alloc(unsigned=
- long pfn,
-> > +             unsigned long size, pgprot_t *prot)
-> > +{
-> > +     struct pfnmap_track_ctx *ctx;
-> > +
-> > +     if (pfnmap_track(pfn, size, prot))
-> > +             return ERR_PTR(-EINVAL);
-> > +
-> > +     ctx =3D kmalloc(sizeof(*ctx), GFP_KERNEL);
-> > +     if (unlikely(!ctx)) {
-> > +             pfnmap_untrack(pfn, size);
-> > +             return ERR_PTR(-ENOMEM);
-> > +     }
-> > +
-> > +     ctx->pfn =3D pfn;
-> > +     ctx->size =3D size;
-> > +     kref_init(&ctx->kref);
-> > +     return ctx;
-> > +}
-> > +
-> > +void pfnmap_track_ctx_release(struct kref *ref)
-> > +{
-> > +     struct pfnmap_track_ctx *ctx =3D container_of(ref, struct pfnmap_=
-track_ctx, kref);
-> > +
-> > +     pfnmap_untrack(ctx->pfn, ctx->size);
-> > +     kfree(ctx);
-> > +}
-> > +#endif /* __HAVE_PFNMAP_TRACKING */
-> > +
-> >  /**
-> >   * remap_pfn_range - remap kernel memory to userspace
-> >   * @vma: user vma to map to
-> > @@ -2883,20 +2902,50 @@ int remap_pfn_range_notrack(struct vm_area_stru=
-ct *vma, unsigned long addr,
-> >   *
-> >   * Return: %0 on success, negative error code otherwise.
-> >   */
-> > +#ifdef __HAVE_PFNMAP_TRACKING
-> >  int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
-> >                   unsigned long pfn, unsigned long size, pgprot_t prot)
-> >  {
-> > +     struct pfnmap_track_ctx *ctx =3D NULL;
-> >       int err;
-> >
-> > -     err =3D track_pfn_remap(vma, &prot, pfn, addr, PAGE_ALIGN(size));
-> > -     if (err)
-> > +     size =3D PAGE_ALIGN(size);
-> > +
-> > +     /*
-> > +      * If we cover the full VMA, we'll perform actual tracking, and
-> > +      * remember to untrack when the last reference to our tracking
-> > +      * context from a VMA goes away.
-> > +      *
-> > +      * If we only cover parts of the VMA, we'll only sanitize the
-> > +      * pgprot.
-> > +      */
-> > +     if (addr =3D=3D vma->vm_start && addr + size =3D=3D vma->vm_end) =
-{
-> > +             if (vma->pfnmap_track_ctx)
-> > +                     return -EINVAL;
-> > +             ctx =3D pfnmap_track_ctx_alloc(pfn, size, &prot);
-> > +             if (IS_ERR(ctx))
-> > +                     return PTR_ERR(ctx);
-> > +     } else if (pfnmap_sanitize_pgprot(pfn, size, &prot)) {
-> >               return -EINVAL;
-> > +     }
-> >
-> >       err =3D remap_pfn_range_notrack(vma, addr, pfn, size, prot);
-> > -     if (err)
-> > -             untrack_pfn(vma, pfn, PAGE_ALIGN(size), true);
-> > +     if (ctx) {
-> > +             if (err)
-> > +                     kref_put(&ctx->kref, pfnmap_track_ctx_release);
-> > +             else
-> > +                     vma->pfnmap_track_ctx =3D ctx;
-> > +     }
-> >       return err;
-> >  }
-> > +
-> > +#else
-> > +int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
-> > +                 unsigned long pfn, unsigned long size, pgprot_t prot)
-> > +{
-> > +     return remap_pfn_range_notrack(vma, addr, pfn, size, prot);
-> > +}
-> > +#endif
-> >  EXPORT_SYMBOL(remap_pfn_range);
-> >
-> >  /**
-> > diff --git a/mm/mremap.c b/mm/mremap.c
-> > index 7db9da609c84f..6e78e02f74bd3 100644
-> > --- a/mm/mremap.c
-> > +++ b/mm/mremap.c
-> > @@ -1191,10 +1191,6 @@ static int copy_vma_and_data(struct vma_remap_st=
-ruct *vrm,
-> >       if (is_vm_hugetlb_page(vma))
-> >               clear_vma_resv_huge_pages(vma);
-> >
-> > -     /* Tell pfnmap has moved from this vma */
-> > -     if (unlikely(vma->vm_flags & VM_PFNMAP))
-> > -             untrack_pfn_clear(vma);
-> > -
-> >       *new_vma_ptr =3D new_vma;
-> >       return err;
-> >  }
-> > --
-> > 2.49.0
-> >
+Series: drm/i915: Use intel_connector for DP and HDMI
+URL   : https://patchwork.freedesktop.org/series/148369/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16470 -> Patchwork_148369v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/index.html
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_148369v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#13929])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-atsm-1/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][11] -> [DMESG-FAIL][12] ([i915#13929])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16470 -> Patchwork_148369v1
+
+  CI-20190529: 20190529
+  CI_DRM_16470: 5ee9d7c2aac6950c88c9eaf9002761ce4c430345 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8342: 8342
+  Patchwork_148369v1: 5ee9d7c2aac6950c88c9eaf9002761ce4c430345 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/index.html
+
+--===============0290872647114425779==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Use intel_connector for DP and HDMI</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148369/">https://patchwork.freedesktop.org/series/148369/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16470 -&gt; Patchwork_148369v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_148369v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16470/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148369v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16470 -&gt; Patchwork_148369v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16470: 5ee9d7c2aac6950c88c9eaf9002761ce4c430345 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8342: 8342<br />
+  Patchwork_148369v1: 5ee9d7c2aac6950c88c9eaf9002761ce4c430345 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0290872647114425779==--
