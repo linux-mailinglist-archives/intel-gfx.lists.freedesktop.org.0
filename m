@@ -2,109 +2,105 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6AF3A9FA68
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B704EA9FAAE
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 22:38:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6340C10EA06;
-	Mon, 28 Apr 2025 20:23:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7596E10EA15;
+	Mon, 28 Apr 2025 20:37:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bSLs4dKf";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QVc9wsja";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0213410EA06
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 20:23:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4272910EA15
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 20:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745871830;
+ s=mimecast20190719; t=1745872676;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=rkEtrqEhBS4XY4MnxLuPuVZCrKNUqZ8c+beG4mFgbns=;
- b=bSLs4dKfggWz+q3KSLZgWhNGIBs0Ln8904BBhSwW9UsIT7ap+FpZG9kzGhhnbMRnP7KdDg
- THRKd0gMK41bt9P2ikjyGCKHEltCeIyk35WGUbG9kaNjvHXnUWz8knQrmttdeaSoD5ZJbH
- TBYd60TP4lTjffec6eCuWDlfUgcTzcQ=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=XY39ue14uvxArdHz8g+WhT2+O4Cyc8mCE8ARIrYaUwQ=;
+ b=QVc9wsja+xU17uKIe+1pyPaDZbVAtRAKrUXCsR8gtmbsfk70EONrvmucDTzCvE6FX1zF+u
+ CtEJtHKb0V9E/gG9fBsjQTYGX/WZdmn0uR9i/QB2rdQeBXIGftP+UqezHsdcWKaMTj+Lw1
+ LB2TXnzLlZGrLSsIS4NdF6fgMAg8DIw=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-517-xVVJ-gNzOFGr5fAM4TJjYQ-1; Mon, 28 Apr 2025 16:23:46 -0400
-X-MC-Unique: xVVJ-gNzOFGr5fAM4TJjYQ-1
-X-Mimecast-MFC-AGG-ID: xVVJ-gNzOFGr5fAM4TJjYQ_1745871825
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3a07a867a4dso1282279f8f.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 13:23:46 -0700 (PDT)
+ us-mta-379-ZwWs_52UO1irL9TsE76wSQ-1; Mon, 28 Apr 2025 16:37:54 -0400
+X-MC-Unique: ZwWs_52UO1irL9TsE76wSQ-1
+X-Mimecast-MFC-AGG-ID: ZwWs_52UO1irL9TsE76wSQ_1745872674
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-43d3b211d0eso25855715e9.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 13:37:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745871825; x=1746476625;
+ d=1e100.net; s=20230601; t=1745872674; x=1746477474;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=rkEtrqEhBS4XY4MnxLuPuVZCrKNUqZ8c+beG4mFgbns=;
- b=G4iMIvPgSITKGoOUSOyzmjnolIn+oyEUSRJnDohGt31atXKsMphZbr+OvHmhvgT+o0
- AqSAmtu484BrKL/yqZjJ6x5MUJ7DqKx0HH3DodDOUon7ODqDIodXZFAwcej4WbdXw3Yv
- nKBqRhNuNV7dVjWHgXqUKq0pZYQEJZtyaNS6CmWM+viThdA2stOFOwHgC9aiP48SUrOH
- EhOqYjZBqtVeXHEA/Rmd/R57xv1opw1zvUVh0g0CSnNyCPDjTw9x/zgXetaORoD3dyjH
- fZGGtDd+qyjQDgSqsZ0NnzfpeIhe5kmcUefbzz3hlKlDdlVuymXsWt02XVgO7gq9a3jx
- h5Sw==
+ bh=XY39ue14uvxArdHz8g+WhT2+O4Cyc8mCE8ARIrYaUwQ=;
+ b=rHqfy4o1CRmaye8U5cBYWk2MnxfcA4bfEHl67LuwYHTwjBLsobgfc6pG66PkGc6pIu
+ us7ctbxICVIWw7RF8uKWBaGMA7kBHv1YjIjARI3YSrBFrgwD6B2UOmqYbFGlHjXhhpi7
+ wdX3YR3u4ovnVKEUQvxlacIJXdW4aFc7frKjs+K1UVIH8iN2dUtlCt6uIh6SemZJEatD
+ RP0dgyvjTizj3O64nbQ68gxizbZrX1arpbVnVkqJBHLP3aPQI0EewRcI1mfmn5hvG4Gu
+ sPG7rhET7GIvHvzyOUd1R1C6Xt5zABimX51QK2LlcJjUwGYeboWO/C5KtjIgrDABCuJX
+ 0ABQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVSvYEa9FBMbHXYkQ190XDr+xewWGmQ9L7IOf3JyzyDNVxfSVonWu7Bn/EFVzG35MOPOEdaqWsum/g=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyzJrI8tc5URToTyPXIHd/enFS97gjYfFjMfxKTy8zFyOLoyBIc
- yKw1olQrzJZVm6W7ivTqGBx9I0gCm7ea1ZG7ijiH3vRtPRyLNvVpOks+fFJBPBzUJK8A2WWKQH2
- EUZ3dm6bISZ20CBvxVl92orGRTrUlUYmPm8YDRumlMv33KcOc/DHD1y8lwFWuuBeJJQ==
-X-Gm-Gg: ASbGncuTPMvSreDCyDNixfDbe6XB1/lZ3g2FRjz86H3CLkMBrDgQ15GzH4IcRM2KQDy
- q9LUQqceeV44vkioBRrCABjMm1vUtDuF0Kz6Sr6EpBM7ya40TIxpCCNjM5igPJ/pEb1oqXhPZru
- zAuhA6rKp+xKDUE7sGedPo621u4kffHlUg5Bt16hARZh1jvWYT/MEPBTewW8ZaDCH/umvRqoPwR
- PQ4WmR6oku6DzBMoRl/Z6ZhZ8sn4ZiBLN56ZFOK67w0GvDfyod3ZQVymabdfeGlnkNR87FHjvW6
- T8RhidTB76e05FEHyWeGoqUs5jDc/R6SANk3ZMGeGqAjCgTmVbyN8vbp9Kl/OCuaLxoaVefsnnY
- reJlGOnbtu8xgGXHcKPFXzFuwDD9ycbPQ7WMWNC4=
-X-Received: by 2002:a05:6000:b4e:b0:39e:cc5e:147 with SMTP id
- ffacd0b85a97d-3a0894a1aa8mr941301f8f.55.1745871825197; 
- Mon, 28 Apr 2025 13:23:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHi9BeKEw90HGojYH0uYj++rRWoQl9Ep0UCTEuLPP1j3Ci9jqWDeYDWhMBAhQ1IJFvMvOz7CA==
-X-Received: by 2002:a05:6000:b4e:b0:39e:cc5e:147 with SMTP id
- ffacd0b85a97d-3a0894a1aa8mr941276f8f.55.1745871824797; 
- Mon, 28 Apr 2025 13:23:44 -0700 (PDT)
+ AJvYcCVzRsYKk6afC+5lcb8KqFYkRH+yKlxZgUIRLq/OYsHiRsh8eOUXGremms5e1VTIZWaEnDITVMEFW18=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyESjaM8oCaEtkfDaURjUA1fHN7Ga1dTFSVfjnlZOP10U0gVJmB
+ 8CcTEzcKM6Bh5Zh3NzUYug3SVM8X3CtDl0s19SARx8rCkayQRAy2/dzoVMEXwwGzJ6Locebmf/K
+ NtappcTDFO2PcA5AqFQxI60Gs1p+MntbcT9l2a9Lyl0fhDot3C0z+k0rBWue5nnatLQ==
+X-Gm-Gg: ASbGncsnl30WIEnf27o9dauMVudi3aATHXpo9fLHft6W/N72+c8Zp3cteSL5T40yZ1P
+ s77qq3ke9eYyR5Lsjwiq0Wd02XbY+7KJMZ9OYG1SNOA+lv3xDStVgkC6yBz8bjWwN7cW8/YjQTu
+ DQy8Ce40FshDkm4vJaXtkIHOWjSrYE4CBVBK5iVXj8l3ydhjLpxX1JfNNNzXlazI97UTPLf9EQx
+ 90NIKRttLNP3HRZ9DzwB4EJFNdQBB45OUC217YSIKvUfcaaLD991nPwEgU6Qe71g/F5LSyTOGE9
+ lNTPYik59ZlUOZGtKIaq2gH89Ugv5QzGCIraGTJLe+MjODAqWkM0IQIFhVQwnIa/verc7FA+kXy
+ puSSIy+7GaaWl/+PNcxlueYS1F5UQLp2/q7tE9dQ=
+X-Received: by 2002:a05:600c:210:b0:43c:f680:5c2e with SMTP id
+ 5b1f17b1804b1-441acb70646mr3929385e9.13.1745872673667; 
+ Mon, 28 Apr 2025 13:37:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHdOVVjaciIpBaEDdxqoIN01wA3aD3hjnHvIH0Qo61Kck3hgHHZYl5OJ+E1B/9c6lJ7BVT2oQ==
+X-Received: by 2002:a05:600c:210:b0:43c:f680:5c2e with SMTP id
+ 5b1f17b1804b1-441acb70646mr3929175e9.13.1745872673178; 
+ Mon, 28 Apr 2025 13:37:53 -0700 (PDT)
 Received: from ?IPV6:2003:cb:c72f:ea00:2f00:e7e5:8875:a0ea?
  (p200300cbc72fea002f00e7e58875a0ea.dip0.t-ipconnect.de.
  [2003:cb:c72f:ea00:2f00:e7e5:8875:a0ea])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3a073cbf04dsm12236556f8f.52.2025.04.28.13.23.43
+ 5b1f17b1804b1-4409d2d868asm166267255e9.26.2025.04.28.13.37.50
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Apr 2025 13:23:44 -0700 (PDT)
-Message-ID: <bd8ce421-cf2a-451b-a3eb-613e6856bb9e@redhat.com>
-Date: Mon, 28 Apr 2025 22:23:42 +0200
+ Mon, 28 Apr 2025 13:37:52 -0700 (PDT)
+Message-ID: <57f9480c-2f8c-4be8-864c-406fec917eb1@redhat.com>
+Date: Mon, 28 Apr 2025 22:37:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to pfnmap_track()
- + pfnmap_untrack()
-To: Suren Baghdasaryan <surenb@google.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Peter Xu <peterx@redhat.com>, linux-kernel@vger.kernel.org,
- linux-mm@kvack.org, x86@kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-trace-kernel@vger.kernel.org,
- Dave Hansen <dave.hansen@linux.intel.com>, Andy Lutomirski
- <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+Subject: Re: [PATCH v1 02/11] mm: convert track_pfn_insert() to
+ pfnmap_sanitize_pgprot()
+To: Peter Xu <peterx@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org, Dave Hansen
+ <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
  <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
  Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
  <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
  Pedro Falcato <pfalcato@suse.de>
 References: <20250425081715.1341199-1-david@redhat.com>
- <20250425081715.1341199-6-david@redhat.com> <aAvvQ1h9bg11hiqI@x1.local>
- <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com> <aA-n9hvSX9JLsRM-@x1.local>
- <7a26e29c-d889-450a-a5e1-ce671f09e4c8@redhat.com> <aA-rtji7ujQgckbM@x1.local>
- <884fab29-e16a-4663-8e33-885bc70ca2f7@redhat.com>
- <f08118b3-0736-4a5d-b780-8e3d88f45c02@lucifer.local>
- <CAJuCfpEtnBrAkSV-6PDv4Au5gs02vWYeMNHo3OxZb8NB0sy8cw@mail.gmail.com>
+ <20250425081715.1341199-3-david@redhat.com> <aAvjJOmvm5GsZ-JN@x1.local>
+ <78f88303-6b00-42cf-8977-bf7541fa45a9@redhat.com> <aAwh6n058Hh490io@x1.local>
+ <75998f7c-93d2-4b98-bb53-8d858b2c108e@redhat.com> <aA-q_PrThAw5v1PF@x1.local>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -151,13 +147,13 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <CAJuCfpEtnBrAkSV-6PDv4Au5gs02vWYeMNHo3OxZb8NB0sy8cw@mail.gmail.com>
+In-Reply-To: <aA-q_PrThAw5v1PF@x1.local>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 6iKWkNVn8gKSEjav3dIarYTGeo6MDxZMtlxCBF51IV0_1745871825
+X-Mimecast-MFC-PROC-ID: YVHItk6zXrM29n8RazB_h6fOuY8O7Ug24XjyYh3kLz8_1745872674
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,44 +169,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28.04.25 21:57, Suren Baghdasaryan wrote:
-> On Mon, Apr 28, 2025 at 12:37 PM Lorenzo Stoakes
-> <lorenzo.stoakes@oracle.com> wrote:
+On 28.04.25 18:21, Peter Xu wrote:
+> On Mon, Apr 28, 2025 at 04:58:46PM +0200, David Hildenbrand wrote:
 >>
->> On Mon, Apr 28, 2025 at 07:23:18PM +0200, David Hildenbrand wrote:
->>> On 28.04.25 18:24, Peter Xu wrote:
->>>> On Mon, Apr 28, 2025 at 06:16:21PM +0200, David Hildenbrand wrote:
->>>>>> Probably due to what config you have.  E.g., when I'm looking mine it's
->>>>>> much bigger and already consuming 256B, but it's because I enabled more
->>>>>> things (userfaultfd, lockdep, etc.).
->>>>>
->>>>> Note that I enabled everything that you would expect on a production system
->>>>> (incld. userfaultfd, mempolicy, per-vma locks), so I didn't enable lockep.
+>>>> What it does on PAT (only implementation so far ...) is looking up the
+>>>> memory type to select the caching mode that can be use.
 >>>>
->>>> I still doubt whether you at least enabled userfaultfd, e.g., your previous
->>>> paste has:
+>>>> "sanitize" was IMHO a good fit, because we must make sure that we don't use
+>>>> the wrong caching mode.
 >>>>
->>>>     struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
->>>>
->>>> Not something that matters.. but just in case you didn't use the expected
->>>> config file you wanted to use..
+>>>> update/setup/... don't make that quite clear. Any other suggestions?
 >>>
->>> You're absolutely right. I only briefly rechecked for this purpose here on
->>> my notebook, and only looked for the existence of members, not expecting
->>> that we have confusing stuff like vm_userfaultfd_ctx.
->>>
->>> I checked again and the size stays at 192 with allyesconfig and then
->>> disabling debug options.
+>>> I'm very poor on naming.. :( So far anything seems slightly better than
+>>> sanitize to me, as the word "sanitize" is actually also used in memtype.c
+>>> for other purpose.. see sanitize_phys().
 >>
->> I think a reasonable case is everything on, except CONFIG_DEBUG_LOCK_ALLOC and I
->> don't care about nommu.
+>> Sure, one can sanitize a lot of things. Here it's the cachemode/pgrpot, in
+>> the other functions it's an address.
+>>
+>> Likely we should just call it pfnmap_X_cachemode()/
+>>
+>> Set/update don't really fit for X in case pfnmap_X_cachemode() is a NOP.
+>>
+>> pfnmap_setup_cachemode() ? Hm.
 > 
-> I think it's safe to assume that production systems would disable
-> lockdep due to the performance overhead. At least that's what we do on
-> Android - enable it on development branches but disable in production.
+> Sounds good here.
 
-Right, and "struct lockdep_map" is ... significantly larger than 8 
-bytes. With that enabled, one is already paying for extra VMA space ...
+Okay, I'll use that one. If ever something else besides PAT would 
+require different semantics, they can bother with finding a better name :)
+
+> 
+>>
+>>>
+>>>>
+>>>>>
+>>>>>> + * @pfn: the start of the pfn range
+>>>>>> + * @size: the size of the pfn range
+>>>>>> + * @prot: the pgprot to sanitize
+>>>>>> + *
+>>>>>> + * Sanitize the given pgprot for a pfn range, for example, adjusting the
+>>>>>> + * cachemode.
+>>>>>> + *
+>>>>>> + * This function cannot fail for a single page, but can fail for multiple
+>>>>>> + * pages.
+>>>>>> + *
+>>>>>> + * Returns 0 on success and -EINVAL on error.
+>>>>>> + */
+>>>>>> +int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size,
+>>>>>> +		pgprot_t *prot);
+>>>>>>     extern int track_pfn_copy(struct vm_area_struct *dst_vma,
+>>>>>>     		struct vm_area_struct *src_vma, unsigned long *pfn);
+>>>>>>     extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
+>>>>>> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+>>>>>> index fdcf0a6049b9f..b8ae5e1493315 100644
+>>>>>> --- a/mm/huge_memory.c
+>>>>>> +++ b/mm/huge_memory.c
+>>>>>> @@ -1455,7 +1455,9 @@ vm_fault_t vmf_insert_pfn_pmd(struct vm_fault *vmf, pfn_t pfn, bool write)
+>>>>>>     			return VM_FAULT_OOM;
+>>>>>>     	}
+>>>>>> -	track_pfn_insert(vma, &pgprot, pfn);
+>>>>>> +	if (pfnmap_sanitize_pgprot(pfn_t_to_pfn(pfn), PAGE_SIZE, &pgprot))
+>>>>>> +		return VM_FAULT_FALLBACK;
+>>>>>
+>>>>> Would "pgtable" leak if it fails?  If it's PAGE_SIZE, IIUC it won't ever
+>>>>> trigger, though.
+>>>>>
+>>>>> Maybe we could have a "void pfnmap_sanitize_pgprot_pfn(&pgprot, pfn)" to
+>>>>> replace track_pfn_insert() and never fail?  Dropping vma ref is definitely
+>>>>> a win already in all cases.
+>>>>
+>>>> It could be a simple wrapper around pfnmap_sanitize_pgprot(), yes. That's
+>>>> certainly helpful for the single-page case.
+>>>>
+>>>> Regarding never failing here: we should check the whole range. We have to
+>>>> make sure that none of the pages has a memory type / caching mode that is
+>>>> incompatible with what we setup.
+>>>
+>>> Would it happen in real world?
+>>>> IIUC per-vma registration needs to happen first, which checks for
+>> memtype
+>>> conflicts in the first place, or reserve_pfn_range() could already have
+>>> failed.
+>>>> Here it's the fault path looking up the memtype, so I would expect it is
+>>> guaranteed all pfns under the same vma is following the verified (and same)
+>>> memtype?
+>>
+>> The whole point of track_pfn_insert() is that it is used when we *don't* use
+>> reserve_pfn_range()->track_pfn_remap(), no?
+>>
+>> track_pfn_remap() would check the whole range that gets mapped, so
+>> track_pfn_insert() user must similarly check the whole range that gets
+>> mapped.
+>>
+>> Note that even track_pfn_insert() is already pretty clear on the intended
+>> usage: "called when a _new_ single pfn is established"
+> 
+> We need to define "new" then..  But I agree it's not crystal clear at
+> least.  I think I just wasn't the first to assume it was reserved, see this
+> (especially, the "Expectation" part..):
+> 
+> commit 5180da410db6369d1f95c9014da1c9bc33fb043e
+> Author: Suresh Siddha <suresh.b.siddha@intel.com>
+> Date:   Mon Oct 8 16:28:29 2012 -0700
+> 
+>      x86, pat: separate the pfn attribute tracking for remap_pfn_range and vm_insert_pfn
+>      
+>      With PAT enabled, vm_insert_pfn() looks up the existing pfn memory
+>      attribute and uses it.  Expectation is that the driver reserves the
+>      memory attributes for the pfn before calling vm_insert_pfn().
+
+It's all confusing.
+
+We do have the following functions relevant in pat code:
+
+(1) memtype_reserve(): used by ioremap and set_memory_XX
+
+(2) memtype_reserve_io(): used by iomap
+
+(3) reserve_pfn_range(): only remap_pfn_range() calls it
+
+(4) arch_io_reserve_memtype_wc()
+
+
+Which one would perform the reservation for, say, vfio?
+
+
+I agree that if there would be a guarantee/expectation that all PFNs 
+have the same memtype (from previous reservation), it would be 
+sufficient to check a single PFN, and we could document that. I just 
+don't easily see where that reservation is happening.
+
+So a pointer to that would be appreciated!
 
 -- 
 Cheers,
