@@ -2,109 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A2BA9F52D
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 18:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFDCDA9F55B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Apr 2025 18:15:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA30A10E1AE;
-	Mon, 28 Apr 2025 16:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54D0410E21E;
+	Mon, 28 Apr 2025 16:15:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UyNvYQQe";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="if/7w/vw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E86510E507
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 16:08:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81F4010E21E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 16:15:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745856510;
+ s=mimecast20190719; t=1745856904;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=RjlHZlqdBLidaHviO2ndJKZu4KjLnMsljSpmBM9kRPM=;
- b=UyNvYQQeYRoijryXqswUbs92HIwLvDg79JzsNRRZJjzU3iUsR8kVlaCvujbCEUlY29q2Hp
- 7COa+v7q2snPB2lof6PNMGbVhO7fA1KCKjaMvSoy0ykoNP4/Uo2JANVtGmxxpLJOseOj8R
- mg+HvgkFVSQmvG3EUzo2vCaXtpfBPBI=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=mjJ99tBsBuWDC/A8a87VaJBRW/3oANaQLfcx6YawuMA=;
+ b=if/7w/vwQmNUKtBkxqXDS9x2WjWuzZgYvu8cT1lcRSAtdZnl3IMLdp36WpSl4yKSQJjHkb
+ XiPeXuufho7kRbxHTkqKuxqXcSziyFjZbFAMie+dfxwaA06j2PKGIW2P3vWkNBIAHhYEyv
+ 287jUEZk+jN3ngLKvK54OBsO5FV/kYA=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-524-SfuJ2KksPKKAZZTlcgIQmQ-1; Mon, 28 Apr 2025 12:08:29 -0400
-X-MC-Unique: SfuJ2KksPKKAZZTlcgIQmQ-1
-X-Mimecast-MFC-AGG-ID: SfuJ2KksPKKAZZTlcgIQmQ_1745856508
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-7c5f3b94827so745796685a.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 09:08:28 -0700 (PDT)
+ us-mta-108-x9GxmKo4NYKksSmTU22m_Q-1; Mon, 28 Apr 2025 12:15:03 -0400
+X-MC-Unique: x9GxmKo4NYKksSmTU22m_Q-1
+X-Mimecast-MFC-AGG-ID: x9GxmKo4NYKksSmTU22m_Q_1745856902
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-43cfda30a3cso25611145e9.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Apr 2025 09:15:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745856508; x=1746461308;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=RjlHZlqdBLidaHviO2ndJKZu4KjLnMsljSpmBM9kRPM=;
- b=bXTKAcraizmWFDyuNAwyxnGD02Uw48hqeG4rkhVHOq7S5xLjkmpXJ3G4lhl0HQ2y1u
- PaaWkS4Kv3ug8MwsaPgpcmxhtbP407qeqO46yCIn7ufduM1y656+HQzjt+wLiwyIowni
- cLh2zLtMA9Rh+M1BmlPEEZhVmUYLOw5OYEGY5fFylZrmGH8ojOcxVcXkc9O+5DqSqESF
- RkX0llQ0bDDe5PPfQoaHN8dU5mmOpyCa8wf0zTXZKKNeJTM4LbGi+9ChR41FHW+xvYSR
- FAI+IzsuOkFzEmAQ5Wi+IoM22cb2tFFdzErpogh7ZOVeCFGTQj8xrHa5+5YjPalzycph
- H5iA==
+ d=1e100.net; s=20230601; t=1745856902; x=1746461702;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt
+ :content-language:from:references:cc:to:subject:user-agent
+ :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=mjJ99tBsBuWDC/A8a87VaJBRW/3oANaQLfcx6YawuMA=;
+ b=oNlwUOQH7bAuRRbFTUsHLhU2kw3mXDjJweKl/BqvhV2ic6/vnXRF/KpxaCGuBYYPhY
+ UpRhHnC7zXg1CWQIr/z+5UK1GV2/z0s0QA2yZHKiqOwYGBRpu4Y0vvQt9OkNVe5d1cIb
+ x9HilmxinceexIKGvn1nH+7qJmeFMdSPCVDGftF54GCMoJdbcaXvtvqECVpq5FyqYd53
+ eZHYw90tQSYARKOhc63yYEnebOxvuA5UYKJfT3nF8Wgil4xBZeepx7mVrmgAvpsFQmt9
+ hT77KMEuOQwS1pVoByBKKnw4zc/Vm3JGDcefzx2Ro+qNE5UtoLacsJ0Umd960vWFQJdY
+ Ishw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW55enVu8gpIFjzOufFLWFG4uuCkygmTkhwecmeVV+88/gm7a+26Wykxb6CH1fftnXU8piamuaMx30=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzwyRpq40fw5WK6GxuVkNzrzSxpn44Uili38oxTOuR+1TsAreeB
- dJvxqBIOjJ3RlxGA8jnUWOzJ4kY6HM89oRUrXpMoCba9nXdberHtuZnpQ3cmR2AN3bNDnCIHK2g
- WUrrq1BJ/rAcBqndB1HBmCTkkes2bnSXC+D1+WJlp8LYKqZ6V8NnIlOKJe0wrGkLnYA==
-X-Gm-Gg: ASbGncs09v3OX/e7NyWt+fLf/MFVhXIu72hCS1r4m20VWBf1Q9qUMD4HOpj5oOa8XYE
- /g/hhgcSdv+LFNrgbBMgTzekpHSM9jp9QOqTBQa80oH5GdnhUVE9+QfySS3baTE+F9U8W5woTlS
- VCF5+i5qZcG/D5Wzcdy0vbHOtSHE3lFzTK1oNYybNRcgSbawt0Hx62Nk/PSeirYjq4koyGMzyWc
- FJNz2xzeoNh8RqdinQxsebkx91lsoNhAg21CDh+Yl8q2IsWHFaRA1tcO7xBOwvDPA/HHMqxFqeH
- q7M=
-X-Received: by 2002:a05:620a:10a1:b0:7c5:5768:409f with SMTP id
- af79cd13be357-7c9619fa9a7mr1645602285a.57.1745856507678; 
- Mon, 28 Apr 2025 09:08:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGW5BlJDkcwxdtW1DAIlXgy/Si+TW6ulb7oYDt7LUfQf0Ngyzow9trm051yins+fPxPd9qHkw==
-X-Received: by 2002:a05:620a:10a1:b0:7c5:5768:409f with SMTP id
- af79cd13be357-7c9619fa9a7mr1645595485a.57.1745856507123; 
- Mon, 28 Apr 2025 09:08:27 -0700 (PDT)
-Received: from x1.local ([85.131.185.92]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7c958e9f111sm636846285a.93.2025.04.28.09.08.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Apr 2025 09:08:26 -0700 (PDT)
-Date: Mon, 28 Apr 2025 12:08:22 -0400
-From: Peter Xu <peterx@redhat.com>
-To: David Hildenbrand <david@redhat.com>
+ AJvYcCXlWJZ8AZvB2Hb3k8Gs7qwJRB0DGEVfXXZpsGO7nZXXNmI1UX2gP4Fcv4c8zoC+GPyZHbUKYkTUSTA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSDz5LNBr4R+yM7uNKmrq9VKxW2M+yIGpmfqt/YlGs3JwwtOSp
+ 2eEf/SMa6OlKLenfVlGecYR+27bBh6+gkXt/nDaqFP5xbbSARsrouivezZ0isMLJ/Xo+Z3Qdg4e
+ YO9VYcYrPDYZIUx7QwXyiSJA9kFdVUc/pZYzZiHVIb+Wnj8I2vl1omNU7hM8sji/ZUA==
+X-Gm-Gg: ASbGncvyUZLoga0LGx6si1QW9lKfncSmU0v8j50/dS0/H8lvMCiKJOX4TKFliin2oZs
+ Uqr1hgWN6tKaX0rhUKv1aSYRhcucOPbGCpMoBw+kOu2FxFO6m3Q3jTZmaWRgZyjgAlviSI/scOc
+ 8W5Ye1/MzL8eYpDwpOQDxIC6tKt1ivR0TIs6lfClSIsB1wmhUqYiphf9gs5Itpf8B3VjSWqUw4y
+ IO5T/qrswW+Twt0C809R9fjNUwDDCgJ4XkFmmBMuL+HuKsuB0hOxnKhIhpfexUyAFBQ6xURYxzQ
+ jb0qXI5XWbgfUGp3VMxLk3NlW4+jHyHaFzZSShHUVQHGFktd2+Y1frDAWLQILd6ypjmUjNHi3E6
+ c8PVlbuj/ZgDTOlYdCOvNgphuX2+wZ+0GlxQzFA==
+X-Received: by 2002:a05:600c:4f81:b0:43c:efed:732c with SMTP id
+ 5b1f17b1804b1-440ab8722e8mr62094825e9.28.1745856902032; 
+ Mon, 28 Apr 2025 09:15:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHf7xoVWGe8POH6/bAu4Zm1T2P/Ns6FQlhV/6P/Tg1uN3kkn8wReO0mmLvPeggLU1mpCqiyHw==
+X-Received: by 2002:a05:600c:4f81:b0:43c:efed:732c with SMTP id
+ 5b1f17b1804b1-440ab8722e8mr62094425e9.28.1745856901631; 
+ Mon, 28 Apr 2025 09:15:01 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f32:c200:9add:4a7a:46aa:f740?
+ (p200300d82f32c2009add4a7a46aaf740.dip0.t-ipconnect.de.
+ [2003:d8:2f32:c200:9add:4a7a:46aa:f740])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4409d2e00d8sm159297655e9.35.2025.04.28.09.14.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Apr 2025 09:15:01 -0700 (PDT)
+Message-ID: <d9b32bb8-fe69-48d2-9b9b-c1a4af231f93@redhat.com>
+Date: Mon, 28 Apr 2025 18:14:59 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 11/11] mm/io-mapping: track_pfn() -> "pfnmap tracking"
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-trace-kernel@vger.kernel.org,
- Dave Hansen <dave.hansen@linux.intel.com>,
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Thomas Gleixner <tglx@linutronix.de>,
+ linux-trace-kernel@vger.kernel.org, Dave Hansen
+ <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>,
  Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- "H. Peter Anvin" <hpa@zytor.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+ "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Andrew Morton <akpm@linux-foundation.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>
-Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to
- pfnmap_track() + pfnmap_untrack()
-Message-ID: <aA-n9hvSX9JLsRM-@x1.local>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
 References: <20250425081715.1341199-1-david@redhat.com>
- <20250425081715.1341199-6-david@redhat.com>
- <aAvvQ1h9bg11hiqI@x1.local>
- <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com>
-MIME-Version: 1.0
-In-Reply-To: <bbadf008-9ffc-4628-9809-2d8cf104a424@redhat.com>
+ <20250425081715.1341199-12-david@redhat.com>
+ <07a780ee-b2fa-4eb3-a340-175d7c18a0fe@lucifer.local>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <07a780ee-b2fa-4eb3-a340-175d7c18a0fe@lucifer.local>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: JIbWVrg2J_2CyVOY9iTHXb3Y5pKjG__OiRldQe64_KM_1745856508
+X-Mimecast-MFC-PROC-ID: bRJ6JbIIwBBR-tNXkKLKigIKDMD9RMqiCjKJKPDK3-4_1745856902
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,191 +166,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 25, 2025 at 10:36:55PM +0200, David Hildenbrand wrote:
-> On 25.04.25 22:23, Peter Xu wrote:
-> > On Fri, Apr 25, 2025 at 10:17:09AM +0200, David Hildenbrand wrote:
-> > > Let's use our new interface. In remap_pfn_range(), we'll now decide
-> > > whether we have to track (full VMA covered) or only sanitize the pgprot
-> > > (partial VMA covered).
-> > > 
-> > > Remember what we have to untrack by linking it from the VMA. When
-> > > duplicating VMAs (e.g., splitting, mremap, fork), we'll handle it similar
-> > > to anon VMA names, and use a kref to share the tracking.
-> > > 
-> > > Once the last VMA un-refs our tracking data, we'll do the untracking,
-> > > which simplifies things a lot and should sort our various issues we saw
-> > > recently, for example, when partially unmapping/zapping a tracked VMA.
-> > > 
-> > > This change implies that we'll keep tracking the original PFN range even
-> > > after splitting + partially unmapping it: not too bad, because it was
-> > > not working reliably before. The only thing that kind-of worked before
-> > > was shrinking such a mapping using mremap(): we managed to adjust the
-> > > reservation in a hacky way, now we won't adjust the reservation but
-> > > leave it around until all involved VMAs are gone.
-> > > 
-> > > Signed-off-by: David Hildenbrand <david@redhat.com>
-> > > ---
-> > >   include/linux/mm_inline.h |  2 +
-> > >   include/linux/mm_types.h  | 11 ++++++
-> > >   kernel/fork.c             | 54 ++++++++++++++++++++++++--
-> > >   mm/memory.c               | 81 +++++++++++++++++++++++++++++++--------
-> > >   mm/mremap.c               |  4 --
-> > >   5 files changed, 128 insertions(+), 24 deletions(-)
-> > > 
-> > > diff --git a/include/linux/mm_inline.h b/include/linux/mm_inline.h
-> > > index f9157a0c42a5c..89b518ff097e6 100644
-> > > --- a/include/linux/mm_inline.h
-> > > +++ b/include/linux/mm_inline.h
-> > > @@ -447,6 +447,8 @@ static inline bool anon_vma_name_eq(struct anon_vma_name *anon_name1,
-> > >   #endif  /* CONFIG_ANON_VMA_NAME */
-> > > +void pfnmap_track_ctx_release(struct kref *ref);
-> > > +
-> > >   static inline void init_tlb_flush_pending(struct mm_struct *mm)
-> > >   {
-> > >   	atomic_set(&mm->tlb_flush_pending, 0);
-> > > diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-> > > index 56d07edd01f91..91124761cfda8 100644
-> > > --- a/include/linux/mm_types.h
-> > > +++ b/include/linux/mm_types.h
-> > > @@ -764,6 +764,14 @@ struct vma_numab_state {
-> > >   	int prev_scan_seq;
-> > >   };
-> > > +#ifdef __HAVE_PFNMAP_TRACKING
-> > > +struct pfnmap_track_ctx {
-> > > +	struct kref kref;
-> > > +	unsigned long pfn;
-> > > +	unsigned long size;
-> > > +};
-> > > +#endif
-> > > +
-> > >   /*
-> > >    * This struct describes a virtual memory area. There is one of these
-> > >    * per VM-area/task. A VM area is any part of the process virtual memory
-> > > @@ -877,6 +885,9 @@ struct vm_area_struct {
-> > >   	struct anon_vma_name *anon_name;
-> > >   #endif
-> > >   	struct vm_userfaultfd_ctx vm_userfaultfd_ctx;
-> > > +#ifdef __HAVE_PFNMAP_TRACKING
-> > > +	struct pfnmap_track_ctx *pfnmap_track_ctx;
-> > > +#endif
-> > 
-> > So this was originally the small concern (or is it small?) that this will
-> > grow every vma on x86, am I right?
+On 28.04.25 18:06, Lorenzo Stoakes wrote:
+> On Fri, Apr 25, 2025 at 10:17:15AM +0200, David Hildenbrand wrote:
+>> track_pfn() does not exist, let's simply refer to it as "pfnmap
+>> tracking".
+>>
+>> Signed-off-by: David Hildenbrand <david@redhat.com>
 > 
-> Yeah, and last time I looked into this, it would have grown it such that it would
-> require a bigger slab. Right now:
+> LGTM, so:
+> 
+> Reviewed-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> 
+>> ---
+>>   mm/io-mapping.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/mm/io-mapping.c b/mm/io-mapping.c
+>> index 01b3627999304..7266441ad0834 100644
+>> --- a/mm/io-mapping.c
+>> +++ b/mm/io-mapping.c
+>> @@ -21,7 +21,7 @@ int io_mapping_map_user(struct io_mapping *iomap, struct vm_area_struct *vma,
+>>   	if (WARN_ON_ONCE((vma->vm_flags & expected_flags) != expected_flags))
+>>   		return -EINVAL;
+>>
+>> -	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
+>> +	/* We rely on prevalidation of the io-mapping to skip pfnmap tracking. */
+>>   	return remap_pfn_range_notrack(vma, addr, pfn, size,
+>>   		__pgprot((pgprot_val(iomap->prot) & _PAGE_CACHE_MASK) |
+>>   			 (pgprot_val(vma->vm_page_prot) & ~_PAGE_CACHE_MASK)));
+>> --
+>> 2.49.0
+>>
+> 
+> However this doesn't apply after commit b8d8f1830bab ("mm/io-mapping:
+> precompute remap protection flags for clarity"), so will need a rebase :)
+> seems this was cleaned up to separate the __pgprot() bit from the
+> remap_pfn_range_notrack().
 
-Probably due to what config you have.  E.g., when I'm looking mine it's
-much bigger and already consuming 256B, but it's because I enabled more
-things (userfaultfd, lockdep, etc.).
+Yeah, I reviewed that just today. Trivial conflict :)
 
-> 
-> Before this change:
-> 
-> struct vm_area_struct {
-> 	union {
-> 		struct {
-> 			long unsigned int vm_start;      /*     0     8 */
-> 			long unsigned int vm_end;        /*     8     8 */
-> 		};                                       /*     0    16 */
-> 		freeptr_t          vm_freeptr;           /*     0     8 */
-> 	};                                               /*     0    16 */
-> 	struct mm_struct *         vm_mm;                /*    16     8 */
-> 	pgprot_t                   vm_page_prot;         /*    24     8 */
-> 	union {
-> 		const vm_flags_t   vm_flags;             /*    32     8 */
-> 		vm_flags_t         __vm_flags;           /*    32     8 */
-> 	};                                               /*    32     8 */
-> 	unsigned int               vm_lock_seq;          /*    40     4 */
-> 
-> 	/* XXX 4 bytes hole, try to pack */
-> 
-> 	struct list_head           anon_vma_chain;       /*    48    16 */
-> 	/* --- cacheline 1 boundary (64 bytes) --- */
-> 	struct anon_vma *          anon_vma;             /*    64     8 */
-> 	const struct vm_operations_struct  * vm_ops;     /*    72     8 */
-> 	long unsigned int          vm_pgoff;             /*    80     8 */
-> 	struct file *              vm_file;              /*    88     8 */
-> 	void *                     vm_private_data;      /*    96     8 */
-> 	atomic_long_t              swap_readahead_info;  /*   104     8 */
-> 	struct mempolicy *         vm_policy;            /*   112     8 */
-> 	struct vma_numab_state *   numab_state;          /*   120     8 */
-> 	/* --- cacheline 2 boundary (128 bytes) --- */
-> 	refcount_t                 vm_refcnt __attribute__((__aligned__(64))); /*   128     4 */
-> 
-> 	/* XXX 4 bytes hole, try to pack */
-> 
-> 	struct {
-> 		struct rb_node     rb __attribute__((__aligned__(8))); /*   136    24 */
-> 		long unsigned int  rb_subtree_last;      /*   160     8 */
-> 	} __attribute__((__aligned__(8))) shared __attribute__((__aligned__(8)));        /*   136    32 */
-> 	struct anon_vma_name *     anon_name;            /*   168     8 */
-> 	struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
-> 
-> 	/* size: 192, cachelines: 3, members: 18 */
-> 	/* sum members: 168, holes: 2, sum holes: 8 */
-> 	/* padding: 16 */
-> 	/* forced alignments: 2, forced holes: 1, sum forced holes: 4 */
-> } __attribute__((__aligned__(64)));
-> 
-> After this change:
-> 
-> struct vm_area_struct {
-> 	union {
-> 		struct {
-> 			long unsigned int vm_start;      /*     0     8 */
-> 			long unsigned int vm_end;        /*     8     8 */
-> 		};                                       /*     0    16 */
-> 		freeptr_t          vm_freeptr;           /*     0     8 */
-> 	};                                               /*     0    16 */
-> 	struct mm_struct *         vm_mm;                /*    16     8 */
-> 	pgprot_t                   vm_page_prot;         /*    24     8 */
-> 	union {
-> 		const vm_flags_t   vm_flags;             /*    32     8 */
-> 		vm_flags_t         __vm_flags;           /*    32     8 */
-> 	};                                               /*    32     8 */
-> 	unsigned int               vm_lock_seq;          /*    40     4 */
-> 
-> 	/* XXX 4 bytes hole, try to pack */
-> 
-> 	struct list_head           anon_vma_chain;       /*    48    16 */
-> 	/* --- cacheline 1 boundary (64 bytes) --- */
-> 	struct anon_vma *          anon_vma;             /*    64     8 */
-> 	const struct vm_operations_struct  * vm_ops;     /*    72     8 */
-> 	long unsigned int          vm_pgoff;             /*    80     8 */
-> 	struct file *              vm_file;              /*    88     8 */
-> 	void *                     vm_private_data;      /*    96     8 */
-> 	atomic_long_t              swap_readahead_info;  /*   104     8 */
-> 	struct mempolicy *         vm_policy;            /*   112     8 */
-> 	struct vma_numab_state *   numab_state;          /*   120     8 */
-> 	/* --- cacheline 2 boundary (128 bytes) --- */
-> 	refcount_t                 vm_refcnt __attribute__((__aligned__(64))); /*   128     4 */
-> 
-> 	/* XXX 4 bytes hole, try to pack */
-> 
-> 	struct {
-> 		struct rb_node     rb __attribute__((__aligned__(8))); /*   136    24 */
-> 		long unsigned int  rb_subtree_last;      /*   160     8 */
-> 	} __attribute__((__aligned__(8))) shared __attribute__((__aligned__(8)));        /*   136    32 */
-> 	struct anon_vma_name *     anon_name;            /*   168     8 */
-> 	struct vm_userfaultfd_ctx  vm_userfaultfd_ctx;   /*   176     0 */
-> 	struct pfnmap_track_ctx *  pfnmap_track_ctx;     /*   176     8 */
-> 
-> 	/* size: 192, cachelines: 3, members: 19 */
-> 	/* sum members: 176, holes: 2, sum holes: 8 */
-> 	/* padding: 8 */
-> 	/* forced alignments: 2, forced holes: 1, sum forced holes: 4 */
-> } __attribute__((__aligned__(64)));
-> 
-> Observe that we allocate 192 bytes with or without pfnmap_track_ctx. (IIRC,
-> slab sizes are ... 128, 192, 256, 512, ...)
-
-True. I just double checked, vm_area_cachep has SLAB_HWCACHE_ALIGN set, I
-think it means it's working like that on x86_64 at least indeed.  So looks
-like the new field at least isn't an immediate concern.
-
-Thanks,
+Thanks!
 
 -- 
-Peter Xu
+Cheers,
+
+David / dhildenb
 
