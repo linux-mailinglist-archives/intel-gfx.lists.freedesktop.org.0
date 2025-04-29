@@ -2,29 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A3ABAA0D87
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Apr 2025 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F704AA0DA8
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Apr 2025 15:44:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF0C10E486;
-	Tue, 29 Apr 2025 13:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF3910E485;
+	Tue, 29 Apr 2025 13:44:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MK/IWAht";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6961510E486;
- Tue, 29 Apr 2025 13:33:00 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB2210E03F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Apr 2025 13:44:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1745934261;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=8El/MNSWeMGWGhHkl6gHFO/ffF6zovBaM0ZG9eZHFK4=;
+ b=MK/IWAhtUj+KdZWX0C/hjsy6FN7MXjuBXU05zL9K/dC4ydFkCxUFh1GpHuiCqm1T/78I3G
+ FkK+VVrcTQnG2rBBoXghsHC12G7Sh9eM8PkF3i3jBqTt+FGXdAtILmWQPj/7mHlbAgrM7E
+ XafVqqvXFSf9jJEsvLAy1xShcto6HlI=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-688-gn4f-PGgNR6WkLncFghKcg-1; Tue, 29 Apr 2025 09:44:19 -0400
+X-MC-Unique: gn4f-PGgNR6WkLncFghKcg-1
+X-Mimecast-MFC-AGG-ID: gn4f-PGgNR6WkLncFghKcg_1745934259
+Received: by mail-qt1-f200.google.com with SMTP id
+ d75a77b69052e-4767bab171dso60571011cf.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Apr 2025 06:44:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1745934259; x=1746539059;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8El/MNSWeMGWGhHkl6gHFO/ffF6zovBaM0ZG9eZHFK4=;
+ b=kY1X3f3PF+ZFX4MOjvvnTcueV4PYolkzFszeDZlxD4dkgAqWfCZ5/8sCwaH7072vUk
+ 3BKL2QVAP3Iijjc34GXEHA3n9Z4IKyE2+2EtGWlgz7cswj4Q/diAU500WTRdS2Mlp5fQ
+ gWV1L28r3Ta/EBSMn/pDyl/3Ci0d0N4cQyGJAEbC7a0dMaAsb8TqAfW3gesK/pedrqdU
+ H8MDgW/hFdEPn1c9T1LLIf4Uw6RYZAFkV/CiUeRGH+JQmn9139JoFW56qv7S5E0HC+qh
+ ZyB8lenNpK7nKagXgTEbBWu79iN+3HTfvCMV2+Hh4n7Wvz0jyV3ED+pVVNQf+VSlwBbl
+ 90hA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWvyc8JoQgNYN62LosHQjOQMWVfTjKPTb3Z52nSavf4R+7cN+h5FGbGfFRue3ZSsqkdAaVa+DK5jJg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwIwhu1xcsl/4pyzS3wuEkqb+fOLKeZjjwsxrga9v3KN60GwWfz
+ /LJNZZjhY8KmGfBW/hVBxv7inc5b8Wek3OJ/HRoe7laNMNnHY5pUOM+td7berdnfrUSZ3GCLrEJ
+ 4MowgYeTm0HFzgSVEezDPZribxLULJ6gxBTvHHTiagew+3Jmc40s2dyDPKquZHmZzpQ==
+X-Gm-Gg: ASbGncvIZXY4/bWKdDQrP95wxy+aZZdgHGKhoVWqn8wA46XeWUgkr/Q5BQnZ81VzZhL
+ RWjr5/HZ+STsMRZg1eDr0LGWlJywBZtwi57KLSRxvEVc2uB8NB32jONl4Xh3fHjy2V4j/Qv5X8f
+ if13/9WU2WxxJX3KyChHVN4uUfGClt7rq1SgpPBW4GTCUaBbcmXUhpg+YaAgNTz2KYgWbBn/+pX
+ fktz24wR70IHyGmG/+oKul3esS9j8v+VYsVRYgX8PtLG7t0jwTGiN0yiNG5CPzJkGcaCxM1/eI3
+ k4E=
+X-Received: by 2002:a05:622a:192a:b0:476:7d74:dd10 with SMTP id
+ d75a77b69052e-488131609e1mr63610961cf.19.1745934259242; 
+ Tue, 29 Apr 2025 06:44:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEnvb9YE4nJ15XVZdziBUCLpPu73z51k76ZUd4aW/VF9ZsxE0SxmntEXtj/bIpgYaiPj9O/Pg==
+X-Received: by 2002:a05:622a:192a:b0:476:7d74:dd10 with SMTP id
+ d75a77b69052e-488131609e1mr63610481cf.19.1745934258824; 
+ Tue, 29 Apr 2025 06:44:18 -0700 (PDT)
+Received: from x1.local ([85.131.185.92]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-47ea1693378sm80410351cf.64.2025.04.29.06.44.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Apr 2025 06:44:18 -0700 (PDT)
+Date: Tue, 29 Apr 2025 09:44:15 -0400
+From: Peter Xu <peterx@redhat.com>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>
+Subject: Re: [PATCH v1 02/11] mm: convert track_pfn_insert() to
+ pfnmap_sanitize_pgprot()
+Message-ID: <aBDXr-Qp4z0tS50P@x1.local>
+References: <20250425081715.1341199-1-david@redhat.com>
+ <20250425081715.1341199-3-david@redhat.com>
+ <aAvjJOmvm5GsZ-JN@x1.local>
+ <78f88303-6b00-42cf-8977-bf7541fa45a9@redhat.com>
+ <aAwh6n058Hh490io@x1.local>
+ <75998f7c-93d2-4b98-bb53-8d858b2c108e@redhat.com>
+ <aA-q_PrThAw5v1PF@x1.local>
+ <57f9480c-2f8c-4be8-864c-406fec917eb1@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/backlight=3A_dr?=
- =?utf-8?q?op_dmesg_suggestion_to_file_bugs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Apr 2025 13:33:00 -0000
-Message-ID: <174593358043.24510.8102905506440644578@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250429112534.2121656-1-jani.nikula@intel.com>
-In-Reply-To: <20250429112534.2121656-1-jani.nikula@intel.com>
+In-Reply-To: <57f9480c-2f8c-4be8-864c-406fec917eb1@redhat.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 10J9wgLXrl7aeoPDwbs147HU5d3dlbXmFLr3TUu1JGY_1745934259
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +121,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Apr 28, 2025 at 10:37:49PM +0200, David Hildenbrand wrote:
+> On 28.04.25 18:21, Peter Xu wrote:
+> > On Mon, Apr 28, 2025 at 04:58:46PM +0200, David Hildenbrand wrote:
+> > > 
+> > > > > What it does on PAT (only implementation so far ...) is looking up the
+> > > > > memory type to select the caching mode that can be use.
+> > > > > 
+> > > > > "sanitize" was IMHO a good fit, because we must make sure that we don't use
+> > > > > the wrong caching mode.
+> > > > > 
+> > > > > update/setup/... don't make that quite clear. Any other suggestions?
+> > > > 
+> > > > I'm very poor on naming.. :( So far anything seems slightly better than
+> > > > sanitize to me, as the word "sanitize" is actually also used in memtype.c
+> > > > for other purpose.. see sanitize_phys().
+> > > 
+> > > Sure, one can sanitize a lot of things. Here it's the cachemode/pgrpot, in
+> > > the other functions it's an address.
+> > > 
+> > > Likely we should just call it pfnmap_X_cachemode()/
+> > > 
+> > > Set/update don't really fit for X in case pfnmap_X_cachemode() is a NOP.
+> > > 
+> > > pfnmap_setup_cachemode() ? Hm.
+> > 
+> > Sounds good here.
+> 
+> Okay, I'll use that one. If ever something else besides PAT would require
+> different semantics, they can bother with finding a better name :)
+> 
+> > 
+> > > 
+> > > > 
+> > > > > 
+> > > > > > 
+> > > > > > > + * @pfn: the start of the pfn range
+> > > > > > > + * @size: the size of the pfn range
+> > > > > > > + * @prot: the pgprot to sanitize
+> > > > > > > + *
+> > > > > > > + * Sanitize the given pgprot for a pfn range, for example, adjusting the
+> > > > > > > + * cachemode.
+> > > > > > > + *
+> > > > > > > + * This function cannot fail for a single page, but can fail for multiple
+> > > > > > > + * pages.
+> > > > > > > + *
+> > > > > > > + * Returns 0 on success and -EINVAL on error.
+> > > > > > > + */
+> > > > > > > +int pfnmap_sanitize_pgprot(unsigned long pfn, unsigned long size,
+> > > > > > > +		pgprot_t *prot);
+> > > > > > >     extern int track_pfn_copy(struct vm_area_struct *dst_vma,
+> > > > > > >     		struct vm_area_struct *src_vma, unsigned long *pfn);
+> > > > > > >     extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
+> > > > > > > diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> > > > > > > index fdcf0a6049b9f..b8ae5e1493315 100644
+> > > > > > > --- a/mm/huge_memory.c
+> > > > > > > +++ b/mm/huge_memory.c
+> > > > > > > @@ -1455,7 +1455,9 @@ vm_fault_t vmf_insert_pfn_pmd(struct vm_fault *vmf, pfn_t pfn, bool write)
+> > > > > > >     			return VM_FAULT_OOM;
+> > > > > > >     	}
+> > > > > > > -	track_pfn_insert(vma, &pgprot, pfn);
+> > > > > > > +	if (pfnmap_sanitize_pgprot(pfn_t_to_pfn(pfn), PAGE_SIZE, &pgprot))
+> > > > > > > +		return VM_FAULT_FALLBACK;
+> > > > > > 
+> > > > > > Would "pgtable" leak if it fails?  If it's PAGE_SIZE, IIUC it won't ever
+> > > > > > trigger, though.
+> > > > > > 
+> > > > > > Maybe we could have a "void pfnmap_sanitize_pgprot_pfn(&pgprot, pfn)" to
+> > > > > > replace track_pfn_insert() and never fail?  Dropping vma ref is definitely
+> > > > > > a win already in all cases.
+> > > > > 
+> > > > > It could be a simple wrapper around pfnmap_sanitize_pgprot(), yes. That's
+> > > > > certainly helpful for the single-page case.
+> > > > > 
+> > > > > Regarding never failing here: we should check the whole range. We have to
+> > > > > make sure that none of the pages has a memory type / caching mode that is
+> > > > > incompatible with what we setup.
+> > > > 
+> > > > Would it happen in real world?
+> > > > > IIUC per-vma registration needs to happen first, which checks for
+> > > memtype
+> > > > conflicts in the first place, or reserve_pfn_range() could already have
+> > > > failed.
+> > > > > Here it's the fault path looking up the memtype, so I would expect it is
+> > > > guaranteed all pfns under the same vma is following the verified (and same)
+> > > > memtype?
+> > > 
+> > > The whole point of track_pfn_insert() is that it is used when we *don't* use
+> > > reserve_pfn_range()->track_pfn_remap(), no?
+> > > 
+> > > track_pfn_remap() would check the whole range that gets mapped, so
+> > > track_pfn_insert() user must similarly check the whole range that gets
+> > > mapped.
+> > > 
+> > > Note that even track_pfn_insert() is already pretty clear on the intended
+> > > usage: "called when a _new_ single pfn is established"
+> > 
+> > We need to define "new" then..  But I agree it's not crystal clear at
+> > least.  I think I just wasn't the first to assume it was reserved, see this
+> > (especially, the "Expectation" part..):
+> > 
+> > commit 5180da410db6369d1f95c9014da1c9bc33fb043e
+> > Author: Suresh Siddha <suresh.b.siddha@intel.com>
+> > Date:   Mon Oct 8 16:28:29 2012 -0700
+> > 
+> >      x86, pat: separate the pfn attribute tracking for remap_pfn_range and vm_insert_pfn
+> >      With PAT enabled, vm_insert_pfn() looks up the existing pfn memory
+> >      attribute and uses it.  Expectation is that the driver reserves the
+> >      memory attributes for the pfn before calling vm_insert_pfn().
+> 
+> It's all confusing.
+> 
+> We do have the following functions relevant in pat code:
+> 
+> (1) memtype_reserve(): used by ioremap and set_memory_XX
+> 
+> (2) memtype_reserve_io(): used by iomap
+> 
+> (3) reserve_pfn_range(): only remap_pfn_range() calls it
+> 
+> (4) arch_io_reserve_memtype_wc()
+> 
+> 
+> Which one would perform the reservation for, say, vfio?
 
-Series: drm/i915/backlight: drop dmesg suggestion to file bugs
-URL   : https://patchwork.freedesktop.org/series/148409/
-State : warning
+My understanding is it was done via barmap.  See this stack:
 
-== Summary ==
+vfio_pci_core_mmap
+  pci_iomap
+    pci_iomap_range
+      ... 
+        __ioremap_caller
+          memtype_reserve
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+> 
+> 
+> I agree that if there would be a guarantee/expectation that all PFNs have
+> the same memtype (from previous reservation), it would be sufficient to
+> check a single PFN, and we could document that. I just don't easily see
+> where that reservation is happening.
+> 
+> So a pointer to that would be appreciated!
 
+I am not aware of any pointer.. maybe others could chime in.
+
+IMHO, if there's anything uncertain, for this one we could always decouple
+this issue from the core issue you're working on, so at least it keeps the
+old behavior (which is pure lookup on pfn injections) until a solid issue
+occurs?  It avoids the case where we could introduce unnecessary code but
+then it's much harder to justify a removal.  What do you think?
+
+Thanks,
+
+-- 
+Peter Xu
 
