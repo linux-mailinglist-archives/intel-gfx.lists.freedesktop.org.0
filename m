@@ -2,61 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B785AA0AE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Apr 2025 13:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0ED4AA0AEC
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Apr 2025 13:58:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31BC710E41B;
-	Tue, 29 Apr 2025 11:56:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AwGEBHZN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24B7F10E43C;
+	Tue, 29 Apr 2025 11:58:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D7410E41B;
- Tue, 29 Apr 2025 11:56:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745927817; x=1777463817;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=nWH+xT2ovDwUcvgunaecQlN8B7WTLKW1oC/M0WWGFnY=;
- b=AwGEBHZNI9lRCO32a9VNacPea8UqpSEXNVihgeVP8GgjJClBcZ9vxFGv
- UFDw2zU9AqonXRAjVxNAn5vX8KLWUyitLU/KdE8r/6Z3qGks4p9CYbwwH
- GdET3uQhnGu/p2nolStP3Ag5nP6fjW7585nCJx6s+Lt7czc0DiweEosGW
- Hw9lJL9G4k4g/GOFk18PmvJX3rWIXfjXbst5f4V0fvkvURetzFeHH9mNm
- pFi35eRn2Quy+l7ppmI7iINrt25EC1gA3xHZOrv/ugizfGwS8FtMg1y2k
- 0MoL7Za/cp15PVm3W54UFJxu4/bNBe+Mw1ClaHmdeXugR+BbsLO5A0/ew Q==;
-X-CSE-ConnectionGUID: PRU1EOvqRfSXnr+masJYcQ==
-X-CSE-MsgGUID: g0TrTtx4SU+Yi/69gtKhUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11417"; a="72921151"
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="72921151"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 04:56:57 -0700
-X-CSE-ConnectionGUID: lWmI91a3TnKrKmhQK9fY+Q==
-X-CSE-MsgGUID: mH0psiiZSmW8zbUhsIJoTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,249,1739865600"; d="scan'208";a="164892670"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.9])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 04:56:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Harry Austen <hpausten@protonmail.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, Harry
- Austen <hpausten@protonmail.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3] drm/xe: Allow building as kernel built-in
-In-Reply-To: <20250425115148.12815-1-hpausten@protonmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250425115148.12815-1-hpausten@protonmail.com>
-Date: Tue, 29 Apr 2025 14:56:51 +0300
-Message-ID: <874iy7w58c.fsf@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D07BE10E30B;
+ Tue, 29 Apr 2025 11:58:34 +0000 (UTC)
+Message-ID: <fcb7d35d-e418-4af2-938f-72299c5f2888@lankhorst.se>
+Date: Tue, 29 Apr 2025 13:58:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] drm/display/dp: Export fn to calculate link symbol
+ cycles
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: imre.deak@intel.com, vinod.govindapillai@intel.com
+References: <20250424-hblank-v7-0-8b002f1506cc@intel.com>
+ <20250424-hblank-v7-1-8b002f1506cc@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten@lankhorst.se>
+In-Reply-To: <20250424-hblank-v7-1-8b002f1506cc@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,54 +43,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Apr 2025, Harry Austen <hpausten@protonmail.com> wrote:
-> Fix Kconfig symbol dependency on KUNIT, which isn't actually required
-> for XE to be built-in. However, if KUNIT is enabled, it must be built-in
-> too.
+
+
+On 2025-04-24 17:15, Arun R Murthy wrote:
+> Unify the function to calculate the link symbol cycles for both dsc and
+> non-dsc case and export the function so that it can be used in the
+> respective platform display drivers for other calculations.
 >
-> Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
-> isn't, since that results in duplicate symbol errors.
+> v2: unify the fn for both dsc and non-dsc case (Imre)
+> v3: rename drm_dp_link_symbol_cycles to drm_dp_link_data_symbol_cycles
+>     retain slice_eoc_cycles as is (Imre)
+> v4: Expose only drm_dp_link_symbol_cycles() (Imre)
+> v6: Add slice pixels which was removed unknowingly (Vinod)
 >
-> Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Harry Austen <hpausten@protonmail.com>
-
-I didn't test this, but it makes sense to me.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
-> v3: Simplify KUNIT dependency, as suggested by Jani Nikula
-> v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+>  drivers/gpu/drm/display/drm_dp_helper.c | 52 +++++++++++++++++++++------------
+>  include/drm/display/drm_dp_helper.h     |  2 ++
+>  2 files changed, 36 insertions(+), 18 deletions(-)
 >
->  drivers/gpu/drm/xe/Kconfig | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 57828f2b7b5a0582ca4a6f2a9be2d5909fe8ad24..56c7e3318f01079c3bde492a21c76ed37e9724ca 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -4393,8 +4393,9 @@ EXPORT_SYMBOL(drm_panel_dp_aux_backlight);
+>  #endif
+>  
+>  /* See DP Standard v2.1 2.6.4.4.1.1, 2.8.4.4, 2.8.7 */
+> -static int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
+> -				     int symbol_size, bool is_mst)
+> +static int drm_dp_link_data_symbol_cycles(int lane_count, int pixels,
+> +					  int bpp_x16, int symbol_size,
+> +					  bool is_mst)
+>  {
+>  	int cycles = DIV_ROUND_UP(pixels * bpp_x16, 16 * symbol_size * lane_count);
+>  	int align = is_mst ? 4 / lane_count : 1;
+> @@ -4402,22 +4403,42 @@ static int drm_dp_link_symbol_cycles(int lane_count, int pixels, int bpp_x16,
+>  	return ALIGN(cycles, align);
+>  }
+>  
+> -static int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_count,
+> -					 int bpp_x16, int symbol_size, bool is_mst)
+> +/**
+> + * drm_dp_link_symbol_cycles - calculate the link symbol count with/without dsc
+> + * @lane_count: DP link lane count
+> + * @pixels: number of pixels in a scanline
+> + * @dsc_slice_count: number of slices for DSC or '0' for non-DSC
+> + * @bpp_x16: bits per pixel in .4 binary fixed format
+> + * @symbol_size: DP symbol size
+> + * @is_mst: %true for MST and %false for SST
+> + *
+> + * Calculate the link symbol cycles for both DSC (@dsc_slice_count !=0) and
+> + * non-DSC case (@dsc_slice_count == 0) and return the count.
+> + */
+> +int drm_dp_link_symbol_cycles(int lane_count, int pixels, int dsc_slice_count,
+> +			      int bpp_x16, int symbol_size, bool is_mst)
+>  {
+> +	int slice_count = dsc_slice_count ? : 1;
+>  	int slice_pixels = DIV_ROUND_UP(pixels, slice_count);
+> -	int slice_data_cycles = drm_dp_link_symbol_cycles(lane_count, slice_pixels,
+> -							  bpp_x16, symbol_size, is_mst);
+> -	int slice_eoc_cycles = is_mst ? 4 / lane_count : 1;
+> +	int slice_data_cycles = drm_dp_link_data_symbol_cycles(lane_count,
+> +							       slice_pixels,
+> +							       bpp_x16,
+> +							       symbol_size,
+> +							       is_mst);
+> +	int slice_eoc_cycles = 0;
+> +
+> +	if (dsc_slice_count)
+> +		slice_eoc_cycles = is_mst ? 4 / lane_count : 1;
+>  
+>  	return slice_count * (slice_data_cycles + slice_eoc_cycles);
+>  }
+> +EXPORT_SYMBOL(drm_dp_link_symbol_cycles);
+>  
+>  /**
+>   * drm_dp_bw_overhead - Calculate the BW overhead of a DP link stream
+>   * @lane_count: DP link lane count
+>   * @hactive: pixel count of the active period in one scanline of the stream
+> - * @dsc_slice_count: DSC slice count if @flags/DRM_DP_LINK_BW_OVERHEAD_DSC is set
+> + * @dsc_slice_count: number of slices for DSC or '0' for non-DSC
+>   * @bpp_x16: bits per pixel in .4 binary fixed point
+>   * @flags: DRM_DP_OVERHEAD_x flags
+>   *
+> @@ -4431,7 +4452,7 @@ static int drm_dp_link_dsc_symbol_cycles(int lane_count, int pixels, int slice_c
+>   * as well as the stream's
+>   * - @hactive timing
+>   * - @bpp_x16 color depth
+> - * - compression mode (@flags / %DRM_DP_OVERHEAD_DSC).
+> + * - compression mode (@dsc_slice_count != 0)
+>   * Note that this overhead doesn't account for the 8b/10b, 128b/132b
+>   * channel coding efficiency, for that see
+>   * @drm_dp_link_bw_channel_coding_efficiency().
+> @@ -4486,15 +4507,10 @@ int drm_dp_bw_overhead(int lane_count, int hactive,
+>  	WARN_ON((flags & DRM_DP_BW_OVERHEAD_UHBR) &&
+>  		(flags & DRM_DP_BW_OVERHEAD_FEC));
+>  
+> -	if (flags & DRM_DP_BW_OVERHEAD_DSC)
+> -		symbol_cycles = drm_dp_link_dsc_symbol_cycles(lane_count, hactive,
+> -							      dsc_slice_count,
+> -							      bpp_x16, symbol_size,
+> -							      is_mst);
+> -	else
+> -		symbol_cycles = drm_dp_link_symbol_cycles(lane_count, hactive,
+> -							  bpp_x16, symbol_size,
+> -							  is_mst);
+> +	symbol_cycles = drm_dp_link_symbol_cycles(lane_count, hactive,
+> +						  dsc_slice_count,
+> +						  bpp_x16, symbol_size,
+> +						  is_mst);
+>  
+>  	return DIV_ROUND_UP_ULL(mul_u32_u32(symbol_cycles * symbol_size * lane_count,
+>  					    overhead * 16),
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index d9614e2c89397536f44bb7258e894628ae1dccc9..7b19192c70313d66dce1b7ba40dd59c14f80a182 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -971,5 +971,7 @@ int drm_dp_bw_channel_coding_efficiency(bool is_uhbr);
+>  int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes);
+>  
+>  ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc, struct dp_sdp *sdp);
+> +int drm_dp_link_symbol_cycles(int lane_count, int pixels, int dsc_slice_count,
+> +			      int bpp_x16, int symbol_size, bool is_mst);
+>  
+>  #endif /* _DRM_DP_HELPER_H_ */
 >
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 9bce047901b22..214f40264fa12 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -1,7 +1,8 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  config DRM_XE
->  	tristate "Intel Xe Graphics"
-> -	depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
-> +	depends on DRM && PCI && MMU
-> +	depends on KUNIT || KUNIT=3Dn
->  	select INTERVAL_TREE
->  	# we need shmfs for the swappable backing store, and in particular
->  	# the shmem_readpage() which depends upon tmpfs
-> @@ -51,7 +52,7 @@ config DRM_XE
->=20=20
->  config DRM_XE_DISPLAY
->  	bool "Enable display support"
-> -	depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
-> +	depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
->  	select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
->  	select I2C
->  	select I2C_ALGOBIT
+For inclusion into  drm-intel:
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
---=20
-Jani Nikula, Intel
