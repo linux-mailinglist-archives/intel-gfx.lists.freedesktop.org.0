@@ -2,88 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE87AA41AE
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 06:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52961AA41D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 06:25:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4144910E6C5;
-	Wed, 30 Apr 2025 04:10:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5BF10E120;
+	Wed, 30 Apr 2025 04:25:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4edyhRv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XCnYppwA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6A110E120;
- Wed, 30 Apr 2025 04:10:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4282A10E120;
+ Wed, 30 Apr 2025 04:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1745986222; x=1777522222;
+ t=1745987110; x=1777523110;
  h=from:to:subject:date:message-id:references:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=DG7rh6LOHhRkPEsU+bGfeZWZeK4z2pZCyJy4h0c2aF0=;
- b=Q4edyhRvjC4uuB27tnO6eGPR60VvbETgi7hnMXY7cq3iRDuW6/OcMXOa
- Pp0ByewBnaSdWDteWHo27S3GBlLqruMp/XU3eAeEEXVT+1tDqxgjp4hpf
- hXxkHFFSxjFr364hT22BnuaripfzUXZLOXq5JVHnNGP6GXVWalG6exCkc
- bc28+shg8usbYgWaVHY6NpeD1c6wOqXFzfvxo+y5rzkWnPpUJRaYWqJaE
- NZhGeyLvjWKGEXD0i0bx8wQ0doRRvIE4dzvLa3VPzaZWHCk+TjsVpWOyx
- l/rVH/oAPgZfKyqJzs240a7Bd8xY7WKMF3W35LHuL+uy1hF+lPJKdFrSY Q==;
-X-CSE-ConnectionGUID: o4ZlUoPDSG2Vb99FxOUrqQ==
-X-CSE-MsgGUID: kewqYExYRoGHEmjWxi4Dwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59008555"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59008555"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 21:10:21 -0700
-X-CSE-ConnectionGUID: Hmnx1yzNQYKVBk5kpTlJYQ==
-X-CSE-MsgGUID: UgAuj6WOQDO13xJcqvTWbQ==
+ bh=zyU9MIkeJwSZNaf9WXTW2sCDSHoAus9YVuqsTub5U70=;
+ b=XCnYppwADZWm71YyeX+Qu7BiqfxTCbJvaBtitNtuNs73Biji6xEZJPCZ
+ 2qf/Xev1/7giX/Hoz5r9WMeW0KVPfTIanObCs9KwJ/uQku4BscBejfTX0
+ 86ULZgl4j9JNuW1a2ax3ATUa85h1IWljGolKM1bHoBGekG+AQ43atw5Qi
+ KvGTQ/eWaT3yUMSFmBUMKdYQIyL47JCzWXjfzM9rHVIyc3CJ2xilj6eEA
+ 3e0B5cfReea44BlXbcot6W4dOycefR+cBC6bWqMi6lqu5X44XuN7WWpTb
+ ivJSYDhvilKiEVrkxaiuLSJWra4JJta45UAu9oj8bVFM2pq2zkU5dsDQC A==;
+X-CSE-ConnectionGUID: bYJBEZ8MQoaHL6abIKaReQ==
+X-CSE-MsgGUID: UMYS86akSfCW5LlEWNIXMg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="46749528"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="46749528"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 21:25:09 -0700
+X-CSE-ConnectionGUID: hWRp+YT2Q6CT2zoFQz93eg==
+X-CSE-MsgGUID: jcbsWYt3SyOe/RhanaE4ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138831625"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2025 21:10:21 -0700
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138986411"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2025 21:25:10 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 29 Apr 2025 21:10:20 -0700
+ 15.2.1544.14; Tue, 29 Apr 2025 21:25:09 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Tue, 29 Apr 2025 21:10:20 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ 15.2.1544.14 via Frontend Transport; Tue, 29 Apr 2025 21:25:09 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.172)
  by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 29 Apr 2025 21:10:20 -0700
+ 15.1.2507.44; Tue, 29 Apr 2025 21:25:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wrb9uYj7l3hjVnlSBEVg7X4vxBB9J2LsBHq1lvjKUEeQsgpN4k/eFaD4OWcjgFsivLvSiScQ3CTYokhYTd7I1oFMO2jQXxjICMuv0oiiH5FfodbEmLAVGYSGbeCCIDDjYUzmfFw7TrH2ZR9LrdZjMGh9gFKwOaZnfZmLIuvuZzKcB4znljBH/Thc0tJxeGAQODBQjNsMUjbewUpxUV1Diz7ESWIa434DQUOau1m56yJ5rGzishYKtz4NBR5HPsL1zMfm/culTYn2Lw+Cvcsr7261hHIL/keyX6nPR20iir7Bzg5a15tukAit5qy1MFTEA6BKuPrfFmYG3+MLWW5PKg==
+ b=Srm2RDG/iXAEBMpSA0pQJN0lLA8ePAnqkiLPszCGO8NWBjkjybmmQayQQ++9f1qnMTrehcK22pwrBn1kWxgLLpF+WJuhhNrusOwSJ7RHngN3SbfllySo/02Mv6luXRyHAep32qnxT5otTvCRAkj8EGjyXz0pZL4FGhVaFg3azfWCHmjv5dx7C6Ay+GlywNhqY2VfQoiUqQfY53BQw3+8dEdon4wUXhBqyKfdj8fzVU8aYQvb1lUQuCao7ZzjKlDTreOy95+meAIzTm3RkCh+G9qVhs72WOy7wqaRKjg742m2TrK3CdfDWyUChtx8OucyC+Z9DnX8GrY74kJqsRll9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+sSSDdqilnPAnkuso16M/coHuFvtiNsKqB92rBH00+0=;
- b=dWq0uB3BtGTZtI8IA4gKRhZtV7F/n9XJBYAtuca7cURo6irfyV9B1lBQl17isLI56ZtoBQ8cki7hnXxNs6n4wPyTY/eIdW+nQBXxqmgL/w7jTXF91pnarzk12yTR2sCOtGLVpm7I5EBLoaSqpK2+tI9ro9Kz0nm5pP3YoUpeKVVX14hvxQaX533oLw2shQ6Cw2pbV1RY6NU2pHe5/U3I0xCHSsyRrF0HR66aMVnGbZt1j0RxrX/zMoU0Oqm85tnEfTppNZP0oDKQMFpU6i8KQaYVWkG4ra4A9xmYUpylvIQ/CPAa+F1osSj3wBN8cK0Tk4GMSuvnGBg6JKH84SBBrw==
+ bh=d44YYmwQkIcyasQIoYKP/lodhL1O1XYDtYOrUCTrwYA=;
+ b=T5PikeBJ7ExWh1W8EVz5RLASXFTcXG2p8u2/hxeZNCTRuzgPr8Z7+LTe0cV2hZJWvPi0pXbUcMjc1tXBQ08fMajD20124oRk9iHQoOKWcNTavFhet5UFvTyVsTdvYYfWmXxsdBUY8R+6e8jCdEx+ZtruiknAJtHOOjPSW0581KRA7jHbG45YcmQVSq1rHNHqO+O3lEDwHLUWdOspGezhjQ3mV2foVC6A8k6X9zF8i+jN6DWTn5yF0LbZZ9EeC4M2xn6O8TK/2KYU66PJ4wgmr5OXYTF3u3Vppny5JSCgb0u5I5rdg9JtAnHoU1+gDGbeCTUO2eUJX42pfEyZrS3wSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by MN0PR11MB6181.namprd11.prod.outlook.com (2603:10b6:208:3c7::13)
+ by CY8PR11MB7337.namprd11.prod.outlook.com (2603:10b6:930:9d::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Wed, 30 Apr
- 2025 04:10:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Wed, 30 Apr
+ 2025 04:25:06 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8655.038; Wed, 30 Apr 2025
- 04:10:18 +0000
+ 04:25:06 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 01/10] drm/i915/hdcp: remove duplicate declarations
-Thread-Topic: [PATCH 01/10] drm/i915/hdcp: remove duplicate declarations
-Thread-Index: AQHbtVPFm+pmsJTyzUyuWg2S0bB2LLO7oKQw
-Date: Wed, 30 Apr 2025 04:10:18 +0000
-Message-ID: <SN7PR11MB6750217C53585BE1BAFEB099E3832@SN7PR11MB6750.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 07/10] drm/i915/hdcp: switch the HDCP GSC message
+ interface from u8* to void*
+Thread-Topic: [PATCH 07/10] drm/i915/hdcp: switch the HDCP GSC message
+ interface from u8* to void*
+Thread-Index: AQHbtVPVFE/zQTfmW0+PfAp9y3MxIbO7pONg
+Date: Wed, 30 Apr 2025 04:25:05 +0000
+Message-ID: <SN7PR11MB6750728AE86187CEA89F8309E3832@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1745524803.git.jani.nikula@intel.com>
- <f300d7cdb2af681291df938194f575f05c2c41bc.1745524803.git.jani.nikula@intel.com>
-In-Reply-To: <f300d7cdb2af681291df938194f575f05c2c41bc.1745524803.git.jani.nikula@intel.com>
+ <ea005adb713e85b797d83204c80de0a2a8e5ab47.1745524803.git.jani.nikula@intel.com>
+In-Reply-To: <ea005adb713e85b797d83204c80de0a2a8e5ab47.1745524803.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -91,82 +93,82 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MN0PR11MB6181:EE_
-x-ms-office365-filtering-correlation-id: 5945415a-f6d6-4ca9-bdb7-08dd879ceaef
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CY8PR11MB7337:EE_
+x-ms-office365-filtering-correlation-id: 40d60335-1ee1-4604-024e-08dd879efc16
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
  ARA:13230040|1800799024|376014|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?xiXMd2BLRIcK+PykYNG/M4lXhBrn9/4i3vZVzIFc7MOx0E8skt3qksxI29L2?=
- =?us-ascii?Q?lMWK3yim8BEl7KoPvhrQdWH1BL3MaudQK9vAiDgB/dAiCshGPY3cFbK9IcIT?=
- =?us-ascii?Q?4oBCgqtJctSlK3ZhYN3h8kX0MKcGncX/iIsM4hnbr2+Anv8oL1pXq8sFs/zM?=
- =?us-ascii?Q?TSzmUGHyMvXFEH3vGRXONHgLXfRNka4Uojl5XoHYL2LZViCmrRuvF8EwiajL?=
- =?us-ascii?Q?BPtAhQFwz9JuKE4I4fmlozHfLDMKdBUmFFuDw+3G5t9G+5ZN3xiLOY2xAxfQ?=
- =?us-ascii?Q?qNdSLrFujGPN9W7dippYM8rezMuqtOs0V3S6zF5YekEy40+ELjB1tWAtUsun?=
- =?us-ascii?Q?02/slisAH/IF4puhQI3R3osN0o41kf+SDTFXXoYvkCCLpzkSxPJHTDZq+R3A?=
- =?us-ascii?Q?4vS3hFi84KDIaG/h9Ow02EZP7wa2oAUWdTHPN7nRCgfHht7HpAiRpo3vaDSQ?=
- =?us-ascii?Q?XzE9h+IRW1hpnj4s/GASRE65B4e8er7THljY5JkSSsUkiwj/w7/Ge8HlfAdl?=
- =?us-ascii?Q?r6QlJOmqalDMGpAOlpulzAXK3umxtpGUmFoQbaFTQCFJc6JRQS41MQb44UXS?=
- =?us-ascii?Q?S4blCxA17dZ37gXW7HbEvaFvskfeX9GqrHFy8cP/ge88eKR4vMKup//UFlU7?=
- =?us-ascii?Q?b47CzotWXvi72uVjo0gfhaZ2KuKrYM1/ZAjShmIv7dpZ6odhT6BvHh4ueYFU?=
- =?us-ascii?Q?QgjktW+kiLRbZJyTzZY1NXyHpKhYEDe6kOrZThU5wxLoelo+XcF9N92Dk5B6?=
- =?us-ascii?Q?3QJ0MhOkCWLG3GNhLzGSWxOv8V9ex1+Aaip/8R7IRtVc/O9ABMrizlTK5cvY?=
- =?us-ascii?Q?4mjg4Vxm0gsiq3jdAI7R3rCeDDcncXA1je5GBykQglVUxOUMIicMZKPSLvQj?=
- =?us-ascii?Q?Dag5Hb+h5EcBanMn1Q+y/d9XoToNu/bEkPdE0dxPN92w2jCo8hmNlLEEoWBl?=
- =?us-ascii?Q?zvDLKONBPvirbw6kGlQmzhT9RKjrwDDpmmr8AvIhpBk6xwG7VFYOBayyTikK?=
- =?us-ascii?Q?302hDnXHlVS8m7hpX6b0dHaJhxQiKE6FQf4dPdEE9+jv8DAYgPWJdt5iCg3b?=
- =?us-ascii?Q?U/5E52H0TxAsTdcrvxD2DvQTK8TNPSqsrjQgFIO14SL+2GDNBxqMxhMURP3N?=
- =?us-ascii?Q?tZMv7og6a2WTycvVYBZrTeF/7rjA3GERyPb/kakwrUzSdmUkjMwufJN821hQ?=
- =?us-ascii?Q?bCq1BbXAf+QmXxmEuRHulvQWGTgi7A5KxvdJBYnCORJJlsyEBeU/hWMyJypU?=
- =?us-ascii?Q?h78olMco4DYYflYXGOqX468BBQjdbTT6lgNGurw+cxkVaIUcV7c+5TFJO7bb?=
- =?us-ascii?Q?Uq2c9pfc6bjqEOg5gnqqzEFw961dOSYcE6t8teGKyj0fe3QeKxM5GAsCe0JJ?=
- =?us-ascii?Q?5RFbm9vABnAst/UazmmYP0cGWlvVc+aHf5pNIhXnYZcsSQvbmOLmfRLzz3MR?=
- =?us-ascii?Q?P9/O7edJtJ1PgZwXL+u2jSS3VxKFTHEk9qzX36nHIdFw5aWmGJi5NRTKQjpo?=
- =?us-ascii?Q?U2iCRi/CTQU+uUM=3D?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?ndxAln8NL3rZ3UCh9T6oP6yZfrkx6mvwee3ib5FDNJdZYN+eqt4b0b3RNwyY?=
+ =?us-ascii?Q?gyMIJvm5zC3++oGSxUS4Y93ff3N1gFRIqRti+fDoEu9NJTnB6mjML7LhSKed?=
+ =?us-ascii?Q?WWIFZ554O5Xl/ZRLThQsGlhiu9LFwjdt8P7U5sXF5CDRf4hbGdpdac1/puMv?=
+ =?us-ascii?Q?STjCQ0RpuBHBigNmzSp2tliifUjsmYq2pmIUfKFZyR6iJc8DVZZNnIzjOfKb?=
+ =?us-ascii?Q?AvvQXxduhgeOc5hZxkFo9e1LWZWfx1J49W72BavGsU1zgqrfdYi9AaWL8iMj?=
+ =?us-ascii?Q?XvoeMrG6XG9MjISG6vOvcSmmyX77tui25I1NHY+or/Oa+ubem/q1Gtp4sc5d?=
+ =?us-ascii?Q?Ax1KGSuVnnHcfurxdbb1YrbJnJxXKL3tbB84inFuFyi0ys8BoSoP49N6ROGt?=
+ =?us-ascii?Q?ExRBIYJgbI05Br1jPtNRP0V1/hiiSP3MIhWqUR806Nw/tVvMi/LK3FZaiplL?=
+ =?us-ascii?Q?hLiZdsS1g/BC/uNgLr2VZOvdpu+e9Nxljo/YgcNcYEED8ZZQenCDoxRNpqzm?=
+ =?us-ascii?Q?FftkFB2AA8VVjrg1UFiBkzcXhhLEnX0nOAGlLQPzDQC8ycNURcfMDc410vrz?=
+ =?us-ascii?Q?UxcGsC+MTRjVzeiE1NJfRvDWcKJyI+HS6U7/MWm5uIOVzB2jtzJWNSR6EhWP?=
+ =?us-ascii?Q?QwXxxbkbrg3HIxT3+3594H1q7cWHJ9YUOD0Q/OyKgygqWcERc3v/dodYj/KS?=
+ =?us-ascii?Q?/K73KFKaW3a8+VCPvTzTwWQ0+G3F79+2yNJxceIpNvn/xbgHYnCt/a97IyMH?=
+ =?us-ascii?Q?2hXF+sUDhVXqMdIx5lRZvkTxNHfhPDb9fKf+1fRcCAwCOA2o1OOaXnshlwkc?=
+ =?us-ascii?Q?rghJ7b9jDOnpn7G+eh2F/qRIQ/gP1CJUkzOlGX2GU/byN6Swiz/c1w1LXTg6?=
+ =?us-ascii?Q?xDwUHcbIJZMkDQrI3xjV3nSLWCTXMM0NwSmPycfIe5uE1I2ZAMWEOYXTpyo2?=
+ =?us-ascii?Q?b3xhCXZ1l3kWIlqu3PzaFPRk3VArg/TCuW/pnhnojPx15J6hqQ1HLI5E9x3J?=
+ =?us-ascii?Q?S4GuxLn2beiPV/fGsPhps2PnHefwwNMLNLTDv8aVtgT+oiYXuIIUUAPEzyiI?=
+ =?us-ascii?Q?FrWWTriMMQs5nD/rSxu8+ko03fB7PGEnjvZCZp/KBc1zqdNbmdChWRNMD77l?=
+ =?us-ascii?Q?1mFHCG5QrNIn/Gk8vlfhcLuQL52VGa8d78SYotDJ2I/u4zJENpWG4rBjmQWs?=
+ =?us-ascii?Q?EP/GqSLhpoji3XLW390nL3whuizA9ThecrUJ7uxNl2yDy9Ycqibe8nj6wBdo?=
+ =?us-ascii?Q?hcU70/FMLhMMK1o0TYllHaxKaH8YbcMFHAOBG2pl1lHCxmv4bxHxKvA2623S?=
+ =?us-ascii?Q?IsynQdZZ8Wio54PBUSv4mDItzsmxiY2L5YxJ9WK9pkAumsD9s7WPavdamb+o?=
+ =?us-ascii?Q?GHBe44UcsEfqwpWnre9rtAb4vCyXs0AwZAJzkXSsfMGi7bGLA3RY0dNrOJxB?=
+ =?us-ascii?Q?kICcYxVm8czizWySLN7gszNDOPGETySLyfQy8NDVDe+CtqVPn+7tOBvAsIah?=
+ =?us-ascii?Q?ELXpzXTClI+2Ksw=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8wvQca/mF8dxRGvJd5dTwvNZPpHflObbJrJ5BKVKyr2186HkIDELdY+NUiuV?=
- =?us-ascii?Q?v6VCDDam3+VL5RGyeabOWl3yTqKGgww+BRbv0D/PCqtZX7Rpw6tVF4HLyNns?=
- =?us-ascii?Q?ZJfiF+S4068GgBrsEAXQF5ezRGffE58Bef2qK3LOVPrAYtKwyXGJXJhexe+d?=
- =?us-ascii?Q?/Rea2/GlYaqozI+97F+iL0kSWfP3nviqDw4jOSFp0Qqmh2eUlFG4P5P7A3fJ?=
- =?us-ascii?Q?cBJ5aWCWDK73pvAtmTD9lowcB/ouJDvTZDuDn5Qw2epK/LAUnNQI1dlfcDn8?=
- =?us-ascii?Q?uUJNCeY/q6zmCtDkm6ed447ws+ZHuCY1Q9DZVg6BsscUiOgPcgQiEVd4wCld?=
- =?us-ascii?Q?0NhMpe9U8v6NH2HyqaZp38slbMavAe+ME3EVXQLUwNxv8P1oms37xjOMHK6U?=
- =?us-ascii?Q?RACWjmUjAioPVj9x+l/gXhePFwdThM/C/W/ImZluaRyny3e1RP+HLJSORc/b?=
- =?us-ascii?Q?cWhyM6JfQ0WfZPu0+NQoM3f15uP37d1oVYakHj3Q5jcosqnSwpeNtSJ+RBmn?=
- =?us-ascii?Q?TYledYiBWooXtNR8G5quHhNN40yjILC3pIvpqJB6MX0Q9AXmJgarHbhmahgw?=
- =?us-ascii?Q?MyLf5GO3D6fQWShH+St5kx7BeFl8pVVsrsgxDRIjljeN9DUfN51KTRHo2kLM?=
- =?us-ascii?Q?3LlK3tGMIfw18OzeqZMLHjKQw3j1vLvmeT5E0VpBUtmOtpC9R859ouWs8S7b?=
- =?us-ascii?Q?Yr3OVe99iTEkWoSw7WhhERmXuSghPS63TK72bIh5PeNzeBK5i4L4jdJA/pYC?=
- =?us-ascii?Q?uVIHgCOvGP6VpSM8HHZtYhmDWN3np8bxZYCx2xp8DeFTYUU1cie0VnjtjhoK?=
- =?us-ascii?Q?zk2suj9W5hJB8gEMr1k78ize/LqIkxzDSrRTTd5cWHWY6MavtPqeGYfdlr3u?=
- =?us-ascii?Q?mo1fvRDyoz6CT8rfN5YPT20e32MSlWhassLFXgXDIR0w22yYvilPJbSrQl44?=
- =?us-ascii?Q?mWOf3ce8BgOZvcZokp32mJkEH3rG3G2tV0sTm6O8oAzOxhgczydR7A1xtfCq?=
- =?us-ascii?Q?hc0cQoGGDZyMxxnYP5WnoIoWDLdRpPpNoilHIIzrXYlvui3HPtkUuRZWuov2?=
- =?us-ascii?Q?lRRtlsrwSQql4FkCER7ZV3/ewIfP645T/w7JXeHQEae+GvV0H8LyAb8LbVQM?=
- =?us-ascii?Q?vZjVqE0hr0VHlEHtpQnLl9Ic1zPM5xK9ow9dx47YBrt6Unymh8GHfdEnJMax?=
- =?us-ascii?Q?85VZIvQwHW9GNOItmkuDKl3w9lnQThpCLNIZ2Rdx4Z68uN1wxWUR23CRO5F5?=
- =?us-ascii?Q?Qj9AFFAmevc9qEDdp70OitVOKoff1/WqCA4at17sCKIINwgGtzcZ3VPs4dbB?=
- =?us-ascii?Q?eYwPi0Z0FIm3+pkgIVFkIoWeJfaoORd5wigy6/CcuGBygf5/qTbrRHP0fAMC?=
- =?us-ascii?Q?YQqV/tV4D/JULQ/A+aShCz+1+f1Jra5M35nFAL/UWlDS/Z+iIO0SErQq9P9L?=
- =?us-ascii?Q?5wz7Z7FMMHznPa3D0KSziJ9oT0+RvKCr0FSpXy19M2XprLetVaTUOTJsnwKR?=
- =?us-ascii?Q?cgeDTzN+0HczuaSYnuPFEMzozVRCDf4Q1BilJQuXqVnVeEtC5KZeXhwgQrmR?=
- =?us-ascii?Q?Or8OM+kH3HV7Q9hO+jb5Dd5xscTlNDy15xFD2wJr?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bar9kNQkSSfVSy8KBmKgTeF87/h33JhLkm9WEJlbuBMbQEkjVAhNjoNupw+d?=
+ =?us-ascii?Q?Pn5Vy+8tAIwgolpQYzezZ0sJ0ja/DKBSWChJj4lL4xbY+usi+vZSVzoACN8f?=
+ =?us-ascii?Q?qsY57ux9SfK6pKE7VhR3tLqs6/UhYqJBMMe3DZeleyNGB4SGFGLLeyx8u9Wg?=
+ =?us-ascii?Q?pDcy5rspMn+zMU+Pdh5bdTcbBrb+//j1DOrxHrqDJRxVAyWTMnVy9s2w3okh?=
+ =?us-ascii?Q?bS6cUv5Xwk46FW0grCKGnJTe2FloQedXC1g5+Dv+kifX/hGUO6Oz7VjzzAKS?=
+ =?us-ascii?Q?P8bh8QrSbF9hLTByLUIHmaeovjY0A+GvTJQ4DEyRTuhuS84eEwwXNUpHYr2K?=
+ =?us-ascii?Q?frPq8HvMZUqHL1HaVeW1AbPP4W+JwYIuTjnpqmfR3CvPh4yiEQ/6eCLdzKCa?=
+ =?us-ascii?Q?531RX8KuXHM/Dbstrtfh/L/XNKK9CdApxZWIbVWRt3Csd5IpYc/aYCt+KLLb?=
+ =?us-ascii?Q?uGK67ErAzLx7zmqJrKbR/IpvAOHEnI4nk7hxQyhLXPxOY3nYpSYkstk1eUgk?=
+ =?us-ascii?Q?BZFTaiEGvLPtQrbdf/as4Es7MRY+r9D4y9qm9mAeqrNtGsgU11vTlExKKvau?=
+ =?us-ascii?Q?K/g6T6eoTYlAHrm7dqd1egB1vTLkejzSl6PrTqHijm2gliOPyaATSFOoljl1?=
+ =?us-ascii?Q?tUvxb9T2wMYuOWVKBvZQSD6+dhendWCc8DztlGpNczqvG2y+Tgl4aie1ypUL?=
+ =?us-ascii?Q?MJXUJBlZL/viX7aX0zi9tHqEREo8bHHUR+bhIB/qSoLotXlTlSfwj2hyK/OM?=
+ =?us-ascii?Q?0sVhbXlhAQlzLAIl0099pfm6vzw+nBqmgKy2+7dX7Xutf3fZCdaYta6uh5Vf?=
+ =?us-ascii?Q?vvDcVgk04JI50P/mhm7Qyc5tPZ6z0R+kXH1ryJ0Y7XNSQggOFK8h8LIjZJTH?=
+ =?us-ascii?Q?FRVNWCJhmWVLUD3ZFTxtVztNs8G8qR+KFo8hb1X0TQcEvp5sVVUjsqaYNUtW?=
+ =?us-ascii?Q?EADzC1dpzCQIFvzOYh7HFYp1yerzP8JzYIfxFaOixxeei5l7C13QjxqKNLzm?=
+ =?us-ascii?Q?9YznliUr5NEM48msqmcXw7/8GgWWojCPRpCipR2tWOnc5CfghdOIevQ8y6zk?=
+ =?us-ascii?Q?GM4HhKPT7MQug4CCW+c1VuAiNHO+PYUAn+IYNMc8Q44ReZey/H5mK4icLuhI?=
+ =?us-ascii?Q?8n0fuYaKt38NVAgY9Lhl9Bu8OKP/IW4au90bkOpNdav6EKuCYilxCPl9ds9/?=
+ =?us-ascii?Q?koE11GlRMg1gRN2WiE7NB3ix994LRQmFnKROmzKOJeag0WYNjMvnGVYS08kC?=
+ =?us-ascii?Q?bLBra7ylIaGehIaEZqNoh4b3iMGb+mFXc1GnS4F7VCvao5wVnefKi/7zRQHM?=
+ =?us-ascii?Q?AigB4TF4vL03ULcmCfXtqFBejHxVpnZjWCW/qpaKAuOtVAZBw/LRsgAA1zD0?=
+ =?us-ascii?Q?eewyKsaqvNzXTqkfj+q47nAjJmHtyHa0Tq4Q5xY4G8CTNIkrrZsoV459/MMh?=
+ =?us-ascii?Q?ii/B86SgVM0O3nw1TVHv/AouE+ua4JEDUD7J0ei8ziprNMeJQQEf48kRSpJY?=
+ =?us-ascii?Q?d10B8BQkH6l1HWiWo0gsTecL20DlUIES+vn1f850uD5o6kG7fkoWeQCKRWc4?=
+ =?us-ascii?Q?jwAED/mal24DmQDaefml719wllxAIomRwneUwL/b?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5945415a-f6d6-4ca9-bdb7-08dd879ceaef
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2025 04:10:18.2066 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40d60335-1ee1-4604-024e-08dd879efc16
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2025 04:25:05.9724 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0XKzmyvQwlTsq2pEGSER0VHcVRwRu+A6ZTW3AdCZFJYdPfpPofbVvXSXmTWxaOwoZtrO9uyAs2ahV6CwDsAz0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6181
+X-MS-Exchange-CrossTenant-userprincipalname: uJUkUY9iClwEa9W8MgyzgO9m42UKiuLYutoXDhdMqduH3xL38SiJm4vZDG9f9jbF3C2bS2hiOkRDQEMgBpeEdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7337
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -191,11 +193,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
 > Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
 > <suraj.kandpal@intel.com>
-> Subject: [PATCH 01/10] drm/i915/hdcp: remove duplicate declarations
+> Subject: [PATCH 07/10] drm/i915/hdcp: switch the HDCP GSC message interfa=
+ce
+> from u8* to void*
 >=20
-> intel_hdcp_gsc_msg_send() and intel_hdcp_gsc_check_status() are declared =
-in
-> intel_hdcp_gsc.h.
+> The in/out buffers are just opaque data, and don't need to be considered =
+u8*.
+> Switching to void* lets us drop a ton of unnecessary casts.
 >=20
 > Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
@@ -204,47 +208,225 @@ LGTM,
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c | 1 +
-> drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.h | 5 -----
->  2 files changed, 1 insertion(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c |  4 +-
+> drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  4 +-
+> .../drm/i915/display/intel_hdcp_gsc_message.c | 44 +++++++++----------
+>  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      |  4 +-
+>  4 files changed, 28 insertions(+), 28 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> index 77c4df6c6181..1ea2c7204444 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> @@ -174,8 +174,8 @@ static int intel_gsc_send_sync(struct drm_i915_privat=
+e
+> *i915,
+>   * will follow
+>   */
+>  ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_conte=
+xt,
+> -				u8 *msg_in, size_t msg_in_len,
+> -				u8 *msg_out, size_t msg_out_len)
+> +				void *msg_in, size_t msg_in_len,
+> +				void *msg_out, size_t msg_out_len)
+>  {
+>  	struct drm_i915_private *i915 =3D gsc_context->i915;
+>  	struct intel_gt *gt =3D i915->media_gt;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> index 7133e631a938..fbef56db54f2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> @@ -14,8 +14,8 @@ struct intel_hdcp_gsc_context;
+>=20
+>  bool intel_hdcp_gsc_cs_required(struct intel_display *display);  ssize_t
+> intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_context,
+> -				u8 *msg_in, size_t msg_in_len,
+> -				u8 *msg_out, size_t msg_out_len);
+> +				void *msg_in, size_t msg_in_len,
+> +				void *msg_out, size_t msg_out_len);
+>  bool intel_hdcp_gsc_check_status(struct intel_display *display);
+>=20
+>  struct intel_hdcp_gsc_context *intel_hdcp_gsc_context_alloc(struct
+> intel_display *display); diff --git
+> a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
 > b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> index 129104fa9b16..d4620b54beba 100644
+> index d87f61d773ca..4226e8705d2b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
 > +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> @@ -8,6 +8,7 @@
+> @@ -44,9 +44,9 @@ intel_hdcp_gsc_initiate_session(struct device *dev, str=
+uct
+> hdcp_port_data *data,
+>  	session_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>  	session_init_in.protocol =3D data->protocol;
 >=20
->  #include "i915_drv.h"
->  #include "intel_display_types.h"
-> +#include "intel_hdcp_gsc.h"
->  #include "intel_hdcp_gsc_message.h"
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&session_init_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &session_init_in,
+>  				       sizeof(session_init_in),
+> -				       (u8 *)&session_init_out,
+> +				       &session_init_out,
+>  				       sizeof(session_init_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -106,9 +106,9 @@
+> intel_hdcp_gsc_verify_receiver_cert_prepare_km(struct device *dev,
+>  	memcpy(verify_rxcert_in.r_rx, &rx_cert->r_rx, HDCP_2_2_RRX_LEN);
+>  	memcpy(verify_rxcert_in.rx_caps, rx_cert->rx_caps,
+> HDCP_2_2_RXCAPS_LEN);
 >=20
->  int
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.h
-> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.h
-> index 2d597f27e931..1af2f7c745fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.h
-> @@ -9,7 +9,6 @@
->  #include <linux/types.h>
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&verify_rxcert_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &verify_rxcert_in,
+>  				       sizeof(verify_rxcert_in),
+> -				       (u8 *)&verify_rxcert_out,
+> +				       &verify_rxcert_out,
+>  				       sizeof(verify_rxcert_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed:
+> %zd\n", byte); @@ -169,9 +169,9 @@ intel_hdcp_gsc_verify_hprime(struct
+> device *dev, struct hdcp_port_data *data,
+>  	memcpy(send_hprime_in.h_prime, rx_hprime->h_prime,
+>  	       HDCP_2_2_H_PRIME_LEN);
 >=20
->  struct device;
-> -struct drm_i915_private;
->  struct hdcp_port_data;
->  struct hdcp2_ake_init;
->  struct hdcp2_ake_send_cert;
-> @@ -24,10 +23,6 @@ struct hdcp2_rep_send_ack;  struct
-> hdcp2_rep_stream_ready;  struct intel_display;
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&send_hprime_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &send_hprime_in,
+>  				       sizeof(send_hprime_in),
+> -				       (u8 *)&send_hprime_out,
+> +				       &send_hprime_out,
+>  				       sizeof(send_hprime_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -220,9 +220,9 @@ intel_hdcp_gsc_store_pairing_info(stru=
+ct
+> device *dev, struct hdcp_port_data *dat
+>  	memcpy(pairing_info_in.e_kh_km, pairing_info->e_kh_km,
+>  	       HDCP_2_2_E_KH_KM_LEN);
 >=20
-> -ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_i=
-n,
-> -				size_t msg_in_len, u8 *msg_out,
-> -				size_t msg_out_len);
-> -bool intel_hdcp_gsc_check_status(struct intel_display *display);  int
-> intel_hdcp_gsc_initiate_session(struct device *dev, struct hdcp_port_data
-> *data,
->  				struct hdcp2_ake_init *ake_data);
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&pairing_info_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &pairing_info_in,
+>  				       sizeof(pairing_info_in),
+> -				       (u8 *)&pairing_info_out,
+> +				       &pairing_info_out,
+>  				       sizeof(pairing_info_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -269,8 +269,8 @@
+> intel_hdcp_gsc_initiate_locality_check(struct device *dev,
+>  	lc_init_in.port.physical_port =3D (u8)data->hdcp_ddi;
+>  	lc_init_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&lc_init_in,
+> sizeof(lc_init_in),
+> -				       (u8 *)&lc_init_out, sizeof(lc_init_out));
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &lc_init_in,
+> sizeof(lc_init_in),
+> +				       &lc_init_out, sizeof(lc_init_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte);
+>  		return byte;
+> @@ -321,9 +321,9 @@ intel_hdcp_gsc_verify_lprime(struct device *dev, stru=
+ct
+> hdcp_port_data *data,
+>  	memcpy(verify_lprime_in.l_prime, rx_lprime->l_prime,
+>  	       HDCP_2_2_L_PRIME_LEN);
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&verify_lprime_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &verify_lprime_in,
+>  				       sizeof(verify_lprime_in),
+> -				       (u8 *)&verify_lprime_out,
+> +				       &verify_lprime_out,
+>  				       sizeof(verify_lprime_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -370,8 +370,8 @@ intel_hdcp_gsc_get_session_key(struct
+> device *dev,
+>  	get_skey_in.port.physical_port =3D (u8)data->hdcp_ddi;
+>  	get_skey_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&get_skey_in,
+> sizeof(get_skey_in),
+> -				       (u8 *)&get_skey_out,
+> sizeof(get_skey_out));
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &get_skey_in,
+> sizeof(get_skey_in),
+> +				       &get_skey_out, sizeof(get_skey_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte);
+>  		return byte;
+> @@ -434,9 +434,9 @@
+> intel_hdcp_gsc_repeater_check_flow_prepare_ack(struct device *dev,
+>  	memcpy(verify_repeater_in.receiver_ids, rep_topology->receiver_ids,
+>  	       HDCP_2_2_RECEIVER_IDS_MAX_LEN);
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8
+> *)&verify_repeater_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &verify_repeater_in,
+>  				       sizeof(verify_repeater_in),
+> -				       (u8 *)&verify_repeater_out,
+> +				       &verify_repeater_out,
+>  				       sizeof(verify_repeater_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -504,8 +504,8 @@ intel_hdcp_gsc_verify_mprime(struct
+> device *dev,
+>=20
+>  	verify_mprime_in->k =3D cpu_to_be16(data->k);
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)verify_mprime_in,
+> cmd_size,
+> -				       (u8 *)&verify_mprime_out,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, verify_mprime_in,
+> cmd_size,
+> +				       &verify_mprime_out,
+>  				       sizeof(verify_mprime_out));
+>  	kfree(verify_mprime_in);
+>  	if (byte < 0) {
+> @@ -552,9 +552,9 @@ static int intel_hdcp_gsc_enable_authentication(struc=
+t
+> device *dev,
+>  	enable_auth_in.port.attached_transcoder =3D (u8)data->hdcp_transcoder;
+>  	enable_auth_in.stream_type =3D data->streams[0].stream_type;
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&enable_auth_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &enable_auth_in,
+>  				       sizeof(enable_auth_in),
+> -				       (u8 *)&enable_auth_out,
+> +				       &enable_auth_out,
+>  				       sizeof(enable_auth_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); @@ -599,9 +599,9 @@ intel_hdcp_gsc_close_session(struct
+> device *dev, struct hdcp_port_data *data)
+>  	session_close_in.port.physical_port =3D (u8)data->hdcp_ddi;
+>  	session_close_in.port.attached_transcoder =3D (u8)data-
+> >hdcp_transcoder;
+>=20
+> -	byte =3D intel_hdcp_gsc_msg_send(gsc_context, (u8 *)&session_close_in,
+> +	byte =3D intel_hdcp_gsc_msg_send(gsc_context, &session_close_in,
+>  				       sizeof(session_close_in),
+> -				       (u8 *)&session_close_out,
+> +				       &session_close_out,
+>  				       sizeof(session_close_out));
+>  	if (byte < 0) {
+>  		drm_dbg_kms(display->drm, "intel_hdcp_gsc_msg_send failed.
+> %zd\n", byte); diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> index 7b8237a5aeee..7712d53627f0 100644
+> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> @@ -161,8 +161,8 @@ static int xe_gsc_send_sync(struct xe_device *xe,  }
+>=20
+>  ssize_t intel_hdcp_gsc_msg_send(struct intel_hdcp_gsc_context *gsc_conte=
+xt,
+> -				u8 *msg_in, size_t msg_in_len,
+> -				u8 *msg_out, size_t msg_out_len)
+> +				void *msg_in, size_t msg_in_len,
+> +				void *msg_out, size_t msg_out_len)
+>  {
+>  	struct xe_device *xe =3D gsc_context->xe;
+>  	const size_t max_msg_size =3D PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
 > --
 > 2.39.5
 
