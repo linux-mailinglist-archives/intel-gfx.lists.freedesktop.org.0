@@ -2,68 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 323A6AA49B2
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 13:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14825AA4A4E
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 13:43:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F9F810E73F;
-	Wed, 30 Apr 2025 11:20:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F30610E739;
+	Wed, 30 Apr 2025 11:43:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QM+bkjbo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LSRak/+c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC4B10E294
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Apr 2025 11:20:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3367D10E739;
+ Wed, 30 Apr 2025 11:42:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746012010; x=1777548010;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EF01kkqV58wp6RAxtOeYWzYzYSD4HksIbDbTbhiLyCg=;
- b=QM+bkjboXU+AJ0yIUbN+qAXLx7gtncMLcn4ydmVcgSqGSe6a0yG22xJY
- Le3bPEiK2cg17j28xhyseTsYoLQJ2k46Fl1VoIET/+LahMs/Ixcd0qqqE
- fjpwCHrQJY4gXEcJdZ/LS5O2x+27tjyFtoUUDKsNiHLRkJNHiWUTWe4kD
- z4IijLDVNsuYhts8qncwiCvdq8J6w4Tw5/GwgzozcmROq31HwzzhpkOPU
- YtCHokpaD2/+7cz2+vC0IE/oA7Y4HRbdXz4YjR8cfjHeuDkd4AIIJ3New
- Fs62ldBdJGDU2WGfz1kj4PQOCCRi97Sl5fWNBc8U4F9HcZtivpldLc+P/ g==;
-X-CSE-ConnectionGUID: WrhSnk1GT7i+iyHc00nBsw==
-X-CSE-MsgGUID: DavkLxBbQmeaeG8QBIinsg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="58324929"
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="58324929"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2025 04:20:09 -0700
-X-CSE-ConnectionGUID: B4W/LccOQpyqnhDeH4uUWA==
-X-CSE-MsgGUID: +WRh437uRJyCd4LKnyOlpA==
+ t=1746013379; x=1777549379;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=A+lESLzXz6pH64PtiMJPKninmIEH4lL4TAuKybRPQBc=;
+ b=LSRak/+cgXsh0GTeYdcRYpte9uJ04sdSh0B2tLXYZoknd9PZI2KEoai8
+ IQcUyOXTRDvSefZ7pB4p6Opc7SBx+HABKkOBR4qpe50hcmN5XA/CsR+Nb
+ v5EbuJs36BzvXfPT6iqXfuvuxP+S38y2tVPO+0Arc2HE/Y3tGAKUIspwf
+ f+XziBJiFhjPJF1OrqMGwH16rKKe72HUSEQQdWycfadhk99ksdXlwKCRW
+ 2uqlOna4wgW/R7QpOSIQvx4fndgwQzNxePx7K+fSi5cAPYe5KFB7BXi5a
+ tzvUbjgZPKlPYnmH/f3URUt2xtYKkIZ733lY9EMO1PQbYEdGFf1JiOyDc w==;
+X-CSE-ConnectionGUID: RJgolhctRDuWLTmd7DAT/w==
+X-CSE-MsgGUID: C5/LtQIbRtaTSS5DpSY9Vg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11418"; a="59029633"
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="59029633"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2025 04:42:58 -0700
+X-CSE-ConnectionGUID: zXCWPc+1Rt6Kzb9tOVTz6Q==
+X-CSE-MsgGUID: V+z7vZouTO2BsW2ia58mcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="139275736"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 30 Apr 2025 04:20:04 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 30 Apr 2025 14:20:02 +0300
-Date: Wed, 30 Apr 2025 14:20:02 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Baolin Wang <baolin.wang@linux.alibaba.com>
-Cc: akpm@linux-foundation.org, hughd@google.com, willy@infradead.org,
- david@redhat.com, wangkefeng.wang@huawei.com, 21cnbao@gmail.com,
- ryan.roberts@arm.com, ioworker0@gmail.com, da.gomez@samsung.com,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- regressions@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Eero Tamminen <eero.t.tamminen@intel.com>
-Subject: Re: [REGRESSION] Re: [PATCH v3 3/6] mm: shmem: add large folio
- support for tmpfs
-Message-ID: <aBIHYqzar5J8uxGO@intel.com>
-References: <cover.1732779148.git.baolin.wang@linux.alibaba.com>
- <035bf55fbdebeff65f5cb2cdb9907b7d632c3228.1732779148.git.baolin.wang@linux.alibaba.com>
- <aBEP-6iFhIC87zmb@intel.com>
- <ac8cbd8d-44e9-4a88-b88b-e29e9f30a2fd@linux.alibaba.com>
+X-IronPort-AV: E=Sophos;i="6.15,251,1739865600"; d="scan'208";a="138926390"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2025 04:42:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com
+Subject: Re: [PATCH] drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP
+In-Reply-To: <20250429143055.130701-1-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250429143055.130701-1-ankit.k.nautiyal@intel.com>
+Date: Wed, 30 Apr 2025 14:42:53 +0300
+Message-ID: <87msbxvps2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ac8cbd8d-44e9-4a88-b88b-e29e9f30a2fd@linux.alibaba.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,100 +68,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 30, 2025 at 02:32:39PM +0800, Baolin Wang wrote:
-> Hi,
-> 
-> On 2025/4/30 01:44, Ville Syrjälä wrote:
-> > On Thu, Nov 28, 2024 at 03:40:41PM +0800, Baolin Wang wrote:
-> >> Add large folio support for tmpfs write and fallocate paths matching the
-> >> same high order preference mechanism used in the iomap buffered IO path
-> >> as used in __filemap_get_folio().
-> >>
-> >> Add shmem_mapping_size_orders() to get a hint for the orders of the folio
-> >> based on the file size which takes care of the mapping requirements.
-> >>
-> >> Traditionally, tmpfs only supported PMD-sized large folios. However nowadays
-> >> with other file systems supporting any sized large folios, and extending
-> >> anonymous to support mTHP, we should not restrict tmpfs to allocating only
-> >> PMD-sized large folios, making it more special. Instead, we should allow
-> >> tmpfs can allocate any sized large folios.
-> >>
-> >> Considering that tmpfs already has the 'huge=' option to control the PMD-sized
-> >> large folios allocation, we can extend the 'huge=' option to allow any sized
-> >> large folios. The semantics of the 'huge=' mount option are:
-> >>
-> >> huge=never: no any sized large folios
-> >> huge=always: any sized large folios
-> >> huge=within_size: like 'always' but respect the i_size
-> >> huge=advise: like 'always' if requested with madvise()
-> >>
-> >> Note: for tmpfs mmap() faults, due to the lack of a write size hint, still
-> >> allocate the PMD-sized huge folios if huge=always/within_size/advise is set.
-> >>
-> >> Moreover, the 'deny' and 'force' testing options controlled by
-> >> '/sys/kernel/mm/transparent_hugepage/shmem_enabled', still retain the same
-> >> semantics. The 'deny' can disable any sized large folios for tmpfs, while
-> >> the 'force' can enable PMD sized large folios for tmpfs.
-> >>
-> >> Co-developed-by: Daniel Gomez <da.gomez@samsung.com>
-> >> Signed-off-by: Daniel Gomez <da.gomez@samsung.com>
-> >> Signed-off-by: Baolin Wang <baolin.wang@linux.alibaba.com>
-> > 
-> > Hi,
-> > 
-> > This causes a huge regression in Intel iGPU texturing performance.
-> 
-> Unfortunately, I don't have such platform to test it.
-> 
-> > 
-> > I haven't had time to look at this in detail, but presumably the
-> > problem is that we're no longer getting huge pages from our
-> > private tmpfs mount (done in i915_gemfs_init()).
-> 
-> IIUC, the i915 driver still limits the maximum write size to PAGE_SIZE 
-> in the shmem_pwrite(),
+On Tue, 29 Apr 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> The register EMP_AS_SDP_TL (MTL) was introduced for configuring the
+> double buffering point and transmission line for
+> HDMI Video Timing Extended Metadata Packet (VTEMP) for VRR.
+> This was also intended to be configured for DP to HDMI2.1 PCON to
+> support VRR.
+>
+> From BMG and LNL+ onwards, this register was extended to Display Port
+> Adaptive Sync SDP to have a common register to configure double
+> buffering point and transmission line for both HDMI and DP VRR related
+> packets.
+>
+> Currently, we do not support VRR for either native HDMI or via PCON.
+> However we need to configure this for DP SDP case. As per the spec,
+> program the register to set Vsync start as the double buffering point
+> for DP AS SDP.
+>
+> Bspec:70984, 71197
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 20 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr_regs.h |  6 ++++++
+>  2 files changed, 26 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index c6565baf815a..2447bdfde5af 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -576,6 +576,22 @@ bool intel_vrr_always_use_vrr_tg(struct intel_display *display)
+>  	return false;
+>  }
+>  
+> +static
+> +void intel_vrr_set_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
 
-pwrite is just one random way to write to objects, and probably
-not something that's even used by current Mesa.
+How do you pronounce that function name?
 
-> which prevents tmpfs from allocating large 
-> folios. As mentioned in the comments below, tmpfs like other file 
-> systems that support large folios, will allow getting a highest order 
-> hint based on the size of the write and fallocate paths, and then will 
-> attempt each allowable huge order.
-> 
-> Therefore, I think the shmem_pwrite() function should be changed to 
-> remove the limitation that the write size cannot exceed PAGE_SIZE.
-> 
-> Something like the following code (untested):
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c 
-> b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index ae3343c81a64..97eefb73c5d2 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -420,6 +420,7 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
->          struct address_space *mapping = obj->base.filp->f_mapping;
->          const struct address_space_operations *aops = mapping->a_ops;
->          char __user *user_data = u64_to_user_ptr(arg->data_ptr);
-> +       size_t chunk = mapping_max_folio_size(mapping);
->          u64 remain;
->          loff_t pos;
->          unsigned int pg;
-> @@ -463,10 +464,10 @@ shmem_pwrite(struct drm_i915_gem_object *obj,
->                  void *data, *vaddr;
->                  int err;
->                  char __maybe_unused c;
-> +               size_t offset;
-> 
-> -               len = PAGE_SIZE - pg;
-> -               if (len > remain)
-> -                       len = remain;
-> +               offset = pos & (chunk - 1);
-> +               len = min(chunk - offset, remain);
-> 
->                  /* Prefault the user page to reduce potential recursion */
->                  err = __get_user(c, user_data);
+BR,
+Jani.
+
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +
+> +	/*
+> +	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
+> +	 * double buffering point and transmission line for Adaptive Sync SDP.
+> +	 */
+> +	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
+> +		intel_de_write(display,
+> +			       EMP_AS_SDP_TL(display, cpu_transcoder),
+> +			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
+> +}
+> +
+>  void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> @@ -595,6 +611,8 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+>  		       TRANS_PUSH_EN);
+>  
+>  	if (!intel_vrr_always_use_vrr_tg(display)) {
+> +		intel_vrr_set_emp_as_sdp_tl(crtc_state);
+> +
+>  		if (crtc_state->cmrr.enable) {
+>  			intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>  				       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
+> @@ -646,6 +664,8 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
+>  	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+>  		       TRANS_PUSH_EN);
+>  
+> +	intel_vrr_set_emp_as_sdp_tl(crtc_state);
+> +
+>  	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+>  		       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> index 6ed0e0dc97e7..d2af1b6710bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+> @@ -108,6 +108,12 @@
+>  #define VRR_VSYNC_START_MASK			REG_GENMASK(12, 0)
+>  #define VRR_VSYNC_START(vsync_start)		REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
+>  
+> +/* Common register for HDMI VTEMP and DP AS SDP */
+> +#define _EMP_AS_SDP_TL_A			0x60204
+> +#define EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
+> +#define EMP_AS_SDP_TL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _EMP_AS_SDP_TL_A)
+> +#define EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
+> +
+>  /*CMRR Registers*/
+>  
+>  #define _TRANS_CMRR_M_LO_A			0x604F0
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
