@@ -2,61 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B516AAA5095
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 17:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6DBAA5117
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 18:02:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFE5810E74E;
-	Wed, 30 Apr 2025 15:42:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CvQkXnD6";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAEDC10E104;
+	Wed, 30 Apr 2025 16:02:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ECC310E2ED;
- Wed, 30 Apr 2025 15:42:04 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4F94F6842A;
- Wed, 30 Apr 2025 15:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CBD8C4CEE7;
- Wed, 30 Apr 2025 15:41:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746027716;
- bh=wvXwtYYiGxiI48kMlFqI73B5EWv7xUXFBIxXkrTt+Bs=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=CvQkXnD6RRGzklG5EJL3MIu49bvDA2Vje5jq31Zjyv2Nscn6EYlldH9tuao2IjrML
- 30afHneVRi57pHYoNLnfpYjhkW+6iyni/VCnNmF0bLvzCKxoD7P7TxdnLzmx3ge3c1
- 7WJTUtpAsKUl9HOPPon78HV8gjsHURM10LYvOyhKXo6IVV8LT17RGpHUaWZpA2LcVw
- yJfadKUxfK8xiA+UbbkkA98320JxxNblIeSxw/HnCC3+0io8rJaIcRtdhr13ldlzZs
- 9FKO+0ClU3Z+u2qmzU1g2y5vXwOZ3MX0tDU7NtpV3vFmhkera/NMv7fAYSfL8SPUv8
- 7ZsdRDuSXAXIg==
-Date: Wed, 30 Apr 2025 17:41:47 +0200
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Nicolas Schier <nicolas@fjasle.eu>
-Cc: Jonathan Corbet <corbet@lwn.net>, Linux Doc Mailing List
- <linux-doc@vger.kernel.org>, David Airlie <airlied@gmail.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Masahiro Yamada
- <masahiroy@kernel.org>, Maxime Ripard <mripard@kernel.org>, Nathan
- Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas.schier@linux.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko Ursulin
- <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@intel.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v4 3/4] scripts/kernel-doc.py: don't create *.pyc files
-Message-ID: <20250430174147.05b330a9@foz.lan>
-In-Reply-To: <aAvYkchT7RISfxsX@fjasle.eu>
-References: <cover.1745453655.git.mchehab+huawei@kernel.org>
- <158b962ed7cd104f7bbfe69f499ec1cc378864db.1745453655.git.mchehab+huawei@kernel.org>
- <aAvYkchT7RISfxsX@fjasle.eu>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8265210E104;
+ Wed, 30 Apr 2025 16:02:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_ref=5Ftracker=3A_add?=
+ =?utf-8?q?_ability_to_register_a_debugfs_file_for_a_ref=5Ftracker=5Fdir_=28?=
+ =?utf-8?q?rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jeff Layton" <jlayton@kernel.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Apr 2025 16:02:18 -0000
+Message-ID: <174602893853.31058.5655425263485584006@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250430-reftrack-dbgfs-v6-0-867c29aff03a@kernel.org>
+In-Reply-To: <20250430-reftrack-dbgfs-v6-0-867c29aff03a@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,53 +38,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em Fri, 25 Apr 2025 20:46:41 +0200
-Nicolas Schier <nicolas@fjasle.eu> escreveu:
+== Series Details ==
 
-> On Thu, Apr 24, 2025 at 08:16:23AM +0800 Mauro Carvalho Chehab wrote:
-> > As reported by Andy, kernel-doc.py is creating a __pycache__
-> > directory at build time.
-> > 
-> > Disable creation of __pycache__ for the libraries used by
-> > kernel-doc.py, when excecuted via the build system or via
-> > scripts/find-unused-docs.sh.
-> > 
-> > Reported-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Closes: https://lore.kernel.org/linux-doc/Z_zYXAJcTD-c3xTe@black.fi.intel.com/
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > Tested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/Makefile      | 2 +-
-> >  drivers/gpu/drm/i915/Makefile | 2 +-
-> >  include/drm/Makefile          | 2 +-
-> >  scripts/Makefile.build        | 2 +-
-> >  scripts/find-unused-docs.sh   | 2 +-
-> >  5 files changed, 5 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> > index ed54a546bbe2..d21d0cd2c752 100644
-> > --- a/drivers/gpu/drm/Makefile
-> > +++ b/drivers/gpu/drm/Makefile
-> > @@ -236,7 +236,7 @@ always-$(CONFIG_DRM_HEADER_TEST) += \
-> >  quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-> >        cmd_hdrtest = \
-> >  		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-> > -		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-> > +		 PYTHONDONTWRITEBYTECODE=1 $(KERNELDOC) -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \  
-> 
-> Did someone check if we could add
-> 
->   sys.dont_write_bytecode = True
-> 
-> to the script itself instead of cluttering PYTHONDONTWRITEBYTECODE
-> everywhere [1]?
+Series: ref_tracker: add ability to register a debugfs file for a ref_tracker_dir (rev2)
+URL   : https://patchwork.freedesktop.org/series/148490/
+State : warning
 
-Nice to know that we can set it at the script level. Yet, this is is
-meant to be a temporary solution, as IMO the best is to set
-PYTHONCACHEPREFIX to match the directory on O=, when it is used.
+== Summary ==
 
-Thanks,
-Mauro
+Error: dim checkpatch failed
+f0632fff3e24 ref_tracker: don't use %pK in pr_ostream() output
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+[1]: https://lore.kernel.org/netdev/20250414-restricted-pointers-net-v1-0-12af0ce46cdd@linutronix.de/
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
+7af5de7ffb73 ref_tracker: add a top level debugfs directory for ref_tracker
+c9eb4e93c28c ref_tracker: have callers pass output function to pr_ostream()
+-:27: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#27: FILE: lib/ref_tracker.c:70:
++	void __ostream_printf (*func)(struct ostream *stream, char *fmt, ...);
+
+total: 0 errors, 1 warnings, 0 checks, 96 lines checked
+401bc4a9b1f9 ref_tracker: add a static classname string to each ref_tracker_dir
+bb2ac73e4d1d ref_tracker: allow pr_ostream() to print directly to a seq_file
+ff67e621860a ref_tracker: automatically register a file in debugfs for a ref_tracker_dir
+-:153: WARNING:VSPRINTF_SPECIFIER_PX: Using vsprintf specifier '%px' potentially exposes the kernel memory layout, if you don't really need the address please consider using '%p'.
+#153: FILE: lib/ref_tracker.c:379:
++	ret = snprintf(name, sizeof(name), "%s@%px", dir->class, dir);
+
+total: 0 errors, 1 warnings, 0 checks, 142 lines checked
+3f79a4b950fc ref_tracker: add a way to create a symlink to the ref_tracker_dir debugfs file
+bed6b796f810 net: add symlinks to ref_tracker_dir for netns
+5695a0115ba5 i915: add ref_tracker_dir symlinks for each tracker
+77f74913721e ref_tracker: eliminate the ref_tracker_dir name field
+
+
