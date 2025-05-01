@@ -2,63 +2,129 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E27AA563E
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Apr 2025 22:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7C5AA59D3
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 May 2025 04:59:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 971AD10E809;
-	Wed, 30 Apr 2025 20:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90B5510E17C;
+	Thu,  1 May 2025 02:59:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EGc/+ILO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pDluyetf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0812110E808;
- Wed, 30 Apr 2025 20:56:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 158A410E056;
+ Thu,  1 May 2025 02:59:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 083B4A4AD14;
- Wed, 30 Apr 2025 20:51:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A155C4CEE7;
- Wed, 30 Apr 2025 20:56:54 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id E3C39A4AF3C;
+ Thu,  1 May 2025 02:53:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C23FC4CEE7;
+ Thu,  1 May 2025 02:59:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1746046614;
- bh=Aij4i/GLYEGdgGGA4PGBamSpajKust3Y5rfCQeLlqoY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EGc/+ILOaykX0mvy8HkZ/uI+yGK6P+MQY2ujpGz/vhPimWQi9axqMXH4tWh7GysiR
- c9UViOIvKI1HZiQrH42M4O4ey5O6P1AzL4aYnKU5wsB458yUej4Ab7HzBJiVn5k2pN
- l3BLfkGpMinO1WzVg1c8heV90NZEaF/ljI9MTfwE66nle66Pewx/sPJyIPvNus7I6r
- wf+xQWu2JE9Ghpn6MQ3HIYbzAVluDtgMkFEDSPFognVknEMSRbaSBH7h1nYWvtTQf+
- le487fiOezLPdpRoNXUyRJsk40ErSQZWLZDl9O5RHjv725GHMo+gx8RSvyNsy0cjNi
- fssO6uwU+tsfQ==
-Date: Wed, 30 Apr 2025 13:56:51 -0700
-From: Kees Cook <kees@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matt Roper <matthew.d.roper@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Gnattu OC <gnattuoc@me.com>, Nitin Gote <nitin.r.gote@intel.com>,
- Ranu Maurya <ranu.maurya@intel.com>,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Angus Chen <angus.chen@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Yu Jiaoliang <yujiaoliang@vivo.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/gt: Remove const from struct i915_wa list
- allocation
-Message-ID: <202504301356.CB1EEC719@keescook>
-References: <20250426061357.work.749-kees@kernel.org>
- <874iy8y0nz.fsf@intel.com>
+ s=k20201202; t=1746068365;
+ bh=JvAcMQ0b1vZrVhGrC9pAg2O5GzPboeraAjqIBaSCYAg=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=pDluyetfAD77qHjsBqdbbhSU1Ks//zA5YH9S//FLr0f1QsSb85SAeMK4hj92dxnes
+ +BEhd0ZgxnbCFHZnXmgCaLCH1u/YRx0WbtnieULmS7yPxA0Mp9kXnzc1ojR+CnqgYK
+ +My/eSGTOGfafCHcZieu0oybPGQvs/geHXyv2Mq/Q8lbY6BHadaQQSy3gml20gEprX
+ xb8NrCmIsSPMleHTF+QwvwxL8Cbw2QIK9IVLhLXf0v435oLVl2qkf+Nh7knARH7Eh4
+ 7kU/FaHzPOXT/E8fqYdyYiwuQguz8Whz1pHk84DlJjFmZJ7yeII5I/d3acRutt/Esl
+ MdsJfIHhlQjSg==
+Message-ID: <c0ccfad35ce8b990fc691814bb3d830b66845ded.camel@kernel.org>
+Subject: Re: [PATCH v6 08/10] net: add symlinks to ref_tracker_dir for netns
+From: Jeff Layton <jlayton@kernel.org>
+To: Kuniyuki Iwashima <kuniyu@amazon.com>
+Cc: airlied@gmail.com, akpm@linux-foundation.org, andrew@lunn.ch, 
+ davem@davemloft.net, dri-devel@lists.freedesktop.org, edumazet@google.com, 
+ horms@kernel.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, 	joonas.lahtinen@linux.intel.com,
+ kuba@kernel.org, linux-kernel@vger.kernel.org, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, nathan@kernel.org, 
+ netdev@vger.kernel.org, pabeni@redhat.com, qasdev00@gmail.com, 
+ rodrigo.vivi@intel.com, simona@ffwll.ch, tursulin@ursulin.net,
+ tzimmermann@suse.de
+Date: Wed, 30 Apr 2025 19:59:23 -0700
+In-Reply-To: <20250430212913.27147-1-kuniyu@amazon.com>
+References: <20250430-reftrack-dbgfs-v6-8-867c29aff03a@kernel.org>
+ <20250430212913.27147-1-kuniyu@amazon.com>
+Autocrypt: addr=jlayton@kernel.org; prefer-encrypt=mutual;
+ keydata=mQINBE6V0TwBEADXhJg7s8wFDwBMEvn0qyhAnzFLTOCHooMZyx7XO7dAiIhDSi7G1NPxw
+ n8jdFUQMCR/GlpozMFlSFiZXiObE7sef9rTtM68ukUyZM4pJ9l0KjQNgDJ6Fr342Htkjxu/kFV1Wv
+ egyjnSsFt7EGoDjdKqr1TS9syJYFjagYtvWk/UfHlW09X+jOh4vYtfX7iYSx/NfqV3W1D7EDi0PqV
+ T2h6v8i8YqsATFPwO4nuiTmL6I40ZofxVd+9wdRI4Db8yUNA4ZSP2nqLcLtFjClYRBoJvRWvsv4lm
+ 0OX6MYPtv76hka8lW4mnRmZqqx3UtfHX/hF/zH24Gj7A6sYKYLCU3YrI2Ogiu7/ksKcl7goQjpvtV
+ YrOOI5VGLHge0awt7bhMCTM9KAfPc+xL/ZxAMVWd3NCk5SamL2cE99UWgtvNOIYU8m6EjTLhsj8sn
+ VluJH0/RcxEeFbnSaswVChNSGa7mXJrTR22lRL6ZPjdMgS2Km90haWPRc8Wolcz07Y2se0xpGVLEQ
+ cDEsvv5IMmeMe1/qLZ6NaVkNuL3WOXvxaVT9USW1+/SGipO2IpKJjeDZfehlB/kpfF24+RrK+seQf
+ CBYyUE8QJpvTZyfUHNYldXlrjO6n5MdOempLqWpfOmcGkwnyNRBR46g/jf8KnPRwXs509yAqDB6sE
+ LZH+yWr9LQZEwARAQABtCVKZWZmIExheXRvbiA8amxheXRvbkBwb29jaGllcmVkcy5uZXQ+iQI7BB
+ MBAgAlAhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAUCTpXWPAIZAQAKCRAADmhBGVaCFc65D/4
+ gBLNMHopQYgG/9RIM3kgFCCQV0pLv0hcg1cjr+bPI5f1PzJoOVi9s0wBDHwp8+vtHgYhM54yt43uI
+ 7Htij0RHFL5eFqoVT4TSfAg2qlvNemJEOY0e4daljjmZM7UtmpGs9NN0r9r50W82eb5Kw5bc/r0km
+ R/arUS2st+ecRsCnwAOj6HiURwIgfDMHGPtSkoPpu3DDp/cjcYUg3HaOJuTjtGHFH963B+f+hyQ2B
+ rQZBBE76ErgTDJ2Db9Ey0kw7VEZ4I2nnVUY9B5dE2pJFVO5HJBMp30fUGKvwaKqYCU2iAKxdmJXRI
+ ONb7dSde8LqZahuunPDMZyMA5+mkQl7kpIpR6kVDIiqmxzRuPeiMP7O2FCUlS2DnJnRVrHmCljLkZ
+ Wf7ZUA22wJpepBligemtSRSbqCyZ3B48zJ8g5B8xLEntPo/NknSJaYRvfEQqGxgk5kkNWMIMDkfQO
+ lDSXZvoxqU9wFH/9jTv1/6p8dHeGM0BsbBLMqQaqnWiVt5mG92E1zkOW69LnoozE6Le+12DsNW7Rj
+ iR5K+27MObjXEYIW7FIvNN/TQ6U1EOsdxwB8o//Yfc3p2QqPr5uS93SDDan5ehH59BnHpguTc27Xi
+ QQZ9EGiieCUx6Zh2ze3X2UW9YNzE15uKwkkuEIj60NvQRmEDfweYfOfPVOueC+iFifbQgSmVmZiBM
+ YXl0b24gPGpsYXl0b25AcmVkaGF0LmNvbT6JAjgEEwECACIFAk6V0q0CGwMGCwkIBwMCBhUIAgkKC
+ wQWAgMBAh4BAheAAAoJEAAOaEEZVoIViKUQALpvsacTMWWOd7SlPFzIYy2/fjvKlfB/Xs4YdNcf9q
+ LqF+lk2RBUHdR/dGwZpvw/OLmnZ8TryDo2zXVJNWEEUFNc7wQpl3i78r6UU/GUY/RQmOgPhs3epQC
+ 3PMJj4xFx+VuVcf/MXgDDdBUHaCTT793hyBeDbQuciARDJAW24Q1RCmjcwWIV/pgrlFa4lAXsmhoa
+ c8UPc82Ijrs6ivlTweFf16VBc4nSLX5FB3ls7S5noRhm5/Zsd4PGPgIHgCZcPgkAnU1S/A/rSqf3F
+ LpU+CbVBDvlVAnOq9gfNF+QiTlOHdZVIe4gEYAU3CUjbleywQqV02BKxPVM0C5/oVjMVx3bri75n1
+ TkBYGmqAXy9usCkHIsG5CBHmphv9MHmqMZQVsxvCzfnI5IO1+7MoloeeW/lxuyd0pU88dZsV/riHw
+ 87i2GJUJtVlMl5IGBNFpqoNUoqmvRfEMeXhy/kUX4Xc03I1coZIgmwLmCSXwx9MaCPFzV/dOOrju2
+ xjO+2sYyB5BNtxRqUEyXglpujFZqJxxau7E0eXoYgoY9gtFGsspzFkVNntamVXEWVVgzJJr/EWW0y
+ +jNd54MfPRqH+eCGuqlnNLktSAVz1MvVRY1dxUltSlDZT7P2bUoMorIPu8p7ZCg9dyX1+9T6Muc5d
+ Hxf/BBP/ir+3e8JTFQBFOiLNdFtB9KZWZmIExheXRvbiA8amxheXRvbkBzYW1iYS5vcmc+iQI4BBM
+ BAgAiBQJOldK9AhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRAADmhBGVaCFWgWD/0ZRi4h
+ N9FK2BdQs9RwNnFZUr7JidAWfCrs37XrA/56olQl3ojn0fQtrP4DbTmCuh0SfMijB24psy1GnkPep
+ naQ6VRf7Dxg/Y8muZELSOtsv2CKt3/02J1BBitrkkqmHyni5fLLYYg6fub0T/8Kwo1qGPdu1hx2BQ
+ RERYtQ/S5d/T0cACdlzi6w8rs5f09hU9Tu4qV1JLKmBTgUWKN969HPRkxiojLQziHVyM/weR5Reu6
+ FZVNuVBGqBD+sfk/c98VJHjsQhYJijcsmgMb1NohAzwrBKcSGKOWJToGEO/1RkIN8tqGnYNp2G+aR
+ 685D0chgTl1WzPRM6mFG1+n2b2RR95DxumKVpwBwdLPoCkI24JkeDJ7lXSe3uFWISstFGt0HL8Eew
+ P8RuGC8s5h7Ct91HMNQTbjgA+Vi1foWUVXpEintAKgoywaIDlJfTZIl6Ew8ETN/7DLy8bXYgq0Xzh
+ aKg3CnOUuGQV5/nl4OAX/3jocT5Cz/OtAiNYj5mLPeL5z2ZszjoCAH6caqsF2oLyAnLqRgDgR+wTQ
+ T6gMhr2IRsl+cp8gPHBwQ4uZMb+X00c/Amm9VfviT+BI7B66cnC7Zv6Gvmtu2rEjWDGWPqUgccB7h
+ dMKnKDthkA227/82tYoFiFMb/NwtgGrn5n2vwJyKN6SEoygGrNt0SI84y6hEVbQlSmVmZiBMYXl0b
+ 24gPGpsYXl0b25AcHJpbWFyeWRhdGEuY29tPokCOQQTAQIAIwUCU4xmKQIbAwcLCQgHAwIBBhUIAg
+ kKCwQWAgMBAh4BAheAAAoJEAAOaEEZVoIV1H0P/j4OUTwFd7BBbpoSp695qb6HqCzWMuExsp8nZjr
+ uymMaeZbGr3OWMNEXRI1FWNHMtcMHWLP/RaDqCJil28proO+PQ/yPhsr2QqJcW4nr91tBrv/MqItu
+ AXLYlsgXqp4BxLP67bzRJ1Bd2x0bWXurpEXY//VBOLnODqThGEcL7jouwjmnRh9FTKZfBDpFRaEfD
+ FOXIfAkMKBa/c9TQwRpx2DPsl3eFWVCNuNGKeGsirLqCxUg5kWTxEorROppz9oU4HPicL6rRH22Ce
+ 6nOAON2vHvhkUuO3GbffhrcsPD4DaYup4ic+DxWm+DaSSRJ+e1yJvwi6NmQ9P9UAuLG93S2MdNNbo
+ sZ9P8k2mTOVKMc+GooI9Ve/vH8unwitwo7ORMVXhJeU6Q0X7zf3SjwDq2lBhn1DSuTsn2DbsNTiDv
+ qrAaCvbsTsw+SZRwF85eG67eAwouYk+dnKmp1q57LDKMyzysij2oDKbcBlwB/TeX16p8+LxECv51a
+ sjS9TInnipssssUDrHIvoTTXWcz7Y5wIngxDFwT8rPY3EggzLGfK5Zx2Q5S/N0FfmADmKknG/D8qG
+ IcJE574D956tiUDKN4I+/g125ORR1v7bP+OIaayAvq17RP+qcAqkxc0x8iCYVCYDouDyNvWPGRhbL
+ UO7mlBpjW9jK9e2fvZY9iw3QzIPGKtClKZWZmIExheXRvbiA8amVmZi5sYXl0b25AcHJpbWFyeWRh
+ dGEuY29tPokCOQQTAQIAIwUCU4xmUAIbAwcLCQgHAwIBBhUIAgkKCwQWAgMBAh4BAheAAAoJEAAOa
+ EEZVoIVzJoQALFCS6n/FHQS+hIzHIb56JbokhK0AFqoLVzLKzrnaeXhE5isWcVg0eoV2oTScIwUSU
+ apy94if69tnUo4Q7YNt8/6yFM6hwZAxFjOXR0ciGE3Q+Z1zi49Ox51yjGMQGxlakV9ep4sV/d5a50
+ M+LFTmYSAFp6HY23JN9PkjVJC4PUv5DYRbOZ6Y1+TfXKBAewMVqtwT1Y+LPlfmI8dbbbuUX/kKZ5d
+ dhV2736fgyfpslvJKYl0YifUOVy4D1G/oSycyHkJG78OvX4JKcf2kKzVvg7/Rnv+AueCfFQ6nGwPn
+ 0P91I7TEOC4XfZ6a1K3uTp4fPPs1Wn75X7K8lzJP/p8lme40uqwAyBjk+IA5VGd+CVRiyJTpGZwA0
+ jwSYLyXboX+Dqm9pSYzmC9+/AE7lIgpWj+3iNisp1SWtHc4pdtQ5EU2SEz8yKvDbD0lNDbv4ljI7e
+ flPsvN6vOrxz24mCliEco5DwhpaaSnzWnbAPXhQDWb/lUgs/JNk8dtwmvWnqCwRqElMLVisAbJmC0
+ BhZ/Ab4sph3EaiZfdXKhiQqSGdK4La3OTJOJYZphPdGgnkvDV9Pl1QZ0ijXQrVIy3zd6VCNaKYq7B
+ AKidn5g/2Q8oio9Tf4XfdZ9dtwcB+bwDJFgvvDYaZ5bI3ln4V3EyW5i2NfXazz/GA/I/ZtbsigCFc
+ 8ftCBKZWZmIExheXRvbiA8amxheXRvbkBrZXJuZWwub3JnPokCOAQTAQIAIgUCWe8u6AIbAwYLCQg
+ HAwIGFQgCCQoLBBYCAwECHgECF4AACgkQAA5oQRlWghUuCg/+Lb/xGxZD2Q1oJVAE37uW308UpVSD
+ 2tAMJUvFTdDbfe3zKlPDTuVsyNsALBGclPLagJ5ZTP+Vp2irAN9uwBuacBOTtmOdz4ZN2tdvNgozz
+ uxp4CHBDVzAslUi2idy+xpsp47DWPxYFIRP3M8QG/aNW052LaPc0cedYxp8+9eiVUNpxF4SiU4i9J
+ DfX/sn9XcfoVZIxMpCRE750zvJvcCUz9HojsrMQ1NFc7MFT1z3MOW2/RlzPcog7xvR5ENPH19ojRD
+ CHqumUHRry+RF0lH00clzX/W8OrQJZtoBPXv9ahka/Vp7kEulcBJr1cH5Wz/WprhsIM7U9pse1f1g
+ Yy9YbXtWctUz8uvDR7shsQxAhX3qO7DilMtuGo1v97I/Kx4gXQ52syh/w6EBny71CZrOgD6kJwPVV
+ AaM1LRC28muq91WCFhs/nzHozpbzcheyGtMUI2Ao4K6mnY+3zIuXPygZMFr9KXE6fF7HzKxKuZMJO
+ aEZCiDOq0anx6FmOzs5E6Jqdpo/mtI8beK+BE7Va6ni7YrQlnT0i3vaTVMTiCThbqsB20VrbMjlhp
+ f8lfK1XVNbRq/R7GZ9zHESlsa35ha60yd/j3pu5hT2xyy8krV8vGhHvnJ1XRMJBAB/UYb6FyC7S+m
+ QZIQXVeAA+smfTT0tDrisj1U5x6ZB9b3nBg65kc=
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <874iy8y0nz.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,31 +140,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 28, 2025 at 02:40:16PM +0300, Jani Nikula wrote:
-> On Fri, 25 Apr 2025, Kees Cook <kees@kernel.org> wrote:
-> > In preparation for making the kmalloc family of allocators type aware,
-> > we need to make sure that the returned type from the allocation matches
-> > the type of the variable being assigned. (Before, the allocator would
-> > always return "void *", which can be implicitly cast to any pointer type.)
-> >
-> > The assigned type is "struct i915_wa *". The returned type, while
-> > technically matching, will be const qualified. As there is no general
-> > way to remove const qualifiers, adjust the allocation type to match
-> > the assignment.
-> >
-> > Signed-off-by: Kees Cook <kees@kernel.org>
-> 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> for merging via whichever tree you find best; please let us know if you
-> want us to pick this up via drm-intel.
+On Wed, 2025-04-30 at 14:29 -0700, Kuniyuki Iwashima wrote:
+> From: Jeff Layton <jlayton@kernel.org>
+> Date: Wed, 30 Apr 2025 08:06:54 -0700
+> > After assigning the inode number to the namespace, use it to create a
+> > unique name for each netns refcount tracker with the ns.inum value in
+> > it, and register a symlink to the debugfs file for it.
+> >=20
+> > init_net is registered before the ref_tracker dir is created, so add a
+> > late_initcall() to register its files and symlinks.
+> >=20
+> > Signed-off-by: Jeff Layton <jlayton@kernel.org>
+> > ---
+> >  net/core/net_namespace.c | 28 +++++++++++++++++++++++++++-
+> >  1 file changed, 27 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/net/core/net_namespace.c b/net/core/net_namespace.c
+> > index 008de9675ea98fa8c18628b2f1c3aee7f3ebc9c6..6cbc8eabb8e56c847fc34fa=
+8ec9994e8b275b0af 100644
+> > --- a/net/core/net_namespace.c
+> > +++ b/net/core/net_namespace.c
+> > @@ -763,12 +763,38 @@ struct net *get_net_ns_by_pid(pid_t pid)
+> >  }
+> >  EXPORT_SYMBOL_GPL(get_net_ns_by_pid);
+> > =20
+> > +#ifdef CONFIG_NET_NS_REFCNT_TRACKER
+> > +static void net_ns_net_debugfs(struct net *net)
+> > +{
+> > +	ref_tracker_dir_symlink(&net->refcnt_tracker, "netns-%u-refcnt", net-=
+>ns.inum);
+> > +	ref_tracker_dir_symlink(&net->notrefcnt_tracker, "netns-%u-notrefcnt"=
+, net->ns.inum);
+>=20
+> Could you use net->net_cookie ?
+>=20
+> net->ns.inum is always 1 when CONFIG_PROC_FS=3Dn.
 
-I was figuring each subsystem would want these individually, so please
-take this via drm-intel. (Or I can take it if you'd rather not.)
+My main use-case for this is to be able to match the inode number in
+the /proc/<pid>/ns/net symlink with the correct ref_tracker debugfs
+file. Is there a way to use the net_cookie to make that association?
 
-Thanks!
-
--Kees
-
--- 
-Kees Cook
+If there isn't, and ns.inum is always 1 with procfs is disabled, we
+could just skip adding the symlink when CONFIG_PROC_FS=3Dn.
+--=20
+Jeff Layton <jlayton@kernel.org>
