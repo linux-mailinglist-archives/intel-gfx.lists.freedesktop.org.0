@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0921CAA6970
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 05:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2522AA6971
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 05:37:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95A2610E13C;
-	Fri,  2 May 2025 03:36:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7739210E896;
+	Fri,  2 May 2025 03:37:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUmY0Ces";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XKsBmgwW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EA9B10E0AC;
- Fri,  2 May 2025 03:36:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77A6010E0AC;
+ Fri,  2 May 2025 03:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746156982; x=1777692982;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=wT2R8e7ICBbn5lN2cl+ZZOMmn1KKYZQFpJkTODR5KXc=;
- b=PUmY0CesIIClxyuh9sa9Zei4XkMzyoyhzR2x+NLkV5u8NAvZpfqMtn4C
- T86RkoEwG2rL63XwRONNWoupTFLYRgqP1RB/Ql/9WD5I+QvRva+Ci0Qxv
- Opc9eWHNbwUkTPP2lWDlYcenKCf1P3ZXK5cUdhQ56v6P0l9cIA7NiXdIT
- otTAX1C+EubrxfkZGEVlUuYMSuZfb3IVHQWCqKlx7Zy/DzUjgPLzQx1pq
- jrKBRf6cOovcOJ0pKnWZrHhdGmdjyES4nW9wLl76ypiSg79HQeC7N5pjF
- 0OFHkA5VebRjH6E1cnBeEQltUWoHEIYuCcV4mNZCe4hKUEzbG7MZlZvvV g==;
-X-CSE-ConnectionGUID: 6IpOtGcCRTyG7s8uhjyoMw==
-X-CSE-MsgGUID: vgOO4cifQXGF13lnIRehZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="47726895"
-X-IronPort-AV: E=Sophos;i="6.15,255,1739865600"; d="scan'208";a="47726895"
+ t=1746157074; x=1777693074;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=vJMEbSQo0GUofTh16D+0BYCv5+piXXUP1Bki7g7pRAA=;
+ b=XKsBmgwWMfOi/TD15FYOjmcGhdhSvp0fD9zYZ+3jUbvdoAHuanYRyX4R
+ plGqgDjGcUBw54BuRngC38SNQscWi0KSjTtvpMi5nYAEW7+1wmaZI764z
+ WuC1a2Bs0Byj7r97FMjmqK40R7GbAtsRRBXrk7I8o2OrGszm/DjldVaQ2
+ mRUS9bLzOxR4nuqW2PZuaiVv+G5h/u94YXNakqYtB7ezqnJN1Mh5UNl77
+ 4niShhlFHaTc37fE2JIAUvCetd+54sY126uK8nqF/iMGA8bXrQqQqAYSZ
+ 82BADt99skFVWF2PeR6BCMJEyQG+zAVCWSqGCxaE+deS9is5UFLKeOQX2 g==;
+X-CSE-ConnectionGUID: AKjmn0HyTWWp5g3qTNiV5w==
+X-CSE-MsgGUID: yIHpsmFTTK+++7MpTich7g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11420"; a="47727278"
+X-IronPort-AV: E=Sophos;i="6.15,255,1739865600"; d="scan'208";a="47727278"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2025 20:36:22 -0700
-X-CSE-ConnectionGUID: OfjtBhZiRM+JQjQu9zw0cw==
-X-CSE-MsgGUID: Is7X6gq0QreCffEQm+BiZA==
+ 01 May 2025 20:37:53 -0700
+X-CSE-ConnectionGUID: n8CJm58XROGRDGVsDpMRrg==
+X-CSE-MsgGUID: dntd5/u6Sjq69deyw2br0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,255,1739865600"; d="scan'208";a="139347673"
+X-IronPort-AV: E=Sophos;i="6.15,255,1739865600"; d="scan'208";a="139347891"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 May 2025 20:36:22 -0700
+ 01 May 2025 20:37:53 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 1 May 2025 20:36:20 -0700
+ 15.2.1544.14; Thu, 1 May 2025 20:37:52 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Thu, 1 May 2025 20:36:20 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.46) by
+ 15.2.1544.14 via Frontend Transport; Thu, 1 May 2025 20:37:52 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.45) by
  edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 1 May 2025 20:36:20 -0700
+ 15.1.2507.44; Thu, 1 May 2025 20:37:52 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QgtutN5SbivI+8VY1Ap+jSxw9dHfTb2JafBudmOPSwJZ12igT5Mx+g1wpPBLhDbiMOuRwoPxqtwyGKMISHddPeAf5j5GNAAsMuq5aZiY208eoVvnDZUayRtpExSpQDFV3pA3iUNl++mn/5h/hGGLUSanV7vgTUAdKOKsOZIFtMPofRrAMDjc2W+2eA1j1OqOqmAHDqCMG0cHYZYQx4icQtTqJuVtk5nxTo5qANPQOTD99SVoV7LweBuT/XQuDyhF5HN2Sb/Tk67WF8hsCqBKt4S8QLs771KjT1P6LIbjMc4HYupV1Sg9DA0++M4AHK0dtZjvzIn+L3VOnFkddO4beg==
+ b=oX/fhdadOPHHOFHywk9giZ+RPFkj1YgXcDhfu1HUddw6E4QfHxB9IOzHIWc5cPneHZGFqCIboqTuY9DPDiOyJKVq4HIdaUvaqEMXmoKhVkmMb8PxQD3yDg4f2ZSzE2w6roUUABhQd5VN1VG07MJB1BfJEW/p/o5I+N+mjidJnkchFTRW1UfjUG0Bgfmwt0v5s2UTxFLw7z5TKeYYJxUmbHLD4f4K5TMTksJ3xQ/JWBx2s4IfyP0vHj3QAUY5aC8SCWwK9b4JnUyIHTmBOIr216+3y83VLrNuZu7k7XtQW59ZYXNBt+dPvzgbOUU4XFkX8M/1FjIddaOFsxg1qw3flA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wn1Byetzcj1Ux1tcY5nXv4/cKlUSv5otJ/u43N7mkIs=;
- b=sx29i76rddN/TSntOOuSrA11UTf1g7D7K63sEVOLZtMA5rTBVMl/9jhx6MocrkQykYfwJLUvoWyyNm3xIzs2ZxVx+p3SBxI68burLnim7WJY4h/6hVWX/NVDCd/wA0h3YIyqJa9J59eHVdP1XH8K/woBuQXWL1bCpLV9VIjrEXQFO67uivmGaOceFa69JSHnkVFsurEfO93KIlvgmQMxiB4JrHmmAJMhlYP7IE8wxRB3CefwbLNS9UwIzyHKoeewJs40BwgJN5b20n3X3Rdu1iv6VCUc6Vc866FA6EXM5aV9YeQJCHN7DIn+q7a9z/zlYPDYZl2W5Ft7mo/QNCVo3A==
+ bh=1J8tUUGQPe6roMcYYooKtc9O3SNOgtYjlmUdwbhyx+8=;
+ b=ZwvpUJAVwlZnj1ccLDCNhaTJCr1nX1pcg6VIoAhrsvj9+PnltMYBvzACss79fmo1xzVvWXYqvw5JRoX+F62ML8BRJbWvvW78g0/d6LFInGu6mB1sJLk+KgtBTx2bIYoqo72vmgY3o0pJ0KubOKJ/2LmoYjQWvvwo+Bnb5Y9fmYNzUxvX3J+NYDaxr1hAkwT1/TRXLAX6kMSpzs6JA3Ob0AXc/nxDxP3LvfMged1deIyCKlNKkV5zyuMrZfB/N++FDHi86Jz5wJjIXV98db6gFx8vhDWS9+AkKnJ+jkoRCufCDRKiIzIB6o+fjC9kp6qMSoScQcckVVIjSKj9OIdNwQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,25 +67,28 @@ Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
  by IA1PR11MB8803.namprd11.prod.outlook.com (2603:10b6:208:59a::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Fri, 2 May
- 2025 03:36:18 +0000
+ 2025 03:37:44 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8655.038; Fri, 2 May 2025
- 03:36:17 +0000
+ 03:37:43 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 03/10] drm/i915/hdcp: split HDCP GSC message alloc/save
- responsibilities
-Thread-Topic: [PATCH 03/10] drm/i915/hdcp: split HDCP GSC message alloc/save
- responsibilities
-Thread-Index: AQHbtVPJC+D+EMn4lkOapJp8LeGm3LO+u/Tg
-Date: Fri, 2 May 2025 03:36:17 +0000
-Message-ID: <SN7PR11MB6750EC3AC27392BF0B241449E38D2@SN7PR11MB6750.namprd11.prod.outlook.com>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH 04/10] drm/i915/hdcp: rename struct intel_hdcp_gsc_message
+ to intel_hdcp_gsc_context
+Thread-Topic: [PATCH 04/10] drm/i915/hdcp: rename struct
+ intel_hdcp_gsc_message to intel_hdcp_gsc_context
+Thread-Index: AQHbtVPOkAStphsPY0WSEwVWuUoIJLO7pwBggABOigCAAsaQ8A==
+Date: Fri, 2 May 2025 03:37:43 +0000
+Message-ID: <SN7PR11MB67501838B0CF6AF752B0537CE38D2@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <cover.1745524803.git.jani.nikula@intel.com>
- <a74fcc941126bf92d12115b5faf4f75099e26242.1745524803.git.jani.nikula@intel.com>
-In-Reply-To: <a74fcc941126bf92d12115b5faf4f75099e26242.1745524803.git.jani.nikula@intel.com>
+ <ca0a802a81ba4e96e7c40646a32386d4351d6ff4.1745524803.git.jani.nikula@intel.com>
+ <SN7PR11MB675092961315E4E251FEB699E3832@SN7PR11MB6750.namprd11.prod.outlook.com>
+ <87v7qmui53.fsf@intel.com>
+In-Reply-To: <87v7qmui53.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,80 +97,80 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|IA1PR11MB8803:EE_
-x-ms-office365-filtering-correlation-id: cbb2fa9e-14cb-404a-4c6c-08dd892a7f48
+x-ms-office365-filtering-correlation-id: 7177ecee-e3c8-4819-1ffd-08dd892ab28a
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
  ARA:13230040|1800799024|366016|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?VGcuTX+UoMtTVSNEZ5fzGygFiAfbAIhfMwos7k9gnaSdIbRUkJTU/hxTXdp7?=
- =?us-ascii?Q?vVAT0nU6phc4wKRU5TKw1zneDeDhgxNIRARU4J5Ijtgzed9LYUUMhwSgFNht?=
- =?us-ascii?Q?j6wTtijf5mgn7X8Wrg+xa0gcnBSiDRj+iKxaPeKi74nPJv5ZWJw/hTWKx80K?=
- =?us-ascii?Q?AAYONplh5hkzqOA8iFWaynQ5K2kvxudQCVHu+tMUKRuonKOXNH7EAEr2GI5j?=
- =?us-ascii?Q?uIi/0PZxoUNegazi5GYKz2wvZXFDeABxssGncgxaQjTujZWV+pp5Z++AF8Ax?=
- =?us-ascii?Q?zqVbAFlO1QsTC6BiOjwI+oKEr63J0RZNdmbyyxFwD0zovqi8rF8irpp4vWkl?=
- =?us-ascii?Q?oSUb1EN2yilqNw1iDqTziZuu4Ouqj/cIIDcPvbzXtRNwakRk9+KFwwLGUyCI?=
- =?us-ascii?Q?hyyzaSiaSBddLyEMKZnKcdaPT7Uq5jiPnWsBnyrsk2C62RF5HjYLV7IYbsq+?=
- =?us-ascii?Q?dSKFgGqoQdn+4pcD86fFUNXo3TeiR4pdts8cqB16RABBR8xqER2ue1PebwWq?=
- =?us-ascii?Q?f0dh1QUXKGqLnlpizDApuA/kjDOZf9U5X+dStZOciiWNOprDVh6u1RNyKoEy?=
- =?us-ascii?Q?QQG1SL4NBtrkr/Z8q297Lvu6Yo84ALGl56wukhGPO30FRNyuUYnX6QxT+okT?=
- =?us-ascii?Q?+3VwNp8yb375kK110tCLzEefjiNVUcLe0Q+1RPuGNUxYrpGlqkaexpF0zCeH?=
- =?us-ascii?Q?XEvmoyVBabjgiqcQte0NMguuzI43vNRdBQneLzUHsX67g/43Yo4xTqsG/VJ4?=
- =?us-ascii?Q?LMk4vhldihpq8rPZSrmkupQsIszzF6Yuu2OsvCz4e38Tfar4gLvZYQgtca55?=
- =?us-ascii?Q?qZvkrvrsWgPuqNGnNcXz8IC1vFrch0zQIJEYsMz//ksl8fY8+qZuEUWbIuL1?=
- =?us-ascii?Q?MD8nrU0Ciq65drIZghMLAeZixyJuQ4Dk49urgLSoOifvqErA8d7z4Q27aYjY?=
- =?us-ascii?Q?AaCjL1iKrd7l/HHlghYiXhadiTU4kGWjTEpvPWqC9W7fJRs8yRtasdzTnrlA?=
- =?us-ascii?Q?CRy1+xpR33sT1c0zOao5fvCte61FU5kfpCgmPphjJvFDD/JYaRisVk83Zr/p?=
- =?us-ascii?Q?ZsJtOhTW8tVK71AY9WOnN2RqUAE5rKFbIhC8aYkKtiAv67k8LN9OcQl5w36I?=
- =?us-ascii?Q?r5NS63/raRk3rKob4bt9rM9yXrdTumJhSSg1MYkJFY1vNfLymh+uFgw/+nLy?=
- =?us-ascii?Q?6y2ZEPkD/bXxUVazZBxFj5AteKIXZIeOyfKQvOCrU9217v4af4JoBqCoarW7?=
- =?us-ascii?Q?laSHIyySydX0Fg6TtOmspq2vQbwDWePD+HgOLJ/sRFdu8UCCw+BYXU58HZS+?=
- =?us-ascii?Q?ovc7oCqbTeF0LcvB1Nmgj1OtD8Pblw3L0WrAC68X2hZCNS8VWUK70mwwcT0s?=
- =?us-ascii?Q?OzHXbVJ4yh0ckmQvs3bC0jWIYJ5vePFdOcYcbGOSCgGaroiR7ZYXyyCY+O/Q?=
- =?us-ascii?Q?L4x7Ng+HDvHDx7Zpz0uXy7tSSgdbs3pQoooDoUps40q5l8lifbfHB4V0UQQm?=
- =?us-ascii?Q?414X9aXfpP96t5M=3D?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?LW/LdhIR9cSgrQ0kOGEiiP9G8M4zS7xpBwndzQ5f8GejL3Rot8DE5+kvbjqu?=
+ =?us-ascii?Q?4MY1iHCPGClxQEHnEiD3nvPP0rA1r9TOZqNyvDOXWHkOUWvjnBnYYq8LPCGO?=
+ =?us-ascii?Q?b8zItDqiHW6ersrXg4WEI+BuAS3FDHJ1/e5ZBjZ9Pvk0aEZxT6PxlY/zrjoQ?=
+ =?us-ascii?Q?usBo74YQnCRoZnqEe7+lFc9NkHNl/kWPoYrkJpIn5z6egT9HNbzVFnH/CqEr?=
+ =?us-ascii?Q?XSWNL2OIz0o5yE9vCHQJkMWG5rD2O5Zd61eJuAKSVMpKcK3Hoyzd7QlNNTb7?=
+ =?us-ascii?Q?Xej+u0AgrGPZMUlftGLBqcbwF0yrfhnZN1BoxuLUpDSM1rmYm5+CzCPIuIIl?=
+ =?us-ascii?Q?UVDRq8756bW4BLXhBVEvc8xBvPUOUVluULw0LHv9zc5TAqoBqu+iouHEFgeh?=
+ =?us-ascii?Q?glbys21ozeQo1t6UoDLY7jCDUsjDbUSTcqlwuNX6y19YB3cZlwXJ05CihLgP?=
+ =?us-ascii?Q?juw1CM2wgQkOoaQmqjWNPDJ3NH0CrGwQ8JpeOJn+o3uzXCO6W+lXAPsSvdSC?=
+ =?us-ascii?Q?9ouZHt0+Ti7DKmnwrV9e4pCldBhnR24rbs28tQ7OWgBBCdS+Vgn9TuHjjnwN?=
+ =?us-ascii?Q?Kx9poZgV16CeXZ7Vbt4Pl8sSEsx8uAAExZdp1yzyi2vu6JR84k5YJf4C8iPJ?=
+ =?us-ascii?Q?yucVARt/miahY93USC7rpUP0pHG8x1ZtgXZvYcZadqziiXQG92r25KnHGGd7?=
+ =?us-ascii?Q?HKbUQoo+4L5EvKzFDvAr6WjPUWzcWQNNN7PbMGCb0pMwnZXrVb8xAqVXY02V?=
+ =?us-ascii?Q?gAP2DIHvqeXDpsiGLTtjLIN4vs+C/lW3koLDUSvqynXji8m3kptZD6wOGl4p?=
+ =?us-ascii?Q?/N3ndq3cfXyylOMIn1c3f1k9fAwfyTxTDw6EcCL5N1/qz3rLbDg5iKVck+w/?=
+ =?us-ascii?Q?u1E2VVxnbT2VeddWCEC5kCaxM5gOfLySJEof9pd9mLlC3bEdDHhU5XNCST81?=
+ =?us-ascii?Q?X8K98kIRbC7I3iZ5eqf18RZEziwE+7R0lXRTiRKGOMX+RSnmPQUooNl77lAK?=
+ =?us-ascii?Q?lWljzUd2CPE5DSshJFa8tLYmoFegaLRu3vRNeEFR+1RuG81RrzFId15cQ5WC?=
+ =?us-ascii?Q?RCNNV5Ht8wpykX8LWSdRXLOSEHByvsrjq+AQO8GZBewWfEJUVO+Ardic3JpL?=
+ =?us-ascii?Q?BhvHunO0QJFd77vTTTv1J2cKJOQ/FuOEZITXTLnnouDtR40S7UpmwI7RW9Ph?=
+ =?us-ascii?Q?0KEGr6r+uztTY498FEOSJMBE+3yUYB2UBYCW0XUBaC/b+VEkVwki2ROCe/3H?=
+ =?us-ascii?Q?hWqs8Ko3LXzrcQJZ2pfqrT5o9RsIxzw52/yK7NdvKVV6fneW0lAor4rgTcwL?=
+ =?us-ascii?Q?yz3vwmy4JG9+3spiEMRE0RzjUTrYNqr6NxLL71R/tZSNvyKYEnes0EX7yb2+?=
+ =?us-ascii?Q?REtpq2zYXDgofna9quhXGwymEhcYnxACEkP4I1otuCyTrZwla/mcMgywAGuh?=
+ =?us-ascii?Q?zPHUspuVP+pACZBegw1UiEj1QKBPw1ppclf1FIFDswwz/19bl5g2ncUzO3i4?=
+ =?us-ascii?Q?QAaaKlzrgD3UzMo=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014)(38070700018)(7053199007); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VCKRk4joTWfJrxSALTJ/9Hl63/aPpcok8z/B0I9shdpT4NlP8b2vdLR9JkSK?=
- =?us-ascii?Q?yOtFKV/nJf3+u8EtsZMdsVtuCiNTWWs9EkunZOLEbXecc+gFKVd2MOxXm57R?=
- =?us-ascii?Q?HyGBtdmdDzIKRnkKZb65/Z9E7FiZu8noEnG2HmWSQ8k1ueXSZ9J9tHRaQ3Cd?=
- =?us-ascii?Q?Z6qYMRQ/ciAC93Ae4ojkGy8079/TyQhVu1mzBtogq23MxoiiNVZFZW9MufwN?=
- =?us-ascii?Q?0Ajs9Sjsfi18NyMMYbIifTPBuQidmsajpoXZSngvtr4AZFn/VpM6+Hq9PB7i?=
- =?us-ascii?Q?prlX1hGQVGHQrpQ5wpfY6E1CC5hO5z+VTqT7v8HDP5MqxqATb5ShmHcS2DI3?=
- =?us-ascii?Q?xg7WTCYHqaxdUO0hVV7a4NEflD/LBM0DVE92h279+pgHLYwswuhulM8R/fpN?=
- =?us-ascii?Q?gRSShnzghGJrzIweTwmbl1R86o+Ql1ETSHInP+EbtB+c13Nsc0c6QU3TvG4E?=
- =?us-ascii?Q?+QqJMXUK5Do/mLvy31vgVMemjuaV518qbJBwKpAPvVQdPWvI7Xy6npYG5SLZ?=
- =?us-ascii?Q?WTtTDvEE5AMbI2s06t1uljZU8FifNeab1Up8KJ5wz9+KUeyBUUpBNZalfWib?=
- =?us-ascii?Q?/9eYy6dUJH6bu13f0Mcqf5b3jdrdh0b9wq4qBOkw9cMgMrZalTCFjy8fP66H?=
- =?us-ascii?Q?IwjTmwlCfWelMUvBCc7+Yf3dDCaXOKGeOcAJWGPd5KT6w//pC5O1yzAZe4Wv?=
- =?us-ascii?Q?hSb5D6v5qgKOMJso9cPAA5i4++ryIMtC8RsK6tkr84yEBdDcI8TN2823dwdr?=
- =?us-ascii?Q?8XvHvlobuPObGaEemMTq4Vlw0NuqMuI8m2gm1TZSYmMGovYWSfOPd+V54MK8?=
- =?us-ascii?Q?YWbKFEefIzWp9T1tiU9qjE3J3A6gFFkMRTbNBSzeo4KcKTEAxu2GDd6ypckl?=
- =?us-ascii?Q?7Gt9adXu58IVxCYFGkphSmAdouhb35i28l7D0V0/ExY4m38eYF2Lxpq8c0ks?=
- =?us-ascii?Q?c+xKTU/uVtXjjklz4ebup6E51IQ7uCkI2tfx36d99/O3b9jLGiP8yJeFNHTs?=
- =?us-ascii?Q?VGCp6bDZxkLQntP8SYOCUh6l49UhRvqnxyHujBeeV6mn+DDChJKKLAMNHOiH?=
- =?us-ascii?Q?joDDinswUyWWOzU0Erz4hPt+ssdSlmACajrRegdp77BZF5gk55A6l8Tagd8q?=
- =?us-ascii?Q?uOc9dIAUnJUizY5/RevVj/gAw00sOcHPV5usBcOTh+kjykF0/xkLQgfcU6bV?=
- =?us-ascii?Q?PM7f2Ww3nhBNIWug+j1CH7v1k1aq1nmp7GRMHfUsml2ldY3WhuNTYd+sdrOY?=
- =?us-ascii?Q?ZipcBrxy4at0yIeov/nqktkqS+n5QDT2e5ZKu8Crv4XfI1pvkSqEdG0wiBDd?=
- =?us-ascii?Q?KrtT6YdkrG9Irpe7HR4zjbQPSE13PkHfOnhHI6pt/VpkNiYrWx7pZSbX2igP?=
- =?us-ascii?Q?DDgpMJYhPN/Tcb8/tcsDBrx+xSjy+xHAcpeIO+6WLXuRhD7e3mjFu/hf7POZ?=
- =?us-ascii?Q?o8mpDPnsN6IcCo+AhStolmExZkw0xw8nbIUxL/SIzi7TNJ0SezgI+BdywgpX?=
- =?us-ascii?Q?JnNGHlsjATtty4WRh9xRw7hp4b5N3NRjiNmTCr11QX8HD449SIzyuo8FCVvA?=
- =?us-ascii?Q?hNlX/+6jmOlLOzaXLKooKnpt1LfNM4RZ2QxmsT+L?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?No5deGM7H2OVV94xll48pRlEbmlYJ4u0MpPIA0/Rj513fiCR2cc2I6Be67cy?=
+ =?us-ascii?Q?vExoJQD7Gg2V/6TNU57OmLyJDKccsxHBpgSVPpU75J/UBwcTSQl3JLTmwERr?=
+ =?us-ascii?Q?/FvEOZL6r/uAbu2IzPdX20zV7rWnrsrV20Jo1ySAS4dDIGZrkBUxkKH1XcJv?=
+ =?us-ascii?Q?h72sAc+EieO+S7KyMyJTkASu5uXz8HoSyHDhLqoGJIhrpYnwPrG8DfOkBhNL?=
+ =?us-ascii?Q?t5/SJiAeE52YoijSe1NKuoINVasyVIDjCCR9YkKIpBd2TjaJOQT+fk9HYXwS?=
+ =?us-ascii?Q?0rDBPyVDpvF+4I5pTCt895V0GajnkbBSXJkqBzYCWIkDnNX/Omnbq4vRnO0n?=
+ =?us-ascii?Q?F3mcw2/xDrsLqu5U1MO4KcWxRCVQlqhQ9mj6dtj7tbW5zky+ywQFbEZIeEuX?=
+ =?us-ascii?Q?pgzeqwOJSLDZBPZTnHVf/KBqBVZVdXEb94832tRtlKpZfHp95HbEAJCLBBRI?=
+ =?us-ascii?Q?2CiYmAZqX/N1RBp1Bn517xAH0XkT7luW0ikvLsib2gUhEe+3e8Li3xrqfjII?=
+ =?us-ascii?Q?aTQ9rlCqlUnd+ZtmeZ1+dtOhFOTpVF9KCKEzbWJOrnAjsS2XovWmtQKisLGm?=
+ =?us-ascii?Q?rfa+gDNVqgQw9hVQplYLs/YOXBIsXdW+/zgK5UTzLnkQoPNIJZrn6RjrzAsn?=
+ =?us-ascii?Q?5iQOeZTJXhyjNgAwreTEpIrXwbjpsH8uwTjjCQvutAQsbZvSMoovTJ1ssCR/?=
+ =?us-ascii?Q?ZNpyYg3Cr1O1Wcrvm7WbIr5vLsQEdmRs+wwtRL8LsUHjvCPQx14izd75WkgH?=
+ =?us-ascii?Q?Fxe2jo77yc91qQIP5ZFtHzcMuic6VkR6HILGIywyaYlYySrcY2C02nPDZ3eO?=
+ =?us-ascii?Q?K/SAHoZr3Vwgb1HdDX4kzFFQTSf+BfiaNTBrOZuWj2pxl2aTqd27f5TCbc8N?=
+ =?us-ascii?Q?EHlJWo4dT2W+syjNFvKfXimACmJielU2zkBIYCsJFoOu8C1eLkKHDzvl55Dc?=
+ =?us-ascii?Q?/eGntwUy/tCi1aPK3q3LWNycJg+Axj8CUlsPkCuNZ8g7fg1UbsScUm+SyYPs?=
+ =?us-ascii?Q?eK4xuwyET8utIwIBqYtU1OIUCM0sL2F8kkFQAJxVL7YYzg8bDvKZ+paT6h/y?=
+ =?us-ascii?Q?BLxrG6OEKulwaDprgt+Npp/1nRcn1NhhZpaRK7KSWhymw54sczAcRzDG07LC?=
+ =?us-ascii?Q?uHm8VLiL7mSNulHdx0gf39FDbKBxcKgLsifWeedAbFN4LR/7wmWVm8/2dMLT?=
+ =?us-ascii?Q?58ZPmlFTPU2vAZJKytbo8NIm5EodTMnrFtY3h25gpulZO65kfJd27rv2K5pt?=
+ =?us-ascii?Q?/J0OAzaOsb3C+SUO5bjdm/eMiwJIZfwoHlx4T1j6q+9MHWlTv+uTQ/RirPnK?=
+ =?us-ascii?Q?dpcMdidSBDZ0Wvx6V0jxLKRRiYEammiLlSE2oi0zckdYANXdrzCFM15LH1GS?=
+ =?us-ascii?Q?H7GMLrG9YLd4Tof0L36ztqSns2yUOn5NRED3dN4y02vXbZvmWbxYMWXuEPNF?=
+ =?us-ascii?Q?4wvlCxH5M+4kpbK/38+Lt6gvPaQ7ZZOna0E/NTRaGVM5G449CcvfU04xVU7+?=
+ =?us-ascii?Q?LqFZtP0FBfYhrQqHIKZNviIbGjk0bh3F+4rWOAUe/Mtv0xqVsr4mFterJzf6?=
+ =?us-ascii?Q?/CtiMzGAeSYFuBHYesHeiD4eL5kBxGhtdjq/wza0?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbb2fa9e-14cb-404a-4c6c-08dd892a7f48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2025 03:36:17.3337 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7177ecee-e3c8-4819-1ffd-08dd892ab28a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 May 2025 03:37:43.1610 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IPrvxrxtikWNaBtYJqQ2O4ZP4VBXLccvhVkScLH9TOZLC/At6bXqv6kuY8hdXAVc6A8VrTiGpL2dmgx2J1Lisg==
+X-MS-Exchange-CrossTenant-userprincipalname: dHB53KuMveTyydhoB/P+oa7RGKWfMcCiJ9N4mNsFOv9WidHYsKgS4HLohauAvlC1QUudgJGPHLl0dlr8AF/NJg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8803
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -189,210 +192,524 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Friday, April 25, 2025 1:32 AM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: [PATCH 03/10] drm/i915/hdcp: split HDCP GSC message alloc/save
-> responsibilities
+> Sent: Wednesday, April 30, 2025 2:43 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-gfx@lists.freedesktop=
+.org;
+> intel-xe@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Subject: RE: [PATCH 04/10] drm/i915/hdcp: rename struct
+> intel_hdcp_gsc_message to intel_hdcp_gsc_context
 >=20
-> Allocate and initialize the HDCP GSC message in
-> intel_hdcp_gsc_hdcp2_init() as before, but store the pointer to
-> display->hdcp.hdcp_message in the caller. Similarly, pass in the pointer
-> to intel_hdcp_gsc_free_message().
+> On Wed, 30 Apr 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+> >> -----Original Message-----
+> >> From: Nikula, Jani <jani.nikula@intel.com>
+> >> Sent: Friday, April 25, 2025 1:32 AM
+> >> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> >> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
+> >> <suraj.kandpal@intel.com>
+> >> Subject: [PATCH 04/10] drm/i915/hdcp: rename struct
+> >> intel_hdcp_gsc_message to intel_hdcp_gsc_context
+> >>
+> >> It's really about the context more than about the message.
+> >>
+> >> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  .../gpu/drm/i915/display/intel_display_core.h |  2 +-
+> >> drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 52 ++++++++---------
+> >> drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  6 +-
+> >> .../drm/i915/display/intel_hdcp_gsc_message.c | 14 ++---
+> >>  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 58 +++++++++---------=
+-
+> >>  5 files changed, 66 insertions(+), 66 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
+> >> b/drivers/gpu/drm/i915/display/intel_display_core.h
+> >> index 613af57abd1b..dc834cef75c7 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> >> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> >> @@ -430,7 +430,7 @@ struct intel_display {
+> >>  		 * reused when sending message to gsc cs.
+> >>  		 * this is only populated post Meteorlake
+> >>  		 */
+> >> -		struct intel_hdcp_gsc_message *hdcp_message;
+> >> +		struct intel_hdcp_gsc_context *gsc_context;
+> >>  		/* Mutex to protect the above hdcp related values. */
+> >>  		struct mutex hdcp_mutex;
+> >>  	} hdcp;
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> >> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> >> index 68d912dbd658..3e1dc2f7310c 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
+> >> @@ -12,7 +12,7 @@
+> >>  #include "i915_utils.h"
+> >>  #include "intel_hdcp_gsc.h"
+> >>
+> >> -struct intel_hdcp_gsc_message {
+> >> +struct intel_hdcp_gsc_context {
+> >>  	struct i915_vma *vma;
+> >>  	void *hdcp_cmd_in;
+> >>  	void *hdcp_cmd_out;
+> >
+> > I feel this should be message_context if we are renaming it since the
+> > data inside it will contain Hdcp message specific data once filled out
+> > and the addresses where this message is store so If we really have to r=
+ename
+> it then message_context over just context.
+> > That way we also leave the hdcp_message variable name alone not having =
+to
+> rename it at every use.
 >=20
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> My point is that it's not a *message*. It's a context that's shared and u=
+sed for
+> all messages. I think "hdcp_message" as a struct member and as a variable
+> name is misleading, and I'd like to rename them anyway. It's not even pas=
+sed
+> on to any message sending functions (yet).
+>=20
+> See struct i2c_msg for what an actual message struct looks like. You fill=
+ it in and
+> and pass on to i2c_transfer() to send. struct intel_hdcp_gsc_message is n=
+othing
+> like that.
+>=20
+> I just think intel_hdcp_gsc_message_context is unwieldy, so I opted for t=
+he
+> shorter intel_hdcp_gsc_context. Moreover, in patch 6/10 I store more info=
+ to it
+> too.
+>=20
+> I can rename if you like, but to what? Thoughts?
 
-LGTM,
+None that come to my mind but this seems okay then
+
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 22 +++++++++----------
-> drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  4 ++--
-> .../drm/i915/display/intel_hdcp_gsc_message.c | 12 ++++++----
->  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 22 ++++++++-----------
->  4 files changed, 29 insertions(+), 31 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index 92a3ad2166f6..68d912dbd658 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -90,37 +90,35 @@ static int intel_hdcp_gsc_initialize_message(struct
-> drm_i915_private *i915,
->  	return err;
->  }
 >=20
-> -int intel_hdcp_gsc_hdcp2_init(struct intel_display *display)
-> +struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
-> +intel_display *display)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(display->drm);
->  	struct intel_hdcp_gsc_message *hdcp_message;
->  	int ret;
+> BR,
+> Jani.
 >=20
->  	hdcp_message =3D kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-> -
->  	if (!hdcp_message)
-> -		return -ENOMEM;
-> +		return ERR_PTR(-ENOMEM);
 >=20
->  	/*
->  	 * NOTE: No need to lock the comp mutex here as it is already
->  	 * going to be taken before this function called
->  	 */
-> -	display->hdcp.hdcp_message =3D hdcp_message;
->  	ret =3D intel_hdcp_gsc_initialize_message(i915, hdcp_message);
-> -
-> -	if (ret)
-> +	if (ret) {
->  		drm_err(display->drm, "Could not initialize hdcp_message\n");
-> +		kfree(hdcp_message);
-> +		hdcp_message =3D ERR_PTR(ret);
-> +	}
 >=20
-> -	return ret;
-> +	return hdcp_message;
->  }
+> >
+> > Regards,
+> > Suraj Kandpal
+> >
+> >> @@ -40,7 +40,7 @@ bool intel_hdcp_gsc_check_status(struct
+> >> intel_display
+> >> *display)
+> >>
+> >>  /*This function helps allocate memory for the command that we will
+> >> send to gsc cs */  static int
+> >> intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+> >> -					     struct intel_hdcp_gsc_message
+> >> *hdcp_message)
+> >> +					     struct intel_hdcp_gsc_context
+> >> *gsc_context)
+> >>  {
+> >>  	struct intel_gt *gt =3D i915->media_gt;
+> >>  	struct drm_i915_gem_object *obj =3D NULL; @@ -77,9 +77,9 @@ static
+> >> int intel_hdcp_gsc_initialize_message(struct drm_i915_private *i915,
+> >>
+> >>  	memset(cmd_in, 0, obj->base.size);
+> >>
+> >> -	hdcp_message->hdcp_cmd_in =3D cmd_in;
+> >> -	hdcp_message->hdcp_cmd_out =3D cmd_out;
+> >> -	hdcp_message->vma =3D vma;
+> >> +	gsc_context->hdcp_cmd_in =3D cmd_in;
+> >> +	gsc_context->hdcp_cmd_out =3D cmd_out;
+> >> +	gsc_context->vma =3D vma;
+> >>
+> >>  	return 0;
+> >>
+> >> @@ -90,37 +90,37 @@ static int
+> >> intel_hdcp_gsc_initialize_message(struct
+> >> drm_i915_private *i915,
+> >>  	return err;
+> >>  }
+> >>
+> >> -struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
+> >> intel_display
+> >> *display)
+> >> +struct intel_hdcp_gsc_context *intel_hdcp_gsc_hdcp2_init(struct
+> >> +intel_display *display)
+> >>  {
+> >>  	struct drm_i915_private *i915 =3D to_i915(display->drm);
+> >> -	struct intel_hdcp_gsc_message *hdcp_message;
+> >> +	struct intel_hdcp_gsc_context *gsc_context;
+> >>  	int ret;
+> >>
+> >> -	hdcp_message =3D kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
+> >> -	if (!hdcp_message)
+> >> +	gsc_context =3D kzalloc(sizeof(*gsc_context), GFP_KERNEL);
+> >> +	if (!gsc_context)
+> >>  		return ERR_PTR(-ENOMEM);
+> >>
+> >>  	/*
+> >>  	 * NOTE: No need to lock the comp mutex here as it is already
+> >>  	 * going to be taken before this function called
+> >>  	 */
+> >> -	ret =3D intel_hdcp_gsc_initialize_message(i915, hdcp_message);
+> >> +	ret =3D intel_hdcp_gsc_initialize_message(i915, gsc_context);
+> >>  	if (ret) {
+> >> -		drm_err(display->drm, "Could not initialize hdcp_message\n");
+> >> -		kfree(hdcp_message);
+> >> -		hdcp_message =3D ERR_PTR(ret);
+> >> +		drm_err(display->drm, "Could not initialize gsc_context\n");
+> >> +		kfree(gsc_context);
+> >> +		gsc_context =3D ERR_PTR(ret);
+> >>  	}
+> >>
+> >> -	return hdcp_message;
+> >> +	return gsc_context;
+> >>  }
+> >>
+> >> -void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_message
+> >> *hdcp_message)
+> >> +void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_context
+> >> +*gsc_context)
+> >>  {
+> >> -	if (!hdcp_message)
+> >> +	if (!gsc_context)
+> >>  		return;
+> >>
+> >> -	i915_vma_unpin_and_release(&hdcp_message->vma,
+> >> I915_VMA_RELEASE_MAP);
+> >> -	kfree(hdcp_message);
+> >> +	i915_vma_unpin_and_release(&gsc_context->vma,
+> >> I915_VMA_RELEASE_MAP);
+> >> +	kfree(gsc_context);
+> >>  }
+> >>
+> >>  static int intel_gsc_send_sync(struct drm_i915_private *i915, @@
+> >> -167,7
+> >> +167,7 @@ static int intel_gsc_send_sync(struct drm_i915_private
+> >> +*i915,
+> >>  /*
+> >>   * This function can now be used for sending requests and will also h=
+andle
+> >>   * receipt of reply messages hence no different function of message
+> >> retrieval
+> >> - * is required. We will initialize intel_hdcp_gsc_message structure
+> >> then add
+> >> + * is required. We will initialize intel_hdcp_gsc_context structure
+> >> + then add
+> >>   * gsc cs memory header as stated in specs after which the normal
+> >> HDCP payload
+> >>   * will follow
+> >>   */
+> >> @@ -178,7 +178,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct
+> >> drm_i915_private *i915, u8 *msg_in,
+> >>  	struct intel_gt *gt =3D i915->media_gt;
+> >>  	struct intel_gsc_mtl_header *header_in, *header_out;
+> >>  	const size_t max_msg_size =3D PAGE_SIZE - sizeof(*header_in);
+> >> -	struct intel_hdcp_gsc_message *hdcp_message;
+> >> +	struct intel_hdcp_gsc_context *gsc_context;
+> >>  	u64 addr_in, addr_out, host_session_id;
+> >>  	u32 reply_size, msg_size_in, msg_size_out;
+> >>  	int ret, tries =3D 0;
+> >> @@ -191,10 +191,10 @@ ssize_t intel_hdcp_gsc_msg_send(struct
+> >> drm_i915_private *i915, u8 *msg_in,
+> >>
+> >>  	msg_size_in =3D msg_in_len + sizeof(*header_in);
+> >>  	msg_size_out =3D msg_out_len + sizeof(*header_out);
+> >> -	hdcp_message =3D i915->display.hdcp.hdcp_message;
+> >> -	header_in =3D hdcp_message->hdcp_cmd_in;
+> >> -	header_out =3D hdcp_message->hdcp_cmd_out;
+> >> -	addr_in =3D i915_ggtt_offset(hdcp_message->vma);
+> >> +	gsc_context =3D i915->display.hdcp.gsc_context;
+> >> +	header_in =3D gsc_context->hdcp_cmd_in;
+> >> +	header_out =3D gsc_context->hdcp_cmd_out;
+> >> +	addr_in =3D i915_ggtt_offset(gsc_context->vma);
+> >>  	addr_out =3D addr_in + PAGE_SIZE;
+> >>
+> >>  	memset(header_in, 0, msg_size_in);
+> >> @@ -202,7 +202,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct
+> >> drm_i915_private *i915, u8 *msg_in,
+> >>  	get_random_bytes(&host_session_id, sizeof(u64));
+> >>  	intel_gsc_uc_heci_cmd_emit_mtl_header(header_in,
+> >> HECI_MEADDRESS_HDCP,
+> >>  					      msg_size_in, host_session_id);
+> >> -	memcpy(hdcp_message->hdcp_cmd_in + sizeof(*header_in), msg_in,
+> >> msg_in_len);
+> >> +	memcpy(gsc_context->hdcp_cmd_in + sizeof(*header_in), msg_in,
+> >> +msg_in_len);
+> >>
+> >>  	/*
+> >>  	 * Keep sending request in case the pending bit is set no need to
+> >> add @@ -236,7 +236,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct
+> >> drm_i915_private *i915, u8 *msg_in,
+> >>  			    reply_size, (u32)msg_out_len);
+> >>  	}
+> >>
+> >> -	memcpy(msg_out, hdcp_message->hdcp_cmd_out +
+> >> sizeof(*header_out), msg_out_len);
+> >> +	memcpy(msg_out, gsc_context->hdcp_cmd_out + sizeof(*header_out),
+> >> +msg_out_len);
+> >>
+> >>  err:
+> >>  	return ret;
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> >> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> >> index f3362720d742..31080df80097 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> >> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
+> >> @@ -11,7 +11,7 @@
+> >>
+> >>  struct drm_i915_private;
+> >>  struct intel_display;
+> >> -struct intel_hdcp_gsc_message;
+> >> +struct intel_hdcp_gsc_context;
+> >>
+> >>  bool intel_hdcp_gsc_cs_required(struct intel_display *display);
+> >> ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8
+> >> *msg_in, @@ -
+> >> 19,7 +19,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private
+> >> *i915, u8 *msg_in,
+> >>  				size_t msg_out_len);
+> >>  bool intel_hdcp_gsc_check_status(struct intel_display *display);
+> >>
+> >> -struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
+> >> intel_display *display); -void intel_hdcp_gsc_free_message(struct
+> >> intel_hdcp_gsc_message *hdcp_message);
+> >> +struct intel_hdcp_gsc_context *intel_hdcp_gsc_hdcp2_init(struct
+> >> +intel_display *display); void intel_hdcp_gsc_free_message(struct
+> >> +intel_hdcp_gsc_context *gsc_context);
+> >>
+> >>  #endif /* __INTEL_HDCP_GCS_H__ */
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+> >> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+> >> index 11aa6772f272..94ca571ab481 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
+> >> @@ -633,7 +633,7 @@ static const struct i915_hdcp_ops gsc_hdcp_ops =3D
+> >> {
+> >>
+> >>  int intel_hdcp_gsc_init(struct intel_display *display)  {
+> >> -	struct intel_hdcp_gsc_message *hdcp_message;
+> >> +	struct intel_hdcp_gsc_context *gsc_context;
+> >>  	struct i915_hdcp_arbiter *arbiter;
+> >>  	int ret =3D 0;
+> >>
+> >> @@ -643,9 +643,9 @@ int intel_hdcp_gsc_init(struct intel_display
+> >> *display)
+> >>
+> >>  	mutex_lock(&display->hdcp.hdcp_mutex);
+> >>
+> >> -	hdcp_message =3D intel_hdcp_gsc_hdcp2_init(display);
+> >> -	if (IS_ERR(hdcp_message)) {
+> >> -		ret =3D PTR_ERR(hdcp_message);
+> >> +	gsc_context =3D intel_hdcp_gsc_hdcp2_init(display);
+> >> +	if (IS_ERR(gsc_context)) {
+> >> +		ret =3D PTR_ERR(gsc_context);
+> >>  		kfree(arbiter);
+> >>  		goto out;
+> >>  	}
+> >> @@ -653,7 +653,7 @@ int intel_hdcp_gsc_init(struct intel_display *disp=
+lay)
+> >>  	display->hdcp.arbiter =3D arbiter;
+> >>  	display->hdcp.arbiter->hdcp_dev =3D display->drm->dev;
+> >>  	display->hdcp.arbiter->ops =3D &gsc_hdcp_ops;
+> >> -	display->hdcp.hdcp_message =3D hdcp_message;
+> >> +	display->hdcp.gsc_context =3D gsc_context;
+> >>
+> >>  out:
+> >>  	mutex_unlock(&display->hdcp.hdcp_mutex);
+> >> @@ -663,8 +663,8 @@ int intel_hdcp_gsc_init(struct intel_display
+> >> *display)
+> >>
+> >>  void intel_hdcp_gsc_fini(struct intel_display *display)  {
+> >> -	intel_hdcp_gsc_free_message(display->hdcp.hdcp_message);
+> >> -	display->hdcp.hdcp_message =3D NULL;
+> >> +	intel_hdcp_gsc_free_message(display->hdcp.gsc_context);
+> >> +	display->hdcp.gsc_context =3D NULL;
+> >>  	kfree(display->hdcp.arbiter);
+> >>  	display->hdcp.arbiter =3D NULL;
+> >>  }
+> >> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> >> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> >> index d15565bf2f9f..68fac12ac666 100644
+> >> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> >> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+> >> @@ -21,7 +21,7 @@
+> >>
+> >>  #define HECI_MEADDRESS_HDCP 18
+> >>
+> >> -struct intel_hdcp_gsc_message {
+> >> +struct intel_hdcp_gsc_context {
+> >>  	struct xe_bo *hdcp_bo;
+> >>  	u64 hdcp_cmd_in;
+> >>  	u64 hdcp_cmd_out;
+> >> @@ -69,7 +69,7 @@ bool intel_hdcp_gsc_check_status(struct
+> >> intel_display
+> >> *display)
+> >>
+> >>  /*This function helps allocate memory for the command that we will
+> >> send to gsc cs */  static int
+> >> intel_hdcp_gsc_initialize_message(struct intel_display *display,
+> >> -					     struct intel_hdcp_gsc_message
+> >> *hdcp_message)
+> >> +					     struct intel_hdcp_gsc_context
+> >> *gsc_context)
+> >>  {
+> >>  	struct xe_device *xe =3D to_xe_device(display->drm);
+> >>  	struct xe_bo *bo =3D NULL;
+> >> @@ -92,57 +92,57 @@ static int
+> >> intel_hdcp_gsc_initialize_message(struct
+> >> intel_display *display,
+> >>  	cmd_out =3D cmd_in + PAGE_SIZE;
+> >>  	xe_map_memset(xe, &bo->vmap, 0, 0, bo->size);
+> >>
+> >> -	hdcp_message->hdcp_bo =3D bo;
+> >> -	hdcp_message->hdcp_cmd_in =3D cmd_in;
+> >> -	hdcp_message->hdcp_cmd_out =3D cmd_out;
+> >> +	gsc_context->hdcp_bo =3D bo;
+> >> +	gsc_context->hdcp_cmd_in =3D cmd_in;
+> >> +	gsc_context->hdcp_cmd_out =3D cmd_out;
+> >>  out:
+> >>  	return ret;
+> >>  }
+> >>
+> >> -struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
+> >> intel_display
+> >> *display)
+> >> +struct intel_hdcp_gsc_context *intel_hdcp_gsc_hdcp2_init(struct
+> >> +intel_display *display)
+> >>  {
+> >> -	struct intel_hdcp_gsc_message *hdcp_message;
+> >> +	struct intel_hdcp_gsc_context *gsc_context;
+> >>  	int ret;
+> >>
+> >> -	hdcp_message =3D kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
+> >> -	if (!hdcp_message)
+> >> +	gsc_context =3D kzalloc(sizeof(*gsc_context), GFP_KERNEL);
+> >> +	if (!gsc_context)
+> >>  		return ERR_PTR(-ENOMEM);
+> >>
+> >>  	/*
+> >>  	 * NOTE: No need to lock the comp mutex here as it is already
+> >>  	 * going to be taken before this function called
+> >>  	 */
+> >> -	ret =3D intel_hdcp_gsc_initialize_message(display, hdcp_message);
+> >> +	ret =3D intel_hdcp_gsc_initialize_message(display, gsc_context);
+> >>  	if (ret) {
+> >> -		drm_err(display->drm, "Could not initialize hdcp_message\n");
+> >> -		kfree(hdcp_message);
+> >> -		hdcp_message =3D ERR_PTR(ret);
+> >> +		drm_err(display->drm, "Could not initialize gsc_context\n");
+> >> +		kfree(gsc_context);
+> >> +		gsc_context =3D ERR_PTR(ret);
+> >>  	}
+> >>
+> >> -	return hdcp_message;
+> >> +	return gsc_context;
+> >>  }
+> >>
+> >> -void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_message
+> >> *hdcp_message)
+> >> +void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_context
+> >> +*gsc_context)
+> >>  {
+> >> -	if (!hdcp_message)
+> >> +	if (!gsc_context)
+> >>  		return;
+> >>
+> >> -	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
+> >> -	kfree(hdcp_message);
+> >> +	xe_bo_unpin_map_no_vm(gsc_context->hdcp_bo);
+> >> +	kfree(gsc_context);
+> >>  }
+> >>
+> >>  static int xe_gsc_send_sync(struct xe_device *xe,
+> >> -			    struct intel_hdcp_gsc_message *hdcp_message,
+> >> +			    struct intel_hdcp_gsc_context *gsc_context,
+> >>  			    u32 msg_size_in, u32 msg_size_out,
+> >>  			    u32 addr_out_off)
+> >>  {
+> >> -	struct xe_gt *gt =3D hdcp_message->hdcp_bo->tile->media_gt;
+> >> -	struct iosys_map *map =3D &hdcp_message->hdcp_bo->vmap;
+> >> +	struct xe_gt *gt =3D gsc_context->hdcp_bo->tile->media_gt;
+> >> +	struct iosys_map *map =3D &gsc_context->hdcp_bo->vmap;
+> >>  	struct xe_gsc *gsc =3D &gt->uc.gsc;
+> >>  	int ret;
+> >>
+> >> -	ret =3D xe_gsc_pkt_submit_kernel(gsc, hdcp_message->hdcp_cmd_in,
+> >> msg_size_in,
+> >> -				       hdcp_message->hdcp_cmd_out,
+> >> msg_size_out);
+> >> +	ret =3D xe_gsc_pkt_submit_kernel(gsc, gsc_context->hdcp_cmd_in,
+> >> msg_size_in,
+> >> +				       gsc_context->hdcp_cmd_out,
+> >> msg_size_out);
+> >>  	if (ret) {
+> >>  		drm_err(&xe->drm, "failed to send gsc HDCP msg (%d)\n", ret);
+> >>  		return ret;
+> >> @@ -162,7 +162,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct xe_device
+> >> *xe,
+> >> u8 *msg_in,
+> >>  				size_t msg_out_len)
+> >>  {
+> >>  	const size_t max_msg_size =3D PAGE_SIZE - HDCP_GSC_HEADER_SIZE;
+> >> -	struct intel_hdcp_gsc_message *hdcp_message;
+> >> +	struct intel_hdcp_gsc_context *gsc_context;
+> >>  	u64 host_session_id;
+> >>  	u32 msg_size_in, msg_size_out;
+> >>  	u32 addr_out_off, addr_in_wr_off =3D 0; @@ -175,15 +175,15 @@
+> ssize_t
+> >> intel_hdcp_gsc_msg_send(struct xe_device *xe, u8 *msg_in,
+> >>
+> >>  	msg_size_in =3D msg_in_len + HDCP_GSC_HEADER_SIZE;
+> >>  	msg_size_out =3D msg_out_len + HDCP_GSC_HEADER_SIZE;
+> >> -	hdcp_message =3D xe->display.hdcp.hdcp_message;
+> >> +	gsc_context =3D xe->display.hdcp.gsc_context;
+> >>  	addr_out_off =3D PAGE_SIZE;
+> >>
+> >>  	host_session_id =3D xe_gsc_create_host_session_id();
+> >>  	xe_pm_runtime_get_noresume(xe);
+> >> -	addr_in_wr_off =3D xe_gsc_emit_header(xe, &hdcp_message->hdcp_bo-
+> >> >vmap,
+> >> +	addr_in_wr_off =3D xe_gsc_emit_header(xe, &gsc_context->hdcp_bo-
+> >> >vmap,
+> >>  					    addr_in_wr_off,
+> >> HECI_MEADDRESS_HDCP,
+> >>  					    host_session_id, msg_in_len);
+> >> -	xe_map_memcpy_to(xe, &hdcp_message->hdcp_bo->vmap,
+> >> addr_in_wr_off,
+> >> +	xe_map_memcpy_to(xe, &gsc_context->hdcp_bo->vmap,
+> >> addr_in_wr_off,
+> >>  			 msg_in, msg_in_len);
+> >>  	/*
+> >>  	 * Keep sending request in case the pending bit is set no need to
+> >> add @@ -192,7 +192,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct
+> >> xe_device *xe,
+> >> u8 *msg_in,
+> >>  	 * 20 times each message 50 ms apart
+> >>  	 */
+> >>  	do {
+> >> -		ret =3D xe_gsc_send_sync(xe, hdcp_message, msg_size_in,
+> >> msg_size_out,
+> >> +		ret =3D xe_gsc_send_sync(xe, gsc_context, msg_size_in,
+> >> msg_size_out,
+> >>  				       addr_out_off);
+> >>
+> >>  		/* Only try again if gsc says so */ @@ -206,7 +206,7 @@
+> ssize_t
+> >> intel_hdcp_gsc_msg_send(struct xe_device *xe,
+> >> u8 *msg_in,
+> >>  	if (ret)
+> >>  		goto out;
+> >>
+> >> -	xe_map_memcpy_from(xe, msg_out, &hdcp_message->hdcp_bo-
+> >> >vmap,
+> >> +	xe_map_memcpy_from(xe, msg_out, &gsc_context->hdcp_bo->vmap,
+> >>  			   addr_out_off + HDCP_GSC_HEADER_SIZE,
+> >>  			   msg_out_len);
+> >>
+> >> --
+> >> 2.39.5
+> >
 >=20
-> -void intel_hdcp_gsc_free_message(struct intel_display *display)
-> +void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_message
-> +*hdcp_message)
->  {
-> -	struct intel_hdcp_gsc_message *hdcp_message =3D
-> -					display->hdcp.hdcp_message;
-> +	if (!hdcp_message)
-> +		return;
->=20
-> -	hdcp_message->hdcp_cmd_in =3D NULL;
-> -	hdcp_message->hdcp_cmd_out =3D NULL;
->  	i915_vma_unpin_and_release(&hdcp_message->vma,
-> I915_VMA_RELEASE_MAP);
->  	kfree(hdcp_message);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> index ad41e7e80095..f3362720d742 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-> @@ -19,7 +19,7 @@ ssize_t intel_hdcp_gsc_msg_send(struct
-> drm_i915_private *i915, u8 *msg_in,
->  				size_t msg_out_len);
->  bool intel_hdcp_gsc_check_status(struct intel_display *display);
->=20
-> -int intel_hdcp_gsc_hdcp2_init(struct intel_display *display); -void
-> intel_hdcp_gsc_free_message(struct intel_display *display);
-> +struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
-> +intel_display *display); void intel_hdcp_gsc_free_message(struct
-> +intel_hdcp_gsc_message *hdcp_message);
->=20
->  #endif /* __INTEL_HDCP_GCS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> index 8e2aafff71d5..11aa6772f272 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c
-> @@ -633,8 +633,9 @@ static const struct i915_hdcp_ops gsc_hdcp_ops =3D {
->=20
->  int intel_hdcp_gsc_init(struct intel_display *display)  {
-> +	struct intel_hdcp_gsc_message *hdcp_message;
->  	struct i915_hdcp_arbiter *arbiter;
-> -	int ret;
-> +	int ret =3D 0;
->=20
->  	arbiter =3D kzalloc(sizeof(*arbiter), GFP_KERNEL);
->  	if (!arbiter)
-> @@ -642,8 +643,9 @@ int intel_hdcp_gsc_init(struct intel_display *display=
-)
->=20
->  	mutex_lock(&display->hdcp.hdcp_mutex);
->=20
-> -	ret =3D intel_hdcp_gsc_hdcp2_init(display);
-> -	if (ret) {
-> +	hdcp_message =3D intel_hdcp_gsc_hdcp2_init(display);
-> +	if (IS_ERR(hdcp_message)) {
-> +		ret =3D PTR_ERR(hdcp_message);
->  		kfree(arbiter);
->  		goto out;
->  	}
-> @@ -651,6 +653,7 @@ int intel_hdcp_gsc_init(struct intel_display *display=
-)
->  	display->hdcp.arbiter =3D arbiter;
->  	display->hdcp.arbiter->hdcp_dev =3D display->drm->dev;
->  	display->hdcp.arbiter->ops =3D &gsc_hdcp_ops;
-> +	display->hdcp.hdcp_message =3D hdcp_message;
->=20
->  out:
->  	mutex_unlock(&display->hdcp.hdcp_mutex);
-> @@ -660,7 +663,8 @@ int intel_hdcp_gsc_init(struct intel_display *display=
-)
->=20
->  void intel_hdcp_gsc_fini(struct intel_display *display)  {
-> -	intel_hdcp_gsc_free_message(display);
-> +	intel_hdcp_gsc_free_message(display->hdcp.hdcp_message);
-> +	display->hdcp.hdcp_message =3D NULL;
->  	kfree(display->hdcp.arbiter);
->  	display->hdcp.arbiter =3D NULL;
->  }
-> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index 21cfecf077bf..d15565bf2f9f 100644
-> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -99,15 +99,14 @@ static int intel_hdcp_gsc_initialize_message(struct
-> intel_display *display,
->  	return ret;
->  }
->=20
-> -int intel_hdcp_gsc_hdcp2_init(struct intel_display *display)
-> +struct intel_hdcp_gsc_message *intel_hdcp_gsc_hdcp2_init(struct
-> +intel_display *display)
->  {
->  	struct intel_hdcp_gsc_message *hdcp_message;
->  	int ret;
->=20
->  	hdcp_message =3D kzalloc(sizeof(*hdcp_message), GFP_KERNEL);
-> -
->  	if (!hdcp_message)
-> -		return -ENOMEM;
-> +		return ERR_PTR(-ENOMEM);
->=20
->  	/*
->  	 * NOTE: No need to lock the comp mutex here as it is already @@ -
-> 117,22 +116,19 @@ int intel_hdcp_gsc_hdcp2_init(struct intel_display *dis=
-play)
->  	if (ret) {
->  		drm_err(display->drm, "Could not initialize hdcp_message\n");
->  		kfree(hdcp_message);
-> -		return ret;
-> +		hdcp_message =3D ERR_PTR(ret);
->  	}
->=20
-> -	display->hdcp.hdcp_message =3D hdcp_message;
-> -	return ret;
-> +	return hdcp_message;
->  }
->=20
-> -void intel_hdcp_gsc_free_message(struct intel_display *display)
-> +void intel_hdcp_gsc_free_message(struct intel_hdcp_gsc_message
-> +*hdcp_message)
->  {
-> -	struct intel_hdcp_gsc_message *hdcp_message =3D display-
-> >hdcp.hdcp_message;
-> +	if (!hdcp_message)
-> +		return;
->=20
-> -	if (hdcp_message) {
-> -		xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
-> -		kfree(hdcp_message);
-> -		display->hdcp.hdcp_message =3D NULL;
-> -	}
-> +	xe_bo_unpin_map_no_vm(hdcp_message->hdcp_bo);
-> +	kfree(hdcp_message);
->  }
->=20
->  static int xe_gsc_send_sync(struct xe_device *xe,
 > --
-> 2.39.5
-
+> Jani Nikula, Intel
