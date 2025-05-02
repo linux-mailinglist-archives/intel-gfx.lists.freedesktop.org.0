@@ -2,65 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8F1AA7505
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 16:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97078AA7618
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 17:31:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16E1810E940;
-	Fri,  2 May 2025 14:33:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 647E510E8CF;
+	Fri,  2 May 2025 15:31:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dHReBjq/";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gyKSWKOq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6285B10E940
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 May 2025 14:33:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746196408; x=1777732408;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=v5Rp66tCR2rfRjAtXWG6b4cJR5z56dbvWtUuTIKvNmA=;
- b=dHReBjq/fNMLdH9v6KeQ+fsQIJvj5v+aUwmZVi7UQYZCSY4hW9vMzhVo
- b4xb5AOfccfraSWvUTy1d51tFkhjU9vLAVNef5a+gSrezBOJ8HpxZg1LA
- GE7k+JOh80a2MS3fqSnP3zXM7P/Ryn72cD5tsgjCfwnOD6jP354n3JbvR
- ttneg6WheyEYor3ftJF8Sd3ZFugqC5tg9mBpkt3RARhGVkKrc1nI565Ht
- pbc3vluyfb73DVPoTjlCfn85FjJnzaWpnNOqbRHbOEwCybXCehMmyTNs5
- Y2QCXAMEV7T49AW2JL+KlDxtYekmcxzSw9nDbck9zpE55ROAJk+hKeGPR g==;
-X-CSE-ConnectionGUID: RH9WsHNbR5ygQnnMjE3zoQ==
-X-CSE-MsgGUID: 4XKbwX3VRVKDWQnX+8w3HA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="70382630"
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="70382630"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 07:33:28 -0700
-X-CSE-ConnectionGUID: drzra865TBe7hccIYwHQ6w==
-X-CSE-MsgGUID: +aQln23+R/+E76SOFmi5qQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="139832217"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.246.151])
- ([10.245.246.151])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 May 2025 07:33:26 -0700
-Message-ID: <2238f487c71e07aa71ffd3b1b07e3deb72674d3b.camel@linux.intel.com>
-Subject: Re: [PATCH 11/11] fs: Remove aops->writepage
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Wilcox <willy@infradead.org>
-Cc: Fan Ni <nifan.cxl@gmail.com>, linux-fsdevel@vger.kernel.org, 
- linux-mm@kvack.org, intel-gfx@lists.freedesktop.org
-Date: Fri, 02 May 2025 16:33:23 +0200
-In-Reply-To: <Z-wTw5p5r4yPGfFE@casper.infradead.org>
-References: <20250307135414.2987755-1-willy@infradead.org>
- <20250307135414.2987755-12-willy@infradead.org> <Z9d2JH33sLeCuzfE@fan>
- <Z9eVdplZKs2XVB9J@casper.infradead.org>
- <Z9iibbHs-jHTu7LP@casper.infradead.org>
- <9937a6346feccb7ab739aff63a084f63f3ad4382.camel@linux.intel.com>
- <Z-wTw5p5r4yPGfFE@casper.infradead.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4EBE10E063
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 May 2025 15:31:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1746199911;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=jM8M6akj52fCQHHjXX1/nsZvwbcymr7x1EGpLLdZdRo=;
+ b=gyKSWKOqP4uLnebtLqw1aFbxEhh1XEYr5QoKpoPiCkik3lZgmbS6cyJw5Bf7WyDVDDHC3v
+ o6bML0BgKm8KLksdkehSZI3UGOYlLkS+T/m3FhBsPK9AHOJh+A7c9c+RFyAk12EdyC8QJS
+ k03MfQcVl5C9NmlPkAJUN/TBygPFIvw=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-647-xzepMaJLMqyT7kStmIRrRA-1; Fri, 02 May 2025 11:31:50 -0400
+X-MC-Unique: xzepMaJLMqyT7kStmIRrRA-1
+X-Mimecast-MFC-AGG-ID: xzepMaJLMqyT7kStmIRrRA_1746199909
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-43947a0919aso13909575e9.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 02 May 2025 08:31:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1746199909; x=1746804709;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt
+ :content-language:from:references:cc:to:subject:user-agent
+ :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=jM8M6akj52fCQHHjXX1/nsZvwbcymr7x1EGpLLdZdRo=;
+ b=Ic+iNNSUOgPqYjpX4uB4bwlUkskFxvrC0cxPprpk3Ax4KmANbvexowY+CTAX1Yi9gE
+ KslzfPX51+6I+E9pDUA/c0gD/Zj0uhDZ1p8/cpG4W4H+zV/ZAwPh053dyd/aPNsEzuLP
+ g9DQMEuPParxg195fLMYuRc8lz+EqYp82nMkDGCOUgyx9wiFvH6O/WwAChy1jIbwJ6+M
+ qdED9PQguChzjx/YfIS30J2qv5+/woYcA/l5hqL3k9jicMWwdtHOK4qQFE5A89oYxe0A
+ 7bUB5+cFgQXWzDK65zG4Sl0+1s7JHkgM0G8cTl4RH/51vR9VRPxwcxHhqEvwpDq0tdA7
+ YthQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUO7BPZseEGFH8dQNUoIgXFcwn7fNDCbQa36q7GF5mxfntiAOGGw6BlxeItaw9OINhVYdqJ2yVbjjw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy91WA7m52yrGyKgHLPQhDpcBPjs0BeriKhndK/e9mpbl1u78Pj
+ gt2nrJcj6FDFSDfNB2y9ACtMot7czP/R4VRYsuiVlp+xND6NGNLe1G7l/nu7id7Bjqi6xuKmUel
+ lPs+Qb2DT3sN0jHQN2F6UR+bMNGI2r+UZcKeTzim/i5CpxHuNEU/XYa+jqYAsp9OURg==
+X-Gm-Gg: ASbGncsTN/NcJw8UVgGHu36Ea+HuSi5svelcIfRv710P+iybru+9R/lo8aw1Fj9iIk4
+ fmlfidPiAA1SQba+B9ouwk6myi/nSVY8qgAwp+OsJWEv8cyeD6OE4//25J454TB+laA93/TmxR9
+ ENF9iHi4Dyfd95kpms+S9pCzfnPXdylXPW6/kIAcbHJQPMgt+qHH1wM3ksqEyvszKZPcoiwJVhM
+ nGOIXMTZz0JGN5okhV/G7iRKkvwPYwhveMFQWCT31NnEA1EnU+6dPt7W3XllwMlAFKE27evQVV4
+ s43o5Ao7mdWd4iZaW5chfNS2dVU/bYM4CLlEDx2e2Hmpgm08Ggt0NO1Q9qANVSOCFBjT09XDZIY
+ o9+bVN4OpFuuMnOdw5nMg/F6+etiZG2w68T/uDN8=
+X-Received: by 2002:a05:600c:a368:b0:43c:f969:13c0 with SMTP id
+ 5b1f17b1804b1-441bbf37f2bmr27033245e9.29.1746199909396; 
+ Fri, 02 May 2025 08:31:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFEvYzEZlLwr2sfu3x5hwxFQiu1NtDm78iDWETxYBo0k9U7Y9unR1MHkU940jUVDxeM2iTskQ==
+X-Received: by 2002:a05:600c:a368:b0:43c:f969:13c0 with SMTP id
+ 5b1f17b1804b1-441bbf37f2bmr27032725e9.29.1746199908975; 
+ Fri, 02 May 2025 08:31:48 -0700 (PDT)
+Received: from ?IPV6:2003:cb:c713:d600:afc5:4312:176f:3fb0?
+ (p200300cbc713d600afc54312176f3fb0.dip0.t-ipconnect.de.
+ [2003:cb:c713:d600:afc5:4312:176f:3fb0])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-441b2aecc20sm93468795e9.13.2025.05.02.08.31.47
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 02 May 2025 08:31:47 -0700 (PDT)
+Message-ID: <a34c844d-b44f-411c-b5d7-8e38a50b0b05@redhat.com>
+Date: Fri, 2 May 2025 17:31:46 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] Re: [PATCH v3 3/6] mm: shmem: add large folio
+ support for tmpfs
+To: Daniel Gomez <da.gomez@kernel.org>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ akpm@linux-foundation.org, hughd@google.com, willy@infradead.org,
+ wangkefeng.wang@huawei.com, 21cnbao@gmail.com, ryan.roberts@arm.com,
+ ioworker0@gmail.com, da.gomez@samsung.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, regressions@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, Eero Tamminen <eero.t.tamminen@intel.com>
+References: <cover.1732779148.git.baolin.wang@linux.alibaba.com>
+ <035bf55fbdebeff65f5cb2cdb9907b7d632c3228.1732779148.git.baolin.wang@linux.alibaba.com>
+ <aBEP-6iFhIC87zmb@intel.com>
+ <ac8cbd8d-44e9-4a88-b88b-e29e9f30a2fd@linux.alibaba.com>
+ <aBIHYqzar5J8uxGO@intel.com>
+ <cxwpgygobg6wleoeezbowjhmid4mdhptzheqask44ew37h2q24@kryzkecuobbp>
+ <57dc4929-268b-4f3f-a0f8-43d6ec85974f@linux.alibaba.com>
+ <72978e3a-ee67-47d4-b06d-e911bc5d57ff@redhat.com>
+ <exl3dpqh7oqhdd3afo3gvainumqw6j4ebfifkyeqkqvf36yxlh@pcuhdqanuy32>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <exl3dpqh7oqhdd3afo3gvainumqw6j4ebfifkyeqkqvf36yxlh@pcuhdqanuy32>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: rtWfY13FZUcgNDnV9yovVmZilgXvqfL4UEF_Hkmvu5w_1746199909
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,66 +164,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Matthew,
+On 02.05.25 15:10, Daniel Gomez wrote:
+> On Fri, May 02, 2025 at 09:18:41AM +0100, David Hildenbrand wrote:
+>> On 02.05.25 03:02, Baolin Wang wrote:
+>>>
+>>>
+>>> On 2025/4/30 21:24, Daniel Gomez wrote:
+>>>> On Wed, Apr 30, 2025 at 02:20:02PM +0100, Ville Syrjälä wrote:
+>>>>> On Wed, Apr 30, 2025 at 02:32:39PM +0800, Baolin Wang wrote:
+>>>>>> On 2025/4/30 01:44, Ville Syrjälä wrote:
+>>>>>>> On Thu, Nov 28, 2024 at 03:40:41PM +0800, Baolin Wang wrote:
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> This causes a huge regression in Intel iGPU texturing performance.
+>>>>>>
+>>>>>> Unfortunately, I don't have such platform to test it.
+>>>>>>
+>>>>>>>
+>>>>>>> I haven't had time to look at this in detail, but presumably the
+>>>>>>> problem is that we're no longer getting huge pages from our
+>>>>>>> private tmpfs mount (done in i915_gemfs_init()).
+>>>>>>
+>>>>>> IIUC, the i915 driver still limits the maximum write size to PAGE_SIZE
+>>>>>> in the shmem_pwrite(),
+>>>>>
+>>>>> pwrite is just one random way to write to objects, and probably
+>>>>> not something that's even used by current Mesa.
+>>>>>
+>>>>>> which prevents tmpfs from allocating large
+>>>>>> folios. As mentioned in the comments below, tmpfs like other file
+>>>>>> systems that support large folios, will allow getting a highest order
+>>>>>> hint based on the size of the write and fallocate paths, and then will
+>>>>>> attempt each allowable huge order.
+>>>>>>
+>>>>>> Therefore, I think the shmem_pwrite() function should be changed to
+>>>>>> remove the limitation that the write size cannot exceed PAGE_SIZE.
+>>>>
+>>>> To enable mTHP on tmpfs, the necessary knobs must first be enabled in sysfs
+>>>> as they are not enabled by default IIRC (only THP, PMD level). Ville, I
+>>>> see i915_gemfs the huge=within_size mount option is passed. Can you confirm
+>>>> if /sys/kernel/mm/transparent_hugepage/hugepages-*/enabled are also marked as
+>>>> 'always' when the regression is found?
+>>>
+>>> The tmpfs mount will not be controlled by
+>>> '/sys/kernel/mm/transparent_hugepage/hugepages-*Kb/enabled' (except for
+>>> the debugging options 'deny' and 'force').
+>>
+>> Right, IIRC as requested by Willy, it should behave like other FSes where
+>> there is no control over the folio size to be used.
+> 
+> Thanks for reminding me. I forgot we finally changed it.
+> 
+> Could the performance drop be due to the driver no longer using PMD-level pages?
 
-On Tue, 2025-04-01 at 17:26 +0100, Matthew Wilcox wrote:
-> On Tue, Mar 18, 2025 at 09:10:38AM +0100, Thomas Hellstr=C3=B6m wrote:
-> > On Mon, 2025-03-17 at 22:30 +0000, Matthew Wilcox wrote:
-> > > This patch fixes the compilation problem.=C2=A0 But I don't understan=
-d
-> > > why
-> > > it's messing with the reclaim flag.=C2=A0 Thomas, can you explain?
-> >=20
-> > Hi, Sorry for not responding earlier. The patch that uses
-> > writepage()
-> > here has been around for quite some time waiting for reviews / acks
-> > so
-> > I failed to notice that it's going away.
->=20
-> My turn to be sorry for dropping this conversation ...
+I suspect that the faulting logic will now go to a smaller order first, 
+indeed.
 
-Once again my turn. This disappeared in the mail flood. Sorry about
-that.
+... trying to digest shmem_allowable_huge_orders() and 
+shmem_huge_global_enabled(), having a hard time trying to isolate the 
+tmpfs case: especially, if we run here into the vma vs. !vma case.
 
->=20
-> > Anyway the reclaim flag clearing follows that of pageout() in
-> > vmscan.c
-> > which was also the case for the i915_gem_shmem.c usage in
-> > __shmem_writeback(). My understanding was that if the writeback was
-> > already completed at that point, the reclaim flag was no longer
-> > desirable.
->=20
-> I think the question is really why you're setting it in the first
-> place.
-> Setting the reclaim flag indicates that you want the folio removed
-> from
-> the page cache as soon as possible.=C2=A0
+Without a VMA, I think we should have "mpfs will allow getting a highest 
+order hint based on and fallocate paths, then will try each allowable 
+order".
 
-So when the shmem swapout has been called, My understanding was that
-the page had been moved from the page cache to the swap cache and now
-written out to disc and this is all part of reclaim.
+With a VMA (no access hint), "we still use PMD-sized order to locate 
+huge pages due to lack of a write size hint."
 
-When TTM reaches this part of the code, it's always called from a
-shrinker with the aim of freeing up memory as soon as possible.
+So if we get a fallocate()/write() that is, say, 1 MiB, we'd now 
+allocate an 1 MiB folio instead of a 2 MiB one.
 
-So if this is incorrect or unsuitable usage of the reclaim flag, we
-should of course remove the manipulation of it. (IIRC I was also a bit
-confused as to why it didn't seem to be protected by a lock in the
-callsites I looked at)=C2=A0
+-- 
+Cheers,
 
-__shmem_writeback() in i915_gem_shmem.c and
-pageout() in mm/vmscan.c
-
-Thanks,
-Thomas
-
-
-
->  Other changes in flight are about
-> to make this more aggressive --=C2=A0 instead of waiting for the folio to
-> reach the end of the writeout queue, it'll be removed upon I/O
-> completion.
->=20
-> It doesn't seem to me that this is what you actually want for TTM,
-> but perhaps I've misunderstood the intent of the code.
+David / dhildenb
 
