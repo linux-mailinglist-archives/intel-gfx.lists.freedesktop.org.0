@@ -2,81 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E29AA6E00
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 11:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E019DAA6E05
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 11:24:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6519610E8E1;
-	Fri,  2 May 2025 09:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F65910E8E3;
+	Fri,  2 May 2025 09:24:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="gvV9UNhD";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="wnooVVF8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E500B10E8E1
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 May 2025 09:24:11 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-43690d4605dso12836625e9.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 02 May 2025 02:24:11 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7613810E8E3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 May 2025 09:24:47 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-391342fc0b5so934210f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 02 May 2025 02:24:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1746177850; x=1746782650;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1746177886; x=1746782686;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Hp3sj0b8Cy/pn2rJ5E5Umt5BUD2zwz59yuBElyndNI8=;
- b=gvV9UNhDBL1aXkYcHQd5zXiK85/4XjRRy1NJYxeneGALS/gFp/u2CwTRqlO6yCnMzb
- ACCVds9UAuz4GYSM6t8Z9J1SXbx+aKhmAiHhHP3cu92vyJui0uxOVUZYS1qkavWptdPh
- 6cwOXIaFF+zcdeX75iMbyhoo7WEu0RWJ/oAeyz/RJsRp+1AWZWkPwJ5QkqEMVDPEsy94
- o8GbugzstNcqijdGIjiIPrtW+suwr4oAQ+Idarc2uTJpu/GtsjEUm47TVALrlUBgSOE2
- tUQts7GygjMKkWL/ej0nC7CQbu7R3C6BG1DAlOrk7OWcc4VLm5Wj2wjqqxI4HheT4rpf
- sS7w==
+ :references:to:subject:user-agent:mime-version:date:message-id:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=w/9NydMVPL5obI8U+2CN6g1J0L5hJ6HpoWggI4Qrjlo=;
+ b=wnooVVF8qWldhggn/5iFgXgk39FcocHeXH/0gABX5JPVMY/MTRlEJEsuV/Us350U9Q
+ 6Yh67lz26fya8KLizimoV0Kp7xI4Zu7nEHvKHIW1XIlBzdjiMz5t3ilePHd5Z6H5QI14
+ FPYY/S9Azs+RqrGYH2JBIA20BE8M0n7PoYGcT2q8YjN5sdxcGg30so2cpWJi8+cM09JW
+ PeL/+vlWJ7c6Ct0VB8pug93K81P/IEiEApJ8Yz8ij5mcoWRa0M44qWGpn1KCiJpC3E+y
+ cUouFyMJPKXoO6mSzV+o0ca3jaay143aP47Y3Ijd0oKPKS58d4ewXfp4zbIFPnMnnpx6
+ d7Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746177850; x=1746782650;
+ d=1e100.net; s=20230601; t=1746177886; x=1746782686;
  h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :references:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Hp3sj0b8Cy/pn2rJ5E5Umt5BUD2zwz59yuBElyndNI8=;
- b=ZACeB7zbgwF4fOZ1rGQ84HFvcxJ0TBhd9Y3/+3CcMgujxYJTVqUmX/Ufo/JbGLaqBT
- iNEzDC/TXwEAZvmZqj35OmxzHRe0pQc2V8FtbDv+qiH9MfJiK2OyzQRXVSJf6xpXZGY7
- cn5Q9k9ugLPp/LSFCtHCoYI9BWanRHoAXtzAcZCTL/ba+ZKDcJmwsGnv6mhnhcA6HxC9
- yVa7ureNtvvrbM5/dwAXChe8GeqHt44DrMnzy+WMPQsenlY6OvhOO2k79taRx3WgeZc+
- bSVe1xUN3GtFEod8CnN2vTMgDzNDAlPtA4YoMbnk4e+RHzLh0tDaklHQ1saPVrUKfgtK
- 7Z5g==
+ bh=w/9NydMVPL5obI8U+2CN6g1J0L5hJ6HpoWggI4Qrjlo=;
+ b=Yc6tEuHIGDu6LULcAcaSUg69LIFKE7uS3k2YiP1n72X5dj3FJnCMuAD4haIU8pH+jQ
+ VOOnKW6PZBCOBPfmeQEZd4L1aEGXl4xBESDnz9/7w7jkDFZEdVX1ZC74p620oQSEOAZ0
+ YUaPjmbUe/mXk4+/Xpf5O4gqIdCtqcsVaIkhVsFMl1cbIRfr5eEofMg9P2cOSIKVKzq8
+ vRM8uk+IfjF/zX80Tcp3eeVH6ha8AWYe4g/g1TkBrR/u1evd4/EU999qesoIkZg44sTl
+ AwGcMfEeawDplAxCq831FR+y/O12FN4Mkla6p5V6gStbX0FyiXB0AcUPATl9AneSavEq
+ AIRA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVrioMaaFQ65lx/OcpcCLzkhHSEghjBlVVfNtbJnEFdu7mi80s5ZVGjtHqkW8Xum400lm26U9puPFY=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyupVbxUhfvszNGGzavT3TwuW9c/5LTLa8hyVy4nsZ/IZIoPoCF
- zYJz3VJoZvBU0rvRhtpoiE5f1k/poQLRSLyKTFEh3YAyFYLQ/yMAgt5D2dGCXFs=
-X-Gm-Gg: ASbGnct5QxsTY1OV/coUusDwThMpN5y9GOwXSy7b7MVxL5VWM4ZSbqho7k2bW/sXvxP
- 2Vgy7YzxNx7qvPibS56IvHEnwyjrN7GHV3xfvKKlQ+AMQKz9mxgJd4x5MgCe5W0zGACZD9sIbaC
- GCiPcM+Id2qOSF5dl+xRF6XMLdE/NOiMmg6cjC1hDHlLybKyt5ySkKoIrwN/DhwK+EYJJIL+kRe
- Qs0QTxFmoMrNqf7eGbdcHdHyfG9T08X/H8l4TcNSDtjQLlBI5qdW0+2kr3hQkOQ0JmkH6OEEpuA
- qp5OkwPJea6O2vuah1a5+A4eVEObayXefVslr6NXSr1E943pJGEtRfg=
-X-Google-Smtp-Source: AGHT+IH8ASYqTlXTXDK0+KMI4mgW4T9i6IXXAmCq3eyAvwGDpL06RwxTDGadn72J+tfKUPzWlwpeng==
-X-Received: by 2002:a05:600c:5025:b0:43c:e7a7:1e76 with SMTP id
- 5b1f17b1804b1-441bbe90129mr15707305e9.1.1746177850040; 
- Fri, 02 May 2025 02:24:10 -0700 (PDT)
+ AJvYcCWTqXwX0wjHQm36oW5hzH/CNPEGOVPclOlv94mbMLEpGyOID8LxOmcXvQYW6QN9LS0igoNLrjAowbQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwF5I7zYIUyaMfuXf+LFJao3iSVzkT0u9Q9h5x/obffWQgzzP0+
+ 6hdOlWBEHfRZI2AIW755qM+TauI9Kudv8Bpxa+hXQERpyhq9EsKXp23cq8bCf1k=
+X-Gm-Gg: ASbGncupnghMPwl0h0618Uhtjz0Dh4zWpLtvY2FLZqr80ixZgfftGIwagrCr5uh/foQ
+ VSjrs7LVNkoLfULBCEqhAnLS+8qj+0P0CFJfnbfHWlqYLeJOfjM5wJmYzAbql0+5WYpNawhFDBz
+ PmS3D+hAl3J5ipHlTFpzwlDtF9YPqTr7nzZFwEOy0uPTeYoRtzdFAvPkjxie0E8RBA7KbByfO/K
+ wnFTi/CuDz8DsOgj1CeKzd++VhVh0eUkD7oTWSUFMg8e4zygGRyfrjBu/qCcRZOkT7v7nNsUNd4
+ vffP7S8tHeePdTWX8cGi4vkhsTzYCkCNPojI2dwCA9FuREnha9kR9tKC6UO6N0xCUg==
+X-Google-Smtp-Source: AGHT+IHMqVW9tymHBRisxIe720x28lWrvlOreai7EE+EDDsKVl7vnxbBwnRwUrNUYLgt4A+ULM1AVA==
+X-Received: by 2002:a05:6000:2410:b0:39e:e438:8e32 with SMTP id
+ ffacd0b85a97d-3a099af1b9amr1557878f8f.55.1746177885748; 
+ Fri, 02 May 2025 02:24:45 -0700 (PDT)
 Received: from [192.168.0.101] ([81.79.92.254])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-441b8a31576sm37734165e9.37.2025.05.02.02.24.09
+ ffacd0b85a97d-3a099b0efbfsm1632103f8f.69.2025.05.02.02.24.45
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 02 May 2025 02:24:09 -0700 (PDT)
-Message-ID: <e34c0c3a-f8db-47c1-9763-0e3a1056afb6@ursulin.net>
-Date: Fri, 2 May 2025 10:24:08 +0100
+ Fri, 02 May 2025 02:24:45 -0700 (PDT)
+Message-ID: <b66c8972-bd33-4e66-81a7-7e6b2d6e34ba@ursulin.net>
+Date: Fri, 2 May 2025 10:24:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/error: drop dmesg suggestion to file bugs on GPU
- hangs
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250429115055.2133143-1-jani.nikula@intel.com>
+Subject: Re: [PATCH] drm/i915/backlight: drop dmesg suggestion to file bugs
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+References: <20250429112534.2121656-1-jani.nikula@intel.com>
 Content-Language: en-GB
 From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250429115055.2133143-1-jani.nikula@intel.com>
+In-Reply-To: <20250429112534.2121656-1-jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,78 +91,54 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 29/04/2025 12:50, Jani Nikula wrote:
-> We haven't updated the DRIVER_TIMESTAMP since commit 3570bd989acc
-> ("drm/i915: Update DRIVER_DATE to 20230929") 1½ years ago. Before then,
-> the previous update was commit 139caf7ca286 ("drm/i915: Update
-> DRIVER_DATE to 20201103") 4+ years ago. The DRIVER_DATE has also been
-> removed altogether.
+On 29/04/2025 12:25, Jani Nikula wrote:
+> Drop the FDO_BUG_URL from the source, and stop suggesting to file bugs
+> on DPCD backlight issues. We don't do this anywhere else in display,
+> this isn't a special snowflake.
 > 
-> We've used the DRIVER_TIMESTAMP to log suggestions to file bugs on GPU
-> hangs when they happen on a driver less than six months old. Combined
-> with the sporadic DRIVER_TIMESTAMP updates, we really haven't logged the
-> suggestions for years.
+> As a consequence, also drop the dependency on i915_utils.h from
+> intel_dp_aux_backlight.c.
 > 
-> Just stop logging the suggestion to file bugs altogether, and remove
-> DRIVER_TIMESTAMP. This doesn't really change anything wrt to logging GPU
-> errors or how we handle bugs. And effectively we already stopped logging
-> the message a year ago when we stopped updating DRIVER_TIMESTAMP.
-> 
-> Instead, add an unconditional message about the GPU error state
-> location.
-> 
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->   drivers/gpu/drm/i915/i915_driver.h    |  1 -
->   drivers/gpu/drm/i915/i915_gpu_error.c | 13 ++-----------
->   2 files changed, 2 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 +--
+>   drivers/gpu/drm/i915/i915_utils.h                     | 2 --
+>   2 files changed, 1 insertion(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.h b/drivers/gpu/drm/i915/i915_driver.h
-> index 4b67ad9a61cd..1e95ecb2a163 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.h
-> +++ b/drivers/gpu/drm/i915/i915_driver.h
-> @@ -15,7 +15,6 @@ struct drm_printer;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 20ab90acb351..271b27c9de51 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -36,7 +36,6 @@
 >   
->   #define DRIVER_NAME		"i915"
->   #define DRIVER_DESC		"Intel Graphics"
-> -#define DRIVER_TIMESTAMP	1695980603
+>   #include <drm/drm_print.h>
 >   
->   extern const struct dev_pm_ops i915_pm_ops;
+> -#include "i915_utils.h"
+>   #include "intel_backlight.h"
+>   #include "intel_display_core.h"
+>   #include "intel_display_types.h"
+> @@ -149,7 +148,7 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+>   	    !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
+>   	      BIT(HDMI_STATIC_METADATA_TYPE1))) {
+>   		drm_info(display->drm,
+> -			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d. needs this, please file a _new_ bug report on drm/i915, see " FDO_BUG_URL " for details.\n",
+> +			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d.\n",
+>   			 connector->base.base.id, connector->base.name,
+>   			 INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL);
+>   		return false;
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index 609214231ffc..f7fb40cfdb70 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -40,8 +40,6 @@
+>   struct drm_i915_private;
+>   struct timer_list;
 >   
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index aa2cad910902..4f785cdbd155 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -2133,7 +2133,6 @@ i915_gpu_coredump(struct intel_gt *gt, intel_engine_mask_t engine_mask, u32 dump
->   void i915_error_state_store(struct i915_gpu_coredump *error)
->   {
->   	struct drm_i915_private *i915;
-> -	static bool warned;
+> -#define FDO_BUG_URL "https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html"
+> -
+>   #define MISSING_CASE(x) WARN(1, "Missing case (%s == %ld)\n", \
+>   			     __stringify(x), (long)(x))
 >   
->   	if (IS_ERR_OR_NULL(error))
->   		return;
-> @@ -2147,16 +2146,8 @@ void i915_error_state_store(struct i915_gpu_coredump *error)
->   
->   	i915_gpu_coredump_get(error);
->   
-> -	if (!xchg(&warned, true) &&
-> -	    ktime_get_real_seconds() - DRIVER_TIMESTAMP < DAY_AS_SECONDS(180)) {
-> -		pr_info("GPU hangs can indicate a bug anywhere in the entire gfx stack, including userspace.\n");
-> -		pr_info("Please file a _new_ bug report at https://gitlab.freedesktop.org/drm/intel/issues/new.\n");
-> -		pr_info("Please see https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html for details.\n");
-> -		pr_info("drm/i915 developers can then reassign to the right component if it's not a kernel issue.\n");
-> -		pr_info("The GPU crash dump is required to analyze GPU hangs, so please always attach it.\n");
-> -		pr_info("GPU crash dump saved to /sys/class/drm/card%d/error\n",
-> -			i915->drm.primary->index);
-> -	}
-> +	drm_info(&i915->drm, "GPU error state saved to /sys/class/drm/card%d/error\n",
-> +		 i915->drm.primary->index);
->   }
->   
->   /**
 
 Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 
