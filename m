@@ -2,71 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BCE7AA7299
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 14:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D1AAA713C
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 May 2025 14:07:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A55110E8FC;
-	Fri,  2 May 2025 12:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A374210E05D;
+	Fri,  2 May 2025 12:07:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amazon.com header.i=@amazon.com header.b="pXUptHJZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f26FM5/9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-fw-9105.amazon.com (smtp-fw-9105.amazon.com
- [207.171.188.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB53810E198;
- Thu,  1 May 2025 04:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
- t=1746073669; x=1777609669;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dLcL67+O3gdWGHtlIunDL8NWJWKO9aINTCEgtB1sDsM=;
- b=pXUptHJZWWQHe0wQ1soLcpBipxNzau9kIRIDoCiJJpXKBORer/2tBK2u
- XJVrutd7DAyjiu47aIayzynmZ6AJIsPyEiafDSCmsGPTv5J9CZENeEeCA
- TcuOU5juP7J3aJrxTgt8AtcwitYGHUMeAGvZypJrCJh8iJEdn3Eg3Aq9S Y=;
-X-IronPort-AV: E=Sophos;i="6.15,253,1739836800"; d="scan'208";a="15368904"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO
- smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
- by smtp-border-fw-9105.sea19.amazon.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 May 2025 04:27:34 +0000
-Received: from EX19MTAUWB001.ant.amazon.com [10.0.7.35:50737]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.21.68:2525]
- with esmtp (Farcaster)
- id f4ae1998-50aa-4fe2-9700-d7b1c72e7189; Thu, 1 May 2025 04:27:33 +0000 (UTC)
-X-Farcaster-Flow-ID: f4ae1998-50aa-4fe2-9700-d7b1c72e7189
-Received: from EX19D004ANA001.ant.amazon.com (10.37.240.138) by
- EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Thu, 1 May 2025 04:27:33 +0000
-Received: from 6c7e67bfbae3.amazon.com (10.187.171.60) by
- EX19D004ANA001.ant.amazon.com (10.37.240.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.1544.14;
- Thu, 1 May 2025 04:27:27 +0000
-From: Kuniyuki Iwashima <kuniyu@amazon.com>
-To: <jlayton@kernel.org>
-CC: <airlied@gmail.com>, <akpm@linux-foundation.org>, <andrew@lunn.ch>,
- <davem@davemloft.net>, <dri-devel@lists.freedesktop.org>,
- <edumazet@google.com>, <horms@kernel.org>, <intel-gfx@lists.freedesktop.org>, 
- <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <kuba@kernel.org>, <kuniyu@amazon.com>, <linux-kernel@vger.kernel.org>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <nathan@kernel.org>, <netdev@vger.kernel.org>, <pabeni@redhat.com>,
- <qasdev00@gmail.com>, <rodrigo.vivi@intel.com>, <simona@ffwll.ch>,
- <tursulin@ursulin.net>, <tzimmermann@suse.de>
-Subject: Re: [PATCH v6 08/10] net: add symlinks to ref_tracker_dir for netns
-Date: Wed, 30 Apr 2025 21:26:47 -0700
-Message-ID: <20250501042719.81002-1-kuniyu@amazon.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <0c4e532ed8b58f8253a14f8ed59d93523a096f16.camel@kernel.org>
-References: <0c4e532ed8b58f8253a14f8ed59d93523a096f16.camel@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F04110E05D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  2 May 2025 12:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746187651; x=1777723651;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ExaudXTJ4YsFxnnzyzh8lwsP9cxskn6SYClkIPnNKSY=;
+ b=f26FM5/9ip2ag79AvoN2iee9UFNJS/m8iI8ltQS2KcbaaeadBzAxznrA
+ cvB0IQudH3iEMB3x8OvJ5inQOY8vnSsHvATW2v4EyaZSqhsJCem1vBpFP
+ VBzWKWwZPWdsl/myeUfOcx5+I6upH5I7CEFHhpCC7n0U/8kO8AKHqqPWJ
+ 2wlb2/i3XkvXGblR1dzulHDFxPGIdDr7AB5fMG4995Z5C1sIe729N+DxU
+ ZPuBg8cu6IAQUuVAnjYdTmCMDzbCCG/2SlgEOF0/AseCLROJ4DdM5kVaY
+ +WJ6Uq5SWuwnrF694eiA06NtXZeL0qfRzd6cdpBwO4tx5jKFbA7UH2isk w==;
+X-CSE-ConnectionGUID: Tjr90eZJT9SXghw/QWjr6Q==
+X-CSE-MsgGUID: x0erQsEERau99V7WuNA6Uw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11421"; a="47126485"
+X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="47126485"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2025 05:07:30 -0700
+X-CSE-ConnectionGUID: 43luh+grQMysxgcF/SmNdA==
+X-CSE-MsgGUID: nAvRfYosS3aOumGv/S0hBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,256,1739865600"; d="scan'208";a="139433441"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.144])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 May 2025 05:07:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/irq: stop using HAS_GMCH()
+Date: Fri,  2 May 2025 15:07:25 +0300
+Message-Id: <20250502120725.439800-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.187.171.60]
-X-ClientProxiedBy: EX19D046UWB001.ant.amazon.com (10.13.139.187) To
- EX19D004ANA001.ant.amazon.com (10.37.240.138)
-X-Mailman-Approved-At: Fri, 02 May 2025 12:52:18 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,100 +67,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jeff Layton <jlayton@kernel.org>
-Date: Wed, 30 Apr 2025 21:07:20 -0700
-> On Wed, 2025-04-30 at 20:50 -0700, Kuniyuki Iwashima wrote:
-> > From: Jeff Layton <jlayton@kernel.org>
-> > Date: Wed, 30 Apr 2025 20:42:40 -0700
-> > > On Wed, 2025-04-30 at 20:07 -0700, Kuniyuki Iwashima wrote:
-> > > > From: Jeff Layton <jlayton@kernel.org>
-> > > > Date: Wed, 30 Apr 2025 19:59:23 -0700
-> > > > > On Wed, 2025-04-30 at 14:29 -0700, Kuniyuki Iwashima wrote:
-> > > > > > From: Jeff Layton <jlayton@kernel.org>
-> > > > > > Date: Wed, 30 Apr 2025 08:06:54 -0700
-> > > > > > > After assigning the inode number to the namespace, use it to create a
-> > > > > > > unique name for each netns refcount tracker with the ns.inum value in
-> > > > > > > it, and register a symlink to the debugfs file for it.
-> > > > > > > 
-> > > > > > > init_net is registered before the ref_tracker dir is created, so add a
-> > > > > > > late_initcall() to register its files and symlinks.
-> > > > > > > 
-> > > > > > > Signed-off-by: Jeff Layton <jlayton@kernel.org>
-> > > > > > > ---
-> > > > > > >  net/core/net_namespace.c | 28 +++++++++++++++++++++++++++-
-> > > > > > >  1 file changed, 27 insertions(+), 1 deletion(-)
-> > > > > > > 
-> > > > > > > diff --git a/net/core/net_namespace.c b/net/core/net_namespace.c
-> > > > > > > index 008de9675ea98fa8c18628b2f1c3aee7f3ebc9c6..6cbc8eabb8e56c847fc34fa8ec9994e8b275b0af 100644
-> > > > > > > --- a/net/core/net_namespace.c
-> > > > > > > +++ b/net/core/net_namespace.c
-> > > > > > > @@ -763,12 +763,38 @@ struct net *get_net_ns_by_pid(pid_t pid)
-> > > > > > >  }
-> > > > > > >  EXPORT_SYMBOL_GPL(get_net_ns_by_pid);
-> > > > > > >  
-> > > > > > > +#ifdef CONFIG_NET_NS_REFCNT_TRACKER
-> > > > > > > +static void net_ns_net_debugfs(struct net *net)
-> > > > > > > +{
-> > > > > > > +	ref_tracker_dir_symlink(&net->refcnt_tracker, "netns-%u-refcnt", net->ns.inum);
-> > > > > > > +	ref_tracker_dir_symlink(&net->notrefcnt_tracker, "netns-%u-notrefcnt", net->ns.inum);
-> > > > > > 
-> > > > > > Could you use net->net_cookie ?
-> > > > > > 
-> > > > > > net->ns.inum is always 1 when CONFIG_PROC_FS=n.
-> > > > > 
-> > > > > My main use-case for this is to be able to match the inode number in
-> > > > > the /proc/<pid>/ns/net symlink with the correct ref_tracker debugfs
-> > > > > file. Is there a way to use the net_cookie to make that association?
-> > > > 
-> > > > It's roundabout, but  net_cookie can be retrieved by creating a
-> > > > random socket in the netns and calling setsockopt(SO_NETNS_COOKIE).
-> > > > 
-> > > > Ido proposed a handy ip-netns subcommand here, and I guess it will
-> > > > be implemented soon(?)
-> > > > https://lore.kernel.org/netdev/1d99d7ccfc3a7a18840948ab6ba1c0b5fad90901.camel@fejes.dev/
-> > > 
-> > > For the cases where I was looking at netns leaks, there were no more
-> > > processes in the container, so there was no way to enter the container
-> > > and spawn a socket at that point.
-> > 
-> > Then how do you get net->ns.inum ?
-> > 
-> 
-> In my case, I was looking at /sys/kernel/debug/sunrpc/rpc_xprt/*/info.
-> That also displays net->ns.inum in the same format. When I was
-> originally working on this, the problem I was chasing was due to stuck
-> RPC transports (rpc_xprt).
+Right or wrong, HAS_GMCH() has become a display only thing. The last
+three users outside of display are in irq code. Reorder the if ladders
+to stop using HAS_GMCH().
 
-Thanks for the info.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 105 +++++++++++++++-----------------
+ 1 file changed, 48 insertions(+), 57 deletions(-)
 
-Prefarably the debugfs should also display netns_cookie instaed of inum,
-and the change is acceptable as the debugfs is not uAPI.
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index d06694d6531e..1a3b504252c7 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -1175,71 +1175,62 @@ void intel_irq_fini(struct drm_i915_private *i915)
+ 
+ static irq_handler_t intel_irq_handler(struct drm_i915_private *dev_priv)
+ {
+-	if (HAS_GMCH(dev_priv)) {
+-		if (IS_CHERRYVIEW(dev_priv))
+-			return cherryview_irq_handler;
+-		else if (IS_VALLEYVIEW(dev_priv))
+-			return valleyview_irq_handler;
+-		else if (GRAPHICS_VER(dev_priv) == 4)
+-			return i965_irq_handler;
+-		else
+-			return i915_irq_handler;
+-	} else {
+-		if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
+-			return dg1_irq_handler;
+-		else if (GRAPHICS_VER(dev_priv) >= 11)
+-			return gen11_irq_handler;
+-		else if (GRAPHICS_VER(dev_priv) >= 8)
+-			return gen8_irq_handler;
+-		else
+-			return ilk_irq_handler;
+-	}
++	if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
++		return dg1_irq_handler;
++	else if (GRAPHICS_VER(dev_priv) >= 11)
++		return gen11_irq_handler;
++	else if (IS_CHERRYVIEW(dev_priv))
++		return cherryview_irq_handler;
++	else if (GRAPHICS_VER(dev_priv) >= 8)
++		return gen8_irq_handler;
++	else if (IS_VALLEYVIEW(dev_priv))
++		return valleyview_irq_handler;
++	else if (GRAPHICS_VER(dev_priv) >= 5)
++		return ilk_irq_handler;
++	else if (GRAPHICS_VER(dev_priv) == 4)
++		return i965_irq_handler;
++	else
++		return i915_irq_handler;
+ }
+ 
+ static void intel_irq_reset(struct drm_i915_private *dev_priv)
+ {
+-	if (HAS_GMCH(dev_priv)) {
+-		if (IS_CHERRYVIEW(dev_priv))
+-			cherryview_irq_reset(dev_priv);
+-		else if (IS_VALLEYVIEW(dev_priv))
+-			valleyview_irq_reset(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) == 4)
+-			i965_irq_reset(dev_priv);
+-		else
+-			i915_irq_reset(dev_priv);
+-	} else {
+-		if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
+-			dg1_irq_reset(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) >= 11)
+-			gen11_irq_reset(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) >= 8)
+-			gen8_irq_reset(dev_priv);
+-		else
+-			ilk_irq_reset(dev_priv);
+-	}
++	if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
++		dg1_irq_reset(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 11)
++		gen11_irq_reset(dev_priv);
++	else if (IS_CHERRYVIEW(dev_priv))
++		cherryview_irq_reset(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 8)
++		gen8_irq_reset(dev_priv);
++	else if (IS_VALLEYVIEW(dev_priv))
++		valleyview_irq_reset(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 5)
++		ilk_irq_reset(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) == 4)
++		i965_irq_reset(dev_priv);
++	else
++		i915_irq_reset(dev_priv);
+ }
+ 
+ static void intel_irq_postinstall(struct drm_i915_private *dev_priv)
+ {
+-	if (HAS_GMCH(dev_priv)) {
+-		if (IS_CHERRYVIEW(dev_priv))
+-			cherryview_irq_postinstall(dev_priv);
+-		else if (IS_VALLEYVIEW(dev_priv))
+-			valleyview_irq_postinstall(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) == 4)
+-			i965_irq_postinstall(dev_priv);
+-		else
+-			i915_irq_postinstall(dev_priv);
+-	} else {
+-		if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
+-			dg1_irq_postinstall(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) >= 11)
+-			gen11_irq_postinstall(dev_priv);
+-		else if (GRAPHICS_VER(dev_priv) >= 8)
+-			gen8_irq_postinstall(dev_priv);
+-		else
+-			ilk_irq_postinstall(dev_priv);
+-	}
++	if (GRAPHICS_VER_FULL(dev_priv) >= IP_VER(12, 10))
++		dg1_irq_postinstall(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 11)
++		gen11_irq_postinstall(dev_priv);
++	else if (IS_CHERRYVIEW(dev_priv))
++		cherryview_irq_postinstall(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 8)
++		gen8_irq_postinstall(dev_priv);
++	else if (IS_VALLEYVIEW(dev_priv))
++		valleyview_irq_postinstall(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) >= 5)
++		ilk_irq_postinstall(dev_priv);
++	else if (GRAPHICS_VER(dev_priv) == 4)
++		i965_irq_postinstall(dev_priv);
++	else
++		i915_irq_postinstall(dev_priv);
+ }
+ 
+ /**
+-- 
+2.39.5
 
-Then we don't need to expose possibly non-unique value just for historical
-reason.
-
-
-> 
-> 
-> > 
-> > > 
-> > > The point of the symlinks is to have a way to easily identify what
-> > > you're tracking. NAME_MAX is 255. We could do something like this
-> > > instead:
-> > > 
-> > >    snprintf(..., "netns-%u-%llx-refcnt", net->ns.inum, net->net_cookie);
-> > > 
-> > > Obviously the inums would all be 1 when PROC_FS=n, but the cookies
-> > > would be unique. Would that work?
-> > 
-> > This works, but depending on the question above, there's no point in
-> > using inum ?
-> 
-> Having the inum is definitely useful to me, particularly since the
-> net_cookie would be pretty useless for the problems I've been chasing.
->  
-> I'll plan to respin this to include the net_cookie though, since that
-> would disambiguate the names when PROC_FS=n. It might also turn out to
-> be useful for someone, once there is a way to fetch the net_cookie from
-> userland. 
-> -- 
