@@ -2,67 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6529AA9166
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 May 2025 12:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9764AA91E4
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 May 2025 13:18:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC3DE10E2D6;
-	Mon,  5 May 2025 10:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D07D10E3CD;
+	Mon,  5 May 2025 11:18:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvfFX/M1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huWHhHMX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 979AF10E0F8;
- Mon,  5 May 2025 10:53:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 659C610E3CD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 May 2025 11:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746442412; x=1777978412;
+ t=1746443914; x=1777979914;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=N7mgrqYQKGzNDO35iLT+P3KVR96WDlyoRG4PtpOwF+s=;
- b=mvfFX/M118F2rrc3UrWZabqlWFyO6hscRxXrkamIDeGVa2k4R38sSR0a
- +hsiyr2DyuDTgxslw3QrRAeJOSeXQHUol43KK1N7+xa6oVcVauw+zq/8F
- wiDSdjiFmC4+LViyvtGxw9tjDGilLsfihsq5yb/otKt4VyeZ3fBkY7cKo
- ciO9ur7mUBSP6DIBJPJKhSF+Wl4MJi4fdQTjoucO/wrwTSqPMY+TFToRb
- UNFyA5/j9wnfnMM/FVnlCRrzBw2HIRKwUdplUqpdfRc6/cr/RKg3v148G
- P1rCFGKJW+aU2CzxlGHv/PLyfUjKOMw1a+x91r5i4YzkZIyB6P+sFEXkm Q==;
-X-CSE-ConnectionGUID: wIK1asV1Skax4e1JwokQcA==
-X-CSE-MsgGUID: rSG9QSHgTbGUZ1GDYU0d+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11423"; a="59034745"
-X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="59034745"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2025 03:53:32 -0700
-X-CSE-ConnectionGUID: HXNZSRGHR5uBqroKljpNZw==
-X-CSE-MsgGUID: inFkX1+LTKGZEArRIH0EwA==
+ message-id:mime-version;
+ bh=fV++2/xJmAByTvDKI7AfzC/XV63ix/lgOAMMKzQUoXg=;
+ b=huWHhHMXHCm1Bo+N08r9Ud6m639pOCk2s5kMNXULg7mmn+hTyaDRDh93
+ 8tS+XltuzCJulCc2XgTxuPaTKr965GiLY6YzeQFnUzZ+rJ7wLNrBvsmvr
+ IkI0lDSaYo341l65uQ9zPcpy960KAKeWMeV5Ca6Vgoqp9jZErR2YsclU2
+ LIrErp5jW65iuMi1qWLxU72MmER6bnnwQeh/Gfe3ZJEEdihbdEWrovEDP
+ kBSX6EcdYAlVXBi6Efkm9dZbpoWdwoEGEaJe5Yq5CYterYodime72K+nH
+ bwUtBPFygbSKDDGUJ6JY1+3oVNzeKj70JRVE82+yEbnM7vlIvX2r/zB4Q w==;
+X-CSE-ConnectionGUID: 99/HhvfbSXOENt9Vpit79w==
+X-CSE-MsgGUID: Z9ZTeijoReiyjNv/vR7YIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11423"; a="58709993"
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="58709993"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2025 04:18:32 -0700
+X-CSE-ConnectionGUID: xuv3Y19ATROi7tSZioOfng==
+X-CSE-MsgGUID: rRrELvZQTfuAzGkzbM6R0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="140378273"
+X-IronPort-AV: E=Sophos;i="6.15,262,1739865600"; d="scan'208";a="140382349"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.232])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2025 03:53:28 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2025 04:18:29 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, "Hall,
- Christopher S" <christopher.s.hall@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Keller,  Jacob E" <jacob.e.keller@intel.com>,
- "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
- "Saarinen, Jani" <jani.saarinen@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, regressions@lists.linux.dev, "Linux regression
- tracking (Thorsten Leemhuis)" <regressions@leemhuis.info>
-Subject: [REGRESSION] v6.15-rc3: 1a931c4f5e68 ("igc: add lock preventing
- multiple simultaneous PTM transactions")
-In-Reply-To: <SJ1PR11MB6129BBB9E38F6DB731604E94B9812@SJ1PR11MB6129.namprd11.prod.outlook.com>
+To: Al Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org
+Cc: Melissa Wen <mwen@igalia.com>, Christian Brauner <brauner@kernel.org>,
+ Jan Kara <jack@suse.cz>, intel-gfx@lists.freedesktop.org, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>
+Subject: Re: [PATCH][CFT][RFC] sanitize handling of long-term internal mounts
+In-Reply-To: <20250503230251.GA2023217@ZenIV>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <SJ1PR11MB6129BBB9E38F6DB731604E94B9812@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Date: Mon, 05 May 2025 13:53:24 +0300
-Message-ID: <87cycnwcpn.fsf@intel.com>
+References: <20250503230251.GA2023217@ZenIV>
+Date: Mon, 05 May 2025 14:18:26 +0300
+Message-ID: <875xifwbjx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,83 +70,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 28 Apr 2025, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.=
-com> wrote:
-> Hello Christopher,
->
-> This mail is regarding a regression we are seeing in our CI runs[1] on dr=
-m-tip[2] repository.
+On Sun, 04 May 2025, Al Viro <viro@zeniv.linux.org.uk> wrote:
+> [folks, review and testing would be very welcome; i915 and v3d conversions
+> are essentially untested and I would really like to hear from DRM people
+> before pushing those anywhere.  I've no problem with splitting these
+> parts off and putting the infrastructure bits into a never-rebased
+> branch, if somebody prefers to have those taken via drm tree]
 
-The regressing commit is in v6.15-rc3. Updated subject and Cc'd
-regression tracking.
+I bounced this to intel-gfx with hopes to get some CI results on it.
+
+Also Cc: Joonas and Tvrtko.
 
 BR,
 Jani.
 
+> Original rationale for those had been the reduced cost of mntput()
+> for the stuff that is mounted somewhere.  Mount refcount increments and
+> decrements are frequent; what's worse, they tend to concentrate on the
+> same instances and cacheline pingpong is quite noticable.
+>
+> As the result, mount refcounts are per-cpu; that allows a very cheap
+> increment.  Plain decrement would be just as easy, but decrement-and-test
+> is anything but (we need to add the components up, with exclusion against
+> possible increment-from-zero, etc.).
+>
+> Fortunately, there is a very common case where we can tell that decrement
+> won't be the final one - if the thing we are dropping is currently
+> mounted somewhere.  We have an RCU delay between the removal from mount
+> tree and dropping the reference that used to pin it there, so we can
+> just take rcu_read_lock() and check if the victim is mounted somewhere.
+> If it is, we can go ahead and decrement without and further checks -
+> the reference we are dropping is not the last one.  If it isn't, we
+> get all the fun with locking, carefully adding up components, etc.,
+> but the majority of refcount decrements end up taking the fast path.
+>
+> There is a major exception, though - pipes and sockets.  Those live
+> on the internal filesystems that are not going to be mounted anywhere.
+> They are not going to be _un_mounted, of course, so having to take the
+> slow path every time a pipe or socket gets closed is really obnoxious.
+> Solution had been to mark them as long-lived ones - essentially faking
+> "they are mounted somewhere" indicator.
+>
+> With minor modification that works even for ones that do eventually get
+> dropped - all it takes is making sure we have an RCU delay between
+> clearing the "mounted somewhere" indicator and dropping the reference.
+>
+> There are some additional twists (if you want to drop a dozen of such
+> internal mounts, you'd be better off with clearing the indicator on
+> all of them, doing an RCU delay once, then dropping the references),
+> but in the basic form it had been
+> 	* use kern_mount() if you want your internal mount to be
+> a long-term one.
+> 	* use kern_unmount() to undo that.
+>
+> Unfortunately, the things did rot a bit during the mount API reshuffling.
+> In several cases we have lost the "fake the indicator" part; kern_unmount()
+> on the unmount side remained (it doesn't warn if you use it on a mount
+> without the indicator), but all benefits regaring mntput() cost had been
+> lost.
+>
+> To get rid of that bitrot, let's add a new helper that would work
+> with fs_context-based API: fc_mount_longterm().  It's a counterpart
+> of fc_mount() that does, on success, mark its result as long-term.
+> It must be paired with kern_unmount() or equivalents.
+>
+> Converted:
+> 	1) mqueue (it used to use kern_mount_data() and the umount side
+> is still as it used to be)
+> 	2) hugetlbfs (used to use kern_mount_data(), internal mount is
+> never unmounted in this one)
+> 	3) i915 gemfs (used to be kern_mount() + manual remount to set
+> options, still uses kern_unmount() on umount side)
+> 	4) v3d gemfs (copied from i915)
+>
+> Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+> ---
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gemfs.c b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> index 46b9a17d6abc..aae7c0a3c966 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gemfs.c
+> @@ -6,16 +6,23 @@
+>  
+>  #include <linux/fs.h>
+>  #include <linux/mount.h>
+> +#include <linux/fs_context.h>
+>  
+>  #include "i915_drv.h"
+>  #include "i915_gemfs.h"
+>  #include "i915_utils.h"
+>  
+> +static int add_param(struct fs_context *fc, const char *key, const char *val)
+> +{
+> +	return vfs_parse_fs_string(fc, key, val, strlen(val));
+> +}
+> +
+>  void i915_gemfs_init(struct drm_i915_private *i915)
+>  {
+> -	char huge_opt[] = "huge=within_size"; /* r/w */
+>  	struct file_system_type *type;
+> +	struct fs_context *fc;
+>  	struct vfsmount *gemfs;
+> +	int ret;
+>  
+>  	/*
+>  	 * By creating our own shmemfs mountpoint, we can pass in
+> @@ -39,8 +46,16 @@ void i915_gemfs_init(struct drm_i915_private *i915)
+>  	if (!type)
+>  		goto err;
+>  
+> -	gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, huge_opt);
+> -	if (IS_ERR(gemfs))
+> +	fc = fs_context_for_mount(type, SB_KERNMOUNT);
+> +	if (IS_ERR(fc))
+> +		goto err;
+> +	ret = add_param(fc, "source", "tmpfs");
+> +	if (!ret)
+> +		ret = add_param(fc, "huge", "within_size");
+> +	if (!ret)
+> +		gemfs = fc_mount_longterm(fc);
+> +	put_fs_context(fc);
+> +	if (ret)
+>  		goto err;
+>  
+>  	i915->mm.gemfs = gemfs;
+> diff --git a/drivers/gpu/drm/v3d/v3d_gemfs.c b/drivers/gpu/drm/v3d/v3d_gemfs.c
+> index 4c5e18590a5c..8ec6ed82b3d9 100644
+> --- a/drivers/gpu/drm/v3d/v3d_gemfs.c
+> +++ b/drivers/gpu/drm/v3d/v3d_gemfs.c
+> @@ -3,14 +3,21 @@
+>  
+>  #include <linux/fs.h>
+>  #include <linux/mount.h>
+> +#include <linux/fs_context.h>
+>  
+>  #include "v3d_drv.h"
+>  
+> +static int add_param(struct fs_context *fc, const char *key, const char *val)
+> +{
+> +	return vfs_parse_fs_string(fc, key, val, strlen(val));
+> +}
+> +
+>  void v3d_gemfs_init(struct v3d_dev *v3d)
+>  {
+> -	char huge_opt[] = "huge=within_size";
+>  	struct file_system_type *type;
+> +	struct fs_context *fc;
+>  	struct vfsmount *gemfs;
+> +	int ret;
+>  
+>  	/*
+>  	 * By creating our own shmemfs mountpoint, we can pass in
+> @@ -28,8 +35,16 @@ void v3d_gemfs_init(struct v3d_dev *v3d)
+>  	if (!type)
+>  		goto err;
+>  
+> -	gemfs = vfs_kern_mount(type, SB_KERNMOUNT, type->name, huge_opt);
+> -	if (IS_ERR(gemfs))
+> +	fc = fs_context_for_mount(type, SB_KERNMOUNT);
+> +	if (IS_ERR(fc))
+> +		goto err;
+> +	ret = add_param(fc, "source", "tmpfs");
+> +	if (!ret)
+> +		ret = add_param(fc, "huge", "within_size");
+> +	if (!ret)
+> +		gemfs = fc_mount_longterm(fc);
+> +	put_fs_context(fc);
+> +	if (ret)
+>  		goto err;
+>  
+>  	v3d->gemfs = gemfs;
+> diff --git a/fs/hugetlbfs/inode.c b/fs/hugetlbfs/inode.c
+> index e4de5425838d..4e0397775167 100644
+> --- a/fs/hugetlbfs/inode.c
+> +++ b/fs/hugetlbfs/inode.c
+> @@ -1587,7 +1587,7 @@ static struct vfsmount *__init mount_one_hugetlbfs(struct hstate *h)
+>  	} else {
+>  		struct hugetlbfs_fs_context *ctx = fc->fs_private;
+>  		ctx->hstate = h;
+> -		mnt = fc_mount(fc);
+> +		mnt = fc_mount_longterm(fc);
+>  		put_fs_context(fc);
+>  	}
+>  	if (IS_ERR(mnt))
+> diff --git a/fs/namespace.c b/fs/namespace.c
+> index 6f7b2174f25b..07f636036b86 100644
+> --- a/fs/namespace.c
+> +++ b/fs/namespace.c
+> @@ -1258,6 +1258,15 @@ struct vfsmount *fc_mount(struct fs_context *fc)
+>  }
+>  EXPORT_SYMBOL(fc_mount);
+>  
+> +struct vfsmount *fc_mount_longterm(struct fs_context *fc)
+> +{
+> +	struct vfsmount *mnt = fc_mount(fc);
+> +	if (!IS_ERR(mnt))
+> +		real_mount(mnt)->mnt_ns = MNT_NS_INTERNAL;
+> +	return mnt;
+> +}
+> +EXPORT_SYMBOL(fc_mount_longterm);
+> +
+>  struct vfsmount *vfs_kern_mount(struct file_system_type *type,
+>  				int flags, const char *name,
+>  				void *data)
+> diff --git a/include/linux/mount.h b/include/linux/mount.h
+> index dcc17ce8a959..9376d76dd61f 100644
+> --- a/include/linux/mount.h
+> +++ b/include/linux/mount.h
+> @@ -94,6 +94,7 @@ int mnt_get_write_access(struct vfsmount *mnt);
+>  void mnt_put_write_access(struct vfsmount *mnt);
+>  
+>  extern struct vfsmount *fc_mount(struct fs_context *fc);
+> +extern struct vfsmount *fc_mount_longterm(struct fs_context *fc);
+>  extern struct vfsmount *vfs_create_mount(struct fs_context *fc);
+>  extern struct vfsmount *vfs_kern_mount(struct file_system_type *type,
+>  				      int flags, const char *name,
+> diff --git a/ipc/mqueue.c b/ipc/mqueue.c
+> index 35b4f8659904..daabf7f02b63 100644
+> --- a/ipc/mqueue.c
+> +++ b/ipc/mqueue.c
+> @@ -482,7 +482,7 @@ static struct vfsmount *mq_create_mount(struct ipc_namespace *ns)
+>  	put_user_ns(fc->user_ns);
+>  	fc->user_ns = get_user_ns(ctx->ipc_ns->user_ns);
+>  
+> -	mnt = fc_mount(fc);
+> +	mnt = fc_mount_longterm(fc);
+>  	put_fs_context(fc);
+>  	return mnt;
+>  }
 
->
-> `````````````````````````````````````````````````````````````````````````=
-````````
-> <4>[    7.891028] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> <4>[    7.891293] [ BUG: Invalid wait context ]
-> <4>[    7.891526] 6.15.0-rc3-CI_DRM_16443-gdc80d6a10c1c+ #1 Tainted: G   =
-     W=20=20=20=20=20=20=20=20=20=20
-> <4>[    7.891792] -----------------------------
-> <4>[    7.892070] (udev-worker)/286 is trying to lock:
-> <4>[    7.892349] ffff88811671bcc8 (&adapter->ptm_lock){....}-{3:3}, at: =
-igc_ptp_reset+0x155/0x320 [igc]
-> <4>[    7.892660] other info that might help us debug this:
-> <4>[    7.892943] context-{4:4}
-> <4>[    7.893226] 2 locks held by (udev-worker)/286:
-> <4>[    7.893515]  #0: ffff888103bd41b0 (&dev->mutex){....}-{3:3}, at: __=
-driver_attach+0x104/0x220
-> <4>[    7.893823]  #1: ffff88811671bb70 (&adapter->tmreg_lock){....}-{2:2=
-}, at: igc_ptp_reset+0x53/0x320 [igc]
-> <4>[    7.894134] stack backtrace:
-> <4>[    7.894439] CPU: 2 UID: 0 PID: 286 Comm: (udev-worker) Tainted: G  =
-      W           6.15.0-rc3-CI_DRM_16443-gdc80d6a10c1c+ #1 PREEMPT(volunta=
-ry)=20
-> <4>[    7.894442] Tainted: [W]=3DWARN
-> <4>[    7.894443] Hardware name: Intel(R) Client Systems NUC11TNHi3/NUC11=
-TNBi3, BIOS TNTGL357.0067.2022.0718.1742 07/18/2022
-> `````````````````````````````````````````````````````````````````````````=
-````````
-> Detailed log can be found in [3].
->
-> After bisecting the tree, the following patch [4] seems to be the first "=
-bad"
-> commit
->
-> `````````````````````````````````````````````````````````````````````````=
-````````````````````````````````
-> commit 1a931c4f5e6862e61a4b130cb76b422e1415f644
-> Author: Christopher S M Hall mailto:christopher.s.hall@intel.com
-> Date:=C2=A0=C2=A0 Tue Apr 1 16:35:34 2025 -0700
->
-> =C2=A0=C2=A0=C2=A0 igc: add lock preventing multiple simultaneous PTM tra=
-nsactions
-> `````````````````````````````````````````````````````````````````````````=
-````````````````````````````````
->
-> We also verified that if we revert the patch the issue is not seen.
->
-> Could you please check why the patch causes this regression and provide a=
- fix if necessary?
->
-> Thank you.
->
-> Regards
->
-> Chaitanya
->
-> [1] https://intel-gfx-ci.01.org/tree/drm-tip/shard-tglu.html
-> [2] https://cgit.freedesktop.org/drm-tip/tree/
-> [3] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16443/fi-tgl-1115g4/b=
-oot0.txt
-> [4] https://cgit.freedesktop.org/drm-tip/commit/?id=3D1a931c4f5e6862e61a4=
-b130cb76b422e1415f644
->
-
---=20
+-- 
 Jani Nikula, Intel
