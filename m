@@ -2,82 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00380AA92BC
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 May 2025 14:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E8CAA93D0
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 May 2025 15:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D26E10E3D2;
-	Mon,  5 May 2025 12:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A61EA10E3EF;
+	Mon,  5 May 2025 13:00:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FF9jR8XU";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UixZCW8r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B77710E3D2
- for <intel-gfx@lists.freedesktop.org>; Mon,  5 May 2025 12:10:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478D210E3D8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  5 May 2025 13:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1746447058;
+ s=mimecast20190719; t=1746450009;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=AtQm0nKCXqWUQctCIsxIFw0cZn36nlmWf/6lJLm+ytU=;
- b=FF9jR8XUcmoo8s0hIJr81xHR9GxCPBDGSUFtX2x+Xa0szsKHDWnYMj5iBjn4DLw0tDuJ1I
- 6i2mM7DOeE/NdR2dgWfAX4f3aLmL61hUdMsMEV2HGHuKO1VIBpNp1wvzuIY2K1kAg3brKP
- BflwQzTeFhUGTP7WAi776jXHN7PmYVw=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=je5yctKBePZHtmMRZKSxwf/isS+GUB289Rc9tztHBLQ=;
+ b=UixZCW8rqXoPXP4GHCsxTH9p3eMzdCJp2Die0xX3BR9/zFBcpz5RGE4GgmRzHzU8uKkcrf
+ NuQTAUfwF4TtXrmxy8DDbLsTKDj0m3uAwB8doIqWcsQK3K+tLvzr2HOlck2QvPsqcoTVgG
+ 5w/g02LCOYuw2xQmQ2yq8/zy/ozP2b8=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-599-j6RG3h_7OP-xbK7bSGGNQw-1; Mon, 05 May 2025 08:10:57 -0400
-X-MC-Unique: j6RG3h_7OP-xbK7bSGGNQw-1
-X-Mimecast-MFC-AGG-ID: j6RG3h_7OP-xbK7bSGGNQw_1746447056
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-43e9b0fd00cso18260505e9.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 05 May 2025 05:10:57 -0700 (PDT)
+ us-mta-61-2pmcdfEHOEG5hFAHE-dYMw-1; Mon, 05 May 2025 09:00:06 -0400
+X-MC-Unique: 2pmcdfEHOEG5hFAHE-dYMw-1
+X-Mimecast-MFC-AGG-ID: 2pmcdfEHOEG5hFAHE-dYMw_1746450006
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-3912fe32b08so1870619f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 05 May 2025 06:00:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746447056; x=1747051856;
+ d=1e100.net; s=20230601; t=1746450005; x=1747054805;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=AtQm0nKCXqWUQctCIsxIFw0cZn36nlmWf/6lJLm+ytU=;
- b=qncjeQH/yKzPo8mU9Obhn619RNrk/CGywF1Voy5dQonXDC08HM00rToCFFNP4LamzZ
- ZvU2+KZk0xFo4ioBpBPdG7IoYESn1ZusDPwyOz0o8ZCqX7/KA3b5G2PMFkMdu4Z68VGp
- 0O0TF8qKkTORclSVgLN7GwnSDKsMM8DOaoqb8k8LUuRtDM3G27847F5OZIBoeCTfzWgy
- 0FyO0F5hzMim4c6jyNfIGcxTeapCeWQQF0Lkn8crk14aZ5siLFf+jVvPAWvKdZ81TXbD
- J/jM92PVmKv8k52zm0fwrLoC3SwpgpeY0DJo/9/Wk+QVI2H0uegbuRiQOanzIr0GvI3S
- VqOg==
+ bh=je5yctKBePZHtmMRZKSxwf/isS+GUB289Rc9tztHBLQ=;
+ b=HkSn/xoXn3C7CjEQ7REby76rHFPVtZWTtHmvZnK5+dqul3cCpqxzm5f0oxz0for698
+ A4ESZU30za0qqE1bn5wYh5pP5DLSVOGMrGrIDTrqqhE9K6Ko0Nc30cQoXmlvSLCj2MCx
+ oGEj9hidHhg2CH8RbsGbW3t5X8Bzl9IUL+g7L8GW0m+Yfxa8wkBvumZRKoXbODDHkB7k
+ 8MkXRQA3e2xhXx1OmlLBfXSa2ZomOMcsAbegnyX0NiqTAUiN1rgcYrvpX0DoTtDmcdK1
+ q5B/VILQI9CITzjqxyvYF7phNCAbJIvDF/gwtqYZgfhIL3A0Nx6QhXZO0/vBCjHtbnuW
+ vEgA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUUmgf8YjNzHCBGu3R9Or7yGaE/CoSDmlWGN0QaE4tYnyHUzttkrTH53nQTcTPFwvA+iKLfKxidFRs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyxiBKUnCye1C3KIyGKApexJ6geOrozMGguIsnKlRhvxYv4z30E
- jHZHzhg5nlx1+Zf9EBhCm/j2SC6YKRGNvwvIwzgSMHCTnpWOqjC24RW8uohOwxYUNqrT6GqEEAk
- 0bHQsIzySQQUu0Y6hs87VhPjNsYiiOwWyzXaTLBKUqNW/I7SQ3flmkJAB0hvU3y88iQ==
-X-Gm-Gg: ASbGnctKFq0oCKP7NN6BNvow35z8UJTXRxpMMtOcE+DVYd9vZpWBK8HsAJTPKpqnd13
- sioAlHpGy9++FLBRLnzcW73pgaGoT+9iEGbiz/mh+9ZW58vulpf4dy2VTRXdZv03SD6jr/UpKJQ
- wpl4MkKuZPLGrnrpp+H3ea1oC/+9iV0afUv37jXpyyAmR4Ug8NMcamcUPIo2zgICjvK9q/wXB80
- 989A7rdlptlLVHdINfExnng4gIZg9xJco43rXRTjR/8oaMJ4KBfk2jUNNZq5EPOcVKhgwE4jN5M
- 98bWcyxu02+2khBozpPab2scTDj80gNWCUYrchPOLMewheM2+rKYv8ERKZQMHdWyRg3ksDdLDE8
- Ci7Ec5xsoyBPbK3MSuG0iQRpd+WE2x0u4Yrr3/XE=
-X-Received: by 2002:a05:600c:1987:b0:43b:ca8c:fca3 with SMTP id
- 5b1f17b1804b1-441bb88d49fmr106652275e9.11.1746447056159; 
- Mon, 05 May 2025 05:10:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGwOVCj9ArZhf/ZRWlo2Ca5VMFb8MLtytsIIBztQOJ8g1W3ZlOSIFXQi8rsgDe+/5Pluuj8pw==
-X-Received: by 2002:a05:600c:1987:b0:43b:ca8c:fca3 with SMTP id
- 5b1f17b1804b1-441bb88d49fmr106651995e9.11.1746447055805; 
- Mon, 05 May 2025 05:10:55 -0700 (PDT)
+ AJvYcCU5vog/W0Y8duPY4y2u2ULwDZEoChz0d7cwz5Uxm/oj76X1Zh2w1t02LrCscQt5EHWrInUfAmXBMAc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzJw9O9Nrj1A+PEXdeifOP+barTTZhdG7upKvSSCZeA4cnY6rsl
+ 0TVa/h7R230Lvbd0TLZ+N44mRshQAHLX9EBjtas4Fi7BQP/Z6opgTvsdUIh99PQ3fl3RICd/up+
+ 7ukeTNi/F3LEKmJMZ8KATu+Daou6WTOQBeVoz0mleO3AcDFs9wpXJGD/onXFNYSjLQA==
+X-Gm-Gg: ASbGncsSDb8OAN/2UZVJDRzF7E3iYtRID1Ff8sMzORuEf3LDEF+Z2Dn7hdSgFI/CZoM
+ AF5Lkcm1+v+2X0DPF5XES9Gr2gQYojg3kRxXunV6zepxXF9z7sbrhJfTX1CeVkMJSqDFEsRy5ZN
+ b7JKrCNd8i6Cq//pT2NNKijp8wpnFtMk8TD+I+PiuAGeNaqcA4A5uGoG3aLOTFMFrQzdjOIHy+Z
+ axvqO+aj9IztEmpAl1eSdFVrAeYf8np+JbehppIudiUtmpx+YOB6Kgxp/i7U1VkehaMHhxDqChi
+ myf21ocecDAvNAjZ4XUbjAt4XstaYOr4kPa9lQ1DBKUPSLXsgEa9UWhAS2tR+hecfHqgxtSK7uf
+ gVNolW24jCmVR/SdFQH/UmNCEicKyO+LD4EnHcyE=
+X-Received: by 2002:a05:6000:2901:b0:38f:6287:6474 with SMTP id
+ ffacd0b85a97d-3a09ceaf8cbmr6337806f8f.15.1746450005520; 
+ Mon, 05 May 2025 06:00:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG8+sbICSw53/kA+NmQw2Gp6nCdKw3+wguliwt/RdvnGaev2dGEidEgKuqoSFf1dl2vWgWnLg==
+X-Received: by 2002:a05:6000:2901:b0:38f:6287:6474 with SMTP id
+ ffacd0b85a97d-3a09ceaf8cbmr6337766f8f.15.1746450004985; 
+ Mon, 05 May 2025 06:00:04 -0700 (PDT)
 Received: from ?IPV6:2003:cb:c73d:2400:3be1:a856:724c:fd29?
  (p200300cbc73d24003be1a856724cfd29.dip0.t-ipconnect.de.
  [2003:cb:c73d:2400:3be1:a856:724c:fd29])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-441b89cc387sm134622585e9.4.2025.05.05.05.10.53
+ ffacd0b85a97d-3a099ae7b09sm10197488f8f.48.2025.05.05.06.00.03
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 05 May 2025 05:10:55 -0700 (PDT)
-Message-ID: <4dfabfce-8fe4-4b54-860c-e873fac12b8d@redhat.com>
-Date: Mon, 5 May 2025 14:10:53 +0200
+ Mon, 05 May 2025 06:00:04 -0700 (PDT)
+Message-ID: <7035fb14-c9f6-4281-9f65-b220aaa8f5c3@redhat.com>
+Date: Mon, 5 May 2025 15:00:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 09/11] x86/mm/pat: remove MEMTYPE_*_MATCH
+Subject: Re: [PATCH v1 05/11] mm: convert VM_PFNMAP tracking to pfnmap_track()
+ + pfnmap_untrack()
 To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -94,10 +95,11 @@ Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
  <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
  "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
  <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>
+ Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>,
+ Suren Baghdasaryan <surenb@google.com>
 References: <20250425081715.1341199-1-david@redhat.com>
- <20250425081715.1341199-10-david@redhat.com>
- <fe80481f-6fa9-4148-90b2-65734ef259ed@lucifer.local>
+ <20250425081715.1341199-6-david@redhat.com>
+ <b92e3a0d-b878-43cf-9b68-9f7c228e45fa@lucifer.local>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -144,9 +146,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <fe80481f-6fa9-4148-90b2-65734ef259ed@lucifer.local>
+In-Reply-To: <b92e3a0d-b878-43cf-9b68-9f7c228e45fa@lucifer.local>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: UCFAe-wRuSTrwoSraT-QI-w1SMkUuHAiPthsFtNGqVU_1746447056
+X-Mimecast-MFC-PROC-ID: 38Iuke613FlTDjiniuei6jNLkLkQaeVlj3vdysVBO20_1746450006
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -166,70 +168,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28.04.25 22:23, Lorenzo Stoakes wrote:
-> On Fri, Apr 25, 2025 at 10:17:13AM +0200, David Hildenbrand wrote:
->> The "memramp() shrinking" scenario no longer applies, so let's remove
->> that now-unnecessary handling.
+>>
+>> This change implies that we'll keep tracking the original PFN range even
+>> after splitting + partially unmapping it: not too bad, because it was
+>> not working reliably before. The only thing that kind-of worked before
+>> was shrinking such a mapping using mremap(): we managed to adjust the
+>> reservation in a hacky way, now we won't adjust the reservation but
+>> leave it around until all involved VMAs are gone.
 > 
-> I wonder if we could remove even more of the code here given the
-> simplifications here? But not a big deal.
+> Hm, but what if we shrink a VMA, then map another one, might it be
+> incorrectly storing PAT attributes for part of the range that is now mapped
+> elsewhere?
 
-It might make sense to inline memtype_match().
+Not "incorrectly". We'll simply undo the reservation of the cachemode 
+for the original PFN range once everything of the original VMA is gone.
 
-diff --git a/arch/x86/mm/pat/memtype_interval.c b/arch/x86/mm/pat/memtype_interval.c
-index 9d03f0dbc4715..e5844ed1311ed 100644
---- a/arch/x86/mm/pat/memtype_interval.c
-+++ b/arch/x86/mm/pat/memtype_interval.c
-@@ -49,21 +49,6 @@ INTERVAL_TREE_DEFINE(struct memtype, rb, u64, subtree_max_end,
-  
-  static struct rb_root_cached memtype_rbroot = RB_ROOT_CACHED;
-  
--static struct memtype *memtype_match(u64 start, u64 end)
--{
--       struct memtype *entry_match;
--
--       entry_match = interval_iter_first(&memtype_rbroot, start, end-1);
--
--       while (entry_match != NULL && entry_match->start < end) {
--               if (entry_match->start == start && entry_match->end == end)
--                       return entry_match;
--               entry_match = interval_iter_next(entry_match, start, end-1);
--       }
--
--       return NULL; /* Returns NULL if there is no match */
--}
--
-  static int memtype_check_conflict(u64 start, u64 end,
-                                   enum page_cache_mode reqtype,
-                                   enum page_cache_mode *newtype)
-@@ -119,14 +104,16 @@ int memtype_check_insert(struct memtype *entry_new, enum page_cache_mode *ret_ty
-  
-  struct memtype *memtype_erase(u64 start, u64 end)
-  {
--       struct memtype *entry_old;
--
--       entry_old = memtype_match(start, end);
--       if (!entry_old)
--               return ERR_PTR(-EINVAL);
--
--       interval_remove(entry_old, &memtype_rbroot);
--       return entry_old;
-+       struct memtype *entry = interval_iter_first(&memtype_rbroot, start, end - 1);
-+
-+       while (entry && entry->start < end) {
-+               if (entry->start == start && entry->end == end) {
-+                       interval_remove(entry, &memtype_rbroot);
-+                       return entry;
-+               }
-+               entry = interval_iter_next(entry, start, end - 1);
-+       }
-+       return ERR_PTR(-EINVAL);
-  }
-  
-  struct memtype *memtype_lookup(u64 addr)
+AFAIK, one can usually mmap() the "unmapped" part after shrinking again 
+with the same cachemode, which should be the main use case.
 
+Supporting partial un-tracking will require hooking into vma splitting 
+code ... not something I am super happy about. :)
 
-Thanks for all the review!
+> 
+> Also my god re: the 'kind of working' aspects of PAT, so frustrating.
+> 
+>>
+>> Signed-off-by: David Hildenbrand <david@redhat.com>
+> 
+> Generally looking good, afaict, but maybe let's get some input from Suren
+> on VMA size.
+> 
+> Are there actually any PAT tests out here? I had a quick glance in
+> tools/testing/selftests/x86,mm and couldn't find any, but didn't look
+> _that_ card.
+
+Heh, booting a simple VM gets PAT involved. I suspect because /dev/mem 
+and BIOS/GPU/whatever hacks.
+
+In the cover letter I have
+
+"Briefly tested with some basic /dev/mem test I crafted. I want to 
+convert them to selftests, but that might or might not require a bit of
+more work (e.g., /dev/mem accessibility)."
+
+> 
+> Thanks in general for tackling this, this is a big improvement!
+> 
+>> ---
+>>   include/linux/mm_inline.h |  2 +
+>>   include/linux/mm_types.h  | 11 ++++++
+>>   kernel/fork.c             | 54 ++++++++++++++++++++++++--
+>>   mm/memory.c               | 81 +++++++++++++++++++++++++++++++--------
+>>   mm/mremap.c               |  4 --
+>>   5 files changed, 128 insertions(+), 24 deletions(-)
+>>
+>> diff --git a/include/linux/mm_inline.h b/include/linux/mm_inline.h
+>> index f9157a0c42a5c..89b518ff097e6 100644
+>> --- a/include/linux/mm_inline.h
+>> +++ b/include/linux/mm_inline.h
+>> @@ -447,6 +447,8 @@ static inline bool anon_vma_name_eq(struct anon_vma_name *anon_name1,
+>>
+>>   #endif  /* CONFIG_ANON_VMA_NAME */
+>>
+>> +void pfnmap_track_ctx_release(struct kref *ref);
+>> +
+>>   static inline void init_tlb_flush_pending(struct mm_struct *mm)
+>>   {
+>>   	atomic_set(&mm->tlb_flush_pending, 0);
+>> diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+>> index 56d07edd01f91..91124761cfda8 100644
+>> --- a/include/linux/mm_types.h
+>> +++ b/include/linux/mm_types.h
+>> @@ -764,6 +764,14 @@ struct vma_numab_state {
+>>   	int prev_scan_seq;
+>>   };
+>>
+>> +#ifdef __HAVE_PFNMAP_TRACKING
+>> +struct pfnmap_track_ctx {
+>> +	struct kref kref;
+>> +	unsigned long pfn;
+>> +	unsigned long size;
+> 
+> Again, (super) nitty, but we really should express units. I suppose 'size'
+> implies bytes to be honest as you'd unlikely say 'size' for number of pages
+> (you'd go with nr_pages or something). But maybe a trailing /* in bytes */
+> would help.
+> 
+> Not a big deal though!
+
+"size" in the kernel is usually bytes, never pages ... but I might be wrong.
+
+Anyhow, I can use "/* in bytes*/" here, although I doubt that many will 
+benefit from this comment :)
+
+> 
+>> +};
+>> +#endif
+>> +
+>>   /*
+>>    * This struct describes a virtual memory area. There is one of these
+>>    * per VM-area/task. A VM area is any part of the process virtual memory
+>> @@ -877,6 +885,9 @@ struct vm_area_struct {
+>>   	struct anon_vma_name *anon_name;
+>>   #endif
+>>   	struct vm_userfaultfd_ctx vm_userfaultfd_ctx;
+>> +#ifdef __HAVE_PFNMAP_TRACKING
+> 
+> An aside, but absolutely hate '__HAVE_PFNMAP_TRACKING' as a name here. But
+> you didn't create it, and it's not really sensible to change it in this
+> series so. Just a rumble...
+
+I cannot argue with that ... same here.
+
+To be clear: I hate all of this with passion ;) With this series, I hate 
+it a bit less.
+
+[...]
+
+> 
+> Obviously my series will break this but should be _fairly_ trivial to
+> update.
+> 
+> You will however have to make sure to update tools/testing/vma/* to handle
+> the new functions in userland testing (they need to be stubbed otu).
+
+Ah, I was happy it compiled but looks like I'll have to mess with that 
+as well.
+
+> 
+> If it makes life easier, you can even send it to me off-list, or just send
+> it without changing this in a respin and I can fix it up fairly quick for
+> you.
+
+Let me give it a try first, I'll let you know if it takes me too long.
+
+Thanks!
+
+[...]
+
+>>   /**
+>>    * remap_pfn_range - remap kernel memory to userspace
+>>    * @vma: user vma to map to
+>> @@ -2883,20 +2902,50 @@ int remap_pfn_range_notrack(struct vm_area_struct *vma, unsigned long addr,
+>>    *
+>>    * Return: %0 on success, negative error code otherwise.
+>>    */
+>> +#ifdef __HAVE_PFNMAP_TRACKING
+>>   int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
+>>   		    unsigned long pfn, unsigned long size, pgprot_t prot)
+> 
+> OK so to expose some of my lack-of-knowledge of PAT - is this the
+> 'entrypoint' to PAT tracking?
+
+Only if you're using remap_pfn_range() ... there is other low-level 
+tracking/reservation using the memtype_reserve() interface and friends.
+
+> 
+> So we have some kernel memory we remap to userland as PFN map, the kind
+> that very well might be sensible to use PAT the change cache behaviour for,
+> and each time this happens, it's mapped as PAT?
+
+Right, anytime someone uses remap_pfn_range() on the full VMA, we track 
+it (depending on RAM vs. !RAM this "tracking" has different semantics).
+
+For RAM, we seem to only lookup the cachemode. For !RAM, we seem to 
+reserve the memtype for the PFN range, which will fail if there already 
+is an incompatible memtype reserved.
+
+It's all ... very weird.
 
 -- 
 Cheers,
