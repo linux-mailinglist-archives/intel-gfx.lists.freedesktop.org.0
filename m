@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEF5AAC52B
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D00AAC52E
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:07:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 650A310E69A;
-	Tue,  6 May 2025 13:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24C0110E69B;
+	Tue,  6 May 2025 13:07:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lI1JVTWZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FlGLzDWd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6684E10E69A;
- Tue,  6 May 2025 13:07:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA4710E69B;
+ Tue,  6 May 2025 13:07:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746536836; x=1778072836;
+ t=1746536840; x=1778072840;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3syB5T6mXURDewOqE/HCDpsaJmPYWN8/pqnM+OaUOVo=;
- b=lI1JVTWZ9lUwH+8F/Hb6yadGqBVe/4Vce1as9EOKXo06CNeocffyNvOr
- nJo+UjXkDD5nI96RBPHC5/TPYxQDWwIESwx23o7haGQPyXE1Se1UzxCVm
- vyUWHy1ZbH4+VEi93BbTJCiIwiwFOAblb4NfM1gMaAnH8vxrP7TEAnbUO
- CFm4PZz4O2pB2OXcnE195eG1qsoPTLPWMG9FwrPSIXRPh+FejLaHohEEV
- OBoGTcAtmR5+Z2r2L2YzthmKDuUvWXapUg1tka9QssYY28+/6pdDJGJ8i
- ImcOVBz917HqAUB5e3FgGl76fcOwqzAYzhHEu5TjOQ28+ILId+/um7KX0 g==;
-X-CSE-ConnectionGUID: QSiSwaghRJiVqaPgLvDIEA==
-X-CSE-MsgGUID: 6dmH9fPPRtqW2YhkaePdRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48112368"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48112368"
+ bh=K31R4006srLIAVFt5lJ4MyVDqdEbPIrZW6I2YtRS6/M=;
+ b=FlGLzDWd9jrXEsJiqpBZD24YvUyT8Kv4oAulfdMV7atyVkdkAAIR5Pfu
+ QFwPLOfu2fdmbcxde0CGRRo4GQcxshMugNMaDVE8EAiBIU37LFiAX32OF
+ EwU9QfR4uQyUr0/aa0du6HVNRmBa14oPGKpxcTlOKTovNjcfBgGuL7JVN
+ lM6ppSUem93O+ykjZ/Nd4bzQv0a2CBrLBFipuJm/bbP7x7pldn2Mpxjc2
+ uCQjvQoRh2L98pPpxwrTnMNv5Y7PB4zW4D7PFNn3nzyBorqcZmFYig8CK
+ a4HFr4DEIfpkC9FRMEL7g4FzpKbe6CzOUbEPcQ0jmMngXpjJJRgec3K95 g==;
+X-CSE-ConnectionGUID: S8ImaAmOTzugv472hFrYtA==
+X-CSE-MsgGUID: 37gdoMjMSsaewEDJnjNWig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48112391"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48112391"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:07:15 -0700
-X-CSE-ConnectionGUID: YwgtmQL4Sty+WYaH5uFIeg==
-X-CSE-MsgGUID: LdKI17XWTR+Nb5tbO0TlhQ==
+ 06 May 2025 06:07:19 -0700
+X-CSE-ConnectionGUID: wfv+tZweQ2aQYBqzwC6tQg==
+X-CSE-MsgGUID: gwPcqft4RuyIX0OqtIX9xQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135588357"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135588375"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.221])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:07:13 -0700
+ 06 May 2025 06:07:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 5/8] drm/i915/irq: split out i965_display_irq_postinstall()
-Date: Tue,  6 May 2025 16:06:47 +0300
-Message-Id: <5d404dcd0c606d1cb11f2e09c45e151a75b5b2c6.1746536745.git.jani.nikula@intel.com>
+Subject: [PATCH 6/8] drm/i915/irq: make i915_enable_asle_pipestat() static
+Date: Tue,  6 May 2025 16:06:48 +0300
+Message-Id: <9511e368c5244aaa04cc45f46e2425737acd29fb.1746536745.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1746536745.git.jani.nikula@intel.com>
 References: <cover.1746536745.git.jani.nikula@intel.com>
@@ -71,76 +71,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split out i965_display_irq_postinstall() similar to other platforms.
+With all users of i915_enable_asle_pipestat() inside
+intel_display_irq.c, we can make the function static.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c    | 17 +++++++++++++++++
- .../gpu/drm/i915/display/intel_display_irq.h    |  1 +
- drivers/gpu/drm/i915/i915_irq.c                 | 10 +---------
- 3 files changed, 19 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 7 ++-----
+ drivers/gpu/drm/i915/display/intel_display_irq.h | 1 -
+ 2 files changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 77cdd1ea5d00..989b78339aa4 100644
+index 989b78339aa4..0d72964694ce 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1918,6 +1918,23 @@ void i915_display_irq_postinstall(struct intel_display *display)
- 	i915_enable_asle_pipestat(display);
+@@ -377,11 +377,8 @@ static bool i915_has_legacy_blc_interrupt(struct intel_display *display)
+ 	return IS_DISPLAY_VER(display, 3, 4) && display->platform.mobile;
  }
  
-+void i965_display_irq_postinstall(struct intel_display *display)
-+{
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+
-+	/*
-+	 * Interrupt setup is already guaranteed to be single-threaded, this is
-+	 * just to make the assert_spin_locked check happy.
-+	 */
-+	spin_lock_irq(&dev_priv->irq_lock);
-+	i915_enable_pipestat(display, PIPE_A, PIPE_GMBUS_INTERRUPT_STATUS);
-+	i915_enable_pipestat(display, PIPE_A, PIPE_CRC_DONE_INTERRUPT_STATUS);
-+	i915_enable_pipestat(display, PIPE_B, PIPE_CRC_DONE_INTERRUPT_STATUS);
-+	spin_unlock_irq(&dev_priv->irq_lock);
-+
-+	i915_enable_asle_pipestat(display);
-+}
-+
- static u32 vlv_error_mask(void)
+-/**
+- * i915_enable_asle_pipestat - enable ASLE pipestat for OpRegion
+- * @display: display device
+- */
+-void i915_enable_asle_pipestat(struct intel_display *display)
++/* enable ASLE pipestat for OpRegion */
++static void i915_enable_asle_pipestat(struct intel_display *display)
  {
- 	/* TODO enable other errors too? */
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index 8fdce804c9d7..4c0ed476e568 100644
+index 4c0ed476e568..c66db3851da4 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -62,6 +62,7 @@ void gen8_display_irq_reset(struct intel_display *display);
- void gen11_display_irq_reset(struct intel_display *display);
+@@ -72,7 +72,6 @@ void dg1_de_irq_postinstall(struct intel_display *display);
+ u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
+ void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+ void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+-void i915_enable_asle_pipestat(struct intel_display *display);
  
- void i915_display_irq_postinstall(struct intel_display *display);
-+void i965_display_irq_postinstall(struct intel_display *display);
- void vlv_display_irq_postinstall(struct intel_display *display);
- void ilk_de_irq_postinstall(struct intel_display *display);
- void gen8_de_irq_postinstall(struct intel_display *display);
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 30c78177ae0d..95042879bec4 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -1053,15 +1053,7 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
+ void i9xx_pipestat_irq_ack(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
  
- 	gen2_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->irq_mask, enable_mask);
- 
--	/* Interrupt setup is already guaranteed to be single-threaded, this is
--	 * just to make the assert_spin_locked check happy. */
--	spin_lock_irq(&dev_priv->irq_lock);
--	i915_enable_pipestat(display, PIPE_A, PIPE_GMBUS_INTERRUPT_STATUS);
--	i915_enable_pipestat(display, PIPE_A, PIPE_CRC_DONE_INTERRUPT_STATUS);
--	i915_enable_pipestat(display, PIPE_B, PIPE_CRC_DONE_INTERRUPT_STATUS);
--	spin_unlock_irq(&dev_priv->irq_lock);
--
--	i915_enable_asle_pipestat(display);
-+	i965_display_irq_postinstall(display);
- }
- 
- static irqreturn_t i965_irq_handler(int irq, void *arg)
 -- 
 2.39.5
 
