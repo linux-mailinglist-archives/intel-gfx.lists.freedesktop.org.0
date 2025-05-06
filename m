@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61288AAB9AB
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 09:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A09AAB9AA
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 09:01:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DDCE10E5A7;
-	Tue,  6 May 2025 07:01:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 876B110E5A1;
+	Tue,  6 May 2025 07:01:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NGMfUsF7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ksjs+/lS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 780A710E562;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7843310E583;
  Tue,  6 May 2025 07:01:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1746514904; x=1778050904;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BYQ3+k0PDyG9yd2xnxofXZ+tBSnWncI9KK7heDjqNPY=;
- b=NGMfUsF78Pp9Inpt0oZg554xX8GsP1x0i02NeYMDaujE9VgjBZPzD+Pl
- InbLXX7r207fCbLIhIN2UaSN3Ujpo7e40Ex2lqHY91BA9RJqW8nejPW4v
- OoLr+E7p45JuYbUs96KoYbVuK2HgsPShBTexMux5GqJDuo4WUn5NPJfmp
- KnFNpbwj5e+GRZZXJqa2JeU2t0MMONcRt5bwPHcHyU5Lg2ul7VNno6eQu
- tIIr/LOJPGL2L3VB+zXwKZZV5UHEeJJodV/0UvQ3R2Yx4dcc9/hsLxrbS
- R/SdDwmHhn8qgKxNogkRrqgiNfmCK+XXx+ADMzxjMNj8cVes8sFou5UCO Q==;
-X-CSE-ConnectionGUID: F/Xreq/zSVSLj8XLoDaYLg==
-X-CSE-MsgGUID: +QkTdt/sSJK4jQ2yADNICg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="48067979"
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="48067979"
+ bh=oFf2l/L5jeD3M5gTgQHx+Krg6GZe72YrdifbYQbtN4E=;
+ b=Ksjs+/lSKWRtodNMy3jVqEGrE2/mmBwHSCyYJwQpkvjFtsaQSyGLdTlU
+ 0MrX16sb/g/7xaiGiVkmljnlpWX4zPeM3EEhFz7vFooM1IOpNI1wQZBa5
+ ZooUAWKyYX5UN/emD1LdO4ieCN0j0UMOAMMNnd4CnYdn4FocYQdQKwqbZ
+ T+equPnnHYazKLcERP/iaP25PkQ3xSABkXB0wvieYgN5Jyhb6hfHCaGTM
+ T3J0NNXtEMqyqXEKwSzc5wukn+uuKOZ8c0h2IgxOT0Fsou7DQmEFlgqVh
+ eTb/LxzAJcN4quYKJNuLbEf/+Ac/9UucbDKH+yhgQzTYpoOfH6a1/1cNG Q==;
+X-CSE-ConnectionGUID: 8CgKHn29SqSUpabf/hFWKQ==
+X-CSE-MsgGUID: 9NaP9FakQN2l4DU2HqUKCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="48067988"
+X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="48067988"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 00:01:12 -0700
-X-CSE-ConnectionGUID: WVMjI20lQz6zSiz17jwg+g==
-X-CSE-MsgGUID: KXf+T8pmRy22Cy2iiqWiUA==
+ 06 May 2025 00:01:14 -0700
+X-CSE-ConnectionGUID: jt1FCiBwR1S4z+3Lv0SdTQ==
+X-CSE-MsgGUID: D+VuHwM3SQGZlOco4ywSgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="140273099"
+X-IronPort-AV: E=Sophos;i="6.15,265,1739865600"; d="scan'208";a="140273121"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.171])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 00:01:11 -0700
+ 06 May 2025 00:01:13 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 2/4] drm/i915/alpm: Move disabling sink ALPM to intel_alpm.c
-Date: Tue,  6 May 2025 10:00:27 +0300
-Message-ID: <20250506070029.1326368-3-jouni.hogander@intel.com>
+Subject: [PATCH 3/4] drm/i915/alpm: Disable ALPM rework
+Date: Tue,  6 May 2025 10:00:28 +0300
+Message-ID: <20250506070029.1326368-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250506070029.1326368-1-jouni.hogander@intel.com>
 References: <20250506070029.1326368-1-jouni.hogander@intel.com>
@@ -72,50 +72,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently disabling sink ALPM is done only when disabling PSR. Now
-ALPM code is shared between LOBF and PSR. Enabling sink ALPM is
-already done in intel_alpm.c. Not really expected it getting disabled
-in intel_psr.c. Move disabling sink ALPM to intel_alpm.c.
+Currently only LOBF is disabled in pre_plane_update. This patch is
+disabling ALPM completely if LOBF or PSR doesn't need it.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 2 ++
- drivers/gpu/drm/i915/display/intel_psr.c  | 7 +------
- 2 files changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c    | 53 +++++++++-----------
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+ 2 files changed, 25 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index d48d1e6cc356..2454f78fc416 100644
+index 2454f78fc416..6431f7ee82d5 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -564,6 +564,8 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
- 	intel_de_write(display, PORT_ALPM_CTL(dp_to_dig_port(intel_dp)->base.port), 0);
+@@ -388,6 +388,25 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
+ 	intel_dp->alpm_parameters.transcoder = crtc_state->cpu_transcoder;
+ }
  
++void intel_alpm_disable(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
++
++	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
++		return;
++
++	mutex_lock(&intel_dp->alpm_parameters.lock);
++
++	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
++	intel_de_write(display, PORT_ALPM_CTL(dp_to_dig_port(intel_dp)->base.port), 0);
++
 +	drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
 +
- 	drm_dbg_kms(display->drm, "Disabling ALPM\n");
- 	mutex_unlock(&intel_dp->alpm_parameters.lock);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ccd66bbc72f7..89c4aaf8bd36 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2173,14 +2173,9 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 		intel_snps_phy_update_psr_power_state(&dp_to_dig_port(intel_dp)->base, false);
++	drm_dbg_kms(display->drm, "Disabling ALPM\n");
++	mutex_unlock(&intel_dp->alpm_parameters.lock);
++}
++
+ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
+ 				 struct intel_crtc *crtc)
+ {
+@@ -396,15 +415,11 @@ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct intel_crtc_state *old_crtc_state =
+ 		intel_atomic_get_old_crtc_state(state, crtc);
+-	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	struct intel_encoder *encoder;
  
- 	/* Disable PSR on Sink */
--	if (!intel_dp->psr.panel_replay_enabled) {
-+	if (!intel_dp->psr.panel_replay_enabled)
- 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, 0);
+ 	if (DISPLAY_VER(display) < 20)
+ 		return;
  
--		if (intel_dp->psr.sel_update_enabled)
--			drm_dp_dpcd_writeb(&intel_dp->aux,
--					   DP_RECEIVER_ALPM_CONFIG, 0);
--	}
+-	if (crtc_state->has_lobf || crtc_state->has_lobf == old_crtc_state->has_lobf)
+-		return;
 -
- 	/* Wa_16025596647 */
- 	if ((DISPLAY_VER(display) == 20 ||
- 	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+ 	for_each_intel_encoder_mask(display->drm, encoder,
+ 				    crtc_state->uapi.encoder_mask) {
+ 		struct intel_dp *intel_dp;
+@@ -417,12 +432,11 @@ void intel_alpm_pre_plane_update(struct intel_atomic_state *state,
+ 		if (!intel_dp_is_edp(intel_dp))
+ 			continue;
+ 
+-		if (old_crtc_state->has_lobf) {
+-			mutex_lock(&intel_dp->alpm_parameters.lock);
+-			intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
+-			drm_dbg_kms(display->drm, "Link off between frames (LOBF) disabled\n");
+-			mutex_unlock(&intel_dp->alpm_parameters.lock);
+-		}
++		if (crtc_state->has_lobf || intel_psr_needs_alpm(intel_dp, crtc_state) ||
++		    (!old_crtc_state->has_lobf && !intel_psr_needs_alpm(intel_dp, old_crtc_state)))
++			continue;
++
++		intel_alpm_disable(intel_dp);
+ 	}
+ }
+ 
+@@ -551,25 +565,6 @@ void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+ 			    connector, &i915_edp_lobf_info_fops);
+ }
+ 
+-void intel_alpm_disable(struct intel_dp *intel_dp)
+-{
+-	struct intel_display *display = to_intel_display(intel_dp);
+-	enum transcoder cpu_transcoder = intel_dp->alpm_parameters.transcoder;
+-
+-	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
+-		return;
+-
+-	mutex_lock(&intel_dp->alpm_parameters.lock);
+-
+-	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), 0);
+-	intel_de_write(display, PORT_ALPM_CTL(dp_to_dig_port(intel_dp)->base.port), 0);
+-
+-	drm_dp_dpcd_writeb(&intel_dp->aux, DP_RECEIVER_ALPM_CONFIG, 0);
+-
+-	drm_dbg_kms(display->drm, "Disabling ALPM\n");
+-	mutex_unlock(&intel_dp->alpm_parameters.lock);
+-}
+-
+ bool intel_alpm_get_error(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 287110e4e435..37490fb6fc7b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1176,8 +1176,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	intel_alpm_pre_plane_update(state, crtc);
+ 	intel_psr_pre_plane_update(state, crtc);
++	intel_alpm_pre_plane_update(state, crtc);
+ 
+ 	if (intel_crtc_vrr_disabling(state, crtc)) {
+ 		intel_vrr_disable(old_crtc_state);
 -- 
 2.43.0
 
