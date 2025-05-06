@@ -2,41 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700B0AAC159
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 12:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A19AAC1D0
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 12:57:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4736910E349;
-	Tue,  6 May 2025 10:27:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C27DC10E652;
+	Tue,  6 May 2025 10:57:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MZTS1Ug9";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3923210E349;
- Tue,  6 May 2025 10:27:53 +0000 (UTC)
-Received: from 91-155-254-19.elisa-laajakaista.fi ([91.155.254.19]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uCFWf-000000076Yp-48FW; Tue, 06 May 2025 13:27:51 +0300
-Message-ID: <d4c0e8484a395ebef26cf22f592cadc644836197.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Tue, 06 May 2025 13:27:48 +0300
-In-Reply-To: <20250428133135.3396080-8-imre.deak@intel.com>
-References: <20250428133135.3396080-1-imre.deak@intel.com>
- <20250428133135.3396080-8-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5801810E64F;
+ Tue,  6 May 2025 10:57:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746529047; x=1778065047;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IGOjBaxU6HPzmSO+voL89aoF+AQizQEV1smyic6auuA=;
+ b=MZTS1Ug9ho5loqqNMWTgMra2pkW7Q0XzyBkliEHxyabZ4tpO/JQsdAA+
+ l6PZPacbxOE2EBY762msqFFX1/xu5k6imPqXv1wiQkcDnU8lIDLG3GYZz
+ GjQQ6N0wopQZ5jywMQBO3rDEbgz0jHqngutxYvd3AQ1Ix56mY9Fj/6yrq
+ wPnjZw9ShyuWJa29/qm+Oxa0tpBheNcfAltLTrdKWmFKNrXEBFJFJiqRO
+ Kt3h6bhRjBA6xpQaGkZiQqPa4ALahwEcatb9RPaPDAzvna3ZaQwyhu5Q6
+ 1rTxJrJDHj5rPU1jgq+/MxtuikaAgubRAwYs9Rd0cYJ5fZ8NBHu6qU8gx A==;
+X-CSE-ConnectionGUID: 6iK3uFlJT9m3lk4sgzWDrA==
+X-CSE-MsgGUID: SZy6MID4R1Cn5YIae29xbQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="59580278"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="59580278"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 03:57:25 -0700
+X-CSE-ConnectionGUID: 5ZMc9XyOR829jzOzxyddKg==
+X-CSE-MsgGUID: i429ZwYBSZOTMDIgwyJ3lg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="139636336"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.221])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 03:57:22 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/4] drm/i915/display: minor cleanups on drm_i915_private use
+Date: Tue,  6 May 2025 13:57:15 +0300
+Message-Id: <cover.1746529001.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH v2 07/12] drm/i915/dp: Limit max link bpp properly to a
- fractional value on SST
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,93 +68,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-04-28 at 16:31 +0300, Imre Deak wrote:
-> The maximum link bpp - determined by the link BW for instance - can be
-> fractional, handle this properly during computing the link bpp on SST.
->=20
-> This keeps the pipe joiner specific maximum link bpp as a rounded-down
-> integer value still, changing that to a fractional value is left for
-> later.
->=20
-> v2: Align the min/max bpp value to the bpp step.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++++++---------
->  1 file changed, 8 insertions(+), 9 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 42b45598a0134..7abc5286f4ccc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -27,6 +27,8 @@
-> =20
->  #include <linux/export.h>
->  #include <linux/i2c.h>
-> +#include <linux/log2.h>
-> +#include <linux/math.h>
->  #include <linux/notifier.h>
->  #include <linux/seq_buf.h>
->  #include <linux/slab.h>
-> @@ -938,6 +940,7 @@ static u32 ultrajoiner_ram_max_bpp(u32 mode_hdisplay)
->  	return ultrajoiner_ram_bits() / mode_hdisplay;
->  }
-> =20
-> +/* TODO: return a bpp_x16 value */
->  static
->  u32 get_max_compressed_bpp_with_joiner(struct intel_display *display,
->  				       u32 mode_clock, u32 mode_hdisplay,
-> @@ -2152,24 +2155,16 @@ static int dsc_compute_compressed_bpp(struct inte=
-l_dp *intel_dp,
->  	const struct intel_connector *connector =3D to_intel_connector(conn_sta=
-te->connector);
->  	const struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjus=
-ted_mode;
->  	int output_bpp;
-> -	int dsc_min_bpp;
-> -	int dsc_max_bpp;
->  	int min_bpp_x16, max_bpp_x16, bpp_step_x16;
->  	int dsc_joiner_max_bpp;
->  	int num_joined_pipes =3D intel_crtc_num_joined_pipes(pipe_config);
->  	int bpp_x16;
->  	int ret;
-> =20
-> -	dsc_min_bpp =3D fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
-> -
->  	dsc_joiner_max_bpp =3D get_max_compressed_bpp_with_joiner(display, adju=
-sted_mode->clock,
->  								adjusted_mode->hdisplay,
->  								num_joined_pipes);
-> -	dsc_max_bpp =3D min(dsc_joiner_max_bpp, fxp_q4_to_int(limits->link.max_=
-bpp_x16));
-> -
-> -	/* FIXME: remove the round trip via integers */
-> -	min_bpp_x16 =3D fxp_q4_from_int(dsc_min_bpp);
-> -	max_bpp_x16 =3D fxp_q4_from_int(dsc_max_bpp);
-> +	max_bpp_x16 =3D min(fxp_q4_from_int(dsc_joiner_max_bpp), limits->link.m=
-ax_bpp_x16);
-> =20
->  	bpp_step_x16 =3D intel_dp_dsc_bpp_step_x16(connector);
-> =20
-> @@ -2177,6 +2172,10 @@ static int dsc_compute_compressed_bpp(struct intel=
-_dp *intel_dp,
->  	output_bpp =3D intel_dp_output_bpp(pipe_config->output_format, pipe_bpp=
-);
->  	max_bpp_x16 =3D min(max_bpp_x16, fxp_q4_from_int(output_bpp) - bpp_step=
-_x16);
-> =20
-> +	drm_WARN_ON(display->drm, !is_power_of_2(bpp_step_x16));
-> +	min_bpp_x16 =3D round_up(limits->link.min_bpp_x16, bpp_step_x16);
-> +	max_bpp_x16 =3D round_down(max_bpp_x16, bpp_step_x16);
-> +
->  	for (bpp_x16 =3D max_bpp_x16; bpp_x16 >=3D min_bpp_x16; bpp_x16 -=3D bp=
-p_step_x16) {
->  		if (!intel_dp_dsc_valid_compressed_bpp(intel_dp, bpp_x16))
->  			continue;
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Jani Nikula (4):
+  drm/i915/dsi: remove dependency on i915_drv.h
+  drm/i915/display: remove struct drm_i915_private forward declaration
+  drm/i915/bios: fix a comment referencing struct drm_i915_private
+  drm/i915/crtc: pass struct intel_display to DISPLAY_VER()
 
---
-Cheers,
-Luca.
+ drivers/gpu/drm/i915/display/intel_bios.h         | 2 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c         | 3 +--
+ drivers/gpu/drm/i915/display/intel_display_core.h | 4 +---
+ drivers/gpu/drm/i915/display/intel_dsi.c          | 7 ++++---
+ 4 files changed, 7 insertions(+), 9 deletions(-)
+
+-- 
+2.39.5
+
