@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451F1AAC1D3
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 12:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4D3AAC1D4
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 12:57:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCE2110E645;
-	Tue,  6 May 2025 10:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC8310E64F;
+	Tue,  6 May 2025 10:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZtgYnunb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1gccOiO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C10F10E645;
- Tue,  6 May 2025 10:57:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8480D10E64F;
+ Tue,  6 May 2025 10:57:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746529056; x=1778065056;
+ t=1746529059; x=1778065059;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pIaOdq+OVhBWkEzXuLYCafGn4uid2wfbIH6geaCmINE=;
- b=ZtgYnunbp2a3ZmloCc5njXVwUJnD5yANNa6M3UM6nAg8zcw2JhoZ1aOx
- ik5cfONc/+KHTEp+wGr26milYe0ww8kfC9A2VEi24OHMRGBVZQJfvHMWS
- jZdI9lUxF5phQYYf0atFBuktfRE1VhDYwk0rMx15g8CfbJ5OhTELlaAYY
- C6XZBDdmRbXfTcRTmsZ0DzSEq8Lnapxd+qwaNN1xunLLwEWRW6bXAaqi8
- QuJX5HB+8NSvlPpg0d80Jpz2ymZC8BJPigTnWc3rYellZ+ZvRqPOxlSv7
- z7w4xgSdVODcj5abGbXgDGGHTTjs9+wnTRox4RyU7zCSiY6ayd/+i9AXc w==;
-X-CSE-ConnectionGUID: r0F+M9tfRkiW/R+xiKhm/A==
-X-CSE-MsgGUID: LLLzKR8vQdasQANIZA9E+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="59580314"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="59580314"
+ bh=9AN7sl6uz5XvHG47osj5jOJevuZEjw+8hGzZDPd1tMs=;
+ b=j1gccOiOoib2dUNIPXpmd9LC7Bf45n0sPfRqOQWccGwRwoOC1ZpoS62y
+ clU34S9phJszmE70xUS7m8Usx1taCtQTGTvqbWOpsWHpVHNLlJ144iPVi
+ ImNPDwXaHRGFOZATFVvB2RaszoNz1EbWee3t3Z8G9rOj9h1xiRkI9ABCs
+ 8fH9+AzbmCs/9eVj+Dg175htKhwGA5zd3vYalCHy0dWE58qwaRCZNoD8O
+ hZzbGKfKVFvXhOuqUUjMSoG62c8iLrsVAABD0W3eAEp6PVkBPOQcnRxrt
+ BSscew7q/GuN1AN91EVFHIvcgJzkuKBfttyhuLTqWuaUmcRLFKzuU+8Hk A==;
+X-CSE-ConnectionGUID: +UcVGc57QdWk9k6kzIRDGQ==
+X-CSE-MsgGUID: WUX3EgtvQU+WXxOJofG6jA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11424"; a="59580323"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="59580323"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 03:57:36 -0700
-X-CSE-ConnectionGUID: LJfEPMfhQlCmQF6s4Xgy9g==
-X-CSE-MsgGUID: KMw5KUHvS+KApoW5AN11Pw==
+ 06 May 2025 03:57:39 -0700
+X-CSE-ConnectionGUID: q7RqaIIXQReitApXXJxEFw==
+X-CSE-MsgGUID: rdnofmVmSMe17bNiZn0TxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="139636366"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="139636372"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.221])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 03:57:33 -0700
+ 06 May 2025 03:57:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/4] drm/i915/bios: fix a comment referencing struct
- drm_i915_private
-Date: Tue,  6 May 2025 13:57:18 +0300
-Message-Id: <b7a9a7c64f41cf61749a42ed4102e04b500fde83.1746529001.git.jani.nikula@intel.com>
+Subject: [PATCH 4/4] drm/i915/crtc: pass struct intel_display to DISPLAY_VER()
+Date: Tue,  6 May 2025 13:57:19 +0300
+Message-Id: <cb84073ff92a99e74ff6dfb8e395365b7cbb5332.1746529001.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1746529001.git.jani.nikula@intel.com>
 References: <cover.1746529001.git.jani.nikula@intel.com>
@@ -71,27 +70,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-struct intel_vbt_data is within struct intel_display nowadays, not
-struct drm_i915_private.
+Drop another reference to struct drm_i915_private.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index f9841f0498c6..6cd7a011b8c4 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -24,7 +24,7 @@
- /*
-  * Please use intel_vbt_defs.h for VBT private data, to hide and abstract away
-  * the VBT from the rest of the driver. Add the parsed, clean data to struct
-- * intel_vbt_data within struct drm_i915_private.
-+ * intel_vbt_data within struct intel_display.
-  */
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 537859630363..29cfc38f12e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -305,7 +305,6 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
  
- #ifndef _INTEL_BIOS_H_
+ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_plane *primary, *cursor;
+ 	const struct drm_crtc_funcs *funcs;
+ 	struct intel_crtc *crtc;
+@@ -333,7 +332,7 @@ int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 	for_each_sprite(display, pipe, sprite) {
+ 		struct intel_plane *plane;
+ 
+-		if (DISPLAY_VER(dev_priv) >= 9)
++		if (DISPLAY_VER(display) >= 9)
+ 			plane = skl_universal_plane_create(display, pipe, PLANE_2 + sprite);
+ 		else
+ 			plane = intel_sprite_plane_create(display, pipe, sprite);
 -- 
 2.39.5
 
