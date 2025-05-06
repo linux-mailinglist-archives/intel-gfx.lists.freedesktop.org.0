@@ -2,61 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A1CAAC897
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 16:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC4ADAAC8D4
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 16:57:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48E0A10E6BC;
-	Tue,  6 May 2025 14:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D219810E6C3;
+	Tue,  6 May 2025 14:57:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKtAcer6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xp7PgC+3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20B4F10E6B9;
- Tue,  6 May 2025 14:49:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F22F10E6BD;
+ Tue,  6 May 2025 14:57:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746542978; x=1778078978;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=k/3Cm3qBSE4kQUYbXULB1bDBvgYVlZea0Ikr+sLx42o=;
- b=CKtAcer6R5VXr1sOQXJf2/It1dJhrkgk+26smvpPxZqKRr7j1r6jgXgF
- 7OBSHNmNNzuA/IF0fgR/ZpkMbKYwAhhSexhd5ASZEn8FnjWWob1zVPh+k
- /b9g5IWBGw/htJpXQjkLe0Lwv8wb+pMl7xMLYM7d87RgiYg9s8XacELdR
- WKB/t6aMZqEXwy0mBC5OwmlmLh1l1uOyaeb2dqIhrVBJHF/xQIgZKr1Mh
- z3pl5MWD6klHow31vCLPuVmaI/gkI7Tp8dOCZl9TZ/buAerkFJA4aeSiT
- EmwcQ6yVeg9ky47otfi9n3qQrt3oldYfh6lo7idxUw/BEq7YaDMhHcKuG g==;
-X-CSE-ConnectionGUID: xpg5bafKSb6bs/DTGdOSTw==
-X-CSE-MsgGUID: 8Txl/dl7T1ahZB0bWr4TZQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="47476964"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="47476964"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 07:49:37 -0700
-X-CSE-ConnectionGUID: q6JBGLkOTo2Z/C2PH6V0ZQ==
-X-CSE-MsgGUID: oi64Q6TkQVqoNRbztE5wOQ==
+ t=1746543434; x=1778079434;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ClA1FvcVo33tQSO1PtvvobmBVmzd/g4PnxgmUO5oVzg=;
+ b=Xp7PgC+3C7kPLzWtsEvBc8uG0Q323rQwzTNAioIgRe3Zpi5IZ3LZX4jr
+ q+9dyeH51BoWKw2U22WywOeaVkPHdm4SPSYu30mzSo4la038I3BmsL10Z
+ lrVBQS54SLgFt4Sx4rqmnsvXdm/kA4IMMinQHvz0iQHVVoGNmYJVLWCMV
+ wbdOwYHfDwmUiaT/1zOF3PVJnBsFrZZmT5dwPalV9zEU62qoExd0/k+Xw
+ /HXnJ8KybeCLBwdRxu1uvaaGMoCQMAw9N83Y7PTzeit+qlHlP8YxU83MD
+ OvMRdtrx5L3x2vy7c5J0Xk3J9eiuUYIWjAgKm5Os2DB5jjxkkSN2rB2p/ w==;
+X-CSE-ConnectionGUID: ENzkRmw/T+y+DvA7GzIt9Q==
+X-CSE-MsgGUID: H7YmDCYuSomuWzMln2TsUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="59205953"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="59205953"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 07:57:13 -0700
+X-CSE-ConnectionGUID: y1iBNZOQTD2gdqEx+G+bbw==
+X-CSE-MsgGUID: CBqnbgDPTh6/wsl4D1BQeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135519549"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.171])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 07:49:35 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="166572082"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by orviesa002.jf.intel.com with ESMTP; 06 May 2025 07:57:11 -0700
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 3/3] drm/i915/alpm: Stop writing ALPM registers when PSR is
- enabled
-Date: Tue,  6 May 2025 17:49:12 +0300
-Message-ID: <20250506144912.1848606-4-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250506144912.1848606-1-jouni.hogander@intel.com>
-References: <20250506144912.1848606-1-jouni.hogander@intel.com>
+Cc: ankit.k.nautiyal@intel.com,
+	ville.syrjala@intel.com
+Subject: [PATCH v4 00/17] Enable/Disable DC balance along with VRR DSB
+Date: Tue,  6 May 2025 20:25:00 +0530
+Message-ID: <20250506145517.4129419-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,51 +67,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently we are seeing these on PTL:
+Control DC Balance Adjustment bit to accomodate changes along
+with VRR DSB implementation.
 
-xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A to get active
+Ankit Nautiyal (1):
+  drm/i915/vrr: Fix the adjustment for the fixed rr vtotal for Display <
+    13
 
-These seem to be caused by writing ALPM registers while Panel Replay is
-enabled.
+Mitul Golani (8):
+  drm/i915/display: Add source param for dc balance
+  drm/i915/display: Add VRR DC balance registers
+  drm/i915/vrr: Add DC Balance params to crtc_state
+  drm/i915/vrr: Add state dump for DC Balance params
+  drm/i915/vrr: Add compute config for DC Balance params
+  drm/i915/vrr: Write DC balance params to hw registers
+  drm/i915/vrr: Add function to check if DC Balance Possible
+  drm/i915/vrr: Enable DC Balance bit
 
-Fix this by writing ALPM registers only when Panel Replay is about to be
-enabled.
+Ville Syrjälä (8):
+  drm/i915/vrr: Refactor vmin/vmax stuff
+  drm/i915/display: Add pipe dmc registers and bits for DC Balance
+  drm/i915/vrr: Add functions to read out vmin/vmax stuff
+  drm/i915: Extract vrr_vblank_start()
+  drm/i915/vrr: Implement vblank evasion with DC balancing
+  drm/i915/dsb: Add pipedmc dc balance enable/disable
+  drm/i915/vrr: Restructure VRR enablement bit
+  drm/i915/vrr: Pause DC Balancing for DSB commits
 
-v2: take into account disabled hw in old_crtc_state
+ .../drm/i915/display/intel_crtc_state_dump.c  |   8 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  25 ++
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   7 +
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  18 ++
+ drivers/gpu/drm/i915/display/intel_dmc.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |  46 ++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  31 ++-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |  33 ++-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 223 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   5 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  48 ++++
+ 12 files changed, 412 insertions(+), 38 deletions(-)
 
-Fixes: 172757acd6f6 ("drm/i915/lobf: Add lobf enablement in post plane update")
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 4d57bd517dfa..0d690d6716d8 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -472,10 +472,6 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_encoder *encoder;
- 
--	if ((!crtc_state->has_lobf ||
--	     crtc_state->has_lobf == old_crtc_state->has_lobf) && !crtc_state->has_psr)
--		return;
--
- 	for_each_intel_encoder_mask(display->drm, encoder,
- 				    crtc_state->uapi.encoder_mask) {
- 		struct intel_dp *intel_dp;
-@@ -485,6 +481,11 @@ void intel_alpm_post_plane_update(struct intel_atomic_state *state,
- 
- 		intel_dp = enc_to_intel_dp(encoder);
- 
-+		if ((!crtc_state->has_lobf && !intel_psr_needs_alpm(intel_dp, crtc_state)) ||
-+		    ((old_crtc_state->has_lobf || intel_psr_needs_alpm(intel_dp, old_crtc_state)) &&
-+		     old_crtc_state->hw.active))
-+			continue;
-+
- 		if (intel_dp_is_edp(intel_dp)) {
- 			intel_alpm_enable_sink(intel_dp, crtc_state);
- 			intel_alpm_configure(intel_dp, crtc_state);
 -- 
-2.43.0
+2.48.1
 
