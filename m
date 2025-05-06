@@ -2,35 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759F4AAC872
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 16:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D189AAAC894
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 16:49:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01E510E060;
-	Tue,  6 May 2025 14:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 366AC10E6B0;
+	Tue,  6 May 2025 14:49:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="maWwlod3";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lechuck.jsg.id.au (jsg.id.au [193.114.144.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67F6E10E060;
- Tue,  6 May 2025 14:45:10 +0000 (UTC)
-Received: from largo.jsg.id.au (largo.jsg.id.au [192.168.1.44])
- by lechuck.jsg.id.au (OpenSMTPD) with ESMTPS id bdd9e5af
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
- Wed, 7 May 2025 00:45:08 +1000 (AEST)
-Received: from localhost (largo.jsg.id.au [local])
- by largo.jsg.id.au (OpenSMTPD) with ESMTPA id 91c5f4fc;
- Wed, 7 May 2025 00:45:07 +1000 (AEST)
-Date: Wed, 7 May 2025 00:45:07 +1000
-From: Jonathan Gray <jsg@jsg.id.au>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/pxp: fix non-optimised !CONFIG_DRM_I915_PXP build
-Message-ID: <aBogc_3nH8ej_M_h@largo.jsg.id.au>
-References: <20241103110230.11035-1-jsg@jsg.id.au> <87msieghk7.fsf@intel.com>
- <aBoDqgR_uxbK7SjU@largo.jsg.id.au> <87wmatvqj6.fsf@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B24010E360;
+ Tue,  6 May 2025 14:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746542972; x=1778078972;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1g9x0/5i6hrvouJrVWf1d8ITrAx974pfrZMZRhQJkKI=;
+ b=maWwlod3NARagQasKPVObZPCsPbVcYumGvRlJ8wUzxkO1GuLZuxdLTvt
+ gp2s7sF6Vh+koU3xcMZXykxL/542T46Ws3ypoYhta/Xh2vtIn5XUW95mp
+ h56skG0XvS6+a6GxMDcF6MMG1trRAoMDI6ShLzI5thM6bPwGSuT+NFIuD
+ Jgbuxg0tvIcKY7tv26cYdEgANjAQFFNftp0/gsx4ietvh7ZHGX/FBrBzN
+ oA2ToNVifFL9ijSO+zp3hUdJ+PemJQrkT/JM0M5lj7k17s/R1crksqe9+
+ K22kQTxy41rToBbkP3+dlra0Jd1+ns4gAHPKEszRiNNQM0LoLr8fT0M7O w==;
+X-CSE-ConnectionGUID: kTcqQQczQHuwodwBnOBDjA==
+X-CSE-MsgGUID: rxELTlx6TRmQznEZiWcPJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="47476908"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="47476908"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 07:49:32 -0700
+X-CSE-ConnectionGUID: jtIqSjqAQ+yamSCe1sTOuA==
+X-CSE-MsgGUID: OvcDtZaFSkeLzlPiDVG09g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135519501"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.171])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 07:49:30 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/3] ALPM rework and fixes
+Date: Tue,  6 May 2025 17:49:09 +0300
+Message-ID: <20250506144912.1848606-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87wmatvqj6.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,27 +70,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 06, 2025 at 04:04:45PM +0300, Jani Nikula wrote:
-> On Tue, 06 May 2025, Jonathan Gray <jsg@jsg.id.au> wrote:
-> > On Tue, Nov 05, 2024 at 11:23:36AM +0200, Jani Nikula wrote:
-> >> On Sun, 03 Nov 2024, Jonathan Gray <jsg@jsg.id.au> wrote:
-> >> > intel_pxp_gsccs_is_ready_for_sessions() is gated by CONFIG_DRM_I915_PXP
-> >> > but called from intel_pxp.c which isn't.  Provide a fallback inline
-> >> > function to fix the non-optimised build.
-> >> >
-> >> > Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
-> >> > Signed-off-by: Jonathan Gray <jsg@jsg.id.au>
-> >> 
-> >> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> >
-> > equivalent patch was merged and now queued for stable
-> > 7e21ea8149a0 ("drm/i915/pxp: fix undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'")
-> 
-> Oh, damn. I'm really sorry for first dropping the ball on your patch,
-> and then encountering another patch and forgetting one like that already
-> existed.
-> 
-> My bad, apologies.
+Currently there are couple of problems in ALPM implelementation:
 
-Thanks.  I mentioned this in case someone with the same problem found
-this thread.  I understand you have many patches to keep track of.
+1. ALPM registers are written while PSR/ Panel Replay is kept
+   enabled. This is causing following error messages on PTL:
+   
+   "xe 0000:00:02.0: [drm] *ERROR* Timeout waiting for DDI BUF A to
+   get active".
+
+   This is fixed by enabling ALPM only once when needed.
+
+2. ALPM is never disabled when used by PSR/Panel Replay. I.e. if PSR
+   is once enabled ALPM is left enabled for good when PSR is
+   disabled. This is fixed by using intel_alpm_disable and calling it
+   for both cases: LOBF disable and PSR disable.
+
+3. ALPM sink disable is done in PSR code. This is not logical as it's
+   enabled in ALPM code. There are two options to tackle this. Either
+   move sink disable or remove it completely. This patch set is moving
+   it to intel_alpm.c
+
+Most critical fix in the set is 1. That can be merged separately and
+review of rest of the patches can be continued. The fix is implemented
+in patch 3/3.
+
+v2:
+  - continue using rmw when disabling ALPM
+  - take into account disabled hw in old_crtc_state
+
+Jouni Högander (3):
+  drm/i915/alpm: Move disabling sink ALPM to intel_alpm.c
+  drm/i915/alpm: Disable ALPM rework
+  drm/i915/alpm: Stop writing ALPM registers when PSR is enabled
+
+ drivers/gpu/drm/i915/display/intel_alpm.c    | 70 ++++++++++----------
+ drivers/gpu/drm/i915/display/intel_display.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c     |  7 +-
+ 3 files changed, 36 insertions(+), 43 deletions(-)
+
+-- 
+2.43.0
+
