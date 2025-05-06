@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E4EAAC515
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC7AAAC524
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:06:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA7710E68B;
-	Tue,  6 May 2025 13:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B2F10E68C;
+	Tue,  6 May 2025 13:06:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0N924qw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJGEPPcn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC87E10E689;
- Tue,  6 May 2025 13:04:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A58C10E68C;
+ Tue,  6 May 2025 13:06:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746536693; x=1778072693;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6U5I5RsNFuaLbFYwhq39Rwn+zbLTS5g6nFY43grLNgE=;
- b=h0N924qwF9Uvkw5ZMK8hNo0NHHiMPoM89NJj/0fplAaY4Ab4ep1J/GPY
- zLGCGvhsYP/E2Hp6v8zuv3oxRztmXJAw56J29YjXIzA+/4u4JjYK2QB6X
- JSsYguUMQC99BBjPMa2NyVnd7M7iG8VBAfSGF7NiIu/7HxQf1ER+/WCgF
- 6dTJblAMmYq1OuEpUzicXG2y+KbgCRXc2Y+LOtFInndamMwdzH95ajzxo
- Ks8lgTmB91zrrsZzulu4QqLO/rXvC6ZA9vV39iwb4LipTbd692KxMKhI5
- N9dFO6eya6cjKhI4jIc3DyLzBczKkx8j7FdlqXY0ltpfuqjzMElAea8kW w==;
-X-CSE-ConnectionGUID: +uaS/NcbRXOeHPiqAlE47A==
-X-CSE-MsgGUID: flXlJ594TQO477HSMbZOPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48337399"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48337399"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:04:49 -0700
-X-CSE-ConnectionGUID: 5yAz1KFXTMOftnTKBGkh3Q==
-X-CSE-MsgGUID: 8Yh46J7rQlSvUqIlTF92ag==
+ t=1746536816; x=1778072816;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=n7X9mh4Fnd0OKS/4YoIeMCfaFqvw/kPfF2RDPEl52ow=;
+ b=HJGEPPcnnnJlcOQKqPmAo+RlJqZjiLP7bo23bU2JtQNM3TyQVnRvdhDL
+ 0boVkAnsiObKQ8fiaLdnKqy/8DnT/Ymf2jO4E+isMYFyi8OhA7GMZ9Br0
+ JGaCOtMZ1RGtWThv7XBHxXxY2xUAJ1CZZsOFQoQ2kaAY/MvdoudBOKjkj
+ Pgy7Juhl7g35NZ70yvPLUlcx6Tr5r6a4bdrFPfW4fM0EK8Qlazc+kJC6q
+ e9lph6egxgfWEekivqkqcOashNJnGxj7T2O7zTzlST5Xf7yHJtnfSzh/8
+ qRNODnLId3zqISq1m6GPV3lRIeTp0SnDlfALGcdhRWZX9Z9KSBXlTWS8H Q==;
+X-CSE-ConnectionGUID: c4BeoOiySLy41CiqccP/cw==
+X-CSE-MsgGUID: 8qGG1J+ZRx+mQKrHW1rbpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48112222"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48112222"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 06:06:55 -0700
+X-CSE-ConnectionGUID: CahX045WRNiDkyJeV7bcWQ==
+X-CSE-MsgGUID: fk1xH/ykTg+OvnHCVkWJPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="136140580"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135588219"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.221])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:04:48 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jonathan Gray <jsg@jsg.id.au>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/pxp: fix non-optimised !CONFIG_DRM_I915_PXP build
-In-Reply-To: <aBoDqgR_uxbK7SjU@largo.jsg.id.au>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241103110230.11035-1-jsg@jsg.id.au>
- <87msieghk7.fsf@intel.com> <aBoDqgR_uxbK7SjU@largo.jsg.id.au>
-Date: Tue, 06 May 2025 16:04:45 +0300
-Message-ID: <87wmatvqj6.fsf@intel.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2025 06:06:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH 0/8] drm/i915: irq_lock refactoring, move to display
+Date: Tue,  6 May 2025 16:06:42 +0300
+Message-Id: <cover.1746536745.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,77 +69,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 06 May 2025, Jonathan Gray <jsg@jsg.id.au> wrote:
-> On Tue, Nov 05, 2024 at 11:23:36AM +0200, Jani Nikula wrote:
->> On Sun, 03 Nov 2024, Jonathan Gray <jsg@jsg.id.au> wrote:
->> > intel_pxp_gsccs_is_ready_for_sessions() is gated by CONFIG_DRM_I915_PXP
->> > but called from intel_pxp.c which isn't.  Provide a fallback inline
->> > function to fix the non-optimised build.
->> >
->> > Fixes: 99afb7cc8c44 ("drm/i915/pxp: Add ARB session creation and cleanup")
->> > Signed-off-by: Jonathan Gray <jsg@jsg.id.au>
->> 
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->
-> equivalent patch was merged and now queued for stable
-> 7e21ea8149a0 ("drm/i915/pxp: fix undefined reference to `intel_pxp_gsccs_is_ready_for_sessions'")
+Refactor some irq/rps code to help move i915->irq_lock to
+display->irq.lock, and then do the move.
 
-Oh, damn. I'm really sorry for first dropping the ball on your patch,
-and then encountering another patch and forgetting one like that already
-existed.
+Jani Nikula (8):
+  drm/i915/irq: move locking inside vlv_display_irq_reset()
+  drm/i915/irq: move locking inside
+    valleyview_{enable,disable}_display_irqs()
+  drm/i915/irq: move locking inside vlv_display_irq_postinstall()
+  drm/i915/irq: split out i915_display_irq_postinstall()
+  drm/i915/irq: split out i965_display_irq_postinstall()
+  drm/i915/irq: make i915_enable_asle_pipestat() static
+  drm/i915/rps: refactor display rps support
+  drm/i915/irq: move i915->irq_lock to display->irq.lock
 
-My bad, apologies.
-
-BR,
-Jani.
-
->
->> 
->> > ---
->> >  drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h | 8 ++++++--
->> >  1 file changed, 6 insertions(+), 2 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
->> > index 9aae779c4da3..b93488e99685 100644
->> > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
->> > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_gsccs.h
->> > @@ -16,26 +16,30 @@ struct intel_pxp;
->> >  #define GSC_PENDING_RETRY_PAUSE_MS 50
->> >  #define GSCFW_MAX_ROUND_TRIP_LATENCY_MS (GSC_HECI_REPLY_LATENCY_MS + \
->> >  					 (GSC_PENDING_RETRY_MAXCOUNT * GSC_PENDING_RETRY_PAUSE_MS))
->> >  
->> >  #ifdef CONFIG_DRM_I915_PXP
->> >  void intel_pxp_gsccs_fini(struct intel_pxp *pxp);
->> >  int intel_pxp_gsccs_init(struct intel_pxp *pxp);
->> > +bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
->> >  
->> >  int intel_pxp_gsccs_create_session(struct intel_pxp *pxp, int arb_session_id);
->> >  void intel_pxp_gsccs_end_arb_fw_session(struct intel_pxp *pxp, u32 arb_session_id);
->> >  
->> >  #else
->> >  static inline void intel_pxp_gsccs_fini(struct intel_pxp *pxp)
->> >  {
->> >  }
->> >  
->> >  static inline int intel_pxp_gsccs_init(struct intel_pxp *pxp)
->> >  {
->> >  	return 0;
->> >  }
->> >  
->> > -#endif
->> > +static inline bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp)
->> > +{
->> > +	return false;
->> > +}
->> >  
->> > -bool intel_pxp_gsccs_is_ready_for_sessions(struct intel_pxp *pxp);
->> > +#endif
->> >  
->> >  #endif /*__INTEL_PXP_GSCCS_H__ */
->> 
->> -- 
->> Jani Nikula, Intel
->> 
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  43 +++--
+ .../gpu/drm/i915/display/intel_display_core.h |   3 +
+ .../gpu/drm/i915/display/intel_display_irq.c  | 153 ++++++++++--------
+ .../gpu/drm/i915/display/intel_display_irq.h  |   3 +-
+ .../i915/display/intel_display_power_well.c   |   5 -
+ .../gpu/drm/i915/display/intel_display_rps.c  |  23 +++
+ .../gpu/drm/i915/display/intel_display_rps.h  |  24 +++
+ .../drm/i915/display/intel_display_types.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  10 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   9 +-
+ .../drm/i915/display/intel_fifo_underrun.c    |  44 ++---
+ drivers/gpu/drm/i915/display/intel_hotplug.c  | 129 ++++++---------
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |  22 ++-
+ drivers/gpu/drm/i915/display/intel_tv.c       |  14 +-
+ .../drm/i915/display/skl_universal_plane.c    |  10 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  10 +-
+ drivers/gpu/drm/i915/i915_driver.c            |   1 -
+ drivers/gpu/drm/i915/i915_drv.h               |   2 -
+ drivers/gpu/drm/i915/i915_irq.c               |  27 +---
+ drivers/gpu/drm/xe/Makefile                   |   1 -
+ .../drm/xe/compat-i915-headers/gt/intel_rps.h |  11 --
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  11 --
+ drivers/gpu/drm/xe/display/xe_display_rps.c   |  17 --
+ 23 files changed, 260 insertions(+), 314 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gt/intel_rps.h
+ delete mode 100644 drivers/gpu/drm/xe/display/xe_display_rps.c
 
 -- 
-Jani Nikula, Intel
+2.39.5
+
