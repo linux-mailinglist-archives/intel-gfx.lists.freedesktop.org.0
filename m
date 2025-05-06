@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC7AAAC524
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2C1AAC525
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 May 2025 15:07:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B2F10E68C;
-	Tue,  6 May 2025 13:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B811310E690;
+	Tue,  6 May 2025 13:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJGEPPcn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PU73WYlC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A58C10E68C;
- Tue,  6 May 2025 13:06:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A18510E68E;
+ Tue,  6 May 2025 13:06:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746536816; x=1778072816;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=n7X9mh4Fnd0OKS/4YoIeMCfaFqvw/kPfF2RDPEl52ow=;
- b=HJGEPPcnnnJlcOQKqPmAo+RlJqZjiLP7bo23bU2JtQNM3TyQVnRvdhDL
- 0boVkAnsiObKQ8fiaLdnKqy/8DnT/Ymf2jO4E+isMYFyi8OhA7GMZ9Br0
- JGaCOtMZ1RGtWThv7XBHxXxY2xUAJ1CZZsOFQoQ2kaAY/MvdoudBOKjkj
- Pgy7Juhl7g35NZ70yvPLUlcx6Tr5r6a4bdrFPfW4fM0EK8Qlazc+kJC6q
- e9lph6egxgfWEekivqkqcOashNJnGxj7T2O7zTzlST5Xf7yHJtnfSzh/8
- qRNODnLId3zqISq1m6GPV3lRIeTp0SnDlfALGcdhRWZX9Z9KSBXlTWS8H Q==;
-X-CSE-ConnectionGUID: c4BeoOiySLy41CiqccP/cw==
-X-CSE-MsgGUID: 8qGG1J+ZRx+mQKrHW1rbpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48112222"
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48112222"
+ t=1746536819; x=1778072819;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=OdIGAmIt1fAIeDSHB6vaxGVzB2XAiIEvFBQCBsk7PFk=;
+ b=PU73WYlCKYnOVYu5SzuatlyXO1i/fTY050NLatCdQ8Bb/lI2t5mNj/hB
+ sUXgLMF0yD05PuF7C5Fa3yfhK5yBODHlqY8ioH8Ndc//T+dtxq/FY9TR7
+ Pq59NqzmVo0G8kJ8BJ9wLGwNQn+H5tMflNbCj8/4WwJf0ndpnneya4tCs
+ cmn9dtoTjhg6j0plxg+FIapNRBKf2ZYWADfYoSy9PIoolkiBESy++nq+2
+ 1L3fFQpR6fmsR4wh+PVPkME5y8TcdMe5Ll4uPFuf2TTTEFEHHyZgsZH9h
+ DnAlkPv9o31m4RtdGNja95eN4nfdPHUNvWMiAH7dpJ1KGt+zan25JhHKU w==;
+X-CSE-ConnectionGUID: YvjMqc9cTQe0lz6MURmoNg==
+X-CSE-MsgGUID: TZ004hzqSl2kjjMdTaAxvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="48112233"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="48112233"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:06:55 -0700
-X-CSE-ConnectionGUID: CahX045WRNiDkyJeV7bcWQ==
-X-CSE-MsgGUID: fk1xH/ykTg+OvnHCVkWJPA==
+ 06 May 2025 06:06:59 -0700
+X-CSE-ConnectionGUID: nykbwD6lQVWBNivHs18dBw==
+X-CSE-MsgGUID: sbWTX0McQei+7JLZQlyG/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135588219"
+X-IronPort-AV: E=Sophos;i="6.15,266,1739865600"; d="scan'208";a="135588237"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.221])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2025 06:06:53 -0700
+ 06 May 2025 06:06:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 0/8] drm/i915: irq_lock refactoring, move to display
-Date: Tue,  6 May 2025 16:06:42 +0300
-Message-Id: <cover.1746536745.git.jani.nikula@intel.com>
+Subject: [PATCH 1/8] drm/i915/irq: move locking inside vlv_display_irq_reset()
+Date: Tue,  6 May 2025 16:06:43 +0300
+Message-Id: <0f8176b777fa24921458996f7d6f982f955a52f6.1746536745.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1746536745.git.jani.nikula@intel.com>
+References: <cover.1746536745.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,47 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Refactor some irq/rps code to help move i915->irq_lock to
-display->irq.lock, and then do the move.
+All users of vlv_display_irq_reset() have a lock/unlock pair. Move the
+locking inside the function.
 
-Jani Nikula (8):
-  drm/i915/irq: move locking inside vlv_display_irq_reset()
-  drm/i915/irq: move locking inside
-    valleyview_{enable,disable}_display_irqs()
-  drm/i915/irq: move locking inside vlv_display_irq_postinstall()
-  drm/i915/irq: split out i915_display_irq_postinstall()
-  drm/i915/irq: split out i965_display_irq_postinstall()
-  drm/i915/irq: make i915_enable_asle_pipestat() static
-  drm/i915/rps: refactor display rps support
-  drm/i915/irq: move i915->irq_lock to display->irq.lock
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++++
+ drivers/gpu/drm/i915/i915_irq.c                  | 4 ----
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/i9xx_plane.c     |  43 +++--
- .../gpu/drm/i915/display/intel_display_core.h |   3 +
- .../gpu/drm/i915/display/intel_display_irq.c  | 153 ++++++++++--------
- .../gpu/drm/i915/display/intel_display_irq.h  |   3 +-
- .../i915/display/intel_display_power_well.c   |   5 -
- .../gpu/drm/i915/display/intel_display_rps.c  |  23 +++
- .../gpu/drm/i915/display/intel_display_rps.h  |  24 +++
- .../drm/i915/display/intel_display_types.h    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  10 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   9 +-
- .../drm/i915/display/intel_fifo_underrun.c    |  44 ++---
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 129 ++++++---------
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |  22 ++-
- drivers/gpu/drm/i915/display/intel_tv.c       |  14 +-
- .../drm/i915/display/skl_universal_plane.c    |  10 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           |  10 +-
- drivers/gpu/drm/i915/i915_driver.c            |   1 -
- drivers/gpu/drm/i915/i915_drv.h               |   2 -
- drivers/gpu/drm/i915/i915_irq.c               |  27 +---
- drivers/gpu/drm/xe/Makefile                   |   1 -
- .../drm/xe/compat-i915-headers/gt/intel_rps.h |  11 --
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  11 --
- drivers/gpu/drm/xe/display/xe_display_rps.c   |  17 --
- 23 files changed, 260 insertions(+), 314 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gt/intel_rps.h
- delete mode 100644 drivers/gpu/drm/xe/display/xe_display_rps.c
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 73b6254c5485..22bb0fc10736 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1884,8 +1884,12 @@ static void _vlv_display_irq_reset(struct intel_display *display)
+ 
+ void vlv_display_irq_reset(struct intel_display *display)
+ {
++	struct drm_i915_private *dev_priv = to_i915(display->drm);
++
++	spin_lock_irq(&dev_priv->irq_lock);
+ 	if (display->irq.vlv_display_irqs_enabled)
+ 		_vlv_display_irq_reset(display);
++	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
+ void i9xx_display_irq_reset(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index d06694d6531e..b918b440cbce 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -688,9 +688,7 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ 	gen5_gt_irq_reset(to_gt(dev_priv));
+ 
+-	spin_lock_irq(&dev_priv->irq_lock);
+ 	vlv_display_irq_reset(display);
+-	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
+ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+@@ -752,9 +750,7 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ 	gen2_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
+ 
+-	spin_lock_irq(&dev_priv->irq_lock);
+ 	vlv_display_irq_reset(display);
+-	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
+ static void ilk_irq_postinstall(struct drm_i915_private *dev_priv)
 -- 
 2.39.5
 
