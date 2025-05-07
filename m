@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98019AADB8F
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 11:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C67EFAADB91
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 11:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF0310E77E;
-	Wed,  7 May 2025 09:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6587E10E780;
+	Wed,  7 May 2025 09:38:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVm45y9f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UhAZm1tR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C559110E77E;
- Wed,  7 May 2025 09:38:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80CB210E780;
+ Wed,  7 May 2025 09:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746610730; x=1778146730;
+ t=1746610734; x=1778146734;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5ra5I28/Xut9XkSayDLB0j3ukFcJYNzAb+NV4Bpcwt8=;
- b=OVm45y9f0sffk6kXxsgP6BEdvbmaySQV4nTl56TiEFq/G6GvbrhxAbf8
- +ZKGtpn5+CdlHXfHJppB5/0s7uJpmL25EuB+BZ6arQ6Xd0orJ0nysBdUl
- QfA0MAKi1i3GZlaDVqAVillnQudr00XqZ0SpMDWwqzn6cm+5ENx/jcv1K
- SgMUte3qRxtDWHmOfoWWE0/1I2cSHk4okEefJ1eD/Jf1+8FxRV+S+nECh
- dVtlyw2MIRrnWNggUQxNrRgGusGqR7p+NrvArci8hdozKvioZhlAXzKYE
- RlAl6AhT1dOaVIJqIAnjXTXsScttyYpHJMEHnMZTrReaY0Sf6cSgV1XZC g==;
-X-CSE-ConnectionGUID: 4Lmvtys3TqqcIDFeMwsYtw==
-X-CSE-MsgGUID: T957LAZeSRuk9hZ3i1Ck3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="59727217"
-X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="59727217"
+ bh=eF0YSECOEZOznx+hkfFtVd9fjBgRbRzb7nQzyh0zWM4=;
+ b=UhAZm1tRspMCjk9k9s7BMlmnkBl9YINveO7rKwZX6yrykKVkItbC5k5r
+ aB6bnAUSSiHfcr+KOkzXgOP21YKoseKRRMwB2+7IXPVLqZGwY6zRF8ZDC
+ gedRVj42DZO4PzfZjfAq84nfYGAg/ze5bQjuSg46Q+Oe7DlxS1+b9R00X
+ EwwEJRdBR6KYlJnbL3JzWU32PLI2Qk76yI9kBtV0R/M3z+kLmH9WOxgzm
+ /jEmKZiF5VoN8gWApQFyyaYuZeLwmm3tMjHUTLCHLJADIFO+FmuNcx1Gg
+ KoZxXSxw3oRlqGjVZZJi+g1RdyQi1xJfU0xsok3Jdd7YJuY21SBJlYkcX A==;
+X-CSE-ConnectionGUID: DKDbm7I+QS2QY6inxCnoxw==
+X-CSE-MsgGUID: navwme5yQnec9Yskuju6xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11425"; a="59727222"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="59727222"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 02:38:50 -0700
-X-CSE-ConnectionGUID: sBqaYcN3TN6+Cehfwp6ZXQ==
-X-CSE-MsgGUID: 3uG1JS7vS92afNMwG8LdwA==
+ 07 May 2025 02:38:54 -0700
+X-CSE-ConnectionGUID: YiSsSqwESDK0iNcxvPtOGw==
+X-CSE-MsgGUID: /KmJbR3TRUWwGyMq7JwJqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="159194299"
+X-IronPort-AV: E=Sophos;i="6.15,268,1739865600"; d="scan'208";a="159194303"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.218])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 02:38:49 -0700
+ 07 May 2025 02:38:53 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/4] drm/xe/display: do not reference xe->display inline
-Date: Wed,  7 May 2025 12:38:34 +0300
-Message-Id: <c99483ad86022d02f780bac73445baaf27a6edce.1746610601.git.jani.nikula@intel.com>
+Subject: [PATCH 3/4] drm/i915: do not reference i915->display inline
+Date: Wed,  7 May 2025 12:38:35 +0300
+Message-Id: <afcf305e8c4ea452cee37479530958f36a10c840.1746610601.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1746610601.git.jani.nikula@intel.com>
 References: <cover.1746610601.git.jani.nikula@intel.com>
@@ -71,87 +71,104 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Always use a local variable for display instead of referencing
-xe->display inline. This makes it easier to convert xe->display into a
-pointer.
+i915->display inline. This makes it easier to convert i915->display into
+a pointer.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 15 ++++++++++-----
- drivers/gpu/drm/xe/display/xe_fb_pin.c  |  5 +++--
- 2 files changed, 13 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c        | 20 ++++++++++++--------
+ drivers/gpu/drm/i915/intel_clock_gating.c |  3 ++-
+ 2 files changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 68f064f33d4b..b8030492fbd1 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -38,7 +38,9 @@
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 273bc43468a0..9dcd99ca7b4a 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -115,6 +115,8 @@ static const struct drm_driver i915_drm_driver;
  
- static bool has_display(struct xe_device *xe)
+ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
  {
--	return HAS_DISPLAY(&xe->display);
-+	struct intel_display *display = &xe->display;
++	struct intel_display *display = &dev_priv->display;
 +
-+	return HAS_DISPLAY(display);
- }
+ 	/*
+ 	 * The i915 workqueue is primarily used for batched retirement of
+ 	 * requests (and thus managing bo) once the task has been completed
+@@ -133,8 +135,8 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
+ 	if (dev_priv->wq == NULL)
+ 		goto out_err;
  
- /**
-@@ -84,8 +86,9 @@ static void unset_display_features(struct xe_device *xe)
- static void display_destroy(struct drm_device *dev, void *dummy)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-+	struct intel_display *display = &xe->display;
+-	dev_priv->display.hotplug.dp_wq = alloc_ordered_workqueue("i915-dp", 0);
+-	if (dev_priv->display.hotplug.dp_wq == NULL)
++	display->hotplug.dp_wq = alloc_ordered_workqueue("i915-dp", 0);
++	if (!display->hotplug.dp_wq)
+ 		goto out_free_wq;
  
--	destroy_workqueue(xe->display.hotplug.dp_wq);
+ 	/*
+@@ -150,7 +152,7 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
+ 	return 0;
+ 
+ out_free_dp_wq:
+-	destroy_workqueue(dev_priv->display.hotplug.dp_wq);
 +	destroy_workqueue(display->hotplug.dp_wq);
- }
+ out_free_wq:
+ 	destroy_workqueue(dev_priv->wq);
+ out_err:
+@@ -161,8 +163,10 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
  
- /**
-@@ -101,9 +104,11 @@ static void display_destroy(struct drm_device *dev, void *dummy)
-  */
- int xe_display_create(struct xe_device *xe)
+ static void i915_workqueues_cleanup(struct drm_i915_private *dev_priv)
  {
--	spin_lock_init(&xe->display.fb_tracking.lock);
-+	struct intel_display *display = &xe->display;
++	struct intel_display *display = &dev_priv->display;
 +
-+	spin_lock_init(&display->fb_tracking.lock);
- 
--	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
-+	display->hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
- 
- 	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ 	destroy_workqueue(dev_priv->unordered_wq);
+-	destroy_workqueue(dev_priv->display.hotplug.dp_wq);
++	destroy_workqueue(display->hotplug.dp_wq);
+ 	destroy_workqueue(dev_priv->wq);
  }
-@@ -362,7 +367,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
  
- 	if (has_display(xe)) {
+@@ -991,10 +995,10 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+ 	if (HAS_DISPLAY(i915))
  		intel_display_driver_suspend_access(display);
--		intel_encoder_suspend_all(&xe->display);
-+		intel_encoder_suspend_all(display);
- 	}
  
- 	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d918ae1c8061..e95ca979e1fe 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -389,6 +389,7 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
+-	intel_encoder_suspend_all(&i915->display);
+-	intel_encoder_shutdown_all(&i915->display);
++	intel_encoder_suspend_all(display);
++	intel_encoder_shutdown_all(display);
+ 
+-	intel_dmc_suspend(&i915->display);
++	intel_dmc_suspend(display);
+ 
+ 	i915_gem_suspend(i915);
+ 
+@@ -1074,7 +1078,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	if (HAS_DISPLAY(dev_priv))
+ 		intel_display_driver_suspend_access(display);
+ 
+-	intel_encoder_suspend_all(&dev_priv->display);
++	intel_encoder_suspend_all(display);
+ 
+ 	/* Must be called before GGTT is suspended. */
+ 	intel_dpt_suspend(display);
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index 387b26400169..f55c7b68f23e 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -201,6 +201,7 @@ static void ilk_init_clock_gating(struct drm_i915_private *i915)
+ 
+ static void cpt_init_clock_gating(struct drm_i915_private *i915)
  {
- 	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct intel_display *display = &xe->display;
- 	struct i915_vma *vma;
++	struct intel_display *display = &i915->display;
+ 	enum pipe pipe;
+ 	u32 val;
  
- 	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
-@@ -399,8 +400,8 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
- 		goto found;
- 	}
- 
--	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
--		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
-+	if (fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
-+		vma = intel_fbdev_vma_pointer(display->fbdev.fbdev);
- 		if (vma)
- 			goto found;
- 	}
+@@ -220,7 +221,7 @@ static void cpt_init_clock_gating(struct drm_i915_private *i915)
+ 		val = intel_uncore_read(&i915->uncore, TRANS_CHICKEN2(pipe));
+ 		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
+ 		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
+-		if (i915->display.vbt.fdi_rx_polarity_inverted)
++		if (display->vbt.fdi_rx_polarity_inverted)
+ 			val |= TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
+ 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER;
+ 		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH;
 -- 
 2.39.5
 
