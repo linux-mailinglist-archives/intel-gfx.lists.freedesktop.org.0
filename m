@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9866EAAE537
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 17:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEA2AAE564
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 17:50:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA93B10E833;
-	Wed,  7 May 2025 15:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3750510E84A;
+	Wed,  7 May 2025 15:50:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIlj2t3S";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S8kuPuDd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E2C10E838;
- Wed,  7 May 2025 15:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746632721; x=1778168721;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=DKP/wpPO9vAXs8uDiM4OZCsLvtlKI92I8E7J79ZyZks=;
- b=FIlj2t3SvofMChQw5uXNak2CVrU+jRYgTkjuEzfxvTCYQwtc+7CGlpH8
- CFVQa684PsVQqxooQbqmntpzQvrgWWTyNW5rp1d3wwB6PDIpzYCioRH/k
- ZFDLKuQfPs7Kr5wdjGX9Phz+BgpcLwp7XmqugjeyU9DtMGvMHzgOLwYyL
- GdGxLqBO7GpfzT4g/uEr5UhGDEneaJSoX52c2qmH89iAhXGz4hdyMyYhe
- JHNTxMTBX6DZmRe3rFFbhYQflnCy4AgrP9nXWyzN4wehX0BiBnz3uwZ9E
- M2R08GMNiM4Bq+b2RLZPL4FsV7cvL7qyvSPyGm0vzYZfzBMduc0MkrYjO g==;
-X-CSE-ConnectionGUID: oKgC+sFIQRWg3ILXg+LUQA==
-X-CSE-MsgGUID: yLT3l97zSKGlrenZxHqfJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48486246"
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="48486246"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 08:45:21 -0700
-X-CSE-ConnectionGUID: UG0fQpA7Rp+DzqnKWm8QCw==
-X-CSE-MsgGUID: Bsfz0Pl2QdOMrgLuizEc+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="141117687"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.57])
- by orviesa005.jf.intel.com with SMTP; 07 May 2025 08:45:18 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 07 May 2025 18:45:17 +0300
-Date: Wed, 7 May 2025 18:45:17 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v4 01/17] drm/i915/vrr: Fix the adjustment for the fixed
- rr vtotal for Display < 13
-Message-ID: <aBuADboeEUwq1hI_@intel.com>
-References: <20250506145517.4129419-1-mitulkumar.ajitkumar.golani@intel.com>
- <20250506145517.4129419-2-mitulkumar.ajitkumar.golani@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5F110E84A;
+ Wed,  7 May 2025 15:50:36 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 5A3D043B0B;
+ Wed,  7 May 2025 15:50:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCE80C4CEE2;
+ Wed,  7 May 2025 15:50:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1746633035;
+ bh=/kk+lMEV9goTpRWvoLzP681rFcpsKOtwSv5IQnnAQ4s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=S8kuPuDd6TlAsDYR9wp/41rHJDkWTwCjPWtbetr2wt+mtHbzmWO/O4YbNXWmOnPuK
+ lPI7BM5lKG4tmZknGtWx0DzN8j237oovyYxK0eSY8vBLn2C8rlaxK19nGqeFknm4Mp
+ GVemygZS90+SZg7Xn4cMcGikJAogcL8d/QwCs3xpxdecblPyxjSmRbvKKVKiXM/1z6
+ 7Z/GpR6USHjgbaPQ8HuxmfroCUndcgyygAi/5bFQn3XOnhUwyeuJgC83MS7g8pHiYw
+ ozqpF0hwkJaLjtFMiH6c7CKqWRMyZ2JHtQ3O+2OWictKYYePBibZE2bY1aj6r5g7CJ
+ GeU3GNh+GbKdw==
+Date: Wed, 7 May 2025 17:50:32 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Kees Cook <kees@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>, 
+ Gustavo Sousa <gustavo.sousa@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ Gnattu OC <gnattuoc@me.com>, Nitin Gote <nitin.r.gote@intel.com>, 
+ Ranu Maurya <ranu.maurya@intel.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Angus Chen <angus.chen@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>, 
+ Yu Jiaoliang <yujiaoliang@vivo.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gt: Remove const from struct i915_wa list
+ allocation
+Message-ID: <e4rgvbw3ts7bnj2opz44exharx2ybxvjzzwu3kzthnc5i2a37u@fzswrwnjggqd>
+References: <20250426061357.work.749-kees@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250506145517.4129419-2-mitulkumar.ajitkumar.golani@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20250426061357.work.749-kees@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,42 +73,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 06, 2025 at 08:25:01PM +0530, Mitul Golani wrote:
-> From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> 
-> Correct the adjustment required for fixed refresh rate mode for Display
-> < 13. The vblank delay must be added and not subtracted to get the fixed
-> rr vtotal.
-> 
-> Fixes: bef1e60c7087 ("drm/i915/vrr: Prepare for fixed refresh rate timings")
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index c6565baf815a..45445198129f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -263,7 +263,7 @@ int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
->  	if (DISPLAY_VER(display) >= 13)
->  		return crtc_vtotal;
->  	else
-> -		return crtc_vtotal -
-> +		return crtc_vtotal +
->  			intel_vrr_real_vblank_delay(crtc_state);
+Hi Kees,
 
-This change looks wrong. This serves the same purpose as the
-the subtraction in intel_vrr_compute_config_late().
+On Fri, Apr 25, 2025 at 11:13:58PM -0700, Kees Cook wrote:
+> In preparation for making the kmalloc family of allocators type aware,
+> we need to make sure that the returned type from the allocation matches
+> the type of the variable being assigned. (Before, the allocator would
+> always return "void *", which can be implicitly cast to any pointer type.)
+> 
+> The assigned type is "struct i915_wa *". The returned type, while
+> technically matching, will be const qualified. As there is no general
+> way to remove const qualifiers, adjust the allocation type to match
+> the assignment.
+> 
+> Signed-off-by: Kees Cook <kees@kernel.org>
 
->  }
->  
-> -- 
-> 2.48.1
+merged to drm-intel-gt-next.
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Andi
