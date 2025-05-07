@@ -2,70 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0AE5AAE4D9
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 17:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9866EAAE537
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 May 2025 17:45:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0006910E843;
-	Wed,  7 May 2025 15:31:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA93B10E833;
+	Wed,  7 May 2025 15:45:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+UJ3drs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FIlj2t3S";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51F7B10E82B;
- Wed,  7 May 2025 15:31:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E2C10E838;
+ Wed,  7 May 2025 15:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746631889; x=1778167889;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Qr4AnBYW987xgEuMwPW0O8SNkjOdYyDH7+SBKrD5wjE=;
- b=Y+UJ3drsw/+ChE6D+/UWn/MJvCYwfu2IbyWk4tBHe93zv4Gm7lDVg1K/
- sICFecvw883WQZ/FGCUzNtw8sXwFC7yH2iYHqAfcen5dv52Xg9O0KcMGT
- mHgohc1RKQ/akeVykY8/e+KQoCy8LT8v63i+MwMywbfzNQRF/DykG0iKE
- xAMLe4JFcnUQx3lvWt3A7XxlAf8VR+jLt/HRILH3Lxd+X49Lnowz1anMM
- AdYQh9CDSznT//SaAfIA/vOKZ9yVuruxSYy0cKb3suHWe+hSVmBeaEhQ2
- M9wNpIPJhVRbxAUqCdkKkcEM2iMKtaCPKxtxKcFUjKn+4lMt+3Ih3YYO4 Q==;
-X-CSE-ConnectionGUID: 79v6kudgTQuPy9ZXvJ5yEg==
-X-CSE-MsgGUID: Jf6I+9pXSI+ZgmTPtRaM2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="52188181"
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="52188181"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 08:31:29 -0700
-X-CSE-ConnectionGUID: wY3QIsuRTmiKchM34BGM6g==
-X-CSE-MsgGUID: Z9gJ6xe4TcmZRIETVIq+8Q==
+ t=1746632721; x=1778168721;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DKP/wpPO9vAXs8uDiM4OZCsLvtlKI92I8E7J79ZyZks=;
+ b=FIlj2t3SvofMChQw5uXNak2CVrU+jRYgTkjuEzfxvTCYQwtc+7CGlpH8
+ CFVQa684PsVQqxooQbqmntpzQvrgWWTyNW5rp1d3wwB6PDIpzYCioRH/k
+ ZFDLKuQfPs7Kr5wdjGX9Phz+BgpcLwp7XmqugjeyU9DtMGvMHzgOLwYyL
+ GdGxLqBO7GpfzT4g/uEr5UhGDEneaJSoX52c2qmH89iAhXGz4hdyMyYhe
+ JHNTxMTBX6DZmRe3rFFbhYQflnCy4AgrP9nXWyzN4wehX0BiBnz3uwZ9E
+ M2R08GMNiM4Bq+b2RLZPL4FsV7cvL7qyvSPyGm0vzYZfzBMduc0MkrYjO g==;
+X-CSE-ConnectionGUID: oKgC+sFIQRWg3ILXg+LUQA==
+X-CSE-MsgGUID: yLT3l97zSKGlrenZxHqfJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="48486246"
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="48486246"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2025 08:45:21 -0700
+X-CSE-ConnectionGUID: UG0fQpA7Rp+DzqnKWm8QCw==
+X-CSE-MsgGUID: Bsfz0Pl2QdOMrgLuizEc+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="136509152"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.218])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2025 08:31:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tony Nguyen <anthony.l.nguyen@intel.com>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>, "Hall, Christopher S"
- <christopher.s.hall@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Keller,
- Jacob E" <jacob.e.keller@intel.com>, "intel-wired-lan@lists.osuosl.org"
- <intel-wired-lan@lists.osuosl.org>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, regressions@lists.linux.dev, "Linux regression
- tracking (Thorsten Leemhuis)" <regressions@leemhuis.info>
-Subject: Re: [Intel-wired-lan] [REGRESSION] v6.15-rc3: 1a931c4f5e68 ("igc:
- add lock preventing multiple simultaneous PTM transactions")
-In-Reply-To: <2cc74d66-9bd7-4876-a17d-c71f03910c4d@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <SJ1PR11MB6129BBB9E38F6DB731604E94B9812@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <87cycnwcpn.fsf@intel.com>
- <2cc74d66-9bd7-4876-a17d-c71f03910c4d@intel.com>
-Date: Wed, 07 May 2025 18:31:21 +0300
-Message-ID: <87a57ov3na.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,269,1739865600"; d="scan'208";a="141117687"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.57])
+ by orviesa005.jf.intel.com with SMTP; 07 May 2025 08:45:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 07 May 2025 18:45:17 +0300
+Date: Wed, 7 May 2025 18:45:17 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, ville.syrjala@intel.com
+Subject: Re: [PATCH v4 01/17] drm/i915/vrr: Fix the adjustment for the fixed
+ rr vtotal for Display < 13
+Message-ID: <aBuADboeEUwq1hI_@intel.com>
+References: <20250506145517.4129419-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20250506145517.4129419-2-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250506145517.4129419-2-mitulkumar.ajitkumar.golani@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,29 +74,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 06 May 2025, Tony Nguyen <anthony.l.nguyen@intel.com> wrote:
-> On 5/5/2025 3:53 AM, Jani Nikula wrote:
->> On Mon, 28 Apr 2025, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
->>> Hello Christopher,
->>>
->>> This mail is regarding a regression we are seeing in our CI runs[1] on drm-tip[2] repository.
->> 
->> The regressing commit is in v6.15-rc3. Updated subject and Cc'd
->> regression tracking.
->> 
->> BR,
->> Jani.
->
-> Hi Jani,
->
-> This should be resolved with commit c7d6cb96d5c3 ("igc: fix lock order 
-> in igc_ptp_reset") in v6.15-rc5.
+On Tue, May 06, 2025 at 08:25:01PM +0530, Mitul Golani wrote:
+> From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> 
+> Correct the adjustment required for fixed refresh rate mode for Display
+> < 13. The vblank delay must be added and not subtracted to get the fixed
+> rr vtotal.
+> 
+> Fixes: bef1e60c7087 ("drm/i915/vrr: Prepare for fixed refresh rate timings")
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index c6565baf815a..45445198129f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -263,7 +263,7 @@ int intel_vrr_fixed_rr_vtotal(const struct intel_crtc_state *crtc_state)
+>  	if (DISPLAY_VER(display) >= 13)
+>  		return crtc_vtotal;
+>  	else
+> -		return crtc_vtotal -
+> +		return crtc_vtotal +
+>  			intel_vrr_real_vblank_delay(crtc_state);
 
-Thanks for the follow-up.
+This change looks wrong. This serves the same purpose as the
+the subtraction in intel_vrr_compute_config_late().
 
-BR,
-Jani.
-
+>  }
+>  
+> -- 
+> 2.48.1
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
