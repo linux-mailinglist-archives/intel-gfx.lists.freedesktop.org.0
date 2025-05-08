@@ -2,59 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E865AAF764
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:05:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 783D0AAF858
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:49:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E8C10E8D8;
-	Thu,  8 May 2025 10:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A88B10E384;
+	Thu,  8 May 2025 10:49:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVCSfzgr";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="wZr01VNe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="57DKInVe";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="wZr01VNe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="57DKInVe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92B6510E8CF;
- Thu,  8 May 2025 10:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746698719; x=1778234719;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=tFgvByz+xU5U3lqzoUvM2I4uhEqmL2qtlCAnW+XZ+pk=;
- b=OVCSfzgr4OSoZJ3qQuyEtCiWdbqvCLIsYaMMf0wLcpYjM38DezDe9v+v
- 6o/j42dI6ZxY/+gffy1lKAbfPY0F1UOf2G4sp/hVPCMZw1IETRxRKCr0R
- 7Mm/BCFi8+kjhZXJAbwSKs0fh58twjcXB8+iAmtqStHNs8q6Dk78aRSiY
- +7GuXBPb+hgN1I5aCC6uuhh1+A7joDnPNm96MeVN0Kf5WlrG0Pa3LEoxy
- QoFrHDF2ESRaSQ/IxBSSBca76YUAf+4c6NQBfBdNiLcjd+Tj5ZOhNXmql
- zo88TsEuXwaovAoDNJX9sB4bmHf/LK9QZ9DT9HhKdCddEx5KCktys71A0 Q==;
-X-CSE-ConnectionGUID: yAHAYTHOT/CPWieESwVBtg==
-X-CSE-MsgGUID: b3PZm9LjTbOz36PudmFjpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="66003372"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="66003372"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:05:18 -0700
-X-CSE-ConnectionGUID: We4O2kTHT8aA7hqwMrlnLQ==
-X-CSE-MsgGUID: fZFDEPXFQMmlVMazTZ43CQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136258198"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.176])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:05:17 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 4/6] drm/i915: switch i915 core to generic VLV IOSF SB
- functions
-In-Reply-To: <2e1ad1788ed0e7fc947a5d5f506218d0d97172bb.1745587049.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1745587049.git.jani.nikula@intel.com>
- <2e1ad1788ed0e7fc947a5d5f506218d0d97172bb.1745587049.git.jani.nikula@intel.com>
-Date: Thu, 08 May 2025 13:05:14 +0300
-Message-ID: <87zffnto2t.fsf@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A22A10E37A
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 May 2025 10:49:43 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id AC33B21219;
+ Thu,  8 May 2025 10:49:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1746701381; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rEDtSPqmcaAiObTqSUkBjuTD2dmWmIBBt0G08h1Ks7I=;
+ b=wZr01VNeLo4gKbnx3FjFCPqcz+o/fzSDd6rFL8jeSlOVMwjmgKAQjzzmLvXtRiavzKlBRA
+ A/vtvPcJoCTN0koE61eHWRKXrFNfvz2BW6obwwiZkDkGkEZyZOhjvGkKqYn49dnT4fhoGd
+ ANcpSnRmnCkaJdzS21YOmeyELG+ZAQU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1746701381;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rEDtSPqmcaAiObTqSUkBjuTD2dmWmIBBt0G08h1Ks7I=;
+ b=57DKInVeQuzVNn7bOlRFvU2eNjc4ahKNeJneCdrBdDANLmMOsaDi/xbckEfmZW0neRyNn4
+ +/10P7Jmw1xaQyBQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1746701381; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rEDtSPqmcaAiObTqSUkBjuTD2dmWmIBBt0G08h1Ks7I=;
+ b=wZr01VNeLo4gKbnx3FjFCPqcz+o/fzSDd6rFL8jeSlOVMwjmgKAQjzzmLvXtRiavzKlBRA
+ A/vtvPcJoCTN0koE61eHWRKXrFNfvz2BW6obwwiZkDkGkEZyZOhjvGkKqYn49dnT4fhoGd
+ ANcpSnRmnCkaJdzS21YOmeyELG+ZAQU=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1746701381;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=rEDtSPqmcaAiObTqSUkBjuTD2dmWmIBBt0G08h1Ks7I=;
+ b=57DKInVeQuzVNn7bOlRFvU2eNjc4ahKNeJneCdrBdDANLmMOsaDi/xbckEfmZW0neRyNn4
+ +/10P7Jmw1xaQyBQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3EF7613687;
+ Thu,  8 May 2025 10:49:41 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id nv6xDUWMHGgFCgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 08 May 2025 10:49:41 +0000
+Date: Thu, 8 May 2025 12:49:39 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250508104939.GA76697@2a02-2454-fd5e-fd00-c110-cbf2-6528-c5be.dyn6.pyur.net>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,214 +119,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Apr 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> We'll want to relocate the unit specific functions to display, making
-> them inaccessible to i915 core. As there aren't that many users in i915
-> core, we can just convert them to the generic VLV IOSF SB read/write
-> functions.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  6 +--
->  drivers/gpu/drm/i915/gt/intel_rps.c           | 46 +++++++++----------
->  drivers/gpu/drm/i915/soc/intel_dram.c         |  4 +-
->  3 files changed, 28 insertions(+), 28 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> index 0704fe763afe..288b12a02b76 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
-> @@ -366,9 +366,9 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
->  		drm_printf(p, "SW control enabled: %s\n",
->  			   str_yes_no((rpmodectl & GEN6_RP_MEDIA_MODE_MASK) == GEN6_RP_MEDIA_SW_MODE));
->  
-> -		vlv_punit_get(i915);
-> -		freq_sts = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> -		vlv_punit_put(i915);
-> +		vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
+Hi Dave, Sima,
 
-All of the gets and puts need BIT(unit) instead of just unit as
-parameter. *facepalm*.
+here's the drm-misc-fixes PR for this week.
 
-Fixed in v2 [1].
+Best regards
+Thomas
 
-BR,
-Jani.
+drm-misc-fixes-2025-05-08:
+Short summary of fixes pull:
 
+drm:
+- Fix overflow when generating wedged event
 
-[1] https://lore.kernel.org/r/cover.1746698410.git.jani.nikula@intel.com
+ivpu:
+- Increate timeouts
+- Fix deadlock in cmdq ioctl
+- Unlock mutices in correct order
 
-> +		freq_sts = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
-> +		vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
->  
->  		drm_printf(p, "PUNIT_REG_GPU_FREQ_STS: 0x%08x\n", freq_sts);
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-> index 4f58b08ca318..e48c5bd805f1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-> @@ -824,9 +824,9 @@ static int vlv_rps_set(struct intel_rps *rps, u8 val)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	int err;
->  
-> -	vlv_punit_get(i915);
-> -	err = vlv_punit_write(i915, PUNIT_REG_GPU_FREQ_REQ, val);
-> -	vlv_punit_put(i915);
-> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
-> +	err = vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_REQ, val);
-> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
->  
->  	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d\n",
->  		 val, intel_gpu_freq(rps, val));
-> @@ -1276,7 +1276,7 @@ static int chv_rps_max_freq(struct intel_rps *rps)
->  	struct intel_gt *gt = rps_to_gt(rps);
->  	u32 val;
->  
-> -	val = vlv_punit_read(i915, FB_GFX_FMAX_AT_VMAX_FUSE);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMAX_AT_VMAX_FUSE);
->  
->  	switch (gt->info.sseu.eu_total) {
->  	case 8:
-> @@ -1303,7 +1303,7 @@ static int chv_rps_rpe_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val;
->  
-> -	val = vlv_punit_read(i915, PUNIT_GPU_DUTYCYCLE_REG);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_GPU_DUTYCYCLE_REG);
->  	val >>= PUNIT_GPU_DUTYCYCLE_RPE_FREQ_SHIFT;
->  
->  	return val & PUNIT_GPU_DUTYCYCLE_RPE_FREQ_MASK;
-> @@ -1314,7 +1314,7 @@ static int chv_rps_guar_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val;
->  
-> -	val = vlv_punit_read(i915, FB_GFX_FMAX_AT_VMAX_FUSE);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMAX_AT_VMAX_FUSE);
->  
->  	return val & FB_GFX_FREQ_FUSE_MASK;
->  }
-> @@ -1324,7 +1324,7 @@ static u32 chv_rps_min_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val;
->  
-> -	val = vlv_punit_read(i915, FB_GFX_FMIN_AT_VMIN_FUSE);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMIN_AT_VMIN_FUSE);
->  	val >>= FB_GFX_FMIN_AT_VMIN_FUSE_SHIFT;
->  
->  	return val & FB_GFX_FREQ_FUSE_MASK;
-> @@ -1358,14 +1358,14 @@ static bool chv_rps_enable(struct intel_rps *rps)
->  			  GEN6_PM_RP_DOWN_TIMEOUT);
->  
->  	/* Setting Fixed Bias */
-> -	vlv_punit_get(i915);
-> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
->  
->  	val = VLV_OVERRIDE_EN | VLV_SOC_TDP_EN | CHV_BIAS_CPU_50_SOC_50;
-> -	vlv_punit_write(i915, VLV_TURBO_SOC_OVERRIDE, val);
-> +	vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, VLV_TURBO_SOC_OVERRIDE, val);
->  
-> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
->  
-> -	vlv_punit_put(i915);
-> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
->  
->  	/* RPS code assumes GPLL is used */
->  	drm_WARN_ONCE(&i915->drm, (val & GPLLENABLE) == 0,
-> @@ -1383,7 +1383,7 @@ static int vlv_rps_guar_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val, rp1;
->  
-> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FREQ_FUSE);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FREQ_FUSE);
->  
->  	rp1 = val & FB_GFX_FGUARANTEED_FREQ_FUSE_MASK;
->  	rp1 >>= FB_GFX_FGUARANTEED_FREQ_FUSE_SHIFT;
-> @@ -1396,7 +1396,7 @@ static int vlv_rps_max_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val, rp0;
->  
-> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FREQ_FUSE);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FREQ_FUSE);
->  
->  	rp0 = (val & FB_GFX_MAX_FREQ_FUSE_MASK) >> FB_GFX_MAX_FREQ_FUSE_SHIFT;
->  	/* Clamp to max */
-> @@ -1410,9 +1410,9 @@ static int vlv_rps_rpe_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val, rpe;
->  
-> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FMAX_FUSE_LO);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FMAX_FUSE_LO);
->  	rpe = (val & FB_FMAX_VMIN_FREQ_LO_MASK) >> FB_FMAX_VMIN_FREQ_LO_SHIFT;
-> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FMAX_FUSE_HI);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FMAX_FUSE_HI);
->  	rpe |= (val & FB_FMAX_VMIN_FREQ_HI_MASK) << 5;
->  
->  	return rpe;
-> @@ -1423,7 +1423,7 @@ static int vlv_rps_min_freq(struct intel_rps *rps)
->  	struct drm_i915_private *i915 = rps_to_i915(rps);
->  	u32 val;
->  
-> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_LFM) & 0xff;
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_LFM) & 0xff;
->  	/*
->  	 * According to the BYT Punit GPU turbo HAS 1.1.6.3 the minimum value
->  	 * for the minimum frequency in GPLL mode is 0xc1. Contrary to this on
-> @@ -1459,15 +1459,15 @@ static bool vlv_rps_enable(struct intel_rps *rps)
->  	/* WaGsvRC0ResidencyMethod:vlv */
->  	rps->pm_events = GEN6_PM_RP_UP_EI_EXPIRED;
->  
-> -	vlv_punit_get(i915);
-> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
->  
->  	/* Setting Fixed Bias */
->  	val = VLV_OVERRIDE_EN | VLV_SOC_TDP_EN | VLV_BIAS_CPU_125_SOC_875;
-> -	vlv_punit_write(i915, VLV_TURBO_SOC_OVERRIDE, val);
-> +	vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, VLV_TURBO_SOC_OVERRIDE, val);
->  
-> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
->  
-> -	vlv_punit_put(i915);
-> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
->  
->  	/* RPS code assumes GPLL is used */
->  	drm_WARN_ONCE(&i915->drm, (val & GPLLENABLE) == 0,
-> @@ -2115,9 +2115,9 @@ static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
->  	} else if (GRAPHICS_VER(i915) >= 12) {
->  		r = GEN12_RPSTAT1;
->  	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-> -		vlv_punit_get(i915);
-> -		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> -		vlv_punit_put(i915);
-> +		vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
-> +		freq = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
-> +		vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
->  	} else if (GRAPHICS_VER(i915) >= 6) {
->  		r = GEN6_RPSTAT1;
->  	} else {
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> index 0b92ab4e9fb9..e8d6bd116b44 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> @@ -98,7 +98,7 @@ static unsigned int chv_mem_freq(struct drm_i915_private *i915)
->  	u32 val;
->  
->  	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_CCK));
-> -	val = vlv_cck_read(i915, CCK_FUSE_REG);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_CCK, CCK_FUSE_REG);
->  	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_CCK));
->  
->  	switch ((val >> 2) & 0x7) {
-> @@ -114,7 +114,7 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
->  	u32 val;
->  
->  	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_PUNIT));
-> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
-> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
->  	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_PUNIT));
->  
->  	switch ((val >> 6) & 3) {
+panel:
+- simple: Fix timings for AUO G101EVN010
+
+ttm:
+- Fix documentation
+- Remove struct ttm_backup
+
+v3d:
+- Avoid memory leak in job handling
+The following changes since commit 1a8bc0fe8039e1e57f68c4a588f0403d98bfeb1f:
+
+  drm/mipi-dbi: Fix blanking for non-16 bit formats (2025-04-29 17:29:49 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-05-08
+
+for you to fetch changes up to 7c6fa1797a725732981f2d77711c867166737719:
+
+  drm/panel: simple: Update timings for AUO G101EVN010 (2025-05-06 13:58:46 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+drm:
+- Fix overflow when generating wedged event
+
+ivpu:
+- Increate timeouts
+- Fix deadlock in cmdq ioctl
+- Unlock mutices in correct order
+
+panel:
+- simple: Fix timings for AUO G101EVN010
+
+ttm:
+- Fix documentation
+- Remove struct ttm_backup
+
+v3d:
+- Avoid memory leak in job handling
+
+----------------------------------------------------------------
+Feng Jiang (1):
+      drm: Fix potential overflow issue in event_string array
+
+Jacek Lawrynowicz (2):
+      accel/ivpu: Increase state dump msg timeout
+      accel/ivpu: Fix pm related deadlocks in cmdq ioctls
+
+Karol Wachowski (1):
+      accel/ivpu: Correct mutex unlock order in job submission
+
+Kevin Baker (1):
+      drm/panel: simple: Update timings for AUO G101EVN010
+
+Maíra Canal (1):
+      drm/v3d: Add job to pending list if the reset was skipped
+
+Thomas Hellström (2):
+      drm/ttm: Fix ttm_backup kerneldoc
+      drm/ttm: Remove the struct ttm_backup abstraction
+
+ drivers/accel/ivpu/ivpu_hw.c         |  2 +-
+ drivers/accel/ivpu/ivpu_job.c        | 35 ++++++++++++++++++++--------
+ drivers/gpu/drm/drm_drv.c            |  2 +-
+ drivers/gpu/drm/panel/panel-simple.c | 25 ++++++++++----------
+ drivers/gpu/drm/ttm/ttm_backup.c     | 44 ++++++++++--------------------------
+ drivers/gpu/drm/ttm/ttm_pool.c       |  6 ++---
+ drivers/gpu/drm/ttm/ttm_tt.c         |  2 +-
+ drivers/gpu/drm/v3d/v3d_sched.c      | 28 +++++++++++++++++------
+ include/drm/ttm/ttm_backup.h         | 18 +++++++--------
+ include/drm/ttm/ttm_tt.h             |  2 +-
+ 10 files changed, 86 insertions(+), 78 deletions(-)
 
 -- 
-Jani Nikula, Intel
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
