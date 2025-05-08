@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBDBEAAF760
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E865AAF764
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:05:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5321310E8E0;
-	Thu,  8 May 2025 10:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E8C10E8D8;
+	Thu,  8 May 2025 10:05:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PZ5XgOi0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OVCSfzgr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB63910E8D8;
- Thu,  8 May 2025 10:04:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92B6510E8CF;
+ Thu,  8 May 2025 10:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746698659; x=1778234659;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xTDIiLjHk8CmAwVgOXEoQV4dTnE9EJ/1pnqqrNUq8WU=;
- b=PZ5XgOi0WNfUeHL2IynRoyXluiu2Z3gm98MQ7wFsQgDXA42BixhD84/A
- hO60w38KkIQrs28jo3nazY5PURbaVvGnymg3cJ/vRP8pBUGIDyHRKqezM
- 7dNW3FXuAn2BkqoihXp+sTs03u+1eJkuH9bdxK97148wUzhq9pQT8aeaS
- 80jq6n3QwUpVu81NmiDQYLYE7/xdcsoUteTIhv5IKVWOrQVy8tx/WJdp9
- Dre+IleiZtam4436ZO+5ASkpicGDL6hkHeFa2TUmgK3Xok5p9IJ16VrM2
- ihcb5JH2SexOjN7XcWwFa4d32gdgo4nV7hT53irc6h9bROB04T3XnX5br Q==;
-X-CSE-ConnectionGUID: 2OrFcEihQXyn+We8Y2iEIw==
-X-CSE-MsgGUID: uP/JTHxOSd+k+EdiSivsVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="66003256"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="66003256"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ t=1746698719; x=1778234719;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=tFgvByz+xU5U3lqzoUvM2I4uhEqmL2qtlCAnW+XZ+pk=;
+ b=OVCSfzgr4OSoZJ3qQuyEtCiWdbqvCLIsYaMMf0wLcpYjM38DezDe9v+v
+ 6o/j42dI6ZxY/+gffy1lKAbfPY0F1UOf2G4sp/hVPCMZw1IETRxRKCr0R
+ 7Mm/BCFi8+kjhZXJAbwSKs0fh58twjcXB8+iAmtqStHNs8q6Dk78aRSiY
+ +7GuXBPb+hgN1I5aCC6uuhh1+A7joDnPNm96MeVN0Kf5WlrG0Pa3LEoxy
+ QoFrHDF2ESRaSQ/IxBSSBca76YUAf+4c6NQBfBdNiLcjd+Tj5ZOhNXmql
+ zo88TsEuXwaovAoDNJX9sB4bmHf/LK9QZ9DT9HhKdCddEx5KCktys71A0 Q==;
+X-CSE-ConnectionGUID: yAHAYTHOT/CPWieESwVBtg==
+X-CSE-MsgGUID: b3PZm9LjTbOz36PudmFjpw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="66003372"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="66003372"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:04:19 -0700
-X-CSE-ConnectionGUID: 5RGj0hVnTzm9/qrxbGGa8Q==
-X-CSE-MsgGUID: jj78Hm1iRgyBWqGwv4sA0A==
+ 08 May 2025 03:05:18 -0700
+X-CSE-ConnectionGUID: We4O2kTHT8aA7hqwMrlnLQ==
+X-CSE-MsgGUID: fZFDEPXFQMmlVMazTZ43CQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136634297"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136258198"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.176])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:04:17 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 03:05:17 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 8/8] drm/i915: ensure correct VLV IOSF SB units have been
- get/put
-Date: Thu,  8 May 2025 13:03:42 +0300
-Message-Id: <6c3adb1bb4428ec472bcddef9bb973996877b72d.1746698410.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1746698410.git.jani.nikula@intel.com>
-References: <cover.1746698410.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 4/6] drm/i915: switch i915 core to generic VLV IOSF SB
+ functions
+In-Reply-To: <2e1ad1788ed0e7fc947a5d5f506218d0d97172bb.1745587049.git.jani.nikula@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1745587049.git.jani.nikula@intel.com>
+ <2e1ad1788ed0e7fc947a5d5f506218d0d97172bb.1745587049.git.jani.nikula@intel.com>
+Date: Thu, 08 May 2025 13:05:14 +0300
+Message-ID: <87zffnto2t.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,68 +70,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add some extra paranoia to check correct use of the VLV IOSF SB
-get/put/read/write.
+On Fri, 25 Apr 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> We'll want to relocate the unit specific functions to display, making
+> them inaccessible to i915 core. As there aren't that many users in i915
+> core, we can just convert them to the generic VLV IOSF SB read/write
+> functions.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  6 +--
+>  drivers/gpu/drm/i915/gt/intel_rps.c           | 46 +++++++++----------
+>  drivers/gpu/drm/i915/soc/intel_dram.c         |  4 +-
+>  3 files changed, 28 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> index 0704fe763afe..288b12a02b76 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c
+> @@ -366,9 +366,9 @@ void intel_gt_pm_frequency_dump(struct intel_gt *gt, struct drm_printer *p)
+>  		drm_printf(p, "SW control enabled: %s\n",
+>  			   str_yes_no((rpmodectl & GEN6_RP_MEDIA_MODE_MASK) == GEN6_RP_MEDIA_SW_MODE));
+>  
+> -		vlv_punit_get(i915);
+> -		freq_sts = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> -		vlv_punit_put(i915);
+> +		vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h    |  1 +
- drivers/gpu/drm/i915/vlv_iosf_sb.c | 10 ++++++++++
- 2 files changed, 11 insertions(+)
+All of the gets and puts need BIT(unit) instead of just unit as
+parameter. *facepalm*.
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index d0e1980dcba2..93b4c504b710 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -230,6 +230,7 @@ struct drm_i915_private {
- 	/* VLV/CHV IOSF sideband */
- 	struct {
- 		struct mutex lock; /* protect sideband access */
-+		unsigned long locked_unit_mask;
- 		struct pm_qos_request qos;
- 	} vlv_iosf_sb;
- 
-diff --git a/drivers/gpu/drm/i915/vlv_iosf_sb.c b/drivers/gpu/drm/i915/vlv_iosf_sb.c
-index c8f8589ee0be..f4b435555f3b 100644
---- a/drivers/gpu/drm/i915/vlv_iosf_sb.c
-+++ b/drivers/gpu/drm/i915/vlv_iosf_sb.c
-@@ -65,12 +65,18 @@ void vlv_iosf_sb_get(struct drm_device *drm, unsigned long unit_mask)
- 		__vlv_punit_get(i915);
- 
- 	mutex_lock(&i915->vlv_iosf_sb.lock);
-+
-+	i915->vlv_iosf_sb.locked_unit_mask |= unit_mask;
- }
- 
- void vlv_iosf_sb_put(struct drm_device *drm, unsigned long unit_mask)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 
-+	i915->vlv_iosf_sb.locked_unit_mask &= ~unit_mask;
-+
-+	drm_WARN_ON(drm, i915->vlv_iosf_sb.locked_unit_mask);
-+
- 	mutex_unlock(&i915->vlv_iosf_sb.lock);
- 
- 	if (unit_mask & BIT(VLV_IOSF_SB_PUNIT))
-@@ -182,6 +188,8 @@ u32 vlv_iosf_sb_read(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 add
- 	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
- 		return 0;
- 
-+	drm_WARN_ON(&i915->drm, !(i915->vlv_iosf_sb.locked_unit_mask & BIT(unit)));
-+
- 	vlv_sideband_rw(i915, devfn, port, opcode, addr, &val);
- 
- 	return val;
-@@ -199,6 +207,8 @@ int vlv_iosf_sb_write(struct drm_device *drm, enum vlv_iosf_sb_unit unit, u32 ad
- 	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
- 		return -EINVAL;
- 
-+	drm_WARN_ON(&i915->drm, !(i915->vlv_iosf_sb.locked_unit_mask & BIT(unit)));
-+
- 	return vlv_sideband_rw(i915, devfn, port, opcode, addr, &val);
- }
- 
+Fixed in v2 [1].
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/cover.1746698410.git.jani.nikula@intel.com
+
+> +		freq_sts = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
+> +		vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  		drm_printf(p, "PUNIT_REG_GPU_FREQ_STS: 0x%08x\n", freq_sts);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+> index 4f58b08ca318..e48c5bd805f1 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+> @@ -824,9 +824,9 @@ static int vlv_rps_set(struct intel_rps *rps, u8 val)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	int err;
+>  
+> -	vlv_punit_get(i915);
+> -	err = vlv_punit_write(i915, PUNIT_REG_GPU_FREQ_REQ, val);
+> -	vlv_punit_put(i915);
+> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
+> +	err = vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_REQ, val);
+> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  	GT_TRACE(rps_to_gt(rps), "set val:%x, freq:%d\n",
+>  		 val, intel_gpu_freq(rps, val));
+> @@ -1276,7 +1276,7 @@ static int chv_rps_max_freq(struct intel_rps *rps)
+>  	struct intel_gt *gt = rps_to_gt(rps);
+>  	u32 val;
+>  
+> -	val = vlv_punit_read(i915, FB_GFX_FMAX_AT_VMAX_FUSE);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMAX_AT_VMAX_FUSE);
+>  
+>  	switch (gt->info.sseu.eu_total) {
+>  	case 8:
+> @@ -1303,7 +1303,7 @@ static int chv_rps_rpe_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val;
+>  
+> -	val = vlv_punit_read(i915, PUNIT_GPU_DUTYCYCLE_REG);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_GPU_DUTYCYCLE_REG);
+>  	val >>= PUNIT_GPU_DUTYCYCLE_RPE_FREQ_SHIFT;
+>  
+>  	return val & PUNIT_GPU_DUTYCYCLE_RPE_FREQ_MASK;
+> @@ -1314,7 +1314,7 @@ static int chv_rps_guar_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val;
+>  
+> -	val = vlv_punit_read(i915, FB_GFX_FMAX_AT_VMAX_FUSE);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMAX_AT_VMAX_FUSE);
+>  
+>  	return val & FB_GFX_FREQ_FUSE_MASK;
+>  }
+> @@ -1324,7 +1324,7 @@ static u32 chv_rps_min_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val;
+>  
+> -	val = vlv_punit_read(i915, FB_GFX_FMIN_AT_VMIN_FUSE);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, FB_GFX_FMIN_AT_VMIN_FUSE);
+>  	val >>= FB_GFX_FMIN_AT_VMIN_FUSE_SHIFT;
+>  
+>  	return val & FB_GFX_FREQ_FUSE_MASK;
+> @@ -1358,14 +1358,14 @@ static bool chv_rps_enable(struct intel_rps *rps)
+>  			  GEN6_PM_RP_DOWN_TIMEOUT);
+>  
+>  	/* Setting Fixed Bias */
+> -	vlv_punit_get(i915);
+> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  	val = VLV_OVERRIDE_EN | VLV_SOC_TDP_EN | CHV_BIAS_CPU_50_SOC_50;
+> -	vlv_punit_write(i915, VLV_TURBO_SOC_OVERRIDE, val);
+> +	vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, VLV_TURBO_SOC_OVERRIDE, val);
+>  
+> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
+>  
+> -	vlv_punit_put(i915);
+> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  	/* RPS code assumes GPLL is used */
+>  	drm_WARN_ONCE(&i915->drm, (val & GPLLENABLE) == 0,
+> @@ -1383,7 +1383,7 @@ static int vlv_rps_guar_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val, rp1;
+>  
+> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FREQ_FUSE);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FREQ_FUSE);
+>  
+>  	rp1 = val & FB_GFX_FGUARANTEED_FREQ_FUSE_MASK;
+>  	rp1 >>= FB_GFX_FGUARANTEED_FREQ_FUSE_SHIFT;
+> @@ -1396,7 +1396,7 @@ static int vlv_rps_max_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val, rp0;
+>  
+> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FREQ_FUSE);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FREQ_FUSE);
+>  
+>  	rp0 = (val & FB_GFX_MAX_FREQ_FUSE_MASK) >> FB_GFX_MAX_FREQ_FUSE_SHIFT;
+>  	/* Clamp to max */
+> @@ -1410,9 +1410,9 @@ static int vlv_rps_rpe_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val, rpe;
+>  
+> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FMAX_FUSE_LO);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FMAX_FUSE_LO);
+>  	rpe = (val & FB_FMAX_VMIN_FREQ_LO_MASK) >> FB_FMAX_VMIN_FREQ_LO_SHIFT;
+> -	val = vlv_nc_read(i915, IOSF_NC_FB_GFX_FMAX_FUSE_HI);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, IOSF_NC_FB_GFX_FMAX_FUSE_HI);
+>  	rpe |= (val & FB_FMAX_VMIN_FREQ_HI_MASK) << 5;
+>  
+>  	return rpe;
+> @@ -1423,7 +1423,7 @@ static int vlv_rps_min_freq(struct intel_rps *rps)
+>  	struct drm_i915_private *i915 = rps_to_i915(rps);
+>  	u32 val;
+>  
+> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_LFM) & 0xff;
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_LFM) & 0xff;
+>  	/*
+>  	 * According to the BYT Punit GPU turbo HAS 1.1.6.3 the minimum value
+>  	 * for the minimum frequency in GPLL mode is 0xc1. Contrary to this on
+> @@ -1459,15 +1459,15 @@ static bool vlv_rps_enable(struct intel_rps *rps)
+>  	/* WaGsvRC0ResidencyMethod:vlv */
+>  	rps->pm_events = GEN6_PM_RP_UP_EI_EXPIRED;
+>  
+> -	vlv_punit_get(i915);
+> +	vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  	/* Setting Fixed Bias */
+>  	val = VLV_OVERRIDE_EN | VLV_SOC_TDP_EN | VLV_BIAS_CPU_125_SOC_875;
+> -	vlv_punit_write(i915, VLV_TURBO_SOC_OVERRIDE, val);
+> +	vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, VLV_TURBO_SOC_OVERRIDE, val);
+>  
+> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
+>  
+> -	vlv_punit_put(i915);
+> +	vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
+>  
+>  	/* RPS code assumes GPLL is used */
+>  	drm_WARN_ONCE(&i915->drm, (val & GPLLENABLE) == 0,
+> @@ -2115,9 +2115,9 @@ static u32 __read_cagf(struct intel_rps *rps, bool take_fw)
+>  	} else if (GRAPHICS_VER(i915) >= 12) {
+>  		r = GEN12_RPSTAT1;
+>  	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+> -		vlv_punit_get(i915);
+> -		freq = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> -		vlv_punit_put(i915);
+> +		vlv_iosf_sb_get(i915, VLV_IOSF_SB_PUNIT);
+> +		freq = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
+> +		vlv_iosf_sb_put(i915, VLV_IOSF_SB_PUNIT);
+>  	} else if (GRAPHICS_VER(i915) >= 6) {
+>  		r = GEN6_RPSTAT1;
+>  	} else {
+> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+> index 0b92ab4e9fb9..e8d6bd116b44 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+> @@ -98,7 +98,7 @@ static unsigned int chv_mem_freq(struct drm_i915_private *i915)
+>  	u32 val;
+>  
+>  	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_CCK));
+> -	val = vlv_cck_read(i915, CCK_FUSE_REG);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_CCK, CCK_FUSE_REG);
+>  	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_CCK));
+>  
+>  	switch ((val >> 2) & 0x7) {
+> @@ -114,7 +114,7 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
+>  	u32 val;
+>  
+>  	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_PUNIT));
+> -	val = vlv_punit_read(i915, PUNIT_REG_GPU_FREQ_STS);
+> +	val = vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, PUNIT_REG_GPU_FREQ_STS);
+>  	vlv_iosf_sb_put(i915, BIT(VLV_IOSF_SB_PUNIT));
+>  
+>  	switch ((val >> 6) & 3) {
+
 -- 
-2.39.5
-
+Jani Nikula, Intel
