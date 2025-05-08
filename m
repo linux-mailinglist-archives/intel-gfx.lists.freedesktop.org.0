@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D678AAF759
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E34A9AAF75A
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 12:04:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBC7310E8D5;
-	Thu,  8 May 2025 10:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EBAA10E8D7;
+	Thu,  8 May 2025 10:03:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GQFcLnX+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UHNDyFDE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 792F310E8D4;
- Thu,  8 May 2025 10:03:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64C4410E8D7;
+ Thu,  8 May 2025 10:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746698635; x=1778234635;
+ t=1746698638; x=1778234638;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6wlw+tWksCfQtQAqbJYBVsaP0OQSM3xKaZI5jzrCRv0=;
- b=GQFcLnX+aETYHlx+6GVlDiaoD4bN9KXGFIMt8QBoCCgofIUDxVwZrOHR
- nh8sanlHS3RtfkaoLT5iXlXPxkLS8SsDfqhpz6R9Fvwg92eWFeABfxURZ
- zfnti1elURNM6moYnb40BViGpReI+EuFzTNIgteTsoyG0lmJDeyHjMFoz
- AFSH1+vP+m6zlau83R5mrIz24pqC7g05CjVaW4YKmr13bwXe6lmxarcC0
- R9NaPzRMcqP65i93a21UwICfyjyJhmNGVLXb6mh5sJXa5CWG2tc8OapaE
- gMLS/e+z7pSr+Zoq+CTkgkE8nUc9jIXKqvFFxyjsX4V+bCBKfGM8z7a4A Q==;
-X-CSE-ConnectionGUID: AGnknD1EQlC04FADor3ODA==
-X-CSE-MsgGUID: X0N9AuEcTDeqkPzFDJYZCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="66003196"
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="66003196"
+ bh=gsiNmZHkUQC7m2L0rrczsI5/ia5TUP5EMje9VzSUYgM=;
+ b=UHNDyFDE8YAIn6MekZefetlmtDozlZdLgRWGP24Yrk5wVKyY1xlHhJRC
+ llcQ1Jus3YH6W/crKGVaUMObOTcohbqquDRzdKCrqTfuX2EVA9mhR0Ur8
+ y5pzKDPTn4FuZUhUnYU7oLSC+Vo0ZNOahJ6jEwLWE45e9o3+FfWZMHBN9
+ ZezLVFHNMeXdF7fIutjgqzYVj8+AoHjSm8TfFUCiIDGKSlriwYQmrUoRQ
+ y/u9fIQg+MJP33aYIt7wwXV7DLwW50eFNp7b4IEXeBwFfZFHz0hEwCfLz
+ h4vcvQ4gfHHJRO+Ha7mDwP/+d5AaDrJsspjsriKyWed37zaGTxYCwRtlw A==;
+X-CSE-ConnectionGUID: 3LhNZRWHRK+gKvAVripbNw==
+X-CSE-MsgGUID: MoCuFgkfSHura7GYXuUX2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11426"; a="66003202"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="66003202"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:03:54 -0700
-X-CSE-ConnectionGUID: qhZZMKaKR5eAmposF3/fug==
-X-CSE-MsgGUID: ubCcjv+9STGBHr+jr5LKtw==
+ 08 May 2025 03:03:58 -0700
+X-CSE-ConnectionGUID: M9H/KZTrRC2EnH4VR7Ozhg==
+X-CSE-MsgGUID: bqAZSl6KRjyemXhXbl+aQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136634268"
+X-IronPort-AV: E=Sophos;i="6.15,271,1739865600"; d="scan'208";a="136634273"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.176])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 03:03:53 -0700
+ 08 May 2025 03:03:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 2/8] drm/i915: add generic read/write functions for VLV
- IOSF SB
-Date: Thu,  8 May 2025 13:03:36 +0300
-Message-Id: <82ef3013efb2dd4c357d60847a6ff9850a002256.1746698410.git.jani.nikula@intel.com>
+Subject: [PATCH v2 3/8] drm/i915: rewrite VLV IOSF SB unit specific read/write
+ functions
+Date: Thu,  8 May 2025 13:03:37 +0300
+Message-Id: <4223f282f12e95d90b8a3eb6e26bb5fd59d891b5.1746698410.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1746698410.git.jani.nikula@intel.com>
 References: <cover.1746698410.git.jani.nikula@intel.com>
@@ -72,165 +72,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The read/write functions will be helpful for rewriting the unit specific
-functions.
-
-v2: Fix checkpatch complaint on indent
+Rewrite the VLV IOSF SB unit specific helpers in terms of the new
+generic read/write functions. They become even simpler than they were.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/vlv_iosf_sb.c            | 73 +++++++++++++++++++
- drivers/gpu/drm/i915/vlv_iosf_sb.h            |  6 +-
- .../drm/xe/compat-i915-headers/vlv_iosf_sb.h  |  9 ++-
- 3 files changed, 83 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/vlv_iosf_sb.c | 73 ++++++++----------------------
+ 1 file changed, 20 insertions(+), 53 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/vlv_iosf_sb.c b/drivers/gpu/drm/i915/vlv_iosf_sb.c
-index 91703c6c478c..aaed876a1f2e 100644
+index aaed876a1f2e..efb5ee39dbbb 100644
 --- a/drivers/gpu/drm/i915/vlv_iosf_sb.c
 +++ b/drivers/gpu/drm/i915/vlv_iosf_sb.c
-@@ -123,6 +123,79 @@ static int vlv_sideband_rw(struct drm_i915_private *i915,
- 	return err;
- }
+@@ -198,96 +198,68 @@ int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit,
  
-+static u32 unit_to_devfn(enum vlv_iosf_sb_unit unit)
-+{
-+	if (unit == VLV_IOSF_SB_DPIO || unit == VLV_IOSF_SB_DPIO_2 ||
-+	    unit == VLV_IOSF_SB_FLISDSI)
-+		return DPIO_DEVFN;
-+	else
-+		return PCI_DEVFN(0, 0);
-+}
-+
-+static u32 unit_to_port(enum vlv_iosf_sb_unit unit)
-+{
-+	switch (unit) {
-+	case VLV_IOSF_SB_BUNIT:
-+		return IOSF_PORT_BUNIT;
-+	case VLV_IOSF_SB_CCK:
-+		return IOSF_PORT_CCK;
-+	case VLV_IOSF_SB_CCU:
-+		return IOSF_PORT_CCU;
-+	case VLV_IOSF_SB_DPIO:
-+		return IOSF_PORT_DPIO;
-+	case VLV_IOSF_SB_DPIO_2:
-+		return IOSF_PORT_DPIO_2;
-+	case VLV_IOSF_SB_FLISDSI:
-+		return IOSF_PORT_FLISDSI;
-+	case VLV_IOSF_SB_GPIO:
-+		return 0; /* FIXME: unused */
-+	case VLV_IOSF_SB_NC:
-+		return IOSF_PORT_NC;
-+	case VLV_IOSF_SB_PUNIT:
-+		return IOSF_PORT_PUNIT;
-+	default:
-+		return 0;
-+	}
-+}
-+
-+static u32 unit_to_opcode(enum vlv_iosf_sb_unit unit, bool write)
-+{
-+	if (unit == VLV_IOSF_SB_DPIO || unit == VLV_IOSF_SB_DPIO_2)
-+		return write ? SB_MWR_NP : SB_MRD_NP;
-+	else
-+		return write ? SB_CRWRDA_NP : SB_CRRDDA_NP;
-+}
-+
-+u32 vlv_iosf_sb_read(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr)
-+{
-+	u32 devfn, port, opcode, val = 0;
-+
-+	devfn = unit_to_devfn(unit);
-+	port = unit_to_port(unit);
-+	opcode = unit_to_opcode(unit, false);
-+
-+	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
-+		return 0;
-+
-+	vlv_sideband_rw(i915, devfn, port, opcode, addr, &val);
-+
-+	return val;
-+}
-+
-+int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
-+{
-+	u32 devfn, port, opcode;
-+
-+	devfn = unit_to_devfn(unit);
-+	port = unit_to_port(unit);
-+	opcode = unit_to_opcode(unit, true);
-+
-+	if (drm_WARN_ONCE(&i915->drm, !port, "invalid unit %d\n", unit))
-+		return -EINVAL;
-+
-+	return vlv_sideband_rw(i915, devfn, port, opcode, addr, &val);
-+}
-+
  u32 vlv_punit_read(struct drm_i915_private *i915, u32 addr)
  {
- 	u32 val = 0;
-diff --git a/drivers/gpu/drm/i915/vlv_iosf_sb.h b/drivers/gpu/drm/i915/vlv_iosf_sb.h
-index 380b96089cda..26af3aa973f8 100644
---- a/drivers/gpu/drm/i915/vlv_iosf_sb.h
-+++ b/drivers/gpu/drm/i915/vlv_iosf_sb.h
-@@ -14,11 +14,12 @@
- enum dpio_phy;
- struct drm_i915_private;
- 
--enum {
-+enum vlv_iosf_sb_unit {
- 	VLV_IOSF_SB_BUNIT,
- 	VLV_IOSF_SB_CCK,
- 	VLV_IOSF_SB_CCU,
- 	VLV_IOSF_SB_DPIO,
-+	VLV_IOSF_SB_DPIO_2,
- 	VLV_IOSF_SB_FLISDSI,
- 	VLV_IOSF_SB_GPIO,
- 	VLV_IOSF_SB_NC,
-@@ -31,6 +32,9 @@ void vlv_iosf_sb_fini(struct drm_i915_private *i915);
- void vlv_iosf_sb_get(struct drm_i915_private *i915, unsigned long ports);
- void vlv_iosf_sb_put(struct drm_i915_private *i915, unsigned long ports);
- 
-+u32 vlv_iosf_sb_read(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr);
-+int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr, u32 val);
-+
- static inline void vlv_bunit_get(struct drm_i915_private *i915)
- {
- 	vlv_iosf_sb_get(i915, BIT(VLV_IOSF_SB_BUNIT));
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h b/drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h
-index b42a518a79e0..57f7dde90ced 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h
-@@ -13,11 +13,12 @@
- enum pipe;
- struct drm_i915_private;
- 
--enum {
-+enum vlv_iosf_sb_unit {
- 	VLV_IOSF_SB_BUNIT,
- 	VLV_IOSF_SB_CCK,
- 	VLV_IOSF_SB_CCU,
- 	VLV_IOSF_SB_DPIO,
-+	VLV_IOSF_SB_DPIO_2,
- 	VLV_IOSF_SB_FLISDSI,
- 	VLV_IOSF_SB_GPIO,
- 	VLV_IOSF_SB_NC,
-@@ -27,13 +28,13 @@ enum {
- static inline void vlv_iosf_sb_get(struct drm_i915_private *i915, unsigned long ports)
- {
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_PUNIT,
+-			SB_CRRDDA_NP, addr, &val);
+-
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_PUNIT, addr);
  }
--static inline u32 vlv_iosf_sb_read(struct drm_i915_private *i915, u8 port, u32 reg)
-+static inline u32 vlv_iosf_sb_read(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr)
+ 
+ int vlv_punit_write(struct drm_i915_private *i915, u32 addr, u32 val)
  {
- 	return 0;
+-	return vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_PUNIT,
+-			       SB_CRWRDA_NP, addr, &val);
++	return vlv_iosf_sb_write(i915, VLV_IOSF_SB_PUNIT, addr, val);
  }
--static inline void vlv_iosf_sb_write(struct drm_i915_private *i915,
--				     u8 port, u32 reg, u32 val)
-+static inline int vlv_iosf_sb_write(struct drm_i915_private *i915, enum vlv_iosf_sb_unit unit, u32 addr, u32 val)
+ 
+ u32 vlv_bunit_read(struct drm_i915_private *i915, u32 reg)
  {
-+	return 0;
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_BUNIT,
+-			SB_CRRDDA_NP, reg, &val);
+-
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_BUNIT, reg);
  }
- static inline void vlv_iosf_sb_put(struct drm_i915_private *i915, unsigned long ports)
+ 
+ void vlv_bunit_write(struct drm_i915_private *i915, u32 reg, u32 val)
  {
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_BUNIT,
+-			SB_CRWRDA_NP, reg, &val);
++	vlv_iosf_sb_write(i915, VLV_IOSF_SB_BUNIT, reg, val);
+ }
+ 
+ u32 vlv_nc_read(struct drm_i915_private *i915, u8 addr)
+ {
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_NC,
+-			SB_CRRDDA_NP, addr, &val);
+-
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_NC, addr);
+ }
+ 
+ u32 vlv_cck_read(struct drm_i915_private *i915, u32 reg)
+ {
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_CCK,
+-			SB_CRRDDA_NP, reg, &val);
+-
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_CCK, reg);
+ }
+ 
+ void vlv_cck_write(struct drm_i915_private *i915, u32 reg, u32 val)
+ {
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_CCK,
+-			SB_CRWRDA_NP, reg, &val);
++	vlv_iosf_sb_write(i915, VLV_IOSF_SB_CCK, reg, val);
+ }
+ 
+ u32 vlv_ccu_read(struct drm_i915_private *i915, u32 reg)
+ {
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_CCU,
+-			SB_CRRDDA_NP, reg, &val);
+-
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_CCU, reg);
+ }
+ 
+ void vlv_ccu_write(struct drm_i915_private *i915, u32 reg, u32 val)
+ {
+-	vlv_sideband_rw(i915, PCI_DEVFN(0, 0), IOSF_PORT_CCU,
+-			SB_CRWRDA_NP, reg, &val);
++	vlv_iosf_sb_write(i915, VLV_IOSF_SB_CCU, reg, val);
+ }
+ 
+-static u32 vlv_dpio_phy_iosf_port(struct drm_i915_private *i915, enum dpio_phy phy)
++static enum vlv_iosf_sb_unit vlv_dpio_phy_to_unit(struct drm_i915_private *i915,
++						  enum dpio_phy phy)
+ {
+ 	/*
+ 	 * IOSF_PORT_DPIO: VLV x2 PHY (DP/HDMI B and C), CHV x1 PHY (DP/HDMI D)
+ 	 * IOSF_PORT_DPIO_2: CHV x2 PHY (DP/HDMI B and C)
+ 	 */
+ 	if (IS_CHERRYVIEW(i915))
+-		return phy == DPIO_PHY0 ? IOSF_PORT_DPIO_2 : IOSF_PORT_DPIO;
++		return phy == DPIO_PHY0 ? VLV_IOSF_SB_DPIO_2 : VLV_IOSF_SB_DPIO;
+ 	else
+-		return IOSF_PORT_DPIO;
++		return VLV_IOSF_SB_DPIO;
+ }
+ 
+ u32 vlv_dpio_read(struct drm_i915_private *i915, enum dpio_phy phy, int reg)
+ {
+-	u32 port = vlv_dpio_phy_iosf_port(i915, phy);
+-	u32 val = 0;
++	enum vlv_iosf_sb_unit unit = vlv_dpio_phy_to_unit(i915, phy);
++	u32 val;
+ 
+-	vlv_sideband_rw(i915, DPIO_DEVFN, port, SB_MRD_NP, reg, &val);
++	val = vlv_iosf_sb_read(i915, unit, reg);
+ 
+ 	/*
+ 	 * FIXME: There might be some registers where all 1's is a valid value,
+@@ -303,24 +275,19 @@ u32 vlv_dpio_read(struct drm_i915_private *i915, enum dpio_phy phy, int reg)
+ void vlv_dpio_write(struct drm_i915_private *i915,
+ 		    enum dpio_phy phy, int reg, u32 val)
+ {
+-	u32 port = vlv_dpio_phy_iosf_port(i915, phy);
++	enum vlv_iosf_sb_unit unit = vlv_dpio_phy_to_unit(i915, phy);
+ 
+-	vlv_sideband_rw(i915, DPIO_DEVFN, port, SB_MWR_NP, reg, &val);
++	vlv_iosf_sb_write(i915, unit, reg, val);
+ }
+ 
+ u32 vlv_flisdsi_read(struct drm_i915_private *i915, u32 reg)
+ {
+-	u32 val = 0;
+-
+-	vlv_sideband_rw(i915, DPIO_DEVFN, IOSF_PORT_FLISDSI, SB_CRRDDA_NP,
+-			reg, &val);
+-	return val;
++	return vlv_iosf_sb_read(i915, VLV_IOSF_SB_FLISDSI, reg);
+ }
+ 
+ void vlv_flisdsi_write(struct drm_i915_private *i915, u32 reg, u32 val)
+ {
+-	vlv_sideband_rw(i915, DPIO_DEVFN, IOSF_PORT_FLISDSI, SB_CRWRDA_NP,
+-			reg, &val);
++	vlv_iosf_sb_write(i915, VLV_IOSF_SB_FLISDSI, reg, val);
+ }
+ 
+ void vlv_iosf_sb_init(struct drm_i915_private *i915)
 -- 
 2.39.5
 
