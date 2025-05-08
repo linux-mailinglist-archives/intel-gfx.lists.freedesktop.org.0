@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20269AAFF13
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 17:24:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D81DBAAFFD4
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 May 2025 18:01:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6FA910E081;
-	Thu,  8 May 2025 15:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9C310E93A;
+	Thu,  8 May 2025 16:01:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eGDbjDS2";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9FDD10E081;
- Thu,  8 May 2025 15:24:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1254916720534276822=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 246D810E934;
+ Thu,  8 May 2025 16:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1746720099; x=1778256099;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=UPUn/xG3EsmQopC202RngQuC8r7hb7R3pxypDlmBwpo=;
+ b=eGDbjDS2lMhow3i0mbRTNmKuYdXABTmxbiE/nCCMnDkxuGdQ5ZntIAlL
+ 8X7YaSscZYlp+tEJpBrPdO/iCRqD1K8lgt9Jytvbf2DADoI1/59o2ee9W
+ lKo8JR+DgGlSXAg7FanukrmVU6lY0hbRK7quLLiXUOl9873YLVw9oq/92
+ JbUgdV/OhiSLZTdg28mjgUw4TfdbgmxkMW+r51xEI01FptSOZitAVAV5N
+ MgLkx28lDfEXpGgOBSVwxbcpFfOvN4Z5e1bVpbT5+b/tpAc3SSLmkLERA
+ m6RZ8feUbbS7IBdcGDzjW4NILlmta55Vxmb1hdoXTupYQUttYcr9/bOWv Q==;
+X-CSE-ConnectionGUID: wtQEexElTn2oyjbJP3WkKQ==
+X-CSE-MsgGUID: xNB4ONsaSP6R03p1dRwWhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48225265"
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="48225265"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 09:01:37 -0700
+X-CSE-ConnectionGUID: nWo9roGqRBqypNsuUiw2LQ==
+X-CSE-MsgGUID: DyZ3l572QRu2S8YA2Sva+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,272,1739865600"; d="scan'208";a="141458338"
+Received: from uaeoff-desk2.amr.corp.intel.com (HELO fedora) ([10.124.222.207])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2025 09:01:19 -0700
+Date: Thu, 8 May 2025 18:01:07 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next
+Message-ID: <aBzUwbzCzz7Qo7fA@fedora>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_ALPM_rework_and_fixes_=28?=
- =?utf-8?q?rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 08 May 2025 15:24:14 -0000
-Message-ID: <174671785468.59875.12621713925998930645@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250508141701.3878486-1-jouni.hogander@intel.com>
-In-Reply-To: <20250508141701.3878486-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,246 +72,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1254916720534276822==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona
 
-== Series Details ==
+The probably last drm-xe-next PR towards 6.16.
+Almost only fixes, except for the PCIe link downgrade attributes.
 
-Series: ALPM rework and fixes (rev3)
-URL   : https://patchwork.freedesktop.org/series/148620/
-State : success
+Thanks,
+Thomas
 
-== Summary ==
+drm-xe-next-2025-05-08:
+UAPI Changes:
+- Expose PCIe link downgrade attributes (Raag)
 
-CI Bug Log - changes from CI_DRM_16516 -> Patchwork_148620v3
-====================================================
+Cross-subsystem Changes:
 
-Summary
--------
+Core Changes:
+- gpusvm has_dma_mapping fix (Dafna)
 
-  **SUCCESS**
+Driver Changes:
+- Forcewake hold fix (Tejas)
+- Fix guc_info debugfs for VFs (Daniele)
+- Fix devcoredump chunk alignment calculation (Arnd)
+- Don't print timedout job message on killed exec queues (Matt Brost)
+- Don't flush the GSC worker from the reset path (Daniele)
+- Use copy_from_user() instead of __copy_from_user() (Harish)
+- Only flush SVM garbage collector if CONFIG_DRM_XE_GPUSVM (Shuicheng)
+- Fix forcewake vs runtime pm ref release ordering (Shuicheng)
+- Move xe_device_sysfs_init() to xe_device_probe() (Raag)
+- Append PCIe Gen5 limitations to xe_firmware document (Raag)
+The following changes since commit 1bb53d05ba71b684f61bd11df8b99fe75ce52754:
 
-  No regressions found.
+  Merge drm/drm-next into drm-xe-next (2025-04-28 17:42:49 +0200)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/index.html
+are available in the Git repository at:
 
-Participating hosts (45 -> 42)
-------------------------------
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-05-08
 
-  Missing    (3): bat-arlh-2 bat-adlp-11 fi-snb-2520m 
+for you to fetch changes up to 252c4711973de4e4f3ecddcc18912aecfd4e537c:
 
-Known issues
-------------
+  drm/xe/doc: Wire up PCIe Gen5 limitations (2025-05-07 15:31:11 -0400)
 
-  Here are the changes found in Patchwork_148620v3 that come from known issues:
+----------------------------------------------------------------
+UAPI Changes:
+- Expose PCIe link downgrade attributes (Raag)
 
-### IGT changes ###
+Cross-subsystem Changes:
 
-#### Issues hit ####
+Core Changes:
+- gpusvm has_dma_mapping fix (Dafna)
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-11:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+Driver Changes:
+- Forcewake hold fix (Tejas)
+- Fix guc_info debugfs for VFs (Daniele)
+- Fix devcoredump chunk alignment calculation (Arnd)
+- Don't print timedout job message on killed exec queues (Matt Brost)
+- Don't flush the GSC worker from the reset path (Daniele)
+- Use copy_from_user() instead of __copy_from_user() (Harish)
+- Only flush SVM garbage collector if CONFIG_DRM_XE_GPUSVM (Shuicheng)
+- Fix forcewake vs runtime pm ref release ordering (Shuicheng)
+- Move xe_device_sysfs_init() to xe_device_probe() (Raag)
+- Append PCIe Gen5 limitations to xe_firmware document (Raag)
 
-  * igt@kms_addfb_basic@too-high:
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#13735]) +48 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/xe: fix devcoredump chunk alignmnent calculation
 
-  * igt@kms_pipe_crc_basic@read-crc:
-    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#13735] / [i915#13890]) +49 other tests dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html
+Dafna Hirschfeld (1):
+      drm/gpusvm: set has_dma_mapping inside mapping loop
 
-  
-#### Possible fixes ####
+Daniele Ceraolo Spurio (2):
+      drm/xe/vf: Fix guc_info debugfs for VFs
+      drm/xe/gsc: do not flush the GSC worker from the reset path
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-8/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-dg2-14:         [ABORT][11] ([i915#13696] / [i915#14201]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-14/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-14/igt@i915_selftest@live.html
+Harish Chegondi (1):
+      drm/xe: Use copy_from_user() instead of __copy_from_user()
 
-  * igt@i915_selftest@live@active:
-    - bat-dg2-11:         [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live@active.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live@active.html
-    - bat-dg2-14:         [ABORT][15] ([i915#14201]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-14/igt@i915_selftest@live@active.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-14/igt@i915_selftest@live@active.html
+Matthew Brost (1):
+      drm/xe: Do not print timedout job message on killed exec queues
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [DMESG-FAIL][19] ([i915#12061]) -> [PASS][20] +1 other test pass
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+Raag Jadav (3):
+      drm/xe: Move xe_device_sysfs_init() to xe_device_probe()
+      drm/xe: Expose PCIe link downgrade attributes
+      drm/xe/doc: Wire up PCIe Gen5 limitations
 
-  
-#### Warnings ####
+Shuicheng Lin (2):
+      drm/xe: Add config control for svm flush work
+      drm/xe: Release force wake first then runtime power
 
-  * igt@i915_selftest@live:
-    - bat-dg2-11:         [INCOMPLETE][21] ([i915#14212]) -> [DMESG-FAIL][22] ([i915#12061])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live.html
-    - bat-atsm-1:         [DMESG-FAIL][23] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][24] ([i915#12061] / [i915#13929])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-atsm-1/igt@i915_selftest@live.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-atsm-1/igt@i915_selftest@live.html
+Tejas Upadhyay (1):
+      drm/xe/tests/mocs: Hold XE_FORCEWAKE_ALL for LNCF regs
 
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][25] ([i915#14204]) -> [DMESG-FAIL][26] ([i915#13929])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13696]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13696
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-  [i915#14212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14212
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16516 -> Patchwork_148620v3
-
-  CI-20190529: 20190529
-  CI_DRM_16516: 2862c51f227a36e59ee4a9bb90b690c9855a6246 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8357: 8357
-  Patchwork_148620v3: 2862c51f227a36e59ee4a9bb90b690c9855a6246 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/index.html
-
---===============1254916720534276822==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>ALPM rework and fixes (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148620/">https://patchwork.freedesktop.org/series/148620/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16516 -&gt; Patchwork_148620v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/index.html</p>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Missing    (3): bat-arlh-2 bat-adlp-11 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_148620v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@too-high:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) +48 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/fi-cfl-8109u/igt@kms_pipe_crc_basic@read-crc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>) +49 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-14/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13696">i915#13696</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-14/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@active:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live@active.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live@active.html">PASS</a></li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-14/igt@i915_selftest@live@active.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-14/igt@i915_selftest@live@active.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-dg2-11/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14212">i915#14212</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-dg2-11/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16516/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148620v3/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16516 -&gt; Patchwork_148620v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16516: 2862c51f227a36e59ee4a9bb90b690c9855a6246 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8357: 8357<br />
-  Patchwork_148620v3: 2862c51f227a36e59ee4a9bb90b690c9855a6246 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1254916720534276822==--
+ Documentation/gpu/xe/xe_firmware.rst |   6 ++
+ drivers/gpu/drm/drm_gpusvm.c         |   2 +-
+ drivers/gpu/drm/xe/tests/xe_mocs.c   |   7 ++-
+ drivers/gpu/drm/xe/xe_bo.c           |   4 +-
+ drivers/gpu/drm/xe/xe_devcoredump.c  |  13 +++--
+ drivers/gpu/drm/xe/xe_device.c       |   5 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c | 104 +++++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_eu_stall.c     |   4 +-
+ drivers/gpu/drm/xe/xe_exec.c         |   4 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c   |   9 ++-
+ drivers/gpu/drm/xe/xe_gsc.c          |  22 ++++++++
+ drivers/gpu/drm/xe/xe_gsc.h          |   1 +
+ drivers/gpu/drm/xe/xe_gsc_proxy.c    |  11 ++++
+ drivers/gpu/drm/xe/xe_gsc_proxy.h    |   1 +
+ drivers/gpu/drm/xe/xe_gt.c           |   2 +-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   |   9 +--
+ drivers/gpu/drm/xe/xe_guc.c          |  40 +++++++-------
+ drivers/gpu/drm/xe/xe_guc_submit.c   |   9 ++-
+ drivers/gpu/drm/xe/xe_oa.c           |   6 +-
+ drivers/gpu/drm/xe/xe_pcode_api.h    |   5 ++
+ drivers/gpu/drm/xe/xe_pm.c           |   8 +--
+ drivers/gpu/drm/xe/xe_svm.c          |  13 ++++-
+ drivers/gpu/drm/xe/xe_svm.h          |   6 ++
+ drivers/gpu/drm/xe/xe_uc.c           |   8 ++-
+ drivers/gpu/drm/xe/xe_uc.h           |   1 +
+ drivers/gpu/drm/xe/xe_vm.c           |   9 ++-
+ 26 files changed, 241 insertions(+), 68 deletions(-)
