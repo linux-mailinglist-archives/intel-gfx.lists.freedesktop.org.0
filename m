@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C04DAB1099
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 12:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE14AB10A1
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 12:28:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E256510EA08;
-	Fri,  9 May 2025 10:27:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ennY7OMF";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2023310EA0B;
+	Fri,  9 May 2025 10:28:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B15710EA08;
- Fri,  9 May 2025 10:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746786444; x=1778322444;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vuZhT/b2utgegxfQWCs6TlZdpjAQ2mt5nm/dTDX7e9I=;
- b=ennY7OMFzNo4Y7QALSlQOvbpMbPsvux1ICqCV7jC6XGCriJCLoqmu+Dv
- 9EowVGFpIAlGU4pmfM+qM56XIi/WaPLnoY0bvSVSkt3FfzVVDQkaC14Kc
- P4MocoOvs28L3/WiAfNJRCoIDDi8aFc0wpNij2jwXU7+cmc/NtUnQKihc
- JvADqvT0nq08oGeZ5LJ/rqEXivAR1X9y5uH2QW2Tac3auFEq03dF/6NPc
- vUYJVsf2A4evZsmcR1PoyPkK7YR23UL9iU4hrMY0TR+rmCKKgwxFyAdMC
- gBnHgzdN040SjsEtfc1326KbxVSNXwIOzr3YSJ2tQjW+XXFTOGBD3XMPP w==;
-X-CSE-ConnectionGUID: MVDQQvT1Sf2PPAdbcn1R7w==
-X-CSE-MsgGUID: eeAxmru8TWuk3sNZCJvM1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="52419317"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="52419317"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:27:24 -0700
-X-CSE-ConnectionGUID: kC8oCkiiQfCLzmFXyvxCJw==
-X-CSE-MsgGUID: Nh67Jj+xT2SbDt+DnIU7Kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="141357247"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.201])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:27:22 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 13/18] drm/i915/dpll: Change arguments for get_freq hook
-In-Reply-To: <20250509042729.1152004-14-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
- <20250509042729.1152004-14-suraj.kandpal@intel.com>
-Date: Fri, 09 May 2025 13:27:18 +0300
-Message-ID: <87bjs2krjt.fsf@intel.com>
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC04810EA0B;
+ Fri,  9 May 2025 10:28:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8593878200843806513=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftest=3A_allo?=
+ =?utf-8?q?w_larger_memory_allocation_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mikolaj Wasiak" <mikolaj.wasiak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 09 May 2025 10:28:06 -0000
+Message-ID: <174678648689.63213.17947317169165224737@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <fptevdfbclvg2lbfuys5ibffbl2baouywkutnr7vdsy5tzcqfk@mpflwlh6jxfd>
+In-Reply-To: <fptevdfbclvg2lbfuys5ibffbl2baouywkutnr7vdsy5tzcqfk@mpflwlh6jxfd>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,321 +37,380 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 May 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Change the arguments for get_freq hook in intel_dpll_funcs
-> to use only intel_crtc_state and intel_encoder since that all we need
-> and the rest can be derived from the above two.
+--===============8593878200843806513==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Same as before, hard to review with no user, what does NULL mean.
+== Series Details ==
 
-It's generally not enough to say "we need" when you don't say why, and
-there's no user to justify.
+Series: drm/i915/selftest: allow larger memory allocation (rev3)
+URL   : https://patchwork.freedesktop.org/series/146321/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   6 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 107 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   5 +-
->  3 files changed, 57 insertions(+), 61 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 11ebcb40c91f..66dea34ebcd3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4203,8 +4203,7 @@ void intel_ddi_get_clock(struct intel_encoder *encoder,
->  
->  	icl_set_active_port_dpll(crtc_state, port_dpll_id);
->  
-> -	crtc_state->port_clock = intel_dpll_get_freq(display, crtc_state->intel_dpll,
-> -						     &crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = intel_dpll_get_freq(crtc_state, encoder);
->  }
->  
->  static void mtl_ddi_get_config(struct intel_encoder *encoder,
-> @@ -4316,8 +4315,7 @@ static void icl_ddi_tc_get_clock(struct intel_encoder *encoder,
->  	if (icl_ddi_tc_pll_is_tbt(crtc_state->intel_dpll))
->  		crtc_state->port_clock = icl_calc_tbt_pll_link(display, encoder->port);
->  	else
-> -		crtc_state->port_clock = intel_dpll_get_freq(display, crtc_state->intel_dpll,
-> -							     &crtc_state->dpll_hw_state);
-> +		crtc_state->port_clock = intel_dpll_get_freq(crtc_state, encoder);
->  }
->  
->  static void icl_ddi_tc_get_config(struct intel_encoder *encoder,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 4a184d1e83a3..3a724d84861b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -79,7 +79,7 @@ struct intel_dpll_funcs {
->  			struct intel_dpll *pll);
->  
->  	/*
-> -	 * Hook for disabling the shared pll, called from intel_disable_global_dpll()
-> +	 * Hook for disabling the shared pll, called from intel_disable_dpll()
->  	 * only when it is safe to disable the pll, i.e., there are no more
->  	 * tracked users for it.
->  	 */
-> @@ -100,9 +100,8 @@ struct intel_dpll_funcs {
->  	 * Hook for calculating the pll's output frequency based on its passed
->  	 * in state.
->  	 */
-> -	int (*get_freq)(struct intel_display *i915,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state);
-> +	int (*get_freq)(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder);
->  };
->  
->  struct intel_dpll_mgr {
-> @@ -1008,11 +1007,11 @@ hsw_ddi_calculate_wrpll(int clock /* in Hz */,
->  	*r2_out = best.r2;
->  }
->  
-> -static int hsw_ddi_wrpll_get_freq(struct intel_display *display,
-> -				  const struct intel_dpll *pll,
-> -				  const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_wrpll_get_freq(struct intel_crtc_state *crtc_state,
-> +				  struct intel_encoder *encoder)
->  {
-> -	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
->  	int refclk;
->  	int n, p, r;
->  	u32 wrpll = hw_state->wrpll;
-> @@ -1053,7 +1052,6 @@ static int
->  hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
->  			   struct intel_crtc *crtc)
->  {
-> -	struct intel_display *display = to_intel_display(state);
->  	struct intel_crtc_state *crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
-> @@ -1066,8 +1064,7 @@ hsw_ddi_wrpll_compute_dpll(struct intel_atomic_state *state,
->  		WRPLL_DIVIDER_REFERENCE(r2) | WRPLL_DIVIDER_FEEDBACK(n2) |
->  		WRPLL_DIVIDER_POST(p);
->  
-> -	crtc_state->port_clock = hsw_ddi_wrpll_get_freq(display, NULL,
-> -							&crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = hsw_ddi_wrpll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -1134,10 +1131,11 @@ hsw_ddi_lcpll_get_dpll(struct intel_crtc_state *crtc_state)
->  	return pll;
->  }
->  
-> -static int hsw_ddi_lcpll_get_freq(struct intel_display *display,
-> -				  const struct intel_dpll *pll,
-> -				  const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_lcpll_get_freq(struct intel_crtc_state *crtc_state,
-> +				  struct intel_encoder *encoder)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
->  	int link_clock = 0;
->  
->  	switch (pll->info->id) {
-> @@ -1186,11 +1184,11 @@ hsw_ddi_spll_get_dpll(struct intel_atomic_state *state,
->  				      BIT(DPLL_ID_SPLL));
->  }
->  
-> -static int hsw_ddi_spll_get_freq(struct intel_display *display,
-> -				 const struct intel_dpll *pll,
-> -				 const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int hsw_ddi_spll_get_freq(struct intel_crtc_state *crtc_state,
-> +				 struct intel_encoder *encoder)
->  {
-> -	const struct hsw_dpll_hw_state *hw_state = &dpll_hw_state->hsw;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct hsw_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.hsw;
->  	int link_clock = 0;
->  
->  	switch (hw_state->spll & SPLL_FREQ_MASK) {
-> @@ -1979,20 +1977,21 @@ static int skl_get_dpll(struct intel_atomic_state *state,
->  	return 0;
->  }
->  
-> -static int skl_ddi_pll_get_freq(struct intel_display *display,
-> -				const struct intel_dpll *pll,
-> -				const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int skl_ddi_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				struct intel_encoder *encoder)
->  {
-> -	const struct skl_dpll_hw_state *hw_state = &dpll_hw_state->skl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
-> +	const struct skl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.skl;
->  
->  	/*
->  	 * ctrl1 register is already shifted for each pll, just use 0 to get
->  	 * the internal shift for each field
->  	 */
->  	if (hw_state->ctrl1 & DPLL_CTRL1_HDMI_MODE(0))
-> -		return skl_ddi_wrpll_get_freq(display, pll, dpll_hw_state);
-> +		return skl_ddi_wrpll_get_freq(display, pll, &crtc_state->dpll_hw_state);
->  	else
-> -		return skl_ddi_lcpll_get_freq(display, pll, dpll_hw_state);
-> +		return skl_ddi_lcpll_get_freq(display, pll, &crtc_state->dpll_hw_state);
->  }
->  
->  static void skl_update_dpll_ref_clks(struct intel_display *display)
-> @@ -2378,11 +2377,11 @@ static int bxt_ddi_set_dpll_hw_state(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int bxt_ddi_pll_get_freq(struct intel_display *display,
-> -				const struct intel_dpll *pll,
-> -				const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int bxt_ddi_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				struct intel_encoder *encoder)
->  {
-> -	const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct bxt_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.bxt;
->  	struct dpll clock;
->  
->  	clock.m1 = 2;
-> @@ -2410,7 +2409,6 @@ bxt_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  static int
->  bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_display *display = to_intel_display(crtc_state);
->  	struct dpll clk_div = {};
->  	int ret;
->  
-> @@ -2420,8 +2418,7 @@ bxt_ddi_hdmi_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
->  	if (ret)
->  		return ret;
->  
-> -	crtc_state->port_clock = bxt_ddi_pll_get_freq(display, NULL,
-> -						      &crtc_state->dpll_hw_state);
-> +	crtc_state->port_clock = bxt_ddi_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -2773,10 +2770,11 @@ static int icl_calc_tbt_pll(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_tbt_pll_get_freq(struct intel_display *display,
-> -				    const struct intel_dpll *pll,
-> -				    const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_tbt_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				    struct intel_encoder *encoder)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
->  	/*
->  	 * The PLL outputs multiple frequencies at the same time, selection is
->  	 * made at DDI clock mux level.
-> @@ -2844,11 +2842,11 @@ icl_calc_wrpll(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_combo_pll_get_freq(struct intel_display *display,
-> -				      const struct intel_dpll *pll,
-> -				      const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_combo_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				      struct intel_encoder *encoder)
->  {
-> -	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
->  	int ref_clock = icl_wrpll_ref_clock(display);
->  	u32 dco_fraction;
->  	u32 p0, p1, p2, dco_freq;
-> @@ -3217,11 +3215,11 @@ static int icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
->  	return 0;
->  }
->  
-> -static int icl_ddi_mg_pll_get_freq(struct intel_display *display,
-> -				   const struct intel_dpll *pll,
-> -				   const struct intel_dpll_hw_state *dpll_hw_state)
-> +static int icl_ddi_mg_pll_get_freq(struct intel_crtc_state *crtc_state,
-> +				   struct intel_encoder *encoder)
->  {
-> -	const struct icl_dpll_hw_state *hw_state = &dpll_hw_state->icl;
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	const struct icl_dpll_hw_state *hw_state = &crtc_state->dpll_hw_state.icl;
->  	u32 m1, m2_int, m2_frac, div1, div2, ref_clock;
->  	u64 tmp;
->  
-> @@ -3354,8 +3352,7 @@ static int icl_compute_combo_phy_dpll(struct intel_atomic_state *state,
->  	/* this is mainly for the fastset check */
->  	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
->  
-> -	crtc_state->port_clock = icl_ddi_combo_pll_get_freq(display, NULL,
-> -							    &port_dpll->hw_state);
-> +	crtc_state->port_clock = icl_ddi_combo_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -3453,8 +3450,7 @@ static int icl_compute_tc_phy_dplls(struct intel_atomic_state *state,
->  	else
->  		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
->  
-> -	crtc_state->port_clock = icl_ddi_mg_pll_get_freq(display, NULL,
-> -							 &port_dpll->hw_state);
-> +	crtc_state->port_clock = icl_ddi_mg_pll_get_freq(crtc_state, NULL);
->  
->  	return 0;
->  }
-> @@ -4500,20 +4496,23 @@ void intel_update_active_dpll(struct intel_atomic_state *state,
->  
->  /**
->   * intel_dpll_get_freq - calculate the DPLL's output frequency
-> - * @display: intel_display device
-> - * @pll: DPLL for which to calculate the output frequency
-> - * @dpll_hw_state: DPLL state from which to calculate the output frequency
-> + * @crtc_state: crtc_state which contains the DPLL state from which we
-> + * calculate frequency
-> + * @encoder: Encoder for which the freq is calculated
->   *
-> - * Return the output frequency corresponding to @pll's passed in @dpll_hw_state.
-> + * Return the output frequency corresponding to @pll's passed in
-> + * @crtc_state->dpll_hw_state.
->   */
-> -int intel_dpll_get_freq(struct intel_display *display,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state)
-> +int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_dpll *pll = crtc_state->intel_dpll;
-> +
->  	if (drm_WARN_ON(display->drm, !pll->info->funcs->get_freq))
->  		return 0;
->  
-> -	return pll->info->funcs->get_freq(display, pll, dpll_hw_state);
-> +	return pll->info->funcs->get_freq(crtc_state, encoder);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 99a058deaeda..49eb02d72f44 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -412,9 +412,8 @@ void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
->  void intel_update_active_dpll(struct intel_atomic_state *state,
->  			      struct intel_crtc *crtc,
->  			      struct intel_encoder *encoder);
-> -int intel_dpll_get_freq(struct intel_display *display,
-> -			const struct intel_dpll *pll,
-> -			const struct intel_dpll_hw_state *dpll_hw_state);
-> +int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
-> +			struct intel_encoder *encoder);
->  bool intel_dpll_get_hw_state(struct intel_display *display,
->  			     struct intel_dpll *pll,
->  			     struct intel_dpll_hw_state *dpll_hw_state);
+CI Bug Log - changes from CI_DRM_16524 -> Patchwork_146321v3
+====================================================
 
--- 
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/index.html
+
+Participating hosts (43 -> 44)
+------------------------------
+
+  Additional (1): bat-arlh-2 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_146321v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-arlh-2:         NOTRUN -> [SKIP][1] ([i915#11345] / [i915#11346]) +3 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@fbdev@eof.html
+
+  * igt@fbdev@info:
+    - bat-arlh-2:         NOTRUN -> [SKIP][2] ([i915#11346] / [i915#1849])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@fbdev@info.html
+
+  * igt@gem_lmem_swapping@basic:
+    - bat-arlh-2:         NOTRUN -> [SKIP][3] ([i915#10213] / [i915#11346] / [i915#11671]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_mmap@basic:
+    - bat-arlh-2:         NOTRUN -> [SKIP][4] ([i915#11343] / [i915#11346])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_mmap@basic.html
+
+  * igt@gem_render_tiled_blits@basic:
+    - bat-arlh-2:         NOTRUN -> [SKIP][5] ([i915#10197] / [i915#10211] / [i915#11346] / [i915#11725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_render_tiled_blits@basic.html
+
+  * igt@gem_tiled_blits@basic:
+    - bat-arlh-2:         NOTRUN -> [SKIP][6] ([i915#11346] / [i915#12637]) +4 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_tiled_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-arlh-2:         NOTRUN -> [SKIP][7] ([i915#10206] / [i915#11346] / [i915#11724])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-arlh-2:         NOTRUN -> [SKIP][8] ([i915#10209] / [i915#11346] / [i915#11681])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061]) +1 other test dmesg-fail
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061]) +1 other test dmesg-fail
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-11:         [PASS][13] -> [DMESG-FAIL][14] ([i915#12061]) +1 other test dmesg-fail
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][15] -> [DMESG-FAIL][16] ([i915#12061]) +1 other test dmesg-fail
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  * igt@intel_hwmon@hwmon-read:
+    - bat-arlh-2:         NOTRUN -> [SKIP][17] ([i915#11346] / [i915#11680] / [i915#7707]) +1 other test skip
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@intel_hwmon@hwmon-read.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-arlh-2:         NOTRUN -> [SKIP][18] ([i915#10200] / [i915#11346] / [i915#11666] / [i915#12203])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_addfb_basic@basic-x-tiled-legacy:
+    - bat-arlh-2:         NOTRUN -> [SKIP][19] ([i915#10200] / [i915#11346] / [i915#11666]) +8 other tests skip
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_addfb_basic@basic-x-tiled-legacy.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-arlh-2:         NOTRUN -> [SKIP][20] ([i915#11346]) +32 other tests skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-arlh-2:         NOTRUN -> [SKIP][21] ([i915#10208] / [i915#11346] / [i915#8809])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-arlh-2:         NOTRUN -> [SKIP][22] ([i915#10212] / [i915#11346] / [i915#11726])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-read:
+    - bat-arlh-2:         NOTRUN -> [SKIP][23] ([i915#10214] / [i915#11346] / [i915#11726])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-arlh-2:         NOTRUN -> [SKIP][24] ([i915#10216] / [i915#11346] / [i915#11723])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][25] ([i915#12904]) -> [PASS][26] +1 other test pass
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-apl-1/igt@dmabuf@all-tests.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][27] ([i915#13494]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-9/igt@i915_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][29] ([i915#12061]) -> [PASS][30] +1 other test pass
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-8/igt@i915_selftest@live.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [DMESG-FAIL][31] ([i915#12061]) -> [PASS][32] +1 other test pass
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#10197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197
+  [i915#10200]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200
+  [i915#10206]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206
+  [i915#10208]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208
+  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
+  [i915#10211]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211
+  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
+  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
+  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
+  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+  [i915#11343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343
+  [i915#11345]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11345
+  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
+  [i915#11666]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666
+  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
+  [i915#11680]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11680
+  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
+  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
+  [i915#11724]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724
+  [i915#11725]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725
+  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12203
+  [i915#12637]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12637
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
+  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
+  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16524 -> Patchwork_146321v3
+
+  CI-20190529: 20190529
+  CI_DRM_16524: 9b56d987e5e378140bae399659d58f3940bb0953 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_146321v3: 9b56d987e5e378140bae399659d58f3940bb0953 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/index.html
+
+--===============8593878200843806513==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftest: allow larger memory allocation (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/146321/">https://patchwork.freedesktop.org/series/146321/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16524 -&gt; Patchwork_146321v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/index.html</p>
+<h2>Participating hosts (43 -&gt; 44)</h2>
+<p>Additional (1): bat-arlh-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_146321v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11345">i915#11345</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@basic:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_lmem_swapping@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213">i915#10213</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671">i915#11671</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap@basic:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11343">i915#11343</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_render_tiled_blits@basic:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10197">i915#10197</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10211">i915#10211</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11725">i915#11725</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12637">i915#12637</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10206">i915#10206</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11724">i915#11724</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rps@basic-api:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209">i915#10209</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@intel_hwmon@hwmon-read:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11680">i915#11680</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200">i915#10200</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666">i915#11666</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12203">i915#12203</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@basic-x-tiled-legacy:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_addfb_basic@basic-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10200">i915#10200</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11666">i915#11666</a>) +8 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10208">i915#10208</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809">i915#8809</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212">i915#10212</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726">i915#11726</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214">i915#10214</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726">i915#11726</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>bat-arlh-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-arlh-2/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216">i915#10216</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346">i915#11346</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723">i915#11723</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16524/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_146321v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16524 -&gt; Patchwork_146321v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16524: 9b56d987e5e378140bae399659d58f3940bb0953 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8359: 807f0cbcc771d1d0bb0d27a78231a5f92dc02126 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_146321v3: 9b56d987e5e378140bae399659d58f3940bb0953 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8593878200843806513==--
