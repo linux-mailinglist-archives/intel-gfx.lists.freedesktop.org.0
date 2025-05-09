@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A68AB0925
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 06:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66580AB0926
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 06:28:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939DE10E3B1;
-	Fri,  9 May 2025 04:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D74FD10E3B5;
+	Fri,  9 May 2025 04:28:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P4sZ8zKD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvT7gVPS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095BE10E2DE;
- Fri,  9 May 2025 04:28:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 100B5891BA;
+ Fri,  9 May 2025 04:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746764890; x=1778300890;
+ t=1746764892; x=1778300892;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xh2sQpsYlUy3xM2zHy2TXOZUXdR3QrCDaOJINhwcE3M=;
- b=P4sZ8zKDUF8IdUF86PVYjaQM+Nhe4XZXIKyd2Y7Xt/z1q/miJ82x4Xsl
- U9oFWzx0vfbfZbkRavm9/0KhTXaO0E/ePT4+8TOC62UAga42ARTbDbJ11
- 6z7EDP3SHVHPgTj/1Wh2Bxk5Cx3rjn+LjP+BLQXQYuu/eQ3bU2q1+XKCV
- P/7FBIMq7Wfok7J3qgLOOrAZX98cjfJIbKLMmSpSVeYBQ6F1VndtAE5D1
- mRicDhovJRrw3Vup+CnsDrqXozbEMlQfMatsw85ijH+tqJwrNFO/6e+R/
- 8R+3yWuNI2/a+eN5l/zdJwBRXQ02YrJGMtz3p5bkDpYumXHgo4F5K3H6F g==;
-X-CSE-ConnectionGUID: yIlqGGHHRhOjHziaZ2t7iw==
-X-CSE-MsgGUID: jqtvPrt0TjO0wvdZs/7NNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="58793996"
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="58793996"
+ bh=Jd9RQQwP+GOZqabZBjrarJe/YzK+SEjKyzs77dk7Q5U=;
+ b=mvT7gVPSmqTg9rHIe8x4fS6VMT4trQjY3ha4Jp2KrpiDR+SX/7fUtOs5
+ xjBrMrCGT3qVmEXeodpn02HVUQbugqFxMr4kDElLrpQrwuc3622L+Blwr
+ 3QtlM2DSpiCB46L6MTrUlNPibWHM2LY8spLW3V9BpDp8QHHHWnbz04SIe
+ I36t9mqW02cV9uM5ITvX8mP5E8RScWmSMaUjqs8tCL3wnIAtl+MDeqYRn
+ XoO+gKGXPNiy+nuSBEiqQ2imuspGybo2Uoda3wDSCaci9SuyoAT+ZMulD
+ 7KRUB+Wu2AKbAyJ5/SOqouyVV3KsQw1oc/3qctQ3vWnLzdSaNpubwt6MJ w==;
+X-CSE-ConnectionGUID: DnLwpdsSRwSmVgliZof70A==
+X-CSE-MsgGUID: S/vqP0XoQ329D/b4OyFgGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="58794000"
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="58794000"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 21:28:10 -0700
-X-CSE-ConnectionGUID: qxdR0Q6ISjG0B9m7QaUZOw==
-X-CSE-MsgGUID: SakwyzBARvWvBECJ/MEKxw==
+ 08 May 2025 21:28:12 -0700
+X-CSE-ConnectionGUID: LKcHygYEQG22st4X6oD/Mg==
+X-CSE-MsgGUID: adFYcQtFSVOOThS4ntQQRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="137430497"
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="137430506"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 08 May 2025 21:28:09 -0700
+ by orviesa008.jf.intel.com with ESMTP; 08 May 2025 21:28:11 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 04/18] drm/i915/dpll: Rename macro for_each_shared_dpll
-Date: Fri,  9 May 2025 09:57:15 +0530
-Message-Id: <20250509042729.1152004-5-suraj.kandpal@intel.com>
+Subject: [PATCH 05/18] drm/i915/dpll: Rename intel_shared_dpll_funcs
+Date: Fri,  9 May 2025 09:57:16 +0530
+Message-Id: <20250509042729.1152004-6-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250509042729.1152004-1-suraj.kandpal@intel.com>
 References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
@@ -68,125 +68,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename the macro for_each_shared_dpll to for_each_dpll since
-this loop will not necessarily be used for only shared
-dpll in future.
+Rename intel_shared_dpll_funcs to intel_dpll_funcs
+since it needs to represent both shared and individual
+dplls.
+
+--v2
+-Change intel_global_dpll to intel_dpll_global to be more
+in line with the naming standard where the name should
+start with the file name [Jani]
+
+--v3
+-Drop shared and global altogether [Jani]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_debugfs.c |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c    | 16 ++++++++--------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_pch_refclk.c  |  2 +-
- 4 files changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 24 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  4 ++--
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 8d0a1779dd19..3770ce9469d1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -627,7 +627,7 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
- 		   display->dpll.ref_clks.nssc,
- 		   display->dpll.ref_clks.ssc);
- 
--	for_each_shared_dpll(display, pll, i) {
-+	for_each_dpll(display, pll, i) {
- 		drm_printf(&p, "DPLL%i: %s, id: %i\n", pll->index,
- 			   pll->info->name, pll->info->id);
- 		drm_printf(&p, " pipe_mask: 0x%x, active: 0x%x, on: %s\n",
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 6b4eb230f4b3..9974fdb6eaeb 100644
+index 9974fdb6eaeb..bdad4d72cc01 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -127,8 +127,8 @@ intel_atomic_duplicate_dpll_state(struct intel_display *display,
- 	struct intel_shared_dpll *pll;
- 	int i;
+@@ -64,7 +64,7 @@
+  */
  
--	/* Copy shared dpll state */
--	for_each_shared_dpll(display, pll, i)
-+	/* Copy dpll state */
-+	for_each_dpll(display, pll, i)
- 		dpll_state[pll->index] = pll->state;
+ /* platform specific hooks for managing DPLLs */
+-struct intel_shared_dpll_funcs {
++struct intel_dpll_funcs {
+ 	/*
+ 	 * Hook for enabling the pll, called from intel_enable_shared_dpll() if
+ 	 * the pll is not already enabled.
+@@ -670,7 +670,7 @@ static bool ibx_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 		a->fp1 == b->fp1;
  }
  
-@@ -165,7 +165,7 @@ intel_get_shared_dpll_by_id(struct intel_display *display,
- 	struct intel_shared_dpll *pll;
- 	int i;
- 
--	for_each_shared_dpll(display, pll, i) {
-+	for_each_dpll(display, pll, i) {
- 		if (pll->info->id == id)
- 			return pll;
- 	}
-@@ -348,7 +348,7 @@ intel_dpll_mask_all(struct intel_display *display)
- 	unsigned long dpll_mask = 0;
- 	int i;
- 
--	for_each_shared_dpll(display, pll, i) {
-+	for_each_dpll(display, pll, i) {
- 		drm_WARN_ON(display->drm, dpll_mask & BIT(pll->info->id));
- 
- 		dpll_mask |= BIT(pll->info->id);
-@@ -521,7 +521,7 @@ void intel_shared_dpll_swap_state(struct intel_atomic_state *state)
- 	if (!state->dpll_set)
- 		return;
- 
--	for_each_shared_dpll(display, pll, i)
-+	for_each_dpll(display, pll, i)
- 		swap(pll->state, dpll_state[pll->index]);
+-static const struct intel_shared_dpll_funcs ibx_pch_dpll_funcs = {
++static const struct intel_dpll_funcs ibx_pch_dpll_funcs = {
+ 	.enable = ibx_pch_dpll_enable,
+ 	.disable = ibx_pch_dpll_disable,
+ 	.get_hw_state = ibx_pch_dpll_get_hw_state,
+@@ -1270,14 +1270,14 @@ static bool hsw_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 		a->spll == b->spll;
  }
  
-@@ -4542,7 +4542,7 @@ void intel_dpll_readout_hw_state(struct intel_display *display)
- 	struct intel_shared_dpll *pll;
- 	int i;
+-static const struct intel_shared_dpll_funcs hsw_ddi_wrpll_funcs = {
++static const struct intel_dpll_funcs hsw_ddi_wrpll_funcs = {
+ 	.enable = hsw_ddi_wrpll_enable,
+ 	.disable = hsw_ddi_wrpll_disable,
+ 	.get_hw_state = hsw_ddi_wrpll_get_hw_state,
+ 	.get_freq = hsw_ddi_wrpll_get_freq,
+ };
  
--	for_each_shared_dpll(display, pll, i)
-+	for_each_dpll(display, pll, i)
- 		readout_dpll_hw_state(display, pll);
+-static const struct intel_shared_dpll_funcs hsw_ddi_spll_funcs = {
++static const struct intel_dpll_funcs hsw_ddi_spll_funcs = {
+ 	.enable = hsw_ddi_spll_enable,
+ 	.disable = hsw_ddi_spll_disable,
+ 	.get_hw_state = hsw_ddi_spll_get_hw_state,
+@@ -1302,7 +1302,7 @@ static bool hsw_ddi_lcpll_get_hw_state(struct intel_display *display,
+ 	return true;
  }
  
-@@ -4571,7 +4571,7 @@ void intel_dpll_sanitize_state(struct intel_display *display)
- 
- 	intel_cx0_pll_power_save_wa(display);
- 
--	for_each_shared_dpll(display, pll, i)
-+	for_each_dpll(display, pll, i)
- 		sanitize_dpll_state(display, pll);
+-static const struct intel_shared_dpll_funcs hsw_ddi_lcpll_funcs = {
++static const struct intel_dpll_funcs hsw_ddi_lcpll_funcs = {
+ 	.enable = hsw_ddi_lcpll_enable,
+ 	.disable = hsw_ddi_lcpll_disable,
+ 	.get_hw_state = hsw_ddi_lcpll_get_hw_state,
+@@ -2004,14 +2004,14 @@ static bool skl_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 		a->cfgcr2 == b->cfgcr2;
  }
  
-@@ -4720,6 +4720,6 @@ void intel_shared_dpll_verify_disabled(struct intel_atomic_state *state)
- 	struct intel_shared_dpll *pll;
- 	int i;
+-static const struct intel_shared_dpll_funcs skl_ddi_pll_funcs = {
++static const struct intel_dpll_funcs skl_ddi_pll_funcs = {
+ 	.enable = skl_ddi_pll_enable,
+ 	.disable = skl_ddi_pll_disable,
+ 	.get_hw_state = skl_ddi_pll_get_hw_state,
+ 	.get_freq = skl_ddi_pll_get_freq,
+ };
  
--	for_each_shared_dpll(display, pll, i)
-+	for_each_dpll(display, pll, i)
- 		verify_single_dpll_state(display, pll, NULL, NULL);
+-static const struct intel_shared_dpll_funcs skl_ddi_dpll0_funcs = {
++static const struct intel_dpll_funcs skl_ddi_dpll0_funcs = {
+ 	.enable = skl_ddi_dpll0_enable,
+ 	.disable = skl_ddi_dpll0_disable,
+ 	.get_hw_state = skl_ddi_dpll0_get_hw_state,
+@@ -2486,7 +2486,7 @@ static bool bxt_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 		a->pcsdw12 == b->pcsdw12;
  }
+ 
+-static const struct intel_shared_dpll_funcs bxt_ddi_pll_funcs = {
++static const struct intel_dpll_funcs bxt_ddi_pll_funcs = {
+ 	.enable = bxt_ddi_pll_enable,
+ 	.disable = bxt_ddi_pll_disable,
+ 	.get_hw_state = bxt_ddi_pll_get_hw_state,
+@@ -4129,21 +4129,21 @@ static bool icl_compare_hw_state(const struct intel_dpll_hw_state *_a,
+ 		a->mg_pll_tdc_coldst_bias == b->mg_pll_tdc_coldst_bias;
+ }
+ 
+-static const struct intel_shared_dpll_funcs combo_pll_funcs = {
++static const struct intel_dpll_funcs combo_pll_funcs = {
+ 	.enable = combo_pll_enable,
+ 	.disable = combo_pll_disable,
+ 	.get_hw_state = combo_pll_get_hw_state,
+ 	.get_freq = icl_ddi_combo_pll_get_freq,
+ };
+ 
+-static const struct intel_shared_dpll_funcs tbt_pll_funcs = {
++static const struct intel_dpll_funcs tbt_pll_funcs = {
+ 	.enable = tbt_pll_enable,
+ 	.disable = tbt_pll_disable,
+ 	.get_hw_state = tbt_pll_get_hw_state,
+ 	.get_freq = icl_ddi_tbt_pll_get_freq,
+ };
+ 
+-static const struct intel_shared_dpll_funcs mg_pll_funcs = {
++static const struct intel_dpll_funcs mg_pll_funcs = {
+ 	.enable = mg_pll_enable,
+ 	.disable = mg_pll_disable,
+ 	.get_hw_state = mg_pll_get_hw_state,
+@@ -4191,7 +4191,7 @@ static const struct intel_dpll_mgr ehl_pll_mgr = {
+ 	.compare_hw_state = icl_compare_hw_state,
+ };
+ 
+-static const struct intel_shared_dpll_funcs dkl_pll_funcs = {
++static const struct intel_dpll_funcs dkl_pll_funcs = {
+ 	.enable = mg_pll_enable,
+ 	.disable = mg_pll_disable,
+ 	.get_hw_state = dkl_pll_get_hw_state,
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index fe6c676737bb..d93072486831 100644
+index d93072486831..658174b99db3 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -30,7 +30,7 @@
- #include "intel_display_power.h"
- #include "intel_wakeref.h"
+@@ -41,7 +41,7 @@ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_encoder;
+ struct intel_shared_dpll;
+-struct intel_shared_dpll_funcs;
++struct intel_dpll_funcs;
  
--#define for_each_shared_dpll(__display, __pll, __i) \
-+#define for_each_dpll(__display, __pll, __i) \
- 	for ((__i) = 0; (__i) < (__display)->dpll.num_shared_dpll && \
- 		     ((__pll) = &(__display)->dpll.shared_dplls[(__i)]) ; (__i)++)
+ /**
+  * enum intel_dpll_id - possible DPLL ids
+@@ -314,7 +314,7 @@ struct dpll_info {
+ 	/**
+ 	 * @funcs: platform specific hooks
+ 	 */
+-	const struct intel_shared_dpll_funcs *funcs;
++	const struct intel_dpll_funcs *funcs;
  
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-index 693b90e3dfc3..8bec55deff9f 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-@@ -535,7 +535,7 @@ static void ilk_init_pch_refclk(struct intel_display *display)
- 	}
- 
- 	/* Check if any DPLLs are using the SSC source */
--	for_each_shared_dpll(display, pll, i) {
-+	for_each_dpll(display, pll, i) {
- 		u32 temp;
- 
- 		temp = intel_de_read(display, PCH_DPLL(pll->info->id));
+ 	/**
+ 	 * @id: unique identifier for this DPLL
 -- 
 2.34.1
 
