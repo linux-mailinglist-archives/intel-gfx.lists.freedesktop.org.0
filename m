@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D144AB0922
+	by mail.lfdr.de (Postfix) with ESMTPS id DA198AB0923
 	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 06:28:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56FD910E2A4;
-	Fri,  9 May 2025 04:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78AFA10E2BB;
+	Fri,  9 May 2025 04:28:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LX12Vdho";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0dXosRc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 880BC10E2A4;
- Fri,  9 May 2025 04:28:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C95010E2BB;
+ Fri,  9 May 2025 04:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746764884; x=1778300884;
+ t=1746764886; x=1778300886;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RgCj8cQs1345jIqkpcm84glu9WZi2sLq2Lm+MiYsZWI=;
- b=LX12VdhoCWniAVaBOLDisUOCL8Idc2e/x0CQJmE1f/7sFBOlO2BV4+tx
- mXoDCEqcFSVPbNOiA9d7dtL3PD/zGM4bscutA+wuEXeO0kUu49wT7gDW+
- kCRF+0owABBGlH7BcYFTVrzt9z6y4nqrPMXMQrby3AAzm631MHMhjaFE1
- dLuA1Hib5bAFNKR+ss6z1vDoe/YJRTCdjPE+okkLZTLkotaIW0ItHUqGV
- pRPi/7rGVGXngCELv5s1FhsKnOqPRY1MmyM7agzHmKWpm1iwyLOuqr0Aa
- 6YlYwFRFeWSJ6oI5luXUHQAuqPK/vGfFUZVjtzyUB3vrBjqgFLYNZ6Edg g==;
-X-CSE-ConnectionGUID: XxZ45GzSQhemMzYpHIuPdw==
-X-CSE-MsgGUID: JYTXsqr4RUWXppIOA1wPOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="58793986"
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="58793986"
+ bh=tE3dy9xgIKKT5JFJ+18wKzMsubFnFuIy8rOd2kMW1m8=;
+ b=T0dXosRcKqaFF6TKvN7Nd2ECnnyNmInpgce0tLiwTFdH9LF5YKC2a7un
+ iAcFy0dl/4X5j+7rgmi13Op/+E9AHBmHXqL62Zv+W7/gMTUbe47JMh909
+ fBtRJcxz9dWuZEdV6dKE9ragT/OCb8gxnPwegXhcwZNfQp/oRCeB177u0
+ YAcd7/2E4dAU9ZLi5hlGA5vzfK1fpGNFAQarQyg7GVWh7VwD07woVopSL
+ n4Qy0qIgna+7VDfoLZyBqPqbcndzwcDJTCeBflrSlgJj/yaVjG5aJRNFw
+ tY2KxOAhqW01XNTZ2Ot7FV+ROeojaK+3UHPE/eAYVNBFmMhAphXzeP0Kf Q==;
+X-CSE-ConnectionGUID: KCV1Vbn1SviCX/VWY9mb+g==
+X-CSE-MsgGUID: CB05v67bQWe9GxKNWavISw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="58793990"
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="58793990"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 21:28:04 -0700
-X-CSE-ConnectionGUID: nzfHnYmORBaumQocU8dysg==
-X-CSE-MsgGUID: iJwA5ChBSf+7dJH081JEJg==
+ 08 May 2025 21:28:06 -0700
+X-CSE-ConnectionGUID: KTr42zSaToS8okY+yjDLfQ==
+X-CSE-MsgGUID: LdRWVJewR3Ww+aiM1ar1Yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="137430476"
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="137430482"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 08 May 2025 21:28:02 -0700
+ by orviesa008.jf.intel.com with ESMTP; 08 May 2025 21:28:04 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 01/18] drm/i915/dpll: Rename intel_dpll
-Date: Fri,  9 May 2025 09:57:12 +0530
-Message-Id: <20250509042729.1152004-2-suraj.kandpal@intel.com>
+Subject: [PATCH 02/18] drm/i915/dpll: Rename intel_dpll_funcs
+Date: Fri,  9 May 2025 09:57:13 +0530
+Message-Id: <20250509042729.1152004-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250509042729.1152004-1-suraj.kandpal@intel.com>
 References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
@@ -68,39 +68,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename intel_dpll to intel_dpll_global so that intel_shared_dpll
-can be renamed to intel_dpll in an effort to move away from the shared
-naming convention.
-Also intel_dpll according to it's comment tracks global dpll rather
-than individual hence making more sense this gets changed.
+Rename intel_dpll_funcs to intel_dpll_global_funcs so that later
+on intel_shared_dpll_funcs can be renamed to intel_dpll_funcs.
+This is done to move away from the shared naming convention since
+starting MTL dpll's are not shared among PHYs.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_core.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/display/intel_display_core.h |  4 ++--
+ drivers/gpu/drm/i915/display/intel_dpll.c     | 22 +++++++++----------
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index b4937e102360..6fc213f84e73 100644
+index 6fc213f84e73..e0221e514326 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -122,7 +122,7 @@ struct intel_audio {
-  * intel_{prepare,enable,disable}_shared_dpll.  Must be global rather than per
-  * dpll, because on some platforms plls share registers.
-  */
--struct intel_dpll {
-+struct intel_dpll_global {
- 	struct mutex lock;
+@@ -42,7 +42,7 @@ struct intel_color_funcs;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_dmc;
+-struct intel_dpll_funcs;
++struct intel_dpll_global_funcs;
+ struct intel_dpll_mgr;
+ struct intel_fbdev;
+ struct intel_fdi_funcs;
+@@ -300,7 +300,7 @@ struct intel_display {
+ 		const struct intel_cdclk_funcs *cdclk;
  
- 	int num_shared_dpll;
-@@ -570,7 +570,7 @@ struct intel_display {
- 	/* Grouping using named structs. Keep sorted. */
- 	struct drm_dp_tunnel_mgr *dp_tunnel_mgr;
- 	struct intel_audio audio;
--	struct intel_dpll dpll;
-+	struct intel_dpll_global dpll;
- 	struct intel_fbc *fbc[I915_MAX_FBCS];
- 	struct intel_frontbuffer_tracking fb_tracking;
- 	struct intel_hotplug hotplug;
+ 		/* Display pll funcs */
+-		const struct intel_dpll_funcs *dpll;
++		const struct intel_dpll_global_funcs *dpll;
+ 
+ 		/* irq display functions */
+ 		const struct intel_hotplug_funcs *hotplug;
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index a9e9b98d0bf9..8db603d9c823 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -24,7 +24,7 @@
+ #include "vlv_dpio_phy_regs.h"
+ #include "vlv_sideband.h"
+ 
+-struct intel_dpll_funcs {
++struct intel_dpll_global_funcs {
+ 	int (*crtc_compute_clock)(struct intel_atomic_state *state,
+ 				  struct intel_crtc *crtc);
+ 	int (*crtc_get_shared_dpll)(struct intel_atomic_state *state,
+@@ -1690,45 +1690,45 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
+ 	return 0;
+ }
+ 
+-static const struct intel_dpll_funcs mtl_dpll_funcs = {
++static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
+ 	.crtc_compute_clock = mtl_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs dg2_dpll_funcs = {
++static const struct intel_dpll_global_funcs dg2_dpll_funcs = {
+ 	.crtc_compute_clock = dg2_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs hsw_dpll_funcs = {
++static const struct intel_dpll_global_funcs hsw_dpll_funcs = {
+ 	.crtc_compute_clock = hsw_crtc_compute_clock,
+ 	.crtc_get_shared_dpll = hsw_crtc_get_shared_dpll,
+ };
+ 
+-static const struct intel_dpll_funcs ilk_dpll_funcs = {
++static const struct intel_dpll_global_funcs ilk_dpll_funcs = {
+ 	.crtc_compute_clock = ilk_crtc_compute_clock,
+ 	.crtc_get_shared_dpll = ilk_crtc_get_shared_dpll,
+ };
+ 
+-static const struct intel_dpll_funcs chv_dpll_funcs = {
++static const struct intel_dpll_global_funcs chv_dpll_funcs = {
+ 	.crtc_compute_clock = chv_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs vlv_dpll_funcs = {
++static const struct intel_dpll_global_funcs vlv_dpll_funcs = {
+ 	.crtc_compute_clock = vlv_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs g4x_dpll_funcs = {
++static const struct intel_dpll_global_funcs g4x_dpll_funcs = {
+ 	.crtc_compute_clock = g4x_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs pnv_dpll_funcs = {
++static const struct intel_dpll_global_funcs pnv_dpll_funcs = {
+ 	.crtc_compute_clock = pnv_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs i9xx_dpll_funcs = {
++static const struct intel_dpll_global_funcs i9xx_dpll_funcs = {
+ 	.crtc_compute_clock = i9xx_crtc_compute_clock,
+ };
+ 
+-static const struct intel_dpll_funcs i8xx_dpll_funcs = {
++static const struct intel_dpll_global_funcs i8xx_dpll_funcs = {
+ 	.crtc_compute_clock = i8xx_crtc_compute_clock,
+ };
+ 
 -- 
 2.34.1
 
