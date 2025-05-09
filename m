@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9661AB10AE
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 12:29:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED286AB10C6
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 12:32:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6799210EA0F;
-	Fri,  9 May 2025 10:29:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3356510EA0E;
+	Fri,  9 May 2025 10:32:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bAIugQA3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="athJ78CA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7691410EA0C;
- Fri,  9 May 2025 10:29:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E26E410EA0E;
+ Fri,  9 May 2025 10:31:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746786560; x=1778322560;
+ t=1746786719; x=1778322719;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=vvuuIwOfaWMb/OiTyMoWaKe1eeWKqX2wtZN02MQBoiA=;
- b=bAIugQA3TLdT7XFldGpW9QriLxUycLoiXu/RmfamRU7zhq+F/oQGjCgd
- GHx2Hv5/CkSfk2JK0EJhUrJ5YhqcXwxVTe5hMTchv06M3TqF3uNjvj2Fs
- kmYy1Azt53mDtxDSJaW4Sel1CIgQE1O2ehURM5fhPcpxxPEHjO9XFLIxk
- ygifWo51tOagVqG/KQWHK1ALAC83sNhr1YoEyEgJHV/jwjQa7BdmmSG5N
- G72XGl3zgNuZ7AOCHC3WGwTKU+kC12bTZEKpArie31jqM8pRGINukrT25
- b92COph20Tl7CgAns/kzaXj04QuVZc2gpd+pUieGt2JaBfUBXGLFjMiE6 w==;
-X-CSE-ConnectionGUID: eORYCutRT4CdHkNmZ4bdNQ==
-X-CSE-MsgGUID: 0u3CcBLTQbSu+oaSks+4Xw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="52419490"
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="52419490"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:29:20 -0700
-X-CSE-ConnectionGUID: gtBFDVgPRS64TGWXrYfP9g==
-X-CSE-MsgGUID: 2tUEyWi1Sbe6BZasAMo42w==
+ bh=cv29+DB9sIrFe0ODqXcxUQFO7/1WJTtcDs9qftZI8eg=;
+ b=athJ78CAtFW+6ajJVh3qjReD5I8HhvYV5X0qBLWFgcRAteVVDYtDWlCd
+ Se4evjqOZqjDEGtfOoHeWgYNT32C9kdyJvPOhcag7yajx1kB0JsJFhM0/
+ ui7B8BhMuWZwOa2NxBYPNZEv0tKj7owN+O3+cV02/b2ntAiHze4VmlIjG
+ 0kFl2fstLCYdGUXkjCb+qHhfDm3QTC3rDEcZIlMoKLNVA4uoNE+KxaeMj
+ XFS2N/mNzspGLLp64GJsbNQI0FbqAchXg521DKgo/7j7H5DH69Afii2fn
+ bzj0QtOnjgVrIhojQP1izsysdfwebe87lg6hVGOQ+6Mn5dXPnD+6FlJdw g==;
+X-CSE-ConnectionGUID: gRaKonawR1WtBTdiF9ikbA==
+X-CSE-MsgGUID: lFGEPh5cRc+WiX6JLYD09Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="59606016"
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="59606016"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2025 03:31:59 -0700
+X-CSE-ConnectionGUID: bJvODN5QTimOtQjumxoZSA==
+X-CSE-MsgGUID: O7u11FRoQ8GOcfQeDsEIXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="141357533"
+X-IronPort-AV: E=Sophos;i="6.15,275,1739865600"; d="scan'208";a="137101096"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.201])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 03:29:18 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2025 03:31:56 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
  <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 14/18] drm/i915/dpll: Rename intel_[enable/disable]_dpll
-In-Reply-To: <20250509042729.1152004-15-suraj.kandpal@intel.com>
+Subject: Re: [PATCH 15/18] drm/i915/dpll: Rename intel_unreference_dpll__crtc
+In-Reply-To: <20250509042729.1152004-16-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
- <20250509042729.1152004-15-suraj.kandpal@intel.com>
-Date: Fri, 09 May 2025 13:29:14 +0300
-Message-ID: <878qn6krgl.fsf@intel.com>
+ <20250509042729.1152004-16-suraj.kandpal@intel.com>
+Date: Fri, 09 May 2025 13:31:53 +0300
+Message-ID: <875xiakrc6.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,122 +72,76 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 09 May 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Rename  intel_[enable/disable]_dpll to intel_dpll_[enable/disable]
-> in an effort to make sure all functions that are exported
-> start with the filename.
->
+> Rename intel_unreference_dpll_crtc to intel_dpll_unreference_crtc
+> in an effort to keep names of exported functions start with the filename.
+
+That's a fine goal, but to me "intel dpll unreference crtc" means drop
+the crtc reference from dpll, not the other way round as it is...
+
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-I think you should repost the series with the controversial or
-incomplete stuff dropped, and get the straightforward renames merged.
-
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c     | 4 ++--
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c    | 8 ++++----
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h    | 4 ++--
->  drivers/gpu/drm/i915/display/intel_pch_display.c | 6 +++---
->  4 files changed, 11 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h      | 2 +-
+>  drivers/gpu/drm/i915/display/intel_modeset_setup.c | 2 +-
+>  3 files changed, 5 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b091faff6680..8ee4833daede 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1664,7 +1664,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
->  	intel_encoders_pre_pll_enable(state, crtc);
->  
->  	if (new_crtc_state->intel_dpll)
-> -		intel_enable_dpll(new_crtc_state);
-> +		intel_dpll_enable(new_crtc_state);
->  
->  	intel_encoders_pre_enable(state, crtc);
->  
-> @@ -1793,7 +1793,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
->  	intel_encoders_disable(state, crtc);
->  	intel_encoders_post_disable(state, crtc);
->  
-> -	intel_disable_dpll(old_crtc_state);
-> +	intel_dpll_disable(old_crtc_state);
->  
->  	intel_encoders_post_pll_disable(state, crtc);
->  
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 3a724d84861b..d1399ab24d8c 100644
+> index d1399ab24d8c..c954515145a3 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -257,12 +257,12 @@ static void _intel_disable_shared_dpll(struct intel_display *display,
+> @@ -458,7 +458,7 @@ intel_reference_dpll(struct intel_atomic_state *state,
 >  }
 >  
 >  /**
-> - * intel_enable_dpll - enable a CRTC's global DPLL
-> + * intel_dpll_enable - enable a CRTC's global DPLL
->   * @crtc_state: CRTC, and its state, which has a DPLL
->   *
->   * Enable DPLL used by @crtc.
+> - * intel_unreference_dpll_crtc - Drop a DPLL reference for a CRTC
+> + * intel_dpll_unreference_crtc - Drop a DPLL reference for a CRTC
+>   * @crtc: CRTC on which behalf the reference is dropped
+>   * @pll: DPLL for which the reference is dropped
+>   * @dpll_state: the DPLL atomic state in which the reference is tracked
+> @@ -466,7 +466,7 @@ intel_reference_dpll(struct intel_atomic_state *state,
+>   * Drop a reference for @pll tracking the end of use of it by @crtc.
 >   */
-> -void intel_enable_dpll(const struct intel_crtc_state *crtc_state)
-> +void intel_dpll_enable(const struct intel_crtc_state *crtc_state)
+>  void
+> -intel_unreference_dpll_crtc(const struct intel_crtc *crtc,
+> +intel_dpll_unreference_crtc(const struct intel_crtc *crtc,
+>  			    const struct intel_dpll *pll,
+>  			    struct intel_dpll_state *dpll_state)
 >  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> @@ -303,12 +303,12 @@ void intel_enable_dpll(const struct intel_crtc_state *crtc_state)
+> @@ -488,7 +488,7 @@ static void intel_unreference_dpll(struct intel_atomic_state *state,
+>  
+>  	dpll_state = intel_atomic_get_dpll_state(&state->base);
+>  
+> -	intel_unreference_dpll_crtc(crtc, pll, &dpll_state[pll->index]);
+> +	intel_dpll_unreference_crtc(crtc, pll, &dpll_state[pll->index]);
 >  }
 >  
->  /**
-> - * intel_disable_dpll - disable a CRTC's shared DPLL
-> + * intel_dpll_disable - disable a CRTC's shared DPLL
->   * @crtc_state: CRTC, and its state, which has a shared DPLL
->   *
->   * Disable DPLL used by @crtc.
->   */
-> -void intel_disable_dpll(const struct intel_crtc_state *crtc_state)
-> +void intel_dpll_disable(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  static void intel_put_dpll(struct intel_atomic_state *state,
 > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 49eb02d72f44..f497a9ec863d 100644
+> index f497a9ec863d..8b596a96344f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
 > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -417,8 +417,8 @@ int intel_dpll_get_freq(struct intel_crtc_state *crtc_state,
->  bool intel_dpll_get_hw_state(struct intel_display *display,
->  			     struct intel_dpll *pll,
->  			     struct intel_dpll_hw_state *dpll_hw_state);
-> -void intel_enable_dpll(const struct intel_crtc_state *crtc_state);
-> -void intel_disable_dpll(const struct intel_crtc_state *crtc_state);
-> +void intel_dpll_enable(const struct intel_crtc_state *crtc_state);
-> +void intel_dpll_disable(const struct intel_crtc_state *crtc_state);
->  void intel_dpll_swap_state(struct intel_atomic_state *state);
->  void intel_dpll_init(struct intel_display *display);
->  void intel_dpll_update_ref_clks(struct intel_display *display);
-> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> index b59b3c94f711..ca85596dfc9e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> @@ -394,11 +394,11 @@ void ilk_pch_enable(struct intel_atomic_state *state,
->  	 * transcoder, and we actually should do this to not upset any PCH
->  	 * transcoder that already use the clock when we share it.
->  	 *
-> -	 * Note that enable_dpll tries to do the right thing, but
-> +	 * Note that dpll_enable tries to do the right thing, but
->  	 * get_dpll unconditionally resets the pll - we need that
->  	 * to have the right LVDS enable sequence.
->  	 */
-> -	intel_enable_dpll(crtc_state);
-> +	intel_dpll_enable(crtc_state);
+> @@ -404,7 +404,7 @@ int intel_reserve_dplls(struct intel_atomic_state *state,
+>  			struct intel_encoder *encoder);
+>  void intel_release_dplls(struct intel_atomic_state *state,
+>  			 struct intel_crtc *crtc);
+> -void intel_unreference_dpll_crtc(const struct intel_crtc *crtc,
+> +void intel_dpll_unreference_crtc(const struct intel_crtc *crtc,
+>  				 const struct intel_dpll *pll,
+>  				 struct intel_dpll_state *shared_dpll_state);
+>  void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> index ed4f305e0d3e..ee156cf2c5ce 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> @@ -93,7 +93,7 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+>  	crtc->base.enabled = false;
 >  
->  	/* set transcoder timing, panel must allow it */
->  	assert_pps_unlocked(display, pipe);
-> @@ -472,7 +472,7 @@ void ilk_pch_post_disable(struct intel_atomic_state *state,
->  
->  	ilk_fdi_pll_disable(crtc);
->  
-> -	intel_disable_dpll(old_crtc_state);
-> +	intel_dpll_disable(old_crtc_state);
+>  	if (crtc_state->intel_dpll)
+> -		intel_unreference_dpll_crtc(crtc,
+> +		intel_dpll_unreference_crtc(crtc,
+>  					    crtc_state->intel_dpll,
+>  					    &crtc_state->intel_dpll->state);
 >  }
->  
->  static void ilk_pch_clock_get(struct intel_crtc_state *crtc_state)
 
 -- 
 Jani Nikula, Intel
