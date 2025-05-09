@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E377AB09A1
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 07:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C6FAB0A58
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 08:14:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DFF710E9A6;
-	Fri,  9 May 2025 05:19:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PnC+HdXx";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 469A110E235;
+	Fri,  9 May 2025 06:14:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB36710E9AC;
- Fri,  9 May 2025 05:19:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746767952; x=1778303952;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yuOUoM09jQv/qwIMmtT8FW2FtpriG0Y2PNT0r29aBDY=;
- b=PnC+HdXxYJSBD2doP5j6z00FngHjp3Dz/478pfdidu23vl4V5uQrZb3i
- ZWtE9rEBUFZpzG9quRgMglNjWqcvGA5H4Kz3F1o2nsfC2r7BlC7bFOfog
- OqxBm5O7PBcHN/4rwCzkNH6lIR338cXvaB267EZeNaW3SENVx1IUOBCpo
- ZzGKjkP+TlSSPipskBsi3OUSdZGoYuSlir2gNoib21A++tzyMdHI1jqZE
- gGBRxJaEyWYxmvWy9ajB0X9N6SCCP+pemRD2Td7kKUjuPoosdeHdYghfH
- 5pEH7cNFQ1ZvwrFsZpLSOau8uXAg2oJJBVCJ93oNkwZwytzWiVQRttG8H w==;
-X-CSE-ConnectionGUID: 3VrL6NmBTK+AtBKZAWV8bw==
-X-CSE-MsgGUID: gwMnGl2zSWuyGuqajLBSuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="48287160"
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="48287160"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2025 22:19:12 -0700
-X-CSE-ConnectionGUID: OrEBbYWiT7Ck6CThHDQzyQ==
-X-CSE-MsgGUID: 9sdmmBxHTlGFbM48iOZNRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="141414955"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa005.fm.intel.com with ESMTP; 08 May 2025 22:19:09 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 13/13] drm/i915/backlight: Use drm_edp_backlight_enable
-Date: Fri,  9 May 2025 10:48:16 +0530
-Message-Id: <20250509051816.1244486-14-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250509051816.1244486-1-suraj.kandpal@intel.com>
-References: <20250509051816.1244486-1-suraj.kandpal@intel.com>
+Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E81010E235;
+ Fri,  9 May 2025 06:14:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Modify_drm_helpers_to_us?=
+ =?utf-8?q?e_luminance_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 09 May 2025 06:14:17 -0000
+Message-ID: <174677125730.62505.9443947585887107191@c664b1dc75d1>
+X-Patchwork-Hint: ignore
+References: <20250509051816.1244486-1-suraj.kandpal@intel.com>
+In-Reply-To: <20250509051816.1244486-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,43 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use drm dp helper to enable backlight now that it has been modified
-to set PANEL_LUMINANCE_CONTROL_ENABLE bit based on if capability
-supports it and the driver wants it. Remove the dead code.
+== Series Details ==
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  | 14 --------------
- 1 file changed, 14 deletions(-)
+Series: Modify drm helpers to use luminance (rev3)
+URL   : https://patchwork.freedesktop.org/series/147564/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index a81c3f0ac3cb..3faba358fed8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -498,20 +498,6 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
--	int ret;
--
--	if (panel->backlight.edp.vesa.luminance_control_support) {
--		ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
--					 DP_EDP_PANEL_LUMINANCE_CONTROL_ENABLE);
--
--		if (ret == 1)
--			return;
--
--		if (!drm_edp_backlight_set_level(&intel_dp->aux,
--						 &panel->backlight.edp.vesa.info,
--						 level))
--			return;
--	}
- 
- 	if (!panel->backlight.edp.vesa.info.aux_enable) {
- 		u32 pwm_level;
--- 
-2.34.1
+== Summary ==
+
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
 
