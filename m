@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15333AB0F9C
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 11:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA0AAB0FD0
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 May 2025 12:04:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4946C10E043;
-	Fri,  9 May 2025 09:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2038710E3B2;
+	Fri,  9 May 2025 10:04:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJe0JHbx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tjz5na+z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E32010E043;
- Fri,  9 May 2025 09:51:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1BC10E009;
+ Fri,  9 May 2025 10:04:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1746784297; x=1778320297;
+ t=1746785063; x=1778321063;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=SLy5Wh0RL4WXmiysysNtTUiF/8oBikz0tTdIeYEFtJU=;
- b=SJe0JHbx8VLQLgEZ+7+tj+cjmTyPs/xsRaBZIDKOHEp7ZBVBitQKZRmv
- v5En1R30nsw7rdP0TyoMwKSqxyqxYsaH3pHNiPS8M4UxAKXj2O5MEAI81
- FsOEBtQ3Tb/N9eOG85NteLLKMhKbpPZXzYEs9Qo8Jhsj9DcAN6qm9Oozp
- sPr9NSiL+9vNp12NtzyjFhDzKsnh+vZNH5QRAsYtnfJGcfhA3GTi0wXx4
- CD6PjiJDUKiQX10tJxpr9c4b+QxBwrQKM8ZhHCmsmevbh8yPni9xBY15f
- hoTne+VD6vkHmMNZg+LtL58t4knQg4X/tUA6DViDMBBKYqxyjIsBUkK6g A==;
-X-CSE-ConnectionGUID: rY7MKlD5TS27LIc8u3kSzg==
-X-CSE-MsgGUID: 15VicHn4R42DVdxx0acgKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="73986889"
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="73986889"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 02:51:36 -0700
-X-CSE-ConnectionGUID: NbN9g2JJS86S1LW4nJHsCA==
-X-CSE-MsgGUID: h5Hl3xQjQ16nawSG+b43ZA==
+ bh=Pex/qUU0ajcTKNotZq1KA+2eP6+8laGLPbd+yEVIbWA=;
+ b=Tjz5na+zDXiPBYK2pR4HCJ0xBIQxj8ijK/Ii6yAzSr7ueh4PxPGIZNXu
+ s8ibV8ioRiISunzWLRp9ZczJj+7m97grVnJ9CwtuMwMwjToocGhyLnZ7e
+ e/MMGEgXv1bt8gitgagvp/FOWLMgjs8Yat8WrWST+sks9hw8f337y6KoY
+ NV6c2yk35OyyZqygb4NfLZO2MqxBAObU/DT0+7O11U2yXAn+zVfudk0oE
+ 9Trl3+6kvgcLGFX23HkVBldvvOtOIBamVNsfr349MzO13abcfcUp2152A
+ NwHWEhEWfpr1T1P/up1Y8VnHbmfBr2wP2HOcWfhHonsQvu6SBi25Hfv9E w==;
+X-CSE-ConnectionGUID: vpf66jgoTrecDjaUAi8Elg==
+X-CSE-MsgGUID: y3zQHAHCSaGHz2UgRhTo1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11427"; a="59235551"
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="59235551"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2025 03:04:23 -0700
+X-CSE-ConnectionGUID: f7ybU9OLRQC8NAbs5pn6WA==
+X-CSE-MsgGUID: ++jgHPx/Rd+5G/zXGoQFeQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="137072784"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.55])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2025 02:51:35 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: gareth.yu@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Gareth Yu <gareth.yu@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Enforce pipeline flush with DSI HS
- transfer
-In-Reply-To: <20250509092539.763389-1-gareth.yu@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,274,1739865600"; d="scan'208";a="136457212"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.201])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 May 2025 03:04:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 01/18] drm/i915/dpll: Rename intel_dpll
+In-Reply-To: <20250509042729.1152004-2-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250509021327.649003-1-gareth.yu@intel.com>
- <20250509092539.763389-1-gareth.yu@intel.com>
-Date: Fri, 09 May 2025 12:51:32 +0300
-Message-ID: <87ecwym7rv.fsf@intel.com>
+References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
+ <20250509042729.1152004-2-suraj.kandpal@intel.com>
+Date: Fri, 09 May 2025 13:04:18 +0300
+Message-ID: <87a57mm76l.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,82 +71,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 09 May 2025, <gareth.yu@intel.com> wrote:
-> From: Gareth Yu <gareth.yu@intel.com>
+On Fri, 09 May 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Rename intel_dpll to intel_dpll_global so that intel_shared_dpll
+> can be renamed to intel_dpll in an effort to move away from the shared
+> naming convention.
+> Also intel_dpll according to it's comment tracks global dpll rather
+> than individual hence making more sense this gets changed.
 >
-> With all of the boundary conditions when streaming the commands B2B in our
-> validation (part of the reason we added the flush),  the Flush effectively
-> serializes the transmission of each command enqueued within the command
-> dispatcher to one per V. Blank line which simplifies the behavior of the
-> High Speed Arbitration.
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_core.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> So, unless we absolutely have to burst these to the Sink, we should be
-> using the Pipeline Flush bit to serialize the commands.
->
-> BSPEC: 19742
->
-
-No blank lines between trailer lines please.
-
-Spelling: Bspec: ...
-
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14247
->
-
-No blank lines between trailer lines please.
-
-The patch subject should indicate versions, i.e. [PATCH v2].
-
-The commit message should have a changelog indicating changes since v1.
-
-Please be considerate towards the reviewers. I don't want to have to
-compare the patches to figure out what changed and why.
-
-If it's only the commit message that changed, then no, you are not
-supposed to post another version with just commit message changes unless
-asked or before you already have Reviewed-by.
-
-BR,
-Jani.
-
-
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com> Cc: Jani Nikula
-> <jani.nikula@intel.com> Signed-off-by: Gareth Yu <gareth.yu@intel.com>
-> --- drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
-> drivers/gpu/drm/i915/display/icl_dsi_regs.h | 1 + 2 files changed, 3
-> insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index 402b7b2e1829..f91f27067768 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -191,12 +191,12 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
->  	else
->  		tmp &= ~PAYLOAD_PRESENT;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index b4937e102360..6fc213f84e73 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -122,7 +122,7 @@ struct intel_audio {
+>   * intel_{prepare,enable,disable}_shared_dpll.  Must be global rather than per
+>   * dpll, because on some platforms plls share registers.
+>   */
+> -struct intel_dpll {
+> +struct intel_dpll_global {
+>  	struct mutex lock;
 >  
-> -	tmp &= ~VBLANK_FENCE;
-> +	tmp &= ~(VBLANK_FENCE | LP_DATA_TRANSFER | PIPELINE_FLUSH);
->  
->  	if (enable_lpdt)
->  		tmp |= LP_DATA_TRANSFER;
->  	else
-> -		tmp &= ~LP_DATA_TRANSFER;
-> +		tmp |= PIPELINE_FLUSH;
->  
->  	tmp &= ~(PARAM_WC_MASK | VC_MASK | DT_MASK);
->  	tmp |= ((packet->header[0] & VC_MASK) << VC_SHIFT);
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-> index d4845ac65acc..b601b7632339 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-> @@ -272,6 +272,7 @@
->  #define  PAYLOAD_PRESENT		(1 << 31)
->  #define  LP_DATA_TRANSFER		(1 << 30)
->  #define  VBLANK_FENCE			(1 << 29)
-> +#define  PIPELINE_FLUSH			(1 << 28)
->  #define  PARAM_WC_MASK			(0xffff << 8)
->  #define  PARAM_WC_LOWER_SHIFT		8
->  #define  PARAM_WC_UPPER_SHIFT		16
+>  	int num_shared_dpll;
+> @@ -570,7 +570,7 @@ struct intel_display {
+>  	/* Grouping using named structs. Keep sorted. */
+>  	struct drm_dp_tunnel_mgr *dp_tunnel_mgr;
+>  	struct intel_audio audio;
+> -	struct intel_dpll dpll;
+> +	struct intel_dpll_global dpll;
+>  	struct intel_fbc *fbc[I915_MAX_FBCS];
+>  	struct intel_frontbuffer_tracking fb_tracking;
+>  	struct intel_hotplug hotplug;
 
 -- 
 Jani Nikula, Intel
