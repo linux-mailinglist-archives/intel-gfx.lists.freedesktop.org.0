@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5BAAB34FA
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 12:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEC2AB34FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 12:34:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8386210E398;
-	Mon, 12 May 2025 10:34:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A70F710E38B;
+	Mon, 12 May 2025 10:34:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aigkCB0W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T9w97T7P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E73F810E395;
- Mon, 12 May 2025 10:34:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A6A10E091;
+ Mon, 12 May 2025 10:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747046051; x=1778582051;
+ t=1747046054; x=1778582054;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/T4rP3G6dCARLmZzJecNudroDbrbFMSt5LipYZOlrPA=;
- b=aigkCB0WH1LbrgrjXZiwpGgMeqRMlqJYbzhEhYan8T18NjwPHtRzal2U
- 8T5c6312qUBd7N60OE7UmoZ2ldlkO8ybmri+06NE8i/F7tBI+iUt+h+sX
- QabD0SEU75JDXnzNaQvc9fcb/kFXvjBJ+o70B+D8JSTNi/kdeDHIKV6k4
- 6L0v6IJPEvR/EaaalFvdVACZNKJGu8r5qao5ajupLkWpc0RFZoDXdJDba
- rY9IlOwa0K14701fijVUsHOSkiSTjbJqq4BRdw3js6L1uMQdQHtk7UgMp
- r0R1GTOGQT9+EHpT15HT0U+rT40OKAe+RcsE4xuxpFfQGHamrbb2Pvhvb A==;
-X-CSE-ConnectionGUID: ZnEahYxDShqW2Qj/xOeogA==
-X-CSE-MsgGUID: WwaWZFGQSyOQ3WOWKWhgPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="59467365"
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59467365"
+ bh=5g4XTTKfzz0KcCBNqutaa61UyF9r81Nlkzn+Vo2/WKI=;
+ b=T9w97T7PcyhuOIwcMyQiKfiRKfeZFhHddiAUg6RJtBlRSWgfSHoW/alS
+ rAvLt6P6d7nk1fo9Rf5NaYSU/p/Ag0RSZQO53a1NMhOaH4sK/lKDviFpy
+ rjxqB2oXyI5kA6zu18bTiE3AisOR9yA9ywkNixmfxCJ1HVitUbPD5qVGC
+ M+ksLTo5toWxM88bx381AZbicBsCWetMf2zzQoG5UZQRO2lW5laUyixX0
+ BpUlpFYnXW1TKNH00yOKNRP66tnrqhFM87mwnBirWTh8XaMBUknCW6iJh
+ OCaRWPBU8jcyNYhBprJsBdNWveW/Zz8ZLGGkH1wAnzMqwSIz5qWdG+Pn/ Q==;
+X-CSE-ConnectionGUID: gySu94L1Symp6j2KXK4Czw==
+X-CSE-MsgGUID: /Rd9MYkCT5erjgWSqDEX4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="59467372"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59467372"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 03:34:10 -0700
-X-CSE-ConnectionGUID: fjCispCSStOnT4fb+Z9EhA==
-X-CSE-MsgGUID: KmLsOnC6SVCDPNB92U9PYg==
+ 12 May 2025 03:34:14 -0700
+X-CSE-ConnectionGUID: BnjFyGR1QHiFEiVtzIthjQ==
+X-CSE-MsgGUID: Ydeh3QnuSrujrlPvxPK3aQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142439951"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142439954"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO stinkbox)
  ([10.245.245.195])
- by orviesa005.jf.intel.com with SMTP; 12 May 2025 03:34:09 -0700
+ by orviesa005.jf.intel.com with SMTP; 12 May 2025 03:34:12 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 12 May 2025 13:34:07 +0300
+ Mon, 12 May 2025 13:34:11 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/7] drm/i915/dmc: Define all DMC event IDs
-Date: Mon, 12 May 2025 13:33:54 +0300
-Message-ID: <20250512103358.15724-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/7] drm/i915/dmc: Extract dmc_evt_ctl_disable()
+Date: Mon, 12 May 2025 13:33:55 +0300
+Message-ID: <20250512103358.15724-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
 References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
@@ -72,355 +72,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Define all the DMC event IDs to make life less misrable when
-having to deal with these.
+We have two copies of the code to generate the "disable this event"
+value for the DMC_EVT_CTL registers. Extract to a helper.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      |  12 +-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 271 +++++++++++++++++-
- 2 files changed, 272 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index f9cadeaff893..49cbb83b2bbe 100644
+index 49cbb83b2bbe..ec940f837427 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -427,7 +427,7 @@ static void disable_event_handler(struct intel_display *display,
- 		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
- 				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
- 		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
--				      DMC_EVT_CTL_EVENT_ID_FALSE));
-+				      DMC_EVENT_FALSE));
- 	intel_de_write(display, htp_reg, 0);
+@@ -536,6 +536,14 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
+ 	}
  }
  
-@@ -573,10 +573,10 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display
- 			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
- 				       DMC_EVT_CTL_TYPE_EDGE_0_1) |
++static u32 dmc_evt_ctl_disable(void)
++{
++	return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
++			      DMC_EVT_CTL_TYPE_EDGE_0_1) |
++		REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
++			       DMC_EVENT_FALSE);
++}
++
+ /**
+  * intel_dmc_block_pkgc() - block PKG C-state
+  * @display: display instance
+@@ -575,10 +583,7 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display
  			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
--				       DMC_EVT_CTL_EVENT_ID_VBLANK_A);
-+				       PIPEDMC_EVENT_VBLANK);
+ 				       PIPEDMC_EVENT_VBLANK);
  	else
- 		val = REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
--				     DMC_EVT_CTL_EVENT_ID_FALSE) |
-+				     DMC_EVENT_FALSE) |
- 			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
- 				       DMC_EVT_CTL_TYPE_EDGE_0_1);
+-		val = REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+-				     DMC_EVENT_FALSE) |
+-			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+-				       DMC_EVT_CTL_TYPE_EDGE_0_1);
++		val = dmc_evt_ctl_disable();
  
-@@ -617,12 +617,12 @@ static bool disable_dmc_evt(struct intel_display *display,
- 
- 	/* also disable the flip queue event on the main DMC on TGL */
- 	if (display->platform.tigerlake &&
--	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_CLK_MSEC)
-+	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == MAINDMC_EVENT_CLK_MSEC)
- 		return true;
- 
- 	/* also disable the HRR event on the main DMC on TGL/ADLS */
- 	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
--	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == DMC_EVT_CTL_EVENT_ID_VBLANK_A)
-+	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == MAINDMC_EVENT_VBLANK_A)
- 		return true;
- 
- 	return false;
-@@ -638,7 +638,7 @@ static u32 dmc_mmiodata(struct intel_display *display,
- 		return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
- 				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
- 			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
--				       DMC_EVT_CTL_EVENT_ID_FALSE);
-+				       DMC_EVENT_FALSE);
+ 	intel_de_write(display, MTL_PIPEDMC_EVT_CTL_4(pipe),
+ 		       val);
+@@ -635,10 +640,7 @@ static u32 dmc_mmiodata(struct intel_display *display,
+ 	if (disable_dmc_evt(display, dmc_id,
+ 			    dmc->dmc_info[dmc_id].mmioaddr[i],
+ 			    dmc->dmc_info[dmc_id].mmiodata[i]))
+-		return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+-				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
+-			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+-				       DMC_EVENT_FALSE);
++		return dmc_evt_ctl_disable();
  	else
  		return dmc->dmc_info[dmc_id].mmiodata[i];
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index e8ac0e1be764..edd4e69319b9 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -8,6 +8,272 @@
- 
- #include "i915_reg_defs.h"
- 
-+enum dmc_event_id {
-+	DMC_EVENT_TRUE = 0x0,
-+	DMC_EVENT_FALSE = 0x1,
-+};
-+
-+enum maindmc_event_id {
-+	MAINDMC_EVENT_CMP_ZERO = 0x8,
-+	MAINDMC_EVENT_CMP_ODD = 0x9,
-+	MAINDMC_EVENT_CMP_NEG = 0xa,
-+	MAINDMC_EVENT_CMP_CARRY = 0xb,
-+
-+	MAINDMC_EVENT_TMR0_DONE = 0x14,
-+	MAINDMC_EVENT_TMR1_DONE = 0x15,
-+	MAINDMC_EVENT_TMR2_DONE = 0x16,
-+	MAINDMC_EVENT_COUNT0_DONE = 0x17,
-+	MAINDMC_EVENT_COUNT1_DONE = 0x18,
-+	MAINDMC_EVENT_PERF_CNTR_DARBF = 0x19,
-+
-+	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_A_TRIGGER = 0x22,
-+	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_B_TRIGGER = 0x23,
-+	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_C_TRIGGER = 0x24,
-+	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_D_TRIGGER = 0x25,
-+	MAINDMC_EVENT_1KHZ_FQ_A_TRIGGER = 0x26,
-+	MAINDMC_EVENT_1KHZ_FQ_B_TRIGGER = 0x27,
-+	MAINDMC_EVENT_1KHZ_FQ_C_TRIGGER = 0x28,
-+	MAINDMC_EVENT_1KHZ_FQ_D_TRIGGER = 0x29,
-+	MAINDMC_EVENT_SCANLINE_COMP_A = 0x2a,
-+	MAINDMC_EVENT_SCANLINE_COMP_B = 0x2b,
-+	MAINDMC_EVENT_SCANLINE_COMP_C = 0x2c,
-+	MAINDMC_EVENT_SCANLINE_COMP_D = 0x2d,
-+	MAINDMC_EVENT_VBLANK_DELAYED_A = 0x2e,
-+	MAINDMC_EVENT_VBLANK_DELAYED_B = 0x2f,
-+	MAINDMC_EVENT_VBLANK_DELAYED_C = 0x30,
-+	MAINDMC_EVENT_VBLANK_DELAYED_D = 0x31,
-+	MAINDMC_EVENT_VBLANK_A = 0x32,
-+	MAINDMC_EVENT_VBLANK_B = 0x33,
-+	MAINDMC_EVENT_VBLANK_C = 0x34,
-+	MAINDMC_EVENT_VBLANK_D = 0x35,
-+	MAINDMC_EVENT_HBLANK_A = 0x36,
-+	MAINDMC_EVENT_HBLANK_B = 0x37,
-+	MAINDMC_EVENT_HBLANK_C = 0x38,
-+	MAINDMC_EVENT_HBLANK_D = 0x39,
-+	MAINDMC_EVENT_VSYNC_A = 0x3a,
-+	MAINDMC_EVENT_VSYNC_B = 0x3b,
-+	MAINDMC_EVENT_VSYNC_C = 0x3c,
-+	MAINDMC_EVENT_VSYNC_D = 0x3d,
-+	MAINDMC_EVENT_SCANLINE_A = 0x3e,
-+	MAINDMC_EVENT_SCANLINE_B = 0x3f,
-+	MAINDMC_EVENT_SCANLINE_C = 0x40,
-+	MAINDMC_EVENT_SCANLINE_D = 0x41,
-+
-+	MAINDMC_EVENT_PLANE1_FLIP_A = 0x42,
-+	MAINDMC_EVENT_PLANE2_FLIP_A = 0x43,
-+	MAINDMC_EVENT_PLANE3_FLIP_A = 0x44,
-+	MAINDMC_EVENT_PLANE4_FLIP_A = 0x45,
-+	MAINDMC_EVENT_PLANE5_FLIP_A = 0x46,
-+	MAINDMC_EVENT_PLANE6_FLIP_A = 0x47,
-+	MAINDMC_EVENT_PLANE7_FLIP_A = 0x48,
-+	MAINDMC_EVENT_PLANE1_FLIP_B = 0x49,
-+	MAINDMC_EVENT_PLANE2_FLIP_B = 0x4a,
-+	MAINDMC_EVENT_PLANE3_FLIP_B = 0x4b,
-+	MAINDMC_EVENT_PLANE4_FLIP_B = 0x4c,
-+	MAINDMC_EVENT_PLANE5_FLIP_B = 0x4d,
-+	MAINDMC_EVENT_PLANE6_FLIP_B = 0x4e,
-+	MAINDMC_EVENT_PLANE7_FLIP_B = 0x4f,
-+	MAINDMC_EVENT_PLANE1_FLIP_C = 0x50,
-+	MAINDMC_EVENT_PLANE2_FLIP_C = 0x51,
-+	MAINDMC_EVENT_PLANE3_FLIP_C = 0x52,
-+	MAINDMC_EVENT_PLANE4_FLIP_C = 0x53,
-+	MAINDMC_EVENT_PLANE5_FLIP_C = 0x54,
-+	MAINDMC_EVENT_PLANE6_FLIP_C = 0x55,
-+	MAINDMC_EVENT_PLANE7_FLIP_C = 0x56,
-+	MAINDMC_EVENT_PLANE1_FLIP_D = 0x57,
-+	MAINDMC_EVENT_PLANE2_FLIP_D = 0x58,
-+	MAINDMC_EVENT_PLANE3_FLIP_D = 0x59,
-+	MAINDMC_EVENT_PLANE4_FLIP_D = 0x5a,
-+	MAINDMC_EVENT_PLANE5_FLIP_D = 0x5b,
-+	MAINDMC_EVENT_PLANE6_FLIP_D = 0x5c,
-+	MAINDMC_EVENT_PLANE7_FLIP_D = 0x5d,
-+	MAINDMC_EVENT_PLANE1_FLIP_DONE_A = 0x5e,
-+	MAINDMC_EVENT_PLANE2_FLIP_DONE_A = 0x5f,
-+	MAINDMC_EVENT_PLANE3_FLIP_DONE_A = 0x60,
-+	MAINDMC_EVENT_PLANE4_FLIP_DONE_A = 0x61,
-+	MAINDMC_EVENT_PLANE5_FLIP_DONE_A = 0x62,
-+	MAINDMC_EVENT_PLANE6_FLIP_DONE_A = 0x63,
-+	MAINDMC_EVENT_PLANE7_FLIP_DONE_A = 0x64,
-+	MAINDMC_EVENT_PLANE1_FLIP_DONE_B = 0x65,
-+	MAINDMC_EVENT_PLANE2_FLIP_DONE_B = 0x66,
-+	MAINDMC_EVENT_PLANE3_FLIP_DONE_B = 0x67,
-+	MAINDMC_EVENT_PLANE4_FLIP_DONE_B = 0x68,
-+	MAINDMC_EVENT_PLANE5_FLIP_DONE_B = 0x69,
-+	MAINDMC_EVENT_PLANE6_FLIP_DONE_B = 0x6a,
-+	MAINDMC_EVENT_PLANE7_FLIP_DONE_B = 0x6b,
-+	MAINDMC_EVENT_PLANE1_FLIP_DONE_C = 0x6c,
-+	MAINDMC_EVENT_PLANE2_FLIP_DONE_C = 0x6d,
-+	MAINDMC_EVENT_PLANE3_FLIP_DONE_C = 0x6e,
-+	MAINDMC_EVENT_PLANE4_FLIP_DONE_C = 0x6f,
-+	MAINDMC_EVENT_PLANE5_FLIP_DONE_C = 0x70,
-+	MAINDMC_EVENT_PLANE6_FLIP_DONE_C = 0x71,
-+	MAINDMC_EVENT_PLANE7_FLIP_DONE_C = 0x72,
-+	MAINDMC_EVENT_PLANE1_FLIP_DONE_D = 0x73,
-+	MAINDMC_EVENT_PLANE2_FLIP_DONE_D = 0x74,
-+	MAINDMC_EVENT_PLANE3_FLIP_DONE_D = 0x75,
-+	MAINDMC_EVENT_PLANE4_FLIP_DONE_D = 0x76,
-+	MAINDMC_EVENT_PLANE5_FLIP_DONE_D = 0x77,
-+	MAINDMC_EVENT_PLANE6_FLIP_DONE_D = 0x78,
-+	MAINDMC_EVENT_PLANE7_FLIP_DONE_D = 0x79,
-+
-+	MAINDMC_EVENT_WIDI_GTT_FAULT_SL1 = 0x7d,
-+	MAINDMC_EVENT_WIDI_GTT_FAULT_SL2 = 0x7e,
-+	MAINDMC_EVENT_WIDI_CAP_ACTIVE_SL1 = 0x7f,
-+	MAINDMC_EVENT_WIDI_CAP_ACTIVE_SL2 = 0x80,
-+
-+	MAINDMC_EVENT_RENUKE_A = 0x85,
-+	MAINDMC_EVENT_RENUKE_B = 0x86,
-+	MAINDMC_EVENT_RENUKE_C = 0x87,
-+	MAINDMC_EVENT_RENUKE_D = 0x88,
-+	MAINDMC_EVENT_DPFC_FIFO_FULL_A = 0x89,
-+	MAINDMC_EVENT_DPFC_FIFO_FULL_B = 0x8a,
-+	MAINDMC_EVENT_DPFC_FIFO_FULL_C = 0x8b,
-+	MAINDMC_EVENT_DPFC_FIFO_FULL_D = 0x8c,
-+	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_A = 0x8d,
-+	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_B = 0x8e,
-+	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_C = 0x8f,
-+	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_D = 0x90,
-+	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_A = 0x91,
-+	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_B = 0x92,
-+	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_C = 0x93,
-+	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_D = 0x94,
-+	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_A = 0x95,
-+	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_B = 0x96,
-+	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_C = 0x97,
-+	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_D = 0x98,
-+	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_A = 0x99,
-+	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_B = 0x9a,
-+	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_C = 0x9b,
-+	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_D = 0x9c,
-+	MAINDMC_EVENT_DISP_PCH_INT = 0x9d,
-+	MAINDMC_EVENT_GTT_ERR = 0x9e,
-+	MAINDMC_EVENT_VTD_ERR = 0x9f,
-+	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_A = 0xa0,
-+	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_B = 0xa1,
-+	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_C = 0xa2,
-+	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_D = 0xa3,
-+	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_A = 0xa4,
-+	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_B = 0xa5,
-+	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_C = 0xa6,
-+	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_D = 0xa7,
-+
-+	MAINDMC_EVENT_DC_CLOCK_OFF_START_EDP = 0xb2,
-+	MAINDMC_EVENT_DC_CLOCK_OFF_START_DSI = 0xb3,
-+	MAINDMC_EVENT_DCPR_DMC_CSR_START = 0xb4,
-+	MAINDMC_EVENT_IN_PSR = 0xb5,
-+
-+	MAINDMC_EVENT_IN_MEMUP = 0xb7,
-+	MAINDMC_EVENT_IN_VGA = 0xb8,
-+
-+	MAINDMC_EVENT_IN_KVM_SESSION = 0xba,
-+	MAINDMC_EVENT_DEWAKE = 0xbb,
-+
-+	MAINDMC_EVENT_TRAP_HIT = 0xbd,
-+	MAINDMC_EVENT_CLK_USEC = 0xbe,
-+	MAINDMC_EVENT_CLK_MSEC = 0xbf,
-+
-+	MAINDMC_EVENT_CHICKEN1 = 0xc8,
-+	MAINDMC_EVENT_CHICKEN2 = 0xc9,
-+	MAINDMC_EVENT_CHICKEN3 = 0xca,
-+	MAINDMC_EVENT_DDT_UBP = 0xcb,
-+
-+	MAINDMC_EVENT_HP_LATENCY = 0xcd,
-+	MAINDMC_EVENT_LP_LATENCY = 0xce,
-+	MAINDMC_EVENT_WIDI_LP_REQ_SL1 = 0xcf,
-+	MAINDMC_EVENT_WIDI_LP_REQ_SL2 = 0xd0,
-+
-+	MAINDMC_EVENT_DG_DMC_EVT_0 = 0xd3,
-+	MAINDMC_EVENT_DG_DMC_EVT_1 = 0xd4,
-+	MAINDMC_EVENT_DG_DMC_EVT_2 = 0xd5,
-+	MAINDMC_EVENT_DG_DMC_EVT_3 = 0xd6,
-+	MAINDMC_EVENT_DG_DMC_EVT_4 = 0xd7,
-+	MAINDMC_EVENT_DACFE_CLK_STOP = 0xd8,
-+	MAINDMC_EVENT_DACFE_AZILIA_SDI_WAKE = 0xd9,
-+	MAINDMC_EVENT_AUDIO_DOUBLE_FUNC_GRP_RST = 0xda,
-+	MAINDMC_EVENT_AUDIO_CMD_VALID = 0xdb,
-+	MAINDMC_EVENT_AUDIO_FRM_SYNC_BCLK = 0xdc,
-+	MAINDMC_EVENT_AUDIO_FRM_SYNC_CDCLK = 0xdd,
-+	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_A = 0xde,
-+	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_B = 0xdf,
-+	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_C = 0xe0,
-+	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_E = 0xe1,
-+	MAINDMC_EVENT_CMTG_SCANLINE_IN_GB_DC6v = 0xe2,
-+	MAINDMC_EVENT_DCPR_CMTG_SCANLINE_OUTSIDE_GB = 0xe3,
-+	MAINDMC_EVENT_DC6v_BACKWARD_COMPAT = 0xe4,
-+	MAINDMC_EVENT_DPMA_PM_ABORT = 0xe5,
-+
-+	MAINDMC_EVENT_STACK_OVF = 0xfc,
-+	MAINDMC_EVENT_NO_CLAIM = 0xfd,
-+	MAINDMC_EVENT_UNK_CMD = 0xfe,
-+	MAINDMC_EVENT_HTP_MOD = 0xff,
-+};
-+
-+enum pipedmc_event_id {
-+	PIPEDMC_EVENT_TMR0_DONE = 0x14,
-+	PIPEDMC_EVENT_TMR1_DONE = 0x15,
-+	PIPEDMC_EVENT_TMR2_DONE = 0x16,
-+	PIPEDMC_EVENT_COUNT0_DONE = 0x17,
-+	PIPEDMC_EVENT_COUNT1_DONE = 0x18,
-+	PIPEDMC_EVENT_PGA_PGB_RESTORE_DONE = 0x19,
-+	PIPEDMC_EVENT_PG1_PG2_RESTORE_DONE = 0x1a,
-+	PIPEDMC_EVENT_PGA_PGB_SAVE_DONE = 0x1b,
-+	PIPEDMC_EVENT_PG1_PG2_SAVE_DONE = 0x1c,
-+
-+	PIPEDMC_EVENT_FULL_FQ_WAKE_TRIGGER = 0x2b,
-+	PIPEDMC_EVENT_1KHZ_FQ_TRIGGER = 0x2c,
-+	PIPEDMC_EVENT_SCANLINE_INRANGE_FQ_TRIGGER = 0x2d,
-+	PIPEDMC_EVENT_SCANLINE_INRANGE = 0x2e,
-+	PIPEDMC_EVENT_SCANLINE_OUTRANGE = 0x2f,
-+	PIPEDMC_EVENT_SCANLINE_EQUAL = 0x30,
-+	PIPEDMC_EVENT_DELAYED_VBLANK = 0x31,
-+	PIPEDMC_EVENT_VBLANK = 0x32,
-+	PIPEDMC_EVENT_HBLANK = 0x33,
-+	PIPEDMC_EVENT_VSYNC = 0x34,
-+	PIPEDMC_EVENT_SCANLINE_FROM_DMUX = 0x35,
-+	PIPEDMC_EVENT_PLANE1_FLIP = 0x36,
-+	PIPEDMC_EVENT_PLANE2_FLIP = 0x37,
-+	PIPEDMC_EVENT_PLANE3_FLIP = 0x38,
-+	PIPEDMC_EVENT_PLANE4_FLIP = 0x39,
-+	PIPEDMC_EVENT_PLANE5_FLIP = 0x3a,
-+	PIPEDMC_EVENT_PLANE6_FLIP = 0x3b,
-+	PIPEDMC_EVENT_PLANE7_FLIP = 0x3c,
-+	PIPEDMC_EVENT_ADAPTIVE_DCB_TRIGGER = 0x3d,
-+
-+	PIPEDMC_EVENT_PLANE1_FLIP_DONE = 0x56,
-+	PIPEDMC_EVENT_PLANE2_FLIP_DONE = 0x57,
-+	PIPEDMC_EVENT_PLANE3_FLIP_DONE = 0x58,
-+	PIPEDMC_EVENT_PLANE4_FLIP_DONE = 0x59,
-+	PIPEDMC_EVENT_PLANE5_FLIP_DONE = 0x5a,
-+	PIPEDMC_EVENT_PLANE6_FLIP_DONE = 0x5b,
-+	PIPEDMC_EVENT_PLANE7_FLIP_DONE = 0x5c,
-+
-+	PIPEDMC_EVENT_GTT_ERR = 0x9b,
-+
-+	PIPEDMC_EVENT_IN_PSR = 0xb5,
-+	PIPEDMC_EVENT_DSI_DMC_IDLE = 0xb6,
-+	PIPEDMC_EVENT_PSR2_DMC_IDLE = 0xb7,
-+	PIPEDMC_EVENT_IN_VGA = 0xb8,
-+
-+	PIPEDMC_EVENT_TRAP_HIT = 0xbd,
-+	PIPEDMC_EVENT_CLK_USEC = 0xbe,
-+	PIPEDMC_EVENT_CLK_MSEC = 0xbf,
-+
-+	PIPEDMC_EVENT_CHICKEN1 = 0xc8,
-+	PIPEDMC_EVENT_CHICKEN2 = 0xc9,
-+	PIPEDMC_EVENT_CHICKEN3 = 0xca,
-+	PIPEDMC_EVENT_DDT_UBP = 0xcb,
-+
-+	PIPEDMC_EVENT_LP_LATENCY = 0xce,
-+
-+	PIPEDMC_EVENT_LACE_PART_A_HIST_TRIGGER = 0xdf,
-+	PIPEDMC_EVENT_LACE_PART_B_HIST_TRIGGER = 0xe0,
-+
-+	PIPEDMC_EVENT_STACK_OVF = 0xfc,
-+	PIPEDMC_EVENT_NO_CLAIM = 0xfd,
-+	PIPEDMC_EVENT_UNK_CMD = 0xfe,
-+	PIPEDMC_EVENT_HTP_MOD = 0xff,
-+};
-+
- #define DMC_PROGRAM(addr, i)	_MMIO((addr) + (i) * 4)
- #define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
- 
-@@ -93,12 +359,7 @@
- #define DMC_EVT_CTL_TYPE_LEVEL_1	1
- #define DMC_EVT_CTL_TYPE_EDGE_1_0	2
- #define DMC_EVT_CTL_TYPE_EDGE_0_1	3
--
- #define DMC_EVT_CTL_EVENT_ID_MASK	REG_GENMASK(15, 8)
--#define DMC_EVT_CTL_EVENT_ID_FALSE	0x01
--#define DMC_EVT_CTL_EVENT_ID_VBLANK_A	0x32 /* main DMC */
--/* An event handler scheduled to run at a 1 kHz frequency. */
--#define DMC_EVT_CTL_EVENT_ID_CLK_MSEC	0xbf
- 
- #define DMC_HTP_ADDR_SKL	0x00500034
- #define DMC_SSP_BASE		_MMIO(0x8F074)
 -- 
 2.49.0
 
