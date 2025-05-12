@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734A0AB2E46
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 06:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0C7AB2E49
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 06:02:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D03B10E2D3;
-	Mon, 12 May 2025 04:00:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D25110E286;
+	Mon, 12 May 2025 04:02:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4dscYuc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="htzK2KUM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C9B10E282;
- Mon, 12 May 2025 04:00:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97ABC10E282;
+ Mon, 12 May 2025 04:02:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747022417; x=1778558417;
+ t=1747022534; x=1778558534;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=6Xc4yvS7uRhWMiHh1moqIDhG4fw5OPp8dPrVUlkSjH8=;
- b=O4dscYucEFGoyRRz6Gl0E+TadfnxN5Rf242Jk2MCgiOJF5qaH9Y17cTm
- 8Mg4l/5go7YiNOQf0JFjYDCrjL6FgTFJlPx85YdwbN0r3QskQsQ8eDT5i
- 3f69tcMBEse9qsj+71bqLa1yrIFcLuZwwfpwVWPpZD/1KZUZ7sgSsWYSI
- 5KC1jW6iSK51VVzCksguW3TueJgPciLWhm2Dj1yHiqzZlW5+1JIBUlF1Q
- GPNuzDDj6XjuulOaOncApYBUKxqwn8TMz+WZudq1/CoQswhp12xKQ4LHL
- TzlCNMKHpM9fhKX7Mhu4F7q0g8X6LGnEgLYo519WUvicak3syIpw/ujBK w==;
-X-CSE-ConnectionGUID: rOwfAxbvQgWyBmHDd6lRTA==
-X-CSE-MsgGUID: zRhvQY3lSJiQS9C3/5ESVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="48050487"
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; d="scan'208";a="48050487"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2025 21:00:16 -0700
-X-CSE-ConnectionGUID: oDef6gcVSI64yl6acOgCZw==
-X-CSE-MsgGUID: cjOBdbX5SfaoBVufj7EEkA==
+ bh=QuZM9gXE1XW1pwgd58DS9YDOxjXC8E9gLdaOBCDNFio=;
+ b=htzK2KUMcGvRoLApx5EgXF1vEveQO4PfM3yUp1GfWy6jf38QdaEfiUMp
+ lgIijwuycB5+jHgks7SM+7q27eNAQIXiSkE4qW+E05eLzv+UhLB09GskW
+ CbTmoY1daZRsYZtsMUNOLSV/tKyt0JRnfPj5sgIwXVvcyyvV3He+qHgeQ
+ yeWOqN55rlhc1ShALCw2mATMxDP/aW+DtG4BOgoO5QwLAZKnI2eDgKO6Y
+ Z2/GdkwP9YZQr09tA5Z/qRQ9BQjYLyVuDYSkwq41047YlB2VsOomSzEFp
+ vSUYPZQ0Rc3grpr6ucWl5rWGVK0KzC8IWfSRJcfY4B1Z5KDSPFwTfrM4s Q==;
+X-CSE-ConnectionGUID: IE/WpI3+QRKoK3D6g8xXIw==
+X-CSE-MsgGUID: i9vAFxe3Rx+rdwg6X2uidQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="48728352"
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; d="scan'208";a="48728352"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2025 21:02:14 -0700
+X-CSE-ConnectionGUID: uvVcA8iTSDiH96TRu25lYw==
+X-CSE-MsgGUID: ANvKQRKxSS+M/+33hatoOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; d="scan'208";a="160500628"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2025 21:00:16 -0700
+X-IronPort-AV: E=Sophos;i="6.15,281,1739865600"; d="scan'208";a="142363481"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2025 21:02:14 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 11 May 2025 21:00:15 -0700
+ 15.2.1544.14; Sun, 11 May 2025 21:02:13 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Sun, 11 May 2025 21:00:15 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
+ 15.2.1544.14 via Frontend Transport; Sun, 11 May 2025 21:02:13 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.49) by
  edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Sun, 11 May 2025 21:00:15 -0700
+ 15.1.2507.44; Sun, 11 May 2025 21:02:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wBM/jcnRlk2o559zMGnLi6R3BRZcbgG6tZilfW4tZ1rehhWNHEMD/D/vXMkpQki27mJVTPSJGrnP20Sf6ypMEfbAS/3cUlJsD1RNmIJshiErl6scUzMMDYrUUEftALthPvRyebxfhL7L617rtWM7dk6K9c8fHcelids4beBiAWPp1OS8aeK/1FuF8novSIb/eYoSLar1/NpfD1B6wlgDLjEM+aIHYLWLWBWyj2RyipNLf5Ov60yk3KTxxiF3irXFgFPzBpnja6yafhfPlFDR8POV08Y86/QajEDgcl9nC+CoKsn/hyJNW7Pm0txoT05d9CIOH94R5sqFM14yqsOjWQ==
+ b=geQbEFSNzIE8kC79S8SIFS/p9qxoE0HpWF7zoLT+iZWU8zdChcu6HMWQdb5V/REuwLl/Ssib6xXLrkLLL00BtPpKY5miVOPQVDNFtZdFKoNZ1lDCZDGUllvbAqPdWh9nV58culaisL/xgjQQF7I9NoQZiOnvB2oh7eQ0Bb0q2P+TdyRk3rS8UJE6DyxO786yigD9yMxP56l+2qnKxWN5iZwAlgTSed6sfkGRC1Yz5M6uk5yp4flIlB0j8uZMj7Wbk8WAFGYsjh1MGjgkXWG+J/b+pVYzCZjji+G7USw/PqT/hiBGGdD0hGgthgeUHwTyFL5mlbXXA/oE4Ni46u3HDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6mCOfJB5RMhfuW8WS+niW3s8j0FKhIifd7Fwr5Kpj/8=;
- b=rRKB/MatDD+bsjs95/h1yMvA2jimSrRLZmklzt77vXbIjANyIxXdMX+qgMZXzWFwTXJRGKHpN0OWL8F/JSG9FZRY5HwZQZ05s7vJGCquFMWwMBHHQX7ipAmhijG/EP6VKbyhuG3pm5n7OGufSReoS4GOEBU7mR9m9FGGhDwsUTiPPaQGAKL8frjRJkOKSCFkcpiaPIB4/6xijJYlFkwnyKGKTJE4PydTG5i/+TT4/7KvfM0gSodn4pEFoUqlIVViEeAhh4hoycp5hwf3IcpCcmfV11YSyNW1HaIxA7I9skdBEx/xeMNrFTxDOhkZy8W/cWd1s9CgHUgJg3GebhnlvA==
+ bh=7PFPP6uv7nHS7CXvDlhBWsiprbpRjvzYHykj65eJH7k=;
+ b=Q5rCSsClC97HlltrKAWHLjmlYoraWuffBfGlWlVL5w9ouW2ZxbNnnWeDDDmx/XKGNGE+VXO+W3k9GSViYO4zX3jmO6tjcfoPIDIoYs9uoLrivF6LdUFI28rU3WTqiRdd6jv3m27U8wKOrqWdN3Vo4x6TAgWVfY05FltQQJNaS8FHaw3iVMdhKzH2vRKkn4OnWgu5icj1O7azFAbAMi2poueEi/QIyTmlX69Id9p0fYJku8/SOFJfyFGwOTHvj9HdmLYocsYtFj30AYsokPBge6tp7oY7SP4taS7RfI1mev4b3r0Z4hkMMXTEdFnn/ZiorhwrWQqLSTjd2v4Xj1PV1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,25 +67,25 @@ Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
  by MW4PR11MB6666.namprd11.prod.outlook.com (2603:10b6:303:1eb::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Mon, 12 May
- 2025 04:00:11 +0000
+ 2025 04:02:10 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8722.027; Mon, 12 May 2025
- 04:00:11 +0000
+ 04:02:10 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
  <arun.r.murthy@intel.com>
-Subject: RE: [PATCH 06/18] drm/i915/dpll: Rename intel_shared_dpll
-Thread-Topic: [PATCH 06/18] drm/i915/dpll: Rename intel_shared_dpll
-Thread-Index: AQHbwJrSOy6eZmJA8E2qT2N8wkdY4bPKFLeAgARIsFA=
-Date: Mon, 12 May 2025 04:00:11 +0000
-Message-ID: <SN7PR11MB67502220EFD58F70D8335AC7E397A@SN7PR11MB6750.namprd11.prod.outlook.com>
+Subject: RE: [PATCH 07/18] drm/i915/dpll: Move away from using shared dpll
+Thread-Topic: [PATCH 07/18] drm/i915/dpll: Move away from using shared dpll
+Thread-Index: AQHbwJrWZLd0b9aW5kKrZ+EXSqPmo7PKFdkAgAROGzA=
+Date: Mon, 12 May 2025 04:02:10 +0000
+Message-ID: <SN7PR11MB675008592F16122A8A481F6CE397A@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <20250509042729.1152004-1-suraj.kandpal@intel.com>
- <20250509042729.1152004-7-suraj.kandpal@intel.com> <87v7qaks7e.fsf@intel.com>
-In-Reply-To: <87v7qaks7e.fsf@intel.com>
+ <20250509042729.1152004-8-suraj.kandpal@intel.com> <87seleks0n.fsf@intel.com>
+In-Reply-To: <87seleks0n.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,78 +94,78 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MW4PR11MB6666:EE_
-x-ms-office365-filtering-correlation-id: 0c7356ad-9e69-4e6b-88d1-08dd91097e52
+x-ms-office365-filtering-correlation-id: f038e48c-531c-4c9c-ea74-08dd9109c509
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?ZtOWZdgw88lupXRhdMuV5CpVjBFM8w1TUmS3GMnCO3+tC5JcVxnYHb3j3eMx?=
- =?us-ascii?Q?x5t457Qjwx2T2tvzeUkoa4Tys/l4eRCJ9H3Vk3XdBgqatkwlxFz+szW7Sfb+?=
- =?us-ascii?Q?yX2xM8cJ8vq4jfi2oG9IgciNP9tA6b2NQsX90jKj1hNT+ccjN5o849m/Cmff?=
- =?us-ascii?Q?uJQcQATBdCctbIyiODsh/RXJjqLeX1eDpzyetSgWJPYHgRWlNZbw7IlUYhOI?=
- =?us-ascii?Q?+aSmNJWt26xGvV7fN2TuXh9UIeD+hjUTusG29gjeQLsqJ/oh2ViVNSBsr9FZ?=
- =?us-ascii?Q?B3jvSWicsZ7kwq2YwwJqB02rKdGiJ4GOF6qtxHpfC6yWyd7VBVeSiihHJbUY?=
- =?us-ascii?Q?4ZPpI1CgJY2z2A/jlN+GfbGZfqYEQerhBAGx4AA2c+7ijyENKR6wuMv6PIku?=
- =?us-ascii?Q?yCqC5FnLAjCynd1W8PVFiCQ+MP3jJ8Pechcy8lsSnYlVCoaNTxCCQV3n019p?=
- =?us-ascii?Q?/gv3bKsL4sTRY1wKyA6D1XCOlBi6sGvy66FJEx12hBkPneHgiGr7hr4Sh4oz?=
- =?us-ascii?Q?BrShLWsvhZB1pNmuUUGhCcBwIrJG5ljwZdPf3uT41kyS9Ig9Wqk8P99UrBX2?=
- =?us-ascii?Q?X0jz2GlyKZq/94qW8Eq8OWgLhViE02dp5Gm2YVu17dhjJV/ExF/Xzn5jN7gL?=
- =?us-ascii?Q?fsADVfPsEHIVhFlZuDP8c+ZHgC1n/dtLCZ8Itzh3SNIW62DSMJAbNw5s0X82?=
- =?us-ascii?Q?vMrOtm24YNDV9wlobDug540zOyGYt1/lbH16Uc+BuPJeZtZhc5f2srv6zNjS?=
- =?us-ascii?Q?FTWy8X3fTaUoiiYWX1z3IKKXxeuL8gg9xEdCOSHXEbaFU4ijd0ZSzdUgAA2e?=
- =?us-ascii?Q?jn6stNBfuez8UdaK8sSSd7w8moKcQ0d+YqzT4AbcXel3rah39qZxrnuvLmXw?=
- =?us-ascii?Q?CM7SyPTlaUB+YdfbdbD8epucIcodW4bW36LPqj85AKRRdRoFKGlMTCSv48uv?=
- =?us-ascii?Q?N20dnbeu8deYRIydj7yxGLcaEXR4+AM7GBYemodlLYybiYKUYYJWjn6vWjKD?=
- =?us-ascii?Q?qgKO3RSSFzaBi1svoWZs6/NRBrLWdXcEJ01kcxp8/ojTscVbCWXqgdCYgEWf?=
- =?us-ascii?Q?hYVQwq7y3v4TcbrAcB5YnUMHyFDQdV/9bKkboSEKIb5g3V8MffBiKTX4IKTb?=
- =?us-ascii?Q?jFgHEAG7Is8gVbyEMyuMshkUeq9gINP+jr7wGA3ncIqZN5aenPL90D04NI1H?=
- =?us-ascii?Q?q4jxn5awNCp93SnwuG4XmbJGcpNuIlh1+5F6q6tshZ19O8c++0TwOXgwauf8?=
- =?us-ascii?Q?dsGSBRi9S7TcI+1cJdkRZk6pKKe0ew/Qi9vBot/0tKY9PAEhdMuUnHsyFLBM?=
- =?us-ascii?Q?yXG8695N3ZNryxfDe+Yl4qT5ZZNeo4tRBY8xj0wQKoOnfV+D+9VMC9FftlRf?=
- =?us-ascii?Q?KQnjtrzzqeTDxZ/qnanUevRqkLHdd/H8jeJbvnq+h8FUWBVcQwjAUS4koWyf?=
- =?us-ascii?Q?Mp0juGONU3oeq+zBRKtBZtC6/Y3g2ICMl/A5mRVZ/RB1OUZ74OlWeX9VxRXT?=
- =?us-ascii?Q?Q6wc55Ni6CNkYSU=3D?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?/eeBLpy6aqgJQ6an2+A3y2fxohSIdzIY25MaeZ+EgDbE2dARsd3mDNvPpYl3?=
+ =?us-ascii?Q?LswGHHd9qA98i67z/BtSHtob8rBN15NdJv9BNW1WjnwUz5p5x8cUAm3CIN+F?=
+ =?us-ascii?Q?cbO+PyuejIS/LplEvvg2gOx0R4rCsZ5Z82302WZ8FgWfwWDIrISAAnAFDmz9?=
+ =?us-ascii?Q?s2RED1wvAGfWUM6bAW1vErrZcpdgQYoQZYVym8YheP8iJWg+A9Coud38CqfA?=
+ =?us-ascii?Q?9EjsGozcuW4J/6MlYCWZe+Vjky6Oy5XU05mlMg5V/JWg+eOyIuyvBUdbXrb9?=
+ =?us-ascii?Q?Hm1AOoxtrlr3XnzTo04NcfXzqIa7KM5wQTI8CcDs21MnxK6kdcgs1M9taR1I?=
+ =?us-ascii?Q?e/0hUkzd9WuF72KHvD3+YJZ8LR9rwAnjDmaaM10JdrofESFFStFHeLfXwCDq?=
+ =?us-ascii?Q?kOyAoyv1+Va4C9IUZo2IDdWrtC4IWm9kpSgJk8RsKw4dOuShBnjukdYl1gkq?=
+ =?us-ascii?Q?wuU83D3kXC+nRbEKZN1LkeSqFLpnH+EVz5JxRTf/977FzDEr61YjJfIBg6k5?=
+ =?us-ascii?Q?TUvOvThX4nSLUgJFASqxC84hMTyb5GiLazGILdrZk+HRwhNPAwiTKoRp99mD?=
+ =?us-ascii?Q?NoXUDvc9xcHeSEsMhHRS87J3nuNDo4sLqu0zu6Q3YosBzn5DjMP194mQWIgn?=
+ =?us-ascii?Q?cdJOFA7rozAePEff2I2ypspu+6FPUP6a9ZnZ0XyGlcRf4FdoyOVxB5tQIEZW?=
+ =?us-ascii?Q?sP/NSRbFnl9EU9CQHOyfJBONnV8P8Af6fS/b82xPDP2XLff3DipxldxdY5dU?=
+ =?us-ascii?Q?aIxtAA7CGKQ1AV6pdY9WEO1MajhnxSTZwEPsEqWVIaJax3Xo+t55nPXDASA0?=
+ =?us-ascii?Q?EuC6iZaX7hgW5HsC2c6NpqJz5pcoNiiU03TDi6NmQmCBKve4aiqPw9vQEfbv?=
+ =?us-ascii?Q?pdVdOisdU/UV0DH6oroSj5RXiDROkGDh7syw5deXwvHnDsXv0/redShYMz3/?=
+ =?us-ascii?Q?Gn1oqxzHtWRM5WHr1prlYMKn+NrCNPRIPJJA4YuXKEV/cYQxPbrq4CR6UJAA?=
+ =?us-ascii?Q?KIHQbWAVB/Oh4AfOYL47mxrPB4HhVy4BIb91PFiyzHh+mHz/Bb9ZwLLaJDaK?=
+ =?us-ascii?Q?dVqGZ5gyePOOksu7/FzyB3bsk5WbGI9E4DqpsNTVLxFeHAKUH1pjUzn/USJA?=
+ =?us-ascii?Q?rOrsDYmJWvcp4ozWdIIjl9Tuu5HAUB/UudaDCeKcV6iyEbT4gD15xwRO+mGa?=
+ =?us-ascii?Q?YTHzM4/wmsgG6a0dH4HAfd/C5ebHa/AJ4qV4/5iwuwmBvOBiRPski2B8siNt?=
+ =?us-ascii?Q?89zt6XegBP2rKcjv6cUNfN8pfBpUwqsfUB9Hj9qeJYcM/BDZFZHql/0ewira?=
+ =?us-ascii?Q?GMdoyT6GbpcJcER9U1qJQWN0fZR/GT8E5wcMPudbhBJa6ta5bx2J01Y7fR4r?=
+ =?us-ascii?Q?WOHmCy9l1X12X4udMCU9rh3UoBrI7xcoWiJ3C3tgMqzMU6uNp2RN8GRHbtO7?=
+ =?us-ascii?Q?9+mzKp36YD92YyLulBNXFAUyArMFkjZZdVMrc1d0R/HTB7a6ASjpu6E1BUCE?=
+ =?us-ascii?Q?qEz/shYXZ/cG8Rk=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xEHpF/bZuTSNXyQ7AEuAxOuh06M63yKH3VVNQiG0G2UMGGIvgxW0llK/ptYh?=
- =?us-ascii?Q?KOYWd7AO1TEgTUaXTDA2ebti19Spvjuav54MiOLVj7hnNQcEPbE09GzDV9Fr?=
- =?us-ascii?Q?bswWmNw/Yhuvx2fSpCYJ0w+zbkT7BQ1pmn5pNI2rU1eRDTIr8yFo/mVvN1Ml?=
- =?us-ascii?Q?cZF5OyZNjLAWNGztD/iGNt+33uR+izE91gufCeeeF/otnEHuDUSD1tBknSzf?=
- =?us-ascii?Q?00T2H/zr9/OwfZk0D/lYnM29aSIY4vI9ny+4w20YCPppdLvmiR1AicZELi31?=
- =?us-ascii?Q?UzyCNXnHrDcwaXmqWS4anYIy7k14kMgL54Abvc3j1v2ELYh6qS5O5FKyLgW/?=
- =?us-ascii?Q?hh7Kc8lSx0lboK0wxmxSi5BiomOR9C9BQpfb62eokwkTE/cy4qtwRxHag7DR?=
- =?us-ascii?Q?M+gmb/h+59j88neZfTiKt8YBoudJWzrh/a7mGDBVxw8JycFe7Eoygta2VA5c?=
- =?us-ascii?Q?BH2pw92rPkDx+F+Q31hceFVJrqUIZMQVVi7T1qunr7FFIOFo+Xd+B+HfSC1Y?=
- =?us-ascii?Q?H+W0Hc61g0v+gZnCpZN/jjIfk5LYEj0OeY0UZXxC4aCFnunjzmLLRg6m4fpg?=
- =?us-ascii?Q?Y9L4Lqm5YDs0AfswNQ73Aw75o7pl70N1RDf8EhB6yQhWcHjL+GzZ/KvFksHj?=
- =?us-ascii?Q?AyvVwdOgyb8xuMn/OGzBR4aMLKAh3mnbasYiQ6N9a/1xqT/wMwiSA+cF3EtR?=
- =?us-ascii?Q?YKmW8W660PLpsa1bOI8J4FOt393IqPbFlmpEvwsVUvP1IfVwSZkMZcoIuu2d?=
- =?us-ascii?Q?xtpT+1RZZR6D5B28pHwANiEQ+JAmWxN4Idqbbo+rVOpKQCxWPfLtakS2aOyS?=
- =?us-ascii?Q?HW/FH0jF0fr+KsTenX3e8B12gPsPxRoCjrHm0VA9ExBdeDYt481BW4iCSMh0?=
- =?us-ascii?Q?QYY5U1HhwFGEu2jrJY9RF7bOJb2tP0zxaKMcf35EBO5Q48GkLcqOlUcpkulX?=
- =?us-ascii?Q?xlv9bnt1YBDwd8prJMPy+1FmCIVA+FhxTCDRNja3geVRCh5pXrEUfD5BDWrf?=
- =?us-ascii?Q?5CS/KoQvuK8+n9BN7Dn3ZNFry2q1C9gmiePey9bqDkzOpAjSVRfzIJoriJh7?=
- =?us-ascii?Q?xILOHuBEInPKDDhXNMw8RZQRGo2vLMlzZmKbIZN9yXvbkSUIaT3Fg+Pr9PHN?=
- =?us-ascii?Q?qAOYBctigBAbX3p52P+AmyLq/BnqEZ+kW/1wjgfQPwFA/U2IlLn/jCyCyWtG?=
- =?us-ascii?Q?PI4JJE2YNVxIGPLSM5RRtyJp/hDUD26BBP2G3r/FRZ4g+oqJgPObwhlrLPKZ?=
- =?us-ascii?Q?BQwNn7AOmc6GCBuH2RJI6j/NBoJOLLszZzdTFTpZEd62yAmdqigHmiFyza+Q?=
- =?us-ascii?Q?eiKfUkaEMpo4gE0eHJuTiiqvOxNPIhsRcdOg2WAknrJyOPUUGhxClPFwv5OU?=
- =?us-ascii?Q?5A5folylYDfKx8Y/pe94c9xuqmbh28SAcKUyW9wFi53uZCPULbfdzGL5hzCL?=
- =?us-ascii?Q?EmZVVmXJPVW550mulvA38B7tFSfQqRkK3x5Pjp2o5z0UWcAsAVjI7Hdtz/xX?=
- =?us-ascii?Q?lsfZwobMF9GKfgVD2pJHyKypfViK64zzCVrIohCT3sh9xyKkRgo+MTfNqm1A?=
- =?us-ascii?Q?KX8IK5kDu3d6EbGXlnZveJaPhoPL5wS+HDYhe5sl?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LDFNmzxqjqwO0SCjfwhyOaYnmRTYSWtUsOwClxrbJgkSz341ATCy5NPgHPut?=
+ =?us-ascii?Q?PHPkSJxl+FluO6x24LZtDtFYy8hXdM/IambWpg3PVndvlchs3CoSzlv62nRv?=
+ =?us-ascii?Q?fL7k0hXe5GatSPbMWZ8vZd2FLqmAvs1Mv1KoqTOF7Zex5PmzCc2JZqEdwoFb?=
+ =?us-ascii?Q?LNtt7Ey8p4P10XRX0xpcdWdlhyNTDpKRdy2IRAA2qlO+0LirI/2uS1WyPs5j?=
+ =?us-ascii?Q?6rLRax2AmLyqtngr3aSc8IN250bjNEFpf9eMCkuyHNZnImn3q4l6apQlRTMI?=
+ =?us-ascii?Q?ANAxFourBCWio9FX9QYLZWYMzHlq3T3bgTBIr7MooqehabIhMvppEq8IfXkp?=
+ =?us-ascii?Q?4mOPJfFvaToFm9oZHHsmFsCVcPfyBjVZMK+Qga8LYNUtveUdfzGoCNXriIT2?=
+ =?us-ascii?Q?8bH9NqsmLliVsMajXbvrOpZ1S+OH4S0RBQivxgbHbvFoiJZojqpyxyE3LmhF?=
+ =?us-ascii?Q?AZNCRvOICBVt/c0lqgv6aL+JJTu4VY43yyOEN0jvfwYd8Pl3b+yi1hJTc+Jr?=
+ =?us-ascii?Q?sKb/dtdOqfBHHEvdy4ZTfXRCBzJQN3JAATAYPRW3Rp9XTbkOjq2yb9DreQ4A?=
+ =?us-ascii?Q?nYHjFyygwwhdD/wgtu0ZiPbr49jWzXCN+F+iwATnUWOc9h886NQ7XRZkjVpF?=
+ =?us-ascii?Q?ymbeO01EyP8y3a/U+2OsflSsxexPBT+iNKqB9eiqc1LlTfY1ZOffX+A5Eb3u?=
+ =?us-ascii?Q?yGDG7ejZpXRNxjd3vSFSzESNTxrQade40/uO/4eBzmjVIiZfpjyyQGtUIbDP?=
+ =?us-ascii?Q?5ru3aqdFan1RARXcWattE/As5FUTU1frWzTHrSDuhqTzwDsD2gyMe0NkeqDD?=
+ =?us-ascii?Q?KQoNZvYA/ycboGqyCrIZSsJojYI62qw3oyaYBgX7TXjkjBFffizuFpNKBp8f?=
+ =?us-ascii?Q?HCoDluLgiTGjZ+UXhiCAMO7VkQdmgjQICWG6f/5yeie+eEh8A68X9xL7bx7q?=
+ =?us-ascii?Q?I3iwceka/D+ZnrQKHUS6YUH/3DW/Fyc5eoVPsBM/9Apv9Of/9syRaVbj6Y0C?=
+ =?us-ascii?Q?w74oJr0UfXyDRSyO+TYbyLWG5zjuRUNIJbn7K4rRWlF2p7XgBZC1EpDCYq0Z?=
+ =?us-ascii?Q?TYx0xq187tjA+W0K492lduD6i43fLO0OA5ISojl5WunYKrgUilUTOZG5UE8p?=
+ =?us-ascii?Q?sbwYdcI1utvo3eBYKAMRbupixe3NdlidLFNMvF4I1O6cuXzJpBpsheBrlMaO?=
+ =?us-ascii?Q?vFqsp2KUzEf6kzXAfs/BbiLnyiFQvLigVy564+PgkzVCZ4c826wZCNCtQLqg?=
+ =?us-ascii?Q?QWNZ6eIg5Ko5cQvwUB4VAWsTD+TNGtRSJ7oGIqebcZzz35A2s664ydjIFXdF?=
+ =?us-ascii?Q?Y7px2wMJbKf/TNAFHKONzD+dreKRInpdgXG5+9OQP7IKMAq2Lhc/6RNWadpA?=
+ =?us-ascii?Q?HqiG1UOpTtZxmGm9cy3QrctPfZheBIfcknPtoFf8UTgpcnIefOES6h2rxBOP?=
+ =?us-ascii?Q?AsdffUAjCZSqpvT8NwMfCe/OJiP11RkZVmtf2ugoUQ+brScHONcQck7fmsQp?=
+ =?us-ascii?Q?YzQBtmKwS3CL5RXMzaRcMOxEKAT24HnipvLR7R12IXMJ5rV5L8WuCPgaNoSz?=
+ =?us-ascii?Q?yFQXxg9bGmLxORPzCy2KhICo4Q3IyGt+r0ztolCk?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c7356ad-9e69-4e6b-88d1-08dd91097e52
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2025 04:00:11.6164 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f038e48c-531c-4c9c-ea74-08dd9109c509
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2025 04:02:10.2491 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iCZu4w2dtYwiADzOsndavnxwgmAdKkwnnA6eKIIyoszUc+ge5qp46qkU4jSDGw9BkJaDfpmKZBTc/JqBl4aeKg==
+X-MS-Exchange-CrossTenant-userprincipalname: IRjbwPOZ7IGN75PbbXNoK8n7c2WDzEoVeUYID7hoB/uCEEzMev/m+e5qbzhb1y7MWQsAq6uyepvJZLFels1dwA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6666
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -187,1778 +187,1082 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 > -----Original Message-----
 > From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Friday, May 9, 2025 3:43 PM
+> Sent: Friday, May 9, 2025 3:47 PM
 > To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
 org;
 > intel-gfx@lists.freedesktop.org
 > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
 > <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
-> Subject: Re: [PATCH 06/18] drm/i915/dpll: Rename intel_shared_dpll
+> Subject: Re: [PATCH 07/18] drm/i915/dpll: Move away from using shared dpl=
+l
 >=20
 > On Fri, 09 May 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> > Rename intel_shared_dpll to intel_dpll to represent both
-> > shared and individual dplls. Since from MTL each PHY has it's
-> > own PLL making the shared PLL naming a little outdated. In an
-> > effort to make this framework accepting of future changes this
-> > needs to be done.
-> >
-> > --v2
-> > -Use intel_dpll_global to make sure names start with the filename
-> > [Jani/Ville]
-> > -Explain the need of this rename [Jani]
-> >
-> > --v3
-> > -Just keep it intel_dpll [Jani]
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/icl_dsi.c        |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  52 ++--
-> >  drivers/gpu/drm/i915/display/intel_ddi.h      |   6 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  12 +-
-> >  .../gpu/drm/i915/display/intel_display_core.h |   4 +-
-> >  .../drm/i915/display/intel_display_debugfs.c  |   2 +-
-> >  .../drm/i915/display/intel_display_types.h    |   6 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll.c     |   4 +-
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 228 +++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  18 +-
-> >  drivers/gpu/drm/i915/display/intel_fdi.c      |   2 +-
-> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
-> >  .../drm/i915/display/intel_modeset_setup.c    |   8 +-
-> >  .../gpu/drm/i915/display/intel_pch_display.c  |  10 +-
-> >  .../gpu/drm/i915/display/intel_pch_refclk.c   |   2 +-
-> >  15 files changed, 179 insertions(+), 179 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > index ca7033251e91..55f0a20e0874 100644
-> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > @@ -658,7 +658,7 @@ static void gen11_dsi_map_pll(struct intel_encoder
-> *encoder,
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
-> > -	struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum phy phy;
-> >  	u32 val;
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 74132c1d6385..4d631cbc81d2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -236,7 +236,7 @@ static void intel_wait_ddi_buf_active(struct
-> intel_encoder *encoder)
-> >  			port_name(port));
-> >  }
-> >
-> > -static u32 hsw_pll_to_ddi_pll_sel(const struct intel_shared_dpll *pll)
-> > +static u32 hsw_pll_to_ddi_pll_sel(const struct intel_dpll *pll)
-> >  {
-> >  	switch (pll->info->id) {
-> >  	case DPLL_ID_WRPLL1:
-> > @@ -260,7 +260,7 @@ static u32 hsw_pll_to_ddi_pll_sel(const struct
-> intel_shared_dpll *pll)
-> >  static u32 icl_pll_to_ddi_clk_sel(struct intel_encoder *encoder,
-> >  				  const struct intel_crtc_state *crtc_state)
-> >  {
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	int clock =3D crtc_state->port_clock;
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> >
-> > @@ -1561,7 +1561,7 @@ static bool _icl_ddi_is_clock_enabled(struct
-> intel_display *display, i915_reg_t
-> >  	return !(intel_de_read(display, reg) & clk_off);
-> >  }
-> >
-> > -static struct intel_shared_dpll *
-> > +static struct intel_dpll *
-> >  _icl_ddi_get_pll(struct intel_display *display, i915_reg_t reg,
-> >  		 u32 clk_sel_mask, u32 clk_sel_shift)
-> >  {
-> > @@ -1576,7 +1576,7 @@ static void adls_ddi_enable_clock(struct
-> intel_encoder *encoder,
-> >  				  const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1606,7 +1606,7 @@ static bool adls_ddi_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >
-> ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> >  }
-> >
-> > -static struct intel_shared_dpll *adls_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *adls_ddi_get_pll(struct intel_encoder *encod=
-er)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> > @@ -1620,7 +1620,7 @@ static void rkl_ddi_enable_clock(struct
-> intel_encoder *encoder,
-> >  				 const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1650,7 +1650,7 @@ static bool rkl_ddi_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >
-> RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> >  }
-> >
-> > -static struct intel_shared_dpll *rkl_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *rkl_ddi_get_pll(struct intel_encoder *encode=
-r)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> > @@ -1664,7 +1664,7 @@ static void dg1_ddi_enable_clock(struct
-> intel_encoder *encoder,
-> >  				 const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1703,7 +1703,7 @@ static bool dg1_ddi_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >
-> DG1_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> >  }
-> >
-> > -static struct intel_shared_dpll *dg1_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *dg1_ddi_get_pll(struct intel_encoder *encode=
-r)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> > @@ -1730,7 +1730,7 @@ static void icl_ddi_combo_enable_clock(struct
-> intel_encoder *encoder,
-> >  				       const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1760,7 +1760,7 @@ static bool icl_ddi_combo_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >
-> ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> >  }
-> >
-> > -struct intel_shared_dpll *icl_ddi_combo_get_pll(struct intel_encoder
-> *encoder)
-> > +struct intel_dpll *icl_ddi_combo_get_pll(struct intel_encoder *encoder=
-)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> > @@ -1774,7 +1774,7 @@ static void jsl_ddi_tc_enable_clock(struct
-> intel_encoder *encoder,
-> >  				    const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum port port =3D encoder->port;
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1817,7 +1817,7 @@ static void icl_ddi_tc_enable_clock(struct
-> intel_encoder *encoder,
-> >  				    const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum tc_port tc_port =3D intel_encoder_to_tc(encoder);
-> >  	enum port port =3D encoder->port;
-> >
-> > @@ -1868,7 +1868,7 @@ static bool icl_ddi_tc_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >  	return !(tmp & ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port));
-> >  }
-> >
-> > -static struct intel_shared_dpll *icl_ddi_tc_get_pll(struct intel_encod=
-er
-> *encoder)
-> > +static struct intel_dpll *icl_ddi_tc_get_pll(struct intel_encoder *enc=
-oder)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum tc_port tc_port =3D intel_encoder_to_tc(encoder);
-> > @@ -1898,7 +1898,7 @@ static struct intel_shared_dpll
-> *icl_ddi_tc_get_pll(struct intel_encoder *encode
-> >  	return intel_get_shared_dpll_by_id(display, id);
-> >  }
-> >
-> > -static struct intel_shared_dpll *bxt_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *bxt_ddi_get_pll(struct intel_encoder *encode=
-r)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder->base.dev)=
-;
-> >  	enum intel_dpll_id id;
-> > @@ -1925,7 +1925,7 @@ static void skl_ddi_enable_clock(struct
-> intel_encoder *encoder,
-> >  				 const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum port port =3D encoder->port;
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -1967,7 +1967,7 @@ static bool skl_ddi_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >  	return !(intel_de_read(display, DPLL_CTRL2) &
-> DPLL_CTRL2_DDI_CLK_OFF(port));
-> >  }
-> >
-> > -static struct intel_shared_dpll *skl_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *skl_ddi_get_pll(struct intel_encoder *encode=
-r)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum port port =3D encoder->port;
-> > @@ -1993,7 +1993,7 @@ void hsw_ddi_enable_clock(struct intel_encoder
-> *encoder,
-> >  			  const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	enum port port =3D encoder->port;
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> > @@ -2018,7 +2018,7 @@ bool hsw_ddi_is_clock_enabled(struct
-> intel_encoder *encoder)
-> >  	return intel_de_read(display, PORT_CLK_SEL(port)) !=3D
-> PORT_CLK_SEL_NONE;
-> >  }
-> >
-> > -static struct intel_shared_dpll *hsw_ddi_get_pll(struct intel_encoder
-> *encoder)
-> > +static struct intel_dpll *hsw_ddi_get_pll(struct intel_encoder *encode=
-r)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum port port =3D encoder->port;
-> > @@ -4187,7 +4187,7 @@ static void intel_ddi_get_config(struct
-> intel_encoder *encoder,
-> >
-> >  void intel_ddi_get_clock(struct intel_encoder *encoder,
-> >  			 struct intel_crtc_state *crtc_state,
-> > -			 struct intel_shared_dpll *pll)
-> > +			 struct intel_dpll *pll)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum icl_port_dpll_id port_dpll_id =3D ICL_PORT_DPLL_DEFAULT;
-> > @@ -4203,7 +4203,7 @@ void intel_ddi_get_clock(struct intel_encoder
-> *encoder,
-> >
-> >  	icl_set_active_port_dpll(crtc_state, port_dpll_id);
-> >
-> > -	crtc_state->port_clock =3D intel_dpll_get_freq(display, crtc_state-
-> >shared_dpll,
-> > +	crtc_state->port_clock =3D intel_dpll_get_freq(display, crtc_state-
-> >intel_dpll,
-> >  						     &crtc_state-
-> >dpll_hw_state);
-> >  }
-> >
-> > @@ -4257,7 +4257,7 @@ static void icl_ddi_combo_get_config(struct
-> intel_encoder *encoder,
-> >  	intel_ddi_get_config(encoder, crtc_state);
-> >  }
-> >
-> > -static bool icl_ddi_tc_pll_is_tbt(const struct intel_shared_dpll *pll)
-> > +static bool icl_ddi_tc_pll_is_tbt(const struct intel_dpll *pll)
-> >  {
-> >  	return pll->info->id =3D=3D DPLL_ID_ICL_TBTPLL;
-> >  }
-> > @@ -4267,7 +4267,7 @@ icl_ddi_tc_port_pll_type(struct intel_encoder
-> *encoder,
-> >  			 const struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> > -	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	const struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >
-> >  	if (drm_WARN_ON(display->drm, !pll))
-> >  		return ICL_PORT_DPLL_DEFAULT;
-> > @@ -4290,7 +4290,7 @@ intel_ddi_port_pll_type(struct intel_encoder
-> *encoder,
-> >
-> >  static void icl_ddi_tc_get_clock(struct intel_encoder *encoder,
-> >  				 struct intel_crtc_state *crtc_state,
-> > -				 struct intel_shared_dpll *pll)
-> > +				 struct intel_dpll *pll)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(encoder);
-> >  	enum icl_port_dpll_id port_dpll_id;
-> > @@ -4313,10 +4313,10 @@ static void icl_ddi_tc_get_clock(struct
-> intel_encoder *encoder,
-> >
-> >  	icl_set_active_port_dpll(crtc_state, port_dpll_id);
-> >
-> > -	if (icl_ddi_tc_pll_is_tbt(crtc_state->shared_dpll))
-> > +	if (icl_ddi_tc_pll_is_tbt(crtc_state->intel_dpll))
-> >  		crtc_state->port_clock =3D icl_calc_tbt_pll_link(display, encoder-
-> >port);
-> >  	else
-> > -		crtc_state->port_clock =3D intel_dpll_get_freq(display,
-> crtc_state->shared_dpll,
-> > +		crtc_state->port_clock =3D intel_dpll_get_freq(display,
-> crtc_state->intel_dpll,
-> >  							     &crtc_state-
-> >dpll_hw_state);
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h
-> b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > index 353eb04079e9..c18a69b2ae6d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > @@ -18,7 +18,7 @@ struct intel_display;
-> >  struct intel_dp;
-> >  struct intel_dpll_hw_state;
-> >  struct intel_encoder;
-> > -struct intel_shared_dpll;
-> > +struct intel_dpll;
+> > Rename functions to move away from using shared dpll in the dpll
+> > framework as much as possible since dpll may not always be shared.
 >=20
-> Nitpick, these should remain sorted.
->=20
-> >  enum pipe;
-> >  enum port;
-> >  enum transcoder;
-> > @@ -40,7 +40,7 @@ void intel_ddi_enable_clock(struct intel_encoder
-> *encoder,
-> >  void intel_ddi_disable_clock(struct intel_encoder *encoder);
-> >  void intel_ddi_get_clock(struct intel_encoder *encoder,
-> >  			 struct intel_crtc_state *crtc_state,
-> > -			 struct intel_shared_dpll *pll);
-> > +			 struct intel_dpll *pll);
-> >  void hsw_ddi_enable_clock(struct intel_encoder *encoder,
-> >  			  const struct intel_crtc_state *crtc_state);
-> >  void hsw_ddi_disable_clock(struct intel_encoder *encoder);
-> > @@ -50,7 +50,7 @@ intel_ddi_port_pll_type(struct intel_encoder *encoder=
-,
-> >  			const struct intel_crtc_state *crtc_state);
-> >  void hsw_ddi_get_config(struct intel_encoder *encoder,
-> >  			struct intel_crtc_state *crtc_state);
-> > -struct intel_shared_dpll *icl_ddi_combo_get_pll(struct intel_encoder
-> *encoder);
-> > +struct intel_dpll *icl_ddi_combo_get_pll(struct intel_encoder *encoder=
-);
-> >  void hsw_prepare_dp_ddi_buffers(struct intel_encoder *encoder,
-> >  				const struct intel_crtc_state *crtc_state);
-> >  void intel_wait_ddi_buf_idle(struct intel_display *display, enum port =
-port);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 287110e4e435..b765d5765b32 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -1325,7 +1325,7 @@ static void intel_encoders_update_prepare(struct
-> intel_atomic_state *state)
-> >  			if (intel_crtc_needs_modeset(new_crtc_state))
-> >  				continue;
-> >
-> > -			new_crtc_state->shared_dpll =3D old_crtc_state-
-> >shared_dpll;
-> > +			new_crtc_state->intel_dpll =3D old_crtc_state-
-> >intel_dpll;
-> >  			new_crtc_state->dpll_hw_state =3D old_crtc_state-
-> >dpll_hw_state;
-> >  		}
-> >  	}
-> > @@ -1663,7 +1663,7 @@ static void hsw_crtc_enable(struct
-> intel_atomic_state *state,
-> >
-> >  	intel_encoders_pre_pll_enable(state, crtc);
-> >
-> > -	if (new_crtc_state->shared_dpll)
-> > +	if (new_crtc_state->intel_dpll)
-> >  		intel_enable_shared_dpll(new_crtc_state);
-> >
-> >  	intel_encoders_pre_enable(state, crtc);
-> > @@ -1959,7 +1959,7 @@ static void get_crtc_power_domains(struct
-> intel_crtc_state *crtc_state,
-> >  	if (HAS_DDI(display) && crtc_state->has_audio)
-> >  		set_bit(POWER_DOMAIN_AUDIO_MMIO, mask->bits);
-> >
-> > -	if (crtc_state->shared_dpll)
-> > +	if (crtc_state->intel_dpll)
-> >  		set_bit(POWER_DOMAIN_DISPLAY_CORE, mask->bits);
-> >
-> >  	if (crtc_state->dsc.compression_enable)
-> > @@ -4501,7 +4501,7 @@ copy_joiner_crtc_state_modeset(struct
-> intel_atomic_state *state,
-> >  	/* preserve some things from the slave's original crtc state */
-> >  	saved_state->uapi =3D secondary_crtc_state->uapi;
-> >  	saved_state->scaler_state =3D secondary_crtc_state->scaler_state;
-> > -	saved_state->shared_dpll =3D secondary_crtc_state->shared_dpll;
-> > +	saved_state->intel_dpll =3D secondary_crtc_state->intel_dpll;
-> >  	saved_state->crc_enabled =3D secondary_crtc_state->crc_enabled;
-> >
-> >  	intel_crtc_free_hw_state(secondary_crtc_state);
-> > @@ -4564,7 +4564,7 @@ intel_crtc_prepare_cleared_state(struct
-> intel_atomic_state *state,
-> >  	saved_state->uapi =3D crtc_state->uapi;
-> >  	saved_state->inherited =3D crtc_state->inherited;
-> >  	saved_state->scaler_state =3D crtc_state->scaler_state;
-> > -	saved_state->shared_dpll =3D crtc_state->shared_dpll;
-> > +	saved_state->intel_dpll =3D crtc_state->intel_dpll;
-> >  	saved_state->dpll_hw_state =3D crtc_state->dpll_hw_state;
-> >  	memcpy(saved_state->icl_port_dplls, crtc_state->icl_port_dplls,
-> >  	       sizeof(saved_state->icl_port_dplls));
-> > @@ -5318,7 +5318,7 @@ intel_pipe_config_compare(const struct
-> intel_crtc_state *current_config,
-> >  	PIPE_CONF_CHECK_BOOL(double_wide);
-> >
-> >  	if (display->dpll.mgr)
-> > -		PIPE_CONF_CHECK_P(shared_dpll);
-> > +		PIPE_CONF_CHECK_P(intel_dpll);
-> >
-> >  	/* FIXME convert everything over the dpll_mgr */
-> >  	if (display->dpll.mgr || HAS_GMCH(display))
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
-> b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > index e0221e514326..3121a987d07b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > @@ -125,8 +125,8 @@ struct intel_audio {
-> >  struct intel_dpll_global {
-> >  	struct mutex lock;
-> >
-> > -	int num_shared_dpll;
-> > -	struct intel_shared_dpll shared_dplls[I915_NUM_PLLS];
-> > +	int num_intel_dpll;
-> > +	struct intel_dpll intel_dplls[I915_NUM_PLLS];
->=20
-> I don't think we have any cases where struct members would be prefixed
-> intel_. I think this should be just num_dpll and dplls.
+> I think you're replacing some "shared dpll" with "global dpll" in comment=
+s,
+> which should just drop shared and not mention global. Comments inline.
 >=20
 
-Got it will fix
-
-> With that fixed,
->=20
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->=20
->=20
-> >  	const struct intel_dpll_mgr *mgr;
-> >
-> >  	struct {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index 3770ce9469d1..ea9e271bc6ee 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -618,7 +618,7 @@ static int i915_shared_dplls_info(struct seq_file *=
-m,
-> void *unused)
-> >  {
-> >  	struct intel_display *display =3D node_to_intel_display(m->private);
-> >  	struct drm_printer p =3D drm_seq_file_printer(m);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >
-> >  	drm_modeset_lock_all(display->drm);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index 1bdffaca153a..826af285e7fc 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1075,8 +1075,8 @@ struct intel_crtc_state {
-> >  	 * haswell. */
-> >  	struct dpll dpll;
-> >
-> > -	/* Selected dpll when shared or NULL. */
-> > -	struct intel_shared_dpll *shared_dpll;
-> > +	/* Selected dpll. */
->=20
-> Or NULL?
-
-Sure will fix this
+Sure will fix them
 
 Regards,
 Suraj Kandpal
 
+> With them fixed,
 >=20
-> > +	struct intel_dpll *intel_dpll;
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>=20
+>=20
 > >
-> >  	/* Actual register state of the dpll, for shared dpll cross-checking.=
- */
-> >  	struct intel_dpll_hw_state dpll_hw_state;
-> > @@ -1086,7 +1086,7 @@ struct intel_crtc_state {
-> >  	 * setting shared_dpll and dpll_hw_state to one of these reserved
-> ones.
+> > --v2
+> > -Use intel_dpll_global instead of global_dpll [Jani]
+> >
+> > --v3
+> > -Just use intel_dpll [Jani]
+> >
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  14 +-
+> >  drivers/gpu/drm/i915/display/intel_display.c  |   8 +-
+> >  .../drm/i915/display/intel_display_driver.c   |   2 +-
+> >  drivers/gpu/drm/i915/display/intel_dpll.c     |  10 +-
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 235
+> > +++++++++---------  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  52=
+ ++--
+> >  drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
+> >  .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+> >  .../drm/i915/display/intel_modeset_verify.c   |   4 +-
+> >  .../gpu/drm/i915/display/intel_pch_display.c  |  14 +-
+> >  10 files changed, 173 insertions(+), 174 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 4d631cbc81d2..11ebcb40c91f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -1569,7 +1569,7 @@ _icl_ddi_get_pll(struct intel_display *display,
+> > i915_reg_t reg,
+> >
+> >  	id =3D (intel_de_read(display, reg) & clk_sel_mask) >> clk_sel_shift;
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  static void adls_ddi_enable_clock(struct intel_encoder *encoder, @@
+> > -1723,7 +1723,7 @@ static struct intel_dpll *dg1_ddi_get_pll(struct
+> intel_encoder *encoder)
+> >  	if (phy >=3D PHY_C)
+> >  		id +=3D DPLL_ID_DG1_DPLL2;
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  static void icl_ddi_combo_enable_clock(struct intel_encoder *encoder,
+> > @@ -1895,7 +1895,7 @@ static struct intel_dpll *icl_ddi_tc_get_pll(stru=
+ct
+> intel_encoder *encoder)
+> >  		return NULL;
+> >  	}
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  static struct intel_dpll *bxt_ddi_get_pll(struct intel_encoder
+> > *encoder) @@ -1918,7 +1918,7 @@ static struct intel_dpll
+> *bxt_ddi_get_pll(struct intel_encoder *encoder)
+> >  		return NULL;
+> >  	}
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  static void skl_ddi_enable_clock(struct intel_encoder *encoder, @@
+> > -1986,7 +1986,7 @@ static struct intel_dpll *skl_ddi_get_pll(struct
+> intel_encoder *encoder)
+> >  	id =3D (tmp & DPLL_CTRL2_DDI_CLK_SEL_MASK(port)) >>
+> >  		DPLL_CTRL2_DDI_CLK_SEL_SHIFT(port);
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  void hsw_ddi_enable_clock(struct intel_encoder *encoder, @@ -2053,7
+> > +2053,7 @@ static struct intel_dpll *hsw_ddi_get_pll(struct intel_encod=
+er
+> *encoder)
+> >  		return NULL;
+> >  	}
+> >
+> > -	return intel_get_shared_dpll_by_id(display, id);
+> > +	return intel_get_dpll_by_id(display, id);
+> >  }
+> >
+> >  void intel_ddi_enable_clock(struct intel_encoder *encoder, @@ -2760,7
+> > +2760,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state
+> *state,
+> >  	 * 4. Enable the port PLL.
+> >  	 *
+> >  	 * The PLL enabling itself was already done before this function by
+> > -	 * hsw_crtc_enable()->intel_enable_shared_dpll().  We need only
+> > +	 * hsw_crtc_enable()->intel_enable_dpll().  We need only
+> >  	 * configure the PLL to port mapping here.
 > >  	 */
-> >  	struct icl_port_dpll {
-> > -		struct intel_shared_dpll *pll;
-> > +		struct intel_dpll *pll;
-> >  		struct intel_dpll_hw_state hw_state;
-> >  	} icl_port_dplls[ICL_PORT_DPLL_COUNT];
+> >  	intel_ddi_enable_clock(encoder, crtc_state); diff --git
+> > a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index b765d5765b32..ce5c9e74475d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -1664,7 +1664,7 @@ static void hsw_crtc_enable(struct
+> intel_atomic_state *state,
+> >  	intel_encoders_pre_pll_enable(state, crtc);
 > >
+> >  	if (new_crtc_state->intel_dpll)
+> > -		intel_enable_shared_dpll(new_crtc_state);
+> > +		intel_enable_dpll(new_crtc_state);
+> >
+> >  	intel_encoders_pre_enable(state, crtc);
+> >
+> > @@ -1793,7 +1793,7 @@ static void hsw_crtc_disable(struct
+> intel_atomic_state *state,
+> >  	intel_encoders_disable(state, crtc);
+> >  	intel_encoders_post_disable(state, crtc);
+> >
+> > -	intel_disable_shared_dpll(old_crtc_state);
+> > +	intel_disable_dpll(old_crtc_state);
+> >
+> >  	intel_encoders_post_pll_disable(state, crtc);
+> >
+> > @@ -6434,7 +6434,7 @@ int intel_atomic_check(struct drm_device *dev,
+> >
+> >  		any_ms =3D true;
+> >
+> > -		intel_release_shared_dplls(state, crtc);
+> > +		intel_release_dplls(state, crtc);
+> >  	}
+> >
+> >  	if (any_ms && !check_digital_port_conflicts(state)) { @@ -7531,7
+> > +7531,7 @@ static int intel_atomic_swap_state(struct
+> > intel_atomic_state *state)
+> >
+> >  	intel_atomic_swap_global_state(state);
+> >
+> > -	intel_shared_dpll_swap_state(state);
+> > +	intel_dpll_swap_state(state);
+> >
+> >  	intel_atomic_track_fbs(state);
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > index 5c74ab5fd1aa..16d91be02bb9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > @@ -446,7 +446,7 @@ int intel_display_driver_probe_nogem(struct
+> intel_display *display)
+> >  	}
+> >
+> >  	intel_plane_possible_crtcs_init(display);
+> > -	intel_shared_dpll_init(display);
+> > +	intel_dpll_init(display);
+> >  	intel_fdi_pll_freq_update(display);
+> >
+> >  	intel_update_czclk(display);
 > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c
-> b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > index 8db603d9c823..4d1f7fccd28a 100644
+> > b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > index 4d1f7fccd28a..db67e92505d2 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> > @@ -1767,9 +1767,9 @@ int intel_dpll_crtc_get_shared_dpll(struct
+> > @@ -1161,7 +1161,7 @@ static int hsw_crtc_compute_clock(struct
 > intel_atomic_state *state,
-> >  	int ret;
-> >
-> >  	drm_WARN_ON(display->drm, !intel_crtc_needs_modeset(crtc_state));
-> > -	drm_WARN_ON(display->drm, !crtc_state->hw.enable && crtc_state-
-> >shared_dpll);
-> > +	drm_WARN_ON(display->drm, !crtc_state->hw.enable && crtc_state-
-> >intel_dpll);
-> >
-> > -	if (!crtc_state->hw.enable || crtc_state->shared_dpll)
-> > +	if (!crtc_state->hw.enable || crtc_state->intel_dpll)
+> >  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
 > >  		return 0;
 > >
-> >  	if (!display->funcs.dpll->crtc_get_shared_dpll)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > index bdad4d72cc01..e63568be3150 100644
+> > -	ret =3D intel_compute_shared_dplls(state, crtc, encoder);
+> > +	ret =3D intel_compute_dplls(state, crtc, encoder);
+> >  	if (ret)
+> >  		return ret;
+> >
+> > @@ -1189,7 +1189,7 @@ static int hsw_crtc_get_shared_dpll(struct
+> intel_atomic_state *state,
+> >  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
+> >  		return 0;
+> >
+> > -	return intel_reserve_shared_dplls(state, crtc, encoder);
+> > +	return intel_reserve_dplls(state, crtc, encoder);
+> >  }
+> >
+> >  static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
+> > @@ -1223,7 +1223,7 @@ static int mtl_crtc_compute_clock(struct
+> intel_atomic_state *state,
+> >  	if (ret)
+> >  		return ret;
+> >
+> > -	/* TODO: Do the readback via intel_compute_shared_dplls() */
+> > +	/* TODO: Do the readback via intel_compute_dplls() */
+> >  	crtc_state->port_clock =3D intel_cx0pll_calc_port_clock(encoder,
+> > &crtc_state->dpll_hw_state.cx0pll);
+> >
+> >  	crtc_state->hw.adjusted_mode.crtc_clock =3D
+> > intel_crtc_dotclock(crtc_state); @@ -1394,7 +1394,7 @@ static int
+> ilk_crtc_compute_clock(struct intel_atomic_state *state,
+> >  	ilk_compute_dpll(crtc_state, &crtc_state->dpll,
+> >  			 &crtc_state->dpll);
+> >
+> > -	ret =3D intel_compute_shared_dplls(state, crtc, NULL);
+> > +	ret =3D intel_compute_dplls(state, crtc, NULL);
+> >  	if (ret)
+> >  		return ret;
+> >
+> > @@ -1414,7 +1414,7 @@ static int ilk_crtc_get_shared_dpll(struct
+> intel_atomic_state *state,
+> >  	if (!crtc_state->has_pch_encoder)
+> >  		return 0;
+> >
+> > -	return intel_reserve_shared_dplls(state, crtc, NULL);
+> > +	return intel_reserve_dplls(state, crtc, NULL);
+> >  }
+> >
+> >  static u32 vlv_dpll(const struct intel_crtc_state *crtc_state) diff
+> > --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index e63568be3150..f1b704f369f9 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > @@ -70,7 +70,7 @@ struct intel_dpll_funcs {
+> > @@ -52,21 +52,21 @@
+> >   * share a PLL if their configurations match.
+> >   *
+> >   * This file provides an abstraction over display PLLs. The function
+> > - * intel_shared_dpll_init() initializes the PLLs for the given
+> > platform.  The
+> > + * intel_dpll_init() initializes the PLLs for the given platform.
+> > + The
+> >   * users of a PLL are tracked and that tracking is integrated with the=
+ atomic
+> >   * modset interface. During an atomic operation, required PLLs can be
+> reserved
+> >   * for a given CRTC and encoder configuration by calling
+> > - * intel_reserve_shared_dplls() and previously reserved PLLs can be
+> > released
+> > - * with intel_release_shared_dplls().
+> > + * intel_reserve_dplls() and previously reserved PLLs can be released
+> > + * with intel_release_dplls().
+> >   * Changes to the users are first staged in the atomic state, and
+> > then made
+> > - * effective by calling intel_shared_dpll_swap_state() during the
+> > atomic
+> > + * effective by calling intel_dpll_swap_state() during the atomic
+> >   * commit phase.
+> >   */
+> >
+> >  /* platform specific hooks for managing DPLLs */  struct
+> > intel_dpll_funcs {
+> >  	/*
+> > -	 * Hook for enabling the pll, called from intel_enable_shared_dpll() =
+if
+> > +	 * Hook for enabling the pll, called from intel_enable_dpll() if
 > >  	 * the pll is not already enabled.
 > >  	 */
-> >  	void (*enable)(struct intel_display *display,
-> > -		       struct intel_shared_dpll *pll,
-> > +		       struct intel_dpll *pll,
+> >  	void (*enable)(struct intel_display *display, @@ -74,7 +74,7 @@
+> > struct intel_dpll_funcs {
 > >  		       const struct intel_dpll_hw_state *dpll_hw_state);
 > >
 > >  	/*
-> > @@ -79,7 +79,7 @@ struct intel_dpll_funcs {
+> > -	 * Hook for disabling the pll, called from intel_disable_shared_dpll(=
+)
+> > +	 * Hook for disabling the pll, called from intel_disable_dpll()
+> >  	 * only when it is safe to disable the pll, i.e., there are no more
 > >  	 * tracked users for it.
 > >  	 */
-> >  	void (*disable)(struct intel_display *display,
-> > -			struct intel_shared_dpll *pll);
-> > +			struct intel_dpll *pll);
+> > @@ -133,7 +133,7 @@ intel_atomic_duplicate_dpll_state(struct
+> > intel_display *display,  }
 > >
-> >  	/*
-> >  	 * Hook for reading the values currently programmed to the DPLL
-> > @@ -87,7 +87,7 @@ struct intel_dpll_funcs {
-> >  	 * verification after a mode set.
-> >  	 */
-> >  	bool (*get_hw_state)(struct intel_display *display,
-> > -			     struct intel_shared_dpll *pll,
-> > +			     struct intel_dpll *pll,
-> >  			     struct intel_dpll_hw_state *dpll_hw_state);
-> >
-> >  	/*
-> > @@ -95,7 +95,7 @@ struct intel_dpll_funcs {
-> >  	 * in state.
-> >  	 */
-> >  	int (*get_freq)(struct intel_display *i915,
-> > -			const struct intel_shared_dpll *pll,
-> > +			const struct intel_dpll *pll,
-> >  			const struct intel_dpll_hw_state *dpll_hw_state);
-> >  };
-> >
-> > @@ -124,7 +124,7 @@ static void
-> >  intel_atomic_duplicate_dpll_state(struct intel_display *display,
-> >  				  struct intel_dpll_state *dpll_state)
+> >  static struct intel_dpll_state *
+> > -intel_atomic_get_shared_dpll_state(struct drm_atomic_state *s)
+> > +intel_atomic_get_dpll_state(struct drm_atomic_state *s)
 > >  {
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
+> >  	struct intel_atomic_state *state =3D to_intel_atomic_state(s);
+> >  	struct intel_display *display =3D to_intel_display(state); @@ -151,7
+> > +151,7 @@ intel_atomic_get_shared_dpll_state(struct drm_atomic_state
+> > *s)  }
 > >
-> >  	/* Copy dpll state */
-> > @@ -158,11 +158,11 @@ intel_atomic_get_shared_dpll_state(struct
+> >  /**
+> > - * intel_get_shared_dpll_by_id - get a DPLL given its id
+> > + * intel_get_dpll_by_id - get a DPLL given its id
+> >   * @display: intel_display device instance
+> >   * @id: pll id
+> >   *
+> > @@ -159,8 +159,8 @@ intel_atomic_get_shared_dpll_state(struct
 > drm_atomic_state *s)
-> >   * Returns:
 > >   * A pointer to the DPLL with @id
 > >   */
-> > -struct intel_shared_dpll *
-> > +struct intel_dpll *
-> >  intel_get_shared_dpll_by_id(struct intel_display *display,
-> >  			    enum intel_dpll_id id)
+> >  struct intel_dpll *
+> > -intel_get_shared_dpll_by_id(struct intel_display *display,
+> > -			    enum intel_dpll_id id)
+> > +intel_get_dpll_by_id(struct intel_display *display,
+> > +		     enum intel_dpll_id id)
 > >  {
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
+> >  	struct intel_dpll *pll;
 > >  	int i;
-> >
-> >  	for_each_dpll(display, pll, i) {
-> > @@ -176,7 +176,7 @@ intel_get_shared_dpll_by_id(struct intel_display
-> *display,
+> > @@ -175,9 +175,9 @@ intel_get_shared_dpll_by_id(struct intel_display
+> > *display,  }
 > >
 > >  /* For ILK+ */
-> >  void assert_shared_dpll(struct intel_display *display,
-> > -			struct intel_shared_dpll *pll,
-> > +			struct intel_dpll *pll,
-> >  			bool state)
+> > -void assert_shared_dpll(struct intel_display *display,
+> > -			struct intel_dpll *pll,
+> > -			bool state)
+> > +void assert_dpll(struct intel_display *display,
+> > +		 struct intel_dpll *pll,
+> > +		 bool state)
 > >  {
 > >  	bool cur_state;
-> > @@ -205,7 +205,7 @@ enum intel_dpll_id icl_tc_port_to_pll_id(enum
-> tc_port tc_port)
+> >  	struct intel_dpll_hw_state hw_state; @@ -250,12 +250,12 @@ static
+> > void _intel_disable_shared_dpll(struct intel_display *display,  }
 > >
-> >  static i915_reg_t
-> >  intel_combo_pll_enable_reg(struct intel_display *display,
-> > -			   struct intel_shared_dpll *pll)
-> > +			   struct intel_dpll *pll)
-> >  {
-> >  	if (display->platform.dg1)
-> >  		return DG1_DPLL_ENABLE(pll->info->id);
-> > @@ -218,7 +218,7 @@ intel_combo_pll_enable_reg(struct intel_display
-> *display,
-> >
-> >  static i915_reg_t
-> >  intel_tc_pll_enable_reg(struct intel_display *display,
-> > -			struct intel_shared_dpll *pll)
-> > +			struct intel_dpll *pll)
-> >  {
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> >  	enum tc_port tc_port =3D icl_pll_id_to_tc_port(id);
-> > @@ -230,7 +230,7 @@ intel_tc_pll_enable_reg(struct intel_display *displ=
-ay,
-> >  }
-> >
-> >  static void _intel_enable_shared_dpll(struct intel_display *display,
-> > -				      struct intel_shared_dpll *pll)
-> > +				      struct intel_dpll *pll)
-> >  {
-> >  	if (pll->info->power_domain)
-> >  		pll->wakeref =3D intel_display_power_get(display, pll->info-
-> >power_domain);
-> > @@ -240,7 +240,7 @@ static void _intel_enable_shared_dpll(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void _intel_disable_shared_dpll(struct intel_display *display,
-> > -				       struct intel_shared_dpll *pll)
-> > +				       struct intel_dpll *pll)
-> >  {
-> >  	pll->info->funcs->disable(display, pll);
-> >  	pll->on =3D false;
-> > @@ -259,7 +259,7 @@ void intel_enable_shared_dpll(const struct
-> intel_crtc_state *crtc_state)
+> >  /**
+> > - * intel_enable_shared_dpll - enable a CRTC's shared DPLL
+> > - * @crtc_state: CRTC, and its state, which has a shared DPLL
+> > + * intel_enable_dpll - enable a CRTC's global DPLL
+>=20
+> Global?
+>=20
+> Isn't what we have in intel_dpll.c now called "global", and this is not i=
+t?
+>=20
+>=20
+> > + * @crtc_state: CRTC, and its state, which has a DPLL
+> >   *
+> > - * Enable the shared DPLL used by @crtc.
+> > + * Enable DPLL used by @crtc.
+> >   */
+> > -void intel_enable_shared_dpll(const struct intel_crtc_state
+> > *crtc_state)
+> > +void intel_enable_dpll(const struct intel_crtc_state *crtc_state)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(crtc_state);
 > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > -	struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	unsigned int pipe_mask =3D intel_crtc_joined_pipe_mask(crtc_state);
-> >  	unsigned int old_mask;
+> > @@ -282,7 +282,7 @@ void intel_enable_shared_dpll(const struct
+> > intel_crtc_state *crtc_state)
 > >
-> > @@ -305,7 +305,7 @@ void intel_disable_shared_dpll(const struct
-> intel_crtc_state *crtc_state)
+> >  	if (old_mask) {
+> >  		drm_WARN_ON(display->drm, !pll->on);
+> > -		assert_shared_dpll_enabled(display, pll);
+> > +		assert_dpll_enabled(display, pll);
+> >  		goto out;
+> >  	}
+> >  	drm_WARN_ON(display->drm, pll->on);
+> > @@ -296,12 +296,12 @@ void intel_enable_shared_dpll(const struct
+> > intel_crtc_state *crtc_state)  }
+> >
+> >  /**
+> > - * intel_disable_shared_dpll - disable a CRTC's shared DPLL
+> > + * intel_disable_dpll - disable a CRTC's shared DPLL
+> >   * @crtc_state: CRTC, and its state, which has a shared DPLL
+> >   *
+> > - * Disable the shared DPLL used by @crtc.
+> > + * Disable DPLL used by @crtc.
+> >   */
+> > -void intel_disable_shared_dpll(const struct intel_crtc_state
+> > *crtc_state)
+> > +void intel_disable_dpll(const struct intel_crtc_state *crtc_state)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(crtc_state);
 > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > -	struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> > +	struct intel_dpll *pll =3D crtc_state->intel_dpll;
-> >  	unsigned int pipe_mask =3D intel_crtc_joined_pipe_mask(crtc_state);
-> >
-> >  	/* PCH only available on ILK+ */
-> > @@ -344,7 +344,7 @@ void intel_disable_shared_dpll(const struct
+> > @@ -326,7 +326,7 @@ void intel_disable_shared_dpll(const struct
 > intel_crtc_state *crtc_state)
-> >  static unsigned long
-> >  intel_dpll_mask_all(struct intel_display *display)
+> >  		    pll->info->name, pll->active_mask, pll->on,
+> >  		    crtc->base.base.id, crtc->base.name);
+> >
+> > -	assert_shared_dpll_enabled(display, pll);
+> > +	assert_dpll_enabled(display, pll);
+> >  	drm_WARN_ON(display->drm, !pll->on);
+> >
+> >  	pll->active_mask &=3D ~pipe_mask;
+> > @@ -358,10 +358,10 @@ intel_dpll_mask_all(struct intel_display
+> > *display)  }
+> >
+> >  static struct intel_dpll *
+> > -intel_find_shared_dpll(struct intel_atomic_state *state,
+> > -		       const struct intel_crtc *crtc,
+> > -		       const struct intel_dpll_hw_state *dpll_hw_state,
+> > -		       unsigned long dpll_mask)
+> > +intel_find_dpll(struct intel_atomic_state *state,
+> > +		const struct intel_crtc *crtc,
+> > +		const struct intel_dpll_hw_state *dpll_hw_state,
+> > +		unsigned long dpll_mask)
 > >  {
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	unsigned long dpll_mask =3D 0;
-> >  	int i;
-> >
-> > @@ -357,7 +357,7 @@ intel_dpll_mask_all(struct intel_display *display)
-> >  	return dpll_mask;
-> >  }
-> >
-> > -static struct intel_shared_dpll *
-> > +static struct intel_dpll *
-> >  intel_find_shared_dpll(struct intel_atomic_state *state,
-> >  		       const struct intel_crtc *crtc,
-> >  		       const struct intel_dpll_hw_state *dpll_hw_state,
-> > @@ -366,7 +366,7 @@ intel_find_shared_dpll(struct intel_atomic_state
-> *state,
 > >  	struct intel_display *display =3D to_intel_display(crtc);
-> >  	unsigned long dpll_mask_all =3D intel_dpll_mask_all(display);
-> >  	struct intel_dpll_state *dpll_state;
-> > -	struct intel_shared_dpll *unused_pll =3D NULL;
-> > +	struct intel_dpll *unused_pll =3D NULL;
+> >  	unsigned long dpll_mask_all =3D intel_dpll_mask_all(display); @@
+> > -369,14 +369,14 @@ intel_find_shared_dpll(struct intel_atomic_state *st=
+ate,
+> >  	struct intel_dpll *unused_pll =3D NULL;
 > >  	enum intel_dpll_id id;
 > >
-> >  	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
-> > @@ -374,7 +374,7 @@ intel_find_shared_dpll(struct intel_atomic_state
-> *state,
+> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
+> > +	dpll_state =3D intel_atomic_get_dpll_state(&state->base);
+> >
 > >  	drm_WARN_ON(display->drm, dpll_mask & ~dpll_mask_all);
 > >
 > >  	for_each_set_bit(id, &dpll_mask, fls(dpll_mask_all)) {
-> > -		struct intel_shared_dpll *pll;
-> > +		struct intel_dpll *pll;
+> >  		struct intel_dpll *pll;
 > >
-> >  		pll =3D intel_get_shared_dpll_by_id(display, id);
+> > -		pll =3D intel_get_shared_dpll_by_id(display, id);
+> > +		pll =3D intel_get_dpll_by_id(display, id);
 > >  		if (!pll)
-> > @@ -421,7 +421,7 @@ intel_find_shared_dpll(struct intel_atomic_state
-> *state,
+> >  			continue;
+> >
+> > @@ -412,7 +412,7 @@ intel_find_shared_dpll(struct intel_atomic_state
+> > *state,  }
+> >
+> >  /**
+> > - * intel_reference_shared_dpll_crtc - Get a DPLL reference for a CRTC
+> > + * intel_reference_dpll_crtc - Get a DPLL reference for a CRTC
+> >   * @crtc: CRTC on which behalf the reference is taken
+> >   * @pll: DPLL for which the reference is taken
+> >   * @dpll_state: the DPLL atomic state in which the reference is
+> > tracked @@ -420,9 +420,9 @@ intel_find_shared_dpll(struct
+> intel_atomic_state *state,
+> >   * Take a reference for @pll tracking the use of it by @crtc.
 > >   */
 > >  static void
-> >  intel_reference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> > -				 const struct intel_shared_dpll *pll,
-> > +				 const struct intel_dpll *pll,
-> >  				 struct intel_dpll_state *dpll_state)
+> > -intel_reference_shared_dpll_crtc(const struct intel_crtc *crtc,
+> > -				 const struct intel_dpll *pll,
+> > -				 struct intel_dpll_state *dpll_state)
+> > +intel_reference_dpll_crtc(const struct intel_crtc *crtc,
+> > +			  const struct intel_dpll *pll,
+> > +			  struct intel_dpll_state *dpll_state)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(crtc);
-> > @@ -437,7 +437,7 @@ intel_reference_shared_dpll_crtc(const struct
-> intel_crtc *crtc,
+> >
+> > @@ -435,23 +435,23 @@ intel_reference_shared_dpll_crtc(const struct
+> > intel_crtc *crtc,  }
+> >
 > >  static void
-> >  intel_reference_shared_dpll(struct intel_atomic_state *state,
-> >  			    const struct intel_crtc *crtc,
-> > -			    const struct intel_shared_dpll *pll,
-> > +			    const struct intel_dpll *pll,
-> >  			    const struct intel_dpll_hw_state *dpll_hw_state)
+> > -intel_reference_shared_dpll(struct intel_atomic_state *state,
+> > -			    const struct intel_crtc *crtc,
+> > -			    const struct intel_dpll *pll,
+> > -			    const struct intel_dpll_hw_state *dpll_hw_state)
+> > +intel_reference_dpll(struct intel_atomic_state *state,
+> > +		     const struct intel_crtc *crtc,
+> > +		     const struct intel_dpll *pll,
+> > +		     const struct intel_dpll_hw_state *dpll_hw_state)
 > >  {
 > >  	struct intel_dpll_state *dpll_state;
-> > @@ -460,7 +460,7 @@ intel_reference_shared_dpll(struct
+> >
+> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
+> > +	dpll_state =3D intel_atomic_get_dpll_state(&state->base);
+> >
+> >  	if (dpll_state[pll->index].pipe_mask =3D=3D 0)
+> >  		dpll_state[pll->index].hw_state =3D *dpll_hw_state;
+> >
+> > -	intel_reference_shared_dpll_crtc(crtc, pll, &dpll_state[pll->index]);
+> > +	intel_reference_dpll_crtc(crtc, pll, &dpll_state[pll->index]);
+> >  }
+> >
+> >  /**
+> > - * intel_unreference_shared_dpll_crtc - Drop a DPLL reference for a
+> > CRTC
+> > + * intel_unreference_dpll_crtc - Drop a DPLL reference for a CRTC
+> >   * @crtc: CRTC on which behalf the reference is dropped
+> >   * @pll: DPLL for which the reference is dropped
+> >   * @dpll_state: the DPLL atomic state in which the reference is
+> > tracked @@ -459,9 +459,9 @@ intel_reference_shared_dpll(struct
 > intel_atomic_state *state,
+> >   * Drop a reference for @pll tracking the end of use of it by @crtc.
 > >   */
 > >  void
-> >  intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> > -				   const struct intel_shared_dpll *pll,
-> > +				   const struct intel_dpll *pll,
-> >  				   struct intel_dpll_state *dpll_state)
+> > -intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
+> > -				   const struct intel_dpll *pll,
+> > -				   struct intel_dpll_state *dpll_state)
+> > +intel_unreference_dpll_crtc(const struct intel_crtc *crtc,
+> > +			    const struct intel_dpll *pll,
+> > +			    struct intel_dpll_state *dpll_state)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(crtc);
-> > @@ -475,7 +475,7 @@ intel_unreference_shared_dpll_crtc(const struct
-> intel_crtc *crtc,
 > >
-> >  static void intel_unreference_shared_dpll(struct intel_atomic_state *s=
+> > @@ -473,15 +473,15 @@ intel_unreference_shared_dpll_crtc(const struct
+> intel_crtc *crtc,
+> >  		    crtc->base.base.id, crtc->base.name, pll->info->name);  }
+> >
+> > -static void intel_unreference_shared_dpll(struct intel_atomic_state *s=
 tate,
-> >  					  const struct intel_crtc *crtc,
-> > -					  const struct intel_shared_dpll *pll)
-> > +					  const struct intel_dpll *pll)
+> > -					  const struct intel_crtc *crtc,
+> > -					  const struct intel_dpll *pll)
+> > +static void intel_unreference_dpll(struct intel_atomic_state *state,
+> > +				   const struct intel_crtc *crtc,
+> > +				   const struct intel_dpll *pll)
 > >  {
 > >  	struct intel_dpll_state *dpll_state;
 > >
-> > @@ -492,12 +492,12 @@ static void intel_put_dpll(struct intel_atomic_st=
-ate
+> > -	dpll_state =3D intel_atomic_get_shared_dpll_state(&state->base);
+> > +	dpll_state =3D intel_atomic_get_dpll_state(&state->base);
+> >
+> > -	intel_unreference_shared_dpll_crtc(crtc, pll, &dpll_state[pll->index]=
+);
+> > +	intel_unreference_dpll_crtc(crtc, pll, &dpll_state[pll->index]);
+> >  }
+> >
+> >  static void intel_put_dpll(struct intel_atomic_state *state, @@
+> > -497,11 +497,11 @@ static void intel_put_dpll(struct intel_atomic_state
 > *state,
-> >  	struct intel_crtc_state *new_crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> >
-> > -	new_crtc_state->shared_dpll =3D NULL;
-> > +	new_crtc_state->intel_dpll =3D NULL;
-> >
-> > -	if (!old_crtc_state->shared_dpll)
-> > +	if (!old_crtc_state->intel_dpll)
+> >  	if (!old_crtc_state->intel_dpll)
 > >  		return;
 > >
-> > -	intel_unreference_shared_dpll(state, crtc, old_crtc_state-
-> >shared_dpll);
-> > +	intel_unreference_shared_dpll(state, crtc, old_crtc_state->intel_dpll=
+> > -	intel_unreference_shared_dpll(state, crtc, old_crtc_state->intel_dpll=
 );
+> > +	intel_unreference_dpll(state, crtc, old_crtc_state->intel_dpll);
 > >  }
 > >
 > >  /**
-> > @@ -515,7 +515,7 @@ void intel_shared_dpll_swap_state(struct
-> intel_atomic_state *state)
+> > - * intel_shared_dpll_swap_state - make atomic DPLL configuration
+> > effective
+> > + * intel_dpll_swap_state - make atomic DPLL configuration effective
+> >   * @state: atomic state
+> >   *
+> >   * This is the dpll version of drm_atomic_helper_swap_state() since
+> > the @@ -511,7 +511,7 @@ static void intel_put_dpll(struct
+> intel_atomic_state *state,
+> >   * i.e. it also puts the current state into @state, even though there =
+is no
+> >   * need for that at this moment.
+> >   */
+> > -void intel_shared_dpll_swap_state(struct intel_atomic_state *state)
+> > +void intel_dpll_swap_state(struct intel_atomic_state *state)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(state);
-> >  	struct intel_dpll_state *dpll_state =3D state->dpll_state;
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >
-> >  	if (!state->dpll_set)
-> > @@ -526,7 +526,7 @@ void intel_shared_dpll_swap_state(struct
-> intel_atomic_state *state)
-> >  }
-> >
-> >  static bool ibx_pch_dpll_get_hw_state(struct intel_display *display,
-> > -				      struct intel_shared_dpll *pll,
-> > +				      struct intel_dpll *pll,
-> >  				      struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct i9xx_dpll_hw_state *hw_state =3D &dpll_hw_state->i9xx;
-> > @@ -562,7 +562,7 @@ static void ibx_assert_pch_refclk_enabled(struct
-> intel_display *display)
-> >  }
-> >
-> >  static void ibx_pch_dpll_enable(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll,
-> > +				struct intel_dpll *pll,
-> >  				const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct i9xx_dpll_hw_state *hw_state =3D &dpll_hw_state->i9xx;
-> > @@ -591,7 +591,7 @@ static void ibx_pch_dpll_enable(struct intel_displa=
-y
-> *display,
-> >  }
-> >
-> >  static void ibx_pch_dpll_disable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll)
-> > +				 struct intel_dpll *pll)
-> >  {
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> >
-> > @@ -614,7 +614,7 @@ static int ibx_get_dpll(struct intel_atomic_state
-> *state,
-> >  	struct intel_display *display =3D to_intel_display(state);
-> >  	struct intel_crtc_state *crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	enum intel_dpll_id id;
-> >
+> >  	struct intel_dpll_state *dpll_state =3D state->dpll_state; @@ -620,25
+> > +620,25 @@ static int ibx_get_dpll(struct intel_atomic_state *state,
 > >  	if (HAS_PCH_IBX(display)) {
-> > @@ -640,7 +640,7 @@ static int ibx_get_dpll(struct intel_atomic_state
-> *state,
-> >  	intel_reference_shared_dpll(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
+> >  		/* Ironlake PCH has a fixed PLL->PCH pipe mapping. */
+> >  		id =3D (enum intel_dpll_id) crtc->pipe;
+> > -		pll =3D intel_get_shared_dpll_by_id(display, id);
+> > +		pll =3D intel_get_dpll_by_id(display, id);
 > >
-> > -	crtc_state->shared_dpll =3D pll;
-> > +	crtc_state->intel_dpll =3D pll;
-> >
-> >  	return 0;
-> >  }
-> > @@ -692,7 +692,7 @@ static const struct intel_dpll_mgr pch_pll_mgr =3D =
-{
-> >  };
-> >
-> >  static void hsw_ddi_wrpll_enable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -704,7 +704,7 @@ static void hsw_ddi_wrpll_enable(struct intel_displ=
-ay
-> *display,
-> >  }
-> >
-> >  static void hsw_ddi_spll_enable(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll,
-> > +				struct intel_dpll *pll,
-> >  				const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -715,7 +715,7 @@ static void hsw_ddi_spll_enable(struct intel_displa=
-y
-> *display,
-> >  }
-> >
-> >  static void hsw_ddi_wrpll_disable(struct intel_display *display,
-> > -				  struct intel_shared_dpll *pll)
-> > +				  struct intel_dpll *pll)
-> >  {
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> >
-> > @@ -731,7 +731,7 @@ static void hsw_ddi_wrpll_disable(struct intel_disp=
-lay
-> *display,
-> >  }
-> >
-> >  static void hsw_ddi_spll_disable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll)
-> > +				 struct intel_dpll *pll)
-> >  {
-> >  	enum intel_dpll_id id =3D pll->info->id;
-> >
-> > @@ -747,7 +747,7 @@ static void hsw_ddi_spll_disable(struct intel_displ=
-ay
-> *display,
-> >  }
-> >
-> >  static bool hsw_ddi_wrpll_get_hw_state(struct intel_display *display,
-> > -				       struct intel_shared_dpll *pll,
-> > +				       struct intel_dpll *pll,
-> >  				       struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -769,7 +769,7 @@ static bool hsw_ddi_wrpll_get_hw_state(struct
-> intel_display *display,
-> >  }
-> >
-> >  static bool hsw_ddi_spll_get_hw_state(struct intel_display *display,
-> > -				      struct intel_shared_dpll *pll,
-> > +				      struct intel_dpll *pll,
-> >  				      struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -996,7 +996,7 @@ hsw_ddi_calculate_wrpll(int clock /* in Hz */,
-> >  }
-> >
-> >  static int hsw_ddi_wrpll_get_freq(struct intel_display *display,
-> > -				  const struct intel_shared_dpll *pll,
-> > +				  const struct intel_dpll *pll,
-> >  				  const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -1059,7 +1059,7 @@ hsw_ddi_wrpll_compute_dpll(struct
-> intel_atomic_state *state,
-> >  	return 0;
-> >  }
-> >
-> > -static struct intel_shared_dpll *
-> > +static struct intel_dpll *
-> >  hsw_ddi_wrpll_get_dpll(struct intel_atomic_state *state,
-> >  		       struct intel_crtc *crtc)
-> >  {
-> > @@ -1090,11 +1090,11 @@ hsw_ddi_lcpll_compute_dpll(struct
-> intel_crtc_state *crtc_state)
+> >  		drm_dbg_kms(display->drm,
+> >  			    "[CRTC:%d:%s] using pre-allocated %s\n",
+> >  			    crtc->base.base.id, crtc->base.name,
+> >  			    pll->info->name);
+> >  	} else {
+> > -		pll =3D intel_find_shared_dpll(state, crtc,
+> > -					     &crtc_state->dpll_hw_state,
+> > -					     BIT(DPLL_ID_PCH_PLL_B) |
+> > -					     BIT(DPLL_ID_PCH_PLL_A));
+> > +		pll =3D intel_find_dpll(state, crtc,
+> > +				      &crtc_state->dpll_hw_state,
+> > +				      BIT(DPLL_ID_PCH_PLL_B) |
+> > +				      BIT(DPLL_ID_PCH_PLL_A));
 > >  	}
-> >  }
 > >
-> > -static struct intel_shared_dpll *
-> > +static struct intel_dpll *
-> >  hsw_ddi_lcpll_get_dpll(struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(crtc_state);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	enum intel_dpll_id pll_id;
-> >  	int clock =3D crtc_state->port_clock;
+> >  	if (!pll)
+> >  		return -EINVAL;
 > >
-> > @@ -1122,7 +1122,7 @@ hsw_ddi_lcpll_get_dpll(struct intel_crtc_state
+> >  	/* reference the pll */
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    pll, &crtc_state->dpll_hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     pll, &crtc_state->dpll_hw_state);
+> >
+> >  	crtc_state->intel_dpll =3D pll;
+> >
+> > @@ -1066,7 +1066,7 @@ hsw_ddi_wrpll_get_dpll(struct intel_atomic_state
+> *state,
+> >  	struct intel_crtc_state *crtc_state =3D
+> >  		intel_atomic_get_new_crtc_state(state, crtc);
+> >
+> > -	return intel_find_shared_dpll(state, crtc,
+> > +	return intel_find_dpll(state, crtc,
+> >  				      &crtc_state->dpll_hw_state,
+> >  				      BIT(DPLL_ID_WRPLL2) |
+> >  				      BIT(DPLL_ID_WRPLL1));
+> > @@ -1113,7 +1113,7 @@ hsw_ddi_lcpll_get_dpll(struct intel_crtc_state
 > *crtc_state)
-> >  }
+> >  		return NULL;
+> >  	}
 > >
-> >  static int hsw_ddi_lcpll_get_freq(struct intel_display *display,
-> > -				  const struct intel_shared_dpll *pll,
-> > +				  const struct intel_dpll *pll,
-> >  				  const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	int link_clock =3D 0;
-> > @@ -1162,7 +1162,7 @@ hsw_ddi_spll_compute_dpll(struct
-> intel_atomic_state *state,
-> >  	return 0;
-> >  }
+> > -	pll =3D intel_get_shared_dpll_by_id(display, pll_id);
+> > +	pll =3D intel_get_dpll_by_id(display, pll_id);
 > >
-> > -static struct intel_shared_dpll *
-> > +static struct intel_dpll *
-> >  hsw_ddi_spll_get_dpll(struct intel_atomic_state *state,
-> >  		      struct intel_crtc *crtc)
-> >  {
-> > @@ -1174,7 +1174,7 @@ hsw_ddi_spll_get_dpll(struct intel_atomic_state
+> >  	if (!pll)
+> >  		return NULL;
+> > @@ -1169,7 +1169,7 @@ hsw_ddi_spll_get_dpll(struct intel_atomic_state
 > *state,
-> >  }
-> >
-> >  static int hsw_ddi_spll_get_freq(struct intel_display *display,
-> > -				 const struct intel_shared_dpll *pll,
-> > +				 const struct intel_dpll *pll,
-> >  				 const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct hsw_dpll_hw_state *hw_state =3D &dpll_hw_state->hsw;
-> > @@ -1221,7 +1221,7 @@ static int hsw_get_dpll(struct intel_atomic_state
-> *state,
-> >  {
 > >  	struct intel_crtc_state *crtc_state =3D
 > >  		intel_atomic_get_new_crtc_state(state, crtc);
-> > -	struct intel_shared_dpll *pll =3D NULL;
-> > +	struct intel_dpll *pll =3D NULL;
 > >
-> >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> >  		pll =3D hsw_ddi_wrpll_get_dpll(state, crtc);
-> > @@ -1236,7 +1236,7 @@ static int hsw_get_dpll(struct intel_atomic_state
+> > -	return intel_find_shared_dpll(state, crtc, &crtc_state->dpll_hw_state=
+,
+> > +	return intel_find_dpll(state, crtc, &crtc_state->dpll_hw_state,
+> >  				      BIT(DPLL_ID_SPLL));
+> >  }
+> >
+> > @@ -1233,8 +1233,8 @@ static int hsw_get_dpll(struct intel_atomic_state
 > *state,
-> >  	intel_reference_shared_dpll(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
+> >  	if (!pll)
+> >  		return -EINVAL;
 > >
-> > -	crtc_state->shared_dpll =3D pll;
-> > +	crtc_state->intel_dpll =3D pll;
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    pll, &crtc_state->dpll_hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     pll, &crtc_state->dpll_hw_state);
 > >
-> >  	return 0;
-> >  }
-> > @@ -1285,18 +1285,18 @@ static const struct intel_dpll_funcs
-> hsw_ddi_spll_funcs =3D {
-> >  };
+> >  	crtc_state->intel_dpll =3D pll;
 > >
-> >  static void hsw_ddi_lcpll_enable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 const struct intel_dpll_hw_state *hw_state)
-> >  {
-> >  }
-> >
-> >  static void hsw_ddi_lcpll_disable(struct intel_display *display,
-> > -				  struct intel_shared_dpll *pll)
-> > +				  struct intel_dpll *pll)
-> >  {
-> >  }
-> >
-> >  static bool hsw_ddi_lcpll_get_hw_state(struct intel_display *display,
-> > -				       struct intel_shared_dpll *pll,
-> > +				       struct intel_dpll *pll,
-> >  				       struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	return true;
-> > @@ -1364,7 +1364,7 @@ static const struct skl_dpll_regs skl_dpll_regs[4=
-] =3D {
-> >  };
-> >
-> >  static void skl_ddi_pll_write_ctrl1(struct intel_display *display,
-> > -				    struct intel_shared_dpll *pll,
-> > +				    struct intel_dpll *pll,
-> >  				    const struct skl_dpll_hw_state *hw_state)
-> >  {
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> > @@ -1378,7 +1378,7 @@ static void skl_ddi_pll_write_ctrl1(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void skl_ddi_pll_enable(struct intel_display *display,
-> > -			       struct intel_shared_dpll *pll,
-> > +			       struct intel_dpll *pll,
-> >  			       const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	const struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1400,7 +1400,7 @@ static void skl_ddi_pll_enable(struct intel_displ=
-ay
-> *display,
-> >  }
-> >
-> >  static void skl_ddi_dpll0_enable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1409,7 +1409,7 @@ static void skl_ddi_dpll0_enable(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void skl_ddi_pll_disable(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll)
-> > +				struct intel_dpll *pll)
-> >  {
-> >  	const struct skl_dpll_regs *regs =3D skl_dpll_regs;
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> > @@ -1420,12 +1420,12 @@ static void skl_ddi_pll_disable(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void skl_ddi_dpll0_disable(struct intel_display *display,
-> > -				  struct intel_shared_dpll *pll)
-> > +				  struct intel_dpll *pll)
-> >  {
-> >  }
-> >
-> >  static bool skl_ddi_pll_get_hw_state(struct intel_display *display,
-> > -				     struct intel_shared_dpll *pll,
-> > +				     struct intel_dpll *pll,
-> >  				     struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1463,7 +1463,7 @@ static bool skl_ddi_pll_get_hw_state(struct
-> intel_display *display,
-> >  }
-> >
-> >  static bool skl_ddi_dpll0_get_hw_state(struct intel_display *display,
-> > -				       struct intel_shared_dpll *pll,
-> > +				       struct intel_dpll *pll,
-> >  				       struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1736,7 +1736,7 @@ skl_ddi_calculate_wrpll(int clock,
-> >  }
-> >
-> >  static int skl_ddi_wrpll_get_freq(struct intel_display *display,
-> > -				  const struct intel_shared_dpll *pll,
-> > +				  const struct intel_dpll *pll,
-> >  				  const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1884,7 +1884,7 @@ skl_ddi_dp_set_dpll_hw_state(struct
-> intel_crtc_state *crtc_state)
-> >  }
-> >
-> >  static int skl_ddi_lcpll_get_freq(struct intel_display *display,
-> > -				  const struct intel_shared_dpll *pll,
-> > +				  const struct intel_dpll *pll,
-> >  				  const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -1939,7 +1939,7 @@ static int skl_get_dpll(struct intel_atomic_state
+> > @@ -1942,20 +1942,20 @@ static int skl_get_dpll(struct intel_atomic_sta=
+te
 > *state,
-> >  {
-> >  	struct intel_crtc_state *crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
+> >  	struct intel_dpll *pll;
 > >
 > >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-> >  		pll =3D intel_find_shared_dpll(state, crtc,
-> > @@ -1957,13 +1957,13 @@ static int skl_get_dpll(struct intel_atomic_sta=
-te
-> *state,
-> >  	intel_reference_shared_dpll(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
+> > -		pll =3D intel_find_shared_dpll(state, crtc,
+> > -					     &crtc_state->dpll_hw_state,
+> > -					     BIT(DPLL_ID_SKL_DPLL0));
+> > +		pll =3D intel_find_dpll(state, crtc,
+> > +				      &crtc_state->dpll_hw_state,
+> > +				      BIT(DPLL_ID_SKL_DPLL0));
+> >  	else
+> > -		pll =3D intel_find_shared_dpll(state, crtc,
+> > -					     &crtc_state->dpll_hw_state,
+> > -					     BIT(DPLL_ID_SKL_DPLL3) |
+> > -					     BIT(DPLL_ID_SKL_DPLL2) |
+> > -					     BIT(DPLL_ID_SKL_DPLL1));
+> > +		pll =3D intel_find_dpll(state, crtc,
+> > +				      &crtc_state->dpll_hw_state,
+> > +				      BIT(DPLL_ID_SKL_DPLL3) |
+> > +				      BIT(DPLL_ID_SKL_DPLL2) |
+> > +				      BIT(DPLL_ID_SKL_DPLL1));
+> >  	if (!pll)
+> >  		return -EINVAL;
 > >
-> > -	crtc_state->shared_dpll =3D pll;
-> > +	crtc_state->intel_dpll =3D pll;
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    pll, &crtc_state->dpll_hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     pll, &crtc_state->dpll_hw_state);
 > >
-> >  	return 0;
-> >  }
+> >  	crtc_state->intel_dpll =3D pll;
 > >
-> >  static int skl_ddi_pll_get_freq(struct intel_display *display,
-> > -				const struct intel_shared_dpll *pll,
-> > +				const struct intel_dpll *pll,
-> >  				const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct skl_dpll_hw_state *hw_state =3D &dpll_hw_state->skl;
-> > @@ -2038,7 +2038,7 @@ static const struct intel_dpll_mgr skl_pll_mgr =
-=3D {
-> >  };
-> >
-> >  static void bxt_ddi_pll_enable(struct intel_display *display,
-> > -			       struct intel_shared_dpll *pll,
-> > +			       struct intel_dpll *pll,
-> >  			       const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	const struct bxt_dpll_hw_state *hw_state =3D &dpll_hw_state->bxt;
-> > @@ -2141,7 +2141,7 @@ static void bxt_ddi_pll_enable(struct intel_displ=
-ay
-> *display,
-> >  }
-> >
-> >  static void bxt_ddi_pll_disable(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll)
-> > +				struct intel_dpll *pll)
-> >  {
-> >  	enum port port =3D (enum port)pll->info->id; /* 1:1 port->PLL mapping=
- */
-> >
-> > @@ -2160,7 +2160,7 @@ static void bxt_ddi_pll_disable(struct intel_disp=
-lay
-> *display,
-> >  }
-> >
-> >  static bool bxt_ddi_pll_get_hw_state(struct intel_display *display,
-> > -				     struct intel_shared_dpll *pll,
-> > +				     struct intel_dpll *pll,
-> >  				     struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct bxt_dpll_hw_state *hw_state =3D &dpll_hw_state->bxt;
-> > @@ -2360,7 +2360,7 @@ static int bxt_ddi_set_dpll_hw_state(struct
-> intel_crtc_state *crtc_state,
-> >  }
-> >
-> >  static int bxt_ddi_pll_get_freq(struct intel_display *display,
-> > -				const struct intel_shared_dpll *pll,
-> > +				const struct intel_dpll *pll,
-> >  				const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct bxt_dpll_hw_state *hw_state =3D &dpll_hw_state->bxt;
-> > @@ -2429,7 +2429,7 @@ static int bxt_get_dpll(struct intel_atomic_state
-> *state,
-> >  	struct intel_display *display =3D to_intel_display(state);
-> >  	struct intel_crtc_state *crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	enum intel_dpll_id id;
+> > @@ -2434,13 +2434,13 @@ static int bxt_get_dpll(struct
+> > intel_atomic_state *state,
 > >
 > >  	/* 1:1 mapping between ports and PLLs */
-> > @@ -2442,7 +2442,7 @@ static int bxt_get_dpll(struct intel_atomic_state
-> *state,
-> >  	intel_reference_shared_dpll(state, crtc,
-> >  				    pll, &crtc_state->dpll_hw_state);
+> >  	id =3D (enum intel_dpll_id) encoder->port;
+> > -	pll =3D intel_get_shared_dpll_by_id(display, id);
+> > +	pll =3D intel_get_dpll_by_id(display, id);
 > >
-> > -	crtc_state->shared_dpll =3D pll;
-> > +	crtc_state->intel_dpll =3D pll;
+> >  	drm_dbg_kms(display->drm, "[CRTC:%d:%s] using pre-allocated %s\n",
+> >  		    crtc->base.base.id, crtc->base.name, pll->info->name);
 > >
-> >  	return 0;
-> >  }
-> > @@ -2755,7 +2755,7 @@ static int icl_calc_tbt_pll(struct intel_crtc_sta=
-te
-> *crtc_state,
-> >  }
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    pll, &crtc_state->dpll_hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     pll, &crtc_state->dpll_hw_state);
 > >
-> >  static int icl_ddi_tbt_pll_get_freq(struct intel_display *display,
-> > -				    const struct intel_shared_dpll *pll,
-> > +				    const struct intel_dpll *pll,
-> >  				    const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	/*
-> > @@ -2826,7 +2826,7 @@ icl_calc_wrpll(struct intel_crtc_state *crtc_stat=
-e,
-> >  }
+> >  	crtc_state->intel_dpll =3D pll;
 > >
-> >  static int icl_ddi_combo_pll_get_freq(struct intel_display *display,
-> > -				      const struct intel_shared_dpll *pll,
-> > +				      const struct intel_dpll *pll,
-> >  				      const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -3199,7 +3199,7 @@ static int icl_calc_mg_pll_state(struct
-> intel_crtc_state *crtc_state,
-> >  }
-> >
-> >  static int icl_ddi_mg_pll_get_freq(struct intel_display *display,
-> > -				   const struct intel_shared_dpll *pll,
-> > +				   const struct intel_dpll *pll,
-> >  				   const struct intel_dpll_hw_state
-> *dpll_hw_state)
-> >  {
-> >  	const struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -3285,7 +3285,7 @@ void icl_set_active_port_dpll(struct
-> intel_crtc_state *crtc_state,
-> >  	struct icl_port_dpll *port_dpll =3D
-> >  		&crtc_state->icl_port_dplls[port_dpll_id];
-> >
-> > -	crtc_state->shared_dpll =3D port_dpll->pll;
-> > +	crtc_state->intel_dpll =3D port_dpll->pll;
-> >  	crtc_state->dpll_hw_state =3D port_dpll->hw_state;
-> >  }
-> >
-> > @@ -3428,8 +3428,8 @@ static int icl_compute_tc_phy_dplls(struct
+> > @@ -3388,14 +3388,14 @@ static int icl_get_combo_phy_dpll(struct
 > intel_atomic_state *state,
-> >  		return ret;
+> >  	/* Eliminate DPLLs from consideration if reserved by HTI */
+> >  	dpll_mask &=3D ~intel_hti_dpll_mask(display);
 > >
-> >  	/* this is mainly for the fastset check */
-> > -	if (old_crtc_state->shared_dpll &&
-> > -	    old_crtc_state->shared_dpll->info->id =3D=3D DPLL_ID_ICL_TBTPLL)
-> > +	if (old_crtc_state->intel_dpll &&
-> > +	    old_crtc_state->intel_dpll->info->id =3D=3D DPLL_ID_ICL_TBTPLL)
-> >  		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-> >  	else
-> >  		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_MG_PHY);
-> > @@ -3521,7 +3521,7 @@ static void icl_put_dplls(struct intel_atomic_sta=
+> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
+> > -						&port_dpll->hw_state,
+> > -						dpll_mask);
+> > +	port_dpll->pll =3D intel_find_dpll(state, crtc,
+> > +					 &port_dpll->hw_state,
+> > +					 dpll_mask);
+> >  	if (!port_dpll->pll)
+> >  		return -EINVAL;
+> >
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    port_dpll->pll, &port_dpll->hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     port_dpll->pll, &port_dpll->hw_state);
+> >
+> >  	icl_update_active_dpll(state, crtc, encoder);
+> >
+> > @@ -3452,26 +3452,25 @@ static int icl_get_tc_phy_dplls(struct
+> intel_atomic_state *state,
+> >  	int ret;
+> >
+> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
+> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
+> > -						&port_dpll->hw_state,
+> > -						BIT(DPLL_ID_ICL_TBTPLL));
+> > +	port_dpll->pll =3D intel_find_dpll(state, crtc,
+> > +					 &port_dpll->hw_state,
+> > +					 BIT(DPLL_ID_ICL_TBTPLL));
+> >  	if (!port_dpll->pll)
+> >  		return -EINVAL;
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    port_dpll->pll, &port_dpll->hw_state);
+> > -
+> > +	intel_reference_dpll(state, crtc,
+> > +			     port_dpll->pll, &port_dpll->hw_state);
+> >
+> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_MG_PHY];
+> >  	dpll_id =3D icl_tc_port_to_pll_id(intel_encoder_to_tc(encoder));
+> > -	port_dpll->pll =3D intel_find_shared_dpll(state, crtc,
+> > -						&port_dpll->hw_state,
+> > -						BIT(dpll_id));
+> > +	port_dpll->pll =3D intel_find_dpll(state, crtc,
+> > +					 &port_dpll->hw_state,
+> > +					 BIT(dpll_id));
+> >  	if (!port_dpll->pll) {
+> >  		ret =3D -EINVAL;
+> >  		goto err_unreference_tbt_pll;
+> >  	}
+> > -	intel_reference_shared_dpll(state, crtc,
+> > -				    port_dpll->pll, &port_dpll->hw_state);
+> > +	intel_reference_dpll(state, crtc,
+> > +			     port_dpll->pll, &port_dpll->hw_state);
+> >
+> >  	icl_update_active_dpll(state, crtc, encoder);
+> >
+> > @@ -3479,7 +3478,7 @@ static int icl_get_tc_phy_dplls(struct
+> > intel_atomic_state *state,
+> >
+> >  err_unreference_tbt_pll:
+> >  	port_dpll =3D &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
+> > -	intel_unreference_shared_dpll(state, crtc, port_dpll->pll);
+> > +	intel_unreference_dpll(state, crtc, port_dpll->pll);
+> >
+> >  	return ret;
+> >  }
+> > @@ -3534,7 +3533,7 @@ static void icl_put_dplls(struct intel_atomic_sta=
 te
 > *state,
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> >  	enum icl_port_dpll_id id;
+> >  		if (!old_port_dpll->pll)
+> >  			continue;
 > >
-> > -	new_crtc_state->shared_dpll =3D NULL;
-> > +	new_crtc_state->intel_dpll =3D NULL;
-> >
-> >  	for (id =3D ICL_PORT_DPLL_DEFAULT; id < ICL_PORT_DPLL_COUNT; id++) {
-> >  		const struct icl_port_dpll *old_port_dpll =3D
-> > @@ -3539,7 +3539,7 @@ static void icl_put_dplls(struct intel_atomic_sta=
-te
-> *state,
+> > -		intel_unreference_shared_dpll(state, crtc, old_port_dpll->pll);
+> > +		intel_unreference_dpll(state, crtc, old_port_dpll->pll);
+> >  	}
 > >  }
 > >
-> >  static bool mg_pll_get_hw_state(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll,
-> > +				struct intel_dpll *pll,
-> >  				struct intel_dpll_hw_state *dpll_hw_state)
+> > @@ -4300,12 +4299,12 @@ static const struct intel_dpll_mgr
+> > adlp_pll_mgr =3D {  };
+> >
+> >  /**
+> > - * intel_shared_dpll_init - Initialize shared DPLLs
+> > + * intel_dpll_init - Initialize DPLLs
+> >   * @display: intel_display device
+> >   *
+> > - * Initialize shared DPLLs for @display.
+> > + * Initialize DPLLs for @display.
+> >   */
+> > -void intel_shared_dpll_init(struct intel_display *display)
+> > +void intel_dpll_init(struct intel_display *display)
 > >  {
-> >  	struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -3606,7 +3606,7 @@ static bool mg_pll_get_hw_state(struct
-> intel_display *display,
-> >  }
+> >  	const struct intel_dpll_mgr *dpll_mgr =3D NULL;
+> >  	const struct dpll_info *dpll_info;
+> > @@ -4362,7 +4361,7 @@ void intel_shared_dpll_init(struct intel_display
+> > *display)  }
 > >
-> >  static bool dkl_pll_get_hw_state(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -3678,7 +3678,7 @@ static bool dkl_pll_get_hw_state(struct
-> intel_display *display,
-> >  }
-> >
-> >  static bool icl_pll_get_hw_state(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 struct intel_dpll_hw_state *dpll_hw_state,
-> >  				 i915_reg_t enable_reg)
-> >  {
-> > @@ -3739,7 +3739,7 @@ static bool icl_pll_get_hw_state(struct intel_dis=
-play
-> *display,
-> >  }
-> >
-> >  static bool combo_pll_get_hw_state(struct intel_display *display,
-> > -				   struct intel_shared_dpll *pll,
-> > +				   struct intel_dpll *pll,
-> >  				   struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(display, pll);
-> > @@ -3748,14 +3748,14 @@ static bool combo_pll_get_hw_state(struct
-> intel_display *display,
-> >  }
-> >
-> >  static bool tbt_pll_get_hw_state(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	return icl_pll_get_hw_state(display, pll, dpll_hw_state,
-> TBT_PLL_ENABLE);
-> >  }
-> >
-> >  static void icl_dpll_write(struct intel_display *display,
-> > -			   struct intel_shared_dpll *pll,
-> > +			   struct intel_dpll *pll,
-> >  			   const struct icl_dpll_hw_state *hw_state)
-> >  {
-> >  	const enum intel_dpll_id id =3D pll->info->id;
-> > @@ -3797,7 +3797,7 @@ static void icl_dpll_write(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void icl_mg_pll_write(struct intel_display *display,
-> > -			     struct intel_shared_dpll *pll,
-> > +			     struct intel_dpll *pll,
-> >  			     const struct icl_dpll_hw_state *hw_state)
-> >  {
-> >  	enum tc_port tc_port =3D icl_pll_id_to_tc_port(pll->info->id);
-> > @@ -3840,7 +3840,7 @@ static void icl_mg_pll_write(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void dkl_pll_write(struct intel_display *display,
-> > -			  struct intel_shared_dpll *pll,
-> > +			  struct intel_dpll *pll,
-> >  			  const struct icl_dpll_hw_state *hw_state)
-> >  {
-> >  	enum tc_port tc_port =3D icl_pll_id_to_tc_port(pll->info->id);
-> > @@ -3905,7 +3905,7 @@ static void dkl_pll_write(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void icl_pll_power_enable(struct intel_display *display,
-> > -				 struct intel_shared_dpll *pll,
-> > +				 struct intel_dpll *pll,
-> >  				 i915_reg_t enable_reg)
-> >  {
-> >  	intel_de_rmw(display, enable_reg, 0, PLL_POWER_ENABLE);
-> > @@ -3920,7 +3920,7 @@ static void icl_pll_power_enable(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void icl_pll_enable(struct intel_display *display,
-> > -			   struct intel_shared_dpll *pll,
-> > +			   struct intel_dpll *pll,
-> >  			   i915_reg_t enable_reg)
-> >  {
-> >  	intel_de_rmw(display, enable_reg, 0, PLL_ENABLE);
-> > @@ -3930,7 +3930,7 @@ static void icl_pll_enable(struct intel_display
-> *display,
-> >  		drm_err(display->drm, "PLL %d not locked\n", pll->info->id);
-> >  }
-> >
-> > -static void adlp_cmtg_clock_gating_wa(struct intel_display *display, s=
-truct
-> intel_shared_dpll *pll)
-> > +static void adlp_cmtg_clock_gating_wa(struct intel_display *display, s=
-truct
-> intel_dpll *pll)
-> >  {
-> >  	u32 val;
-> >
-> > @@ -3955,7 +3955,7 @@ static void adlp_cmtg_clock_gating_wa(struct
-> intel_display *display, struct inte
-> >  }
-> >
-> >  static void combo_pll_enable(struct intel_display *display,
-> > -			     struct intel_shared_dpll *pll,
-> > +			     struct intel_dpll *pll,
-> >  			     const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	const struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -3979,7 +3979,7 @@ static void combo_pll_enable(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void tbt_pll_enable(struct intel_display *display,
-> > -			   struct intel_shared_dpll *pll,
-> > +			   struct intel_dpll *pll,
-> >  			   const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	const struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -4000,7 +4000,7 @@ static void tbt_pll_enable(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void mg_pll_enable(struct intel_display *display,
-> > -			  struct intel_shared_dpll *pll,
-> > +			  struct intel_dpll *pll,
-> >  			  const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	const struct icl_dpll_hw_state *hw_state =3D &dpll_hw_state->icl;
-> > @@ -4025,7 +4025,7 @@ static void mg_pll_enable(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void icl_pll_disable(struct intel_display *display,
-> > -			    struct intel_shared_dpll *pll,
-> > +			    struct intel_dpll *pll,
-> >  			    i915_reg_t enable_reg)
-> >  {
-> >  	/* The first steps are done by intel_ddi_post_disable(). */
-> > @@ -4056,7 +4056,7 @@ static void icl_pll_disable(struct intel_display
-> *display,
-> >  }
-> >
-> >  static void combo_pll_disable(struct intel_display *display,
-> > -			      struct intel_shared_dpll *pll)
-> > +			      struct intel_dpll *pll)
-> >  {
-> >  	i915_reg_t enable_reg =3D intel_combo_pll_enable_reg(display, pll);
-> >
-> > @@ -4064,13 +4064,13 @@ static void combo_pll_disable(struct
-> intel_display *display,
-> >  }
-> >
-> >  static void tbt_pll_disable(struct intel_display *display,
-> > -			    struct intel_shared_dpll *pll)
-> > +			    struct intel_dpll *pll)
-> >  {
-> >  	icl_pll_disable(display, pll, TBT_PLL_ENABLE);
-> >  }
-> >
-> >  static void mg_pll_disable(struct intel_display *display,
-> > -			   struct intel_shared_dpll *pll)
-> > +			   struct intel_dpll *pll)
-> >  {
-> >  	i915_reg_t enable_reg =3D intel_tc_pll_enable_reg(display, pll);
-> >
-> > @@ -4346,19 +4346,19 @@ void intel_shared_dpll_init(struct intel_displa=
+> >  /**
+> > - * intel_compute_shared_dplls - compute DPLL state CRTC and encoder
+> > combination
+> > + * intel_compute_dplls - compute DPLL state CRTC and encoder
+> > + combination
+> >   * @state: atomic state
+> >   * @crtc: CRTC to compute DPLLs for
+> >   * @encoder: encoder
+> > @@ -4370,14 +4369,14 @@ void intel_shared_dpll_init(struct intel_displa=
 y
 > *display)
-> >
-> >  	for (i =3D 0; dpll_info[i].name; i++) {
-> >  		if (drm_WARN_ON(display->drm,
-> > -				i >=3D ARRAY_SIZE(display->dpll.shared_dplls)))
-> > +				i >=3D ARRAY_SIZE(display->dpll.intel_dplls)))
-> >  			break;
-> >
-> >  		/* must fit into unsigned long bitmask on 32bit */
-> >  		if (drm_WARN_ON(display->drm, dpll_info[i].id >=3D 32))
-> >  			break;
-> >
-> > -		display->dpll.shared_dplls[i].info =3D &dpll_info[i];
-> > -		display->dpll.shared_dplls[i].index =3D i;
-> > +		display->dpll.intel_dplls[i].info =3D &dpll_info[i];
-> > +		display->dpll.intel_dplls[i].index =3D i;
-> >  	}
-> >
-> >  	display->dpll.mgr =3D dpll_mgr;
-> > -	display->dpll.num_shared_dpll =3D i;
-> > +	display->dpll.num_intel_dpll =3D i;
-> >  }
-> >
-> >  /**
-> > @@ -4482,7 +4482,7 @@ void intel_update_active_dpll(struct
-> intel_atomic_state *state,
-> >   * Return the output frequency corresponding to @pll's passed in
-> @dpll_hw_state.
+> >   * This function computes the DPLL state for the given CRTC and encode=
+r.
+> >   *
+> >   * The new configuration in the atomic commit @state is made
+> > effective by
+> > - * calling intel_shared_dpll_swap_state().
+> > + * calling intel_dpll_swap_state().
+> >   *
+> >   * Returns:
+> >   * 0 on success, negative error code on failure.
 > >   */
-> >  int intel_dpll_get_freq(struct intel_display *display,
-> > -			const struct intel_shared_dpll *pll,
-> > +			const struct intel_dpll *pll,
-> >  			const struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	if (drm_WARN_ON(display->drm, !pll->info->funcs->get_freq))
-> > @@ -4500,14 +4500,14 @@ int intel_dpll_get_freq(struct intel_display
-> *display,
-> >   * Read out @pll's hardware state into @dpll_hw_state.
-> >   */
-> >  bool intel_dpll_get_hw_state(struct intel_display *display,
-> > -			     struct intel_shared_dpll *pll,
-> > +			     struct intel_dpll *pll,
-> >  			     struct intel_dpll_hw_state *dpll_hw_state)
-> >  {
-> >  	return pll->info->funcs->get_hw_state(display, pll, dpll_hw_state);
-> >  }
-> >
-> >  static void readout_dpll_hw_state(struct intel_display *display,
-> > -				  struct intel_shared_dpll *pll)
-> > +				  struct intel_dpll *pll)
-> >  {
-> >  	struct intel_crtc *crtc;
-> >
-> > @@ -4521,7 +4521,7 @@ static void readout_dpll_hw_state(struct
-> intel_display *display,
-> >  		struct intel_crtc_state *crtc_state =3D
-> >  			to_intel_crtc_state(crtc->base.state);
-> >
-> > -		if (crtc_state->hw.active && crtc_state->shared_dpll =3D=3D pll)
-> > +		if (crtc_state->hw.active && crtc_state->intel_dpll =3D=3D pll)
-> >  			intel_reference_shared_dpll_crtc(crtc, pll, &pll->state);
-> >  	}
-> >  	pll->active_mask =3D pll->state.pipe_mask;
-> > @@ -4539,7 +4539,7 @@ void intel_dpll_update_ref_clks(struct
-> intel_display *display)
-> >
-> >  void intel_dpll_readout_hw_state(struct intel_display *display)
-> >  {
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >
-> >  	for_each_dpll(display, pll, i)
-> > @@ -4547,7 +4547,7 @@ void intel_dpll_readout_hw_state(struct
-> intel_display *display)
-> >  }
-> >
-> >  static void sanitize_dpll_state(struct intel_display *display,
-> > -				struct intel_shared_dpll *pll)
-> > +				struct intel_dpll *pll)
-> >  {
-> >  	if (!pll->on)
-> >  		return;
-> > @@ -4566,7 +4566,7 @@ static void sanitize_dpll_state(struct intel_disp=
-lay
-> *display,
-> >
-> >  void intel_dpll_sanitize_state(struct intel_display *display)
-> >  {
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >
-> >  	intel_cx0_pll_power_save_wa(display);
-> > @@ -4623,7 +4623,7 @@ bool intel_dpll_compare_hw_state(struct
-> intel_display *display,
-> >
-> >  static void
-> >  verify_single_dpll_state(struct intel_display *display,
-> > -			 struct intel_shared_dpll *pll,
-> > +			 struct intel_dpll *pll,
-> >  			 struct intel_crtc *crtc,
-> >  			 const struct intel_crtc_state *new_crtc_state)
-> >  {
-> > @@ -4676,8 +4676,8 @@ verify_single_dpll_state(struct intel_display
-> *display,
-> >  				 pll->info->name);
-> >  }
-> >
-> > -static bool has_alt_port_dpll(const struct intel_shared_dpll *old_pll,
-> > -			      const struct intel_shared_dpll *new_pll)
-> > +static bool has_alt_port_dpll(const struct intel_dpll *old_pll,
-> > +			      const struct intel_dpll *new_pll)
-> >  {
-> >  	return old_pll && new_pll && old_pll !=3D new_pll &&
-> >  		(old_pll->info->is_alt_port_dpll || new_pll->info-
-> >is_alt_port_dpll);
-> > @@ -4692,22 +4692,22 @@ void intel_shared_dpll_state_verify(struct
-> intel_atomic_state *state,
-> >  	const struct intel_crtc_state *new_crtc_state =3D
-> >  		intel_atomic_get_new_crtc_state(state, crtc);
-> >
-> > -	if (new_crtc_state->shared_dpll)
-> > -		verify_single_dpll_state(display, new_crtc_state->shared_dpll,
-> > +	if (new_crtc_state->intel_dpll)
-> > +		verify_single_dpll_state(display, new_crtc_state->intel_dpll,
-> >  					 crtc, new_crtc_state);
-> >
-> > -	if (old_crtc_state->shared_dpll &&
-> > -	    old_crtc_state->shared_dpll !=3D new_crtc_state->shared_dpll) {
-> > +	if (old_crtc_state->intel_dpll &&
-> > +	    old_crtc_state->intel_dpll !=3D new_crtc_state->intel_dpll) {
-> >  		u8 pipe_mask =3D BIT(crtc->pipe);
-> > -		struct intel_shared_dpll *pll =3D old_crtc_state->shared_dpll;
-> > +		struct intel_dpll *pll =3D old_crtc_state->intel_dpll;
-> >
-> >  		INTEL_DISPLAY_STATE_WARN(display, pll->active_mask &
-> pipe_mask,
-> >  					 "%s: pll active mismatch (didn't expect
-> pipe %c in active mask (0x%x))\n",
-> >  					 pll->info->name, pipe_name(crtc-
-> >pipe), pll->active_mask);
-> >
-> >  		/* TC ports have both MG/TC and TBT PLL referenced
-> simultaneously */
-> > -		INTEL_DISPLAY_STATE_WARN(display,
-> !has_alt_port_dpll(old_crtc_state->shared_dpll,
-> > -
-> new_crtc_state->shared_dpll) &&
-> > +		INTEL_DISPLAY_STATE_WARN(display,
-> !has_alt_port_dpll(old_crtc_state->intel_dpll,
-> > +
-> new_crtc_state->intel_dpll) &&
-> >  					 pll->state.pipe_mask & pipe_mask,
-> >  					 "%s: pll enabled crtcs mismatch
-> (found pipe %c in enabled mask (0x%x))\n",
-> >  					 pll->info->name, pipe_name(crtc-
-> >pipe), pll->state.pipe_mask);
-> > @@ -4717,7 +4717,7 @@ void intel_shared_dpll_state_verify(struct
-> intel_atomic_state *state,
-> >  void intel_shared_dpll_verify_disabled(struct intel_atomic_state *stat=
-e)
+> > -int intel_compute_shared_dplls(struct intel_atomic_state *state,
+> > -			       struct intel_crtc *crtc,
+> > -			       struct intel_encoder *encoder)
+> > +int intel_compute_dplls(struct intel_atomic_state *state,
+> > +			struct intel_crtc *crtc,
+> > +			struct intel_encoder *encoder)
 > >  {
 > >  	struct intel_display *display =3D to_intel_display(state);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >
-> >  	for_each_dpll(display, pll, i)
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > index 658174b99db3..3604ebbc78b5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > @@ -31,8 +31,8 @@
-> >  #include "intel_wakeref.h"
-> >
-> >  #define for_each_dpll(__display, __pll, __i) \
-> > -	for ((__i) =3D 0; (__i) < (__display)->dpll.num_shared_dpll && \
-> > -		     ((__pll) =3D &(__display)->dpll.shared_dplls[(__i)]) ; (__i)++)
-> > +	for ((__i) =3D 0; (__i) < (__display)->dpll.num_intel_dpll && \
-> > +		     ((__pll) =3D &(__display)->dpll.intel_dplls[(__i)]) ; (__i)++)
-> >
-> >  enum tc_port;
-> >  struct drm_printer;
-> > @@ -344,9 +344,9 @@ struct dpll_info {
-> >  };
+> >  	const struct intel_dpll_mgr *dpll_mgr =3D display->dpll.mgr; @@
+> > -4389,7 +4388,7 @@ int intel_compute_shared_dplls(struct
+> > intel_atomic_state *state,  }
 > >
 > >  /**
-> > - * struct intel_shared_dpll - display PLL with tracked state and users
-> > + * struct intel_dpll - display PLL with tracked state and users
+> > - * intel_reserve_shared_dplls - reserve DPLLs for CRTC and encoder
+> > combination
+> > + * intel_reserve_dplls - reserve DPLLs for CRTC and encoder
+> > + combination
+> >   * @state: atomic state
+> >   * @crtc: CRTC to reserve DPLLs for
+> >   * @encoder: encoder
+> > @@ -4399,18 +4398,18 @@ int intel_compute_shared_dplls(struct
+> intel_atomic_state *state,
+> >   * state.
+> >   *
+> >   * The new configuration in the atomic commit @state is made
+> > effective by
+> > - * calling intel_shared_dpll_swap_state().
+> > + * calling intel_dpll_swap_state().
+> >   *
+> >   * The reserved DPLLs should be released by calling
+> > - * intel_release_shared_dplls().
+> > + * intel_release_dplls().
+> >   *
+> >   * Returns:
+> >   * 0 if all required DPLLs were successfully reserved,
+> >   * negative error code otherwise.
 > >   */
-> > -struct intel_shared_dpll {
-> > +struct intel_dpll {
-> >  	/**
-> >  	 * @state:
-> >  	 *
-> > @@ -388,11 +388,11 @@ struct intel_shared_dpll {
-> >  #define SKL_DPLL3 3
+> > -int intel_reserve_shared_dplls(struct intel_atomic_state *state,
+> > -			       struct intel_crtc *crtc,
+> > -			       struct intel_encoder *encoder)
+> > +int intel_reserve_dplls(struct intel_atomic_state *state,
+> > +			struct intel_crtc *crtc,
+> > +			struct intel_encoder *encoder)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(state);
+> >  	const struct intel_dpll_mgr *dpll_mgr =3D display->dpll.mgr; @@
+> > -4422,18 +4421,18 @@ int intel_reserve_shared_dplls(struct
+> > intel_atomic_state *state,  }
 > >
-> >  /* shared dpll functions */
-> > -struct intel_shared_dpll *
-> > +struct intel_dpll *
-> >  intel_get_shared_dpll_by_id(struct intel_display *display,
-> >  			    enum intel_dpll_id id);
-> >  void assert_shared_dpll(struct intel_display *display,
-> > -			struct intel_shared_dpll *pll,
-> > +			struct intel_dpll *pll,
-> >  			bool state);
-> >  #define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d, p, true=
-)
-> >  #define assert_shared_dpll_disabled(d, p) assert_shared_dpll(d, p, fal=
-se)
-> > @@ -405,7 +405,7 @@ int intel_reserve_shared_dplls(struct
+> >  /**
+> > - * intel_release_shared_dplls - end use of DPLLs by CRTC in atomic
+> > state
+> > + * intel_release_dplls - end use of DPLLs by CRTC in atomic state
+> >   * @state: atomic state
+> >   * @crtc: crtc from which the DPLLs are to be released
+> >   *
+> > - * This function releases all DPLLs reserved by
+> > intel_reserve_shared_dplls()
+> > + * This function releases all DPLLs reserved by intel_reserve_dplls()
+> >   * from the current atomic commit @state and the old @crtc atomic stat=
+e.
+> >   *
+> >   * The new configuration in the atomic commit @state is made
+> > effective by
+> > - * calling intel_shared_dpll_swap_state().
+> > + * calling intel_dpll_swap_state().
+> >   */
+> > -void intel_release_shared_dplls(struct intel_atomic_state *state,
+> > -				struct intel_crtc *crtc)
+> > +void intel_release_dplls(struct intel_atomic_state *state,
+> > +			 struct intel_crtc *crtc)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(state);
+> >  	const struct intel_dpll_mgr *dpll_mgr =3D display->dpll.mgr; @@
+> > -4441,7 +4440,7 @@ void intel_release_shared_dplls(struct
 > intel_atomic_state *state,
-> >  void intel_release_shared_dplls(struct intel_atomic_state *state,
-> >  				struct intel_crtc *crtc);
-> >  void intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
-> > -					const struct intel_shared_dpll *pll,
-> > +					const struct intel_dpll *pll,
-> >  					struct intel_dpll_state
+> >  	/*
+> >  	 * FIXME: this function is called for every platform having a
+> >  	 * compute_clock hook, even though the platform doesn't yet support
+> > -	 * the shared DPLL framework and intel_reserve_shared_dplls() is not
+> > +	 * the global DPLL framework and intel_reserve_dplls() is not
+>=20
+> Global?
+>=20
+> >  	 * called on those.
+> >  	 */
+> >  	if (!dpll_mgr)
+> > @@ -4457,7 +4456,7 @@ void intel_release_shared_dplls(struct
+> intel_atomic_state *state,
+> >   * @encoder: encoder determining the type of port DPLL
+> >   *
+> >   * Update the active DPLL for the given @crtc/@encoder in @crtc's
+> > atomic state,
+> > - * from the port DPLLs reserved previously by
+> > intel_reserve_shared_dplls(). The
+> > + * from the port DPLLs reserved previously by intel_reserve_dplls().
+> > + The
+> >   * DPLL selected will be based on the current mode of the encoder's po=
+rt.
+> >   */
+> >  void intel_update_active_dpll(struct intel_atomic_state *state, @@
+> > -4522,7 +4521,7 @@ static void readout_dpll_hw_state(struct intel_displ=
+ay
+> *display,
+> >  			to_intel_crtc_state(crtc->base.state);
+> >
+> >  		if (crtc_state->hw.active && crtc_state->intel_dpll =3D=3D pll)
+> > -			intel_reference_shared_dpll_crtc(crtc, pll, &pll->state);
+> > +			intel_reference_dpll_crtc(crtc, pll, &pll->state);
+> >  	}
+> >  	pll->active_mask =3D pll->state.pipe_mask;
+> >
+> > @@ -4683,8 +4682,8 @@ static bool has_alt_port_dpll(const struct intel_=
+dpll
+> *old_pll,
+> >  		(old_pll->info->is_alt_port_dpll ||
+> > new_pll->info->is_alt_port_dpll);  }
+> >
+> > -void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
+> > -				    struct intel_crtc *crtc)
+> > +void intel_dpll_state_verify(struct intel_atomic_state *state,
+> > +			     struct intel_crtc *crtc)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(state);
+> >  	const struct intel_crtc_state *old_crtc_state =3D @@ -4714,7 +4713,7
+> > @@ void intel_shared_dpll_state_verify(struct intel_atomic_state *state=
+,
+> >  	}
+> >  }
+> >
+> > -void intel_shared_dpll_verify_disabled(struct intel_atomic_state
+> > *state)
+> > +void intel_dpll_verify_disabled(struct intel_atomic_state *state)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(state);
+> >  	struct intel_dpll *pll;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > index 3604ebbc78b5..99a058deaeda 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > @@ -387,26 +387,26 @@ struct intel_dpll {  #define SKL_DPLL2 2
+> > #define SKL_DPLL3 3
+> >
+> > -/* shared dpll functions */
+> > +/* global dpll functions */
+>=20
+> Global?
+>=20
+> >  struct intel_dpll *
+> > -intel_get_shared_dpll_by_id(struct intel_display *display,
+> > -			    enum intel_dpll_id id);
+> > -void assert_shared_dpll(struct intel_display *display,
+> > -			struct intel_dpll *pll,
+> > -			bool state);
+> > -#define assert_shared_dpll_enabled(d, p) assert_shared_dpll(d, p,
+> > true) -#define assert_shared_dpll_disabled(d, p) assert_shared_dpll(d,
+> > p, false) -int intel_compute_shared_dplls(struct intel_atomic_state *st=
+ate,
+> > -			       struct intel_crtc *crtc,
+> > -			       struct intel_encoder *encoder);
+> > -int intel_reserve_shared_dplls(struct intel_atomic_state *state,
+> > -			       struct intel_crtc *crtc,
+> > -			       struct intel_encoder *encoder);
+> > -void intel_release_shared_dplls(struct intel_atomic_state *state,
+> > -				struct intel_crtc *crtc);
+> > -void intel_unreference_shared_dpll_crtc(const struct intel_crtc *crtc,
+> > -					const struct intel_dpll *pll,
+> > -					struct intel_dpll_state
 > *shared_dpll_state);
+> > +intel_get_dpll_by_id(struct intel_display *display,
+> > +		     enum intel_dpll_id id);
+> > +void assert_dpll(struct intel_display *display,
+> > +		 struct intel_dpll *pll,
+> > +		 bool state);
+> > +#define assert_dpll_enabled(d, p) assert_dpll(d, p, true) #define
+> > +assert_dpll_disabled(d, p) assert_dpll(d, p, false) int
+> > +intel_compute_dplls(struct intel_atomic_state *state,
+> > +			struct intel_crtc *crtc,
+> > +			struct intel_encoder *encoder);
+> > +int intel_reserve_dplls(struct intel_atomic_state *state,
+> > +			struct intel_crtc *crtc,
+> > +			struct intel_encoder *encoder);
+> > +void intel_release_dplls(struct intel_atomic_state *state,
+> > +			 struct intel_crtc *crtc);
+> > +void intel_unreference_dpll_crtc(const struct intel_crtc *crtc,
+> > +				 const struct intel_dpll *pll,
+> > +				 struct intel_dpll_state *shared_dpll_state);
 > >  void icl_set_active_port_dpll(struct intel_crtc_state *crtc_state,
-> >  			      enum icl_port_dpll_id port_dpll_id);
-> > @@ -413,10 +413,10 @@ void intel_update_active_dpll(struct
-> intel_atomic_state *state,
-> >  			      struct intel_crtc *crtc,
-> >  			      struct intel_encoder *encoder);
-> >  int intel_dpll_get_freq(struct intel_display *display,
-> > -			const struct intel_shared_dpll *pll,
-> > +			const struct intel_dpll *pll,
-> >  			const struct intel_dpll_hw_state *dpll_hw_state);
-> >  bool intel_dpll_get_hw_state(struct intel_display *display,
-> > -			     struct intel_shared_dpll *pll,
-> > +			     struct intel_dpll *pll,
-> >  			     struct intel_dpll_hw_state *dpll_hw_state);
-> >  void intel_enable_shared_dpll(const struct intel_crtc_state *crtc_stat=
-e);
-> >  void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_sta=
-te);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c
-> b/drivers/gpu/drm/i915/display/intel_fdi.c
-> > index 169bbe154b5c..b1d2ba9b7295 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-> > @@ -910,7 +910,7 @@ void hsw_fdi_link_train(struct intel_encoder
-> *encoder,
-> >  	intel_de_write(display, FDI_RX_CTL(PIPE_A), rx_ctl_val);
+> >  			      enum icl_port_dpll_id port_dpll_id);  void
+> > intel_update_active_dpll(struct intel_atomic_state *state, @@ -418,10
+> > +418,10 @@ int intel_dpll_get_freq(struct intel_display *display,
+> > bool intel_dpll_get_hw_state(struct intel_display *display,
+> >  			     struct intel_dpll *pll,
+> >  			     struct intel_dpll_hw_state *dpll_hw_state); -void
+> > intel_enable_shared_dpll(const struct intel_crtc_state *crtc_state);
+> > -void intel_disable_shared_dpll(const struct intel_crtc_state
+> > *crtc_state); -void intel_shared_dpll_swap_state(struct
+> > intel_atomic_state *state); -void intel_shared_dpll_init(struct
+> > intel_display *display);
+> > +void intel_enable_dpll(const struct intel_crtc_state *crtc_state);
+> > +void intel_disable_dpll(const struct intel_crtc_state *crtc_state);
+> > +void intel_dpll_swap_state(struct intel_atomic_state *state); void
+> > +intel_dpll_init(struct intel_display *display);
+> >  void intel_dpll_update_ref_clks(struct intel_display *display);  void
+> > intel_dpll_readout_hw_state(struct intel_display *display);  void
+> > intel_dpll_sanitize_state(struct intel_display *display); @@ -435,8
+> > +435,8 @@ bool intel_dpll_compare_hw_state(struct intel_display
+> > *display,  enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port
+> > tc_port);  bool intel_dpll_is_combophy(enum intel_dpll_id id);
 > >
-> >  	/* Configure Port Clock Select */
-> > -	drm_WARN_ON(display->drm, crtc_state->shared_dpll->info->id !=3D
-> DPLL_ID_SPLL);
-> > +	drm_WARN_ON(display->drm, crtc_state->intel_dpll->info->id !=3D
-> DPLL_ID_SPLL);
-> >  	intel_ddi_enable_clock(encoder, crtc_state);
+> > -void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
+> > -				    struct intel_crtc *crtc);
+> > -void intel_shared_dpll_verify_disabled(struct intel_atomic_state
+> > *state);
+> > +void intel_dpll_state_verify(struct intel_atomic_state *state,
+> > +			     struct intel_crtc *crtc);
+> > +void intel_dpll_verify_disabled(struct intel_atomic_state *state);
 > >
-> >  	/* Start the training iterating through available voltages and emphas=
-is,
+> >  #endif /* _INTEL_DPLL_MGR_H_ */
 > > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c
-> b/drivers/gpu/drm/i915/display/intel_lvds.c
-> > index 8ce7c630da52..ec8f38fba178 100644
+> > b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > index ec8f38fba178..f07c7ef56148 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
 > > @@ -249,7 +249,7 @@ static void intel_pre_enable_lvds(struct
-> intel_atomic_state *state,
+> > intel_atomic_state *state,
 > >
 > >  	if (HAS_PCH_SPLIT(display)) {
 > >  		assert_fdi_rx_pll_disabled(display, pipe);
-> > -		assert_shared_dpll_disabled(display, crtc_state->shared_dpll);
-> > +		assert_shared_dpll_disabled(display, crtc_state->intel_dpll);
+> > -		assert_shared_dpll_disabled(display, crtc_state->intel_dpll);
+> > +		assert_dpll_disabled(display, crtc_state->intel_dpll);
 > >  	} else {
 > >  		assert_pll_disabled(display, pipe);
 > >  	}
 > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > index 0325b0c9506d..46e0002a1358 100644
+> > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > index 46e0002a1358..ed4f305e0d3e 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > @@ -92,10 +92,10 @@ static void intel_crtc_disable_noatomic_begin(struc=
-t
+> > @@ -93,9 +93,9 @@ static void intel_crtc_disable_noatomic_begin(struct
 > intel_crtc *crtc,
-> >  	crtc->active =3D false;
 > >  	crtc->base.enabled =3D false;
 > >
-> > -	if (crtc_state->shared_dpll)
-> > +	if (crtc_state->intel_dpll)
-> >  		intel_unreference_shared_dpll_crtc(crtc,
-> > -						   crtc_state->shared_dpll,
-> > -						   &crtc_state->shared_dpll-
+> >  	if (crtc_state->intel_dpll)
+> > -		intel_unreference_shared_dpll_crtc(crtc,
+> > -						   crtc_state->intel_dpll,
+> > -						   &crtc_state->intel_dpll-
 > >state);
-> > +						   crtc_state->intel_dpll,
-> > +						   &crtc_state->intel_dpll-
-> >state);
+> > +		intel_unreference_dpll_crtc(crtc,
+> > +					    crtc_state->intel_dpll,
+> > +					    &crtc_state->intel_dpll->state);
 > >  }
 > >
-> >  static void set_encoder_for_connector(struct intel_connector *connecto=
-r,
-> > @@ -565,7 +565,7 @@ static bool has_bogus_dpll_config(const struct
-> intel_crtc_state *crtc_state)
-> >  	 */
-> >  	return display->platform.sandybridge &&
-> >  		crtc_state->hw.active &&
-> > -		crtc_state->shared_dpll &&
-> > +		crtc_state->intel_dpll &&
-> >  		crtc_state->port_clock =3D=3D 0;
+> >  static void set_encoder_for_connector(struct intel_connector
+> > *connector, diff --git
+> > a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> > b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> > index 766a9983665a..f2f6b9d9afa1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> > @@ -243,7 +243,7 @@ void intel_modeset_verify_crtc(struct
+> intel_atomic_state *state,
+> >  	intel_wm_state_verify(state, crtc);
+> >  	verify_connector_state(state, crtc);
+> >  	verify_crtc_state(state, crtc);
+> > -	intel_shared_dpll_state_verify(state, crtc);
+> > +	intel_dpll_state_verify(state, crtc);
+> >  	intel_mpllb_state_verify(state, crtc);
+> >  	intel_cx0pll_state_verify(state, crtc);  } @@ -252,5 +252,5 @@ void
+> > intel_modeset_verify_disabled(struct intel_atomic_state *state)  {
+> >  	verify_encoder_state(state);
+> >  	verify_connector_state(state, NULL);
+> > -	intel_shared_dpll_verify_disabled(state);
+> > +	intel_dpll_verify_disabled(state);
 > >  }
-> >
 > > diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c
-> b/drivers/gpu/drm/i915/display/intel_pch_display.c
-> > index 1743ebf551cb..b38305c16e77 100644
+> > b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> > index b38305c16e77..b59b3c94f711 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
 > > @@ -251,7 +251,7 @@ static void ilk_enable_pch_transcoder(const struct
@@ -1966,61 +1270,57 @@ r,
 > >  	u32 val, pipeconf_val;
 > >
 > >  	/* Make sure PCH DPLL is enabled */
-> > -	assert_shared_dpll_enabled(display, crtc_state->shared_dpll);
-> > +	assert_shared_dpll_enabled(display, crtc_state->intel_dpll);
+> > -	assert_shared_dpll_enabled(display, crtc_state->intel_dpll);
+> > +	assert_dpll_enabled(display, crtc_state->intel_dpll);
 > >
 > >  	/* FDI must be feeding us bits for PCH ports */
-> >  	assert_fdi_tx_enabled(display, pipe);
-> > @@ -381,7 +381,7 @@ void ilk_pch_enable(struct intel_atomic_state *stat=
-e,
-> >  		temp =3D intel_de_read(display, PCH_DPLL_SEL);
+> >  	assert_fdi_tx_enabled(display, pipe); @@ -382,7 +382,7 @@ void
+> > ilk_pch_enable(struct intel_atomic_state *state,
 > >  		temp |=3D TRANS_DPLL_ENABLE(pipe);
 > >  		sel =3D TRANS_DPLLB_SEL(pipe);
-> > -		if (crtc_state->shared_dpll =3D=3D
-> > +		if (crtc_state->intel_dpll =3D=3D
-> >  		    intel_get_shared_dpll_by_id(display, DPLL_ID_PCH_PLL_B))
+> >  		if (crtc_state->intel_dpll =3D=3D
+> > -		    intel_get_shared_dpll_by_id(display, DPLL_ID_PCH_PLL_B))
+> > +		    intel_get_dpll_by_id(display, DPLL_ID_PCH_PLL_B))
 > >  			temp |=3D sel;
 > >  		else
-> > @@ -496,7 +496,7 @@ void ilk_pch_get_config(struct intel_crtc_state
-> *crtc_state)
-> >  {
-> >  	struct intel_display *display =3D to_intel_display(crtc_state);
-> >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	enum pipe pipe =3D crtc->pipe;
-> >  	enum intel_dpll_id pll_id;
-> >  	bool pll_active;
-> > @@ -528,8 +528,8 @@ void ilk_pch_get_config(struct intel_crtc_state
-> *crtc_state)
+> >  			temp &=3D ~sel;
+> > @@ -394,11 +394,11 @@ void ilk_pch_enable(struct intel_atomic_state
+> *state,
+> >  	 * transcoder, and we actually should do this to not upset any PCH
+> >  	 * transcoder that already use the clock when we share it.
+> >  	 *
+> > -	 * Note that enable_shared_dpll tries to do the right thing, but
+> > -	 * get_shared_dpll unconditionally resets the pll - we need that
+> > +	 * Note that enable_dpll tries to do the right thing, but
+> > +	 * get_dpll unconditionally resets the pll - we need that
+> >  	 * to have the right LVDS enable sequence.
+> >  	 */
+> > -	intel_enable_shared_dpll(crtc_state);
+> > +	intel_enable_dpll(crtc_state);
+> >
+> >  	/* set transcoder timing, panel must allow it */
+> >  	assert_pps_unlocked(display, pipe);
+> > @@ -472,7 +472,7 @@ void ilk_pch_post_disable(struct
+> > intel_atomic_state *state,
+> >
+> >  	ilk_fdi_pll_disable(crtc);
+> >
+> > -	intel_disable_shared_dpll(old_crtc_state);
+> > +	intel_disable_dpll(old_crtc_state);
+> >  }
+> >
+> >  static void ilk_pch_clock_get(struct intel_crtc_state *crtc_state) @@
+> > -528,7 +528,7 @@ void ilk_pch_get_config(struct intel_crtc_state *crtc_=
+state)
 > >  			pll_id =3D DPLL_ID_PCH_PLL_A;
 > >  	}
 > >
-> > -	crtc_state->shared_dpll =3D intel_get_shared_dpll_by_id(display, pll_=
-id);
-> > -	pll =3D crtc_state->shared_dpll;
-> > +	crtc_state->intel_dpll =3D intel_get_shared_dpll_by_id(display, pll_i=
+> > -	crtc_state->intel_dpll =3D intel_get_shared_dpll_by_id(display, pll_i=
 d);
-> > +	pll =3D crtc_state->intel_dpll;
+> > +	crtc_state->intel_dpll =3D intel_get_dpll_by_id(display, pll_id);
+> >  	pll =3D crtc_state->intel_dpll;
 > >
 > >  	pll_active =3D intel_dpll_get_hw_state(display, pll,
-> >  					     &crtc_state->dpll_hw_state);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> > index 8bec55deff9f..9f6102d7c7be 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-> > @@ -499,7 +499,7 @@ static void lpt_init_pch_refclk(struct intel_displa=
-y
-> *display)
-> >  static void ilk_init_pch_refclk(struct intel_display *display)
-> >  {
-> >  	struct intel_encoder *encoder;
-> > -	struct intel_shared_dpll *pll;
-> > +	struct intel_dpll *pll;
-> >  	int i;
-> >  	u32 val, final;
-> >  	bool has_lvds =3D false;
 >=20
 > --
 > Jani Nikula, Intel
