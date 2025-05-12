@@ -2,177 +2,208 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 154BAAB3C34
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 17:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B280AB3C91
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 17:44:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90A6210E436;
-	Mon, 12 May 2025 15:34:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C400A8985A;
+	Mon, 12 May 2025 15:44:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cL2kZxHw";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="BUObKzBM";
+	dkim=pass (1024-bit key; unprotected) header.d=oracle.onmicrosoft.com header.i=@oracle.onmicrosoft.com header.b="V/WpT1cf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2389710E36D;
- Mon, 12 May 2025 15:34:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747064095; x=1778600095;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=gGhqWBoBilE7mH17MPX9VsZqPRmmR+2mk9uC+olHhio=;
- b=cL2kZxHwXBPsyo7uyVB7GVwhK0Aq78dENpUQhgF1vBq0jYty9cNXWqX7
- D8DtdUgZhcMjyutsbDGmZRl6lDihOYdx6KeRnINhxeKxLxNfSa6zqSluC
- u6pxWGXId+mKvpUhzM26XBLR1HCKyEMdiBNSkCxlAfpmz4pkJl0nfFTPA
- sY8dpHFi5AJlg0JG3AUaM/lO4a5+cKd/GLCD6xa18Jl4YHdjep2QiWww9
- D5gT1dhxnvM9H/Or80EsYIXN+9N7rf2mfN/hdO0ARCrMuAZQ77PhvSEEB
- +QjH5o37iC46EOPuWDySrPrT9cTFVvoBTW6dlsSlE/SGYmSrqwk3qrWAE Q==;
-X-CSE-ConnectionGUID: Bo4XsPupTKGluQvxtww+rg==
-X-CSE-MsgGUID: 09rgmQh5SbGBSSAfxw1Giw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48736817"
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="48736817"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 08:34:54 -0700
-X-CSE-ConnectionGUID: nT3kMNbbQ3K9M0c8dyfKKw==
-X-CSE-MsgGUID: dofz1QrwR3OrA+ihrwSFzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="141459053"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 08:34:53 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 12 May 2025 08:34:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Mon, 12 May 2025 08:34:52 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 12 May 2025 08:34:51 -0700
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70F5F10E1C8;
+ Mon, 12 May 2025 15:44:06 +0000 (UTC)
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54CC9spF004037;
+ Mon, 12 May 2025 15:43:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=corp-2025-04-25; bh=A3qsoTVBmlmDiup/lD
+ YX6I4BIKG9TKE+XyPynM4cFnc=; b=BUObKzBMhKpi5Su/SwzANGtlp+IIkUx3MN
+ J8dqaE4gIQ9Oeoc4FSe1gAHcv1RQeFzjJ5D8dLkWqtAPlXD1qlCIVTlpP6MvJAJ3
+ uuy9Dm1KILpV6N+HmRphqAGWwTwLIn+wN7IP384CTEiEijdLHude85E6lbeWUmuU
+ j2txVijr8Ps7JXJC6cy7walOOb4lYa/kkcjqrBQjwL3EFp2kKE3e4U29YZwQL0SB
+ W1mQNl7fXxiOivryKtWi2+1tDP1dAfb39AHPxAiUsvzZAga8dbgc2D/jPm7wlOIe
+ WBkRdkO+XmytDjbeqA4+9883f245KzqyvXFCRMgWiP5bOYlPszkA==
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 46j0epjt6d-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 12 May 2025 15:43:37 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 54CFRCRr033163; Mon, 12 May 2025 15:43:36 GMT
+Received: from nam04-bn8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04lp2042.outbound.protection.outlook.com [104.47.74.42])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 46hw8dhtsw-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 12 May 2025 15:43:36 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DbWIPartWz5T/aKVQ4ozwvRHvlWQQLh3JUaDoQ+mkdhtbXRil47f7U3JoW43jCiDH6Fhxd3Uwg6mJKOpkOg1RZY7zFsrVLy6lj/H9PjvuEsrcexqTHl+/AJbPiYIRqtxezy8uOd5rL0YJ5EiQ9fwtGqsPBtxlzDyVPBAip6p2ulX0NaPD2KJeYIts1D1m8gX9W+QqcDn8x+uqJn4p+V/AijJvf2Ov9W2oI0i02Q5Ep+BvUzdyz9kap7OLME6KdU+PmtoYr/Bq2cgIZxcitJUETQPSXitIpdN4K/1H6Nm3xOo1fj5A/nFIbva1uh9+PQNm9nAjdGF81YQ3a74BdiHJA==
+ b=eFK7xb0Ozst1Lo+VS3swXxNKaNCeagWS/a06+kFdpXXPW83P3DpKZ97g2Y5CNSrQDF3Uu2/x85xysXMWsFUiBDXPEDZTOSQf2gE5xyCKm2KF2QIbuIzQoboJBCULgWNciY+W+ZfqNAKE/FG7pA8HA/VoXrpaE1Tre4jP1q8xXincocfeKSCchiEAajedh5A0RdxSIzgAu6KoeDys3akT6C9knp7dJufwwlWO4wJEjpOQ5K0d2rCA0k+3+pffhavwVRKul5CthWQNia6LtLQkR0dMdWvtcs9XS5d3cQ2mQb9KoHsv7B1XL18iBCa7aQh5b+eJqhZDvDYZ4LGRmbuGWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OK+5CGFyAbprm6k/CoNOo9x0XMwUwQN4zeB3tBZpvKo=;
- b=nADqBtVYy8Qo4vi7Kl2Noxx+hWxa+lOEsbC6JztsHDTrTb7JyBFVR3C1S1NXtwGUDleUf6776I1pvozzd4MhK5tGTA4ltyOi7PtLVsG7U5umrD6bzPP4CRfWO/9stOGjb5iDUcgjMnGwFrFLj7POG6PdikFbngeQyRKvnVRMONmUcE2oKhHkrER9OTlg/A27BBB8b4TzJopTWQk5oHNgng+N2GCWDZ0EawRcNnlFO+uHfgNn7/QEdyovBSjQxjSvNhBdC6gTLr74Fe4h9Pxx+xWvK6khfDOPnjAOmv/nfAhPVkLAayOhinjCpZ+cJFwVbhH/vUwRcLra6rT93LYYJg==
+ bh=A3qsoTVBmlmDiup/lDYX6I4BIKG9TKE+XyPynM4cFnc=;
+ b=C0hngW8Qwnl1UhiZzmQVWHGzk+6xSp3gJCiNO1WZ/4/DBPO1HCisuYwbJvEcmFPYGQrKzglIjiE20d8oltYrLPuNDhP/jWb+ZQ0OuNTYY90IvyViqLposFwFRh8uKfoZ250Dz6es2yZCcvxDqXJMk/8W+hC6egy7TCGG4Ns6OQJvkGQ+MheEq8vMW0z0RcAaHc2mb3lCn+r4zObyUlKJfdFip8TQDquJEdSJDhLBu6Be0L/+zWRCJoS+CbSEXMSmmBL11Qp7Xo0tLKGK6GRHXxos+Qif75xTek26kDWbuscaLG0HINmev9BWp/Ao3+NMEwdtkI5+6iCLdVUiaU+lqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by IA4PR11MB9108.namprd11.prod.outlook.com (2603:10b6:208:567::17)
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A3qsoTVBmlmDiup/lDYX6I4BIKG9TKE+XyPynM4cFnc=;
+ b=V/WpT1cfNov2j95NpYRRsCviaJyCq7udpB3S3teD/6Z9V4WYai8O3kZqoJw8bClKG+WJnyGi6TommdCtjx4qNgVMN00ogmTdcj0QiL9Ces+D5JPYMlOgFWz2XUPEjPmvCuaP4TqzfH4tBHMS8YvwpDSW7LOKdT5eHkKDxW5eaYU=
+Received: from CH3PR10MB8215.namprd10.prod.outlook.com (2603:10b6:610:1f5::7)
+ by PH7PR10MB6507.namprd10.prod.outlook.com (2603:10b6:510:202::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Mon, 12 May
- 2025 15:34:50 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%3]) with mapi id 15.20.8722.027; Mon, 12 May 2025
- 15:34:50 +0000
-Date: Mon, 12 May 2025 11:34:44 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
-CC: Alex Deucher <alexander.deucher@amd.com>, Christian
- =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, <siqueira@igalia.com>,
- <airlied@gmail.com>, <simona@ffwll.ch>, Raag Jadav <raag.jadav@intel.com>,
- <jani.nikula@linux.intel.com>, Xaver Hugl <xaver.hugl@gmail.com>,
- "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <kernel-dev@igalia.com>, <amd-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2 1/3] drm: Create an app info option for wedge events
-Message-ID: <aCIVFMcJB6T4IjW8@intel.com>
-References: <20250511224745.834446-1-andrealmeid@igalia.com>
- <20250511224745.834446-2-andrealmeid@igalia.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Mon, 12 May
+ 2025 15:43:32 +0000
+Received: from CH3PR10MB8215.namprd10.prod.outlook.com
+ ([fe80::e4f5:cb34:9b58:be90]) by CH3PR10MB8215.namprd10.prod.outlook.com
+ ([fe80::e4f5:cb34:9b58:be90%4]) with mapi id 15.20.8722.027; Mon, 12 May 2025
+ 15:43:32 +0000
+Date: Mon, 12 May 2025 16:43:30 +0100
+From: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+To: David Hildenbrand <david@redhat.com>
+Cc: linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, "H. Peter Anvin" <hpa@zytor.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>,
+ Ingo Molnar <mingo@kernel.org>
+Subject: Re: [PATCH v2 02/11] mm: convert track_pfn_insert() to
+ pfnmap_setup_cachemode*()
+Message-ID: <b8b9c0ec-3654-4231-aad9-fec702bcebda@lucifer.local>
+References: <20250512123424.637989-1-david@redhat.com>
+ <20250512123424.637989-3-david@redhat.com>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250511224745.834446-2-andrealmeid@igalia.com>
-X-ClientProxiedBy: SJ0P220CA0022.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::33) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+In-Reply-To: <20250512123424.637989-3-david@redhat.com>
+X-ClientProxiedBy: LO4P123CA0120.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:192::17) To CH3PR10MB8215.namprd10.prod.outlook.com
+ (2603:10b6:610:1f5::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA4PR11MB9108:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8dc44e3-5c83-485c-3113-08dd916a8870
+X-MS-TrafficTypeDiagnostic: CH3PR10MB8215:EE_|PH7PR10MB6507:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12d2e903-3864-4746-1795-08dd916bc01c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|366016|376014|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?Ee0qAhppleLD5UZYdrG338hzzpsva+YJO5gt6z7vzncux7AoZhQt9YDOwW?=
- =?iso-8859-1?Q?oxgleJYMXDm3KxJJl0/7JZpBgnF2/IWW0yjeg+OXxZacahTbD4ykmGGjK4?=
- =?iso-8859-1?Q?STNIFLVzMLd8av7QbjhI9vAb8AMNQb5mpekaE3SehrucBCZ0SyOHdQgssx?=
- =?iso-8859-1?Q?rC9VBMxENz9K6APmQ3Vkh5WCo6pV9MVi0BnXMqf8vILwMW+CXA3D8Diptn?=
- =?iso-8859-1?Q?EUGTRJKLFbnRK2LjWhm7XXJZ2pCHkdtNWh5NVIqz3j8Qt78xpS2E6Hgq3C?=
- =?iso-8859-1?Q?Vdfq9tDLQLeU9IHoMPlSpMAB51k6ahPyFBSC1LZmMErfB/LgsGyiyBezH/?=
- =?iso-8859-1?Q?dMzad7z3i7J7PuVA1SgQ9qdW7ETicmxZef4fG16SbNnYS0918UFikVO/x8?=
- =?iso-8859-1?Q?VhhQ16+NDsQbn0aysvLI6NeQfwsSglqyfv3YS+4L1fgLqqaROvWiSYSGaL?=
- =?iso-8859-1?Q?aWz9CFrqb90ov5Z28aUEj4UWB8r9BtH/mTISTGlVAk3gpKUbAI9qfbchKS?=
- =?iso-8859-1?Q?KBxuazgl2yfpwR4jr48A/wl5VA7J0aRiRqPzVMqyVP5V4bPIxh6jCcNr29?=
- =?iso-8859-1?Q?iEKIJ9pdLd9FHeQ5bAHqcQyMJN15Pdj7miwEoKpXOxuWcDsT1tOaqDHL08?=
- =?iso-8859-1?Q?PmCTtrHIIkNnAE/0sLiiHEbKbafaQDgtweS/394P59AgFe7wCB8YDqte6S?=
- =?iso-8859-1?Q?Kzfn98HebUHSBkoyv8rolE7zcJxTsit5naoEc5MHQMQhBSGOm+7K3dVjfB?=
- =?iso-8859-1?Q?+bCL7g0fOSY20SURwuOhETSYEthecYJw5FONqkoFH7PLocKbWrdecS2Gl4?=
- =?iso-8859-1?Q?JVDWcSYDhp8Kf2oO+ttMtughzueMNvNPa4IwicXYGxfHK/yaT8O9cr5ACT?=
- =?iso-8859-1?Q?BdVIhO6MzK5tseP/H3H24vN3Y5hfUBMnioJt+AdPBvB2SpUP1o9XQ/YzMA?=
- =?iso-8859-1?Q?CKR+ZVMe7VQIIktGoPFhFXvUZ6/bHWmNzBN+WBKuPKbbtRx7PwISHsnQ8t?=
- =?iso-8859-1?Q?dboKTnYlaDZklmlRbpH37CDRvolVueKQB0IkoHGDV92H6HzKkBRFIfQyCO?=
- =?iso-8859-1?Q?Nc4NOAgUbmm2v3ylol0/66v/uLyhvskWLu/ajpKxXlPU/qWZ1zCKLO2rJr?=
- =?iso-8859-1?Q?FCr7fsYq6P+O1Pi32F60UN/g3jKduhBD8q/Np2pHM5F3/HD3L7C3wY223l?=
- =?iso-8859-1?Q?ST+68WtXfJNYLATqt1BCiiiRkVMUh5dExIHd9ZchCPKaKbjIyZGp8Su5Mi?=
- =?iso-8859-1?Q?FCKwv756bQHUAihMh1YxboKr7YhShzf0aLv38tPhBBoB4/F+1E+USpmBbA?=
- =?iso-8859-1?Q?/3zpIDuk1qm0dYGv4lUs/aNm689pmDls2jG8nTNOKigKmbYyg1OIrhH5Pu?=
- =?iso-8859-1?Q?RFXIFHl7Af9utqvcGkpbJpf1HamNJl3JRZ4kfCYYdWR2hGFwirVVI0uSqH?=
- =?iso-8859-1?Q?LuIJFF2YTpIiBY7uRcRk7c3fm+TmwcLJ7LyWED4O4JtllRZdt5s1bqkk/A?=
- =?iso-8859-1?Q?I=3D?=
+ ARA:13230040|7416014|376014|366016|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?k0ZDgotjcBdOljkiNa7Ki9zPWYy2YyT1mc1pdyZthX5l8XzgljK0EGrl++AA?=
+ =?us-ascii?Q?TJTfy598FqgLB9aVatCBy1Xm9ASxzN1uTV7oS7Ovo6X71/pyOBRGNy5VUDdq?=
+ =?us-ascii?Q?NzbVisJluoj0uAnfnm5S4V/fzVL9FPzQNK7VXp3oTsDRJCzdVSaLR6bMwNwe?=
+ =?us-ascii?Q?6hRaCnz6BQvoNRXu26RBF9VT42ruWU70FsqwtKeSq7/ahRgnp8F5lTFnu0mu?=
+ =?us-ascii?Q?yZi1fdCrXxrYIj4jhkM9Rf32unLnsOCKGmWrIIFEqRAzMNQol1sOTyTmCYyK?=
+ =?us-ascii?Q?zQeZ+116ltcgPp51oKuCpGc2SKt0Td8QRgebj7IqpKCLpKibSpNAyJByu6CY?=
+ =?us-ascii?Q?HgptBpk75E3FHi8puRjEPBXNPEH+B4q0qBotrBcTO29Dqj4/AmiKZizWmU0f?=
+ =?us-ascii?Q?lJtGLrQuQwCoIP2KcI8HywiYP3BqeBV2zyOjkLkOBv7iQ57nhmA9OiUUdGsq?=
+ =?us-ascii?Q?gzHrj94kRLY8d52v0TP4gLmX9B/hiy8sAx/+LOhY9Ovm0sBeSlkWb7vtMhz3?=
+ =?us-ascii?Q?17CzGrsc2IbYmYXxBVQiDkx8VUE684w1AUno+ZNj/TPrdM9v3gws8jMP+r9Y?=
+ =?us-ascii?Q?+wW3yjqd9GZDlEcyxOhBsik8f1DVifSdsidOKd5YZbP/9HJOIhdUh3lx4Djp?=
+ =?us-ascii?Q?aRMhP/x0UnRw3I5tXrf6FqQvDd2N17ZjtyKu4fs4c5pIYKujGZ6gHR5vwatM?=
+ =?us-ascii?Q?fi+4txWrXYTXjQ7WQpJf6bHeJjsABZPY0MF3DwUnj15rIcfX239tzITvBd5n?=
+ =?us-ascii?Q?7U787VfQJpVLuZyu9S4VztC+UbEcW6Z2ffeHqFoXv8/TPmECrw39ZQCQJ+vj?=
+ =?us-ascii?Q?M7sC/w/5oXEVE6PLFnP7DU3utDI6p5Ry87XbtV/hNLiPtZL1btbKfSEKAkQC?=
+ =?us-ascii?Q?wyY+Tvx3NNYVuFgD0Nmu0ZFei4+CMJgODb6iRUlUfBf3tF7nM+D7Y8Xm/tdE?=
+ =?us-ascii?Q?MjR6mfgcaf4IktVL/rkUBEsMS9voWu8xWOgAHx0TIt545fb5ZfGHZ8dJHeGo?=
+ =?us-ascii?Q?fSsf2U+yFCQ0kkepJhNQQKHmEdb2Jkc7Ru3tdH/x9dHQFLJX10j/GJauuGoT?=
+ =?us-ascii?Q?DyidK9xbPY6rvrrlLvELgGG1uxaCfnv8X+fnp7R0xo1p2DMNXT9aAiVKjt7X?=
+ =?us-ascii?Q?YPA17x8/Au+zM55gKOKM9Ijux0E5TkGNeE7+PYQEJ5bOcs2rhnQFKZIuAQxX?=
+ =?us-ascii?Q?fCsp+/hLvZyjUHQ/1tdoj+CiTKTNc8wTMYu7WZWE6zHdoKFD51MYF4JdM6Lc?=
+ =?us-ascii?Q?U7RduodtmjaCXYsTc4WFRoRmWH+SgoOAQLpJZZjIGXLNgiucfeoVf63odZDG?=
+ =?us-ascii?Q?GJ7JogiASG1d0ICITDl57gcX6gGJJk2S/4Yujf3S/FWFRRSS4EymDO1eF9+J?=
+ =?us-ascii?Q?D+bNCzrJBBig0CIJ3Aa91gcJL9pU8YS4LgVEtoEhsCg28cpk8H+VpN1oVat2?=
+ =?us-ascii?Q?JRM6+OPfLH0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(366016)(376014)(1800799024)(7053199007); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:CH3PR10MB8215.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?iQd+7musFuOORmlEZTTAgC00JBgp+GZFD3iwMZCUKSfiUjvH6k8OeLZm9O?=
- =?iso-8859-1?Q?zQEFapI9Tj2NnMzTUNo8MT/c9OmaR5IViwYRy5rjPLaWZrsb1MmFG81fxw?=
- =?iso-8859-1?Q?eB60jryO1TKzeo8X6rOKEAOacFXIEFqcZmubbAFJGDR6gMARPkdrJVFNOH?=
- =?iso-8859-1?Q?p+osxVd9NiJ/CvTqArvW+GKT7zY19UT6M2LjvItOCMc81okJ/KRxSDDgc+?=
- =?iso-8859-1?Q?ZczKJrh7vetCuLwQbNNa9WMY14WthJlzgyh9CMkzjLAM0wlFQxi697Dgw0?=
- =?iso-8859-1?Q?z/uDDuxpoJiRag0bV0LZj1isU4CHsS7mqD8NQ1gbW++qmGXfnZcqYBab5h?=
- =?iso-8859-1?Q?Fh15lyMjU+ABNcCPwdq3WFea/AY/yyDgPw1SwuEz43ObrQAjYV+0kbGAfN?=
- =?iso-8859-1?Q?yJh4SRSEIaVSaeAMZDOlreflleOOHv/RRS65CqLzlViGfJGt3SwMJuWQwC?=
- =?iso-8859-1?Q?sYmArSWzEAlT998JDyl61YVXqzF2zYIVf1cRt/yGqs256XdcNDTJCommRV?=
- =?iso-8859-1?Q?YGK0A6xtrNnv6nWbbIrp5SVlzTPDdOmeRBHZ1ZcYPFAaFkGP8usZR2EQ7k?=
- =?iso-8859-1?Q?miRHARgtwKw7Vg9cIKaO6xFXZYSvC+YA/37SxnwHTQxQ+9F03dm/RQZgBC?=
- =?iso-8859-1?Q?Xj248/n2EY4SzSlOR5qMh1fObx2niGB2ZvMJifYpahYSpe6vciUboib3wS?=
- =?iso-8859-1?Q?ZIEIkGDfFWdVhpDLK6kPGoWwKt73RL613l0qQRZvn6NdiQxiHAVPRWg5b1?=
- =?iso-8859-1?Q?rTEP/TUBLj/spvZ0YUDoQ68z+hho1hgJJNAIvobZ41MMjoKRmY+DrqX6ra?=
- =?iso-8859-1?Q?BZGrKpznS4/dT4Xo8qlHIoiIBTm4YQTqfaEYc/U2TglgySLs7Dyr5mJGwX?=
- =?iso-8859-1?Q?Oe4s+LB/PP9VknCj4qtPnH0d6Welxq02QMciE4QAoHrr70eOMlPc9PQncR?=
- =?iso-8859-1?Q?dZiNdo7TX0T5Lns/f8/LoIIr6E7W2Cfnehg10Hj6fg0pcMysrOWvuiKH+6?=
- =?iso-8859-1?Q?VsjnaOQdK/I73Y1RUm+dYDkmWiN+RTbM+k8+ufCi+fIXGlBmbg3OjcSc2k?=
- =?iso-8859-1?Q?yxz2FUv1dhsEE65mx4nu9WQ+161MibiR91UBDd2A1vTekowQ3mfySTjULk?=
- =?iso-8859-1?Q?IacmCct1N4yvyFevSmzCC4Ly8/DkvJo/zrNltwdpt0vc00UyBNCdDJDChR?=
- =?iso-8859-1?Q?56/PFqo+OkieN6em26r/3CGcTI/XRbhWNKsEy9+KwBRa6rVDXIxwU4c2eG?=
- =?iso-8859-1?Q?dmrpbE5b1Eb3/QyJUVeS1uXanek+NMGzjZbPYjx3osTLLTnWVEATL+puxa?=
- =?iso-8859-1?Q?TOSi0zVGzsuvydMelxCPp+RbJzdiLUO1eDE2BTgIufqBmzjeR7cDYnfmUV?=
- =?iso-8859-1?Q?8UVFEwJsctMesBMSh/GEshuFCcXNTc01UuvkB667skp54hcsQnOt/ZCiDt?=
- =?iso-8859-1?Q?vCTiJgllG7p2tXSE3NnxDDC4TPmKAz6nJh+tfl5QTivS1jARHe2SBp6mpi?=
- =?iso-8859-1?Q?pBWJQ3ixFqENdzUzjH/E7uNf96icdS3sDtvDeDErzh5eQZimcthEz5jn6E?=
- =?iso-8859-1?Q?AbzdoVtNuGtK8ej8gEjxMTDXe5VWQRVYFgJXXx9x4tw3PYlQ+9TJ81R8f7?=
- =?iso-8859-1?Q?IqiDQrKlanMDK5z7jzFAxxTpecb/WsFsxJ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8dc44e3-5c83-485c-3113-08dd916a8870
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TM4tRA4L2gUqdApUEaUxD7cv1m32zg7R08aZFhasSA26dbPTHFAEccqh5fMW?=
+ =?us-ascii?Q?N/a0aPhkWIolfrWU17ZYdn29xAJ997cg0sOLPKgh8vZ5sGadop2QUEKrKGx0?=
+ =?us-ascii?Q?OiRPE6SIR6SmKobYnyom9cxs2MHYsAnKSEijWY4lHQu/j4Uw8AOC2BUKdkmC?=
+ =?us-ascii?Q?xKMFWVdsjpDJyiW3JMiO6iJygz+pSK7Dja2Dbrw+B2ZcfvhfKj/AEZRzo6oF?=
+ =?us-ascii?Q?z30rhPc4bLy2ScNWTiEY7yCSFEQzZB1AOrGYQeehylawVXCxI7RQpjeQRRYy?=
+ =?us-ascii?Q?qoRfq0OYS2BhyL0BAX7OZZAEho24mvkgQk3kR4NI7+L8IsJ3Cfo2WBhXB+Je?=
+ =?us-ascii?Q?9BgNVjyiFRfBa+DV1LS315aDYMTAyCOUFtVH625TbOdgs4KRrYJ1WRKXYVbH?=
+ =?us-ascii?Q?qcybGJkc0Rx6VbvOvlMfpOFey7i46Zg6emleA7B+/ScvaaU+bEUweK6Aj1iK?=
+ =?us-ascii?Q?UXwazaexHb4xzPsJsGpQdWJ6ptLls+SdK9GGReEr7LQzqwFYjZXTswoV6/bv?=
+ =?us-ascii?Q?yU+gkm47RdmIuwMfCWQKaw7nCFQxA0hIA+F24PeB5cVB8BfvveuzHqAW18vA?=
+ =?us-ascii?Q?eKdZM83g+rSsJXm5NalExdIBwfCNW/FpEH7nwXWogNzZjFM5q12T3eBMFRWU?=
+ =?us-ascii?Q?u95YEkdJFp4duJXQ+yBy00ohx92oAnSeJuw0GbjcsW5aMQLXkGUlF1pUdP/O?=
+ =?us-ascii?Q?+lhE5ElQ7wHXsQW5o7FVEt6oMYuU5JMNqyMLgDMN66xfal592f+2mu26t4TT?=
+ =?us-ascii?Q?HIktzsmn14VDL8bgL7aWLWSo3sPqBp3Sty4c5o75Slp3itHNyGHOoaTdtFRV?=
+ =?us-ascii?Q?0EpYLc1DsUytTJSyg6QAVma1JiCQJnKCepihNER25XiP92/Hit5ohC72hCCG?=
+ =?us-ascii?Q?Iql7W6mNXF42D7hQzUl1kmt4EQRS9hsnUNUeM5sC9Mwk8e7ftNTZ73+tD8m1?=
+ =?us-ascii?Q?sv1tGWjNhzc9D9ZTuMXdF/IKni+W9c82JFkzO6G4XyR12GYAEuPYsWNTtqmX?=
+ =?us-ascii?Q?cI4Is4kP3yG4Wvn4A8jkFeGLebQxD64KRpn17pZ9d29qXqLQXptUageArxEV?=
+ =?us-ascii?Q?IMuc4Oe3w6zNlBWFHZ7Tn6Kr/RNMlwmF5dbaebiqPIYGqnbMyh/XRhmQte0+?=
+ =?us-ascii?Q?ut80yHFe413E1FBG/H7tGlN+F/7M0S9yOdt6p2f+/La6/kr1NMS/luKZJjDv?=
+ =?us-ascii?Q?2KRzKG2ziEW2L5gv8aFmEo25U7G6UIQe08ZHljcyNv1MOP9pW+/cX4lwIIri?=
+ =?us-ascii?Q?ZFeN2Mq0k6jc6P963Ryg9nvvNi7XuZ7qmoQt5REBk/AJkVS285fhaNsnlykq?=
+ =?us-ascii?Q?GrEB8sOnAFuZpeWJ6T+euwayDsGwK4U8pOiE5VtPR5bTCLp/l+FPqps8GNQ0?=
+ =?us-ascii?Q?bfkExhOPwH439QahLIheOsV6b+w8kWIXUrIsFyL9hJYq86pIo9j+G2tVWhs/?=
+ =?us-ascii?Q?vGywAEy3DnOJSDTNB9LSn3NIeIUFMV1xAFlslsIDY6BT/2hU09RBxSxKlslp?=
+ =?us-ascii?Q?zJ8VBe1mXv5cK7KAxUSabRCaktC80Y5WfCs7Pmo7Qtl3nZGRabhrjMiOEwnC?=
+ =?us-ascii?Q?WeTzxLrpAkA7G1BnMciVdtsBSXfuSyANBGZpwSFIHuNWdr36A/4BuvZT8KE5?=
+ =?us-ascii?Q?8w=3D=3D?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: qGhiFafj3y/NaBts6751ySjCaAdBB49G+HnPznJItB/UvsVyeBDtHK6fYCQUYCzFKw+uTNZ8ynFGfIe6s9tPIEwwMXSFKGS36uY2UqfrIkYxLDH6AQKlviBjwMLVdgpvQbFYoxGBcEoVaDGFi2cMPPfxeYlGG6WxKOq3nWdFEPETQB6MKHiwL28ZtmPju/LXCQHBwfbEBoh7c0eW/MQ6VamFGNOZWGNPj4xsGbmowFrtmyb3n2mIOjCkwQnfjkA38a1K9S1jlCsu6dzkpI58zjQR/old7vdxjbcfWY41L6Snhry9Z6HO4J0HHIu2HiOEJnHHUWBciSWbjfQoZusNypX1Tb391bqgqw1rVZvHb+AHv/Bh2KbktiTH9R01o85C7f9WU1P+XGuTIjGCn4rS+GpilY7OkHSa66hDIcpkQgu4AxkNwlBHr+lyVTuNNWQ7R2bVbifsuO4CivhOoFHkUGcse7v0kB3VXpV3MCrQG8PH1/pxx1Tov8X0WpHZYKFmyvIlf3OdxXGdFs0HVYuGBQMNTnWSUWVM8BQUBERFgSDwh0b7jlqyUPOrgZbZoMnyhycfPTnMVa8PasCcadd1aCKmXBh0Kz6bFeunPaEHROk=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12d2e903-3864-4746-1795-08dd916bc01c
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR10MB8215.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 15:34:50.0889 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 15:43:32.8144 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M7HSbnHxlA0L/wx0gilzKciOXZiBfuZaE2EKLcU/RXLOdqLOcNi2pVrqXxql7R6BY0UTOdu4/Zxp+7CrD2YMVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9108
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: b+H05wATqNg0YRAwaXw5CAuoyPHC/BToWQ0M+/oCtpukSQA1vKGnRlcGI6qKQUv9VQbD3/1kBblfmeHocrs4hnoDsjOu5jmtO1o1TOT+lpg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6507
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-12_05,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ mlxlogscore=999
+ malwarescore=0 phishscore=0 bulkscore=0 adultscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2504070000 definitions=main-2505120162
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDE2MiBTYWx0ZWRfX1houyvQNevmw
+ aSeHWgXGBGjCtG9V9JVcFLLv4/GrkUE6RlOl67BmwRgdjRlnik83eoV6TuH1NRycaJMfmOsetMy
+ wIKVoFacOoZRhgIvnBH/uUejGm6c+O5ruE9MOgm3CfDPOVQr/MVxpLJmwh4k9lxRHhKrjxWYvys
+ uuPrq3UaOa3TZ4aBtD5/kYxr/7pRWkIML9WMZJVXjikEBlGJOIy8VLKhh6fkn1nwnfzpXJXGk5/
+ JFS930dH2HAbJzYjwBhIWIAFTK2aVEUDXEM83SxB7nfFX12fsRkbVS9Hdkf4i4z6dtlM5TfMUCJ
+ l8KrtOGEr8cnYTXIMkncPiVtpBXojfyb+vUr2OdItqHc6Gw9sAcZFoJK1dlcn1kl8uDTFsACnd3
+ FKkdY1FnfQFnwzbDXOQHmDxmyXbEBw0cnFe7lS4XXyd0K84qGEL8yUtOXTXRjRxlpzZnZxm9
+X-Authority-Analysis: v=2.4 cv=DO6P4zNb c=1 sm=1 tr=0 ts=68221729 b=1 cx=c_pps
+ a=e1sVV491RgrpLwSTMOnk8w==:117 a=e1sVV491RgrpLwSTMOnk8w==:17
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
+ a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=GoEa3M9JfhUA:10
+ a=VwQbUJbxAAAA:8 a=20KFwNOVAAAA:8 a=yPCof4ZbAAAA:8 a=dohQ5Pe4HFVHix1OcWsA:9
+ a=CjuIK1q_8ugA:10 cc=ntf awl=host:14694
+X-Proofpoint-ORIG-GUID: -jPkpoIjVjINaCvZ7C4cOSzKQ1-7eRs3
+X-Proofpoint-GUID: -jPkpoIjVjINaCvZ7C4cOSzKQ1-7eRs3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -188,182 +219,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, May 11, 2025 at 07:47:43PM -0300, André Almeida wrote:
-> When a device get wedged, it might be caused by a guilty application.
-> For userspace, knowing which app was the cause can be useful for some
-> situations, like for implementing a policy, logs or for giving a chance
-> for the compositor to let the user know what app caused the problem.
-> This is an optional argument, when `PID=-1` there's no information about
-> the app caused the problem, or if any app was involved during the hang.
-> 
-> Sometimes just the PID isn't enough giving that the app might be already
-> dead by the time userspace will try to check what was this PID's name,
-> so to make the life easier also notify what's the app's name in the user
-> event.
-> 
-> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+On Mon, May 12, 2025 at 02:34:15PM +0200, David Hildenbrand wrote:
+> ... by factoring it out from track_pfn_remap() into
+> pfnmap_setup_cachemode() and provide pfnmap_setup_cachemode_pfn() as
+> a replacement for track_pfn_insert().
+>
+> For PMDs/PUDs, we keep checking a single pfn only. Add some documentation,
+> and also document why it is valid to not check the whole pfn range.
+>
+> We'll reuse pfnmap_setup_cachemode() from core MM next.
+>
+> Acked-by: Ingo Molnar <mingo@kernel.org> # x86 bits
+> Signed-off-by: David Hildenbrand <david@redhat.com>
+
+I've gone through carefully and checked and this looks good to me :)
+
+Reviewed-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  2 +-
->  drivers/gpu/drm/drm_drv.c                  | 16 +++++++++++++---
->  drivers/gpu/drm/i915/gt/intel_reset.c      |  3 ++-
->  drivers/gpu/drm/xe/xe_device.c             |  3 ++-
->  include/drm/drm_device.h                   |  8 ++++++++
->  include/drm/drm_drv.h                      |  3 ++-
->  7 files changed, 29 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 7f354cd532dc..c8a51418d0e7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -6216,7 +6216,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->  	atomic_set(&adev->reset_domain->reset_res, r);
->  
->  	if (!r)
-> -		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-> +		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
->  
->  	return r;
->  }
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> index acb21fc8b3ce..a47b2eb301e5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-> @@ -166,7 +166,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
->  			if (amdgpu_ring_sched_ready(ring))
->  				drm_sched_start(&ring->sched, 0);
->  			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
-> -			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-> +			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
->  			goto exit;
->  		}
->  		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 3dc7acd56b1d..1816ef4251e7 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -542,6 +542,7 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
->   * drm_dev_wedged_event - generate a device wedged uevent
->   * @dev: DRM device
->   * @method: method(s) to be used for recovery
-> + * @info: optional information about the guilty app
->   *
->   * This generates a device wedged uevent for the DRM device specified by @dev.
->   * Recovery @method\(s) of choice will be sent in the uevent environment as
-> @@ -554,13 +555,14 @@ static const char *drm_get_wedge_recovery(unsigned int opt)
->   *
->   * Returns: 0 on success, negative error code otherwise.
->   */
-> -int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
-> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
-> +			 struct drm_wedge_app_info *info)
+>  arch/x86/mm/pat/memtype.c | 24 ++++++------------
+>  include/linux/pgtable.h   | 52 +++++++++++++++++++++++++++++++++------
+>  mm/huge_memory.c          |  5 ++--
+>  mm/memory.c               |  4 +--
+>  4 files changed, 57 insertions(+), 28 deletions(-)
+>
+> diff --git a/arch/x86/mm/pat/memtype.c b/arch/x86/mm/pat/memtype.c
+> index edec5859651d6..fa78facc6f633 100644
+> --- a/arch/x86/mm/pat/memtype.c
+> +++ b/arch/x86/mm/pat/memtype.c
+> @@ -1031,7 +1031,6 @@ int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
+>  		    unsigned long pfn, unsigned long addr, unsigned long size)
 >  {
->  	const char *recovery = NULL;
->  	unsigned int len, opt;
->  	/* Event string length up to 28+ characters with available methods */
-> -	char event_string[32];
-> -	char *envp[] = { event_string, NULL };
-> +	char event_string[32], pid_string[15], comm_string[TASK_COMM_LEN];
-> +	char *envp[] = { event_string, pid_string, comm_string, NULL };
->  
->  	len = scnprintf(event_string, sizeof(event_string), "%s", "WEDGED=");
->  
-> @@ -582,6 +584,14 @@ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method)
->  	drm_info(dev, "device wedged, %s\n", method == DRM_WEDGE_RECOVERY_NONE ?
->  		 "but recovered through reset" : "needs recovery");
->  
-> +	if (info) {
-> +		snprintf(pid_string, sizeof(pid_string), "PID=%u", info->pid);
-> +		snprintf(comm_string, sizeof(comm_string), "APP=%s", info->comm);
-> +	} else {
-> +		snprintf(pid_string, sizeof(pid_string), "%s", "PID=-1");
-> +		snprintf(comm_string, sizeof(comm_string), "%s", "APP=none");
-> +	}
-> +
->  	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
->  }
->  EXPORT_SYMBOL(drm_dev_wedged_event);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index dbdcfe130ad4..ba1d8fdc3c7b 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1448,7 +1448,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
->  		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
->  	else
->  		drm_dev_wedged_event(&gt->i915->drm,
-> -				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
-> +				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
-> +				     NULL);
-
-(For future) I believe we can later modify the gt_reset handles here
-to get ctx->id when we are coming from reset paths with context and
-NULL when we don't have pid.
-
-Perhaps one possibility could be strings to make this flexible
-'pid:%d'
-
-'path:debugfs'
-
-But just a brainstorm kind of idea... not a strong feeling or need.
-
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index c02c4c4e9412..f329613e061f 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -1168,7 +1168,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
->  
->  		/* Notify userspace of wedged device */
->  		drm_dev_wedged_event(&xe->drm,
-> -				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
-> +				     DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET,
-> +				     NULL);
-
-similarly here, for the paths where we come to the wedge declaration from
-exeq_queue, we could get q->vm->xef->pid...
-
-But again, no blocker from my side. For both i915 and Xe:
-
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
+>  	resource_size_t paddr = (resource_size_t)pfn << PAGE_SHIFT;
+> -	enum page_cache_mode pcm;
+>
+>  	/* reserve the whole chunk starting from paddr */
+>  	if (!vma || (addr == vma->vm_start
+> @@ -1044,13 +1043,17 @@ int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
+>  		return ret;
 >  	}
->  
->  	for_each_gt(gt, xe, id)
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index e2f894f1b90a..b87401d5079e 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -30,6 +30,14 @@ struct pci_controller;
->  #define DRM_WEDGE_RECOVERY_REBIND	BIT(1)	/* unbind + bind driver */
->  #define DRM_WEDGE_RECOVERY_BUS_RESET	BIT(2)	/* unbind + reset bus device + bind */
->  
-> +/**
-> + * struct drm_wedge_app_info - information about the guilty app of a wedge dev
-> + */
-> +struct drm_wedge_app_info {
-> +	pid_t pid;
-> +	char *comm;
-> +};
+>
+> +	return pfnmap_setup_cachemode(pfn, size, prot);
+> +}
 > +
->  /**
->   * enum switch_power_state - power state of drm device
->   */
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index a43d707b5f36..8fc6412a6345 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -482,7 +482,8 @@ void drm_put_dev(struct drm_device *dev);
->  bool drm_dev_enter(struct drm_device *dev, int *idx);
->  void drm_dev_exit(int idx);
->  void drm_dev_unplug(struct drm_device *dev);
-> -int drm_dev_wedged_event(struct drm_device *dev, unsigned long method);
-> +int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
-> +			 struct drm_wedge_app_info *info);
->  
->  /**
->   * drm_dev_is_unplugged - is a DRM device unplugged
-> -- 
+> +int pfnmap_setup_cachemode(unsigned long pfn, unsigned long size, pgprot_t *prot)
+> +{
+> +	resource_size_t paddr = (resource_size_t)pfn << PAGE_SHIFT;
+> +	enum page_cache_mode pcm;
+> +
+>  	if (!pat_enabled())
+>  		return 0;
+>
+> -	/*
+> -	 * For anything smaller than the vma size we set prot based on the
+> -	 * lookup.
+> -	 */
+>  	pcm = lookup_memtype(paddr);
+>
+>  	/* Check memtype for the remaining pages */
+> @@ -1065,17 +1068,6 @@ int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
+>  	return 0;
+>  }
+>
+> -void track_pfn_insert(struct vm_area_struct *vma, pgprot_t *prot, pfn_t pfn)
+> -{
+> -	enum page_cache_mode pcm;
+> -
+> -	if (!pat_enabled())
+> -		return;
+> -
+> -	pcm = lookup_memtype(pfn_t_to_phys(pfn));
+> -	pgprot_set_cachemode(prot, pcm);
+> -}
+> -
+>  /*
+>   * untrack_pfn is called while unmapping a pfnmap for a region.
+>   * untrack can be called for a specific region indicated by pfn and size or
+> diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
+> index f1e890b604609..be1745839871c 100644
+> --- a/include/linux/pgtable.h
+> +++ b/include/linux/pgtable.h
+> @@ -1496,13 +1496,10 @@ static inline int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
+>  	return 0;
+>  }
+>
+> -/*
+> - * track_pfn_insert is called when a _new_ single pfn is established
+> - * by vmf_insert_pfn().
+> - */
+> -static inline void track_pfn_insert(struct vm_area_struct *vma, pgprot_t *prot,
+> -				    pfn_t pfn)
+> +static inline int pfnmap_setup_cachemode(unsigned long pfn, unsigned long size,
+> +		pgprot_t *prot)
+>  {
+> +	return 0;
+>  }
+>
+>  /*
+> @@ -1552,8 +1549,32 @@ static inline void untrack_pfn_clear(struct vm_area_struct *vma)
+>  extern int track_pfn_remap(struct vm_area_struct *vma, pgprot_t *prot,
+>  			   unsigned long pfn, unsigned long addr,
+>  			   unsigned long size);
+> -extern void track_pfn_insert(struct vm_area_struct *vma, pgprot_t *prot,
+> -			     pfn_t pfn);
+> +
+> +/**
+> + * pfnmap_setup_cachemode - setup the cachemode in the pgprot for a pfn range
+> + * @pfn: the start of the pfn range
+> + * @size: the size of the pfn range in bytes
+> + * @prot: the pgprot to modify
+> + *
+> + * Lookup the cachemode for the pfn range starting at @pfn with the size
+> + * @size and store it in @prot, leaving other data in @prot unchanged.
+> + *
+> + * This allows for a hardware implementation to have fine-grained control of
+> + * memory cache behavior at page level granularity. Without a hardware
+> + * implementation, this function does nothing.
+> + *
+> + * Currently there is only one implementation for this - x86 Page Attribute
+> + * Table (PAT). See Documentation/arch/x86/pat.rst for more details.
+> + *
+> + * This function can fail if the pfn range spans pfns that require differing
+> + * cachemodes. If the pfn range was previously verified to have a single
+> + * cachemode, it is sufficient to query only a single pfn. The assumption is
+> + * that this is the case for drivers using the vmf_insert_pfn*() interface.
+> + *
+> + * Returns 0 on success and -EINVAL on error.
+> + */
+> +int pfnmap_setup_cachemode(unsigned long pfn, unsigned long size,
+> +		pgprot_t *prot);
+>  extern int track_pfn_copy(struct vm_area_struct *dst_vma,
+>  		struct vm_area_struct *src_vma, unsigned long *pfn);
+>  extern void untrack_pfn_copy(struct vm_area_struct *dst_vma,
+> @@ -1563,6 +1584,21 @@ extern void untrack_pfn(struct vm_area_struct *vma, unsigned long pfn,
+>  extern void untrack_pfn_clear(struct vm_area_struct *vma);
+>  #endif
+>
+> +/**
+> + * pfnmap_setup_cachemode_pfn - setup the cachemode in the pgprot for a pfn
+> + * @pfn: the pfn
+> + * @prot: the pgprot to modify
+> + *
+> + * Lookup the cachemode for @pfn and store it in @prot, leaving other
+> + * data in @prot unchanged.
+> + *
+> + * See pfnmap_setup_cachemode() for details.
+> + */
+> +static inline void pfnmap_setup_cachemode_pfn(unsigned long pfn, pgprot_t *prot)
+> +{
+> +	pfnmap_setup_cachemode(pfn, PAGE_SIZE, prot);
+> +}
+> +
+>  #ifdef CONFIG_MMU
+>  #ifdef __HAVE_COLOR_ZERO_PAGE
+>  static inline int is_zero_pfn(unsigned long pfn)
+> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
+> index 2780a12b25f01..d3e66136e41a3 100644
+> --- a/mm/huge_memory.c
+> +++ b/mm/huge_memory.c
+> @@ -1455,7 +1455,8 @@ vm_fault_t vmf_insert_pfn_pmd(struct vm_fault *vmf, pfn_t pfn, bool write)
+>  			return VM_FAULT_OOM;
+>  	}
+>
+> -	track_pfn_insert(vma, &pgprot, pfn);
+> +	pfnmap_setup_cachemode_pfn(pfn_t_to_pfn(pfn), &pgprot);
+> +
+>  	ptl = pmd_lock(vma->vm_mm, vmf->pmd);
+>  	error = insert_pfn_pmd(vma, addr, vmf->pmd, pfn, pgprot, write,
+>  			pgtable);
+> @@ -1577,7 +1578,7 @@ vm_fault_t vmf_insert_pfn_pud(struct vm_fault *vmf, pfn_t pfn, bool write)
+>  	if (addr < vma->vm_start || addr >= vma->vm_end)
+>  		return VM_FAULT_SIGBUS;
+>
+> -	track_pfn_insert(vma, &pgprot, pfn);
+> +	pfnmap_setup_cachemode_pfn(pfn_t_to_pfn(pfn), &pgprot);
+>
+>  	ptl = pud_lock(vma->vm_mm, vmf->pud);
+>  	insert_pfn_pud(vma, addr, vmf->pud, pfn, write);
+> diff --git a/mm/memory.c b/mm/memory.c
+> index 99af83434e7c5..064fc55d8eab9 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -2564,7 +2564,7 @@ vm_fault_t vmf_insert_pfn_prot(struct vm_area_struct *vma, unsigned long addr,
+>  	if (!pfn_modify_allowed(pfn, pgprot))
+>  		return VM_FAULT_SIGBUS;
+>
+> -	track_pfn_insert(vma, &pgprot, __pfn_to_pfn_t(pfn, PFN_DEV));
+> +	pfnmap_setup_cachemode_pfn(pfn, &pgprot);
+>
+>  	return insert_pfn(vma, addr, __pfn_to_pfn_t(pfn, PFN_DEV), pgprot,
+>  			false);
+> @@ -2627,7 +2627,7 @@ static vm_fault_t __vm_insert_mixed(struct vm_area_struct *vma,
+>  	if (addr < vma->vm_start || addr >= vma->vm_end)
+>  		return VM_FAULT_SIGBUS;
+>
+> -	track_pfn_insert(vma, &pgprot, pfn);
+> +	pfnmap_setup_cachemode_pfn(pfn_t_to_pfn(pfn), &pgprot);
+>
+>  	if (!pfn_modify_allowed(pfn_t_to_pfn(pfn), pgprot))
+>  		return VM_FAULT_SIGBUS;
+> --
 > 2.49.0
-> 
+>
