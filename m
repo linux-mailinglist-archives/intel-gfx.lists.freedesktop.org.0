@@ -2,156 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D8FAB36DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 14:21:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D8EAB3790
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 14:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD3F210E193;
-	Mon, 12 May 2025 12:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC1C310E3E2;
+	Mon, 12 May 2025 12:43:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MEZyeCPt";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="m2qYeCVT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2055.outbound.protection.outlook.com [40.107.102.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A05310E193;
- Mon, 12 May 2025 12:21:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rawXTIPWrM7lJ9II7snN6fQGo0cbEkltp4FlmeW/JJgfmrIajtI7WUZ/5w3uYh/Qm05aiNc/zrjScEXXho8V60w80OdYq8Fy6LQQQ8BvKqcrcuEbjY5a5sN3oXPZZ8zndEsXUWlOSwigQMFsIcJ8J/hdFaILWZy/gLtQ6JGdpZPFnRn9mfzAOGMo2TFHtIselcz/sOoOrqCsElveek9f+yP2Frfk+Svi7fBbOiOLDec02zIg63p2biPbwMMWPXZv7JXSg69rtkHJIjRf+vY83WX5q0ckoOyPFzPIH05VOdptRtJB4aVd/u1Jb8IC5Lfhn9pyzdoaEAMwrFrCizQomA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UKi0sCakFkcVLBZNWBlNY/3tunfEMJVWjC3kGstuu0U=;
- b=dVyRloIzp63b6GFOyN+UYipRqNu2B+OjfkyirTxs2bzj5aODqKMFJOT22HPPmJbTn+ZBbP9v9JE2o5EEDbVO58TE63NqUhqIfqRjaCQjylOmzvJlKLO5b9aQTm+nQ77qV+OPZwW6WOsLpvWpqSOWZGHCj8+IO0q2NzPgbB3soPsnyrN5s3iizSNT117Z9W0opBpGaSE60KP3V1nrCGp0ZwxptSLTDFYfFBjs9UAk4LQ/+uVtzUsWeY5BODMvMhemvtHfMm6wHGhBi5NekW91xtvOG61PHduvfS5JccrltRE425NjzjoUmwsSPzyg7nD/0GthWiUdNzCaYRK3s2CaEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UKi0sCakFkcVLBZNWBlNY/3tunfEMJVWjC3kGstuu0U=;
- b=MEZyeCPtvEtkXjULrOA7FMEyaURfVg6VyL+Ofm+kV5v9hGJ3m0gj6SvXgXjPCpxdWVJEg9jssycJguKcUrr4qK0NrWxPhZyFyrLvCsxvYFkP1BXKJ9YkbQ6wJWhBSbSCeU62Fn7D77i8jsYztPbvA643pw09B4nGXZew90/253sgBWWQRifpmiLcIc+VIO8YAjSH+K90ZcUQnFehoKMvn4mz8rMidS/n37P6U7upX8yWe3xAFBEtZqK+D7VW6rO1cYbJV17p2qih96Lf8ada0jgdC7cRrGBcPDQP/rNnfvjg/uC1x5blcV3W9QBoG4PNtqo6nFebJNT4qafWyVwYYg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH3PR12MB8659.namprd12.prod.outlook.com (2603:10b6:610:17c::13)
- by DM4PR12MB6421.namprd12.prod.outlook.com (2603:10b6:8:b7::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Mon, 12 May
- 2025 12:21:03 +0000
-Received: from CH3PR12MB8659.namprd12.prod.outlook.com
- ([fe80::6eb6:7d37:7b4b:1732]) by CH3PR12MB8659.namprd12.prod.outlook.com
- ([fe80::6eb6:7d37:7b4b:1732%7]) with mapi id 15.20.8722.027; Mon, 12 May 2025
- 12:21:03 +0000
-Date: Mon, 12 May 2025 09:21:02 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>
-Subject: Re: [REGRESSION] on linux-next (next-20250507)
-Message-ID: <20250512122102.GF5657@nvidia.com>
-References: <SJ1PR11MB61292CE72D7BE06B8810021CB997A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SJ1PR11MB61292CE72D7BE06B8810021CB997A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MN2PR06CA0002.namprd06.prod.outlook.com
- (2603:10b6:208:23d::7) To CH3PR12MB8659.namprd12.prod.outlook.com
- (2603:10b6:610:17c::13)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA9A10E188;
+ Mon, 12 May 2025 12:28:16 +0000 (UTC)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54CA70dX017020;
+ Mon, 12 May 2025 12:28:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=qcppdkim1; bh=KiATnBDkzQgP+ok/RO99GD
+ /TIhY6+aSoji/nAGfdW0s=; b=m2qYeCVTqY4QbRGhkwKyejcbqnbnAblQ/fm7F1
+ n3He0hSTYdnuXkDPVJCZExVMcB1yDZwItr8RW0sS1+2gmmJLji1/TYsa9BOZOHS2
+ YKdRO3ExoJmg7m7wGtGwXBUmNTDKCjv0gB93Nufam33iXXqVQoZsyHW3YiPMqdUA
+ 6qYq/TmQ3XtRj/0zGZswbRVWwMHd39awxuwHS/YtQ82bY+8IIIgIo0+NsSyHprY1
+ +PSpgZgGbpY0L6pcIar5JoLrpp4I0DlU+wzOerSPr1H5J3fl3nLY+VhNqwVM6gZu
+ flgWag4fiY699wluuZ+xbZt0AqYYYuTEs3vc2cCqzgyMCuKg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com
+ [199.106.103.254])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46hwt94c79-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 12 May 2025 12:28:09 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com
+ [10.45.79.139])
+ by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54CCS7EI002326
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Mon, 12 May 2025 12:28:08 GMT
+Received: from zhonhan-gv.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 12 May 2025 05:28:05 -0700
+From: Zhongqiu Han <quic_zhonhan@quicinc.com>
+To: <jani.nikula@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <tursulin@ursulin.net>, <airlied@gmail.com>,
+ <simona@ffwll.ch>, <chris@chris-wilson.co.uk>
+CC: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <quic_zhonhan@quicinc.com>
+Subject: [PATCH] drm/i915/vlv: Remove redundant on_each_cpu() call in
+ __vlv_punit_get()
+Date: Mon, 12 May 2025 20:27:46 +0800
+Message-ID: <20250512122746.546849-1-quic_zhonhan@quicinc.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB8659:EE_|DM4PR12MB6421:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8151eca3-900a-4dc9-ffb8-08dd914f7677
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SG5JQ0ZYcVRNMGJVRGZzRmdoZmpFaFk2YWFCQ3JjVC9HRytHUnJNOUJUV080?=
- =?utf-8?B?QkYvTlBsMEtkZllLK1JJSjZOaW5FRFI2MCtUczc3MXVSMWw0VXpseVJ1NlJW?=
- =?utf-8?B?OUN4TjFUUEVPQWhHSzFrTTA5eTNxempybmtiYkl5dkhLcDY3UHdQT1FhZXpH?=
- =?utf-8?B?SkFQc2o5UlFEYnRyU0daN3FvMUtkaG8rWFo1RkkvVStTOSs1dTVqYU42cGl1?=
- =?utf-8?B?MW5YN3crdFJsS2ZSR2JMbW5TTEtLeDc1QkY2RTk5eW5JRE85VkhCdDJHUkNa?=
- =?utf-8?B?MklsUTV2bVU1dG1yUUN3M2FXUnMrQ3ZrY00wUXQxL0tEVXloaWF1M08zN09k?=
- =?utf-8?B?UVpUbHFncjhYaFRCRjZtYW91dWZ1Y0hwVjZRMUJ0SURvUWZwdHFrQUNma2JL?=
- =?utf-8?B?UnpqMlQ3WitzcGVyc1RscmVhQ0xlUklqTnJibFJVcVFZUHNwMTZFTHZ2SGtS?=
- =?utf-8?B?d1FkMHJGZmQ4V3VFeHBwbWNRc3d4ZWhId3F6cGFxVGZJbTZseEtxQm5oT0Fx?=
- =?utf-8?B?VzFQczRoRzh1YjFCTFhBVkJyTzZMNWJzMmE4R00xSUpQeXJxUTg2SytSTHlK?=
- =?utf-8?B?Q3R0TW55QWdpaFNUUnhHUkp1aERSRmlrbjFJNHNvQTNzZ0ZiTFhqdTk4WTJY?=
- =?utf-8?B?bG5GMk5kMVZoV0xIclRPdXBOVlVMNTAwQjBpK25LVmlSYmo4Zk5UT29mK0Yr?=
- =?utf-8?B?TnFORTRSNTMyWTJneW1FcUhpY3k2ZkxmMTVFaW9SQUloNmprKzdqVUt2Kzdm?=
- =?utf-8?B?d1BmZi9FZnNlQ2VxTDJWcUZiSnVKQTNPbWVhOW5WL0NUQlJKVlJnL0FxWU1y?=
- =?utf-8?B?VDRTcVIrR3VFMHA1OFFqdURhNEFWRFp4dlN3d3hFaFJaSDZWd0RVRE55RmIw?=
- =?utf-8?B?VE13UFZ3UGppd0xHUTJNRVJrTXJuOHlPa3luVCtwRGI0MlpNelhPZ01Obnl0?=
- =?utf-8?B?NzdmMVBOVTdMd3lLZWQ0NFk3U1N2QTFZRUNLdUQ5eDc1S2VaZURYc1hUVUdp?=
- =?utf-8?B?ZXhqVE9ZcFA4SkdEVktRMnNsa2ZYV3cvYjdUL0hXRmIwaTlVQXhsY1BZdG1v?=
- =?utf-8?B?c2JlWTJPUDFuRFBnMCtxRmVldUVtd3dFL1NnNWx0aTlvRDl1VGxlRG9RcmxD?=
- =?utf-8?B?bXlrSHRPRDBFbjVHdkovb3JQc0FSUTQyV0ZyWlRoa0dFTllQL0tidGYzclRD?=
- =?utf-8?B?RmNmWXUzcURraFFFYWs4c0UwUmh0YlZORzhBTlpWWExoZGZrK2JoYTRuRzZp?=
- =?utf-8?B?bG5Za1haNEM0cFQxZDBnRTk4UDBGMWlFZ1lyb2Zrc0k2L3JWVG94K1o3SldM?=
- =?utf-8?B?VXdONGJZU3M0MDNRejltM0M0WHdSbnJzUXJVYWZlTGZpak9jc0sxc2p4QXlk?=
- =?utf-8?B?NDM4TVFCem56VzdPM3ZYeG5rUmZra2g0VW1HL0daTWNhcjZVb2FuWGJjdFZs?=
- =?utf-8?B?eXpmV2g4dDNPUDNYOElUU1FmVFpBam4vR1lYVE41cUE3MTV5bjVtSVlXVmVO?=
- =?utf-8?B?YTd1aDBXSGpoOFYybkUyNlBrRXFrbHcxMVRma1pLb1gzdjM3M0o4Rm54Wk1k?=
- =?utf-8?B?Nkpra2lWKzZjTFRXZVUramQ4a1ZyenRVekN4Y0JDK1FEQ2xhY1Iva0ZlZXVh?=
- =?utf-8?B?cTEydGplUituTFpZYWtCNHZmRVhwUWdHaTYyeEN4bkRFYTlEcCtxRmFpTE4w?=
- =?utf-8?B?S245bEJmOGZEcXMxRGpHTlFFb3N5OUFLLzhQcTRGaU5Nb0FUZDgwVUVUTUVN?=
- =?utf-8?B?UEFIYXhiQmxGSFYvS1Y1Ti8zb1ZpZ1ZqMU8wamEySnRpSWdnbURqNmJXdXR2?=
- =?utf-8?B?NWp0S2k5NGh6NHVKa3BEcFNIZWMwT0JwYUJ3U2toSDJkNkp4dlVQYVFFZnlp?=
- =?utf-8?B?WVg1bmtCQWNFTkwxa2x4YTFBVUErZVdtWkJmYlVoVFdzaUh4Tzl5b0ZvMzJK?=
- =?utf-8?Q?lNVRLXo5G3M=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR12MB8659.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkpteXpqMnNldlJDb25MUGY4cUpFT1l0QWQxR2Q1NlN6S3RHMmZ6NDhocmlm?=
- =?utf-8?B?TTlpQ21FTEVOcE5QWS81YWUreEUxbVN5SW9pUmJHWkdDK3hkWFUyWUd6cUdC?=
- =?utf-8?B?T2prdGIxbDQ1Z0NCQ01XSDVXNVZmZlEwMVlWbU45ZG54VGtIU0dMd0ZNUEs3?=
- =?utf-8?B?OWZVTHdJSzdPM2tzNk5ENTM5YVBtcjJQSEZSV1B5MEhzckFFVjBZQmxFSkc3?=
- =?utf-8?B?N29iS0xhVXBhMTc0dCtDS1E0Q3pRdVJxRE1lVkphYk1YdVlkbzN5Vkc2Vnlt?=
- =?utf-8?B?ZHBwcG9yQTdWMldoTTVIcVRra1Y2eGJad2xzTmQvblpvMk5EZCtQQ25kSlJ5?=
- =?utf-8?B?emoveVN0UDVaU3A5NlM0eUZJd1V2Z3M2N0wxZTYxR1N2VThLdnpjc1lVVVV5?=
- =?utf-8?B?Uk5QUHlWTUovQXZRN1VsUXVOZnJSc3JiQTdSVCt1YTJ4Vk1PS1Bha1Fxa29v?=
- =?utf-8?B?a21uQ1A4dnpzbGpnQlZnMjUzcDhkNjAzQmg0b1NBVWJkK2NsdTZsbjBDaTVZ?=
- =?utf-8?B?Q0JsWDE5Z2s2TllQKzIrNEkveTlnN2FzK0hhY1ByWGR5NkY0aDU1NE9pYm00?=
- =?utf-8?B?S3YweXpFaWY1cVdsL1c2K0YycjZkZnhCcEJiUnhmTCswY3FKbyt0aWQrV1pj?=
- =?utf-8?B?NDVDRW5TWHdFYU5HTVNzMjFsaEVNMFIxQy9qckNzbDdFcWxpRWJheXFvdFR0?=
- =?utf-8?B?aVFJd2Qwb2J3ZDcxWDlUdXd0V1pmQmx3SkVad25CSElWeXV2VDVWbzNHODBU?=
- =?utf-8?B?ZzhTdkZvcndSZzAwTjc3VnZOOHl1NCtzYWdYQnYyVTk0SzVnZndmWWs5VWdK?=
- =?utf-8?B?M0Iza2l6NXlmYWVjRkFxcWhtRjZteVBDUWdkN01Yd2RISXlmbnk0d0JsTnho?=
- =?utf-8?B?dlRzQWwxcG80RE03TDR6SUlFV3NnaHlNVzlSWTVxVnUzUTFlSERzdkZySVAr?=
- =?utf-8?B?R3hBWFhLdGYrdXBpcTRCalZvOTI4bGJFVGFxcWlPQlpTMHdka2orK2EzdTRK?=
- =?utf-8?B?SDNWZDhZQzUya3NiRUJ0bUcwUFQxZUVDZUd2WFBlTXdyMXU3eFNPUHpBa0xP?=
- =?utf-8?B?cFoveEE5b0tIVHRlVXpBUFZHUFNDdUdTeHZJcE94TU5OM3Y0Ry9mYVRSVUV5?=
- =?utf-8?B?WW1TWGxESVRwVFlxejdLQWsxdDhFejNpMFRHOWM1OHlhUHo5dXkrVlduWk5r?=
- =?utf-8?B?NklMYlZDL0g2cWJPamdMeWVUSGpKL1Z5MHJWMGo1ajVFZkpxa0U2SHY5NUNk?=
- =?utf-8?B?aGFLUURQS2dzOWswOXlrTnFza3kzd2QzMG04WHhtSjZLSWJOZVgwZFRrMEY0?=
- =?utf-8?B?YVdUZjZvbll2c05Md3RDY0RpT0VUQkUybFBlNG90TjBJdGVEdll4WFljWlJW?=
- =?utf-8?B?M0NqTnVvRkhVWllwM2dQak5mQmRwUUY1NFc2S1RobVR6ejI3S25ScnpMbGt2?=
- =?utf-8?B?dldaWUxSeTBpVHNlQTcrVzFlNzlRc1RwLzE0UENUWjN4L0R2dkVNNjdjK0x4?=
- =?utf-8?B?cjNLU21vbnhGczJYVnJjb3JxbVZxWG1IQk1nVFhGcmlnSFRDSHcrNXVpYjd4?=
- =?utf-8?B?cGVkbGp3RERuZmdGd1hjb0lOVy84LzJoWVM5akFKWkNpYzZDRC83YStnaUhN?=
- =?utf-8?B?ZnkybWcwZmMrTXdxWU9aV3QzN2NObGZiR2Y4UldNSlNCbExxSXhPdlEzLzhW?=
- =?utf-8?B?QVNtdXNhdjM2Z3ZBRktxeDJCd1ZRazJnMGNqUHdHZjRBUmZUekxZRHFZTVcw?=
- =?utf-8?B?S01LWjNJR0JaOUl1NFphMTlIT3A1ZWROSmdLalNSaU5EVXM3Z3RuR0duck94?=
- =?utf-8?B?VkNzd1ZJQUZlSVN1S2o0dFcrQWIzTmZIYTFQRThZYUJUWHU0bTluSDBIdHQr?=
- =?utf-8?B?SHljSTkyenliV0o2MytmdzA0eUVPbzBQV25QY3pIbXVNbGxIRlJ0THY4d0hM?=
- =?utf-8?B?N1BubVBwMmFMUE5HSWpVUjY4dklaOVlvY3pTeThHQytlVmRRMjZ6QUp3TFY0?=
- =?utf-8?B?ZStLVWpNY2J1OUFtVndMcEhkTXZBZzRQVWVTSkwrelFjc25tUFcyZVBQMmRU?=
- =?utf-8?B?L1o0eUZOeUxiNGt5K2tlTVlpbkVNZEJuRHl5amVTY0QwYjR5MmJJeWo5aXBF?=
- =?utf-8?Q?Vnu4=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8151eca3-900a-4dc9-ffb8-08dd914f7677
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB8659.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2025 12:21:03.4078 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l3/chaEN0BXNjPFhQbH2OmRF/yWXWiU+6FCKRTeur4PHkv7XhACn8uVk08rqppXF
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6421
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTEyMDEzMCBTYWx0ZWRfXy+7isObX5XXV
+ 7weKGvaUaH3m55fCd8z5sYugqYOtavk0lch4YTwSIoH7qydPutPmT5rG/kMu8zpDESKIXf/g6Ml
+ UbRokmYhHZ3GkUaj9APuBXgvTWmNqG4guvgkPDnVNnicoFSRsr9mQiN7n4i5i5Xi0GvB9EVM3aT
+ JrLOyfN3l1ho218LYD7R+6xrLVz2J5VTvNCcZx5FeqZgFaXWJsHEZ4Q0onD+VsPF7g8BeTPuwow
+ 6Gs9zRfm1hah1s9V2jVcjOxX1khXEFWnqXg2LbmgWZjZt4/1tAtCn8q+oj/1kVKXJiGoNdyHDlX
+ BU+eBcPd2smK9l4iDj0rsfCf3dEjfa0TrUeLJBevj201m8QOsb9EWhR8R9VXKALH3V7LMH7d6dm
+ 6uQn7RiEFzOxBTS8zk5cnAJK2LxwtXl8ZBOSE7xqd9qP74/xO1NoPCqqHm3jf9cfunesz6hb
+X-Proofpoint-ORIG-GUID: uYwJgK6L8LKx2-L5U-6AdSZH8FD8xn_C
+X-Proofpoint-GUID: uYwJgK6L8LKx2-L5U-6AdSZH8FD8xn_C
+X-Authority-Analysis: v=2.4 cv=a58w9VSF c=1 sm=1 tr=0 ts=6821e959 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=TEeMUJ-ctX1U_MdykegA:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-12_04,2025-05-09_01,2025-02-21_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 lowpriorityscore=0 mlxlogscore=999 malwarescore=0
+ clxscore=1011 impostorscore=0 mlxscore=0 spamscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2504070000
+ definitions=main-2505120130
+X-Mailman-Approved-At: Mon, 12 May 2025 12:43:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,34 +100,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 12, 2025 at 06:00:39AM +0000, Borah, Chaitanya Kumar wrote:
+The use of on_each_cpu() with a no-op callback in __vlv_punit_get() was a
+conservative safeguard to ensure all CPUs were active before accessing the
+sideband, as introduced in commit a75d035fedbd ("drm/i915: Disable
+preemption and sleeping while using the punit sideband").
 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> commit 13f43d7cf3e0570004a0d960bc1be23db827c2ff
-> Author: Jason Gunthorpe mailto:jgg@nvidia.com
-> Date:   Tue Apr 8 13:53:56 2025 -0300
-> 
->     iommu/pages: Formalize the freelist API
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> We could not revert the patch because of merge conflicts but resetting to the parent of the commit seems to fix the issue.
-> 
-> Could you please check why the patch causes this regression and provide a fix if necessary?
+However, this wake-up operation is redundant. The preceding call to
+cpu_latency_qos_update_request() already triggers cpu_latency_qos_apply(),
+which internally invokes wake_up_all_idle_cpus(). This mechanism reliably
+ensures that all CPUs exit idle states and are sufficiently active to
+avoid the known hardware errata.
 
-Could this be the solution?
+Removing the on_each_cpu() call and its empty callback eliminates
+unnecessary inter-CPU SMP overhead and simplifies the code path.
 
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 0af1ab36283cba..7d2b51a890c75a 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -154,6 +154,8 @@ static void fq_ring_free_locked(struct iommu_dma_cookie *cookie, struct iova_fq
- 			       fq->entries[idx].iova_pfn,
- 			       fq->entries[idx].pages);
+Signed-off-by: Zhongqiu Han <quic_zhonhan@quicinc.com>
+---
+ drivers/gpu/drm/i915/vlv_sideband.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/vlv_sideband.c b/drivers/gpu/drm/i915/vlv_sideband.c
+index 114ae8eb9cd5..d93b608c04e4 100644
+--- a/drivers/gpu/drm/i915/vlv_sideband.c
++++ b/drivers/gpu/drm/i915/vlv_sideband.c
+@@ -24,10 +24,6 @@
+ /* Private register write, double-word addressing, non-posted */
+ #define SB_CRWRDA_NP	0x07
  
-+		fq->entries[idx].freelist =
-+			IOMMU_PAGES_LIST_INIT(fq->entries[idx].freelist);
- 		fq->head = (fq->head + 1) & fq->mod_mask;
- 	}
+-static void ping(void *info)
+-{
+-}
+-
+ static void __vlv_punit_get(struct drm_i915_private *i915)
+ {
+ 	iosf_mbi_punit_acquire();
+@@ -42,10 +38,8 @@ static void __vlv_punit_get(struct drm_i915_private *i915)
+ 	 * specific. Hence we presume the workaround needs only be applied
+ 	 * to the Valleyview P-unit and not all sideband communications.
+ 	 */
+-	if (IS_VALLEYVIEW(i915)) {
++	if (IS_VALLEYVIEW(i915))
+ 		cpu_latency_qos_update_request(&i915->vlv_iosf_sb.qos, 0);
+-		on_each_cpu(ping, NULL, 1);
+-	}
  }
+ 
+ static void __vlv_punit_put(struct drm_i915_private *i915)
+-- 
+2.43.0
 
-Jason
