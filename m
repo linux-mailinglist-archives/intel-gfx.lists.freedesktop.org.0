@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97D4DAB32F8
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 11:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3582AB34F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 May 2025 12:34:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 609B610E347;
-	Mon, 12 May 2025 09:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6629810E360;
+	Mon, 12 May 2025 10:34:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Cfq7HrsX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aBbh1eIm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCC1110E0C7;
- Mon, 12 May 2025 09:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hj59TOBb21Ws8RgUIds2AGjqvk25AJJ0X33YQR+g87E=; b=Cfq7HrsXcR1m73+T0EZJRtz/jv
- Tstv6f+X1qVwa8HkP3zazgzJfv0uMdBxHG3CsElrnDNsTcAJV/rzuBqkhnpV4ve3jwW3XLjUPoD+y
- uCLa78S2GSFW9dkqaoxJMJic1UmiUb68+4XkdJFPuNT7NQVjlfccMRZQNUl5IARMTVUCUmwgesbEG
- uGb+Irkfi2n4kZALBt8fk4gThYat3oyyc6PUI2+oBtTBPH6F9xCWV5Z+QcBCJsHHUw0fEhpt8qpoI
- 0DQhuSU39BGNeVRc+voKLHJAkYBt60izqVFZY3sdLXlSqBQTKXD5GsiQb9+f4hG1faYSVn70HmAdb
- KWl0S0RQ==;
-Received: from [81.79.92.254] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1uEPFL-006zkP-80; Mon, 12 May 2025 11:20:09 +0200
-Message-ID: <24fd309e-fb2e-433b-ad9b-f846f296cd2f@igalia.com>
-Date: Mon, 12 May 2025 10:20:08 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C25AF10E091;
+ Mon, 12 May 2025 10:34:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747046041; x=1778582041;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4lfX/Lb1Y/eDJ4/nmEgaW0kCqDQ+TIcmVAla7/7IoEw=;
+ b=aBbh1eIm1mHxmoUyYJktmzv/o6S83Pp8Tid4Tv3s6W9oTaXIB6anB1DB
+ 04IOySrUPEk8dMk86H747Mafgzw2WXsnjcMK/ovzx5ZTQR7793aV3fpl9
+ f75y1w/3JHWr8kvzd4CBEbU1qLjz/gpZ2kFjqIPrNZMHesiLGUA6/CTXQ
+ wovCDzYSb2d/YswLgCplBvFrO5kkHwSQIaUMbQobaG39uK0U8myYrE4Fc
+ v1lWI9LZjqLkQNszzSton6v6pTl49+w25016QW/WE4K60KpMyeug81TRu
+ PurewDej6IMsZcvZwTs768itEp6ZjiFBMhGY0FEEYBogkMhIrRJWJYs+g g==;
+X-CSE-ConnectionGUID: XUPSqLSGSrWCUbB+mHKl+A==
+X-CSE-MsgGUID: E29UhCn1S9qTPX1uXtYvzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11430"; a="59467352"
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="59467352"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2025 03:34:01 -0700
+X-CSE-ConnectionGUID: EWtWm2eBTFCmuiM3oQzg+Q==
+X-CSE-MsgGUID: Kll9sGPiTC6hJbE0BQzKEA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,282,1739865600"; d="scan'208";a="142439946"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.195])
+ by orviesa005.jf.intel.com with SMTP; 12 May 2025 03:33:59 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 12 May 2025 13:33:58 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/7] drm/i915/dmc: PIPEDMC stuff
+Date: Mon, 12 May 2025 13:33:51 +0300
+Message-ID: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 03/13] dma-fence: Use a flag for 64-bit seqnos
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- kernel-dev@igalia.com
-References: <20250509153352.7187-1-tvrtko.ursulin@igalia.com>
- <20250509153352.7187-4-tvrtko.ursulin@igalia.com>
- <48ca64e8-09a8-4321-a84a-e33f2d32e552@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <48ca64e8-09a8-4321-a84a-e33f2d32e552@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,136 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 12/05/2025 09:17, Christian König wrote:
-> On 5/9/25 17:33, Tvrtko Ursulin wrote:
->> With the goal of reducing the need for drivers to touch (and dereference)
->> fence->ops, we move the 64-bit seqnos flag from struct dma_fence_ops to
->> the fence->flags.
->>
->> Drivers which were setting this flag are changed to use new
->> dma_fence_init64() instead of dma_fence_init().
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> 
-> My idea was to copy the flag from the ops during init, but that should work as well.
-> 
-> Reviewed-by: Christian König <christian.koenig@amd.com>
+Hook up PIPEDMC interrupts and refactor some of the event handler
+stuff as preparation for flip queue stuff.
 
-Thanks!
+Ville Syrjälä (7):
+  drm/i915: Drop PIPEDMC faults from the fault mask on LNL+
+  drm/i915: Hook up PIPEDMC interrupts
+  drm/i915/dmc: Define all DMC event IDs
+  drm/i915/dmc: Extract dmc_evt_ctl_disable()
+  drm/o915/dmc: Relocate is_dmc_evt_{ctl,htp}_reg()
+  drm/i915/dmc: Extract is_event_handler()
+  drm/i915/dmc: Introduce dmc_configure_event()
 
-One alternative to dma_fence_init64() I was thinking about is to perhaps 
-have add dma_fence_init_flags(). Especially in the context of patch 4/13 
-where it would then look cleaner for callers such as 
-dma_fence_chain_init(). 4/13 aside, how would dma_fence_init_flags look 
-to you? It is a little bit more verbose is one thing. And if we are not 
-doing 4/13, verbosity coupled with a single benefit perhaps it is best 
-to leave dma_fence_init64() as is?
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  17 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 156 ++++++---
+ drivers/gpu/drm/i915/display/intel_dmc.h      |   2 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 297 +++++++++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h               |   6 +-
+ 6 files changed, 424 insertions(+), 55 deletions(-)
 
-Regards,
-
-Tvrtko
-
->> ---
->>   drivers/dma-buf/dma-fence-chain.c                | 5 ++---
->>   drivers/dma-buf/dma-fence.c                      | 9 +++++++++
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c | 5 ++---
->>   include/linux/dma-fence.h                        | 6 +++++-
->>   4 files changed, 18 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
->> index 90424f23fd73..a8a90acf4f34 100644
->> --- a/drivers/dma-buf/dma-fence-chain.c
->> +++ b/drivers/dma-buf/dma-fence-chain.c
->> @@ -218,7 +218,6 @@ static void dma_fence_chain_set_deadline(struct dma_fence *fence,
->>   }
->>   
->>   const struct dma_fence_ops dma_fence_chain_ops = {
->> -	.use_64bit_seqno = true,
->>   	.get_driver_name = dma_fence_chain_get_driver_name,
->>   	.get_timeline_name = dma_fence_chain_get_timeline_name,
->>   	.enable_signaling = dma_fence_chain_enable_signaling,
->> @@ -262,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
->>   			seqno = max(prev->seqno, seqno);
->>   	}
->>   
->> -	dma_fence_init(&chain->base, &dma_fence_chain_ops,
->> -		       &chain->lock, context, seqno);
->> +	dma_fence_init64(&chain->base, &dma_fence_chain_ops, &chain->lock,
->> +			 context, seqno);
->>   
->>   	/*
->>   	 * Chaining dma_fence_chain container together is only allowed through
->> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
->> index f0cdd3e99d36..33661658f684 100644
->> --- a/drivers/dma-buf/dma-fence.c
->> +++ b/drivers/dma-buf/dma-fence.c
->> @@ -1023,3 +1023,12 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>   	trace_dma_fence_init(fence);
->>   }
->>   EXPORT_SYMBOL(dma_fence_init);
->> +
->> +void
->> +dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->> +		 spinlock_t *lock, u64 context, u64 seqno)
->> +{
->> +	dma_fence_init(fence, ops, lock, context, seqno);
->> +	__set_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags);
->> +}
->> +EXPORT_SYMBOL(dma_fence_init64);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> index 51cddfa3f1e8..5d26797356a3 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
->> @@ -71,7 +71,6 @@ static void amdgpu_tlb_fence_work(struct work_struct *work)
->>   }
->>   
->>   static const struct dma_fence_ops amdgpu_tlb_fence_ops = {
->> -	.use_64bit_seqno = true,
->>   	.get_driver_name = amdgpu_tlb_fence_get_driver_name,
->>   	.get_timeline_name = amdgpu_tlb_fence_get_timeline_name
->>   };
->> @@ -101,8 +100,8 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
->>   	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
->>   	spin_lock_init(&f->lock);
->>   
->> -	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->> -		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->> +	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
->> +			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
->>   
->>   	/* TODO: We probably need a separate wq here */
->>   	dma_fence_get(&f->base);
->> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
->> index 48b5202c531d..ac6535716dbe 100644
->> --- a/include/linux/dma-fence.h
->> +++ b/include/linux/dma-fence.h
->> @@ -97,6 +97,7 @@ struct dma_fence {
->>   };
->>   
->>   enum dma_fence_flag_bits {
->> +	DMA_FENCE_FLAG_SEQNO64_BIT,
->>   	DMA_FENCE_FLAG_SIGNALED_BIT,
->>   	DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>   	DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
->> @@ -262,6 +263,9 @@ struct dma_fence_ops {
->>   void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
->>   		    spinlock_t *lock, u64 context, u64 seqno);
->>   
->> +void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
->> +		      spinlock_t *lock, u64 context, u64 seqno);
->> +
->>   void dma_fence_release(struct kref *kref);
->>   void dma_fence_free(struct dma_fence *fence);
->>   void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
->> @@ -454,7 +458,7 @@ static inline bool __dma_fence_is_later(struct dma_fence *fence, u64 f1, u64 f2)
->>   	 * 32bit sequence numbers. Use a 64bit compare when the driver says to
->>   	 * do so.
->>   	 */
->> -	if (fence->ops->use_64bit_seqno)
->> +	if (test_bit(DMA_FENCE_FLAG_SEQNO64_BIT, &fence->flags))
->>   		return f1 > f2;
->>   
->>   	return (int)(lower_32_bits(f1) - lower_32_bits(f2)) > 0;
-> 
+-- 
+2.49.0
 
