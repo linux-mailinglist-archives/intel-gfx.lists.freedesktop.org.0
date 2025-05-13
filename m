@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D36AB4E47
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 10:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AF2AB4E48
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 10:38:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB9010E54F;
-	Tue, 13 May 2025 08:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2ECB10E553;
+	Tue, 13 May 2025 08:38:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EyJ2YCV+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M7hLq3Ng";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA34610E548;
- Tue, 13 May 2025 08:37:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 510FA10E54E;
+ Tue, 13 May 2025 08:38:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747125479; x=1778661479;
+ t=1747125481; x=1778661481;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FpLUPADJMHW7xd/86gDJbtuth0sx8moDWvPacgWn3Xs=;
- b=EyJ2YCV+r0HU/pQpEQB/8Cm1h3lUAKLSr50Th8RkpPjtxmAIQuAEp745
- SYcXXAw9n3vWixi31BIdh+tiz9q8SeDSuSzWHZ0TX5inXZJKWktgIBV53
- Am/juP3FHBg8nzIPf028KtIsMUSenJ7uoy6Ko3vTqZkTXtSP832sk3xsZ
- Uxd/G9YFbe3wdt/cwyvRs5/tdqh6riAzkdUUrscDEO2+sNIVBOn+4gRVB
- a0gUK8QZ7k/K1/xdIaBpG5IxlcsSHdaIeks34jYjNekPIs0JQrT8stg4g
- YU8Xtp2/JIiWnvdEDUU/2JoZuwWYy6mSu8B6MGe+bRWuJy1wu94Xxf5y2 A==;
-X-CSE-ConnectionGUID: sEHLTHeVS2WX4xx+EX6ZZw==
-X-CSE-MsgGUID: Ur1MhKgHR7CXcJCAnUXI8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="36581993"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="36581993"
+ bh=1n9+d1R8GlvbPejZ7xItEU6oHMxU+2gL5rgmzglq4b0=;
+ b=M7hLq3NglLmAoXhhd80r5waszEdREe/1jXwi7QLAK9NcHdk1nvRvtfRa
+ UkmaJgcPVQ0eZQH1b2AQJaPt8lXj0/yYQL47PFr0uCn2+xQj/abTeOjI0
+ qSB7Y+n43zZrsANkrcmMFiS0A2bS+HP6COXWDT+LINigQ/EvPbUNYWf0I
+ jQu2KnWupZPX9pS4VZCncmoxEfb+wK5jzubQY/SP36qbkjp9TQDSJGe7S
+ A2cc5P6Fl7YnN6qNstI1iuJzZM/PGl+XSKxc+ogDHn5VQ28RgDNr23qA8
+ DVQXMPjRXzyKmJ8W7gumV8uXI7kh3QLP5dwMts6K+FePSIoecK5QMSIX1 Q==;
+X-CSE-ConnectionGUID: 8culIJPQTt+yxc8AIlpvmw==
+X-CSE-MsgGUID: aJ2nm+oER8K94arSakQnIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="36581997"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="36581997"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 01:37:59 -0700
-X-CSE-ConnectionGUID: yZXIEe10S4CU5JOm66ZoZQ==
-X-CSE-MsgGUID: noCOLt0CR5CmN4ujrN0ejA==
+ 13 May 2025 01:38:01 -0700
+X-CSE-ConnectionGUID: BZp+k+kZRfO8kPN4hjwQGQ==
+X-CSE-MsgGUID: MI6OxSwyQg6wtyu4FnWr2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="168738844"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="168738849"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 01:37:58 -0700
+ 13 May 2025 01:38:00 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com
-Subject: [PATCH 1/2] drm/i915/display: Fix get_ana_cp_int_prop() argument type
-Date: Tue, 13 May 2025 14:08:02 +0530
-Message-ID: <20250513083803.2596286-2-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH 2/2] drm/i915/display: Fix intel_snps_hdmi_pll.c overflow
+ issues
+Date: Tue, 13 May 2025 14:08:03 +0530
+Message-ID: <20250513083803.2596286-3-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250513083803.2596286-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20250513083803.2596286-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -68,28 +69,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Change get_ana_cp_int_prop() vco_clk argument type from u32 to u64.
-vco_clk is decalared as u64 in the caller and there are scearios in
-which vco_clk will exceed max u32.
+intel_snps_hdmi_pll.c calls do_div  function from DIV_ROUND_UP_ULL
+and DIV_ROUND_DOWN_ULL macros. do_div  expects the arg2 type to be u32.
+On higher data rate arg2 exceeds u32 and ends up in wrong pll
+configuration.
+
+So change do_div calls to div64_base64 calls where ever arg2 exceeds u32.
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-index c6321dafef4f..41c6c111af1d 100644
+index 41c6c111af1d..74bb3bedf30f 100644
 --- a/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
 +++ b/drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c
-@@ -46,7 +46,7 @@ static s64 interp(s64 x, s64 x1, s64 x2, s64 y1, s64 y2)
- 	return (y1 + DIV_ROUND_UP_ULL(dydx * (x - x1), 100000));
+@@ -41,9 +41,9 @@ static s64 interp(s64 x, s64 x1, s64 x2, s64 y1, s64 y2)
+ {
+ 	s64 dydx;
+ 
+-	dydx = DIV_ROUND_UP_ULL((y2 - y1) * 100000, (x2 - x1));
++	dydx = DIV64_U64_ROUND_UP((y2 - y1) * 100000, (x2 - x1));
+ 
+-	return (y1 + DIV_ROUND_UP_ULL(dydx * (x - x1), 100000));
++	return (y1 + DIV64_U64_ROUND_UP(dydx * (x - x1), 100000));
  }
  
--static void get_ana_cp_int_prop(u32 vco_clk,
-+static void get_ana_cp_int_prop(u64 vco_clk,
- 				u32 refclk_postscalar,
- 				int mpll_ana_v2i,
- 				int c, int a,
+ static void get_ana_cp_int_prop(u64 vco_clk,
+@@ -115,16 +115,16 @@ static void get_ana_cp_int_prop(u64 vco_clk,
+ 								      CURVE0_MULTIPLIER));
+ 
+ 	scaled_interpolated_sqrt =
+-			int_sqrt(DIV_ROUND_UP_ULL(interpolated_product, vco_div_refclk_float) *
++			int_sqrt(DIV64_U64_ROUND_UP(interpolated_product, vco_div_refclk_float) *
+ 			DIV_ROUND_DOWN_ULL(1000000000000ULL, 55));
+ 
+ 	/* Scale vco_div_refclk for ana_cp_int */
+ 	scaled_vco_div_refclk2 = DIV_ROUND_UP_ULL(vco_div_refclk_float, 1000000);
+-	adjusted_vco_clk2 = 1460281 * DIV_ROUND_UP_ULL(scaled_interpolated_sqrt *
++	adjusted_vco_clk2 = 1460281 * DIV64_U64_ROUND_UP(scaled_interpolated_sqrt *
+ 						       scaled_vco_div_refclk2,
+ 						       curve_1_interpolated);
+ 
+-	*ana_cp_prop = DIV_ROUND_UP_ULL(adjusted_vco_clk2, curve_2_scaled2);
++	*ana_cp_prop = DIV64_U64_ROUND_UP(adjusted_vco_clk2, curve_2_scaled2);
+ 	*ana_cp_prop = max(1, min(*ana_cp_prop, 127));
+ }
+ 
+@@ -165,10 +165,10 @@ static void compute_hdmi_tmds_pll(u64 pixel_clock, u32 refclk,
+ 	/* Select appropriate v2i point */
+ 	if (datarate <= INTEL_SNPS_PHY_HDMI_9999MHZ) {
+ 		mpll_ana_v2i = 2;
+-		tx_clk_div = ilog2(DIV_ROUND_DOWN_ULL(INTEL_SNPS_PHY_HDMI_9999MHZ, datarate));
++		tx_clk_div = ilog2(div64_u64(INTEL_SNPS_PHY_HDMI_9999MHZ, datarate));
+ 	} else {
+ 		mpll_ana_v2i = 3;
+-		tx_clk_div = ilog2(DIV_ROUND_DOWN_ULL(INTEL_SNPS_PHY_HDMI_16GHZ, datarate));
++		tx_clk_div = ilog2(div64_u64(INTEL_SNPS_PHY_HDMI_16GHZ, datarate));
+ 	}
+ 	vco_clk = (datarate << tx_clk_div) >> 1;
+ 
 -- 
 2.43.0
 
