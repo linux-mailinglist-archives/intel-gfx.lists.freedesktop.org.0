@@ -2,60 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FBAAB4FEF
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 11:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08D46AB5038
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 11:48:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1C1610E522;
-	Tue, 13 May 2025 09:34:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8lYNJaL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA25110E36A;
+	Tue, 13 May 2025 09:48:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B547910E4DC;
- Tue, 13 May 2025 09:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747128867; x=1778664867;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KEChjx3+GAChoGqB3zheFTHKBVEdUZIkFtoIg5RMDJs=;
- b=A8lYNJaLW9FkJ1s4CEQsHlL4SOKfkif4AY8FzUxKTXSCekEdNq2ZF+DJ
- Jf2CcoSzn6sAtiohJEuzqWjCb0JIeoM7sPCg9sr3RPKMJdqIoMkx4YYh6
- hDi93GUok8qA7/9i07atuaQTWOIg7JlwGStT0q71J7J1cf/iBLG5u3zwq
- rF5nAGGiKIe+sVptLTLUdzxmNnrv8FDeqSW9Rok+6JMVEYf/5diO8J0Ys
- iqIrYu1ZMrOCVMKtVMADyIOoRtmC1IxXlzaZcV3MK7ATHCkcMM5y29a8e
- pnQY/1ciRuCOb262GxqLbX3SCBzaj3GV+Cf+v0q3iDZzHKGJA4H9OxP6Y g==;
-X-CSE-ConnectionGUID: 4EX19KrrR8CjhniwmrcIsg==
-X-CSE-MsgGUID: P6SaUTf3SwaxET948O0++g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48957004"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48957004"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 02:34:26 -0700
-X-CSE-ConnectionGUID: jJ4ln9nNRIi2YUdLOdy6+Q==
-X-CSE-MsgGUID: nYpFynYtSg+t2cUuqZdL5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142769102"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.221])
- by orviesa005.jf.intel.com with SMTP; 13 May 2025 02:34:23 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 May 2025 12:34:22 +0300
-Date: Tue, 13 May 2025 12:34:22 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 0/5] drm/i915/display: various small cleanups
-Message-ID: <aCMSHuv8KMcy6Lrj@intel.com>
-References: <cover.1747128495.git.jani.nikula@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6708410E1F9;
+ Tue, 13 May 2025 09:48:08 +0000 (UTC)
+Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uEmEy-00000007MU9-32Jo; Tue, 13 May 2025 12:48:02 +0300
+Message-ID: <904dc733fc6fe6916b75a1a145cbc754413e53be.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 May 2025 12:47:59 +0300
+In-Reply-To: <20250512103358.15724-2-ville.syrjala@linux.intel.com>
+References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+ <20250512103358.15724-2-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1747128495.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 1/7] drm/i915: Drop PIPEDMC faults from the fault mask
+ on LNL+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +53,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 13, 2025 at 12:28:40PM +0300, Jani Nikula wrote:
-> A bunch of small cleanups.
-> 
-> Jani Nikula (5):
->   drm/i915/pps: drop dependency on intel_display_conversion.h
->   drm/i915/rps: pass struct intel_display to DISPLAY_VER()
->   drm/i915/display: drop unused declarations from intel_display.h
->   drm/i915/gem: drop intel_display.h include
->   drm/i915/display: drop unnecessary includes on i915 core headers
+On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> On LNL+ PIPEDMC faults are reported via PIPEDMC interrupts
+> instead of the direct DE_PIPE_* reporting used on earlier
+> platforms. Drop the relevant bits from the fault mask.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_irq.c | 10 +++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h                  |  4 ++--
+>  2 files changed, 11 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/g=
+pu/drm/i915/display/intel_display_irq.c
+> index 3e73832e5e81..a7130b14aace 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -1016,7 +1016,15 @@ static u32 gen8_de_port_aux_mask(struct intel_disp=
+lay *display)
+> =20
+>  static u32 gen8_de_pipe_fault_mask(struct intel_display *display)
+>  {
+> -	if (DISPLAY_VER(display) >=3D 14)
+> +	if (DISPLAY_VER(display) >=3D 20)
+> +		return MTL_PLANE_ATS_FAULT |
+> +			GEN9_PIPE_CURSOR_FAULT |
+> +			GEN11_PIPE_PLANE5_FAULT |
+> +			GEN9_PIPE_PLANE4_FAULT |
+> +			GEN9_PIPE_PLANE3_FAULT |
+> +			GEN9_PIPE_PLANE2_FAULT |
+> +			GEN9_PIPE_PLANE1_FAULT;
+> +	else if (DISPLAY_VER(display) >=3D 14)
+>  		return MTL_PIPEDMC_ATS_FAULT |
+>  			MTL_PLANE_ATS_FAULT |
+>  			GEN12_PIPEDMC_FAULT |
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 2e4190da3e0d..2d0e04eae763 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2126,8 +2126,8 @@
+>  #define  GEN8_PIPE_CDCLK_CRC_ERROR	REG_BIT(29)
+>  #define  GEN8_PIPE_CDCLK_CRC_DONE	REG_BIT(28)
+>  #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
+> -#define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl+ */
+> -#define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl+ */
+> +#define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
+> +#define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
+>  #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
+>  #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
+>  #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Out of curiosity, what happens without this patch? Is there going to be
+possible garbage in those bits? If so, isn't that an actual bug in the
+current LNL implementation and unrelated to your flip queue preparation
+work?
 
-> 
->  .../gpu/drm/i915/display/intel_atomic_plane.c    |  1 -
->  drivers/gpu/drm/i915/display/intel_crt.c         |  1 -
->  drivers/gpu/drm/i915/display/intel_display.c     |  1 -
->  drivers/gpu/drm/i915/display/intel_display.h     | 16 ----------------
->  .../gpu/drm/i915/display/intel_display_debugfs.c |  1 -
->  drivers/gpu/drm/i915/display/intel_display_rps.c |  3 ++-
->  drivers/gpu/drm/i915/display/intel_dp.c          |  1 -
->  drivers/gpu/drm/i915/display/intel_dsb.c         |  1 -
->  drivers/gpu/drm/i915/display/intel_pps_regs.h    | 15 +++++++--------
->  drivers/gpu/drm/i915/gem/i915_gem_domain.c       |  1 -
->  10 files changed, 9 insertions(+), 32 deletions(-)
-> 
-> -- 
-> 2.39.5
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
--- 
-Ville Syrjälä
-Intel
+--
+Cheers,
+Luca.
