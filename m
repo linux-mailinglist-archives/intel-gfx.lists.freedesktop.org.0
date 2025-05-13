@@ -2,60 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D0E0AB53E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038E4AB5405
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:41:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5DA10E581;
-	Tue, 13 May 2025 11:35:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmSJ0Sus";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED21710E38A;
+	Tue, 13 May 2025 11:41:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C665510E3BF;
- Tue, 13 May 2025 11:35:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747136134; x=1778672134;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jdn9I3Tr6B5Qym8Orun2yQd38hLHg+UyLbGF4fw92as=;
- b=fmSJ0SusNCqW+lnGU32UXgBOqxkMYqTjgueEZqDI+03itDc3lXxpu+9Z
- xZYo+x+z2Ylp9cWypH6rx2Mdl7c8lB/Y4fRwAFWUdkYVe5k1LVVBemFcO
- 5NhwBycztbQUccnz5A9DEASwinQ85O5GSgN2Zbuj1yGJRN4g5zNA/bgru
- FKVKh6THXxTkJUVZL6EcPpWrvvTp+d7NeQGmYYIVGGHAR3D/JCEMMIC4J
- o/Fyz0q5fhxFxZ3tMJHiUxglFVcHZsktbGz8q5+hYfirP37b//0m00bV9
- MhSFo5BWdNY3NcHctpNofH11+NLGMhjc/adDg160ALIcCJf/i5M008ViZ g==;
-X-CSE-ConnectionGUID: EdDc3ePYQ1qLolGbuexstw==
-X-CSE-MsgGUID: Ezk7blGRQbOhkL20i0YA5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59614407"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="59614407"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 04:35:33 -0700
-X-CSE-ConnectionGUID: GSEa00LHRZiArKE6yUWuhA==
-X-CSE-MsgGUID: 8Dq/ODCkS3Gu5DeuSciDxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="142577260"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 13 May 2025 04:35:32 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Date: Tue, 13 May 2025 13:35:26 +0200
-Message-ID: <20250513113526.2758433-2-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250513113526.2758433-1-michal.grzelak@intel.com>
-References: <20250513113526.2758433-1-michal.grzelak@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C89F210E0B1;
+ Tue, 13 May 2025 11:41:30 +0000 (UTC)
+Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uEo0m-00000007MeK-02j2; Tue, 13 May 2025 14:41:28 +0300
+Message-ID: <53a74d89ea75dbc6d4c689aee5ef7c0ec08e2310.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 May 2025 14:41:26 +0300
+In-Reply-To: <20250512103358.15724-6-ville.syrjala@linux.intel.com>
+References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+ <20250512103358.15724-6-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 5/7] drm/o915/dmc: Relocate is_dmc_evt_{ctl,htp}_reg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +52,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is no reason in debugfs why PSR has been disabled. Add
-no_psr_reason field into struct intel_psr. Write the reason,
-e.g. PSR setup timing not met, into proper PSR debugfs file.
+On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Move is_dmc_evt_ctl_reg() to a slightly earlier position in the file
+> so that we can reuse it in the pkgc workaround code. Also move
+> is_dmc_evt_htp_reg() just to keep the two together.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 40 ++++++++++++------------
+>  1 file changed, 20 insertions(+), 20 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
+915/display/intel_dmc.c
+> index ec940f837427..238f3cda400c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -544,6 +544,26 @@ static u32 dmc_evt_ctl_disable(void)
+>  			       DMC_EVENT_FALSE);
+>  }
+> =20
+> +static bool is_dmc_evt_ctl_reg(struct intel_display *display,
+> +			       enum intel_dmc_id dmc_id, i915_reg_t reg)
+> +{
+> +	u32 offset =3D i915_mmio_reg_offset(reg);
+> +	u32 start =3D i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, 0));
+> +	u32 end =3D i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, DMC_EVENT=
+_HANDLER_COUNT_GEN12));
+> +
+> +	return offset >=3D start && offset < end;
+> +}
+> +
+> +static bool is_dmc_evt_htp_reg(struct intel_display *display,
+> +			       enum intel_dmc_id dmc_id, i915_reg_t reg)
+> +{
+> +	u32 offset =3D i915_mmio_reg_offset(reg);
+> +	u32 start =3D i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, 0));
+> +	u32 end =3D i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, DMC_EVENT=
+_HANDLER_COUNT_GEN12));
+> +
+> +	return offset >=3D start && offset < end;
+> +}
+> +
+>  /**
+>   * intel_dmc_block_pkgc() - block PKG C-state
+>   * @display: display instance
+> @@ -589,26 +609,6 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed=
+_vblank(struct intel_display
+>  		       val);
+>  }
+> =20
+> -static bool is_dmc_evt_ctl_reg(struct intel_display *display,
+> -			       enum intel_dmc_id dmc_id, i915_reg_t reg)
+> -{
+> -	u32 offset =3D i915_mmio_reg_offset(reg);
+> -	u32 start =3D i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, 0));
+> -	u32 end =3D i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, DMC_EVENT=
+_HANDLER_COUNT_GEN12));
+> -
+> -	return offset >=3D start && offset < end;
+> -}
+> -
+> -static bool is_dmc_evt_htp_reg(struct intel_display *display,
+> -			       enum intel_dmc_id dmc_id, i915_reg_t reg)
+> -{
+> -	u32 offset =3D i915_mmio_reg_offset(reg);
+> -	u32 start =3D i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, 0));
+> -	u32 end =3D i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, DMC_EVENT=
+_HANDLER_COUNT_GEN12));
+> -
+> -	return offset >=3D start && offset < end;
+> -}
+> -
+>  static bool disable_dmc_evt(struct intel_display *display,
+>  			    enum intel_dmc_id dmc_id,
+>  			    i915_reg_t reg, u32 data)
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- .../gpu/drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c          | 15 ++++++++-------
- 2 files changed, 10 insertions(+), 7 deletions(-)
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7415564d058a..7d598357a702 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1653,6 +1653,8 @@ struct intel_psr {
- 	bool link_ok;
- 
- 	u8 active_non_psr_pipes;
-+
-+	const char *no_psr_reason;
- };
- 
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ccd66bbc72f7..f0fdff236fef 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1577,6 +1577,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (entry_setup_frames >= 0) {
- 		intel_dp->psr.entry_setup_frames = entry_setup_frames;
- 	} else {
-+		intel_dp->psr.no_psr_reason = "PSR setup timing not met";
- 		drm_dbg_kms(display->drm,
- 			    "PSR condition failed: PSR setup timing not met\n");
- 		return false;
-@@ -3918,12 +3919,7 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 				 struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status, *mode, *region_et;
--
--	if (psr->enabled)
--		status = " enabled";
--	else
--		status = "disabled";
-+	const char *mode, *region_et;
- 
- 	if (psr->panel_replay_enabled && psr->sel_update_enabled)
- 		mode = "Panel Replay Selective Update";
-@@ -3941,7 +3937,12 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 	else
- 		region_et = "";
- 
--	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
-+	if (psr->enabled) {
-+		seq_puts(m, "PSR enabled\n");
-+		seq_printf(m, "PSR mode: %s%s\n", mode, region_et);
-+	} else {
-+		seq_printf(m, "PSR disabled: %s\n", psr->no_psr_reason);
-+	}
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
--- 
-2.45.2
-
+--
+Cheers.
+Luca.
