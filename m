@@ -2,59 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02E3FAB5416
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7945AB5425
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:52:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3E2A10E0B1;
-	Tue, 13 May 2025 11:46:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cCU+aFBy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C279210E3BF;
+	Tue, 13 May 2025 11:52:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A791710E0B1;
- Tue, 13 May 2025 11:46:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747136771; x=1778672771;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=i0W+VAHFVjhsPwpq9QKO8x3bpfZnGazFtCCUGRJ+IIY=;
- b=cCU+aFBycespMCPo5QTxKdBd41KFx35ejzlD1zfF2tze3YrgwPxzemBb
- rKfkTTC+KPzaRs4nCx04S8k+imfwYyX4LLRWWfJ/Ah9vJCTXm+oh4YxOh
- Pwmj1lmI2f1lHhJTLXr4s4YCvM82LCFBlkVRPwpe2ARqAGBzA0twFgZO4
- D2VJJzXFFzJgPfZXKom9zrNhEfyJRC8TTZ3lnE1TmZNj4EDla5ClnnGne
- ls4KE/NNCiJg6mUzJJ24YpgWkpWzSaeorJftnra5LirEqfuMhxoGMB1dD
- /uUyt2Su91QQbW2w3a1QpexE49+6Rly8lzdHuYHIcJn5nInYk0B3VCndy w==;
-X-CSE-ConnectionGUID: lHvF2BBMQwOyrKDTkvheiw==
-X-CSE-MsgGUID: jPApkPPyT5295aOlBTalzA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="49094433"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="49094433"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 04:46:10 -0700
-X-CSE-ConnectionGUID: hszWXYmkRBWhzR+/+SlEiw==
-X-CSE-MsgGUID: 7rXC3zOxSrGAPfncW0Eu/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="142802191"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.175])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 04:46:08 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4D410E36B;
+ Tue, 13 May 2025 11:52:22 +0000 (UTC)
+Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uEoBH-00000007MfL-2cMD; Tue, 13 May 2025 14:52:20 +0300
+Message-ID: <25432c6de18fd4b397fa3e1793545a7d6ac1c766.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Indicate which pipe lied about its interrupts
-In-Reply-To: <20250513092820.18715-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250513092820.18715-1-ville.syrjala@linux.intel.com>
-Date: Tue, 13 May 2025 14:46:05 +0300
-Message-ID: <87plgcivia.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Date: Tue, 13 May 2025 14:52:18 +0300
+In-Reply-To: <20250512103358.15724-7-ville.syrjala@linux.intel.com>
+References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
+ <20250512103358.15724-7-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 6/7] drm/i915/dmc: Extract is_event_handler()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,36 +52,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 13 May 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Indicate which pipe signalled the spurious DE PIPE interrupt.
-> Might help with debugging a bit if we know where the interrupt
-> is supposedly coming from.
->
+>=20
+> Extract the helper to determine if the mmio reg+data are the
+> event handler register (DMC_EVT_CTL) for a specific event.
+> We'll have another use for this for runtime event handler
+> enable/disable.
+>=20
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/g=
-pu/drm/i915/display/intel_display_irq.c
-> index 3e73832e5e81..a3261c7aad72 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1418,7 +1418,8 @@ void gen8_de_irq_handler(struct intel_display *disp=
-lay, u32 master_ctl)
->  		iir =3D intel_de_read(display, GEN8_DE_PIPE_IIR(pipe));
->  		if (!iir) {
->  			drm_err_ratelimited(display->drm,
-> -					    "The master control interrupt lied (DE PIPE)!\n");
-> +					    "The master control interrupt lied (DE PIPE %c)!\n",
-> +					    pipe_name(pipe));
->  			continue;
->  		}
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
+915/display/intel_dmc.c
+> index 238f3cda400c..d758032d1af6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -564,6 +564,15 @@ static bool is_dmc_evt_htp_reg(struct intel_display =
+*display,
+>  	return offset >=3D start && offset < end;
+>  }
+> =20
+> +static bool is_event_handler(struct intel_display *display,
+> +			     enum intel_dmc_id dmc_id,
+> +			     unsigned int event_id,
+> +			     i915_reg_t reg, u32 data)
+> +{
+> +	return is_dmc_evt_ctl_reg(display, dmc_id, reg) &&
+> +		REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D event_id;
+> +}
+> +
 
---=20
-Jani Nikula, Intel
+I'm not sure we're getting much with this change in terms of
+readability.  Are you really going to be using this many more times
+later?
+
+The amount of arguments you pass to this function for these simple
+checks seems to add almost as much clutter as the original, no?
+
+If the goal is really readability, maybe a macro would be better.
+
+
+>  /**
+>   * intel_dmc_block_pkgc() - block PKG C-state
+>   * @display: display instance
+> @@ -622,12 +631,12 @@ static bool disable_dmc_evt(struct intel_display *d=
+isplay,
+> =20
+>  	/* also disable the flip queue event on the main DMC on TGL */
+>  	if (display->platform.tigerlake &&
+> -	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D MAINDMC_EVENT=
+_CLK_MSEC)
+> +	    is_event_handler(display, dmc_id, MAINDMC_EVENT_CLK_MSEC, reg, data=
+))
+>  		return true;
+> =20
+>  	/* also disable the HRR event on the main DMC on TGL/ADLS */
+>  	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
+> -	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D MAINDMC_EVENT=
+_VBLANK_A)
+> +	    is_event_handler(display, dmc_id, MAINDMC_EVENT_VBLANK_A, reg, data=
+))
+>  		return true;
+> =20
+>  	return false;
+
+--
+Cheers,
+Luca.
