@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8098AB4D30
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 09:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B44AB4DCF
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 10:15:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F306C10E53B;
-	Tue, 13 May 2025 07:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2644A10E0D1;
+	Tue, 13 May 2025 08:15:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Doi9B0lp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oH/gv7xg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62FE10E52E;
- Tue, 13 May 2025 07:45:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=uJmrj7E/JEd6hvrOvkRFlGZ+sDXBpTCTR2Oodnvtztg=; b=Doi9B0lpb6IqaW0H1ZwYuLgNYj
- 1EZl68sruqlBx1eM6uDjBddzJ/GRjdS937WzNcHzSOSXxNjsKn5oVqLc8R26OopYki8ny05nfCjuL
- VMNnEOfotnnJfRh9qD/uakYjAZhKR+6HW+wsBtaQEQE8oRo+z+bjXZE8loPxqB5HcisXpLfeXAf0c
- zHwH6S3ZdGU+L/+aVA3lDSgs9Tc8XvcVR4tvUb712hk3Yxcrc4Gk4cnoLpuEqkSqdRbvTje0FpH/O
- UoSfYSq7AppICE3BGP58TRGMeNmE5CkIkWRQG/YPMt5jiNTCJBP0ZZcEClqlNnsizCySHndF+zz4H
- 48ou6++Q==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uEkF7-007Tw1-6q; Tue, 13 May 2025 09:45:31 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Rob Clark <robdclark@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v3 10/10] drm/xe: Make dma-fences compliant with the safe access
- rules
-Date: Tue, 13 May 2025 08:45:13 +0100
-Message-ID: <20250513074513.81727-11-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
-References: <20250513074513.81727-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D24D010E0D1;
+ Tue, 13 May 2025 08:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747124130; x=1778660130;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=gMFFA0v9Vpk0yqWUWxwXGcg6oEzxnIX1eI7NCcCtWj8=;
+ b=oH/gv7xg3IOkOeWkDRde3cb1u5M5/5Lb5oOdrtnre+9qeZp+Cvts/02f
+ cGoiu7htRGLNDd/zyZsNPOF38ilOMx0NEAJER3dsXGrxWbqT9Rog4Zxju
+ aXMUWTip1P7+cQdL4TE21csyS12PrwMLRiqzsxgNWIOShMDuhOabHnhGg
+ OAAlDm+jRQwRFvZXtC28WQhegwmjXoR0WgPkjwphzFeZ+Vo9iAm6X1Vcu
+ jDpk7IycNZPeT75eEM1EcEiYcpH69uFiR9UFu5dT+ZBb5W2mL1c29pkZe
+ rJYbu4tta+4BA71K2xZc7PIZWswR8AyKRA3/uN+BRkH8Ds/sm3nKGYtnT Q==;
+X-CSE-ConnectionGUID: dRVV73oJQw661Db1375b1w==
+X-CSE-MsgGUID: n02wUUeRQcWGf9lxAGVl+A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="66363638"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="66363638"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 01:15:29 -0700
+X-CSE-ConnectionGUID: 2A+iHtu1QNyKd8O4NPZaqg==
+X-CSE-MsgGUID: KDgPrz1JQaCpDxYfUHlglg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142811269"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.175])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 01:15:28 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v3 0/8] drm/i915: refactor VLV IOSF SB for display usage
+In-Reply-To: <cover.1747061743.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1747061743.git.jani.nikula@intel.com>
+Date: Tue, 13 May 2025 11:15:25 +0300
+Message-ID: <87wmalhqoy.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +68,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xe can free some of the data pointed to by the dma-fences it exports. Most
-notably the timeline name can get freed if userspace closes the associated
-submit queue. At the same time the fence could have been exported to a
-third party (for example a sync_fence fd) which will then cause an use-
-after-free on subsequent access.
+On Mon, 12 May 2025, Jani Nikula <jani.nikula@intel.com> wrote:
+> v3 of [1] fixing dpio 1 vs 2 sanity checks.
+>
+> [1] https://lore.kernel.org/r/cover.1746698410.git.jani.nikula@intel.com
 
-To make this safe we need to make the driver compliant with the newly
-documented dma-fence rules. Driver has to ensure a RCU grace period
-between signalling a fence and freeing any data pointed to by said fence.
+Pushed to din, thanks for the review.
 
-For the timeline name we simply make the queue be freed via kfree_rcu and
-for the shared lock associated with multiple queues we add a RCU grace
-period before freeing the per GT structure holding the lock.
+BR,
+Jani.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 7 ++++++-
- drivers/gpu/drm/xe/xe_hw_fence.c             | 3 +++
- 3 files changed, 11 insertions(+), 1 deletion(-)
+>
+> Jani Nikula (8):
+>   drm/i915: rename vlv_sideband*.[ch] to vlv_iosf_sb*.[ch]
+>   drm/i915: add generic read/write functions for VLV IOSF SB
+>   drm/i915: rewrite VLV IOSF SB unit specific read/write functions
+>   drm/i915: switch i915 core to generic VLV IOSF SB functions
+>   drm/i915: move VLV IOSF SB unit specific helpers under display
+>   drm/i915: convert VLV IOSF SB interface to struct drm_device
+>   drm/i915: rename VLV IOSF SB ports parameter to unit_mask
+>   drm/i915: ensure correct VLV IOSF SB units have been get/put
+>
+>  drivers/gpu/drm/i915/Makefile                 |   5 +-
+>  drivers/gpu/drm/i915/display/i9xx_wm.c        |  35 ++-
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |  47 ++---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  23 +-
+>  drivers/gpu/drm/i915/display/intel_display.h  |   7 +-
+>  .../drm/i915/display/intel_display_power.c    |   7 +-
+>  .../i915/display/intel_display_power_map.c    |   2 +-
+>  .../i915/display/intel_display_power_well.c   |  71 +++----
+>  drivers/gpu/drm/i915/display/intel_dpio_phy.c | 199 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_dpll.c     | 135 ++++++------
+>  drivers/gpu/drm/i915/display/vlv_dsi.c        |  26 ++-
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |  46 ++--
+>  drivers/gpu/drm/i915/display/vlv_sideband.c   |  50 +++++
+>  drivers/gpu/drm/i915/display/vlv_sideband.h   | 156 ++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |   8 +-
+>  drivers/gpu/drm/i915/gt/intel_rps.c           |  58 ++---
+>  drivers/gpu/drm/i915/i915_driver.c            |   2 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |   1 +
+>  drivers/gpu/drm/i915/intel_clock_gating.c     |   2 +-
+>  drivers/gpu/drm/i915/soc/intel_dram.c         |  14 +-
+>  .../i915/{vlv_sideband.c => vlv_iosf_sb.c}    | 176 ++++++----------
+>  drivers/gpu/drm/i915/vlv_iosf_sb.h            |  37 ++++
+>  .../{vlv_sideband_reg.h => vlv_iosf_sb_reg.h} |   6 +-
+>  drivers/gpu/drm/i915/vlv_sideband.h           | 125 -----------
+>  .../drm/xe/compat-i915-headers/vlv_iosf_sb.h  |  42 ++++
+>  .../{vlv_sideband_reg.h => vlv_iosf_sb_reg.h} |   2 +-
+>  .../drm/xe/compat-i915-headers/vlv_sideband.h | 132 ------------
+>  27 files changed, 689 insertions(+), 725 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/vlv_sideband.c
+>  create mode 100644 drivers/gpu/drm/i915/display/vlv_sideband.h
+>  rename drivers/gpu/drm/i915/{vlv_sideband.c => vlv_iosf_sb.c} (55%)
+>  create mode 100644 drivers/gpu/drm/i915/vlv_iosf_sb.h
+>  rename drivers/gpu/drm/i915/{vlv_sideband_reg.h => vlv_iosf_sb_reg.h} (98%)
+>  delete mode 100644 drivers/gpu/drm/i915/vlv_sideband.h
+>  create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/vlv_iosf_sb.h
+>  rename drivers/gpu/drm/xe/compat-i915-headers/{vlv_sideband_reg.h => vlv_iosf_sb_reg.h} (66%)
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 4c39f01e4f52..a3f421e2adc0 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -20,6 +20,8 @@ struct xe_exec_queue;
- struct xe_guc_exec_queue {
- 	/** @q: Backpointer to parent xe_exec_queue */
- 	struct xe_exec_queue *q;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
- 	/** @sched: GPU scheduler for this xe_exec_queue */
- 	struct xe_gpu_scheduler sched;
- 	/** @entity: Scheduler entity for this xe_exec_queue */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index fb125f940de8..879a4474bf51 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1291,7 +1291,11 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
- 
--	kfree(ge);
-+	/*
-+	 * RCU free due sched being exported via DRM scheduler fences
-+	 * (timeline name).
-+	 */
-+	kfree_rcu(ge, rcu);
- 	xe_exec_queue_fini(q);
- 	xe_pm_runtime_put(guc_to_xe(guc));
- }
-@@ -1474,6 +1478,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->guc = ge;
- 	ge->q = q;
-+	init_rcu_head(&ge->rcu);
- 	init_waitqueue_head(&ge->suspend_wait);
- 
- 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 03eb8c6d1616..b2a0c46dfcd4 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -100,6 +100,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
- 		spin_unlock_irqrestore(&irq->lock, flags);
- 		dma_fence_end_signalling(tmp);
- 	}
-+
-+	/* Safe release of the irq->lock used in dma_fence_init. */
-+	synchronize_rcu();
- }
- 
- void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
 -- 
-2.48.0
-
+Jani Nikula, Intel
