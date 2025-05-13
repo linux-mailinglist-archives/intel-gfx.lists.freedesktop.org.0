@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BEEAB5228
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 12:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71168AB525A
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 12:27:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96E5F10E55E;
-	Tue, 13 May 2025 10:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A16810E56E;
+	Tue, 13 May 2025 10:27:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DF3510E375;
- Tue, 13 May 2025 10:24:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34A4910E375;
+ Tue, 13 May 2025 10:27:16 +0000 (UTC)
 Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
  helo=[192.168.100.137])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uEmnv-00000007MXK-32vC; Tue, 13 May 2025 13:24:09 +0300
-Message-ID: <fe5570d97ffa363688798f8a2ecb01d0bef17269.camel@coelho.fi>
+ id 1uEmqv-00000007MXs-2YYM; Tue, 13 May 2025 13:27:14 +0300
+Message-ID: <1f121d56b38fe1306a7f5dcf1a7495fc90123da9.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 13:24:05 +0300
-In-Reply-To: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
+Date: Tue, 13 May 2025 13:27:12 +0300
+In-Reply-To: <20250512103358.15724-4-ville.syrjala@linux.intel.com>
 References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
- <20250512103358.15724-3-ville.syrjala@linux.intel.com>
+ <20250512103358.15724-4-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.1-1 
@@ -34,9 +34,9 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
  farmhouse.coelho.fi
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 2/7] drm/i915: Hook up PIPEDMC interrupts
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no
+ autolearn_force=no version=4.0.1-pre1
+Subject: Re: [PATCH 3/7] drm/i915/dmc: Define all DMC event IDs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,270 +55,368 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >=20
-> Hook up PIPEDMC interrupts. We'll need these for:
-> - flip queue signalling
-> - GTT/ATS faults on LNL+
-> - random errors
->=20
-> On LNL+ we get a new level of interrupts registers PIPEDMC_INTERRUPT*.
-> On earlier platforms we only have the INT_VECTOR field in the
-> PIPEDMC_STATUS registers, whose values are defined by the firmware.
->=20
-> Similar to DSB interrupt registers, the unused bits in
-> PIPEDMC_INTERRUPT* seem to act like randomg r/w bits (instead
-
-s/randomg/random/
-
-
-> of being hardwired to 0 like one would expect), and so we'll try
-> to avoid setting them so that we don't mistake them for real
-> interrupts.
+> Define all the DMC event IDs to make life less misrable when
+> having to deal with these.
 >=20
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  .../drm/i915/display/intel_display_device.h   |  1 +
->  .../gpu/drm/i915/display/intel_display_irq.c  |  7 +++
->  drivers/gpu/drm/i915/display/intel_dmc.c      | 46 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dmc.h      |  2 +
->  drivers/gpu/drm/i915/display/intel_dmc_regs.h | 22 +++++++++
->  drivers/gpu/drm/i915/i915_reg.h               |  2 +
->  6 files changed, 80 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dmc.c      |  12 +-
+>  drivers/gpu/drm/i915/display/intel_dmc_regs.h | 271 +++++++++++++++++-
+>  2 files changed, 272 insertions(+), 11 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
-s/gpu/drm/i915/display/intel_display_device.h
-> index 87c666792c0d..d4611d17e498 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -181,6 +181,7 @@ struct intel_display_platforms {
->  #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p |=
-| DISPLAY_VER(__display) >=3D 14)
->  #define HAS_MSO(__display)		(DISPLAY_VER(__display) >=3D 12)
->  #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
-> +#define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >=3D 12)
-
-Is this really available since TGL? So both ways of using the
-interrupts work (since we're not hooking PIPEDMC_INTERRUPT_* at the
-moment)?
-
-
->  #define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
->  #define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr=
-_hw_tracking)
->  #define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >=3D 12)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/g=
-pu/drm/i915/display/intel_display_irq.c
-> index a7130b14aace..21d278b0de21 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -17,6 +17,7 @@
->  #include "intel_display_rps.h"
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
-> +#include "intel_dmc.h"
->  #include "intel_dmc_wl.h"
->  #include "intel_dp_aux.h"
->  #include "intel_dsb.h"
-> @@ -1449,6 +1450,9 @@ void gen8_de_irq_handler(struct intel_display *disp=
-lay, u32 master_ctl)
->  				intel_dsb_irq_handler(display, pipe, INTEL_DSB_2);
->  		}
-> =20
-> +		if (HAS_PIPEDMC(display) && iir & GEN12_PIPEDMC_INTERRUPT)
-> +			intel_pipedmc_irq_handler(display, pipe);
-> +
->  		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
->  			hsw_pipe_crc_irq_handler(display, pipe);
-> =20
-> @@ -2266,6 +2270,9 @@ void gen8_de_irq_postinstall(struct intel_display *=
-display)
->  			GEN12_DSB_INT(INTEL_DSB_1) |
->  			GEN12_DSB_INT(INTEL_DSB_2);
-> =20
-> +	if (HAS_PIPEDMC(display))
-> +		de_pipe_masked |=3D GEN12_PIPEDMC_INTERRUPT;
-> +
->  	de_pipe_enables =3D de_pipe_masked |
->  		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
->  		gen8_de_pipe_flip_done_mask(display);
 > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
 915/display/intel_dmc.c
-> index b58189d24e7e..f9cadeaff893 100644
+> index f9cadeaff893..49cbb83b2bbe 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -27,9 +27,11 @@
-> =20
->  #include "i915_drv.h"
->  #include "i915_reg.h"
-> +#include "intel_crtc.h"
->  #include "intel_de.h"
->  #include "intel_display_rpm.h"
->  #include "intel_display_power_well.h"
-> +#include "intel_display_types.h"
->  #include "intel_dmc.h"
->  #include "intel_dmc_regs.h"
->  #include "intel_step.h"
-> @@ -490,6 +492,14 @@ static void pipedmc_clock_gating_wa(struct intel_dis=
-play *display, bool enable)
->  		adlp_pipedmc_clock_gating_wa(display, enable);
+> @@ -427,7 +427,7 @@ static void disable_event_handler(struct intel_displa=
+y *display,
+>  		       REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+>  				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
+>  		       REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+> -				      DMC_EVT_CTL_EVENT_ID_FALSE));
+> +				      DMC_EVENT_FALSE));
+>  	intel_de_write(display, htp_reg, 0);
 >  }
 > =20
-> +static u32 pipedmc_interrupt_mask(struct intel_display *display)
-> +{
-> +	return PIPEDMC_FLIPQ_PROG_DONE |
-> +		PIPEDMC_ERROR |
-> +		PIPEDMC_GTT_FAULT |
-> +		PIPEDMC_ATS_FAULT;
-> +}
-> +
->  void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe=
-)
->  {
->  	enum intel_dmc_id dmc_id =3D PIPE_TO_DMC_ID(pipe);
-> @@ -497,6 +507,11 @@ void intel_dmc_enable_pipe(struct intel_display *dis=
-play, enum pipe pipe)
->  	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
->  		return;
-> =20
-> +	if (DISPLAY_VER(display) >=3D 20) {
-> +		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mas=
-k(display));
-> +		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interru=
-pt_mask(display));
-> +	}
-> +
->  	if (DISPLAY_VER(display) >=3D 14)
->  		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe)=
-);
+> @@ -573,10 +573,10 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelaye=
+d_vblank(struct intel_display
+>  			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+>  				       DMC_EVT_CTL_TYPE_EDGE_0_1) |
+>  			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+> -				       DMC_EVT_CTL_EVENT_ID_VBLANK_A);
+> +				       PIPEDMC_EVENT_VBLANK);
 >  	else
-> @@ -514,6 +529,11 @@ void intel_dmc_disable_pipe(struct intel_display *di=
-splay, enum pipe pipe)
->  		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0=
-);
+>  		val =3D REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+> -				     DMC_EVT_CTL_EVENT_ID_FALSE) |
+> +				     DMC_EVENT_FALSE) |
+>  			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+>  				       DMC_EVT_CTL_TYPE_EDGE_0_1);
+> =20
+> @@ -617,12 +617,12 @@ static bool disable_dmc_evt(struct intel_display *d=
+isplay,
+> =20
+>  	/* also disable the flip queue event on the main DMC on TGL */
+>  	if (display->platform.tigerlake &&
+> -	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D DMC_EVT_CTL_E=
+VENT_ID_CLK_MSEC)
+> +	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D MAINDMC_EVENT=
+_CLK_MSEC)
+>  		return true;
+> =20
+>  	/* also disable the HRR event on the main DMC on TGL/ADLS */
+>  	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
+> -	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D DMC_EVT_CTL_E=
+VENT_ID_VBLANK_A)
+> +	    REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D MAINDMC_EVENT=
+_VBLANK_A)
+>  		return true;
+> =20
+>  	return false;
+> @@ -638,7 +638,7 @@ static u32 dmc_mmiodata(struct intel_display *display=
+,
+>  		return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+>  				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
+>  			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
+> -				       DMC_EVT_CTL_EVENT_ID_FALSE);
+> +				       DMC_EVENT_FALSE);
 >  	else
->  		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
-> +
-> +	if (DISPLAY_VER(display) >=3D 20) {
-> +		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
-> +		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mas=
-k(display));
-> +	}
+>  		return dmc->dmc_info[dmc_id].mmiodata[i];
 >  }
-> =20
->  /**
-> @@ -1403,3 +1423,29 @@ void intel_dmc_debugfs_register(struct intel_displ=
-ay *display)
->  	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
->  			    display, &intel_dmc_debugfs_status_fops);
->  }
-> +
-> +void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe =
-pipe)
-> +{
-> +	struct intel_crtc *crtc =3D intel_crtc_for_pipe(display, pipe);
-> +	u32 tmp;
-> +
-> +	if (DISPLAY_VER(display) >=3D 20) {
-> +		tmp =3D intel_de_read(display, PIPEDMC_INTERRUPT(pipe));
-> +		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), tmp);
-> +
-> +		if (tmp & PIPEDMC_ATS_FAULT)
-> +			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC ATS fault\n",
-> +					    crtc->base.base.id, crtc->base.name);
-> +		if (tmp & PIPEDMC_GTT_FAULT)
-> +			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC GTT fault\n",
-> +					    crtc->base.base.id, crtc->base.name);
-> +		if (tmp & PIPEDMC_ERROR)
-> +			drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC error\n",
-> +				crtc->base.base.id, crtc->base.name);'
-
-You don't want to add PIPE_DMC_FLIPQ_PROG_DONE here too, at least until
-the actual handling is implemented?
-
-
-> +	}
-> +
-> +	tmp =3D intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECT=
-OR_MASK;
-> +	if (tmp)
-> +		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
-> +			crtc->base.base.id, crtc->base.name, tmp);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i=
-915/display/intel_dmc.h
-> index bd1c459b0075..a98e8deff13a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-> @@ -34,4 +34,6 @@ void intel_dmc_update_dc6_allowed_count(struct intel_di=
-splay *display, bool star
-> =20
->  void assert_dmc_loaded(struct intel_display *display);
-> =20
-> +void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe =
-pipe);
-> +
->  #endif /* __INTEL_DMC_H__ */
 > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/=
 drm/i915/display/intel_dmc_regs.h
-> index e16ea3f16ed8..e8ac0e1be764 100644
+> index e8ac0e1be764..edd4e69319b9 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
 > +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> @@ -27,6 +27,28 @@
->  						   _MTL_PIPEDMC_EVT_CTL_4_A, \
->  						   _MTL_PIPEDMC_EVT_CTL_4_B)
+> @@ -8,6 +8,272 @@
 > =20
-> +#define _PIPEDMC_STATUS_A		0x5f06c
-> +#define _PIPEDMC_STATUS_B		0x5f46c
-> +#define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIP=
-EDMC_STATUS_B)
-> +#define   PIPEDMC_SSP			REG_GENMASK(31, 16)
-> +#define   PIPEDMC_INT_VECTOR_MASK	REG_GENMASK(15, 8)
-> +/* PIPEDMC_INT_VECTOR values defined by firmware */
-> +#define   PIPEDMC_INT_VECTOR_SCANLINE_COMP_ERROR	REG_FIELD_PREP(PIPEDMC_=
-INT_VECTOR_MASK, 0x1)
-> +#define   PIPEDMC_INT_VECTOR_DC6V_FLIPQ_OVERLAP_ERROR	REG_FIELD_PREP(PIP=
-EDMC_INT_VECTOR_MASK, 0x2)
-> +#define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE		REG_FIELD_PREP(PIPEDMC_INT=
-_VECTOR_MASK, 0xff) /* Wa_16018781658:lnl[a0] */
-> +#define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
+>  #include "i915_reg_defs.h"
+> =20
+> +enum dmc_event_id {
+> +	DMC_EVENT_TRUE =3D 0x0,
+> +	DMC_EVENT_FALSE =3D 0x1,
+> +};
 > +
-> +#define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
-> +#define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
-> +#define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_A=
-, _PIPEDMC_INTERRUPT_B)
-> +#define _PIPEDMC_INTERRUPT_MASK_A	0x5f194 /* lnl+ */
-> +#define _PIPEDMC_INTERRUPT_MASK_B	0x5f594 /* lnl+ */
-> +#define PIPEDMC_INTERRUPT_MASK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_INTERRU=
-PT_MASK_A, _PIPEDMC_INTERRUPT_MASK_B)
-> +#define   PIPEDMC_FLIPQ_PROG_DONE	REG_BIT(3)
-> +#define   PIPEDMC_ERROR			REG_BIT(2)
-> +#define   PIPEDMC_GTT_FAULT		REG_BIT(1)
-> +#define   PIPEDMC_ATS_FAULT		REG_BIT(0)
+> +enum maindmc_event_id {
+> +	MAINDMC_EVENT_CMP_ZERO =3D 0x8,
+> +	MAINDMC_EVENT_CMP_ODD =3D 0x9,
+> +	MAINDMC_EVENT_CMP_NEG =3D 0xa,
+> +	MAINDMC_EVENT_CMP_CARRY =3D 0xb,
 > +
->  #define PIPEDMC_BLOCK_PKGC_SW_A	0x5f1d0
->  #define PIPEDMC_BLOCK_PKGC_SW_B	0x5F5d0
->  #define PIPEDMC_BLOCK_PKGC_SW(pipe)				_MMIO_PIPE(pipe, \
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 2d0e04eae763..8822c639a4f4 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2128,12 +2128,14 @@
->  #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
->  #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
->  #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
-> +#define  GEN12_PIPEDMC_FLIPQ_DONE	REG_BIT(24) /* tgl-adl */
->  #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
->  #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
->  #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
->  #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
->  #define  MTL_PLANE_ATS_FAULT		REG_BIT(18) /* mtl+ */
->  #define  GEN11_PIPE_PLANE7_FLIP_DONE	REG_BIT(18) /* icl/tgl */
-> +#define  MTL_PIPEDMC_FLIPQ_DONE		REG_BIT(17) /* mtl */
->  #define  GEN11_PIPE_PLANE6_FLIP_DONE	REG_BIT(17) /* icl/tgl */
->  #define  GEN11_PIPE_PLANE5_FLIP_DONE	REG_BIT(16) /* icl+ */
->  #define  GEN12_DSB_2_INT		REG_BIT(15) /* tgl+ */
+> +	MAINDMC_EVENT_TMR0_DONE =3D 0x14,
+> +	MAINDMC_EVENT_TMR1_DONE =3D 0x15,
+> +	MAINDMC_EVENT_TMR2_DONE =3D 0x16,
+> +	MAINDMC_EVENT_COUNT0_DONE =3D 0x17,
+> +	MAINDMC_EVENT_COUNT1_DONE =3D 0x18,
+> +	MAINDMC_EVENT_PERF_CNTR_DARBF =3D 0x19,
+> +
+> +	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_A_TRIGGER =3D 0x22,
+> +	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_B_TRIGGER =3D 0x23,
+> +	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_C_TRIGGER =3D 0x24,
+> +	MAINDMC_EVENT_SCANLINE_INRANGE_FQ_D_TRIGGER =3D 0x25,
+> +	MAINDMC_EVENT_1KHZ_FQ_A_TRIGGER =3D 0x26,
+> +	MAINDMC_EVENT_1KHZ_FQ_B_TRIGGER =3D 0x27,
+> +	MAINDMC_EVENT_1KHZ_FQ_C_TRIGGER =3D 0x28,
+> +	MAINDMC_EVENT_1KHZ_FQ_D_TRIGGER =3D 0x29,
+> +	MAINDMC_EVENT_SCANLINE_COMP_A =3D 0x2a,
+> +	MAINDMC_EVENT_SCANLINE_COMP_B =3D 0x2b,
+> +	MAINDMC_EVENT_SCANLINE_COMP_C =3D 0x2c,
+> +	MAINDMC_EVENT_SCANLINE_COMP_D =3D 0x2d,
+> +	MAINDMC_EVENT_VBLANK_DELAYED_A =3D 0x2e,
+> +	MAINDMC_EVENT_VBLANK_DELAYED_B =3D 0x2f,
+> +	MAINDMC_EVENT_VBLANK_DELAYED_C =3D 0x30,
+> +	MAINDMC_EVENT_VBLANK_DELAYED_D =3D 0x31,
+> +	MAINDMC_EVENT_VBLANK_A =3D 0x32,
+> +	MAINDMC_EVENT_VBLANK_B =3D 0x33,
+> +	MAINDMC_EVENT_VBLANK_C =3D 0x34,
+> +	MAINDMC_EVENT_VBLANK_D =3D 0x35,
+> +	MAINDMC_EVENT_HBLANK_A =3D 0x36,
+> +	MAINDMC_EVENT_HBLANK_B =3D 0x37,
+> +	MAINDMC_EVENT_HBLANK_C =3D 0x38,
+> +	MAINDMC_EVENT_HBLANK_D =3D 0x39,
+> +	MAINDMC_EVENT_VSYNC_A =3D 0x3a,
+> +	MAINDMC_EVENT_VSYNC_B =3D 0x3b,
+> +	MAINDMC_EVENT_VSYNC_C =3D 0x3c,
+> +	MAINDMC_EVENT_VSYNC_D =3D 0x3d,
+> +	MAINDMC_EVENT_SCANLINE_A =3D 0x3e,
+> +	MAINDMC_EVENT_SCANLINE_B =3D 0x3f,
+> +	MAINDMC_EVENT_SCANLINE_C =3D 0x40,
+> +	MAINDMC_EVENT_SCANLINE_D =3D 0x41,
+> +
+> +	MAINDMC_EVENT_PLANE1_FLIP_A =3D 0x42,
+> +	MAINDMC_EVENT_PLANE2_FLIP_A =3D 0x43,
+> +	MAINDMC_EVENT_PLANE3_FLIP_A =3D 0x44,
+> +	MAINDMC_EVENT_PLANE4_FLIP_A =3D 0x45,
+> +	MAINDMC_EVENT_PLANE5_FLIP_A =3D 0x46,
+> +	MAINDMC_EVENT_PLANE6_FLIP_A =3D 0x47,
+> +	MAINDMC_EVENT_PLANE7_FLIP_A =3D 0x48,
+> +	MAINDMC_EVENT_PLANE1_FLIP_B =3D 0x49,
+> +	MAINDMC_EVENT_PLANE2_FLIP_B =3D 0x4a,
+> +	MAINDMC_EVENT_PLANE3_FLIP_B =3D 0x4b,
+> +	MAINDMC_EVENT_PLANE4_FLIP_B =3D 0x4c,
+> +	MAINDMC_EVENT_PLANE5_FLIP_B =3D 0x4d,
+> +	MAINDMC_EVENT_PLANE6_FLIP_B =3D 0x4e,
+> +	MAINDMC_EVENT_PLANE7_FLIP_B =3D 0x4f,
+> +	MAINDMC_EVENT_PLANE1_FLIP_C =3D 0x50,
+> +	MAINDMC_EVENT_PLANE2_FLIP_C =3D 0x51,
+> +	MAINDMC_EVENT_PLANE3_FLIP_C =3D 0x52,
+> +	MAINDMC_EVENT_PLANE4_FLIP_C =3D 0x53,
+> +	MAINDMC_EVENT_PLANE5_FLIP_C =3D 0x54,
+> +	MAINDMC_EVENT_PLANE6_FLIP_C =3D 0x55,
+> +	MAINDMC_EVENT_PLANE7_FLIP_C =3D 0x56,
+> +	MAINDMC_EVENT_PLANE1_FLIP_D =3D 0x57,
+> +	MAINDMC_EVENT_PLANE2_FLIP_D =3D 0x58,
+> +	MAINDMC_EVENT_PLANE3_FLIP_D =3D 0x59,
+> +	MAINDMC_EVENT_PLANE4_FLIP_D =3D 0x5a,
+> +	MAINDMC_EVENT_PLANE5_FLIP_D =3D 0x5b,
+> +	MAINDMC_EVENT_PLANE6_FLIP_D =3D 0x5c,
+> +	MAINDMC_EVENT_PLANE7_FLIP_D =3D 0x5d,
+> +	MAINDMC_EVENT_PLANE1_FLIP_DONE_A =3D 0x5e,
+> +	MAINDMC_EVENT_PLANE2_FLIP_DONE_A =3D 0x5f,
+> +	MAINDMC_EVENT_PLANE3_FLIP_DONE_A =3D 0x60,
+> +	MAINDMC_EVENT_PLANE4_FLIP_DONE_A =3D 0x61,
+> +	MAINDMC_EVENT_PLANE5_FLIP_DONE_A =3D 0x62,
+> +	MAINDMC_EVENT_PLANE6_FLIP_DONE_A =3D 0x63,
+> +	MAINDMC_EVENT_PLANE7_FLIP_DONE_A =3D 0x64,
+> +	MAINDMC_EVENT_PLANE1_FLIP_DONE_B =3D 0x65,
+> +	MAINDMC_EVENT_PLANE2_FLIP_DONE_B =3D 0x66,
+> +	MAINDMC_EVENT_PLANE3_FLIP_DONE_B =3D 0x67,
+> +	MAINDMC_EVENT_PLANE4_FLIP_DONE_B =3D 0x68,
+> +	MAINDMC_EVENT_PLANE5_FLIP_DONE_B =3D 0x69,
+> +	MAINDMC_EVENT_PLANE6_FLIP_DONE_B =3D 0x6a,
+> +	MAINDMC_EVENT_PLANE7_FLIP_DONE_B =3D 0x6b,
+> +	MAINDMC_EVENT_PLANE1_FLIP_DONE_C =3D 0x6c,
+> +	MAINDMC_EVENT_PLANE2_FLIP_DONE_C =3D 0x6d,
+> +	MAINDMC_EVENT_PLANE3_FLIP_DONE_C =3D 0x6e,
+> +	MAINDMC_EVENT_PLANE4_FLIP_DONE_C =3D 0x6f,
+> +	MAINDMC_EVENT_PLANE5_FLIP_DONE_C =3D 0x70,
+> +	MAINDMC_EVENT_PLANE6_FLIP_DONE_C =3D 0x71,
+> +	MAINDMC_EVENT_PLANE7_FLIP_DONE_C =3D 0x72,
+> +	MAINDMC_EVENT_PLANE1_FLIP_DONE_D =3D 0x73,
+> +	MAINDMC_EVENT_PLANE2_FLIP_DONE_D =3D 0x74,
+> +	MAINDMC_EVENT_PLANE3_FLIP_DONE_D =3D 0x75,
+> +	MAINDMC_EVENT_PLANE4_FLIP_DONE_D =3D 0x76,
+> +	MAINDMC_EVENT_PLANE5_FLIP_DONE_D =3D 0x77,
+> +	MAINDMC_EVENT_PLANE6_FLIP_DONE_D =3D 0x78,
+> +	MAINDMC_EVENT_PLANE7_FLIP_DONE_D =3D 0x79,
+> +
+> +	MAINDMC_EVENT_WIDI_GTT_FAULT_SL1 =3D 0x7d,
+> +	MAINDMC_EVENT_WIDI_GTT_FAULT_SL2 =3D 0x7e,
+> +	MAINDMC_EVENT_WIDI_CAP_ACTIVE_SL1 =3D 0x7f,
+> +	MAINDMC_EVENT_WIDI_CAP_ACTIVE_SL2 =3D 0x80,
+> +
+> +	MAINDMC_EVENT_RENUKE_A =3D 0x85,
+> +	MAINDMC_EVENT_RENUKE_B =3D 0x86,
+> +	MAINDMC_EVENT_RENUKE_C =3D 0x87,
+> +	MAINDMC_EVENT_RENUKE_D =3D 0x88,
+> +	MAINDMC_EVENT_DPFC_FIFO_FULL_A =3D 0x89,
+> +	MAINDMC_EVENT_DPFC_FIFO_FULL_B =3D 0x8a,
+> +	MAINDMC_EVENT_DPFC_FIFO_FULL_C =3D 0x8b,
+> +	MAINDMC_EVENT_DPFC_FIFO_FULL_D =3D 0x8c,
+> +	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_A =3D 0x8d,
+> +	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_B =3D 0x8e,
+> +	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_C =3D 0x8f,
+> +	MAINDMC_EVENT_DPFC_PIXEL_CNT_MISMATCH_D =3D 0x90,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_A =3D 0x91,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_B =3D 0x92,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_C =3D 0x93,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_UNDERRUN_D =3D 0x94,
+> +	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_A =3D 0x95,
+> +	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_B =3D 0x96,
+> +	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_C =3D 0x97,
+> +	MAINDMC_EVENT_DPFC_FIFO_NOT_EMPTY_D =3D 0x98,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_A =3D 0x99,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_B =3D 0x9a,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_C =3D 0x9b,
+> +	MAINDMC_EVENT_DPFC_COMPTAG_MISMATCH_D =3D 0x9c,
+> +	MAINDMC_EVENT_DISP_PCH_INT =3D 0x9d,
+> +	MAINDMC_EVENT_GTT_ERR =3D 0x9e,
+> +	MAINDMC_EVENT_VTD_ERR =3D 0x9f,
+> +	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_A =3D 0xa0,
+> +	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_B =3D 0xa1,
+> +	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_C =3D 0xa2,
+> +	MAINDMC_EVENT_FULL_FQ_WAKE_TRIGGER_D =3D 0xa3,
+> +	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_A =3D 0xa4,
+> +	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_B =3D 0xa5,
+> +	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_C =3D 0xa6,
+> +	MAINDMC_EVENT_PIPEDMC_CHICKEN_FW_EVENT_D =3D 0xa7,
+> +
+> +	MAINDMC_EVENT_DC_CLOCK_OFF_START_EDP =3D 0xb2,
+> +	MAINDMC_EVENT_DC_CLOCK_OFF_START_DSI =3D 0xb3,
+> +	MAINDMC_EVENT_DCPR_DMC_CSR_START =3D 0xb4,
+> +	MAINDMC_EVENT_IN_PSR =3D 0xb5,
+> +
+> +	MAINDMC_EVENT_IN_MEMUP =3D 0xb7,
+> +	MAINDMC_EVENT_IN_VGA =3D 0xb8,
+> +
+> +	MAINDMC_EVENT_IN_KVM_SESSION =3D 0xba,
+> +	MAINDMC_EVENT_DEWAKE =3D 0xbb,
+> +
+> +	MAINDMC_EVENT_TRAP_HIT =3D 0xbd,
+> +	MAINDMC_EVENT_CLK_USEC =3D 0xbe,
+> +	MAINDMC_EVENT_CLK_MSEC =3D 0xbf,
+> +
+> +	MAINDMC_EVENT_CHICKEN1 =3D 0xc8,
+> +	MAINDMC_EVENT_CHICKEN2 =3D 0xc9,
+> +	MAINDMC_EVENT_CHICKEN3 =3D 0xca,
+> +	MAINDMC_EVENT_DDT_UBP =3D 0xcb,
+> +
+> +	MAINDMC_EVENT_HP_LATENCY =3D 0xcd,
+> +	MAINDMC_EVENT_LP_LATENCY =3D 0xce,
+> +	MAINDMC_EVENT_WIDI_LP_REQ_SL1 =3D 0xcf,
+> +	MAINDMC_EVENT_WIDI_LP_REQ_SL2 =3D 0xd0,
+> +
+> +	MAINDMC_EVENT_DG_DMC_EVT_0 =3D 0xd3,
+> +	MAINDMC_EVENT_DG_DMC_EVT_1 =3D 0xd4,
+> +	MAINDMC_EVENT_DG_DMC_EVT_2 =3D 0xd5,
+> +	MAINDMC_EVENT_DG_DMC_EVT_3 =3D 0xd6,
+> +	MAINDMC_EVENT_DG_DMC_EVT_4 =3D 0xd7,
+> +	MAINDMC_EVENT_DACFE_CLK_STOP =3D 0xd8,
+> +	MAINDMC_EVENT_DACFE_AZILIA_SDI_WAKE =3D 0xd9,
+> +	MAINDMC_EVENT_AUDIO_DOUBLE_FUNC_GRP_RST =3D 0xda,
+> +	MAINDMC_EVENT_AUDIO_CMD_VALID =3D 0xdb,
+> +	MAINDMC_EVENT_AUDIO_FRM_SYNC_BCLK =3D 0xdc,
+> +	MAINDMC_EVENT_AUDIO_FRM_SYNC_CDCLK =3D 0xdd,
+> +	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_A =3D 0xde,
+> +	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_B =3D 0xdf,
+> +	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_C =3D 0xe0,
+> +	MAINDMC_EVENT_AUDIO_PRESENCE_DETECT_E =3D 0xe1,
+> +	MAINDMC_EVENT_CMTG_SCANLINE_IN_GB_DC6v =3D 0xe2,
+> +	MAINDMC_EVENT_DCPR_CMTG_SCANLINE_OUTSIDE_GB =3D 0xe3,
+> +	MAINDMC_EVENT_DC6v_BACKWARD_COMPAT =3D 0xe4,
+> +	MAINDMC_EVENT_DPMA_PM_ABORT =3D 0xe5,
+> +
+> +	MAINDMC_EVENT_STACK_OVF =3D 0xfc,
+> +	MAINDMC_EVENT_NO_CLAIM =3D 0xfd,
+> +	MAINDMC_EVENT_UNK_CMD =3D 0xfe,
+> +	MAINDMC_EVENT_HTP_MOD =3D 0xff,
+> +};
+> +
+> +enum pipedmc_event_id {
+> +	PIPEDMC_EVENT_TMR0_DONE =3D 0x14,
+> +	PIPEDMC_EVENT_TMR1_DONE =3D 0x15,
+> +	PIPEDMC_EVENT_TMR2_DONE =3D 0x16,
+> +	PIPEDMC_EVENT_COUNT0_DONE =3D 0x17,
+> +	PIPEDMC_EVENT_COUNT1_DONE =3D 0x18,
+> +	PIPEDMC_EVENT_PGA_PGB_RESTORE_DONE =3D 0x19,
+> +	PIPEDMC_EVENT_PG1_PG2_RESTORE_DONE =3D 0x1a,
+> +	PIPEDMC_EVENT_PGA_PGB_SAVE_DONE =3D 0x1b,
+> +	PIPEDMC_EVENT_PG1_PG2_SAVE_DONE =3D 0x1c,
+> +
+> +	PIPEDMC_EVENT_FULL_FQ_WAKE_TRIGGER =3D 0x2b,
+> +	PIPEDMC_EVENT_1KHZ_FQ_TRIGGER =3D 0x2c,
+> +	PIPEDMC_EVENT_SCANLINE_INRANGE_FQ_TRIGGER =3D 0x2d,
+> +	PIPEDMC_EVENT_SCANLINE_INRANGE =3D 0x2e,
+> +	PIPEDMC_EVENT_SCANLINE_OUTRANGE =3D 0x2f,
+> +	PIPEDMC_EVENT_SCANLINE_EQUAL =3D 0x30,
+> +	PIPEDMC_EVENT_DELAYED_VBLANK =3D 0x31,
+> +	PIPEDMC_EVENT_VBLANK =3D 0x32,
+> +	PIPEDMC_EVENT_HBLANK =3D 0x33,
+> +	PIPEDMC_EVENT_VSYNC =3D 0x34,
+> +	PIPEDMC_EVENT_SCANLINE_FROM_DMUX =3D 0x35,
+> +	PIPEDMC_EVENT_PLANE1_FLIP =3D 0x36,
+> +	PIPEDMC_EVENT_PLANE2_FLIP =3D 0x37,
+> +	PIPEDMC_EVENT_PLANE3_FLIP =3D 0x38,
+> +	PIPEDMC_EVENT_PLANE4_FLIP =3D 0x39,
+> +	PIPEDMC_EVENT_PLANE5_FLIP =3D 0x3a,
+> +	PIPEDMC_EVENT_PLANE6_FLIP =3D 0x3b,
+> +	PIPEDMC_EVENT_PLANE7_FLIP =3D 0x3c,
+> +	PIPEDMC_EVENT_ADAPTIVE_DCB_TRIGGER =3D 0x3d,
+> +
+> +	PIPEDMC_EVENT_PLANE1_FLIP_DONE =3D 0x56,
+> +	PIPEDMC_EVENT_PLANE2_FLIP_DONE =3D 0x57,
+> +	PIPEDMC_EVENT_PLANE3_FLIP_DONE =3D 0x58,
+> +	PIPEDMC_EVENT_PLANE4_FLIP_DONE =3D 0x59,
+> +	PIPEDMC_EVENT_PLANE5_FLIP_DONE =3D 0x5a,
+> +	PIPEDMC_EVENT_PLANE6_FLIP_DONE =3D 0x5b,
+> +	PIPEDMC_EVENT_PLANE7_FLIP_DONE =3D 0x5c,
+> +
+> +	PIPEDMC_EVENT_GTT_ERR =3D 0x9b,
+> +
+> +	PIPEDMC_EVENT_IN_PSR =3D 0xb5,
+> +	PIPEDMC_EVENT_DSI_DMC_IDLE =3D 0xb6,
+> +	PIPEDMC_EVENT_PSR2_DMC_IDLE =3D 0xb7,
+> +	PIPEDMC_EVENT_IN_VGA =3D 0xb8,
+> +
+> +	PIPEDMC_EVENT_TRAP_HIT =3D 0xbd,
+> +	PIPEDMC_EVENT_CLK_USEC =3D 0xbe,
+> +	PIPEDMC_EVENT_CLK_MSEC =3D 0xbf,
+> +
+> +	PIPEDMC_EVENT_CHICKEN1 =3D 0xc8,
+> +	PIPEDMC_EVENT_CHICKEN2 =3D 0xc9,
+> +	PIPEDMC_EVENT_CHICKEN3 =3D 0xca,
+> +	PIPEDMC_EVENT_DDT_UBP =3D 0xcb,
+> +
+> +	PIPEDMC_EVENT_LP_LATENCY =3D 0xce,
+> +
+> +	PIPEDMC_EVENT_LACE_PART_A_HIST_TRIGGER =3D 0xdf,
+> +	PIPEDMC_EVENT_LACE_PART_B_HIST_TRIGGER =3D 0xe0,
+> +
+> +	PIPEDMC_EVENT_STACK_OVF =3D 0xfc,
+> +	PIPEDMC_EVENT_NO_CLAIM =3D 0xfd,
+> +	PIPEDMC_EVENT_UNK_CMD =3D 0xfe,
+> +	PIPEDMC_EVENT_HTP_MOD =3D 0xff,
+> +};
+> +
+>  #define DMC_PROGRAM(addr, i)	_MMIO((addr) + (i) * 4)
+>  #define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
+> =20
+> @@ -93,12 +359,7 @@
+>  #define DMC_EVT_CTL_TYPE_LEVEL_1	1
+>  #define DMC_EVT_CTL_TYPE_EDGE_1_0	2
+>  #define DMC_EVT_CTL_TYPE_EDGE_0_1	3
+> -
+>  #define DMC_EVT_CTL_EVENT_ID_MASK	REG_GENMASK(15, 8)
+> -#define DMC_EVT_CTL_EVENT_ID_FALSE	0x01
+> -#define DMC_EVT_CTL_EVENT_ID_VBLANK_A	0x32 /* main DMC */
+> -/* An event handler scheduled to run at a 1 kHz frequency. */
+> -#define DMC_EVT_CTL_EVENT_ID_CLK_MSEC	0xbf
+> =20
+>  #define DMC_HTP_ADDR_SKL	0x00500034
+>  #define DMC_SSP_BASE		_MMIO(0x8F074)
 
-Regardless of my questions:
+I'll trust that all these definitions came from some specs and that
+there are no typos. ;)
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
