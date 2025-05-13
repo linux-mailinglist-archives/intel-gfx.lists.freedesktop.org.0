@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0239AB4ADB
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 07:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BABFAB4ADC
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 07:19:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 476E410E504;
-	Tue, 13 May 2025 05:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADBF10E51E;
+	Tue, 13 May 2025 05:19:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a1rzFj2M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lgp2DL9c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A2A510E51E;
- Tue, 13 May 2025 05:19:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0B7E10E50C;
+ Tue, 13 May 2025 05:19:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747113546; x=1778649546;
+ t=1747113548; x=1778649548;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OTXoWYiVdgT6Yqzz5GW0hy72BC42vhNrDml26uZ/OeQ=;
- b=a1rzFj2MLWAcMxGweusPI6mHbi41hhf9kdBo1Hjp6cIi6lADkJopCSa1
- jT1nN9tN00C/3XmKBggy6dhAFoTMfuE88kE/sYbKp9rVNhZRk8JrJCgba
- PGOhEIdIwGGO+wfHyie4zI7NiGEH8pcjuDlfDbTfhNhO/igYGqnU1ieYU
- kELJXnyR/ge4EQUHh2lqxBCaP5AwGPB8rLO5h12Nj5iL/vuqKZh9pbiH1
- Uyi8nR0bB8DSiI7muz6fErTbAPJmPVJ2Kb03zC7QuJ7Kv8i0baCv8TXBT
- Gs0Bf2jDK3d1+BNLkk8wb7m4wBtnSGL5Ra/DFD0Y55pA8qrxLr2xmXc0o A==;
-X-CSE-ConnectionGUID: dsoD7PugR5SY/eP7GV+Y+w==
-X-CSE-MsgGUID: zIHKVsSgSV6sqa976M2Saw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="51597805"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="51597805"
+ bh=yn8aJ3c49M3T99RTr/UhLaU5zICz1nrLMRjpfaSDTEE=;
+ b=Lgp2DL9cXLBULGa6sU768Avn2yl6c7oxjR3+eF5gAtAIvSqhN9qwVXyf
+ 3zUZ7f/xIx6a2+vXHDnbrQNSyKqTMFFBNdiGMR9Z22u+Thjaueigoi2rE
+ hOEUmbO2GiWqc307cepatLia3CdWjZU9sNciw5ZbYZ1V5MJ15AyJY/8N9
+ lXC75G08zIglMl2BA1e05g3i2FfLQ2yfoESkWJs1Xb+ZhVRQ4UNKKM5ZN
+ 7G2QLff0Y897uyIG2AaE+C195K+w/5oSqZcHxKeEP+EmYi3NBg3+2X0Jm
+ wJmJJkzvjBivXH+FdfYnKE/VQQ5YxrawBPn0dOhqtLA3/xif/gcs8d3+1 A==;
+X-CSE-ConnectionGUID: M0BTXzysQLm+qZkXCCMGZg==
+X-CSE-MsgGUID: mOZaIxKzSYuDSFU1gHINuQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="51597829"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="51597829"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2025 22:19:06 -0700
-X-CSE-ConnectionGUID: HQnyhHtDSryyJIBa/CUZZw==
-X-CSE-MsgGUID: Umtjsyw4QmaKNrPz3GtrVw==
+ 12 May 2025 22:19:07 -0700
+X-CSE-ConnectionGUID: 9w822ZlOQv2KWvqqtBQttA==
+X-CSE-MsgGUID: GXrbrSASSEmtv9jyLpvlOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="137506166"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="137506173"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa006.jf.intel.com with ESMTP; 12 May 2025 22:19:04 -0700
+ by orviesa006.jf.intel.com with ESMTP; 12 May 2025 22:19:06 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com,
 	ville.syrjala@intel.com
-Subject: [PATCH v5 09/17] drm/i915/vrr: Write DC balance params to hw registers
-Date: Tue, 13 May 2025 10:46:52 +0530
-Message-ID: <20250513051700.507389-10-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v5 10/17] drm/i915: Extract vrr_vblank_start()
+Date: Tue, 13 May 2025 10:46:53 +0530
+Message-ID: <20250513051700.507389-11-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250513051700.507389-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,68 +69,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Write DC Balance parameters to hw registers.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
---v2:
-- Update commit header.
-- Separate crtc_state params from this patch. (Ankit)
+Initialise delayed vblank position for evasion logic.
 
---v3:
-- Write registers at compute config.
-- Update condition for write.
-
---v4:
-- Address issue with state checker.
-
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 26 ++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index dcaae7631b0a..b2348ae10a1a 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -627,6 +627,23 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 				       VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state));
- 		}
- 	}
-+
-+	if (crtc_state->vrr.dc_balance.enable) {
-+		intel_de_write(display, PIPEDMC_DCB_VMIN(pipe),
-+			       crtc_state->vrr.dc_balance.vmin - 1);
-+		intel_de_write(display, PIPEDMC_DCB_VMAX(pipe),
-+			       crtc_state->vrr.dc_balance.vmax - 1);
-+		intel_de_write(display, PIPEDMC_DCB_MAX_INCREASE(pipe),
-+			       crtc_state->vrr.dc_balance.max_increase);
-+		intel_de_write(display, PIPEDMC_DCB_MAX_DECREASE(pipe),
-+			       crtc_state->vrr.dc_balance.max_decrease);
-+		intel_de_write(display, PIPEDMC_DCB_GUARDBAND(pipe),
-+			       crtc_state->vrr.dc_balance.guardband);
-+		intel_de_write(display, PIPEDMC_DCB_SLOPE(pipe),
-+			       crtc_state->vrr.dc_balance.slope);
-+		intel_de_write(display, PIPEDMC_DCB_VBLANK(pipe),
-+			       crtc_state->vrr.dc_balance.vblank_target);
-+	}
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 139fa5deba80..680013f00fc0 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -642,6 +642,14 @@ intel_pre_commit_crtc_state(struct intel_atomic_state *state,
+ 	return pre_commit_crtc_state(old_crtc_state, new_crtc_state);
  }
  
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
-@@ -637,6 +654,15 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
-+	if (old_crtc_state->vrr.dc_balance.enable) {
-+		intel_de_write(display, PIPEDMC_DCB_VMIN(pipe), 0);
-+		intel_de_write(display, PIPEDMC_DCB_VMAX(pipe), 0);
-+		intel_de_write(display, PIPEDMC_DCB_MAX_INCREASE(pipe), 0);
-+		intel_de_write(display, PIPEDMC_DCB_MAX_DECREASE(pipe), 0);
-+		intel_de_write(display, PIPEDMC_DCB_GUARDBAND(pipe), 0);
-+		intel_de_write(display, PIPEDMC_DCB_VBLANK(pipe), 0);
-+	}
++static int vrr_vblank_start(const struct intel_crtc_state *crtc_state)
++{
++	if (intel_vrr_is_push_sent(crtc_state))
++		return intel_vrr_vmin_vblank_start(crtc_state);
++	else
++		return intel_vrr_vmax_vblank_start(crtc_state);
++}
 +
- 	if (!intel_vrr_always_use_vrr_tg(display)) {
- 		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
- 			       trans_vrr_ctl(old_crtc_state));
+ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 			     const struct intel_crtc_state *new_crtc_state,
+ 			     struct intel_vblank_evade_ctx *evade)
+@@ -668,10 +676,7 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 		drm_WARN_ON(crtc->base.dev, intel_crtc_needs_modeset(new_crtc_state) ||
+ 			    new_crtc_state->update_m_n || new_crtc_state->update_lrr);
+ 
+-		if (intel_vrr_is_push_sent(crtc_state))
+-			evade->vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
+-		else
+-			evade->vblank_start = intel_vrr_vmax_vblank_start(crtc_state);
++		evade->vblank_start = vrr_vblank_start(crtc_state);
+ 
+ 		vblank_delay = intel_vrr_vblank_delay(crtc_state);
+ 	} else {
 -- 
 2.48.1
 
