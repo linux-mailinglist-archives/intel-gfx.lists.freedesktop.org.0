@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950CEAB4FBB
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 11:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4064AAB4FBF
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 11:28:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABDAD10E1BA;
-	Tue, 13 May 2025 09:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EC210E370;
+	Tue, 13 May 2025 09:28:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oAhx68js";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bXf/GiXd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1C110E1BA;
- Tue, 13 May 2025 09:28:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB6E10E364;
+ Tue, 13 May 2025 09:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747128504; x=1778664504;
+ t=1747128530; x=1778664530;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QqJzbs+1/nm6qUHoGcqjSGqpOI330vcDrbjag84FeVQ=;
- b=oAhx68jswDYm1WBEH+nkwmLqsZ6xKa8+siKmVBlPbtDZY/wZtpC/PaYK
- E1gFn6/6G6fwrsRlLLXQ9uDge2nUtTL6rh+iDAlGViZJkquJzj+TzA9dM
- GXtRYQ335Bo1ULq1qIUicj4cy/nyw3Tby2L0n+V83UAOwhiHtb7T4qz1w
- k8rAnkwFeQxDvntyPqJlQy4eEfSruHCLSRjL11KfTNMvhYMs2zcmB+3IK
- mIN0LK7XfhHtSxCF9YNru8/iUawHL6CPrX5WQFrq6JMy/AhOTvQdpo0os
- OmcUp58l9UQOYiy5/qFWAN1HznY3WqeIlSNpL28Iuxp95j38iIdIK1itO g==;
-X-CSE-ConnectionGUID: SaKapm7DTz2XjyKNQwDztg==
-X-CSE-MsgGUID: IEm1RE06RQa9J7l2bcHuCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48956275"
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="48956275"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 02:28:24 -0700
-X-CSE-ConnectionGUID: Fh3AwUA8RgaXWxl/kBORpg==
-X-CSE-MsgGUID: EUxJEhVlSwClh1yFF/4rdA==
+ bh=fAq8IpZXK0p3OdXaF7F36ebtLhxa+J2UCHsCFv2htvY=;
+ b=bXf/GiXd3t8+XU8z+dSX35be6SWduQsc0mtCSn2iDgIlt7OzWWQRdBaP
+ CVo2Po0vjUjXGKSWafpUDPJEfonLPHHrnZutBbuRBAGkZAskfyMj2eV/g
+ DC/LQaRr4fkdZwBvu3GH9wdSzw/b6qUJitrEQCFNRiQtMMRHe0VJAcRWP
+ 6DED8l4i55bAnMr9XAithBjKNkxm4QiZmHyLRGBesgM2VXbNxl6VcJCR2
+ b0CfUU+1texonFaZx/uTySxl0O3AD9pNUMz/JDVEsFvo3TEqhjVYh1qQ2
+ JJyefYLGrITekLoobSKQjPBiBq8uqCHzambnSG0hjoKumgaLZJVAy3Cu+ Q==;
+X-CSE-ConnectionGUID: XNAmfLukSCOd++xHfnlq4A==
+X-CSE-MsgGUID: oIJYvbVhQayDrxYz47ZoSw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="49128958"
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="49128958"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 02:28:50 -0700
+X-CSE-ConnectionGUID: w2E9wfyVQiSkL5ep88AmaA==
+X-CSE-MsgGUID: XuTrj8IURRiOfHWPLmck8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="142767941"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.221])
- by orviesa005.jf.intel.com with SMTP; 13 May 2025 02:28:21 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 May 2025 12:28:20 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915: Indicate which pipe lied about its interrupts
-Date: Tue, 13 May 2025 12:28:20 +0300
-Message-ID: <20250513092820.18715-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
+X-IronPort-AV: E=Sophos;i="6.15,284,1739865600"; d="scan'208";a="160918418"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.175])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 02:28:49 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/5] drm/i915/display: various small cleanups
+Date: Tue, 13 May 2025 12:28:40 +0300
+Message-Id: <cover.1747128495.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,31 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+A bunch of small cleanups.
 
-Indicate which pipe signalled the spurious DE PIPE interrupt.
-Might help with debugging a bit if we know where the interrupt
-is supposedly coming from.
+Jani Nikula (5):
+  drm/i915/pps: drop dependency on intel_display_conversion.h
+  drm/i915/rps: pass struct intel_display to DISPLAY_VER()
+  drm/i915/display: drop unused declarations from intel_display.h
+  drm/i915/gem: drop intel_display.h include
+  drm/i915/display: drop unnecessary includes on i915 core headers
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_irq.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_atomic_plane.c    |  1 -
+ drivers/gpu/drm/i915/display/intel_crt.c         |  1 -
+ drivers/gpu/drm/i915/display/intel_display.c     |  1 -
+ drivers/gpu/drm/i915/display/intel_display.h     | 16 ----------------
+ .../gpu/drm/i915/display/intel_display_debugfs.c |  1 -
+ drivers/gpu/drm/i915/display/intel_display_rps.c |  3 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c          |  1 -
+ drivers/gpu/drm/i915/display/intel_dsb.c         |  1 -
+ drivers/gpu/drm/i915/display/intel_pps_regs.h    | 15 +++++++--------
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c       |  1 -
+ 10 files changed, 9 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 3e73832e5e81..a3261c7aad72 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1418,7 +1418,8 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
- 		iir = intel_de_read(display, GEN8_DE_PIPE_IIR(pipe));
- 		if (!iir) {
- 			drm_err_ratelimited(display->drm,
--					    "The master control interrupt lied (DE PIPE)!\n");
-+					    "The master control interrupt lied (DE PIPE %c)!\n",
-+					    pipe_name(pipe));
- 			continue;
- 		}
- 
 -- 
-2.49.0
+2.39.5
 
