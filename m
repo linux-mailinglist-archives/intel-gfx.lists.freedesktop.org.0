@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7CDAB548B
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 14:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA67AB548C
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 14:17:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0FBA10E5A1;
-	Tue, 13 May 2025 12:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34EF010E1F7;
+	Tue, 13 May 2025 12:17:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zy/PwuFa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dr84fYmN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3CA210E59D;
- Tue, 13 May 2025 12:17:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C2D910E595;
+ Tue, 13 May 2025 12:17:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747138646; x=1778674646;
+ t=1747138650; x=1778674650;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Vombe9TppTQnZGlx/bNwJaZQz2AR3NqL4tSw2NX/H9E=;
- b=Zy/PwuFaCTXCG3nUDlQdK2YzjhQ1XGP5iEjIMvCTVcDxMND40AtE15+8
- GaDzbqaY5iy7XDD1JGSxptsMEdGVaIFWAQuaimiUy78dYL1QOgyPZwiHf
- +JMwUpYF64wU8rO6ELsM6SPrvIPyN9HbiQ4qEh/OWfypZJVk1YJbMT1SN
- d/I2Kkl1UGGQ84zWDnsFvOqp1UgHmgFZU5V4ZJL2EiorXOgkUK9O9fEYj
- YZXWOBadkEZKv1TW6UuREvHXGWa5BXUXm5HDL85gWIR9RRh1HBnE2s72I
- 006BhF8Z8jx+phLtXPkTxtjR8rnccSn9sYplMuH63yhTjfYpTSyw9nBbX g==;
-X-CSE-ConnectionGUID: g+lpsOpcT0OqMB4m5EiPzA==
-X-CSE-MsgGUID: 3MfwbexxSiOCYdCfQiKAJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48235889"
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="48235889"
+ bh=/HaxquT5sIqv3HfH7sieQGY3qiug8swVQoCHwkNfHT4=;
+ b=Dr84fYmNzJdZDjFiUGAtp9sDQXcvcJgLoK/im0GfQsJ8NEc7OnxkMg8l
+ sSSSUUmjL83fCX/wtOSIX5A5Rqg1tuypVNNl1hvWY2zUPWqXl8U1d4DGa
+ XmaGvLPcGHT9rtiDo26yPCuPy9EEC2EZ36Lhn+hayWU/B8Xk4174GWsTV
+ JNW7zEMQn6m/wQaLVzHn4K5Ak1ltGDwE8JlWu4KZE9Gc9NDpa17ry4y2U
+ XYz47P/fuM8umyCD2pyX5I+NTzn6kxzg5kMgyoAWM+Dy7CUpuj/3octbO
+ Y6TArV03PFtVjEtfISJC3LBpkw6kxztDub0jUEiLR7ohG+s3U8gljlNNn w==;
+X-CSE-ConnectionGUID: 13Fsehs3QqOpn72IDcOzFA==
+X-CSE-MsgGUID: KwvALRazRASkEsRjEH96Xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48235895"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="48235895"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 05:17:26 -0700
-X-CSE-ConnectionGUID: vUNkVFAdR+mCMEyCO5vVSg==
-X-CSE-MsgGUID: 5fY/EPHRT4uWleu/kjjg+A==
+ 13 May 2025 05:17:30 -0700
+X-CSE-ConnectionGUID: ZyNxgYb2Th2phE/rDYAVag==
+X-CSE-MsgGUID: WWlxvkSuSGm5f6bPMkFpcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="138205810"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="138205816"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.175])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2025 05:17:25 -0700
+ 13 May 2025 05:17:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/8] drm/i915/sbi: move sbi_lock under struct intel_display
-Date: Tue, 13 May 2025 15:17:02 +0300
-Message-Id: <9f5b4933ae99fddb2ed8b3041e2e66d2a256b109.1747138550.git.jani.nikula@intel.com>
+Subject: [PATCH 4/8] drm/i915/de: rename timeout parameters timeout_ms to
+ highlight unit
+Date: Tue, 13 May 2025 15:17:03 +0300
+Message-Id: <52f2dd4afdf95f31849be9aa7465587bc03b44f4.1747138550.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1747138550.git.jani.nikula@intel.com>
 References: <cover.1747138550.git.jani.nikula@intel.com>
@@ -70,94 +71,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With SBI under display, also move sbi_lock to display->sbi.lock.
+The timeout parameters are in ms. Rename the parameters to highlight the
+unit.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h  |  5 +++++
- drivers/gpu/drm/i915/display/intel_sbi.c       | 18 +++++-------------
- drivers/gpu/drm/i915/i915_drv.h                |  3 ---
- 3 files changed, 10 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_de.h | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index b4937e102360..6c822de055f0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -538,6 +538,11 @@ struct intel_display {
- 		u32 block_time_us;
- 	} sagv;
- 
-+	struct {
-+		/* LPT/WPT IOSF sideband protection */
-+		struct mutex lock;
-+	} sbi;
-+
- 	struct {
- 		/*
- 		 * DG2: Mask of PHYs that were not calibrated by the firmware
-diff --git a/drivers/gpu/drm/i915/display/intel_sbi.c b/drivers/gpu/drm/i915/display/intel_sbi.c
-index 0666acfd5a10..b5d601ce63f6 100644
---- a/drivers/gpu/drm/i915/display/intel_sbi.c
-+++ b/drivers/gpu/drm/i915/display/intel_sbi.c
-@@ -18,7 +18,7 @@ static int intel_sbi_rw(struct intel_display *display, u16 reg,
- 	struct intel_uncore *uncore = &i915->uncore;
- 	u32 cmd;
- 
--	lockdep_assert_held(&i915->sbi_lock);
-+	lockdep_assert_held(&display->sbi.lock);
- 
- 	if (intel_wait_for_register_fw(uncore,
- 				       SBI_CTL_STAT, SBI_BUSY, 0,
-@@ -58,16 +58,12 @@ static int intel_sbi_rw(struct intel_display *display, u16 reg,
- 
- void intel_sbi_lock(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index 54ce3e4f8fd9..823290e0cf7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -107,10 +107,10 @@ intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear, u32 set)
+ static inline int
+ __intel_de_wait_for_register_nowl(struct intel_display *display,
+ 				  i915_reg_t reg,
+-				  u32 mask, u32 value, unsigned int timeout)
++				  u32 mask, u32 value, unsigned int timeout_ms)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	mutex_lock(&i915->sbi_lock);
-+	mutex_lock(&display->sbi.lock);
+ 	return intel_wait_for_register(__to_uncore(display), reg, mask,
+-				       value, timeout);
++				       value, timeout_ms);
  }
  
- void intel_sbi_unlock(struct intel_display *display)
+ static inline int
+@@ -125,14 +125,14 @@ __intel_de_wait_for_register_atomic_nowl(struct intel_display *display,
+ 
+ static inline int
+ intel_de_wait(struct intel_display *display, i915_reg_t reg,
+-	      u32 mask, u32 value, unsigned int timeout)
++	      u32 mask, u32 value, unsigned int timeout_ms)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	mutex_unlock(&i915->sbi_lock);
-+	mutex_unlock(&display->sbi.lock);
+ 	int ret;
+ 
+ 	intel_dmc_wl_get(display, reg);
+ 
+ 	ret = __intel_de_wait_for_register_nowl(display, reg, mask, value,
+-						timeout);
++						timeout_ms);
+ 
+ 	intel_dmc_wl_put(display, reg);
+ 
+@@ -141,14 +141,14 @@ intel_de_wait(struct intel_display *display, i915_reg_t reg,
+ 
+ static inline int
+ intel_de_wait_fw(struct intel_display *display, i915_reg_t reg,
+-		 u32 mask, u32 value, unsigned int timeout)
++		 u32 mask, u32 value, unsigned int timeout_ms)
+ {
+ 	int ret;
+ 
+ 	intel_dmc_wl_get(display, reg);
+ 
+ 	ret = intel_wait_for_register_fw(__to_uncore(display), reg, mask,
+-					 value, timeout);
++					 value, timeout_ms);
+ 
+ 	intel_dmc_wl_put(display, reg);
+ 
+@@ -176,16 +176,16 @@ intel_de_wait_custom(struct intel_display *display, i915_reg_t reg,
+ 
+ static inline int
+ intel_de_wait_for_set(struct intel_display *display, i915_reg_t reg,
+-		      u32 mask, unsigned int timeout)
++		      u32 mask, unsigned int timeout_ms)
+ {
+-	return intel_de_wait(display, reg, mask, mask, timeout);
++	return intel_de_wait(display, reg, mask, mask, timeout_ms);
  }
  
- u32 intel_sbi_read(struct intel_display *display, u16 reg,
-@@ -88,14 +84,10 @@ void intel_sbi_write(struct intel_display *display, u16 reg, u32 value,
- 
- void intel_sbi_init(struct intel_display *display)
+ static inline int
+ intel_de_wait_for_clear(struct intel_display *display, i915_reg_t reg,
+-			u32 mask, unsigned int timeout)
++			u32 mask, unsigned int timeout_ms)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	mutex_init(&i915->sbi_lock);
-+	mutex_init(&display->sbi.lock);
+-	return intel_de_wait(display, reg, mask, 0, timeout);
++	return intel_de_wait(display, reg, mask, 0, timeout_ms);
  }
  
- void intel_sbi_fini(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	mutex_destroy(&i915->sbi_lock);
-+	mutex_destroy(&display->sbi.lock);
- }
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 93b4c504b710..6002806d4a3b 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -224,9 +224,6 @@ struct drm_i915_private {
- 
- 	bool irqs_enabled;
- 
--	/* LPT/WPT IOSF sideband protection */
--	struct mutex sbi_lock;
--
- 	/* VLV/CHV IOSF sideband */
- 	struct {
- 		struct mutex lock; /* protect sideband access */
+ /*
 -- 
 2.39.5
 
