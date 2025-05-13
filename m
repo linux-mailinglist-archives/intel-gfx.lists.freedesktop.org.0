@@ -2,41 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FDCAB5438
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 14:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BD9AB5487
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 14:17:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7501710E1F3;
-	Tue, 13 May 2025 12:00:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC95910E38C;
+	Tue, 13 May 2025 12:17:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HQFIc9wi";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6C210E1F3;
- Tue, 13 May 2025 12:00:58 +0000 (UTC)
-Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uEoJb-00000007Mge-2ySB; Tue, 13 May 2025 15:00:55 +0300
-Message-ID: <0b0de38dab53f153a38a624cb413c9d36ca9839d.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 15:00:54 +0300
-In-Reply-To: <20250512103358.15724-8-ville.syrjala@linux.intel.com>
-References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
- <20250512103358.15724-8-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C34510E1F7;
+ Tue, 13 May 2025 12:17:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747138634; x=1778674634;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2mRZzsvB9NqeMixku5VQxv0uOavBvHHSpYNbGw18sk8=;
+ b=HQFIc9wis+GxT0B1WtDvP7Ll+nexcmwPKF5/JsrptcXJzCnPtYco/w8l
+ a0vzBoDXkLwM95bwv8yUJXEsNgQXFMCydaZGjfjZeI7rnhzsOwdVYNaMP
+ 64b16xsC9K7cGYtoyrbkfGpsAW+yEzZh17FeL3cFhDGl7M92mdfVxu/xz
+ WDi2ofyQrXtkPrC46+tbQ3QV5Sl9WAysgzPkDLQqx0uQGgDL8Tde+vI5F
+ K/Q0q5Lsll5SwB8tpdQXxHNCH04C4SLrttERwFfsozLqshhYCoaRLRTuV
+ bgIeF8Gu/TCDLlr2GrzT6rkWV7N5LYN3RsiuMLewoGn2FOuiLI/7KBlm6 A==;
+X-CSE-ConnectionGUID: +1ahikiEQMqb+VZCuBvfvg==
+X-CSE-MsgGUID: RkpJCMm7TVGtD5Sy3PHt5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="48235848"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="48235848"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 05:17:13 -0700
+X-CSE-ConnectionGUID: YMvJ3lKgTxOkZI3OYuW6uA==
+X-CSE-MsgGUID: yM6fwjEQTgmlBGWYNCKtqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="138205783"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.175])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 05:17:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/8] drm/i915/sbi: move under display, cleanup
+Date: Tue, 13 May 2025 15:16:59 +0300
+Message-Id: <cover.1747138550.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 7/7] drm/i915/dmc: Introduce dmc_configure_event()
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,104 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Instead of hardcoding the event handler indices (for runtime
-> event handler enable/disable) we can simply look for the handler
-> with the appropriate event type. This isolates us from the firmware
-> details a bit better.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc.c      | 39 +++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dmc_regs.h |  6 ---
->  2 files changed, 27 insertions(+), 18 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
-915/display/intel_dmc.c
-> index d758032d1af6..f42880f00aab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -573,6 +573,31 @@ static bool is_event_handler(struct intel_display *d=
-isplay,
->  		REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) =3D=3D event_id;
->  }
-> =20
-> +static void dmc_configure_event(struct intel_display *display,
-> +				enum intel_dmc_id dmc_id,
-> +				unsigned int event_id,
-> +				bool enable)
-> +{
-> +	struct intel_dmc *dmc =3D display_to_dmc(display);
-> +	int num_handlers =3D 0;
-> +	int i;
-> +
-> +	for (i =3D 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
-> +		i915_reg_t reg =3D dmc->dmc_info[dmc_id].mmioaddr[i];
-> +		u32 data =3D dmc->dmc_info[dmc_id].mmiodata[i];
-> +
-> +		if (!is_event_handler(display, dmc_id, event_id, reg, data))
-> +			continue;
-> +
-> +		intel_de_write(display, reg, enable ? data : dmc_evt_ctl_disable());
-> +		num_handlers++;
-> +	}
-> +
-> +	drm_WARN_ONCE(display->drm, num_handlers !=3D 1,
-> +		      "DMC %d has %d handlers for event 0x%x\n",
-> +		      dmc_id, num_handlers, event_id);
-> +}
-> +
->  /**
->   * intel_dmc_block_pkgc() - block PKG C-state
->   * @display: display instance
-> @@ -603,19 +628,9 @@ void intel_dmc_block_pkgc(struct intel_display *disp=
-lay, enum pipe pipe,
->  void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel=
-_display *display,
->  							    enum pipe pipe, bool enable)
->  {
-> -	u32 val;
-> +	enum intel_dmc_id dmc_id =3D PIPE_TO_DMC_ID(pipe);
-> =20
-> -	if (enable)
-> -		val =3D DMC_EVT_CTL_ENABLE | DMC_EVT_CTL_RECURRING |
-> -			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> -				       DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> -			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> -				       PIPEDMC_EVENT_VBLANK);
-> -	else
-> -		val =3D dmc_evt_ctl_disable();
-> -
-> -	intel_de_write(display, MTL_PIPEDMC_EVT_CTL_4(pipe),
-> -		       val);
-> +	dmc_configure_event(display, dmc_id, PIPEDMC_EVENT_VBLANK, enable);
->  }
-> =20
->  static bool disable_dmc_evt(struct intel_display *display,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/=
-drm/i915/display/intel_dmc_regs.h
-> index edd4e69319b9..d8e715677454 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-> @@ -287,12 +287,6 @@ enum pipedmc_event_id {
->  #define MTL_PIPEDMC_CONTROL		_MMIO(0x45250)
->  #define  PIPEDMC_ENABLE_MTL(pipe)	REG_BIT(((pipe) - PIPE_A) * 4)
-> =20
-> -#define _MTL_PIPEDMC_EVT_CTL_4_A	0x5f044
-> -#define _MTL_PIPEDMC_EVT_CTL_4_B	0x5f444
-> -#define MTL_PIPEDMC_EVT_CTL_4(pipe)	_MMIO_PIPE(pipe,		\
-> -						   _MTL_PIPEDMC_EVT_CTL_4_A, \
-> -						   _MTL_PIPEDMC_EVT_CTL_4_B)
-> -
->  #define _PIPEDMC_STATUS_A		0x5f06c
->  #define _PIPEDMC_STATUS_B		0x5f46c
->  #define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIP=
-EDMC_STATUS_B)
+Move SBI under display, and convert to display structures and
+interfaces.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+TODO: Also find places for sbi init/fini within display.
 
---
-Cheers,
-Luca.
+BR,
+Jani.
+
+
+Jani Nikula (8):
+  drm/i915/sbi: move intel_sbi.[ch] under display/
+  drm/i915/sbi: convert intel_sbi.[ch] to struct intel_display
+  drm/i915/sbi: move sbi_lock under struct intel_display
+  drm/i915/de: rename timeout parameters timeout_ms to highlight unit
+  drm/i915: add out_value to intel_wait_for_register_fw() and
+    intel_de_wait_fw()
+  drm/i915/sbi: convert to intel_de_*()
+  drm/i915/sbi: split out intel_sbi_regs.h
+  drm/i915/sbi: clean up SBI register macro definitions and usage
+
+ drivers/gpu/drm/i915/Makefile                 |   2 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |  20 +--
+ .../gpu/drm/i915/display/intel_display_core.h |   5 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 149 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_sbi.c      |  89 +++++++++++
+ drivers/gpu/drm/i915/display/intel_sbi.h      |  27 ++++
+ drivers/gpu/drm/i915/display/intel_sbi_regs.h |  65 ++++++++
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |   2 +-
+ drivers/gpu/drm/i915/gvt/display.h            |  13 --
+ drivers/gpu/drm/i915/gvt/handlers.c           |  30 ++--
+ drivers/gpu/drm/i915/i915_driver.c            |   6 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   3 -
+ drivers/gpu/drm/i915/i915_reg.h               |  41 -----
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
+ drivers/gpu/drm/i915/intel_sbi.c              |  94 -----------
+ drivers/gpu/drm/i915/intel_sbi.h              |  27 ----
+ drivers/gpu/drm/i915/intel_uncore.c           |   6 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |   5 +-
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   5 +-
+ 21 files changed, 300 insertions(+), 294 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_sbi_regs.h
+ delete mode 100644 drivers/gpu/drm/i915/intel_sbi.c
+ delete mode 100644 drivers/gpu/drm/i915/intel_sbi.h
+
+-- 
+2.39.5
+
