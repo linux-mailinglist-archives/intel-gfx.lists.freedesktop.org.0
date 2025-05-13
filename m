@@ -2,41 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C81AB53C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE4CAB53E8
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 May 2025 13:35:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7137810E384;
-	Tue, 13 May 2025 11:24:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4922B10E393;
+	Tue, 13 May 2025 11:35:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mh8CJb4m";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58C0B10E384;
- Tue, 13 May 2025 11:24:44 +0000 (UTC)
-Received: from 91-155-254-65.elisa-laajakaista.fi ([91.155.254.65]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uEnkV-00000007Mcn-2nwz; Tue, 13 May 2025 14:24:41 +0300
-Message-ID: <a0833bc0f50231c8af296efd14b1304c95d0f99a.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 May 2025 14:24:38 +0300
-In-Reply-To: <20250512103358.15724-5-ville.syrjala@linux.intel.com>
-References: <20250512103358.15724-1-ville.syrjala@linux.intel.com>
- <20250512103358.15724-5-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6253C10E00E;
+ Tue, 13 May 2025 11:35:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747136124; x=1778672124;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zH4iOIUnoVwIzDKvio5rufDbcRfPbRTzqfD2Xoyj9aE=;
+ b=mh8CJb4mulNL3X2HG7ZRHhGzGmkzeE78Gj8W4QMGcV6i0+eb5PXr+yFf
+ uRHeXL/MEFaGsyuMqvW8cSth53XerDWMLPaMv3Hvn6hedf/QyENKK9oG3
+ gl+k3TwOWDs6wPLzq9J8L+IXZTFTw24g1BZoclLAJyobQJ8TS1QHjel1g
+ +RqedrRVAnz/j277viiIcXDO4c+3R/pBEDxBAtt8W2Ans0c6UoW6sWaWW
+ qNDzI+E7s7cJoRR9XQoIWw99DKmSdtI50ZGIfR2P+XetXOdkDFINrXbKg
+ peJzMABls6DCpaiAguj910iCa7hFEe05MtBwaonR19vd+jig+BnJ6cdB3 A==;
+X-CSE-ConnectionGUID: 0QbLU/HkR4qSpP9nbMu/IQ==
+X-CSE-MsgGUID: 7B23Ta93RQ2ThSrpw7EyFQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11431"; a="59614380"
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="59614380"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2025 04:35:24 -0700
+X-CSE-ConnectionGUID: oLil6NccSYKN52QShO2ANQ==
+X-CSE-MsgGUID: +kLn3/dCRduo6XR7eOLVTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,285,1739865600"; d="scan'208";a="142577190"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa005.fm.intel.com with ESMTP; 13 May 2025 04:35:23 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v1 0/1] drm/i915/display: Add no_psr_reason to PSR debugfs
+Date: Tue, 13 May 2025 13:35:25 +0200
+Message-ID: <20250513113526.2758433-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 4/7] drm/i915/dmc: Extract dmc_evt_ctl_disable()
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,75 +69,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-05-12 at 13:33 +0300, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> We have two copies of the code to generate the "disable this event"
-> value for the DMC_EVT_CTL registers. Extract to a helper.
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc.c | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
-915/display/intel_dmc.c
-> index 49cbb83b2bbe..ec940f837427 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -536,6 +536,14 @@ void intel_dmc_disable_pipe(struct intel_display *di=
-splay, enum pipe pipe)
->  	}
->  }
-> =20
-> +static u32 dmc_evt_ctl_disable(void)
-> +{
-> +	return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> +			      DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> +		REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> +			       DMC_EVENT_FALSE);
-> +}
-> +
+This patch handles failed PSR tests seen on JSL. It should be tested in
+parallel with proper IGT change; since both kernel and IGT changes
+depend on each another, there is possibility the tag to the IGT change
+will not be picked by Patchwork. In that case, v2's cover letter for
+the kernel patch will include tag to the proper IGT series.
 
-This could even be a macro.  And the name seems a bit misleading to me,
-because it sounds like "disable" is an action, but the function only
-returns the values used to disable.
+Test-with: <20250509232659.2721697-1-michal.grzelak@intel.com>
 
+Best regards,
+Michał
 
->  /**
->   * intel_dmc_block_pkgc() - block PKG C-state
->   * @display: display instance
-> @@ -575,10 +583,7 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed=
-_vblank(struct intel_display
->  			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
->  				       PIPEDMC_EVENT_VBLANK);
->  	else
-> -		val =3D REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> -				     DMC_EVENT_FALSE) |
-> -			REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> -				       DMC_EVT_CTL_TYPE_EDGE_0_1);
-> +		val =3D dmc_evt_ctl_disable();
-> =20
->  	intel_de_write(display, MTL_PIPEDMC_EVT_CTL_4(pipe),
->  		       val);
-> @@ -635,10 +640,7 @@ static u32 dmc_mmiodata(struct intel_display *displa=
-y,
->  	if (disable_dmc_evt(display, dmc_id,
->  			    dmc->dmc_info[dmc_id].mmioaddr[i],
->  			    dmc->dmc_info[dmc_id].mmiodata[i]))
-> -		return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
-> -				      DMC_EVT_CTL_TYPE_EDGE_0_1) |
-> -			REG_FIELD_PREP(DMC_EVT_CTL_EVENT_ID_MASK,
-> -				       DMC_EVENT_FALSE);
-> +		return dmc_evt_ctl_disable();
->  	else
->  		return dmc->dmc_info[dmc_id].mmiodata[i];
->  }
+Michał Grzelak (1):
+  drm/i915/display: Add no_psr_reason to PSR debugfs
 
-...but that's a nitpick, so:
+ .../gpu/drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_psr.c          | 15 ++++++++-------
+ 2 files changed, 10 insertions(+), 7 deletions(-)
 
-Reviewed-by: Luca Coelho <luciano.coeho@intel.com>
+-- 
+2.45.2
 
---
-Cheers,
-Luca.
