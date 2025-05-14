@@ -2,29 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF44AB719E
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 18:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6B4DAB730E
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 19:43:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56EB310E699;
-	Wed, 14 May 2025 16:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 090E010E2DA;
+	Wed, 14 May 2025 17:43:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANTR2T4j";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from c664b1dc75d1 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D92CE10E691;
- Wed, 14 May 2025 16:38:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0605529075916770760=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF48510E2DA;
+ Wed, 14 May 2025 17:43:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747244582; x=1778780582;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=foc7m8qhKPTtpQ+ZO8WbDD39u1OfRB3BITbRXOWBwws=;
+ b=ANTR2T4jyDJfXhSlVHXvY8kW+hi+vXEd4Q/D8nDFIxCkwKAKTYDSEmEB
+ g6NkQjJN7rtYGsr+GnSs+3Gw1Gfpwj0GLxdRAtr4NR1C4nMZDS1gdwc5v
+ AO5UFG7rDCNPC42QwZmxZIsWj61jj1RCB3sRoxczGg7HhKbImFCK/2mzL
+ jlaibqScXm7caLK1tT+v2cxwOk2sNMOpuls9utL9qdvCe2Sibzjjp1zg0
+ 9eKSHPkyCLBXWgaLdSZnTMlmn3vC8O0+9KPF7a7O5mlrlvzRXDnoURZ8E
+ RN9mQBFisz43pCnMaShN/Ki7d+888vYaTt+IIdXLe5QTkheTZ/ZPQ3oNm A==;
+X-CSE-ConnectionGUID: 8IM1cMndSC+pQsT8CY5Xig==
+X-CSE-MsgGUID: RCpom7rnR6u54cUTBKItRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="51797486"
+X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="51797486"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2025 10:43:01 -0700
+X-CSE-ConnectionGUID: apZBSqiRTHyviPLwH02BWw==
+X-CSE-MsgGUID: gVYDbd5xQTmg4K4xXwrcUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="143221801"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.16])
+ by orviesa005.jf.intel.com with SMTP; 14 May 2025 10:42:59 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 14 May 2025 20:42:57 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Luca Coelho <luciano.coelho@intel.com>
+Subject: [PATCH v3 2/7] drm/i915: Hook up PIPEDMC interrupts
+Date: Wed, 14 May 2025 20:42:57 +0300
+Message-ID: <20250514174257.8708-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
+References: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_DG1_fixes_=28?=
- =?utf-8?q?rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 May 2025 16:38:48 -0000
-Message-ID: <174724072883.78050.12964153403718038876@c664b1dc75d1>
-X-Patchwork-Hint: ignore
-References: <20250512192216.301771-1-andi.shyti@kernel.org>
-In-Reply-To: <20250512192216.301771-1-andi.shyti@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,154 +68,252 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0605529075916770760==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Hook up PIPEDMC interrupts. We'll need these for:
+- flip queue signalling
+- GTT/ATS faults on LNL+
+- unclaimed register access errors (supposedly that is what
+  the error interrupt indicated according to Windows code).
 
-Series: drm/i915: DG1 fixes (rev8)
-URL   : https://patchwork.freedesktop.org/series/147081/
-State : success
+On LNL+ we get a new level of interrupts registers PIPEDMC_INTERRUPT*.
+On earlier platforms we only have the INT_VECTOR field in the
+PIPEDMC_STATUS registers, whose values are defined by the firmware.
 
-== Summary ==
+For now we'll enable the interrupts on LNL+ only. For earlier platforms
+it's not clear that there is any use for these interrupts, and some
+ADL machines have exhibited spurious DE_PIPE interrupts with the
+PIPEDMC interrupts unmasked/enabled. We can revisit enabling these
+for earlier platforms in the future.
 
-CI Bug Log - changes from CI_DRM_16545 -> Patchwork_147081v8
-====================================================
+For some unknown reason LNL pipe B triggers the error interrupt
+during the first DC state transition (subsequent transitions are
+maybe OK?). No clear idea what's going on here yet, so keep the
+error interrupt disabled for now.
 
-Summary
--------
+Similar to DSB interrupt registers, the unused bits in
+PIPEDMC_INTERRUPT* seem to act like randomg r/w bits (instead
+of being hardwired to 0 like one would expect), and so we'll try
+to avoid setting them so that we don't mistake them for real
+interrupts.
 
-  **SUCCESS**
+v2: Only enable/unmask for LNL+
+    Keep the flip queue interrupt masked off for now since
+    we don't have a use for it yet
+v3:
+    Also keep the error interrupt masked off for now due to
+    LNL pipe B triggering it
 
-  No regressions found.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  8 +++
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 49 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc.h      |  2 +
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 22 +++++++++
+ drivers/gpu/drm/i915/i915_reg.h               |  2 +
+ 6 files changed, 84 insertions(+)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/index.html
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 87c666792c0d..d4611d17e498 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -181,6 +181,7 @@ struct intel_display_platforms {
+ #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+ #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
++#define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
+ #define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
+ #define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >= 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index a7130b14aace..c24841f57aac 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -17,6 +17,7 @@
+ #include "intel_display_rps.h"
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
++#include "intel_dmc.h"
+ #include "intel_dmc_wl.h"
+ #include "intel_dp_aux.h"
+ #include "intel_dsb.h"
+@@ -1449,6 +1450,9 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
+ 				intel_dsb_irq_handler(display, pipe, INTEL_DSB_2);
+ 		}
+ 
++		if (HAS_PIPEDMC(display) && iir & GEN12_PIPEDMC_INTERRUPT)
++			intel_pipedmc_irq_handler(display, pipe);
++
+ 		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
+ 			hsw_pipe_crc_irq_handler(display, pipe);
+ 
+@@ -2266,6 +2270,10 @@ void gen8_de_irq_postinstall(struct intel_display *display)
+ 			GEN12_DSB_INT(INTEL_DSB_1) |
+ 			GEN12_DSB_INT(INTEL_DSB_2);
+ 
++	/* TODO figure PIPEDMC interrupts for pre-LNL */
++	if (DISPLAY_VER(display) >= 20)
++		de_pipe_masked |= GEN12_PIPEDMC_INTERRUPT;
++
+ 	de_pipe_enables = de_pipe_masked |
+ 		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
+ 		gen8_de_pipe_flip_done_mask(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index b58189d24e7e..16dc52a8302c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -27,9 +27,11 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "intel_crtc.h"
+ #include "intel_de.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_power_well.h"
++#include "intel_display_types.h"
+ #include "intel_dmc.h"
+ #include "intel_dmc_regs.h"
+ #include "intel_step.h"
+@@ -490,6 +492,17 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
+ 		adlp_pipedmc_clock_gating_wa(display, enable);
+ }
+ 
++static u32 pipedmc_interrupt_mask(struct intel_display *display)
++{
++	/*
++	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
++	 * triggering it during the first DC state transition. Figure
++	 * out what is going on...
++	 */
++	return PIPEDMC_GTT_FAULT |
++		PIPEDMC_ATS_FAULT;
++}
++
+ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+ {
+ 	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+@@ -497,6 +510,11 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+ 	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+ 		return;
+ 
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
++	}
++
+ 	if (DISPLAY_VER(display) >= 14)
+ 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
+ 	else
+@@ -514,6 +532,11 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
+ 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
+ 	else
+ 		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
++
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++	}
+ }
+ 
+ /**
+@@ -1403,3 +1426,29 @@ void intel_dmc_debugfs_register(struct intel_display *display)
+ 	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
+ 			    display, &intel_dmc_debugfs_status_fops);
+ }
++
++void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
++{
++	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
++	u32 tmp;
++
++	if (DISPLAY_VER(display) >= 20) {
++		tmp = intel_de_read(display, PIPEDMC_INTERRUPT(pipe));
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), tmp);
++
++		if (tmp & PIPEDMC_ATS_FAULT)
++			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC ATS fault\n",
++					    crtc->base.base.id, crtc->base.name);
++		if (tmp & PIPEDMC_GTT_FAULT)
++			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC GTT fault\n",
++					    crtc->base.base.id, crtc->base.name);
++		if (tmp & PIPEDMC_ERROR)
++			drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC error\n",
++				crtc->base.base.id, crtc->base.name);
++	}
++
++	tmp = intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECTOR_MASK;
++	if (tmp)
++		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
++			crtc->base.base.id, crtc->base.name, tmp);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
+index bd1c459b0075..a98e8deff13a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+@@ -34,4 +34,6 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool star
+ 
+ void assert_dmc_loaded(struct intel_display *display);
+ 
++void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
++
+ #endif /* __INTEL_DMC_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index e16ea3f16ed8..e8ac0e1be764 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -27,6 +27,28 @@
+ 						   _MTL_PIPEDMC_EVT_CTL_4_A, \
+ 						   _MTL_PIPEDMC_EVT_CTL_4_B)
+ 
++#define _PIPEDMC_STATUS_A		0x5f06c
++#define _PIPEDMC_STATUS_B		0x5f46c
++#define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIPEDMC_STATUS_B)
++#define   PIPEDMC_SSP			REG_GENMASK(31, 16)
++#define   PIPEDMC_INT_VECTOR_MASK	REG_GENMASK(15, 8)
++/* PIPEDMC_INT_VECTOR values defined by firmware */
++#define   PIPEDMC_INT_VECTOR_SCANLINE_COMP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x1)
++#define   PIPEDMC_INT_VECTOR_DC6V_FLIPQ_OVERLAP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x2)
++#define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE		REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0xff) /* Wa_16018781658:lnl[a0] */
++#define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
++
++#define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
++#define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
++#define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_A, _PIPEDMC_INTERRUPT_B)
++#define _PIPEDMC_INTERRUPT_MASK_A	0x5f194 /* lnl+ */
++#define _PIPEDMC_INTERRUPT_MASK_B	0x5f594 /* lnl+ */
++#define PIPEDMC_INTERRUPT_MASK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_MASK_A, _PIPEDMC_INTERRUPT_MASK_B)
++#define   PIPEDMC_FLIPQ_PROG_DONE	REG_BIT(3)
++#define   PIPEDMC_ERROR			REG_BIT(2)
++#define   PIPEDMC_GTT_FAULT		REG_BIT(1)
++#define   PIPEDMC_ATS_FAULT		REG_BIT(0)
++
+ #define PIPEDMC_BLOCK_PKGC_SW_A	0x5f1d0
+ #define PIPEDMC_BLOCK_PKGC_SW_B	0x5F5d0
+ #define PIPEDMC_BLOCK_PKGC_SW(pipe)				_MMIO_PIPE(pipe, \
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 2d0e04eae763..8822c639a4f4 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2128,12 +2128,14 @@
+ #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
+ #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
+ #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
++#define  GEN12_PIPEDMC_FLIPQ_DONE	REG_BIT(24) /* tgl-adl */
+ #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
+ #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
+ #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
+ #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
+ #define  MTL_PLANE_ATS_FAULT		REG_BIT(18) /* mtl+ */
+ #define  GEN11_PIPE_PLANE7_FLIP_DONE	REG_BIT(18) /* icl/tgl */
++#define  MTL_PIPEDMC_FLIPQ_DONE		REG_BIT(17) /* mtl */
+ #define  GEN11_PIPE_PLANE6_FLIP_DONE	REG_BIT(17) /* icl/tgl */
+ #define  GEN11_PIPE_PLANE5_FLIP_DONE	REG_BIT(16) /* icl+ */
+ #define  GEN12_DSB_2_INT		REG_BIT(15) /* tgl+ */
+-- 
+2.49.0
 
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147081v8 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [INCOMPLETE][1] ([i915#12904]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@guc_hang:
-    - bat-twl-2:          [INCOMPLETE][3] ([i915#14096]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/bat-twl-2/igt@i915_selftest@live@guc_hang.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/bat-twl-2/igt@i915_selftest@live@guc_hang.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#14096]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16545 -> Patchwork_147081v8
-
-  CI-20190529: 20190529
-  CI_DRM_16545: dd6a856541dd90fa4ef755783898fcfbea3b9961 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8364: 8364
-  Patchwork_147081v8: dd6a856541dd90fa4ef755783898fcfbea3b9961 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/index.html
-
---===============0605529075916770760==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: DG1 fixes (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147081/">https://patchwork.freedesktop.org/series/147081/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16545 -&gt; Patchwork_147081v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147081v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_hang:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/bat-twl-2/igt@i915_selftest@live@guc_hang.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096">i915#14096</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/bat-twl-2/igt@i915_selftest@live@guc_hang.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16545/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147081v8/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16545 -&gt; Patchwork_147081v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16545: dd6a856541dd90fa4ef755783898fcfbea3b9961 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8364: 8364<br />
-  Patchwork_147081v8: dd6a856541dd90fa4ef755783898fcfbea3b9961 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0605529075916770760==--
