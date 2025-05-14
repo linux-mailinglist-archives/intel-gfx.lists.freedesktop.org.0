@@ -2,60 +2,156 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6B4DAB730E
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 19:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB9FAB7345
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 19:53:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 090E010E2DA;
-	Wed, 14 May 2025 17:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B6A10E6C7;
+	Wed, 14 May 2025 17:53:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANTR2T4j";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hBy/b5XS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF48510E2DA;
- Wed, 14 May 2025 17:43:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747244582; x=1778780582;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=foc7m8qhKPTtpQ+ZO8WbDD39u1OfRB3BITbRXOWBwws=;
- b=ANTR2T4jyDJfXhSlVHXvY8kW+hi+vXEd4Q/D8nDFIxCkwKAKTYDSEmEB
- g6NkQjJN7rtYGsr+GnSs+3Gw1Gfpwj0GLxdRAtr4NR1C4nMZDS1gdwc5v
- AO5UFG7rDCNPC42QwZmxZIsWj61jj1RCB3sRoxczGg7HhKbImFCK/2mzL
- jlaibqScXm7caLK1tT+v2cxwOk2sNMOpuls9utL9qdvCe2Sibzjjp1zg0
- 9eKSHPkyCLBXWgaLdSZnTMlmn3vC8O0+9KPF7a7O5mlrlvzRXDnoURZ8E
- RN9mQBFisz43pCnMaShN/Ki7d+888vYaTt+IIdXLe5QTkheTZ/ZPQ3oNm A==;
-X-CSE-ConnectionGUID: 8IM1cMndSC+pQsT8CY5Xig==
-X-CSE-MsgGUID: RCpom7rnR6u54cUTBKItRA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11433"; a="51797486"
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="51797486"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2025 10:43:01 -0700
-X-CSE-ConnectionGUID: apZBSqiRTHyviPLwH02BWw==
-X-CSE-MsgGUID: gVYDbd5xQTmg4K4xXwrcUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,288,1739865600"; d="scan'208";a="143221801"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.16])
- by orviesa005.jf.intel.com with SMTP; 14 May 2025 10:42:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 14 May 2025 20:42:57 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 2/7] drm/i915: Hook up PIPEDMC interrupts
-Date: Wed, 14 May 2025 20:42:57 +0300
-Message-ID: <20250514174257.8708-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
-References: <20250512103358.15724-3-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D6E10E6C8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 17:53:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1747245190;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=T9gEkHcNNRGwG4zKAICU/T3iGmVhFST3CjssIJGy95U=;
+ b=hBy/b5XSrteFxQK8gslsTnHXmHZYSdst3s3YwZPkf0Le70V6FJ/UBDDyQZwF517rVvP6/m
+ 8UDk8ctq5c+eSlrEkDyi1By24tcxPuM3mxUGESnxQLCvABZl1yfCMWW7+m6V5VghmpmA3m
+ o3BzpaGAUpkUtHAxW0GHlSGYR3siri0=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-433-tE6GOWQXOsS26pAErZZ6rg-1; Wed, 14 May 2025 13:53:08 -0400
+X-MC-Unique: tE6GOWQXOsS26pAErZZ6rg-1
+X-Mimecast-MFC-AGG-ID: tE6GOWQXOsS26pAErZZ6rg_1747245187
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-43f251dc364so507765e9.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 10:53:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747245187; x=1747849987;
+ h=content-transfer-encoding:in-reply-to:organization:autocrypt
+ :content-language:from:references:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=T9gEkHcNNRGwG4zKAICU/T3iGmVhFST3CjssIJGy95U=;
+ b=VBKqECX/KzSCwgaSPozOg8cmqlLjN8YDwszQDjCdsT0K17+db7xgso+jX9DBcbQE8T
+ VfOJaRKeXvymEhtl6o317E87220fGhBOHfAg+f/Ylv5MaSIrMGzWg17HI9VAnpHpNBJj
+ 9qp6Q+AsiuY3AMkI1mBGGFxQnV2M4N4pbwDJ3MqHVYzLMBNC/xqf4ALZmLpj40eCt5eS
+ QeJ8Gw7wYmiKp8OaE9+v3OQLdHcub0UL10ZzqlTwzm5f6YnjcqX/KZld1G39gPBAB7d4
+ nfq3vuk+wp/am5KXrr2NaFlNfL3z0VbwIF2VadxiOSYo9XdFQBiqKudT3lkem3jIvB/M
+ kOIw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVxAjMnQR6wCncXqZmUuAug2ekjMObsaoyrUEzdBnnt94+TjyA+lxfqDq7snSerLmzmuRyeEOzt/w4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz+/mVDdFSbWsdGFq/MREbLGKtbiTCr+WlNJBRxAOXpFoG9sG1z
+ FCfjuwLkgYIuVSly5GJ7n1Bb8NHam8oYU4FVtZ7E1giubPKw2iwM/BkfJU4qMrpLAFwv2xacpRe
+ dKlnV+9N47h/3iSG7LLTbqMnPiTxJCE1QWognk4c8BJudVddWrmhoYyvUrBrtKKAtsA==
+X-Gm-Gg: ASbGncsqYSJybX0C51VJboMGIRCmkuELPcj85HI+lrNE+kojj/EKMH4RzPorPcfznZz
+ EAoL8CIntBtbexW2KyTqpHEBAR6y1NE3GYoSnO3LPEUeskxcw4N6SqGtrmkXau528ApcKShLvvM
+ rXIOLOnvqfnLh5oK5Oqhmso3BiAp922nMjWSkEu5Gr4O7HT8/rmbEdw9h09NhJv7KKwisNJLGZ5
+ BieRzvMi7qJ3wARGUVXq/Pt16J1G5PVnThnfbEp2fsqGV6oeoNHdZt/bOta7PNYm9Ct5qKy31l+
+ VtB0XZjdUMaJxAgkZgs/llFCX4lFfd1/BIXabTyLBRgXXYZbe/YVg0C91x4Fopu104J2StebSKI
+ ZmyfNR0j5wpCMTDZanD3S0OuUF2s1JuZWWYY/LNo=
+X-Received: by 2002:adf:f7cc:0:b0:3a2:2d6:4205 with SMTP id
+ ffacd0b85a97d-3a349921da8mr3561090f8f.47.1747245187411; 
+ Wed, 14 May 2025 10:53:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHI/rQoUNdarqySB6UGfLmR7K5cvW1c5VoY82rTRIWoLyPgqKa4z52Sz2Zo6d+MLUSeBgWoLg==
+X-Received: by 2002:adf:f7cc:0:b0:3a2:2d6:4205 with SMTP id
+ ffacd0b85a97d-3a349921da8mr3561064f8f.47.1747245187062; 
+ Wed, 14 May 2025 10:53:07 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f15:6200:d485:1bcd:d708:f5df?
+ (p200300d82f156200d4851bcdd708f5df.dip0.t-ipconnect.de.
+ [2003:d8:2f15:6200:d485:1bcd:d708:f5df])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3a1f58ecccbsm20532621f8f.32.2025.05.14.10.53.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 14 May 2025 10:53:06 -0700 (PDT)
+Message-ID: <18d502c8-7bbe-470e-863c-7c2f42ea2487@redhat.com>
+Date: Wed, 14 May 2025 19:53:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/11] x86/mm/pat: remove MEMTYPE_*_MATCH
+To: "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-trace-kernel@vger.kernel.org, Dave Hansen
+ <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ "H. Peter Anvin" <hpa@zytor.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>,
+ Ingo Molnar <mingo@kernel.org>
+References: <20250512123424.637989-1-david@redhat.com>
+ <20250512123424.637989-9-david@redhat.com>
+ <f2bxgy5tmb3cpk457lay3hl4wejj5dvttswnvzi2uudxtkkbsm@ktcytlgv64nn>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ WNyWQQ==
+Organization: Red Hat
+In-Reply-To: <f2bxgy5tmb3cpk457lay3hl4wejj5dvttswnvzi2uudxtkkbsm@ktcytlgv64nn>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: uSHxA09vMXEHvPQcUyKcFe_guYHeFWTH_em_aBKhRks_1747245187
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,249 +167,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 13.05.25 19:48, Liam R. Howlett wrote:
+> * David Hildenbrand <david@redhat.com> [250512 08:34]:
+>> The "memramp() shrinking" scenario no longer applies, so let's remove
+>> that now-unnecessary handling.
+>>
+>> Reviewed-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+>> Acked-by: Ingo Molnar <mingo@kernel.org> # x86 bits
+>> Signed-off-by: David Hildenbrand <david@redhat.com>
+> 
+> small comment, but this looks good.
+> 
+> Reviewed-by: Liam R. Howlett <Liam.Howlett@oracle.com>
 
-Hook up PIPEDMC interrupts. We'll need these for:
-- flip queue signalling
-- GTT/ATS faults on LNL+
-- unclaimed register access errors (supposedly that is what
-  the error interrupt indicated according to Windows code).
+Thanks!
 
-On LNL+ we get a new level of interrupts registers PIPEDMC_INTERRUPT*.
-On earlier platforms we only have the INT_VECTOR field in the
-PIPEDMC_STATUS registers, whose values are defined by the firmware.
+> 
+>> ---
+>>   arch/x86/mm/pat/memtype_interval.c | 44 ++++--------------------------
+>>   1 file changed, 6 insertions(+), 38 deletions(-)
+>>
+>> diff --git a/arch/x86/mm/pat/memtype_interval.c b/arch/x86/mm/pat/memtype_interval.c
+>> index 645613d59942a..9d03f0dbc4715 100644
+>> --- a/arch/x86/mm/pat/memtype_interval.c
+>> +++ b/arch/x86/mm/pat/memtype_interval.c
+>> @@ -49,26 +49,15 @@ INTERVAL_TREE_DEFINE(struct memtype, rb, u64, subtree_max_end,
+>>   
+>>   static struct rb_root_cached memtype_rbroot = RB_ROOT_CACHED;
+>>   
+>> -enum {
+>> -	MEMTYPE_EXACT_MATCH	= 0,
+>> -	MEMTYPE_END_MATCH	= 1
+>> -};
+>> -
+>> -static struct memtype *memtype_match(u64 start, u64 end, int match_type)
+>> +static struct memtype *memtype_match(u64 start, u64 end)
+>>   {
+>>   	struct memtype *entry_match;
+>>   
+>>   	entry_match = interval_iter_first(&memtype_rbroot, start, end-1);
+>>   
+>>   	while (entry_match != NULL && entry_match->start < end) {
+> 
+> I think this could use interval_tree_for_each_span() instead.
 
-For now we'll enable the interrupts on LNL+ only. For earlier platforms
-it's not clear that there is any use for these interrupts, and some
-ADL machines have exhibited spurious DE_PIPE interrupts with the
-PIPEDMC interrupts unmasked/enabled. We can revisit enabling these
-for earlier platforms in the future.
+Fancy, let me look at this. Probably I'll send another patch on top of 
+this series to do that conversion. (as you found, patch #9 moves that code)
 
-For some unknown reason LNL pipe B triggers the error interrupt
-during the first DC state transition (subsequent transitions are
-maybe OK?). No clear idea what's going on here yet, so keep the
-error interrupt disabled for now.
-
-Similar to DSB interrupt registers, the unused bits in
-PIPEDMC_INTERRUPT* seem to act like randomg r/w bits (instead
-of being hardwired to 0 like one would expect), and so we'll try
-to avoid setting them so that we don't mistake them for real
-interrupts.
-
-v2: Only enable/unmask for LNL+
-    Keep the flip queue interrupt masked off for now since
-    we don't have a use for it yet
-v3:
-    Also keep the error interrupt masked off for now due to
-    LNL pipe B triggering it
-
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/intel_display_device.h   |  1 +
- .../gpu/drm/i915/display/intel_display_irq.c  |  8 +++
- drivers/gpu/drm/i915/display/intel_dmc.c      | 49 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dmc.h      |  2 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 22 +++++++++
- drivers/gpu/drm/i915/i915_reg.h               |  2 +
- 6 files changed, 84 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 87c666792c0d..d4611d17e498 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -181,6 +181,7 @@ struct intel_display_platforms {
- #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
- #define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
-+#define HAS_PIPEDMC(__display)		(DISPLAY_VER(__display) >= 12)
- #define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
- #define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr_hw_tracking)
- #define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >= 12)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index a7130b14aace..c24841f57aac 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -17,6 +17,7 @@
- #include "intel_display_rps.h"
- #include "intel_display_trace.h"
- #include "intel_display_types.h"
-+#include "intel_dmc.h"
- #include "intel_dmc_wl.h"
- #include "intel_dp_aux.h"
- #include "intel_dsb.h"
-@@ -1449,6 +1450,9 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
- 				intel_dsb_irq_handler(display, pipe, INTEL_DSB_2);
- 		}
- 
-+		if (HAS_PIPEDMC(display) && iir & GEN12_PIPEDMC_INTERRUPT)
-+			intel_pipedmc_irq_handler(display, pipe);
-+
- 		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
- 			hsw_pipe_crc_irq_handler(display, pipe);
- 
-@@ -2266,6 +2270,10 @@ void gen8_de_irq_postinstall(struct intel_display *display)
- 			GEN12_DSB_INT(INTEL_DSB_1) |
- 			GEN12_DSB_INT(INTEL_DSB_2);
- 
-+	/* TODO figure PIPEDMC interrupts for pre-LNL */
-+	if (DISPLAY_VER(display) >= 20)
-+		de_pipe_masked |= GEN12_PIPEDMC_INTERRUPT;
-+
- 	de_pipe_enables = de_pipe_masked |
- 		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
- 		gen8_de_pipe_flip_done_mask(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index b58189d24e7e..16dc52a8302c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -27,9 +27,11 @@
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-+#include "intel_crtc.h"
- #include "intel_de.h"
- #include "intel_display_rpm.h"
- #include "intel_display_power_well.h"
-+#include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dmc_regs.h"
- #include "intel_step.h"
-@@ -490,6 +492,17 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- 		adlp_pipedmc_clock_gating_wa(display, enable);
- }
- 
-+static u32 pipedmc_interrupt_mask(struct intel_display *display)
-+{
-+	/*
-+	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
-+	 * triggering it during the first DC state transition. Figure
-+	 * out what is going on...
-+	 */
-+	return PIPEDMC_GTT_FAULT |
-+		PIPEDMC_ATS_FAULT;
-+}
-+
- void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- {
- 	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-@@ -497,6 +510,11 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- 	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
- 		return;
- 
-+	if (DISPLAY_VER(display) >= 20) {
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
-+		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
-+	}
-+
- 	if (DISPLAY_VER(display) >= 14)
- 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
- 	else
-@@ -514,6 +532,11 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
- 		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
- 	else
- 		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
-+
-+	if (DISPLAY_VER(display) >= 20) {
-+		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
-+	}
- }
- 
- /**
-@@ -1403,3 +1426,29 @@ void intel_dmc_debugfs_register(struct intel_display *display)
- 	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
- 			    display, &intel_dmc_debugfs_status_fops);
- }
-+
-+void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
-+{
-+	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-+	u32 tmp;
-+
-+	if (DISPLAY_VER(display) >= 20) {
-+		tmp = intel_de_read(display, PIPEDMC_INTERRUPT(pipe));
-+		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), tmp);
-+
-+		if (tmp & PIPEDMC_ATS_FAULT)
-+			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC ATS fault\n",
-+					    crtc->base.base.id, crtc->base.name);
-+		if (tmp & PIPEDMC_GTT_FAULT)
-+			drm_err_ratelimited(display->drm, "[CRTC:%d:%s] PIPEDMC GTT fault\n",
-+					    crtc->base.base.id, crtc->base.name);
-+		if (tmp & PIPEDMC_ERROR)
-+			drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC error\n",
-+				crtc->base.base.id, crtc->base.name);
-+	}
-+
-+	tmp = intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECTOR_MASK;
-+	if (tmp)
-+		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
-+			crtc->base.base.id, crtc->base.name, tmp);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index bd1c459b0075..a98e8deff13a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -34,4 +34,6 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display, bool star
- 
- void assert_dmc_loaded(struct intel_display *display);
- 
-+void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
-+
- #endif /* __INTEL_DMC_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index e16ea3f16ed8..e8ac0e1be764 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -27,6 +27,28 @@
- 						   _MTL_PIPEDMC_EVT_CTL_4_A, \
- 						   _MTL_PIPEDMC_EVT_CTL_4_B)
- 
-+#define _PIPEDMC_STATUS_A		0x5f06c
-+#define _PIPEDMC_STATUS_B		0x5f46c
-+#define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIPEDMC_STATUS_B)
-+#define   PIPEDMC_SSP			REG_GENMASK(31, 16)
-+#define   PIPEDMC_INT_VECTOR_MASK	REG_GENMASK(15, 8)
-+/* PIPEDMC_INT_VECTOR values defined by firmware */
-+#define   PIPEDMC_INT_VECTOR_SCANLINE_COMP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x1)
-+#define   PIPEDMC_INT_VECTOR_DC6V_FLIPQ_OVERLAP_ERROR	REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0x2)
-+#define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE		REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0xff) /* Wa_16018781658:lnl[a0] */
-+#define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
-+
-+#define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
-+#define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
-+#define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_A, _PIPEDMC_INTERRUPT_B)
-+#define _PIPEDMC_INTERRUPT_MASK_A	0x5f194 /* lnl+ */
-+#define _PIPEDMC_INTERRUPT_MASK_B	0x5f594 /* lnl+ */
-+#define PIPEDMC_INTERRUPT_MASK(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_MASK_A, _PIPEDMC_INTERRUPT_MASK_B)
-+#define   PIPEDMC_FLIPQ_PROG_DONE	REG_BIT(3)
-+#define   PIPEDMC_ERROR			REG_BIT(2)
-+#define   PIPEDMC_GTT_FAULT		REG_BIT(1)
-+#define   PIPEDMC_ATS_FAULT		REG_BIT(0)
-+
- #define PIPEDMC_BLOCK_PKGC_SW_A	0x5f1d0
- #define PIPEDMC_BLOCK_PKGC_SW_B	0x5F5d0
- #define PIPEDMC_BLOCK_PKGC_SW(pipe)				_MMIO_PIPE(pipe, \
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2d0e04eae763..8822c639a4f4 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2128,12 +2128,14 @@
- #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
- #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl-mtl */
- #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl */
-+#define  GEN12_PIPEDMC_FLIPQ_DONE	REG_BIT(24) /* tgl-adl */
- #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
- #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
- #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
- #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
- #define  MTL_PLANE_ATS_FAULT		REG_BIT(18) /* mtl+ */
- #define  GEN11_PIPE_PLANE7_FLIP_DONE	REG_BIT(18) /* icl/tgl */
-+#define  MTL_PIPEDMC_FLIPQ_DONE		REG_BIT(17) /* mtl */
- #define  GEN11_PIPE_PLANE6_FLIP_DONE	REG_BIT(17) /* icl/tgl */
- #define  GEN11_PIPE_PLANE5_FLIP_DONE	REG_BIT(16) /* icl+ */
- #define  GEN12_DSB_2_INT		REG_BIT(15) /* tgl+ */
 -- 
-2.49.0
+Cheers,
+
+David / dhildenb
 
