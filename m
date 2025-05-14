@@ -2,82 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB9FAB7345
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 19:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5393CAB73B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 May 2025 19:57:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B6A10E6C7;
-	Wed, 14 May 2025 17:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D319610E6F4;
+	Wed, 14 May 2025 17:57:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hBy/b5XS";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bXkoUJW7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13D6E10E6C8
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 17:53:11 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8776C10E6F9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 17:57:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1747245190;
+ s=mimecast20190719; t=1747245456;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=T9gEkHcNNRGwG4zKAICU/T3iGmVhFST3CjssIJGy95U=;
- b=hBy/b5XSrteFxQK8gslsTnHXmHZYSdst3s3YwZPkf0Le70V6FJ/UBDDyQZwF517rVvP6/m
- 8UDk8ctq5c+eSlrEkDyi1By24tcxPuM3mxUGESnxQLCvABZl1yfCMWW7+m6V5VghmpmA3m
- o3BzpaGAUpkUtHAxW0GHlSGYR3siri0=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=0bWZ4WIW6USGmd3fCtPku9lyZiPCoKVx7jpPxXIn3KU=;
+ b=bXkoUJW7imyM8Xf2/K5SdcIpt3XkGWWd6Ox79TkP5iHS1ln4xXzicqvgaG/7c/s2n4qPui
+ XlzqqGIQZFWDIHkeS5KisH8nAuhkD6/qD+pycGxZB+Tn0hQ8bXRcsVbxyO530zDUe9KUix
+ fu9d3D1BWPx4e3CLOIwwd1F0Budd6xA=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-433-tE6GOWQXOsS26pAErZZ6rg-1; Wed, 14 May 2025 13:53:08 -0400
-X-MC-Unique: tE6GOWQXOsS26pAErZZ6rg-1
-X-Mimecast-MFC-AGG-ID: tE6GOWQXOsS26pAErZZ6rg_1747245187
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-43f251dc364so507765e9.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 10:53:08 -0700 (PDT)
+ us-mta-106-WKs0F3G7OWqxW5GANkI7XQ-1; Wed, 14 May 2025 13:57:34 -0400
+X-MC-Unique: WKs0F3G7OWqxW5GANkI7XQ-1
+X-Mimecast-MFC-AGG-ID: WKs0F3G7OWqxW5GANkI7XQ_1747245452
+Received: by mail-wr1-f71.google.com with SMTP id
+ ffacd0b85a97d-3a1f6c5f4f2so15039f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 May 2025 10:57:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747245187; x=1747849987;
+ d=1e100.net; s=20230601; t=1747245452; x=1747850252;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:to:subject:user-agent:mime-version
  :date:message-id:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=T9gEkHcNNRGwG4zKAICU/T3iGmVhFST3CjssIJGy95U=;
- b=VBKqECX/KzSCwgaSPozOg8cmqlLjN8YDwszQDjCdsT0K17+db7xgso+jX9DBcbQE8T
- VfOJaRKeXvymEhtl6o317E87220fGhBOHfAg+f/Ylv5MaSIrMGzWg17HI9VAnpHpNBJj
- 9qp6Q+AsiuY3AMkI1mBGGFxQnV2M4N4pbwDJ3MqHVYzLMBNC/xqf4ALZmLpj40eCt5eS
- QeJ8Gw7wYmiKp8OaE9+v3OQLdHcub0UL10ZzqlTwzm5f6YnjcqX/KZld1G39gPBAB7d4
- nfq3vuk+wp/am5KXrr2NaFlNfL3z0VbwIF2VadxiOSYo9XdFQBiqKudT3lkem3jIvB/M
- kOIw==
+ bh=0bWZ4WIW6USGmd3fCtPku9lyZiPCoKVx7jpPxXIn3KU=;
+ b=qOUtIyPbxUN9dke2x9a6JrFH5fUGRUPTAvu1ezR3zAjMCrM7TQZ0kUq3L1AD5ctebW
+ iFtu0jXwpRjylIqEnpW9R/PpHxBBLDXyBf9NL1A8gqD9Jmg1z/YC4ku/g2DVCEBiu/U0
+ KvzLWZ7AMwbxAoVzTzhsDZjfuJRnrz5Hnqy7fSWiTCIg9Ok84Hu8G1HWATFUeOykL984
+ E0vWfZ1MdtBieZKCN/Arp550P266cGoBvlkE50MBFRMNFEJJS0E2d0T0+kUs9q+n7CSk
+ j2iTcBn8uWCEVpKcj6zOP9y+gvpDF7h0lwJndZq4SvpB5ymU0Jv/5cL47chceXC9dlbl
+ ckfw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVxAjMnQR6wCncXqZmUuAug2ekjMObsaoyrUEzdBnnt94+TjyA+lxfqDq7snSerLmzmuRyeEOzt/w4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz+/mVDdFSbWsdGFq/MREbLGKtbiTCr+WlNJBRxAOXpFoG9sG1z
- FCfjuwLkgYIuVSly5GJ7n1Bb8NHam8oYU4FVtZ7E1giubPKw2iwM/BkfJU4qMrpLAFwv2xacpRe
- dKlnV+9N47h/3iSG7LLTbqMnPiTxJCE1QWognk4c8BJudVddWrmhoYyvUrBrtKKAtsA==
-X-Gm-Gg: ASbGncsqYSJybX0C51VJboMGIRCmkuELPcj85HI+lrNE+kojj/EKMH4RzPorPcfznZz
- EAoL8CIntBtbexW2KyTqpHEBAR6y1NE3GYoSnO3LPEUeskxcw4N6SqGtrmkXau528ApcKShLvvM
- rXIOLOnvqfnLh5oK5Oqhmso3BiAp922nMjWSkEu5Gr4O7HT8/rmbEdw9h09NhJv7KKwisNJLGZ5
- BieRzvMi7qJ3wARGUVXq/Pt16J1G5PVnThnfbEp2fsqGV6oeoNHdZt/bOta7PNYm9Ct5qKy31l+
- VtB0XZjdUMaJxAgkZgs/llFCX4lFfd1/BIXabTyLBRgXXYZbe/YVg0C91x4Fopu104J2StebSKI
- ZmyfNR0j5wpCMTDZanD3S0OuUF2s1JuZWWYY/LNo=
-X-Received: by 2002:adf:f7cc:0:b0:3a2:2d6:4205 with SMTP id
- ffacd0b85a97d-3a349921da8mr3561090f8f.47.1747245187411; 
- Wed, 14 May 2025 10:53:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHI/rQoUNdarqySB6UGfLmR7K5cvW1c5VoY82rTRIWoLyPgqKa4z52Sz2Zo6d+MLUSeBgWoLg==
-X-Received: by 2002:adf:f7cc:0:b0:3a2:2d6:4205 with SMTP id
- ffacd0b85a97d-3a349921da8mr3561064f8f.47.1747245187062; 
- Wed, 14 May 2025 10:53:07 -0700 (PDT)
+ AJvYcCW7n5xXXkLyKHvj898xZcu5tqwQkPkt1kbfde2GS+jvfqj8TRB8wn8WWzWuBK+OyvmtCccqRKHBmiw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyEyJZLv5EUvApxVcWSKmiDv56KvC1fOGPihi4Y+YREAgJyfeOK
+ W6kLvCASvy7YReZ40tBpMGKFa3eVzDOoeFtE4GMpjyE8t2bHj8dGUEMQHLDBb5F0Aspdl555R1A
+ y6gC2lWKth8rx+VE4XNDwB3pcfr1WdX8HhpPljzrjGtGLSb8ZeUHMpiH+uqgL7CSoJw==
+X-Gm-Gg: ASbGncuymqu1WJTGZploXNwINgiDPgwjsTSr0NRIK4vkCJHfhHhZWMsx902JZlOJ+fM
+ zPjFRI8F8wjulMaJa5fOhjitFF+Qe1iObggILb58MSTNkTk5oHRLpvGbQgptBUV2sUAQtU5LGaN
+ +5oAEA0F9/LW23K2wp8qi3gdaNqNjP0pTrky4CZb6Xg3vGMH1mnDSJBLUSlq5LvWfLLfcEzBoYC
+ wMLDqJeYTpsclesxeMsfgHbv78HXTay8U7ze0JxP5dIv7CNH8DvC3yHsWjP21+GOdjVSsJh48It
+ dtvwTElt0PHrJdW3noSUKdwKAqHAczGJVCblgKM78LGnWNM+oAg0h9lx+CStlA3LYefCD6Bwa54
+ yYkGEuezCLpd+9uvRlUsMWXg0rXXAFxsB83rrzE8=
+X-Received: by 2002:a05:6000:430d:b0:3a0:b5db:559a with SMTP id
+ ffacd0b85a97d-3a349954e89mr3786761f8f.59.1747245452392; 
+ Wed, 14 May 2025 10:57:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFp4OKdBffaHI+7gilOZzshfSllV9gdjyqy9+7eDS0fOGPhf7CpV4/kX9mFGXIv7GQk11jdug==
+X-Received: by 2002:a05:6000:430d:b0:3a0:b5db:559a with SMTP id
+ ffacd0b85a97d-3a349954e89mr3786725f8f.59.1747245451911; 
+ Wed, 14 May 2025 10:57:31 -0700 (PDT)
 Received: from ?IPV6:2003:d8:2f15:6200:d485:1bcd:d708:f5df?
  (p200300d82f156200d4851bcdd708f5df.dip0.t-ipconnect.de.
  [2003:d8:2f15:6200:d485:1bcd:d708:f5df])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3a1f58ecccbsm20532621f8f.32.2025.05.14.10.53.05
+ ffacd0b85a97d-3a1f58ecadfsm20235782f8f.22.2025.05.14.10.57.30
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 14 May 2025 10:53:06 -0700 (PDT)
-Message-ID: <18d502c8-7bbe-470e-863c-7c2f42ea2487@redhat.com>
-Date: Wed, 14 May 2025 19:53:04 +0200
+ Wed, 14 May 2025 10:57:31 -0700 (PDT)
+Message-ID: <31998178-7f18-4c5c-9207-180998768cfe@redhat.com>
+Date: Wed, 14 May 2025 19:57:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/11] x86/mm/pat: remove MEMTYPE_*_MATCH
+Subject: Re: [PATCH v2 03/11] mm: introduce pfnmap_track() and
+ pfnmap_untrack() and use them for memremap
 To: "Liam R. Howlett" <Liam.Howlett@oracle.com>,
  linux-kernel@vger.kernel.org, linux-mm@kvack.org, x86@kernel.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -97,8 +98,8 @@ To: "Liam R. Howlett" <Liam.Howlett@oracle.com>,
  Pedro Falcato <pfalcato@suse.de>, Peter Xu <peterx@redhat.com>,
  Ingo Molnar <mingo@kernel.org>
 References: <20250512123424.637989-1-david@redhat.com>
- <20250512123424.637989-9-david@redhat.com>
- <f2bxgy5tmb3cpk457lay3hl4wejj5dvttswnvzi2uudxtkkbsm@ktcytlgv64nn>
+ <20250512123424.637989-4-david@redhat.com>
+ <beqj5nkucukfi7nq7cptzqwksugo5dkljzjg2opzlize7ixfvc@q27zsivgbcow>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -145,9 +146,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <f2bxgy5tmb3cpk457lay3hl4wejj5dvttswnvzi2uudxtkkbsm@ktcytlgv64nn>
+In-Reply-To: <beqj5nkucukfi7nq7cptzqwksugo5dkljzjg2opzlize7ixfvc@q27zsivgbcow>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: uSHxA09vMXEHvPQcUyKcFe_guYHeFWTH_em_aBKhRks_1747245187
+X-Mimecast-MFC-PROC-ID: WaDq7S2PvDHiOCAQkynl1THvkCvjOZHn4Hdv9MQajnk_1747245452
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -167,52 +168,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13.05.25 19:48, Liam R. Howlett wrote:
+On 13.05.25 19:40, Liam R. Howlett wrote:
 > * David Hildenbrand <david@redhat.com> [250512 08:34]:
->> The "memramp() shrinking" scenario no longer applies, so let's remove
->> that now-unnecessary handling.
+>> Let's provide variants of track_pfn_remap() and untrack_pfn() that won't
+>> mess with VMAs, and replace the usage in mm/memremap.c.
+>>
+>> Add some documentation.
 >>
 >> Reviewed-by: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 >> Acked-by: Ingo Molnar <mingo@kernel.org> # x86 bits
 >> Signed-off-by: David Hildenbrand <david@redhat.com>
 > 
-> small comment, but this looks good.
+> Small nit with this one, but either way:
 > 
 > Reviewed-by: Liam R. Howlett <Liam.Howlett@oracle.com>
 
 Thanks!
 
-> 
->> ---
->>   arch/x86/mm/pat/memtype_interval.c | 44 ++++--------------------------
->>   1 file changed, 6 insertions(+), 38 deletions(-)
->>
->> diff --git a/arch/x86/mm/pat/memtype_interval.c b/arch/x86/mm/pat/memtype_interval.c
->> index 645613d59942a..9d03f0dbc4715 100644
->> --- a/arch/x86/mm/pat/memtype_interval.c
->> +++ b/arch/x86/mm/pat/memtype_interval.c
->> @@ -49,26 +49,15 @@ INTERVAL_TREE_DEFINE(struct memtype, rb, u64, subtree_max_end,
->>   
->>   static struct rb_root_cached memtype_rbroot = RB_ROOT_CACHED;
->>   
->> -enum {
->> -	MEMTYPE_EXACT_MATCH	= 0,
->> -	MEMTYPE_END_MATCH	= 1
->> -};
->> -
->> -static struct memtype *memtype_match(u64 start, u64 end, int match_type)
->> +static struct memtype *memtype_match(u64 start, u64 end)
->>   {
->>   	struct memtype *entry_match;
->>   
->>   	entry_match = interval_iter_first(&memtype_rbroot, start, end-1);
->>   
->>   	while (entry_match != NULL && entry_match->start < end) {
-> 
-> I think this could use interval_tree_for_each_span() instead.
+[...]
 
-Fancy, let me look at this. Probably I'll send another patch on top of 
-this series to do that conversion. (as you found, patch #9 moves that code)
+> 
+> The other user is pfnmap_track_ctx_alloc() in mm/memory.c which is
+> called from remap_pfn_range(), which also has addr.
+> 
+> Couldn't we just use the address directly?
+> 
+> I think the same holds for untrack as well.
+
+Hm, conceptually, I want the "pfntrack" interface to consume ... PFNs :)
+
+Actually, I was thinking about converting the "size" parameter to 
+nr_pages as well, but decided to leave that for another day.
+
+... because I really should be working on (... checking todo list ...) 
+anything else but PAT at this point.
+
+So unless there are strong feelings, I'll leave it that way (the way the 
+old interface also used it), and add it to my todo list (either make it 
+an address or make size -> nr_pages).
+
+Thanks for all the review Liam!
 
 -- 
 Cheers,
