@@ -2,59 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34654ABBCBD
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 13:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6205ABBE7C
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 15:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA03010E1CD;
-	Mon, 19 May 2025 11:40:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDAF010E32A;
+	Mon, 19 May 2025 13:00:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwWpfQfu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ka/6c+ML";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B41D310E136;
- Mon, 19 May 2025 11:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747654806; x=1779190806;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=31mWTcNrglMnzftdJ5VQoKAXYYrekE/1vsixrkHEiYQ=;
- b=hwWpfQfuejiz+NTcHrjjXdxDCPvzEeKQvcX+ThxBwllMD3j1ZZfokZ53
- 6gcHfnkC8WEQXB/o+khexC5Ak+jYmmpJ8TPdUhONsjzmxwHwHx/eju+kB
- DKfQfRgnNXFOFZto3KRdRcfRItPhvuNLadpP8Su4o3GgsEZ0LLkXr286A
- Uqk955jdvo5I1GD7GkOkzlEtxfgmVwXAieL1qqjPCpdt6qiXMApounBPB
- M6NaprRpzxcz6NVvaopL75MCwWtsSgK5ULgpIANPivXOOaBxMpa7FEeyl
- 9HdqhgLSF+Ja/6MNXEsMnOGakFNokTE3V/CjBNKifaWzcvksFAE4mFxzu Q==;
-X-CSE-ConnectionGUID: dLXQrQ7kQa6CdMM8QxeH1A==
-X-CSE-MsgGUID: 7YMVIen6Qb+OoHXu48NCFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="49425545"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="49425545"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 04:40:04 -0700
-X-CSE-ConnectionGUID: UklUZOuSSj2nYbInTu6hpA==
-X-CSE-MsgGUID: ghq753GZQs2oh3vfHOHhLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="170256514"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.201])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 04:40:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=93?= i915.CI.BAT: success for drm/i915 &
- drm/xe: prep work towards opaque struct intel_display
-In-Reply-To: <174740141810.88035.10603333238834179969@c664b1dc75d1>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1747397638.git.jani.nikula@intel.com>
- <174740141810.88035.10603333238834179969@c664b1dc75d1>
-Date: Mon, 19 May 2025 14:39:59 +0300
-Message-ID: <87msb8vng0.fsf@intel.com>
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+ [209.85.210.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADF3610E0C5;
+ Thu, 15 May 2025 20:18:15 +0000 (UTC)
+Received: by mail-ot1-f51.google.com with SMTP id
+ 46e09a7af769-72b0626c785so1413838a34.2; 
+ Thu, 15 May 2025 13:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747340295; x=1747945095; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ORIH55nECeHA8LdRURYjVDonMGKHgsrmuMpr+vgfdSY=;
+ b=ka/6c+MLqVxQv5o9O42+AI8Udegrh78Fv1LvGHZNp327g2bpcOrUolYhxDABULEmzd
+ 14RLRDAbDpWVfAY3fdkcBpwTuuSzv6B63YPKnpgX3y1D0fuAzhOVVHJyNH9jCTLNVd4n
+ eoGd2dAO4B5+LlKGbhG9p/IracjpaPcFxcpMxsYXe2MiUWuWEcomBcVNZ5LIiKSBuWGO
+ c+Z+RBgNiRFY6+TgqANCtihtAjurzVCRiNWNWL23T6BWB0aqmfxUjqUwOgVqJ5RkUiWG
+ SGY4SrbWnafL7KiYToX6usC0D1JyVcjw4vfjj9PUYQEIStMU7OGp7AimgOBttGTtEdiM
+ ACKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747340295; x=1747945095;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ORIH55nECeHA8LdRURYjVDonMGKHgsrmuMpr+vgfdSY=;
+ b=ShIsSiy51qxbIqa9qC21KOIkl5c6UsN/LDQhXJku9GOqMmPvBjG5lUwMx7zZNvLzAO
+ B/xOzskv0maFaOuinP5Yi9PbJLxs5qvAQHAosxazn14THXScCXzXkssIt+MlkiV7yO27
+ xj9lSRSWQYlHXctu24EbKwfLb7IohAnCQqkOnW1tnwhmeo16vhLtYhRrzSwNgmSjAKG/
+ X6p5bU+qImy52MqS+j4wvlutIJnUT4WhKiClThwZwZbcBSkcFdN4dfd4WURTioY9W2rB
+ JhhmBH2hDS0ejiqjMovAiK2OYUysFdKyUgtKdYTJwwkAyc6ZAcK46lk57JLgPa8FPAo0
+ AWgQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWHa86ypwl/J8YJCIeEFzhsnJYiViI/pOjpIBzo9wiOhHjVqzhxBzMfJ594YhOIz2deExwuibEhm3M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwsdbngLDGhgci2rcf/1aBSlgTdYNUFBQNvxiQi/KOjDZWbyiOn
+ bjSs+5wQsi2mM5OxNRK2DxUb+hO1WLWeCZe1NCNK0U7/wTYSG/IdC80n
+X-Gm-Gg: ASbGncsr4V0bgfNrj4pnh134MnXee2S4RfenoiQH5PgXQmcjqYZmi4wR74BSMkHrWid
+ Whn06qGss2Bdf3CXnyK951OHQvGLbetWT16L6xPBAZcA8kDeKgZILF0rVlc+pvf8ZtcLEWV+xsH
+ FLzKfvPO8nVG2G7eyF+AaMoHfWcz1hGVSNEZYiOJQ+w1Vexb9VCyK+tKSkEIvS+q4/vU48WFd7x
+ w/afkjQFVyIzwuYu6ruX//Ujk1/IvRfdzSUnUf703+zHSNTo1O/GBBgsoUv1S5pwHwjfgejM1vT
+ rJBBASYxxqIbRQ/YtwB+P7zqx3CciE4KFMlCL2lw4CcI0YxXtfaBKLOn65epEKMXTA5Be+g4GVi
+ v6EHZh4lx2chOLlRLLJtj
+X-Google-Smtp-Source: AGHT+IGZ6iGkEs8/AH2Bd1WLfM05uSAVYmHniGGxt7DIrP1bhSS+eA9OMmxLChw99pSYQjBXZX778A==
+X-Received: by 2002:a05:6830:681a:b0:72b:9c34:1361 with SMTP id
+ 46e09a7af769-734f6b0465cmr757134a34.15.1747340294735; 
+ Thu, 15 May 2025 13:18:14 -0700 (PDT)
+Received: from [10.0.0.9] (104-50-4-201.lightspeed.sntcca.sbcglobal.net.
+ [104.50.4.201]) by smtp.gmail.com with ESMTPSA id
+ 46e09a7af769-734f6b5ffdesm87785a34.60.2025.05.15.13.18.13
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 15 May 2025 13:18:14 -0700 (PDT)
+Message-ID: <98201050-82eb-453d-a669-036eeefa354e@gmail.com>
+Date: Thu, 15 May 2025 13:18:11 -0700
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] drm/print: require struct drm_device for drm_err()
+ and friends
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, gustavo.sousa@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, linux-kernel@vger.kernel.org,
+ kees@kernel.org
+References: <cover.1737644530.git.jani.nikula@intel.com>
+ <dfe6e774883e6ef93cfaa2b6fe92b804061ab9d9.1737644530.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Bill Wendling <isanbard@gmail.com>
+In-Reply-To: <dfe6e774883e6ef93cfaa2b6fe92b804061ab9d9.1737644530.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 19 May 2025 13:00:14 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,122 +96,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 16 May 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915 & drm/xe: prep work towards opaque struct intel_display
-> URL   : https://patchwork.freedesktop.org/series/149114/
-> State : success
->
-> == Summary ==
->
-> CI Bug Log - changes from CI_DRM_16557 -> Patchwork_149114v1
-> ====================================================
->
-> Summary
-> -------
->
->   **SUCCESS**
->
->   No regressions found.
-
-Please kick something to get the full i915 CI results.
-
-Thanks,
-Jani.
-
-
->
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/index.html
->
-> Participating hosts (45 -> 45)
-> ------------------------------
->
->   No changes in participating hosts
->
-> Known issues
-> ------------
->
->   Here are the changes found in Patchwork_149114v1 that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@i915_selftest@live:
->     - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-mtlp-8/igt@i915_selftest@live.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-mtlp-8/igt@i915_selftest@live.html
->
->   * igt@i915_selftest@live@gt_pm:
->     - bat-arlh-2:         [PASS][3] -> [INCOMPLETE][4] ([i915#14046])
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-2/igt@i915_selftest@live@gt_pm.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-2/igt@i915_selftest@live@gt_pm.html
->
->   * igt@i915_selftest@live@workarounds:
->     - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-9/igt@i915_selftest@live@workarounds.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
->     - bat-dg2-14:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-14/igt@i915_selftest@live@workarounds.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
->
->   * igt@kms_chamelium_edid@dp-edid-read:
->     - bat-dg2-13:         [PASS][9] -> [FAIL][10] ([i915#13917])
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
->
+On 1/23/25 7:09 AM, Jani Nikula wrote:
+> The expectation is that the struct drm_device based logging helpers get
+> passed an actual struct drm_device pointer rather than some random
+> struct pointer where you can dereference the ->dev member.
+> 
+> Add a static inline helper to convert struct drm_device to struct
+> device, with the main benefit being the type checking of the macro
+> argument.
+> 
+> As a side effect, this also reduces macro argument double references.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   include/drm/drm_print.h | 41 +++++++++++++++++++++++------------------
+>   1 file changed, 23 insertions(+), 18 deletions(-)
+> 
+> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> index 9732f514566d..f31eba1c7cab 100644
+> --- a/include/drm/drm_print.h
+> +++ b/include/drm/drm_print.h
+> @@ -584,9 +584,15 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+>    * Prefer drm_device based logging over device or prink based logging.
+>    */
 >   
-> #### Possible fixes ####
->
->   * igt@dmabuf@all-tests:
->     - bat-apl-1:          [INCOMPLETE][11] ([i915#12904]) -> [PASS][12] +1 other test pass
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-apl-1/igt@dmabuf@all-tests.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-apl-1/igt@dmabuf@all-tests.html
->
->   * igt@i915_selftest@live:
->     - bat-arlh-3:         [DMESG-FAIL][13] ([i915#14243]) -> [PASS][14] +1 other test pass
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-3/igt@i915_selftest@live.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-3/igt@i915_selftest@live.html
->
->   * igt@i915_selftest@live@workarounds:
->     - bat-dg2-11:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-11/igt@i915_selftest@live@workarounds.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
->     - bat-mtlp-9:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
->
+> +/* Helper to enforce struct drm_device type */
+> +static inline struct device *__drm_to_dev(const struct drm_device *drm)
+> +{
+> +	return drm ? drm->dev : NULL;
+> +}
+> +
+>   /* Helper for struct drm_device based logging. */
+>   #define __drm_printk(drm, level, type, fmt, ...)			\
+> -	dev_##level##type((drm) ? (drm)->dev : NULL, "[drm] " fmt, ##__VA_ARGS__)
+> +	dev_##level##type(__drm_to_dev(drm), "[drm] " fmt, ##__VA_ARGS__)
 >   
-> #### Warnings ####
->
->   * igt@i915_selftest@live:
->     - bat-arlh-2:         [ABORT][19] ([i915#13723]) -> [INCOMPLETE][20] ([i915#14046])
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-2/igt@i915_selftest@live.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-2/igt@i915_selftest@live.html
->
 >   
->   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
->   [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
->   [i915#13723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13723
->   [i915#13917]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13917
->   [i915#14046]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046
->   [i915#14243]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14243
+>   #define drm_info(drm, fmt, ...)					\
+> @@ -620,25 +626,25 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+>   
+>   
+>   #define drm_dbg_core(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_CORE, fmt, ##__VA_ARGS__)
+> -#define drm_dbg_driver(drm, fmt, ...)						\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_CORE, fmt, ##__VA_ARGS__)
+> +#define drm_dbg_driver(drm, fmt, ...)					\
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_DRIVER, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_kms(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_KMS, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_prime(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_PRIME, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_PRIME, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_atomic(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_ATOMIC, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_vbl(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_VBL, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_VBL, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_state(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_STATE, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_STATE, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_lease(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_LEASE, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_dp(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DP, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_DP, fmt, ##__VA_ARGS__)
+>   #define drm_dbg_drmres(drm, fmt, ...)					\
+> -	drm_dev_dbg((drm) ? (drm)->dev : NULL, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
+> +	drm_dev_dbg(__drm_to_dev(drm), DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
+>   
+>   #define drm_dbg(drm, fmt, ...)	drm_dbg_driver(drm, fmt, ##__VA_ARGS__)
+>   
+> @@ -727,10 +733,9 @@ void __drm_err(const char *format, ...);
+>   #define __DRM_DEFINE_DBG_RATELIMITED(category, drm, fmt, ...)					\
+>   ({												\
+>   	static DEFINE_RATELIMIT_STATE(rs_, DEFAULT_RATELIMIT_INTERVAL, DEFAULT_RATELIMIT_BURST);\
+> -	const struct drm_device *drm_ = (drm);							\
+>   												\
+>   	if (drm_debug_enabled(DRM_UT_ ## category) && __ratelimit(&rs_))			\
+> -		drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);	\
+> +		drm_dev_printk(__drm_to_dev(drm), KERN_DEBUG, fmt, ## __VA_ARGS__);		\
+>   })
+>   
+>   #define drm_dbg_ratelimited(drm, fmt, ...) \
+> @@ -752,13 +757,13 @@ void __drm_err(const char *format, ...);
+>   /* Helper for struct drm_device based WARNs */
+>   #define drm_WARN(drm, condition, format, arg...)			\
+>   	WARN(condition, "%s %s: [drm] " format,				\
+> -			dev_driver_string((drm)->dev),			\
+> -			dev_name((drm)->dev), ## arg)
+> +			dev_driver_string(__drm_to_dev(drm)),		\
+> +			dev_name(__drm_to_dev(drm)), ## arg)
+>   
+>   #define drm_WARN_ONCE(drm, condition, format, arg...)			\
+>   	WARN_ONCE(condition, "%s %s: [drm] " format,			\
+> -			dev_driver_string((drm)->dev),			\
+> -			dev_name((drm)->dev), ## arg)
+> +			dev_driver_string(__drm_to_dev(drm)),		\
+> +			dev_name(__drm_to_dev(drm)), ## arg)
 >
->
-> Build changes
-> -------------
->
->   * Linux: CI_DRM_16557 -> Patchwork_149114v1
->
->   CI-20190529: 20190529
->   CI_DRM_16557: 6d2dd85ba4eb3df89dc816c03b5bf81a470865b2 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8365: 8365
->   Patchwork_149114v1: 6d2dd85ba4eb3df89dc816c03b5bf81a470865b2 @ git://anongit.freedesktop.org/gfx-ci/linux
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/index.html
+Hi Jani,
 
--- 
-Jani Nikula, Intel
+These two changes introduce undefined behavior into these macros. The final
+code generation becomes this (from 'bxt_port_to_phy_channel'):
+
+	__warn_printk("%s %s: [drm] " "PHY not found for PORT %c",
+		      dev_driver_string(__drm_to_dev(display->drm)),
+		      dev_name(__drm_to_dev(display->drm)),
+		      (port + 'A'));
+
+The issue lies in 'dev_name(__drm_to_dev(display->drm))'. After inlining, it
+becomes this (pseudo code):
+
+	struct device *device = display->drm ? display->drm->dev : NULL;
+	const char *name = device->init_name ? device->init_name
+					     : kobject_name(&device->kobj);
+
+	__warn_printk("%s %s: [drm] " "PHY not found for PORT %c",
+		      dev_driver_string(device), name, (port + 'A'));
+
+The issue, of course, is that the 'device' may be NULL when attempting 
+to get
+'device->init_name'. The compiler sees this as undefined behavior, which may
+lead to unexpected outcomes, especially with Clang where paths 
+determined to be
+undefined are removed entirely under certain conditions.
+
+(Note, I'm working on making this behavior less draconian by adopting a GCC
+pass, but this will take time to filter out to Linux devs.)
+
+Regards,
+-bw
+
