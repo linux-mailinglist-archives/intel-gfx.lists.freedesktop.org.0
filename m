@@ -2,48 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CD83AB89A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 May 2025 16:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D1DAB89C2
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 May 2025 16:46:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571E110E8CF;
-	Thu, 15 May 2025 14:43:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C29FA10E8D5;
+	Thu, 15 May 2025 14:46:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LyBF+e8S";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jmV0kZfn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A86F10E8CF
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 May 2025 14:43:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B13B910E8D1;
+ Thu, 15 May 2025 14:46:33 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 2806CA4DDFB;
- Thu, 15 May 2025 14:43:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE20C4CEE7;
- Thu, 15 May 2025 14:43:17 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id DA6C0614BC;
+ Thu, 15 May 2025 14:46:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 253DBC4CEEB;
+ Thu, 15 May 2025 14:46:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1747320198;
- bh=wDAJwoJn8sWFyIah414IR4gYEd9504X7l5lMFESAG3w=;
+ s=k20201202; t=1747320388;
+ bh=gjG62P0KJg9wb0PDRXb676J64qlF8OEy7LbdgiIXd/o=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LyBF+e8SSraGv5PixSyxyz0Oim21F0VQ8sAT07YD0Uza43z7S4/JZaLDZ99oGoiDG
- W96bqKpAbF+JGD5ITrr/zOKdkXOD6e0OsF6xCQKPRdqZshNco+lk8lKe2os8nArVap
- XW8OZb2AkhCetZMQXTpd2c0fzPnpGUnm9S/th2KZGIpKaUR7Iv3EmgfM1Alvmlf37s
- vbMPDa1nv9dZammYA8hT6BOVwF48W1sXFwTv1agkvwHlknm+dpHU5r+x826kPltaTp
- Zttyf1wkA/2GuJoHufO9TB5Y+eSWogup+jw0Rqwbs7mlAuxbEIWaT5LnKwgLHv64rO
- kFMayiu2lt6mw==
-Date: Thu, 15 May 2025 16:43:12 +0200
+ b=jmV0kZfnqbImnaypqTb06/ZzoXhb9tOyznk7YxlUw5auTR/okdycot9MzWtR3Y1zu
+ n0VQ4XsErpBYKUpoDSfXPzdzJuoQbfk3YjSyuFpX0mT6b1rsLCGyu/NBsYKZYdJILT
+ KoM7EVgll+PczznVlJAUB7JgPUWJsN2kby6Tlcx4bx0cOZOzveAh13T1TA9j1ewqIy
+ DXlLrpqWykZpR1t9T2zzZ5kR5rNtlCZYSy6226H5T6G5UHALrvHE18DykOvYJa1wjJ
+ ycID4vr172cNk0xuBwkttO2Gg1I0BWj70WLRVS4Pcs6zhPzlyd7EEy/URoBqL/PnDp
+ 1EA+4PQejXk3Q==
+Date: Thu, 15 May 2025 16:46:22 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: intel-gfx@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: =?utf-8?B?4pyXIGk5MTUuQ0kuRnVsbA==?= =?utf-8?Q?=3A?= failure for
- drm/i915: DG1 fixes (rev7)
-Message-ID: <7n67e3tpxxxrfvh3synrmnvpsbtcwudufv6ijjutnn3sdsjd32@4l7dvbad5vip>
-References: <20250512192216.301771-1-andi.shyti@kernel.org>
- <174711066429.72431.6925085785209764406@c664b1dc75d1>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan <gustavo@padovan.org>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH v4 5/9] drm/i915: Use dma-fence driver and timeline name
+ helpers
+Message-ID: <gyd2k57ixbkgpogiwm3dyfh24rx74bmi4zn5ftrdnytkfjl34l@moakdhxq3n4d>
+References: <20250515095004.28318-1-tvrtko.ursulin@igalia.com>
+ <20250515095004.28318-6-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <174711066429.72431.6925085785209764406@c664b1dc75d1>
+In-Reply-To: <20250515095004.28318-6-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,15 +68,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+Hi Tvrtko,
 
-> Possible regressions
+On Thu, May 15, 2025 at 10:50:00AM +0100, Tvrtko Ursulin wrote:
+> Access the dma-fence internals via the previously added helpers.
 > 
->   • igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-mmap-wc:
-> 
->       □ shard-mtlp: NOTRUN -> INCOMPLETE
->   • igt@kms_plane_cursor@viewport:
-> 
->       □ shard-mtlp: PASS -> DMESG-WARN
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Reviewed-by: Christian K�nig <christian.koenig@amd.com>
 
-I believe these failures are completely unrelated.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
+Andi
