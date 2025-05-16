@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6D3AB9B2B
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 13:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9C9BAB9B76
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 13:49:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101BD10EA73;
-	Fri, 16 May 2025 11:34:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F54410E071;
+	Fri, 16 May 2025 11:49:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U3EW3agW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LcZK6geW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B607710EA72;
- Fri, 16 May 2025 11:34:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E27CF10E071;
+ Fri, 16 May 2025 11:49:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747395290; x=1778931290;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1lhuQOfZl4wHQrIbeO24gs0U7lwwKmZh0Hlx349cCvw=;
- b=U3EW3agWoAb1COH+mJ0tWEvuPchLR1A9tijt3WaFuP3EuDX8HTtBKlJN
- IITFUP9XqdyjL5G+hu9skt7zKZbvAzE/5loStjYyZIr7O8BxLrVWkoxsj
- JCLFQEHHYMvKi5mrntc0TQnLge+9HOmtG1/iaq8eYc56+wajvgTj0uuau
- efGFkGIhAT911B5U8xCWcYlG7OopDnh79UVF4BjDRzF0/gtJqH9GMvebS
- HVRVotxLIP1k3V/zi0+7IJ0/O4smx/L+w5s00BKrg7QMMZBpsr4piqNCs
- Nuj6k3YVyN468Yxdvf0xrooUIlE5lPV/O83qW3emGWC7EwZzqzcQSDA91 g==;
-X-CSE-ConnectionGUID: SSXJS/nmRi2Y+LIAIsByCg==
-X-CSE-MsgGUID: Rn0O/3GkTUChrS7rDIIHAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="49349841"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49349841"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 04:34:50 -0700
-X-CSE-ConnectionGUID: jWCgZYDgQBi08ch9KOBKzA==
-X-CSE-MsgGUID: KTpIZ3k5S+q5GguPAx46Mg==
+ t=1747396172; x=1778932172;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=57vnmoNMK3MYdRzuPeg7/si6zEZ/QxgnqBO9YPeeT9w=;
+ b=LcZK6geWO9bjYFFmWtAE3ajqmXQz03ZMHxPstNOqq9KXCWlR1vGCBjtM
+ XATDG59miXret+pFgijSbzbpcXTOphzBiFgBdhYh9nq1dwU6Xr7fl8qDS
+ bhWFULznW4bFijb9xgqdHmwltDEbT9S5no5CK/0CHpwY8j62uiA3Z8PMD
+ iI17Pv4jXscj7W3AsMycJZXi576K0IuOJc9bUX9tFjENC0LPvrI72eIV4
+ 5pCjYMEDlpTUgXzWdozJFjNPEn0YUH8MAAFvV26KEMGx53QEngZBC+crk
+ oGWqBbEsBLRNVj18/mC59oGoJlg5iilTR/gsW7u9o+SiHnD+QWXhzWjPl Q==;
+X-CSE-ConnectionGUID: lb8cAdkySwaTLqDeniy9Fw==
+X-CSE-MsgGUID: b0DIwrmFQVqKZHNI1Jyo0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11434"; a="60756500"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="60756500"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 04:48:48 -0700
+X-CSE-ConnectionGUID: uaIy6ghcQmGLRD0EHSWYhg==
+X-CSE-MsgGUID: J44L2smdRFK41ndqIlGlyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143779631"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.161])
- by orviesa005.jf.intel.com with SMTP; 16 May 2025 04:34:48 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 16 May 2025 14:34:46 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143915418"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.133])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2025 04:48:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/12] drm/i915/flipq: Enable flipq by default for testing
-Date: Fri, 16 May 2025 14:34:08 +0300
-Message-ID: <20250516113408.11689-13-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 07/12] drm/i915/flipq: Provide the nuts and bolts code
+ for flip queue
+In-Reply-To: <20250516113408.11689-8-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
+ <20250516113408.11689-8-ville.syrjala@linux.intel.com>
+Date: Fri, 16 May 2025 14:48:43 +0300
+Message-ID: <87ikm0wzc4.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +72,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, 16 May 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm=
+/i915/display/intel_flipq.c
+> new file mode 100644
+> index 000000000000..8677929b7ece
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_flipq.c
+> @@ -0,0 +1,306 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2025 Intel Corporation
+> + */
+> +
 
-Flip on the enable_flipq modparam to see if CI blows up.
+I'd really appreciate adding a high level comment about what flip queue
+is, and maybe some words about how it's implemented, right around
+here. Doesn't need to be a special DOC comment, nor does it need to be
+exhaustive, and can come as a follow-up patch.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
- drivers/gpu/drm/i915/display/intel_display_params.h | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index 75316247ee8a..2883663e06ff 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -63,7 +63,7 @@ intel_display_param_named_unsafe(enable_dsb, bool, 0400,
- 	"Enable display state buffer (DSB) (default: true)");
- 
- intel_display_param_named_unsafe(enable_flipq, bool, 0400,
--	"Enable DMC flip queue (default: false)");
-+	"Enable DMC flip queue (default: true)");
- 
- intel_display_param_named_unsafe(enable_sagv, bool, 0400,
- 	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 784e6bae8615..600bff5cddda 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -31,7 +31,7 @@ struct drm_printer;
- 	param(int, enable_dc, -1, 0400) \
- 	param(bool, enable_dpt, true, 0400) \
- 	param(bool, enable_dsb, true, 0600) \
--	param(bool, enable_flipq, false, 0600) \
-+	param(bool, enable_flipq, true, 0600) \
- 	param(bool, enable_sagv, true, 0600) \
- 	param(int, disable_power_well, -1, 0400) \
- 	param(bool, enable_ips, true, 0600) \
--- 
-2.49.0
 
+--=20
+Jani Nikula, Intel
