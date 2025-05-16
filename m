@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EC37AB9E8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 16:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22B53AB9E91
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 16:26:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5238010EADD;
-	Fri, 16 May 2025 14:25:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B220710EADF;
+	Fri, 16 May 2025 14:25:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qum2OYeT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PE96FWd1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 781D010EADC;
- Fri, 16 May 2025 14:25:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C01C10EADE;
+ Fri, 16 May 2025 14:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747405505; x=1778941505;
+ t=1747405557; x=1778941557;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=4xeVoWbZsjDcnCFQqFhgqaKnfSwpoT6fOtGiqlrPDo4=;
- b=Qum2OYeTQmD0qKCR2OSWHwN1mIfZgN9pwjl+Ais5XrgbNn73ZRkDmVeU
- 3Q11Ock5vp3z8gWdKV19aTmgmSYKX/rz4+Ehbz71uaFAgCCZ/4tXwv530
- nPezc24YgeuGrqECICvZ5si+uE3f0AiqtOOIll748E8EPo0+jpsp/Lqzm
- CD8b7MUev3awl2B/VTDmHzctYhbHRJDkT5xRUdCcPRCNIvSpOji5B1AQX
- IiyjXXFhKF5gNwjg+ZgNFurYJxfartVkbG7vn34Do8aM3J1EW2T4H03fi
- z66AAHQ7ujWKC9REKbvi81y1DTyfs7sEQVrX/xAUK6yV0Xwiuo0Ij6hcR Q==;
-X-CSE-ConnectionGUID: caV2MKMBSlSoK/sKeFrlLA==
-X-CSE-MsgGUID: ZNzA5KOQSvSYcXobbThpoQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49485029"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49485029"
+ bh=/1/BdLBUsI603EhIofs2fgqhAXHNUVbe5356d/dVVQo=;
+ b=PE96FWd12r6zsdrFqgubX8Cb3urPjSmFoTHFHPLSVbOh0faR5rj1iKG/
+ JX9ZAt3sMMuOz4JuKFhHFkAZfKyaXB2Scf4w0dqsuBDAkiuzq5sTGTv8n
+ AqczMc0vhoCbsbq/vHeHdHVOH8LjObM+f9MEqS+oFW8Uj76HkhoBg5TKf
+ bxmhYnI0nneSKRVTB2ylFImupFj75WXVL4tkWYNgOnG5NuHLLcX3r9QX1
+ AeckHNWPLtCE1Gp2GZAOlDSg37Q5bwFl1GuJM9bXdwqJjRjzr9YokebrV
+ +tTAqqyxQqLf1Xs1zpTY1STd6ZPcdXhpb/Uj78bOa70nXBHMUUuxDvLD8 A==;
+X-CSE-ConnectionGUID: GJo5BlcgSL2wby9ghM91jg==
+X-CSE-MsgGUID: y8m/2TMjRvC483dk1q81tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49485111"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49485111"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:25:01 -0700
-X-CSE-ConnectionGUID: F7VhCQwYTdiYWaQdj9NZWg==
-X-CSE-MsgGUID: vqPNJARASGSpuuY01KqbEg==
+ 16 May 2025 07:25:57 -0700
+X-CSE-ConnectionGUID: qRPZu+RISdCO7Ep+dyH/Cg==
+X-CSE-MsgGUID: f9Lqs7cTTjG0bpUDWNr1oQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143672603"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143672844"
 Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.245.176])
  ([10.245.245.176])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:25:00 -0700
-Message-ID: <75eda3ed-3e75-4715-ae83-fcf48fbc49fa@intel.com>
-Date: Fri, 16 May 2025 15:24:57 +0100
+ 16 May 2025 07:25:56 -0700
+Message-ID: <ff4715cc-139b-49a9-bc73-9254dd7715c1@intel.com>
+Date: Fri, 16 May 2025 15:25:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] drm/xe/display: move xe->display initialization to
- xe_display_probe()
+Subject: Re: [PATCH 6/7] drm/xe/display: add notes about how early a few
+ functions can be called
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 References: <cover.1747397638.git.jani.nikula@intel.com>
- <6c3075739d84cecea258d686c3ef38455a61191c.1747397638.git.jani.nikula@intel.com>
+ <937ea1e16e970a6f6944b94c6a9c216d36e728d1.1747397638.git.jani.nikula@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <6c3075739d84cecea258d686c3ef38455a61191c.1747397638.git.jani.nikula@intel.com>
+In-Reply-To: <937ea1e16e970a6f6944b94c6a9c216d36e728d1.1747397638.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,119 +73,38 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 16/05/2025 13:16, Jani Nikula wrote:
-> The future goal is to have intel_display_device_probe() create struct
-> intel_display. As the first step, postpone xe->display initialization
-> right before that call. This is the same location as in i915.
-> 
-> There's a subtle functional change here: xe->display will now be
-> initialized only if xe->info.probe_display.
-> 
-> The xe_display_create() function becomes empty, and can be removed. Move
-> its documentation to xe_display_probe()
+> xe_display_driver_probe_defer() and xe_display_driver_set_hooks() get
+> called before either struct xe_device or struct intel_display
+> exist. Make a note of that.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
 > ---
->   drivers/gpu/drm/xe/display/xe_display.c | 33 +++++++++++--------------
->   drivers/gpu/drm/xe/display/xe_display.h |  4 ---
->   drivers/gpu/drm/xe/xe_device.c          |  4 ---
->   3 files changed, 14 insertions(+), 27 deletions(-)
+>   drivers/gpu/drm/xe/display/xe_display.c | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index b0f5624177bd..c35444637620 100644
+> index c35444637620..8b2aa7dc6e07 100644
 > --- a/drivers/gpu/drm/xe/display/xe_display.c
 > +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -83,25 +83,6 @@ static void unset_display_features(struct xe_device *xe)
->   	xe->drm.driver_features &= ~(DRIVER_MODESET | DRIVER_ATOMIC);
->   }
->   
-> -/**
-> - * xe_display_create - create display struct
-> - * @xe: XE device instance
-> - *
-> - * Initialize all fields used by the display part.
-> - *
-> - * TODO: once everything can be inside a single struct, make the struct opaque
-> - * to the rest of xe and return it to be xe->display.
-> - *
-> - * Returns: 0 on success
-> - */
-> -int xe_display_create(struct xe_device *xe)
-> -{
-> -	/* TODO: Allocate display dynamically. */
-> -	xe->display = &xe->__display;
-> -
-> -	return 0;
-> -}
-> -
->   static void xe_display_fini_early(void *arg)
+> @@ -48,6 +48,8 @@ static bool has_display(struct xe_device *xe)
+>    *				   early on
+>    * @pdev: PCI device
+>    *
+> + * Note: This is called before xe or display device creation.
+> + *
+>    * Returns: true if probe needs to be deferred, false otherwise
+>    */
+>   bool xe_display_driver_probe_defer(struct pci_dev *pdev)
+> @@ -65,6 +67,8 @@ bool xe_display_driver_probe_defer(struct pci_dev *pdev)
+>    * Set features and function hooks in @driver that are needed for driving the
+>    * display IP. This sets the driver's capability of driving display, regardless
+>    * if the device has it enabled
+> + *
+> + * Note: This is called before xe or display device creation.
+>    */
+>   void xe_display_driver_set_hooks(struct drm_driver *driver)
 >   {
->   	struct xe_device *xe = arg;
-> @@ -524,6 +505,17 @@ static void display_device_remove(struct drm_device *dev, void *arg)
->   	intel_display_device_remove(display);
->   }
->   
-> +/**
-> + * xe_display_probe - probe display and create display struct
-> + * @xe: XE device instance
-> + *
-> + * Initialize all fields used by the display part.
-> + *
-> + * TODO: once everything can be inside a single struct, make the struct opaque
-> + * to the rest of xe and return it to be xe->display.
-> + *
-> + * Returns: 0 on success
-> + */
->   int xe_display_probe(struct xe_device *xe)
->   {
->   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> @@ -533,6 +525,9 @@ int xe_display_probe(struct xe_device *xe)
->   	if (!xe->info.probe_display)
->   		goto no_display;
->   
-> +	/* TODO: Allocate display dynamically. */
-> +	xe->display = &xe->__display;
-> +
->   	display = intel_display_device_probe(pdev);
->   
->   	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, display);
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-> index 46e14f8dee28..e533aa4750bc 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.h
-> +++ b/drivers/gpu/drm/xe/display/xe_display.h
-> @@ -15,8 +15,6 @@ struct drm_driver;
->   bool xe_display_driver_probe_defer(struct pci_dev *pdev);
->   void xe_display_driver_set_hooks(struct drm_driver *driver);
->   
-> -int xe_display_create(struct xe_device *xe);
-> -
->   int xe_display_probe(struct xe_device *xe);
->   
->   int xe_display_init_early(struct xe_device *xe);
-> @@ -46,8 +44,6 @@ static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0
->   static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
->   static inline void xe_display_driver_remove(struct xe_device *xe) {}
->   
-> -static inline int xe_display_create(struct xe_device *xe) { return 0; }
-> -
->   static inline int xe_display_probe(struct xe_device *xe) { return 0; }
->   
->   static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index d4b6e623aa48..660b0c5126dc 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -491,10 +491,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->   	if (err)
->   		goto err;
->   
-> -	err = xe_display_create(xe);
-> -	if (WARN_ON(err))
-> -		goto err;
-> -
->   	return xe;
->   
->   err:
 
