@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BEDAB9E50
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 16:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EC37AB9E8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 May 2025 16:25:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9050510EAE2;
-	Fri, 16 May 2025 14:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5238010EADD;
+	Fri, 16 May 2025 14:25:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U0nvp6za";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qum2OYeT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F41EA10EAD6;
- Fri, 16 May 2025 14:12:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 781D010EADC;
+ Fri, 16 May 2025 14:25:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747404721; x=1778940721;
+ t=1747405505; x=1778941505;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=AvM2uunAy6JucqTjjZLDxhB5DG5kYvtMa01ROep+x8g=;
- b=U0nvp6zaXdwszq+MuWp0bMvKyrHZRmc9DRRZyD6DOC9vTyaw/SOKyPwk
- R+mLgGHphKiVDZbufX5q/Iofa7vfojA/Quqgq0LYjWe9ww3dvqG33zaIU
- c/41EYp+UJvDRz2/CVE1WE6txXaquOaxD6Jk23ESxfeJQYvSq2MoLG+ik
- 3eTnCIHcf2+lF7zdqMH9a/FcqauRhpcuSVpYAMmLzKSvuzR1gBCnRgOUc
- g7UBbFKjfpQHLVznV0OAFgUFuKeJu64ZaonMkLaQ9XRcY2aNrWV8NAp6u
- Sf0hHfnXMD5QR5qQeXfFBP11LkLr1TCyrz/KMU38+r6nhl33MZjEx1ptb w==;
-X-CSE-ConnectionGUID: FGCCLh/7T9+ESFjndYgpig==
-X-CSE-MsgGUID: zGIUxFI8QT6/JSg27+r9lg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49483884"
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49483884"
+ bh=4xeVoWbZsjDcnCFQqFhgqaKnfSwpoT6fOtGiqlrPDo4=;
+ b=Qum2OYeTQmD0qKCR2OSWHwN1mIfZgN9pwjl+Ais5XrgbNn73ZRkDmVeU
+ 3Q11Ock5vp3z8gWdKV19aTmgmSYKX/rz4+Ehbz71uaFAgCCZ/4tXwv530
+ nPezc24YgeuGrqECICvZ5si+uE3f0AiqtOOIll748E8EPo0+jpsp/Lqzm
+ CD8b7MUev3awl2B/VTDmHzctYhbHRJDkT5xRUdCcPRCNIvSpOji5B1AQX
+ IiyjXXFhKF5gNwjg+ZgNFurYJxfartVkbG7vn34Do8aM3J1EW2T4H03fi
+ z66AAHQ7ujWKC9REKbvi81y1DTyfs7sEQVrX/xAUK6yV0Xwiuo0Ij6hcR Q==;
+X-CSE-ConnectionGUID: caV2MKMBSlSoK/sKeFrlLA==
+X-CSE-MsgGUID: ZNzA5KOQSvSYcXobbThpoQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="49485029"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="49485029"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:12:00 -0700
-X-CSE-ConnectionGUID: pU2HpdqeQh2YCGbhIuvy5A==
-X-CSE-MsgGUID: jb8X2wPjScW1sLrsEu6Hhg==
+ 16 May 2025 07:25:01 -0700
+X-CSE-ConnectionGUID: F7VhCQwYTdiYWaQdj9NZWg==
+X-CSE-MsgGUID: vqPNJARASGSpuuY01KqbEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143668867"
+X-IronPort-AV: E=Sophos;i="6.15,293,1739865600"; d="scan'208";a="143672603"
 Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.245.176])
  ([10.245.245.176])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 07:11:59 -0700
-Message-ID: <d2b77fac-6c5c-48a5-9955-223f3e29be7a@intel.com>
-Date: Fri, 16 May 2025 15:11:57 +0100
+ 16 May 2025 07:25:00 -0700
+Message-ID: <75eda3ed-3e75-4715-ae83-fcf48fbc49fa@intel.com>
+Date: Fri, 16 May 2025 15:24:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] drm/i915/display: move hotplug.dp_wq init from xe and
- i915 to display
+Subject: Re: [PATCH 5/7] drm/xe/display: move xe->display initialization to
+ xe_display_probe()
 To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 References: <cover.1747397638.git.jani.nikula@intel.com>
- <4730167548a40dc2abe38cd084809b74de988f1a.1747397638.git.jani.nikula@intel.com>
+ <6c3075739d84cecea258d686c3ef38455a61191c.1747397638.git.jani.nikula@intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <4730167548a40dc2abe38cd084809b74de988f1a.1747397638.git.jani.nikula@intel.com>
+In-Reply-To: <6c3075739d84cecea258d686c3ef38455a61191c.1747397638.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,140 +73,119 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 16/05/2025 13:16, Jani Nikula wrote:
-> The workqueue init and destroy belongs in display. Move it.
+> The future goal is to have intel_display_device_probe() create struct
+> intel_display. As the first step, postpone xe->display initialization
+> right before that call. This is the same location as in i915.
+> 
+> There's a subtle functional change here: xe->display will now be
+> initialized only if xe->info.probe_display.
+> 
+> The xe_display_create() function becomes empty, and can be removed. Move
+> its documentation to xe_display_probe()
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
 > ---
->   .../gpu/drm/i915/display/intel_display_driver.c  | 11 ++++++++++-
->   drivers/gpu/drm/i915/i915_driver.c               | 13 +------------
->   drivers/gpu/drm/xe/display/xe_display.c          | 16 +---------------
->   3 files changed, 12 insertions(+), 28 deletions(-)
+>   drivers/gpu/drm/xe/display/xe_display.c | 33 +++++++++++--------------
+>   drivers/gpu/drm/xe/display/xe_display.h |  4 ---
+>   drivers/gpu/drm/xe/xe_device.c          |  4 ---
+>   3 files changed, 14 insertions(+), 27 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 411fe7b918a7..e40f1935323a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -243,10 +243,16 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->   
->   	intel_dmc_init(display);
->   
-> +	display->hotplug.dp_wq = alloc_ordered_workqueue("intel-dp", 0);
-> +	if (!display->hotplug.dp_wq) {
-> +		ret = -ENOMEM;
-> +		goto cleanup_vga_client_pw_domain_dmc;
-> +	}
-> +
->   	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
->   	if (!display->wq.modeset) {
->   		ret = -ENOMEM;
-> -		goto cleanup_vga_client_pw_domain_dmc;
-> +		goto cleanup_wq_dp;
->   	}
->   
->   	display->wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
-> @@ -296,6 +302,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->   	destroy_workqueue(display->wq.flip);
->   cleanup_wq_modeset:
->   	destroy_workqueue(display->wq.modeset);
-> +cleanup_wq_dp:
-> +	destroy_workqueue(display->hotplug.dp_wq);
->   cleanup_vga_client_pw_domain_dmc:
->   	intel_dmc_fini(display);
->   	intel_power_domains_driver_remove(display);
-> @@ -631,6 +639,7 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
->   
->   	intel_gmbus_teardown(display);
->   
-> +	destroy_workqueue(display->hotplug.dp_wq);
->   	destroy_workqueue(display->wq.flip);
->   	destroy_workqueue(display->wq.modeset);
->   	destroy_workqueue(display->wq.cleanup);
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 5c69d14a7673..950b7ad8d675 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -115,8 +115,6 @@ static const struct drm_driver i915_drm_driver;
->   
->   static int i915_workqueues_init(struct drm_i915_private *dev_priv)
->   {
-> -	struct intel_display *display = dev_priv->display;
-> -
->   	/*
->   	 * The i915 workqueue is primarily used for batched retirement of
->   	 * requests (and thus managing bo) once the task has been completed
-> @@ -135,10 +133,6 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
->   	if (dev_priv->wq == NULL)
->   		goto out_err;
->   
-> -	display->hotplug.dp_wq = alloc_ordered_workqueue("i915-dp", 0);
-> -	if (!display->hotplug.dp_wq)
-> -		goto out_free_wq;
-> -
->   	/*
->   	 * The unordered i915 workqueue should be used for all work
->   	 * scheduling that do not require running in order, which used
-> @@ -147,12 +141,10 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
->   	 */
->   	dev_priv->unordered_wq = alloc_workqueue("i915-unordered", 0, 0);
->   	if (dev_priv->unordered_wq == NULL)
-> -		goto out_free_dp_wq;
-> +		goto out_free_wq;
->   
->   	return 0;
->   
-> -out_free_dp_wq:
-> -	destroy_workqueue(display->hotplug.dp_wq);
->   out_free_wq:
->   	destroy_workqueue(dev_priv->wq);
->   out_err:
-> @@ -163,10 +155,7 @@ static int i915_workqueues_init(struct drm_i915_private *dev_priv)
->   
->   static void i915_workqueues_cleanup(struct drm_i915_private *dev_priv)
->   {
-> -	struct intel_display *display = dev_priv->display;
-> -
->   	destroy_workqueue(dev_priv->unordered_wq);
-> -	destroy_workqueue(display->hotplug.dp_wq);
->   	destroy_workqueue(dev_priv->wq);
->   }
->   
 > diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 9513b03847a8..b0f5624177bd 100644
+> index b0f5624177bd..c35444637620 100644
 > --- a/drivers/gpu/drm/xe/display/xe_display.c
 > +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -83,14 +83,6 @@ static void unset_display_features(struct xe_device *xe)
+> @@ -83,25 +83,6 @@ static void unset_display_features(struct xe_device *xe)
 >   	xe->drm.driver_features &= ~(DRIVER_MODESET | DRIVER_ATOMIC);
 >   }
 >   
-> -static void display_destroy(struct drm_device *dev, void *dummy)
+> -/**
+> - * xe_display_create - create display struct
+> - * @xe: XE device instance
+> - *
+> - * Initialize all fields used by the display part.
+> - *
+> - * TODO: once everything can be inside a single struct, make the struct opaque
+> - * to the rest of xe and return it to be xe->display.
+> - *
+> - * Returns: 0 on success
+> - */
+> -int xe_display_create(struct xe_device *xe)
 > -{
-> -	struct xe_device *xe = to_xe_device(dev);
-> -	struct intel_display *display = xe->display;
+> -	/* TODO: Allocate display dynamically. */
+> -	xe->display = &xe->__display;
 > -
-> -	destroy_workqueue(display->hotplug.dp_wq);
+> -	return 0;
 > -}
 > -
->   /**
->    * xe_display_create - create display struct
->    * @xe: XE device instance
-> @@ -105,15 +97,9 @@ static void display_destroy(struct drm_device *dev, void *dummy)
->   int xe_display_create(struct xe_device *xe)
+>   static void xe_display_fini_early(void *arg)
 >   {
->   	/* TODO: Allocate display dynamically. */
-> -	struct intel_display *display = &xe->__display;
-> -
->   	xe->display = &xe->__display;
->   
-> -	display->hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
-> -	if (!display->hotplug.dp_wq)
-> -		return -ENOMEM;
-> -
-> -	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
-> +	return 0;
+>   	struct xe_device *xe = arg;
+> @@ -524,6 +505,17 @@ static void display_device_remove(struct drm_device *dev, void *arg)
+>   	intel_display_device_remove(display);
 >   }
 >   
->   static void xe_display_fini_early(void *arg)
+> +/**
+> + * xe_display_probe - probe display and create display struct
+> + * @xe: XE device instance
+> + *
+> + * Initialize all fields used by the display part.
+> + *
+> + * TODO: once everything can be inside a single struct, make the struct opaque
+> + * to the rest of xe and return it to be xe->display.
+> + *
+> + * Returns: 0 on success
+> + */
+>   int xe_display_probe(struct xe_device *xe)
+>   {
+>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -533,6 +525,9 @@ int xe_display_probe(struct xe_device *xe)
+>   	if (!xe->info.probe_display)
+>   		goto no_display;
+>   
+> +	/* TODO: Allocate display dynamically. */
+> +	xe->display = &xe->__display;
+> +
+>   	display = intel_display_device_probe(pdev);
+>   
+>   	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, display);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+> index 46e14f8dee28..e533aa4750bc 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.h
+> +++ b/drivers/gpu/drm/xe/display/xe_display.h
+> @@ -15,8 +15,6 @@ struct drm_driver;
+>   bool xe_display_driver_probe_defer(struct pci_dev *pdev);
+>   void xe_display_driver_set_hooks(struct drm_driver *driver);
+>   
+> -int xe_display_create(struct xe_device *xe);
+> -
+>   int xe_display_probe(struct xe_device *xe);
+>   
+>   int xe_display_init_early(struct xe_device *xe);
+> @@ -46,8 +44,6 @@ static inline int xe_display_driver_probe_defer(struct pci_dev *pdev) { return 0
+>   static inline void xe_display_driver_set_hooks(struct drm_driver *driver) { }
+>   static inline void xe_display_driver_remove(struct xe_device *xe) {}
+>   
+> -static inline int xe_display_create(struct xe_device *xe) { return 0; }
+> -
+>   static inline int xe_display_probe(struct xe_device *xe) { return 0; }
+>   
+>   static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index d4b6e623aa48..660b0c5126dc 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -491,10 +491,6 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>   	if (err)
+>   		goto err;
+>   
+> -	err = xe_display_create(xe);
+> -	if (WARN_ON(err))
+> -		goto err;
+> -
+>   	return xe;
+>   
+>   err:
 
