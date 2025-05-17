@@ -2,74 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24B0EABA5DF
-	for <lists+intel-gfx@lfdr.de>; Sat, 17 May 2025 00:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA34ABA934
+	for <lists+intel-gfx@lfdr.de>; Sat, 17 May 2025 11:45:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9318610EBA7;
-	Fri, 16 May 2025 22:22:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 346D010E182;
+	Sat, 17 May 2025 09:45:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJfQPA77";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="k+8NPRTQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF6B10EBA5;
- Fri, 16 May 2025 22:22:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747434128; x=1778970128;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kONYMJEJ044G8TH598Cjlf7EWAn1NPZyS4WQgCgWhfw=;
- b=cJfQPA77LFuBpRVI7eph1iOdow+P8Yj5EcbTbSJD9Hp0AZtSgFkC+T79
- iHIXlQBFrEv1FfGOrc/46VivX/9EY4w1uL6qJcYX+iDualNUHBqCys07y
- z1Zc2BUmEwpEo6uuJGIdUWCTvmllNIKUUiLPLF3278TR59iV1WBGQJGMI
- ptrG4eYGv1Q8KYQc3i5F4ohqLY8VsZs9ILnNws2cAF+i8LSY48DPRBQKm
- s1/8j6XqW3tEXxZHTW6zgeG4goLSdrRKOkR8ilq5y3nIjROzZpC8ILOEG
- 67KIzlB6fZizivZoYQNUa9W84bB/OpE/Lq0DAxVkLjS3678QizsDF0ZiT A==;
-X-CSE-ConnectionGUID: f30jnNxVRCKFY//6gZDp9Q==
-X-CSE-MsgGUID: l2hG1kXZTEmbgbvuVv9ZTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="53219831"
-X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; d="scan'208";a="53219831"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 15:22:07 -0700
-X-CSE-ConnectionGUID: 4PfXNEVeSPSO2G7++83Vng==
-X-CSE-MsgGUID: 1joxnqDJQsmgxWHlsSO7fA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; d="scan'208";a="143934991"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2025 15:22:01 -0700
-Date: Sat, 17 May 2025 01:21:58 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>,
- Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomasw@gmail.com>
-Subject: Re: [PATCH v10 02/10] mtd: intel-dg: implement region enumeration
-Message-ID: <aCe6hlGFG3v0cav9@black.fi.intel.com>
-References: <20250515133345.2805031-1-alexander.usyskin@intel.com>
- <20250515133345.2805031-3-alexander.usyskin@intel.com>
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
+ [136.143.188.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E39D310E182
+ for <intel-gfx@lists.freedesktop.org>; Sat, 17 May 2025 09:45:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1747475105; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=cLGq15gv57dBvFYvKHaFlni0ksLC4DkugQ3oGWZl6CT1wyfGdGH6iPVCZrV2PacXbbvpXcq3vndIHuvAwuc2gMpaLSMAVxAtCI95U4Vf+NnlwoeY0qgPRr0YWQY+YvTwP4GLxMPn1NpL9zuGpiuN2w1CLmsntXY0i97Ns8qazRk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1747475105;
+ h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=EfNdhjNwv68URzi05pPVoURNzDGz+Zv4zZrIBMlUCl8=; 
+ b=KyJblIc9KBYVkgRAZKXeYaUi8v0nM+g7PgU4VLJxrtMFn9I3j1B68JrHI4XB4nZ1/6Ladr59Rma1DzC8qOlXgpHWygRxRVWAnNtjXe9yCLt5YksBfUFMUpQcQzXdNxf3I2c4iNgucfXXxtYwPycqn3FQ2KJHLefx6Q2AybttT2o=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747475105; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=EfNdhjNwv68URzi05pPVoURNzDGz+Zv4zZrIBMlUCl8=;
+ b=k+8NPRTQUgrk9myFOXpeZr8ZT1BetBJf8doqun1DhMa0pJN2+oRTftSBkXLpTybm
+ MDPDUOyq9+LLqsv25vwsP79fi9lMpORTpiiyUwMfrRk0/sJzEK16VCccV5p8Lb7L6CW
+ +BKSkG8JFRUta+5mzRNyo8YoJBP9aGsh4JC+7w/E=
+Received: by mx.zohomail.com with SMTPS id 1747475104742143.36734009810357;
+ Sat, 17 May 2025 02:45:04 -0700 (PDT)
+Message-ID: <afe9e65b1143e7153495b708c10d77152b6abc6c.camel@collabora.com>
+Subject: 2025 X.Org Foundation Election results
+From: Mark Filion <mark.filion@collabora.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 17 May 2025 11:45:02 +0200
+Content-Type: multipart/alternative; boundary="=-VJxzdHFHw/1lMtf0MY7u"
+User-Agent: Evolution 3.56.1 (3.56.1-1.fc42app2) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250515133345.2805031-3-alexander.usyskin@intel.com>
+X-ZohoMailClient: External
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,102 +61,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 15, 2025 at 04:33:37PM +0300, Alexander Usyskin wrote:
-> In intel-dg, there is no access to the spi controller,
-> the information is extracted from the descriptor region.
+--=-VJxzdHFHw/1lMtf0MY7u
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-...
+Hello all,
 
-> +static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device)
-> +{
-> +	int ret;
-> +	unsigned int i, n;
-> +	u32 access_map = 0;
+The Board of Directors election concluded at 23:59 UTC on 14 May 2025.
+For this election, we had 77 members who could cast a vote. 72 did, so
+the turnout was 92.5%. This is the 3rd highest turnout in the last 10
+elections, with only 2021 (93.8%) and 2016 (98.8%) being higher. It is
+also a 147% increase from last year's turnout (62.9%). Thank you to
+everyone who took the time to vote!
 
-Reverse xmas order (along with all other places) and
+In the election of the Directors to the Board of the X.Org Foundation,
+the results were that Lyude Paul, Andres Gomez, Arkadiusz Hiler and
+Harry Wentland were elected for two year terms.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+The old full board is: Erik Faye-Lund, Mark Filion, Neal Gompa,
+Arkadiusz Hiler, Christopher Michael, Lyude Paul, and Simon Ser.
 
-> +	/* clean error register, previous errors are ignored */
-> +	idg_nvm_error(nvm);
-> +
-> +	ret = idg_nvm_is_valid(nvm);
-> +	if (ret) {
-> +		dev_err(device, "The MEM is not valid %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (idg_nvm_get_access_map(nvm, &access_map))
-> +		return -EIO;
-> +
-> +	for (i = 0, n = 0; i < nvm->nregions; i++) {
-> +		u32 address, base, limit, region;
-> +		u8 id = nvm->regions[i].id;
-> +
-> +		address = NVM_FLREG(id);
-> +		region = idg_nvm_read32(nvm, address);
-> +
-> +		base = FIELD_GET(NVM_FREG_BASE_MASK, region) << NVM_FREG_ADDR_SHIFT;
-> +		limit = (FIELD_GET(NVM_FREG_ADDR_MASK, region) << NVM_FREG_ADDR_SHIFT) |
-> +			NVM_FREG_MIN_REGION_SIZE;
-> +
-> +		dev_dbg(device, "[%d] %s: region: 0x%08X base: 0x%08x limit: 0x%08x\n",
-> +			id, nvm->regions[i].name, region, base, limit);
-> +
-> +		if (base >= limit || (i > 0 && limit == 0)) {
-> +			dev_dbg(device, "[%d] %s: disabled\n",
-> +				id, nvm->regions[i].name);
-> +			nvm->regions[i].is_readable = 0;
-> +			continue;
-> +		}
-> +
-> +		if (nvm->size < limit)
-> +			nvm->size = limit;
-> +
-> +		nvm->regions[i].offset = base;
-> +		nvm->regions[i].size = limit - base + 1;
-> +		/* No write access to descriptor; mask it out*/
-> +		nvm->regions[i].is_writable = idg_nvm_region_writable(access_map, id);
-> +
-> +		nvm->regions[i].is_readable = idg_nvm_region_readable(access_map, id);
-> +		dev_dbg(device, "Registered, %s id=%d offset=%lld size=%lld rd=%d wr=%d\n",
-> +			nvm->regions[i].name,
-> +			nvm->regions[i].id,
-> +			nvm->regions[i].offset,
-> +			nvm->regions[i].size,
-> +			nvm->regions[i].is_readable,
-> +			nvm->regions[i].is_writable);
-> +
-> +		if (nvm->regions[i].is_readable)
-> +			n++;
-> +	}
-> +
-> +	dev_dbg(device, "Registered %d regions\n", n);
-> +
-> +	/* Need to add 1 to the amount of memory
-> +	 * so it is reported as an even block
-> +	 */
-> +	nvm->size += 1;
-> +
-> +	return n;
-> +}
-> +
->  static void intel_dg_nvm_release(struct kref *kref)
->  {
->  	struct intel_dg_nvm *nvm = container_of(kref, struct intel_dg_nvm, refcnt);
-> @@ -85,6 +285,12 @@ static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
->  		goto err;
->  	}
->  
-> +	ret = intel_dg_nvm_init(nvm, device);
-> +	if (ret < 0) {
-> +		dev_err(device, "cannot initialize nvm %d\n", ret);
-> +		goto err;
-> +	}
-> +
->  	dev_set_drvdata(&aux_dev->dev, nvm);
->  
->  	return 0;
-> -- 
-> 2.43.0
-> 
+The new full board is: Erik Faye-Lund, Mark Filion, Andres Gomez, Neal
+Gompa, Arkadiusz Hiler, Lyude Paul, Simon Ser, and Harry Wentland.
+
+Mark Filion, on behalf of the X.Org elections committee
+
+--=-VJxzdHFHw/1lMtf0MY7u
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
+ 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-var=
+iant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; word-spac=
+ing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-str=
+oke-width: 0px; text-decoration: none;">Hello all,</div><div style=3D"caret=
+-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&=
+quot;; font-style: normal; font-variant-caps: normal; font-weight: 400; let=
+ter-spacing: normal; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: r=
+gba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">=
+<br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); fon=
+t-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: =
+normal; font-weight: 400; letter-spacing: normal; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -=
+webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: =
+0px; text-decoration: none;">The Board of Directors election concluded at 2=
+3:59 UTC on 14 May 2025. For this election, we had 77 members who could cas=
+t a vote. 72 did, so the turnout was 92.5%. This is the 3rd highest turnout=
+ in the last 10 elections, with only 2021 (93.8%) and 2016 (98.8%) being hi=
+gher. It is also a 147% increase from last year's turnout (62.9%). Thank yo=
+u to everyone who took the time to vote!</div><div style=3D"caret-color: rg=
+b(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; fon=
+t-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacin=
+g: normal; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, =
+0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;"><br></div>=
+<div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: =
+&quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: normal; fo=
+nt-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px=
+; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap=
+-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-=
+decoration: none;">In the election of the Directors to the Board of the X.O=
+rg Foundation, the results were that Lyude Paul, Andres Gomez, Arkadiusz Hi=
+ler and Harry Wentland were elected for two year terms.</div><div style=3D"=
+caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita =
+Sans&quot;; font-style: normal; font-variant-caps: normal; font-weight: 400=
+; letter-spacing: normal; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-col=
+or: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: no=
+ne;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0)=
+; font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-c=
+aps: normal; font-weight: 400; letter-spacing: normal; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0=
+px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-wi=
+dth: 0px; text-decoration: none;">The old full board is: Erik Faye-Lund, Ma=
+rk Filion, Neal Gompa, Arkadiusz Hiler, Christopher Michael, Lyude Paul, an=
+d Simon Ser.</div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0,=
+ 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-varian=
+t-caps: normal; font-weight: 400; letter-spacing: normal; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; word-spacing=
+: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke=
+-width: 0px; text-decoration: none;"><br></div><div style=3D"caret-color: r=
+gb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; fo=
+nt-style: normal; font-variant-caps: normal; font-weight: 400; letter-spaci=
+ng: normal; text-align: start; text-indent: 0px; text-transform: none; whit=
+e-space: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0,=
+ 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none;">The new f=
+ull board is: Erik Faye-Lund, Mark Filion, Andres Gomez, Neal Gompa, Arkadi=
+usz Hiler, Lyude Paul, Simon Ser, and Harry Wentland.</div><div style=3D"ca=
+ret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sa=
+ns&quot;; font-style: normal; font-variant-caps: normal; font-weight: 400; =
+letter-spacing: normal; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; word-spacing: 0px; -webkit-tap-highlight-color=
+: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-decoration: none=
+;"><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-cap=
+s: normal; font-weight: 400; letter-spacing: normal; text-align: start; tex=
+t-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px=
+; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-widt=
+h: 0px; text-decoration: none;">Mark Filion, on behalf of the X.Org electio=
+ns committee</div><div><span></span></div></body></html>
+
+--=-VJxzdHFHw/1lMtf0MY7u--
