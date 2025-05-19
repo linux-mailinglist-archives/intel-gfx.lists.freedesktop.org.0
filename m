@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0451ABB671
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 09:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CCFABBC51
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 13:29:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 301C210E22D;
-	Mon, 19 May 2025 07:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC5410E21F;
+	Mon, 19 May 2025 11:29:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a7VydpWO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HTPtGTA7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF6110E22D;
- Mon, 19 May 2025 07:52:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5A910E21F;
+ Mon, 19 May 2025 11:29:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747641161; x=1779177161;
+ t=1747654147; x=1779190147;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=iJQuEkvs7mfQ3xV7upbYSEnkgwNB80H+Cjj/oYKOXcc=;
- b=a7VydpWOFBpKIvhxlY4mQpQpoQqM7HSdxADV8uYXOIy3M5fBaeNvjNQK
- g2P3P2xeBnrupuG4Jh1skHVbZv0GsvhxDh1usYJ5L2hjIEuXqBn9I6TH+
- LqojZhBIQYWKp18F2H/0hxdnYwrMdhZjMxM7mi6LhRzRK6q2VbZHXEXYB
- eLd2/gjdIX2IOwOKcKD0dAZxnU94nIkTAvSf778mfTf7uvS8kiOYL8Z5W
- 9/hiO2ciw6IFSj6pKGhih9a3q4RKzmUtxsWuGXt2L6t+s6CQ+vRdbezn9
- sTmo/sZgH9FdnA5GXOrWRddFNhgRL0g2SIktzOW4ZY4qcVkJis8ksGr1J A==;
-X-CSE-ConnectionGUID: VUxW8bjsSEWTn6fnAzwsng==
-X-CSE-MsgGUID: 9XFh1pZISWGl0rpsNB1HKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="67084765"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="67084765"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ bh=djiksAnqZwvzPy7TLldAG5o/JGve1C7K9hm3pAmhXsY=;
+ b=HTPtGTA7rlMUc3C3eAh1JBPgee7xQwzfNiIyFECvLmhueZMgVY8i7vI7
+ GJrO8TuP8yJAgO40wm8osQkn44AHAZOeQDzxUgAaNZTrwj7d0SYKgQq98
+ 1vTvu4k7ktzx2GVYPoTycGl8H5kBlXmTvzSN9KQXlyJk2RMm28UbIbVqd
+ LLRjL1XJm6aIvlQZpdXwnMigQpWFheW+lyWkMUAB6cLJL8h5gK474UOyE
+ LXuwD84a9qV6eZY0NTK2w314nCH9lRFy47NZQUbc1VoHpn99LmHhec7Kd
+ h3BR1nE7snPG9V1pNzKktyXOhCj2d5CYVQaffntHlwvRTL1QLVucbXoCO A==;
+X-CSE-ConnectionGUID: yuExgI/wRh+wacWDpI8paQ==
+X-CSE-MsgGUID: MrGs8sW6QZatJpoJW07+ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="67105508"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="67105508"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 00:52:40 -0700
-X-CSE-ConnectionGUID: TFKomgeIR1GYxPE7Zqo8wQ==
-X-CSE-MsgGUID: ua8/+l9tTjGx0Yffu4oqwQ==
+ 19 May 2025 04:29:04 -0700
+X-CSE-ConnectionGUID: 3UfPtCAjTSiBT/xITUCBlQ==
+X-CSE-MsgGUID: QOu3h5rwTyS+TGTR7DZWeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="139133309"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.135])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 00:52:39 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/psr: Underrun on idle PSR wa only when pkgc latency
- > delayed vblank
-Date: Mon, 19 May 2025 10:52:23 +0300
-Message-ID: <20250519075223.443266-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="139836580"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.201])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 04:29:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH] drm/connector: move HDR sink metadata to display info
+Date: Mon, 19 May 2025 14:29:00 +0300
+Message-Id: <20250519112900.1383997-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,136 +68,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Underrun on idle PSR workaround (Wa_16025596647) is supposed to be
-applied only when pkg c latency > delayed vblank. Currently we are
-applying it always when other criterias are met.
+Information parsed from the display EDID should be stored in display
+info. Move HDR sink metadata there.
 
-Fix this by adding new boolean flag which is supposed to be set when
-calculating watermark levels and pkgc latency > delayed vblank is
-detected. currently this scenario is blocked but might be added
-later. Due to this add also TODO comment into
-skl_max_wm_level_for_vblank.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Bspec: 74151
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_types.h   |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c         | 16 ++++++++++------
- drivers/gpu/drm/i915/display/skl_watermark.c     |  5 +++++
- 3 files changed, 17 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 056219272c36..209ead520660 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1116,6 +1116,7 @@ struct intel_crtc_state {
- 	bool req_psr2_sdp_prior_scanline;
- 	bool has_panel_replay;
- 	bool wm_level_disabled;
-+	bool pkg_c_latency_used;
- 	u32 dc3co_exitline;
- 	u16 su_y_granularity;
- 	u8 active_non_psr_pipes;
-@@ -1655,6 +1656,7 @@ struct intel_psr {
- 	u8 entry_setup_frames;
+This depends on commit 6692dbc15e5e ("drm/edid: fixed the bug that hdr
+metadata was not reset") in drm-misc-fixes. Will need to wait for
+backmerge.
+---
+ drivers/gpu/drm/display/drm_hdmi_helper.c     |  2 +-
+ drivers/gpu/drm/drm_connector.c               |  2 +-
+ drivers/gpu/drm/drm_edid.c                    | 19 ++++++++++---------
+ .../drm/i915/display/intel_dp_aux_backlight.c |  2 +-
+ include/drm/drm_connector.h                   |  8 +++++---
+ 5 files changed, 18 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/display/drm_hdmi_helper.c b/drivers/gpu/drm/display/drm_hdmi_helper.c
+index 855cb02b827d..45af1cf55973 100644
+--- a/drivers/gpu/drm/display/drm_hdmi_helper.c
++++ b/drivers/gpu/drm/display/drm_hdmi_helper.c
+@@ -44,7 +44,7 @@ int drm_hdmi_infoframe_set_hdr_metadata(struct hdmi_drm_infoframe *frame,
  
- 	bool link_ok;
-+	bool pkg_c_latency_used;
+ 	/* Sink EOTF is Bit map while infoframe is absolute values */
+ 	if (!is_eotf_supported(hdr_metadata->hdmi_metadata_type1.eotf,
+-	    connector->hdr_sink_metadata.hdmi_type1.eotf))
++			       connector->display_info.hdr_sink_metadata.hdmi_type1.eotf))
+ 		DRM_DEBUG_KMS("Unknown EOTF %d\n", hdr_metadata->hdmi_metadata_type1.eotf);
  
- 	u8 active_non_psr_pipes;
- };
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 430ad4ef7146..a75ef515d016 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -931,7 +931,7 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
- 	/* Wa_16025596647 */
- 	if ((DISPLAY_VER(display) == 20 ||
- 	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
--	    is_dc5_dc6_blocked(intel_dp))
-+	    is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used)
- 		intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(display,
- 								       intel_dp->psr.pipe,
- 								       true);
-@@ -1021,7 +1021,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 	/* Wa_16025596647 */
- 	if ((DISPLAY_VER(display) == 20 ||
- 	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
--	    is_dc5_dc6_blocked(intel_dp))
-+	    is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used)
- 		idle_frames = 0;
- 	else
- 		idle_frames = psr_compute_idle_frames(intel_dp);
-@@ -2022,6 +2022,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	intel_dp->psr.req_psr2_sdp_prior_scanline =
- 		crtc_state->req_psr2_sdp_prior_scanline;
- 	intel_dp->psr.active_non_psr_pipes = crtc_state->active_non_psr_pipes;
-+	intel_dp->psr.pkg_c_latency_used = crtc_state->pkg_c_latency_used;
+ 	err = hdmi_drm_infoframe_init(frame);
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 48b08c9611a7..f7de3bb911c4 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -1645,7 +1645,7 @@ EXPORT_SYMBOL(drm_hdmi_connector_get_output_format_name);
+  *	structure from userspace. This is received as blob and stored in
+  *	&drm_connector_state.hdr_output_metadata. It parses EDID and saves the
+  *	sink metadata in &struct hdr_sink_metadata, as
+- *	&drm_connector.hdr_sink_metadata.  Driver uses
++ *	&drm_connector.display_info.hdr_sink_metadata.  Driver uses
+  *	drm_hdmi_infoframe_set_hdr_metadata() helper to set the HDR metadata,
+  *	hdmi_drm_infoframe_pack() to pack the infoframe as per spec, in case of
+  *	HDMI encoder.
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 74e77742b2bd..c6c61afeaa31 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -5373,7 +5373,8 @@ static void fixup_detailed_cea_mode_clock(struct drm_connector *connector,
  
- 	if (!psr_interrupt_error_check(intel_dp))
- 		return;
-@@ -2202,6 +2203,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	intel_dp->psr.su_region_et_enabled = false;
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
- 	intel_dp->psr.active_non_psr_pipes = 0;
-+	intel_dp->psr.pkg_c_latency_used = 0;
- }
- 
- /**
-@@ -3696,7 +3698,7 @@ static void intel_psr_apply_underrun_on_idle_wa_locked(struct intel_dp *intel_dp
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	bool dc5_dc6_blocked;
- 
--	if (!intel_dp->psr.active)
-+	if (!intel_dp->psr.active || !intel_dp->psr.pkg_c_latency_used)
- 		return;
- 
- 	dc5_dc6_blocked = is_dc5_dc6_blocked(intel_dp);
-@@ -3721,7 +3723,8 @@ static void psr_dc5_dc6_wa_work(struct work_struct *work)
- 
- 		mutex_lock(&intel_dp->psr.lock);
- 
--		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled)
-+		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
-+		    !intel_dp->psr.pkg_c_latency_used)
- 			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
- 
- 		mutex_unlock(&intel_dp->psr.lock);
-@@ -3799,7 +3802,8 @@ void intel_psr_notify_pipe_change(struct intel_atomic_state *state,
- 			goto unlock;
- 
- 		if ((enable && intel_dp->psr.active_non_psr_pipes) ||
--		    (!enable && !intel_dp->psr.active_non_psr_pipes)) {
-+		    (!enable && !intel_dp->psr.active_non_psr_pipes) ||
-+		    !intel_dp->psr.pkg_c_latency_used) {
- 			intel_dp->psr.active_non_psr_pipes = active_non_psr_pipes;
- 			goto unlock;
- 		}
-@@ -3834,7 +3838,7 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
- 			break;
- 		}
- 
--		if (intel_dp->psr.enabled)
-+		if (intel_dp->psr.enabled && intel_dp->psr.pkg_c_latency_used)
- 			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
- 
- 		mutex_unlock(&intel_dp->psr.lock);
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 8080f777910a..ccde151fa9fd 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2333,6 +2333,11 @@ static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
- 	return wm0_lines;
- }
- 
-+/*
-+ * TODO: In case we use PKG_C_LATENCY to allow C-states when the delayed vblank
-+ * size is too small for the package C exit latency we need to notify PSR about
-+ * the scenario to apply Wa_16025596647.
-+ */
- static int skl_max_wm_level_for_vblank(struct intel_crtc_state *crtc_state,
- 				       int wm0_lines)
+ static void drm_calculate_luminance_range(struct drm_connector *connector)
  {
+-	struct hdr_static_metadata *hdr_metadata = &connector->hdr_sink_metadata.hdmi_type1;
++	const struct hdr_static_metadata *hdr_metadata =
++		&connector->display_info.hdr_sink_metadata.hdmi_type1;
+ 	struct drm_luminance_range_info *luminance_range =
+ 		&connector->display_info.luminance_range;
+ 	static const u8 pre_computed_values[] = {
+@@ -5434,21 +5435,21 @@ static uint8_t hdr_metadata_type(const u8 *edid_ext)
+ static void
+ drm_parse_hdr_metadata_block(struct drm_connector *connector, const u8 *db)
+ {
++	struct hdr_static_metadata *hdr_metadata =
++		&connector->display_info.hdr_sink_metadata.hdmi_type1;
+ 	u16 len;
+ 
+ 	len = cea_db_payload_len(db);
+ 
+-	connector->hdr_sink_metadata.hdmi_type1.eotf =
+-						eotf_supported(db);
+-	connector->hdr_sink_metadata.hdmi_type1.metadata_type =
+-						hdr_metadata_type(db);
++	hdr_metadata->eotf = eotf_supported(db);
++	hdr_metadata->metadata_type = hdr_metadata_type(db);
+ 
+ 	if (len >= 4)
+-		connector->hdr_sink_metadata.hdmi_type1.max_cll = db[4];
++		hdr_metadata->max_cll = db[4];
+ 	if (len >= 5)
+-		connector->hdr_sink_metadata.hdmi_type1.max_fall = db[5];
++		hdr_metadata->max_fall = db[5];
+ 	if (len >= 6) {
+-		connector->hdr_sink_metadata.hdmi_type1.min_cll = db[6];
++		hdr_metadata->min_cll = db[6];
+ 
+ 		/* Calculate only when all values are available */
+ 		drm_calculate_luminance_range(connector);
+@@ -6596,7 +6597,7 @@ static void drm_reset_display_info(struct drm_connector *connector)
+ 	info->has_hdmi_infoframe = false;
+ 	info->rgb_quant_range_selectable = false;
+ 	memset(&info->hdmi, 0, sizeof(info->hdmi));
+-	memset(&connector->hdr_sink_metadata, 0, sizeof(connector->hdr_sink_metadata));
++	memset(&info->hdr_sink_metadata, 0, sizeof(info->hdr_sink_metadata));
+ 
+ 	info->edid_hdmi_rgb444_dc_modes = 0;
+ 	info->edid_hdmi_ycbcr444_dc_modes = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 271b27c9de51..5537136c367a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -145,7 +145,7 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
+ 	 * ranges for such panels.
+ 	 */
+ 	if (display->params.enable_dpcd_backlight != INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL &&
+-	    !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
++	    !(connector->base.display_info.hdr_sink_metadata.hdmi_type1.metadata_type &
+ 	      BIT(HDMI_STATIC_METADATA_TYPE1))) {
+ 		drm_info(display->drm,
+ 			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d.\n",
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index f13d597370a3..1e7b8074564c 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -799,6 +799,11 @@ struct drm_display_info {
+ 	 */
+ 	struct drm_hdmi_info hdmi;
+ 
++	/**
++	 * @hdr_sink_metadata: HDR Metadata Information read from sink
++	 */
++	struct hdr_sink_metadata hdr_sink_metadata;
++
+ 	/**
+ 	 * @non_desktop: Non desktop display (HMD).
+ 	 */
+@@ -2241,9 +2246,6 @@ struct drm_connector {
+ 	 */
+ 	struct llist_node free_node;
+ 
+-	/** @hdr_sink_metadata: HDR Metadata Information read from sink */
+-	struct hdr_sink_metadata hdr_sink_metadata;
+-
+ 	/**
+ 	 * @hdmi: HDMI-related variable and properties.
+ 	 */
 -- 
-2.43.0
+2.39.5
 
