@@ -2,48 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EBF8ABC8D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 23:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE31FABCAA9
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 00:04:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBEBA10E26D;
-	Mon, 19 May 2025 21:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE44010E384;
+	Mon, 19 May 2025 22:04:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dfZNUU8T";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="iu/fAhda";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F67310E26D
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 May 2025 21:02:34 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 4E44DA4E36D;
- Mon, 19 May 2025 21:02:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F0DC4CEE9;
- Mon, 19 May 2025 21:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1747688552;
- bh=UqtjN8F3UXYTYQRq0OkVwHTE0Q87SJHdzDiB9tNKITg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dfZNUU8Ttt+zj/33eS19U9MEJYL5TbB6Wdk7ofRL+GTUrIKitWZmmhjwqYBxZpngT
- Mbri+DXkH8Lll9PGmhpuca+wTcy+ZoQ4ajJk+35V6gJ6LoXNycd6ASUzi3NRdNLjre
- c04deAc2V2xplYoB/bvt0zII2kQVVzOa1muWaIiLlMoD6akflQ3TcvrkfQtGZjIYMk
- V1EwwjRAKjJuikl9KY8iBgPsdCG5vRTnjsH4vfVXwWEf8Q1fnsinLac5D7wdhQ/gGK
- 8+OQC216yHHs10zSgEFITElRtdf62iR4B+fclXKdayXqlEVX5tYL/lWKeZS5Qxmfvu
- RnjgzUdkTZdIA==
-Date: Mon, 19 May 2025 23:02:28 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Hans de Goede <hdegoede@redhat.com>
-Cc: Damien Le Moal <dlemoal@kernel.org>, kernel-dev@rsta79.anonaddy.me,
- linux-ide@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Subject: Re: ahci + intel iGPU problems
-Message-ID: <aCucZBwxga0y93uI@ryzen>
-References: <aCdAvkKOfBEQCnZd@ryzen>
- <875xhwvj7j.fsf@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 800FA10E326;
+ Mon, 19 May 2025 22:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=UOWP6M8I0SgDLfsLJUHYEe9np38WUuM8ybuUNNbXhoE=; b=iu/fAhdaDqHRM3z3I/gei++ZkT
+ 6S1epoLZnXQKB28KtSKC1t4KXHCbPtzoyT93bI8hEFzWrMy617ls2DhN2FpgdOdR8zNNki2z3nhFQ
+ Oi0tJDIKC4M4OnPVba63r9UR45iQ4hZaHlxQtgEt2D/kl+T692kVwtUR4w70llJltZTkTL3grldwA
+ RCXPYqAEnhQGKhx2rzYp5ecnHiRdfedhKsMq2hVbWHZoJmz7Gn5ITW7qg36fPhaNe9I6nvKXQKk3T
+ uOJRiV8VmOFBpuICWAMj4a+K2s+z91LMBe/PVCjXgpX/STMTmZl2EGOFmFRpkiVRGHzzxLgYSGCe7
+ tQgZe1vQ==;
+Received: from [191.204.192.64] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uH8ag-00AQwj-2T; Tue, 20 May 2025 00:04:10 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v4 0/3] drm: Create an app info option for wedge events
+Date: Mon, 19 May 2025 19:03:29 -0300
+Message-ID: <20250519220333.101355-1-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <875xhwvj7j.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,48 +65,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 19, 2025 at 04:11:28PM +0300, Jani Nikula wrote:
-> On Fri, 16 May 2025, Niklas Cassel <cassel@kernel.org> wrote:
-> > I do however see a bunch of i915 timeouts.
-> 
-> The i915 timeouts are normal for when its unable to talk to the display,
-> perhaps because it isn't there.
+This patchset implements a request made by Xaver Hugl about wedge events:
 
-Hello rsta79,
+"I'd really like to have the PID of the client that triggered the GPU
+reset, so that we can kill it if multiple resets are triggered in a
+row (or switch to software rendering if it's KWin itself) and show a
+user-friendly notification about why their app(s) crashed, but that
+can be added later."
 
-The kernel version you tested with in:
-https://bugzilla.kernel.org/show_bug.cgi?id=220111
+From https://lore.kernel.org/dri-devel/CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com/
 
-is v6.12:
-May 02 08:02:43 dom0 kernel: Linux version 6.12.21-1.qubes.fc37.x86_64 (mockbuild@f95d19f3373b43faae4cae417a952c59) (gcc (GCC) 12.3.1 20230508 (Red Hat 12.3.1-1), GNU ld version 2.38-27.fc37) #1 SMP PREEMPT_DYNAMIC Fri Apr 25 08:58:31 EDT 2025
+For testing, I've used amdgpu's debug_mask options debug_disable_soft_recovery
+and debug_disable_gpu_ring_reset to test both wedge event paths in the driver.
+To trigger a ring timeout, I've used this app:
+https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
 
-Do you see the same problem on v6.15-rc7?
+Thanks!
 
+Changelog:
 
-I did find an old commit from Hans de Goede that claims to fix system lockups
-for another ST1000* drive, but perhaps your model has the same issue:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=31f6264e225fb92cf6f4b63031424f20797c297d
+v4:
+ - Change from APP to TASK
+ - Add defines for event_string and pid_string length
 
-However, before considering adding a quirk for your exact model, could
-you perhaps try updating firmware for the HDD?
+v3:
+ - Make comm_string and pid_string empty when there's no app info
+ - Change "app that caused ..." to "app involved ..."
+ - Clarify that devcoredump have more information about what happened
 
-You are using firmware C43:
-May 02 08:02:43 dom0 kernel: ata6.00: ATA-8: ST1000DM010-2EP102, CC43, max UDMA/133
-There appears to be a CC46:
-https://smarthdd.com/database/ST1000DM010-2EP102/CC46/
+v2:
+  - Rebased on top of drm/drm-next
+  - Added new patch for documentation
 
+André Almeida (3):
+  drm: Create an app info option for wedge events
+  drm/doc: Add a section about "App information" for the wedge API
+  drm/amdgpu: Make use of drm_wedge_app_info
 
-Since LPM also allows the system to enter deeper PC-states,
-it could be an ACPI bug for your motherboth, have you tried
-updating BIOS for this motherboard?
+ Documentation/gpu/drm-uapi.rst             | 17 +++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
+ drivers/gpu/drm/drm_drv.c                  | 16 ++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_reset.c      |  3 ++-
+ drivers/gpu/drm/xe/xe_device.c             |  3 ++-
+ include/drm/drm_device.h                   | 11 +++++++++++
+ include/drm/drm_drv.h                      |  3 ++-
+ 8 files changed, 68 insertions(+), 10 deletions(-)
 
-Your logs show a bunch of warnings about ACPI and ASPM that does not look good:
-May 02 08:02:43 dom0 kernel: ACPI FADT declares the system doesn't support PCIe ASPM, so disable it
-May 02 08:02:43 dom0 kernel: acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI EDR HPX-Type3]
-May 02 08:02:43 dom0 kernel: acpi PNP0A08:00: FADT indicates ASPM is unsupported, using BIOS configuration
-May 02 08:02:43 dom0 kernel: pci 0000:03:00.0: Disabling ASPM L0s/L1
-May 02 08:02:43 dom0 kernel: pci 0000:03:00.0: can't disable ASPM; OS doesn't have ASPM control
+-- 
+2.49.0
 
-
-Kind regards,
-Niklas
