@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D04ABCAA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 00:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FECDABCADA
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 00:29:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75AC110E373;
-	Mon, 19 May 2025 22:04:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TkWfIoFs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC2B10E2CF;
+	Mon, 19 May 2025 22:29:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5C3710E361;
- Mon, 19 May 2025 22:04:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=6htrZa/SZWK2YDvdxZWgpg4Nj5HaKkzm469XyRbIpvA=; b=TkWfIoFs4UUP6wmyJTMRCyYLEF
- ftGxP6DFDjPib5zChOxd1CY16kfKGlun35wgkhyVkysNLB/SiCVtgUgDbSK/jgiUPnrCKTTPIMPz/
- 6UGd2NXUwRleieyJV7f7p0WoqSaEOlIehWFXqBpRzkPIeu4NB2rjzRD1OPwL7TcgTPGbLQ3aGpdxE
- TN9T2PmhaRjI0Wkz6kX4ul4eIh7pMQ9gw1xPr8yU2jLAEP43nTdbnisckIIwyhuTN6poCVqmdBkVN
- Z/ZwkXzp+Bsb1kOgrIewVqAnzhMbzof2aGpcz6K4bPYAaW9eWH5C8+ChxVq+BUnJM5/glQkNkQJ17
- c+CM+GKg==;
-Received: from [191.204.192.64] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uH8ar-00AQwj-Va; Tue, 20 May 2025 00:04:22 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v4 3/3] drm/amdgpu: Make use of drm_wedge_app_info
-Date: Mon, 19 May 2025 19:03:32 -0300
-Message-ID: <20250519220333.101355-4-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250519220333.101355-1-andrealmeid@igalia.com>
-References: <20250519220333.101355-1-andrealmeid@igalia.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA9510E125;
+ Mon, 19 May 2025 22:29:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm=3A_Create_an_app?=
+ =?utf-8?q?_info_option_for_wedge_events_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 May 2025 22:29:17 -0000
+Message-ID: <174769375718.1850.18056112398061522070@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250519220333.101355-1-andrealmeid@igalia.com>
+In-Reply-To: <20250519220333.101355-1-andrealmeid@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,80 +37,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To notify userspace about which app (if any) made the device get in a
-wedge state, make use of drm_wedge_app_info parameter, filling it with
-the app PID and name.
+== Series Details ==
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
- 2 files changed, 22 insertions(+), 3 deletions(-)
+Series: drm: Create an app info option for wedge events (rev4)
+URL   : https://patchwork.freedesktop.org/series/145638/
+State : warning
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index d27091d5929c..81bd3b1db129 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6362,8 +6362,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
- 
--	if (!r)
--		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+	if (!r) {
-+		struct drm_wedge_app_info aux, *info = NULL;
-+
-+		if (job) {
-+			struct amdgpu_task_info *ti;
-+
-+			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-+			if (ti) {
-+				aux.pid = ti->pid;
-+				aux.comm = ti->process_name;
-+				info = &aux;
-+				amdgpu_vm_put_task_info(ti);
-+			}
-+		}
-+
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
-+	}
- 
- 	return r;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index a47b2eb301e5..98efa3318ddb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -89,6 +89,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- {
- 	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
-+	struct drm_wedge_app_info aux, *info = NULL;
- 	struct amdgpu_task_info *ti;
- 	struct amdgpu_device *adev = ring->adev;
- 	int idx;
-@@ -127,6 +128,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		dev_err(adev->dev,
- 			"Process information: process %s pid %d thread %s pid %d\n",
- 			ti->process_name, ti->tgid, ti->task_name, ti->pid);
-+		aux.pid = ti->pid;
-+		aux.comm = ti->process_name;
-+		info = &aux;
- 		amdgpu_vm_put_task_info(ti);
- 	}
- 
-@@ -166,7 +170,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 			if (amdgpu_ring_sched_ready(ring))
- 				drm_sched_start(&ring->sched, 0);
- 			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
--			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
- 			goto exit;
- 		}
- 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
--- 
-2.49.0
+== Summary ==
+
+Error: dim checkpatch failed
+5b8661caf057 drm: Create an app info option for wedge events
+-:77: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#77: FILE: drivers/gpu/drm/drm_drv.c:564:
++	char *envp[] = { event_string, NULL, NULL, NULL };
+
+total: 0 errors, 1 warnings, 0 checks, 97 lines checked
+859ab867da59 drm/doc: Add a section about "App information" for the wedge API
+46431924b629 drm/amdgpu: Make use of drm_wedge_app_info
+
 
