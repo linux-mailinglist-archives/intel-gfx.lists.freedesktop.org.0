@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A46ABC657
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 19:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA9AABC68E
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 20:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D2A510E408;
-	Mon, 19 May 2025 17:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2494110E2C6;
+	Mon, 19 May 2025 18:00:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D571710E441;
- Mon, 19 May 2025 17:58:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B2E10E26D;
+ Mon, 19 May 2025 18:00:15 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/flipq=3A_Ro?=
- =?utf-8?q?ugh_flip_queue_implementation_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/flipq=3A_Rough_?=
+ =?utf-8?q?flip_queue_implementation_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 May 2025 17:58:23 -0000
-Message-ID: <174767750372.920.8657544043060559808@1538d3639d33>
+Date: Mon, 19 May 2025 18:00:15 -0000
+Message-ID: <174767761567.1237.10769352041564253566@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
 In-Reply-To: <20250516113408.11689-1-ville.syrjala@linux.intel.com>
@@ -49,147 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-5d1335d6c927 drm/i915/dsb: Extract intel_dsb_ins_align()
-eaac55d2d020 drm/i915/dsb: Use intel_dsb_ins_align() in intel_dsb_align_tail()
-b7f97172350e drm/i915/dsb: Extract assert_dsb_tail_is_aligned()
-11cf09d0f973 drm/i915/dsb: Extract intel_dsb_{head,tail}()
-ab29e6755878 drm/i915/dsb: Provide intel_dsb_head() and intel_dsb_size()
-fcc6526986ce drm/i915/dmc: Define flip queue related PIPEDMC registers
--:59: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#59: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:322:
-+#define PIPEDMC_FQ_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FQ_STATUS_A, _PIPEDMC_FQ_STATUS_B)
-
--:66: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#66: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:329:
-+#define PIPEDMC_FPQ_ATOMIC_TP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_FPQ_ATOMIC_TP_A, _PIPEDMC_FPQ_ATOMIC_TP_B)
-
--:80: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#80: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:343:
-+#define PIPEDMC_FPQ_LINES_TO_W1		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W1_A, _PIPEDMC_FPQ_LINES_TO_W1_B)
-
--:84: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
-#84: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:347:
-+#define PIPEDMC_FPQ_LINES_TO_W2		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W2_A, _PIPEDMC_FPQ_LINES_TO_W2_B)
-
--:88: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#88: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:351:
-+#define PIPEDMC_SCANLINECMP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMP_A, _PIPEDMC_SCANLINECMP_B)
-
--:94: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#94: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:357:
-+#define PIPEDMC_SCANLINECMPLOWER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPLOWER_A, _PIPEDMC_SCANLINECMPLOWER_B)
-
--:98: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#98: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:361:
-+#define   PIPEDMC_SCANLINE_LOWER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_LOWER_MASK, (scanline))
-
--:102: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
-#102: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:365:
-+#define PIPEDMC_SCANLINECMPUPPER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPUPPER_A, _PIPEDMC_SCANLINECMPUPPER_B)
-
--:104: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
-#104: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:367:
-+#define   PIPEDMC_SCANLINE_UPPER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_UPPER_MASK, (scanline))
-
--:106: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#106: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:369:
-+#define _MMIO_PIPEDMC_FPQ(pipe, fq_id, \
-+			  reg_fpq1_a, reg_fpq2_a, reg_fpq3_a, reg_fpq4_a, \
-+			  reg_fpq1_b, reg_fpq2_b, reg_fpq3_b, reg_fpq4_b) \
-+	_MMIO(_PICK_EVEN_2RANGES((fq_id), INTEL_FLIPQ_PLANE_3, \
-+				 _PIPE((pipe), (reg_fpq1_a), (reg_fpq1_b)), \
-+				 _PIPE((pipe), (reg_fpq2_a), (reg_fpq2_b)), \
-+				 _PIPE((pipe), (reg_fpq3_a), (reg_fpq3_b)), \
-+				 _PIPE((pipe), (reg_fpq4_a), (reg_fpq4_b))))
-
--:158: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#158: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:421:
-+							  _PIPEDMC_FPQ1_CHP_A, _PIPEDMC_FPQ2_CHP_A, \
-
--:159: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#159: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:422:
-+							  _PIPEDMC_FPQ3_CHP_A, _PIPEDMC_FPQ4_CHP_A, \
-
--:160: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#160: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:423:
-+							  _PIPEDMC_FPQ1_CHP_B, _PIPEDMC_FPQ2_CHP_B, \
-
--:169: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#169: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:432:
-+#define PIPEDMC_SCANLINE_RO(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINE_RO_A, _PIPEDMC_SCANLINE_RO_B)
-
--:191: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#191: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:543:
-+#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
-
--:193: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#193: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:545:
-+#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
-
--:195: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#195: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:547:
-+#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
-
--:197: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#197: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:549:
-+#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
-
-total: 0 errors, 17 warnings, 1 checks, 194 lines checked
-8d5bd7e3df2c drm/i915/flipq: Provide the nuts and bolts code for flip queue
--:37: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#37: 
-      need to think what to about the cdclk dependency on the execution time
-
--:265: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#265: 
-new file mode 100644
-
--:291: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'flipq_id' - possible side-effects?
-#291: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:22:
-+#define for_each_flipq(flipq_id) \
-+	for ((flipq_id) = INTEL_FLIPQ_PLANE_1; (flipq_id) < MAX_INTEL_FLIPQ; (flipq_id)++)
-
--:358: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
-#358: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:89:
-+		flipq->start_mmioaddr = intel_pipedmc_start_mmioaddr(crtc) + intel_flipq_offset(flipq_id);
-
--:523: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#523: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:254:
-+					       intel_flipq_elem_size_dw(flipq->flipq_id) + i), data);
-
-total: 0 errors, 4 warnings, 1 checks, 526 lines checked
-399c569b08b3 drm/i915/flipq: Implement flipq queue based commit path
--:193: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#193: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:66:
-+intel_display_param_named_unsafe(enable_flipq, bool, 0400,
-+	"Enable DMC flip queue (default: false)");
-
-total: 0 errors, 0 warnings, 1 checks, 208 lines checked
-2f657482292e drm/i915/flipq: Implement Wa_18034343758
-d3b25be4d6c1 drm/i915/flipq: Implement Wa_16018781658 for LNL-A0
-e776487b6548 drm/i915/flipq: Add intel_flipq_dump()
--:34: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_cont([subsystem]dev, ... then dev_cont(dev, ... then pr_cont(...  to printk(KERN_CONT ...
-#34: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:162:
-+		printk(KERN_CONT " 0x%08x",
-
--:34: WARNING:LOGGING_CONTINUATION: Avoid logging continuation uses where feasible
-#34: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:162:
-+		printk(KERN_CONT " 0x%08x",
-
--:36: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#36: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:164:
-+		if (i % intel_flipq_elem_size_dw(flipq_id) == intel_flipq_elem_size_dw(flipq_id) - 1)
-
--:37: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_cont([subsystem]dev, ... then dev_cont(dev, ... then pr_cont(...  to printk(KERN_CONT ...
-#37: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:165:
-+			printk(KERN_CONT "\n");
-
--:37: WARNING:LOGGING_CONTINUATION: Avoid logging continuation uses where feasible
-#37: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:165:
-+			printk(KERN_CONT "\n");
-
-total: 0 errors, 5 warnings, 0 checks, 60 lines checked
-3d0a6a3c893d drm/i915/flipq: Enable flipq by default for testing
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
