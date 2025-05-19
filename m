@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6CCFABBC51
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 13:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34654ABBCBD
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 May 2025 13:40:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EC5410E21F;
-	Mon, 19 May 2025 11:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA03010E1CD;
+	Mon, 19 May 2025 11:40:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HTPtGTA7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwWpfQfu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5A910E21F;
- Mon, 19 May 2025 11:29:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B41D310E136;
+ Mon, 19 May 2025 11:40:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747654147; x=1779190147;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=djiksAnqZwvzPy7TLldAG5o/JGve1C7K9hm3pAmhXsY=;
- b=HTPtGTA7rlMUc3C3eAh1JBPgee7xQwzfNiIyFECvLmhueZMgVY8i7vI7
- GJrO8TuP8yJAgO40wm8osQkn44AHAZOeQDzxUgAaNZTrwj7d0SYKgQq98
- 1vTvu4k7ktzx2GVYPoTycGl8H5kBlXmTvzSN9KQXlyJk2RMm28UbIbVqd
- LLRjL1XJm6aIvlQZpdXwnMigQpWFheW+lyWkMUAB6cLJL8h5gK474UOyE
- LXuwD84a9qV6eZY0NTK2w314nCH9lRFy47NZQUbc1VoHpn99LmHhec7Kd
- h3BR1nE7snPG9V1pNzKktyXOhCj2d5CYVQaffntHlwvRTL1QLVucbXoCO A==;
-X-CSE-ConnectionGUID: yuExgI/wRh+wacWDpI8paQ==
-X-CSE-MsgGUID: MrGs8sW6QZatJpoJW07+ow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="67105508"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="67105508"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 04:29:04 -0700
-X-CSE-ConnectionGUID: 3UfPtCAjTSiBT/xITUCBlQ==
-X-CSE-MsgGUID: QOu3h5rwTyS+TGTR7DZWeg==
+ t=1747654806; x=1779190806;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=31mWTcNrglMnzftdJ5VQoKAXYYrekE/1vsixrkHEiYQ=;
+ b=hwWpfQfuejiz+NTcHrjjXdxDCPvzEeKQvcX+ThxBwllMD3j1ZZfokZ53
+ 6gcHfnkC8WEQXB/o+khexC5Ak+jYmmpJ8TPdUhONsjzmxwHwHx/eju+kB
+ DKfQfRgnNXFOFZto3KRdRcfRItPhvuNLadpP8Su4o3GgsEZ0LLkXr286A
+ Uqk955jdvo5I1GD7GkOkzlEtxfgmVwXAieL1qqjPCpdt6qiXMApounBPB
+ M6NaprRpzxcz6NVvaopL75MCwWtsSgK5ULgpIANPivXOOaBxMpa7FEeyl
+ 9HdqhgLSF+Ja/6MNXEsMnOGakFNokTE3V/CjBNKifaWzcvksFAE4mFxzu Q==;
+X-CSE-ConnectionGUID: dLXQrQ7kQa6CdMM8QxeH1A==
+X-CSE-MsgGUID: 7YMVIen6Qb+OoHXu48NCFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="49425545"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="49425545"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 04:40:04 -0700
+X-CSE-ConnectionGUID: UklUZOuSSj2nYbInTu6hpA==
+X-CSE-MsgGUID: ghq753GZQs2oh3vfHOHhLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="139836580"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; d="scan'208";a="170256514"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.201])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2025 04:29:03 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2025 04:40:02 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH] drm/connector: move HDR sink metadata to display info
-Date: Mon, 19 May 2025 14:29:00 +0300
-Message-Id: <20250519112900.1383997-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
+To: I915-ci-infra@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: =?utf-8?Q?=E2=9C=93?= i915.CI.BAT: success for drm/i915 &
+ drm/xe: prep work towards opaque struct intel_display
+In-Reply-To: <174740141810.88035.10603333238834179969@c664b1dc75d1>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1747397638.git.jani.nikula@intel.com>
+ <174740141810.88035.10603333238834179969@c664b1dc75d1>
+Date: Mon, 19 May 2025 14:39:59 +0300
+Message-ID: <87msb8vng0.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,141 +70,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Information parsed from the display EDID should be stored in display
-info. Move HDR sink metadata there.
+On Fri, 16 May 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/i915 & drm/xe: prep work towards opaque struct intel_display
+> URL   : https://patchwork.freedesktop.org/series/149114/
+> State : success
+>
+> == Summary ==
+>
+> CI Bug Log - changes from CI_DRM_16557 -> Patchwork_149114v1
+> ====================================================
+>
+> Summary
+> -------
+>
+>   **SUCCESS**
+>
+>   No regressions found.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Please kick something to get the full i915 CI results.
 
----
+Thanks,
+Jani.
 
-This depends on commit 6692dbc15e5e ("drm/edid: fixed the bug that hdr
-metadata was not reset") in drm-misc-fixes. Will need to wait for
-backmerge.
----
- drivers/gpu/drm/display/drm_hdmi_helper.c     |  2 +-
- drivers/gpu/drm/drm_connector.c               |  2 +-
- drivers/gpu/drm/drm_edid.c                    | 19 ++++++++++---------
- .../drm/i915/display/intel_dp_aux_backlight.c |  2 +-
- include/drm/drm_connector.h                   |  8 +++++---
- 5 files changed, 18 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_hdmi_helper.c b/drivers/gpu/drm/display/drm_hdmi_helper.c
-index 855cb02b827d..45af1cf55973 100644
---- a/drivers/gpu/drm/display/drm_hdmi_helper.c
-+++ b/drivers/gpu/drm/display/drm_hdmi_helper.c
-@@ -44,7 +44,7 @@ int drm_hdmi_infoframe_set_hdr_metadata(struct hdmi_drm_infoframe *frame,
- 
- 	/* Sink EOTF is Bit map while infoframe is absolute values */
- 	if (!is_eotf_supported(hdr_metadata->hdmi_metadata_type1.eotf,
--	    connector->hdr_sink_metadata.hdmi_type1.eotf))
-+			       connector->display_info.hdr_sink_metadata.hdmi_type1.eotf))
- 		DRM_DEBUG_KMS("Unknown EOTF %d\n", hdr_metadata->hdmi_metadata_type1.eotf);
- 
- 	err = hdmi_drm_infoframe_init(frame);
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 48b08c9611a7..f7de3bb911c4 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -1645,7 +1645,7 @@ EXPORT_SYMBOL(drm_hdmi_connector_get_output_format_name);
-  *	structure from userspace. This is received as blob and stored in
-  *	&drm_connector_state.hdr_output_metadata. It parses EDID and saves the
-  *	sink metadata in &struct hdr_sink_metadata, as
-- *	&drm_connector.hdr_sink_metadata.  Driver uses
-+ *	&drm_connector.display_info.hdr_sink_metadata.  Driver uses
-  *	drm_hdmi_infoframe_set_hdr_metadata() helper to set the HDR metadata,
-  *	hdmi_drm_infoframe_pack() to pack the infoframe as per spec, in case of
-  *	HDMI encoder.
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 74e77742b2bd..c6c61afeaa31 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5373,7 +5373,8 @@ static void fixup_detailed_cea_mode_clock(struct drm_connector *connector,
- 
- static void drm_calculate_luminance_range(struct drm_connector *connector)
- {
--	struct hdr_static_metadata *hdr_metadata = &connector->hdr_sink_metadata.hdmi_type1;
-+	const struct hdr_static_metadata *hdr_metadata =
-+		&connector->display_info.hdr_sink_metadata.hdmi_type1;
- 	struct drm_luminance_range_info *luminance_range =
- 		&connector->display_info.luminance_range;
- 	static const u8 pre_computed_values[] = {
-@@ -5434,21 +5435,21 @@ static uint8_t hdr_metadata_type(const u8 *edid_ext)
- static void
- drm_parse_hdr_metadata_block(struct drm_connector *connector, const u8 *db)
- {
-+	struct hdr_static_metadata *hdr_metadata =
-+		&connector->display_info.hdr_sink_metadata.hdmi_type1;
- 	u16 len;
- 
- 	len = cea_db_payload_len(db);
- 
--	connector->hdr_sink_metadata.hdmi_type1.eotf =
--						eotf_supported(db);
--	connector->hdr_sink_metadata.hdmi_type1.metadata_type =
--						hdr_metadata_type(db);
-+	hdr_metadata->eotf = eotf_supported(db);
-+	hdr_metadata->metadata_type = hdr_metadata_type(db);
- 
- 	if (len >= 4)
--		connector->hdr_sink_metadata.hdmi_type1.max_cll = db[4];
-+		hdr_metadata->max_cll = db[4];
- 	if (len >= 5)
--		connector->hdr_sink_metadata.hdmi_type1.max_fall = db[5];
-+		hdr_metadata->max_fall = db[5];
- 	if (len >= 6) {
--		connector->hdr_sink_metadata.hdmi_type1.min_cll = db[6];
-+		hdr_metadata->min_cll = db[6];
- 
- 		/* Calculate only when all values are available */
- 		drm_calculate_luminance_range(connector);
-@@ -6596,7 +6597,7 @@ static void drm_reset_display_info(struct drm_connector *connector)
- 	info->has_hdmi_infoframe = false;
- 	info->rgb_quant_range_selectable = false;
- 	memset(&info->hdmi, 0, sizeof(info->hdmi));
--	memset(&connector->hdr_sink_metadata, 0, sizeof(connector->hdr_sink_metadata));
-+	memset(&info->hdr_sink_metadata, 0, sizeof(info->hdr_sink_metadata));
- 
- 	info->edid_hdmi_rgb444_dc_modes = 0;
- 	info->edid_hdmi_ycbcr444_dc_modes = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 271b27c9de51..5537136c367a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -145,7 +145,7 @@ intel_dp_aux_supports_hdr_backlight(struct intel_connector *connector)
- 	 * ranges for such panels.
- 	 */
- 	if (display->params.enable_dpcd_backlight != INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL &&
--	    !(connector->base.hdr_sink_metadata.hdmi_type1.metadata_type &
-+	    !(connector->base.display_info.hdr_sink_metadata.hdmi_type1.metadata_type &
- 	      BIT(HDMI_STATIC_METADATA_TYPE1))) {
- 		drm_info(display->drm,
- 			 "[CONNECTOR:%d:%s] Panel is missing HDR static metadata. Possible support for Intel HDR backlight interface is not used. If your backlight controls don't work try booting with i915.enable_dpcd_backlight=%d.\n",
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index f13d597370a3..1e7b8074564c 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -799,6 +799,11 @@ struct drm_display_info {
- 	 */
- 	struct drm_hdmi_info hdmi;
- 
-+	/**
-+	 * @hdr_sink_metadata: HDR Metadata Information read from sink
-+	 */
-+	struct hdr_sink_metadata hdr_sink_metadata;
-+
- 	/**
- 	 * @non_desktop: Non desktop display (HMD).
- 	 */
-@@ -2241,9 +2246,6 @@ struct drm_connector {
- 	 */
- 	struct llist_node free_node;
- 
--	/** @hdr_sink_metadata: HDR Metadata Information read from sink */
--	struct hdr_sink_metadata hdr_sink_metadata;
--
- 	/**
- 	 * @hdmi: HDMI-related variable and properties.
- 	 */
+>
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/index.html
+>
+> Participating hosts (45 -> 45)
+> ------------------------------
+>
+>   No changes in participating hosts
+>
+> Known issues
+> ------------
+>
+>   Here are the changes found in Patchwork_149114v1 that come from known issues:
+>
+> ### IGT changes ###
+>
+> #### Issues hit ####
+>
+>   * igt@i915_selftest@live:
+>     - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-mtlp-8/igt@i915_selftest@live.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-mtlp-8/igt@i915_selftest@live.html
+>
+>   * igt@i915_selftest@live@gt_pm:
+>     - bat-arlh-2:         [PASS][3] -> [INCOMPLETE][4] ([i915#14046])
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-2/igt@i915_selftest@live@gt_pm.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-2/igt@i915_selftest@live@gt_pm.html
+>
+>   * igt@i915_selftest@live@workarounds:
+>     - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+>     - bat-dg2-14:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+>
+>   * igt@kms_chamelium_edid@dp-edid-read:
+>     - bat-dg2-13:         [PASS][9] -> [FAIL][10] ([i915#13917])
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
+>
+>   
+> #### Possible fixes ####
+>
+>   * igt@dmabuf@all-tests:
+>     - bat-apl-1:          [INCOMPLETE][11] ([i915#12904]) -> [PASS][12] +1 other test pass
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-apl-1/igt@dmabuf@all-tests.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-apl-1/igt@dmabuf@all-tests.html
+>
+>   * igt@i915_selftest@live:
+>     - bat-arlh-3:         [DMESG-FAIL][13] ([i915#14243]) -> [PASS][14] +1 other test pass
+>    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-3/igt@i915_selftest@live.html
+>    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-3/igt@i915_selftest@live.html
+>
+>   * igt@i915_selftest@live@workarounds:
+>     - bat-dg2-11:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
+>    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+>    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+>     - bat-mtlp-9:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
+>    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+>    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+>
+>   
+> #### Warnings ####
+>
+>   * igt@i915_selftest@live:
+>     - bat-arlh-2:         [ABORT][19] ([i915#13723]) -> [INCOMPLETE][20] ([i915#14046])
+>    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16557/bat-arlh-2/igt@i915_selftest@live.html
+>    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/bat-arlh-2/igt@i915_selftest@live.html
+>
+>   
+>   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+>   [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+>   [i915#13723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13723
+>   [i915#13917]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13917
+>   [i915#14046]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046
+>   [i915#14243]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14243
+>
+>
+> Build changes
+> -------------
+>
+>   * Linux: CI_DRM_16557 -> Patchwork_149114v1
+>
+>   CI-20190529: 20190529
+>   CI_DRM_16557: 6d2dd85ba4eb3df89dc816c03b5bf81a470865b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_8365: 8365
+>   Patchwork_149114v1: 6d2dd85ba4eb3df89dc816c03b5bf81a470865b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+>
+> == Logs ==
+>
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149114v1/index.html
+
 -- 
-2.39.5
-
+Jani Nikula, Intel
