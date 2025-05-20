@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDE7ABD482
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 12:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4564ABD542
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 12:39:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C515F10E454;
-	Tue, 20 May 2025 10:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D22C10E45B;
+	Tue, 20 May 2025 10:39:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CJ0W9N3t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FyNQk6qZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 640B410E454;
- Tue, 20 May 2025 10:24:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AE610E45B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 May 2025 10:39:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747736674; x=1779272674;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=endErVGpQjxta/KTr96xkgpmOkR7qlg7T/hckMIwnjQ=;
- b=CJ0W9N3tIVgTOddE0Vkq94rSbaDfwklsLGMw1xUsGfsOheWQpA6zCaED
- 7xrMxceSXYJZcd5OUgzVUKCFD0ZijkvfjoEUA6G1f9h7ps80KZRJy8/kG
- XdMBYJZTzVvXj+JbRfoFYSrjetAxRgVrtR/QU7erm6v9kLqqxuA9HDB4C
- f8iYEdljvlrtVqTZ+i9w+r1x78q2rJ/Ng23JVqMcIn2W4WEG1ek8BtR9i
- 16JX7CQ/UOgQHgea7QSgB7Z7+tQ5UaLvXL33ZDyxPYLR2i5+QqcFVz7Ol
- e/ThHNRYpsXWnpNwjoQpjPq/Z+bMQCn2F+D/WsbDZiEaLMu6DSb18PLsG w==;
-X-CSE-ConnectionGUID: WZJmxaNiRGKdjcRSa1VlFA==
-X-CSE-MsgGUID: Vwh7ycS4Tt+4COSZqfiAIQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="48916851"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="48916851"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 03:24:23 -0700
-X-CSE-ConnectionGUID: kxcMZYrZR4W7lCa2oqxpaQ==
-X-CSE-MsgGUID: YNq439FoTKqw1inqHa7Qmg==
+ t=1747737565; x=1779273565;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=bpsUPNabj0En1k1mlj3/ElOtpq/RwnEYQQfdX4FqVMs=;
+ b=FyNQk6qZ+TY28UVh+Ku5fgatKp3bAq/L26MJQgr52+H7yNBwC8spPccw
+ YxcwssPw7yrkkpvwebZ5oLZP36GxVV51FFocVba665ErGrXyYgAEdc7wi
+ Y0QFshHxXAVUY7ZxHXydN51DvNsiAOE2+Yf4VcnHJ2rIFwq5x3zt3idfo
+ OYLfcX2rf3LCfNTPjDmzffMWWV+7hwfWaX+GupbD8CoivJC200zss5bRB
+ f5JO0/hGzBqqya70sbRs18o5wRa4GmbyYynMI4nU9NDmxAZmrvON3gN9x
+ M23Ex4sUSL25Av9WFb31Aq0yQWf/FzgevuJj7yJwU6H6NOqLqp7eWlPm7 g==;
+X-CSE-ConnectionGUID: vp4gMR1DTM+jSTzjV7fKNA==
+X-CSE-MsgGUID: AWyXYpFaSxuzOJ3S9raTOA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="49819639"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49819639"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 03:39:25 -0700
+X-CSE-ConnectionGUID: NgQcGMe5SLm3jQUEHhtjPQ==
+X-CSE-MsgGUID: 5E4CL2AZRq24hu8Q+24Jwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="139553449"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
- by fmviesa006.fm.intel.com with ESMTP; 20 May 2025 03:24:21 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1uHK8x-000MRY-01;
- Tue, 20 May 2025 10:24:19 +0000
-Date: Tue, 20 May 2025 18:23:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, Nemesa Garg <nemesa.garg@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 03/10] drm/i915/display: Add strength and winsize register
-Message-ID: <202505201824.ifVWlBHl-lkp@intel.com>
-References: <20250519122644.3685679-4-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="140660021"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.168])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 03:39:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915: use drm_modeset_lock_assert_held() in
+ intel_connector_get_pipe()
+In-Reply-To: <20250520095408.1310440-1-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250520095408.1310440-1-luciano.coelho@intel.com>
+Date: Tue, 20 May 2025 13:39:20 +0300
+Message-ID: <87plg3tvl3.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250519122644.3685679-4-nemesa.garg@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,52 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nemesa,
+On Tue, 20 May 2025, Luca Coelho <luciano.coelho@intel.com> wrote:
+> In the intel_connector_get_pipe() function, we check if
+> connection_mutex is held and generate our own WARN_ON if that's the
+> case.  Instead of generating a non-standard warning for a mutex issue,
+> we should use the standard lockdep framework.
+>
+> Change the function to use drm_modeset_lock_assert_held() instead.
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on next-20250516]
-[cannot apply to linus/master drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.15-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Nemesa-Garg/drm-i915-display-Introduce-sharpness-strength-property/20250519-203316
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20250519122644.3685679-4-nemesa.garg%40intel.com
-patch subject: [PATCH 03/10] drm/i915/display: Add strength and winsize register
-config: x86_64-randconfig-161-20250520 (https://download.01.org/0day-ci/archive/20250520/202505201824.ifVWlBHl-lkp@intel.com/config)
-compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505201824.ifVWlBHl-lkp@intel.com/
-
-New smatch warnings:
-drivers/gpu/drm/i915/display/intel_casf.c:52 intel_casf_compute_win_size() warn: always true condition '(total_pixels <= (1920 * 1080)) => (0-u16max <= 2073600)'
-
-Old smatch warnings:
-drivers/gpu/drm/i915/display/intel_casf.c:54 intel_casf_compute_win_size() warn: always true condition '(total_pixels <= (3840 * 2160)) => (0-u16max <= 8294400)'
-
-vim +52 drivers/gpu/drm/i915/display/intel_casf.c
-
-    46	
-    47	static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
-    48	{
-    49		const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-    50		u16 total_pixels = mode->hdisplay * mode->vdisplay;
-    51	
-  > 52		if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
-    53			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
-    54		else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
-    55			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
-    56		else
-    57			crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
-    58	}
-    59	
+> ---
+>  drivers/gpu/drm/i915/display/intel_connector.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+> index 6c81c9f2fd09..9a61c972dce9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.c
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
+> @@ -209,8 +209,7 @@ enum pipe intel_connector_get_pipe(struct intel_connector *connector)
+>  {
+>  	struct intel_display *display = to_intel_display(connector);
+>  
+> -	drm_WARN_ON(display->drm,
+> -		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
+> +	drm_modeset_lock_assert_held(&display->drm->mode_config.connection_mutex);
+>  
+>  	if (!connector->base.state->crtc)
+>  		return INVALID_PIPE;
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jani Nikula, Intel
