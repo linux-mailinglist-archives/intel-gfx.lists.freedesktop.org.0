@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08234ABE211
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 19:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4429ABE23D
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 20:00:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97B2C10E5F2;
-	Tue, 20 May 2025 17:46:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sBfZRIzE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 223B010E2A6;
+	Tue, 20 May 2025 18:00:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EAA910E5E2;
- Tue, 20 May 2025 17:46:53 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id D6B88A4EDBC;
- Tue, 20 May 2025 17:46:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C07C4CEE9;
- Tue, 20 May 2025 17:46:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1747763212;
- bh=epFj9ameUkoKhotMXUPaBgkx49wIoRJSBD61YLTqtVM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=sBfZRIzE4v7CL3HkV72lw/fz0AUs5vRFYf6K/RemCVLWrl4xqKVJdF3grWH16tgTV
- 8Trl5e9btU7ak0JC2AbkH3G7whYXVZMJ7lcebS/oJPIU5Bt19ama76kr7mYBE+LvIh
- 1oRGlipphrGNzbmuPqTso8eZUq4VLkT3GUjzgwnO8MMGYx2CuuxP0ovvpsmLwhnX31
- Z7903FKatq3Hl9Vv4ke1EfJENUWOL1jimMrsS1r3S1wEoUEwPHo68J0KjfViqk2MSy
- Ojzxq0sdIS+mYGzVJ1XCKJUvOrk3IsIPPn/U7LQCpA/Bo92B1+4VuN2+qrVQeeqhwF
- 28eKIdFs5a/7w==
-Date: Tue, 20 May 2025 19:46:48 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Krzysztof Niemiec <krzysztof.niemiec@intel.com>, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, 
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [RFC 0/2] Introduce a sysfs interface for lmem information
-Message-ID: <wmejfsw4evmyg2apuo2dwlt4i44eduzhkcyqsi6x7erq7udbnn@t5pwllrdmh6u>
-References: <20250519153418.44543-1-krzysztof.niemiec@intel.com>
- <174775327260.81385.8059929394366685323@jlahtine-mobl>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1660D10E2A6;
+ Tue, 20 May 2025 18:00:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6796149924609074069=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174775327260.81385.8059929394366685323@jlahtine-mobl>
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Panel_Replay_+_Adaptive_s?=
+ =?utf-8?q?ync_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 May 2025 18:00:32 -0000
+Message-ID: <174776403208.6224.3615119014176705916@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,92 +37,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============6796149924609074069==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 20, 2025 at 06:01:12PM +0300, Joonas Lahtinen wrote:
-> Quoting Krzysztof Niemiec (2025-05-19 18:34:14)
-> > This series introduces a way for applications to read local memory
-> > information via files in the sysfs. So far the only way to do this was
-> > via i915_query ioctl. This is slightly less handy than sysfs for
-> > external users. Additionally, the ioctl has a capability check which
-> > limits which users of a system might use it to get information.
-> > 
-> > The goals of this series are:
-> > 
-> >         1) Introduce a simpler interface to access lmem information,
-> >         2) Lift the CAP_PERFMON check on that information, OR provide
-> >            the administrator with a way to optionally lift it.
-> > 
-> > The first patch introduces the general mechanism without protections.
-> > This will effectively lift a capability check on obtaining the memory
-> > information. The second patch introduces that check back inside the
-> > _show() functions, but also adds a sysctl parameter allowing to override
-> > the checks, if an administrator so decides.
-> > 
-> > I'm sending this as RFC because I have a feeling that there's no
-> > consensus whether memory information exposed in the patch should be
-> > protected or not. Showing it to any user is strictly speaking an info
-> > leak, but the severity thereof might be considered not that high, so I'd
-> > rather leave it up to discussion first.
-> > 
-> > If we decide for lifting the check, the first patch is sufficient.
-> 
-> Nack on that.
-> 
-> CPU memory footprint and GPU memory footprint have a very different
-> nature. This was discussed to quite a length, please refer to mailing
-> list archives.
-> 
-> > If we
-> > decide against it, the second patch protects the information by default,
-> > but with a way to expose it as a conscious decision of the admin. I find
-> > it a decent compromise.
-> 
-> No need for the added complexity if we were to add a sysfs.
-> 
-> If a sysfs is added, it can be made root readable by default but system
-> admin is free to chown or chmod the file for more relaxed access. Back
-> in the original discussion time, this was omitted for lack of users.
-> 
-> Even now, userspace/sysadmin could already essentially use setuid helper
-> process that will only report the memory statistics.
-> 
-> So I'm not really fully convinced this is needed at all.
+== Series Details ==
 
-yeah! What is the real use case? Who is the userspace client?
+Series: Panel Replay + Adaptive sync (rev2)
+URL   : https://patchwork.freedesktop.org/series/148539/
+State : success
 
-There are already ways to read out the GPU memory footprint so
-that we need to know whether we need for another uAPI.
+== Summary ==
 
-Andi
+CI Bug Log - changes from CI_DRM_16572 -> Patchwork_148539v2
+====================================================
 
-> And if it is to be added for the convenience of usersppace, it should
-> probably then be considered to be a standard interface across DRM drivers
-> ala fdinfo or cgroups.
-> 
-> Regards, Joonas
-> 
-> > 
-> > This change has been requested in these parallel issues for i915 and Xe:
-> > 
-> > https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14153
-> > https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/4861
-> > 
-> > Thanks
-> > Krzysztof
-> > 
-> > Krzysztof Niemiec (2):
-> >   drm/i915: Expose local memory information via sysfs
-> >   drm/i915: Add protections to sysfs local memory information
-> > 
-> >  drivers/gpu/drm/i915/i915_sysfs.c          |   6 +
-> >  drivers/gpu/drm/i915/intel_memory_region.c | 136 +++++++++++++++++++++
-> >  drivers/gpu/drm/i915/intel_memory_region.h |   3 +
-> >  3 files changed, 145 insertions(+)
-> > 
-> > -- 
-> > 2.45.2
-> > _
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with Patchwork_148539v2 need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_148539v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_148539v2:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][1] ([i915#13494]) -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-mtlp-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-mtlp-9/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_148539v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-adlp-6:         [PASS][3] -> [DMESG-WARN][4] ([i915#13890])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-adlp-6/igt@fbdev@eof.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-adlp-6/igt@fbdev@eof.html
+
+  * igt@i915_selftest@live:
+    - bat-arlh-2:         [PASS][5] -> [ABORT][6] ([i915#13723]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-arlh-2/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_auth@basic-auth:
+    - bat-adlp-6:         [DMESG-WARN][9] ([i915#13890]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-adlp-6/igt@core_auth@basic-auth.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-adlp-6/igt@core_auth@basic-auth.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-mtlp-8/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-dg2-8:          [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-dg2-8/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@guc_multi_lrc:
+    - bat-twl-2:          [INCOMPLETE][15] ([i915#14096]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#13723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13723
+  [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
+  [i915#14096]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16572 -> Patchwork_148539v2
+
+  CI-20190529: 20190529
+  CI_DRM_16572: 45c2c8c74ab88c8fb741ea8349b051f5aec87320 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8370: 8370
+  Patchwork_148539v2: 45c2c8c74ab88c8fb741ea8349b051f5aec87320 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/index.html
+
+--===============6796149924609074069==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Panel Replay + Adaptive sync (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148539/">https://patchwork.freedesktop.org/series/148539/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16572 -&gt; Patchwork_148539v2</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with Patchwork_148539v2 need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_148539v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_148539v2:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-mtlp-9/igt@i915_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_148539v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-adlp-6/igt@fbdev@eof.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-adlp-6/igt@fbdev@eof.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-arlh-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13723">i915#13723</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-adlp-6/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-adlp-6/igt@core_auth@basic-auth.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@guc_multi_lrc:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16572/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096">i915#14096</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148539v2/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16572 -&gt; Patchwork_148539v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16572: 45c2c8c74ab88c8fb741ea8349b051f5aec87320 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8370: 8370<br />
+  Patchwork_148539v2: 45c2c8c74ab88c8fb741ea8349b051f5aec87320 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6796149924609074069==--
