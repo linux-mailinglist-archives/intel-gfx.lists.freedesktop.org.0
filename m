@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82CEAABD1ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 10:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6C7ABD1EE
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 10:29:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9595510E57D;
-	Tue, 20 May 2025 08:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C6D310E586;
+	Tue, 20 May 2025 08:29:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RddaerGG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GAXxV0jL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66D1F10E567
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7338710E56B
  for <intel-gfx@lists.freedesktop.org>; Tue, 20 May 2025 08:29:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1747729772; x=1779265772;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=n4KKfozHPhqI3Q9aiI3wnhoTO4HwWUgdEzQEJNWaSDc=;
- b=RddaerGG74W+G41bCl+s+ABtcrahpPuou5WHFIeGbmzvuL3fgK5KECgP
- cVBXQHs9hqcAzf7CjGE/o0kgH8Ob46LQnnu/e5SFX7K9JyTtTnOEkLJ8h
- EFpMOkbm8+5Wpo5jexdA9ZqM4+4hyeKWAWEi1iWmh/FML2686Clb63jel
- LxysQQgzBLI1Qjue9w5xhV8bxtTRdGDfK7+mW+7syBcCKQMPB8MLOV966
- 4+SpCIXwX3A0Y4OJLv+Ug9CF3l8cyJAbQmXu8qzQk1qrw/URoZid26kiJ
- zkjgEr4wCs6/Xnz1onAuajqJXMn7/l8T2EfUHscL9yu+XrjDJUHi/Ai5E A==;
-X-CSE-ConnectionGUID: +F0cHu5+SLeo4Asmww025w==
-X-CSE-MsgGUID: aU5tpRuvRNKjf56w1kztXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="49804352"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49804352"
+ bh=CNla2nvNLRapjwOUYSUWdqN5q/NinECBDuq7QZDonOM=;
+ b=GAXxV0jLaa0kTaBP+Pl25ZG7Gn6tLIKyRCSfpnoVSDW90Rw71ueMs3nI
+ ADy9WF2IsT5UzjR2Cmq94+7r5ZCXYA+rED0uc9sWHOc+8Xe7UJkE2sT5o
+ 63Jw7rouebqR/IQOrbvd2WOzG7astucXGbk3FLi0slJyJEfuDVg+xnpHB
+ caK13plXdsO1h00zqWVDQOMFTHCBkdLmq7W+NaDJuw4vt5D8ziM5Wb7nX
+ L0VcNjSolfrJUhowa/nXMFWlatJ5ZAydjLEMlM1rIDVUHpwxXzglZ9por
+ tTEkPRsIG57pXjoPQv5vbjJH7PjMgBx8+MH6XggvYFjH89vSobebZgI3r A==;
+X-CSE-ConnectionGUID: KpZ15IdrRd+Ai9H+xn3VuA==
+X-CSE-MsgGUID: wbZ+UQMlRn+a1UJjn3mVvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="49804356"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49804356"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 01:29:31 -0700
-X-CSE-ConnectionGUID: eXSLfn9xQJW+zvtigO7stw==
-X-CSE-MsgGUID: E5tK6johQMWDkzhTuiHAkQ==
+ 20 May 2025 01:29:32 -0700
+X-CSE-ConnectionGUID: EEOs4KgnRTeiIntowu9B7w==
+X-CSE-MsgGUID: JE9svus7T7eSwVFPQFYe7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="144875718"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="144875726"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
  hazy.ger.corp.intel.com) ([10.245.245.155])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 01:29:30 -0700
+ 20 May 2025 01:29:31 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/dkl: return if tc_port is invalid in
- dkl_phy_set_hip_idx()
-Date: Tue, 20 May 2025 11:26:58 +0300
-Message-ID: <20250520082917.1302665-2-luciano.coelho@intel.com>
+Subject: [PATCH 2/2] drm/i915: remove unused arg in
+ skl_scaler_get_filter_select()
+Date: Tue, 20 May 2025 11:26:59 +0300
+Message-ID: <20250520082917.1302665-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20250520082917.1302665-1-luciano.coelho@intel.com>
 References: <20250520082917.1302665-1-luciano.coelho@intel.com>
@@ -68,35 +68,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In dkl_phy_set_hip_idx(), we may try to shift a value negatively,
-whose behavior is undefined.  This can happen because we define
-TC_PORT_NONE to -1, so theoretically tc_port could be -1.  We will
-then use tc_port to shift to the correct address of the specified
-port, but if it's negative, anything can happen.
-
-If this happens or tc_port exceeds I915_MAX_TC_PORTS, it's safer to
-return with a warning than risk an invalid write.
+We always pass 0 in the set argument of skl_scaler_get_filter_select()
+calls, so the argument is unnecessary.  Remove it.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dkl_phy.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-index dad7192132ad..35e919eae369 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-@@ -25,7 +25,9 @@ dkl_phy_set_hip_idx(struct intel_display *display, struct intel_dkl_phy_reg reg)
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index c855426544cf..9cbfddb8556a 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -695,15 +695,14 @@ static void glk_program_nearest_filter_coefs(struct intel_display *display,
+ 			   GLK_PS_COEF_INDEX_SET(pipe, id, set), 0);
+ }
+ 
+-static u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter, int set)
++static u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter)
  {
- 	enum tc_port tc_port = DKL_REG_TC_PORT(reg);
+-	if (filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
++	if (filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR)
+ 		return (PS_FILTER_PROGRAMMED |
+-			PS_Y_VERT_FILTER_SELECT(set) |
+-			PS_Y_HORZ_FILTER_SELECT(set) |
+-			PS_UV_VERT_FILTER_SELECT(set) |
+-			PS_UV_HORZ_FILTER_SELECT(set));
+-	}
++			PS_Y_VERT_FILTER_SELECT(0) |
++			PS_Y_HORZ_FILTER_SELECT(0) |
++			PS_UV_VERT_FILTER_SELECT(0) |
++			PS_UV_HORZ_FILTER_SELECT(0));
  
--	drm_WARN_ON(display->drm, tc_port < TC_PORT_1 || tc_port >= I915_MAX_TC_PORTS);
-+	if (drm_WARN_ON(display->drm,
-+			tc_port < TC_PORT_1 || tc_port >= I915_MAX_TC_PORTS))
-+		return;
+ 	return PS_FILTER_MEDIUM;
+ }
+@@ -761,7 +760,7 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
+ 	id = scaler_state->scaler_id;
  
- 	intel_de_write(display,
- 		       HIP_INDEX_REG(tc_port),
+ 	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
+-		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, 0);
++		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter);
+ 
+ 	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
+ 
+@@ -827,7 +826,7 @@ skl_program_plane_scaler(struct intel_dsb *dsb,
+ 	}
+ 
+ 	ps_ctrl = PS_SCALER_EN | PS_BINDING_PLANE(plane->id) | scaler->mode |
+-		skl_scaler_get_filter_select(plane_state->hw.scaling_filter, 0);
++		skl_scaler_get_filter_select(plane_state->hw.scaling_filter);
+ 
+ 	trace_intel_plane_scaler_update_arm(plane, scaler_id,
+ 					    crtc_x, crtc_y, crtc_w, crtc_h);
 -- 
 2.47.2
 
