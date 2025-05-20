@@ -2,74 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1105BABE1D5
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 19:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D3CABE1EB
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 19:39:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9940610E596;
-	Tue, 20 May 2025 17:31:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nR15hpZc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDC2310E593;
+	Tue, 20 May 2025 17:39:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D137810E593;
- Tue, 20 May 2025 17:31:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747762285; x=1779298285;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=aKyld7h5OwA2Tp0yE8iRRpriwlPf1t10b9g3LHZckzk=;
- b=nR15hpZcSLQGv/WxwjL8KnYDrbEoUZo4nBp3D6VCOgofrb9l6dn0oUOM
- 4FFu5Ql9WFLXxnelNaty1TbeY76R/2lMEg6WrjXJXhD5U+PiGUKsNXSgx
- WThdIiZEYQYb2TeB8rxOjjuS4sM6nL++YWBXXMbT2EugSLDaaev8E1moW
- DWBYOeP4DlfGORuSJsaKWVqtbgXRygx4b92Bs27aqa4QS4Y5d4Hf1HYUa
- mAV3W2Ahla/ScPq2BmKVn0q7XGw0w2CohdgXmXtdH0N5W/J8g6My8fdeb
- TP0sEIBZKFatIie3yObNLS0h5LSN+egSPyqjAOukfLK7DRaECIr/m0tik w==;
-X-CSE-ConnectionGUID: +fNoh/JWTg28JOBmyp5gjw==
-X-CSE-MsgGUID: YORJR6jxTh6v0nGHb+tPUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="49583721"
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="49583721"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 10:31:25 -0700
-X-CSE-ConnectionGUID: N2HUp1NUTKeNrYa5H8G9PA==
-X-CSE-MsgGUID: cUQ/AInPT/yQWzIWv/8eew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="143754323"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2025 10:31:19 -0700
-Date: Tue, 20 May 2025 20:31:16 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Alexander Usyskin <alexander.usyskin@intel.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>,
- Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomasw@gmail.com>, Vitaly Lubart <lubvital@gmail.com>
-Subject: Re: [PATCH v10 03/10] mtd: intel-dg: implement access functions
-Message-ID: <aCy8ZJq4eDMDQukx@black.fi.intel.com>
-References: <20250515133345.2805031-1-alexander.usyskin@intel.com>
- <20250515133345.2805031-4-alexander.usyskin@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3797410E51E;
+ Tue, 20 May 2025 17:39:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250515133345.2805031-4-alexander.usyskin@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Panel_Replay_+_Adapt?=
+ =?utf-8?q?ive_sync_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 20 May 2025 17:39:38 -0000
+Message-ID: <174776277815.6209.8575877896798839668@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250520165326.1631330-1-jouni.hogander@intel.com>
+In-Reply-To: <20250520165326.1631330-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,56 +37,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 15, 2025 at 04:33:38PM +0300, Alexander Usyskin wrote:
-> Implement read(), erase() and write() functions.
+== Series Details ==
 
-...
+Series: Panel Replay + Adaptive sync (rev2)
+URL   : https://patchwork.freedesktop.org/series/148539/
+State : warning
 
-> +__maybe_unused
-> +static unsigned int idg_nvm_get_region(const struct intel_dg_nvm *nvm, loff_t from)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < nvm->nregions; i++) {
-> +		if ((nvm->regions[i].offset + nvm->regions[i].size - 1) > from &&
+== Summary ==
 
-Since it's already off by one, I'm wondering if this should be >= ?
+Error: dim checkpatch failed
+36f088ee5f96 drm/panelreplay: Panel Replay capability DPCD register definitions
+b42c3c02d981 drm/dp: Add Panel Replay capability bits from DP2.1 specification
+0afd61721ae5 drm/i915/psr: Read all Panel Replay capability registers from DPCD
+a45d35c719f3 drm/i915/alpm: Add PR_ALPM_CTL register definitions
+-:29: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#29: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:275:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1_OR_T2	REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 0)
 
-> +		    nvm->regions[i].offset <= from &&
-> +		    nvm->regions[i].size != 0)
-> +			break;
-> +	}
-> +
-> +	return i;
-> +}
+-:30: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#30: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:276:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T1		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 1)
 
-...
+-:31: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#31: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:277:
++#define  PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_T2		REG_FIELD_PREP(PR_ALPM_CTL_ADAPTIVE_SYNC_SDP_POSITION_MASK, 2)
 
-> +__maybe_unused
-> +static ssize_t
-> +idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_addr)
-> +{
-> +	u64 i;
-> +	const u32 block = 0x10;
-> +	void __iomem *base = nvm->base;
+total: 0 errors, 3 warnings, 0 checks, 16 lines checked
+d9cba8cc1314 drm/i915/alpm: Write PR_ALPM_CTL register
+-:32: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#32: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:357:
++			if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
 
-Reverse xmas order (along with all other places).
+-:33: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:358:
++						DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR))
 
-> +	for (i = 0; i < len; i += SZ_4K) {
-> +		iowrite32(from + i, base + NVM_ADDRESS_REG);
-> +		iowrite32(region << 24 | block, base + NVM_ERASE_REG);
-> +		/* Since the writes are via sguint
+total: 0 errors, 2 warnings, 0 checks, 20 lines checked
+20600167dea0 drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
+836779ac7385 drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
+df60b861c0aa drm/i915/alpm: Move port alpm configuration
+-:73: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#73: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:407:
++			PORT_ALPM_CTL_SILENCE_PERIOD(
 
-sguint?
+-:76: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#76: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:410:
++			PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(
 
-> +		 * we cannot do back to back erases.
-> +		 */
-> +		msleep(50);
-> +	}
-> +	return len;
-> +}
+-:78: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#78: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:412:
++			PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(
 
-Raag
+-:80: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#80: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:414:
++			PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(
+
+total: 0 errors, 0 warnings, 4 checks, 93 lines checked
+80a9e585a009 drm/i915/display: Add PHY_CMN1_CONTROL register definitions
+a0465d155c7b drm/i915/display: Add function to configure LFPS sending
+2c69eba8e98a drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+-:25: WARNING:LONG_LINE: line length of 139 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:338:
++#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+-:28: WARNING:LONG_LINE: line length of 138 exceeds 100 columns
+#28: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:340:
++#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
+
+total: 0 errors, 2 warnings, 0 checks, 10 lines checked
+3228d48a93c0 drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
+
+
