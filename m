@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF254ABE0D0
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 18:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFD6EABE12B
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 May 2025 18:53:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3C1D10E630;
-	Tue, 20 May 2025 16:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C727D10E5CC;
+	Tue, 20 May 2025 16:53:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jnRibK+o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8G5hz88";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A744210E626;
- Tue, 20 May 2025 16:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=2n0ULhZnCu8C1LAodYKH8luvq5s03x0GpqQhjbAmhMQ=; b=jnRibK+ozj05E1whLwd1XH+6x8
- QcWjxGNcXIYTn4QkTCwLxQJpmeDns+adJ7VOeYzev6fW78y/mqBjs3d12uksw9HXoA8WBJfMxeJMi
- Cf7GYJWHfTzdWm/bUSlySXrGVk7TfcFvHWGt33TGQOGXr8NOldEx/51nnxELojyRypmT4hiYccfjz
- HBvHGFrEGEqbfAOJEUwoY5HsOMGs5Y5X5oCBBeTJJwkqKLda7wC/jQaEFuH264uJkuJIv0E53rfqN
- Cw+eadxtgqkXEltGRxR7JdMzDl7DcGMoOkRkxLO4OwGHPljFWdUCFr9ynwG0oAL7Nun14m2NhxBh7
- 12N7GREQ==;
-Received: from [191.204.192.64] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uHPu1-00AnEg-AK; Tue, 20 May 2025 18:33:17 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: "Alex Deucher" <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
- "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v5 3/3] drm/amdgpu: Make use of drm_wedge_task_info
-Date: Tue, 20 May 2025 13:32:43 -0300
-Message-ID: <20250520163243.328746-4-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250520163243.328746-1-andrealmeid@igalia.com>
-References: <20250520163243.328746-1-andrealmeid@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3567E10E085;
+ Tue, 20 May 2025 16:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1747760023; x=1779296023;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0YHiEm+Lu718zLVBOyGfqS/sj/qaDdil73gVp2bj9Ic=;
+ b=h8G5hz88ZTu57zw7RbNTCfK7GNRJ4y0ZBmefBCTaxIVGAsL2eS/tth5V
+ 8544iKCMu0vT4YnhuLbvBKRcPhAmwVOO0gACH3oTIGaal1Jvff/KwGnKS
+ yEqaeaoC3tKo6gEkvWqL39W8KGlL/O7Cc7BmVXjXOCL5q6LicGgCUtY9s
+ ZMwf+k0ijlGA93MIhD8QABmlovWE2JFz/ESfhYVLXjGZsOnKv3WvbYTA7
+ A5aXV4Ipi0Zq2E+Utv3+hxdhNZiSKLgH5dq4JBuoaowoYzmiVI1hWSrIa
+ QTO4/7b5DFtBuUNylV9R0RmU4/ZRuOhoP+PWgJQhHjODUOH+fMVIB8a1M Q==;
+X-CSE-ConnectionGUID: QeqGZURIQ4C5MsdFbHeyqQ==
+X-CSE-MsgGUID: 7CzD0kqNTd+//zZkNYo0RQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11439"; a="37322148"
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="37322148"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 09:53:42 -0700
+X-CSE-ConnectionGUID: YmtzLOKVSmm9lhr580J9dQ==
+X-CSE-MsgGUID: KxC+KyG+TjuIDF/MIEGFaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,302,1739865600"; d="scan'208";a="163038098"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.130])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2025 09:53:40 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 00/12] Panel Replay + Adaptive sync
+Date: Tue, 20 May 2025 19:53:14 +0300
+Message-ID: <20250520165326.1631330-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,77 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To notify userspace about which task (if any) made the device get in a
-wedge state, make use of drm_wedge_task_info parameter, filling it with
-the task PID and name.
+This patch set is adding missing configuration to have Panel Replay
+and Adaptive Sync enabled simultaneously. Also some issues identified
+while debugging are fixed:
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 19 +++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c    |  6 +++++-
- 2 files changed, 22 insertions(+), 3 deletions(-)
+1. Source PORT ALPM configuration has to made during modeset.
+2. PHY_CMN1_CONTROL is not written according to HAS document
+3. Wrong register field definitions for PORT_ALPM_LFPS_CTL.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index d27091d5929c..c29c924aa506 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6362,8 +6362,23 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
- 
--	if (!r)
--		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+	if (!r) {
-+		struct drm_wedge_task_info aux, *info = NULL;
-+
-+		if (job) {
-+			struct amdgpu_task_info *ti;
-+
-+			ti = amdgpu_vm_get_task_info_pasid(adev, job->pasid);
-+			if (ti) {
-+				aux.pid = ti->pid;
-+				aux.comm = ti->process_name;
-+				info = &aux;
-+				amdgpu_vm_put_task_info(ti);
-+			}
-+		}
-+
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
-+	}
- 
- 	return r;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-index a47b2eb301e5..5cb17e62df57 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
-@@ -89,6 +89,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- {
- 	struct amdgpu_ring *ring = to_amdgpu_ring(s_job->sched);
- 	struct amdgpu_job *job = to_amdgpu_job(s_job);
-+	struct drm_wedge_task_info aux, *info = NULL;
- 	struct amdgpu_task_info *ti;
- 	struct amdgpu_device *adev = ring->adev;
- 	int idx;
-@@ -127,6 +128,9 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 		dev_err(adev->dev,
- 			"Process information: process %s pid %d thread %s pid %d\n",
- 			ti->process_name, ti->tgid, ti->task_name, ti->pid);
-+		aux.pid = ti->pid;
-+		aux.comm = ti->process_name;
-+		info = &aux;
- 		amdgpu_vm_put_task_info(ti);
- 	}
- 
-@@ -166,7 +170,7 @@ static enum drm_gpu_sched_stat amdgpu_job_timedout(struct drm_sched_job *s_job)
- 			if (amdgpu_ring_sched_ready(ring))
- 				drm_sched_start(&ring->sched, 0);
- 			dev_err(adev->dev, "Ring %s reset succeeded\n", ring->sched.name);
--			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
-+			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
- 			goto exit;
- 		}
- 		dev_err(adev->dev, "Ring %s reset failure\n", ring->sched.name);
+Patches are tested on LunarLake and PantheLake using our reference panel supporting
+Adaptive Sync and Panel Replay.
+
+EMP_AS_SDP_TL is currently missing completely from drm-tip. There is a patch for that which is needed if testing these patches:
+
+https://patchwork.freedesktop.org/series/148421/
+
+Otherwise "PSR idle timeout" errors are seen while testing.
+
+v2:
+  - rework Panel Replay DPCD register definitions
+  - do not use hardcoded indices while accessing intel_dp->pr_dpcd
+  - ensure ALPM registers are not written on platform where they do
+    not exist
+  - remove kerneldoc comments
+
+Jouni Högander (12):
+  drm/panelreplay: Panel Replay capability DPCD register definitions
+  drm/dp: Add Panel Replay capability bits from DP2.1 specification
+  drm/i915/psr: Read all Panel Replay capability registers from DPCD
+  drm/i915/alpm: Add PR_ALPM_CTL register definitions
+  drm/i915/alpm: Write PR_ALPM_CTL register
+  drm/i915/psr: Add interface to check if AUXLess ALPM is needed by PSR
+  drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
+  drm/i915/alpm: Move port alpm configuration
+  drm/i915/display: Add PHY_CMN1_CONTROL register definitions
+  drm/i915/display: Add function to configure LFPS sending
+  drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+  drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 72 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_alpm.h     |  4 ++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 32 +++++++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 12 ++++
+ .../drm/i915/display/intel_display_types.h    |  4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 44 +++++++-----
+ drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 14 +++-
+ include/drm/display/drm_dp.h                  | 18 +++--
+ 11 files changed, 163 insertions(+), 44 deletions(-)
+
 -- 
-2.49.0
+2.43.0
 
