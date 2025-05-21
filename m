@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C58ABFDDE
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 May 2025 22:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D433CABFF05
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 May 2025 23:37:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0006B10E749;
-	Wed, 21 May 2025 20:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4106110E70E;
+	Wed, 21 May 2025 21:37:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B8ll0sz1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HBXdpeZn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30CC710E71C;
- Wed, 21 May 2025 20:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A92210E038;
+ Wed, 21 May 2025 21:37:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747859195; x=1779395195;
+ t=1747863448; x=1779399448;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=aLtQzNGu5/O0fU0Cv03GWH9zFR3LL3UOULcLPG921iI=;
- b=B8ll0sz15ZI3mvmH1qqLzz3/IhozoSgdr1c0bg2GpamWRNsoIXcaCVTK
- Gk0K+2ajlzJz7xv5abYkFjOrvw+K2rdT0nSXzPaS7v42JBjl2k5waI7T0
- btri9NJ92lAVE7DWy/2h5RK1ByqVZzJ0AYaW4l45plnsFJZ/tdEhZ2JGC
- nn45i69uCwgcSOMOxEh5aV62jKpkoApt2cy8XadbxXnqH0Ho4622x+iw9
- 9KMkMFQhoHXjDPxSU0h2knYBrHW3I6BWqHcXn4fS0AQnPBRp1IuTzqxQj
- uHf9TNyfehz/NnuhjOXh064OUuZ5qa/q2SXAGzH+NPuoqf5k1t3CZWqtz A==;
-X-CSE-ConnectionGUID: drXq0x/RSFK6PH+PxopASw==
-X-CSE-MsgGUID: hbDkEoDXQqiiZgjvKcxi/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49762884"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="49762884"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 13:26:35 -0700
-X-CSE-ConnectionGUID: qZCX3NfvRmW5MjpehmDrkQ==
-X-CSE-MsgGUID: D1ORkfQ1S9OCFvbKBj7yjw==
+ bh=/TRHgk4WgbfqINcXZ2LzA/XzOmn7LII0S0I9TtZCzhk=;
+ b=HBXdpeZnmV8AX36Fus7BpeiAPG4dxeUaY9gtB6drS5Id/VN/imsIHW7b
+ bkArKArKwfrz3wEpzjcOOkvV4XnGHZgUJfLeYBnghmmx4x2aOFfB/62G7
+ ty8Qpahlovi3qSF1yvXxqvkdmJaij3jWFQCmPY/aUvywlddivDnKDNe4x
+ 8cqY7YhY95LbNx2y3CUiPwp9+4/YaFSgSDbZ1atTynNPDGyW8AxJw4ebC
+ +FDZT9LfGInIk4odUANYjPrk9498EKi3HoBbvB9zz9gYJUAxjf6FhKrfL
+ byQiDmTILeS+IQm+DZPU+y27YGMZ79iPO+MXTPFMtpcrV/Dk9Ay2JpGs6 A==;
+X-CSE-ConnectionGUID: Xv0Z+Sf0TLSWRk82g1GePQ==
+X-CSE-MsgGUID: 5tmRbj6SQXGaEAh/J9jHPQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49851096"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="49851096"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 14:37:26 -0700
+X-CSE-ConnectionGUID: yOQi57DvSxaVw+HjU/f7UA==
+X-CSE-MsgGUID: hTBnemMxSU2khYiz+9BJWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="140088834"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="144987316"
 Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 13:26:29 -0700
-Date: Wed, 21 May 2025 23:26:24 +0300
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2025 14:37:21 -0700
+Date: Thu, 22 May 2025 00:37:17 +0300
 From: Raag Jadav <raag.jadav@intel.com>
 To: Alexander Usyskin <alexander.usyskin@intel.com>
 Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -62,14 +62,14 @@ Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Tomas Winkler <tomasw@gmail.com>, Vitaly Lubart <lubvital@gmail.com>
-Subject: Re: [PATCH v10 03/10] mtd: intel-dg: implement access functions
-Message-ID: <aC428Ak5j_x6Cr2o@black.fi.intel.com>
+Subject: Re: [PATCH v10 04/10] mtd: intel-dg: register with mtd
+Message-ID: <aC5HjQKRf_4Ewous@black.fi.intel.com>
 References: <20250515133345.2805031-1-alexander.usyskin@intel.com>
- <20250515133345.2805031-4-alexander.usyskin@intel.com>
+ <20250515133345.2805031-5-alexander.usyskin@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250515133345.2805031-4-alexander.usyskin@intel.com>
+In-Reply-To: <20250515133345.2805031-5-alexander.usyskin@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,73 +85,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 15, 2025 at 04:33:38PM +0300, Alexander Usyskin wrote:
-> Implement read(), erase() and write() functions.
+On Thu, May 15, 2025 at 04:33:39PM +0300, Alexander Usyskin wrote:
+> Register the on-die nvm device with the mtd subsystem.
+> Refcount nvm object on _get and _put mtd callbacks.
+> For erase operation address and size should be 4K aligned.
+> For write operation address and size has to be 4bytes aligned.
 
 ...
 
-> +__maybe_unused
-> +static ssize_t idg_write(struct intel_dg_nvm *nvm, u8 region,
-> +			 loff_t to, size_t len, const unsigned char *buf)
+> +static int intel_dg_nvm_init_mtd(struct intel_dg_nvm *nvm, struct device *device,
+> +				 unsigned int nparts, bool writable_override)
 > +{
-> +	size_t i;
-> +	size_t len8;
-> +	size_t len4;
-> +	size_t to4;
-> +	size_t to_shift;
-> +	size_t len_s = len;
-> +	ssize_t ret;
-> +
-> +	idg_nvm_set_region_id(nvm, region);
-> +
-> +	to4 = ALIGN_DOWN(to, sizeof(u32));
-> +	to_shift = min(sizeof(u32) - ((size_t)to - to4), len);
-> +	if (to - to4) {
-> +		ret = idg_nvm_rewrite_partial(nvm, to4, to - to4, to_shift, (uint32_t *)&buf[0]);
+> +	unsigned int i;
+> +	unsigned int n;
+> +	struct mtd_partition *parts = NULL;
+> +	int ret;
 
-Forgot to add, you're using both uint32_t and u32.
-Perhaps make it consistent?
+Reverse xmas order (along with all other places).
 
-> +		if (ret < 0)
-> +			return ret;
+> +	dev_dbg(device, "registering with mtd\n");
 > +
-> +		buf += to_shift;
-> +		to += to_shift;
-> +		len_s -= to_shift;
+> +	nvm->mtd.owner = THIS_MODULE;
+> +	nvm->mtd.dev.parent = device;
+> +	nvm->mtd.flags = MTD_CAP_NORFLASH | MTD_WRITEABLE;
+
+Isn't MTD_CAP_NORFLASH already writable?
+
+> +	nvm->mtd.type = MTD_DATAFLASH;
+> +	nvm->mtd.priv = nvm;
+> +	nvm->mtd._write = intel_dg_mtd_write;
+> +	nvm->mtd._read = intel_dg_mtd_read;
+> +	nvm->mtd._erase = intel_dg_mtd_erase;
+> +	nvm->mtd._get_device = intel_dg_mtd_get_device;
+> +	nvm->mtd._put_device = intel_dg_mtd_put_device;
+> +	nvm->mtd.writesize = SZ_1; /* 1 byte granularity */
+> +	nvm->mtd.erasesize = SZ_4K; /* 4K bytes granularity */
+> +	nvm->mtd.size = nvm->size;
+> +
+> +	parts = kcalloc(nvm->nregions, sizeof(*parts), GFP_KERNEL);
+> +	if (!parts)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0, n = 0; i < nvm->nregions && n < nparts; i++) {
+> +		if (!nvm->regions[i].is_readable)
+> +			continue;
+> +		parts[n].name = nvm->regions[i].name;
+> +		parts[n].offset  = nvm->regions[i].offset;
+> +		parts[n].size = nvm->regions[i].size;
+> +		if (!nvm->regions[i].is_writable && !writable_override)
+> +			parts[n].mask_flags = MTD_WRITEABLE;
+> +		n++;
 > +	}
 > +
-> +	len8 = ALIGN_DOWN(len_s, sizeof(u64));
-> +	for (i = 0; i < len8; i += sizeof(u64)) {
-> +		u64 data;
+> +	ret = mtd_device_register(&nvm->mtd, parts, n);
 > +
-> +		memcpy(&data, &buf[i], sizeof(u64));
-> +		idg_nvm_write64(nvm, to + i, data);
-> +		if (idg_nvm_error(nvm))
-> +			return -EIO;
-> +	}
-> +
-> +	len4 = len_s - len8;
-> +	if (len4 >= sizeof(u32)) {
-> +		u32 data;
-> +
-> +		memcpy(&data, &buf[i], sizeof(u32));
-> +		idg_nvm_write32(nvm, to + i, data);
-> +		if (idg_nvm_error(nvm))
-> +			return -EIO;
-> +		i += sizeof(u32);
-> +		len4 -= sizeof(u32);
-> +	}
-> +
-> +	if (len4 > 0) {
-> +		ret = idg_nvm_rewrite_partial(nvm, to + i, 0, len4, (uint32_t *)&buf[i]);
+> +	kfree(parts);
 
-Ditto (and also in all other places if any).
+I didn't find anything questionable about this, but hope this is tested
+and there are no side-effects of this.
 
-> +		if (ret < 0)
-> +			return ret;
-> +	}
 > +
-> +	return len;
+
+Nit: Redundant blank line.
+
+> +	return ret;
 > +}
 
 Raag
