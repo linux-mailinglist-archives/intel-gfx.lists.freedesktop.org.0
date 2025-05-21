@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB418ABFCDA
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 May 2025 20:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92835ABFCC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 May 2025 20:24:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B617410E849;
-	Wed, 21 May 2025 18:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 082A710E7BC;
+	Wed, 21 May 2025 18:17:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S9rypxtu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QeMnbeAA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9756B10E7BC;
- Wed, 21 May 2025 18:17:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE3310E832;
+ Wed, 21 May 2025 18:17:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747851428; x=1779387428;
+ t=1747851431; x=1779387431;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BxVrjIPdtme8X+GMTumYX+drF4Sg1ugZXha+mEg0G3Y=;
- b=S9rypxtuAJnCwt1QwjJe6eYhuMv3c3uCcIJRjTb8Ka1dKeytRuW9YMHx
- 1ZHVkry3y7yMlukjMXNyKYVN4OeAedPKSMQBR4vsAm1hIxtmu3pL7gwAo
- lPDwCpTFa6gWfEKy/zHHCiPqPOrw6X56OYNYLE/76HxV2yQ1CO/9EqNK0
- 7bEnAzG0Wsj/9YAHFP5H0854MT3J47NRvZylS+ALRvf4EURubZ9sn29VL
- QCWEEmBaKHs8cQHeB/ak8Q6Pjxa0K8MROA9VVpoSlhonq2J/JhXAp9uok
- 9tnne9aNLh3/sNVcZ89DycPfjy4ZX2iNvYr6kD2qRCX8lrNyH1YLkRaj9 w==;
-X-CSE-ConnectionGUID: X9XsL68PQISDa/etrcWqJA==
-X-CSE-MsgGUID: MLPgZ1bERduQKuaFcYC8Jw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244756"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244756"
+ bh=PX1LxdXkMJV3uMYWzauT/2zq/m7d/4gGI2q0f1x36Bo=;
+ b=QeMnbeAAr6sOf1347BPBsYypgHTTG2kl3Vvq2lL1W2lIpdzak4/fDU7D
+ W7/SALwMXjm+SZUYhUFAWxMOqG5WV3tyh0ISXu1fwlSgFbRuBOtF0/g1y
+ slY3ahAwrfae7g2GHMOPD8/AA914XcYZ2LYqgz54avFj5uTAvniqYmswp
+ YWW92oiKAu5DHoYRH+A2eRyHbnsLPnC9zcDD3zyLfqGuluu5ewZ1egsO9
+ dLAhZdz+GgU6KJdBVS1vHP0xK1m+PtpaEzEYw05Ia4AY4KSXKovPZMsIS
+ M7ncrIPEEdf5wZjWDFK3JYlrZ8iC6XLyulVv1ifm/X/3Ezbg0mwmizUX9 A==;
+X-CSE-ConnectionGUID: ZULhQS/3SaS1Z1faAQlmUw==
+X-CSE-MsgGUID: gpyzntzfTyS43kM00OcYlw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="75244759"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="75244759"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2025 11:17:08 -0700
-X-CSE-ConnectionGUID: MhIuL25mRcevcPvP+7zi7A==
-X-CSE-MsgGUID: GyYfPyLfSBOn1sGXI9THOw==
+ 21 May 2025 11:17:11 -0700
+X-CSE-ConnectionGUID: feqEGL4zReOcm/DlBJvJHQ==
+X-CSE-MsgGUID: eRMHveoQTUS4EIgm0S72xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322293"
+X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; d="scan'208";a="145322294"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.255])
- by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:05 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 May 2025 11:17:08 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 21 May 2025 21:17:04 +0300
+ Wed, 21 May 2025 21:17:07 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 06/13] drm/i915/dsb: Introduce intel_dsb_exec_time_us()
-Date: Wed, 21 May 2025 21:16:38 +0300
-Message-ID: <20250521181645.32737-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 07/13] drm/i915/dmc: Define flip queue related PIPEDMC
+ registers
+Date: Wed, 21 May 2025 21:16:39 +0300
+Message-ID: <20250521181645.32737-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
 References: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
@@ -72,74 +73,237 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull the magic 20 usec DSB execution deadline into
-intel_dsb_arm_exec_time_us(), and also add its counterapart
-for the non-arming register write section. For the non-arming
-part we'll just throw in a random 80 usec for now so the total
-is 100usec. The total exec time will be needed by the upcoming
-flip queue code.
+Add the register definitions for a bunch of flip queue related
+PIPEDMC registers.
+
+v2: The layout of flip queue entries changed on PTL
+    Bump the DMC_FQ_W2_PTS_CFG_SEL bitfields sizes (Uma)
+    Reduce the scanlines to 21 bits for now (Uma)
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 26 ++++++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_dsb.h |  1 +
- 2 files changed, 25 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 189 +++++++++++++++++-
+ 1 file changed, 188 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 82cb58cf9c6a..1b663065a1cd 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -593,14 +593,36 @@ static u32 dsb_error_int_en(struct intel_display *display)
- 	return errors;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index d8e715677454..bcda24af720d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -6,7 +6,7 @@
+ #ifndef __INTEL_DMC_REGS_H__
+ #define __INTEL_DMC_REGS_H__
  
-+/*
-+ * FIXME calibrate these sensibly, ideally compute based on
-+ * the number of regisetrs to be written. But that requires
-+ * measuring the actual DSB execution speed on each platform
-+ * (and the speed also depends on CDCLK and memory clock)...
-+ */
-+static int intel_dsb_noarm_exec_time_us(void)
-+{
-+	return 80;
-+}
-+
-+static int intel_dsb_arm_exec_time_us(void)
-+{
-+	return 20;
-+}
-+
-+int intel_dsb_exec_time_us(void)
-+{
-+	return intel_dsb_noarm_exec_time_us() +
-+		intel_dsb_arm_exec_time_us();
-+}
-+
- void intel_dsb_vblank_evade(struct intel_atomic_state *state,
- 			    struct intel_dsb *dsb)
- {
- 	struct intel_crtc *crtc = dsb->crtc;
- 	const struct intel_crtc_state *crtc_state =
- 		intel_pre_commit_crtc_state(state, crtc);
--	/* FIXME calibrate sensibly */
--	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode, 20);
-+	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
-+					       intel_dsb_arm_exec_time_us());
- 	int start, end;
+-#include "i915_reg_defs.h"
++#include "intel_display_reg_defs.h"
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 6a90ffe1f6ff..91703ef974f6 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -34,6 +34,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 				    unsigned int max_cmds);
- void intel_dsb_finish(struct intel_dsb *dsb);
- void intel_dsb_cleanup(struct intel_dsb *dsb);
-+int intel_dsb_exec_time_us(void);
- void intel_dsb_reg_write(struct intel_dsb *dsb,
- 			 i915_reg_t reg, u32 val);
- void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
+ enum dmc_event_id {
+ 	DMC_EVENT_TRUE = 0x0,
+@@ -287,6 +287,17 @@ enum pipedmc_event_id {
+ #define MTL_PIPEDMC_CONTROL		_MMIO(0x45250)
+ #define  PIPEDMC_ENABLE_MTL(pipe)	REG_BIT(((pipe) - PIPE_A) * 4)
+ 
++#define _PIPEDMC_LOAD_HTP_A		0x5f000
++#define _PIPEDMC_LOAD_HTP_B		0x5f400
++#define PIPEDMC_LOAD_HTP(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_LOAD_HTP_A, _PIPEDMC_LOAD_HTP_B)
++
++#define _PIPEDMC_CTL_A		0x5f064
++#define _PIPEDMC_CTL_B		0x5f464
++#define PIPEDMC_CTL(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_CTL_A, _PIPEDMC_CTL_B)
++#define   PIPEDMC_HALT			REG_BIT(31)
++#define   PIPEDMC_STEP			REG_BIT(27)
++#define   PIPEDMC_CLOCKGATE		REG_BIT(23)
++
+ #define _PIPEDMC_STATUS_A		0x5f06c
+ #define _PIPEDMC_STATUS_B		0x5f46c
+ #define PIPEDMC_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_STATUS_A, _PIPEDMC_STATUS_B)
+@@ -298,6 +309,139 @@ enum pipedmc_event_id {
+ #define   PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE		REG_FIELD_PREP(PIPEDMC_INT_VECTOR_MASK, 0xff) /* Wa_16018781658:lnl[a0] */
+ #define   PIPEDMC_EVT_PENDING		REG_GENMASK(7, 0)
+ 
++#define _PIPEDMC_FQ_CTRL_A		0x5f078
++#define _PIPEDMC_FQ_CTRL_B		0x5f478
++#define PIPEDMC_FQ_CTRL(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FQ_CTRL_A, _PIPEDMC_FQ_CTRL_B)
++#define   PIPEDMC_FQ_CTRL_ENABLE	REG_BIT(31)
++#define   PIPEDMC_FQ_CTRL_BUSY		REG_BIT(30)
++#define   PIPEDMC_FQ_CTRL_ASYNC		REG_BIT(29)
++#define   PIPEDMC_FQ_CTRL_PREEMPT	REG_BIT(0)
++
++#define _PIPEDMC_FQ_STATUS_A		0x5f098
++#define _PIPEDMC_FQ_STATUS_B		0x5f498
++#define PIPEDMC_FQ_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FQ_STATUS_A, _PIPEDMC_FQ_STATUS_B)
++#define   PIPEDMC_FQ_STATUS_BUSY		REG_BIT(31)
++#define   PIPEDMC_FQ_STATUS_W2_LIVE_STATUS	REG_BIT(1)
++#define   PIPEDMC_FQ_STATUS_W1_LIVE_STATUS	REG_BIT(0)
++
++#define _PIPEDMC_FPQ_ATOMIC_TP_A	0x5f0a0
++#define _PIPEDMC_FPQ_ATOMIC_TP_B	0x5f4a0
++#define PIPEDMC_FPQ_ATOMIC_TP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_FPQ_ATOMIC_TP_A, _PIPEDMC_FPQ_ATOMIC_TP_B)
++#define   PIPEDMC_FPQ_PLANEQ_3_TP_MASK	REG_GENMASK(31, 26)
++#define   PIPEDMC_FPQ_PLANEQ_3_TP(tail)	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_3_TP_MASK, (tail))
++#define   PIPEDMC_FPQ_PLANEQ_2_TP_MASK	REG_GENMASK(24, 19)
++#define   PIPEDMC_FPQ_PLANEQ_2_TP(tail)	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_2_TP_MASK, (tail))
++#define   PIPEDMC_FPQ_PLANEQ_1_TP_MASK	REG_GENMASK(17, 12)
++#define   PIPEDMC_FPQ_PLANEQ_1_TP(tail)	REG_FIELD_PREP(PIPEDMC_FPQ_PLANEQ_1_TP_MASK, (tail))
++#define   PIPEDMC_FPQ_FASTQ_TP_MASK	REG_GENMASK(10, 6)
++#define   PIPEDMC_FPQ_FASTQ_TP(tail)	REG_FIELD_PREP(PIPEDMC_FPQ_FASTQ_TP_MASK, (tail))
++#define   PIPEDMC_FPQ_GENERALQ_TP_MASK	REG_GENMASK(4, 0)
++#define   PIPEDMC_FPQ_GENERALQ_TP(tail)	REG_FIELD_PREP(PIPEDMC_FPQ_GENERALQ_TP_MASK, (tail))
++
++#define _PIPEDMC_FPQ_LINES_TO_W1_A	0x5f0a4
++#define _PIPEDMC_FPQ_LINES_TO_W1_B	0x5f4a4
++#define PIPEDMC_FPQ_LINES_TO_W1		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W1_A, _PIPEDMC_FPQ_LINES_TO_W1_B)
++
++#define _PIPEDMC_FPQ_LINES_TO_W2_A	0x5f0a8
++#define _PIPEDMC_FPQ_LINES_TO_W2_B	0x5f4a8
++#define PIPEDMC_FPQ_LINES_TO_W2		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W2_A, _PIPEDMC_FPQ_LINES_TO_W2_B)
++
++#define _PIPEDMC_SCANLINECMP_A		0x5f11c
++#define _PIPEDMC_SCANLINECMP_B		0x5f51c
++#define PIPEDMC_SCANLINECMP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMP_A, _PIPEDMC_SCANLINECMP_B)
++#define   PIPEDMC_SCANLINECMP_EN	REG_BIT(31)
++#define   PIPEDMC_SCANLINE_NUMBER	REG_GENMASK(20, 0)
++
++#define _PIPEDMC_SCANLINECMPLOWER_A	0x5f120
++#define _PIPEDMC_SCANLINECMPLOWER_B	0x5f520
++#define PIPEDMC_SCANLINECMPLOWER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPLOWER_A, _PIPEDMC_SCANLINECMPLOWER_B)
++#define   PIPEDMC_SCANLINEINRANGECMP_EN		REG_BIT(31)
++#define   PIPEDMC_SCANLINEOUTRANGECMP_EN	REG_BIT(30)
++#define   PIPEDMC_SCANLINE_LOWER_MASK		REG_GENMASK(20, 0)
++#define   PIPEDMC_SCANLINE_LOWER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_LOWER_MASK, (scanline))
++
++#define _PIPEDMC_SCANLINECMPUPPER_A	0x5f124
++#define _PIPEDMC_SCANLINECMPUPPER_B	0x5f524
++#define PIPEDMC_SCANLINECMPUPPER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPUPPER_A, _PIPEDMC_SCANLINECMPUPPER_B)
++#define   PIPEDMC_SCANLINE_UPPER_MASK		REG_GENMASK(20, 0)
++#define   PIPEDMC_SCANLINE_UPPER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_UPPER_MASK, (scanline))
++
++#define _MMIO_PIPEDMC_FPQ(pipe, fq_id, \
++			  reg_fpq1_a, reg_fpq2_a, reg_fpq3_a, reg_fpq4_a, \
++			  reg_fpq1_b, reg_fpq2_b, reg_fpq3_b, reg_fpq4_b) \
++	_MMIO(_PICK_EVEN_2RANGES((fq_id), INTEL_FLIPQ_PLANE_3, \
++				 _PIPE((pipe), (reg_fpq1_a), (reg_fpq1_b)), \
++				 _PIPE((pipe), (reg_fpq2_a), (reg_fpq2_b)), \
++				 _PIPE((pipe), (reg_fpq3_a), (reg_fpq3_b)), \
++				 _PIPE((pipe), (reg_fpq4_a), (reg_fpq4_b))))
++
++#define _PIPEDMC_FPQ1_HP_A		0x5f128
++#define _PIPEDMC_FPQ2_HP_A		0x5f138
++#define _PIPEDMC_FPQ3_HP_A		0x5f168
++#define _PIPEDMC_FPQ4_HP_A		0x5f174
++#define _PIPEDMC_FPQ5_HP_A		0x5f180
++#define _PIPEDMC_FPQ1_HP_B		0x5f528
++#define _PIPEDMC_FPQ2_HP_B		0x5f538
++#define _PIPEDMC_FPQ3_HP_B		0x5f568
++#define _PIPEDMC_FPQ4_HP_B		0x5f574
++#define _PIPEDMC_FPQ5_HP_B		0x5f580
++#define PIPEDMC_FPQ_HP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
++							  _PIPEDMC_FPQ1_HP_A, _PIPEDMC_FPQ2_HP_A, \
++							  _PIPEDMC_FPQ3_HP_A, _PIPEDMC_FPQ4_HP_A, \
++							  _PIPEDMC_FPQ1_HP_B, _PIPEDMC_FPQ2_HP_B, \
++							  _PIPEDMC_FPQ3_HP_B, _PIPEDMC_FPQ4_HP_B)
++
++#define _PIPEDMC_FPQ1_TP_A		0x5f12c
++#define _PIPEDMC_FPQ2_TP_A		0x5f13c
++#define _PIPEDMC_FPQ3_TP_A		0x5f16c
++#define _PIPEDMC_FPQ4_TP_A		0x5f178
++#define _PIPEDMC_FPQ5_TP_A		0x5f184
++#define _PIPEDMC_FPQ1_TP_B		0x5f52c
++#define _PIPEDMC_FPQ2_TP_B		0x5f53c
++#define _PIPEDMC_FPQ3_TP_B		0x5f56c
++#define _PIPEDMC_FPQ4_TP_B		0x5f578
++#define _PIPEDMC_FPQ5_TP_B		0x5f584
++#define PIPEDMC_FPQ_TP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
++							  _PIPEDMC_FPQ1_TP_A, _PIPEDMC_FPQ2_TP_A, \
++							  _PIPEDMC_FPQ3_TP_A, _PIPEDMC_FPQ4_TP_A, \
++							  _PIPEDMC_FPQ1_TP_B, _PIPEDMC_FPQ2_TP_B, \
++							  _PIPEDMC_FPQ3_TP_B, _PIPEDMC_FPQ4_TP_B)
++
++#define _PIPEDMC_FPQ1_CHP_A		0x5f130
++#define _PIPEDMC_FPQ2_CHP_A		0x5f140
++#define _PIPEDMC_FPQ3_CHP_A		0x5f170
++#define _PIPEDMC_FPQ4_CHP_A		0x5f17c
++#define _PIPEDMC_FPQ5_CHP_A		0x5f188
++#define _PIPEDMC_FPQ1_CHP_B		0x5f530
++#define _PIPEDMC_FPQ2_CHP_B		0x5f540
++#define _PIPEDMC_FPQ3_CHP_B		0x5f570
++#define _PIPEDMC_FPQ4_CHP_B		0x5f57c
++#define _PIPEDMC_FPQ5_CHP_B		0x5f588
++#define PIPEDMC_FPQ_CHP(pipe, fq_id)	_MMIO_PIPEDMC_FPQ((pipe), (fq_id), \
++							  _PIPEDMC_FPQ1_CHP_A, _PIPEDMC_FPQ2_CHP_A, \
++							  _PIPEDMC_FPQ3_CHP_A, _PIPEDMC_FPQ4_CHP_A, \
++							  _PIPEDMC_FPQ1_CHP_B, _PIPEDMC_FPQ2_CHP_B, \
++							  _PIPEDMC_FPQ3_CHP_B, _PIPEDMC_FPQ4_CHP_B)
++
++#define _PIPEDMC_FPQ_TS_A		0x5f134
++#define _PIPEDMC_FPQ_TS_B		0x5f534
++#define PIPEDMC_FPQ_TS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_TS_A, _PIPEDMC_FPQ_TS_B)
++
++#define _PIPEDMC_SCANLINE_RO_A		0x5f144
++#define _PIPEDMC_SCANLINE_RO_B		0x5f544
++#define PIPEDMC_SCANLINE_RO(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINE_RO_A, _PIPEDMC_SCANLINE_RO_B)
++
++#define _PIPEDMC_FPQ_CTL1_A		0x5f160
++#define _PIPEDMC_FPQ_CTL1_B		0x5f560
++#define PIPEDMC_FPQ_CTL1(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_CTL1_A, _PIPEDMC_FPQ_CTL1_B)
++#define   PIPEDMC_SW_DMC_WAKE		REG_BIT(0)
++
++#define _PIPEDMC_FPQ_CTL2_A		0x5f164
++#define _PIPEDMC_FPQ_CTL2_B		0x5f564
++#define PIPEDMC_FPQ_CTL2(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_CTL2_A, _PIPEDMC_FPQ_CTL2_B)
++#define   PIPEDMC_DMC_INT_AT_DELAYED_VBLANK	REG_BIT(1)
++#define   PIPEDMC_W1_DMC_WAKE			REG_BIT(0)
++
+ #define _PIPEDMC_INTERRUPT_A		0x5f190 /* lnl+ */
+ #define _PIPEDMC_INTERRUPT_B		0x5f590 /* lnl+ */
+ #define PIPEDMC_INTERRUPT(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_INTERRUPT_A, _PIPEDMC_INTERRUPT_B)
+@@ -394,4 +538,47 @@ enum pipedmc_event_id {
+ #define  DMC_WAKELOCK_CTL_REQ	 REG_BIT(31)
+ #define  DMC_WAKELOCK_CTL_ACK	 REG_BIT(15)
+ 
++#define DMC_FQ_W2_PTS_CFG_SEL	_MMIO(0x8f240)
++#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK	REG_GENMASK(26, 24)
++#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
++#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK	REG_GENMASK(18, 16)
++#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
++#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK	REG_GENMASK(10, 8)
++#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
++#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK	REG_GENMASK(2, 0)
++#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
++
++/* planel/general flip queue entries */
++#define PIPEDMC_FQ_RAM(start_mmioaddr, i)	_MMIO((start_mmioaddr) + (i) * 4)
++/* LNL */
++/* DW0 pts */
++/* DW1 head */
++/* DW2 size/etc. */
++#define LNL_FQ_INTERRUPT	REG_BIT(31)
++#define LNL_FQ_DSB_ID_MASK	REG_GENMASK(30, 29)
++#define LNL_FQ_DSB_ID(dsb_id)	REG_FIELD_PREP(LNL_FQ_DSB_ID_MASK, (dsb_id))
++#define LNL_FQ_EXECUTED		REG_BIT(28)
++#define LNL_FQ_DSB_SIZE_MASK	REG_GENMASK(15, 0)
++#define LNL_FQ_DSB_SIZE(size)	REG_FIELD_PREP(PTL_FQ_DSB_SIZE_MASK, (size))
++/* DW3 reserved (plane queues) */
++/* DW3 second DSB head (general queue) */
++/* DW4 second DSB size/etc. (general queue) */
++/* DW5 reserved (general queue) */
++
++/* PTL+ */
++/* DW0 pts */
++/* DW1 reserved */
++/* DW2 size/etc. */
++#define PTL_FQ_INTERRUPT	REG_BIT(31)
++#define PTL_FQ_NEED_PUSH	REG_BIT(30)
++#define PTL_FQ_BLOCK_PUSH	REG_BIT(29)
++#define PTL_FQ_EXECUTED		REG_BIT(28)
++#define PTL_FQ_DSB_ID_MASK	REG_GENMASK(25, 24)
++#define PTL_FQ_DSB_ID(dsb_id)	REG_FIELD_PREP(PTL_FQ_DSB_ID_MASK, (dsb_id))
++#define PTL_FQ_DSB_SIZE_MASK	REG_GENMASK(15, 0)
++#define PTL_FQ_DSB_SIZE(size)	REG_FIELD_PREP(PTL_FQ_DSB_SIZE_MASK, (size))
++/* DW3 head */
++/* DW4 second DSB size/etc. (general queue) */
++/* DW5 second DSB head (general queue) */
++
+ #endif /* __INTEL_DMC_REGS_H__ */
 -- 
 2.49.0
 
