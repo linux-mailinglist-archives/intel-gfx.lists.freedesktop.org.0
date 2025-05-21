@@ -2,104 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A9BAC0ACB
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 13:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FBE9AC0D86
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 16:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E088D10EA60;
-	Thu, 22 May 2025 11:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB78D10EECD;
+	Thu, 22 May 2025 14:04:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="LrRJCe10";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ejUr3kfh";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LrRJCe10";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ejUr3kfh";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="LRZmiVpB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2298A10E9FA
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 May 2025 11:49:52 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7E8731F451;
- Thu, 22 May 2025 11:49:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1747914590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=FqCczVLQKcIawzM2XednQUgL5/R8N77aTGF3JRFQuSQ=;
- b=LrRJCe10Q87uHVLxL4MvPcpyOqm4gwveA5eA9GvNuHPfQES/jeZq+QsyXhb6g9IhC+avg/
- 481yQLc1N0KU3i3XBmcFSLrYc56rEcZGxpObJLKHgHs5YhBFR9DnI+7VAmZxkrwd8ONDp1
- liivI6HBmSM9FWerMYh5oXJuR5REt6Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1747914590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=FqCczVLQKcIawzM2XednQUgL5/R8N77aTGF3JRFQuSQ=;
- b=ejUr3kfhZDVijbOJN9PG2OiUVBHGBAvOfdLHefhweSjc4dJ66saUbgP/q7ZUXnZ2ljnZGZ
- YkneKItRRwsnThBg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1747914590; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=FqCczVLQKcIawzM2XednQUgL5/R8N77aTGF3JRFQuSQ=;
- b=LrRJCe10Q87uHVLxL4MvPcpyOqm4gwveA5eA9GvNuHPfQES/jeZq+QsyXhb6g9IhC+avg/
- 481yQLc1N0KU3i3XBmcFSLrYc56rEcZGxpObJLKHgHs5YhBFR9DnI+7VAmZxkrwd8ONDp1
- liivI6HBmSM9FWerMYh5oXJuR5REt6Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1747914590;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=FqCczVLQKcIawzM2XednQUgL5/R8N77aTGF3JRFQuSQ=;
- b=ejUr3kfhZDVijbOJN9PG2OiUVBHGBAvOfdLHefhweSjc4dJ66saUbgP/q7ZUXnZ2ljnZGZ
- YkneKItRRwsnThBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 364AF137B8;
- Thu, 22 May 2025 11:49:50 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id zcZpDF4PL2hYYwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 22 May 2025 11:49:50 +0000
-Date: Thu, 22 May 2025 13:49:48 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
+Received: from mail-10629.protonmail.ch (mail-10629.protonmail.ch
+ [79.135.106.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8717010E6C8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 May 2025 08:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1747816511; x=1748075711;
+ bh=C6F7qOxhKi0G0Edw4hDexbc+uS7sm+NLDARyGdbgw8I=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=LRZmiVpB9pZ4EnhXk+XOqevlu4fPlQl/qgZyAO1Xm+av9piIII1xy8JfSStH/EOXx
+ 7PW4ZrnuZtCyoPFzHU+nOwNMQY+thRtcQ0sZCIxjYObUFrS6419neDZRCFo8RxmCeV
+ 7ul9aUUFIX30qjxqwysJ1c5G+vsMTqYd0m2yFY+1+XqRaac945+07Wic0vPlnAk0JM
+ u8247XkYv03TFRyYb9ksewutxEulY33LzjK8X/3gw8ii4WLKPK1On7sUuEdKLAq9LF
+ p/bh/sAedfMKGxe/h75PMOnDRtETHoUuarHdqVyiyiR88s9vT8KIIkzA3hOBZspN/s
+ GswKlfrfw/5hw==
+Date: Wed, 21 May 2025 08:35:05 +0000
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+From: Harry Austen <hpausten@protonmail.com>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250522113902.GA7000@localhost.localdomain>
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v4] drm/xe: Allow building as kernel built-in
+Message-ID: <DA1P8NCLUFU8.N64BOSMN6G9J@protonmail.com>
+In-Reply-To: <32da3736-9ac1-4524-94e6-28a81f23bf31@linux.intel.com>
+References: <20250516104210.17969-1-hpausten@protonmail.com>
+ <32da3736-9ac1-4524-94e6-28a81f23bf31@linux.intel.com>
+Feedback-ID: 53116287:user:proton
+X-Pm-Message-ID: d802d84413cc02feaff5453a3f3c04ec84f677a9
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -1.30
-X-Spamd-Result: default: False [-1.30 / 50.00]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; ARC_NA(0.00)[];
- MISSING_XM_UA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
- localhost.localdomain:mid, feijuan.li:url, gitlab.freedesktop.org:url]
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 22 May 2025 14:04:23 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,47 +62,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Mon May 19, 2025 at 4:14 PM BST, Maarten Lankhorst wrote:
+> Hey,
+>
+> On 2025-05-16 12:42, Harry Austen wrote:
+>> Fix Kconfig symbol dependency on KUNIT, which isn't actually required
+>> for XE to be built-in. However, if KUNIT is enabled, it must be built-in
+>> too.
+>>
+>> Also, allow DRM_XE_DISPLAY to be built-in. But only as long as DRM_I915
+>> isn't, since that results in duplicate symbol errors.
+>>
+>> Fixes: 08987a8b6820 ("drm/xe: Fix build with KUNIT=3Dm")
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Signed-off-by: Harry Austen <hpausten@protonmail.com>
+>> Acked-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>> v4: Add Jani Nikula's Acked-by tag
+>> v3: Simplify KUNIT dependency, as suggested by Jani Nikula
+>> v2: Ensure DRM_XE_DISPLAY and DRM_I915 can't both be built-in
+>>
+>>  drivers/gpu/drm/xe/Kconfig | 5 +++--
+>>  1 file changed, 3 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> index 9bce047901b22..214f40264fa12 100644
+>> --- a/drivers/gpu/drm/xe/Kconfig
+>> +++ b/drivers/gpu/drm/xe/Kconfig
+>> @@ -1,7 +1,8 @@
+>>  # SPDX-License-Identifier: GPL-2.0-only
+>>  config DRM_XE
+>>  =09tristate "Intel Xe Graphics"
+>> -=09depends on DRM && PCI && MMU && (m || (y && KUNIT=3Dy))
+>> +=09depends on DRM && PCI && MMU
+>> +=09depends on KUNIT || KUNIT=3Dn
+>>  =09select INTERVAL_TREE
+>>  =09# we need shmfs for the swappable backing store, and in particular
+>>  =09# the shmem_readpage() which depends upon tmpfs
+>> @@ -51,7 +52,7 @@ config DRM_XE
+>>
+>>  config DRM_XE_DISPLAY
+>>  =09bool "Enable display support"
+>> -=09depends on DRM_XE && DRM_XE=3Dm && HAS_IOPORT
+>> +=09depends on DRM_XE && (DRM_XE=3Dm || DRM_I915!=3Dy) && HAS_IOPORT
+>>  =09select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+>>  =09select I2C
+>>  =09select I2C_ALGOBIT
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-only one fix from drm-misc-fixes this week.
+Thanks!
 
-Best regards
-Thomas
+>
+> Can we also get rid of the IOSF_MBI select? Not even xe_display depends o=
+n it, leftover from initial porting. :)
 
-drm-misc-fixes-2025-05-22:
-Short summary of fixes pull:
+As this seems unrelated, I'd be happy to submit a separate patch for this
+afterwards. Thanks for the suggestion.
 
-edid:
-- fix HDR metadata reset
-The following changes since commit 72c7d62583ebce7baeb61acce6057c361f73be4a:
+Harry
 
-  dma-buf: insert memory barrier before updating num_fences (2025-05-14 15:31:23 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-05-22
-
-for you to fetch changes up to 6692dbc15e5ed40a3aa037aced65d7b8826c58cd:
-
-  drm/edid: fixed the bug that hdr metadata was not reset (2025-05-19 12:26:08 +0300)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-edid:
-- fix HDR metadata reset
-
-----------------------------------------------------------------
-feijuan.li (1):
-      drm/edid: fixed the bug that hdr metadata was not reset
-
- drivers/gpu/drm/drm_edid.c | 1 +
- 1 file changed, 1 insertion(+)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
