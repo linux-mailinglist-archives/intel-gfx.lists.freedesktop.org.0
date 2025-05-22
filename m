@@ -2,60 +2,138 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB42AC1512
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 21:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59ADFAC152A
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 22:00:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89FE010E070;
-	Thu, 22 May 2025 19:53:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9619C10E0C7;
+	Thu, 22 May 2025 20:00:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EBqQF7Dk";
+	dkim=pass (1024-bit key; unprotected) header.d=qsc.com header.i=@qsc.com header.b="Rxo3FOKA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67A9410E053;
- Thu, 22 May 2025 19:53:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747943636; x=1779479636;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9Ejcrha6jbwR+cDL2hxrk46ya9ge3PoEeOw7qyIluXA=;
- b=EBqQF7DkGXkgZYG6ob6Sv/r/p3ZL3c+onAMz05Rj9Co2uKHYFNQchdTc
- YGEy2eaCMEENhsOsLW7CbZ6az+36FsYgK9YjK5P84MUV3uIfMtLpoQVu/
- WmH5TfuDNIRW/qtLk0vLB1gaTRP07o7qF69n4/Y2smcmOgZ3VWCPb/oUS
- Vw8rQ2yeai5wG6NF1/tm6h4R3WVv0HL7io7q2Oqvpf4hsIC53ENnTOiP0
- 53x8MgKncyxzLXYn6EMY11CzuVyDyTTuqx9S40qJLXDinMIPIG3ftdcNR
- ywZUHZiLfIXQ7Sm6M5bYI/UdRn8EPDDcsn7hjIcByNeeJswHrvDIvlHSE A==;
-X-CSE-ConnectionGUID: RwGDlwmfSvW2LxG97gsZNA==
-X-CSE-MsgGUID: 7yNG5mSzT1KnFMsrCdmgFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49104117"
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="49104117"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2025 12:53:56 -0700
-X-CSE-ConnectionGUID: TFAv73UXR9a9QfjPoaQe6g==
-X-CSE-MsgGUID: ZnOsEDBnQcaufhYg+lWyZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,306,1739865600"; d="scan'208";a="145903215"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.173])
- by orviesa005.jf.intel.com with SMTP; 22 May 2025 12:53:54 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 May 2025 22:53:53 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 08/13] drm/i915/flipq: Provide the nuts and bolts code for
- flip queue
-Date: Thu, 22 May 2025 22:53:53 +0300
-Message-ID: <20250522195353.6297-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250521181645.32737-9-ville.syrjala@linux.intel.com>
-References: <20250521181645.32737-9-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-160.mimecast.com
+ (us-smtp-delivery-160.mimecast.com [170.10.133.160])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C401810E0C7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 May 2025 20:00:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qsc.com;
+ s=mimecast20190503; t=1747944030;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type;
+ bh=i8AShuuNoo4ThK/G9zvp7cE3z6roX60An6wFxP/Xgpg=;
+ b=Rxo3FOKAKs4js0A/ypHSx/5UHL2aXcmAspBDLjM/0CLYMmTfx+KcRpIH7GOVpBLtAWLf+R
+ J4vmKUZOt+NjUWsHc6WR/LGVpDVSCIXwShGNwhpiO2bVRMI8l+rIGUziW68Brsdf6VXhas
+ QUi5ZfLV0kAHHwJJ36MmQvwOizA+KcM=
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04lp2041.outbound.protection.outlook.com [104.47.74.41]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-76-62YEK3C8N9aBy745oa8kLQ-1; Thu,
+ 22 May 2025 16:00:29 -0400
+X-MC-Unique: 62YEK3C8N9aBy745oa8kLQ-1
+X-Mimecast-MFC-AGG-ID: 62YEK3C8N9aBy745oa8kLQ_1747944028
+Received: from SJ2PR16MB5525.namprd16.prod.outlook.com (2603:10b6:a03:539::5)
+ by LV8PR16MB5588.namprd16.prod.outlook.com (2603:10b6:408:1c3::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Thu, 22 May
+ 2025 20:00:26 +0000
+Received: from SJ2PR16MB5525.namprd16.prod.outlook.com
+ ([fe80::82ea:a206:81c1:314d]) by SJ2PR16MB5525.namprd16.prod.outlook.com
+ ([fe80::82ea:a206:81c1:314d%6]) with mapi id 15.20.8769.019; Thu, 22 May 2025
+ 20:00:26 +0000
+From: Sean Summers <Sean.Summers@qsc.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: drm/i915: How to set the intel HDMI output format?
+Thread-Topic: drm/i915: How to set the intel HDMI output format?
+Thread-Index: AQHby1Ql5GZ02Yp/wUWi48RXar9lgA==
+Date: Thu, 22 May 2025 20:00:26 +0000
+Message-ID: <SJ2PR16MB55258CF988D78C02FFEB302D8199A@SJ2PR16MB5525.namprd16.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ2PR16MB5525:EE_|LV8PR16MB5588:EE_
+x-ms-office365-filtering-correlation-id: 28bd70c3-a2d6-45be-3453-08dd996b4b77
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|13003099007|8096899003|38070700018
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?OcWK3iVTx9kN0hhEqLFErVDZmXo3nDAUhWAQ1MoZe8DR7SBzaWfbabG3F3?=
+ =?iso-8859-1?Q?lkcY47VKKhi/8566WEKlxiAWH30gh7sqpMpEGY0nuet4MY6OWoyxa819SC?=
+ =?iso-8859-1?Q?U32oMlvudC4BHTjHAMF+p9gZwxIXiqF1sfgIEn/wPZmN4tI+wChUyrN1a4?=
+ =?iso-8859-1?Q?mYXlvCt+OAM2ezkxcH8G2OrvKwLePbaNNcDU8xDehnSF23by46iJW1hRc7?=
+ =?iso-8859-1?Q?Vl8ydJs1DHibPFrXmTvsJd3tg6ua7WuJmFsGdWNABHERQX2Y1snGB/2JEo?=
+ =?iso-8859-1?Q?zn3u/NtSAA6Kb/z+agYTlQq3B/a15ajvghGEYAl64iM/7Zy7m2zJFl1vfm?=
+ =?iso-8859-1?Q?7ORpOVTKBmq9ceX9pGCliFU7uhvqElnG5LK42Uc9hL07SKQIMAi0rmYFVn?=
+ =?iso-8859-1?Q?8VkXzDsC5qoqeK3Yzj+RZIe8zeWLTTtOBo2zoIBTVgpTpHYTny7/k45sAl?=
+ =?iso-8859-1?Q?aEtx2sTGkF+WhbPW3lVpwIOEwRV/AMHZSbM3poCrOabzdKBv+lCSofWG+6?=
+ =?iso-8859-1?Q?7NVXJqOZYk8dP7GPJhpotDyH8039j61qHSQvKQtHE57X8xuxxdAZr8GS57?=
+ =?iso-8859-1?Q?1qHeF43w8vZEJpevizNmmLXoYH9w8uRk6KxOCRkTQ17EzZwZrleZUulTlP?=
+ =?iso-8859-1?Q?R1osZYQNejjv2r2Zc/6WeddMeyVrNqGc+V6c0EBLYExdupSEjvwG7HBhCr?=
+ =?iso-8859-1?Q?qGJ6qfKB4BZJFvqh8kVRuTNRfWbdyAq7oDkRi1V1/YTG5/VwwoIN5Fx8tK?=
+ =?iso-8859-1?Q?7LqlMPsQbYD6q8OEPEoWBVKTlfcuNImryr+f63r0RSifSDgS6IoTFj0pO3?=
+ =?iso-8859-1?Q?A0XFB+rYwhzn6RavJPGzPuoG0iZKdV6CowBL0R5asWYVqQcRIJ78g3rtCU?=
+ =?iso-8859-1?Q?Id6YQ6/zee7+stzi+w6tEltVd+HVK6roT/6nFZ1fXS9IdhajtdYdRW1bBD?=
+ =?iso-8859-1?Q?E29qlwQqJhX4tk/gzQBNYMNnFwANih8HFk8UIXDEEkg5DnuxylhX6Dalr3?=
+ =?iso-8859-1?Q?0VZJi39BnGHouXJFSIaB+HANdDohhhFqyU7Dv+Y0xsDAgceP9zCuKjAw5W?=
+ =?iso-8859-1?Q?BWf+hxi16qsfXGRCpr1dg71w6isUJ5tt6nJ+2OnncO+SP2mr9evQSuRYSW?=
+ =?iso-8859-1?Q?8B2x6BLqHU8+Xf9p9xDp12LVG/EMmHRe6+3OVeRUbiabb8IWb7sYqt5dr3?=
+ =?iso-8859-1?Q?LgWZGvdRgXNKUIJPpoxtz7hE3LTfrXBgNmvWioUpuaAAq84oR9hu+Sbwbi?=
+ =?iso-8859-1?Q?CKJvMrfRclNbf1P9cZMlWd5ugKn4I/hbXq0lda47sijEO4picpOuFXuCGU?=
+ =?iso-8859-1?Q?GvZLHNZ+1MdId4Uoa8ehwYzK8hx9e4Tf8OoMVQ4omHQeTzWz2l9f5EjU6g?=
+ =?iso-8859-1?Q?Wq33yqt8NOUOtdzTxE7L7qsXMg959HI5ZrMTfIKqjgT/uElXj5JATP8mwM?=
+ =?iso-8859-1?Q?UwoegSRx+TBxJrxF9Yav6JqRrN9Mc+fN+vZljVk4S4BuGAMgUDaORYSolT?=
+ =?iso-8859-1?Q?4=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ2PR16MB5525.namprd16.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(13003099007)(8096899003)(38070700018);
+ DIR:OUT; SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?NVcu3PbxARQ5qKo+Ro8205KQhDG2rql8FHQs/4Z87rTc6lYqrB25Y0acc7?=
+ =?iso-8859-1?Q?1H7c1N3Dm111B3APjcGvSziaty9zksfx0S7JwNoh1mYO19VQ2ugEEfSUA0?=
+ =?iso-8859-1?Q?vdcsd1zmEiGTWN/9nldpBL9X4jIeWhO2DYdG0aLYd/xGd5LsxWmtX9UjDc?=
+ =?iso-8859-1?Q?ytck5LIRHAKEya/7h27LwP2kGuNDYXXhBlRzbjJWGqPsMpAJclkdKe/nOa?=
+ =?iso-8859-1?Q?25aeH6OfauHiIfdcioX85wexAQiuY1GrcFzX+GpjtJsLo9FQhhofc8Qw66?=
+ =?iso-8859-1?Q?i08EEZPcGnDcEQnzVyzYov82/6b8h55iq8zxssMJITMF4HruHqAARALlhi?=
+ =?iso-8859-1?Q?AYu0YGCQs6FxYI54a//3A62qBzNqgMy7WEhfxvhZEH3BQwr97bTdzbqBqD?=
+ =?iso-8859-1?Q?gc37DG6sUJrvsIeSIL39SFnYp6lKJATcNddONh0goBwjcJCaWANbmpiERw?=
+ =?iso-8859-1?Q?pMq2D29+iq2nc43mj59MpUX/QWIZfDe0SbQa/f/+nwNMmToa3E47ZI0q96?=
+ =?iso-8859-1?Q?5Ypn4HdGC2+46PocIY58FveMJF4gqS+dYlFO1AXQjVQjwWjMs5lWB4JCXo?=
+ =?iso-8859-1?Q?DDscELKDjsSv3qJK3OFVmQUaup6KM0Pr6Xa+c1f3tCoMXan2arfG+g8Opk?=
+ =?iso-8859-1?Q?Qxk4k+0/bJeRhMf5uPZYtfPje/+nheMNHOxjsbSqDx8U390yCK0zvQF7wi?=
+ =?iso-8859-1?Q?2kGQ1xTXWuKC0LhtN86BfD3XzppFlx8M+UNNGGVf5/MnKVsAzhQIpiWCE3?=
+ =?iso-8859-1?Q?4GLk35/a0PfBWpstxyZi4kGgntJTw75tIVQ8zlI5AF1MLcNAiw/JRERSLG?=
+ =?iso-8859-1?Q?0FWgR3ziAU7HuHxKTXf7Dtn5x0bgTum+8Uxz7a+7dmhfYaGB4T6QdIoyB1?=
+ =?iso-8859-1?Q?WSyWjPRVCv5vTde1ISsu3BUVOHHuOXuLYMcIwp3CkqTp9gQqs0kZmgmB8R?=
+ =?iso-8859-1?Q?EV+gh9nH9nAwyabvCi2Hu46Mjg2L41yLTEVpEx8TvA2z3KOLAgrKCEJNmK?=
+ =?iso-8859-1?Q?gnRIk9iMWHINs/VJLUC7OmsR6VaHU6fsL4/Jerb3OzKIVvDgaR5JhsrZ+o?=
+ =?iso-8859-1?Q?0yu30B84ERMpz7QK1WgyizRVHiNk+Ljf19Ho9lJcbioXHYUwg5J1Bsa5b5?=
+ =?iso-8859-1?Q?zOT9E2vuUaDe55a9ek+5ieYRHpY0xCEBi4uzFHeP/tZXelWiFRWUIDB1Du?=
+ =?iso-8859-1?Q?spCY8741Hhg60p+8ZEjbbTRyEYqCrQUeMdGtIMi+W5owbmOt2q+BwXQRfS?=
+ =?iso-8859-1?Q?6vurf9++RtlrKLtle/07E24JTYIoA5YKL/XWqGsD1yjx+aqG93bS6sWkYd?=
+ =?iso-8859-1?Q?XPgrJTHwekPi6xmMF09XUHdfgJL3meJ23nEMZWU35wul4bWrn5j5G1JFu5?=
+ =?iso-8859-1?Q?+owq9NmDz8Xk2AlkfLf2Xf2fixQOZSZYFpwd6rTOomZxI13K1QdJIANSI8?=
+ =?iso-8859-1?Q?c8VXeazcJQOAJRZyzCrCi7kDGMjAo/LQVgDeQwdMn1loBw9qEVzOxMsumN?=
+ =?iso-8859-1?Q?J1/rOBJBEqOkGRF+AEoxx8k1ITML+rVgyepvoQrGGbuMlsdaeodMKx1Fy4?=
+ =?iso-8859-1?Q?WY/U+VSnvN3uMnftsUvpWLqaZZiJ5wzRbpjxfGL7Laq5slCMClxDFIsh0q?=
+ =?iso-8859-1?Q?2NnAQYkIv4o1GO0geTH/VbZlEjo6EABd61?=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: qsc.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR16MB5525.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28bd70c3-a2d6-45be-3453-08dd996b4b77
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2025 20:00:26.2565 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 23298f55-90ba-49c3-9286-576ec76d1e38
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DUIjC1wQxmGNUJJ3Mr5ODT6T6XWrFp9wfdSY7AexMqllQtb37QD1APeerKbBwARmTix5uW0CCGCL56K1l0mZtw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR16MB5588
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: j4eDJMkDflx8lABj8Ywz8MSouUrnqomgKSh7Zn5dhHw_1747944028
+X-Mimecast-Originator: qsc.com
+Content-Language: en-US
+Content-Type: multipart/alternative;
+ boundary="_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,718 +149,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-Provide the lower level code for PIPEDMC based flip queue.
+Hello,
 
-We'll use the so called semi-full flip queue mode where the
-PIPEDMC will start the provided DSB on a scanline a little
-ahead of the vblank. We need to program the triggering scanline
-early enough so that the DSB has enough time to complete writing
-all the double buffered registers before they get latched (at
-start of vblank).
+I'm working on a project using the i915 driver (kernel version 6.6), and ne=
+ed to change the output format from RGB to YCC 420, 444, and 422. I've been=
+ using DRM's modetest to configure the HDMI output (a variety of resolution=
+s, and refresh rates, with a NV12 pixel format), but it seems like the i915=
+ driver only has an RGB configuration.
 
-The firmware implements several queues:
-- 3 "plane queues" which execute a single DSB per entry
-- 1 "general queue" which can apparently execute 2 DSBs per entry
-- 1 vestigial "fast queue" that replaced the "simple flip queue"
-  on ADL+, but this isn't supposed to be used due to issues.
+Is there a mechanism to force the HDMI output colorspace to anything beside=
+s RGB, assuming the EDID supports it? Is there a set of patches that enable=
+s this functionality? I applied a "force color format" property patch (http=
+s://lists.freedesktop.org/archives/dri-devel/2024-January/437755.html), but=
+ the i915 config checker still rejects YCC 420.
 
-But we only need a single plane queue really, and we won't actually
-use it as a real queue because we don't allow queueing multiple commits
-ahead of time. So the whole thing is perhaps useless. I suppose
-there migth be some power saving benefits if we would get the flip
-scheduled by userspace early and then could keep some hardware powered
-off a bit longer until the DMC kicks off the flipq programming. But that
-is pure speculation at this time and needs to be proven.
+Thanks,
+Sean
 
-The code to hook up the flip queue into the actual atomic commit
-path will follow later.
 
-TODO: need to think how to do the "wait for DMC firmware load" nicely
-      need to think about VRR and PSR
-      etc.
 
-v2: Don't write DMC_FQ_W2_PTS_CFG_SEL on pre-lnl
-    Don't oops at flipq init if there is no dmc
-v3: Adapt to PTL+ flipq changes (different queue entry
-    layout, different trigger event, need VRR TG)
-    Use the actual CDCLK frequency
-    Ask the DSB code how long things are expected to take
-v3: Adjust the cdclk rounding (docs are 100% vague, Windows
-    rounds like this)
-    Initialize some undocumented magic DMC variables on PTL
+--_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_
+Content-Type: text/html; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../drm/i915/display/intel_display_driver.c   |   3 +
- .../drm/i915/display/intel_display_types.h    |  17 +
- drivers/gpu/drm/i915/display/intel_dmc.c      |  52 +++
- drivers/gpu/drm/i915/display/intel_dmc.h      |  11 +
- drivers/gpu/drm/i915/display/intel_dsb.c      |   1 +
- drivers/gpu/drm/i915/display/intel_flipq.c    | 381 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_flipq.h    |  32 ++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- 9 files changed, 499 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.h
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+Hello,</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+I'm working on a project using the i915 driver (kernel version 6.6), and ne=
+ed to change the output format from RGB to YCC 420, 444, and 422. I've been=
+ using DRM's modetest to configure the HDMI output (a variety of resolution=
+s, and refresh rates, with a NV12
+ pixel format), but it seems like the i915 driver only has an RGB configura=
+tion.&nbsp;<br>
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+Is there a mechanism to force the HDMI output colorspace to anything beside=
+s RGB, assuming the EDID supports it? Is there a set of patches that enable=
+s this functionality? I applied a &quot;force color format&quot; property p=
+atch (<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2024-Janu=
+ary/437755.html" id=3D"OWAf295c421-9128-0e20-f138-48314a088227" class=3D"OW=
+AAutoLink" title=3D"https://lists.freedesktop.org/archives/dri-devel/2024-J=
+anuary/437755.html" data-linkindex=3D"0" data-auth=3D"NotApplicable" style=
+=3D"margin: 0px;">https://lists.freedesktop.org/archives/dri-devel/2024-Jan=
+uary/437755.html</a>),
+ but the i915 config checker still rejects YCC 420.</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
+s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
+ize: 12pt; color: rgb(0, 0, 0);">
+Sean</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+</body>
+</html>
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 1a90eb1f180a..20ac3b2bdb81 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -266,6 +266,7 @@ i915-y += \
- 	display/intel_fbc.o \
- 	display/intel_fdi.o \
- 	display/intel_fifo_underrun.o \
-+	display/intel_flipq.o \
- 	display/intel_frontbuffer.o \
- 	display/intel_global_state.o \
- 	display/intel_hdcp.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 2bdafab9b6d0..9f2fd7e70a1d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -43,6 +43,7 @@
- #include "intel_fbc.h"
- #include "intel_fbdev.h"
- #include "intel_fdi.h"
-+#include "intel_flipq.h"
- #include "intel_gmbus.h"
- #include "intel_hdcp.h"
- #include "intel_hotplug.h"
-@@ -534,6 +535,8 @@ int intel_display_driver_probe(struct intel_display *display)
- 	 */
- 	intel_hdcp_component_init(display);
- 
-+	intel_flipq_init(display);
-+
- 	/*
- 	 * Force all active planes to recompute their states. So that on
- 	 * mode_setcrtc after probe, all the intel_plane_state variables
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b8836d29a721..c1426f42879d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1365,6 +1365,21 @@ struct intel_pipe_crc {
- 	enum intel_pipe_crc_source source;
- };
- 
-+enum intel_flipq_id {
-+	INTEL_FLIPQ_PLANE_1,
-+	INTEL_FLIPQ_PLANE_2,
-+	INTEL_FLIPQ_PLANE_3,
-+	INTEL_FLIPQ_GENERAL,
-+	INTEL_FLIPQ_FAST,
-+	MAX_INTEL_FLIPQ,
-+};
-+
-+struct intel_flipq {
-+	u32 start_mmioaddr;
-+	enum intel_flipq_id flipq_id;
-+	u8 tail;
-+};
-+
- struct intel_crtc {
- 	struct drm_crtc base;
- 	enum pipe pipe;
-@@ -1396,6 +1411,8 @@ struct intel_crtc {
- 	bool cpu_fifo_underrun_disabled;
- 	bool pch_fifo_underrun_disabled;
- 
-+	struct intel_flipq flipq[MAX_INTEL_FLIPQ];
-+
- 	/* per-pipe watermark state */
- 	struct {
- 		/* watermarks currently being used  */
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a7ba17361d63..2ff62740833c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -24,16 +24,19 @@
- 
- #include <linux/debugfs.h>
- #include <linux/firmware.h>
-+#include <drm/drm_vblank.h>
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-+#include "intel_display_types.h"
- #include "intel_display_rpm.h"
- #include "intel_display_power_well.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
- #include "intel_dmc_regs.h"
-+#include "intel_flipq.h"
- #include "intel_step.h"
- 
- /**
-@@ -511,6 +514,8 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- 		return;
- 
- 	if (DISPLAY_VER(display) >= 20) {
-+		intel_flipq_reset(display, pipe);
-+
- 		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
- 		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
- 	}
-@@ -536,6 +541,8 @@ void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
- 	if (DISPLAY_VER(display) >= 20) {
- 		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
- 		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
-+
-+		intel_flipq_reset(display, pipe);
- 	}
- }
- 
-@@ -715,6 +722,13 @@ void intel_dmc_load_program(struct intel_display *display)
- 		}
- 	}
- 
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_write(display, DMC_FQ_W2_PTS_CFG_SEL,
-+			       PIPE_D_DMC_W2_PTS_CONFIG_SELECT(PIPE_D) |
-+			       PIPE_C_DMC_W2_PTS_CONFIG_SELECT(PIPE_C) |
-+			       PIPE_B_DMC_W2_PTS_CONFIG_SELECT(PIPE_B) |
-+			       PIPE_A_DMC_W2_PTS_CONFIG_SELECT(PIPE_A));
-+
- 	power_domains->dc_state = 0;
- 
- 	gen9_set_dc_state_debugmask(display);
-@@ -1243,6 +1257,17 @@ void intel_dmc_suspend(struct intel_display *display)
- 		intel_dmc_runtime_pm_put(display);
- }
- 
-+void intel_dmc_wait_fw_load(struct intel_display *display)
-+{
-+	struct intel_dmc *dmc = display_to_dmc(display);
-+
-+	if (!HAS_DMC(display))
-+		return;
-+
-+	if (dmc)
-+		flush_work(&dmc->work);
-+}
-+
- /**
-  * intel_dmc_resume() - init DMC firmware during system resume
-  * @display: display instance
-@@ -1478,3 +1503,30 @@ void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
- 		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
- 			crtc->base.base.id, crtc->base.name, tmp);
- }
-+
-+void intel_pipedmc_enable_event(struct intel_crtc *crtc,
-+				enum pipedmc_event_id event)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(crtc->pipe);
-+
-+	dmc_configure_event(display, dmc_id, event, true);
-+}
-+
-+void intel_pipedmc_disable_event(struct intel_crtc *crtc,
-+				 enum pipedmc_event_id event)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(crtc->pipe);
-+
-+	dmc_configure_event(display, dmc_id, event, false);
-+}
-+
-+u32 intel_pipedmc_start_mmioaddr(struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_dmc *dmc = display_to_dmc(display);
-+	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(crtc->pipe);
-+
-+	return dmc ? dmc->dmc_info[dmc_id].start_mmioaddr : 0;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.h b/drivers/gpu/drm/i915/display/intel_dmc.h
-index a98e8deff13a..b94aa2e7e50c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
-@@ -9,12 +9,15 @@
- #include <linux/types.h>
- 
- enum pipe;
-+enum pipedmc_event_id;
- struct drm_printer;
-+struct intel_crtc;
- struct intel_display;
- struct intel_dmc_snapshot;
- 
- void intel_dmc_init(struct intel_display *display);
- void intel_dmc_load_program(struct intel_display *display);
-+void intel_dmc_wait_fw_load(struct intel_display *display);
- void intel_dmc_disable_program(struct intel_display *display);
- void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe);
- void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe);
-@@ -36,4 +39,12 @@ void assert_dmc_loaded(struct intel_display *display);
- 
- void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
- 
-+u32 intel_pipedmc_start_mmioaddr(struct intel_crtc *crtc);
-+void intel_pipedmc_enable_event(struct intel_crtc *crtc,
-+				enum pipedmc_event_id event);
-+void intel_pipedmc_disable_event(struct intel_crtc *crtc,
-+				 enum pipedmc_event_id event);
-+
-+void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe);
-+
- #endif /* __INTEL_DMC_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 1b663065a1cd..c80b52e0e655 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -13,6 +13,7 @@
- #include "intel_de.h"
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
-+#include "intel_dmc_regs.h"
- #include "intel_dsb.h"
- #include "intel_dsb_buffer.h"
- #include "intel_dsb_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
-new file mode 100644
-index 000000000000..85e440ba04c6
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_flipq.c
-@@ -0,0 +1,381 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#include <linux/pci.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "i915_utils.h"
-+#include "intel_step.h"
-+#include "intel_crtc.h"
-+#include "intel_de.h"
-+#include "intel_display_core.h"
-+#include "intel_display_types.h"
-+#include "intel_flipq.h"
-+#include "intel_dmc.h"
-+#include "intel_dmc_regs.h"
-+#include "intel_dsb.h"
-+#include "intel_vblank.h"
-+#include "intel_vrr.h"
-+
-+#define for_each_flipq(flipq_id) \
-+	for ((flipq_id) = INTEL_FLIPQ_PLANE_1; (flipq_id) < MAX_INTEL_FLIPQ; (flipq_id)++)
-+
-+static int intel_flipq_offset(enum intel_flipq_id flipq_id)
-+{
-+	switch (flipq_id) {
-+	case INTEL_FLIPQ_PLANE_1:
-+		return 0x008;
-+	case INTEL_FLIPQ_PLANE_2:
-+		return 0x108;
-+	case INTEL_FLIPQ_PLANE_3:
-+		return 0x208;
-+	case INTEL_FLIPQ_GENERAL:
-+		return 0x308;
-+	case INTEL_FLIPQ_FAST:
-+		return 0x3c8;
-+	default:
-+		MISSING_CASE(flipq_id);
-+		return 0;
-+	}
-+}
-+
-+static int intel_flipq_size_dw(enum intel_flipq_id flipq_id)
-+{
-+	switch (flipq_id) {
-+	case INTEL_FLIPQ_PLANE_1:
-+	case INTEL_FLIPQ_PLANE_2:
-+	case INTEL_FLIPQ_PLANE_3:
-+		return 64;
-+	case INTEL_FLIPQ_GENERAL:
-+	case INTEL_FLIPQ_FAST:
-+		return 48;
-+	default:
-+		MISSING_CASE(flipq_id);
-+		return 0;
-+	}
-+}
-+
-+static int intel_flipq_elem_size_dw(enum intel_flipq_id flipq_id)
-+{
-+	switch (flipq_id) {
-+	case INTEL_FLIPQ_PLANE_1:
-+	case INTEL_FLIPQ_PLANE_2:
-+	case INTEL_FLIPQ_PLANE_3:
-+		return 4;
-+	case INTEL_FLIPQ_GENERAL:
-+	case INTEL_FLIPQ_FAST:
-+		return 6;
-+	default:
-+		MISSING_CASE(flipq_id);
-+		return 0;
-+	}
-+}
-+
-+static int intel_flipq_size_entries(enum intel_flipq_id flipq_id)
-+{
-+	return intel_flipq_size_dw(flipq_id) / intel_flipq_elem_size_dw(flipq_id);
-+}
-+
-+static void intel_flipq_crtc_init(struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	enum intel_flipq_id flipq_id;
-+
-+	for_each_flipq(flipq_id) {
-+		struct intel_flipq *flipq = &crtc->flipq[flipq_id];
-+
-+		flipq->start_mmioaddr = intel_pipedmc_start_mmioaddr(crtc) + intel_flipq_offset(flipq_id);
-+		flipq->flipq_id = flipq_id;
-+
-+		drm_dbg_kms(display->drm, "[CRTC:%d:%s] flip queue %d: start 0x%x\n",
-+			    crtc->base.base.id, crtc->base.name,
-+			    flipq_id, flipq->start_mmioaddr);
-+	}
-+}
-+
-+bool intel_flipq_supported(struct intel_display *display)
-+{
-+	if (!display->dmc.dmc)
-+		return false;
-+
-+	if (DISPLAY_VER(display) == 20)
-+		return true;
-+
-+	/* DMC firmware expects VRR timing generator to be used */
-+	return DISPLAY_VER(display) >= 30 && intel_vrr_always_use_vrr_tg(display);
-+}
-+
-+void intel_flipq_init(struct intel_display *display)
-+{
-+	struct intel_crtc *crtc;
-+
-+	intel_dmc_wait_fw_load(display);
-+
-+	for_each_intel_crtc(display->drm, crtc)
-+		intel_flipq_crtc_init(crtc);
-+}
-+
-+static void intel_flipq_preempt(struct intel_crtc *crtc, bool preempt)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	drm_dbg_kms(display->drm, "preempt %d\n", preempt);
-+
-+	intel_de_rmw(display, PIPEDMC_FQ_CTRL(crtc->pipe),
-+		     PIPEDMC_FQ_CTRL_PREEMPT, preempt ? PIPEDMC_FQ_CTRL_PREEMPT : 0);
-+	/* FIXME what timeout? */
-+	if (preempt &&
-+	    intel_de_wait_for_clear(display, PIPEDMC_FQ_CTRL(crtc->pipe),
-+				    PIPEDMC_FQ_CTRL_BUSY, 10))
-+		drm_err(display->drm, "[CRTC:%d:%s] flip queue preempt timeout\n",
-+			crtc->base.base.id, crtc->base.name);
-+}
-+
-+static int intel_flipq_current_head(struct intel_crtc *crtc, enum intel_flipq_id flipq_id)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	return intel_de_read(display, PIPEDMC_FPQ_CHP(crtc->pipe, flipq_id));
-+}
-+
-+static void intel_flipq_write_tail(struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	intel_de_write(display, PIPEDMC_FPQ_ATOMIC_TP(crtc->pipe),
-+		       PIPEDMC_FPQ_PLANEQ_3_TP(crtc->flipq[INTEL_FLIPQ_PLANE_3].tail) |
-+		       PIPEDMC_FPQ_PLANEQ_2_TP(crtc->flipq[INTEL_FLIPQ_PLANE_2].tail) |
-+		       PIPEDMC_FPQ_PLANEQ_1_TP(crtc->flipq[INTEL_FLIPQ_PLANE_1].tail) |
-+		       PIPEDMC_FPQ_FASTQ_TP(crtc->flipq[INTEL_FLIPQ_FAST].tail) |
-+		       PIPEDMC_FPQ_GENERALQ_TP(crtc->flipq[INTEL_FLIPQ_GENERAL].tail));
-+}
-+
-+static void intel_flipq_sw_dmc_wake(struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	intel_de_write(display, PIPEDMC_FPQ_CTL1(crtc->pipe), PIPEDMC_SW_DMC_WAKE);
-+}
-+
-+static int cdclk_factor(struct intel_display *display)
-+{
-+	if (DISPLAY_VER(display) >= 30)
-+		return 120;
-+	else
-+		return 280;
-+}
-+
-+static int intel_flipq_exec_time_us(struct intel_display *display)
-+{
-+	return intel_dsb_exec_time_us() +
-+		DIV_ROUND_UP(display->cdclk.hw.cdclk * cdclk_factor(display), 540000) +
-+		display->sagv.block_time_us;
-+}
-+
-+static int intel_flipq_exec_time_lines(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
-+					intel_flipq_exec_time_us(display));
-+}
-+
-+void intel_flipq_reset(struct intel_display *display, enum pipe pipe)
-+{
-+	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-+	enum intel_flipq_id flipq_id;
-+
-+	intel_de_write(display, PIPEDMC_FQ_CTRL(pipe), 0);
-+
-+	intel_de_write(display, PIPEDMC_SCANLINECMPLOWER(pipe), 0);
-+	intel_de_write(display, PIPEDMC_SCANLINECMPUPPER(pipe), 0);
-+
-+	for_each_flipq(flipq_id) {
-+		struct intel_flipq *flipq = &crtc->flipq[flipq_id];
-+
-+		intel_de_write(display, PIPEDMC_FPQ_HP(pipe, flipq_id), 0);
-+		intel_de_write(display, PIPEDMC_FPQ_CHP(pipe, flipq_id), 0);
-+
-+		flipq->tail = 0;
-+	}
-+
-+	intel_de_write(display, PIPEDMC_FPQ_ATOMIC_TP(pipe), 0);
-+}
-+
-+static enum pipedmc_event_id flipq_event_id(struct intel_display *display)
-+{
-+	if (DISPLAY_VER(display) >= 30)
-+		return PIPEDMC_EVENT_FULL_FQ_WAKE_TRIGGER;
-+	else
-+		return PIPEDMC_EVENT_SCANLINE_INRANGE_FQ_TRIGGER;
-+}
-+
-+void intel_flipq_enable(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	/* FIXME what to do with VRR? */
-+	int scanline = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode) -
-+		intel_flipq_exec_time_lines(crtc_state);
-+
-+	drm_dbg_kms(display->drm, "[CRTC:%d:%s] flipq queue scanlined %d-%d\n",
-+		    crtc->base.base.id, crtc->base.name, scanline - 2, scanline);
-+
-+	if (DISPLAY_VER(display) >= 30) {
-+		u32 start_mmioaddr = intel_pipedmc_start_mmioaddr(crtc);
-+
-+		/* undocumented magic DMC variables */
-+		intel_de_write(display, PTL_PIPEDMC_EXEC_TIME_LINES(start_mmioaddr),
-+			       intel_flipq_exec_time_lines(crtc_state));
-+		intel_de_write(display, PTL_PIPEDMC_END_OF_EXEC_GB(start_mmioaddr),
-+			       100);
-+	}
-+
-+	intel_de_write(display, PIPEDMC_SCANLINECMPLOWER(crtc->pipe),
-+		       PIPEDMC_SCANLINEINRANGECMP_EN |
-+		       PIPEDMC_SCANLINE_LOWER(scanline - 2));
-+	intel_de_write(display, PIPEDMC_SCANLINECMPUPPER(crtc->pipe),
-+		       PIPEDMC_SCANLINE_UPPER(scanline));
-+
-+	intel_pipedmc_enable_event(crtc, flipq_event_id(display));
-+
-+	intel_de_write(display, PIPEDMC_FQ_CTRL(crtc->pipe), PIPEDMC_FQ_CTRL_ENABLE);
-+}
-+
-+void intel_flipq_disable(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	intel_de_write(display, PIPEDMC_FQ_CTRL(crtc->pipe), 0);
-+
-+	intel_pipedmc_disable_event(crtc, flipq_event_id(display));
-+
-+	intel_de_write(display, PIPEDMC_SCANLINECMPLOWER(crtc->pipe), 0);
-+	intel_de_write(display, PIPEDMC_SCANLINECMPUPPER(crtc->pipe), 0);
-+}
-+
-+static bool assert_flipq_has_room(struct intel_crtc *crtc,
-+				  enum intel_flipq_id flipq_id)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_flipq *flipq = &crtc->flipq[flipq_id];
-+	int head, size = intel_flipq_size_entries(flipq_id);
-+
-+	head = intel_flipq_current_head(crtc, flipq_id);
-+
-+	return !drm_WARN(display->drm,
-+			 (flipq->tail + size - head) % size >= size - 1,
-+			 "[CRTC:%d:%s] FLIPQ %d overflow (head %d, tail %d, size %d)\n",
-+			 crtc->base.base.id, crtc->base.name, flipq_id,
-+			 head, flipq->tail, size);
-+}
-+
-+static void intel_flipq_write(struct intel_display *display,
-+			      struct intel_flipq *flipq, u32 data, int i)
-+{
-+	intel_de_write(display, PIPEDMC_FQ_RAM(flipq->start_mmioaddr, flipq->tail *
-+					       intel_flipq_elem_size_dw(flipq->flipq_id) + i), data);
-+}
-+
-+static void lnl_flipq_add(struct intel_display *display,
-+			  struct intel_flipq *flipq,
-+			  unsigned int pts,
-+			  enum intel_dsb_id dsb_id,
-+			  struct intel_dsb *dsb)
-+{
-+	int i = 0;
-+
-+	switch (flipq->flipq_id) {
-+	case INTEL_FLIPQ_GENERAL:
-+		intel_flipq_write(display, flipq, pts, i++);
-+		intel_flipq_write(display, flipq, intel_dsb_head(dsb), i++);
-+		intel_flipq_write(display, flipq, LNL_FQ_INTERRUPT |
-+				  LNL_FQ_DSB_ID(dsb_id) |
-+				  LNL_FQ_DSB_SIZE(intel_dsb_size(dsb) / 64), i++);
-+		intel_flipq_write(display, flipq, 0, i++);
-+		intel_flipq_write(display, flipq, 0, i++); /* head for second DSB */
-+		intel_flipq_write(display, flipq, 0, i++); /* DSB engine + size for second DSB */
-+		break;
-+	case INTEL_FLIPQ_PLANE_1:
-+	case INTEL_FLIPQ_PLANE_2:
-+	case INTEL_FLIPQ_PLANE_3:
-+		intel_flipq_write(display, flipq, pts, i++);
-+		intel_flipq_write(display, flipq, intel_dsb_head(dsb), i++);
-+		intel_flipq_write(display, flipq, LNL_FQ_INTERRUPT |
-+				  LNL_FQ_DSB_ID(dsb_id) |
-+				  LNL_FQ_DSB_SIZE(intel_dsb_size(dsb) / 64), i++);
-+		intel_flipq_write(display, flipq, 0, i++);
-+		break;
-+	default:
-+		MISSING_CASE(flipq->flipq_id);
-+		return;
-+	}
-+}
-+
-+static void ptl_flipq_add(struct intel_display *display,
-+			  struct intel_flipq *flipq,
-+			  unsigned int pts,
-+			  enum intel_dsb_id dsb_id,
-+			  struct intel_dsb *dsb)
-+{
-+	int i = 0;
-+
-+	switch (flipq->flipq_id) {
-+	case INTEL_FLIPQ_GENERAL:
-+		intel_flipq_write(display, flipq, pts, i++);
-+		intel_flipq_write(display, flipq, 0, i++);
-+		intel_flipq_write(display, flipq, PTL_FQ_INTERRUPT |
-+				  PTL_FQ_DSB_ID(dsb_id) |
-+				  PTL_FQ_DSB_SIZE(intel_dsb_size(dsb) / 64), i++);
-+		intel_flipq_write(display, flipq, intel_dsb_head(dsb), i++);
-+		intel_flipq_write(display, flipq, 0, i++); /* DSB engine + size for second DSB */
-+		intel_flipq_write(display, flipq, 0, i++); /* head for second DSB */
-+		break;
-+	case INTEL_FLIPQ_PLANE_1:
-+	case INTEL_FLIPQ_PLANE_2:
-+	case INTEL_FLIPQ_PLANE_3:
-+		intel_flipq_write(display, flipq, pts, i++);
-+		intel_flipq_write(display, flipq, 0, i++);
-+		intel_flipq_write(display, flipq, PTL_FQ_INTERRUPT |
-+				  PTL_FQ_DSB_ID(dsb_id) |
-+				  PTL_FQ_DSB_SIZE(intel_dsb_size(dsb) / 64), i++);
-+		intel_flipq_write(display, flipq, intel_dsb_head(dsb), i++);
-+		break;
-+	default:
-+		MISSING_CASE(flipq->flipq_id);
-+		return;
-+	}
-+}
-+
-+void intel_flipq_add(struct intel_crtc *crtc,
-+		     enum intel_flipq_id flipq_id,
-+		     unsigned int pts,
-+		     enum intel_dsb_id dsb_id,
-+		     struct intel_dsb *dsb)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_flipq *flipq = &crtc->flipq[flipq_id];
-+
-+	if (!assert_flipq_has_room(crtc, flipq_id))
-+		return;
-+
-+	pts += intel_de_read(display, PIPEDMC_FPQ_TS(crtc->pipe));
-+
-+	intel_flipq_preempt(crtc, true);
-+
-+	if (DISPLAY_VER(display) >= 30)
-+		ptl_flipq_add(display, flipq,  pts, dsb_id, dsb);
-+	else
-+		lnl_flipq_add(display, flipq,  pts, dsb_id, dsb);
-+
-+	flipq->tail = (flipq->tail + 1) % intel_flipq_size_entries(flipq->flipq_id);
-+	intel_flipq_write_tail(crtc);
-+
-+	intel_flipq_preempt(crtc, false);
-+
-+	intel_flipq_sw_dmc_wake(crtc);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_flipq.h b/drivers/gpu/drm/i915/display/intel_flipq.h
-new file mode 100644
-index 000000000000..64d3c2a5bb7b
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_flipq.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_FLIPQ_H__
-+#define __INTEL_FLIPQ_H__
-+
-+#include <linux/types.h>
-+
-+enum intel_dsb_id;
-+enum intel_flipq_id;
-+enum pipe;
-+struct intel_crtc;
-+struct intel_crtc_state;
-+struct intel_display;
-+struct intel_dsb;
-+
-+bool intel_flipq_supported(struct intel_display *display);
-+void intel_flipq_init(struct intel_display *display);
-+void intel_flipq_reset(struct intel_display *display, enum pipe pipe);
-+
-+void intel_flipq_enable(const struct intel_crtc_state *crtc_state);
-+void intel_flipq_disable(const struct intel_crtc_state *old_crtc_state);
-+
-+void intel_flipq_add(struct intel_crtc *crtc,
-+		     enum intel_flipq_id flip_queue_id,
-+		     unsigned int pts,
-+		     enum intel_dsb_id dsb_id,
-+		     struct intel_dsb *dsb);
-+
-+#endif /* __INTEL_FLIPQ_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index e4bf484d4121..558d282c7b90 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -254,6 +254,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_fbc.o \
- 	i915-display/intel_fdi.o \
- 	i915-display/intel_fifo_underrun.o \
-+	i915-display/intel_flipq.o \
- 	i915-display/intel_frontbuffer.o \
- 	i915-display/intel_global_state.o \
- 	i915-display/intel_gmbus.o \
--- 
-2.49.0
+--_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_--
 
