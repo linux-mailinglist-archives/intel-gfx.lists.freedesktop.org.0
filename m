@@ -2,138 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59ADFAC152A
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 22:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF56AC1588
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 May 2025 22:33:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9619C10E0C7;
-	Thu, 22 May 2025 20:00:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qsc.com header.i=@qsc.com header.b="Rxo3FOKA";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F7C710E0FE;
+	Thu, 22 May 2025 20:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-160.mimecast.com
- (us-smtp-delivery-160.mimecast.com [170.10.133.160])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C401810E0C7
- for <intel-gfx@lists.freedesktop.org>; Thu, 22 May 2025 20:00:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qsc.com;
- s=mimecast20190503; t=1747944030;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type;
- bh=i8AShuuNoo4ThK/G9zvp7cE3z6roX60An6wFxP/Xgpg=;
- b=Rxo3FOKAKs4js0A/ypHSx/5UHL2aXcmAspBDLjM/0CLYMmTfx+KcRpIH7GOVpBLtAWLf+R
- J4vmKUZOt+NjUWsHc6WR/LGVpDVSCIXwShGNwhpiO2bVRMI8l+rIGUziW68Brsdf6VXhas
- QUi5ZfLV0kAHHwJJ36MmQvwOizA+KcM=
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04lp2041.outbound.protection.outlook.com [104.47.74.41]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-76-62YEK3C8N9aBy745oa8kLQ-1; Thu,
- 22 May 2025 16:00:29 -0400
-X-MC-Unique: 62YEK3C8N9aBy745oa8kLQ-1
-X-Mimecast-MFC-AGG-ID: 62YEK3C8N9aBy745oa8kLQ_1747944028
-Received: from SJ2PR16MB5525.namprd16.prod.outlook.com (2603:10b6:a03:539::5)
- by LV8PR16MB5588.namprd16.prod.outlook.com (2603:10b6:408:1c3::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Thu, 22 May
- 2025 20:00:26 +0000
-Received: from SJ2PR16MB5525.namprd16.prod.outlook.com
- ([fe80::82ea:a206:81c1:314d]) by SJ2PR16MB5525.namprd16.prod.outlook.com
- ([fe80::82ea:a206:81c1:314d%6]) with mapi id 15.20.8769.019; Thu, 22 May 2025
- 20:00:26 +0000
-From: Sean Summers <Sean.Summers@qsc.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: drm/i915: How to set the intel HDMI output format?
-Thread-Topic: drm/i915: How to set the intel HDMI output format?
-Thread-Index: AQHby1Ql5GZ02Yp/wUWi48RXar9lgA==
-Date: Thu, 22 May 2025 20:00:26 +0000
-Message-ID: <SJ2PR16MB55258CF988D78C02FFEB302D8199A@SJ2PR16MB5525.namprd16.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR16MB5525:EE_|LV8PR16MB5588:EE_
-x-ms-office365-filtering-correlation-id: 28bd70c3-a2d6-45be-3453-08dd996b4b77
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|13003099007|8096899003|38070700018
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?OcWK3iVTx9kN0hhEqLFErVDZmXo3nDAUhWAQ1MoZe8DR7SBzaWfbabG3F3?=
- =?iso-8859-1?Q?lkcY47VKKhi/8566WEKlxiAWH30gh7sqpMpEGY0nuet4MY6OWoyxa819SC?=
- =?iso-8859-1?Q?U32oMlvudC4BHTjHAMF+p9gZwxIXiqF1sfgIEn/wPZmN4tI+wChUyrN1a4?=
- =?iso-8859-1?Q?mYXlvCt+OAM2ezkxcH8G2OrvKwLePbaNNcDU8xDehnSF23by46iJW1hRc7?=
- =?iso-8859-1?Q?Vl8ydJs1DHibPFrXmTvsJd3tg6ua7WuJmFsGdWNABHERQX2Y1snGB/2JEo?=
- =?iso-8859-1?Q?zn3u/NtSAA6Kb/z+agYTlQq3B/a15ajvghGEYAl64iM/7Zy7m2zJFl1vfm?=
- =?iso-8859-1?Q?7ORpOVTKBmq9ceX9pGCliFU7uhvqElnG5LK42Uc9hL07SKQIMAi0rmYFVn?=
- =?iso-8859-1?Q?8VkXzDsC5qoqeK3Yzj+RZIe8zeWLTTtOBo2zoIBTVgpTpHYTny7/k45sAl?=
- =?iso-8859-1?Q?aEtx2sTGkF+WhbPW3lVpwIOEwRV/AMHZSbM3poCrOabzdKBv+lCSofWG+6?=
- =?iso-8859-1?Q?7NVXJqOZYk8dP7GPJhpotDyH8039j61qHSQvKQtHE57X8xuxxdAZr8GS57?=
- =?iso-8859-1?Q?1qHeF43w8vZEJpevizNmmLXoYH9w8uRk6KxOCRkTQ17EzZwZrleZUulTlP?=
- =?iso-8859-1?Q?R1osZYQNejjv2r2Zc/6WeddMeyVrNqGc+V6c0EBLYExdupSEjvwG7HBhCr?=
- =?iso-8859-1?Q?qGJ6qfKB4BZJFvqh8kVRuTNRfWbdyAq7oDkRi1V1/YTG5/VwwoIN5Fx8tK?=
- =?iso-8859-1?Q?7LqlMPsQbYD6q8OEPEoWBVKTlfcuNImryr+f63r0RSifSDgS6IoTFj0pO3?=
- =?iso-8859-1?Q?A0XFB+rYwhzn6RavJPGzPuoG0iZKdV6CowBL0R5asWYVqQcRIJ78g3rtCU?=
- =?iso-8859-1?Q?Id6YQ6/zee7+stzi+w6tEltVd+HVK6roT/6nFZ1fXS9IdhajtdYdRW1bBD?=
- =?iso-8859-1?Q?E29qlwQqJhX4tk/gzQBNYMNnFwANih8HFk8UIXDEEkg5DnuxylhX6Dalr3?=
- =?iso-8859-1?Q?0VZJi39BnGHouXJFSIaB+HANdDohhhFqyU7Dv+Y0xsDAgceP9zCuKjAw5W?=
- =?iso-8859-1?Q?BWf+hxi16qsfXGRCpr1dg71w6isUJ5tt6nJ+2OnncO+SP2mr9evQSuRYSW?=
- =?iso-8859-1?Q?8B2x6BLqHU8+Xf9p9xDp12LVG/EMmHRe6+3OVeRUbiabb8IWb7sYqt5dr3?=
- =?iso-8859-1?Q?LgWZGvdRgXNKUIJPpoxtz7hE3LTfrXBgNmvWioUpuaAAq84oR9hu+Sbwbi?=
- =?iso-8859-1?Q?CKJvMrfRclNbf1P9cZMlWd5ugKn4I/hbXq0lda47sijEO4picpOuFXuCGU?=
- =?iso-8859-1?Q?GvZLHNZ+1MdId4Uoa8ehwYzK8hx9e4Tf8OoMVQ4omHQeTzWz2l9f5EjU6g?=
- =?iso-8859-1?Q?Wq33yqt8NOUOtdzTxE7L7qsXMg959HI5ZrMTfIKqjgT/uElXj5JATP8mwM?=
- =?iso-8859-1?Q?UwoegSRx+TBxJrxF9Yav6JqRrN9Mc+fN+vZljVk4S4BuGAMgUDaORYSolT?=
- =?iso-8859-1?Q?4=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR16MB5525.namprd16.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(13003099007)(8096899003)(38070700018);
- DIR:OUT; SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?NVcu3PbxARQ5qKo+Ro8205KQhDG2rql8FHQs/4Z87rTc6lYqrB25Y0acc7?=
- =?iso-8859-1?Q?1H7c1N3Dm111B3APjcGvSziaty9zksfx0S7JwNoh1mYO19VQ2ugEEfSUA0?=
- =?iso-8859-1?Q?vdcsd1zmEiGTWN/9nldpBL9X4jIeWhO2DYdG0aLYd/xGd5LsxWmtX9UjDc?=
- =?iso-8859-1?Q?ytck5LIRHAKEya/7h27LwP2kGuNDYXXhBlRzbjJWGqPsMpAJclkdKe/nOa?=
- =?iso-8859-1?Q?25aeH6OfauHiIfdcioX85wexAQiuY1GrcFzX+GpjtJsLo9FQhhofc8Qw66?=
- =?iso-8859-1?Q?i08EEZPcGnDcEQnzVyzYov82/6b8h55iq8zxssMJITMF4HruHqAARALlhi?=
- =?iso-8859-1?Q?AYu0YGCQs6FxYI54a//3A62qBzNqgMy7WEhfxvhZEH3BQwr97bTdzbqBqD?=
- =?iso-8859-1?Q?gc37DG6sUJrvsIeSIL39SFnYp6lKJATcNddONh0goBwjcJCaWANbmpiERw?=
- =?iso-8859-1?Q?pMq2D29+iq2nc43mj59MpUX/QWIZfDe0SbQa/f/+nwNMmToa3E47ZI0q96?=
- =?iso-8859-1?Q?5Ypn4HdGC2+46PocIY58FveMJF4gqS+dYlFO1AXQjVQjwWjMs5lWB4JCXo?=
- =?iso-8859-1?Q?DDscELKDjsSv3qJK3OFVmQUaup6KM0Pr6Xa+c1f3tCoMXan2arfG+g8Opk?=
- =?iso-8859-1?Q?Qxk4k+0/bJeRhMf5uPZYtfPje/+nheMNHOxjsbSqDx8U390yCK0zvQF7wi?=
- =?iso-8859-1?Q?2kGQ1xTXWuKC0LhtN86BfD3XzppFlx8M+UNNGGVf5/MnKVsAzhQIpiWCE3?=
- =?iso-8859-1?Q?4GLk35/a0PfBWpstxyZi4kGgntJTw75tIVQ8zlI5AF1MLcNAiw/JRERSLG?=
- =?iso-8859-1?Q?0FWgR3ziAU7HuHxKTXf7Dtn5x0bgTum+8Uxz7a+7dmhfYaGB4T6QdIoyB1?=
- =?iso-8859-1?Q?WSyWjPRVCv5vTde1ISsu3BUVOHHuOXuLYMcIwp3CkqTp9gQqs0kZmgmB8R?=
- =?iso-8859-1?Q?EV+gh9nH9nAwyabvCi2Hu46Mjg2L41yLTEVpEx8TvA2z3KOLAgrKCEJNmK?=
- =?iso-8859-1?Q?gnRIk9iMWHINs/VJLUC7OmsR6VaHU6fsL4/Jerb3OzKIVvDgaR5JhsrZ+o?=
- =?iso-8859-1?Q?0yu30B84ERMpz7QK1WgyizRVHiNk+Ljf19Ho9lJcbioXHYUwg5J1Bsa5b5?=
- =?iso-8859-1?Q?zOT9E2vuUaDe55a9ek+5ieYRHpY0xCEBi4uzFHeP/tZXelWiFRWUIDB1Du?=
- =?iso-8859-1?Q?spCY8741Hhg60p+8ZEjbbTRyEYqCrQUeMdGtIMi+W5owbmOt2q+BwXQRfS?=
- =?iso-8859-1?Q?6vurf9++RtlrKLtle/07E24JTYIoA5YKL/XWqGsD1yjx+aqG93bS6sWkYd?=
- =?iso-8859-1?Q?XPgrJTHwekPi6xmMF09XUHdfgJL3meJ23nEMZWU35wul4bWrn5j5G1JFu5?=
- =?iso-8859-1?Q?+owq9NmDz8Xk2AlkfLf2Xf2fixQOZSZYFpwd6rTOomZxI13K1QdJIANSI8?=
- =?iso-8859-1?Q?c8VXeazcJQOAJRZyzCrCi7kDGMjAo/LQVgDeQwdMn1loBw9qEVzOxMsumN?=
- =?iso-8859-1?Q?J1/rOBJBEqOkGRF+AEoxx8k1ITML+rVgyepvoQrGGbuMlsdaeodMKx1Fy4?=
- =?iso-8859-1?Q?WY/U+VSnvN3uMnftsUvpWLqaZZiJ5wzRbpjxfGL7Laq5slCMClxDFIsh0q?=
- =?iso-8859-1?Q?2NnAQYkIv4o1GO0geTH/VbZlEjo6EABd61?=
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C209D10E0FE;
+ Thu, 22 May 2025 20:33:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-OriginatorOrg: qsc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR16MB5525.namprd16.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28bd70c3-a2d6-45be-3453-08dd996b4b77
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 May 2025 20:00:26.2565 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 23298f55-90ba-49c3-9286-576ec76d1e38
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DUIjC1wQxmGNUJJ3Mr5ODT6T6XWrFp9wfdSY7AexMqllQtb37QD1APeerKbBwARmTix5uW0CCGCL56K1l0mZtw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR16MB5588
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: j4eDJMkDflx8lABj8Ywz8MSouUrnqomgKSh7Zn5dhHw_1747944028
-X-Mimecast-Originator: qsc.com
-Content-Language: en-US
-Content-Type: multipart/alternative;
- boundary="_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/flipq=3A_Ro?=
+ =?utf-8?q?ugh_flip_queue_implementation_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 22 May 2025 20:33:53 -0000
+Message-ID: <174794603378.15807.4952058377748875023@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250521181645.32737-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,109 +37,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hello,
+Series: drm/i915/flipq: Rough flip queue implementation (rev6)
+URL   : https://patchwork.freedesktop.org/series/149110/
+State : warning
 
-I'm working on a project using the i915 driver (kernel version 6.6), and ne=
-ed to change the output format from RGB to YCC 420, 444, and 422. I've been=
- using DRM's modetest to configure the HDMI output (a variety of resolution=
-s, and refresh rates, with a NV12 pixel format), but it seems like the i915=
- driver only has an RGB configuration.
+== Summary ==
 
-Is there a mechanism to force the HDMI output colorspace to anything beside=
-s RGB, assuming the EDID supports it? Is there a set of patches that enable=
-s this functionality? I applied a "force color format" property patch (http=
-s://lists.freedesktop.org/archives/dri-devel/2024-January/437755.html), but=
- the i915 config checker still rejects YCC 420.
+Error: dim checkpatch failed
+6801232e1c16 drm/i915/dsb: Extract intel_dsb_ins_align()
+4f8c511284d7 drm/i915/dsb: Use intel_dsb_ins_align() in intel_dsb_align_tail()
+4512f2aa159e drm/i915/dsb: Extract assert_dsb_tail_is_aligned()
+c514a0d0f32f drm/i915/dsb: Extract intel_dsb_{head,tail}()
+86f81a4c5a3d drm/i915/dsb: Provide intel_dsb_head() and intel_dsb_size()
+c642b11b2a84 drm/i915/dsb: Introduce intel_dsb_exec_time_us()
+1c905deb1773 drm/i915/dmc: Define flip queue related PIPEDMC registers
+-:64: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#64: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:322:
++#define PIPEDMC_FQ_STATUS(pipe)		_MMIO_PIPE((pipe), _PIPEDMC_FQ_STATUS_A, _PIPEDMC_FQ_STATUS_B)
 
-Thanks,
-Sean
+-:71: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:329:
++#define PIPEDMC_FPQ_ATOMIC_TP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_FPQ_ATOMIC_TP_A, _PIPEDMC_FPQ_ATOMIC_TP_B)
 
+-:85: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#85: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:343:
++#define PIPEDMC_FPQ_LINES_TO_W1		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W1_A, _PIPEDMC_FPQ_LINES_TO_W1_B)
 
+-:89: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#89: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:347:
++#define PIPEDMC_FPQ_LINES_TO_W2		_MMIO_PIPE((pipe), _PIPEDMC_FPQ_LINES_TO_W2_A, _PIPEDMC_FPQ_LINES_TO_W2_B)
 
---_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_
-Content-Type: text/html; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+-:93: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#93: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:351:
++#define PIPEDMC_SCANLINECMP(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMP_A, _PIPEDMC_SCANLINECMP_B)
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-Hello,</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-I'm working on a project using the i915 driver (kernel version 6.6), and ne=
-ed to change the output format from RGB to YCC 420, 444, and 422. I've been=
- using DRM's modetest to configure the HDMI output (a variety of resolution=
-s, and refresh rates, with a NV12
- pixel format), but it seems like the i915 driver only has an RGB configura=
-tion.&nbsp;<br>
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-Is there a mechanism to force the HDMI output colorspace to anything beside=
-s RGB, assuming the EDID supports it? Is there a set of patches that enable=
-s this functionality? I applied a &quot;force color format&quot; property p=
-atch (<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2024-Janu=
-ary/437755.html" id=3D"OWAf295c421-9128-0e20-f138-48314a088227" class=3D"OW=
-AAutoLink" title=3D"https://lists.freedesktop.org/archives/dri-devel/2024-J=
-anuary/437755.html" data-linkindex=3D"0" data-auth=3D"NotApplicable" style=
-=3D"margin: 0px;">https://lists.freedesktop.org/archives/dri-devel/2024-Jan=
-uary/437755.html</a>),
- but the i915 config checker still rejects YCC 420.</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-Thanks,</div>
-<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
-background-color: rgb(255, 255, 255); margin: 0px; font-family: Aptos, Apto=
-s_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-s=
-ize: 12pt; color: rgb(0, 0, 0);">
-Sean</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0);">
-<br>
-</div>
-</body>
-</html>
+-:99: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#99: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:357:
++#define PIPEDMC_SCANLINECMPLOWER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPLOWER_A, _PIPEDMC_SCANLINECMPLOWER_B)
 
---_000_SJ2PR16MB55258CF988D78C02FFEB302D8199ASJ2PR16MB5525namp_--
+-:103: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#103: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:361:
++#define   PIPEDMC_SCANLINE_LOWER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_LOWER_MASK, (scanline))
+
+-:107: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#107: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:365:
++#define PIPEDMC_SCANLINECMPUPPER(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINECMPUPPER_A, _PIPEDMC_SCANLINECMPUPPER_B)
+
+-:109: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#109: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:367:
++#define   PIPEDMC_SCANLINE_UPPER(scanline)	REG_FIELD_PREP(PIPEDMC_SCANLINE_UPPER_MASK, (scanline))
+
+-:111: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#111: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:369:
++#define _MMIO_PIPEDMC_FPQ(pipe, fq_id, \
++			  reg_fpq1_a, reg_fpq2_a, reg_fpq3_a, reg_fpq4_a, \
++			  reg_fpq1_b, reg_fpq2_b, reg_fpq3_b, reg_fpq4_b) \
++	_MMIO(_PICK_EVEN_2RANGES((fq_id), INTEL_FLIPQ_PLANE_3, \
++				 _PIPE((pipe), (reg_fpq1_a), (reg_fpq1_b)), \
++				 _PIPE((pipe), (reg_fpq2_a), (reg_fpq2_b)), \
++				 _PIPE((pipe), (reg_fpq3_a), (reg_fpq3_b)), \
++				 _PIPE((pipe), (reg_fpq4_a), (reg_fpq4_b))))
+
+-:163: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#163: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:421:
++							  _PIPEDMC_FPQ1_CHP_A, _PIPEDMC_FPQ2_CHP_A, \
+
+-:164: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#164: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:422:
++							  _PIPEDMC_FPQ3_CHP_A, _PIPEDMC_FPQ4_CHP_A, \
+
+-:165: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#165: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:423:
++							  _PIPEDMC_FPQ1_CHP_B, _PIPEDMC_FPQ2_CHP_B, \
+
+-:174: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#174: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:432:
++#define PIPEDMC_SCANLINE_RO(pipe)	_MMIO_PIPE((pipe), _PIPEDMC_SCANLINE_RO_A, _PIPEDMC_SCANLINE_RO_B)
+
+-:196: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#196: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:543:
++#define   PIPE_D_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_D_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
+
+-:198: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#198: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:545:
++#define   PIPE_C_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_C_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
+
+-:200: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:547:
++#define   PIPE_B_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_B_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
+
+-:202: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#202: FILE: drivers/gpu/drm/i915/display/intel_dmc_regs.h:549:
++#define   PIPE_A_DMC_W2_PTS_CONFIG_SELECT(pipe)	REG_FIELD_PREP(PIPE_A_DMC_W2_PTS_CONFIG_SELECT_MASK, (pipe))
+
+total: 0 errors, 17 warnings, 1 checks, 215 lines checked
+98aac7ba81eb drm/i915/flipq: Provide the nuts and bolts code for flip queue
+-:271: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#271: 
+new file mode 100644
+
+-:298: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'flipq_id' - possible side-effects?
+#298: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:23:
++#define for_each_flipq(flipq_id) \
++	for ((flipq_id) = INTEL_FLIPQ_PLANE_1; (flipq_id) < MAX_INTEL_FLIPQ; (flipq_id)++)
+
+-:365: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#365: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:90:
++		flipq->start_mmioaddr = intel_pipedmc_start_mmioaddr(crtc) + intel_flipq_offset(flipq_id);
+
+-:556: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#556: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:281:
++					       intel_flipq_elem_size_dw(flipq->flipq_id) + i), data);
+
+total: 0 errors, 3 warnings, 1 checks, 600 lines checked
+07137441ebe4 drm/i915/flipq: Implement flip queue based commit path
+-:192: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#192: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:66:
++intel_display_param_named_unsafe(enable_flipq, bool, 0400,
++	"Enable DMC flip queue (default: false)");
+
+total: 0 errors, 0 warnings, 1 checks, 215 lines checked
+934d0dbd2d69 drm/i915/flipq: Implement Wa_18034343758
+cec1444a21d8 drm/i915/flipq: Implement Wa_16018781658 for LNL-A0
+dc61ddbc80c1 drm/i915/flipq: Add intel_flipq_dump()
+-:33: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_cont([subsystem]dev, ... then dev_cont(dev, ... then pr_cont(...  to printk(KERN_CONT ...
+#33: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:178:
++		printk(KERN_CONT " 0x%08x",
+
+-:33: WARNING:LOGGING_CONTINUATION: Avoid logging continuation uses where feasible
+#33: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:178:
++		printk(KERN_CONT " 0x%08x",
+
+-:35: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:180:
++		if (i % intel_flipq_elem_size_dw(flipq_id) == intel_flipq_elem_size_dw(flipq_id) - 1)
+
+-:36: WARNING:PREFER_PR_LEVEL: Prefer [subsystem eg: netdev]_cont([subsystem]dev, ... then dev_cont(dev, ... then pr_cont(...  to printk(KERN_CONT ...
+#36: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:181:
++			printk(KERN_CONT "\n");
+
+-:36: WARNING:LOGGING_CONTINUATION: Avoid logging continuation uses where feasible
+#36: FILE: drivers/gpu/drm/i915/display/intel_flipq.c:181:
++			printk(KERN_CONT "\n");
+
+total: 0 errors, 5 warnings, 0 checks, 59 lines checked
+9807dc462139 drm/i915/flipq: Enable flipq by default for testing
+
 
