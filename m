@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE093AC1FBB
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 May 2025 11:28:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77694AC1FC1
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 May 2025 11:30:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB7CD10E16C;
-	Fri, 23 May 2025 09:28:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BA4ht4b8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A76D10E22E;
+	Fri, 23 May 2025 09:29:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3EA010E16C;
- Fri, 23 May 2025 09:28:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1747992500; x=1779528500;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=pz0wUatI2sWm5ZlERU1fESHJowwyUiFW7XEihtGUPwQ=;
- b=BA4ht4b8ySApI1Tbq7u5xOO/rGsFl3HQUxSjCh2x42r5cyr6mef/oZi1
- u6PbloS0zQ03eKoekv4yaO79qcg156Ust2w4X2B0kQuuAjPMYrGIAWunO
- LDdHyij/94ZIMvQWgE6rBXhq1nsraJLMUsYpC4tDuys9tHHQsaibOsl4Z
- 3aJFQvw90dBAVlkRn5nQgRRvyWZEpw+W9AQ/lpS9ke+4m1QS3CBaRf3wP
- aXO7+uGGTqwEYz4OnjjG3oN2sz7YkUcII6AaCdlgsj2DDQbpIwrvsYL7B
- Uo+99+6rJ5S24m9OVvmE8icCIm3Bi/RAk5A5wu7MK8q/iDXF7n3Dmia97 A==;
-X-CSE-ConnectionGUID: IVaFr82GTbCiZpJWNjRxcA==
-X-CSE-MsgGUID: n8aSjAzJTA6WQKJduT5nEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49160996"
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="49160996"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 02:28:18 -0700
-X-CSE-ConnectionGUID: nJAOgtM0SOSZvgVYPA4sNw==
-X-CSE-MsgGUID: nPZ0hD+ITsaBK+zLKJJ4lg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="146056385"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.101])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 02:28:14 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Lyude <lyude@redhat.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>, Heikki Krogerus
- <heikki.krogerus@linux.intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, "Rafael J. Wysocki"
- <rafael.j.wysocki@intel.com>, "Syrjala, Ville" <ville.syrjala@intel.com>
-Subject: Re: [PATCH 5/8] drm/i915: Associate ACPI connector nodes with
- connector entries (v2)
-In-Reply-To: <20210817215201.795062-6-hdegoede@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210817215201.795062-1-hdegoede@redhat.com>
- <20210817215201.795062-6-hdegoede@redhat.com>
-Date: Fri, 23 May 2025 12:28:11 +0300
-Message-ID: <87sekvsml0.fsf@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80A6810E22E;
+ Fri, 23 May 2025 09:29:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0418471670246660430=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915_=26_drm/xe=3A_al?=
+ =?utf-8?q?locate_struct_intel=5Fdisplay_dynamically_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 23 May 2025 09:29:58 -0000
+Message-ID: <174799259852.17061.1056886123584706200@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <cover.1747907216.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1747907216.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,167 +37,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0418471670246660430==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Resurrecting an old thread because I am clueless and I have
-questions. :)
+== Series Details ==
 
-On Tue, 17 Aug 2021, Hans de Goede <hdegoede@redhat.com> wrote:
-> From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->
-> On Intel platforms we know that the ACPI connector device
-> node order will follow the order the driver (i915) decides.
-> The decision is made using the custom Intel ACPI OpRegion
-> (intel_opregion.c), though the driver does not actually know
-> that the values it sends to ACPI there are used for
-> associating a device node for the connectors, and assigning
-> address for them.
+Series: drm/i915 & drm/xe: allocate struct intel_display dynamically (rev3)
+URL   : https://patchwork.freedesktop.org/series/149317/
+State : success
 
-Is this referring to intel_didl_outputs()?
+== Summary ==
 
-First, it's curious that intel_didl_outputs() is only called on the
-resume paths, not at probe. I don't think the DIDL is set when
-intel_acpi_assign_connector_fwnodes() is called. But is it only the
-order that matters? Should we do intel_didl_outputs() at probe too?
+CI Bug Log - changes from CI_DRM_16587 -> Patchwork_149317v3
+====================================================
 
-Currently, we register all connectors first, move panel (as opposed to
-external) connectors in front, and that's the fixed connector order
-we'll use.
+Summary
+-------
 
-I am wondering if it would be possible to do what this patch does as we
-register each connector, not afterwards.
+  **SUCCESS**
 
-It would involve something like this:
+  No regressions found.
 
-- Figure out intel_connector->acpi_device_id at connector register time
-- Figure out the index for DIDL at connector register time
-- Figure out connector->fwnode at connector register time
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/index.html
 
-What could possibly go wrong...?
+Participating hosts (44 -> 41)
+------------------------------
 
-> In reality that custom Intel ACPI OpRegion actually violates
-> ACPI specification (we supply dynamic information to objects
-> that are defined static, for example _ADR), however, it
-> makes assigning correct connector node for a connector entry
-> straightforward (it's one-on-one mapping).
+  Missing    (3): bat-twl-1 fi-snb-2520m bat-twl-2 
 
-Could someone elaborate, please?
+Known issues
+------------
 
-> Changes in v2 (Hans de goede):
-> - Take a reference on the fwnode which we assign to the connector,
->   for ACPI nodes this is a no-op but in the future we may see
->   software-fwnodes assigned to connectors which are ref-counted.
->
-> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Tested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_acpi.c    | 46 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_acpi.h    |  3 ++
->  drivers/gpu/drm/i915/display/intel_display.c |  1 +
->  3 files changed, 50 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index 7cfe91fc05f2..72cac55c0f0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -282,3 +282,49 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
->  }
-> +
-> +/* NOTE: The connector order must be final before this is called. */
-> +void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915)
-> +{
-> +	struct drm_connector_list_iter conn_iter;
-> +	struct drm_device *drm_dev = &i915->drm;
-> +	struct fwnode_handle *fwnode = NULL;
-> +	struct drm_connector *connector;
-> +	struct acpi_device *adev;
-> +
-> +	drm_connector_list_iter_begin(drm_dev, &conn_iter);
-> +	drm_for_each_connector_iter(connector, &conn_iter) {
-> +		/* Always getting the next, even when the last was not used. */
-> +		fwnode = device_get_next_child_node(drm_dev->dev, fwnode);
-> +		if (!fwnode)
-> +			break;
-> +
-> +		switch (connector->connector_type) {
-> +		case DRM_MODE_CONNECTOR_LVDS:
-> +		case DRM_MODE_CONNECTOR_eDP:
-> +		case DRM_MODE_CONNECTOR_DSI:
-> +			/*
-> +			 * Integrated displays have a specific address 0x1f on
-> +			 * most Intel platforms, but not on all of them.
-> +			 */
-> +			adev = acpi_find_child_device(ACPI_COMPANION(drm_dev->dev),
-> +						      0x1f, 0);
-> +			if (adev) {
-> +				connector->fwnode =
-> +					fwnode_handle_get(acpi_fwnode_handle(adev));
-> +				break;
-> +			}
-> +			fallthrough;
-> +		default:
-> +			connector->fwnode = fwnode_handle_get(fwnode);
+  Here are the changes found in Patchwork_149317v3 that come from known issues:
 
-Is it possible to get the struct acpi_device for all fwnodes? Does one
-exist?
+### IGT changes ###
 
-Specifically, I think I need a struct device that's also an ACPI device
-to pass to devm_drm_panel_alloc(), so that a subsequent
-drm_panel_add_follower() can use ACPI to look up the panel/connector.
+#### Issues hit ####
 
-BR,
-Jani.
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-arlh-2:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [INCOMPLETE][9] ([i915#12904]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-cfl-guc:         [SKIP][11] -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-cfl-guc/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-cfl-guc/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - fi-cfl-guc:         [FAIL][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-cfl-guc/igt@kms_pm_rpm@basic-rte.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-cfl-guc/igt@kms_pm_rpm@basic-rte.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
 
 
-> +			break;
-> +		}
-> +	}
-> +	drm_connector_list_iter_end(&conn_iter);
-> +	/*
-> +	 * device_get_next_child_node() takes a reference on the fwnode, if
-> +	 * we stopped iterating because we are out of connectors we need to
-> +	 * put this, otherwise fwnode is NULL and the put is a no-op.
-> +	 */
-> +	fwnode_handle_put(fwnode);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
-> index 9f197401c313..4a760a2baed9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.h
-> @@ -13,6 +13,7 @@ void intel_register_dsm_handler(void);
->  void intel_unregister_dsm_handler(void);
->  void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915);
->  void intel_acpi_device_id_update(struct drm_i915_private *i915);
-> +void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915);
->  #else
->  static inline void intel_register_dsm_handler(void) { return; }
->  static inline void intel_unregister_dsm_handler(void) { return; }
-> @@ -20,6 +21,8 @@ static inline
->  void intel_dsm_get_bios_data_funcs_supported(struct drm_i915_private *i915) { return; }
->  static inline
->  void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
-> +static inline
-> +void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915) { return; }
->  #endif /* CONFIG_ACPI */
->  
->  #endif /* __INTEL_ACPI_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a257e5dc381c..88e5fff64b8c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -12561,6 +12561,7 @@ int intel_modeset_init_nogem(struct drm_i915_private *i915)
->  
->  	drm_modeset_lock_all(dev);
->  	intel_modeset_setup_hw_state(dev, dev->mode_config.acquire_ctx);
-> +	intel_acpi_assign_connector_fwnodes(i915);
->  	drm_modeset_unlock_all(dev);
->  
->  	for_each_intel_crtc(dev, crtc) {
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_16587 -> Patchwork_149317v3
+
+  CI-20190529: 20190529
+  CI_DRM_16587: dad3dc322768427e2ecb1a887cb3b710f8bc6848 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8376: ec202132760d1c4dd968fbafbac962b08ff7289f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_149317v3: dad3dc322768427e2ecb1a887cb3b710f8bc6848 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/index.html
+
+--===============0418471670246660430==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915 &amp; drm/xe: allocate struct intel_display dynamically (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149317/">https://patchwork.freedesktop.org/series/149317/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16587 -&gt; Patchwork_149317v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/index.html</p>
+<h2>Participating hosts (44 -&gt; 41)</h2>
+<p>Missing    (3): bat-twl-1 fi-snb-2520m bat-twl-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_149317v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-cfl-guc/igt@kms_pm_rpm@basic-pci-d3-state.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-cfl-guc/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16587/fi-cfl-guc/igt@kms_pm_rpm@basic-rte.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149317v3/fi-cfl-guc/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16587 -&gt; Patchwork_149317v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16587: dad3dc322768427e2ecb1a887cb3b710f8bc6848 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8376: ec202132760d1c4dd968fbafbac962b08ff7289f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_149317v3: dad3dc322768427e2ecb1a887cb3b710f8bc6848 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0418471670246660430==--
