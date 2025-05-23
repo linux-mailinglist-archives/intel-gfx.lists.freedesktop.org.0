@@ -2,64 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA8AAC3EB8
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 May 2025 13:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16F53AC44A0
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 May 2025 23:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3204010E349;
-	Mon, 26 May 2025 11:44:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anqVxfWh";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4FB10E38D;
+	Mon, 26 May 2025 21:09:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3F6B10E349;
- Mon, 26 May 2025 11:43:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748259836; x=1779795836;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=nXK9aHaSnCBzwUGJaW6Xqlp0wxZVNyxxWlId6RErS58=;
- b=anqVxfWh41q238rdBQv+v2awMaGbjEw/j9DhLFvk6pxLzZevwRasu+2X
- a/8s43TU7hFbNH8YXAuXS7poyt1TOVdH9k4sX2l3hhbhmue8c43h2xxLY
- vqVDP0ubO4tzDMMhzX61GDBzKkDJrqZl9HxLf0ttVt3HdpwYanwKA+2Kr
- mIruoWZPLNaxgJicpBwiOJfAg9g8IZSz2HYUMqeEWypWKUBTvvkOj30JJ
- KK5DyBycJEJJ65fjNS/G4C5PJ3QIrkXNR6P3+vhr35ScDNwTY4cH4lm/M
- q38nl7Qf2h1qFrerO0l9JO6Mceh+iZBncq+VG8HiBcqIPErF0Auxgatrs Q==;
-X-CSE-ConnectionGUID: cBoNSP6wQNa3YaXEJlnajw==
-X-CSE-MsgGUID: AmU5+ISuTMa4RP+LOW6ZVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11444"; a="61591141"
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="61591141"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 04:43:55 -0700
-X-CSE-ConnectionGUID: xfzwo1CIS0iv6jvh6ljwEA==
-X-CSE-MsgGUID: PTlF88xVRkOo+lY9E+wOFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="173267939"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.224])
- ([10.245.245.224])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 04:43:53 -0700
-Message-ID: <224ad9ad-dd59-447f-978d-24e6e315d5fc@linux.intel.com>
-Date: Mon, 26 May 2025 13:43:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/12] Panel Replay + Adaptive sync
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20250521115319.2380655-1-jouni.hogander@intel.com>
- <4ba5f8375dea2ee73b430730abd11cd45fd12fcc.camel@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <4ba5f8375dea2ee73b430730abd11cd45fd12fcc.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8327310E1E8;
+ Fri, 23 May 2025 06:14:53 +0000 (UTC)
+Received: from mxde.zte.com.cn (unknown [10.35.20.121])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4b3Zd20cGXzKjj;
+ Fri, 23 May 2025 14:14:46 +0800 (CST)
+Received: from mxhk.zte.com.cn (unknown [192.168.250.137])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxde.zte.com.cn (FangMail) with ESMTPS id 4b3Zcy57FqzBRHKP;
+ Fri, 23 May 2025 14:14:42 +0800 (CST)
+Received: from mse-fl1.zte.com.cn (unknown [10.5.228.132])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxhk.zte.com.cn (FangMail) with ESMTPS id 4b3Zch5Lk9z8R040;
+ Fri, 23 May 2025 14:14:28 +0800 (CST)
+Received: from njb2app07.zte.com.cn ([10.55.22.95])
+ by mse-fl1.zte.com.cn with SMTP id 54N6EKZ3007656;
+ Fri, 23 May 2025 14:14:20 +0800 (+08)
+ (envelope-from long.yunjian@zte.com.cn)
+Received: from mapi (njb2app07[null]) by mapi (Zmail) with MAPI id mid201;
+ Fri, 23 May 2025 14:14:22 +0800 (CST)
+Date: Fri, 23 May 2025 14:14:22 +0800 (CST)
+X-Zmail-TransId: 2aff6830123effffffff981-8e65f
+X-Mailer: Zmail v1.0
+Message-ID: <20250523141422844GEA-yzba-OvN0lZirDsS-@zte.com.cn>
+Mime-Version: 1.0
+From: <long.yunjian@zte.com.cn>
+To: <jani.nikula@linux.intel.com>
+Cc: <rodrigo.vivi@intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <tursulin@ursulin.net>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <mou.yi@zte.com.cn>, <xu.lifeng1@zte.com.cn>, <fang.yumeng@zte.com.cn>,
+ <ouyang.maochun@zte.com.cn>
+Subject: =?UTF-8?B?W1BBVENIXSBkcm0vaTkxNS9kaXNwbGF5OiBVc2Ugc3RyX3RydWVfZmFsc2UoKSBoZWxwZXI=?=
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl1.zte.com.cn 54N6EKZ3007656
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 68301254.001/4b3Zd20cGXzKjj
+X-Mailman-Approved-At: Mon, 26 May 2025 21:09:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,81 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+From: Yumeng Fang <fang.yumeng@zte.com.cn>
 
-Seems to be just some register definitions.
+Remove hard-coded strings by using the str_true_false() helper.
 
-Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Yumeng Fang <fang.yumeng@zte.com.cn>
+Signed-off-by: Yunjian Long <long.yunjian@zte.com.cn>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Best regards,
-~Maarten
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 8d0a1779dd19..0e3e62468902 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -5,6 +5,7 @@
 
-On 2025-05-22 07:25, Hogander, Jouni wrote:
-> Hello DRM Maintainers,
-> 
-> I have two patches (01/12 and 02/12) in this set I would like to merge
-> via drm-intel/drm-intel-next. Is that ok to you? They are touching i915
-> display driver and drm_dp.h header and rest of the patch set is
-> depending on those changes. Can one of you ack those two patches?
-> 
-> Thank You in Advance,
-> 
-> Jouni Högander
-> 
-> On Wed, 2025-05-21 at 14:53 +0300, Jouni Högander wrote:
->> This patch set is adding missing configuration to have Panel Replay
->> and Adaptive Sync enabled simultaneously. Also some issues identified
->> while debugging are fixed:
->>
->> 1. Source PORT ALPM configuration has to made during modeset.
->> 2. PHY_CMN1_CONTROL is not written according to HAS document
->> 3. Wrong register field definitions for PORT_ALPM_LFPS_CTL.
->>
->> Patches are tested on LunarLake and PantherLake using our reference
->> panel supporting
->> Adaptive Sync and Panel Replay.
->>
->> v4:
->>   - added DP_DSC_DECODE_CAPABILITY definitions
->>   - use defined shift instead of hardcoded value
->> v3:
->>   - comment about DP2.1 corrected as DP2.1a
->>   - referring patch removed from commit message
->> v2:
->>   - rework Panel Replay DPCD register definitions
->>   - do not use hardcoded indices while accessing intel_dp->pr_dpcd
->>   - ensure ALPM registers are not written on platform where they do
->>     not exist
->>   - remove kerneldoc comments
->>
->> Jouni Högander (12):
->>   drm/panelreplay: Panel Replay capability DPCD register definitions
->>   drm/dp: Add Panel Replay capability bits from DP2.1 specification
->>   drm/i915/psr: Read all Panel Replay capability registers from DPCD
->>   drm/i915/alpm: Add PR_ALPM_CTL register definitions
->>   drm/i915/alpm: Write PR_ALPM_CTL register
->>   drm/i915/psr: Add interface to check if AUXLess ALPM is needed by
->> PSR
->>   drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
->>   drm/i915/alpm: Move port alpm configuration
->>   drm/i915/display: Add PHY_CMN1_CONTROL register definitions
->>   drm/i915/display: Add function to configure LFPS sending
->>   drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
->>   drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
->>
->>  drivers/gpu/drm/i915/display/intel_alpm.c     | 72 +++++++++++++----
->> --
->>  drivers/gpu/drm/i915/display/intel_alpm.h     |  4 ++
->>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 32 +++++++++
->>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +
->>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 +
->>  drivers/gpu/drm/i915/display/intel_ddi.c      | 12 ++++
->>  .../drm/i915/display/intel_display_types.h    |  4 +-
->>  drivers/gpu/drm/i915/display/intel_psr.c      | 44 +++++++-----
->>  drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
->>  drivers/gpu/drm/i915/display/intel_psr_regs.h | 14 +++-
->>  include/drm/display/drm_dp.h                  | 24 +++++--
->>  11 files changed, 168 insertions(+), 45 deletions(-)
->>
-> 
+ #include <linux/debugfs.h>
+ #include <linux/string_helpers.h>
++#include <linux/string_choices.h>
 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_drv.h>
+@@ -972,7 +973,7 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
+ 		return ret;
+
+ 	drm_dbg(display->drm, "Got %s for DSC Enable\n",
+-		(dsc_enable) ? "true" : "false");
++		str_true_false(dsc_enable));
+ 	intel_dp->force_dsc_en = dsc_enable;
+
+ 	*offp += len;
+@@ -1183,7 +1184,7 @@ static ssize_t i915_dsc_fractional_bpp_write(struct file *file,
+ 		return ret;
+
+ 	drm_dbg(display->drm, "Got %s for DSC Fractional BPP Enable\n",
+-		(dsc_fractional_bpp_enable) ? "true" : "false");
++		str_true_false(dsc_fractional_bpp_enable));
+ 	intel_dp->force_dsc_fractional_bpp_en = dsc_fractional_bpp_enable;
+
+ 	*offp += len;
+-- 
+2.25.1
