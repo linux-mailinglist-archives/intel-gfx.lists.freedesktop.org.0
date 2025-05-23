@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 035B6AC21C0
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 May 2025 13:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4983EAC21BE
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 May 2025 13:06:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 832B110E2C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9EC10E2BF;
 	Fri, 23 May 2025 11:06:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6C1FN4F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0ymT/3n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14C1310E273;
- Fri, 23 May 2025 11:06:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD1810E299;
+ Fri, 23 May 2025 11:06:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1747998382; x=1779534382;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=v2n/5B0qnsv3+zJJ8y1bqsS6xjvYWYal8Z/8F42Oi0s=;
- b=f6C1FN4FBAIWQfrQK8K/dDgifwPkDdEbm6LIO9dSrWb5UxNEUe1JPqFG
- 7Xm0aHlA3qhY+sHZmHJUQUxR001OaqgE5j8td4J5fwJat9Hxnr9BVW0wo
- MLgNEF1NLv9Yp3GzJThQLbnvzs5vpeEKWnDvcMEaaVvtdcpwyoN/muEQ8
- ssUWSLcdWczAD+9xmOs8SyFcxoHETe+JFQR4U+aYLH3En4UF40FjOpD4P
- GOr2kTs56gu+A1WM4KFaYB/wFnm9058Gxisxr20mH41i+hcnwz9kSAeVG
- A8BOBiZCmBfuqTPz1jTO7lI7Fl/lItL8m0PUa+cl+PVgO7CKbHMNz2wVw w==;
-X-CSE-ConnectionGUID: aEwEqW5QSluaoSs9zTPg1A==
-X-CSE-MsgGUID: x/5vmKkOTSSUatktnWG2Ug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="67463919"
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="67463919"
+ bh=PqGpipnmHS8UNfAOBcHUxUI6TSRwpToIXu1Dsm0zlpI=;
+ b=L0ymT/3nYpB8BqPdIFU8Qum2qlU/kaozUSTGSP4VAdP8yV1RxkqMLspY
+ lIRl7D10WcsQAbMSvyLOQugeYRHISmCmedaPYrZ3hDeZzGToOwoMARqGB
+ BB3T/83AZn44PmzdCZlwajpt85p2LXyHTt7v+yYNhDe3CMxEHX5P++Mhf
+ QU/knK28tw5vnhy2fihSu2pEPEbg9ttrMiCQdtQOMSP5cHbEZhAt5umLg
+ HIxubRr5I1W1MednbDR6/iwmlR5m6SeYGDP2IZ1KdtDeF5ogm/R3W9qHv
+ Ie+zKeuC0xL9gBAn81X4gdR5e78iyPFCoGKXm8S3heEptr5jaGukjx7NC Q==;
+X-CSE-ConnectionGUID: Kkj+hC+qSDiAspSPO4oGFg==
+X-CSE-MsgGUID: FLB1UAFnQwa/VVnb9k1S3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="67463924"
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="67463924"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 04:06:17 -0700
-X-CSE-ConnectionGUID: eHNa6T2PRs+56DmuRtIQ4w==
-X-CSE-MsgGUID: CRpP6AY+Rs+5UoE6NzzpAA==
+ 23 May 2025 04:06:19 -0700
+X-CSE-ConnectionGUID: VpImVGIHSe+t3FDqJ0rYAg==
+X-CSE-MsgGUID: 3C7c01L9R+2SkCH5f1WraQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="164341803"
+X-IronPort-AV: E=Sophos;i="6.15,308,1739865600"; d="scan'208";a="164341810"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.108])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2025 04:06:16 -0700
+ 23 May 2025 04:06:18 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 2/4] drm/i915/display: Send push before waiting vblanks
-Date: Fri, 23 May 2025 14:05:53 +0300
-Message-ID: <20250523110555.3494901-3-jouni.hogander@intel.com>
+Subject: [PATCH v3 3/4] drm/i915/psr: Add TRANS_PUSH register bit definition
+ for PSR
+Date: Fri, 23 May 2025 14:05:54 +0300
+Message-ID: <20250523110555.3494901-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250523110555.3494901-1-jouni.hogander@intel.com>
 References: <20250523110555.3494901-1-jouni.hogander@intel.com>
@@ -71,33 +72,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If PSR is enabled our HW might be still in sleep when performing wait
-vblanks on DSB. Now as we are switching to using VRR send push as
-"Frame Change" event for PSR we are observing these timeouts as only
-"Frame Change" event is VRR send push.
-
-Fix this by triggering doing VRR send push before waiting vblank.
+Add TRANS_PUSH register bit LNL_TRANS_PUSH_PSR_PR_EN definition for PSR
+usage.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c894e4d0d488..d072e38ddadd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7240,9 +7240,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 					   new_crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 09cdd50d6187..2b8c70471b68 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -100,6 +100,7 @@
+ #define TRANS_PUSH(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _TRANS_PUSH_A)
+ #define  TRANS_PUSH_EN				REG_BIT(31)
+ #define  TRANS_PUSH_SEND			REG_BIT(30)
++#define  LNL_TRANS_PUSH_PSR_PR_EN		REG_BIT(16)
  
- 		if (!new_crtc_state->dsb_color_vblank) {
--			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
--
- 			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-+			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
- 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
- 			intel_vrr_check_push_sent(new_crtc_state->dsb_commit, new_crtc_state);
- 			intel_dsb_interrupt(new_crtc_state->dsb_commit);
+ #define _TRANS_VRR_VSYNC_A			0x60078
+ #define TRANS_VRR_VSYNC(dev_priv, trans)	_MMIO_TRANS2(dev_priv, trans, _TRANS_VRR_VSYNC_A)
 -- 
 2.43.0
 
