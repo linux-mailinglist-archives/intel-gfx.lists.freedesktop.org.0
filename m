@@ -2,67 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EAAAC3DCB
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 May 2025 12:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA8AAC3EB8
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 May 2025 13:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B78A10E323;
-	Mon, 26 May 2025 10:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3204010E349;
+	Mon, 26 May 2025 11:44:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dk+g/cE1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anqVxfWh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82F910E301;
- Mon, 26 May 2025 10:24:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3F6B10E349;
+ Mon, 26 May 2025 11:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748255076; x=1779791076;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=i2e+Si62i+fWehydvuqN0zb6P+68q0sUEfgcITCNmsU=;
- b=dk+g/cE1i+H+cfRyFmZ6i/j782cA5kjgGLOdSc1s07WfNoLUuyMPVYh+
- 2AYQa+0aJ1xv7oVVKvhIRiqpACiSqwz2E/nW3WZxdSRc49AcjV5HWCuJF
- mMUsYVEHJuFIn9LtG/XQq82eyjrGsPpF992X6NONuWD3IEJ2wlq4Vx4My
- mfQtDN432q6nk5/HO46BBd2oDdQRaoDceMrZgiwgdYU/QGKQbMjIjaz8q
- W1HJCRhtnQhpyRunlDPQFY3VpIoPrUYnGymf3213N8qgfxqAvB21gxxrn
- 5LZpSyGUDf+2fqTtk44Phh64FZAZWfVorHakrAxaOCM1d9W44V0siKlPP A==;
-X-CSE-ConnectionGUID: 5QM4e6vCQwOup4brAPm2/w==
-X-CSE-MsgGUID: yAn95NanS/2wbq1LRfmVEA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11444"; a="49341256"
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="49341256"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 03:24:34 -0700
-X-CSE-ConnectionGUID: lQMZuh5xRR+pvtHPGt2DLw==
-X-CSE-MsgGUID: o341LzSpSAW4QeiJCZdfsg==
+ t=1748259836; x=1779795836;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=nXK9aHaSnCBzwUGJaW6Xqlp0wxZVNyxxWlId6RErS58=;
+ b=anqVxfWh41q238rdBQv+v2awMaGbjEw/j9DhLFvk6pxLzZevwRasu+2X
+ a/8s43TU7hFbNH8YXAuXS7poyt1TOVdH9k4sX2l3hhbhmue8c43h2xxLY
+ vqVDP0ubO4tzDMMhzX61GDBzKkDJrqZl9HxLf0ttVt3HdpwYanwKA+2Kr
+ mIruoWZPLNaxgJicpBwiOJfAg9g8IZSz2HYUMqeEWypWKUBTvvkOj30JJ
+ KK5DyBycJEJJ65fjNS/G4C5PJ3QIrkXNR6P3+vhr35ScDNwTY4cH4lm/M
+ q38nl7Qf2h1qFrerO0l9JO6Mceh+iZBncq+VG8HiBcqIPErF0Auxgatrs Q==;
+X-CSE-ConnectionGUID: cBoNSP6wQNa3YaXEJlnajw==
+X-CSE-MsgGUID: AmU5+ISuTMa4RP+LOW6ZVA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11444"; a="61591141"
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="61591141"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 04:43:55 -0700
+X-CSE-ConnectionGUID: xfzwo1CIS0iv6jvh6ljwEA==
+X-CSE-MsgGUID: PTlF88xVRkOo+lY9E+wOFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="142688197"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.168])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2025 03:24:31 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Lyude <lyude@redhat.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>, Simona Vetter
- <simona.vetter@ffwll.ch>, David Airlie <airlied@linux.ie>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, "Syrjala, Ville"
- <ville.syrjala@intel.com>
-Subject: Re: [PATCH 5/8] drm/i915: Associate ACPI connector nodes with
- connector entries (v2)
-In-Reply-To: <aDCLra5EKMbyVH3D@kuha.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210817215201.795062-1-hdegoede@redhat.com>
- <20210817215201.795062-6-hdegoede@redhat.com> <87sekvsml0.fsf@intel.com>
- <aDCLra5EKMbyVH3D@kuha.fi.intel.com>
-Date: Mon, 26 May 2025 13:24:28 +0300
-Message-ID: <ad9f6b6cae367580b3da83a5f92de7e7f67e5a1b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,315,1739865600"; d="scan'208";a="173267939"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.245.224])
+ ([10.245.245.224])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2025 04:43:53 -0700
+Message-ID: <224ad9ad-dd59-447f-978d-24e6e315d5fc@linux.intel.com>
+Date: Mon, 26 May 2025 13:43:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/12] Panel Replay + Adaptive sync
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "simona@ffwll.ch" <simona@ffwll.ch>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <20250521115319.2380655-1-jouni.hogander@intel.com>
+ <4ba5f8375dea2ee73b430730abd11cd45fd12fcc.camel@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <4ba5f8375dea2ee73b430730abd11cd45fd12fcc.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,215 +75,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 23 May 2025, Heikki Krogerus <heikki.krogerus@linux.intel.com> wrote:
-> Hi Jani,
->
-> On Fri, May 23, 2025 at 12:28:11PM +0300, Jani Nikula wrote:
->> 
->> Resurrecting an old thread because I am clueless and I have
->> questions. :)
->> 
->> On Tue, 17 Aug 2021, Hans de Goede <hdegoede@redhat.com> wrote:
->> > From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->> >
->> > On Intel platforms we know that the ACPI connector device
->> > node order will follow the order the driver (i915) decides.
->> > The decision is made using the custom Intel ACPI OpRegion
->> > (intel_opregion.c), though the driver does not actually know
->> > that the values it sends to ACPI there are used for
->> > associating a device node for the connectors, and assigning
->> > address for them.
->> 
->> Is this referring to intel_didl_outputs()?
->> 
->> First, it's curious that intel_didl_outputs() is only called on the
->> resume paths, not at probe. I don't think the DIDL is set when
->> intel_acpi_assign_connector_fwnodes() is called. But is it only the
->> order that matters? Should we do intel_didl_outputs() at probe too?
->> 
->> Currently, we register all connectors first, move panel (as opposed to
->> external) connectors in front, and that's the fixed connector order
->> we'll use.
->> 
->> I am wondering if it would be possible to do what this patch does as we
->> register each connector, not afterwards.
->
-> That would be ideal. I did not know how to do that at the time.
->
->> It would involve something like this:
->> 
->> - Figure out intel_connector->acpi_device_id at connector register time
->> - Figure out the index for DIDL at connector register time
->> - Figure out connector->fwnode at connector register time
->> 
->> What could possibly go wrong...?
->
-> Probable nothing :-)
+Hey,
 
-I guess we'd still have to maintain the same order, somehow? That's
-still a problem.
+Seems to be just some register definitions.
 
->
->> > In reality that custom Intel ACPI OpRegion actually violates
->> > ACPI specification (we supply dynamic information to objects
->> > that are defined static, for example _ADR), however, it
->> > makes assigning correct connector node for a connector entry
->> > straightforward (it's one-on-one mapping).
->> 
->> Could someone elaborate, please?
->
-> If you evaluated the _ADR (address) before i915 was loaded you got
-> different value than what you got after the driver was loaded. In
-> practice it meant that you could not determine which ACPI device node
-> would end up representing which connector before the driver was fully
-> loaded.
->
-> But is the intel operation region even used anymore? I can't see its
-> UUID in the tables of the MTL or even RPL systems that we have.
+Acked-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-What does it mean? What we write in DIDL doesn't matter for such
-systems? What does that mean for the ordering?
+Best regards,
+~Maarten
 
-I'm just clueless about this. :/
+On 2025-05-22 07:25, Hogander, Jouni wrote:
+> Hello DRM Maintainers,
+> 
+> I have two patches (01/12 and 02/12) in this set I would like to merge
+> via drm-intel/drm-intel-next. Is that ok to you? They are touching i915
+> display driver and drm_dp.h header and rest of the patch set is
+> depending on those changes. Can one of you ack those two patches?
+> 
+> Thank You in Advance,
+> 
+> Jouni Högander
+> 
+> On Wed, 2025-05-21 at 14:53 +0300, Jouni Högander wrote:
+>> This patch set is adding missing configuration to have Panel Replay
+>> and Adaptive Sync enabled simultaneously. Also some issues identified
+>> while debugging are fixed:
+>>
+>> 1. Source PORT ALPM configuration has to made during modeset.
+>> 2. PHY_CMN1_CONTROL is not written according to HAS document
+>> 3. Wrong register field definitions for PORT_ALPM_LFPS_CTL.
+>>
+>> Patches are tested on LunarLake and PantherLake using our reference
+>> panel supporting
+>> Adaptive Sync and Panel Replay.
+>>
+>> v4:
+>>   - added DP_DSC_DECODE_CAPABILITY definitions
+>>   - use defined shift instead of hardcoded value
+>> v3:
+>>   - comment about DP2.1 corrected as DP2.1a
+>>   - referring patch removed from commit message
+>> v2:
+>>   - rework Panel Replay DPCD register definitions
+>>   - do not use hardcoded indices while accessing intel_dp->pr_dpcd
+>>   - ensure ALPM registers are not written on platform where they do
+>>     not exist
+>>   - remove kerneldoc comments
+>>
+>> Jouni Högander (12):
+>>   drm/panelreplay: Panel Replay capability DPCD register definitions
+>>   drm/dp: Add Panel Replay capability bits from DP2.1 specification
+>>   drm/i915/psr: Read all Panel Replay capability registers from DPCD
+>>   drm/i915/alpm: Add PR_ALPM_CTL register definitions
+>>   drm/i915/alpm: Write PR_ALPM_CTL register
+>>   drm/i915/psr: Add interface to check if AUXLess ALPM is needed by
+>> PSR
+>>   drm/i915/alpm: Add new interface to check if AUXLess ALPM is used
+>>   drm/i915/alpm: Move port alpm configuration
+>>   drm/i915/display: Add PHY_CMN1_CONTROL register definitions
+>>   drm/i915/display: Add function to configure LFPS sending
+>>   drm/i915/psr: Fix using wrong mask in REG_FIELD_PREP
+>>   drm/i915/psr: Do not disable Panel Replay in case VRR is enabled
+>>
+>>  drivers/gpu/drm/i915/display/intel_alpm.c     | 72 +++++++++++++----
+>> --
+>>  drivers/gpu/drm/i915/display/intel_alpm.h     |  4 ++
+>>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 32 +++++++++
+>>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +
+>>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 +
+>>  drivers/gpu/drm/i915/display/intel_ddi.c      | 12 ++++
+>>  .../drm/i915/display/intel_display_types.h    |  4 +-
+>>  drivers/gpu/drm/i915/display/intel_psr.c      | 44 +++++++-----
+>>  drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
+>>  drivers/gpu/drm/i915/display/intel_psr_regs.h | 14 +++-
+>>  include/drm/display/drm_dp.h                  | 24 +++++--
+>>  11 files changed, 168 insertions(+), 45 deletions(-)
+>>
+> 
 
-> In any case, this is not a huge problem I think.
->
->> > Changes in v2 (Hans de goede):
->> > - Take a reference on the fwnode which we assign to the connector,
->> >   for ACPI nodes this is a no-op but in the future we may see
->> >   software-fwnodes assigned to connectors which are ref-counted.
->> >
->> > Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->> > Tested-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
->> > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_acpi.c    | 46 ++++++++++++++++++++
->> >  drivers/gpu/drm/i915/display/intel_acpi.h    |  3 ++
->> >  drivers/gpu/drm/i915/display/intel_display.c |  1 +
->> >  3 files changed, 50 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
->> > index 7cfe91fc05f2..72cac55c0f0f 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
->> > @@ -282,3 +282,49 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
->> >  	}
->> >  	drm_connector_list_iter_end(&conn_iter);
->> >  }
->> > +
->> > +/* NOTE: The connector order must be final before this is called. */
->> > +void intel_acpi_assign_connector_fwnodes(struct drm_i915_private *i915)
->> > +{
->> > +	struct drm_connector_list_iter conn_iter;
->> > +	struct drm_device *drm_dev = &i915->drm;
->> > +	struct fwnode_handle *fwnode = NULL;
->> > +	struct drm_connector *connector;
->> > +	struct acpi_device *adev;
->> > +
->> > +	drm_connector_list_iter_begin(drm_dev, &conn_iter);
->> > +	drm_for_each_connector_iter(connector, &conn_iter) {
->> > +		/* Always getting the next, even when the last was not used. */
->> > +		fwnode = device_get_next_child_node(drm_dev->dev, fwnode);
->> > +		if (!fwnode)
->> > +			break;
->> > +
->> > +		switch (connector->connector_type) {
->> > +		case DRM_MODE_CONNECTOR_LVDS:
->> > +		case DRM_MODE_CONNECTOR_eDP:
->> > +		case DRM_MODE_CONNECTOR_DSI:
->> > +			/*
->> > +			 * Integrated displays have a specific address 0x1f on
->> > +			 * most Intel platforms, but not on all of them.
->> > +			 */
->> > +			adev = acpi_find_child_device(ACPI_COMPANION(drm_dev->dev),
->> > +						      0x1f, 0);
->> > +			if (adev) {
->> > +				connector->fwnode =
->> > +					fwnode_handle_get(acpi_fwnode_handle(adev));
->> > +				break;
->> > +			}
->> > +			fallthrough;
->> > +		default:
->> > +			connector->fwnode = fwnode_handle_get(fwnode);
->> 
->> Is it possible to get the struct acpi_device for all fwnodes? Does one
->> exist?
->
-> If it is_acpi_node(fwnode) then yes, you can use
-> to_acpi_device_node(fwnode)
->
-> Each connector does have an ACPI device node in the ACPI tables under
-> the parent GFX controller device, so yes one should always exist.
->
->> Specifically, I think I need a struct device that's also an ACPI device
->> to pass to devm_drm_panel_alloc(), so that a subsequent
->> drm_panel_add_follower() can use ACPI to look up the panel/connector.
->
-> You could already do something like this to make the code work with
-> both ACPI and DT:
->
-> +static struct drm_panel *drm_find_panel(const struct fwnode_handle *fwnode)
-> +{
-> +       struct drm_panel *panel;
-> +
-> +       if (!fwnode_device_is_available(fwnode))
-> +               return ERR_PTR(-ENODEV);
-> +
-> +       mutex_lock(&panel_lock);
-> +
-> +       list_for_each_entry(panel, &panel_list, list) {
-> +               if (dev_fwnode(panel->dev) == fwnode) {
-> +                       mutex_unlock(&panel_lock);
-> +                       return panel;
-> +               }
-> +       }
-> +
-> +       mutex_unlock(&panel_lock);
-> +       return ERR_PTR(-EPROBE_DEFER);
-> +}
-> +
->  int drm_panel_add_follower(struct device *follower_dev,
->                            struct drm_panel_follower *follower)
->  {
-> -       struct device_node *panel_np;
-> +       struct fwnode_handle *fwnode;
->         struct drm_panel *panel;
->         int ret;
->  
-> -       panel_np = of_parse_phandle(follower_dev->of_node, "panel", 0);
-> -       if (!panel_np)
-> +       fwnode = fwnode_find_reference(dev_fwnode(follower_dev), "panel", 0);
-> +       if (!fwnode)
->                 return -ENODEV;
->  
-> -       panel = of_drm_find_panel(panel_np);
-> -       of_node_put(panel_np);
-> +       panel = drm_find_panel(fwnode);
-> +       fwnode_handle_put(fwnode);
->         if (IS_ERR(panel))
->                 return PTR_ERR(panel);
-
-Cool, thanks!
-
-> But that would only work if the follower_dev had a _DSD device
-> property named "panel" that has a reference to the ACPI device node
-> that represents the panel as its value. Is the panel here the same
-> thing as the connector?
-
-For our purposes I think it would be. But I don't know what that
-reference would look like, or what the connector ACPI things look like.
-
-> I'm pretty sure there is no such device property (or is there?), so
-> how are you going to find the correct panel ACPI node for the
-> follower_dev?
-
-I'm being told such thing doesn't exist, but could be defined. Again,
-I'm clueless.
-
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
