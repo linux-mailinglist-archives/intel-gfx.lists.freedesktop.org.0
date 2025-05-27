@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA872AC4B70
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 11:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7E1AC4B71
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 11:26:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3E2D10E3F7;
-	Tue, 27 May 2025 09:25:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD52210E450;
+	Tue, 27 May 2025 09:25:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HLwqGZtx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kUEaDRNG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC5010E3F7;
- Tue, 27 May 2025 09:25:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACD0710E413;
+ Tue, 27 May 2025 09:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748337933; x=1779873933;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dLaTZ5VCnEEAkwxrQxq2MzSTq02B1MrwXsh0lkYziAw=;
- b=HLwqGZtxkj969pZM1GNTn6qUggcTvykVdYLteVQWaP+S+LJQ221jP2AS
- aeJNm0W8qnAjLChKvl6o2XCI+l29MbRaS/gRDvik0/C2mnohenWifmXJT
- ORV9FjLbaU9BeCoU/bWfhHL4RbGdvTtEzbZShvBsHi1gEmoDt0zD5lCRq
- 7jZ/bW5pRNgiSYqYhi2BG7YtfZXfa9a08CMtr2aeQYfHJwLjLbIItERTX
- z5wVkbWjb6ZC4h2ndHtbo7idW3LLd20+zMWyNln6gTWWs92pYfo9aPvai
- EnpfwPfq7RFoZXirzfnh6xYVHHKUuc7AbNGSqs7vupBQhU4RlWnJb2Edh g==;
-X-CSE-ConnectionGUID: xb715LY/TrupeScXQxS40g==
-X-CSE-MsgGUID: LaG5GvZ8RaWnN4ShxZ0rmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="54114206"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="54114206"
+ t=1748337935; x=1779873935;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IuMa9iehbIh8kYnK0mpKktlj0JIxId0euEnrV8DRN1k=;
+ b=kUEaDRNGjsEGYsKPMdWW9K8mNZOnvG7b+kHi60CmqashUdfvSHZknrCY
+ uAPThFwNFvmFrC+NaFS3tysRejLH9nG3RQN5GIH9MS/Kt9eFI3jYNSmpT
+ aWVHOOraM4NV6oIhPdDABONVP5xYy2NYESapJtOpJVZMdRnVeolnW32UT
+ SCMgpLo3/OzFLXAPn0L5AUYxPPp8+KdDI4qfESVlGP5KsXc6Flr3P4ZGL
+ zr078fcPP1ECiU+qLEpQZV23en7JNySldP743++Qq9nUAQc8oiCEbGDHg
+ F2n0mflXhBQyvxWU2w49flJO0caY9v0LrHGoT8HMcfr3RKVszBTiIimUU A==;
+X-CSE-ConnectionGUID: QbP/CujIQHGfBUYd5/BHIg==
+X-CSE-MsgGUID: cJhzuhlxRuyvL58z//93RA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="54114210"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="54114210"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 02:25:31 -0700
-X-CSE-ConnectionGUID: c8WXxpqKTMGNXZ5QsSItoA==
-X-CSE-MsgGUID: UZgCWGsATPWOi1K0QAaJjg==
+ 27 May 2025 02:25:35 -0700
+X-CSE-ConnectionGUID: s3LcXKZtThSo3uiiPTpKiA==
+X-CSE-MsgGUID: +5Y6yN8uTAWGbn2bN3+ATg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="179922966"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="179922971"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.119])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 02:25:30 -0700
+ 27 May 2025 02:25:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 0/6] drm/i915/dram: dram_info refactoring
-Date: Tue, 27 May 2025 12:25:20 +0300
-Message-Id: <cover.1748337870.git.jani.nikula@intel.com>
+Subject: [RESEND 1/6] drm/i915/bw: pass struct dram_info pointer around
+Date: Tue, 27 May 2025 12:25:21 +0300
+Message-Id: <1752b4987ff39a685c28cebae1be4ce326b67c7b.1748337870.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1748337870.git.jani.nikula@intel.com>
+References: <cover.1748337870.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,30 +70,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rebase and resend of [1].
+Have just one place to figure out the pointer to struct dram_info, and
+pass that around. This simplifies future changes.
 
-[1] https://lore.kernel.org/r/cover.1746631057.git.jani.nikula@intel.com
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 44 ++++++++++++-------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
-Jani Nikula (6):
-  drm/i915/bw: pass struct dram_info pointer around
-  drm/i915/dram: add accessor for struct dram_info and use it
-  drm/i915/wm: DG2 doesn't have dram info to look up
-    wm_lv_0_adjust_needed
-  drm/i915/dram: pass struct dram_info pointer around
-  drm/i915/dram: add return value and handling to intel_dram_detect()
-  drm/i915/dram: allocate struct dram_info dynamically
-
- drivers/gpu/drm/i915/display/intel_bw.c       | 49 ++++++-------
- .../drm/i915/display/intel_display_power.c    |  9 ++-
- drivers/gpu/drm/i915/display/skl_watermark.c  | 15 ++--
- drivers/gpu/drm/i915/i915_driver.c            |  4 +-
- drivers/gpu/drm/i915/i915_drv.h               | 21 +-----
- drivers/gpu/drm/i915/soc/intel_dram.c         | 71 ++++++++++++-------
- drivers/gpu/drm/i915/soc/intel_dram.h         | 26 ++++++-
- drivers/gpu/drm/xe/display/xe_display.c       |  4 +-
- drivers/gpu/drm/xe/xe_device_types.h          | 21 +-----
- 9 files changed, 117 insertions(+), 103 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index a5dd2932b852..6c537635b120 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -218,11 +218,10 @@ intel_read_qgv_point_info(struct intel_display *display,
+ }
+ 
+ static int icl_get_qgv_points(struct intel_display *display,
++			      const struct dram_info *dram_info,
+ 			      struct intel_qgv_info *qi,
+ 			      bool is_y_tile)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-	const struct dram_info *dram_info = &i915->dram_info;
+ 	int i, ret;
+ 
+ 	qi->num_points = dram_info->num_qgv_points;
+@@ -418,19 +417,20 @@ static const struct intel_sa_info xe3lpd_sa_info = {
+ 	.derating = 10,
+ };
+ 
+-static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
++static int icl_get_bw_info(struct intel_display *display,
++			   const struct dram_info *dram_info,
++			   const struct intel_sa_info *sa)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_qgv_info qi = {};
+ 	bool is_y_tile = true; /* assume y tile may be used */
+-	int num_channels = max_t(u8, 1, i915->dram_info.num_channels);
++	int num_channels = max_t(u8, 1, dram_info->num_channels);
+ 	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
+ 	int maxdebw;
+ 	int num_groups = ARRAY_SIZE(display->bw.max);
+ 	int i, ret;
+ 
+-	ret = icl_get_qgv_points(display, &qi, is_y_tile);
++	ret = icl_get_qgv_points(display, dram_info, &qi, is_y_tile);
+ 	if (ret) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+@@ -488,11 +488,11 @@ static int icl_get_bw_info(struct intel_display *display, const struct intel_sa_
+ 	return 0;
+ }
+ 
+-static int tgl_get_bw_info(struct intel_display *display, const struct intel_sa_info *sa)
++static int tgl_get_bw_info(struct intel_display *display,
++			   const struct dram_info *dram_info,
++			   const struct intel_sa_info *sa)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_qgv_info qi = {};
+-	const struct dram_info *dram_info = &i915->dram_info;
+ 	bool is_y_tile = true; /* assume y tile may be used */
+ 	int num_channels = max_t(u8, 1, dram_info->num_channels);
+ 	int ipqdepth, ipqdepthpch = 16;
+@@ -502,7 +502,7 @@ static int tgl_get_bw_info(struct intel_display *display, const struct intel_sa_
+ 	int num_groups = ARRAY_SIZE(display->bw.max);
+ 	int i, ret;
+ 
+-	ret = icl_get_qgv_points(display, &qi, is_y_tile);
++	ret = icl_get_qgv_points(display, dram_info, &qi, is_y_tile);
+ 	if (ret) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+@@ -632,15 +632,15 @@ static void dg2_get_bw_info(struct intel_display *display)
+ }
+ 
+ static int xe2_hpd_get_bw_info(struct intel_display *display,
++			       const struct dram_info *dram_info,
+ 			       const struct intel_sa_info *sa)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_qgv_info qi = {};
+-	int num_channels = i915->dram_info.num_channels;
++	int num_channels = dram_info->num_channels;
+ 	int peakbw, maxdebw;
+ 	int ret, i;
+ 
+-	ret = icl_get_qgv_points(display, &qi, true);
++	ret = icl_get_qgv_points(display, dram_info, &qi, true);
+ 	if (ret) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Failed to get memory subsystem information, ignoring bandwidth limits");
+@@ -769,26 +769,26 @@ void intel_bw_init_hw(struct intel_display *display)
+ 		return;
+ 
+ 	if (DISPLAY_VER(display) >= 30)
+-		tgl_get_bw_info(display, &xe3lpd_sa_info);
++		tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
+ 	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx &&
+ 		 dram_info->type == INTEL_DRAM_GDDR_ECC)
+-		xe2_hpd_get_bw_info(display, &xe2_hpd_ecc_sa_info);
++		xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
+ 	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
+-		xe2_hpd_get_bw_info(display, &xe2_hpd_sa_info);
++		xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
+ 	else if (DISPLAY_VER(display) >= 14)
+-		tgl_get_bw_info(display, &mtl_sa_info);
++		tgl_get_bw_info(display, dram_info, &mtl_sa_info);
+ 	else if (display->platform.dg2)
+ 		dg2_get_bw_info(display);
+ 	else if (display->platform.alderlake_p)
+-		tgl_get_bw_info(display, &adlp_sa_info);
++		tgl_get_bw_info(display, dram_info, &adlp_sa_info);
+ 	else if (display->platform.alderlake_s)
+-		tgl_get_bw_info(display, &adls_sa_info);
++		tgl_get_bw_info(display, dram_info, &adls_sa_info);
+ 	else if (display->platform.rocketlake)
+-		tgl_get_bw_info(display, &rkl_sa_info);
++		tgl_get_bw_info(display, dram_info, &rkl_sa_info);
+ 	else if (DISPLAY_VER(display) == 12)
+-		tgl_get_bw_info(display, &tgl_sa_info);
++		tgl_get_bw_info(display, dram_info, &tgl_sa_info);
+ 	else if (DISPLAY_VER(display) == 11)
+-		icl_get_bw_info(display, &icl_sa_info);
++		icl_get_bw_info(display, dram_info, &icl_sa_info);
+ }
+ 
+ static unsigned int intel_bw_crtc_num_active_planes(const struct intel_crtc_state *crtc_state)
 -- 
 2.39.5
 
