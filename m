@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCECAC4C88
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 12:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A08AC4C89
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 12:59:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B993210E425;
-	Tue, 27 May 2025 10:59:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C18B10E492;
+	Tue, 27 May 2025 10:59:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jeiPt1PB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l71yMaZu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45BCC10E425;
- Tue, 27 May 2025 10:59:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 787C110E48D;
+ Tue, 27 May 2025 10:59:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748343561; x=1779879561;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZC9DyoaPyeromQbodizUo9+tE9lK5+tbPeD7mEWlocY=;
- b=jeiPt1PBVwOMKWs/dM1YDkoCSHeF29N1KO/Ki8X1qmf7ddm1odgJrVoJ
- 3a85jWr1GNfb03sudjhPpgEpT87Z2jiy9TpFk10cDPYu7AYwVUcyfsAXx
- UsHl8ab7S46EdWq3hnvRbugd7Z/K/nqEa2HWASf5MeG8amHmn7nwKZIXU
- GDdszz5g1CJ/+giTCufu7WmdBYtCbDRj9s+4ztjCP+5sP9+YL0U6dARfQ
- eDba3XU1R2kij2MzTrLv1W+sxgmvuEyxlp0DsSOP4j5jV6uXjyKGcBHVt
- jlA8ic/XBonLf0tDaNVuBvc3b4pxWqW8p4ZHFZCT/o30RApIbEaoZk2Rg A==;
-X-CSE-ConnectionGUID: WeiE95suR/GJODOmKxd40Q==
-X-CSE-MsgGUID: 5vO+ixkpS6+XcFByuLjcKg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="72859848"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="72859848"
+ t=1748343564; x=1779879564;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=aWx84qkMKvccmV48cIFKCiz0KruY2Qt5gZZoYf0wuwE=;
+ b=l71yMaZuVyNKJq/o53R3SpTXJWSC9dmCcRJC/PAGhsApS+TUFsZCXBdK
+ 0a3nagNQ5607tD4KQW1ufBUND575NfI23exd+I76e20FtKHwRNew3qoJj
+ U5UcyJ0R2v0mHiNruzwkVf/D26hP7986TkJoxLRpZobw90fQYGWDIOm8V
+ p81LIQYiP8ZkyOTG/PozM5XTmhJDiuSJh81+3yIN2sjoQxwOt4RJ7gqLj
+ OTctPZcgSAFR8qc9pzpFAa1qAyO/5wPup/bGysfQjTqR1s72Gx8B+pFoR
+ GgsdipqgiCFE7VNSF4VXW7e/+d5gDC2/ppuI751EZVnZEYlTrOnw71fsa A==;
+X-CSE-ConnectionGUID: yV+M/IgITLSmTpmn1KBQNA==
+X-CSE-MsgGUID: wa94eSOXR+6og5UloXaxlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="72859851"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="72859851"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 03:59:20 -0700
-X-CSE-ConnectionGUID: xkatmWhwQy6/v2MruSvH8w==
-X-CSE-MsgGUID: ZWFtaaEJTYWC7hQ69jKvbA==
+ 27 May 2025 03:59:24 -0700
+X-CSE-ConnectionGUID: O9M/J5kVTk2NlhiZZqSsMQ==
+X-CSE-MsgGUID: km/Wye6IQHykMCyO4oPVVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="142768836"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="142768844"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.119])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 03:59:18 -0700
+ 27 May 2025 03:59:23 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 0/8] drm/i915/sbi: move under display, cleanup
-Date: Tue, 27 May 2025 13:59:06 +0300
-Message-Id: <cover.1748343520.git.jani.nikula@intel.com>
+Subject: [RESEND 1/8] drm/i915/sbi: move intel_sbi.[ch] under display/
+Date: Tue, 27 May 2025 13:59:07 +0300
+Message-Id: <341268d633e9705bc582f1cc985dc4554e39d87d.1748343520.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1748343520.git.jani.nikula@intel.com>
+References: <cover.1748343520.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,49 +70,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rebase and resend of [1].
+The LPT/WPT SBI is arguably part of south display, and it's only used by
+intel_pch_refclk.c anyway. Move it under display/.
 
-[1] https://lore.kernel.org/r/cover.1747138550.git.jani.nikula@intel.com
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                  | 2 +-
+ drivers/gpu/drm/i915/{ => display}/intel_sbi.c | 0
+ drivers/gpu/drm/i915/{ => display}/intel_sbi.h | 0
+ drivers/gpu/drm/i915/i915_driver.c             | 2 +-
+ 4 files changed, 2 insertions(+), 2 deletions(-)
+ rename drivers/gpu/drm/i915/{ => display}/intel_sbi.c (100%)
+ rename drivers/gpu/drm/i915/{ => display}/intel_sbi.h (100%)
 
-Jani Nikula (8):
-  drm/i915/sbi: move intel_sbi.[ch] under display/
-  drm/i915/sbi: convert intel_sbi.[ch] to struct intel_display
-  drm/i915/sbi: move sbi_lock under struct intel_display
-  drm/i915/de: rename timeout parameters timeout_ms to highlight unit
-  drm/i915: add out_value to intel_wait_for_register_fw() and
-    intel_de_wait_fw()
-  drm/i915/sbi: convert to intel_de_*()
-  drm/i915/sbi: split out intel_sbi_regs.h
-  drm/i915/sbi: clean up SBI register macro definitions and usage
-
- drivers/gpu/drm/i915/Makefile                 |   2 +-
- drivers/gpu/drm/i915/display/intel_de.h       |  20 +--
- .../gpu/drm/i915/display/intel_display_core.h |   5 +
- drivers/gpu/drm/i915/display/intel_dpio_phy.c |   2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |   2 +-
- .../gpu/drm/i915/display/intel_pch_refclk.c   | 149 +++++++++---------
- drivers/gpu/drm/i915/display/intel_sbi.c      |  90 +++++++++++
- drivers/gpu/drm/i915/display/intel_sbi.h      |  27 ++++
- drivers/gpu/drm/i915/display/intel_sbi_regs.h |  65 ++++++++
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |   2 +-
- drivers/gpu/drm/i915/gvt/display.h            |  13 --
- drivers/gpu/drm/i915/gvt/handlers.c           |  30 ++--
- drivers/gpu/drm/i915/i915_driver.c            |   6 +-
- drivers/gpu/drm/i915/i915_drv.h               |   3 -
- drivers/gpu/drm/i915/i915_reg.h               |  41 -----
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |   1 +
- drivers/gpu/drm/i915/intel_sbi.c              |  94 -----------
- drivers/gpu/drm/i915/intel_sbi.h              |  27 ----
- drivers/gpu/drm/i915/intel_uncore.c           |   6 +-
- drivers/gpu/drm/i915/intel_uncore.h           |   5 +-
- .../drm/xe/compat-i915-headers/intel_uncore.h |   5 +-
- 21 files changed, 301 insertions(+), 294 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_sbi.h
- create mode 100644 drivers/gpu/drm/i915/display/intel_sbi_regs.h
- delete mode 100644 drivers/gpu/drm/i915/intel_sbi.c
- delete mode 100644 drivers/gpu/drm/i915/intel_sbi.h
-
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 1a90eb1f180a..333847892e18 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -40,7 +40,6 @@ i915-y += \
+ 	intel_pcode.o \
+ 	intel_region_ttm.o \
+ 	intel_runtime_pm.o \
+-	intel_sbi.o \
+ 	intel_step.o \
+ 	intel_uncore.o \
+ 	intel_uncore_trace.o \
+@@ -288,6 +287,7 @@ i915-y += \
+ 	display/intel_pmdemand.o \
+ 	display/intel_psr.o \
+ 	display/intel_quirks.o \
++	display/intel_sbi.o \
+ 	display/intel_sprite.o \
+ 	display/intel_sprite_uapi.o \
+ 	display/intel_tc.o \
+diff --git a/drivers/gpu/drm/i915/intel_sbi.c b/drivers/gpu/drm/i915/display/intel_sbi.c
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_sbi.c
+rename to drivers/gpu/drm/i915/display/intel_sbi.c
+diff --git a/drivers/gpu/drm/i915/intel_sbi.h b/drivers/gpu/drm/i915/display/intel_sbi.h
+similarity index 100%
+rename from drivers/gpu/drm/i915/intel_sbi.h
+rename to drivers/gpu/drm/i915/display/intel_sbi.h
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 3b0bda74697d..a77afea47202 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -63,6 +63,7 @@
+ #include "display/intel_overlay.h"
+ #include "display/intel_pch_refclk.h"
+ #include "display/intel_pps.h"
++#include "display/intel_sbi.h"
+ #include "display/intel_sprite_uapi.h"
+ #include "display/skl_watermark.h"
+ 
+@@ -109,7 +110,6 @@
+ #include "intel_pci_config.h"
+ #include "intel_pcode.h"
+ #include "intel_region_ttm.h"
+-#include "intel_sbi.h"
+ #include "vlv_iosf_sb.h"
+ #include "vlv_suspend.h"
+ 
 -- 
 2.39.5
 
