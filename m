@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D1CAC4B72
+	by mail.lfdr.de (Postfix) with ESMTPS id 2592EAC4B73
 	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 11:26:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E52210E448;
-	Tue, 27 May 2025 09:25:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11A1B10E461;
+	Tue, 27 May 2025 09:25:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EvXOy5jh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AGjiDUK1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD53610E466;
- Tue, 27 May 2025 09:25:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81A5A10E480;
+ Tue, 27 May 2025 09:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748337948; x=1779873948;
+ t=1748337953; x=1779873953;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dcmRpy+cFQdWZ/n5KYns5IqtbnIm1VjrRI55eNd1pl8=;
- b=EvXOy5jh37CQ6RpJZwG2S7rYcUT+2/B7JYgpbq4ppZqEw4qTgC0rDi9D
- PJbUTe8W+eyZWOvFcodKdlqYirc4sKtU9ipWTeRICk69lfjy/jRwPZFTe
- QmA8Nmdqf/DPIEQiggVIR/lkw2Vk3YhojC9v11937UqOlWm/iv/KHnwHm
- FzQ0RJKVW3DwLDLB/Ye3EtceVh+5/PrGEQEifO6drS/IwN5GB2cgX+lnj
- Pcns9xcpyW97ZHvj3fHFbruX0qdxNUtA8movb+vRPSSy5ey6IBE6PsT7s
- d6bHsQAKnDArejFFQe+3HycvViE5ee+OkFTvFK1jn3vn6DtRjGaXLLwyj A==;
-X-CSE-ConnectionGUID: 4XhjFM3GQbGTtG1kQLlnrA==
-X-CSE-MsgGUID: pPviiK1+RHeAVHG6XVAg2g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="54114228"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="54114228"
+ bh=37jM8UZ7hMFJI4otltdIViEKP/s0WF4j1/HKeYWVijk=;
+ b=AGjiDUK1/R/eGgcu8jEBAdsdBRm+LKRp7BMUQ9swex/xNj3gzaojZ0zy
+ HcUTsZJz4ATu/ym/WeZ5hqybT30EYWOzC83jQNIcYoWG2t1l+6sbFHqwF
+ RRXMg2VneDwxqKlac9E368K3iPcBWRiIEGXcltcm/rEIhEUT8BgWicXvr
+ czMcWiVW5KHyXOT04YOODQvQCM03xn06gqkTB/Yi4375zr/MrVh62T5Cu
+ bLYb3QgF9PDJXTuoad1ttdl2ENz+3q9herrCybef93BfAdQlAAEPj053T
+ J+JxgPjM2pUkct15zbqz/Kt5vdGfZ2qZl9tHObu9q1luvWGx3BC4BqKBy w==;
+X-CSE-ConnectionGUID: dPdEvI8vQ+KNA7EBUBSOoQ==
+X-CSE-MsgGUID: INa8yEkoQfCSJB990W1lGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="54114230"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="54114230"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 02:25:48 -0700
-X-CSE-ConnectionGUID: 1aS54sb6QtmI/KU2URDo6A==
-X-CSE-MsgGUID: W6nX0IIHRA2dVPh1/b3iAw==
+ 27 May 2025 02:25:53 -0700
+X-CSE-ConnectionGUID: eGaqp3HJQTuMEFqRv+5FVg==
+X-CSE-MsgGUID: xu3o/eWWRKiOhys0wJBp/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="179923007"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="179923017"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.119])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 02:25:47 -0700
+ 27 May 2025 02:25:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 4/6] drm/i915/dram: pass struct dram_info pointer around
-Date: Tue, 27 May 2025 12:25:24 +0300
-Message-Id: <8ac6b308b210cf4a429d5abfb9bf32737dcab51f.1748337870.git.jani.nikula@intel.com>
+Subject: [RESEND 5/6] drm/i915/dram: add return value and handling to
+ intel_dram_detect()
+Date: Tue, 27 May 2025 12:25:25 +0300
+Message-Id: <be2c31c459fb95d8161b719d499403eea5ec17b7.1748337870.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1748337870.git.jani.nikula@intel.com>
 References: <cover.1748337870.git.jani.nikula@intel.com>
@@ -70,126 +71,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Figure out the struct dram_info pointer in one place, and pass that
-around to be filled in, instead of all places poking at i915->dram_info
-directly.
+We'll want to start returning errors from intel_dram_detect(). As the
+first step, add the return value and error handling, even if we still
+only return 0.
+
+Do no functional changes, but leave a comment about whether we should
+bail out on dram detection failures.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_dram.c | 40 ++++++++++++---------------
- 1 file changed, 18 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c      | 4 +++-
+ drivers/gpu/drm/i915/soc/intel_dram.c   | 9 ++++++---
+ drivers/gpu/drm/i915/soc/intel_dram.h   | 2 +-
+ drivers/gpu/drm/xe/display/xe_display.c | 4 +++-
+ 4 files changed, 13 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 3b0bda74697d..20691a85d513 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -568,7 +568,9 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+ 	 * Fill the dram structure to get the system dram info. This will be
+ 	 * used for memory latency calculation.
+ 	 */
+-	intel_dram_detect(dev_priv);
++	ret = intel_dram_detect(dev_priv);
++	if (ret)
++		goto err_opregion;
+ 
+ 	intel_bw_init_hw(display);
+ 
 diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 76c225fd6c70..f42dcdb74d40 100644
+index f42dcdb74d40..e7fa938c98cf 100644
 --- a/drivers/gpu/drm/i915/soc/intel_dram.c
 +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -383,9 +383,8 @@ intel_is_dram_symmetric(const struct dram_channel_info *ch0,
- }
- 
- static int
--skl_dram_get_channels_info(struct drm_i915_private *i915)
-+skl_dram_get_channels_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
--	struct dram_info *dram_info = &i915->dram_info;
- 	struct dram_channel_info ch0 = {}, ch1 = {};
- 	u32 val;
- 	int ret;
-@@ -446,14 +445,13 @@ skl_get_dram_type(struct drm_i915_private *i915)
- }
- 
- static int
--skl_get_dram_info(struct drm_i915_private *i915)
-+skl_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
--	struct dram_info *dram_info = &i915->dram_info;
- 	int ret;
- 
- 	dram_info->type = skl_get_dram_type(i915);
- 
--	ret = skl_dram_get_channels_info(i915);
-+	ret = skl_dram_get_channels_info(i915, dram_info);
- 	if (ret)
- 		return ret;
- 
-@@ -538,9 +536,8 @@ static void bxt_get_dimm_info(struct dram_dimm_info *dimm, u32 val)
- 	dimm->size = bxt_get_dimm_size(val) * intel_dimm_num_devices(dimm);
- }
- 
--static int bxt_get_dram_info(struct drm_i915_private *i915)
-+static int bxt_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
--	struct dram_info *dram_info = &i915->dram_info;
- 	u32 val;
- 	u8 valid_ranks = 0;
- 	int i;
-@@ -585,9 +582,9 @@ static int bxt_get_dram_info(struct drm_i915_private *i915)
+@@ -704,7 +704,7 @@ static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info
  	return 0;
  }
  
--static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
-+static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv,
-+					  struct dram_info *dram_info)
+-void intel_dram_detect(struct drm_i915_private *i915)
++int intel_dram_detect(struct drm_i915_private *i915)
  {
--	struct dram_info *dram_info = &dev_priv->dram_info;
- 	u32 val = 0;
+ 	struct dram_info *dram_info = &i915->dram_info;
  	int ret;
+@@ -713,7 +713,7 @@ void intel_dram_detect(struct drm_i915_private *i915)
+ 	detect_mem_freq(i915);
  
-@@ -647,27 +644,26 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
- 	return 0;
- }
+ 	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
+-		return;
++		return 0;
  
--static int gen11_get_dram_info(struct drm_i915_private *i915)
-+static int gen11_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
--	int ret = skl_get_dram_info(i915);
-+	int ret = skl_get_dram_info(i915, dram_info);
- 
- 	if (ret)
- 		return ret;
- 
--	return icl_pcode_read_mem_global_info(i915);
-+	return icl_pcode_read_mem_global_info(i915, dram_info);
- }
- 
--static int gen12_get_dram_info(struct drm_i915_private *i915)
-+static int gen12_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
--	i915->dram_info.wm_lv_0_adjust_needed = false;
-+	dram_info->wm_lv_0_adjust_needed = false;
- 
--	return icl_pcode_read_mem_global_info(i915);
-+	return icl_pcode_read_mem_global_info(i915, dram_info);
- }
- 
--static int xelpdp_get_dram_info(struct drm_i915_private *i915)
-+static int xelpdp_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
- {
- 	u32 val = intel_uncore_read(&i915->uncore, MTL_MEM_SS_INFO_GLOBAL);
--	struct dram_info *dram_info = &i915->dram_info;
- 
- 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
- 	case 0:
-@@ -726,15 +722,15 @@ void intel_dram_detect(struct drm_i915_private *i915)
- 	dram_info->wm_lv_0_adjust_needed = !IS_BROXTON(i915) && !IS_GEMINILAKE(i915);
- 
- 	if (DISPLAY_VER(i915) >= 14)
--		ret = xelpdp_get_dram_info(i915);
-+		ret = xelpdp_get_dram_info(i915, dram_info);
- 	else if (GRAPHICS_VER(i915) >= 12)
--		ret = gen12_get_dram_info(i915);
-+		ret = gen12_get_dram_info(i915, dram_info);
- 	else if (GRAPHICS_VER(i915) >= 11)
--		ret = gen11_get_dram_info(i915);
-+		ret = gen11_get_dram_info(i915, dram_info);
- 	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
--		ret = bxt_get_dram_info(i915);
-+		ret = bxt_get_dram_info(i915, dram_info);
- 	else
--		ret = skl_get_dram_info(i915);
-+		ret = skl_get_dram_info(i915, dram_info);
- 
+ 	/*
+ 	 * Assume level 0 watermark latency adjustment is needed until proven
+@@ -735,8 +735,9 @@ void intel_dram_detect(struct drm_i915_private *i915)
  	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
  		    intel_dram_type_str(dram_info->type));
+ 
++	/* TODO: Do we want to abort probe on dram detection failures? */
+ 	if (ret)
+-		return;
++		return 0;
+ 
+ 	drm_dbg_kms(&i915->drm, "Num qgv points %u\n", dram_info->num_qgv_points);
+ 
+@@ -744,6 +745,8 @@ void intel_dram_detect(struct drm_i915_private *i915)
+ 
+ 	drm_dbg_kms(&i915->drm, "Watermark level 0 adjustment needed: %s\n",
+ 		    str_yes_no(dram_info->wm_lv_0_adjust_needed));
++
++	return 0;
+ }
+ 
+ const struct dram_info *intel_dram_info(struct drm_device *drm)
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+index 17a20cd2c6d5..25fe60b2b117 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.h
++++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+@@ -11,7 +11,7 @@ struct drm_device;
+ struct dram_info;
+ 
+ void intel_dram_edram_detect(struct drm_i915_private *i915);
+-void intel_dram_detect(struct drm_i915_private *i915);
++int intel_dram_detect(struct drm_i915_private *i915);
+ unsigned int i9xx_fsb_freq(struct drm_i915_private *i915);
+ const struct dram_info *intel_dram_info(struct drm_device *drm);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 3f92bf51813e..eafe2f093a6c 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -122,7 +122,9 @@ int xe_display_init_early(struct xe_device *xe)
+ 	 * Fill the dram structure to get the system dram info. This will be
+ 	 * used for memory latency calculation.
+ 	 */
+-	intel_dram_detect(xe);
++	err = intel_dram_detect(xe);
++	if (err)
++		goto err_opregion;
+ 
+ 	intel_bw_init_hw(display);
+ 
 -- 
 2.39.5
 
