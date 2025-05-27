@@ -2,76 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B371AC4D8C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 13:34:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C233AC4DD7
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 May 2025 13:46:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4568710E495;
-	Tue, 27 May 2025 11:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F48D10E46D;
+	Tue, 27 May 2025 11:46:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OPsvpfSD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NhIR6n9A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E17710E4AE;
- Tue, 27 May 2025 11:34:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id A2DBA5C566D;
- Tue, 27 May 2025 11:31:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9480DC4CEEB;
- Tue, 27 May 2025 11:34:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1748345643;
- bh=YTLYU9LWSJhsBRbF0nwekUco3urr9nhUJqZ1xPPWD6I=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=OPsvpfSDXqVNMHu6O72FeusLJj/fe/bJsamEvSE117gXDT+bqkiXRWfandboGlnnX
- OAEwVtmCXHq6aZL790iu1Ek31lvbZFvlzDM2DTgRyrbpEq9QzuDQv9jaTi2SVm6oZO
- GJXV/sCT/xPM+lInvjKiOZpjSFb0kwk1D3pn6HcdDJWejzsH+jmquukuhn7ksJkKnK
- /YmTRxe7fhajBK6EynaFK+imu0U3K/xkZd+1pWe1zxXxMI79KsAHUvfWxb4lF1KZRf
- XEYVD1A4wACGg2gQNI9t8pAeuXGGCc1efWUhX7leW/fCUBCHwaQTln2qTBdhrLfu8M
- Qiag53s0Be5LQ==
-From: Jeff Layton <jlayton@kernel.org>
-Date: Tue, 27 May 2025 07:33:40 -0400
-Subject: [PATCH v10 9/9] ref_tracker: eliminate the ref_tracker_dir name field
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED4C010E45D;
+ Tue, 27 May 2025 11:46:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748346413; x=1779882413;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BeFtSUmRvGpu1K9Oe4gL0xRUu5ZXnZkCRTw4eGx6BLI=;
+ b=NhIR6n9AxObFgoM5TVm4gkFTkwjemjRqpck4NvJzY8N7+OwcN3XMlWTc
+ 8eIWNxZMv8sCjNK0lzrFse8q5m6TgxMjQKL7tzH9JNxlmRB6sx5tbk8RA
+ 8WCib6Q26XZRykGB1kRs9eop70ow/IfizwFCUwaGKVuQ4TqFvoRLrt9dn
+ ZJsdrKduEvJMZ2F92Gz09pYzxr9HtIGzAMeSHgLGVlshJYJ5MQJ4osINe
+ P5Cwsl5FN0yTUJsvSd+U++ujdXLS1ifmh2tCzLFjB97s4P+wOrbIUCkFT
+ OYThT3xXDizGQzh5QmvA0+3spN6JoOBT3/5/S0Y0rOSuts60kWjbQ9BGh w==;
+X-CSE-ConnectionGUID: WLgGa7JKQt2fGImUvRWyRQ==
+X-CSE-MsgGUID: V6h8vdfHRhuz1LOGo4YelQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="37956973"
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="37956973"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 04:46:52 -0700
+X-CSE-ConnectionGUID: /nDf9oYnQzStdg1khMLSRQ==
+X-CSE-MsgGUID: zRvEIIhASFOt8mFBJijLnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; d="scan'208";a="142784368"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.119])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 May 2025 04:46:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/display: add intel_display_device_present()
+Date: Tue, 27 May 2025 14:46:45 +0300
+Message-Id: <20250527114645.3683025-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250527-reftrack-dbgfs-v10-9-dc55f7705691@kernel.org>
-References: <20250527-reftrack-dbgfs-v10-0-dc55f7705691@kernel.org>
-In-Reply-To: <20250527-reftrack-dbgfs-v10-0-dc55f7705691@kernel.org>
-To: Andrew Morton <akpm@linux-foundation.org>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Simon Horman <horms@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Kuniyuki Iwashima <kuniyu@amazon.com>, Qasim Ijaz <qasdev00@gmail.com>, 
- Nathan Chancellor <nathan@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- Jeff Layton <jlayton@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7499; i=jlayton@kernel.org;
- h=from:subject:message-id; bh=YTLYU9LWSJhsBRbF0nwekUco3urr9nhUJqZ1xPPWD6I=;
- b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBoNaMX37lKKv9qM6qZoSFnMypTHz5HKkasSkcfe
- 6vmfAFXGX2JAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaDWjFwAKCRAADmhBGVaC
- FQBDEACwwKWpXOrarJH08FEBs3PI31pyaNaGC834qIenHT3CSwcg9OyQ/26xJZBHeMVaI3YOwB4
- W5satPonKqkZi9rLGOHlMEnSYvxoHqSHFv16PZaLZztxu+Pt5iuvDxrnd8/oRMlhyjsYMR07Q+Q
- Jk9S2uZIflWaIkdtre0sAm/ImHVrYJSD4hoxKx5/vZMTfqo4BHDY5nUd8XaRt8e/oXkxjMAoUqC
- 40oUr6gTBFUF5GXMaJZxO3eTj2DhREdWB4fgJY7RdH5JemF1cJcBidBfgQhD0EQyGBX/adeD1+3
- ZKYyIYUo/Ek8JCxjxXPol5puEC+TUlOZWkNefAB/eptzr+0p/W8p97cg13X9zb4B0PXTC2pcz3Q
- GVcpCV0qfYMSfbH7F1/3KPSKcFQIsmZsXgyPTOji2lDI9z7ASsSYRd1QDr9DeS3M8j6rcy2kGpy
- U7GfxOr8Fiwba1ekQsyCgHzopDbOrJ1HebmVLKG2FuYWUzp3h4XQy923o4N7xPNjqVBTrWkueAt
- tW7XiIOCI9AKto/byQI/cSqN25Z4aJ2zfZnEBv4m54vsjZYnGkwzn5pmEZoEHgknd/Z76g/zU8c
- 7cOLpEEZ6LTGRAF4bF7hb19+gAF3UPPtfWbljLPs7axNcNqp7uL3N3yVUGO8UcUHlvtDcvk2VNc
- SXR/qw3S6HRW3kA==
-X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
- fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,189 +68,324 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we have dentries and the ability to create meaningful symlinks
-to them, don't keep a name string in each tracker. Switch the output
-format to print "class@address", and drop the name field.
+Add a proper function for display && HAS_DISPLAY(display) to hide direct
+struct intel_display access from a number of places outside of display.
 
-Also, add a kerneldoc header for ref_tracker_dir_init().
-
-Signed-off-by: Jeff Layton <jlayton@kernel.org>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_tunnel.c |  2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.c |  2 +-
- drivers/gpu/drm/i915/intel_wakeref.c    |  2 +-
- include/linux/ref_tracker.h             | 20 ++++++++++++++------
- lib/ref_tracker.c                       |  6 +++---
- lib/test_ref_tracker.c                  |  2 +-
- net/core/dev.c                          |  2 +-
- net/core/net_namespace.c                |  4 ++--
- 8 files changed, 24 insertions(+), 16 deletions(-)
+ .../drm/i915/display/intel_display_device.c   |  5 +++
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ .../i915/gem/selftests/i915_gem_client_blt.c  |  4 +--
+ drivers/gpu/drm/i915/i915_driver.c            | 17 +++++-----
+ drivers/gpu/drm/i915/i915_switcheroo.c        |  7 ++--
+ drivers/gpu/drm/i915/soc/intel_dram.c         |  3 +-
+ drivers/gpu/drm/xe/display/xe_display.c       | 33 ++++++++-----------
+ 7 files changed, 36 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
-index b9c12b8bf2a3e400b6d8e9d184145834c603b9e1..1205a4432eb4142344fb6eed1cb5ba5b21ec6953 100644
---- a/drivers/gpu/drm/display/drm_dp_tunnel.c
-+++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
-@@ -1920,7 +1920,7 @@ drm_dp_tunnel_mgr_create(struct drm_device *dev, int max_group_count)
- 	}
- 
- #ifdef CONFIG_DRM_DISPLAY_DP_TUNNEL_STATE_DEBUG
--	ref_tracker_dir_init(&mgr->ref_tracker, 16, "drm_dptun", "dptun");
-+	ref_tracker_dir_init(&mgr->ref_tracker, 16, "drm_dptun");
- #endif
- 
- 	for (i = 0; i < max_group_count; i++) {
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 3fdab3b44c08cea16ac2f73aafc2bea2ffbb19e7..c12b5d0e16fa363f3caede372e7a2031676aa7b5 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -60,7 +60,7 @@ static struct drm_i915_private *rpm_to_i915(struct intel_runtime_pm *rpm)
- static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
- {
- 	ref_tracker_dir_init(&rpm->debug, INTEL_REFTRACK_DEAD_COUNT,
--			     "intel_runtime_pm", dev_name(rpm->kdev));
-+			     "intel_runtime_pm");
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 1d8c2036d967..765243e3e22d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1929,6 +1929,11 @@ void intel_display_device_info_print(const struct intel_display_device_info *inf
+ 	drm_printf(p, "rawclk rate: %u kHz\n", runtime->rawclk_freq);
  }
  
- static intel_wakeref_t
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-index 5269e64c58a49884f5d712557546272bfdeb8417..615fb77809291be34d94600fdd4d919461a22720 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.c
-+++ b/drivers/gpu/drm/i915/intel_wakeref.c
-@@ -114,7 +114,7 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
- 			 "wakeref.work", &key->work, 0);
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_WAKEREF)
--	ref_tracker_dir_init(&wf->debug, INTEL_REFTRACK_DEAD_COUNT, "intel_wakeref", name);
-+	ref_tracker_dir_init(&wf->debug, INTEL_REFTRACK_DEAD_COUNT, "intel_wakeref");
- #endif
- }
- 
-diff --git a/include/linux/ref_tracker.h b/include/linux/ref_tracker.h
-index ddc5a7b2bd84692bbc1e1ae67674ec2c6857e1ec..5878e7fce712930700054033ff5f21547e75224f 100644
---- a/include/linux/ref_tracker.h
-+++ b/include/linux/ref_tracker.h
-@@ -24,7 +24,6 @@ struct ref_tracker_dir {
- 	struct dentry		*dentry;
- 	struct dentry		*symlink;
- #endif
--	char			name[32];
- #endif
++bool intel_display_device_present(struct intel_display *display)
++{
++	return display && HAS_DISPLAY(display);
++}
++
+ /*
+  * Assuming the device has display hardware, should it be enabled?
+  *
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 0ac5484c0043..f676aa9ecdf8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -308,6 +308,7 @@ struct intel_display_device_info {
+ 	} color;
  };
  
-@@ -48,10 +47,21 @@ void ref_tracker_dir_symlink(struct ref_tracker_dir *dir, const char *fmt, ...)
++bool intel_display_device_present(struct intel_display *display);
+ bool intel_display_device_enabled(struct intel_display *display);
+ struct intel_display *intel_display_device_probe(struct pci_dev *pdev);
+ void intel_display_device_remove(struct intel_display *display);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+index 86d9d2fcb6a6..4fa5caa1ec6d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_client_blt.c
+@@ -5,7 +5,7 @@
  
- #endif /* CONFIG_DEBUG_FS */
+ #include "i915_selftest.h"
  
-+/**
-+ * ref_tracker_dir_init - initialize a ref_tracker dir
-+ * @dir: ref_tracker_dir to be initialized
-+ * @quarantine_count: max number of entries to be tracked
-+ * @class: pointer to static string that describes object type
-+ *
-+ * Initialize a ref_tracker_dir. If debugfs is configured, then a file
-+ * will also be created for it under the top-level ref_tracker debugfs
-+ * directory.
-+ *
-+ * Note that @class must point to a static string.
-+ */
- static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
- 					unsigned int quarantine_count,
--					const char *class,
--					const char *name)
-+					const char *class)
- {
- 	INIT_LIST_HEAD(&dir->list);
- 	INIT_LIST_HEAD(&dir->quarantine);
-@@ -65,7 +75,6 @@ static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
- 	dir->dentry = NULL;
- 	dir->symlink = NULL;
- #endif
--	strscpy(dir->name, name, sizeof(dir->name));
- 	ref_tracker_dir_debugfs(dir);
- 	stack_depot_init();
- }
-@@ -90,8 +99,7 @@ int ref_tracker_free(struct ref_tracker_dir *dir,
+-#include "display/intel_display_core.h"
++#include "display/intel_display_device.h"
+ #include "gt/intel_context.h"
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_engine_user.h"
+@@ -121,7 +121,7 @@ static bool fastblit_supports_x_tiling(const struct drm_i915_private *i915)
+ 	if (GRAPHICS_VER_FULL(i915) < IP_VER(12, 55))
+ 		return false;
  
- static inline void ref_tracker_dir_init(struct ref_tracker_dir *dir,
- 					unsigned int quarantine_count,
--					const char *class,
--					const char *name)
-+					const char *class)
- {
+-	return HAS_DISPLAY(i915);
++	return intel_display_device_present(i915->display);
  }
  
-diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
-index 5e84e5fd78e147a036d4adb511e657da07866a55..5fb384dd919e1f1ad632eaf595b954118bcfddab 100644
---- a/lib/ref_tracker.c
-+++ b/lib/ref_tracker.c
-@@ -123,7 +123,7 @@ __ref_tracker_dir_pr_ostream(struct ref_tracker_dir *dir,
- 	stats = ref_tracker_get_stats(dir, display_limit);
- 	if (IS_ERR(stats)) {
- 		pr_ostream(s, "%s%s@%p: couldn't get stats, error %pe\n",
--			   s->prefix, dir->name, dir, stats);
-+			   s->prefix, dir->class, dir, stats);
+ static bool fast_blit_ok(const struct blit_buffer *buf)
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 3b0bda74697d..937495eb5690 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -51,13 +51,14 @@
+ #include "display/intel_bw.h"
+ #include "display/intel_cdclk.h"
+ #include "display/intel_crtc.h"
+-#include "display/intel_display_core.h"
++#include "display/intel_display_device.h"
+ #include "display/intel_display_driver.h"
+ #include "display/intel_dmc.h"
+ #include "display/intel_dp.h"
+ #include "display/intel_dpt.h"
+ #include "display/intel_encoder.h"
+ #include "display/intel_fbdev.h"
++#include "display/intel_gmbus.h"
+ #include "display/intel_hotplug.h"
+ #include "display/intel_opregion.h"
+ #include "display/intel_overlay.h"
+@@ -975,7 +976,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+ 	intel_power_domains_disable(display);
+ 
+ 	drm_client_dev_suspend(&i915->drm, false);
+-	if (HAS_DISPLAY(i915)) {
++	if (intel_display_device_present(i915->display)) {
+ 		drm_kms_helper_poll_disable(&i915->drm);
+ 		intel_display_driver_disable_user_access(display);
+ 
+@@ -987,7 +988,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+ 	intel_irq_suspend(i915);
+ 	intel_hpd_cancel_work(display);
+ 
+-	if (HAS_DISPLAY(i915))
++	if (intel_display_device_present(i915->display))
+ 		intel_display_driver_suspend_access(display);
+ 
+ 	intel_encoder_suspend_all(display);
+@@ -1058,7 +1059,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	 * properly. */
+ 	intel_power_domains_disable(display);
+ 	drm_client_dev_suspend(dev, false);
+-	if (HAS_DISPLAY(dev_priv)) {
++	if (intel_display_device_present(dev_priv->display)) {
+ 		drm_kms_helper_poll_disable(dev);
+ 		intel_display_driver_disable_user_access(display);
+ 	}
+@@ -1070,7 +1071,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 	intel_irq_suspend(dev_priv);
+ 	intel_hpd_cancel_work(display);
+ 
+-	if (HAS_DISPLAY(dev_priv))
++	if (intel_display_device_present(dev_priv->display))
+ 		intel_display_driver_suspend_access(display);
+ 
+ 	intel_encoder_suspend_all(display);
+@@ -1217,7 +1218,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 	 */
+ 	intel_irq_resume(dev_priv);
+ 
+-	if (HAS_DISPLAY(dev_priv))
++	if (intel_display_device_present(dev_priv->display))
+ 		drm_mode_config_reset(dev);
+ 
+ 	i915_gem_resume(dev_priv);
+@@ -1226,14 +1227,14 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	intel_clock_gating_init(dev_priv);
+ 
+-	if (HAS_DISPLAY(dev_priv))
++	if (intel_display_device_present(dev_priv->display))
+ 		intel_display_driver_resume_access(display);
+ 
+ 	intel_hpd_init(display);
+ 
+ 	intel_display_driver_resume(display);
+ 
+-	if (HAS_DISPLAY(dev_priv)) {
++	if (intel_display_device_present(dev_priv->display)) {
+ 		intel_display_driver_enable_user_access(display);
+ 		drm_kms_helper_poll_enable(dev);
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
+index 4c02a04be681..431a8559e489 100644
+--- a/drivers/gpu/drm/i915/i915_switcheroo.c
++++ b/drivers/gpu/drm/i915/i915_switcheroo.c
+@@ -5,7 +5,7 @@
+ 
+ #include <linux/vga_switcheroo.h>
+ 
+-#include "display/intel_display_core.h"
++#include "display/intel_display_device.h"
+ 
+ #include "i915_driver.h"
+ #include "i915_drv.h"
+@@ -21,7 +21,7 @@ static void i915_switcheroo_set_state(struct pci_dev *pdev,
+ 		dev_err(&pdev->dev, "DRM not initialized, aborting switch.\n");
  		return;
  	}
+-	if (!HAS_DISPLAY(i915)) {
++	if (!intel_display_device_present(i915->display)) {
+ 		dev_err(&pdev->dev, "Device state not initialized, aborting switch.\n");
+ 		return;
+ 	}
+@@ -50,7 +50,8 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
+ 	 * locking inversion with the driver load path. And the access here is
+ 	 * completely racy anyway. So don't bother with locking for now.
+ 	 */
+-	return i915 && HAS_DISPLAY(i915) && atomic_read(&i915->drm.open_count) == 0;
++	return i915 && intel_display_device_present(i915->display) &&
++		atomic_read(&i915->drm.open_count) == 0;
+ }
  
-@@ -134,14 +134,14 @@ __ref_tracker_dir_pr_ostream(struct ref_tracker_dir *dir,
- 		if (sbuf && !stack_depot_snprint(stack, sbuf, STACK_BUF_SIZE, 4))
- 			sbuf[0] = 0;
- 		pr_ostream(s, "%s%s@%p has %d/%d users at\n%s\n", s->prefix,
--			   dir->name, dir, stats->stacks[i].count,
-+			   dir->class, dir, stats->stacks[i].count,
- 			   stats->total, sbuf);
- 		skipped -= stats->stacks[i].count;
+ static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+index 9f806ce0eb9e..ecfa5347ffd6 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.c
++++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+@@ -716,7 +716,8 @@ void intel_dram_detect(struct drm_i915_private *i915)
+ 	detect_fsb_freq(i915);
+ 	detect_mem_freq(i915);
+ 
+-	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
++	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) ||
++	    !intel_display_device_present(i915->display))
+ 		return;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 3f92bf51813e..142e2065fce8 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -20,7 +20,7 @@
+ #include "intel_audio.h"
+ #include "intel_bw.h"
+ #include "intel_display.h"
+-#include "intel_display_core.h"
++#include "intel_display_device.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_types.h"
+@@ -37,13 +37,6 @@
+ 
+ /* Xe device functions */
+ 
+-static bool has_display(struct xe_device *xe)
+-{
+-	struct intel_display *display = xe->display;
+-
+-	return HAS_DISPLAY(display);
+-}
+-
+ /**
+  * xe_display_driver_probe_defer - Detect if we need to wait for other drivers
+  *				   early on
+@@ -287,7 +280,7 @@ static void xe_display_enable_d3cold(struct xe_device *xe)
+ 
+ 	intel_dmc_suspend(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		intel_hpd_poll_enable(display);
+ }
+ 
+@@ -300,14 +293,14 @@ static void xe_display_disable_d3cold(struct xe_device *xe)
+ 
+ 	intel_dmc_resume(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		drm_mode_config_reset(&xe->drm);
+ 
+ 	intel_display_driver_init_hw(display);
+ 
+ 	intel_hpd_init(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		intel_hpd_poll_disable(display);
+ 
+ 	intel_opregion_resume(display);
+@@ -330,7 +323,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ 	intel_power_domains_disable(display);
+ 	drm_client_dev_suspend(&xe->drm, false);
+ 
+-	if (has_display(xe)) {
++	if (intel_display_device_present(display)) {
+ 		drm_kms_helper_poll_disable(&xe->drm);
+ 		intel_display_driver_disable_user_access(display);
+ 		intel_display_driver_suspend(display);
+@@ -340,7 +333,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ 
+ 	intel_hpd_cancel_work(display);
+ 
+-	if (has_display(xe)) {
++	if (intel_display_device_present(display)) {
+ 		intel_display_driver_suspend_access(display);
+ 		intel_encoder_suspend_all(display);
+ 	}
+@@ -360,7 +353,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+ 	intel_power_domains_disable(display);
+ 	drm_client_dev_suspend(&xe->drm, false);
+ 
+-	if (has_display(xe)) {
++	if (intel_display_device_present(display)) {
+ 		drm_kms_helper_poll_disable(&xe->drm);
+ 		intel_display_driver_disable_user_access(display);
+ 		intel_display_driver_suspend(display);
+@@ -370,7 +363,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+ 	intel_dp_mst_suspend(display);
+ 	intel_hpd_cancel_work(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		intel_display_driver_suspend_access(display);
+ 
+ 	intel_encoder_suspend_all(display);
+@@ -459,23 +452,23 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 
+ 	intel_dmc_resume(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		drm_mode_config_reset(&xe->drm);
+ 
+ 	intel_display_driver_init_hw(display);
+ 
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		intel_display_driver_resume_access(display);
+ 
+ 	intel_hpd_init(display);
+ 
+-	if (has_display(xe)) {
++	if (intel_display_device_present(display)) {
+ 		intel_display_driver_resume(display);
+ 		drm_kms_helper_poll_enable(&xe->drm);
+ 		intel_display_driver_enable_user_access(display);
  	}
  
- 	if (skipped)
- 		pr_ostream(s, "%s%s@%p skipped reports about %d/%d users.\n",
--			   s->prefix, dir->name, dir, skipped, stats->total);
-+			   s->prefix, dir->class, dir, skipped, stats->total);
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		intel_hpd_poll_disable(display);
  
- 	kfree(sbuf);
+ 	intel_opregion_resume(display);
+@@ -540,7 +533,7 @@ int xe_display_probe(struct xe_device *xe)
  
-diff --git a/lib/test_ref_tracker.c b/lib/test_ref_tracker.c
-index d263502a4c1db248f64a66a468e96c8e4cffab25..b983ceb12afcb84ad60360a1e6fec0072e78ef79 100644
---- a/lib/test_ref_tracker.c
-+++ b/lib/test_ref_tracker.c
-@@ -64,7 +64,7 @@ static int __init test_ref_tracker_init(void)
- {
- 	int i;
+ 	xe->display = display;
  
--	ref_tracker_dir_init(&ref_dir, 100, "selftest", "selftest");
-+	ref_tracker_dir_init(&ref_dir, 100, "selftest");
+-	if (has_display(xe))
++	if (intel_display_device_present(display))
+ 		return 0;
  
- 	timer_setup(&test_ref_tracker_timer, test_ref_tracker_timer_func, 0);
- 	mod_timer(&test_ref_tracker_timer, jiffies + 1);
-diff --git a/net/core/dev.c b/net/core/dev.c
-index bac9d29486556023cd99f5101b96b052acb9ba70..a062912525ee573504a9cc252f71aed22693d24f 100644
---- a/net/core/dev.c
-+++ b/net/core/dev.c
-@@ -11713,7 +11713,7 @@ struct net_device *alloc_netdev_mqs(int sizeof_priv, const char *name,
- 
- 	dev->priv_len = sizeof_priv;
- 
--	ref_tracker_dir_init(&dev->refcnt_tracker, 128, "netdev", name);
-+	ref_tracker_dir_init(&dev->refcnt_tracker, 128, "netdev");
- #ifdef CONFIG_PCPU_DEV_REFCNT
- 	dev->pcpu_refcnt = alloc_percpu(int);
- 	if (!dev->pcpu_refcnt)
-diff --git a/net/core/net_namespace.c b/net/core/net_namespace.c
-index 39b01af90d240df48827e5c3159c3e2253e0a44d..c03757e39c8a334d307fa1b5cc8f03ad3a8df0e0 100644
---- a/net/core/net_namespace.c
-+++ b/net/core/net_namespace.c
-@@ -403,8 +403,8 @@ static __net_init void preinit_net(struct net *net, struct user_namespace *user_
- {
- 	refcount_set(&net->passive, 1);
- 	refcount_set(&net->ns.count, 1);
--	ref_tracker_dir_init(&net->refcnt_tracker, 128, "net_refcnt", "net_refcnt");
--	ref_tracker_dir_init(&net->notrefcnt_tracker, 128, "net_notrefcnt", "net_notrefcnt");
-+	ref_tracker_dir_init(&net->refcnt_tracker, 128, "net_refcnt");
-+	ref_tracker_dir_init(&net->notrefcnt_tracker, 128, "net_notrefcnt");
- 
- 	get_random_bytes(&net->hash_mix, sizeof(u32));
- 	net->dev_base_seq = 1;
-
+ no_display:
 -- 
-2.49.0
+2.39.5
 
