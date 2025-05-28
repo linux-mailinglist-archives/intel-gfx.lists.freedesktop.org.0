@@ -2,69 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4849AC6CEE
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 May 2025 17:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B5CAC6DE9
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 May 2025 18:22:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4707A10E64E;
-	Wed, 28 May 2025 15:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5EE10E691;
+	Wed, 28 May 2025 16:22:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="OkB+tWwJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="z5n19rmM";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OkB+tWwJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="z5n19rmM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nb+n9/MF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A4F10E640
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 May 2025 15:35:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5E8801F79C;
- Wed, 28 May 2025 15:35:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1748446552; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ZXv62CC2r0RxZ6SQQgYCr4gGbzuyMxbUXGqctrXYOek=;
- b=OkB+tWwJn5TyhhdZk5gRTOtB/3WHwqE1z90PjIS/tvdz4lDahQGvk5HSEa76oAQ2kg/1/b
- B20qvLXFqVFNGCXDJh79yWEowrOKaAr8LzfcAK0Ed3oElZ8PIbUoQatX9TnxWgG8bBHIbv
- b3sFaDAxi2CSy2Q/eDBj32soLVoFtO0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1748446552;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ZXv62CC2r0RxZ6SQQgYCr4gGbzuyMxbUXGqctrXYOek=;
- b=z5n19rmMiwEaklI61przui4wcgbfqyN1EQp36L9Z3ElM9cRUJGbmyudyPmUcEQM/A83XMr
- u8u8KRR5DnCvs9Bw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1748446552; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ZXv62CC2r0RxZ6SQQgYCr4gGbzuyMxbUXGqctrXYOek=;
- b=OkB+tWwJn5TyhhdZk5gRTOtB/3WHwqE1z90PjIS/tvdz4lDahQGvk5HSEa76oAQ2kg/1/b
- B20qvLXFqVFNGCXDJh79yWEowrOKaAr8LzfcAK0Ed3oElZ8PIbUoQatX9TnxWgG8bBHIbv
- b3sFaDAxi2CSy2Q/eDBj32soLVoFtO0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1748446552;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=ZXv62CC2r0RxZ6SQQgYCr4gGbzuyMxbUXGqctrXYOek=;
- b=z5n19rmMiwEaklI61przui4wcgbfqyN1EQp36L9Z3ElM9cRUJGbmyudyPmUcEQM/A83XMr
- u8u8KRR5DnCvs9Bw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E5466136E3;
- Wed, 28 May 2025 15:35:51 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id AhQdNlctN2hHYgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 28 May 2025 15:35:51 +0000
-Date: Wed, 28 May 2025 17:35:50 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0D0610E686;
+ Wed, 28 May 2025 16:22:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1748449326; x=1779985326;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=cJB4+nrkx88MKzgE05JcOJwNo+gn4DnxlqhSxd8Jn6c=;
+ b=nb+n9/MFodmPkVrWe2G+GwvGvJVwNFW+tChulDprCjjkbAUySxkofPhz
+ t+A9VA6AP/nRzqtfgm0EllrbtdF2FFR8Lub3rMGE0yjL/KR5S2psaC/yk
+ k8YhoGujvWUckQnunqugEcDFzA6g7odZ8bq+rPjcSGg8cbin/VGTNSHvE
+ jYQqdMSefLUkzgrmqHZm/skdHh3Jb8KAE36JJDr+mytgqAx0kQV0c8fzp
+ +Rv9osPnFL5YyYjBLWLXfz4Vx/TOXYzUAp5Wi0sTzhpq06x3xocYXpL2S
+ 5O2lEaX/dt2c1IOzHJtltE6XHQv4paSW6BztlVo8nzn4y9RjtYzet2jSf Q==;
+X-CSE-ConnectionGUID: N5WxsoX1SDKW/c+reywdnw==
+X-CSE-MsgGUID: 8DRJqix/QemkDIaMJtIlsw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="50359883"
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="50359883"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 09:22:06 -0700
+X-CSE-ConnectionGUID: 32So+S8CQWC639DINEJe3A==
+X-CSE-MsgGUID: IRQtaX7pRDKI6lh553zsig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,321,1739865600"; d="scan'208";a="148420161"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.106])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 May 2025 09:22:02 -0700
+Date: Wed, 28 May 2025 18:21:54 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
 To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -78,26 +56,11 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20250528153550.GA21050@linux.fritz.box>
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <aDc4Is-sQb3DPGO5@fedora>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- MISSING_XM_UA(0.00)[]; FROM_HAS_DN(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_DN_SOME(0.00)[]
-X-Spam-Level: 
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,79 +76,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+Hi Dave, Simona
 
-this is the weekly PR for drm-misc-fixes. Besides DRM, the bugfix
-for dummycon possibly affects fbcon and fbdev output as well.
+Two documentation fixes this week.
 
-Best regards
+Thanks,
 Thomas
 
-drm-misc-fixes-2025-05-28:
-Short summary of fixes pull:
+drm-xe-next-fixes-2025-05-28:
+Driver Changes:
+- Two documentation fixes (Rodrigo)
 
-drm-scheduler:
-- signal scheduled fence when killing job
+The following changes since commit 879ede53958f7bab79a88888f77e0ca91f0f77da:
 
-dummycon:
-- trigger deferred takeover when switching consoles
-
-ivpu:
-- improve logging
-- update firmware filenames
-- reorder steps in command-queue unregistering
-The following changes since commit 6692dbc15e5ed40a3aa037aced65d7b8826c58cd:
-
-  drm/edid: fixed the bug that hdr metadata was not reset (2025-05-19 12:26:08 +0300)
+  drm/xe: Default auto_link_downgrade status to false (2025-05-23 09:41:06 +0200)
 
 are available in the Git repository at:
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-05-28
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-05-28
 
-for you to fetch changes up to 4557cc834712eca4eae7adbd9f0a06bdd8f79c99:
+for you to fetch changes up to 40493d97b329f8185c0f04dc0ef2b9ffc58e7f3b:
 
-  accel/ivpu: Reorder Doorbell Unregister and Command Queue Destruction (2025-05-28 11:49:29 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-drm-scheduler:
-- signal scheduled fence when killing job
-
-dummycon:
-- trigger deferred takeover when switching consoles
-
-ivpu:
-- improve logging
-- update firmware filenames
-- reorder steps in command-queue unregistering
+  drm/xe: Add missing documentation of rpa_freq (2025-05-28 17:23:13 +0200)
 
 ----------------------------------------------------------------
-Jacek Lawrynowicz (2):
-      accel/ivpu: Improve buffer object logging
-      accel/ivpu: Use firmware names from upstream repo
+Driver Changes:
+- Two documentation fixes (Rodrigo)
 
-Karol Wachowski (1):
-      accel/ivpu: Reorder Doorbell Unregister and Command Queue Destruction
+----------------------------------------------------------------
+Rodrigo Vivi (2):
+      drm/xe: Make xe_gt_freq part of the Documentation
+      drm/xe: Add missing documentation of rpa_freq
 
-Lin.Cao (1):
-      drm/scheduler: signal scheduled fence when kill job
-
-Thomas Zimmermann (1):
-      dummycon: Trigger redraw when switching consoles with deferred takeover
-
- drivers/accel/ivpu/ivpu_fw.c             | 12 ++++++------
- drivers/accel/ivpu/ivpu_gem.c            | 25 +++++++++++++++++--------
- drivers/accel/ivpu/ivpu_gem.h            |  1 +
- drivers/accel/ivpu/ivpu_job.c            |  8 ++++----
- drivers/gpu/drm/scheduler/sched_entity.c |  1 +
- drivers/video/console/dummycon.c         | 18 +++++++++++++-----
- 6 files changed, 42 insertions(+), 23 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+ Documentation/gpu/xe/index.rst      |  1 +
+ Documentation/gpu/xe/xe_gt_freq.rst | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_freq.c     |  5 +++++
+ 3 files changed, 20 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_gt_freq.rst
