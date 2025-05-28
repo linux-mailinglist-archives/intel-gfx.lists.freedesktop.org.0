@@ -2,67 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7ACDAC626C
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 May 2025 08:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3ACAC62E0
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 May 2025 09:22:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE49610E579;
-	Wed, 28 May 2025 06:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90ADD10E57D;
+	Wed, 28 May 2025 07:22:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CLT9Ewaf";
+	dkim=pass (1024-bit key; unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.b="Rm31BU1I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECD210E2AE;
- Wed, 28 May 2025 06:57:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748415420; x=1779951420;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=y8LnKWl0reReE5wgkFA3hS8SJWX9rlHMy3MM1N7+oCc=;
- b=CLT9EwafF9Fke2guT59TmKqC/SCp8C5nHTxrXNpzxNUEgiVRhRvvtSWd
- L4Vd/EyOu8ZR3BhuQ4G1DfTKnOZC3AWGYCuGQqF2bvuKfacqb3qHttXEf
- 9hzNtFn+0A2gmgdQ1xwwf0yMEhdlpcEZFnwEgk2bcoN2mMq6OgBYncUdM
- yaz4niL+rJjYHGIz1Hq7m8BsFpxapbXOXdjVNSne8dDRDIvTG9D/65P4t
- 8n54q8bc9OIbPBPWV1nGIatakui5TlJ/v1XgL1NjTQiGdyK/7XCPGDPB1
- QGdBV5Xt1OfPBGlCp/wUTSmCJVTnp5F7lZkQRm7ZGevBSo1K4Nf9mGvDY A==;
-X-CSE-ConnectionGUID: Q0xdkNSDR5ivKII+7Oq3rg==
-X-CSE-MsgGUID: O9GIDH21QmWxq86kljFVVQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11446"; a="49676565"
-X-IronPort-AV: E=Sophos;i="6.15,320,1739865600"; d="scan'208";a="49676565"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 23:56:59 -0700
-X-CSE-ConnectionGUID: wwAm5jKzQz+tfkZ6bgRbAA==
-X-CSE-MsgGUID: K5xNNZQtTUO3n6mRfV2xkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,320,1739865600"; d="scan'208";a="143066610"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.58])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2025 23:56:55 -0700
-Date: Wed, 28 May 2025 09:56:52 +0300
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <aDaztAmV_erxo1Am@jlahtine-mobl>
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Wed, 28 May 2025 07:22:24 UTC
+Received: from mail-m3269.qiye.163.com (mail-m3269.qiye.163.com
+ [220.197.32.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F0D110E57D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 May 2025 07:22:24 +0000 (UTC)
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+ by smtp.qiye.163.com (Hmail) with ESMTP id 16ad4c5b7;
+ Wed, 28 May 2025 15:17:14 +0800 (GMT+08:00)
+Message-ID: <64499337-fc61-42b0-8c50-7749b2036c54@rock-chips.com>
+Date: Wed, 28 May 2025 15:17:13 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: linux-next: build failure after merge of the drm-misc tree
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20250528134245.13dc84aa@canb.auug.org.au>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20250528134245.13dc84aa@canb.auug.org.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+ tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU0aGlZNGB1DHx1KQk8aSBhWFRQJFh
+ oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
+ xVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9715c09ca103a3kunmf43b205c7c0117
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NUk6PTo5DzE3HElCMUgLPwko
+ DBQaCxNVSlVKTE9DT0pNTUhOS0JPVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+ EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKQ09JNwY+
+DKIM-Signature: a=rsa-sha256;
+ b=Rm31BU1IBANLdwjKdweGRV23FdVzgx6FBf6ic/48VtsB/DskqVdw9vmZGiAvRMfS/Abti7vA2c4j9h2XdHRm+C6GaBFYuXUiORvNf0iEJ1ivgG2mt02/J1EkmfnT3ZULWyshmZTIUJUt/cMbsbdqMtDY35AsR6IHgccScvRVwUc=;
+ s=default; c=relaxed/relaxed; d=rock-chips.com; v=1; 
+ bh=1y9XPtE/Gokh+W8CqyQCHL4aO+4NRxKNs2KqCpdAynE=;
+ h=date:mime-version:subject:message-id:from;
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,49 +68,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+Hi Stephen,
 
-Here's this week's drm-intel-next-fixes towards 6.16-rc1.
+On 2025/5/28 11:42, Stephen Rothwell wrote:
+> Hi all,
+> 
+> After merging the drm-misc tree, today's linux-next build (arm
+> multi_v7_defconfig) failed like this:
+> 
+> drivers/gpu/drm/bridge/analogix/analogix_dp_core.c: In function 'analogix_dp_probe':
+> drivers/gpu/drm/bridge/analogix/analogix_dp_core.c:1589:17: error: label 'err_disable_clk' used but not defined
+>   1589 |                 goto err_disable_clk;
+>        |                 ^~~~
+> 
+> Caused by commit
+> 
+>    6579a03e68ff ("drm/bridge: analogix_dp: Remove the unnecessary calls to clk_disable_unprepare() during probing")
+> 
+> I have used the drm-misc tree from next-20250527 for today.
+> 
 
-Just one DP audio fix.
+Oh, I have found the same compile error after rebasing.
 
-Regards, Joonas
+I have removed the 'err_disable_clk' flag and made it return 
+ERR_PTR(ret) in:
+https://lore.kernel.org/all/20250310104114.2608063-7-damon.ding@rock-chips.com/
 
-PS. There is also one Cc: stable patch and revert for it.
+Likely a small merge conflict bug. Will patch it later. ;-)
 
-***
+Best regards,
+Damon
 
-drm-intel-next-fixes-2025-05-28:
-
-- Fix the enabling/disabling of DP audio SDP splitting
-
-The following changes since commit f4c7baa0699b69edb6887a992283b389761e0e81:
-
-  drm/i915/display: Add check for alloc_ordered_workqueue() and alloc_workqueue() (2025-05-22 09:25:57 +0300)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2025-05-28
-
-for you to fetch changes up to ed5915cfce2abb9a553c3737badebd4a11d6c9c7:
-
-  Revert "drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1" (2025-05-27 16:40:55 +0300)
-
-----------------------------------------------------------------
-- Fix the enabling/disabling of DP audio SDP splitting
-
-----------------------------------------------------------------
-Imre Deak (1):
-      drm/i915/dp: Fix the enabling/disabling of audio SDP splitting
-
-Joonas Lahtinen (1):
-      Revert "drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1"
-
-Ville Syrjälä (1):
-      drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1
-
- drivers/gpu/drm/i915/display/intel_audio.c  | 27 +++++++++++++++++----------
- drivers/gpu/drm/i915/display/intel_audio.h  |  1 -
- drivers/gpu/drm/i915/display/intel_ddi.c    |  3 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 --
- 4 files changed, 17 insertions(+), 16 deletions(-)
