@@ -2,51 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2E0AC826D
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 May 2025 21:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAFAAC84FB
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 May 2025 01:24:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B17E10E232;
-	Thu, 29 May 2025 19:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9FB710E78F;
+	Thu, 29 May 2025 23:24:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="JIJYEi+3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SxkNzBST";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 381B710E232
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 May 2025 19:02:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1748545327; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=exQ8XQis0djdR+sXrFEiguaeduRAKQsmwdrbeWupYDmTJMBk/TeBPRKXS6FMPPmOfXJeeVRYzc5N9d6BSIMdHRNWHrEd1CYGSrENgxNmhRypOav36QxbU3zzfrprTsurFf1sBqM+cy87uTRi3LxqrNvq1p7lLmtH/IkLXseAaok=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1748545327;
- h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=L3uj6rLy46QHqM66eogkjrelHkiVumz/LWjuCMD+K9U=; 
- b=GXyGJxzjv3VMdKviLKSevIp7VELGQRPNPntphio4vbfWofX1en3/92L5Ti4vMmJpVDrMBbU/6XqM8jqA+Cud6J5jPt+97MYldvvVA9uIQUS8Snx7CBlWcXPeBCb0txONFeqKS8NOq6KI5n1UYBxT/OgKcNmjiw7VaJdIhOQZZ0I=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1748545327; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
- bh=L3uj6rLy46QHqM66eogkjrelHkiVumz/LWjuCMD+K9U=;
- b=JIJYEi+3qPeVdQxI3wFlHC4iK/0skvw8lLOMflo+lkF1UqaR/UjQw/98prAeGRQq
- 525FXDeKeHenoYGXlh1Y56UGvB2HPzMxwpZSMsW+CENGxMSxxhTH2T5RkqiL3FahmTa
- y6zSiIE4JyaFqwukh53GiTA6XU0sRzrq0OyewEEo=
-Received: by mx.zohomail.com with SMTPS id 1748545325189600.1598159039553;
- Thu, 29 May 2025 12:02:05 -0700 (PDT)
-Message-ID: <f13e9b3cf74c058b6536841319ce47cd3924e127.camel@collabora.com>
-Subject: XDC 2025: Registration & Call for Proposals now open!
-From: Mark Filion <mark.filion@collabora.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 May 2025 15:02:03 -0400
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42app2) 
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82DE010E78F;
+ Thu, 29 May 2025 23:24:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id D0743614BA;
+ Thu, 29 May 2025 23:24:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9174AC4CEE7;
+ Thu, 29 May 2025 23:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1748561089;
+ bh=XHek1or6lgqhUolGMvuGeooaTqEUU9Li8TYgY+vSfcA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=SxkNzBSTwpjci3VuBTnBCeXjQwbDMmYbh7D5ztdNlSAzhtQM4Kw4VnEEmyPOOJ7dS
+ ml5P97uFliPzrLABarBwXqgRmHigFFTADXFoBhI1l7kml3JmsHM0gGXJ2EdenZyJ6e
+ iUV3fy1cITtu/iVSmXAx6tRmvYLob7yMdCStGtNu/bio1iVq1cJaUGSbJhmQTDLiIr
+ RdLjPH8cyaGS8OWCryRsuVGJAvcUYYw9qtebVaduOyQ1L3bU5uSE2ld37SpcSGizrN
+ dkS27CXxvs24AIkJYhm0KdyQp21oJEaUnhetrjJs2wZT0XtzxQhyi0+tBlTyBmpTSW
+ scCU6sL2oFOPA==
+Date: Thu, 29 May 2025 16:24:47 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Jeff Layton <jlayton@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Kuniyuki
+ Iwashima <kuniyu@amazon.com>, Qasim Ijaz <qasdev00@gmail.com>, Nathan
+ Chancellor <nathan@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Thomas
+ =?UTF-8?B?V2Vpw59zY2h1aA==?= <thomas.weissschuh@linutronix.de>
+Subject: Re: [PATCH v12 00/10] ref_tracker: add ability to register a
+ debugfs file for a ref_tracker_dir
+Message-ID: <20250529162447.30c4ca85@kernel.org>
+In-Reply-To: <20250529-reftrack-dbgfs-v12-0-11b93c0c0b6e@kernel.org>
+References: <20250529-reftrack-dbgfs-v12-0-11b93c0c0b6e@kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello!
+On Thu, 29 May 2025 11:20:36 -0400 Jeff Layton wrote:
+> Sorry for the reposting, but this makes things easier with automated CI.
+> 
+> This posting just drops the pr_warn() calls from the new functions. We
+> were still seeing some warnings during (expected) times that debugfs
+> file creation would fail. debugfs already throws warnings when these
+> things fail unexpectedly, so these warnings are unwanted when dentry
+> creation fails before debugfs is up.
 
-Registration & Call for Proposals are now open for XDC 2025, which will
-take place at the  TU Wien Kuppelsaal in Vienna, Austria on 29
-September to 1 October.
+Hm, so FWIW we hit a lockdep issue now
+raw:
+ https://netdev-3.bots.linux.dev/vmksft-tcp-ao-dbg/results/142540/4-connect-deny-ipv6/stderr
+decoded:
+https://netdev-3.bots.linux.dev/vmksft-tcp-ao-dbg/results/142540/vm-crash-thr0-10
 
-    https://xdc2025.x.org
- =20
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible:
+I suspect this may just be "merge window fun", since we forwarded our
+trees to Linus's since your v11?
 
-    https://indico.freedesktop.org/event/10/registrations/
-
-In addition to registration, the CfP is now open for talks, demos, and
-workshops at XDC 2025. While any serious proposal will be gratefully
-considered, topics of interest to X.Org and freedesktop.org developers
-are encouraged. The program focus is on new development, ongoing
-challenges and anything else that will spark discussions among
-attendees in the hallway track.
-
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more:
-
-    https://indico.freedesktop.org/event/10/abstracts/
-
-The deadline for submissions Friday, 11 July 2025.
-
-We are looking forward to seeing you in Vienna! If you have any
-questions, please email the organizer (hfink at snap.com), adding on
-CC the X.org board (board at foundation.x.org).
-
-And don't forget, you can follow us on Mastodon for all the latest
-updates and to stay connected:
-
-    https://floss.social/@XOrgDevConf
-
-Best,
-
-Mark
+[   14.281410][    C0] inconsistent {SOFTIRQ-ON-W} -> {IN-SOFTIRQ-W} usage.
+[   14.281692][    C0] swapper/0/0 [HC0[0]:SC1[1]:HE1:SE0] takes:
+[   14.281974][    C0] ffffffff9e1c5af8 (pin_fs_lock){+.?.}-{3:3}, at: simple_pin_fs+0x24/0x150
+[   14.282373][    C0] {SOFTIRQ-ON-W} state was registered at:
+[   14.282614][    C0]   __lock_acquire+0x20b/0x7e0
+[   14.282849][    C0]   lock_acquire.part.0+0xb6/0x240
+[   14.283072][    C0]   _raw_spin_lock+0x33/0x40
+[   14.283298][    C0]   simple_pin_fs+0x24/0x150
+[   14.283524][    C0]   start_creating.part.0+0x52/0x310
+[   14.283752][    C0]   debugfs_create_dir+0x6a/0x540
+[   14.283977][    C0]   component_debug_init+0x17/0x30
+[   14.284206][    C0]   do_one_initcall+0x8f/0x1e0
+[   14.284451][    C0]   do_initcalls+0x176/0x280
+[   14.284679][    C0]   kernel_init_freeable+0x22d/0x300
+[   14.284907][    C0]   kernel_init+0x20/0x200
+[   14.285131][    C0]   ret_from_fork+0x240/0x320
+[   14.285359][    C0]   ret_from_fork_asm+0x1a/0x30
+[   14.285580][    C0] irq event stamp: 410868
+[   14.285750][    C0] hardirqs last  enabled at (410868): [<ffffffff9cfc332d>] _raw_spin_unlock_irqrestore+0x5d/0x80
+[   14.286200][    C0] hardirqs last disabled at (410867): [<ffffffff9cfc300b>] _raw_spin_lock_irqsave+0x5b/0x60
+[   14.286653][    C0] softirqs last  enabled at (409604): [<ffffffff9a6877a8>] handle_softirqs+0x358/0x620
+[   14.287061][    C0] softirqs last disabled at (409635): [<ffffffff9a687bfa>] __irq_exit_rcu+0xfa/0x160
