@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19528AC905F
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 May 2025 15:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B411EAC908E
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 May 2025 15:51:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A911E10E85B;
-	Fri, 30 May 2025 13:38:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8DD10E81B;
+	Fri, 30 May 2025 13:51:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZWgVwKB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MAZ97CaF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960AB10E85B;
- Fri, 30 May 2025 13:38:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CE9710E828;
+ Fri, 30 May 2025 13:51:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748612293; x=1780148293;
+ t=1748613103; x=1780149103;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=o9P7/wYQPmYQaKNuFq7NSX+ZmEYiCM91XW9864V4KnY=;
- b=jZWgVwKBI80nSG3tkUc5hcPtai+I5Jf4jLxGajHLzxWmYx0l/dllcYXr
- YAUWyqkbyYzRtIjd8jBLpqP4qhJS/KWOlqQlp4N8MjKyVWlD/SjhQJXtl
- 4m44iGCh+yMCx0XUg5W/T2j5tZrSbGgfeSWwJPefITYheXKAeCFjaAs2d
- 2t1XEN+Nf1ytZLu27BZcchz7K7dXZ1MBkjfCBJ5TNFNlsFJC0zFS7Lrfr
- Z3bqSJ0dXOID6ax6oBFPVY4zoyrvERCvufmzNYlBKxUMuabnSDEtfj2OZ
- 05i5B3q4vz8DVqz7YqMRIv9U7W5Iak4XXPhjSB2f4Qzup6tN0305mbYKZ w==;
-X-CSE-ConnectionGUID: JYK7m5qqRUWIO1Iy+mqBvg==
-X-CSE-MsgGUID: ns6LD7BuTdKM4Mszn7CZjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="68255158"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="68255158"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 06:38:12 -0700
-X-CSE-ConnectionGUID: 7q9JNVmpQ92f3Tt4LHEuCw==
-X-CSE-MsgGUID: 0qqq19ioSmGK5DnanuKaZQ==
+ bh=pX2PTHtPzqLQ5kA1NmW2FjwzP4CXJktF96ar71uadBI=;
+ b=MAZ97CaFRS68genmvJ29uTy9JhdbJ5JyXroJViTtxwHoJC+3TSV37sqS
+ O0hBwpLyQqeAAY35UaIjddOSpXCPkvd1kX5GUlNIMt3XBJjaBvzxxZ6ZJ
+ 26DuiNItOKvY3DwuI57bUI+/jGE5dGtP2D7z8uAHfS/IZhiFZ2Cw8O52T
+ VPPHBEYfvZMOCMsT7lntjFHaAOf9qI4v/E4CVPL5vlN+NrKZPL2qUT6IT
+ WKFsKficCyJK06oyUXJJBE05Os+xtcXIEiv7fFftnhcRQIyMKIHqmEKB/
+ nxvf1qQj6R9JcppmWE+1PcxWXF4xqfJh4fKXM0BLyAi9PRtXG5/nh/28Q A==;
+X-CSE-ConnectionGUID: hBiSTodnQECmfo8JGkxRyg==
+X-CSE-MsgGUID: t/FrHlvoQoaSzRfclZ6oxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="50402016"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="50402016"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2025 06:51:39 -0700
+X-CSE-ConnectionGUID: ZJN+7x+rQCm/0h/vPOARow==
+X-CSE-MsgGUID: P+15Gi7KSJGyJHH3fdtplg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="174759679"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; d="scan'208";a="143850083"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 May 2025 06:38:07 -0700
-Date: Fri, 30 May 2025 16:38:03 +0300
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 May 2025 06:51:34 -0700
+Date: Fri, 30 May 2025 16:51:30 +0300
 From: Raag Jadav <raag.jadav@intel.com>
 To: Alexander Usyskin <alexander.usyskin@intel.com>
 Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -61,15 +61,15 @@ Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
  Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomas Winkler <tomasw@gmail.com>
-Subject: Re: [PATCH v11 02/10] mtd: intel-dg: implement region enumeration
-Message-ID: <aDm0u4wXDCqO5rFK@black.fi.intel.com>
+ Tomas Winkler <tomasw@gmail.com>, Vitaly Lubart <lubvital@gmail.com>
+Subject: Re: [PATCH v11 04/10] mtd: intel-dg: register with mtd
+Message-ID: <aDm34rQxtYhvt6fc@black.fi.intel.com>
 References: <20250528135115.2512429-1-alexander.usyskin@intel.com>
- <20250528135115.2512429-3-alexander.usyskin@intel.com>
+ <20250528135115.2512429-5-alexander.usyskin@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250528135115.2512429-3-alexander.usyskin@intel.com>
+In-Reply-To: <20250528135115.2512429-5-alexander.usyskin@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,15 +85,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 28, 2025 at 04:51:07PM +0300, Alexander Usyskin wrote:
-> In intel-dg, there is no access to the spi controller,
-> the information is extracted from the descriptor region.
+On Wed, May 28, 2025 at 04:51:09PM +0300, Alexander Usyskin wrote:
+> Register the on-die nvm device with the mtd subsystem.
+> Refcount nvm object on _get and _put mtd callbacks.
+> For erase operation address and size should be 4K aligned.
+> For write operation address and size has to be 4bytes aligned.
 > 
+> CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > CC: Lucas De Marchi <lucas.demarchi@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > Co-developed-by: Tomas Winkler <tomasw@gmail.com>
 > Signed-off-by: Tomas Winkler <tomasw@gmail.com>
+> Co-developed-by: Vitaly Lubart <lubvital@gmail.com>
+> Signed-off-by: Vitaly Lubart <lubvital@gmail.com>
 > Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 
 Reviewed-by: Raag Jadav <raag.jadav@intel.com>
