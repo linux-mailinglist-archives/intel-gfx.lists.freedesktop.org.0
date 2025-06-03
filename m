@@ -2,80 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B91ACC4AB
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 12:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BBE6ACC551
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 13:27:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10FF910E6AC;
-	Tue,  3 Jun 2025 10:51:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBB710E5BB;
+	Tue,  3 Jun 2025 11:27:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="RCUqy7dV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ASunSOly";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49EF410E6AC;
- Tue,  3 Jun 2025 10:51:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1748947883;
- bh=l1R9GZqWNizruxzdd8oLnHcO+JoXYyULLOkxArw+8k4=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=RCUqy7dVzwwTcFboWPbbv42M4z2pTILQ/g70P4mFc2JzLCpL0V5gzdEBhh1oEPo7C
- 65tUV+CWXMwz6EAS/hjVXVwbJJwfrwAFTUfrDoVUdSoZaHWsLuY3qGsq0CSOQwfvBR
- TWYk8pcLI2Br2MZjPGUzTyn8l9rryOtIui63J8HYyEeaaR0SBx0jl6Er+GU5xE6tjY
- aCHuJiQeqeiCufch/VFTrSKZIMTe+oZPR1+NZrYbVOUT4V57r/NapOw8lag8l0LNO4
- 6aG8zaTzwzAzBzPJJFym6jnEUmC0MwzhxkZu3ZyX333n8khbiMJgcktfmkUFZ1Woi7
- RfK4VPp3ZoeFw==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 1CB6717E0FDB;
- Tue,  3 Jun 2025 12:51:22 +0200 (CEST)
-Date: Tue, 3 Jun 2025 13:51:08 +0300
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: Simon Ser <contact@emersion.fr>, Harry Wentland
- <harry.wentland@amd.com>, Alex Hung <alex.hung@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, "leo.liu@amd.com" <leo.liu@amd.com>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "mwen@igalia.com" <mwen@igalia.com>, "jadahl@redhat.com"
- <jadahl@redhat.com>, "sebastian.wick@redhat.com"
- <sebastian.wick@redhat.com>, "shashank.sharma@amd.com"
- <shashank.sharma@amd.com>, "agoins@nvidia.com" <agoins@nvidia.com>,
- "joshua@froggi.es" <joshua@froggi.es>, "mdaenzer@redhat.com"
- <mdaenzer@redhat.com>, "aleixpol@kde.org" <aleixpol@kde.org>,
- "xaver.hugl@gmail.com" <xaver.hugl@gmail.com>, "victoria@system76.com"
- <victoria@system76.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "quic_naseer@quicinc.com" <quic_naseer@quicinc.com>,
- "quic_cbraga@quicinc.com" <quic_cbraga@quicinc.com>,
- "quic_abhinavk@quicinc.com" <quic_abhinavk@quicinc.com>, "marcan@marcan.st"
- <marcan@marcan.st>, "Liviu.Dudau@arm.com" <Liviu.Dudau@arm.com>,
- "sashamcintosh@google.com" <sashamcintosh@google.com>, "Borah, Chaitanya
- Kumar" <chaitanya.kumar.borah@intel.com>, "louis.chauvet@bootlin.com"
- <louis.chauvet@bootlin.com>
-Subject: Re: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
-Message-ID: <20250603135108.603fa6e6@eldfell>
-In-Reply-To: <DM4PR11MB6360BFCB5756A16F38945DE7F46DA@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20250326234748.2982010-1-alex.hung@amd.com>
- <20250326234748.2982010-33-alex.hung@amd.com>
- <CY5PR11MB63441E057180C043C51230A3F4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
- <fzuE3KXuocsKA0I9kWXruyw7IVbw3jwH2yeh59SfE0Qb0SGxa29rrj9X_XgNCdmj1vWgxLO619xyJY3r5R3hsZK6ElIkTvbyNfu40x1SiZM=@emersion.fr>
- <CY5PR11MB63449DBA54519766E345CADAF4B22@CY5PR11MB6344.namprd11.prod.outlook.com>
- <3ca1958f-62e0-4a5c-837b-3cd705acc181@amd.com>
- <ZqHOWK3X_Ici9wNgijgeUt9r3asi4jhqw-0-keIfXYAFxbsGLaFTIozGHHR64SnkAzPA4CM-zmc6OwVtrKMKjVyoblti88KpRf9wEu8daP0=@emersion.fr>
- <DM4PR11MB6360CE0C5C99FB02CD6CC0BFF499A@DM4PR11MB6360.namprd11.prod.outlook.com>
- <20250530165818.0e6cb846@eldfell>
- <DM4PR11MB6360BFCB5756A16F38945DE7F46DA@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852F710E21D;
+ Tue,  3 Jun 2025 11:27:39 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id D12F4A4FE98;
+ Tue,  3 Jun 2025 11:27:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EC5C4CEED;
+ Tue,  3 Jun 2025 11:27:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1748950045;
+ bh=34TUZi3qOElaSed4nw9qb+k1ylFQGi/Eb0a+fyUwQac=;
+ h=From:Subject:Date:To:Cc:From;
+ b=ASunSOly7J4Mqj/R4Dbic+5bLYBEEJoUROtJbK5x8jsVfW/Kd2EvuqyehnhimKKFw
+ Icl6K13MUvU3Ghj7B/weDMkJRr3PihA63oo2ZUxJioFvs256ktZ5d14xeQU6XFEDpI
+ 2x9BEZrSXsV0kENwWAmROqnftlW2D3B/yuqfciBmjSgWTb32xVq1LwjwQOEPcuto4+
+ rpOJR63jlW6pTKFu9eXJu2+Jep5pPloVr7/0zGzPK8qworjMXicRlgCoaVZ1leDqcD
+ GpGlPtI3veJVcHDqw7T6Q1wXvD6MMv3qOU1xpUu0Dji3qGs/DpyMN2Ig0Jih4LJbat
+ QGvHuBsWl2lGw==
+From: Jeff Layton <jlayton@kernel.org>
+Subject: [PATCH v13 0/9] ref_tracker: add ability to register a debugfs
+ file for a ref_tracker_dir
+Date: Tue, 03 Jun 2025 07:27:11 -0400
+Message-Id: <20250603-reftrack-dbgfs-v13-0-7b2a425019d8@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/7R8qp=RIo_YSw9KICy5ic/I";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA/cPmgC/23SS07DMBCA4atUWRPksT32mBX3QCz8bKOiFiVVB
+ Kp6dyaVEIZBWdnR98d2fB2WOk91GZ5212Gu67RM5xMPwDzshnyIp30dp8ITg1YalQUzzrVd5pi
+ PY0n7tozGO5+MMlW3ODB65/fTx7348srjw7RczvPn/QMrbLPfKfs3tcKoxqYMEpLRWpnnY51P9
+ e3xPO+HrbXq3qPwmn0CyjamAlo34U3vvfCGfTaAwWrK1JLwtvckvGWPOWL2FAJaKzx2XkuP7CG
+ nVBpvnlIR3nXeKOEde3I+6xAbn2MU3v94foT32/l7yliCTzlLT72X50fsnfIefDEpBRI+9D4IH
+ 7b1x0RE0aK2cv+guoCWCwDFhZIRm/cKXQBZgL4gfwFsdzDYWFUCh2T/Kei+IDcB2y0ESMFklVV
+ y9Vfhdrt9ARLnXiR0AwAA
+X-Change-ID: 20250413-reftrack-dbgfs-3767b303e2fa
+To: Andrew Morton <akpm@linux-foundation.org>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Krzysztof Karas <krzysztof.karas@intel.com>, 
+ Kuniyuki Iwashima <kuniyu@amazon.com>, Qasim Ijaz <qasdev00@gmail.com>, 
+ Nathan Chancellor <nathan@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ Jeff Layton <jlayton@kernel.org>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5469; i=jlayton@kernel.org;
+ h=from:subject:message-id; bh=34TUZi3qOElaSed4nw9qb+k1ylFQGi/Eb0a+fyUwQac=;
+ b=owEBbQKS/ZANAwAKAQAOaEEZVoIVAcsmYgBoPtwUF2tKexk0NfHIfXSZPIZOlSmCxiQ5FejrQ
+ tjwBwHhzGSJAjMEAAEKAB0WIQRLwNeyRHGyoYTq9dMADmhBGVaCFQUCaD7cFAAKCRAADmhBGVaC
+ FegvD/46d+gMoksFRhuUk1ZZYj25LCaNXcygpg3KBTarN2QpiUyCaVrYEvBo/46Br+s0BXH4Dej
+ 3V7QT64jUWIyXkhrEgJCIPN6NGbkjyxTSFab3Ko5y8EHzrX4RutVUKZmE8s/E4DiCJil2oZBlBJ
+ UKex+Wk6shlzgq1VfyPLbMRWlvuq1Hj3vAfrDqzKC4X/EyHNSnr1H0ES+I7pUV/HmGWbFr4Ljk2
+ Cpy0XufVKLk5zg2B2I/4rJnQghG1EkGFdI5i1aVaqNo2XjGzfnN3Gu6tnQCwyGG+q1i6+lxElmx
+ nOHDTT6dJu1WEshqYVTMNPpaofWG6gzwC4HJbp6IUc0/Oeu8j3CS03FpLGaWAutj/oKfp9RVH7e
+ tBJM5bMVUrlOwjlcmXumuku8HD0rHZHtbUjXoiSNt4DRNHc2hJ4uwVyv8sU0Z+U+d2jmv3D2c7k
+ EXJ50EuWx6zz1TgDWmNC/GgQiTzfher4YqWUIgG2i87KrzIEiF3b9X3pywu6njL4r791DmXVTWV
+ IYWH3yDddd2FkRe9Yf622NLH6YDxM5GtFTJ6LVWldjkrrntfPh2yahNMM56GUNAqQ7PyzF3v6IB
+ 5XHdTu6H7Kn+HEdPqvUkV/y4e1j6fyZ4jo/3wXciWlGzStd4aP2eH+dkfxdsbmdNIbGK0Kf9um3
+ PWD64hGgdJcdsIg==
+X-Developer-Key: i=jlayton@kernel.org; a=openpgp;
+ fpr=4BC0D7B24471B2A184EAF5D3000E684119568215
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,156 +96,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/7R8qp=RIo_YSw9KICy5ic/I
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+For those just joining in, this series adds a new top-level
+"ref_tracker" debugfs directory, and has each ref_tracker_dir register a
+file in there as part of its initialization. It also adds the ability to
+register a symlink with a more human-usable name that points to the
+file, and does some general cleanup of how the ref_tracker object names
+are handled.
 
-On Tue, 3 Jun 2025 08:30:23 +0000
-"Shankar, Uma" <uma.shankar@intel.com> wrote:
+This reposting is mostly to address Krzysztof's comments. I've dropped
+the i915 patch, and rebased the rest of the series on top.
 
-> > -----Original Message-----
-> > From: Pekka Paalanen <pekka.paalanen@collabora.com>
-> > Sent: Friday, May 30, 2025 7:28 PM
-> > To: Shankar, Uma <uma.shankar@intel.com>
-> > Cc: Simon Ser <contact@emersion.fr>; Harry Wentland
-> > <harry.wentland@amd.com>; Alex Hung <alex.hung@amd.com>; dri-
-> > devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org; intel-
-> > gfx@lists.freedesktop.org; wayland-devel@lists.freedesktop.org;
-> > leo.liu@amd.com; ville.syrjala@linux.intel.com; pekka.paalanen@collabor=
-a.com;
-> > mwen@igalia.com; jadahl@redhat.com; sebastian.wick@redhat.com;
-> > shashank.sharma@amd.com; agoins@nvidia.com; joshua@froggi.es;
-> > mdaenzer@redhat.com; aleixpol@kde.org; xaver.hugl@gmail.com;
-> > victoria@system76.com; daniel@ffwll.ch; quic_naseer@quicinc.com;
-> > quic_cbraga@quicinc.com; quic_abhinavk@quicinc.com; marcan@marcan.st;
-> > Liviu.Dudau@arm.com; sashamcintosh@google.com; Borah, Chaitanya Kumar
-> > <chaitanya.kumar.borah@intel.com>; louis.chauvet@bootlin.com
-> > Subject: Re: [PATCH V8 32/43] drm/colorop: Add 1D Curve Custom LUT type
-> >=20
-> > On Thu, 22 May 2025 11:33:00 +0000
-> > "Shankar, Uma" <uma.shankar@intel.com> wrote:
-> >  =20
-> > > One request though: Can we enhance the lut samples from existing
-> > > 16bits to 32bits as lut precision is going to be more than 16 in cert=
-ain hardware. =20
-> > While adding the new UAPI, lets extend this to 32 to make it future pro=
-of. =20
-> > > Reference:
-> > > https://patchwork.freedesktop.org/patch/642592/?series=3D129811&rev=
-=3D4
-> > >
-> > > +/**
-> > > + * struct drm_color_lut_32 - Represents high precision lut values
-> > > + *
-> > > + * Creating 32 bit palette entries for better data
-> > > + * precision. This will be required for HDR and
-> > > + * similar color processing usecases.
-> > > + */
-> > > +struct drm_color_lut_32 {
-> > > +	/*
-> > > +	 * Data for high precision LUTs
-> > > +	 */
-> > > +	__u32 red;
-> > > +	__u32 green;
-> > > +	__u32 blue;
-> > > +	__u32 reserved;
-> > > +}; =20
-> >=20
-> > Hi,
-> >=20
-> > I suppose you need this much precision for optical data? If so, floatin=
-g-point would
-> > be much more appropriate and we could probably keep 16-bit storage.
-> >=20
-> > What does the "more than 16-bit" hardware actually use? ISTR at least A=
-MD
-> > having some sort of float'ish point internal pipeline?
-> >=20
-> > This sounds the same thing as non-uniformly distributed taps in a LUT.
-> > That mimics floating-point input while this feels like floating-point o=
-utput of a LUT.
-> >=20
-> > I've recently decided for myself (and Weston) that I will never store o=
-ptical data in
-> > an integer format, because it is far too wasteful. That's why the elect=
-rical
-> > encodings like power-2.2 are so useful, not just for emulating a CRT. =
-=20
->=20
-> Hi Pekka,
-> Internal pipeline in hardware can operate at higher precision than the in=
-put framebuffer
-> to plane engines. So, in case we have optical data of 16bits or 10bits pr=
-ecision, hardware
-> can scale this up to higher precision in internal pipeline in hardware to=
- take care of rounding
-> and overflow issues. Even FP16 optical data will be normalized and conver=
-ted internally for
-> further processing.
+Note that I still see debugfs: warnings in the i915 driver even when we
+gate the registration of the debugfs file on the classname pointer being
+NULL. Here is a CI report from v12:
 
-Is it integer or floating-point?
+    https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148490v8/bat-arls-6/igt@i915_selftest@live@workarounds.html
 
-If we take the full range of PQ as optical and put it into 16-bit
-integer format, the luminance step from code 1 to code 2 is 0.15 cd/m=C2=B2.
-That seems like a huge step in the dark end. Such a step would
-probably need to be divided over several taps in a LUT, which wouldn't
-be possible.
+I think the i915 driver is doing something it shouldn't with these
+objects. They seem to be initialized more than once, which could lead
+to leaked ref_tracker objects. It would be good for one of the i915
+maintainers to comment on whether this is a real problem.
 
-In that sense, if a LUT is used for the PQ EOTF, I totally agree that
-16-bit integer won't be even nearly enough precision.
+Signed-off-by: Jeff Layton <jlayton@kernel.org>
+---
+Changes in v13:
+- drop i915 patch
+- Link to v12: https://lore.kernel.org/r/20250529-reftrack-dbgfs-v12-0-11b93c0c0b6e@kernel.org
 
-This actually points out the caveat that increasing the number of taps
-in a LUT can cause the LUT to become non-monotonic when the sample
-precision runs out. That is, consecutive taps don't always increase in
-value.
+Changes in v12:
+- drop redundant pr_warn() calls. Debugfs already warns when these ops fail
+- Link to v11: https://lore.kernel.org/r/20250528-reftrack-dbgfs-v11-0-94ae0b165841@kernel.org
 
-> Input to LUT hardware can be 16bits or even higher, so the look up table =
-we program can
-> be of higher precision than 16 (certain cases 24 in Intel pipeline). This=
- is later truncated to bpc supported
-> in output formats from sync (10, 12 or 16), mostly for electrical value t=
-o be sent to sink.
->=20
-> Hence requesting to increase the container from current u16 to u32, to ge=
-t advantage of higher
-> precision luts.
+Changes in v11:
+- don't call ref_tracker_dir_init() more than once for same i915 objects
+- use %llx in format for net_cookie in symlink name
+- Link to v10: https://lore.kernel.org/r/20250527-reftrack-dbgfs-v10-0-dc55f7705691@kernel.org
 
-My argument though is to use a floating-point format for the LUT samples
-instead of adding more and more integer bits. That naturally puts more
-precision where it is needed: near zero.
+Changes in v10:
+- drop the i915 symlink patch
+- Link to v9: https://lore.kernel.org/r/20250509-reftrack-dbgfs-v9-0-8ab888a4524d@kernel.org
 
-A driver can easily convert that to any format the hardware needs.
+Changes in v9:
+- fix typo in ref_tracker_dir_init() kerneldoc header
+- Link to v8: https://lore.kernel.org/r/20250507-reftrack-dbgfs-v8-0-607717d3bb98@kernel.org
 
-However, it might make best sense for a driver to expose a LUT with a
-format that best matches the hardware precision, especially
-floating-point vs. integer.
+Changes in v8:
+- fix up compiler warnings that the KTR warned about
+- ensure builds with CONFIG_DEBUG_FS=n and CONFIG_REF_TRACKER=y work
+- Link to v7: https://lore.kernel.org/r/20250505-reftrack-dbgfs-v7-0-f78c5d97bcca@kernel.org
 
-I guess we may eventually need both 32 bpc integer and 16 (or 32) bpc
-floating-point.
+Changes in v7:
+- include net->net_cookie in netns symlink name
+- add __ostream_printf to ref_tracker_dir_symlink() stub function
+- remove unneeded #include of seq_file.h
+- Link to v6: https://lore.kernel.org/r/20250430-reftrack-dbgfs-v6-0-867c29aff03a@kernel.org
 
+Changes in v6:
+- clean up kerneldoc comment for ref_tracker_dir_debugfs()
+- add missing stub function for ref_tracker_dir_symlink()
+- temporary __maybe_unused on ref_tracker_dir_seq_print() to silence compiler warning
+- Link to v5: https://lore.kernel.org/r/20250428-reftrack-dbgfs-v5-0-1cbbdf2038bd@kernel.org
 
-Thanks,
-pq
+Changes in v5:
+- add class string to each ref_tracker_dir
+- auto-register debugfs file for every tracker in ref_tracker_dir_init
+- add function to allow adding a symlink for each tracker
+- add patches to create symlinks for netns's and i915 entries
+- change output format to print class@%p instead of name@%p
+- eliminate the name field in ref_tracker_dir
+- fix off-by-one bug when NULL terminating name string
+- Link to v4: https://lore.kernel.org/r/20250418-reftrack-dbgfs-v4-0-5ca5c7899544@kernel.org
 
---Sig_/7R8qp=RIo_YSw9KICy5ic/I
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Changes in v4:
+- Drop patch to widen ref_tracker_dir_.name, use NAME_MAX+1 (256) instead since this only affects dentry name
+- Link to v3: https://lore.kernel.org/r/20250417-reftrack-dbgfs-v3-0-c3159428c8fb@kernel.org
 
------BEGIN PGP SIGNATURE-----
+Changes in v3:
+- don't overwrite dir->name in ref_tracker_dir_debugfs
+- define REF_TRACKER_NAMESZ and use it when setting name
+- Link to v2: https://lore.kernel.org/r/20250415-reftrack-dbgfs-v2-0-b18c4abd122f@kernel.org
 
-iQIyBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmg+05wACgkQI1/ltBGq
-qqeRKg/4zw43UUJlzyeuKGFOfQYVK1NTXcg/bfOcxZWkdCvI7jB3aYBljVHjlnD8
-DpHvKYdDtKp+W8ixe9MpPBk+eL2a5wF1Szxo3gX+tiDRExayDaqOMphDXNw8aCAK
-YpwaMYcNH9VinSNTeLawOzm/Qs7tVxSIKxNqX4/uNW7YmtmT79Bq/QN+DuB8NvS9
-etwZctYYpm3Aa2f2QTyF8uy6GcRwmSh3yKYjEs6lCHjA09ekO8VPKTTzP+YEUTtx
-Wv0WzRhVzfm59CX7P2u/sfpl8uq2TSk3I4k2H2oK+lKpj/tbTvXF3kySLHm7UvY5
-OKtEZIvRDsZaW85d7aUrTehXgWkxjLFCOp1rgg09DSc8mBPU4Fkvn78j6afl4dZW
-n6mmk88TwiNkCIZecb4hzDXdUx6gl5suKGfJlgOe3TQyz05ng2tyd0FyW0/Wzizx
-rsy18wsKLdj23XhjqBOR3HitPEx6f+hqNBJVKxazYPl55dNm2SuNS/MeR/bsuqru
-C8WtPjr3WFosg1UPVePESvCZW28/FrZvgtnBdP3X3hQKOJH2KypcPGblYboOv4Z0
-dRIr+7F7cidi8reLWx3Hwq7LALyrdDsvu5bfE5ofqIiVdrAwy4pJhD9Vcu+wPyHi
-JjEvr6nnYN8IFnxhUweiswPbj6RJi15JyaanKfN7afC6zagfFw==
-=C9X5
------END PGP SIGNATURE-----
+Changes in v2:
+- Add patch to do %pK -> %p conversion in ref_tracker.c
+- Pass in output function to pr_ostream() instead of if statement
+- Widen ref_tracker_dir.name to 64 bytes to accomodate unique names
+- Eliminate error handling with debugfs manipulation
+- Incorporate pointer value into netdev name
+- Link to v1: https://lore.kernel.org/r/20250414-reftrack-dbgfs-v1-0-f03585832203@kernel.org
 
---Sig_/7R8qp=RIo_YSw9KICy5ic/I--
+---
+Jeff Layton (9):
+      ref_tracker: don't use %pK in pr_ostream() output
+      ref_tracker: add a top level debugfs directory for ref_tracker
+      ref_tracker: have callers pass output function to pr_ostream()
+      ref_tracker: add a static classname string to each ref_tracker_dir
+      ref_tracker: allow pr_ostream() to print directly to a seq_file
+      ref_tracker: automatically register a file in debugfs for a ref_tracker_dir
+      ref_tracker: add a way to create a symlink to the ref_tracker_dir debugfs file
+      net: add symlinks to ref_tracker_dir for netns
+      ref_tracker: eliminate the ref_tracker_dir name field
+
+ drivers/gpu/drm/display/drm_dp_tunnel.c |   2 +-
+ drivers/gpu/drm/i915/intel_runtime_pm.c |   4 +-
+ drivers/gpu/drm/i915/intel_wakeref.c    |   3 +-
+ include/linux/ref_tracker.h             |  58 ++++++++++-
+ lib/ref_tracker.c                       | 176 +++++++++++++++++++++++++++++---
+ net/core/dev.c                          |   2 +-
+ net/core/net_namespace.c                |  34 +++++-
+ 7 files changed, 253 insertions(+), 26 deletions(-)
+---
+base-commit: 90b83efa6701656e02c86e7df2cb1765ea602d07
+change-id: 20250413-reftrack-dbgfs-3767b303e2fa
+
+Best regards,
+-- 
+Jeff Layton <jlayton@kernel.org>
+
