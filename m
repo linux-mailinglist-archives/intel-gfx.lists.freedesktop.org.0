@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A8F0ACC8C9
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 16:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E4DACC8CB
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 16:09:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9977810E906;
-	Tue,  3 Jun 2025 14:09:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5DB10E90B;
+	Tue,  3 Jun 2025 14:09:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OIoThyM4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EaThaRvJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5632310E8FE;
- Tue,  3 Jun 2025 14:09:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6291410E905;
+ Tue,  3 Jun 2025 14:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748959749; x=1780495749;
+ t=1748959752; x=1780495752;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ri2VqiXFu0Zv91zfPYwpD/8RFB9jE0dHimTJQ5eLxaQ=;
- b=OIoThyM4cS3DraVz7v0Cx5kGNQRvTKDXS/SMdHhcIqyzNj7h0n7kF+TT
- ztTgdSHuE8tToSJjI4jtBuCi+/2R8mf0xfSsHVbBZ1Gdb7TY5c3IfhU5o
- ncMWbPEcryVNOw2MmuCcB9QWEXi4Bfot6RWPL9m6T3JMTut0HjrtVY/p2
- FW+0q4XBMuPd06JC8WMo6mHUseJNty7wEs0Ehbtjg0v5wbjsIa54hmOiV
- 2E7Ju0PwRUXLX31AF2lCLjjoFU0raIUMqLyWVxkaw+ZFd3Y2MgV8761lY
- eB0Q4OgdDfu8V/xApn980DpvxVtuE8BSQ8iRuc8g0SlamQEAWOdOQJ59w g==;
-X-CSE-ConnectionGUID: HVGxxVjjSUeMBNTeMZWEBQ==
-X-CSE-MsgGUID: e8fKUDInTh+e7M+WuWtTgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="61265857"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="61265857"
+ bh=nbGUwf+VlpoawBs9+HMBFZbJEL0fv79uOAiS+y5aKZ4=;
+ b=EaThaRvJ8dsw37xzi9o/I196zQLirO+fFXSzIMzt3TTzoZxc+1ahCx2S
+ Dg9tmThDHbXz6NQLpd5p91ba31dD8X7FZKsuk5sAPzirMPtepJJGGA5so
+ i5jeU9+LdYbaNApTOvmSbdzff2kOwv5a+tKwXQBdMZlCiuP+1bSfstLD9
+ TsrHr/yBNjpBZ18cTUcsgF1szKOki6l1mTDTHlMa6o0qKeIta7cQ5wn2S
+ NGeAObZT3kaaX/5XrsG3KZdnJwFsx10Pjx8HtRmgUqIO3GhIoxuzhi3EO
+ pH5+1+qx69evs9pf8Acds/WkUrS2Ra1x4g0onO9mPCA208lPVw9FP/on9 A==;
+X-CSE-ConnectionGUID: eEJW2G4DQc2sjutos4ZOPw==
+X-CSE-MsgGUID: bKKLWavQRw6PEvX87Lswvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="61265881"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="61265881"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 07:09:09 -0700
-X-CSE-ConnectionGUID: Mod7QJHkTJuw0Gz5EXCNtg==
-X-CSE-MsgGUID: kpHKw2TiQN25Gp0aU0ZVoQ==
+ 03 Jun 2025 07:09:12 -0700
+X-CSE-ConnectionGUID: juW1YGBESlu7Xn7CqpekSw==
+X-CSE-MsgGUID: UZXsJO1SQBaO/wlNqAOJEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="150155711"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="150155726"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.220])
- by orviesa005.jf.intel.com with SMTP; 03 Jun 2025 07:09:05 -0700
+ by orviesa005.jf.intel.com with SMTP; 03 Jun 2025 07:09:09 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Jun 2025 17:09:05 +0300
+ Tue, 03 Jun 2025 17:09:08 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 09/12] drm/i915/flipq: Implement Wa_18034343758
-Date: Tue,  3 Jun 2025 17:08:33 +0300
-Message-ID: <20250603140836.21432-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 10/12] drm/i915/flipq: Implement Wa_16018781658 for LNL-A0
+Date: Tue,  3 Jun 2025 17:08:34 +0300
+Message-ID: <20250603140836.21432-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250603140836.21432-1-ville.syrjala@linux.intel.com>
 References: <20250603140836.21432-1-ville.syrjala@linux.intel.com>
@@ -72,104 +72,86 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Implement the driver side of Wa_18034343758, which is supposed to
-prevent the DSB and DMC from accessing registers in parallel, and
-thus potentially corrupting the registers due to a hardware issue
-(which should be fixed in PTL-B0).
+The normal flip queue completion interrupt doesn't work on LNL-A0,
+and instead the firmware implements a workaround via the delayed
+vblank event handler. Implement said workaround on the driver side
+by enabling the appropriate event and handling the result interrupt
+vector value in the PIPEDMC irq handler.
 
-The w/a sequence goes as follows:
-DMC starts the DSB
- |                 \
-DMC halts itself    | DSB waits a while for DMC to have time to halt
- .                  | DSB executes normally
- .		    | DSB unhalts the DMC at the very end
- .             	   /
-DMC resumes execution
+Included here just for reference since LNL-A0 is pre-production
+and we don't actually care about it anymore.
 
-v2: PTL-B0+ firmware no longer has the w/a since the hw got fixed
-v3: Do the w/a on all PTL for now since we only have the A0 firmware
-    binaries which issues the halt instructions unconditionally
+v2: Ignore INT_VECTOR if there is a real PIPEDMC interrupt
+    (nothing in the hw appears to clear INT_VECTOR)
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  8 ++++++
- drivers/gpu/drm/i915/display/intel_flipq.c   | 27 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_flipq.h   |  2 ++
- 3 files changed, 37 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c   | 19 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_flipq.c | 12 ++++++++++++
+ 2 files changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7e09df541dac..e4ffe252d041 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7237,6 +7237,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a23a726dea0d..469a51c5399d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -1517,9 +1517,26 @@ void intel_pipedmc_irq_handler(struct intel_display *display, enum pipe pipe)
  	}
  
- 	if (new_crtc_state->use_flipq || new_crtc_state->use_dsb) {
-+		/* Wa_18034343758 */
-+		if (new_crtc_state->use_flipq)
-+			intel_flipq_wait_dmc_halt(new_crtc_state->dsb_commit, crtc);
+ 	int_vector = intel_de_read(display, PIPEDMC_STATUS(pipe)) & PIPEDMC_INT_VECTOR_MASK;
+-	if (tmp == 0 && int_vector != 0)
++	/* Wa_16018781658 */
++	if (tmp == 0 && int_vector == PIPEDMC_INT_VECTOR_FLIPQ_PROG_DONE) {
++		spin_lock(&display->drm->event_lock);
 +
- 		if (intel_crtc_needs_color_update(new_crtc_state))
- 			intel_color_commit_noarm(new_crtc_state->dsb_commit,
- 						 new_crtc_state);
-@@ -7267,6 +7271,10 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		if (DISPLAY_VER(display) >= 9)
- 			skl_detach_scalers(new_crtc_state->dsb_commit,
- 					   new_crtc_state);
++		if (crtc->flipq_event) {
++			/*
++			 * Update vblank counter/timestamp in case it
++			 * hasn't been done yet for this frame.
++			 */
++			drm_crtc_accurate_vblank_count(&crtc->base);
 +
-+		/* Wa_18034343758 */
-+		if (new_crtc_state->use_flipq)
-+			intel_flipq_unhalt_dmc(new_crtc_state->dsb_commit, crtc);
- 	}
++			drm_crtc_send_vblank_event(&crtc->base, crtc->flipq_event);
++			crtc->flipq_event = NULL;
++		}
++
++		spin_unlock(&display->drm->event_lock);
++	} else if (tmp == 0 && int_vector != 0) {
+ 		drm_err(display->drm, "[CRTC:%d:%s]] PIPEDMC interrupt vector 0x%x\n",
+ 			crtc->base.base.id, crtc->base.name, tmp);
++	}
+ }
  
- 	if (intel_color_uses_chained_dsb(new_crtc_state))
+ void intel_pipedmc_enable_event(struct intel_crtc *crtc,
 diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
-index 331a56dad58e..434f9d854c40 100644
+index 434f9d854c40..37e5603c860e 100644
 --- a/drivers/gpu/drm/i915/display/intel_flipq.c
 +++ b/drivers/gpu/drm/i915/display/intel_flipq.c
-@@ -382,3 +382,30 @@ void intel_flipq_add(struct intel_crtc *crtc,
+@@ -245,6 +245,14 @@ void intel_flipq_enable(const struct intel_crtc_state *crtc_state)
  
- 	intel_flipq_sw_dmc_wake(crtc);
- }
-+
-+/* Wa_18034343758 */
-+static bool need_dmc_halt_wa(struct intel_display *display)
-+{
+ 	intel_pipedmc_enable_event(crtc, flipq_event_id(display));
+ 
 +	/*
-+	 * FIXME exclude PTL-B0+ once we have firmware
-+	 * for it without the halt instructions.
++	 * Wa_16018781658
++	 * PIPEDMC_FPQ_CTL2 bit 1 isn't working, firmware implements
++	 * a workaround via the delayed vblank handler.
 +	 */
-+	return DISPLAY_VER(display) == 20 ||
-+		DISPLAY_VER(display) == 30;
-+}
++	if (display->platform.lunarlake && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0))
++		intel_pipedmc_enable_event(crtc, PIPEDMC_EVENT_DELAYED_VBLANK);
 +
-+void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	if (need_dmc_halt_wa(display))
-+		intel_dsb_wait_usec(dsb, 2);
-+}
-+
-+void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	if (need_dmc_halt_wa(display))
-+		intel_dsb_reg_write(dsb, PIPEDMC_CTL(crtc->pipe), 0);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_flipq.h b/drivers/gpu/drm/i915/display/intel_flipq.h
-index 195ff0dd83f5..2d4386a16197 100644
---- a/drivers/gpu/drm/i915/display/intel_flipq.h
-+++ b/drivers/gpu/drm/i915/display/intel_flipq.h
-@@ -29,5 +29,7 @@ void intel_flipq_add(struct intel_crtc *crtc,
- 		     enum intel_dsb_id dsb_id,
- 		     struct intel_dsb *dsb);
- int intel_flipq_exec_time_us(struct intel_display *display);
-+void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc);
-+void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc);
+ 	intel_de_write(display, PIPEDMC_FQ_CTRL(crtc->pipe), PIPEDMC_FQ_CTRL_ENABLE);
+ }
  
- #endif /* __INTEL_FLIPQ_H__ */
+@@ -255,6 +263,10 @@ void intel_flipq_disable(const struct intel_crtc_state *crtc_state)
+ 
+ 	intel_de_write(display, PIPEDMC_FQ_CTRL(crtc->pipe), 0);
+ 
++	/* Wa_16018781658 */
++	if (display->platform.lunarlake && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0))
++		intel_pipedmc_disable_event(crtc, PIPEDMC_EVENT_DELAYED_VBLANK);
++
+ 	intel_pipedmc_disable_event(crtc, flipq_event_id(display));
+ 
+ 	intel_de_write(display, PIPEDMC_SCANLINECMPLOWER(crtc->pipe), 0);
 -- 
 2.49.0
 
