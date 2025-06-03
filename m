@@ -2,71 +2,182 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23116ACC5E7
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 13:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB38ACC640
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Jun 2025 14:16:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEDCE10E8BA;
-	Tue,  3 Jun 2025 11:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F8110E8E7;
+	Tue,  3 Jun 2025 12:16:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hu37j3af";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P9pLHFGX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E7B810E8BA;
- Tue,  3 Jun 2025 11:54:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EAA410E70C;
+ Tue,  3 Jun 2025 12:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1748951665; x=1780487665;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fH2hdGzwTf4pZxd5L5oHs+dVIY/4d4It2eb8BdPFp3E=;
- b=hu37j3af8bPkGDzL/Esam1CMhlC0RStqTPBZ1VvM/DbdQDKC9FVR06+C
- zhVQyUEkfyKt8BBbH3hiNWL807xt7H5l05hKuf7rzPOr3x2E/F8bLC4Lu
- fOR6Cx3Y4ZoYdtqmDSPTm23NfWva0O63yClknWgqWeR49njXRRExsHslR
- 7rNXfqk+/ccNoVbK5YMPaCzWkssqMIn345t3SkULAdYHu8amoKgeAr8Sr
- 1bXjZHbBdWkJ26Rtrwg4ccX5WBWfL+yK9pA6jA408iHc8J257HD9wesPW
- JS6z6erujIfzKJgtxtvgMuQ6+TVccu/QfdiuQFvh4Mz72CMQablaN562J g==;
-X-CSE-ConnectionGUID: jGtf/qCgQMWfV4/dmpMLWg==
-X-CSE-MsgGUID: bwG2PYsZSvK/HmP5QoZnBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="53616664"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="53616664"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 04:54:24 -0700
-X-CSE-ConnectionGUID: KozutAM8ScyStY8QfYLPow==
-X-CSE-MsgGUID: NKY/bKSKQ/C0dSC7kN9vJw==
+ t=1748952959; x=1780488959;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=8Zy/8PpNucBso1LCcrSS18L7Ig3shDJcxs34UMNg+UU=;
+ b=P9pLHFGX0uZw327SQdUyHbe75cKSmimse8yvFAj6rcjRghDOE/QlJxEw
+ WAbiF4gvzMWbwLhmPiNkwhGKFWXMOwTjw+gkOH5LyzYCwcfPaC67/rE5n
+ u+LtlWNU+OMF+uow/i1xkmjWSR6pZUBE4+1WQln+odRPRUI5VnA8x9wBo
+ YiawwKSfoCtx81tfT1j/jrRoiHcdTqfEW7brtL7mjHVuSKkx2ur+hW7Qg
+ W/uEJuyIYszgmIQORNy5FAUXiBgK2cpFOORH4aXIUpoA5zu1i2vlCAN2q
+ A0x7R/zMk57puHGM2UMg6NPWrSELsQ9FxUrlFuRaXOid37gsYrdJqvJ5a w==;
+X-CSE-ConnectionGUID: XP26RsBFQcOdS8b1oK5Q/g==
+X-CSE-MsgGUID: i2GXvI0kQ8Ovjza/sCR6Hw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50862436"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="50862436"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 05:15:54 -0700
+X-CSE-ConnectionGUID: lgehiAhiTqyEFZE5PI8vzg==
+X-CSE-MsgGUID: gZm650rhRJ26rlXgJ9a4vA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="149993420"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2025 04:54:19 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>, Raag Jadav <raag.jadav@intel.com>
-Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Alexander Usyskin <alexander.usyskin@intel.com>
-Subject: [PATCH v12 10/10] drm/xe/nvm: add support for non-posted erase
-Date: Tue,  3 Jun 2025 14:39:53 +0300
-Message-ID: <20250603113953.3599816-11-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250603113953.3599816-1-alexander.usyskin@intel.com>
-References: <20250603113953.3599816-1-alexander.usyskin@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; d="scan'208";a="145814666"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2025 05:15:55 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 3 Jun 2025 05:15:53 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Tue, 3 Jun 2025 05:15:53 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.80)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.55; Tue, 3 Jun 2025 05:15:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TE28xMCsNtINeP2fm2ESR5l7slOBqa4tY/FvMquy0PLnmqmIggba3QGwf3ACW9gAgHNjORd15vQXlOx35G1BHByG00DiklMLPUekVoO026EqPYkprGqBsxWzv1meDWUfB5i+RNMon8qqcHq4VWtLy42LCHBnlb/q4GdtP9xrjsKwbnMerpgqwkLTAVgXe+TqLI05VpL6nOQ4/DxVbUfpFk5PGPzCoXKyK+oybdFDWKaNTN+H44fQxNCOGEgbEabBfUg+lVSPsagcOE2BUHnzQPs/Zl0NNFvpbUB6/az4NaArzPYzDcc45TzpDX9mkEMBQMTzdzefDXBXjpMhX6OJZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G+T8Ej1V5+ol9tkA2HKZablscOGwyZLQNmWVlTSs1HY=;
+ b=WmAzwR9Cx9FU2O2F/Rplb08MKaeZ96JFfEs4K24mjtSqmnFljEJV1rh10Y76FmXcfgabpNH5jJNaPpav3xtnAFOJjdAnbDRLVJedEd8g18YwAcSOwYNfxiKCGlinJ6FQcnzswtwdliLOOaSSXmOLRMiXoPXJhCu4zAryArCP5E0whPLhxcbjOSH3SZ1cXAUNldWk2GYbkY+2z2zP2+ZX8z6lCgzICWcG2v/GjoM5s1xqUKigjaeFNZB7AVIg/ZMwpAB7wQvIM0LoraZo68HUyOe94fh9LHOIfA8z3Ju2Y4zlorBLptjww/30YwgE3SfOXOI7f2hqLAMVDJh8CgdNgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by BY1PR11MB8007.namprd11.prod.outlook.com (2603:10b6:a03:525::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.33; Tue, 3 Jun
+ 2025 12:15:51 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%2]) with mapi id 15.20.8769.037; Tue, 3 Jun 2025
+ 12:15:51 +0000
+From: Imre Deak <imre.deak@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+CC: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH 0/4] drm/dp: Limit the DPCD probe quirk to the affected monitor
+Date: Tue, 3 Jun 2025 15:15:39 +0300
+Message-ID: <20250603121543.17842-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR07CA0233.eurprd07.prod.outlook.com
+ (2603:10a6:802:58::36) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|BY1PR11MB8007:EE_
+X-MS-Office365-Filtering-Correlation-Id: b34af52b-f052-4264-2211-08dda298616e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cTNSWGRkOTkxdGkvalUzQzNvbVd2TjRLbXdwWUtvYVhqWXBrWXk3NVY5YWhE?=
+ =?utf-8?B?WXlnUC85djdOS1AydysxT09pVXAzM0hVT2IxdjFLVDZ0Z2tJa0JMQW43VkpJ?=
+ =?utf-8?B?Z2tSdHJoeVcyVW8wK0NpOEd1ZnkzVjYxOUNpQk9tMmkwczFaSUQrVVE0WXRq?=
+ =?utf-8?B?ZzVMSVJRMzd3T1IwNTNKR2dwRlB4RXhZWUhjb0RlNlNDN2k3c0F6MnpIS3Y2?=
+ =?utf-8?B?RE9EWFROK2JLQWtiSTlhVlBSMVlwWmYveHk4Q2ZiNlJQZE9VcDU2NHRMQ3pE?=
+ =?utf-8?B?eVRNemFLQko1TWp0STgxRk5aS0ZsRHVuNW9GTnIxMlZneDVBREdxT0RpTDVi?=
+ =?utf-8?B?eWVpUzBvRHZyVzI5ZHRGZ3ZGQVo1TkpORFFkVVJ1NnhwRmxVdzVYZWxNaXVi?=
+ =?utf-8?B?R0dka1pzMi9KVXhtUUNqMFRyZHNqL29sd0JLYkEzbE52NUNNZllZNDdkUjc2?=
+ =?utf-8?B?UmIxY2NlUWtUd2hIdFByOHNlK1lPNHkreEZzYUgybDhnNktqMEExelpIVWpy?=
+ =?utf-8?B?aXBueEp6b1B2dmViYnRHZU41VGlxYW8xNDhvR3k0QnZ1cmNncE1FNmg2ajJo?=
+ =?utf-8?B?MmVSWlloeUxBa0tBcEsvcDU3SjN2TkZIS3ZRZmI3bU5JVmpUNDF4ZmFJSEJZ?=
+ =?utf-8?B?THd4TzRabEt1Y3N1eTAvenlyYVcwbzUranZSS1F1ZytxVmZVeVNnZ2E4cnpT?=
+ =?utf-8?B?SGxyQ294WWRkTVppbzNpdUNlS2lFbmt5VDVOYVBXdGFFSjNZMFg3NHpnQ2V5?=
+ =?utf-8?B?a1Mwd0RXcGdSVm80MEl0bFJxU2UvRXA2WGM1SkJQY3VncnVzMFRwbUR1NWdj?=
+ =?utf-8?B?d3ZpRFlhKzZFbnZtVXJ0TzhVRUZCL0JORmxLT003aFFiSGFSRUE3MUcyKzVv?=
+ =?utf-8?B?dUFycXU0bS9NdkpOdFhsVS9vV2s2M2V1bWRRTnJrRUIxTGRBKzF5NFN2V3FB?=
+ =?utf-8?B?di9lMTRMbjFCeWxHK1FUaXE5Mk5mekxobjhhb1E1VVdCNmtmNmVxbmR3WUN6?=
+ =?utf-8?B?Mi90cGo1eEJsY1ZaUlZUcU1tMU05RjBrR3dEdERZSXl3bXN1bENTZEdBOTlv?=
+ =?utf-8?B?SUdNT1NILzVCeVZDeW5nR01nZTJyYmxWVnVJeGt3WGdGaDBzQlNtcXpwTk1q?=
+ =?utf-8?B?RDUwajZNa1djQlE2bjFNT1FuTUZieUl1OXdCMXEzSmFWeEQzUUhPMWMvTUJ3?=
+ =?utf-8?B?N3hVNlU1ajZhMndMRDhmbW4vM3FvZkhUYjVuMVplY3FwN2w0eXJaNGFJclNV?=
+ =?utf-8?B?ZlJic3krZ1FrRnJQS1M2MmdLVzM4bGI1VkJCek1KcDBXR0h6d2ZYQ0wrSkxB?=
+ =?utf-8?B?UXJMVkx6TDhhOU5CZnlZVzJKZy9aQXJrVG5VdC9RaUtGSjlSUTRycEg1R0ZF?=
+ =?utf-8?B?UENpKzByNC9OYW5zcXhNTVFqeXBpZzFJSkRpMElweUE1eC9ady84S3ZnLzdt?=
+ =?utf-8?B?eUU1KzczbUlLOGtZYzg2aTFvdHFaeTV5amtadnAwdnF4UGpXbmMwUlVpQUFo?=
+ =?utf-8?B?U0JibnpybXlnZTdRMlg5QmxRVXExK0FCUXNtV1A3TWYzS05hVCtoTEVXblRG?=
+ =?utf-8?B?OFZiRXdZNHB4eXVJU1dWa1hxN2pONGx4U0N2eDM5UWp5UW5KQW96ZHlVUkFn?=
+ =?utf-8?B?Y3Q4YjFDUk44Y0M0WWlENUgwUS93WThFWG1pU244blpwZ2tjZUFJNTlKdmFY?=
+ =?utf-8?B?U3Y4V01wV0N6RGVUL21YUSthRi9CSlNUN0tVdmNpRW92dFgxcHBLZk8rSFI3?=
+ =?utf-8?B?MjVpTzdJUHhUbFVMMXY5MWUvM09xRndlajYvNlhQZ0RnWWh0dG9YbWNjMkRQ?=
+ =?utf-8?B?MUpIVmxyQVlKblBER3ZUU2M2QjhVUkVqdzZQV2dYVmFWaVRORUxadnA3YmxG?=
+ =?utf-8?B?UkdtL1htWnMwcEVUdmVHV2lhb1VDb2NvbVNTS1ByOGxqbUQwY3hqb3RIOGtj?=
+ =?utf-8?Q?jiItv69BBMk=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ancrOFlrTTg0QnYzRFRqZDJuakowcU1KS2JFM2Npck51d1A4ZHNwb0ZINWZM?=
+ =?utf-8?B?aWNCcG9DbXlJUmJIM09FMFpiemRlWG9aRll4MXAyckxld3FWc2hIU2JqMUlY?=
+ =?utf-8?B?U0RPcngzRkJXenArdXdQbVBJWWNGdE9iWDEwN1J5WnhVSURUS2FqVUxEZDJY?=
+ =?utf-8?B?WHEwM0VaQm56T3ZIdFpPUGpBbTJEYXRFR0NiSXQzenhaRDhvZzFoeS9GL0Rp?=
+ =?utf-8?B?UWZHQ0lPY1FudFVUZXJicnFWZDM5dUFQQ2VEM3JtNUhhNTZTL1RiOXc4Rmdq?=
+ =?utf-8?B?Y1NpNFZYR0ljSjcvUDFVVDJhZHBNaFJEclBsclNJdms2RkNKRjFMSnJ6dlJv?=
+ =?utf-8?B?TmJrYUtDVVByNmVlcDBVWWplZjR1TlZiZ3UxbThZejJxTTlkUzdsUitveTNM?=
+ =?utf-8?B?MjZZTUNrYWp4ZmJUUGpmWHJtaTczdng4SEQzVHMreXo4djdJTFo4NU1iVVZj?=
+ =?utf-8?B?aEJFZ1NjU3MvcmVYNGQ0V2laMFFwNnBmRytFUVlSU3htWmw2UGJKMjdLMk9C?=
+ =?utf-8?B?NUFyUlhiR3RqN204UmJwVk96NDBiTGZCWk91eW1IYU00endQZ0dsQ2JBcFov?=
+ =?utf-8?B?Q1lETU9tRys2eW9yZlZudkkrYTFDaG9MeEE5UDc3RnpQUjVXcmVVYWpiNkRK?=
+ =?utf-8?B?SFVBckhsK2lWWnBFRlVSWktPNlVaQVkwKzVvMVRTU3NNNWVMMHVFZ001dndm?=
+ =?utf-8?B?N0ZDa0pLcGduT0tmWldrTVduY2Jtd1VOOStMazVGYVY1RXppOGp6bFNoaU5i?=
+ =?utf-8?B?ZWxMMFZpY2tsU29hZnM1b0MyRGcrQnFuZTNPWVJDZzZZZmFuUDE4MzEzNTZp?=
+ =?utf-8?B?ZUFma0ZKd3JROStNdml0aW05a2gxS0x3K0YyS2dBcVp4S1JEdzNIbnBxa28r?=
+ =?utf-8?B?RHdndG9JSmd0U0c0MUNCemFrWnFhU25oMHJHKzBGVFE3RTQxOFhNNjN1WGtj?=
+ =?utf-8?B?TUFJRTBHTVVLNVcwYURNdnoxZndKYXFCNGl1SExpN25ESGhXU2pZT3ZMNXAy?=
+ =?utf-8?B?Q1NTdGY4YWJUQTdTY1VCL01OMVhQdDk1dHVlYXNYdXBNcEhPcEpSV0hFUDhs?=
+ =?utf-8?B?bGoyUyt0MWlHRDJoMzVYRTEyeEQ3MzNoWlRUdE5WeE9QcVdiN1pXUEZyTmxH?=
+ =?utf-8?B?eXFYeFpkVlNMNFBVK0UwdXRpNmgrY216c0dwTGk2b1lPQVJMblc0NCtsUkZI?=
+ =?utf-8?B?cWFodGM1ZnEycTN3MFdpWTd0TEM1TE84WklmRHNiYVAzbmR6Zzhka2MyOThQ?=
+ =?utf-8?B?NTIzZHliL0xFcC9nRzVRMHovUHZrYnlkVXlQWWt2dlcrblByV1FYbzlXai9X?=
+ =?utf-8?B?UVBqK0YrNnZZeTRkRkFnVnRHVGt6aDhHd0JjaEtUS2N4VkFRRlc2NmltZDRy?=
+ =?utf-8?B?aXMzT2UvcTd5NVkxTGkxOE9XWGFuSEgyWk5yZit4cmlYL1k2SWhoTVJlRTZ5?=
+ =?utf-8?B?dDNzU2U1a2NRMm1JOEx6NkdmaWc3RWl6V3piZzRVcjdGMklYS01YM0JrdCt2?=
+ =?utf-8?B?MGI0S0ZMb0FLbnQxdi9Kc1BBTmdpYTVVU3JDTW82NmVwTHdhVEhINzIvMXlL?=
+ =?utf-8?B?NGFDdjJKMlZWbGJkVy9oWENOUS9IdUJrZ0srL1laS1hYQkZRTDluM091WXRL?=
+ =?utf-8?B?anlQTkYyQVN2MHVCcUt6TWs3OHBLVExjZ3R1NUFRbldGKzM3bUdRRElKaGdv?=
+ =?utf-8?B?VzhSS1JHcDdNekJZdzZOREcvWjE1bnhNTWlRN3MxTnp4WGhrbUxDVmh3dHQz?=
+ =?utf-8?B?MDcvSk5tVVdkaTE0TCtSY2lWekVWWDJwaHdEN2JFYUUyaWNMU3IwREJCbTR6?=
+ =?utf-8?B?YU1ROFZZRXlmckVNb3pDTFVKNTJnRG1mbkJhcHNud1BKanphekYzaUFJa1JS?=
+ =?utf-8?B?cUFhUzRxL01tOVVsYUdwczRJaHhlakRNTWJ2OENCWWFRVkV1OWYzMzEyTGVw?=
+ =?utf-8?B?c0Ywcm16dXYxNHV3NjY2NkVmQXdPNTk4RkM3VENtZTA1dVNzYS9Ed2F1UkpP?=
+ =?utf-8?B?UCtYVndoSXZaVnQ4dE4xL3haQ1JKWFl6bmIzd1F5VXF1UEg2TjlnZ2tTalFp?=
+ =?utf-8?B?b3BIYnFzMUg0M1puKzh5ejl5QXNPVllkbEtWZm9yWEljY1JXSXFDQjdlMWJq?=
+ =?utf-8?Q?MMuJCZbAglvnbq2PLPnCfdox1?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b34af52b-f052-4264-2211-08dda298616e
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2025 12:15:51.2975 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v2hFEVthRAfcU1VBq1Ngy2v961X7f8uBQNB6kUBs/k/Zb3nYAunIFnOBwu5/W9O1goNk05hgjrEEtb0Pyhlyng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8007
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,199 +193,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Reuven Abliyev <reuven.abliyev@intel.com>
+This patchset fixes a known issue where the DPCD probe quirk leads to
+link training failures (patch 1) and limits the quirk to the monitor
+which requires it, to avoid similar failures in the future.
 
-Erase command is slow on discrete graphics storage
-and may overshot PCI completion timeout.
-BMG introduces the ability to have non-posted erase.
-Add driver support for non-posted erase with polling
-for erase completion.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Reuven Abliyev <reuven.abliyev@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/xe_nvm.c        | 25 ++++++++++++++++++
- drivers/mtd/devices/mtd_intel_dg.c | 42 ++++++++++++++++++++++++++++--
- include/linux/intel_dg_nvm_aux.h   |  2 ++
- 3 files changed, 67 insertions(+), 2 deletions(-)
+Imre Deak (4):
+  drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS
+  drm/edid: Add support for quirks visible to DRM core and drivers
+  drm/dp: Add an EDID quirk for the DPCD register access probe
+  drm/i915/dp: Disable the AUX DPCD probe quirk if it's not required
 
-diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
-index 20aa3b5d3637..61b0a1531a53 100644
---- a/drivers/gpu/drm/xe/xe_nvm.c
-+++ b/drivers/gpu/drm/xe/xe_nvm.c
-@@ -14,7 +14,15 @@
- #include "xe_sriov.h"
- 
- #define GEN12_GUNIT_NVM_BASE 0x00102040
-+#define GEN12_DEBUG_NVM_BASE 0x00101018
-+
-+#define GEN12_CNTL_PROTECTED_NVM_REG 0x0010100C
-+
- #define GEN12_GUNIT_NVM_SIZE 0x80
-+#define GEN12_DEBUG_NVM_SIZE 0x4
-+
-+#define NVM_NON_POSTED_ERASE_CHICKEN_BIT BIT(13)
-+
- #define HECI_FW_STATUS_2_NVM_ACCESS_MODE BIT(3)
- 
- static const struct intel_dg_nvm_region regions[INTEL_DG_NVM_REGIONS] = {
-@@ -29,6 +37,16 @@ static void xe_nvm_release_dev(struct device *dev)
- {
- }
- 
-+static bool xe_nvm_non_posted_erase(struct xe_device *xe)
-+{
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+
-+	if (xe->info.platform != XE_BATTLEMAGE)
-+		return false;
-+	return !(xe_mmio_read32(&gt->mmio, XE_REG(GEN12_CNTL_PROTECTED_NVM_REG)) &
-+		 NVM_NON_POSTED_ERASE_CHICKEN_BIT);
-+}
-+
- static bool xe_nvm_writable_override(struct xe_device *xe)
- {
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
-@@ -86,6 +104,7 @@ int xe_nvm_init(struct xe_device *xe)
- 	nvm = xe->nvm;
- 
- 	nvm->writable_override = xe_nvm_writable_override(xe);
-+	nvm->non_posted_erase = xe_nvm_non_posted_erase(xe);
- 	nvm->bar.parent = &pdev->resource[0];
- 	nvm->bar.start = GEN12_GUNIT_NVM_BASE + pdev->resource[0].start;
- 	nvm->bar.end = nvm->bar.start + GEN12_GUNIT_NVM_SIZE - 1;
-@@ -93,6 +112,12 @@ int xe_nvm_init(struct xe_device *xe)
- 	nvm->bar.desc = IORES_DESC_NONE;
- 	nvm->regions = regions;
- 
-+	nvm->bar2.parent = &pdev->resource[0];
-+	nvm->bar2.start = GEN12_DEBUG_NVM_BASE + pdev->resource[0].start;
-+	nvm->bar2.end = nvm->bar2.start + GEN12_DEBUG_NVM_SIZE - 1;
-+	nvm->bar2.flags = IORESOURCE_MEM;
-+	nvm->bar2.desc = IORES_DESC_NONE;
-+
- 	aux_dev = &nvm->aux_dev;
- 
- 	aux_dev->name = "nvm";
-diff --git a/drivers/mtd/devices/mtd_intel_dg.c b/drivers/mtd/devices/mtd_intel_dg.c
-index 97e1dc1ada5d..b438ee5aacc3 100644
---- a/drivers/mtd/devices/mtd_intel_dg.c
-+++ b/drivers/mtd/devices/mtd_intel_dg.c
-@@ -25,6 +25,9 @@ struct intel_dg_nvm {
- 	struct mtd_info mtd;
- 	struct mutex lock; /* region access lock */
- 	void __iomem *base;
-+	void __iomem *base2;
-+	bool non_posted_erase;
-+
- 	size_t size;
- 	unsigned int nregions;
- 	struct {
-@@ -41,6 +44,7 @@ struct intel_dg_nvm {
- #define NVM_VALSIG_REG        0x00000010
- #define NVM_ADDRESS_REG       0x00000040
- #define NVM_REGION_ID_REG     0x00000044
-+#define NVM_DEBUG_REG         0x00000000
- /*
-  * [15:0]-Erase size = 0x0010 4K 0x0080 32K 0x0100 64K
-  * [23:16]-Reserved
-@@ -72,6 +76,9 @@ struct intel_dg_nvm {
- #define NVM_FREG_ADDR_SHIFT 12
- #define NVM_FREG_MIN_REGION_SIZE 0xFFF
- 
-+#define NVM_NON_POSTED_ERASE_DONE BIT(23)
-+#define NVM_NON_POSTED_ERASE_DONE_ITER 3000
-+
- static inline void idg_nvm_set_region_id(struct intel_dg_nvm *nvm, u8 region)
- {
- 	iowrite32((u32)region, nvm->base + NVM_REGION_ID_REG);
-@@ -373,13 +380,32 @@ static ssize_t idg_read(struct intel_dg_nvm *nvm, u8 region,
- static ssize_t
- idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_addr)
- {
-+	void __iomem *base2 = nvm->base2;
- 	void __iomem *base = nvm->base;
- 	const u32 block = 0x10;
-+	u32 iter = 0;
-+	u32 reg;
- 	u64 i;
- 
- 	for (i = 0; i < len; i += SZ_4K) {
- 		iowrite32(from + i, base + NVM_ADDRESS_REG);
- 		iowrite32(region << 24 | block, base + NVM_ERASE_REG);
-+		if (nvm->non_posted_erase) {
-+			/* Wait for Erase Done */
-+			reg = ioread32(base2 + NVM_DEBUG_REG);
-+			while (!(reg & NVM_NON_POSTED_ERASE_DONE) &&
-+			       ++iter < NVM_NON_POSTED_ERASE_DONE_ITER) {
-+				msleep(10);
-+				reg = ioread32(base2 + NVM_DEBUG_REG);
-+			}
-+			if (reg & NVM_NON_POSTED_ERASE_DONE) {
-+				/* Clear Erase Done */
-+				iowrite32(reg, base2 + NVM_DEBUG_REG);
-+			} else {
-+				*fail_addr = from + i;
-+				return -ETIME;
-+			}
-+		}
- 		/* Since the writes are via sgunit
- 		 * we cannot do back to back erases.
- 		 */
-@@ -388,7 +414,8 @@ idg_erase(struct intel_dg_nvm *nvm, u8 region, loff_t from, u64 len, u64 *fail_a
- 	return len;
- }
- 
--static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device)
-+static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device,
-+			     bool non_posted_erase)
- {
- 	u32 access_map = 0;
- 	unsigned int i, n;
-@@ -448,7 +475,10 @@ static int intel_dg_nvm_init(struct intel_dg_nvm *nvm, struct device *device)
- 			n++;
- 	}
- 
-+	nvm->non_posted_erase = non_posted_erase;
-+
- 	dev_dbg(device, "Registered %d regions\n", n);
-+	dev_dbg(device, "Non posted erase %d\n", nvm->non_posted_erase);
- 
- 	/* Need to add 1 to the amount of memory
- 	 * so it is reported as an even block
-@@ -729,7 +759,15 @@ static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
- 		goto err;
- 	}
- 
--	ret = intel_dg_nvm_init(nvm, device);
-+	if (invm->non_posted_erase) {
-+		nvm->base2 = devm_ioremap_resource(device, &invm->bar2);
-+		if (IS_ERR(nvm->base2)) {
-+			ret = PTR_ERR(nvm->base2);
-+			goto err;
-+		}
-+	}
-+
-+	ret = intel_dg_nvm_init(nvm, device, invm->non_posted_erase);
- 	if (ret < 0) {
- 		dev_err(device, "cannot initialize nvm %d\n", ret);
- 		goto err;
-diff --git a/include/linux/intel_dg_nvm_aux.h b/include/linux/intel_dg_nvm_aux.h
-index 00b6c1301bd8..625d46a6b96e 100644
---- a/include/linux/intel_dg_nvm_aux.h
-+++ b/include/linux/intel_dg_nvm_aux.h
-@@ -20,7 +20,9 @@ struct intel_dg_nvm_region {
- struct intel_dg_nvm_dev {
- 	struct auxiliary_device aux_dev;
- 	bool writable_override;
-+	bool non_posted_erase;
- 	struct resource bar;
-+	struct resource bar2;
- 	const struct intel_dg_nvm_region *regions;
- };
- 
+ drivers/gpu/drm/display/drm_dp_helper.c      | 17 +++++++--
+ drivers/gpu/drm/drm_edid.c                   | 36 ++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp.c      | 11 ++++--
+ drivers/gpu/drm/i915/display/intel_dp_aux.c  |  2 ++
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 10 ++++++
+ include/drm/display/drm_dp_helper.h          |  6 ++++
+ include/drm/drm_connector.h                  |  5 +++
+ include/drm/drm_edid.h                       |  6 ++++
+ 8 files changed, 82 insertions(+), 11 deletions(-)
+
 -- 
-2.43.0
+2.44.2
 
