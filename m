@@ -2,57 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07313ACDA88
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jun 2025 11:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFBD3ACDAA1
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jun 2025 11:12:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A3010E21B;
-	Wed,  4 Jun 2025 09:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C8610E126;
+	Wed,  4 Jun 2025 09:12:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dYKsSzMe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NjH7h2yj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDACF10E219;
- Wed,  4 Jun 2025 09:07:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6186110E126;
+ Wed,  4 Jun 2025 09:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749028070; x=1780564070;
+ t=1749028355; x=1780564355;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=SfjbtFk8qUauCz4K5UHovZDUz7Ph9tqbpbI9x6XEJzQ=;
- b=dYKsSzMe2hmyTYSIAXwxKe0WOkAP7BTs2YVnFc5vj+ADuDtT0lXr/mnR
- 09fZDOPDzpi2YM5W8n+NRLPDrnegA4hwzh55Y4zdam7ciJdZz96Kc8BRO
- vSGTlu9ae0TO4WT9hPD1/CNFPojHAA+HFG9iMa88ZuXhzpMsIdLbKLkmA
- sSnGpnb6aF2xBKlAQX4ZTLDz80Sz/7C9D+aXQ182Ubf3PtkLC/+UZ/nLm
- qXXhuJn+Kx8BbVXzuH5CJyTeEEi9MIf+vqVqD9KH3Z5seoh2WGwvCFJPt
- lnuwlk6vakVEZ+YBx8iMm301hWCEVTKRcgfjm9cky+/8kbwfLwQfa087i g==;
-X-CSE-ConnectionGUID: CD8hifh4T/SHADTs44JjQg==
-X-CSE-MsgGUID: sFEw9VaFSSS0QhLxXqu6mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="51244156"
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="51244156"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ bh=zZpo6mK8tf383MWZB/POECNU1sIuN6ckveroVl8Bdjs=;
+ b=NjH7h2yjdi/R4va01KIQhQp8Qtn3vr6k2kD3NA4kM90WpAG0Ny5go8EB
+ kiPjvB2n5lq4fVDjcc2M5+2Qon9F2GVUdC1/NOTleLDtgLezFM1yI/8b4
+ j6t3HWZkqoXlkb4qU3+Rrw/VlylNxXstYcFxWr7QeSoAQgCiPHG4nzqDk
+ o38cEmfzT92APYI20YkljTbSJjx/Gzs1jjSi4pfvwZqd37+pAza+nED9F
+ 1OuTYlwx5wOjFctPVqsnfjFW551NRFkAiTAzwMBBu6JPvMDG85qVrCitb
+ xnFC/XLzAStJo14+P05AqcQiPJKc1RZxRrVjBe9CzQRXqPKqzBk16UUFH g==;
+X-CSE-ConnectionGUID: zMRmJ2oLRV+Mxl+jjotqnA==
+X-CSE-MsgGUID: DIZgq4Y/QqOtpFY0bxNOng==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="51245022"
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="51245022"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 02:07:50 -0700
-X-CSE-ConnectionGUID: 2ljzef2fRPOpDO4p2OKyVA==
-X-CSE-MsgGUID: Ssm/5hT1QLuJr4opbOI3Pg==
+ 04 Jun 2025 02:12:34 -0700
+X-CSE-ConnectionGUID: 6KQ7jSotTlyHgRT2Bv6ztA==
+X-CSE-MsgGUID: YHZD5V2FShW3vSBzcpE+kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="145729930"
+X-IronPort-AV: E=Sophos;i="6.16,208,1744095600"; d="scan'208";a="149915958"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.101])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2025 02:07:48 -0700
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jun 2025 02:12:27 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 03/12] drm/i915/dsb: Introduce intel_dsb_exec_time_us()
-In-Reply-To: <20250603140836.21432-4-ville.syrjala@linux.intel.com>
+To: Jeff Layton <jlayton@kernel.org>, Andrew Morton
+ <akpm@linux-foundation.org>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: Kuniyuki Iwashima <kuniyu@amazon.com>, Qasim Ijaz <qasdev00@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Jeff
+ Layton <jlayton@kernel.org>
+Subject: Re: [PATCH v12 03/10] ref_tracker: add a top level debugfs
+ directory for ref_tracker
+In-Reply-To: <20250529-reftrack-dbgfs-v12-3-11b93c0c0b6e@kernel.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250603140836.21432-1-ville.syrjala@linux.intel.com>
- <20250603140836.21432-4-ville.syrjala@linux.intel.com>
-Date: Wed, 04 Jun 2025 12:07:45 +0300
-Message-ID: <407f8fb828d484b1ff0c096dbacc456af09c7269@intel.com>
+References: <20250529-reftrack-dbgfs-v12-0-11b93c0c0b6e@kernel.org>
+ <20250529-reftrack-dbgfs-v12-3-11b93c0c0b6e@kernel.org>
+Date: Wed, 04 Jun 2025 12:12:25 +0300
+Message-ID: <378d6754aad9991b859a5c2136f4a4211e9fafea@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,12 +82,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Jun 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> +/*
-> + * FIXME calibrate these sensibly, ideally compute based on
-> + * the number of regisetrs to be written. But that requires
+On Thu, 29 May 2025, Jeff Layton <jlayton@kernel.org> wrote:
+> Add a new "ref_tracker" directory in debugfs. Each individual refcount
+> tracker can register files under there to display info about
+> currently-held references.
+>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Jeff Layton <jlayton@kernel.org>
+> ---
+>  lib/ref_tracker.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/lib/ref_tracker.c b/lib/ref_tracker.c
+> index de71439e12a3bab6456910986fa611dfbdd97980..d374e5273e1497cac0d70c02c282baa2c3ab63fe 100644
+> --- a/lib/ref_tracker.c
+> +++ b/lib/ref_tracker.c
+> @@ -273,3 +273,16 @@ int ref_tracker_free(struct ref_tracker_dir *dir,
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(ref_tracker_free);
+> +
+> +#ifdef CONFIG_DEBUG_FS
+> +#include <linux/debugfs.h>
+> +
+> +static struct dentry *ref_tracker_debug_dir = (struct dentry *)-ENOENT;
 
-Random drive-by comment, *registers
+Nitpick, please prefer ERR_PTR(-ENOENT) over casting inline.
+
+BR,
+Jani.
+
+
+> +
+> +static int __init ref_tracker_debugfs_init(void)
+> +{
+> +	ref_tracker_debug_dir = debugfs_create_dir("ref_tracker", NULL);
+> +	return 0;
+> +}
+> +late_initcall(ref_tracker_debugfs_init);
+> +#endif /* CONFIG_DEBUG_FS */
 
 -- 
 Jani Nikula, Intel
