@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953E7ACDAF5
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jun 2025 11:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97BA6ACDAF6
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Jun 2025 11:25:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEC510E7DB;
-	Wed,  4 Jun 2025 09:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3016410E23E;
+	Wed,  4 Jun 2025 09:25:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEBE310E684;
- Wed,  4 Jun 2025 09:25:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A53810E659;
+ Wed,  4 Jun 2025 09:25:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/utils=3A_do?=
- =?utf-8?q?cument_range=5Foverflows*=28=29_macros?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/utils=3A_docume?=
+ =?utf-8?q?nt_range=5Foverflows*=28=29_macros?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Jun 2025 09:25:12 -0000
-Message-ID: <174902911277.47446.15346687420045849374@1538d3639d33>
+Date: Wed, 04 Jun 2025 09:25:16 -0000
+Message-ID: <174902911616.47453.10638152349216228304@1538d3639d33>
 X-Patchwork-Hint: ignore
 References: <202506021119.8FD6339F@keescook>
 In-Reply-To: <202506021119.8FD6339F@keescook>
@@ -49,13 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-d05f1fc137c3 drm/i915/utils: document range_overflows*() macros
--:20: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#20: FILE: drivers/gpu/drm/i915/i915_utils.h:70:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 66 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
