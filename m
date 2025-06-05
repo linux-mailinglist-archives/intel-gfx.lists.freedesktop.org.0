@@ -2,67 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E62ACF79A
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jun 2025 21:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C5BACFA2A
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 01:47:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C293610E323;
-	Thu,  5 Jun 2025 19:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0A3310E32C;
+	Thu,  5 Jun 2025 23:47:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lBuaDEEq";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="PQLd0QGu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1884410E2DC;
- Thu,  5 Jun 2025 19:07:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749150449; x=1780686449;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=C/XhCzNvGRMw8779oAUL0VkITURez1r6nZ1DhVNYE6I=;
- b=lBuaDEEq6bywA0xAgTzTWZzn3Dpu38U/cZGN0lLYRDN5FwRWp7JeqDMO
- ZKxjDyZSATLFLPJy+ElNsPTt24tm/Pg2MKbfzHWD+RZxfcXdbMFI+QHqb
- 0tePRIq81KToSOneDJoJKUOEBkCupx5+cZ4RJxl0uoz+t3el2UlJLGd2O
- g8kuoW8r9T2e92I78URmvd1/eYE/i3UiE/VHvBBfHZ68WSGvOd1MwJP2b
- mvgbdo9NripLTvoWonPS/BlDG1tAwezQtI3s5jK1BewGacB8AY7g3vJSS
- MkOt3YtjiLndansFIjRpJAGmWRm5jUCYhCxrND4wrwtIl6E3D4WGhKryq g==;
-X-CSE-ConnectionGUID: kmPtGtd/QBGO5CVUpNpDBg==
-X-CSE-MsgGUID: HggPSvfHSWWWdlIwEYJPCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="38919376"
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="38919376"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 12:07:28 -0700
-X-CSE-ConnectionGUID: GrC4chEyQ3qeeacC8p+QEg==
-X-CSE-MsgGUID: bpy3oorHTruEV22QO8mP9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; d="scan'208";a="149451753"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.59])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 12:07:26 -0700
-Date: Thu, 5 Jun 2025 21:07:15 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <aEHq44uIAZwfK-mG@fedora>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB5410E045;
+ Thu,  5 Jun 2025 23:47:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1749167233;
+ bh=15JvHcWTxIrumm959n5nDF+mUowsUAutYuadJfJTyv0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=PQLd0QGuWnbp+uhMzA6EicYQNkgdhWk2t4zS0hsNjRdS7bjzO30j0BhNddGU+9Phq
+ ZzkcNBo0OYOFXWXeyHFy1tkJ5+lkVXJ6Y4GVbPX9k0cOezhDCUQYJAio8Yx8B2ZjKe
+ D884G8AYko9X8ZUx/4N3YyIRZFe9XEqeFMUC9O6xa76+XisbimGSdUGchOWaoWJyCJ
+ VWSVcpQ8Q9JicWs6YHtzWEWVS+dqQkuLcaFugV4tCM1swD4CppbP0iGcxeqWTiJ1XC
+ cvNm56WMYzhNArqGm1+voED/DoNZIzBlU2B7cWRHqnKDQIcHxVg9cyf3GxQfmIypWb
+ nEiKmJW5HTfHw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4bD1MM6xG7z4wbd;
+ Fri,  6 Jun 2025 09:47:11 +1000 (AEST)
+Date: Fri, 6 Jun 2025 09:47:11 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>, Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>, Jacek Lawrynowicz
+ <jacek.lawrynowicz@linux.intel.com>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm-misc-fixes tree with Linus' tree
+Message-ID: <20250606094711.4b9909af@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/RPEO+toMXI_H5DxlpAIfJIy";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,103 +60,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dave, Simona
-This week's drm-xe-next-fixes pull. Quite a few this week.
+--Sig_/RPEO+toMXI_H5DxlpAIfJIy
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-One thing to be aware of is a conflict in "Create LRC bo without VM",
-Looks like a commit got pulled into drm-xe-fixes that is not in drm-xe-next-fixes,
-and pulling this branch will likely conflict with that once Linus merges.
+Hi all,
 
-Thanks,
-Thomas
+Today's linux-next merge of the drm-misc-fixes tree got a conflict in:
 
-drm-xe-next-fixes-2025-06-05:
-Driver Changes:
-- A couple of vm init fixes (Matt Auld)
-- Hwmon fixes (Karthik)
-- Drop reduntant conversion to bool (Raag)
-- Fix CONFIG_INTEL_VSEC dependency (Arnd)
-- Rework eviction rejection of bound external bos (Thomas)
-- Stop re-submitting signalled jobs (Matt Auld)
-- A couple of pxp fixes (Daniele)
-- Add back a fix that got lost in a merge (Matt Auld)
-- Create LRC bo without VM (Niranjana)
-- Fix for the above fix (Maciej)
+  drivers/accel/ivpu/ivpu_gem.c
 
-The following changes since commit 40493d97b329f8185c0f04dc0ef2b9ffc58e7f3b:
+between commit:
 
-  drm/xe: Add missing documentation of rpa_freq (2025-05-28 17:23:13 +0200)
+  835b14ce4ee3 ("accel/ivpu: s/drm_gem_shmem_v[un]map/drm_gem_shmem_v[un]ma=
+p_locked/")
 
-are available in the Git repository at:
+from Linus' tree and commit:
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-06-05
+  98d3f772ca7d ("accel/ivpu: Use dma_resv_lock() instead of a custom mutex")
 
-for you to fetch changes up to 7c7c5cb5b5bf9d8ccc6a51b28687c9e7ff7f1890:
+from the drm-misc-fixes tree.
 
-  drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init() (2025-06-05 18:55:46 +0200)
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
 
-----------------------------------------------------------------
-Driver Changes:
-- A couple of vm init fixes (Matt Auld)
-- Hwmon fixes (Karthik)
-- Drop reduntant conversion to bool (Raag)
-- Fix CONFIG_INTEL_VSEC dependency (Arnd)
-- Rework eviction rejection of bound external bos (Thomas)
-- Stop re-submitting signalled jobs (Matt Auld)
-- A couple of pxp fixes (Daniele)
-- Add back a fix that got lost in a merge (Matt Auld)
-- Create LRC bo without VM (Niranjana)
-- Fix for the above fix (Maciej)
+--=20
+Cheers,
+Stephen Rothwell
 
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/xe/vsec: fix CONFIG_INTEL_VSEC dependency
+diff --cc drivers/accel/ivpu/ivpu_gem.c
+index e0d242d9f3e5,248bfebeaa22..000000000000
+--- a/drivers/accel/ivpu/ivpu_gem.c
++++ b/drivers/accel/ivpu/ivpu_gem.c
+@@@ -28,11 -28,21 +28,21 @@@ static inline void ivpu_dbg_bo(struct i
+  {
+  	ivpu_dbg(vdev, BO,
+  		 "%6s: bo %8p vpu_addr %9llx size %8zu ctx %d has_pages %d dma_mapped %=
+d mmu_mapped %d wc %d imported %d\n",
+- 		 action, bo, bo->vpu_addr, ivpu_bo_size(bo), bo->ctx ? bo->ctx->id : 0,
++ 		 action, bo, bo->vpu_addr, ivpu_bo_size(bo), bo->ctx_id,
+  		 (bool)bo->base.pages, (bool)bo->base.sgt, bo->mmu_mapped, bo->base.map=
+_wc,
+ -		 (bool)bo->base.base.import_attach);
+ +		 (bool)drm_gem_is_imported(&bo->base.base));
+  }
+ =20
++ static inline int ivpu_bo_lock(struct ivpu_bo *bo)
++ {
++ 	return dma_resv_lock(bo->base.base.resv, NULL);
++ }
++=20
++ static inline void ivpu_bo_unlock(struct ivpu_bo *bo)
++ {
++ 	dma_resv_unlock(bo->base.base.resv);
++ }
++=20
+  /*
+   * ivpu_bo_pin() - pin the backing physical pages and map them to VPU.
+   *
+@@@ -122,10 -130,9 +130,9 @@@ static void ivpu_bo_unbind_locked(struc
+  		bo->ctx =3D NULL;
+  	}
+ =20
+ -	if (bo->base.base.import_attach)
+ +	if (drm_gem_is_imported(&bo->base.base))
+  		return;
+ =20
+- 	dma_resv_lock(bo->base.base.resv, NULL);
+  	if (bo->base.sgt) {
+  		dma_unmap_sgtable(vdev->drm.dev, bo->base.sgt, DMA_BIDIRECTIONAL, 0);
+  		sg_free_table(bo->base.sgt);
+@@@ -277,12 -285,16 +285,16 @@@ static void ivpu_gem_bo_free(struct drm
+  	list_del(&bo->bo_list_node);
+  	mutex_unlock(&vdev->bo_list_lock);
+ =20
+- 	drm_WARN_ON(&vdev->drm, !dma_resv_test_signaled(obj->resv, DMA_RESV_USAG=
+E_READ));
++ 	drm_WARN_ON(&vdev->drm, !drm_gem_is_imported(&bo->base.base) &&
++ 		    !dma_resv_test_signaled(obj->resv, DMA_RESV_USAGE_READ));
++ 	drm_WARN_ON(&vdev->drm, ivpu_bo_size(bo) =3D=3D 0);
++ 	drm_WARN_ON(&vdev->drm, bo->base.vaddr);
+ =20
+  	ivpu_bo_unbind_locked(bo);
+- 	mutex_destroy(&bo->lock);
++ 	drm_WARN_ON(&vdev->drm, bo->mmu_mapped);
++ 	drm_WARN_ON(&vdev->drm, bo->ctx);
+ =20
+ -	drm_WARN_ON(obj->dev, bo->base.pages_use_count > 1);
+ +	drm_WARN_ON(obj->dev, refcount_read(&bo->base.pages_use_count) > 1);
+  	drm_gem_shmem_free(&bo->base);
+  }
+ =20
+@@@ -361,9 -376,9 +376,9 @@@ ivpu_bo_create(struct ivpu_device *vdev
+  		goto err_put;
+ =20
+  	if (flags & DRM_IVPU_BO_MAPPABLE) {
+- 		dma_resv_lock(bo->base.base.resv, NULL);
++ 		ivpu_bo_lock(bo);
+ -		ret =3D drm_gem_shmem_vmap(&bo->base, &map);
+ +		ret =3D drm_gem_shmem_vmap_locked(&bo->base, &map);
+- 		dma_resv_unlock(bo->base.base.resv);
++ 		ivpu_bo_unlock(bo);
+ =20
+  		if (ret)
+  			goto err_put;
+@@@ -386,9 -401,9 +401,9 @@@ void ivpu_bo_free(struct ivpu_bo *bo
+  	struct iosys_map map =3D IOSYS_MAP_INIT_VADDR(bo->base.vaddr);
+ =20
+  	if (bo->flags & DRM_IVPU_BO_MAPPABLE) {
+- 		dma_resv_lock(bo->base.base.resv, NULL);
++ 		ivpu_bo_lock(bo);
+ -		drm_gem_shmem_vunmap(&bo->base, &map);
+ +		drm_gem_shmem_vunmap_locked(&bo->base, &map);
+- 		dma_resv_unlock(bo->base.base.resv);
++ 		ivpu_bo_unlock(bo);
+  	}
+ =20
+  	drm_gem_object_put(&bo->base.base);
 
-Daniele Ceraolo Spurio (2):
-      drm/xe/pxp: Use the correct define in the set_property_funcs array
-      drm/xe/pxp: Clarify PXP queue creation behavior if PXP is not ready
+--Sig_/RPEO+toMXI_H5DxlpAIfJIy
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Karthik Poosa (2):
-      drm/xe/hwmon: Add support to manage power limits though mailbox
-      drm/xe/hwmon: Move card reactive critical power under channel card
+-----BEGIN PGP SIGNATURE-----
 
-Maciej Patelczyk (1):
-      drm/xe: remove unmatched xe_vm_unlock() from __xe_exec_queue_init()
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmhCLH8ACgkQAVBC80lX
+0GwSkAf/XLMVorC/BQUng2JSoICcDyVMT2c370vhORQ395nwOU8qmllWek21qUJc
+eQYPyKsLCyGKI9r4yKzaeaOF+I3XfXm1GrjpfFvtyKQX973y23AyQ6x8lBy9xF0E
+SVhpCOJpYn6dtpbXWQqiO4MobQPJta+mG+4JI0TfkGvTXCNIfUzRCK5GAyHeSQfJ
+y7OUfYoRRxhTcsVNuNniiaZgZuAorQ6ovRwwf/eYNinOelAZEmVLLVqxBs19LKvQ
+7c9XeczI4LkYQ4IVogwo5dFdhdB14m9ytzdOOpSA4ViTJDcXGMD49omGJhCxSf6o
+SAa4SerGGmZkukBZ+6VWMdqgMBtDew==
+=YM/O
+-----END PGP SIGNATURE-----
 
-Matthew Auld (4):
-      drm/xe/vm: move rebind_work init earlier
-      drm/xe/vm: move xe_svm_init() earlier
-      drm/xe/sched: stop re-submitting signalled jobs
-      drm/xe/guc_submit: add back fix
-
-Niranjana Vishwanathapura (1):
-      drm/xe: Create LRC BO without VM
-
-Raag Jadav (1):
-      drm/xe: drop redundant conversion to bool
-
-Thomas Hellström (1):
-      drm/xe: Rework eviction rejection of bound external bos
-
- .../ABI/testing/sysfs-driver-intel-xe-hwmon        |  20 +-
- drivers/gpu/drm/xe/Kconfig                         |   3 +-
- drivers/gpu/drm/xe/regs/xe_mchbar_regs.h           |  10 +-
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h            |   4 -
- drivers/gpu/drm/xe/xe_bo.c                         |  48 ++-
- drivers/gpu/drm/xe/xe_device_sysfs.c               |   2 +-
- drivers/gpu/drm/xe/xe_device_types.h               |   4 +
- drivers/gpu/drm/xe/xe_exec_queue.c                 |  15 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler.h              |  10 +-
- drivers/gpu/drm/xe/xe_guc_submit.c                 |  11 +
- drivers/gpu/drm/xe/xe_hwmon.c                      | 388 +++++++++++++++------
- drivers/gpu/drm/xe/xe_lrc.c                        |  23 +-
- drivers/gpu/drm/xe/xe_pci.c                        |   5 +
- drivers/gpu/drm/xe/xe_pcode.c                      |  11 +
- drivers/gpu/drm/xe/xe_pcode.h                      |   3 +
- drivers/gpu/drm/xe/xe_pcode_api.h                  |   7 +
- drivers/gpu/drm/xe/xe_pxp.c                        |   8 +-
- drivers/gpu/drm/xe/xe_vm.c                         |  27 +-
- drivers/gpu/drm/xe/xe_vm.h                         |  69 ++++
- drivers/gpu/drm/xe/xe_vm_types.h                   |   8 +
- include/uapi/drm/xe_drm.h                          |   5 +
- 21 files changed, 493 insertions(+), 188 deletions(-)
+--Sig_/RPEO+toMXI_H5DxlpAIfJIy--
