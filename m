@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA960ACEDA3
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jun 2025 12:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE254ACEDA5
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Jun 2025 12:30:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECC510E923;
-	Thu,  5 Jun 2025 10:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E13410E88C;
+	Thu,  5 Jun 2025 10:30:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PKhYkLyu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGeSyY+r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4A110E803;
- Thu,  5 Jun 2025 10:29:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4E7510E96F;
+ Thu,  5 Jun 2025 10:30:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749119398; x=1780655398;
+ t=1749119404; x=1780655404;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zu8LOZwVPUH3uCNN1Z4sk1Q5GF+vjbnTk0VcYVOOVIg=;
- b=PKhYkLyuw1+sSR6XFm9zp013fHhPJB8QnpMTY1kvgjHQynKSOrjTdz8Z
- 1Rl2dmXinjGSYmWm+b295SgN1jg4l3IWMYwyyx5xdDMQF42hTDa3DqNp7
- m88eUAYHuahAX02r+RSzZO5Dd6RstFj1J9jxV3Vwxtqh3l9QBslW6LOIP
- WUPTBLFkxsMtRPZylCKu6rjAod1OZoAmt0pRlhl0iPERuOqltR0AL51qA
- SLijgjreOOCgHF1tA/mnfAH01ZBdd5cvj3WQPSKLC/wgXt+wUEyD3sUSF
- RCMdAfWBFqMVEHNSB99YWBYarCJCFjJGuzkLUFHEfmCvmdU8BCdGxwZpo w==;
-X-CSE-ConnectionGUID: zi3mNamvSO6vdyq/rVy+6A==
-X-CSE-MsgGUID: c7uttd7iQcaEcOkR9s7Gsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51378114"
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="51378114"
+ bh=Zvmt//QdeM1T9uwVPazl+Y5s47W85xASEK6htMtk63A=;
+ b=BGeSyY+rELdzgWrZhN22szzHpAO59B8UHW+DEV/cynk1lRIrLdfs5thR
+ e0mmBjNKcdOnhLFeBF0ThU4tcR+YeQvxFkPnnBxOta+RgNvU4uzyGBVBV
+ o+KR1eZwNm2LvwcVQOewPrbczDzYtVT8BgQgqyUZx4EphfVjFZOGYVUCs
+ 5XuBQ9D4MPw+gt0ff1xYhofGDFhDRyK30kRB/rHjdk7MmTgHFtM+rMiFJ
+ I6fxEWTx6jAlsWTduIUzGjPyO3ypRPdA4E6Ls9SmXhZ/eu+AlEMFjEM0q
+ pMWZp9k8vbj8fumil+DnV3ODGxOJ1uGy16qVMe300EQgL/lHE6zWMsQO3 A==;
+X-CSE-ConnectionGUID: bvvf6mlJQm6WS+Rw7pTTdQ==
+X-CSE-MsgGUID: uGYqsrqpTE2BoMR299H70w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51378136"
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="51378136"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 03:29:58 -0700
-X-CSE-ConnectionGUID: rOIlhgO6S2u/q78MjLM3Cw==
-X-CSE-MsgGUID: 5XnZOLaIRsyooMwc+Y/4dw==
+ 05 Jun 2025 03:30:04 -0700
+X-CSE-ConnectionGUID: UqdMbV+wRJqmH5Lpc5pE9Q==
+X-CSE-MsgGUID: F8xxmi23Tu294qwKZVcH/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="168639756"
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; d="scan'208";a="168639823"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.67])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2025 03:29:56 -0700
+ 05 Jun 2025 03:30:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: lucas.demarchi@intel.com,
 	rodrigo.vivi@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 3/6] drm/xe/pcode: add struct drm_device based interface
-Date: Thu,  5 Jun 2025 13:29:35 +0300
-Message-Id: <d121307f4b50473cf0fbba8f8859c72de5f6fceb.1749119274.git.jani.nikula@intel.com>
+Subject: [PATCH 4/6] drm/i915/display: switch to struct drm_device based pcode
+ interface
+Date: Thu,  5 Jun 2025 13:29:36 +0300
+Message-Id: <f51970f35d49670775dbcad468435b4f637bafb2.1749119274.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1749119274.git.jani.nikula@intel.com>
 References: <cover.1749119274.git.jani.nikula@intel.com>
@@ -72,81 +73,452 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation for dropping the dependency on struct intel_uncore or
-struct xe_tile from display code, add a struct drm_device based
-interface to pcode.
+With the struct drm_device based pcode interface in place in both i915
+and xe, we can switch display code to use that, and ditch a number of
+struct drm_i915_private uses. Also drop the dependency on i915_drv.h
+from a couple of files.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pcode.c | 26 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pcode.h | 12 +++++++++++-
- 2 files changed, 37 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c        | 13 ++---
+ drivers/gpu/drm/i915/display/intel_bw.c       | 23 ++++----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 56 +++++++++----------
+ .../drm/i915/display/intel_display_power.c    |  4 +-
+ .../i915/display/intel_display_power_well.c   |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  3 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 30 +++++-----
+ 7 files changed, 58 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index 9189117fe825..87323ad0cbbb 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -336,3 +336,29 @@ int xe_pcode_probe_early(struct xe_device *xe)
- 	return xe_pcode_ready(xe, false);
+diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+index 4307e2ed03d9..19b020a4ec22 100644
+--- a/drivers/gpu/drm/i915/display/hsw_ips.c
++++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+@@ -5,8 +5,9 @@
+ 
+ #include <linux/debugfs.h>
+ 
++#include <drm/drm_print.h>
++
+ #include "hsw_ips.h"
+-#include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_color_regs.h"
+ #include "intel_de.h"
+@@ -17,8 +18,6 @@
+ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	u32 val;
+ 
+ 	if (!crtc_state->ips_enabled)
+@@ -39,8 +38,8 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (display->platform.broadwell) {
+ 		drm_WARN_ON(display->drm,
+-			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL,
+-					    val | IPS_PCODE_CONTROL));
++			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL,
++					      val | IPS_PCODE_CONTROL));
+ 		/*
+ 		 * Quoting Art Runyan: "its not safe to expect any particular
+ 		 * value in IPS_CTL bit 31 after enabling IPS through the
+@@ -65,8 +64,6 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	bool need_vblank_wait = false;
+ 
+ 	if (!crtc_state->ips_enabled)
+@@ -74,7 +71,7 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+ 
+ 	if (display->platform.broadwell) {
+ 		drm_WARN_ON(display->drm,
+-			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL, 0));
++			    intel_pcode_write(display->drm, DISPLAY_IPS_CONTROL, 0));
+ 		/*
+ 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
+ 		 * 42ms timeout value leads to occasional timeouts so use 100ms
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 97aef729f7d4..82f131c3f8d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -80,14 +80,13 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+ 					 struct intel_qgv_point *sp,
+ 					 int point)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	u32 val = 0, val2 = 0;
+ 	u16 dclk;
+ 	int ret;
+ 
+-	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
+-			     &val, &val2);
++	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++			       ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point),
++			       &val, &val2);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -108,13 +107,12 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+ static int adls_pcode_read_psf_gv_point_info(struct intel_display *display,
+ 					     struct intel_psf_gv_point *points)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	u32 val = 0;
+ 	int ret;
+ 	int i;
+ 
+-	ret = snb_pcode_read(&i915->uncore, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+-			     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
++	ret = intel_pcode_read(display->drm, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
++			       ADL_PCODE_MEM_SS_READ_PSF_GV_INFO, &val, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -155,18 +153,17 @@ static bool is_sagv_enabled(struct intel_display *display, u16 points_mask)
+ int icl_pcode_restrict_qgv_points(struct intel_display *display,
+ 				  u32 points_mask)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 
+ 	if (DISPLAY_VER(display) >= 14)
+ 		return 0;
+ 
+ 	/* bspec says to keep retrying for at least 1 ms */
+-	ret = skl_pcode_request(&i915->uncore, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
+-				points_mask,
+-				ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
+-				ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
+-				1);
++	ret = intel_pcode_request(display->drm, ICL_PCODE_SAGV_DE_MEM_SS_CONFIG,
++				  points_mask,
++				  ICL_PCODE_REP_QGV_MASK | ADLS_PCODE_REP_PSF_MASK,
++				  ICL_PCODE_REP_QGV_SAFE | ADLS_PCODE_REP_PSF_SAFE,
++				  1);
+ 
+ 	if (ret < 0) {
+ 		drm_err(display->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 7ad506da7d3d..f60bf8a06541 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -840,7 +840,6 @@ static void bdw_set_cdclk(struct intel_display *display,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	int cdclk = cdclk_config->cdclk;
+ 	int ret;
+ 
+@@ -853,7 +852,7 @@ static void bdw_set_cdclk(struct intel_display *display,
+ 		     "trying to change cdclk frequency with cdclk not enabled\n"))
+ 		return;
+ 
+-	ret = snb_pcode_write(&dev_priv->uncore, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
++	ret = intel_pcode_write(display->drm, BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ, 0x0);
+ 	if (ret) {
+ 		drm_err(display->drm,
+ 			"failed to inform pcode about cdclk change\n");
+@@ -881,8 +880,8 @@ static void bdw_set_cdclk(struct intel_display *display,
+ 			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
+ 		drm_err(display->drm, "Switching back to LCPLL failed\n");
+ 
+-	snb_pcode_write(&dev_priv->uncore, HSW_PCODE_DE_WRITE_FREQ_REQ,
+-			cdclk_config->voltage_level);
++	intel_pcode_write(display->drm, HSW_PCODE_DE_WRITE_FREQ_REQ,
++			  cdclk_config->voltage_level);
+ 
+ 	intel_de_write(display, CDCLK_FREQ,
+ 		       DIV_ROUND_CLOSEST(cdclk, 1000) - 1);
+@@ -1122,7 +1121,6 @@ static void skl_set_cdclk(struct intel_display *display,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	int cdclk = cdclk_config->cdclk;
+ 	int vco = cdclk_config->vco;
+ 	u32 freq_select, cdclk_ctl;
+@@ -1139,10 +1137,10 @@ static void skl_set_cdclk(struct intel_display *display,
+ 	drm_WARN_ON_ONCE(display->drm,
+ 			 display->platform.skylake && vco == 8640000);
+ 
+-	ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+-				SKL_CDCLK_PREPARE_FOR_CHANGE,
+-				SKL_CDCLK_READY_FOR_CHANGE,
+-				SKL_CDCLK_READY_FOR_CHANGE, 3);
++	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
++				  SKL_CDCLK_PREPARE_FOR_CHANGE,
++				  SKL_CDCLK_READY_FOR_CHANGE,
++				  SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	if (ret) {
+ 		drm_err(display->drm,
+ 			"Failed to inform PCU about cdclk change (%d)\n", ret);
+@@ -1185,8 +1183,8 @@ static void skl_set_cdclk(struct intel_display *display,
+ 	intel_de_posting_read(display, CDCLK_CTL);
+ 
+ 	/* inform PCU of the change */
+-	snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+-			cdclk_config->voltage_level);
++	intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
++			  cdclk_config->voltage_level);
+ 
+ 	intel_update_cdclk(display);
  }
- ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
-+
-+/* Helpers with drm device */
-+int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_read(tile, mbox, val, val1);
-+}
-+
-+int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
-+}
-+
-+int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
-+			u32 reply_mask, u32 reply, int timeout_base_ms)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-index de38f44f3201..a5584c1c75f9 100644
---- a/drivers/gpu/drm/xe/xe_pcode.h
-+++ b/drivers/gpu/drm/xe/xe_pcode.h
-@@ -7,8 +7,10 @@
- #define _XE_PCODE_H_
+@@ -2122,7 +2120,6 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 			  const struct intel_cdclk_config *cdclk_config,
+ 			  enum pipe pipe)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_cdclk_config mid_cdclk_config;
+ 	int cdclk = cdclk_config->cdclk;
+ 	int ret = 0;
+@@ -2136,18 +2133,18 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
+ 		; /* NOOP */
+ 	else if (DISPLAY_VER(display) >= 11)
+-		ret = skl_pcode_request(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+-					SKL_CDCLK_PREPARE_FOR_CHANGE,
+-					SKL_CDCLK_READY_FOR_CHANGE,
+-					SKL_CDCLK_READY_FOR_CHANGE, 3);
++		ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
++					  SKL_CDCLK_PREPARE_FOR_CHANGE,
++					  SKL_CDCLK_READY_FOR_CHANGE,
++					  SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	else
+ 		/*
+ 		 * BSpec requires us to wait up to 150usec, but that leads to
+ 		 * timeouts; the 2ms used here is based on experiment.
+ 		 */
+-		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+-					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+-					      0x80000000, 2);
++		ret = intel_pcode_write_timeout(display->drm,
++						HSW_PCODE_DE_WRITE_FREQ_REQ,
++						0x80000000, 2);
  
- #include <linux/types.h>
--struct xe_tile;
-+
-+struct drm_device;
- struct xe_device;
-+struct xe_tile;
+ 	if (ret) {
+ 		drm_err(display->drm,
+@@ -2176,8 +2173,8 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 		 * Display versions 14 and beyond
+ 		 */;
+ 	else if (DISPLAY_VER(display) >= 11 && !display->platform.dg2)
+-		ret = snb_pcode_write(&dev_priv->uncore, SKL_PCODE_CDCLK_CONTROL,
+-				      cdclk_config->voltage_level);
++		ret = intel_pcode_write(display->drm, SKL_PCODE_CDCLK_CONTROL,
++					cdclk_config->voltage_level);
+ 	if (DISPLAY_VER(display) < 11) {
+ 		/*
+ 		 * The timeout isn't specified, the 2ms used here is based on
+@@ -2185,9 +2182,9 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 		 * FIXME: Waiting for the request completion could be delayed
+ 		 * until the next PCODE request based on BSpec.
+ 		 */
+-		ret = snb_pcode_write_timeout(&dev_priv->uncore,
+-					      HSW_PCODE_DE_WRITE_FREQ_REQ,
+-					      cdclk_config->voltage_level, 2);
++		ret = intel_pcode_write_timeout(display->drm,
++						HSW_PCODE_DE_WRITE_FREQ_REQ,
++						cdclk_config->voltage_level, 2);
+ 	}
+ 	if (ret) {
+ 		drm_err(display->drm,
+@@ -2473,7 +2470,6 @@ static void intel_pcode_notify(struct intel_display *display,
+ 			       bool cdclk_update_valid,
+ 			       bool pipe_count_update_valid)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 	u32 update_mask = 0;
  
- void xe_pcode_init(struct xe_tile *tile);
- int xe_pcode_probe_early(struct xe_device *xe);
-@@ -32,4 +34,12 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
- 	| FIELD_PREP(PCODE_MB_PARAM1, param1)\
- 	| FIELD_PREP(PCODE_MB_PARAM2, param2))
+@@ -2488,11 +2484,11 @@ static void intel_pcode_notify(struct intel_display *display,
+ 	if (pipe_count_update_valid)
+ 		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
  
-+/* Helpers with drm device */
-+int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
-+int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
-+#define intel_pcode_write(drm, mbox, val) \
-+	intel_pcode_write_timeout((drm), (mbox), (val), 1)
-+int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
-+			u32 reply_mask, u32 reply, int timeout_base_ms);
-+
- #endif
+-	ret = skl_pcode_request(&i915->uncore, SKL_PCODE_CDCLK_CONTROL,
+-				SKL_CDCLK_PREPARE_FOR_CHANGE |
+-				update_mask,
+-				SKL_CDCLK_READY_FOR_CHANGE,
+-				SKL_CDCLK_READY_FOR_CHANGE, 3);
++	ret = intel_pcode_request(display->drm, SKL_PCODE_CDCLK_CONTROL,
++				  SKL_CDCLK_PREPARE_FOR_CHANGE |
++				  update_mask,
++				  SKL_CDCLK_READY_FOR_CHANGE,
++				  SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	if (ret)
+ 		drm_err(display->drm,
+ 			"Failed to inform PCU about display config (err %d)\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 8e8c3a2f401b..562d15f8c38c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1255,10 +1255,8 @@ static u32 hsw_read_dcomp(struct intel_display *display)
+ 
+ static void hsw_write_dcomp(struct intel_display *display, u32 val)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+ 	if (display->platform.haswell) {
+-		if (snb_pcode_write(&dev_priv->uncore, GEN6_PCODE_WRITE_D_COMP, val))
++		if (intel_pcode_write(display->drm, GEN6_PCODE_WRITE_D_COMP, val))
+ 			drm_dbg_kms(display->drm, "Failed to write to D_COMP\n");
+ 	} else {
+ 		intel_de_write(display, D_COMP_BDW, val);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index e60f60ddbff7..c05b9349d806 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -485,7 +485,7 @@ static void icl_tc_cold_exit(struct intel_display *display)
+ 	int ret, tries = 0;
+ 
+ 	while (1) {
+-		ret = snb_pcode_write(&i915->uncore, ICL_PCODE_EXIT_TCCOLD, 0);
++		ret = intel_pcode_write(display->drm, ICL_PCODE_EXIT_TCCOLD, 0);
+ 		if (ret != -EAGAIN || ++tries == 3)
+ 			break;
+ 		msleep(1);
+@@ -1764,7 +1764,7 @@ tgl_tc_cold_request(struct intel_display *display, bool block)
+ 		 * Spec states that we should timeout the request after 200us
+ 		 * but the function below will timeout after 500us
+ 		 */
+-		ret = snb_pcode_read(&i915->uncore, TGL_PCODE_TCCOLD, &low_val, &high_val);
++		ret = intel_pcode_read(display->drm, TGL_PCODE_TCCOLD, &low_val, &high_val);
+ 		if (ret == 0) {
+ 			if (block &&
+ 			    (low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED))
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 3e3038f4ee1f..52808cab95dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -373,7 +373,6 @@ static void intel_hdcp_clear_keys(struct intel_display *display)
+ 
+ static int intel_hdcp_load_keys(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 	u32 val;
+ 
+@@ -398,7 +397,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
+ 	 * Mailbox interface.
+ 	 */
+ 	if (DISPLAY_VER(display) == 9 && !display->platform.broxton) {
+-		ret = snb_pcode_write(&i915->uncore, SKL_PCODE_LOAD_HDCP_KEYS, 1);
++		ret = intel_pcode_write(display->drm, SKL_PCODE_LOAD_HDCP_KEYS, 1);
+ 		if (ret) {
+ 			drm_err(display->drm,
+ 				"Failed to initiate HDCP key load (%d)\n",
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 817939f6d4dd..df5522511dda 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -6,10 +6,12 @@
+ #include <linux/debugfs.h>
+ 
+ #include <drm/drm_blend.h>
++#include <drm/drm_file.h>
++#include <drm/drm_print.h>
+ 
+ #include "soc/intel_dram.h"
+-#include "i915_drv.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "i9xx_wm.h"
+ #include "intel_atomic.h"
+ #include "intel_atomic_plane.h"
+@@ -85,8 +87,6 @@ intel_has_sagv(struct intel_display *display)
+ static u32
+ intel_sagv_block_time(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (DISPLAY_VER(display) >= 14) {
+ 		u32 val;
+ 
+@@ -97,9 +97,9 @@ intel_sagv_block_time(struct intel_display *display)
+ 		u32 val = 0;
+ 		int ret;
+ 
+-		ret = snb_pcode_read(&i915->uncore,
+-				     GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
+-				     &val, NULL);
++		ret = intel_pcode_read(display->drm,
++				       GEN12_PCODE_READ_SAGV_BLOCK_TIME_US,
++				       &val, NULL);
+ 		if (ret) {
+ 			drm_dbg_kms(display->drm, "Couldn't read SAGV block time!\n");
+ 			return 0;
+@@ -157,7 +157,6 @@ static void intel_sagv_init(struct intel_display *display)
+  */
+ static void skl_sagv_enable(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 
+ 	if (!intel_has_sagv(display))
+@@ -167,8 +166,8 @@ static void skl_sagv_enable(struct intel_display *display)
+ 		return;
+ 
+ 	drm_dbg_kms(display->drm, "Enabling SAGV\n");
+-	ret = snb_pcode_write(&i915->uncore, GEN9_PCODE_SAGV_CONTROL,
+-			      GEN9_SAGV_ENABLE);
++	ret = intel_pcode_write(display->drm, GEN9_PCODE_SAGV_CONTROL,
++				GEN9_SAGV_ENABLE);
+ 
+ 	/* We don't need to wait for SAGV when enabling */
+ 
+@@ -190,7 +189,6 @@ static void skl_sagv_enable(struct intel_display *display)
+ 
+ static void skl_sagv_disable(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int ret;
+ 
+ 	if (!intel_has_sagv(display))
+@@ -201,10 +199,9 @@ static void skl_sagv_disable(struct intel_display *display)
+ 
+ 	drm_dbg_kms(display->drm, "Disabling SAGV\n");
+ 	/* bspec says to keep retrying for at least 1 ms */
+-	ret = skl_pcode_request(&i915->uncore, GEN9_PCODE_SAGV_CONTROL,
+-				GEN9_SAGV_DISABLE,
+-				GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED,
+-				1);
++	ret = intel_pcode_request(display->drm, GEN9_PCODE_SAGV_CONTROL,
++				  GEN9_SAGV_DISABLE,
++				  GEN9_SAGV_IS_DISABLED, GEN9_SAGV_IS_DISABLED, 1);
+ 	/*
+ 	 * Some skl systems, pre-release machines in particular,
+ 	 * don't actually have SAGV.
+@@ -3277,7 +3274,6 @@ static void mtl_read_wm_latency(struct intel_display *display, u16 wm[])
+ 
+ static void skl_read_wm_latency(struct intel_display *display, u16 wm[])
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	int num_levels = display->wm.num_levels;
+ 	int read_latency = DISPLAY_VER(display) >= 12 ? 3 : 2;
+ 	int mult = display->platform.dg2 ? 2 : 1;
+@@ -3286,7 +3282,7 @@ static void skl_read_wm_latency(struct intel_display *display, u16 wm[])
+ 
+ 	/* read the first set of memory latencies[0:3] */
+ 	val = 0; /* data0 to be programmed to 0 for first set */
+-	ret = snb_pcode_read(&i915->uncore, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
++	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
+ 	if (ret) {
+ 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
+ 		return;
+@@ -3299,7 +3295,7 @@ static void skl_read_wm_latency(struct intel_display *display, u16 wm[])
+ 
+ 	/* read the second set of memory latencies[4:7] */
+ 	val = 1; /* data0 to be programmed to 1 for second set */
+-	ret = snb_pcode_read(&i915->uncore, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
++	ret = intel_pcode_read(display->drm, GEN9_PCODE_READ_MEM_LATENCY, &val, NULL);
+ 	if (ret) {
+ 		drm_err(display->drm, "SKL Mailbox read error = %d\n", ret);
+ 		return;
 -- 
 2.39.5
 
