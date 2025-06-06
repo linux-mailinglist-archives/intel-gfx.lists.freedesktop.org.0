@@ -2,49 +2,102 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C5BACFA2A
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 01:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A40DACFD7F
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 09:29:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0A3310E32C;
-	Thu,  5 Jun 2025 23:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0E910E8CF;
+	Fri,  6 Jun 2025 07:28:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="PQLd0QGu";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="VRJtfjfI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9bNbFGIl";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="lrnaRrZ7";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hdnylJPt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB5410E045;
- Thu,  5 Jun 2025 23:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1749167233;
- bh=15JvHcWTxIrumm959n5nDF+mUowsUAutYuadJfJTyv0=;
- h=Date:From:To:Cc:Subject:From;
- b=PQLd0QGuWnbp+uhMzA6EicYQNkgdhWk2t4zS0hsNjRdS7bjzO30j0BhNddGU+9Phq
- ZzkcNBo0OYOFXWXeyHFy1tkJ5+lkVXJ6Y4GVbPX9k0cOezhDCUQYJAio8Yx8B2ZjKe
- D884G8AYko9X8ZUx/4N3YyIRZFe9XEqeFMUC9O6xa76+XisbimGSdUGchOWaoWJyCJ
- VWSVcpQ8Q9JicWs6YHtzWEWVS+dqQkuLcaFugV4tCM1swD4CppbP0iGcxeqWTiJ1XC
- cvNm56WMYzhNArqGm1+voED/DoNZIzBlU2B7cWRHqnKDQIcHxVg9cyf3GxQfmIypWb
- nEiKmJW5HTfHw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3371B10E35C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Jun 2025 07:28:57 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4bD1MM6xG7z4wbd;
- Fri,  6 Jun 2025 09:47:11 +1000 (AEST)
-Date: Fri, 6 Jun 2025 09:47:11 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>, Dmitry Osipenko
- <dmitry.osipenko@collabora.com>, Jacek Lawrynowicz
- <jacek.lawrynowicz@linux.intel.com>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: manual merge of the drm-misc-fixes tree with Linus' tree
-Message-ID: <20250606094711.4b9909af@canb.auug.org.au>
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E0B8233681;
+ Fri,  6 Jun 2025 07:28:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1749194936; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=tC4AXg7TbV+BRemd7lg7PMHB48GtMI3cn/p5bEGX3RA=;
+ b=VRJtfjfIxyipdroX/KK3ikOaUMTP//eg2NYqdaHsQEZ0NfhoNNAxt9UMUaaJbA462p7/+u
+ pZygS8BG5pdFqHLzg9xlyf4qKv3Wgy6NeBlsFopsiWB6UVfhtS21hdYfxZaku5S6blgpqr
+ EtYHprsKXU4WDLITm3TGo1PETdYn7N8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1749194936;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=tC4AXg7TbV+BRemd7lg7PMHB48GtMI3cn/p5bEGX3RA=;
+ b=9bNbFGIl99YPq3SHmWfZbEWhfjk5KT4i0lr2pRFcNwV9nzdBI4fP5PFFtCKaQ2exwSOiUJ
+ Xa+Z4AF2pkl5KvCw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1749194935; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=tC4AXg7TbV+BRemd7lg7PMHB48GtMI3cn/p5bEGX3RA=;
+ b=lrnaRrZ7o2EnkCJrknCmaT4qrSlAp+oAzBKWHrNCA+6U1s+53+6nb7BgqEls0czEmcW89Q
+ NvIe3tpzS1HAV1gSkA0EJ+ryrkGX3n3Bj7my/sdONdASAIP3f5NNCFu6uH5HQ+1hACUyps
+ f7tIYGT/d6//ggBcfmCuWeyEqVkThq0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1749194935;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=tC4AXg7TbV+BRemd7lg7PMHB48GtMI3cn/p5bEGX3RA=;
+ b=hdnylJPtg3Rzs9Lo4D+Xz915UpuurPLcS78/eDh60wFMKhoD4e1b44erXaA6lIIbOqrPzF
+ 9hFMZoIakkAsNVDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 736621336F;
+ Fri,  6 Jun 2025 07:28:55 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id DAFYGreYQmhgcAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 06 Jun 2025 07:28:55 +0000
+Date: Fri, 6 Jun 2025 09:28:53 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250606072853.GA13099@linux.fritz.box>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/RPEO+toMXI_H5DxlpAIfJIy";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Flag: NO
+X-Spam-Score: -4.30
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_DN_SOME(0.00)[]
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,142 +113,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/RPEO+toMXI_H5DxlpAIfJIy
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hi Dave, Sima,
 
-Hi all,
+here's the PR from drm-misc-fixes for this week. It's a bit later
+due to merge-window confusion. The fixes for sysfb and video also
+affect fbdev.
 
-Today's linux-next merge of the drm-misc-fixes tree got a conflict in:
+Best regards
+Thomas
 
-  drivers/accel/ivpu/ivpu_gem.c
+drm-misc-fixes-2025-06-06:
+Short summary of fixes pull:
 
-between commit:
+ivpu:
+- gem: Use dma-resv lock
+- gem. Fix a warning
+- Trigger recovery on device engine reset/resume failure
 
-  835b14ce4ee3 ("accel/ivpu: s/drm_gem_shmem_v[un]map/drm_gem_shmem_v[un]ma=
-p_locked/")
+panel:
+- panel-simple: Fix settings for Evervision VGG644804
 
-from Linus' tree and commit:
+sysfb:
+- Fix screen_info type check
 
-  98d3f772ca7d ("accel/ivpu: Use dma_resv_lock() instead of a custom mutex")
+video:
+- Update screen_info for relocated PCI framebuffers
+The following changes since commit 4557cc834712eca4eae7adbd9f0a06bdd8f79c99:
 
-from the drm-misc-fixes tree.
+  accel/ivpu: Reorder Doorbell Unregister and Command Queue Destruction (2025-05-28 11:49:29 +0200)
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+are available in the Git repository at:
 
---=20
-Cheers,
-Stephen Rothwell
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-06-06
 
-diff --cc drivers/accel/ivpu/ivpu_gem.c
-index e0d242d9f3e5,248bfebeaa22..000000000000
---- a/drivers/accel/ivpu/ivpu_gem.c
-+++ b/drivers/accel/ivpu/ivpu_gem.c
-@@@ -28,11 -28,21 +28,21 @@@ static inline void ivpu_dbg_bo(struct i
-  {
-  	ivpu_dbg(vdev, BO,
-  		 "%6s: bo %8p vpu_addr %9llx size %8zu ctx %d has_pages %d dma_mapped %=
-d mmu_mapped %d wc %d imported %d\n",
-- 		 action, bo, bo->vpu_addr, ivpu_bo_size(bo), bo->ctx ? bo->ctx->id : 0,
-+ 		 action, bo, bo->vpu_addr, ivpu_bo_size(bo), bo->ctx_id,
-  		 (bool)bo->base.pages, (bool)bo->base.sgt, bo->mmu_mapped, bo->base.map=
-_wc,
- -		 (bool)bo->base.base.import_attach);
- +		 (bool)drm_gem_is_imported(&bo->base.base));
-  }
- =20
-+ static inline int ivpu_bo_lock(struct ivpu_bo *bo)
-+ {
-+ 	return dma_resv_lock(bo->base.base.resv, NULL);
-+ }
-+=20
-+ static inline void ivpu_bo_unlock(struct ivpu_bo *bo)
-+ {
-+ 	dma_resv_unlock(bo->base.base.resv);
-+ }
-+=20
-  /*
-   * ivpu_bo_pin() - pin the backing physical pages and map them to VPU.
-   *
-@@@ -122,10 -130,9 +130,9 @@@ static void ivpu_bo_unbind_locked(struc
-  		bo->ctx =3D NULL;
-  	}
- =20
- -	if (bo->base.base.import_attach)
- +	if (drm_gem_is_imported(&bo->base.base))
-  		return;
- =20
-- 	dma_resv_lock(bo->base.base.resv, NULL);
-  	if (bo->base.sgt) {
-  		dma_unmap_sgtable(vdev->drm.dev, bo->base.sgt, DMA_BIDIRECTIONAL, 0);
-  		sg_free_table(bo->base.sgt);
-@@@ -277,12 -285,16 +285,16 @@@ static void ivpu_gem_bo_free(struct drm
-  	list_del(&bo->bo_list_node);
-  	mutex_unlock(&vdev->bo_list_lock);
- =20
-- 	drm_WARN_ON(&vdev->drm, !dma_resv_test_signaled(obj->resv, DMA_RESV_USAG=
-E_READ));
-+ 	drm_WARN_ON(&vdev->drm, !drm_gem_is_imported(&bo->base.base) &&
-+ 		    !dma_resv_test_signaled(obj->resv, DMA_RESV_USAGE_READ));
-+ 	drm_WARN_ON(&vdev->drm, ivpu_bo_size(bo) =3D=3D 0);
-+ 	drm_WARN_ON(&vdev->drm, bo->base.vaddr);
- =20
-  	ivpu_bo_unbind_locked(bo);
-- 	mutex_destroy(&bo->lock);
-+ 	drm_WARN_ON(&vdev->drm, bo->mmu_mapped);
-+ 	drm_WARN_ON(&vdev->drm, bo->ctx);
- =20
- -	drm_WARN_ON(obj->dev, bo->base.pages_use_count > 1);
- +	drm_WARN_ON(obj->dev, refcount_read(&bo->base.pages_use_count) > 1);
-  	drm_gem_shmem_free(&bo->base);
-  }
- =20
-@@@ -361,9 -376,9 +376,9 @@@ ivpu_bo_create(struct ivpu_device *vdev
-  		goto err_put;
- =20
-  	if (flags & DRM_IVPU_BO_MAPPABLE) {
-- 		dma_resv_lock(bo->base.base.resv, NULL);
-+ 		ivpu_bo_lock(bo);
- -		ret =3D drm_gem_shmem_vmap(&bo->base, &map);
- +		ret =3D drm_gem_shmem_vmap_locked(&bo->base, &map);
-- 		dma_resv_unlock(bo->base.base.resv);
-+ 		ivpu_bo_unlock(bo);
- =20
-  		if (ret)
-  			goto err_put;
-@@@ -386,9 -401,9 +401,9 @@@ void ivpu_bo_free(struct ivpu_bo *bo
-  	struct iosys_map map =3D IOSYS_MAP_INIT_VADDR(bo->base.vaddr);
- =20
-  	if (bo->flags & DRM_IVPU_BO_MAPPABLE) {
-- 		dma_resv_lock(bo->base.base.resv, NULL);
-+ 		ivpu_bo_lock(bo);
- -		drm_gem_shmem_vunmap(&bo->base, &map);
- +		drm_gem_shmem_vunmap_locked(&bo->base, &map);
-- 		dma_resv_unlock(bo->base.base.resv);
-+ 		ivpu_bo_unlock(bo);
-  	}
- =20
-  	drm_gem_object_put(&bo->base.base);
+for you to fetch changes up to f670b50ef5e4a69bf4d2ec5ac6a9228d93b13a7a:
 
---Sig_/RPEO+toMXI_H5DxlpAIfJIy
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+  sysfb: Fix screen_info type check for VGA (2025-06-05 17:54:31 +0200)
 
------BEGIN PGP SIGNATURE-----
+----------------------------------------------------------------
+Short summary of fixes pull:
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmhCLH8ACgkQAVBC80lX
-0GwSkAf/XLMVorC/BQUng2JSoICcDyVMT2c370vhORQ395nwOU8qmllWek21qUJc
-eQYPyKsLCyGKI9r4yKzaeaOF+I3XfXm1GrjpfFvtyKQX973y23AyQ6x8lBy9xF0E
-SVhpCOJpYn6dtpbXWQqiO4MobQPJta+mG+4JI0TfkGvTXCNIfUzRCK5GAyHeSQfJ
-y7OUfYoRRxhTcsVNuNniiaZgZuAorQ6ovRwwf/eYNinOelAZEmVLLVqxBs19LKvQ
-7c9XeczI4LkYQ4IVogwo5dFdhdB14m9ytzdOOpSA4ViTJDcXGMD49omGJhCxSf6o
-SAa4SerGGmZkukBZ+6VWMdqgMBtDew==
-=YM/O
------END PGP SIGNATURE-----
+ivpu:
+- gem: Use dma-resv lock
+- gem. Fix a warning
+- Trigger recovery on device engine reset/resume failure
 
---Sig_/RPEO+toMXI_H5DxlpAIfJIy--
+panel:
+- panel-simple: Fix settings for Evervision VGG644804
+
+sysfb:
+- Fix screen_info type check
+
+video:
+- Update screen_info for relocated PCI framebuffers
+
+----------------------------------------------------------------
+Jacek Lawrynowicz (2):
+      accel/ivpu: Use dma_resv_lock() instead of a custom mutex
+      accel/ivpu: Fix warning in ivpu_gem_bo_free()
+
+Karol Wachowski (1):
+      accel/ivpu: Trigger device recovery on engine reset/resume failure
+
+Michael Walle (1):
+      drm/panel-simple: fix the warnings for the Evervision VGG644804
+
+Thomas Zimmermann (2):
+      video: screen_info: Relocate framebuffers behind PCI bridges
+      sysfb: Fix screen_info type check for VGA
+
+ drivers/accel/ivpu/ivpu_gem.c        | 68 +++++++++++++++++---------------
+ drivers/accel/ivpu/ivpu_gem.h        |  1 -
+ drivers/accel/ivpu/ivpu_job.c        |  6 ++-
+ drivers/accel/ivpu/ivpu_jsm_msg.c    |  9 ++++-
+ drivers/firmware/sysfb.c             | 26 +++++++++----
+ drivers/gpu/drm/panel/panel-simple.c |  5 ++-
+ drivers/video/screen_info_pci.c      | 75 +++++++++++++++++++++++-------------
+ 7 files changed, 117 insertions(+), 73 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
