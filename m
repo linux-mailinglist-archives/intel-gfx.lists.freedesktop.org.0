@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C95EAD03BA
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 16:04:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA43AD03BD
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 16:08:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9700F10EAB7;
-	Fri,  6 Jun 2025 14:04:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE77C10EAB8;
+	Fri,  6 Jun 2025 14:08:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nVuVvGwN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FiUWCAhT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8778F10EAB5;
- Fri,  6 Jun 2025 14:04:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D4110EAB8;
+ Fri,  6 Jun 2025 14:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749218683; x=1780754683;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=EIrgIvx+QSqp4L9RsL6B6rFQ4JnJyHzbr6rusPZ1tpM=;
- b=nVuVvGwN/42LKn7x6K7LOxY8YqnfPhU/ypL5aPZXymqWCuZW25nYaX+A
- HZ7uRK1cDEL2DItO3dwlJT1rFsvpbrAUiN3IeVfvAL2FCK44tG351Y5DF
- DQx8Soip6Y+MOclvLApXDBxEO1PNtm90evpMKCsvlCLUp6Z276TSUvSXD
- 2BccJekuVaC9si4Vn7PxzyOm6xQcVA9MmwlAqAiy70VHHAZ5+SNsrF+H2
- +x67wFZs9l5WF7EJkgVCPvOzCQDfQr2c483Z9nqP4b957uwrOqw+2eYxu
- E/ekUNl2W7a/qTHyHgsvmPLYaSVfKFXBsPau2KGdJw1FddcAL5p8h/sOQ A==;
-X-CSE-ConnectionGUID: wBfVwurZTUqW9GkvJrcAgA==
-X-CSE-MsgGUID: M67lrOXZQieIwbFt/fny5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51514645"
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="51514645"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 07:04:42 -0700
-X-CSE-ConnectionGUID: XunZeZddQxuJDVAMcKKclA==
-X-CSE-MsgGUID: N+9btQMGRD69MomEITy2hw==
+ t=1749218906; x=1780754906;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1+4ySvo/rrBJ5+4oJdgy0Qugnkdvjdve2ZVgOl9nKoQ=;
+ b=FiUWCAhTQHxaccmVrDicKFzmLd3GqTzeYUssLRGJuvDfG5InNw6PSvmZ
+ bRhDLf2loFt9DZjEfsmv/Q47FlA0jASXpFaslyW79T/p4Xzhu1mSz3nHu
+ pLp07Im2Bdk4hx9Mvb+gg05+CEmubJJRH0nDBpkJmUrAYgrVBuYku92rS
+ H6I5PeYb2ERAbPFFkN7Xliy1qEqjLlxQjCLgq86UY9ruvcHHzJr+S/J09
+ ze7xIZ5ZRRA1318ZS7kqC8O9Um3gPzFmE7fa61NfvZ/kNPpo4Px6m8HtK
+ FgTh8VyuVUbri23QjkLuTo+kNMum+XIXTM/5EIuWbrxlvrjtwnbCZQZDZ A==;
+X-CSE-ConnectionGUID: utWEQLktRfuXY4B38XCNVQ==
+X-CSE-MsgGUID: FcjrXieVRfysfhKg5nfDkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="51247132"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="51247132"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 07:08:26 -0700
+X-CSE-ConnectionGUID: wpE0Z880R8+QJFMwHkKnLQ==
+X-CSE-MsgGUID: fe1RkXncS7aPT/S1XXvrwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="176705418"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.33])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jun 2025 07:04:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v3 5/5] drm/i915/dp: Disable the AUX DPCD probe quirk if
- it's not required
-In-Reply-To: <aELzaxIUjxANMLH9@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250605082850.65136-1-imre.deak@intel.com>
- <20250605082850.65136-6-imre.deak@intel.com>
- <99b831c92a446eb5e33d8d9536f6750d4a6e3ae8@intel.com>
- <aELyC0YxLiIgxIj5@ideak-desk> <aELzaxIUjxANMLH9@ideak-desk>
-Date: Fri, 06 Jun 2025 17:04:36 +0300
-Message-ID: <635d15f850ce955b6e009bc0a5358dc4ebcdcc18@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="146795862"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.44])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 07:08:23 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA alloc
+ error
+Date: Fri,  6 Jun 2025 15:58:08 +0200
+Message-ID: <20250606140753.522927-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,157 +73,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 06 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, Jun 06, 2025 at 04:50:03PM +0300, Imre Deak wrote:
->> On Fri, Jun 06, 2025 at 04:44:37PM +0300, Jani Nikula wrote:
->> > On Thu, 05 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > > Reading DPCD registers has side-effects and some of these can cause a
->> > > problem for instance during link training. Based on this it's better=
- to
->> > > avoid the probing quirk done before each DPCD register read, limiting
->> > > this to the monitor which requires it. The only known problematic
->> > > monitor is an external SST sink, so keep the quirk disabled always f=
-or
->> > > eDP and MST sinks. Reenable the quirk after a hotplug event and after
->> > > resuming from a power state without hotplug support, until the
->> > > subsequent EDID based detection.
->> > >
->> > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
->> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/i915/display/intel_dp.c      | 11 +++++++++--
->> > >  drivers/gpu/drm/i915/display/intel_dp_aux.c  |  2 ++
->> > >  drivers/gpu/drm/i915/display/intel_hotplug.c | 10 ++++++++++
->> > >  3 files changed, 21 insertions(+), 2 deletions(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/d=
-rm/i915/display/intel_dp.c
->> > > index 208a953b04a2f..d65a18fc1aeb9 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> > > @@ -5747,6 +5747,11 @@ intel_dp_set_edid(struct intel_dp *intel_dp)
->> > >  	/* Below we depend on display info having been updated */
->> > >  	drm_edid_connector_update(&connector->base, drm_edid);
->> > >=20=20
->> > > +	if (!intel_dp_is_edp(intel_dp))
->> >=20
->> > Why does this depend on !edp?
->> >=20
->> > Feels like unnecessary optimization based on your knowledge of that one
->> > specific display.
->>=20
->> The detection itself requires probing before each DPCD access. I want to
->> avoid it whenever possible and since the quirk is relevant only the
->> particular HP external display, we can avoid the probing on eDP
->> completely.
->
-> Ok, the eDP check here can be removed, as the panel's EDID panel ID
-> should not match the quirk's panel ID. Will remove it.
+The following error has been reported sporadically by CI when a test
+unbinds the i915 driver on a ring submission platform:
 
-I'm wondering if we should add a local "do the quirk" helper that checks
-for eDP and mst and the actual quirk. Not sure if it would make this
-more readable.
+<4> [239.330153] ------------[ cut here ]------------
+<4> [239.330166] i915 0000:00:02.0: [drm] drm_WARN_ON(dev_priv->mm.shrink_count)
+<4> [239.330196] WARNING: CPU: 1 PID: 18570 at drivers/gpu/drm/i915/i915_gem.c:1309 i915_gem_cleanup_early+0x13e/0x150 [i915]
+...
+<4> [239.330640] RIP: 0010:i915_gem_cleanup_early+0x13e/0x150 [i915]
+...
+<4> [239.330942] Call Trace:
+<4> [239.330944]  <TASK>
+<4> [239.330949]  i915_driver_late_release+0x2b/0xa0 [i915]
+<4> [239.331202]  i915_driver_release+0x86/0xa0 [i915]
+<4> [239.331482]  devm_drm_dev_init_release+0x61/0x90
+<4> [239.331494]  devm_action_release+0x15/0x30
+<4> [239.331504]  release_nodes+0x3d/0x120
+<4> [239.331517]  devres_release_all+0x96/0xd0
+<4> [239.331533]  device_unbind_cleanup+0x12/0x80
+<4> [239.331543]  device_release_driver_internal+0x23a/0x280
+<4> [239.331550]  ? bus_find_device+0xa5/0xe0
+<4> [239.331563]  device_driver_detach+0x14/0x20
+...
+<4> [357.719679] ---[ end trace 0000000000000000 ]---
 
-BR,
-Jani.
+If the test also unloads the i915 module then that's followed with:
 
->
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux,
->> > > +					    drm_edid_has_quirk(&connector->base,
->> > > +							       DRM_EDID_QUIRK_DP_DPCD_PROBE));
->> > > +
->> > >  	vrr_capable =3D intel_vrr_is_capable(connector);
->> > >  	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s] VRR capable: %s\n",
->> > >  		    connector->base.base.id, connector->base.name, str_yes_no(vrr=
-_capable));
->> > > @@ -5881,6 +5886,7 @@ intel_dp_detect(struct drm_connector *_connect=
-or,
->> > >  	intel_dp_print_rates(intel_dp);
->> > >=20=20
->> > >  	if (intel_dp->is_mst) {
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, false);
->> >=20
->> > Isn't this excessive? Haven't we already set the quirk state?
->>=20
->> No, this is the MST root connector's detection and we don't read the EDID
->> for it (we read it for MST non-root connectors, but those are not
->> relavant in any case). So this should be set here explicitly, with the
->> same justification as above for eDP (on MST the probing is never needed,
->> so we can avoid it on such links completely).
->>=20
->> >=20
->> > >  		/*
->> > >  		 * If we are in MST mode then this connector
->> > >  		 * won't appear connected or have anything
->> > > @@ -6321,10 +6327,11 @@ intel_dp_hpd_pulse(struct intel_digital_port=
- *dig_port, bool long_hpd)
->> > >  	 * complete the DP tunnel BW request for the latter connector/enco=
-der
->> > >  	 * waiting for this encoder's DPRX read, perform a dummy read here.
->> > >  	 */
->> > > -	if (long_hpd)
->> > > +	if (long_hpd) {
->> > > +		drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, true);
->> > > +
->> > >  		intel_dp_read_dprx_caps(intel_dp, dpcd);
->> > >=20=20
->> > > -	if (long_hpd) {
->> > >  		intel_dp->reset_link_params =3D true;
->> > >  		intel_dp_invalidate_source_oui(intel_dp);
->> > >=20=20
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/g=
-pu/drm/i915/display/intel_dp_aux.c
->> > > index bf8e8e0cc19c9..410252ba6fd16 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
->> > > @@ -835,6 +835,8 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
->> > >=20=20
->> > >  	intel_dp->aux.transfer =3D intel_dp_aux_transfer;
->> > >  	cpu_latency_qos_add_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALU=
-E);
->> > > +
->> > > +	drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, !intel_dp_is_edp(intel=
-_dp));
->> > >  }
->> > >=20=20
->> > >  static enum aux_ch default_aux_ch(struct intel_encoder *encoder)
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/=
-gpu/drm/i915/display/intel_hotplug.c
->> > > index 74fe398663d63..1093c6c3714c0 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
->> > > @@ -33,6 +33,7 @@
->> > >  #include "intel_display_core.h"
->> > >  #include "intel_display_rpm.h"
->> > >  #include "intel_display_types.h"
->> > > +#include "intel_dp.h"
->> > >  #include "intel_hdcp.h"
->> > >  #include "intel_hotplug.h"
->> > >  #include "intel_hotplug_irq.h"
->> > > @@ -906,9 +907,18 @@ void intel_hpd_poll_enable(struct intel_display=
- *display)
->> > >   */
->> > >  void intel_hpd_poll_disable(struct intel_display *display)
->> > >  {
->> > > +	struct intel_encoder *encoder;
->> > > +
->> > >  	if (!HAS_DISPLAY(display))
->> > >  		return;
->> > >=20=20
->> > > +	for_each_intel_dp(display->drm, encoder) {
->> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->> > > +
->> > > +		if (!intel_dp_is_edp(intel_dp))
->> > > +			drm_dp_dpcd_set_probe_quirk(&intel_dp->aux, true);
->> > > +	}
->> > > +
->> > >  	WRITE_ONCE(display->hotplug.poll_enabled, false);
->> > >=20=20
->> > >  	spin_lock_irq(&display->irq.lock);
->> >=20
->> > --=20
->> > Jani Nikula, Intel
+<3> [357.787478] =============================================================================
+<3> [357.788006] BUG i915_vma (Tainted: G     U  W        N ): Objects remaining on __kmem_cache_shutdown()
+<3> [357.788031] -----------------------------------------------------------------------------
+<3> [357.788204] Object 0xffff888109e7f480 @offset=29824
+<3> [357.788670] Allocated in i915_vma_instance+0xee/0xc10 [i915] age=292729 cpu=4 pid=2244
+<4> [357.788994]  i915_vma_instance+0xee/0xc10 [i915]
+<4> [357.789290]  init_status_page+0x7b/0x420 [i915]
+<4> [357.789532]  intel_engines_init+0x1d8/0x980 [i915]
+<4> [357.789772]  intel_gt_init+0x175/0x450 [i915]
+<4> [357.790014]  i915_gem_init+0x113/0x340 [i915]
+<4> [357.790281]  i915_driver_probe+0x847/0xed0 [i915]
+<4> [357.790504]  i915_pci_probe+0xe6/0x220 [i915]
+...
 
---=20
-Jani Nikula, Intel
+Closer analysis of CI results history has revealed a dependency of the
+error on a few IGT tests, namely:
+- igt@api_intel_allocator@fork-simple-stress-signal,
+- igt@api_intel_allocator@two-level-inception-interruptible,
+- igt@gem_linear_blits@interruptible,
+- igt@prime_mmap_coherency@ioctl-errors,
+which invisibly trigger the issue, then exhibited with first driver unbind
+attempt.
+
+All of the above tests perform actions which are actively interrupted with
+signals.  Further debugging has allowed to narrow that scope down to
+DRM_IOCTL_I915_GEM_EXECBUFFER2, and ring_context_alloc(), specific to ring
+submission, in particular.
+
+If successful then that function, or its execlists or GuC submission
+equivalent, is supposed to be called only once per GEM context engine,
+followed by raise of a flag that prevents the function from being called
+again.  The function is expected to unwind its internal errors itself, so
+it may be safely called once more after it returns an error.
+
+In case of ring submission, the function first gets a reference to the
+engine's legacy timeline and then allocates a VMA.  If the VMA allocation
+fails, e.g. when i915_vma_instance() called from inside is interrupted
+with a signal, then ring_context_alloc() fails, leaving the timeline held
+referenced.  On next I915_GEM_EXECBUFFER2 IOCTL, another reference to the
+timeline is got, and only that last one is put on successful completion.
+As a consequence, the legacy timeline, with its underlying engine status
+page's VMA object, is still held and not released on driver unbind.
+
+Get the legacy timeline only after successful allocation of the context
+engine's VMA.
+
+Fixes: 75d0a7f31eec ("drm/i915: Lift timeline into intel_context")
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index a876a34455f11..2a6d79abf25b5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -610,7 +610,6 @@ static int ring_context_alloc(struct intel_context *ce)
+ 	/* One ringbuffer to rule them all */
+ 	GEM_BUG_ON(!engine->legacy.ring);
+ 	ce->ring = engine->legacy.ring;
+-	ce->timeline = intel_timeline_get(engine->legacy.timeline);
+ 
+ 	GEM_BUG_ON(ce->state);
+ 	if (engine->context_size) {
+@@ -623,6 +622,8 @@ static int ring_context_alloc(struct intel_context *ce)
+ 		ce->state = vma;
+ 	}
+ 
++	ce->timeline = intel_timeline_get(engine->legacy.timeline);
++
+ 	return 0;
+ }
+ 
+-- 
+2.49.0
+
