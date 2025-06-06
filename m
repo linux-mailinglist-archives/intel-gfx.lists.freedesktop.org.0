@@ -2,29 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405F2AD0261
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 14:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6280EAD02BA
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Jun 2025 15:03:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9A8B10EA7A;
-	Fri,  6 Jun 2025 12:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 216BC10EA9D;
+	Fri,  6 Jun 2025 13:03:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="V2vZIh3f";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53CEB10EA7A;
- Fri,  6 Jun 2025 12:40:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1015602936035922534=="
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
+ [209.85.208.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BBF910EA9D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Jun 2025 13:03:43 +0000 (UTC)
+Received: by mail-ed1-f46.google.com with SMTP id
+ 4fb4d7f45d1cf-5efe8d9ebdfso3749490a12.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 06 Jun 2025 06:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1749215022; x=1749819822; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=uAz3IwxVIGZtcW19UqUFOR4Ccjk5MRSj4WGpPcEqtes=;
+ b=V2vZIh3fQu1v5fOsdDVzHHPY+fJG0p/mfBNm9ZlJmbMythmPFaGsm+k4MeMXX471Sg
+ oFKIf12voqY7Wb60x21dk+9bFXq7/G791KUbk2Z9mNIL9qqq/NqB4IdxHUtUE9f0xzcF
+ HmZpKxpDN2oUbXk+1inPzHPbL+4rwpok0DNlE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1749215022; x=1749819822;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uAz3IwxVIGZtcW19UqUFOR4Ccjk5MRSj4WGpPcEqtes=;
+ b=so1o6wzgFe7kxRpcp0npTetGgYESNyFAXlNl+Cwm0Q7Tr/mSsb1EKr1Gln2Hix+x3c
+ foUim9FP+0gXcQKfqIotoC/mN4uArVAFT4sX+w44DCqwU1Hpv6aCEl508ju1A4BYJyrt
+ dcsPEwuofP3Xx30aO2KXKieD0p+iK0zKrFIqSbfvSpHbWLS/UjLU8QnNjVDcIqw8f1XL
+ gIGy1Kf4DyORG5X2gCXRYFxbdO8rTfQprI1wrlvwkYtkVhoO15zea2jWAG8iz9uKPUyl
+ itTmGA75/KrkXI5hZ3nYMPc1JhbKKKVHYdpmhIXf4iqiQ7wk29vllxmNkQivfTEHXMIR
+ S1ZQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVuactrkOCbMR0d3h315FhD4AeaZ2TrDn2nDXndBsc2w9S+9wDkdhA+lY1ZUtAmgeNwP1obcTD35PU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyVOh7gHhaWNPPEjmwzTsiUc6a4uAeU+1WGiV/tGqSzoRLuoesT
+ 0WOJvT0HkkteSMdd8MwO29QvFPUSZe67/18stcNosDcPlTmPMUXelAco/PnsloFwtiY=
+X-Gm-Gg: ASbGncvje0chNTkc2rcZtsS9KC5k5xzGiTH29kG9GZIr+ZX77QIr6NOKRQHnooImo8P
+ b0xDZKuXKeWYbJQT/nQ5qJosFRs+SuJ1jOfIMlqkRdV2nTisQ7yWBKTG2BjUUBxzyFKs651yxd0
+ +tz1MTpTzy0cGzf6PTiWUdifWyjeC/W6qH4Auva4QkrPGOyfortRXS0LFjNxs9T5DCOiE3hjyr3
+ XO/eVFfBftroY1PfOUfsrNWUVH1f2Zl5fyrXrpSfW6dtooHRi5MDkW02tY1U2wEPsjpL+ph8XJS
+ B7+eIjXatBRqiMJthFsLQ9Iy1r2mDcUdkTscS6WISoE+wP2bn0WdSVWssNwEQLpEWVAOJQei5g=
+ =
+X-Google-Smtp-Source: AGHT+IHTc+eHW/5gHXGQgbG0M+E/iV0blTyu58bz6azK6vN1AzGBvRFefuTeMXZk2W50HJV0fqm4jA==
+X-Received: by 2002:a05:6402:350e:b0:5e6:e842:f9d2 with SMTP id
+ 4fb4d7f45d1cf-60774894dbbmr2363653a12.29.1749215021824; 
+ Fri, 06 Jun 2025 06:03:41 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-607783e682dsm985174a12.76.2025.06.06.06.03.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 06 Jun 2025 06:03:41 -0700 (PDT)
+Date: Fri, 6 Jun 2025 15:03:38 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] drm-misc-fixes
+Message-ID: <aELnKpkG4cPilRzE@phenom.ffwll.local>
+References: <20250606072853.GA13099@linux.fritz.box>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_split_out_dis?=
- =?utf-8?q?play_register_macros_to_a_separate_file_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 06 Jun 2025 12:40:36 -0000
-Message-ID: <174921363632.55872.16469819841777873004@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250606102256.2080073-1-jani.nikula@intel.com>
-In-Reply-To: <20250606102256.2080073-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250606072853.GA13099@linux.fritz.box>
+X-Operating-System: Linux phenom 6.12.25-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,188 +93,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1015602936035922534==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Jun 06, 2025 at 09:28:53AM +0200, Thomas Zimmermann wrote:
+> Hi Dave, Sima,
+> 
+> here's the PR from drm-misc-fixes for this week. It's a bit later
+> due to merge-window confusion. The fixes for sysfb and video also
+> affect fbdev.
+> 
+> Best regards
+> Thomas
+> 
+> drm-misc-fixes-2025-06-06:
+> Short summary of fixes pull:
+> 
+> ivpu:
+> - gem: Use dma-resv lock
+> - gem. Fix a warning
+> - Trigger recovery on device engine reset/resume failure
+> 
+> panel:
+> - panel-simple: Fix settings for Evervision VGG644804
+> 
+> sysfb:
+> - Fix screen_info type check
+> 
+> video:
+> - Update screen_info for relocated PCI framebuffers
+> The following changes since commit 4557cc834712eca4eae7adbd9f0a06bdd8f79c99:
+> 
+>   accel/ivpu: Reorder Doorbell Unregister and Command Queue Destruction (2025-05-28 11:49:29 +0200)
+> 
+> are available in the Git repository at:
+> 
+>   https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-06-06
 
-== Series Details ==
+Pulled into drm-fixes, thanks.
+-Sima
 
-Series: drm/i915: split out display register macros to a separate file (rev2)
-URL   : https://patchwork.freedesktop.org/series/149830/
-State : success
+> 
+> for you to fetch changes up to f670b50ef5e4a69bf4d2ec5ac6a9228d93b13a7a:
+> 
+>   sysfb: Fix screen_info type check for VGA (2025-06-05 17:54:31 +0200)
+> 
+> ----------------------------------------------------------------
+> Short summary of fixes pull:
+> 
+> ivpu:
+> - gem: Use dma-resv lock
+> - gem. Fix a warning
+> - Trigger recovery on device engine reset/resume failure
+> 
+> panel:
+> - panel-simple: Fix settings for Evervision VGG644804
+> 
+> sysfb:
+> - Fix screen_info type check
+> 
+> video:
+> - Update screen_info for relocated PCI framebuffers
+> 
+> ----------------------------------------------------------------
+> Jacek Lawrynowicz (2):
+>       accel/ivpu: Use dma_resv_lock() instead of a custom mutex
+>       accel/ivpu: Fix warning in ivpu_gem_bo_free()
+> 
+> Karol Wachowski (1):
+>       accel/ivpu: Trigger device recovery on engine reset/resume failure
+> 
+> Michael Walle (1):
+>       drm/panel-simple: fix the warnings for the Evervision VGG644804
+> 
+> Thomas Zimmermann (2):
+>       video: screen_info: Relocate framebuffers behind PCI bridges
+>       sysfb: Fix screen_info type check for VGA
+> 
+>  drivers/accel/ivpu/ivpu_gem.c        | 68 +++++++++++++++++---------------
+>  drivers/accel/ivpu/ivpu_gem.h        |  1 -
+>  drivers/accel/ivpu/ivpu_job.c        |  6 ++-
+>  drivers/accel/ivpu/ivpu_jsm_msg.c    |  9 ++++-
+>  drivers/firmware/sysfb.c             | 26 +++++++++----
+>  drivers/gpu/drm/panel/panel-simple.c |  5 ++-
+>  drivers/video/screen_info_pci.c      | 75 +++++++++++++++++++++++-------------
+>  7 files changed, 117 insertions(+), 73 deletions(-)
+> 
+> -- 
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstrasse 146, 90461 Nuernberg, Germany
+> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+> HRB 36809 (AG Nuernberg)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16659 -> Patchwork_149830v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_149830v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - bat-twl-2:          [PASS][3] -> [INCOMPLETE][4] ([i915#14096]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-n3050:       [INCOMPLETE][5] ([i915#12904]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][7] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][8] ([i915#12061] / [i915#14204])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-atsm-1/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#13929]) -> [DMESG-FAIL][10] ([i915#14204])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14096]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16659 -> Patchwork_149830v2
-
-  CI-20190529: 20190529
-  CI_DRM_16659: 170e9c2094942ba18f0839ad32048f29ea79cfcf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_149830v2: 170e9c2094942ba18f0839ad32048f29ea79cfcf @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/index.html
-
---===============1015602936035922534==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: split out display register macros to a separate file (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149830/">https://patchwork.freedesktop.org/series/149830/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16659 -&gt; Patchwork_149830v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_149830v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-twl-2/igt@i915_selftest@live@guc_multi_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14096">i915#14096</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16659/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_149830v2/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16659 -&gt; Patchwork_149830v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16659: 170e9c2094942ba18f0839ad32048f29ea79cfcf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8400: 90a23a10be60c805ab0da456e846d1ec45799f9d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_149830v2: 170e9c2094942ba18f0839ad32048f29ea79cfcf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1015602936035922534==--
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
