@@ -2,146 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F62AD166B
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 03:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 376CEAD16FA
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 04:46:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D389C10F4CA;
-	Mon,  9 Jun 2025 00:59:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C369510E13B;
+	Mon,  9 Jun 2025 02:46:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="k2kDOmY9";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ahwv+vtK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1252310EEF6;
- Mon,  9 Jun 2025 00:59:41 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-2320d06b728so32221335ad.1; 
- Sun, 08 Jun 2025 17:59:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749430780; x=1750035580; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=1UZ3G3hP2PMByn8gAasj2ugyuBhdWDYhYy8rSg1DMCk=;
- b=k2kDOmY9mDm/FBmd5ns82vPeshsoljxGmsl7UuTG8bXpsnExLBFDZsrLerXBS2ZRQK
- x3kGx7xypGjKduTqzEulHssGSPLWLrx9nd2qI8w/e23L2SEDIBasqXShrd6K3X8wRHgv
- XhBub8Oh58CYZUq+Dq5azJ7AI1vWp7zRNUeizrNyO/5moNPQwc42xbqywIpTDkc3KV05
- mZLdbUTdYnjhb2WqTuz2Gj+CCrogWU5x9X405IgghRIeeWlgJAfjxJttbldIXcw0VNTN
- +N07vRS7HgSkAgrzWn7huDWtkCGys4oeURmQtonMLqijwT+EeKrPLySR/b/k10JFGobK
- rNRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749430780; x=1750035580;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1UZ3G3hP2PMByn8gAasj2ugyuBhdWDYhYy8rSg1DMCk=;
- b=WiwOB691xbm0NDNAvyuzLEl8VGLbt9+9TxMsJGxGg6dFjQNXZp7aF4jApTRhpSnSMg
- EU9YzOlqmunfcYOqp5S/kkFaIqiLoXDB1GaU3Xd4dJjAe8v3a11BPhsgPykSqiuzrF1S
- oTzzsOAMLEDT4MMN1Dc2VW7qQoDjoau01LPFxRSrMeHWcodD9FK90TiW4LoVCYHeWG71
- z9PhSIqbAxxTDY2qrz9AvAcGw++xdbhvahPKhgjRGdBlUA3MuMMQMamfqSJo/jYPKnT8
- +GIQrTeyjEaDOm89YVT0iQx0W/xcPkRb/pNaU7rfRuNUOrxUdREk+dBDLgSHW93KSgFy
- VhAw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU3ENjBbLd9ThRVk5bP8Eea0B7Tu25FweMuRwyQ19cEd0TNR9IBap1Q5HNL3Ah1Lkujki7HB9TLELwy@lists.freedesktop.org,
- AJvYcCU5izimjzogkMcN/a9J2QxndEAfTvnkX1772mmWJXFUqM4yjZwoJ22p+SNrDR2bim9qvK4eyFKqz0o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx5HXUs13LAC5zEs2nUXVaVy4MlBITcrO/HeEp0XzB/EZRSNWy2
- aypN0uEp50bGBTf3SEQth3uryR6E7wlAnA31Hx5tWJMui16+UloEPTzN
-X-Gm-Gg: ASbGncuroSgw+nqvmtV7zz+KG4Ug8OB3fYWvXNrHo2sOq+sDRizjCwd7Y3upIgNVno1
- 4GtXDlOBRHy1+S/EJr68gLxJNblUmMfy8juklb2DNZqT8bnRkn8EM0Rl8vGG50DJUd85yutQAIV
- sVb2EVnlIFAJ6a6H3+cKUcp61gL3c/Sphjex4pKqihzNWwTMlqZKYNUIWZRHtpmENfo0poALrek
- chJcREmCjrnp6RoPO6iakoAjA9Cucy/sJ/fnHsgdzdAtaTn9u0cG1088zdZ29ffIN097rx2hj5x
- u7hpcOg0Tklvzj3hxplIqQR1Q52Ux4N/3SbjegSDVKZ5T33/p8w/HG2vU0cQalWbC67UOIgzLdX
- 43wU05FsGSNTVDgdkFcE7tn0tTVVvxMJbQw16bfwikSD69w==
-X-Google-Smtp-Source: AGHT+IFx7Bw//bf81ZFuNLNFxpt0Z3XFm1C4VkqMkhOt4fhQ54pvjlNDTtmhS80ppAjEon3na2MsaA==
-X-Received: by 2002:a17:902:e84b:b0:234:cf24:3be8 with SMTP id
- d9443c01a7336-23601d172bbmr161947955ad.28.1749430780376; 
- Sun, 08 Jun 2025 17:59:40 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5?
- ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23603096983sm44234525ad.85.2025.06.08.17.59.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 08 Jun 2025 17:59:39 -0700 (PDT)
-Message-ID: <2f3d3ff9-e483-42cc-aaed-f376d46a6701@roeck-us.net>
-Date: Sun, 8 Jun 2025 17:59:37 -0700
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0145A10E13A;
+ Mon,  9 Jun 2025 02:46:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 13F7BA40698;
+ Mon,  9 Jun 2025 02:46:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5DA05C4CEF0;
+ Mon,  9 Jun 2025 02:46:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1749437180;
+ bh=2SxArbrB8je/tYYEyDh9yj/6QRX2ZLFw71MwMjhKfvw=;
+ h=From:Subject:Date:To:Cc:Reply-To:From;
+ b=ahwv+vtK4Ihm45UZOq+vmdsLJcbuBV6hncY9msf8ryJ+KwR06oABzXnJmuvCNHnQZ
+ NXbdOVMFpusP3NzciYwiqBeJH2kDL/CfDQpa+0EDZjr/AW2KiymwuO0Y89kGtW4Dht
+ KHqANuQPdrABEiRPY4SLR5qhX9T2iUnelAeeGLFK/h0tjwZVPlCabqCC1vAEezr7hZ
+ ADuZ1Xo/AHj8hKkUzZ7zfeRDN0AqYdlYQScShafW9AtUBxKAtGLdo1U2wov+zV/9hR
+ Lys9vlEJOLAqL0PH/K187ASr0ReE2PTEaOMuu7If4ARVuXx6qQ/Z8HlOys+4ZUdH5Z
+ NIznqyYfsL5FQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 46F84C5AD49;
+ Mon,  9 Jun 2025 02:46:20 +0000 (UTC)
+From: Vincent Mailhol via B4 Relay
+ <devnull+mailhol.vincent.wanadoo.fr@kernel.org>
+Subject: [PATCH v2 0/3] bits: Split asm and non-asm GENMASK*() and unify
+ definitions
+Date: Mon, 09 Jun 2025 11:45:44 +0900
+Message-Id: <20250609-consolidate-genmask-v2-0-b8cce8107e49@wanadoo.fr>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/11] mtd: core: always create master device
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Poosa, Karthik" <karthik.poosa@intel.com>,
- "Abliyev, Reuven" <reuven.abliyev@intel.com>,
- "Weil, Oren jer" <oren.jer.weil@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250302140921.504304-1-alexander.usyskin@intel.com>
- <20250302140921.504304-2-alexander.usyskin@intel.com>
- <9dfb2954-fc3e-464c-a4fd-8c1a4dffa327@roeck-us.net>
- <CY5PR11MB63666AE267B9F1609213D93CED68A@CY5PR11MB6366.namprd11.prod.outlook.com>
- <87bjqyja7o.fsf@bootlin.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <87bjqyja7o.fsf@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANhKRmgC/22OQQ7CIBBFr9LMWhpKW2K68h6mCwpDS7SggKhpe
+ nexdenyTf5/fxYI6A0G6IoFPCYTjLMZ2KEAOQk7IjEqMzDKWlozSqSzwV2NEhHJiHYW4UK4VJS
+ JQSh9ZJCbN4/avDbrud/Z4/2R5XE/wiACZtU8m9gViZcVJ15W8A1PJkTn39tHqdrSv3H2dzxVh
+ JK2GbSquWx5U5+ewgrlXKk99Ou6fgADHuF75AAAAA==
+X-Change-ID: 20250320-consolidate-genmask-6cd02abadf82
+To: Yury Norov <yury.norov@gmail.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>, 
+ David Laight <David.Laight@ACULAB.COM>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Anshuman Khandual <anshuman.khandual@arm.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3731;
+ i=mailhol.vincent@wanadoo.fr; h=from:subject:message-id;
+ bh=2SxArbrB8je/tYYEyDh9yj/6QRX2ZLFw71MwMjhKfvw=;
+ b=owGbwMvMwCV2McXO4Xp97WbG02pJDBluXu9+nQ2fvOh/0NVzq17dnPvg85z81NTufTMrTQ6nT
+ 2E89zTLo6OUhUGMi0FWTJFlWTknt0JHoXfYob+WMHNYmUCGMHBxCsBECpMZ/op4/TwxxcP54eKo
+ /J2/zab9Lsx0flllaigg5aTgdf61uQXDP6PZl37vX9mYVG5yfi6r6DetPxkV0w6oa2T/n1R6acG
+ cLWwA
+X-Developer-Key: i=mailhol.vincent@wanadoo.fr; a=openpgp;
+ fpr=ED8F700574E67F20E574E8E2AB5FEB886DBB99C2
+X-Endpoint-Received: by B4 Relay for mailhol.vincent@wanadoo.fr/default
+ with auth_id=291
+X-Original-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,66 +89,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: mailhol.vincent@wanadoo.fr
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6/8/25 12:37, Miquel Raynal wrote:
-> Hi Guenter,
-> 
-> On 08/06/2025 at 07:00:10 GMT, "Usyskin, Alexander" <alexander.usyskin@intel.com> wrote:
-> 
->>> Subject: Re: [PATCH v6 01/11] mtd: core: always create master device
->>>
->>> Hi,
->>>
->>> On Sun, Mar 02, 2025 at 04:09:11PM +0200, Alexander Usyskin wrote:
->>>> Create master device without partition when
->>>> CONFIG_MTD_PARTITIONED_MASTER flag is unset.
->>>>
->>>> This streamlines device tree and allows to anchor
->>>> runtime power management on master device in all cases.
->>>>
->>>> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
->>>
->>> Several of my qemu boot tests fail to boot from mtd devices with this patch
->>> in the mainline kernel. Reverting it fixes the problem. As far as I can
->>> see this affects configurations with CONFIG_MTD_PARTITIONED_MASTER=y
->>> when
->>> trying to boot from an mtd partition other than mtdblock0, with the
->>> mtd partition data in devicetree (.../aspeed/openbmc-flash-layout.dtsi).
->>> Is there a guidance describing the changed behavior, by any chance,
->>> and how the boot command line now needs to look like when using one of
->>> the flash partitions as root file system ?
->>>
->>> Thanks,
->>> Guenter
->>
->> I've tried to make is as transparent as possible for the existing users.
->> Only change is that now every partition has master that is not partitioned.
->> Is the CONFIG_MTD_PARTITIONED_MASTER=n fixed the problem for you?
-> 
-> No change is expected, can you please describe the devices that you
-> observe with and without the patch? Maybe there is something wrong in
-> the core logic.
-> 
+This is a subset of below series:
 
-I am trying to boot supermicro-x11spi-bmc in qemu from flash partition 6.
-The qemu command line is something like
+  bits: Fixed-type GENMASK_U*() and BIT_U*()
+  Link: https://lore.kernel.org/r/20250308-fixed-type-genmasks-v6-0-f59315e73c29@wanadoo.fr
 
-     qemu-system-arm -M supermicro-x11spi-bmc,fmc-model=n25q256a13,spi-model=n25q256a13 \
-	-kernel arch/arm/boot/zImage -no-reboot -snapshot \
-	-audio none \
-	-drive file=/tmp/flash,format=raw,if=mtd,index=1 \
-	-nic user \
-	--append "root=/dev/mtdblock6 rootwait console=ttyS4,115200 earlycon=uart8250,mmio32,0x1e784000,115200n8" \
-	-dtb arch/arm/boot/dts/aspeed/aspeed-bmc-supermicro-x11spi.dtb \
-	-nographic -monitor null -serial stdio
+Yury suggested to split the above series in two steps:
 
-This is with aspeed_g5_defconfig. Note that the flash models need to be specified.
-The default flashes are no longer recognized when booting from qemu since commit
-947c86e481a0 ("mtd: spi-nor: macronix: Drop the redundant flash info fields").
+  #1 Introduce the new fixed type GENMASK_U*() (already merged upstream)
+  #2 Consolidate the existing GENMASK*()
 
-The above only works with this patch reverted (or with v6.15 and older, of course).
+This new series is the resulting step #2 following the split.
 
-Guenter
+And thus, this series consolidate all the non-asm GENMASK*() so that
+they now all depend on GENMASK_TYPE() which was introduced in step #1.
+
+To do so, I had to split the definition of the asm and non-asm
+GENMASK(). I think this is controversial. So I initially implemented a
+first draft in which both the asm and non-asm version would rely on
+the same helper macro, i.e. adding this:
+
+  #define __GENMASK_TYPE(t, w, h, l)		\
+  	(((t)~_ULL(0) << (l)) &			\
+  	 ((t)~_ULL(0) >> (w - 1 - (h))))
+
+to uapi/bits.h. And then, the different GENMASK()s would look like
+this:
+
+  #define __GENMASK(h, l) __GENMASK_TYPE(unsigned long, __BITS_PER_LONG, h, l)
+
+and so on.
+
+I implemented it, and the final result looked quite ugly. Not only do
+we need to manually provide the width each time, the biggest concern
+is that adding this to the uapi is asking for trouble. Who knows how
+people are going to use this? And once it is in the uapi, there is
+virtually no way back.
+
+Adding to this, that macro can not even be generalised to u128
+integers, whereas after the split, it can.
+
+And so, after implementing both, the asm seems way cleaner than the
+non-asm split and is, I think, the best compromise.
+
+Aside from the split, the asm's GENMASK() and GENMASK_ULL() are left
+untouched. While there are some strong incentives to also simplify
+these as pointed by David Laight in this thread:
+
+  https://lore.kernel.org/all/20250309102312.4ff08576@pumpkin/
+
+this series deliberately limit its scope to the non-asm variants.
+
+Here are the bloat-o-meter stats:
+
+  $ ./scripts/bloat-o-meter vmlinux_before.o vmlinux_after.o
+  add/remove: 0/0 grow/shrink: 4/2 up/down: 5/-9 (-4)
+  Function                                     old     new   delta
+  intel_psr_invalidate                         352     354      +2
+  mst_stream_compute_config                   1589    1590      +1
+  intel_psr_flush                              707     708      +1
+  intel_dp_compute_link_config                1338    1339      +1
+  intel_drrs_activate                          398     395      -3
+  cfg80211_inform_bss_data                    5137    5131      -6
+  Total: Before=23333846, After=23333842, chg -0.00%
+
+(done with GCC 12.4.1 on an x86_64 defconfig)
+
+--
+2.43.0
+
+Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+---
+Changes from v1:
+
+  - Meanwhile, in commit db6fe4d61ece ("lib: Move KUnit tests into
+    tests/ subdirectory"), lib/test_bits.c was moved to
+    lib/tests/test_bits.c.
+    Rebase onto: 6.16-rc1
+
+  - Minor editorial changes to the cover letter.
+
+  - Aside from the above, this is just a resend.
+
+  - Link to v1: https://lore.kernel.org/r/20250322-consolidate-genmask-v1-0-54bfd36c5643@wanadoo.fr
+
+---
+Vincent Mailhol (3):
+      bits: split the definition of the asm and non-asm GENMASK*()
+      bits: unify the non-asm GENMASK*()
+      test_bits: add tests for __GENMASK() and __GENMASK_ULL()
+
+ include/linux/bits.h  | 29 ++++++-----------------------
+ lib/tests/test_bits.c | 19 +++++++++++++++++++
+ 2 files changed, 25 insertions(+), 23 deletions(-)
+---
+base-commit: d9946fe286439c2aeaa7953b8c316efe5b83d515
+change-id: 20250320-consolidate-genmask-6cd02abadf82
+
+Best regards,
+-- 
+Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+
 
