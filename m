@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6685CAD20A9
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B8D8AD20AA
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0110310E3E9;
-	Mon,  9 Jun 2025 14:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A9B910E3EA;
+	Mon,  9 Jun 2025 14:11:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfEnLzQO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXHzk8mh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF1D10E3E3;
- Mon,  9 Jun 2025 14:11:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F1810E3EA;
+ Mon,  9 Jun 2025 14:11:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749478314; x=1781014314;
+ t=1749478317; x=1781014317;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=23ksbaS+3B75mpNpt8mwOHaUhgNXEkBXGh/v/EsxfsQ=;
- b=EfEnLzQO0uQklxo2UUDv8H+WOPZEYdPyaDSJPs0MOTuotyarQCOsN2L1
- 2S5Z8PQMUL68Y5m3SuXoGkWCIlrxNFnE0caUUBNfmY5y1VvZX92qC94L4
- ATOc1QQwpVxYmI0x6aGm3jr5exPkmaj6MER/x/NcxEax2Vutleh2tKKEK
- rYoetY/1hjT6RNpJt/tiAqGqCmLw6mC9KoRkeYcY0ezOFJzdZSAqv6oD4
- LFqCcICKlaUWrmskPafWhNORoEW6zLgyJhb7vwU8X8FJEVSUN+beZVSC2
- rM4k4ltpYF0PcXxOynvExx6h2DWfI2qhg+yaCEo9/7/nifJndATtD/+1O w==;
-X-CSE-ConnectionGUID: rLrWUNq/RP6CYpzXyWEy5Q==
-X-CSE-MsgGUID: Ky5y4cZXTR2xOg2et7mIeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360897"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360897"
+ bh=1lhuQOfZl4wHQrIbeO24gs0U7lwwKmZh0Hlx349cCvw=;
+ b=OXHzk8mhNYlJSOLK4QLrssDEq+YloIuhv6Sp/HR1Sq3HvRjkLP8QqpAX
+ EM8y5IV4W7gcoTZTMyl2d1XRS5a4+YMqIqUqiD5ro881Z2hKR1YQ4ahPT
+ O+p6VjV+t227EAXcuFCRpf9FjzJwBhnUtce8SlfZZVHlhJaIcChZAMXlw
+ pfSlmlrN5cxHO8eQmB8U8pJrs1gIqYLP/yrrstZtxhsmqLRs81NsK3g7B
+ QFEF+1WbUJ8jGkYGxEsA2cLpEfwwzjf+fZjaO9XLJftpGqpJZtbjcsRwd
+ OOrEGMgPuMQriGxarsNnNDHqRyN+vLoB4O/psvyna871tNpqPXLTkm6v8 A==;
+X-CSE-ConnectionGUID: h0eAKUuyRRu4daKlKLIlqA==
+X-CSE-MsgGUID: +3MVph77S5S2YqMEKVKgHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360907"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360907"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 07:11:54 -0700
-X-CSE-ConnectionGUID: mRmHng5OToG1qPyfy118cA==
-X-CSE-MsgGUID: 1tXqniOmRxuWQDlbDcIR/Q==
+ 09 Jun 2025 07:11:57 -0700
+X-CSE-ConnectionGUID: 1mG+hCxDT3q+fZNxRzqTQw==
+X-CSE-MsgGUID: 38DHr0NUSC+MYKzDj0CAEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765864"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765882"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.99])
- by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:51 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:54 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Jun 2025 17:11:50 +0300
+ Mon, 09 Jun 2025 17:11:53 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 19/21] drm/i915/flipq: Add intel_flipq_dump()
-Date: Mon,  9 Jun 2025 17:10:44 +0300
-Message-ID: <20250609141046.6244-20-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 20/21] drm/i915/flipq: Enable flipq by default for testing
+Date: Mon,  9 Jun 2025 17:10:45 +0300
+Message-ID: <20250609141046.6244-21-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
 References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
@@ -72,83 +72,40 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a function for dumping the entries of a specific flip queue.
+Flip on the enable_flipq modparam to see if CI blows up.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_flipq.c | 46 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_flipq.h |  2 +
- 2 files changed, 48 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_params.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_params.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_flipq.c b/drivers/gpu/drm/i915/display/intel_flipq.c
-index 2b0fb1e78d7d..b16199d7f426 100644
---- a/drivers/gpu/drm/i915/display/intel_flipq.c
-+++ b/drivers/gpu/drm/i915/display/intel_flipq.c
-@@ -191,6 +191,52 @@ static void intel_flipq_sw_dmc_wake(struct intel_crtc *crtc)
- 	intel_de_write(display, PIPEDMC_FPQ_CTL1(crtc->pipe), PIPEDMC_SW_DMC_WAKE);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+index 75316247ee8a..2883663e06ff 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_params.c
++++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+@@ -63,7 +63,7 @@ intel_display_param_named_unsafe(enable_dsb, bool, 0400,
+ 	"Enable display state buffer (DSB) (default: true)");
  
-+void intel_flipq_dump(struct intel_crtc *crtc,
-+		      enum intel_flipq_id flipq_id)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	struct intel_flipq *flipq = &crtc->flipq[flipq_id];
-+	u32 tmp;
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] FQ %d @ 0x%x: ",
-+		    crtc->base.base.id, crtc->base.name, flipq_id,
-+		    flipq->start_mmioaddr);
-+	for (int i = 0 ; i < intel_flipq_size_dw(flipq_id); i++) {
-+		printk(KERN_CONT " 0x%08x",
-+		       intel_de_read(display, PIPEDMC_FQ_RAM(flipq->start_mmioaddr, i)));
-+		if (i % intel_flipq_elem_size_dw(flipq_id) == intel_flipq_elem_size_dw(flipq_id) - 1)
-+			printk(KERN_CONT "\n");
-+	}
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] FQ %d: chp=0x%x, hp=0x%x\n",
-+		    crtc->base.base.id, crtc->base.name, flipq_id,
-+		    intel_de_read(display, PIPEDMC_FPQ_CHP(crtc->pipe, flipq_id)),
-+		    intel_de_read(display, PIPEDMC_FPQ_HP(crtc->pipe, flipq_id)));
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] FQ %d: current head %d\n",
-+		    crtc->base.base.id, crtc->base.name, flipq_id,
-+		    intel_flipq_current_head(crtc, flipq_id));
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] flip queue timestamp: 0x%x\n",
-+		    crtc->base.base.id, crtc->base.name,
-+		    intel_de_read(display, PIPEDMC_FPQ_TS(crtc->pipe)));
-+
-+	tmp = intel_de_read(display, PIPEDMC_FPQ_ATOMIC_TP(crtc->pipe));
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] flip queue atomic tails: P3 %d, P2 %d, P1 %d, G %d, F %d\n",
-+		    crtc->base.base.id, crtc->base.name,
-+		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_3_TP_MASK, tmp),
-+		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_2_TP_MASK, tmp),
-+		    REG_FIELD_GET(PIPEDMC_FPQ_PLANEQ_1_TP_MASK, tmp),
-+		    REG_FIELD_GET(PIPEDMC_FPQ_GENERALQ_TP_MASK, tmp),
-+		    REG_FIELD_GET(PIPEDMC_FPQ_FASTQ_TP_MASK, tmp));
-+}
-+
- void intel_flipq_reset(struct intel_display *display, enum pipe pipe)
- {
- 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-diff --git a/drivers/gpu/drm/i915/display/intel_flipq.h b/drivers/gpu/drm/i915/display/intel_flipq.h
-index 2d4386a16197..012e3e9a6bcb 100644
---- a/drivers/gpu/drm/i915/display/intel_flipq.h
-+++ b/drivers/gpu/drm/i915/display/intel_flipq.h
-@@ -31,5 +31,7 @@ void intel_flipq_add(struct intel_crtc *crtc,
- int intel_flipq_exec_time_us(struct intel_display *display);
- void intel_flipq_wait_dmc_halt(struct intel_dsb *dsb, struct intel_crtc *crtc);
- void intel_flipq_unhalt_dmc(struct intel_dsb *dsb, struct intel_crtc *crtc);
-+void intel_flipq_dump(struct intel_crtc *crtc,
-+		      enum intel_flipq_id flip_queue_id);
+ intel_display_param_named_unsafe(enable_flipq, bool, 0400,
+-	"Enable DMC flip queue (default: false)");
++	"Enable DMC flip queue (default: true)");
  
- #endif /* __INTEL_FLIPQ_H__ */
+ intel_display_param_named_unsafe(enable_sagv, bool, 0400,
+ 	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
+diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
+index 784e6bae8615..600bff5cddda 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_params.h
++++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+@@ -31,7 +31,7 @@ struct drm_printer;
+ 	param(int, enable_dc, -1, 0400) \
+ 	param(bool, enable_dpt, true, 0400) \
+ 	param(bool, enable_dsb, true, 0600) \
+-	param(bool, enable_flipq, false, 0600) \
++	param(bool, enable_flipq, true, 0600) \
+ 	param(bool, enable_sagv, true, 0600) \
+ 	param(int, disable_power_well, -1, 0400) \
+ 	param(bool, enable_ips, true, 0600) \
 -- 
 2.49.0
 
