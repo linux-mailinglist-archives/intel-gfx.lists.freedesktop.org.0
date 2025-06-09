@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27295AD209D
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F585AD209E
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8749110E3C7;
-	Mon,  9 Jun 2025 14:11:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4269A10E3CF;
+	Mon,  9 Jun 2025 14:11:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bk12mR4h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DFNa/1yI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B1810E3CB;
- Mon,  9 Jun 2025 14:11:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8A610E3CF;
+ Mon,  9 Jun 2025 14:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749478280; x=1781014280;
+ t=1749478284; x=1781014284;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BZYRQJ/9+iWAbf6GVoP87cZVsc1Yi8CWQE0q4ftfHM0=;
- b=bk12mR4hfgWynGQ6wJWOycw32yu47bnHlZZKRS6N72ExIkQBNwMrrxF7
- dbFiIzTk5eexj60cGG47weruuKDQ+hgfsvI2vy5fWfpFy6GNLntlD9QcE
- bigzGakIs0RIEcPQnx3d/Nm3uqCZwOnpKtWM05VU9lYfF7w0FPoz2vTiu
- EPNusbutgbQ/89Cty+uyLgUMMCM+W3NP6qZeNYp/pNx422v5KQKUIq/F/
- GYtCPD4R6etatQsnC8qtnIGkleaf6czWqjqAiIHBAYJ0ETv3itYFLbrdC
- To6f+z4PYpTJQLpd81wbx6Qxt+gLPRojsO2gOHvVn4RWHFjUHWtEuLI6B g==;
-X-CSE-ConnectionGUID: eSnmd4qXQDuFL6wtSqtwnQ==
-X-CSE-MsgGUID: FB8BnHEuQV63jlzmoYAtlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360769"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360769"
+ bh=+y6xZ7JYvDQGk/i/gxnKuW7lXh4rrac2kNCvG1znvJU=;
+ b=DFNa/1yIqZyG0F6PznxdWzDaHppVCL2C4IKQCOa/3X2gPqR8aqAFABvJ
+ VWly8qmysRA32uwyFFLm8twJ7nkkQH2dlM8IalBiFGccGKQaqpXl3G2gJ
+ ZswPYMtr48kGGqlfJqXtDLs6e4//eecfpMLq94Gd7V7AYDIKyRV4FtTpC
+ PtVXvFr4dfpp/AK6iKSiFgMqUjaGi3xAo1no4CO3+tjE+VQXSDL4jRWFs
+ 1emcUdmAtRRkdGt6peoY3d9Q++TZBbH3v1s31gyrUe6lUhxg31M/hZPxK
+ A7RqqHQ+wlPT3MP9IC/9mhAGeHehfIiWtb88Q1lpgq3Le5EtWh3W0T1Nz g==;
+X-CSE-ConnectionGUID: l6uJLS2QTlai1LaURdb5jg==
+X-CSE-MsgGUID: 7FddENklSM+kGMheZaeO7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360781"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360781"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 07:11:20 -0700
-X-CSE-ConnectionGUID: zA7Gd3+DQ2yQwnVsJXBhVQ==
-X-CSE-MsgGUID: zaGmkR+AR0K1K1wsBTmAew==
+ 09 Jun 2025 07:11:24 -0700
+X-CSE-ConnectionGUID: ZshIOciHQluQv0fpT2tpVg==
+X-CSE-MsgGUID: eQ93m4jkSR2zaa+zUxdEhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765723"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765743"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.99])
- by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:17 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:21 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Jun 2025 17:11:17 +0300
+ Mon, 09 Jun 2025 17:11:20 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 09/21] drm/i915: Set PKG_C_LATENCY.added_wake_time to 0
-Date: Mon,  9 Jun 2025 17:10:34 +0300
-Message-ID: <20250609141046.6244-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 10/21] drm/i915: Try to program PKG_C_LATENCY more correctly
+Date: Mon,  9 Jun 2025 17:10:35 +0300
+Message-ID: <20250609141046.6244-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
 References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
@@ -72,42 +72,182 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-AFAIK PKG_C_LATENCY.added_wake_time only matters for flip queue.
-As long as we're not using that there's no point in adding any
-extra wake time.
+The current PKG_C_LATENCY stuff looks busted in several ways:
+- doesn't account for multiple pipes from different commits
+  correctly
+- WM_LINETIME is in units of 0.125usec, PKG_C_LATENCY wants
+  units on 1 usec
+- Wa_22020432604 only done when WM1+ are no available for
+  some reason
+- weird VRR state stuff being checked
+- use of pointless RMW
+
+Fix it all up. Note that it's still a bit unclear how all this
+works, especially how the added_wake_time ties into the flipq
+triggers in DMC, and how we need to sequence updates to
+PKG_C_LATENCY when enabling/disabling pipes/etc. We may also
+need to think what to about the WM1+ disabling and the related
+PSR chicken bits when we can use PKG_C_LATENCY for early wake...
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 9 ---------
- 1 file changed, 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  1 +
+ .../gpu/drm/i915/display/intel_display_core.h |  6 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 97 +++++++++++--------
+ 3 files changed, 61 insertions(+), 43 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6ec786198f43..3f14f524fe17 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7385,6 +7385,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+ 	display->funcs.display->commit_modeset_enables(state);
+ 
++	/* FIXME probably need to sequence this properly */
+ 	intel_program_dpkgc_latency(state);
+ 
+ 	intel_wait_for_vblank_workers(state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 32cb0e59c81e..ad4d29e2af1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -479,6 +479,12 @@ struct intel_display {
+ 		u32 pipestat_irq_mask[I915_MAX_PIPES];
+ 	} irq;
+ 
++	struct {
++		/* protected by wm.wm_mutex */
++		u16 linetime[I915_MAX_PIPES];
++		bool disable[I915_MAX_PIPES];
++	} pkgc;
++
+ 	struct {
+ 		wait_queue_head_t waitqueue;
+ 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 2c2371574d6f..bf1372024efd 100644
+index bf1372024efd..a3a28cff3e32 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -32,12 +32,6 @@
- #include "skl_watermark.h"
- #include "skl_watermark_regs.h"
+@@ -2907,64 +2907,75 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
+ 	return 0;
+ }
  
--/*It is expected that DSB can do posted writes to every register in
-- * the pipe and planes within 100us. For flip queue use case, the
-- * recommended DSB execution time is 100us + one SAGV block time.
+-/*
+- * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
+- * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
+- * watermark level1 and up and above. If watermark level 1 is
+- * invalid program it with all 1's.
+- * Program PKG_C_LATENCY Added Wake Time = DSB execution time
+- * If Variable Refresh Rate where Vmin != Vmax != Flipline:
+- * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
+- * Program PKG_C_LATENCY Added Wake Time = 0
 - */
--#define DSB_EXE_TIME 100
--
- static void skl_sagv_disable(struct intel_display *display);
++static int pkgc_max_linetime(struct intel_atomic_state *state)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int i, max_linetime;
++
++	/*
++	 * Apparenty the hardware uses WM_LINETIME internally for
++	 * this stuff, compute everything based on that.
++	 */
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		display->pkgc.disable[crtc->pipe] = crtc_state->vrr.enable;
++		display->pkgc.linetime[crtc->pipe] = DIV_ROUND_UP(crtc_state->linetime, 8);
++	}
++
++	max_linetime = 0;
++	for_each_intel_crtc(display->drm, crtc) {
++		if (display->pkgc.disable[crtc->pipe])
++			return 0;
++
++		max_linetime = max(display->pkgc.linetime[crtc->pipe], max_linetime);
++	}
++
++	return max_linetime;
++}
++
+ void
+ intel_program_dpkgc_latency(struct intel_atomic_state *state)
+ {
+ 	struct intel_display *display = to_intel_display(state);
+-	struct intel_crtc *crtc;
+-	struct intel_crtc_state *new_crtc_state;
+-	u32 latency = LNL_PKG_C_LATENCY_MASK;
+-	u32 added_wake_time = 0;
+-	u32 max_linetime = 0;
+-	u32 clear, val;
+-	bool fixed_refresh_rate = false;
+-	int i;
++	int max_linetime, latency, added_wake_time = 0;
  
- /* Stores plane specific WM parameters */
-@@ -2949,9 +2943,6 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state)
+ 	if (DISPLAY_VER(display) < 20)
+ 		return;
+ 
+-	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+-		if (!new_crtc_state->vrr.enable ||
+-		    (new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
+-		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline))
+-			fixed_refresh_rate = true;
++	mutex_lock(&display->wm.wm_mutex);
+ 
+-		max_linetime = max(new_crtc_state->linetime, max_linetime);
+-	}
++	latency = skl_watermark_max_latency(display, 1);
+ 
+-	if (fixed_refresh_rate) {
+-		latency = skl_watermark_max_latency(display, 1);
++	/*
++	 * Wa_22020432604
++	 * "PKG_C_LATENCY Added Wake Time field is not working"
++	 */
++	if (latency && (DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30)) {
++		latency += added_wake_time;
++		added_wake_time = 0;
++	}
+ 
+-		/* Wa_22020432604 */
+-		if ((DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30) && !latency) {
+-			latency += added_wake_time;
+-			added_wake_time = 0;
+-		}
++	max_linetime = pkgc_max_linetime(state);
+ 
+-		/* Wa_22020299601 */
+-		if ((latency && max_linetime) &&
+-		    (DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30)) {
+-			latency = max_linetime * DIV_ROUND_UP(latency, max_linetime);
+-		} else if (!latency) {
+-			latency = LNL_PKG_C_LATENCY_MASK;
+-		}
++	if (max_linetime == 0 || latency == 0) {
++		latency = REG_FIELD_GET(LNL_PKG_C_LATENCY_MASK,
++					LNL_PKG_C_LATENCY_MASK);
++		added_wake_time = 0;
++	} else {
++		/*
++		 * Wa_22020299601
++		 * "Increase the latency programmed in PKG_C_LATENCY Pkg C Latency to be a
++		 *  multiple of the pipeline time from WM_LINETIME"
++		 */
++		latency = roundup(latency, max_linetime);
  	}
  
- 	if (fixed_refresh_rate) {
--		added_wake_time = DSB_EXE_TIME +
--			display->sagv.block_time_us;
--
- 		latency = skl_watermark_max_latency(display, 1);
+-	clear = LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+-	val = REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency) |
+-		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
++	intel_de_write(display, LNL_PKG_C_LATENCY,
++		       REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time) |
++		       REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency));
  
- 		/* Wa_22020432604 */
+-	intel_de_rmw(display, LNL_PKG_C_LATENCY, clear, val);
++	mutex_unlock(&display->wm.wm_mutex);
+ }
+ 
+ static int
 -- 
 2.49.0
 
