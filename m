@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F585AD209E
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7255DAD209F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4269A10E3CF;
-	Mon,  9 Jun 2025 14:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C1410E3D4;
+	Mon,  9 Jun 2025 14:11:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DFNa/1yI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9fxuweu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C8A610E3CF;
- Mon,  9 Jun 2025 14:11:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB0DF10E3CD;
+ Mon,  9 Jun 2025 14:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749478284; x=1781014284;
+ t=1749478287; x=1781014287;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+y6xZ7JYvDQGk/i/gxnKuW7lXh4rrac2kNCvG1znvJU=;
- b=DFNa/1yIqZyG0F6PznxdWzDaHppVCL2C4IKQCOa/3X2gPqR8aqAFABvJ
- VWly8qmysRA32uwyFFLm8twJ7nkkQH2dlM8IalBiFGccGKQaqpXl3G2gJ
- ZswPYMtr48kGGqlfJqXtDLs6e4//eecfpMLq94Gd7V7AYDIKyRV4FtTpC
- PtVXvFr4dfpp/AK6iKSiFgMqUjaGi3xAo1no4CO3+tjE+VQXSDL4jRWFs
- 1emcUdmAtRRkdGt6peoY3d9Q++TZBbH3v1s31gyrUe6lUhxg31M/hZPxK
- A7RqqHQ+wlPT3MP9IC/9mhAGeHehfIiWtb88Q1lpgq3Le5EtWh3W0T1Nz g==;
-X-CSE-ConnectionGUID: l6uJLS2QTlai1LaURdb5jg==
-X-CSE-MsgGUID: 7FddENklSM+kGMheZaeO7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360781"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360781"
+ bh=ygPJ9dAogBrxRWfYyCbXhh8CGuKGz3Duyoqj4tu9tB4=;
+ b=B9fxuweuB8WueBge0GpyUmfKUhSqxQI2xxpnu1O9XOhoOHDj9I98na8m
+ NNtr2Jeeyt2XxPGgcJ7UW9SOOo4PW2v7qfBCFBOrLTsGvTJve59j+1W/h
+ l/hy6hAgrMQget+Pdue9eTv4m17ZfqApGqaYLtEbXQ5Kq4WJ6+My3CgO2
+ A/JP1qdsioqMrWUMVSTWgvq2M1Gr/oE2hWAn/qkMPyPqTiv5WiAtXwPfn
+ GtdPnSHpVjV7lg0LiZYTdzsM695HOCdlbU1T344w0RhFGoHD8gUy3r+38
+ 7zyMmtSIylnbIFxEyw5eOnXVrltcmXulz+eosCUcW5rmQUvXBVEBA1OWf g==;
+X-CSE-ConnectionGUID: gY5Nzu+GRkycsDfkBe+Dvg==
+X-CSE-MsgGUID: n/G20wadTZOpeOB0MuUIOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360794"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360794"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 07:11:24 -0700
-X-CSE-ConnectionGUID: ZshIOciHQluQv0fpT2tpVg==
-X-CSE-MsgGUID: eQ93m4jkSR2zaa+zUxdEhA==
+ 09 Jun 2025 07:11:27 -0700
+X-CSE-ConnectionGUID: +GUTIEAMRhC2c+qJYN8zJw==
+X-CSE-MsgGUID: jET67Yv5Q2mzgmxH+64GIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765743"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765766"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.99])
- by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:21 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:24 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Jun 2025 17:11:20 +0300
+ Mon, 09 Jun 2025 17:11:23 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 10/21] drm/i915: Try to program PKG_C_LATENCY more correctly
-Date: Mon,  9 Jun 2025 17:10:35 +0300
-Message-ID: <20250609141046.6244-11-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 11/21] drm/i915/dmc: Shuffle code around
+Date: Mon,  9 Jun 2025 17:10:36 +0300
+Message-ID: <20250609141046.6244-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
 References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
@@ -72,182 +72,184 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The current PKG_C_LATENCY stuff looks busted in several ways:
-- doesn't account for multiple pipes from different commits
-  correctly
-- WM_LINETIME is in units of 0.125usec, PKG_C_LATENCY wants
-  units on 1 usec
-- Wa_22020432604 only done when WM1+ are no available for
-  some reason
-- weird VRR state stuff being checked
-- use of pointless RMW
-
-Fix it all up. Note that it's still a bit unclear how all this
-works, especially how the added_wake_time ties into the flipq
-triggers in DMC, and how we need to sequence updates to
-PKG_C_LATENCY when enabling/disabling pipes/etc. We may also
-need to think what to about the WM1+ disabling and the related
-PSR chicken bits when we can use PKG_C_LATENCY for early wake...
+Shuffle the DMC_EVT_CTL related stuff around once more. We'll need
+this stuff during intel_dmc_enable_pipe(), and this lets us avoid
+forward declarations.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  |  1 +
- .../gpu/drm/i915/display/intel_display_core.h |  6 ++
- drivers/gpu/drm/i915/display/skl_watermark.c  | 97 +++++++++++--------
- 3 files changed, 61 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 144 +++++++++++------------
+ 1 file changed, 72 insertions(+), 72 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6ec786198f43..3f14f524fe17 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7385,6 +7385,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	display->funcs.display->commit_modeset_enables(state);
- 
-+	/* FIXME probably need to sequence this properly */
- 	intel_program_dpkgc_latency(state);
- 
- 	intel_wait_for_vblank_workers(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 32cb0e59c81e..ad4d29e2af1b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -479,6 +479,12 @@ struct intel_display {
- 		u32 pipestat_irq_mask[I915_MAX_PIPES];
- 	} irq;
- 
-+	struct {
-+		/* protected by wm.wm_mutex */
-+		u16 linetime[I915_MAX_PIPES];
-+		bool disable[I915_MAX_PIPES];
-+	} pkgc;
-+
- 	struct {
- 		wait_queue_head_t waitqueue;
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index bf1372024efd..a3a28cff3e32 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2907,64 +2907,75 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 6392fa928e08..5a43298cd0e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -505,42 +505,6 @@ static u32 pipedmc_interrupt_mask(struct intel_display *display)
+ 		PIPEDMC_ATS_FAULT;
  }
  
--/*
-- * If Fixed Refresh Rate or For VRR case Vmin = Vmax = Flipline:
-- * Program DEEP PKG_C_LATENCY Pkg C with highest valid latency from
-- * watermark level1 and up and above. If watermark level 1 is
-- * invalid program it with all 1's.
-- * Program PKG_C_LATENCY Added Wake Time = DSB execution time
-- * If Variable Refresh Rate where Vmin != Vmax != Flipline:
-- * Program DEEP PKG_C_LATENCY Pkg C with all 1's.
-- * Program PKG_C_LATENCY Added Wake Time = 0
-- */
-+static int pkgc_max_linetime(struct intel_atomic_state *state)
+-void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+-{
+-	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+-
+-	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+-		return;
+-
+-	if (DISPLAY_VER(display) >= 20) {
+-		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
+-		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
+-	}
+-
+-	if (DISPLAY_VER(display) >= 14)
+-		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
+-	else
+-		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), 0, PIPEDMC_ENABLE);
+-}
+-
+-void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
+-{
+-	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+-
+-	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+-		return;
+-
+-	if (DISPLAY_VER(display) >= 14)
+-		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
+-	else
+-		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
+-
+-	if (DISPLAY_VER(display) >= 20) {
+-		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
+-		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
+-	}
+-}
+-
+ static u32 dmc_evt_ctl_disable(void)
+ {
+ 	return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+@@ -578,6 +542,78 @@ static bool is_event_handler(struct intel_display *display,
+ 		REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == event_id;
+ }
+ 
++static bool disable_dmc_evt(struct intel_display *display,
++			    enum intel_dmc_id dmc_id,
++			    i915_reg_t reg, u32 data)
 +{
-+	struct intel_display *display = to_intel_display(state);
-+	const struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int i, max_linetime;
++	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
++		return false;
 +
-+	/*
-+	 * Apparenty the hardware uses WM_LINETIME internally for
-+	 * this stuff, compute everything based on that.
-+	 */
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		display->pkgc.disable[crtc->pipe] = crtc_state->vrr.enable;
-+		display->pkgc.linetime[crtc->pipe] = DIV_ROUND_UP(crtc_state->linetime, 8);
-+	}
++	/* keep all pipe DMC events disabled by default */
++	if (dmc_id != DMC_FW_MAIN)
++		return true;
 +
-+	max_linetime = 0;
-+	for_each_intel_crtc(display->drm, crtc) {
-+		if (display->pkgc.disable[crtc->pipe])
-+			return 0;
++	/* also disable the flip queue event on the main DMC on TGL */
++	if (display->platform.tigerlake &&
++	    is_event_handler(display, dmc_id, MAINDMC_EVENT_CLK_MSEC, reg, data))
++		return true;
 +
-+		max_linetime = max(display->pkgc.linetime[crtc->pipe], max_linetime);
-+	}
++	/* also disable the HRR event on the main DMC on TGL/ADLS */
++	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
++	    is_event_handler(display, dmc_id, MAINDMC_EVENT_VBLANK_A, reg, data))
++		return true;
 +
-+	return max_linetime;
++	return false;
 +}
 +
- void
- intel_program_dpkgc_latency(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct intel_crtc *crtc;
--	struct intel_crtc_state *new_crtc_state;
--	u32 latency = LNL_PKG_C_LATENCY_MASK;
--	u32 added_wake_time = 0;
--	u32 max_linetime = 0;
--	u32 clear, val;
--	bool fixed_refresh_rate = false;
--	int i;
-+	int max_linetime, latency, added_wake_time = 0;
- 
- 	if (DISPLAY_VER(display) < 20)
- 		return;
- 
--	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
--		if (!new_crtc_state->vrr.enable ||
--		    (new_crtc_state->vrr.vmin == new_crtc_state->vrr.vmax &&
--		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline))
--			fixed_refresh_rate = true;
-+	mutex_lock(&display->wm.wm_mutex);
- 
--		max_linetime = max(new_crtc_state->linetime, max_linetime);
--	}
-+	latency = skl_watermark_max_latency(display, 1);
- 
--	if (fixed_refresh_rate) {
--		latency = skl_watermark_max_latency(display, 1);
-+	/*
-+	 * Wa_22020432604
-+	 * "PKG_C_LATENCY Added Wake Time field is not working"
-+	 */
-+	if (latency && (DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30)) {
-+		latency += added_wake_time;
-+		added_wake_time = 0;
++static u32 dmc_mmiodata(struct intel_display *display,
++			struct intel_dmc *dmc,
++			enum intel_dmc_id dmc_id, int i)
++{
++	if (disable_dmc_evt(display, dmc_id,
++			    dmc->dmc_info[dmc_id].mmioaddr[i],
++			    dmc->dmc_info[dmc_id].mmiodata[i]))
++		return dmc_evt_ctl_disable();
++	else
++		return dmc->dmc_info[dmc_id].mmiodata[i];
++}
++
++void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
++{
++	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
++
++	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
++		return;
++
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
 +	}
- 
--		/* Wa_22020432604 */
--		if ((DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30) && !latency) {
--			latency += added_wake_time;
--			added_wake_time = 0;
--		}
-+	max_linetime = pkgc_max_linetime(state);
- 
--		/* Wa_22020299601 */
--		if ((latency && max_linetime) &&
--		    (DISPLAY_VER(display) == 20 || DISPLAY_VER(display) == 30)) {
--			latency = max_linetime * DIV_ROUND_UP(latency, max_linetime);
--		} else if (!latency) {
--			latency = LNL_PKG_C_LATENCY_MASK;
--		}
-+	if (max_linetime == 0 || latency == 0) {
-+		latency = REG_FIELD_GET(LNL_PKG_C_LATENCY_MASK,
-+					LNL_PKG_C_LATENCY_MASK);
-+		added_wake_time = 0;
-+	} else {
-+		/*
-+		 * Wa_22020299601
-+		 * "Increase the latency programmed in PKG_C_LATENCY Pkg C Latency to be a
-+		 *  multiple of the pipeline time from WM_LINETIME"
-+		 */
-+		latency = roundup(latency, max_linetime);
- 	}
- 
--	clear = LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
--	val = REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency) |
--		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
-+	intel_de_write(display, LNL_PKG_C_LATENCY,
-+		       REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time) |
-+		       REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency));
- 
--	intel_de_rmw(display, LNL_PKG_C_LATENCY, clear, val);
-+	mutex_unlock(&display->wm.wm_mutex);
++
++	if (DISPLAY_VER(display) >= 14)
++		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
++	else
++		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), 0, PIPEDMC_ENABLE);
++}
++
++void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
++{
++	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
++
++	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
++		return;
++
++	if (DISPLAY_VER(display) >= 14)
++		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
++	else
++		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
++
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++	}
++}
++
+ static void dmc_configure_event(struct intel_display *display,
+ 				enum intel_dmc_id dmc_id,
+ 				unsigned int event_id,
+@@ -638,42 +674,6 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display
+ 	dmc_configure_event(display, dmc_id, PIPEDMC_EVENT_VBLANK, enable);
  }
  
- static int
+-static bool disable_dmc_evt(struct intel_display *display,
+-			    enum intel_dmc_id dmc_id,
+-			    i915_reg_t reg, u32 data)
+-{
+-	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
+-		return false;
+-
+-	/* keep all pipe DMC events disabled by default */
+-	if (dmc_id != DMC_FW_MAIN)
+-		return true;
+-
+-	/* also disable the flip queue event on the main DMC on TGL */
+-	if (display->platform.tigerlake &&
+-	    is_event_handler(display, dmc_id, MAINDMC_EVENT_CLK_MSEC, reg, data))
+-		return true;
+-
+-	/* also disable the HRR event on the main DMC on TGL/ADLS */
+-	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
+-	    is_event_handler(display, dmc_id, MAINDMC_EVENT_VBLANK_A, reg, data))
+-		return true;
+-
+-	return false;
+-}
+-
+-static u32 dmc_mmiodata(struct intel_display *display,
+-			struct intel_dmc *dmc,
+-			enum intel_dmc_id dmc_id, int i)
+-{
+-	if (disable_dmc_evt(display, dmc_id,
+-			    dmc->dmc_info[dmc_id].mmioaddr[i],
+-			    dmc->dmc_info[dmc_id].mmiodata[i]))
+-		return dmc_evt_ctl_disable();
+-	else
+-		return dmc->dmc_info[dmc_id].mmiodata[i];
+-}
+-
+ /**
+  * intel_dmc_load_program() - write the firmware from memory to register.
+  * @display: display instance
 -- 
 2.49.0
 
