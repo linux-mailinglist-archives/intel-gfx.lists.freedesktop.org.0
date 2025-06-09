@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D9DAD2098
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B45B5AD2099
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 16:11:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C3010E3C3;
-	Mon,  9 Jun 2025 14:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B98810E3C4;
+	Mon,  9 Jun 2025 14:11:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JxGh/gMd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HxuiL5wm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22CE110E3AE;
- Mon,  9 Jun 2025 14:11:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E1ED10E3AE;
+ Mon,  9 Jun 2025 14:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749478263; x=1781014263;
+ t=1749478267; x=1781014267;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uozAFv+VvE0snlYMLKohFJbMuUg9epJTDqFWfUVP3MA=;
- b=JxGh/gMd/oySCPeNglHZmF5vR6DCLJApTU0l2R6KSay0FnjS2CUJUGYq
- lN4z8DLUxRgn648LAM0PsQEsjw8yJUjQrRP3fpgpOoaKrnJvWUrIZfZV+
- afYFu4ZcxUsCR3shSWNqd/lFxIsQdpiQZYDAb2GeZhTVn11xn75mR6RkY
- 175vXzNVK4+tsjzy2858BWYLPtERUxbYC5otYEX1WUlld/fycHz81goW/
- yrkdSNwss0rolxZKVmnZ7i4OrncLq21HWUWStR2VYC8eRLbpnvWWkY6w4
- LDT3WA1EoWIWvxwN4ujQ3T+8O84rk6sBDgUhxHNEMQ+p6O0f4HE+j7D9q g==;
-X-CSE-ConnectionGUID: uxmthIGcQ7CfCRFbWRs2/g==
-X-CSE-MsgGUID: TbKqjebITO2E0KqDSWdOng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360720"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360720"
+ bh=oEdGcLX3IrklkUkSRxR3a1bUN4Zc7cl/aPVjDTdYtKw=;
+ b=HxuiL5wmr5NNmRBtbdr3leqtEWTfvUah/eHKatT68U4u7NhUH93BpcIa
+ dIf/GvgQhLODDI7XISzM8FPsd/hs+/E4/WYO//25kcZ5WQoG5ibZOwUVP
+ Eq2fRxMNaj1tmT9G1U1haQyaNdaN8UeuyPX1rlPsHcjiDDj+YYMirOFwf
+ vQ4MfZA/pX9AIifmZucvqFK6rmN3QjilB//0HMH43On4BnxrZBGJikm9W
+ uGE4Y1qCil1IT5cfx4OlVdU3ejfH+5PiSZbU/q5hRsPyIWjgFtlbK/JkI
+ 5nxHB1PCE1i07QYxNuwHVJpZjT+nSmr+U0HKcvS/bOoTANTm5PXvSCc/k Q==;
+X-CSE-ConnectionGUID: etoFi2kxQTya1+4sdZqOJw==
+X-CSE-MsgGUID: E0gytNbfSsqYyG8LkHrBtA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="55360726"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="55360726"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 07:11:03 -0700
-X-CSE-ConnectionGUID: A0Y/6KlxTImBSO6scO+IZw==
-X-CSE-MsgGUID: g/iWA+PsRKSgOGfzgeSAHg==
+ 09 Jun 2025 07:11:07 -0700
+X-CSE-ConnectionGUID: MBLAu+ZbRPmVvCuXLmMcMg==
+X-CSE-MsgGUID: /PiXWBItRRKO7fdRgyYnKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765544"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151765593"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.99])
- by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:00 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jun 2025 07:11:04 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 09 Jun 2025 17:11:00 +0300
+ Mon, 09 Jun 2025 17:11:03 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 04/21] drm/i915/dsb: Garbage collect the MMIO DEwake stuff
-Date: Mon,  9 Jun 2025 17:10:29 +0300
-Message-ID: <20250609141046.6244-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH v4 05/21] drm/i915/dsb: Move the DSB_PMCTRL* reset out of
+ intel_dsb_finish()
+Date: Mon,  9 Jun 2025 17:10:30 +0300
+Message-ID: <20250609141046.6244-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
 References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
@@ -72,129 +73,82 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Since the introduction of DSB chaining we no longer need the
-DEwake tricks in intel_dsb_commit().
+When using the flip queue, due to the DMC vs. DSB register corruption
+problem, we must not issue any register writes from the DSB after
+unhalting the DMC. Currently we are doign just that by trying to
+restore DSB_PMCTRL* back to a sane state from intel_dsb_finish().
 
-I also need to relocate the DSB_PMCTRL* writes out of
-intel_dsb_finish() (due to the flip queue DMC vs. DSB register
-corruption issues), and it'll be a bit more straightforward if
-I don't have to worry about the non-chained DSB path anymore.
+Since the only place left that pokes at DSB_PMCTRL* is intel_dsb_chain()
+we can just do DSB_PMCTRL_2/DSB_FORCE_DEWAKE reset in the same place.
+
+The DSB_PMCTRL reset is trickier since we'd have to do it from the
+chained DSB itself. But based on my earlier testing
+DSB_PMCTRL/DSB_ENABLE_DEWAKE doesn't actually do anything if the DSB
+isn't actually enabled, so we can omit the reset to keep things a bit
+simpler. We do need to reset DSB_PMCTRL/DSB_ENABLE_DEWAKE before
+starting the DSB however, in case it was left enabled from a previous
+use.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  4 +-
- drivers/gpu/drm/i915/display/intel_dsb.c     | 45 ++++----------------
- drivers/gpu/drm/i915/display/intel_dsb.h     |  3 +-
- 3 files changed, 11 insertions(+), 41 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 23 +++++++++++------------
+ 1 file changed, 11 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b0c7c46ffbe2..6ec786198f43 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6748,13 +6748,13 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	if (new_crtc_state->use_dsb) {
- 		intel_crtc_prepare_vblank_event(new_crtc_state, &crtc->dsb_event);
- 
--		intel_dsb_commit(new_crtc_state->dsb_commit, false);
-+		intel_dsb_commit(new_crtc_state->dsb_commit);
- 	} else {
- 		/* Perform vblank evasion around commit operation */
- 		intel_pipe_update_start(state, crtc);
- 
- 		if (new_crtc_state->dsb_commit)
--			intel_dsb_commit(new_crtc_state->dsb_commit, false);
-+			intel_dsb_commit(new_crtc_state->dsb_commit);
- 
- 		commit_pipe_pre_planes(state, crtc);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index c8011f5e4076..200555a9e94b 100644
+index 200555a9e94b..6fdd324615e2 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -826,8 +826,13 @@ void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
- 	intel_dsb_wait_usec(dsb, usecs);
- }
+@@ -629,18 +629,6 @@ void intel_dsb_gosub_finish(struct intel_dsb *dsb)
  
--static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
--			      int hw_dewake_scanline)
-+/**
-+ * intel_dsb_commit() - Trigger workload execution of DSB.
-+ * @dsb: DSB context
-+ *
-+ * This function is used to do actual write to hardware using DSB.
-+ */
-+void intel_dsb_commit(struct intel_dsb *dsb)
+ void intel_dsb_finish(struct intel_dsb *dsb)
  {
- 	struct intel_crtc *crtc = dsb->crtc;
- 	struct intel_display *display = to_intel_display(crtc->base.dev);
-@@ -843,7 +848,7 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+-	struct intel_crtc *crtc = dsb->crtc;
+-
+-	/*
+-	 * DSB_FORCE_DEWAKE remains active even after DSB is
+-	 * disabled, so make sure to clear it (if set during
+-	 * intel_dsb_commit()). And clear DSB_ENABLE_DEWAKE as
+-	 * well for good measure.
+-	 */
+-	intel_dsb_reg_write(dsb, DSB_PMCTRL(crtc->pipe, dsb->id), 0);
+-	intel_dsb_reg_write_masked(dsb, DSB_PMCTRL_2(crtc->pipe, dsb->id),
+-				   DSB_FORCE_DEWAKE, 0);
+-
+ 	intel_dsb_align_tail(dsb);
+ 
+ 	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
+@@ -781,6 +769,8 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 		intel_dsb_reg_write(dsb, DSB_PMCTRL(pipe, chained_dsb->id),
+ 				    DSB_ENABLE_DEWAKE |
+ 				    DSB_SCANLINE_FOR_DEWAKE(hw_dewake_scanline));
++	} else {
++		intel_dsb_reg_write(dsb, DSB_PMCTRL(pipe, chained_dsb->id), 0);
  	}
  
- 	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id),
--			  ctrl | DSB_ENABLE);
-+			  DSB_ENABLE);
+ 	intel_dsb_reg_write(dsb, DSB_HEAD(pipe, chained_dsb->id),
+@@ -802,6 +792,13 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
+ 		intel_dsb_wait_scanline_out(state, dsb,
+ 					    dsb_dewake_scanline_start(state, crtc),
+ 					    dsb_dewake_scanline_end(state, crtc));
++
++		/*
++		 * DSB_FORCE_DEWAKE remains active even after DSB is
++		 * disabled, so make sure to clear it.
++		 */
++		intel_dsb_reg_write_masked(dsb, DSB_PMCTRL_2(crtc->pipe, dsb->id),
++					   DSB_FORCE_DEWAKE, 0);
+ 	}
+ }
  
- 	intel_de_write_fw(display, DSB_CHICKEN(pipe, dsb->id),
- 			  dsb->chicken);
-@@ -855,44 +860,10 @@ static void _intel_dsb_commit(struct intel_dsb *dsb, u32 ctrl,
+@@ -857,6 +854,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+ 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS |
+ 			  dsb_error_int_en(display) | DSB_PROG_INT_EN);
+ 
++	intel_de_write_fw(display, DSB_PMCTRL(pipe, dsb->id), 0);
++
  	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
  			  intel_dsb_head(dsb));
  
--	if (hw_dewake_scanline >= 0) {
--		int diff, position;
--
--		intel_de_write_fw(display, DSB_PMCTRL(pipe, dsb->id),
--				  DSB_ENABLE_DEWAKE |
--				  DSB_SCANLINE_FOR_DEWAKE(hw_dewake_scanline));
--
--		/*
--		 * Force DEwake immediately if we're already past
--		 * or close to racing past the target scanline.
--		 */
--		position = intel_de_read_fw(display, PIPEDSL(display, pipe)) & PIPEDSL_LINE_MASK;
--
--		diff = hw_dewake_scanline - position;
--		intel_de_write_fw(display, DSB_PMCTRL_2(pipe, dsb->id),
--				  (diff >= 0 && diff < 5 ? DSB_FORCE_DEWAKE : 0) |
--				  DSB_BLOCK_DEWAKE_EXTENSION);
--	}
--
- 	intel_de_write_fw(display, DSB_TAIL(pipe, dsb->id),
- 			  intel_dsb_tail(dsb));
- }
- 
--/**
-- * intel_dsb_commit() - Trigger workload execution of DSB.
-- * @dsb: DSB context
-- * @wait_for_vblank: wait for vblank before executing
-- *
-- * This function is used to do actual write to hardware using DSB.
-- */
--void intel_dsb_commit(struct intel_dsb *dsb,
--		      bool wait_for_vblank)
--{
--	_intel_dsb_commit(dsb,
--			  wait_for_vblank ? DSB_WAIT_FOR_VBLANK : 0,
--			  wait_for_vblank ? dsb->hw_dewake_scanline : -1);
--}
--
- void intel_dsb_wait(struct intel_dsb *dsb)
- {
- 	struct intel_crtc *crtc = dsb->crtc;
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 6bcfb03f3415..c8f4499916eb 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -68,8 +68,7 @@ void intel_dsb_chain(struct intel_atomic_state *state,
- 		     struct intel_dsb *chained_dsb,
- 		     bool wait_for_vblank);
- 
--void intel_dsb_commit(struct intel_dsb *dsb,
--		      bool wait_for_vblank);
-+void intel_dsb_commit(struct intel_dsb *dsb);
- void intel_dsb_wait(struct intel_dsb *dsb);
- 
- void intel_dsb_irq_handler(struct intel_display *display,
 -- 
 2.49.0
 
