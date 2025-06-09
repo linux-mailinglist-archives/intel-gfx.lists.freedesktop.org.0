@@ -2,60 +2,208 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AE4AD1CB5
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 13:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE45AD1D3F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Jun 2025 14:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7622C10E251;
-	Mon,  9 Jun 2025 11:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3EE110E277;
+	Mon,  9 Jun 2025 12:23:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="af1NU1PO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ax12rDFj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6B910E248;
- Mon,  9 Jun 2025 11:53:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ED3310E286;
+ Mon,  9 Jun 2025 12:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749470033; x=1781006033;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=J0XQh1F/HpSQdAS4wZ1qMXsVK3wPzl6NkWG6h2w1ypY=;
- b=af1NU1PODLhSnoQMT91tU2tjUS3kgc4aGQB3rCCOg9YRoiTXBawAwbB7
- CaIMkuj7vdM+OmRvT6Zw99u5uyTu+gPRIj2L0C9taw/I27nT22o++tkL8
- wLmwERH27RijmnfAV3HHFFmotwALBURWg4otMo6fCPAsrWoPgXzuQyAAI
- jyef8cdC7dPHcjDVfmdVbHosEafoVcxnrRWn5zPXkcED7T5Fdy5LQZrVT
- GdFKJnhdDHk0dHKgxq4RscQp28A9ys/aJZoC61IJ2gZbFL3yECAN7h7Hk
- pj1Bs2chv9j3iza3hStphiHZSL3R6PV3gpBTxqjMUEDHapLeMXQzn5TVd w==;
-X-CSE-ConnectionGUID: MgiTeJNDSaGUUhDuZIYS+g==
-X-CSE-MsgGUID: fkwJT6zDTAGo2y8VcUAp7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11458"; a="61808377"
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="61808377"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 04:53:52 -0700
-X-CSE-ConnectionGUID: aKUFoeztTsS5FXPV3E4Qdw==
-X-CSE-MsgGUID: M3HAnWILQ8Str/jcQLHXbg==
+ t=1749471822; x=1781007822;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=IeJMhFnLohCrFlYva/SivwQ4Ids6mVhpgcW+zG6oZj8=;
+ b=Ax12rDFjuENLxqHhlDEPMYD6SNBc363972Ds9RW9yeAes8u9wpsnOgd1
+ iSwLqGNe6u3fLFDCbDpXwzrBwv60iFx33vhuE1Kodu4eMKQEe05XSgWdT
+ rLXBvzRZcOVd9v0w6/qINj9saLsEr6O+6tgOGNixaWuPwiMXSLGgxo/Zh
+ oQO4MdDYsEiiBjxPiKmnVfi6aOntS4VumsSD0ytbw4GG5ws/VZ/yRfvde
+ 6PC01qAUP+pXSPpQKY0DBCl13siir7B8bTd27zSCP4wRPbLRhHr4azVn/
+ m2XPBVsWsSVK29tQ12ukPZ+kdivN5nHq7foRFva33iHjj2+jlg1znDp1P Q==;
+X-CSE-ConnectionGUID: BOMzFNyiRzuNLtYcvQE6iQ==
+X-CSE-MsgGUID: Pe3Y7FWxQquS16KGjpmX7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11459"; a="51250744"
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="51250744"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 05:23:42 -0700
+X-CSE-ConnectionGUID: DT9V9qOXSji988bjchvtwg==
+X-CSE-MsgGUID: gwMvWSIBQ262dfITPHsxfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151367124"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.154])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2025 04:53:51 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/i915/display: drop i915_reg.h include where possible
-Date: Mon,  9 Jun 2025 14:53:37 +0300
-Message-Id: <7c4002322f4d8132fd2eaa1a4d688539cdd043c3.1749469962.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1749469962.git.jani.nikula@intel.com>
-References: <cover.1749469962.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,222,1744095600"; d="scan'208";a="151494970"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2025 05:23:42 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 9 Jun 2025 05:23:41 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 9 Jun 2025 05:23:41 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (40.107.243.64)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 9 Jun 2025 05:23:41 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wLB+8qD5QJu96oD3iOeRyEOKtRxo+iDadFNLy6ognvxRWwZDFDlqFqWhTAKBi3UjqRP5WUHPzDqNLxNt9U2ra5fVdrM5dfaB+ejQu7rnBDIUsEq9R0CYavI/WCdOGLvVju0EXW4MStvFQPT3EgVZwlEVIKqzPmRkBLwe++PbulyjP4k/1krunaEHEBv9O+BUoCBz8MUSCgYYygdchyMK+5Jj5JZmWQrrWR4ORFaCiiIwMB8SE3J1Ia2e9PLKSGYKALDTUUnLxb2Y/ME7EJ6lSYG9cBeGwG2dvvmg9tOgTBpO5COT8W3O3k3HB59XmMJ6EHsJso7XqjPt1VnH1kBlQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IeJMhFnLohCrFlYva/SivwQ4Ids6mVhpgcW+zG6oZj8=;
+ b=xFo2WssYtB7cTo+YAZMF4dHBo8kcnz24hSBoh9URAF0ZMppdYkX75guSt9fgY2mqCq8m84JGfnFKqmzxXl48EYSUNBabAnviaV17bp2H0Dm019U1izvsUCSDwdPc7rhCLP+gSXBvb0DoQTsCE390qzaBo3QnXWKXPHFaBBCNwnn8sQZeToxcbzHt/Gx6cBG1ELhs+42rTStc1RbR5opAH88V6brN4Vle28DdiuKPUKO8qcP7ZO2gFigqHMrc61fHl9EZB9IL5BWsGoOD5fX+uKckmvhe3IyMXV747lUXNRNZy4JVO917DzfbA6VGnTl1qmPmL2Nh2/3iHqNxko8bQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8)
+ by SJ5PPF3F833FA49.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::823) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.35; Mon, 9 Jun
+ 2025 12:23:25 +0000
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::6826:6928:9e6:d778]) by CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::6826:6928:9e6:d778%3]) with mapi id 15.20.8813.020; Mon, 9 Jun 2025
+ 12:23:25 +0000
+From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Guenter Roeck
+ <linux@roeck-us.net>
+CC: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, "Poosa, Karthik" <karthik.poosa@intel.com>, "Abliyev, 
+ Reuven" <reuven.abliyev@intel.com>, "Weil, Oren jer"
+ <oren.jer.weil@intel.com>, "linux-mtd@lists.infradead.org"
+ <linux-mtd@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 01/11] mtd: core: always create master device
+Thread-Topic: [PATCH v6 01/11] mtd: core: always create master device
+Thread-Index: AQHbi35N9ptLZMK+/0+KHmcJoUKk0bP5FNKAgABXSdCAANahSoAAWdKAgACSaAOAACUigA==
+Date: Mon, 9 Jun 2025 12:23:25 +0000
+Message-ID: <CY5PR11MB63660CFA966BCA1B44528BB1ED6BA@CY5PR11MB6366.namprd11.prod.outlook.com>
+References: <20250302140921.504304-1-alexander.usyskin@intel.com>
+ <20250302140921.504304-2-alexander.usyskin@intel.com>
+ <9dfb2954-fc3e-464c-a4fd-8c1a4dffa327@roeck-us.net>
+ <CY5PR11MB63666AE267B9F1609213D93CED68A@CY5PR11MB6366.namprd11.prod.outlook.com>
+ <87bjqyja7o.fsf@bootlin.com>
+ <2f3d3ff9-e483-42cc-aaed-f376d46a6701@roeck-us.net>
+ <87ikl5xnbc.fsf@bootlin.com>
+In-Reply-To: <87ikl5xnbc.fsf@bootlin.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6366:EE_|SJ5PPF3F833FA49:EE_
+x-ms-office365-filtering-correlation-id: da6841e3-c139-433b-ce7d-08dda7506edb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7416014|38070700018; 
+x-microsoft-antispam-message-info: =?utf-8?B?eUQwSW9zQWFSK0Q1cWZOc1V1YXkrcmtTb0E1UjFjNGVBT0Yyam56VUVpVFVk?=
+ =?utf-8?B?R3NvOE9zOC85czdtNkgzblJSQVhzUjgvMncyTlZwSGRheFRNejR6bURXcmZS?=
+ =?utf-8?B?SEtNcEpYT0xVQ1JDZmszaEMrY3pRRVplaHFncVRNZWU3THMzWjRsRjNldmtl?=
+ =?utf-8?B?NnJ2UTBmaG41c0JnK1FGUUFPemQ5ejVlN0NEeFdIL3QrcGdRbGtVaWZRYkJ5?=
+ =?utf-8?B?bVZQcHJ0WTBOTWdxZ0tRenFHV01DeStYK2NvMkJoN05HeXdTUi9hL3JSWVRI?=
+ =?utf-8?B?WkxDVlNvUy9YSWEyRGtEUVdBMWJkSEJwTmxWcGxPbytUWDBRcXNzUEtJekxK?=
+ =?utf-8?B?ajlXTjJqaVB5L1FROUZGUzUwakk1ZkdwQjNvOFQwMmRzbzd4bDVka0ZucXBZ?=
+ =?utf-8?B?WWJCUGIxVDVuZ281T1pudGhQYXVnN2NrSFFsNVQ3eHBJV01CZVMyQndaZVY3?=
+ =?utf-8?B?d3N0ZWZEeTBWaWZaVi82UGxXK3hvM2tjaUZXc3hUeTdTdk1VekcvcFM4dzU0?=
+ =?utf-8?B?YmRWSmhDdXlWUkZYOW9FeHozUzBCTVY5dXZobXBZZkR3NlJaQ3Zrb1I4MU1a?=
+ =?utf-8?B?UHlFck5KQm1sTFpnR1ZPRmZJaFdralUxRlNHTnV4TDZnSE1RRndCS1VVRlVO?=
+ =?utf-8?B?K0RiM0RDVzJzdWhrTHZKODgzWGd1THRRejF3bmdHVXdrQk1uZFFSVGpvcEFm?=
+ =?utf-8?B?YTBLTTZJam9nbWw3d3dTTVdIK3dCdlNXRU53ZDRQWnY5SzJ5ZHEyTElVY1Zo?=
+ =?utf-8?B?VEp1SHhWbjJJc29LY3dveHltMU1sK2RGVkNBOXBNTEtwbjJ6YTNvT0diOHd0?=
+ =?utf-8?B?bGdaenRvRUI3Q0Q4alV4WEluaEtKYXJHdG1EYVgzcC9rWVpaS3NlVFBicHI4?=
+ =?utf-8?B?VHp4K3FIRWhEY2FNYkxiaWhleTVKU1BOdGlRZE1pWDdVdEJpK2UzSVhyTzRS?=
+ =?utf-8?B?aTB1YlB6Slk4VTRxejVGOSsvWG83dk5kRnRFd09xRmdFQjJCT2FNalV1SVZO?=
+ =?utf-8?B?ZXhrK1B6V25rd2dPY2JVMnZsUEcwSloyelo5cTU2cjBaNHdRdTY2bUM1MC9S?=
+ =?utf-8?B?VUlFSUZ3MVIxREFpeklDbjFra1FLQm5Ec3JLZVB5TTZyK0dadGRSeVVpRzRS?=
+ =?utf-8?B?TUpBa1pVMGVQOXBaV0xiTzVST1hIekdpd0lsNGgzTkpScXgrQlNaUkpUdUJa?=
+ =?utf-8?B?NnhmdjhtRmNrbFhkZWtNSHB6NUN4M1QrWnIxU25EWEs0Y2IybjNIYTY3Q0xy?=
+ =?utf-8?B?VnExNVZKMDhaOVp4eFd6TGJsMlNMQ0lTcTZTUVpiSG9WZ1l6MVNiQksrdER3?=
+ =?utf-8?B?eENOSVVGMTZyRVhjWW5YZXZuOGh0TXdVK3dmRjR5Z05hSWRKVXJIKzlISkpk?=
+ =?utf-8?B?ZjAwbDBCQ3VlczdoZ1FkWEc0TFk2V002K0pJRUhEb1VTNTVlWnEwSWhrRWZp?=
+ =?utf-8?B?OWIxaVM2L1h5YlBkZHovSlVWNm9xajhjcVNDeVJVZTMrTTlNYlBRRy9WNjh1?=
+ =?utf-8?B?RHBaVnhNMVUydVVBbWI2VEpPQ2tOaGwzT1M0MXRUOG9URHVDRkVXdmVSd21P?=
+ =?utf-8?B?ZUpLbC9VajA1dWZtZG1DYjVvNGJNcS9VRjNNb3NoU3phOTRQaEd4U0d2NGEr?=
+ =?utf-8?B?Qjg1S3Jxd2RTbzZlMHV1dDV5M0QxZFEwd3RoYlhFZGJtdnV3NXdUd05pMm43?=
+ =?utf-8?B?WU1VSXovRXpqaTNCRERGWHV6UTlqUDJZQThOeWlsS0NQSXR5WnI3UUp6cHpC?=
+ =?utf-8?B?K2JrTDNCeld0R283TUdYNVVNNk1kRXZMYm5tTDhOTndoSExDNklVenRjTkl5?=
+ =?utf-8?B?VC85bGtUeDlFWGdaeEZ4M05nQTdJdWZ4anJ0QnBXbThRWVIvTzV2aXUwUEdN?=
+ =?utf-8?B?bXVYNmlicjFjakFNMnMxSzVIVkUvSVRtcFRFOStra2NzbDZBcUxaZVk5ZTNl?=
+ =?utf-8?B?NCswa2lWQTFBM2tBL0M4ODByTzZwMXp0Ukh2VHJxOFhleFZ2a3Mzb1RVcEc2?=
+ =?utf-8?Q?M7KhjwCTYQS8eabXu3BD5ZNV1YO+2Y=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6366.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b1RzeWdUNjhvL2N3WHJqbnk4QVhzREM5WVBnZXlrcVNjK2d6U0doV0xZQXV6?=
+ =?utf-8?B?VVJ2V2pNR0hBSkZ1QmRsWGhHWFB6VGY1d2s3S3Z0VFlJd2Zma1dxd2tkTm0y?=
+ =?utf-8?B?NDRDMTcvcnEvb1gwd0cvZXo0TnpzSDdVcm1xb0lqb3RrUTJLeUdkVlYxa0tq?=
+ =?utf-8?B?L1Z2RG1PSm1LaElXS1g5Tzg2bU5vOU16d3d0eVJTR3RzWUo4K1EwSUdZS2hB?=
+ =?utf-8?B?WVR6OTVlbTFBQ284TmtSWWRDN0svVXNtczVkZTNzZ1lmWG1rZTFkRkQrUDk4?=
+ =?utf-8?B?bVowTVJLZGw1SWVTMDZWWnQvRHBPV3VGUlRZbGdEVHJicHI1ZzJHSGxOM2lS?=
+ =?utf-8?B?TzhiMFFPQ1dwNFFlQmU4dTR1MmxDeU1LSFRvS0JydCs2KzVhWkRZa0FZMVVp?=
+ =?utf-8?B?S1U1clB1bUlLWjY1elQ5QklGYkJjemo4Qzl3WXBlbTlad0NSSnVNK3Njcmo1?=
+ =?utf-8?B?S2tOSTN2YkdKV0RqN25EN3NaSkw5ckRoWWFOU1BPZzhkclZpbGdVRnkvRGFR?=
+ =?utf-8?B?MytRMHdhNzBQbUNWcklraW04eUpwZUp4VlJyRkMxa1p0MCtzZ3lCaUJzWU1i?=
+ =?utf-8?B?WWMvTHkxbzQ5VTJKdXBJMG1wU3g1RXp1c2NJSStNSFlaZWdyR1dTT3B0akZr?=
+ =?utf-8?B?TXNOYXFzQ1JodUFrV0tySEtlMStEemtYZkpWRFREdGY1cEJaUEVtYUxpNjEy?=
+ =?utf-8?B?RUtJLy92Si9jR3VYbFUzcVNObTRsMEplUC9LVytYL2hLZjcyWHM0dGJyVm5O?=
+ =?utf-8?B?bTh3N2ZaVmZXMUhxdGxlV1FpUGlab3JpbExFTW04eHl6cHVkeUQzcWpHbUtM?=
+ =?utf-8?B?dnVxYVpWYmZmQTg5YmhZbnRXOEJIUlBXWWV3VE9tSnpwZWlQcnVpTU5zSzlM?=
+ =?utf-8?B?OWhkbFk3YmtiR2U1QzA4cTNPc096WWZoUm5ibTV1K0p3Z1FwUUpZa3VPeHBi?=
+ =?utf-8?B?YzdmSWxyQ3dVV2czUWtVQXlpT2wwcUY1L0wrQ3p4R0I0WWQrYVpCSVpwdmpS?=
+ =?utf-8?B?VzZFZUltWnd2dHVvVFVQRU5rQ3ZTYzBmNFFzUCtPeVdnUUc1M3lObVhNTGxM?=
+ =?utf-8?B?eHBaV1djYTdTQmNOcEJ6Rnlld3h5VXloTFlwOXdZWTFmdWFUSjc3bmpVcERQ?=
+ =?utf-8?B?L2hlWnY5RUFRZTltZ09LVmp0RWJsOUtCcUllVVR2eWdLTkFqRnZEa1l6dG40?=
+ =?utf-8?B?WU9vd0JiWW9QVlVjNUdkUGxMbWlpSXA5Z05rYXZkK3IxUXdRa0FtZVp6bzBx?=
+ =?utf-8?B?TGVPYTI4cXNQNjk5YWhWYUdoaHh1dnRFbkdnQUNSUTMvc1ZxK0lkOEI1c0Qx?=
+ =?utf-8?B?NGVKS3FEUFRyOTl4akk4SWNkUnZjbEwrS0ZDR0t3SmFhUDRuQ2lQMVN1dHlp?=
+ =?utf-8?B?NXI3Szh1a3Z4R1pFamplQ1RVaTlmMkpvbkhqUUxtb0VGbnNRY05sMkY2YUgv?=
+ =?utf-8?B?UjJndWRWMmZqLzUwelpSaHlIZCtVVVkvem94K2RuVk5FcFVpMTc5V1krVXlp?=
+ =?utf-8?B?OTROVCtlVDA3OFJOTFlMUHBpa0hCc1k3TlJXUmtRVTljYlpSMENQNDJnN1Ur?=
+ =?utf-8?B?WFIxalBOM05QeDNaQ1o3dkE2cDNwMnp3T2NmRk1YUWo4eGpVMndwT0FlNWwr?=
+ =?utf-8?B?SnI5WXgrUnQ3bE9xd3RpTHp4aDlMczNRUGVoa3cxK2pEQ3lYRnBXdHdmQmJY?=
+ =?utf-8?B?NFE3QksvcFRJT3lQUktIbURkV2tWUVRUaVFmUXMzY21tdFdHcmtFZzM3RWNv?=
+ =?utf-8?B?T2dBTVZUSUJ6VUpYeGNrZzN1dE9MRnpOUE9FZGZCQlBianB1VGF5UUszZEQv?=
+ =?utf-8?B?S3RRN2ZtdDdzM0NjaTZOYVNhckhXUnEwLzNXaWx5Z3lEYk9ZODZtTTJJUEQ4?=
+ =?utf-8?B?NHlqNDJlZWVyR0I3Unc0TUptNG5KS2ZJblZZK1B3emRkajZrV0F6c2RYU1I1?=
+ =?utf-8?B?bi9mRVU0YkZsdkhBYkhYN3hQK3NDZmtkMit5VXExZU0wTmpENExOQnl2a3lz?=
+ =?utf-8?B?ejJFclBIRmtnSjdiSnFOeGdFUUpOK1oxczluMTY1UXRMbENuZ2oveEhUUnpI?=
+ =?utf-8?B?Z1lVMTBXMkpjRGRFc0UwTzBWSk12L2hMbVhGWkk1WnlqTlJydlBlclV6czFR?=
+ =?utf-8?Q?mXkw8IRKenin/XebKOAQfsp8r?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6366.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: da6841e3-c139-433b-ce7d-08dda7506edb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2025 12:23:25.5460 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: m2scWbucWDU4rjrPeJ8sGFSlfWsXH/zZZKZKB/X60Zzbs9eyktuI3dI7nse1PX9mUrWVZEbgdlQImPt6uGYAc/LE2G4IEAz7NhsCX4swSLs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF3F833FA49
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,493 +219,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A number of files have unnecessary i915_reg.h includes. Drop them.
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_display_sr.c         | 1 -
- drivers/gpu/drm/i915/display/intel_cmtg.c              | 1 -
- drivers/gpu/drm/i915/display/intel_combo_phy.c         | 1 -
- drivers/gpu/drm/i915/display/intel_crt.c               | 1 -
- drivers/gpu/drm/i915/display/intel_cursor.c            | 1 -
- drivers/gpu/drm/i915/display/intel_cx0_phy.c           | 1 -
- drivers/gpu/drm/i915/display/intel_display_power_map.c | 1 -
- drivers/gpu/drm/i915/display/intel_dmc_wl.c            | 1 -
- drivers/gpu/drm/i915/display/intel_dp.c                | 1 -
- drivers/gpu/drm/i915/display/intel_dp_aux.c            | 1 -
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c           | 1 -
- drivers/gpu/drm/i915/display/intel_dp_mst.c            | 1 -
- drivers/gpu/drm/i915/display/intel_dp_test.c           | 1 -
- drivers/gpu/drm/i915/display/intel_dpio_phy.c          | 1 -
- drivers/gpu/drm/i915/display/intel_dpll.c              | 1 -
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c          | 1 -
- drivers/gpu/drm/i915/display/intel_dpt_common.c        | 1 -
- drivers/gpu/drm/i915/display/intel_drrs.c              | 1 -
- drivers/gpu/drm/i915/display/intel_dsb.c               | 1 -
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c           | 1 -
- drivers/gpu/drm/i915/display/intel_dvo.c               | 1 -
- drivers/gpu/drm/i915/display/intel_fbc.c               | 1 -
- drivers/gpu/drm/i915/display/intel_hdmi.c              | 1 -
- drivers/gpu/drm/i915/display/intel_lspcon.c            | 1 -
- drivers/gpu/drm/i915/display/intel_lvds.c              | 1 -
- drivers/gpu/drm/i915/display/intel_pfit.c              | 1 -
- drivers/gpu/drm/i915/display/intel_pipe_crc.c          | 1 -
- drivers/gpu/drm/i915/display/intel_pmdemand.c          | 1 -
- drivers/gpu/drm/i915/display/intel_sdvo.c              | 1 -
- drivers/gpu/drm/i915/display/intel_snps_phy.c          | 1 -
- drivers/gpu/drm/i915/display/intel_tv.c                | 1 -
- drivers/gpu/drm/i915/display/intel_vblank.c            | 1 -
- drivers/gpu/drm/i915/display/intel_vga.c               | 1 -
- drivers/gpu/drm/i915/display/intel_vrr.c               | 1 -
- drivers/gpu/drm/i915/display/skl_scaler.c              | 1 -
- drivers/gpu/drm/i915/display/skl_universal_plane.c     | 1 -
- drivers/gpu/drm/xe/display/xe_plane_initial.c          | 1 -
- 37 files changed, 37 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.c b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-index 357212f09a0f..935419441709 100644
---- a/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_device.h>
- 
--#include "i915_reg.h"
- #include "i9xx_display_sr.h"
- #include "i9xx_wm_regs.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index d98b47a07451..165138b95cb2 100644
---- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-+++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -9,7 +9,6 @@
- #include <drm/drm_device.h>
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "intel_cmtg.h"
- #include "intel_cmtg_regs.h"
- #include "intel_crtc.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-index b1bff2f0b020..112749f97c26 100644
---- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_combo_phy.h"
- #include "intel_combo_phy_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 6a1c5a4326fe..898c5d9e8f7a 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -34,7 +34,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "intel_connector.h"
- #include "intel_crt.h"
- #include "intel_crt_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 2fec5ba58373..6bd4f6a28cae 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -12,7 +12,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_atomic_plane.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 75caccb65513..83c8df9dbc0c 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -8,7 +8,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_alpm.h"
- #include "intel_cx0_phy.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-index 8c9a637b9407..77268802b55e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "intel_display_core.h"
- #include "intel_display_power_map.h"
- #include "intel_display_power_well.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 082cb5597c1a..44b3ee5c9be4 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -8,7 +8,6 @@
- #include <drm/drm_print.h>
- 
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_dmc_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d04609460e8c..59e41b505191 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -50,7 +50,6 @@
- #include <drm/drm_probe_helper.h>
- 
- #include "g4x_dp.h"
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_alpm.h"
- #include "intel_atomic.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index bf8e8e0cc19c..411cf4474776 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 23ea94ba4c6c..7bd775fb65a0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -11,7 +11,6 @@
- #include <drm/display/drm_hdcp_helper.h>
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 7d13f9e3f4c5..74497c9a0554 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -33,7 +33,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/drm/i915/display/intel_dp_test.c
-index 82b74f109315..6ed5012c5fac 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_test.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
-@@ -10,7 +10,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 339c5c50eb67..3f77ad92c156 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -24,7 +24,6 @@
- #include <drm/drm_print.h>
- 
- #include "bxt_dpio_phy_regs.h"
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index fa6a7d2b7075..f969c5399a51 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -8,7 +8,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_crtc.h"
- #include "intel_cx0_phy.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 2bcbeb7232d7..33e0398120c8 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -27,7 +27,6 @@
- #include <drm/drm_print.h>
- 
- #include "bxt_dpio_phy_regs.h"
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_cx0_phy.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt_common.c b/drivers/gpu/drm/i915/display/intel_dpt_common.c
-index 6914aac6a8f5..5eb88d51dba1 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt_common.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt_common.c
-@@ -3,7 +3,6 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
--#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 09ee2b157e2f..3fa94510458d 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -6,7 +6,6 @@
- #include <linux/debugfs.h>
- 
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 1a03c0ef2054..4252eba7f7d0 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -7,7 +7,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 6e1a23cc0aad..e6a851d276f8 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -38,7 +38,6 @@
- #include <drm/drm_print.h>
- #include <video/mipi_display.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 7cf3fb9163f4..08b48e36aca6 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -34,7 +34,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_connector.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 4a8a310b7574..ec1ef8694c35 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -49,7 +49,6 @@
- #include "gt/intel_gt_types.h"
- 
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "i915_vgpu.h"
- #include "i915_vma.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 2fc8a75f96f6..9961ff259298 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -44,7 +44,6 @@
- #include <media/cec-notifier.h>
- 
- #include "g4x_hdmi.h"
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index a874a28e4cf9..abc4b562083d 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -29,7 +29,6 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index f07c7ef56148..7e48a235c99f 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -40,7 +40,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_backlight.h"
- #include "intel_connector.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index b615be868fd9..13541be4d6df 100644
---- a/drivers/gpu/drm/i915/display/intel_pfit.c
-+++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_core.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-index 6e4c65a08949..c2b4b2254190 100644
---- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-@@ -30,7 +30,6 @@
- 
- #include "i915_drv.h"
- #include "i915_irq.h"
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index d93773f943db..93d5ee36fff1 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -7,7 +7,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_atomic.h"
- #include "intel_bw.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index b217fc5c87b1..87aff2754f69 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -39,7 +39,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_connector.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-index 8edc9252276b..b2dd69a11124 100644
---- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
-@@ -7,7 +7,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 3b9801a3ad04..e3ab49815a3c 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -36,7 +36,6 @@
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
- 
--#include "i915_reg.h"
- #include "intel_connector.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index c1c6ce390bbc..70ba7aa26bf4 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -6,7 +6,6 @@
- #include <drm/drm_vblank.h>
- 
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_color.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 05d140c8032d..6e125564db34 100644
---- a/drivers/gpu/drm/i915/display/intel_vga.c
-+++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -13,7 +13,6 @@
- 
- #include "soc/intel_gmch.h"
- 
--#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display.h"
- #include "intel_vga.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 9c2c1881ea13..3eed37f271b0 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -6,7 +6,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 9a1603138297..d77798499c57 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -5,7 +5,6 @@
- 
- #include <drm/drm_print.h>
- 
--#include "i915_reg.h"
- #include "i915_utils.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 7acba42499b7..2aa64482d44b 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -11,7 +11,6 @@
- #include "pxp/intel_pxp.h"
- 
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_bo.h"
- #include "intel_de.h"
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 1b86a510a4ba..af47ce34102c 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -10,7 +10,6 @@
- #include "xe_ggtt.h"
- #include "xe_mmio.h"
- 
--#include "i915_reg.h"
- #include "intel_atomic_plane.h"
- #include "intel_crtc.h"
- #include "intel_display.h"
--- 
-2.39.5
-
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHY2IDAxLzExXSBtdGQ6IGNvcmU6IGFsd2F5cyBjcmVhdGUg
+bWFzdGVyIGRldmljZQ0KPiANCj4gDQo+ID4+Pj4gU2V2ZXJhbCBvZiBteSBxZW11IGJvb3QgdGVz
+dHMgZmFpbCB0byBib290IGZyb20gbXRkIGRldmljZXMgd2l0aCB0aGlzDQo+IHBhdGNoDQo+ID4+
+Pj4gaW4gdGhlIG1haW5saW5lIGtlcm5lbC4gUmV2ZXJ0aW5nIGl0IGZpeGVzIHRoZSBwcm9ibGVt
+LiBBcyBmYXIgYXMgSSBjYW4NCj4gPj4+PiBzZWUgdGhpcyBhZmZlY3RzIGNvbmZpZ3VyYXRpb25z
+IHdpdGgNCj4gQ09ORklHX01URF9QQVJUSVRJT05FRF9NQVNURVI9eQ0KPiA+Pj4+IHdoZW4NCj4g
+Pj4+PiB0cnlpbmcgdG8gYm9vdCBmcm9tIGFuIG10ZCBwYXJ0aXRpb24gb3RoZXIgdGhhbiBtdGRi
+bG9jazAsIHdpdGggdGhlDQo+ID4+Pj4gbXRkIHBhcnRpdGlvbiBkYXRhIGluIGRldmljZXRyZWUg
+KC4uLi9hc3BlZWQvb3BlbmJtYy1mbGFzaC1sYXlvdXQuZHRzaSkuDQo+ID4+Pj4gSXMgdGhlcmUg
+YSBndWlkYW5jZSBkZXNjcmliaW5nIHRoZSBjaGFuZ2VkIGJlaGF2aW9yLCBieSBhbnkgY2hhbmNl
+LA0KPiA+Pj4+IGFuZCBob3cgdGhlIGJvb3QgY29tbWFuZCBsaW5lIG5vdyBuZWVkcyB0byBsb29r
+IGxpa2Ugd2hlbiB1c2luZyBvbmUNCj4gb2YNCj4gPj4+PiB0aGUgZmxhc2ggcGFydGl0aW9ucyBh
+cyByb290IGZpbGUgc3lzdGVtID8NCj4gPj4+Pg0KPiA+Pj4+IFRoYW5rcywNCj4gPj4+PiBHdWVu
+dGVyDQo+ID4+Pg0KPiA+Pj4gSSd2ZSB0cmllZCB0byBtYWtlIGlzIGFzIHRyYW5zcGFyZW50IGFz
+IHBvc3NpYmxlIGZvciB0aGUgZXhpc3RpbmcgdXNlcnMuDQo+ID4+PiBPbmx5IGNoYW5nZSBpcyB0
+aGF0IG5vdyBldmVyeSBwYXJ0aXRpb24gaGFzIG1hc3RlciB0aGF0IGlzIG5vdCBwYXJ0aXRpb25l
+ZC4NCj4gPj4+IElzIHRoZSBDT05GSUdfTVREX1BBUlRJVElPTkVEX01BU1RFUj1uIGZpeGVkIHRo
+ZSBwcm9ibGVtIGZvciB5b3U/DQo+ID4+IE5vIGNoYW5nZSBpcyBleHBlY3RlZCwgY2FuIHlvdSBw
+bGVhc2UgZGVzY3JpYmUgdGhlIGRldmljZXMgdGhhdCB5b3UNCj4gPj4gb2JzZXJ2ZSB3aXRoIGFu
+ZCB3aXRob3V0IHRoZSBwYXRjaD8gTWF5YmUgdGhlcmUgaXMgc29tZXRoaW5nIHdyb25nIGluDQo+
+ID4+IHRoZSBjb3JlIGxvZ2ljLg0KPiA+Pg0KPiA+DQo+ID4gSSBhbSB0cnlpbmcgdG8gYm9vdCBz
+dXBlcm1pY3JvLXgxMXNwaS1ibWMgaW4gcWVtdSBmcm9tIGZsYXNoIHBhcnRpdGlvbiA2Lg0KPiA+
+IFRoZSBxZW11IGNvbW1hbmQgbGluZSBpcyBzb21ldGhpbmcgbGlrZQ0KPiA+DQo+ID4gICAgIHFl
+bXUtc3lzdGVtLWFybSAtTSBzdXBlcm1pY3JvLXgxMXNwaS1ibWMsZm1jLQ0KPiBtb2RlbD1uMjVx
+MjU2YTEzLHNwaS1tb2RlbD1uMjVxMjU2YTEzIFwNCj4gPiAJLWtlcm5lbCBhcmNoL2FybS9ib290
+L3pJbWFnZSAtbm8tcmVib290IC1zbmFwc2hvdCBcDQo+ID4gCS1hdWRpbyBub25lIFwNCj4gPiAJ
+LWRyaXZlIGZpbGU9L3RtcC9mbGFzaCxmb3JtYXQ9cmF3LGlmPW10ZCxpbmRleD0xIFwNCj4gPiAJ
+LW5pYyB1c2VyIFwNCj4gPiAJLS1hcHBlbmQgInJvb3Q9L2Rldi9tdGRibG9jazYgcm9vdHdhaXQg
+Y29uc29sZT10dHlTNCwxMTUyMDANCj4gZWFybHljb249dWFydDgyNTAsbW1pbzMyLDB4MWU3ODQw
+MDAsMTE1MjAwbjgiIFwNCj4gPiAJLWR0YiBhcmNoL2FybS9ib290L2R0cy9hc3BlZWQvYXNwZWVk
+LWJtYy1zdXBlcm1pY3JvLXgxMXNwaS5kdGINCj4gXA0KPiA+IAktbm9ncmFwaGljIC1tb25pdG9y
+IG51bGwgLXNlcmlhbCBzdGRpbw0KPiA+DQo+ID4gVGhpcyBpcyB3aXRoIGFzcGVlZF9nNV9kZWZj
+b25maWcuIE5vdGUgdGhhdCB0aGUgZmxhc2ggbW9kZWxzIG5lZWQgdG8gYmUNCj4gc3BlY2lmaWVk
+Lg0KPiA+IFRoZSBkZWZhdWx0IGZsYXNoZXMgYXJlIG5vIGxvbmdlciByZWNvZ25pemVkIHdoZW4g
+Ym9vdGluZyBmcm9tIHFlbXUgc2luY2UNCj4gY29tbWl0DQo+ID4gOTQ3Yzg2ZTQ4MWEwICgibXRk
+OiBzcGktbm9yOiBtYWNyb25peDogRHJvcCB0aGUgcmVkdW5kYW50IGZsYXNoIGluZm8NCj4gZmll
+bGRzIikuDQo+ID4NCj4gPiBUaGUgYWJvdmUgb25seSB3b3JrcyB3aXRoIHRoaXMgcGF0Y2ggcmV2
+ZXJ0ZWQgKG9yIHdpdGggdjYuMTUgYW5kIG9sZGVyLCBvZg0KPiBjb3Vyc2UpLg0KPiA+DQo+ID4g
+R3VlbnRlcg0KPiANCj4gQWxleGFuZGVyLCBjYW4geW91IHBsZWFzZSBpbnZlc3RpZ2F0ZT8gV2Ug
+bmVlZCBhIGZpeCBiZWNhdXNlIEd1ZW50ZXINCj4gbWlnaHQgbm90IGJlIHRoZSBvbmx5IGFmZmVj
+dGVyIHVzZXIuIE90aGVyd2lzZSB0aGlzIHBhdGNoIGNhbid0IHN0YW5kLA0KPiB1bmZvcnR1bmF0
+ZWx5Lg0KPiANCj4gVGhhbmtzLA0KPiBNaXF1w6hsDQoNCk1heWJlIHNvbWV0aGluZyBpcyBtb3Zl
+ZCwgYW5kIGl0IGlzIG5vdCAvZGV2L210ZGJsb2NrNiBub3cuDQoNCkd1ZW50ZXIsIGlmIGl0IHdv
+cmtzIHdpdGggQ09ORklHX01URF9QQVJUSVRJT05FRF9NQVNURVI9biwgY2FuDQp5b3UgZHVtcCB0
+aGUgbGlzdCBvZiBkZXZpY2VzIHRoYXQgeW91IGNhbiBzZWU/DQoNCi0gLSANClRoYW5rcywNClNh
+c2hhDQoNCg0K
