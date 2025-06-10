@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43209AD2C03
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jun 2025 04:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BC8AD2C50
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jun 2025 05:52:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2275910E0A2;
-	Tue, 10 Jun 2025 02:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F5C10E226;
+	Tue, 10 Jun 2025 03:52:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBA610E0A2;
- Tue, 10 Jun 2025 02:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1749523691;
- bh=v8qGSKqYmLAneTxuYDnB1D6/yHuF6lrd/pyw2iVA0Bc=;
- h=Date:From:To:Cc:Subject:From;
- b=Catthj7jgd8LmNVunr8NjWZZxt0pgo/GPOA23t0oJUAS50BaRBEySdxR0uCglqGXh
- 0gfozzpe1g4Fj5y5N2UErwC09iw7Q4LDwQSiXTKSrHHBEWmdR9kspTc3XrNslHVhwn
- FLSOsCsxiu9IxEiIL9ETmMsdDUg5Osvktag1mFLA7nyLB+5CqLLhO8rdsEEe9zn8ZS
- Sk+iKRo3TNduL1JytPdt5zKL14ie/Amr8y3MwhBg2r4vhhA1aY9GrdK8S/DfLlUfFP
- tuxtxBbmrpszAETtMOBU+2V5aEwUUojzd0LMVORgSmXJV+ogpDCqahtT7XcjcUMPXI
- 3uD04eLzSxH5w==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+X-Greylist: delayed 376 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Jun 2025 03:52:49 UTC
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net
+ [83.223.78.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 147A010E226;
+ Tue, 10 Jun 2025 03:52:49 +0000 (UTC)
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4bGYBK6td8z4wj2;
- Tue, 10 Jun 2025 12:48:09 +1000 (AEST)
-Date: Tue, 10 Jun 2025 12:48:09 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Ilpo =?UTF-8?B?SsOkcnZpbmVu?=
- <ilpo.jarvinen@linux.intel.com>, Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?=
- <kwilczynski@kernel.org>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: semantic conflict  between  the drm-misc tree and
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+ client-signature RSA-PSS (4096 bits) client-digest SHA256)
+ (Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+ by bmailout2.hostsharing.net (Postfix) with ESMTPS id D8F322009D00;
+ Tue, 10 Jun 2025 05:46:27 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+ id C1C6835A1DC; Tue, 10 Jun 2025 05:46:27 +0200 (CEST)
+Date: Tue, 10 Jun 2025 05:46:27 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: Stephen Rothwell <sfr@canb.auug.org.au>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Krzysztof Wilczy??ski <kwilczynski@kernel.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: semantic conflict  between  the drm-misc tree and
  Linus' tree
-Message-ID: <20250610124809.1e1ff0cd@canb.auug.org.au>
+Message-ID: <aEeqkw670ZcuDdZO@wunner.de>
+References: <20250610124809.1e1ff0cd@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/T77Pp_HWM8GH0TUTsKa4OJM";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250610124809.1e1ff0cd@canb.auug.org.au>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,57 +59,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/T77Pp_HWM8GH0TUTsKa4OJM
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jun 10, 2025 at 12:48:09PM +1000, Stephen Rothwell wrote:
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+> 
+> drivers/accel/qaic/qaic_ras.c: In function 'decode_ras_msg':
+> drivers/accel/qaic/qaic_ras.c:325:17: error: implicit declaration of function 'pci_printk'; did you mean 'pci_intx'? [-Wimplicit-function-declaration]
+>   325 |                 pci_printk(level, qdev->pdev, "RAS event.\nClass:%s\nDescription:%s %s %s\nError Threshold for this report %d\nSyndrome:\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n",
+>       |                 ^~~~~~~~~~
+>       |                 pci_intx
+> 
+> Caused by commit
+> 
+>   c11a50b170e7 ("accel/qaic: Add Reliability, Accessibility, Serviceability (RAS)")
+> 
+> interacting with commit
+> 
+>   1c8a0ed2043c ("PCI: Remove unused pci_printk()")
+> 
+> from Linus' tree (in v6.16-rc1).
+> 
+> As a fix up patch would be a bit of a mess, I have used the drm-misc
+> tree from next-20250606 for today.
 
-Hi all,
+The simplest fix is to use dev_printk() and replace qdev->pdev with
+&qdev->pdev->dev.
 
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+The PCI core already contains one occurrence of dev_printk() in
+drivers/pci/tlp.c (introduced this cycle - 82013ff394ea).
 
-drivers/accel/qaic/qaic_ras.c: In function 'decode_ras_msg':
-drivers/accel/qaic/qaic_ras.c:325:17: error: implicit declaration of functi=
-on 'pci_printk'; did you mean 'pci_intx'? [-Wimplicit-function-declaration]
-  325 |                 pci_printk(level, qdev->pdev, "RAS event.\nClass:%s=
-\nDescription:%s %s %s\nError Threshold for this report %d\nSyndrome:\n    =
-0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%llx\n    0x%=
-llx\n    0x%llx\n",
-      |                 ^~~~~~~~~~
-      |                 pci_intx
+Additionally drivers/pci/aer.c goes so far as to define a custom
+aer_printk() for lack of a pci_printk().
 
-Caused by commit
+drivers/pci/controller/dwc/pcie-tegra194.c contains further
+occurrences of dev_printk() which could use pci_printk() instead.
 
-  c11a50b170e7 ("accel/qaic: Add Reliability, Accessibility, Serviceability=
- (RAS)")
+Those occurrences suggest that the removal of pci_printk() was
+perhaps uncalled for.
 
-interacting with commit
+Thanks,
 
-  1c8a0ed2043c ("PCI: Remove unused pci_printk()")
-
-from Linus' tree (in v6.16-rc1).
-
-As a fix up patch would be a bit of a mess, I have used the drm-misc
-tree from next-20250606 for today.
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/T77Pp_HWM8GH0TUTsKa4OJM
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmhHnOkACgkQAVBC80lX
-0GxP2ggAo19Tr02P/N3wNq2xlLcQEBlaxxHwXNEzxpmLQASTE3YmVgiOYa0AcDiv
-qT29I817Qz6uZ390Om3YNOPp5GArsTWlt/Wl78qgZaAdU8ibbaQzVAYC99vAKJ9g
-vtF3WbwzRxiuMQTN/fa7V6gByttn3yKS18v4Liw7U9bwXI1CvkPLST5JUvHfemrn
-d+EX12x+nXWB/EGhQeUrt+aUq0OwZklaCe/2vsBkBxn1DP/6OY3dg85OwZTtUhJm
-8LGrlDsedIeEeMCusbpnYIXmVXD2fGs4+DSTaMINOStlWgOrrLnf+rPnQ5oy88WY
-TKKFQdZjYhli4bO03r4WV4HPrs6U8A==
-=lo4c
------END PGP SIGNATURE-----
-
---Sig_/T77Pp_HWM8GH0TUTsKa4OJM--
+Lukas
