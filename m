@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9255AD3F4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jun 2025 18:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C2C8AD401E
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Jun 2025 19:12:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1E210E5A5;
-	Tue, 10 Jun 2025 16:42:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Ho/TRwK7";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE7E510E2BC;
+	Tue, 10 Jun 2025 17:12:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87F5E10E31F;
- Tue, 10 Jun 2025 16:42:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=IYsJEgMaqHnkj9zogcLK1cRSEP1fqVxPH3eFOlMY9Uk=; b=Ho/TRwK7kPK0DkozDpOcx5bLJp
- BDHBb8OeLWc7/97YDGpsBNBSL86VuXqj89OZwQRGCGbiQ/ImD6jlMy89QmEVFCQgEBXK1KVL/NlwL
- r3THf+vMvfSO/WD6OihMEsJgfd8PmCnox41UcZaN8oYEhVUa2mFYNOR0dRByHxeu+GiN1VtQYpFDn
- IBpdCfsISWwJ0P4nqTS43RE2r3whSTW7jJek07k1x1hXnihKFVLqiStHPG6erMjjOOGU9G3z/wnvg
- yU1TLR3JsQI0YMcej/HIPOZdnYmikLlfw4wSXqrKY1jazHSjWiUGh8Ae+02DYtsIiLSo4L7AdI2nb
- vyAtmecQ==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uP23Y-001t9s-L5; Tue, 10 Jun 2025 18:42:36 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH v6 4/4] drm/xe: Make dma-fences compliant with the safe access
- rules
-Date: Tue, 10 Jun 2025 17:42:26 +0100
-Message-ID: <20250610164226.10817-5-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
-References: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 265A610E0E6;
+ Tue, 10 Jun 2025 17:12:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Fixing_some_dma-fenc?=
+ =?utf-8?q?e_use-after-free?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Jun 2025 17:12:37 -0000
+Message-ID: <174957555715.65226.13666315540265454606@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,83 +37,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Xe can free some of the data pointed to by the dma-fences it exports. Most
-notably the timeline name can get freed if userspace closes the associated
-submit queue. At the same time the fence could have been exported to a
-third party (for example a sync_fence fd) which will then cause an use-
-after-free on subsequent access.
+== Series Details ==
 
-To make this safe we need to make the driver compliant with the newly
-documented dma-fence rules. Driver has to ensure a RCU grace period
-between signalling a fence and freeing any data pointed to by said fence.
+Series: Fixing some dma-fence use-after-free
+URL   : https://patchwork.freedesktop.org/series/150054/
+State : warning
 
-For the timeline name we simply make the queue be freed via kfree_rcu and
-for the shared lock associated with multiple queues we add a RCU grace
-period before freeing the per GT structure holding the lock.
+== Summary ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h | 2 ++
- drivers/gpu/drm/xe/xe_guc_submit.c           | 7 ++++++-
- drivers/gpu/drm/xe/xe_hw_fence.c             | 3 +++
- 3 files changed, 11 insertions(+), 1 deletion(-)
+Error: dim checkpatch failed
+b2971a952d0f sync_file: Protect access to driver and timeline name
+c221eb83e8a3 drm/i915: Protect access to driver and timeline name
+3ece214b82e6 dma-fence: Add safe access helpers and document the rules
+-:18: WARNING:TYPO_SPELLING: 'contraints' may be misspelled - perhaps 'constraints'?
+#18: 
+contraints and adds helpers which a) drivers with potential to suffer from
+^^^^^^^^^^
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 4c39f01e4f52..a3f421e2adc0 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -20,6 +20,8 @@ struct xe_exec_queue;
- struct xe_guc_exec_queue {
- 	/** @q: Backpointer to parent xe_exec_queue */
- 	struct xe_exec_queue *q;
-+	/** @rcu: For safe freeing of exported dma fences */
-+	struct rcu_head rcu;
- 	/** @sched: GPU scheduler for this xe_exec_queue */
- 	struct xe_gpu_scheduler sched;
- 	/** @entity: Scheduler entity for this xe_exec_queue */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 2b61d017eeca..c7f45800ec6a 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1299,7 +1299,11 @@ static void __guc_exec_queue_fini_async(struct work_struct *w)
- 	xe_sched_entity_fini(&ge->entity);
- 	xe_sched_fini(&ge->sched);
- 
--	kfree(ge);
-+	/*
-+	 * RCU free due sched being exported via DRM scheduler fences
-+	 * (timeline name).
-+	 */
-+	kfree_rcu(ge, rcu);
- 	xe_exec_queue_fini(q);
- 	xe_pm_runtime_put(guc_to_xe(guc));
- }
-@@ -1482,6 +1486,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 
- 	q->guc = ge;
- 	ge->q = q;
-+	init_rcu_head(&ge->rcu);
- 	init_waitqueue_head(&ge->suspend_wait);
- 
- 	for (i = 0; i < MAX_STATIC_MSG_TYPE; ++i)
-diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
-index 03eb8c6d1616..b2a0c46dfcd4 100644
---- a/drivers/gpu/drm/xe/xe_hw_fence.c
-+++ b/drivers/gpu/drm/xe/xe_hw_fence.c
-@@ -100,6 +100,9 @@ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq)
- 		spin_unlock_irqrestore(&irq->lock, flags);
- 		dma_fence_end_signalling(tmp);
- 	}
+-:263: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#263: FILE: include/trace/events/dma_fence.h:43:
++DECLARE_EVENT_CLASS(dma_fence_unsignaled,
 +
-+	/* Safe release of the irq->lock used in dma_fence_init. */
-+	synchronize_rcu();
- }
+
+-:268: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#268: FILE: include/trace/events/dma_fence.h:48:
++	TP_STRUCT__entry(
+
+-:275: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#275: FILE: include/trace/events/dma_fence.h:55:
++	TP_fast_assign(
+
+-:288: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#288: FILE: include/trace/events/dma_fence.h:68:
++DEFINE_EVENT(dma_fence_unsignaled, dma_fence_emit,
  
- void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
--- 
-2.48.0
+
+-:296: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#296: FILE: include/trace/events/dma_fence.h:75:
++DEFINE_EVENT(dma_fence_unsignaled, dma_fence_init,
+ 
+
+-:305: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#305: FILE: include/trace/events/dma_fence.h:89:
++DEFINE_EVENT(dma_fence_unsignaled, dma_fence_enable_signal,
+ 
+
+-:313: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#313: FILE: include/trace/events/dma_fence.h:96:
++DEFINE_EVENT(dma_fence_unsignaled, dma_fence_signaled,
+ 
+
+total: 0 errors, 1 warnings, 7 checks, 248 lines checked
+a6a9759d6c49 drm/xe: Make dma-fences compliant with the safe access rules
+
 
