@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0863AD5B21
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC23AD5B22
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:53:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D98310E6B5;
-	Wed, 11 Jun 2025 15:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6432A10E6AA;
+	Wed, 11 Jun 2025 15:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M7715Kmq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B9jytIuH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D3110E6B5;
- Wed, 11 Jun 2025 15:53:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8795410E6AA;
+ Wed, 11 Jun 2025 15:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749657182; x=1781193182;
+ t=1749657186; x=1781193186;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UwOET7/QdwPi/LxnGCTxid5w8zNh40KLjdXrJJIOSqQ=;
- b=M7715Kmq71WmJeNGGJdZl4wF7enpW68AZS8LGrrHpZPwvHw/Rm/9NM3e
- 3ytyN+V2lsbwgWaC/f/OmRrvPTjBl9blI+ZXZqcRmkNnA26NR4TuRcJub
- T7VvjmphXrnmOw8TiXViBDlf68PMKbhSN1zztoXG0x/bOXxyuxypCnKqA
- q4s8xfeLl1IaOOaMApK23T9v5ji84FmiCm8wjV5wMNCC2mseyicxGqTz/
- Q/5ta8iIpst/wWzS/F0JVcYwZHIxrqNKofp5SEW+DP5FcY8796EfzPuj9
- JnsgAhL1VZb6DmSYOrihJhDkI6xALofS+OzmU2kwzEpufNn0dMpSx2YVm w==;
-X-CSE-ConnectionGUID: h83OSHgUR++SUmMWw8aafQ==
-X-CSE-MsgGUID: SfiyQPXfQnGaID+IKmCHdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419131"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419131"
+ bh=2K9J+MCGmrB+m3O7GK2gYu7kHq6Db7EY/q0xMfQVWv0=;
+ b=B9jytIuHRHvMY0iDPX+BLABgQEVEuoipFbsjkgXZMt1Z/qppjayC1zKf
+ DJpMRbNI8y1OnTZsaBxbpKtj3PXewPfh9ZUlO4UjNqrulh10MaFH67EJK
+ 5o5ixgR+20dPKbQpBBI2mXZt0Ng6G14GCGTQpE7/udAKdvZkohcQIj8Eh
+ 7awAoPD9ce9EQPCwlYRNwKETFim7qcDKEUlPsOh7g5ToKQDeLhnQQirKM
+ 37+yv3vTvuJmxqLgym/22siMljAZ6XJdAKvRVNW+VXqQpzXrYCBrKo8fe
+ Zgm5liePTa5jlwhr8q0a089Yh78bO9IGO6rSoRzBhNwSRb/yQKAOfxt6S Q==;
+X-CSE-ConnectionGUID: fgVogVMzR2yPAyEPZmHrbw==
+X-CSE-MsgGUID: IEWW9E4AQsKkc1OpReH/5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419133"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419133"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:53:01 -0700
-X-CSE-ConnectionGUID: O1HrGyumQWeJVNfazvbIVQ==
-X-CSE-MsgGUID: iLbDjkNrRl6zh1WSUi/uRQ==
+ 11 Jun 2025 08:53:05 -0700
+X-CSE-ConnectionGUID: tN5u80vBQW2jCEg7rvn/1w==
+X-CSE-MsgGUID: Ps3etlwiRTapbfsKguiYpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507384"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507417"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:59 -0700
+ by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:53:03 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 18:52:58 +0300
+ Wed, 11 Jun 2025 18:53:01 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/9] drm/i915/dmc: Reload pipe DMC state on TGL when enabling
- pipe A
-Date: Wed, 11 Jun 2025 18:52:37 +0300
-Message-ID: <20250611155241.24191-6-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+	Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH 6/9] drm/i915/dmc: Reload pipe DMC MMIO registers for pipe C/D
+ on PTL+
+Date: Wed, 11 Jun 2025 18:52:38 +0300
+Message-ID: <20250611155241.24191-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
 References: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
@@ -73,47 +74,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On TGL/derivatives the entire pipe DMC state (program + MMIO) is
-lost when PG1 is disabled, and the main DMC does not restore
-any of it. Reload the state when enabling a pipe.
+On PTL+ the pipe DMC on pipes C/D loses its MMIO state occasionally.
+Not quite sure what the specific sequence is that makes this happen
+(eg. simply disabling PG2 doesn't seem to be enough to trigger this
+on its own).
 
-The other option would be to not load the pipe DMC at all since
-it's only needed for "fast LACE" (which we don't use) on these
-platforms. But let's keep it around just in case we ever decide
-that "fast LACE" is something we want.
+Reload the MMIO registers for the affected pipes when enabling the
+pipe DMC. So far I've not see this happen on PTL pipe A/B, nor on any
+pipe on any other post-TGL platform.
 
+The DMC program RAM doesn't appear to need manual restoring, though
+Windows appears to be doing exactly that on most platforms (for some
+of the pipes). None of this is properly documented anywhere it seems.
+
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 32 +++++++++++++++++++-----
+ 1 file changed, 26 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 331db28039db..fd99c4645260 100644
+index fd99c4645260..76b88c9bea02 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -599,6 +599,12 @@ static void dmc_load_program(struct intel_display *display,
- 	}
+@@ -575,8 +575,18 @@ static u32 dmc_mmiodata(struct intel_display *display,
+ 		return dmc->dmc_info[dmc_id].mmiodata[i];
  }
  
-+static bool need_pipedmc_load_program(struct intel_display *display)
+-static void dmc_load_program(struct intel_display *display,
+-			     enum intel_dmc_id dmc_id)
++static void dmc_load_mmio(struct intel_display *display, enum intel_dmc_id dmc_id)
 +{
-+	/* On TGL/derivatives pipe DMC state is lost when PG1 is disabled */
-+	return DISPLAY_VER(display) == 12;
++	struct intel_dmc *dmc = display_to_dmc(display);
++	int i;
++
++	for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
++		intel_de_write(display, dmc->dmc_info[dmc_id].mmioaddr[i],
++			       dmc_mmiodata(display, dmc, dmc_id, i));
++	}
++}
++
++static void dmc_load_program(struct intel_display *display, enum intel_dmc_id dmc_id)
+ {
+ 	struct intel_dmc *dmc = display_to_dmc(display);
+ 	int i;
+@@ -593,10 +603,7 @@ static void dmc_load_program(struct intel_display *display,
+ 
+ 	preempt_enable();
+ 
+-	for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
+-		intel_de_write(display, dmc->dmc_info[dmc_id].mmioaddr[i],
+-			       dmc_mmiodata(display, dmc, dmc_id, i));
+-	}
++	dmc_load_mmio(display, dmc_id);
+ }
+ 
+ static bool need_pipedmc_load_program(struct intel_display *display)
+@@ -605,6 +612,17 @@ static bool need_pipedmc_load_program(struct intel_display *display)
+ 	return DISPLAY_VER(display) == 12;
+ }
+ 
++static bool need_pipedmc_load_mmio(struct intel_display *display, enum pipe pipe)
++{
++	/*
++	 * On PTL pipe C/D PIPEDMC MMIO state is lost sometimes
++	 *
++	 * TODO figure out when exactly this happens, so far it
++	 * didn't seem 100% deterministic...
++	 */
++	return DISPLAY_VER(display) >= 30 && pipe >= PIPE_C;
 +}
 +
  void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
  {
  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-@@ -606,6 +612,9 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
- 	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
- 		return;
+@@ -614,6 +632,8 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
  
-+	if (need_pipedmc_load_program(display))
-+		dmc_load_program(display, dmc_id);
-+
+ 	if (need_pipedmc_load_program(display))
+ 		dmc_load_program(display, dmc_id);
++	else if (need_pipedmc_load_mmio(display, pipe))
++		dmc_load_mmio(display, dmc_id);
+ 
  	if (DISPLAY_VER(display) >= 20) {
  		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
- 		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
 -- 
 2.49.0
 
