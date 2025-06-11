@@ -2,64 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46ECEAD58A3
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A061AD5943
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:51:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81DA410E694;
-	Wed, 11 Jun 2025 14:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9F610E693;
+	Wed, 11 Jun 2025 14:51:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eq0f0gup";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O8eC9TZ5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C002310E694;
- Wed, 11 Jun 2025 14:25:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65E6910E682;
+ Wed, 11 Jun 2025 14:51:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749651950; x=1781187950;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bCi9AxQxdhpUmL1fnTC/ite/GO6fZmbu0zkZxIyERsg=;
- b=Eq0f0guprFuHwDN3KM3VKR/gz+nkj81YU5GtLB1Aa28UrcbrWoMZXMAV
- MxnHZJxlRe0zAuz/96Msl90XiJJLD+FybRGKIfiq97tc8k4vxI9Y+8kEY
- OLtA+cSZ+CfenNHuoxGdsollJ9IcdOdGp7T+3kpebLLiERRhnZp0Pg1GL
- bOe+lgrq4VXj0po3TBg2WLvCzUbGzt46jK3cOk53jTNslWkRaSsFJv2Xd
- xBJZ4QQYybgg3pcc3HifEttu6wRtwMa7pFb0zL294hHxcYXMlP1kBiXAo
- TsJjjwTwuTYyaXo8ijwgtc7HTVUAdl/hAvg9STVcNigTujbdb0SI0aLl+ A==;
-X-CSE-ConnectionGUID: M0e4rhHART2JGn1x3ketDg==
-X-CSE-MsgGUID: WYLkLtbuQH2uSrhJtOu94g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55463477"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55463477"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 07:25:50 -0700
-X-CSE-ConnectionGUID: txiLxA1pTqa6tLiZIT1XkA==
-X-CSE-MsgGUID: /lQzbgN4QbOjhn3FCbsqcg==
+ t=1749653482; x=1781189482;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rhTfJ9jaRY7BkstwMhy6J7qjbUJZBLYhZrhS+HLLQbQ=;
+ b=O8eC9TZ5jBPksiZDch6k+BSHrVXBOtHEgPWYbtixTf5i3TFalhSLdyTZ
+ gUP0h4qslBQVSsTmUo+MzxF81nh//IH3chZsHVQwwPgBe5Sqzkvn0Qkav
+ P67YBFyOO7ajzhMsTljrKbSmkDHTG4CEyshT3Lcsimj/73O46T9Q1j71M
+ heV2V/S+NLHpLegsc0nSpLF2Rw3V5dJ3BsNApgyzUGLX1BJYYMz+BTDtd
+ sLr+IzZsuuC6VQyycvknuTaJMzcvo3e+IqBUGFKZ1isP4SBlKdjEr5HKV
+ 6ncDN+piZiSeKs0VlZ/xIFmDkNBZNcizkZjTpdUxJh3OUSm/NHXsVzgla Q==;
+X-CSE-ConnectionGUID: btKdv2QLTzirxqdTazaxMw==
+X-CSE-MsgGUID: 1Fip+PUlQl60QcPOwGtQOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51714017"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51714017"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 07:51:22 -0700
+X-CSE-ConnectionGUID: tK0zXXKrQOmiYgN4sRO03Q==
+X-CSE-MsgGUID: RS0HTBm1Tyq4Y9O9bVn4fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152488765"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 07:25:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 17:25:46 +0300
-Date: Wed, 11 Jun 2025 17:25:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v4 12/21] drm/i915/dmc: Reload PIPEDMC MMIO registers for
- pipe C/D on PTL+
-Message-ID: <aEmR6oxcFPhNOod4@intel.com>
-References: <20250609141046.6244-1-ville.syrjala@linux.intel.com>
- <20250609141046.6244-13-ville.syrjala@linux.intel.com>
- <DM4PR11MB63609BA53894388FB862C0E8F46AA@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147122148"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.209])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 07:51:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/3] drm/i915: use drm->debugfs_root when creating debugfs
+ files
+Date: Wed, 11 Jun 2025 17:51:13 +0300
+Message-Id: <cover.1749653354.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB63609BA53894388FB862C0E8F46AA@DM4PR11MB6360.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,110 +69,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jun 10, 2025 at 11:24:58PM +0000, Shankar, Uma wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ville
-> > Syrjala
-> > Sent: Monday, June 9, 2025 7:41 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org
-> > Subject: [PATCH v4 12/21] drm/i915/dmc: Reload PIPEDMC MMIO registers for
-> > pipe C/D on PTL+
-> > 
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > 
-> > On PTL+ the PIPEDMC on pipes C/D loses its MMIO state occasionally.
-> > Not quite sure what the specific sequence is that makes this happen (eg. simply
-> > disbling PG2 doesn't seem to be enough to trigger this on its own).
-> 
-> Nit: Typo in disabling
-> 
-> > Reload the MMIO registers for the affected pipes when enabling the PIPEDMC. So
-> > far I've not see this happen on PTL pipe A/B, nor on any pipe on any other
-> > platform.
-> > 
-> > The DMC program RAM doesn't appear to need manual restoring, though Windows
-> > appears to be doing exactly that on most platforms (for some of the pipes). None
-> > of this is properly documented anywhere it seems.
-> 
-> Yeah can't find any documentation for the same. Lets go with the empirical behaviour,
-> will try to get this updated in spec as well.
+In the long run, I think this will allow us to remove (or not add) some
+drm_file.h includes. Currently the point is moot, because it will still
+get implicitly included in most places. Regardless, this is the
+direction anyway.
 
-CI did catch the fact that TGL/derivatives lose the entire pipe DMC state
-when PG1 is disabled, and the main DMC does not restore any of it. I'll
-cook up some extra patches to deal with that. The pipe DMC is only
-needed for LACE on these platforms, so could perhaps just not load it at
-all, but I think I'll keep it around just in case we ever want to
-implement some LACE stuff at some point.
+BR,
+Jani.
 
-> 
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> 
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc.c | 23 +++++++++++++++++------
-> >  1 file changed, 17 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > index 5a43298cd0e7..247e88265cf3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -578,6 +578,17 @@ static u32 dmc_mmiodata(struct intel_display *display,
-> >  		return dmc->dmc_info[dmc_id].mmiodata[i];
-> >  }
-> > 
-> > +static void intel_dmc_load_mmio(struct intel_display *display, enum
-> > +intel_dmc_id dmc_id) {
-> > +	struct intel_dmc *dmc = display_to_dmc(display);
-> > +	int i;
-> > +
-> > +	for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
-> > +		intel_de_write(display, dmc->dmc_info[dmc_id].mmioaddr[i],
-> > +			       dmc_mmiodata(display, dmc, dmc_id, i));
-> > +	}
-> > +}
-> > +
-> >  void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)  {
-> >  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe); @@ -585,6
-> > +596,10 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe
-> > pipe)
-> >  	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
-> >  		return;
-> > 
-> > +	/* on PTL pipe C/D PIPEDMC MMIO state is lost sometimes */
-> > +	if (DISPLAY_VER(display) >= 30 && pipe >= PIPE_C)
-> > +		intel_dmc_load_mmio(display, dmc_id);
-> > +
-> >  	if (DISPLAY_VER(display) >= 20) {
-> >  		intel_de_write(display, PIPEDMC_INTERRUPT(pipe),
-> > pipedmc_interrupt_mask(display));
-> >  		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe),
-> > ~pipedmc_interrupt_mask(display));
-> > @@ -710,12 +725,8 @@ void intel_dmc_load_program(struct intel_display
-> > *display)
-> > 
-> >  	preempt_enable();
-> > 
-> > -	for_each_dmc_id(dmc_id) {
-> > -		for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
-> > -			intel_de_write(display, dmc-
-> > >dmc_info[dmc_id].mmioaddr[i],
-> > -				       dmc_mmiodata(display, dmc, dmc_id, i));
-> > -		}
-> > -	}
-> > +	for_each_dmc_id(dmc_id)
-> > +		intel_dmc_load_mmio(display, dmc_id);
-> > 
-> >  	power_domains->dc_state = 0;
-> > 
-> > --
-> > 2.49.0
-> 
+
+Jani Nikula (3):
+  drm/i915/display: use drm->debugfs_root for creating debugfs files
+  drm/i915/gvt: use drm->debugfs_root for creating debugfs files
+  drm/i915: use drm->debugfs_root for creating debugfs files
+
+ drivers/gpu/drm/i915/display/intel_bios.c     |  4 +---
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  4 +---
+ .../drm/i915/display/intel_display_debugfs.c  |  6 +++---
+ .../display/intel_display_debugfs_params.c    |  6 +++---
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  4 +---
+ drivers/gpu/drm/i915/display/intel_dp_test.c  |  3 +--
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  3 +--
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  8 ++++----
+ drivers/gpu/drm/i915/display/intel_opregion.c |  4 +---
+ drivers/gpu/drm/i915/display/intel_psr.c      |  6 +++---
+ drivers/gpu/drm/i915/display/intel_wm.c       |  8 ++++----
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  6 +++---
+ drivers/gpu/drm/i915/gt/intel_gt_debugfs.c    |  5 +++--
+ drivers/gpu/drm/i915/gvt/debugfs.c            | 12 +++++------
+ drivers/gpu/drm/i915/i915_debugfs.c           | 20 +++++++++----------
+ drivers/gpu/drm/i915/i915_debugfs_params.c    |  4 ++--
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  6 +++---
+ drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |  8 ++++----
+ 18 files changed, 53 insertions(+), 64 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.39.5
+
