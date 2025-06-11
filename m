@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6610BAD57AE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 15:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17FBEAD580A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:09:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1DFC10E661;
-	Wed, 11 Jun 2025 13:56:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C64010E68F;
+	Wed, 11 Jun 2025 14:09:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LbkgQrb3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CwMTla00";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4E910E661;
- Wed, 11 Jun 2025 13:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749650177; x=1781186177;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kjh0xW7jhcW8dThapLlci++MPBYErQdzyJa9Gdplj/A=;
- b=LbkgQrb31n0uZvb4qGWuqfvAxIFgQokuijhAPBoUdb6K0/5HtCIO4IVK
- nv93Z2wtVAlbHQGiOdyBdrryB52GUtnL1bp0JbIf2iVSjgpDpf2hgXvPx
- fZiVTwiKeERKZCDCT6lvMPBhSbMMZn1XAbSToUqxHEJlGVCbLmol+X0gN
- y6nM4L+FEU7wE/GNL+iXjri/MW+U6GbSaoYalML/JqffkBdMZCOrSrXAV
- W80dJw9jRQDAFpUwW9vwQg5CZgUiD1Q/+ogOuOTqvmytO7j95dC5tEypj
- JHd+xLGN7Y5YzuMc6VHWdVSIPoOctFt1Ylus/n9hsyXUvWV9Ad8CxyZ3X A==;
-X-CSE-ConnectionGUID: OUdIEELqSrqEDjNZ8LJ5WQ==
-X-CSE-MsgGUID: aBAYz6KVQnKM55P3Q/FuEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51787063"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51787063"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 06:56:16 -0700
-X-CSE-ConnectionGUID: Cah+HvC3Qzq9TtILcVWmyw==
-X-CSE-MsgGUID: oB9mfZTiSWihxM/jvvAzdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152095317"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.209])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 06:56:14 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Dnyaneshwar Bhadane
- <dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH v4 0/9] Add WildCat Lake support
-In-Reply-To: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
-Date: Wed, 11 Jun 2025 16:56:11 +0300
-Message-ID: <badc9c23f4baf043ab375cbb6cf31cc7260a0765@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08FAF10E68E;
+ Wed, 11 Jun 2025 14:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=oeIaObaRwA0rV8/Y63Yf41V/JNhDgjNWBT7LI4V4kls=; b=CwMTla00N1G3CI3OHnrreQSkNc
+ hKT0trD9NDKuDmloRLpbTz7Ysga0TOtgc9D+0waf0znlCeAw1FrTGafSgGXcIShpj5OVpb/e8sZ8l
+ Ol/6Rx0In4+EpseT9kZ9P9PbE4EYzzLYHuKmqlko4ItZNjPiRrLlXTkPcPE7db1SnzaZuRiNdu0FV
+ PcrmUuiY5XI+yneSNurQYNBL0azz7yNPuIymlSoVg9eBWT89g5ttnlFp5k4PZ7ONacQzQWoIoSUax
+ JCFO4T9HZXdW91b1uKq9Dho4jFrCLRvLWQCqDqt0JZo7YiH+ZqiKT7t900njWUxFhQkpg7u95NbdD
+ 7Et6F06Q==;
+Received: from [81.79.92.254] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uPM8O-002E4m-KH; Wed, 11 Jun 2025 16:08:56 +0200
+Message-ID: <055b0531-a090-446b-b249-07f534faf84f@igalia.com>
+Date: Wed, 11 Jun 2025 15:08:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] dma-fence: Add safe access helpers and document
+ the rules
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Rob Clark <robdclark@gmail.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250610164226.10817-1-tvrtko.ursulin@igalia.com>
+ <20250610164226.10817-4-tvrtko.ursulin@igalia.com>
+ <0c89db67-50f0-46e0-ac0e-bf050f543cb4@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <0c89db67-50f0-46e0-ac0e-bf050f543cb4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,44 +70,336 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 11 Jun 2025, Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com> wrote:
-> Enable Wildcat Lake by adding PCI IDs and add the initial support GT, Media
-> and Display workarounds.
 
-Please figure out whether this should be merged via drm-intel-next or
-drm-xe-next, and ask for appropriate acks in advance.
+On 11/06/2025 12:43, Christian König wrote:
+> On 6/10/25 18:42, Tvrtko Ursulin wrote:
+>> Dma-fence objects currently suffer from a potential use after free problem
+>> where fences exported to userspace and other drivers can outlive the
+>> exporting driver, or the associated data structures.
+>>
+>> The discussion on how to address this concluded that adding reference
+>> counting to all the involved objects is not desirable, since it would need
+>> to be very wide reaching and could cause unloadable drivers if another
+>> entity would be holding onto a signaled fence reference potentially
+>> indefinitely.
+>>
+>> This patch enables the safe access by introducing and documenting a
+>> contract between fence exporters and users. It documents a set of
+>> contraints and adds helpers which a) drivers with potential to suffer from
+>> the use after free must use and b) users of the dma-fence API must use as
+>> well.
+>>
+>> Premise of the design has multiple sides:
+>>
+>> 1. Drivers (fence exporters) MUST ensure a RCU grace period between
+>> signalling a fence and freeing the driver private data associated with it.
+>>
+>> The grace period does not have to follow the signalling immediately but
+>> HAS to happen before data is freed.
+>>
+>> 2. Users of the dma-fence API marked with such requirement MUST contain
+>> the complete access to the data within a single code block guarded by
+>> rcu_read_lock() and rcu_read_unlock().
+>>
+>> The combination of the two ensures that whoever sees the
+>> DMA_FENCE_FLAG_SIGNALED_BIT not set is guaranteed to have access to a
+>> valid fence->lock and valid data potentially accessed by the fence->ops
+>> virtual functions, until the call to rcu_read_unlock().
+>>
+>> 3. Module unload (fence->ops) disappearing is for now explicitly not
+>> handled. That would required a more complex protection, possibly needing
+>> SRCU instead of RCU to handle callers such as dma_fence_release() and
+>> dma_fence_wait_timeout(), where race between
+>> dma_fence_enable_sw_signaling, signalling, and dereference of
+>> fence->ops->wait() would need a sleeping SRCU context.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> 
+> Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Thanks,
-Jani.
+Thanks Christian!
 
+I have pinged xe maintainers for acks to merge the whole series via 
+drm-misc-next and pending positive reply I can push it all.
 
->
-> Dnyaneshwar Bhadane (3):
->   drm/i915/xe3lpd: Extend DMC path for display version 30.02
->   drm/i915/wcl: C10 phy connected to port A and B
->   drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
->
-> Matt Atwood (2):
->   drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
->   drm/i915: Set max cdclk for display 30.02
->
-> Matt Roper (4):
->   drm/i915/xe3lpd: Add support for display version 30.02
->   drm/xe/xe3: Add support for graphics IP version 30.03
->   drm/xe/xe3: Add support for media IP version 30.02
->   drm/xe: Add Wildcat Lake device IDs to PTL list
->
->  drivers/gpu/drm/i915/display/intel_atomic_plane.c   |  3 ++-
->  drivers/gpu/drm/i915/display/intel_bw.c             | 11 ++++++++++-
->  drivers/gpu/drm/i915/display/intel_cdclk.c          |  4 +++-
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c        |  8 +++++++-
->  drivers/gpu/drm/i915/display/intel_display_device.c |  1 +
->  drivers/gpu/drm/i915/display/intel_dmc.c            |  3 ++-
->  drivers/gpu/drm/xe/xe_pci.c                         |  2 ++
->  drivers/gpu/drm/xe/xe_wa.c                          |  6 +++---
->  drivers/gpu/drm/xe/xe_wa_oob.rules                  | 11 ++++++-----
->  include/drm/intel/pciids.h                          |  4 +++-
->  10 files changed, 39 insertions(+), 14 deletions(-)
+Regards,
 
--- 
-Jani Nikula, Intel
+Tvrtko
+
+> 
+>> ---
+>>   drivers/dma-buf/dma-fence.c      | 111 ++++++++++++++++++++++++++++---
+>>   include/linux/dma-fence.h        |  31 ++++++---
+>>   include/trace/events/dma_fence.h |  38 +++++++++--
+>>   3 files changed, 157 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+>> index 74f9e4b665e3..3f78c56b58dc 100644
+>> --- a/drivers/dma-buf/dma-fence.c
+>> +++ b/drivers/dma-buf/dma-fence.c
+>> @@ -511,12 +511,20 @@ dma_fence_wait_timeout(struct dma_fence *fence, bool intr, signed long timeout)
+>>   
+>>   	dma_fence_enable_sw_signaling(fence);
+>>   
+>> -	trace_dma_fence_wait_start(fence);
+>> +	if (trace_dma_fence_wait_start_enabled()) {
+>> +		rcu_read_lock();
+>> +		trace_dma_fence_wait_start(fence);
+>> +		rcu_read_unlock();
+>> +	}
+>>   	if (fence->ops->wait)
+>>   		ret = fence->ops->wait(fence, intr, timeout);
+>>   	else
+>>   		ret = dma_fence_default_wait(fence, intr, timeout);
+>> -	trace_dma_fence_wait_end(fence);
+>> +	if (trace_dma_fence_wait_end_enabled()) {
+>> +		rcu_read_lock();
+>> +		trace_dma_fence_wait_end(fence);
+>> +		rcu_read_unlock();
+>> +	}
+>>   	return ret;
+>>   }
+>>   EXPORT_SYMBOL(dma_fence_wait_timeout);
+>> @@ -533,16 +541,23 @@ void dma_fence_release(struct kref *kref)
+>>   	struct dma_fence *fence =
+>>   		container_of(kref, struct dma_fence, refcount);
+>>   
+>> +	rcu_read_lock();
+>>   	trace_dma_fence_destroy(fence);
+>>   
+>> -	if (WARN(!list_empty(&fence->cb_list) &&
+>> -		 !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags),
+>> -		 "Fence %s:%s:%llx:%llx released with pending signals!\n",
+>> -		 dma_fence_driver_name(fence),
+>> -		 dma_fence_timeline_name(fence),
+>> -		 fence->context, fence->seqno)) {
+>> +	if (!list_empty(&fence->cb_list) &&
+>> +	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
+>> +		const char __rcu *timeline;
+>> +		const char __rcu *driver;
+>>   		unsigned long flags;
+>>   
+>> +		driver = dma_fence_driver_name(fence);
+>> +		timeline = dma_fence_timeline_name(fence);
+>> +
+>> +		WARN(1,
+>> +		     "Fence %s:%s:%llx:%llx released with pending signals!\n",
+>> +		     rcu_dereference(driver), rcu_dereference(timeline),
+>> +		     fence->context, fence->seqno);
+>> +
+>>   		/*
+>>   		 * Failed to signal before release, likely a refcounting issue.
+>>   		 *
+>> @@ -556,6 +571,8 @@ void dma_fence_release(struct kref *kref)
+>>   		spin_unlock_irqrestore(fence->lock, flags);
+>>   	}
+>>   
+>> +	rcu_read_unlock();
+>> +
+>>   	if (fence->ops->release)
+>>   		fence->ops->release(fence);
+>>   	else
+>> @@ -982,11 +999,21 @@ EXPORT_SYMBOL(dma_fence_set_deadline);
+>>    */
+>>   void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq)
+>>   {
+>> +	const char __rcu *timeline;
+>> +	const char __rcu *driver;
+>> +
+>> +	rcu_read_lock();
+>> +
+>> +	timeline = dma_fence_timeline_name(fence);
+>> +	driver = dma_fence_driver_name(fence);
+>> +
+>>   	seq_printf(seq, "%s %s seq %llu %ssignalled\n",
+>> -		   dma_fence_driver_name(fence),
+>> -		   dma_fence_timeline_name(fence),
+>> +		   rcu_dereference(driver),
+>> +		   rcu_dereference(timeline),
+>>   		   fence->seqno,
+>>   		   dma_fence_is_signaled(fence) ? "" : "un");
+>> +
+>> +	rcu_read_unlock();
+>>   }
+>>   EXPORT_SYMBOL(dma_fence_describe);
+>>   
+>> @@ -1055,3 +1082,67 @@ dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
+>>   			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+>>   }
+>>   EXPORT_SYMBOL(dma_fence_init64);
+>> +
+>> +/**
+>> + * dma_fence_driver_name - Access the driver name
+>> + * @fence: the fence to query
+>> + *
+>> + * Returns a driver name backing the dma-fence implementation.
+>> + *
+>> + * IMPORTANT CONSIDERATION:
+>> + * Dma-fence contract stipulates that access to driver provided data (data not
+>> + * directly embedded into the object itself), such as the &dma_fence.lock and
+>> + * memory potentially accessed by the &dma_fence.ops functions, is forbidden
+>> + * after the fence has been signalled. Drivers are allowed to free that data,
+>> + * and some do.
+>> + *
+>> + * To allow safe access drivers are mandated to guarantee a RCU grace period
+>> + * between signalling the fence and freeing said data.
+>> + *
+>> + * As such access to the driver name is only valid inside a RCU locked section.
+>> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block guarded
+>> + * by the &rcu_read_lock and &rcu_read_unlock pair.
+>> + */
+>> +const char __rcu *dma_fence_driver_name(struct dma_fence *fence)
+>> +{
+>> +	RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+>> +			 "RCU protection is required for safe access to returned string");
+>> +
+>> +	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+>> +		return fence->ops->get_driver_name(fence);
+>> +	else
+>> +		return "detached-driver";
+>> +}
+>> +EXPORT_SYMBOL(dma_fence_driver_name);
+>> +
+>> +/**
+>> + * dma_fence_timeline_name - Access the timeline name
+>> + * @fence: the fence to query
+>> + *
+>> + * Returns a timeline name provided by the dma-fence implementation.
+>> + *
+>> + * IMPORTANT CONSIDERATION:
+>> + * Dma-fence contract stipulates that access to driver provided data (data not
+>> + * directly embedded into the object itself), such as the &dma_fence.lock and
+>> + * memory potentially accessed by the &dma_fence.ops functions, is forbidden
+>> + * after the fence has been signalled. Drivers are allowed to free that data,
+>> + * and some do.
+>> + *
+>> + * To allow safe access drivers are mandated to guarantee a RCU grace period
+>> + * between signalling the fence and freeing said data.
+>> + *
+>> + * As such access to the driver name is only valid inside a RCU locked section.
+>> + * The pointer MUST be both queried and USED ONLY WITHIN a SINGLE block guarded
+>> + * by the &rcu_read_lock and &rcu_read_unlock pair.
+>> + */
+>> +const char __rcu *dma_fence_timeline_name(struct dma_fence *fence)
+>> +{
+>> +	RCU_LOCKDEP_WARN(!rcu_read_lock_held(),
+>> +			 "RCU protection is required for safe access to returned string");
+>> +
+>> +	if (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+>> +		return fence->ops->get_driver_name(fence);
+>> +	else
+>> +		return "signaled-timeline";
+>> +}
+>> +EXPORT_SYMBOL(dma_fence_timeline_name);
+>> diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
+>> index 10a849cb2d3f..64639e104110 100644
+>> --- a/include/linux/dma-fence.h
+>> +++ b/include/linux/dma-fence.h
+>> @@ -378,15 +378,28 @@ bool dma_fence_remove_callback(struct dma_fence *fence,
+>>   			       struct dma_fence_cb *cb);
+>>   void dma_fence_enable_sw_signaling(struct dma_fence *fence);
+>>   
+>> -static inline const char *dma_fence_driver_name(struct dma_fence *fence)
+>> -{
+>> -	return fence->ops->get_driver_name(fence);
+>> -}
+>> -
+>> -static inline const char *dma_fence_timeline_name(struct dma_fence *fence)
+>> -{
+>> -	return fence->ops->get_timeline_name(fence);
+>> -}
+>> +/**
+>> + * DOC: Safe external access to driver provided object members
+>> + *
+>> + * All data not stored directly in the dma-fence object, such as the
+>> + * &dma_fence.lock and memory potentially accessed by functions in the
+>> + * &dma_fence.ops table, MUST NOT be accessed after the fence has been signalled
+>> + * because after that point drivers are allowed to free it.
+>> + *
+>> + * All code accessing that data via the dma-fence API (or directly, which is
+>> + * discouraged), MUST make sure to contain the complete access within a
+>> + * &rcu_read_lock and &rcu_read_unlock pair.
+>> + *
+>> + * Some dma-fence API handles this automatically, while other, as for example
+>> + * &dma_fence_driver_name and &dma_fence_timeline_name, leave that
+>> + * responsibility to the caller.
+>> + *
+>> + * To enable this scheme to work drivers MUST ensure a RCU grace period elapses
+>> + * between signalling the fence and freeing the said data.
+>> + *
+>> + */
+>> +const char __rcu *dma_fence_driver_name(struct dma_fence *fence);
+>> +const char __rcu *dma_fence_timeline_name(struct dma_fence *fence);
+>>   
+>>   /**
+>>    * dma_fence_is_signaled_locked - Return an indication if the fence
+>> diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+>> index 84c83074ee81..4814a65b68dc 100644
+>> --- a/include/trace/events/dma_fence.h
+>> +++ b/include/trace/events/dma_fence.h
+>> @@ -34,14 +34,44 @@ DECLARE_EVENT_CLASS(dma_fence,
+>>   		  __entry->seqno)
+>>   );
+>>   
+>> -DEFINE_EVENT(dma_fence, dma_fence_emit,
+>> +/*
+>> + * Safe only for call sites which are guaranteed to not race with fence
+>> + * signaling,holding the fence->lock and having checked for not signaled, or the
+>> + * signaling path itself.
+>> + */
+>> +DECLARE_EVENT_CLASS(dma_fence_unsignaled,
+>> +
+>> +	TP_PROTO(struct dma_fence *fence),
+>> +
+>> +	TP_ARGS(fence),
+>> +
+>> +	TP_STRUCT__entry(
+>> +		__string(driver, fence->ops->get_driver_name(fence))
+>> +		__string(timeline, fence->ops->get_timeline_name(fence))
+>> +		__field(unsigned int, context)
+>> +		__field(unsigned int, seqno)
+>> +	),
+>> +
+>> +	TP_fast_assign(
+>> +		__assign_str(driver);
+>> +		__assign_str(timeline);
+>> +		__entry->context = fence->context;
+>> +		__entry->seqno = fence->seqno;
+>> +	),
+>> +
+>> +	TP_printk("driver=%s timeline=%s context=%u seqno=%u",
+>> +		  __get_str(driver), __get_str(timeline), __entry->context,
+>> +		  __entry->seqno)
+>> +);
+>> +
+>> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_emit,
+>>   
+>>   	TP_PROTO(struct dma_fence *fence),
+>>   
+>>   	TP_ARGS(fence)
+>>   );
+>>   
+>> -DEFINE_EVENT(dma_fence, dma_fence_init,
+>> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_init,
+>>   
+>>   	TP_PROTO(struct dma_fence *fence),
+>>   
+>> @@ -55,14 +85,14 @@ DEFINE_EVENT(dma_fence, dma_fence_destroy,
+>>   	TP_ARGS(fence)
+>>   );
+>>   
+>> -DEFINE_EVENT(dma_fence, dma_fence_enable_signal,
+>> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_enable_signal,
+>>   
+>>   	TP_PROTO(struct dma_fence *fence),
+>>   
+>>   	TP_ARGS(fence)
+>>   );
+>>   
+>> -DEFINE_EVENT(dma_fence, dma_fence_signaled,
+>> +DEFINE_EVENT(dma_fence_unsignaled, dma_fence_signaled,
+>>   
+>>   	TP_PROTO(struct dma_fence *fence),
+>>   
+> 
+
