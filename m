@@ -2,48 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D00DCAD49F2
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 06:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1DAAD4A7D
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 07:41:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E629D10E392;
-	Wed, 11 Jun 2025 04:09:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67F7B10E342;
+	Wed, 11 Jun 2025 05:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="OrHStRM2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uye74xx1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D688510E13D;
- Wed, 11 Jun 2025 04:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1749614975;
- bh=l6N6qBxGbKoR75gXRlJQAPx2Ke8Xm4jzW89L0JDBexM=;
- h=Date:From:To:Cc:Subject:From;
- b=OrHStRM2JMPQSfIiZhj3+tLjTPTvbat46PPxLn8Y3/CU9sosKWyrLlx8Cj+EZvnAB
- TSX0ui/NW7mPaD2omCsDPj03kXTFNAc5/3WKcuuNM6L0XiqiAGHR6Ubxt9cNbC+glO
- HKY/c8ABVdjI9J4W6X9AjyrlbIUdWefSQx26tq6+FXrZ4FtUm43cH8UbWrELukc67h
- 7UEm0sgX6jMl3u8zDiUeb3zWy34mK1BwNmB5KLTeBHYRHP/LnQQ7LlCME+lOKre0lt
- csPX4+qSO46ZhBHU6KEo2pe959ipTCEOPf8rMdjDH346CycuQ5KwEnE0gMd5nlaEvu
- Fo7wVXhAIR8oA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4bHBxp5x1rz4wbR;
- Wed, 11 Jun 2025 14:09:34 +1000 (AEST)
-Date: Wed, 11 Jun 2025 14:09:33 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build warnings after merge of the drm-misc tree
-Message-ID: <20250611140933.1429a1b8@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C7310E342;
+ Wed, 11 Jun 2025 05:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749620491; x=1781156491;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZvqoQYQ07OOR4mUqscoY9oba9IfcbvToKIq4RMvc29I=;
+ b=Uye74xx19gtEWVj2VYvzNV06RVtcMTQOWDzpR0CnVCpr5B0CFpeYTdca
+ +n20CoX9mIjG4ebr9FCRlYgfoa89VjeWM7dGNZDlO6ZmZ3BvPszQJePg+
+ ji97FrEubAJjYzh1qtJAuBYKhVmfbqyfXCz5EjY3tNQchw1IFHrRZzAdy
+ hNMmt6kt/gD084utme60FzUXXORuPfZVWZ/ekskNl6QwFD4zTX/GHvQrW
+ Vpgfxcq3t1JKlFDDleX5TYVrpQzLjf2FCC5DncaSR9yqbrdLg/ugMi3vD
+ rAaxhOmSqCJjk4vxENWZ/cgI0zcALrKNcdrGwXWuElI+Hp6zNsNP2R+xJ w==;
+X-CSE-ConnectionGUID: lmS/j+UzThiHV/QmpfUjCg==
+X-CSE-MsgGUID: nh5OhstlSMahmreMUTgBug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="63160409"
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="63160409"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 22:41:30 -0700
+X-CSE-ConnectionGUID: eY/a4FVyTnaJAk91auyWgw==
+X-CSE-MsgGUID: A1NsdXFORcSR0dWPxGgJCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="151864185"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2025 22:41:29 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com
+Subject: [PATCH] drm/i915/display: Fix macro HAS_ULTRAJOINER
+Date: Wed, 11 Jun 2025 11:00:39 +0530
+Message-ID: <20250611053039.377695-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/=ysdFscAmXuLr1BblmDBjb6";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,46 +66,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/=ysdFscAmXuLr1BblmDBjb6
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Currently, Ultrajoiner is supported only on Xe2_HPD.
+Update the HAS_ULTRAJOINER macro to reflect the same.
 
-Hi all,
+v2: Clarify the commit message to specify platform. (Jani)
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced these warnings:
+Bspec: 69556
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.h | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-include/drm/drm_bridge.h:943: warning: Function parameter or struct member =
-'hdmi_cec_init' not described in 'drm_bridge_funcs'
-include/drm/drm_bridge.h:943: warning: Function parameter or struct member =
-'hdmi_cec_enable' not described in 'drm_bridge_funcs'
-include/drm/drm_bridge.h:943: warning: Function parameter or struct member =
-'hdmi_cec_log_addr' not described in 'drm_bridge_funcs'
-include/drm/drm_bridge.h:943: warning: Function parameter or struct member =
-'hdmi_cec_transmit' not described in 'drm_bridge_funcs'
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 0ac5484c0043..4308822f0415 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -192,9 +192,8 @@ struct intel_display_platforms {
+ #define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
+ 						  BIT(trans)) != 0)
+ #define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
+-#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
+-					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+-					 HAS_DSC(__display))
++#define HAS_ULTRAJOINER(__display)	(((__display)->platform.dgfx && \
++					  DISPLAY_VER(__display) == 14) && HAS_DSC(__display))
+ #define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
+ #define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
+ #define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
+-- 
+2.45.2
 
-Introduced by commit
-
-  a74288c8ded7 ("drm/display: bridge-connector: handle CEC adapters")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/=ysdFscAmXuLr1BblmDBjb6
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmhJAX0ACgkQAVBC80lX
-0GwMYwf9F6YQKrArb2QjOVGfFE6WQ2RdhLqrv3HI89g0k/5fpINHl922ZxuaKyYm
-ScJ868bjjA6oFTENiuxtoZdx/xwO4y3aHRkuc+QND0o4QHr4Qhg6aw6QtTfMm4Pm
-GeDO2wU8bYeQbYSe0VStLSonRAX5+tzHYoiBrIMiOg/kj2JoE3lFiM3y2j3qNPbU
-/Gxc++SVzKVbmn/T8JcBjdxes3yvome+W6TgF05Yc1s/A7L50YUpkng/Erh8nSF2
-yHwTtYY14wvdSAqr0d8KEP9RM8BXBe5Xk7mCRzz8PYnXDs0/rpeUwppm/cDCjc/6
-kp4LRB7TscM60mQddnYa1Yr/G9boFw==
-=8xyK
------END PGP SIGNATURE-----
-
---Sig_/=ysdFscAmXuLr1BblmDBjb6--
