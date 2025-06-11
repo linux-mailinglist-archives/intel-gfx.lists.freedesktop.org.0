@@ -2,76 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8BFAD594E
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC8BAD5A6F
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:28:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C2D10E682;
-	Wed, 11 Jun 2025 14:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC4310E6A0;
+	Wed, 11 Jun 2025 15:28:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="OBVtex+P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOqtp5Bj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
- [217.70.183.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F3FB10E682;
- Wed, 11 Jun 2025 14:53:29 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 07743431EB;
- Wed, 11 Jun 2025 14:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1749653607;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=sJu5NSgqNOml+9Lox7VvY57DB9A7wKSyNIB2QDnPsGk=;
- b=OBVtex+PPJ9C5YrO63rD52e2cVGsu/uqOLAY/L5dVGBbk36SdtmKeU5z7a8gjyDMv+3FaT
- TX/XWmjIZZOc04r1YF58J0UZmzld+Dkri6ScFCWleeIP6lbmHq868ldlq00T+fx8gJgkyI
- k8hI2/zz6hZhcjDqGHWI3Vyphrs88/33hARFhOWkdMAty3Q8ddiC4Q71ZFC+WQw/ZvU7oL
- ClgB+Dqt0esvCGIidbCkKPeUDdP7/pboiTDjIH1fcRy78yYoCwHyJMVFxSjAsdluxEF9cD
- sKyqBcqTttiLXgUfWXVTiRLrRFVDpN5Ap4ZpdRVu8OAa/540HM9YNp4iXMGjYg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: Richard Weinberger <richard@nod.at>,  Guenter Roeck
- <linux@roeck-us.net>,  Vignesh Raghavendra <vigneshr@ti.com>,  "De Marchi,
- Lucas" <lucas.demarchi@intel.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>,  "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
- <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jani Nikula
- <jani.nikula@linux.intel.com>,  Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
- "Poosa, Karthik" <karthik.poosa@intel.com>,  "Abliyev, Reuven"
- <reuven.abliyev@intel.com>,  "Weil, Oren jer" <oren.jer.weil@intel.com>,
- linux-mtd <linux-mtd@lists.infradead.org>,  "DRI mailing list"
- <dri-devel@lists.freedesktop.org>,  intel-gfx
- <intel-gfx@lists.freedesktop.org>,  linux-kernel
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 01/11] mtd: core: always create master device
-In-Reply-To: <CY5PR11MB636692EFD9BB99B6F2D959BFED75A@CY5PR11MB6366.namprd11.prod.outlook.com>
- (Alexander Usyskin's message of "Wed, 11 Jun 2025 10:52:36 +0000")
-References: <20250302140921.504304-1-alexander.usyskin@intel.com>
- <CY5PR11MB63662D21B2C7B1A1C2E6BC4BED6BA@CY5PR11MB6366.namprd11.prod.outlook.com>
- <2e5ebbdd-2a57-4f1f-85c6-7c2dff127b50@roeck-us.net>
- <1176847729.134356549.1749504429656.JavaMail.zimbra@nod.at>
- <CY5PR11MB6366B2B40E0C357D6C0935C2ED6AA@CY5PR11MB6366.namprd11.prod.outlook.com>
- <130790886.134361099.1749560056731.JavaMail.zimbra@nod.at>
- <c90c8bad-9c7a-4bf7-8282-ebefebba90a3@roeck-us.net>
- <877c1ivcym.fsf@bootlin.com>
- <1612313571.134371311.1749637592940.JavaMail.zimbra@nod.at>
- <CY5PR11MB636692EFD9BB99B6F2D959BFED75A@CY5PR11MB6366.namprd11.prod.outlook.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Wed, 11 Jun 2025 16:53:24 +0200
-Message-ID: <87y0tytjmj.fsf@bootlin.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2484810E6AB;
+ Wed, 11 Jun 2025 15:28:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749655728; x=1781191728;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=KxdvxLlNCAsSGTFGXVOF3IKvpbDWDLYX69ZREtu1/2c=;
+ b=QOqtp5BjKF4FfJhK+IKSEYaGYcfafYWg3gyQkQFx998vP/TdBJlUzRY8
+ JWraTXOCZTHq9keEI76pXVDLZ8hUltDXhle1zPpopTMm5AunUMveEylS+
+ EIp88ZvqW+1BLJwC1L4jyuQ8Tma+8nAjyrcsOcuCdrM3izIAobuJ/3q0Q
+ f9X4Vh3LdbVTPLEMDxn02592cfgCUgFpUwOLuTDhunbjWtCq8e4WPZqpy
+ ahHMy5i4bVw6KmLfscEY7P1au40Ca7NlX01lKEIIDs8G4quHZIqzMylfU
+ Bt+jtVbp7ZUv0aXVowLMbFAMlWmwrZEk4ijY2dotJuiV8kONo883201RD A==;
+X-CSE-ConnectionGUID: iav6dOY2Q7uio0YBVopHuQ==
+X-CSE-MsgGUID: jQ4PXJPbQDCbTVJwWyl/rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55599473"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55599473"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 08:28:47 -0700
+X-CSE-ConnectionGUID: q6b0Oor1TImDMCMCfDQRpA==
+X-CSE-MsgGUID: TXyolTxrSsW7kz16zFGZBw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147117844"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.209])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 08:28:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/2] drm/i915/dp: Add kernel param to limit eDP rate to
+ HBR2"
+In-Reply-To: <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
+ <20250610100449.185927-3-ankit.k.nautiyal@intel.com>
+ <826e4afa3d3827e40628e69ccecfcb21201c2faa@intel.com>
+ <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
+Date: Wed, 11 Jun 2025 18:28:42 +0300
+Message-ID: <1cd154a09823abf6d34221ae9e02f9cd342cc3a3@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdduvdegkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepteehkeelvddvheehtdefkedtjeeutedthfegudekgeefleetkeettdekiefftdeinecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddvpdhrtghpthhtoheprghlvgigrghnuggvrhdruhhshihskhhinhesihhnthgvlhdrtghomhdprhgtphhtthhopehrihgthhgrrhgusehnohgurdgrthdprhgtphhtthhopehlihhnuhigsehrohgvtghkqdhushdrnhgvthdprhgtphhtthhopehvihhgnhgvshhhrhesthhirdgtohhmpdhrtghpthhtoheplhhutggrshdruggvmhgrrhgthhhisehin
- hhtvghlrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhhvghllhhsthhrohhmsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtghomh
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,86 +73,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
-
-On 11/06/2025 at 10:52:36 GMT, "Usyskin, Alexander" <alexander.usyskin@inte=
-l.com> wrote:
-
->> Subject: Re: [PATCH v6 01/11] mtd: core: always create master device
->>=20
->> ----- Urspr=C3=BCngliche Mail -----
->> > Von: "Miquel Raynal" <miquel.raynal@bootlin.com>
->> >> On 6/10/25 05:54, Richard Weinberger wrote:
->> >>> ----- Urspr=C3=BCngliche Mail -----
->> >>>> Von: "Alexander Usyskin" <alexander.usyskin@intel.com>
->> >>>> Richard, I've reproduced your setup (modulo that I must load mtdram
->> manually)
->> >>>> and patch provided in this thread helps to fix the issue.
->> >>>> Can you apply and confirm?
->> >>> Yes, it fixes the issue here! :-)
->> >>>
->> >>
->> >> It doesn't seem to fix the issue if the partition data is in
->> >> devicetree.
->> >
->> > I had a look at the patch again. The whole mtd core makes assumptions =
-on
->> > parenting, which is totally changed with this patch. There are so many
->> > creative ways this can break, I don't believe we are going to continue
->> > this route. I propose to revert the patch entirely for now. We need to
->> > find another approach, I'm sorry.
->>=20
->> I think reverting is a valid option to consider if the issue turns out t=
-o be
->> a "back to the drawing board" problem.
->>=20
->> > Alexander, can you please remind me what was your initial problem? I
->> > believe you needed to anchor runtime PM on the master device. Can you
->> > please elaborate again? Why taking the controller as source (the
->> > default, before your change) did not work? Also why was selecting
->> > MTD_PARTITIONED_MASTER not an option for you? I'm trying to get to the
->> > root of this change again, so we can find a solution fixing "the world"
->> > (fast) and in a second time a way to address your problem.
->>=20
->> IIRC the problem is that depending on CONFIG_MTD_PARTITIONED_MASTER
->> won't fly as PM needs to work with any configuration.
->> And enforcing CONFIG_MTD_PARTITIONED_MASTER will break existing
->> setups because mtd id's will change.
->>=20
->> On the other hand, how about placing the master device at the end
->> of the available mtd id space if CONFIG_MTD_PARTITIONED_MASTER=3Dn?
->> A bit hacky but IMHO worth a thought.
->>=20
->> Thanks,
->> //Richard
+On Tue, 10 Jun 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> On 6/10/2025 5:52 PM, Jani Nikula wrote:
+>> On Tue, 10 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>>> Some ICL/TGL platforms with combo PHY ports can theoretically support HBR3,
+>>> but in practice, signal integrity issues may prevent stable operation.
+>>> While some systems include a Parade PS8461 mux chip to mitigate jitter and
+>>> enable HBR3, there is no reliable way to detect its presence.
+>>> Additionally, many systems have broken or missing VBT entries, making it
+>>> unsafe to rely on VBT for link rate limits.
+>>>
+>>> To address this, introduce a new kernel parameter `limit_edp_hbr2`.
+>>> When set, this parameter forces the eDP link rate to be capped at
+>>> HBR2 (540000 kHz), overriding any higher advertised rates from the sink or
+>>> DPCD. By default, the higher rates will be allowed, i.e. the parameter
+>>> will be set to false.
+>>>
+>>> This provides a manual override for users and OEMs to limit the rate to
+>>> HBR2, where output with HBR3 is unstable.
+>> I'm afraid a module parameter is not an acceptable solution.
+>>
+>> Have I missed a discussion why a quirk is not possible?
 >
-> The original problem was that general purpose OS never set
-> CONFIG_MTD_PARTITIONED_MASTER and we need valid device tree
-> to power management to work.
+> The problem I was facing was that the OUI details are available from the 
+> logs in gitlab issue 5969 [1], but the DEVICE_ID field was blank so I 
+> had used DEVICE_ID_ANY.
 >
-> We can return to V7 of this patch that only creates dummy master if
-> CONFIG_MTD_PARTITIONED_MASTER is off.
-> In this case the hierarchy remains the same.
+> +	/* Novatek panel */
+> +	{ OUI(0x38, 0xEC, 0x11), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_HBR3) },
 >
-> Miquel, can you re-review v7 and say if it worth to revert current versio=
-n and
-> put v7 instead?
+> But with this, the HBR3 rate might get removed for many panels with same 
+> OUI, as I had mentioned in [3].
+>
+> Also I feel the issue might not be specific to the panel but perhaps to 
+> few skus with low voltage combo phy ports.
+>
+> But we cannot rely on the low voltage sku check as OEMs are expected to 
+> limit the rate via VBTs. It seems VBTs are also sometimes not correct.
+>
+> You have briefly highlighted the problem in comments in gitlab issue 
+> 5969 [2].
+>
+> So I was thinking if we can give a knob to limit the rate.
 
-After taking inspiration from Richard's wisdom on IRC, we have another
-proposal. Let's drop the mtd_master class. We need an mtd device to be
-the master device, we already have one but we cannot keep *at the
-beginning* of the ID space under the CONFIG_MTD_PARTITIONED_MASTER=3Dn
-configuration to avoid breaking userspace. So let's keep the master
-anyway, with the following specificities in the problematic case:
-- id is allocated from the max value downwards (avoids messing with
-  numbering)
-- mtd device is simply hidden (same user experience as before)
+It has to work out of the box. Module parameters might be handy for us,
+but not the users.
 
-Apparently this second point, while not natively supported, is something
-the block world already does:
-https://elixir.bootlin.com/linux/v6.15.1/source/include/linux/blkdev.h#L88
+> Can we add a quirk for machine/model/vendor to limit the rate for 
+> specific machines?
 
-What do you think?
+Yes, if that's the common denominator.
 
-Thanks,
-Miqu=C3=A8l
+
+BR,
+Jani.
+
+
+
+>
+>
+> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+>
+> [2] 
+> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969#note_2309988
+>
+> [3] https://patchwork.freedesktop.org/patch/654704/?series=149227&rev=1
+>
+>
+> Regards,
+>
+> Ankit
+>
+>>
+>>
+>> BR,
+>> Jani.
+>>
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>> ---
+>>>   .../drm/i915/display/intel_display_params.c   |  2 +
+>>>   .../drm/i915/display/intel_display_params.h   |  1 +
+>>>   drivers/gpu/drm/i915/display/intel_dp.c       | 50 ++++++++++++++++---
+>>>   3 files changed, 46 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+>>> index c4f1ab43fc0c..84f36104f5ca 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+>>> @@ -133,6 +133,8 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+>>>   	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
+>>>   	"Default: -1");
+>>>   
+>>> +intel_display_param_named(limit_edp_hbr2, bool, 0400, "Limit EDP link rate to HBR2 (default: false)");
+>>> +
+>>>   __maybe_unused
+>>>   static void _param_print_bool(struct drm_printer *p, const char *driver_name,
+>>>   			      const char *name, bool val)
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
+>>> index 5317138e6044..f7ba9805f97f 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+>>> @@ -48,6 +48,7 @@ struct drm_printer;
+>>>   	param(bool, psr_safest_params, false, 0400) \
+>>>   	param(bool, enable_psr2_sel_fetch, true, 0400) \
+>>>   	param(int, enable_dmc_wl, -1, 0400) \
+>>> +	param(bool, limit_edp_hbr2, false, 0400) \
+>>>   
+>>>   #define MEMBER(T, member, ...) T member;
+>>>   struct intel_display_params {
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> index 2a0b76ae33cd..85022e5e64f4 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> @@ -174,10 +174,29 @@ int intel_dp_link_symbol_clock(int rate)
+>>>   
+>>>   static int max_dprx_rate(struct intel_dp *intel_dp)
+>>>   {
+>>> +	struct intel_display *display = to_intel_display(intel_dp);
+>>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>>> +	int max_rate;
+>>> +
+>>>   	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+>>> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+>>> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+>>> +	else
+>>> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+>>>   
+>>> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+>>> +	/*
+>>> +	 * Some platforms with combo PHY ports may not reliably support HBR3
+>>> +	 * due to signal integrity limitations, despite advertising it.
+>>> +	 * If the kernel parameter `limit_edp_hbr2` is set, cap the link
+>>> +	 * rate to HBR2 to avoid unstable configurations.
+>>> +	 */
+>>> +	if (max_rate >= 810000 && display->params.limit_edp_hbr2) {
+>>> +		drm_dbg_kms(display->drm,
+>>> +			    "[ENCODER:%d:%s] Forcing max link rate to HBR2 due to limit_edp_hbr2 set\n",
+>>> +			    encoder->base.base.id, encoder->base.name);
+>>> +		max_rate = 540000;
+>>> +	}
+>>> +
+>>> +	return max_rate;
+>>>   }
+>>>   
+>>>   static int max_dprx_lane_count(struct intel_dp *intel_dp)
+>>> @@ -4253,6 +4272,9 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+>>>   static void
+>>>   intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>>>   {
+>>> +	struct intel_display *display = to_intel_display(intel_dp);
+>>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+>>> +
+>>>   	intel_dp->num_sink_rates = 0;
+>>>   
+>>>   	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+>>> @@ -4263,10 +4285,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>>>   				 sink_rates, sizeof(sink_rates));
+>>>   
+>>>   		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+>>> -			int val = le16_to_cpu(sink_rates[i]);
+>>> -
+>>> -			if (val == 0)
+>>> -				break;
+>>> +			int rate;
+>>>   
+>>>   			/* Value read multiplied by 200kHz gives the per-lane
+>>>   			 * link rate in kHz. The source rates are, however,
+>>> @@ -4274,7 +4293,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>>>   			 * back to symbols is
+>>>   			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
+>>>   			 */
+>>> -			intel_dp->sink_rates[i] = (val * 200) / 10;
+>>> +			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
+>>> +
+>>> +			if (rate == 0)
+>>> +				break;
+>>> +
+>>> +			/*
+>>> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+>>> +			 * even if the sink advertises support. If kernel parameter `limit_edp_hbr2`
+>>> +			 * is set, reject any sink rates above HBR2 to ensure stable operation.
+>>> +			 */
+>>> +			if (rate >= 810000 && display->params.limit_edp_hbr2) {
+>>> +				drm_dbg_kms(display->drm,
+>>> +					    "[ENCODER:%d:%s] Limit the rate to HBR2 due to limit_edp_hbr2 param\n",
+>>> +					    encoder->base.base.id, encoder->base.name);
+>>> +				break;
+>>> +			}
+>>> +
+>>> +			intel_dp->sink_rates[i] = rate;
+>>>   		}
+>>>   		intel_dp->num_sink_rates = i;
+>>>   	}
+
+-- 
+Jani Nikula, Intel
