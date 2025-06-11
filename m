@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37CB1AD5B1D
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A27AD5B1E
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:52:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6DAB10E6C1;
-	Wed, 11 Jun 2025 15:52:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 398EB10E6C8;
+	Wed, 11 Jun 2025 15:52:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qs5Wx5u9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRzT+dqy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 788F110E6C7;
- Wed, 11 Jun 2025 15:52:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0464010E6C6;
+ Wed, 11 Jun 2025 15:52:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749657171; x=1781193171;
+ t=1749657175; x=1781193175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=evHoVstVt79tWEq5dSbjADDB14RMxRlkf/21WmZhlsI=;
- b=Qs5Wx5u9YKC6KhTZZ8sTJg3g3zIj3NUavHtP9OpL5VBv7G9Z0+4JLymi
- e30fJIPxkdLlyOJ1pNtXGzRyM205VlWYbHB4Q5X5paUy/64qFOZPIknjF
- vobdW+LTZHKM4c4I8wf0yTc1+nyx++pdx3MqH/uws7KLcbiUAtRrFoY2z
- hap19Waxxl7PEoxNK1TK4mZA0zNQnBpFmPPXvBBHDpRanYtwFsG4udZ0H
- CsEpksTdhXMUTWpMQb7jn2HoTpqJxtXqs+jr2wP4yYBc6R6bhF7cGPwRa
- yLYDzGX3hO98kbz5scqmsSvqpY5eM3NVgBe0RxLFqb0Dp2VYNPCGydXCn g==;
-X-CSE-ConnectionGUID: jkvjaurkTFWgp3FLtjxPRg==
-X-CSE-MsgGUID: MSJDET5LSYCF/bGLuxATWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419106"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419106"
+ bh=YXQiqq8ZmbhWGOJKfLZYdV6LESOVwXy5rsigvlqYSGE=;
+ b=QRzT+dqy4DdmTWHagRoNZGlYsr/DMVqZgacTg7YJ9DG2k5uKyur5Jxao
+ QrqROenF+kR8Nqu7GfmQpTAs6Uxc95fwnQaIKOOnz6AYcWKE906v6YkZq
+ LOqbonfd7Sn7dcH2AVvVv5xGnUYoHNklpveI6muU8QSLbne8CuoplEpXo
+ ak5G3OiXJgYMr2eKgTvP/PJd/skGGRMfP8GcI9z6MNPOM+L9ipHRWbTZo
+ bt5DFKg6JZ2Xc8AwzhtUPqWuK8QArpXZ+DlRw68GCpt5X5L3+WaU8ybNb
+ qwmO84jc9im6Mpq7tvo87650MvkHpyx17Osz8PrYwwtU1gaq1EfuWc5ga Q==;
+X-CSE-ConnectionGUID: Gv9X6VbrTVmX1qLv71GcKw==
+X-CSE-MsgGUID: R9n/E5cgROmdtdNF9Y9/3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419110"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419110"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:52:51 -0700
-X-CSE-ConnectionGUID: 55dKuemzRr6WY1TUH21TBA==
-X-CSE-MsgGUID: /rLKC979QI2TsubwVqFtJw==
+ 11 Jun 2025 08:52:55 -0700
+X-CSE-ConnectionGUID: UdkvdXwVQ7ukssCsBF2jqg==
+X-CSE-MsgGUID: iBk9+X1lQH66rbEfCSKlYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507332"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507355"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:49 -0700
+ by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:53 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 18:52:47 +0300
+ Wed, 11 Jun 2025 18:52:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 2/9] drm/i915/dmc: Parametrize MTL_PIPEDMC_GATING_DIS
-Date: Wed, 11 Jun 2025 18:52:34 +0300
-Message-ID: <20250611155241.24191-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/9] drm/i915/dmc: Shuffle code around
+Date: Wed, 11 Jun 2025 18:52:35 +0300
+Message-ID: <20250611155241.24191-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
 References: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
@@ -73,44 +73,185 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The MTL+ pipe DMC clock gating bits can be parametrized.
-Make it so.
+Shuffle the DMC_EVT_CTL related stuff around once more. We'll need
+this stuff during intel_dmc_enable_pipe(), and this lets us avoid
+forward declarations.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
- drivers/gpu/drm/i915/i915_reg.h          | 3 +--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 144 +++++++++++------------
+ 1 file changed, 72 insertions(+), 72 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index b6ac480f391c..6392fa928e08 100644
+index 6392fa928e08..5a43298cd0e7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -482,7 +482,8 @@ static void mtl_pipedmc_clock_gating_wa(struct intel_display *display)
- 	 * for pipe A and B.
- 	 */
- 	intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
--		     MTL_PIPEDMC_GATING_DIS_A | MTL_PIPEDMC_GATING_DIS_B);
-+		     MTL_PIPEDMC_GATING_DIS(PIPE_A) |
-+		     MTL_PIPEDMC_GATING_DIS(PIPE_B));
+@@ -505,42 +505,6 @@ static u32 pipedmc_interrupt_mask(struct intel_display *display)
+ 		PIPEDMC_ATS_FAULT;
  }
  
- static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 52a902532e6f..04fb40867cc0 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -763,8 +763,7 @@
-  */
- #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
- #define   DARBF_GATING_DIS		REG_BIT(27)
--#define   MTL_PIPEDMC_GATING_DIS_A	REG_BIT(15)
--#define   MTL_PIPEDMC_GATING_DIS_B	REG_BIT(14)
-+#define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
- #define   PWM2_GATING_DIS		REG_BIT(14)
- #define   PWM1_GATING_DIS		REG_BIT(13)
+-void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+-{
+-	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+-
+-	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+-		return;
+-
+-	if (DISPLAY_VER(display) >= 20) {
+-		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
+-		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
+-	}
+-
+-	if (DISPLAY_VER(display) >= 14)
+-		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
+-	else
+-		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), 0, PIPEDMC_ENABLE);
+-}
+-
+-void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
+-{
+-	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
+-
+-	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+-		return;
+-
+-	if (DISPLAY_VER(display) >= 14)
+-		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
+-	else
+-		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
+-
+-	if (DISPLAY_VER(display) >= 20) {
+-		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
+-		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
+-	}
+-}
+-
+ static u32 dmc_evt_ctl_disable(void)
+ {
+ 	return REG_FIELD_PREP(DMC_EVT_CTL_TYPE_MASK,
+@@ -578,6 +542,78 @@ static bool is_event_handler(struct intel_display *display,
+ 		REG_FIELD_GET(DMC_EVT_CTL_EVENT_ID_MASK, data) == event_id;
+ }
  
++static bool disable_dmc_evt(struct intel_display *display,
++			    enum intel_dmc_id dmc_id,
++			    i915_reg_t reg, u32 data)
++{
++	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
++		return false;
++
++	/* keep all pipe DMC events disabled by default */
++	if (dmc_id != DMC_FW_MAIN)
++		return true;
++
++	/* also disable the flip queue event on the main DMC on TGL */
++	if (display->platform.tigerlake &&
++	    is_event_handler(display, dmc_id, MAINDMC_EVENT_CLK_MSEC, reg, data))
++		return true;
++
++	/* also disable the HRR event on the main DMC on TGL/ADLS */
++	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
++	    is_event_handler(display, dmc_id, MAINDMC_EVENT_VBLANK_A, reg, data))
++		return true;
++
++	return false;
++}
++
++static u32 dmc_mmiodata(struct intel_display *display,
++			struct intel_dmc *dmc,
++			enum intel_dmc_id dmc_id, int i)
++{
++	if (disable_dmc_evt(display, dmc_id,
++			    dmc->dmc_info[dmc_id].mmioaddr[i],
++			    dmc->dmc_info[dmc_id].mmiodata[i]))
++		return dmc_evt_ctl_disable();
++	else
++		return dmc->dmc_info[dmc_id].mmiodata[i];
++}
++
++void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
++{
++	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
++
++	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
++		return;
++
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
++	}
++
++	if (DISPLAY_VER(display) >= 14)
++		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, 0, PIPEDMC_ENABLE_MTL(pipe));
++	else
++		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), 0, PIPEDMC_ENABLE);
++}
++
++void intel_dmc_disable_pipe(struct intel_display *display, enum pipe pipe)
++{
++	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
++
++	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
++		return;
++
++	if (DISPLAY_VER(display) >= 14)
++		intel_de_rmw(display, MTL_PIPEDMC_CONTROL, PIPEDMC_ENABLE_MTL(pipe), 0);
++	else
++		intel_de_rmw(display, PIPEDMC_CONTROL(pipe), PIPEDMC_ENABLE, 0);
++
++	if (DISPLAY_VER(display) >= 20) {
++		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~0);
++		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
++	}
++}
++
+ static void dmc_configure_event(struct intel_display *display,
+ 				enum intel_dmc_id dmc_id,
+ 				unsigned int event_id,
+@@ -638,42 +674,6 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display
+ 	dmc_configure_event(display, dmc_id, PIPEDMC_EVENT_VBLANK, enable);
+ }
+ 
+-static bool disable_dmc_evt(struct intel_display *display,
+-			    enum intel_dmc_id dmc_id,
+-			    i915_reg_t reg, u32 data)
+-{
+-	if (!is_dmc_evt_ctl_reg(display, dmc_id, reg))
+-		return false;
+-
+-	/* keep all pipe DMC events disabled by default */
+-	if (dmc_id != DMC_FW_MAIN)
+-		return true;
+-
+-	/* also disable the flip queue event on the main DMC on TGL */
+-	if (display->platform.tigerlake &&
+-	    is_event_handler(display, dmc_id, MAINDMC_EVENT_CLK_MSEC, reg, data))
+-		return true;
+-
+-	/* also disable the HRR event on the main DMC on TGL/ADLS */
+-	if ((display->platform.tigerlake || display->platform.alderlake_s) &&
+-	    is_event_handler(display, dmc_id, MAINDMC_EVENT_VBLANK_A, reg, data))
+-		return true;
+-
+-	return false;
+-}
+-
+-static u32 dmc_mmiodata(struct intel_display *display,
+-			struct intel_dmc *dmc,
+-			enum intel_dmc_id dmc_id, int i)
+-{
+-	if (disable_dmc_evt(display, dmc_id,
+-			    dmc->dmc_info[dmc_id].mmioaddr[i],
+-			    dmc->dmc_info[dmc_id].mmiodata[i]))
+-		return dmc_evt_ctl_disable();
+-	else
+-		return dmc->dmc_info[dmc_id].mmiodata[i];
+-}
+-
+ /**
+  * intel_dmc_load_program() - write the firmware from memory to register.
+  * @display: display instance
 -- 
 2.49.0
 
