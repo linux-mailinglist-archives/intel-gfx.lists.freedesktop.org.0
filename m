@@ -2,28 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5643AD5C8D
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 18:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 722FCAD5CD1
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 19:03:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAF5B10E6D7;
-	Wed, 11 Jun 2025 16:44:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5EE10E089;
+	Wed, 11 Jun 2025 17:03:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 597AB10E6D7;
- Wed, 11 Jun 2025 16:44:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF12210E6D8;
+ Wed, 11 Jun 2025 17:03:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Add_WildCat_Lake_support?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_use_drm-?=
+ =?utf-8?q?=3Edebugfs=5Froot_when_creating_debugfs_files?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Jun 2025 16:44:37 -0000
-Message-ID: <174966027735.68523.2337383864054795412@1538d3639d33>
+Date: Wed, 11 Jun 2025 17:03:45 -0000
+Message-ID: <174966142590.68523.6454104535653123958@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
-In-Reply-To: <20250611134431.2761487-1-dnyaneshwar.bhadane@intel.com>
+References: <cover.1749653354.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1749653354.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,30 +43,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Add WildCat Lake support
-URL   : https://patchwork.freedesktop.org/series/150101/
-State : failure
+Series: drm/i915: use drm->debugfs_root when creating debugfs files
+URL   : https://patchwork.freedesktop.org/series/150107/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/150101/revisions/1/mbox/ not applied
-Applying: drm/i915/xe3lpd: Add support for display version 30.02
-Applying: drm/xe/xe3: Add support for graphics IP version 30.03
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/xe/xe_pci.c
-M	drivers/gpu/drm/xe/xe_wa.c
-M	drivers/gpu/drm/xe/xe_wa_oob.rules
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/xe/xe_wa_oob.rules
-CONFLICT (content): Merge conflict in drivers/gpu/drm/xe/xe_wa_oob.rules
-Auto-merging drivers/gpu/drm/xe/xe_wa.c
-Auto-merging drivers/gpu/drm/xe/xe_pci.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0002 drm/xe/xe3: Add support for graphics IP version 30.03
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+5451989ae13f drm/i915/display: use drm->debugfs_root for creating debugfs files
+55ada7f9950e drm/i915/gvt: use drm->debugfs_root for creating debugfs files
+94a446284629 drm/i915: use drm->debugfs_root for creating debugfs files
+-:54: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR' are not preferred. Consider using octal permissions '0400'.
+#54: FILE: drivers/gpu/drm/i915/i915_debugfs.c:730:
++	debugfs_create_file("i915_forcewake_user", S_IRUSR, debugfs_root,
+
+-:61: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUGO | S_IWUSR' are not preferred. Consider using octal permissions '0644'.
+#61: FILE: drivers/gpu/drm/i915/i915_debugfs.c:733:
++		debugfs_create_file(i915_debugfs_files[i].name, S_IRUGO | S_IWUSR,
+
+total: 0 errors, 2 warnings, 0 checks, 100 lines checked
 
 
