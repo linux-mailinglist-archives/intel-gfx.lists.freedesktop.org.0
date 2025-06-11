@@ -2,62 +2,180 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC8BAD5A6F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E690AD5AEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:45:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC4310E6A0;
-	Wed, 11 Jun 2025 15:28:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF5410E6AB;
+	Wed, 11 Jun 2025 15:45:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOqtp5Bj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyUOyZua";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2484810E6AB;
- Wed, 11 Jun 2025 15:28:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E86710E6AA;
+ Wed, 11 Jun 2025 15:45:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749655728; x=1781191728;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KxdvxLlNCAsSGTFGXVOF3IKvpbDWDLYX69ZREtu1/2c=;
- b=QOqtp5BjKF4FfJhK+IKSEYaGYcfafYWg3gyQkQFx998vP/TdBJlUzRY8
- JWraTXOCZTHq9keEI76pXVDLZ8hUltDXhle1zPpopTMm5AunUMveEylS+
- EIp88ZvqW+1BLJwC1L4jyuQ8Tma+8nAjyrcsOcuCdrM3izIAobuJ/3q0Q
- f9X4Vh3LdbVTPLEMDxn02592cfgCUgFpUwOLuTDhunbjWtCq8e4WPZqpy
- ahHMy5i4bVw6KmLfscEY7P1au40Ca7NlX01lKEIIDs8G4quHZIqzMylfU
- Bt+jtVbp7ZUv0aXVowLMbFAMlWmwrZEk4ijY2dotJuiV8kONo883201RD A==;
-X-CSE-ConnectionGUID: iav6dOY2Q7uio0YBVopHuQ==
-X-CSE-MsgGUID: jQ4PXJPbQDCbTVJwWyl/rw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="55599473"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="55599473"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:28:47 -0700
-X-CSE-ConnectionGUID: q6b0Oor1TImDMCMCfDQRpA==
-X-CSE-MsgGUID: TXyolTxrSsW7kz16zFGZBw==
+ t=1749656750; x=1781192750;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=jjHkkQSuaX2UrQYPUTJQWVK4WpbEdUw5BY6YoV1yZS8=;
+ b=hyUOyZuayrvTILPqCVP9ZGi/igTQiHqpN7QEeSpVlvs7KYLTtLTEEVlA
+ UWVnT33RqL65HTS26xPsmd7nVXajxQ8lvC99m3evls5Qx9tL2TH7PB5Mp
+ V+unXShR6XdNJCRdUYiSc3lOMdwJqibH5n+m/hABmThTLev7hIklyknxD
+ camTnopbkTGoeCTsjDsAsgRcMyt3oCI0RXNnTn1GqVatH3+pvwhx6tKfx
+ uiuJ2gvDHJQFSWXV0VDwtANLjeIxDXfcNQsmL10cFzDMLnvA7ahaWwCzK
+ VdMplxK6/ZTJttWc/dkTFf1m7RHIRs0dTZXZdxLMqWMYcTEGdkUY0b51C Q==;
+X-CSE-ConnectionGUID: qLHPXsl+Q6GcJIMczWqdpw==
+X-CSE-MsgGUID: EsTCi9/NRwKzy5UhfBz+mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62418130"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62418130"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 08:45:50 -0700
+X-CSE-ConnectionGUID: yb+mhw6RTAKk2aE+0nNdoQ==
+X-CSE-MsgGUID: PJYsQg1SR1ugBFFtBsc8cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147117844"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.209])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:28:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/dp: Add kernel param to limit eDP rate to
- HBR2"
-In-Reply-To: <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250610100449.185927-1-ankit.k.nautiyal@intel.com>
- <20250610100449.185927-3-ankit.k.nautiyal@intel.com>
- <826e4afa3d3827e40628e69ccecfcb21201c2faa@intel.com>
- <7997df81-b3ee-4aa0-b278-a5b7f9b88023@intel.com>
-Date: Wed, 11 Jun 2025 18:28:42 +0300
-Message-ID: <1cd154a09823abf6d34221ae9e02f9cd342cc3a3@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="148133648"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Jun 2025 08:45:49 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 11 Jun 2025 08:45:48 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Wed, 11 Jun 2025 08:45:48 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.80)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 11 Jun 2025 08:45:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HvXOmrs2aBj7BAVkcjsXGKk0qNcO1HFKTrE0ShxI3gH6mZbNy8QFcaDgc6eT1YmEY8sbBoBWjv2ikgfacco/HowSbbX+kEcAyiG0CKXq4lxbWErdLS4P9HajXHa4nf2VhUvBjqnKZ8VrdoZ9Kqf2YlgzDQyN7O4tPzS1f0fQxUF9GtjkOg6kNMtgF2ccB3BtVYxWaSKb1BnRPVEOI5+Xhaa9mq6k/6au3zwuQrZLuClHvPVzenuaIHlAPuTeqCnEtT5KUfKbm1vI56Juz/ZRpHgZPxOwE+/ptH9tc2qzuI+ZVzuDj/8aZC3HzXQO4DywRvnP0NOyuFKP2PsZBWfUgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jjHkkQSuaX2UrQYPUTJQWVK4WpbEdUw5BY6YoV1yZS8=;
+ b=sKcI3kMq34u6b2BBrycc/FsH7p4Tw7QD5Ro2a8sXEWcK2HTkTpg2vkAn946RyBBi7zDG/gH/wVcKcUJgk96n5gh1mgmz+rXh3K+YR9hxIyOo3F62i6Nu4BiGf99Tm7TuJuhrD7bm6T2xIDsag3Ukrv95VoMl9dUqkTjT8zcBQ0Dgk0jfLpylI4EZnTyuBSdeagoiz+A9v+MhFTju8OHSYM/BEOnKVUEFhb6O4ZtIiEkyZPrFlA6GHrVb8dFa+U9DG+9hxnu4bAI+LtMXxTLnm3OqbZuRi4n7kqJOm9xUKwqaSrSFVMJ3sDVOu/9l4R49TFcnOJlvEON7s/fI6Kr3XQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA3PR11MB8987.namprd11.prod.outlook.com (2603:10b6:208:574::18)
+ by LV3PR11MB8765.namprd11.prod.outlook.com (2603:10b6:408:21d::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.33; Wed, 11 Jun
+ 2025 15:45:30 +0000
+Received: from IA3PR11MB8987.namprd11.prod.outlook.com
+ ([fe80::c011:ff94:944e:f96e]) by IA3PR11MB8987.namprd11.prod.outlook.com
+ ([fe80::c011:ff94:944e:f96e%3]) with mapi id 15.20.8769.022; Wed, 11 Jun 2025
+ 15:45:30 +0000
+From: "Gote, Nitin R" <nitin.r.gote@intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Jani
+ Nikula" <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Chris Wilson
+ <chris.p.wilson@linux.intel.com>, "Auld, Matthew" <matthew.auld@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, "Brzezinka, Sebastian"
+ <sebastian.brzezinka@intel.com>, "Niemiec, Krzysztof"
+ <krzysztof.niemiec@intel.com>, "Karas, Krzysztof"
+ <krzysztof.karas@intel.com>, intel-gfx <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA
+ alloc error
+Thread-Topic: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA
+ alloc error
+Thread-Index: AQHb2r3jfw1Cv7ISzkejGXdwI9YcWbP+FNYw
+Date: Wed, 11 Jun 2025 15:45:30 +0000
+Message-ID: <IA3PR11MB89873936B6D887A59ABD909CD075A@IA3PR11MB8987.namprd11.prod.outlook.com>
+References: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA3PR11MB8987:EE_|LV3PR11MB8765:EE_
+x-ms-office365-filtering-correlation-id: 5be1c85e-59dd-462d-3522-08dda8fefeea
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?KpbEB/pUuzDdeQRn74xYnu4W7nmykrKd1nD99HG0BG0FP6ZotagzjfraGE?=
+ =?iso-8859-1?Q?iALKjvwIENE9xwc7oxjFhxA/a5vLXIfhY2EO+/xgDjmjIK9jMwExPGIVOj?=
+ =?iso-8859-1?Q?rRcBMGvD8X/Cyr0JpcD9uGRVwnKBxy1p7XEw9TS5Ll7Uwiu7Bvhzjr1Rva?=
+ =?iso-8859-1?Q?V08KnYNXAQ+aVAbsns+ootEXNQxk4K0PO3Qi309Df4QaeaTep1lor7FBue?=
+ =?iso-8859-1?Q?G4Cw/RO+d42Iy4D5VG9TU5Q372bVqQxgHt95+3pjLCQ3QHD1KkLLxdr0qJ?=
+ =?iso-8859-1?Q?VI1Drn5fTeBw2DISjlNyMuf81zj4A+e0XHwXWiRAKYDoa7ZfAUNO6CSMkc?=
+ =?iso-8859-1?Q?m8qg3DnT3t9KUJeJMPUT/5MihbkdA8lx7O4jCxIQtv/VxaQEH70ybeRg6b?=
+ =?iso-8859-1?Q?iDRVe6e8iiyI9XDC0OXQnuwoh4EuxWiiP078cpkasInsxXoZ0HG6E3csO0?=
+ =?iso-8859-1?Q?Jyy28UVKi7A6XrS45NHUnuYR3gtEf/bffr5eBdzOEmZ18e6mBrStVM5Mby?=
+ =?iso-8859-1?Q?DJd032kAyP61RomfbAzBqbld0xrC0TUeHm6wUYbV7R4MSBuGevkVzo4z6J?=
+ =?iso-8859-1?Q?jUcKjXSkiG+EIoLH46E+G24T2JuQyxAjyRpKYujtRE45G9bPFzaDD8rGq/?=
+ =?iso-8859-1?Q?H9Go8UBJbqVyT8l/xuD2wBpqXP5bkgnY6Dm2ZYxQb+s8ukSSnvyBYxqmBr?=
+ =?iso-8859-1?Q?EgNXrJhTHMg8gordMp3IgnssyhQvYPjaFVYbc28/eOv583fYOR/yjdmjnd?=
+ =?iso-8859-1?Q?QtWa4/XykHdLl0inSHWa0ldPUmlweHAN0wDiPvYljOGCLa5+dtd4F+JBfj?=
+ =?iso-8859-1?Q?Cgtkpgymr2F+G/SHzC3H0C6C+dVXbVUU8K0TCygWu4mNEYmjR5EpOr/TmQ?=
+ =?iso-8859-1?Q?WvlorsPfZadRC7cZSBmouF8II6dOKM6LVEUBOIdTJMpQnuarX+IdHE3kHw?=
+ =?iso-8859-1?Q?ST/3sg3vgyS5YSn7SVoBDQPtEbAOcVUfByIMHcHH2V+ddqjtS5uBPdXihv?=
+ =?iso-8859-1?Q?6iSRviW3MdCgx1olGHy61YvNyY3hEXKHx9WBwM/Vo68pt+gHyhnojNbDh1?=
+ =?iso-8859-1?Q?a7PSu3vx/7fXYZ8l/REXVYyR6wUTsgC5Z9jfk5PIlXcRJmFrYbcgGj8F8w?=
+ =?iso-8859-1?Q?Lw9E8wgI2mc3liVxmeAxDfJgBxRnVMXLuS+VgAau189GXlY0qZ+cIBnoH1?=
+ =?iso-8859-1?Q?gy6uyBnKjWFWLVZUykpL+sRvveCvup/xuxuVr3EtNKT8ZvzMu82rb5uFMf?=
+ =?iso-8859-1?Q?nwvR3RkOVlci5fVKQCsbcI9oAicv4A9nbvi2g71pCJmyEyJo4LumaXncRb?=
+ =?iso-8859-1?Q?Uesw6flLq2/ntjTwQUyoEMzQ74dBifuuieihMri5xVWHPL1BeRiZSP9MYo?=
+ =?iso-8859-1?Q?PYYcPFxlui89LJTCETZr+2s/K+R5f2sS2bC36hhmxu9wwf0PSD8NKmfubq?=
+ =?iso-8859-1?Q?Z2YEDjrSDwVklm9/0yADZcLHarbSDLYCBey4PTLWr+JFGLlx++LCoAeMVy?=
+ =?iso-8859-1?Q?LYwOlPNQIn71Zdn6PTR6xZ9cKIy9HPG7QI0zdXppvNsRII4dSFaggyYuPu?=
+ =?iso-8859-1?Q?6hn+ero=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB8987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Z3q1YQfL0vUfDGWuXzWlKMpULLQvJYFJYXf7nLhcYX1JBjgPaN9b3qmMbD?=
+ =?iso-8859-1?Q?n9zh4BDPvXwB5aqbkk4sXgQi1V3LOfBftKYamjMLXqAipy3ulOgcRzuc2l?=
+ =?iso-8859-1?Q?4ERZ7iagZrAsyOyhe9+o/Xt8Um+HomhuoGyyEXCWxI2ctADknohl+AXmPV?=
+ =?iso-8859-1?Q?/yg2txa9Ms+ya9mDI63wkAtui5jmnk55zkNzstHyWMDvcvrgvawMzH4R7j?=
+ =?iso-8859-1?Q?fwrjBImG2hSSt+wwm+nOzBg4Ssd0AUdddBwdCTE7dDOwzsI18grQUU37aF?=
+ =?iso-8859-1?Q?hinQOQ3WjdhIyJKUfPE+IHmb0sB3uC3esZ68TcpVpe5TKKwaQaUE1Q+AQe?=
+ =?iso-8859-1?Q?TyhCQJ4o2ks4zWQcn8aUbQlPgvLpCZeTuPgBUPoRhgrJ8z0J7ZGCQUT4N5?=
+ =?iso-8859-1?Q?U/i5XeKfyecIyPfS7acbKoHeBq0p690havqqoB4hPHIZUAhEibOUbifb7J?=
+ =?iso-8859-1?Q?YxfM0RIKvHOBOKY4LlFpycd3WmuTQyU3fsta/5ntY/T5AhP0i4OjL3+yUT?=
+ =?iso-8859-1?Q?cZq59Pmq1KkvipNyFYyoHQzUnKFHfJOLIPw1QTCmr3l/U08DazFnoaaRxx?=
+ =?iso-8859-1?Q?MtmixjbVn9BusW1D6q//vsA+0emvGskJnDJqLy+asf0b1wMhWawSzDoDB7?=
+ =?iso-8859-1?Q?Xhn2ez3sWChMyEJp6a/5Q47u+eBqLVten0xNwzmCN+5Obq6M0gPrP9p/YD?=
+ =?iso-8859-1?Q?RYjRTugvL64C+9CR6xilcJcPu/ScWrKgSNqCbk+6nbdmqnXIDaCm6wFudo?=
+ =?iso-8859-1?Q?H0/lfT40ejMSfsOAh04YnD1Gyx0ejasqbOKmtDh/ngKBih7vkvSBCbj/qz?=
+ =?iso-8859-1?Q?83QvfGiX6wEKMoJ8X0RD51dMUEsxmnV/b0ByrSoNj2Ybq0RyO4VDxs0sDf?=
+ =?iso-8859-1?Q?8Bd2CLcnqGBQdqGqPCOWMWzcbAfDuK5j+2l5tglzxUNF5gpleq/2SGLf/N?=
+ =?iso-8859-1?Q?0ySY9/sVEIRaEYLvV8/t/RWtISALDynZrQ3idWxC2uPtZRk70Ffpm3ByKu?=
+ =?iso-8859-1?Q?GCYfWTf6GoVJb2aqK+IdAENsR9PyXyMIjITVFH2Wv1AUPgqhVf9BTkV3hj?=
+ =?iso-8859-1?Q?V/83xI3qrdLcV2q09QQyHfXQuXCDKy9lvgRcIajWyHGhX/vbKIzqST8eoN?=
+ =?iso-8859-1?Q?sR5QMv6/IL+jWJhE+jneeT1N8tAN6sQXjhXQFJV4CVyRwL1pnHDWtUsh1g?=
+ =?iso-8859-1?Q?NzradEN6UeZgbRorJKlc/W8QGuRTeQ2aX8IvlI5aeCRyYWTmsvNIiQGDzu?=
+ =?iso-8859-1?Q?GKRtrs0fyt5+5lxEhhNs+8xmv6A2o/msMi/cP2+7zZWcIR/tzGW6+kSBzz?=
+ =?iso-8859-1?Q?AhXaw6DIX6cz8RSDfjQxbNQJ1d+BUPrfNLVhRLemvHTsMCykzpbPMAJEM7?=
+ =?iso-8859-1?Q?B9u2QoDOsVwiC8L9WQtS1jcDzf3TGh/bkh16Q74I1W/YvOibpqr5oRvXCK?=
+ =?iso-8859-1?Q?cyNtElP9xcrHt/ivz+FwPuNOx1tv023u5alki87PyBTOsRa0Y9kQdmHYQ3?=
+ =?iso-8859-1?Q?uMoVnbWcQVbW4iFI9sOg8Uos50HUw3SXQ3KGa3quLK+D0n0/c381HdLHrd?=
+ =?iso-8859-1?Q?fPQggMZyR6D3RjUF3lD82qqjKigYsT6gFbvGSJ9PguLwR7XFXZ8R3fD5xG?=
+ =?iso-8859-1?Q?PoBfMluPKnp0nMcYORgmMhT6ujSL0Abu1y?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5be1c85e-59dd-462d-3522-08dda8fefeea
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2025 15:45:30.7984 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VLOMyACT/nkClGx1ZXIeqmjuq5OBtx7tNa1DY3ix6NNEjAx8yrheGVKZ+wGugWtaK/vfr8z+1o/FEVSW0q6LYQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8765
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,198 +191,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Jun 2025, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 6/10/2025 5:52 PM, Jani Nikula wrote:
->> On Tue, 10 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
->>> Some ICL/TGL platforms with combo PHY ports can theoretically support HBR3,
->>> but in practice, signal integrity issues may prevent stable operation.
->>> While some systems include a Parade PS8461 mux chip to mitigate jitter and
->>> enable HBR3, there is no reliable way to detect its presence.
->>> Additionally, many systems have broken or missing VBT entries, making it
->>> unsafe to rely on VBT for link rate limits.
->>>
->>> To address this, introduce a new kernel parameter `limit_edp_hbr2`.
->>> When set, this parameter forces the eDP link rate to be capped at
->>> HBR2 (540000 kHz), overriding any higher advertised rates from the sink or
->>> DPCD. By default, the higher rates will be allowed, i.e. the parameter
->>> will be set to false.
->>>
->>> This provides a manual override for users and OEMs to limit the rate to
->>> HBR2, where output with HBR3 is unstable.
->> I'm afraid a module parameter is not an acceptable solution.
->>
->> Have I missed a discussion why a quirk is not possible?
->
-> The problem I was facing was that the OUI details are available from the 
-> logs in gitlab issue 5969 [1], but the DEVICE_ID field was blank so I 
-> had used DEVICE_ID_ANY.
->
-> +	/* Novatek panel */
-> +	{ OUI(0x38, 0xEC, 0x11), DEVICE_ID_ANY, false, BIT(DP_DPCD_QUIRK_HBR3) },
->
-> But with this, the HBR3 rate might get removed for many panels with same 
-> OUI, as I had mentioned in [3].
->
-> Also I feel the issue might not be specific to the panel but perhaps to 
-> few skus with low voltage combo phy ports.
->
-> But we cannot rely on the low voltage sku check as OEMs are expected to 
-> limit the rate via VBTs. It seems VBTs are also sometimes not correct.
->
-> You have briefly highlighted the problem in comments in gitlab issue 
-> 5969 [2].
->
-> So I was thinking if we can give a knob to limit the rate.
+Hi Janusz,
 
-It has to work out of the box. Module parameters might be handy for us,
-but not the users.
-
-> Can we add a quirk for machine/model/vendor to limit the rate for 
-> specific machines?
-
-Yes, if that's the common denominator.
-
-
-BR,
-Jani.
-
-
-
+[...]
+> Subject: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA =
+alloc
+> error
 >
->
-> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
->
-> [2] 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969#note_2309988
->
-> [3] https://patchwork.freedesktop.org/patch/654704/?series=149227&rev=1
->
->
-> Regards,
->
-> Ankit
->
->>
->>
->> BR,
->> Jani.
->>
->>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>> ---
->>>   .../drm/i915/display/intel_display_params.c   |  2 +
->>>   .../drm/i915/display/intel_display_params.h   |  1 +
->>>   drivers/gpu/drm/i915/display/intel_dp.c       | 50 ++++++++++++++++---
->>>   3 files changed, 46 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> index c4f1ab43fc0c..84f36104f5ca 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->>> @@ -133,6 +133,8 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
->>>   	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
->>>   	"Default: -1");
->>>   
->>> +intel_display_param_named(limit_edp_hbr2, bool, 0400, "Limit EDP link rate to HBR2 (default: false)");
->>> +
->>>   __maybe_unused
->>>   static void _param_print_bool(struct drm_printer *p, const char *driver_name,
->>>   			      const char *name, bool val)
->>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> index 5317138e6044..f7ba9805f97f 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
->>> @@ -48,6 +48,7 @@ struct drm_printer;
->>>   	param(bool, psr_safest_params, false, 0400) \
->>>   	param(bool, enable_psr2_sel_fetch, true, 0400) \
->>>   	param(int, enable_dmc_wl, -1, 0400) \
->>> +	param(bool, limit_edp_hbr2, false, 0400) \
->>>   
->>>   #define MEMBER(T, member, ...) T member;
->>>   struct intel_display_params {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>> index 2a0b76ae33cd..85022e5e64f4 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>> @@ -174,10 +174,29 @@ int intel_dp_link_symbol_clock(int rate)
->>>   
->>>   static int max_dprx_rate(struct intel_dp *intel_dp)
->>>   {
->>> +	struct intel_display *display = to_intel_display(intel_dp);
->>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->>> +	int max_rate;
->>> +
->>>   	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
->>> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->>> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
->>> +	else
->>> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->>>   
->>> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
->>> +	/*
->>> +	 * Some platforms with combo PHY ports may not reliably support HBR3
->>> +	 * due to signal integrity limitations, despite advertising it.
->>> +	 * If the kernel parameter `limit_edp_hbr2` is set, cap the link
->>> +	 * rate to HBR2 to avoid unstable configurations.
->>> +	 */
->>> +	if (max_rate >= 810000 && display->params.limit_edp_hbr2) {
->>> +		drm_dbg_kms(display->drm,
->>> +			    "[ENCODER:%d:%s] Forcing max link rate to HBR2 due to limit_edp_hbr2 set\n",
->>> +			    encoder->base.base.id, encoder->base.name);
->>> +		max_rate = 540000;
->>> +	}
->>> +
->>> +	return max_rate;
->>>   }
->>>   
->>>   static int max_dprx_lane_count(struct intel_dp *intel_dp)
->>> @@ -4253,6 +4272,9 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
->>>   static void
->>>   intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   {
->>> +	struct intel_display *display = to_intel_display(intel_dp);
->>> +	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
->>> +
->>>   	intel_dp->num_sink_rates = 0;
->>>   
->>>   	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
->>> @@ -4263,10 +4285,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   				 sink_rates, sizeof(sink_rates));
->>>   
->>>   		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
->>> -			int val = le16_to_cpu(sink_rates[i]);
->>> -
->>> -			if (val == 0)
->>> -				break;
->>> +			int rate;
->>>   
->>>   			/* Value read multiplied by 200kHz gives the per-lane
->>>   			 * link rate in kHz. The source rates are, however,
->>> @@ -4274,7 +4293,24 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>>   			 * back to symbols is
->>>   			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
->>>   			 */
->>> -			intel_dp->sink_rates[i] = (val * 200) / 10;
->>> +			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
->>> +
->>> +			if (rate == 0)
->>> +				break;
->>> +
->>> +			/*
->>> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
->>> +			 * even if the sink advertises support. If kernel parameter `limit_edp_hbr2`
->>> +			 * is set, reject any sink rates above HBR2 to ensure stable operation.
->>> +			 */
->>> +			if (rate >= 810000 && display->params.limit_edp_hbr2) {
->>> +				drm_dbg_kms(display->drm,
->>> +					    "[ENCODER:%d:%s] Limit the rate to HBR2 due to limit_edp_hbr2 param\n",
->>> +					    encoder->base.base.id, encoder->base.name);
->>> +				break;
->>> +			}
->>> +
->>> +			intel_dp->sink_rates[i] = rate;
->>>   		}
->>>   		intel_dp->num_sink_rates = i;
->>>   	}
 
--- 
-Jani Nikula, Intel
+Generally, it's preferred to use "drm/i915/gt:" file path over "drm/i915/ri=
+ng_submission:"=A0 file name in the=A0commit title.
+Otherwise, the=A0patch looks good to me.
+
+Reviewed-by: Nitin Gote <nitin.r.gote@intel.com>
+
+=20
+
