@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2EC6AD5944
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F457AD5945
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 16:51:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F18E10E69C;
-	Wed, 11 Jun 2025 14:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04CE210E69E;
+	Wed, 11 Jun 2025 14:51:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C81+qc+5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8C2QgQz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 922EB10E69B;
- Wed, 11 Jun 2025 14:51:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6652610E6A0;
+ Wed, 11 Jun 2025 14:51:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749653487; x=1781189487;
+ t=1749653492; x=1781189492;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=94VC4xh8wz4vwt0uiYdJCIsQuuK0uZVy0uruRCcrDRw=;
- b=C81+qc+5xg8ZBh/0HV9Tiv4pbsuruPWDcgJbk3pq+lYVYDotrWI608gG
- E6FMLOLrEN4pDULgd9YKLUi9KXpF5xxeKblT4MkwBLiN2s4ylahUVooV3
- s2ZI85nfBwh83n9SjXZMMGGzz7HkkCmrzJCZnJm/ZP/1B2J9u5AVPeN11
- 8DOctQj4yx/YO3b288mFkQRenFTY6vNjD5GtxNgoZSO4Gc7QH7iiI+CLC
- +8tdPgo8z7AiOY2tU/+LNJoaV6ihsII0Wi1XaJ2mkTq8gQ+zRKh+j5cl8
- ENjsZsXnekkH3HjAZeOR5ijMIaTBjfv5j7L5daf1CWykPWxHot0+ASGQP w==;
-X-CSE-ConnectionGUID: D8q6tW8pTI6hk+bvu7EoBA==
-X-CSE-MsgGUID: 7mMquyN7T8yckcoKrNRkrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51714032"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51714032"
+ bh=rVyb6hLm7Wa/I6sJiVGuqX9dHlbYRipZ9WwJxr36fss=;
+ b=H8C2QgQzwzx1Dl3gxbsCHxd44X1AiUn/vW9LuetxlqLkDwXmFju8lR9r
+ rwgTs/vcvwIGcL2NuTswDjXBebI9xdtfUjdF410NOgMgtaim50/iNwwDA
+ 4Q1jtnK8Vp+coah9+z/cVnQCBJ0SUANcXKq+6iTY2+VPHYmqNN7e9GuI7
+ q8olA4TexsAkILp4/t59GrsqbrpWmx5dfQLxYLJ8NGxJnHz2aeDrgmRa7
+ 0Ynhep325MidKa7z15RmTgbQMgjkLwy3n0XAKO3H7lGYC8NDL4B/9eY9a
+ 0xk/Ex7VSAvqglxjqE4iAOvToSlFYRXoU1gVwmSj0t5BCnK2jcwWxGw2G A==;
+X-CSE-ConnectionGUID: PeMLCIKpQh+k4ukIXdMjmg==
+X-CSE-MsgGUID: Z6Zn0TzWTXO7Gg34s43Xvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51714038"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51714038"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 07:51:27 -0700
-X-CSE-ConnectionGUID: 1mopczPtQMqhROYzwkn9Eg==
-X-CSE-MsgGUID: KeEpkBErR5ylVS6BtzsiCw==
+ 11 Jun 2025 07:51:32 -0700
+X-CSE-ConnectionGUID: Tmw/OfJGScmRaRoIpBv5uw==
+X-CSE-MsgGUID: ahLLA+dRRgCx4xiuFOnLHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147122179"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="147122206"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.209])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 07:51:26 -0700
+ 11 Jun 2025 07:51:31 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/3] drm/i915/display: use drm->debugfs_root for creating
- debugfs files
-Date: Wed, 11 Jun 2025 17:51:14 +0300
-Message-Id: <0adf4248360449411bc6dd412df8d9194b4a5106.1749653355.git.jani.nikula@intel.com>
+Subject: [PATCH 2/3] drm/i915/gvt: use drm->debugfs_root for creating debugfs
+ files
+Date: Wed, 11 Jun 2025 17:51:15 +0300
+Message-Id: <12b26d3976bfe39a603461fbc89a42bee63d7115.1749653355.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1749653354.git.jani.nikula@intel.com>
 References: <cover.1749653354.git.jani.nikula@intel.com>
@@ -75,249 +75,51 @@ Since commit 0b30d57acafc ("drm/debugfs: rework debugfs directory
 creation v5") we should be using drm->debugfs_root instead of
 minor->debugfs_root for creating debugfs files.
 
-As a rule of thumb, use a local variable when there are two or more
-uses, otherwise just have the single reference inline.
-
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c                 | 4 +---
- drivers/gpu/drm/i915/display/intel_cdclk.c                | 4 +---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c      | 6 +++---
- .../gpu/drm/i915/display/intel_display_debugfs_params.c   | 6 +++---
- drivers/gpu/drm/i915/display/intel_dmc.c                  | 4 +---
- drivers/gpu/drm/i915/display/intel_dp_test.c              | 3 +--
- drivers/gpu/drm/i915/display/intel_fbc.c                  | 3 +--
- drivers/gpu/drm/i915/display/intel_hotplug.c              | 8 ++++----
- drivers/gpu/drm/i915/display/intel_opregion.c             | 4 +---
- drivers/gpu/drm/i915/display/intel_psr.c                  | 6 +++---
- drivers/gpu/drm/i915/display/intel_wm.c                   | 8 ++++----
- drivers/gpu/drm/i915/display/skl_watermark.c              | 6 +++---
- 12 files changed, 26 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/gvt/debugfs.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9ce41e689d50..5cfcf60f58d4 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -3743,8 +3743,6 @@ DEFINE_SHOW_ATTRIBUTE(intel_bios_vbt);
- 
- void intel_bios_debugfs_register(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
+index 673534f061ef..415422b5943c 100644
+--- a/drivers/gpu/drm/i915/gvt/debugfs.c
++++ b/drivers/gpu/drm/i915/gvt/debugfs.c
+@@ -194,9 +194,9 @@ void intel_gvt_debugfs_add_vgpu(struct intel_vgpu *vgpu)
+ void intel_gvt_debugfs_remove_vgpu(struct intel_vgpu *vgpu)
  {
--	struct drm_minor *minor = display->drm->primary;
--
--	debugfs_create_file("i915_vbt", 0444, minor->debugfs_root,
-+	debugfs_create_file("i915_vbt", 0444, display->drm->debugfs_root,
- 			    display, &intel_bios_vbt_fops);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 38b3094b37d7..4a513361665b 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3589,9 +3589,7 @@ DEFINE_SHOW_ATTRIBUTE(i915_cdclk_info);
+ 	struct intel_gvt *gvt = vgpu->gvt;
+-	struct drm_minor *minor = gvt->gt->i915->drm.primary;
++	struct dentry *debugfs_root = gvt->gt->i915->drm.debugfs_root;
  
- void intel_cdclk_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
--
--	debugfs_create_file("i915_cdclk_info", 0444, minor->debugfs_root,
-+	debugfs_create_file("i915_cdclk_info", 0444, display->drm->debugfs_root,
- 			    display, &i915_cdclk_info_fops);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index ce3f9810c42d..10dddec3796f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -820,14 +820,14 @@ static const struct drm_info_list intel_display_debugfs_list[] = {
- 
- void intel_display_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
- 
--	debugfs_create_file("i915_fifo_underrun_reset", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_fifo_underrun_reset", 0644, debugfs_root,
- 			    display, &i915_fifo_underrun_reset_ops);
- 
- 	drm_debugfs_create_files(intel_display_debugfs_list,
- 				 ARRAY_SIZE(intel_display_debugfs_list),
--				 minor->debugfs_root, minor);
-+				 debugfs_root, display->drm->primary);
- 
- 	intel_bios_debugfs_register(display);
- 	intel_cdclk_debugfs_register(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
-index 88914a1f3f62..9b5aa872b12a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs_params.c
-@@ -154,14 +154,14 @@ intel_display_debugfs_create_uint(const char *name, umode_t mode,
- /* add a subdirectory with files for each intel display param */
- void intel_display_debugfs_params(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
- 	struct dentry *dir;
- 	char dirname[16];
- 
- 	snprintf(dirname, sizeof(dirname), "%s_params", display->drm->driver->name);
--	dir = debugfs_lookup(dirname, minor->debugfs_root);
-+	dir = debugfs_lookup(dirname, debugfs_root);
- 	if (!dir)
--		dir = debugfs_create_dir(dirname, minor->debugfs_root);
-+		dir = debugfs_create_dir(dirname, debugfs_root);
- 	if (IS_ERR(dir))
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a10e56e7cf31..e9448ee932bc 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1448,9 +1448,7 @@ DEFINE_SHOW_ATTRIBUTE(intel_dmc_debugfs_status);
- 
- void intel_dmc_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
--
--	debugfs_create_file("i915_dmc_info", 0444, minor->debugfs_root,
-+	debugfs_create_file("i915_dmc_info", 0444, display->drm->debugfs_root,
- 			    display, &intel_dmc_debugfs_status_fops);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/drm/i915/display/intel_dp_test.c
-index 6ed5012c5fac..0ce72fd1c285 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_test.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
-@@ -753,13 +753,12 @@ static const struct {
- 
- void intel_dp_test_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
- 	int i;
- 
- 	for (i = 0; i < ARRAY_SIZE(intel_display_debugfs_files); i++) {
- 		debugfs_create_file(intel_display_debugfs_files[i].name,
- 				    0644,
--				    minor->debugfs_root,
-+				    display->drm->debugfs_root,
- 				    display,
- 				    intel_display_debugfs_files[i].fops);
+-	if (minor->debugfs_root && gvt->debugfs_root) {
++	if (debugfs_root && gvt->debugfs_root) {
+ 		debugfs_remove_recursive(vgpu->debugfs);
+ 		vgpu->debugfs = NULL;
  	}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index ec1ef8694c35..46d25fbcc455 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -2240,10 +2240,9 @@ void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc)
- /* FIXME: remove this once igt is on board with per-crtc stuff */
- void intel_fbc_debugfs_register(struct intel_display *display)
+@@ -208,9 +208,9 @@ void intel_gvt_debugfs_remove_vgpu(struct intel_vgpu *vgpu)
+  */
+ void intel_gvt_debugfs_init(struct intel_gvt *gvt)
  {
--	struct drm_minor *minor = display->drm->primary;
- 	struct intel_fbc *fbc;
+-	struct drm_minor *minor = gvt->gt->i915->drm.primary;
++	struct dentry *debugfs_root = gvt->gt->i915->drm.debugfs_root;
  
- 	fbc = display->fbc[INTEL_FBC_A];
- 	if (fbc)
--		intel_fbc_debugfs_add(fbc, minor->debugfs_root);
-+		intel_fbc_debugfs_add(fbc, display->drm->debugfs_root);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 74fe398663d6..61f67ec129d4 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -1333,12 +1333,12 @@ static const struct file_operations i915_hpd_short_storm_ctl_fops = {
+-	gvt->debugfs_root = debugfs_create_dir("gvt", minor->debugfs_root);
++	gvt->debugfs_root = debugfs_create_dir("gvt", debugfs_root);
  
- void intel_hpd_debugfs_register(struct intel_display *display)
+ 	debugfs_create_ulong("num_tracked_mmio", 0444, gvt->debugfs_root,
+ 			     &gvt->mmio.num_tracked_mmio);
+@@ -222,9 +222,9 @@ void intel_gvt_debugfs_init(struct intel_gvt *gvt)
+  */
+ void intel_gvt_debugfs_clean(struct intel_gvt *gvt)
  {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
+-	struct drm_minor *minor = gvt->gt->i915->drm.primary;
++	struct dentry *debugfs_root = gvt->gt->i915->drm.debugfs_root;
  
--	debugfs_create_file("i915_hpd_storm_ctl", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_hpd_storm_ctl", 0644, debugfs_root,
- 			    display, &i915_hpd_storm_ctl_fops);
--	debugfs_create_file("i915_hpd_short_storm_ctl", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_hpd_short_storm_ctl", 0644, debugfs_root,
- 			    display, &i915_hpd_short_storm_ctl_fops);
--	debugfs_create_bool("i915_ignore_long_hpd", 0644, minor->debugfs_root,
-+	debugfs_create_bool("i915_ignore_long_hpd", 0644, debugfs_root,
- 			    &display->hotplug.ignore_long_hpd);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 5535cb799431..2c4feca1d61c 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -1298,8 +1298,6 @@ DEFINE_SHOW_ATTRIBUTE(intel_opregion);
- 
- void intel_opregion_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
--
--	debugfs_create_file("i915_opregion", 0444, minor->debugfs_root,
-+	debugfs_create_file("i915_opregion", 0444, display->drm->debugfs_root,
- 			    display, &intel_opregion_fops);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8bee2f592ae7..718ff558405d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4136,12 +4136,12 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_edp_psr_debug_fops,
- 
- void intel_psr_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
- 
--	debugfs_create_file("i915_edp_psr_debug", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_edp_psr_debug", 0644, debugfs_root,
- 			    display, &i915_edp_psr_debug_fops);
- 
--	debugfs_create_file("i915_edp_psr_status", 0444, minor->debugfs_root,
-+	debugfs_create_file("i915_edp_psr_status", 0444, debugfs_root,
- 			    display, &i915_edp_psr_status_fops);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_wm.c b/drivers/gpu/drm/i915/display/intel_wm.c
-index bba82e888db2..0eac8ba344bc 100644
---- a/drivers/gpu/drm/i915/display/intel_wm.c
-+++ b/drivers/gpu/drm/i915/display/intel_wm.c
-@@ -390,15 +390,15 @@ static const struct file_operations i915_cur_wm_latency_fops = {
- 
- void intel_wm_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
- 
--	debugfs_create_file("i915_pri_wm_latency", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_pri_wm_latency", 0644, debugfs_root,
- 			    display, &i915_pri_wm_latency_fops);
- 
--	debugfs_create_file("i915_spr_wm_latency", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_spr_wm_latency", 0644, debugfs_root,
- 			    display, &i915_spr_wm_latency_fops);
- 
--	debugfs_create_file("i915_cur_wm_latency", 0644, minor->debugfs_root,
-+	debugfs_create_file("i915_cur_wm_latency", 0644, debugfs_root,
- 			    display, &i915_cur_wm_latency_fops);
- 
- 	skl_watermark_debugfs_register(display);
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 2c2371574d6f..efc613971190 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -4045,14 +4045,14 @@ DEFINE_SHOW_ATTRIBUTE(intel_sagv_status);
- 
- void skl_watermark_debugfs_register(struct intel_display *display)
- {
--	struct drm_minor *minor = display->drm->primary;
-+	struct dentry *debugfs_root = display->drm->debugfs_root;
- 
- 	if (HAS_IPC(display))
--		debugfs_create_file("i915_ipc_status", 0644, minor->debugfs_root,
-+		debugfs_create_file("i915_ipc_status", 0644, debugfs_root,
- 				    display, &skl_watermark_ipc_status_fops);
- 
- 	if (HAS_SAGV(display))
--		debugfs_create_file("i915_sagv_status", 0444, minor->debugfs_root,
-+		debugfs_create_file("i915_sagv_status", 0444, debugfs_root,
- 				    display, &intel_sagv_status_fops);
- }
- 
+-	if (minor->debugfs_root) {
++	if (debugfs_root) {
+ 		debugfs_remove_recursive(gvt->debugfs_root);
+ 		gvt->debugfs_root = NULL;
+ 	}
 -- 
 2.39.5
 
