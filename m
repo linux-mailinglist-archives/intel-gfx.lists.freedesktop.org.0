@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3A7AD5B1C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37CB1AD5B1D
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:52:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5E510E6B9;
-	Wed, 11 Jun 2025 15:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6DAB10E6C1;
+	Wed, 11 Jun 2025 15:52:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EocLNsdn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qs5Wx5u9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E736410E6C1;
- Wed, 11 Jun 2025 15:52:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 788F110E6C7;
+ Wed, 11 Jun 2025 15:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749657168; x=1781193168;
+ t=1749657171; x=1781193171;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ufThz3ahzzDcyeq26ZodSpYJkRLIMe3ySOM/l0b1mrA=;
- b=EocLNsdnMgPaLxNTfSeMoBenQGUG90c+IlQzgnZWbdM3ul/n0ncgDGT0
- R8ZjN8ykWIjrZ29lKDLJW+Omcxcwg1vKBfHKNhqP8F464eFdINq/eLNMh
- hB8CclyfamcML2Edo9CBOFeY/CKoI866n9jhgWfrKkE0OEP56c3ZunLWL
- 896mNWcge6FKb95xNxdD//LAp0T12MuR3nYopXupc+ogqAuuicb6wipe4
- D4gXehHaB11QESGyYXwBbQXaxZzvvvxOJ7r2AIZRtDNmU+AyypNCe6uY+
- VdC6WJ1Sizo1uragV3JJDbtmdu86tU13DUltGbSUJPxuNzM6c+nZ8KIxn g==;
-X-CSE-ConnectionGUID: spYsRr3dSyiMqGv9IvTEHw==
-X-CSE-MsgGUID: Ojf5xGs+Tm+636Au9Z8KYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419103"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419103"
+ bh=evHoVstVt79tWEq5dSbjADDB14RMxRlkf/21WmZhlsI=;
+ b=Qs5Wx5u9YKC6KhTZZ8sTJg3g3zIj3NUavHtP9OpL5VBv7G9Z0+4JLymi
+ e30fJIPxkdLlyOJ1pNtXGzRyM205VlWYbHB4Q5X5paUy/64qFOZPIknjF
+ vobdW+LTZHKM4c4I8wf0yTc1+nyx++pdx3MqH/uws7KLcbiUAtRrFoY2z
+ hap19Waxxl7PEoxNK1TK4mZA0zNQnBpFmPPXvBBHDpRanYtwFsG4udZ0H
+ CsEpksTdhXMUTWpMQb7jn2HoTpqJxtXqs+jr2wP4yYBc6R6bhF7cGPwRa
+ yLYDzGX3hO98kbz5scqmsSvqpY5eM3NVgBe0RxLFqb0Dp2VYNPCGydXCn g==;
+X-CSE-ConnectionGUID: jkvjaurkTFWgp3FLtjxPRg==
+X-CSE-MsgGUID: MSJDET5LSYCF/bGLuxATWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419106"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419106"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:52:48 -0700
-X-CSE-ConnectionGUID: OOM31vp6SlGnAkllmjPjwA==
-X-CSE-MsgGUID: TKmddmcwSHq6KsXd1AU6vA==
+ 11 Jun 2025 08:52:51 -0700
+X-CSE-ConnectionGUID: 55dKuemzRr6WY1TUH21TBA==
+X-CSE-MsgGUID: /rLKC979QI2TsubwVqFtJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507325"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507332"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:46 -0700
+ by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:49 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 18:52:44 +0300
+ Wed, 11 Jun 2025 18:52:47 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 1/9] drm/i915/dmc: Limit pipe DMC clock gating w/a to just
- ADL/DG2/MTL
-Date: Wed, 11 Jun 2025 18:52:33 +0300
-Message-ID: <20250611155241.24191-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/9] drm/i915/dmc: Parametrize MTL_PIPEDMC_GATING_DIS
+Date: Wed, 11 Jun 2025 18:52:34 +0300
+Message-ID: <20250611155241.24191-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
 References: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
@@ -74,31 +73,44 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Supposedly nothing post-MTL (even BMG) needs the pipe DMC clock
-gating w/a (Wa_16015201720), so don't apply it.
-
-TODO: check if the ADL/DG2 "clock gating needed during DMC loading" part
-      is actuall needed, not seeing anything in the docs about it...
+The MTL+ pipe DMC clock gating bits can be parametrized.
+Make it so.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+ drivers/gpu/drm/i915/i915_reg.h          | 3 +--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a10e56e7cf31..b6ac480f391c 100644
+index b6ac480f391c..6392fa928e08 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -487,7 +487,7 @@ static void mtl_pipedmc_clock_gating_wa(struct intel_display *display)
+@@ -482,7 +482,8 @@ static void mtl_pipedmc_clock_gating_wa(struct intel_display *display)
+ 	 * for pipe A and B.
+ 	 */
+ 	intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
+-		     MTL_PIPEDMC_GATING_DIS_A | MTL_PIPEDMC_GATING_DIS_B);
++		     MTL_PIPEDMC_GATING_DIS(PIPE_A) |
++		     MTL_PIPEDMC_GATING_DIS(PIPE_B));
+ }
  
  static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- {
--	if (DISPLAY_VER(display) >= 14 && enable)
-+	if (display->platform.meteorlake && enable)
- 		mtl_pipedmc_clock_gating_wa(display);
- 	else if (DISPLAY_VER(display) == 13)
- 		adlp_pipedmc_clock_gating_wa(display, enable);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 52a902532e6f..04fb40867cc0 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -763,8 +763,7 @@
+  */
+ #define GEN9_CLKGATE_DIS_0		_MMIO(0x46530)
+ #define   DARBF_GATING_DIS		REG_BIT(27)
+-#define   MTL_PIPEDMC_GATING_DIS_A	REG_BIT(15)
+-#define   MTL_PIPEDMC_GATING_DIS_B	REG_BIT(14)
++#define   MTL_PIPEDMC_GATING_DIS(pipe)	REG_BIT(15 - (pipe))
+ #define   PWM2_GATING_DIS		REG_BIT(14)
+ #define   PWM1_GATING_DIS		REG_BIT(13)
+ 
 -- 
 2.49.0
 
