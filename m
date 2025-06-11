@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8D8AD532B
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 13:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6006AD5396
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 13:17:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A02410E618;
-	Wed, 11 Jun 2025 11:08:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apqf5Rp9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52E4510E61C;
+	Wed, 11 Jun 2025 11:17:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A504B10E618;
- Wed, 11 Jun 2025 11:08:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749640131; x=1781176131;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=tH7Ik4bB2rRYYRMX2QLXUPkAejB5f194WYWXr0XbnCA=;
- b=apqf5Rp95ru9DrHjHSGrZCoSJGurcpwoS3NzluSVdfxz/yIxv0HtgBb5
- nZ5MS5UExME4BbuJ3eVBQ3v9MENaqY6TIIN8i6ksqOIhX9lPedyeT7twF
- wXjImG3vqk2FzWUUfY0ezoPu9tJmGLXa2qPKSP7cg1xKdgCCB1257e3It
- Rhq9kODarObKGZktbcspGwRUKpzWRF1C0oSzS65sybV97DeTCbQOyc3+1
- tEZYLKjKBig9GY5ySl7LJWrfW6QRD9PX3qyUQPRqcPgJkqQ6daixXmNGR
- 9Rx2wegfAf+MsBACM9eGTmCRehMG1OnC88aqAIaQ9L9lbI0r6A4GCWyFb Q==;
-X-CSE-ConnectionGUID: v5u2imNyQHGWNZ0qYbQXpQ==
-X-CSE-MsgGUID: aXxVKWpqTo+3hyzsCzBelg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11460"; a="55442761"
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="55442761"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 04:08:46 -0700
-X-CSE-ConnectionGUID: 7IjhWDMIS8K9VciBMnIj/g==
-X-CSE-MsgGUID: kZw00IJgS5K9Bgjp+2S+bA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,227,1744095600"; d="scan'208";a="147155123"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.209])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 04:08:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Grzelak, Michal" <michal.grzelak@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 0/2] drm/i915/display: register include cleanups
-In-Reply-To: <PH0PR11MB5062EED5AC7326D84984EEBF8F6AA@PH0PR11MB5062.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1749469962.git.jani.nikula@intel.com>
- <PH0PR11MB5062EED5AC7326D84984EEBF8F6AA@PH0PR11MB5062.namprd11.prod.outlook.com>
-Date: Wed, 11 Jun 2025 14:08:41 +0300
-Message-ID: <8c245e4c64305d4c884f20bd61bd6a3914194428@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 334A710E61C;
+ Wed, 11 Jun 2025 11:17:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/ring=5Fsubm?=
+ =?utf-8?q?ission=3A_Fix_timeline_left_held_on_VMA_alloc_error_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Jun 2025 11:17:02 -0000
+Message-ID: <174964062222.67091.4355049748246626529@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,18 +37,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 10 Jun 2025, "Grzelak, Michal" <michal.grzelak@intel.com> wrote:
-> Looks good to me, for the whole series:
-> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+== Series Details ==
 
-Thanks for the review, pushed to drm-intel-next.
+Series: drm/i915/ring_submission: Fix timeline left held on VMA alloc error (rev2)
+URL   : https://patchwork.freedesktop.org/series/149944/
+State : warning
 
-BR,
-Jani.
+== Summary ==
+
+Error: dim checkpatch failed
+9c4148ff6cc0 drm/i915/ring_submission: Fix timeline left held on VMA alloc error
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+<4> [239.330166] i915 0000:00:02.0: [drm] drm_WARN_ON(dev_priv->mm.shrink_count)
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
 
 
---=20
-Jani Nikula, Intel
