@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8CDAD5B20
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0863AD5B21
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Jun 2025 17:53:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3BB10E6B6;
-	Wed, 11 Jun 2025 15:52:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D98310E6B5;
+	Wed, 11 Jun 2025 15:53:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XlzCRZnW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M7715Kmq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BC8D10E6B6;
- Wed, 11 Jun 2025 15:52:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3D3110E6B5;
+ Wed, 11 Jun 2025 15:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749657178; x=1781193178;
+ t=1749657182; x=1781193182;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4bPFkNw8o4wCZGNg2YjnsQqbts9qMrEhuaWI8Cj47wc=;
- b=XlzCRZnWvZBjalpm7vPBtvOObSp/cdzdxTk9xjui2aKgSGi2xumCz+hS
- W5r3g9XuLo2tU5krT2dCQB7QmkUnQQLuxwd9sByTukTPonq07QzY/VC06
- aXmfCZDI623dbNsti1KkcttWM2UbAoERLnavFGETl9+1hLPbMJCEtm3Ih
- iZ3l7zrQghtAo8Q4gkkV1wZ3G493BLBerYPcWeC3h+Seb4t+GocBzhPJz
- o8Dns7li4deYeuGNBL3hSl0IrJlHgZJb9ykeUysMip73144t53gvRqsUZ
- JHZR9IA3BJLGu2HIBfZghiMDYSGFV4OT3LuaSzCyu2aMpNU48LRMSQ4Gm g==;
-X-CSE-ConnectionGUID: iVAJmSYrRsyQ07R78mBqUA==
-X-CSE-MsgGUID: dZb05dRpSj25dP/6NgIVog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419122"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419122"
+ bh=UwOET7/QdwPi/LxnGCTxid5w8zNh40KLjdXrJJIOSqQ=;
+ b=M7715Kmq71WmJeNGGJdZl4wF7enpW68AZS8LGrrHpZPwvHw/Rm/9NM3e
+ 3ytyN+V2lsbwgWaC/f/OmRrvPTjBl9blI+ZXZqcRmkNnA26NR4TuRcJub
+ T7VvjmphXrnmOw8TiXViBDlf68PMKbhSN1zztoXG0x/bOXxyuxypCnKqA
+ q4s8xfeLl1IaOOaMApK23T9v5ji84FmiCm8wjV5wMNCC2mseyicxGqTz/
+ Q/5ta8iIpst/wWzS/F0JVcYwZHIxrqNKofp5SEW+DP5FcY8796EfzPuj9
+ JnsgAhL1VZb6DmSYOrihJhDkI6xALofS+OzmU2kwzEpufNn0dMpSx2YVm w==;
+X-CSE-ConnectionGUID: h83OSHgUR++SUmMWw8aafQ==
+X-CSE-MsgGUID: SfiyQPXfQnGaID+IKmCHdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="62419131"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="62419131"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:52:58 -0700
-X-CSE-ConnectionGUID: M6cEpqB9RCm8XWBgVEEccg==
-X-CSE-MsgGUID: SW+kxc8fSnmYTw7Uiyl7yw==
+ 11 Jun 2025 08:53:01 -0700
+X-CSE-ConnectionGUID: O1HrGyumQWeJVNfazvbIVQ==
+X-CSE-MsgGUID: iLbDjkNrRl6zh1WSUi/uRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507362"
+X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="152507384"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.24])
- by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:56 -0700
+ by orviesa005.jf.intel.com with SMTP; 11 Jun 2025 08:52:59 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Jun 2025 18:52:55 +0300
+ Wed, 11 Jun 2025 18:52:58 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/9] drm/i915/dmc: Extract dmc_load_program()
-Date: Wed, 11 Jun 2025 18:52:36 +0300
-Message-ID: <20250611155241.24191-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/9] drm/i915/dmc: Reload pipe DMC state on TGL when enabling
+ pipe A
+Date: Wed, 11 Jun 2025 18:52:37 +0300
+Message-ID: <20250611155241.24191-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
 References: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
@@ -72,149 +73,47 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We'll be needing to reload the program for individual DMCs.
-To make that possible pull the code to load the program for
-a single DMC into a new function.
+On TGL/derivatives the entire pipe DMC state (program + MMIO) is
+lost when PG1 is disabled, and the main DMC does not restore
+any of it. Reload the state when enabling a pipe.
 
-This does change the order of things during init/resume
-a bit; previously we loaded the program RAM for all DMCs first,
-and then loaded the MMIO registers for all DMCs. Now those
-operations will be interleaved between different DMCs.
+The other option would be to not load the pipe DMC at all since
+it's only needed for "fast LACE" (which we don't use) on these
+platforms. But let's keep it around just in case we ever decide
+that "fast LACE" is something we want.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 78 +++++++++++++-----------
- 1 file changed, 42 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 5a43298cd0e7..331db28039db 100644
+index 331db28039db..fd99c4645260 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -432,25 +432,22 @@ static void disable_event_handler(struct intel_display *display,
- 	intel_de_write(display, htp_reg, 0);
+@@ -599,6 +599,12 @@ static void dmc_load_program(struct intel_display *display,
+ 	}
  }
  
--static void disable_all_event_handlers(struct intel_display *display)
-+static void disable_all_event_handlers(struct intel_display *display,
-+				       enum intel_dmc_id dmc_id)
- {
--	enum intel_dmc_id dmc_id;
-+	int handler;
- 
- 	/* TODO: disable the event handlers on pre-GEN12 platforms as well */
- 	if (DISPLAY_VER(display) < 12)
- 		return;
- 
--	for_each_dmc_id(dmc_id) {
--		int handler;
-+	if (!has_dmc_id_fw(display, dmc_id))
-+		return;
- 
--		if (!has_dmc_id_fw(display, dmc_id))
--			continue;
--
--		for (handler = 0; handler < DMC_EVENT_HANDLER_COUNT_GEN12; handler++)
--			disable_event_handler(display,
--					      DMC_EVT_CTL(display, dmc_id, handler),
--					      DMC_EVT_HTP(display, dmc_id, handler));
--	}
-+	for (handler = 0; handler < DMC_EVENT_HANDLER_COUNT_GEN12; handler++)
-+		disable_event_handler(display,
-+				      DMC_EVT_CTL(display, dmc_id, handler),
-+				      DMC_EVT_HTP(display, dmc_id, handler));
- }
- 
- static void adlp_pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
-@@ -578,6 +575,30 @@ static u32 dmc_mmiodata(struct intel_display *display,
- 		return dmc->dmc_info[dmc_id].mmiodata[i];
- }
- 
-+static void dmc_load_program(struct intel_display *display,
-+			     enum intel_dmc_id dmc_id)
++static bool need_pipedmc_load_program(struct intel_display *display)
 +{
-+	struct intel_dmc *dmc = display_to_dmc(display);
-+	int i;
-+
-+	disable_all_event_handlers(display, dmc_id);
-+
-+	preempt_disable();
-+
-+	for (i = 0; i < dmc->dmc_info[dmc_id].dmc_fw_size; i++) {
-+		intel_de_write_fw(display,
-+				  DMC_PROGRAM(dmc->dmc_info[dmc_id].start_mmioaddr, i),
-+				  dmc->dmc_info[dmc_id].payload[i]);
-+	}
-+
-+	preempt_enable();
-+
-+	for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
-+		intel_de_write(display, dmc->dmc_info[dmc_id].mmioaddr[i],
-+			       dmc_mmiodata(display, dmc, dmc_id, i));
-+	}
++	/* On TGL/derivatives pipe DMC state is lost when PG1 is disabled */
++	return DISPLAY_VER(display) == 12;
 +}
 +
  void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
  {
  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
-@@ -685,37 +706,17 @@ void intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(struct intel_display
- void intel_dmc_load_program(struct intel_display *display)
- {
- 	struct i915_power_domains *power_domains = &display->power.domains;
--	struct intel_dmc *dmc = display_to_dmc(display);
- 	enum intel_dmc_id dmc_id;
--	u32 i;
- 
- 	if (!intel_dmc_has_payload(display))
+@@ -606,6 +612,9 @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+ 	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
  		return;
  
--	pipedmc_clock_gating_wa(display, true);
--
--	disable_all_event_handlers(display);
--
- 	assert_display_rpm_held(display);
- 
--	preempt_disable();
-+	pipedmc_clock_gating_wa(display, true);
- 
--	for_each_dmc_id(dmc_id) {
--		for (i = 0; i < dmc->dmc_info[dmc_id].dmc_fw_size; i++) {
--			intel_de_write_fw(display,
--					  DMC_PROGRAM(dmc->dmc_info[dmc_id].start_mmioaddr, i),
--					  dmc->dmc_info[dmc_id].payload[i]);
--		}
--	}
--
--	preempt_enable();
--
--	for_each_dmc_id(dmc_id) {
--		for (i = 0; i < dmc->dmc_info[dmc_id].mmio_count; i++) {
--			intel_de_write(display, dmc->dmc_info[dmc_id].mmioaddr[i],
--				       dmc_mmiodata(display, dmc, dmc_id, i));
--		}
--	}
-+	for_each_dmc_id(dmc_id)
++	if (need_pipedmc_load_program(display))
 +		dmc_load_program(display, dmc_id);
- 
- 	power_domains->dc_state = 0;
- 
-@@ -733,11 +734,16 @@ void intel_dmc_load_program(struct intel_display *display)
-  */
- void intel_dmc_disable_program(struct intel_display *display)
- {
-+	enum intel_dmc_id dmc_id;
 +
- 	if (!intel_dmc_has_payload(display))
- 		return;
- 
- 	pipedmc_clock_gating_wa(display, true);
--	disable_all_event_handlers(display);
-+
-+	for_each_dmc_id(dmc_id)
-+		disable_all_event_handlers(display, dmc_id);
-+
- 	pipedmc_clock_gating_wa(display, false);
- }
- 
+ 	if (DISPLAY_VER(display) >= 20) {
+ 		intel_de_write(display, PIPEDMC_INTERRUPT(pipe), pipedmc_interrupt_mask(display));
+ 		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe), ~pipedmc_interrupt_mask(display));
 -- 
 2.49.0
 
