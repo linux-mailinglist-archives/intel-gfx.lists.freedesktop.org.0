@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B16DAD6F23
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 13:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FED9AD6F25
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 13:37:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE110E7DA;
-	Thu, 12 Jun 2025 11:37:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A6510E7DE;
+	Thu, 12 Jun 2025 11:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dsCHrXcW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdYBwfVt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE23010E7DA;
- Thu, 12 Jun 2025 11:37:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E248110E7DE;
+ Thu, 12 Jun 2025 11:37:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749728250; x=1781264250;
+ t=1749728254; x=1781264254;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bCWD5d2RxrSdY7LYx3ZCgp7wg8w59Vkupunc9OORCOY=;
- b=dsCHrXcW9j++giwfjKn1BaK11md1fDICZMpZoxIvSKi939eXpXfZTJcv
- g1gdmgzPJENwym4DSEcs0xXP0EUsnc+A8Z/EuqwBy4t/mDIkGA5wRRSxs
- s8YLW/1ivatzVfLYt8+Rdsf2edQ53ssdLsN/jZY+IfW4e20J9GVXwB4T8
- qXdacfIyXiB70SyeusLQd3rqVLB7Dy3eVFNsA4yqouNLgRaLrNTlhROYi
- 6Br2ctc/VnZJaUlhkXsNC1z/udWfG9ZNoq9KBdtmICyHgLQ6DE42w8qwf
- rnyPBMhPXAg1SmPeEoNmgFR2bgpe7fpYr/IljnUlC7hgB3h9b4L4pNBOc g==;
-X-CSE-ConnectionGUID: 3rcnX1lBRjqmEdPrJhhffg==
-X-CSE-MsgGUID: lauKK1XMRQuDWmyQsCe0Xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51820209"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51820209"
+ bh=sTpskcpA6TJBVS8xtaBTeZtzxX7A3uPS57up0kVm66o=;
+ b=gdYBwfVtAniu04YLXn05NlLDqoViFUxW1GlUTgdGDRNoI8cTM5f4Sy7K
+ +BUV5oWanrmDTypLJcu0xUv/8QiexM9OOg4xtotr2ky1XtSR+12Vmilwi
+ XGTNjPnzsH2U8Ie0OzUoKPtGsHZ1ZY39gcNF3LYdKjvMAGFyy8h1+z+NL
+ z6ABMW5oE29cCw2LK1ZAZuQZlPXwAqivZucApfXk+KDUNdyCb7jM3MWYc
+ cQ8+J2KOQQKOYsiVEc289aHpNpe9/0Em0onQJ0S1pEcL7bwBxQfb0a8mD
+ jScpBzTtn5mkPxQ9oPPUBP8wyJCV+4YL0Oe5O/tJEhjx+ySajJ0ZLf3Ch A==;
+X-CSE-ConnectionGUID: CXO/pljmTpeYswUDQcBFQw==
+X-CSE-MsgGUID: ap6OBEJ8SV6AlhnGPpoTGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51820219"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="51820219"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 04:37:30 -0700
-X-CSE-ConnectionGUID: F2Z9TstXS82s59gBjawiIw==
-X-CSE-MsgGUID: v4m93hQOS42YBlnY0+CkCQ==
+ 12 Jun 2025 04:37:34 -0700
+X-CSE-ConnectionGUID: iuwJnuExTsGjXhw3ZdqD2w==
+X-CSE-MsgGUID: VzaY7qZ/SLSBYr8d+fOUFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152484562"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152484572"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 04:37:28 -0700
+ 12 Jun 2025 04:37:32 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 2/5] drm/i915/plane: drop atomic from
- intel_atomic_plane_check_clipping()
-Date: Thu, 12 Jun 2025 14:37:08 +0300
-Message-Id: <ef3559ac492408fed826102e0094b4e2ad0c3492.1749728173.git.jani.nikula@intel.com>
+Subject: [RESEND 3/5] drm/i915/plane: make intel_plane_atomic_check() static
+ and rename
+Date: Thu, 12 Jun 2025 14:37:09 +0300
+Message-Id: <1f019c0f2543e24167a6f15aedabeae320dbdeb3.1749728173.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1749728173.git.jani.nikula@intel.com>
 References: <cover.1749728173.git.jani.nikula@intel.com>
@@ -71,140 +71,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Align with intel_plane_check_src_coordinates(). The "atomic" is
-superfluous.
+intel_plane_atomic_check() isn't used outside of intel_plane.c. Make it
+static. While at it, rename to vacate the name for subsequent changes.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c          |  8 ++++----
- drivers/gpu/drm/i915/display/intel_cursor.c        |  8 ++++----
- drivers/gpu/drm/i915/display/intel_plane.c         |  8 ++++----
- drivers/gpu/drm/i915/display/intel_plane.h         |  8 ++++----
- drivers/gpu/drm/i915/display/intel_sprite.c        | 12 ++++++------
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 ++--
- 6 files changed, 24 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/display/intel_plane.c | 6 +++---
+ drivers/gpu/drm/i915/display/intel_plane.h | 2 --
+ 2 files changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index eba8eb745aa7..ac84558006c7 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -336,10 +336,10 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
--						i9xx_plane_has_windowing(plane));
-+	ret = intel_plane_check_clipping(plane_state, crtc_state,
-+					 DRM_PLANE_NO_SCALING,
-+					 DRM_PLANE_NO_SCALING,
-+					 i9xx_plane_has_windowing(plane));
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 27d86549af2c..198e69efe9ac 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -158,10 +158,10 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 	}
- 
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
--						true);
-+	ret = intel_plane_check_clipping(plane_state, crtc_state,
-+					 DRM_PLANE_NO_SCALING,
-+					 DRM_PLANE_NO_SCALING,
-+					 true);
- 	if (ret)
- 		return ret;
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index f079963c5dff..f68432d28d36 100644
+index f68432d28d36..fbbe957d3f04 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane.c
 +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -983,10 +983,10 @@ void intel_crtc_planes_update_arm(struct intel_dsb *dsb,
- 		i9xx_crtc_planes_update_arm(dsb, state, crtc);
+@@ -734,8 +734,8 @@ intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
+ 	return NULL;
  }
  
--int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
--				      struct intel_crtc_state *crtc_state,
--				      int min_scale, int max_scale,
--				      bool can_position)
-+int intel_plane_check_clipping(struct intel_plane_state *plane_state,
-+			       struct intel_crtc_state *crtc_state,
-+			       int min_scale, int max_scale,
-+			       bool can_position)
+-int intel_plane_atomic_check(struct intel_atomic_state *state,
+-			     struct intel_plane *plane)
++static int plane_atomic_check(struct intel_atomic_state *state,
++			      struct intel_plane *plane)
  {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	struct intel_display *display = to_intel_display(state);
+ 	struct intel_plane_state *new_plane_state =
+@@ -1542,7 +1542,7 @@ int intel_atomic_check_planes(struct intel_atomic_state *state)
+ 		return ret;
+ 
+ 	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
+-		ret = intel_plane_atomic_check(state, plane);
++		ret = plane_atomic_check(state, plane);
+ 		if (ret) {
+ 			drm_dbg_atomic(display->drm,
+ 				       "[PLANE:%d:%s] atomic driver check failed\n",
 diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
-index 1dd32586ac16..10a94b9a135c 100644
+index 10a94b9a135c..4d69a868265c 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane.h
 +++ b/drivers/gpu/drm/i915/display/intel_plane.h
-@@ -74,10 +74,10 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
+@@ -69,8 +69,6 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+ 					struct intel_crtc_state *crtc_state,
+ 					const struct intel_plane_state *old_plane_state,
+ 					struct intel_plane_state *intel_state);
+-int intel_plane_atomic_check(struct intel_atomic_state *state,
+-			     struct intel_plane *plane);
  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
  			       struct intel_plane *plane,
  			       bool *need_cdclk_calc);
--int intel_atomic_plane_check_clipping(struct intel_plane_state *plane_state,
--				      struct intel_crtc_state *crtc_state,
--				      int min_scale, int max_scale,
--				      bool can_position);
-+int intel_plane_check_clipping(struct intel_plane_state *plane_state,
-+			       struct intel_crtc_state *crtc_state,
-+			       int min_scale, int max_scale,
-+			       bool can_position);
- int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
- void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- 			       struct intel_plane_state *plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index db0c48d0c743..e6844df837af 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -1366,8 +1366,8 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
- 		}
- 	}
- 
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						min_scale, max_scale, true);
-+	ret = intel_plane_check_clipping(plane_state, crtc_state,
-+					 min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
- 
-@@ -1421,10 +1421,10 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						DRM_PLANE_NO_SCALING,
--						DRM_PLANE_NO_SCALING,
--						true);
-+	ret = intel_plane_check_clipping(plane_state, crtc_state,
-+					 DRM_PLANE_NO_SCALING,
-+					 DRM_PLANE_NO_SCALING,
-+					 true);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 9c8dac97cc40..68f18f18bacd 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2327,8 +2327,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		max_scale = skl_plane_max_scale(display, fb);
- 	}
- 
--	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
--						min_scale, max_scale, true);
-+	ret = intel_plane_check_clipping(plane_state, crtc_state,
-+					 min_scale, max_scale, true);
- 	if (ret)
- 		return ret;
- 
 -- 
 2.39.5
 
