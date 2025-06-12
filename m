@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6072AD7490
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 16:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE67EAD7491
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 16:50:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6574910E886;
-	Thu, 12 Jun 2025 14:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FCAC10E87E;
+	Thu, 12 Jun 2025 14:50:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BBEtRpzx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROvwCC7A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8982810E880;
- Thu, 12 Jun 2025 14:50:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2536E10E87E;
+ Thu, 12 Jun 2025 14:50:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749739825; x=1781275825;
+ t=1749739829; x=1781275829;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3h9gypN1qx3R2sUQ7AyQtb8A+3I5sGBZrRNJ+su9FuM=;
- b=BBEtRpzx6Qpr+jm+uh2GoejuKtkdV42tfOxNHNlTqKFt2ib1+YhJ8j5D
- i5xE7SMJVl0hib8RCpZgO9mZSUUs0Pe3C2tgM8zA9uOKGNoMjlAQvUA1L
- NqeEu9lgsBp7ZJP/55enKE7lG5E4DnzmBwKYYUWSW4e5C1epWvKL58PXP
- 8CDKmtfWPBoGp78B+whST3A9V0U4R7rK2XY9TFM5eUFw18k7CGMeMC1Vz
- EmLyJvv9xYOxhFlzDzvfqgj4g4nJAXrzGuiGU+00PcNOE6vLfqMGb00ky
- 3HHnFtjXZHHfPoH05Z+YCzDkewAqCICtuSB+9Eio/+bc8QXWd37QKvlq9 A==;
-X-CSE-ConnectionGUID: B26dJpcWRby8FAm1/14Vaw==
-X-CSE-MsgGUID: IV2kNuEkScWBqHG5o6lIbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="52066746"
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="52066746"
+ bh=DBPNk/ri4CKnKk7qThzJkmMM91QB0XLLtUXYk/LydBg=;
+ b=ROvwCC7AZWBbCHw8ngtAziEs7FxuyAeyFCN/UZ5BZiQhz2m8AkNFQYuH
+ 3Ma7YRMvxDBB3y/ORAyShEIfVXlY/KFCboZQPiaxMvlRkDS+pMoxrg4Nn
+ RX5caUd4UOG9IUFJOV9AnQGa94mQ7EfFOG+pfRob/nvHlNbXNxEvdpxQs
+ bVe2px8xCu/AR9IwxHbQtvkDHWV51jVxb5Mz6uQlHZIrky865/jm7+G4F
+ voVdDo+qMreZiCZGtPjNeyKsJAyGa0FGqxjme1H/D5b1412OfAUlFzN5/
+ Zt5YLdiNs3rvLr6vNHxUtau97fhpXf7u7jx2yNdcODC4Tvc0RLdxjoN2K g==;
+X-CSE-ConnectionGUID: 7ZuO0TbtSRaklkMd6hsLSw==
+X-CSE-MsgGUID: NWW1+z1pRcmYE1mDsz2gcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="52066749"
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="52066749"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 07:50:25 -0700
-X-CSE-ConnectionGUID: RFW9trnVT7W3z4zs8Lj1Hw==
-X-CSE-MsgGUID: 9VslDhBXTzuXGJO+LNZGXQ==
+ 12 Jun 2025 07:50:29 -0700
+X-CSE-ConnectionGUID: wk6NYDuSTJ2AsjwoLdnVeA==
+X-CSE-MsgGUID: xJ3zpnXtRxeZS7BURYqpCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152826176"
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152826191"
 Received: from abityuts-desk.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.200])
- by orviesa005.jf.intel.com with SMTP; 12 Jun 2025 07:50:23 -0700
+ by orviesa005.jf.intel.com with SMTP; 12 Jun 2025 07:50:27 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Jun 2025 17:50:22 +0300
+ Thu, 12 Jun 2025 17:50:25 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 1/6] drm/i915/dsb: Use intel_dsb_ins_align() in
- intel_dsb_align_tail()
-Date: Thu, 12 Jun 2025 17:50:13 +0300
-Message-ID: <20250612145018.8735-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/6] drm/i915/dsb: Provide intel_dsb_head() and
+ intel_dsb_size()
+Date: Thu, 12 Jun 2025 17:50:14 +0300
+Message-ID: <20250612145018.8735-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250612145018.8735-1-ville.syrjala@linux.intel.com>
 References: <20250612145018.8735-1-ville.syrjala@linux.intel.com>
@@ -74,34 +74,55 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-If the free_post is not QW aligned we don't have to memset the
-extra DW needed to make it so, as the only way that can happen
-is via intel_dsb_reg_write_indexed() which already makes sure
-the next DW is zeroed.
-
-Not a big deal, but this is more consistent how all the other
-stuff operates that puts instructions into the DSB buffer, and
-we'll get a few more of those soon.
+The upcoming flip queue implementation will need to know the
+DSB buffer head and size. Expose those outside intel_dsb.c.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 9 +++++++--
+ drivers/gpu/drm/i915/display/intel_dsb.h | 2 ++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 4252eba7f7d0..96baef5d5b1a 100644
+index 96baef5d5b1a..50d8c4900644 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -527,6 +527,8 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
- {
- 	u32 aligned_tail, tail;
+@@ -241,14 +241,19 @@ static bool is_dsb_busy(struct intel_display *display, enum pipe pipe,
+ 	return intel_de_read_fw(display, DSB_CTRL(pipe, dsb_id)) & DSB_STATUS_BUSY;
+ }
  
-+	intel_dsb_ins_align(dsb);
+-static unsigned int intel_dsb_head(struct intel_dsb *dsb)
++unsigned int intel_dsb_size(struct intel_dsb *dsb)
++{
++	return dsb->free_pos * 4;
++}
 +
- 	tail = dsb->free_pos * 4;
- 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
++unsigned int intel_dsb_head(struct intel_dsb *dsb)
+ {
+ 	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf);
+ }
  
+ static unsigned int intel_dsb_tail(struct intel_dsb *dsb)
+ {
+-	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + dsb->free_pos * 4;
++	return intel_dsb_buffer_ggtt_offset(&dsb->dsb_buf) + intel_dsb_size(dsb);
+ }
+ 
+ static void intel_dsb_ins_align(struct intel_dsb *dsb)
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 6900acd603b8..ab6489749866 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -26,6 +26,8 @@ enum intel_dsb_id {
+ 	I915_MAX_DSBS,
+ };
+ 
++unsigned int intel_dsb_size(struct intel_dsb *dsb);
++unsigned int intel_dsb_head(struct intel_dsb *dsb);
+ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 				    struct intel_crtc *crtc,
+ 				    enum intel_dsb_id dsb_id,
 -- 
 2.49.0
 
