@@ -2,73 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1ED5AD6C82
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 11:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8497EAD6CBB
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 11:57:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 436C910E7C3;
-	Thu, 12 Jun 2025 09:45:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YiKzH6zq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC90610E16A;
+	Thu, 12 Jun 2025 09:57:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77E4210E10E;
- Thu, 12 Jun 2025 09:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749721557; x=1781257557;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=erdUAfCe9Pg2gYuWWS36x3dMtgItvntbFDOp6+sc27w=;
- b=YiKzH6zqrptE672pDovbT7vMrhg4376WPjP5toSMKyeGxd70kK94TWQI
- CwEE2Xeax/JxH2txZhQJVnBlviVFliN90Uaaaftm3VI0pT2t94ieApUzH
- coKSjqDIsVEVkNZn7AmKVQyWzQuilNexWG7r8w97pS3/r8+aopOMitshi
- cb/xlHV8IPmiRDi5ruPCaen6W24awOMhryHoaLeHdCGnKZDo7kptX4Vhc
- PxvPnoDsHm1gj1zBr1G7uXduTCgwBXbGJBTYpAuLRqCCuB8RbZRYm2TC2
- NhianTEmtrlWXyEQ295g3NZb7YkyXJZwj1V62d3lwLyAZuXY+KjmBrxgW w==;
-X-CSE-ConnectionGUID: ku2dTm+0R/eqsAyFvyOJwQ==
-X-CSE-MsgGUID: bgrLGCocRVm5ect+UarZ7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="69330330"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="69330330"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 02:45:54 -0700
-X-CSE-ConnectionGUID: 7Aa59CHjQA2+VUZ+zflTfQ==
-X-CSE-MsgGUID: fqpP1R4ART6QjmtUEoPe4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="148377826"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.156])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 02:45:50 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: "Gote, Nitin R" <nitin.r.gote@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- "Auld, Matthew" <matthew.auld@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- "Brzezinka, Sebastian" <sebastian.brzezinka@intel.com>,
- "Niemiec, Krzysztof" <krzysztof.niemiec@intel.com>,
- "Karas, Krzysztof" <krzysztof.karas@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA
- alloc error
-Date: Thu, 12 Jun 2025 11:45:46 +0200
-Message-ID: <3881406.kQq0lBPeGt@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <2765e513d57f59297300e19c394f1e2bd15da3ad@intel.com>
-References: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
- <8536974.T7Z3S40VBb@jkrzyszt-mobl2.ger.corp.intel.com>
- <2765e513d57f59297300e19c394f1e2bd15da3ad@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9115E10E144;
+ Thu, 12 Jun 2025 09:57:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3052359566621003723=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_drm=5Fpan?=
+ =?utf-8?q?ic_support_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jocelyn Falempe" <jfalempe@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 Jun 2025 09:57:19 -0000
+Message-ID: <174972223958.70603.9160451237974572188@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250612081344.225200-1-jfalempe@redhat.com>
+In-Reply-To: <20250612081344.225200-1-jfalempe@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,76 +37,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thursday, 12 June 2025 11:35:31 CEST Jani Nikula wrote:
-> On Thu, 12 Jun 2025, Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
-> > On Wednesday, 11 June 2025 22:54:40 CEST Andi Shyti wrote:
-> >> Hi Nitin,
-> >> 
-> >> On Wed, Jun 11, 2025 at 03:45:30PM +0000, Gote, Nitin R wrote:
-> >> > [...]
-> >> > > Subject: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA alloc
-> >> > > error
-> >> > >
-> >> > 
-> >> > Generally, it's preferred to use "drm/i915/gt:" file path over "drm/i915/ring_submission:"  file name in the commit title.
-> >> 
-> >> good observation, I missed it. I agree with Nitin on this, it can
-> >> be fixed before merging.
-> >
-> > I'm not sure.  I found no single word on the *subsystem* component of the 
-> > canonical patch format subject line (or commit message) expected to reflect 
-> > any directory structure in case of DRM.
-> 
-> It's not about the directory structure, though, but rather about
-> (admittedly unwritten) conventions. Usually about driver components,
-> features or platforms.
-> 
-> See:
-> 
-> $ git log --since={5years} --no-merges --pretty=%s -- "<PATH>" | sed 's/:.*//' | sort | uniq -c | sort -rn
-> 
-> Where "<PATH>" is drivers/gpu/drm/i915/gt/intel_ring_submission.c or
-> drivers/gpu/drm/i915/gt.
-> 
-> "ring" or "submission" is just not there in the prefix, at all.
+--===============3052359566621003723==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I see.  Is there a convention for designating old, pre-execlists *platforms* 
-as affected subsystem / area?  Or is describing it in the summary phrase of 
-the commit message the only way?
+== Series Details ==
 
-Thanks,
-Janusz
+Series: drm/i915: Add drm_panic support (rev9)
+URL   : https://patchwork.freedesktop.org/series/141935/
+State : success
 
-> 
-> 
-> BR,
-> Jani.
-> 
-> > However, if you think it should for 
-> > some reason, or you just don't recognize i915 ring submission as a good 
-> > candidate for the subsystem component of the commit message, then I'm OK with 
-> > drm/i915/gt, but then, the summary phrase of the commit message seems too 
-> > general for the whole GT subsystem, not pointing to ring submission as the 
-> > only submission method out of the three that's affected, and needs to be 
-> > rephrased, I believe, while still kept short enough.  Maybe "Fix *legacy* 
-> > timeline held on VMA alloc error" (with the 'left' word dropped)?
-> >
-> > Thanks,
-> > Janusz
-> >
-> >> 
-> >> Andi
-> >> 
-> >
-> >
-> >
-> >
-> 
-> 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16688 -> Patchwork_141935v9
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141935v9 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@ring_submission:
+    - bat-arlh-3:         [INCOMPLETE][5] ([i915#14393]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-arlh-3/igt@i915_selftest@live@ring_submission.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-arlh-3/igt@i915_selftest@live@ring_submission.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_16688 -> Patchwork_141935v9
+
+  CI-20190529: 20190529
+  CI_DRM_16688: 75238c32deae15ee4120b42a5be556ec36807a84 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8405: 8405
+  Patchwork_141935v9: 75238c32deae15ee4120b42a5be556ec36807a84 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/index.html
+
+--===============3052359566621003723==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Add drm_panic support (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141935/">https://patchwork.freedesktop.org/series/141935/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16688 -&gt; Patchwork_141935v9</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_141935v9 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@ring_submission:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16688/bat-arlh-3/igt@i915_selftest@live@ring_submission.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393">i915#14393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v9/bat-arlh-3/igt@i915_selftest@live@ring_submission.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16688 -&gt; Patchwork_141935v9</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16688: 75238c32deae15ee4120b42a5be556ec36807a84 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8405: 8405<br />
+  Patchwork_141935v9: 75238c32deae15ee4120b42a5be556ec36807a84 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3052359566621003723==--
