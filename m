@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 193A5AD6FCF
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 973E2AD6FD0
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:12:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A93FA10E7EB;
-	Thu, 12 Jun 2025 12:12:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35AE110E7F1;
+	Thu, 12 Jun 2025 12:12:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mA8MD/ej";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIGzbgkv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCAD410E7E9;
- Thu, 12 Jun 2025 12:12:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42A9310E7EE;
+ Thu, 12 Jun 2025 12:12:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749730338; x=1781266338;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LlySYcKf4JmRGREnB4gOUI/icF7THZKufjSNyMonh4M=;
- b=mA8MD/ejv0zk9aEDB2DgInPVWLnfX529ZlmmxvU/erKBLcxRtvfbyutt
- 0bm2cY32txqTH/cJ1XZUVwKrvVUPcbrfDYgdom7hJaW0sMXg0BkY4mnfC
- hgQ2iX+/7g9do1Sd1l/4nETdpuh1TsbfSyvB+UIrNghWVULMq9AZtd87f
- AKLjcjUSjlRaGCrx8m7kcBGi0xkzVtN793rv8CQz42xhYYOYnWC3w2+Vn
- rMRWhoP8tFmRIbA0nCP2RgRVW0Kp1z2sx4GXit+MgbMA23WpmP3hRLXgN
- 2f+veYzevMG39P2WQ5qCN1xRYKw617J2acTVsgbQQqWtAyziIreGDEG8f A==;
-X-CSE-ConnectionGUID: 8O7/iLZxQ1+0csky0k8V9A==
-X-CSE-MsgGUID: NNdHidbmQEOfTx9CuRjfNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="63314775"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="63314775"
+ t=1749730343; x=1781266343;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MHLa5c/CL7o8ezjwA63+mZ9JIa6YmUV6SU32hBoPbPo=;
+ b=IIGzbgkvOPKaI2GzwnqoO+e3rBCWO8auX2WUlN+cl/HL6B2Cw5Giy4TQ
+ nCYcEVlPHbIrTgeDJTBD+4tpph21S2dxgTNdsrp/02aigPasinYXUJYOE
+ xjdIJTlQO+ehNmmWzMkKHdXmp1Va8otcbkrbfJNwSWnlPmHheh7CuyIYb
+ zm27Xv/uvyJCQ99WwNFELenLj0an25VCiZguVK68zjNcJMufXrybBtusw
+ v/uYGM38UXaEzkijYWliixF7hVh/AWd2E6BHyiuY+iVdL+O8yex5ReXft
+ DDX8v8S/6UkF/GCpUvjQeFFIQmSgfYk25ercylRnAcQsulLsu+4DSvtkU Q==;
+X-CSE-ConnectionGUID: /1bEP19mR46MGYBt8NFfYg==
+X-CSE-MsgGUID: xKp9/OAFR2mP7rO/JUgjzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="63314796"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="63314796"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:12:18 -0700
-X-CSE-ConnectionGUID: LHXm4puHR9yMgaR116d5HQ==
-X-CSE-MsgGUID: mA2KvGrWQYahHtFQYhyjVQ==
+ 12 Jun 2025 05:12:22 -0700
+X-CSE-ConnectionGUID: 3aOXvrd7RFSlCl7PaiZM1Q==
+X-CSE-MsgGUID: FinfS+jUSdur0stghC5AIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="178476759"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="178476797"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:12:15 -0700
+ 12 Jun 2025 05:12:20 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 00/16] drm/i915/display: make all global state opaque
-Date: Thu, 12 Jun 2025 15:11:55 +0300
-Message-Id: <cover.1749730224.git.jani.nikula@intel.com>
+Subject: [PATCH 01/16] drm/i915/wm: abstract intel_dbuf_pmdemand_needs_update()
+Date: Thu, 12 Jun 2025 15:11:56 +0300
+Message-Id: <d9ccaad05fa425384c7b567f7f08a9c2fa499ba1.1749730224.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1749730224.git.jani.nikula@intel.com>
+References: <cover.1749730224.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,44 +70,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hide all the structs that "derive" from struct intel_global_state inside
-their respective implementation files.
+Add intel_dbuf_pmdemand_needs_update() helper to avoid looking at struct
+intel_dbuf_state internals outside of skl_watermark.c.
 
-Jani Nikula (16):
-  drm/i915/wm: abstract intel_dbuf_pmdemand_needs_update()
-  drm/i915/wm: add more accessors to dbuf state
-  drm/i915/wm: make struct intel_dbuf_state opaque type
-  drm/i915/bw: abstract intel_bw_pmdemand_needs_update()
-  drm/i915/bw: relocate intel_can_enable_sagv() and rename to
-    intel_bw_can_enable_sagv()
-  drm/i915: move icl_sagv_{pre,post}_plane_update() to intel_bw.c
-  drm/i915/bw: abstract intel_bw_qgv_point_peakbw()
-  drm/i915/bw: make struct intel_bw_state opaque
-  drm/i915/cdclk: abstract intel_cdclk_logical()
-  drm/i915/cdclk: abstract intel_cdclk_min_cdclk()
-  drm/i915/cdclk: abstract intel_cdclk_bw_min_cdclk()
-  drm/i915/cdclk: abstract intel_cdclk_pmdemand_needs_update()
-  drm/i915/cdclk: abstract intel_cdclk_force_min_cdclk()
-  drm/i915/cdclk: abstract intel_cdclk_read_hw()
-  drm/i915/cdclk: abstract intel_cdclk_actual() and
-    intel_cdclk_actual_voltage_level()
-  drm/i915/cdclk: make struct intel_cdclk_state opaque
+With this, we can also move to_intel_dbuf_state(),
+intel_atomic_get_old_dbuf_state(), and intel_atomic_get_new_dbuf_state()
+inside skl_watermark.c.
 
- drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
- .../gpu/drm/i915/display/intel_atomic_plane.c |   4 +-
- drivers/gpu/drm/i915/display/intel_audio.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_bw.c       | 153 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_bw.h       |  53 ++----
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  93 +++++++++++
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  50 ++----
- drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
- .../drm/i915/display/intel_display_driver.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  41 ++---
- drivers/gpu/drm/i915/display/skl_watermark.c  | 134 +++++++--------
- drivers/gpu/drm/i915/display/skl_watermark.h  |  33 +---
- 13 files changed, 336 insertions(+), 241 deletions(-)
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 14 +--------
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 30 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_watermark.h  | 10 ++-----
+ 3 files changed, 33 insertions(+), 21 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index 93d5ee36fff1..0f1501c456df 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -294,11 +294,9 @@ intel_pmdemand_connector_needs_update(struct intel_atomic_state *state)
+ 
+ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ {
+-	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_bw_state *new_bw_state, *old_bw_state;
+ 	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
+ 	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+-	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
+ 	struct intel_crtc *crtc;
+ 	int i;
+ 
+@@ -308,19 +306,9 @@ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ 	    old_bw_state->qgv_point_peakbw)
+ 		return true;
+ 
+-	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
+-	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
+-	if (new_dbuf_state &&
+-	    new_dbuf_state->active_pipes != old_dbuf_state->active_pipes)
++	if (intel_dbuf_pmdemand_needs_update(state))
+ 		return true;
+ 
+-	if (DISPLAY_VER(display) < 30) {
+-		if (new_dbuf_state &&
+-		    new_dbuf_state->enabled_slices !=
+-		    old_dbuf_state->enabled_slices)
+-			return true;
+-	}
+-
+ 	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+ 	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+ 	if (new_cdclk_state &&
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 2c2371574d6f..55280d16f9f7 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -38,6 +38,14 @@
+  */
+ #define DSB_EXE_TIME 100
+ 
++#define to_intel_dbuf_state(global_state) \
++	container_of_const((global_state), struct intel_dbuf_state, base)
++
++#define intel_atomic_get_old_dbuf_state(state) \
++	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
++#define intel_atomic_get_new_dbuf_state(state) \
++	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
++
+ static void skl_sagv_disable(struct intel_display *display);
+ 
+ /* Stores plane specific WM parameters */
+@@ -3693,6 +3701,28 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
+ 	gen9_dbuf_slices_update(display, new_slices);
+ }
+ 
++bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
++
++	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
++	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
++
++	if (new_dbuf_state &&
++	    new_dbuf_state->active_pipes != old_dbuf_state->active_pipes)
++		return true;
++
++	if (DISPLAY_VER(display) < 30) {
++		if (new_dbuf_state &&
++		    new_dbuf_state->enabled_slices !=
++		    old_dbuf_state->enabled_slices)
++			return true;
++	}
++
++	return false;
++}
++
+ static void skl_mbus_sanitize(struct intel_display *display)
+ {
+ 	struct intel_dbuf_state *dbuf_state =
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+index 95b0b599d5c3..3b9a0b254cff 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.h
++++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+@@ -78,14 +78,6 @@ struct intel_dbuf_state {
+ struct intel_dbuf_state *
+ intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
+ 
+-#define to_intel_dbuf_state(global_state) \
+-	container_of_const((global_state), struct intel_dbuf_state, base)
+-
+-#define intel_atomic_get_old_dbuf_state(state) \
+-	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
+-#define intel_atomic_get_new_dbuf_state(state) \
+-	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_intel_display(state)->dbuf.obj))
+-
+ int intel_dbuf_init(struct intel_display *display);
+ int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state,
+ 					   int ratio);
+@@ -98,5 +90,7 @@ void intel_dbuf_mbus_pre_ddb_update(struct intel_atomic_state *state);
+ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state);
+ void intel_program_dpkgc_latency(struct intel_atomic_state *state);
+ 
++bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
++
+ #endif /* __SKL_WATERMARK_H__ */
+ 
 -- 
 2.39.5
 
