@@ -2,70 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A60FAD6A2A
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 10:15:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FE0AD6AD2
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 10:31:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A6F10E7AF;
-	Thu, 12 Jun 2025 08:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92EFC10E7B2;
+	Thu, 12 Jun 2025 08:31:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YGWY4Sf0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bnVJcQfG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E632210E7AB
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Jun 2025 08:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1749716106;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=mrjs5eOHCyu5GrbKeIZJ6mBciwCyDUhu9m4iaDSEfRE=;
- b=YGWY4Sf0kjVrkUoezBYN9EjvPUNvaop98TVsQyGFR6FzB/T1OyWjHVm5/XimXvfNsWbjfG
- rJHz6V+SlMpeSpeZy64rFTDxHAQ+DDmSAcmkEtBUZG/8SBlAOdykxlDLA/vdi0IHL6mUuY
- z5zaDXUar3c38imeqbps4sf/mT6HHx8=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-537-Gq0W-kJxMnew4ke5I5BZ3A-1; Thu,
- 12 Jun 2025 04:15:02 -0400
-X-MC-Unique: Gq0W-kJxMnew4ke5I5BZ3A-1
-X-Mimecast-MFC-AGG-ID: Gq0W-kJxMnew4ke5I5BZ3A_1749716099
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 790891956096; Thu, 12 Jun 2025 08:14:59 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.45.225.28])
- by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 5F7F2195609D; Thu, 12 Jun 2025 08:14:54 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH v9 9/9] drm/i915/psr: Add intel_psr2_panic_force_full_update
-Date: Thu, 12 Jun 2025 10:01:06 +0200
-Message-ID: <20250612081344.225200-10-jfalempe@redhat.com>
-In-Reply-To: <20250612081344.225200-1-jfalempe@redhat.com>
-References: <20250612081344.225200-1-jfalempe@redhat.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 878F910E7B1;
+ Thu, 12 Jun 2025 08:30:59 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 8334D629E5;
+ Thu, 12 Jun 2025 08:30:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73C4CC4CEEA;
+ Thu, 12 Jun 2025 08:30:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1749717055;
+ bh=mSPz4JyDiTbHlIZY2LoFchrSDTmvR2H2ufTA+zC7mXY=;
+ h=From:To:Cc:Subject:Date:From;
+ b=bnVJcQfGHwR78iMhMGJ3/c5moT+Bn2Ma2Q6g2tWpN6A90vUf3ykTM/Z5mq/OLFJ2w
+ e8S8Y5lPnV454HZORUiUUUITukB5zxDoAcPrs3eRl9QXwABr2M+o5Y0MmU/Y+7+5m+
+ vYpCBJeqgNYlyaTbucxJZ9lSv7W2ONvRf0XsDiyVYkqdTmkOYSkMF7w/j2pCUi+ZWf
+ n7Bqwrg6Vl7SSRm33QP+IPAyMJqwZqGLeIEyXSkl/PXTaxrKnQnTU4UdEv6VvjMPWr
+ N+iHNHH6i9K9qHAjHpljGaQDXOStzWTqUqs+lA0FjVk4jObixznLx9LY+r6O84fxD7
+ W6OXF/irQpwNw==
+From: Tzung-Bi Shih <tzungbi@kernel.org>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net
+Cc: airlied@gmail.com, simona@ffwll.ch, nathan@kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ llvm@lists.linux.dev, tzungbi@kernel.org
+Subject: [PATCH v2] drm/i915/pmu: Fix build error with GCOV and AutoFDO enabled
+Date: Thu, 12 Jun 2025 08:30:23 +0000
+Message-ID: <20250612083023.562585-1-tzungbi@kernel.org>
+X-Mailer: git-send-email 2.50.0.rc1.591.g9c95f17f64-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,97 +57,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When the panic handler is called, configure the psr to send the full
-framebuffer to the monitor, otherwise the panic screen is only
-partially visible.
+i915_pmu.c may fail to build with GCOV and AutoFDO enabled.
 
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+../drivers/gpu/drm/i915/i915_pmu.c:116:3: error: call to '__compiletime_assert_487' declared with 'error' attribute: BUILD_BUG_ON failed: bit > BITS_PER_TYPE(typeof_member(struct i915_pmu, enable)) - 1
+  116 |                 BUILD_BUG_ON(bit >
+      |                 ^
+
+Here is a way to reproduce the issue:
+$ git checkout v6.15
+$ mkdir build
+$ ./scripts/kconfig/merge_config.sh -O build -n -m <(cat <<EOF
+CONFIG_DRM=y
+CONFIG_PCI=y
+CONFIG_DRM_I915=y
+
+CONFIG_PERF_EVENTS=y
+
+CONFIG_DEBUG_FS=y
+CONFIG_GCOV_KERNEL=y
+CONFIG_GCOV_PROFILE_ALL=y
+
+CONFIG_AUTOFDO_CLANG=y
+EOF
+)
+$ PATH=${PATH}:${HOME}/llvm-20.1.5-x86_64/bin make LLVM=1 O=build \
+       olddefconfig
+$ PATH=${PATH}:${HOME}/llvm-20.1.5-x86_64/bin make LLVM=1 O=build \
+       CLANG_AUTOFDO_PROFILE=...PATH_TO_SOME_AFDO_PROFILE... \
+       drivers/gpu/drm/i915/i915_pmu.o
+
+Although not super sure what happened, by reviewing the code, it should
+depend on `__builtin_constant_p(bit)` directly instead of assuming
+`__builtin_constant_p(config)` makes `bit` a builtin constant.
+
+Also fix a nit, to reuse the `bit` local variable.
+
+Fixes: a644fde77ff7 ("drm/i915/pmu: Change bitmask of enabled events to u32")
+Reviewed-by: Nathan Chancellor <nathan@kernel.org>
+Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
 ---
+Changes from v1:
+(https://patchwork.freedesktop.org/patch/656115/?series=149617&rev=1)
+- Collect R-b tag from Nathan.
+- Rebase to v6.16-rc1.
 
-v8:
- * Added in v8
+ drivers/gpu/drm/i915/i915_pmu.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- .../gpu/drm/i915/display/intel_atomic_plane.c |  7 +++++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h      |  2 ++
- 3 files changed, 29 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 8c422c6a7186..c9a9f0770205 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -58,6 +58,7 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "intel_psr.h"
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- #include "skl_watermark.h"
-@@ -1319,6 +1320,7 @@ static unsigned int intel_4tile_get_offset(unsigned int width, unsigned int x, u
- static void intel_panic_flush(struct drm_plane *plane)
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index e5a188ce3185..990bfaba3ce4 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -112,7 +112,7 @@ static u32 config_mask(const u64 config)
  {
- 	struct intel_plane_state *plane_state = to_intel_plane_state(plane->state);
-+	struct intel_crtc_state *crtc_state = to_intel_crtc_state(plane->state->crtc->state);
- 	struct intel_plane *iplane = to_intel_plane(plane);
- 	struct intel_display *display = to_intel_display(iplane);
- 	struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1328,6 +1330,11 @@ static void intel_panic_flush(struct drm_plane *plane)
+ 	unsigned int bit = config_bit(config);
  
- 	intel_bo_panic_finish(obj);
+-	if (__builtin_constant_p(config))
++	if (__builtin_constant_p(bit))
+ 		BUILD_BUG_ON(bit >
+ 			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
+ 							 enable)) - 1);
+@@ -121,7 +121,7 @@ static u32 config_mask(const u64 config)
+ 			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
+ 							 enable)) - 1);
  
-+	if (crtc_state->enable_psr2_sel_fetch) {
-+		/* Force a full update for psr2 */
-+		intel_psr2_panic_force_full_update(display, crtc_state);
-+	}
-+
- 	/* Flush the cache and don't disable tiling if it's the fbdev framebuffer.*/
- 	if (to_intel_framebuffer(fb) == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
- 		struct iosys_map map;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index db7111374293..283ac2618ea5 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2888,6 +2888,26 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	return 0;
+-	return BIT(config_bit(config));
++	return BIT(bit);
  }
  
-+void intel_psr2_panic_force_full_update(struct intel_display *display,
-+					struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 val = man_trk_ctl_enable_bit_get(display);
-+
-+	/* SF partial frame enable has to be set even on full update */
-+	val |= man_trk_ctl_partial_frame_bit_get(display);
-+	val |= man_trk_ctl_continuos_full_frame(display);
-+
-+	/* Directly write the register */
-+	intel_de_write_fw(display, PSR2_MAN_TRK_CTL(display, cpu_transcoder), val);
-+
-+	if (!crtc_state->enable_psr2_su_region_et)
-+		return;
-+
-+	intel_de_write_fw(display, PIPE_SRCSZ_ERLY_TPT(crtc->pipe), 0);
-+}
-+
- void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 0cf53184f13f..9b061a22361f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -57,6 +57,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
- void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 					  const struct intel_crtc_state *crtc_state);
-+void intel_psr2_panic_force_full_update(struct intel_display *display,
-+					struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- bool intel_psr_needs_vblank_notification(const struct intel_crtc_state *crtc_state);
+ static bool is_engine_event(struct perf_event *event)
 -- 
-2.49.0
+2.50.0.rc1.591.g9c95f17f64-goog
 
