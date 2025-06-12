@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4245EAD6FD1
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72847AD6FD2
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:12:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4C0810E7F8;
-	Thu, 12 Jun 2025 12:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63C9D10E7F2;
+	Thu, 12 Jun 2025 12:12:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SrbzX/u9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTstjpw5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B44FC10E7F8;
- Thu, 12 Jun 2025 12:12:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BB9E10E7E5;
+ Thu, 12 Jun 2025 12:12:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749730347; x=1781266347;
+ t=1749730352; x=1781266352;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8XffxEIviM/Lz40ojSmj79/qA9kxXmChwoezBIw4bNg=;
- b=SrbzX/u9/i7dlxqy6yg8bE0gsiXdLBX2lNzuQMMHx1uBBGl1zCXcmhTl
- jCqmA9CksukIBzhWyiHpyjCpTBvvBiLuhH4bhJIlksxkOynF8k6cePIgd
- DyLOqt8wD9y1Kil8psjbmT6O4UruWGhzVz5/N2wwn0zb0NZ8xJeTXDPHE
- OXme2xezukAx1dTwzD48l9WLMHOgTZcNtV9RamxvI2C+8kDho3ANbLdaQ
- kdq2e8R9UDILk63Xh0uoO9//z3vIAHNZ3skLmXwWNBAm3Wdn4QCpaNC5J
- JcKD7B6SFy1D8CiHVG+GeZvkSB0Etc+F8A5iCIkT6S2IuQ25b7XoHP8Nw w==;
-X-CSE-ConnectionGUID: qde3DdV0THubA84gv+GM2g==
-X-CSE-MsgGUID: rj4BAHXJSAe0Dg6zTPyOfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="63314803"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="63314803"
+ bh=zMKSpOzB8CgqC2/+SKXnzDw/RP8av8MmU43MuUcrhjc=;
+ b=XTstjpw5vY0FTEN6vzY13FbeYuKiXfZ67JWDKhC0aVNFW5lg0Nh+5IP1
+ 16+GFkXj4CM5Mhk8Sshr5tz7BOzWl00cnuSej/cj0kLJrL70aMqRj296N
+ JZVJK9jkxhn5dCwVd+2PnszXgfxOnn4LsHJzW2MWXkexpUHqdPI2OtAfr
+ OsPnZgzqTT3Qchh8ixmyU+J1YsW8IQx7jMeE9FZ+Hh+Z/DwLmopp4XoR2
+ 1yUPGBOmHm1JA8s9AkVJoH/TlVhkQyzagrsgWmUQaqyeirgiv8qZ2SMTx
+ W0nK0zhsWDqOe0cehXon1U8nSso9K+n4SmAFXrnz8m4Z2LiQKMcpnHh5u w==;
+X-CSE-ConnectionGUID: l1F1/K3uQyygtzIOKW9VQQ==
+X-CSE-MsgGUID: a9XfmZtYRbiXMwkaRg84dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="63314820"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="63314820"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:12:27 -0700
-X-CSE-ConnectionGUID: 5TBM6XRzQgiSUABj3PUAuA==
-X-CSE-MsgGUID: xgvRvllsSY6xoFLvdxiwUw==
+ 12 Jun 2025 05:12:32 -0700
+X-CSE-ConnectionGUID: TMUUTJSKR8WqCD/3yzUI4A==
+X-CSE-MsgGUID: wnypdiSKStujJVWP9jicVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="178476833"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="178476870"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:12:24 -0700
+ 12 Jun 2025 05:12:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 02/16] drm/i915/wm: add more accessors to dbuf state
-Date: Thu, 12 Jun 2025 15:11:57 +0300
-Message-Id: <bb6940c929cc1f744f2e85c1b67180294204ca30.1749730224.git.jani.nikula@intel.com>
+Subject: [PATCH 03/16] drm/i915/wm: make struct intel_dbuf_state opaque type
+Date: Thu, 12 Jun 2025 15:11:58 +0300
+Message-Id: <40118aa7521135e0b7580fb60bb0af464287649b.1749730224.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1749730224.git.jani.nikula@intel.com>
 References: <cover.1749730224.git.jani.nikula@intel.com>
@@ -70,72 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add intel_dbuf_num_enabled_slices() and intel_dbuf_num_active_pipes()
-helpers to avoid looking at struct intel_dbuf_state internals outside of
-skl_watermark.c.
+With all the code touching struct intel_dbuf_state moved inside
+skl_watermark.c, we move the struct definition there too, and make the
+type opaque. This nicely reduces includes from skl_watermark.h.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  6 +++---
- drivers/gpu/drm/i915/display/skl_watermark.c  | 10 ++++++++++
- drivers/gpu/drm/i915/display/skl_watermark.h  |  3 +++
- 3 files changed, 16 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 12 ++++++++++++
+ drivers/gpu/drm/i915/display/skl_watermark.h | 19 +++----------------
+ 2 files changed, 15 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index 0f1501c456df..eeb88f9fc92d 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -358,12 +358,12 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
- 
- 	if (DISPLAY_VER(display) < 30) {
- 		new_pmdemand_state->params.active_dbufs =
--			min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3);
-+			min_t(u8, intel_dbuf_num_enabled_slices(new_dbuf_state), 3);
- 		new_pmdemand_state->params.active_pipes =
--			min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
-+			min_t(u8, intel_dbuf_num_active_pipes(new_dbuf_state), 3);
- 	} else {
- 		new_pmdemand_state->params.active_pipes =
--			min_t(u8, hweight8(new_dbuf_state->active_pipes), INTEL_NUM_PIPES(display));
-+			min_t(u8, intel_dbuf_num_active_pipes(new_dbuf_state), INTEL_NUM_PIPES(display));
- 	}
- 
- 	new_cdclk_state = intel_atomic_get_cdclk_state(state);
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 55280d16f9f7..f35f2603d543 100644
+index f35f2603d543..34726895075b 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3701,6 +3701,16 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
- 	gen9_dbuf_slices_update(display, new_slices);
- }
+@@ -38,6 +38,18 @@
+  */
+ #define DSB_EXE_TIME 100
  
-+int intel_dbuf_num_enabled_slices(const struct intel_dbuf_state *dbuf_state)
-+{
-+	return hweight8(dbuf_state->enabled_slices);
-+}
++struct intel_dbuf_state {
++	struct intel_global_state base;
 +
-+int intel_dbuf_num_active_pipes(const struct intel_dbuf_state *dbuf_state)
-+{
-+	return hweight8(dbuf_state->active_pipes);
-+}
++	struct skl_ddb_entry ddb[I915_MAX_PIPES];
++	unsigned int weight[I915_MAX_PIPES];
++	u8 slices[I915_MAX_PIPES];
++	u8 enabled_slices;
++	u8 active_pipes;
++	u8 mdclk_cdclk_ratio;
++	bool joined_mbus;
++};
 +
- bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
+ #define to_intel_dbuf_state(global_state) \
+ 	container_of_const((global_state), struct intel_dbuf_state, base)
+ 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-index 3b9a0b254cff..a1993ded034a 100644
+index a1993ded034a..87d052b640b3 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.h
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-@@ -78,6 +78,9 @@ struct intel_dbuf_state {
+@@ -8,17 +8,16 @@
+ 
+ #include <linux/types.h>
+ 
+-#include "intel_display_limits.h"
+-#include "intel_global_state.h"
+-#include "intel_wm_types.h"
+-
++enum plane_id;
+ struct intel_atomic_state;
+ struct intel_bw_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_dbuf_state;
+ struct intel_display;
+ struct intel_plane;
+ struct intel_plane_state;
++struct skl_ddb_entry;
+ struct skl_pipe_wm;
+ struct skl_wm_level;
+ 
+@@ -63,18 +62,6 @@ unsigned int skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_st
+ 					  struct intel_plane *plane, int width,
+ 					  int height, int cpp);
+ 
+-struct intel_dbuf_state {
+-	struct intel_global_state base;
+-
+-	struct skl_ddb_entry ddb[I915_MAX_PIPES];
+-	unsigned int weight[I915_MAX_PIPES];
+-	u8 slices[I915_MAX_PIPES];
+-	u8 enabled_slices;
+-	u8 active_pipes;
+-	u8 mdclk_cdclk_ratio;
+-	bool joined_mbus;
+-};
+-
  struct intel_dbuf_state *
  intel_atomic_get_dbuf_state(struct intel_atomic_state *state);
  
-+int intel_dbuf_num_enabled_slices(const struct intel_dbuf_state *dbuf_state);
-+int intel_dbuf_num_active_pipes(const struct intel_dbuf_state *dbuf_state);
-+
- int intel_dbuf_init(struct intel_display *display);
- int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state,
- 					   int ratio);
 -- 
 2.39.5
 
