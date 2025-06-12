@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B43AD7494
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 16:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC80AD7497
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 16:50:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A59B10E885;
-	Thu, 12 Jun 2025 14:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B72F110E895;
+	Thu, 12 Jun 2025 14:50:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E+EsNSnW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0AlTgfd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 290EF10E885;
- Thu, 12 Jun 2025 14:50:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E171E10E895;
+ Thu, 12 Jun 2025 14:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749739840; x=1781275840;
+ t=1749739844; x=1781275844;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pNTQnl0LwC5YOKBcW89YwuiEtGX1yqQzu6rQSe04u4g=;
- b=E+EsNSnWCO+4CCRkXKcckWwkOkPIaSQ5eM2ZCERU/zYOyEndu0MKwSGa
- PqHG6BsAFqCO1zWU1UG8lNdAoB0LYdMy2K8SdSMoCZjOT6aZEvLtD+v93
- JBUOdMgQVCY1cUvLpkyxLYq0qJngDKBtLnZGbyUrUgaW44JLnny/j5VQh
- J1NkEXBdCmcg0w1SoSA48h0we8VAwz5YxN9IvAwkgML2jdsnC6SwHNq6l
- kgM+auKEURmqALzUv52PRYYqotf4CLTvYYratRAyvLoE5btsuKVJRJJL3
- TeDG7sCeYO6EL+8pTEYr/cAM0AfwzFED3roIg/6+eljGpzuk4qlJkFk0p A==;
-X-CSE-ConnectionGUID: hdv1ARz4QZal2Abk/xr+9A==
-X-CSE-MsgGUID: pLUw0Z67Re6Y1dRNZaM9iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="52066756"
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="52066756"
+ bh=XX4DbVANMISxpRQ362XWCGc8tocl8RuWa4rO0SleYwg=;
+ b=G0AlTgfdxmDH40FHTreLBgWEl351/vGsdGVq336I5orh8qXAxOS10pfu
+ xk+tz9MjIEHqgvtkPe0tYYhLgusa4+dLY5/aVvBChFRO7RAEKh3T/XJzY
+ oeraggEW8OSSIR0N67j4DNHbJZvBHD2XP7hcpAn94WoIjNk5Ki9Y+/CAT
+ ivf5vQidlbzyaFYZIaGfyb6lXEhz1BzojEytAPJ9vAcPvahufuiqEhMNp
+ 6ngJe7KRr1mLg6ZOVazyT8LCCo2HTH9Kj8oUnr6uogiQxXS5izuaW4dy/
+ Y6xUEx3hACPkG0zj+1fEPx9+8gDfpg2VC9CftUuOVPcRRhNikbdGB/zhd g==;
+X-CSE-ConnectionGUID: Kh7xsBxJRf2I+G1FaulPNA==
+X-CSE-MsgGUID: srG2Xg1UT6uYkBEopEy8Yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="52066758"
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="52066758"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 07:50:40 -0700
-X-CSE-ConnectionGUID: BgfgX+PuT8e0ECwfnpep/A==
-X-CSE-MsgGUID: mP4GaNO0R96b5KDf20lCVg==
+ 12 Jun 2025 07:50:43 -0700
+X-CSE-ConnectionGUID: bAkZTbh4RvezCYzTM+tAYg==
+X-CSE-MsgGUID: g/Dm3AyzSTOyNMX5yhbUKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152826225"
+X-IronPort-AV: E=Sophos;i="6.16,231,1744095600"; d="scan'208";a="152826234"
 Received: from abityuts-desk.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.200])
- by orviesa005.jf.intel.com with SMTP; 12 Jun 2025 07:50:38 -0700
+ by orviesa005.jf.intel.com with SMTP; 12 Jun 2025 07:50:42 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Jun 2025 17:50:36 +0300
+ Thu, 12 Jun 2025 17:50:40 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH 5/6] drm/i915/dsb: Move the DSB_PMCTRL* reset out of
- intel_dsb_finish()
-Date: Thu, 12 Jun 2025 17:50:17 +0300
-Message-ID: <20250612145018.8735-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/6] drm/i915/dsb: Disable the GOSUB interrupt
+Date: Thu, 12 Jun 2025 17:50:18 +0300
+Message-ID: <20250612145018.8735-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250612145018.8735-1-ville.syrjala@linux.intel.com>
 References: <20250612145018.8735-1-ville.syrjala@linux.intel.com>
@@ -74,83 +73,59 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-When using the flip queue, due to the DMC vs. DSB register corruption
-problem, we must not issue any register writes from the DSB after
-unhalting the DMC. Currently we are doing just that by trying to
-restore DSB_PMCTRL* back to a sane state from intel_dsb_finish().
+Current DSB hardware is apparently a bit borked and likes to signal
+spurious GOSUB errors. We already have most for the workarounds for
+this in place, but the last part is simply not enabling the corresponding
+interrupt.
 
-Since the only place left that pokes at DSB_PMCTRL* is intel_dsb_chain()
-we can just do DSB_PMCTRL_2/DSB_FORCE_DEWAKE reset in the same place.
-
-The DSB_PMCTRL reset is trickier since we'd have to do it from the
-chained DSB itself. But based on my earlier testing
-DSB_PMCTRL/DSB_ENABLE_DEWAKE doesn't actually do anything if the DSB
-isn't actually enabled, so we can omit the reset to keep things a bit
-simpler. We do need to reset DSB_PMCTRL/DSB_ENABLE_DEWAKE before
-tarting the DSB however, in case it was left enabled from a previous
-use.
+While at it polish up the w/a comments with the w/a number,
+and consistently take the short blurp from the w/a page.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 23 +++++++++++------------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 2f7bd8da1bf1..aaa2a4a52edc 100644
+index aaa2a4a52edc..53d8ae3a70e9 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -628,18 +628,6 @@ void intel_dsb_gosub_finish(struct intel_dsb *dsb)
+@@ -554,8 +554,8 @@ static void intel_dsb_gosub_align(struct intel_dsb *dsb)
+ 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
  
- void intel_dsb_finish(struct intel_dsb *dsb)
- {
--	struct intel_crtc *crtc = dsb->crtc;
--
--	/*
--	 * DSB_FORCE_DEWAKE remains active even after DSB is
--	 * disabled, so make sure to clear it (if set during
--	 * intel_dsb_commit()). And clear DSB_ENABLE_DEWAKE as
--	 * well for good measure.
--	 */
--	intel_dsb_reg_write(dsb, DSB_PMCTRL(crtc->pipe, dsb->id), 0);
--	intel_dsb_reg_write_masked(dsb, DSB_PMCTRL_2(crtc->pipe, dsb->id),
--				   DSB_FORCE_DEWAKE, 0);
--
+ 	/*
+-	 * "The GOSUB instruction cannot be placed in
+-	 *  cacheline QW slot 6 or 7 (numbered 0-7)"
++	 * Wa_16024917128
++	 * "Ensure GOSUB is not placed in cacheline QW slot 6 or 7 (numbered 0-7)"
+ 	 */
+ 	if (aligned_tail - tail <= 2 * 8)
+ 		intel_dsb_buffer_memset(&dsb->dsb_buf, dsb->free_pos, 0,
+@@ -618,8 +618,8 @@ void intel_dsb_gosub_finish(struct intel_dsb *dsb)
  	intel_dsb_align_tail(dsb);
  
- 	intel_dsb_buffer_flush_map(&dsb->dsb_buf);
-@@ -780,6 +768,8 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
- 		intel_dsb_reg_write(dsb, DSB_PMCTRL(pipe, chained_dsb->id),
- 				    DSB_ENABLE_DEWAKE |
- 				    DSB_SCANLINE_FOR_DEWAKE(hw_dewake_scanline));
-+	} else {
-+		intel_dsb_reg_write(dsb, DSB_PMCTRL(pipe, chained_dsb->id), 0);
- 	}
+ 	/*
+-	 * "All subroutines called by the GOSUB instruction
+-	 *  must end with a cacheline of NOPs"
++	 * Wa_16024917128
++	 * "Ensure that all subroutines called by GOSUB end with a cacheline of NOPs"
+ 	 */
+ 	intel_dsb_noop(dsb, 8);
  
- 	intel_dsb_reg_write(dsb, DSB_HEAD(pipe, chained_dsb->id),
-@@ -801,6 +791,13 @@ static void _intel_dsb_chain(struct intel_atomic_state *state,
- 		intel_dsb_wait_scanline_out(state, dsb,
- 					    dsb_dewake_scanline_start(state, crtc),
- 					    dsb_dewake_scanline_end(state, crtc));
-+
-+		/*
-+		 * DSB_FORCE_DEWAKE remains active even after DSB is
-+		 * disabled, so make sure to clear it.
-+		 */
-+		intel_dsb_reg_write_masked(dsb, DSB_PMCTRL_2(crtc->pipe, dsb->id),
-+					   DSB_FORCE_DEWAKE, 0);
- 	}
- }
+@@ -667,7 +667,11 @@ static u32 dsb_error_int_en(struct intel_display *display)
+ 	if (DISPLAY_VER(display) >= 14)
+ 		errors |= DSB_ATS_FAULT_INT_EN;
  
-@@ -856,6 +853,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS |
- 			  dsb_error_int_en(display) | DSB_PROG_INT_EN);
+-	if (DISPLAY_VER(display) >= 30)
++	/*
++	 * Wa_16024917128
++	 * "Disable nested GOSUB interrupt (DSB_INTERRUPT bit 21)"
++	 */
++	if (0 && DISPLAY_VER(display) >= 30)
+ 		errors |= DSB_GOSUB_INT_EN;
  
-+	intel_de_write_fw(display, DSB_PMCTRL(pipe, dsb->id), 0);
-+
- 	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
- 			  intel_dsb_head(dsb));
- 
+ 	return errors;
 -- 
 2.49.0
 
