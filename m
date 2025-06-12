@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25ED8AD6FDC
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 965E9AD6FDE
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 14:13:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD4EC10E80B;
-	Thu, 12 Jun 2025 12:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6DD10E801;
+	Thu, 12 Jun 2025 12:13:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cl6oGoDk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aVEMPh1V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 013F310E803;
- Thu, 12 Jun 2025 12:13:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3D6610E808;
+ Thu, 12 Jun 2025 12:13:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749730390; x=1781266390;
+ t=1749730395; x=1781266395;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r4t2AxhNToiCwNCQibhbAZICMk2r/vniE61qpH6RJGI=;
- b=cl6oGoDk50RCgRpQg6mBgLC3yctYS5E/WpQC0mdX8eYl7IJdg7Y73GDW
- WRG+Uh2GFtAQKyIX1Hgj6M68A7xHOVjf8FaNE2bU609DEx72iiLWaIhpi
- 51iDbAQ0RsfervxdQK/dq8cTs1xn2Edm/e8kcF9onpVdr9QGi2sERhzfg
- frlfgUiBPH40yR/926R3GVBzrv4DLUGUr65va250mQJZxdaYz2xXTfL7z
- 8lKZilEp8wpeLsR0ZBhvJ4cc54yCVN9TBYxptderhZLM2bbPO5flpgtfc
- iLT0ElDzoWRsr3aiWqKoYMubkb6FargitEz2h5Y+uWltLgWM+EyRwpkK+ w==;
-X-CSE-ConnectionGUID: dLCGqMUoQAyBzVihmIvGCQ==
-X-CSE-MsgGUID: ddPSQKCTTl2tgKv60NekQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="74438555"
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="74438555"
+ bh=rTdVxEOypNljAzzyDyzZn8EONIoHKu6aMrj341NC+Ug=;
+ b=aVEMPh1VXYo2jCAj32Tl5vjpAm8hClm+nL0obu69cSjGZTuotpp2EE9Q
+ 31L6S7WjP5/cokNXt4eExrMrarZptytE2DGAvxoNat6ZLD1HELJTCOCX4
+ 0n1nP18kpnZsoNow402L/dBGruuRN1IrVn9MLlvmNgSpx4bWyJZCoh7hH
+ iCX/luZSuPaajW08+2e29iiSp6artONbpZPQihOeLjWHJbKmr9svcGuyi
+ csw5sddY0bKvVz53n+Ou0kw4CtdMcY99YkE0u4Uy/snydF8mSKM9BU16X
+ LzcYck/Z5b8YoCaT1cecuLbTEB700NoHDjJhrVlIScQVrIn9H4AqhknY1 A==;
+X-CSE-ConnectionGUID: LAIguWexQIq/+2gddUm5bA==
+X-CSE-MsgGUID: ZL8+nbl1SjWKlCx1EPh9EQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="74438569"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="74438569"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:13:10 -0700
-X-CSE-ConnectionGUID: Yqvh9n5hQwytOG4HLqvnbw==
-X-CSE-MsgGUID: r1tG4rgqQ8mJ8skHLiOerQ==
+ 12 Jun 2025 05:13:15 -0700
+X-CSE-ConnectionGUID: Cp3GnH0xQ8uTEKjKZqlICg==
+X-CSE-MsgGUID: Vv3M0xcSSsGNmUIBsAeNzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152493864"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152493874"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2025 05:13:08 -0700
+ 12 Jun 2025 05:13:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 11/16] drm/i915/cdclk: abstract intel_cdclk_bw_min_cdclk()
-Date: Thu, 12 Jun 2025 15:12:06 +0300
-Message-Id: <10588f3e555951e534813fda9a52abde94c220a4.1749730224.git.jani.nikula@intel.com>
+Subject: [PATCH 12/16] drm/i915/cdclk: abstract
+ intel_cdclk_pmdemand_needs_update()
+Date: Thu, 12 Jun 2025 15:12:07 +0300
+Message-Id: <8fbf9f7e282d868a41ac17464991b92ae2d4f97b.1749730224.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1749730224.git.jani.nikula@intel.com>
 References: <cover.1749730224.git.jani.nikula@intel.com>
@@ -70,59 +71,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add intel_cdclk_bw_min_cdclk() helper to avoid looking at struct
-intel_cdclk_state internals outside of intel_cdclk.c.
+Add intel_cdclk_pmdemand_needs_update() helper to avoid looking at
+struct intel_cdclk_state internals outside of intel_cdclk.c.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c    | 4 ++--
- drivers/gpu/drm/i915/display/intel_cdclk.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_cdclk.h | 1 +
- 3 files changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 15 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  9 +--------
+ 3 files changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 67c54c144274..306a13ef8b35 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1461,12 +1461,12 @@ int intel_bw_calc_min_cdclk(struct intel_atomic_state *state,
- 	 * requirements. This can reduce back and forth
- 	 * display blinking due to constant cdclk changes.
- 	 */
--	if (new_min_cdclk <= cdclk_state->bw_min_cdclk)
-+	if (new_min_cdclk <= intel_cdclk_bw_min_cdclk(cdclk_state))
- 		return 0;
- 
- 	drm_dbg_kms(display->drm,
- 		    "new bandwidth min cdclk (%d kHz) > old min cdclk (%d kHz)\n",
--		    new_min_cdclk, cdclk_state->bw_min_cdclk);
-+		    new_min_cdclk, intel_cdclk_bw_min_cdclk(cdclk_state));
- 	*need_cdclk_calc = true;
- 
- 	return 0;
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 05e94fcd8326..59d126e1b12a 100644
+index 59d126e1b12a..ed6c407f66c7 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3847,3 +3847,8 @@ int intel_cdclk_min_cdclk(const struct intel_cdclk_state *cdclk_state, enum pipe
+@@ -3852,3 +3852,18 @@ int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state)
  {
- 	return cdclk_state->min_cdclk[pipe];
+ 	return cdclk_state->bw_min_cdclk;
  }
 +
-+int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state)
++bool intel_cdclk_pmdemand_needs_update(struct intel_atomic_state *state)
 +{
-+	return cdclk_state->bw_min_cdclk;
++	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
++
++	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
++	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
++
++	if (new_cdclk_state &&
++	    (new_cdclk_state->actual.cdclk != old_cdclk_state->actual.cdclk ||
++	     new_cdclk_state->actual.voltage_level != old_cdclk_state->actual.voltage_level))
++		return true;
++
++	return false;
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index ef6ad9d04c20..fe1a1f1c1900 100644
+index fe1a1f1c1900..8527a6e44ee5 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -99,5 +99,6 @@ void intel_cdclk_debugfs_register(struct intel_display *display);
- 
+@@ -100,5 +100,6 @@ void intel_cdclk_debugfs_register(struct intel_display *display);
  int intel_cdclk_logical(const struct intel_cdclk_state *cdclk_state);
  int intel_cdclk_min_cdclk(const struct intel_cdclk_state *cdclk_state, enum pipe pipe);
-+int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state);
+ int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state);
++bool intel_cdclk_pmdemand_needs_update(struct intel_atomic_state *state);
  
  #endif /* __INTEL_CDCLK_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index a4d53fd94489..16ef68ef4041 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -294,7 +294,6 @@ intel_pmdemand_connector_needs_update(struct intel_atomic_state *state)
+ 
+ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ {
+-	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
+ 	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+ 	struct intel_crtc *crtc;
+ 	int i;
+@@ -305,13 +304,7 @@ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
+ 	if (intel_dbuf_pmdemand_needs_update(state))
+ 		return true;
+ 
+-	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
+-	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
+-	if (new_cdclk_state &&
+-	    (new_cdclk_state->actual.cdclk !=
+-	     old_cdclk_state->actual.cdclk ||
+-	     new_cdclk_state->actual.voltage_level !=
+-	     old_cdclk_state->actual.voltage_level))
++	if (intel_cdclk_pmdemand_needs_update(state))
+ 		return true;
+ 
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
 -- 
 2.39.5
 
