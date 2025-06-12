@@ -2,46 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FE0AD6AD2
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 10:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD5BAD6BAF
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Jun 2025 11:08:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92EFC10E7B2;
-	Thu, 12 Jun 2025 08:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D530310E7B9;
+	Thu, 12 Jun 2025 09:08:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bnVJcQfG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fiXjbYES";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 878F910E7B1;
- Thu, 12 Jun 2025 08:30:59 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8334D629E5;
- Thu, 12 Jun 2025 08:30:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73C4CC4CEEA;
- Thu, 12 Jun 2025 08:30:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1749717055;
- bh=mSPz4JyDiTbHlIZY2LoFchrSDTmvR2H2ufTA+zC7mXY=;
- h=From:To:Cc:Subject:Date:From;
- b=bnVJcQfGHwR78iMhMGJ3/c5moT+Bn2Ma2Q6g2tWpN6A90vUf3ykTM/Z5mq/OLFJ2w
- e8S8Y5lPnV454HZORUiUUUITukB5zxDoAcPrs3eRl9QXwABr2M+o5Y0MmU/Y+7+5m+
- vYpCBJeqgNYlyaTbucxJZ9lSv7W2ONvRf0XsDiyVYkqdTmkOYSkMF7w/j2pCUi+ZWf
- n7Bqwrg6Vl7SSRm33QP+IPAyMJqwZqGLeIEyXSkl/PXTaxrKnQnTU4UdEv6VvjMPWr
- N+iHNHH6i9K9qHAjHpljGaQDXOStzWTqUqs+lA0FjVk4jObixznLx9LY+r6O84fxD7
- W6OXF/irQpwNw==
-From: Tzung-Bi Shih <tzungbi@kernel.org>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net
-Cc: airlied@gmail.com, simona@ffwll.ch, nathan@kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- llvm@lists.linux.dev, tzungbi@kernel.org
-Subject: [PATCH v2] drm/i915/pmu: Fix build error with GCOV and AutoFDO enabled
-Date: Thu, 12 Jun 2025 08:30:23 +0000
-Message-ID: <20250612083023.562585-1-tzungbi@kernel.org>
-X-Mailer: git-send-email 2.50.0.rc1.591.g9c95f17f64-goog
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBE8210E793;
+ Thu, 12 Jun 2025 09:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749719311; x=1781255311;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vPDeoOnUG9T7WpDp8aMQporpD7A0NAgX7Ug3eOgz77E=;
+ b=fiXjbYESt6gGlTNp4hXl1+ego66JPRs7WUql2FHGM+yiRfQ0XmqcAlvL
+ /BPs4UFm/UEELs1/n/l3lvMctmTWSKevP5t9GGKo9YoW8gpNRZKO2uHHi
+ wIoAa0tFPR8sJj5GPMQBZg3PCcfqbTmFrgLINsQTcVlO1aaagqC7J6Dpy
+ XLbBVJQGd3FAQ2aJIpYibXKburZolrWErCSxVD34XVMLJa1c91zM7AJcQ
+ 9z2AwhBHF9dHDTlxU0cAKIugbjiSupjrd2m30IJnAnEEaaxNSPPJw+/g+
+ kc+2GD6T01MIjdaQXMaE7CMp+vUKGAqhIYJA/gqLij5vbnBcL/yrXUveW Q==;
+X-CSE-ConnectionGUID: K1dXX67zSqKlOzGoMDhPNw==
+X-CSE-MsgGUID: 7D8W3Qy0RUGdzZdSc/OM3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="39500915"
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="39500915"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 02:08:24 -0700
+X-CSE-ConnectionGUID: ligeonFMTCuMLQMkH4LxqQ==
+X-CSE-MsgGUID: U0GmRdzyRMeS7MRNtOkkCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,230,1744095600"; d="scan'208";a="152606712"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.156])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Jun 2025 02:08:21 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: "Gote, Nitin R" <nitin.r.gote@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ "Auld, Matthew" <matthew.auld@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ "Brzezinka, Sebastian" <sebastian.brzezinka@intel.com>,
+ "Niemiec, Krzysztof" <krzysztof.niemiec@intel.com>,
+ "Karas, Krzysztof" <krzysztof.karas@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA
+ alloc error
+Date: Thu, 12 Jun 2025 11:08:18 +0200
+Message-ID: <8536974.T7Z3S40VBb@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <aEntEHqvZ10SaE8u@ashyti-mobl2.lan>
+References: <20250611104352.1014011-2-janusz.krzysztofik@linux.intel.com>
+ <IA3PR11MB89873936B6D887A59ABD909CD075A@IA3PR11MB8987.namprd11.prod.outlook.com>
+ <aEntEHqvZ10SaE8u@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,75 +84,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-i915_pmu.c may fail to build with GCOV and AutoFDO enabled.
+On Wednesday, 11 June 2025 22:54:40 CEST Andi Shyti wrote:
+> Hi Nitin,
+> 
+> On Wed, Jun 11, 2025 at 03:45:30PM +0000, Gote, Nitin R wrote:
+> > [...]
+> > > Subject: [PATCH] drm/i915/ring_submission: Fix timeline left held on VMA alloc
+> > > error
+> > >
+> > 
+> > Generally, it's preferred to use "drm/i915/gt:" file path over "drm/i915/ring_submission:"  file name in the commit title.
+> 
+> good observation, I missed it. I agree with Nitin on this, it can
+> be fixed before merging.
 
-../drivers/gpu/drm/i915/i915_pmu.c:116:3: error: call to '__compiletime_assert_487' declared with 'error' attribute: BUILD_BUG_ON failed: bit > BITS_PER_TYPE(typeof_member(struct i915_pmu, enable)) - 1
-  116 |                 BUILD_BUG_ON(bit >
-      |                 ^
+I'm not sure.  I found no single word on the *subsystem* component of the 
+canonical patch format subject line (or commit message) expected to reflect 
+any directory structure in case of DRM.  However, if you think it should for 
+some reason, or you just don't recognize i915 ring submission as a good 
+candidate for the subsystem component of the commit message, then I'm OK with 
+drm/i915/gt, but then, the summary phrase of the commit message seems too 
+general for the whole GT subsystem, not pointing to ring submission as the 
+only submission method out of the three that's affected, and needs to be 
+rephrased, I believe, while still kept short enough.  Maybe "Fix *legacy* 
+timeline held on VMA alloc error" (with the 'left' word dropped)?
 
-Here is a way to reproduce the issue:
-$ git checkout v6.15
-$ mkdir build
-$ ./scripts/kconfig/merge_config.sh -O build -n -m <(cat <<EOF
-CONFIG_DRM=y
-CONFIG_PCI=y
-CONFIG_DRM_I915=y
+Thanks,
+Janusz
 
-CONFIG_PERF_EVENTS=y
+> 
+> Andi
+> 
 
-CONFIG_DEBUG_FS=y
-CONFIG_GCOV_KERNEL=y
-CONFIG_GCOV_PROFILE_ALL=y
 
-CONFIG_AUTOFDO_CLANG=y
-EOF
-)
-$ PATH=${PATH}:${HOME}/llvm-20.1.5-x86_64/bin make LLVM=1 O=build \
-       olddefconfig
-$ PATH=${PATH}:${HOME}/llvm-20.1.5-x86_64/bin make LLVM=1 O=build \
-       CLANG_AUTOFDO_PROFILE=...PATH_TO_SOME_AFDO_PROFILE... \
-       drivers/gpu/drm/i915/i915_pmu.o
 
-Although not super sure what happened, by reviewing the code, it should
-depend on `__builtin_constant_p(bit)` directly instead of assuming
-`__builtin_constant_p(config)` makes `bit` a builtin constant.
-
-Also fix a nit, to reuse the `bit` local variable.
-
-Fixes: a644fde77ff7 ("drm/i915/pmu: Change bitmask of enabled events to u32")
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
----
-Changes from v1:
-(https://patchwork.freedesktop.org/patch/656115/?series=149617&rev=1)
-- Collect R-b tag from Nathan.
-- Rebase to v6.16-rc1.
-
- drivers/gpu/drm/i915/i915_pmu.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index e5a188ce3185..990bfaba3ce4 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -112,7 +112,7 @@ static u32 config_mask(const u64 config)
- {
- 	unsigned int bit = config_bit(config);
- 
--	if (__builtin_constant_p(config))
-+	if (__builtin_constant_p(bit))
- 		BUILD_BUG_ON(bit >
- 			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
- 							 enable)) - 1);
-@@ -121,7 +121,7 @@ static u32 config_mask(const u64 config)
- 			     BITS_PER_TYPE(typeof_member(struct i915_pmu,
- 							 enable)) - 1);
- 
--	return BIT(config_bit(config));
-+	return BIT(bit);
- }
- 
- static bool is_engine_event(struct perf_event *event)
--- 
-2.50.0.rc1.591.g9c95f17f64-goog
 
