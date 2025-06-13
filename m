@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36AEAD8978
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 395ACAD8997
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:38:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ADE610E992;
-	Fri, 13 Jun 2025 10:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5EB610E994;
+	Fri, 13 Jun 2025 10:38:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZ0+TG44";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F72E10E992;
- Fri, 13 Jun 2025 10:26:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3422485407084022577=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A544C10E988;
+ Fri, 13 Jun 2025 10:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749811087; x=1781347087;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=pK28+wYhdI5OOwIjaTH+OLEF8fxpC9TPqYOS+x7lElY=;
+ b=UZ0+TG44ETUU0dwm+ZxWtozDr854UIw2WK0WDQD5Sm3ceb5NFZHrSzQ9
+ fwIlmxydvCZZ7ZXKa4s/Xlzk2d4+ixTB6L0H7MRc8u98NoUgF2IFHS/KC
+ su9VNLRW5AyTPsVUiMnqqF7CPlQr/BQAHT3Iw3XUxtkx8zi3NIFGZNfCe
+ Znhh6ISsy6J7Q5E+VKxw4XKN0O8SGHiuXU9RJLSEqTPELSOyI9S+LSqyc
+ AkIxnL725NutayxGfaerASBcNyU1JLJ7fqCDmfRT55js/iZli3jAm4ND2
+ In/9TzTAwnEZbxftFk717XnW0zRY6sdkRMpOdLt/8AvTu5NgrRY6AkFS9 A==;
+X-CSE-ConnectionGUID: aU8bksvYR7ev5LilPvOu3g==
+X-CSE-MsgGUID: ZlFlDs2iTO6AunKm/s4omw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="51899389"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="51899389"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 03:38:07 -0700
+X-CSE-ConnectionGUID: TjNl/QApRmGwar2lKX+HPw==
+X-CSE-MsgGUID: JPLriMcGQDqaj6GClEOruw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="148688834"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.26])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 03:38:04 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, "Nautiyal, Ankit K"
+ <ankit.k.nautiyal@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
+In-Reply-To: <174981021705.14553.10495600609368679486@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250612075330.837179-1-ankit.k.nautiyal@intel.com>
+ <174972962084.14553.9763596946172547950@intel.com>
+ <bd3a2162-7fc6-42fd-808c-934720cbc5c2@intel.com>
+ <7f079861f91861e9e895240cd3272f6e29deab7e@intel.com>
+ <174981021705.14553.10495600609368679486@intel.com>
+Date: Fri, 13 Jun 2025 13:38:01 +0300
+Message-ID: <b42497874eb7fb36b2b29a8de3ffae6da74809aa@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/snps=5Fhdmi=5Fpl?=
- =?utf-8?q?l=3A_Fix_64-bit_divisor_truncation_by_using_div64=5Fu64?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Jun 2025 10:26:46 -0000
-Message-ID: <174981040647.75408.12693451678306181807@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250613061246.1118579-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250613061246.1118579-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,218 +69,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============3422485407084022577==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 13 Jun 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2025-06-13 06:13:55-03:00)
+>>For now, you'd manually check for each enum in __intel_display_wa()
+>>implementation, but in the future that code could be generated similar
+>>to what xe currently has. I'm just not very enthusiastic about adding C
+>>language hostprogs with custom .rules files and parsing.
+>
+> Hehe. Yeah. I'm wondering if something nice could be achieved with
+> header files and cpp magic...
 
-== Series Details ==
+Ugh! :)
 
-Series: drm/i915/snps_hdmi_pll: Fix 64-bit divisor truncation by using div64_u64
-URL   : https://patchwork.freedesktop.org/series/150203/
-State : failure
+If it was universally okay to add Python as a build dependency, I'd have
+done this already. The rules format could be yaml, json, toml, or
+something supported by Python out of the box (not xml though!). The
+whole thing could be 100-200 lines of Python without a hostprogs build
+step.
 
-== Summary ==
+drm/msm has quietly added a Python build dependency a few releases ago,
+and I'm kind of still waiting to see how it plays out...
 
-CI Bug Log - changes from CI_DRM_16700 -> Patchwork_150203v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_150203v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_150203v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Additional (1): bat-jsl-1 
-  Missing    (2): bat-arlh-2 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_150203v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@prime_self_import@basic-with_one_bo:
-    - bat-jsl-1:          NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@prime_self_import@basic-with_one_bo.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_150203v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@intel_hwmon@hwmon-read:
-    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#7707]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@intel_hwmon@hwmon-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][4] ([i915#4103]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#3555] / [i915#9886])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#3555])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16700 -> Patchwork_150203v1
-
-  CI-20190529: 20190529
-  CI_DRM_16700: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8410: 5826cdbf1cb8f5ec8a42bae33deb6b2b63e59e6e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_150203v1: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/index.html
-
---===============3422485407084022577==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/snps_hdmi_pll: Fix 64-bit divisor truncation by using div64_u64</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150203/">https://patchwork.freedesktop.org/series/150203/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16700 -&gt; Patchwork_150203v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_150203v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_150203v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Additional (1): bat-jsl-1 <br />
-  Missing    (2): bat-arlh-2 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_150203v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo:<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_150203v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@intel_hwmon@hwmon-read:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150203v1/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16700 -&gt; Patchwork_150203v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16700: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8410: 5826cdbf1cb8f5ec8a42bae33deb6b2b63e59e6e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_150203v1: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3422485407084022577==--
+-- 
+Jani Nikula, Intel
