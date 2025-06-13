@@ -2,63 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BEEAD90C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 17:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D221AD94A0
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 20:44:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18A0A10EA17;
-	Fri, 13 Jun 2025 15:06:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0495410EA3A;
+	Fri, 13 Jun 2025 18:44:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JR0YM5p9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LTwuj49R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6B410EA1D;
- Fri, 13 Jun 2025 15:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749827187; x=1781363187;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=L6TJ0p8/L1rUDEL+p7R1kyBLOq4EXCWPOTrm6+bkdQ0=;
- b=JR0YM5p9kQ6NQKCKgTkZlGKxRrbQc9axIzNnr/oxd2+lo0aNo70IA67K
- 3vtxo5aKlirACXCY2LhU/JCYZiXs1oGZ6ehlxn82DdK40rBFx1Aw8ubZ6
- vqTankxOk+USrhf9g5A2JlVUU23Hil+68lKrg4dhUHBVzaOcy+xBIRQz7
- cjOAYN+MvJWe0GePlPix3V9UPiyGy1lZlWLbNy2CT0twz9eWwznL5WwwS
- TR47u2SH2/KiHadnKL6TCuHiuWEc2XAb2t5E4snrmE6KMteLJ2sQHi9hq
- os3TaCYsiCZCQaFsKyv5ybbTMBihTW0eu4+VP9M7nK0gW8tfYPQ7hNqqf Q==;
-X-CSE-ConnectionGUID: yGLqvraCS6q77enUbu1T8A==
-X-CSE-MsgGUID: /mdfhXVJQweqJFNITfv4ew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="62322211"
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="62322211"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 08:06:27 -0700
-X-CSE-ConnectionGUID: wSb3fndkSLegFRtKJdocAA==
-X-CSE-MsgGUID: 2ER2LpfaQi6Bzu5Iq49A0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,234,1744095600"; d="scan'208";a="153140852"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.161])
- by orviesa005.jf.intel.com with SMTP; 13 Jun 2025 08:06:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Jun 2025 18:06:22 +0300
-Date: Fri, 13 Jun 2025 18:06:22 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RESEND 5/5] drm/i915/plane: rename
- intel_atomic_add_affected_planes() to intel_plane_add_affected()
-Message-ID: <aEw-bvxuCNKFqFV8@intel.com>
-References: <cover.1749728173.git.jani.nikula@intel.com>
- <88e5eff2556e6363e51cbe4d2143fa0817d3c00d.1749728173.git.jani.nikula@intel.com>
- <aEw9fc3XSfaoxCGV@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 518EA10E9B5;
+ Fri, 13 Jun 2025 18:44:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=YISpgXUerOdIOV9tZ9q6pdGy0AyZEsYQneRqX6vBmiU=; b=LTwuj49RpbYyTd8dxhNcKXMUrO
+ alDrH/QZEeY6i40toMmRVP0A2SNCIEHIb5rtVGldI7G8WkMNO5AttDm4IQ4WdVIuUG4FzgaoSzlEd
+ 6duvixE0Jxu0JjeDDguzWAB1Rdl9XKYNos+BFkSMrQezTkANPAeTHh5youne9K4bcZPsmpqI4yQwL
+ Rnu3lGVCVnl+Xg7vJtwY6iZDECVyUu2vWQeSO1PvhuEi3NncNhsZ1kFIwEjYF7TUOpQqEphF8uFY0
+ DruVc6aXjv5U/oAI1NZXdh4Ik2YGtB05UoPrIEEZ+QRmfWQHohkd/YNA1DrCKvNVQCS07ZTNpjn1w
+ pfRm5Kiw==;
+Received: from [191.204.192.64] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1uQ9Nb-003AD0-Qk; Fri, 13 Jun 2025 20:43:56 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ siqueira@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ "Raag Jadav" <raag.jadav@intel.com>, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v7 0/5] drm: Create a task info option for wedge events
+Date: Fri, 13 Jun 2025 15:43:43 -0300
+Message-ID: <20250613184348.1761020-1-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aEw9fc3XSfaoxCGV@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,90 +65,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 06:02:21PM +0300, Ville Syrj‰l‰ wrote:
-> On Thu, Jun 12, 2025 at 02:37:11PM +0300, Jani Nikula wrote:
-> > Rename to follow filename based naming.
-> > 
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
-> >  drivers/gpu/drm/i915/display/intel_plane.c   | 4 ++--
-> >  drivers/gpu/drm/i915/display/intel_plane.h   | 4 ++--
-> >  3 files changed, 6 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index bd81ff9e3854..978c524546c6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -5479,7 +5479,7 @@ static int intel_modeset_pipe(struct intel_atomic_state *state,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	ret = intel_atomic_add_affected_planes(state, crtc);
-> > +	ret = intel_plane_add_affected(state, crtc);
-> 
-> This breaks the common naming pattern. At the very least I think
-> it needs to keep the "planes" at the end to make it clear what
-> it's adding.
-> 
-> But from the "does this sentence make any sense?" POV I'd
-> rather it be called intel_crtc_add_affected_planes().
+This patchset implements a request made by Xaver Hugl about wedge events:
 
-If you're worried about the namespacing then I think just move it
-(and intel_crtc_add_planes_to_state()) to intel_crtc.c. There's
-nothing really plane specific in these, so doesnt' matter where
-they live AFAICS.
+"I'd really like to have the PID of the client that triggered the GPU
+reset, so that we can kill it if multiple resets are triggered in a
+row (or switch to software rendering if it's KWin itself) and show a
+user-friendly notification about why their app(s) crashed, but that
+can be added later."
 
-> 
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > @@ -6195,7 +6195,7 @@ static int intel_joiner_add_affected_crtcs(struct intel_atomic_state *state)
-> >  		if (ret)
-> >  			return ret;
-> >  
-> > -		ret = intel_atomic_add_affected_planes(state, crtc);
-> > +		ret = intel_plane_add_affected(state, crtc);
-> >  		if (ret)
-> >  			return ret;
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> > index 2ac7a4e655f5..11aeb7435b05 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> > @@ -1433,8 +1433,8 @@ static int intel_crtc_add_planes_to_state(struct intel_atomic_state *state,
-> >  	return 0;
-> >  }
-> >  
-> > -int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
-> > -				     struct intel_crtc *crtc)
-> > +int intel_plane_add_affected(struct intel_atomic_state *state,
-> > +			     struct intel_crtc *crtc)
-> >  {
-> >  	const struct intel_crtc_state *old_crtc_state =
-> >  		intel_atomic_get_old_crtc_state(state, crtc);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
-> > index 5cb995b2940f..4ef012c08fa4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_plane.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_plane.h
-> > @@ -83,8 +83,8 @@ void intel_plane_helper_add(struct intel_plane *plane);
-> >  bool intel_plane_needs_physical(struct intel_plane *plane);
-> >  void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
-> >  					 struct intel_plane_state *new_plane_state);
-> > -int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
-> > -				     struct intel_crtc *crtc);
-> > +int intel_plane_add_affected(struct intel_atomic_state *state,
-> > +			     struct intel_crtc *crtc);
-> >  int intel_plane_atomic_check(struct intel_atomic_state *state);
-> >  
-> >  u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state);
-> > -- 
-> > 2.39.5
-> 
-> -- 
-> Ville Syrj‰l‰
-> Intel
+>From https://lore.kernel.org/dri-devel/CAFZQkGwJ4qgHV8WTp2=svJ_VXhb-+Y8_VNtKB=jLsk6DqMYp9w@mail.gmail.com/
+
+For testing, I've used amdgpu's debug_mask options debug_disable_soft_recovery
+and debug_disable_gpu_ring_reset to test both wedge event paths in the driver.
+To trigger a ring timeout, I've used this app:
+https://gitlab.freedesktop.org/andrealmeid/gpu-timeout
+
+Thanks!
+
+Changelog:
+
+v7:
+ - Change `char *comm` to `char comm[TASK_COMM_LEN]`
+ - New patches to encapsulate struct drm_wedge_task_info inside of struct
+   amdgpu_task_info
+ - Remove struct cast for struct amdgpu_task_info, now we can use `info =
+   &ti->task`
+ - Fix struct lifetime, move amdgpu_vm_put_task_info() after
+   drm_dev_wedged_event() call
+
+v6:
+ - Check if PID >= 0 for displaying the task info
+ - s/app/task in a comment
+
+v5:
+ - Change from app to task also in structs, commit message and docs
+ - Add a check for NULL or empty task name string
+
+v4:
+ - Change from APP to TASK
+ - Add defines for event_string and pid_string length
+
+v3:
+ - Make comm_string and pid_string empty when there's no app info
+ - Change "app that caused ..." to "app involved ..."
+ - Clarify that devcoredump have more information about what happened
+
+v2:
+  - Rebased on top of drm/drm-next
+  - Added new patch for documentation
+
+Andr√© Almeida (5):
+  drm: amdgpu: Create amdgpu_vm_print_task_info
+  drm: Create a task info option for wedge events
+  drm/doc: Add a section about "Task information" for the wedge API
+  drm: amdgpu: Use struct drm_wedge_task_info inside of struct
+    amdgpu_task_info
+  drm/amdgpu: Make use of drm_wedge_task_info
+
+ Documentation/gpu/drm-uapi.rst                | 17 ++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 17 ++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       | 12 ++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 19 +++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |  6 ++++--
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c        |  5 +----
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c         |  4 +---
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c         |  5 +----
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c        |  2 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c      |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c       |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c   |  8 ++++----
+ drivers/gpu/drm/drm_drv.c                     | 20 +++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  3 ++-
+ drivers/gpu/drm/xe/xe_device.c                |  3 ++-
+ include/drm/drm_device.h                      |  8 ++++++++
+ include/drm/drm_drv.h                         |  3 ++-
+ 22 files changed, 103 insertions(+), 51 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.49.0
+
