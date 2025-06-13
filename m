@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0686AD896D
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E755AD8970
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:23:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD4E10E98D;
-	Fri, 13 Jun 2025 10:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCDE10E990;
+	Fri, 13 Jun 2025 10:23:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnpuR+AS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PEQYq5kz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 205FD10E985;
- Fri, 13 Jun 2025 10:23:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C5A10E98D;
+ Fri, 13 Jun 2025 10:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749810208; x=1781346208;
+ t=1749810209; x=1781346209;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MVuu5y+3gkG05xuksxWU0y7c4dGehJEpVJpMgmyU9Fg=;
- b=UnpuR+AS4Na0//xxCPUxcZzdu4AXfui00tcg61whGIb33ZTvqWnYjrRG
- ffcU4TbNv1Lt9c/q06h93Kk1Lg38qmMQrVh7X0zoEQ8mulo7vGKo+JVTj
- 3/nZnjQ4G4JTTykLC3fHmDeRCyxCAaZXKZhjQ0yvwUHHU1YDfPmMl2WZv
- fH+93e/JfAQNra5r0FV+iO9fGo9B7GZrxH8U0ypgUUwOW1AYgEs/pi8ly
- TbPzXpo5kG3ugNIWPQaVIpfz54cVZSI+W09D1hdJNEmDvzkU2WduzlDnQ
- GKW6dulgludCnUfuf/59Bc08TBeDFTfJoRraXWLIeqdMKU8iP/JU5lKfv A==;
-X-CSE-ConnectionGUID: vivRIgUuQZu18peLAM/jhQ==
-X-CSE-MsgGUID: uQw0d26NSlW/ODh0rlG9bA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673643"
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673643"
+ bh=1Qw/ufFaFlA7K5R0eJXMaTNFPzfulYuQsUr0fAvGOmE=;
+ b=PEQYq5kztuM2dnQecuS5hSAY8Uu1ciHBtpGo0cuo547oPcipclOxymmf
+ lTmxcgdwPXDXu7SsW8CDjzzJQdOySEkMZrmLkedPuKXfu69x3G7d1/IWh
+ U2nvOm1CwGO+7onZYQFmQOow7/bINi8UoKCWMwQKxoikeL7bvwKCu0ZHe
+ caq/76uSKve8uPWgA4Si37zGf/TgLk35vK70gbXQ85j5mfB9Bm5arLd8m
+ KycUgVCFtneRMU9ZUCUgg1p6itT+Ck7gzs9u2LZD0O77xeOrx1zxEIKHd
+ ffsz3EKEfoZR/V88lusg1P33QgNCwhmTt4oqHjXjL4HTiCGMtwatl2h4j A==;
+X-CSE-ConnectionGUID: ubOdeGgUTkaA3VXPNQQvYA==
+X-CSE-MsgGUID: 4ROm0iyCR4+tUVgcL8RA1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673645"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673645"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 03:23:27 -0700
-X-CSE-ConnectionGUID: bptGXsi3SNeoPzVASPJMQw==
-X-CSE-MsgGUID: P+VRkzoxRM+biL4Dqlmwjw==
+ 13 Jun 2025 03:23:29 -0700
+X-CSE-ConnectionGUID: NGohnlGTRRinNdzkRvo40w==
+X-CSE-MsgGUID: tIBXUnc0Tn+QdxW4GZFGZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758958"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758962"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:26 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:28 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+Cc: intel-gfx@lists.freedesktop.org,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v6 6/9] drm/xe: Add Wildcat Lake device IDs to PTL list
-Date: Fri, 13 Jun 2025 15:52:53 +0530
-Message-Id: <20250613102256.3508267-7-dnyaneshwar.bhadane@intel.com>
+ Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Subject: [PATCH v6 7/9] drm/i915/xe3lpd: Extend DMC load path for display
+Date: Fri, 13 Jun 2025 15:52:54 +0530
+Message-Id: <20250613102256.3508267-8-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
 References: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
@@ -68,35 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Display version 30.02 should be treated the same as other Xe3 IP.
+So exteding DMC load path the condition for it.
 
-Introduce wildcat lake device Id.
-Wildcat Lake uses slightly different graphics and media IP versions
-than Panther Lake, but can still be treated as PTL for general driver
-flows.
-
-Bspec: 73951
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
 ---
- include/drm/intel/pciids.h | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 129c3172aa5f..a0180d10e260 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -871,6 +871,8 @@
- 	MACRO__(0xB08F, ## __VA_ARGS__), \
- 	MACRO__(0xB090, ## __VA_ARGS__), \
- 	MACRO__(0xB0A0, ## __VA_ARGS__), \
--	MACRO__(0xB0B0, ## __VA_ARGS__)
-+	MACRO__(0xB0B0, ## __VA_ARGS__), \
-+	MACRO__(0xFD80, ## __VA_ARGS__), \
-+	MACRO__(0xFD81, ## __VA_ARGS__)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index a10e56e7cf31..1295d8245a2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -179,7 +179,8 @@ static const char *dmc_firmware_default(struct intel_display *display, u32 *size
+ 	const char *fw_path = NULL;
+ 	u32 max_fw_size = 0;
  
- #endif /* __PCIIDS_H__ */
+-	if (DISPLAY_VERx100(display) == 3000) {
++	if (DISPLAY_VERx100(display) == 3002 ||
++	    DISPLAY_VERx100(display) == 3000) {
+ 		fw_path = XE3LPD_DMC_PATH;
+ 		max_fw_size = XE2LPD_DMC_MAX_FW_SIZE;
+ 	} else if (DISPLAY_VERx100(display) == 2000) {
 -- 
 2.34.1
 
