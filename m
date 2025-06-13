@@ -2,29 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79370AD8B89
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 14:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D38AD8EB7
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 16:09:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5B7F10E1D0;
-	Fri, 13 Jun 2025 12:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF68110E9C9;
+	Fri, 13 Jun 2025 14:09:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P4XL6EP1";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB98B10E1D0;
- Fri, 13 Jun 2025 12:03:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2977854993823327384=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9DB610E9D6;
+ Fri, 13 Jun 2025 14:09:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749823779; x=1781359779;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=a1J5uJb0F4JtqlAuqMQh+yhB/bFZcLNS1pJSPI+eAHI=;
+ b=P4XL6EP1U89qpBZwFCPAergwOzXFWZzEytBam4YX0y8MBBvWGcmmqI+/
+ OAXmZZCOZjUU46kLhiy2MNfgWiTG8QqYPODKONv8Vx/RP0Cvv7ihmIXXS
+ FDAIIRX3tuRcnxnt8k/I8uviD4xcnVlVx60nS8eP8ie0L10JL6jvmGw0s
+ Brt1gp/kZfHSd/5sXSaM5g6wqioEnt3AqtrdZZYsO8U9eQ/6CEa6gb4pM
+ pz6nQW2ZRA5Z6Ik5Lv5cW7hrdBVdKpY41mV53jrup3DcWJFkh+9Mt8mAv
+ IOdD3JtcbN/TyWvPeIBI+P/s+uSczMGxIO3KrtG87bVCn2G9C4mRQcYa/ w==;
+X-CSE-ConnectionGUID: z2dWD8FsT5WWmkdscYjzAw==
+X-CSE-MsgGUID: HE/sDlJiTR6X/bG7ZSCVMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11463"; a="51758811"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="51758811"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jun 2025 07:09:38 -0700
+X-CSE-ConnectionGUID: r8qTmlu/S5KZWcvlzszePA==
+X-CSE-MsgGUID: mbTlLxkpS4yiW+Cp7F7XPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="153128372"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.161])
+ by orviesa005.jf.intel.com with SMTP; 13 Jun 2025 07:09:36 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Jun 2025 17:09:35 +0300
+Date: Fri, 13 Jun 2025 17:09:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 5/9] drm/i915/dmc: Reload pipe DMC state on TGL when
+ enabling pipe A
+Message-ID: <aEwxH9iOmOkGGiOo@intel.com>
+References: <20250611155241.24191-1-ville.syrjala@linux.intel.com>
+ <20250611155241.24191-6-ville.syrjala@linux.intel.com>
+ <DM4PR11MB6360BEA3323D523E9F2E856BF474A@DM4PR11MB6360.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/plane=3A_file_an?=
- =?utf-8?q?d_function_renames_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Jun 2025 12:03:47 -0000
-Message-ID: <174981622739.76654.7469335185693295448@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <cover.1749728173.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1749728173.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM4PR11MB6360BEA3323D523E9F2E856BF474A@DM4PR11MB6360.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,218 +72,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2977854993823327384==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 12, 2025 at 08:32:16PM +0000, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Ville
+> > Syrjala
+> > Sent: Wednesday, June 11, 2025 9:23 PM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: intel-xe@lists.freedesktop.org
+> > Subject: [PATCH 5/9] drm/i915/dmc: Reload pipe DMC state on TGL when
+> > enabling pipe A
+> 
+> I guess its applicable for all pipes and not just limited to A.
 
-== Series Details ==
+Only pipe A has a DMC on these platforms.
 
-Series: drm/i915/plane: file and function renames (rev4)
-URL   : https://patchwork.freedesktop.org/series/147416/
-State : failure
+> 
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > On TGL/derivatives the entire pipe DMC state (program + MMIO) is lost when
+> > PG1 is disabled, and the main DMC does not restore any of it. Reload the state
+> > when enabling a pipe.
+> 
+> It is just the TGL or any other platforms affected ?
+> Current change looks fine though.
+> 
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> 
+> > The other option would be to not load the pipe DMC at all since it's only needed for
+> > "fast LACE" (which we don't use) on these platforms. But let's keep it around just
+> > in case we ever decide that "fast LACE" is something we want.
+> 
+> I agree, it's good to keep it.
+> 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dmc.c | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > index 331db28039db..fd99c4645260 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > @@ -599,6 +599,12 @@ static void dmc_load_program(struct intel_display
+> > *display,
+> >  	}
+> >  }
+> > 
+> > +static bool need_pipedmc_load_program(struct intel_display *display) {
+> > +	/* On TGL/derivatives pipe DMC state is lost when PG1 is disabled */
+> > +	return DISPLAY_VER(display) == 12;
+> > +}
+> > +
+> >  void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)  {
+> >  	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe); @@ -606,6 +612,9
+> > @@ void intel_dmc_enable_pipe(struct intel_display *display, enum pipe pipe)
+> >  	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
+> >  		return;
+> > 
+> > +	if (need_pipedmc_load_program(display))
+> > +		dmc_load_program(display, dmc_id);
+> > +
+> >  	if (DISPLAY_VER(display) >= 20) {
+> >  		intel_de_write(display, PIPEDMC_INTERRUPT(pipe),
+> > pipedmc_interrupt_mask(display));
+> >  		intel_de_write(display, PIPEDMC_INTERRUPT_MASK(pipe),
+> > ~pipedmc_interrupt_mask(display));
+> > --
+> > 2.49.0
+> 
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16700 -> Patchwork_147416v4
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_147416v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_147416v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/index.html
-
-Participating hosts (43 -> 43)
-------------------------------
-
-  Additional (1): bat-jsl-1 
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_147416v4:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@prime_self_import@basic-with_one_bo:
-    - bat-jsl-1:          NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@prime_self_import@basic-with_one_bo.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_147416v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@gem_huc_copy@huc-copy.html
-
-  * igt@intel_hwmon@hwmon-read:
-    - bat-jsl-1:          NOTRUN -> [SKIP][3] ([i915#7707]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@intel_hwmon@hwmon-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-jsl-1:          NOTRUN -> [SKIP][4] ([i915#4103]) +1 other test skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-jsl-1:          NOTRUN -> [SKIP][5] ([i915#3555] / [i915#9886])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-jsl-1:          NOTRUN -> [SKIP][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-jsl-1:          NOTRUN -> [SKIP][7] ([i915#3555])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html
-
-  
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
-  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16700 -> Patchwork_147416v4
-
-  CI-20190529: 20190529
-  CI_DRM_16700: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8410: 5826cdbf1cb8f5ec8a42bae33deb6b2b63e59e6e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_147416v4: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/index.html
-
---===============2977854993823327384==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/plane: file and function renames (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/147416/">https://patchwork.freedesktop.org/series/147416/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16700 -&gt; Patchwork_147416v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_147416v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_147416v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/index.html</p>
-<h2>Participating hosts (43 -&gt; 43)</h2>
-<p>Additional (1): bat-jsl-1 <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_147416v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo:<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@prime_self_import@basic-with_one_bo.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_147416v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@intel_hwmon@hwmon-read:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-jsl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_147416v4/bat-jsl-1/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16700 -&gt; Patchwork_147416v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16700: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8410: 5826cdbf1cb8f5ec8a42bae33deb6b2b63e59e6e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_147416v4: cce8a9af1c6cf1776511aa69e5f4b5bef7bf5938 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2977854993823327384==--
+-- 
+Ville Syrjälä
+Intel
