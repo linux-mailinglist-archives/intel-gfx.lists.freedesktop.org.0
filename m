@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FA0AD896B
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0686AD896D
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Jun 2025 12:23:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 537BF10E984;
-	Fri, 13 Jun 2025 10:23:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD4E10E98D;
+	Fri, 13 Jun 2025 10:23:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IcCm7W1i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UnpuR+AS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103C510E987;
- Fri, 13 Jun 2025 10:23:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 205FD10E985;
+ Fri, 13 Jun 2025 10:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749810206; x=1781346206;
+ t=1749810208; x=1781346208;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EIElUrKFkDwdELXFYGaGoOXmRj25eCe35unOEGEe7No=;
- b=IcCm7W1iS/y30gSzISDhiKw16O31Xjtv0JgoihEriMXgIPYGHLk19wxW
- 6DFi1AWPrfCHs9hLyzuibbUkV2PIZuAgOxepQ/brS3d6j4Nke/F95OHdI
- rBtHWjLvQ33/jTH5+S/KFZ2l+nN+W12yN5rXO6ZHvmquXJGTxCZRofVg9
- udBA6XEeWsXF3XTy4ie6GbpvxL3kgOeSqEZykSEiioqRhywDkgvxLIXz8
- Ob/SBXcmeX/GQqxNC37hyEqZIL2br4sDVnRbwQ14JAB71Wo1G8RYFe86o
- Q77hIlgFurHTS5aDo7NApuF/C3nyzY7fCIF8gwCUcrE/xOd5LrePJCEpq g==;
-X-CSE-ConnectionGUID: HplXAgieQ1W5PeGmivtrnQ==
-X-CSE-MsgGUID: ilfNkixmQhG2qWDRMF8o9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673642"
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673642"
+ bh=MVuu5y+3gkG05xuksxWU0y7c4dGehJEpVJpMgmyU9Fg=;
+ b=UnpuR+AS4Na0//xxCPUxcZzdu4AXfui00tcg61whGIb33ZTvqWnYjrRG
+ ffcU4TbNv1Lt9c/q06h93Kk1Lg38qmMQrVh7X0zoEQ8mulo7vGKo+JVTj
+ 3/nZnjQ4G4JTTykLC3fHmDeRCyxCAaZXKZhjQ0yvwUHHU1YDfPmMl2WZv
+ fH+93e/JfAQNra5r0FV+iO9fGo9B7GZrxH8U0ypgUUwOW1AYgEs/pi8ly
+ TbPzXpo5kG3ugNIWPQaVIpfz54cVZSI+W09D1hdJNEmDvzkU2WduzlDnQ
+ GKW6dulgludCnUfuf/59Bc08TBeDFTfJoRraXWLIeqdMKU8iP/JU5lKfv A==;
+X-CSE-ConnectionGUID: vivRIgUuQZu18peLAM/jhQ==
+X-CSE-MsgGUID: uQw0d26NSlW/ODh0rlG9bA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11462"; a="62673643"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="62673643"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2025 03:23:25 -0700
-X-CSE-ConnectionGUID: X+XibjlDTjG3UEAWeCfcIQ==
-X-CSE-MsgGUID: DrXj8aetQvCArYJlYYZ0+A==
+ 13 Jun 2025 03:23:27 -0700
+X-CSE-ConnectionGUID: bptGXsi3SNeoPzVASPJMQw==
+X-CSE-MsgGUID: P+VRkzoxRM+biL4Dqlmwjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758953"
+X-IronPort-AV: E=Sophos;i="6.16,233,1744095600"; d="scan'208";a="152758958"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:24 -0700
+ by orviesa004.jf.intel.com with ESMTP; 13 Jun 2025 03:23:26 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Matt Atwood <matthew.s.atwood@intel.com>,
+Cc: intel-gfx@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v6 5/9] drm/i915: Set max cdclk for display 30.02
-Date: Fri, 13 Jun 2025 15:52:52 +0530
-Message-Id: <20250613102256.3508267-6-dnyaneshwar.bhadane@intel.com>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH v6 6/9] drm/xe: Add Wildcat Lake device IDs to PTL list
+Date: Fri, 13 Jun 2025 15:52:53 +0530
+Message-Id: <20250613102256.3508267-7-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
 References: <20250613102256.3508267-1-dnyaneshwar.bhadane@intel.com>
@@ -68,33 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Atwood <matthew.s.atwood@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Display version 30.02 has a lower max cdclk rate than 30.00.
+Introduce wildcat lake device Id.
+Wildcat Lake uses slightly different graphics and media IP versions
+than Panther Lake, but can still be treated as PTL for general driver
+flows.
 
-Bspec: 68861
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Bspec: 73951
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 +++-
+ include/drm/intel/pciids.h | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 38b3094b37d7..1cbb1d526fe8 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3386,7 +3386,9 @@ static int intel_compute_max_dotclk(struct intel_display *display)
-  */
- void intel_update_max_cdclk(struct intel_display *display)
- {
--	if (DISPLAY_VER(display) >= 30) {
-+	if (DISPLAY_VERx100(display) >= 3002) {
-+		display->cdclk.max_cdclk_freq = 480000;
-+	} else if (DISPLAY_VER(display) >= 30) {
- 		display->cdclk.max_cdclk_freq = 691200;
- 	} else if (display->platform.jasperlake || display->platform.elkhartlake) {
- 		if (display->cdclk.hw.ref == 24000)
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 129c3172aa5f..a0180d10e260 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -871,6 +871,8 @@
+ 	MACRO__(0xB08F, ## __VA_ARGS__), \
+ 	MACRO__(0xB090, ## __VA_ARGS__), \
+ 	MACRO__(0xB0A0, ## __VA_ARGS__), \
+-	MACRO__(0xB0B0, ## __VA_ARGS__)
++	MACRO__(0xB0B0, ## __VA_ARGS__), \
++	MACRO__(0xFD80, ## __VA_ARGS__), \
++	MACRO__(0xFD81, ## __VA_ARGS__)
+ 
+ #endif /* __PCIIDS_H__ */
 -- 
 2.34.1
 
