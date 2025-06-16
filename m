@@ -2,34 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E57ADCD64
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 15:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B52ADCD58
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 15:36:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE3310E6C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9798110E6BA;
 	Tue, 17 Jun 2025 13:36:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="XSnCmY0M";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=linux.org.uk header.i=@linux.org.uk header.b="A7p+Acvn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3018810E43E;
- Mon, 16 Jun 2025 20:28:07 +0000 (UTC)
+X-Greylist: delayed 1122 seconds by postgrey-1.36 at gabe;
+ Mon, 16 Jun 2025 21:01:31 UTC
+Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 146DC10E445;
+ Mon, 16 Jun 2025 21:01:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=rMTsK0YsjlB18wsT75a6evHrM3XMSVJTrFI3gzXouMw=; b=XSnCmY0Ml7NLCrMRP4OfNwKCxm
- t3knyrRU4umUwqGsAQ78VDJwhklMHyppjzgkgSiDjEr1eDLbkdmMI1Ud09tK10NOTGSkVr9OAVdA5
- yeDW00x8GaS/9hTn/5iTIiI7ZEmOX2IYVaYsUKHT/a7Sh9XTAvxkYrLcfI6adjZOgVZ/EQ8izXpRS
- N7CyfmoYNKAXSZWjXkcw7dH2WIhiyXqdB2rcIWxw4KPMz9e5BecjG1NA5nrYsPuYwy5tj/ShXnUjZ
- Hx7i1JazW+vFcm5JpzfYFwz2+TREcWXzGJRoblKfrG12x8d/ZXuZZBMy93UQ4ahuLIE/06ESgJ7x2
- dKaQyh9w==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1uRGPu-0000000GKxl-3X50;
- Mon, 16 Jun 2025 20:26:54 +0000
-Date: Mon, 16 Jun 2025 21:26:54 +0100
-From: Matthew Wilcox <willy@infradead.org>
+ bh=alq/Pjol9hRHmsoK4W/c2CtmXHL3bnmjTRKmw+CMrtk=; b=A7p+Acvn5uycXyz3kLo38iW9Ad
+ D+bYigpKSwXx9Qqj1iM2cauc4vJVM5S4cn4cbXzLSyPr5aCY6CT2OVFHXSo8Ysd1LMe4PIHVof75s
+ 4ixGU0gXpw9fxNXo/FZ31klq9ihs5qru2SnNaJuY3SsfiDVgdbRXOX9BVI2VDLVAd+vUo1oJFU8Te
+ frcwrPbBPewoCrxwD5QpKNqhm3CGjwSVicr7Dykb5NZb2DUD7NyCDlrCYxIHPR3p2qtE9G2el/ykq
+ A/AlxzwslpPcDC/i4wy3o5P2e7I9G86mm6pGM50kd8VFzxMarLvEuy3Rg4LaGo1AqBnz7BuHEsWZB
+ PDLsSc+w==;
+Received: from viro by zeniv.linux.org.uk with local (Exim 4.98.2 #2 (Red Hat
+ Linux)) id 1uRGeL-00000002Qr4-0IjJ; Mon, 16 Jun 2025 20:41:49 +0000
+Date: Mon, 16 Jun 2025 21:41:49 +0100
+From: Al Viro <viro@zeniv.linux.org.uk>
 To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
 Cc: Andrew Morton <akpm@linux-foundation.org>,
  "Liam R . Howlett" <Liam.Howlett@oracle.com>, Jens Axboe <axboe@kernel.dk>,
@@ -44,7 +45,6 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  Christian Schoenebeck <linux_oss@crudebyte.com>,
  David Sterba <dsterba@suse.com>, David Howells <dhowells@redhat.com>,
  Marc Dionne <marc.dionne@auristor.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
  Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
  Benjamin LaHaise <bcrl@kvack.org>, Miklos Szeredi <miklos@szeredi.hu>,
  Amir Goldstein <amir73il@gmail.com>,
@@ -85,6 +85,7 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  Damien Le Moal <dlemoal@kernel.org>, Naohiro Aota <naohiro.aota@wdc.com>,
  Johannes Thumshirn <jth@kernel.org>,
  Dan Williams <dan.j.williams@intel.com>,
+ Matthew Wilcox <willy@infradead.org>,
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
  Pedro Falcato <pfalcato@suse.de>, linux-block@vger.kernel.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
@@ -103,15 +104,13 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  linux-karma-devel@lists.sourceforge.net, devel@lists.orangefs.org,
  linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
  linux-xfs@vger.kernel.org, nvdimm@lists.linux.dev
-Subject: Re: [PATCH 04/10] fs/dax: make it possible to check dev dax support
- without a VMA
-Message-ID: <aFB-Do9FE6H9SsGY@casper.infradead.org>
+Subject: Re: [PATCH 00/10] convert the majority of file systems to mmap_prepare
+Message-ID: <20250616204149.GK1880847@ZenIV>
 References: <cover.1750099179.git.lorenzo.stoakes@oracle.com>
- <b09de1e8544384074165d92d048e80058d971286.1750099179.git.lorenzo.stoakes@oracle.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b09de1e8544384074165d92d048e80058d971286.1750099179.git.lorenzo.stoakes@oracle.com>
+In-Reply-To: <cover.1750099179.git.lorenzo.stoakes@oracle.com>
 X-Mailman-Approved-At: Tue, 17 Jun 2025 13:35:58 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -128,24 +127,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jun 16, 2025 at 08:33:23PM +0100, Lorenzo Stoakes wrote:
->  fs/ext4/file.c      |  2 +-
->  fs/xfs/xfs_file.c   |  3 ++-
+On Mon, Jun 16, 2025 at 08:33:19PM +0100, Lorenzo Stoakes wrote:
+> REVIEWER'S NOTES
+> ================
+> 
+> I am basing this on the mm-new branch in Andrew's tree, so let me know if I
+> should rebase anything here. Given the mm bits touched I did think perhaps
+> we should take it through the mm tree, however it may be more sensible to
+> take it through an fs tree - let me know!
+> 
+> Apologies for the noise/churn, but there are some prerequisite steps here
+> that inform an ordering - "fs: consistently use file_has_valid_mmap_hooks()
+> helper" being especially critical, and so I put the bulk of the work in the
+> same series.
+> 
+> Let me know if there's anything I can do to make life easier here.
 
-Both of these already have the inode from the file ...
-
-> +static inline bool daxdev_mapping_supported(vm_flags_t vm_flags,
-> +					    struct file *file,
-> +					    struct dax_device *dax_dev)
->  {
-> -	if (!(vma->vm_flags & VM_SYNC))
-> +	if (!(vm_flags & VM_SYNC))
->  		return true;
-> -	if (!IS_DAX(file_inode(vma->vm_file)))
-> +	if (!IS_DAX(file_inode(file)))
->  		return false;
->  	return dax_synchronous(dax_dev);
-
-... and the only thing this function uses from the file is the inode.
-So maybe pass in the inode rather than the file?
-
+Documentation/filesystems/porting.rst?
