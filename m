@@ -2,64 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F326AADCE2E
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 15:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12436ADD00F
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 16:38:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0DE10E6F9;
-	Tue, 17 Jun 2025 13:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1209610E71A;
+	Tue, 17 Jun 2025 14:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d5z3hu0T";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="guK+8hum";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42BD810E6F9
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Jun 2025 13:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750168263; x=1781704263;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=oblIbLPaqrXVUT3EQc2wh4ZJeO7Rv/Ddz0Kv3NAxSpI=;
- b=d5z3hu0T4+AzzSxgIjvjynu5j3ULkOWkJVddFOLSttJclVwGVEBqmOnj
- ZzB1RwS3mD9/2UyDdDRJEn2WASN+VOZEVPNEW4aYeObShfmmowkdKmz/r
- CLlTmfzaNXSoK/i39bYThWAeqnsRekpgX7aKdhxI+jAj8AGhcOO3Y/IwH
- 818Mudnl9cwCoi8jatuyMQZaHM4W08uUALsjSRcgqLPp5+gs2pkWqqlDz
- 3MT1ir434cWzDnjn3xsU0YT5GxMfgvCAcKofet+2XUo9ELXqnqkgXcG9J
- QDPBtHeV6dq4Ta6+jlznoAtHvrlRD6aTEPNl2s9jMcD/c9/Q7rpg+FB2x A==;
-X-CSE-ConnectionGUID: 2d0QnUw8RsW5b/ZPzz9dww==
-X-CSE-MsgGUID: 3aue9h9OTmGh4wjZGcV8zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11467"; a="39952667"
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="39952667"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 06:51:03 -0700
-X-CSE-ConnectionGUID: vlPePXCbSMeJKDhDTdmHVQ==
-X-CSE-MsgGUID: UMuJwXBfQzu4kKORQebYCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,243,1744095600"; d="scan'208";a="149267460"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.111])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 06:51:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vas Novikov <vasya.novikov@gmail.com>, stable@vger.kernel.org
-Cc: regressions@lists.linux.dev, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>,
- Khaled Almahallawy <khaled.almahallawy@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org, Christian
- Heusel <christian@heusel.eu>
-Subject: Re: [REGRESSION][BISECTED] intel iGPU with HDMI PLL stopped working
- at 1080p@120Hz 1efd5384
-In-Reply-To: <33046593-17e3-4bdc-9d4a-94dc94ef5e81@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <8d7c7958-9558-4c8a-a81a-e9310f2d8852@gmail.com>
- <afa8a7b2ced71e77655fb54f49b702c71506017d@intel.com>
- <33046593-17e3-4bdc-9d4a-94dc94ef5e81@gmail.com>
-Date: Tue, 17 Jun 2025 16:50:57 +0300
-Message-ID: <72c9ef36e81ddce8a9e91c5f3652489f5fa2d78d@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F2510E18F;
+ Tue, 17 Jun 2025 14:38:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+ Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=8eHJgER+R9kCEbZ1L3X7vCzptyp1NrKUg6DntB/MAXQ=; b=guK+8hum7ftX7NWo0v1A9Olhcl
+ In/Q4ehx8mgJVGTwOWlqldsRPcgAkjfFaKZ+fF6Y//y+E0iaheLKwJWun7RzevFBNSeuLMqfq2D3Y
+ cKtTPBq6J/jzcFAqMwSwefENE4S83b3r6cwg5weJT9xQCFD+D5q/ixn92ehtGEzEp0q3wtpC+rCk3
+ T1Vxf74wkgPXl3892YyYMwBgDgHyFL9+dnyTZLbKViYR5JlQzlxdCHVeohptTZGIy201ogTJxSorz
+ 9iAACx5DWMXG8Z+WEFDWGkb40Lr7Brqr/9c4N3u37V3fMy/wjFXTqixdXRCOzw9Yl/K1Wuy98d/kC
+ Kl5g6tmQ==;
+Received: from [191.204.192.64] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uRXRx-004dC5-5G; Tue, 17 Jun 2025 16:38:09 +0200
+Message-ID: <7d82dbc2-b902-498b-a70d-8be49c1be87a@igalia.com>
+Date: Tue, 17 Jun 2025 11:38:03 -0300
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 6/6] drm/amdgpu: Make use of drm_wedge_task_info
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: jani.nikula@linux.intel.com, Raag Jadav <raag.jadav@intel.com>,
+ dri-devel@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Xaver Hugl <xaver.hugl@gmail.com>, Alex Deucher <alexander.deucher@amd.com>,
+ simona@ffwll.ch, linux-kernel@vger.kernel.org, kernel-dev@igalia.com,
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, siqueira@igalia.com, airlied@gmail.com
+References: <20250617124949.2151549-1-andrealmeid@igalia.com>
+ <20250617124949.2151549-7-andrealmeid@igalia.com>
+ <5db1dda6-0cd7-4fc7-9a22-8ed57b12ada1@amd.com>
+ <63b4fb79-8132-4c05-bcac-3238366899d9@igalia.com>
+Content-Language: en-US
+In-Reply-To: <63b4fb79-8132-4c05-bcac-3238366899d9@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,30 +69,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Jun 2025, Vas Novikov <vasya.novikov@gmail.com> wrote:
-> Hi Jani and everyone,
->
-> On 17/06/2025 12.33, Jani Nikula wrote:
->> Does [1] help?
->
-> The patch works. (Applied on top of 6.16.0-rc2-1.1-mainline, built by 
-> Christian @gromit who helped again.)
->
-> The patch (or the new kernel) also have a side effect of xrandr allowing 
-> a completely new refresh rate, ~144Hz. This new refresh also seems to 
-> work (I cannot easily disambiguate 144 versus 120, but I can tell it's 
-> not 60Hz). So as far as my hardware is concerned, this patch leaves the 
-> whole system working in all scenarios that I've tested.
+Em 17/06/2025 10:22, André Almeida escreveu:
+> Em 17/06/2025 10:07, Christian König escreveu:
+>> On 6/17/25 14:49, André Almeida wrote:
+>>> To notify userspace about which task (if any) made the device get in a
+>>> wedge state, make use of drm_wedge_task_info parameter, filling it with
+>>> the task PID and name.
+>>>
+>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+>>
+>> Reviewed-by: Christian König <christian.koenig@amd.com>
+>>
+>> Do you have commit right for drm-misc-next?
+>>
+> 
+> Thanks for the reviews!
+> 
+> I do have access, but if you don't mind, can you push this one?
+> 
 
-Thanks a lot for testing! Ankit will send a v2 of it, and I think we'll
-have it in mainline and backported to stable in a few weeks.
-
-There's no need to file that bug report, this will suffice.
-
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel
+Never mind, I can push this one myself :)
