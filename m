@@ -2,175 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382BAADC1F4
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 07:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B455ADC3D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 09:58:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E4110E4F3;
-	Tue, 17 Jun 2025 05:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE9010E196;
+	Tue, 17 Jun 2025 07:58:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCADFnkl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eThP1TAB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3190510E4F3;
- Tue, 17 Jun 2025 05:58:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7247310E196;
+ Tue, 17 Jun 2025 07:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750139937; x=1781675937;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=+nlCVaUz7P23YbGZbtp3Sk7EdMJz3qLq9X6uFk9MxEM=;
- b=WCADFnklqjuPcUVV95sYb0m8j/+jtL+MYss5HxaKtxQjPdmXT1yOFAZe
- Ip+jnp6ia7nT4ZNC+EaxriuSgMIpNjTZEDGrWaUhCDq5oDRiXudkCt4DP
- G3huQ+1B03pbMYlGug+hpiZ0Jv1jlxtWrLUmIEJQpEMqWHROHv8spfHrf
- GqM/ju7nWWPlE9RCfEkjLBUA14TZi46HY1TjX66pVsKmI6INrFuCnI4Ck
- 9lZpJ3oH4iUu0WpVUERBtQ6ay/X9xuJyTtDENOt4XPLGJiy87BcFE0kH8
- eUAJfCwWskpggQKxoSueddT4H3RYDlTuOgR0rPcq2cW+la/aIbRqVgEce w==;
-X-CSE-ConnectionGUID: peLesShFReG6xecsECBpGg==
-X-CSE-MsgGUID: 2Rvf8GIlTk2FFQOfbBHQVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="62952680"
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="62952680"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 22:58:43 -0700
-X-CSE-ConnectionGUID: UY3N9StYSLW8WWq/EHlPdg==
-X-CSE-MsgGUID: bgMlmCvbSUS70FtNC+HoCQ==
+ t=1750147107; x=1781683107;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=inEPtAgeCcBjTZPkBzPZefvQY5ENQqbzxvzXm8kL0VQ=;
+ b=eThP1TAB/sZ80XSwBnB2dpsCmi6OGpTcj+5eMpyfFHjgQHL1/DmU4IV2
+ HNNyE9oMcSD7sKw80D9lQAEG5Q6usbeuHUt6PmQCe1Q6p6cPSvSTEpOAa
+ 3RVfxV2sJQjzPuayuGZiFEygPIbNfLQwwL6X9lUlVtTA4SnP8WEfbRx6d
+ 4CWbe1boAnVf6zh3Sh2C8IIfo9mzd0R3gB03Sdu7bpaSYG0qRxig4owCe
+ NDk2ZThE59vHefQUN25F9ioUoAA8fniTlDBWBgBl91oeck7Kz6Tu7Loj9
+ 8OEC4JbWApoimXPKdK4L2BtTebZpuoQ3u+Be9QgxQCj6BiYDJG3fx7AHu Q==;
+X-CSE-ConnectionGUID: ie20yduOQNmpYdaJ19JLEQ==
+X-CSE-MsgGUID: ZLLuP1QwReG81ec76aUGWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52395570"
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="52395570"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2025 00:58:27 -0700
+X-CSE-ConnectionGUID: 53hM+6eyRsCtclKojwupYQ==
+X-CSE-MsgGUID: giTPK56ARz26TW/KkDpMjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="148664619"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2025 22:58:43 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 16 Jun 2025 22:58:42 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 16 Jun 2025 22:58:42 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.42) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 16 Jun 2025 22:58:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FBQYBzZfy2MoGyNYj4xVrLHYyAOs6pk0zNIRlun9Az1tpowt3DCG96CoRl1PhvaTFZ/j8xtDVD/MczY72lC48DbTKaDLfqJPYBzW7x7dObtIKAQl3Co0mg1rZSKyG9RwQR6DYhe+A08DHN1PupNKVPr25IJ7I8+nTpW2GOycHo3xbz4rWZtGdv6FobZPkmg9YX0Npk5x+gNyBf6MZtCXaVxLfolwVpkWo2BqyCBka/eW3J8bxbK/VSVXRcSiAAGv2xq52mLk126E6ETKY6JF9rmKA+o78NX6lA1/yQauvpvc1y6XezsZnpB0g8X/TOPX0JJwfKkKmHlONLw12sCYlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FigOEbSZWy1jRg9nZ7BbsMHqgnFAepY0vglyPPmjHv0=;
- b=BY3Q4F49RRwKrD5I9ni6AYT1SH7blckCl1LdXwUjoQBqiC4fo1kBghin0cvR8o4Tmlk56XqQ3ONoRw09jOommCdbdj59N14HYnpfmuOLpUrSE+nHVvzA30wlRyN+KY71W4Llr476KFROIbZiL0YpzpsRjDD1zBJG16gMYv/5QLKt94kDCsSGUGf3FgVaEXG6u9CTVSea18qlVf6B8hDf49waGn2moOSNFYVNVYrmEHENH/4/73ojLfqseT1RRRwqbXG2kLynayjm6GxFuRN9UT80l0Y7yq18QuIuJnxSuoJuWCMaiWNJ91r5hM/fBdZ+Rz8Bv907ODOPE805dkTLtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by DM4PR11MB6215.namprd11.prod.outlook.com
- (2603:10b6:8:a9::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8835.29; Tue, 17 Jun
- 2025 05:58:40 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::9c2a:ba60:c5fe:6a64]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::9c2a:ba60:c5fe:6a64%5]) with mapi id 15.20.8835.026; Tue, 17 Jun 2025
- 05:58:40 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port A and B
-Thread-Topic: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port A and B
-Thread-Index: AQHb3JniEvCDxlpTY02mQFyxzTgU8rQFeNtAgAB9voCAANqpAIAAC9cAgAADT8A=
-Date: Tue, 17 Jun 2025 05:58:40 +0000
-Message-ID: <DM3PPF208195D8D47A1A298C64C78DF2B28E373A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20250613193146.3549862-1-dnyaneshwar.bhadane@intel.com>
- <20250613193146.3549862-9-dnyaneshwar.bhadane@intel.com>
- <DM3PPF208195D8DF1F76C172386940583D7E370A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <IA1PR11MB6266B72FDB377689AA1E741AE270A@IA1PR11MB6266.namprd11.prod.outlook.com>
- <DM3PPF208195D8D168DBEF7523422288F50E373A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <IA1PR11MB626642AEEC0EF2A557957C08E273A@IA1PR11MB6266.namprd11.prod.outlook.com>
-In-Reply-To: <IA1PR11MB626642AEEC0EF2A557957C08E273A@IA1PR11MB6266.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|DM4PR11MB6215:EE_
-x-ms-office365-filtering-correlation-id: 491f8968-fe57-45f8-904c-08ddad64024b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?UefnbW+aMNtLUF1NVlPV9QR4xOodtmsgTBZPJWQKP3U+L9gf2Lh/NQK6PfUr?=
- =?us-ascii?Q?Yp98sYMJ7uDDjbEjmW2qRTws2LdF//ftg4sVQIu37rEcN1UXpbeCw8qPtDSr?=
- =?us-ascii?Q?JnujIIS7Rk0Rk0S7au18dm/mjWklZSS17sJieTEw4F2F04pdJyIHAgDHuU3Z?=
- =?us-ascii?Q?mVJBXFs3cc/t/jhbnbBRIV1MJ3DgYBxSOK41incb+CCxnk3HRttOgYQG1tJX?=
- =?us-ascii?Q?wUuY6YZnxujqHmeIJngKDP61govMKo+xNi2lZvtvkGAOKm0mJR2LkqXYOv68?=
- =?us-ascii?Q?6VqY1TL5wm61/Si1+f7h9tfbX3nQ/L6c7TAhOP18MdmPvk7Hnbol/Fo8wkEi?=
- =?us-ascii?Q?DWT9luuzCFN/se3qEpzgdXS4RMAqEqX9tmykBj5fw0uPAVauKyBteBIfIg5Q?=
- =?us-ascii?Q?MB14OaJEvcts2YUG0SOmZcmjPkInZxHP8rehbZPUSXp/8voFFVjp4TQfDy/3?=
- =?us-ascii?Q?Ozd45hpviF2Q5BUsJwx+YOup3DDJVvfZWDmGckLkj65XyCuVTt47JOWAo/KM?=
- =?us-ascii?Q?iZrczqDXue43lpMje+HVD2vPo79A0lsq/OZMoZg8VZrTzN8hWT9s5X6Mj3/U?=
- =?us-ascii?Q?Ui/Q2VSq4vGml9YiuPum261y0hhexa076NCz0qOnaS+I6qm/8PLqNZ/SdPsZ?=
- =?us-ascii?Q?bJLE/JdxO+oyQfMcp9XJW1IJ6sDLCQGy8u2oZPfk7MBEID7XDAJ8CYVXL+g/?=
- =?us-ascii?Q?IIGNDCdwOOSgEL+TIowXjODs4/7B0QsjEb+K2GbXhdLtrRTRgbl9wyufImvO?=
- =?us-ascii?Q?6EaI1h2yHIuNERiKrhmcrA0U+9Km1Vj4iFEAUuxW4fuWiUw4RVwgKo9mteQ8?=
- =?us-ascii?Q?1s70oxJmEMdoE4sjKki3NB3HJDLCyErR5ppgUSC4Z3jG3cFqCaam2LE9Goof?=
- =?us-ascii?Q?B1MVtVLqbJijbOaPPoZ3XITh7OGQGJDaTL3755MFXDXfgxcWY21xhIc6ySV5?=
- =?us-ascii?Q?9Y6/Hz/q9haP3TkPyARpLHe38pHsmpi+Pa5HtNG2ouCpg4X8NLnm3FxJ6ca9?=
- =?us-ascii?Q?ryefT2+WdL25xPT+mP9oF/q9pRyvY/KbupZ8JgyEo/dycZIrhp0fStWmzo3i?=
- =?us-ascii?Q?ysd7JTIwbsi+WTAo1kesDrZlP0/cgiscTYBQ5AuVppCWfnzSYNOPqv1Z+mWh?=
- =?us-ascii?Q?lTA0AevHXgLPbb2AgU5Ba07aZL9pc7mdxEJLqLF3o05yijXlD+kKrFSNPvXM?=
- =?us-ascii?Q?Uyex/1B40GxgvCTNm2Ixk69utAMfoRpOCXr9r73LUfFo1oMse9vI3L8g4/+P?=
- =?us-ascii?Q?KBU06K4VAc733RJ1WA3XT3DyQwwh39g4kQNzAlkZ14VY//eSqpxSS8Cy6wt6?=
- =?us-ascii?Q?YhTHiepKJaSYVDUYJUYyRRaFKbKKvluhjW/TuakPmNi1vZnOGI7CSRagqeWU?=
- =?us-ascii?Q?UknqUOCLAXjSY6PlT6Jd8y1B6whZ9IwJMPXCMdZLD7j0nnBTTNHeIHi6oo8R?=
- =?us-ascii?Q?CoaCq6JcJAXI6B9ayYZSYTkvmgdhiZkQABNXOy0tYebn2AAf9iSEyw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018)(7053199007); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HfpZdxNL+OuK2hK6fNNED7+xc7TuLHrsYa/kBUSZgcvr69eJ46ojWYdiV3xL?=
- =?us-ascii?Q?JwPOTpUGoltuh76JOWW1v+1IOYNUL/uwljIvyZw1VrrnQM1o5Wvxsee6gdW9?=
- =?us-ascii?Q?n5N3QWYct3mkZOOtCBk39snl6D2oOnUFTfw73GQhKm+/cNooO9foHGqam1G5?=
- =?us-ascii?Q?iIIm4SsZcvh2pr/kMESBu9T0vr2pXyT0GQPXK/od9WoDlcsPV7XGUHQ3U/HB?=
- =?us-ascii?Q?2cfYWcw6DAWskOMOLiWGBGgEmW/sRsO6vXmWpfWfiV9/GC12OGoY3SSoMQzR?=
- =?us-ascii?Q?/YU8KJ6B3NzNBGnWHSRxrA5fj1gi4aduzFyIh773d1F8cd5uEwCvglC6M5/O?=
- =?us-ascii?Q?iO9sre83+zIegUjTTh+qM8YRUUzmgREL2SLgJnwp1atzVSq4J6bNgmmKIroY?=
- =?us-ascii?Q?mOxtZuecMLMUzKTw5JJ6PUE5tofjm2HTwg9IpREy0rkERACBhMj0CWWlwN1z?=
- =?us-ascii?Q?cFWBvV5qXuTaIERXyPNDBmLpSWJ5sw4z7eh8rsyoXrjdU2/6iNalq0fqXDLQ?=
- =?us-ascii?Q?rPCEw/1OQ6ZonkE3HnF/QlqLnjGVaZ6r5dRqtT6GeLS/HnIZL/GTkIJ6kqW5?=
- =?us-ascii?Q?+jiRUyCq/S0ejzRd4SwNhuDepFIkrVZ0vKm3qgVCJ/TXtaAt/gDY3RQ/QS54?=
- =?us-ascii?Q?+AYOnoXgMAeJxNYS9E5X2/IwKewFRwu8dNj5/29HygpOkutOlwyJvZ29QF9V?=
- =?us-ascii?Q?bGRdo8PFnSGB26yoUSH/9UtZvZLCZZYncy9FdvFagNdNO4we2OVf7vhjAjoq?=
- =?us-ascii?Q?C+r8fknnzDXuaAqDjqzwdjafXAvPajmihKrss9SDNLB9dbdemPgNB55AJwWo?=
- =?us-ascii?Q?CilGlU0ER5xpW6j+WHgkIV+JbFo2zwvHuEuQfut3IzF7N265iL4T4T8w2O3E?=
- =?us-ascii?Q?NnMWFatNNnd7JRoDv4KRluvHNmArRD399IXyhpgbaEq7aDNafTNJMCOQGGCE?=
- =?us-ascii?Q?MXuQyyFCAnzGejm1AYz8HeoevUlCmHRb7+R/LZL0iI1MbqWB82kZw3uzBVnf?=
- =?us-ascii?Q?0Vq5rTJUlIXUgHMHRwukke08JX3t0k7GXKBKjREVe/VmKDd4EgWYbSNh6GJn?=
- =?us-ascii?Q?29DEjG5AFmMyIdasMthWttk+y94Dhcp2ViGNw5F7mkp3L2YI5Dkz8Qn+BNmm?=
- =?us-ascii?Q?nyKiWSFA0EOhMhcYEjYnX+9CaX+wXOmIrRgfDaZDKnwyYMqBQSjoChcHKBX4?=
- =?us-ascii?Q?v/m2EZ29+p8FYomqQb3zV3gDNYHpuRLoNUkeqHc6sBNBnoob96pJ6vKVXSKJ?=
- =?us-ascii?Q?oWbm+6c5rPxPJwZvKnweGGzKQgaF/kw4DoEPfOf7V4XC3qrc5tE+u2VzuQqX?=
- =?us-ascii?Q?AdnXG6hDGD8b5oaeIhs5grM1vvhXg9lpGGLSiPuxwKGpzzKfmBPVnGuygmQ4?=
- =?us-ascii?Q?SIa2L1avgVHna6FVPKS+DcGo4Q4ZSSBIzHnL4IAIcGvnZSVdFDjyLG2GUEBb?=
- =?us-ascii?Q?lBuYIQrFIcZci22eG+UW+IJsKfWF0mup08DAzBkRBF26WBMbC3Dv0SpCQQeW?=
- =?us-ascii?Q?/4x57OqyS0tzJK3wvOI6/Ha1IEBcR6Ed0ajgmuE6SkLmYf30EpVf+eGaGwkz?=
- =?us-ascii?Q?spMlkjzAwz/YkLEsMhzKzvBghTWbaz6kSMpKB0Xb?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="149247092"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa007.jf.intel.com with ESMTP; 17 Jun 2025 00:58:25 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Date: Tue, 17 Jun 2025 13:14:02 +0530
+Subject: [PATCH] drm/i915/panel: register drm_panel and call
+ prepare/unprepare for eDP
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 491f8968-fe57-45f8-904c-08ddad64024b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2025 05:58:40.2878 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eq6INzGiCG5aj/CmBeoj7bpwJCun/a4b8R21Xu5pD3pSeVxGn+PwGWbAUjcMUXJdEnVBMr8AO5whDsPpGSI3yQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6215
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250617-edp_panel-v1-1-ce1a581e8fcd@intel.com>
+X-B4-Tracking: v=1; b=H4sIAMEcUWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDM0Nz3dSUgviCxLzUHN20JEuDJMNkc2Mzo0QloPqCotS0zAqwWdGxtbU
+ A8idgVFsAAAA=
+X-Change-ID: 20250617-edp_panel-fb90b1c7362a
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, shawn.c.lee@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,153 +71,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Allocate and register drm_panel to allow the panel_follower framework to
+detect the eDP panel and pass drm_connector::kdev device to drm_panel
+allocation for matching.
+Call drm_panel_prepare/unprepare in ddi_enable for eDP to allow the
+followers to get notified of the panel power state changes.
 
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+v1: Initial patch version based on the panel_follower added for DSI by
+Jani.
+---
+ drivers/gpu/drm/i915/display/intel_backlight.h |  1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c       |  4 ++++
+ drivers/gpu/drm/i915/display/intel_dp.c        |  6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.h        |  1 +
+ drivers/gpu/drm/i915/display/intel_panel.c     | 20 ++++++++++++++++----
+ 5 files changed, 25 insertions(+), 7 deletions(-)
 
-> -----Original Message-----
-> From: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> Sent: Tuesday, June 17, 2025 11:16 AM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
-org
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: RE: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port A and=
- B
->=20
->=20
->=20
-> > -----Original Message-----
-> > From: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Sent: Tuesday, June 17, 2025 10:37 AM
-> > To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; intel-
-> > xe@lists.freedesktop.org
-> > Subject: RE: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port A
-> > and B
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> > > Sent: Monday, June 16, 2025 9:31 PM
-> > > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
-> > > intel-xe@lists.freedesktop.org
-> > > Subject: RE: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port
-> > > A and B
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > > > Sent: Monday, June 16, 2025 2:09 PM
-> > > > To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; intel-
-> > > > xe@lists.freedesktop.org
-> > > > Cc: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> > > > Subject: RE: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to
-> > > > port A and B
-> > > >
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On
-> > > > > Behalf Of Dnyaneshwar Bhadane
-> > > > > Sent: Saturday, June 14, 2025 1:02 AM
-> > > > > To: intel-xe@lists.freedesktop.org
-> > > > > Cc: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> > > > > Subject: [PATCH v6 8/9] drm/i915/wcl: C10 phy connected to port
-> > > > > A and B
-> > > > >
-> > > > > WCL added a c10 phy connected to port B. PTL code is currently
-> > > > > restricting c10 to phy_a only.
-> > > > >
-> > > > > PTL doesn't have a PHY connected to PORT B; as such,there will
-> > > > > never be a case where PTL uses PHY B.
-> > > > > WCL uses PORT A and B with the C10 PHY.Reusing the condition for
-> > > > > WCL and extending it for PORT B should not cause any issues for P=
-TL.
-> > > > >
-> > > > > -v2: Reuse and extend PTL condition for WCL (Matt)
-> > > >
-> > > > Add the bspec reference here
-> > > >
-> > > > >
-> > > > > Signed-off-by: Dnyaneshwar Bhadane
-> > > <dnyaneshwar.bhadane@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 +++++++-
-> > > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > > > index 83c8df9dbc0c..ed8e640b96b0 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> > > > > @@ -39,7 +39,13 @@ bool intel_encoder_is_c10phy(struct
-> > > > > intel_encoder
-> > > > > *encoder)
-> > > > >  	struct intel_display *display =3D to_intel_display(encoder);
-> > > > >  	enum phy phy =3D intel_encoder_to_phy(encoder);
-> > > > >
-> > > > > -	if (display->platform.pantherlake && phy =3D=3D PHY_A)
-> > > > > +	/* PTL doesn't have a PHY connected to PORT B; as such,
-> > > > > +	 * there will never be a case where PTL uses PHY B.
-> > > > > +	 * WCL uses PORT A and B with the C10 PHY.
-> > > > > +	 * Reusing the condition for WCL and extending it for PORT B
-> > > > > +	 * should not cause any issues for PTL.
-> > > > > +	 */
-> > > > > +	if (display->platform.pantherlake && phy < PHY_C)
-> > > >
-> > > > Just because PTL does not have PHY connected to  Port B does not
-> > > > mean the code wont come here it seemed like this is the check That
-> > > > made sure we go to c10 PHY and with this it will go for c10 phy
-> > > > when port becomes port B
-> > >
-> > > This would be case ever. No,
-> > > PTL don't have PHY connected with Port B so this would never be a cas=
-e
-> ever.
-> > > Specs: 72571
-> > >
-> > > As you could see similar condition is also extended for lunar lake
-> > > which has the don't have PHY connected with port B,
-> > >
-> > > Dnyaneshwar,
-> > >
-> > >
-> > > >
-> > > > Regards,
-> > > > Suraj Kandpal
-> > > > >  		return true;
-> > > > >
-> > > > >  	if ((display->platform.lunarlake ||
-> > > > > display->platform.meteorlake)
-> >
-> > Got if that is the case you can merge the condition with this check
-> > since it basically does the same thing.
-> > I would get it if you are holding out to see if the wcl platform check
-> > comes in but in that case I would say Wait till that comes in and merge=
- that
-> change.
-> > Add the Bspec reference in patch before merging
->=20
->=20
-> Thank you. Since it has been extended for WCL, it would be good to keep t=
-he
-> conditions separate for the time being to make explanation easier.
-> Later may be year later, we can combine them into a single condition as y=
-ou
-> explained above.
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
+index 339643f6389789a9b52c4c1d74e03d8f15a6efa6..ebeb6448188f0b8cf45edd1093439bd6b6e63111 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.h
++++ b/drivers/gpu/drm/i915/display/intel_backlight.h
+@@ -18,6 +18,7 @@ enum pipe;
+ 
+ void intel_backlight_init_funcs(struct intel_panel *panel);
+ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe);
++void intel_edp_backlight_setup(struct intel_connector *connector);
+ void intel_backlight_destroy(struct intel_panel *panel);
+ 
+ void intel_backlight_enable(const struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index cbd1060e966431e0884aa9df7b5e6d2f27fde6d5..36aa6d14589d37614fe13ba15baf4c7e60014e2c 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -73,6 +73,7 @@
+ #include "intel_lspcon.h"
+ #include "intel_mg_phy_regs.h"
+ #include "intel_modeset_lock.h"
++#include "intel_panel.h"
+ #include "intel_pfit.h"
+ #include "intel_pps.h"
+ #include "intel_psr.h"
+@@ -3355,6 +3356,8 @@ static void intel_ddi_enable_dp(struct intel_atomic_state *state,
+ 	drm_connector_update_privacy_screen(conn_state);
+ 	intel_edp_backlight_on(crtc_state, conn_state);
+ 
++	intel_panel_prepare(crtc_state, conn_state);
++
+ 	if (!intel_lspcon_active(dig_port) || intel_dp_has_hdmi_sink(&dig_port->dp))
+ 		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
+ 
+@@ -3552,6 +3555,7 @@ static void intel_ddi_disable_dp(struct intel_atomic_state *state,
+ 
+ 	intel_dp->link.active = false;
+ 
++	intel_panel_unprepare(old_conn_state);
+ 	intel_psr_disable(intel_dp, old_crtc_state);
+ 	intel_alpm_disable(intel_dp);
+ 	intel_edp_backlight_off(old_conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 277b40b13948ed964f20aa1243f76aa263615360..451b6be6106d6ac244d23fe2d997b4f7b3e9f002 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6464,9 +6464,9 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
+ 						       fixed_mode->vdisplay);
+ }
+ 
+-static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
+-				      struct intel_connector *connector)
++void intel_edp_backlight_setup(struct intel_connector *connector)
+ {
++	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	enum pipe pipe = INVALID_PIPE;
+ 
+@@ -6627,7 +6627,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 
+ 	intel_panel_init(connector, drm_edid);
+ 
+-	intel_edp_backlight_setup(intel_dp, connector);
++	intel_panel_register(connector);
+ 
+ 	intel_edp_add_properties(intel_dp);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 0657f568119662828344cfddbe876f2acf2596d9..2544783d3d5ad0d8e334fbe3a9ab874e7fee559e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -214,5 +214,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+ 
+ int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
+ void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
++void intel_edp_backlight_setup(struct intel_connector *connector);
+ 
+ #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index f956919dc648eab507cdcca149672c1ce0173481..e884d9de3666b17197e3003af7bd9388b2889e6f 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -511,11 +511,21 @@ int intel_panel_register(struct intel_connector *connector)
+ 	struct intel_panel *panel = &connector->panel;
+ 	int ret;
+ 
+-	ret = intel_backlight_device_register(connector);
+-	if (ret)
+-		return ret;
++	switch (connector->base.connector_type) {
++	case DRM_MODE_CONNECTOR_DSI:
++		ret = intel_backlight_device_register(connector);
++		if (ret)
++			return ret;
++		break;
++	case DRM_MODE_CONNECTOR_eDP:
++		intel_edp_backlight_setup(connector);
++		break;
++	default:
++		break;
++	}
+ 
+-	if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
++	if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI ||
++	    connector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
+ 		struct device *dev = connector->base.kdev;
+ 		struct drm_panel *base;
+ 
+@@ -561,6 +571,7 @@ int intel_panel_register(struct intel_connector *connector)
+ 
+ err:
+ 	intel_backlight_device_unregister(connector);
++	intel_backlight_destroy(panel);
+ 
+ 	return ret;
+ }
+@@ -573,6 +584,7 @@ void intel_panel_unregister(struct intel_connector *connector)
+ 		drm_panel_remove(panel->base);
+ 
+ 	intel_backlight_device_unregister(connector);
++	intel_backlight_destroy(panel);
+ }
+ 
+ /* Notify followers, if any, about power being up. */
 
-In that case this needs a TODO here
+---
+base-commit: 6f72990d9e0fe084afe257621edd730444a8bc52
+change-id: 20250617-edp_panel-fb90b1c7362a
 
-Regards,
-Suraj Kandpal
-
->=20
-> Dnyaneshwar,
-> >
-> > With the above fixed
-> >
-> > Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> >
-> > > > > && phy < PHY_C)
-> > > > > --
-> > > > > 2.34.1
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
 
