@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07B44ADC44C
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 10:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 214F1ADC44D
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Jun 2025 10:14:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE3F10E575;
-	Tue, 17 Jun 2025 08:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B12AF10E508;
+	Tue, 17 Jun 2025 08:14:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sv39yUS3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bsv8DAa1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 710EC10E575;
- Tue, 17 Jun 2025 08:13:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0F3E10E508;
+ Tue, 17 Jun 2025 08:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750148039; x=1781684039;
+ t=1750148044; x=1781684044;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ve6+aAHaveY3WrFI2oizULCvEnuJb+l3xm2TlccVE2g=;
- b=Sv39yUS3A4QWFO2KTQuT+eJy7t790O463YT6odGD69JkOQ15FJcgozvB
- rpZjgiT4dR/WRm7RGDRbiMsw0Gr+dd5ed/9rGN+w7GIAddRX+sa3vPTfn
- vwTt2Dn3PE74bstvBWIXdl6Vvj0F1AHLVa9O7Acsm93WOJKRlczYDl1eb
- 296R5CpDGkmcguSZkKOI/pOsjdt2MCnyhWBUeZ+baQFqjY7WJ7YZT9qCo
- 6qE3+mTwTMCafrVjZRS/X7zdiNJxnDaCaJzLcCPsSCU1+tJGv6MwiLJvF
- 85WTYcnpDOJ3ewaNxhQPjHnUQ4PlTyw/IoNDR+DoPXEOLhBk3Nqsd6mFS w==;
-X-CSE-ConnectionGUID: 5hhHWWhgTiKaQzJvXc1mnA==
-X-CSE-MsgGUID: 3kGiq+OMRZGaa/mcO6NIiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52016123"
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="52016123"
+ bh=0/uDrt7wR2l8F5WXafqjqGAe+191piPvOkOSkN0vM84=;
+ b=Bsv8DAa1j4Q1sQIymNq1HNU7DRW9L57Ij2IaILd9l4LAytWBXHqzVwPW
+ RvvhIUt0y/wdRs5RU/r9WaPlcbfUIaqUrBMYzPvXtl1/BaqI1vK0Rdul6
+ CCeC+CPjIqp2jeHd+/YYVG1yJJNKRtoM9ZVDYCmQck3aJ3CXG9Vur8aSg
+ HV7qXvce2gxOK0EJQWVllyjf3+tmKG7vGQUv9gKlN/hwlxq4GTByjUmw+
+ MNdB/5M/ulIkNUyRLrJTNmjJYLqeC+4zZONDKY7zKZFgliQQiBvOP0HCF
+ GoUZ1Lyx7wICQ8mVn1Jp+6EUkT5qiSbmgh9yO08imj9ZivYutOiH4+GdM Q==;
+X-CSE-ConnectionGUID: 0lbUbnG+RTuwSNk8wRUZYQ==
+X-CSE-MsgGUID: EA+vemQhTiuhcOHPeEm5ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11465"; a="52016132"
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="52016132"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 01:13:59 -0700
-X-CSE-ConnectionGUID: qdKdHSgPRYumj2R1w1jabQ==
-X-CSE-MsgGUID: K02szn6OSqijjFrp6FqSdg==
+ 17 Jun 2025 01:14:04 -0700
+X-CSE-ConnectionGUID: 5PeFvk3HQVGpxxm2pxEtGQ==
+X-CSE-MsgGUID: +0dwDqGoTSSCjOOli/Eb9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="153597453"
+X-IronPort-AV: E=Sophos;i="6.16,242,1744095600"; d="scan'208";a="153597478"
 Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.111])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2025 01:13:58 -0700
+ 17 Jun 2025 01:14:02 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [RESEND 3/5] drm/i915/plane: make intel_plane_atomic_check() static
- and rename
-Date: Tue, 17 Jun 2025 11:13:38 +0300
-Message-Id: <9da965c23c1485625d8713152751470ee758d540.1750147992.git.jani.nikula@intel.com>
+Subject: [RESEND 4/5] drm/i915/plane: rename intel_atomic_check_planes() to
+ intel_plane_atomic_check()
+Date: Tue, 17 Jun 2025 11:13:39 +0300
+Message-Id: <57c59e33e31fbea564f61c2ffaa81e979e33f106.1750147992.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750147992.git.jani.nikula@intel.com>
 References: <cover.1750147992.git.jani.nikula@intel.com>
@@ -72,53 +72,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_plane_atomic_check() isn't used outside of intel_plane.c. Make it
-static. While at it, rename to vacate the name for subsequent changes.
+Align with all the other atomic check functions.
 
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane.c | 6 +++---
- drivers/gpu/drm/i915/display/intel_plane.h | 2 --
- 2 files changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_plane.c   | 2 +-
+ drivers/gpu/drm/i915/display/intel_plane.h   | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index acc03b4c9e89..bd81ff9e3854 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6447,7 +6447,7 @@ int intel_atomic_check(struct drm_device *dev,
+ 		goto fail;
+ 	}
+ 
+-	ret = intel_atomic_check_planes(state);
++	ret = intel_plane_atomic_check(state);
+ 	if (ret)
+ 		goto fail;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index f68432d28d36..fbbe957d3f04 100644
+index fbbe957d3f04..2ac7a4e655f5 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane.c
 +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -734,8 +734,8 @@ intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
- 	return NULL;
+@@ -1528,7 +1528,7 @@ static int intel_add_affected_planes(struct intel_atomic_state *state)
+ 	return 0;
  }
  
--int intel_plane_atomic_check(struct intel_atomic_state *state,
--			     struct intel_plane *plane)
-+static int plane_atomic_check(struct intel_atomic_state *state,
-+			      struct intel_plane *plane)
+-int intel_atomic_check_planes(struct intel_atomic_state *state)
++int intel_plane_atomic_check(struct intel_atomic_state *state)
  {
  	struct intel_display *display = to_intel_display(state);
- 	struct intel_plane_state *new_plane_state =
-@@ -1542,7 +1542,7 @@ int intel_atomic_check_planes(struct intel_atomic_state *state)
- 		return ret;
- 
- 	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
--		ret = intel_plane_atomic_check(state, plane);
-+		ret = plane_atomic_check(state, plane);
- 		if (ret) {
- 			drm_dbg_atomic(display->drm,
- 				       "[PLANE:%d:%s] atomic driver check failed\n",
+ 	struct intel_crtc_state *old_crtc_state, *new_crtc_state;
 diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
-index 10a94b9a135c..4d69a868265c 100644
+index 4d69a868265c..5cb995b2940f 100644
 --- a/drivers/gpu/drm/i915/display/intel_plane.h
 +++ b/drivers/gpu/drm/i915/display/intel_plane.h
-@@ -69,8 +69,6 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
- 					struct intel_crtc_state *crtc_state,
- 					const struct intel_plane_state *old_plane_state,
- 					struct intel_plane_state *intel_state);
--int intel_plane_atomic_check(struct intel_atomic_state *state,
--			     struct intel_plane *plane);
- int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
- 			       struct intel_plane *plane,
- 			       bool *need_cdclk_calc);
+@@ -85,7 +85,7 @@ void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_sta
+ 					 struct intel_plane_state *new_plane_state);
+ int intel_atomic_add_affected_planes(struct intel_atomic_state *state,
+ 				     struct intel_crtc *crtc);
+-int intel_atomic_check_planes(struct intel_atomic_state *state);
++int intel_plane_atomic_check(struct intel_atomic_state *state);
+ 
+ u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state);
+ bool intel_plane_format_mod_supported_async(struct drm_plane *plane,
 -- 
 2.39.5
 
