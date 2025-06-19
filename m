@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FAD8ADFC37
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 06:05:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E193EADFC94
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 06:44:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AEA410E271;
-	Thu, 19 Jun 2025 04:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46E6310E13B;
+	Thu, 19 Jun 2025 04:44:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TlQcR3T9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmJACNm+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 034A910E03F;
- Thu, 19 Jun 2025 04:05:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B78B10E13B;
+ Thu, 19 Jun 2025 04:44:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750305952; x=1781841952;
+ t=1750308276; x=1781844276;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=lYIsUi6o1A24XguHhiKNuYH2kDMhM08KFVEnHq/JtFo=;
- b=TlQcR3T9Zcb0ft+lGHVDkE9i9zXvRpayk3SOKvozhJk/sCo+fXk+SZfr
- RE2DFaR330tXRoGIC9DZRLvs1y5U/Koax9Q22QJjwFz1gjcTozDL0H7XA
- WhA+NnoPbLQkqhCAruvkR1cLarD9G9gkodTfITdmsdJkZ6f20KZn3NI6F
- HM9dj20oodi6Un1K8x2rHap6yLvI1MX+x/1v/r5G0k8pb6XrAsjTfCREr
- GPYcuSGC+0aPmmiWFIpOtyshhDouel46pyaenHjXACk8zpD0aBaflv1yR
- REBmemD9jaHUNaGKLsWpjjGo2Wx7mQL4i8p+6/QpxvE6U0zy3ieEcvJjV g==;
-X-CSE-ConnectionGUID: u6xHpemYQqScUwdASO31Vg==
-X-CSE-MsgGUID: MKTZeHw6SnybJLhX1rZjDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="56346143"
-X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; d="scan'208,223";a="56346143"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jun 2025 21:05:52 -0700
-X-CSE-ConnectionGUID: fMIx42NVSmK87tvPavOugw==
-X-CSE-MsgGUID: f3INqbvwSxeU0mVk0dHwqA==
+ bh=f0oLDjxHkUWeUq2lbAZSUEBEVnp4dL74A0YGdNPbRss=;
+ b=VmJACNm+sAgFVKsg0fSaILaY75EdYpNlA8Znd3KAiOFZeHnDwrUsHWDN
+ w9RwlghnrIaOBval86GUed+k8CwPremRKRg3GIlN5WIwHBZsjn7UdlVMP
+ HONVGkxp3N37e5pAM/CD+0+6xznhN2GIaK95iIzTvprKgzxy4pCVeKKMZ
+ gM/ebqMLDPpx1D9xU2AxAU+YOlK+k1sfH7OiLoJ2Ve86Ftu1FiXvsVU9q
+ eZplV8nmPR0vBy877MxkG1HVxepvHw2Yf5tbg0boJgaF7sUiGxE5ETK9M
+ d84prHg2oDS0JoSUlg8vdZm770YFiKtao0PPNYon5w4NBMvGP/uNxPp/2 A==;
+X-CSE-ConnectionGUID: lrZoeEXfTh+LEX/YjuvHYQ==
+X-CSE-MsgGUID: AQqYngKVScKzWQSiGuru+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52425424"
+X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; d="scan'208";a="52425424"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2025 21:44:35 -0700
+X-CSE-ConnectionGUID: O8ouPItARi+x2GzoqOxBXQ==
+X-CSE-MsgGUID: nYq5cg0IR8+mOFxN/wYziQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; 
- d="scan'208,223";a="150219212"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa009.jf.intel.com with ESMTP; 18 Jun 2025 21:05:51 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,247,1744095600"; d="scan'208";a="150902344"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa008.fm.intel.com with ESMTP; 18 Jun 2025 21:44:33 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Use HDCP2_STREAM_STATUS to verify content type
- status
-Date: Thu, 19 Jun 2025 09:35:20 +0530
-Message-Id: <20250619040519.3375518-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: dibin.moolakadan.subrahmanian@intel.com, ankit.k.nautiyal@intel.com,
+ imre.deak@intel.com, chaitanya.kumar.borah@intel.com
+Subject: [PATCH v2] drm/xe/display: read PCON capability only when present
+Date: Thu, 19 Jun 2025 09:56:29 +0530
+Message-Id: <20250619042629.3980244-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,46 +66,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From PTL we need to move to using HDCP2_STREAM_STATUS to check if
-the written content type info is the same as we expect since
-HDCP2_AUTH_STREAM is inaccessible to us now.
+Avoid reading the PCON capabilities redundantly on non-branch devices.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+v2:
+ - Make commit description more accurate. (Imre)
+ - Clear intel_dp->pcon_dsc_dpcd irrespective of presense of PCON. (Imre)
+
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 7bd775fb65a0..131fc0cae13b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -806,9 +806,11 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 	enum port port = dig_port->base.port;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 277b40b13948..f48912f308df 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3726,6 +3726,9 @@ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
  
--	drm_WARN_ON(display->drm, enable &&
--		    !!(intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port))
--		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
-+	if (DISPLAY_VER(display) < 30)
-+		drm_WARN_ON(display->drm, enable &&
-+			    !!(intel_de_read(display,
-+			    HDCP2_AUTH_STREAM(display, cpu_transcoder, port))
-+			    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
+ 	memset(intel_dp->pcon_dsc_dpcd, 0, sizeof(intel_dp->pcon_dsc_dpcd));
  
- 	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
- 	if (ret)
-@@ -824,6 +826,11 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 		return -ETIMEDOUT;
- 	}
- 
-+	if (DISPLAY_VER(display) >= 30)
-+		drm_WARN_ON(display->drm, enable &&
-+			    !!(intel_de_read(display,
-+			    HDCP2_STREAM_STATUS(display, cpu_transcoder, port))
-+			    & STREAM_TYPE_STATUS) != data->streams[0].stream_type);
- 	return 0;
- }
- 
++	if (!drm_dp_is_branch(intel_dp->dpcd))
++		return;
++
+ 	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
+ 			     intel_dp->pcon_dsc_dpcd,
+ 			     sizeof(intel_dp->pcon_dsc_dpcd)) < 0)
 -- 
-2.34.1
+2.25.1
 
