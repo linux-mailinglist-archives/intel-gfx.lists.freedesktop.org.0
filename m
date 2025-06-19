@@ -2,62 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F228FAE084F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 16:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB715AE0B06
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 18:04:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D13710EA72;
-	Thu, 19 Jun 2025 14:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 255E110E111;
+	Thu, 19 Jun 2025 16:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cHrY5IYw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="igwa8+ah";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3244C10EA72
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Jun 2025 14:07:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9922310E111;
+ Thu, 19 Jun 2025 16:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750342078; x=1781878078;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=jnzyGabI+V1WrTgJxP9k3Ggf7euJMx8abH0EW+s4FTc=;
- b=cHrY5IYw7+2zJMBya9KrlzJ6KwF+h6UM9nf3zDiz8Tc91uI/zKgf8I9S
- /fQl1R/jkDQp1sgaxPXNCawIO6FShvkAjhncBFAsEXEpb6DAoSBkY+6PZ
- q0WzYp1ACwaJP7xT/+qOBGbAuhz9COkTbXwoKVlgerGFaS1WV8MFsbwPm
- xnDavCby50LnOV4VQ77qoYjZp3jAC3kpQ+C8rQB56VjFNHoZ9Qjef0Ifb
- EwcWamP5LbyeBpojLxmfbdmOp122j60PJFJ7+mQ3FsisV9U5QkTZ/v07e
- t7U2A1QhVxVVMcQARbuAP6TX5hKospRfIthp/wFJoF1tkAPdKdI3avs81 g==;
-X-CSE-ConnectionGUID: OQPetno9T+yP/V/FBqZwsQ==
-X-CSE-MsgGUID: 7M4jQblSSZej76s/8nVUaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="63635463"
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="63635463"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 07:07:58 -0700
-X-CSE-ConnectionGUID: UJ3fCTyoTdOKhEIzhhxWYw==
-X-CSE-MsgGUID: 0+oG0yCCQOiuCovHbjzh8g==
+ t=1750349036; x=1781885036;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=g1wuA+3Bm5fjSAmJaxDskX5yucV1m/wl7q9NanZXzi4=;
+ b=igwa8+ah+Vb0DahOdX/r/qyXDscmZeDiQ6IFuyegQPcu9IJwk99uo1ZF
+ fNL9XmpskynC9slc9u16y9AtohZKIDYSm9Bu5wdqLM46o2QKbKmlYMRJS
+ ySoiToaWBr3h4LFeqUtfaK2KQ8ZPfwibiwuGOvttxDVUg31148T0M//gQ
+ MpO3O6PvkNWvMVKjfWFlqkFs7xPNbHUGd5JanRxUmHkDP8CjpZWekV8cS
+ RNSqE6bw8NN2aTWsLtKMEaBZClL69VEFJjuImVWddOWeizBdFyzWiYJg2
+ O/RdDCI+ox4bhkVH7welmhkAJ0kee7SdCTdgSywp/lUvwB5cbz2nYn2XB A==;
+X-CSE-ConnectionGUID: D9mk/KO4SdSK3Awk5f48+g==
+X-CSE-MsgGUID: ctGb3GwBRL2i/t/GtFu9DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="51715785"
+X-IronPort-AV: E=Sophos;i="6.16,249,1744095600"; d="scan'208";a="51715785"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2025 09:03:56 -0700
+X-CSE-ConnectionGUID: wRRBmDLNRJKW6lRUBtru0Q==
+X-CSE-MsgGUID: p+T1KRIXT6Krr7FnJqwxlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="150785730"
-Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.109])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 07:07:57 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.16,249,1744095600"; d="scan'208";a="151007900"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.196])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2025 09:03:53 -0700
+Date: Thu, 19 Jun 2025 18:03:42 +0200
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-fixes
+Message-ID: <aFQ03kNzhbiNK7gW@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <di25mtf23dwhfrb5lawcytbn5pg73dc2mma42ny3moiqluwl66@gkepxlpv63cs>
-References: <di25mtf23dwhfrb5lawcytbn5pg73dc2mma42ny3moiqluwl66@gkepxlpv63cs>
-Subject: Re: [PATCH v3] drm/i915/selftests: Keep mock file open during
- unfaultable migrate with fill
-From: Chris Wilson <chris.p.wilson@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Jun 2025 16:07:28 +0200
-Message-ID: <175034204806.2265741.12155401070258841657@DEV-409>
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,35 +76,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Krzysztof Karas (2025-06-17 15:19:07)
-> igt_mmap_migrate() tests migration with various parameters.
-> In one of the cases, where FILL and UNFAULTABLE flags are set,
-> during first stages of this test a mock file is opened in
-> igt_mmap_offset(), which results in allocating some data in the
-> GPU memory. Then, also in igt_mmap_offset(), the file is closed
-> (fput) and the cleanup of that data is scheduled.
+Hi Dave, Simona
 
-Incorrect; the refcount is not zero at this point as it is held by the
-vma->vm_file which is still valid.
+Three fixes for -rc3. There are a couple more pending with
+non-trivial merge conflicts that need to be properly
+backported.
 
-> Right after
-> that, the test calls igt_fill_mappable() to fill all available
-> GPU memory. At this point, three scenarios are possible
-> (N =3D max size of GPU memory for this test in MiB):
->  1) the data cleanup does not fire until the whole test is over,
-> so the memory is fully occupied by 1 MiB with that data and
-> N - 1 MiB added by igt_fill_mappable(),
->  2) the data cleanup fires before igt_fill_mappable() completes,
-> so the whole memory is populated with N MiB by
-> igt_fill_mappable(),
->  3) the data cleanup is performed right after fill is done,
-> so only N - 1 MiB are in the GPU memory, preventing the test
-> from properly faulting - we'd expect no space left, but an
-> object was able to fit in the remaining 1 MiB.
->=20
-> Amend the problem by keeping the mock file open throughout the
-> duration of this test and calling fput() from the test itself.
+drm-xe-fixes-2025-06-19:
+Driver Changes:
+- A workaround update (Vinay)
+- Fix memset on iomem (Lucas)
+- Fix early wedge on GuC Load failure (Daniele)
 
-That is not the problem; that is papering over whatever the problem
-really is.
--Chris
+The following changes since commit 9c7632faad434c98f1f2cc06f3647a5a5d05ddbf:
+
+  drm/xe/lrc: Use a temporary buffer for WA BB (2025-06-12 18:09:50 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-06-19
+
+for you to fetch changes up to a39d082c3553d35b4fe5585e1e2fb221c130cae8:
+
+  drm/xe: Fix early wedge on GuC load failure (2025-06-19 17:24:30 +0200)
+
+----------------------------------------------------------------
+Driver Changes:
+- A workaround update (Vinay)
+- Fix memset on iomem (Lucas)
+- Fix early wedge on GuC Load failure (Daniele)
+
+----------------------------------------------------------------
+Daniele Ceraolo Spurio (1):
+      drm/xe: Fix early wedge on GuC load failure
+
+Lucas De Marchi (1):
+      drm/xe: Fix memset on iomem
+
+Vinay Belgaumkar (1):
+      drm/xe/bmg: Update Wa_16023588340
+
+ drivers/gpu/drm/xe/xe_gt.c                  | 2 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 8 ++++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c              | 7 +++++--
+ drivers/gpu/drm/xe/xe_guc_ct.h              | 5 +++++
+ drivers/gpu/drm/xe/xe_guc_pc.c              | 2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          | 3 +++
+ 6 files changed, 23 insertions(+), 4 deletions(-)
