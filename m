@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE248AE03C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 13:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3D0AE03C4
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 13:35:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BCDA10E9F6;
-	Thu, 19 Jun 2025 11:34:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC7A10EA07;
+	Thu, 19 Jun 2025 11:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GnhpiyfI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nANfe/Ow";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C3710E9FC;
- Thu, 19 Jun 2025 11:34:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 004A910E9F8;
+ Thu, 19 Jun 2025 11:34:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750332886; x=1781868886;
+ t=1750332888; x=1781868888;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VH8pjQjdv+FUIl8wvVPCY9RhgIcJm3pFTMC8yH7yHl8=;
- b=GnhpiyfIVQeeqgQV+6CfocB/XCtnrwaE+uAoaSg0ECdtgs3XjG6Bawwp
- dPP+w+4t/i3HWTlgTbZv1BKLmbUvcDI6XSTLiWr7y9xlmohvhKJZaHpVq
- mXKaCumPMWfso8Bss3QkEWZiRSZkX2F1x9UTkYzJHnfEYWGVdIetglu/W
- Fxs4NrJiBMGUBUTJbtB4ubmpeKBoXGDUpcfqNJS1mqNqd724eWqdFLqMi
- hsURq58bXsDwm7hXi1zE5X2Jr8t9Quy33elC6W4aBm5NNmNKOUN7lwp7b
- x9PmMTV/eGpSky+k5OdwVvrSDEpDqcTUzQ0tIaSrN62arPRF+gDn/s6wg Q==;
-X-CSE-ConnectionGUID: TEz4Rai+QbqpHAy0CtWElw==
-X-CSE-MsgGUID: fK9VJU90TUuKGNhGP5gOSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52734559"
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="52734559"
+ bh=8WpPtvINhp03zlIobgGSofWWy2L+1Kvra+rIfsicg24=;
+ b=nANfe/OwzdII+Knbk/oAZ8wSnGEOSwEBrvtbnX1iIfCpd+i0S8MGKsiL
+ zCGYiVodWjXrK0DIVZVU2Xx0m07nltaST+JgU2XGvoDdHCW4hqUFk+DD5
+ C85CP0wBel3zsLWEDCzQ4A4K7cVofPbDTKua/8kWs99I2cvWjkI8kLyBg
+ cY9mMpqm55pS7dhPLjOy5DNOPNi2m2x3NZY0IVAZjesbTzvgnMhtOSfsG
+ JHANkG02aaN0cpY0zk1NyrBUTvYzzvBcOA5U6MnzRVhgHGiwFpbV7Abc4
+ z35VFU49t3CkCR7Wb0hDJVhj7feglEuiQEfUFAn4kkz+/kKtgDEeokms4 Q==;
+X-CSE-ConnectionGUID: ET/JNd+OT6e5wtQdis6pyw==
+X-CSE-MsgGUID: B4snb7tRRNine0Rjn+yqkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="52734561"
+X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208,223";a="52734561"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 04:34:46 -0700
-X-CSE-ConnectionGUID: N5hlfwZtStCq+57G3KRVDg==
-X-CSE-MsgGUID: +TLmgH0xRqOvAJocay1O2g==
+ 19 Jun 2025 04:34:48 -0700
+X-CSE-ConnectionGUID: g8jKz1i5QX6sAa4DW1wJqA==
+X-CSE-MsgGUID: RT0yNUBoQbuuVvIzayaZ8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="150847902"
+X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; 
+ d="scan'208,223";a="150847916"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa007.jf.intel.com with ESMTP; 19 Jun 2025 04:34:44 -0700
+ by orviesa007.jf.intel.com with ESMTP; 19 Jun 2025 04:34:46 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 1/2] drm/i915/hdcp: Do not use inline intel_de_read
-Date: Thu, 19 Jun 2025 17:03:39 +0530
-Message-Id: <20250619113340.3379200-2-suraj.kandpal@intel.com>
+Subject: [PATCH 2/2] drm/i915/hdcp: Use HDCP2_STREAM_STATUS instead of
+ HDCP2_AUTH_STREAM
+Date: Thu, 19 Jun 2025 17:03:40 +0530
+Message-Id: <20250619113340.3379200-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250619113340.3379200-1-suraj.kandpal@intel.com>
 References: <20250619113340.3379200-1-suraj.kandpal@intel.com>
@@ -68,53 +70,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Do not use intel_de_read() inline in the WARN_ON functions.
-While we are at it make the comparision for stream_type u8 to u8.
+From PTL we need to move to using HDCP2_STREAM_STATUS as a WARN_ON
+to see if written content type info is not the same since
+HDCP2_AUTH_STREAM is inaccessible to us now.
 
 --v2
--Use REG_GENMASK() [Jani]
--USe REG_FIELD_GET() [Jani]
--Fix the WARN_ON() condition [Jani]
+-Fix commit message [Jani]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c   | 7 +++++--
- drivers/gpu/drm/i915/display/intel_hdcp_regs.h | 2 +-
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 19 +++++++++++++++----
+ .../gpu/drm/i915/display/intel_hdcp_regs.h    |  2 +-
+ 2 files changed, 16 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index 7bd775fb65a0..70dafaa2afad 100644
+index 70dafaa2afad..bd757db85927 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -805,10 +805,13 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
- 	enum pipe pipe = (enum pipe)cpu_transcoder;
- 	enum port port = dig_port->base.port;
- 	int ret;
-+	u32 val;
-+	u8 stream_type;
+@@ -808,10 +808,13 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 	u32 val;
+ 	u8 stream_type;
  
-+	val = intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port));
-+	stream_type = REG_FIELD_GET(AUTH_STREAM_TYPE_MASK, val);
- 	drm_WARN_ON(display->drm, enable &&
--		    !!(intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port))
--		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
-+		    stream_type != data->streams[0].stream_type);
+-	val = intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port));
+-	stream_type = REG_FIELD_GET(AUTH_STREAM_TYPE_MASK, val);
+-	drm_WARN_ON(display->drm, enable &&
+-		    stream_type != data->streams[0].stream_type);
++	if (DISPLAY_VER(display) < 30) {
++		val = intel_de_read(display,
++				    HDCP2_AUTH_STREAM(display, cpu_transcoder, port));
++		stream_type = REG_FIELD_GET(AUTH_STREAM_TYPE_MASK, val);
++		drm_WARN_ON(display->drm, enable &&
++			    stream_type != data->streams[0].stream_type);
++	}
  
  	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
  	if (ret)
+@@ -827,6 +830,14 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 		return -ETIMEDOUT;
+ 	}
+ 
++	if (DISPLAY_VER(display) >= 30) {
++		val = intel_de_read(display,
++				    HDCP2_STREAM_STATUS(display, cpu_transcoder, port));
++		stream_type = REG_FIELD_GET(STREAM_TYPE_STATUS_MASK, val);
++		drm_WARN_ON(display->drm, enable &&
++			    stream_type != data->streams[0].stream_type);
++	}
++
+ 	return 0;
+ }
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_regs.h b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-index f590d7f48ba7..8b9b87910a9e 100644
+index 8b9b87910a9e..112ce8c896d6 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp_regs.h
-@@ -263,7 +263,7 @@
- #define TRANS_HDCP2_AUTH_STREAM(trans)	_MMIO_TRANS(trans, \
- 						    _TRANSA_HDCP2_AUTH_STREAM, \
- 						    _TRANSB_HDCP2_AUTH_STREAM)
--#define   AUTH_STREAM_TYPE		REG_BIT(31)
-+#define   AUTH_STREAM_TYPE_MASK		REG_GENMASK(31, 31)
- #define HDCP2_AUTH_STREAM(dev_priv, trans, port) \
+@@ -247,7 +247,7 @@
+ 						    _TRANSA_HDCP2_STREAM_STATUS, \
+ 						    _TRANSB_HDCP2_STREAM_STATUS)
+ #define   STREAM_ENCRYPTION_STATUS	REG_BIT(31)
+-#define   STREAM_TYPE_STATUS		REG_BIT(30)
++#define   STREAM_TYPE_STATUS_MASK	REG_GENMASK(30, 30)
+ #define HDCP2_STREAM_STATUS(dev_priv, trans, port) \
  					(TRANS_HDCP(dev_priv) ? \
- 					 TRANS_HDCP2_AUTH_STREAM(trans) : \
+ 					 TRANS_HDCP2_STREAM_STATUS(trans) : \
 -- 
 2.34.1
 
