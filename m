@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D198DAE026E
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 12:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83FA5AE02A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Jun 2025 12:28:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C659110E9F0;
-	Thu, 19 Jun 2025 10:11:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D9010E025;
+	Thu, 19 Jun 2025 10:28:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NEd1OvGv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hvp8/WlE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2847410E9EE;
- Thu, 19 Jun 2025 10:11:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 062CD10E025;
+ Thu, 19 Jun 2025 10:28:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750327897; x=1781863897;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=JhCYIYxmiWJmC5xkBLpMKIRbnMlvSKi3voWN+DuBfvA=;
- b=NEd1OvGvFL+R7HNaaN5q/kf56AiJgz2L6x0b+mO47aN6DmebJq7QdCpL
- 1hKc01dZ5svcLdmRcZ1Iv2dppXzucepN58tQL+hvW0tAtnHtjxa0NXcZk
- /AahKs+JdpY4PzcuFIqngIFfAGCnzy1J/pwcpXyXz+lNU5SiEikt8FL36
- i4IWOdXiBk85CmXpd/44sB7O8SmAJQ4bbebVQhhfYnf2Msn6S+zttIcoL
- MknpfqEbisRh7axsjWBmdyHs2hhZ3IhyQ8E4KBA0LuEMJvjPUxKkmE+mY
- Ab9HVeP73Nesdxpi2X3ub9lz1kdpdEYi5sfguk2zkkEkiAc1G7trgXy0i w==;
-X-CSE-ConnectionGUID: ZgaqRvDtRUuwX2lOVR9y/w==
-X-CSE-MsgGUID: bdh7i9WrS9Ggbr2dsx/fww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="70012269"
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="70012269"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 03:11:37 -0700
-X-CSE-ConnectionGUID: 5DVnRo+2T1CP35lnM3ygVg==
-X-CSE-MsgGUID: quJeh+OBT56cEE3YCAjAew==
+ t=1750328918; x=1781864918;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BFqTc7cvHnF0bv2LY0TEOPa1mTSOk4c1YKMXsLuaw1E=;
+ b=Hvp8/WlEOl8fQNN3ZczHbwOTBAhpNtjCaIdo4o9SNEMWhtmpiaqPcQ2+
+ j5qdry2oiVCWkxQ61wzlWPCbwb+dfPeOSZC++agC14L8tVYk8WfHxLGAn
+ YkxmKafIqksUm2AOgA+WMSFyAQrRKNSP64o/ABr1QSnPXVj6TnyUjC50f
+ czLp2FuV+CpuEOSVjzJNazuaoBU1+9zB1TdmTDYq9nQvvmlPssG/oJJkJ
+ MhKfVXDngDwe83PTtkMCuSswBhYps+eIbDy43BvYt8OjU7RQLykN37IaN
+ m3oYtk3ll9VGzuaO2JAANw8GnCXIhgT88Cy/5yZQiJ9BxogqM2Szu662t g==;
+X-CSE-ConnectionGUID: mfldzMEvSHuFq7lzD7gvcQ==
+X-CSE-MsgGUID: 72t2ke8qRd+BLx2f7R+vSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11468"; a="63939559"
+X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="63939559"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2025 03:28:37 -0700
+X-CSE-ConnectionGUID: PVW59IoTR7uLkWiq8HqW+w==
+X-CSE-MsgGUID: xRMRlUa+SfGt2QZVm0PVAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="187798974"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.191])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2025 03:11:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 15/16] drm/i915/cdclk: abstract intel_cdclk_actual() and
- intel_cdclk_actual_voltage_level()
-In-Reply-To: <aFMCudrkm1wjb1v6@ideak-desk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1749730224.git.jani.nikula@intel.com>
- <b282cb46ab35f4e0a6e2cf6c57cd8a2cd5db2647.1749730224.git.jani.nikula@intel.com>
- <aFMCudrkm1wjb1v6@ideak-desk>
-Date: Thu, 19 Jun 2025 13:11:32 +0300
-Message-ID: <223efae2cddd35d932e439e051362c2f77f9c919@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,248,1744095600"; d="scan'208";a="154986358"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa003.jf.intel.com with ESMTP; 19 Jun 2025 03:28:36 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] Changes in hdcp2_stream_encryption 
+Date: Thu, 19 Jun 2025 15:58:02 +0530
+Message-Id: <20250619102804.3377807-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,93 +66,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 18 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Jun 12, 2025 at 03:12:10PM +0300, Jani Nikula wrote:
->> Add intel_cdclk_actual() and intel_cdclk_actual_voltage_level() helpers
->> to avoid looking at struct intel_cdclk_state internals outside of
->> intel_cdclk.c.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c    | 10 ++++++++++
->>  drivers/gpu/drm/i915/display/intel_cdclk.h    |  2 ++
->>  drivers/gpu/drm/i915/display/intel_pmdemand.c |  4 ++--
->>  3 files changed, 14 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> index 994be1d0e20c..2e8abf237bd1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -3884,3 +3884,13 @@ void intel_cdclk_read_hw(struct intel_display *display)
->>  	cdclk_state->actual = display->cdclk.hw;
->>  	cdclk_state->logical = display->cdclk.hw;
->>  }
->> +
->> +int intel_cdclk_actual(const struct intel_cdclk_state *cdclk_state)
->> +{
->> +	return cdclk_state->actual.cdclk;
->> +}
->> +
->> +int intel_cdclk_actual_voltage_level(const struct intel_cdclk_state *cdclk_state)
->> +{
->> +	return cdclk_state->actual.voltage_level;
->> +}
->
-> These could've been grouped better after intel_cdclk_logical().
+Contains changes in hdcp2_stream_encryption where we remove the
+intel_de_read from the WARN_ON function also we move to using 
+HDCP2_STREAM_STATUS for our WARN_ON for platforms PTL and above.
 
-Yes, changing that.
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-> I wondered if it'd make sense to use
-> intel_cdclk_{logical,actual}_cdclk() instead of 
-> intel_cdclk_{logical,actual}().
+Suraj Kandpal (2):
+  drm/i915/hdcp: Do not use inline intel_de_read
+  drm/i915/hdcp: Use HDCP2_STREAM_STATUS instead of HDCP2_AUTH_STREAM
 
-Mmh. I dislike the repetition, "cdclk logical cdclk"...
-
-> Or *_clock() instead of *_cdclk() in the above and other helpers.
-
-...so I set out to consistently use "clock", but then it didn't feel
-right for things like "intel_cdclk_min_cdclk" because it's then compared
-against min_cdclk in a number of places.
-
-I don't know, leave it as it is now in the patches?
-
-BR,
-Jani.
-
-
-
->
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
->> index 0d5ee1826168..f38605c6ab72 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
->> @@ -103,5 +103,7 @@ int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state);
->>  bool intel_cdclk_pmdemand_needs_update(struct intel_atomic_state *state);
->>  void intel_cdclk_force_min_cdclk(struct intel_cdclk_state *cdclk_state, int force_min_cdclk);
->>  void intel_cdclk_read_hw(struct intel_display *display);
->> +int intel_cdclk_actual(const struct intel_cdclk_state *cdclk_state);
->> +int intel_cdclk_actual_voltage_level(const struct intel_cdclk_state *cdclk_state);
->>  
->>  #endif /* __INTEL_CDCLK_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> index 16ef68ef4041..d806c15db7ce 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> @@ -360,9 +360,9 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
->>  		return PTR_ERR(new_cdclk_state);
->>  
->>  	new_pmdemand_state->params.voltage_index =
->> -		new_cdclk_state->actual.voltage_level;
->> +		intel_cdclk_actual_voltage_level(new_cdclk_state);
->>  	new_pmdemand_state->params.cdclk_freq_mhz =
->> -		DIV_ROUND_UP(new_cdclk_state->actual.cdclk, 1000);
->> +		DIV_ROUND_UP(intel_cdclk_actual(new_cdclk_state), 1000);
->>  
->>  	intel_pmdemand_update_max_ddiclk(display, state, new_pmdemand_state);
->>  
->> -- 
->> 2.39.5
->> 
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 22 ++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.34.1
+
