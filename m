@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 302C9AE174E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jun 2025 11:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6519CAE1773
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Jun 2025 11:26:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF2C710E22D;
-	Fri, 20 Jun 2025 09:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 363B010E0E2;
+	Fri, 20 Jun 2025 09:26:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QUqzU0FR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G87ZmeNt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A9EE10E22D
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Jun 2025 09:16:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71AF110E0E2;
+ Fri, 20 Jun 2025 09:26:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750411008; x=1781947008;
+ t=1750411575; x=1781947575;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=dQvqDLBtXp1K18R4EF6V2tkZ2MfSqAx/3V4K0w9jue8=;
- b=QUqzU0FRMY0ndKQe1517mf7HBRhJRYXWSkQJSs5lN9IY4O3wK5zhbHV9
- XAWeH+13GXYSU/eiiVY+nPiycGXQZgAtmUIA6yWptB23MtPXsQm17qXMK
- v2zvSEPD928n+Ul+3spNEbXTKxylOh79Stigpiz8WLITqzHTQNo+YOGym
- CcOirvnudvLtE+gO/vaBr8DzAh3DVCapPw1ZpU6IlS/NIq1XDx8/8pIcd
- Evjy/7AiQ39RGZakqRuHoG8CU4PEfgAPdkxu1jWnFgknxZIkPNmOF90CZ
- 9S0oA3mw5/4o6g2EkChx29FZc1muH2E7wGH/kmbwn9CQ46gH9HQRO6txO Q==;
-X-CSE-ConnectionGUID: Ha6XoEqQREynffZgh8IlVg==
-X-CSE-MsgGUID: D1FeIVQTRiWs6StsptYwSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="56467633"
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="56467633"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 02:16:48 -0700
-X-CSE-ConnectionGUID: mx7oyE5RTbSIlZmDxzScUw==
-X-CSE-MsgGUID: np/fLA5pScuJsPCNshiB6A==
+ bh=/W7rz8RYD198BXbUhthv3AN+KkBNSpWHRZJHU2CWSbg=;
+ b=G87ZmeNtzt3sZg+VLQ4Du/u+GuPo7obvHwi1o8PKruiwtDT4qF2pGhmN
+ 3n8ZHZRUoyRZw7wWk/rQl8CcxjgoSoMvcW46FBPqjxCRe+NsfDE8yX4iz
+ b97ISwfedxFiVD/8kKk2mDdifK9urE6uGzK2jrIGNOmH1lUU3sXHNl/s3
+ KAaBr3Q9y9aoRrl4btVv/ZqdvLZX8gLpnf8xSI4iSdvs+DZZxbsRaDw/2
+ GnSZavAcQfqdxvq9AmRBkcAsV3qSTGdf68jYvwyZF+Fvu0Nx4VxXXSJKD
+ rYFmGpeK3M5TxMO4cU9z7JheES58WOoOlh9Iuqtjjo7Zqk5Vg+4I3+Xs5 Q==;
+X-CSE-ConnectionGUID: MJGqRvRaSpaUaJoouJQZ/w==
+X-CSE-MsgGUID: JEA5cdorQF2qgsivt7Gdgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11469"; a="52370632"
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="52370632"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jun 2025 02:26:05 -0700
+X-CSE-ConnectionGUID: cYT3FRqrSOK/Xs4wgsTluw==
+X-CSE-MsgGUID: XabjgqGTR2O+ZKnK56DsIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="156671617"
-Received: from bhagatso-mobl.gar.corp.intel.com (HELO hazy.intel.com)
- ([10.245.81.212])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jun 2025 02:16:45 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v2] drm/i915/display: move unordered works to new private
- workqueue
-Date: Fri, 20 Jun 2025 12:15:30 +0300
-Message-ID: <20250620091632.1256135-1-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.47.2
+X-IronPort-AV: E=Sophos;i="6.16,251,1744095600"; d="scan'208";a="174471973"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa002.fm.intel.com with ESMTP; 20 Jun 2025 02:26:03 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH] drm/i915/xe3lpd: Prune modes for YUV420
+Date: Fri, 20 Jun 2025 14:55:34 +0530
+Message-Id: <20250620092533.3711401-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,500 +67,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Create a new unordered workqueue to be used by the display code
-instead of relying on the i915 one.  Then move all the unordered works
-used in the display code to use this new queue.
+We only support resolution up to 4k for single pipe when using
+YUV420 format so we prune these modes and restrict the plane size
+at src. This is because pipe scaling will not support YUV420 scaling
+for hwidth > 4096.
 
-Since this is an unordered workqueue, by definition there can't be any
-order dependency with non-display works, so no extra care is needed
-in regard to that.
+--v2
+-Use output format to check [Ville]
+-Add Bspec references
+-Modify commit messge to point to why this is needed
 
-This is part of the effort to isolate the display code from i915.
+--v3
+-Use a function skl_scaler_mode_valid which is routed throug
+intel_pfit_mode_valid [Ville]
+-Combine the check conditons [Jonathan]
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+--v4
+-mode_valid functions should return drm_mode_status [Jani]
+
+Bspec: 49247, 50441
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com> #v2
 ---
+ drivers/gpu/drm/i915/display/intel_dp.c   | 11 ++++++++---
+ drivers/gpu/drm/i915/display/intel_hdmi.c |  4 ++++
+ drivers/gpu/drm/i915/display/intel_pfit.c | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_pfit.h | 12 +++++++++++-
+ drivers/gpu/drm/i915/display/skl_scaler.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h | 12 ++++++++++++
+ 6 files changed, 62 insertions(+), 4 deletions(-)
 
-In v2:
-   * made missig changes change for encoder and dmc_wl [jani]
-
-
-.../gpu/drm/i915/display/intel_connector.c    |  4 +--
- .../gpu/drm/i915/display/intel_display_core.h |  3 ++
- .../drm/i915/display/intel_display_driver.c   | 28 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_dmc.c      |  3 +-
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  3 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     |  4 +--
- drivers/gpu/drm/i915/display/intel_encoder.c  |  4 +--
- drivers/gpu/drm/i915/display/intel_fbc.c      |  4 +--
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 20 ++++++-------
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 12 ++------
- drivers/gpu/drm/i915/display/intel_opregion.c |  3 +-
- drivers/gpu/drm/i915/display/intel_pps.c      |  3 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  9 ++----
- 13 files changed, 47 insertions(+), 53 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 2867d76d1a5e..42c923f416b3 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -64,10 +64,10 @@ static void intel_connector_modeset_retry_work_fn(struct work_struct *work)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 277b40b13948..f10650d79663 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1418,6 +1418,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	struct intel_display *display = to_intel_display(_connector->dev);
+ 	struct intel_connector *connector = to_intel_connector(_connector);
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	enum intel_output_format sink_format, output_format;
+ 	const struct drm_display_mode *fixed_mode;
+ 	int target_clock = mode->clock;
+ 	int max_rate, mode_rate, max_lanes, max_link_clock;
+@@ -1451,6 +1452,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 						     mode->hdisplay, target_clock);
+ 	max_dotclk *= num_joined_pipes;
  
- void intel_connector_queue_modeset_retry_work(struct intel_connector *connector)
- {
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 
- 	drm_connector_get(&connector->base);
--	if (!queue_work(i915->unordered_wq, &connector->modeset_retry_work))
-+	if (!queue_work(display->wq.unordered, &connector->modeset_retry_work))
- 		drm_connector_put(&connector->base);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 32cb0e59c81e..25b497280086 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -570,6 +570,9 @@ struct intel_display {
- 
- 		/* hipri wq for commit cleanups */
- 		struct workqueue_struct *cleanup;
++	sink_format = intel_dp_sink_format(connector, mode);
++	output_format = intel_dp_output_format(connector, sink_format);
 +
-+		/* unordered workqueue for all display unordered work */
-+		struct workqueue_struct *unordered;
- 	} wq;
- 
- 	/* Grouping using named structs. Keep sorted. */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index ec799a1773e4..1d38c022762b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -242,8 +242,6 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	if (!HAS_DISPLAY(display))
- 		return 0;
- 
--	intel_dmc_init(display);
--
- 	display->hotplug.dp_wq = alloc_ordered_workqueue("intel-dp", 0);
- 	if (!display->hotplug.dp_wq) {
- 		ret = -ENOMEM;
-@@ -269,27 +267,35 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 		goto cleanup_wq_flip;
- 	}
- 
-+	display->wq.unordered = alloc_workqueue("display_unordered", 0, 0);
-+	if (!display->wq.unordered) {
-+		ret = -ENOMEM;
-+		goto cleanup_wq_cleanup;
-+	}
++	status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
++	if (status != MODE_OK)
++		return status;
 +
-+	intel_dmc_init(display);
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+ 
+@@ -1466,11 +1474,8 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 					   intel_dp_mode_min_output_bpp(connector, mode));
+ 
+ 	if (intel_dp_has_dsc(connector)) {
+-		enum intel_output_format sink_format, output_format;
+ 		int pipe_bpp;
+ 
+-		sink_format = intel_dp_sink_format(connector, mode);
+-		output_format = intel_dp_output_format(connector, sink_format);
+ 		/*
+ 		 * TBD pass the connector BPC,
+ 		 * for now U8_MAX so that max BPC on that platform would be picked
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9961ff259298..03045d188817 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2053,6 +2053,10 @@ intel_hdmi_mode_valid(struct drm_connector *_connector,
+ 	else
+ 		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
++	status = intel_pfit_mode_valid(display, mode, sink_format, 0);
++	if (status != MODE_OK)
++		return status;
 +
- 	intel_mode_config_init(display);
+ 	status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
+ 	if (status != MODE_OK) {
+ 		if (ycbcr_420_only ||
+diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+index 13541be4d6df..68539e7c2a24 100644
+--- a/drivers/gpu/drm/i915/display/intel_pfit.c
++++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+@@ -14,6 +14,7 @@
+ #include "intel_lvds_regs.h"
+ #include "intel_pfit.h"
+ #include "intel_pfit_regs.h"
++#include "skl_scaler.h"
  
- 	ret = intel_cdclk_init(display);
- 	if (ret)
--		goto cleanup_wq_cleanup;
-+		goto cleanup_wq_unordered;
- 
- 	ret = intel_color_init(display);
- 	if (ret)
--		goto cleanup_wq_cleanup;
-+		goto cleanup_wq_unordered;
- 
- 	ret = intel_dbuf_init(display);
- 	if (ret)
--		goto cleanup_wq_cleanup;
-+		goto cleanup_wq_unordered;
- 
- 	ret = intel_bw_init(display);
- 	if (ret)
--		goto cleanup_wq_cleanup;
-+		goto cleanup_wq_unordered;
- 
- 	ret = intel_pmdemand_init(display);
- 	if (ret)
--		goto cleanup_wq_cleanup;
-+		goto cleanup_wq_unordered;
- 
- 	intel_init_quirks(display);
- 
-@@ -297,6 +303,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	return 0;
- 
-+cleanup_wq_unordered:
-+	destroy_workqueue(display->wq.unordered);
- cleanup_wq_cleanup:
- 	destroy_workqueue(display->wq.cleanup);
- cleanup_wq_flip:
-@@ -600,6 +608,7 @@ void intel_display_driver_remove(struct intel_display *display)
- 	flush_workqueue(display->wq.flip);
- 	flush_workqueue(display->wq.modeset);
- 	flush_workqueue(display->wq.cleanup);
-+	flush_workqueue(display->wq.unordered);
- 
- 	/*
- 	 * MST topology needs to be suspended so we don't have any calls to
-@@ -612,8 +621,6 @@ void intel_display_driver_remove(struct intel_display *display)
- /* part #2: call after irq uninstall */
- void intel_display_driver_remove_noirq(struct intel_display *display)
+ static int intel_pch_pfit_check_dst_window(const struct intel_crtc_state *crtc_state)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (!HAS_DISPLAY(display))
- 		return;
- 
-@@ -628,7 +635,7 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
- 	intel_unregister_dsm_handler();
- 
- 	/* flush any delayed tasks or pending work */
--	flush_workqueue(i915->unordered_wq);
-+	flush_workqueue(display->wq.unordered);
- 
- 	intel_hdcp_component_fini(display);
- 
-@@ -644,6 +651,7 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
- 	destroy_workqueue(display->wq.flip);
- 	destroy_workqueue(display->wq.modeset);
- 	destroy_workqueue(display->wq.cleanup);
-+	destroy_workqueue(display->wq.unordered);
- 
- 	intel_fbc_cleanup(display);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 1295d8245a2e..eb47deafc306 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1171,7 +1171,6 @@ static void dmc_load_work_fn(struct work_struct *work)
-  */
- void intel_dmc_init(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_dmc *dmc;
- 
- 	if (!HAS_DMC(display))
-@@ -1214,7 +1213,7 @@ void intel_dmc_init(struct intel_display *display)
- 	display->dmc.dmc = dmc;
- 
- 	drm_dbg_kms(display->drm, "Loading %s\n", dmc->fw_path);
--	queue_work(i915->unordered_wq, &dmc->work);
-+	queue_work(display->wq.unordered, &dmc->work);
- 
- 	return;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 44b3ee5c9be4..d8a04a98dd7c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -155,12 +155,11 @@ static const struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
- 
- static void __intel_dmc_wl_release(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_dmc_wl *wl = &display->wl;
- 
- 	WARN_ON(refcount_read(&wl->refcount));
- 
--	queue_delayed_work(i915->unordered_wq, &wl->work,
-+	queue_delayed_work(display->wq.unordered, &wl->work,
- 			   msecs_to_jiffies(DMC_WAKELOCK_HOLD_TIME));
+@@ -546,6 +547,16 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+ 	return intel_gmch_pfit_check_timings(crtc_state);
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
-index 3fa94510458d..3e775bb1b57a 100644
---- a/drivers/gpu/drm/i915/display/intel_drrs.c
-+++ b/drivers/gpu/drm/i915/display/intel_drrs.c
-@@ -123,9 +123,9 @@ static void intel_drrs_set_state(struct intel_crtc *crtc,
- 
- static void intel_drrs_schedule_work(struct intel_crtc *crtc)
- {
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	mod_delayed_work(i915->unordered_wq, &crtc->drrs.work, msecs_to_jiffies(1000));
-+	mod_delayed_work(display->wq.unordered, &crtc->drrs.work, msecs_to_jiffies(1000));
- }
- 
- static unsigned int intel_drrs_frontbuffer_bits(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
-index bad452ad979a..283187905d0b 100644
---- a/drivers/gpu/drm/i915/display/intel_encoder.c
-+++ b/drivers/gpu/drm/i915/display/intel_encoder.c
-@@ -32,9 +32,9 @@ void intel_encoder_link_check_flush_work(struct intel_encoder *encoder)
- 
- void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_i915(encoder->base.dev)->display;
- 
--	mod_delayed_work(i915->unordered_wq,
-+	mod_delayed_work(display->wq.unordered,
- 			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index ec1ef8694c35..6c0a06438dd5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -2011,7 +2011,7 @@ void intel_fbc_reset_underrun(struct intel_display *display)
- 
- static void __intel_fbc_handle_fifo_underrun_irq(struct intel_fbc *fbc)
- {
--	struct drm_i915_private *i915 = to_i915(fbc->display->drm);
-+	struct intel_display *display = fbc->display;
- 
- 	/*
- 	 * There's no guarantee that underrun_detected won't be set to true
-@@ -2024,7 +2024,7 @@ static void __intel_fbc_handle_fifo_underrun_irq(struct intel_fbc *fbc)
- 	if (READ_ONCE(fbc->underrun_detected))
- 		return;
- 
--	queue_work(i915->unordered_wq, &fbc->underrun_work);
-+	queue_work(display->wq.unordered, &fbc->underrun_work);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 5235e4162555..28e5d673ff33 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1089,7 +1089,6 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
- 				    u64 value, bool update_property)
- {
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 
-@@ -1110,7 +1109,7 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
- 	hdcp->value = value;
- 	if (update_property) {
- 		drm_connector_get(&connector->base);
--		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+		if (!queue_work(display->wq.unordered, &hdcp->prop_work))
- 			drm_connector_put(&connector->base);
- 	}
- }
-@@ -2237,16 +2236,15 @@ static void intel_hdcp_check_work(struct work_struct *work)
- 					       check_work);
- 	struct intel_connector *connector = intel_hdcp_to_connector(hdcp);
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	if (drm_connector_is_unregistered(&connector->base))
- 		return;
- 
- 	if (!intel_hdcp2_check_link(connector))
--		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
-+		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
- 				   DRM_HDCP2_CHECK_PERIOD_MS);
- 	else if (!intel_hdcp_check_link(connector))
--		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
-+		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
- 				   DRM_HDCP_CHECK_PERIOD_MS);
- }
- 
-@@ -2437,7 +2435,6 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
++enum drm_mode_status
++intel_pfit_mode_valid(struct intel_display *display,
++		      const struct drm_display_mode *mode,
++		      enum intel_output_format output_format,
++		      int num_joined_pipes)
++{
++	return skl_scaler_mode_valid(display, mode, output_format,
++				     num_joined_pipes);
++}
++
+ int intel_pfit_compute_config(struct intel_crtc_state *crtc_state,
  			      const struct drm_connector_state *conn_state)
  {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
- 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-@@ -2496,7 +2493,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_pfit.h b/drivers/gpu/drm/i915/display/intel_pfit.h
+index ef34f9b49d09..2f075748a34e 100644
+--- a/drivers/gpu/drm/i915/display/intel_pfit.h
++++ b/drivers/gpu/drm/i915/display/intel_pfit.h
+@@ -6,8 +6,14 @@
+ #ifndef __INTEL_PFIT_H__
+ #define __INTEL_PFIT_H__
  
- 	if (!ret) {
--		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
-+		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
- 				   check_link_interval);
- 		intel_hdcp_update_value(connector,
- 					DRM_MODE_CONTENT_PROTECTION_ENABLED,
-@@ -2567,7 +2564,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 				to_intel_connector(conn_state->connector);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	bool content_protection_type_changed, desired_and_not_enabled = false;
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
++#include <linux/types.h>
++
++enum drm_mode_status;
++struct drm_display_mode;
+ struct drm_connector_state;
+ struct intel_crtc_state;
++struct intel_display;
++enum intel_output_format;
  
- 	if (!connector->hdcp.shim)
- 		return;
-@@ -2594,7 +2591,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 		mutex_lock(&hdcp->mutex);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		drm_connector_get(&connector->base);
--		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+		if (!queue_work(display->wq.unordered, &hdcp->prop_work))
- 			drm_connector_put(&connector->base);
- 		mutex_unlock(&hdcp->mutex);
- 	}
-@@ -2612,7 +2609,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 		 */
- 		if (!desired_and_not_enabled && !content_protection_type_changed) {
- 			drm_connector_get(&connector->base);
--			if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+			if (!queue_work(display->wq.unordered, &hdcp->prop_work))
- 				drm_connector_put(&connector->base);
- 
- 		}
-@@ -2736,7 +2733,6 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
- {
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	struct intel_display *display = to_intel_display(connector);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	if (!hdcp->shim)
- 		return;
-@@ -2744,7 +2740,7 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
- 	atomic_inc(&connector->hdcp.cp_irq_count);
- 	wake_up_all(&connector->hdcp.cp_irq_queue);
- 
--	queue_delayed_work(i915->unordered_wq, &hdcp->check_work, 0);
-+	queue_delayed_work(display->wq.unordered, &hdcp->check_work, 0);
- }
- 
- static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *connector,
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 901fda434af1..265aa97fcc75 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -193,40 +193,34 @@ static bool detection_work_enabled(struct intel_display *display)
- static bool
- mod_delayed_detection_work(struct intel_display *display, struct delayed_work *work, int delay)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
+ int intel_pfit_compute_config(struct intel_crtc_state *crtc_state,
+ 			      const struct drm_connector_state *conn_state);
+@@ -17,5 +23,9 @@ void ilk_pfit_get_config(struct intel_crtc_state *crtc_state);
+ void i9xx_pfit_enable(const struct intel_crtc_state *crtc_state);
+ void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state);
+ void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state);
 -
- 	lockdep_assert_held(&display->irq.lock);
- 
- 	if (!detection_work_enabled(display))
- 		return false;
- 
--	return mod_delayed_work(i915->unordered_wq, work, delay);
-+	return mod_delayed_work(display->wq.unordered, work, delay);
- }
- 
- static bool
- queue_delayed_detection_work(struct intel_display *display, struct delayed_work *work, int delay)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	lockdep_assert_held(&display->irq.lock);
- 
- 	if (!detection_work_enabled(display))
- 		return false;
- 
--	return queue_delayed_work(i915->unordered_wq, work, delay);
-+	return queue_delayed_work(display->wq.unordered, work, delay);
- }
- 
- static bool
- queue_detection_work(struct intel_display *display, struct work_struct *work)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	lockdep_assert_held(&display->irq.lock);
- 
- 	if (!detection_work_enabled(display))
- 		return false;
- 
--	return queue_work(i915->unordered_wq, work);
-+	return queue_work(display->wq.unordered, work);
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 5535cb799431..2b8538fcfd1d 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -665,11 +665,10 @@ bool intel_opregion_asle_present(struct intel_display *display)
- 
- void intel_opregion_asle_intr(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_opregion *opregion = display->opregion;
- 
- 	if (opregion && opregion->asle)
--		queue_work(i915->unordered_wq, &opregion->asle_work);
-+		queue_work(display->wq.unordered, &opregion->asle_work);
- }
- 
- #define ACPI_EV_DISPLAY_SWITCH (1<<0)
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index bff81fb5c316..6caafa66e7b4 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -892,7 +892,6 @@ static void edp_panel_vdd_work(struct work_struct *__work)
- static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	unsigned long delay;
- 
- 	/*
-@@ -908,7 +907,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
- 	 * operations.
- 	 */
- 	delay = msecs_to_jiffies(intel_dp->pps.panel_power_cycle_delay * 5);
--	queue_delayed_work(i915->unordered_wq,
-+	queue_delayed_work(display->wq.unordered,
- 			   &intel_dp->pps.panel_vdd_work, delay);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8bee2f592ae7..f7837e17c59d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -448,7 +448,6 @@ static void psr_event_print(struct intel_display *display,
- void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
- 	ktime_t time_ns =  ktime_get();
- 
-@@ -493,7 +492,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
- 		intel_de_rmw(display, psr_imr_reg(display, cpu_transcoder),
- 			     0, psr_irq_psr_error_bit_get(intel_dp));
- 
--		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
-+		queue_work(display->wq.unordered, &intel_dp->psr.work);
++enum drm_mode_status
++intel_pfit_mode_valid(struct intel_display *display,
++		      const struct drm_display_mode *mode,
++		      enum intel_output_format output_format,
++		      int num_joined_pipes);
+ #endif /* __INTEL_PFIT_H__ */
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index d77798499c57..b8193ebf0772 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -134,6 +134,22 @@ static void skl_scaler_max_dst_size(struct intel_crtc *crtc,
  	}
  }
  
-@@ -3320,7 +3319,6 @@ tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
- 		       enum fb_op_origin origin)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
++enum drm_mode_status
++skl_scaler_mode_valid(struct intel_display *display,
++		      const struct drm_display_mode *mode,
++		      enum intel_output_format output_format,
++		      int num_joined_pipes)
++{
++	if (num_joined_pipes < 2 && output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
++		if (DISPLAY_VER(display) >= 14 &&
++		    mode->hdisplay > 4096) {
++			return MODE_NO_420;
++		}
++	}
++
++	return MODE_OK;
++}
++
+ static int
+ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 		  unsigned int scaler_user, int *scaler_id,
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 355ea15260ca..7beee5ee0e89 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -5,10 +5,16 @@
+ #ifndef INTEL_SCALER_H
+ #define INTEL_SCALER_H
  
- 	if (!intel_dp->psr.dc3co_exitline || !intel_dp->psr.sel_update_enabled ||
- 	    !intel_dp->psr.active)
-@@ -3335,14 +3333,13 @@ tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
- 		return;
++#include <linux/types.h>
++
++enum drm_mode_status;
++struct drm_display_mode;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_display;
+ struct intel_dsb;
++enum intel_output_format;
+ struct intel_plane;
+ struct intel_plane_state;
  
- 	tgl_psr2_enable_dc3co(intel_dp);
--	mod_delayed_work(i915->unordered_wq, &intel_dp->psr.dc3co_work,
-+	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
- 			 intel_dp->psr.dc3co_exit_delay);
- }
+@@ -32,4 +38,10 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
  
- static void _psr_flush_handle(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
  
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
-@@ -3367,7 +3364,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 
- 	if (!intel_dp->psr.psr2_sel_fetch_enabled && !intel_dp->psr.active &&
- 	    !intel_dp->psr.busy_frontbuffer_bits)
--		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
-+		queue_work(display->wq.unordered, &intel_dp->psr.work);
- }
- 
- /**
++enum drm_mode_status
++skl_scaler_mode_valid(struct intel_display *display,
++		     const struct drm_display_mode *mode,
++		     enum intel_output_format output_format,
++		     int num_joined_pipes);
++
+ #endif
 -- 
-2.47.2
+2.34.1
 
