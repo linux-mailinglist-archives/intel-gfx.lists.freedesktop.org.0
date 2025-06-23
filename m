@@ -2,186 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D07EAE3AEE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 11:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF27AE3B5F
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 11:59:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A751810E2C2;
-	Mon, 23 Jun 2025 09:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BB610E0B9;
+	Mon, 23 Jun 2025 09:59:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VLivkD2R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QjRe3EsW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCFB10E2C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:45:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5248E10E05B;
+ Mon, 23 Jun 2025 09:59:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750671950; x=1782207950;
- h=content-transfer-encoding:date:message-id:to:cc:subject:
- from:references:in-reply-to:mime-version;
- bh=GdeAyA+LLGJ9sqn9UIXRlnC1DhRLQC6Um6dAIpUNODA=;
- b=VLivkD2RH/TsobK4BrMSPJK9tS2wbnfc7+1ZKzVqb9kszPcwG3lKyvu9
- hgBvSMnHqY36/VorxT/KORYNANaIA7TahntC3gxzBFYCpm2ZJ9NL5BBqH
- iEfOzigbWYAJzJVt2YITXCJVxoEw0JL5n+BG1X0plyi7a7P6YLnze9ZcP
- tbS8HDSxG/ab2a5MVc2kg9RM+39sB5KsL9sofFFxJDuKsShDOnVReu+o4
- y6HW2Yk2h0JihKHo3AC5h57FfAABq/M4BRJvnza+OkznQqXlHE+Ied5zp
- +WExxQmkr033JFYA/ZM92svKaHuPx/C23/7B4tJlH4v9FKVcc131Oei8H g==;
-X-CSE-ConnectionGUID: /j/SdGloQqi9nGVOmRaP/A==
-X-CSE-MsgGUID: UUyZ4eBHTOCiFUqWveFCLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52841877"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52841877"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 02:45:49 -0700
-X-CSE-ConnectionGUID: cto78d+fSl2L6M/4qYTTTA==
-X-CSE-MsgGUID: UsdKzVfvTKCpdzKehFEWrA==
+ t=1750672793; x=1782208793;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ww7jy19rPQBHFUmKeM75fnjHXJtkQLne7zBi+MMo7SE=;
+ b=QjRe3EsWOujv5pc1X0u1p7NX2k/ueIIrtGWtb2pu8s+vDxd8nOGG/TXu
+ AjISK5MDVVqAqvRUvpI+AWrCwcwCu+gjN6KdLCdk6gGMV/VQSGyYfID+5
+ wrMKsJmSyv/MgtycyiDOawOHMn2vfbDxgKs2jatqwzojjNfmns1Hesn6r
+ K9FfLbipExYGCPm5K0tIL20J6BKZoTX+aCK43dYe3aHBuWzCb8zghnHmh
+ uUKkVw1H7Ti1LKTs7zAj69qRSencNOn39HSYcZ713SRu5I+DMoD/H3J1x
+ SZspjLtoTvywDXpZUPkWPIJLKMWhpvxHjRveVce5lHb+Qzxcgb5EvUCmH w==;
+X-CSE-ConnectionGUID: 5WBIxgHpTaCczivaVUlCGg==
+X-CSE-MsgGUID: Cu7D0yB6RwGxjv+4PaRwdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="63562445"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="63562445"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 02:59:53 -0700
+X-CSE-ConnectionGUID: IpMrLcy+SNOwlKPIMZVHgQ==
+X-CSE-MsgGUID: ONT/dDYJT76RcMI+h2IK/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="150972813"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 02:45:50 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 02:45:49 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 23 Jun 2025 02:45:49 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.48) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 23 Jun 2025 02:45:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rwtkWcPoZzXKOk6rX1tW414oaYtWBHqGWJH57rvMzh6Io17Qg2tDE6TWLwa/jKkmFFBEzUTUzuU9SnMXL25qUXybQC7+3U/bzhtczUiVCcXHfGBumdEcZJLV1cAsOhZT+66yquf1IJUn5DEBc65R8Fum6Q9A2wREas5Ax5jlTNHoci/E4YFumJy9wZ5Mu9p9aym/whr+EWnVhaQku3Mrg2rLQCtVDyRgBN/CyrguJZAHjY0dBUpnzgkpD9TDTKEiBe3QuiuY1BTa+JR++SWoatWi8c0QvaD08hii8xqxZzA18+LK1gKxaxtLuBlDkY4hcSxKTV/DJN95AwGPAeIKdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1avwYWXx3Dc1JXXQBJ4iRH85zH83Pki/y/Pxta0MH3U=;
- b=n7E7ejhunaFk3r3wEToeN5YUEaxH2n9lT3cf7HZagu0cCgij4Bt4roW4n2g7XFM4wJjXaUkC9mYJ4KKa5GLpTNO7WNb1v3dNOKFY4MNVpFjxe/0KNFmTqUfaaXc45Au/rf1f8bPKq94ZQlBmIMss2zdSYFyWDHCRsStZw0FXy70qNb+PFhjLiG4okExlcxmlHiAcl6N1AgAMqPpdFDDRbSWKW9v0Ja5ZrRF2vbdEa3Ecuuc2luNv1F5+WIjxiIhr2XAu5ZvpWNNunJD8d7wMraT8JGfN1W7822/g6ebJhcnwtz1KpNupUOOKNVZhn/+eGhebxWLPAq0EBWAvBijxew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB6909.namprd11.prod.outlook.com (2603:10b6:303:224::12)
- by LV2PR11MB5997.namprd11.prod.outlook.com (2603:10b6:408:17f::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.27; Mon, 23 Jun
- 2025 09:45:41 +0000
-Received: from MW4PR11MB6909.namprd11.prod.outlook.com
- ([fe80::28da:9438:a3ef:19c0]) by MW4PR11MB6909.namprd11.prod.outlook.com
- ([fe80::28da:9438:a3ef:19c0%4]) with mapi id 15.20.8857.020; Mon, 23 Jun 2025
- 09:45:41 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Mon, 23 Jun 2025 09:45:37 +0000
-Message-ID: <DATTEPCRX2YV.57K6QYZHE446@intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: Andi Shyti <andi.shyti@linux.intel.com>, Krzysztof Niemiec
- <krzysztof.niemiec@intel.com>
-Subject: Re: [PATCH 0/2] drm/i915: Miscellaneous clean up changes around
- i915_drv.h
-From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-X-Mailer: aerc 0.18.2-107-g4f7f5d40b602
-References: <cover.1750251040.git.krzysztof.karas@intel.com>
-In-Reply-To: <cover.1750251040.git.krzysztof.karas@intel.com>
-X-ClientProxiedBy: DB8PR04CA0006.eurprd04.prod.outlook.com
- (2603:10a6:10:110::16) To MW4PR11MB6909.namprd11.prod.outlook.com
- (2603:10b6:303:224::12)
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="151129822"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.248])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 02:59:50 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/dp: Add device specific quirk to limit eDP
+ rate to HBR2
+In-Reply-To: <20250620124417.2041233-3-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250620124417.2041233-1-ankit.k.nautiyal@intel.com>
+ <20250620124417.2041233-3-ankit.k.nautiyal@intel.com>
+Date: Mon, 23 Jun 2025 12:59:47 +0300
+Message-ID: <c120ac2486fd31d6990c553109a0d5b843f0fc16@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB6909:EE_|LV2PR11MB5997:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4acf6174-08e3-4205-8c5f-08ddb23ab79e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Mm8yeDVScVUwc2JMa1BCbFhQQXp3cDBtN2NrWFVBVnFneXBDZm8rTUlxMUVq?=
- =?utf-8?B?bjYwakhGbDFXMmVPbWxPdHNhOU1uTGZiUU1ZYlFTUGRVZ3BNWC8vSE8vYlhn?=
- =?utf-8?B?eVQxSUx0aUFDMktmaXAvRFJYcTRRYThYQ0VQaU9hOUhjVWEvZXN1Nm5UTEFj?=
- =?utf-8?B?dEdGaEZ3ekljSGtIai9hc0gzai9iYTZPQWhYODBISDhVdGFwa3p1WTc4SFRx?=
- =?utf-8?B?T3VTcnpyZGhjUHJqUkc3SEF3cnE2NEtUWHQveW13VFJOR212UC91Q2h3SUdI?=
- =?utf-8?B?VHM4YVk1T3dhOFo4bTFQZlBtU2pUVXVHQmxFcFpDSzZhNElGR3dvanJTdCtC?=
- =?utf-8?B?Q0ZKTmtKby9ENWU3akFPTVdDRFYvL05EaEhmRFJ1a2RHaTJDc1BGek5Ld2xw?=
- =?utf-8?B?U3V5OVZrMUora1JpaE1YbnU3Si9PelA1em4wdFBveU1MNjBha2hRa0dxbHZq?=
- =?utf-8?B?WWVDTHBQOGtsMVlMOHk3MkRXcmZreWVQU3p0YzhTcmJldmJxK0Z4TElsdGpY?=
- =?utf-8?B?dWJoM0JFSnNyQmNsbi80L0hFQkhUZ3BSazA5N1kzdFVSOEdFQWJxMTFhOEs4?=
- =?utf-8?B?YnBpWFE0SDN3NzU5YXRtRlBubkxRenk1b2dMUXZhaHhvQzNodnF3eEhQNGQ3?=
- =?utf-8?B?dk43ZkVsZFFDQURvUDdJOFJrV09MUHNlaWc2OXlCNUkvMmhUa0gybDBITmJL?=
- =?utf-8?B?VXNYc1Y1VFc5SnNDMFVBVFRLSktWLzcxREpDZUNSSlZBejhXMkhxTzZhYlQw?=
- =?utf-8?B?KzJMbXlubXJLNTJ0U2N0Y1ZHbEIzUEYrTlpvcE9XNVFBVXp5dnN5QXk3djIw?=
- =?utf-8?B?bXd5RnlmNTg1UTdwWUNRSE9YWUU5R0ZhQTVtYXRDdzBSSmp2T2JqSVdXU2xP?=
- =?utf-8?B?dWJUV1JlQlVJM0ZtR3cxeWRNa01GYWFNR3hDTzJ5eFN4WkY1UkwxcUZ2QkdT?=
- =?utf-8?B?QXVEWERYWHFhbktHWTVCMGdDa1RTUXRYOCtGbm5aTzg1ODlNTy9OdmhlYzhB?=
- =?utf-8?B?YW84cjhSNnJLZ0hKVzhtcGtHREM4V1g5ZkFlOHpFWC8ycG1qMUo5cENXaXZZ?=
- =?utf-8?B?dzdFdmhkTVRHMndTclhLRkIxcEN1OEFsYy8wL0dWRFFNVzZsQU5yOWZnbSs4?=
- =?utf-8?B?eEFQajg0bE9sMFpJTXNZYmI5UUUvdzlXNjlhVlFlUlpmZUh6VDBpUEdhQjVG?=
- =?utf-8?B?My8zSDI1YjFXSDJDSjRoZ1BBUWtMY1I0WTlkRVV1ekwxTHZvYm9sSXV6YlMr?=
- =?utf-8?B?STUwNlliTnBwVHN6K2lISkgzQTR0M0F0T3VKb2Z4QjB1YTc5dnBodE82ZXZG?=
- =?utf-8?B?bWRWaXFaVmxYUkVITkl4Q2VTNk41ZGVMRjhLb2swdXE3OTNTKzM0TVdrbkN6?=
- =?utf-8?B?cTd6N2xCa2U2bHA2N000SGZQZ3BqdzVPWGhHc3p0ci9laHA0anNwazMyOGxO?=
- =?utf-8?B?cXhjNGFSUFBpN2hHNkhoUkpOVGhGaW9UNmJ5SHJCSldFMTNhTnZ6ZWpQZFBY?=
- =?utf-8?B?RVBsS1hwMXJCODk1SXk1RTdzRkVzN2ZjYUxSay90ZlBYc0pGWTZPcFVDZFA3?=
- =?utf-8?B?c04xVG1mV2g4QjdpRmNMUm91U2pWcVdtdHRCWGRKRHdNTE1sNDQzbzlhTmRn?=
- =?utf-8?B?Zkp0NXc1OGE5M3hLS01hQWtSVWgwMWZJckYyTkdGeWVZWll5cGt3SVJZdUM5?=
- =?utf-8?B?bEJ0dkhDRmRFbklMdG8wb1lwL1NCc3BkbmZKblh5c1l1L0RSUnY0YVc4QWpO?=
- =?utf-8?B?Mm80K2VkbjZhNC9JVXFtT2ptRjNPMXhTOXIwdmJtWk85aVRNZlB2SW0weGNX?=
- =?utf-8?B?SGVNSm1IVlY4U0doWmdUbUMrSnBleVM3Y1doZjhEOVZlaWtMYU9wbnhsWFFB?=
- =?utf-8?B?d0hvZE9YSlVGa3RWVHcvSzA1VHJHYWFXMkJpdjNqU3dWMUxrcWRLTnJHSTJP?=
- =?utf-8?Q?aULuIGN1dxg=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6909.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QWpQL3VHYzNFdGppeTN5RlA2NlJYL3JMNlhxemdGa3IvUm9YYjRpQlB6WVV2?=
- =?utf-8?B?em5lTmM2cTM4ZFNWUW1CQUdyamx4VzlxcWJxSXJUVGh4TXFsdHZ1ZWVZOGVM?=
- =?utf-8?B?cklTdVRYRDJHNmRUOFB0NU5HMHF2UldFay9LTkJLNW94WkpJYVFwbVdpVDky?=
- =?utf-8?B?eHZScjhKbWxsVlE2endGYnN1MEp1S1piWnlJOGlJM0FaWTVYMGgvdy9wV1FT?=
- =?utf-8?B?Q0ZtOTcxQktmeTJHSU5LWjl1TmFYUHliVG1GRmxhNWZYNzRqaVRoOER0UGkv?=
- =?utf-8?B?aEhUTzJtNXhkS09EQW0wdEx2WHdHd0JweEJobC9hbDBGT05WUDVDd0xSSFQx?=
- =?utf-8?B?R1NCZHZIV2FQcUVBQ3Naa0NDR0Z6bnhMTTgySS9meEtlMDQreFErY291UnZo?=
- =?utf-8?B?YWV5YnFDbXkzNmxzUnFRT3Q3MEZJRTZJYnRPeUdoc0dlaWZDcGpFS3VMTHhm?=
- =?utf-8?B?ZGVxMjY4UE9GSDZvamJlRjhMaXgyS1MxRVljbUx5MkF4YTFESVFzbm16MThI?=
- =?utf-8?B?K3hIb2JiMFd6eTVOemZaYVkyZ2NjdXQySy9TVVlYUDM3aWZYaUNGWlJHTXp1?=
- =?utf-8?B?eGc1NDV2anNrTTN0QkVqUDBCcEVyblhuVUQrQm9lZlFNVzNRVyt4cUl1ZW82?=
- =?utf-8?B?d0lJbTVHeDI5NWZ5cGx4dThyYWUvaExwU3liQUxtQWJkNis1ZHZHOVBRZDVt?=
- =?utf-8?B?bmltTTg0RmdPQXNVWGg1aTYrN29WVGR5RmhDYTlGeW5YZGdBUVhjSnZCdUlP?=
- =?utf-8?B?a1NpNCtSMVNqVHgvd0NyekhPYmZQMnh4S2VycEpHc1ZMZUxaMVNFblN0VWJG?=
- =?utf-8?B?dytUQU1aMzBieWk5SXVNZ1V4YUhJU2xlbW1RSzJPdlUyMFJ6VDBFbEc2ZXRL?=
- =?utf-8?B?K0dxeDhwb1FYendaNFVGS0xpRTZBTlFPcU9HVzNSMDRxMHlPbm9kcEtQUXV6?=
- =?utf-8?B?T0FzcnVTUjR3V0tCOHBsZXFVamRhbXNSeWF1MmtXeU9pRlMzUFB0VHJveWxL?=
- =?utf-8?B?ZW16bHc3T0x2NjVFNUVCUXJ1SDhnNVNWOTk0YVVuMjBQWjRwcFIxQjFkSS8r?=
- =?utf-8?B?TzhwbkJnQXdlYUZXQ2VSTU42VWV0b050RkFKMWNmZGJmVGFjVDBQblJGNkNV?=
- =?utf-8?B?bFRUWUU1VTBESmZrVEIxVVZoTXZaY1Y2SG9ESHduVWxpeWd0Q0ZwbG52WFpq?=
- =?utf-8?B?Y2FKRmFuVFFzUzJ3djEvYWNVbENHN2FvM3RyZXpWdkJqaDhtenZBODFpektV?=
- =?utf-8?B?d0xMZ3ZsRjhFekRiWk83djlGLzJTY3o1UUVlWWFOMzhCT05uOHJMc0xDZWxR?=
- =?utf-8?B?WlVGRzFlZlRocG02Rm40YzBmK0JhZnMySytvTEkrSEtOUnRxS2owKzhRRUhH?=
- =?utf-8?B?TWlrSzFYdXhXbnVScUxnRTF6N294QjAxVFppUWppb3BaQmxpYWUvSGRXQ0xR?=
- =?utf-8?B?aUU1WnRWQUxSUm1QVHdiR2tSN2szWHFOamtac29sc0NYdUdZdnNNUnA0K3cz?=
- =?utf-8?B?RHJ1TXZrcnN5L2I4ZStRYXZHdSsyQlAySGYzYXgyNFkrbExBbllBWk54NnNE?=
- =?utf-8?B?ZzdRRzFyQjBna0lHaEE5M0NzVFFHZVg4bFAzWEdLRS9ZZVJnRjdIZmNEay85?=
- =?utf-8?B?UVk5TzhqaHZNVGVnZ2JuQ254Qk5VeFdKeDFzZVEzQ1h2TG5XSTQwalhHTHJM?=
- =?utf-8?B?ZWtVT0lhSmZGV20zQ3A0MUhnbUJGOFc3N3dOUDczVnczU3p1SFVtS0FXSEd2?=
- =?utf-8?B?aGRuaFFNdlVsemtmN1FtOFk3RzNoQ0tVaUVLOUxMRGd0QitPb1ZEOEppM0dP?=
- =?utf-8?B?eTR2STJWTnJyMmF5ejFUQTJHUmIzRzlIYklQMytmdnpIMytEZkpiUloyS3Bm?=
- =?utf-8?B?U1MyVTBQSG1kRVQwWFRoY1NURWFNcjBZanErVEo5UGkxc0kzVE9yU0xyQ210?=
- =?utf-8?B?cjRNZGwvdDRndHBaTGdlaUJ0R3gwOTNMOTNqSUhIY2p6Ni9Ha2VQNmJoUU13?=
- =?utf-8?B?SlE5UElnWjB4ZGlWLzRwNkF4QXdPNlBnRHg4Y3R5eldXY0I1MHdRQmJzbzNx?=
- =?utf-8?B?eTVVbmV3TVNRaEhGeFVHMHpDUFJPRTlZVkZzYTFpbStrWFI5Q2hnMGNISU5y?=
- =?utf-8?B?TWJ4RmpXaHhIcEkwbXdTbkIzYnFkRnZIdTJTS21Hc0NNVVp1S0FXZnZVbUtP?=
- =?utf-8?B?cFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4acf6174-08e3-4205-8c5f-08ddb23ab79e
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6909.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2025 09:45:41.6667 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V83ua+MkN8hTUQi4XH3zbtbPEI9P5j6nDtOxuyaIC+6fcRL0340ViCcH80GevCXjkiIiliQZ2fM8llfTZLkdWZcJz2D/Zc24nPmwjPDaWC8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5997
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,21 +71,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
-
-On Wed Jun 18, 2025 at 1:50 PM UTC, Krzysztof Karas wrote:
-> Krzysztof Karas (2):
->   drm/i915: Move out engine related macros from i915_drv.h
->   drm/i915: move GEM_QUIRK_PIN_SWIZZLED_PAGES to i915_gem.h
+On Fri, 20 Jun 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Some ICL/TGL platforms with combo PHY ports can theoretically support HBR3,
+> but in practice, signal integrity issues may prevent stable operation.
+> While some systems include a Parade PS8461 mux chip to mitigate jitter and
+> enable HBR3, there is no reliable way to detect its presence.
+> Additionally, many systems have broken or missing VBT entries, making it
+> unsafe to rely on VBT for link rate limits.
 >
->  drivers/gpu/drm/i915/gt/intel_engine.h | 31 ++++++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_drv.h        | 33 --------------------------
->  drivers/gpu/drm/i915/i915_gem.h        |  2 ++
->  3 files changed, 33 insertions(+), 33 deletions(-)
-LGTM
-Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> To address this, introduce a device specific quirk to limit the eDP link
+> rate to be capped at HBR2 (540000 kHz), overriding any higher advertised
+> rates from the sink or DPCD.
+>
+> Currently the quirk is added for Dell XPS 13 7390 2-in-1 which is
+> reported in gitlab issue#5969.
+>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 42 +++++++++++++++++----
+>  drivers/gpu/drm/i915/display/intel_quirks.c |  9 +++++
+>  drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>  3 files changed, 45 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 74f331ae97ff..4441fef4f853 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -173,10 +173,25 @@ int intel_dp_link_symbol_clock(int rate)
+>  
+>  static int max_dprx_rate(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	int max_rate;
+> +
+>  	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> +	else
+> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
 
---=20
-Best regards,
-Sebastian
+The way these lines go back and forth with the revert and the quirk, I'm
+actually wondering if it isn't cleanest to just join the two changes
+into one i.e. fix the commit, that's it. What do you think?
 
+> +
+> +	/*
+> +	 * Some platforms with combo PHY ports may not reliably support HBR3
+> +	 * due to signal integrity limitations, despite advertising it.
+> +	 * Cap the link rate to HBR2 to avoid unstable configurations for the
+> +	 * known machines.
+> +	 */
+> +	if (max_rate >= 810000 &&
+> +	    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+> +		max_rate = 540000;
+
+It's misleading to call the quirk QUIRK_EDP_LIMIT_RATE_HBR2 when you in
+fact apply it to all DP not just eDP. Maybe it should be just
+QUIRK_DP_LIMIT_RATE_HBR2?
+
+And you don't really need to check for max_rate >= something here. It's
+really just:
+
+	if (intel_has_quirk(display, QUIRK_DP_LIMIT_RATE_HBR2))
+		max_rate = min(max_rate, 540000);
+
+Anyway, I think the overall result is okay.
+
+
+BR,
+Jani.
+
+>  
+> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> +	return max_rate;
+>  }
+>  
+>  static int max_dprx_lane_count(struct intel_dp *intel_dp)
+> @@ -4252,6 +4267,8 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+>  static void
+>  intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
+>  	intel_dp->num_sink_rates = 0;
+>  
+>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+> @@ -4262,10 +4279,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  				 sink_rates, sizeof(sink_rates));
+>  
+>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+> -			int val = le16_to_cpu(sink_rates[i]);
+> -
+> -			if (val == 0)
+> -				break;
+> +			int rate;
+>  
+>  			/* Value read multiplied by 200kHz gives the per-lane
+>  			 * link rate in kHz. The source rates are, however,
+> @@ -4273,7 +4287,21 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  			 * back to symbols is
+>  			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
+>  			 */
+> -			intel_dp->sink_rates[i] = (val * 200) / 10;
+> +			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
+> +
+> +			if (rate == 0)
+> +				break;
+> +
+> +			/*
+> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+> +			 * even if the sink advertises support. Reject any sink rates above HBR2 on
+> +			 * the known machines for stable output.
+> +			 */
+> +			if (rate >= 810000 &&
+> +			    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+> +				break;
+> +
+> +			intel_dp->sink_rates[i] = rate;
+>  		}
+>  		intel_dp->num_sink_rates = i;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index a32fae510ed2..d2e16b79d6be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -80,6 +80,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>  	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>  }
+>  
+> +static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
+> +{
+> +	intel_set_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2);
+> +	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -231,6 +237,9 @@ static struct intel_quirk intel_quirks[] = {
+>  	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>  	/* HP Notebook - 14-r206nv */
+>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
+> +
+> +	/* Dell XPS 13 7390 2-in-1 */
+> +	{ 0x8a12, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
+>  };
+>  
+>  static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index cafdebda7535..06da0e286c67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>  	QUIRK_LVDS_SSC_DISABLE,
+>  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>  	QUIRK_FW_SYNC_LEN,
+> +	QUIRK_EDP_LIMIT_RATE_HBR2,
+>  };
+>  
+>  void intel_init_quirks(struct intel_display *display);
+
+-- 
+Jani Nikula, Intel
