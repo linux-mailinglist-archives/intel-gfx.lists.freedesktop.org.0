@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579C9AE3E34
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 13:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB4ACAE3E35
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 13:44:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8D1910E36D;
-	Mon, 23 Jun 2025 11:44:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 455B410E36C;
+	Mon, 23 Jun 2025 11:44:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WC90ooUs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="as/DQV4m";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B55610E368;
- Mon, 23 Jun 2025 11:44:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5548A10E36B;
+ Mon, 23 Jun 2025 11:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750679046; x=1782215046;
+ t=1750679051; x=1782215051;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I8/k4QM6kPJIUKtaMWZEkhjka1PTVcvsOz+1aA9GqzA=;
- b=WC90ooUslFYVJIaFGxumoz0KEpyFOVAEv6lNz1FsfeI+6CF+M8eE+RCi
- CrP4xcuXvAydyTULsZXLIU5UFgXVq/mCAzEf9NHpdQ2epDtLPbwbdOGj3
- 4vcxPiWgENA7b7i/BOSLd5b46WQpNZkriJyUNzgkUYdXLDfaU3n47+OYw
- 1DSTy/YBTXvWcbl21x0erYLWec37otrnffS2HNJJqoP/zVy9IOWbUVogA
- DWEDr6kSVdmh6rVC7bxq8/M6LDET6V49sAHbwXX+FTY9A/gzefd/tXKRn
- nM+Uog/TutLrK4utHNAPYYQfCeDBkWGIXbwFFePXN3gT1dKhQwo0psQNf A==;
-X-CSE-ConnectionGUID: hrbXrCMhR7u1VaGRb7N04g==
-X-CSE-MsgGUID: xu3+N+84Rwata9uCHpf8AA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52969470"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52969470"
+ bh=7E/Vyi/iqE3tYgkUb9U2XR6hCeV4X9EIJ1v5URzb8AU=;
+ b=as/DQV4mkMa8HfCHIciaXWpwf8xIXI3CrrPteAXpsmgLQ/DzCtp4+sXC
+ 112IJKhyi6dqw/fV0mZATVMRNXwMWseyItjE5aRtdhxdF+i1IHoCCAff5
+ 0m7xED8YdhBsuI0Xm/Tv3ez2M6yHn+R+j5AxZe/pT1eybkn4fnMLscR+y
+ Imv6TLer5QfGfYzGdVjeiIMX4wJXZjsfU3hlKGrj5CuqF606hzYXWOTIG
+ 3j5PAjCwbpvwuf7a1F2gGYTIkdQUYnfNANxx/LVRsSumz/DeKgv4BOAk3
+ EcX8z91XAcaRlwcTL9VozZ3SvXWx3GQb66REW3uSS8QK7Ji4K9SYXqExk Q==;
+X-CSE-ConnectionGUID: 3C+WhRlGTVWapVFUcWkqXg==
+X-CSE-MsgGUID: sce6OJiMQrOyC6u+IvFksQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="52969512"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52969512"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:44:06 -0700
-X-CSE-ConnectionGUID: KBsQ5PjCTY2HPH/mjbKFig==
-X-CSE-MsgGUID: ekO+sz9cQiOb8gnBrhkwEQ==
+ 23 Jun 2025 04:44:11 -0700
+X-CSE-ConnectionGUID: 4gNqE4bkQUKSlEBLFIDu5g==
+X-CSE-MsgGUID: LHS8f1HiSOG4JEMiULg6XA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="152093826"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="152093853"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.248])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 04:44:04 -0700
+ 23 Jun 2025 04:44:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 2/6] drm/i915/pcode: add struct drm_device based interface
-Date: Mon, 23 Jun 2025 14:43:45 +0300
-Message-Id: <e4ee176ca5454cfc636cbe71feb9f55d9e91f4ea.1750678991.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [CI 3/6] drm/xe/pcode: add struct drm_device based interface
+Date: Mon, 23 Jun 2025 14:43:46 +0300
+Message-Id: <eeaa9cc8438caab2e22f9cb2142fbc18cc0fd861.1750678991.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750678991.git.jani.nikula@intel.com>
 References: <cover.1750678991.git.jani.nikula@intel.com>
@@ -71,74 +71,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation for dropping the dependency on struct intel_uncore from
-display code, add a struct drm_device based interface to pcode.
+In preparation for dropping the dependency on struct intel_uncore or
+struct xe_tile from display code, add a struct drm_device based
+interface to pcode.
 
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/intel_pcode.c | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_pcode.h | 10 ++++++++++
- 2 files changed, 34 insertions(+)
+ drivers/gpu/drm/xe/xe_pcode.c | 26 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pcode.h | 12 +++++++++++-
+ 2 files changed, 37 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-index b7e9b4ee1425..81da75108c60 100644
---- a/drivers/gpu/drm/i915/intel_pcode.c
-+++ b/drivers/gpu/drm/i915/intel_pcode.c
-@@ -272,3 +272,27 @@ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u3
- 
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 9189117fe825..87323ad0cbbb 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -336,3 +336,29 @@ int xe_pcode_probe_early(struct xe_device *xe)
+ 	return xe_pcode_ready(xe, false);
  }
+ ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
 +
 +/* Helpers with drm device */
 +int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
 +{
-+	struct drm_i915_private *i915 = to_i915(drm);
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
 +
-+	return snb_pcode_read(&i915->uncore, mbox, val, val1);
++	return xe_pcode_read(tile, mbox, val, val1);
 +}
 +
 +int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
 +{
-+	struct drm_i915_private *i915 = to_i915(drm);
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
 +
-+	return snb_pcode_write_timeout(&i915->uncore, mbox, val, timeout_ms);
++	return xe_pcode_write_timeout(tile, mbox, val, timeout_ms);
 +}
 +
 +int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
 +			u32 reply_mask, u32 reply, int timeout_base_ms)
 +{
-+	struct drm_i915_private *i915 = to_i915(drm);
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
 +
-+	return skl_pcode_request(&i915->uncore, mbox, request, reply_mask, reply,
-+				 timeout_base_ms);
++	return xe_pcode_request(tile, mbox, request, reply_mask, reply, timeout_base_ms);
 +}
-diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-index 401ce27f72d4..c91a821a88d4 100644
---- a/drivers/gpu/drm/i915/intel_pcode.h
-+++ b/drivers/gpu/drm/i915/intel_pcode.h
-@@ -8,6 +8,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index de38f44f3201..a5584c1c75f9 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -7,8 +7,10 @@
+ #define _XE_PCODE_H_
  
  #include <linux/types.h>
- 
+-struct xe_tile;
++
 +struct drm_device;
- struct intel_uncore;
+ struct xe_device;
++struct xe_tile;
  
- int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1);
-@@ -26,4 +27,13 @@ int intel_pcode_init(struct intel_uncore *uncore);
- int snb_pcode_read_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 *val);
- int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32 val);
+ void xe_pcode_init(struct xe_tile *tile);
+ int xe_pcode_probe_early(struct xe_device *xe);
+@@ -32,4 +34,12 @@ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+ 	| FIELD_PREP(PCODE_MB_PARAM1, param1)\
+ 	| FIELD_PREP(PCODE_MB_PARAM2, param2))
  
 +/* Helpers with drm device */
 +int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1);
 +int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms);
 +#define intel_pcode_write(drm, mbox, val) \
 +	intel_pcode_write_timeout((drm), (mbox), (val), 1)
-+
 +int intel_pcode_request(struct drm_device *drm, u32 mbox, u32 request,
 +			u32 reply_mask, u32 reply, int timeout_base_ms);
 +
- #endif /* _INTEL_PCODE_H */
+ #endif
 -- 
 2.39.5
 
