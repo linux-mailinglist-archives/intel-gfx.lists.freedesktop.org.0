@@ -2,56 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C058AE38EC
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 10:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C49BAE3A98
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Jun 2025 11:35:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A2910E1D3;
-	Mon, 23 Jun 2025 08:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E695710E2BA;
+	Mon, 23 Jun 2025 09:35:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PG4vhU8W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CxEh6290";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2113910E1B3;
- Mon, 23 Jun 2025 08:50:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E022210E2BA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Jun 2025 09:35:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750668603; x=1782204603;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6kAvt8nGUBDRrtNHSo7d4eBZUBjdt2luF5DDnXX9W1k=;
- b=PG4vhU8WcLV45Adx+zu/yAWv+zanB8lW3eRFfRpNx/gUiyhmG2vul/LB
- DA1LjWaVIYylDD/1wTMo7wPuU6faMmdqNMUnPnrRKmuhX4DfpbBVmSZ5s
- pUQDJXSRAXJ212YwJgjwfLKLdWTgKh2MqlCUKfUVGYr+n5B9N/Ekw9Z46
- oPU6o2QVg4Iar7GBYSTcII+ffrnnUpNMkHmhaxiUYJ+KpoBkvH+oKC1Sn
- embpMwyqaogzrNnI3Y+m/szfINQrzGwS7/iFxVSOoJs/dF7FpLA83AArL
- P8USg+WMhdF9kH4VhcM011qsPtTI60h/zbiQLzrgCb2c9zAQGmPU+Htq9 Q==;
-X-CSE-ConnectionGUID: IONFgYRKTMa1MZDJxPBdzQ==
-X-CSE-MsgGUID: NEvXTDk2SXm4JmZ/3WKp4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="56674547"
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="56674547"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 01:50:03 -0700
-X-CSE-ConnectionGUID: KyKuSrHDQiWs+ff/A6ZVdg==
-X-CSE-MsgGUID: 7DK1VpInRS6HUR6cfojsGg==
+ t=1750671343; x=1782207343;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=0QPfNEHocm1nb2PV+1BgA/xgV/Y4hU5wBMr0radRUjs=;
+ b=CxEh6290uWjSPks4Ka+O+QlKZysyxAOVLNNVOfn4pRFsle1eWPg2D+SG
+ lryuovoCfR1s2EifdwuxvdWeAlzsP8NvRkIDD/zkSgXc6+g2RcPRxnqoZ
+ /kCFb/Kcjtd9rrz1ELzbt3nXt4TmwquKwGWUmMD6fi7bsLetUalggwNQj
+ S+bSS+U9mldiAoDxH1OYVNCtj2ITGEyezi/F9RLMxcSGzPoQnJLbQacL+
+ 1IshC66SbmAiZTBSpo3IGiPaQigkKR8P4p0pE6ZxXGaQqXbGrcnemS52m
+ YlcQANgDzZGk2E77jSj6T5H7rZCj5evbwzgAzafwR2ZiHo1zRBPhit8E8 Q==;
+X-CSE-ConnectionGUID: 5krqCDsgRXCLYyasvpGfug==
+X-CSE-MsgGUID: 0syMNlttTN6W9iWC8YzeVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11472"; a="52093886"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="52093886"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 02:35:43 -0700
+X-CSE-ConnectionGUID: VbDWOhwTQSGHsbRKf/1QwA==
+X-CSE-MsgGUID: /fEbqfuAQXiPGZCg/mXimw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="151826232"
+X-IronPort-AV: E=Sophos;i="6.16,258,1744095600"; d="scan'208";a="156093473"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.248])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2025 01:50:00 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jun 2025 02:35:41 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 0/2] Changes in hdcp2_stream_encryption
-In-Reply-To: <20250619113340.3379200-1-suraj.kandpal@intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/i915/display: move unordered works to new
+ private workqueue
+In-Reply-To: <20250620091632.1256135-1-luciano.coelho@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250619113340.3379200-1-suraj.kandpal@intel.com>
-Date: Mon, 23 Jun 2025 11:49:57 +0300
-Message-ID: <eb5ca1f98c7ceee3f3e504a9f6c2ac2bf0557b73@intel.com>
+References: <20250620091632.1256135-1-luciano.coelho@intel.com>
+Date: Mon, 23 Jun 2025 12:35:37 +0300
+Message-ID: <45f2b3341749d965b94af16f07efd9a5603a8aca@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,24 +67,504 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Jun 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Contains changes in hdcp2_stream_encryption where we remove the
-> intel_de_read from the WARN_ON function also we move to using 
-> HDCP2_STREAM_STATUS for our WARN_ON for platforms PTL and above.
+On Fri, 20 Jun 2025, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Create a new unordered workqueue to be used by the display code
+> instead of relying on the i915 one.  Then move all the unordered works
+> used in the display code to use this new queue.
+>
+> Since this is an unordered workqueue, by definition there can't be any
+> order dependency with non-display works, so no extra care is needed
+> in regard to that.
+>
+> This is part of the effort to isolate the display code from i915.
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
+> ---
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> In v2:
+>    * made missig changes change for encoder and dmc_wl [jani]
 >
-> Suraj Kandpal (2):
->   drm/i915/hdcp: Do not use inline intel_de_read
->   drm/i915/hdcp: Use HDCP2_STREAM_STATUS instead of HDCP2_AUTH_STREAM
 >
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 22 +++++++++++++++----
->  .../gpu/drm/i915/display/intel_hdcp_regs.h    |  4 ++--
->  2 files changed, 20 insertions(+), 6 deletions(-)
+> .../gpu/drm/i915/display/intel_connector.c    |  4 +--
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 ++
+>  .../drm/i915/display/intel_display_driver.c   | 28 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_dmc.c      |  3 +-
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  3 +-
+>  drivers/gpu/drm/i915/display/intel_drrs.c     |  4 +--
+>  drivers/gpu/drm/i915/display/intel_encoder.c  |  4 +--
+>  drivers/gpu/drm/i915/display/intel_fbc.c      |  4 +--
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 20 ++++++-------
+>  drivers/gpu/drm/i915/display/intel_hotplug.c  | 12 ++------
+>  drivers/gpu/drm/i915/display/intel_opregion.c |  3 +-
+>  drivers/gpu/drm/i915/display/intel_pps.c      |  3 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  9 ++----
+>  13 files changed, 47 insertions(+), 53 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+> index 2867d76d1a5e..42c923f416b3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.c
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
+> @@ -64,10 +64,10 @@ static void intel_connector_modeset_retry_work_fn(struct work_struct *work)
+>  
+>  void intel_connector_queue_modeset_retry_work(struct intel_connector *connector)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_display *display = to_intel_display(connector);
+>  
+>  	drm_connector_get(&connector->base);
+> -	if (!queue_work(i915->unordered_wq, &connector->modeset_retry_work))
+> +	if (!queue_work(display->wq.unordered, &connector->modeset_retry_work))
+>  		drm_connector_put(&connector->base);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index 32cb0e59c81e..25b497280086 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -570,6 +570,9 @@ struct intel_display {
+>  
+>  		/* hipri wq for commit cleanups */
+>  		struct workqueue_struct *cleanup;
+> +
+> +		/* unordered workqueue for all display unordered work */
+> +		struct workqueue_struct *unordered;
+>  	} wq;
+>  
+>  	/* Grouping using named structs. Keep sorted. */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index ec799a1773e4..1d38c022762b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -242,8 +242,6 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+>  	if (!HAS_DISPLAY(display))
+>  		return 0;
+>  
+> -	intel_dmc_init(display);
+> -
+>  	display->hotplug.dp_wq = alloc_ordered_workqueue("intel-dp", 0);
+>  	if (!display->hotplug.dp_wq) {
+>  		ret = -ENOMEM;
+> @@ -269,27 +267,35 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+>  		goto cleanup_wq_flip;
+>  	}
+>  
+> +	display->wq.unordered = alloc_workqueue("display_unordered", 0, 0);
+> +	if (!display->wq.unordered) {
+> +		ret = -ENOMEM;
+> +		goto cleanup_wq_cleanup;
+> +	}
+> +
+> +	intel_dmc_init(display);
+> +
+>  	intel_mode_config_init(display);
+>  
+>  	ret = intel_cdclk_init(display);
+>  	if (ret)
+> -		goto cleanup_wq_cleanup;
+> +		goto cleanup_wq_unordered;
+>  
+>  	ret = intel_color_init(display);
+>  	if (ret)
+> -		goto cleanup_wq_cleanup;
+> +		goto cleanup_wq_unordered;
+>  
+>  	ret = intel_dbuf_init(display);
+>  	if (ret)
+> -		goto cleanup_wq_cleanup;
+> +		goto cleanup_wq_unordered;
+>  
+>  	ret = intel_bw_init(display);
+>  	if (ret)
+> -		goto cleanup_wq_cleanup;
+> +		goto cleanup_wq_unordered;
+>  
+>  	ret = intel_pmdemand_init(display);
+>  	if (ret)
+> -		goto cleanup_wq_cleanup;
+> +		goto cleanup_wq_unordered;
+>  
+>  	intel_init_quirks(display);
+>  
+> @@ -297,6 +303,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+>  
+>  	return 0;
+>  
+> +cleanup_wq_unordered:
+> +	destroy_workqueue(display->wq.unordered);
+>  cleanup_wq_cleanup:
+>  	destroy_workqueue(display->wq.cleanup);
+>  cleanup_wq_flip:
+> @@ -600,6 +608,7 @@ void intel_display_driver_remove(struct intel_display *display)
+>  	flush_workqueue(display->wq.flip);
+>  	flush_workqueue(display->wq.modeset);
+>  	flush_workqueue(display->wq.cleanup);
+> +	flush_workqueue(display->wq.unordered);
+>  
+>  	/*
+>  	 * MST topology needs to be suspended so we don't have any calls to
+> @@ -612,8 +621,6 @@ void intel_display_driver_remove(struct intel_display *display)
+>  /* part #2: call after irq uninstall */
+>  void intel_display_driver_remove_noirq(struct intel_display *display)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>  
+> @@ -628,7 +635,7 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
+>  	intel_unregister_dsm_handler();
+>  
+>  	/* flush any delayed tasks or pending work */
+> -	flush_workqueue(i915->unordered_wq);
+> +	flush_workqueue(display->wq.unordered);
+>  
+>  	intel_hdcp_component_fini(display);
+>  
+> @@ -644,6 +651,7 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
+>  	destroy_workqueue(display->wq.flip);
+>  	destroy_workqueue(display->wq.modeset);
+>  	destroy_workqueue(display->wq.cleanup);
+> +	destroy_workqueue(display->wq.unordered);
+>  
+>  	intel_fbc_cleanup(display);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index 1295d8245a2e..eb47deafc306 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -1171,7 +1171,6 @@ static void dmc_load_work_fn(struct work_struct *work)
+>   */
+>  void intel_dmc_init(struct intel_display *display)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_dmc *dmc;
+>  
+>  	if (!HAS_DMC(display))
+> @@ -1214,7 +1213,7 @@ void intel_dmc_init(struct intel_display *display)
+>  	display->dmc.dmc = dmc;
+>  
+>  	drm_dbg_kms(display->drm, "Loading %s\n", dmc->fw_path);
+> -	queue_work(i915->unordered_wq, &dmc->work);
+> +	queue_work(display->wq.unordered, &dmc->work);
+>  
+>  	return;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> index 44b3ee5c9be4..d8a04a98dd7c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -155,12 +155,11 @@ static const struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
+>  
+>  static void __intel_dmc_wl_release(struct intel_display *display)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_dmc_wl *wl = &display->wl;
+>  
+>  	WARN_ON(refcount_read(&wl->refcount));
+>  
+> -	queue_delayed_work(i915->unordered_wq, &wl->work,
+> +	queue_delayed_work(display->wq.unordered, &wl->work,
+>  			   msecs_to_jiffies(DMC_WAKELOCK_HOLD_TIME));
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_drrs.c b/drivers/gpu/drm/i915/display/intel_drrs.c
+> index 3fa94510458d..3e775bb1b57a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_drrs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_drrs.c
+> @@ -123,9 +123,9 @@ static void intel_drrs_set_state(struct intel_crtc *crtc,
+>  
+>  static void intel_drrs_schedule_work(struct intel_crtc *crtc)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  
+> -	mod_delayed_work(i915->unordered_wq, &crtc->drrs.work, msecs_to_jiffies(1000));
+> +	mod_delayed_work(display->wq.unordered, &crtc->drrs.work, msecs_to_jiffies(1000));
+>  }
+>  
+>  static unsigned int intel_drrs_frontbuffer_bits(const struct intel_crtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+> index bad452ad979a..283187905d0b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_encoder.c
+> +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+> @@ -32,9 +32,9 @@ void intel_encoder_link_check_flush_work(struct intel_encoder *encoder)
+>  
+>  void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int delay_ms)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_i915(encoder->base.dev)->display;
+>  
+> -	mod_delayed_work(i915->unordered_wq,
+> +	mod_delayed_work(display->wq.unordered,
+>  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> index ec1ef8694c35..6c0a06438dd5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -2011,7 +2011,7 @@ void intel_fbc_reset_underrun(struct intel_display *display)
+>  
+>  static void __intel_fbc_handle_fifo_underrun_irq(struct intel_fbc *fbc)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(fbc->display->drm);
+> +	struct intel_display *display = fbc->display;
+>  
+>  	/*
+>  	 * There's no guarantee that underrun_detected won't be set to true
+> @@ -2024,7 +2024,7 @@ static void __intel_fbc_handle_fifo_underrun_irq(struct intel_fbc *fbc)
+>  	if (READ_ONCE(fbc->underrun_detected))
+>  		return;
+>  
+> -	queue_work(i915->unordered_wq, &fbc->underrun_work);
+> +	queue_work(display->wq.unordered, &fbc->underrun_work);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 5235e4162555..28e5d673ff33 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1089,7 +1089,6 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
+>  				    u64 value, bool update_property)
+>  {
+>  	struct intel_display *display = to_intel_display(connector);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  
+> @@ -1110,7 +1109,7 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
+>  	hdcp->value = value;
+>  	if (update_property) {
+>  		drm_connector_get(&connector->base);
+> -		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
+> +		if (!queue_work(display->wq.unordered, &hdcp->prop_work))
+>  			drm_connector_put(&connector->base);
+>  	}
+>  }
+> @@ -2237,16 +2236,15 @@ static void intel_hdcp_check_work(struct work_struct *work)
+>  					       check_work);
+>  	struct intel_connector *connector = intel_hdcp_to_connector(hdcp);
+>  	struct intel_display *display = to_intel_display(connector);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  
+>  	if (drm_connector_is_unregistered(&connector->base))
+>  		return;
+>  
+>  	if (!intel_hdcp2_check_link(connector))
+> -		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
+> +		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
+>  				   DRM_HDCP2_CHECK_PERIOD_MS);
+>  	else if (!intel_hdcp_check_link(connector))
+> -		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
+> +		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
+>  				   DRM_HDCP_CHECK_PERIOD_MS);
+>  }
+>  
+> @@ -2437,7 +2435,6 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+>  			      const struct drm_connector_state *conn_state)
+>  {
+>  	struct intel_display *display = to_intel_display(encoder);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_connector *connector =
+>  		to_intel_connector(conn_state->connector);
+>  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> @@ -2496,7 +2493,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+>  	}
+>  
+>  	if (!ret) {
+> -		queue_delayed_work(i915->unordered_wq, &hdcp->check_work,
+> +		queue_delayed_work(display->wq.unordered, &hdcp->check_work,
+>  				   check_link_interval);
+>  		intel_hdcp_update_value(connector,
+>  					DRM_MODE_CONTENT_PROTECTION_ENABLED,
+> @@ -2567,7 +2564,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  				to_intel_connector(conn_state->connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	bool content_protection_type_changed, desired_and_not_enabled = false;
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_display *display = to_intel_display(connector);
+>  
+>  	if (!connector->hdcp.shim)
+>  		return;
+> @@ -2594,7 +2591,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  		mutex_lock(&hdcp->mutex);
+>  		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
+>  		drm_connector_get(&connector->base);
+> -		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
+> +		if (!queue_work(display->wq.unordered, &hdcp->prop_work))
+>  			drm_connector_put(&connector->base);
+>  		mutex_unlock(&hdcp->mutex);
+>  	}
+> @@ -2612,7 +2609,7 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+>  		 */
+>  		if (!desired_and_not_enabled && !content_protection_type_changed) {
+>  			drm_connector_get(&connector->base);
+> -			if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
+> +			if (!queue_work(display->wq.unordered, &hdcp->prop_work))
+>  				drm_connector_put(&connector->base);
+>  
+>  		}
+> @@ -2736,7 +2733,6 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
+>  {
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	struct intel_display *display = to_intel_display(connector);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  
+>  	if (!hdcp->shim)
+>  		return;
+> @@ -2744,7 +2740,7 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
+>  	atomic_inc(&connector->hdcp.cp_irq_count);
+>  	wake_up_all(&connector->hdcp.cp_irq_queue);
+>  
+> -	queue_delayed_work(i915->unordered_wq, &hdcp->check_work, 0);
+> +	queue_delayed_work(display->wq.unordered, &hdcp->check_work, 0);
+>  }
+>  
+>  static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *connector,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> index 901fda434af1..265aa97fcc75 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> @@ -193,40 +193,34 @@ static bool detection_work_enabled(struct intel_display *display)
+>  static bool
+>  mod_delayed_detection_work(struct intel_display *display, struct delayed_work *work, int delay)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	lockdep_assert_held(&display->irq.lock);
+>  
+>  	if (!detection_work_enabled(display))
+>  		return false;
+>  
+> -	return mod_delayed_work(i915->unordered_wq, work, delay);
+> +	return mod_delayed_work(display->wq.unordered, work, delay);
+>  }
+>  
+>  static bool
+>  queue_delayed_detection_work(struct intel_display *display, struct delayed_work *work, int delay)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	lockdep_assert_held(&display->irq.lock);
+>  
+>  	if (!detection_work_enabled(display))
+>  		return false;
+>  
+> -	return queue_delayed_work(i915->unordered_wq, work, delay);
+> +	return queue_delayed_work(display->wq.unordered, work, delay);
+>  }
+>  
+>  static bool
+>  queue_detection_work(struct intel_display *display, struct work_struct *work)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> -
+>  	lockdep_assert_held(&display->irq.lock);
+>  
+>  	if (!detection_work_enabled(display))
+>  		return false;
+>  
+> -	return queue_work(i915->unordered_wq, work);
+> +	return queue_work(display->wq.unordered, work);
+>  }
+>  
+>  static void
+> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+> index 5535cb799431..2b8538fcfd1d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
+> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+> @@ -665,11 +665,10 @@ bool intel_opregion_asle_present(struct intel_display *display)
+>  
+>  void intel_opregion_asle_intr(struct intel_display *display)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	struct intel_opregion *opregion = display->opregion;
+>  
+>  	if (opregion && opregion->asle)
+> -		queue_work(i915->unordered_wq, &opregion->asle_work);
+> +		queue_work(display->wq.unordered, &opregion->asle_work);
+>  }
+>  
+>  #define ACPI_EV_DISPLAY_SWITCH (1<<0)
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index bff81fb5c316..6caafa66e7b4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -892,7 +892,6 @@ static void edp_panel_vdd_work(struct work_struct *__work)
+>  static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	unsigned long delay;
+>  
+>  	/*
+> @@ -908,7 +907,7 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
+>  	 * operations.
+>  	 */
+>  	delay = msecs_to_jiffies(intel_dp->pps.panel_power_cycle_delay * 5);
+> -	queue_delayed_work(i915->unordered_wq,
+> +	queue_delayed_work(display->wq.unordered,
+>  			   &intel_dp->pps.panel_vdd_work, delay);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 8bee2f592ae7..f7837e17c59d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -448,7 +448,6 @@ static void psr_event_print(struct intel_display *display,
+>  void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+>  	ktime_t time_ns =  ktime_get();
+>  
+> @@ -493,7 +492,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+>  		intel_de_rmw(display, psr_imr_reg(display, cpu_transcoder),
+>  			     0, psr_irq_psr_error_bit_get(intel_dp));
+>  
+> -		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
+> +		queue_work(display->wq.unordered, &intel_dp->psr.work);
+>  	}
+>  }
+>  
+> @@ -3320,7 +3319,6 @@ tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
+>  		       enum fb_op_origin origin)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  
+>  	if (!intel_dp->psr.dc3co_exitline || !intel_dp->psr.sel_update_enabled ||
+>  	    !intel_dp->psr.active)
+> @@ -3335,14 +3333,13 @@ tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
+>  		return;
+>  
+>  	tgl_psr2_enable_dc3co(intel_dp);
+> -	mod_delayed_work(i915->unordered_wq, &intel_dp->psr.dc3co_work,
+> +	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
+>  			 intel_dp->psr.dc3co_exit_delay);
+>  }
+>  
+>  static void _psr_flush_handle(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  
+>  	if (intel_dp->psr.psr2_sel_fetch_enabled) {
+>  		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
+> @@ -3367,7 +3364,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+>  
+>  	if (!intel_dp->psr.psr2_sel_fetch_enabled && !intel_dp->psr.active &&
+>  	    !intel_dp->psr.busy_frontbuffer_bits)
+> -		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
+> +		queue_work(display->wq.unordered, &intel_dp->psr.work);
+>  }
+>  
+>  /**
 
 -- 
 Jani Nikula, Intel
