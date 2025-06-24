@@ -2,57 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A21FAE6E88
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 20:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83AA8AE6E82
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 20:18:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 440BA10E612;
-	Tue, 24 Jun 2025 18:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F9510E0E4;
+	Tue, 24 Jun 2025 18:18:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="lvpQiYLb";
+	dkim=pass (1024-bit key; unprotected) header.d=didiglobal.com header.i=@didiglobal.com header.b="jsYwnmAO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 465 seconds by postgrey-1.36 at gabe;
- Mon, 23 Jun 2025 17:52:37 UTC
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A133410E14D;
- Mon, 23 Jun 2025 17:52:37 +0000 (UTC)
-Received: from [192.168.42.116] (pd9e59880.dip0.t-ipconnect.de
- [217.229.152.128]) (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 28CBB2FC01F5;
- Mon, 23 Jun 2025 19:45:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1750700719;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FIN6wGJgM6sJP36YGLE7y7vieoBuFwosp9X9CclnC7M=;
- b=lvpQiYLbtkqhGBdlC1dtkdukrhKTC4J4f1OHZdRhv1Bm+/G7kcfL/4hLXs7mie0e5XDj6K
- HP+/WrqSq7kh/XO0syvttWbbjW9RCTfr1NY0Kz5HccumulRYT5iGY1yz/9Q0fL7BlWRp71
- 5HLui6XjhXoQTzfj5c2XnfzFHag/f5E=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-Message-ID: <84bf5d8f-4c57-4557-8f96-bfcfdbd893c7@tuxedocomputers.com>
-Date: Mon, 23 Jun 2025 19:45:19 +0200
+Received: from mx10.didiglobal.com (mx10.didiglobal.com [111.202.70.125])
+ by gabe.freedesktop.org (Postfix) with SMTP id 94D8989580;
+ Tue, 24 Jun 2025 12:24:31 +0000 (UTC)
+Received: from mail.didiglobal.com (unknown [10.79.65.20])
+ by mx10.didiglobal.com (MailData Gateway V2.8.8) with ESMTPS id 39D011808ACAD9;
+ Tue, 24 Jun 2025 20:11:18 +0800 (CST)
+Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
+ BJ02-ACTMBX-02.didichuxing.com (10.79.65.20) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 24 Jun 2025 20:12:00 +0800
+Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
+ BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 24 Jun 2025 20:12:00 +0800
+Received: from BJ03-ACTMBX-07.didichuxing.com ([fe80::b00b:de35:2067:9787]) by
+ BJ03-ACTMBX-07.didichuxing.com ([fe80::b00b:de35:2067:9787%7]) with
+ mapi id 15.02.1748.010; Tue, 24 Jun 2025 20:12:00 +0800
+X-MD-Sfrom: chentaotao@didiglobal.com
+X-MD-SrcIP: 10.79.65.20
+From: =?utf-8?B?6ZmI5rab5rabIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
+To: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
+ "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
+ "willy@infradead.org"
+ <willy@infradead.org>, "brauner@kernel.org" <brauner@kernel.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
+ <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>
+CC: "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+ "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
+ "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-doc@vger.kernel.org"
+ <linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "chentao325@qq.com" <chentao325@qq.com>,
+ =?utf-8?B?6ZmI5rab5rabIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
+Subject: [PATCH v2 0/5] fs: refactor write_begin/write_end and add ext4
+ IOCB_DONTCACHE support
+Thread-Topic: [PATCH v2 0/5] fs: refactor write_begin/write_end and add ext4
+ IOCB_DONTCACHE support
+Thread-Index: AQHb5QEvaAoiRj/CJkyi1oGtEi5geQ==
+Date: Tue, 24 Jun 2025 12:11:59 +0000
+Message-ID: <20250624121149.2927-1-chentaotao@didiglobal.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.79.64.102]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2CD453F0A90DBA419D2AF275EA1B93EA@didichuxing.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/i915/display: Add quirk to force backlight type
- on some TUXEDO devices
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20250411171756.142777-1-wse@tuxedocomputers.com>
- <20250411171756.142777-2-wse@tuxedocomputers.com>
-Content-Language: en-US
-From: Werner Sembach <wse@tuxedocomputers.com>
-In-Reply-To: <20250411171756.142777-2-wse@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=didiglobal.com;
+ s=2025; t=1750767103;
+ bh=NSR7S0h0nlsDFAQMve21bvAq8IdC1ftrKlDHkbcGUQg=;
+ h=From:To:CC:Subject:Date:Message-ID:Content-Type;
+ b=jsYwnmAOeJ/U0guKTOzOybwNAvJpA+kI2Hw4mcuqL4Bw4WjVV/jF5i4/5YqEtAmjr
+ oEhmALj1C29BvoeavtpO7eD2ECHZuZiUmD8U22619AGAyxkzYlnRk+9y8zMDKfVJAm
+ bBpZG/NoAnDQym2NJ623lhYWQ1kd4+0OZRvCxZ4E=
 X-Mailman-Approved-At: Tue, 24 Jun 2025 18:18:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,143 +87,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-gentle bump
-
-Am 11.04.25 um 17:55 schrieb Werner Sembach:
-> The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 with panels
-> AUO 12701 and AUO 12701 must be forced to INTEL_DP_AUX_BACKLIGHT_ON to be
-> able to control the brightness.
->
-> This could already be archived via a module parameter, but this patch adds
-> a quirk to apply this by default on the mentioned device + panel
-> combinations.
->
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> Cc: stable@vger.kernel.org
-> ---
->   .../drm/i915/display/intel_dp_aux_backlight.c | 14 ++++++-
->   drivers/gpu/drm/i915/display/intel_quirks.c   | 42 +++++++++++++++++++
->   drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
->   3 files changed, 56 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index c846ef4acf5b2..0cac04c98a3e3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -34,12 +34,14 @@
->    * for some reason.
->    */
->   
-> +#include <drm/drm_edid.h>
->   #include "i915_utils.h"
->   #include "intel_backlight.h"
->   #include "intel_display_core.h"
->   #include "intel_display_types.h"
->   #include "intel_dp.h"
->   #include "intel_dp_aux_backlight.h"
-> +#include "intel_quirks.h"
->   
->   /*
->    * DP AUX registers for Intel's proprietary HDR backlight interface. We define
-> @@ -607,11 +609,21 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->   	struct drm_device *dev = connector->base.dev;
->   	struct intel_panel *panel = &connector->panel;
->   	bool try_intel_interface = false, try_vesa_interface = false;
-> +	int enable_dpcd_backlight;
-> +	u32 pnl_id;
->   
->   	/* Check the VBT and user's module parameters to figure out which
->   	 * interfaces to probe
->   	 */
-> -	switch (display->params.enable_dpcd_backlight) {
-> +	enable_dpcd_backlight = display->params.enable_dpcd_backlight;
-> +	if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
-> +	    intel_has_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT)) {
-> +		pnl_id = drm_edid_get_panel_id(panel->fixed_edid);
-> +		if (pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x319d) ||
-> +		    pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x52ed))
-> +			enable_dpcd_backlight = INTEL_DP_AUX_BACKLIGHT_ON;
-> +	}
-> +	switch (enable_dpcd_backlight) {
->   	case INTEL_DP_AUX_BACKLIGHT_OFF:
->   		return -ENODEV;
->   	case INTEL_DP_AUX_BACKLIGHT_AUTO:
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-> index 8b30e9fd936e7..6f724e5712664 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
->   	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
->   }
->   
-> +static void quirk_auo_12701_21229_enable_dpcd_backlight(struct intel_display *display)
-> +{
-> +	intel_set_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT);
-> +	drm_info(display->drm, "Applying Display AUO Model 12701 and 21229 Enable DPCD Backlight quirk\n");
-> +}
-> +
->   struct intel_quirk {
->   	int device;
->   	int subsystem_vendor;
-> @@ -118,6 +124,12 @@ static int intel_dmi_no_pps_backlight(const struct dmi_system_id *id)
->   	return 1;
->   }
->   
-> +static int intel_dmi_auo_12701_21229_enable_dpcd_backlight(const struct dmi_system_id *id)
-> +{
-> +	DRM_INFO("Display AUO model 12701 and 21229 DPCD backlight control on %s\n", id->ident);
-> +	return 1;
-> +}
-> +
->   static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->   	{
->   		.dmi_id_list = &(const struct dmi_system_id[]) {
-> @@ -164,6 +176,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->   		},
->   		.hook = quirk_no_pps_backlight_power_hook,
->   	},
-> +	{
-> +		.dmi_id_list = &(const struct dmi_system_id[]) {
-> +			{
-> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
-> +				.ident = "TUXEDO DX1708",
-> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "N8xEJEK"),
-> +				},
-> +			},
-> +			{
-> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
-> +				.ident = "TUXEDO InsanityBook 15 v1",
-> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP"),
-> +				},
-> +			},
-> +			{
-> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
-> +				.ident = "TUXEDO InsanityBook 15 v1",
-> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HR"),
-> +				},
-> +			},
-> +			{
-> +				.callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
-> +				.ident = "TUXEDO InsanityBook 15 v1",
-> +				.matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP,HR,HQ"),
-> +				},
-> +			},
-> +			{ }
-> +		},
-> +		.hook = quirk_auo_12701_21229_enable_dpcd_backlight,
-> +	},
->   };
->   
->   static struct intel_quirk intel_quirks[] = {
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-> index cafdebda75354..38bdbd65d7efb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-> @@ -20,6 +20,7 @@ enum intel_quirk_id {
->   	QUIRK_LVDS_SSC_DISABLE,
->   	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
->   	QUIRK_FW_SYNC_LEN,
-> +	QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT,
->   };
->   
->   void intel_init_quirks(struct intel_display *display);
+RnJvbTogVGFvdGFvIENoZW4gPGNoZW50YW90YW9AZGlkaWdsb2JhbC5jb20+DQoNClRoaXMgcGF0
+Y2ggc2VyaWVzIHJlZmFjdG9ycyB0aGUgYWRkcmVzc19zcGFjZV9vcGVyYXRpb25zIHdyaXRlX2Jl
+Z2luKCkNCmFuZCB3cml0ZV9lbmQoKSBjYWxsYmFja3MgdG8gdGFrZSBzdHJ1Y3Qga2lvY2IgKiBh
+cyB0aGVpciBmaXJzdCBhcmd1bWVudCwNCmFsbG93aW5nIElPQ0IgZmxhZ3Mgc3VjaCBhcyBJT0NC
+X0RPTlRDQUNIRSB0byBwcm9wYWdhdGUgdG8gZmlsZXN5c3RlbeKAmXMNCmJ1ZmZlcmVkIHdyaXRl
+IHBhdGguDQoNCkV4dDQgaXMgdXBkYXRlZCB0byBpbXBsZW1lbnQgaGFuZGxpbmcgb2YgdGhlIElP
+Q0JfRE9OVENBQ0hFIGZsYWcgaW4gaXRzDQpidWZmZXJlZCB3cml0ZSBwYXRoIGFuZCB0byBhZHZl
+cnRpc2Ugc3VwcG9ydCB2aWEgdGhlIEZPUF9ET05UQ0FDSEUgZmlsZQ0Kb3BlcmF0aW9uIGZsYWcu
+DQoNCkFkZGl0aW9uYWxseSwgdGhlIGk5MTUgZHJpdmVy4oCZcyBzaG1lbSB3cml0ZSBwYXRocyBh
+cmUgdXBkYXRlZCB0byBieXBhc3MNCnRoZSBsZWdhY3kgd3JpdGVfYmVnaW4vd3JpdGVfZW5kIGlu
+dGVyZmFjZSBpbiBmYXZvciBvZiBkaXJlY3RseSBjYWxsaW5nDQp3cml0ZV9pdGVyKCksIHVzaW5n
+IGEgY29uc3RydWN0ZWQgc3luY2hyb25vdXMga2lvY2IuIEFub3RoZXIgaTkxNSBwYXRjaA0KcmVw
+bGFjZXMgYSBtYW51YWwgd3JpdGUgbG9vcCB3aXRoIGtlcm5lbF93cml0ZSgpIGluIHNobWVtIG9i
+amVjdCBjcmVhdGlvbi4NCg0KVGVzdGVkIHdpdGggZXh0NCBhbmQgaTkxNSBHRU0gd29ya2xvYWRz
+Lg0KDQpDaGFuZ2VzIHNpbmNlIHYxOg0KLSBleHQ0IHVzZXMga2lvY2ItPmtpX2ZsYWdzIGRpcmVj
+dGx5IGluc3RlYWQgb2YgZnNkYXRhLg0KLSB3cml0ZV9iZWdpbi93cml0ZV9lbmQgaW50ZXJmYWNl
+IGlzIGNoYW5nZWQgdG8gdGFrZSBzdHJ1Y3Qga2lvY2IgKg0KICBpbnN0ZWFkIG9mIHN0cnVjdCBm
+aWxlICouDQotIGk5MTUgc2htZW1fcHdyaXRlIHJlZmFjdG9yZWQgdG8gdXNlIHdyaXRlX2l0ZXIo
+KSBkaXJlY3RseSBpbnN0ZWFkDQogIG9mIHdyaXRlX2JlZ2luL3dyaXRlX2VuZC4NCi0gaTkxNSBH
+RU0gc2htZW0gb2JqZWN0IGNyZWF0aW9uIHJlcGxhY2VkIG1hbnVhbCB3cml0ZSBsb29wIHdpdGgN
+CiAga2VybmVsX3dyaXRlKCkuDQoNClRhb3RhbyBDaGVuICg1KToNCiAgZHJtL2k5MTU6IFVzZSBr
+ZXJuZWxfd3JpdGUoKSBpbiBzaG1lbSBvYmplY3QgY3JlYXRlDQogIGRybS9pOTE1OiBSZWZhY3Rv
+ciBzaG1lbV9wd3JpdGUoKSB0byB1c2Uga2lvY2IgYW5kIHdyaXRlX2l0ZXINCiAgZnM6IGNoYW5n
+ZSB3cml0ZV9iZWdpbi93cml0ZV9lbmQgaW50ZXJmYWNlIHRvIHRha2Ugc3RydWN0IGtpb2NiICoN
+CiAgZXh0NDogaGFuZGxlIElPQ0JfRE9OVENBQ0hFIGluIGJ1ZmZlcmVkIHdyaXRlIHBhdGgNCiAg
+ZXh0NDogZGVjbGFyZSBzdXBwb3J0IGZvciBGT1BfRE9OVENBQ0hFDQoNCiBEb2N1bWVudGF0aW9u
+L2ZpbGVzeXN0ZW1zL2xvY2tpbmcucnN0ICAgICB8ICAgNCArLQ0KIERvY3VtZW50YXRpb24vZmls
+ZXN5c3RlbXMvdmZzLnJzdCAgICAgICAgIHwgICA0ICstDQogYmxvY2svZm9wcy5jICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAgIDYgKy0NCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fc2htZW0uYyB8IDExMiArKysrKystLS0tLS0tLS0tLS0tLS0tDQogZnMvYWRmcy9p
+bm9kZS5jICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDQgKy0NCiBmcy9hZmZzL2ZpbGUu
+YyAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxMiArLS0NCiBmcy9iY2FjaGVmcy9mcy1p
+by1idWZmZXJlZC5jICAgICAgICAgICAgICB8ICAgNCArLQ0KIGZzL2JjYWNoZWZzL2ZzLWlvLWJ1
+ZmZlcmVkLmggICAgICAgICAgICAgIHwgICA0ICstDQogZnMvYmZzL2ZpbGUuYyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgfCAgIDIgKy0NCiBmcy9idWZmZXIuYyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAxOCArKy0tDQogZnMvY2VwaC9hZGRyLmMgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgIDYgKy0NCiBmcy9lY3J5cHRmcy9tbWFwLmMgICAgICAgICAgICAgICAg
+ICAgICAgICB8ICAxMCArLQ0KIGZzL2V4ZmF0L2ZpbGUuYyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgIDE0ICsrLQ0KIGZzL2V4ZmF0L2lub2RlLmMgICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgICA2ICstDQogZnMvZXh0Mi9pbm9kZS5jICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
+IDYgKy0NCiBmcy9leHQ0L2ZpbGUuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMyAr
+LQ0KIGZzL2V4dDQvaW5vZGUuYyAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDI1ICsrLS0t
+DQogZnMvZjJmcy9kYXRhLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDQgKy0NCiBm
+cy9mYXQvaW5vZGUuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgOCArLQ0KIGZzL2Z1
+c2UvZmlsZS5jICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA1ICstDQogZnMvaGZzL2hm
+c19mcy5oICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDIgKy0NCiBmcy9oZnMvaW5vZGUu
+YyAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgNCArLQ0KIGZzL2hmc3BsdXMvaGZzcGx1
+c19mcy5oICAgICAgICAgICAgICAgICAgIHwgICAyICstDQogZnMvaGZzcGx1cy9pbm9kZS5jICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAgIDQgKy0NCiBmcy9ob3N0ZnMvaG9zdGZzX2tlcm4uYyAg
+ICAgICAgICAgICAgICAgICB8ICAgNiArLQ0KIGZzL2hwZnMvZmlsZS5jICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHwgICA4ICstDQogZnMvaHVnZXRsYmZzL2lub2RlLmMgICAgICAgICAgICAg
+ICAgICAgICAgfCAgIDQgKy0NCiBmcy9qZmZzMi9maWxlLmMgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB8ICAgOCArLQ0KIGZzL2pmcy9pbm9kZS5jICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHwgICA2ICstDQogZnMvbGliZnMuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAg
+IDQgKy0NCiBmcy9taW5peC9pbm9kZS5jICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMiAr
+LQ0KIGZzL25mcy9maWxlLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA2ICstDQog
+ZnMvbmlsZnMyL2lub2RlLmMgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDYgKy0NCiBmcy9u
+dGZzMy9maWxlLmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgNyArLQ0KIGZzL250ZnMz
+L2lub2RlLmMgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA2ICstDQogZnMvbnRmczMvbnRm
+c19mcy5oICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDQgKy0NCiBmcy9vY2ZzMi9hb3BzLmMg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgNCArLQ0KIGZzL29tZnMvZmlsZS5jICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHwgICAyICstDQogZnMvb3JhbmdlZnMvaW5vZGUuYyAgICAg
+ICAgICAgICAgICAgICAgICAgfCAgIDYgKy0NCiBmcy91Ymlmcy9maWxlLmMgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8ICAgNCArLQ0KIGZzL3VkZi9pbm9kZS5jICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgICA5ICstDQogZnMvdWZzL2lub2RlLmMgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfCAgIDYgKy0NCiBmcy92Ym94c2YvZmlsZS5jICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8ICAgNCArLQ0KIGluY2x1ZGUvbGludXgvYnVmZmVyX2hlYWQuaCAgICAgICAgICAgICAgIHwg
+ICA0ICstDQogaW5jbHVkZS9saW51eC9mcy5oICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDYg
+Ky0NCiBtbS9maWxlbWFwLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgNCArLQ0K
+IG1tL3NobWVtLmMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA0ICstDQogNDcg
+ZmlsZXMgY2hhbmdlZCwgMTc2IGluc2VydGlvbnMoKyksIDIxMyBkZWxldGlvbnMoLSkNCg0KLS0g
+DQoyLjM0LjENCg==
