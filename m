@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277C6AE6CD5
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 18:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A11BAE6CD9
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 18:50:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8472310E5F0;
-	Tue, 24 Jun 2025 16:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B636F10E0DB;
+	Tue, 24 Jun 2025 16:50:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HF9DoTpD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZuXgrgC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B17210E5F0;
- Tue, 24 Jun 2025 16:49:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46D510E0DB;
+ Tue, 24 Jun 2025 16:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750783781; x=1782319781;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JJgDs86H5yN9r02SaovImhnLLp2IteDWIcRtyNqQjJc=;
- b=HF9DoTpDlBGdAaTsiLQ1/djs5Yt+WeePZSoOtDuUookwO8O0FngVRL6O
- jUDmpO7GH9DckYnm9D24g8fvrJjj/1pxH8aqnkLb05CPvO0NKuOsvGoBp
- JLzqq3ClqYLupsa8dj4ekqVyar6nnjEpMKs436gfDNhImPzSm9Y1bdkah
- jLmlCIIevHCceONryMW0Ih+jr7qaWZNfpLnz9K9QuBaiC+GFJCjpfXY3l
- HXhy3vBUSBcixvx4wifpqsSLud55blsgbxQ6GDZKpN0O55AClAc3l4lT1
- VaOG73cXI+d839Wad34hgL56VDBhuH5SakGkgzuuA+xqEXXwaGjJB8+ux Q==;
-X-CSE-ConnectionGUID: xIeWtzYRTxS/vzFPciPMog==
-X-CSE-MsgGUID: bijLSpYUQJykrH1Gwhbl5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56818886"
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="56818886"
+ t=1750783804; x=1782319804;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ZvqGwqjppbPHxsasoX+zoTaf4RAOUb2sHbUJ+fb5/QQ=;
+ b=LZuXgrgC0T2utCdfDAh/7aGhu+78q+poiIySPSpQVgw4rs95VkRQ2c8R
+ MCLaHcO2B9kZKo7ReNz/vkyEr0CRIrvNddd3hrq1coZanVg8MlmugzrgY
+ 1oddp2quiQoqiRynmaMa4/a1X6TAS8g0RTfenSfHXD2XDOIfrByN8HsWE
+ Ihmv31B7GS8m+v2y5SPxvPUKr6ymtF3alLiQUhxrOHW1BpbWjUR03kHJU
+ dJxm7leoFzZQzPUSDWZvwrz5hTcuUBRYkrIFENI1hY6ZLFIImSNb+0veU
+ LrZsTuLbncx8+5puj2IHlUUMAwFP1yfL53zCtr1xB9BKEJy1GnB8flwAe A==;
+X-CSE-ConnectionGUID: gy1/S//kQ9mKJ4nntTDx4Q==
+X-CSE-MsgGUID: euTFOX0fSGW0QfngP7ocoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="56818911"
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="56818911"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 09:49:41 -0700
-X-CSE-ConnectionGUID: 7tcYoazrRXO1if/mVpPQRw==
-X-CSE-MsgGUID: 9gwkjGO0QN64u6loA5tZUA==
+ 24 Jun 2025 09:50:03 -0700
+X-CSE-ConnectionGUID: GOUltRKNQs6JEQDqg2EgRQ==
+X-CSE-MsgGUID: q/8If8CoQMCTthIdha9UDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="157748072"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa005.jf.intel.com with ESMTP; 24 Jun 2025 09:49:40 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Date: Tue, 24 Jun 2025 18:48:23 +0200
-Message-ID: <20250624164823.4118263-2-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250624164823.4118263-1-michal.grzelak@intel.com>
-References: <20250624164823.4118263-1-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,262,1744095600"; d="scan'208";a="157748171"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.73])
+ by orviesa005.jf.intel.com with SMTP; 24 Jun 2025 09:50:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 24 Jun 2025 19:49:59 +0300
+Date: Tue, 24 Jun 2025 19:49:59 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
+ support TPS4"
+Message-ID: <aFrXN20jmuP_Hc01@intel.com>
+References: <20250620124417.2041233-1-ankit.k.nautiyal@intel.com>
+ <20250620124417.2041233-2-ankit.k.nautiyal@intel.com>
+ <aFlnzzW7HhtcqWs7@intel.com>
+ <5fe0cd00-291b-4e93-a93a-6f8e32db4541@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5fe0cd00-291b-4e93-a93a-6f8e32db4541@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,107 +76,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is no reason in debugfs why PSR has been disabled. Add
-no_psr_reason field into struct intel_psr. Write the reason,
-e.g. PSR setup timing not met, into proper PSR debugfs file.
-Clean it when PSR is activated.
+On Tue, Jun 24, 2025 at 10:10:53AM +0530, Nautiyal, Ankit K wrote:
+> 
+> On 6/23/2025 8:12 PM, Ville Syrj‰l‰ wrote:
+> > On Fri, Jun 20, 2025 at 06:14:16PM +0530, Ankit Nautiyal wrote:
+> >> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
+> >> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
+> >> TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
+> >> not support TPS4. While this was intended to address instability observed
+> >> on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
+> >> and not for eDPRX.
+> > I see no exception given for eDP regarding this rule. The only exception
+> > allowed is that eDP can say DPCD_REV=1.4 + TPS4_SUPPORTED=0. So I still
+> > claim that these eDP sinks are violating the spec.
+> 
+> Hmm.. Yes the spec allows eDP sinks to report DPCD_REV=1.4 and 
+> TPS4_SUPPORTED, so perhaps eDPs claiming HBR3 with DPCD rev other than 
+> rev 1.4 and not supporting TPS4 are indeed violating the spec.
+> 
+> Would it make sense to add a condition that checks for DPCD_REV=1.4.
+> 
+> Specifically:
+> 
+> if DPCD_REV=1.4 and TPS4_SUPPORTED = 0, then do not prune the HBR3 rate?
+> 
+> Or otherway if DPCD_REV!=1.4 and TPS4_SUPPORTER = 0, prune the HBR3 rate
+> 
+> This way the patch need not be reverted, but modified to address 
+> instability issues for eDP panels that are not aligned with the spec.
+> 
+> That said, the gitlab issue#5969 [1] will still need another solution 
+> since it seems to have DPCD rev 14 as per logs:
+> 
+> DPCD: 14 1e 44 41 00 00 01 80 02 00 02 00 00 0b 80
 
-Signed-off-by: Micha≈Ç Grzelak <michal.grzelak@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 38 ++++++++++++-------
- 2 files changed, 26 insertions(+), 14 deletions(-)
+I think we do need the quirk. But the commit message should IMO be
+adjusted so that it doesn't claim that these panels are 100% legal.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 30c7315fc25e..8d8202bb06c8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1661,6 +1661,8 @@ struct intel_psr {
- 	bool link_ok;
- 
- 	u8 active_non_psr_pipes;
-+
-+	const char *no_psr_reason;
- };
- 
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8bee2f592ae7..3fe91c5816ce 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1591,6 +1591,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (entry_setup_frames >= 0) {
- 		intel_dp->psr.entry_setup_frames = entry_setup_frames;
- 	} else {
-+		intel_dp->psr.no_psr_reason = "PSR setup timing not met";
- 		drm_dbg_kms(display->drm,
- 			    "PSR condition failed: PSR setup timing not met\n");
- 		return false;
-@@ -1820,6 +1821,7 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
- 		hsw_activate_psr1(intel_dp);
- 
- 	intel_dp->psr.active = true;
-+	intel_dp->psr.no_psr_reason = NULL;
- }
- 
- /*
-@@ -2918,13 +2920,21 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 			 * - Region Early Transport changing
- 			 * - Display WA #1136: skl, bxt
- 			 */
--			if (intel_crtc_needs_modeset(new_crtc_state) ||
--			    !new_crtc_state->has_psr ||
--			    !new_crtc_state->active_planes ||
--			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
--			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
--			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
--			    (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled))
-+			if (intel_crtc_needs_modeset(new_crtc_state))
-+				psr->no_psr_reason = "CRTC needs modeset";
-+			if (!new_crtc_state->has_psr)
-+				psr->no_psr_reason = "PSR disabled";
-+			if (!new_crtc_state->active_planes)
-+				psr->no_psr_reason = "All planes inactive";
-+			if (new_crtc_state->has_sel_update != psr->sel_update_enabled)
-+				psr->no_psr_reason = "Changing between PSR versions";
-+			if (new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled)
-+				psr->no_psr_reason = "Changing Region Early Transport";
-+			if (new_crtc_state->has_panel_replay != psr->panel_replay_enabled)
-+				psr->no_psr_reason = "Changing Panel Replay mode";
-+			if (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled)
-+				psr->no_psr_reason = "Workaround for skl, bxt";
-+			if (psr->no_psr_reason)
- 				intel_psr_disable_locked(intel_dp);
- 			else if (new_crtc_state->wm_level_disabled)
- 				/* Wa_14015648006 */
-@@ -3932,12 +3942,7 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 				 struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status, *mode, *region_et;
--
--	if (psr->enabled)
--		status = " enabled";
--	else
--		status = "disabled";
-+	const char *mode, *region_et;
- 
- 	if (psr->panel_replay_enabled && psr->sel_update_enabled)
- 		mode = "Panel Replay Selective Update";
-@@ -3955,7 +3960,12 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 	else
- 		region_et = "";
- 
--	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
-+	if (psr->enabled) {
-+		seq_puts(m, "PSR enabled\n");
-+		seq_printf(m, "PSR mode: %s%s\n", mode, region_et);
-+	} else {
-+		seq_printf(m, "PSR disabled: %s\n", psr->no_psr_reason);
-+	}
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
 -- 
-2.45.2
-
+Ville Syrj‰l‰
+Intel
