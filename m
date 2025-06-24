@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F9DAE5ED1
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 10:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F684AE5ED4
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Jun 2025 10:15:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BED88989C;
-	Tue, 24 Jun 2025 08:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 385C610E04D;
+	Tue, 24 Jun 2025 08:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYQ9yJ3o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DD1ZfbrJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 770628989C;
- Tue, 24 Jun 2025 08:13:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AD0910E04D;
+ Tue, 24 Jun 2025 08:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750752832; x=1782288832;
+ t=1750752900; x=1782288900;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=7qIiX1O90i1iS+BnNQQhFn/+ZF89wCeDlRcS63aJCjw=;
- b=VYQ9yJ3oaNmOsFcLshfpel/AQzALoQh3T2p+BVf09QSeUUXwgigknT2+
- sve9Fs2GsJy8DERsNYEdeou0Ap1fAoQwTWz4d3brLwu9mGFH+z2nBV16t
- DlKT3mq1SCz5nclum/NnWVtvqG2ujy8k1PpSQKMQr5tc7Lef1p8ZBmYYS
- 2fjNEFMnQC1nBouV7ZpQypw7mCqmE2D+Kt5iChpcfMxsUdfj7u08QW8av
- Tqi8UfeDNndq1BjBgOi7ZZJtrhH0vK7mytx/YJVYO4mILflGkoLKk/E/c
- tZ1yT5zE3HhLXmiLCkc7tpr+R5J2Y2t3I4A3mGrXiJDUkZWgUzz2Qv8Qb Q==;
-X-CSE-ConnectionGUID: vUOMAhw0QE6mpleXyPtYSA==
-X-CSE-MsgGUID: 4EWPDCdYTueUuxETg6ugIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="40597978"
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="40597978"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 01:13:52 -0700
-X-CSE-ConnectionGUID: fcs59DyAQxWG25Xl7mDj7w==
-X-CSE-MsgGUID: b6AtaRKrSVi6vsJWGs+Ikw==
+ bh=RAlqaCxCPbROVnBS9+qnh3V3SB++VBOKILT02aOgrdU=;
+ b=DD1ZfbrJD8HNMmh7KATlrmXDAE3BrfPE0Zvcihn39a5ZYSBWLGO9f34s
+ 8WOmb1evoYlRAIuZAKrQo51TPFKdRvXofFjuSuoMCacls78KkLotRK2KJ
+ /mcfp4mRtfwn+LoBmYXJk9GOkHXjy7toLtJX04WsPXHGkQKrhbuNUi8Ju
+ oboTzyxtOroU1q4oPZ2cQ5xARYUmm8fhsmhfrIR+f1MGBxB3knrfZRZbZ
+ Dah961Hdy9mDoZfIZZchoxrKMKshaMVGta/dNqoaBLeLreNlq07SEG6kI
+ A9BiuSIplzr8QFfbeJl7uSrbfT2cOzqKj9gwicCohqr2H7XcR7InpCO/o g==;
+X-CSE-ConnectionGUID: LJRSoIM+R46UUQbUzgqkkg==
+X-CSE-MsgGUID: d4owCwRuR0iRJQYysZMLAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11473"; a="55610959"
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="55610959"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 01:14:59 -0700
+X-CSE-ConnectionGUID: mN5UBeBOQneOMMGI59nMlQ==
+X-CSE-MsgGUID: v37lMgP3SyCWvYGWLInmOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="152545735"
+X-IronPort-AV: E=Sophos;i="6.16,261,1744095600"; d="scan'208";a="151429979"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.37])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2025 01:13:50 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2025 01:14:57 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, ankit.k.nautiyal@intel.com
-Subject: Re: [PATCH v7 04/18] drm/i915/display: Add VRR DC balance registers
-In-Reply-To: <20250624074948.671761-5-mitulkumar.ajitkumar.golani@intel.com>
+Subject: Re: [PATCH v7 06/18] drm/i915/vrr: Add DC Balance params to crtc_state
+In-Reply-To: <20250624074948.671761-7-mitulkumar.ajitkumar.golani@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250624074948.671761-1-mitulkumar.ajitkumar.golani@intel.com>
- <20250624074948.671761-5-mitulkumar.ajitkumar.golani@intel.com>
-Date: Tue, 24 Jun 2025 11:13:47 +0300
-Message-ID: <ba1e60a942932530701f4cc5c2846b737d118b29@intel.com>
+ <20250624074948.671761-7-mitulkumar.ajitkumar.golani@intel.com>
+Date: Tue, 24 Jun 2025 11:14:54 +0300
+Message-ID: <a96572a3450ff97380e25e831ebaf6593f1d75be@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,94 +71,110 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 24 Jun 2025, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
-> Add VRR register offsets and bits to access DC Balance configuration.
->
-> --v2:
-> - Separate register definitions. (Ankit)
-> - Remove usage of dev_priv. (Jani, Nikula)
+> Add DC Balance params to crtc_state, also add state checker
+> params for related properties.
 >
 > --v3:
-> - Convert register address offset, from capital to small. (Ankit)
-> - Move mask bits near to register offsets. (Ankit)
+> - Seggregate crtc_state params with this patch. (Ankit)
 >
 > --v4:
-> - Use _MMIO_TRANS wherever possible. (Jani)
+> - Update commit message and header. (Ankit)
+> - Add +1 to VMIN and VMAX only when it is non-zero. (Ankit)
 >
 > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 > Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-I just took the time to clean this file up. See commit 880e07d53849
-("drm/i915/vrr: fix register file style"). Please follow the style.
-
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr_regs.h | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c  |  7 ++++++
+>  .../drm/i915/display/intel_display_types.h    |  7 ++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.c      | 22 +++++++++++++++++++
+>  3 files changed, 36 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> index ba9b9215dc11..c5cba5879f40 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-> @@ -8,6 +8,50 @@
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index de8bf292897c..939366ecea85 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5429,6 +5429,13 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  		PIPE_CONF_CHECK_LLI(cmrr.cmrr_m);
+>  		PIPE_CONF_CHECK_LLI(cmrr.cmrr_n);
+>  		PIPE_CONF_CHECK_BOOL(cmrr.enable);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vmin);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vmax);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.guardband);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.slope);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.max_increase);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.max_decrease);
+> +		PIPE_CONF_CHECK_I(vrr.dc_balance.vblank_target);
+>  	}
 >  
->  #include "intel_display_reg_defs.h"
+>  	if (!fastset || intel_vrr_always_use_vrr_tg(display)) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 30c7315fc25e..e5461900c15b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1316,6 +1316,13 @@ struct intel_crtc_state {
+>  		u8 pipeline_full;
+>  		u16 flipline, vmin, vmax, guardband;
+>  		u32 vsync_end, vsync_start;
+> +		struct {
+> +			bool enable;
+> +			u16 vmin, vmax;
+> +			u16 guardband, slope;
+> +			u16 max_increase, max_decrease;
+> +			u16 vblank_target;
+> +		} dc_balance;
+>  	} vrr;
 >  
-> +/* VRR registers */
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A	0x604d4
-> +#define _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B	0x614d4
-> +#define TRANS_VRR_DCB_ADJ_FLIPLINE_CFG(trans)	_MMIO_TRANS(trans, \
-> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_A, \
-> +							    _TRANS_VRR_DCB_ADJ_FLIPLINE_CFG_B)
-> +#define VRR_DCB_ADJ_FLIPLINE_CNT_MASK		REG_GENMASK(31, 24)
-> +#define VRR_DCB_ADJ_FLIPLINE_MASK		REG_GENMASK(19, 0)
-> +#define VRR_DCB_ADJ_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_ADJ_FLIPLINE_MASK, \
-> +							       (flipline))
-> +
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_A		0x604d8
-> +#define _TRANS_VRR_DCB_ADJ_VMAX_CFG_B		0x614d8
-> +#define TRANS_VRR_DCB_ADJ_VMAX_CFG(trans)	_MMIO_TRANS(trans, \
-> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_A, \
-> +							    _TRANS_VRR_DCB_ADJ_VMAX_CFG_B)
-> +#define VRR_DCB_ADJ_VMAX_CNT_MASK		REG_GENMASK(31, 24)
-> +#define VRR_DCB_ADJ_VMAX_MASK			REG_GENMASK(19, 0)
-> +#define VRR_DCB_ADJ_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_ADJ_VMAX_MASK, (vmax))
-> +
-> +#define _TRANS_VRR_DCB_FLIPLINE_A		0x60418
-> +#define _TRANS_VRR_DCB_FLIPLINE_B		0x61418
-> +#define TRANS_VRR_DCB_FLIPLINE(trans)		_MMIO_TRANS(trans, \
-> +							    _TRANS_VRR_DCB_FLIPLINE_A, \
-> +							    _TRANS_VRR_DCB_FLIPLINE_B)
-> +#define VRR_DCB_FLIPLINE_MASK			REG_GENMASK(19, 0)
-> +#define VRR_DCB_FLIPLINE(flipline)		REG_FIELD_PREP(VRR_DCB_FLIPLINE_MASK, \
-> +							       (flipline))
-> +
-> +#define _TRANS_VRR_DCB_VMAX_A			0x60414
-> +#define _TRANS_VRR_DCB_VMAX_B			0x61414
-> +#define TRANS_VRR_DCB_VMAX(trans)		_MMIO_TRANS(trans, \
-> +							     _TRANS_VRR_DCB_VMAX_A, \
-> +							     _TRANS_VRR_DCB_VMAX_B)
-> +#define VRR_DCB_VMAX_MASK			REG_GENMASK(19, 0)
-> +#define VRR_DCB_VMAX(vmax)			REG_FIELD_PREP(VRR_DCB_VMAX_MASK, (vmax))
-> +
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_A		0x604c0
-> +#define _TRANS_ADAPTIVE_SYNC_DCB_CTL_B		0x614c0
-> +#define TRANS_ADAPTIVE_SYNC_DCB_CTL(trans)	_MMIO_TRANS(trans, \
-> +							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_A, \
-> +							     _TRANS_ADAPTIVE_SYNC_DCB_CTL_B)
-> +#define ADAPTIVE_SYNC_COUNTER_EN		REG_BIT(31)
-> +
->  #define _TRANS_VRR_CTL_A			0x60420
->  #define _TRANS_VRR_CTL_B			0x61420
->  #define _TRANS_VRR_CTL_C			0x62420
-> @@ -20,6 +64,7 @@
->  #define   VRR_CTL_PIPELINE_FULL_MASK		REG_GENMASK(10, 3)
->  #define   VRR_CTL_PIPELINE_FULL(x)		REG_FIELD_PREP(VRR_CTL_PIPELINE_FULL_MASK, (x))
->  #define   VRR_CTL_PIPELINE_FULL_OVERRIDE	REG_BIT(0)
-> +#define   VRR_CTL_DCB_ADJ_ENABLE		REG_BIT(28)
+>  	/* Content Match Refresh Rate state */
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index d7bc35b07bab..4016da70ece2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -10,6 +10,7 @@
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp.h"
+> +#include "intel_dmc_regs.h"
 
-Highest to lowest bit.
+Please keep the includes sorted.
 
->  #define   XELPD_VRR_CTL_VRR_GUARDBAND_MASK	REG_GENMASK(15, 0)
->  #define   XELPD_VRR_CTL_VRR_GUARDBAND(x)	REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+>  #include "intel_vrr.h"
+>  #include "intel_vrr_regs.h"
+>  
+> @@ -699,6 +700,8 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum pipe pipe = crtc->pipe;
+>  	u32 trans_vrr_ctl, trans_vrr_vsync;
+>  	bool vrr_enable;
+>  
+> @@ -761,6 +764,25 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+>  	else
+>  		crtc_state->vrr.enable = vrr_enable;
+>  
+> +	if (HAS_VRR_DC_BALANCE(display)) {
+> +		crtc_state->vrr.dc_balance.vmin =
+> +			intel_de_read(display, PIPEDMC_DCB_VMIN(pipe)) ?
+> +			intel_de_read(display, PIPEDMC_DCB_VMIN(pipe)) + 1 : 0;
+> +		crtc_state->vrr.dc_balance.vmax =
+> +			intel_de_read(display, PIPEDMC_DCB_VMAX(pipe)) ?
+> +			intel_de_read(display, PIPEDMC_DCB_VMAX(pipe)) + 1 : 0;
+> +		crtc_state->vrr.dc_balance.guardband =
+> +			intel_de_read(display, PIPEDMC_DCB_GUARDBAND(pipe));
+> +		crtc_state->vrr.dc_balance.max_increase =
+> +			intel_de_read(display, PIPEDMC_DCB_MAX_INCREASE(pipe));
+> +		crtc_state->vrr.dc_balance.max_decrease =
+> +			intel_de_read(display, PIPEDMC_DCB_MAX_DECREASE(pipe));
+> +		crtc_state->vrr.dc_balance.slope =
+> +			intel_de_read(display, PIPEDMC_DCB_SLOPE(pipe));
+> +		crtc_state->vrr.dc_balance.vblank_target =
+> +			intel_de_read(display, PIPEDMC_DCB_VBLANK(pipe));
+> +	}
+> +
+>  	/*
+>  	 * #TODO: For Both VRR and CMRR the flag I915_MODE_FLAG_VRR is set for mode_flags.
+>  	 * Since CMRR is currently disabled, set this flag for VRR for now.
 
 -- 
 Jani Nikula, Intel
