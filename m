@@ -2,29 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90053AE8672
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 16:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1173EAE8680
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 16:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B760D10E740;
-	Wed, 25 Jun 2025 14:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66EAB10E741;
+	Wed, 25 Jun 2025 14:30:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A3NDrk2P";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD84810E740;
- Wed, 25 Jun 2025 14:27:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5625517799287375575=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6458010E741
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jun 2025 14:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750861850; x=1782397850;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=Eu3+N9hr6fXM808pbOY3MnnE0oC7Uq2PHJ0I6JQPeSM=;
+ b=A3NDrk2PUyXRKffZNehm+oNHaIFPkABfT4oLKZLPoFYe0beo++Cjc6Ly
+ BtFF5d9BqSLc4G80PPgSThyT4JNjXVZRCWoicUFTBiZZ6pFSh9KUX+N6y
+ d8xdD5jU2BDjVn5ATbeXQ9v0iz16eLJB3LIwIuxBCMhXjZzwJ9W6uQQQc
+ SC/h8wl4BNBPOO9Zibgpset7wnwFgpnEA3xCnrP2H8LOmAP+eUiOmtVdI
+ KLHvplyW5gsI+V1obUxDRpkr4AW7j+5he10k1vX2Pdf20dch/7ret6a7o
+ /wTNZ3npb7XE1HdocelgdJICzMqetkkxQ1cst8J1itzmDZqhjF+/lol72 w==;
+X-CSE-ConnectionGUID: 8MiQ9NQsT+ego6PVU1iyyA==
+X-CSE-MsgGUID: s2uJGMc1Rz6X54hCKPPSTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="63825434"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="63825434"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 07:30:50 -0700
+X-CSE-ConnectionGUID: KZHCr3cpSnqLUMKN4bfZ7w==
+X-CSE-MsgGUID: kQskw39WS4O4KLph2jNduA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="183267735"
+Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.109])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 07:30:49 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_remove_unused?=
- =?utf-8?q?_DISPLAY=5FPLANE=5FFLIP=5FPENDING=28=29_macro?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Jun 2025 14:27:46 -0000
-Message-ID: <175086166670.108927.3880662452145092301@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250625132140.1564473-1-jani.nikula@intel.com>
-In-Reply-To: <20250625132140.1564473-1-jani.nikula@intel.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <z2dygiyxb5b7baal7x7wnblfsxnypdmvsq4za7cc4snu7tsbsb@5my2zixfojr7>
+References: <di25mtf23dwhfrb5lawcytbn5pg73dc2mma42ny3moiqluwl66@gkepxlpv63cs>
+ <175034204806.2265741.12155401070258841657@DEV-409>
+ <z2dygiyxb5b7baal7x7wnblfsxnypdmvsq4za7cc4snu7tsbsb@5my2zixfojr7>
+Subject: Re: [PATCH v3] drm/i915/selftests: Keep mock file open during
+ unfaultable migrate with fill
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Date: Wed, 25 Jun 2025 16:30:18 +0200
+Message-ID: <175086181809.2429776.4245800173980322185@DEV-409>
+User-Agent: alot/0.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,222 +71,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5625517799287375575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Quoting Krzysztof Karas (2025-06-23 09:40:48)
+> Hi Chris,
+>=20
+> > > Amend the problem by keeping the mock file open throughout the
+> > > duration of this test and calling fput() from the test itself.
+> >=20
+> > That is not the problem; that is papering over whatever the problem
+> > really is.
+> Would you mind sharing a bit more? At this point we have a
+> problem in our code that we need to address and rejecting the
+> proposed change without any suggestions gives me nothing to work
+> with.
 
-== Series Details ==
+The selftest leaks the vm_area_struct (and through that the object) on
+any of the early failure paths. That seems unrelated to the commit
+messages and the conclusions drawn from that false premise.
 
-Series: drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro
-URL   : https://patchwork.freedesktop.org/series/150758/
-State : failure
+Note in the vma_lookup() we could also do a check on=20
+(addr + obj->base.size - 1) to make sure the entire range we expect to
+have mapped is mapped to our target object.
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/g=
+pu/drm/i915/gem/selftests/i915_gem_mman.c
+index 9c3f17e51885..031cc75197e7 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -1096,32 +1096,20 @@ static int ___igt_mmap_migrate(struct drm_i915_priv=
+ate *i915,
+                               unsigned long addr,
+                               bool unfaultable)
+ {
+-       struct vm_area_struct *area;
+-       int err =3D 0, i;
++       int i;
 
-CI Bug Log - changes from CI_DRM_16754 -> Patchwork_150758v1
-====================================================
+        pr_info("igt_mmap(%s, %d) @ %lx\n",
+                obj->mm.region->name, I915_MMAP_TYPE_FIXED, addr);
 
-Summary
--------
+-       mmap_read_lock(current->mm);
+-       area =3D vma_lookup(current->mm, addr);
+-       mmap_read_unlock(current->mm);
+-       if (!area) {
+-               pr_err("%s: Did not create a vm_area_struct for the mmap\n",
+-                      obj->mm.region->name);
+-               err =3D -EINVAL;
+-               goto out_unmap;
+-       }
+-
+        for (i =3D 0; i < obj->base.size / sizeof(u32); i++) {
+                u32 __user *ux =3D u64_to_user_ptr((u64)(addr + i * sizeof(=
+*ux)));
+                u32 x;
 
-  **FAILURE**
+                if (get_user(x, ux)) {
+-                       err =3D -EFAULT;
+                        if (!unfaultable) {
+                                pr_err("%s: Unable to read from mmap, offse=
+t:%zd\n",
+                                       obj->mm.region->name, i * sizeof(x));
+-                               goto out_unmap;
++                               return -EFAULT;
+                        }
 
-  Serious unknown changes coming with Patchwork_150758v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_150758v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+                        continue;
+@@ -1130,37 +1118,35 @@ static int ___igt_mmap_migrate(struct drm_i915_priv=
+ate *i915,
+                if (unfaultable) {
+                        pr_err("%s: Faulted unmappable memory\n",
+                               obj->mm.region->name);
+-                       err =3D -EINVAL;
+-                       goto out_unmap;
++                       return -EINVAL;
+                }
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html
+                if (x !=3D expand32(POISON_INUSE)) {
+                        pr_err("%s: Read incorrect value from mmap, offset:=
+%zd, found:%x, expected:%x\n",
+                               obj->mm.region->name,
+                               i * sizeof(x), x, expand32(POISON_INUSE));
+-                       err =3D -EINVAL;
+-                       goto out_unmap;
++                       return -EINVAL;
+                }
 
-Participating hosts (45 -> 44)
-------------------------------
+                x =3D expand32(POISON_FREE);
+                if (put_user(x, ux)) {
+                        pr_err("%s: Unable to write to mmap, offset:%zd\n",
+                               obj->mm.region->name, i * sizeof(x));
+-                       err =3D -EFAULT;
+-                       goto out_unmap;
++                       return -EFAULT;
+                }
+        }
 
-  Missing    (1): fi-snb-2520m 
+-       if (unfaultable) {
+-               if (err =3D=3D -EFAULT)
+-                       err =3D 0;
+-       } else {
+-               obj->flags &=3D ~I915_BO_ALLOC_GPU_ONLY;
+-               err =3D wc_check(obj);
+-       }
+-out_unmap:
+-       vm_munmap(addr, obj->base.size);
+-       return err;
++       if (unfaultable)
++               return 0;
++
++       obj->flags &=3D ~I915_BO_ALLOC_GPU_ONLY;
++       return wc_check(obj);
++}
++
++static struct drm_i915_gem_object *area_to_obj(struct vm_area_struct *area)
++{
++       struct i915_mmap_offset *mmo =3D area->vm_private_data;
++       return mmo->obj;
+ }
 
-Possible new issues
--------------------
+ #define IGT_MMAP_MIGRATE_TOPDOWN     (1 << 0)
+@@ -1176,6 +1162,7 @@ static int __igt_mmap_migrate(struct intel_memory_reg=
+ion **placements,
+        struct drm_i915_private *i915 =3D placements[0]->i915;
+        struct drm_i915_gem_object *obj;
+        struct i915_request *rq =3D NULL;
++       struct vm_area_struct *area;
+        unsigned long addr;
+        LIST_HEAD(objects);
+        u64 offset;
+@@ -1207,20 +1194,30 @@ static int __igt_mmap_migrate(struct intel_memory_r=
+egion **placements,
+                goto out_put;
+        }
 
-  Here are the unknown changes that may have been introduced in Patchwork_150758v1:
++       mmap_read_lock(current->mm);
++       area =3D vma_lookup(current->mm, addr);
++       mmap_read_unlock(current->mm);
++       if (!area || area_to_obj(area) !=3D obj) {
++               pr_err("%s: Did not create a vm_area_struct for the mmap\n",
++                      obj->mm.region->name);
++               err =3D -EINVAL;
++               goto out_addr;
++       }
++
+        if (flags & IGT_MMAP_MIGRATE_FILL) {
+                err =3D igt_fill_mappable(placements[0], &objects);
+                if (err)
+-                       goto out_put;
++                       goto out_addr;
+        }
 
-### IGT changes ###
+        err =3D i915_gem_object_lock(obj, NULL);
+        if (err)
+-               goto out_put;
++               goto out_addr;
 
-#### Possible regressions ####
+        err =3D i915_gem_object_pin_pages(obj);
+        if (err) {
+                i915_gem_object_unlock(obj);
+-               goto out_put;
++               goto out_addr;
+        }
 
-  * igt@i915_selftest@live@gem:
-    - bat-arlh-3:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live@gem.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live@gem.html
+        err =3D intel_context_migrate_clear(to_gt(i915)->migrate.context, N=
+ULL,
+@@ -1237,7 +1234,7 @@ static int __igt_mmap_migrate(struct intel_memory_reg=
+ion **placements,
+        }
+        i915_gem_object_unlock(obj);
+        if (err)
+-               goto out_put;
++               goto out_addr;
 
-  
-Known issues
-------------
+        if (flags & IGT_MMAP_MIGRATE_EVICTABLE)
+                igt_make_evictable(&objects);
+@@ -1245,16 +1242,16 @@ static int __igt_mmap_migrate(struct intel_memory_r=
+egion **placements,
+        if (flags & IGT_MMAP_MIGRATE_FAIL_GPU) {
+                err =3D i915_gem_object_lock(obj, NULL);
+                if (err)
+-                       goto out_put;
++                       goto out_addr;
 
-  Here are the changes found in Patchwork_150758v1 that come from known issues:
+                /*
+-                * Ensure we only simulate the gpu failuire when faulting t=
+he
++                * Ensure we only simulate the gpu failure when faulting the
+                 * pages.
+                 */
+                err =3D i915_gem_object_wait_moving_fence(obj, true);
+                i915_gem_object_unlock(obj);
+                if (err)
+-                       goto out_put;
++                       goto out_addr;
+                i915_ttm_migrate_set_failure_modes(true, false);
+        }
 
-### IGT changes ###
+@@ -1298,6 +1295,8 @@ static int __igt_mmap_migrate(struct intel_memory_reg=
+ion **placements,
+                }
+        }
 
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][3] -> [INCOMPLETE][4] ([i915#14393])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@client:
-    - bat-dg2-8:          [PASS][5] -> [ABORT][6] ([i915#14201]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-dg2-8/igt@i915_selftest@live@client.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-dg2-8/igt@i915_selftest@live@client.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#13929])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#14204]) -> [DMESG-FAIL][12] ([i915#13929])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live@mman.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-  [i915#14393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16754 -> Patchwork_150758v1
-
-  CI-20190529: 20190529
-  CI_DRM_16754: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_150758v1: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html
-
---===============5625517799287375575==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150758/">https://patchwork.freedesktop.org/series/150758/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16754 -&gt; Patchwork_150758v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_150758v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_150758v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_150758v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gem:<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live@gem.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_150758v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393">i915#14393</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-dg2-8/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-dg2-8/igt@i915_selftest@live@client.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16754 -&gt; Patchwork_150758v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16754: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_150758v1: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5625517799287375575==--
++out_addr:
++       vm_munmap(addr, obj->base.size);
+ out_put:
+        i915_gem_object_put(obj);
+        igt_close_objects(i915, &objects);
