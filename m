@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1BEAE7B52
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 11:03:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BF71AE7F5B
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 12:32:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBD710E6AE;
-	Wed, 25 Jun 2025 09:03:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E10110E215;
+	Wed, 25 Jun 2025 10:32:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkykgqMI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AJBqWoMw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 305CC10E094;
- Wed, 25 Jun 2025 09:03:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE7D710E215;
+ Wed, 25 Jun 2025 10:32:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750842195; x=1782378195;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=PfoGJ0GfZY1DsnxMeIOSOojnO0+7vjQgvE5HqZXEZHY=;
- b=nkykgqMIhOVkcyKbVLaGKuLJpK3NV3ZDqKq6/Xhoh0iFrYzwRKaPY5vY
- dPqZPYMVJ2iagpV4Snp47DDmEscQ6zjqX1xXXQJAMNI77HcxO+J8ij2c3
- /RdHHEooHeL/L7GgrxBQEKr/w7vsqXGptHX9kjO0WPMptvR7Yk0hvPI+K
- c38LhrANZKWWEZPK4V26QVsXc6pB4ucZVRTwaXao0m8eeUVh/jhBgHB3b
- myf1/BV0IOcYK6pbp9zm0ktIcQc6ZTXuDQwslRb5u/L5aYY7KAU3RwyJt
- pFciw+OX1ewzEZKUwzfx2EfibNrIZJtOCHX+EezU24RJ4Q8ceHx87X02i A==;
-X-CSE-ConnectionGUID: StquR0mDSzKd5qlHofmOXA==
-X-CSE-MsgGUID: 6aAEvx6tRFmIzEpiKWNHHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="63792397"
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="63792397"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 02:03:15 -0700
-X-CSE-ConnectionGUID: ZLX0mSTITJqyN6ZCnm8+Mg==
-X-CSE-MsgGUID: oD6FTrERQFGrqalRYscCGA==
+ t=1750847561; x=1782383561;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wkbxhr2VSQXengJBpPCguLpYVuKhOqXaRZ2UPh8hBsg=;
+ b=AJBqWoMwrWqxVxr+ROszOjcxNUn+XnjRuCJLp/czU1aSxiSad1+jenEO
+ oMi4HvitB7JByI2fLqsERCbdeAaka/rtXuL+t9nTrUqeLuECufJLRXBYr
+ PiDNyc44bJOTrzpI2oVXn4NwohFNN/M4ChGsJ1JR9LlvYUBGLWiTmBu7f
+ 6zByx0OghrJNcrkJuMKThOavwZzru04qpXfFVCAprm5IcX2BLlJK1jYPH
+ bQ3hZjty84U88zRChS3IO6CUARUJ+AY4lmHDy3YHh7A2SnA5mGsfCQvVJ
+ CJOfyhb5VuitiZhCkbUHyHfQ5zaHCip4WQNW5l8//6g9Dksozf9Ac/Rwn A==;
+X-CSE-ConnectionGUID: /SsEWSGQSCatOUjGloRiRA==
+X-CSE-MsgGUID: Mc7Rx43oSmSvcbiXECkD+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="53080403"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="53080403"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 03:32:41 -0700
+X-CSE-ConnectionGUID: HlZD6Xn2QziK7KHmvyZqJA==
+X-CSE-MsgGUID: b0ru89mfS1C0WBAztTKAzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="156726780"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="152476396"
 Received: from monicael-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.78])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 02:03:11 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Cc: arun.r.murthy@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 00/13] Modify drm helpers to use luminance
-In-Reply-To: <20250620063445.3603086-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250620063445.3603086-1-suraj.kandpal@intel.com>
-Date: Wed, 25 Jun 2025 12:03:08 +0300
-Message-ID: <4962fc123ddc84edcf02dea8d57df32088c18d5a@intel.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2025 03:32:38 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	imre.deak@intel.com
+Subject: [CI v2 00/16] drm/i915/display: make all global state opaque
+Date: Wed, 25 Jun 2025 13:32:18 +0300
+Message-Id: <cover.1750847509.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,46 +69,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Jun 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> This series modifies drm dp edp helpers so that drivers can now use them
-> to manipulate brightness using luminance value via the
-> PANEL_TARGET_LUMINANCE_VALUE register. This feature was
-> introduced frin eDP 1.5.
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> Suraj Kandpal (13):
->   drm/dp: Introduce new member in drm_backlight_info
->   drm/dp: Add argument in drm_edp_backlight_init
->   drm/dp: Add argument for max luminance in drm_edp_backlight_init
->   drm/dp: Move from u16 to u32 for max in drm_edp_backlight_info
->   drm/dp: Change current_level argument type to u32
->   drm/dp: Modify drm_edp_probe_state
->   drm/dp: Change argument type for drm_edp_backlight_set_level
->   drm/dp: Modify drm_edp_backlight_set_level
->   drm/dp: Change argument type of drm_edp_backlight_enable
->   drm/dp: Enable backlight control using luminance
->   drm/i915/backlight: Use drm helper to initialize edp backlight
->   drm/i915/backlight: Use drm helper to set edp backlight
->   drm/i915/backlight: Use drm_edp_backlight_enable
+v2 of [1], primarily for CI.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+[1] https://lore.kernel.org/r/cover.1749730224.git.jani.nikula@intel.com
 
-for merging the last three patches via drm-misc.
+Jani Nikula (16):
+  drm/i915/wm: abstract intel_dbuf_pmdemand_needs_update()
+  drm/i915/wm: add more accessors to dbuf state
+  drm/i915/wm: make struct intel_dbuf_state opaque type
+  drm/i915/bw: abstract intel_bw_pmdemand_needs_update()
+  drm/i915/bw: relocate intel_can_enable_sagv() and rename to
+    intel_bw_can_enable_sagv()
+  drm/i915: move icl_sagv_{pre,post}_plane_update() to intel_bw.c
+  drm/i915/bw: abstract intel_bw_qgv_point_peakbw()
+  drm/i915/bw: make struct intel_bw_state opaque
+  drm/i915/cdclk: abstract intel_cdclk_logical()
+  drm/i915/cdclk: abstract intel_cdclk_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_bw_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_pmdemand_needs_update()
+  drm/i915/cdclk: abstract intel_cdclk_force_min_cdclk()
+  drm/i915/cdclk: abstract intel_cdclk_read_hw()
+  drm/i915/cdclk: abstract intel_cdclk_actual() and
+    intel_cdclk_actual_voltage_level()
+  drm/i915/cdclk: make struct intel_cdclk_state opaque
 
-However, would be great to solicit feedback on the series from non-Intel
-folks too. Cc: Lyude who's worked on DPCD brightness before.
-
-BR,
-Jani.
-
->
->  drivers/gpu/drm/display/drm_dp_helper.c       |  92 ++++++++----
->  .../drm/i915/display/intel_dp_aux_backlight.c | 140 ++++++------------
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_backlight.c   |   7 +-
->  include/drm/display/drm_dp_helper.h           |  10 +-
->  5 files changed, 127 insertions(+), 124 deletions(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       | 153 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  53 ++----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  93 +++++++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.h    |  50 ++----
+ drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
+ .../drm/i915/display/intel_display_driver.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_plane.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  41 ++---
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 134 +++++++--------
+ drivers/gpu/drm/i915/display/skl_watermark.h  |  33 +---
+ 13 files changed, 336 insertions(+), 241 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.39.5
+
