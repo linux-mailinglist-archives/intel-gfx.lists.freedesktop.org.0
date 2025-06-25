@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8364AE82E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 14:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A8A4AE82E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 14:39:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35BDA10E6DE;
-	Wed, 25 Jun 2025 12:39:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7997810E702;
+	Wed, 25 Jun 2025 12:39:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iw/nTFkX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MsP+qHcW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8AAF10E6DE;
- Wed, 25 Jun 2025 12:39:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C186D10E6FA;
+ Wed, 25 Jun 2025 12:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750855189; x=1782391189;
+ t=1750855194; x=1782391194;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=alphWSkPFmpbVmq7d7wkBfwexPjPXT0x4/ma1KMSTIs=;
- b=iw/nTFkXk52crg31ZcYCNfaLcWFxSHxC3n1VNcEmZ0FzsUpVQPZLYHtX
- vN9ZU2rZVEp8YAw5QYqzlc+WwIWTF4P2L468Y+JMVHllV4boEeF1VJQsD
- E13abQnt7L/mTFI63bHCYdmACHPAM9WG3c68BdWYLQ8kgvqoW5CrF0f6B
- Ss2GzsTqrP/xTmENEKkpEp97uDC3w0xQCNDd1n+VVcUZ/Ik0i25qwQ7G9
- sAbYOAY3iXpykQD1wNvVIyIAsoCeO9iF0fDGEpfpmow34AF/GXoyWOslm
- EsBvLmgrQyx/17aKug4FgBkYH6ZUC2SglHd3nZWVKcR5DozHfGoUQh9N5 w==;
-X-CSE-ConnectionGUID: iZOHtOrgTo+nI9Xqk0sPBQ==
-X-CSE-MsgGUID: txpSlQ+jROWbwBhpE24K9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="53259026"
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="53259026"
+ bh=muwLptfjrCJhPci2Yf2tOgbu2vMvUMnrlvCUUG0JOgQ=;
+ b=MsP+qHcWBJSk658yylANRXpmOmuLOLz/a6tKrpLMqFkM6cIwA5ouWKnV
+ qBIvm/3KinUwjbd0y27pyg8YK4HXcByEXDNzLSNsj9ZpYqrBcNR6h5/L/
+ W/AFqJUsNU4QykBZ6lMOnF6iFHFhUKisg9D1CCYOYXeHEWsyP+dLreZsB
+ m/0tJ4tNEDKiMtsg4+gEogN3cTYVas9Br9KBd0skuk4iI91eaS2C5yVi8
+ cFaafyAGa74zGhSxzEWvSa3XQFHhAag+KfArYKz7fVAdxRc5O2q5uuc5o
+ BlGsJFdO+7RHuxJQBKAkKmRKL9thxj7iCcdyV7TXVQ+jpEH+ybMn+VuNc Q==;
+X-CSE-ConnectionGUID: N5ffxmTdQyGyvlR31X+vvQ==
+X-CSE-MsgGUID: Ppr/n4hQSi6b6Xg5cLaMBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="53259037"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="53259037"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 05:39:49 -0700
-X-CSE-ConnectionGUID: RFsWm3alQhGxfaqGUJvDRA==
-X-CSE-MsgGUID: Zic71fG0RHmwvDR3VOQ9IQ==
+ 25 Jun 2025 05:39:54 -0700
+X-CSE-ConnectionGUID: tDbK6bmlSUWDGBS7D/MDyg==
+X-CSE-MsgGUID: PB5q2I8cQ1ez71k13CjNiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="151969416"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="151969449"
 Received: from monicael-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.78])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 05:39:47 -0700
+ 25 Jun 2025 05:39:52 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH 1/3] drm/i915/power: move enum skl_power_gate under display
-Date: Wed, 25 Jun 2025 15:39:36 +0300
-Message-Id: <495054983b74163ca7dcbf5a1b6a24099047bc64.1750855148.git.jani.nikula@intel.com>
+Subject: [PATCH 2/3] drm/i915/power: relocate {SKL,ICL}_PW_CTL_IDX_TO_PG()
+Date: Wed, 25 Jun 2025 15:39:37 +0300
+Message-Id: <18e40b77eeb3517a056f1e567672163ec568ec55.1750855148.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750855147.git.jani.nikula@intel.com>
 References: <cover.1750855147.git.jani.nikula@intel.com>
@@ -71,56 +71,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When the display registers were split off from i915_reg.h, enum
-skl_power_gate was left behind. Move it to intel_display_regs.h.
+Move the {SKL,ICL}_PW_CTL_IDX_TO_PG() macros from intel_display_regs.h
+to intel_display_power_well.c. The mapping from index to PG can be
+hidden there.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h |  9 +++++++++
- drivers/gpu/drm/i915/i915_reg.h                   | 10 ----------
- 2 files changed, 9 insertions(+), 10 deletions(-)
+ .../gpu/drm/i915/display/intel_display_power_well.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_display_regs.h   | 12 ------------
+ 2 files changed, 13 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 5c9ca8141fcc..9d60dfc4939d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -34,6 +34,19 @@
+ #include "vlv_iosf_sb_reg.h"
+ #include "vlv_sideband.h"
+ 
++/*
++ * PG0 is HW controlled, so doesn't have a corresponding power well control knob
++ * SKL_DISP_PW1_IDX..SKL_DISP_PW2_IDX -> PG1..PG2
++ */
++#define  SKL_PW_CTL_IDX_TO_PG(pw_idx)		\
++	((pw_idx) - SKL_PW_CTL_IDX_PW_1 + SKL_PG1)
++/*
++ * PG0 is HW controlled, so doesn't have a corresponding power well control knob
++ * ICL_DISP_PW1_IDX..ICL_DISP_PW4_IDX -> PG1..PG4
++ */
++#define  ICL_PW_CTL_IDX_TO_PG(pw_idx)		\
++	((pw_idx) - ICL_PW_CTL_IDX_PW_1 + SKL_PG1)
++
+ struct i915_power_well_regs {
+ 	i915_reg_t bios;
+ 	i915_reg_t driver;
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index e101105da4af..fdac72fcebee 100644
+index fdac72fcebee..7bd09d981cd2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2195,6 +2195,15 @@
- #define   HSW_PWR_WELL_FORCE_ON			(1 << 19)
- #define HSW_PWR_WELL_CTL6			_MMIO(0x45414)
+@@ -2206,18 +2206,6 @@ enum skl_power_gate {
  
-+/* SKL Fuse Status */
-+enum skl_power_gate {
-+	SKL_PG0,
-+	SKL_PG1,
-+	SKL_PG2,
-+	ICL_PG3,
-+	ICL_PG4,
-+};
-+
  #define SKL_FUSE_STATUS				_MMIO(0x42000)
  #define  SKL_FUSE_DOWNLOAD_STATUS		(1 << 31)
- /*
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 04fb40867cc0..cec6e2e2a262 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1204,16 +1204,6 @@
-  */
- #define GEN7_SO_WRITE_OFFSET(n)		_MMIO(0x5280 + (n) * 4)
+-/*
+- * PG0 is HW controlled, so doesn't have a corresponding power well control knob
+- * SKL_DISP_PW1_IDX..SKL_DISP_PW2_IDX -> PG1..PG2
+- */
+-#define  SKL_PW_CTL_IDX_TO_PG(pw_idx)		\
+-	((pw_idx) - SKL_PW_CTL_IDX_PW_1 + SKL_PG1)
+-/*
+- * PG0 is HW controlled, so doesn't have a corresponding power well control knob
+- * ICL_DISP_PW1_IDX..ICL_DISP_PW4_IDX -> PG1..PG4
+- */
+-#define  ICL_PW_CTL_IDX_TO_PG(pw_idx)		\
+-	((pw_idx) - ICL_PW_CTL_IDX_PW_1 + SKL_PG1)
+ #define  SKL_FUSE_PG_DIST_STATUS(pg)		(1 << (27 - (pg)))
  
--/* SKL Fuse Status */
--enum skl_power_gate {
--	SKL_PG0,
--	SKL_PG1,
--	SKL_PG2,
--	ICL_PG3,
--	ICL_PG4,
--};
--
--
- #define GEN9_TIMESTAMP_OVERRIDE				_MMIO(0x44074)
- #define  GEN9_TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_SHIFT	0
- #define  GEN9_TIMESTAMP_OVERRIDE_US_COUNTER_DIVIDER_MASK	0x3ff
+ /* Per-pipe DDI Function Control */
 -- 
 2.39.5
 
