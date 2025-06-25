@@ -2,82 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E68AE880A
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 17:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A34F5AE89CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 18:30:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2F7610E761;
-	Wed, 25 Jun 2025 15:22:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="m0MvXJQs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D82E810E76C;
+	Wed, 25 Jun 2025 16:30:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com
- [209.85.160.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E6310E762
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jun 2025 15:22:00 +0000 (UTC)
-Received: by mail-oa1-f53.google.com with SMTP id
- 586e51a60fabf-2ea08399ec8so27939fac.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Jun 2025 08:22:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1750864920; x=1751469720; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:subject:cc:to:from:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Og1GMQOpzfwXI+0cF3jnX9BInwec7Spgn25VRzS7t+E=;
- b=m0MvXJQsTyUbG6mWbtuMieg/jvkDP2ZwuANDwAYqvJmuneEgMC81BALyDAkL2TCiAo
- u6Jdgj3kWeS4HB/6d/hsbtH3IIz96HAaxet0EcNwhQuOQ40skZWUUjxoYYLvsN+Tgy1y
- e5QG72kEVvy0kxkNpRh9RYrc1RElizSZ8CAAVQk2bGlU7gsgy8wYdi26nE0tnWTkBe3B
- uCW9uMLNNz9JkJwxgIHSGFFhV7Abd/kGfTzN3MJRYcacB5n535mPOZGEsyHVI4CPv6V+
- jT0zTlYYXYDwv5qCp6a6oZad19xvKuY+fybpplZeskj8XdrhT8tjELgjOffUKtbLArK7
- HMyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750864920; x=1751469720;
- h=content-disposition:mime-version:subject:cc:to:from:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Og1GMQOpzfwXI+0cF3jnX9BInwec7Spgn25VRzS7t+E=;
- b=PL9RBFjQuzY1Cz/xBWL9Wz14PzFCkCnU69PvWT9WoyC8SiECmZlYGwV0GuuKhxtbSr
- ppVnRbQnDSVhOMQaBldYEvHjp2SFQtJLYe0RS2sUqEUOxE/WlnaA5N5/BJErY1f24Hwf
- ujacyjs6Gj7sLbV45ORYEBzJoDRJKpzvHmf4DgXWFbF45PXUGuFqEJYF31Mzg68fXQjP
- yhiGw3eIDdO+RswwdSFbNlHKowbltop5fUAjPSiomL7cQR9KjwkhKxD23UkVMkLQ+QdO
- JvY/7KEpXhBi+HuuX3Uo5HDVdaEfYhrieyDhxcPZmtl0EB4uTzijhjUieZrJaK0dl9v2
- 5Khg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUPHFfnkC/HKPdVNpO2olp46cvlwZLyRK9il7qtlEMF0ZM50rh0lil1tCxY07aYKkrE2SfkO4o124c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBe31aNRxDSgIlXnO0hWwunU/y9MphKULFcZtK13R0FlHbqx1F
- IHESPWHxYDJ/XTcS9lwzwaegLQwIRywi5HLrxdOt/N2DcezYSOKZGkd4BaJ0SzL4tWw=
-X-Gm-Gg: ASbGnctNU5siPw7PL9bUN5GGK9ZDNqEUHam4PRtJQxIDXQXay0EIvf0t1D1ARy+J4at
- pRzwfes+w67HSPsC88L+mU7Hu4Zw1aCYdlsQ+57Th8Tb914E0V7wUmli+aoYppKfCwuUtkAYE4W
- m1B+/m8wbmyAUgSXpoPL3g1W0o1R56JtoKAlDTMwRxoUaA6jAdjfz3OkxJeE+f3zJzZ7k1HI4Ys
- YY/HgSwLrkaPlQXGWoghoLiJz/795Vifv9FSphgtZffK9BjIVWueWFRuwdKV94whagqt0obHJTN
- XEBN/yeByd9ZrR4KRqUkouT99Lg6eSq9ZYfCYJywRIabzEa/mDuSjtoFaizn1OoUMke5wg==
-X-Google-Smtp-Source: AGHT+IHjveoem5cNH6WAD1vk3qjNmqKvozrExi59Gv6OL5AFVt4hopks6BzgykjOruT+XmUJ/QJh/Q==
-X-Received: by 2002:a05:6870:b6aa:b0:2b3:55b3:e38 with SMTP id
- 586e51a60fabf-2efce2d2daamr69472fac.21.1750864919683; 
- Wed, 25 Jun 2025 08:21:59 -0700 (PDT)
-Received: from localhost ([2603:8080:b800:f700:1fca:a60b:12ab:43a3])
- by smtp.gmail.com with UTF8SMTPSA id
- 586e51a60fabf-2ef93691e24sm951547fac.19.2025.06.25.08.21.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Jun 2025 08:21:59 -0700 (PDT)
-Message-ID: <685c1417.050a0220.696f5.5c05@mx.google.com>
-X-Google-Original-Message-ID: <@sabinyo.mountain>
-Date: Wed, 25 Jun 2025 10:21:58 -0500
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Frederic Weisbecker <frederic@kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Subject: [PATCH v2] drm/i915/selftests: Change mock_request() to return error
- pointers
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88F9F10E76C;
+ Wed, 25 Jun 2025 16:30:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1757567893402496938=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftests=3A_Cha?=
+ =?utf-8?q?nge_mock=5Frequest=28=29_to_return_error_pointers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dan Carpenter" <dan.carpenter@linaro.org>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Jun 2025 16:30:42 -0000
+Message-ID: <175086904255.109302.16456258850453963733@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <685c1417.050a0220.696f5.5c05@mx.google.com>
+In-Reply-To: <685c1417.050a0220.696f5.5c05@mx.google.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,103 +37,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There was an error pointer vs NULL bug in __igt_breadcrumbs_smoketest().
-The __mock_request_alloc() function implements the
-smoketest->request_alloc() function pointer.  It was supposed to return
-error pointers, but it propogates the NULL return from mock_request()
-so in the event of a failure, it would lead to a NULL pointer
-dereference.
+--===============1757567893402496938==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To fix this, change the mock_request() function to return error pointers
-and update all the callers to expect that.
+== Series Details ==
 
-Fixes: 52c0fdb25c7c ("drm/i915: Replace global breadcrumbs with per-context interrupt tracking")
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
-V2: In v1 I just updated __mock_request_alloc() to return an error pointer
-    but in v2, I changed mock_request() to update an error pointer and
-    updated all the callers.  It's a more extensive change, but hopefully
-    cleaner.
+Series: drm/i915/selftests: Change mock_request() to return error pointers
+URL   : https://patchwork.freedesktop.org/series/150767/
+State : success
 
- drivers/gpu/drm/i915/selftests/i915_request.c | 20 +++++++++----------
- drivers/gpu/drm/i915/selftests/mock_request.c |  2 +-
- 2 files changed, 11 insertions(+), 11 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 88870844b5bd..2fb7a9e7efec 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -73,8 +73,8 @@ static int igt_add_request(void *arg)
- 	/* Basic preliminary test to create a request and let it loose! */
- 
- 	request = mock_request(rcs0(i915)->kernel_context, HZ / 10);
--	if (!request)
--		return -ENOMEM;
-+	if (IS_ERR(request))
-+		return PTR_ERR(request);
- 
- 	i915_request_add(request);
- 
-@@ -91,8 +91,8 @@ static int igt_wait_request(void *arg)
- 	/* Submit a request, then wait upon it */
- 
- 	request = mock_request(rcs0(i915)->kernel_context, T);
--	if (!request)
--		return -ENOMEM;
-+	if (IS_ERR(request))
-+		return PTR_ERR(request);
- 
- 	i915_request_get(request);
- 
-@@ -160,8 +160,8 @@ static int igt_fence_wait(void *arg)
- 	/* Submit a request, treat it as a fence and wait upon it */
- 
- 	request = mock_request(rcs0(i915)->kernel_context, T);
--	if (!request)
--		return -ENOMEM;
-+	if (IS_ERR(request))
-+		return PTR_ERR(request);
- 
- 	if (dma_fence_wait_timeout(&request->fence, false, T) != -ETIME) {
- 		pr_err("fence wait success before submit (expected timeout)!\n");
-@@ -219,8 +219,8 @@ static int igt_request_rewind(void *arg)
- 	GEM_BUG_ON(IS_ERR(ce));
- 	request = mock_request(ce, 2 * HZ);
- 	intel_context_put(ce);
--	if (!request) {
--		err = -ENOMEM;
-+	if (IS_ERR(request)) {
-+		err = PTR_ERR(request);
- 		goto err_context_0;
- 	}
- 
-@@ -237,8 +237,8 @@ static int igt_request_rewind(void *arg)
- 	GEM_BUG_ON(IS_ERR(ce));
- 	vip = mock_request(ce, 0);
- 	intel_context_put(ce);
--	if (!vip) {
--		err = -ENOMEM;
-+	if (IS_ERR(vip)) {
-+		err = PTR_ERR(vip);
- 		goto err_context_1;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/selftests/mock_request.c b/drivers/gpu/drm/i915/selftests/mock_request.c
-index 09f747228dff..1b0cf073e964 100644
---- a/drivers/gpu/drm/i915/selftests/mock_request.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_request.c
-@@ -35,7 +35,7 @@ mock_request(struct intel_context *ce, unsigned long delay)
- 	/* NB the i915->requests slab cache is enlarged to fit mock_request */
- 	request = intel_context_create_request(ce);
- 	if (IS_ERR(request))
--		return NULL;
-+		return request;
- 
- 	request->mock.delay = delay;
- 	return request;
--- 
-2.47.2
+CI Bug Log - changes from CI_DRM_16756 -> Patchwork_150767v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_150767v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-2:         [INCOMPLETE][7] ([i915#14046] / [i915#14393]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-arlh-2/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@dmabuf:
+    - bat-arlh-2:         [INCOMPLETE][9] ([i915#14393]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-arlh-2/igt@i915_selftest@live@dmabuf.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-arlh-2/igt@i915_selftest@live@dmabuf.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14046]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046
+  [i915#14393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16756 -> Patchwork_150767v1
+
+  CI-20190529: 20190529
+  CI_DRM_16756: 6499ba43875d85bbb88c5d98d31af0ad2532275a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8425: 8425
+  Patchwork_150767v1: 6499ba43875d85bbb88c5d98d31af0ad2532275a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/index.html
+
+--===============1757567893402496938==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftests: Change mock_request() to return error pointers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150767/">https://patchwork.freedesktop.org/series/150767/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16756 -&gt; Patchwork_150767v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_150767v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14046">i915#14046</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393">i915#14393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@dmabuf:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16756/bat-arlh-2/igt@i915_selftest@live@dmabuf.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393">i915#14393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150767v1/bat-arlh-2/igt@i915_selftest@live@dmabuf.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16756 -&gt; Patchwork_150767v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16756: 6499ba43875d85bbb88c5d98d31af0ad2532275a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8425: 8425<br />
+  Patchwork_150767v1: 6499ba43875d85bbb88c5d98d31af0ad2532275a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1757567893402496938==--
