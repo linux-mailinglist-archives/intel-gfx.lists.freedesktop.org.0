@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76947AE7F7E
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 12:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A62A8AE7F7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 12:34:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1B0D10E6E3;
-	Wed, 25 Jun 2025 10:33:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B789710E6DF;
+	Wed, 25 Jun 2025 10:33:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JClcB9kM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LTAkN+r4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD91810E6DD;
- Wed, 25 Jun 2025 10:33:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93E6F10E6DD;
+ Wed, 25 Jun 2025 10:33:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750847633; x=1782383633;
+ t=1750847638; x=1782383638;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NbhKBanxQ2hddBv+ePibIc/8rcF/vTU7Pzf3lFJer1g=;
- b=JClcB9kMj7INJL4YifQKLcI5L3oeO5bbJ5WSxhLaEUjw90MkSeMb52u6
- iIiQWlqDiLOdGqmrTmekSZc5QUpsFdyb/kZkMxJl6fxyiDQBFWYWlkXn1
- P101eGUnp8xYNIi0gUlVVCk+DTmXTf6Xpx5VhTMmxvnP4c33fkBnigRJH
- I/ONrt/X59v/m3xPE25MkqXXeW7A/a5JQhkz1MaHKVwrG8IC6gAFPiDnB
- MZk2Sjt8220L4ufqCs9yMDF+J/kT0/Mg9/VZ+YODVfr/ItV7wkhi9M8EZ
- NjYCTSR8QCy1myxl6azuSAyQACWprLsMM+wo+lAohsPlKnUVhGnXD36A5 A==;
-X-CSE-ConnectionGUID: XUGlNhKVSpiQZb8LJwan9w==
-X-CSE-MsgGUID: OtH7ow54TRSu+RCdPwhSwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="78537664"
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="78537664"
+ bh=Q1EbZCpmlqYzErGxyK833Hs+CqSv3PktjbriKOa8I3o=;
+ b=LTAkN+r4B92B4+XSXZCrDTyez8V4/5V2NIJKh1OCvny9MUAzgkYArlrg
+ 5Y2hi99z7OsmZcFM63NXYA6HRoTZQxSZdIBMFzlzdBSd1G2Yu1c1Q9zZ0
+ aCRXnKvYk4LhAn5Jwnk6VjsUeCeyMRPtsEXlpI75V7twzxSs56YsGzJyO
+ fZ0XC1wRkHMJoY+15KptA4zDVLMvfkiWo0BXIwgW50jdr6NwQPUI25nxi
+ kLyy1eISktTEzh6Z9GAkthxBn7hn3lxSvzcRa8/vlbpDSHZsGB2SgpVH7
+ BoRk1zKVDxcmVxZUyT/3kRg3Ac+455rK81IArKJZYVwMWHG1UkfDPUIry g==;
+X-CSE-ConnectionGUID: Z1c24/QNRbqGLtLcE3Xaxw==
+X-CSE-MsgGUID: Nhb8Vzo/Ts6X9kjFWP2UEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11474"; a="78537667"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="78537667"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 03:33:53 -0700
-X-CSE-ConnectionGUID: euO7b1g/SMGzkL0QAZmv2Q==
-X-CSE-MsgGUID: CFd97Qs9S0+2arOyiliSGQ==
+ 25 Jun 2025 03:33:58 -0700
+X-CSE-ConnectionGUID: PqoU2GESR8yXVlvmsTsaZg==
+X-CSE-MsgGUID: /ZyKa6f8TNOeuDwThew4hw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="151936712"
+X-IronPort-AV: E=Sophos;i="6.16,264,1744095600"; d="scan'208";a="151936741"
 Received: from monicael-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.78])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2025 03:33:52 -0700
+ 25 Jun 2025 03:33:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	imre.deak@intel.com
-Subject: [CI v2 15/16] drm/i915/cdclk: abstract intel_cdclk_actual() and
- intel_cdclk_actual_voltage_level()
-Date: Wed, 25 Jun 2025 13:32:33 +0300
-Message-Id: <241a9b80a8262b82fded54707ca5622af215dd86.1750847509.git.jani.nikula@intel.com>
+Subject: [CI v2 16/16] drm/i915/cdclk: make struct intel_cdclk_state opaque
+Date: Wed, 25 Jun 2025 13:32:34 +0300
+Message-Id: <2b58c52e8cbcb66a48ecd4a1453e49dc7bd66289.1750847509.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750847509.git.jani.nikula@intel.com>
 References: <cover.1750847509.git.jani.nikula@intel.com>
@@ -72,70 +71,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add intel_cdclk_actual() and intel_cdclk_actual_voltage_level() helpers
-to avoid looking at struct intel_cdclk_state internals outside of
-intel_cdclk.c.
-
-v2: Better location (Imre)
+With all the code touching struct intel_cdclk_state moved inside
+intel_cdclk.c, we move the struct definition there too, and make the
+type opaque. This nicely reduces includes from intel_cdclk.h.
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_cdclk.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  4 ++--
- 3 files changed, 14 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 36 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cdclk.h | 41 ++--------------------
+ 2 files changed, 38 insertions(+), 39 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 156b5b5190cc..588d776e8624 100644
+index 588d776e8624..228aa64c1349 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3840,6 +3840,16 @@ int intel_cdclk_logical(const struct intel_cdclk_state *cdclk_state)
- 	return cdclk_state->logical.cdclk;
- }
+@@ -114,6 +114,42 @@
+  * dividers can be programmed correctly.
+  */
  
-+int intel_cdclk_actual(const struct intel_cdclk_state *cdclk_state)
-+{
-+	return cdclk_state->actual.cdclk;
-+}
++struct intel_cdclk_state {
++	struct intel_global_state base;
 +
-+int intel_cdclk_actual_voltage_level(const struct intel_cdclk_state *cdclk_state)
-+{
-+	return cdclk_state->actual.voltage_level;
-+}
++	/*
++	 * Logical configuration of cdclk (used for all scaling,
++	 * watermark, etc. calculations and checks). This is
++	 * computed as if all enabled crtcs were active.
++	 */
++	struct intel_cdclk_config logical;
 +
- int intel_cdclk_min_cdclk(const struct intel_cdclk_state *cdclk_state, enum pipe pipe)
- {
- 	return cdclk_state->min_cdclk[pipe];
++	/*
++	 * Actual configuration of cdclk, can be different from the
++	 * logical configuration only when all crtc's are DPMS off.
++	 */
++	struct intel_cdclk_config actual;
++
++	/* minimum acceptable cdclk to satisfy bandwidth requirements */
++	int bw_min_cdclk;
++	/* minimum acceptable cdclk for each pipe */
++	int min_cdclk[I915_MAX_PIPES];
++	/* minimum acceptable voltage level for each pipe */
++	u8 min_voltage_level[I915_MAX_PIPES];
++
++	/* pipe to which cd2x update is synchronized */
++	enum pipe pipe;
++
++	/* forced minimum cdclk for glk+ audio w/a */
++	int force_min_cdclk;
++
++	/* bitmask of active pipes */
++	u8 active_pipes;
++
++	/* update cdclk with pipes disabled */
++	bool disable_pipes;
++};
++
+ struct intel_cdclk_funcs {
+ 	void (*get_cdclk)(struct intel_display *display,
+ 			  struct intel_cdclk_config *cdclk_config);
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index 0d5ee1826168..07f8b184b5fe 100644
+index 07f8b184b5fe..cacee598af0e 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -98,6 +98,8 @@ int intel_cdclk_init(struct intel_display *display);
- void intel_cdclk_debugfs_register(struct intel_display *display);
+@@ -8,10 +8,9 @@
  
- int intel_cdclk_logical(const struct intel_cdclk_state *cdclk_state);
-+int intel_cdclk_actual(const struct intel_cdclk_state *cdclk_state);
-+int intel_cdclk_actual_voltage_level(const struct intel_cdclk_state *cdclk_state);
- int intel_cdclk_min_cdclk(const struct intel_cdclk_state *cdclk_state, enum pipe pipe);
- int intel_cdclk_bw_min_cdclk(const struct intel_cdclk_state *cdclk_state);
- bool intel_cdclk_pmdemand_needs_update(struct intel_atomic_state *state);
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index 16ef68ef4041..d806c15db7ce 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -360,9 +360,9 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
- 		return PTR_ERR(new_cdclk_state);
+ #include <linux/types.h>
  
- 	new_pmdemand_state->params.voltage_index =
--		new_cdclk_state->actual.voltage_level;
-+		intel_cdclk_actual_voltage_level(new_cdclk_state);
- 	new_pmdemand_state->params.cdclk_freq_mhz =
--		DIV_ROUND_UP(new_cdclk_state->actual.cdclk, 1000);
-+		DIV_ROUND_UP(intel_cdclk_actual(new_cdclk_state), 1000);
+-#include "intel_display_limits.h"
+-#include "intel_global_state.h"
+-
++enum pipe;
+ struct intel_atomic_state;
++struct intel_cdclk_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
+@@ -23,42 +22,6 @@ struct intel_cdclk_config {
+ 	bool joined_mbus;
+ };
  
- 	intel_pmdemand_update_max_ddiclk(display, state, new_pmdemand_state);
- 
+-struct intel_cdclk_state {
+-	struct intel_global_state base;
+-
+-	/*
+-	 * Logical configuration of cdclk (used for all scaling,
+-	 * watermark, etc. calculations and checks). This is
+-	 * computed as if all enabled crtcs were active.
+-	 */
+-	struct intel_cdclk_config logical;
+-
+-	/*
+-	 * Actual configuration of cdclk, can be different from the
+-	 * logical configuration only when all crtc's are DPMS off.
+-	 */
+-	struct intel_cdclk_config actual;
+-
+-	/* minimum acceptable cdclk to satisfy bandwidth requirements */
+-	int bw_min_cdclk;
+-	/* minimum acceptable cdclk for each pipe */
+-	int min_cdclk[I915_MAX_PIPES];
+-	/* minimum acceptable voltage level for each pipe */
+-	u8 min_voltage_level[I915_MAX_PIPES];
+-
+-	/* pipe to which cd2x update is synchronized */
+-	enum pipe pipe;
+-
+-	/* forced minimum cdclk for glk+ audio w/a */
+-	int force_min_cdclk;
+-
+-	/* bitmask of active pipes */
+-	u8 active_pipes;
+-
+-	/* update cdclk with pipes disabled */
+-	bool disable_pipes;
+-};
+-
+ void intel_cdclk_init_hw(struct intel_display *display);
+ void intel_cdclk_uninit_hw(struct intel_display *display);
+ void intel_init_cdclk_hooks(struct intel_display *display);
 -- 
 2.39.5
 
