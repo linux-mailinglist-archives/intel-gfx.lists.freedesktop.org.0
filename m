@@ -2,77 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9F0AE8747
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 16:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90053AE8672
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Jun 2025 16:27:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3541F10E234;
-	Wed, 25 Jun 2025 14:57:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="ct8sPGZB";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B760D10E740;
+	Wed, 25 Jun 2025 14:27:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2890 seconds by postgrey-1.36 at gabe;
- Wed, 25 Jun 2025 11:54:46 UTC
-Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAD710E6F0;
- Wed, 25 Jun 2025 11:54:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1750852482; bh=fRZQe4nl0zKEUEJnNAJ903ZecOWgKWBEK13lijK2btU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=ct8sPGZBr3WxsoLvi7VPLl9mwDwNkaZa2/zGxoulUCL025PocIGGfUTBoTG35d80e
- PxULzIlntl/22PnwHxmrTweVKUi10tjcMPd7/bX9x6zH3yg0pWTK4A1ppPP38h7xuB
- itlrc8gMx+GGsfb3LTkEgeuVGcwNJZ9TLA/hStvc=
-Received: from [172.25.20.158] ([111.202.154.66])
- by newxmesmtplogicsvrszb16-1.qq.com (NewEsmtp) with SMTP
- id B839CC3E; Wed, 25 Jun 2025 18:46:03 +0800
-X-QQ-mid: xmsmtpt1750848363tmxew2sy5
-Message-ID: <tencent_FB9C854A6AB8D1CF28C88A8642B297A59C07@qq.com>
-X-QQ-XMAILINFO: MT46X0n0UCeM4y5W26Ag/ADFG1DHi9F9CHyqbj6DSfeO3dtcmIBOE1oh2UcVZP
- ZMmQ68mcMehwhUbLUnc07Zn9RGz6F2suZwRJOeyiIzICBfgm0V2+5cregthy5C7I8MB6FhVvNcYM
- /VYkFzpfdEChNh1ny0qa/KKLXtV+MtsrADzq4s7xqMxPy7INKe9X7UTI8B30l2IDWVuhCLBivAB/
- KpDHHHEgbPHLOTlKPIWS+VeUSKe0p858cK9CT24Fk/cVWieuHQr8ktv6F80EJcbM+1S/A2ggowY6
- fAb4V4CaUZGL0XfnXbcLYb6LQmmw+A5CVdgTwLZAnVSKd0mwEH7Z7pmaiJiOydAd+niM/H3cdnq1
- rOkrq8lQR55XrWjPx6gZ/EFejSqH8DoRxc5WJMO4+TBv4qGCLjkGxCLhfzpfNWMA8RomFYbRvWrD
- 6xwkMLEpPnGJXjxpwo0483KUAhbHlVgxJPUoWax2HkTNHkIBqD2j7ccHzxxGpye4OildalBIIxay
- J8znfIlVeLvpwBSMKx5L/dMMyldBbPzxX+CEr1l9/weUIrqiRVImt6MOFUDOlunpBV7QPxUklf6e
- CQvXxLC5C5gBdKfW7Amei+h97GCDgKpfJBIpvH0s06O9iBzMr5JOBv8vnfdC9scfGJIYymZ3iHWM
- 8a+CKbZBw8NCA+65oAHoE15MX1UdBCdnXi39kjjEPdDJxqNl0vUWfCKAdnGACYxu7dc3IA8WzeYG
- t83PPzmGaZZysMJnUHhsday1qRc0X4xe1rkKegzSK3hnBQgHu9LTEGpy19ILw0Uo5i+dLyw22WC+
- o60brkozWdLySFo0VMzrZoSZxjebVnDOYd46LeGlXEI3ApHoWbtH5gX9qdOmXHpDuXY0YRuqAi1i
- YyETv+GdRIAh7F7kT9T8xtYBssGRzq52KheHTFTcSRV6Y2jZHXfqJkiLRTtyNhFI5Jhet2ohBjyw
- xJIvTnxoRcyK6Hsx4wo61Ymi6SJV4FfufqOKeFAABoMNiHKEgteeWdTwi/nC9lwdKRit1VdVs=
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-OQ-MSGID: <a9c446ff-d51a-40bf-a243-350de1e6e613@qq.com>
-Date: Wed, 25 Jun 2025 18:46:03 +0800
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD84810E740;
+ Wed, 25 Jun 2025 14:27:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5625517799287375575=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] ext4: declare support for FOP_DONTCACHE
-To: Matthew Wilcox <willy@infradead.org>,
- =?UTF-8?B?6ZmI5rab5rabIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-Cc: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250624121149.2927-1-chentaotao@didiglobal.com>
- <20250624121149.2927-6-chentaotao@didiglobal.com>
- <aFqfwHofm_eXb5zw@casper.infradead.org>
-From: Chen Taotao <chentao325@qq.com>
-In-Reply-To: <aFqfwHofm_eXb5zw@casper.infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 25 Jun 2025 14:57:46 +0000
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_remove_unused?=
+ =?utf-8?q?_DISPLAY=5FPLANE=5FFLIP=5FPENDING=28=29_macro?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Jun 2025 14:27:46 -0000
+Message-ID: <175086166670.108927.3880662452145092301@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250625132140.1564473-1-jani.nikula@intel.com>
+In-Reply-To: <20250625132140.1564473-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,20 +37,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============5625517799287375575==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-在 2025/6/24 20:53, Matthew Wilcox 写道:
-> On Tue, Jun 24, 2025 at 12:12:10PM +0000, 陈涛涛 Taotao Chen wrote:
->> From: Taotao Chen<chentaotao@didiglobal.com>
->>
->> Set the FOP_DONTCACHE flag in ext4_file_operations to indicate that
->> ext4 supports IOCB_DONTCACHE handling in buffered write paths.
-> I think this patch should be combined with the previous patch so we
-> see all the change needed to support DONTCACHE in one patch.
+== Series Details ==
 
-I’ll merge the patches to keep the DONTCACHE support self-contained. Thanks!
+Series: drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro
+URL   : https://patchwork.freedesktop.org/series/150758/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16754 -> Patchwork_150758v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_150758v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_150758v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_150758v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gem:
+    - bat-arlh-3:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live@gem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live@gem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_150758v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [PASS][3] -> [INCOMPLETE][4] ([i915#14393])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@client:
+    - bat-dg2-8:          [PASS][5] -> [ABORT][6] ([i915#14201]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-dg2-8/igt@i915_selftest@live@client.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-dg2-8/igt@i915_selftest@live@client.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#14204]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#13929])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#14204]) -> [DMESG-FAIL][12] ([i915#13929])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+  [i915#14393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393
 
 
+Build changes
+-------------
 
+  * Linux: CI_DRM_16754 -> Patchwork_150758v1
+
+  CI-20190529: 20190529
+  CI_DRM_16754: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_150758v1: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html
+
+--===============5625517799287375575==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150758/">https://patchwork.freedesktop.org/series/150758/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16754 -&gt; Patchwork_150758v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_150758v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_150758v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_150758v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gem:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live@gem.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_150758v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arlh-3/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14393">i915#14393</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-dg2-8/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-dg2-8/igt@i915_selftest@live@client.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16754/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150758v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16754 -&gt; Patchwork_150758v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16754: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8424: 68588b3c89a1bbe08c54d21c4d3d2e509957c795 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_150758v1: e4196e8184ee5a9c70c136f659dccef786c263b3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5625517799287375575==--
