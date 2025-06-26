@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 766B2AEA49F
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 19:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D92CAEA4A8
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 19:44:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7DA910E8E0;
-	Thu, 26 Jun 2025 17:43:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2DD010E8E5;
+	Thu, 26 Jun 2025 17:44:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YhVx564t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F3Y6JbNV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86B9510E8DD;
- Thu, 26 Jun 2025 17:43:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8908910E8D4;
+ Thu, 26 Jun 2025 17:44:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750959822; x=1782495822;
+ t=1750959847; x=1782495847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=htabxUoaJCg+sOt9fAgomAyyiujrWH+bdhnHfaEvPeY=;
- b=YhVx564tWk62dSF9Shwn1fYaop9foOfEK0br189eNNsOPX5beBwVNtJY
- 9SweQ3wBK1/gwthmKRsHIPQcFpXuzx0WZLMXyOLS/PWPhrKezs/X0fW0t
- tmL/7wuMrLYhIkQ3nMNzPleqrKcasOjIXDw06oVXk2T9eRB2MQ2A+cRcw
- aLa8hRduCBIdOm4NNs5cuZ/4Ja4Jly+yfm02KTnB+Rouud3k8kQcLxRr1
- SsY5AD28a0rT9f+u1itjZCZWvAzfi05q49J3LXOCSQ+uDEj0FXESApRgx
- ofDs2Ba79lSjONuHJy97IRRLLCBrapzSQjYkH4mwT4W1vvNKuEucKtbqP g==;
-X-CSE-ConnectionGUID: rZwe7FYdQfOdhWjpof4/QA==
-X-CSE-MsgGUID: duzIoc6xTWKxKwIvmg083A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53141123"
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="53141123"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:43:42 -0700
-X-CSE-ConnectionGUID: i1llbQAPSTq9nR0YQfZ9aQ==
-X-CSE-MsgGUID: Ps1FUWD3Rq2inUA2bYtqGA==
+ bh=zYaxMHABl/nfcbEg4EtArRpJ7XD488pmnWgIWNIFmg8=;
+ b=F3Y6JbNV0QDKFznDCwVKnJecbtuYgE2cxJP+aV56mWANr9PKZAvIQMji
+ T7WoccsJPdLnKVMNQAvV9hy0PhGdGlzyTIKP6Wp5B3EA99bxOxtrMsTnW
+ Bhq0PZO7Lnd2QKh3+a7VMKeoFRw8ik4TVhi7/sKewrNI967ADwvg1ABxY
+ mn0XoqxO8bTMY3zz9HIUUk8wism8vGJoC3JJ7+c/W11bkqkJq4o5iaeLn
+ kEmdYUgOBBSAFgFT0PfT4v+cX+PwP78qnabaWghukPmDgrAYh6rVB6Njl
+ uDTx3+jDARCS+6dAdQqLjtBcFphjjBCPPUklfxns5tBDMBOzFeMxvBL0C A==;
+X-CSE-ConnectionGUID: lgJZduhLTqGYMmaFOsisQQ==
+X-CSE-MsgGUID: rLQWpe7eTjqIaD+HrOFMYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="52387809"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="52387809"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:44:06 -0700
+X-CSE-ConnectionGUID: NxbjESJcQJKxAyKcd8zJMQ==
+X-CSE-MsgGUID: IAK2tMchTNOLx192nlXjxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152207996"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152869084"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.120])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 10:43:39 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:43:49 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 4/8] drm/i915/cdclk: use intel_de_wait_custom() instead of
- wait_for_us()
-Date: Thu, 26 Jun 2025 20:43:02 +0300
-Message-Id: <f373a3db2a70ec574e48a0908b5f07dc184db4d9.1750959689.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 5/8] drm/i915/hdcp: use intel_de_wait_for_set() instead of
+ wait_for()
+Date: Thu, 26 Jun 2025 20:43:03 +0300
+Message-Id: <5c6cf8b4c656db56084067ee4652c7885d9c8c55.1750959689.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1750959689.git.jani.nikula@intel.com>
 References: <cover.1750959689.git.jani.nikula@intel.com>
@@ -71,43 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prefer the register read specific wait function over i915 wait_for_us().
+Prefer the register read specific wait function over i915 wait_for().
 
+Note that there's a slight functional change: both HDCP_STATUS_R0_READY
+and HDCP_STATUS_ENC need to be set instead of just one or the
+other. This is likely the intention, though, as this was fixed for HDMI
+in commit 3ffaf56e912e ("drm/i915: HDCP: fix Ri prime check done during
+link check").
+
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 228aa64c1349..2a2d6714e4f4 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -903,8 +903,10 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	 * According to the spec, it should be enough to poll for this 1 us.
- 	 * However, extensive testing shows that this can take longer.
- 	 */
--	if (wait_for_us(intel_de_read(display, LCPLL_CTL) &
--			LCPLL_CD_SOURCE_FCLK_DONE, 100))
-+	ret = intel_de_wait_custom(display, LCPLL_CTL,
-+				   LCPLL_CD_SOURCE_FCLK_DONE, LCPLL_CD_SOURCE_FCLK_DONE,
-+				   100, 0, NULL);
-+	if (ret)
- 		drm_err(display->drm, "Switching to FCLK failed\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 619ccfc33000..c480a75b5fb9 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -903,8 +903,9 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 		       HDCP_CONF_AUTH_AND_ENC);
  
- 	intel_de_rmw(display, LCPLL_CTL,
-@@ -913,8 +915,10 @@ static void bdw_set_cdclk(struct intel_display *display,
- 	intel_de_rmw(display, LCPLL_CTL,
- 		     LCPLL_CD_SOURCE_FCLK, 0);
+ 	/* Wait for R0 ready */
+-	if (wait_for(intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)) &
+-		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
++	ret = intel_de_wait_for_set(display, HDCP_STATUS(display, cpu_transcoder, port),
++				    HDCP_STATUS_R0_READY | HDCP_STATUS_ENC, 1);
++	if (ret) {
+ 		drm_err(display->drm, "Timed out waiting for R0 ready\n");
+ 		return -ETIMEDOUT;
+ 	}
+@@ -936,8 +937,9 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 			       ri.reg);
  
--	if (wait_for_us((intel_de_read(display, LCPLL_CTL) &
--			 LCPLL_CD_SOURCE_FCLK_DONE) == 0, 1))
-+	ret = intel_de_wait_custom(display, LCPLL_CTL,
-+				   LCPLL_CD_SOURCE_FCLK_DONE, 0,
-+				   1, 0, NULL);
-+	if (ret)
- 		drm_err(display->drm, "Switching back to LCPLL failed\n");
+ 		/* Wait for Ri prime match */
+-		if (!wait_for(intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)) &
+-			      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1))
++		ret = intel_de_wait_for_set(display, HDCP_STATUS(display, cpu_transcoder, port),
++					    HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC, 1);
++		if (!ret)
+ 			break;
+ 	}
  
- 	intel_pcode_write(display->drm, HSW_PCODE_DE_WRITE_FREQ_REQ,
 -- 
 2.39.5
 
