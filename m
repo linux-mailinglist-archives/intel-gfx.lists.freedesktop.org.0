@@ -2,52 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4780AEA314
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 17:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCAC4AEA497
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 19:43:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8A210E2C9;
-	Thu, 26 Jun 2025 15:58:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB6310E8D9;
+	Thu, 26 Jun 2025 17:43:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B2dsjk8w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m804rVFu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11D6C10E2C9
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jun 2025 15:58:45 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 01010A51650;
- Thu, 26 Jun 2025 15:58:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53C15C4CEEB;
- Thu, 26 Jun 2025 15:58:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1750953520;
- bh=cOkkymtMgKjIy84lPpztQlbUSqBMZ50sAZP8lm23Lx4=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=B2dsjk8wSaS5DsqFtDaEjy/IVYjiHLnjqEgFxCPALH57U+sbTC/tDlq6VmT0fNOTG
- 7G1cAjRqTO5hk1XHNb+fDHaNlnqiXc/Kh0qwT9a6bFRLkencz0wScLuJSpK60yrjdD
- BfG1uZDGIDS2w6z/UieEMXsLYZyUfsMyCI8JrzoYVyfzI5rBOngw/G02HWaUiwmzwj
- ObAsem7VoyZ9hMzgoT8Bd69pWEVR10UwmvkyCHOZPMEguoM2JxbAWxDZjArqwnxeRe
- wNLnOsI/SQqgN5qfqvY1ZMfiQYjObqpFUmcMtKgRXBXWMlIymTzVbiUQyf7XT58RsX
- woJjxYz1kNswA==
-Message-ID: <2fc89386-0ab5-476e-a218-a3936a2e0d3e@kernel.org>
-Date: Thu, 26 Jun 2025 17:58:37 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1503E10E8D4;
+ Thu, 26 Jun 2025 17:43:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1750959794; x=1782495794;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+27lFIZKup/4iJbhBpb7uySkCBE9SfNuVMGmyBjizqs=;
+ b=m804rVFuI8VFGLrHUU9mptsOSHTbHIvjTnYLGcUYj1bwqllJc2TwzEdd
+ rJUVN7XUWD0k+P7LFcVv4kPM1CgVLgMzOS2qjBMJTxTNGCWjWswID9JIx
+ izRxS6t9QTekGOoGdutlp3D+KnwZnfSt3UoIh/pLvDC34raweMRdWgXK7
+ xt3Sjm+giGtOZbRFu1mVH9QLYPXhVOwOlPQLSD0sWZ6vNgj+UTf9H+ip8
+ BBMLOgmGcE1XQ8dpfoRHRPxmxadt70obZYNOZV+eGYXEUZSVAo+DlVHSM
+ VPlKBOydkO/9UJJFabewhletZZAlcXJBd0lgbOTj2DFdgg0SETbeQ3Xqe A==;
+X-CSE-ConnectionGUID: O4nEtMssRhqEgyCCxUXoag==
+X-CSE-MsgGUID: 6QaowGAPSAWAL8Rz94b1Yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53141068"
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="53141068"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:43:13 -0700
+X-CSE-ConnectionGUID: Vcgj/VjFQWOIkru9H9IjOg==
+X-CSE-MsgGUID: iNHYpKupS5iYq1emyPRDDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,268,1744095600"; d="scan'208";a="152207955"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.120])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 10:43:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/8] drm/i915/display: use intel_de_wait_*() functions
+Date: Thu, 26 Jun 2025 20:42:58 +0300
+Message-Id: <cover.1750959689.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dsi: Fix NULL pointer deref in
- vlv_dphy_param_init()
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <20250626143317.101706-1-hansg@kernel.org>
- <9063507c2061b731750d632183097c5a35fd875d@intel.com>
-Content-Language: en-US, nl
-From: Hans de Goede <hansg@kernel.org>
-In-Reply-To: <9063507c2061b731750d632183097c5a35fd875d@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,72 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+We have intel_de_wait_*() functions for waiting for register bits to
+reach a value. Use them instead of depending on the i915 helpers from
+i915_utils.h.
 
-On 26-Jun-25 17:24, Jani Nikula wrote:
-> On Thu, 26 Jun 2025, Hans de Goede <hansg@kernel.org> wrote:
->> Commit 77ba0b856225 ("drm/i915/dsi: convert vlv_dsi.[ch] to struct
->> intel_display") added a to_intel_display(connector) call to
->> vlv_dphy_param_init() but when vlv_dphy_param_init() gets called
->> the connector object has not been initialized yet, so this leads
->> to a NULL pointer deref:
->>
->>  BUG: kernel NULL pointer dereference, address: 000000000000000c
->>  ...
->>  Hardware name: ASUSTeK COMPUTER INC. T100TA/T100TA, BIOS T100TA.314 08/13/2015
->>  RIP: 0010:vlv_dsi_init+0x4e6/0x1600 [i915]
->>  ...
->>  Call Trace:
->>   <TASK>
->>   ? intel_step_name+0x4be8/0x5c30 [i915]
->>   intel_setup_outputs+0x2d6/0xbd0 [i915]
->>   intel_display_driver_probe_nogem+0x13f/0x220 [i915]
->>   i915_driver_probe+0x3d9/0xaf0 [i915]
->>
->> Use to_intel_display(&intel_dsi->base) instead to fix this.
-> 
-> Oops, my bad. It's misleading that the DSI init handles uninitialized
-> connector so much, and the encoder has been initialized much
-> earlier. But I guess this is the simplest fix.
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Jani Nikula (8):
+  drm/i915/hdmi: use intel_de_wait_for_set() instead of wait_for()
+  drm/i915/ddi: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/dpll: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/cdclk: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/hdcp: use intel_de_wait_for_set() instead of wait_for()
+  drm/i915/power: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/pch: use intel_de_wait_custom() instead of wait_for_us()
+  drm/i915/dsi: use intel_de_wait_custom() instead of wait_for_us()
 
-Thanks, I also have this fix pending which seems to have
-fallen through the cracks (it was never reviewed):
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 41 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 12 ++++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 14 ++++++-
+ .../drm/i915/display/intel_display_power.c    | 14 +++++--
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 20 ++++++---
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 10 +++--
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  6 +--
+ .../gpu/drm/i915/display/intel_pch_refclk.c   | 14 +++++--
+ 8 files changed, 91 insertions(+), 40 deletions(-)
 
-https://lore.kernel.org/dri-devel/20241116093426.4989-1-hdegoede@redhat.com/
-
-I don't have a drm git tree setup on my laptop atm, can you push
-this patch (or maybe both) to the fixes branch ?
-
-Regards,
-
-Hans
-
-
-
-
-> 
->>
->> Fixes: 77ba0b856225 ("drm/i915/dsi: convert vlv_dsi.[ch] to struct intel_display")
->> Signed-off-by: Hans de Goede <hansg@kernel.org>
->> ---
->>  drivers/gpu/drm/i915/display/vlv_dsi.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> index 21c1e10caf68..2007bb9d974d 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> @@ -1589,8 +1589,8 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
->>  
->>  static void vlv_dphy_param_init(struct intel_dsi *intel_dsi)
->>  {
->> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
->>  	struct intel_connector *connector = intel_dsi->attached_connector;
->> -	struct intel_display *display = to_intel_display(connector);
->>  	struct mipi_config *mipi_config = connector->panel.vbt.dsi.config;
->>  	u32 tlpx_ns, extra_byte_count, tlpx_ui;
->>  	u32 ui_num, ui_den;
-> 
+-- 
+2.39.5
 
