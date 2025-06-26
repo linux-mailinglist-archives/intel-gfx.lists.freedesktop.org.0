@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EE6AE9939
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 10:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C192AE99BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Jun 2025 11:12:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD2110E8C6;
-	Thu, 26 Jun 2025 08:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFEA010E2B5;
+	Thu, 26 Jun 2025 09:12:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EoWC8IqN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SDkqiwyI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 849B510E8D1
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Jun 2025 08:55:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2423F10E2B5;
+ Thu, 26 Jun 2025 09:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1750928135; x=1782464135;
+ t=1750929137; x=1782465137;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Txvt7D5YNx2wAZL/E68VJxIqJ9nzBzyvvj634obrWtM=;
- b=EoWC8IqNKdbnjpF6BToGwJvtfkGBlyuM1gQWxf0iSgKHqLsQK8HWXeyp
- zlZecBD2RkmhWh6FJSQdKd9OvGmytYpgAy4Uyjej7pJPsdmy0xPhuKjNt
- d1bIuZiERoMAt9Bww/sHDAZT14e0RipHqgCD74gWBp1cdSQ7BaMRNujeV
- selmKPc9MaBMWw3RFHJ9/S3AEB5FrnieLPlRLsXNWr9tKfEaUw3IA7vVk
- 7VD4sur5Kmhrl4/CBDxYlKjo3UmNiE8GJRNuAXbDQXtjZi0+BmE6HoV4T
- Zex3684q8kOwU25uPMR8pm8be3XSMIYJqM+PND7Akd8sFBNVZBsFeUKzn A==;
-X-CSE-ConnectionGUID: /j8+vyn1TYiczI25pfUwWw==
-X-CSE-MsgGUID: 9ptvXRRhSCOe/3nwsG41tA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="53359766"
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="53359766"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 01:55:35 -0700
-X-CSE-ConnectionGUID: Wo/FBCpkRZK7/Fb0L5hiww==
-X-CSE-MsgGUID: Md6fel6fSpWY8wju9jIpqw==
+ bh=zsmnffpbjrYcjOOdFudwF49wionT85nj91BDORuwcUE=;
+ b=SDkqiwyIixstp+YzE1i0rouZySaEgglgu/jV+Heszi/E8IOvxnvEqgKm
+ Zo8R3tvofFABBPBUcEDs+h2IM4+lGa3zhSovMo+eG9HmxXrpHT4FODpwV
+ z+DD3QL1J+q6rxquMb7QiHOPLbcrOYvSvYwUCmuT0YfrzrhpEKDTuIUy2
+ j/grt6OLzo8BSi60IQNnHMbaosPBDm4sicGOcFZpn9Y5MZMvjgKaY4Ras
+ i+BJhYgppR2G5rnm4mLGdk1mlquq2XCiMT7ZdL+MemO6pjkmlIHVwnGCn
+ svn/bA6o5PN/jwjm7GYwBmzq1MX69yMfZiRlsQRcMzJsN3up7rI6J6kaj A==;
+X-CSE-ConnectionGUID: XLUm0a/4SYyTqrBycPb3dQ==
+X-CSE-MsgGUID: xBMyyhZYTEmwV42fzvWw4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11475"; a="52941027"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="52941027"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 02:12:17 -0700
+X-CSE-ConnectionGUID: V3zFRV66QNW7RyeobLZDxA==
+X-CSE-MsgGUID: 8DrNf1KwQLq+gIQnPLPsZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152578109"
+X-IronPort-AV: E=Sophos;i="6.16,267,1744095600"; d="scan'208";a="152977205"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.120])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2025 01:55:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro
-In-Reply-To: <aFv_q12bJXVF5GaR@intel.com>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2025 02:12:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Subject: Re: [PATCH 11/20] drm/i915/dp: Reprobe connector if getting/acking
+ device IRQs fails
+In-Reply-To: <20250626082053.219514-12-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250625132140.1564473-1-jani.nikula@intel.com>
- <aFv_q12bJXVF5GaR@intel.com>
-Date: Thu, 26 Jun 2025 11:55:30 +0300
-Message-ID: <0b07ffe2091ebd0e26126237a544a0929ca36072@intel.com>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-12-imre.deak@intel.com>
+Date: Thu, 26 Jun 2025 12:12:11 +0300
+Message-ID: <625ce1c9c46ba93027fecadae4803fc86450ad50@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,42 +71,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Jun 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Jun 25, 2025 at 04:21:40PM +0300, Jani Nikula wrote:
->> DISPLAY_PLANE_FLIP_PENDING() has been unused since commit fd3a40242e87
->> ("drm/i915: Rip out legacy page_flip completion/irq handling"). Remove.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Thu, 26 Jun 2025, Imre Deak <imre.deak@intel.com> wrote:
+> From: Imre Deak <imre.deak@gmail.com>
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> An AUX access failure during HPD IRQ handling should be handled by
+> falling back to a full connector detection, ensure that if the failure
+> happens while reading/acking a device service IRQ.
+>
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++++++------
+>  1 file changed, 15 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 7793a72983abd..7eb208d2c321b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5393,16 +5393,20 @@ void intel_dp_check_link_state(struct intel_dp *intel_dp)
+>  	intel_encoder_link_check_queue_work(encoder, 0);
+>  }
+>  
+> -static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+> +static bool intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
 
-Thanks, pushed to din, exceptionally without CI results because this is
-certain not to cause regressions, and the build bot responded with
-success.
+I don't think "check" is very intuitive in function names. Check
+something, but then what? Is it like an assert or does it do something
+active or what?
+
+What does a boolean return from a check function mean?
+
+It's not obvious to the reader at all.
+
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	u8 val;
+>  
+>  	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) != 1 || !val)
+> -		return;
+> +			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) != 1)
+> +		return true;
+
+Looks like true means the check failed... while usually true for boolean
+functions means success.
+
+>  
+> -	drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, val);
+> +	if (!val)
+> +		return false;
+> +
+> +	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, val) != 1)
+> +		return true;
+>  
+>  	if (val & DP_AUTOMATED_TEST_REQUEST)
+>  		intel_dp_test_request(intel_dp);
+
+Whoa, it's not a *check* function at all?! It actually *handles* the
+service irqs.
+
+Can we rephrase the function name?
+
+int intel_dp_handle_device_service_irq() and int returns maybe?
+
 
 BR,
 Jani.
 
->
->> ---
->>  drivers/gpu/drm/i915/i915_reg.h | 1 -
->>  1 file changed, 1 deletion(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index 04fb40867cc0..8d56b3c45451 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -385,7 +385,6 @@
->>  #define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
->>  #define VLV_PCBR_ADDR_SHIFT	12
->>  
->> -#define   DISPLAY_PLANE_FLIP_PENDING(plane) (1 << (11 - (plane))) /* A and B only */
->>  #define EIR		_MMIO(0x20b0)
->>  #define EMR		_MMIO(0x20b4)
->>  #define ESR		_MMIO(0x20b8)
->> -- 
->> 2.39.5
->> 
+> @@ -5412,6 +5416,8 @@ static void intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
+>  
+>  	if (val & DP_SINK_SPECIFIC_IRQ)
+>  		drm_dbg_kms(display->drm, "Sink specific irq unhandled\n");
+> +
+> +	return false;
+>  }
+>  
+>  static bool intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
+> @@ -5476,8 +5482,11 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
+>  		/* No need to proceed if we are going to do full detect */
+>  		return false;
+>  
+> -	intel_dp_check_device_service_irq(intel_dp);
+> -	reprobe_needed = intel_dp_check_link_service_irq(intel_dp);
+> +	if (intel_dp_check_device_service_irq(intel_dp))
+> +		reprobe_needed = true;
+> +
+> +	if (intel_dp_check_link_service_irq(intel_dp))
+> +		reprobe_needed = true;
+>  
+>  	/* Handle CEC interrupts, if any */
+>  	drm_dp_cec_irq(&intel_dp->aux);
 
 -- 
 Jani Nikula, Intel
