@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1282AAEB695
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FFC8AEB696
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:37:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 662AD10E9DB;
-	Fri, 27 Jun 2025 11:36:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B669910E9E1;
+	Fri, 27 Jun 2025 11:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPA8PyrK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSo+UXJw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5221810E9DB;
- Fri, 27 Jun 2025 11:36:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2650D10E9DE;
+ Fri, 27 Jun 2025 11:36:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751024213; x=1782560213;
+ t=1751024218; x=1782560218;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6St6+OZ4vmBnz2NqQGXA8rS1rFN9WTefKl6hgNSVsEI=;
- b=fPA8PyrKXIABLFqynkjqJ+eMuoGw74pgN1ZYRD5VWYBEweTXSTa7CxiV
- psUpNsBcvUH5fW7sIgFTMfvMW1HFgPCPzY2TDyvIflxjK4ulDoPdII4Q8
- j2SHk3FI7Bdq6DZJWNXxAidnXjyjI4zFgOroCIstKoehj8fFuMHvE5jSD
- 2dVpIA5h5rgiN++7UM3rasCubfbusVVIdJ64gkjIAB6qL5JMzkbaCRCOj
- i6AWM3MtTeECl9DbVlzrWbgfuIbbv5mjtW92im2OkMTBcqodCmo/+yLdL
- fGwpGvk2mmmLsTTkpAHpRiSdpXXiqxGqi7iKWl5XJkBT2JMHGRf+Ig/6i g==;
-X-CSE-ConnectionGUID: uGIHRua9T0KR4vu/umsW5w==
-X-CSE-MsgGUID: lnvI3XNHSxKzJOoyKAMhlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53416292"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53416292"
+ bh=OHTqvVWmTYDaOTSS9FzIurWy5tbVsfJFWJomNVJlGBM=;
+ b=aSo+UXJwkkzgGkA73/9r3ELbowHQKlT0fYBOyHWRPw5WV7Et/5/+YfqW
+ lVxi6zEod9VK+4j9eTlwX4QBCXr4vHdUojvDDsLN/pon7FdhVOQtUwiBh
+ 1gKRCkgm2x5JVpuEVohzcCJE4jl1JVWll7Jj4IA7RXjO6prHrGSrH+1Xd
+ aO/6xcl4+CDe+9sOWs6UCTl2Nyel09loEohYbfHDfNsIGGATfCWYDdJlh
+ g3T89MwS1IDPa5AR8MST9LsLXwRS6DlTk6Y4SOuVKgUyA6AnhC6slo0CZ
+ 7ULLlHSyKk+zz18OyascPffHL8rODJF9aLrLYrWgDbIhG8VqCZnyKZmgb A==;
+X-CSE-ConnectionGUID: TLzoGMJMT0Kjx0PpFgdmew==
+X-CSE-MsgGUID: p4U/tt3LQd+CWR8Eqg0J3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53416318"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53416318"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:36:53 -0700
-X-CSE-ConnectionGUID: PSRKfgFFQySjqLeD1fxOHQ==
-X-CSE-MsgGUID: R+EclhYRSZS14HQBLoGCmg==
+ 27 Jun 2025 04:36:58 -0700
+X-CSE-ConnectionGUID: fEkbppIRRsKdI4tChBillQ==
+X-CSE-MsgGUID: JPAgicS9RFWwElDFqZxrlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="153311007"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="153311026"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.146])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:36:51 -0700
+ 27 Jun 2025 04:36:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 03/18] drm/i915/dsi: use generic read_poll_timeout() instead
- of wait_for_us()
-Date: Fri, 27 Jun 2025 14:36:17 +0300
-Message-Id: <f69af9d4e4893f0be889b8d9a58c3d1fd4da8e7a.1751023767.git.jani.nikula@intel.com>
+Subject: [PATCH 04/18] drm/i915/dsi-pll: use generic read_poll_timeout()
+ instead of wait_for()
+Date: Fri, 27 Jun 2025 14:36:18 +0300
+Message-Id: <63a2ecbfc7bb1901c263681ac8517edc3d68d8a0.1751023767.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1751023767.git.jani.nikula@intel.com>
 References: <cover.1751023767.git.jani.nikula@intel.com>
@@ -73,58 +73,52 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Prefer generic poll helpers over i915 custom helpers.
 
-The sleep and timeout remain the same as for wait_for_us().
+The functional change is losing the exponentially growing sleep of
+wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
+
+Use an arbitrary constant 500 us sleep instead. The timeout remains at
+20 ms.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 8d9cb73a93a7..d4c572305804 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -25,6 +25,8 @@
-  *   Jani Nikula <jani.nikula@intel.com>
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index d42b61e6f076..059a1cd9a4e6 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -25,6 +25,7 @@
+  *	Yogesh Mohan Marimuthu <yogesh.mohan.marimuthu@intel.com>
   */
  
 +#include <linux/iopoll.h>
-+
- #include <drm/display/drm_dsc_helper.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_fixed.h>
-@@ -72,8 +74,13 @@ static int payload_credits_available(struct intel_display *display,
- static bool wait_for_header_credits(struct intel_display *display,
- 				    enum transcoder dsi_trans, int hdr_credit)
+ #include <linux/kernel.h>
+ #include <linux/string_helpers.h>
+ 
+@@ -216,6 +217,8 @@ void vlv_dsi_pll_enable(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *config)
  {
--	if (wait_for_us(header_credits_available(display, dsi_trans) >=
--			hdr_credit, 100)) {
+ 	struct intel_display *display = to_intel_display(encoder);
++	u32 val;
 +	int ret;
-+
-+	ret = read_poll_timeout(header_credits_available, ret,
-+				ret >= hdr_credit,
-+				10, 100, false,
-+				display, dsi_trans);
+ 
+ 	drm_dbg_kms(display->drm, "\n");
+ 
+@@ -233,8 +236,11 @@ void vlv_dsi_pll_enable(struct intel_encoder *encoder,
+ 
+ 	vlv_cck_write(display->drm, CCK_REG_DSI_PLL_CONTROL, config->dsi_pll.ctrl);
+ 
+-	if (wait_for(vlv_cck_read(display->drm, CCK_REG_DSI_PLL_CONTROL) &
+-						DSI_PLL_LOCK, 20)) {
++	ret = read_poll_timeout(vlv_cck_read, val,
++				val & DSI_PLL_LOCK,
++				500, 20 * 1000, false,
++				display->drm, CCK_REG_DSI_PLL_CONTROL);
 +	if (ret) {
- 		drm_err(display->drm, "DSI header credits not released\n");
- 		return false;
- 	}
-@@ -84,8 +91,13 @@ static bool wait_for_header_credits(struct intel_display *display,
- static bool wait_for_payload_credits(struct intel_display *display,
- 				     enum transcoder dsi_trans, int payld_credit)
- {
--	if (wait_for_us(payload_credits_available(display, dsi_trans) >=
--			payld_credit, 100)) {
-+	int ret;
-+
-+	ret = read_poll_timeout(payload_credits_available, ret,
-+				ret >= payld_credit,
-+				10, 100, false,
-+				display, dsi_trans);
-+	if (ret) {
- 		drm_err(display->drm, "DSI payload credits not released\n");
- 		return false;
- 	}
+ 
+ 		vlv_cck_put(display->drm);
+ 		drm_err(display->drm, "DSI PLL lock failed\n");
 -- 
 2.39.5
 
