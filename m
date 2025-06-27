@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55C4AEB6A7
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FE25AEB6A8
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:38:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC4910E9F4;
-	Fri, 27 Jun 2025 11:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7278410E9F6;
+	Fri, 27 Jun 2025 11:38:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LTqyJFRg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bMeyrpOk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACB1210E9F4;
- Fri, 27 Jun 2025 11:37:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 438E710E9F8;
+ Fri, 27 Jun 2025 11:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751024277; x=1782560277;
+ t=1751024282; x=1782560282;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oqIwqAg/JB6xbwNeKYT9bj/3QbxM3WqujhQQmfYWek8=;
- b=LTqyJFRggPcLfVgEWN34IlOLdbukonC/1TaDCrxti4q7FrHeJZv7WAPf
- tRuYGsNR6AOpblP2OmJuGcGP63UQjmc4z1U+Kxs2DO/kLfcpglKT0/JL4
- mHcYDqKsUwu8Gi9d1HI07pLisyAnFffwmUH9izdhlvODvqy7bivkcB/cL
- IZIWDSxdNWIHUOoIy4IWeImoT5be/02UaniSmnTjwKU/aiAYX4SJ8SNeT
- 88yl5lNaZBnTZk1rN1nVDrmhNO4DLSJSNFv3sfEBnMb32bkzuSwwilkUD
- pw6j1fzcZlg6aYfpq4aG3Qj6fEIt+qA8nfF6swDuS7tpSKe0aWox8MYqJ Q==;
-X-CSE-ConnectionGUID: ZTSzua4ZRtKd3RO7Ii+ltQ==
-X-CSE-MsgGUID: 3HS3ut7DSY2XzBu4Mwy0Yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53416425"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53416425"
+ bh=SJAd6zlyzeQBb14jA0/AKd6BdpSg4MjnCjfID5PoX28=;
+ b=bMeyrpOk1hHEzSDUMRdaT9WyiV1/IJg4JQUKZwjmQGRlAWiGGawPUGba
+ Hus21ZW623sWc2LaPkaygza8yW7UDjZrXIqYE9k1tWobMa1vgWMsNeE/b
+ mHfONMvnBYx53MvmzLgI4ATNmlLDP5y47kfnlLYGC2NmArBMYzi1KIr3D
+ SeaB1PSHHEoD53SUpdHfIXjW65mxHJmRgM2wdDbbdYVdRSUO342I6QCzM
+ sME6CPB9Em52ZRvkS/0bNQTDZRXUNo9NHKxl+CeXlyC1TtPMDCeOUcDfh
+ 7Ta7yMpmH6t8RXY5ihEVpS2Z7nqReyo5dCALrEsaRN3piXDWS5DrodSm4 g==;
+X-CSE-ConnectionGUID: zo2Bz2bQQomTztzhS6/eCw==
+X-CSE-MsgGUID: 4gp1eB1tSQCQ1bcO/h4PHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53416442"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53416442"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:37:57 -0700
-X-CSE-ConnectionGUID: 7x3DJkAVQS+RdLot8oahhA==
-X-CSE-MsgGUID: fyHAQKN4RXeOpeARwjchYQ==
+ 27 Jun 2025 04:38:02 -0700
+X-CSE-ConnectionGUID: oa8U4CmlSCeY3BAWIpPKRA==
+X-CSE-MsgGUID: IaSGe7wpTt2U7msYgUG0fA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="153311139"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="153311159"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.146])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:37:55 -0700
+ 27 Jun 2025 04:38:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 17/18] drm/i915/opregion: use generic read_poll_timeout()
- instead of wait_for()
-Date: Fri, 27 Jun 2025 14:36:31 +0300
-Message-Id: <4ee8e5bb505336bfc278a15c20b71b617b2f8b84.1751023767.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Imre Deak <imre.deak@intel.com>
+Subject: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+Date: Fri, 27 Jun 2025 14:36:32 +0300
+Message-Id: <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1751023767.git.jani.nikula@intel.com>
 References: <cover.1751023767.git.jani.nikula@intel.com>
@@ -71,49 +72,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prefer generic poll helpers over i915 custom helpers.
+Unify on using read_poll_timeout() throughout instead of mixing with
+readx_poll_timeout(). While the latter can be ever so slightly simpler,
+they are both complicated enough that it's better to unify on one
+approach only.
 
-The functional change is losing the exponentially growing sleep of
-wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
+While at it, better separate the handling of error returns from
+drm_dp_dpcd_readb() and the actual status byte. This is best achieved by
+inlining the read_fec_detected_status() function.
 
-Use an arbitrary constant 1 ms sleep instead. The timeout remains, being
-opregion defined, 50 ms by default, and 1500 ms at most.
-
+Cc: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_opregion.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 33 +++++++++---------------
+ 1 file changed, 12 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index 2b8538fcfd1d..0c3f190c4bfa 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -28,6 +28,7 @@
- #include <linux/acpi.h>
- #include <linux/debugfs.h>
- #include <linux/dmi.h>
-+#include <linux/iopoll.h>
- #include <acpi/video.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 0405396c7750..fc4587311607 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2339,34 +2339,25 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+ 		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
+ }
  
- #include <drm/drm_edid.h>
-@@ -355,10 +356,14 @@ static int swsci(struct intel_display *display,
- 	pci_write_config_word(pdev, SWSCI, swsci_val);
+-static int read_fec_detected_status(struct drm_dp_aux *aux)
+-{
+-	int ret;
+-	u8 status;
+-
+-	ret = drm_dp_dpcd_readb(aux, DP_FEC_STATUS, &status);
+-	if (ret < 0)
+-		return ret;
+-
+-	return status;
+-}
+-
+ static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
+ {
+ 	struct intel_display *display = to_intel_display(aux->drm_dev);
+ 	int mask = enabled ? DP_FEC_DECODE_EN_DETECTED : DP_FEC_DECODE_DIS_DETECTED;
+-	int status;
+-	int err;
++	u8 status = 0;
++	int ret, err;
  
- 	/* Poll for the result. */
--#define C (((scic = swsci->scic) & SWSCI_SCIC_INDICATOR) == 0)
--	if (wait_for(C, dslp)) {
-+#define C(__swsci) ((__swsci)->scic)
-+	ret = read_poll_timeout(C, scic,
-+				(scic & SWSCI_SCIC_INDICATOR) == 0,
-+				1000, dslp * 1000, false,
-+				swsci);
+-	err = readx_poll_timeout(read_fec_detected_status, aux, status,
+-				 status & mask || status < 0,
+-				 10000, 200000);
++	ret = read_poll_timeout(drm_dp_dpcd_readb, err,
++				err || (status & mask),
++				10 * 1000, 200 * 1000, false,
++				aux, DP_FEC_STATUS, &status);
+ 
+-	if (err || status < 0) {
++	/* Either can be non-zero, but not both */
++	ret = ret ?: err;
 +	if (ret) {
- 		drm_dbg(display->drm, "SWSCI request timed out\n");
--		return -ETIMEDOUT;
+ 		drm_dbg_kms(display->drm,
+-			    "Failed waiting for FEC %s to get detected: %d (status %d)\n",
+-			    str_enabled_disabled(enabled), err, status);
+-		return err ? err : status;
++			    "Failed waiting for FEC %s to get detected: %d (status 0x%02x)\n",
++			    str_enabled_disabled(enabled), ret, status);
 +		return ret;
  	}
  
- 	scic = (scic & SWSCI_SCIC_EXIT_STATUS_MASK) >>
+ 	return 0;
 -- 
 2.39.5
 
