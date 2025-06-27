@@ -2,61 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE25AEBE08
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 19:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC128AEBE7B
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 19:32:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6991D10E2AC;
-	Fri, 27 Jun 2025 17:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EEA010E1C1;
+	Fri, 27 Jun 2025 17:32:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="lLKFhWE7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DqS8cCGX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617C110E29F;
- Fri, 27 Jun 2025 17:03:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=BX8yP699mQd1hqQWYrl2/cTWYSKTaQhOnRx2XR4O0nI=; b=lLKFhWE7lu96o6X4WT3tH4Sf1O
- oFn+aopDUWdGLcdZZzN4QfYf4S6XDwKRYHArQn5ap3m58Et87mT4Ayt6ydcfEgKSJk9PEFzYHQGW/
- JMPMcvwErhnhXiakaH6uPHmYcq+T3F3YwECBJHYqoUiNPo9ymCBd1Ib/d9+WGAmCO0GI/fl3FtOmv
- +toLcyd8ZL6SW5pWju0H9RRNwMPb2ngciRiSRQuHslvf32Vy10QFJC1mkVGwPE+K86H2nT+LgoeKL
- 1nQzjkHMiGrUvnzfn32qPmJoVD+pIIBdxrgVJB1unlnK8fQDHJ9XR/SU0LsqA909wugZbwr1k3AbM
- 5BCG5tNw==;
-Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red
- Hat Linux)) id 1uVCTl-0000000EZN4-26cY;
- Fri, 27 Jun 2025 17:03:09 +0000
-Date: Fri, 27 Jun 2025 18:03:09 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: =?utf-8?B?6ZmI5rab5rab?= Taotao Chen <chentaotao@didiglobal.com>
-Cc: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>,
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "chentao325@qq.com" <chentao325@qq.com>,
- "frank.li@vivo.com" <frank.li@vivo.com>
-Subject: Re: [PATCH v3 4/4] ext4: support uncached buffered I/O
-Message-ID: <aF7OzbVwXqbJaLQA@casper.infradead.org>
-References: <20250627110257.1870826-1-chentaotao@didiglobal.com>
- <20250627110257.1870826-5-chentaotao@didiglobal.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4763510E1C1;
+ Fri, 27 Jun 2025 17:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751045553; x=1782581553;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=JnJoioaeQPUEUWJtCDCX9PdA9dB7so9HZ3moGzT2vTM=;
+ b=DqS8cCGXgx0HXArLeGYOEe72qThOTC1d2K0HO6Y6cZsnDJTbFAJovto1
+ 8y9mjC3xqJsku016WAe2JYyAsA7Vo6v/7ViZLFK72QHveSwqO8KNdovrH
+ ZVyosd5IOH9a6zktJ8PaF1SA33Gr0yPt6Wu3qhjBrKnaJHtp9T85tN1sS
+ A5DLh4A3n4ssGwOo8x97/66PiB1v3u6WPu8C3XQvptcFb3uxpZnFeBtEa
+ SrrA/Pu7Ix6ou31sLydyfLGNfLKq6yL3P0yzC/EqfNhaLwsil94vwfuNA
+ cPpfgg9i0bICKJyXDP7V2yCh8DPEFg3TMT6ocDzVkvsEJEPmYqsd44cNt g==;
+X-CSE-ConnectionGUID: 6AhG+uSwQECiwee6pqZShQ==
+X-CSE-MsgGUID: jEvQijrJRzmB1wlJsPHmWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11477"; a="53516291"
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="53516291"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jun 2025 10:32:33 -0700
+X-CSE-ConnectionGUID: 0AbqSp5kS12vgkd2n9sVNw==
+X-CSE-MsgGUID: tko0eDXqQTG94z9BaX4ZbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,271,1744095600"; d="scan'208";a="158591632"
+Received: from opintica-mobl1 (HELO stinkbox) ([10.245.245.146])
+ by orviesa005.jf.intel.com with SMTP; 27 Jun 2025 10:32:29 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Jun 2025 20:32:28 +0300
+Date: Fri, 27 Jun 2025 20:32:28 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>,
+ Dejin Zheng <zhengdejin5@gmail.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
+ readx_poll_timeout()
+Message-ID: <aF7VrBSZQVlaSN6-@intel.com>
+References: <cover.1751023767.git.jani.nikula@intel.com>
+ <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
+ <aF6UOCLdO0fGHGA9@intel.com>
+ <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
+ <aF67cxjlfWiWMx-4@intel.com>
+ <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250627110257.1870826-5-chentaotao@didiglobal.com>
+In-Reply-To: <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +80,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jun 27, 2025 at 11:03:13AM +0000, é™ˆæ¶›æ¶› Taotao Chen wrote:
-> +++ b/fs/ext4/inode.c
-> @@ -1270,6 +1270,9 @@ static int ext4_write_begin(const struct kiocb *iocb,
->  	if (unlikely(ret))
->  		return ret;
->  
-> +	if (iocb->ki_flags & IOCB_DONTCACHE)
-> +		fgp |= FGP_DONTCACHE;
+On Fri, Jun 27, 2025 at 07:26:22PM +0300, Jani Nikula wrote:
+> On Fri, 27 Jun 2025, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> > On Fri, Jun 27, 2025 at 04:34:23PM +0300, Jani Nikula wrote:
+> >> Internally the macro has:
+> >> 
+> >> #define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+> >> 				sleep_before_read, args...) \
+> >> 
+> >> ...
+> >> 
+> >> 		(val) = op(args); \
+> >> 
+> >> So you do need to provide an lvalue val, and you need to be able to add
+> >> () after op. I think GCC allows not passing varargs. IOW you'd need to
+> >> implement another macro (which could be used to implement the existing
+> >> one, but not the other way round).
+> >
+> > Just get rid of the 'args' and 'val' and it'll work just fine.
+> > Then it'll be almost identical to wait_for() (basically just missing the
+> > increasing backoff stuff).
+> >
+> > AFAICS this thing was originally added just for reading a single
+> > register and checking some bit/etc, so the name made some sense.
+> > But now we're abusing it for all kinds of random things, so even
+> > the name no longer makes that much sense.
+> 
+> Yeah, evolution not intelligent design.
+> 
+> > So I think just something like this would work fine for us:
+> 
+> LGTM, with the _atomic version for completeness.
 
-I think this needs to be:
+The other differences between wait_for() and read_poll_timeout()
+I see are:
 
-	if (iocb && iocb->ki_flags & IOCB_DONTCACHE)
+- read_poll_timeout() always evaluates 'cond' at least twice.
+  For some things I think it would make sense to omit 'op'
+  entirely so we don't have to introduce pointless variables
+  in the caller (eg. poll_timeout(, pipe_scanline_is_moving(...), ...))
 
-because it's legit to call write_begin with a NULL argument.  The
-'file' was always an optional argument, and we should preserve that
-optionality with this transformation.
+  but the double evaluation of 'cond' there is not desirable.
+  Should be an easy change to make read_poll_timeout() more
+  like wait_for() and stash the return value into a variable.
 
-I wonder if it's worth abstracting some of this boilerplate.  Something
-like:
+- ktime_get() vs. ktime_get_raw(). I suppose it doesn't really
+  matter too much which is used?
 
-struct folio *write_begin_get_folio(iocb, mapping, index, len)
-{
-	fgf_t fgflags = FGP_WRITEBEGIN;
+- 'op' and 'cond' are evaluated twice during the same iteration of
+  the loop for the timeout case in read_poll_timeout(). wait_for()
+  is a bit more optimal here by sampling the timeout first, then
+  doing the 'op'+'cond', and finally checking whether the timeout
+  happened.
 
-	if (iocb && iocb->ki_flags & IOCB_DONTCACHE)
-		fgflags |= FGP_DONTCACHE;
-	fgflags |= fgf_set_order(len);
+  I suppose optimizing the timeout case isn't very critical. Though
+  the code would be a bit less repetitive, with the caveat that we
+  need an extra variable for the timeout result.
 
-	return __filemap_get_folio(mapping, index, fgflags,
-			mapping_gfp_mask(mapping));
-}
+- wait_for() has an explicit compiler barrier to make sure 'cond'
+  and the timeout evaluation aren't reordered. Though I think it's
+  in the wrong spot for the cases where 'op' is the one that samples
+  the thing that 'cond' checks.
 
+  However I *think* ktime_get() being a function call should be enough
+  to prevent that reordering from happening?
+
+I guess I'll see what I can cook up to make this stuff
+more agreeable...
+
+-- 
+Ville Syrjälä
+Intel
