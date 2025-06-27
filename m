@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA51AEB6A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:37:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD909AEB6A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Jun 2025 13:37:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9353710E9EB;
-	Fri, 27 Jun 2025 11:37:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B31110E9F0;
+	Fri, 27 Jun 2025 11:37:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KLTmxrDM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bDsCc58u";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6160910E9CE;
- Fri, 27 Jun 2025 11:37:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A970A10E9ED;
+ Fri, 27 Jun 2025 11:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751024255; x=1782560255;
+ t=1751024259; x=1782560259;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pS5Ov4k/IDdw/CYT6bW2eIBxHIyBc+ghhP47swaG/OU=;
- b=KLTmxrDMQlmbJFRBqDvNxy5gq+2MxH8TZYqoYCKerxKEHNO7/KUQikpb
- Uoz5QCtynpnwmTYmh+ya4hna7VpoCe+fr2B4NLGOkT+64OqeT7p2HB9Hp
- odVAIcitRKrNrfgL/Nvq0G5yjBCdSNn+YoDoXaF/3jXjjXMy5O/pjI6B+
- 7rwrXwud98YfbSY4uQNRgE92cOWHvBNnoMm1sckwQCfo4cHcymkdKYkAf
- 4ORSl9uGO+IhHbUbG0MTQUajUodPb+F3Be+GXRATVZMsgYwm807fh62G0
- TnV2a4Ra7phoF6aq+HMDLrFyB07mDECiZsVvh1pgHYM+ad277QP65+qcd g==;
-X-CSE-ConnectionGUID: W+juIL8GQZSbopm8bjjlQQ==
-X-CSE-MsgGUID: YEfz+49yR2OOVqAdbqsSyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53460030"
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53460030"
+ bh=27D+kErQhakB2jnhMiZ27ggqdCYYEln9ii80r6zqSZ4=;
+ b=bDsCc58uFj+3ZAngsYHukulqVpCppDJo47j+KJGUqAXYWvPnbLjb1lgT
+ hdtOwOgovrueKBroHUY43WHNHlwFNzNXjzeIEQZ2ei8a1E4rVrN+NaDXU
+ O4IUk8xWnUlZxVB3DZT7Qk+Nnk0J4a7dvfiZFc6zO0AisUfpfuKJbzwmC
+ T4v8wrKnBwZ3tGE+8GQhND9cesAmlUpqcVHPTxM2BvI3UJkGRFzOATJSY
+ wFgQTKqPph6xS/N7wdjP/2eZmFuIv2xIPG9QM6Brn0b/tOtl+HLIS7fkI
+ sEbSr/dNLu30dv7qScSDMTfi8+mxbk0XafJ2i//uovJOspVSRwX6nE8Sy A==;
+X-CSE-ConnectionGUID: erVBNb23RiuDT3IiWd8qEw==
+X-CSE-MsgGUID: cHa4/IB+TCW+577o3fDKcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11476"; a="53460032"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="53460032"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:37:35 -0700
-X-CSE-ConnectionGUID: xU/AVfMgS+KW4imIlBFEhQ==
-X-CSE-MsgGUID: HiPaGg/iTm2+b+2MhBNqgQ==
+ 27 Jun 2025 04:37:39 -0700
+X-CSE-ConnectionGUID: OHtz98HYReaFUaT45g/G4w==
+X-CSE-MsgGUID: e31e1gQgS9mmg5EdezLjQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="157071335"
+X-IronPort-AV: E=Sophos;i="6.16,270,1744095600"; d="scan'208";a="157071357"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.146])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jun 2025 04:37:32 -0700
+ 27 Jun 2025 04:37:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 12/18] drm/i915/dp: use generic read_poll_timeout() instead of
- wait_for() in link training
-Date: Fri, 27 Jun 2025 14:36:26 +0300
-Message-Id: <6812af50b0d5d2620c996522645f144b4a984db9.1751023767.git.jani.nikula@intel.com>
+Subject: [PATCH 13/18] drm/i915/vblank: use generic read_poll_timeout()
+ instead of wait_for()
+Date: Fri, 27 Jun 2025 14:36:27 +0300
+Message-Id: <ae592521daa9955adfb65b592c6f87674b5ab512.1751023767.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1751023767.git.jani.nikula@intel.com>
 References: <cover.1751023767.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,65 +78,43 @@ The functional change is losing the exponentially growing sleep of
 wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
 
 Use an arbitrary constant 500 us sleep instead. The timeout remains at
-500 ms.
+100 ms.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_dp_link_training.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a479b63112ea..d1d11de366b0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -22,6 +22,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 70ba7aa26bf4..98ab7f03ec8d 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2022-2023 Intel Corporation
   */
  
- #include <linux/debugfs.h>
 +#include <linux/iopoll.h>
++
+ #include <drm/drm_vblank.h>
  
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_print.h>
-@@ -1127,6 +1128,7 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
+ #include "i915_drv.h"
+@@ -492,9 +494,15 @@ static void wait_for_pipe_scanline_moving(struct intel_crtc *crtc, bool state)
  {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	enum pipe pipe = crtc->pipe;
++	bool is_moving;
 +	int ret;
  
- 	intel_dp->link.active = true;
- 
-@@ -1134,9 +1136,13 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 	intel_dp_program_link_training_pattern(intel_dp, crtc_state, DP_PHY_DPRX,
- 					       DP_TRAINING_PATTERN_DISABLE);
- 
--	if (intel_dp_is_uhbr(crtc_state) &&
--	    wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
--		lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
-+	if (intel_dp_is_uhbr(crtc_state)) {
-+		ret = read_poll_timeout(intel_dp_128b132b_intra_hop, ret,
-+					ret == 0,
-+					500, 500 * 1000, false,
-+					intel_dp, crtc_state);
-+		if (ret)
-+			lt_dbg(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clearing\n");
- 	}
- 
- 	intel_hpd_unblock(encoder);
-@@ -1574,8 +1580,13 @@ intel_dp_128b132b_link_train(struct intel_dp *intel_dp,
- 			     int lttpr_count)
- {
- 	bool passed = false;
-+	int ret;
- 
--	if (wait_for(intel_dp_128b132b_intra_hop(intel_dp, crtc_state) == 0, 500)) {
-+	ret = read_poll_timeout(intel_dp_128b132b_intra_hop, ret,
-+				ret == 0,
-+				500, 500 * 1000, false,
-+				intel_dp, crtc_state);
-+	if (ret) {
- 		lt_err(intel_dp, DP_PHY_DPRX, "128b/132b intra-hop not clear\n");
- 		goto out;
- 	}
+ 	/* Wait for the display line to settle/start moving */
+-	if (wait_for(pipe_scanline_is_moving(display, pipe) == state, 100))
++	ret = read_poll_timeout(pipe_scanline_is_moving, is_moving,
++				is_moving == state,
++				500, 100 * 1000, false,
++				display, pipe);
++	if (ret)
+ 		drm_err(display->drm,
+ 			"pipe %c scanline %s wait timed out\n",
+ 			pipe_name(pipe), str_on_off(state));
 -- 
 2.39.5
 
