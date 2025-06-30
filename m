@@ -2,75 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FB8AEDFA7
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 15:54:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B08BAEDCAD
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 14:25:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D12710E45E;
-	Mon, 30 Jun 2025 13:54:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF1BD10E434;
+	Mon, 30 Jun 2025 12:25:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=didiglobal.com header.i=@didiglobal.com header.b="ehTRUkDp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIWlVYly";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx10.didiglobal.com (mx10.didiglobal.com [111.202.70.125])
- by gabe.freedesktop.org (Postfix) with SMTP id B3C1810E9CE;
- Fri, 27 Jun 2025 11:03:37 +0000 (UTC)
-Received: from mail.didiglobal.com (unknown [10.79.71.38])
- by mx10.didiglobal.com (MailData Gateway V2.8.8) with ESMTPS id 69C23180FFD57A;
- Fri, 27 Jun 2025 19:02:31 +0800 (CST)
-Received: from BJ03-ACTMBX-08.didichuxing.com (10.79.71.35) by
- BJ03-ACTMBX-02.didichuxing.com (10.79.71.38) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 27 Jun 2025 19:03:14 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
- BJ03-ACTMBX-08.didichuxing.com (10.79.71.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 27 Jun 2025 19:03:13 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e]) by
- BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e%7]) with
- mapi id 15.02.1748.010; Fri, 27 Jun 2025 19:03:13 +0800
-X-MD-Sfrom: chentaotao@didiglobal.com
-X-MD-SrcIP: 10.79.71.38
-From: =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-To: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "willy@infradead.org"
- <willy@infradead.org>, "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
- <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>
-CC: "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-doc@vger.kernel.org"
- <linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "chentao325@qq.com" <chentao325@qq.com>,
- "frank.li@vivo.com" <frank.li@vivo.com>,
- =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-Subject: [PATCH v3 4/4] ext4: support uncached buffered I/O
-Thread-Topic: [PATCH v3 4/4] ext4: support uncached buffered I/O
-Thread-Index: AQHb51MTaMwhJCsRP0eEgBCVUoPCoQ==
-Date: Fri, 27 Jun 2025 11:03:13 +0000
-Message-ID: <20250627110257.1870826-5-chentaotao@didiglobal.com>
-In-Reply-To: <20250627110257.1870826-1-chentaotao@didiglobal.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.79.64.102]
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9BAC10E437;
+ Mon, 30 Jun 2025 12:25:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751286314; x=1782822314;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B17Lz6iS+XNf2+SXhmDAR++RiOz8OiNUqhD1qPqv2+M=;
+ b=kIWlVYlyPzlm9dDrMqmVJ4mcyZMPZQby4TDE1iJhuwiJv8bpH3y24d9V
+ FmNEQ7rfQe1KoYHY9HIl4RQc3tEJIKV1WAIAXxfJ7qhqkDjIlAYPAlDNB
+ Pi/fKdzCYUCDfzd1OeP2DhjcPaeI2tBEunNxzzrhT+UKP/cxAR/MZ7nvc
+ uCsdIf1ZhKZeSCHYPc9cE1HsS+R5oKpxSrLUsyolrZQ4nl/oT5ieBk/uu
+ DPULPn83kzhGXANpnRdTRHvd4X/T41kGAwUJS0yZ41Rkk+WlcEDU44qKh
+ Jqp1pqb+HlvRDOlqfTRnpRubDGLiO2utv86ytFkyv3QLGTq9TRxUh6Hul A==;
+X-CSE-ConnectionGUID: pnYBDmF9QLCywsm14u6Myw==
+X-CSE-MsgGUID: QEPX3x79Q42renXt3I8/5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="57187214"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="57187214"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 05:25:13 -0700
+X-CSE-ConnectionGUID: FO7gbKeJQ8uQmBsLSA2ZGA==
+X-CSE-MsgGUID: FwZHbGnYT6OnhpqmZMAPwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="157468848"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2025 05:25:08 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, arun.r.murthy@intel.com
+Subject: [PATCH]  drm/i915/display: Optimize panel power-on  wait time
+Date: Mon, 30 Jun 2025 17:53:39 +0530
+Message-ID: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=didiglobal.com;
- s=2025; t=1751022173;
- bh=4rXllrq3i00vA/X/MCfjVxkg+yARKY9+OylzC6mFE+c=;
- h=From:To:CC:Subject:Date:Message-ID:Content-Type;
- b=ehTRUkDpCbEGkhMZpTTEM7DPSDb/UWxpKKgQP/Vy9sHFH/sbmH4ptirGdI2TC8yxO
- mZHpZNlUxGBa0YCbHJ9au4BOMGEAd3oFTVzILrWnaR5BANeKmYT+Ta2GlMcEnb/u4G
- uyBuOmOz7hUFR4dKovFjwFMs6SSIi6KRO/Nb5knw=
-X-Mailman-Approved-At: Mon, 30 Jun 2025 13:54:14 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,35 +66,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGFvdGFvIENoZW4gPGNoZW50YW90YW9AZGlkaWdsb2JhbC5jb20+DQoNClNldCBGT1Bf
-RE9OVENBQ0hFIGluIGV4dDRfZmlsZV9vcGVyYXRpb25zIHRvIGRlY2xhcmUgc3VwcG9ydCBmb3IN
-CnVuY2FjaGVkIGJ1ZmZlcmVkIEkvTy4NCg0KVG8gaGFuZGxlIHRoaXMgZmxhZywgYWRkIHByb2Nl
-c3NpbmcgZm9yIElPQ0JfRE9OVENBQ0hFIGluDQpleHQ0X3dyaXRlX2JlZ2luKCkgYW5kIGV4dDRf
-ZGFfd3JpdGVfYmVnaW4oKSBieSBwYXNzaW5nIEZHUF9ET05UQ0FDSEUNCnRvIHBhZ2UgY2FjaGUg
-bG9va3Vwcy4NCg0KUGFydCBvZiBhIHNlcmllcyByZWZhY3RvcmluZyBhZGRyZXNzX3NwYWNlX29w
-ZXJhdGlvbnMgd3JpdGVfYmVnaW4gYW5kDQp3cml0ZV9lbmQgY2FsbGJhY2tzIHRvIHVzZSBzdHJ1
-Y3Qga2lvY2IgZm9yIHBhc3Npbmcgd3JpdGUgY29udGV4dCBhbmQNCmZsYWdzLg0KDQpTaWduZWQt
-b2ZmLWJ5OiBUYW90YW8gQ2hlbiA8Y2hlbnRhb3Rhb0BkaWRpZ2xvYmFsLmNvbT4NCi0tLQ0KIGZz
-L2V4dDQvZmlsZS5jICB8IDMgKystDQogZnMvZXh0NC9pbm9kZS5jIHwgNiArKysrKysNCiAyIGZp
-bGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KDQpkaWZmIC0tZ2l0
-IGEvZnMvZXh0NC9maWxlLmMgYi9mcy9leHQ0L2ZpbGUuYw0KaW5kZXggMjFkZjgxMzQ3MTQ3Li4y
-NzRiNDFhNDc2YzggMTAwNjQ0DQotLS0gYS9mcy9leHQ0L2ZpbGUuYw0KKysrIGIvZnMvZXh0NC9m
-aWxlLmMNCkBAIC05NzcsNyArOTc3LDggQEAgY29uc3Qgc3RydWN0IGZpbGVfb3BlcmF0aW9ucyBl
-eHQ0X2ZpbGVfb3BlcmF0aW9ucyA9IHsNCiAJLnNwbGljZV93cml0ZQk9IGl0ZXJfZmlsZV9zcGxp
-Y2Vfd3JpdGUsDQogCS5mYWxsb2NhdGUJPSBleHQ0X2ZhbGxvY2F0ZSwNCiAJLmZvcF9mbGFncwk9
-IEZPUF9NTUFQX1NZTkMgfCBGT1BfQlVGRkVSX1JBU1lOQyB8DQotCQkJICBGT1BfRElPX1BBUkFM
-TEVMX1dSSVRFLA0KKwkJCSAgRk9QX0RJT19QQVJBTExFTF9XUklURSB8DQorCQkJICBGT1BfRE9O
-VENBQ0hFLA0KIH07DQogDQogY29uc3Qgc3RydWN0IGlub2RlX29wZXJhdGlvbnMgZXh0NF9maWxl
-X2lub2RlX29wZXJhdGlvbnMgPSB7DQpkaWZmIC0tZ2l0IGEvZnMvZXh0NC9pbm9kZS5jIGIvZnMv
-ZXh0NC9pbm9kZS5jDQppbmRleCAwOGMxMDIwMGQ2ZmUuLjYzOWUyZTIzMWM0YiAxMDA2NDQNCi0t
-LSBhL2ZzL2V4dDQvaW5vZGUuYw0KKysrIGIvZnMvZXh0NC9pbm9kZS5jDQpAQCAtMTI3MCw2ICsx
-MjcwLDkgQEAgc3RhdGljIGludCBleHQ0X3dyaXRlX2JlZ2luKGNvbnN0IHN0cnVjdCBraW9jYiAq
-aW9jYiwNCiAJaWYgKHVubGlrZWx5KHJldCkpDQogCQlyZXR1cm4gcmV0Ow0KIA0KKwlpZiAoaW9j
-Yi0+a2lfZmxhZ3MgJiBJT0NCX0RPTlRDQUNIRSkNCisJCWZncCB8PSBGR1BfRE9OVENBQ0hFOw0K
-Kw0KIAl0cmFjZV9leHQ0X3dyaXRlX2JlZ2luKGlub2RlLCBwb3MsIGxlbik7DQogCS8qDQogCSAq
-IFJlc2VydmUgb25lIGJsb2NrIG1vcmUgZm9yIGFkZGl0aW9uIHRvIG9ycGhhbiBsaXN0IGluIGNh
-c2UNCkBAIC0zMDY4LDYgKzMwNzEsOSBAQCBzdGF0aWMgaW50IGV4dDRfZGFfd3JpdGVfYmVnaW4o
-Y29uc3Qgc3RydWN0IGtpb2NiICppb2NiLA0KIAkJCXJldHVybiAwOw0KIAl9DQogDQorCWlmIChp
-b2NiLT5raV9mbGFncyAmIElPQ0JfRE9OVENBQ0hFKQ0KKwkJZmdwIHw9IEZHUF9ET05UQ0FDSEU7
-DQorDQogcmV0cnk6DQogCWZncCB8PSBmZ2Zfc2V0X29yZGVyKGxlbik7DQogCWZvbGlvID0gX19m
-aWxlbWFwX2dldF9mb2xpbyhtYXBwaW5nLCBpbmRleCwgZmdwLA0KLS0gDQoyLjM0LjENCg==
+ The current wait_panel_on() uses intel_de_wait() with a long timeout
+ (5000ms), which is suboptimal on Xe platforms where the underlying
+ xe_mmio_wait32() employs an exponential backoff strategy. This leads
+ to unnecessary delays during resume or power-on  when the panel becomes
+ ready earlier than the full timeout.
+
+ This patch splits the total wait time into two pases
+    - First wait for the typical panel-on time(180ms)
+    - If panel is not ready , continue polling in short 20ms intervals
+      until the maximum timeout (5000ms) is reached
+
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_pps.c | 61 +++++++++++++++++++++++-
+ 1 file changed, 60 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index bff81fb5c316..57a062c8038d 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -598,8 +598,67 @@ void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
+ #define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
+ #define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
+ 
++#define PANEL_TYPICAL_ON_TIME_MS		(180)
++#define PANEL_MAXIMUM_ON_TIME_MS		(5000)
++
+ static void intel_pps_verify_state(struct intel_dp *intel_dp);
+ 
++/*
++ * Panel power-on typically completes within ~200ms. Using a large timeout
++ * (5000ms) with intel_de_wait() results in unnecessary delays,
++ * especially under Xe, where xe_mmio_wait32() uses an exponential backoff.
++ *
++ * To optimize resume and power-on latency, we first wait for the typical
++ * completion window, then perform short polling loops thereafter.
++ * This reduces worst-case latency while still ensuring correctness.
++ */
++static void wait_panel_on_status(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	i915_reg_t pp_stat_reg, pp_ctrl_reg;
++	u32 mask = IDLE_ON_MASK;
++	u32 value = IDLE_ON_VALUE;
++	int elapsed  = PANEL_TYPICAL_ON_TIME_MS;
++
++	lockdep_assert_held(&display->pps.mutex);
++
++	intel_pps_verify_state(intel_dp);
++
++	pp_stat_reg = _pp_stat_reg(intel_dp);
++	pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
++
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] %s mask: 0x%08x value: 0x%08x PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
++		    dig_port->base.base.base.id, dig_port->base.base.name,
++		    pps_name(intel_dp),
++		    mask, value,
++		    intel_de_read(display, pp_stat_reg),
++		    intel_de_read(display, pp_ctrl_reg));
++
++	/* Wait for typical panel on time first */
++	if (intel_de_wait(display, pp_stat_reg, mask, value, PANEL_TYPICAL_ON_TIME_MS) == 0)
++		goto panel_wait_complete;
++
++	/* Wait for maxtime in 20ms intervals */
++	while (elapsed < PANEL_MAXIMUM_ON_TIME_MS) {
++		if (intel_de_wait(display, pp_stat_reg, mask, value, 20) == 0)
++			goto panel_wait_complete;
++
++		elapsed += 20;
++	}
++
++	drm_err(display->drm,
++		"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
++		dig_port->base.base.base.id, dig_port->base.base.name,
++		pps_name(intel_dp),
++		intel_de_read(display, pp_stat_reg),
++		intel_de_read(display, pp_ctrl_reg));
++
++panel_wait_complete:
++	drm_dbg_kms(display->drm, "Wait complete\n");
++}
++
+ static void wait_panel_status(struct intel_dp *intel_dp,
+ 			      u32 mask, u32 value)
+ {
+@@ -642,7 +701,7 @@ static void wait_panel_on(struct intel_dp *intel_dp)
+ 		    "[ENCODER:%d:%s] %s wait for panel power on\n",
+ 		    dig_port->base.base.base.id, dig_port->base.base.name,
+ 		    pps_name(intel_dp));
+-	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE);
++	wait_panel_on_status(intel_dp);
+ }
+ 
+ static void wait_panel_off(struct intel_dp *intel_dp)
+-- 
+2.43.0
+
