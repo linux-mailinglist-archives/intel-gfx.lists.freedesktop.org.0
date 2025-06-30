@@ -2,89 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4270BAEE890
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 22:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7564AEEA14
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 00:20:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA3E510E00D;
-	Mon, 30 Jun 2025 20:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF7610E4CE;
+	Mon, 30 Jun 2025 22:20:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eBcm0c0S";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lrMHWKGv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C784910E00D;
- Mon, 30 Jun 2025 20:52:21 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3a536ecbf6fso2865542f8f.2; 
- Mon, 30 Jun 2025 13:52:21 -0700 (PDT)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+ [209.85.210.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32B5E10E121;
+ Mon, 30 Jun 2025 22:20:06 +0000 (UTC)
+Received: by mail-pf1-f178.google.com with SMTP id
+ d2e1a72fcca58-747fc7506d4so2332357b3a.0; 
+ Mon, 30 Jun 2025 15:20:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751316740; x=1751921540; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=AVzYd4Tl2gpultj1nN0TR0VicNkFT38l1p0mf0zbhn8=;
- b=eBcm0c0SgF8RQ1E1u1l8kEBeHxKBqB5LVAAvyZwo4SrWcfhG6cto0BeZbH3z8w8tzZ
- bUnsKgCo9K/sG05FUQJLkgUliifDkpUSA4xYEwaZJFsOMi5zKA57LX+ciGmAIWpLqcen
- 9VxpzPtVFnWO7bwFOheYhp5Xp+A4LYUuo7ZCzrQBgGtrUeNLkiTNp4Cs0IodbYOxxeWx
- tISYkgs/tNlrRb/VdbOGAE5l9W/wPPJ4jep5ODvH4i+HeLzjIGexONZL6iR7HXyzQQij
- RtpmXzc+BFQEh5LLpY9nGEpV7BlAGXn8IDj+jGipCEvI2vdoccOVrK1Bd8KS3gQwRThq
- IPlw==
+ d=gmail.com; s=20230601; t=1751322006; x=1751926806; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=NHiuZMzfMwC6+R9h6OiCUTROtFSvuO1j8HDLI3Uql14=;
+ b=lrMHWKGvhuvz84FHtdXsRgm7DWCL2hIEoyQcEiHeksYL288FJiH87yqJzXByn3nQJO
+ 90Ya1dNed85B6o4JVjMANwFkUlXZaEscvHB9RVB/YvF3ukC1sjpgjASBnmJWU3guBRej
+ WOfEVzah7zzGFGh8xDO2Qw3/effnmGD83QEgOVj26UJYiVrr9C5HQqlKSvwLr6BydwU0
+ HGsUrrzV6mGQ+xbobHGsEhHLAHhR9u10SU9zSDahjtAZugI3ORpH1YKmFqzSUaG0c37U
+ K1+Rki8b/tN1h7H+mCuuzP4sHe4nFBLULqFTV9vM4us+2INxij1YTQeGNxRw83KNIqx4
+ L8mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751316740; x=1751921540;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=AVzYd4Tl2gpultj1nN0TR0VicNkFT38l1p0mf0zbhn8=;
- b=uAlG4YSHgqk/kZp94B4OcCuh/mX+Mq7JHIdTg2ccGm7+TTjgJQV9gjAhmnu3h1rkrw
- LE0S4heLbBVeav+Xu+gcWeQFxzXlP+4+rkVRpNjP11nWY54Y0rHA2XQYoHMyh2W56nMG
- xGWXgYJiTXKELFIgEpWCcb1PHTQzEvJgCyV3U+PLW+sPM+j8qvp55yycxoAxgdz3bBnF
- ch7gATJ2fumA6HRdV1ew2zGeye0K1bxPxoLc9UMn1QKrmGM7Ww0FKxWtrbv7SshRfQKP
- nD1DVxAUmnj3X6NVCJYNi0XhbDJgSQGpwhbfIi7mu6P0QLy7TQQX6RLe462jqYPRrQud
- JqiA==
+ d=1e100.net; s=20230601; t=1751322006; x=1751926806;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=NHiuZMzfMwC6+R9h6OiCUTROtFSvuO1j8HDLI3Uql14=;
+ b=sPgqqvmicuoHVo2uwf2F0p5eMmV6TOtgAZUlc/k4kudIuzhff1Hd7W1TitYCKbtcT8
+ CaMhk6q0aa/Ftd12T1UbfU6mwVKKVz+m8LjNtIkC2eX3x/Vn7jXRcBFd7kU/LNySztBL
+ FOX9j9j9WgbbQiWIVQkpWSNakbaDZ/cTsp7wJD45LitrF6hK93Uzw0VtFCg9/TTL34l1
+ sipTuZRri0ttbPO6k+RbWb/9iW7enUfCuHQKF1QVr+88SxvpKstH0Qqv6dyvQVR7a+V9
+ aoDsVlmmQjdcDLFOjTUTEu4wGr5I30FHxeaOy6cDck7nVQK3GtaCKlIuBPn3nRVWkYyy
+ tf5w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV7yU6s1WuvYGJCJPuSwjCK/KsBM0xrgvBAZhRYYvEGFu++xMda8E8tHL5fZdty0+hYJ9pkNe3ud24=@lists.freedesktop.org,
- AJvYcCVVlXQgfJQ/TBHYr60e1+r1gMtLvfwmrrcjoQOZRIUAvbC1GrPZXLEFCbkVfL5BKjQnczWmlRE+snw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwOwqbZupAtQGj/5VClPjLFtD+l8+t8GxpwiWtr6uYuXeSov1iC
- h5cN4BMWwf89d5scvPh3RyU2c+u2GnpbOFPLqUjzcaSm87WXDbdFb/Fg
-X-Gm-Gg: ASbGncu3q/U7Igc/zty3nKIabt9eEUnp6icsjubcqLYWUMXcjhCNjg/s3hctOpVcYFt
- Rz5wtFG6qZ9dV7H/3wjy1pOVW/GilbI4RwpJt7OVZBlrmylzqNIN2oI/xqG5aBS0uMHEH84wfoA
- Cl+DCpn3223LYOZhPqyrkNpOdSi18nIMWgSdm2lhyXoddRDi1AjbVq4artUZaBIBN2MtzViIHMJ
- eiCmvb4ipe4mGBtKBuQLpMs4eItG8hnWXaCMmGHrTM9ZQZL0Y1MWE/pljiZRg79hCq8AK15zO7N
- csvDHGdVpaTFep9GyPHnqupWxuMWvt+eaPFUM2Wq0ihdobwtVByAPj/P1/0isAcIz6dZhpH+moq
- 4WDv9aZSJ83o0/lVubA==
-X-Google-Smtp-Source: AGHT+IEFvhQ3DTRLYUvObs/6Q4XMPW+98gFdO8K5H8wccOv0hl+MsyFbeGywTiTBWhgruq8DPrYGvg==
-X-Received: by 2002:a05:6000:4404:b0:3a5:2ec5:35ba with SMTP id
- ffacd0b85a97d-3a8ffbd4bc3mr7478685f8f.30.1751316739739; 
- Mon, 30 Jun 2025 13:52:19 -0700 (PDT)
-Received: from pumpkin (host-92-21-58-28.as13285.net. [92.21.58.28])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4538a40766csm147053875e9.32.2025.06.30.13.52.19
+ AJvYcCViJlz9H7DKiC1SoRG8fa27iRT9CdIumBhRzj7r3FnSLLFDO6wyMSg4WeNPPDzuOmCrTjLrvQrZYls=@lists.freedesktop.org,
+ AJvYcCXbybIP4lWKpRIg3mPOtbPfgmO8gPXHCT9nokCCZLGEVrZM4uFGITG82F/uTi3jLX0WnDJ7jDWnPlK7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx3OR1N5jHnFFZ4/8LjmeaUN+h4q734oR/7nXLjNuuyCMl1YDiF
+ So89/fWIIZ//rCj7LbDXNt5hvVDgpjzWj6lYxg/ImXZlQFrbSyJczQoFDQ8iwA==
+X-Gm-Gg: ASbGncu+LE5su7EVbLb/zAlq6awnu98TlJalHN4nBPkGipgPBMYsEBpU+NI9GmVWE1E
+ Gm5mJeSDefegJ7u/TdBrh0fUwtZSwdn1PNvEH5JDHXCSY1Nddxej5yEA8UHsMtKIQ7MCB/XAbK4
+ dmsa3uLmI/ZlIsuITON1yxtOWDuDtgjg962MgD2e7w/9zJ9nFpZnuJOBbm/L9AOA/LyFAyZPkGr
+ dI4M6irrN1n3m3EqyFQNZZaMiV7qESBQmWfTd5UsHtlFoUvTkH6fj2nL7MdVMvrqBen0w3mVdvj
+ z2RMdhzExsl6wTUyD3lxtydSqPPcNjJpKY8RaRV+I+AFCu73qKsiKN6UvCFFkw==
+X-Google-Smtp-Source: AGHT+IGBsxbNKvaAB+y/2y328Um5BPe7Wjg0g4g9kDG4VOXg1/QRqgyAXH7egABiIMDNmkwj7hYcHg==
+X-Received: by 2002:a17:903:32c1:b0:235:e71e:a37b with SMTP id
+ d9443c01a7336-23ac4633ccbmr244404305ad.34.1751322005549; 
+ Mon, 30 Jun 2025 15:20:05 -0700 (PDT)
+Received: from localhost ([216.228.127.130]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23acb3b7d97sm90566615ad.172.2025.06.30.15.20.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Jun 2025 13:52:19 -0700 (PDT)
-Date: Mon, 30 Jun 2025 21:52:18 +0100
-From: David Laight <david.laight.linux@gmail.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Imre Deak
- <imre.deak@intel.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Matt
- Wagantall <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 18/18] drm/i915/ddi: prefer read_poll_timeout() over
- readx_poll_timeout()
-Message-ID: <20250630215218.1aa32a1f@pumpkin>
-In-Reply-To: <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
-References: <cover.1751023767.git.jani.nikula@intel.com>
- <59bcc15dd4debf00ee0c7b430a3b701462ac9de7.1751023767.git.jani.nikula@intel.com>
- <aF6UOCLdO0fGHGA9@intel.com>
- <f922ec0a42855e17228d3f22d7291b389abe2df0@intel.com>
- <aF67cxjlfWiWMx-4@intel.com>
- <1b5d73351eda2d86437a597673bd892baf90fafa@intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+ Mon, 30 Jun 2025 15:20:04 -0700 (PDT)
+Date: Mon, 30 Jun 2025 18:20:02 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
+ David Laight <David.Laight@aculab.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v2 0/3] bits: Split asm and non-asm GENMASK*() and unify
+ definitions
+Message-ID: <aGMNhk0FrcQGcC5P@yury>
+References: <20250609-consolidate-genmask-v2-0-b8cce8107e49@wanadoo.fr>
+ <0e5988e2-eb98-4931-86b8-dcbb8b4cb605@wanadoo.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0e5988e2-eb98-4931-86b8-dcbb8b4cb605@wanadoo.fr>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,98 +104,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 27 Jun 2025 19:26:22 +0300
-Jani Nikula <jani.nikula@intel.com> wrote:
+On Mon, Jun 30, 2025 at 11:07:43PM +0900, Vincent Mailhol wrote:
+> Hi Yury,
 
-> On Fri, 27 Jun 2025, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.c=
-om> wrote:
-> > On Fri, Jun 27, 2025 at 04:34:23PM +0300, Jani Nikula wrote: =20
-> >> Internally the macro has:
-> >>=20
-> >> #define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
-> >> 				sleep_before_read, args...) \
-> >>=20
-> >> ...
-> >>=20
-> >> 		(val) =3D op(args); \
-> >>=20
-> >> So you do need to provide an lvalue val, and you need to be able to add
-> >> () after op. I think GCC allows not passing varargs. IOW you'd need to
-> >> implement another macro (which could be used to implement the existing
-> >> one, but not the other way round). =20
-> >
-> > Just get rid of the 'args' and 'val' and it'll work just fine.
-> > Then it'll be almost identical to wait_for() (basically just missing the
-> > increasing backoff stuff).
-> >
-> > AFAICS this thing was originally added just for reading a single
-> > register and checking some bit/etc, so the name made some sense.
-> > But now we're abusing it for all kinds of random things, so even
-> > the name no longer makes that much sense. =20
->=20
-> Yeah, evolution not intelligent design.
->=20
-> > So I think just something like this would work fine for us: =20
->=20
-> LGTM, with the _atomic version for completeness.
->=20
-> Want to send it to lkml?
->=20
->=20
-> BR,
-> Jani.
->=20
->=20
-> >
-> > diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
-> > index 91324c331a4b..9c38fd732028 100644
-> > --- a/include/linux/iopoll.h
-> > +++ b/include/linux/iopoll.h
-> > @@ -14,27 +14,24 @@
-> >  #include <linux/io.h>
-> > =20
-> >  /**
-> > - * read_poll_timeout - Periodically poll an address until a condition =
-is
-> > - *			met or a timeout occurs
-> > - * @op: accessor function (takes @args as its arguments)
-> > - * @val: Variable to read the value into
-> > - * @cond: Break condition (usually involving @val)
-> > - * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops=
-). Please
-> > - *            read usleep_range() function description for details and
-> > + * poll_timeout - Periodically poll and perform an operaion until
-> > + *                a condition is met or a timeout occurs
-> > + *
-> > + * @op: Operation
-> > + * @cond: Break condition
-> > + * @sleep_us: Maximum time to sleep between operations in us (0 tight-=
-loops).
-> > + *            Please read usleep_range() function description for deta=
-ils and
-> >   *            limitations.
-> >   * @timeout_us: Timeout in us, 0 means never timeout
-> > - * @sleep_before_read: if it is true, sleep @sleep_us before read.
-> > - * @args: arguments for @op poll
-> > + * @sleep_before_read: if it is true, sleep @sleep_us before operation.
-> >   *
-> >   * When available, you'll probably want to use one of the specialized
-> >   * macros defined below rather than this macro directly.
-> >   *
-> > - * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
-> > - * case, the last read value at @args is stored in @val. Must not
-> > + * Returns: 0 on success and -ETIMEDOUT upon a timeout. Must not
-> >   * be called from atomic context if sleep_us or timeout_us are used.
-> >   */
-> > -#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
-> > -				sleep_before_read, args...) \
-> > +#define poll_timeout(op, cond, sleep_us, timeout_us, sleep_before_read=
-) \
+... 
 
-I might name it poll_timeout_us(...) so that the units are obvious
-at the call site.
-There are so many different units for timeouts its is worth always
-appending _sec, _ms, _us (etc) just to avoid all the silly bugs.
+> I didn't hear back from you on this series. Are you still interested in this
+> cleanup or should I just abandon it?
+> 
+> Note that now that the GENMASK_U*() are upstream, I am done. I think that it
+> will be better with this clean-up, but I do not mind if we keep it as it.
+> 
+> Just let me know what you think.
 
-	David
+Hi Vincent,
 
+Sorry for delay and thank you for pinging me on it.
+I'll take a look on it at the weekend.
+
+Thanks,
+Yury
