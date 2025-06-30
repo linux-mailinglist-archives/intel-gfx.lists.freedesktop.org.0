@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99F0AED427
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 07:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED391AED428
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 07:59:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 020E910E38E;
-	Mon, 30 Jun 2025 05:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 499AA10E391;
+	Mon, 30 Jun 2025 05:59:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0A+ddw0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+8KC8iR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD0E510E0C1;
- Mon, 30 Jun 2025 05:59:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5484610E38F;
+ Mon, 30 Jun 2025 05:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751263195; x=1782799195;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=i7wMcgAikC9D9B73FlZJdyAHKFoUUdBAuEAGNqR7Q6c=;
- b=C0A+ddw0Olo1D5oK+xBo6X+ZESPfszgtzDmRfovvrCmr15fKPG0siGwR
- tV/h9HsAHDaLrr7TEH2D4tb4Ri5wB9KEbC4+WGVkvsl0jII7KcGmd8LUi
- Ahn8gbKEyOcE1wwJL4qjIOhKz9ELJJN3hFTDyqt7vEefYdi3lpsPkfYZo
- 17K2QvPlaT7ijc1GXEwI/Q44n137tfNrpWCOhY6BWZr5WHxxMtwFNC1SA
- PkvtR9sfqc/hdhCToRQML1vk1APW8OD5UswUfwrYc+5PSe0Bwiav033Pp
- YRu5vqs7b42hKiU73UFvllbBrqUb9XKbo+qFcNiZ6uV4fugyNMhDsRvEy Q==;
-X-CSE-ConnectionGUID: /NpkCKYjRXueugpAu8MLwQ==
-X-CSE-MsgGUID: Gak6pVBGSgqt/COWgFiG0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="52709240"
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="52709240"
+ t=1751263196; x=1782799196;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1sEgAE3iFBqY1GG4V1MvyDHPsvdt3YF0sABtYz/YGbY=;
+ b=h+8KC8iRWxobgb4xzNRbafns1Sfgpc1jXS3NzDQXantoRrpbrlHIKtER
+ ZmqTqODS2mqHSTu/4eROPFpAxX0itD77TcRJrAKZUq9uZxUZd8QK8SI19
+ sd4LGain55c1UidgNq12GeMqsQ5vhwoYpFI9BVpMs7zEdMNx6zrHbgeZ4
+ QKYp4KlqQ5g7hdjFyOYpPu9lf0OxGa4ZiB07TFReiKBzuOeVoLTQxhTg7
+ E8lTXfuJCCPbkoJxLJOYu/0DfHM+KePudOYe87kPBFXZy6Y+fwW+FEP0d
+ rdPJ+Fk8FPVInG19fmypXyY5vSz1EhrCMTLogamdVXukHlDvQF64zabOJ A==;
+X-CSE-ConnectionGUID: ppPSpR7fSZqiQ3PlhbNs6Q==
+X-CSE-MsgGUID: HXWZzImiSc6XBvuMFqj5fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="52709243"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="52709243"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2025 22:59:54 -0700
-X-CSE-ConnectionGUID: YSmX4QmeQBu5V9ivYdPAhA==
-X-CSE-MsgGUID: VEjAp9TlTLm/+o0/YxXwOA==
+ 29 Jun 2025 22:59:56 -0700
+X-CSE-ConnectionGUID: +2XlxlawQS6MThSN7yqrcQ==
+X-CSE-MsgGUID: 2LAO76TsRGO1Qu4CmLqsVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="153459090"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="153459096"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2025 22:59:52 -0700
+ 29 Jun 2025 22:59:54 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, gustavo.sousa@intel.com,
- jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/2] Introduce helper for display workarounds and add
- Wa_16025573575
-Date: Mon, 30 Jun 2025 11:19:16 +0530
-Message-ID: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
+ jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
+Date: Mon, 30 Jun 2025 11:19:17 +0530
+Message-ID: <20250630054918.2823537-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
+References: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,31 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series introduces a generic infrastructure for querying display
-workarounds. The goal is to simplify WA checks, avoid open-coded conditions,
-and make it easier to extend support for future workarounds.
+Introduce a generic helper to check display workarounds using an enum.
 
-Patch 1 introduces the base infrastructure using an enum and a central
-helper function. It also migrates Wa_16023588340 to use this new interface.
+Convert Wa_16023588340 to use the new interface, simplifying WA checks
+and making future additions easier.
 
-Patch 2 adds support for Wa_16025573575, which applies to PTL platforms
-and requires preserving additional GPIO bits in GMBUS.
+Suggested-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_wa.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
+ drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
+ 3 files changed, 23 insertions(+), 1 deletion(-)
 
-The series is in response to the suggestions to unify workaround handling
-and allowing future automation or generation of WA logic in [1].
-
-[1] https://lore.kernel.org/intel-gfx/7f079861f91861e9e895240cd3272f6e29deab7e@intel.com/
-
-Ankit Nautiyal (2):
-  drm/i915/display_wa: Add helpers to check wa
-  drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
-
- .../gpu/drm/i915/display/intel_display_wa.c   | 20 +++++++++++
- .../gpu/drm/i915/display/intel_display_wa.h   | 11 ++++++
- drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    | 34 +++++++++++++++++--
- 4 files changed, 64 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index f57280e9d041..70ba66fc7e26 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -39,3 +39,16 @@ void intel_display_wa_apply(struct intel_display *display)
+ 	else if (DISPLAY_VER(display) == 11)
+ 		gen11_display_wa_apply(display);
+ }
++
++bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa)
++{
++	switch (wa) {
++	case INTEL_DISPLAY_WA_16023588340:
++		return intel_display_needs_wa_16023588340(display);
++	default:
++		MISSING_CASE(wa);
++		break;
++	}
++
++	return false;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index babd9d16603d..853939ebf1ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -7,6 +7,7 @@
+ #define __INTEL_DISPLAY_WA_H__
+ 
+ #include <linux/types.h>
++#include <i915_utils.h>
+ 
+ struct intel_display;
+ 
+@@ -21,4 +22,12 @@ static inline bool intel_display_needs_wa_16023588340(struct intel_display *disp
+ bool intel_display_needs_wa_16023588340(struct intel_display *display);
+ #endif
+ 
++enum intel_display_wa {
++	INTEL_DISPLAY_WA_16023588340,
++};
++
++bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa);
++
++#define _intel_display_wa_expand(__wa) INTEL_DISPLAY_WA_##__wa
++#define intel_display_wa(__display, __wa) __intel_display_wa((__display), _intel_display_wa_expand(__wa))
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index ec1ef8694c35..f4b7ff549fd4 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+ 		return 0;
+ 	}
+ 
+-	if (intel_display_needs_wa_16023588340(display)) {
++	if (intel_display_wa(display, 16023588340)) {
+ 		plane_state->no_fbc_reason = "Wa_16023588340";
+ 		return 0;
+ 	}
 -- 
 2.45.2
 
