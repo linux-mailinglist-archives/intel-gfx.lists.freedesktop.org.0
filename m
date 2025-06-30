@@ -2,38 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA57AED133
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Jun 2025 23:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A99F0AED427
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Jun 2025 07:59:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4BA210E103;
-	Sun, 29 Jun 2025 21:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 020E910E38E;
+	Mon, 30 Jun 2025 05:59:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C0A+ddw0";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 605 seconds by postgrey-1.36 at gabe;
- Sun, 29 Jun 2025 21:15:04 UTC
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58CA210E103;
- Sun, 29 Jun 2025 21:15:04 +0000 (UTC)
-Received: from [192.168.2.196] (p5b13a6da.dip0.t-ipconnect.de [91.19.166.218])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 8C7B461E64787;
- Sun, 29 Jun 2025 23:04:32 +0200 (CEST)
-Message-ID: <e8c595d4-716f-474c-99ae-c95a56e65d3d@molgen.mpg.de>
-Date: Sun, 29 Jun 2025 23:04:31 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD0E510E0C1;
+ Mon, 30 Jun 2025 05:59:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751263195; x=1782799195;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=i7wMcgAikC9D9B73FlZJdyAHKFoUUdBAuEAGNqR7Q6c=;
+ b=C0A+ddw0Olo1D5oK+xBo6X+ZESPfszgtzDmRfovvrCmr15fKPG0siGwR
+ tV/h9HsAHDaLrr7TEH2D4tb4Ri5wB9KEbC4+WGVkvsl0jII7KcGmd8LUi
+ Ahn8gbKEyOcE1wwJL4qjIOhKz9ELJJN3hFTDyqt7vEefYdi3lpsPkfYZo
+ 17K2QvPlaT7ijc1GXEwI/Q44n137tfNrpWCOhY6BWZr5WHxxMtwFNC1SA
+ PkvtR9sfqc/hdhCToRQML1vk1APW8OD5UswUfwrYc+5PSe0Bwiav033Pp
+ YRu5vqs7b42hKiU73UFvllbBrqUb9XKbo+qFcNiZ6uV4fugyNMhDsRvEy Q==;
+X-CSE-ConnectionGUID: /NpkCKYjRXueugpAu8MLwQ==
+X-CSE-MsgGUID: Gak6pVBGSgqt/COWgFiG0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11479"; a="52709240"
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="52709240"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2025 22:59:54 -0700
+X-CSE-ConnectionGUID: YSmX4QmeQBu5V9ivYdPAhA==
+X-CSE-MsgGUID: VEjAp9TlTLm/+o0/YxXwOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,277,1744095600"; d="scan'208";a="153459090"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2025 22:59:52 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, gustavo.sousa@intel.com,
+ jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/2] Introduce helper for display workarounds and add
+ Wa_16025573575
+Date: Mon, 30 Jun 2025 11:19:16 +0530
+Message-ID: <20250630054918.2823537-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Jarkko Nikula <jarkko.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, regressions@lists.linux.dev
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Subject: [Regression] Panel flickering on Dell XPS 13 9360 with
- drm-fixes-2025-06-28 merged (Linux 6.16-rc4)
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,58 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Dear Linux folks,
+This series introduces a generic infrastructure for querying display
+workarounds. The goal is to simplify WA checks, avoid open-coded conditions,
+and make it easier to extend support for future workarounds.
 
+Patch 1 introduces the base infrastructure using an enum and a central
+helper function. It also migrates Wa_16023588340 to use this new interface.
 
-Just a heads-up, that very likely, merging of branch 
-*drm-fixes-2025-06-28* causes flickering of the panel of the Intel Kaby 
-Lake laptop Dell XPS 13 9360. 6.16.0-rc3 works fine, and with 
-6.16-rc3-00329-gdfba48a70cb6 the panel flickers. I try to bisect, but 
-maybe you already have an idea.
+Patch 2 adds support for Wa_16025573575, which applies to PTL platforms
+and requires preserving additional GPIO bits in GMBUS.
 
+The series is in response to the suggestions to unify workaround handling
+and allowing future automation or generation of WA logic in [1].
 
-Kind regards,
+[1] https://lore.kernel.org/intel-gfx/7f079861f91861e9e895240cd3272f6e29deab7e@intel.com/
 
-Paul
+Ankit Nautiyal (2):
+  drm/i915/display_wa: Add helpers to check wa
+  drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
 
+ .../gpu/drm/i915/display/intel_display_wa.c   | 20 +++++++++++
+ .../gpu/drm/i915/display/intel_display_wa.h   | 11 ++++++
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 34 +++++++++++++++++--
+ 4 files changed, 64 insertions(+), 3 deletions(-)
 
-$ lspci -nn
-00:00.0 Host bridge [0600]: Intel Corporation Xeon E3-1200 v6/7th Gen 
-Core Processor Host Bridge/DRAM Registers [8086:5904] (rev 02)
-00:02.0 VGA compatible controller [0300]: Intel Corporation HD Graphics 
-620 [8086:5916] (rev 02)
-00:04.0 Signal processing controller [1180]: Intel Corporation Xeon 
-E3-1200 v5/E3-1500 v5/6th Gen Core Processor Thermal Subsystem 
-[8086:1903] (rev 02)
-00:14.0 USB controller [0c03]: Intel Corporation Sunrise Point-LP USB 
-3.0 xHCI Controller [8086:9d2f] (rev 21)
-00:14.2 Signal processing controller [1180]: Intel Corporation Sunrise 
-Point-LP Thermal subsystem [8086:9d31] (rev 21)
-00:15.0 Signal processing controller [1180]: Intel Corporation Sunrise 
-Point-LP Serial IO I2C Controller #0 [8086:9d60] (rev 21)
-00:15.1 Signal processing controller [1180]: Intel Corporation Sunrise 
-Point-LP Serial IO I2C Controller #1 [8086:9d61] (rev 21)
-00:16.0 Communication controller [0780]: Intel Corporation Sunrise 
-Point-LP CSME HECI #1 [8086:9d3a] (rev 21)
-00:1c.0 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI 
-Express Root Port #1 [8086:9d10] (rev f1)
-00:1c.4 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI 
-Express Root Port #5 [8086:9d14] (rev f1)
-00:1c.5 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI 
-Express Root Port #6 [8086:9d15] (rev f1)
-00:1d.0 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI 
-Express Root Port #9 [8086:9d18] (rev f1)
-00:1f.0 ISA bridge [0601]: Intel Corporation Sunrise Point-LP LPC 
-Controller [8086:9d58] (rev 21)
-00:1f.2 Memory controller [0580]: Intel Corporation Sunrise Point-LP PMC 
-[8086:9d21] (rev 21)
-00:1f.3 Audio device [0403]: Intel Corporation Sunrise Point-LP HD Audio 
-[8086:9d71] (rev 21)
-00:1f.4 SMBus [0c05]: Intel Corporation Sunrise Point-LP SMBus 
-[8086:9d23] (rev 21)
-3a:00.0 Network controller [0280]: Qualcomm Atheros QCA6174 802.11ac 
-Wireless Network Adapter [168c:003e] (rev 32)
-3b:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS525A 
-PCI Express Card Reader [10ec:525a] (rev 01)
-3c:00.0 Non-Volatile memory controller [0108]: SK hynix PC300 NVMe Solid 
-State Drive 512GB [1c5c:1284]
+-- 
+2.45.2
+
