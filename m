@@ -2,29 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB77AF022C
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 19:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBD5AF032A
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 20:50:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7AAA10E618;
-	Tue,  1 Jul 2025 17:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0F910E609;
+	Tue,  1 Jul 2025 18:50:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Nwn7zXqM";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 184F010E604;
- Tue,  1 Jul 2025 17:48:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2038502836447820716=="
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D10C10E60C;
+ Tue,  1 Jul 2025 18:49:58 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
+ [81.175.209.231])
+ by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 583397E0;
+ Tue,  1 Jul 2025 20:49:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1751395774;
+ bh=btjGnMDX8vkqk6UaF2hfFA+4qDJCCMOKBK3eO0iMlX8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Nwn7zXqMeB9/9GedyWwwtywMnm/Elch7my/uYCtDmOZg4dgFPXSOp0U1JByVGIWZN
+ P2BXuKimywD6rtoSSmy12cEEP0MDYZvrPzjRhs+jxhepj5hADabIe5Rv6hYsM9nGy8
+ Qf7F1fWg4r/4HFQWsVaHy4M9KIOkIhBtZAlA8ddU=
+Date: Tue, 1 Jul 2025 21:49:30 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 01/19] drm: Pass pixel_format+modifier to
+ .get_format_info()
+Message-ID: <20250701184930.GA16835@pendragon.ideasonboard.com>
+References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
+ <20250701090722.13645-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_n?=
- =?utf-8?q?o=5Fpsr=5Freason_to_PSR_debugfs_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 01 Jul 2025 17:48:29 -0000
-Message-ID: <175139210909.125172.13123070244378299024@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250701170234.443586-1-michal.grzelak@intel.com>
-In-Reply-To: <20250701170234.443586-1-michal.grzelak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250701090722.13645-2-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,161 +57,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2038502836447820716==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Ville,
 
-== Series Details ==
+Thank you for the patch.
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev6)
-URL   : https://patchwork.freedesktop.org/series/148958/
-State : success
+On Tue, Jul 01, 2025 at 12:07:04PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Decouple .get_format_info() from struct drm_mode_fb_cmd2 and just
+> pass the pixel format+modifier combo in by hand.
+> 
+> We may want to use .get_format_info() outside of the normal
+> addfb paths where we won't have a struct drm_mode_fb_cmd2, and
+> creating a temporary one just for this seems silly.
+> 
+> v2: Fix intel_fb_get_format_info() docs (Laurent)
+> 
+> Cc: Harry Wentland <harry.wentland@amd.com>
+> Cc: Leo Li <sunpeng.li@amd.com>
+> Cc: Rodrigo Siqueira <siqueira@igalia.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Summary ==
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-CI Bug Log - changes from CI_DRM_16782 -> Patchwork_148958v6
-====================================================
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  4 ++--
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h   |  2 +-
+>  drivers/gpu/drm/drm_fourcc.c                          |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_fb.c               | 11 ++++++-----
+>  drivers/gpu/drm/i915/display/intel_fb.h               |  2 +-
+>  include/drm/drm_mode_config.h                         |  2 +-
+>  6 files changed, 13 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> index b7c6e8d13435..eef51652ca35 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+> @@ -92,9 +92,9 @@ enum dm_micro_swizzle {
+>  	MICRO_SWIZZLE_R = 3
+>  };
+>  
+> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier)
+>  {
+> -	return amdgpu_lookup_format_info(cmd->pixel_format, cmd->modifier[0]);
+> +	return amdgpu_lookup_format_info(pixel_format, modifier);
+>  }
+>  
+>  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> index 615d2ab2b803..ea2619b507db 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+> @@ -58,7 +58,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+>  			 unsigned long possible_crtcs,
+>  			 const struct dc_plane_cap *plane_cap);
+>  
+> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
+> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier);
+>  
+>  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
+>  				    bool *per_pixel_alpha, bool *pre_multiplied_alpha,
+> diff --git a/drivers/gpu/drm/drm_fourcc.c b/drivers/gpu/drm/drm_fourcc.c
+> index 2890e889dd15..4b4444f6d504 100644
+> --- a/drivers/gpu/drm/drm_fourcc.c
+> +++ b/drivers/gpu/drm/drm_fourcc.c
+> @@ -430,7 +430,8 @@ drm_get_format_info(struct drm_device *dev,
+>  	const struct drm_format_info *info = NULL;
+>  
+>  	if (dev->mode_config.funcs->get_format_info)
+> -		info = dev->mode_config.funcs->get_format_info(mode_cmd);
+> +		info = dev->mode_config.funcs->get_format_info(mode_cmd->pixel_format,
+> +							       mode_cmd->modifier[0]);
+>  
+>  	if (!info)
+>  		info = drm_format_info(mode_cmd->pixel_format);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 6158031821fd..52c4901dc072 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -422,21 +422,22 @@ unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
+>  
+>  /**
+>   * intel_fb_get_format_info: Get a modifier specific format information
+> - * @cmd: FB add command structure
+> + * @pixel_format: pixel format
+> + * @modifier: modifier
+>   *
+>   * Returns:
+> - * Returns the format information for @cmd->pixel_format specific to @cmd->modifier[0],
+> + * Returns the format information for @pixel_format specific to @modifier,
+>   * or %NULL if the modifier doesn't override the format.
+>   */
+>  const struct drm_format_info *
+> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+> +intel_fb_get_format_info(u32 pixel_format, u64 modifier)
+>  {
+> -	const struct intel_modifier_desc *md = lookup_modifier_or_null(cmd->modifier[0]);
+> +	const struct intel_modifier_desc *md = lookup_modifier_or_null(modifier);
+>  
+>  	if (!md || !md->formats)
+>  		return NULL;
+>  
+> -	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
+> +	return lookup_format_info(md->formats, md->format_count, pixel_format);
+>  }
+>  
+>  static bool plane_caps_contain_any(u8 caps, u8 mask)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+> index bdd76b372957..7d1267fbeee2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> @@ -47,7 +47,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
+>  bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
+>  
+>  const struct drm_format_info *
+> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
+> +intel_fb_get_format_info(u32 pixel_format, u64 modifier);
+>  
+>  bool
+>  intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index 9e524b51a001..e971e1b8a850 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -95,7 +95,7 @@ struct drm_mode_config_funcs {
+>  	 * The format information specific to the given fb metadata, or
+>  	 * NULL if none is found.
+>  	 */
+> -	const struct drm_format_info *(*get_format_info)(const struct drm_mode_fb_cmd2 *mode_cmd);
+> +	const struct drm_format_info *(*get_format_info)(u32 pixel_format, u64 modifier);
+>  
+>  	/**
+>  	 * @mode_valid:
 
-Summary
--------
+-- 
+Regards,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_148958v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-atsm-1:         [PASS][1] -> [INCOMPLETE][2] ([i915#14566])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-atsm-1/igt@i915_selftest@live@requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-atsm-1/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [DMESG-WARN][3] ([i915#13494]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-mtlp-9/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-mtlp-9/igt@i915_module_load@load.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][5] ([i915#12061] / [i915#14204]) -> [INCOMPLETE][6] ([i915#12061])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-atsm-1/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-atsm-1/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-  [i915#14566]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14566
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16782 -> Patchwork_148958v6
-
-  CI-20190529: 20190529
-  CI_DRM_16782: a7091520e1e57b88990d2f3b92a20c7df416f416 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_148958v6: a7091520e1e57b88990d2f3b92a20c7df416f416 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/index.html
-
---===============2038502836447820716==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148958/">https://patchwork.freedesktop.org/series/148958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16782 -&gt; Patchwork_148958v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_148958v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-atsm-1/igt@i915_selftest@live@requests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-atsm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14566">i915#14566</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16782/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v6/bat-atsm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16782 -&gt; Patchwork_148958v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16782: a7091520e1e57b88990d2f3b92a20c7df416f416 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_148958v6: a7091520e1e57b88990d2f3b92a20c7df416f416 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2038502836447820716==--
+Laurent Pinchart
