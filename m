@@ -2,62 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1E4AEF2BC
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 11:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A3BAAEF2D1
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 11:12:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 198DC10E57F;
-	Tue,  1 Jul 2025 09:09:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHIatlvj";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B016C10E56F;
+	Tue,  1 Jul 2025 09:12:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2722910E57F;
- Tue,  1 Jul 2025 09:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751360955; x=1782896955;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FrfjJJnouuxGCdL2h2tdZJ+mC2yN9qtKD1DgtGHeWDc=;
- b=kHIatlvj8WxW3eFeiK+KMQi0Znf1Dd4ygaXyDWyyKBJJakJLUIp4Q7Ht
- IhR2iHKA0UqZdfxReBvxLUu6ldIiHlILPHz0RMJZa8zvrXI9aZT2jQVwK
- wp+mGMU1NJ1BbL3i4VrsUMuNnLDC+qYFmxCHD0u7LQH+IDAN+Ia0ZLSM5
- CKUTFtKq0ZGgbh6YHv3sJcMLHSu8BJSTA5V+Tly3dy9OouDKr2fbXbjiV
- +Qsp0jQ2nhKWZ917z6l8GY7JIM08sNYABOD1BtPgRTi+u5/BRdeKMOZMs
- mRwylSnfTQBKsHd9dX742qnWgeb9J0O6J/Iiz/0ho7GLxjG7grm9Wkw2D w==;
-X-CSE-ConnectionGUID: bMo+boDaSouNfKY49jFjcQ==
-X-CSE-MsgGUID: gLspmGn0QvCceYkgY6FhYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="64218648"
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="64218648"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2025 02:09:15 -0700
-X-CSE-ConnectionGUID: UpzcO0kuTMKFr9qDJXDwZA==
-X-CSE-MsgGUID: OX+YrKmWRs2CdRps3ZJEgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="159427410"
-Received: from zzombora-mobl1.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.11])
- by orviesa005.jf.intel.com with SMTP; 01 Jul 2025 02:09:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Jul 2025 12:09:10 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH v2 19/19] drm: Make passing of format info to
- drm_helper_mode_fill_fb_struct() mandatory
-Date: Tue,  1 Jul 2025 12:07:22 +0300
-Message-ID: <20250701090722.13645-20-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
-References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C275510E56F;
+ Tue,  1 Jul 2025 09:12:13 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1uWX2B-00000008ZTn-0BCl; Tue, 01 Jul 2025 12:12:11 +0300
+Message-ID: <2a6a1b3eb439006276c8dde355ba92b9467fb9b4.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Imre Deak <imre.deak@gmail.com>
+Date: Tue, 01 Jul 2025 12:12:10 +0300
+In-Reply-To: <20250626082053.219514-11-imre.deak@intel.com>
+References: <20250626082053.219514-1-imre.deak@intel.com>
+ <20250626082053.219514-11-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 10/20] drm/i915/dp: Fix the link service IRQ DPCD_REV check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,33 +52,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
+> From: Imre Deak <imre.deak@gmail.com>
+>=20
+> The DP_LINK_SERVICE_IRQ_VECTOR_ESI0 DPCD register is supported only
+> since DPCD REV 1.2, so fix the revision check accordingly.
+>=20
+> Signed-off-by: Imre Deak <imre.deak@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 6262b661d026e..7793a72983abd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5420,7 +5420,7 @@ static bool intel_dp_check_link_service_irq(struct =
+intel_dp *intel_dp)
+>  	bool reprobe_needed =3D false;
+>  	u8 val;
+> =20
+> -	if (intel_dp->dpcd[DP_DPCD_REV] < 0x11)
+> +	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
+>  		return false;
+> =20
+>  	if (drm_dp_dpcd_readb(&intel_dp->aux,
 
-Now that everyone passes along the format info to
-drm_helper_mode_fill_fb_struct() we can make this behaviour
-mandatory and drop the extra lookup.
+At first I was confused by the revision being in "decimal hex", but
+then I realized that the revisions are actually using fixed point
+representation.  IMHO the macros would be more intuitive if they were
+called, e.g. DP_DCPD_REV_1_2.  But this is orthogonal to this patch.
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_modeset_helper.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/drm_modeset_helper.c
-index 89ba99970735..988735560570 100644
---- a/drivers/gpu/drm/drm_modeset_helper.c
-+++ b/drivers/gpu/drm/drm_modeset_helper.c
-@@ -88,8 +88,7 @@ void drm_helper_mode_fill_fb_struct(struct drm_device *dev,
- 	int i;
- 
- 	fb->dev = dev;
--	fb->format = info ? : drm_get_format_info(dev, mode_cmd->pixel_format,
--						  mode_cmd->modifier[0]);
-+	fb->format = info;
- 	fb->width = mode_cmd->width;
- 	fb->height = mode_cmd->height;
- 	for (i = 0; i < 4; i++) {
--- 
-2.49.0
-
+--
+Cheers,
+Luca.
