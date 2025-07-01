@@ -2,41 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE142AEF061
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 10:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4631FAEF072
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 10:05:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C2F10E518;
-	Tue,  1 Jul 2025 08:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9ABD10E51B;
+	Tue,  1 Jul 2025 08:05:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wk5dWq1Z";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 160C410E045;
- Tue,  1 Jul 2025 08:03:59 +0000 (UTC)
-Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uWVy8-00000008ZHD-3kEh; Tue, 01 Jul 2025 11:03:57 +0300
-Message-ID: <286aac3a6b38a7a2775172d0dba5b5cc6c785b5a.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@gmail.com>
-Date: Tue, 01 Jul 2025 11:03:56 +0300
-In-Reply-To: <20250626082053.219514-6-imre.deak@intel.com>
-References: <20250626082053.219514-1-imre.deak@intel.com>
- <20250626082053.219514-6-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3E6810E51B;
+ Tue,  1 Jul 2025 08:05:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751357150; x=1782893150;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=acpCjGNXhFmxmNs4I0ps14SjpJlq5Em/SZq4l5g+bus=;
+ b=Wk5dWq1ZCKEjBvFPD1AVKfSL/OB8gY0UTbatShJDcyp20W804GiAjtTc
+ 4hcCFP1HUv6VxdikoJgpzAenH+dIIeF6CuqyPPYCexqvmcGyxPFxfoOBJ
+ ceqUT0b4x5kkaLDnSjJBm+vD97XkwXDRkyowu8ryP0vIgBFwvLBcd5CrM
+ jxg6ZqdRYZyxS0MHPHFasM2A8lp0iZiAkH/Kke6tjlQIAm4XBZrdZBsFY
+ T0Eq6trjFRBn5Hqtryai8oWfHW72BR+S4gzQW9vtJkMg6lrXkQvLaqe/7
+ rcdE8cJsnmfGplPAlKv7eSy8iCHJA69Ram+vwsA1OWxlF5o2L2j7/Y9xX A==;
+X-CSE-ConnectionGUID: /ZJ1guL0SqWFJXPU88r65w==
+X-CSE-MsgGUID: 69Ljuv21T6u9YE0EqXIH/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="65053503"
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="65053503"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2025 01:05:50 -0700
+X-CSE-ConnectionGUID: UsLRYiJaRx2qMeDCybY9Xw==
+X-CSE-MsgGUID: sMOk9nM/So2IWAlFMb2kNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,279,1744095600"; d="scan'208";a="184628718"
+Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
+ by fmviesa001.fm.intel.com with ESMTP; 01 Jul 2025 01:05:46 -0700
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
+ khaled.almahallawy@intel.com, Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH] drm/i915/display: Fix RGB limited range handling for DP
+Date: Tue,  1 Jul 2025 13:47:56 +0530
+Message-ID: <20250701081756.2821286-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 05/20] drm/i915/dp: Handle the RX_CAP_CHANGED HPD IRQ
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,61 +66,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
-> From: Imre Deak <imre.deak@gmail.com>
->=20
-> Handle the RX_CAP_CHANGED IRQ, which a sink can use to indicate a DPRX
-> capability change without disconnecting and reconnecting itself (i.e.
-> through a short vs. long HPD pulse). Handle the IRQ by doing a full
-> connector detection.
->=20
-> Signed-off-by: Imre Deak <imre.deak@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 453416b9e9bec..c2eadfa060c2d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5099,7 +5099,7 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp=
-)
-> =20
->  		drm_dbg_kms(display->drm, "DPRX ESI: %4ph\n", esi);
-> =20
-> -		ack[3] |=3D esi[3] & (LINK_STATUS_CHANGED | DP_TUNNELING_IRQ);
-> +		ack[3] |=3D esi[3] & (RX_CAP_CHANGED | LINK_STATUS_CHANGED | DP_TUNNEL=
-ING_IRQ);
-> =20
->  		intel_dp_mst_hpd_irq(intel_dp, esi, ack);
-> =20
-> @@ -5112,6 +5112,9 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp=
-)
->  		if (ack[1] & (DP_DOWN_REP_MSG_RDY | DP_UP_REQ_MSG_RDY))
->  			drm_dp_mst_hpd_irq_send_new_request(&intel_dp->mst.mgr);
-> =20
-> +		if (ack[3] & RX_CAP_CHANGED)
-> +			reprobe_needed =3D true;
-> +
->  		if ((ack[3] & LINK_STATUS_CHANGED) || intel_dp->link.force_retrain)
->  			intel_dp_check_link_state(intel_dp);
-> =20
-> @@ -5424,6 +5427,9 @@ static bool intel_dp_check_link_service_irq(struct =
-intel_dp *intel_dp)
->  			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) !=3D 1)
->  		return false;
-> =20
-> +	if (val & RX_CAP_CHANGED)
-> +		reprobe_needed =3D true;
-> +
->  	if (val & HDMI_LINK_STATUS_CHANGED)
->  		intel_dp_handle_hdmi_link_status_change(intel_dp);
-> =20
+RGB limited range should be selected only if explicitly asked by
+userspace by the broadcast RGB property with LIMITED_RANGE. This
+is mostly enabled in case of CEA modes.
 
-Same question as to the previous patch.  What happens if the interrupt
-is not actually handled?
+Display port by default uses Full Range, fixed the same. This will help
+set correct MSA information for colorimetry. Fixes a CTS issue wrt
+colorimetry.
 
---
-Cheers,
-Luca.
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++--------------
+ 1 file changed, 7 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f48912f308df..8758b9d60d5e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2708,8 +2708,6 @@ bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_state,
+ {
+ 	const struct intel_digital_connector_state *intel_conn_state =
+ 		to_intel_digital_connector_state(conn_state);
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
+ 
+ 	/*
+ 	 * Our YCbCr output is always limited range.
+@@ -2721,18 +2719,13 @@ bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_state,
+ 	if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
+ 		return false;
+ 
+-	if (intel_conn_state->broadcast_rgb == INTEL_BROADCAST_RGB_AUTO) {
+-		/*
+-		 * See:
+-		 * CEA-861-E - 5.1 Default Encoding Parameters
+-		 * VESA DisplayPort Ver.1.2a - 5.1.1.1 Video Colorimetry
+-		 */
+-		return crtc_state->pipe_bpp != 18 &&
+-			drm_default_rgb_quant_range(adjusted_mode) ==
+-			HDMI_QUANTIZATION_RANGE_LIMITED;
+-	} else {
+-		return intel_conn_state->broadcast_rgb ==
+-			INTEL_BROADCAST_RGB_LIMITED;
++	switch (intel_conn_state->broadcast_rgb) {
++	case INTEL_BROADCAST_RGB_LIMITED:
++		return true;
++	case INTEL_BROADCAST_RGB_FULL:
++	case INTEL_BROADCAST_RGB_AUTO:
++	default:
++		return false;
+ 	}
+ }
+ 
+-- 
+2.42.0
+
