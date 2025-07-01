@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBD5AF032A
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 20:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A72C6AF0397
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Jul 2025 21:21:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D0F910E609;
-	Tue,  1 Jul 2025 18:50:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB6C10E5F9;
+	Tue,  1 Jul 2025 19:21:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Nwn7zXqM";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="dXme7YXs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
  [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D10C10E60C;
- Tue,  1 Jul 2025 18:49:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2627810E5FE;
+ Tue,  1 Jul 2025 19:21:03 +0000 (UTC)
 Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
  [81.175.209.231])
- by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 583397E0;
- Tue,  1 Jul 2025 20:49:34 +0200 (CEST)
+ by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5074C778;
+ Tue,  1 Jul 2025 21:20:39 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1751395774;
- bh=btjGnMDX8vkqk6UaF2hfFA+4qDJCCMOKBK3eO0iMlX8=;
+ s=mail; t=1751397639;
+ bh=7v+aPLcSt17X4u2LNmWrGBlNpKMSI1a1PMj7/xXhurY=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Nwn7zXqMeB9/9GedyWwwtywMnm/Elch7my/uYCtDmOZg4dgFPXSOp0U1JByVGIWZN
- P2BXuKimywD6rtoSSmy12cEEP0MDYZvrPzjRhs+jxhepj5hADabIe5Rv6hYsM9nGy8
- Qf7F1fWg4r/4HFQWsVaHy4M9KIOkIhBtZAlA8ddU=
-Date: Tue, 1 Jul 2025 21:49:30 +0300
+ b=dXme7YXsJxn+GUVHRLDTNqA6HkmazAmGRVa00oenY/lbM2R4Oih8FdjKYayzQj5Bb
+ iNMm0C4WSEfQqYQxVgd14bnhxfkE0V/BGwor4+QdsQXqCAEB2vyFk2HtiT4ZB9INR7
+ oB5HUAz4aJHtZmnMWtsM1Sx627pqgZctgxr+CYGk=
+Date: Tue, 1 Jul 2025 22:20:35 +0300
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 01/19] drm: Pass pixel_format+modifier to
- .get_format_info()
-Message-ID: <20250701184930.GA16835@pendragon.ideasonboard.com>
+Subject: Re: [PATCH v2 07/19] drm/gem: Pass along the format info from
+ .fb_create() to drm_helper_mode_fill_fb_struct()
+Message-ID: <20250701192035.GB17819@pendragon.ideasonboard.com>
 References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
- <20250701090722.13645-2-ville.syrjala@linux.intel.com>
+ <20250701090722.13645-8-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701090722.13645-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250701090722.13645-8-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,27 +63,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
-
-Thank you for the patch.
-
-On Tue, Jul 01, 2025 at 12:07:04PM +0300, Ville Syrjala wrote:
+On Tue, Jul 01, 2025 at 12:07:10PM +0300, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Decouple .get_format_info() from struct drm_mode_fb_cmd2 and just
-> pass the pixel format+modifier combo in by hand.
+> Pass along the format info from .fb_create() to aliminate the
+
+s/aliminate/eliminate/
+
+> redundant drm_get_format_info() calls from the gem fb code.
 > 
-> We may want to use .get_format_info() outside of the normal
-> addfb paths where we won't have a struct drm_mode_fb_cmd2, and
-> creating a temporary one just for this seems silly.
+> v2: Fix kernel docs (Laurent)
 > 
-> v2: Fix intel_fb_get_format_info() docs (Laurent)
-> 
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Rodrigo Siqueira <siqueira@igalia.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: amd-gfx@lists.freedesktop.org
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Sandy Huang <hjc@rock-chips.com>
+> Cc: "Heiko Stübner" <heiko@sntech.de>
+> Cc: Andy Yan <andy.yan@rock-chips.com>
+> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+> Cc: virtualization@lists.linux.dev
+> Cc: spice-devel@lists.freedesktop.org
 > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
@@ -88,115 +89,174 @@ On Tue, Jul 01, 2025 at 12:07:04PM +0300, Ville Syrjala wrote:
 Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
 > ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  4 ++--
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h   |  2 +-
->  drivers/gpu/drm/drm_fourcc.c                          |  3 ++-
->  drivers/gpu/drm/i915/display/intel_fb.c               | 11 ++++++-----
->  drivers/gpu/drm/i915/display/intel_fb.h               |  2 +-
->  include/drm/drm_mode_config.h                         |  2 +-
->  6 files changed, 13 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/drm_gem_framebuffer_helper.c | 23 +++++++++-----------
+>  drivers/gpu/drm/qxl/qxl_display.c            |  2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_fb.c   |  3 ++-
+>  drivers/gpu/drm/xen/xen_drm_front_kms.c      |  2 +-
+>  include/drm/drm_gem_framebuffer_helper.h     |  2 ++
+>  5 files changed, 16 insertions(+), 16 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> index b7c6e8d13435..eef51652ca35 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-> @@ -92,9 +92,9 @@ enum dm_micro_swizzle {
->  	MICRO_SWIZZLE_R = 3
->  };
+> diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+> index 6fe4094bd0fe..1d58b0259df4 100644
+> --- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
+> @@ -68,6 +68,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_get_obj);
+>  static int
+>  drm_gem_fb_init(struct drm_device *dev,
+>  		 struct drm_framebuffer *fb,
+> +		 const struct drm_format_info *info,
+>  		 const struct drm_mode_fb_cmd2 *mode_cmd,
+>  		 struct drm_gem_object **obj, unsigned int num_planes,
+>  		 const struct drm_framebuffer_funcs *funcs)
+> @@ -75,7 +76,7 @@ drm_gem_fb_init(struct drm_device *dev,
+>  	unsigned int i;
+>  	int ret;
 >  
-> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
-> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier)
->  {
-> -	return amdgpu_lookup_format_info(cmd->pixel_format, cmd->modifier[0]);
-> +	return amdgpu_lookup_format_info(pixel_format, modifier);
->  }
+> -	drm_helper_mode_fill_fb_struct(dev, fb, NULL, mode_cmd);
+> +	drm_helper_mode_fill_fb_struct(dev, fb, info, mode_cmd);
 >  
->  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-> index 615d2ab2b803..ea2619b507db 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-> @@ -58,7 +58,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
->  			 unsigned long possible_crtcs,
->  			 const struct dc_plane_cap *plane_cap);
->  
-> -const struct drm_format_info *amdgpu_dm_plane_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
-> +const struct drm_format_info *amdgpu_dm_plane_get_format_info(u32 pixel_format, u64 modifier);
->  
->  void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state *plane_state,
->  				    bool *per_pixel_alpha, bool *pre_multiplied_alpha,
-> diff --git a/drivers/gpu/drm/drm_fourcc.c b/drivers/gpu/drm/drm_fourcc.c
-> index 2890e889dd15..4b4444f6d504 100644
-> --- a/drivers/gpu/drm/drm_fourcc.c
-> +++ b/drivers/gpu/drm/drm_fourcc.c
-> @@ -430,7 +430,8 @@ drm_get_format_info(struct drm_device *dev,
->  	const struct drm_format_info *info = NULL;
->  
->  	if (dev->mode_config.funcs->get_format_info)
-> -		info = dev->mode_config.funcs->get_format_info(mode_cmd);
-> +		info = dev->mode_config.funcs->get_format_info(mode_cmd->pixel_format,
-> +							       mode_cmd->modifier[0]);
->  
->  	if (!info)
->  		info = drm_format_info(mode_cmd->pixel_format);
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 6158031821fd..52c4901dc072 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -422,21 +422,22 @@ unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
->  
->  /**
->   * intel_fb_get_format_info: Get a modifier specific format information
-> - * @cmd: FB add command structure
-> + * @pixel_format: pixel format
-> + * @modifier: modifier
+>  	for (i = 0; i < num_planes; i++)
+>  		fb->obj[i] = obj[i];
+> @@ -136,6 +137,7 @@ EXPORT_SYMBOL(drm_gem_fb_create_handle);
+>   * @dev: DRM device
+>   * @fb: framebuffer object
+>   * @file: DRM file that holds the GEM handle(s) backing the framebuffer
+> + * @info: pixel format information
+>   * @mode_cmd: Metadata from the userspace framebuffer creation request
+>   * @funcs: vtable to be used for the new framebuffer object
 >   *
->   * Returns:
-> - * Returns the format information for @cmd->pixel_format specific to @cmd->modifier[0],
-> + * Returns the format information for @pixel_format specific to @modifier,
->   * or %NULL if the modifier doesn't override the format.
->   */
->  const struct drm_format_info *
-> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
-> +intel_fb_get_format_info(u32 pixel_format, u64 modifier)
+> @@ -152,21 +154,14 @@ EXPORT_SYMBOL(drm_gem_fb_create_handle);
+>  int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+>  			       struct drm_framebuffer *fb,
+>  			       struct drm_file *file,
+> +			       const struct drm_format_info *info,
+>  			       const struct drm_mode_fb_cmd2 *mode_cmd,
+>  			       const struct drm_framebuffer_funcs *funcs)
 >  {
-> -	const struct intel_modifier_desc *md = lookup_modifier_or_null(cmd->modifier[0]);
-> +	const struct intel_modifier_desc *md = lookup_modifier_or_null(modifier);
+> -	const struct drm_format_info *info;
+>  	struct drm_gem_object *objs[DRM_FORMAT_MAX_PLANES];
+>  	unsigned int i;
+>  	int ret;
 >  
->  	if (!md || !md->formats)
->  		return NULL;
+> -	info = drm_get_format_info(dev, mode_cmd->pixel_format,
+> -				   mode_cmd->modifier[0]);
+> -	if (!info) {
+> -		drm_dbg_kms(dev, "Failed to get FB format info\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	if (drm_drv_uses_atomic_modeset(dev) &&
+>  	    !drm_any_plane_has_format(dev, mode_cmd->pixel_format,
+>  				      mode_cmd->modifier[0])) {
+> @@ -201,7 +196,7 @@ int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+>  		}
+>  	}
 >  
-> -	return lookup_format_info(md->formats, md->format_count, cmd->pixel_format);
-> +	return lookup_format_info(md->formats, md->format_count, pixel_format);
+> -	ret = drm_gem_fb_init(dev, fb, mode_cmd, objs, i, funcs);
+> +	ret = drm_gem_fb_init(dev, fb, info, mode_cmd, objs, i, funcs);
+>  	if (ret)
+>  		goto err_gem_object_put;
+>  
+> @@ -222,6 +217,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_init_with_funcs);
+>   *                                  callback
+>   * @dev: DRM device
+>   * @file: DRM file that holds the GEM handle(s) backing the framebuffer
+> + * @info: pixel format information
+>   * @mode_cmd: Metadata from the userspace framebuffer creation request
+>   * @funcs: vtable to be used for the new framebuffer object
+>   *
+> @@ -234,6 +230,7 @@ EXPORT_SYMBOL_GPL(drm_gem_fb_init_with_funcs);
+>   */
+>  struct drm_framebuffer *
+>  drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
+> +			     const struct drm_format_info *info,
+>  			     const struct drm_mode_fb_cmd2 *mode_cmd,
+>  			     const struct drm_framebuffer_funcs *funcs)
+>  {
+> @@ -244,7 +241,7 @@ drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
+>  	if (!fb)
+>  		return ERR_PTR(-ENOMEM);
+>  
+> -	ret = drm_gem_fb_init_with_funcs(dev, fb, file, mode_cmd, funcs);
+> +	ret = drm_gem_fb_init_with_funcs(dev, fb, file, info, mode_cmd, funcs);
+>  	if (ret) {
+>  		kfree(fb);
+>  		return ERR_PTR(ret);
+> @@ -287,7 +284,7 @@ drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
+>  		  const struct drm_format_info *info,
+>  		  const struct drm_mode_fb_cmd2 *mode_cmd)
+>  {
+> -	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
+> +	return drm_gem_fb_create_with_funcs(dev, file, info, mode_cmd,
+>  					    &drm_gem_fb_funcs);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gem_fb_create);
+> @@ -327,7 +324,7 @@ drm_gem_fb_create_with_dirty(struct drm_device *dev, struct drm_file *file,
+>  			     const struct drm_format_info *info,
+>  			     const struct drm_mode_fb_cmd2 *mode_cmd)
+>  {
+> -	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
+> +	return drm_gem_fb_create_with_funcs(dev, file, info, mode_cmd,
+>  					    &drm_gem_fb_funcs_dirtyfb);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gem_fb_create_with_dirty);
+> diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
+> index f7bc83f2d489..ae7e572b1b4a 100644
+> --- a/drivers/gpu/drm/qxl/qxl_display.c
+> +++ b/drivers/gpu/drm/qxl/qxl_display.c
+> @@ -1179,7 +1179,7 @@ qxl_user_framebuffer_create(struct drm_device *dev,
+>  			    const struct drm_format_info *info,
+>  			    const struct drm_mode_fb_cmd2 *mode_cmd)
+>  {
+> -	return drm_gem_fb_create_with_funcs(dev, file_priv, mode_cmd,
+> +	return drm_gem_fb_create_with_funcs(dev, file_priv, info, mode_cmd,
+>  					    &qxl_fb_funcs);
 >  }
 >  
->  static bool plane_caps_contain_any(u8 caps, u8 mask)
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-> index bdd76b372957..7d1267fbeee2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> @@ -47,7 +47,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
->  bool intel_fb_plane_supports_modifier(struct intel_plane *plane, u64 modifier);
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> index f19113e5ae8f..d496ac0feb08 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> @@ -40,7 +40,8 @@ rockchip_fb_create(struct drm_device *dev, struct drm_file *file,
+>  	if (!afbc_fb)
+>  		return ERR_PTR(-ENOMEM);
 >  
->  const struct drm_format_info *
-> -intel_fb_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
-> +intel_fb_get_format_info(u32 pixel_format, u64 modifier);
+> -	ret = drm_gem_fb_init_with_funcs(dev, &afbc_fb->base, file, mode_cmd,
+> +	ret = drm_gem_fb_init_with_funcs(dev, &afbc_fb->base,
+> +					 file, info, mode_cmd,
+>  					 &rockchip_drm_fb_funcs);
+>  	if (ret) {
+>  		kfree(afbc_fb);
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/drm/xen/xen_drm_front_kms.c
+> index a360003bee47..806ec66ee7f7 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
+> @@ -62,7 +62,7 @@ fb_create(struct drm_device *dev, struct drm_file *filp,
+>  	struct drm_gem_object *gem_obj;
+>  	int ret;
 >  
->  bool
->  intel_format_info_is_yuv_semiplanar(const struct drm_format_info *info,
-> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-> index 9e524b51a001..e971e1b8a850 100644
-> --- a/include/drm/drm_mode_config.h
-> +++ b/include/drm/drm_mode_config.h
-> @@ -95,7 +95,7 @@ struct drm_mode_config_funcs {
->  	 * The format information specific to the given fb metadata, or
->  	 * NULL if none is found.
->  	 */
-> -	const struct drm_format_info *(*get_format_info)(const struct drm_mode_fb_cmd2 *mode_cmd);
-> +	const struct drm_format_info *(*get_format_info)(u32 pixel_format, u64 modifier);
+> -	fb = drm_gem_fb_create_with_funcs(dev, filp, mode_cmd, &fb_funcs);
+> +	fb = drm_gem_fb_create_with_funcs(dev, filp, info, mode_cmd, &fb_funcs);
+>  	if (IS_ERR(fb))
+>  		return fb;
 >  
->  	/**
->  	 * @mode_valid:
+> diff --git a/include/drm/drm_gem_framebuffer_helper.h b/include/drm/drm_gem_framebuffer_helper.h
+> index 4fdf9d3d1863..971d266ab1ba 100644
+> --- a/include/drm/drm_gem_framebuffer_helper.h
+> +++ b/include/drm/drm_gem_framebuffer_helper.h
+> @@ -25,10 +25,12 @@ int drm_gem_fb_create_handle(struct drm_framebuffer *fb, struct drm_file *file,
+>  int drm_gem_fb_init_with_funcs(struct drm_device *dev,
+>  			       struct drm_framebuffer *fb,
+>  			       struct drm_file *file,
+> +			       const struct drm_format_info *info,
+>  			       const struct drm_mode_fb_cmd2 *mode_cmd,
+>  			       const struct drm_framebuffer_funcs *funcs);
+>  struct drm_framebuffer *
+>  drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
+> +			     const struct drm_format_info *info,
+>  			     const struct drm_mode_fb_cmd2 *mode_cmd,
+>  			     const struct drm_framebuffer_funcs *funcs);
+>  struct drm_framebuffer *
 
 -- 
 Regards,
