@@ -2,86 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F6CEAF61EE
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 20:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D59D0AF61EB
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 20:55:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06AA510E777;
-	Wed,  2 Jul 2025 18:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C321710E766;
+	Wed,  2 Jul 2025 18:54:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=aol.com header.i=@aol.com header.b="TaEKDEYG";
+	dkim=pass (2048-bit key; unprotected) header.d=aol.com header.i=@aol.com header.b="ZFnZwAvK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sonic306-19.consmr.mail.gq1.yahoo.com
- (sonic306-19.consmr.mail.gq1.yahoo.com [98.137.68.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0C7110E289
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jul 2025 11:46:11 +0000 (UTC)
+Received: from sonic312-23.consmr.mail.gq1.yahoo.com
+ (sonic312-23.consmr.mail.gq1.yahoo.com [98.137.69.204])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4270A10E59B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Jul 2025 11:55:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.com; s=a2048;
- t=1751370371; bh=gntt+k0Q9g+Ea+fbZ/JyDhnXZM80SSryV8+O9wXd6Z4=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From:Subject:Reply-To;
- b=TaEKDEYGAE5qgW93N2OOpnpsGwXh/DVwhIEpFHY4n+BbiLZaRziflbl0G7Pa72uKQq4/bOWlsGv4rOJLx7DgLm7c9m6qQwpEje/S+E8vmxbwb7TUOguzxT+io8ihAdDWMTBN5Xm1z9tMwwJwi83hyWJme7/0uIdpmpJOx1ey01/tBSscDhRl0H96mQiHsiHE/tZ1vxY+7NbgYqKrw5M3jD19RyT7pRPdrtRpRIhL6bLmp5CunY+oEKKETiqS5a5L8yUuBCmTqvOC0+0wO41Bai+J3CQ4yhHWrJ1yYrtR/hW/rRelo+cCqxIMQtAYLAM3VygaSbRYfcO1gXER1VHRzA==
+ t=1751370918; bh=aCdpH5QZRxMfssKfq9MICezlKlSbdc2MH2kmzXnJ2dI=;
+ h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To;
+ b=ZFnZwAvKIIhqjJ52Zj/7iUUBcIEf/mHH1htbeW8P+sq30Q1ywStBOS7Ez9Oavf6VeXKm9sy2RetmTqoT4TqQ6Vf+EUIB1kvpteH4PSzoknb91ztTbrEKnqRzq6Lv0kLfExnA8DKhrJZP1POGIzBIqFSEeB6WBxPZlcaJ/tVNCPyEb4k1f/AQLo6UwiHrwaG7B9KzwZb22SGndvw4n02twG/d8foG5MWsT1Y6ocUkLB/UzfEgawJvwLXbE4LbfZchwc0WSmOYUtoHTQPXnEbLR/7LERHUneEiduZuC4YChEOLD0d7m49dF0rtQqFIFRo36DOLIMtAV3cGtMZKy2ATMQ==
 X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1751370371; bh=9MlSyXNqJxg3oamm5peZ/XEabZCZbUMofj8kRwXTdhi=;
- h=X-Sonic-MF:Subject:From:To:Date:From:Subject;
- b=OFOf1S+r4Pr1A5jftcYJ3Z5vthnABP19xTs9sO9wkAZ68eeU7PqLKQMESK43tSELTJOAe7BwVqB3zWVUYM2RoCzZan+hXpFmftatqNZ9wwBwDMQ6pdiFI61ZftYcpK6E6LJ3PH9gaj+gxtjkkifavTx9d22iW6e22mqgiWjHONbOhUA+j0oJP3aC+xkWjAC+9em7wErR40Ybpe1ToIEORfeVcURTZYBpW5WU5NwM0VHenbcvDm56BosttaGkZnCJgT/Yq1oFYWQYFnRBDTFBYDDBrJZCE3yzsBwx7MRwU8j4UJjANfuvBmXks+GA+4Wl5ydI/1BJVVB19pP81CoUcQ==
-X-YMail-OSG: UzesalwVM1mJqSuLYpBRQdPHfjZgfddJ_v7HnnxGh3dqTRjJ_FgM3GUg39rGxmh
- kEC38OWmG8awEnn44Kmwf2YszBETJnex0Iiolpzmajkcnu9TXIa2_7kr942PQoHyvBlXZVO.Nuq3
- UohXc39LQbN58RDHjgUs9X6CFrYvj1_Ukh1NeqWsIJr7eTN3eZKosL7IjvZflIC6RpfzHqDtQ4Vh
- EJwvl58HTDDz_tNhca.jIB9dOyzZWjg.KjIOaXfGjI.uxkUyQgPh5xu36PSgwhzCmK4Tbb0vlv12
- uc57PobrxWa8oXVc1ogqEWKBDBfjTpdlztetmaE53KD6C4pSEt0fTpfVo2R7HTWw.MdVJ_rBDVf.
- RdFteBDZebqHzY5vZpUuSaRrHFOMLanYIvLTJ3f9SjJDKXr_zMagv1CQe3kW4R7.qb_yUFH9vZkb
- _MhKWVmbM9QUB3pssmcHG4E2.4Ua.U4ihVXE58zRs4gg5lV9DzFK5Zc4T0Szov6y7SLjudoS7Y_F
- 5klv0SaDFfhDjOzXA9L31k8dFllHbOn_0oboTgAROyFP8OB4_B9mG7urxCbxy.EAhakrDNMbQ7GF
- vILHX9gKGeYjrV5q2jGPXvR745hb4KhpBEbfk3ooRT_89ZWi_ihe5u8uHlWD_ZQpwxBF0OSBBgq_
- q1hEgRrCDwMl9BZ.Irrx.b.UvsR.TmD6TJt1FluEkOen1lGEK6sWSl6goolVzgVkARc38ti8n0wg
- dKNBZGEdImjWRop0IBkRhC0fNl7_sKZR9nZy_SX2CSLGp59TWMkFJVg7tTJgAyLgEcDiV8QToMiy
- 9AKNFgyyapEfdrOq.r0iDErVl55mB9wPa01L.7UZreZpn_nVLyiocPfFspKshHJAPvLe5NgB8H.T
- SkPkAWYNmsLmcYfQ61WPjjirKnacgF53tyuWEBaNDxYwepCLQzDHsoMaW6ER_PMX9E.JmXuPVf3D
- V9AHOJJHqA5hkb1tQhIaYFgEkupTWrrdjjUdZIj1K5aLH5DQGwSdUp9iW1x6xlc9YykdkjE5j3.x
- GKHJHivgatIzEBbKnaytedlJJhhkDVSoVDAVscC8S5xZdQxD6VmBjQqzBPHxDLoRwHN4ogmOL5XY
- uT6nQdX5cx28QaHWPA49lsiItdTILcTdrtOMO4lsGJxueSQa1u5dinlNg0NE6.PqtYC59IRcgpea
- MqSn1NcLs783ShAui0GT0m0_SyFxytFu71bNr8WqW6YdBLyIasjLq8K51BesCxsl2UV3quO_FhAc
- 5FZ9A1HISg1ivJ9f2_zaiTHmmUwIbo.DPOZJDQV2HFFXnQi0nQosT__En.Dy83Q22yXxkRb_3Ppb
- 6KAxnRckESfaxWqTiG5xyXZuELsYD8xfS3_hD83eZ1cY9dlRjA7aX4Kw55kc1d4Kna6pVunU9ILY
- iAqDVImhussu_yUQLo8T935Vg64Kkf1V8q.WsLMOEnb7Sc.LmQ0Q3XHWI6dlutASFMJ_KXzjk5Zp
- EhGoD65bk8VRTTmZcCfLZh0VJccGRSaiCWilcVHcZ4EuD2X_Zb3BB2rmzw3GTk7U48uId1sDZ6NV
- xfsaQ0Z8J4RJFlrl1ELUHar1LKp2u1qTsfdAxw3u5CNFMvOFnZ7eM2FBLraciEmePK2kiYBJdfgR
- fwh44xp8uAvnZNb.nwGCbU56hqKv6X3g6XoKqqo97E2mMdXY40sBjGT6xegKgaxtto_n66gwZ88a
- laWCHov_IglGAam3dLJ53IscwCSeL6o95CH_AJyNCZyFVEzIaTRN_g.91dwTX6vnexPjeOZk7Kkg
- AM0E4ggEdFxQBsrXequ.4EK67KeZoM5cogrnzaFf84WWMO3xo8zGgHZn9DPUA9UQi0wn7JbeTpSL
- ZOmhQ6LphbTk62GTcJINc5L.vdgmMI3WC8QhftR2iXqYeiHiY751Y9x8NgP2.axT4L2NYoEvo0R_
- m4BVUZg.8AEi7E.cdWPWYHGwL07Sx4EK2JGjnJzPwa7sGuZU_3CUNJjhD690V4STe1LKNWRLnDI9
- CorgJtoUL2vvZdCcL4vEbLNW49wlEBlnlu1bbMne607C1DBGtf2ruY664NkJLBT8dlbPsOP1eI8u
- CM.vXqrc3EruFaYy2mhQ5Hv_Zdt20Mz0tXJzOLJfQmmGkH6Szoo52fgRDv8LTZ2hfAbb7hPOsZMl
- DbZY2I8mcPnJzusKTgRLgiYD4HkYnkdlVthEm8YKUIYqAQNf0HsNJPbqvzVb0._c8YhtXCyZBLg1
- E2n5KAUqpDW6JZYLmHuNNVKdqt.1awBw3C3rSVyKN0S4y1DfkG1xcdaj.qO.9WD30GR7hgg--
+ t=1751370918; bh=v8bG7XB8tKg7bwdZFw0VLugV2SIGSnEhgHXjkJlsy85=;
+ h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
+ b=MJl1BeNV1xr9aHMg5Rb3uuUXoqO3yxIwT5AjGWID3Dy90da6U6I4XFPwFqYTHhsrA2AQbasI1oUUhe4DRaBgL2Fum2LzvFCNQqebx0ye0KTewsPjUKu6TcIahYyHtNIcJ3u1X8+o7dSKVncTAC55UdOHJzOvcqKjIEZRmirnOP1eqwOu3o8dmWmq2QFFUiuKaQVV89Ro8f9tP1meWwnJCUkmaXStq/H1pAE/I/KCzZOwGRCkQDPpIzkOIsCTUuKHlGhPUrOaIvbsrFauIPUkz9C0vL3AsAWCyXxf84sMAN6JDVW1vm/by4IQqfui6HA8Cx7pm3/8GZcu+od0L8gcGg==
+X-YMail-OSG: KR.Ns.UVM1mSa7XqjYhWmVahUAEuePOIydPVTeSeF6rM0psOVTkYvrrESbxF1FP
+ 9HQR.wxRkItXnCUB.NGKigiB64yBDsnaXPeK0fEBJfZH2KS4wq54sTmoM37WNnJhhcbw8eA2spby
+ UUONNfvy4RXbukpKTswmu49iiUgNySSkBCZrQb46hBJKtfqh7oE.fYCbio5i1VWJyD_tWlx2A6i3
+ TwQvIk_ABJOw3lmFBUf1W7b0vm2o8jSOJu2yv3aYLs5kTAEzeYR0r2jEqF9YCePazQTI_dp0v90W
+ kOOvFNadGFnix7SBw3xOvXzApQYjirSiHoV3d80OGSfMxxoqeLGiBArwskGQRRaXWcyTNi.8qUTA
+ SVwB.M4gZ8su8n.UYPAEiU5ImZjwpv7XfNSqgvMPBMDiKlz6QcxOA6uWW7Su18bj5jaOZDL0vxcv
+ H3DC41xDQjFpXV_6F1xiOlIXMaKUrvVIf8t1tc4MqdqDiPYQBfj_2gOXmjKb4E.cLU_2H.TjifV2
+ 5iviHPjGJyeUoJUp1EhgHTZUa6aTO9Ajwt9ni6DxdwXdLgR59.4PxvTxkaW23JfqECMSyk01N_Bd
+ XqkMe7X7bE.3XcSiD10tGlf34V.7h8OleMBTdXMZlblmAd_SW6R.FK_Y0XthE603dLeXfvEzjINZ
+ ikyOgdB07aYXzMBIGZb5Dodgf9Z0AkWnJKkYztQCffsBSTANX_IzYc4C0R7bxoMru58fsvR5N9_U
+ hGpNbcz_Ns9NqbJ08Ju8CEIBZUvUgQJGi_TxMc4dBgZO15PByzxtr1NQAeIEnD0Je8pT.jqSsYIR
+ qHVmt7K7ht4kBcCFs.K_74q.gMHhzn1a24jk2WRkJR1eTkN68.6RGPPKkgqHle11HJj9nTNTjPuC
+ 2IqMEG4z8ISsUtvD3gvWYrYt0lmqTwCgcHwHQhPrqNRjy5Q5hXc95eBf0FrDPPNsvEBO6X8gY1a.
+ bOUafHhB.AI21zL3d1qOvPSMgZz0R0eqKLdUsuTbu0vLUrC3AlgM7gUJkwe2KxphE8fXwh_5vTbp
+ 5RS9eMcmP8q.647Ulv1SzUetS_AtX77zzaYsf5COhWcPx02B7QY9RcT8qWU_0R32N8zjTvx9W57v
+ htewEbkSWsNBAGD0XgW.FuQM.9g9GnjnRPxW73aEO1MmReD5WQ4MCrDAozNXvI0tBKLCgVGEkXK_
+ qu8PLycF7wcSUS1kDzn6nD5P49z23dEETV4LWznGdQXLD_jKHksFnQ7aEi_QPjq3T0QM9T0rOrnU
+ 4AuA3h_DGwz.rfPNnkScNYv_Do1DY6cdeT8BaJ5U6nipFBlIODa8QtCNXj8xoZ.SkTDJonUgxOMG
+ dKuYqN0KgxYgvKx9MQgYgUysgHEXJ1zEOenMj4K9M5D48yokwnyTkHIwtXuWC37A.HxlRKcWCL.7
+ alMoqZoS9yU7DXUdBMeFstaUAIv8DlAPK9KkZHjbZr_e6TO6au0WQlPKHGNg6Qc_JEpUk16qOIkV
+ B8eM0UHfcaP0Z9XFYgtsci8pB9BTbgYSU9chuMYUgGQKkVhXjs2UFNZcH4luMecb42RSBAgJcOgY
+ Vx_r0btRnZmia8QSZb8JNVJi_x_CiQdbmZpdtZdco4fJ2QYH4XlTezt8qQVLe1Xk9E2TRwt6wV2G
+ 3KyNWrKUNjoYo0r5Y1PFkoZSb6IWuc3osgD8Qr9MoPhljclDEbVhzOJx0VrhWeEwHHdmy2pu_Pe7
+ dS8ntEbo8Rp7YxTXdgIbcpNSxFyBg8wQ90h53iPsvLhizlgtGDs4XDbTy1i04I4kLwdBWPSOIZq0
+ d.BFIl5abwJcN4Zwunco.8G0VqfYkc_lnr39OaOPtYiOZ6QzI1SuVaED.qu3gDDCuqNGuM0A9q1y
+ zT1vO9zfzQKyPiZ0dVee2EAUQx_n7Z9iUnQ0NtbKy3e8oFeNYsu2NfvyuHtfzFdUir4NpLnMUrjx
+ 8UOxaFWAZZ3BEBgmE_kR7WzOhnfJDhr4CVHuKBdc2XAEEd6_ybs6AxLOcZito3nIjS4FVqr4hzhB
+ FKSW0fb6OF88ahYTQ7qiYCtXzp42PRq0qXIRSd3lmLyO1MfNx.CwVJKDVR66Efwh8MtMf0wselza
+ qwZ3M_uvHrpc637r8GI5sxXoBtdmLaS_PQFTkdJxDoZzjKsyigvZ5SPU.pBNHhGLi1MKj8UZUK3_
+ mc7BH.PYKUxxoqrky_57hWW5zAW394Vu7sE1nJnpr_nsP7nnJ6QZztiByPrQrl6pkIHN_LoZeq03
+ irDHnFeptHzM3zdD0u7qb3lezkh.vtOijxCqL1xh4T7B4io7TO1fJ2ZANZkXnhQBu5VQU9Inlqz2
+ L
 X-Sonic-MF: <rubenru09@aol.com>
-X-Sonic-ID: 89cf28c5-4810-4135-8a5d-d624a22df7f4
+X-Sonic-ID: 25e66419-7370-4560-a4e8-3595986d5bb5
 Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic306.consmr.mail.gq1.yahoo.com with HTTP; Tue, 1 Jul 2025 11:46:11 +0000
-Received: by hermes--production-ir2-858bd4ff7b-l75cc (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID 3d62bb3bb3a6558dee9bf77d66b96d15; 
- Tue, 01 Jul 2025 11:46:07 +0000 (UTC)
-Message-ID: <922e109fc0f9cd1197674451cc1281cace025f83.camel@aol.com>
-Subject: Re: [PATCH] drm/i915: replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST
+ sonic312.consmr.mail.gq1.yahoo.com with HTTP; Tue, 1 Jul 2025 11:55:18 +0000
+Received: by hermes--production-ir2-858bd4ff7b-nknbf (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID 557e0d14bcf47e6d0b13962042679d71; 
+ Tue, 01 Jul 2025 11:55:16 +0000 (UTC)
 From: Ruben Wauters <rubenru09@aol.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen	
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <arlied@gmail.com>,
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-Date: Tue, 01 Jul 2025 12:46:05 +0100
-In-Reply-To: <8a3ef0b42de25db3faf384260b7abdce468cb65f@intel.com>
-References: <20250701025426.262129-1-rubenru09.ref@aol.com>
- <20250701025426.262129-1-rubenru09@aol.com>
- <8a3ef0b42de25db3faf384260b7abdce468cb65f@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0-1 
+Cc: Ruben Wauters <rubenru09@aol.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Subject: [PATCH v2] drm/i915: replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST
+Date: Tue,  1 Jul 2025 12:54:51 +0100
+Message-ID: <20250701115511.5445-1-rubenru09@aol.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.24076
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
+Content-Transfer-Encoding: 8bit
+References: <20250701115511.5445-1-rubenru09.ref@aol.com>
 X-Mailman-Approved-At: Wed, 02 Jul 2025 18:54:57 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,42 +95,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2025-07-01 at 09:28 +0300, Jani Nikula wrote:
-> On Tue, 01 Jul 2025, Ruben Wauters <rubenru09@aol.com> wrote:
-> > DRM_DEBUG_SELFTEST was replaced with DRM_KUNIT_TEST.
-> >=20
-> > This patch replaces the select in Kconfig.debug to use the
-> > replacement.
->=20
-> Why? That's the most important questions the commit messages should
-> answer.
+DRM_DEBUG_SELFTEST was removed in commit fc8d29e298cf (drm: selftest:
+convert drm_mm selftest to KUnit) and all functions under it were
+converted to KUnit, under the DRM_KUNIT_TEST option
 
-Sorry, I wrote the commit message quite late at night and forgot to
-include a lot of information, I will send a v2 with more information in
-the message.
+This conversion however did not occur in the Kconfig.debug file in the
+i915 directory.
 
-> BR,
-> Jani.
->=20
-> >=20
-> > Signed-off-by: Ruben Wauters <rubenru09@aol.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/i915/Kconfig.debug | 2 +-
-> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/Kconfig.debug
-> > b/drivers/gpu/drm/i915/Kconfig.debug
-> > index 1852e0804942..b15b1cecb3aa 100644
-> > --- a/drivers/gpu/drm/i915/Kconfig.debug
-> > +++ b/drivers/gpu/drm/i915/Kconfig.debug
-> > @@ -50,7 +50,7 @@ config DRM_I915_DEBUG
-> > =C2=A0	select DRM_VGEM # used by igt/prime_vgem (dmabuf interop
-> > checks)
-> > =C2=A0	select DRM_DEBUG_MM if DRM=3Dy
-> > =C2=A0	select DRM_EXPORT_FOR_TESTS if m
-> > -	select DRM_DEBUG_SELFTEST
-> > +	select DRM_KUNIT_TEST
-> > =C2=A0	select DMABUF_SELFTESTS
-> > =C2=A0	select SW_SYNC # signaling validation framework
-> > (igt/syncobj*)
-> > =C2=A0	select DRM_I915_WERROR
+This patch replaces the select for DRM_DEBUG_SELFTEST, an option that no
+longer exists, with the correct select, DRM_KUNIT_TEST.
+
+Signed-off-by: Ruben Wauters <rubenru09@aol.com>
+---
+v2 changes:
+- update commit message to contain more detail about the background of
+  the change and why it is necessary
+---
+ drivers/gpu/drm/i915/Kconfig.debug | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 1852e0804942..b15b1cecb3aa 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -50,7 +50,7 @@ config DRM_I915_DEBUG
+ 	select DRM_VGEM # used by igt/prime_vgem (dmabuf interop checks)
+ 	select DRM_DEBUG_MM if DRM=y
+ 	select DRM_EXPORT_FOR_TESTS if m
+-	select DRM_DEBUG_SELFTEST
++	select DRM_KUNIT_TEST
+ 	select DMABUF_SELFTESTS
+ 	select SW_SYNC # signaling validation framework (igt/syncobj*)
+ 	select DRM_I915_WERROR
+-- 
+2.48.1
+
