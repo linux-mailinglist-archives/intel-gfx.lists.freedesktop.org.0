@@ -2,100 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6584AF61EC
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 20:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7E4AF60ED
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 20:16:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B41710E775;
-	Wed,  2 Jul 2025 18:55:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65EFF10E29F;
+	Wed,  2 Jul 2025 18:16:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nD5Ji6kZ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cUfp+p6P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD6F10E0F0;
- Wed,  2 Jul 2025 14:51:44 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-23694cec0feso69109755ad.2; 
- Wed, 02 Jul 2025 07:51:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751467904; x=1752072704; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qBca6/tX4UaiNS88cVzn9ejTz7Ui0nOCiCDYDy5kH/4=;
- b=nD5Ji6kZa8kvi1OKxAsvYVvuQskmUxShf+kTvyZWBWigl7qTuF/GYSESzQDDNQnKvv
- t5YvhM4yZBaO/xcyVNoJM+F8eDf2t1vsqioYWyPerxCHILIqVOnrGpa/0wCm6Amn7sNt
- kdYjUcTOBeY8/LCEdb11hDklMvPeBOLIMLg3BDlax3n+/izpXDONaZwnmoKOVj0nkfYI
- 3+RwCAM0Qn2v1ZIvcyu+5ZOGDr/EMruAopjtk2VCMrgTrXUc5u5KV4Ixxjo2V/S/egjp
- 2H5hIYFvuFQRyWgZ1Ah3qcubmfruOfewuVPIFpnqNgaLObn7vCRqrQl5muISd1St41bq
- w1nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751467904; x=1752072704;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=qBca6/tX4UaiNS88cVzn9ejTz7Ui0nOCiCDYDy5kH/4=;
- b=TnFoBSBtOPqmXh/h2xrL1hhyCqPwzTtlxE/MHJZTKS1yK5PoXHTD9QFwMb/n6CLWFQ
- GPWvqvqub3rs3N0Lau/ucuWN9VpaQAYg5t8p9E43o9LI3G9gMlC8KFYubaFI7wYJUHd+
- a85gakjjKd5Lg9KrxHheuyZ+rw7jos0rdMJPKWB9rPHNE3fLmNM0FbIWHXgP4uY78EdI
- bnOlyRiTmyByqtMyX0TMx7NrWrnCL78SRZT0IVaEMBuaju31y40bCjlZVEUl8Frohtzt
- kTnTpUA81CG5wZNYOA53Jyij1+EWbjDjjARO3fZ0nqPi7fbULDVJr2piNeQoMTdHeZRp
- Uu8Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVDX21aPQi48td2RUaBYMas1/G73TN3w5uMo93E9yIE2kgxHQHqIj+hHyXEmmjfSW5TiD8vTWriqLQp@lists.freedesktop.org,
- AJvYcCWOuH13xOTKzFB2/vDzmjQ0RC8Q8wo0Deg/FcbhqjvUdGG+FCxX5cgrm0WAxanq4ztkh4N0ytuSVis=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyNif+kJHaNJkZP+dLdHSDdNw24+PpcXOMWU18RJZytGLQfnJwx
- XKyackS6Xf0fMR8WJOJ+WwO5rLHAkNTLcixV0WfWX+Upb+g8RkkDMi4z
-X-Gm-Gg: ASbGncs1/EaR2YjtrCHcdxmpNEZId5HDlcb3UVGT8Mh4a8P1xhnFLCdiEvmQsnrEyBh
- oUXfPFU6Y+DW9SJIVI/N2KxEAck4FLTwkZuB84dhyw2dzlutmPCxca8vRYCrPp79xDYwWNknQVp
- LeR67ycGgb/3SjwGSfnfVFyAWac8IfFx7kMeb3mW9zwCnZExpimc54xbWWDISdsq1/0KsBL+VrU
- wj1kXA+lSonpoMv2ndRNtvmzvQx/1hTOlzRN6lZO78BwpMEngop5fNCFg77iMWAfMx7qMFd9KRS
- n/uuth1TVXvbNocYq0s0/rW2n5No0iMUwr4KCfY5o0MFV1Mrozl4blwAZj0BMe9HQLoWuKMpSDr
- d8EriSVr5dYT7+BA98NqN+tjL+OaqW39xpozT7Xk=
-X-Google-Smtp-Source: AGHT+IHGXFFKwi9KhnB1akNKraPfzeJ2zmSUqQqb7SzFIxYzfjGRA13Y+veDJQIEsP0m/DU4C4O2oA==
-X-Received: by 2002:a17:902:c94a:b0:232:1daf:6f06 with SMTP id
- d9443c01a7336-23c6e5d3a53mr39666775ad.47.1751467903710; 
- Wed, 02 Jul 2025 07:51:43 -0700 (PDT)
-Received: from ?IPV6:240e:305:798e:6800:81a5:8e22:d9f1:ac68?
- ([240e:305:798e:6800:81a5:8e22:d9f1:ac68])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23acb3afc94sm138573955ad.155.2025.07.02.07.51.34
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Jul 2025 07:51:43 -0700 (PDT)
-Message-ID: <34b3f8f1-5adf-4f82-8d06-b906cdf0552d@gmail.com>
-Date: Wed, 2 Jul 2025 22:51:30 +0800
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19B1510E29F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  2 Jul 2025 18:16:20 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 49C706111F;
+ Wed,  2 Jul 2025 18:16:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A13FC4CEE7;
+ Wed,  2 Jul 2025 18:16:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1751480179;
+ bh=oxFk8nBtUpnr9ArALYj2G+HiGhqQz+KjsgoenrQgazk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cUfp+p6P8NkfOomLDeaOO1AYQfc7YgF5501e/lvU0J7pig7nGbHZS9CvA+gskzaKS
+ nlsSw9g+STdIRBpwhVlFiwK/GSEAa8sT878lTIWuTlLaIG2P4TrzT/JgJ9W4KVctLc
+ ux7l+sovWqx0qglJyVKhBG6q04DR2h83ccHtFTyB4Unzc4r+YszEyZlrY7SMCKxZrr
+ b/xk7Q9exyIzLLZknrip/QxXaEOZOwJIXb1WTO3s1MRlrQsC0qjT70EVL3nv4NLFRI
+ UKaCmljRiWHmQXnuPoy9POHvKOgO6CMp/Mi++G3UU4N+kYL5gVjYx5tGMsnGSBBDfU
+ nsXCAZICxxUeA==
+Date: Wed, 2 Jul 2025 20:16:14 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH] iopoll: use fsleep() instead of usleep_range()
+Message-ID: <2axg64hx4qjg3hvk27du4yifoojpemkzht2kuxzecuggomrbyv@difktc36et6m>
+References: <20250626145119.2048423-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] fs: change write_begin/write_end interface to take
- struct kiocb *
-To: Matthew Wilcox <willy@infradead.org>
-Cc: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "chentao325@qq.com" <chentao325@qq.com>,
- "frank.li@vivo.com" <frank.li@vivo.com>
-References: <20250627110257.1870826-1-chentaotao@didiglobal.com>
- <20250627110257.1870826-4-chentaotao@didiglobal.com>
- <aF6-L5Eu7XieS8aM@casper.infradead.org>
-From: Taotao Chen <chentt325@gmail.com>
-In-Reply-To: <aF6-L5Eu7XieS8aM@casper.infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 02 Jul 2025 18:54:57 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250626145119.2048423-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,16 +59,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Jani,
 
+On Thu, Jun 26, 2025 at 05:51:19PM +0300, Jani Nikula wrote:
+> Sometimes it's necessary to poll with long sleeps, and the accuracy of
+> usleep_range() is overkill. Use the flexible sleep helper fsleep() for
+> sleeping in the read_poll_timeout() family of macros to automatically
+> choose the appropriate method of waiting.
+> 
+> Functionally there are a few consequences for existing users:
+> 
+> - 10 us and shorter sleeps will use usleep() instead of
+>   usleep_range(). Presumably this will not be an issue.
+> 
+> - When it leads to a slack of less than 25%, msleep() will be used
+>   instead of usleep_range(). Presumably this will not be an issue, given
+>   the sleeps will be longer in this case.
+> 
+> - Otherwise, the usleep_range() slack gets switched from the begin of
+>   the range to the end of the range, i.e. [sleep/2+1..sleep] ->
+>   [sleep..sleep+sleep/2]. In theory, this could be an issue in some
+>   cases, but difficult to determine before this hits the real world.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-在 2025/6/27 23:52, Matthew Wilcox 写道:
-> On Fri, Jun 27, 2025 at 11:03:11AM +0000, 陈涛涛 Taotao Chen wrote:
->> @@ -1399,13 +1400,10 @@ static int write_end_fn(handle_t *handle, struct inode *inode,
->>   }
->>   
->>   /*
->> - * We need to pick up the new inode size which generic_commit_write gave us
->> - * `file' can be NULL - eg, when called from page_symlink().
->> - *
-> Why delete this?  It seems still true to me, other than s/file/iocb/
-Sorry, that was my mistake...
+this patch makes sense to me even with the fixes in the commit
+message suggested byt Geert.
+
+Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+
+Andi
