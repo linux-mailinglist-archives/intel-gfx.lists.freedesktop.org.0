@@ -2,100 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13526AF61E9
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 20:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A9DAF5AB4
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 16:12:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 660C410E33C;
-	Wed,  2 Jul 2025 18:54:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A92E10E717;
+	Wed,  2 Jul 2025 14:12:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a0ea98PJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwAPIyVY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C135F10E719;
- Wed,  2 Jul 2025 14:12:35 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-74b56b1d301so376092b3a.1; 
- Wed, 02 Jul 2025 07:12:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751465555; x=1752070355; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3hi0b4Q2TMU9s9ow4O1FxnYpGW2LdSH037wzbnfcLAI=;
- b=a0ea98PJVNFGMl9rm2Yx4zynXvpGTlKl7yja1L7C5lWVhBWOwcIRJISletb4tK7NYw
- 85oRHMS/9/HdPL4XzB8NQozztXScjtGlNErvnv9xy35fRrhlwwmnqV6yZU0hYP23QClT
- bVpA7usDKeDsah/lbG58U9X7/LKIj8vp4tFcNGysnAI6sadMSH11SSVWnBlnjDD5dAPY
- G2zFd5h5fvKnXtGKogUnNmWSdPJtRLEy4qyjKc5mHVpNXw66x7vJyrcBhQskuXJc657o
- /1BrT97/ZOuSIcShqS8v7IfxE5YoHsQzBFwCXfdiu3PhSu+IM2Vw4eOuiSSXyv9qrloS
- fXtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751465555; x=1752070355;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=3hi0b4Q2TMU9s9ow4O1FxnYpGW2LdSH037wzbnfcLAI=;
- b=RbD9AwoBjgLawzq1b3zId6BqXSyW3iBXQ+E9PxwiIhXObjyJqHsUv6YGWvr6/HQW0n
- hXKelZM/m3DbFm9lHZPaqP+NmSHGpbasV41b0eKKDLhRRVxrI9MlYhdlrifc7QtHbjUi
- 5MnQ8+yV0drNYv2fuD+Ud0LmH01HIPKE9Y9KnfztvhFkFAeyrOOYVHDQa5ponsja1cgi
- g1MPPHI6dyQwDQW/nm0KTge/WwnquP3bEidbBYMU74j88Rwnfs59ED/7eeuDNc4OlpbZ
- 3fA6kmpmks2XiWuOlRqZ4F+8hR4OtY6SLIds05WMY7NNhi8hsi1FQgQhXWVEew+oBUus
- DVrA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUJykqWPNAt2XplixvWI62ZlzWspJvFncznK7eKukaYpsS5yhu6QF5h7RnTxaJ12t2RyXBMR9zgHJ4=@lists.freedesktop.org,
- AJvYcCVXw+owGl06MgFFTSh/c3teHMWpMj6LavPHXpQcrdftrTOwzJNWFpafWkWLJtIO06erUkQaNEsb3lgq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz4vlVhZOupxe9/zt/gZh/W1Re72vYXLOUg6JpnyHdtOjNGVRxf
- OolzclIxnBnfroM991xSZW5MeMlWkJiAMx2hS4BV5htQlpQ7ysmg3Oq1
-X-Gm-Gg: ASbGncvt/zijfjErm/IpETRm3S+mhB2MYQgD7+Sh+DQeFCUJ2RcffwLFoQTc/JLhrrx
- /0zK3cedeQjkh4kXoUXxy6WLJKCHAJOUJE6yZLRZg8nKvaJ32GdRGm0n5fx7q/4bVarx7i6BOmr
- LxHff6iWN408kzTUprGzIygFVkWYhA5DbqIdxY06zJr616Rsc4YfpWVvvcmGHDY7j6SSFZBbPEF
- Wf/wuymxNce1wGEMLs/zKzeCmHsIHCWxF0cn5X4g+ir3tpQnhHiYqwZ7fSMJ47eUOfptItDVHIv
- D9HOktGBSg0ygmzGrzDwWsJgkbN28v3y/qitN3Elt/waJ4LYxiXG5+026INz9I+DfW4PSpCgnkY
- mfTLbnkdPpFP0aU0xO0t2LS17PjdXkGI7eZQHles=
-X-Google-Smtp-Source: AGHT+IFKRDLioih13g48ycaXA5K8ysUyKk1vSQvjV96+wwiKTloc/oO2WVx/lFSAoNhOajXgeeSAFQ==
-X-Received: by 2002:a05:6a20:a126:b0:21d:fd1:9be with SMTP id
- adf61e73a8af0-222d7de1c90mr4563817637.12.1751465555071; 
- Wed, 02 Jul 2025 07:12:35 -0700 (PDT)
-Received: from ?IPV6:240e:305:798e:6800:ad23:906d:e07c:8a1e?
- ([240e:305:798e:6800:ad23:906d:e07c:8a1e])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-74af56ce9f3sm14100034b3a.122.2025.07.02.07.12.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 02 Jul 2025 07:12:34 -0700 (PDT)
-Message-ID: <54a85ec6-992d-4685-9031-114ba634e0a3@gmail.com>
-Date: Wed, 2 Jul 2025 22:12:20 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6938010E717;
+ Wed,  2 Jul 2025 14:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751465570; x=1783001570;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=tTVKzZpEnc7zeJ0EyQEnBhBVZ0c91y5ihShsNJAt4TA=;
+ b=dwAPIyVY8cI5uxsdl7xemjrqfJgsafP49iTZERHq07hXOu5p2fbfUG7x
+ odfTpliJkVcpFwkXP1wriPI5+0p7S+R6UVZMGzkUGTmLmlrTLednelN/6
+ 8oAYoKOrA9d696ZpMIxDV9Qxg00D6YgEC/SWlsH9Y0gjzAcIkgRSRWP0/
+ QxRouv1kYdFx6qRuI7qhtm4u8t/lOatUQnd1BaoiLlT8B+gsG2CQ4v2wu
+ Zih/nsJwuHIbzwyl9dCKQrFt/np315khDDdREiaET5UAwxJB6Ae0SWpQ/
+ 3RVuJzgrzKvS3MuGlIFPK2FyE5FUpQUSPs5BfXkymvVyQ+vRYBs+4uqym A==;
+X-CSE-ConnectionGUID: V6U7HbGTTiW5dt/NYNjFdA==
+X-CSE-MsgGUID: 1C2QKBpkTqCtTmPpYvInhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="64009118"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64009118"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 07:12:50 -0700
+X-CSE-ConnectionGUID: Bl4kLbN8TYuEfK6iVaoptA==
+X-CSE-MsgGUID: +7amJITWRvG7SO/ep4wRIw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="154433102"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.29])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 07:12:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/display_wa: Add helpers to check wa
+In-Reply-To: <175146302838.3748.9114348489206219151@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
+ <20250702084620.3837426-2-ankit.k.nautiyal@intel.com>
+ <175146302838.3748.9114348489206219151@intel.com>
+Date: Wed, 02 Jul 2025 17:12:43 +0300
+Message-ID: <45e9d0aa40e0f9bf9dac03054e7a46c52623ba84@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] fs: change write_begin/write_end interface to take
- struct kiocb *
-To: Matthew Wilcox <willy@infradead.org>
-Cc: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "chentao325@qq.com" <chentao325@qq.com>,
- "frank.li@vivo.com" <frank.li@vivo.com>
-References: <20250627110257.1870826-1-chentaotao@didiglobal.com>
- <20250627110257.1870826-4-chentaotao@didiglobal.com>
- <aF68sKzx24P1q54h@casper.infradead.org>
-From: Taotao Chen <chentt325@gmail.com>
-In-Reply-To: <aF68sKzx24P1q54h@casper.infradead.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 02 Jul 2025 18:54:57 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,105 +72,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-在 2025/6/27 23:45, Matthew Wilcox 写道:
-> On Fri, Jun 27, 2025 at 11:03:11AM +0000, 陈涛涛 Taotao Chen wrote:
->> diff --git a/fs/exfat/file.c b/fs/exfat/file.c
->> index 841a5b18e3df..fdc2fa1e5c41 100644
->> --- a/fs/exfat/file.c
->> +++ b/fs/exfat/file.c
->> @@ -532,10 +532,12 @@ int exfat_file_fsync(struct file *filp, loff_t start, loff_t end, int datasync)
->>   	return blkdev_issue_flush(inode->i_sb->s_bdev);
->>   }
->>   
->> -static int exfat_extend_valid_size(struct file *file, loff_t new_valid_size)
->> +static int exfat_extend_valid_size(const struct kiocb *iocb,
->> +				   loff_t new_valid_size)
->>   {
->>   	int err;
->>   	loff_t pos;
->> +	struct file *file = iocb->ki_filp;
->>   	struct inode *inode = file_inode(file);
->>   	struct exfat_inode_info *ei = EXFAT_I(inode);
->>   	struct address_space *mapping = inode->i_mapping;
->> @@ -551,14 +553,14 @@ static int exfat_extend_valid_size(struct file *file, loff_t new_valid_size)
->>   		if (pos + len > new_valid_size)
->>   			len = new_valid_size - pos;
->>   
->> -		err = ops->write_begin(file, mapping, pos, len, &folio, NULL);
->> +		err = ops->write_begin(iocb, mapping, pos, len, &folio, NULL);
->>   		if (err)
->>   			goto out;
->>   
->>   		off = offset_in_folio(folio, pos);
->>   		folio_zero_new_buffers(folio, off, off + len);
->>   
->> -		err = ops->write_end(file, mapping, pos, len, len, folio, NULL);
->> +		err = ops->write_end(iocb, mapping, pos, len, len, folio, NULL);
->>   		if (err < 0)
->>   			goto out;
->>   		pos += len;
->> @@ -604,7 +606,7 @@ static ssize_t exfat_file_write_iter(struct kiocb *iocb, struct iov_iter *iter)
->>   	}
->>   
->>   	if (pos > valid_size) {
->> -		ret = exfat_extend_valid_size(file, pos);
->> +		ret = exfat_extend_valid_size(iocb, pos);
->>   		if (ret < 0 && ret != -ENOSPC) {
->>   			exfat_err(inode->i_sb,
->>   				"write: fail to zero from %llu to %llu(%zd)",
->> @@ -655,8 +657,11 @@ static vm_fault_t exfat_page_mkwrite(struct vm_fault *vmf)
->>   	struct file *file = vma->vm_file;
->>   	struct inode *inode = file_inode(file);
->>   	struct exfat_inode_info *ei = EXFAT_I(inode);
->> +	struct kiocb iocb;
->>   	loff_t start, end;
->>   
->> +	init_sync_kiocb(&iocb, file);
->> +
->>   	if (!inode_trylock(inode))
->>   		return VM_FAULT_RETRY;
->>   
->> @@ -665,7 +670,7 @@ static vm_fault_t exfat_page_mkwrite(struct vm_fault *vmf)
->>   			start + vma->vm_end - vma->vm_start);
->>   
->>   	if (ei->valid_size < end) {
->> -		err = exfat_extend_valid_size(file, end);
->> +		err = exfat_extend_valid_size(&iocb, end);
->>   		if (err < 0) {
->>   			inode_unlock(inode);
->>   			return vmf_fs_error(err);
-> This is unnecessary work.  The only ->write_begin/write_end that we'll
-> see here is exfat_write_begin() / exfat_write_end() which don't actually
-> need iocb (or file).  Traditionally we pass NULL in these situations,
-> but the exfat people probably weren't aware of this convention.
+On Wed, 02 Jul 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Ankit Nautiyal (2025-07-02 05:46:18-03:00)
+>>Introduce a generic helper to check display workarounds using an enum.
+>>
+>>Convert Wa_16023588340 to use the new interface, simplifying WA checks
+>>and making future additions easier.
+>>
+>>v2: Use drm_WARN instead of MISSING_CASE and simplify intel_display_wa
+>>macro. (Jani)
+>>
+>>Suggested-by: Jani Nikula <jani.nikula@intel.com>
+>>Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>---
+>> drivers/gpu/drm/i915/display/intel_display_wa.c | 15 +++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_display_wa.h |  9 +++++++++
+>> drivers/gpu/drm/i915/display/intel_fbc.c        |  2 +-
+>> 3 files changed, 25 insertions(+), 1 deletion(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gp=
+u/drm/i915/display/intel_display_wa.c
+>>index f57280e9d041..f5e8d58d9a68 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+>>@@ -3,6 +3,8 @@
+>>  * Copyright =C2=A9 2023 Intel Corporation
+>>  */
+>>=20
+>>+#include "drm/drm_print.h"
+>>+
+>> #include "i915_reg.h"
+>> #include "intel_de.h"
+>> #include "intel_display_core.h"
+>>@@ -39,3 +41,16 @@ void intel_display_wa_apply(struct intel_display *disp=
+lay)
+>>         else if (DISPLAY_VER(display) =3D=3D 11)
+>>                 gen11_display_wa_apply(display);
+>> }
+>>+
+>>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
+y_wa wa)
+>>+{
+>>+        switch (wa) {
+>>+        case INTEL_DISPLAY_WA_16023588340:
+>>+                return intel_display_needs_wa_16023588340(display);
+>>+        default:
+>>+                drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
 >
-> exfat_extend_valid_size() only uses the file it's passed to get the
-> inode, and both callers already have the inode.  So I'd change
-> exfat_extend_valid_size() to take an inode instead of a file as its
-> first argument, then you can skip the creation of an iocb in
-> exfat_page_mkwrite().
+> Hm... I wonder how useful the message would be if we just show the enum
+> value. For example, if the next workaround that we added was
+> INTEL_DISPLAY_WA_99999999999 and we had it missing here, I think we
+> would get the following warning message:
+>
+>     "Missing Wa number: 1"
+>
+> Perhaps the enum identifier could be found in the callstack that is
+> presented with the warning, but I'm wondering if we could do better
+> here.
+>
+> Not sure there is a good solution without requiring extra memory to map
+> each enum member to its corresponding the workaround number.
+
+The solution would be to make the function:
+
+bool __intel_display_wa(struct intel_display *display, enum intel_display_w=
+a wa, const char *name);
+
+and the macro:
+
+#define intel_display_wa(__display, __wa) \
+	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
+
+and then you could debug log the name.
+
+Worth it? Not sure.
 
 
-My initial goal was to maintain consistency with the updated ->write_begin/
-
-->write_end interfaces. That meant passing the iocb to avoid special cases
-
-and keep the changes minimal and safe.
-
-But you're right, since exfat_write_begin() and exfat_write_end() don't 
-use the
-
-iocb or file pointer, passing NULL is fine, and having 
-exfat_extend_valid_size()
-
-directly take an inode makes the code simpler and clearer.
+BR,
+Jani.
 
 
-In addition, inside the ntfs_extend_initialized_size() function, I also 
-set the iocb
+>
+> --
+> Gustavo Sousa
+>
+>>+                break;
+>>+        }
+>>+
+>>+        return false;
+>>+}
+>>diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gp=
+u/drm/i915/display/intel_display_wa.h
+>>index babd9d16603d..146ee70d66f7 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+>>+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+>>@@ -21,4 +21,13 @@ static inline bool intel_display_needs_wa_16023588340(=
+struct intel_display *disp
+>> bool intel_display_needs_wa_16023588340(struct intel_display *display);
+>> #endif
+>>=20
+>>+enum intel_display_wa {
+>>+        INTEL_DISPLAY_WA_16023588340,
+>>+};
+>>+
+>>+bool __intel_display_wa(struct intel_display *display, enum intel_displa=
+y_wa wa);
+>>+
+>>+#define intel_display_wa(__display, __wa) \
+>>+        __intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa)
+>>+
+>> #endif
+>>diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+>>index 6e26cb4c5724..e2e03af520b2 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>>@@ -1464,7 +1464,7 @@ static int intel_fbc_check_plane(struct intel_atomi=
+c_state *state,
+>>                 return 0;
+>>         }
+>>=20
+>>-        if (intel_display_needs_wa_16023588340(display)) {
+>>+        if (intel_display_wa(display, 16023588340)) {
+>>                 plane_state->no_fbc_reason =3D "Wa_16023588340";
+>>                 return 0;
+>>         }
+>>--=20
+>>2.45.2
+>>
 
-parameter to NULL when calling ntfs_write_begin() and ntfs_write_end().
-
-
-
+--=20
+Jani Nikula, Intel
