@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F64AF0E3E
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA9CAF0E8A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:56:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7FBA10E059;
-	Wed,  2 Jul 2025 08:43:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B700010E31E;
+	Wed,  2 Jul 2025 08:56:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IDDEDCsm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNY4pRkO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5679710E059;
- Wed,  2 Jul 2025 08:43:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF5B810E31D;
+ Wed,  2 Jul 2025 08:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751445784; x=1782981784;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=HiWNBmYYufeyFzULCfbCcdIbm6XiuNuD6nLk7AFm3WA=;
- b=IDDEDCsmLlOxvSspJkVGAijB93EHvjXfiLWv33Mwkoof+mf8+Lg982nQ
- YJpBv9hZzU5xBuj4GTVEXQ4K42mSa5Vr1w9T0O1MMXPTBKfT0rIUWPx0m
- jB44PEKObDwXBdFhe4wVrv4PiI6zaTjA4U1dbjqVftS5kdrnap6IOtlJs
- 3eMn4qgEm59y/pQhDdrnnPzydKDVOZH2S5wRa8MA8TCF9siEzf8u+a+h5
- dViH5Y6tlfp5e85T87jxXaG+LfYROF2fVg791Hckw84d4lrRWeHJ9m3rS
- e4NCeIP79KXDP8pyeFxIi92oWjSU8uDBdhI6qXlJar2InRb+cQ9FrXv7L A==;
-X-CSE-ConnectionGUID: 63kPyciNSi+135tRg3VJ6Q==
-X-CSE-MsgGUID: ZSVMhFL9SASMc2e+zJVigQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="79171649"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="79171649"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:43:04 -0700
-X-CSE-ConnectionGUID: pk+l5cbMRJ69mmQi06yLog==
-X-CSE-MsgGUID: lORIma2vTYK+DT/FdCkCRw==
+ t=1751446615; x=1782982615;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=E5kgTbX8xrKQWY0BYC8Lw1F1gCVxx02iOFOzhNIs5os=;
+ b=VNY4pRkOt3kPhU21G1RK9MtV1s13e4f4o3gEtJvpVE0IWR3HxcbVN86x
+ v4Ko+dLUknVzfT2nqnLo8MNaP7EiENIpI7bRBj2G7tsa83S6jwv4F0Uhy
+ w698f2CZPzNQUu389fCK/PxHWjceLRI9bc6YUcs5AmFvApTZ7mhPSWA2b
+ uksrPUfGEmlSYwtaVrx8ar7M58BfZwRi5PHWxBgmQAEdzNHKeWy/zX7A/
+ V6gxan6UmE3my60THjncxlx01awHRDNdeHeox5NclP3YmFutxZ+B19px9
+ YZiK4bZ16J5rRSX0XbXFruQWY8htKXsSogR58VDii23tGflLkCXLnBTdx w==;
+X-CSE-ConnectionGUID: P2iNRbqlTo6fsd/rQ8zBGg==
+X-CSE-MsgGUID: okFxvHbgRCSmtoRRc1uQvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53448054"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53448054"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:56:54 -0700
+X-CSE-ConnectionGUID: hFDJ9da6RYSjafloNIFWMw==
+X-CSE-MsgGUID: GC5ApokJTTqDWgN/ieq2vA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="158045620"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.29])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:43:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
- khaled.almahallawy@intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Fix RGB limited range handling for DP
-In-Reply-To: <20250701081756.2821286-1-uma.shankar@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250701081756.2821286-1-uma.shankar@intel.com>
-Date: Wed, 02 Jul 2025 11:42:59 +0300
-Message-ID: <b0e0896227fb8b9eed3b095afb397be8dbed51ca@intel.com>
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="191187780"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:56:53 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ gustavo.sousa@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/2] Introduce helper for display workarounds and add
+ Wa_16025573575
+Date: Wed,  2 Jul 2025 14:16:17 +0530
+Message-ID: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,69 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 01 Jul 2025, Uma Shankar <uma.shankar@intel.com> wrote:
-> RGB limited range should be selected only if explicitly asked by
-> userspace by the broadcast RGB property with LIMITED_RANGE. This
-> is mostly enabled in case of CEA modes.
->
-> Display port by default uses Full Range, fixed the same. This will help
-> set correct MSA information for colorimetry. Fixes a CTS issue wrt
-> colorimetry.
+This series introduces a generic infrastructure for querying display
+workarounds. The goal is to simplify WA checks, avoid open-coded conditions,
+and make it easier to extend support for future workarounds.
 
-If we decide to go this way, the commit message *must* capture the
-history precisely, and not pretend this is the only way and everything
-that was before was wrong. And that we're primarily doing it to pass
-CTS.
+Patch 1 introduces the base infrastructure using an enum and a central
+helper function. It also migrates Wa_16023588340 to use this new interface.
 
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++--------------
->  1 file changed, 7 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f48912f308df..8758b9d60d5e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2708,8 +2708,6 @@ bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_state,
->  {
->  	const struct intel_digital_connector_state *intel_conn_state =
->  		to_intel_digital_connector_state(conn_state);
-> -	const struct drm_display_mode *adjusted_mode =
-> -		&crtc_state->hw.adjusted_mode;
->  
->  	/*
->  	 * Our YCbCr output is always limited range.
-> @@ -2721,18 +2719,13 @@ bool intel_dp_limited_color_range(const struct intel_crtc_state *crtc_state,
->  	if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
->  		return false;
->  
-> -	if (intel_conn_state->broadcast_rgb == INTEL_BROADCAST_RGB_AUTO) {
-> -		/*
-> -		 * See:
-> -		 * CEA-861-E - 5.1 Default Encoding Parameters
-> -		 * VESA DisplayPort Ver.1.2a - 5.1.1.1 Video Colorimetry
-> -		 */
-> -		return crtc_state->pipe_bpp != 18 &&
-> -			drm_default_rgb_quant_range(adjusted_mode) ==
-> -			HDMI_QUANTIZATION_RANGE_LIMITED;
-> -	} else {
-> -		return intel_conn_state->broadcast_rgb ==
-> -			INTEL_BROADCAST_RGB_LIMITED;
-> +	switch (intel_conn_state->broadcast_rgb) {
-> +	case INTEL_BROADCAST_RGB_LIMITED:
-> +		return true;
-> +	case INTEL_BROADCAST_RGB_FULL:
-> +	case INTEL_BROADCAST_RGB_AUTO:
-> +	default:
-> +		return false;
->  	}
+Patch 2 adds support for Wa_16025573575, which applies to PTL platforms
+and requires preserving additional GPIO bits in GMBUS.
 
-That's just:
+The series is in response to the suggestions to unify workaround handling
+and allowing future automation or generation of WA logic in [1].
 
-	return intel_conn_state->broadcast_rgb == INTEL_BROADCAST_RGB_LIMITED;
+[1] https://lore.kernel.org/intel-gfx/7f079861f91861e9e895240cd3272f6e29deab7e@intel.com/
 
+Rev2:
+-Remove MISSING_CASE, use drm_WARN.
+-Simplify macro for display_wa.
 
->  }
+Ankit Nautiyal (2):
+  drm/i915/display_wa: Add helpers to check wa
+  drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
+
+ .../gpu/drm/i915/display/intel_display_wa.c   | 22 ++++++++++++
+ .../gpu/drm/i915/display/intel_display_wa.h   | 10 ++++++
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 34 +++++++++++++++++--
+ 4 files changed, 65 insertions(+), 3 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
