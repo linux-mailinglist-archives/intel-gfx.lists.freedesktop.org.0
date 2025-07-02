@@ -2,57 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF42CAF0E8D
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A16AF0EAD
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 11:01:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE8510E389;
-	Wed,  2 Jul 2025 08:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C61D310E049;
+	Wed,  2 Jul 2025 09:01:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X3T12zYH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T8YiXoSF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 207C710E353;
- Wed,  2 Jul 2025 08:56:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0F6510E049;
+ Wed,  2 Jul 2025 09:01:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751446619; x=1782982619;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jiuPSUUdLLxlOIg7XFv56HYUz3oVvcLHPIgr6QZUmS8=;
- b=X3T12zYHcnmBVenWju+1zFlJ2vwV5bRVRwH0Uy5WseVzSCeme6sllT5E
- BHFgVLGp2ryCLnFmmysMd4oew4pfpZx5bBKSeiLvua1B067MAW1Rm0vKh
- QxI0XDrnzKliJukcl/DNdyg8G5DcwRv1u6CD1D90u+bMDNlLm6mzJvq+m
- ivy91VnGRVr8j3zKTQA2IxG7b7qjrnKzYwri1X97NAKJ0gfE7wYo6spHY
- tTbMuA9YhXDJpGp8zdwIxazhkz6faO0ZfZNsTtxlueax3so6e+D5eIVps
- zkcp83ox5VWlAQ7WG06o+WTQk8A5idQxEcEURs6ed1ZSvyedMNbYCba8E g==;
-X-CSE-ConnectionGUID: cerIcNuLQbKEhvETVdCR6Q==
-X-CSE-MsgGUID: ukRs4DuHTCKdU8ReCnDClw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53448059"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53448059"
+ t=1751446908; x=1782982908;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=0XAcxxWXBgypEQKQFwOY5odP7NKGj5+UWFxTHIayjDA=;
+ b=T8YiXoSFhjAygKLleucumJRiO4fSPzX7ptdLnPe07i7XPpxymyVZa4X6
+ IeNpVJPqbeM3m9B9KRwI14F7NdtLmkSdXrnhF3GP9InDT2Q9s964q6T3r
+ jWE0sGZnfgx1TVA/QAVHmRy+IqBmlnxLCJZ9XIed4x9OBxXC67EPDCylS
+ AeWJyBoh9F1e+9uGY7N67aTQeP6pm1kP4aBkK/o5z8dDY7fqz0Ze7KgHO
+ jCwjYPiRmeTlLAes0z2hHroH8K9lQ+2SfTKE1BIxHXWPvXmfhO78FLS8S
+ zBt+b5etCfKns0MM0lCBJ0jzTT4IoEAMEyRBE3QQFRNyHDNyYgSkbFFtF A==;
+X-CSE-ConnectionGUID: sEkVx2EDQA2TvjkC8OwfhQ==
+X-CSE-MsgGUID: UIw49n2sSgqXlTj0/7/W9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="53448552"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="53448552"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:56:59 -0700
-X-CSE-ConnectionGUID: i2G4P+AXTc+b1Lz7PTQDQw==
-X-CSE-MsgGUID: JKjA1HazTBW/bk0ZxXAhow==
+ 02 Jul 2025 02:01:48 -0700
+X-CSE-ConnectionGUID: wzHyjItVQJW63aFBrSNgmg==
+X-CSE-MsgGUID: x5QKprFYTSGm6qAmykOjTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="191187796"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="191188801"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.29])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:56:57 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- gustavo.sousa@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 2/2] drm/i915/gmbus: Add Wa_16025573575 for PTL for bit-bashing
-Date: Wed,  2 Jul 2025 14:16:19 +0530
-Message-ID: <20250702084620.3837426-3-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
-References: <20250702084620.3837426-1-ankit.k.nautiyal@intel.com>
+ 02 Jul 2025 02:01:45 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ arun.r.murthy@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH]  drm/i915/display: Optimize panel power-on  wait time
+In-Reply-To: <w22u6gjs6uuzfkksxrp6cjlkli2jzanqodb7ukyptlsv4a2kvk@kni4djwoeefx>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250630122339.3007880-1-dibin.moolakadan.subrahmanian@intel.com>
+ <b5a84286f9729e9d92e08596bfbeb4e9c77f6dc1@intel.com>
+ <w22u6gjs6uuzfkksxrp6cjlkli2jzanqodb7ukyptlsv4a2kvk@kni4djwoeefx>
+Date: Wed, 02 Jul 2025 12:01:42 +0300
+Message-ID: <fe44d12c701c3d410de6e0ebc1f08bae2eec10a1@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,132 +73,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per Wa_16025573575 for PTL, set the GPIO masks bit before starting
-bit-bashing and maintain value through the bit-bashing sequence.
-After bit-bashing sequence is done, clear the GPIO masks bits.
+On Tue, 01 Jul 2025, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Tue, Jul 01, 2025 at 12:28:41PM +0300, Jani Nikula wrote:
+>>On Mon, 30 Jun 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+>>>  The current wait_panel_on() uses intel_de_wait() with a long timeout
+>>>  (5000ms), which is suboptimal on Xe platforms where the underlying
+>>>  xe_mmio_wait32() employs an exponential backoff strategy. This leads
+>>>  to unnecessary delays during resume or power-on  when the panel becomes
+>>>  ready earlier than the full timeout.
+>>>
+>>>  This patch splits the total wait time into two pases
+>>>     - First wait for the typical panel-on time(180ms)
+>>>     - If panel is not ready , continue polling in short 20ms intervals
+>>>       until the maximum timeout (5000ms) is reached
+>>
+>>I'm *very* reluctant to merge any new custom wait hacks. I'm in the
+>>process of *removing* a plethora of them [1][2][3].
+>
+> good riddance
 
-v2:
--Use new helper for display workarounds. (Jani)
--Use a separate if-block for the workaround. (Gustavo)
+Yay!
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- .../gpu/drm/i915/display/intel_display_wa.c   |  7 ++++
- .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
- drivers/gpu/drm/i915/display/intel_gmbus.c    | 34 +++++++++++++++++--
- 3 files changed, 40 insertions(+), 2 deletions(-)
+>>
+>>I think the question is, should xe_mmio_wait32() (and the i915
+>>counterpart) and the intel_de_wait*() functions be migrated to an
+>>interface similar to read_poll_timeout(), i.e. provide sleep and timeout
+>>separately, no exponential backoff. And implement the waits using
+>>read_poll_timeout(), or whatever Ville ends up with [4].
+>
+> I saw your patch series and I'm eagerly waiting it to either propagate
+> it in xe or have someone merge such a patch.  I'm not sure about
+> removing the exponential backoff is a good thing overall, but if it's
+> needed then it needs to be justified to add a new function to pair with
+> read_poll_timeout(), not a custom driver function.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index f5e8d58d9a68..12d1df5981f7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -42,11 +42,18 @@ void intel_display_wa_apply(struct intel_display *display)
- 		gen11_display_wa_apply(display);
- }
- 
-+static bool intel_display_needs_wa_16025573575(struct intel_display *display)
-+{
-+	return DISPLAY_VER(display) == 30;
-+}
-+
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa)
- {
- 	switch (wa) {
- 	case INTEL_DISPLAY_WA_16023588340:
- 		return intel_display_needs_wa_16023588340(display);
-+	case INTEL_DISPLAY_WA_16025573575:
-+		return intel_display_needs_wa_16025573575(display);
- 	default:
- 		drm_WARN(display->drm, 1, "Missing Wa number: %d\n", wa);
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 146ee70d66f7..d3d241992e55 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -23,6 +23,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
- 
- enum intel_display_wa {
- 	INTEL_DISPLAY_WA_16023588340,
-+	INTEL_DISPLAY_WA_16025573575,
- };
- 
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa);
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 0d73f32fe7f1..95cab11c9cde 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -39,6 +39,7 @@
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-+#include "intel_display_wa.h"
- #include "intel_gmbus.h"
- #include "intel_gmbus_regs.h"
- 
-@@ -241,11 +242,18 @@ static u32 get_reserved(struct intel_gmbus *bus)
- {
- 	struct intel_display *display = bus->display;
- 	u32 reserved = 0;
-+	u32 preserve_bits = 0;
- 
- 	/* On most chips, these bits must be preserved in software. */
- 	if (!display->platform.i830 && !display->platform.i845g)
--		reserved = intel_de_read_notrace(display, bus->gpio_reg) &
--			(GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE);
-+		preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
-+
-+	/* PTL: Wa_16025573575: the masks bits need to be preserved through out */
-+	if (intel_display_wa(display, 16025573575))
-+		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
-+				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
-+
-+	reserved = intel_de_read_notrace(display, bus->gpio_reg) & preserve_bits;
- 
- 	return reserved;
- }
-@@ -308,6 +316,22 @@ static void set_data(void *data, int state_high)
- 	intel_de_posting_read(display, bus->gpio_reg);
- }
- 
-+static void
-+ptl_handle_mask_bits(struct intel_gmbus *bus, bool set)
-+{
-+	struct intel_display *display = bus->display;
-+	u32 reg_val = intel_de_read_notrace(display, bus->gpio_reg);
-+	u32 mask_bits = GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
-+			GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
-+	if (set)
-+		reg_val |= mask_bits;
-+	else
-+		reg_val &= ~mask_bits;
-+
-+	intel_de_write_notrace(display, bus->gpio_reg, reg_val);
-+	intel_de_posting_read(display, bus->gpio_reg);
-+}
-+
- static int
- intel_gpio_pre_xfer(struct i2c_adapter *adapter)
- {
-@@ -319,6 +343,9 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
- 	if (display->platform.pineview)
- 		pnv_gmbus_clock_gating(display, false);
- 
-+	if (intel_display_wa(display, 16025573575))
-+		ptl_handle_mask_bits(bus, true);
-+
- 	set_data(bus, 1);
- 	set_clock(bus, 1);
- 	udelay(I2C_RISEFALL_TIME);
-@@ -336,6 +363,9 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
- 
- 	if (display->platform.pineview)
- 		pnv_gmbus_clock_gating(display, true);
-+
-+	if (intel_display_wa(display, 16025573575))
-+		ptl_handle_mask_bits(bus, false);
- }
- 
- static void
+While I'm negative about the patch at hand, the underlying problem is
+very real.
+
+I think at the very least the exponential sleep backoff needs an upper
+bound that's relative to the timeout. Maybe 10-25% of timeout?
+
+With the example case of 5 second timeout, the exponential backoff
+starting from 10 us leads to a dozen polls before reaching 100 ms
+elapsed time, but then polls at approximately 1 s, 2 s, 4 s, and 8 s
+elapsed time. Longer timeouts are of course rare, but they exhibit
+increasingly worse behaviour.
+
+So if what we're waiting takes 2.1 seconds, the next check will be about
+2 seconds later. Similarly, if it takes 4.1 seconds, the next check will
+be about 4 seconds later, in this case exceeding the timeout by 3
+seconds.
+
+Anyway, if xe_mmio_wait32() remains as it is, with read_poll_timeout()
+it's trivial to do the wait in the intel_de_*() macros, in display side,
+with sleeps and timeouts defined in display. Because for most things the
+really quick fast polls are useless in display.
+
+
+BR,
+Jani.
+
+
 -- 
-2.45.2
-
+Jani Nikula, Intel
