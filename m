@@ -2,64 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56DAAF0DA0
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E18AF0E11
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:31:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3255710E09D;
-	Wed,  2 Jul 2025 08:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFCD10E10E;
+	Wed,  2 Jul 2025 08:31:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRoUU47i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rzq6g1U1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C98410E09D;
- Wed,  2 Jul 2025 08:14:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 838DB10E10E;
+ Wed,  2 Jul 2025 08:31:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751444076; x=1782980076;
+ t=1751445073; x=1782981073;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=yibHIMr04555WkgNgz0CfNExWgySoJgYAks2fqHIz+g=;
- b=SRoUU47iqEgrSfZviEX1JWRb+xcgd+YxlafAGOJTD5Dpy817ML3i/av8
- 1Itr7v8pZct8aR2oVfrYPC5jEt52lv2K8Bu7KpB5kkBCisDyKLsg76SGU
- QLB7jcV5sphI9xtHgrxVg39dRvDeWRtNejsrIl4P4nb/swMcFaG8g2ZH6
- 5nIqmSdLSiIAhzTiyF1sXUU/diyL4yJQ/oYFt+vSYiZ4AbzF2ePajyPVt
- /B1U+z1xbMFuJDKwoa0l6MHfGvC1PE1miO7971OraFujGMYSIrBMVGDYM
- QRy/84WuTaywlnMG3jNIIEek/4zUNiCUZPinRNlJt4Uf9AVJQV8IlqoGm Q==;
-X-CSE-ConnectionGUID: R0tNlxNiQPybSjGrvFie5A==
-X-CSE-MsgGUID: JshYLk6PTU2vdWaS9ZnGSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64328708"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64328708"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:14:35 -0700
-X-CSE-ConnectionGUID: Gdn/1SoeQSWoKHn4l5NTGw==
-X-CSE-MsgGUID: iIcQpCAqQJeUzrXPHEp5NA==
+ message-id:mime-version;
+ bh=B3ymhDApMrkKe/v8M1kl8YRea7u9EFmyTKRSEGPWQt8=;
+ b=Rzq6g1U1GC2UPr5GHZbByJRy93gEUXBnTeGUwVAAsf5sQFK1s+0Sm74c
+ knAzQ8uZ9IB/bPFsIY+kKW1ijvY6/LNpop7GwyhusHWbx97qUsmFXkE2m
+ dKN36sWxr6mj40/U6Hy67Hsm6RakRU4S3EvXPysYn/AAsIMfcc9ECacdp
+ CW+gX/5IpidR1ZqxBeZaSJJsRPuoCAKNTVa44sDRNNmsig4T9/fP2Hxh9
+ aizUpKUMCmqIHFdW81TyXBHfcPx3pHSGjKA58a5Atj4W7sr/pYJyCSBzT
+ ETW1LMDfZxMqsK81v2BqK480XYr9iIxvxaEp+quEf7aiFAUjsembmaVRl w==;
+X-CSE-ConnectionGUID: upxjKm5eSR+2lwaGl/0ESA==
+X-CSE-MsgGUID: rphi/kkZQdSpeYFERqE2ew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="76274477"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="76274477"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:31:12 -0700
+X-CSE-ConnectionGUID: nOIUiO2GR3iyp6fir6B0iw==
+X-CSE-MsgGUID: ncR6MM3vQea6Ci6bR/dcuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="153639878"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="154337318"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.29])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 01:14:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Read DP_ADAPTER_CAP to pass LinkLayer
- DPCD&EDID tests
-In-Reply-To: <6e084fa193864dec9237bdbd7f7978f15d8da0e9.camel@intel.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:31:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com, ville.syrjala@linux.intel.com,
+ uma.shankar@intel.com, chaitanya.kumar.borah@intel.com
+Subject: Re: [PATCH] drm/i915/display: Add upper limit check for pixel clock
+In-Reply-To: <20250702042754.3335382-1-chaitanya.kumar.borah@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250701192631.3750408-1-khaled.almahallawy@intel.com>
- <CH0PR11MB54442C75AC8F390EA7B8AAD8E541A@CH0PR11MB5444.namprd11.prod.outlook.com>
- <6e084fa193864dec9237bdbd7f7978f15d8da0e9.camel@intel.com>
-Date: Wed, 02 Jul 2025 11:14:30 +0300
-Message-ID: <7b90b178fde76a8a1fda54d217265ff3c0372955@intel.com>
+References: <20250702042754.3335382-1-chaitanya.kumar.borah@intel.com>
+Date: Wed, 02 Jul 2025 11:31:06 +0300
+Message-ID: <d3b2de8c5eac5e1214cc35609a78cdff32c0afa1@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,121 +70,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 02 Jul 2025, "Almahallawy, Khaled" <khaled.almahallawy@intel.com> w=
-rote:
-> On Tue, 2025-07-01 at 21:50 +0000, Cavitt, Jonathan wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
->> Of Khaled Almahallawy
->> Sent: Tuesday, July 1, 2025 12:27 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Almahallawy, Khaled <khaled.almahallawy@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>; Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH] drm/i915/display: Read DP_ADAPTER_CAP to pass
->> LinkLayer DPCD&EDID tests
->> >=20
->> > 4.2.2.1 LinkLayer test states:
->> > "Verify that Source DUT does the following within 5 seconds after
->> > HPD
->> > being asserted:
->> > Reads the DPCD Receiver Capability field (DPCD: 00000h:0000Fh)"
->> > ...
->> >=20
->> > Fail1:
->> > Source DUT failed to read the DPCD Receiver Capability field (DPCD:
->> > 00000h:0000Fh) through AUX_CH before link training."
->> >=20
->> > Fix this by reading DP_ADAPTER_CAP(0x000F & 0x220F)
->> >=20
->> > Cc: Uma Shankar <uma.shankar@intel.com>
->> > Cc: Jani Nikula <jani.nikula@intel.com>
->> > Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
->> > ---
->> > =C2=A0drivers/gpu/drm/i915/display/intel_dp_link_training.c | 7 +++++++
->> > =C2=A01 file changed, 7 insertions(+)
->> >=20
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > index a479b63112ea..762dc073b824 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > @@ -252,6 +252,7 @@ int intel_dp_init_lttpr_and_dprx_caps(struct
->> > intel_dp *intel_dp)
->> > =C2=A0{
->> > =C2=A0	struct intel_display *display =3D
->> > to_intel_display(intel_dp);
->> > =C2=A0	int lttpr_count =3D 0;
->> > +	u8 adapter_cap =3D 0;
->> > =C2=A0
->> > =C2=A0	/*
->> > =C2=A0	 * Detecting LTTPRs must be avoided on platforms with an
->> > AUX timeout
->> > @@ -277,6 +278,12 @@ int intel_dp_init_lttpr_and_dprx_caps(struct
->> > intel_dp *intel_dp)
->> > =C2=A0		return -EIO;
->> > =C2=A0	}
->> > =C2=A0
->> > +	/* Read DP_ADAPTET_CAP to pass LinkLayer CTS */
->> > +	drm_dp_dpcd_readb(&intel_dp->aux, DP_ADAPTER_CAP,
->> > +				=C2=A0=C2=A0 &adapter_cap);
->>=20
->> I'm working under the assumption that we're reading these registers
->> not to actually use
->> the values they hold but because reading them has some other effect
->> during runtime.
->>=20
->> Does reading that location clear the register field?=C2=A0 Or does it
->> signal to the system to
->> perform some other process?
+On Wed, 02 Jul 2025, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Add upper limit check for pixel clock by platform. Limits don't apply
+> when DSC is enabled.
 >
-> We read these two bytes for the sole purpose of passing the test. If we
-> don't read these two addresses, the test equipment will fail the test.
-> Unfortunately, this issue affects nearly all DPCD/EDID LL tests. It
-> seems that reading these two bytes has no side effect at all, as it
-> appears that no one is using DP_ADAPTER_CAP at all.
+> For the currently supported versions of HDMI, pixel clock is already
+> limited to 600Mhz so nothing needs to be done there as of now.
 >
->>=20
->> > +	drm_dp_dpcd_readb(&intel_dp->aux, 0x220f,
->> > +				=C2=A0=C2=A0 &adapter_cap);
->>=20
->> 0x220f should probably have a #define macro associated with it.=C2=A0
->> Could you please create one?
->> Maybe it needs to be added to drm_dp.h.=C2=A0 Or is there a better
->> location for it?
+> BSpec: 49199, 68912
 >
-> sure, I can do that.
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c      |  3 +++
+>  3 files changed, 16 insertions(+)
 >
-> Another approach I considered is to increase DP_RECEIVER_CAP_SIZE from
-> 0xf to 0x10, in line with DP2.1 section 5.1.4 "If the link is unstable
-> or lost, the Source device then reads the DPCD Receiver Capabilities
-> registers at DPCD 00000h through 0000Fh to determine the appropriate
-> information needed to train the link.".=C2=A0
->
-> This adjustment might also ensure the test succeeds with other drivers!
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 456fc4b04cda..bf0faff50c2e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7902,6 +7902,18 @@ void intel_setup_outputs(struct intel_display *display)
+>  	drm_helper_move_panel_connectors_to_head(display->drm);
+>  }
+>  
+> +int intel_dotclock_limit(struct intel_display *display)
+> +{
+> +	if (DISPLAY_VERx100(display) == 3002)
+> +		return 937500;
+> +	else if (DISPLAY_VER(display) >= 30)
+> +		return 1350000;
+> +	else if (DISPLAY_VER(display) >= 13)
+> +		return 1200000;
+> +	else
+> +		return 1100000;
+> +}
 
-Increasing DP_RECEIVER_CAP_SIZE to 0x10 sounds much better to me than
-adding single dummy reads.
+How does this relate to display->cdclk.max_dotclk_freq that's computed
+in intel_compute_max_dotclk(display)?
 
 BR,
 Jani.
 
 
->
-> Thank You for your review
->
-> Khaled
->
->> -Jonathan Cavitt
->>=20
->> > +
->> > =C2=A0	return lttpr_count;
->> > =C2=A0}
->> > =C2=A0
->> > --=20
->> > 2.43.0
->> >=20
->> >=20
->
+> +
+>  static int max_dotclock(struct intel_display *display)
+>  {
+>  	int max_dotclock = display->cdclk.max_dotclk_freq;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 37e2ab301a80..9ad896a15ba7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -486,6 +486,7 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
+>  				    struct intel_link_m_n *m_n);
+>  int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
+>  int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config);
+> +int intel_dotclock_limit(struct intel_display *display);
+>  enum intel_display_power_domain intel_port_to_power_domain(struct intel_digital_port *dig_port);
+>  enum intel_display_power_domain
+>  intel_aux_power_domain(struct intel_digital_port *dig_port);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f48912f308df..3ff2beeed801 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1507,6 +1507,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  		dsc = dsc_max_compressed_bpp && dsc_slice_count;
+>  	}
+>  
+> +	if (target_clock > (intel_dotclock_limit(display) * num_joined_pipes) && !dsc)
+> +		return MODE_CLOCK_HIGH;
+> +
+>  	if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc)
+>  		return MODE_CLOCK_HIGH;
 
---=20
+-- 
 Jani Nikula, Intel
