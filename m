@@ -2,57 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD8BAF0CD6
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 09:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D56DAAF0DA0
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 10:14:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4A6C10E30C;
-	Wed,  2 Jul 2025 07:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3255710E09D;
+	Wed,  2 Jul 2025 08:14:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kJ3mPp/I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRoUU47i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDDC10E309;
- Wed,  2 Jul 2025 07:44:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=8iyIlNgoH6KbyeSdt/LTGh+Zpu9lhh48r8BL+R86xp8=; b=kJ3mPp/IOV7QQCHsLo0ZSX0ZOg
- nqgHAxzV/uoLbNA1HK/zW/TckajE7I8lpr/7pTJ+gb1/0kz7gtb6DMUEhyJgmQ8yYV7+P/BRGKg34
- OmsaD3u7MGbbrH/XxtoYJGM6quJ9iv1PgAdGcLTTrYHJ/QPtB1i8xXrOvwsATlx9SilNhnC7I0w28
- XS1ImzUdNT7j7zpmnG27XxNbYKnKBPm3/5Cs0mQp41GNdRD2lNJHROqKRdjt+15RnTsCKrgMXnZwp
- cIbLanEU0RTA84WHinCxwmaofDgHiGLBduEuHvEv2XByxKBi77IzLJFM/xatitSznx14HKmzU2WPA
- nE7ZQdQA==;
-Received: from [81.79.92.254] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1uWs8f-00BLgO-S2; Wed, 02 Jul 2025 09:44:17 +0200
-Date: Wed, 2 Jul 2025 08:44:16 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <aGTjUBeOQFw26bRT@linux>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C98410E09D;
+ Wed,  2 Jul 2025 08:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751444076; x=1782980076;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=yibHIMr04555WkgNgz0CfNExWgySoJgYAks2fqHIz+g=;
+ b=SRoUU47iqEgrSfZviEX1JWRb+xcgd+YxlafAGOJTD5Dpy817ML3i/av8
+ 1Itr7v8pZct8aR2oVfrYPC5jEt52lv2K8Bu7KpB5kkBCisDyKLsg76SGU
+ QLB7jcV5sphI9xtHgrxVg39dRvDeWRtNejsrIl4P4nb/swMcFaG8g2ZH6
+ 5nIqmSdLSiIAhzTiyF1sXUU/diyL4yJQ/oYFt+vSYiZ4AbzF2ePajyPVt
+ /B1U+z1xbMFuJDKwoa0l6MHfGvC1PE1miO7971OraFujGMYSIrBMVGDYM
+ QRy/84WuTaywlnMG3jNIIEek/4zUNiCUZPinRNlJt4Uf9AVJQV8IlqoGm Q==;
+X-CSE-ConnectionGUID: R0tNlxNiQPybSjGrvFie5A==
+X-CSE-MsgGUID: JshYLk6PTU2vdWaS9ZnGSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64328708"
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64328708"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:14:35 -0700
+X-CSE-ConnectionGUID: Gdn/1SoeQSWoKHn4l5NTGw==
+X-CSE-MsgGUID: iIcQpCAqQJeUzrXPHEp5NA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="153639878"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.29])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2025 01:14:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Cc: "Shankar, Uma" <uma.shankar@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Read DP_ADAPTER_CAP to pass LinkLayer
+ DPCD&EDID tests
+In-Reply-To: <6e084fa193864dec9237bdbd7f7978f15d8da0e9.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250701192631.3750408-1-khaled.almahallawy@intel.com>
+ <CH0PR11MB54442C75AC8F390EA7B8AAD8E541A@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <6e084fa193864dec9237bdbd7f7978f15d8da0e9.camel@intel.com>
+Date: Wed, 02 Jul 2025 11:14:30 +0300
+Message-ID: <7b90b178fde76a8a1fda54d217265ff3c0372955@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,124 +75,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On Wed, 02 Jul 2025, "Almahallawy, Khaled" <khaled.almahallawy@intel.com> w=
+rote:
+> On Tue, 2025-07-01 at 21:50 +0000, Cavitt, Jonathan wrote:
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+>> Of Khaled Almahallawy
+>> Sent: Tuesday, July 1, 2025 12:27 PM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Almahallawy, Khaled <khaled.almahallawy@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>; Nikula, Jani <jani.nikula@intel.com>
+>> Subject: [PATCH] drm/i915/display: Read DP_ADAPTER_CAP to pass
+>> LinkLayer DPCD&EDID tests
+>> >=20
+>> > 4.2.2.1 LinkLayer test states:
+>> > "Verify that Source DUT does the following within 5 seconds after
+>> > HPD
+>> > being asserted:
+>> > Reads the DPCD Receiver Capability field (DPCD: 00000h:0000Fh)"
+>> > ...
+>> >=20
+>> > Fail1:
+>> > Source DUT failed to read the DPCD Receiver Capability field (DPCD:
+>> > 00000h:0000Fh) through AUX_CH before link training."
+>> >=20
+>> > Fix this by reading DP_ADAPTER_CAP(0x000F & 0x220F)
+>> >=20
+>> > Cc: Uma Shankar <uma.shankar@intel.com>
+>> > Cc: Jani Nikula <jani.nikula@intel.com>
+>> > Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+>> > ---
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_dp_link_training.c | 7 +++++++
+>> > =C2=A01 file changed, 7 insertions(+)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > index a479b63112ea..762dc073b824 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > @@ -252,6 +252,7 @@ int intel_dp_init_lttpr_and_dprx_caps(struct
+>> > intel_dp *intel_dp)
+>> > =C2=A0{
+>> > =C2=A0	struct intel_display *display =3D
+>> > to_intel_display(intel_dp);
+>> > =C2=A0	int lttpr_count =3D 0;
+>> > +	u8 adapter_cap =3D 0;
+>> > =C2=A0
+>> > =C2=A0	/*
+>> > =C2=A0	 * Detecting LTTPRs must be avoided on platforms with an
+>> > AUX timeout
+>> > @@ -277,6 +278,12 @@ int intel_dp_init_lttpr_and_dprx_caps(struct
+>> > intel_dp *intel_dp)
+>> > =C2=A0		return -EIO;
+>> > =C2=A0	}
+>> > =C2=A0
+>> > +	/* Read DP_ADAPTET_CAP to pass LinkLayer CTS */
+>> > +	drm_dp_dpcd_readb(&intel_dp->aux, DP_ADAPTER_CAP,
+>> > +				=C2=A0=C2=A0 &adapter_cap);
+>>=20
+>> I'm working under the assumption that we're reading these registers
+>> not to actually use
+>> the values they hold but because reading them has some other effect
+>> during runtime.
+>>=20
+>> Does reading that location clear the register field?=C2=A0 Or does it
+>> signal to the system to
+>> perform some other process?
+>
+> We read these two bytes for the sole purpose of passing the test. If we
+> don't read these two addresses, the test equipment will fail the test.
+> Unfortunately, this issue affects nearly all DPCD/EDID LL tests. It
+> seems that reading these two bytes has no side effect at all, as it
+> appears that no one is using DP_ADAPTER_CAP at all.
+>
+>>=20
+>> > +	drm_dp_dpcd_readb(&intel_dp->aux, 0x220f,
+>> > +				=C2=A0=C2=A0 &adapter_cap);
+>>=20
+>> 0x220f should probably have a #define macro associated with it.=C2=A0
+>> Could you please create one?
+>> Maybe it needs to be added to drm_dp.h.=C2=A0 Or is there a better
+>> location for it?
+>
+> sure, I can do that.
+>
+> Another approach I considered is to increase DP_RECEIVER_CAP_SIZE from
+> 0xf to 0x10, in line with DP2.1 section 5.1.4 "If the link is unstable
+> or lost, the Source device then reads the DPCD Receiver Capabilities
+> registers at DPCD 00000h through 0000Fh to determine the appropriate
+> information needed to train the link.".=C2=A0
+>
+> This adjustment might also ensure the test succeeds with other drivers!
 
-Here comes the first pull request for 6.17.
+Increasing DP_RECEIVER_CAP_SIZE to 0x10 sounds much better to me than
+adding single dummy reads.
 
-Headline feature is that Ville was able to move DG1 out of force probe.
-Other than that mostly fixes in the GuC backend.
+BR,
+Jani.
 
-One cross-merge to fix the build.
 
-Regards,
+>
+> Thank You for your review
+>
+> Khaled
+>
+>> -Jonathan Cavitt
+>>=20
+>> > +
+>> > =C2=A0	return lttpr_count;
+>> > =C2=A0}
+>> > =C2=A0
+>> > --=20
+>> > 2.43.0
+>> >=20
+>> >=20
+>
 
-Tvrtko
-
-drm-intel-gt-next-2025-07-02:
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Avoid GuC scheduling stalls [guc] (Julia Filipchuk)
-- Remove force_probe requirement for DG1 (Ville Syrjälä)
-- Handle errors correctly to avoid losing GuC-2-Host messages [guc] (Jesus Narvaez)
-- Avoid double wakeref put if GuC context deregister failed [guc] (Jesus Narvaez)
-- Avoid timeline memory leak with signals and legacy platforms [ringbuf] (Janusz Krzysztofik)
-- Fix MEI (discrete) interrupt handler on RT kernels [gsc] (Junxiao Chang)
-
-Miscellaneous:
-
-- Allow larger memory allocation [selftest] (Mikolaj Wasiak)
-- Use provided dma_fence_is_chain (Tvrtko Ursulin)
-- Fix build error with GCOV and AutoFDO enabled [pmu] (Tzung-Bi Shih)
-- Fix build error some more (Arnd Bergmann)
-- Reduce stack usage in igt_vma_pin1() (Arnd Bergmann)
-- Move out engine related macros from i915_drv.h (Krzysztof Karas)
-- Move GEM_QUIRK_PIN_SWIZZLED_PAGES to i915_gem.h (Krzysztof Karas)
-The following changes since commit f8bb3ed3197966fb60bedcbdc126d2bd5bc0a77f:
-
-  drm/nouveau/tegra: Fix error pointer vs NULL return in nvkm_device_tegra_resource_addr() (2025-05-24 14:36:07 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2025-07-02
-
-for you to fetch changes up to dccf655f69002d496a527ba441b4f008aa5bebbf:
-
-  drm/i915/gsc: mei interrupt top half should be in irq disabled context (2025-06-30 14:21:06 -0400)
-
-----------------------------------------------------------------
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Avoid GuC scheduling stalls [guc] (Julia Filipchuk)
-- Remove force_probe requirement for DG1 (Ville Syrjälä)
-- Handle errors correctly to avoid losing GuC-2-Host messages [guc] (Jesus Narvaez)
-- Avoid double wakeref put if GuC context deregister failed [guc] (Jesus Narvaez)
-- Avoid timeline memory leak with signals and legacy platforms [ringbuf] (Janusz Krzysztofik)
-- Fix MEI (discrete) interrupt handler on RT kernels [gsc] (Junxiao Chang)
-
-Miscellaneous:
-
-- Allow larger memory allocation [selftest] (Mikolaj Wasiak)
-- Use provided dma_fence_is_chain (Tvrtko Ursulin)
-- Fix build error with GCOV and AutoFDO enabled [pmu] (Tzung-Bi Shih)
-- Fix build error some more (Arnd Bergmann)
-- Reduce stack usage in igt_vma_pin1() (Arnd Bergmann)
-- Move out engine related macros from i915_drv.h (Krzysztof Karas)
-- Move GEM_QUIRK_PIN_SWIZZLED_PAGES to i915_gem.h (Krzysztof Karas)
-
-----------------------------------------------------------------
-Arnd Bergmann (2):
-      drm/i915: fix build error some more
-      drm/i915: reduce stack usage in igt_vma_pin1()
-
-Janusz Krzysztofik (1):
-      drm/i915/gt: Fix timeline left held on VMA alloc error
-
-Jesus Narvaez (2):
-      drm/i915/guc: Check if expecting reply before decrementing outstanding_submission_g2h
-      drm/i915/guc: Handle race condition where wakeref count drops below 0
-
-Joonas Lahtinen (2):
-      Revert "drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1"
-      Merge drm/drm-next into drm-intel-gt-next
-
-Julia Filipchuk (1):
-      drm/i915/guc: Enable DUAL_QUEUE_WA for newer platforms
-
-Junxiao Chang (1):
-      drm/i915/gsc: mei interrupt top half should be in irq disabled context
-
-Krzysztof Karas (2):
-      drm/i915: Move out engine related macros from i915_drv.h
-      drm/i915: move GEM_QUIRK_PIN_SWIZZLED_PAGES to i915_gem.h
-
-Mikolaj Wasiak (1):
-      drm/i915/selftest: allow larger memory allocation
-
-Tvrtko Ursulin (1):
-      drm/i915: Use provided dma_fence_is_chain
-
-Tzung-Bi Shih (1):
-      drm/i915/pmu: Fix build error with GCOV and AutoFDO enabled
-
-Ville Syrjälä (2):
-      drm/i915/gem: Allow EXEC_CAPTURE on recoverable contexts on DG1
-      drm/i915/pci: Remove force_probe requirement for DG1
-
- drivers/gpu/drm/i915/gem/i915_gem_wait.c           |  7 +----
- drivers/gpu/drm/i915/gt/intel_engine.h             | 31 ++++++++++++++++++++
- drivers/gpu/drm/i915/gt/intel_gsc.c                |  2 +-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c    |  3 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c             |  7 ++++-
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 19 ++++++++++---
- drivers/gpu/drm/i915/i915_drv.h                    | 33 ----------------------
- drivers/gpu/drm/i915/i915_gem.h                    |  2 ++
- drivers/gpu/drm/i915/i915_pci.c                    |  1 -
- drivers/gpu/drm/i915/i915_pmu.c                    |  6 ++--
- drivers/gpu/drm/i915/i915_vma.c                    | 20 +++++++++++++
- drivers/gpu/drm/i915/i915_vma.h                    | 22 ++-------------
- .../gpu/drm/i915/selftests/intel_memory_region.c   | 14 ++-------
- 13 files changed, 86 insertions(+), 81 deletions(-)
+--=20
+Jani Nikula, Intel
