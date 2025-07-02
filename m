@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F039AF0F33
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 11:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F091AF0FD2
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Jul 2025 11:23:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE92610E6CF;
-	Wed,  2 Jul 2025 09:09:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fsUyjRfy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D409410E63C;
+	Wed,  2 Jul 2025 09:23:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 511D510E6B4;
- Wed,  2 Jul 2025 09:09:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751447351; x=1782983351;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KEumus4aX1i+GcxUoPkJzRO4vo/WSL9xxgY1FbaKYiA=;
- b=fsUyjRfyDD+ocZORWBOjxKksdkikvkJQHPkjfvWSOKTqQKiqnemvJjAa
- DP5IcS5tBnLsyuYsz+gAH6je4hlHG5GJtqxaeQ70cIkHNj9q3Bj+F7mox
- bl+NO8LME+nDm/LsEs5vFpWkmRBtYpi/lMKvki5D58eGC2BBtI5D7ufSB
- PyD2xKZzMLe9aE6CxqoSbhhaIDYyOjGJW1yh8JpIwNfRmvfgvbT7TIG6g
- Vpghrr0ERzNHQnPqswGUnUeYDdFPeM1f2mmcuy9RRN0rLUYyJzG08h913
- uNtPiSq7QEjSynUgsK4CprGUCv4j7B6Q/wt3MX2ftLUOkpqmnmDTMHyLK w==;
-X-CSE-ConnectionGUID: t91QTrWNR8aKyg0fSidsjA==
-X-CSE-MsgGUID: FsTKiBbaTF6dF5SMSsCEhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11481"; a="64427279"
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="64427279"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2025 02:09:11 -0700
-X-CSE-ConnectionGUID: 4lY6Mpm/RlSzZNv4I7bJCQ==
-X-CSE-MsgGUID: O/FCEOGOQ3iO7gXlWtxoOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,281,1744095600"; d="scan'208";a="159536835"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa004.fm.intel.com with ESMTP; 02 Jul 2025 02:09:07 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, ville.syrjala@linux.intel.com,
- pekka.paalanen@collabora.com, contact@emersion.fr, harry.wentland@amd.com,
- mwen@igalia.com, jadahl@redhat.com, sebastian.wick@redhat.com,
- shashank.sharma@amd.com, swati2.sharma@intel.com, alex.hung@amd.com,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 24/24] drm/doc/rfc: Add documentation for multi-segmented 1D LUT
-Date: Wed,  2 Jul 2025 14:49:36 +0530
-Message-ID: <20250702091936.3004854-25-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20250702091936.3004854-1-uma.shankar@intel.com>
-References: <20250702091936.3004854-1-uma.shankar@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5602810E63C;
+ Wed,  2 Jul 2025 09:23:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4222692865363784187=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_u?=
+ =?utf-8?q?pper_limit_check_for_pixel_clock?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 02 Jul 2025 09:23:43 -0000
+Message-ID: <175144822334.127473.6977528217801274096@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250702042754.3335382-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20250702042754.3335382-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,184 +37,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add documentation to explain properties of the exposed hardware
-1D LUT blocks, its identification and computation of the LUT samples
-based on the number of samples, their distribution and precison.
+--===============4222692865363784187==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
----
- Documentation/gpu/rfc/color_pipeline.rst | 142 ++++++++++++++++++++++-
- 1 file changed, 141 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/Documentation/gpu/rfc/color_pipeline.rst b/Documentation/gpu/rfc/color_pipeline.rst
-index cd1cc2d0f988..10cfcf8f1c74 100644
---- a/Documentation/gpu/rfc/color_pipeline.rst
-+++ b/Documentation/gpu/rfc/color_pipeline.rst
-@@ -279,6 +279,125 @@ pipeline might look like this::
-     ├─ "CURVE_1D_TYPE": enum {sRGB EOTF, PQ EOTF} = sRGB EOTF
-     └─ "NEXT" (immutable) = 0
- 
-+Discover capabilities of 1D LUT HW block
-+----------------------------------------
-+
-+The driver exposes a blob property(HW_CAPS) which allows user-space to
-+parse and extract the hardware capabilities of 1D LUT. These include
-+number of LUT segments, number of LUT samples per segment, start and end
-+point of respective segments and the precision of the LUT sample along
-+with the normalization factor. This is how the capability structure look like
-+
-+	struct drm_color_lut_range {
-+	       __u32 flags;
-+	       __u16 count;
-+	       __s32 start, end;
-+	       __u32 norm_factor;
-+
-+	       struct {
-+	               __u16 intp;
-+	               __u16 fracp;
-+	       } precision;
-+	};
-+
-+If a hardware has multiple segments in 1D LUT, each segment will be represented
-+by one instance of the above structure and the whole 1D LUT block will be represented
-+by an array of drm_color_lut_range.
-+
-+Here,
-+
-+flags : This indicates LUT characteristics like linearly increasing, negative
-+	reflect or any other property of the LUT.
-+
-+count : Number of samples in the respective segments.
-+
-+start, end : It indicates the starting point and ending point of the segment respectively.
-+	This represent a point in 0 to 1.0 color space curve and the value depends on
-+	the normalization factor chosen.
-+
-+norm_factor : This factor helps define a scale to represent LUT sample with the smallest step size
-+	      in case of uniform or non-uniform LUT sample distribution.
-+
-+precision: It indicates the fixed point precision of HW LUT including integer and fractional component.
-+
-+To explain the usage with some real life example
-+------------------------------------------------
-+
-+1. Conventional 1D LUT with just one segment
-+
-+		|---|---|------------------------------------|
-+		0   1   2                                   1024
-+
-+
-+	- Hardware Description: A color block with a LUT linearly interpolating and
-+				covering range from 0 to 1.0
-+					- Number of segments - 1
-+					- Number of samples in LUT 1024
-+					- Precision of LUT samples in HW 0.10
-+					- Normalization Factor - Max value to represent 1.0
-+						 in terms of smallest step size which is 1024.
-+
-+	In this case, it will be represented by the following structure.
-+
-+	struct drm_color_lut_range lut_1024[] = {
-+			.start = 0 .end = (1 << 10);
-+			.normalization_factor = 1024;
-+			.count = 1024;
-+			.precision {
-+				.int_comp = 0;
-+				.fractional_comp = 10;
-+			}
-+		}
-+
-+2. Piece Wise Linear 1D LUT
-+
-+	        |---|---|------------------------------------|
-+		0   1   2                                   32
-+		|    \
-+                |       \
-+                |          \
-+                |             \
-+                |                \
-+		0                   \
-+                |---|---|--...-------|
-+		0   1   2            8
-+
-+	- Hardware Description: A color block with a LUT linearly interpolating and
-+				covering range from 0 to 1.0
-+					- Number of segments 2
-+					- Number of samples
-+						- segment 1 - 9 (covers range from 0 to 1/32)
-+						- segment 2 - 30 (covers range from 2/32 to 1.0)
-+					- Precision of LUT samples in HW 0.24
-+					- Normalization Factor - Max value to represent 1.0
-+						 in terms of smallest step size which is 8*32.
-+
-+		struct drm_color_lut_range lut_pwl[] = {
-+		        /* segment 1 */
-+		        {
-+				.count = 9,
-+				.start = 0, .end = 8,
-+				.norm_factor = 8*32,
-+				.precision = {
-+					.intp = 0,
-+					.fracp = 24,
-+				},
-+			},
-+		        /* segment 2 */
-+			{
-+				.count = 30,
-+				.start = 8*2, .end = 8*32,
-+				.norm_factor = 8*32,
-+				.precision = {
-+					.intp = 0,
-+					.fracp = 24,
-+				},
-+		        },
-+		}
-+
-+Note: In case HW supports overlapping LUTs expectation from uAPI is that the respective HW vendor
-+driver expose it as linearly increasing LUT and it will internally handle the programming of the
-+overlapping sections.
- 
- Color Pipeline Programming
- ==========================
-@@ -320,6 +439,27 @@ property values::
-     ├─ "CURVE_1D_TYPE" = PQ EOTF
-     └─ "BYPASS" = false
- 
-+Programming 1d LUT HW block
-+---------------------------
-+
-+In order to compute the LUT samples, userspace will parse the drm_color_lut_range structure to
-+get the LUT distribution of the underlying HW block.
-+
-+It needs to compute the normalized value of the LUT sample using the normalization factor provided
-+by the driver. The normalized value can then be scaled to the LUT precision of the HW. The computed
-+LUT samples will be packed in a blob and passed to the driver to be programmed in HW.
-+
-+The pseudo code of calculating the LUT samples for a linear LUT is described below.
-+
-+	for (i = 0; i < sample_count; i++) {
-+			                  start                         end - start
-+		normalized_value = ---------------------- + ----------------------------------------- * i
-+			            normalization_factor    (sample_count - 1) * normalization_factor
-+
-+		lut[i] = normalized_value * lut_precision /* (1 << precision.fracp) */
-+	}
-+
-+Note: The same logic can be extended for any color space transfer function implementation.
- 
- Driver Implementer's Guide
- ==========================
-@@ -375,4 +515,4 @@ for user space. In this case a new pipeline should be defined.
- References
- ==========
- 
--1. https://lore.kernel.org/dri-devel/QMers3awXvNCQlyhWdTtsPwkp5ie9bze_hD5nAccFW7a_RXlWjYB7MoUW_8CKLT2bSQwIXVi5H6VULYIxCdgvryZoAoJnC5lZgyK1QWn488=@emersion.fr/
-\ No newline at end of file
-+1. https://lore.kernel.org/dri-devel/QMers3awXvNCQlyhWdTtsPwkp5ie9bze_hD5nAccFW7a_RXlWjYB7MoUW_8CKLT2bSQwIXVi5H6VULYIxCdgvryZoAoJnC5lZgyK1QWn488=@emersion.fr/
--- 
-2.42.0
+Series: drm/i915/display: Add upper limit check for pixel clock
+URL   : https://patchwork.freedesktop.org/series/151048/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16785 -> Patchwork_151048v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_151048v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-11:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061] / [i915#14556])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-11/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-11/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-11:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#12904]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [ABORT][9] ([i915#14201]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-8/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-8/igt@i915_selftest@live.html
+    - bat-jsl-1:          [DMESG-WARN][11] ([i915#13827]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-jsl-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-jsl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13827]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827
+  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
+  [i915#14556]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14556
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16785 -> Patchwork_151048v1
+
+  CI-20190529: 20190529
+  CI_DRM_16785: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_151048v1: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/index.html
+
+--===============4222692865363784187==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add upper limit check for pixel clock</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151048/">https://patchwork.freedesktop.org/series/151048/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16785 -&gt; Patchwork_151048v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 42)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_151048v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-11/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-11/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14556">i915#14556</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-jsl-1/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827">i915#13827</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16785/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151048v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16785 -&gt; Patchwork_151048v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16785: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8432: 4871829d8b7117553eb2dc1bdb9a0d18de428a98 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_151048v1: 149b15e02e6496a37621cd5bf8a28f7d8c1869cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4222692865363784187==--
