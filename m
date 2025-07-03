@@ -2,41 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6830AF7311
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 13:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E6CAF731D
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 14:00:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED4610E815;
-	Thu,  3 Jul 2025 11:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC3610E813;
+	Thu,  3 Jul 2025 12:00:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="imuG8cRq";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4F5E10E813;
- Thu,  3 Jul 2025 11:59:15 +0000 (UTC)
-Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uXIav-00000008dYu-0DNF; Thu, 03 Jul 2025 14:59:13 +0300
-Message-ID: <dea636ecc2ffab3f597818bf8baa096a2abdd32d.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 14:59:12 +0300
-In-Reply-To: <20250626082053.219514-14-imre.deak@intel.com>
-References: <20250626082053.219514-1-imre.deak@intel.com>
- <20250626082053.219514-14-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A91F10E813;
+ Thu,  3 Jul 2025 12:00:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751544015; x=1783080015;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=cWoqO8dP0CRW2IxKSMAX0+5QNvUesrrlUbCa6SMfYtk=;
+ b=imuG8cRqfpZtTXYPt8PRHFYRnInm+Upt4GWUfdRa3wldjGwKaBb31ha/
+ dmkoS30lgxsSy+eZPJbo/BnG+yfUQyDkxYIoRWqLRFG1/zkfUcqBPSG8N
+ //Q7jtRwZtCL1/B/HuZD2FQLwPIS7rt1W2IIFx8nN5R0OT4jAKn+lpcpc
+ V1twpM+e9j9joGTnsJ2o6Ny1ySm8b5dMwDKPwOlL35kSq7gdamu9g0XnH
+ dSc4YBp7ktci/VHAVKGqcxng9Z+ZmzBeShAWEI8naOsOjCgrOfANJ3kxv
+ mhkMCA3ptYahHqhJvRvVvakpOOlYyRnQ+z3Ym07rcUMFWEgHR8nWP/6O2 w==;
+X-CSE-ConnectionGUID: csgpnzQPTXa0JdVAIRySfQ==
+X-CSE-MsgGUID: 7P7fVucLTFSod0auP/YCIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11482"; a="71303814"
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="71303814"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 05:00:15 -0700
+X-CSE-ConnectionGUID: 1lHp8tdaToiHdchfMpCdqg==
+X-CSE-MsgGUID: 5Ta0bi1TS2i3XTqW3ZI10g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="154479910"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.73])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 05:00:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, linux-kernel@vger.kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Dibin Moolakadan
+ Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>, Imre Deak
+ <imre.deak@intel.com>, David Laight <david.laight.linux@gmail.com>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Matt Wagantall
+ <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Ville
+ =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/4] iopoll: Reorder the timeout handling in
+ poll_timeout_us()
+In-Reply-To: <20250702223439.19752-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
+ <20250702223439.19752-3-ville.syrjala@linux.intel.com>
+Date: Thu, 03 Jul 2025 15:00:07 +0300
+Message-ID: <00600fbcc113777ef43b47f41e9c5f46aa701a83@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 13/20] drm/i915/dp: Return early if getting/acking
- device service IRQs fails
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,70 +77,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
-> If getting/acking the device service IRQs fail, the short HPD handler
-> should bail out, falling back to a full connector detection as in case
-> of any AUX access failures during the HPD handling. Do this by
-> separating the getting/acking and handling steps of the IRQs.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+On Thu, 03 Jul 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently poll_timeout_us() evaluates 'op' and 'cond' twice
+> within the loop, once at the start, and a second time after
+> the timeout check. While it's probably not a big deal to do
+> it twice almost back to back, it does make the macro a bit messy.
+>
+> Simplify the implementation to evaluate the timeout at the
+> very start, then follow up with 'op'/'cond', and finally
+> check if the timeout did in fact happen or not.
+>
+> For good measure throw in a compiler barrier between the timeout
+> and 'op'/'cond' evaluations to make sure the compiler can't reoder
+> the operations (which could cause false positive timeouts).
+> The similar i915 __wait_for() macro already has the barrier, though
+> there it is between the 'op' and 'cond' evaluations, which seems
+> like it could still allow 'op' and the timeout evaluations to get
+> reordered incorrectly. I suppose the ktime_get() might itself act
+> as a sufficient barrier here, but better safe than sorry I guess.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.co=
+m>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: David Laight <david.laight.linux@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Matt Wagantall <mattw@codeaurora.org>
+> Cc: Dejin Zheng <zhengdejin5@gmail.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 35 ++++++++++++++++---------
->  1 file changed, 23 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 66db426b4aca1..cfbe7c6f896ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5393,31 +5393,39 @@ void intel_dp_check_link_state(struct intel_dp *i=
-ntel_dp)
->  	intel_encoder_link_check_queue_work(encoder, 0);
->  }
-> =20
-> -static bool intel_dp_check_device_service_irq(struct intel_dp *intel_dp)
-> +static bool intel_dp_get_and_ack_device_service_irq(struct intel_dp *int=
-el_dp, u8 *irq_mask)
+>  include/linux/iopoll.h | 24 +++++++++++-------------
+>  1 file changed, 11 insertions(+), 13 deletions(-)
+>
+> diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
+> index 69296e6adbf3..0e0940a60fdb 100644
+> --- a/include/linux/iopoll.h
+> +++ b/include/linux/iopoll.h
+> @@ -41,18 +41,17 @@
+>  	if ((sleep_before_op) && __sleep_us) \
+>  		usleep_range((__sleep_us >> 2) + 1, __sleep_us); \
+>  	for (;;) { \
+> +		bool __expired =3D __timeout_us && \
+> +			ktime_compare(ktime_get(), __timeout) > 0; \
+> +		/* guarantee 'op' and 'cond' are evaluated after timeout expired */ \
+> +		barrier(); \
+>  		op; \
+>  		if (cond) { \
+>  			___ret =3D 0; \
+>  			break; \
+>  		} \
+> -		if (__timeout_us && \
+> -		    ktime_compare(ktime_get(), __timeout) > 0) { \
+> -			op; \
+> -			if (cond) \
+> -				___ret =3D 0; \
+> -			else \
+> -				___ret =3D -ETIMEDOUT; \
+> +		if (__expired) { \
+> +			___ret =3D -ETIMEDOUT; \
+>  			break; \
+>  		} \
+>  		if (__sleep_us) \
+> @@ -97,17 +96,16 @@
+>  			__left_ns -=3D __delay_ns; \
+>  	} \
+>  	for (;;) { \
+> +		bool __expired =3D __timeout_us && __left_ns < 0; \
+> +		/* guarantee 'op' and 'cond' are evaluated after timeout expired */ \
+> +		barrier(); \
+>  		op; \
+>  		if (cond) { \
+>  			___ret =3D 0; \
+>  			break; \
+>  		} \
+> -		if (__timeout_us && __left_ns < 0) { \
+> -			op; \
+> -			if (cond) \
+> -				___ret =3D 0; \
+> -			else \
+> -				___ret =3D -ETIMEDOUT; \
+> +		if (__expired) { \
+> +			___ret =3D -ETIMEDOUT; \
+>  			break; \
+>  		} \
+>  		if (__delay_us) { \
 
-I think these names are still a bit confusing, so adding short comment
-explaining what the bool is, as Jani suggested,is a good thing.
-
-
->  {
-> -	struct intel_display *display =3D to_intel_display(intel_dp);
->  	u8 val;
-> =20
-> +	*irq_mask =3D 0;
-> +
->  	if (drm_dp_dpcd_readb(&intel_dp->aux,
->  			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) !=3D 1)
-> -		return true;
-> +		return false;
-> =20
->  	if (!val)
-> -		return false;
-> +		return true;
-> =20
->  	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, va=
-l) !=3D 1)
-> -		return true;
-> +		return false;
-> =20
-> -	if (val & DP_AUTOMATED_TEST_REQUEST)
-> +	*irq_mask =3D val;
-> +
-> +	return true;
-> +}
-> +
-> +static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp=
-, u8 irq_mask)
-
-Same for this function.
-
-With these changes:
-
-Reviwed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
+--=20
+Jani Nikula, Intel
