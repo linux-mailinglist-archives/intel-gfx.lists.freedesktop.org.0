@@ -2,174 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF774AF776D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 16:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E8DAF77C1
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 16:38:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA71510E858;
-	Thu,  3 Jul 2025 14:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA73E10E861;
+	Thu,  3 Jul 2025 14:38:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HEAz7j+v";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Llqrv6l/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3140110E857;
- Thu,  3 Jul 2025 14:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751552939; x=1783088939;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=22S9UwbaqxF0ky3MLsPncd+9XKnhGWi5HZl5u0InXMI=;
- b=HEAz7j+vEqIVX++IIvrBEqmPH5uN1Kji/ady6Mr2FOzg3viIY60FS5FJ
- 2FXHeL0pq4tDS4P/qZRT2gNXJmMykc79DUFkEejWt8qF+Ni88jzpIJ3W0
- F3isNZCTbfd3IE6y50SiKj1l3mZ6/a/e+GtIufhwWQ0q4uXNHZ5ngStCw
- x0NppdY9X14jlLvM2IbvO7twZ1/Y04sm/ctFur1Ig56Gui+y3NkElz1uo
- TMeOUR9qNlhbKq08rxsrhWD1MANyTLGDHq9A3PAcIfrBKiLlzUniUinLR
- Qbl9BcVoqQizLh0cMMA/0AOJAE8ZyTQSSRTPfodv6t+2yYdgOPRZpgTDl g==;
-X-CSE-ConnectionGUID: GVx8I9DESUutd1PEHgJWVg==
-X-CSE-MsgGUID: gYxbN1JlRnWQCixuMCJX/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="64480448"
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="64480448"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:28:58 -0700
-X-CSE-ConnectionGUID: eRfLbrYjSaClg/HIBv7NyQ==
-X-CSE-MsgGUID: 6yK6KGpOQeOdhWdVP+H7SA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="158946656"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jul 2025 07:28:57 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 3 Jul 2025 07:28:56 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Thu, 3 Jul 2025 07:28:56 -0700
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.89)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Thu, 3 Jul 2025 07:28:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JbkI5kQYoJHmF2M8kCJjOkxHhBJy7yJvuVetBEtBYHnegRJ0F42NYY2tUXEwTl5mSXfoRBBAiZG01ih6xDIpLIM792rwgL48tb/M8Ho7C3rtIau6Xg9yehoHIRkSe9l5qNJKBDRh7P2isbUK3dho+Um99uou4PJFsNDwBbjtQ+7bhWufb27BCpSs3sJ5QlGGu078cLbDr/oEY9AC87ejczvk1sv8HLxTpyWp7hu6ntM0teAn3JHi5ruYsuSyqdqxTwY+JdvA0EUEkR/dsXofai952/WMOMnaadoukmUmEgmIfZmIA4bXIuPTUm+L607rDy3DCzILxRmiLLl87mglrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sWv9s38mis3HDFg9HEUX0dAljvX9HZwVCyKXlYDYY1s=;
- b=c5dn1AfP/63BF/uYxwoYBlg/GvT7Az+i++bIYcjABO+daWrwrP3zgrH3c7eTmi7p2BURdBnHcUJWcVxX3ONT3G0divLJ4uhHLhxsWCdOcFs3DOymyM5mYPDWgYusmFQ5HwQh0+xCaLS6P7KB0xJW/aCYO+WrtcmhrdY7F/oJTEFCdyjxVMzij1D8PwEcPNNOhBGiXFDGpQzlFq4zCPT5Ch/j7chevgzy2/HFi4Xc87mQmMnfEkXRVp4yFw2Bm+4Ht938nXTovjAPW3OfdZrECqPMwYtIQq//sxvpOETX8RNOevdY+4Drg7guDpXMcxr2nFcMc2KA51vmfxxyymwRSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SN7PR11MB6749.namprd11.prod.outlook.com (2603:10b6:806:267::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.19; Thu, 3 Jul
- 2025 14:28:22 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.8857.022; Thu, 3 Jul 2025
- 14:28:22 +0000
-Date: Thu, 3 Jul 2025 09:28:18 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-CC: <linux-kernel@vger.kernel.org>, Jani Nikula <jani.nikula@intel.com>,
- "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>,
- Imre Deak <imre.deak@intel.com>, David Laight <david.laight.linux@gmail.com>, 
- "Geert Uytterhoeven" <geert+renesas@glider.be>, Matt Wagantall
- <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/4] iopoll: Generalize read_poll_timeout() into
- poll_timeout_us()
-Message-ID: <l2dmr55iucsg55e2qtsf46fn3huy5znd4tctzqcr7vq4durr3c@4xgp5ch3vrfl>
-References: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250702223439.19752-1-ville.syrjala@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0107.namprd05.prod.outlook.com
- (2603:10b6:a03:334::22) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8D1610E862;
+ Thu,  3 Jul 2025 14:38:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 6AE6D434C7;
+ Thu,  3 Jul 2025 14:38:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AABDC4CEF1;
+ Thu,  3 Jul 2025 14:38:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1751553513;
+ bh=frFxIZdqr9u3z9N3c+nLFcUI2wN9fAMULO89/6Dlhn4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Llqrv6l/MaCoIRynheGW6Kg+30e1FGGhggdfF4ldKZ9Bzy3uD7w9J99pknoo3qcZV
+ 8QD8R/zFTTI1YOFxbjFZG9RFRsHGPzcKRPWA5UThegF2UKfdgX8GXYtgmpF3ClvCOm
+ RgMl01k8oQ7J8j66/3j4U7rYbDDxalgT2YJRQ2214RY7m/IzkGCKcuIwgH/YsHEyxI
+ H5GfMzpPd/JiAffOeyqQ82AtEx14K2hR59GcOPao1EFuK5AKKQ2Grj4Tmp4/nNCabZ
+ mNnj0avZwij8QyxECQTBjk4AV+p1w2AGlEyG/hTC1qzbW3eF0NqslKJuXUP8efBpUa
+ xiyC88O6chu0A==
+From: Hans de Goede <hansg@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Cc: Hans de Goede <hansg@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>
+Subject: [PATCH resend] drm/i915/bios: Apply vlv_fixup_mipi_sequences() to v2
+ mipi-sequences too
+Date: Thu,  3 Jul 2025 16:38:24 +0200
+Message-ID: <20250703143824.7121-1-hansg@kernel.org>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SN7PR11MB6749:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9c717803-eded-4e1b-a25a-08ddba3ddd26
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?mLOalWSjNudbtw25cBzDxR3Wtqu0YOBrmyyvWMdOrneKjArqeCB643aqwM?=
- =?iso-8859-1?Q?Btcm/I5sHS6DB01r8jwJZICo+gaV4OSyJEzNQOwu487T/j+Sxg6+nJUXle?=
- =?iso-8859-1?Q?fSeNm1KIdOKRhSietynpYt68X4P88DIpL74jxWt4r2tooD4EUc2cejIcL+?=
- =?iso-8859-1?Q?MJhfz56f1nNH9t/8MEAa04ny+Miow8d8T0DVAh8XFT2PzxJbwd02AqJuXg?=
- =?iso-8859-1?Q?VU/+C4NwFLNtEFNfhL7IUd41QRRCLMtgUE5J/+mSa7AdPAqrRdVazP8jZn?=
- =?iso-8859-1?Q?xeB5k6DNVOhbNItPIE8+8/QMz/efw5gZNahEOV/ZDYVCEsyiaMpTUTP3as?=
- =?iso-8859-1?Q?PtMKOm+v9TEYCfDMkSmTvdHD67qqlEXx4+ZtjziDrwFuew7SL/WznaTSaL?=
- =?iso-8859-1?Q?Cj2jCwieGmGd9lEWcrlINy/ehZ19TWxMbE1vBYFu6IS1VFccGjtBbajXU4?=
- =?iso-8859-1?Q?LE6lmieSjsDxecKGuQnSjFpcmLvIqskLuxiLdlWlV+/6anFckOXMMoYngp?=
- =?iso-8859-1?Q?znC3+SqtNkpnxuQgh1xBUn9ul1M4VaifxVLwib49ezzaJF1nbyQAEGf6yU?=
- =?iso-8859-1?Q?6W/l/X9E+O5piap07hKj3wn/pS9qmdOCLklD5UO5Ht+a7bjHn9HIGotw6l?=
- =?iso-8859-1?Q?CcAzCGGiCGrGCSyDKKrD5jAoDHlzEVigCM4q4nDNx9YL2nygnAEsWTIM6x?=
- =?iso-8859-1?Q?eN2RdVrD1HszUWMEiv1ZFoNGp+UoClM7zjWYkQ7U/nIsW25L02B/d7AkDs?=
- =?iso-8859-1?Q?L9yW7tyB8O+ldhlyNWi0Msx4mD+8H3omIO/PKg1H6C4ZF19AnT1kuPT+IA?=
- =?iso-8859-1?Q?nNGr+NX+t169ULp6LcnZ0pYPS8GWcQfRrdW62JcwXKXQCN5wtcqb68PIcp?=
- =?iso-8859-1?Q?tpCzArixdKcRuvakGQy5xhMVNq6Lp9GFYUABP5NYtjYQv1v8ItT14je+PX?=
- =?iso-8859-1?Q?c9VkcI2Ig8YVSOpGeBVAy9wWkpjKBqFutB9p4Zwe8doi4JgjqjHPxlp7Q5?=
- =?iso-8859-1?Q?MGfZCGAcrClgIsDRAd9FnHIkPQgdt7N8ufGz4goofab1tDAw6OTnVw7byp?=
- =?iso-8859-1?Q?akY05GxKCNa+Bg8vEgFjIrwXHOfXIbA9f6QOtQ1QMhUK8+03MO8UtlLf/o?=
- =?iso-8859-1?Q?GZfWeKK9NFxSMka/qsI6V9ayCNU7wd1VN/obMJ/A3ZlCqkkYgA94Jk1hbT?=
- =?iso-8859-1?Q?Ffo49sEkp3U79duprpDW6wjtims+aaJctIZRnGJ1SSCjVOxaqkh8LZbs08?=
- =?iso-8859-1?Q?LIImsh+Qla7/VFCjcX9c45ZhRz50++IEqCMk8bwYXjje34tLPukQAdnzeX?=
- =?iso-8859-1?Q?0Z7E5ByHXjVUC9f6LlYRgxDk0j+LX9xfVr75hsJyZDZFzeBwDeLRI2yCi1?=
- =?iso-8859-1?Q?DT4pbKvyzMuutrIMzFZJl1Vs/P3aEO4nzAUSclBm2H3EEZARGDKfhS3DJQ?=
- =?iso-8859-1?Q?IqrRvhlAvp8RfwwN6wCX4NmY6dakc/Av4LPya1FwmKLyxb/U+0T8P0yn2B?=
- =?iso-8859-1?Q?w=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?jMVss66VLRZOD2r18EcDKnZcwqOQ3zcsVdxiRcl9IuzxxWTE7q9Ed1nVv0?=
- =?iso-8859-1?Q?lVUd/SHeQEWqCC4aO3AWztu9N8EouT6p9lJijkzS6xlQciomQfq7ycmlrx?=
- =?iso-8859-1?Q?lDX5z6l2jRfdEt0TQj3jF+VdV/dXRnMUVaOGrmtclfbU2ZxmPKmESJ6NoF?=
- =?iso-8859-1?Q?lKn5BxtxmCXGyMyeH7GY1KxyiD8TzTixKEEtvxpRgQGEsbXyRZ6I0od/TE?=
- =?iso-8859-1?Q?JnVxBSuy8wFg20bVgl48CtZ+KRFAysd6x5FMCuD+0KgFRkxingxHDmhWO2?=
- =?iso-8859-1?Q?7dyrJ+G4LM0my1eaavpIBtu4J/ePnJh25wpVrjfW8n/JLhEfx1qxoN6yya?=
- =?iso-8859-1?Q?mqSvT4sEo1Lw/NMjPi3sLlqadZCS17Jmk4v0cvCMgc878wwwdDUa5wr2Gb?=
- =?iso-8859-1?Q?Ugy693WzguDOMvnYnJfEmplAc9TLV9YCWcsX5Xa+GHQhKBJ4cwOpHzKLY8?=
- =?iso-8859-1?Q?7tFy7EgT5OsV0SdPJoDLJq4JHkzmS7sOSsy+YyXSrXbSaStC3JL7C9D1jI?=
- =?iso-8859-1?Q?55UWzbYi8hUOdZ6Vba9f2HQVdS0DP4dL8d4senOWguZJREhttE3w1CGM7F?=
- =?iso-8859-1?Q?sb5YRN7jQU0KgAyDS8SkmSTcp9CtdQeKUx6BGC5PLJTPdechn6OayaY/7Y?=
- =?iso-8859-1?Q?gns/Nw/Ki+DTBvCO/yJxgBmh5lGah3aq9vJKAh1K9q0M3Yuvl5jYTFO9eE?=
- =?iso-8859-1?Q?cXYG1BHYohQP5brfu/81DOvzEXbBnZU9DHbq5WxP6nSCFoSq2tb5KBuZt/?=
- =?iso-8859-1?Q?RbHw6VzBGWslkyBGOVEsxfEGK2/g6ame6hdcjB6MCtPBQ5jjEy9DtdRzEO?=
- =?iso-8859-1?Q?0+lUpmhDkL8bFOYlqUoEuXQlENXXGDOWmFeDxBaPT18X4cZjDOj/UpJdi1?=
- =?iso-8859-1?Q?GJCnMDdSDq5Ys66nU108c1DJMi4jZ3GZqY3IbZ+E289yMYa/C5ZiGVzskp?=
- =?iso-8859-1?Q?h3AExrQL9pHpZVVofqz+gtSeGNoUu5hHrtyHaUsW2PW6bHhYhVbY3bzVx1?=
- =?iso-8859-1?Q?44Gb3HxTQAq0OGbBe9KXWkwXTrkdbplPDgquiRZkKMxJKTpLB82hYOsDLi?=
- =?iso-8859-1?Q?nmynYTRHMhAtHv2mK2Efu0wp/RFuiFmlMvQ+S53o36yeGA7K+VoH8M9cG5?=
- =?iso-8859-1?Q?p6Y8FYYOmQyhaiZ4BTHm+UUgc4oElOcryv0/sYKiSqhW+lNJyka1fFzRHY?=
- =?iso-8859-1?Q?J0hzOZRb7lNGOEhop/hy4Fyses6zRh+GNegLzL5oPkiWycAafl/D2RxxC8?=
- =?iso-8859-1?Q?71n+gSWIzQmmfQP8D14Nu8p/mmawnjXPo2KShvyXn0Hb1juECC/P/0hY27?=
- =?iso-8859-1?Q?8yHiOKwhVsBC0pOBG9gusMXqLmMd/nq0veXH1H+2t6wPn++OBZ+Pd6bE7x?=
- =?iso-8859-1?Q?1ztMjpLx9cOmqUv+gq1NBv41H1dPhkpqq/mEpQHi3d8q2sNcv7TmYORJcc?=
- =?iso-8859-1?Q?+izHR+w+joaYpT+4M1wie75IfTxy92gbqtNwcSYncknH4S0+Q+EqN5f7/s?=
- =?iso-8859-1?Q?Xy+hyI1FgqkBkDNq7KVjfgdbFV2KoX5xlElpvfWqnjwycPJX1vN9QYmWbs?=
- =?iso-8859-1?Q?6gh7biJO7wE3jCA/ONpNIcvFy6/EtcjPR8KBsQ9ppfMLNOjHFKgFTjuhxZ?=
- =?iso-8859-1?Q?B1zE38Pd4q3ipwRyyEDvCvlbhDI5v6hn+kNrRM0djLnQAb490yCcY16w?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c717803-eded-4e1b-a25a-08ddba3ddd26
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2025 14:28:22.3682 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uzYB7ojiUTk+JvM2Z7iBaFIAoUesa/mkB0bip2iIo9A6/VW9iTJ266LjpP09j2g1cj3pyortNBFP477kGSEdsJmNZpoVbG5VsbSaixAPPII=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6749
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,13 +61,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 03, 2025 at 01:34:36AM +0300, Ville Syrjälä wrote:
->-#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
->-				sleep_before_read, args...) \
->+#define poll_timeout_us(op, cond, sleep_us, timeout_us, sleep_before_op) \
+From: Hans de Goede <hdegoede@redhat.com>
 
-nit: could use use usec/msec etc that pairs nicely with USEC_PER_SEC
-and friends, also used by tools like perf and are a little bit more
-greppable than ms/us?
+It turns out that the fixup from vlv_fixup_mipi_sequences() is necessary
+for some DSI panel's with version 2 mipi-sequences too.
 
-Lucas De Marchi
+Specifically the Acer Iconia One 8 A1-840 (not to be confused with the
+A1-840FHD which is different) has the following sequences:
+
+BDB block 53 (1284 bytes) - MIPI sequence block:
+	Sequence block version v2
+	Panel 0 *
+
+Sequence 2 - MIPI_SEQ_INIT_OTP
+	GPIO index 9, source 0, set 0 (0x00)
+	Delay: 50000 us
+	GPIO index 9, source 0, set 1 (0x01)
+	Delay: 6000 us
+	GPIO index 9, source 0, set 0 (0x00)
+	Delay: 6000 us
+	GPIO index 9, source 0, set 1 (0x01)
+	Delay: 25000 us
+	Send DCS: Port A, VC 0, LP, Type 39, Length 5, Data ff aa 55 a5 80
+	Send DCS: Port A, VC 0, LP, Type 39, Length 3, Data 6f 11 00
+	...
+	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 29
+	Delay: 120000 us
+
+Sequence 4 - MIPI_SEQ_DISPLAY_OFF
+	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 28
+	Delay: 105000 us
+	Send DCS: Port A, VC 0, LP, Type 05, Length 2, Data 10 00
+	Delay: 10000 us
+
+Sequence 5 - MIPI_SEQ_ASSERT_RESET
+	Delay: 10000 us
+	GPIO index 9, source 0, set 0 (0x00)
+
+Notice how there is no MIPI_SEQ_DEASSERT_RESET, instead the deassert
+is done at the beginning of MIPI_SEQ_INIT_OTP, which is exactly what
+the fixup from vlv_fixup_mipi_sequences() fixes up.
+
+Extend it to also apply to v2 sequences, this fixes the panel not working
+on the Acer Iconia One 8 A1-840.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index ba7b8938b17c..166ee11831ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1938,7 +1938,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
+ 	int index, len;
+ 
+ 	if (drm_WARN_ON(display->drm,
+-			!data || panel->vbt.dsi.seq_version != 1))
++			!data || panel->vbt.dsi.seq_version >= 3))
+ 		return 0;
+ 
+ 	/* index = 1 to skip sequence byte */
+@@ -1961,7 +1961,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
+ }
+ 
+ /*
+- * Some v1 VBT MIPI sequences do the deassert in the init OTP sequence.
++ * Some v1/v2 VBT MIPI sequences do the deassert in the init OTP sequence.
+  * The deassert must be done before calling intel_dsi_device_ready, so for
+  * these devices we split the init OTP sequence into a deassert sequence and
+  * the actual init OTP part.
+@@ -1972,9 +1972,9 @@ static void vlv_fixup_mipi_sequences(struct intel_display *display,
+ 	u8 *init_otp;
+ 	int len;
+ 
+-	/* Limit this to v1 vid-mode sequences */
++	/* Limit this to v1/v2 vid-mode sequences */
+ 	if (panel->vbt.dsi.config->is_cmd_mode ||
+-	    panel->vbt.dsi.seq_version != 1)
++	    panel->vbt.dsi.seq_version >= 3)
+ 		return;
+ 
+ 	/* Only do this if there are otp and assert seqs and no deassert seq */
+-- 
+2.49.0
+
