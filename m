@@ -2,41 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF4EAF741A
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 14:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CDF0AF747A
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 14:45:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F79010E0E9;
-	Thu,  3 Jul 2025 12:29:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1C8510E83F;
+	Thu,  3 Jul 2025 12:45:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LJZXvb7b";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF0A310E0E9;
- Thu,  3 Jul 2025 12:29:45 +0000 (UTC)
-Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uXJ4O-00000008ddg-1oay; Thu, 03 Jul 2025 15:29:42 +0300
-Message-ID: <70f44e4a07d6dd28df08baef3fd07133d0e7caa6.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 15:29:39 +0300
-In-Reply-To: <20250626082053.219514-15-imre.deak@intel.com>
-References: <20250626082053.219514-1-imre.deak@intel.com>
- <20250626082053.219514-15-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2392D10E82C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Jul 2025 12:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751546715; x=1783082715;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OdB9Z/1oXCZLQL4ed1pRZa1HSCO0cZgpMlg7EAntNnA=;
+ b=LJZXvb7baWraE3bWkiVVQCJ3gIQg64AT3VTtL0bFzYEXTZ7SVpgaxBUl
+ /Ll1z6azbrUXg2O9cxDw9vWWwAqKvFpsyoz3qVzWHbxHYKfgq6RNLhxl3
+ J5+WgeL3wcJKpjJeI5MWgg+k0QXvsqmg+z3Kk9mfJym3E/OzENaD842ur
+ XwUcJEsHWBR9/jFkfIbwxiqOCqPfEtbqLSMvOBkrdbRzdDxnjKyq7BU0H
+ hgU3W3ZLNDPQGku77md9jnytRgGRI4V1LiqLj0V4XjXQyl056phN51T6m
+ 1Mp0AIcBps16/2s9aZg+Pe/w+0jO88JjDOjXg/5OUonuetizSNsizgCnj Q==;
+X-CSE-ConnectionGUID: DjFp5uqrTIOYSuilu/XqLg==
+X-CSE-MsgGUID: tybZbOzWRGubYI4ycZkk3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="53965331"
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="53965331"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 05:45:14 -0700
+X-CSE-ConnectionGUID: s9Imzx6uQLW4PADWNprNIw==
+X-CSE-MsgGUID: 93rTjm1rRCWnp/2M7aYYTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="154726441"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.73])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 05:45:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, Thomas
+ Gleixner <tglx@linutronix.de>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] iopoll: use fsleep() instead of usleep_range()
+In-Reply-To: <2axg64hx4qjg3hvk27du4yifoojpemkzht2kuxzecuggomrbyv@difktc36et6m>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250626145119.2048423-1-jani.nikula@intel.com>
+ <2axg64hx4qjg3hvk27du4yifoojpemkzht2kuxzecuggomrbyv@difktc36et6m>
+Date: Thu, 03 Jul 2025 15:45:10 +0300
+Message-ID: <d5ab9db3940ae708dcbe784bc2f85563ec9755df@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 14/20] drm/i915/dp: Return early if getting/ackink link
- service IRQs fails
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,97 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-26 at 11:20 +0300, Imre Deak wrote:
-> If getting/acking the link service IRQs fail, the short HPD handler
-> should bail out, falling back to a full connector detection as in case
-> of any AUX access failures during the HPD handling. Do this by
-> separating the getting/acking and handling steps of the IRQs.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 35 +++++++++++++++++--------
->  1 file changed, 24 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index cfbe7c6f896ab..2ba4a810f22c2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5428,33 +5428,43 @@ static void intel_dp_handle_device_service_irq(st=
-ruct intel_dp *intel_dp, u8 irq
->  		drm_dbg_kms(display->drm, "Sink specific irq unhandled\n");
->  }
-> =20
-> -static bool intel_dp_check_link_service_irq(struct intel_dp *intel_dp)
-> +static bool intel_dp_get_and_ack_link_service_irq(struct intel_dp *intel=
-_dp, u8 *irq_mask)
->  {
-> -	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	bool reprobe_needed =3D false;
->  	u8 val;
-> =20
-> +	*irq_mask =3D 0;
-> +
->  	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
-> -		return false;
-> +		return true;
-> =20
->  	if (drm_dp_dpcd_readb(&intel_dp->aux,
->  			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) !=3D 1)
-> -		return true;
-> +		return false;
-> =20
->  	if (!val)
-> -		return false;
-> +		return true;
-> =20
->  	if (drm_dp_dpcd_writeb(&intel_dp->aux,
->  			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) !=3D 1)
-> -		return true;
-> +		return false;
-> =20
-> -	if (val & RX_CAP_CHANGED)
-> +	*irq_mask =3D val;
-> +
-> +	return true;
-> +}
-> +
-> +static bool intel_dp_handle_link_service_irq(struct intel_dp *intel_dp, =
-u8 irq_mask)
-> +{
-> +	struct intel_display *display =3D to_intel_display(intel_dp);
-> +	bool reprobe_needed =3D false;
-> +
-> +	if (irq_mask & RX_CAP_CHANGED)
->  		reprobe_needed =3D true;
-> =20
-> -	if (val & HDMI_LINK_STATUS_CHANGED)
-> +	if (irq_mask & HDMI_LINK_STATUS_CHANGED)
->  		intel_dp_handle_hdmi_link_status_change(intel_dp);
-> =20
-> -	if ((val & DP_TUNNELING_IRQ) &&
-> +	if ((irq_mask & DP_TUNNELING_IRQ) &&
->  	    drm_dp_tunnel_handle_irq(display->dp_tunnel_mgr,
->  				     &intel_dp->aux))
->  		reprobe_needed =3D true;
-> @@ -5499,7 +5509,10 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
-> =20
->  	intel_dp_handle_device_service_irq(intel_dp, irq_mask);
-> =20
-> -	if (intel_dp_check_link_service_irq(intel_dp))
-> +	if (!intel_dp_get_and_ack_link_service_irq(intel_dp, &irq_mask))
-> +		return false;
-> +
-> +	if (intel_dp_handle_link_service_irq(intel_dp, irq_mask))
->  		reprobe_needed =3D true;
-> =20
->  	/* Handle CEC interrupts, if any */
+On Wed, 02 Jul 2025, Andi Shyti <andi.shyti@kernel.org> wrote:
+> Hi Jani,
+>
+> On Thu, Jun 26, 2025 at 05:51:19PM +0300, Jani Nikula wrote:
+>> Sometimes it's necessary to poll with long sleeps, and the accuracy of
+>> usleep_range() is overkill. Use the flexible sleep helper fsleep() for
+>> sleeping in the read_poll_timeout() family of macros to automatically
+>> choose the appropriate method of waiting.
+>> 
+>> Functionally there are a few consequences for existing users:
+>> 
+>> - 10 us and shorter sleeps will use usleep() instead of
+>>   usleep_range(). Presumably this will not be an issue.
+>> 
+>> - When it leads to a slack of less than 25%, msleep() will be used
+>>   instead of usleep_range(). Presumably this will not be an issue, given
+>>   the sleeps will be longer in this case.
+>> 
+>> - Otherwise, the usleep_range() slack gets switched from the begin of
+>>   the range to the end of the range, i.e. [sleep/2+1..sleep] ->
+>>   [sleep..sleep+sleep/2]. In theory, this could be an issue in some
+>>   cases, but difficult to determine before this hits the real world.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> this patch makes sense to me even with the fixes in the commit
+> message suggested byt Geert.
+>
+> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
 
-Same as with the previous patch.  With a short comment about the bool
-meaning:
+Thanks! However I think Ville's series [1] should have more priority
+here. It's mostly orthogonal, but IMO it's more important and should go
+first. I can follow up with this one afterwards.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+BR,
+Jani.
 
---
-Cheers,
-Luca.
+
+[1] https://lore.kernel.org/r/20250702223439.19752-1-ville.syrjala@linux.intel.com
+
+-- 
+Jani Nikula, Intel
