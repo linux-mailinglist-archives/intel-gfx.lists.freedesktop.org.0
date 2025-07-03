@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC12EAF794B
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 17:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F7DAF7B99
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Jul 2025 17:26:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AC0A10E87F;
-	Thu,  3 Jul 2025 15:00:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B37E410E889;
+	Thu,  3 Jul 2025 15:26:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tf9wWHQp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9E410E1A2;
- Thu,  3 Jul 2025 15:00:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1817125634797301316=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD4CF10E889;
+ Thu,  3 Jul 2025 15:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751556386; x=1783092386;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=voYn5qVjc/VwZhvemL2kIaswrJz6T+cj0tPn2nmvmTc=;
+ b=Tf9wWHQp4L3FzmSGGNS1oAqjfUuRps9xv6jKHRGpCPXC2zH12xuyCc46
+ kGVlXE3m4mh1yAnFhjywqYJaWuderH8NDMo7Crmcq6V2c1h6mZu5R+6JN
+ FmkMU+6FJ+/15xZ2P/dCuoQoyfS2RCxGD0W5a/3BIG6T1NNg+ImPk4oJB
+ lC48nrRSR5ziDfUikxINe9eLjBaT0RM+BH6E/BfN1TZd4c/6dnrkEGnrs
+ gX8zmpFf6b7CzpNAJqR5x6Y2IlCfqtAonhVy18XD+ugt+5Ix4kUvfl3/e
+ y/hPqm5tSTn2pQbH+1P6ok+vbd2KAepDtD7SyyE67QpqF7IAju7iSdJ00 w==;
+X-CSE-ConnectionGUID: NYVVwvuXQHifafIRP5chxg==
+X-CSE-MsgGUID: /G8L3cEjQ9Sri3MblqBQ1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="53755121"
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="53755121"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 08:26:25 -0700
+X-CSE-ConnectionGUID: nc5xyh3iSj69UX3kT1tv3g==
+X-CSE-MsgGUID: wRYTVSsOSnykvQTIINsGcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,284,1744095600"; d="scan'208";a="154966864"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.124])
+ ([10.245.244.124])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jul 2025 08:26:22 -0700
+Message-ID: <a7461418-08dc-4b7c-b2fa-264155f66d5e@linux.intel.com>
+Date: Thu, 3 Jul 2025 17:26:19 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fallback_t?=
- =?utf-8?q?o_DSC_for_HDR_content_if_needed?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 03 Jul 2025 15:00:02 -0000
-Message-ID: <175155480263.131399.17744922628909226847@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250703140252.3547953-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20250703140252.3547953-1-chaitanya.kumar.borah@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,143 +74,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1817125634797301316==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona,
 
-== Series Details ==
+Fixes for rc5. :-)
 
-Series: drm/i915/dp: Fallback to DSC for HDR content if needed
-URL   : https://patchwork.freedesktop.org/series/151124/
-State : success
+Kind regards,
+~Maarten
 
-== Summary ==
+drm-misc-fixes-2025-07-03:
+drm-misc-fixes for v6.16-rc5:
+- Replace simple panel lookup hack with proper fix.
+- nullpointer deref in vesadrm fix.
+- fix dma_resv_wait_timeout.
+- fix error handling in ttm_buffer_object_transfer.
+- bridge fixes.
+- Fix vmwgfx accidentally allocating encrypted memory.
+- Fix race in spsc_queue_push()
+- Add refcount on backing GEM objects during fb creation.
+- Fix v3d irq's being enabled during gpu reset.
+The following changes since commit 55e8ff842051b1150461d7595d8f1d033c69d66b:
 
-CI Bug Log - changes from CI_DRM_16791 -> Patchwork_151124v1
-====================================================
+  drm/bridge: ti-sn65dsi86: Add HPD for DisplayPort connector type (2025-06-25 07:49:01 -0700)
 
-Summary
--------
+are available in the Git repository at:
 
-  **SUCCESS**
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-07-03
 
-  No regressions found.
+for you to fetch changes up to 226862f50a7a88e4e4de9abbf36c64d19acd6fd0:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/index.html
+  drm/v3d: Disable interrupts before resetting the GPU (2025-07-02 19:08:11 -0300)
 
-Participating hosts (44 -> 41)
-------------------------------
+----------------------------------------------------------------
+drm-misc-fixes for v6.16-rc5:
+- Replace simple panel lookup hack with proper fix.
+- nullpointer deref in vesadrm fix.
+- fix dma_resv_wait_timeout.
+- fix error handling in ttm_buffer_object_transfer.
+- bridge fixes.
+- Fix vmwgfx accidentally allocating encrypted memory.
+- Fix race in spsc_queue_push()
+- Add refcount on backing GEM objects during fb creation.
+- Fix v3d irq's being enabled during gpu reset.
 
-  Missing    (3): fi-glk-j4005 fi-kbl-guc fi-snb-2520m 
+----------------------------------------------------------------
+Christian König (2):
+      dma-buf: fix timeout handling in dma_resv_wait_timeout v2
+      drm/ttm: fix error handling in ttm_buffer_object_transfer
 
-Known issues
-------------
+Dmitry Baryshkov (2):
+      drm/bridge: panel: move prepare_prev_first handling to drm_panel_bridge_add_typed
+      drm/bridge: aux-hpd-bridge: fix assignment of the of_node
 
-  Here are the changes found in Patchwork_151124v1 that come from known issues:
+Marko Kiiskila (1):
+      drm/vmwgfx: Fix guests running with TDX/SEV
 
-### IGT changes ###
+Matthew Brost (1):
+      drm/sched: Increment job count before swapping tail spsc queue
 
-#### Issues hit ####
+Maxime Ripard (5):
+      drm/mipi-dsi: Add dev_is_mipi_dsi function
+      drm/panel: panel-simple: make panel_dpi_probe return a panel_desc
+      drm/panel: panel-simple: Make panel_simple_probe return its panel
+      drm/panel: panel-simple: Add function to look panel data up
+      drm/panel: panel-simple: get rid of panel_dpi hack
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16791/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+Maíra Canal (1):
+      drm/v3d: Disable interrupts before resetting the GPU
 
-  
-#### Possible fixes ####
+Thomas Zimmermann (2):
+      drm/vesadrm: Avoid NULL-ptr deref in vesadrm_pmi_cmap_write()
+      drm/gem: Acquire references on GEM handles for framebuffers
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16791/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16791 -> Patchwork_151124v1
-
-  CI-20190529: 20190529
-  CI_DRM_16791: d04a54cd3b99001adbc4cd3305b44f9f3e658407 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_151124v1: d04a54cd3b99001adbc4cd3305b44f9f3e658407 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/index.html
-
---===============1817125634797301316==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fallback to DSC for HDR content if needed</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151124/">https://patchwork.freedesktop.org/series/151124/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16791 -&gt; Patchwork_151124v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Missing    (3): fi-glk-j4005 fi-kbl-guc fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_151124v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16791/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16791/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151124v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16791 -&gt; Patchwork_151124v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16791: d04a54cd3b99001adbc4cd3305b44f9f3e658407 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8434: 5185b9527673518a418d575c3f58b5554e27f111 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_151124v1: d04a54cd3b99001adbc4cd3305b44f9f3e658407 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1817125634797301316==--
+ drivers/dma-buf/dma-resv.c                   |  12 ++-
+ drivers/gpu/drm/bridge/aux-hpd-bridge.c      |   3 +-
+ drivers/gpu/drm/bridge/panel.c               |   5 +-
+ drivers/gpu/drm/drm_gem.c                    |  44 ++++++++-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c |  16 ++--
+ drivers/gpu/drm/drm_internal.h               |   2 +
+ drivers/gpu/drm/drm_mipi_dsi.c               |   3 +-
+ drivers/gpu/drm/panel/panel-simple.c         | 132 +++++++++++++++++----------
+ drivers/gpu/drm/sysfb/vesadrm.c              |  13 ++-
+ drivers/gpu/drm/ttm/ttm_bo_util.c            |  13 +--
+ drivers/gpu/drm/v3d/v3d_drv.h                |   8 ++
+ drivers/gpu/drm/v3d/v3d_gem.c                |   2 +
+ drivers/gpu/drm/v3d/v3d_irq.c                |  37 ++++++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c          |   2 +-
+ include/drm/drm_mipi_dsi.h                   |   3 +
+ include/drm/spsc_queue.h                     |   4 +-
+ 16 files changed, 205 insertions(+), 94 deletions(-)
