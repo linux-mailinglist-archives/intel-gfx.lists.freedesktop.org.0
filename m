@@ -2,63 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8679AF8E7E
-	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jul 2025 11:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C75AF8FFE
+	for <lists+intel-gfx@lfdr.de>; Fri,  4 Jul 2025 12:26:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674CE10E9C4;
-	Fri,  4 Jul 2025 09:27:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D51210E9E4;
+	Fri,  4 Jul 2025 10:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OuMU54HK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D5eSV8tD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B2A10E9C7;
- Fri,  4 Jul 2025 09:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751621230; x=1783157230;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ma9eUAQnWCEc01GdL2V8DgdY1WZYS8Tdi+oAOCu1qg0=;
- b=OuMU54HK8tRqi/xxUeerQyU+7jYky0r+xC4cZ1gWZSTFKu8CTe+BKTJQ
- dT5cbcy66wnJRPT2tAq7YFeuzt120fweYB1vJ+0T8zCLhdu3opb9u6id5
- 9uYwcbArGwaxp0hQ+8ATJ00ljqboHT3giS9Yoh/W/TO9mBjPjQuMMvJJ/
- 2FH94H1qEgj0ai+qzUt7XudNqVo13c036PywR9ixiAas9gv3+lZmDbhzB
- xfZ5yw8FtI0shkZb7MPB/hQI0+73qRac5CESLtZPWtx+HhsILE9xWJgZM
- RVpkx6Lhw4LSTxsFTDKWL6i7vSMTkiCz8k/XDFhoEWZjou5TOCMwqLl8F Q==;
-X-CSE-ConnectionGUID: wEi8HmwOTf66F0VXDiSTig==
-X-CSE-MsgGUID: nth8adoRSsSmrpmfgQCBfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11483"; a="53177442"
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; d="scan'208";a="53177442"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 02:27:10 -0700
-X-CSE-ConnectionGUID: kudKHLgkRMibSf8+o0frog==
-X-CSE-MsgGUID: lnNbT7pEQsugJ/7Fmmbw2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,286,1744095600"; d="scan'208";a="154241692"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.102])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2025 02:27:04 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hansg@kernel.org>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: Hans de Goede <hansg@kernel.org>, intel-gfx
- <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org, Hans
- de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH resend] drm/i915/bios: Apply vlv_fixup_mipi_sequences()
- to v2 mipi-sequences too
-In-Reply-To: <20250703143824.7121-1-hansg@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250703143824.7121-1-hansg@kernel.org>
-Date: Fri, 04 Jul 2025 12:26:59 +0300
-Message-ID: <6e0bd049b2c64430c3ac87344f405868801edbbf@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE94610E9D7;
+ Fri,  4 Jul 2025 10:25:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=eDkIk/2D8dgafpo6mhXDy8h1DOSaJXXyI6mZYy1xav0=; b=D5eSV8tD66CAy1FlAKXzsOthF3
+ ySHf+dVSbKnEPwoznpwq/Bv9ZWzDp1jgP/hTDaI3bXxzNC5hN2zW8M4+wvHLn9Z2kw4r30723LdMe
+ F3sjvG86+xaMKncJ2m0gB2DdQwhlBoB4X/AIKi1e5utpP/6iFrdLLbF0a+5KT3/nw/r2YiOH5PGHi
+ /OuCGlBh1RIuiHRrOoHAXn1tWdlTq40GOg4B724Eqr+gokQozt7SdUZZtYtMYGJrsksRitMD0y7rH
+ 30D0Yk2itjP24Pl19KU7IwgknhukKoYB5HrbQZTqbK1iZKWMmvH+WTEcH5hh2Jc7yRhkWSYEceoiQ
+ v1TELLxw==;
+Received: from [189.7.87.79] (helo=[192.168.0.7])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1uXdbN-00CNw6-Gr; Fri, 04 Jul 2025 12:25:05 +0200
+Message-ID: <68b4d53f-a185-4e11-af1e-532fc45cb8b2@igalia.com>
+Date: Fri, 4 Jul 2025 07:24:46 -0300
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 20/80] drivers: drm: Remove redundant
+ pm_runtime_mark_last_busy() calls
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Douglas Anderson <dianders@chromium.org>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Qiang Yu <yuq825@gmail.com>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Damon Ding <damon.ding@rock-chips.com>,
+ Ayushi Makhija <quic_amakhija@quicinc.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ imx@lists.linux.dev, lima@lists.freedesktop.org, linux-tegra@vger.kernel.org
+References: <20250704075225.3212486-1-sakari.ailus@linux.intel.com>
+ <20250704075413.3218307-1-sakari.ailus@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
+In-Reply-To: <20250704075413.3218307-1-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,96 +101,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 03 Jul 2025, Hans de Goede <hansg@kernel.org> wrote:
-> From: Hans de Goede <hdegoede@redhat.com>
->
-> It turns out that the fixup from vlv_fixup_mipi_sequences() is necessary
-> for some DSI panel's with version 2 mipi-sequences too.
->
-> Specifically the Acer Iconia One 8 A1-840 (not to be confused with the
-> A1-840FHD which is different) has the following sequences:
->
-> BDB block 53 (1284 bytes) - MIPI sequence block:
-> 	Sequence block version v2
-> 	Panel 0 *
->
-> Sequence 2 - MIPI_SEQ_INIT_OTP
-> 	GPIO index 9, source 0, set 0 (0x00)
-> 	Delay: 50000 us
-> 	GPIO index 9, source 0, set 1 (0x01)
-> 	Delay: 6000 us
-> 	GPIO index 9, source 0, set 0 (0x00)
-> 	Delay: 6000 us
-> 	GPIO index 9, source 0, set 1 (0x01)
-> 	Delay: 25000 us
-> 	Send DCS: Port A, VC 0, LP, Type 39, Length 5, Data ff aa 55 a5 80
-> 	Send DCS: Port A, VC 0, LP, Type 39, Length 3, Data 6f 11 00
-> 	...
-> 	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 29
-> 	Delay: 120000 us
->
-> Sequence 4 - MIPI_SEQ_DISPLAY_OFF
-> 	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 28
-> 	Delay: 105000 us
-> 	Send DCS: Port A, VC 0, LP, Type 05, Length 2, Data 10 00
-> 	Delay: 10000 us
->
-> Sequence 5 - MIPI_SEQ_ASSERT_RESET
-> 	Delay: 10000 us
-> 	GPIO index 9, source 0, set 0 (0x00)
->
-> Notice how there is no MIPI_SEQ_DEASSERT_RESET, instead the deassert
-> is done at the beginning of MIPI_SEQ_INIT_OTP, which is exactly what
-> the fixup from vlv_fixup_mipi_sequences() fixes up.
->
-> Extend it to also apply to v2 sequences, this fixes the panel not working
-> on the Acer Iconia One 8 A1-840.
+Hi Sakari,
 
-I believe you have the most extensive collection of VLV/CHV DSI
-machines, and I basically take your word for what works and what
-doesn't.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+On 04/07/25 04:54, Sakari Ailus wrote:
+> pm_runtime_put_autosuspend(), pm_runtime_put_sync_autosuspend(),
+> pm_runtime_autosuspend() and pm_request_autosuspend() now include a call
+> to pm_runtime_mark_last_busy(). Remove the now-reduntant explicit call to
+> pm_runtime_mark_last_busy().
+> 
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index ba7b8938b17c..166ee11831ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1938,7 +1938,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
->  	int index, len;
->  
->  	if (drm_WARN_ON(display->drm,
-> -			!data || panel->vbt.dsi.seq_version != 1))
-> +			!data || panel->vbt.dsi.seq_version >= 3))
->  		return 0;
->  
->  	/* index = 1 to skip sequence byte */
-> @@ -1961,7 +1961,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
->  }
->  
->  /*
-> - * Some v1 VBT MIPI sequences do the deassert in the init OTP sequence.
-> + * Some v1/v2 VBT MIPI sequences do the deassert in the init OTP sequence.
->   * The deassert must be done before calling intel_dsi_device_ready, so for
->   * these devices we split the init OTP sequence into a deassert sequence and
->   * the actual init OTP part.
-> @@ -1972,9 +1972,9 @@ static void vlv_fixup_mipi_sequences(struct intel_display *display,
->  	u8 *init_otp;
->  	int len;
->  
-> -	/* Limit this to v1 vid-mode sequences */
-> +	/* Limit this to v1/v2 vid-mode sequences */
->  	if (panel->vbt.dsi.config->is_cmd_mode ||
-> -	    panel->vbt.dsi.seq_version != 1)
-> +	    panel->vbt.dsi.seq_version >= 3)
->  		return;
->  
->  	/* Only do this if there are otp and assert seqs and no deassert seq */
 
--- 
-Jani Nikula, Intel
+[...]
+
+> diff --git a/drivers/gpu/drm/vc4/vc4_v3d.c b/drivers/gpu/drm/vc4/vc4_v3d.c
+> index bb09df5000bd..11ec7e913974 100644
+> --- a/drivers/gpu/drm/vc4/vc4_v3d.c
+> +++ b/drivers/gpu/drm/vc4/vc4_v3d.c
+> @@ -153,7 +153,6 @@ vc4_v3d_pm_put(struct vc4_dev *vc4)
+>   
+>   	mutex_lock(&vc4->power_lock);
+>   	if (--vc4->power_refcount == 0) {
+> -		pm_runtime_mark_last_busy(&vc4->v3d->pdev->dev);
+>   		pm_runtime_put_autosuspend(&vc4->v3d->pdev->dev);
+>   	}
+
+Nit: please, drop the curly braces.
+
+>   	mutex_unlock(&vc4->power_lock);
+
+For vc4,
+
+Reviewed-by: Maíra Canal <mcanal@igalia.com>
+
+Best Regards,
+- Maíra
