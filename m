@@ -2,30 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36058AFC64F
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 10:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CFBAFC657
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 10:57:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B164310E174;
-	Tue,  8 Jul 2025 08:55:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5188A89D56;
+	Tue,  8 Jul 2025 08:56:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pes7nKom";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E87CF89D56;
- Tue,  8 Jul 2025 08:55:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0800553203172859502=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 516C110E5C0;
+ Tue,  8 Jul 2025 08:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751965007; x=1783501007;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=453kmkxe0PB5ueoJ4Kxa/sCeoINXDv7arQms6pWVaP8=;
+ b=Pes7nKom2T6kvDQiCzyEIcrMgFoqK7+ocpvYMNciVUlP6ienfTRywi7L
+ pQfkWHHjXd9lmj8oZ4oO9N0sjrIEvQhyx5YogoMun/leqpV1TonRGyffk
+ uGJ7VYPagCEw06thXLEYJxxRXpfpdvcB6fguTbz99LTQzHw96L1qEOnlk
+ LkUgo8dCxXtYC1vT9iEqHFq1MPn9tnEgbHxvEVy66eupSYaLXJkcu5Z8D
+ dJhn/qEkf7jY0o8NhfP5ni/VHCw/ajfjpaPhKOyoEY559paUDrE7oviPL
+ wfhAxQIeqmZtY9GdhskeFsXe8mRtRQcJL0HvW9p3h81mNwuXl5NjYbdy4 Q==;
+X-CSE-ConnectionGUID: qeI4ielcSCur7y/6c3TiiA==
+X-CSE-MsgGUID: 1O3kwshYQjKwIaFu8z1qjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="65257978"
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="65257978"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 01:56:47 -0700
+X-CSE-ConnectionGUID: /0+TaXnYS9Oy64bQ4GobpA==
+X-CSE-MsgGUID: voFnpFLmSMu7U3lhdt9Ihw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="159710121"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.8])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 01:56:44 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>, intel-gfx@lists.freedesktop.org,
+ chris.p.wilson@intel.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] dma-buf: Take a breath during dma-fence-chain subtests
+Date: Tue, 08 Jul 2025 10:56:41 +0200
+Message-ID: <2153999.KlZ2vcFHjT@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <5f24f0e1-7d61-4a1a-bfea-b17fa7af4be1@amd.com>
+References: <20250226155534.1099538-1-nitin.r.gote@intel.com>
+ <2191571.OBFZWjSADL@jkrzyszt-mobl2.ger.corp.intel.com>
+ <5f24f0e1-7d61-4a1a-bfea-b17fa7af4be1@amd.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Fix_d?=
- =?utf-8?q?ma=5Ffence=5Fwait=5Ftimeout=28=29_return_value_handling_=28rev3?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aakash Deep Sarkar" <aakash.deep.sarkar@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 08 Jul 2025 08:55:45 -0000
-Message-ID: <175196494594.142631.9973968856307761843@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250708074540.1948068-1-aakash.deep.sarkar@intel.com>
-In-Reply-To: <20250708074540.1948068-1-aakash.deep.sarkar@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,226 +71,302 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0800553203172859502==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Monday, 7 July 2025 15:14:11 CEST Christian K=C3=B6nig wrote:
+> On 07.07.25 14:25, Janusz Krzysztofik wrote:
+> > Hi Christian,
+> >=20
+> > I've taken over that old issue and have a few questions to you.
+>=20
+> Thanks a lot for that, something really fishy seems to be going on here.
+>=20
+> > On Thursday, 27 February 2025 15:11:39 CEST Christian K=C3=B6nig wrote:
+> ...
+> >> Question is why is the test taking 26 (busy?) seconds to complete? Tha=
+t=20
+> > sounds really long even for a very old CPU.
+> >=20
+> > The failing test case operates on a dma fence chain built of 4096 dma f=
+ences.  =20
+> > Am I right that a single dma_fence_signal() call may result in up to 40=
+96=20
+> > levels of nested sub-calls to dma_fence_chain_cb()?
+>=20
+> No, that could only happen if the test case is broken.
+>=20
+> See the test is to make sure that we don't overflow the kernel stack with=
+ many elements when enable_signaling is called.
+>=20
+> The callback is always only installed on the first unsignaled fence. So w=
+hen the last fence is signaled the dma_fence_chain_cb function it is called=
+ exactly once, installs itself on the second to last fence, waits for that =
+one to signal and so on.
+>=20
+>=20
+> What could be is that test case calls enable_signaling on each of the 409=
+6 dma_fence_chain elements individually and so each of the elements registe=
+rs a dma_fence_chain_cb function, but then the test case would be rather br=
+oken and should probably be fixed.
+>=20
+> > The test case signals=20
+> > each fence of the chain in a loop, starting from the last one.  Then, =
+=20
+> > dma_fence_chain_cb() is called 4096 * (4096 + 1) / 2 (an arithmetic ser=
+ies) ~=3D=20
+> > 8.4 milion times, isn't it?
+>=20
+> When the test case indeed enables signaling on all 4096 elements then yes.
+>=20
+> >=20
+> > On most powerful gen12 machines used in CI, that test case takes slight=
+ly less=20
+> > than 3s, on low end few years old machines -- ~ 10s.  Should we be surp=
+rised=20
+> > that it takes over 20s on the least powerful one (gen3 PineView Atom)? =
+ And,=20
+> > while reproducing the issue, I've never seen any unrecoverable deadlock=
+s.  It=20
+> > just takes time to complete the loop.
+> >=20
+> > Does that address your doubts?
+>=20
+> No, not really.
+>=20
+> > Assuming the commit message will be extended and provide the above=20
+> > explanation, I can still imagine a few ways of "fixing" that issue.  We=
+ can=20
+> > just limit the chain length and still execute all those dma_fence_signa=
+l()=20
+> > calls without taking a breath, but why?  Or we can somehow measure expe=
+cted=20
+> > processing speed before running the exercise and limit the chain size=20
+> > accordingly at runtime, which in turn seems an overcomplication to me. =
+ Or, we=20
+> > can agree that there is no point in avoiding that process being potenti=
+ally=20
+> > swapped out from the CPU and take the approach proposed by Nitin, perha=
+ps=20
+> > limited to this particular problematic test case.  And, I can see=20
+> > cond_resched() still used in recent patches.
+> >=20
+> > Would any of those options be acceptable for you?
+>=20
+> No, if the test case really does what you describe here then the test is =
+just broken and should potentially be fixed instead.
+>=20
+> There is no reason to test enabling signaling each of the element in a lo=
+op. So there should be something like 4096 calls to the dma_fence_chain_cb =
+function each jumping to the next unsignaled fence and re-installing the ca=
+llback.
 
-== Series Details ==
+So how building a chain should look like in real use cases?  When a user=20
+builds a chained link of her fence with another fence then may she enable=20
+signaling on the new chain link?  If that other fence occurs a chain link t=
+hen=20
+who should take care of disabling signaling on it so signaling is enabled o=
+nly=20
+on the last link of the chain, not leading to a situation similar to what w=
+e=20
+have now in the test case?  IOW, what's a correct use pattern of=20
+dma_fence_chain?  I can't find that documented anywhere, neither in inline=
+=20
+docs nor in commit descriptions.
 
-Series: drm/i915/display: Fix dma_fence_wait_timeout() return value handling (rev3)
-URL   : https://patchwork.freedesktop.org/series/151248/
-State : success
+Thanks,
+Janusz
 
-== Summary ==
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Thanks,
+> > Janusz
+> >=20
+> >>
+> >> Do we maybe have an udelay() here which should have been an usleep() o=
+r=20
+> > similar?
+> >>
+> >> Regards,
+> >> Christian.
+> >>
+> >>>
+> >>> Andi
+> >>>
+> >>>> ---
+> >>>> Hi,
+> >>>>
+> >>>> For reviewer reference, adding here watchdog issue seen on old machi=
+nes
+> >>>> during dma-fence-chain subtests testing. This log is retrieved from=
+=20
+> > device
+> >>>> pstore log while testing dam-buf@all-tests:
+> >>>>
+> >>>> dma-buf: Running dma_fence_chain
+> >>>> Panic#1 Part7
+> >>>> <6> sizeof(dma_fence_chain)=3D184
+> >>>> <6> dma-buf: Running dma_fence_chain/sanitycheck
+> >>>> <6> dma-buf: Running dma_fence_chain/find_seqno
+> >>>> <6> dma-buf: Running dma_fence_chain/find_signaled
+> >>>> <6> dma-buf: Running dma_fence_chain/find_out_of_order
+> >>>> <6> dma-buf: Running dma_fence_chain/find_gap
+> >>>> <6> dma-buf: Running dma_fence_chain/find_race
+> >>>> <6> Completed 4095 cycles
+> >>>> <6> dma-buf: Running dma_fence_chain/signal_forward
+> >>>> <6> dma-buf: Running dma_fence_chain/signal_backward
+> >>>> <6> dma-buf: Running dma_fence_chain/wait_forward
+> >>>> <6> dma-buf: Running dma_fence_chain/wait_backward
+> >>>> <0> watchdog: BUG: soft lockup - CPU#2 stuck for 26s! [dmabuf:2263]
+> >>>> Panic#1 Part6
+> >>>> <4> irq event stamp: 415735
+> >>>> <4> hardirqs last  enabled at (415734): [<ffffffff813d3a1b>]=20
+> > handle_softirqs+0xab/0x4d0
+> >>>> <4> hardirqs last disabled at (415735): [<ffffffff827c7e31>]=20
+> > sysvec_apic_timer_interrupt+0x11/0xc0
+> >>>> <4> softirqs last  enabled at (415728): [<ffffffff813d3f8f>]=20
+> > __irq_exit_rcu+0x13f/0x160
+> >>>> <4> softirqs last disabled at (415733): [<ffffffff813d3f8f>]=20
+> > __irq_exit_rcu+0x13f/0x160
+> >>>> <4> CPU: 2 UID: 0 PID: 2263 Comm: dmabuf Not tainted 6.14.0-rc2-drm-
+> > next_483-g7b91683e7de7+ #1
+> >>>> <4> Hardware name: Intel corporation NUC6CAYS/NUC6CAYB, BIOS=20
+> > AYAPLCEL.86A.0056.2018.0926.1100 09/26/2018
+> >>>> <4> RIP: 0010:handle_softirqs+0xb1/0x4d0
+> >>>> <4> RSP: 0018:ffffc90000154f60 EFLAGS: 00000246
+> >>>> <4> RAX: 0000000000000000 RBX: 0000000000000001 RCX: 0000000000000000
+> >>>> <4> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+> >>>> <4> RBP: ffffc90000154fb8 R08: 0000000000000000 R09: 0000000000000000
+> >>>> <4> R10: 0000000000000000 R11: 0000000000000000 R12: 000000000000000a
+> >>>> <4> R13: 0000000000000200 R14: 0000000000000200 R15: 0000000000400100
+> >>>> <4> FS:  000077521c5cd940(0000) GS:ffff888277900000(0000)=20
+> > knlGS:0000000000000000
+> >>>> Panic#1 Part5
+> >>>> <4> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> >>>> <4> CR2: 00005dbfee8c00c4 CR3: 0000000133d38000 CR4: 00000000003526f0
+> >>>> <4> Call Trace:
+> >>>> <4>  <IRQ>
+> >>>> <4>  ? show_regs+0x6c/0x80
+> >>>> <4>  ? watchdog_timer_fn+0x247/0x2d0
+> >>>> <4>  ? __pfx_watchdog_timer_fn+0x10/0x10
+> >>>> <4>  ? __hrtimer_run_queues+0x1d0/0x420
+> >>>> <4>  ? hrtimer_interrupt+0x116/0x290
+> >>>> <4>  ? __sysvec_apic_timer_interrupt+0x70/0x1e0
+> >>>> <4>  ? sysvec_apic_timer_interrupt+0x47/0xc0
+> >>>> <4>  ? asm_sysvec_apic_timer_interrupt+0x1b/0x20
+> >>>> <4>  ? handle_softirqs+0xb1/0x4d0
+> >>>> <4>  __irq_exit_rcu+0x13f/0x160
+> >>>> <4>  irq_exit_rcu+0xe/0x20
+> >>>> <4>  sysvec_irq_work+0xa0/0xc0
+> >>>> <4>  </IRQ>
+> >>>> <4>  <TASK>
+> >>>> <4>  asm_sysvec_irq_work+0x1b/0x20
+> >>>> <4> RIP: 0010:_raw_spin_unlock_irqrestore+0x57/0x80
+> >>>> <4> RSP: 0018:ffffc9000292b8f0 EFLAGS: 00000246
+> >>>> <4> RAX: 0000000000000000 RBX: ffff88810f235480 RCX: 0000000000000000
+> >>>> <4> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+> >>>> <4> RBP: ffffc9000292b900 R08: 0000000000000000 R09: 0000000000000000
+> >>>> <4> R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000246
+> >>>> <4> R13: 0000000000000000 R14: 0000000000000246 R15: 000000000003828c
+> >>>> Panic#1 Part4
+> >>>> <4> dma_fence_signal+0x49/0xb0
+> >>>> <4> wait_backward+0xf8/0x140 [dmabuf_selftests]
+> >>>> <4> __subtests+0x75/0x1f0 [dmabuf_selftests]
+> >>>> <4> dma_fence_chain+0x94/0xe0 [dmabuf_selftests]
+> >>>> <4> st_init+0x6a/0xff0 [dmabuf_selftests]
+> >>>> <4> ? __pfx_st_init+0x10/0x10 [dmabuf_selftests]
+> >>>> <4> do_one_initcall+0x79/0x400
+> >>>> <4> do_init_module+0x97/0x2a0
+> >>>> <4> load_module+0x2c23/0x2f60
+> >>>> <4> init_module_from_file+0x97/0xe0
+> >>>> <4> ? init_module_from_file+0x97/0xe0
+> >>>> <4> idempotent_init_module+0x134/0x350
+> >>>> <4> __x64_sys_finit_module+0x77/0x100
+> >>>> <4> x64_sys_call+0x1f37/0x2650
+> >>>> <4> do_syscall_64+0x91/0x180
+> >>>> <4> ? trace_hardirqs_off+0x5d/0xe0
+> >>>> <4> ? syscall_exit_to_user_mode+0x95/0x260
+> >>>> <4> ? do_syscall_64+0x9d/0x180
+> >>>> <4> ? do_syscall_64+0x9d/0x180
+> >>>> <4> ? irqentry_exit+0x77/0xb0
+> >>>> <4> ? sysvec_apic_timer_interrupt+0x57/0xc0
+> >>>> <4> entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> >>>> <4> RIP: 0033:0x77521e72725d
+> >>>>
+> >>>>
+> >>>>  drivers/dma-buf/st-dma-fence-chain.c | 14 +++++++++++---
+> >>>>  1 file changed, 11 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/dma-buf/st-dma-fence-chain.c b/drivers/dma-buf/=
+st-
+> > dma-fence-chain.c
+> >>>> index ed4b323886e4..328a66ed59e5 100644
+> >>>> --- a/drivers/dma-buf/st-dma-fence-chain.c
+> >>>> +++ b/drivers/dma-buf/st-dma-fence-chain.c
+> >>>> @@ -505,6 +505,7 @@ static int signal_forward(void *arg)
+> >>>> =20
+> >>>>  	for (i =3D 0; i < fc.chain_length; i++) {
+> >>>>  		dma_fence_signal(fc.fences[i]);
+> >>>> +		cond_resched();
+> >>>> =20
+> >>>>  		if (!dma_fence_is_signaled(fc.chains[i])) {
+> >>>>  			pr_err("chain[%d] not signaled!\n", i);
+> >>>> @@ -537,6 +538,7 @@ static int signal_backward(void *arg)
+> >>>> =20
+> >>>>  	for (i =3D fc.chain_length; i--; ) {
+> >>>>  		dma_fence_signal(fc.fences[i]);
+> >>>> +		cond_resched();
+> >>>> =20
+> >>>>  		if (i > 0 && dma_fence_is_signaled(fc.chains[i])) {
+> >>>>  			pr_err("chain[%d] is signaled!\n", i);
+> >>>> @@ -587,8 +589,10 @@ static int wait_forward(void *arg)
+> >>>>  	get_task_struct(tsk);
+> >>>>  	yield_to(tsk, true);
+> >>>> =20
+> >>>> -	for (i =3D 0; i < fc.chain_length; i++)
+> >>>> +	for (i =3D 0; i < fc.chain_length; i++) {
+> >>>>  		dma_fence_signal(fc.fences[i]);
+> >>>> +		cond_resched();
+> >>>> +	}
+> >>>> =20
+> >>>>  	err =3D kthread_stop_put(tsk);
+> >>>> =20
+> >>>> @@ -616,8 +620,10 @@ static int wait_backward(void *arg)
+> >>>>  	get_task_struct(tsk);
+> >>>>  	yield_to(tsk, true);
+> >>>> =20
+> >>>> -	for (i =3D fc.chain_length; i--; )
+> >>>> +	for (i =3D fc.chain_length; i--; ) {
+> >>>>  		dma_fence_signal(fc.fences[i]);
+> >>>> +		cond_resched();
+> >>>> +	}
+> >>>> =20
+> >>>>  	err =3D kthread_stop_put(tsk);
+> >>>> =20
+> >>>> @@ -663,8 +669,10 @@ static int wait_random(void *arg)
+> >>>>  	get_task_struct(tsk);
+> >>>>  	yield_to(tsk, true);
+> >>>> =20
+> >>>> -	for (i =3D 0; i < fc.chain_length; i++)
+> >>>> +	for (i =3D 0; i < fc.chain_length; i++) {
+> >>>>  		dma_fence_signal(fc.fences[i]);
+> >>>> +		cond_resched();
+> >>>> +	}
+> >>>> =20
+> >>>>  	err =3D kthread_stop_put(tsk);
+> >>>> =20
+> >>
+> >>
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
+>=20
 
-CI Bug Log - changes from CI_DRM_16820 -> Patchwork_151248v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_151248v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-jsl-1:          [PASS][3] -> [DMESG-FAIL][4] ([i915#13774] / [i915#13827])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-jsl-1:          [PASS][5] -> [DMESG-FAIL][6] ([i915#13774])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-jsl-1:          [PASS][7] -> [DMESG-WARN][8] ([i915#13827])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-2:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061]) +1 other test dmesg-fail
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [PASS][11] -> [DMESG-FAIL][12] ([i915#12061]) +1 other test dmesg-fail
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [PASS][13] -> [DMESG-FAIL][14] ([i915#12061]) +1 other test dmesg-fail
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-n3050:       [INCOMPLETE][15] ([i915#12904]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][19] ([i915#12061]) -> [PASS][20] +1 other test pass
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@dmabuf@all-tests:
-    - fi-pnv-d510:        [ABORT][21] ([i915#14592]) -> [INCOMPLETE][22] ([i915#12904]) +1 other test incomplete
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/fi-pnv-d510/igt@dmabuf@all-tests.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/fi-pnv-d510/igt@dmabuf@all-tests.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13774]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
-  [i915#13827]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827
-  [i915#14592]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14592
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_16820 -> Patchwork_151248v3
-
-  CI-20190529: 20190529
-  CI_DRM_16820: 8b32b5509128873da8ecfc06beefcb58927eb50b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8445: 8445
-  Patchwork_151248v3: 8b32b5509128873da8ecfc06beefcb58927eb50b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/index.html
-
---===============0800553203172859502==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Fix dma_fence_wait_timeout() return value handling (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151248/">https://patchwork.freedesktop.org/series/151248/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16820 -&gt; Patchwork_151248v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_151248v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774">i915#13774</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827">i915#13827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774">i915#13774</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-jsl-1/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-jsl-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827">i915#13827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@dmabuf@all-tests:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16820/fi-pnv-d510/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14592">i915#14592</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151248v3/fi-pnv-d510/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16820 -&gt; Patchwork_151248v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16820: 8b32b5509128873da8ecfc06beefcb58927eb50b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8445: 8445<br />
-  Patchwork_151248v3: 8b32b5509128873da8ecfc06beefcb58927eb50b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0800553203172859502==--
