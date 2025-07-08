@@ -2,91 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A684CAFCD71
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 16:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA98AFCD1F
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 16:14:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6452910E659;
-	Tue,  8 Jul 2025 14:24:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8D1A10E192;
+	Tue,  8 Jul 2025 14:14:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Lgo3sV9+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/4qu78g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE5510E659;
- Tue,  8 Jul 2025 14:24:22 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net
- [IPv6:2001:4b98:dc4:8::229])
- by mslow3.mail.gandi.net (Postfix) with ESMTP id 5B1E7581B9C;
- Tue,  8 Jul 2025 14:01:44 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 474CE431F1;
- Tue,  8 Jul 2025 14:01:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
- t=1751983301;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=mKpow068b4y6O1gxSiix706lmsCcguNU+95VkipNyxc=;
- b=Lgo3sV9+gKq1MzSb3ze4M4OEbuhr7FakwYPT9tazV9qSlmudZFOkdpZL8GO9QMEqZ42kj/
- TZK8iAyz+zdfEKAnswjR/DFDa+8UttlvUSpLXuLMo28qib/q8BHdgHWoSR5lncXXryezzZ
- LfnN+w7w7M2RrYSuVdZ9mCQA0CZvSthCoMrWtHddMHMabJsD7Pc1Q5M6BKscmIhMkRszqa
- dLsqM27GXSASr7zHaVHqculMu1nSRGWIaWPhVHaeEjE8HlnzKmebCrSn0EB88zyoSK2Xqz
- cytfNarTG/DIfgCIPHsawnykOc8QT1UWUKLDp+f4SMAGN64QSJs+ZqyRl+gA/A==
-Date: Tue, 8 Jul 2025 16:01:09 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Douglas Anderson
- <dianders@chromium.org>, Lucas Stach <l.stach@pengutronix.de>, Russell King
- <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
- <christian.gmeiner@gmail.com>, Inki Dae <inki.dae@samsung.com>, Seung-Woo
- Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
- <alim.akhtar@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Laurentiu
- Palcu <laurentiu.palcu@oss.nxp.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Qiang Yu
- <yuq825@gmail.com>, Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Boris
- Brezillon <boris.brezillon@collabora.com>, Steven Price
- <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Thierry Reding
- <thierry.reding@gmail.com>, Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>, =?UTF-8?B?TWHDrXJh?= Canal
- <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance
- <kernel-list@raspberrypi.com>, Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>, Damon Ding
- <damon.ding@rock-chips.com>, Ayushi Makhija <quic_amakhija@quicinc.com>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
- Chen-Yu Tsai <wenst@chromium.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, etnaviv@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, imx@lists.linux.dev,
- lima@lists.freedesktop.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 20/80] drivers: drm: Remove redundant
- pm_runtime_mark_last_busy() calls
-Message-ID: <20250708160109.08055641@booty>
-In-Reply-To: <20250704075413.3218307-1-sakari.ailus@linux.intel.com>
-References: <20250704075225.3212486-1-sakari.ailus@linux.intel.com>
- <20250704075413.3218307-1-sakari.ailus@linux.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8C8310E192;
+ Tue,  8 Jul 2025 14:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751984072; x=1783520072;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HrMQcfKIL2lSx5Kf9dCLQ2vfBYK9zfM3nw3kSAIxhGk=;
+ b=G/4qu78g5KoCBXWnhD/jM6wip2DTzOm8oSO4sB5oDVkwLTiyS2Vw4bgD
+ u6z+RQaaqfBfwBvUvdOq32121KWSpOoTSW83LEBKUhTft7B+qHPGTMzIE
+ No7j1Y/w3s9zNwP6jjDY4Eju9oOu7DRMaWsUCRd34IQ5PwBCb8SMp8Ta3
+ HNEUiJezuitD0Y+E2ZVwcINCo/yISGxw/4xZl/w02mfnuKpxs/WpuJPg1
+ rS5YN8EPLNDopeJlFrwafZhkS/4OmdTVlTDWsmYdaKIzbnrPPtv68gyTB
+ nyMv5iNPgzGG3/EESh61SPtYpGgPCx5OFiqiukrS/+m45+RIFQUe0IjDk w==;
+X-CSE-ConnectionGUID: 6gNamzjZSc2qibj0EHcQUA==
+X-CSE-MsgGUID: GT7VtzqpTAaIYEdZhptFcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54084569"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="54084569"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 07:14:31 -0700
+X-CSE-ConnectionGUID: FLJFZaQhSi6nUl0ved+Nrg==
+X-CSE-MsgGUID: gZMswYONR4WGlxbLtZ9Ycw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="161147829"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.55])
+ by orviesa005.jf.intel.com with SMTP; 08 Jul 2025 07:14:28 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 08 Jul 2025 17:14:27 +0300
+Date: Tue, 8 Jul 2025 17:14:27 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, stable@vger.kernel.org
+Subject: Re: [RESEND 1/1] drm/i915/dp: Refine TPS4-based HBR3 rejection and
+ add quirk to limit eDP to HBR2
+Message-ID: <aG0nwwRNpH7X7BNg@intel.com>
+References: <20250627084059.2575794-2-ankit.k.nautiyal@intel.com>
+ <20250706053149.3997091-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdefgeekiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqfedtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeelheeufeetjeeigeeutdeiueelgeetkeeffeetgeeivdelleejhffhgefgjeelkeenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepkeejrdduvddtrddvudekrddvtdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepkeejrdduvddtrddvudekrddvtdejpdhhvghlohepsghoohhthidpmhgrihhlfhhrohhmpehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeehjedprhgtphhtthhopehsrghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopegrnhgurhiivghjrdhhrghjuggrsehinhhtvghlrdgtohhmpdhrtghpthhtohepnhgvihhlrdgrrhhmshhtrhhonhhgsehlihhnrghrohdrohhrghdprhgtphhtthhopehrfhhoshhssehkvghrnhgvlhdrohhrghdprhgtphhtthhop
- efnrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepjhhonhgrsheskhifihgsohhordhsvgdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhm
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250706053149.3997091-1-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,21 +74,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri,  4 Jul 2025 10:54:13 +0300
-Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+On Sun, Jul 06, 2025 at 11:01:49AM +0530, Ankit Nautiyal wrote:
+> Refine the logic introduced in commit 584cf613c24a ("drm/i915/dp: Reject
+> HBR3 when sink doesn't support TPS4") to allow HBR3 on eDP panels that
+> report DPCD revision 1.4, even if TPS4 is not supported. This aligns with
+> the DisplayPort specification, which does not mandate TPS4 support for eDP
+> with DPCD rev 1.4.
+> 
+> This change avoids regressions on panels that require HBR3 to operate at
+> their native resolution but do not advertise TPS4 support.
+> 
+> Additionally, some ICL/TGL platforms with combo PHY ports suffer from
+> signal integrity issues at HBR3. While certain systems include a
+> Parade PS8461 mux to mitigate this, its presence cannot be reliably
+> detected. Furthermore, broken or missing VBT entries make it unsafe to
+> rely on VBT for enforcing link rate limits.
+> 
+> To address the HBR3-related issues on such platforms and eDP panels,
+> introduce a device specific quirk to cap the eDP link rate to HBR2
+> (540000 kHz). This will override any higher advertised rates from
+> the sink or DPCD for specific devices.
+> 
+> Currently, the quirk is added for Dell XPS 13 7390 2-in-1 which is
+> reported in gitlab issue #5969 [1].
+> 
+> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+> [2] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> 
+> Fixes: 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support TPS4")
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v6.15+
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 31 +++++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_quirks.c |  9 ++++++
+>  drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>  3 files changed, 39 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f48912f308df..362e376fca27 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -171,6 +171,15 @@ int intel_dp_link_symbol_clock(int rate)
+>  	return DIV_ROUND_CLOSEST(rate * 10, intel_dp_link_symbol_size(rate));
+>  }
+>  
+> +static bool intel_dp_reject_hbr3_due_to_tps4(struct intel_dp *intel_dp)
+> +{
+> +	/* TPS4 is not mandatory for eDP with DPCD rev 1.4 */
+> +	if (intel_dp_is_edp(intel_dp) && intel_dp->dpcd[DP_DPCD_REV] == 0x14)
+> +		return false;
+> +
+> +	return !drm_dp_tps4_supported(intel_dp->dpcd);
+> +}
 
-> pm_runtime_put_autosuspend(), pm_runtime_put_sync_autosuspend(),
-> pm_runtime_autosuspend() and pm_request_autosuspend() now include a call
-> to pm_runtime_mark_last_busy(). Remove the now-reduntant explicit call to
-> pm_runtime_mark_last_busy().
->=20
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+This feels like it's getty too messy for comfort. I think we should just
+revert the whole thing and quirk that one icl machine.
 
-With the cleanups required by Laurent and Ma=C3=ADra:
+> +
+>  static int max_dprx_rate(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> @@ -187,13 +196,22 @@ static int max_dprx_rate(struct intel_dp *intel_dp)
+>  	 * HBR3 without TPS4, and are unable to produce a stable
+>  	 * output. Reject HBR3 when TPS4 is not available.
+>  	 */
+> -	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> +	if (max_rate >= 810000 && intel_dp_reject_hbr3_due_to_tps4(intel_dp)) {
+>  		drm_dbg_kms(display->drm,
+>  			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+>  			    encoder->base.base.id, encoder->base.name);
+>  		max_rate = 540000;
+>  	}
+>  
+> +	/*
+> +	 * Some platforms + eDP panels may not reliably support HBR3
+> +	 * due to signal integrity limitations, despite advertising it.
+> +	 * Cap the link rate to HBR2 to avoid unstable configurations for the
+> +	 * known machines.
+> +	 */
+> +	if (intel_dp_is_edp(intel_dp) && intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+> +		max_rate = min(max_rate, 540000);
+> +
+>  	return max_rate;
+>  }
+>  
+> @@ -4304,13 +4322,22 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  			 * HBR3 without TPS4, and are unable to produce a stable
+>  			 * output. Reject HBR3 when TPS4 is not available.
+>  			 */
+> -			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> +			if (rate >= 810000 && intel_dp_reject_hbr3_due_to_tps4(intel_dp)) {
+>  				drm_dbg_kms(display->drm,
+>  					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+>  					    encoder->base.base.id, encoder->base.name);
+>  				break;
+>  			}
+>  
+> +			/*
+> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+> +			 * even if the sink advertises support. Reject any sink rates above HBR2 on
+> +			 * the known machines for stable output.
+> +			 */
+> +			if (rate >= 810000 &&
+> +			    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+> +				break;
+> +
+>  			intel_dp->sink_rates[i] = rate;
+>  		}
+>  		intel_dp->num_sink_rates = i;
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index a32fae510ed2..d2e16b79d6be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -80,6 +80,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>  	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>  }
+>  
+> +static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
+> +{
+> +	intel_set_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2);
+> +	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -231,6 +237,9 @@ static struct intel_quirk intel_quirks[] = {
+>  	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>  	/* HP Notebook - 14-r206nv */
+>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
+> +
+> +	/* Dell XPS 13 7390 2-in-1 */
+> +	{ 0x8a12, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
+>  };
+>  
+>  static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index cafdebda7535..06da0e286c67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>  	QUIRK_LVDS_SSC_DISABLE,
+>  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>  	QUIRK_FW_SYNC_LEN,
+> +	QUIRK_EDP_LIMIT_RATE_HBR2,
+>  };
+>  
+>  void intel_init_quirks(struct intel_display *display);
+> -- 
+> 2.45.2
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+Ville Syrjälä
+Intel
