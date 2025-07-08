@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D419CAFD005
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 18:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C7BAFD008
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 18:03:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6806210E6A7;
-	Tue,  8 Jul 2025 16:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E4A10E6AF;
+	Tue,  8 Jul 2025 16:03:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g5Ug+z/w";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZLeSpmdq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86EB710E6A7;
- Tue,  8 Jul 2025 16:03:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 555B210E6A8;
+ Tue,  8 Jul 2025 16:03:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1751990634; x=1783526634;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=16+eCXmH+sTe2FswPiM2lgVcpBsXo5yOfk9Ka8nRVys=;
- b=g5Ug+z/wTcthPIDkWkA50UbH4/mnq278HRgkznYxChaGd0f+P+1AF1iF
- 9wC5u2eorbgGh7NMX0M9zc+eSHqFuF4ItF7JqRacQyKOBcdf6nuGiEjkj
- M0ohGyBZxUfd/jlA/0x3VzzAIVS3nC5T3d2BwT9GRlNBu6z/iQKrVR5MS
- pficYJ9Aj6GoVRuiVh8MbPveu8O5Xr7lHxMElwEl5+WY6LRLxs+z/647X
- zLmubdDt+1RIeYYPnJhOHlLpSd7BQBWcLuz9USaCQekHL1UnLL+wEvUs9
- e3ytC+wPUnJAUXGA13da5OGwaGYcA4LMmUd3LozEAc6onJAl1AbE51fpG w==;
-X-CSE-ConnectionGUID: v3Ed5bJUT1KtNi+LjV+s4g==
-X-CSE-MsgGUID: ZtYOfkQGT/+U1yyxzeiB0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="58039062"
-X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="58039062"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xkYaikiy/ZWOk+GstInh3MQeIvJ9mOGz5371wWfcJ/Q=;
+ b=ZLeSpmdq16ytE20R8Fqn95jOvGjsfSapFBIcajpJAacnxJX+JoX+qzca
+ a+oNnVxNJiC/8j3pl8+7k3KP79yl1bROZJhDg1jS2dxjW6Kly7f88kNvM
+ RIfaJiHU0cDep4MGuijmZWDNtj+wb33QOznLW6RwaVKS56Ac1kXNaKxAB
+ OerJTNGKJ1UHdzl57HJKMPa+SHPoQ97P/HlID79d9i1rbQUacJpVRTRzE
+ /8g+ZPS+kBdMwQPpqEPsOe4oWKm1MaJX70jhnq/79dQAaXkSsZo8eJ5nI
+ qCnDypwBYvvGKuNZgn5dwHTiq8puQ0nIF8Act2fqNV1zp/Tylz00sFFYT g==;
+X-CSE-ConnectionGUID: HHGaPA1/T5extodP5FqtVA==
+X-CSE-MsgGUID: awWi8yYlQ22vAjpsoKAyLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="58039063"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="58039063"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Jul 2025 09:03:42 -0700
-X-CSE-ConnectionGUID: OgjdjCk8RkaqggjUziBLuQ==
-X-CSE-MsgGUID: JChOydP5RPOG8D6ctz0YsQ==
+X-CSE-ConnectionGUID: HtEqvJqlTOe0Tjko6DKr1w==
+X-CSE-MsgGUID: mjYgg+AkRtup6hbVpa8hhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="161179664"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="161179587"
 Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
  ([10.245.245.55])
- by orviesa005.jf.intel.com with SMTP; 08 Jul 2025 09:03:22 -0700
+ by orviesa005.jf.intel.com with SMTP; 08 Jul 2025 09:03:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 08 Jul 2025 19:03:20 +0300
+ Tue, 08 Jul 2025 19:03:24 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
- "Jason A. Donenfeld" <Jason@zx2c4.com>
-Subject: [PATCH 1/4] drm/i915/display: Disable wakeref asserts around GU_MISC
- irq handling
-Date: Tue,  8 Jul 2025 19:03:17 +0300
-Message-ID: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 2/4] drm/i915/opregion: Extract
+ intel_opregion_runtime_{suspend, resume}()
+Date: Tue,  8 Jul 2025 19:03:18 +0300
+Message-ID: <20250708160320.5653-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
+References: <20250708160320.5653-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -72,47 +73,141 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The GU_MISC/GSE interrupt may be raised even when we're not
-holding a runtime PM wakeref. Disable the asserts while
-processing GU_MISC irqs. Previously this was covered by
-the use of raw_reg_{read,write}() which lack the assert.
+Extract the opregion runtime PM stuff to new functions. We'll
+need to add a bit more to the suspend side, and we don't want
+to clutter the top level runtime PM code with such details.
 
-Not having an assert is fine since we synchronize irqs
-during runtime suspend.
-
-Arguably this stuff shouldn't really be in the display code
-since GU_MISC is for Gunit interrupts. But I suppose as long
-as we only care about the GSE interrupt bit it doesn't really
-matter that the code is misplaced.
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Reported-by: Jason A. Donenfeld <Jason@zx2c4.com>
-Closes: https://lore.kernel.org/intel-gfx/aG0tWkfmxWtxl_xc@zx2c4.com/
-Fixes: 8d9908e8fe9c ("drm/i915/display: remove small micro-optimizations in irq handling")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_opregion.c | 41 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_opregion.h | 11 +++++
+ drivers/gpu/drm/i915/i915_driver.c            | 25 +----------
+ 3 files changed, 54 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index fb25ec8adae3..68157f177b6a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1506,10 +1506,14 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
- 	if (!(master_ctl & GEN11_GU_MISC_IRQ))
- 		return 0;
- 
-+	intel_display_rpm_assert_block(display);
-+
- 	iir = intel_de_read(display, GEN11_GU_MISC_IIR);
- 	if (likely(iir))
- 		intel_de_write(display, GEN11_GU_MISC_IIR, iir);
- 
-+	intel_display_rpm_assert_unblock(display);
-+
- 	return iir;
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index 81efdb17fc0c..9e39ab55a099 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -1255,6 +1255,47 @@ void intel_opregion_suspend(struct intel_display *display, pci_power_t state)
+ 		intel_opregion_suspend_display(display);
  }
  
++void intel_opregion_runtime_resume(struct intel_display *display)
++{
++	struct intel_opregion *opregion = display->opregion;
++
++	if (!opregion)
++		return;
++
++	intel_opregion_notify_adapter(display, PCI_D0);
++}
++
++void intel_opregion_runtime_suspend(struct intel_display *display)
++{
++	struct intel_opregion *opregion = display->opregion;
++
++	if (!opregion)
++		return;
++
++	/*
++	 * FIXME: We really should find a document that references the arguments
++	 * used below!
++	 */
++	if (display->platform.broadwell) {
++		/*
++		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
++		 * being detected, and the call we do at intel_runtime_resume()
++		 * won't be able to restore them. Since PCI_D3hot matches the
++		 * actual specification and appears to be working, use it.
++		 */
++		intel_opregion_notify_adapter(display, PCI_D3hot);
++	} else {
++		/*
++		 * current versions of firmware which depend on this opregion
++		 * notification have repurposed the D1 definition to mean
++		 * "runtime suspended" vs. what you would normally expect (D3)
++		 * to distinguish it from notifications that might be sent via
++		 * the suspend path.
++		 */
++		intel_opregion_notify_adapter(display, PCI_D1);
++	}
++}
++
+ void intel_opregion_unregister(struct intel_display *display)
+ {
+ 	struct intel_opregion *opregion = display->opregion;
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
+index 8101eeebfd8b..7067ffe07744 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.h
++++ b/drivers/gpu/drm/i915/display/intel_opregion.h
+@@ -44,6 +44,9 @@ void intel_opregion_resume(struct intel_display *display);
+ void intel_opregion_suspend(struct intel_display *display,
+ 			    pci_power_t state);
+ 
++void intel_opregion_runtime_resume(struct intel_display *display);
++void intel_opregion_runtime_suspend(struct intel_display *display);
++
+ bool intel_opregion_asle_present(struct intel_display *display);
+ void intel_opregion_asle_intr(struct intel_display *display);
+ int intel_opregion_notify_encoder(struct intel_encoder *encoder,
+@@ -88,6 +91,14 @@ static inline void intel_opregion_suspend(struct intel_display *display,
+ {
+ }
+ 
++static inline void intel_opregion_runtime_resume(struct intel_display *display)
++{
++}
++
++static inline void intel_opregion_runtime_suspend(struct intel_display *display)
++{
++}
++
+ static inline bool intel_opregion_asle_present(struct intel_display *display)
+ {
+ 	return false;
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c6263c6d3384..da0b7d9da3d5 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1553,28 +1553,7 @@ static int intel_runtime_suspend(struct device *kdev)
+ 	if (root_pdev)
+ 		pci_d3cold_disable(root_pdev);
+ 
+-	/*
+-	 * FIXME: We really should find a document that references the arguments
+-	 * used below!
+-	 */
+-	if (IS_BROADWELL(dev_priv)) {
+-		/*
+-		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+-		 * being detected, and the call we do at intel_runtime_resume()
+-		 * won't be able to restore them. Since PCI_D3hot matches the
+-		 * actual specification and appears to be working, use it.
+-		 */
+-		intel_opregion_notify_adapter(display, PCI_D3hot);
+-	} else {
+-		/*
+-		 * current versions of firmware which depend on this opregion
+-		 * notification have repurposed the D1 definition to mean
+-		 * "runtime suspended" vs. what you would normally expect (D3)
+-		 * to distinguish it from notifications that might be sent via
+-		 * the suspend path.
+-		 */
+-		intel_opregion_notify_adapter(display, PCI_D1);
+-	}
++	intel_opregion_runtime_suspend(display);
+ 
+ 	assert_forcewakes_inactive(&dev_priv->uncore);
+ 
+@@ -1603,7 +1582,7 @@ static int intel_runtime_resume(struct device *kdev)
+ 	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
+ 	disable_rpm_wakeref_asserts(rpm);
+ 
+-	intel_opregion_notify_adapter(display, PCI_D0);
++	intel_opregion_runtime_resume(display);
+ 
+ 	root_pdev = pcie_find_root_port(pdev);
+ 	if (root_pdev)
 -- 
 2.49.0
 
