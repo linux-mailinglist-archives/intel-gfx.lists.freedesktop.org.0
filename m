@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3913AFC4D0
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 09:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCFEAFC514
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 10:08:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15CD10E5BE;
-	Tue,  8 Jul 2025 07:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B2F310E166;
+	Tue,  8 Jul 2025 08:08:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DBhkFDIb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMHm9seZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6132810E5BE
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jul 2025 07:56:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8956C10E166
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jul 2025 08:08:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1751961413; x=1783497413;
+ t=1751962133; x=1783498133;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=4+M3GT2DMbABOFqLl4nxKJJ+iNEX2VDJo7gmG884dsw=;
- b=DBhkFDIbbsDN85T6oyfdgf+peH+txxEMNPNCS+L+DbMWqxICnB/LhK1l
- BZgVaVZMYnNCSmdOxot9S2MmphcEla/PybVj+jNxVco2IyvPQTjEjXR/F
- ghKh7KuLL4sfAVZY3YA0tb6wzJrpxvEdZE7UgNRoTegALHGaJMW9xr5+Z
- nbw6fdKke29W3Z9At42+1hTdkLCC493AACCN33Y7bQgzMvArVQcnj+Y9+
- UDWfZnxIz5EB1uOqXz8N+JxXx/YZ4sTIFyc5CbHd3onsANcNWQBrnQ60I
- VpcLm6iRsgQ2VLwn5lwdt6O4Ujf0mRW3EPl/AAqWK3LeEQnOxCZPffi/J Q==;
-X-CSE-ConnectionGUID: 29FQjufiSdSNdQNvTtVOKQ==
-X-CSE-MsgGUID: HcqRn4pzQiO1GtF06EXaKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="57990747"
-X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="57990747"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jul 2025 00:56:47 -0700
-X-CSE-ConnectionGUID: OnZWcYJqRo+gx0dw6pSIfw==
-X-CSE-MsgGUID: E9lshkeiSpCAAVXCMDn1Yg==
+ bh=pGCOx9bk8D37BSaWeJ2ZabnfKax2LqcWrdL2kPcaydk=;
+ b=fMHm9seZ6Plln94wVQyxlUjeUlLTcfMDaUqcqfzrau1Rkl+rK/4gCgPF
+ mlDAWEHjlWT2aGAnpQnZGmXj55HmMooWgNm1q59RGujv1OWoIhfajMmlC
+ LLh/T1i2LGVBavT98n0DtcXkJ7k7lv3soJ8Y+CpcQnxMteALm/2C3MNoA
+ QM7B7dkHLKDT2ZGjFUlvZHa5Xw9zepc0l6TiXN/IMFjj38SFwFbIVf/8D
+ zyQxlF6dZvVq0l1h3taCzMFWBQs+beNzpJAR9zAHufeyhUCE/M4d5u92r
+ auRd7d8DdcrsJfC5NLLoBbIF/HrClSo+UFRSn3AGPfDw7aUpOdnARzY0i g==;
+X-CSE-ConnectionGUID: +B0t8uIeR8iPtVEXhfhsvA==
+X-CSE-MsgGUID: jQpzur4aRPyIklt3KJuz6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="54333410"
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="54333410"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 01:08:51 -0700
+X-CSE-ConnectionGUID: IzTrLXslSL+cgomIOye/WA==
+X-CSE-MsgGUID: MO/HFPbARw2NpcrhEDnl8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="155772453"
+X-IronPort-AV: E=Sophos;i="6.16,296,1744095600"; d="scan'208";a="155170633"
 Received: from intel-s2600wft.iind.intel.com (HELO biaas-d105.iind.intel.com)
  ([10.223.26.161])
- by fmviesa009.fm.intel.com with ESMTP; 08 Jul 2025 00:56:46 -0700
+ by orviesa009.jf.intel.com with ESMTP; 08 Jul 2025 01:08:50 -0700
 From: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jeevaka.badrappan@intel.com,
+Cc: jeevaka.badrappan@intel.com, matthew.brost@intel.com,
  Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
-Subject: [PATCH v3] drm/i915/display: Fix dma_fence_wait_timeout() return
+Subject: [PATCH v4] drm/i915/display: Fix dma_fence_wait_timeout() return
  value handling
-Date: Tue,  8 Jul 2025 07:33:27 +0000
-Message-ID: <20250708073327.1947354-1-aakash.deep.sarkar@intel.com>
+Date: Tue,  8 Jul 2025 07:45:40 +0000
+Message-ID: <20250708074540.1948068-1-aakash.deep.sarkar@intel.com>
 X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -86,6 +86,7 @@ visual artifacts.
 
 Fixes: d59cf7bb73f3c ("drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence")
 Signed-off-by: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
