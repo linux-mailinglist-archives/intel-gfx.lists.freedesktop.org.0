@@ -2,88 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00171AFCA6E
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 14:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F85BAFCB55
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Jul 2025 15:05:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBC1010E622;
-	Tue,  8 Jul 2025 12:30:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD60B10E62E;
+	Tue,  8 Jul 2025 13:05:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="TI/zRKxH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjSXxQIP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DED10E625
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Jul 2025 12:30:32 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-4531e146a24so28810655e9.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Jul 2025 05:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1751977831; x=1752582631; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=rx4dEYIe9NApnwnQS011msr/FrxauQfjNeWI/gfP9UA=;
- b=TI/zRKxHBhoVYKWdZFUUbDq0WMdtCCMWtVr2kTII3t9woX1WGwcAflQmaNgDermo8A
- SrqRbfVAdA0osISy12A+ujv8u5u2PvJxiTFhluIyrxT17NwsvHLOIbZwt9JZZjhpZpby
- qAR/tAADRHbcYyDfrTV/DD6+9TBLXCZqQoQDM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751977831; x=1752582631;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rx4dEYIe9NApnwnQS011msr/FrxauQfjNeWI/gfP9UA=;
- b=xIrYZ2OnGHXYqtQD/gDo1Sx3p8xF1bwWd1iKviKgKqB5lQqK228BzK8BFvY4EmBNsU
- Yj5PNrGXV/AV2Vq7lyDohvhQ83j6xZxKAU0XMrgQfEpMYskkddBVLixuWFHn+JULFF3O
- TW28Y4jS+7bN+V5ish8eTAfI7cv3gD+BYAzujJRbhs6qDZ19kFeCMlhKwKuAtQ0Tq0co
- A44eFLaDN7HkM6OU2w/oGONebpQfZU7JtBLojALNEj9Ud5WJnvAnkPEemOx1aT2Fug85
- WeY+T7/ZhGwDdqr5b2R5fkAS38IZR8+O7bzntZ9tb3i57UJbq27OqtsU2LTao0tPWTCQ
- kLeg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW4C5J0joho99GxNJvr4oclXeoLeWl+VSu9Y+57DCrRDAUWyLUG+yHz6GMGuNDzJ2Meml+1mRAbMIQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YypmzOdUB5ed4ZIq57SR4vRJVgQyvYM2zKrstYmUkhpNnwIM6on
- ZMahcaRC4m7gprCAnlhDL+9IcKZKxSig4ysBoaFac6QLowIA1neWXECZqWZLeGU7baE=
-X-Gm-Gg: ASbGncsD7296x4y/V5YQ0crAeU079ugCAzvxon9ohxvBf7girlrNej/mI5AD8nHdJAp
- HL7U7TVEIGg9p8W1RhXvSlE28L+W1swFb8CfZCqTZMO8CsorZUMEYwySDd4/lZhEw5BZC2fMxL9
- GdSGfgFgf365HWJDw8/UhWYdjHlNllNztKawxEwAKPK77OEkx6B+5wHs9HYXde+q59Gbm/Kafe3
- mWNmT9x5O3sKo5m5VTifi/d4iVnW1+pqg9OajE+5zEmDL/QSoxwCIN1wtW3Wu/9fl+yLlu+sGdN
- l6QdJeWGQCDSiBVc+Co4koev+JXg84UDu7PfpeE3SYaHJMlLVSYlaXDbmGHft7WEhc3cV4cJ6A=
- =
-X-Google-Smtp-Source: AGHT+IGFCtyxdkJRl2xMrrw9ZsAUEciqwZGICfS5Uhp/jUouorN8c1RFjyeIjLfpmrxrKaAe5Mx32Q==
-X-Received: by 2002:a05:600c:3492:b0:442:c993:6f94 with SMTP id
- 5b1f17b1804b1-454cd4bb4f5mr25084645e9.12.1751977830363; 
- Tue, 08 Jul 2025 05:30:30 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-454cd3a50cbsm20974235e9.18.2025.07.08.05.30.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Jul 2025 05:30:29 -0700 (PDT)
-Date: Tue, 8 Jul 2025 14:30:27 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-intel-next
-Message-ID: <aG0PY7k6x4S8ji3b@phenom.ffwll.local>
-References: <6d728bf6ef23681b00dfbc7da9aeae41042dee02@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E91A10E62E;
+ Tue,  8 Jul 2025 13:05:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1751979904; x=1783515904;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ilN6vjbJSkuHjDSmQUw9LmWsdBHCZh+72e0HSo2s4EI=;
+ b=IjSXxQIPhhCnVHpdUHxQTNWVAjUnSuuV9zlnJnFDi4m2nRP1Vp0hD0OZ
+ hf6jguDJ2OKk0GvSfv/bd+STWEP85O/8bi9GR0P5nssF/r/Q+uYvspdzy
+ gGW5e+UlyBBsJ+UXjpxFRRlkEWBBepZv6tGpq2rYtjbBOOctSsb19ibW0
+ xFr+Q7cOqOL3fThwCi5P9lbsWDX6myCV5BP7yvIMD37oWD94elkajWf4l
+ glpgypNw4fmp+81sX41RpwRyLloJcOg+Nb5PE+wbCYXSt8x4qQroyVBZb
+ r1orTibdQJNzrSC0/Id7th5+Pt5aKyWAifquaorTxbecHVsm59hIfVeK2 Q==;
+X-CSE-ConnectionGUID: +gosYFLiRbCUocJM5ZOvTg==
+X-CSE-MsgGUID: K/jvrt4pQ6O2CI5AoKJjGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11487"; a="41840012"
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="41840012"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 06:05:04 -0700
+X-CSE-ConnectionGUID: SAYJBaFmT7mi9AMOhzKPqQ==
+X-CSE-MsgGUID: FT5Vhl36QpSm00nZOdaa7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,297,1744095600"; d="scan'208";a="154901383"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.245.245.8])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jul 2025 06:05:01 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Petri Latvala <adrinael@adrinael.net>, Arkadiusz Hiler <arek@hiler.eu>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2] runner: Relax timeout reduction on soft lockup
+Date: Tue,  8 Jul 2025 15:04:15 +0200
+Message-ID: <20250708130437.917619-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d728bf6ef23681b00dfbc7da9aeae41042dee02@intel.com>
-X-Operating-System: Linux phenom 6.12.30-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,323 +69,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 04, 2025 at 01:29:23PM +0300, Jani Nikula wrote:
-> 
-> Hi Dave & Sima -
-> 
-> Here's the second i915 feature pull request for v6.17, mostly just
-> display changes.
-> 
-> Rodrigo will handle the subsequent (likely just fixes) pull requests for
-> v6.17, if any.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> drm-intel-next-2025-07-04:
-> drm/i915 feature pull #2 for v6.17:
-> 
-> Features and functionality:
-> - Add drm_panic support for both i915 and xe drivers (Jocelyn Falempe)
-> - Add initial flip queue implementation, disabled by default, for LNL and PTL
->   (Ville)
-> - Add support for Wildcat Lake (WCL) display, version 30.02 (Matt Roper, Matt
->   Atwood, Dnyaneshwar)
-> - Extend drm_panel and follower support to DDI eDP (Arun)
-> 
-> Refactoring and cleanups:
-> - Make all global state objects opaque (Jani)
-> - Move display works to display specific unordered workqueue (Luca)
-> - Add and use struct drm_device based pcode interface (Jani, Lucas)
-> - Use clamp() instead of max()+min() combo (Ankit)
-> - Simplify wait for power well disable (Jani)
-> - Various stylistics cleanups and renames (Jani)
-> 
-> Fixes:
-> - Deal with loss of pipe DMC state (Ville)
-> - Fix PTL HDCP2 stream status check (Suraj)
-> - Add workaround for ADL-P DKL PHY DP and HDMI (Nemesa)
-> - Fix skl_print_wm_changes() stack usage with KMSAN (Arnd Bergmann)
-> - Fix PCON capability reads on non-branch devices (Chaitanya)
-> - Fix which platforms have ultra joiner (Ankit)
-> 
-> DRM core changes:
-> - Add ttm_bo_kmap_try_from_panic() for xe drm_panic support (Jocelyn Falempe)
-> - Add private pointer to struct drm_scanout buffer for xe/i915 drm_panic support
->   (Jocelyn Falempe)
-> 
-> Merges:
-> - Backmerge drm-next for drm_panel and xe changes (Jani)
-> 
-> BR,
-> Jani.
-> 
-> The following changes since commit 36c52fb703e90388285963fc8f03cf60f76cbe4c:
-> 
->   Merge tag 'drm-intel-next-2025-06-18' of https://gitlab.freedesktop.org/drm/i915/kernel into drm-next (2025-06-23 10:49:27 +1000)
-> 
-> are available in the Git repository at:
-> 
->   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2025-07-04
+In case of soft lockups, it might be helpful from root cause analysis
+perspective to see if the test was still able to complete despite
+triggering the soft lockup warning, or if that soft lockup seems not
+recoverable without killing the test. For that to be possible, igt_runner
+should not kill the test too promptly if a soft lockup related kernel
+taint is detected.
 
-Pulled into drm-next, thanks.
--Sima
+On kernel taints, igt_runner now decreases per test and inactivity
+timeouts by a factor of 10.  Let it check if the taint is caused by a
+soft lockup and decrease the timeouts only by the factor of 2 in those
+cases.
 
-> 
-> for you to fetch changes up to d6a59ee852758bc69c4cc821954db277a2bd5b93:
-> 
->   drm/ttm: Remove unneeded blank line in comment (2025-07-02 13:31:20 -0700)
-> 
-> ----------------------------------------------------------------
-> drm/i915 feature pull #2 for v6.17:
-> 
-> Features and functionality:
-> - Add drm_panic support for both i915 and xe drivers (Jocelyn Falempe)
-> - Add initial flip queue implementation, disabled by default, for LNL and PTL
->   (Ville)
-> - Add support for Wildcat Lake (WCL) display, version 30.02 (Matt Roper, Matt
->   Atwood, Dnyaneshwar)
-> - Extend drm_panel and follower support to DDI eDP (Arun)
-> 
-> Refactoring and cleanups:
-> - Make all global state objects opaque (Jani)
-> - Move display works to display specific unordered workqueue (Luca)
-> - Add and use struct drm_device based pcode interface (Jani, Lucas)
-> - Use clamp() instead of max()+min() combo (Ankit)
-> - Simplify wait for power well disable (Jani)
-> - Various stylistics cleanups and renames (Jani)
-> 
-> Fixes:
-> - Deal with loss of pipe DMC state (Ville)
-> - Fix PTL HDCP2 stream status check (Suraj)
-> - Add workaround for ADL-P DKL PHY DP and HDMI (Nemesa)
-> - Fix skl_print_wm_changes() stack usage with KMSAN (Arnd Bergmann)
-> - Fix PCON capability reads on non-branch devices (Chaitanya)
-> - Fix which platforms have ultra joiner (Ankit)
-> 
-> DRM core changes:
-> - Add ttm_bo_kmap_try_from_panic() for xe drm_panic support (Jocelyn Falempe)
-> - Add private pointer to struct drm_scanout buffer for xe/i915 drm_panic support
->   (Jocelyn Falempe)
-> 
-> Merges:
-> - Backmerge drm-next for drm_panel and xe changes (Jani)
-> 
-> ----------------------------------------------------------------
-> Ankit Nautiyal (3):
->       drm/i915/snps_hdmi_pll: Fix 64-bit divisor truncation by using div64_u64
->       drm/i915/snps_hdmi_pll: Use clamp() instead of max(min())
->       drm/i915/display: Fix macro HAS_ULTRAJOINER
-> 
-> Arnd Bergmann (1):
->       drm/i915/wm: reduce stack usage in skl_print_wm_changes()
-> 
-> Arun R Murthy (1):
->       drm/i915/panel: register drm_panel and call prepare/unprepare for eDP
-> 
-> Chaitanya Kumar Borah (1):
->       drm/xe/display: read PCON capability only when present
-> 
-> Dan Carpenter (1):
->       drm/i915/selftests: Change mock_request() to return error pointers
-> 
-> Dnyaneshwar Bhadane (3):
->       drm/i915/xe3lpd: Extend DMC load path for display
->       drm/i915/wcl: C10 phy connected to port A and B
->       drm/i915/xe3lpd: Extend WA 16023981245 for display 30.02
-> 
-> Hans de Goede (1):
->       drm/i915/dsi: Fix NULL pointer deref in vlv_dphy_param_init()
-> 
-> Jani Nikula (37):
->       drm/i915/vrr: fix register file style
->       drm/i915/plane: rename intel_atomic_plane.[ch] to intel_plane.[ch]
->       drm/i915/plane: drop atomic from intel_atomic_plane_check_clipping()
->       drm/i915/plane: make intel_plane_atomic_check() static and rename
->       drm/i915/plane: rename intel_atomic_check_planes() to intel_plane_atomic_check()
->       drm/i915/plane: rename intel_atomic_add_affected_planes() to intel_plane_add_affected()
->       Merge drm/drm-next into drm-intel-next
->       drm/i915/panel: make panel funcs static
->       drm/i915/pcode: drop fast wait from snb_pcode_write_timeout()
->       drm/i915/pcode: add struct drm_device based interface
->       drm/xe/pcode: add struct drm_device based interface
->       drm/i915/display: switch to struct drm_device based pcode interface
->       drm/i915/dram: switch to struct drm_device based pcode interface
->       drm/xe/compat: remove old pcode compat interface
->       drm/i915: remove unused DISPLAY_PLANE_FLIP_PENDING() macro
->       drm/i915/wm: abstract intel_dbuf_pmdemand_needs_update()
->       drm/i915/wm: add more accessors to dbuf state
->       drm/i915/wm: make struct intel_dbuf_state opaque type
->       drm/i915/bw: abstract intel_bw_pmdemand_needs_update()
->       drm/i915/bw: relocate intel_can_enable_sagv() and rename to intel_bw_can_enable_sagv()
->       drm/i915: move icl_sagv_{pre, post}_plane_update() to intel_bw.c
->       drm/i915/bw: abstract intel_bw_qgv_point_peakbw()
->       drm/i915/bw: make struct intel_bw_state opaque
->       drm/i915/cdclk: abstract intel_cdclk_logical()
->       drm/i915/cdclk: abstract intel_cdclk_min_cdclk()
->       drm/i915/cdclk: abstract intel_cdclk_bw_min_cdclk()
->       drm/i915/cdclk: abstract intel_cdclk_pmdemand_needs_update()
->       drm/i915/cdclk: abstract intel_cdclk_force_min_cdclk()
->       drm/i915/cdclk: abstract intel_cdclk_read_hw()
->       drm/i915/cdclk: abstract intel_cdclk_actual() and intel_cdclk_actual_voltage_level()
->       drm/i915/cdclk: make struct intel_cdclk_state opaque
->       drm/i915/power: move enum skl_power_gate under display
->       drm/i915/power: relocate {SKL,ICL}_PW_CTL_IDX_TO_PG()
->       drm/i915/power: convert {SKL, ICL}_PW_CTL_IDX_TO_PG() macros to a function
->       drm/i915/fb: use struct intel_display for DISPLAY_VER()
->       drm/i915/display: drop a number of dependencies on i915_drv.h
->       drm/i915/power: use intel_de_wait_for_clear() instead of wait_for()
-> 
-> Jocelyn Falempe (12):
->       drm/panic: Add a private field to struct drm_scanout_buffer
->       drm/i915/fbdev: Add intel_fbdev_get_map()
->       drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
->       drm/i915/display: Add a disable_tiling() for skl planes
->       drm/ttm: Add ttm_bo_kmap_try_from_panic()
->       drm/i915: Add intel_bo_alloc_framebuffer()
->       drm/i915: Add intel_bo_panic_setup() and intel_bo_panic_finish()
->       drm/i915/display: Add drm_panic support
->       drm/i915/display: Add drm_panic support for Y-tiling with DPT
->       drm/i915/display: Add drm_panic support for 4-tiling with DPT
->       drm/i915/psr: Add intel_psr2_panic_force_full_update
->       drm/ttm: Remove unneeded blank line in comment
-> 
-> Luca Coelho (1):
->       drm/i915/display: move unordered works to new private workqueue
-> 
-> Lucas De Marchi (1):
->       drm/xe: Fix conflicting intel_pcode_* symbols
-> 
-> Matt Atwood (2):
->       drm/i915/xe3lpd: Update bandwidth parameters for display version 30.02
->       drm/i915: Set max cdclk for display 30.02
-> 
-> Matt Roper (1):
->       drm/i915/xe3lpd: Add support for display version 30.02
-> 
-> Nemesa Garg (1):
->       drm/i915/display: Implement wa_16011342517
-> 
-> Suraj Kandpal (2):
->       drm/i915/hdcp: Do not use inline intel_de_read
->       drm/i915/hdcp: Use HDCP2_STREAM_STATUS instead of HDCP2_AUTH_STREAM
-> 
-> Ville Syrjälä (16):
->       drm/i915/dmc: Limit pipe DMC clock gating w/a to just ADL/DG2/MTL
->       drm/i915/dmc: Parametrize MTL_PIPEDMC_GATING_DIS
->       drm/i915/dmc: Shuffle code around
->       drm/i915/dmc: Extract dmc_load_program()
->       drm/i915/dmc: Reload pipe DMC state on TGL when enabling pipe A
->       drm/i915/dmc: Reload pipe DMC MMIO registers for pipe C/D on various platforms
->       drm/i915/dmc: Assert DMC is loaded harder
->       drm/i915/dmc: Pass crtc_state to intel_dmc_{enable,disable}_pipe()
->       drm/i915/dmc: Do not enable the pipe DMC on TGL when PSR is possible
->       drm/i915: Set PKG_C_LATENCY.added_wake_time to 0
->       drm/i915: Try to program PKG_C_LATENCY more correctly
->       drm/i915/dmc: Define flip queue related PIPEDMC registers
->       drm/i915/flipq: Provide the nuts and bolts code for flip queue
->       drm/i915/flipq: Implement flip queue based commit path
->       drm/i915/flipq: Implement Wa_18034343758
->       drm/i915/flipq: Add intel_flipq_dump()
-> 
->  Documentation/gpu/i915.rst                         |  10 +-
->  drivers/gpu/drm/i915/Makefile                      |   5 +-
->  drivers/gpu/drm/i915/display/hsw_ips.c             |  15 +-
->  drivers/gpu/drm/i915/display/i9xx_plane.c          |  36 +-
->  drivers/gpu/drm/i915/display/intel_atomic.c        |   2 +-
->  drivers/gpu/drm/i915/display/intel_audio.c         |   2 +-
->  drivers/gpu/drm/i915/display/intel_bo.c            |  17 +
->  drivers/gpu/drm/i915/display/intel_bo.h            |   5 +
->  drivers/gpu/drm/i915/display/intel_bw.c            | 188 ++++++--
->  drivers/gpu/drm/i915/display/intel_bw.h            |  53 +--
->  drivers/gpu/drm/i915/display/intel_cdclk.c         | 156 +++++--
->  drivers/gpu/drm/i915/display/intel_cdclk.h         |  50 +--
->  drivers/gpu/drm/i915/display/intel_connector.c     |   4 +-
->  drivers/gpu/drm/i915/display/intel_crtc.c          |   2 +-
->  drivers/gpu/drm/i915/display/intel_cursor.c        |  10 +-
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c       |   8 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c           |  20 +
->  drivers/gpu/drm/i915/display/intel_display.c       |  79 +++-
->  drivers/gpu/drm/i915/display/intel_display_core.h  |   9 +
->  .../gpu/drm/i915/display/intel_display_device.c    |   1 +
->  .../gpu/drm/i915/display/intel_display_device.h    |   5 +-
->  .../gpu/drm/i915/display/intel_display_driver.c    |  39 +-
->  drivers/gpu/drm/i915/display/intel_display_irq.c   |   2 +-
->  .../gpu/drm/i915/display/intel_display_params.c    |   3 +
->  .../gpu/drm/i915/display/intel_display_params.h    |   1 +
->  drivers/gpu/drm/i915/display/intel_display_power.c |   4 +-
->  .../drm/i915/display/intel_display_power_well.c    |  44 +-
->  drivers/gpu/drm/i915/display/intel_display_regs.h  |  21 +-
->  drivers/gpu/drm/i915/display/intel_display_types.h |  24 ++
->  drivers/gpu/drm/i915/display/intel_dkl_phy_regs.h  |   1 +
->  drivers/gpu/drm/i915/display/intel_dmc.c           | 457 ++++++++++++++------
->  drivers/gpu/drm/i915/display/intel_dmc.h           |  18 +-
->  drivers/gpu/drm/i915/display/intel_dmc_regs.h      | 190 +++++++++
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c        |   4 +-
->  drivers/gpu/drm/i915/display/intel_dp.c            |   3 +
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c       |  20 +-
->  drivers/gpu/drm/i915/display/intel_drrs.c          |   7 +-
->  drivers/gpu/drm/i915/display/intel_encoder.c       |   5 +-
->  drivers/gpu/drm/i915/display/intel_fb.c            |   8 +-
->  drivers/gpu/drm/i915/display/intel_fb_pin.c        |   7 +-
->  drivers/gpu/drm/i915/display/intel_fb_pin.h        |   2 +
->  drivers/gpu/drm/i915/display/intel_fbc.c           |   6 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c         |   5 +
->  drivers/gpu/drm/i915/display/intel_fbdev.h         |   6 +-
->  drivers/gpu/drm/i915/display/intel_flipq.c         | 472 +++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_flipq.h         |  37 ++
->  drivers/gpu/drm/i915/display/intel_hdcp.c          |  27 +-
->  drivers/gpu/drm/i915/display/intel_hdcp_regs.h     |   4 +-
->  drivers/gpu/drm/i915/display/intel_hotplug.c       |  12 +-
->  drivers/gpu/drm/i915/display/intel_modeset_setup.c |   2 +-
->  drivers/gpu/drm/i915/display/intel_opregion.c      |   7 +-
->  drivers/gpu/drm/i915/display/intel_panel.c         |   5 +-
->  .../{intel_atomic_plane.c => intel_plane.c}        | 199 ++++++++-
->  .../{intel_atomic_plane.h => intel_plane.h}        |  22 +-
->  drivers/gpu/drm/i915/display/intel_plane_initial.c |   2 +-
->  drivers/gpu/drm/i915/display/intel_pmdemand.c      |  41 +-
->  drivers/gpu/drm/i915/display/intel_pps.c           |   7 +-
->  drivers/gpu/drm/i915/display/intel_psr.c           |  31 +-
->  drivers/gpu/drm/i915/display/intel_psr.h           |   2 +
->  drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c |   8 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c        |  14 +-
->  drivers/gpu/drm/i915/display/intel_vrr_regs.h      | 121 +++---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |  36 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c       | 452 ++++++++++----------
->  drivers/gpu/drm/i915/display/skl_watermark.h       |  33 +-
->  drivers/gpu/drm/i915/display/vlv_dsi.c             |   2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object.h         |   6 +
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c          | 142 +++++++
->  drivers/gpu/drm/i915/i915_reg.h                    |  14 +-
->  drivers/gpu/drm/i915/i915_vma.h                    |   5 +
->  drivers/gpu/drm/i915/intel_pcode.c                 |  29 +-
->  drivers/gpu/drm/i915/intel_pcode.h                 |  15 +-
->  drivers/gpu/drm/i915/selftests/i915_request.c      |  20 +-
->  drivers/gpu/drm/i915/selftests/mock_request.c      |   2 +-
->  drivers/gpu/drm/i915/soc/intel_dram.c              |   5 +-
->  drivers/gpu/drm/ttm/ttm_bo_util.c                  |  26 ++
->  drivers/gpu/drm/xe/Makefile                        |   3 +-
->  .../gpu/drm/xe/compat-i915-headers/intel_pcode.h   |  31 --
->  .../gpu/drm/xe/compat-i915-headers/intel_uncore.h  |   7 -
->  drivers/gpu/drm/xe/display/intel_bo.c              |  91 ++++
->  drivers/gpu/drm/xe/display/xe_fb_pin.c             |   5 +
->  drivers/gpu/drm/xe/display/xe_plane_initial.c      |   2 +-
->  drivers/gpu/drm/xe/xe_pcode.c                      |  30 ++
->  drivers/gpu/drm/xe/xe_pcode.h                      |  12 +-
->  include/drm/drm_panic.h                            |   6 +
->  include/drm/ttm/ttm_bo.h                           |   1 +
->  86 files changed, 2638 insertions(+), 904 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_flipq.h
->  rename drivers/gpu/drm/i915/display/{intel_atomic_plane.c => intel_plane.c} (89%)
->  rename drivers/gpu/drm/i915/display/{intel_atomic_plane.h => intel_plane.h} (86%)
-> 
-> -- 
-> Jani Nikula, Intel
+v2: Define symbols for taint bits and use them (Kamil)
 
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/igt_taints.c  |  8 ++++----
+ lib/igt_taints.h  |  6 ++++++
+ runner/executor.c | 14 ++++++++++----
+ 3 files changed, 20 insertions(+), 8 deletions(-)
+
+diff --git a/lib/igt_taints.c b/lib/igt_taints.c
+index 6b36d11cba..1d238fd2af 100644
+--- a/lib/igt_taints.c
++++ b/lib/igt_taints.c
+@@ -13,10 +13,10 @@ static const struct {
+ 	int bad;
+ 	const char *explanation;
+ } abort_taints[] = {
+-  { 4, 1, "TAINT_MACHINE_CHECK: Processor reported a Machine Check Exception."},
+-  { 5, 1, "TAINT_BAD_PAGE: Bad page reference or an unexpected page flags." },
+-  { 7, 1, "TAINT_DIE: Kernel has died - BUG/OOPS." },
+-  { 9, 1, "TAINT_WARN: WARN_ON has happened." },
++  { TAINT_MACHINE_CHECK, 1, "TAINT_MACHINE_CHECK: Processor reported a Machine Check Exception."},
++  { TAINT_BAD_PAGE,	 1, "TAINT_BAD_PAGE: Bad page reference or an unexpected page flags." },
++  { TAINT_DIE,		 1, "TAINT_DIE: Kernel has died - BUG/OOPS." },
++  { TAINT_WARN,		 1, "TAINT_WARN: WARN_ON has happened." },
+   { -1 }
+ };
+ 
+diff --git a/lib/igt_taints.h b/lib/igt_taints.h
+index be4195c5aa..50c4cf16f8 100644
+--- a/lib/igt_taints.h
++++ b/lib/igt_taints.h
+@@ -6,6 +6,12 @@
+ #ifndef __IGT_TAINTS_H__
+ #define __IGT_TAINTS_H__
+ 
++#define	TAINT_MACHINE_CHECK	 4
++#define	TAINT_BAD_PAGE		 5
++#define	TAINT_DIE		 7
++#define	TAINT_WARN		 9
++#define	TAINT_SOFT_LOCKUP	14
++
+ unsigned long igt_kernel_tainted(unsigned long *taints);
+ const char *igt_explain_taints(unsigned long *taints);
+ 
+diff --git a/runner/executor.c b/runner/executor.c
+index 13180a0a46..847abe481a 100644
+--- a/runner/executor.c
++++ b/runner/executor.c
+@@ -871,10 +871,15 @@ static const char *need_to_timeout(struct settings *settings,
+ 	if (settings->abort_mask & ABORT_TAINT &&
+ 	    is_tainted(taints)) {
+ 		/* list of timeouts that may postpone immediate kill on taint */
+-		if (settings->per_test_timeout || settings->inactivity_timeout)
+-			decrease = 10;
+-		else
++		if (settings->per_test_timeout || settings->inactivity_timeout) {
++			if (is_tainted(taints) == (1 << TAINT_WARN) &&
++			    taints & (1 << TAINT_SOFT_LOCKUP))
++				decrease = 2;
++			else
++				decrease = 10;
++		} else {
+ 			return "Killing the test because the kernel is tainted.\n";
++		}
+ 	}
+ 
+ 	if (settings->per_test_timeout != 0 &&
+@@ -1526,8 +1531,9 @@ static int monitor_output(pid_t child,
+ 			sigfd = -1; /* we are dying, no signal handling for now */
+ 		}
+ 
++		igt_kernel_tainted(&taints);
+ 		timeout_reason = need_to_timeout(settings, killed,
+-						 igt_kernel_tainted(&taints),
++						 taints,
+ 						 igt_time_elapsed(&time_last_activity, &time_now),
+ 						 igt_time_elapsed(&time_last_subtest, &time_now),
+ 						 igt_time_elapsed(&time_killed, &time_now),
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.50.0
+
