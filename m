@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084C5AFF069
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jul 2025 20:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855F7AFF06D
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jul 2025 20:05:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB9F10E092;
-	Wed,  9 Jul 2025 18:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 200A410E34B;
+	Wed,  9 Jul 2025 18:05:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l1Qg0oyW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OteK+hqQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771F810E092;
- Wed,  9 Jul 2025 18:05:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE5B10E10F;
+ Wed,  9 Jul 2025 18:05:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752084301; x=1783620301;
+ t=1752084325; x=1783620325;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=HczsfyZHVz0aaeWPOD8CfmioZ19knFShiDs4p1Qv9ZY=;
- b=l1Qg0oyW9EjIIXzoBi5NKwb8/DXUbk75Y/X7+86OyjpM6NG/oXu2QK07
- JduZGkNYYin+A4/hs4pdFQGknDBpR6vhLOf4jx2U7oYSPgnxEJ87LxfHg
- aLtJssoZhIlwj7F7px3a6JH6SElIjqZfIPNzUGy5jo6bIcahvQ8KWGtcI
- VOd+r7L/WtMjHAw2DA7HgjXrPmwofl4Dfpsqm5dLVgX6elEIUkuWtkg92
- pmFM9sS4dFyN3WEfoY5uf8dV0NtzTmZEc55vShutVgG6gWTmn1powozFH
- 4cAmjj866STsnf8pDERdsIPDq5AhtdwB6WyngU9uY2F5wyIFfS1UBvW0D A==;
-X-CSE-ConnectionGUID: gnm7mtW9TMiJtOWluuN9Fg==
-X-CSE-MsgGUID: yU7ccaJ/QGOJjcti9ADX9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="64935016"
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="64935016"
+ bh=+tfR3qOKHDCsOoUEXh7VnFnKj53ViAl1Rwcx5SDA/Y0=;
+ b=OteK+hqQGgL0RioxqqPfrrDysTCOddP7pM1uYrfgqYtj2mO+YH5E0dhY
+ z0SmGu/aUJaWqMuo9LfIJEE6tdBuJH8L3/wgKDUM0k8m+GXIkhBl4+8fv
+ zqNJAWtJ9c5jLSvE66wA81AFJf9cCps7bH3VI62CDfKKP/4tmOrX71kXH
+ ITQTKeVjYQRKTNqGR5fby8VAf/InYE2Qy+gkDEQOhMTMopedwFB8ZFZNZ
+ pn5+IhjfVPC0V7r04szZTNUuiY+mqW54K3YbsZEUVLj9S5p4I38c2jasf
+ OtRKm6Rqm0GAhfyywFSrw+Jh03Pc0rwZUPVpv0iy/Y/MZK2Qx5OTSWEag g==;
+X-CSE-ConnectionGUID: lmy4oahpRAKozrLMM5shyw==
+X-CSE-MsgGUID: 2mUQXUr+SFebF42NvYkN3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="64935054"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="64935054"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 11:05:00 -0700
-X-CSE-ConnectionGUID: il42xyq+Q8iKs0hTWPjgUg==
-X-CSE-MsgGUID: BZ1bQGxLTDSMLojZP8BjRQ==
+ 09 Jul 2025 11:05:25 -0700
+X-CSE-ConnectionGUID: HIMLWIJmSp6AYgwMcr/5TA==
+X-CSE-MsgGUID: 2fRTSPw2Q8Oy33efb4ZArA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="161506111"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="161506145"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO stinkbox)
  ([10.245.245.254])
- by orviesa005.jf.intel.com with SMTP; 09 Jul 2025 11:04:58 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jul 2025 11:05:23 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Jul 2025 21:04:56 +0300
-Date: Wed, 9 Jul 2025 21:04:56 +0300
+ Wed, 09 Jul 2025 21:05:21 +0300
+Date: Wed, 9 Jul 2025 21:05:21 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
- support TPS4"
-Message-ID: <aG6vSMRiKRBk7AQN@intel.com>
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH 2/2] drm/i915/dp: Add device specific quirk to limit eDP
+ rate to HBR2
+Message-ID: <aG6vYUcYjjua-P9w@intel.com>
 References: <20250709055144.879393-1-ankit.k.nautiyal@intel.com>
- <20250709055144.879393-2-ankit.k.nautiyal@intel.com>
+ <20250709055144.879393-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250709055144.879393-2-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250709055144.879393-3-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,121 +74,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 09, 2025 at 11:21:42AM +0530, Ankit Nautiyal wrote:
-> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
-> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
-> TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
-> not support TPS4. While this was intended to address instability observed
-> on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
-> and not for eDPRX.
-
-That last claim is still not really supported by the spec AFAICS.
-
-I think the best justification is that the Windows driver allows 
-this.
-
+On Wed, Jul 09, 2025 at 11:21:43AM +0530, Ankit Nautiyal wrote:
+> Some ICL/TGL platforms with combo PHY ports suffer from signal integrity
+> issues at HBR3. While certain systems include a Parade PS8461 mux to
+> mitigate this, its presence cannot be reliably detected. Furthermore,
+> broken or missing VBT entries make it unsafe to rely on VBT for enforcing
+> link rate limits.
 > 
-> This change inadvertently causes blank screens on some eDP panels that do
-> not advertise TPS4 support, and require HBR3 to operate at their fixed
-> native resolution [2].
+> To address this introduce a device specific quirk to cap the eDP link rate
+> to HBR2 (540000 kHz). This will override any higher advertised rates from
+> the sink or DPCD for specific devices.
 > 
-> Revert the commit to restore functionality for such panels.
+> Currently, the quirk is added for Dell XPS 13 7390 2-in-1 which is reported
+> in gitlab issue #5969 [1].
 > 
 > [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-> [2] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> 
+> v2: Align the quirk with the intended quirk name and refactor the
+> condition to use min(). (Jani)
 > 
 > Cc: Jani Nikula <jani.nikula@linux.intel.com>
 > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 49 ++++---------------------
->  1 file changed, 7 insertions(+), 42 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 41 +++++++++++++++++----
+>  drivers/gpu/drm/i915/display/intel_quirks.c |  9 +++++
+>  drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>  3 files changed, 44 insertions(+), 7 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index f48912f308df..92abf819e60e 100644
+> index 92abf819e60e..7d2eaa0cff73 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -173,28 +173,10 @@ int intel_dp_link_symbol_clock(int rate)
+> @@ -173,10 +173,24 @@ int intel_dp_link_symbol_clock(int rate)
 >  
 >  static int max_dprx_rate(struct intel_dp *intel_dp)
 >  {
-> -	struct intel_display *display = to_intel_display(intel_dp);
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -	int max_rate;
-> -
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	int max_rate;
+> +
 >  	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-> -		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
-> -	else
-> -		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
-> +		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> -		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> +		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> +	else
+> +		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> +
+> +	/*
+> +	 * Some platforms + eDP panels may not reliably support HBR3
+> +	 * due to signal integrity limitations, despite advertising it.
+> +	 * Cap the link rate to HBR2 to avoid unstable configurations for the
+> +	 * known machines.
+> +	 */
+> +	if (intel_dp_is_edp(intel_dp) && intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+> +		max_rate = min(max_rate, 540000);
 >  
-> -	/*
-> -	 * Some broken eDP sinks illegally declare support for
-> -	 * HBR3 without TPS4, and are unable to produce a stable
-> -	 * output. Reject HBR3 when TPS4 is not available.
-> -	 */
-> -	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-> -		drm_dbg_kms(display->drm,
-> -			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-> -			    encoder->base.base.id, encoder->base.name);
-> -		max_rate = 540000;
-> -	}
-> -
-> -	return max_rate;
-> +	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> -	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> +	return max_rate;
 >  }
 >  
 >  static int max_dprx_lane_count(struct intel_dp *intel_dp)
-> @@ -4273,9 +4255,6 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+> @@ -4255,6 +4269,8 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
 >  static void
 >  intel_edp_set_sink_rates(struct intel_dp *intel_dp)
 >  {
-> -	struct intel_display *display = to_intel_display(intel_dp);
-> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-> -
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
 >  	intel_dp->num_sink_rates = 0;
 >  
 >  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
-> @@ -4286,7 +4265,10 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+> @@ -4265,10 +4281,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
 >  				 sink_rates, sizeof(sink_rates));
 >  
 >  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
-> -			int rate;
-> +			int val = le16_to_cpu(sink_rates[i]);
-> +
-> +			if (val == 0)
-> +				break;
+> -			int val = le16_to_cpu(sink_rates[i]);
+> -
+> -			if (val == 0)
+> -				break;
+> +			int rate;
 >  
 >  			/* Value read multiplied by 200kHz gives the per-lane
 >  			 * link rate in kHz. The source rates are, however,
-> @@ -4294,24 +4276,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+> @@ -4276,7 +4289,21 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
 >  			 * back to symbols is
 >  			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
 >  			 */
-> -			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
-> -
-> -			if (rate == 0)
-> -				break;
-> -
-> -			/*
-> -			 * Some broken eDP sinks illegally declare support for
-> -			 * HBR3 without TPS4, and are unable to produce a stable
-> -			 * output. Reject HBR3 when TPS4 is not available.
-> -			 */
-> -			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
-> -				drm_dbg_kms(display->drm,
-> -					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
-> -					    encoder->base.base.id, encoder->base.name);
-> -				break;
-> -			}
-> -
-> -			intel_dp->sink_rates[i] = rate;
-> +			intel_dp->sink_rates[i] = (val * 200) / 10;
+> -			intel_dp->sink_rates[i] = (val * 200) / 10;
+> +			rate = (le16_to_cpu(sink_rates[i]) * 200) / 10;
+
+Might as well drop the unnecessary parens while at it.
+
+> +
+> +			if (rate == 0)
+> +				break;
+> +
+> +			/*
+> +			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+> +			 * even if the sink advertises support. Reject any sink rates above HBR2 on
+> +			 * the known machines for stable output.
+> +			 */
+> +			if (rate >= 810000 &&
+> +			    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+
+If the quirk sasy "HBR2" then we should probably check for >540000 instead.
+
+> +				break;
+> +
+> +			intel_dp->sink_rates[i] = rate;
 >  		}
 >  		intel_dp->num_sink_rates = i;
 >  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+> index a32fae510ed2..d2e16b79d6be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -80,6 +80,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
+>  	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
+>  }
+>  
+> +static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
+> +{
+> +	intel_set_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2);
+> +	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
+> +}
+> +
+>  struct intel_quirk {
+>  	int device;
+>  	int subsystem_vendor;
+> @@ -231,6 +237,9 @@ static struct intel_quirk intel_quirks[] = {
+>  	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
+>  	/* HP Notebook - 14-r206nv */
+>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
+> +
+> +	/* Dell XPS 13 7390 2-in-1 */
+> +	{ 0x8a12, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
+
+Hmm. I wonder if different modesl of that same machine might
+come with different panels, some of which might work with/need
+HBR3...
+
+But I suppose we don't have any nice way to combine different types
+of quirks (ie. PCI ID + DPCD, DMI + EDID, etc.). We should probably
+think about coming up with some kind of generic quirk framework that
+can do such things nicely.
+
+Anyways I guess this is fine for now. But we might have to revise this
+later if it turns out there are other variants of that machine around.
+
+>  };
+>  
+>  static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+> index cafdebda7535..06da0e286c67 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>  	QUIRK_LVDS_SSC_DISABLE,
+>  	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>  	QUIRK_FW_SYNC_LEN,
+> +	QUIRK_EDP_LIMIT_RATE_HBR2,
+>  };
+>  
+>  void intel_init_quirks(struct intel_display *display);
 > -- 
 > 2.45.2
 
