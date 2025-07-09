@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D540AAFEFE1
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jul 2025 19:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084C5AFF069
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Jul 2025 20:05:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C99210E32D;
-	Wed,  9 Jul 2025 17:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB9F10E092;
+	Wed,  9 Jul 2025 18:05:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cZFgaYOz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l1Qg0oyW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9A910E32D
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Jul 2025 17:30:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 771F810E092;
+ Wed,  9 Jul 2025 18:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752082230; x=1783618230;
+ t=1752084301; x=1783620301;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Xjt9GDTZMWUDId0mwpSlJgV3+VVoSTEL2awGaEjbe1g=;
- b=cZFgaYOzVRdISIKUqeJrDYewk1b7DDfJFyLIpB2m3CEAJUDHZt0CVKPE
- DrM6Ln+UmjnExQR+6NMZ5HqIw2683z73OlxthVqdltvwnFzCTUfH1SUi8
- M+g04CSY3v8rPKk9N0yolZdZKNqUn4CSK6xCp68oNQBIUVdHW6+iBhX8N
- Cby8VUg91XSD/+j20E7MKLEZzaaAuOeI4oeajabKeWC2owYh6RwKX01Rq
- lzX34hv2pgjKxYd8Hm04ridHe2QePaiTAfaigoXeIT8BoZxNmeKAM0z6X
- XoqeYaCSFOWiLtXk7APswl7VciJa8T1BnYTQx9d85AhHi3/13KZdmtmY2 A==;
-X-CSE-ConnectionGUID: G6IwFFCKShaOFEEYaMkxNA==
-X-CSE-MsgGUID: SR652NJpRuWMbJVoMDZzeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="71798910"
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="71798910"
+ bh=HczsfyZHVz0aaeWPOD8CfmioZ19knFShiDs4p1Qv9ZY=;
+ b=l1Qg0oyW9EjIIXzoBi5NKwb8/DXUbk75Y/X7+86OyjpM6NG/oXu2QK07
+ JduZGkNYYin+A4/hs4pdFQGknDBpR6vhLOf4jx2U7oYSPgnxEJ87LxfHg
+ aLtJssoZhIlwj7F7px3a6JH6SElIjqZfIPNzUGy5jo6bIcahvQ8KWGtcI
+ VOd+r7L/WtMjHAw2DA7HgjXrPmwofl4Dfpsqm5dLVgX6elEIUkuWtkg92
+ pmFM9sS4dFyN3WEfoY5uf8dV0NtzTmZEc55vShutVgG6gWTmn1powozFH
+ 4cAmjj866STsnf8pDERdsIPDq5AhtdwB6WyngU9uY2F5wyIFfS1UBvW0D A==;
+X-CSE-ConnectionGUID: gnm7mtW9TMiJtOWluuN9Fg==
+X-CSE-MsgGUID: yU7ccaJ/QGOJjcti9ADX9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="64935016"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="64935016"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jul 2025 10:30:30 -0700
-X-CSE-ConnectionGUID: u4PbO8E/TZyjFnEgrd9rXQ==
-X-CSE-MsgGUID: IbRX9hV6TCazUD4NvAQ9jQ==
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jul 2025 11:05:00 -0700
+X-CSE-ConnectionGUID: il42xyq+Q8iKs0hTWPjgUg==
+X-CSE-MsgGUID: BZ1bQGxLTDSMLojZP8BjRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="161497538"
+X-IronPort-AV: E=Sophos;i="6.16,298,1744095600"; d="scan'208";a="161506111"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO stinkbox)
  ([10.245.245.254])
- by orviesa005.jf.intel.com with SMTP; 09 Jul 2025 10:30:27 -0700
+ by orviesa005.jf.intel.com with SMTP; 09 Jul 2025 11:04:58 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 09 Jul 2025 20:30:26 +0300
-Date: Wed, 9 Jul 2025 20:30:26 +0300
+ Wed, 09 Jul 2025 21:04:56 +0300
+Date: Wed, 9 Jul 2025 21:04:56 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ben Hutchings <ben@decadent.org.uk>
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- linux-rt-users@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- Debian kernel maintainers <debian-kernel@lists.debian.org>
-Subject: Re: PREEMPT_RT vs i915
-Message-ID: <aG6nMhimN1lWKAEP@intel.com>
-References: <7c42fe5a6158445e150e7d63991767e44fc36d3d.camel@decadent.org.uk>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH 1/2] Revert "drm/i915/dp: Reject HBR3 when sink doesn't
+ support TPS4"
+Message-ID: <aG6vSMRiKRBk7AQN@intel.com>
+References: <20250709055144.879393-1-ankit.k.nautiyal@intel.com>
+ <20250709055144.879393-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7c42fe5a6158445e150e7d63991767e44fc36d3d.camel@decadent.org.uk>
+In-Reply-To: <20250709055144.879393-2-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,72 +74,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 08, 2025 at 09:35:21PM +0200, Ben Hutchings wrote:
-> Hi all,
-> 
-> Debian currently provides non-default kernel packages with the
-> PREEMPT_RT patchset applied and enabled.  However, for the Debian 14
-> "forky" release the plan is to use only the upstream RT support.
-> 
-> One result of this is that the i915 driver will not be included in our
-> RT kernel package on amd64 because the upstream version lacks the
-> patches to make it compatible with PREEMPT_RT.  This was not a surprise
-> to us, but may disappoint some of our users (for example see
-> <https://bugs.debian.org/1108324>).
-> 
-> I see that Sebastian submitted the i915 fixes upstream in October 2024.
-> If I understand the explanation in
-> <https://lore.kernel.org/intel-gfx/Zv-n2h0gsquKOvXu@intel.com/> rightly,
-> much of these changes are unsafe because i915 has its own hard timing
-> requirement for reprogramming multiple display controller registers
-> within a single frame.  Is that still the sticking point?
-> 
-> It seems like the critical uncore lock is currently held in a lot of
-> places and potentially for a long time.
+On Wed, Jul 09, 2025 at 11:21:42AM +0530, Ankit Nautiyal wrote:
+> This reverts commit 584cf613c24a4250d9be4819efc841aa2624d5b6.
+> Commit 584cf613c24a ("drm/i915/dp: Reject HBR3 when sink doesn't support
+> TPS4") introduced a blanket rejection of HBR3 link rate when the sink does
+> not support TPS4. While this was intended to address instability observed
+> on certain eDP panels [1], the TPS4 requirement is only mandated for DPRX
+> and not for eDPRX.
 
-It shouldn't be held for that long. I think it should just be
-a raw spinlock.
+That last claim is still not really supported by the spec AFAICS.
 
-The only edge case I know is the weird retry hack in
-__intel_get_crtc_scanline() which I suspect is just due to PSR
-and could potentially be handled in a nicer way by actually
-checking the PSR state.
-
-> Would it be practical to split
-> this lock into:
-> 
-> 1. raw spinlock protecting only state needed for the atomic (within-one-
-> frame) update
-
-Spinlocks aren't involved in that. It is achieved by racing against
-the beam, with interrupts disabled to make it more likely the CPU
-wins the race.
-
-> 2. regular spinlock protecting everything in uncore
-> 
-> or is almost all the uncore state potentially used during an atomic
-> update?
-> 
-> Would it help to offload the atomic updates to a kthread that runs with
-> RT priority but still with hard interrupts enabled?
-
-Not sure what another thread would specifically get us, as opposed
-to eg. just boosting the priority of the existing thread? But whatever
-thread does the work needs to not be interrupted for any significant
-amount of time.
-
-The interrupt disabling part I suppose is rather hardware/workload
-specific, so hard to say anything general about it.
+I think the best justification is that the Windows driver allows 
+this.
 
 > 
-> Would it make things easier if setting CONFIG_PREEMPT_RT=y limited i915
-> to not run on some older hardware?
-
-No. All hardware needs this.
-
-Anyways, all of this is rather academic at this point. Someone
-needs to try and see what works, and hammer it hard while doing so
-to make sure it doesn't fall over easily.
+> This change inadvertently causes blank screens on some eDP panels that do
+> not advertise TPS4 support, and require HBR3 to operate at their fixed
+> native resolution [2].
+> 
+> Revert the commit to restore functionality for such panels.
+> 
+> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
+> [2] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> 
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14517
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 49 ++++---------------------
+>  1 file changed, 7 insertions(+), 42 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f48912f308df..92abf819e60e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -173,28 +173,10 @@ int intel_dp_link_symbol_clock(int rate)
+>  
+>  static int max_dprx_rate(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> -	int max_rate;
+> -
+>  	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+> -		max_rate = drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+> -	else
+> -		max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+> +		return drm_dp_tunnel_max_dprx_rate(intel_dp->tunnel);
+>  
+> -	/*
+> -	 * Some broken eDP sinks illegally declare support for
+> -	 * HBR3 without TPS4, and are unable to produce a stable
+> -	 * output. Reject HBR3 when TPS4 is not available.
+> -	 */
+> -	if (max_rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> -		drm_dbg_kms(display->drm,
+> -			    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+> -			    encoder->base.base.id, encoder->base.name);
+> -		max_rate = 540000;
+> -	}
+> -
+> -	return max_rate;
+> +	return drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+>  }
+>  
+>  static int max_dprx_lane_count(struct intel_dp *intel_dp)
+> @@ -4273,9 +4255,6 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
+>  static void
+>  intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  {
+> -	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+> -
+>  	intel_dp->num_sink_rates = 0;
+>  
+>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+> @@ -4286,7 +4265,10 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  				 sink_rates, sizeof(sink_rates));
+>  
+>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+> -			int rate;
+> +			int val = le16_to_cpu(sink_rates[i]);
+> +
+> +			if (val == 0)
+> +				break;
+>  
+>  			/* Value read multiplied by 200kHz gives the per-lane
+>  			 * link rate in kHz. The source rates are, however,
+> @@ -4294,24 +4276,7 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>  			 * back to symbols is
+>  			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
+>  			 */
+> -			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
+> -
+> -			if (rate == 0)
+> -				break;
+> -
+> -			/*
+> -			 * Some broken eDP sinks illegally declare support for
+> -			 * HBR3 without TPS4, and are unable to produce a stable
+> -			 * output. Reject HBR3 when TPS4 is not available.
+> -			 */
+> -			if (rate >= 810000 && !drm_dp_tps4_supported(intel_dp->dpcd)) {
+> -				drm_dbg_kms(display->drm,
+> -					    "[ENCODER:%d:%s] Rejecting HBR3 due to missing TPS4 support\n",
+> -					    encoder->base.base.id, encoder->base.name);
+> -				break;
+> -			}
+> -
+> -			intel_dp->sink_rates[i] = rate;
+> +			intel_dp->sink_rates[i] = (val * 200) / 10;
+>  		}
+>  		intel_dp->num_sink_rates = i;
+>  	}
+> -- 
+> 2.45.2
 
 -- 
 Ville Syrjälä
