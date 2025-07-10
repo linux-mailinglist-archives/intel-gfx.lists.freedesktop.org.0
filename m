@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC685AFF995
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 08:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DF4AFF9DE
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 08:30:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1B110E377;
-	Thu, 10 Jul 2025 06:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B8E110E051;
+	Thu, 10 Jul 2025 06:30:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="cYpcZujD";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="CCAkeryw";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B409710E377;
- Thu, 10 Jul 2025 06:19:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7106041182111538625=="
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74BC110E051
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 06:30:17 +0000 (UTC)
+Date: Thu, 10 Jul 2025 08:30:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1752129015;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=sRdUqJjRDXKQa6NQYpQE+ckcA6YtCcbj5vZJklfRA18=;
+ b=cYpcZujDbNh9B6/NbLvQQw1Kht+CgA/cSlkZ2L1MIopf++un9VlvT35zeEix7QUG+uwC3H
+ qCOChh2K6EggkM4k5Lu+Stbf7o1MwV7e5eyP1M7RPETg+I8lNRrEZVTp6wC2hb2eFxuWQG
+ OSC/aT9PtnRBv80hkWsCBV29sNxaTjxb2euNezy3uzmil5adzaJLyEECHACFLPh/T2TDOm
+ lKY+MT2axbIOYGZCowmg9mB98Rqo9j/VYMzrjTzkzvXtF1XyENYFSFHBuvNLxKgOeVR0nz
+ bmpz3G7AsVrc71e3kCs6lorD3VttKmv6yhT6Fep5HFIykS7CW0wDzfCrFXS5tQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1752129015;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=sRdUqJjRDXKQa6NQYpQE+ckcA6YtCcbj5vZJklfRA18=;
+ b=CCAkerywn1eJ+UnJPqqXMR7WTXCCc39pEF8gTfbmEH3iso4ETorQyY50+ogKLvJvZlWt3b
+ HGLWPAXCRFUtnwDA==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Ben Hutchings <ben@decadent.org.uk>, linux-rt-users@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Debian kernel maintainers <debian-kernel@lists.debian.org>
+Subject: Re: PREEMPT_RT vs i915
+Message-ID: <20250710063014.eOrcpX6Y@linutronix.de>
+References: <7c42fe5a6158445e150e7d63991767e44fc36d3d.camel@decadent.org.uk>
+ <aG6nMhimN1lWKAEP@intel.com>
+ <20250709194443.lkevdn6m@linutronix.de>
+ <aG7MckLkTuzZ5LBe@intel.com>
+ <aG7na/6m/IcrJ3xx@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Revert_patch_to_reject_HB?=
- =?utf-8?q?R3_for_all_eDP_panels_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 10 Jul 2025 06:19:06 -0000
-Message-ID: <175212834672.149613.15852297679165425964@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250710052041.1238567-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250710052041.1238567-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aG7na/6m/IcrJ3xx@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,200 +65,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7106041182111538625==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2025-07-09 15:04:27 [-0700], Matthew Brost wrote:
+> > And IIRC the other remaining problem with RT was the spinlocks used
+> > inside tracepoints (which is uncore lock, and probably some vblank
+> > locks). So that too needs some kind of solution because it's going to
+> > very hard to debug the timing sensitive parts without the tracepoints.
+> 
+> A bit of a drive-by comment, but taking locks inside tracepoints seems
+> like a pretty horrible idea in general. We've managed to write an entire
+> driver (Xe) from scratch and bring it up without doing this. I'd be very
+> surprised if this is truly necessary in i915.
 
-== Series Details ==
+Steven made suggestions how to get around it make it work but my
+impression was that this was not appreciated by the i915 side.
+The general unwritten rule is to not to take any locks but simply assign
+variables.
 
-Series: Revert patch to reject HBR3 for all eDP panels (rev5)
-URL   : https://patchwork.freedesktop.org/series/150569/
-State : success
+> Matt
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_16837 -> Patchwork_150569v5
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_150569v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-rpls-4:         [PASS][1] -> [DMESG-WARN][2] ([i915#13400])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff@edp-1:
-    - fi-skl-6600u:       [PASS][3] -> [DMESG-WARN][4] ([i915#13736]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/fi-skl-6600u/igt@kms_psr@psr-sprite-plane-onoff@edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/fi-skl-6600u/igt@kms_psr@psr-sprite-plane-onoff@edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-jsl-1:          [DMESG-FAIL][5] ([i915#14421]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-jsl-1/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-jsl-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@guc_multi_lrc:
-    - bat-dg2-8:          [ABORT][7] ([i915#14201]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-dg2-8/igt@i915_selftest@live@guc_multi_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-dg2-8/igt@i915_selftest@live@guc_multi_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@dmabuf@all-tests:
-    - fi-pnv-d510:        [ABORT][11] ([i915#12904]) -> [INCOMPLETE][12] ([i915#12904]) +1 other test incomplete
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/fi-pnv-d510/igt@dmabuf@all-tests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/fi-pnv-d510/igt@dmabuf@all-tests.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-  [i915#13736]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13736
-  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
-  [i915#14421]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14421
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16837 -> Patchwork_150569v5
-
-  CI-20190529: 20190529
-  CI_DRM_16837: 7c6cc6e59baa15cc1b10fe5bba36219ae6d227b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8447: 8447
-  Patchwork_150569v5: 7c6cc6e59baa15cc1b10fe5bba36219ae6d227b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/index.html
-
---===============7106041182111538625==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert patch to reject HBR3 for all eDP panels (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150569/">https://patchwork.freedesktop.org/series/150569/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16837 -&gt; Patchwork_150569v5</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_150569v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff@edp-1:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/fi-skl-6600u/igt@kms_psr@psr-sprite-plane-onoff@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/fi-skl-6600u/igt@kms_psr@psr-sprite-plane-onoff@edp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13736">i915#13736</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14421">i915#14421</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@guc_multi_lrc:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-dg2-8/igt@i915_selftest@live@guc_multi_lrc.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-dg2-8/igt@i915_selftest@live@guc_multi_lrc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@dmabuf@all-tests:<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16837/fi-pnv-d510/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150569v5/fi-pnv-d510/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16837 -&gt; Patchwork_150569v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16837: 7c6cc6e59baa15cc1b10fe5bba36219ae6d227b0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8447: 8447<br />
-  Patchwork_150569v5: 7c6cc6e59baa15cc1b10fe5bba36219ae6d227b0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7106041182111538625==--
+Sebastian
