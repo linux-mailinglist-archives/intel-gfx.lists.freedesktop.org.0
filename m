@@ -2,56 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76C6B0077A
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 17:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B442B0078E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 17:50:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997F210E916;
-	Thu, 10 Jul 2025 15:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE50610E92F;
+	Thu, 10 Jul 2025 15:50:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nsCitNrw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jsfdm1Zm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81CFE10E226;
- Thu, 10 Jul 2025 15:47:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 6717FA541DA;
- Thu, 10 Jul 2025 15:47:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70190C4CEE3;
- Thu, 10 Jul 2025 15:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1752162454;
- bh=4WrSJ+ZWFh8+ijA+FOmqLX/WnYSK5XlFQU15JIkymfk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=nsCitNrwhBRnpkTRs3pMi4LmgenRr7s8WFPQ22UqIGN37oCMwjTTvPTErvPpJ5y07
- XaqHYTDHpWQO+xGY2Ujo45xi3BIPjGnHhSxZAXTOARrsA8Zjrg6hw7zh1t5Y1Ta2zx
- KkF/sCWB6kjRkKyi7SDc+Z3ihuUI/io/ChkBAny3TnJgkd2GnsG2EqWjnFlUb2YrjS
- 4deXEf9WEMwBTLT6A6NxdqFeq6TaqKxHcBIGtgNnuXl4m0K5sHEPLE33R+3LQDfoTS
- bFNwUphQ37pmRWPYpK1gIccxmIavvZTBTpVj0O5saXimTm3MgwK6hwyUdp61+s4vEo
- VSFvBkIhbHnBg==
-Message-ID: <37c957be-476a-4ddd-8d52-4474c47cb5e9@kernel.org>
-Date: Thu, 10 Jul 2025 17:47:29 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54EDF10E914
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 15:50:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752162618; x=1783698618;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=8qKwoMldSoFJAqR2IgLUMw+Ke+CgyWISgmL5Uhpawxg=;
+ b=jsfdm1Zm0+FrHEQoUM7UNklLQ2KyvyX2VgM9v34H3DWygSCZ4wUFUgCt
+ paMXdLO1em2gX/b7pF5T4jb7SWJEjsVDRQwCRZog8GOywjptgN2wgGp6f
+ VvnGfGK9gCzUK95Pb7BfYt4ajczzN9wzPGtvKZIxT+fA7HZ1fqDCgIjT8
+ tiHKqtvnWweX+zyVPW6htc/k7uBNDkNYH2I4HA/IqQueLET912C/O3kjx
+ LCs/0qCMw8i3WgQ6RkFXkQl/LbvF3o5m0afJQzTlNajOuw9tVUYdUek45
+ cHxgt3InpaApdUr7njAen5qzF+1kgHm2H+E68wtthOwFrvzBm+M6O0UCY w==;
+X-CSE-ConnectionGUID: RREi0zN6RiOfKFoKTSJgTA==
+X-CSE-MsgGUID: uIOotI24Q4OZyIQbyi3nBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="57061969"
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="57061969"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jul 2025 08:50:18 -0700
+X-CSE-ConnectionGUID: j3yqM9L8T0mJRY8InUSTCg==
+X-CSE-MsgGUID: HGzhJdOlT7e/xQQ4nEl2SA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="161815976"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.244.160])
+ by orviesa005.jf.intel.com with SMTP; 10 Jul 2025 08:50:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Jul 2025 18:50:13 +0300
+Date: Thu, 10 Jul 2025 18:50:13 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mike Galbraith <efault@gmx.de>
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Ben Hutchings <ben@decadent.org.uk>, linux-rt-users@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org,
+ Debian kernel maintainers <debian-kernel@lists.debian.org>
+Subject: Re: PREEMPT_RT vs i915
+Message-ID: <aG_hNb-c_m0yfVE4@intel.com>
+References: <7c42fe5a6158445e150e7d63991767e44fc36d3d.camel@decadent.org.uk>
+ <aG6nMhimN1lWKAEP@intel.com>
+ <20250709194443.lkevdn6m@linutronix.de>
+ <aG7MckLkTuzZ5LBe@intel.com>
+ <da51a963b04f0a1b628e80a2c5df72a1609960d1.camel@gmx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH resend] drm/i915/bios: Apply vlv_fixup_mipi_sequences() to
- v2 mipi-sequences too
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>
-References: <20250703143824.7121-1-hansg@kernel.org>
- <aGetkP3IZ0FYHzAz@intel.com>
- <c2b14619-c981-4caf-a295-2571506cc955@kernel.org>
- <aG_dlWJO-3YwXeub@intel.com>
-Content-Language: en-US, nl
-From: Hans de Goede <hansg@kernel.org>
-In-Reply-To: <aG_dlWJO-3YwXeub@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <da51a963b04f0a1b628e80a2c5df72a1609960d1.camel@gmx.de>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,128 +78,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
-
-On 10-Jul-25 5:34 PM, Rodrigo Vivi wrote:
-> On Mon, Jul 07, 2025 at 11:10:59PM +0200, Hans de Goede wrote:
->> Hi Ville,
->>
->> On 4-Jul-25 12:31 PM, Ville SyrjÃ¤lÃ¤ wrote:
->>> On Thu, Jul 03, 2025 at 04:38:24PM +0200, Hans de Goede wrote:
->>>> From: Hans de Goede <hdegoede@redhat.com>
->>>>
->>>> It turns out that the fixup from vlv_fixup_mipi_sequences() is necessary
->>>> for some DSI panel's with version 2 mipi-sequences too.
->>>>
->>>> Specifically the Acer Iconia One 8 A1-840 (not to be confused with the
->>>> A1-840FHD which is different) has the following sequences:
->>>>
->>>> BDB block 53 (1284 bytes) - MIPI sequence block:
->>>> 	Sequence block version v2
->>>> 	Panel 0 *
->>>>
->>>> Sequence 2 - MIPI_SEQ_INIT_OTP
->>>> 	GPIO index 9, source 0, set 0 (0x00)
->>>> 	Delay: 50000 us
->>>> 	GPIO index 9, source 0, set 1 (0x01)
->>>> 	Delay: 6000 us
->>>> 	GPIO index 9, source 0, set 0 (0x00)
->>>> 	Delay: 6000 us
->>>> 	GPIO index 9, source 0, set 1 (0x01)
->>>> 	Delay: 25000 us
->>>> 	Send DCS: Port A, VC 0, LP, Type 39, Length 5, Data ff aa 55 a5 80
->>>> 	Send DCS: Port A, VC 0, LP, Type 39, Length 3, Data 6f 11 00
->>>> 	...
->>>> 	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 29
->>>> 	Delay: 120000 us
->>>>
->>>> Sequence 4 - MIPI_SEQ_DISPLAY_OFF
->>>> 	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 28
->>>> 	Delay: 105000 us
->>>> 	Send DCS: Port A, VC 0, LP, Type 05, Length 2, Data 10 00
->>>> 	Delay: 10000 us
->>>>
->>>> Sequence 5 - MIPI_SEQ_ASSERT_RESET
->>>> 	Delay: 10000 us
->>>> 	GPIO index 9, source 0, set 0 (0x00)
->>>>
->>>> Notice how there is no MIPI_SEQ_DEASSERT_RESET, instead the deassert
->>>> is done at the beginning of MIPI_SEQ_INIT_OTP, which is exactly what
->>>> the fixup from vlv_fixup_mipi_sequences() fixes up.
->>>>
->>>> Extend it to also apply to v2 sequences, this fixes the panel not working
->>>> on the Acer Iconia One 8 A1-840.
->>>
->>> Do we have the full VBT for this machine already in some bug? If not,
->>> please file a new issue with the VBT attached for posterity.
->>
->> I've filed: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14605
->> with the VBT attached and I'll add a Closes: tag pointing to that
->> to the patch while applying it to drm-intel-fixes.
+On Thu, Jul 10, 2025 at 06:52:58AM +0200, Mike Galbraith wrote:
+> On Wed, 2025-07-09 at 23:09 +0300, Ville Syrjälä wrote:
+> > On Wed, Jul 09, 2025 at 09:44:43PM +0200, Sebastian Andrzej Siewior wrote:
+> > > On 2025-07-09 20:30:26 [+0300], Ville Syrjälä wrote:
+> > > > > 
+> > > > > It seems like the critical uncore lock is currently held in a lot of
+> > > > > places and potentially for a long time.
+> > > > 
+> > > > It shouldn't be held for that long. I think it should just be
+> > > > a raw spinlock.
+> > > 
+> > > What about I resubmit the series and we look again? I don't think the
+> > > lock should be made raw just to be done with it.
+> > 
+> > Until someone actually does the work to confirm the thing is working
+> > reliably there's no point in posting anything.
 > 
-> Hi Hans,
-> 
-> Thank you so much for all the work here.
-> 
-> Just one thing here is that in drm-intel and drm-xe branches,
-> differently from drm-misc ones, we push to the -next variants, and
-> then the maintainers run cherry-pick rounds to propagate to the -fixes ones.
+> What does that entail?
 
-Ok, I'll try to remember that for next time.
+Basic testing would be something like this:
+- enable CONFIG_DRM_I915_DEBUG_VBLANK_EVADE
+- set i915.enable_dsb=0 to make sure everything takes the
+  mmio path
+- stress the heck out of it and make sure the histogram
+  doesn't look significantly worse than on !RT
+  (kms_atomic_transition --extended might take care of the display
+  side here, but it should probably be accompanied with some
+  horrendous system loads which is a less well defined part)
+- ideally do that on a potato
+  (some VLV/CHV (Atom) thing would probably be a good candidate)
+- repeat with lockdep enabled to make everything even harder
 
-> I have just moved it around with a force-push, pushed to drm-intel-next and
-> cherry-picked back.
-
-Thank you for fixing things up.
-
-Regards,
-
-Hans
-
-
-
-
->>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>>> ---
->>>>  drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++----
->>>>  1 file changed, 4 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->>>> index ba7b8938b17c..166ee11831ab 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->>>> @@ -1938,7 +1938,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
->>>>  	int index, len;
->>>>  
->>>>  	if (drm_WARN_ON(display->drm,
->>>> -			!data || panel->vbt.dsi.seq_version != 1))
->>>> +			!data || panel->vbt.dsi.seq_version >= 3))
->>>>  		return 0;
->>>>  
->>>>  	/* index = 1 to skip sequence byte */
->>>> @@ -1961,7 +1961,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
->>>>  }
->>>>  
->>>>  /*
->>>> - * Some v1 VBT MIPI sequences do the deassert in the init OTP sequence.
->>>> + * Some v1/v2 VBT MIPI sequences do the deassert in the init OTP sequence.
->>>>   * The deassert must be done before calling intel_dsi_device_ready, so for
->>>>   * these devices we split the init OTP sequence into a deassert sequence and
->>>>   * the actual init OTP part.
->>>> @@ -1972,9 +1972,9 @@ static void vlv_fixup_mipi_sequences(struct intel_display *display,
->>>>  	u8 *init_otp;
->>>>  	int len;
->>>>  
->>>> -	/* Limit this to v1 vid-mode sequences */
->>>> +	/* Limit this to v1/v2 vid-mode sequences */
->>>>  	if (panel->vbt.dsi.config->is_cmd_mode ||
->>>> -	    panel->vbt.dsi.seq_version != 1)
->>>> +	    panel->vbt.dsi.seq_version >= 3)
->>>>  		return;
->>>>  
->>>>  	/* Only do this if there are otp and assert seqs and no deassert seq */
->>>> -- 
->>>> 2.49.0
->>>
->>
-
+-- 
+Ville Syrjälä
+Intel
