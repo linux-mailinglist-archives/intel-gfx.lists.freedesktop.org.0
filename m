@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F07B00CDC
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 22:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A74A9B00CDE
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 22:17:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE0B10E953;
-	Thu, 10 Jul 2025 20:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DDB110E956;
+	Thu, 10 Jul 2025 20:17:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmVL8S+v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B/9/btY2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58D1F10E952;
- Thu, 10 Jul 2025 20:17:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D69010E955;
+ Thu, 10 Jul 2025 20:17:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752178645; x=1783714645;
+ t=1752178649; x=1783714649;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6Zk4fBa6kRr/oBR2bQdbV1gR6RhEausXd1tlnv/LMnw=;
- b=hmVL8S+vlWkbna0NSwgeKL0UXRL4MxfoshQJJy5wBtWNTIE6zH+plwva
- aAlQIeXjeIdjy0mNOMX7/zoYaGK+PGaaU1rK/BuNhw7PX4r6I2mQKL6d1
- yEYcmy3+wwLEwzzXw9DGETlvj/o/W2tow3H5j/QnQyDda9LybXGFYIr+2
- gIFbwVL8INOTuvfOu1gvirrrAuE/w1TZvYza1hP/LuphKvrFIwAAc0gvG
- L4NqOwMjV86OOiGz2JK6UaMeHN7Bv1GKEZNn2aVkxUE+0YUqGX+BNAhDn
- qoAV7YyQ1v+7oSr72lFp4TMQzy2LdFYiNGNMVaWwhYX5oPM+s4bg+qkCM A==;
-X-CSE-ConnectionGUID: v99ung5+SSO6FSyqOxgdCg==
-X-CSE-MsgGUID: 4+dmuI6LTjaKtmBYVuCNew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="54444536"
-X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="54444536"
+ bh=eDhFQ54gFdNOwFv7MUaJ3TsCbExMF8EsneuEsUKTfto=;
+ b=B/9/btY27ZSx/+vz4NnKzZWpQAUkVSP8dqTYjeRupudo7YwYu1va2aMx
+ 8W6K7w2cV3SKRV8WW9vM6SQ1Pv8gcQS/fMMLs7ViuQto6hJYpr8Bjg9OB
+ hN6iZu0dh8ku3ycyeEV2cGeOoLEMIojW8MswlFeXhpaFZhMgW/JGKVTEl
+ ZU0+lkMZM6RqBEMkTPuJ4d/iSwJHBJBRIMr5R0PH7Ock83KdeBb0XslrI
+ +PIcUWM5zxBqJrBb+AGOdXgkz3XYyTPvU6JksnybE46vTMMcBTPBo9Ph6
+ I0vNTUmaw42HokfjOOg+OAOSX2oIYBTutVaz4HKr6hX98XgIdg/hYmQas A==;
+X-CSE-ConnectionGUID: cS+8+oXuTSm3LnBeBVemTg==
+X-CSE-MsgGUID: c2dOFASTQ12YjvQkAkN4Tw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11490"; a="54444551"
+X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="54444551"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 13:17:25 -0700
-X-CSE-ConnectionGUID: IGexykX3Q6GLr585i58kfg==
-X-CSE-MsgGUID: KKCb/39xSZGrkC046ENvVw==
+ 10 Jul 2025 13:17:28 -0700
+X-CSE-ConnectionGUID: HWM0Yz6BRLyNQ0Z1oFXOPA==
+X-CSE-MsgGUID: x7RkcdqFRpu1QqFYvHVZkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="161877524"
+X-IronPort-AV: E=Sophos;i="6.16,301,1744095600"; d="scan'208";a="161877540"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.160])
- by orviesa005.jf.intel.com with SMTP; 10 Jul 2025 13:17:23 -0700
+ by orviesa005.jf.intel.com with SMTP; 10 Jul 2025 13:17:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 10 Jul 2025 23:17:22 +0300
+ Thu, 10 Jul 2025 23:17:25 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	stable@vger.kernel.org
-Subject: [PATCH 1/7] drm/i915/dp: Fix 2.7 Gbps DP_LINK_BW value on g4x
-Date: Thu, 10 Jul 2025 23:17:12 +0300
-Message-ID: <20250710201718.25310-2-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 2/7] drm/i915/dp: Don't switch to idle pattern before disable
+ on pre-hsw
+Date: Thu, 10 Jul 2025 23:17:13 +0300
+Message-ID: <20250710201718.25310-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250710201718.25310-1-ville.syrjala@linux.intel.com>
 References: <20250710201718.25310-1-ville.syrjala@linux.intel.com>
@@ -73,48 +73,47 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On g4x we currently use the 96MHz non-SSC refclk, which can't actually
-generate an exact 2.7 Gbps link rate. In practice we end up with 2.688
-Gbps which seems to be close enough to actually work, but link training
-is currently failing due to miscalculating the DP_LINK_BW value (we
-calcualte it directly from port_clock which reflects the actual PLL
-outpout frequency).
+For some reason we are switching over to the idle pattern before
+disabling the DP port on pre-hsw. AFAICS this has never been part
+of the documented sequence (and on hsw+ the spec explicitly says
+not to do this). Get rid of it.
 
-Ideas how to fix this:
-- nudge port_clock back up to 270000 during PLL computation/readout
-- track port_clock and the nominal link rate separately so they might
-  differ a bit
-- switch to the 100MHz refclk, but that one should be SSC so perhaps
-  not something we want
+The code goes all the way back to commit 5eb08b69f510 ("drm/i915: enable
+DisplayPort support on IGDNG"), and it was accompanied by a 17ms delay
+which got changed to vbl wait in commit ab527efc2fea ("drm/i915: use
+wait_for_vblank instead of msleep(17)"), and was later completely removed
+in  commit 93c9c19b3d25 ("drm/i915: remove unexplained vblank wait in
+the DP off code").
 
-While we ponder about a better solution apply some band aid to the
-immediate issue of miscalculated DP_LINK_BW value. With this
-I can again use 2.7 Gbps link rate on g4x.
+Smoke tested on g4x/snb/chv.
 
-Cc: stable@vger.kernel.org
-Fixes: 665a7b04092c ("drm/i915: Feed the DPLL output freq back into crtc_state")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/g4x_dp.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f48912f308df..7976fec88606 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1606,6 +1606,12 @@ int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
- void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
- 			   u8 *link_bw, u8 *rate_select)
- {
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	/* FIXME g4x can't generate an exact 2.7GHz with the 96MHz non-SSC refclk */
-+	if (display->platform.g4x && port_clock == 268800)
-+		port_clock = 270000;
-+
- 	/* eDP 1.4 rate select method. */
- 	if (intel_dp->use_rate_select) {
- 		*link_bw = 0;
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 87f6b9602b16..b54edf0d1c23 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -424,17 +424,6 @@ intel_dp_link_down(struct intel_encoder *encoder,
+ 
+ 	drm_dbg_kms(display->drm, "\n");
+ 
+-	if ((display->platform.ivybridge && port == PORT_A) ||
+-	    (HAS_PCH_CPT(display) && port != PORT_A)) {
+-		intel_dp->DP &= ~DP_LINK_TRAIN_MASK_CPT;
+-		intel_dp->DP |= DP_LINK_TRAIN_PAT_IDLE_CPT;
+-	} else {
+-		intel_dp->DP &= ~DP_LINK_TRAIN_MASK;
+-		intel_dp->DP |= DP_LINK_TRAIN_PAT_IDLE;
+-	}
+-	intel_de_write(display, intel_dp->output_reg, intel_dp->DP);
+-	intel_de_posting_read(display, intel_dp->output_reg);
+-
+ 	intel_dp->DP &= ~DP_PORT_EN;
+ 	intel_de_write(display, intel_dp->output_reg, intel_dp->DP);
+ 	intel_de_posting_read(display, intel_dp->output_reg);
 -- 
 2.49.0
 
