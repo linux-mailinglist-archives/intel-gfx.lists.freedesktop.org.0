@@ -2,66 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA19CAFFD3B
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 10:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E5CAFFEB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Jul 2025 12:06:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFE2010E360;
-	Thu, 10 Jul 2025 08:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E2D10E203;
+	Thu, 10 Jul 2025 10:06:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TydfJyNA";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="XK37xA+W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0D3E10E1E9;
- Thu, 10 Jul 2025 08:58:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752137940; x=1783673940;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=GXW0pIuhEHX7YZkDZv4Rdo2g0JmXlihzCrkS3y3V6Js=;
- b=TydfJyNAy4Ww9jcD9pXU3cFLyTb5hJSktaMDknDpAG1HLaQTYVQWzsHq
- l3RyQ0HJdfR8pCpLazRxd/XcqgOMHge1bttl+FAUWopukK277aRew72ix
- p6FRU/0K3sRcmmRh/3AcQ9trbHC1ALzMVoTQigqkqv+yrKSV0DT5ovLJg
- qtgaQZWlmYV6/6+SlCo6T6nyB0FiLhhafWkk10BSpA3QZt3u8jO8/3FA+
- u7KyGJ++pJXtBidU6ODA/5J5oj4zN/QXB5Pi8x5Eo3kzTqFU0zEk99v/q
- A3uGxBperOs5rCQAEoNTpgNdTqZXk7MMURrJB+TUvVxG3jMP9kZmJJuML w==;
-X-CSE-ConnectionGUID: irPX+2WHQx+CsnKj+4UdEg==
-X-CSE-MsgGUID: ytrT/rRRSbGHvvCpUKLMZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11489"; a="65862151"
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="65862151"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 01:59:00 -0700
-X-CSE-ConnectionGUID: K88X3eenT3GbfPkTYGvO0g==
-X-CSE-MsgGUID: Z4EO+Bf9Qu+w6oTU4VDjcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,300,1744095600"; d="scan'208";a="161574256"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.111])
- ([10.245.244.111])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2025 01:58:55 -0700
-Message-ID: <e522cdc7-1787-48f2-97e5-0f94783970ab@linux.intel.com>
-Date: Thu, 10 Jul 2025 10:59:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE96110E203
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 10:06:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1752141984;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=cKLk4Ejj9qsVlEDxN/3XSV0TiAbLt4wlCRkdUpPJP40=;
+ b=XK37xA+WlSpVi09u8fErAOm0jDJ5zmbjfHgOc8ECfPgc9kuLMlxEJbWCiUkkm51w+8JJLw
+ Okm+7NH05IKIJNtHf8+XslDILPHNPbspwqpE/T269zmR+Zh96hWZHllc1nqQkx7G99yk2a
+ HiCg9gN8ZTLSAKoQOd9BpqP5WpL8+Qk=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-275-TC0ckZh5Nsavu3rKwTq7Bw-1; Thu, 10 Jul 2025 06:06:22 -0400
+X-MC-Unique: TC0ckZh5Nsavu3rKwTq7Bw-1
+X-Mimecast-MFC-AGG-ID: TC0ckZh5Nsavu3rKwTq7Bw_1752141981
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-45311704cdbso5378775e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Jul 2025 03:06:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752141981; x=1752746781;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=cKLk4Ejj9qsVlEDxN/3XSV0TiAbLt4wlCRkdUpPJP40=;
+ b=tawyEXAth3xAOmLz14ZKxZkq8RW4ge3WQFeQMXCV6Lbqt7uT8NlddTqIInhoWcFIi9
+ ueLYIBJbrjPzDAl2SSQdp8EQr4igRSQAQpfXwMbmMsry0ZKGFBRYpnN4cFICg6C4SVSZ
+ U9eGaJ91ewMXshpeDX9m7u38n5bF/2tS9gAHC+VA5sXvpEj47Qe5JmaCOoWeHI6oMFNY
+ o2oQqM6YMfwP4SVTrxT6Xt/QUWOXxblSfpBHsgCVH2RJXsxLhdI/sKMjD/WCVLYKOnnm
+ SFN1a5uOYp62RMhb7UfhnoLVGNE2KlB/SD5pC7OKDykC8QpmpT3zBibwvIRudgS5Hjb8
+ k5Vg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVKnkfWs6VZrdqL/WXRPfUCewgd4wkLxUOzZSLdI7Fm7+TtArgDBbQGUnyqF4pA6DmgWkbOGqZxVAU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxjJdQ9HtKVMLEKyY3ay65z4xEGC/jaoJTSQMbd4ancOWjNOfE+
+ 64hbVgJixOiVkxeBw+h9E1L3pFv8eAap+GUn/Rx7S1mrwQFBT54qlHi6e/Aun63h51dgSgKVsB0
+ wUPvok0P0IyDhvdDJzXQUJfnrnlCo9a6k0RK/xwDa02FvvWFwZN4QIqqbWDLFJCJwS2u+9yo0zN
+ C1QXwF
+X-Gm-Gg: ASbGncsoc8kzN6Oz6EAv752PyJtoQLzblv4FPKBHKyPjgvIMYLNw3vLjvn1uTxWXZ9+
+ Jh+7xhbE5dfYk7DaER/V8zYFtdcwtcFQLHfzH9NQeq7tolIvHTNRkh+cFmVkd/z0ibNPayoyPUE
+ cHtrZGXumvpESQg9zOGWPJg53HFDrh6Z75lMSRk8lyYOViwwqlRpdfzCcZRCV70I9RPw8soBpF3
+ OdN7TIiXIDtNeTj08XxfNTQqcE+OX5xup0ojvgINY/s6cLroqRjUFjgeJelbPnvsa8xSJvZ+g==
+X-Received: by 2002:a05:600c:811a:b0:442:ccfa:1461 with SMTP id
+ 5b1f17b1804b1-454dd21b419mr19525855e9.13.1752141981095; 
+ Thu, 10 Jul 2025 03:06:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGP8nxKZdo/3rz9jPlN62JBbEZtii+3ngeB7ANH5iBaHmFVDgjQdd2IQwKBd6DD/kWYe71AKQ==
+X-Received: by 2002:a05:600c:811a:b0:442:ccfa:1461 with SMTP id
+ 5b1f17b1804b1-454dd21b419mr19525425e9.13.1752141980552; 
+ Thu, 10 Jul 2025 03:06:20 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b5e8e14e82sm1437619f8f.71.2025.07.10.03.06.20
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Jul 2025 03:06:20 -0700 (PDT)
+Date: Thu, 10 Jul 2025 12:06:19 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20250710-observant-elite-dingo-acfd6d@houat>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="bzuvyvhasloi7xeg"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,99 +102,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
 
-Pull request for v6.16!
+--bzuvyvhasloi7xeg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Best regards,
-~Maarten
+Hi Dave, Sima,
 
-drm-misc-fixes-2025-07-10:
-drm-misc-fixes for v6.16-rc6 or final:
-- Fix nouveau fail on debugfs errors.
-- Magic 50 ms to fix nouveau suspend.
-- Call rust destructor on drm device release.
-- Fix DMA api error handling in tegra/nvdec.
-- Fix PVR device reset.
-- Habanalabs maintainer update.
-- Small memory leak fix when nouveau acpi init fails.
-- Do not attempt to bind to any PCI device with AGP capability.
-- Make FB's acquire handles on backing object, same as i915/xe already does.
-- Fix race in drm_gem_handle_create_tail.
-The following changes since commit 226862f50a7a88e4e4de9abbf36c64d19acd6fd0:
+Here's this week drm-misc-next PR. It's likely to be the last PR for
+this release cycle.
 
-  drm/v3d: Disable interrupts before resetting the GPU (2025-07-02 19:08:11 -0300)
+Maxime
+
+drm-misc-next-2025-07-10:
+drm-misc-next for 6.17:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+Driver Changes:
+- amdgpu: debugfs improvements
+- ast: Improve hardware generations implementation
+- dma-buf heaps:
+  - Give the CMA heap a stable name
+- panthor: fix UAF in debugfs
+- rockchip: Convert inno_hdmi to a bridge
+- sti: Convert to devm_drm_bridge_alloc()
+- vkms: Use faux_device
+
+- bridge:
+  - Improve CEC handling code, convertions to devm_drm_bridge_alloc()
+The following changes since commit 203dcde881561f1a4ee1084e2ee438fb4522c94a:
+
+  Merge tag 'drm-msm-next-2025-07-05' of https://gitlab.freedesktop.org/drm/msm into drm-next (2025-07-08 14:31:19 +0200)
 
 are available in the Git repository at:
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-07-10
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-07-10
 
-for you to fetch changes up to bd46cece51a36ef088f22ef0416ac13b0a46d5b0:
+for you to fetch changes up to fe69a391808404977b1f002a6e7447de3de7a88e:
 
-  drm/gem: Fix race in drm_gem_handle_create_tail() (2025-07-09 15:53:34 +0200)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.16-rc6 or final:
-- Fix nouveau fail on debugfs errors.
-- Magic 50 ms to fix nouveau suspend.
-- Call rust destructor on drm device release.
-- Fix DMA api error handling in tegra/nvdec.
-- Fix PVR device reset.
-- Habanalabs maintainer update.
-- Small memory leak fix when nouveau acpi init fails.
-- Do not attempt to bind to any PCI device with AGP capability.
-- Make FB's acquire handles on backing object, same as i915/xe already does.
-- Fix race in drm_gem_handle_create_tail.
+  drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code (2025-07-10 10:16:50 +0100)
 
 ----------------------------------------------------------------
-Aaron Thompson (1):
-      drm/nouveau: Do not fail module init on debugfs errors
+drm-misc-next for 6.17:
 
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+
+Driver Changes:
+- amdgpu: debugfs improvements
+- ast: Improve hardware generations implementation
+- dma-buf heaps:
+  - Give the CMA heap a stable name
+- panthor: fix UAF in debugfs
+- rockchip: Convert inno_hdmi to a bridge
+- sti: Convert to devm_drm_bridge_alloc()
+- vkms: Use faux_device
+
+- bridge:
+  - Improve CEC handling code, convertions to devm_drm_bridge_alloc()
+
+----------------------------------------------------------------
 Alessio Belle (1):
-      drm/imagination: Fix kernel crash when hard resetting the GPU
+      drm/imagination: Clear runtime PM errors while resetting the GPU
 
-Ben Skeggs (1):
-      drm/nouveau/gsp: fix potential leak of memory used during acpi init
+Andy Yan (9):
+      drm/rockchip: inno_hdmi: Merge register definition to c file
+      drm/rockchip: inno_hdmi: Refactor register macros to make checkpatch happy
+      drm/rockchip: inno_hdmi: Remove unnecessary parentheses to make checkpatch happy
+      drm/rockchip: inno_hdmi: Rename function inno_hdmi_reset to inno_hdmi_init_hw
+      drm/rockchip: inno_hdmi: Move ddc/i2c configuration and HOTPLUG unmute to inno_hdmi_init_hw
+      drm/rockchip: inno_hdmi: Use sleep_range instead of udelay
+      drm/rockchip: inno_hdmi: switch i2c registration to devm functions
+      drm/rockchip: inno_hdmi: Simpify clk get/enable by devm_clk_get_enabled api
+      drm/rockchip: vop2: Fix the update of LAYER/PORT select registers when there are multi display output on rk3588/rk3568
 
-Danilo Krummrich (1):
-      rust: drm: device: drop_in_place() the drm::Device in release()
+Chaoyi Chen (2):
+      drm/rockchip: lvds: Convert to drm bridge
+      drm/rockchip: cdn-dp: Convert to drm bridge
 
-Dave Airlie (1):
-      nouveau/gsp: add a 50ms delay between fbsr and driver unload rpcs
+Cristian Ciocaltea (3):
+      drm/display: hdmi-cec-helper: Fix adapter unregistration
+      drm/bridge: Fix kdoc comment for DRM_BRIDGE_OP_HDMI_CEC_ADAPTER
+      drm/bridge: adv7511: Fix DRM_BRIDGE_OP_HDMI_{AUDIO|CEC_ADAPTER} setup
 
-Lukas Wunner (1):
-      agp/amd64: Check AGP Capability before binding to unsupported devices
+Dan Carpenter (1):
+      drm/dp: Clean up white space in drm_edp_backlight_probe_state()
 
-Mikko Perttunen (1):
-      drm/tegra: nvdec: Fix dma_alloc_coherent error check
+Greg Kroah-Hartman (2):
+      drm/vkms: convert to use faux_device
+      drm/vgem/vgem_drv convert to use faux_device
 
-Ofir Bitton (1):
-      MAINTAINERS: Change habanalabs maintainer
+Heiko Stuebner (1):
+      drm/rockchip: vop2: fail cleanly if missing a primary plane for a video-port
+
+Jared Kangas (3):
+      Documentation: dma-buf: heaps: Fix code markup
+      dma-buf: heaps: Parameterize heap name in __add_cma_heap()
+      dma-buf: heaps: Give default CMA heap a fixed name
+
+Juston Li (1):
+      gpu/trace: make TRACE_GPU_MEM configurable
+
+Luca Ceresoli (3):
+      drm/bridge: tc358767: fix uninitialized variable regression
+      drm/sti: hdmi: convert to devm_drm_bridge_alloc() API
+      drm/sti: hda: convert to devm_drm_bridge_alloc() API
+
+Maarten Lankhorst (1):
+      Merge remote-tracking branch 'drm/drm-next' into drm-misc-next
+
+Marek Szyprowski (1):
+      drm/bridge: analogix_dp: Use devm_drm_bridge_alloc() API
+
+Matthew Brost (1):
+      drm: Simplify drmm_alloc_ordered_workqueue return
+
+Shixiong Ou (1):
+      fbcon: Fix outdated registered_fb reference in comment
 
 Simona Vetter (1):
-      drm/gem: Fix race in drm_gem_handle_create_tail()
+      drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code
+
+Sunil Khatri (6):
+      drm: move drm based debugfs funcs to drm_debugfs.c
+      drm: add debugfs support on per client-id basis
+      drm/amdgpu: add debugfs support for VM pagetable per client
+      drm/amdgpu: add support of debugfs for mqd information
+      drm/amdgpu: fix MQD debugfs undefined symbol when DEBUG_FS=n
+      drm/amdgpu: fix the logic to validate fpriv and root bo
+
+T.J. Mercier (1):
+      dma-buf: system_heap: No separate allocation for attachment sg_tables
 
 Tamir Duberstein (1):
       rust: drm: remove unnecessary imports
 
-Thomas Zimmermann (1):
-      drm/framebuffer: Acquire internal references on GEM handles
+Thierry Reding (1):
+      drm/fbdev-client: Skip DRM clients if modesetting is absent
 
- MAINTAINERS                                        |  2 +-
- drivers/char/agp/amd64-agp.c                       | 16 ++++----
- drivers/gpu/drm/drm_framebuffer.c                  | 31 +++++++++++++-
- drivers/gpu/drm/drm_gem.c                          | 48 +++++++++++++++-------
- drivers/gpu/drm/drm_gem_framebuffer_helper.c       | 16 ++++----
- drivers/gpu/drm/drm_internal.h                     |  2 +-
- drivers/gpu/drm/drm_panic_qr.rs                    |  2 +-
- drivers/gpu/drm/imagination/pvr_power.c            |  4 +-
- drivers/gpu/drm/nouveau/nouveau_debugfs.c          |  6 +--
- drivers/gpu/drm/nouveau/nouveau_debugfs.h          |  5 +--
- drivers/gpu/drm/nouveau/nouveau_drm.c              |  4 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 27 +++++++++---
- drivers/gpu/drm/tegra/nvdec.c                      |  6 +--
- include/drm/drm_file.h                             |  3 ++
- include/drm/drm_framebuffer.h                      |  7 ++++
- rust/kernel/drm/device.rs                          | 12 +++++-
- rust/kernel/drm/driver.rs                          |  1 -
- 17 files changed, 130 insertions(+), 62 deletions(-)
+Thomas Zimmermann (13):
+      drm/gem-shmem: Do not map s/g table by default
+      drm/tegra: Test for imported buffers with drm_gem_is_imported()
+      drm/tegra: Use dma_buf from GEM object instance
+      drm/ast: Declare helpers for POST in header
+      drm/ast: Move Gen7+ POST code to separate source file
+      drm/ast: Move Gen6+ POST code to separate source file
+      drm/ast: Move Gen4+ POST code to separate source file
+      drm/ast: Move Gen2+ and Gen1 POST code to separate source files
+      drm/ast: Move struct ast_dramstruct to ast_post.h
+      drm/ast: Handle known struct ast_dramstruct with helpers
+      drm/ast: Split ast_set_def_ext_reg() by chip generation
+      drm/ast: Gen7: Disable VGASR0[1] as on Gen4+
+      drm/ast: Gen7: Switch default registers to gen4+ state
+
+Tvrtko Ursulin (2):
+      drm/sched: De-clutter drm_sched_init
+      drm/sched: Consolidate drm_sched_rq_select_entity_rr
+
+Yumeng Fang (1):
+      drm/rockchip: dw_hdmi: Use dev_err_probe() to simplify code
+
+ Documentation/userspace-api/dma-buf-heaps.rst      |   11 +-
+ drivers/Kconfig                                    |    2 -
+ drivers/accel/drm_accel.c                          |   16 -
+ drivers/dma-buf/heaps/Kconfig                      |   10 +
+ drivers/dma-buf/heaps/cma_heap.c                   |   36 +-
+ drivers/dma-buf/heaps/system_heap.c                |   43 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c        |   52 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h        |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c            |    2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c          |   55 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h          |    1 +
+ drivers/gpu/drm/ast/Makefile                       |    5 +
+ drivers/gpu/drm/ast/ast_2000.c                     |  149 ++
+ drivers/gpu/drm/ast/ast_2100.c                     |  348 ++++
+ drivers/gpu/drm/ast/ast_2300.c                     | 1328 +++++++++++++
+ drivers/gpu/drm/ast/ast_2500.c                     |  569 ++++++
+ drivers/gpu/drm/ast/ast_2600.c                     |   44 +
+ drivers/gpu/drm/ast/ast_dram_tables.h              |  207 --
+ drivers/gpu/drm/ast/ast_drv.c                      |    4 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |   17 +-
+ drivers/gpu/drm/ast/ast_post.c                     | 2027 +-------------------
+ drivers/gpu/drm/ast/ast_post.h                     |   50 +
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |    6 +-
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |   40 +-
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |    3 +-
+ drivers/gpu/drm/bridge/tc358767.c                  |    1 +
+ drivers/gpu/drm/clients/drm_client_setup.c         |    5 +
+ drivers/gpu/drm/display/drm_dp_helper.c            |   14 +-
+ drivers/gpu/drm/display/drm_hdmi_cec_helper.c      |    2 +-
+ drivers/gpu/drm/drm_debugfs.c                      |  118 +-
+ drivers/gpu/drm/drm_drv.c                          |   16 +-
+ drivers/gpu/drm/drm_file.c                         |   11 +
+ drivers/gpu/drm/drm_internal.h                     |    6 +-
+ drivers/gpu/drm/drm_panic_qr.rs                    |    2 +-
+ drivers/gpu/drm/imagination/pvr_power.c            |   59 +-
+ drivers/gpu/drm/panthor/panthor_gem.c              |   31 +-
+ drivers/gpu/drm/panthor/panthor_gem.h              |    3 -
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |  291 ++-
+ drivers/gpu/drm/rockchip/cdn-dp-core.h             |    8 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |   16 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.c               |  452 ++++-
+ drivers/gpu/drm/rockchip/inno_hdmi.h               |  349 ----
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |   29 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   33 +
+ drivers/gpu/drm/rockchip/rockchip_lvds.c           |   68 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c       |   89 +-
+ drivers/gpu/drm/scheduler/sched_main.c             |   81 +-
+ drivers/gpu/drm/sti/sti_hda.c                      |   27 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                     |   26 +-
+ drivers/gpu/drm/sti/sti_hdmi.h                     |    2 +
+ drivers/gpu/drm/tegra/gem.c                        |    4 +-
+ drivers/gpu/drm/udl/udl_drv.c                      |    2 +-
+ drivers/gpu/drm/vgem/vgem_drv.c                    |   30 +-
+ drivers/gpu/drm/vkms/vkms_crtc.c                   |    2 -
+ drivers/gpu/drm/vkms/vkms_drv.c                    |   28 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |    4 +-
+ drivers/gpu/trace/Kconfig                          |   11 +-
+ drivers/video/Kconfig                              |    2 +
+ drivers/video/fbdev/core/fbcon.c                   |    4 +-
+ include/drm/drm_accel.h                            |    5 -
+ include/drm/drm_bridge.h                           |    2 +-
+ include/drm/drm_debugfs.h                          |   11 +
+ include/drm/drm_drv.h                              |   19 +-
+ include/drm/drm_file.h                             |    7 +
+ include/drm/drm_gem_shmem_helper.h                 |   18 +-
+ include/drm/drm_managed.h                          |   15 +-
+ rust/kernel/drm/driver.rs                          |    1 -
+ 67 files changed, 3761 insertions(+), 3169 deletions(-)
+ create mode 100644 drivers/gpu/drm/ast/ast_2000.c
+ create mode 100644 drivers/gpu/drm/ast/ast_2100.c
+ create mode 100644 drivers/gpu/drm/ast/ast_2300.c
+ create mode 100644 drivers/gpu/drm/ast/ast_2500.c
+ create mode 100644 drivers/gpu/drm/ast/ast_2600.c
+ delete mode 100644 drivers/gpu/drm/ast/ast_dram_tables.h
+ create mode 100644 drivers/gpu/drm/ast/ast_post.h
+ delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.h
+
+--bzuvyvhasloi7xeg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaG+QmwAKCRAnX84Zoj2+
+drjXAYCdii//9WtwKswRhFfpfmWun4TTFDscam6Wm8dt/BVGzt5Krit15FzDtMDx
+LMh+SYEBf1PiaVOYddzU/GOrmwkvhlVUFD7wPeh5/6+CgR3+amSMIUL4uNClZved
+W+xUx8Po3Q==
+=FctW
+-----END PGP SIGNATURE-----
+
+--bzuvyvhasloi7xeg--
+
