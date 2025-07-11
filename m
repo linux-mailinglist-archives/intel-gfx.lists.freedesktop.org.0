@@ -2,61 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B40B01F79
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 16:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1699B020D7
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 17:49:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3E5A10EA62;
-	Fri, 11 Jul 2025 14:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE6810E2C7;
+	Fri, 11 Jul 2025 15:49:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jZEUlBGW";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="H6d/inuu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 130F510E2C1;
- Fri, 11 Jul 2025 14:49:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752245395; x=1783781395;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=379ni3na9sqaS5ntwQHTeHR1dMZ4hSE6OVE7y+A3kQI=;
- b=jZEUlBGWOGMTh8tlJZmylu4cBlklDGEWa/kZyZ57mtAc/bYV29zwKQCB
- DTNXGsJ7W4JZdZr+AorSBvyf3XzcO86RIkDkkAVbmcBGZTRF7E2gop1bU
- E67xAaXSRUVTH/t/7S7rBEE1jEVQGidDSZUbPZctOCiOYe3QPFUYff9FT
- fFtMsY2Ii0Ia9y+0oojSi0sC6LSpJrKPKR5MXn4m+8BjJEe+4j25/6UXe
- LdJZAqKCxjhE/PmX1XloNhFleAWSE0MiCeoF2IYw5jezrIJQzbeAhCT6u
- 28gWnwLvD+KcB6+n1uE6ShDJ/u76xmbnlD5J76eKMb8Yro4EQT3O7Nlc4 Q==;
-X-CSE-ConnectionGUID: xB/M3ABNRUa0vKO+ZR8bjA==
-X-CSE-MsgGUID: LbG0bGYhQduT8RsSTO/kVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="65245611"
-X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; d="scan'208";a="65245611"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jul 2025 07:49:55 -0700
-X-CSE-ConnectionGUID: DTMFFw7TRQmBmKiOI4TMHw==
-X-CSE-MsgGUID: 5AWRC6ChTu+4SjkDnIXXAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,303,1744095600"; d="scan'208";a="162069387"
-Received: from johunt-mobl9.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.78])
- by orviesa005.jf.intel.com with SMTP; 11 Jul 2025 07:49:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Jul 2025 17:49:50 +0300
-Date: Fri, 11 Jul 2025 17:49:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Subject: Re: [PATCH 0/1] Revert patch to reject HBR3 for all eDP panels
-Message-ID: <aHEkjiw-7hMTnMKO@intel.com>
-References: <20250710052041.1238567-1-ankit.k.nautiyal@intel.com>
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D7610E2B1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 15:49:00 +0000 (UTC)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-ae3a604b43bso376597066b.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 08:48:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1752248938; x=1752853738;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=flK+SksbT18bLb3jG4ILK6UNz0qu/K2MvbsIMeVlTeI=;
+ b=H6d/inuuUeUMe2jBuJ1GsGQKplJgh6zFsjw9e9ZBKhB5bbe6sVFW4SwMzy4WK5I8hM
+ 0BL2QbJyDii8SsKheUnBI5y2FTZufFsYBn5of/kRKcBpy36ZqqGYHTBXR045RALP7lBK
+ 7bn36ANlOuvIfaH+2U55Kn/wyS4D5zP1gWto0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752248938; x=1752853738;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=flK+SksbT18bLb3jG4ILK6UNz0qu/K2MvbsIMeVlTeI=;
+ b=fAeRzCYKk2K02+nPtjVBJTDiRaT+3DXPKP5drvzgutw0Ea0g4f6Y867lS3ujWQW7Cg
+ nxYTpPgqO4tP+RkDRRAWQtky7HwLFzYwW2AM8triCYXoKdBck9u4O/al/BpCd0P3TDyq
+ 2zxhBK+iy+ynqok/Ln/AFIh/bDLaIk3ZbAfxKMxkUdPxPUGeoe/gVA6uLaWnsKkxRBt4
+ ur5vdJWj97MTtHqyPKuFfXwS9h5Lj8BK/D7bVYXT29Y7GrRLPcu44m9BHFaAs7VwR/ag
+ yrKrLB1FYN6CMVcyHSqxWRLp7dwCY9eaJD/WQvFhAjQbtY4Bn2zR4lvQ0T3KvINxsUHN
+ qe8Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXMcTY922LQXo9vzHWcTrNelZXrI3b0KCoaST+Z2YkNSung7SRryOVFXyTy+COGO1FmjPj0tN7IBKo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwU2XMbCcAfYX0CIYVliDVJ8fmhqCc66TpT4t6Qp+9tQzHzuCuZ
+ 7Yatwz0zsSIc/5zQQmSFoz44PwarJD1Sx73kZcJTiIodXNDu00Y1GzaCzsnfG5zbGnicPVTp8o4
+ 2CTRodi342g==
+X-Gm-Gg: ASbGncs7FsW1Cs4VAc29cy8yWMwEgHlO/8m6apI5w8/pGX5AxOnYE1rwLv55JJDk3eF
+ 7I8Z2DWvOEdzWNJFdzxq/vVnc+TL+/n3MxXPtwLahHtx8iv1D3SjGm0/VtFuZ+4eYuC1UG7Dvfh
+ KSX7iJQZ82usJiOLDIXspUiOlGqQQYeCrMGYCfMmFvL4wnbU0V7o+h5AiK8DbgBQGEZmiqsYJ3K
+ d5IvC4owGhSB+4/jRPwgdhsz1JPccT7vjvuFW9PJM0yakeuv9coWMqnj4HuUKQdLCfGER7Mrf4z
+ 8rT0040YNfita9P1O3uAHun5SSsynyV+/vQpkkZp1Hchjk3vLdKgFN8vo/tJUCBpTD86jT8eEXf
+ zDPcTiUvThBo4LUxZLb7ywONgXgvr5LgrAzCs4GzxS7wPt8sbGHBoD/PsvrP6r6FwdzmS9uXA
+X-Google-Smtp-Source: AGHT+IFgwbSaqZE3RqV0NB+hj3Oj71VsFzVjQqcrbYsAoP3C1LTo14ZVrScDX42Tn2L8NyWoCIyE0g==
+X-Received: by 2002:a17:907:c13:b0:ae3:163a:f69a with SMTP id
+ a640c23a62f3a-ae6fbf619bcmr406876266b.33.1752248938298; 
+ Fri, 11 Jul 2025 08:48:58 -0700 (PDT)
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com.
+ [209.85.208.49]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-ae6e82dedf4sm319321966b.148.2025.07.11.08.48.56
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 11 Jul 2025 08:48:56 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id
+ 4fb4d7f45d1cf-60c5b7cae8bso3604309a12.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 08:48:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVKmWz03Qd9mirVVb0YKquVOjnk7sBoq8rVUQAAXMIK2NwmAz0cemzaEHp29K2NYOJUfQAF4kbBrOs=@lists.freedesktop.org
+X-Received: by 2002:a05:6402:2345:b0:606:df70:7a9f with SMTP id
+ 4fb4d7f45d1cf-611e84881c0mr3248744a12.19.1752248936308; Fri, 11 Jul 2025
+ 08:48:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250710052041.1238567-1-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+References: <20250711093744.120962-1-tzimmermann@suse.de>
+In-Reply-To: <20250711093744.120962-1-tzimmermann@suse.de>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 11 Jul 2025 08:48:39 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whnUp7M-RZ6yzOyF6bzA4cmbckaH4ii_+6nBm0PqKOaQg@mail.gmail.com>
+X-Gm-Features: Ac12FXxfNX9iFY-MTPcFF9E1sp2PSMV-QdcnP7if0RVZKfq1TRX51YyGvLKD3nY
+Message-ID: <CAHk-=whnUp7M-RZ6yzOyF6bzA4cmbckaH4ii_+6nBm0PqKOaQg@mail.gmail.com>
+Subject: Re: [PATCH 0/9] drm: Revert general use of struct
+ drm_gem_object.dma_buf
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: simona@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, 
+ linux+etnaviv@armlinux.org.uk, kraxel@redhat.com, christian.gmeiner@gmail.com, 
+ dmitry.osipenko@collabora.com, gurchetansingh@chromium.org, olvaffe@gmail.com, 
+ zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com, 
+ dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,45 +103,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 10, 2025 at 10:50:39AM +0530, Ankit Nautiyal wrote:
-> Revert the existing patch that rejects HBR3 for all eDP panels that
-> do not support TPS4. With the patch reverted, the gitlab issue#5969 [1]
-> will get opened again. Add a quirk to limit the rate to HBR2 for the
-> device mentioned in [1] and close the issue.
-> 
-> This series is a continuation from [2], and [3].
+On Fri, 11 Jul 2025 at 02:40, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+> Reverting the whole thing is the only sensible action here.
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+I'm assuming this is against some current drm tree, not mine, because
+it doesn't apply here.
 
-> 
-> [1] https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5969
-> [2] https://lore.kernel.org/all/1cd154a09823abf6d34221ae9e02f9cd342cc3a3@intel.com/
-> [3] https://lore.kernel.org/all/87y0uzh5tz.fsf@intel.com/
-> 
-> Rev2:
-> Instead of revert and add quirk, add a single patch that fixes the
-> commit. (Jani).
-> 
-> Rev3:
-> Instead of refining, just revert the patch for now and add quirk for the
-> ICL machine as a separate patch. (Ville)
-> 
-> Rev4:
-> Address review comments from Ville.
-> 
-> Ankit Nautiyal (2):
->   Revert "drm/i915/dp: Reject HBR3 when sink doesn't support TPS4"
->   drm/i915/dp: Add device specific quirk to limit eDP rate to HBR2
-> 
->  drivers/gpu/drm/i915/display/intel_dp.c     | 30 ++++++++-------------
->  drivers/gpu/drm/i915/display/intel_quirks.c |  9 +++++++
->  drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
->  3 files changed, 21 insertions(+), 19 deletions(-)
-> 
-> -- 
-> 2.45.2
+I'll try the smaller set of reverts that Simona suggested for my
+testing, and will get back to you on that.
 
--- 
-Ville Syrjälä
-Intel
+Background for others: current -git ends up having odd hangs when
+Xwayland starts for me (not at boot, but when I log in). It seems to
+be very timing-dependent, so presumably I'm just unlucky with my
+hardware.
+
+The timing-dependence has made my attempts to bisect it very
+frustrating and non-conclusive, but reverting 5307dce878d4 ("drm/gem:
+Acquire references on GEM handles for framebuffers") made things work
+_better_, to the point where I thought it was fixed.
+
+Until the hang came back.
+
+The "hang" is not some kind of kernel hang, it seems to be user-space
+getting confused by the changes. Because I can still switch back to a
+text VT, and there are no messages in the kernel logs. And the system
+"recovers", in that after a 30-second timeout (it feels like a minute,
+but logs seem to imply it really is just half a minute), I get
+
+   gnome-session-manager@gnome.service: start operation timed out. Terminating.
+   gnome-session-manager@gnome.service: Failed with result 'timeout'.
+
+and it restarts, and things work fine on the second try. Except when
+they don't - on one reboot it went through this twice, and
+
+Now, because it's obviously timing-sensitive, it might be something
+entirely different going on and I have no guarantees, but it does seem
+to be related to that commit 5307dce878d4.
+
+And I only see this on one of my machines. Again, might be timing, but
+might also be that it only shows up on certain hardware (in my case:
+Radeon RX 580).
+
+           Linus
