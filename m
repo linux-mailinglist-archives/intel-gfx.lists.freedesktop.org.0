@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDAB0B01759
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 11:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF28CB01799
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 11:25:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C7D10E9E2;
-	Fri, 11 Jul 2025 09:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F69B10E9E9;
+	Fri, 11 Jul 2025 09:25:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ge/OURZN";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MaTyZFg0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2A2210E9E2
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 09:12:12 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4537edf2c3cso19606735e9.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 02:12:12 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A774510E9E9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 09:25:30 +0000 (UTC)
+Received: by mail-wr1-f42.google.com with SMTP id
+ ffacd0b85a97d-3a57ae5cb17so1173378f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 02:25:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1752225131; x=1752829931; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1752225929; x=1752830729; darn=lists.freedesktop.org; 
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date:from:to
  :cc:subject:date:message-id:reply-to;
- bh=Wnt/Z++MbdZU9XOrfATZ/FINeW1LQRc4CZfb34tf/pc=;
- b=ge/OURZNVXwHDnOluCdzNpS5h39fiPxLWrtbhtHXjHoYynZQ7QdlcafprBmWOoSpE9
- 50hI54VJqD8d5t+m1ncMZdLyxmpOL3buO0ZlyOWJvF1IEF6yzEudUyXET2OtnegS4xgo
- 4mXP1C9AQj8ztmvFLHjAl7W7aykbbOusZ9s5U=
+ bh=Cl3xZohRlbwgxuqHEPJStOQdQbgt6Sp2wBtzOQkavsk=;
+ b=MaTyZFg0/6DiRmAhiH/+r94/nuqTbtkIcnQ+Nul6av/fxwHY2b38lMIF0c0xOiulHs
+ xizV+O928EAYx0uWgIDRhsbqeTXTKi57RpByUqSyLc/6If8ut2I7YUUTLLKmj3pnf83R
+ 9lTlq6XlR3tCqyJFbabA1BtQshlc1lBBPiwjQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752225131; x=1752829931;
+ d=1e100.net; s=20230601; t=1752225929; x=1752830729;
  h=in-reply-to:content-transfer-encoding:content-disposition
  :mime-version:references:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Wnt/Z++MbdZU9XOrfATZ/FINeW1LQRc4CZfb34tf/pc=;
- b=lg/wDj1up2NpeEqwDeW7s0KfrB0DJ2phL6LlEzjWa7xKQYpLT7mGv8gV9psvsOHwdZ
- YsfWPm65XosOMOHORFBalpz7h3Ep1aqMY/GScV1SRbgR0r7U63sKoqeVGR2GBW282q/n
- KESQHr3K8QzVt5vkvEEzzWUuOYZnOHuxPdYq2fIizCNcNCeQYpvm1Ey7UGBsGUaWXKGJ
- ECpUR4/VPQNci6ykZdhn6PurhQBIS+7DlJugNVMB9f1goIVvw1dVPoDu5keNjiqoyPba
- ZJ5W+OSgdK3ILVRelMb2AQmZ4gTsAv3++mTy445CjHwrYA7PKpgtdCoGrcDOppPGWfDa
- oiyg==
+ bh=Cl3xZohRlbwgxuqHEPJStOQdQbgt6Sp2wBtzOQkavsk=;
+ b=rqq+KUHHdX0yvkAy2h7O/3ApeNFXKdC+BkieA6eHKGh/77A+zT7KAFCG3xmypzAocA
+ KbqOH2Okh3FWQRhtY0GeTzAm2f93gRMmY4BUDtXwThQV8lZaK0LIScSOFDlXrbLLk3oJ
+ be8dHIAIAcyU2lTFmkqcUZHdMyC/OMR23Dk4N6KGejVnpWV1bgfJfdzhQXA5Q/vHcziT
+ keZZzhqfIzWm2vL8BhQDIk9y6rvQNrLGPJbgGWyNzZzWQUolDHmPB7967R19XS9DnNte
+ t+zqEI9AyCvBMWUSbIjUs42NcIN+aPqS/szxCgW3U/tjZNNZDCwTEdgATDRzLk8J+gJr
+ PICg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV8qISz3e9F+WuJR+XKAOa1a3US3c6MNzwprS62sQchRo4ertNcGpCcsoj8vS378b4Mp4h6DXFNopM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzezs5ZDoAP5PQxnNJYE90jhy5aGnGH01xGo25Yy40jsf1i75FF
- A1E7V6V3D5vyT5g0PfJMK2LQ9mPeDoCS6QYC8J6rdfRFSLW205rGTcOdJC42OGvG9kk=
-X-Gm-Gg: ASbGncvpri05wF27euvgvskPQzrFTE3lK1bO078OqlobptqLIGXYPAh8pc92/N/gig5
- cX9zsxaU3pJ/CYFwjWYFCKEX46SOTq48ZjXjBY+yQV6UYojcKsRAL+RuSkf7hqyKg7cQmY6E6/H
- Yf+NO9e5ug/w/msU+UeV75F0JJaVsmLunFQljMaKnegWZwNJx23PRQWMLVshJniaRv7G/eeH7Kl
- 7fCK0bWIjzaYItk1J8M/zjkXmOFCqAMuX+ImRJZeZDDi+WPdrmoXX0BJgxrdZY27U2kvNW4Iqou
- NyEoMPMUpVjBmvUhJb1qA2k2ubnHRMCYSLVQGkNwXeUlaN7WzRBTLS2oBG4XvBMSVnu4QH+mW6x
- JgChejJYHdvYqJAQdc0wjfiRlL8DoOdUfucTo0rleWi4R
-X-Google-Smtp-Source: AGHT+IGejZ9PuS+S4VGy2OMVsaTkYjO1ldHB8NhkOmFdCBLYtKakgtjnT3SY9AhbFHZzGN4W9cVfUg==
-X-Received: by 2002:a05:600c:628e:b0:450:cff7:62f9 with SMTP id
- 5b1f17b1804b1-454ec2769e7mr19273705e9.22.1752225131270; 
- Fri, 11 Jul 2025 02:12:11 -0700 (PDT)
+ AJvYcCVHW+8qmIZnrdWrIjScBy45JjkpYOXkRFs6JeMai8VsalAfhDKE7Eic5jpWjHbtR+MBewcXGaLNiaE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy/6e8eqqyvmY2F2Onnqg0oaZUURKuPvvdXRi29P7yV6D1tTAnE
+ H+nGjwxCvVWV/ko5V4hLLQY8D710QdgRRx7Oncw13nPNOVtySRwG98sYhGAh/umEGpE=
+X-Gm-Gg: ASbGncuXghg8JSHbCjTl8TALStcmZt9eQcoXqdotIu8khZTxe/L9QIah7o4jrLxZGuq
+ F7e6jueucrCw2ySwLU70S/Zs7bDV9Ntua1IVsNXh9ugRzT9pqX6AUsyQJjaxR1UcVckap26lA3u
+ BHjXGdC9tcs4san88kTBuim3rgRNvsAsKV1tXzYT8zw1T+wMfivkiK9eILaD750rCKZpJQ7wil6
+ JQCXb/rbaoRbLQTM7qfeGcOjVyMIxob+JQpclgK/fxyJd7jpRFUdQwvEilUYCzEmswIZQs3c8sx
+ NqXBU/Mtmr3OzrOVxWsmDEJEPeT4MFli3Lx13PCFhztBtxWUoIXA4lY7MX/yUc5Kb/0J1FHsA30
+ 4GPdgtMTbD3mplmFYRvUu1mgU+vBGpS7nMg==
+X-Google-Smtp-Source: AGHT+IGbotv0BUlLyzCVL/jdQlSO49UvGO13l/HFStGIsgEXYVAsksRZcLUppbQMGeGqnzlmbVmaLQ==
+X-Received: by 2002:a05:6000:25e2:b0:3b5:dc2e:3cd6 with SMTP id
+ ffacd0b85a97d-3b5f188e7f0mr2356523f8f.13.1752225928938; 
+ Fri, 11 Jul 2025 02:25:28 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-454cdb549absm80844415e9.1.2025.07.11.02.12.10
+ ffacd0b85a97d-3b5e8e0d76fsm4046213f8f.64.2025.07.11.02.25.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Jul 2025 02:12:10 -0700 (PDT)
-Date: Fri, 11 Jul 2025 11:12:08 +0200
+ Fri, 11 Jul 2025 02:25:28 -0700 (PDT)
+Date: Fri, 11 Jul 2025 11:25:26 +0200
 From: Simona Vetter <simona.vetter@ffwll.ch>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
@@ -75,7 +75,7 @@ Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
 Subject: Re: [PULL] drm-xe-next
-Message-ID: <aHDVaGY7v6L1JnRh@phenom.ffwll.local>
+Message-ID: <aHDYhij7PxqYYTz-@phenom.ffwll.local>
 References: <aHA7184UnWlONORU@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
@@ -184,8 +184,11 @@ On Thu, Jul 10, 2025 at 06:16:55PM -0400, Rodrigo Vivi wrote:
 >   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-07-10
 
 Pulled into drm-next, thanks!
--Sima
 
+There was somehow some new conflicts in drm-tip that git rerere didn't
+sort out with the xe cherry-picks. Not sure what happened there ...
+
+Cheers, Sima
 > 
 > for you to fetch changes up to 94de94d24ea8cf567ec7254a723c3192c72c2ca6:
 > 
