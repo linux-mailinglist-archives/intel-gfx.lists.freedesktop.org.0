@@ -2,93 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657F3B022A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 19:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB803B022BD
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 19:39:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7D610E2CE;
-	Fri, 11 Jul 2025 17:35:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="TLkBcIAE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43F8F10E2D5;
+	Fri, 11 Jul 2025 17:39:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E8E810E2C3
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 17:35:58 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-60c51860bf5so3867311a12.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 10:35:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1752255356; x=1752860156;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=6Y7KQBMvE5wPTJUBRle+pzVi+8DRYqjxpjSZtude4vk=;
- b=TLkBcIAElAiNVNyOfZsYdihHJaYys2b96FaiUh//hSK+MbRa8DyKaz7s+5BNMPQs3L
- C8RIp0a+KMdhy4dny9Vp7kPD+ZGD7QwfvlhtBqSzSPBzFwyuJQs9NuiXq/efQJkXE/jf
- Fb6aMk2+J/PhlJD2iwHa5NTizf7rqd9wp6MYc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752255356; x=1752860156;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=6Y7KQBMvE5wPTJUBRle+pzVi+8DRYqjxpjSZtude4vk=;
- b=xPygumFVpsEqF+21M5lRvyHQx7blykov7lfHfOL7XvjhjYILgBGJqJPT905cUUAHsG
- Z/voOP08ZC5UZQLUt18nof5a3LNn7PYLpi6i45cJ2jL29kb3r8rJJGqEFqxiw4r3hJwl
- rU/B89hLp7p/sTxWZfhjRInHbEQfpt3rO0m50cSzzcmnaU1tX495J10XjpOyB67vy3Dr
- 1ZDqZIqsKR8UuSSYhTUs+B2KA4f06VxAlpQRV/w1Op45z7ZTwrBXRs0yG9AnMC32OYnD
- 2L2KE/4qsi3QW2deOw9KZ/cZUlhjF7IaUMTRTJp4ERIp3fmNF/3tayYRG0fCYQaxebQW
- S0Sw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV3bEoQG5EWyDF1aAGLYDNQfKd9aMeWkCjXwtPSmYSRDeRO78WDhCPjRXRXpl557AtUWajrtdvHeNs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzoFnIsZYapBqT+fuTXjrgcKT4x3u8jiO+4exSyrgysuqYS3CVH
- tdwLBNokWdyUMhqmqt/aCD+7TIWN+igfH/F0b/CacXW8ms5Jm8V1WZQCc0vcBT5wwIcpqM7g/EE
- dhcfkZVS3KA==
-X-Gm-Gg: ASbGncv7Vs4Oxz/PEcYRK2k2hCX5PTknMX9t16THrtW/7jAYjsklNPuY7SCUsDXn+9/
- LfslvsDp7ntgwManm1hd9QGFtuH8ckPqngEOOcK5zMVbPCgT7LG7gFyJP0uuYOQiGX0oNlosBN9
- h+r4qc4nhvqjw4iB07ux4KBXpTKywJWney2hIxK/uMlYZLoRtuhAMxbNixeWb3rlf7DE1G3kD9A
- 64YwaurY4lEazIVJnAMdx2kZGVOO0FLuBGjw2+TVIi8M4DLbIk1MkgLuS6HPiLYBWEN3+8PwF5p
- 8l4dVpb5Pr0tGbX4GQbaQ3YGwg2GOoDD6CMsjLn7H6iyME5NYOa814GN+vEDJQRo2Vp/tw3igLj
- 4u/hfjRngB0b0aS4Ll3h44Y2RWqUPr2y4S7Qn90jhIejPRlwrFXHjCJnyK+NTcLeZiwH1i9Yb
-X-Google-Smtp-Source: AGHT+IGjk5BOr6CjUh6bS3ieMxjNOCrRE4Y+KNP1wkNdgATsCB0F7Yqleg5XfB5rY5jckMdeQHRUTA==
-X-Received: by 2002:a17:907:6ea6:b0:adb:469d:2246 with SMTP id
- a640c23a62f3a-ae70110334emr371783266b.17.1752255356383; 
- Fri, 11 Jul 2025 10:35:56 -0700 (PDT)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com.
- [209.85.208.45]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ae6e82646a5sm331908966b.90.2025.07.11.10.35.56
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 11 Jul 2025 10:35:56 -0700 (PDT)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-6088d856c6eso4424104a12.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 10:35:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXIo0H3g2mUkG3tdxjG0B2iduM074/tm1FaSMOCzRCGWwmWP6S+QgoPHN3Ko4V3XInmtfDks0LJBO0=@lists.freedesktop.org
-X-Received: by 2002:a05:6402:13ca:b0:60e:9e2:5844 with SMTP id
- 4fb4d7f45d1cf-611ed137bffmr3157234a12.32.1752255355632; Fri, 11 Jul 2025
- 10:35:55 -0700 (PDT)
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42A210E2D5;
+ Fri, 11 Jul 2025 17:39:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5022731279068005095=="
 MIME-Version: 1.0
-References: <20250711093744.120962-1-tzimmermann@suse.de>
- <CAHk-=whnUp7M-RZ6yzOyF6bzA4cmbckaH4ii_+6nBm0PqKOaQg@mail.gmail.com>
-In-Reply-To: <CAHk-=whnUp7M-RZ6yzOyF6bzA4cmbckaH4ii_+6nBm0PqKOaQg@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Fri, 11 Jul 2025 10:35:39 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wif6u3C4gk7BtR1M+0SvHruXZ7xycP5oDdg-SF1D=ELqQ@mail.gmail.com>
-X-Gm-Features: Ac12FXz0Cw3UTlua4uIPZpLiT2Oslevjx3UEJS8nAOMBtacwuTkVhrNGLknGSuI
-Message-ID: <CAHk-=wif6u3C4gk7BtR1M+0SvHruXZ7xycP5oDdg-SF1D=ELqQ@mail.gmail.com>
-Subject: Re: [PATCH 0/9] drm: Revert general use of struct
- drm_gem_object.dma_buf
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: simona@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, l.stach@pengutronix.de, 
- linux+etnaviv@armlinux.org.uk, kraxel@redhat.com, christian.gmeiner@gmail.com, 
- dmitry.osipenko@collabora.com, gurchetansingh@chromium.org, olvaffe@gmail.com, 
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com, 
- dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
- virtualization@lists.linux.dev, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_n?=
+ =?utf-8?q?o=5Fpsr=5Freason_to_PSR_debugfs_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Jul 2025 17:39:54 -0000
+Message-ID: <175225559472.155143.12155869572453668993@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250711164959.608303-1-michal.grzelak@intel.com>
+In-Reply-To: <20250711164959.608303-1-michal.grzelak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,30 +37,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 11 Jul 2025 at 08:48, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> Background for others: current -git ends up having odd hangs when
-> Xwayland starts for me (not at boot, but when I log in). It seems to
-> be very timing-dependent, so presumably I'm just unlucky with my
-> hardware.
+--===============5022731279068005095==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Update for this thread as well: it looks like I'm just being unlucky,
-and there are two independent problems. The drm problem *may* be just
-the warning issue that has been reported by others.
+== Series Details ==
 
-I'm hoping the login time timeout / hang ends up being due to a known
-netlink regression, and it just happened to look like a drm issue
-because it exposes itself as a hang at the first graphical login
+Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)
+URL   : https://patchwork.freedesktop.org/series/148958/
+State : success
 
-A netlink regression *might* fit the pattern, in that it might just
-cause first login dependency issues and resulting timeouts.
+== Summary ==
 
-After what has felt like a very smooth release cycle so far, having
-what looks like two entirely independent issues strikes me as
-unlikely, but hey, unlikely clearly does occasionally happen.
+CI Bug Log - changes from CI_DRM_16853 -> Patchwork_148958v8
+====================================================
 
-           Linus
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_148958v8 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_psr@psr-cursor-plane-move@edp-1:
+    - bat-jsl-1:          [PASS][1] -> [SKIP][2] ([i915#9688]) +7 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [ABORT][3] ([i915#12904]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][5] ([i915#13494]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-9/igt@i915_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-8/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8454 -> IGTPW_13399
+  * Linux: CI_DRM_16853 -> Patchwork_148958v8
+
+  CI-20190529: 20190529
+  CI_DRM_16853: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_13399: a7e7d1a7039c90ebf914c8dc5e62a0a404339f10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_148958v8: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html
+
+--===============5022731279068005095==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148958/">https://patchwork.freedesktop.org/series/148958/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16853 -&gt; Patchwork_148958v8</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_148958v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_psr@psr-cursor-plane-move@edp-1:<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>) +7 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8454 -&gt; IGTPW_13399</li>
+<li>Linux: CI_DRM_16853 -&gt; Patchwork_148958v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16853: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGTPW_13399: a7e7d1a7039c90ebf914c8dc5e62a0a404339f10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_148958v8: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5022731279068005095==--
