@@ -2,29 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB803B022BD
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 19:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 429FAB0235E
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Jul 2025 20:11:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43F8F10E2D5;
-	Fri, 11 Jul 2025 17:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA5A810EA8A;
+	Fri, 11 Jul 2025 18:11:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="Zk9sG7pl";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B42A210E2D5;
- Fri, 11 Jul 2025 17:39:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5022731279068005095=="
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
+ [136.143.188.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6084610E3BB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Jul 2025 18:11:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1752257488; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=b/QxPVMczbUkzVq61RivkTVX0ec8D59K56U7raYFhi9GDb8Vj/XWsFHlv5wfQhpyOIEy+sjcRZmy/eFyk/EJm8RW5GwwfbmL0o6iCCLeaVYAnJD9GD+JzDxVr4E5hZGPjuoyQJu3RJPR5BA52EI441LFKWMPynZP4uRnICrVVpI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1752257488;
+ h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=cJ6oSHMOgeW9i0qMcj6w36/dZzjQLIaS+km9iupFaqA=; 
+ b=QuZXJq/NyMyf/KVDjpKA4HPhJ8g0d3PmR7+dk6nK/jLHQTB26HNqFWeC9pX0FYbtKeOS2T/2wPwPbDSZHTfO1fvgimxA6JguSuKDmm31EqKGBkaQHjwBcVcNEg3l3Y7baRGUDGfhWxBwFbkYpmpFyMdoollTd3tVMURtXlyPQ3A=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752257487; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=cJ6oSHMOgeW9i0qMcj6w36/dZzjQLIaS+km9iupFaqA=;
+ b=Zk9sG7pl9TzxuSD4d0PazoKAlTOnxBQVGvy5QoB1a2+Tw6Nciwzcvn3urhXvEpw7
+ A7o3MzLQtYb5DuDT99KXhPsua+Wfbzreefl6kxhHm2ZFrcsl4mbBlMevZoeqAQ6xp2X
+ /bWOXPhRJ7mG5HHSog7Lx4TqB2nGIbBRnPpgo5us=
+Received: by mx.zohomail.com with SMTPS id 1752257486147729.3158429103926;
+ Fri, 11 Jul 2025 11:11:26 -0700 (PDT)
+Message-ID: <385070ce07d52e0308ea591b3d755fce5ed421ba.camel@collabora.com>
+Subject: XDC 2025 - Call for Proposals ends tonight at 23:59 CEST!
+From: Mark Filion <mark.filion@collabora.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 11 Jul 2025 14:11:25 -0400
+Content-Type: multipart/alternative; boundary="=-OZnjuPUVWdM6oNoKleTN"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42app2) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_n?=
- =?utf-8?q?o=5Fpsr=5Freason_to_PSR_debugfs_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Jul 2025 17:39:54 -0000
-Message-ID: <175225559472.155143.12155869572453668993@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250711164959.608303-1-michal.grzelak@intel.com>
-In-Reply-To: <20250711164959.608303-1-michal.grzelak@intel.com>
+X-ZohoMailClient: External
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,185 +58,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5022731279068005095==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--=-OZnjuPUVWdM6oNoKleTN
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hello!
 
-Series: drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)
-URL   : https://patchwork.freedesktop.org/series/148958/
-State : success
+The CfP for XDC 2025 ends tonight at=C2=A023:59 CEST! You still have a few
+hours left to submit your proposal, don't wait!
 
-== Summary ==
+=C2=A0=C2=A0=C2=A0=C2=A0https://xdc2025.x.org
+=C2=A0=C2=A0
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible:
 
-CI Bug Log - changes from CI_DRM_16853 -> Patchwork_148958v8
-====================================================
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/registratio=
+ns/
 
-Summary
--------
+In addition to registration, the CfP is now open for talks, demos, and
+workshops at XDC 2025. While any serious proposal will be gratefully
+considered, topics of interest to X.Org and freedesktop.org developers
+are encouraged. The program focus is on new development, ongoing
+challenges and anything else that will spark discussions among
+attendees in the hallway track.
 
-  **SUCCESS**
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more:
 
-  No regressions found.
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/abstracts/
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html
+The deadline for submissions Friday, 11 July 2025.
 
-Participating hosts (44 -> 43)
-------------------------------
+We are looking forward to seeing you in Vienna! If you have any
+questions, please email the organizer (hfink at snap.com), adding on
+CC the X.org board (board at foundation.x.org).
 
-  Missing    (1): fi-snb-2520m 
+And don't forget, you can follow us on Mastodon for all the latest
+updates and to stay connected:
 
-Known issues
-------------
+=C2=A0=C2=A0=C2=A0=C2=A0https://floss.social/@XOrgDevConf
 
-  Here are the changes found in Patchwork_148958v8 that come from known issues:
+Best,
 
-### IGT changes ###
+Mark
 
-#### Issues hit ####
-
-  * igt@kms_psr@psr-cursor-plane-move@edp-1:
-    - bat-jsl-1:          [PASS][1] -> [SKIP][2] ([i915#9688]) +7 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [ABORT][3] ([i915#12904]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [DMESG-WARN][5] ([i915#13494]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-9/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
-
-
-Build changes
--------------
-
-  * IGT: IGT_8454 -> IGTPW_13399
-  * Linux: CI_DRM_16853 -> Patchwork_148958v8
-
-  CI-20190529: 20190529
-  CI_DRM_16853: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_13399: a7e7d1a7039c90ebf914c8dc5e62a0a404339f10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_148958v8: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html
-
---===============5022731279068005095==
+--=-OZnjuPUVWdM6oNoKleTN
 Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div style=3D"unicode-bidi: plaintext; font-family: &q=
+uot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: normal; font=
+-weight: 400; letter-spacing: normal; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; -webkit-tap-h=
+ighlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0px; text-de=
+coration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);">H<span sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;">ello!</span></div><div style=3D"unicode-bidi: plai=
+ntext; font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-vari=
+ant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: sta=
+rt; text-indent: 0px; text-transform: none; white-space: normal; word-spaci=
+ng: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stro=
+ke-width: 0px; text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb=
+(0, 0, 0);"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb=
+(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;=
+;">The CfP for XDC 2025 ends tonight at&nbsp;</span><span style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;">23:59 CEST! You still have a few<br>hours left to submit your pr=
+oposal, don't wait!</span></div><div style=3D"unicode-bidi: plaintext; font=
+-family: &quot;Adwaita Sans&quot;; font-style: normal; font-variant-caps: n=
+ormal; font-weight: 400; letter-spacing: normal; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -w=
+ebkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-stroke-width: 0=
+px; text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);"=
+><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fa=
+mily: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&n=
+bsp;&nbsp;&nbsp;</span><a href=3D"https://xdc2025.x.org/" title=3D"Click to=
+ open https://xdc2025.x.org/" style=3D"color: rgb(46, 52, 54); font-family:=
+ &quot;Adwaita Mono&quot;;">https://xdc2025.x.org</a><br style=3D"caret-col=
+or: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mon=
+o&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;</span><br style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">As usual, the confere=
+nce is free of charge and open to the general</span><br style=3D"caret-colo=
+r: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono=
+&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54=
+); font-family: &quot;Adwaita Mono&quot;;">public. If you plan on attending=
+, please make sure to register as early</span><br style=3D"caret-color: rgb=
+(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;=
+;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: &quot;Adwaita Mono&quot;;">as possible:</span><br style=3D"caret-=
+color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita =
+Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=3D"https://indico.freedesktop.or=
+g/event/10/registrations/" title=3D"Click to open https://indico.freedeskto=
+p.org/event/10/registrations/" style=3D"color: rgb(46, 52, 54); font-family=
+: &quot;Adwaita Mono&quot;;">https://indico.freedesktop.org/event/10/regist=
+rations/</a><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(4=
+6, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"=
+><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-=
+family: &quot;Adwaita Mono&quot;;">In addition to registration, the CfP is =
+now open for talks, demos, and</span><br style=3D"caret-color: rgb(46, 52, =
+54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span =
+style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family:=
+ &quot;Adwaita Mono&quot;;">workshops at XDC 2025. While any serious propos=
+al will be gratefully</span><br style=3D"caret-color: rgb(46, 52, 54); colo=
+r: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"=
+caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Ad=
+waita Mono&quot;;">considered, topics of interest to X.Org and freedesktop.=
+org developers</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(=
+46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-c=
+olor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita M=
+ono&quot;;">are encouraged. The program focus is on new development, ongoin=
+g</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); =
+font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46,=
+ 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">c=
+hallenges and anything else that will spark discussions among</span><br sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color=
+: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">attendees in the=
+ hallway track.</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;">We are open to talks across al=
+l layers of the graphics stack, from the</span><br style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fo=
+nt-family: &quot;Adwaita Mono&quot;;">kernel to desktop environments / grap=
+hical applications and about how</span><br style=3D"caret-color: rgb(46, 52=
+, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><spa=
+n style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-famil=
+y: &quot;Adwaita Mono&quot;;">to make things better for the developers who =
+build them. Head to the</span><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">CfP page to learn more:</span><br style=3D"caret-col=
+or: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mon=
+o&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54)=
+; font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(4=
+6, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"=
+>&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=3D"https://indico.freedesktop.org/e=
+vent/10/abstracts/" title=3D"Click to open https://indico.freedesktop.org/e=
+vent/10/abstracts/" style=3D"color: rgb(46, 52, 54); font-family: &quot;Adw=
+aita Mono&quot;;">https://indico.freedesktop.org/event/10/abstracts/</a><br=
+ style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family=
+: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); col=
+or: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;">The deadline for submissions Friday, 11 July 2025.</spa=
+n><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-f=
+amily: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54)=
+; color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;">We are looking forward to seeing you in Vienna! If=
+ you have any</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(4=
+6, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;">questions, please email the organizer (hfink at snap.com), addin=
+g on</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54=
+); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(=
+46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;=
+">CC the X.org board (board at foundation.x.org).</span><br style=3D"caret-=
+color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita =
+Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;">And don't forget, you can follow us on Mastodon for all the latest</spa=
+n><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-f=
+amily: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 5=
+4); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">updates=
+ and to stay connected:</span><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"=
+caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Ad=
+waita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(=
+46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;&nbsp;&nbs=
+p;</span><a href=3D"https://floss.social/@XOrgDevConf" title=3D"Click to op=
+en https://floss.social/@XOrgDevConf" style=3D"color: rgb(46, 52, 54); font=
+-family: &quot;Adwaita Mono&quot;;">https://floss.social/@XOrgDevConf</a><b=
+r style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-famil=
+y: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">Best,</span><br style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br styl=
+e=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &qu=
+ot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color:=
+ rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">Mark</span></div>=
+<div><span></span></div></body></html>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Add no_psr_reason to PSR debugfs (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/148958/">https://patchwork.freedesktop.org/series/148958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16853 -&gt; Patchwork_148958v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/index.html</p>
-<h2>Participating hosts (44 -&gt; 43)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_148958v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_psr@psr-cursor-plane-move@edp-1:<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-jsl-1/igt@kms_psr@psr-cursor-plane-move@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>) +7 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16853/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_148958v8/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8454 -&gt; IGTPW_13399</li>
-<li>Linux: CI_DRM_16853 -&gt; Patchwork_148958v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16853: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_13399: a7e7d1a7039c90ebf914c8dc5e62a0a404339f10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8454: 67f8a0cc3a159bf6f912c08c030dfed5a85af328 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_148958v8: d415c0716821abca694e8a93e74cc71b4a9b6522 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5022731279068005095==--
+--=-OZnjuPUVWdM6oNoKleTN--
