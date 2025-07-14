@@ -2,60 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F3FB0450D
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jul 2025 18:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5762FB0461A
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Jul 2025 19:06:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF3CC10E4D0;
-	Mon, 14 Jul 2025 16:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5419E10E2A3;
+	Mon, 14 Jul 2025 17:06:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIsl59VD";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="qwFScVYB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 330DD10E4CD;
- Mon, 14 Jul 2025 16:08:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752509304; x=1784045304;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=U4XcD4emQ0R/60vy0s8UeFdK9BOyi7LdB3oSdFWnVck=;
- b=MIsl59VDTFpYjFwUkotQtVArPFCurNEDZTTZgi+EBpUXjtrSO5QLsWPr
- pwtSdqYw5qsDRg9nBKy1fWXyfqa3MoGumT+XIGswuI2BJ1F9w+8qidk+v
- z+jMJa3ZTmXaIYlir25g3V2FlkNaARUFFMr9zMrHNxaIlL7D6pgcdEd7n
- ErrDqudugNEOXEgRQhCGRhiWxy+fr+7pQWV2Wa1ZuWgA31Sn/NmsMzbKG
- Th9hXpow7nRZeJ87M0iZW5IDQ/VKu8UYZr3fM8oBH2fCCDtzCV3EVFOjm
- Nw96yTH8O2GfrqSVGv68MjwjIL/0EH8dUjN4P2mhVupWfsucCWramCleR A==;
-X-CSE-ConnectionGUID: KGYMMxrXR7u1yN3OXxA3Jg==
-X-CSE-MsgGUID: ImOtrgF6TeuQMlPJpgRXFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54855204"
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="54855204"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 09:08:24 -0700
-X-CSE-ConnectionGUID: Tvx4wX65S8eLaV8UBcko6w==
-X-CSE-MsgGUID: phFkrovfS7i5mLQ94G9Yjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,311,1744095600"; d="scan'208";a="156385661"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 14 Jul 2025 09:08:23 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v5 1/1] drm/i915/display: Add no_psr_reason to PSR debugfs
-Date: Mon, 14 Jul 2025 18:09:31 +0200
-Message-ID: <20250714160931.821383-2-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250714160931.821383-1-michal.grzelak@intel.com>
-References: <20250714160931.821383-1-michal.grzelak@intel.com>
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com
+ [209.85.167.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3112E10E4D3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Jul 2025 17:06:53 +0000 (UTC)
+Received: by mail-oi1-f179.google.com with SMTP id
+ 5614622812f47-40aef72f252so1274241b6e.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Jul 2025 10:06:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1752512812; x=1753117612; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=G40SjHSVprOwaj+4e0T4Xd6RJbqPEulyg2Sv+pNb55s=;
+ b=qwFScVYBq0/kCBK8eFKmf7wKVp9/DlQaGcQCr92cutwnSBUFBpG8l8niIaxFQDH9ZC
+ C9pmsG/2TRuh5BlJV061CPCo4zHEFe/yVW0YpLkpV1PcN6OQ6VQqVx8Tm0OjLVqFyCJx
+ SWMrk8TH8Hg7WE4CtdBNLxM0glc1f20uL/17pbSBS6wBbJyR/1wdAi/XE3kk6C1X6W3v
+ bc59fnWzYqhkFmtIr+C+i4hkU5zkvCYBKacn9MOeBo34NdRQXgNcPNqHCTgZkpwX66/D
+ QsuhPiikET7/KA5qGmg68r8c7OQP071X8NyrSd/+MMY8yufD1ANNIZQNX/R6r4l1bLrD
+ PMhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752512812; x=1753117612;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=G40SjHSVprOwaj+4e0T4Xd6RJbqPEulyg2Sv+pNb55s=;
+ b=JD5Pxmqc3rkCx5LHshWrPIMj+lXBTPmsRuCvcOC7f5dO2R57CMnp7qgbP52ipSSFb9
+ lbxJghYZdEjbad3gAwTww8+sy0+9trWSOF8RXHuIps6gWtZp48dsHg1efHH3Deo45nds
+ 6K5gbYhbnbB2W4hyemwNYM8mxR2j9CZsU71zF0hOT8d4Jo+O3R3s4xJAohIZaO6Yjhlf
+ YVozophlarUeUZvXTNbm7NDPMjXpCZMS96YbBqSy/xCDV/yVKTOR90uUky2ZX+UJmhHo
+ LVXYK+A9DVxceTzBD2bQzeGuoTp9qOdGuzLaUE7xHmpnJhPWLlQTqcWCkVtiQHmeJjMU
+ itRQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUW6QGifQs8P42v3y6N2/K0GjYKPqCLQeGnEkxZ7wYkF1NgdARmqrMtdJbwp1LPmzrg3Xsmr80nDs4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzc05RCBfDKb4vu7Suu3aVfwjPjW94rb9R1FItA3u+mtCc3hQsh
+ 9FkRY5ekZnpqtGfMtVqIWBBjBuMyR5qh7JKa7uq+ZpOM4fuBgTQPm37Z2ksvGqRb3i0=
+X-Gm-Gg: ASbGncvgDLgvLV0isCoiPKqur0O6egqN0OQOT7DTBGWLSfVE80n5cNP/jvS2BbmPJAJ
+ EOpZ2dJNhTGdc3lAznIOrmUjavnYmF8pFusdZqvJc84ZVMLNgYa2Qf0gEFury6foBwgZ4ZzeEP1
+ J5od3md1qc2g+UCBZrhZTPca1x2DkOoZGKpivN8/rONBEazt3FLY4I1cJak0wpVx3zwjr5SfiXC
+ pk/lDsG3fHscQD2rh0XLVfXZqsP3bjBuETnK5lW6e+pY04Lx876fjZCTRVUyF4ZsLclyr5wtsBv
+ bokI/8U7W6kwTYiy7ztzs3dOHSVhNXb+79GQT8i2enIk8Zoe2zz0SYaZVjTkbA0S3zHrfkOo3fJ
+ r0lZGaeKkb30U44yzYfsgq5+25UUb3g==
+X-Google-Smtp-Source: AGHT+IH2lLDgpBS3/vvn8/RemIauG+7iF5T6bbknqqnFZcums86xH17ULVfcEFTYjQM8bipZ06r+Ug==
+X-Received: by 2002:a05:6808:1202:b0:408:fbed:c3ab with SMTP id
+ 5614622812f47-41510184766mr9661029b6e.38.1752512812222; 
+ Mon, 14 Jul 2025 10:06:52 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:6bb2:d90f:e5da:befc])
+ by smtp.gmail.com with ESMTPSA id
+ 5614622812f47-414196c9b24sm1546270b6e.17.2025.07.14.10.06.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Jul 2025 10:06:50 -0700 (PDT)
+Date: Mon, 14 Jul 2025 20:06:49 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, jeevaka.badrappan@intel.com,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Julia Lawall <julia.lawall@inria.fr>
+Subject: Re: [PATCH] drm/i915/display: Change ret value type from int to long
+Message-ID: <8cc6e279-2c5a-43f1-81aa-cdd73b32ffa9@suswa.mountain>
+References: <20250704105600.1937682-1-aakash.deep.sarkar@intel.com>
+ <3b85826c1b0b03ba922c4c948d98d24543bcec67@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3b85826c1b0b03ba922c4c948d98d24543bcec67@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,107 +100,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is no reason in debugfs why PSR has been disabled. Add
-no_psr_reason field into struct intel_psr. Write the reason,
-e.g. PSR setup timing not met, into proper PSR debugfs file.
-Clean it when PSR is activated.
+On Fri, Jul 04, 2025 at 03:00:55PM +0300, Jani Nikula wrote:
+> On Fri, 04 Jul 2025, Aakash Deep Sarkar <aakash.deep.sarkar@intel.com> wrote:
+> > dma_fence_wait_timeout returns a long type but the driver is
+> > only using the lower 32 bits of the retval and discarding the
+> > upper 32 bits.
+> >
+> > This is particularly problematic if there are already signalled
+> > or stub fences on some of the hw planes. In this case the
+> > dma_fence_wait_timeout function will immediately return with
+> > timeout value MAX_SCHEDULE_TIMEOUT (0x7fffffffffffffff) since
+> > the fence is already signalled. If the driver only uses the lower
+> > 32 bits of this return value then it'll interpret it as an error
+> > code (0xFFFFFFFF or (-1)) and skip the wait on the remaining fences.
+> >
+> > This issue was first observed with the Android compositor where
+> > the GPU composited layer was not properly waited on when there
+> > were stub fences in other overlay planes resulting in significant
+> > visual artifacts.
+> 
+> Thanks for the patch, good catch!
+> 
+> > Test: No graphical artifacts with shadertoy
+> 
+> We've never used this commit trailer before, please let's not start now.
+> 
+> The subject should plainly state the "what", and the commit message
+> should answer the "why". You do have that here, but I think the subject
+> is still a bit too much nuts and bolts.
+> 
+> For example,
+> 
+> 	drm/i915/display: Fix dma_fence_wait_timeout() return value handling
+> 
+> would state the "what" in *much* more helpful terms for anyone looking
+> at git logs.
+> 
+> Presumably this has been an error for some time. You should do a little
+> bit of git blame on the offending lines. It'll find commit d59cf7bb73f3
+> ("drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence").
+> 
+> Based on that, we should add:
+> 
+> Fixes: d59cf7bb73f3 ("drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence")
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Jouni Högander <jouni.hogander@intel.com>
+> Cc: <stable@vger.kernel.org> # v6.8+
+> 
+> Then it occurs to me this looks like a common mistake to make. A little
+> bit of git grep on dma_fence_wait_timeout() quickly finds multiple
+> similar mistakes in drm, at least amdgpu, etnaviv, msm, and tegra. Cc
+> some maintainers FYI. This class of bugs could cause issues elsewhere.
+> 
+> Let's also Cc Julia and Dan in case they have ideas to improve static
+> analysis to catch this class of bugs. Or maybe one exists already, but
+> we're just not running them!
 
-Signed-off-by: MichaÅ‚ Grzelak <michal.grzelak@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 38 ++++++++++++-------
- 2 files changed, 26 insertions(+), 14 deletions(-)
+It's easy enough to warn about when we have:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ce45261c4a8f..bcff1a21f2be 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1685,6 +1685,8 @@ struct intel_psr {
- 	bool link_ok;
- 
- 	u8 active_non_psr_pipes;
-+
-+	const char *no_psr_reason;
- };
- 
- struct intel_dp {
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ae9053919211..ef6c548b892e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1590,6 +1590,7 @@ static bool _psr_compute_config(struct intel_dp *intel_dp,
- 	if (entry_setup_frames >= 0) {
- 		intel_dp->psr.entry_setup_frames = entry_setup_frames;
- 	} else {
-+		intel_dp->psr.no_psr_reason = "PSR setup timing not met";
- 		drm_dbg_kms(display->drm,
- 			    "PSR condition failed: PSR setup timing not met\n");
- 		return false;
-@@ -1819,6 +1820,7 @@ static void intel_psr_activate(struct intel_dp *intel_dp)
- 		hsw_activate_psr1(intel_dp);
- 
- 	intel_dp->psr.active = true;
-+	intel_dp->psr.no_psr_reason = NULL;
- }
- 
- /*
-@@ -2937,13 +2939,21 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 			 * - Region Early Transport changing
- 			 * - Display WA #1136: skl, bxt
- 			 */
--			if (intel_crtc_needs_modeset(new_crtc_state) ||
--			    !new_crtc_state->has_psr ||
--			    !new_crtc_state->active_planes ||
--			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
--			    new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled ||
--			    new_crtc_state->has_panel_replay != psr->panel_replay_enabled ||
--			    (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled))
-+			if (intel_crtc_needs_modeset(new_crtc_state))
-+				psr->no_psr_reason = "CRTC needs modeset";
-+			if (!new_crtc_state->has_psr)
-+				psr->no_psr_reason = "PSR disabled";
-+			if (!new_crtc_state->active_planes)
-+				psr->no_psr_reason = "All planes inactive";
-+			if (new_crtc_state->has_sel_update != psr->sel_update_enabled)
-+				psr->no_psr_reason = "Changing between PSR versions";
-+			if (new_crtc_state->enable_psr2_su_region_et != psr->su_region_et_enabled)
-+				psr->no_psr_reason = "Changing Region Early Transport";
-+			if (new_crtc_state->has_panel_replay != psr->panel_replay_enabled)
-+				psr->no_psr_reason = "Changing Panel Replay mode";
-+			if (DISPLAY_VER(display) < 11 && new_crtc_state->wm_level_disabled)
-+				psr->no_psr_reason = "Wa_1136";
-+			if (psr->no_psr_reason)
- 				intel_psr_disable_locked(intel_dp);
- 			else if (new_crtc_state->wm_level_disabled)
- 				/* Wa_14015648006 */
-@@ -3949,12 +3959,7 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 				 struct seq_file *m)
- {
- 	struct intel_psr *psr = &intel_dp->psr;
--	const char *status, *mode, *region_et;
--
--	if (psr->enabled)
--		status = " enabled";
--	else
--		status = "disabled";
-+	const char *mode, *region_et;
- 
- 	if (psr->panel_replay_enabled && psr->sel_update_enabled)
- 		mode = "Panel Replay Selective Update";
-@@ -3972,7 +3977,12 @@ static void intel_psr_print_mode(struct intel_dp *intel_dp,
- 	else
- 		region_et = "";
- 
--	seq_printf(m, "PSR mode: %s%s%s\n", mode, status, region_et);
-+	if (psr->enabled) {
-+		seq_puts(m, "PSR enabled\n");
-+		seq_printf(m, "PSR mode: %s%s\n", mode, region_et);
-+	} else {
-+		seq_printf(m, "PSR disabled: %s\n", psr->no_psr_reason);
-+	}
- }
- 
- static int intel_psr_status(struct seq_file *m, struct intel_dp *intel_dp)
--- 
-2.45.2
+	ret = dma_fence_wait_timeout();
+
+and ret is an int.
+
+In Smatch I actually had hardcoded dma_fence_wait_timeout() as only
+returning up to INT_MAX because there were enough places which saved it
+as an int and it triggered false positives in callers where we knew the
+timeout was reasonable.
+
+regards,
+dan carpenter
 
