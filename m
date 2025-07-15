@@ -2,48 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26D0B04F8D
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 05:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D79B0511A
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 07:40:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E402C10E14C;
-	Tue, 15 Jul 2025 03:55:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29DD910E361;
+	Tue, 15 Jul 2025 05:40:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="C/yHqu7T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZPIJcqvS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6984E10E14C;
- Tue, 15 Jul 2025 03:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1752551605;
- bh=OhkOOt47JdseESe8RK+r92ft58pVEWn8H3iWaphyf04=;
- h=Date:From:To:Cc:Subject:From;
- b=C/yHqu7TQClDILJRuopUj0lV5SND1q4boALGG009VnV4wVTUJQZcQl8czC1U4cyV9
- ZNJ9k6A2gyj7XS0S0luesogKicHjZWfMLQGPsiFBHAvsX2HVW0slav58/yroynfx0e
- GW5zvr41afhK7ySVf2rRK9dmM80RvebBvagye01Q2+J3EuUUEoYEIgT1m4udI0Nu82
- paj8E/dDJBeDuKsFodQTOByNQ4Ns/L9xP88XtYRDwqvjCweWq32hvKJCV/heAtDbzf
- 65cH0XLbwn9W7PmPrQNcQz4QVJYh2khP5ozZGj4khZcwFVlJnmeu6Vkp4BR4dTBvm1
- B6sqgzJCnSPfw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4bh4zS58qKz4wb0;
- Tue, 15 Jul 2025 13:53:24 +1000 (AEST)
-Date: Tue, 15 Jul 2025 13:55:11 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the drm-misc tree
-Message-ID: <20250715135511.63774cdb@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBEA410E158;
+ Tue, 15 Jul 2025 05:40:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752558043; x=1784094043;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WDiZfRdHptxy9dHo4PpAG1QNcNnIRw1lkxLEst2+7qQ=;
+ b=ZPIJcqvSiZkocImxiAYaGjMyv0eylOvPZw/1qfnlby2+BEEtCqWRtHYh
+ ELLyR6AP2m7nk5q45XTpHoE8m16fFJYVvzMF76Vv8WSfN2Dj035hoZkyc
+ BysoielmyXeVHx71SSo8DTBi8pqTQQQvBWc0E/ewroPXRHP5OBbfkY72Q
+ Bx67CPUkFdVbyjbXfFvnmuLnSSxRd3WwUA827m0Th/zK7BpR4F8rU9OrA
+ i1ch7UiaE5BVQivS8eaEzFn1u0IV8UJQw1tP6MqVKWCvNBxyUcCpolZ5a
+ /WC+cyJjRrGO6CZ+ixmsA+zMk6FP9rRp16P6FnjWSe6V2vYH3Pe4q7caY A==;
+X-CSE-ConnectionGUID: BeIrIrLjQbing03NlAm7Gw==
+X-CSE-MsgGUID: CZwe5OgdRM6tUBe5v12neQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="54701813"
+X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; d="scan'208";a="54701813"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2025 22:40:37 -0700
+X-CSE-ConnectionGUID: +XB+tTHcS4+DkvY24YaJNQ==
+X-CSE-MsgGUID: ermugd0PQ0SBMeEKvTHugg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; d="scan'208";a="157232196"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.144])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jul 2025 22:40:35 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v5 0/7] Use trans push mechanism to generate frame change event
+Date: Tue, 15 Jul 2025 08:40:17 +0300
+Message-ID: <20250715054024.3856223-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/E6YDZpzCLRnEVVi85ze/GKj";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +69,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/E6YDZpzCLRnEVVi85ze/GKj
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Currently we are using "automatic" frame change event generation. The
+event is generated by any access to plane or pipe registers.
 
-Hi all,
+We have option to use "PSR PR Frame Change Enable" bit in TRANS_PUSH
+register to enable frame change event generation only when doing trans
+push. When this bit is set "automatic" frame change event generation
+doesn't work anymore. Benfit from this is more controled updates send
+by PSR HW.
 
-After merging the drm-misc tree, today's linux-next build (x86_64
-allmodconfig) failed like this:
+This patch set is taking trans push mechanism into use.
 
-drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c: In function 'ge_b=
-850v3_lvds_detect':
-drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c:145:16: error: too=
- few arguments to function 'ge_b850v3_lvds_bridge_detect'
-  145 |         return ge_b850v3_lvds_bridge_detect(&ge_b850v3_lvds_ptr->br=
-idge);
-      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c:124:1: note: decla=
-red here
-  124 | ge_b850v3_lvds_bridge_detect(struct drm_bridge *bridge, struct drm_=
-connector *connector)
-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c:146:1: error: cont=
-rol reaches end of non-void function [-Werror=3Dreturn-type]
-  146 | }
-      | ^
+v5: add missing patch
+v4:
+  - add intel_psr_use_trans_push to query if TRANS_PUSH is used
+  - set DSB_SKIP_WAITS_EN chicken bit when TRANS_PUSH is used
+  - Wait for vblank in case of PSR is using trans push
+v3:
+  - use rmw when enabling disabling transh push for PSR or VRR
+  - rely on crtc_state->has_psr/has_vrr to keep trans push enabled
+  - modify frontbuffer flush/invalidate to use disable/enable also for
+    SU/SF on recent platforms.
+  - send push before waiting for vblank
+v2: implement intel_vrr_trans_push_enabled_set_clear and use that
+    instead of rmw
 
-Caused by commit
+Jouni Högander (7):
+  drm/i915/psr: Do not trigger Frame Change events from frontbuffer
+    flush
+  drm/i915/psr: Add TRANS_PUSH register bit definition for PSR
+  drm/i915/psr: Add intel_psr_use_trans_push to query if TRANS_PUSH is
+    used
+  drm/i915/vrr: Prepare to Use TRANS_PUSH mechanism for PSR frame change
+  drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for LunarLake and
+    onwards
+  drm/i915/display: Wait for vblank in case of PSR is using trans push
+  drm/i915/psr: Use TRANS_PUSH to trigger frame change event
 
-  5d156a9c3d5e ("drm/bridge: Pass down connector to drm bridge detect hook")
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 20 +++++++++-
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 15 +++++--
+ drivers/gpu/drm/i915/display/intel_psr.c      | 32 +++++++++++----
+ drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 39 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  1 +
+ 8 files changed, 88 insertions(+), 25 deletions(-)
 
-I have used the drm-misc tree from next-20250714 for today.
+-- 
+2.43.0
 
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/E6YDZpzCLRnEVVi85ze/GKj
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmh10R8ACgkQAVBC80lX
-0GyjQAf+LeKu6+Iw/kgHxqZHyhgEEw9F5xWJ/3rp6/wQ/bSZmbx9RXWn1+DZUxpN
-Y1L6Z6T7xeZh+ffh8w2nkPSJg4v9P5704xktvrSyrxStslr3k7gsdgdJdwYKeWYO
-wX/25ahNKL7ZYWF8VGN6XpRylrW2G3amaurfISOdJuLuuh62TdCoXg3Ht45DCEK3
-lhJY1/u69DnpAJ9wJmrKwnjOjII46WisxOZtiN5d5L5hcfDRRArGxBAxTQavon8g
-LsE22IWmAoty9MoZlX2AAkSPQhGnJW7t+dawz5Gvfv5OQj8ahQxytTwOyrc2eFYK
-TzBdyj2xcg05yfiBSZjJGV1dlIwQzw==
-=845W
------END PGP SIGNATURE-----
-
---Sig_/E6YDZpzCLRnEVVi85ze/GKj--
