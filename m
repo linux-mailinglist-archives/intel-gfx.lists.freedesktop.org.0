@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2556EB0513C
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 07:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B215B0517E
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 08:07:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC35310E1AE;
-	Tue, 15 Jul 2025 05:50:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3322210E368;
+	Tue, 15 Jul 2025 06:07:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLrqA6kU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="kNBO4YDm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D92A710E1AE;
- Tue, 15 Jul 2025 05:50:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752558631; x=1784094631;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/dS9fctYpy3OsnFCiq5dXb2r6JRSB5ijRGnAc+zXhbg=;
- b=SLrqA6kUXXJqy7/PT17nHmZ0ytA1O3563OvNUVyO+zPI+vuRajmEZV0H
- sEU3Oy9n/lngdCFyM6yqay8wCaBtfb4tPKBlh8l64J9Cxi1Qdv0ZpBf4f
- isLZgAq2DdTRWhWvJNF6hmCDiAHLuWknfHvFM1wCWQEwPKWb7PFp2zhyB
- 7cUcJvOrmfxas1/RLG4/fblZiHMazrOVBDRpDzpEq9vTd29/ct8Ll355m
- C1l3o1sXtF7OjsSjpyFoOuyj8CkyFEhX1QMJohbC7gnHnTCpEmXoN8piG
- owfh6qmSl08q7kXa1XpaVW9Nj+zHmtM6x04H/o22rqm93ixIX5SBZjpsH g==;
-X-CSE-ConnectionGUID: MWzyHpd0SBKiHumq6aMsRQ==
-X-CSE-MsgGUID: HmWgD4T+SgObltugkI8sXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="57375160"
-X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; d="scan'208";a="57375160"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 22:50:30 -0700
-X-CSE-ConnectionGUID: 8wZgNjOARJODmikunqJXtQ==
-X-CSE-MsgGUID: r3hXqKRbSiW3gob8T0ZNkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; d="scan'208";a="157234461"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jul 2025 22:50:28 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	uma.shankar@intel.com,
-	imre.deak@intel.com
-Subject: [PATCH] drm/xe/display: Avoid dig_port work during suspend
-Date: Tue, 15 Jul 2025 11:22:19 +0530
-Message-ID: <20250715055219.410193-1-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 934 seconds by postgrey-1.36 at gabe;
+ Tue, 15 Jul 2025 06:07:23 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BA8B10E368
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jul 2025 06:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+ Message-ID; bh=22XIZECCUFyqmoV8TymxImRToLbKd/ayA0aH5a2Hz2E=; b=k
+ NBO4YDmMcb5YBVkrX8l8m+EZ2hEdjl78+oMGcBSN0eh3fWJzWbSa33RyhzoFTqMJ
+ uvTH9s9XsZ4pyJlq6hQvkb8hKF6pi0omk2OvCRKW6Q77xt+3zbU4nHjbC6CBMl8I
+ Id4Cm3H9sDKCjpQzzI/XnGFirQQBExzb3eMv6OiGKs=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-109 (Coremail) ; Tue, 15 Jul 2025 13:51:32 +0800
+ (CST)
+X-Originating-IP: [58.22.7.114]
+Date: Tue, 15 Jul 2025 13:51:32 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+Cc: "Simona Vetter" <simona.vetter@ffwll.ch>,
+ "Andy Yan" <andy.yan@rock-chips.com>,
+ "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>,
+ "Intel Graphics" <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+ "Linux Next Mailing List" <linux-next@vger.kernel.org>
+Subject: Re:linux-next: build failure after merge of the drm-misc tree
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20250519(9504565a)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <20250715135511.63774cdb@canb.auug.org.au>
+References: <20250715135511.63774cdb@canb.auug.org.au>
+X-NTES-SC: AL_Qu2eAPmet04i5CKYZOkfmkcVgOw9UcO5v/Qk3oZXOJF8jCPp9C0vUnNTMUnG6MWDDiCwnQiHWzVR6spgbahGYoQgrYMJICSzYYTA0cmJ/S/Q6w==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <4d2f67f5.4ec9.1980ca36770.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: bSgvCgD3H_Bk7HVo9CAEAA--.31937W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkAWLXmh146HzAAABst
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,118 +67,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
- It has been observed that during `xe_display_pm_suspend()` execution,
- an HPD interrupt can still be triggered, resulting in `dig_port_work`
- being scheduled. The issue arises when this work executes after
- `xe_display_pm_suspend_late()`, by which time the display is fully
- suspended.
-
- This can lead to errors such as "DC state mismatch", as the dig_port
- work accesses display resources that are no longer available or
- powered.
-
- To address this, introduce a new `ignore_dig_port` flag in the
- hotplug in structure. This flag is checked in the interrupt handler to
- prevent queuing of `dig_port_work` while the system is mid-suspend.
- This behavior is consistent with the existing approach of suppressing
- hotplug_work during suspend.
-
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  3 +++
- drivers/gpu/drm/i915/display/intel_hotplug.c  | 22 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_hotplug.h  |  2 ++
- drivers/gpu/drm/xe/display/xe_display.c       |  4 ++++
- 4 files changed, 30 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 8c226406c5cd..376682c53798 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -209,6 +209,9 @@ struct intel_hotplug {
- 	 * cue to ignore the long HPDs and can be set / unset using debugfs.
- 	 */
- 	bool ignore_long_hpd;
-+
-+	/* Flag to ignore dig_port work , used in suspend*/
-+	bool ignore_dig_port;
- };
- 
- struct intel_vbt_data {
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 265aa97fcc75..b2891b7c3205 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -223,6 +223,26 @@ queue_detection_work(struct intel_display *display, struct work_struct *work)
- 	return queue_work(display->wq.unordered, work);
- }
- 
-+void intel_hpd_ignore_dig_port_work(struct intel_display *display, bool value)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	spin_lock_irq(&display->irq.lock);
-+	display->hotplug.ignore_dig_port = value;
-+	spin_unlock_irq(&display->irq.lock);
-+}
-+
-+bool intel_hpd_can_queue_dig_port(struct intel_display *display)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return FALSE;
-+
-+	lockdep_assert_held(&display->irq.lock);
-+
-+	return !display->hotplug.ignore_dig_port;
-+}
-+
- static void
- intel_hpd_irq_storm_switch_to_polling(struct intel_display *display)
- {
-@@ -691,7 +711,7 @@ void intel_hpd_irq_handler(struct intel_display *display,
- 	 * queue for otherwise the flush_work in the pageflip code will
- 	 * deadlock.
- 	 */
--	if (queue_dig)
-+	if (queue_dig && intel_hpd_can_queue_dig_port(display))
- 		queue_work(display->hotplug.dp_wq, &display->hotplug.dig_port_work);
- 	if (queue_hp)
- 		queue_delayed_detection_work(display,
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.h b/drivers/gpu/drm/i915/display/intel_hotplug.h
-index edc41c9d3d65..9dc40ec7074c 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.h
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.h
-@@ -34,5 +34,7 @@ void intel_hpd_debugfs_register(struct intel_display *display);
- void intel_hpd_enable_detection_work(struct intel_display *display);
- void intel_hpd_disable_detection_work(struct intel_display *display);
- bool intel_hpd_schedule_detection(struct intel_display *display);
-+void intel_hpd_ignore_dig_port_work(struct intel_display *display, bool value);
-+bool intel_hpd_can_queue_dig_port(struct intel_display *display);
- 
- #endif /* __INTEL_HOTPLUG_H__ */
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index e2e0771cf274..2db71bd07c9f 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -342,6 +342,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
- 
- 	intel_hpd_cancel_work(display);
- 
-+	intel_hpd_ignore_dig_port_work(display, 1);
-+
- 	if (has_display(xe)) {
- 		intel_display_driver_suspend_access(display);
- 		intel_encoder_suspend_all(display);
-@@ -469,6 +471,8 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	if (has_display(xe))
- 		intel_display_driver_resume_access(display);
- 
-+	intel_hpd_ignore_dig_port_work(display, 0);
-+
- 	intel_hpd_init(display);
- 
- 	if (has_display(xe)) {
--- 
-2.43.0
-
+CkhpIGFsbCwKCkF0IDIwMjUtMDctMTUgMTE6NTU6MTEsICJTdGVwaGVuIFJvdGh3ZWxsIiA8c2Zy
+QGNhbmIuYXV1Zy5vcmcuYXU+IHdyb3RlOgo+SGkgYWxsLAo+Cj5BZnRlciBtZXJnaW5nIHRoZSBk
+cm0tbWlzYyB0cmVlLCB0b2RheSdzIGxpbnV4LW5leHQgYnVpbGQgKHg4Nl82NAo+YWxsbW9kY29u
+ZmlnKSBmYWlsZWQgbGlrZSB0aGlzOgo+Cj5kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL21lZ2FjaGlw
+cy1zdGRweHh4eC1nZS1iODUwdjMtZncuYzogSW4gZnVuY3Rpb24gJ2dlX2I4NTB2M19sdmRzX2Rl
+dGVjdCc6Cj5kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL21lZ2FjaGlwcy1zdGRweHh4eC1nZS1iODUw
+djMtZncuYzoxNDU6MTY6IGVycm9yOiB0b28gZmV3IGFyZ3VtZW50cyB0byBmdW5jdGlvbiAnZ2Vf
+Yjg1MHYzX2x2ZHNfYnJpZGdlX2RldGVjdCcKPiAgMTQ1IHwgICAgICAgICByZXR1cm4gZ2VfYjg1
+MHYzX2x2ZHNfYnJpZGdlX2RldGVjdCgmZ2VfYjg1MHYzX2x2ZHNfcHRyLT5icmlkZ2UpOwo+ICAg
+ICAgfCAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj5kcml2ZXJz
+L2dwdS9kcm0vYnJpZGdlL21lZ2FjaGlwcy1zdGRweHh4eC1nZS1iODUwdjMtZncuYzoxMjQ6MTog
+bm90ZTogZGVjbGFyZWQgaGVyZQo+ICAxMjQgfCBnZV9iODUwdjNfbHZkc19icmlkZ2VfZGV0ZWN0
+KHN0cnVjdCBkcm1fYnJpZGdlICpicmlkZ2UsIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
+b3IpCj4gICAgICB8IF5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KPmRyaXZlcnMvZ3B1L2Ry
+bS9icmlkZ2UvbWVnYWNoaXBzLXN0ZHB4eHh4LWdlLWI4NTB2My1mdy5jOjE0NjoxOiBlcnJvcjog
+Y29udHJvbCByZWFjaGVzIGVuZCBvZiBub24tdm9pZCBmdW5jdGlvbiBbLVdlcnJvcj1yZXR1cm4t
+dHlwZV0KPiAgMTQ2IHwgfQo+ICAgICAgfCBeCj4KPkNhdXNlZCBieSBjb21taXQKPgo+ICA1ZDE1
+NmE5YzNkNWUgKCJkcm0vYnJpZGdlOiBQYXNzIGRvd24gY29ubmVjdG9yIHRvIGRybSBicmlkZ2Ug
+ZGV0ZWN0IGhvb2siKQoKU29ycnkgZm9yIHRoaXMsIEkgaGF2ZSBzZW50IGEgZml4IGZvciB0aGlz
+IGlzc3VlOgoKaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvZHJpLWRldmVsLzIwMjUwNzE1MDU0NzU0
+LjgwMDc2NS0xLWFuZHlzaHJrQDE2My5jb20vVC8jdQoKPgo+SSBoYXZlIHVzZWQgdGhlIGRybS1t
+aXNjIHRyZWUgZnJvbSBuZXh0LTIwMjUwNzE0IGZvciB0b2RheS4KPgo+LS0gCj5DaGVlcnMsCj5T
+dGVwaGVuIFJvdGh3ZWxsCg==
