@@ -2,68 +2,102 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805CAB053FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 10:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80AE5B05450
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 10:14:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED2210E549;
-	Tue, 15 Jul 2025 08:01:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 084F910E55D;
+	Tue, 15 Jul 2025 08:14:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJGCTenS";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="O0gGapp0";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rS3KzSV7";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="O0gGapp0";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="rS3KzSV7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE4910E549;
- Tue, 15 Jul 2025 08:01:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752566511; x=1784102511;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=sSTp37TIb6l3MJ4618tSg3NO6JAiET+0ObwmjllNcT0=;
- b=cJGCTenSpQyOYCY6hrxV3icNCmf3p08DFNF7YnIFR9HL35QR87fVfPP/
- VtwK0s11ROdVYyNNJuFwInL3L0M293SUEHjrSmnElU8+pAsxLZn+AAMOT
- DsVZO9E1iRhg6Ldwrkv7q52WG9RU2OSGUhQ2Fg90VhHNpaCR8/YF+FylJ
- EfnIFEJIVwz1Y5YXQcHvK9jtyz3JkpQNtENom4UMsamSguOoKxBmgdULT
- 832bAM7tFFM7qe7zt8c1ZklPcYcbLABoAgiskeAyprUmaDj2UolNaKMWA
- vtjhj70m+mnoCLGg6BC0UmOgFyn1LwqAZMVxFKYBv0gsgeBmwBtJywzGl Q==;
-X-CSE-ConnectionGUID: dqvfzLWPTAKVv245MJiaxA==
-X-CSE-MsgGUID: iiIxnOhsSySMLL8kVla6fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="57386161"
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="57386161"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:01:51 -0700
-X-CSE-ConnectionGUID: GLUWmg3ESFq7wUTh2Uplcw==
-X-CSE-MsgGUID: Mcd9kRoKSs+7HTQyPOO+ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,313,1744095600"; d="scan'208";a="161178894"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.177])
- ([10.245.244.177])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jul 2025 01:01:47 -0700
-Message-ID: <272f743e-15f7-4dc0-a6c0-08cd60ca6cc2@linux.intel.com>
-Date: Tue, 15 Jul 2025 10:01:45 +0200
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DE5E10E55A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 15 Jul 2025 08:14:32 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 52DB221245;
+ Tue, 15 Jul 2025 08:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1752567271; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Icciv0uoZHCPfRN3VyukOjoDYMM0TZ9xrbuT868yP6M=;
+ b=O0gGapp0tkFIjmRzq0WL1gc2pdf82ZYRvE7phJhLnCu72Zv+lmkhI+sfMqsWmUWqeXrdnK
+ myhm9uJxdas4LrU+07olMGmBzbfmG/tUPn1irj14Q3uZsP4FyJqihsHO9cXZNzkpoJ/ZF/
+ S8JaMTM6bUl113n1POulBDt5u1Whu1s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1752567271;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Icciv0uoZHCPfRN3VyukOjoDYMM0TZ9xrbuT868yP6M=;
+ b=rS3KzSV7VkkpW4zopLnixkzMtc7ZD97ynP3S7fCmUCVSMFJGrUx3EXLvuK5/sbXjtqk5b2
+ DQzKIF2Akr4r0nCQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1752567271; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Icciv0uoZHCPfRN3VyukOjoDYMM0TZ9xrbuT868yP6M=;
+ b=O0gGapp0tkFIjmRzq0WL1gc2pdf82ZYRvE7phJhLnCu72Zv+lmkhI+sfMqsWmUWqeXrdnK
+ myhm9uJxdas4LrU+07olMGmBzbfmG/tUPn1irj14Q3uZsP4FyJqihsHO9cXZNzkpoJ/ZF/
+ S8JaMTM6bUl113n1POulBDt5u1Whu1s=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1752567271;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=Icciv0uoZHCPfRN3VyukOjoDYMM0TZ9xrbuT868yP6M=;
+ b=rS3KzSV7VkkpW4zopLnixkzMtc7ZD97ynP3S7fCmUCVSMFJGrUx3EXLvuK5/sbXjtqk5b2
+ DQzKIF2Akr4r0nCQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C0F7413306;
+ Tue, 15 Jul 2025 08:14:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id S8JiLeYNdmgJUAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 15 Jul 2025 08:14:30 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: simona@ffwll.ch, airlied@gmail.com, christian.koenig@amd.com,
+ torvalds@linux-foundation.org, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk,
+ kraxel@redhat.com, christian.gmeiner@gmail.com,
+ dmitry.osipenko@collabora.com, gurchetansingh@chromium.org,
+ olvaffe@gmail.com, zack.rusin@broadcom.com
+Cc: bcm-kernel-feedback-list@broadcom.com, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 0/7] drm: Revert general use of struct
+ drm_gem_object.dma_buf
+Date: Tue, 15 Jul 2025 10:07:51 +0200
+Message-ID: <20250715081121.34473-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.50.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/9] drm/i915: Disable tracing points on PREEMPT_RT
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Scott Oehrlein <scott.oehrlein@intel.com>,
- Ben Hutchings <ben@decadent.org.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Luca Abeni <lucabe72@gmail.com>,
- Steven Rostedt <rostedt@goodmis.org>
-References: <20250714153954.629393-1-bigeasy@linutronix.de>
- <20250714153954.629393-5-bigeasy@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20250714153954.629393-5-bigeasy@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FUZZY_RATELIMITED(0.00)[rspamd.com];
+ FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,amd.com,linux-foundation.org,linux.intel.com,kernel.org,pengutronix.de,armlinux.org.uk,redhat.com,collabora.com,chromium.org,broadcom.com];
+ ARC_NA(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid];
+ MIME_TRACE(0.00)[0:+];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCPT_COUNT_TWELVE(0.00)[20]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ TAGGED_RCPT(0.00)[etnaviv]; RCVD_COUNT_TWO(0.00)[2];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_TLS_ALL(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Spam-Score: -1.30
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,100 +113,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Revert the use of drm_gem_object.dma_buf back to .import_attach->dmabuf
+in the affected places. Separates references to imported and exported DMA
+bufs within a GEM object; as before.
 
-I believe the platforms that require spinlocks for reading registers all predate Xe,
-so it should be possible to enable tracepoints on Xe.
+The dma_buf field in struct drm_gem_object is not stable over the object
+instance's lifetime. The field becomes NULL when user space releases the
+final GEM handle on the buffer object. This resulted in a NULL-pointer
+deref.
 
-I do see there is still a path there that takes locks, through intel_crtc_get_vblank_counter -> drm_crtc_accurate_vblank_count().
+Workarounds in commit 5307dce878d4 ("drm/gem: Acquire references on GEM
+handles for framebuffers") and commit f6bfc9afc751 ("drm/framebuffer:
+Acquire internal references on GEM handles") only solved the problem
+partially. They especially don't work for buffer objects without a DRM
+framebuffer associated.
 
-I would recommend changing intel_crtc_get_vblank_counter to use drm_vblank_count(),
-which doesn't take locks.
+v2:
+- extended commit messages (Sima)
+- drop the GEM-handle changes to be resolved separately
 
-This reduces vblank accuracy slightly on old platforms and gen11+ DSI, but I would say for most usecases it has the same accuracy, with the benefit of keeping tracepoints enabled. The only users for intel_crtc_get_vblank_counter() are debug functions.
+Thomas Zimmermann (7):
+  Revert "drm/virtio: Use dma_buf from GEM object instance"
+  Revert "drm/vmwgfx: Use dma_buf from GEM object instance"
+  Revert "drm/etnaviv: Use dma_buf from GEM object instance"
+  Revert "drm/prime: Use dma_buf from GEM object instance"
+  Revert "drm/gem-framebuffer: Use dma_buf from GEM object instance"
+  Revert "drm/gem-shmem: Use dma_buf from GEM object instance"
+  Revert "drm/gem-dma: Use dma_buf from GEM object instance"
 
-With that change, something like: 
-"#if defined(CONFIG_PREEMPT_RT) && defined(I915) && !defined(NOTRACE)"
+ drivers/gpu/drm/drm_gem_dma_helper.c         | 2 +-
+ drivers/gpu/drm/drm_gem_framebuffer_helper.c | 8 ++++++--
+ drivers/gpu/drm/drm_gem_shmem_helper.c       | 4 ++--
+ drivers/gpu/drm/drm_prime.c                  | 8 +++++++-
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c  | 4 ++--
+ drivers/gpu/drm/virtio/virtgpu_prime.c       | 5 +++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c          | 6 +++---
+ 7 files changed, 24 insertions(+), 13 deletions(-)
 
-would disable tracepoints only on i915.
-
-Kind regards,
-~Maarten
-
-Den 2025-07-14 kl. 17:39, skrev Sebastian Andrzej Siewior:
-> Luca Abeni reported this:
-> | BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
-> | CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
-> | Call Trace:
-> |  rt_spin_lock+0x3f/0x50
-> |  gen6_read32+0x45/0x1d0 [i915]
-> |  g4x_get_vblank_counter+0x36/0x40 [i915]
-> |  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
-> 
-> The tracing events use trace_intel_pipe_update_start() among other events
-> use functions acquire spinlock_t locks which are transformed into
-> sleeping locks on PREEMPT_RT. A few trace points use
-> intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
-> might acquire a sleeping locks on PREEMPT_RT.
-> At the time the arguments are evaluated within trace point, preemption
-> is disabled and so the locks must not be acquired on PREEMPT_RT.
-> 
-> Based on this I don't see any other way than disable trace points on
-> PREMPT_RT.
-> 
-> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Reported-by: Luca Abeni <lucabe72@gmail.com>
-> Cc: Steven Rostedt <rostedt@goodmis.org>
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_trace.h | 4 ++++
->  drivers/gpu/drm/i915/i915_trace.h                  | 4 ++++
->  drivers/gpu/drm/i915/intel_uncore_trace.h          | 4 ++++
->  3 files changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> index 27ebc32cb61a5..a519d94700c36 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-> @@ -13,6 +13,10 @@
->  #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
->  #define __INTEL_DISPLAY_TRACE_H__
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include <linux/string.h>
->  #include <linux/string_helpers.h>
->  #include <linux/types.h>
-> diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
-> index 7ed41ce9b7085..6b87ef6005c69 100644
-> --- a/drivers/gpu/drm/i915/i915_trace.h
-> +++ b/drivers/gpu/drm/i915/i915_trace.h
-> @@ -6,6 +6,10 @@
->  #if !defined(_I915_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
->  #define _I915_TRACE_H_
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include <linux/stringify.h>
->  #include <linux/types.h>
->  #include <linux/tracepoint.h>
-> diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i915/intel_uncore_trace.h
-> index f13ff71edf2db..3c67e267fb602 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore_trace.h
-> +++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
-> @@ -7,6 +7,10 @@
->  #if !defined(__INTEL_UNCORE_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
->  #define __INTEL_UNCORE_TRACE_H__
->  
-> +#if defined(CONFIG_PREEMPT_RT) && !defined(NOTRACE)
-> +#define NOTRACE
-> +#endif
-> +
->  #include "i915_reg_defs.h"
->  
->  #include <linux/types.h>
+-- 
+2.50.0
 
