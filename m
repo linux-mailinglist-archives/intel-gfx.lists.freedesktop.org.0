@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 613E7B0677A
-	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 22:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B90BB0677D
+	for <lists+intel-gfx@lfdr.de>; Tue, 15 Jul 2025 22:05:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 955B810E674;
-	Tue, 15 Jul 2025 20:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B6510E676;
+	Tue, 15 Jul 2025 20:05:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
- Tue, 15 Jul 2025 06:23:48 UTC
-Received: from out28-103.mail.aliyun.com (out28-103.mail.aliyun.com
- [115.124.28.103])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F62210E50A;
- Tue, 15 Jul 2025 06:23:47 +0000 (UTC)
+Received: from out28-104.mail.aliyun.com (out28-104.mail.aliyun.com
+ [115.124.28.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB3E610E1A8;
+ Tue, 15 Jul 2025 07:36:15 +0000 (UTC)
 Received: from aliyun.com(mailfrom:zhangzhijie@bosc.ac.cn
- fp:SMTPD_---.dnBBp8b_1752560320 cluster:ay29) by smtp.aliyun-inc.com;
- Tue, 15 Jul 2025 14:18:41 +0800
+ fp:SMTPD_---.dnAL8W3_1752564970 cluster:ay29) by smtp.aliyun-inc.com;
+ Tue, 15 Jul 2025 15:36:11 +0800
 From: zhangzhijie <zhangzhijie@bosc.ac.cn>
 To: zhangzhijie@bosc.ac.cn, wangran@bosc.ac.cn, zhangjian@bosc.ac.cn,
  daniel@ffwll.ch, jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
  joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1] Support Intel Xe GPU dirver Porting on RISC-V Architecture
-Date: Tue, 15 Jul 2025 14:18:37 +0800
-Message-Id: <20250715061837.2144388-1-zhangzhijie@bosc.ac.cn>
+Subject: [PATCH v1] drm/xe: Support Intel Xe GPU dirver Porting on RISC-V
+ Architecture
+Date: Tue, 15 Jul 2025 15:36:08 +0800
+Message-Id: <20250715073608.2387698-1-zhangzhijie@bosc.ac.cn>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
