@@ -2,47 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2146FB07759
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 15:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F984B0775A
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 15:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A9710E7B0;
-	Wed, 16 Jul 2025 13:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9904B10E7C9;
+	Wed, 16 Jul 2025 13:51:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="An2OMP6D";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WB6WT20r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34E8C10E7B0
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jul 2025 13:49:53 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13FAB10E7C2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jul 2025 13:51:52 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 326B6614A1;
- Wed, 16 Jul 2025 13:49:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F55EC4CEE7;
- Wed, 16 Jul 2025 13:49:51 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id C63A743761;
+ Wed, 16 Jul 2025 13:51:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF86BC4CEE7;
+ Wed, 16 Jul 2025 13:51:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1752673791;
- bh=s//iu1ak0woXy2wkdM26kz+S3Mr4SEf6j790WbP1Bi8=;
+ s=k20201202; t=1752673911;
+ bh=9f8forgOSw7DN5yx2kzROUkolb6nA6vi118W1qoseko=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=An2OMP6DLMtRheUsIg4l4ak2U4T5A6oi7K7tmRVGrssF1YlZ/cR86rmDYfl8aDsWC
- xCiNAwUZMsFHoEznAKAqVuuHn7dQIs9IUA51o0nKsGkfbbUI5NLdCjAc7/5LCAfm5Q
- SZ11NhQ5FAboGgeogoVQuN3rtEH4gm257fY1HoMvMjaqVCs53u4u7L9OoYW4yT4GRk
- 2E1qsVhFSKkMA/GejDdghZbOsfQZPDGhZtyfNBL2aY1212jwWdX+Znsr+6N+Tr3/Ga
- d7DvA7fxLxzpyzGq2x++b6qxcP0idgJQ4pMGrN5aBzatC0G4V9L91ZHXvgB0EyUdi9
- VFFLlPEOYgoHQ==
-Date: Wed, 16 Jul 2025 15:49:48 +0200
+ b=WB6WT20rfkb9wAq2O2deVMI7xwcqbnTMZDrC6N5Ec3JeXvFYanvlRXwIIgBceSe7P
+ gaaTV7NZz+9ObPFRgeGUeu/uNOyeFfIy/V+f9RVcuvXurv9an28joFDxBYhG5sxS/I
+ VOGXKqOvaVqUZqHzCVdcFoJIR4p4nk4WMkcxG2B4HQgwtWU+4M3oQOzbwgvr+/2Kqo
+ c2+v8Im7Ap92t7YirLoI62R/+gRc811zbpF/Ex1JdVffMUM9Jjx+J2johCZF57ZEbl
+ mzC3TlVIzH+qvKFKy+1sJRkJtI566TBqzSX932X/7C+DO5GahAEF03qlAQoka7khoF
+ DjVRSAMBt+RCw==
+Date: Wed, 16 Jul 2025 15:51:47 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com, 
  krzysztof.karas@intel.com
-Subject: Re: [PATCH 1/3] drm/i915: Refactor eb_relocate_vma for clarity
-Message-ID: <htvnnxraq3dichhoa22cvvhxh4qzv3wyg7gyxxdwn7i7gye37a@hig3vattgvdh>
+Subject: Re: [PATCH 2/3] drm/i915: Add braces around the else block in
+ clflush_write32()
+Message-ID: <wmqxtg4cwswtqphgczopp755ivbohcsrzt6nmxkf4e5bc7lwm4@wgayizzneypo>
 References: <20250716093645.432689-1-sebastian.brzezinka@intel.com>
- <20250716093645.432689-2-sebastian.brzezinka@intel.com>
+ <20250716093645.432689-3-sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250716093645.432689-2-sebastian.brzezinka@intel.com>
+In-Reply-To: <20250716093645.432689-3-sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,120 +59,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sebastian,
+On Wed, Jul 16, 2025 at 09:37:18AM +0000, Sebastian Brzezinka wrote:
 
-> @@ -1529,80 +1529,89 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->  	struct drm_i915_gem_relocation_entry __user *urelocs =
->  		u64_to_user_ptr(entry->relocs_ptr);
->  	unsigned long remain = entry->relocation_count;
-> +	int ret = 0;
->  
-> -	if (unlikely(remain > N_RELOC(INT_MAX)))
-> -		return -EINVAL;
-> +	if (unlikely(remain > N_RELOC(INT_MAX))) {
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
+You could write a few words here in the description to avoid
+complaints.
 
-Why? This doesn't look clearer to me.
-
->  
->  	/*
->  	 * We must check that the entire relocation array is safe
->  	 * to read. However, if the array is not writable the user loses
->  	 * the updated relocation values.
->  	 */
-> -	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
-> -		return -EFAULT;
-> +	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs)))) {
-> +		ret = -EFAULT;
-> +		goto out;
-> +	}
-
-same.
-
-> -	do {
-> -		struct drm_i915_gem_relocation_entry *r = stack;
-> +	while (remain > 0) {
->  		unsigned int count =
->  			min_t(unsigned long, remain, ARRAY_SIZE(stack));
->  		unsigned int copied;
-> -
->  		/*
->  		 * This is the fast path and we cannot handle a pagefault
-> -		 * whilst holding the struct mutex lest the user pass in the
-> -		 * relocations contained within a mmaped bo. For in such a case
-> -		 * we, the page fault handler would call i915_gem_fault() and
-> -		 * we would try to acquire the struct mutex again. Obviously
-> -		 * this is bad and so lockdep complains vehemently.
-> +		 * whilst holding the struct mutex lest the user pass in
-> +		 * the relocations contained within a mmaped bo. For in
-> +		 * such a case we, the page fault handler would call
-> +		 * i915_gem_fault() and we would try to acquire the
-> +		 * struct mutex again. Obviously this is bad and so
-> +		 * lockdep complains vehemently.
->  		 */
-
-Why have you done this change?
-
->  		pagefault_disable();
-> -		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
-> +		copied = __copy_from_user_inatomic(stack, urelocs,
-> +						   count * sizeof(stack[0]));
-
-No need, the maximum allowed by the documentation is 100
-characters.
-
->  		pagefault_enable();
-> +
->  		if (unlikely(copied)) {
-> -			remain = -EFAULT;
-> +			ret = -EFAULT;
->  			goto out;
->  		}
->  
-> -		remain -= count;
-> -		do {
-> +		for (unsigned int i = 0; i < count; ++i) {
-
-Please don't declare variables inside the for loop.
-
-> +			struct drm_i915_gem_relocation_entry *r =
-> +				&stack[i];
->  			u64 offset = eb_relocate_entry(eb, ev, r);
->  
-> -			if (likely(offset == 0)) {
-> -			} else if ((s64)offset < 0) {
-> -				remain = (int)offset;
-> +			if (likely(offset == 0))
-> +				continue;
-
-you can leave a blank line here.
-
-> +			if (unlikely((s64)offset < 0)) {
-> +				ret = (int)offset;
->  				goto out;
-
-...
-
->  out:
->  	reloc_cache_reset(&eb->reloc_cache, eb);
-> -	return remain;
-> +	return ret;
-
-now, this function is also returning a different value, not the
-remaining bytes anymore but 0 on success and -error on failure.
-Is this something you wanted?
-
-Overall the patch is not acceptable yet. You mixed several
-cleanups while I would rather prefer one cleanup type per patch,
-this make is easier to review and trace in the history.
+No need to resend, just send me the description you want and i
+will add it before applying. This patch is already good to go.
 
 Andi
 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index b2d940e89bbb..b2660445bb51 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1382,8 +1382,9 @@ static void clflush_write32(u32 *addr, u32 value, unsigned int flushes)
+>  		 */
+>  		if (flushes & CLFLUSH_AFTER)
+>  			drm_clflush_virt_range(addr, sizeof(*addr));
+> -	} else
+> +	} else {
+>  		*addr = value;
+> +	}
 >  }
 >  
->  static int
+>  static u64
 > -- 
 > 2.34.1
 > 
