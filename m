@@ -2,66 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EED4B06F3C
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 09:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B49B06FF0
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 10:10:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1F5F10E6C4;
-	Wed, 16 Jul 2025 07:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80B010E6FB;
+	Wed, 16 Jul 2025 08:10:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dghhNHX9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+N2XyE+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8159610E6C4;
- Wed, 16 Jul 2025 07:42:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38F010E6F0;
+ Wed, 16 Jul 2025 08:09:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752651744; x=1784187744;
- h=message-id:date:mime-version:from:to:cc:subject:
+ t=1752653398; x=1784189398;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=7G9uOyZ3juMdF5Us7PxsVozhy5f19mL67f2MlcNn8wM=;
- b=dghhNHX99vNDfE4AcWSD6SUuti/B2SHKwZD+Mu/ITUedTNJd2nSZLMLQ
- 6hc8SMruGTFSZZeQQuco0msidaKdxk/LTBq0vFnhvkeTO9uKUk7JwG60S
- Rtfq8zJI9r3M97yr1s6VcFED1Bc2o1vvF+YwEiQPg78ZBLz7cAzlhRJ2s
- x93MVhocCtZdOj36zBxnHs9U8RPFyIuxGg97DKtC1PnV0qR2c4Bt3PZXf
- OE7UZfoSoNsmXYRVMvfWK+jwXKaO5/gRhICxpqiNcbL5Z0eqd3ym/XTJw
- v0sr/454Uaxv1mdho+SvpGST3RIfMxWEaN1T3C4Bmrhvg+O7NsjO0zUt7 A==;
-X-CSE-ConnectionGUID: aL7tAhtHTZ6VhSclzaXAuA==
-X-CSE-MsgGUID: gfSePt/OT3WHpXoqxL47rA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="54761009"
-X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="54761009"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2025 00:42:24 -0700
-X-CSE-ConnectionGUID: ZmZTSw6BRfGGQ5iW+8iiaA==
-X-CSE-MsgGUID: 0sM1Al9pTZq/8C7/5VDaQw==
+ bh=+IfJIt//r+VDsp+bk27g9q0Oe5U2qunbdk1guUNWumg=;
+ b=i+N2XyE+siHQLxBqZ5hGhBZOk+ZwhgXREHQeB16NMInWezkyxioDx+6d
+ yx3GGTrFJj0go3yRkRL5l7KkNns9I1gowc6oL17XdJaS9HwWn0WlZVvDj
+ DOkiuJFOXym2mi1sAr6dWTm1mfRnc8blCcnP2/KeZvRgyQ/e5aZyO+/rx
+ Dwzc4N5aQ94WUmQtlqAlqkPzOJay2vt3W7E9iCZjbh+DYLFieAR4QKZPj
+ yTUBtW0A725INKwN0eMvsRoS5eqHfV+A4TY4DsU+r2EwF3ukxJIl2ebHs
+ +1TSic/Ufs7Dr89hbtKLsbJzI2ARZt/wdcQgZrtROwCFTbDTmMA+cNGXn Q==;
+X-CSE-ConnectionGUID: ZGaNVkZFREiM4vtttQmJow==
+X-CSE-MsgGUID: ezoLZl/kSEmXKZwj9FyPyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11493"; a="66245053"
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="66245053"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jul 2025 01:09:58 -0700
+X-CSE-ConnectionGUID: hgNMt0zcQpOI2EqmFaHhlQ==
+X-CSE-MsgGUID: Cc2np+jDSB+Sjij09kkKWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="156832703"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.143])
- ([10.245.245.143])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jul 2025 00:42:20 -0700
-Message-ID: <ee784a3a-30b4-489a-8503-b1be3b09268c@linux.intel.com>
-Date: Wed, 16 Jul 2025 09:42:17 +0200
+X-IronPort-AV: E=Sophos;i="6.16,315,1744095600"; d="scan'208";a="161759305"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa003.jf.intel.com with ESMTP; 16 Jul 2025 01:09:57 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] eDP Data Override
+Date: Wed, 16 Jul 2025 13:39:17 +0530
+Message-Id: <20250716080919.2127676-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,41 +66,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+When using link rates 2.43 and 6.75 causes a strong noise for WIFI
+bands. Its recommended we use 2.7 and 8.1 Gbps instead.
+The solution proposed was a static vbt field that provides us with a
+mask of rates which need to be skipped in favor of the next higher link
+rate.
 
-Another pull request.
+HSD:14022096069
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Best regards,
-~Maarten
+Suraj Kandpal (2):
+  drm/i915/vbt: Add eDP Data Overrride field in VBT
+  drm/i915/edp: eDP Data Overrride
 
-drm-misc-fixes-2025-07-16:
-drm-misc-fixes for v6.16 final?:
-- nouveau ioctl validation fix.
-- panfrost scheduler bug.
-The following changes since commit bd46cece51a36ef088f22ef0416ac13b0a46d5b0:
+ drivers/gpu/drm/i915/display/intel_bios.c     | 56 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h     |  2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 11 +++-
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 ++++++
+ 4 files changed, 82 insertions(+), 3 deletions(-)
 
-  drm/gem: Fix race in drm_gem_handle_create_tail() (2025-07-09 15:53:34 +0200)
+-- 
+2.34.1
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-07-16
-
-for you to fetch changes up to cb345f954eacd162601e7d07ca2f0f0a17b54ee3:
-
-  drm/panfrost: Fix scheduler workqueue bug (2025-07-14 16:49:10 +0100)
-
-----------------------------------------------------------------
-drm-misc-fixes for v6.16 final?:
-- nouveau ioctl validation fix.
-- panfrost scheduler bug.
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/nouveau: check ioctl command codes better
-
-Philipp Stanner (1):
-      drm/panfrost: Fix scheduler workqueue bug
-
- drivers/gpu/drm/nouveau/nouveau_drm.c   | 11 +++++------
- drivers/gpu/drm/panfrost/panfrost_job.c |  2 +-
- 2 files changed, 6 insertions(+), 7 deletions(-)
