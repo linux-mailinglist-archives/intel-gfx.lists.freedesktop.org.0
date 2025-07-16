@@ -2,74 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01838B08EAC
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 16:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAECFB08EB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 16:02:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 671E310E819;
-	Thu, 17 Jul 2025 14:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BD110E82B;
+	Thu, 17 Jul 2025 14:01:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=didiglobal.com header.i=@didiglobal.com header.b="gMjjMenR";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=valentine.burley@collabora.com header.b="WfdI/L9B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx10.didiglobal.com (mx10.didiglobal.com [111.202.70.125])
- by gabe.freedesktop.org (Postfix) with SMTP id 2098210E75B;
- Wed, 16 Jul 2025 09:36:32 +0000 (UTC)
-Received: from mail.didiglobal.com (unknown [10.79.64.20])
- by mx10.didiglobal.com (MailData Gateway V2.8.8) with ESMTPS id F00C118BE806D6;
- Wed, 16 Jul 2025 17:35:24 +0800 (CST)
-Received: from BJ02-ACTMBX-08.didichuxing.com (10.79.65.15) by
- BJ01-ACTMBX-01.didichuxing.com (10.79.64.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 16 Jul 2025 17:36:10 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
- BJ02-ACTMBX-08.didichuxing.com (10.79.65.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 16 Jul 2025 17:36:10 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e]) by
- BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e%7]) with
- mapi id 15.02.1748.010; Wed, 16 Jul 2025 17:36:10 +0800
-X-MD-Sfrom: chentaotao@didiglobal.com
-X-MD-SrcIP: 10.79.64.20
-From: =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-To: "tytso@mit.edu" <tytso@mit.edu>, "hch@infradead.org" <hch@infradead.org>, 
- "adilger.kernel@dilger.ca" <adilger.kernel@dilger.ca>,
- "willy@infradead.org"
- <willy@infradead.org>, "brauner@kernel.org" <brauner@kernel.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
- <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>
-CC: "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ext4@vger.kernel.org" <linux-ext4@vger.kernel.org>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>, "linux-doc@vger.kernel.org"
- <linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "chentao325@qq.com" <chentao325@qq.com>,
- "frank.li@vivo.com" <frank.li@vivo.com>,
- =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-Subject: [PATCH v6 5/5] ext4: support uncached buffered I/O
-Thread-Topic: [PATCH v6 5/5] ext4: support uncached buffered I/O
-Thread-Index: AQHb9jUP9LOYES+YUEOSUxZdtu5kSg==
-Date: Wed, 16 Jul 2025 09:36:09 +0000
-Message-ID: <20250716093559.217344-6-chentaotao@didiglobal.com>
-In-Reply-To: <20250716093559.217344-1-chentaotao@didiglobal.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.79.64.102]
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB7F10E7B0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jul 2025 11:34:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1752665650; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=jM8480z33WiClEztPFhrCOG9Qlx13se3UgrCJ/rSZudDPQb9MAGrZwCCmKFAjXJzB3wxNvNBzWxHAmoxmJuvhj/cjodK8zxInUEv2nVEoiCSF2R0YZsJak4SVv2lFWAe9nGXC3x6eaIIvopQIQYQVD3IuhIccmeLoSbdH8UnjJA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1752665650;
+ h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=MfKSQQ1QidhHEoBCmMPirBJbKD4E7VVLZwaX7ylrMP0=; 
+ b=a4wjWC4OwNgqx8a6XGIhgvC6wLvsU7becgrIwGUB1qbWccXvriafkXX3BDWjGrkXcGlsOiPPIhU5lcJSVxGFnhv/o4RJmNFLB2gxthDIB/ymi8sVyv+WLm9vuHaovqhwYQO7RYMP6VRsmwGqI7aNS1wbY+NIN+4TBQVaQ+pnMJA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=valentine.burley@collabora.com;
+ dmarc=pass header.from=<valentine.burley@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752665650; 
+ s=zohomail; d=collabora.com; i=valentine.burley@collabora.com; 
+ h=Date:Date:From:From:To:To:Cc:Cc:Message-Id:Message-Id:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Reply-To;
+ bh=MfKSQQ1QidhHEoBCmMPirBJbKD4E7VVLZwaX7ylrMP0=;
+ b=WfdI/L9Byjr7kNFkR7YGT1U4KsPI8/g9VeON+dNAHBq5C4hEJ5X1tAN5h4W0LIsI
+ SKdSPzFM/Veo77p/9pVAH27huxEI+qe4Xs0L+Zfna85kRI0bEdhnjZo0rwRyqx1mbMM
+ 0s9ScgUNOlZFg063MoSPoUcyva9oFgib+aWMWCws=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 175266564866647.30672877929089;
+ Wed, 16 Jul 2025 04:34:08 -0700 (PDT)
+Date: Wed, 16 Jul 2025 13:34:08 +0200
+From: Valentine Burley <valentine.burley@collabora.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: "intel-gfx" <intel-gfx@lists.freedesktop.org>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Alexander Usyskin" <alexander.usyskin@intel.com>,
+ "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Message-Id: <19813036e03.546c166b2607290.4657211250310977639@collabora.com>
+In-Reply-To: <20250715225959.488109-6-daniele.ceraolospurio@intel.com>
+References: <20250715225959.488109-4-daniele.ceraolospurio@intel.com>
+ <20250715225959.488109-6-daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/pxp: Do not support PXP if CSME is not
+ available
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=didiglobal.com;
- s=2025; t=1752658546;
- bh=7NwIqzCgC1RdJfhixz5bD3co5fgHiYbQk2Lmr3rknQE=;
- h=From:To:CC:Subject:Date:Message-ID:Content-Type;
- b=gMjjMenRDOz/Z1BVB8tmb1b4gC5PKmiKtyf6fjnfZfHUb4Ee90HbPIsEIi6iDGH3G
- S7hJg03IR9ijacY2D6rD9P2rnqqDwUU/cqKfuIUbSGOqPUCJNH746hYEfWtFsXHf/B
- dgPpUf0GDlc/u4/HzaRGVmB7Piz7Oj9KSnrpB5hU=
+Content-Type: multipart/alternative; 
+ boundary="----=_Part_8976324_590075631.1752665648643"
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Mailman-Approved-At: Thu, 17 Jul 2025 14:01:50 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,53 +73,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGFvdGFvIENoZW4gPGNoZW50YW90YW9AZGlkaWdsb2JhbC5jb20+DQoNClNldCBGT1Bf
-RE9OVENBQ0hFIGluIGV4dDRfZmlsZV9vcGVyYXRpb25zIHRvIGRlY2xhcmUgc3VwcG9ydCBmb3IN
-CnVuY2FjaGVkIGJ1ZmZlcmVkIEkvTy4NCg0KVG8gaGFuZGxlIHRoaXMgZmxhZywgdXBkYXRlIGV4
-dDRfd3JpdGVfYmVnaW4oKSBhbmQgZXh0NF9kYV93cml0ZV9iZWdpbigpDQp0byB1c2Ugd3JpdGVf
-YmVnaW5fZ2V0X2ZvbGlvKCksIHdoaWNoIGVuY2Fwc3VsYXRlcyBGR1BfRE9OVENBQ0hFIGxvZ2lj
-DQpiYXNlZCBvbiBpb2NiLT5raV9mbGFncy4NCg0KUGFydCBvZiBhIHNlcmllcyByZWZhY3Rvcmlu
-ZyBhZGRyZXNzX3NwYWNlX29wZXJhdGlvbnMgd3JpdGVfYmVnaW4gYW5kDQp3cml0ZV9lbmQgY2Fs
-bGJhY2tzIHRvIHVzZSBzdHJ1Y3Qga2lvY2IgZm9yIHBhc3Npbmcgd3JpdGUgY29udGV4dCBhbmQN
-CmZsYWdzLg0KDQpTaWduZWQtb2ZmLWJ5OiBUYW90YW8gQ2hlbiA8Y2hlbnRhb3Rhb0BkaWRpZ2xv
-YmFsLmNvbT4NCi0tLQ0KIGZzL2V4dDQvZmlsZS5jICB8ICAzICsrLQ0KIGZzL2V4dDQvaW5vZGUu
-YyB8IDEyICsrKy0tLS0tLS0tLQ0KIDIgZmlsZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAx
-MCBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2ZzL2V4dDQvZmlsZS5jIGIvZnMvZXh0NC9m
-aWxlLmMNCmluZGV4IDIxZGY4MTM0NzE0Ny4uMjc0YjQxYTQ3NmM4IDEwMDY0NA0KLS0tIGEvZnMv
-ZXh0NC9maWxlLmMNCisrKyBiL2ZzL2V4dDQvZmlsZS5jDQpAQCAtOTc3LDcgKzk3Nyw4IEBAIGNv
-bnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgZXh0NF9maWxlX29wZXJhdGlvbnMgPSB7DQogCS5z
-cGxpY2Vfd3JpdGUJPSBpdGVyX2ZpbGVfc3BsaWNlX3dyaXRlLA0KIAkuZmFsbG9jYXRlCT0gZXh0
-NF9mYWxsb2NhdGUsDQogCS5mb3BfZmxhZ3MJPSBGT1BfTU1BUF9TWU5DIHwgRk9QX0JVRkZFUl9S
-QVNZTkMgfA0KLQkJCSAgRk9QX0RJT19QQVJBTExFTF9XUklURSwNCisJCQkgIEZPUF9ESU9fUEFS
-QUxMRUxfV1JJVEUgfA0KKwkJCSAgRk9QX0RPTlRDQUNIRSwNCiB9Ow0KIA0KIGNvbnN0IHN0cnVj
-dCBpbm9kZV9vcGVyYXRpb25zIGV4dDRfZmlsZV9pbm9kZV9vcGVyYXRpb25zID0gew0KZGlmZiAt
-LWdpdCBhL2ZzL2V4dDQvaW5vZGUuYyBiL2ZzL2V4dDQvaW5vZGUuYw0KaW5kZXggOWExNmVmZDA3
-MmJiLi41YzcwMjQwNTFmMWUgMTAwNjQ0DQotLS0gYS9mcy9leHQ0L2lub2RlLmMNCisrKyBiL2Zz
-L2V4dDQvaW5vZGUuYw0KQEAgLTEyNjQsNyArMTI2NCw2IEBAIHN0YXRpYyBpbnQgZXh0NF93cml0
-ZV9iZWdpbihjb25zdCBzdHJ1Y3Qga2lvY2IgKmlvY2IsDQogCXN0cnVjdCBmb2xpbyAqZm9saW87
-DQogCXBnb2ZmX3QgaW5kZXg7DQogCXVuc2lnbmVkIGZyb20sIHRvOw0KLQlmZ2ZfdCBmZ3AgPSBG
-R1BfV1JJVEVCRUdJTjsNCiANCiAJcmV0ID0gZXh0NF9lbWVyZ2VuY3lfc3RhdGUoaW5vZGUtPmlf
-c2IpOw0KIAlpZiAodW5saWtlbHkocmV0KSkNCkBAIC0xMjg4LDE2ICsxMjg3LDE0IEBAIHN0YXRp
-YyBpbnQgZXh0NF93cml0ZV9iZWdpbihjb25zdCBzdHJ1Y3Qga2lvY2IgKmlvY2IsDQogCX0NCiAN
-CiAJLyoNCi0JICogX19maWxlbWFwX2dldF9mb2xpbygpIGNhbiB0YWtlIGEgbG9uZyB0aW1lIGlm
-IHRoZQ0KKwkgKiB3cml0ZV9iZWdpbl9nZXRfZm9saW8oKSBjYW4gdGFrZSBhIGxvbmcgdGltZSBp
-ZiB0aGUNCiAJICogc3lzdGVtIGlzIHRocmFzaGluZyBkdWUgdG8gbWVtb3J5IHByZXNzdXJlLCBv
-ciBpZiB0aGUgZm9saW8NCiAJICogaXMgYmVpbmcgd3JpdHRlbiBiYWNrLiAgU28gZ3JhYiBpdCBm
-aXJzdCBiZWZvcmUgd2Ugc3RhcnQNCiAJICogdGhlIHRyYW5zYWN0aW9uIGhhbmRsZS4gIFRoaXMg
-YWxzbyBhbGxvd3MgdXMgdG8gYWxsb2NhdGUNCiAJICogdGhlIGZvbGlvIChpZiBuZWVkZWQpIHdp
-dGhvdXQgdXNpbmcgR0ZQX05PRlMuDQogCSAqLw0KIHJldHJ5X2dyYWI6DQotCWZncCB8PSBmZ2Zf
-c2V0X29yZGVyKGxlbik7DQotCWZvbGlvID0gX19maWxlbWFwX2dldF9mb2xpbyhtYXBwaW5nLCBp
-bmRleCwgZmdwLA0KLQkJCQkgICAgbWFwcGluZ19nZnBfbWFzayhtYXBwaW5nKSk7DQorCWZvbGlv
-ID0gd3JpdGVfYmVnaW5fZ2V0X2ZvbGlvKGlvY2IsIG1hcHBpbmcsIGluZGV4LCBsZW4pOw0KIAlp
-ZiAoSVNfRVJSKGZvbGlvKSkNCiAJCXJldHVybiBQVFJfRVJSKGZvbGlvKTsNCiANCkBAIC0zMDQ2
-LDcgKzMwNDMsNiBAQCBzdGF0aWMgaW50IGV4dDRfZGFfd3JpdGVfYmVnaW4oY29uc3Qgc3RydWN0
-IGtpb2NiICppb2NiLA0KIAlzdHJ1Y3QgZm9saW8gKmZvbGlvOw0KIAlwZ29mZl90IGluZGV4Ow0K
-IAlzdHJ1Y3QgaW5vZGUgKmlub2RlID0gbWFwcGluZy0+aG9zdDsNCi0JZmdmX3QgZmdwID0gRkdQ
-X1dSSVRFQkVHSU47DQogDQogCXJldCA9IGV4dDRfZW1lcmdlbmN5X3N0YXRlKGlub2RlLT5pX3Ni
-KTsNCiAJaWYgKHVubGlrZWx5KHJldCkpDQpAQCAtMzA3Miw5ICszMDY4LDcgQEAgc3RhdGljIGlu
-dCBleHQ0X2RhX3dyaXRlX2JlZ2luKGNvbnN0IHN0cnVjdCBraW9jYiAqaW9jYiwNCiAJfQ0KIA0K
-IHJldHJ5Og0KLQlmZ3AgfD0gZmdmX3NldF9vcmRlcihsZW4pOw0KLQlmb2xpbyA9IF9fZmlsZW1h
-cF9nZXRfZm9saW8obWFwcGluZywgaW5kZXgsIGZncCwNCi0JCQkJICAgIG1hcHBpbmdfZ2ZwX21h
-c2sobWFwcGluZykpOw0KKwlmb2xpbyA9IHdyaXRlX2JlZ2luX2dldF9mb2xpbyhpb2NiLCBtYXBw
-aW5nLCBpbmRleCwgbGVuKTsNCiAJaWYgKElTX0VSUihmb2xpbykpDQogCQlyZXR1cm4gUFRSX0VS
-Uihmb2xpbyk7DQogDQotLSANCjIuMzQuMQ0K
+------=_Part_8976324_590075631.1752665648643
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you for the fix! This worked around the issue and disabled PXP,
+which allowed our virtual machine to boot.
+
+Tested-by: Valentine Burley < mailto:valentine.burley@collabora.com >
+
+
+
+
+
+
+
+---- On Wed, 16 Jul 2025 01:00:02 +0200 Daniele Ceraolo Spurio <daniele.cer=
+aolospurio@intel.com> wrote ---
+
+
+
+The PXP flow requires us to communicate with CSME, which we do via a=20
+mei component. Since the mei component binding is async and can take=20
+a bit to complete, we don't wait for it during i915 load. If userspace=20
+queries the state before the async binding is complete, we return an=20
+"init in progress" state, with the expectation that it will eventually=20
+transition to "init complete" if the CSME device is functional.=20
+=20
+Mesa CI is flashing a custom coreboot on their Chromebooks that hides=20
+the CSME device, which means that we never transition to the "init=20
+complete" state. While from an interface POV it is not incorrect to not=20
+end up in "init complete" if the CSME is missing, we can mitigate the=20
+impact of this by simply checking if the CSME device is available at=20
+all before attempting to initialize PXP.=20
+=20
+Reported-by: Valentine Burley < mailto:valentine.burley@collabora.com >=20
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14516 =20
+Signed-off-by: Daniele Ceraolo Spurio < mailto:daniele.ceraolospurio@intel.=
+com >=20
+Cc: Rodrigo Vivi < mailto:rodrigo.vivi@intel.com >=20
+Cc: Alexander Usyskin < mailto:alexander.usyskin@intel.com >=20
+Cc: Alan Previn < mailto:alan.previn.teres.alexis@intel.com >=20
+---=20
+ drivers/gpu/drm/i915/i915_module.c   | 1 +=20
+ drivers/gpu/drm/i915/pxp/intel_pxp.c | 5 +++++=20
+ 2 files changed, 6 insertions(+)=20
+=20
+diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915=
+_module.c=20
+index 5862754c662c..07118a1ea14d 100644=20
+--- a/drivers/gpu/drm/i915/i915_module.c=20
++++ b/drivers/gpu/drm/i915/i915_module.c=20
+@@ -126,3 +126,4 @@ MODULE_AUTHOR("Intel Corporation");=20
+=20
+ MODULE_DESCRIPTION(DRIVER_DESC);=20
+ MODULE_LICENSE("GPL and additional rights");=20
++=20
+diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/px=
+p/intel_pxp.c=20
+index c077a1c464cf..e476c1d82c2f 100644=20
+--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c=20
++++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c=20
+@@ -2,6 +2,7 @@=20
+ /*=20
+ * Copyright(c) 2020 Intel Corporation.=20
+ */=20
++#include <linux/mei_me.h>=20
+ #include <linux/workqueue.h>=20
+=20
+ #include "gem/i915_gem_context.h"=20
+@@ -203,6 +204,10 @@ int intel_pxp_init(struct drm_i915_private *i915)=20
+ =C2=A0=C2=A0=C2=A0=C2=A0if (intel_gt_is_wedged(to_gt(i915)))=20
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -ENOTCONN;=20
+=20
++=C2=A0=C2=A0=C2=A0=C2=A0/* iGPUs require CSME to be available to use PXP *=
+/=20
++=C2=A0=C2=A0=C2=A0=C2=A0if (!IS_DGFX(i915) && !mei_me_device_present())=20
++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -ENODEV;=20
++=20
+ =C2=A0=C2=A0=C2=A0=C2=A0/*=20
+ =C2=A0=C2=A0=C2=A0=C2=A0 * NOTE: Get the ctrl_gt before checking intel_pxp=
+_is_supported since=20
+ =C2=A0=C2=A0=C2=A0=C2=A0 * we still need it if PXP's backend tee transport=
+ is needed.=20
+--=20
+2.43.0
+------=_Part_8976324_590075631.1752665648643
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
+<meta content=3D"text/html;charset=3DUTF-8" http-equiv=3D"Content-Type"></h=
+ead><body ><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif=
+; font-size: 10pt;"><div>Thank you for the fix! This worked around the issu=
+e and disabled PXP,<br>which allowed our virtual machine to boot.<br><br>Te=
+sted-by: Valentine Burley &lt;<a target=3D"_blank" href=3D"mailto:valentine=
+.burley@collabora.com">valentine.burley@collabora.com</a>&gt;<br></div><div=
+><br></div><div class=3D"zmail_extra_hr" style=3D"border-top: 1px solid rgb=
+(204, 204, 204); height: 0px; margin-top: 10px; margin-bottom: 10px; line-h=
+eight: 0px;"><br></div><div class=3D"zmail_extra" data-zbluepencil-ignore=
+=3D"true"><div><br></div><div id=3D"Zm-_Id_-Sgn1">---- On Wed, 16 Jul 2025 =
+01:00:02 +0200 <b>Daniele Ceraolo Spurio &lt;daniele.ceraolospurio@intel.co=
+m&gt;</b> wrote ---<br></div><div><br></div><blockquote id=3D"blockquote_zm=
+ail" style=3D"margin: 0px;"><div>The PXP flow requires us to communicate wi=
+th CSME, which we do via a <br>mei component. Since the mei component bindi=
+ng is async and can take <br>a bit to complete, we don't wait for it during=
+ i915 load. If userspace <br>queries the state before the async binding is =
+complete, we return an <br>"init in progress" state, with the expectation t=
+hat it will eventually <br>transition to "init complete" if the CSME device=
+ is functional. <br> <br>Mesa CI is flashing a custom coreboot on their Chr=
+omebooks that hides <br>the CSME device, which means that we never transiti=
+on to the "init <br>complete" state. While from an interface POV it is not =
+incorrect to not <br>end up in "init complete" if the CSME is missing, we c=
+an mitigate the <br>impact of this by simply checking if the CSME device is=
+ available at <br>all before attempting to initialize PXP. <br> <br>Reporte=
+d-by: Valentine Burley &lt;<a target=3D"_blank" href=3D"mailto:valentine.bu=
+rley@collabora.com">valentine.burley@collabora.com</a>&gt; <br>Closes: <a t=
+arget=3D"_blank" href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
+ssues/14516">https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14516<=
+/a> <br>Signed-off-by: Daniele Ceraolo Spurio &lt;<a target=3D"_blank" href=
+=3D"mailto:daniele.ceraolospurio@intel.com">daniele.ceraolospurio@intel.com=
+</a>&gt; <br>Cc: Rodrigo Vivi &lt;<a target=3D"_blank" href=3D"mailto:rodri=
+go.vivi@intel.com">rodrigo.vivi@intel.com</a>&gt; <br>Cc: Alexander Usyskin=
+ &lt;<a target=3D"_blank" href=3D"mailto:alexander.usyskin@intel.com">alexa=
+nder.usyskin@intel.com</a>&gt; <br>Cc: Alan Previn &lt;<a target=3D"_blank"=
+ href=3D"mailto:alan.previn.teres.alexis@intel.com">alan.previn.teres.alexi=
+s@intel.com</a>&gt; <br>--- <br> drivers/gpu/drm/i915/i915_module.c   | 1 +=
+ <br> drivers/gpu/drm/i915/pxp/intel_pxp.c | 5 +++++ <br> 2 files changed, =
+6 insertions(+) <br> <br>diff --git a/drivers/gpu/drm/i915/i915_module.c b/=
+drivers/gpu/drm/i915/i915_module.c <br>index 5862754c662c..07118a1ea14d 100=
+644 <br>--- a/drivers/gpu/drm/i915/i915_module.c <br>+++ b/drivers/gpu/drm/=
+i915/i915_module.c <br>@@ -126,3 +126,4 @@ MODULE_AUTHOR("Intel Corporation=
+"); <br> <br> MODULE_DESCRIPTION(DRIVER_DESC); <br> MODULE_LICENSE("GPL and=
+ additional rights"); <br>+ <br>diff --git a/drivers/gpu/drm/i915/pxp/intel=
+_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c <br>index c077a1c464cf..e476c=
+1d82c2f 100644 <br>--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c <br>+++ b/dri=
+vers/gpu/drm/i915/pxp/intel_pxp.c <br>@@ -2,6 +2,7 @@ <br> /* <br> * Copyri=
+ght(c) 2020 Intel Corporation. <br> */ <br>+#include &lt;linux/mei_me.h&gt;=
+ <br> #include &lt;linux/workqueue.h&gt; <br> <br> #include "gem/i915_gem_c=
+ontext.h" <br>@@ -203,6 +204,10 @@ int intel_pxp_init(struct drm_i915_priva=
+te *i915) <br> &nbsp;&nbsp;&nbsp;&nbsp;if (intel_gt_is_wedged(to_gt(i915)))=
+ <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return -ENOTCONN; <br=
+> <br>+&nbsp;&nbsp;&nbsp;&nbsp;/* iGPUs require CSME to be available to use=
+ PXP */ <br>+&nbsp;&nbsp;&nbsp;&nbsp;if (!IS_DGFX(i915) &amp;&amp; !mei_me_=
+device_present()) <br>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retu=
+rn -ENODEV; <br>+ <br> &nbsp;&nbsp;&nbsp;&nbsp;/* <br> &nbsp;&nbsp;&nbsp;&n=
+bsp; * NOTE: Get the ctrl_gt before checking intel_pxp_is_supported since <=
+br> &nbsp;&nbsp;&nbsp;&nbsp; * we still need it if PXP's backend tee transp=
+ort is needed. <br>-- <br>2.43.0 <br> <br></div></blockquote></div><div><br=
+></div></div><br></body></html>
+------=_Part_8976324_590075631.1752665648643--
+
