@@ -2,67 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5617AB06C29
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 05:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9DDB06C94
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Jul 2025 06:18:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C5810E24A;
-	Wed, 16 Jul 2025 03:23:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B07BA10E38A;
+	Wed, 16 Jul 2025 04:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="gqPY6sYN";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="XQP/a4Jw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out203-205-221-149.mail.qq.com (out203-205-221-149.mail.qq.com
- [203.205.221.149])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A58CF10E00D;
- Wed, 16 Jul 2025 03:23:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1752636230; bh=rVYXfJ28puNpDsYuCqlsBIEx1NeRES2IwwJ6mZh08HU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=gqPY6sYNLFiPahvX6XldBw2WlribBsBys9yZro80U1dNHLcIDP+skBz6cF9MNesGo
- dh02rpcE7qQOY1zmRPEpVeU1BRajaxqPddhDhKalu5PTBe7G7IAH5f+r8ZhepuxSwx
- RcOS2Ux0dbnQd9Q2CVTY5cz5Cgt4BkOm747ZVi+8=
-Received: from [172.25.20.187] ([111.202.154.66])
- by newxmesmtplogicsvrszb16-1.qq.com (NewEsmtp) with SMTP
- id 5E88D015; Wed, 16 Jul 2025 11:23:40 +0800
-X-QQ-mid: xmsmtpt1752636220tycb83gcn
-Message-ID: <tencent_1C2FC8524B8F624445562817A2BE18E5700A@qq.com>
-X-QQ-XMAILINFO: OeJ9zRfntlNPdKuf745NpqchrcYrT80cSkGsEezOdvuR17zHQEAfAqb15k9v58
- e6/aINkDvUFB6XtpkSJZ5KY6+PyfVNNOTf8mD4q7weZ7nzy0eZssb4PasUrqSFHhZoxI2KFbfqsF
- 5uLIgB0jbNAWf+qPV0EYjIE56Ia5BU4l6fV2lfFV+vazL7cUVAqssEw6T5qWHQx5ezxPUFU+Ezpe
- bZxOa+0uSgVLhYwFMiIaO8LTbBmE9vmzAs1jp/q4c/z9YCJW5yfAIC13ZXcN/pHnW4BAkbQcazmi
- 4yv9Bp5ceti/eLFLsHe5ClFNl0tWAWWkfOQkmtS7RQM49aSFxG1pwa3bMTWZc97UJFuus71FETLz
- 6vQXOTiDzKbl7pYAjYRiIvva3K+qDQINKquuXYbwpT3VwI2iRlb4gCmW94pnMtQJXCARi9G0GL9j
- 2R7D3ZKfqnz1biSCgdZAq0IfkFcoow7tReKz05Ol8TmGhiPqQbawgy1PpGHg8Di0Beoex1rurbnM
- avA3ieh+UrpVV7cjuwRhxy5mDeGZIa19rJWmSnp6kvq1kfuZpHIbohexe2U8LFuCt8kcQiMH3n+y
- 83UmSX+1vH7z67biSLOGUXze5Pxx3D8huAF+HT4f8dzFfNZ6ziDC8kg8LBrdbd3qHtOHgpsSR8VG
- Aid7treeFoiLHnqmd3raHkpQAe16YMDfGGb4IfN1W/5CL2CLgz6e3y8AinBfy9NX8uTxTtM0ujr1
- ld4DTcuZWv52alaCQ56b+7JyGb48tm+52llAkbeKrkA6I06FBsFCrakEu0y+OO+Qu5gNpvrgnI6d
- q+UVJNPSbVSxwv/6WLjRXqsFxzJ+te7n5AjtM2UCDJOnwn8rCF2+v7xLKkN7kmp+CkGm1nrmbN1R
- u7etkw9ViyDwluV2oh312yNMag4FfzrZuZDx498iefnQ040V7R39wtKT2FZfzRzeYdgv3BN2IAlP
- p7K4/7Dr3eD9QaPAihIasG/TqpR48mGdeu7F6TzZREX2lkb55/EkSpSNxm2Z/hD0kPBeK2KbPWGa
- fo8o4tAV5gqaFp8WFGgHxzUB1lZCpXI4ZNTzhBoity48Yz8FYN
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-OQ-MSGID: <99f2ff09-6921-4c68-9783-c590ed4977f2@qq.com>
-Date: Wed, 16 Jul 2025 11:23:40 +0800
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F94C10E38A;
+ Wed, 16 Jul 2025 04:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1752639400;
+ bh=S7mK2SBkhQMa5+gvlYeddVua2aIHqvsHbgJZfEWR6dI=;
+ h=Date:From:To:Cc:Subject:From;
+ b=XQP/a4Jwa5OQi0scktFHKYXE2tJMQNklweWuH8Du+Mn1hontLRAF7k0JJ5mpYgi+W
+ fUCHG94BkOfHJLUQovuma6vZsBtfJR2qtqls7raqWs/kStlrE+L7gnxxkQ4vyH6zSY
+ Jrvw2BQ2uVZkk1eAhk6hUwtd6zIvsMHe6ukFOJin9eOab9xs0pH8k9a47pMvw2v/XF
+ Rgc3LrkJlc4zrBMrjDboj0JzEPBSJCoy7XMGS5t4lLVaioqO/+1mo5wb3GPalV8a1K
+ LLqe8947E9jewDbQtzlcEPrpELMNy+hrhMQ2Du6vrayOnH9kBbgQu+eH7DdSkj0uL8
+ vl71nY7ePvItg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4bhjRq5CDqz4wbY;
+ Wed, 16 Jul 2025 14:16:39 +1000 (AEST)
+Date: Wed, 16 Jul 2025 14:18:32 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Imre Deak <imre.deak@intel.com>, Linux
+ Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
+ <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm tree with the drm-intel-fixes tree
+Message-ID: <20250716141832.5542b414@canb.auug.org.au>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] fs: refactor write_begin/write_end and add ext4
- IOCB_DONTCACHE support
-To: Christian Brauner <brauner@kernel.org>
-Cc: linux-fsdevel@vger.kernel.org, linux-ext4@vger.kernel.org,
- linux-block@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, frank.li@vivo.com,
- tytso@mit.edu, hch@infradead.org, adilger.kernel@dilger.ca,
- willy@infradead.org, jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- tursulin@ursulin.net, airlied@gmail.com
-References: <20250710101404.362146-1-chentaotao@didiglobal.com>
- <20250714-tolerant-begreifbar-970f01d32a30@brauner>
-From: Taotao Chen <chentao325@qq.com>
-In-Reply-To: <20250714-tolerant-begreifbar-970f01d32a30@brauner>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/jvGgs7I7tXJ4eKmy4eV7tUi";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,59 +61,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--Sig_/jvGgs7I7tXJ4eKmy4eV7tUi
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-在 2025/7/14 17:11, Christian Brauner 写道:
-> On Thu, 10 Jul 2025 10:14:06 +0000, 陈涛涛 Taotao Chen wrote:
->> From: Taotao Chen <chentaotao@didiglobal.com>
->>
->> This patch series refactors the address_space_operations write_begin()
->> and write_end() callbacks to take const struct kiocb * as their first
->> argument, allowing IOCB flags such as IOCB_DONTCACHE to propagate to the
->> filesystem's buffered I/O path.
->>
->> [...]
-> Applied to the vfs-6.17.misc branch of the vfs/vfs.git tree.
-> Patches in the vfs-6.17.misc branch should appear in linux-next soon.
->
-> Please report any outstanding bugs that were missed during review in a
-> new review to the original patch series allowing us to drop it.
->
-> It's encouraged to provide Acked-bys and Reviewed-bys even though the
-> patch has now been applied. If possible patch trailers will be updated.
->
-> Note that commit hashes shown below are subject to change due to rebase,
-> trailer updates or similar. If in doubt, please check the listed branch.
->
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
-> branch: vfs-6.17.misc
->
-> [1/5] drm/i915: Use kernel_write() in shmem object create
->        https://git.kernel.org/vfs/vfs/c/110ae5fb48ed
-> [2/5] drm/i915: Refactor shmem_pwrite() to use kiocb and write_iter
->        https://git.kernel.org/vfs/vfs/c/dd09194ff58c
-> [3/5] fs: change write_begin/write_end interface to take struct kiocb *
->        https://git.kernel.org/vfs/vfs/c/254a06118b31
-> [4/5] mm/pagemap: add write_begin_get_folio() helper function
->        https://git.kernel.org/vfs/vfs/c/ff2219c021c5
-> [5/5] ext4: support uncached buffered I/O
->        https://git.kernel.org/vfs/vfs/c/2677497bc6f4
-Hi Christian,
+Hi all,
 
-Kernel testing reported regression bugs in this patch series:
--  Reported-by: kernel test robot <lkp@intel.com>
-    Closes: 
-202507142128.Zr5StnYh-lkp@intel.com/">https://lore.kernel.org/oe-kbuild-all/202507142128.Zr5StnYh-lkp@intel.com/
+Today's linux-next merge of the drm tree got a conflict in:
 
-- Reported-by: kernel test robot <lkp@intel.com>
-   Closes: 
-202507142040.wppyoX1s-lkp@intel.com/">https://lore.kernel.org/oe-kbuild-all/202507142040.wppyoX1s-lkp@intel.com/
+  drivers/gpu/drm/display/drm_dp_helper.c
 
-I will send an updated version of the patch series shortly to address 
-these issues.
-Please consider dropping the original series from the vfs-6.17.misc 
-branch once the new version is reviewed.
+between commit:
 
-Thanks, and sorry for the trouble.
+  d34d6feaf4a7 ("drm/dp: Change AUX DPCD probe address from LANE0_1_STATUS =
+to TRAINING_PATTERN_SET")
 
-Taotao
+from the drm-intel-fixes tree and commit:
 
+  b87ed522b364 ("drm/dp: Add an EDID quirk for the DPCD register access pro=
+be")
+
+from the drm tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/display/drm_dp_helper.c
+index ea78c6c8ca7a,1c3920297906..000000000000
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@@ -712,20 -741,8 +741,8 @@@ ssize_t drm_dp_dpcd_read(struct drm_dp_
+  {
+  	int ret;
+ =20
+- 	/*
+- 	 * HP ZR24w corrupts the first DPCD access after entering power save
+- 	 * mode. Eg. on a read, the entire buffer will be filled with the same
+- 	 * byte. Do a throw away read to avoid corrupting anything we care
+- 	 * about. Afterwards things will work correctly until the monitor
+- 	 * gets woken up and subsequently re-enters power save mode.
+- 	 *
+- 	 * The user pressing any button on the monitor is enough to wake it
+- 	 * up, so there is no particularly good place to do the workaround.
+- 	 * We just have to do it before any DPCD access and hope that the
+- 	 * monitor doesn't power down exactly after the throw away read.
+- 	 */
+- 	if (!aux->is_remote) {
++ 	if (dpcd_access_needs_probe(aux)) {
+ -		ret =3D drm_dp_dpcd_probe(aux, DP_LANE0_1_STATUS);
+ +		ret =3D drm_dp_dpcd_probe(aux, DP_TRAINING_PATTERN_SET);
+  		if (ret < 0)
+  			return ret;
+  	}
+
+--Sig_/jvGgs7I7tXJ4eKmy4eV7tUi
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmh3KBgACgkQAVBC80lX
+0GyZMQf/aZIurtBVrIzuWKnDL8tM/37HjkjT5m6LzYhQSfEq+SwMpu/aAYEYeEcg
+BnS95XPcGd7eHZnM8xg2HJ8WFVJCI1k/RzW4CmQO1qt322b/zqMIVZA8hickQpQ+
+RgRk829fRZV0iR9NgJzmXcCVE3J6i6OisGHjwJxcHdIdKX4bCrcSCPhiy/z3mHDk
+FhCa+Sq2PvQDXABNMvsYjpttezXWzQz6w7p0ekI95ccmyQHU5cFg4pL5/ddtu2J1
+xV1jJ+lpeYUxn8UD5GNYc2WX+uGR9J9vX3TJH7hoW+aHp0M3EqWCeDHU238V0KHC
+0psWZSHBraB+kLdJfke193RM3Vb3vQ==
+=2xqe
+-----END PGP SIGNATURE-----
+
+--Sig_/jvGgs7I7tXJ4eKmy4eV7tUi--
