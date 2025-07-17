@@ -2,61 +2,89 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4099EB092F0
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 19:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC77B092FD
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 19:18:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB9A10E861;
-	Thu, 17 Jul 2025 17:14:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAC7710E87E;
+	Thu, 17 Jul 2025 17:18:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bwOtI0DC";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="HNam0GTR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE4C510E861;
- Thu, 17 Jul 2025 17:14:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752772457; x=1784308457;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2mZYafNEDUyjP0cfr9uyp2qiBS4NXfitDqezcgg5JQ0=;
- b=bwOtI0DCYB054QzpvLzLu73+Ls1EZdEqt5/Dhy9T9fy6cHTWqBjWdq4A
- s27BkA69tvqgYChKt6vaq3A3s6QnUAZWZLGUP4LQsNviYAKqH59vl0ugB
- 5014ZCe+jVZwZzHK0vhHduRCix6ByEf3lIssd+mLBs7VQxs9XQlKCCfyt
- PUf7aA+tgCpc4EAEiCEaZqDToToQIApoGrMKoAmQU/uOFveGwDLAz9FJQ
- hiw1oM7/UPsxdZkkyyLolx8MQcXzFpGFSoMw6HPIq7kZ1FfBzrf6KgcZT
- kD+naOt44KkcxpNgUo65flkIFyYvGyb6RFu/SsDcdoJ0vGXhz774Pnsra g==;
-X-CSE-ConnectionGUID: sBFk7HLwQ4Cz/1BW8rJ0ww==
-X-CSE-MsgGUID: rYvDl69wQIuldazzH8sBEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="58729043"
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="58729043"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jul 2025 10:14:17 -0700
-X-CSE-ConnectionGUID: vlCmD5EvSXyWnD+At/GjYw==
-X-CSE-MsgGUID: Qu1nQyVCQVOlk79jJAUUtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,319,1744095600"; d="scan'208";a="163488972"
-Received: from agladkov-desk.ger.corp.intel.com (HELO stinkbox)
- ([10.245.244.179])
- by orviesa005.jf.intel.com with SMTP; 17 Jul 2025 10:14:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Jul 2025 20:14:14 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3 6/6] drm/i915: Don't pass crtc_state to foo_plane_ctl() &
- co.
-Date: Thu, 17 Jul 2025 20:13:52 +0300
-Message-ID: <20250717171353.23090-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250717171353.23090-1-ville.syrjala@linux.intel.com>
-References: <20250717171353.23090-1-ville.syrjala@linux.intel.com>
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com
+ [209.85.161.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9243610E173
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jul 2025 17:18:41 +0000 (UTC)
+Received: by mail-oo1-f42.google.com with SMTP id
+ 006d021491bc7-6159430bdb2so311764eaf.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 17 Jul 2025 10:18:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1752772721; x=1753377521; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=qHoXfjWQC8TVVYzDPkvOiGuoldc5PZrjcgFvoXK/PqM=;
+ b=HNam0GTRyvR5QOPWm4jwn3gdkXxmIidU38kUybn2Sc0PKnNoSBUzOn8f0c7lYOUkHh
+ r7jR7QsT0aD1qPo+QPT5mGxJ3q/gTNWs3ANIoL8PyqlT3Nc8eDmYdStV5YHUT/HQpLMY
+ EbbIP2So4cchdC3S6fvWM0PB/chxaohywHWwS0fw1K1eZc2ol6nZrLSSWkJDyVH2ytf8
+ fXA/u3znUPKnUupkSh5vr5OJ2CnTz6i0XKplq3m4Xsjtjob/89Qnw5XNwoeA8tw622Th
+ Zv/Yzp7f4x1ODuwKhNzRXEqqg1T46lgtQmNnlznpSuKk9iz2PP0+OmGJ1C1z6F0XkB4l
+ Q2vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752772721; x=1753377521;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qHoXfjWQC8TVVYzDPkvOiGuoldc5PZrjcgFvoXK/PqM=;
+ b=c+dGzqSdHzM4CWdkWTnI8gX/ow6MhkR6gH57u1DKg4l6bZKpnQphKTqYcNLcWDcNF/
+ BnukY2age+1QBYFDFwQmNne6YtrKz9yn7gCsOFFnBJOWVVUSCWwSr9gG0j1/r5rnFHrV
+ VAd8pAydtMoYOw51MjSjM0noXzu45Q4VGITj3b9B7Rz0IRHsJ9F1suCsD78X02vN/63i
+ 2o3Yz8NVSITkW2H+sD+vx8xrz/9sysw2ywARZ1KGcfCozuKABGdQU3bc6NOZg4/GNk9k
+ VnWoYgNM5F2ciu7euIx9o5kx/lrb1YASfqt/+5NRIwguHbI+2YROMgGIAiiHhQe0L6SL
+ Mzzg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVSnUJdkW8vkjSJphp+r74StkcuCI9+nvUG5NepGm1vitoYKomEhOyVYIydDWIIsILjXbYy439c17A=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx1mXZCDxaGBDfnIP0VvwJ886LvkufbZarqUnQw2Xrm18WlwUAp
+ 5b4D/mBACgAXvFD/Aqnew0EEyqoh76CYo5b8QyxZM8ke0qwp1l1VrqVGSRoWMHaNqoQ=
+X-Gm-Gg: ASbGncuC7xmukvYu7Rb4ZeqVkhlJto8PJOfgeyAEELb3oHGORVsnAQsl94cPysd7eEx
+ gGxISfQYEyq/XR+tXzQC8/YrBOqHVqzHPL4UcHJkfYAyahnLpZlswuQrKxIyNJssKycmmAbS/OT
+ 7N4Zoh7ZM4d6F6CSC9ZXQRa6KRBo5MEotgi8rnoiNxBklUaGryQOcYoDzJ0PKfdMT6adWpEpnvf
+ gIf1vE5pOCfpsIo/c8DoiAKgapJP2iHtY52IqU7coRr4wmRnxg74cZFPnvtxDemCm+HT/vKtwVh
+ /3ZBW1oeol6B6+r/32zHvLMckfY/Tx0k01oXJIGOrlqCSKBQAXXf4O/NeFLu7C+INwQShYcLmol
+ km1LXkPcdMtxib8u5jCgnzV1p+gt5
+X-Google-Smtp-Source: AGHT+IGELhiK4hjfMobIpMIU2UtOIBfYoT9/LyPnaEBZIlbG1PXXxwBIK9SN4nNubEMnnT7fY/jmQQ==
+X-Received: by 2002:a05:6820:2981:b0:613:c922:32c6 with SMTP id
+ 006d021491bc7-6159fe1c1b2mr5601644eaf.2.1752772720691; 
+ Thu, 17 Jul 2025 10:18:40 -0700 (PDT)
+Received: from localhost ([2603:8080:b800:f700:2c38:70d4:43e:b901])
+ by smtp.gmail.com with ESMTPSA id
+ 006d021491bc7-613d9f14472sm2868014eaf.29.2025.07.17.10.18.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 17 Jul 2025 10:18:40 -0700 (PDT)
+Date: Thu, 17 Jul 2025 20:18:38 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <treding@nvidia.com>
+Cc: Aakash Deep Sarkar <aakash.deep.sarkar@intel.com>,
+ intel-gfx@lists.freedesktop.org, jeevaka.badrappan@intel.com,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Julia Lawall <julia.lawall@inria.fr>
+Subject: Re: [PATCH] drm/i915/display: Change ret value type from int to long
+Message-ID: <cfd7f381-24e6-44fa-9d60-3423a180c52a@suswa.mountain>
+References: <20250704105600.1937682-1-aakash.deep.sarkar@intel.com>
+ <3b85826c1b0b03ba922c4c948d98d24543bcec67@intel.com>
+ <8cc6e279-2c5a-43f1-81aa-cdd73b32ffa9@suswa.mountain>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8cc6e279-2c5a-43f1-81aa-cdd73b32ffa9@suswa.mountain>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,180 +100,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+I did this but it's hard to know which places return LONG_MAX and
+are problematic.  This from an allyesconfig but on arm64 so it doesn't
+warn about the i915 driver.
 
-The *_plane_ctl() functions only consider the state of the
-plane (the state of the crtc is handled by the corresponding
-*_plane_ctl_crtc()), and thus they don't need the crtc_state
-at all. Don't pass it in.
+drivers/gpu/drm/tegra/submit.c:541 tegra_drm_ioctl_channel_submit() warn: save dma_fence_wait_timeout() returns to signed long
+drivers/gpu/drm/etnaviv/etnaviv_gpu.c:1291 etnaviv_gpu_wait_fence_interruptible() warn: save dma_fence_wait_timeout() returns to signed long
+drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c:94 amdgpu_userq_wait_for_last_fence() warn: save dma_fence_wait_timeout() returns to signed long
+drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c:772 amdgpu_userq_wait_for_signal() warn: save dma_fence_wait_timeout() returns to signed long
+drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c:828 vpe_ring_test_ib() warn: save dma_fence_wait_timeout() returns to signed long
+drivers/gpu/drm/msm/msm_drv.c:687 wait_fence() warn: save dma_fence_wait_timeout() returns to signed long
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_plane.c         |  5 ++---
- drivers/gpu/drm/i915/display/intel_cursor.c       | 10 ++++------
- drivers/gpu/drm/i915/display/intel_sprite.c       | 15 ++++++---------
- .../gpu/drm/i915/display/skl_universal_plane.c    | 11 ++++-------
- 4 files changed, 16 insertions(+), 25 deletions(-)
+The code in tegra_drm_ioctl_channel_submit() is reversed:
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index d572e95c3c92..3eb96d8abba8 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -155,8 +155,7 @@ static bool i9xx_plane_has_windowing(struct intel_plane *plane)
- 			i9xx_plane == PLANE_C;
- }
- 
--static u32 i9xx_plane_ctl(const struct intel_crtc_state *crtc_state,
--			  const struct intel_plane_state *plane_state)
-+static u32 i9xx_plane_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -355,7 +354,7 @@ i9xx_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	plane_state->ctl = i9xx_plane_ctl(crtc_state, plane_state);
-+	plane_state->ctl = i9xx_plane_ctl(plane_state);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 83718b627bb0..d4d181f9dca5 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -205,8 +205,7 @@ static u32 i845_cursor_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return cntl;
- }
- 
--static u32 i845_cursor_ctl(const struct intel_crtc_state *crtc_state,
--			   const struct intel_plane_state *plane_state)
-+static u32 i845_cursor_ctl(const struct intel_plane_state *plane_state)
- {
- 	return CURSOR_ENABLE |
- 		CURSOR_FORMAT_ARGB |
-@@ -266,7 +265,7 @@ static int i845_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 	}
- 
--	plane_state->ctl = i845_cursor_ctl(crtc_state, plane_state);
-+	plane_state->ctl = i845_cursor_ctl(plane_state);
- 
- 	return 0;
- }
-@@ -398,8 +397,7 @@ static u32 i9xx_cursor_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return cntl;
- }
- 
--static u32 i9xx_cursor_ctl(const struct intel_crtc_state *crtc_state,
--			   const struct intel_plane_state *plane_state)
-+static u32 i9xx_cursor_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	u32 cntl = 0;
-@@ -526,7 +524,7 @@ static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 	}
- 
--	plane_state->ctl = i9xx_cursor_ctl(crtc_state, plane_state);
-+	plane_state->ctl = i9xx_cursor_ctl(plane_state);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 230f90e79d2a..75bbaa923204 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -264,8 +264,7 @@ static u32 vlv_sprite_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return sprctl;
- }
- 
--static u32 vlv_sprite_ctl(const struct intel_crtc_state *crtc_state,
--			  const struct intel_plane_state *plane_state)
-+static u32 vlv_sprite_ctl(const struct intel_plane_state *plane_state)
- {
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	unsigned int rotation = plane_state->hw.rotation;
-@@ -660,8 +659,7 @@ static bool ivb_need_sprite_gamma(const struct intel_plane_state *plane_state)
- 		(display->platform.ivybridge || display->platform.haswell);
- }
- 
--static u32 ivb_sprite_ctl(const struct intel_crtc_state *crtc_state,
--			  const struct intel_plane_state *plane_state)
-+static u32 ivb_sprite_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1010,8 +1008,7 @@ static u32 g4x_sprite_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return dvscntr;
- }
- 
--static u32 g4x_sprite_ctl(const struct intel_crtc_state *crtc_state,
--			  const struct intel_plane_state *plane_state)
-+static u32 g4x_sprite_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1378,9 +1375,9 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
- 		return ret;
- 
- 	if (DISPLAY_VER(display) >= 7)
--		plane_state->ctl = ivb_sprite_ctl(crtc_state, plane_state);
-+		plane_state->ctl = ivb_sprite_ctl(plane_state);
- 	else
--		plane_state->ctl = g4x_sprite_ctl(crtc_state, plane_state);
-+		plane_state->ctl = g4x_sprite_ctl(plane_state);
- 
- 	return 0;
- }
-@@ -1430,7 +1427,7 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
--	plane_state->ctl = vlv_sprite_ctl(crtc_state, plane_state);
-+	plane_state->ctl = vlv_sprite_ctl(plane_state);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 39c107b10a48..ec3fe75f2c6c 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1166,8 +1166,7 @@ static u32 skl_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return plane_ctl;
- }
- 
--static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
--			 const struct intel_plane_state *plane_state)
-+static u32 skl_plane_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -1225,8 +1224,7 @@ static u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
- 	return plane_color_ctl;
- }
- 
--static u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
--			       const struct intel_plane_state *plane_state)
-+static u32 glk_plane_color_ctl(const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-@@ -2355,11 +2353,10 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 		plane_state->damage = DRM_RECT_INIT(0, 0, 0, 0);
- 	}
- 
--	plane_state->ctl = skl_plane_ctl(crtc_state, plane_state);
-+	plane_state->ctl = skl_plane_ctl(plane_state);
- 
- 	if (DISPLAY_VER(display) >= 10)
--		plane_state->color_ctl = glk_plane_color_ctl(crtc_state,
--							     plane_state);
-+		plane_state->color_ctl = glk_plane_color_ctl(plane_state);
- 
- 	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
- 	    icl_is_hdr_plane(display, plane->id))
--- 
-2.49.0
+drivers/gpu/drm/tegra/submit.c
+   541                  err = dma_fence_wait_timeout(fence, true, msecs_to_jiffies(10000));
+   542                  dma_fence_put(fence);
+   543                  if (err) {
+                            ^^^
+This should be:
+		if (err <= 0) {
+			err = err ?: -ETIMEDOUT;
+			SUBMIT_ERR(context, "wait for syncobj_in timed out");
+
+It's a bit of a headache to return 0 or negavite on failure.
+
+regards,
+dan carpenter
+
+   544                          SUBMIT_ERR(context, "wait for syncobj_in timed out");
+   545                          goto unlock;
+   546                  }
 
