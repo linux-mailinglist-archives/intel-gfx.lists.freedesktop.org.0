@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAECFB08EB6
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 16:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6D4B08EB0
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 16:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57BD110E82B;
-	Thu, 17 Jul 2025 14:01:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E41410E81D;
+	Thu, 17 Jul 2025 14:01:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=valentine.burley@collabora.com header.b="WfdI/L9B";
+	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="Pb8kTk2r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB7F10E7B0
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Jul 2025 11:34:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1752665650; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=jM8480z33WiClEztPFhrCOG9Qlx13se3UgrCJ/rSZudDPQb9MAGrZwCCmKFAjXJzB3wxNvNBzWxHAmoxmJuvhj/cjodK8zxInUEv2nVEoiCSF2R0YZsJak4SVv2lFWAe9nGXC3x6eaIIvopQIQYQVD3IuhIccmeLoSbdH8UnjJA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1752665650;
- h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=MfKSQQ1QidhHEoBCmMPirBJbKD4E7VVLZwaX7ylrMP0=; 
- b=a4wjWC4OwNgqx8a6XGIhgvC6wLvsU7becgrIwGUB1qbWccXvriafkXX3BDWjGrkXcGlsOiPPIhU5lcJSVxGFnhv/o4RJmNFLB2gxthDIB/ymi8sVyv+WLm9vuHaovqhwYQO7RYMP6VRsmwGqI7aNS1wbY+NIN+4TBQVaQ+pnMJA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=valentine.burley@collabora.com;
- dmarc=pass header.from=<valentine.burley@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752665650; 
- s=zohomail; d=collabora.com; i=valentine.burley@collabora.com; 
- h=Date:Date:From:From:To:To:Cc:Cc:Message-Id:Message-Id:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Reply-To;
- bh=MfKSQQ1QidhHEoBCmMPirBJbKD4E7VVLZwaX7ylrMP0=;
- b=WfdI/L9Byjr7kNFkR7YGT1U4KsPI8/g9VeON+dNAHBq5C4hEJ5X1tAN5h4W0LIsI
- SKdSPzFM/Veo77p/9pVAH27huxEI+qe4Xs0L+Zfna85kRI0bEdhnjZo0rwRyqx1mbMM
- 0s9ScgUNOlZFg063MoSPoUcyva9oFgib+aWMWCws=
-Received: from mail.zoho.com by mx.zohomail.com
- with SMTP id 175266564866647.30672877929089;
- Wed, 16 Jul 2025 04:34:08 -0700 (PDT)
-Date: Wed, 16 Jul 2025 13:34:08 +0200
-From: Valentine Burley <valentine.burley@collabora.com>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Cc: "intel-gfx" <intel-gfx@lists.freedesktop.org>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Alexander Usyskin" <alexander.usyskin@intel.com>,
- "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Message-Id: <19813036e03.546c166b2607290.4657211250310977639@collabora.com>
-In-Reply-To: <20250715225959.488109-6-daniele.ceraolospurio@intel.com>
-References: <20250715225959.488109-4-daniele.ceraolospurio@intel.com>
- <20250715225959.488109-6-daniele.ceraolospurio@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/pxp: Do not support PXP if CSME is not
- available
+Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
+ [157.90.84.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCF810E00B;
+ Thu, 17 Jul 2025 08:29:48 +0000 (UTC)
+Received: from [192.168.178.13] (business-24-134-207-61.pool2.vodafone-ip.de
+ [24.134.207.61])
+ (Authenticated sender: t.guttzeit@tuxedocomputers.com)
+ by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 8BEB12FC0055;
+ Thu, 17 Jul 2025 10:29:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
+ s=default; t=1752740986;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Hj1avtcoqxbKAMsm5imqqAwJOWRbcxAXTXB67LGPYEY=;
+ b=Pb8kTk2rxNIBFxjUq92sAMWNBCZC+HToOAWNOE6myhATk/kqLk1qOLnCnAEc74d/KOZif7
+ Ls4h4vIOGsbxHayK2ErT6egZLgDKxTdyEwEYffY2IwlTGpAZyMlOc/HlF7IORXUR4FdYhO
+ IXtgEnvJpJO7voYy1FHZUbS+nrO8zWI=
+Authentication-Results: mail.tuxedocomputers.com;
+ auth=pass smtp.auth=t.guttzeit@tuxedocomputers.com
+ smtp.mailfrom=t.guttzeit@tuxedocomputers.com
+Message-ID: <3f9a6ad3-d892-4177-9b84-677b90d76e89@tuxedocomputers.com>
+Date: Thu, 17 Jul 2025 10:29:45 +0200
 MIME-Version: 1.0
-Content-Type: multipart/alternative; 
- boundary="----=_Part_8976324_590075631.1752665648643"
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
+ mode on a TUXEDO device
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250704192007.526044-1-wse@tuxedocomputers.com>
+ <20250704192007.526044-2-wse@tuxedocomputers.com>
+ <5998d67d-2096-4c93-b0b6-8af582d901ea@intel.com>
+Content-Language: en-US
+From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+Organization: TUXEDO Computers
+In-Reply-To: <5998d67d-2096-4c93-b0b6-8af582d901ea@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 17 Jul 2025 14:01:50 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,154 +76,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-------=_Part_8976324_590075631.1752665648643
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thank you for the fix! This worked around the issue and disabled PXP,
-which allowed our virtual machine to boot.
-
-Tested-by: Valentine Burley < mailto:valentine.burley@collabora.com >
 
 
+Am 17.07.25 um 09:30 schrieb Murthy, Arun R:
+> 
+>> -----Original Message-----
+>> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of 
+>> Werner
+>> Sembach
+>> Sent: Saturday, July 5, 2025 12:34 AM
+>> To: Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo
+>> <rodrigo.vivi@intel.com>; Joonas Lahtinen 
+>> <joonas.lahtinen@linux.intel.com>;
+>> Tvrtko Ursulin <tursulin@ursulin.net>; David Airlie <airlied@gmail.com>;
+>> Simona Vetter <simona@ffwll.ch>
+>> Cc: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>; Werner Sembach
+>> <wse@tuxedocomputers.com>; intel-gfx@lists.freedesktop.org; intel-
+>> xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: [RFC PATCH 1/1] drm/i915/display: Avoid unsupported 300Hz output
+>> mode on a TUXEDO device
+>>
+>> From: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+>>
+>> Removes all display modes with more than 240 Hz for the integrated 
+>> display on
+>> a TUXEDO Stellaris 16 Gen7, because using the iGPU with higer refresh 
+>> rates
+>> causes screen flicker.
+>>
+>> Signed-off-by: Tim Guttzeit <t.guttzeit@tuxedocomputers.com>
+>> Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
+>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c     |  5 ++++
+>>  drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+>>  3 files changed, 36 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 640c43bf62d4c..5ce00cfe36ee1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -1436,6 +1436,11 @@ intel_dp_mode_valid(struct drm_connector
+>> *_connector,
+>>      if (mode->clock < 10000)
+>>          return MODE_CLOCK_LOW;
+>>
+>> +    if (intel_has_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK) &&
+>> +        intel_dp_is_edp(intel_dp) &&
+>> +        drm_mode_vrefresh(mode) > 240)
+>> +        return MODE_BAD;
+>> +
+> Adding a quirk for this is not the right approach. If this is not 
+> supported by the display, should have been pruned by the driver.
+> 
 
+Thank you for your reply. The panel (NE160QDM-NZL) supports 300 Hz and 
+advertises it. Also when running the system on its NVIDIA dGPU, it runs 
+perfectly fine without the flickering and on 300 Hz. On the iGPU, which 
+is apparently unable to support 300 Hz, it is not pruned, thus leading 
+to the flickering.
 
+Best regards,
+Tim Guttzeit
 
-
-
----- On Wed, 16 Jul 2025 01:00:02 +0200 Daniele Ceraolo Spurio <daniele.cer=
-aolospurio@intel.com> wrote ---
-
-
-
-The PXP flow requires us to communicate with CSME, which we do via a=20
-mei component. Since the mei component binding is async and can take=20
-a bit to complete, we don't wait for it during i915 load. If userspace=20
-queries the state before the async binding is complete, we return an=20
-"init in progress" state, with the expectation that it will eventually=20
-transition to "init complete" if the CSME device is functional.=20
-=20
-Mesa CI is flashing a custom coreboot on their Chromebooks that hides=20
-the CSME device, which means that we never transition to the "init=20
-complete" state. While from an interface POV it is not incorrect to not=20
-end up in "init complete" if the CSME is missing, we can mitigate the=20
-impact of this by simply checking if the CSME device is available at=20
-all before attempting to initialize PXP.=20
-=20
-Reported-by: Valentine Burley < mailto:valentine.burley@collabora.com >=20
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14516 =20
-Signed-off-by: Daniele Ceraolo Spurio < mailto:daniele.ceraolospurio@intel.=
-com >=20
-Cc: Rodrigo Vivi < mailto:rodrigo.vivi@intel.com >=20
-Cc: Alexander Usyskin < mailto:alexander.usyskin@intel.com >=20
-Cc: Alan Previn < mailto:alan.previn.teres.alexis@intel.com >=20
----=20
- drivers/gpu/drm/i915/i915_module.c   | 1 +=20
- drivers/gpu/drm/i915/pxp/intel_pxp.c | 5 +++++=20
- 2 files changed, 6 insertions(+)=20
-=20
-diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915=
-_module.c=20
-index 5862754c662c..07118a1ea14d 100644=20
---- a/drivers/gpu/drm/i915/i915_module.c=20
-+++ b/drivers/gpu/drm/i915/i915_module.c=20
-@@ -126,3 +126,4 @@ MODULE_AUTHOR("Intel Corporation");=20
-=20
- MODULE_DESCRIPTION(DRIVER_DESC);=20
- MODULE_LICENSE("GPL and additional rights");=20
-+=20
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/px=
-p/intel_pxp.c=20
-index c077a1c464cf..e476c1d82c2f 100644=20
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c=20
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c=20
-@@ -2,6 +2,7 @@=20
- /*=20
- * Copyright(c) 2020 Intel Corporation.=20
- */=20
-+#include <linux/mei_me.h>=20
- #include <linux/workqueue.h>=20
-=20
- #include "gem/i915_gem_context.h"=20
-@@ -203,6 +204,10 @@ int intel_pxp_init(struct drm_i915_private *i915)=20
- =C2=A0=C2=A0=C2=A0=C2=A0if (intel_gt_is_wedged(to_gt(i915)))=20
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -ENOTCONN;=20
-=20
-+=C2=A0=C2=A0=C2=A0=C2=A0/* iGPUs require CSME to be available to use PXP *=
-/=20
-+=C2=A0=C2=A0=C2=A0=C2=A0if (!IS_DGFX(i915) && !mei_me_device_present())=20
-+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return -ENODEV;=20
-+=20
- =C2=A0=C2=A0=C2=A0=C2=A0/*=20
- =C2=A0=C2=A0=C2=A0=C2=A0 * NOTE: Get the ctrl_gt before checking intel_pxp=
-_is_supported since=20
- =C2=A0=C2=A0=C2=A0=C2=A0 * we still need it if PXP's backend tee transport=
- is needed.=20
---=20
-2.43.0
-------=_Part_8976324_590075631.1752665648643
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
-<meta content=3D"text/html;charset=3DUTF-8" http-equiv=3D"Content-Type"></h=
-ead><body ><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif=
-; font-size: 10pt;"><div>Thank you for the fix! This worked around the issu=
-e and disabled PXP,<br>which allowed our virtual machine to boot.<br><br>Te=
-sted-by: Valentine Burley &lt;<a target=3D"_blank" href=3D"mailto:valentine=
-.burley@collabora.com">valentine.burley@collabora.com</a>&gt;<br></div><div=
-><br></div><div class=3D"zmail_extra_hr" style=3D"border-top: 1px solid rgb=
-(204, 204, 204); height: 0px; margin-top: 10px; margin-bottom: 10px; line-h=
-eight: 0px;"><br></div><div class=3D"zmail_extra" data-zbluepencil-ignore=
-=3D"true"><div><br></div><div id=3D"Zm-_Id_-Sgn1">---- On Wed, 16 Jul 2025 =
-01:00:02 +0200 <b>Daniele Ceraolo Spurio &lt;daniele.ceraolospurio@intel.co=
-m&gt;</b> wrote ---<br></div><div><br></div><blockquote id=3D"blockquote_zm=
-ail" style=3D"margin: 0px;"><div>The PXP flow requires us to communicate wi=
-th CSME, which we do via a <br>mei component. Since the mei component bindi=
-ng is async and can take <br>a bit to complete, we don't wait for it during=
- i915 load. If userspace <br>queries the state before the async binding is =
-complete, we return an <br>"init in progress" state, with the expectation t=
-hat it will eventually <br>transition to "init complete" if the CSME device=
- is functional. <br> <br>Mesa CI is flashing a custom coreboot on their Chr=
-omebooks that hides <br>the CSME device, which means that we never transiti=
-on to the "init <br>complete" state. While from an interface POV it is not =
-incorrect to not <br>end up in "init complete" if the CSME is missing, we c=
-an mitigate the <br>impact of this by simply checking if the CSME device is=
- available at <br>all before attempting to initialize PXP. <br> <br>Reporte=
-d-by: Valentine Burley &lt;<a target=3D"_blank" href=3D"mailto:valentine.bu=
-rley@collabora.com">valentine.burley@collabora.com</a>&gt; <br>Closes: <a t=
-arget=3D"_blank" href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
-ssues/14516">https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14516<=
-/a> <br>Signed-off-by: Daniele Ceraolo Spurio &lt;<a target=3D"_blank" href=
-=3D"mailto:daniele.ceraolospurio@intel.com">daniele.ceraolospurio@intel.com=
-</a>&gt; <br>Cc: Rodrigo Vivi &lt;<a target=3D"_blank" href=3D"mailto:rodri=
-go.vivi@intel.com">rodrigo.vivi@intel.com</a>&gt; <br>Cc: Alexander Usyskin=
- &lt;<a target=3D"_blank" href=3D"mailto:alexander.usyskin@intel.com">alexa=
-nder.usyskin@intel.com</a>&gt; <br>Cc: Alan Previn &lt;<a target=3D"_blank"=
- href=3D"mailto:alan.previn.teres.alexis@intel.com">alan.previn.teres.alexi=
-s@intel.com</a>&gt; <br>--- <br> drivers/gpu/drm/i915/i915_module.c   | 1 +=
- <br> drivers/gpu/drm/i915/pxp/intel_pxp.c | 5 +++++ <br> 2 files changed, =
-6 insertions(+) <br> <br>diff --git a/drivers/gpu/drm/i915/i915_module.c b/=
-drivers/gpu/drm/i915/i915_module.c <br>index 5862754c662c..07118a1ea14d 100=
-644 <br>--- a/drivers/gpu/drm/i915/i915_module.c <br>+++ b/drivers/gpu/drm/=
-i915/i915_module.c <br>@@ -126,3 +126,4 @@ MODULE_AUTHOR("Intel Corporation=
-"); <br> <br> MODULE_DESCRIPTION(DRIVER_DESC); <br> MODULE_LICENSE("GPL and=
- additional rights"); <br>+ <br>diff --git a/drivers/gpu/drm/i915/pxp/intel=
-_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c <br>index c077a1c464cf..e476c=
-1d82c2f 100644 <br>--- a/drivers/gpu/drm/i915/pxp/intel_pxp.c <br>+++ b/dri=
-vers/gpu/drm/i915/pxp/intel_pxp.c <br>@@ -2,6 +2,7 @@ <br> /* <br> * Copyri=
-ght(c) 2020 Intel Corporation. <br> */ <br>+#include &lt;linux/mei_me.h&gt;=
- <br> #include &lt;linux/workqueue.h&gt; <br> <br> #include "gem/i915_gem_c=
-ontext.h" <br>@@ -203,6 +204,10 @@ int intel_pxp_init(struct drm_i915_priva=
-te *i915) <br> &nbsp;&nbsp;&nbsp;&nbsp;if (intel_gt_is_wedged(to_gt(i915)))=
- <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return -ENOTCONN; <br=
-> <br>+&nbsp;&nbsp;&nbsp;&nbsp;/* iGPUs require CSME to be available to use=
- PXP */ <br>+&nbsp;&nbsp;&nbsp;&nbsp;if (!IS_DGFX(i915) &amp;&amp; !mei_me_=
-device_present()) <br>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retu=
-rn -ENODEV; <br>+ <br> &nbsp;&nbsp;&nbsp;&nbsp;/* <br> &nbsp;&nbsp;&nbsp;&n=
-bsp; * NOTE: Get the ctrl_gt before checking intel_pxp_is_supported since <=
-br> &nbsp;&nbsp;&nbsp;&nbsp; * we still need it if PXP's backend tee transp=
-ort is needed. <br>-- <br>2.43.0 <br> <br></div></blockquote></div><div><br=
-></div></div><br></body></html>
-------=_Part_8976324_590075631.1752665648643--
-
+> ------------->      fixed_mode = intel_panel_fixed_mode(connector, mode);
+>>      if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>>          status = intel_panel_mode_valid(connector, mode); diff --git
+>> a/drivers/gpu/drm/i915/display/intel_quirks.c
+>> b/drivers/gpu/drm/i915/display/intel_quirks.c
+>> index a32fae510ed27..438ce2cb37a01 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+>> @@ -72,6 +72,12 @@ static void quirk_no_pps_backlight_power_hook(struct
+>> intel_display *display)
+>>      drm_info(display->drm, "Applying no pps backlight power 
+>> quirk\n");  }
+>>
+>> +static void quirk_edp_max_240hz_hook(struct intel_display *display) {
+>> +    intel_set_quirk(display, QUIRK_EDP_MAX_240HZ_HOOK);
+>> +    drm_info(display->drm, "Applying max 240Hz quirk\n"); }
+>> +
+>>  static void quirk_fw_sync_len(struct intel_dp *intel_dp)  {
+>>      struct intel_display *display = to_intel_display(intel_dp); @@ 
+>> -120,6
+>> +126,12 @@ static int intel_dmi_no_pps_backlight(const struct 
+>> dmi_system_id
+>> *id)
+>>      return 1;
+>>  }
+>>
+>> +static int intel_dmi_edp_max_240hz(const struct dmi_system_id *id) {
+>> +    DRM_INFO("Restrict output refreshrate to maximum 240Hz %s\n", id-
+>> >ident);
+>> +    return 1;
+>> +}
+>> +
+>>  static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>>      {
+>>          .dmi_id_list = &(const struct dmi_system_id[]) { @@ -166,6
+>> +178,24 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+>>          },
+>>          .hook = quirk_no_pps_backlight_power_hook,
+>>      },
+>> +    {
+>> +        .dmi_id_list = &(const struct dmi_system_id[]) {
+>> +            {
+>> +                .callback = intel_dmi_edp_max_240hz,
+>> +                .ident = "TUXEDO Stellaris 16 Intel Gen7",
+>> +                .matches =
+>> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY"),
+>> +                },
+>> +            },
+>> +            {
+>> +                .callback = intel_dmi_edp_max_240hz,
+>> +                .ident = "TUXEDO Stellaris 16 Intel Gen7",
+>> +                .matches =
+>> {DMI_EXACT_MATCH(DMI_BOARD_NAME, "X6AR5xxY_mLED"),
+>> +                },
+>> +            },
+>> +            { }
+>> +        },
+>> +        .hook = quirk_edp_max_240hz_hook,
+>> +    },
+>>  };
+>>
+>>  static struct intel_quirk intel_quirks[] = { diff --git
+>> a/drivers/gpu/drm/i915/display/intel_quirks.h
+>> b/drivers/gpu/drm/i915/display/intel_quirks.h
+>> index cafdebda75354..8fe3f3467106a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+>> @@ -20,6 +20,7 @@ enum intel_quirk_id {
+>>      QUIRK_LVDS_SSC_DISABLE,
+>>      QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
+>>      QUIRK_FW_SYNC_LEN,
+>> +    QUIRK_EDP_MAX_240HZ_HOOK,
+>>  };
+>>
+>>  void intel_init_quirks(struct intel_display *display);
+>> -- 
+>> 2.43.0
+> 
+> 
+> 
