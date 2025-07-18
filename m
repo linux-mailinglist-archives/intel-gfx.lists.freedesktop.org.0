@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3AADB0A2A7
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 13:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7C2B0A3C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 14:02:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EE510E818;
-	Fri, 18 Jul 2025 11:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D76A510E989;
+	Fri, 18 Jul 2025 12:01:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lXjVPpZR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7221B10E818;
- Fri, 18 Jul 2025 11:39:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 396BF10E03C;
+ Fri, 18 Jul 2025 12:01:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752840118; x=1784376118;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F+7LI07C4FQUDqnyZ/BruVxFT9uvyvwOVIbp0op1We0=;
+ b=lXjVPpZRHqc8xdq9vDWFKWNDLm1ItdApSY8/8FY6ZysfFMlo6Rgi/Uqp
+ 8+3MGvVY0vzBBDiU6035uDvbVMeWv7g0fx6JiENG1xafgeS0R7DGV8czH
+ aRBDugENTP0TF75vOgXGxWomeSQhkZpbYqvC68Cfn0M0dR/FYmGFIWmNg
+ Eo1CCwvvw6E3UoH3x3xM5tuWYbxDiuyAb2ea6NnjCBlMeh4iEwopmTwPo
+ O4otLJnzLQzZHyR11hW+4q2hrQKGqwteWPoP4BZ21GjwRZleLN9pPn6Lh
+ pLK3m0HLhWKgwddiTAFQ1QRXD/+yX3uU+ajEmtiA9+wgPofiV6U94GbjM w==;
+X-CSE-ConnectionGUID: YZMlBodhQNyr+LLt84q5Gg==
+X-CSE-MsgGUID: wt1CH63cTO2NMHgdZ/FGhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="54345495"
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="54345495"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 05:01:57 -0700
+X-CSE-ConnectionGUID: VGKNHRzcR3OK3M5NOZMEXQ==
+X-CSE-MsgGUID: WYiOkCHeTHO+GNj+00oY0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="163674597"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.63])
+ by orviesa005.jf.intel.com with SMTP; 18 Jul 2025 05:01:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 18 Jul 2025 15:01:54 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 0/4] drm/i915/dp: Implement POST_LT_ADJ_REQ
+Date: Fri, 18 Jul 2025 15:01:50 +0300
+Message-ID: <20250718120154.15492-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/i915/display=3A_Write?=
- =?utf-8?q?_PHY=5FCMN1=5FCONTROL_only_when_using_AUXLess_ALPM_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 18 Jul 2025 11:39:37 -0000
-Message-ID: <175283877746.172486.981327006445075390@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250717063259.440086-1-jouni.hogander@intel.com>
-In-Reply-To: <20250717063259.440086-1-jouni.hogander@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,27 +66,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM (rev2)
-URL   : https://patchwork.freedesktop.org/series/151740/
-State : failure
+Implement the POST_LT_ADJ_REQ sequence, which is supposed
+to be used to further tune the link vswing/pre-emphasis
+when TPS4 is not supported.
 
-== Summary ==
+Unfortunately I don't have any displays/dongles that support
+this so I wasn't able to test anything. Imre has tested this
+with a DP tester though.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/151740/revisions/2/mbox/ not applied
-Applying: drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM
-error: git diff header lacks filename information when removing 1 leading pathname component (line 2)
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/display: Write PHY_CMN1_CONTROL only when using AUXLess ALPM
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+v2: rebase after all the prep stuff got merged
 
+Ville Syrjälä (4):
+  drm/dp: Add definitions for POST_LT_ADJ training sequence
+  drm/dp: Add POST_LT_ADJ_REQ helpers
+  drm/i915/dp: Implement the POST_LT_ADJ_REQ sequence
+  hax: drm/i915: Disable TPS4 support to force POST_LT_ADJ_REQ usage
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |   8 ++
+ .../drm/i915/display/intel_dp_link_training.c | 131 +++++++++++++++++-
+ .../drm/i915/display/intel_dp_link_training.h |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +-
+ include/drm/display/drm_dp.h                  |   3 +
+ include/drm/display/drm_dp_helper.h           |   8 ++
+ 6 files changed, 150 insertions(+), 4 deletions(-)
+
+-- 
+2.49.0
 
