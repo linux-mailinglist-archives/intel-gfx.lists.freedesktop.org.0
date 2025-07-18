@@ -2,54 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED379B0A136
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 12:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7C1FB0A1CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 13:18:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4606010E971;
-	Fri, 18 Jul 2025 10:54:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B0E10E964;
+	Fri, 18 Jul 2025 11:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="qTl+/PNw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BEHGj07Y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6D7310E96F;
- Fri, 18 Jul 2025 10:54:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1752836086;
- bh=zAFyDkIf9qCUhBZe8gnx6U8C2dwmN1Ikbn0/wkc7YvU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qTl+/PNwgT4pQnJiv0dRTS0wCfOw5K0VqkHPHmswV3uS26vgK96Bl2lt7jN4pdurW
- +lLQcQ4vUxqBodZrP5pFnHjF60LbRTLo0qHUH1yzwa7wdalGQXMUig7sS559dhO7fY
- /UakIWIXeP0TxDWU7o0/AFU6cJ6nYFq6lF1NoxGRMfZTQXXSc4YvwqEz/9Mnz9lfx+
- a39eRszxJAvOcbWHUeNeHgoMzErBxD/mGCBRtPwEW5VOtkusmUEqKk5oMHiCIkPAPY
- I7PFLsY82pI+QjSoMMUeCv1nbc8WiFZZU7/G5ej+ZLnrxnLm3hemaFMS5rmj/UQ+pk
- 2EKYvXymLrxcQ==
-Received: from debian.. (unknown [171.76.80.183])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 3538517E1560;
- Fri, 18 Jul 2025 12:54:43 +0200 (CEST)
-From: Vignesh Raman <vignesh.raman@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: daniels@collabora.com, helen.fornazier@gmail.com, airlied@gmail.com,
- simona.vetter@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v1 7/7] drm/ci: add mt8192
-Date: Fri, 18 Jul 2025 16:23:59 +0530
-Message-ID: <20250718105407.32878-8-vignesh.raman@collabora.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250718105407.32878-1-vignesh.raman@collabora.com>
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF62F10E964
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 11:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752837484; x=1784373484;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=HV8gRb/SDxSGc+S/iUYFD+IoC/JYFrx74z3CtoKHS4E=;
+ b=BEHGj07YxFhp/hCWTt2kRd5ahCdvAmbfHTVMaVgjPTwdQkMgDQOfSPh2
+ 12+ZvmKtolqX3ge10ko7ASJKfomgYFGjmgXn2oTaNbnwe26gj2yQHZTg2
+ V+j/ZJG0B+DbsNuH9b1u9lL0lOE8sashl/coqjjI/rgj8eLxe7rEFvkY7
+ O1y/STi8e/DMV57U74CYe0BXCEnQbIoUZoYZWNmtrfYqjTAwV+/9pRXQp
+ iusgTNtWq7F6FjSwQHPL3QEvLzlRdNDJttuC3fQ7aXU6DKnWlaDcmHH+k
+ u2zqPPJhayVf69gcHsbEEJM480+0RnV2GdXYGlXilkpiEu6L3lXDubr2a g==;
+X-CSE-ConnectionGUID: YI945wjtSF6QcH2RIyKOcw==
+X-CSE-MsgGUID: i8SEtWU4QWaRy4b/wT15Og==
+X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="54986854"
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="54986854"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 04:18:03 -0700
+X-CSE-ConnectionGUID: BRU/KiXPRLqGrzPqQyaaEw==
+X-CSE-MsgGUID: 5GrE3WSUSCGhh3f8V7Vf7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="157706991"
+Received: from dev-409.igk.intel.com (HELO localhost) ([10.211.128.26])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 04:18:01 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250718102752.684975-3-sebastian.brzezinka@intel.com>
+References: <20250718102752.684975-1-sebastian.brzezinka@intel.com>
+ <20250718102752.684975-3-sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH v3 2/4] drm/i915: Replaced hardcoded value 4095 with
+ PAGE_SIZE - 1
+From: Chris Wilson <chris.p.wilson@linux.intel.com>
+Cc: andi.shyti@linux.intel.com, krzysztof.karas@intel.com,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+To: andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ krzysztof.karas@intel.com, sebastian.brzezinka@intel.com
+Date: Fri, 18 Jul 2025 13:16:58 +0200
+Message-ID: <175283741896.466116.14256026238996065595@DEV-409>
+User-Agent: alot/0.10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,167 +72,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add job that executes the IGT test suite for mt8192-asurada-spherion-r0.
+Quoting Sebastian Brzezinka (2025-07-18 12:28:11)
+> The value 4095 is intended to represent PAGE_SIZE - 1, as stated
+> in the commit that introduced this change:
+> commit 5f22cc0b134a ("drm/i915: Fix mismatch between misplaced
+>                       vma check and vma insert")
 
-Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
-Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
----
- drivers/gpu/drm/ci/arm64.config               |  4 +++
- drivers/gpu/drm/ci/test.yml                   | 13 +++++--
- .../drm/ci/xfails/mediatek-mt8192-fails.txt   | 34 +++++++++++++++++++
- .../drm/ci/xfails/mediatek-mt8192-skips.txt   | 14 ++++++++
- .../drm/ci/xfails/panfrost-mt8192-fails.txt   |  9 +++++
- .../drm/ci/xfails/panfrost-mt8192-skips.txt   | 20 +++++++++++
- 6 files changed, 92 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8192-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/mediatek-mt8192-skips.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8192-fails.txt
- create mode 100644 drivers/gpu/drm/ci/xfails/panfrost-mt8192-skips.txt
+No, that is exactly the misconception I wanted to avoid.
 
-diff --git a/drivers/gpu/drm/ci/arm64.config b/drivers/gpu/drm/ci/arm64.config
-index 7cd6d9d612fc..bae0175df556 100644
---- a/drivers/gpu/drm/ci/arm64.config
-+++ b/drivers/gpu/drm/ci/arm64.config
-@@ -213,3 +213,7 @@ CONFIG_PWM_TEGRA=y
- CONFIG_DRM_PANTHOR=m
- CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY=y
- CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX=y
-+
-+# For Mediatek mt8192
-+CONFIG_SPMI_MTK_PMIF=y
-+CONFIG_REGULATOR_MT6315=y
-diff --git a/drivers/gpu/drm/ci/test.yml b/drivers/gpu/drm/ci/test.yml
-index dbd582442776..3d871c4bb5b9 100644
---- a/drivers/gpu/drm/ci/test.yml
-+++ b/drivers/gpu/drm/ci/test.yml
-@@ -451,8 +451,7 @@ panfrost:mt8183:
-     - .mt8183
-     - .panfrost-gpu
- 
--# drm-mtk doesn't even probe yet in mainline for mt8192
--.mediatek:mt8192:
-+.mt8192:
-   extends:
-     - .mediatek-device
-   parallel: 3
-@@ -461,6 +460,16 @@ panfrost:mt8183:
-     GPU_VERSION: mt8192
-     RUNNER_TAG: mesa-ci-x86-64-lava-mt8192-asurada-spherion-r0
- 
-+mediatek:mt8192:
-+  extends:
-+    - .mt8192
-+    - .mediatek-display
-+
-+panfrost:mt8192:
-+  extends:
-+    - .mt8192
-+    - .panfrost-gpu
-+
- .meson-device:
-   extends:
-     - .lava-igt:arm64
-diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8192-fails.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8192-fails.txt
-new file mode 100644
-index 000000000000..4b4f1b594c23
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8192-fails.txt
-@@ -0,0 +1,34 @@
-+core_setmaster@master-drop-set-user,Fail
-+dumb_buffer@create-clear,Crash
-+kms_bw@connected-linear-tiling-1-displays-1920x1080p,Fail
-+kms_bw@connected-linear-tiling-1-displays-2160x1440p,Fail
-+kms_bw@connected-linear-tiling-1-displays-2560x1440p,Fail
-+kms_bw@connected-linear-tiling-1-displays-3840x2160p,Fail
-+kms_bw@linear-tiling-1-displays-1920x1080p,Fail
-+kms_bw@linear-tiling-1-displays-2160x1440p,Fail
-+kms_bw@linear-tiling-1-displays-2560x1440p,Fail
-+kms_bw@linear-tiling-1-displays-3840x2160p,Fail
-+kms_color@invalid-gamma-lut-sizes,Fail
-+kms_cursor_legacy@cursor-vs-flip-atomic,Fail
-+kms_cursor_legacy@cursor-vs-flip-legacy,Fail
-+kms_flip@basic-plain-flip,Fail
-+kms_flip@dpms-off-confusion,Fail
-+kms_flip@dpms-off-confusion-interruptible,Fail
-+kms_flip@flip-vs-blocking-wf-vblank,Fail
-+kms_flip@flip-vs-dpms-on-nop,Fail
-+kms_flip@flip-vs-dpms-on-nop-interruptible,Fail
-+kms_flip@flip-vs-expired-vblank,Fail
-+kms_flip@flip-vs-expired-vblank-interruptible,Fail
-+kms_flip@flip-vs-modeset-vs-hang,Fail
-+kms_flip@flip-vs-panning,Fail
-+kms_flip@flip-vs-panning-interruptible,Fail
-+kms_flip@flip-vs-panning-vs-hang,Fail
-+kms_flip@flip-vs-suspend,Fail
-+kms_flip@flip-vs-suspend-interruptible,Fail
-+kms_flip@plain-flip-fb-recreate,Fail
-+kms_flip@plain-flip-fb-recreate-interruptible,Fail
-+kms_flip@plain-flip-interruptible,Fail
-+kms_flip@plain-flip-ts-check,Fail
-+kms_flip@plain-flip-ts-check-interruptible,Fail
-+kms_invalid_mode@overflow-vrefresh,Fail
-+kms_lease@lease-uevent,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/mediatek-mt8192-skips.txt b/drivers/gpu/drm/ci/xfails/mediatek-mt8192-skips.txt
-new file mode 100644
-index 000000000000..a165fccd8a93
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/mediatek-mt8192-skips.txt
-@@ -0,0 +1,14 @@
-+# Skip driver specific tests
-+^amdgpu.*
-+^msm.*
-+nouveau_.*
-+^panfrost.*
-+^v3d.*
-+^vc4.*
-+^vmwgfx*
-+
-+# Skip intel specific tests
-+gem_.*
-+i915_.*
-+tools_test.*
-+kms_dp_link_training.*
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-mt8192-fails.txt b/drivers/gpu/drm/ci/xfails/panfrost-mt8192-fails.txt
-new file mode 100644
-index 000000000000..6589d194323f
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-mt8192-fails.txt
-@@ -0,0 +1,9 @@
-+core_hotunplug@hotreplug,Fail
-+core_hotunplug@hotreplug-lateclose,Fail
-+core_hotunplug@hotunplug-rescan,Fail
-+core_hotunplug@unplug-rescan,Fail
-+core_setmaster@master-drop-set-user,Fail
-+panfrost/panfrost_prime@gem-prime-import,Fail
-+panfrost/panfrost_submit@pan-reset,Fail
-+panfrost/panfrost_submit@pan-submit-error-bad-requirements,Fail
-+panfrost/panfrost_submit@pan-unhandled-pagefault,Fail
-diff --git a/drivers/gpu/drm/ci/xfails/panfrost-mt8192-skips.txt b/drivers/gpu/drm/ci/xfails/panfrost-mt8192-skips.txt
-new file mode 100644
-index 000000000000..b724cf04e3b3
---- /dev/null
-+++ b/drivers/gpu/drm/ci/xfails/panfrost-mt8192-skips.txt
-@@ -0,0 +1,20 @@
-+# Skip driver specific tests
-+^amdgpu.*
-+^msm.*
-+nouveau_.*
-+^v3d.*
-+^vc4.*
-+^vmwgfx*
-+
-+# Skip intel specific tests
-+gem_.*
-+i915_.*
-+tools_test.*
-+kms_dp_link_training.*
-+
-+# Panfrost is not a KMS driver, so skip the KMS tests
-+kms_.*
-+
-+# Skip display functionality tests for GPU-only drivers
-+dumb_buffer.*
-+fbdev.*
--- 
-2.47.2
-
+The core kernel's system PAGE_SIZE is not necessarily the same as the
+paging boundary used by the GTT.
+-Chris
