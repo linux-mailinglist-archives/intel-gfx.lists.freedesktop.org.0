@@ -2,47 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87577B098F8
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 02:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16623B09A2D
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 05:32:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F13AB10E03D;
-	Fri, 18 Jul 2025 00:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D119510E864;
+	Fri, 18 Jul 2025 03:32:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tmPs7/6Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aDqdnsv4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A690010E03D
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 00:38:52 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6C5A45C6B54;
- Fri, 18 Jul 2025 00:38:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EB79C4CEE3;
- Fri, 18 Jul 2025 00:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1752799130;
- bh=fnto0Mow41Y58kyY7yJXrksooinT71waDFDcpPJMGKw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tmPs7/6YtxWGXhH3JJ+Hwo2j+bFbHn7OaIpryM9pRNJ8hSupJqbnN+Xdqv7wMyege
- PLlyDjZjSaPh4RKur09qsAWBBkj+mMvxrCoXQmz5THBkEtX4KOdObr8GhzBPJYVOmE
- DAkw39lwE8+jZaG75NtVTG5eCx2I6BWldWBUflMiTesz200KymPfELLoor9IymhDwn
- Uzfer7Bmjkk5iDWmRhH+14i+YHgSFoWYqOuHPBR6qzABCZeZQ8xooI3KDVAxSC1uae
- xXYVv11Vgnb3pmEnB4xLSXU4VVeYORwo4JKJN9s63+ng9qo9vZ4yAqr2dxHpJvEoxG
- mM9YQO9iulbdA==
-Date: Fri, 18 Jul 2025 02:38:47 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com, 
- andi.shyti@linux.intel.com
-Subject: Re: [PATCH v2 1/3] drm/i915: Improve readability of eb_relocate_vma
-Message-ID: <hc3tiztdphxiyqpb4xcumpojsuwfwetlosagk44vloenj5ysqc@d5icgfgtwnft>
-References: <20250717123824.676605-1-sebastian.brzezinka@intel.com>
- <20250717123824.676605-2-sebastian.brzezinka@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AEF710E033;
+ Fri, 18 Jul 2025 03:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752809520; x=1784345520;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=xN0Lf9oDVvmoBtRXCqdxbrsDqluq1vZ1xIqv+8fqWM8=;
+ b=aDqdnsv4tJkabfblTv68MoF8WFqTYuV1rZO00LslEKRqtP9SDx2KLv8V
+ 8zPXmMUARFso8FTh5Aq/Ft/kQhwzHUIN3dp42MvhJRH2sOYFnPHR9Vz1j
+ SMM7gsd2AW5emDMtFkZhHL8WYj5+73YSBN2Uu3a9XKhZxXUJzojw38deB
+ 3m42KIPUuf7Va6INicHC1ZFH7hcbyKGbzgABKHuO0o+2Th+DYbpYuk/Af
+ vI6B0eW003a5KOv0ZYTC6S3+Oh3xXYyNvd05ESq6xs+niLKWLFKGVWuTo
+ 6Q1ShHtLIXpMx0Y+qajyzv9ScqLsB+G9BiUrhngsfXnm5rHsWcJQOBobi Q==;
+X-CSE-ConnectionGUID: CeWZLgT+QS+DFSLsNz16HQ==
+X-CSE-MsgGUID: LxettuAFTFi2bQp8r0EvVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="54979991"
+X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; d="scan'208";a="54979991"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2025 20:31:59 -0700
+X-CSE-ConnectionGUID: OcZ0lJrfSlGPAjGqiJwT2g==
+X-CSE-MsgGUID: cMKWfbuuRlqAn5gXhy8oLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,320,1744095600"; d="scan'208";a="158653835"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jul 2025 20:31:58 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 17 Jul 2025 20:31:57 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Thu, 17 Jul 2025 20:31:57 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.81)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Thu, 17 Jul 2025 20:31:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VV5rNA5/zbaRpNXQk1iPFMGvYDNzfJK52uDPabeAloI/vNvt5ie0uWMBQAgAYUsS8bw55QP+NXWXNDiH/pOe9vJ1NmFBdXxNF57hGvYTF5/9qcDsWPhOEKewex5a6MMnL81iYGa+3eDGNwUZyIfiO44gXSm6tJcfCO+sGLHHOKRJIzgcUQfDufTtU0LWzJhRCRI6/ExtYh5sKLD6j3CVmN/prbLsoQ71Mfnvt3L4XgIspc6hJKhqfILAL0QUl8rlGRaSfmRIwYzDaQ6u/t8hK57YGbQqjVdNYqhx/hwTxKr+M1PckkKq43vgkUL8wzuevxYyPdi7ANCQ6seG8rdwhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BDTlUp9HrkXFwsYiSItyn1rFUgWKlw7GgyePttVxztY=;
+ b=I9w/UISgEIleePihVKQJ1vkT/AcOqQd+c+4YqwRFs9ycH+Jsm4SnX3HUEIE5kQGxn3+SSeeudR4UDrrZldGdKJNWC3X1eQ2qVfcOub479PSjuKaryr/ARuU2Hl3uezkHjyQbYoGw6aOew3hUPa0PXQ1hitPYnCWqOqvLctsavS3KaAV5PukUSdHmYm2p4afNJDEiUK8VpL3Aux98ZgTxKvFiivAdgMBzeOsEVI07HDz80ZQrjExxfkjrNLEOBRzJ3wGK/qAeoMD836urFRD5nDIFLF5I754i9mpz0KcaYQw85pgYXE9e2oNht/M3nEcCzu5tVyXBqdekNuwtq2Jjcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by CY5PR11MB6391.namprd11.prod.outlook.com (2603:10b6:930:38::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8922.39; Fri, 18 Jul
+ 2025 03:31:49 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::7141:316f:77a0:9c44%5]) with mapi id 15.20.8922.037; Fri, 18 Jul 2025
+ 03:31:49 +0000
+Date: Fri, 18 Jul 2025 00:31:41 -0300
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
+ De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dim-tools@lists.freedesktop.org>
+Subject: [PULL] drm-xe-fixes
+Message-ID: <6jworkgupwstm4v7aohbuzod3dyz4u7pyfhshr5ifgf2xisgj3@cm5em5yupjiu>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250717123824.676605-2-sebastian.brzezinka@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0096.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::11) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CY5PR11MB6391:EE_
+X-MS-Office365-Filtering-Correlation-Id: da3a500e-3a91-45e0-b25a-08ddc5aba0e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?O31xgNHMEVOcbOhchEaMECYxZELjk7aqBXIdK7R6Z8aPe4riLaawwAJVWMv5?=
+ =?us-ascii?Q?bOv2H1QkgGy+7RBnzP/mTAKFr/KdnZYhJGP0chZho97QomYO9gs7CUC0KQyc?=
+ =?us-ascii?Q?fbBxpPuhIVBODZ33VlZ01pUntQWd7xsZOw2jeOYxlcXnN6uDunV2MLOx8sn3?=
+ =?us-ascii?Q?8a0uz4gDJ5Yfq0jQ3CuGF7KffN0XH3F7S0F5bxNKVvFK1u3V8c4rU8KeFxKq?=
+ =?us-ascii?Q?IzYSAbWbMalCtqLht9dZCfmc2n1aYdLFvBE1Ao62c8Xd7Ag08Fx5b8MUSZcE?=
+ =?us-ascii?Q?iYtNDrE/j2eF56NaMcaO7/ZhFby5zJz/9f95uiHS6vH3CsO41f4U4ovPjNBI?=
+ =?us-ascii?Q?RP2FwZOtHwXJpL8inMD+6ySTWe7P9QXCw0qQSSq0BOV4L6VPNn4wJyGmLlk4?=
+ =?us-ascii?Q?RL11dXY1NRyOnvPdE4t3VR8zHALCj70xdyANd/XxpxqxJJHpOoY1odnJEwyr?=
+ =?us-ascii?Q?nhnSV4mWGlQM0kit+7w3OT738XAvOPJvV+LemZG6KT/u0iEz13B+gz6hEMFw?=
+ =?us-ascii?Q?O56oba7UqIZlKAK5eM/BVeDunZrEEX8NYTbCxGonrVcS/r8R5B7W4x7fb8SY?=
+ =?us-ascii?Q?GheZ86dq53imX2NzVnb6dPhgJYhFMj+vB6iG41YneeU5NGTuI3vsAr7z6U+F?=
+ =?us-ascii?Q?jUXS0EafqwzKn0Iq3V0UaVlNDJK0VL8/o41GDgx6OWO4V3iuLzueZ2Dix7Qx?=
+ =?us-ascii?Q?M+PfdGVGebvuoEUr2IPtrvIS1msFUhwjomOBtlFbXdXa4RcSD5oIsUKtdANe?=
+ =?us-ascii?Q?KlL0h3YYq2Cl4aw8J7Fgk5QKZgCHJW+1wHQwHfrDaKhbW1jCEcHGxU3Dz/oM?=
+ =?us-ascii?Q?rtUQu2S4iTarLZPja1p4oljbIYMxWeGbnZjB0e5LD0RabpSy6VWew+4Pq7wm?=
+ =?us-ascii?Q?OEWt3JJKAsPvVpXzMqkDyyHmMD17m4lZ+ZwKd6r8WA5DzRITiLmzj4vbzgyq?=
+ =?us-ascii?Q?ta3WO+ByMzziyP97qFo0NGHSIrmiEvjmqz/fb+GYjyHDxgnzvRqv9PikP9IP?=
+ =?us-ascii?Q?/ENXNHxdZmfsJVHiab8POZPo17sMl7djrk3E3WdaO7BsbWZx95DIl2pv9m7P?=
+ =?us-ascii?Q?ANLwjF1yzIZR+CbhtR7y7pPt519Sw3b6/jYnAGiA4zowJFQWioKuJnTPvR0O?=
+ =?us-ascii?Q?jgzc+rohXwGTosVCzQx4nwXEDY2vn2ljV6EdEytDvGxryAw6LVYLf5JBqqwg?=
+ =?us-ascii?Q?IkWFkBx2KjlOtUn9Niv/C8yX/PT+WOT6YoDda9sASxsMk1xxvt6Btlyvueit?=
+ =?us-ascii?Q?byNl6T++7gU2O2hYRQKjsv24OQxgi2qc2Yw7I9MoNbVENcDzjc6azh8zcfpK?=
+ =?us-ascii?Q?epaBPjJstX44e9o4+bKxiHq0rRvWJocEHCWFj0fB/YApASpo+86RVt0l9x38?=
+ =?us-ascii?Q?Bhq+KJk=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1cmwnMRybsZhPZutcm2Pex5g6jAkfNxGdbbIt09H1NB2OhkaN4YbVtNGqT4r?=
+ =?us-ascii?Q?VIrjGf8ue9dozHoUhRjKC8979JOFcvnnfBOrSH9H3iS9njvJINNmNAp63a7U?=
+ =?us-ascii?Q?nA2Ngrjn4p1oti8CZfsqpJaqKFjgu5J6/+BJFR4wsc2KqelNg9vRMKrRyoKC?=
+ =?us-ascii?Q?OqEZ+cWaCmq0lsWtc0ORtvSXZ3CfPXzQH7/RZ4FGVTkWxglKt2TiwNCqA+ye?=
+ =?us-ascii?Q?dwZWhlbZzT9oyArP5DnKwPy184cSUu2OEoDoMGkyHHQPpEITM7akba4hw1ln?=
+ =?us-ascii?Q?RaweGT3TU5cgLZQHG51AIzZeQ9oh3g5LtonMIVLSaoDomqcJlGbDvZfo/Bu1?=
+ =?us-ascii?Q?Wn++AjB2KzMlniAD42pKO6Fkcju5JY1iy3RA0sXIte3KstuOZ329+1tCHqlK?=
+ =?us-ascii?Q?yuSs+gp0Hxh0qlCojuuaY9lRQD/DjMvr0QYleOLMNFLbYs7igyGoyRfLHsLt?=
+ =?us-ascii?Q?i0iSA5VkEdRrDf6WWPDxjRp1CUhlWvAktRXeJM9H1jlxNrXPIDOZqe+1TsaF?=
+ =?us-ascii?Q?AoSfZfBuzCYcH6MMtZlBZSHAUuzxO6idauhw0LbEEI56s5KoM3EbIzrPbqp0?=
+ =?us-ascii?Q?fPNWIbKLvAvKCzTZR1crTn0kJ0gEugBMlLGDj69aAavm4pGyx1Q9xjm3J+YB?=
+ =?us-ascii?Q?z4PuFeAJDvJ/bdrchubRwKfxLdVHoM7LYGFIkmjnhGwUZd6ole8u6m2AutZQ?=
+ =?us-ascii?Q?/lokGMT9/Np+wVOelPlksFWdDsXfXYIwlz/JeX5pX2IC9XmDWwsUSHwPHA9i?=
+ =?us-ascii?Q?l0+Inafcufc0WDA2T0k1haj44VrOEkts1lJLOV93r7E+NkUCYSQ0tP6e9OLF?=
+ =?us-ascii?Q?1vuU+00yLSGweXkU6PyI/oRLE4l2sFKSVxA2/xDYGxAzn1JPVCt7oa0ceiil?=
+ =?us-ascii?Q?o30B93X2k3f03xB/Ooht8Ox5Y9kvSSLTFzbqLA4Mjc9sBF24nKgI62fXxRid?=
+ =?us-ascii?Q?bngppX+KSN5u1d7OdNmG630fhtvr/7HbBUmlLUJsO44C0vedEB7FMa33G4DE?=
+ =?us-ascii?Q?SI1ytorVWheCBuYPJo4adqYfYhBdkSMICHqEg4huTu8c1wQcmyUixILfEp7t?=
+ =?us-ascii?Q?7ePMm8W5sWscV2y1LEhDgZGAQB+9kBgjzeLCJ51bluVhsSwpoySV7D6/+ym7?=
+ =?us-ascii?Q?ZRWFEvzinNMMKIzmPQdgc8abHnal8h1kxlamqVW8Bhjoja7vGTByY8XGeT0z?=
+ =?us-ascii?Q?ddbvYWXP1Rf6+NWj6Gvk/c1Z8QAwrmdp4o6zReQ4JneC+MMMKB6CpPI1oNkr?=
+ =?us-ascii?Q?6Yjv4TXV9I9ZdghCUfjjsxAQdwVeL8CqGtB7N4KhzoY1QsWL6artnPMbtWss?=
+ =?us-ascii?Q?HHJ3Cxegktr2HO+8VBnih8+1P2Gdb6tJ5HClaVWgaEtWqBkHLAVf2QWnmNWy?=
+ =?us-ascii?Q?qq2eGaXMp5NjEVYrTASjx6qDB7qmw3OletlrM54abS0tpyqHqYvbDjSJVr3G?=
+ =?us-ascii?Q?qZZGgv2xb35jgR4cW9630LcRfdpVd653P18fn1/A5md4ElFOk/HXT8zdCgwe?=
+ =?us-ascii?Q?ilMNQ6dFJS6Y5RrE9Obd0AzsUSGDwzEhVC0Oi6Rz0HjTpdP5rz2LiJa01bBb?=
+ =?us-ascii?Q?KjEjgkvqJXytZL8Dg8XIKbJQIePsnKbFcQLG8m7Y1nT4j+/C8QSXFe47P4bz?=
+ =?us-ascii?Q?KQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: da3a500e-3a91-45e0-b25a-08ddc5aba0e4
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2025 03:31:48.9850 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TwNDxwPsH50xSP4YZg8RHSnGEO9D4EwDX17OjXim+vbd47Z2HR6Rg0wG+cLoRn/UEboPF61Z+reunrZAItLVZFu8ienHXHctjFx52Lr5Npc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6391
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,187 +180,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sebastian,
+Hi Dave and Sima,
 
-On Thu, Jul 17, 2025 at 12:38:39PM +0000, Sebastian Brzezinka wrote:
-> Refactored eb_relocate_vma to simplify stack access and loop structure.
-> No functional changes; this is a readability and clarity improvement only.
+Here is drm-xe-fixes targeting v6.16-rc7:
 
-There is no limit for a commit log. You need to list all the
-changes you did, a generic "refactor" is not enough.
+drm-xe-fixes-2025-07-17:
+Driver Changes:
+- SR-IOV fixes for GT reset and TLB invalidation
+- Fix memory copy direction during migration
+- Fix alignment check on migration
+- Fix MOCS and page fault init order to correctly
+   account for topology
 
-Bonus: please use the imperative form, "Refactor", not
-"Refactored". Imperative is always clearer.
+There's a small conflict when applying drm-next and when applying
+drm-xe-next on top of them, but should be trivial and already solved in
+drm-tip.
 
-> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> ---
-> v1 -> v2:
-> 	- Revert changes in error handling.
-> 	- Restore the original formatting of the comments.
-> 	- Reword commit message.
-> ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 84 ++++++++++---------
->  1 file changed, 44 insertions(+), 40 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index ca7e9216934a..ea4793e73ea5 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1529,6 +1529,7 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->  	struct drm_i915_gem_relocation_entry __user *urelocs =
->  		u64_to_user_ptr(entry->relocs_ptr);
->  	unsigned long remain = entry->relocation_count;
-> +	int ret = 0;
->  
->  	if (unlikely(remain > N_RELOC(INT_MAX)))
->  		return -EINVAL;
-> @@ -1541,11 +1542,10 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->  	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
->  		return -EFAULT;
->  
-> -	do {
-> -		struct drm_i915_gem_relocation_entry *r = stack;
-> -		unsigned int count =
-> -			min_t(unsigned long, remain, ARRAY_SIZE(stack));
-> +	while (remain > 0) {
 
-what's the problem with the "do ... while()"?
+thanks,
+Lucas De Marchi.
 
-> +		unsigned int count = min_t(unsigned long, remain, ARRAY_SIZE(stack));
->  		unsigned int copied;
-> +		unsigned int i;
->  
->  		/*
->  		 * This is the fast path and we cannot handle a pagefault
-> @@ -1556,53 +1556,57 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
->  		 * this is bad and so lockdep complains vehemently.
->  		 */
->  		pagefault_disable();
-> -		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
-> +		copied = __copy_from_user_inatomic(stack, urelocs, count * sizeof(stack[0]));
+The following changes since commit 347e9f5043c89695b01e66b3ed111755afcf1911:
 
-What is the improvement here?
+   Linux 6.16-rc6 (2025-07-13 14:25:58 -0700)
 
->  		pagefault_enable();
-> +
->  		if (unlikely(copied)) {
-> -			remain = -EFAULT;
-> +			ret = -EFAULT;
->  			goto out;
->  		}
->  
-> -		remain -= count;
-> -		do {
-> +		for (i = 0; i < count; ++i) {
+are available in the Git repository at:
 
-what's wrong with the "do ... while()".
+   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-07-17
 
-Generally speaking, personal preference is not a valid reason for
-sending a patch. Changing a clear do/while with a clear while or
-for does not improve anything.
+for you to fetch changes up to 5c244eeca57ff4e47e1f60310d059346d1b86b9b:
 
-> +			struct drm_i915_gem_relocation_entry *r = &stack[i];
->  			u64 offset = eb_relocate_entry(eb, ev, r);
->  
-> -			if (likely(offset == 0)) {
-> -			} else if ((s64)offset < 0) {
-> -				remain = (int)offset;
-> +			if (likely(offset == 0))
-> +				continue;
-> +
-> +			if (unlikely((s64)offset < 0)) {
-> +				ret = (int)offset;
+   drm/xe/pf: Resend PF provisioning after GT reset (2025-07-17 09:51:51 -0300)
 
-This change here is at the limit between readability and personal
-preference. Still acceptable, though because it looks nicer.
+----------------------------------------------------------------
+Driver Changes:
+- SR-IOV fixes for GT reset and TLB invalidation
+- Fix memory copy direction during migration
+- Fix alignment check on migration
+- Fix MOCS and page fault init order to correctly
+   account for topology
 
-BTW, the cast is not necessary.
+----------------------------------------------------------------
+Balasubramani Vivekanandan (1):
+       drm/xe/mocs: Initialize MOCS index early
 
->  				goto out;
-> -			} else {
-> -				/*
-> -				 * Note that reporting an error now
-> -				 * leaves everything in an inconsistent
-> -				 * state as we have *already* changed
-> -				 * the relocation value inside the
-> -				 * object. As we have not changed the
-> -				 * reloc.presumed_offset or will not
-> -				 * change the execobject.offset, on the
-> -				 * call we may not rewrite the value
-> -				 * inside the object, leaving it
-> -				 * dangling and causing a GPU hang. Unless
-> -				 * userspace dynamically rebuilds the
-> -				 * relocations on each execbuf rather than
-> -				 * presume a static tree.
-> -				 *
-> -				 * We did previously check if the relocations
-> -				 * were writable (access_ok), an error now
-> -				 * would be a strange race with mprotect,
-> -				 * having already demonstrated that we
-> -				 * can read from this userspace address.
-> -				 */
-> -				offset = gen8_canonical_addr(offset & ~UPDATE);
-> -				__put_user(offset,
-> -					   &urelocs[r - stack].presumed_offset);
->  			}
-> -		} while (r++, --count);
-> -		urelocs += ARRAY_SIZE(stack);
-> -	} while (remain);
-> +			/*
-> +			 * Note that reporting an error now
-> +			 * leaves everything in an inconsistent
-> +			 * state as we have *already* changed
-> +			 * the relocation value inside the
-> +			 * object. As we have not changed the
-> +			 * reloc.presumed_offset or will not
-> +			 * change the execobject.offset, on the
-> +			 * call we may not rewrite the value
-> +			 * inside the object, leaving it
-> +			 * dangling and causing a GPU hang. Unless
-> +			 * userspace dynamically rebuilds the
-> +			 * relocations on each execbuf rather than
-> +			 * presume a static tree.
-> +			 *
-> +			 * We did previously check if the relocations
-> +			 * were writable (access_ok), an error now
-> +			 * would be a strange race with mprotect,
-> +			 * having already demonstrated that we
-> +			 * can read from this userspace address.
-> +			 */
-> +			offset = gen8_canonical_addr(offset &  ~UPDATE);
-> +			__put_user(offset, &urelocs[i].presumed_offset);
-> +		}
-> +
-> +		remain -= count;
-> +		urelocs += count;
-> +	}
-> +
->  out:
->  	reloc_cache_reset(&eb->reloc_cache, eb);
-> -	return remain;
-> +	return ret;
+Lucas De Marchi (1):
+       drm/xe/migrate: Fix alignment check
 
-Using ret instead of remain is not a bad change, still at the
-limit of the personal preference. It's OK because:
+Matthew Auld (1):
+       drm/xe/migrate: fix copy direction in access_memory
 
-1. it avoids mistake from code glancers like myself in v1.
-2. it avoids some useless casts and alligns the types.
+Matthew Brost (1):
+       drm/xe: Move page fault init after topology init
 
-So, overall, I see only two parts that can stay in this patch:
+Michal Wajdeczko (2):
+       drm/xe/pf: Prepare to stop SR-IOV support prior GT reset
+       drm/xe/pf: Resend PF provisioning after GT reset
 
-1. the if/else re-arrangement you did above
-2. the use of ret.
+Tejas Upadhyay (1):
+       drm/xe: Dont skip TLB invalidations on VF
 
-They should be sent in two different patches.
-
-The rest looks to me just personal preference and it wouldn't
-make sense to push it through.
-
-Andi
-
->  }
->  
->  static int
-> -- 
-> 2.34.1
-> 
+  drivers/gpu/drm/xe/xe_gt.c                 | 15 +++++++++------
+  drivers/gpu/drm/xe/xe_gt_sriov_pf.c        | 19 +++++++++++++++++++
+  drivers/gpu/drm/xe/xe_gt_sriov_pf.h        |  5 +++++
+  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 27 +++++++++++++++++++++++++++
+  drivers/gpu/drm/xe/xe_migrate.c            |  6 +++---
+  drivers/gpu/drm/xe/xe_ring_ops.c           | 22 ++++++++++------------
+  6 files changed, 73 insertions(+), 21 deletions(-)
