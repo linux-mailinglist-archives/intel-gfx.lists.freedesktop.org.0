@@ -2,119 +2,188 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CA5B0A47B
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 14:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C41FB0A4A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 14:59:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC25D10E174;
-	Fri, 18 Jul 2025 12:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F2C210E557;
+	Fri, 18 Jul 2025 12:59:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="laAO2FfA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XEvEidQq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDA4810E6AA
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 12:54:33 +0000 (UTC)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56I8hO1h028094
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 12:54:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=NYv5+TMFsC7Y+uQecq8Wp1+t
- 656E5JgsgS2DLSSChBk=; b=laAO2FfARndPJS57x45jBDT9UmQWhvee7N262jrY
- gde/QniBZLBK4+Duuoda3y8uN6QRPnkBY5LGLvNC3HEkFLI9btGkWAzvQ8yXFSer
- qCvHPht1JcuZDccnBfWNINrKMmXnPRJqu4kmj2lG8WIq8WQuYReEvZSiMP9jvnJF
- XqIDXsa18ez2XByo2DWWVbM+nfNcnudzwCMFbcyjvsBUBNHOLQWUsDJwXstQMKe0
- TkAngvl0wTBkG/pWTJznTb7Q1QEKnO3WG6M6q/ApXFtOFYQbyyZ3d4sVgC8F6F+3
- M1kS6akmyCp0HmeFR/EA3/5qP2Lcl0WU5qpqs86DdRLv+w==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47wnh63ryu-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 12:54:33 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-7c5cd0f8961so381496285a.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 05:54:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752843272; x=1753448072;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NYv5+TMFsC7Y+uQecq8Wp1+t656E5JgsgS2DLSSChBk=;
- b=dLgPgV7uYij/JH5MT5rmFQAeuN3tSKVayF0osE8MCanzrQr3dsSrEb2gFWWWCi6fSj
- jdlruszfjo+Sq6hnlTued1YIxIRdfE7dHyO7uRF8i9AyOSEzfiJrCKw8TvhXOkjMO2hQ
- UTcrZldTuLBbZohbMtEBQZJIe6XM4hDvByK8PSUandCTXoMezG2j+teez8VlsX+pKBWP
- jckJfL6TA9Yt67mtSkDkorRi9cGawoCeaIlYyHv71enYLWw7YK/SrEWw93QjNLSY4em8
- cQ3+lsOL/T4ahFlaZP4wh2GeZfpaKzMGEmMeXqM2XOibBxaD98yv1Y4xH7vA9kFVoBS3
- akrA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV+ZoIhCqJiamSq1By1gASyau96qGE8ZKoWtotG0wHjVfe4Z+J8+7xe0zJ99H1JTkeJhpLE+26wc+c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwpXzh70O6nkbckDdzcIr2o2rHKzI3Y9InT2OVtzVaTYlv2H2NT
- 0hKvqTiHXDnwhDVMVly/IDHYT6zeuXryRjY7BTeT7/u2sIrH+xrzjrG7r5i9L25wq2UXEev30wl
- ykECzHksMrnBHsQczgpTgScGdQTUf+Pmktagn3vIepNarSrFU0yTDIhzTGK7aGAXCVnpWaYo=
-X-Gm-Gg: ASbGncsTQKNeg+WJxsE+LpbCzSwhnKyudeC5XwyeaCNgYFCU40j9gDjc52sO28ioE4b
- Yhlbt+ehS9twmyX2Rs6wZj/Zu9zBE0WlOAhxDafe0o9OYwmPxr6QC2tpVhj/oOwgJYZTYNl3TCp
- EWwLjr0fBpXImiIaDxdqfCyQ1V/XjoTfl3SRHXJebbwv9cQQ+K8wrqAXDE3PWkgXqWiCbwotbfJ
- jh6vLuTZHyxuBMR4tIKsCu7uIzDvsaBSsbRNrBlVllT/wyykhQEXPyqLuGDSppJDRHMIoaSJ5/v
- miLq10tjHcOHKdBjETC4paiyChOGauwhvjGoLqUTQA5Os24HafncFTtW62xgEDWR6XnHZn6KIXy
- eH4WDP2yhdN25dgsR4RW4wFIYGTlCVmUnf/RaW7/hYRQRf7c4pp/d
-X-Received: by 2002:a05:620a:8d83:b0:7e3:4415:8dfe with SMTP id
- af79cd13be357-7e344159862mr1014486085a.59.1752843271752; 
- Fri, 18 Jul 2025 05:54:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFlL7G+rWZtjez8FqYMyBmgx/fNiSJjpphmk7YNUHy7EXBZiFWEofOBfgRiW2FIEIVGsw0WNw==
-X-Received: by 2002:a05:620a:8d83:b0:7e3:4415:8dfe with SMTP id
- af79cd13be357-7e344159862mr1014482685a.59.1752843271069; 
- Fri, 18 Jul 2025 05:54:31 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-330a91c14acsm1926161fa.64.2025.07.18.05.54.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jul 2025 05:54:30 -0700 (PDT)
-Date: Fri, 18 Jul 2025 15:54:28 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.fornazier@gmail.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, valentine.burley@collabora.com,
- lumag@kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 5/7] drm/ci: uprev IGT
-Message-ID: <7c6suvc6quwwxni2nsos65btzim2lbv7f2u6mz5qbupzpmpzgb@g46wg63ubr6l>
-References: <20250718105407.32878-1-vignesh.raman@collabora.com>
- <20250718105407.32878-6-vignesh.raman@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85FC710E05E;
+ Fri, 18 Jul 2025 12:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752843545; x=1784379545;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:to:date:message-id:mime-version;
+ bh=AYCRAKcgou7h+E/iYROzutNdZ9KaOrXHHiPrSc1HzSs=;
+ b=XEvEidQqyOzace/SHCWK2SZZdGXxULbfSpC5PSPF5F+dkRHiBBdohxPi
+ 8rtiruRNz/cMrwrGALPenf/dktUn0RlDwyS/tIJo/V5LijKu1BtIoaJZv
+ 9H4xXl7iond61bhjbD1SdTe8szSHtdx9ZDQ8H5j86XGgrO5b59cacVT2I
+ 5yPuPuN2B8+NMbgyhxOYlOLzavlGrIMLPYNUDD6LwDuhPPVVl5BLlzIrj
+ Pldi2ZkLa+hxvTdL0GBwO0yanyb0VTTgAQyJK3G2KhTfcuSXjTqthnVUR
+ aAkX9j913ElEC+oobMRxoisFm9M6rajLk0N41lsDi3uTPD6t0U1gu8QMR A==;
+X-CSE-ConnectionGUID: qSxF7hdTQfiRrw8yz70K/A==
+X-CSE-MsgGUID: EmJltw4bQd6NsVW8jDg8CA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11496"; a="66585397"
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="66585397"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 05:59:04 -0700
+X-CSE-ConnectionGUID: 5LDjlfoBRMeuALGq3vFLsw==
+X-CSE-MsgGUID: eZPJOhg9QGmclBx70//Sdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="157722208"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 05:59:04 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Fri, 18 Jul 2025 05:59:03 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Fri, 18 Jul 2025 05:59:03 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.72)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Fri, 18 Jul 2025 05:59:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=liMkJKuVEc03G+qbAovoaTIZNgddjl5AipUsKsTd2tOs9sBIZ2zwBw+12Gf4d0FdAxbLy7XUHmHvLbBgRHp2/pRZRPEK21n67dKARJ1djzWLGSf4mXoNu+coL5hjq5ak9hPhze97OPQQAm2Kr/bHwa4q5EX01ZWPSsGDz8Xok1h+yVdBhuyKSvXUHJNz+6K74s0v009J1ytwv4OaRFUzv/nSWt0nquKIm3UEFkalAr8QXcjDtYwZLZ13KhWLYv1QdGtyWhLD0tSsk0qMkPC+mmU7UeBu/TjWrywtHBt+haxAK+9nIcx/vK/cea9b8/wi591Ok1tddr9+sMODOmAGhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WXPsk++4i36ryznjqNZkMA48vkncCKHxThBIrp0LW64=;
+ b=Lmq7uL1efaCRX9a+fAl4jV3NuHzEL0q8z4o5dJ+0VMuST43man8ci8cx3zuMGMPjas128FZs2qDt8k+zB4p/v0mFkVCF4zGE/+B3Xe6VFYiTFcN9ZoLUEqVh5Ys0ptnfZmU/OICxBNyAClHH8lvR88Iqhid1+gb/niRQ/JfUIsHW2vQw7a0p399HCnVMashQmqdg7j0hNHFCixFVv4wlVVgevBr6rD/qxwnwE26UQ8XHMIC8YEzloe0q7Htagr6qpmk4Gy5vZz4tEOwnhuRZDFGBB1ymCg0mmNLsMXuBNuGZCCL3s+8siPHuBmBJfYptZjxxCFyOtHmSAxh/UeG+AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by PH0PR11MB7472.namprd11.prod.outlook.com (2603:10b6:510:28c::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.37; Fri, 18 Jul
+ 2025 12:58:45 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%4]) with mapi id 15.20.8835.026; Fri, 18 Jul 2025
+ 12:58:45 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <bd7a211e9a56b22673cc8b1d66541bcbea7d3b9f.camel@intel.com>
+References: <20250717063259.440086-1-jouni.hogander@intel.com>
+ <175275909975.1809.8747168482147911326@intel.com>
+ <bac5a94acb4cc814a56855be54c2b5e69ab573fe.camel@intel.com>
+ <bd7a211e9a56b22673cc8b1d66541bcbea7d3b9f.camel@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Write PHY_CMN1_CONTROL only when using
+ AUXLess ALPM
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Date: Fri, 18 Jul 2025 09:58:36 -0300
+Message-ID: <175284351608.1809.17923503412794799848@intel.com>
+User-Agent: alot/0.12.dev27+gd21c920b07eb
+X-ClientProxiedBy: MW4PR03CA0064.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::9) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250718105407.32878-6-vignesh.raman@collabora.com>
-X-Authority-Analysis: v=2.4 cv=dKimmPZb c=1 sm=1 tr=0 ts=687a4409 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=QX4gbG5DAAAA:8 a=W7FfGsJSNGCcAvtv9TIA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: DOetmgJvXjje6WRwGGhaA5_-M1rCMwOH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzE4MDA5OSBTYWx0ZWRfXxL+T8zvwg0g7
- CWFjDoSUMtbT+fRUTAXVK0B6Nngn9SD2CIFydOV4a0wygTbE2AY6HoNYGUE/Gyvtc536BAIioDH
- rrCI7kNz7t27qJFPdvKvtlQW85d40sADFWpbHgIvoHfz0Vs/1FRgo+vGHolI6lfVMBjwHbuMGiD
- SwwGj3g6omAeVQese9cXYOakKju81y51eQrPLCci4JooI+K+w5mL2J+4pzmbd6TcyqLPbMLqPta
- F0HA8NuTpIRde5RfK68C24ROlSlChX0mkbP57idyHyUE0mymieYQfGNqaXbRuNNaU4FbT78SwSv
- DEy27hecjwAvDatlJ1gJWdFXOIcnp6+hC+hT0JOS4zs8pR4J0zvo9zsr+/vYVohqqqXYajrLNRJ
- QZqrgVg+oEq+/Mq+oEN5KvXeGwv4jE5DoCskvzk2blkipYFRKfgI7FVX3EZQhLcTIcfmtk6p
-X-Proofpoint-ORIG-GUID: DOetmgJvXjje6WRwGGhaA5_-M1rCMwOH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-18_02,2025-07-17_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 spamscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- phishscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507180099
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH0PR11MB7472:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4e39d71-3580-4957-f17e-08ddc5fad444
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UlhWRVRDa2NwSWJvMEZkbWRsUmcrVTh4L3VKYjhKSUZLZkc3dlFuZ1Flbkpq?=
+ =?utf-8?B?aHhzMGJFVUdNZEgwNmMrVjBYaEFVNnlQcjlweUlnRm14N1JyTFNSbXNkUXlI?=
+ =?utf-8?B?Sy8ycmF5VDRzWEU1WUJwdUJHcDBKN01rbXNyRk14ZVVnWUtaY2s5VTFkWHlj?=
+ =?utf-8?B?UXhuL3EvMmwrUi8rZi92eGlyK1NIa3lNb29ZOUVoWDlZUTFWelZJUENhQ3RD?=
+ =?utf-8?B?RWNDV3N2bEFlUys3Zk1tVUMxdFk1NzRvcnZFNmhVZi8xN0JzV0dCb0F4WU9i?=
+ =?utf-8?B?eFFyaktqSnZRaE1lUk50ampTcUpPUjdQczBKb2hnWUJmNmJmZnNrbGZrWUlI?=
+ =?utf-8?B?ZGFSOGZBTnorbEJmYUw1bk1Cay9ObzlWQzFMOEJzN1Y3bkgrNXJXaDJydXRW?=
+ =?utf-8?B?WHRsb2JndUxqaHc4a3BHRm1YaHRXb2YvcGt5SGZYTWFXc2JSRXZIZzBBMVB4?=
+ =?utf-8?B?Ny9EdnhIOTVmcm1JWWtQMjdoVmtGQUZuajh4YVNTUVRBSlMrc21FOVRINWd1?=
+ =?utf-8?B?aTFsUTdqbThqdG9YNEN0TzdWU3ZpWFlFYk1Sa3JJQS9TUExVSlJkRWpKaGJI?=
+ =?utf-8?B?UDBJNHpxNERSU3RjQ3R6S3RNVkpjY0lKMktoS016RVBHUHNLYThSUVNGU0lT?=
+ =?utf-8?B?U0JLYWo1cDkvK2huNmZyRHJ5VXd2MFo4VktEUEZIRmdKSkRESFBZZFRUM01z?=
+ =?utf-8?B?N2NSU3dqaTFOSk1UMWZYVno0VkVteEhiOW1aU3R1TkNyR1hXV1IzMnJEem1T?=
+ =?utf-8?B?aFZzMXZjQ2RWSDVSN1FPNmlqZEZuc2pOQldOWlVQM0wraktkSHMyU1NXVTdo?=
+ =?utf-8?B?WElrU0RDdWM4dSszbHZiU0ZGcjA1ZUZ6MDQ2T1Mwc3BxWVlKKzBJL3dDbkdz?=
+ =?utf-8?B?OGI4TDJHS1o3cm5mdWs1eWlyRm41Z1EyV0t3Wno4QlJEZXpsUFN3S1d2MWlZ?=
+ =?utf-8?B?dFNsQUZRRWRHS2s2OWIrREJ3MmV4YkxtTmdKQ1NtZ09PdjZqT1ZJMG83amdZ?=
+ =?utf-8?B?K0UyeldnczJjSm9BMVVOa2RLQjFsdHB4dXdoU2luV3ZsTndtSEdBcjdnU01a?=
+ =?utf-8?B?bFRXZGRyYmdDZENWUzViT0p5TWN1cVBBZElrWkRhb2hCN016cnUvelYvdEtk?=
+ =?utf-8?B?OThFaXBCb244UEZjcFlBT1NkWHcyRnJSY0d2RGxTdzFwRkxqQzJmemczVTJI?=
+ =?utf-8?B?VUM2ZDc2VFJrdDkyamN2T3pBZVBXYTMxUURRRnlnZUozZHBla3pITG9mdWg2?=
+ =?utf-8?B?SmljdjE0UUZBMXh0UFUxMlEwT3pYNkxCTjBTd3lDRzhuSUJqV2hzdkNXVnpD?=
+ =?utf-8?B?UXdCSFNQeCt1SllyR2FucXVuSTdndVRwR0crbEdOYk9pRW1jSWhQQnVBT0Uv?=
+ =?utf-8?B?TWJUSXR5cnRkZEUzckMyZmNjc252YUMxTGhjbUgvbFhkSkU1OEl2RmhMR3ZD?=
+ =?utf-8?B?Q3VvUE9DbjBTN3VwY2xJTVk0Ny9KblI5Q0ZkRDJ2OUFWM1VmUExwNERBZUsr?=
+ =?utf-8?B?bFc0aGRVY3pxN0RXSFlDbjNPcE40QkZRRE1mSWhKM0VGNVFZdkRzbjVXTVFI?=
+ =?utf-8?B?RXFhNFQxa1d6bFhjK2ZxUEpGVU1QNnhVRlVqVmZrems0UUFoTndKR2F6LzI3?=
+ =?utf-8?B?RmEvTHR5NTFmWXBQcURuNm9qR1pCRVlmb1o3Kzdpa0xSVkFmdktiU3MrVHFF?=
+ =?utf-8?B?dmJDVEhmd0VLTGFXelFNQnFvOW5nLzMzZDdJcU1wMWJ3TlhzbXl5Vkc5RG9B?=
+ =?utf-8?B?ZnRaeEgvNUNVNVRzWGdrU285Y0JpWXZwVzlVRUFEQU5KU2dTREFFdWJlczRn?=
+ =?utf-8?B?ZXF0ekZZQlhzSnRNS3U3K0g0VE9oM1VDaEpXZCtLdDRSU3lpN0RibEJlcEhK?=
+ =?utf-8?B?WkZwdjNzRkh3Z2pKbG5QOS9HRmR2MUpNV0FvNXcyLytFT3RDQUxsMldhWmc2?=
+ =?utf-8?Q?EJgkh3o/ifo=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3BLUWpaWFlicHNkS2RFTE1JK1N1QktBeVdhTGE4aUZOVDhSdzBERERUb1Z4?=
+ =?utf-8?B?QzNheUwwYm85eHY4SHBsQVI1NEhuWlRaSCtTNkQzOGZmV3l6bGRXUTlJYVl5?=
+ =?utf-8?B?M3NPMkNYRlYyUHlFYkoxMjhiU1ZLSWlMVkdDaTFoN004NzBHUWRINkZLRzNj?=
+ =?utf-8?B?L3JJdm9lMGxNbWM2cmFOZmhTbXhaUk9maHIzbkY5MUZZKy9QK1VJdVJUeGJN?=
+ =?utf-8?B?cTJRNms5OUtUTkV0RVZJbDJENWUrMk1KQjVjZ0JYdE9jQlJOL01ZZit0SlFI?=
+ =?utf-8?B?V3dtdlJmOUFMZ01rSUlDOUF2Y0F6MUdIanJLaFB6cEcvNk5EbGlCbW90WVQz?=
+ =?utf-8?B?MW80MC9Md2lmQ3RsNGFNVCtFSHVXckpaRVZWbXNKS3JCQ25udGhHTmdibk9Q?=
+ =?utf-8?B?UExmYzJsOFc1eHQ4OEdvQllSNE04TVh4RDRXZ1RtdFpJVjVjVWk5a2RYUS9B?=
+ =?utf-8?B?S2krZ1UrL3hyM2ludllLem1PT1ZFRU1UblpJdXZRSHdmYk1MbHZBQ3RneUZ6?=
+ =?utf-8?B?aTZwWmFPK2NKd0haNzVJM0VOcFI3aDMwVkJoMjlhZnZERGMrRU00bU5kOW1M?=
+ =?utf-8?B?ekdkMWxlNnJlSHd1dUtIbExZTjlCanNLOG1SWHJhb3JJWkF0blR5SkQxdW1T?=
+ =?utf-8?B?dEhTRG42dGpYQjRsRGxkUU9NNWh2cXl6U2hDMmRmWVdCakpSeGdXKzJXUkll?=
+ =?utf-8?B?MS91TVNnYmV0STIxT2FlK01GTmNGdGZwNmEvT0c2TEIvMEhHN20zb3NUMTlB?=
+ =?utf-8?B?akFab2g3U3RyOUdxckhncmk0N2gxR3hndU5qTnVvKzE1dFVCaTY5akpIWWo4?=
+ =?utf-8?B?VWpveXpqMGV2aW5UNEdxRXpCVEpDcEx0Vnoza1BxVGo2RGVIM3hQVnlUeHhV?=
+ =?utf-8?B?ZlZzRkR6WDcvQnVTWTJsRjRIcVRFbG1nNlY5akF5d1Ftb2l0WVFjUk9yR25h?=
+ =?utf-8?B?OWxRYzBaYUQwcVAvU2tlZ3ZkS3UyOTBValJIeGU3U0lVNnJjaitlaGp3d2Fn?=
+ =?utf-8?B?OVNQbVZacXgrbmtiM0lHRjYzM09zcEw0RXI1elROUW9Bd0YyOUk1VkthWG53?=
+ =?utf-8?B?bFM5Zm4wVTc5ZDFXc1pwZTNKWjVRUXJTb3Zab2VRd2MxWDFZMU1BZjRaSG82?=
+ =?utf-8?B?eHNQZlFZZmFDOFg2NzBIUElDQW1HcjNlN1hnZERzeGpQLzRDUXUrMndNUEVE?=
+ =?utf-8?B?cUlzbCt5S3Y1TEMyK0VyWU8rV2swK1g4UnZmd0hPVEh5empacEdNQy9KTmJy?=
+ =?utf-8?B?eVVYMEpHcWwwMkMzeVc2TFh5QXVTdm9WQWFIYk9Xa1FyOHV1Ni96OURwVXMw?=
+ =?utf-8?B?c2d3OWMwZ2taSWl0L2FvRVVpUElGTmJPTXJjK0FFcE1SRXluU0xlVHAzWlU1?=
+ =?utf-8?B?bFFldmp0NFY1dFVFVzJhWGpGRzlqcndQV2oxT3YyOGtvVlZoNHV1TFFRM09G?=
+ =?utf-8?B?WFdrdmExUkhzTmNxL0pHMDlCTG1FUThTYXNPSnpkTllmQVc1dVRrQjQvZVAv?=
+ =?utf-8?B?WXpYdXF2Mk8rbDdJT202VW5Ma3FkQ21qWlB4eEJSeWo4STNPamV5NzNGRnRa?=
+ =?utf-8?B?NlA1WmtXRUwyekRzMmlQd3oybjduQVdJR0JvOFUrbnEwNXN4MFpUV3NZNWRo?=
+ =?utf-8?B?M2R4YStWRXMxYjN0bXkzWGRpYitlcXNFUXpCRkJsMmpFVHVOL05TcmRoWTlj?=
+ =?utf-8?B?VUV3UDRBRXdVenlKaGttWHBQSVh6a05vcUtWQWlNODBVZFY0R0plYXVRK01Z?=
+ =?utf-8?B?Y24rNldSOXR0b2lpemZZMTllQ1pib1ltSllmbGIxSU43dFIwQ3k1L1M1V3hs?=
+ =?utf-8?B?TVZzR1QvK2JkL0YwTXNlT3ZadTVXaURabFdMa1cwaWFQaUI1N09vL0ZpTVBJ?=
+ =?utf-8?B?eTFtb0xoNmVndEt0SXRkYVFscndoT3dQR2dFcmN4dXdyaUYzejMrSWhPMThj?=
+ =?utf-8?B?bmFNby9kSEsvR3llcEwzTHNQTEU3Nmt2RXNIQm5ycUxwbjFveU5nczRUS1dK?=
+ =?utf-8?B?VzdxWHRQUDM4TEV2OU5Xc2xlSWJoRVY4bWNKY0Q2SjA1Q2p3RFdyOTVzU1Yv?=
+ =?utf-8?B?OFdPVEJMeWdDQzd2MWphTjlUVCtkVkJ5UWphd3dxTGUzOVA4aFNJQ0ZoYzZ6?=
+ =?utf-8?B?NHpDcGhYZVRoRDAyZzFGRU1LQmtyek44d01ZME1sdDE5VmdGcnh3UWV2ZW55?=
+ =?utf-8?B?ZkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4e39d71-3580-4957-f17e-08ddc5fad444
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2025 12:58:45.4034 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /XCiIg0Jh35mzZ4nikzawRDnuglszDbM44dn9iPjlstADUzlq3jm89oPcCoH3uo16BTZ9j3mZQFPi8AMyT+RPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7472
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,160 +199,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 18, 2025 at 04:23:57PM +0530, Vignesh Raman wrote:
-> Uprev IGT to the latest version and update expectation files.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->  drivers/gpu/drm/ci/gitlab-ci.yml              |   2 +-
->  .../gpu/drm/ci/xfails/amdgpu-stoney-fails.txt |   2 +
->  .../drm/ci/xfails/amdgpu-stoney-flakes.txt    |   7 ++
->  drivers/gpu/drm/ci/xfails/i915-amly-fails.txt |  11 +-
->  drivers/gpu/drm/ci/xfails/i915-apl-fails.txt  |   2 +
->  drivers/gpu/drm/ci/xfails/i915-cml-fails.txt  |  29 +----
->  drivers/gpu/drm/ci/xfails/i915-cml-flakes.txt |   7 ++
->  drivers/gpu/drm/ci/xfails/i915-glk-fails.txt  |   8 +-
->  drivers/gpu/drm/ci/xfails/i915-glk-skips.txt  |  83 ++++++++++++
->  drivers/gpu/drm/ci/xfails/i915-jsl-fails.txt  |  10 +-
->  drivers/gpu/drm/ci/xfails/i915-kbl-fails.txt  |   3 +
->  drivers/gpu/drm/ci/xfails/i915-tgl-fails.txt  |   5 +-
->  drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt |   6 +
->  drivers/gpu/drm/ci/xfails/i915-whl-fails.txt  |   7 +-
->  .../drm/ci/xfails/mediatek-mt8173-fails.txt   |   5 +-
->  .../drm/ci/xfails/mediatek-mt8173-flakes.txt  | 119 ++++++++++++++++++
->  .../drm/ci/xfails/mediatek-mt8183-fails.txt   |   7 +-
->  .../msm-sc7180-trogdor-kingoftown-fails.txt   |   1 +
->  ...sm-sc7180-trogdor-lazor-limozeen-fails.txt |   1 +
->  .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |   1 +
->  .../drm/ci/xfails/msm-sm8350-hdk-skips.txt    |  73 +++++++++++
->  .../drm/ci/xfails/panfrost-mt8183-fails.txt   |   1 +
->  .../drm/ci/xfails/panfrost-rk3288-fails.txt   |   1 +
->  .../drm/ci/xfails/panfrost-rk3399-fails.txt   |   1 +
->  .../drm/ci/xfails/rockchip-rk3288-fails.txt   |  12 +-
->  .../drm/ci/xfails/rockchip-rk3288-flakes.txt  |  21 ++++
->  .../drm/ci/xfails/rockchip-rk3399-fails.txt   |   9 +-
->  .../drm/ci/xfails/rockchip-rk3399-flakes.txt  |  35 ++++++
->  .../drm/ci/xfails/virtio_gpu-none-fails.txt   |   4 +
->  drivers/gpu/drm/ci/xfails/vkms-none-fails.txt |   3 +
->  drivers/gpu/drm/ci/xfails/vkms-none-skips.txt |   3 +
->  31 files changed, 416 insertions(+), 63 deletions(-)
->  create mode 100644 drivers/gpu/drm/ci/xfails/i915-tgl-flakes.txt
-> 
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> index e4a8f8352cd6..9bf38c077f8e 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-kingoftown-fails.txt
-> @@ -15,3 +15,4 @@ kms_pipe_crc_basic@compare-crc-sanitycheck-nv12,Fail
->  kms_plane_alpha_blend@alpha-7efc,Fail
->  kms_plane_alpha_blend@coverage-7efc,Fail
->  kms_plane_alpha_blend@coverage-vs-premult-vs-constant,Fail
-> +core_setmaster@master-drop-set-user,Fail
+Quoting Hogander, Jouni (2025-07-18 07:46:31-03:00)
+>On Fri, 2025-07-18 at 09:05 +0300, Hogander, Jouni wrote:
+>> On Thu, 2025-07-17 at 10:31 -0300, Gustavo Sousa wrote:
+>> > Quoting Jouni H=C3=B6gander (2025-07-17 03:32:58-03:00)
+>> > > We are seeing "dmesg-warn/abort - *ERROR* PHY * failed after 3
+>> > > retries"
+>> > > since we started configuring LFPS sending. According to Bspec
+>> > > Configuring
+>> > > LFPS sending is needed only when using AUXLess ALPM. This patch
+>> > > avoids
+>> > > these failures by configuring LFPS sending only when using
+>> > > AUXLess
+>> > > ALPM.
+>> >=20
+>> > Hm... But then with this patch we are missing writing zero to that
+>> > bit
+>> > when necessary, no?
+>>=20
+>> That shouldn't be necessary as 0 is the reset value.
+>>=20
+>> >=20
+>> > Could the timeouts be happening because intel_cx0_rmw() is getting
+>> > called without calling
+>> > intel_cx0_phy_transaction_begin()/intel_cx0_phy_transaction_end()?
+>>=20
+>> I wasn't aware about these. I will try them.
+>
+>I tested this and it doesn't help:
 
-Could you please point out the issue / failure log?
+Okay. Well, I still find it weird that this would time out for one case
+and not time out for another... Do we have confirmation that this is
+working fine for the AUX-Less ALPM case?
 
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> index e4a8f8352cd6..7441b363efae 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-sc7180-trogdor-lazor-limozeen-fails.txt
-> @@ -1,3 +1,4 @@
-> +core_setmaster@master-drop-set-user,Fail
->  kms_color@ctm-0-25,Fail
->  kms_color@ctm-0-50,Fail
->  kms_color@ctm-0-75,Fail
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> index 8d26b23133aa..f387c73193c6 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
-> @@ -1,3 +1,4 @@
-> +core_setmaster@master-drop-set-user,Fail
->  kms_3d,Fail
->  kms_cursor_legacy@forked-bo,Fail
->  kms_cursor_legacy@forked-move,Fail
-> diff --git a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> index 9450f2a002fd..84ffbe0981ea 100644
-> --- a/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> +++ b/drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> @@ -210,3 +210,76 @@ msm/msm_mapping@ring
->  # [  229.752499] CPU features: 0x18,00000017,00200928,4200720b
->  # [  229.758095] Memory Limit: none
->  # [  229.761291] ---[ end Kernel panic - not syncing: softlockup: hung tasks ]---
-> +
-> +msm/msm_recovery@gpu-fault
+I wonder if we should rather do this step together with
+intel_c10_pll_program(). Note that, for C10, there is also a required
+step to set PHY_C10_VDR_CONTROL1[2] before accessing the msgbus.
 
-Hmm. I thought this should have been fixed...
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>index ed8e640b96b0..e6ff7f07b2e3 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>@@ -3239,6 +3239,7 @@ void intel_lnl_mac_transmit_lfps(struct
+>intel_encoder *encoder,
+>                                 const struct intel_crtc_state
+>*crtc_state)
+> {
+>        struct intel_display *display =3D to_intel_display(encoder);
+>+       intel_wakeref_t wakeref;
+>        u8 owned_lane_mask =3D intel_cx0_get_owned_lane_mask(encoder);
+>        bool enable =3D
+>intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder),
+>                                                  crtc_state);
+>@@ -3247,6 +3248,8 @@ void intel_lnl_mac_transmit_lfps(struct
+>intel_encoder *encoder,
+>        if (DISPLAY_VER(display) < 20)
+>                return;
+>=20
+>+       wakeref =3D intel_cx0_phy_transaction_begin(encoder);
+>+
+>        for (i =3D 0; i < 4; i++) {
+>                int tx =3D i % 2 + 1;
+>                u8 lane_mask =3D i < 2 ? INTEL_CX0_LANE0 :
+>INTEL_CX0_LANE1;
+>@@ -3259,6 +3262,8 @@ void intel_lnl_mac_transmit_lfps(struct
+>intel_encoder *encoder,
+>                              enable ? CONTROL0_MAC_TRANSMIT_LFPS : 0,
+>                              MB_WRITE_COMMITTED);
+>        }
+>+
+>+       intel_cx0_phy_transaction_end(encoder, wakeref);
+> }
+>
+>Do you think I should still add this change as well?
 
-> +# DEBUG - Begin test msm/msm_recovery@gpu-fault
-> +# [  153.288652] [IGT] msm_recovery: executing
-> +# [  153.295317] [IGT] msm_recovery: starting subtest gpu-fault
-> +# [  153.317588] adreno 3d00000.gpu: CP | opcode error | possible opcode=0xDEADDEAD
-> +# [  153.367412] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2 0000000000000000/0000
-> +# [  153.383449] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: hangcheck recover!
-> +# [  153.393296] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-tools/msm/msm_recovery --run-subtest gpu-fault)
-> +# [  153.436085] revision: 660 (6.6.0.1)
-> +# [  153.439702] rb 0: fence:    2063/2068
-> +# [  153.443659] rptr:     360
-> +# [  153.446389] rb wptr:  533
-> +# [  153.449103] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG0: 0
-> +# [  153.455746] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG1: 0
-> +# [  153.462387] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG2: 2062
-> +# [  153.469293] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG3: 0
-> +# [  153.475680] adreno 3d00000.gpu: [drm:a6xx_irq] *ERROR* gpu fault ring 0 fence 814 status 00800005 rb 016b/0215 ib1 000000010000B000/0000 ib2 0000000000000000/0000
-> +# [  153.475919] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG4: 0
-> +# [  153.475925] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG5: 0
-> +# [  153.475928] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG6: 0
-> +# [  153.475930] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG7: 1
-> +# [  153.529587] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
-> +# [  153.539837] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: hangcheck recover!
-> +# [  153.549597] msm_dpu ae01000.display-controller: [drm:recover_worker] *ERROR* 6.6.0.1: offending task: msm_recovery (/igt/libexec/igt-gpu-tools/msm/msm_recovery --run-subtest gpu-fault)
-> +# [  153.566489] revision: 660 (6.6.0.1)
-> +# [  153.570099] rb 0: fence:    2064/2068
-> +# [  153.573878] rptr:     0
-> +# [  153.576411] rb wptr:  688
-> +# [  153.579134] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG0: 0
-> +# [  153.585775] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG1: 0
-> +# [  153.592410] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG2: 0
-> +# [  153.597308] [IGT] msm_recovery: finished subtest gpu-fault, FAIL
-> +# [  153.599039] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG3: 0
-> +# [  153.611856] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG4: 0
-> +# [  153.618498] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG5: 0
-> +# [  153.625132] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG6: 0
-> +# [  153.631766] adreno 3d00000.gpu: [drm:a6xx_recover] CP_SCRATCH_REG7: 0
-> +# [  153.639162] *** gpu fault: ttbr0=00000001042fc000 iova=0000000000000000 dir=READ type=TRANSLATION source=CP (0,0,0,0)
-> +# [  153.648502] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
-> +# [  153.650144] *** gpu fault: ttbr0=00000001042fc000 iova=0000000000000020 dir=READ type=TRANSLATION source=CP (0,0,0,0)
-> +# [  153.650241] adreno 3d00000.gpu: CP illegal instruction error
-> +# [  153.671006] platform 3d6a000.gmu: [drm:a6xx_rpmh_start] *ERROR* Unable to power on the GPU RSC
-> +# [  153.687278] platform 3d6a000.gmu: [drm:a6xx_gmu_set_oob] *ERROR* Timeout waiting for GMU OOB set GPU_SET: 0x0
-> +# [  363.495437] INFO: task msm_recovery:876 blocked for more than 120 seconds.
-> +# [  363.503070]       Not tainted 6.16.0-rc2-g0594d0b01a7c #1
-> +# [  363.508838] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-> +# [  363.517142] task:msm_recovery    state:D stack:0     pid:876   tgid:876   ppid:274    task_flags:0x400100 flags:0x00000009
-> +# [  363.528876] Call trace:
-> +# [  363.531554]  __switch_to+0xf8/0x1a8 (T)
-> +# [  363.535703]  __schedule+0x418/0xee0
-> +# [  363.539486]  schedule+0x4c/0x164
-> +# [  363.542986]  schedule_timeout+0x11c/0x128
-> +# [  363.547281]  dma_fence_default_wait+0x13c/0x234
-> +# [  363.552123]  dma_fence_wait_timeout+0x160/0x45c
-> +# [  363.556947]  dma_resv_wait_timeout+0x70/0x11c
-> +# [  363.561582]  msm_gem_close+0xac/0xe4
-> +# [  363.565405]  drm_gem_handle_delete+0x74/0xe8
-> +# [  363.569951]  drm_gem_close_ioctl+0x38/0x44
-> +# [  363.574297]  drm_ioctl_kernel+0xc4/0x134
-> +# [  363.578442]  drm_ioctl+0x224/0x4f0
-> +# [  363.582050]  __arm64_sys_ioctl+0xac/0x104
-> +# [  363.586292]  invoke_syscall+0x48/0x110
-> +# [  363.590254]  el0_svc_common.constprop.0+0x40/0xe0
-> +# [  363.595197]  do_el0_svc+0x1c/0x28
-> +# [  363.598705]  el0_svc+0x4c/0x158
-> +# [  363.602035]  el0t_64_sync_handler+0x10c/0x138
-> +# [  363.606601]  el0t_64_sync+0x198/0x19c
-> +# [  363.610465] Showing all locks held in the system:
-> +# [  363.620406]  #0: ffff0000840200a0 (&tty->ldisc_sem){++++}-{0:0}, at: ldsem_down_read+0x18/0x24
-> +# [  363.629412]  #1: ffff800080d7c2f0 (&ldata->atomic_read_lock){+.+.}-{4:4}, at: n_tty_read+0x15c/0x57c
-> +# [  363.643169]  #0: ffffbd9c0475d920 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x18/0x1c0
-> +# [  363.654158] =============================================
+If we are still going with this function instead of doing it in
+intel_c10_pll_program(), then yes.
 
--- 
-With best wishes
-Dmitry
+--
+Gustavo Sousa
+
+>
+>>=20
+>> BR,
+>>=20
+>> Jouni H=C3=B6gander
+>>=20
+>> >=20
+>> > >=20
+>> > > Fixes: 9dc619680de4 ("drm/i915/display: Add function to configure
+>> > > LFPS sending")
+>> > > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>> > > ---
+>> > > drivers/gpu/drm/i915/display/intel_cx0_phy.c | 11 +++++------
+>> > > 1 file changed, 5 insertions(+), 6 deletions(-)
+>> > >=20
+>> > > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>> > > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>> > > index ed8e640b96b0..9cfc3187aeab 100644
+>> > > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>> > > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>> > > @@ -3239,14 +3239,14 @@ void intel_lnl_mac_transmit_lfps(struct
+>> > > intel_encoder *encoder,
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct intel_crtc=
+_state
+>> > > *crtc_state)
+>> > > {
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_display *dis=
+play =3D
+>> > > to_intel_display(encoder);
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 owned_lane_mask =3D
+>> > > intel_cx0_get_owned_lane_mask(encoder);
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool enable =3D
+>> > > intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder),
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 crtc_state);
+>> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u8 owned_lane_mask;
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int i;
+>> > >=20
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (DISPLAY_VER(display)=
+ < 20)
+>> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (DISPLAY_VER(display)=
+ < 20 ||
+>> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+>> > > !intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder),
+>> > > crtc_state))
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 return;
+>> > >=20
+>> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 owned_lane_mask =3D
+>> > > intel_cx0_get_owned_lane_mask(encoder);
+>> >=20
+>> > This optimization could be on it's own patch.
+>
+>Ok, maybe I leave that out or add own patch.
+>
+>BR,
+>
+>Jouni H=C3=B6gander
+>
+>
+>> >=20
+>> > --
+>> > Gustavo Sousa
+>> >=20
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < 4; i++)=
+ {
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 int tx =3D i % 2 + 1;
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 u8 lane_mask =3D i < 2 ? INTEL_CX0_LANE0 :
+>> > > INTEL_CX0_LANE1;
+>> > > @@ -3256,8 +3256,7 @@ void intel_lnl_mac_transmit_lfps(struct
+>> > > intel_encoder *encoder,
+>> > >=20
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 intel_cx0_rmw(encoder, lane_mask,
+>> > > PHY_CMN1_CONTROL(tx, 0),
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CONTROL0_MAC_TRANSMIT_LFPS,
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enable ?
+>> > > CONTROL0_MAC_TRANSMIT_LFPS
+>> > > : 0,
+>> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MB_WRITE_COMMITTED);
+>> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CONTROL0_MAC_TRANSMIT_LFPS,
+>> > > MB_WRITE_COMMITTED);
+>> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>> > > }
+>> > >=20
+>> > > --=20
+>> > > 2.43.0
+>> > >=20
+>>=20
+>
