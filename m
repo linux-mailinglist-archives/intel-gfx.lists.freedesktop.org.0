@@ -2,29 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF87EB09692
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Jul 2025 23:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87577B098F8
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 02:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F193210E32F;
-	Thu, 17 Jul 2025 21:55:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F13AB10E03D;
+	Fri, 18 Jul 2025 00:38:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tmPs7/6Y";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE9810E32F;
- Thu, 17 Jul 2025 21:55:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2282709921915364285=="
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A690010E03D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 00:38:52 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 6C5A45C6B54;
+ Fri, 18 Jul 2025 00:38:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EB79C4CEE3;
+ Fri, 18 Jul 2025 00:38:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1752799130;
+ bh=fnto0Mow41Y58kyY7yJXrksooinT71waDFDcpPJMGKw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tmPs7/6YtxWGXhH3JJ+Hwo2j+bFbHn7OaIpryM9pRNJ8hSupJqbnN+Xdqv7wMyege
+ PLlyDjZjSaPh4RKur09qsAWBBkj+mMvxrCoXQmz5THBkEtX4KOdObr8GhzBPJYVOmE
+ DAkw39lwE8+jZaG75NtVTG5eCx2I6BWldWBUflMiTesz200KymPfELLoor9IymhDwn
+ Uzfer7Bmjkk5iDWmRhH+14i+YHgSFoWYqOuHPBR6qzABCZeZQ8xooI3KDVAxSC1uae
+ xXYVv11Vgnb3pmEnB4xLSXU4VVeYORwo4JKJN9s63+ng9qo9vZ4yAqr2dxHpJvEoxG
+ mM9YQO9iulbdA==
+Date: Fri, 18 Jul 2025 02:38:47 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com, 
+ andi.shyti@linux.intel.com
+Subject: Re: [PATCH v2 1/3] drm/i915: Improve readability of eb_relocate_vma
+Message-ID: <hc3tiztdphxiyqpb4xcumpojsuwfwetlosagk44vloenj5ysqc@d5icgfgtwnft>
+References: <20250717123824.676605-1-sebastian.brzezinka@intel.com>
+ <20250717123824.676605-2-sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Remov?=
- =?utf-8?q?e_unused_declarations_of_intel=5Fio=5F*?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 17 Jul 2025 21:55:45 -0000
-Message-ID: <175278934576.170943.10714638445026424869@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250717-drop-unused-intel_io-declarations-v1-1-bdea2c749571@intel.com>
-In-Reply-To: <20250717-drop-unused-intel_io-declarations-v1-1-bdea2c749571@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250717123824.676605-2-sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,190 +55,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2282709921915364285==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Sebastian,
 
-== Series Details ==
+On Thu, Jul 17, 2025 at 12:38:39PM +0000, Sebastian Brzezinka wrote:
+> Refactored eb_relocate_vma to simplify stack access and loop structure.
+> No functional changes; this is a readability and clarity improvement only.
 
-Series: drm/i915/display: Remove unused declarations of intel_io_*
-URL   : https://patchwork.freedesktop.org/series/151780/
-State : success
+There is no limit for a commit log. You need to list all the
+changes you did, a generic "refactor" is not enough.
 
-== Summary ==
+Bonus: please use the imperative form, "Refactor", not
+"Refactored". Imperative is always clearer.
 
-CI Bug Log - changes from CI_DRM_16887 -> Patchwork_151780v1
-====================================================
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> ---
+> v1 -> v2:
+> 	- Revert changes in error handling.
+> 	- Restore the original formatting of the comments.
+> 	- Reword commit message.
+> ---
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 84 ++++++++++---------
+>  1 file changed, 44 insertions(+), 40 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index ca7e9216934a..ea4793e73ea5 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1529,6 +1529,7 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  	struct drm_i915_gem_relocation_entry __user *urelocs =
+>  		u64_to_user_ptr(entry->relocs_ptr);
+>  	unsigned long remain = entry->relocation_count;
+> +	int ret = 0;
+>  
+>  	if (unlikely(remain > N_RELOC(INT_MAX)))
+>  		return -EINVAL;
+> @@ -1541,11 +1542,10 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  	if (unlikely(!access_ok(urelocs, remain * sizeof(*urelocs))))
+>  		return -EFAULT;
+>  
+> -	do {
+> -		struct drm_i915_gem_relocation_entry *r = stack;
+> -		unsigned int count =
+> -			min_t(unsigned long, remain, ARRAY_SIZE(stack));
+> +	while (remain > 0) {
 
-Summary
--------
+what's the problem with the "do ... while()"?
 
-  **SUCCESS**
+> +		unsigned int count = min_t(unsigned long, remain, ARRAY_SIZE(stack));
+>  		unsigned int copied;
+> +		unsigned int i;
+>  
+>  		/*
+>  		 * This is the fast path and we cannot handle a pagefault
+> @@ -1556,53 +1556,57 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+>  		 * this is bad and so lockdep complains vehemently.
+>  		 */
+>  		pagefault_disable();
+> -		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
+> +		copied = __copy_from_user_inatomic(stack, urelocs, count * sizeof(stack[0]));
 
-  No regressions found.
+What is the improvement here?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/index.html
+>  		pagefault_enable();
+> +
+>  		if (unlikely(copied)) {
+> -			remain = -EFAULT;
+> +			ret = -EFAULT;
+>  			goto out;
+>  		}
+>  
+> -		remain -= count;
+> -		do {
+> +		for (i = 0; i < count; ++i) {
 
-Participating hosts (45 -> 44)
-------------------------------
+what's wrong with the "do ... while()".
 
-  Missing    (1): fi-snb-2520m 
+Generally speaking, personal preference is not a valid reason for
+sending a patch. Changing a clear do/while with a clear while or
+for does not improve anything.
 
-Known issues
-------------
+> +			struct drm_i915_gem_relocation_entry *r = &stack[i];
+>  			u64 offset = eb_relocate_entry(eb, ev, r);
+>  
+> -			if (likely(offset == 0)) {
+> -			} else if ((s64)offset < 0) {
+> -				remain = (int)offset;
+> +			if (likely(offset == 0))
+> +				continue;
+> +
+> +			if (unlikely((s64)offset < 0)) {
+> +				ret = (int)offset;
 
-  Here are the changes found in Patchwork_151780v1 that come from known issues:
+This change here is at the limit between readability and personal
+preference. Still acceptable, though because it looks nicer.
 
-### IGT changes ###
+BTW, the cast is not necessary.
 
-#### Issues hit ####
+>  				goto out;
+> -			} else {
+> -				/*
+> -				 * Note that reporting an error now
+> -				 * leaves everything in an inconsistent
+> -				 * state as we have *already* changed
+> -				 * the relocation value inside the
+> -				 * object. As we have not changed the
+> -				 * reloc.presumed_offset or will not
+> -				 * change the execobject.offset, on the
+> -				 * call we may not rewrite the value
+> -				 * inside the object, leaving it
+> -				 * dangling and causing a GPU hang. Unless
+> -				 * userspace dynamically rebuilds the
+> -				 * relocations on each execbuf rather than
+> -				 * presume a static tree.
+> -				 *
+> -				 * We did previously check if the relocations
+> -				 * were writable (access_ok), an error now
+> -				 * would be a strange race with mprotect,
+> -				 * having already demonstrated that we
+> -				 * can read from this userspace address.
+> -				 */
+> -				offset = gen8_canonical_addr(offset & ~UPDATE);
+> -				__put_user(offset,
+> -					   &urelocs[r - stack].presumed_offset);
+>  			}
+> -		} while (r++, --count);
+> -		urelocs += ARRAY_SIZE(stack);
+> -	} while (remain);
+> +			/*
+> +			 * Note that reporting an error now
+> +			 * leaves everything in an inconsistent
+> +			 * state as we have *already* changed
+> +			 * the relocation value inside the
+> +			 * object. As we have not changed the
+> +			 * reloc.presumed_offset or will not
+> +			 * change the execobject.offset, on the
+> +			 * call we may not rewrite the value
+> +			 * inside the object, leaving it
+> +			 * dangling and causing a GPU hang. Unless
+> +			 * userspace dynamically rebuilds the
+> +			 * relocations on each execbuf rather than
+> +			 * presume a static tree.
+> +			 *
+> +			 * We did previously check if the relocations
+> +			 * were writable (access_ok), an error now
+> +			 * would be a strange race with mprotect,
+> +			 * having already demonstrated that we
+> +			 * can read from this userspace address.
+> +			 */
+> +			offset = gen8_canonical_addr(offset &  ~UPDATE);
+> +			__put_user(offset, &urelocs[i].presumed_offset);
+> +		}
+> +
+> +		remain -= count;
+> +		urelocs += count;
+> +	}
+> +
+>  out:
+>  	reloc_cache_reset(&eb->reloc_cache, eb);
+> -	return remain;
+> +	return ret;
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-mtlp-8/igt@i915_selftest@live.html
+Using ret instead of remain is not a bad change, still at the
+limit of the personal preference. It's OK because:
 
-  
-#### Possible fixes ####
+1. it avoids mistake from code glancers like myself in v1.
+2. it avoids some useless casts and alligns the types.
 
-  * igt@i915_selftest@live:
-    - bat-jsl-1:          [DMESG-FAIL][3] -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-jsl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-jsl-1/igt@i915_selftest@live.html
+So, overall, I see only two parts that can stay in this patch:
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+1. the if/else re-arrangement you did above
+2. the use of ret.
 
-  
-#### Warnings ####
+They should be sent in two different patches.
 
-  * igt@i915_selftest@live:
-    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#14204])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-atsm-1/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-atsm-1/igt@i915_selftest@live.html
+The rest looks to me just personal preference and it wouldn't
+make sense to push it through.
 
-  * igt@i915_selftest@live@mman:
-    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#13929]) -> [DMESG-FAIL][12] ([i915#14204])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-atsm-1/igt@i915_selftest@live@mman.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+Andi
 
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
-  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16887 -> Patchwork_151780v1
-
-  CI-20190529: 20190529
-  CI_DRM_16887: 6cb329ec28293e8b9e670b09611149c05223dca0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8465: dce322d513ea2c1793520e98658ffd28e94874fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_151780v1: 6cb329ec28293e8b9e670b09611149c05223dca0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/index.html
-
---===============2282709921915364285==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Remove unused declarations of intel_io_*</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/151780/">https://patchwork.freedesktop.org/series/151780/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16887 -&gt; Patchwork_151780v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_151780v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16887/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151780v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16887 -&gt; Patchwork_151780v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16887: 6cb329ec28293e8b9e670b09611149c05223dca0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8465: dce322d513ea2c1793520e98658ffd28e94874fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_151780v1: 6cb329ec28293e8b9e670b09611149c05223dca0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2282709921915364285==--
+>  }
+>  
+>  static int
+> -- 
+> 2.34.1
+> 
