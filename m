@@ -2,144 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 085BBB09B60
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 08:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A20B09E9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Jul 2025 11:04:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9558B10E8C7;
-	Fri, 18 Jul 2025 06:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6AAD10E133;
+	Fri, 18 Jul 2025 09:04:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="p+82ODPS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="etzazlGw";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Bzhp4V58";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YNSEqJtJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DBkN2DYb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65C3110E8BA
- for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 06:27:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id DE9E921246;
- Fri, 18 Jul 2025 06:27:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1752820073; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=R1DfC3y1wvgHbky5S0QbfBZYbbZStR0ikHJ/YTeRnZA=;
- b=p+82ODPSAs5/f19OBxj/C8HElcNRnOTCS+qK9sYT4dXNWI4wPOopKztBqH8mCyV4z2pbqN
- svGqfH9/iYgwNKAafWMudYDfKzNPbTAnAer4nRk0aMECIgZfLzqUjSTEfQU9JqU9c39aAI
- azj4Qo3DdHrz2B7fFBQMhYyhyxChOkc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1752820073;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=R1DfC3y1wvgHbky5S0QbfBZYbbZStR0ikHJ/YTeRnZA=;
- b=etzazlGwu0LKTmjIZ0m8WLCLoMkeOS8ShFVKzqC7efi8Ij5/sQf3otLp6L17eVZ4Yk8h8O
- RWfNgmTN1FRkIPBw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Bzhp4V58;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=YNSEqJtJ
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1752820072; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=R1DfC3y1wvgHbky5S0QbfBZYbbZStR0ikHJ/YTeRnZA=;
- b=Bzhp4V58Q92M+RG8oJ9KUzDONAnD/HE56JSm13d0ERvmamdJK0P0rxn++IQKuovZWMAkqO
- xocKTTQ/gQdHeWLA3y1bG7TOnOdCu6FE+m4QuWOs1gNOmPZ5zaVJShdCcJAOaiQNwpU6lq
- PuDnhq0XgWSwMXLeiRmBE7fHTvkPdFI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1752820072;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=R1DfC3y1wvgHbky5S0QbfBZYbbZStR0ikHJ/YTeRnZA=;
- b=YNSEqJtJF7Jjb/RI4DCi+64Y1kbmNV09emZyEqH/6igAcore/5QSSg8e6mqKk4nS3aJ+R3
- iyLLIXWgJ6QD5OBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9A24313A52;
- Fri, 18 Jul 2025 06:27:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id SuzmI2jpeWhhJAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 18 Jul 2025 06:27:52 +0000
-Message-ID: <e6c047dc-1172-4e8c-9ce6-db706d6c6e89@suse.de>
-Date: Fri, 18 Jul 2025 08:27:52 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE6510E133
+ for <intel-gfx@lists.freedesktop.org>; Fri, 18 Jul 2025 09:04:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1752829474; x=1784365474;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JxdpOXSpUrdvI3efe/bwIavpsXLUJ/DF8yi9PjatH1M=;
+ b=DBkN2DYbITiKZ/vg6mf94dZifyObv59ql2awHB1vizfq/wZSg2/YnR/l
+ VmXChnXHssQhM42SrF0Fk0Vb1VWsH57qVvg3EXG8SV+yyiUbbPnNP3NHe
+ tIBqnuQveolzSAszA11gR8iOZoH2TmsXRSRs0/TSX//Vp/KvKdapMPIcX
+ eifAL1hScBkqCdr0hRKIvoJVXA05HHwK9K6+4PWRF/d7taCiVVWMEAF0K
+ nTXMfHUZiIVmfRI1UrEbuyz1Sr1bTD7soKR7yiBryEdIqVHLIv28NzOA4
+ oc3bnQEzIsEtpQu9KrVZlAbrRfb4vUewmBhx/BL3dCad9MVB57ZGVDmlo Q==;
+X-CSE-ConnectionGUID: dUUjhYvaQhyvzNW8SY9sDA==
+X-CSE-MsgGUID: pKIRw8FVTMmTW5TN/XJWBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11495"; a="55060709"
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="55060709"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 02:04:34 -0700
+X-CSE-ConnectionGUID: E6q0/jWtT8aUTnUmh5mHrg==
+X-CSE-MsgGUID: bXhMVEojQnGc86lAKasrhA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,321,1744095600"; d="scan'208";a="162037451"
+Received: from agladkov-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.37])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jul 2025 02:04:32 -0700
+Date: Fri, 18 Jul 2025 11:04:27 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com,
+ andi.shyti@linux.intel.com
+Subject: Re: [PATCH v2 2/3] drm/i915: Add braces around the else block in
+ clflush_write32()
+Message-ID: <aHoOG1IlkNGvAd7V@ashyti-mobl2.lan>
+References: <20250717123824.676605-1-sebastian.brzezinka@intel.com>
+ <20250717123824.676605-3-sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: linux-next: manual merge of the drm tree with the drm-misc-fixes
- tree
-To: Stephen Rothwell <sfr@canb.auug.org.au>, Dave Airlie
- <airlied@redhat.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>
-References: <20250718144140.202fcca5@canb.auug.org.au>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20250718144140.202fcca5@canb.auug.org.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- FUZZY_RATELIMITED(0.00)[rspamd.com];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_SEVEN(0.00)[9];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- ARC_NA(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- RCVD_TLS_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:mid,suse.de:dkim];
- TO_DN_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Rspamd-Queue-Id: DE9E921246
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250717123824.676605-3-sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,46 +71,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+Hi Sebastian,
 
-Am 18.07.25 um 06:41 schrieb Stephen Rothwell:
-> Hi all,
->
-> Today's linux-next merge of the drm tree got a conflict in:
->
->    drivers/gpu/drm/virtio/virtgpu_prime.c
->
-> between commit:
->
->    0ecfb8ddb953 ("Revert "drm/virtio: Use dma_buf from GEM object instance"")
->
-> from the drm-misc-fixes tree and commit:
->
->    44b6535d8ace ("drm/virtio: Fix NULL pointer deref in virtgpu_dma_buf_free_obj()")
->
-> from the drm tree.
->
-> I fixed it up (I used the latter version - reverting the former by hand)
+On Thu, Jul 17, 2025 at 12:38:47PM +0000, Sebastian Brzezinka wrote:
+> According to the kernel coding style, if only one branch of a
+> conditional statement is a single statement, braces should
+> still be used in both branches.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 
-Sounds correct. You have to use dma buf from import_attach->dmabuf; not 
-the one stored directly in the GEM object.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Best regards
-Thomas
-
-> and can carry the fix as necessary. This is now fixed as far as linux-next
-> is concerned, but any non trivial conflicts should be mentioned to your
-> upstream maintainer when your tree is submitted for merging.  You may
-> also want to consider cooperating with the maintainer of the conflicting
-> tree to minimise any particularly complex conflicts.
->
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+Thanks,
+Andi
