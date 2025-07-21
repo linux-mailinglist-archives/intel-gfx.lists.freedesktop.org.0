@@ -2,75 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E2AB0B16B
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Jul 2025 20:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F158B0BB00
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Jul 2025 04:50:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4514410E02E;
-	Sat, 19 Jul 2025 18:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C7C210E241;
+	Mon, 21 Jul 2025 02:50:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cY4E24ZV";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="ZAb0OIVH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3A910E02E;
- Sat, 19 Jul 2025 18:30:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1752949853; x=1784485853;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0GPDXHtiCNdUnDUZaQj8amOknfSO5SESpbv6f2oeBgo=;
- b=cY4E24ZVv0QgO3DZikeRx4y+jPIBwvKsApLHkzlwDWNLKUNKZgRYWhAl
- SchCGuQodowGHdY+guE6NCnFlsLMHKhEZVDUoZx+APR8C7gv2tJSTpes9
- WNRSBJ3VwOEhM8ciNXDY1FZeJRZsdGxxhxMrvRl0fTW/371pMYdbOA0yN
- FvcIOT0XLa4LlBw3WHFnGOpXORKpeVIXvJRL/Ffnin5j8tQmJYBUqMOid
- pll6lY1qawuXUdwQx1yECOCrc5fI+oqAReTOVQjpMhPZ4eNU8NW+Db+Cg
- yJRKpzVoF4rOWDH4IOGnqCGXFfbO/VF4+NwN9TPeBQqUmpvmg4I0Rm80C g==;
-X-CSE-ConnectionGUID: ZMu+F/cnQ3ys0vO0152suQ==
-X-CSE-MsgGUID: jB4VHvoqRnuqXqxdAZ4Xkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11497"; a="55304667"
-X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; d="scan'208";a="55304667"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jul 2025 11:30:53 -0700
-X-CSE-ConnectionGUID: Qsi2NV7aQ72T9kNwrvJC1w==
-X-CSE-MsgGUID: f5Cb9QTySGiIjchwGuEgXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,324,1744095600"; d="scan'208";a="164121461"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO stinkbox)
- ([10.245.245.152])
- by orviesa005.jf.intel.com with SMTP; 19 Jul 2025 11:30:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 19 Jul 2025 21:30:46 +0300
-Date: Sat, 19 Jul 2025 21:30:46 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jocelyn Falempe <jfalempe@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 03/10] drm/i915/display/i9xx: Add a disable_tiling()
- for i9xx planes
-Message-ID: <aHvkVora3Gzrm5NH@intel.com>
-References: <20250618094011.238154-1-jfalempe@redhat.com>
- <20250618094011.238154-4-jfalempe@redhat.com>
- <aHviiKb0EnQbNksL@intel.com>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 774A210E07A;
+ Mon, 21 Jul 2025 02:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1753066091;
+ bh=QNKPkR2IJqZgKeF82v1S1nbLIbKYi2iW05d4A11rPKc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ZAb0OIVHKhFHrxQ5QF+hV4vy/gxSCkOoSC4VlH7qLZ+ERv9B/6YXgs8MYAMJEEX3p
+ 7amtT5TIxHdiI+116xwuNiEpmLkrkJawbXnLi/nQza21FmQU4DJFf08gZAO9N84s6H
+ obr2Gu5NKTT+GyxK1zMgGBs9GTZFzEBtzUEA+TpCzTX5jhUmymz6epucTUS/IFTk3f
+ OZ6NwGFEyhF+vH6HhavBpgjJkebrCnmRdnakbiwCV4+8MXUsvhG1no174ISBUZrsIf
+ 6o2HpI/mgNpscddDRahQSBfupHfy4WYn1eTzxVOkB0sfUYtIM1Gdht3bGF7+YXDqtn
+ nQNy/cR/qr4kw==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4bllFQ0bwCz4wbb;
+ Mon, 21 Jul 2025 12:48:09 +1000 (AEST)
+Date: Mon, 21 Jul 2025 12:50:39 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Dave Airlie <airlied@redhat.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, =?UTF-8?B?TWHDrXJh?= Canal
+ <mcanal@igalia.com>
+Subject: Re: linux-next: manual merge of the drm-misc tree with Linus' tree
+Message-ID: <20250721125039.170209b4@canb.auug.org.au>
+In-Reply-To: <20250716142322.3a681368@canb.auug.org.au>
+References: <20250716142322.3a681368@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aHviiKb0EnQbNksL@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: multipart/signed; boundary="Sig_/bJ7l2V_5C4uQGTi4426rdUR";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,88 +61,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jul 19, 2025 at 09:23:04PM +0300, Ville Syrjälä wrote:
-> On Wed, Jun 18, 2025 at 11:31:21AM +0200, Jocelyn Falempe wrote:
-> > drm_panic draws in linear framebuffer, so it's easier to re-use the
-> > current framebuffer, and disable tiling in the panic handler, to show
-> > the panic screen.
-> > This assumes that the alignment restriction is always smaller in
-> > linear than in tiled.
-> > It also assumes that the linear framebuffer size is always smaller
-> > than the tiled.
-> > 
-> > Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
-> > ---
-> > 
-> > v7:
-> >  * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
-> > 
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c     | 23 +++++++++++++++++++
-> >  .../drm/i915/display/intel_display_types.h    |  2 ++
-> >  2 files changed, 25 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > index 8f15333a4b07..0807fae12450 100644
-> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > @@ -905,6 +905,27 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
-> >  	.format_mod_supported_async = intel_plane_format_mod_supported_async,
-> >  };
-> >  
-> > +static void i9xx_disable_tiling(struct intel_plane *plane)
-> > +{
-> > +	struct intel_display *display = to_intel_display(plane);
-> > +	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-> > +	u32 dspcntr;
-> > +	u32 reg;
-> > +
-> > +	dspcntr = intel_de_read_fw(display, DSPCNTR(display, i9xx_plane));
-> > +	dspcntr &= ~DISP_TILED;
-> > +	intel_de_write_fw(display, DSPCNTR(display, i9xx_plane), dspcntr);
-> > +
-> > +	if (DISPLAY_VER(display) >= 4) {
-> > +		reg = intel_de_read_fw(display, DSPSURF(display, i9xx_plane));
-> > +		intel_de_write_fw(display, DSPSURF(display, i9xx_plane), reg);
-> > +
-> > +	} else {
-> > +		reg = intel_de_read_fw(display, DSPADDR(display, i9xx_plane));
-> > +		intel_de_write_fw(display, DSPADDR(display, i9xx_plane), reg);
-> > +	}
-> > +}
-> 
-> I thought I already shot this down before, but apparently this
-> got merged now :(
-> 
-> Just to reiterate why we don't want these 'disable tiling' hacks:
-> - different tiling formats have different stride/alignment/watermark
->   requirements so one can't safely change from one tiling to another
-> - this completely fails to account for the TILEOFF vs. LINOFF stuff
+--Sig_/bJ7l2V_5C4uQGTi4426rdUR
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Oh yeah, and rotation support of course is one really big difference
-between different tiling formats.
+Hi all,
 
-> - etc.
-> 
-> So IMO these hacks must be removed and instead the code must learn how
-> to propetly write the tiled data. igt has all the code for that btw
-> (twice over IIRC) so shouldn't be that hard.
-> 
-> I suppose the only hack we need to keep is to disable compression,
-> mainly because (IIRC) on flat CCS systems the CPU doesn't have access
-> to the AUX data to clear it manually.
-> 
-> I also wonder if there are actual igts for this? I think what is needed
-> is a test that sets random things (different panning, rotation, pixel
-> foramts, etc.) and triggers the dumper. Not quite sure how the test
-> could validate that the output is correct though. CRCs might be a bit
-> tricky since you need an identical reference image.
-> 
-> /me off to summer vacation. Good luck
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+On Wed, 16 Jul 2025 14:23:22 +1000 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> Today's linux-next merge of the drm-misc tree got a conflict in:
+>=20
+>   drivers/gpu/drm/etnaviv/etnaviv_sched.c
+>=20
+> between commit:
+>=20
+>   61ee19dedb8d ("drm/etnaviv: Protect the scheduler's pending list with i=
+ts lock")
+>=20
+> from the origin tree and commits:
+>=20
+>   0a5dc1b67ef5 ("drm/sched: Rename DRM_GPU_SCHED_STAT_NOMINAL to DRM_GPU_=
+SCHED_STAT_RESET")
+>   8902c2b17a6e ("drm/etnaviv: Use DRM_GPU_SCHED_STAT_NO_HANG to skip the =
+reset")
+>=20
+> from the drm-misc tree.
+>=20
+> I fixed it up (I used the latter version) and can carry the fix as
+> necessary. This is now fixed as far as linux-next is concerned, but any
+> non trivial conflicts should be mentioned to your upstream maintainer
+> when your tree is submitted for merging.  You may also want to consider
+> cooperating with the maintainer of the conflicting tree to minimise any
+> particularly complex conflicts.
 
--- 
-Ville Syrjälä
-Intel
+This is now a conflict between the drm tree and Linus' tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/bJ7l2V_5C4uQGTi4426rdUR
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmh9qv8ACgkQAVBC80lX
+0GyTfAgAnocNOglVpKszMsdTmlrcycE4sIklH32mbXHUmwFXT6wPM3NYShGrmbOH
+T3hsIa7KaEM4Wr6SCS8VbGiqQUqawmn8D+YSXG2yqasWy8yiNlv+mkcTnHKMQhsL
+xBs/E9QsaF2c5R7onm9+oYQsOCIwwcAhKKB7hSm7z3jj+vey6RGP/AbR+Dkho/TE
+iNgSefonk+15op/NO/EhfvX0zWjDEeXlTse1wAyIOV1bLuxT5NSiT5NzwnyMlRqX
+Fw6eARCmbFg6qm8UPY9/t5ewpsGWd8EoeXTJBkbds75KOs4Ht6wim4Rf97nhVVJq
+M0LcT8Tr18FNY74NoAZ4K7ZczpjIiw==
+=hkH7
+-----END PGP SIGNATURE-----
+
+--Sig_/bJ7l2V_5C4uQGTi4426rdUR--
