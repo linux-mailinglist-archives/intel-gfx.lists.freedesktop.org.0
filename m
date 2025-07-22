@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C69B0DA33
+	by mail.lfdr.de (Postfix) with ESMTPS id 90BF3B0DA30
 	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jul 2025 14:56:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D59710E67E;
-	Tue, 22 Jul 2025 12:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D58D10E67D;
+	Tue, 22 Jul 2025 12:56:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ecvyiETz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwVI5VWE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA88710E678;
- Tue, 22 Jul 2025 12:56:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79EF710E67D;
+ Tue, 22 Jul 2025 12:56:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753188994; x=1784724994;
+ t=1753188995; x=1784724995;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rfqedm/ble3+eGRqt2MyU49wfJY+y1TwwlEY2gFu/b0=;
- b=ecvyiETzwpNzN+49nFbFbKyndQZV2Pz2OL7SJmMs1/ZU1Gzo5zzgkZ3J
- B0mzZFi98i+DkHqiYVeybrFGUkNL5SkNPzvgWCw6V8KHGlDEN4pf10A+i
- 03dCFJU5+Y22xlfaWFBDD1hiTpaixAVPiZxlUIQqCg6x87oplicGMhVIv
- lgUnUxx6bQOuiHsKFrSxpljhO9LFCdQD0nS2irqwr/02VMX/AdonHGcBK
- iHNxifeUI2y+5FqPTRoSEUw7fuDtm0U8GLbuhGNpuIGN0fVxfUigV7Vjq
- bQPDDcIaU4xUjkLEnqFSjL4eDbgP5bpFNQRluNoeOaRnxLRVUlk+ur351 w==;
-X-CSE-ConnectionGUID: QlF9PsaCTpyDr1l2yhzcCA==
-X-CSE-MsgGUID: 598ZqpxhTjiVR1pr4qV8zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="66121542"
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="66121542"
+ bh=nnW9oyTmua5ujxRg9SO3/mgVOuLozjej/L8qKZpR62c=;
+ b=OwVI5VWEwEhwtMJzpccWBcXtwVeDw89IGzvHRohqSONYay4Eyo6E2GLj
+ NgADycotfU7UikzVH0oo6YMsHirFlMq5yFuiMQ4Nv7H/lQbpQFfwfgDfA
+ 5g2lsKms1m9z9SZTmvZhIJcg+EFHJZcN2vj1tUt3+yjBGSaFYwr6c1ZxQ
+ u7TOafMeKf5GHU8C910VeNEHx3d6wADCyOJbIZMLIBVVK++EnXFZ9k69Q
+ H+eCKiKhahT5l/mTyCogBRR91khPEagcSeHJFUfbmAyJxMnQXlzsQWba9
+ NeZPt/bUmfuhu4rShqSn9JuSmPqDqm4Qs7txLZNViL+Y3SumqcmM/32B7 w==;
+X-CSE-ConnectionGUID: 2UOTKSQ4S9SgegA64h4S6Q==
+X-CSE-MsgGUID: T/MtHHBxQrm9TlZKrO7z2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="66121543"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="66121543"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 05:56:33 -0700
-X-CSE-ConnectionGUID: 296cUAcBT1OY0NBGLTSHvg==
-X-CSE-MsgGUID: cXqceznzSl+3lv629tkKsA==
+ 22 Jul 2025 05:56:35 -0700
+X-CSE-ConnectionGUID: EsF7mxa5RPyw+fUqXSJx1A==
+X-CSE-MsgGUID: BDkJAJ2UTbGe8ESBxlWRcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164604137"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164604142"
 Received: from agladkov-desk.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.0])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jul 2025 05:56:32 -0700
+ 22 Jul 2025 05:56:34 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: gustavo.sousa@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 1/4] drm/i915/display: Write PHY_CMN1_CONTROL only when
- using AUXLess ALPM
-Date: Tue, 22 Jul 2025 15:56:15 +0300
-Message-ID: <20250722125618.1842615-2-jouni.hogander@intel.com>
+Subject: [PATCH v3 2/4] drm/i915/display: Avoid unnecessarily calling
+ intel_cx0_get_owned_lane_mask
+Date: Tue, 22 Jul 2025 15:56:16 +0300
+Message-ID: <20250722125618.1842615-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250722125618.1842615-1-jouni.hogander@intel.com>
 References: <20250722125618.1842615-1-jouni.hogander@intel.com>
@@ -73,47 +73,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are seeing "dmesg-warn/abort - *ERROR* PHY * failed after 3 retries"
-since we started configuring LFPS sending. According to Bspec Configuring
-LFPS sending is needed only when using AUXLess ALPM. This patch avoids
-these failures by configuring LFPS sending only when using AUXLess ALPM.
+Currently we are always calling intel_cx0_get_owned_lane_mask when
+intel_lnl_mac_transmit_lfps is called. Avoid this in cases where it's not
+needed.
 
-Bspec: 68849
-Fixes: 9dc619680de4 ("drm/i915/display: Add function to configure LFPS sending")
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index ed8e640b96b0..2b0305bb04cd 100644
+index 2b0305bb04cd..2993dabdbee6 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3240,11 +3240,10 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+@@ -3239,13 +3239,14 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
  {
  	struct intel_display *display = to_intel_display(encoder);
- 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
--	bool enable = intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder),
--						  crtc_state);
+-	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
  	int i;
++	u8 owned_lane_mask;
  
--	if (DISPLAY_VER(display) < 20)
-+	if (DISPLAY_VER(display) < 20 ||
-+	    !intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder), crtc_state))
+ 	if (DISPLAY_VER(display) < 20 ||
+ 	    !intel_alpm_is_alpm_aux_less(enc_to_intel_dp(encoder), crtc_state))
  		return;
  
++	owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
  	for (i = 0; i < 4; i++) {
-@@ -3256,8 +3255,7 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
- 
- 		intel_cx0_rmw(encoder, lane_mask, PHY_CMN1_CONTROL(tx, 0),
- 			      CONTROL0_MAC_TRANSMIT_LFPS,
--			      enable ? CONTROL0_MAC_TRANSMIT_LFPS : 0,
--			      MB_WRITE_COMMITTED);
-+			      CONTROL0_MAC_TRANSMIT_LFPS, MB_WRITE_COMMITTED);
- 	}
- }
- 
+ 		int tx = i % 2 + 1;
+ 		u8 lane_mask = i < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
 -- 
 2.43.0
 
