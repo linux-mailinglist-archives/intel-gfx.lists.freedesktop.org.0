@@ -2,59 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE89EB0DA0D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jul 2025 14:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE42B0D8F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Jul 2025 14:08:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0615310E688;
-	Tue, 22 Jul 2025 12:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 947FC10E669;
+	Tue, 22 Jul 2025 12:07:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="hFoVeXMp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SQtZUmKX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C04CE10E659;
- Tue, 22 Jul 2025 11:40:31 +0000 (UTC)
-Received: from [192.168.42.116] (p5de459a9.dip0.t-ipconnect.de [93.228.89.169])
- (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id 7C45E2FC0071;
- Tue, 22 Jul 2025 13:40:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1753184430;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xMldfC7MggBS8NaNMU69YxJ9c1fAn1PvDFFi1lSzdWo=;
- b=hFoVeXMpYyy1q7dGi12JpfhJQT7LMk0yVAPto2loAH9cejCbvjQqRxrPOkv8XKyv7mFsKv
- CluDSgF84GrfmAneI0m/pKvZcMZZ11yo7pMKfW7liYE8qw74ySfjuc33fLgB4m5YnWUJef
- t6599o1ngeFcasUE8vlgrX+BjJfn/gw=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-Message-ID: <6126584e-587e-4758-9bfb-83e0231f98be@tuxedocomputers.com>
-Date: Tue, 22 Jul 2025 13:40:28 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A073510E669;
+ Tue, 22 Jul 2025 12:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753186079; x=1784722079;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=gjLaVBH/kX/L6QjsnSG582d+kSE0Dv1dLNDmH9KT0L4=;
+ b=SQtZUmKXpbRBiz8BE8N1DUO5rEhlBVqs0P85DiOh3E8hD2AhVWVOyp1Q
+ wHJgtW2rEY1BwabVxEzSxjtVGacnZe9RNMuAscT7/p0Rm89nWxNln9XTy
+ W8m73Ioyy2JnXnQub0fJbEYvGlyKLY04va3Yve5Uv9EmMV0utqp2YVtfI
+ pTougX3pk6kxMYpN3uLxaPS/+JVqrdLU1vc3W5ygoI0NeRRFa75OphS83
+ 43Ke65YFTKhmM/wxD5q/YMn9Woueqjok8N01Cza1Qk+8YjyKP6spizV4D
+ ojkzzne0kUvxr8SESiXt3tyK8s6ulVJvZYT0E0MFj2rMMcmPvOSQcHzyB w==;
+X-CSE-ConnectionGUID: AkmYoP2hROGlZ/ditB5uTw==
+X-CSE-MsgGUID: 7EseIQ+XRe2A/LwrT3kKoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11500"; a="55543153"
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="55543153"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 05:07:52 -0700
+X-CSE-ConnectionGUID: Iy/tAok8R+W0v3jEVKtfQg==
+X-CSE-MsgGUID: QWdidV5NS2CmEcIkYygRFg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,331,1744095600"; d="scan'208";a="164795216"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jul 2025 05:07:52 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 22 Jul 2025 05:07:50 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Tue, 22 Jul 2025 05:07:50 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (40.107.96.64) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Tue, 22 Jul 2025 05:07:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EG+qTvX4tyQw9pN6qOdfrJRooVVM/GFwba227DxgUQIVLR6Av1C+GM8RFVVpAsmP6v9JNDZZy1HQzohT2UK/EN1SILFMfxuqEkMkseU5xvGFxfsixFJPnXEX/FHoz/bWeJqefZZlxdF3Pr35ya3EPrx+/linbVighZweghJ9Li+uVkUzkCT1fKYZ32Ky3byl9BwgtViHcAx85zTa9aHw0jHfxmFZuO8EwmUhbhoZZ+5o8oBQoy3DGH2yd8M8gX9vkM3o1RSCcZTNyu1xiL9cAC9DWLSzK9Cl9j734Wwlr26FW10YtIGTlKKP60IKyLULkcCbtc6TT9mNJCPSRJeUJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PFh7M/RWjYQDE4uCCOiwdwn6C06XYbP7llpe84M8yxw=;
+ b=jpEe7aBAj9xhR3WCYw3E9As9T/tNe7cg5+u/4oad0PkuQ8bnmUZB9P9LRAFM8y6rVXR62iMoszm57Q0npkSsR2HC+pWolp5n4E99ztmpCOptIArQGEjghFM1Fl7Z3avoTjAhFZ6VUOlTSuemK6lPQ6rIKZXBA5Uj6uXp2JnaaSkmFxpmuE21ywYjqcun7We+V5TI2YJ4/2ylNMRF00GkfKY7MaPct0ttw3E5Yd5/XMDc5UBERHxNo54l8qD6CnOpDkeJgOAq/H49Ho8iB5meLGBGZ+Q5EzFs6IwwJRo5UZ9vA5iW/RIbz4pGcDasyLVDgXaIXOoCjVnp0dP+DGy8zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SJ2PR11MB7672.namprd11.prod.outlook.com (2603:10b6:a03:4cd::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.29; Tue, 22 Jul
+ 2025 12:07:48 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8943.028; Tue, 22 Jul 2025
+ 12:07:48 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250722101317.1728499-5-jouni.hogander@intel.com>
+References: <20250722101317.1728499-1-jouni.hogander@intel.com>
+ <20250722101317.1728499-5-jouni.hogander@intel.com>
+Subject: Re: [PATCH v2 4/4] drm/i915/display: Set C10_VDR_CTRL_MSGBUS_ACCESS
+ before phy reg read
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: Jouni =?utf-8?q?H=C3=B6gander?= <jouni.hogander@intel.com>
+To: Jouni =?utf-8?q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Date: Tue, 22 Jul 2025 09:07:43 -0300
+Message-ID: <175318606336.16862.4004451258537779671@intel.com>
+User-Agent: alot/0.12.dev27+gd21c920b07eb
+X-ClientProxiedBy: MW4P220CA0017.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::22) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/i915/display: Add quirk to force backlight type
- on some TUXEDO devices
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20250411171756.142777-1-wse@tuxedocomputers.com>
- <20250411171756.142777-2-wse@tuxedocomputers.com>
- <Z_llydAABYIueYA6@intel.com>
- <6e4f4d23-3c5a-448f-bc0b-cf6a6e9f3d2e@tuxedocomputers.com>
-Content-Language: en-US
-In-Reply-To: <6e4f4d23-3c5a-448f-bc0b-cf6a6e9f3d2e@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 22 Jul 2025 12:47:07 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SJ2PR11MB7672:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecebd623-c666-495f-e90c-08ddc9185fc1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|376014|1800799024|16122699012;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?TnRhTTV6djhkNEZGS0hQM3hjamppSFpySHZyUjJYZmNudHUxTy9iU1ZTeGhB?=
+ =?utf-8?B?eTMxeXM0VmNVb1F3SXAxVE1LL3dZNGJNMExnQlRxdHA5TFd0aHBPM1duRyti?=
+ =?utf-8?B?RDNEN0w3UUdpdmNIYTVyd05vdTVKeFVzQXpSYUVRSjNEbExoMkxlYWs3Q0k0?=
+ =?utf-8?B?ZWk0dmRJNlR3TU1tWVRsQ3I5YjI3Y3RJd3FCS3RNemdTcHNlTW5sTGRLWEg2?=
+ =?utf-8?B?R21qbzRGa3JzeWJOcGtPV3N2NGVnT2owV1gwZ0d2UTBRWE5sY3NyQmVTM21n?=
+ =?utf-8?B?Vk1oMzFyMWdFcTdzUk8yVkp0ZjZBQWtJNFRWQVZZSTRockNxNUFTNnRTVzhL?=
+ =?utf-8?B?RFRZQWRvbldGcmZiVVQ3L2NnY3VMNWhxdHFIK2x3blp5VXBsNEdvNG1mWm5U?=
+ =?utf-8?B?U3pIam1NTFZhc0FRWUVMU1FwMVBCU1o3ZmUxOFFFQ044NGpFWnN6YmhQUDBM?=
+ =?utf-8?B?QmQ5bzZqQnAydXpySlUrczZBaDVtbEcySE84M0pDc1hDQ0tFVjRRTGlTblVh?=
+ =?utf-8?B?L3ZXVm50VGJ5d2ZaRmZWY0ZCa01hU2RBZy9XcEt4OEhvVUthcy90c09hQ1dC?=
+ =?utf-8?B?a3ZFUUNzVVM0bVlnK0RtMFFIMk5qcVZoeXc4RkcvZFZZZTNRRkdpSVZ2cXNI?=
+ =?utf-8?B?ZjZPTUZvMEI2M0FmczJNTFFQby96S1JoMkRNOExOVFRPRTBNb0J0d2FReENV?=
+ =?utf-8?B?cWdhNG9sajZGYThaUXp3bU9aL0FNQkJCMUtYYzA3aW55R0t3NklpVW83U0Vh?=
+ =?utf-8?B?RHN3OWlFZFFkMUd2RmdKdk5WWEt0SUovU2FzdFRSaVBMTGtrTW9BbTZtZjg3?=
+ =?utf-8?B?cllyc254Mkp1QXBaTFV3ZzM1TERFZXdscVRKRGdvT1FvL2xGNWZRWExuTTVj?=
+ =?utf-8?B?TkdCek1FNmFlSWlWK3JxZkIrMWJseVNuMDQvN3dqd2ZGaDF1TmhmNzNHNE5G?=
+ =?utf-8?B?eEVrMmhDdC9DNU91RVIyek5VcWIydmdkeXd2NEd0NUtXb0tzTlY1b3ZyckpL?=
+ =?utf-8?B?R0tUQUkwcGFBQUtndmJDTjRGc1QyYTNlUFFCN3FQRmNnUmIvMC9IelpseFNm?=
+ =?utf-8?B?c25zbVdqYklORnVNaEpCeDR4a2FUamtCaDk0NzFBYUYva3RJWU5VQTRsZ0hK?=
+ =?utf-8?B?bStPZHlZbXhJNlM1OEZJOFhKTTVDdWdtUlZiZ0lNYTVRcit4czFhWkNJRjBJ?=
+ =?utf-8?B?b1RYVFJwL1crUSt3RDgzQXRwcC9lSmVOU3c1aUp0TmkwOFRza2pHblNraGQw?=
+ =?utf-8?B?T0dEOHNDMDZyK3JCZmowMDNSVkNuUWtNZGcwY2RNODlqZ0w5TGxZRGtxVW9v?=
+ =?utf-8?B?NStubEJNSGtkcmZoSTI4ZmR0S2syRFo3ODA5c2l3Nmt0bXVVRmlvK0I0U2Zz?=
+ =?utf-8?B?SmgwOG5aQ1hWemcyZ0Njc3had2xWUnNPK25mUWI5YVYvVDlHTXhkVFNFSzMz?=
+ =?utf-8?B?Z1pLUW5pMGpBTEY4bFlvOEh4RUdGaStCRXNWQmliaW5ONk9uMEkvQis1YmFl?=
+ =?utf-8?B?V25xSWRMTWVLU2dEYVU1dU1IN1ExWkpWb2Zla0d6ME9Rbm44eWQwWmJ5MFQ5?=
+ =?utf-8?B?bTdGd1RMRHJ3SlBiN0dGMXhjL0d5b0RxVEJoRU1YVVlIYndWUjRHNXVOa25R?=
+ =?utf-8?B?MWczbUliZnVZaHlud1pyOXI3UnJ0QlBYUVZZMmNkK3pIczEyQ0xZSXBQcmV0?=
+ =?utf-8?B?eDVYbVRrQlJ2Tmd1WnVqWjV5a0J3VDMxVDcvOEZhOFFJcldCU2puNEluMnJL?=
+ =?utf-8?B?R0YyNlMvMENjS3ZReXZUQnBVTHcwZ2RlZkNTSTZwKzJSM05WNDJPeTdhZDZO?=
+ =?utf-8?B?WFJxTGJvbHRTQVEzemVXYk9wQllkNm8relM1UDJ0U1EyTFhYR0RBQXJYaFNE?=
+ =?utf-8?B?aC9GL2N4T0JDUEhvRWVVYTN5RldxU0pwY1FtYlU4dHlNcHZKdjhqbVJ4MHdi?=
+ =?utf-8?B?U1psSXNoQnhpRG1vZDF4eUpVaTY3VWdsYkFKWHowclRIeW1vVmFqSExNSlNH?=
+ =?utf-8?B?WFUzeE5VVnpnPT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(16122699012); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bGRQQkpwVGxxeHBOUDZGNnZQM0VpU3MyNml1bmI0QzRZQlQ5ejBHV0I5TXUz?=
+ =?utf-8?B?NnpjVjVTeXBwMG0rWkZVUkdMdEd1ZGRRSVlENi9iM3o4dWdFSGwwbHEvSHpK?=
+ =?utf-8?B?Tk5wQ2p0UHVqRlk5Ymk5aEdjL2ZoUlNoNDNaakY3N1l4T1FFUmhzVlVmMlVa?=
+ =?utf-8?B?d2FOMjZVdkNJZEF6Y0UzUUE0UHFPc1RydkRlclF2bFhKU3YyakFHa3F5akpB?=
+ =?utf-8?B?SHd5NnY1TFU1blZOTDZTaUluSHh5ZFRLTTIvMzRRdVAwVDZCL1ZVRjBUcytB?=
+ =?utf-8?B?UkFEM0M2enVIVTNFeS95SlI1b05ZY0h3SStKVWFBejFWUUs3TENYaFRXdkdw?=
+ =?utf-8?B?d1BrL1Bmd3E5Yk1oL1BWMi9PQnIvclhBZ0ZLS3YyVnFaZmVuRkg3dUE5aS9E?=
+ =?utf-8?B?UUdPK1R4Tzh2YjBwTHpIT1oyWXNHdFNhZ1ZncC9zN2RlRlNZc1crTjduYm9N?=
+ =?utf-8?B?N3hpcy84VE5vOEFvM013TmMrTGxGdTNIL1g5dDg5RWVNdE84Y1JHb1NTdFBQ?=
+ =?utf-8?B?SDIrcUV1d1hrYzhveWlpNEdVQ3VXOVVRaERlOTlncWhFYnBBMi8yYlNwSy9B?=
+ =?utf-8?B?V2p3VGlLUHBVVkx3ZExTdHVQSTNqdnRPR0ZiOHFodjZpdFMwZ0M2SzkvZFRi?=
+ =?utf-8?B?MElHOVVNV1ZTUkJqaktFRUZUazFHalFZTjdtczhpSTlJdHRrR3lDSi92MjJu?=
+ =?utf-8?B?S21wT284eEV1aEhIRER0YnpKd2FNd21oU3FzWHQvZW1oUjdBdUZ6dXk1UHRM?=
+ =?utf-8?B?S05rT0VjOVJLcEE0bE9hUG1CNmMzMDdEdlQ3NTN2TmwrdGdsMmVvMzBRNnpX?=
+ =?utf-8?B?RHk1ZVFqQVhpK3FPQjlWZTJmdlNwdzdrajEvditOUncyclhkNEFNTGEvcDY5?=
+ =?utf-8?B?YUUzM3Zwem95R1ZwUFFUeHlzOWRLOE5Rd1gwMGRZYUxTUEVzVDM5N3lWdTFu?=
+ =?utf-8?B?YnlQMzVyZE40QmkvakM4Z05sNWdTME56aTlORlVjK3ZDbHVHK2hmZEQvQXhh?=
+ =?utf-8?B?aWwvQlI2Uk52QUhkNDdBa2hRamJOKzFpaEJIbEV4bTlOZ3k5SEc0VVRoQzRK?=
+ =?utf-8?B?QnFpbW1tRFdsTXplT1JPdDExS0doZ3JGQXc3b2dZeU9MMU9FZERzcExFMG1t?=
+ =?utf-8?B?T0l4Y0NTQS9TRmVMdVprcStlS1RGRFY5cG1BWCswQmZXRU5WekhpWC9wckIv?=
+ =?utf-8?B?M2NrOTFHR0d5Z1BUUTdCaTk3NldUTGU0TzNYSEVRVWQ0Y0o2R1lCR3FTU0dy?=
+ =?utf-8?B?UEhFZUpLNU1aU3ovWWVCOW9IUGlPSFo2K2MrZi81ODFNL1owY3dXVU53SWZo?=
+ =?utf-8?B?bm9zWjBjVWw3eXhrSHh0bk5OZmIwbDdFQTF0ajNMZ0ZObWVRanYxVkc4aXJh?=
+ =?utf-8?B?VzBWUTZIZEZrWnpsZnU3ODFNam83Z3dIcW9WYzZvUEQ0NEg1anliUkxqMHph?=
+ =?utf-8?B?ZjYveENjQURzMk04YXhGRGxMZTcxeGN2dm1peGtvSmpzeUVwUERBekM5NG1V?=
+ =?utf-8?B?NDN3VHJNK1lmbk0rY0F0dUxvSFRjSk5vcnV4aWY4dnNSNmV5YjNUaXdLZ0ti?=
+ =?utf-8?B?THFTaGFpR0RzTXM0bC9JSnU2dHBqc3JXd292WHB5cjk3MXk0a01sQ2hwT0ZV?=
+ =?utf-8?B?elRMQ3Mva2kvaTZtRDlxaXhJbXUzUTZCUUJwemlDVUs4aUJsblpJWnVFU2xR?=
+ =?utf-8?B?MlNhTTFhdDFGM0htekUwaEo5QUE1eDA2Unp4STluWm95bnIwTGFaTW9HRDc1?=
+ =?utf-8?B?Q2dwclhJR21oUE41MzBPanNtRHVMTGV0dGVMNGVoTHVsQmpDNGFtUy9FZDJP?=
+ =?utf-8?B?UzdBSG5IbUt3ZllvK3JuRXpUWWc0YjR0MVBJK25zUnJFWU9GNW1MWUI4alZF?=
+ =?utf-8?B?NXdJcklLbVRiV2VIdFJYL2YybUdUNDduUFVFUFRqRDl3UUdsd1hTRWZPRmJp?=
+ =?utf-8?B?dm9PRGhlcmkzTGhMWEpsdWF5QThxY1UxcjkvaC9CaU9DcEJLZTYwdnBXZ3dl?=
+ =?utf-8?B?eDc3MXVZNE9KN3NKZFEwSmF5SWVEMW4vZzZ4VjNsK2d5YnBqSmE1bVJoYWFR?=
+ =?utf-8?B?TCsyWlZUT0c5NE11dFY4TGU3ZlN4NW1iaW94SlFKUXZhclVYZFU0RUFERGlO?=
+ =?utf-8?B?em9FQTI1ZmtLelp1bVA0VlFYQXZzOVI2QkhES1ZwVFFEU0ZRWXBnYjJpMlA3?=
+ =?utf-8?B?Q2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecebd623-c666-495f-e90c-08ddc9185fc1
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2025 12:07:48.0618 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O+d3G5SELhWkAdAYC+McEFKUiVoAY3BzeW+wmtbw6JpiT1b/QpGouENLyzyWA544jhBbr+Vl41/1Pycg899hpA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7672
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,175 +198,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-Am 15.04.25 um 17:48 schrieb Werner Sembach:
-> Hi,
+Quoting Jouni H=C3=B6gander (2025-07-22 07:13:17-03:00)
+>According to C10 VDR Register programming sequence we need set
+>C10_VDR_CTRL_MSGBUS_ACCESS before accessing PHY internal registers from
+>MsgBus.
 >
-> Am 11.04.25 um 20:56 schrieb Ville Syrjälä:
->> On Fri, Apr 11, 2025 at 05:55:08PM +0200, Werner Sembach wrote:
->>> The display backlight on TUXEDO DX1708 and InsanityBook 15 v1 with panels
->>> AUO 12701 and AUO 12701 must be forced to INTEL_DP_AUX_BACKLIGHT_ON to be
->>> able to control the brightness.
->>>
->>> This could already be archived via a module parameter, but this patch adds
->>> a quirk to apply this by default on the mentioned device + panel
->>> combinations.
->> Why aren't you fixing the VBT to be correct in the first place?
+>Fixes: 9dc619680de4 ("drm/i915/display: Add function to configure LFPS sen=
+ding")
+>Suggested-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_cx0_phy.c | 5 +++++
+> 1 file changed, 5 insertions(+)
 >
-> I don't have access to the firmware source code and these are quite old 
-> devices so I also can't request a fix from the ODM. Besides: it can be quite 
-> hard to explain to the ODM what exactly the problem is if it doesn't also 
-> affect Windows.
+>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_cx0_phy.c
+>index a203937d66db..886eff874cb7 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>@@ -3258,6 +3258,11 @@ void intel_lnl_mac_transmit_lfps(struct intel_encod=
+er *encoder,
+>                 if (!(owned_lane_mask & lane_mask))
+>                         continue;
+>=20
+>+                if (intel_encoder_is_c10phy(encoder))
+>+                        intel_cx0_rmw(encoder, lane_mask, PHY_C10_VDR_CON=
+TROL(1),
+>+                                      0, C10_VDR_CTRL_MSGBUS_ACCESS,
+>+                                      MB_WRITE_COMMITTED);
 
-TBH I don't know what VBT stands for, I just assumed it has to to with the 
-displays firmware?
+This could be moved to be done just once, before the loop, replacing
+lane_mask with owned_lane_mask, no?
 
-Unlike I wrote in the cover letter we actually still had an affected device in 
-our archives -> the issue persists and the quirk is still necessary.
+--
+Gustavo Sousa
 
-Best Regards,
-
-Werner
-
+>+
+>                 intel_cx0_rmw(encoder, lane_mask, PHY_CMN1_CONTROL(tx, 0)=
+,
+>                               CONTROL0_MAC_TRANSMIT_LFPS,
+>                               CONTROL0_MAC_TRANSMIT_LFPS, MB_WRITE_COMMIT=
+TED);
+>--=20
+>2.43.0
 >
-> Best regards,
->
-> Werner Sembach
->
->>
->>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
->>> Cc: stable@vger.kernel.org
->>> ---
->>>   .../drm/i915/display/intel_dp_aux_backlight.c | 14 ++++++-
->>>   drivers/gpu/drm/i915/display/intel_quirks.c   | 42 +++++++++++++++++++
->>>   drivers/gpu/drm/i915/display/intel_quirks.h   |  1 +
->>>   3 files changed, 56 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c 
->>> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->>> index c846ef4acf5b2..0cac04c98a3e3 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->>> @@ -34,12 +34,14 @@
->>>    * for some reason.
->>>    */
->>>   +#include <drm/drm_edid.h>
->>>   #include "i915_utils.h"
->>>   #include "intel_backlight.h"
->>>   #include "intel_display_core.h"
->>>   #include "intel_display_types.h"
->>>   #include "intel_dp.h"
->>>   #include "intel_dp_aux_backlight.h"
->>> +#include "intel_quirks.h"
->>>     /*
->>>    * DP AUX registers for Intel's proprietary HDR backlight interface. We 
->>> define
->>> @@ -607,11 +609,21 @@ int intel_dp_aux_init_backlight_funcs(struct 
->>> intel_connector *connector)
->>>       struct drm_device *dev = connector->base.dev;
->>>       struct intel_panel *panel = &connector->panel;
->>>       bool try_intel_interface = false, try_vesa_interface = false;
->>> +    int enable_dpcd_backlight;
->>> +    u32 pnl_id;
->>>         /* Check the VBT and user's module parameters to figure out which
->>>        * interfaces to probe
->>>        */
->>> -    switch (display->params.enable_dpcd_backlight) {
->>> +    enable_dpcd_backlight = display->params.enable_dpcd_backlight;
->>> +    if (enable_dpcd_backlight == INTEL_DP_AUX_BACKLIGHT_AUTO &&
->>> +        intel_has_quirk(display, 
->>> QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT)) {
->>> +        pnl_id = drm_edid_get_panel_id(panel->fixed_edid);
->>> +        if (pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x319d) ||
->>> +            pnl_id == drm_edid_encode_panel_id('A', 'U', 'O', 0x52ed))
->>> +            enable_dpcd_backlight = INTEL_DP_AUX_BACKLIGHT_ON;
->>> +    }
->>> +    switch (enable_dpcd_backlight) {
->>>       case INTEL_DP_AUX_BACKLIGHT_OFF:
->>>           return -ENODEV;
->>>       case INTEL_DP_AUX_BACKLIGHT_AUTO:
->>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c 
->>> b/drivers/gpu/drm/i915/display/intel_quirks.c
->>> index 8b30e9fd936e7..6f724e5712664 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
->>> @@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
->>>       drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
->>>   }
->>>   +static void quirk_auo_12701_21229_enable_dpcd_backlight(struct 
->>> intel_display *display)
->>> +{
->>> +    intel_set_quirk(display, QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT);
->>> +    drm_info(display->drm, "Applying Display AUO Model 12701 and 21229 
->>> Enable DPCD Backlight quirk\n");
->>> +}
->>> +
->>>   struct intel_quirk {
->>>       int device;
->>>       int subsystem_vendor;
->>> @@ -118,6 +124,12 @@ static int intel_dmi_no_pps_backlight(const struct 
->>> dmi_system_id *id)
->>>       return 1;
->>>   }
->>>   +static int intel_dmi_auo_12701_21229_enable_dpcd_backlight(const struct 
->>> dmi_system_id *id)
->>> +{
->>> +    DRM_INFO("Display AUO model 12701 and 21229 DPCD backlight control on 
->>> %s\n", id->ident);
->>> +    return 1;
->>> +}
->>> +
->>>   static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->>>       {
->>>           .dmi_id_list = &(const struct dmi_system_id[]) {
->>> @@ -164,6 +176,36 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
->>>           },
->>>           .hook = quirk_no_pps_backlight_power_hook,
->>>       },
->>> +    {
->>> +        .dmi_id_list = &(const struct dmi_system_id[]) {
->>> +            {
->>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
->>> +                .ident = "TUXEDO DX1708",
->>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "N8xEJEK"),
->>> +                },
->>> +            },
->>> +            {
->>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
->>> +                .ident = "TUXEDO InsanityBook 15 v1",
->>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP"),
->>> +                },
->>> +            },
->>> +            {
->>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
->>> +                .ident = "TUXEDO InsanityBook 15 v1",
->>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HR"),
->>> +                },
->>> +            },
->>> +            {
->>> +                .callback = intel_dmi_auo_12701_21229_enable_dpcd_backlight,
->>> +                .ident = "TUXEDO InsanityBook 15 v1",
->>> +                .matches = {DMI_MATCH(DMI_BOARD_NAME, "P95_HP,HR,HQ"),
->>> +                },
->>> +            },
->>> +            { }
->>> +        },
->>> +        .hook = quirk_auo_12701_21229_enable_dpcd_backlight,
->>> +    },
->>>   };
->>>     static struct intel_quirk intel_quirks[] = {
->>> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h 
->>> b/drivers/gpu/drm/i915/display/intel_quirks.h
->>> index cafdebda75354..38bdbd65d7efb 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_quirks.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_quirks.h
->>> @@ -20,6 +20,7 @@ enum intel_quirk_id {
->>>       QUIRK_LVDS_SSC_DISABLE,
->>>       QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
->>>       QUIRK_FW_SYNC_LEN,
->>> +    QUIRK_AUO_12701_21229_ENABLE_DPCD_BACKLIGHT,
->>>   };
->>>     void intel_init_quirks(struct intel_display *display);
->>> -- 
->>> 2.43.0
