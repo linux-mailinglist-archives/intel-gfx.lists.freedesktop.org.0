@@ -2,91 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77107B1011F
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jul 2025 08:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB2EB103B5
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jul 2025 10:38:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F35710E890;
-	Thu, 24 Jul 2025 06:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3033D10E249;
+	Thu, 24 Jul 2025 08:37:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CmAAEt7U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BRg14A4I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FE6710E890
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jul 2025 06:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1753339980;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=/0pKL5NP73eax0XQWW/ID5+A1+auXnZadTj2E/9ig0w=;
- b=CmAAEt7UyR0QfdAnUnB+oyPlctTcYi5CnJKUwiUM/iyhQJzl2z57loIU5/2lIf9FmCvJhS
- jUDR9h4g5/dwnDrp3yoxuNHSo8NtKU8Iel0TLC9hfQ5vWueJw9of/K7fGqCFgVSov9GnN8
- c5WyqmxvBMCUEb0dADXMlIFOvSzJO20=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-614-YwLMdKY3OaeTfK6QD-aF9A-1; Thu, 24 Jul 2025 02:52:55 -0400
-X-MC-Unique: YwLMdKY3OaeTfK6QD-aF9A-1
-X-Mimecast-MFC-AGG-ID: YwLMdKY3OaeTfK6QD-aF9A_1753339974
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3b5f97cb8fbso268822f8f.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Jul 2025 23:52:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753339974; x=1753944774;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/0pKL5NP73eax0XQWW/ID5+A1+auXnZadTj2E/9ig0w=;
- b=itCP6+2RoHf4d9/QqYnloltF0UYcqWRuA6IroUGeTtieAJrpMEL73VPVUENOTO/ezw
- 8YeWGFNsVyOclSgQ0oqSlL6z1svNmXphB8tGAUFNFwZPaKj1lZfVzvKsgP43KAxOqZta
- M/NkwqXtQIQtjxduVkYrh9NeUz6B3nMCyeSa2uZsaHti4ohfvzi4uhUf+NzJvK/g6vXr
- wwJ2d/MQmUw/8M9MrxhCR2y4qfb6vf3kwv9IauuQ1kWBvPeahDk7rCMF91clVYRM62Sx
- nJPtyWuS4rur6apdJ2xA1LPElMDEGIXftU0kitNLePMdPlSxaisKWcy8SqHruVLv9tpf
- 6p4w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXHXqSAnj/zn59xvzBAl7TK5jhe1lWJtcl+HLAt+k297o4K0DZTgUamlUS8laIYNBfFV6HooRQBTMI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzdIQ4MW1fevncQ6k6qr8Nb/SLs2BBs9n3CiM8nGnYM4K82d4GR
- egGCTv/UV8dBMHPB1a+RwxiFWSeK1F1eikTMoC/fqo7Q0NGeH7KL2M/InkFeJpIrRyLQcyLPATV
- NR8ggknhnbmp3jWZBAn+ZCGtsPcWput10lkaRlZ4047tXUTgnrc2WwzbSicxlqhN3BFiwiA==
-X-Gm-Gg: ASbGnctJgs3VfSqlpPyJofUcTSn1K+CudXGvheCjRgaeCBqqTsMy1cMAKMeUPlKJeSK
- UdJCfVoF4y1iWJRqgbYIxTquqDawJA61sB7AyPcVgGfEunGdqPYRekcIBvk6cByh5DPJ3Q0mCGY
- iP/Y2iognUl4DpdDoWBEcPYJ1bVaIUFJzWBj82zIrg5gdZRzpTvBnDUKHs81e/rBo8lYpWsc9tK
- ZG/eAQmlzJc9CJLF5gfmrR2G7jpLkGrqD0Y642+qBmxEaZYWI4kPgNyWXld3NMs/DxJ6XnyLnFV
- 85320/gAR04Ksc0=
-X-Received: by 2002:a05:6000:4383:b0:3a5:276b:1ec0 with SMTP id
- ffacd0b85a97d-3b768f052d6mr4670292f8f.45.1753339973844; 
- Wed, 23 Jul 2025 23:52:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGcYzg5OUAe89hjtqRlx0qYuu+mbOBARXyBviyMZaliNHGqf9RslbHjHpMGF9JubuJmhYGZEQ==
-X-Received: by 2002:a05:6000:4383:b0:3a5:276b:1ec0 with SMTP id
- ffacd0b85a97d-3b768f052d6mr4670276f8f.45.1753339973357; 
- Wed, 23 Jul 2025 23:52:53 -0700 (PDT)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3b76fc6eaf3sm1158249f8f.27.2025.07.23.23.52.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jul 2025 23:52:52 -0700 (PDT)
-Date: Thu, 24 Jul 2025 08:52:52 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20250724-petite-gray-foxhound-b4fbb8@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6964710E249;
+ Thu, 24 Jul 2025 08:37:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753346279; x=1784882279;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EfZrCAgs5m1xFLRx6wyw4U+1lNZ+LmGaLTxkJK/3n6U=;
+ b=BRg14A4I61ilvnFmALsgKlnUSxFl4rSpB0QkYEHywgQxzV3rvQ/XmAxq
+ t3hYa6An8LUz+vAxBpvIfU5lQFyxwHDmybGDvMLVWF7d88Z+TJ2NT+cXD
+ xXycbsez4QZSZ63bKa6ap8YkriBfp6vytUt8e4XQfA5vBYten4MlHJfVb
+ 4E3pxhqytNnZWMMQ1d/j4WvOikWWtK399Eq5v45cLZNGbWeo78/hzLgfk
+ 5qtaWRfmOqrbA9lalNybqrJb2cnC+L+9X2Dy43JvCSBfVZRgwWleQjPXS
+ Ur6TaWA4Yalw8aL+r118xSdj/UjL4H9qqcRf5CqHLag1wvMOPW7DWuIB9 g==;
+X-CSE-ConnectionGUID: 23sATYKdSb+f83xM11NSxQ==
+X-CSE-MsgGUID: ormvjNDpT0awnj92WfHX/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="78189661"
+X-IronPort-AV: E=Sophos;i="6.16,336,1744095600"; d="scan'208";a="78189661"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2025 01:37:58 -0700
+X-CSE-ConnectionGUID: klNQkqtWTaeu9xOOCWLDew==
+X-CSE-MsgGUID: ASbqpn2ARrCqq5hAL+W5cA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,336,1744095600"; d="scan'208";a="164335720"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jul 2025 01:37:57 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, imre.deak@intel.com,
+ maarten.lankhorst@linux.intel.com
+Subject: [PATCH v3] drm/xe/display: Block hpd during suspend
+Date: Thu, 24 Jul 2025 14:09:27 +0530
+Message-ID: <20250724083928.2298199-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="2r6awe2hfysrj2zu"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,60 +67,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+It has been observed that during `xe_display_pm_suspend()` execution,
+an HPD interrupt can still be triggered, resulting in `dig_port_work`
+being scheduled. The issue arises when this work executes after
+`xe_display_pm_suspend_late()`, by which time the display is fully
+suspended.
 
---2r6awe2hfysrj2zu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-next-fixes
-MIME-Version: 1.0
+This can lead to errors such as "DC state mismatch", as the dig_port
+work accesses display resources that are no longer available or
+powered.
 
-Hi,
+To address this, introduce  'intel_encoder_block_all_hpds' and
+'intel_encoder_unblock_all_hpds' functions, which iterate over all
+encoders and block/unblock HPD respectively.
 
-Here's this week drm-misc-next-fixes PR.
+These are used to:
+- Block HPD IRQs before calling 'intel_hpd_cancel_work' in suspend
+  and shutdown
+- Unblock HPD IRQs after 'intel_hpd_init' in resume
 
-Maxime
+This will prevent 'dig_port_work' being scheduled during display
+suspend.
 
-drm-misc-next-fixes-2025-07-24:
-Two more bridge conversions to devm_drm_bridge_alloc that address a
-warning now reported by the bridge core code.
-The following changes since commit fe69a391808404977b1f002a6e7447de3de7a88e:
+Continuation of previous patch discussion:
+https://patchwork.freedesktop.org/patch/663964/
 
-  drm/panthor: Fix UAF in panthor_gem_create_with_handle() debugfs code (2025-07-10 10:16:50 +0100)
+Changes in v2:
+ - Add 'intel_encoder_block_all_hpds' to 'xe_display_pm_shutdown'.(Imre
+   Deak)
+ - Add 'intel_hpd_cancel_work' to 'xe_display_fini_early' to cancel
+   any HPD pending work at late driver removal. (Imre Deak)
 
-are available in the Git repository at:
+Changes in v3:
+ - Move 'intel_encoder_block_all_hpds' after intel_dp_mst_suspend
+   in 'xe_display_pm_shutdown'.(Imre Deak)
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-07-24
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_encoder.c | 23 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_encoder.h |  3 +++
+ drivers/gpu/drm/i915/display/intel_hotplug.c |  2 --
+ drivers/gpu/drm/xe/display/xe_display.c      |  6 +++++
+ 4 files changed, 32 insertions(+), 2 deletions(-)
 
-for you to fetch changes up to b213eb34f857c45bdd769c9e9191a386accc9e8f:
-
-  drm/tidss: oldi: convert to devm_drm_bridge_alloc() API (2025-07-18 14:55:57 +0300)
-
-----------------------------------------------------------------
-Two more bridge conversions to devm_drm_bridge_alloc that address a
-warning now reported by the bridge core code.
-
-----------------------------------------------------------------
-Jayesh Choudhary (1):
-      drm/tidss: oldi: convert to devm_drm_bridge_alloc() API
-
-Michael Walle (1):
-      drm/tidss: encoder: convert to devm_drm_bridge_alloc()
-
- drivers/gpu/drm/tidss/tidss_encoder.c | 10 +++++++---
- drivers/gpu/drm/tidss/tidss_oldi.c    |  8 ++++----
- 2 files changed, 11 insertions(+), 7 deletions(-)
-
---2r6awe2hfysrj2zu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaIHYQwAKCRAnX84Zoj2+
-dhvfAX4v4BIKZTk3mlaSfj2442uwg5JNUf+zyRRmGuF/yDCVGN1ZzRpMOOko3glS
-cVDmvaMBgOxtrUG2gt6m0eXzRFOUEiugrs2CmmXznEvLlOZ9Nz/A9pc2G7sncM02
-Cwfqg1aF5Q==
-=f1YM
------END PGP SIGNATURE-----
-
---2r6awe2hfysrj2zu--
+diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+index 0b7bd26f4339..4e2b77b87678 100644
+--- a/drivers/gpu/drm/i915/display/intel_encoder.c
++++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+@@ -8,6 +8,7 @@
+ #include "intel_display_core.h"
+ #include "intel_display_types.h"
+ #include "intel_encoder.h"
++#include "intel_hotplug.h"
+ 
+ static void intel_encoder_link_check_work_fn(struct work_struct *work)
+ {
+@@ -37,6 +38,28 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
+ 			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+ }
+ 
++void intel_encoder_unblock_all_hpds(struct intel_display *display)
++{
++	struct intel_encoder *encoder;
++
++	if (!HAS_DISPLAY(display))
++		return;
++
++	for_each_intel_encoder(display->drm, encoder)
++		intel_hpd_unblock(encoder);
++}
++
++void intel_encoder_block_all_hpds(struct intel_display *display)
++{
++	struct intel_encoder *encoder;
++
++	if (!HAS_DISPLAY(display))
++		return;
++
++	for_each_intel_encoder(display->drm, encoder)
++		intel_hpd_block(encoder);
++}
++
+ void intel_encoder_suspend_all(struct intel_display *display)
+ {
+ 	struct intel_encoder *encoder;
+diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
+index 3fa5589f0b1c..e1d3aeab7c00 100644
+--- a/drivers/gpu/drm/i915/display/intel_encoder.h
++++ b/drivers/gpu/drm/i915/display/intel_encoder.h
+@@ -17,4 +17,7 @@ void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+ void intel_encoder_suspend_all(struct intel_display *display);
+ void intel_encoder_shutdown_all(struct intel_display *display);
+ 
++void intel_encoder_block_all_hpds(struct intel_display *display);
++void intel_encoder_unblock_all_hpds(struct intel_display *display);
++
+ #endif /* __INTEL_ENCODER_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 265aa97fcc75..c69b535497bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -971,8 +971,6 @@ void intel_hpd_cancel_work(struct intel_display *display)
+ 
+ 	spin_lock_irq(&display->irq.lock);
+ 
+-	drm_WARN_ON(display->drm, get_blocked_hpd_pin_mask(display));
+-
+ 	display->hotplug.long_hpd_pin_mask = 0;
+ 	display->hotplug.short_hpd_pin_mask = 0;
+ 	display->hotplug.event_bits = 0;
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index e2e0771cf274..8b68d70db6c8 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -96,6 +96,7 @@ static void xe_display_fini_early(void *arg)
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
++	intel_hpd_cancel_work(display);
+ 	intel_display_driver_remove_nogem(display);
+ 	intel_display_driver_remove_noirq(display);
+ 	intel_opregion_cleanup(display);
+@@ -340,6 +341,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ 
+ 	xe_display_flush_cleanup_work(xe);
+ 
++	intel_encoder_block_all_hpds(display);
++
+ 	intel_hpd_cancel_work(display);
+ 
+ 	if (has_display(xe)) {
+@@ -370,6 +373,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+ 
+ 	xe_display_flush_cleanup_work(xe);
+ 	intel_dp_mst_suspend(display);
++	intel_encoder_block_all_hpds(display);
+ 	intel_hpd_cancel_work(display);
+ 
+ 	if (has_display(xe))
+@@ -471,6 +475,8 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 
+ 	intel_hpd_init(display);
+ 
++	intel_encoder_unblock_all_hpds(display);
++
+ 	if (has_display(xe)) {
+ 		intel_display_driver_resume(display);
+ 		drm_kms_helper_poll_enable(&xe->drm);
+-- 
+2.43.0
 
