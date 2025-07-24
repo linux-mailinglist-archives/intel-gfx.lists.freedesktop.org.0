@@ -2,184 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFACB10FA0
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jul 2025 18:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9351CB10FA6
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Jul 2025 18:31:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF70A10E395;
-	Thu, 24 Jul 2025 16:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C076B10E3FB;
+	Thu, 24 Jul 2025 16:31:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AHTJES6y";
+	dkim=pass (2048-bit key; unprotected) header.d=aol.com header.i=@aol.com header.b="KK+TW3M1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8DBB10E395
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jul 2025 16:26:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753374418; x=1784910418;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=EHv6VT7RPuyosVPbN2NtQDpchWjZULCTp7Lgyx6Q96M=;
- b=AHTJES6yXgfSlVLzwLrbq6GlhtHK6gP1hJ0oqqrcQG3/yGY3X+SdD933
- i0a7EIsoxJPWQq/iVnLowKt8+xMBtxFt+83EBuRto7VPoXeeUdnW31D2E
- fwyHuLDNiyZGHDVZTWLvr5ZLlI5RBqWfr3CSY5L41n2CEsXX6LAB9haBF
- LMBwJyC3DT1otB8mMqk74C9XRZmuQ6wWLsdbslEWXtL/CJ2+hF01OatmB
- pVuK7bSWQxUBqJAmf95gfXJeNzsyl58fq6ck/kYp80RXxwqmUnDoxzVJl
- Gs9SRGeQpo2uvt93PlRWYbeNqUj0unsJFgzb1+AsgWGne2x92FjhKfJrd A==;
-X-CSE-ConnectionGUID: 6iXo6pncQv6HjFiHTzOtMQ==
-X-CSE-MsgGUID: g0QL4EIFSbKiSadNcewhcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11501"; a="43312044"
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="43312044"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 09:26:58 -0700
-X-CSE-ConnectionGUID: ffbpaTwbRSSo7bSGg9RGqQ==
-X-CSE-MsgGUID: cz60oS2cR4SrxxS+s4+LdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,337,1744095600"; d="scan'208";a="191255061"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jul 2025 09:26:58 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 24 Jul 2025 09:26:57 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Thu, 24 Jul 2025 09:26:57 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.80)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Thu, 24 Jul 2025 09:26:55 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KZJ0aTiLPNwQiAmPm7KUBhsUAwb+eVZ0MazscU0Db5r7ZA5aA34P0579h9lYeeuYoHw5prLr/UOrEkKtuLzIq0bm31UZZaP9u4OS5Lfpe6OtRC5kASa95NnEMvawKBDuXsvUm72HeVLj9JUPhao7CYH/3BexunmU6cI4k2BoeUl4HkJyEtwEvfkImvktwHNPO7wgKhCqARjX3FHZ3znULaVOhj60AUjMOtqWcZhIRivDJZLuJCdJQEEYC3sgPWHKa/+6XG5ZonbRWft/ru6WcFBBRZxiyUgdmcA/ZW/MVVEpdIWDptEqYr3PchHrrYAZ9iOh4AgoQ/8apvezmyvLOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MmE3ZzFMHlYljBHYKSGnxyWBiWeHHz6QXdq0TRzaT5E=;
- b=ElhBTtdDPd2OnDxMpbOaeP81Xf3N2/c8Wy4FXCkt4QaJqmKuDm/mkEgoY9kWrF3QknVoZQX0vhLSJSuyxPrGxH+4g6yHejYZim7gkrrZb2hgD5hMv/sbqzrG1ADKq4ROQCsIvqj/858eRu4Zr04Ek2t/uqcycrXoIIvxAuZh0mDLnhNcCdWPW7o/pIykt8v+0gUrajdD9044Fhfn22dfm7TTrX/5PXAjgLthgub44QlgX/0M49vJvd/nbyRmHFxHrk00zLLENKjoYY/1RyCcmsAMoFBiTzaVVpsjdMdkVVUZvPvxTl1MjTwb5YIkHP54taYegZEnomXyvxboBwY0Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by SJ5PPF867D7FF5E.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::83d) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8943.30; Thu, 24 Jul
- 2025 16:26:53 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8943.029; Thu, 24 Jul 2025
- 16:26:53 +0000
-Date: Thu, 24 Jul 2025 12:26:51 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, Ruben Wauters <rubenru09@aol.com>
+Received: from sonic308-55.consmr.mail.gq1.yahoo.com
+ (sonic308-55.consmr.mail.gq1.yahoo.com [98.137.68.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0AD10E3FB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Jul 2025 16:31:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.com; s=a2048;
+ t=1753374691; bh=BrVn83uUwdOU7S3+PKhRCCW5wfE8gY91dIZRiBFh3lQ=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From:Subject:Reply-To;
+ b=KK+TW3M1dCcA1MEwfpW0AwNoi6tscWKlKRemxT5mF8f6uafFuKxn0sWDWnntH95Etvn3+un8fPZzItCFc+S/DcDQ1lewdqjd1KEETrNM1u8/iIwse5V1w5yCyRcFOBtx2CFqfrrepu6mSZ/Ut/oyYMSUOZI6W8WGKtdO2CAbn0pwqf1Yrqm0V6P6QtpMgzPLKIEv1bG+1W3TVT2c3TBOWhVmnyZu7QzyRRnpNjhG2uAOjxmIjlnSkZp/Z8m2+WxvHVrWpCJkVXAGlM4fzYbGrMCsW1ZAd52lZrHED0ADo951evclAH/x2KjYcGJ1ORCYw3H1pbTbBpr8TFKwxki+hw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1753374691; bh=iZNXHdR0NV3kqCCNyEymMb+WqQSGwS6me4OEKV+Nls5=;
+ h=X-Sonic-MF:Subject:From:To:Date:From:Subject;
+ b=I7x8TUrRWxqE7Nxzq6VTPWB4e+mfBjvaAGpG9Fz0e7aQfpIBnJQSueS8z0bs80AvPBXI/27ju8b2yykrexetf4wa5x13tY5g+WPTvtmxEeZe5wEo35YFMiHYzyJSP1vS//cPdGMhJ24aFSq/phiRuTh/c60as+gpcBjn1e3o5AoeRaGmY+ZypuEmjpTNdoiwLYm1lADCejia2AQM8tvQfBlca4K8VBjvxv3YBSUDbduGvQAX1TStCLI9gZLEefI7zLGF3X/Zcw2Nmrxm1wbXJrBr6wXuHs9nnVg+wYRaNu1SD8O5ssdO2sQTkyOcB/73LwrH2oV0Z2FECFWnKqqsDA==
+X-YMail-OSG: OA9NdIcVM1n8ubUDxE0.tSqJW7rMhcOPBEMnDkSvqWdSCcpjtBjx6PZWF2jz8iP
+ Yat0WlcsdGJo1XMgmy.H_ggGRreCRsbWARVC4.oGVT82YhZKJ.7njcG0JspJxESk9dd_uJevA3Ly
+ rWg45MLaZLpDPkTGvdsIoKSxOVEisXX6y5Zj6MwZm0Yx_W5eaN2HVxDmAP8VlW61cqm0nCSM82zc
+ 1WCS8aUFPZugjt3XJsHfof.EYs9mxCVY0cyECXwgx.2Xxu3j1UAQLM31l2wveEtrxnvPhq_F1RRx
+ OILMqwPR1_QvdMvUb_Harg98AYUUqIrWG2asXZlUW6ZvuJJ8KSlNoz7L29_nQjQk7wayWMfKEAJb
+ 99MYswQnDTxjCBicVgTeN.ROGtUF30sSU6gsO7FGi91J3MLdY5Dh8LzJ8YIOawpdY1WH0janawvU
+ tI0u1yascJJMsdVbX1FY2Fi89qlZfNXOuvu9J6j5hP8CHS8G23_W4qx46.Sx.m.RKRuG2Rcdkdmg
+ z.MFAPPx4Yl.R8CiSWO7vEeoOUnMDxDZPj16tYrYXhdaTFW3Xt3BTVZ9shtUo.nlK9tN5zAfn2AR
+ VUtuL0GIwaKU4UAg8Y0mN8JcR9f26QWNEPhNUphSLN5xE.Yq9HWyEfxvNeS.Nxhck.aGSg0cgWaL
+ akFf1Es4v3F8Uqrn.NDkZTDki6JV7aNKcy6xCK.r6EvtgfxPznTl8bC7HNl50b.5UqrDlBnqO1Zs
+ Z.DedxlQH88R_MYv3jp8uSrCAslKIL.YU1dTA2LZkYuPu4bJaEgwUok0XGi4xLVdhaZ8WzpjNMWq
+ pfP9zOvOCz0_Hx1yE2u0_Qe_YkB.Y1LUZDk9iUcxpa0OiZ97Byo2q_9.0wkg2WBku9VtfoFGxwsm
+ bOgkCGrWDWMtealXLpjKTP9Utgtexh36ux67IZkU6_4bkeiRh78IGI53U3MlScpMEKj_7d8IsEfn
+ TUUQQQo8RNGC3TE5Os0WCEjTXo6PSlFzyBJhhUGW2PHYXEiDVZMbqWUfi6mtsTjVGBW7JZh25D_m
+ 3X7wRv10HX9mB9Huk76QW4roYRndq00FaL.IaXK6eBKjGLhzhvH170GX18kNVtJTClsemoYyxt9T
+ _gruhZ9vw.2twdkhk_VpUWHeUslLw8GbMyG57LUSnoyhszoK9dxaMDfmMikIIYS8XL7N5k9mDO40
+ 9KPiYTJc51pE0L2Ksuc_c_s9FJO5ADN_n_OzkZPoS04GiQgB61ASJSXlpwq91b4TMAmBWjgwd87r
+ E9dD61RvjHHCMX7d20th9Hpby7XLauKuuGs.FBOKj9ulqRoPg__JOzBH2kcgBwPvyfCDK4FgzZdX
+ ypxuNe726ZmOzHa3NhP8PNHB_T3smjwsDOh9w63bAceJzFmyLN0HJQ5gAW.FzUmpiBach9UPjh7p
+ r3I77FXAJst0hPt6yovaJcGXSCQCTxBkiLYqEAb_iuI_VlnhiGT0Ohe_mPr.17J.Du43cb.m9fWg
+ Kqmxo..yl1wH06gCJeF6JyUXshGteNtnzvdzyG2snxfz9cSyVT5tYSCq8se70sjUI7gj6FqGM7mJ
+ K2pw5iSpZTLvAQA1WrE9ni8XD.UbUoE9abZXDBUSxMLCi9okkQFne6ESC2uLvqRPmuweGZQXiwwa
+ oyutrwhhiMevllAP5CdXpDV7O0crrWxLe9MAWkjfJrduwi7kMOqnzLqcZzxc7z88Vvto2U3KThwe
+ OvZ20dy8lRzprvGOYGCQREXjVWDrdAUMDLCKqetwdit95n8JuAiMBv_BDnN9dH6hLPQVCkXDltp3
+ LOKNhaMr3xhUQIsW3XrxnkkI0EvH0MMtGtJQTcxQKd6p7PSnlBMUfJxZDkP9Euk7B0iHoOTFWThW
+ V0k5AdlTC.91PKZpXHW5p1R8W9bdS6j0ppoVkZXnsgpNg7PZZBmeQBrRWKtZGV7GKhWG0sec9kdT
+ U9pnc2SrF41C9c5vEDgKUyC78jo4AW20saCYK2Ig8_I5VBRXZQa.y1bJ4g1AO1QfGnCuQDmlOMa5
+ oIteMJ4ukKw_EdKjO8xtg5wxCKM.Fbcanplq6ZlZ5cOD5.TmeNpsD7mrG2E98aWh8ygO1Axw3el0
+ KB0N6nuw1HDkPQhnxJWLsHRoJLM3Gh1mDSuMH2MReuVWUKM6f5JRfUOyrg5ZmTn_sBSt9hm6U79E
+ 7Y1NxwjoAnHyRlZ8i2FjzPyu9DJnqhwPnul0gYZc7Px0IErYtjGqutUwVheBRk2pY8eNXgmObw2N
+ VsRu2uxmy1N5ihrmNVV_jq1zSDcbxTxFwOa6dbSNKBKTHwjFUuTHDzQ--
+X-Sonic-MF: <rubenru09@aol.com>
+X-Sonic-ID: e48ee6d9-68b5-46f9-aaca-87b9233652c9
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic308.consmr.mail.gq1.yahoo.com with HTTP; Thu, 24 Jul 2025 16:31:31 +0000
+Received: by hermes--production-ir2-858bd4ff7b-rtzhj (Yahoo Inc. Hermes SMTP
+ Server) with ESMTPA ID c4c60925c9609695c823e4ca0fff611b; 
+ Thu, 24 Jul 2025 16:31:30 +0000 (UTC)
+Message-ID: <954507fb83b5f83c7b8fb609fa84d0c7d8455fff.camel@aol.com>
 Subject: Re: [PATCH] drm/i915: Fix selecting CONFIG_DRM_KUNIT_TEST in debug
  builds
-Message-ID: <aIJey5rLh_lBaEtu@intel.com>
+From: Ruben Wauters <rubenru09@aol.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Jul 2025 17:31:28 +0100
+In-Reply-To: <aIJey5rLh_lBaEtu@intel.com>
 References: <20250724090237.92040-1-imre.deak@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250724090237.92040-1-imre.deak@intel.com>
-X-ClientProxiedBy: BY3PR05CA0019.namprd05.prod.outlook.com
- (2603:10b6:a03:254::24) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+ <aIJey5rLh_lBaEtu@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SJ5PPF867D7FF5E:EE_
-X-MS-Office365-Filtering-Correlation-Id: c079466e-b301-4399-df61-08ddcacee67e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eVpyM3YvajJvMHpWVmxST2xXTTN1WmRhVWN0NHd6L1MrMVpkMnRGZFdCckIz?=
- =?utf-8?B?dWlCS2owekdXL1NLdndoblkvYmlvNnJOQmZ4L202RXAvWStFMFdRc0Jqc2FX?=
- =?utf-8?B?VnRlV2U3TzEvZC95ZFg1UjlMTStwRmRLZXRIU3NvUkdXaVB3ZVd1UXFCNk5P?=
- =?utf-8?B?WXkwTTA4dENZN0F1RlpGMXJKVGpPUlZjRWhZQ0NlTW1JcWVLUlVBWnRENGlB?=
- =?utf-8?B?VGkwK3poaTd0QXk4akptRVRRbDdlTHNWS1owWVdHaVNPU3Z0RTNXTnBqWkc0?=
- =?utf-8?B?QzdDRTZSVUJQNzNTWld2OWw0cVBtdXdKNG42aXJ0R1lFbTRJaUkxaGFTMksy?=
- =?utf-8?B?RXZzcTB3SGU2YWs3ZjhXVS9oOENtaG1CVkkxRmNHcEwzSkZQRVNHOFZSOGRw?=
- =?utf-8?B?WTFCajhJMDlXbmNnWWd3SkpDaVVlVk5NU2xvTU1waFdrRkQ0SWs3dkZ4TnRU?=
- =?utf-8?B?aXJCWGtFSEFGS1pwS3NrSGpsNzBKSmpUMG9KU0RWd2tpblEvT1NmUjJGQWxO?=
- =?utf-8?B?NkNYb2c3ZVBpMkV1SWZULzVJTGFDcFNSbmFiVkloaDhxc1FCdy9NRjhZWjUx?=
- =?utf-8?B?WkxzYURON1dlbEEybzZLNlVmdm5tb0JCaTFYdHNHMU5OSlkvN3EwU2xRejVU?=
- =?utf-8?B?SjlucmtUWTFLWm0zMzZER242TzgvRzRzTmxWQkpBUFBQWmtYVFhaVWY0ZUJo?=
- =?utf-8?B?TGRWQ0t3YkRjK0xHUVZsMUFqZUtXZDFXV0FwZndpZlNRVzVMTGU0L2E1dHgv?=
- =?utf-8?B?SFpPSnFvTUlLSFgwelV0SWhIMjhQQk1PSXQwc1IvNlo5dEVhS3c3RVE0SHdZ?=
- =?utf-8?B?MGE4bjd2eXA2Nk5Za0JZdWM4eVJVeGlYUWFhdUFLbVFSZVdodnBBdDVuckla?=
- =?utf-8?B?TG1OcjBlSHlXVnZMU0o5MUxueXlJc1p5cks4NGF5dk55VWFQQXIvRlVHeFN1?=
- =?utf-8?B?UldyMU5uVU1CVGdQdEFObTlOVWVHdlFaTktSbXJvbTk3dGVxQXBzd2VUZ1JZ?=
- =?utf-8?B?M041YURxYjI3MTNUdlFTcUxaYzczNk84MXJOQjd0OE43T3d3YmhMZVdTVkVt?=
- =?utf-8?B?L3ZHSWowbGtabndGd3dDQlRRV1BMMVZPa2JtRDhZUWFnNnpibGRJYU5idEw2?=
- =?utf-8?B?VTY5NlJERStGSWUvRXZpanBEbkgvc3RhSTNNS1JDUndwOUxFS1FQOG92dWg0?=
- =?utf-8?B?bGRKN1oxcTVDMUYwRU1sRjgzeXp4d2ZDbk9YdGk3bjVlMjdYVzRrZGFReHkx?=
- =?utf-8?B?eld4Y0YrM3ZGcWV3MGx0ZXJ5emloUm5BYlNKdXN6YUtaZUJLdTBaYjFoVy9Z?=
- =?utf-8?B?WVZCS0pjNzVTRUoyTWxlZ0hFYnkyWThLL3E2SlMzcjJlTUltbHM3eEIzTWZZ?=
- =?utf-8?B?VFYyQ2toVDdIaGxZcS9uM1Q5UERPblhKRHYyT3JwbE5aRDRwbkdmUWoybmNN?=
- =?utf-8?B?L21TTVhlWVBPVFdHK2lWZGl1SDhMT2x4WDBjMG1xUTZyODZwM2NnQ2hjV2oy?=
- =?utf-8?B?YUU4YTFaWjJ2Ymh6WnZLN2FQNW1lQzIzOEhMZHl1UTJ5c3p1Zzh3MzdSM2dh?=
- =?utf-8?B?T2ZJWVFkSFlaQXlWYXM0c0FEdlVQUVFIL0VCb1IwanBDSVNwSGpBekNFYmYz?=
- =?utf-8?B?T0RoK1I2ZnVabElKb3FYblJocTR4M21GUHcxWmJxSzJBYnZnT3FFTEtoVFhL?=
- =?utf-8?B?bVBudlV6VTMzV3hsSHBsL2VmeUUxcFJmVzZyM1NoZy92NVVCYngvQ010Wmdp?=
- =?utf-8?B?Y0RmYW4wVVFYdlg2ME0wYU1QbFVnVzNtMUx0NjNsbmM4WWhrTGZFSkw0K0RF?=
- =?utf-8?B?SzhUSnIxc1RXMzltR1B1NlhUN1gzZ2trN0prWDRhWjl1TFR0WTh4dTFBKzJT?=
- =?utf-8?B?d1NZdGpDQU5lcitPRTZMM0ZYdGx6cytYcnp2Z1RjamZPSEw0TzBsei9pMHc2?=
- =?utf-8?Q?lKpP1UJ9DW4=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cDZYNUhLWUFDa2oxeWZBcUtlaFVnb0FEYWJIQmhKTUxVY2paM0tmVC9Fc21i?=
- =?utf-8?B?ZTNYc0ZvL0lsREVmNDJmdHp2MTkxUzlqVm1abFVGQ1J0ckxsVjl0UkN2M3pZ?=
- =?utf-8?B?UFJ4UEJtTldKcHZKK2h6dmg5WmZGQWVnaU5zUXYxQnk1UXRRbHVMbStxZkd4?=
- =?utf-8?B?ZFNrUGhSS09vZE91djkxT3Rvb2FEbVNkZVBhOUlzKzA3dmFoNTVKSmh3UklI?=
- =?utf-8?B?eTB1SktEckx5dWRKS003T1RjOEQ3MGNpWndEWXdaRHhtNnUwN2NsZmlUemtx?=
- =?utf-8?B?VzJ1MmZnZFl3TGZtdUZMdEViZW1Wamg2LzhGOVhRUG1ob2Niai8vSnFCWC94?=
- =?utf-8?B?OHIvczl0dmI4T2RNaklyQm4wZWNHYlppd2pHUldhOE9uTE5qQVJXS3d5WWpl?=
- =?utf-8?B?cGV5LzBKUVJKcTVObFRXYy9aQUFWek5YVW1nQXhiODNvUStPNmpNWnJ2OXFh?=
- =?utf-8?B?ZTF6OThsNDE5UUpHZ21QTEFjS1J4bVd0enB6K1hINWV3WWNpck5aNnlNSmJl?=
- =?utf-8?B?SmxvRmlQTWNMNU50enJYRHpDaEhKNEJtSGNHN01nMmI5SkQzVkwwK2gvcGhv?=
- =?utf-8?B?ZDQ3TXUwT044S0E4K1g2SWgxd0NEd1VvSkhiOTVENTFuM3dUOUx5L3hsOFAv?=
- =?utf-8?B?N0s0MDdIOXF0TUY3azVlc1BvN0wrUW1lQlZxbzFDREhiWXNzTmcvb0hua0w3?=
- =?utf-8?B?YmVCTmlGYUxxVHNQRkR0WEt5L0VLOTlmZjlJQWtGWnQwSDVHd0t0TW5sYmJV?=
- =?utf-8?B?cG4zZU11emNnMVlOcFJFc2VNZWZKRkd3aDcxdFM2a3pZcFo0NU9xME5UWW9n?=
- =?utf-8?B?M2lHME9NdGc0RXlnTzN3SzJVT0NQRWp0b0tacXYrbElWQ0pqMDdGOForVENh?=
- =?utf-8?B?Tmxpc0taUWJ1ZjY4U3dMUlMxK2pWLzlKNnljMjhqUGY1U2tQdjFJaE1PNElT?=
- =?utf-8?B?KzZaSVJiMkZHc2MxbkN1TTFDZkhZSnZuNU9ORDJGMFRPMzhvYVVpcVEzSGty?=
- =?utf-8?B?SEloYkxURDNDbkV2WUFoSHZxZGo5RkJodTJ1UjFvMGVuZkxsSThGaVdaaHR4?=
- =?utf-8?B?WkZvdEFmN21tY2pralBmYTRSRVhxYmhWU0lNKzhoTmpwRnY2Vnk2OC9tamF1?=
- =?utf-8?B?aDVJWERHOTVUaGprYVpsSXg1a2FkWXJhKy9TVHlCRXk1STNLSGJ3MENIY3kx?=
- =?utf-8?B?WnNxcGJ3TDVKaElNNnJ2WXhmQlRuWGxsdWVhc2FYSnZOeFdYWTVoYnI4SmR5?=
- =?utf-8?B?d1lVekZiU2ZSM0VKVWZWYjFOV2gybDRIMUxuNjBzUmhnTFJ6U3VnMTZjUExV?=
- =?utf-8?B?dUlhbVNucWhSWXo5RVkvZUFPMmRaUnBTSjhrdTFoMitVOSt4VnpuQVRBN0Fk?=
- =?utf-8?B?MGQvMEJTSHgzK3VXbmQydFlnaklXdVlZRndJUDVjMFVMRCsrd0NrOHo3anc2?=
- =?utf-8?B?N0pKRmRabUNEYVdMV01YaE5ObFZ6MjI3ajFwSHpHSnF1SWFubnNvYWZWQ3gz?=
- =?utf-8?B?eWhnZ3ZTa2Q4OXBVOXVsbXVqMng3ZG1zaDI4Tkhpcmc3WHIrb3RtSWdwQmtN?=
- =?utf-8?B?MjM1Sy9zZ1V1OGt1NmZHMHJGb3QzSktBU3h2VFdkOVFFd0xwc2QrMXNNN0E3?=
- =?utf-8?B?T1p0V3N4T3E3SW5kNnR4Q0lGU1Yyc28vT2tZaWxudUF6ZHlKK1kyNnpqOXJ0?=
- =?utf-8?B?VDF3ZER6VkVhQk83bDQxeks4MndwZlJEVkhFeU1leVBMdVE1KzQvM2tnd2pZ?=
- =?utf-8?B?OGQ5cE1FeThKeVlRdnhYbW5HTUZEa3l5eUdnaTVURkw0ZkZkeEx0R2YzN3Zy?=
- =?utf-8?B?cjlIcmphQlNOTFFhYVRiNFFhYm1GVEI2TkpGbnlJR3lwTjNHajFkemZLMDc2?=
- =?utf-8?B?OXBnbWNCanVNeld5VldmekZNNm9XRSsvbXk1MUM4Qko3M3pVa0N6ZWhVTDdl?=
- =?utf-8?B?cGNhY0ZXazY3M3krYjVHY1p5bGZyMVRZemgrcG5YZzJUU3ozZ20wMUpuNzJ4?=
- =?utf-8?B?azQyL2NCbzJINytqSks2UUZnMjIrSWdVNzJTWklhOVNBQTR4aXMzZ1JUS0RH?=
- =?utf-8?B?bkt5dXVwWHhIdThhQUl0dmNEYnp3NWRQajhoeDBuaWFVVmc4cm1kUForZCtJ?=
- =?utf-8?B?eEdwVW5HTjFLSC8vZktlVk8wM3l3UWNWT3ZJRWFETVdsajVtakFFVTB0TXdu?=
- =?utf-8?B?Y1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c079466e-b301-4399-df61-08ddcacee67e
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2025 16:26:53.7649 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dkqrdWIRRi5Qi6vy9hWBL/lFok0hL3+9eioLXCTJunG3b6ql8Hk6DqaS5mufzzETJUEMeuarkxzxnT3ndOAB5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF867D7FF5E
-X-OriginatorOrg: intel.com
+X-Mailer: WebService/1.1.24187
+ mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.aol
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,52 +93,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 24, 2025 at 12:02:37PM +0300, Imre Deak wrote:
-> Selecting an option which depends on other options only works if the
-> dependencies are guaranteed to be selected (as these dependencies will
-> not be automatically selected). CONFIG_DRM_KUNIT_TEST depends on DRM,
-> MMU and KUNIT the first two of which are guaranteed to be selected for
-> i915, but the last one is not. Hence, selecting CONFIG_DRM_KUNIT_TEST in
-> i915 debug builds may result in CONFIG_DRM_KUNIT_TEST being selected
-> without the CONFIG_KUNIT dependency being selected. This causes at least
-> the following compile error:
-> 
-> drivers/gpu/drm/tests/drm_bridge_test.c: In function ‘drm_test_bridge_alloc_init’:
-> drivers/gpu/drm/tests/drm_bridge_test.c:449:21: error: implicit declaration of function ‘kunit_device_register’; did you mean ‘root_device_register’? [-Werror=implicit-function-declaration]
->   449 |         priv->dev = kunit_device_register(test, "drm-bridge-dev");
-> 
-> Fix the above by selecting CONFIG_DRM_KUNIT_TEST only if CONFIG_KUNIT is
-> also selected.
+On Thu, 2025-07-24 at 12:26 -0400, Rodrigo Vivi wrote:
+> On Thu, Jul 24, 2025 at 12:02:37PM +0300, Imre Deak wrote:
+> > Selecting an option which depends on other options only works if
+> > the
+> > dependencies are guaranteed to be selected (as these dependencies
+> > will
+> > not be automatically selected). CONFIG_DRM_KUNIT_TEST depends on
+> > DRM,
+> > MMU and KUNIT the first two of which are guaranteed to be selected
+> > for
+> > i915, but the last one is not. Hence, selecting
+> > CONFIG_DRM_KUNIT_TEST in
+> > i915 debug builds may result in CONFIG_DRM_KUNIT_TEST being
+> > selected
+> > without the CONFIG_KUNIT dependency being selected. This causes at
+> > least
+> > the following compile error:
+> >=20
+my bad, I guess I fundamentally misunderstood how the Kconfig system
+worked, and assumed that if you selected one all the dependencies were
+automatically selected. I guess this passed me by in testing cause I
+already had CONFIG_KUNIT selected and didn't think to de-select it,
+apologies.
 
-Perhaps DRM_KUNIT_TEST should select CONFIG_KUNIT ?!
+> > drivers/gpu/drm/tests/drm_bridge_test.c: In function
+> > =E2=80=98drm_test_bridge_alloc_init=E2=80=99:
+> > drivers/gpu/drm/tests/drm_bridge_test.c:449:21: error: implicit
+> > declaration of function =E2=80=98kunit_device_register=E2=80=99; did yo=
+u mean
+> > =E2=80=98root_device_register=E2=80=99? [-Werror=3Dimplicit-function-de=
+claration]
+> > =C2=A0 449 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 priv->dev =
+=3D kunit_device_register(test, "drm-
+> > bridge-dev");
+> >=20
+> > Fix the above by selecting CONFIG_DRM_KUNIT_TEST only if
+> > CONFIG_KUNIT is
+> > also selected.
+>=20
+> Perhaps DRM_KUNIT_TEST should select CONFIG_KUNIT ?!
 
-But well, let's fix our own mess on our side. I'm sorry for missing
-this detail. :/
+This was how I thoguht it already functioned, I guess not? I'm not sure
+if that's intentional or not but I guess it is a problem regardless
+>=20
+> But well, let's fix our own mess on our side. I'm sorry for missing
+> this detail. :/
+>=20
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>=20
+> >=20
+> > Fixes: 17133255a322 ("drm/i915: replace DRM_DEBUG_SELFTEST with
+> > DRM_KUNIT_TEST")
+> > Cc: Ruben Wauters <rubenru09@aol.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/i915/Kconfig.debug | 2 +-
+> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/Kconfig.debug
+> > b/drivers/gpu/drm/i915/Kconfig.debug
+> > index b15b1cecb3aad..3562a02ef7adc 100644
+> > --- a/drivers/gpu/drm/i915/Kconfig.debug
+> > +++ b/drivers/gpu/drm/i915/Kconfig.debug
+> > @@ -50,7 +50,7 @@ config DRM_I915_DEBUG
+> > =C2=A0	select DRM_VGEM # used by igt/prime_vgem (dmabuf interop
+> > checks)
+> > =C2=A0	select DRM_DEBUG_MM if DRM=3Dy
+> > =C2=A0	select DRM_EXPORT_FOR_TESTS if m
+> > -	select DRM_KUNIT_TEST
+> > +	select DRM_KUNIT_TEST if KUNIT
+> > =C2=A0	select DMABUF_SELFTESTS
+> > =C2=A0	select SW_SYNC # signaling validation framework
+> > (igt/syncobj*)
+> > =C2=A0	select DRM_I915_WERROR
+> > --=20
+> > 2.49.1
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> 
-> Fixes: 17133255a322 ("drm/i915: replace DRM_DEBUG_SELFTEST with DRM_KUNIT_TEST")
-> Cc: Ruben Wauters <rubenru09@aol.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/Kconfig.debug | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
-> index b15b1cecb3aad..3562a02ef7adc 100644
-> --- a/drivers/gpu/drm/i915/Kconfig.debug
-> +++ b/drivers/gpu/drm/i915/Kconfig.debug
-> @@ -50,7 +50,7 @@ config DRM_I915_DEBUG
->  	select DRM_VGEM # used by igt/prime_vgem (dmabuf interop checks)
->  	select DRM_DEBUG_MM if DRM=y
->  	select DRM_EXPORT_FOR_TESTS if m
-> -	select DRM_KUNIT_TEST
-> +	select DRM_KUNIT_TEST if KUNIT
->  	select DMABUF_SELFTESTS
->  	select SW_SYNC # signaling validation framework (igt/syncobj*)
->  	select DRM_I915_WERROR
-> -- 
-> 2.49.1
-> 
+Ruben Wauters
