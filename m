@@ -2,112 +2,111 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 392A4B12A7E
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Jul 2025 14:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B75DCB12A80
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Jul 2025 14:38:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1BC910E476;
-	Sat, 26 Jul 2025 12:33:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0C9810E47B;
+	Sat, 26 Jul 2025 12:38:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="LYGuj1XW";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="T7zXasWk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
  [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3B410E473
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:33:58 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56Q3XK8e011050
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:33:58 GMT
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 857DF10E473
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:38:46 +0000 (UTC)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56Q3W1I1025243
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:38:46 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=w8cRMM89BCO/d2ibKR5H0J+K
- hadOlFl5UBCobrDClss=; b=LYGuj1XWNn7PAy9gSM1fBsaSEAPLeC2rogQ5BrHE
- eicGP9AbExnTrHUhfNgTokQKqGz0ai1rIOC4gyPHIaEiNegmsENPncV73LaQKflJ
- WglWPqSCffp9+9rnt1uYIOsTyvLu7MM9VjjkuLBvGqmm9W9cLq/AYSxgKPcZpCUE
- meIIftXcjeXQNlucaQEZBbUUG0OEzZ3tvYbiW398x5Pw7pfUxvGuf9Sf3EcgoOyY
- yjSdX4K8a5TI7cAgqThweKSte21+isdIhf3Mc7hCpkwv/S9o8X72k3uQyMpWzsNT
- mq++n8WO1qrfemRzqMUl4i4ltYez/XDnYG7+2L7e5EWzAA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nytrppg-1
+ :references:subject:to; s=qcppdkim1; bh=p9WlLsI7wH4qRMkHcYS2d4F0
+ b2ykbaMu84wDP9zYLAg=; b=T7zXasWkZ06zpnqARRkITEpUQPvghYuVTqKDO/c5
+ DkNlyWVe2PJbAAVW6ID1DgAu11k444F0gxoGTpym5YSzRqTVjGwmq+qvzP59MbeI
+ AFxGODu8ftka/jUJdG9NVBlaBdkkq8NNxh3l10es9Zu/y9kuUbtpaag0Ics9eTdX
+ iCMgFtsvCEqzlk9ey+dUSeQIzrwGEUV8wOC7e1dRdB0z+H7ZaObisUUIyFfOHBNU
+ 6FwPDL/twmJ7RwBB3UwPFLoHa3J/WvttRasHChoWnfCerKu1LlVhtnVmG6YQi06M
+ idJMXiQZZK6O6mdrXtPJKbWuQp4fMm2AZrk7h7qX2lPK2g==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484mqk0twr-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:33:57 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id
- d75a77b69052e-478f78ff9beso111750161cf.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 05:33:57 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 12:38:45 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-6fe182a48acso67718806d6.1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Jul 2025 05:38:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753533236; x=1754138036;
+ d=1e100.net; s=20230601; t=1753533525; x=1754138325;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=w8cRMM89BCO/d2ibKR5H0J+KhadOlFl5UBCobrDClss=;
- b=f/9iJh/JXMq3vJY29TLc3whtGrHRysSKSLF5WmWGuuoCvH4zntoeaewTyoYnjywTmE
- oiFMciNCyElPW9mfC+0FVowx6+GS6UNyhIi3j9+eEWsLUVKLrSBM3t1brM8wq6dkOUTN
- waGlpYSBu8I7leKyH2HlWx+pqUHxZ8L6iDO5KqnzjhOy/mDV6TAfwd5g5SFbAs4C0uZN
- /n3neImliT0k1FvuifX/iHDMvYK4nj1DwGEumxFxlK+thgHnWlITpeA1JypnLSZtmNkj
- hGlzq+MtZIW9x7dDusrtp0v3gCLTdlUkNREo0xo2oYWWNHDW4w9rsOMDdJEisnGBZzpZ
- D+fw==
+ bh=p9WlLsI7wH4qRMkHcYS2d4F0b2ykbaMu84wDP9zYLAg=;
+ b=oJ1h3+Xgkm3PvKISwXvtK0rRXQOWDwafwOj88sntMGqQEDJchCJ96jLiVd7cW/L4Ij
+ kslDK++w+vkU+g6umX2+gwJ0ZYlxlMeXCNcdsK9nd5mmexSbfnI0CYi3DCyOk7YwtV3s
+ QQxNztGDWIvQvJqkJdJeBFNoNixuKnn3EmK7zXa+TIY9x4PNDkaWb2DFogqIBhTRCZvd
+ p2NwveaGrVVOzZswuh8GaLlIuAIL7PjyJlCkrY4KJOntKq9rzXIq3jtfd4QWZZgAx5Hd
+ MaytPmmho0R7kVVu9ohL9eRSlilGo7KRyiavRGtEiAhEIHNqmEEy0HH2xEpfSfrs2V4j
+ EEnA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWMXLPdUtnaV/XKSz5TnbciFICZ46gvLuNXRiALg+060l2EUW4dxsqGNi9FXalTBYVxGtBHti1jd54=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzGPhH+ZduqUTPZiRIRrA2aQC/bIbTbnZ2pgnkyrtc/FyZ1zjAV
- nyTpV+kY4Ig5PXscOCIx7xSST1NHOogQg1ZCqpeg4PIJp62DeHSbU8Nh1urqf39uZl9jGkh+Rhj
- tK3WUH1qM3GCmPNKLlqr1iEwe4+ewCXxaamEgW6znA6tLcYxeNNWynBlkD7POJ3y9fGOICxg=
-X-Gm-Gg: ASbGncu8SSnlM5XFQSmxuVVquXq2aoDJg1j11MSnSVm2aGXFNRvjWBMZTK3vbgh7EHm
- 2FUU/pk73FV8EYp5gquww4MOrTFfYR3kFar6kNDwYkI6oGVI/NlVmi2m4sAf/4jQ3pv0DTu0eJZ
- a6Q+EqNb3keoJg71S4cmjFOBmHcUmgIP3MdkIFLplGFvvhrhLwG3bervWDY2i/tImYeemh/dUUa
- 7NV0Y0v4Wjs/kmPW4Tm04Z8WoP9WW9YotBqrfj/df0gplcANWy7XtFP7G+s3UiWrd6VBdZG6KVq
- CTuqxkRHSm5Yeitx+t3IuYNRahQaKSlalAQ25IdEgfn0+p7uA5KywbwKTEMO8C17+fZtFvEFtTF
- IesVbInCClJVM2/cVwa9pXogjGJskUkNTLZ4R35qLbqX/TOg8uQqc
-X-Received: by 2002:a05:6214:2622:b0:704:7c55:4ff3 with SMTP id
- 6a1803df08f44-7072049f1admr69563826d6.4.1753533236024; 
- Sat, 26 Jul 2025 05:33:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGYL+i20wvik2k8ybZcLSjUO54dD2ixoLhw+HaO6iD4q20/2WO93wX4OnjSp+gZ9Ik7pPwU+w==
-X-Received: by 2002:a05:6214:2622:b0:704:7c55:4ff3 with SMTP id
- 6a1803df08f44-7072049f1admr69563546d6.4.1753533235548; 
- Sat, 26 Jul 2025 05:33:55 -0700 (PDT)
+ AJvYcCV8tpyiWr9kfWbpD9XTrrFxVJvZ5zw7jiHJcDmfjypcmHprTa3SU5axv9vN9X7RPnVWPPJhzg5PZTs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyNEhpSb4k/F+A4xlXF1SWimbWcCbt3po2xTKvBSfAl/CcscGsU
+ uxeJTeuxMXEZOFJExJU8NU5TD1BmoT5Ilkjd/0YHrEetwbDAWGlxgUlir3KFEJAyCCL389cSag7
+ mZoZNEel60t6cZzrSQ7sHvGkzom1ZEmSgEhvaEt3YCgQnA5YHLKgavUdCyYyQYgqvCnwEX2Q=
+X-Gm-Gg: ASbGncvCWabhVcpEJhTiIAs2Tit37Dp74bBvUEQFa604skRjNMLUHOHpyokpGY18L23
+ vVCY3j1ga85tZNz/TCgyLqrcFALBzPBEi+h1ePC9Mxja/MtkcHraGjYX5x2s7ZczAEC2xJzCaRy
+ XAk/shcO2Q85LfkJzCbiQ2yiB1gfLHtxwdcG9TV9PIFbU0ijd5H6pziAwx07e79sVR5L03vrHpu
+ lWuNajtufJ0zs78MBsjINJATLrcmjiXlkqxMVv4Zc6sq7AwAqsRD7uAdT1QNwDhoC1QrEVjcSLP
+ E9oM8Y40Sf3/8vluY9PULfndKdP7fPFjmYW9k2W1S8Xxw96xP8NmZO1ffoHMJ36JySjF+Dqqmur
+ p8pN/apdN8LaPVI4iKPsvPBKPcMZBoi/AMvCa7F8Nf8iYx5B7CkES
+X-Received: by 2002:a05:6214:c64:b0:6fb:265:a2c5 with SMTP id
+ 6a1803df08f44-70713d6d5d8mr103943176d6.17.1753533524548; 
+ Sat, 26 Jul 2025 05:38:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHNpnjyLFNka9PviBkscyS3Ceub+UziIG7kHudjcBkOBPWBI7J1LtbvLyuYM7A/xBfUxwo1Og==
+X-Received: by 2002:a05:6214:c64:b0:6fb:265:a2c5 with SMTP id
+ 6a1803df08f44-70713d6d5d8mr103942896d6.17.1753533524022; 
+ Sat, 26 Jul 2025 05:38:44 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-55b6316d6cbsm427270e87.29.2025.07.26.05.33.53
+ 38308e7fff4ca-331f429f382sm4288081fa.92.2025.07.26.05.38.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 26 Jul 2025 05:33:53 -0700 (PDT)
-Date: Sat, 26 Jul 2025 15:33:51 +0300
+ Sat, 26 Jul 2025 05:38:43 -0700 (PDT)
+Date: Sat, 26 Jul 2025 15:38:41 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
  arun.r.murthy@intel.com, uma.shankar@intel.com
-Subject: Re: [PATCH 03/28] drm/writeback: Define function to get
- drm_connector from writeback
-Message-ID: <ng2ps7k5h74w6zo62oqazzetunjc2psooobmh3zcrrmxesi2ua@va6z7eqjst2u>
+Subject: Re: [PATCH 18/28] drm/i915/writeback: Add connector atomic check
+Message-ID: <75d63c4377tss5cml47qu3ferkwuod7rceox6t5lrjqdzykuxx@q26ta2glzndw>
 References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
- <20250725050409.2687242-4-suraj.kandpal@intel.com>
+ <20250725050409.2687242-19-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250725050409.2687242-4-suraj.kandpal@intel.com>
-X-Proofpoint-GUID: Mk1upg4frtwtHN0JaEJh0YYdGH22XNxq
-X-Proofpoint-ORIG-GUID: Mk1upg4frtwtHN0JaEJh0YYdGH22XNxq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI2MDEwNyBTYWx0ZWRfX4Hkermmmy7HN
- JmW+V0Hp6D9c5BCKyCW25ZtJYJuU9wUIYvtpvrXGTQ/H6jzs66UoQOpLfNZh1/De7S9JKQN7i6S
- 0xzGZAnPIXgr9Q9UJ2lLsyIi/W2uEcOuk9JP7Y9LUnNV/tQasGWWPrMl4JNL/ynaKT1u8q5NnYd
- P77sNFPpbCH7HLPMPGgBc6aDA5/ld/OY+8wYk0ftwGKsJ9Ybp8m/DWfkTcrg4jBjyQ9852m+ggA
- UBNJWgyBjNS+mILFMcXcSa5+08E+CUqCSo4RIobr8KcSY8QlL1m1v26ygEc0VDtlf4AsJsl5jp0
- jkcXnNwgmq2irwNx4fpbC7Y6lGeBbEVavQXlCrGgEZVNgHEL4RlQYcuYhsKwChxi497x5y5lKwN
- gvz5yZ33PyZi0QOApghxq3VAmUeJgv1UDA+u+1DLVvxWPey6aW9I8T8wM+ec0aXiitDiPNWf
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=6884cb35 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=QyXUC8HyAAAA:8 a=ueQVv7-7oDeDgNA6tiQA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
+In-Reply-To: <20250725050409.2687242-19-suraj.kandpal@intel.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI2MDEwNyBTYWx0ZWRfX6ggANFDUreu6
+ xkdnMT8CqCLF0wWQGyy1l10CdHjl7N5PkCCvV68w8QVPqTj2xwYEo3BsdnsIulFUuAbu8ZNiCzu
+ lQd6nQbgampcym8Z9x9IE8v1RsoHvZR5RJZEscVJiIx88dwVIB8LuirL1IBd3is11EtOuSt8CJt
+ lBspWqTKHGcYXUk//rvRb1Oo+ErwxZIcSCm3ShpuzLAlVeHoNBsk6pFeU57vJvYR9RsVpaysw+m
+ 6PmxtPbsD7riJC4noDSP01ahHS+nlklaBDtIYVtoNXDgOdoDg0N+qrWodNwY8qKmGmqUvZSi7A7
+ gTLf+h/vji0nMjV3KySRfWZbcXf0uAMKv3QlJvLPs3xErMgwcPpbjIb8JR/xrkLLV8JO0VLMQEx
+ 5IjkFlm8tKnbwoLL31fEm1VDYCXRh/PKDa1dEuGzhWVKeeCUM3kcOreaG/T1VE2lQaibO3L4
+X-Authority-Analysis: v=2.4 cv=fqPcZE4f c=1 sm=1 tr=0 ts=6884cc56 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=QyXUC8HyAAAA:8 a=7yYpvgMhsW9ct4Lpu_sA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-GUID: nsNMRVYBkneA-NkCfA_F_3KiXTyOvwVU
+X-Proofpoint-ORIG-GUID: nsNMRVYBkneA-NkCfA_F_3KiXTyOvwVU
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-26_03,2025-07-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1011 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ priorityscore=1501 clxscore=1015 lowpriorityscore=0 impostorscore=0
+ adultscore=0 mlxscore=0 spamscore=0 mlxlogscore=974 phishscore=0 bulkscore=0
+ malwarescore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
  definitions=main-2507260107
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -125,119 +124,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 25, 2025 at 10:33:44AM +0530, Suraj Kandpal wrote:
-> Now that drm_connector may not always be embedded within
-> drm_writeback_connector, let's define a function which either uses
-> the writeback helper hook that returns the drm_connector associated
-> with the drm_writeback_connector or just return the drm_connector
-> embedded inside drm_writeback_connector if the helper hook is not
-> present. Lets use this function and call it whenever
-> drm_connector is required mostly when connector helper private funcs
-> need to be fetched.
+On Fri, Jul 25, 2025 at 10:33:59AM +0530, Suraj Kandpal wrote:
+> Add connector helper function for atomic check which sets the
+> mode_changed bit and checks if pixel format of fb is valid or not.
 > 
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/drm_writeback.c | 33 ++++++++++++++++++++++++++-------
->  1 file changed, 26 insertions(+), 7 deletions(-)
+>  .../gpu/drm/i915/display/intel_writeback.c    | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-> index e9f7123270d6..d610cb827975 100644
-> --- a/drivers/gpu/drm/drm_writeback.c
-> +++ b/drivers/gpu/drm/drm_writeback.c
-> @@ -120,6 +120,18 @@ drm_connector_to_writeback(struct drm_connector *connector)
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+> index 9b2432d86d35..7fb30cc61991 100644
+> --- a/drivers/gpu/drm/i915/display/intel_writeback.c
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+> @@ -186,6 +186,54 @@ static void intel_writeback_connector_destroy(struct drm_connector *connector)
+>  	kfree(connector);
 >  }
->  EXPORT_SYMBOL(drm_connector_to_writeback);
 >  
-> +static struct drm_connector *
-> +drm_connector_from_writeback(struct drm_writeback_connector *wb_connector)
+> +static int intel_writeback_check_format(u32 format)
 > +{
-> +	const struct drm_writeback_connector_helper_funcs *funcs =
-> +		wb_connector->helper_private;
+> +	int i;
 > +
-> +	if (funcs && funcs->get_connector_from_writeback)
-> +		return funcs->get_connector_from_writeback(wb_connector);
-
-The get_connector_from_writeback() and
-drm_writeback_connector_helper_funcs should be moved to this patch.
-
-However it feels really awkward to make drm_writeback_connector, which
-is a wrapper around the drm_connector, to use some external DRM
-connector. A quick grepping reveals API (which you missed) that expects
-drm_writeback_connector.base to be a valid connector. And it would be
-very hard to catch sunch an API later on.
-
-If you want to use DRM framwework, while retaining
-intel_connector for writeback connectors, I'd suggest following slightly
-different path: extract common parts of drm_writeback_connector into a
-common structure, and use it within the DRM core. Then provide functions
-to fetch drm_connector from that struct or fetch it from drm_connector.
-
-
+> +	for (i = 0; i < ARRAY_SIZE(writeback_formats); i++) {
+> +		if (writeback_formats[i] == format)
+> +			return 0;
+> +	}
 > +
-> +	return &wb_connector->base;
+> +	return -EINVAL;
 > +}
 > +
->  static int create_writeback_properties(struct drm_device *dev)
+> +static int intel_writeback_atomic_check(struct drm_connector *connector,
+> +					struct drm_atomic_state *state)
+> +{
+> +	struct drm_connector_state *conn_state =
+> +		drm_atomic_get_new_connector_state(state, connector);
+> +	struct drm_crtc_state *crtc_state;
+> +	struct drm_framebuffer *fb;
+> +	int ret;
+> +
+> +	/* We return 0 since this is called while disabling writeback encoder */
+> +	if (!conn_state->crtc)
+> +		return 0;
+> +
+> +	/* We do not allow a blank commit when using writeback connector */
+> +	if (!conn_state->writeback_job)
+> +		return -EINVAL;
+> +
+> +	fb = conn_state->writeback_job->fb;
+> +	if (!fb)
+> +		return -EINVAL;
+
+Other atomic_check functions return 0 if there is no writeback_job or no
+FB. Please elaborate.
+
+> +
+> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
+> +	if (fb->width != crtc_state->mode.hdisplay ||
+> +	    fb->height != crtc_state->mode.vdisplay)
+> +		return -EINVAL;
+> +
+> +	ret = intel_writeback_check_format(fb->format->format);
+> +	if (ret) {
+> +		drm_dbg_kms(connector->dev,
+> +			    "Unsupported drm format sent in writeback job\n");
+> +		return ret;
+> +	}
+
+Missing a call to drm_atomic_helper_check_wb_connector_state(). Please
+use the framework where available.
+
+> +
+> +	return 0;
+> +}
+> +
+>  static struct drm_writeback_connector *
+>  intel_get_writeback_connector(struct drm_connector *connector)
 >  {
->  	struct drm_property *prop;
-> @@ -478,6 +490,7 @@ drm_writeback_connector_init_with_conn(struct drm_device *dev, struct drm_connec
->  	if (ret)
->  		goto connector_fail;
->  
-> +	drm_writeback_connector_helper_add(wb_connector, wb_funcs);
->  	INIT_LIST_HEAD(&wb_connector->job_queue);
->  	spin_lock_init(&wb_connector->job_lock);
->  
-> @@ -527,13 +540,15 @@ int drm_writeback_set_fb(struct drm_connector_state *conn_state,
->  
->  int drm_writeback_prepare_job(struct drm_writeback_job *job)
->  {
-> -	struct drm_writeback_connector *connector = job->connector;
-> +	struct drm_writeback_connector *wb_connector = job->connector;
-> +	struct drm_connector *connector =
-> +		drm_connector_from_writeback(wb_connector);
->  	const struct drm_connector_helper_funcs *funcs =
-> -		connector->base.helper_private;
-> +		connector->helper_private;
->  	int ret;
->  
->  	if (funcs->prepare_writeback_job) {
-> -		ret = funcs->prepare_writeback_job(connector, job);
-> +		ret = funcs->prepare_writeback_job(wb_connector, job);
->  		if (ret < 0)
->  			return ret;
->  	}
-> @@ -579,12 +594,14 @@ EXPORT_SYMBOL(drm_writeback_queue_job);
->  
->  void drm_writeback_cleanup_job(struct drm_writeback_job *job)
->  {
-> -	struct drm_writeback_connector *connector = job->connector;
-> +	struct drm_writeback_connector *wb_connector = job->connector;
-> +	struct drm_connector *connector =
-> +		drm_connector_from_writeback(wb_connector);
->  	const struct drm_connector_helper_funcs *funcs =
-> -		connector->base.helper_private;
-> +		connector->helper_private;
->  
->  	if (job->prepared && funcs->cleanup_writeback_job)
-> -		funcs->cleanup_writeback_job(connector, job);
-> +		funcs->cleanup_writeback_job(wb_connector, job);
->  
->  	if (job->fb)
->  		drm_framebuffer_put(job->fb);
-> @@ -665,9 +682,11 @@ EXPORT_SYMBOL(drm_writeback_signal_completion);
->  struct dma_fence *
->  drm_writeback_get_out_fence(struct drm_writeback_connector *wb_connector)
->  {
-> +	struct drm_connector *connector =
-> +		drm_connector_from_writeback(wb_connector);
->  	struct dma_fence *fence;
->  
-> -	if (WARN_ON(wb_connector->base.connector_type !=
-> +	if (WARN_ON(connector->connector_type !=
->  		    DRM_MODE_CONNECTOR_WRITEBACK))
->  		return NULL;
->  
+> @@ -221,6 +269,7 @@ static const struct drm_connector_helper_funcs conn_helper_funcs = {
+>  	.get_writeback_connector = intel_get_writeback_connector,
+>  	.get_modes = intel_writeback_get_modes,
+>  	.mode_valid = intel_writeback_mode_valid,
+> +	.atomic_check = intel_writeback_atomic_check,
+>  	.prepare_writeback_job = intel_writeback_prepare_job,
+>  	.cleanup_writeback_job = intel_writeback_cleanup_job,
+>  };
 > -- 
 > 2.34.1
 > 
