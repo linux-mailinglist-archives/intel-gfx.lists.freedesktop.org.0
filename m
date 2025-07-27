@@ -2,79 +2,120 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9089DB13B0B
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 15:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B3A1B13010
+	for <lists+intel-gfx@lfdr.de>; Sun, 27 Jul 2025 17:33:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC62D10E4FE;
-	Mon, 28 Jul 2025 13:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4F6A10E2E2;
+	Sun, 27 Jul 2025 15:33:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nss/H2e9";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="UbFmqgNb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A77D210E43E;
- Fri, 25 Jul 2025 07:27:37 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-4550709f2c1so14463045e9.3; 
- Fri, 25 Jul 2025 00:27:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753428456; x=1754033256; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=6QL8IFabAlNq2YUnjd0j76KbVt8/qh8cFRe9/l7opeg=;
- b=Nss/H2e9W7IEEkQysx+fRjmCLvPMdlWano/zLP3WAPzFcjqf5E1L6M6SL+2XhnFg8q
- hsihOAYmuFspFe9s8tcB2OSjIezVRDGDNUYMMGTBU0KzRtbKu8rFwMJMxvqUz1oyCptv
- 9kLmGy2jk2fwxIs1Oiw5RIJIvt7Y+Xovxsh1/Xr9qhtfB6jtaWoeVzeYhCgrbhbGohKj
- eJTXNHbq1+Dg1SgqSIbHKq1OsiyvgnTi5nlUBobCK1NOP0jvP08K0b+UBqE7q8rnmbQQ
- NE/sS8BQE9zw8vneF0DuJNpR1QJBNQzNmgfB2hZFJ/z83GBCeJQaqfXV4ThGFxKWOHd6
- zZSg==
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5B6F10E196
+ for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:33:22 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56R8qo9o004385
+ for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:33:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=dh/cKerYP538krae+Lx4PtgG
+ sbnWM7OFv3/FQBKxxwg=; b=UbFmqgNb7Vr558Ukim6kCbyHfgYlTqrUF27cuxwe
+ hvmDIvPYmSr97Qlve4ix20LV7O/WdJXMTjWo3zN2nEdoYFpudvG86+/XmoE2G6m9
+ wmtLU3UsbdO5ynwDxK9Kz6zwBQUz0JutDtThgV8/1LNTwaRJccy1HU/0MQIAdjT9
+ rYkLa5sCxS4Y+tIbw5Mw+JOu3LTvoVy6MUPu4I8T7XbbFZL0bKA1iVyhPhQp88Cn
+ VCm/0BZ76bDcw+sOcUl0LidQbEuEAcMgikmXW4lTVOzTYfurFXJKmiIoGKC4lFZz
+ orDb/cl9GE3cLSxEoRJyRFof3zH9BKxYkaO8DGC5oLHMag==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qj6p8-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:33:22 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-7e32b9398e4so488878285a.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 08:33:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753428456; x=1754033256;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=6QL8IFabAlNq2YUnjd0j76KbVt8/qh8cFRe9/l7opeg=;
- b=XcwUQTjEdtV5xPYip8d4ODZQuGVY8YCyYnSQTKnkGK+fL/34NLoJr4e2In2zHcjG1l
- oDYkrVQoosIBYx5JliunQxDsDA2RG12er3/ti696mdTGEmmeW9IuHT0SM06I4JDsHerp
- 2g7kRhPS9GguTWQSYjTv0xOw5B/9Rm15OoiQJzUXojo6phaapsVQl25CuB+P1jonO3Sp
- w18A+AF7ivdjokGwAAxvCQC7j2sZAQRkkjekws3kqllQS8blfGQZRDpU/XbxEUXXCvy5
- oy9QXiOJJCo70fJh2YV5YN3amMeh/ZHP/YGyddm/AvnJ4ziQWL/QjFppjicCAeEWo8cK
- uguA==
+ d=1e100.net; s=20230601; t=1753630401; x=1754235201;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dh/cKerYP538krae+Lx4PtgGsbnWM7OFv3/FQBKxxwg=;
+ b=AQvQYQsbCbydltyQ/cJ2TztRVcSTQr3ggHWlxMZrM0Py1IrUr26qTXQNL/Vo4wppEX
+ PiIwMxZsEcwaJ/vUE3IFOebBYGyvnsXOBOAr4N0yx0jvROv96tzAqWuM1e70PV5DgWVM
+ Bt9lflf6MTP8/5OA2LvX1w02C2dkYCFnShyXuvLkxgH3uHHt6EuHoYwI1kJFBIfEwdWj
+ ea84DvuIry0XUdfZYoebd5yRwt3lN+r7y1jFRy/oclEe3mF6Dr1/GVXVvkF5W3mK+lE0
+ pUJ6TMqDTxBZ5wzHoq2YCl+Jh9u7S3k2knZQAbPxFVLbiB/0dtC4KlS+UiN2XQabMYux
+ cr+A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX6i+K2eoE0FMj/6ly52/bYzcsktecC7qUlffxpn0SS5Lm6Qtl6cxd2UTlwfvzQVsQ/Y2gnUJATMAw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YylJLhOTdyd4Y8AMyzRiPJmt+Nl6W7tzUkEXDnQtJgwtU7j9P1c
- nxB5Dd2HiiKpAxvQvaOeDmEfjH0vcE8NKkX8CH69Wy5ARnbisEe0/U50ZazHdQ==
-X-Gm-Gg: ASbGncsaqFKrFnd2M5KlVWkMCl5+W6ie7ETSR0p8uw5pB9BFX2pYxXuxa7iI13zquzw
- zdwbZU26gb690oEDao1fcMVFbSodgINFCxvfQEr1+cYIdImnvzcKVt5Cv0wmJTt3oqI8MmFNtwL
- jV6Am1RqoKa8TBTDuleiPU2HknjwxmZH5ly6yn5YevAbSFnrNBNEzPxUaw7Kyf0XUALEFgC2BM7
- 3E+luzqA8MmemdjeowKh5uP6qhpmUsnsJefOpnyaT4JIUr+mDzjG40ZfYoe6xo2CvaPGHXn7D/6
- /3ueXJh0r4qtWPT7Ga4QQrv4HHnjiZTrD3jF1aWj7w9bZg5uWo3nCfE4KF9r38YVCjYg1uzRPZg
- +PNr8bb71YnbXrv5IW2YJhgVOwwkU5Oy2
-X-Google-Smtp-Source: AGHT+IHXUqI3/O2tykas7YCqb0hJEiPruqG27l3QuNQZxuNeJkfBrL0rNt4o7YlL5rbuFTNvpq5rEg==
-X-Received: by 2002:a05:600c:37c4:b0:455:ed0f:e8ec with SMTP id
- 5b1f17b1804b1-45877447987mr4301385e9.9.1753428455491; 
- Fri, 25 Jul 2025 00:27:35 -0700 (PDT)
-Received: from fedora ([193.77.86.199]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3b76fc7885esm4227301f8f.35.2025.07.25.00.27.34
+ AJvYcCU3Mjh/cJEJ/pXtRxBJMaC9jFJYjkmwxV9T7o3D3IuOdjVkYUNay7a472GkcXELDN5chx4Kr7Q3G3Y=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzKLyi15i8MZzWxs0H6qy1jCSTKp+p6vgcK+1ZSi7T54NgXey3r
+ A5RxK9J01RtlVHqAhJgnw1jcVG9xGXAA09wcLL2gUnL7WgdLSuXRVoiIhQ/3LV0WYi7RcWBtr2a
+ iNAi8RHJabf9muvYq07eyrTdAst5vt4bBX8Y3a2vdfErkl2aSRUGiJHp0V+lyFbgfzDHWEhQ=
+X-Gm-Gg: ASbGnct+otoSZ9p7h0QO38xSHvuZmle2YZDavS7OGYMkndQwRYNuSHOCXMf3neucPhL
+ DzjE/bsuhFx6zHYU4vmYWDOkDzYRnvzvVGTcMCm5QFwou5Rbja/wQ3SxAcTFkXqqghMk0SDlD/O
+ 5F08/+OPe6tcIQOOSkHiM24a/7dcJAgzkBc6s3i0Sbd/EmpHTGD6qb/5R4RqMu4Rt3IoCfIQ76c
+ VRy36bUO6B36ZlwHqEV3OdNLNrTBe2+keW4OQdQZxTFmdO3D5ZxCKz+kYGjPSX+UlCVrvQlYCxD
+ GApATRHpJ1e9N03rO3hgOhHBePyj/MYSxRFsSdK2In0PGXBPjsEcQSm7ybnZbS957UcwufNpSHV
+ /MLSqLnuAHXdYW6trMGNfOx0uRRk5ech37i9AplUOaykqkDmmOprn
+X-Received: by 2002:a05:620a:191f:b0:7e0:2c05:6ba1 with SMTP id
+ af79cd13be357-7e63bcb5381mr1167395185a.0.1753630400579; 
+ Sun, 27 Jul 2025 08:33:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFKIDm3CaPdVj5Q6o9fA3RaIhO750yOPHcxLXcttC0WMEHyiDfIsCVflhSSN7Ccb2+bcGZQug==
+X-Received: by 2002:a05:620a:191f:b0:7e0:2c05:6ba1 with SMTP id
+ af79cd13be357-7e63bcb5381mr1167391985a.0.1753630400145; 
+ Sun, 27 Jul 2025 08:33:20 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55b6317b8e1sm868194e87.44.2025.07.27.08.33.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 25 Jul 2025 00:27:34 -0700 (PDT)
-From: Uros Bizjak <ubizjak@gmail.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Uros Bizjak <ubizjak@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH] drm/i915/active: Use try_cmpxchg64() in __active_lookup()
-Date: Fri, 25 Jul 2025 09:26:42 +0200
-Message-ID: <20250725072727.68486-1-ubizjak@gmail.com>
-X-Mailer: git-send-email 2.50.1
+ Sun, 27 Jul 2025 08:33:17 -0700 (PDT)
+Date: Sun, 27 Jul 2025 18:33:14 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Subject: Re: [PATCH 01/28] drm/writeback: Add function that takes
+ preallocated connector
+Message-ID: <5qawf2olp7m2opwnotrzrvx7563dyqw6i3pkqzrzsqtn4l3vyf@4q5tisgxqpxf>
+References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
+ <20250725050409.2687242-2-suraj.kandpal@intel.com>
+ <tglzdolw5nxc7tbscpfjcvx5jiydbghvouws7fl7xqryh7q5c4@klo5yncolqah>
+ <DM3PPF208195D8DB4B4B18D41EAB4FC3CBAE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 28 Jul 2025 13:12:32 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM3PPF208195D8DB4B4B18D41EAB4FC3CBAE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDEzNCBTYWx0ZWRfX0B5GozlMgDOc
+ gSnCtM9dUe5Eurwz5/hKkxCR5X3DQBrEt4Vt7RXtrcV88+FKA8Wj6jUBuflgI3+SvSVC66/WJgP
+ fKrqndRuImNEDTmWGNWDmkwhaLQq0IHNEswNMaUeKtOO4CODEHCyiWuVAxTfZ/oTnn74t5xAo8c
+ M4aGnhwGRtKo4EnbcdtDY50G7mUbMAO0olem+SmHWTEKdNchwnqLpqSILkIc2Esl9qnP4BHYlsV
+ 5H/J12OL+p8FciNZ77sXiQ7d45GpTMS80ipxL7YPmwK+6yoq0py9Bitn3Nm5bo2bzht14eqmf7D
+ mSte/6oEslQ2RzXq9QBNii+6ycW3IAM3UzIhANS0PagKUce+DESKlIq00qHXAOxoZYb8+p+/Q4T
+ EjFNmEJySA4+Ma/8klFgSGvOhGYKnSVvnrn/gCSRnw5g0LqTLpEllmCjqSq0gL4NtmDyGpcc
+X-Proofpoint-ORIG-GUID: hLO5sKRF7dYvi1Ao3zVyVXkctRf--bfa
+X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=688646c2 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8
+ a=QmJApBX6WoVuYgKOPdwA:9 a=CjuIK1q_8ugA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-GUID: hLO5sKRF7dYvi1Ao3zVyVXkctRf--bfa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-27_05,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507270134
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,51 +131,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace this pattern in __active_lookup():
+On Sat, Jul 26, 2025 at 04:41:29PM +0000, Kandpal, Suraj wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Sent: Saturday, July 26, 2025 5:46 PM
+> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
+> > Cc: dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; intel-
+> > gfx@lists.freedesktop.org; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>;
+> > Murthy, Arun R <arun.r.murthy@intel.com>; Shankar, Uma
+> > <uma.shankar@intel.com>
+> > Subject: Re: [PATCH 01/28] drm/writeback: Add function that takes
+> > preallocated connector
+> > 
+> > On Fri, Jul 25, 2025 at 10:33:42AM +0530, Suraj Kandpal wrote:
+> > > Write a function that takes a preallocated drm_connector instead of
+> > > using the one allocated inside the drm writeback connector init
+> > > function.
+> > 
+> > Please start your commit message with describing the problem.
+> > 
+> > >
+> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_writeback.c | 76
+> > +++++++++++++++++++++++++++++++++
+> > >  include/drm/drm_writeback.h     |  7 +++
+> > >  2 files changed, 83 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_writeback.c
+> > > b/drivers/gpu/drm/drm_writeback.c index 95b8a2e4bda6..fa58eb0dc7bf
+> > > 100644
+> > > --- a/drivers/gpu/drm/drm_writeback.c
+> > > +++ b/drivers/gpu/drm/drm_writeback.c
+> > > @@ -416,6 +416,82 @@ int drmm_writeback_connector_init(struct
+> > > drm_device *dev,  }  EXPORT_SYMBOL(drmm_writeback_connector_init);
+> > >
+> > > +/*
+> > > + * drm_writeback_connector_init_with_conn - Initialize a writeback
+> > > +connector with
+> > > + * custom encoder and connector
+> > > + *
+> > > + * @enc: handle to the already initialized drm encoder
+> > > + * @con_funcs: Connector funcs vtable
+> > > + * @formats: Array of supported pixel formats for the writeback
+> > > +engine
+> > > + * @n_formats: Length of the formats array
+> > > + *
+> > > + * This function assumes that the drm_writeback_connector's encoder
+> > > +has already been
+> > > + * created and initialized before invoking this function.
+> > > + *
+> > > + * In addition, this function also assumes that callers of this API
+> > > +will manage
+> > > + * assigning the encoder helper functions, possible_crtcs and any
+> > > +other encoder
+> > > + * specific operation.
+> > 
+> > Why?
+> 
+> The problem would that not every want can have a drm_connector embedded inside the drm_writeback_connector
+> We have a restraint where all connectors need to be a intel connector and since the we are not allowed to make connector 
+> Inside the drm_connector into a pointer this gives a good alternative.
 
-    cmpxchg64(*ptr, old, new) == old
+All of this needs to go to the commit message.
 
-... with the simpler and faster:
+> 
+> > 
+> > > + *
+> > > + * Drivers should always use this function instead of
+> > > +drm_connector_init() to
+> > > + * set up writeback connectors if they want to manage themselves the
+> > > +lifetime of the
+> > > + * associated encoder.
+> > > + *
+> > > + * Returns: 0 on success, or a negative error code  */ int
+> > > +drm_writeback_connector_init_with_conn(struct drm_device *dev, struct
+> > drm_connector *connector,
+> > > +				       struct drm_writeback_connector
+> > *wb_connector,
+> > > +				       struct drm_encoder *enc,
+> > > +				       const struct drm_connector_funcs
+> > *con_funcs,
+> > > +				       const u32 *formats, int n_formats) {
+> > > +	struct drm_property_blob *blob;
+> > > +	struct drm_mode_config *config = &dev->mode_config;
+> > > +	int ret = create_writeback_properties(dev);
+> > > +
+> > > +	if (ret != 0)
+> > > +		return ret;
+> > > +
+> > > +	blob = drm_property_create_blob(dev, n_formats * sizeof(*formats),
+> > > +					formats);
+> > > +	if (IS_ERR(blob))
+> > > +		return PTR_ERR(blob);
+> > > +
+> > > +	connector->interlace_allowed = 0;
+> > 
+> > This function contans a lot of copy-paste from
+> > __drm_writeback_connector_init(), which is obviously a no-go.
+> 
+> The whole point is the minore difference inbetween then and how it derives a lot of things from the
+> drm_writeback_connector because of which this looks like a similar function but is essentially different.
 
-    try_cmpxchg64(*ptr, &old, new)
+It surely is. This means that you need to extract common code rather
+than duplicate it.
 
-The x86 CMPXCHG instruction returns success in the ZF flag,
-so this change saves a compare after the CMPXCHG.
 
-The patch also improves the explanation of what the code really
-does. cmpxchg64() will *succeed* for the winner of the race and
-try_cmpxchg64() nicely documents this fact.
-
-No functional change intended.
-
-Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
----
- drivers/gpu/drm/i915/i915_active.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 0dbc4e289300..6b0c1162505a 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -257,10 +257,9 @@ static struct active_node *__active_lookup(struct i915_active *ref, u64 idx)
- 		 * claimed the cache and we know that is does not match our
- 		 * idx. If, and only if, the timeline is currently zero is it
- 		 * worth competing to claim it atomically for ourselves (for
--		 * only the winner of that race will cmpxchg return the old
--		 * value of 0).
-+		 * only the winner of that race will cmpxchg succeed).
- 		 */
--		if (!cached && !cmpxchg64(&it->timeline, 0, idx))
-+		if (!cached && try_cmpxchg64(&it->timeline, &cached, idx))
- 			return it;
- 	}
- 
 -- 
-2.50.1
-
+With best wishes
+Dmitry
