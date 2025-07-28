@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BB5B13A07
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 13:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61228B13A92
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 14:35:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE63110E4E7;
-	Mon, 28 Jul 2025 11:44:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED1F10E167;
+	Mon, 28 Jul 2025 12:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EF73eKL1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFvQlO35";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00BE010E4E1
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 11:44:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F186F10E155;
+ Mon, 28 Jul 2025 12:35:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753703088; x=1785239088;
+ t=1753706113; x=1785242113;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Fxw/pUEDaGj4mfFdhsow/Oia05gNbesuqSp2sogLdmc=;
- b=EF73eKL1EUNxNrVBvBxH4qXWQkOzu40a0GroyWdNZMkQ1pKpjXOpMPx2
- FE6OE/tCbR1wHx8KffM/O/fiD/rZFlBYjZ/UQiM6/5ygBFOBrkBJL/SI0
- 6QxR3Cvw7jiNqLlEYWdyUMQyQBaTPKRn8MqMJotRb6cSDFi5kLu+uwX1e
- /QNHaNCnfVLf23ySoETOgCrEMku6SmGI2tmV3Ngd2p6pcyMvlWddQui3M
- WdxtoDwPD4razz4ln9vxOCvtf1LqAMZv5iewPIgn9vQHz8DdsF4VKh2d5
- RSdpIe+NDYpYljZ04wP+vYFF0o0dk3cp/poioxtGyfG43FAUFbRXxgQ7/ g==;
-X-CSE-ConnectionGUID: 6OMITQR6TvqXnpvWPrqXBQ==
-X-CSE-MsgGUID: 0/Zs96YzRmOJT2bHroAYjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="55026824"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="55026824"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 04:44:48 -0700
-X-CSE-ConnectionGUID: I7RX+56VRn+DxS9tv0AZIQ==
-X-CSE-MsgGUID: APr1ogqzR0Wq4kJUT4O1cg==
+ bh=jPMj3pq3ufbOfk1JQGmkbQCBCG2RylSbUJhTpiiCCQA=;
+ b=TFvQlO35HC9L//UK4QD6tokHp8Wxy0xunYZMXD+lx7JQO6IPkvAAo4o3
+ NzhAQPvww2LFR284x+7ZcH2rPOVM64lmfnlbxV0Zk3Lq7qSJQTK7Y48hw
+ uNEROCTcmvwZSxhQm/tgqj8iGAqyDf5dPJUcQZYKtBgol9My8SJvMwFPp
+ ZdixY4PPurP8CsiR3wKDna5tCl1Z6I06P8mEkAecdnpkNfxzMfYd1BxPV
+ LbNO9LY0maYmDQPponCNUMPQmv6CoY/vzWo1soMgx+QWQpSKe6zm3I8gF
+ ShbFRasqWvYFFiMykBYNWYG60wIXgLDhYZxyKTl0QL0DR7X2ZioquZo45 g==;
+X-CSE-ConnectionGUID: /CYsZAxFRtS4AbEf+ilcjw==
+X-CSE-MsgGUID: BHAk777cR9+I/PmmKJdexA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="55159621"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="55159621"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2025 05:35:12 -0700
+X-CSE-ConnectionGUID: 8iXV9oR+TtizHyoh3OEf+A==
+X-CSE-MsgGUID: HxdH0mStTPKtG4hsv/iLyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="167726569"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="161691672"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.225])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 04:44:46 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jul 2025 05:35:10 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com, Ruben Wauters <rubenru09@aol.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915: Fix selecting CONFIG_DRM_KUNIT_TEST in debug
- builds
-In-Reply-To: <aIKJq1spwgBWgxbn@ideak-desk>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 0/3] eDP Data Override
+In-Reply-To: <20250725061548.2704697-1-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250724090237.92040-1-imre.deak@intel.com>
- <aIJey5rLh_lBaEtu@intel.com>
- <954507fb83b5f83c7b8fb609fa84d0c7d8455fff.camel@aol.com>
- <aIKJq1spwgBWgxbn@ideak-desk>
-Date: Mon, 28 Jul 2025 14:44:42 +0300
-Message-ID: <c0d124c8f4a2799253f0b9402f42c6bfe39c396c@intel.com>
+References: <20250725061548.2704697-1-suraj.kandpal@intel.com>
+Date: Mon, 28 Jul 2025 15:35:06 +0300
+Message-ID: <a4eb268c7012b2f6ef9fec713550052399f19f97@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,49 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 24 Jul 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Jul 24, 2025 at 05:31:28PM +0100, Ruben Wauters wrote:
->> On Thu, 2025-07-24 at 12:26 -0400, Rodrigo Vivi wrote:
->> > On Thu, Jul 24, 2025 at 12:02:37PM +0300, Imre Deak wrote:
->> > > Selecting an option which depends on other options only works if
->> > > the
->> > > dependencies are guaranteed to be selected (as these dependencies
->> > > will
->> > > not be automatically selected). CONFIG_DRM_KUNIT_TEST depends on
->> > > DRM,
->> > > MMU and KUNIT the first two of which are guaranteed to be selected
->> > > for
->> > > i915, but the last one is not. Hence, selecting
->> > > CONFIG_DRM_KUNIT_TEST in
->> > > i915 debug builds may result in CONFIG_DRM_KUNIT_TEST being
->> > > selected
->> > > without the CONFIG_KUNIT dependency being selected. This causes at
->> > > least
->> > > the following compile error:
->> > > 
->> my bad, I guess I fundamentally misunderstood how the Kconfig system
->> worked, and assumed that if you selected one all the dependencies were
->> automatically selected. I guess this passed me by in testing cause I
->> already had CONFIG_KUNIT selected and didn't think to de-select it,
->> apologies.
->
-> IME, it's easy to get the Kconfig dependency semantics wrong. Unless I
-> get it wrong, 'depends on' will never select the options listed after
-> it, it only determines if its parent option is visible during manual
-> selection (and similarly if it's valid to select the same parent option
-> from an other option automatically with 'select'). Maybe 'depends on' is
-> a misnomer and 'visible if' or 'available if' would better describe its
-> purpose.
+On Fri, 25 Jul 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> When using link rates 2.43 and 6.75 causes a strong noise for WIFI
+> bands. Its recommended we use 2.7 and 8.1 Gbps instead.
+> The solution proposed was a static vbt field that provides us with a
+> mask of rates which need to be skipped in favor of the next higher link
+> rate.
 
-The problem with "select" is that it will force the symbol to a value
-without meeting the dependencies recursively the same way "depends on"
-does.
+We require patch series versions in the subject and changelogs in the
+patches. There are at least three series with subject "eDP Data
+Override".
 
-Per kconfig-language.rst, "In general use select only for non-visible
-symbols (no prompts anywhere) and for symbols with no dependencies."
+Look, this is not new stuff. Get it right going forward. Please ask if
+there's any confusion about this, or if you need help.
+
 
 BR,
 Jani.
+
+>
+> HSD:14022096069
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+> Suraj Kandpal (3):
+>   drm/i915/vbt: Add eDP Data Overrride field in VBT
+>   drm/i915/bios: Add function to check if edp data override is needed
+>   drm/i915/edp: eDP Data Overrride
+>
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 62 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 19 ++++++
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 +++++
+>  4 files changed, 98 insertions(+), 1 deletion(-)
 
 -- 
 Jani Nikula, Intel
