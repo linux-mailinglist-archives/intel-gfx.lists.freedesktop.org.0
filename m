@@ -2,120 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F69CB13032
-	for <lists+intel-gfx@lfdr.de>; Sun, 27 Jul 2025 17:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28EBFB13397
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 06:14:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E3310E30C;
-	Sun, 27 Jul 2025 15:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FEE510E03B;
+	Mon, 28 Jul 2025 04:14:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="pngGWWT4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BDTxZ2gb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECA810E308
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:55:13 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56REP06F031953
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:55:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=EsrEgl39mei4/TuBE/dtIwTk
- oO2ifiwHmRgcyBvsWBg=; b=pngGWWT4Wj5yQvXPLzKXuW0oMs6hxuUt0FRGlR/X
- WF29Kr44N8DU5Zc3aVBNdr7LDRYL8Hu9q2URn+/olhoPTgCM8W9ZoAeRz6MmuUHN
- f44d3OVhUv8sY3TTQvw1ZDPd6eRA6vAXt+O3HSn04Lr50HW105t4LfrAiAkfpjui
- +jjMc08lxVsJbdQSZYg8SS2binzut2mmvi3YWKI0x0fYsiJV0H6yPk1dwb0kkGss
- WCKS6MCDmd/xuD5d7QV7eR2VR4uT8uWozVaZw6vtDl9srYqH0lcQgf4Las0x7V0T
- lt+siPETeFHt4txfV7Cqo75i+qf0MSBPE/gk3nzA5WaHrw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484pbkta17-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 15:55:12 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-7073a5f61a6so16447956d6.0
- for <intel-gfx@lists.freedesktop.org>; Sun, 27 Jul 2025 08:55:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753631711; x=1754236511;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=EsrEgl39mei4/TuBE/dtIwTkoO2ifiwHmRgcyBvsWBg=;
- b=Sd5YHjeuaJKVJ4MYGrHPcc1F8Zb/viwNOYEyOmK3Qaba6O2Bshw1aGY5JMTQ37J7ir
- LaGnyL7QCkj3JA3ooK71K2ebkm0Nn33c3psbPNJ8qr8S92tSAAr/0hzP2jSFGQ03QgxS
- 2E5KWEfzvjNVSQjyNuz8M6oRez+THDMNEYpXIvM0AkKxa/rJ2rZG1QQ4yjEy724TwaY/
- 6Y9D8Y9JM/ksjZFJdNh9wRQCsnHpnxyUTcnN9l8cbDOYGqbK3v5gZpqsxow+ZjlU9qjV
- uPPipMfEqzeb414o+CwabU+VboVQjXDET+xNeKcqrEJwYME8AbltlkL5BgIchu/Dlz3k
- x4Yw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUwGJdW4jNwW12fOwcAQeOopl1Q0MbhH5wF3D3TO/4Wbi1tYfebLWVaTeNtKM5qXd4RLDZW5m3oM9o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxTL935zqpenJGSTs/KHMqH0+CeLUR7COlhY8t83CK/YGYGezXd
- LJe9QbIxdQixvL7Pw17s1G+/ab+hb1RELRq4f2eULorMiIhKJK4TXibDE1zgW58JEwqdjGrwMZO
- y1pWsvI/+M1bn1uRlbRMDU5dud1IiWQKI37O4t2u9xEMvqN3luIMEYXoxJyhuQ+UQEq7SPeU=
-X-Gm-Gg: ASbGncufRw/qg2KvoJWVf6KnOCr4fPWsxqz9e07j34kkfvdEBzCHzhKFApvVv0ha8B1
- FjgbXfnUFqkGBGWVsmjEjJwvhD8DGKxlLA4HXXwDgHN6kDMWSRvs/hvTkouiJfNy0jEv0n/uz6Q
- FdJKS84BqeqrItmFje/nXONZ72G3WwKjxxgSPPLLgdG2BYIXSpTGqeCLnXXNdD+Ric1Q3veasJR
- BMgZgdDGL5THUUMptyouHKCBlummjm+GhIRmO+2GRtlSt5Xy9rITjTA9KEVGa4gjt5zqM8j0SIW
- oZAx4H8wlc+vIHVToGAD6eEd0gbCWLCObBREPlLN8wmVOzwMrz2AAD5LfVEV3JwkFzjJxwhIILj
- sZwf1d0d7Un1iX+NF7opdtCnuYtYGg+Z0Z0PkgjTNgER1bfhOC4KO
-X-Received: by 2002:a05:6214:c8f:b0:707:3eec:9d90 with SMTP id
- 6a1803df08f44-7073eecb410mr26188776d6.29.1753631711255; 
- Sun, 27 Jul 2025 08:55:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFtcfR5HCU7ZshJHg+xEGg2Ot5rBNCoukKiPTXMvDqwtwnKOTAJaeKv0a1uhe16ww038CEo5Q==
-X-Received: by 2002:a05:6214:c8f:b0:707:3eec:9d90 with SMTP id
- 6a1803df08f44-7073eecb410mr26188506d6.29.1753631710724; 
- Sun, 27 Jul 2025 08:55:10 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-331f4271e59sm7897081fa.72.2025.07.27.08.55.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 27 Jul 2025 08:55:09 -0700 (PDT)
-Date: Sun, 27 Jul 2025 18:55:07 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH 17/28] drm/i915/writeback: Define function to destroy
- writeback connector
-Message-ID: <j2w4elkctkh22cycelc3eclknwzz47axmqjqwpqwl2binzns6d@w2icvpyy2dst>
-References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
- <20250725050409.2687242-18-suraj.kandpal@intel.com>
- <3paeal7ew2pjo6h23rr4t7fqz33avbyxuync5cxnxlh7w4xxr6@ja77buhqtlva>
- <DM3PPF208195D8D5AB9EBE34ED037888D2BE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E30E310E033;
+ Mon, 28 Jul 2025 04:14:11 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id B60F4A5272E;
+ Mon, 28 Jul 2025 04:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00423C4CEE7;
+ Mon, 28 Jul 2025 04:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1753676050;
+ bh=icdK9UZhHwudcxk2XYqruHbGN8wX/pzhgMNyjCP2DlE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=BDTxZ2gbrhwQYwhsJR96QEIIioWeagwFcV9QjzBq9U+kgbHvy5wa8/70A+BeYsVci
+ sAa2vOduXK6res64vp9Z7hFvUe4gWpWSyrllDXhf5hpMdDPkn3/Qkn7pEGwAJofJCV
+ Ki+PBI2Br8XuWhPpt9UA2+6GC59WpZxnOK9LIqyuqyKTJ7fONV1lsJLmatyhSMtUsT
+ +vjXf9hxJDRiuHZiXarAptucyYboZev++U8HQAZKDuIDnytCbm0VE9QxL623P6fZS5
+ zwaYxm3NnKNd6ws4OHwEw3Wqk3KsvhXKGriB/HXVltWeP0KIrRT1B8LVvUJ1+m5NX3
+ OT9uyMxKv0l4g==
+Content-Type: multipart/mixed; boundary="------------8PspsMq80uB7NlP91NHAb0Yt"
+Message-ID: <f3f779e3-e269-4ac9-9bed-042859d98a83@kernel.org>
+Date: Mon, 28 Jul 2025 13:11:38 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM3PPF208195D8D5AB9EBE34ED037888D2BE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-X-Authority-Analysis: v=2.4 cv=LsaSymdc c=1 sm=1 tr=0 ts=68864be0 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8
- a=P4PJ7VdoEiew2rMEjHIA:9 a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
- a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDEzOSBTYWx0ZWRfX0mAZjd87MTp2
- SSqdSA3jwzYdH30WEcRBlZQx0uysBUp2skssdDq/HyFrCzIpYOcypfOrOL1X3Y4+WjcgUUglQxI
- i+I+OgF7sLHNS7ME17PlgZ/RrTafjCtTxPGmbVksLC4BnGtwjZVCZ2/GQuQAMsMefuF5WlprF7i
- ySNL7kpnIQ4H2EuxpRgfp2kzpKo6rBInrkkOkBXlUFc76Xk/2+t1WWlcA7xZQ4sKTsRXLga7DPZ
- dEs+u7KVeduALJkOah7Tnj0+z30s+gQAMgkRadysh1YNLEpOlMpPmdvafTrgR58miJEJM1a4EOq
- 0ul5s5NEpGoh7ojJydNMwPzlm6vihJWjUu4gCr1MJgYqxL7+rJsh5YjF59ijCtz73zZauJUy5DU
- 2Sm88SkJ9frX0coQ3JSyx+w872BQ+oLaw4Klo03AELulzucqVLXtUS6TYTCUOWSUw26/KmgU
-X-Proofpoint-ORIG-GUID: gTL6mIXwck09clYPswPFUemnmn8TJJDW
-X-Proofpoint-GUID: gTL6mIXwck09clYPswPFUemnmn8TJJDW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-27_05,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=999 spamscore=0 phishscore=0 suspectscore=0
- impostorscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 mlxscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507270139
+User-Agent: Mozilla Thunderbird
+Subject: Re: Regression on linux-next (next-20250708)
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-ide@vger.kernel.org, mika.westerberg@intel.com,
+ anshuman.gupta@intel.com, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
+ lucas.demarchi@intel.com
+References: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <07563042-6576-41cd-9a95-de83cfc95de1@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,78 +63,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jul 26, 2025 at 04:29:54PM +0000, Kandpal, Suraj wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > Sent: Saturday, July 26, 2025 6:11 PM
-> > To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Cc: dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; intel-
-> > gfx@lists.freedesktop.org; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>;
-> > Murthy, Arun R <arun.r.murthy@intel.com>; Shankar, Uma
-> > <uma.shankar@intel.com>
-> > Subject: Re: [PATCH 17/28] drm/i915/writeback: Define function to destroy
-> > writeback connector
-> > 
-> > On Fri, Jul 25, 2025 at 10:33:58AM +0530, Suraj Kandpal wrote:
-> > > Define function to destroy the drm_writbeack_connector and
-> > > drm_connector associated with it.
-> > >
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_writeback.c | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c
-> > > b/drivers/gpu/drm/i915/display/intel_writeback.c
-> > > index def33191a89e..9b2432d86d35 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_writeback.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-> > > @@ -180,6 +180,12 @@ intel_writeback_detect(struct drm_connector
-> > *connector,
-> > >  	return connector_status_connected;
-> > >  }
-> > >
-> > > +static void intel_writeback_connector_destroy(struct drm_connector
-> > > +*connector) {
-> > > +	drm_connector_cleanup(connector);
-> > > +	kfree(connector);
-> > > +}
-> > 
-> > Nice example of what I've written in my response to the cover letter:
-> > without this commit we have a memory leak here, don't we?
-> 
-> No we really don't none of this actually takes affect until the connector init is called which is way later 
-> So to answer your question this won't really cause a crash and is very bisectable
+This is a multi-part message in MIME format.
+--------------8PspsMq80uB7NlP91NHAb0Yt
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Ack, thanks. Then it's a fine way to implement the callbacks.
+On 7/25/25 3:43 PM, Borah, Chaitanya Kumar wrote:
+> For some context in our kms_pm_rpm tests, we enable min_power policy for SATA
+> so that we can reach deep runtime power states and restore the original policy
+> after finishing. [5][6]
+> 
+> IIUC, the above change is based on spec and not something which can be
+> reverted. So as I see it, we have to drop this code path for external ports.
+> However I am not sure if we can achieve deep power states without enforcing it
+> through the sysfs entry.
+> 
+> Atleast for the basic-rte subtest, the test passes if we comment out the
+> functions controlling the SATA ports. We will need more testing to determine if
+> this approach work. Any thoughts on it?
+> 
+> Also, are there other ways to detect a port is external other than receiving
+> EOPNOTSUPP on the sysfs write?
 
-> 
-> Regards,
-> Suraj Kandpal
-> 
-> > 
-> > > +
-> > >  static struct drm_writeback_connector *
-> > > intel_get_writeback_connector(struct drm_connector *connector)  { @@
-> > > -208,6 +214,7 @@ const struct drm_connector_funcs conn_funcs = {
-> > >  	.fill_modes = drm_helper_probe_single_connector_modes,
-> > >  	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
-> > >  	.atomic_destroy_state =
-> > drm_atomic_helper_connector_destroy_state,
-> > > +	.destroy = intel_writeback_connector_destroy,
-> > >  };
-> > >
-> > >  static const struct drm_connector_helper_funcs conn_helper_funcs = {
-> > > --
-> > > 2.34.1
-> > >
-> > 
-> > --
-> > With best wishes
-> > Dmitry
+The attached patch adds the "link_power_management_supported" sysfs device
+attribute for drives connected to AHCI. Would that work for you ?
+
+diff --git a/drivers/ata/ata_piix.c b/drivers/ata/ata_piix.c
+index 229429ba5027..495fa096dd65 100644
+--- a/drivers/ata/ata_piix.c
++++ b/drivers/ata/ata_piix.c
+@@ -1089,6 +1089,7 @@ static struct ata_port_operations ich_pata_ops = {
+ };
+
+ static struct attribute *piix_sidpr_shost_attrs[] = {
++       &dev_attr_link_power_management_supported.attr,
+        &dev_attr_link_power_management_policy.attr,
+        NULL
+ };
+diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
+index b335fb7e5cb4..c79abdfcd7a9 100644
+--- a/drivers/ata/libahci.c
++++ b/drivers/ata/libahci.c
+@@ -111,6 +111,7 @@ static DEVICE_ATTR(em_buffer, S_IWUSR | S_IRUGO,
+ static DEVICE_ATTR(em_message_supported, S_IRUGO, ahci_show_em_supported, NULL);
+
+ static struct attribute *ahci_shost_attrs[] = {
++       &dev_attr_link_power_management_supported.attr,
+        &dev_attr_link_power_management_policy.attr,
+        &dev_attr_em_message_type.attr,
+        &dev_attr_em_message.attr,
+diff --git a/drivers/ata/libata-sata.c b/drivers/ata/libata-sata.c
+index 0708686ca58a..82a1a72e47bf 100644
+--- a/drivers/ata/libata-sata.c
++++ b/drivers/ata/libata-sata.c
+@@ -900,6 +900,18 @@ static const char *ata_lpm_policy_names[] = {
+        [ATA_LPM_MIN_POWER]             = "min_power",
+ };
+
++static ssize_t ata_scsi_lpm_supported_show(struct device *dev,
++                                struct device_attribute *attr, char *buf)
++{
++       struct Scsi_Host *shost = class_to_shost(dev);
++       struct ata_port *ap = ata_shost_to_port(shost);
++
++       return sysfs_emit(buf, "%d\n", !(ap->flags & ATA_FLAG_NO_LPM));
++}
++DEVICE_ATTR(link_power_management_supported, S_IRUGO,
++           ata_scsi_lpm_supported_show, NULL);
++EXPORT_SYMBOL_GPL(dev_attr_link_power_management_supported);
++
+ static ssize_t ata_scsi_lpm_store(struct device *device,
+                                  struct device_attribute *attr,
+                                  const char *buf, size_t count)
+diff --git a/include/linux/libata.h b/include/linux/libata.h
+index 1c0580627dbb..e9a6f37bd7f9 100644
+--- a/include/linux/libata.h
++++ b/include/linux/libata.h
+@@ -547,6 +547,7 @@ typedef void (*ata_postreset_fn_t)(struct ata_link *link,
+unsigned int *classes)
+
+ extern struct device_attribute dev_attr_unload_heads;
+ #ifdef CONFIG_SATA_HOST
++extern struct device_attribute dev_attr_link_power_management_supported;
+ extern struct device_attribute dev_attr_link_power_management_policy;
+ extern struct device_attribute dev_attr_ncq_prio_supported;
+ extern struct device_attribute dev_attr_ncq_prio_enable;
+
 
 -- 
-With best wishes
-Dmitry
+Damien Le Moal
+Western Digital Research
+--------------8PspsMq80uB7NlP91NHAb0Yt
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-ata-libata-sata-Add-link_power_management_supported-.patch"
+Content-Disposition: attachment;
+ filename*0="0001-ata-libata-sata-Add-link_power_management_supported-.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSBlOTkzN2Q4NmQzN2E2YzFhOTU4NGVmMjMyNjEzZDVhOGE1YTNiNmExIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBEYW1pZW4gTGUgTW9hbCA8ZGxlbW9hbEBrZXJuZWwu
+b3JnPgpEYXRlOiBNb24sIDI4IEp1bCAyMDI1IDEzOjA0OjI5ICswOTAwClN1YmplY3Q6IFtQ
+QVRDSF0gYXRhOiBsaWJhdGEtc2F0YTogQWRkIGxpbmtfcG93ZXJfbWFuYWdlbWVudF9zdXBw
+b3J0ZWQKIGF0dHJpYnV0ZQoKQSBwb3J0IGxpbmsgcG93ZXIgbWFuYWdlbWVudCBwb2xpY3kg
+Y2FuIGJlIGNvbnRyb2xsZWQgdXNpbmcgdGhlCmxpbmtfcG93ZXJfbWFuYWdlbWVudF9wb2xp
+Y3kgc3lzZnMgZGV2aWNlIGF0dHJpYnV0ZS4gSG93ZXZlciwgdGhpcwphdHRyaWJ1dGUgZXhp
+c3QgYWxzbyBmb3IgZGV2aWNlIGFuZCBwb3J0cyB0aGF0IGRvIG5vdCBzdXBwb3J0IExQTSBh
+bmQgaW4Kc3VjaCBjYXNlLCBhdHRlbXB0aW5nIHRvIGNoYW5nZSB0aGUgTFBNIHBvbGljeSB3
+aWxsIGZhaWwgd2l0aAotRU9QTk9UU1VQUC4KCkludHJvZHVjZSB0aGUgbmV3IHN5c2ZzIGxp
+bmtfcG93ZXJfbWFuYWdlbWVudF9zdXBwb3J0ZWQgZGV2aWNlIGF0dHJpYnV0ZQp0byBpbmRp
+Y2F0ZSB0byB0aGUgdXNlciBpZiBhIHBvcnQvZGV2aWNlIHN1cHBvcnRzIExQTSBhbmQgdGhl
+IGF0dHJpYnV0ZQpsaW5rX3Bvd2VyX21hbmFnZW1lbnRfcG9saWN5IGNhbiBiZSB1c2VkLgoK
+U2lnbmVkLW9mZi1ieTogRGFtaWVuIExlIE1vYWwgPGRsZW1vYWxAa2VybmVsLm9yZz4KLS0t
+CiBkcml2ZXJzL2F0YS9hdGFfcGlpeC5jICAgIHwgIDEgKwogZHJpdmVycy9hdGEvbGliYWhj
+aS5jICAgICB8ICAxICsKIGRyaXZlcnMvYXRhL2xpYmF0YS1zYXRhLmMgfCAxMiArKysrKysr
+KysrKysKIGluY2x1ZGUvbGludXgvbGliYXRhLmggICAgfCAgMSArCiA0IGZpbGVzIGNoYW5n
+ZWQsIDE1IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2F0YS9hdGFfcGlp
+eC5jIGIvZHJpdmVycy9hdGEvYXRhX3BpaXguYwppbmRleCAyMjk0MjliYTUwMjcuLjQ5NWZh
+MDk2ZGQ2NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEvYXRhX3BpaXguYworKysgYi9kcml2
+ZXJzL2F0YS9hdGFfcGlpeC5jCkBAIC0xMDg5LDYgKzEwODksNyBAQCBzdGF0aWMgc3RydWN0
+IGF0YV9wb3J0X29wZXJhdGlvbnMgaWNoX3BhdGFfb3BzID0gewogfTsKIAogc3RhdGljIHN0
+cnVjdCBhdHRyaWJ1dGUgKnBpaXhfc2lkcHJfc2hvc3RfYXR0cnNbXSA9IHsKKwkmZGV2X2F0
+dHJfbGlua19wb3dlcl9tYW5hZ2VtZW50X3N1cHBvcnRlZC5hdHRyLAogCSZkZXZfYXR0cl9s
+aW5rX3Bvd2VyX21hbmFnZW1lbnRfcG9saWN5LmF0dHIsCiAJTlVMTAogfTsKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvYXRhL2xpYmFoY2kuYyBiL2RyaXZlcnMvYXRhL2xpYmFoY2kuYwppbmRl
+eCBiMzM1ZmI3ZTVjYjQuLmM3OWFiZGZjZDdhOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEv
+bGliYWhjaS5jCisrKyBiL2RyaXZlcnMvYXRhL2xpYmFoY2kuYwpAQCAtMTExLDYgKzExMSw3
+IEBAIHN0YXRpYyBERVZJQ0VfQVRUUihlbV9idWZmZXIsIFNfSVdVU1IgfCBTX0lSVUdPLAog
+c3RhdGljIERFVklDRV9BVFRSKGVtX21lc3NhZ2Vfc3VwcG9ydGVkLCBTX0lSVUdPLCBhaGNp
+X3Nob3dfZW1fc3VwcG9ydGVkLCBOVUxMKTsKIAogc3RhdGljIHN0cnVjdCBhdHRyaWJ1dGUg
+KmFoY2lfc2hvc3RfYXR0cnNbXSA9IHsKKwkmZGV2X2F0dHJfbGlua19wb3dlcl9tYW5hZ2Vt
+ZW50X3N1cHBvcnRlZC5hdHRyLAogCSZkZXZfYXR0cl9saW5rX3Bvd2VyX21hbmFnZW1lbnRf
+cG9saWN5LmF0dHIsCiAJJmRldl9hdHRyX2VtX21lc3NhZ2VfdHlwZS5hdHRyLAogCSZkZXZf
+YXR0cl9lbV9tZXNzYWdlLmF0dHIsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2F0YS9saWJhdGEt
+c2F0YS5jIGIvZHJpdmVycy9hdGEvbGliYXRhLXNhdGEuYwppbmRleCAwNzA4Njg2Y2E1OGEu
+LjgyYTFhNzJlNDdiZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9hdGEvbGliYXRhLXNhdGEuYwor
+KysgYi9kcml2ZXJzL2F0YS9saWJhdGEtc2F0YS5jCkBAIC05MDAsNiArOTAwLDE4IEBAIHN0
+YXRpYyBjb25zdCBjaGFyICphdGFfbHBtX3BvbGljeV9uYW1lc1tdID0gewogCVtBVEFfTFBN
+X01JTl9QT1dFUl0JCT0gIm1pbl9wb3dlciIsCiB9OwogCitzdGF0aWMgc3NpemVfdCBhdGFf
+c2NzaV9scG1fc3VwcG9ydGVkX3Nob3coc3RydWN0IGRldmljZSAqZGV2LAorCQkJCSBzdHJ1
+Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwgY2hhciAqYnVmKQoreworCXN0cnVjdCBTY3Np
+X0hvc3QgKnNob3N0ID0gY2xhc3NfdG9fc2hvc3QoZGV2KTsKKwlzdHJ1Y3QgYXRhX3BvcnQg
+KmFwID0gYXRhX3Nob3N0X3RvX3BvcnQoc2hvc3QpOworCisJcmV0dXJuIHN5c2ZzX2VtaXQo
+YnVmLCAiJWRcbiIsICEoYXAtPmZsYWdzICYgQVRBX0ZMQUdfTk9fTFBNKSk7Cit9CitERVZJ
+Q0VfQVRUUihsaW5rX3Bvd2VyX21hbmFnZW1lbnRfc3VwcG9ydGVkLCBTX0lSVUdPLAorCSAg
+ICBhdGFfc2NzaV9scG1fc3VwcG9ydGVkX3Nob3csIE5VTEwpOworRVhQT1JUX1NZTUJPTF9H
+UEwoZGV2X2F0dHJfbGlua19wb3dlcl9tYW5hZ2VtZW50X3N1cHBvcnRlZCk7CisKIHN0YXRp
+YyBzc2l6ZV90IGF0YV9zY3NpX2xwbV9zdG9yZShzdHJ1Y3QgZGV2aWNlICpkZXZpY2UsCiAJ
+CQkJICBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSAqYXR0ciwKIAkJCQkgIGNvbnN0IGNoYXIg
+KmJ1Ziwgc2l6ZV90IGNvdW50KQpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9saWJhdGEu
+aCBiL2luY2x1ZGUvbGludXgvbGliYXRhLmgKaW5kZXggMWMwNTgwNjI3ZGJiLi5lOWE2ZjM3
+YmQ3ZjkgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvbGliYXRhLmgKKysrIGIvaW5jbHVk
+ZS9saW51eC9saWJhdGEuaApAQCAtNTQ3LDYgKzU0Nyw3IEBAIHR5cGVkZWYgdm9pZCAoKmF0
+YV9wb3N0cmVzZXRfZm5fdCkoc3RydWN0IGF0YV9saW5rICpsaW5rLCB1bnNpZ25lZCBpbnQg
+KmNsYXNzZXMpCiAKIGV4dGVybiBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSBkZXZfYXR0cl91
+bmxvYWRfaGVhZHM7CiAjaWZkZWYgQ09ORklHX1NBVEFfSE9TVAorZXh0ZXJuIHN0cnVjdCBk
+ZXZpY2VfYXR0cmlidXRlIGRldl9hdHRyX2xpbmtfcG93ZXJfbWFuYWdlbWVudF9zdXBwb3J0
+ZWQ7CiBleHRlcm4gc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgZGV2X2F0dHJfbGlua19wb3dl
+cl9tYW5hZ2VtZW50X3BvbGljeTsKIGV4dGVybiBzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0ZSBk
+ZXZfYXR0cl9uY3FfcHJpb19zdXBwb3J0ZWQ7CiBleHRlcm4gc3RydWN0IGRldmljZV9hdHRy
+aWJ1dGUgZGV2X2F0dHJfbmNxX3ByaW9fZW5hYmxlOwotLSAKMi41MC4xCgo=
+
+--------------8PspsMq80uB7NlP91NHAb0Yt--
