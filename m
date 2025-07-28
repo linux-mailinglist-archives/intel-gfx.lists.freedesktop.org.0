@@ -2,57 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA42B139B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 13:12:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B979B139C2
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Jul 2025 13:19:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7682610E4D8;
-	Mon, 28 Jul 2025 11:12:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D128E10E4DA;
+	Mon, 28 Jul 2025 11:19:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLexCnSA";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AEUb43C3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36FAB10E4D8
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 11:12:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753701147; x=1785237147;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/0pgPbxj5VApot8BJWw2/BY8tyTqZ6g9gRkemRReDfI=;
- b=PLexCnSAe/kPFYq8m1tQstBDTQpffg9JXeSgMlFv180oOJ42kNLYkEuP
- RwHflZJUi/JQFfU3OTJ/wsHbmhK25UuTcM4wbzP03itylGUtnELim9K4l
- vV7IWApWwIHcYeaWUls6bXN5xV9FhEIKyBLSBwL7m1LXBz6ou9BYFa8ry
- TjBnNeM8Ja9prHWpEXQP2vYMiBca2qWdOgwB1Q+TCHZsA+mgM00vy0reX
- r+2tyIaoFsQDAndrDEohx7ubDloqUuerMRiNe9ikY8kFrS/ZCgxXWXaHk
- d3CjBOtdi+cHLSILDpg3T9D7r9l2KGtB/fGrlUfTB4OFhgDWprnQd+HYP A==;
-X-CSE-ConnectionGUID: kEfjk/N6TkKvWjp86hVWKw==
-X-CSE-MsgGUID: YkkUwlO3T0mNO+bFpl9UnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="59750581"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="59750581"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 04:12:26 -0700
-X-CSE-ConnectionGUID: R7KsEgUpT8qAy/sH01uQXg==
-X-CSE-MsgGUID: EqxsBooQS0WwHTOYixW1Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; d="scan'208";a="166588548"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.225])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jul 2025 04:12:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH] drm/i915/display: WA_14011503117
-In-Reply-To: <20250725174657.688520-1-nemesa.garg@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250725174657.688520-1-nemesa.garg@intel.com>
-Date: Mon, 28 Jul 2025 14:12:21 +0300
-Message-ID: <cb3646992ef8adc071553b18199a6f21de72f892@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA2010E4DA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 11:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1753701565;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=knoW5hXdYfxlMfaIaGdm6JpvBEpBbVPIky2WIJsx7bU=;
+ b=AEUb43C3mDHx91kdf8LUenjbE8FY0kGqE7KHdt4efL8/uRK3LEUWJ0xeB6foNa9stLVmg3
+ SzUPxq4mX/LWA7kOYp0bDKsf4zYy1jVXvaN4FhFN3MepgvCO8Zspu+HoBpzhf7MNg+KVWJ
+ 0ISml27D54ca7zErF56lqsH68M3TuO8=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-28-0jiLjrZUM46If2Bg3OhutA-1; Mon, 28 Jul 2025 07:19:23 -0400
+X-MC-Unique: 0jiLjrZUM46If2Bg3OhutA-1
+X-Mimecast-MFC-AGG-ID: 0jiLjrZUM46If2Bg3OhutA_1753701563
+Received: by mail-wr1-f69.google.com with SMTP id
+ ffacd0b85a97d-3b7865dc367so710831f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Jul 2025 04:19:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753701562; x=1754306362;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=knoW5hXdYfxlMfaIaGdm6JpvBEpBbVPIky2WIJsx7bU=;
+ b=pf85SboshsWN0IPZgeeVXBSNVh+9k/s7phmGNmwtwygcVR3DJrIpWfS36fRgQooskz
+ zQn13N+QiZ+2pVIYrYwIbdvCMZvEbJxIygzd314LU1hIiL+LF/0deUY6AqdzIA7tR5Dw
+ qazRWu2AhfXicGHBR5Kk0GJQW5i8H6IT+EXymUQPsssAs79Och4Su2XzUrQT/qndzM8t
+ pTZI3aK2dL5Vjg2oKiA03L3XAYX5J3BC43dPdKFPku4ZWCh79pHsz+9mLPk4JdvXgP4c
+ FAH/dJlFOhJ81LrwS0xoRKWRDvNLA3iAS98Id9WEqBKz+gGvlrLXjVWSv/C+VhMfpJDW
+ l2Lw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXhXzUDhFu4s5ySYhTGSVCCmjxHvndF8kqssNwfk1C4f4VvE2/sj+58nx79meZvI0O2SSopgC3b4ho=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwB0Gp+bR0gmvCzcY2gOgbLSAtTMMFM2yxiuw9aPizTtLTknDop
+ Cjd9j4vFUIzIx7ZrUkQLQNhobjyKgkmlcyeTpY8NRET2b19+e4aVr7Ok5D8WJXmF1XJO2jkHUmR
+ jdbAv3po9PHs6Tam0YsjJd+GTIwPs5/O6rSwjclstlGsxLDkM5nUhLKwRd1FUDVEdI6ulCA==
+X-Gm-Gg: ASbGncurucj+y5OT7oPyIrxHZeMjRkj4ypE+XNWd5ySES0wtjcS00Osi9DShV+g1Mn9
+ 98OBiOzBJoPkYhFCbFhA+VkhkVJkB7RUZEIS2X5yodle/upg0emGALiYIwZRXihkwxNtFyqt1lM
+ ekOnpRME4UUYQUp1XiFwVMW/nLA3GAjJKMnx3qMLAxol53gc0KftE21i5dRz+TyA5aMx4VVYivF
+ VRewWH6iXQLm9j6Z+T285a/DGCF/iu77beFgtNxaC9LdwfkeAoU3AoDSo05vox2XacwqxtC63y7
+ azzpGk6lIaD8eYXxZwuSdJQhgG5hLlGwepwLCb4aKcp1/MTZ/PpvQJuOGju3piThgX5aXlXYpGc
+ w8RY=
+X-Received: by 2002:a05:6000:188e:b0:3b7:6d95:56d2 with SMTP id
+ ffacd0b85a97d-3b776726a56mr8486696f8f.7.1753701562463; 
+ Mon, 28 Jul 2025 04:19:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFuXibLYD4lVfKwwNJUe9jSKZO7qPSJvy9uo0aYNRx6AYDFqEJHDqBJXZr+qlT8lrhUVJX5RA==
+X-Received: by 2002:a05:6000:188e:b0:3b7:6d95:56d2 with SMTP id
+ ffacd0b85a97d-3b776726a56mr8486656f8f.7.1753701561737; 
+ Mon, 28 Jul 2025 04:19:21 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:d5:a000:d252:5640:545:41db?
+ ([2a01:e0a:d5:a000:d252:5640:545:41db])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4587ac5816dsm94919535e9.17.2025.07.28.04.19.20
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Jul 2025 04:19:21 -0700 (PDT)
+Message-ID: <a7ada116-5613-4518-a151-7c8db9874ede@redhat.com>
+Date: Mon, 28 Jul 2025 13:19:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 03/10] drm/i915/display/i9xx: Add a disable_tiling()
+ for i9xx planes
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Christian Koenig
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20250618094011.238154-1-jfalempe@redhat.com>
+ <20250618094011.238154-4-jfalempe@redhat.com> <aHviiKb0EnQbNksL@intel.com>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <aHviiKb0EnQbNksL@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: CNY5iK0w1W2MdhztuA6EAUENIBdKHS2-KbvPmQsVNI4_1753701563
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,154 +115,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 25 Jul 2025, Nemesa Garg <nemesa.garg@intel.com> wrote:
-> Before enabling the scaler mask the bit and after
-> enabling the scaler, in the later stage after
-> waiting for a frame unmask the PS_ECC bit and
-> ERR_FATAL_MASK bit.
->
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  4 +++
->  .../gpu/drm/i915/display/intel_display_wa.c   | 13 ++++++++
->  .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
->  drivers/gpu/drm/i915/display/skl_scaler.c     | 31 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/skl_scaler.h     |  4 +++
->  5 files changed, 53 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 7035c1fc9033..97664fd1b9c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -76,6 +76,7 @@
->  #include "intel_display_regs.h"
->  #include "intel_display_rpm.h"
->  #include "intel_display_types.h"
-> +#include "intel_display_wa.h"
->  #include "intel_dmc.h"
->  #include "intel_dp.h"
->  #include "intel_dp_link_training.h"
-> @@ -1081,6 +1082,9 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
->  	if (audio_enabling(old_crtc_state, new_crtc_state))
->  		intel_encoders_audio_enable(state, crtc);
->  
-> +	if (intel_display_wa(display, 14011503117))
-> +		skl_scaler_ecc_unmask(new_crtc_state);
-> +
->  	intel_alpm_post_plane_update(state, crtc);
->  
->  	intel_psr_post_plane_update(state, crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> index 399c08902413..0366eedacf2e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> @@ -52,6 +52,17 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
->  	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
->  }
->  
-> +/*
-> + * Wa_14011503117:
-> + * Fixes: Before enabling the scaler DE fatal error is masked
-> + * Workaround: Unmask the DE fatal error register after enabling the scaler
-> + * and after waiting of at least 1 frame.
-> + */
-> +static bool intel_display_needs_wa_14011503117(struct intel_display *display)
+On 19/07/2025 20:23, Ville Syrjälä wrote:
+> On Wed, Jun 18, 2025 at 11:31:21AM +0200, Jocelyn Falempe wrote:
+>> drm_panic draws in linear framebuffer, so it's easier to re-use the
+>> current framebuffer, and disable tiling in the panic handler, to show
+>> the panic screen.
+>> This assumes that the alignment restriction is always smaller in
+>> linear than in tiled.
+>> It also assumes that the linear framebuffer size is always smaller
+>> than the tiled.
+>>
+>> Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+>> ---
+>>
+>> v7:
+>>   * Reword commit message about alignment/size when disabling tiling (Ville Syrjälä)
+>>
+>>   drivers/gpu/drm/i915/display/i9xx_plane.c     | 23 +++++++++++++++++++
+>>   .../drm/i915/display/intel_display_types.h    |  2 ++
+>>   2 files changed, 25 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+>> index 8f15333a4b07..0807fae12450 100644
+>> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+>> @@ -905,6 +905,27 @@ static const struct drm_plane_funcs i8xx_plane_funcs = {
+>>   	.format_mod_supported_async = intel_plane_format_mod_supported_async,
+>>   };
+>>   
+>> +static void i9xx_disable_tiling(struct intel_plane *plane)
+>> +{
+>> +	struct intel_display *display = to_intel_display(plane);
+>> +	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
+>> +	u32 dspcntr;
+>> +	u32 reg;
+>> +
+>> +	dspcntr = intel_de_read_fw(display, DSPCNTR(display, i9xx_plane));
+>> +	dspcntr &= ~DISP_TILED;
+>> +	intel_de_write_fw(display, DSPCNTR(display, i9xx_plane), dspcntr);
+>> +
+>> +	if (DISPLAY_VER(display) >= 4) {
+>> +		reg = intel_de_read_fw(display, DSPSURF(display, i9xx_plane));
+>> +		intel_de_write_fw(display, DSPSURF(display, i9xx_plane), reg);
+>> +
+>> +	} else {
+>> +		reg = intel_de_read_fw(display, DSPADDR(display, i9xx_plane));
+>> +		intel_de_write_fw(display, DSPADDR(display, i9xx_plane), reg);
+>> +	}
+>> +}
+> 
+> I thought I already shot this down before, but apparently this
+> got merged now :(
 
-I don't think we actually need or want to have this
-"intel_display_needs_wa_N" naming copy pasted here. Yeah, we have two
-like this already, but it was never supposed to start a scheme to
-follow.
+Sorry for that. I replied to that thread, but I didn't get answer [1]
 
-BR,
-Jani.
+> 
+> Just to reiterate why we don't want these 'disable tiling' hacks:
+> - different tiling formats have different stride/alignment/watermark
+>    requirements so one can't safely change from one tiling to another
 
-> +{
-> +	return DISPLAY_VER(display) == 13;
-> +}
-> +
->  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
->  {
->  	switch (wa) {
-> @@ -59,6 +70,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->  		return intel_display_needs_wa_16023588340(display);
->  	case INTEL_DISPLAY_WA_16025573575:
->  		return intel_display_needs_wa_16025573575(display);
-> +	case INTEL_DISPLAY_WA_14011503117:
-> +		return intel_display_needs_wa_14011503117(display);
->  	default:
->  		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
->  		break;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> index aedea4cfa3ce..abc1df83f066 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> @@ -24,6 +24,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
->  enum intel_display_wa {
->  	INTEL_DISPLAY_WA_16023588340,
->  	INTEL_DISPLAY_WA_16025573575,
-> +	INTEL_DISPLAY_WA_14011503117,
->  };
->  
->  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 4cc55f4e1f9f..bbe84e4b71fa 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -762,6 +762,9 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->  			crtc_state->scaler_state.scaler_id < 0))
->  		return;
->  
-> +	if (DISPLAY_VER(display) == 13)
-> +		skl_scaler_ecc_mask(crtc_state);
-> +
->  	drm_rect_init(&src, 0, 0,
->  		      drm_rect_width(&crtc_state->pipe_src) << 16,
->  		      drm_rect_height(&crtc_state->pipe_src) << 16);
-> @@ -938,3 +941,31 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
->  	else
->  		scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
->  }
-> +
-> +void skl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +
-> +	if (!crtc_state->pch_pfit.enabled)
-> +		return;
-> +
-> +	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, ~0);
-> +}
-> +
-> +void skl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	const struct intel_crtc_scaler_state *scaler_state =
-> +		&crtc_state->scaler_state;
-> +	int id;
-> +
-> +	if (scaler_state)
-> +		id = scaler_state->scaler_id;
-> +
-> +	if (!crtc_state->pch_pfit.enabled && id == -1)
-> +		return;
-> +
-> +	intel_de_write_fw(display, SKL_PS_ECC_STAT(crtc->pipe, id), 1);
-> +	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-> index 692716dd7616..ec0fd80a3933 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.h
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-> @@ -44,4 +44,8 @@ skl_scaler_mode_valid(struct intel_display *display,
->  		      enum intel_output_format output_format,
->  		      int num_joined_pipes);
->  
-> +void skl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
-> +
-> +void skl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
-> +
->  #endif
+I agree that going from one tiling format to another is not safe. But 
+from my understanding, going from tiling to linear should be possible.
+Do you have an example, where the stride/alignment/watermark requirement 
+in tiled would be incompatible in Linear (for the same resolution)?
+
+> - this completely fails to account for the TILEOFF vs. LINOFF stuff
+
+Pardon my ignorance, can you explain what it is, and how it can break or 
+make the output unreadable?
+
+> - etc.
+> 
+> So IMO these hacks must be removed and instead the code must learn how
+> to propetly write the tiled data. igt has all the code for that btw
+> (twice over IIRC) so shouldn't be that hard.
+
+Regarding the tiling format, I usually test on hardware to check that 
+the image is correct. But I have only a few of them, and as the format 
+is platform dependent, and sometime also depends on the memory 
+configuration. For me it looks very hard to get it right.
+I've done it only for Y-tile and 4-tile, but only when DPT is enabled 
+(which means it's only the few latest generations).
+
+> 
+> I suppose the only hack we need to keep is to disable compression,
+> mainly because (IIRC) on flat CCS systems the CPU doesn't have access
+> to the AUX data to clear it manually.
+> 
+> I also wonder if there are actual igts for this? I think what is needed
+> is a test that sets random things (different panning, rotation, pixel
+> foramts, etc.) and triggers the dumper. Not quite sure how the test
+> could validate that the output is correct though. CRCs might be a bit
+> tricky since you need an identical reference image.
+
+No, I didn't write igts for this yet. I test by triggering a kernel 
+panic, as it's the only way to make sure it works.
+Also I didn't consider rotation yet, I think if the panic screen is not 
+rotated, it's still useful.
+
+> 
+> /me off to summer vacation. Good luck
+> 
+
+Sorry for that, my goal is just to have drm panic working on intel GPU.
+Enjoy your vacation, and let's find a solution when you're back.
+
+[1] 
+https://lore.kernel.org/intel-gfx/72fa1da6-caaa-41c9-aef1-4e780bde6acf@redhat.com/
+
+Best regards,
 
 -- 
-Jani Nikula, Intel
+
+Jocelyn
+
