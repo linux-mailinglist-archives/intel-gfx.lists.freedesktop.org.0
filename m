@@ -2,60 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DAEB14BC5
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jul 2025 11:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DA64B16226
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jul 2025 16:02:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A20F10E606;
-	Tue, 29 Jul 2025 09:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 886BC10E368;
+	Wed, 30 Jul 2025 14:02:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ARThUS9i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hwqEdA1z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4603B10E1DD;
- Tue, 29 Jul 2025 09:57:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753783079; x=1785319079;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=34wGe9ufCtq6zuhv2DjVGXm3fguobB+YGwwLAtv78NM=;
- b=ARThUS9i3AmtAPhS5f13nPZeRl1uRrtSeQ1oW6xR/8HK8MSirVvw4zgJ
- Et36fjAtw3i4nMfXu8PGKCM6KcH51Id1lT1tF5nY5texDk46B/Y7jaCco
- YSHZJo4jjn2mF0591gU3V3yuSa5HCHQ6lMGLKx74Z2LFdCz2LARBFl76Z
- MdL6JXlhTnxxz5/P9mVRv+sIj6Q+k6nC4pceE0Q18zkST7fsUhZJbDsTv
- DxJ3ptaYuamzCdHUMR0kuVgZT/Qa4ug/6lDnjmrCJiu10RWPpfOk0Iqhn
- CRDXw8itMFAjlMJSVNTbH+7VTaCkRAw8iQFv3JlNLZ4icLtXUHNvhboMA w==;
-X-CSE-ConnectionGUID: hcXpcDxDSqm6pKlV9VELEQ==
-X-CSE-MsgGUID: qib6aB4JS92TVbARJRdoMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="81484984"
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="81484984"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 02:57:59 -0700
-X-CSE-ConnectionGUID: iYVcildBS9aR6K0Vczm4LA==
-X-CSE-MsgGUID: 4yqnWMJzTVKgE29XNSBLYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; d="scan'208";a="167962150"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.22])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 02:57:57 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [RESEND 3/3] drm/i915: use drm->debugfs_root for creating debugfs
- files
-Date: Tue, 29 Jul 2025 12:57:39 +0300
-Message-Id: <ba8a2a7ec10e54b4d0a96926ef20c96e268c0b94.1753782998.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1753782998.git.jani.nikula@intel.com>
-References: <cover.1753782998.git.jani.nikula@intel.com>
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 858FE10E1F0;
+ Tue, 29 Jul 2025 10:03:41 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-ae0dffaa8b2so1072988966b.0; 
+ Tue, 29 Jul 2025 03:03:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1753783420; x=1754388220; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=D+MVLwJmF7zcQQs5GBiAvtVf89SV7MV1UDodoYOOKcM=;
+ b=hwqEdA1zdzT4H9pLnCRtzLNqKEVvASs/3KI+dAEVT3ZnZbUhAZ2rEow39/WYz6VSN/
+ 8L/ZRZ79GFejEhpvojc31jv0SSsRSfPDvVVTedLUCU1uxKstPTdbx/MAdJ6F9syKlxOf
+ bBvgj9sln/rVCX0vR+dAb9ulrBpxtYL6uwt0F9vJ92O6wq1N1NGPUtxtoeZUwVaTctkd
+ kSweStHJhkg93SnLctqLNKpTTsJYshGXUwf1X3SHYkCzZdfS/HiADHl9q0578t27TZbl
+ RoQtIN5dIU7w8dP/6Xa+NxLL1CKDm1t0NLvb7/8vPTTfIm0yMF80yfpkdz4nQMVVcLBk
+ 07bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753783420; x=1754388220;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=D+MVLwJmF7zcQQs5GBiAvtVf89SV7MV1UDodoYOOKcM=;
+ b=mSBi1Opf7dmfJApYGtS+/ngr6K3jRIAzgFPieVzDBylYzp1KWcoXWIcaJmG72wYzST
+ /8Nk61l5sWUp2fdeNqFz+bsRWNMGmBf1vyPt8tb8+G0b8OGBW1XuUQ86rc+PXATn3Kpo
+ 9TRJU2ERhpYW8DnFiROV16t4X1wojw8VMSCyofXxwuUr1IipcoxWRLRDVdtw2UEM1hQf
+ N7f+Ty6Q9RLspXdQBwBEkymdfB8wC2NI47HPVtuubCs7TTFK7B5Sf/on/XX6sk/FyKR3
+ E+gBVRuWWtpWqbQDS15bHyp1wl5D6+dLGIvJ0RYbLmFximb14VXetxO9h/ucugh4j7eA
+ so1Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUcbb3bSHHTvgflbl+53WrOUT/UFPNddqbVDIb9Q9IxObdrMbhD3THMnk5z4dcEL69e5mCdXzoD/QA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YylP6UYKEyt/i5hmKyzXMOYvrsDIkK4LjFgo7Y8Z3eSfVgJPfqn
+ Ebdgd5QcnnEbS9b+lPLc2QP+3/rPQXWR3Sw3Lm2+dS17dfksNzVTxOJdugLfDmcn3qGaYJu59OE
+ dVsC+uD00RrVeNqULk90AH4aO1x4rHkM=
+X-Gm-Gg: ASbGncsz8tkIv0pJC+yIcYCXVzUkUZswxoESMh8jhWhARHjyT69ntuo6nGTG/Y4C2GZ
+ 2C7psCaddcJVLoyjIeeyPE7x4MEUphC3DXMPsp9xng7YlMe+dVLz34Ngag+QEvEwmI3ex+UwjCZ
+ Jl42FFuABStdhIf1KAy/GSecPJgxTOEVqr5NmWSggDKpfqz8P3fbjK2Nli5tVM2lzXErbOgwCCK
+ fl2LWhh
+X-Google-Smtp-Source: AGHT+IFR5NqoKoHtBXiwuzultk2/wcc4NDM8ArexVgiStAANSbiLZ+rEDOZQAChRg5bGXQycZF4dSKht6k9SVrysExk=
+X-Received: by 2002:a17:907:6d18:b0:add:f2c8:7d3f with SMTP id
+ a640c23a62f3a-af618f02439mr1594000566b.33.1753783419635; Tue, 29 Jul 2025
+ 03:03:39 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+From: Andy Mindful <andy.mindful@gmail.com>
+Date: Tue, 29 Jul 2025 13:03:27 +0300
+X-Gm-Features: Ac12FXwT2AD8p3BCcLoITIH5kuPJ0_AKKpOAxOhi7hBOjcX8afUCURN2eTIOkdw
+Message-ID: <CACTEcX6oXBot1VBApOyKVMVXsAN9BsvQMLa8J0iKpNeB-eLttQ@mail.gmail.com>
+Subject: [REGRESSION] tty lockup and WWAN loss after hibernate/suspend in 6.8+
+ on ThinkPad X1 Carbon Gen 10
+To: linux-kernel@vger.kernel.org, regressions@lists.linux.dev, 
+ linux-pm@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-acpi@vger.kernel.org, rafael@kernel.org, jani.nikula@intel.com, 
+ ville.syrjala@linux.intel.com, tglx@linutronix.de
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 30 Jul 2025 14:02:00 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,144 +83,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since commit 0b30d57acafc ("drm/debugfs: rework debugfs directory
-creation v5") we should be using drm->debugfs_root instead of
-minor->debugfs_root for creating debugfs files.
+Kernel-version: 6.8+ (confirmed in Fedora kernel 6.8.4-200.fc38.x86_64
+and above)
+Regression-from: 6.7.11 (working) to 6.8.4+ (regressed)
+Affected-hardware: Lenovo ThinkPad X1 Carbon Gen 10 (Intel Alder Lake platform)
+Affected-subsystems: TTY/Console, Power Management, WWAN Modem (Intel
+XMM7560, iosm driver), Kernel DRM/i915 stack
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_debugfs.c   |  5 +++--
- drivers/gpu/drm/i915/i915_debugfs.c          | 20 +++++++++-----------
- drivers/gpu/drm/i915/i915_debugfs_params.c   |  4 ++--
- drivers/gpu/drm/i915/i915_gpu_error.c        |  6 +++---
- drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c |  8 ++++----
- 5 files changed, 21 insertions(+), 22 deletions(-)
+Description:
+We are reporting a significant regression introduced in Linux kernel
+version 6.8 (specifically confirmed in Fedora kernel
+6.8.4-200.fc38.x86_64 and subsequent versions), affecting Lenovo
+ThinkPad X1 Carbon Gen 10 laptops. This regression manifests primarily
+as tty lockups and complete loss of WWAN modem functionality after
+hibernate cycle.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-index 4dc23b8d3aa2..dcd40b30a96b 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_debugfs.c
-@@ -82,14 +82,15 @@ static void gt_debugfs_register(struct intel_gt *gt, struct dentry *root)
- 
- void intel_gt_debugfs_register(struct intel_gt *gt)
- {
-+	struct dentry *debugfs_root = gt->i915->drm.debugfs_root;
- 	struct dentry *root;
- 	char gtname[4];
- 
--	if (!gt->i915->drm.primary->debugfs_root)
-+	if (!debugfs_root)
- 		return;
- 
- 	snprintf(gtname, sizeof(gtname), "gt%u", gt->info.id);
--	root = debugfs_create_dir(gtname, gt->i915->drm.primary->debugfs_root);
-+	root = debugfs_create_dir(gtname, debugfs_root);
- 	if (IS_ERR(root))
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 967c0501e91e..23fa098c4479 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -720,26 +720,24 @@ static const struct i915_debugfs_files {
- 	{"i915_gem_drop_caches", &i915_drop_caches_fops},
- };
- 
--void i915_debugfs_register(struct drm_i915_private *dev_priv)
-+void i915_debugfs_register(struct drm_i915_private *i915)
- {
--	struct drm_minor *minor = dev_priv->drm.primary;
-+	struct dentry *debugfs_root = i915->drm.debugfs_root;
- 	int i;
- 
--	i915_debugfs_params(dev_priv);
-+	i915_debugfs_params(i915);
- 
--	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->debugfs_root,
--			    to_i915(minor->dev), &i915_forcewake_fops);
-+	debugfs_create_file("i915_forcewake_user", S_IRUSR, debugfs_root,
-+			    i915, &i915_forcewake_fops);
- 	for (i = 0; i < ARRAY_SIZE(i915_debugfs_files); i++) {
--		debugfs_create_file(i915_debugfs_files[i].name,
--				    S_IRUGO | S_IWUSR,
--				    minor->debugfs_root,
--				    to_i915(minor->dev),
-+		debugfs_create_file(i915_debugfs_files[i].name, S_IRUGO | S_IWUSR,
-+				    debugfs_root, i915,
- 				    i915_debugfs_files[i].fops);
- 	}
- 
- 	drm_debugfs_create_files(i915_debugfs_list,
- 				 ARRAY_SIZE(i915_debugfs_list),
--				 minor->debugfs_root, minor);
-+				 debugfs_root, i915->drm.primary);
- 
--	i915_gpu_error_debugfs_register(dev_priv);
-+	i915_gpu_error_debugfs_register(i915);
- }
-diff --git a/drivers/gpu/drm/i915/i915_debugfs_params.c b/drivers/gpu/drm/i915/i915_debugfs_params.c
-index 33d2dcb0de65..89ab5eb14779 100644
---- a/drivers/gpu/drm/i915/i915_debugfs_params.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs_params.c
-@@ -248,11 +248,11 @@ i915_debugfs_create_charp(const char *name, umode_t mode,
- /* add a subdirectory with files for each i915 param */
- struct dentry *i915_debugfs_params(struct drm_i915_private *i915)
- {
--	struct drm_minor *minor = i915->drm.primary;
-+	struct dentry *debugfs_root = i915->drm.debugfs_root;
- 	struct i915_params *params = &i915->params;
- 	struct dentry *dir;
- 
--	dir = debugfs_create_dir("i915_params", minor->debugfs_root);
-+	dir = debugfs_create_dir("i915_params", debugfs_root);
- 	if (IS_ERR(dir))
- 		return dir;
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index f434b6825fc2..41256fbd1ce3 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -2445,11 +2445,11 @@ static const struct file_operations i915_error_state_fops = {
- 
- void i915_gpu_error_debugfs_register(struct drm_i915_private *i915)
- {
--	struct drm_minor *minor = i915->drm.primary;
-+	struct dentry *debugfs_root = i915->drm.debugfs_root;
- 
--	debugfs_create_file("i915_error_state", 0644, minor->debugfs_root, i915,
-+	debugfs_create_file("i915_error_state", 0644, debugfs_root, i915,
- 			    &i915_error_state_fops);
--	debugfs_create_file("i915_gpu_info", 0644, minor->debugfs_root, i915,
-+	debugfs_create_file("i915_gpu_info", 0644, debugfs_root, i915,
- 			    &i915_gpu_info_fops);
- }
- 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-index e07c5b380789..545f79eb0cc5 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c
-@@ -69,17 +69,17 @@ DEFINE_SIMPLE_ATTRIBUTE(pxp_terminate_fops, pxp_terminate_get, pxp_terminate_set
- 
- void intel_pxp_debugfs_register(struct intel_pxp *pxp)
- {
--	struct drm_minor *minor;
-+	struct dentry *debugfs_root;
- 	struct dentry *pxproot;
- 
- 	if (!intel_pxp_is_supported(pxp))
- 		return;
- 
--	minor = pxp->ctrl_gt->i915->drm.primary;
--	if (!minor->debugfs_root)
-+	debugfs_root = pxp->ctrl_gt->i915->drm.debugfs_root;
-+	if (!debugfs_root)
- 		return;
- 
--	pxproot = debugfs_create_dir("pxp", minor->debugfs_root);
-+	pxproot = debugfs_create_dir("pxp", debugfs_root);
- 	if (IS_ERR(pxproot))
- 		return;
- 
--- 
-2.39.5
+Problematic Behavior:
+1. TTY/Console: After a hibernate cycle, the console input becomes
+unresponsive. In some cases, after suspend, pressing `SysRq+R` (unraw)
+can temporarily restore keyboard functionality, but this is not
+consistent, especially after hibernation.
+2. Power Management: While S3 suspend works correctly when "Linux
+only" is set in BIOS, `suspend` causes the system to freeze upon
+resume if "Windows + Linux" mode (which implies `s2idle`) is active in
+BIOS settings.
+3. WWAN Modem (Intel XMM7560, `iosm` driver): The modem fails to
+reinitialize after hibernation, consistently showing "msg timeout"
+errors in logs. The modem works correctly after a cold boot but
+completely fails to recover after resuming from hibernate. Rescanning
+PCI devices or reloading the `iosm` module does not resolve the issue.
+Attempts to manually remove the device via
+`/sys/bus/pci/devices/.../remove` result in a system hang.
+4. Kernel DRM/i915 stack: Although GuC and HuC firmware (versions
+70.44.1 / 7.9.3) are confirmed to load correctly, logs indicate
+potential graphics driver reinitialization issues in affected kernel
+versions. This might contribute to the TTY unresponsiveness.
 
+System Specifications:
+- Laptop: Lenovo ThinkPad X1 Carbon Gen 10
+- CPU: Intel Core i7-1260P (Alder Lake)
+- GPU: Intel iGPU (ADL GT2) - i915
+- WWAN: Intel XMM7560 (iosm driver)
+- Wi-Fi/Bluetooth: Intel AX201
+- Operating Systems tested:
+- Fedora 38 (most stable with 6.7.11)
+- Fedora 39/40/42 (exhibit regression)
+- Ubuntu 22.04, 24.10 (exhibit regression)
+- EndeavourOS_Mercury-Neo-2025.03.19 (exhibits regression)
+- Display manager: GDM/Wayland (also tested LightDM + Xfce and
+runlevel 3, problem persists).
+- Mesa Stack: Mesa 24.3.4 built with LLVM 16.0.6 (confirmed functional
+with working kernels). Vulkan, GBM, EGL, GLX render correctly with
+`iris` and `intel` drivers. Custom Mesa 24.3.4 build showed no impact
+on the hibernate issue.
+
+Behavior Matrix:
+| Kernel Version | Hibernate Status | Resume Status | TTY
+Functionality | WWAN Functionality | Notes |
+|----------------|------------------|---------------|-------------------|--------------------|-------|
+| 6.2.9 | OK | Not tested | OK | Not Tested | Working baseline |
+| 6.3.12 | OK | Not tested | OK | Not Tested | Working baseline |
+| 6.7.11 | OK | OK(S3)/Fail(S2idle) | OK | FAIL | WWAN regression
+starts here, but hibernate/tty still OK |
+| **6.8.4+** | FAIL | OK(S3)/Fail(S2idle) | FAIL | FAIL | Major
+regression point, affects hibernate/tty/WWAN |
+| 6.14+ | FAIL | OK(S3)/Fail(S2idle) | FAIL | FAIL | Problem persists
+in newer kernels |
+
+Additional Details:
+- Hibernation issues:
+- Initial `mem_sleep` was `[s2idle]` in BIOS "Windows + Linux" mode.
+- Switching BIOS to "Linux only" enabled proper S3 suspend, changing
+`/sys/power/mem_sleep` to `[s2idle] deep`. However, the hibernation
+issue (TTY lockup, WWAN loss) persists even with S3 enabled for
+suspend.
+- `Alt + SysRq + R` sometimes revives console after suspend but
+*never* after hibernate.
+- TTY related errors observed in logs are, dmesg:
+`tty_flip_buffer_push: called while buffer locked`, systemd-logind:
+`New session created but VT is not initial VT, ignoring`, GDM:
+`GdmLocalDisplayFactory: active VT is not initial VT` on kernels 6.8+.
+- WWAN issues:
+- The `iosm` driver appears loaded, and the device is visible via
+`lspci`, but the modem is not visible to `mmcli` after resume from
+hibernate.
+- The WWAN modem (iosm) only works after a cold boot.
+- Rescanning PCI or reloading `iosm` module (e.g., `modprobe -r iosm
+&& modprobe iosm`) does not resolve the issue.
+- Manual removal via `/sys/bus/pci/devices/.../remove` leads to a
+system hang, indicating a deeper issue with device state or driver
+interaction post-resume.
+
+Tested Alternatives & Current Stability:
+- Hibernate works reliably only up to kernel 6.7.11.
+- Fedora 38 with kernel 6.7.11 + GNOME 44.10 is currently the most
+stable configuration for this hardware, despite the WWAN issue already
+present there (but not the tty lockup/hibernate issue).
+- Kali Linux with 6.6.9 - hibernation works.
+- Newer distributions (e.g., Fedora 42, Ubuntu 25.04, EndeavourOS)
+inherit the same problems due to their newer kernel versions.
+
+Expected Behavior:
+The system should resume from hibernate and suspend without TTY
+lockups, and the WWAN modem should reinitialize correctly and be fully
+functional.
+
+Steps to Reproduce:
+1. Ensure system is running a kernel version 6.8.4 or newer (e.g.,
+Fedora 38 with `6.8.4-200.fc38.x86_64`).
+2. Perform a `systemctl hibernate` or `systemctl suspend`.
+3. Resume the system.
+4. Observe TTY console unresponsiveness(only in runlevel 3) and check
+WWAN modem status using `mmcli -L`.
+
+Please let me know if any further information or testing is required.
+
+Thank you.
+
+Best regards,
+Andriy
