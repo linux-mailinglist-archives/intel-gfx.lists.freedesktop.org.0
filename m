@@ -2,82 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BB0B16227
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jul 2025 16:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06934B1560B
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jul 2025 01:33:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F39610E369;
-	Wed, 30 Jul 2025 14:02:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E28410E342;
+	Tue, 29 Jul 2025 23:33:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bhULLlix";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BGtf3Qed";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC0610E2DE;
- Tue, 29 Jul 2025 22:00:48 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-71a3f7f0addso3109367b3.2; 
- Tue, 29 Jul 2025 15:00:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753826447; x=1754431247; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Bf7MCgMW3rHEy3/8Boxp0Sj1cjXi7btiouj/QL5jI6g=;
- b=bhULLlix0zTHQkxjBaEbi1uH14s8CjalGvh/xE16oj82OE7+Pgfl13T0NzFIAZzfmP
- PGO3/37hS9GpeY7lwa9A4eHyIN9KSbyPw13fyZL1sPTse+P0W4q94xu4NRxwoK1aeBhd
- LL8jrOu51r8d/8MZIUhuY4UBqY1z0nRoD6YtqYv0ceu/QGhUC4juveufTC3OOhnzwdLo
- r2e3IvvYRSj5dLM0LixixN86TlTlKIvt4C0EfHHRzb9bOYplLFrWpxLcknntddPXrpaW
- XjYNmu/fDHfx6icPRxwCuQ3i8HGONKQoSOiJCrjJmYPBTHXRNoHYTpnHGnR72sc3g5kV
- lw/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753826447; x=1754431247;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Bf7MCgMW3rHEy3/8Boxp0Sj1cjXi7btiouj/QL5jI6g=;
- b=XEN9lDlwnYl/i1cGJeSR6O5SkAGDqEtLAfuyt93MuCZ942k9KGRqLHIe3tn8LFy06D
- mgbKFT6WuT1sm1Ft+0iph+AGcGwL1+NB61pcvZ28JfgJVM4ULH5CcLMesIqyQMiFyq/1
- H/1TU0sC0aUy/Pl7MnQxohjSp4Mc5gvBus2m6VwDwDNcUggnqwltHAMw4M/22MQG/xqM
- H3yWiwbhkGVXTafPj/w6zzvFqQJcZ36ikIhmmJy3/mO1U86NaEVcADmBw9nUjsXmmcgt
- ziV8tJ/1d31JlVIQiOyle5JhT68JTybocaAzam1lG5uPcaf8tss5AnZhQ5FRSuhzsnwi
- AlMg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVgzQblXRLoYMaLKKsJgmF7g1uf1M2LvMbPaZsB+b1GGwU6HXBrStmb+fHBV9WoXfAm4AjYgMqy@lists.freedesktop.org,
- AJvYcCVtCGqNuuk818xYadVd9WAVkjZpROXSWpR71U0OtDyM4fAOPW2bjdxOSuvdvGy09KnxI8ZQYAQAXUUj@lists.freedesktop.org,
- AJvYcCWRWjS+lD1jtWbTNl6hPv3w+krePGt47vmEKpk7omSy8lKrtI71Xq4taJJLzpb+q+tdo62mD2wWqCkBFJWo7A==@lists.freedesktop.org,
- AJvYcCWadayHuvqvIOMqThiks1FP1sLxk1iCxbeo0k6LZ2HN16b8xHxX9x1u3FJBQvo4q/T06fCMeGHFaJe/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyKffuit3ZlP5qNGdd7+jEqkWt7qxm7Reso8/hNQ2g/fzB5ZWEF
- fSAvsuczEp62VwodaIMAwF0BczeHQtEwo69c+YymN5qViHKUAJlkTz5ULuruEOstfu9r20MgiOm
- vyFPVirEb5i05h2ueb/5J1Qrr4M0X9ao=
-X-Gm-Gg: ASbGncvGU8BWtHkOH/EYxW+wX26deCm2iTmBGzrw+czNSvBr3m9vamyZCGM+UVVcNJ/
- 0R7zghSqKSgV6sOcyisjJC0iS1d8F8GIJ7M8DJKulavpZTgHONzrGFcSJLSajgBEB2MznvDZPKN
- n8T3BUqI/lsk6tgZXME40ONJkzuY6wMNVG+osHcmDitCHRoK3ITYAanYdKU/ElNnxBzb2p9lPwW
- CokPw==
-X-Google-Smtp-Source: AGHT+IHNQcrSkJ2HLeMBxvQ4Jv6I61m2VCJ8EIUFg+9bAEeqD9KX6+H+1UjiPC3MR4drzhvRBbsAP4dMFfchymbmwcc=
-X-Received: by 2002:a05:690c:380b:b0:719:4dab:4322 with SMTP id
- 00721157ae682-71a4665ad33mr18638917b3.22.1753826446723; Tue, 29 Jul 2025
- 15:00:46 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71FD510E342
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Jul 2025 23:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753831996; x=1785367996;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0p0bYoySLw6SWwXaoavklKyud4RbFsovIS6ggNwo/74=;
+ b=BGtf3Qedge8F0FvjCKz2K9p5Qkzb0XFP7rSVOkCOg7F/cV3OIUo3DM2J
+ divCW5YxcZLt96zqnXQRoFHuhdksCcIter19T7MSskdnbGkPIl4gtSulJ
+ Y2DWHUAsfTLPCW149dNHf74Wx2ks/sq97hmcHuqFMDZvdin39CnGWy+yw
+ e8WLiip/HM/Z7jx3+asZcar74tjDjkxXU+IKZCp2r7oyno329oPZ+p7K0
+ fW74EYqMTtf1w6dC8C1oy1M6MwLnAjqnuUhm00gQ9fYBEJQHjLKFfsATQ
+ CWiGVdZgzyLBhweDNS/ilJEN384NNAuiEEk4P/EGzItmhXdbAr3Ao904q g==;
+X-CSE-ConnectionGUID: 2p4Wu5y1QRmiNUsZay+1pg==
+X-CSE-MsgGUID: 3WOP04onQW2gtpAfco5e2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="67561614"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="67561614"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 16:33:16 -0700
+X-CSE-ConnectionGUID: V9vWHHueSlSqWpNGvkBheg==
+X-CSE-MsgGUID: XoA/pOWrS6i6U8mQlBVfxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="200012495"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jul 2025 16:33:16 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>
+Subject: [PATCH] drm/i915/guc: Include the GuC registers in the error state
+Date: Tue, 29 Jul 2025 16:33:06 -0700
+Message-ID: <20250729233305.1246875-2-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20250402174156.1246171-1-jim.cromie@gmail.com>
- <20250402174156.1246171-29-jim.cromie@gmail.com>
- <CAOw6vbJwbvcVARNmx3O7mTbOr+A_Vo_DaUXFfN8HFFLqdG-VPQ@mail.gmail.com>
-In-Reply-To: <CAOw6vbJwbvcVARNmx3O7mTbOr+A_Vo_DaUXFfN8HFFLqdG-VPQ@mail.gmail.com>
-From: jim.cromie@gmail.com
-Date: Tue, 29 Jul 2025 16:00:20 -0600
-X-Gm-Features: Ac12FXyWVXGFelprKK3BcySWxLEORiXBVvTHcbIZRuOv6NNRJOot3b7GOZIJq9Y
-Message-ID: <CAJfuBxw8X1w=ZkHaLbXELGt_r2Gkdzgw1FZb_tpqrRvHA7CMxA@mail.gmail.com>
-Subject: Re: [PATCH v3 28/54] dyndbg: restore classmap protection when theres
- a controlling_param
-To: Sean Paul <seanpaul@chromium.org>
-Cc: jbaron@akamai.com, gregkh@linuxfoundation.org, ukaszb@chromium.org, 
- louis.chauvet@bootlin.com, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
- ville.syrjala@linux.intel.com
-Content-Type: multipart/alternative; boundary="0000000000005acfd0063b188a75"
-X-Mailman-Approved-At: Wed, 30 Jul 2025 14:02:00 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,84 +66,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000005acfd0063b188a75
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If GuC hangs, the GuC logs might not contain enough information to
+understand exactly why the hang occurred. In this case, we need to
+look at the GuC HW state to try to understand where the GuC is stuck. It
+is therefore useful to include the GuC HW state in the error capture.
 
-On Fri, Jun 20, 2025 at 8:47=E2=80=AFAM Sean Paul <seanpaul@chromium.org> w=
-rote:
+The list of registers that are part of the GuC HW state can change based
+on platform, but it is the same for all platforms from TGL to MTL so we
+only need to support one version for i915.
 
-> On Thu, Apr 3, 2025 at 9:48=E2=80=AFAM Jim Cromie <jim.cromie@gmail.com> =
-wrote:
-> >
->
-> \snip
->
-> >
-> > -static void ddebug_match_apply_kparam(const struct kernel_param *kp,
-> > -                                     const struct _ddebug_class_map
-> *map,
-> > -                                     const char *mod_name)
-> > +static struct _ddebug_class_param *
-> > +ddebug_get_classmap_kparam(const struct kernel_param *kp,
-> > +                          const struct _ddebug_class_map *map)
-> >  {
-> >         struct _ddebug_class_param *dcp;
-> >
-> >         if (kp->ops !=3D &param_ops_dyndbg_classes)
-> > -               return;
-> > +               return false;
->
-> Return type is struct _ddebug_class_param *, should this be NULL?
->
->
-yes it should. thx.  will revise
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c  |   8 ++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h |   1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c      | 101 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_gpu_error.h      |   1 +
+ 4 files changed, 111 insertions(+)
 
->
->
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+index e7ccfa520df3..384d1400134d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+@@ -46,6 +46,14 @@ static void guc_prepare_xfer(struct intel_gt *gt)
+ 		/* allows for 5us (in 10ns units) before GT can go to RC6 */
+ 		intel_uncore_write(uncore, GUC_ARAT_C6DIS, 0x1FF);
+ 	}
++
++	/*
++	 * Starting from IP 12.50 we need to enable the mirroring of GuC
++	 * internal state to debug registers. This is always enabled on previous
++	 * IPs.
++	 */
++	if (GRAPHICS_VER_FULL(uncore->i915) >= IP_VER(12, 50))
++		intel_uncore_rmw(uncore, GUC_SHIM_CONTROL2, 0, GUC_ENABLE_DEBUG_REG);
+ }
+ 
+ static int guc_xfer_rsa_mmio(struct intel_uc_fw *guc_fw,
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
+index 3fd798837502..f73dab527547 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
+@@ -96,6 +96,7 @@
+ #define   GUC_GEN10_SHIM_WC_ENABLE		(1<<21)
+ 
+ #define GUC_SHIM_CONTROL2		_MMIO(0xc068)
++#define   GUC_ENABLE_DEBUG_REG		(1<<11)
+ #define   GUC_IS_PRIVILEGED		(1<<29)
+ #define   GSC_LOADS_HUC			(1<<30)
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index f434b6825fc2..45c7722db7f9 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -685,6 +685,73 @@ static void err_print_guc_ctb(struct drm_i915_error_state_buf *m,
+ 		   ctb->head, ctb->tail, ctb->desc_offset, ctb->cmds_offset, ctb->size);
+ }
+ 
++/*
++ * This list includes registers that are useful in debugging GuC hangs. We
++ * include them in the error state so that we don't have to reproduce the
++ * issue locally to capture them.
++ */
++const struct {
++	u32 start;
++	u32 count;
++} guc_hw_reg_state[] = {
++	{ 0xc0b0, 2 },
++	{ 0xc000, 65 },
++	{ 0xc140, 1 },
++	{ 0xc180, 16 },
++	{ 0xc1dc, 10 },
++	{ 0xc300, 79 },
++	{ 0xc4b4, 47 },
++	{ 0xc574, 1 },
++	{ 0xc57c, 1 },
++	{ 0xc584, 23 },
++	{ 0xc5e4, 105 },
++	{ 0xc7c0, 1 },
++	{ 0xc0b0, 2 }
++};
++
++static u32 print_range_line(struct drm_i915_error_state_buf *m, u32 start, u32 *dump, u32 count)
++{
++	if (count >= 8) {
++		err_printf(m, "[0x%04x] 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
++			   start, dump[0], dump[1], dump[2], dump[3],
++			   dump[4], dump[5], dump[6], dump[7]);
++		return 8;
++	} else if (count >= 4) {
++		err_printf(m, "[0x%04x] 0x%08x 0x%08x 0x%08x 0x%08x\n",
++			   start, dump[0], dump[1], dump[2], dump[3]);
++		return 4;
++	} else if (count >= 2) {
++		err_printf(m, "[0x%04x] 0x%08x 0x%08x\n", start, dump[0], dump[1]);
++		return 2;
++	}
++
++	err_printf(m, "[0x%04x] 0x%08x\n", start, dump[0]);
++	return 1;
++}
++
++static void err_print_guc_hw_state(struct drm_i915_error_state_buf *m, u32 *hw_state)
++{
++	u32 total = 0;
++	int i;
++
++	if (!hw_state)
++		return;
++
++	err_printf(m, "GuC Register State:\n");
++
++	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++) {
++		u32 entry = 0;
++
++		while (entry < guc_hw_reg_state[i].count)
++			entry += print_range_line(m, guc_hw_reg_state[i].start + entry * 4,
++						  hw_state + total + entry,
++						  guc_hw_reg_state[i].count - entry);
++
++		GEM_BUG_ON(entry != guc_hw_reg_state[i].count);
++		total += entry;
++	}
++}
++
+ static void err_print_uc(struct drm_i915_error_state_buf *m,
+ 			 const struct intel_uc_coredump *error_uc)
+ {
+@@ -693,6 +760,7 @@ static void err_print_uc(struct drm_i915_error_state_buf *m,
+ 	intel_uc_fw_dump(&error_uc->guc_fw, &p);
+ 	intel_uc_fw_dump(&error_uc->huc_fw, &p);
+ 	err_printf(m, "GuC timestamp: 0x%08x\n", error_uc->guc.timestamp);
++	err_print_guc_hw_state(m, error_uc->guc.hw_state);
+ 	intel_gpu_error_print_vma(m, NULL, error_uc->guc.vma_log);
+ 	err_printf(m, "GuC CTB fence: %d\n", error_uc->guc.last_fence);
+ 	err_print_guc_ctb(m, "Send", error_uc->guc.ctb + 0);
+@@ -1025,6 +1093,7 @@ static void cleanup_uc(struct intel_uc_coredump *uc)
+ 	kfree(uc->huc_fw.file_wanted.path);
+ 	i915_vma_coredump_free(uc->guc.vma_log);
+ 	i915_vma_coredump_free(uc->guc.vma_ctb);
++	kfree(uc->guc.hw_state);
+ 
+ 	kfree(uc);
+ }
+@@ -1721,6 +1790,37 @@ static void gt_record_guc_ctb(struct intel_ctb_coredump *saved,
+ 	saved->cmds_offset = ((void *)ctb->cmds) - blob_ptr;
+ }
+ 
++static u32 read_guc_state_reg(struct intel_uncore *uncore, int range, int count)
++{
++	GEM_BUG_ON(range >= ARRAY_SIZE(guc_hw_reg_state));
++	GEM_BUG_ON(count >= guc_hw_reg_state[range].count);
++
++	return intel_uncore_read(uncore,
++				 _MMIO(guc_hw_reg_state[range].start + count * sizeof(u32)));
++}
++
++static void gt_record_guc_hw_state(struct intel_uncore *uncore,
++				   struct intel_uc_coredump *error_uc)
++{
++	u32 *hw_state;
++	u32 count = 0;
++	int i, j;
++
++	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++)
++		count += guc_hw_reg_state[i].count;
++
++	hw_state = kcalloc(count, sizeof(u32), ALLOW_FAIL);
++	if (!hw_state)
++		return;
++
++	count = 0;
++	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++)
++		for (j = 0; j < guc_hw_reg_state[i].count; j++)
++			hw_state[count++] = read_guc_state_reg(uncore, i, j);
++
++	error_uc->guc.hw_state = hw_state;
++}
++
+ static struct intel_uc_coredump *
+ gt_record_uc(struct intel_gt_coredump *gt,
+ 	     struct i915_vma_compress *compress)
+@@ -1755,6 +1855,7 @@ gt_record_uc(struct intel_gt_coredump *gt,
+ 			  uc->guc.ct.ctbs.send.desc, (struct intel_guc *)&uc->guc);
+ 	gt_record_guc_ctb(error_uc->guc.ctb + 1, &uc->guc.ct.ctbs.recv,
+ 			  uc->guc.ct.ctbs.send.desc, (struct intel_guc *)&uc->guc);
++	gt_record_guc_hw_state(gt->_gt->uncore, error_uc);
+ 
+ 	return error_uc;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
+index 182324979278..91b3df621a49 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.h
++++ b/drivers/gpu/drm/i915/i915_gpu_error.h
+@@ -177,6 +177,7 @@ struct intel_gt_coredump {
+ 			struct intel_ctb_coredump ctb[2];
+ 			struct i915_vma_coredump *vma_ctb;
+ 			struct i915_vma_coredump *vma_log;
++			u32 *hw_state;
+ 			u32 timestamp;
+ 			u16 last_fence;
+ 			bool is_guc_capture;
+-- 
+2.43.0
 
---0000000000005acfd0063b188a75
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 20,=
- 2025 at 8:47=E2=80=AFAM Sean Paul &lt;<a href=3D"mailto:seanpaul@chromium.=
-org">seanpaul@chromium.org</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">On Thu, Apr 3, 2025 at 9:48=E2=80=AFAM Jim Cromie=
- &lt;<a href=3D"mailto:jim.cromie@gmail.com" target=3D"_blank">jim.cromie@g=
-mail.com</a>&gt; wrote:<br>
-&gt;<br>
-<br>
-\snip<br>
-<br>
-&gt;<br>
-&gt; -static void ddebug_match_apply_kparam(const struct kernel_param *kp,<=
-br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct=
- _ddebug_class_map *map,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const char *=
-mod_name)<br>
-&gt; +static struct _ddebug_class_param *<br>
-&gt; +ddebug_get_classmap_kparam(const struct kernel_param *kp,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 const struct _ddebug_class_map *map)<br>
-&gt;=C2=A0 {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct _ddebug_class_param *dcp;<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (kp-&gt;ops !=3D &amp;param_ops_dy=
-ndbg_classes)<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return false;<=
-br>
-<br>
-Return type is struct _ddebug_class_param *, should this be NULL?<br>
-<br></blockquote><div><br></div><div>yes it should. thx.=C2=A0 will revise<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-</blockquote></div></div>
-
---0000000000005acfd0063b188a75--
