@@ -2,187 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE03B14F4E
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jul 2025 16:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46022B14F58
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Jul 2025 16:36:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A3B10E210;
-	Tue, 29 Jul 2025 14:34:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5A2010E14A;
+	Tue, 29 Jul 2025 14:36:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmzEuE1I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VdDJBrPi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A8810E064;
- Tue, 29 Jul 2025 14:34:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D68C10E14A;
+ Tue, 29 Jul 2025 14:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753799672; x=1785335672;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ztrx5gBTe5NVQhgzu0qoZCJigdkY9GtztCS/hkjzyfk=;
- b=KmzEuE1IAcwVsxkq0nUW6CvYOX4x/loYsH+C9OwgSWWHBG3PvMnhtdfX
- F/phPc0mB66lUwjd9WnCQCoGkoPmAb7Bfk5r7oDKn4n5B6kpW4DQUSCtD
- b5XbgagvOy41qAplpYen3FZO9oKwtIKamLrF03YbmtqL7tQEspjTPpPVL
- KNV0Oc9mR+wTz1LkK0ra1WciaXwDcl2hXmJ4i4s9pObNkXDXKdyWOHBCl
- 43OG/N9ou2hXS/zuB1G0L+/XJiMEc6CuteglKJGWMV/JdRYwzQk4i09az
- fKGMXqZ//fbAK27ffNHeegF7fS6zSv0T24o13/iWbcVBBEae5ItGDtyhm g==;
-X-CSE-ConnectionGUID: q3TN2K7jTzaK+0C/n5m/aA==
-X-CSE-MsgGUID: 3ur12rXvSdSjspNLcyYKcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55958610"
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="55958610"
+ t=1753799768; x=1785335768;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=348fCzCD9mISm27vG9DPM1Ct5ySC9aHfpOE5Qg3HMq8=;
+ b=VdDJBrPimHmsukH5KaHzVoY51C9I9HawYA+MIrxWTbzbmHVD7ebTbjrA
+ QrKXP7ozw25PUurT/fwKsPpnYVYajJszQwUeihnXS+1S151/H8K9e9kkQ
+ 8dAFdapZzZI+ffpMmZTtUjS2NL5z7y0qjitBTHXf3AKSJQ9ojSnxKNQOL
+ o7sEbiMdfPNoq/TRr8XCr5/q5iUPhTRAZdpLf1JP7fR8luNZGNVbta+ud
+ 0GVSeQmPY9rcDvCslfDSoYkBrzF3X8ymhw9yhymw8qx73+0CNycjoZa99
+ MPfIGcnfE7ml2tNkQDFeccn+vRqm0m75B0q80midzm+G58mGBUvCnlOJ0 w==;
+X-CSE-ConnectionGUID: kgRI4cNnSf6CjEzVbIrK/g==
+X-CSE-MsgGUID: aumpiYlCSAS/f1uBQ4eiQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="55958869"
+X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="55958869"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 07:34:30 -0700
-X-CSE-ConnectionGUID: 75A5WrhMSYK6pIMLyvjteQ==
-X-CSE-MsgGUID: fNmt1N3sTXKy7sCDab8Uwg==
+ 29 Jul 2025 07:36:06 -0700
+X-CSE-ConnectionGUID: WPpIkP/2Saiyakyg34t4pQ==
+X-CSE-MsgGUID: Dx6KK994Tz6SRxv/0/zSIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="162295119"
+X-IronPort-AV: E=Sophos;i="6.16,349,1744095600"; d="scan'208";a="162295534"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 07:34:30 -0700
+ 29 Jul 2025 07:36:03 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 29 Jul 2025 07:34:29 -0700
+ 15.2.1748.26; Tue, 29 Jul 2025 07:36:02 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Tue, 29 Jul 2025 07:34:29 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.43)
+ 15.2.1748.26 via Frontend Transport; Tue, 29 Jul 2025 07:36:02 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.50)
  by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 29 Jul 2025 07:34:28 -0700
+ 15.2.1748.26; Tue, 29 Jul 2025 07:36:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DUHSEXDh/EstBPLlqq8Eh7h4rbWEXPIB0WHDrs6WKRTsX6iU0Z1AIFdwpuT8Xjt7qPHoznQc9kiUTLEsnSy47Y7xJSdlNKjsV0H1iM9XCnaNWp5377gdX88qvg+CJCs4UpGj2EqAkQo3zhL9bImk8ZmN2h9l5crpG0Cz30y5ZhZa9z8k32kwFcwnGB5e1i+481406d62RTBgnkXf2oWvHhyT5UXEYitTfxCE4XZ7yCS2/dJtSyR6g70iNzpCeRisgRaSFtn/xstvk7d9shT2GjJ8M/kDxaS1b6B18SA90SpXwd7ixHens03D1ilrfasw4f45NwjXzp9vRtjHuJ9ogQ==
+ b=Z3nYZaJoIRguoM6NVKr/bWp3oeVXSNj1qDeBUxRJaU7jfA7nBZPoDC6S6STRG5BMjbaSA6dY2rb6R42U3gRkuQ5/8oTIrqYM04ovVpyj3yvq8rOpLet/hYugXvWOu648ib/37hvgQOdvecKo3ltiSAsDwqJDVa3ivRIW3M3FpeCRhtdHYqQZx9syPcnY5VtOVqRQAdyUxO+7mi9g7fyf79LgSGmgVZj8OmVANYO8XV5sZC1QOTjIMBevvnhXwAuYZw+JbNEIp0o7Xbw2wYg4iOBwOZhkxyXRktMRq2T1QdGLM4zNKIHbPHqjPP13IhDvUjWW9j+hoK3ZUDfPQICChg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rUwcH0AP066rRXsjRoVrCquf5CYFPhvq6mGB8Zb+9N0=;
- b=x18rdkkUBNwy47EmsE5OF8HXUc8yXrU6hEnJ+aVXZjtS47FsI5O5HeGHQcCppIjFSHtEuTNCEYFpyk/MHTg7BKNXotTi0CYupltYVwiPp7FNGXuC3hiyznXDoWcWYLq69lwRiq/ZAc3R/j38cmuonLzbMbIUhOi6P5LO2goW5hFnZt1tdQF8+RY95Cxnlgu4d3JA3RU2U8tXFbSYW7Vu4jWVZOYwh/VEZRdUkgknjgCVHf8zfYoNJSz8IDrhy745lVnJnkNf68Ra348jxjP6sJKr75c4XgocfZTBVDB2Mggic/Radn5F6j5tuB6Pcsc6c2sk2E4UIm8yanW4ka8Tcw==
+ bh=+CXAqIlaLFf0WX65VWCE2myopjgfrKMjsVKHtM1cAf0=;
+ b=w0VWtRQsF6KAgeV3xV2NzMKxGiOq10QV27xvRBBmm60ktrY8qqBtBggBArHdgtgGZ04WPnbBlezmgp6tCjJOyLSm9CN/X695XxTPM1BeiItKok0bunVoy5nZjzcXfZ1iThwsYOjXphnx3Xy1WQhFc67hQtBfqDKm47O/1xTQxZ8lmJTXh5pj6ujgGZr/GLRXLkHWrSX3diXUdAWi2ZojYOUJM7cIhrx2CFwceSbtkQwhjc/tFdRNjN7b6hIZxnnuHYsy13RbXWBEDJJGDubms1pJ2uJ2MaMEqNmJIiss/ZQ141FDip90rtsSyUd+ZNq31sHPvYyaVl8jbnp27xfG1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB7175.namprd11.prod.outlook.com (2603:10b6:208:419::5)
- by PH7PR11MB8276.namprd11.prod.outlook.com (2603:10b6:510:1af::5)
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by SA1PR11MB8489.namprd11.prod.outlook.com (2603:10b6:806:3a9::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.24; Tue, 29 Jul
- 2025 14:34:27 +0000
-Received: from IA1PR11MB7175.namprd11.prod.outlook.com
- ([fe80::21c:1228:5006:c7ed]) by IA1PR11MB7175.namprd11.prod.outlook.com
- ([fe80::21c:1228:5006:c7ed%4]) with mapi id 15.20.8964.025; Tue, 29 Jul 2025
- 14:34:26 +0000
-Message-ID: <73db4cd8-1c5d-4500-811f-2a74e14be7f3@intel.com>
-Date: Tue, 29 Jul 2025 20:04:17 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/i915/display: Optimize panel power-on wait time
-To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-CC: <ankit.k.nautiyal@intel.com>, <uma.shankar@intel.com>,
- <arun.r.murthy@intel.com>
-References: <20250728051237.2322256-1-dibin.moolakadan.subrahmanian@intel.com>
- <018afd66168bd9a55abe4e14c24e9b11a89ab15c@intel.com>
- <22f5e747-a7d9-4c7e-a132-3a64cd52e6a4@intel.com>
- <ca3b32f7b594383d07476efd84ac40dadfa34f08@intel.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <ca3b32f7b594383d07476efd84ac40dadfa34f08@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0101.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:af::11) To IA1PR11MB7175.namprd11.prod.outlook.com
- (2603:10b6:208:419::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Tue, 29 Jul
+ 2025 14:35:53 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8964.025; Tue, 29 Jul 2025
+ 14:35:53 +0000
+Date: Tue, 29 Jul 2025 10:35:48 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Imre Deak
+ <imre.deak@intel.com>, Dibin Moolakadan Subrahmanian
+ <dibin.moolakadan.subrahmanian@intel.com>, <intel-gfx@lists.freedesktop.org>, 
+ <intel-xe@lists.freedesktop.org>, <ankit.k.nautiyal@intel.com>,
+ <uma.shankar@intel.com>
+Subject: Re: [PATCH v2] drm/xe/display: Block hpd during suspend
+Message-ID: <aIjcRFU90s6Ml9Vt@intel.com>
+References: <20250723092946.1975018-1-dibin.moolakadan.subrahmanian@intel.com>
+ <aICtgAa54ESMZ2ii@ideak-desk> <aIDhTEcPoL5Y8Aoj@intel.com>
+ <7b9d3439-ad9b-4ebf-86ee-0aa1c7b87b8c@linux.intel.com>
+ <1c1510bdb0b9ade97da615f81d91e8f7cde20275@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1c1510bdb0b9ade97da615f81d91e8f7cde20275@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0119.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::34) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB7175:EE_|PH7PR11MB8276:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ecec2a4-be34-4ce3-6e56-08ddcead04f5
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|SA1PR11MB8489:EE_
+X-MS-Office365-Filtering-Correlation-Id: f17fd73a-c57f-4f56-54b4-08ddcead38a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?a1pJcjdJSElqTWRYQ0w3U3JLdUdyaHVsdWZkRlZMdEVvR2hWNWlnNjJlZll5?=
- =?utf-8?B?MlMrSnZuRWJaRlJtenRkS1RWWVpQajlPYldKa1A2aHh1bUxaakdkdHlob0pX?=
- =?utf-8?B?SU9MQXRwT3BqNFl1dUpGK01VaWJaVWRxMVpqck1zT0p3SlVUL1M0Z0xMM1Rk?=
- =?utf-8?B?bjY4VnA0Ny9Ibk1wdmVJU2VzbHQ4RHdIY3plNzdxNENweURKdmpIQzMvbUhx?=
- =?utf-8?B?WWZ5bUJqbWFldmlFQ29qY0FsaXY3a2VVQ3JMN3o0SlhyM3ExR1NXUTRMS0Zz?=
- =?utf-8?B?MEZTdDVmNG9GUGVEWFRKQ1ZGVnVwNndYZndFdXhEU1FrME5LN1VKUlRISXE4?=
- =?utf-8?B?TjNuWUVqcks1bDdoZmRMRUc3UHhMSEpsakFucWR6Mlh1QzVONWZXUGRmd25R?=
- =?utf-8?B?Z0F5R2hwbTZwN0pGNDRvTzlNMEdDeExQRVNldzRTa2R1ZlhHckNUc09YSDRK?=
- =?utf-8?B?L0VoaFJVb2Y0VkhPOVp5Vmp1bUEwdmtLOUJOWGc0Njc0YjZuKzVKTU5aZGdm?=
- =?utf-8?B?WHpEMnkrSjdSMzJVUHlibU9XOXN3VDdsbmNXQ1k2N29HQUt4THkyRkxSbnFV?=
- =?utf-8?B?d2FwYWJvS0lCSlFyRHlYZ05vRm13aVNtcTJ2ZkZ6dWxEdHNrOWRCRU0zUXZT?=
- =?utf-8?B?elRqaEtvLzR5ckVzbmh3R1NlM20vdlFFQjFEVFl0cExndHBNWVVlTTJzdUFE?=
- =?utf-8?B?QmtYMWpES1ZIbkgweitIcHpoUUQzaWZKQUtxRzMrd3VUMzY4eVBpY29uV1V4?=
- =?utf-8?B?WHQ3bU9YeElWVHpXUlVEZy9sYlFRekpCWGpxZ1UrTk5ja3UxUGdzZFczcHBU?=
- =?utf-8?B?RDRqbldISTV5a0pITTgyWlZodDhRTFpDc2VJRTZMdE9xczRtWnhBOFcrT1NT?=
- =?utf-8?B?d3dMcmpyVDJJUnI0SjlWUUI0VER0bTB6c2ZHZEpCeGZGSHdWOGZvVVlVaFk4?=
- =?utf-8?B?NVFCV0g0NjE0U0YrWTFza1Rxcm5ibDMybWJVVTB3TmhTQ0N0Y3dPOFEyQmRs?=
- =?utf-8?B?dFRwcW1Gc0NuRlp0Q0lRenR6WlBybVJZK01hbWswZGpTWlRXUjBScDVuekZi?=
- =?utf-8?B?UERQaEV3Wm43SmxhU3EyMWl6WTgyN1c0V1hEVlQzV0VSNHQzMHhpOFIyQlhU?=
- =?utf-8?B?TmdVU0wxZzUwZTdBeitsRzVvQU5kckpQd3lFME1jWXlSQkF6UGh6dWY2ZG15?=
- =?utf-8?B?ZGtuWHJaVnBVaTNuVktoWjFxQzcvL0ZVRHNrRlhrYndiZ0Y5Y1MvRVdXWnZa?=
- =?utf-8?B?bE9tSUpWZ1dnWVk3eDlNaVNwVHhyQW83LzBxNjFRb1BPcFRyR3Bac29ZZWJy?=
- =?utf-8?B?Q1NzN3N3eFhuZ0RURHBmYjNLcG0zNHl6RU94eDVpQ0xVMTVNRXA1UUR3akg1?=
- =?utf-8?B?cUhxOElLaXp2S3dLcURZd3dOdlprUkpaN01Db3RteWExcDRZUDQ5b2xBdTV6?=
- =?utf-8?B?b1p5SmR5SXJtNkZIMUNtc2RhYnFjc2RPeXNYZ3dyaTIzVEhxVlo4d2F6UVNR?=
- =?utf-8?B?TXZPaDlvMS9nN0VMVVhFTi9KSDZVdEczTjN3bTV5SnNkbEVxeHd1bGtjeEVC?=
- =?utf-8?B?MzBKc0Q5WFJ3NitDZHFmamc5YnZ4eGdKaDNpQzZsZHJYL1lYQTdGaTRDeEJz?=
- =?utf-8?B?SVpycUVHV21VZ21zbkw2OVA1VGdqaDc0NlhhNnBRdDJiclNaZHMvVVdBbGxs?=
- =?utf-8?B?aUtXa1JHSGFpTmVMWTlHMndFS1Fuay9MTHhSU1ZTeS9PaGl3blBXUzJLTE40?=
- =?utf-8?B?UW1HNW9pRGRCakpCU0VXdGJUU1NUdkRobVlOc3ZGU0Jaem5pSWFDYytSMm5y?=
- =?utf-8?B?RHVzSmJobVJBMHdIblo0ZUk1RzFPYUNSQVBqcDllWVBuZE85YUE5ZXMvUXlU?=
- =?utf-8?B?clVRbE9OQzZDU3RDZGlPTHY2cHVFQ29wcmRMOFppZU9LZGc9PQ==?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0c1v7nAq4S23IMcov5cT64oJ6POlxUSwRzq/+DRHuTeecozxewYhz6qqzt6A?=
+ =?us-ascii?Q?B79h3C9gr/VYoeM/mouDrVPV00AVWMiqK+uCmmV7Mbh/5F+8PcGIEEyEFSvy?=
+ =?us-ascii?Q?UcCwmqFbYd1rkJqC/8PS2oLQoYNTDsbCipWFUkLRBGM+K8T7WlLPcpI7fxk3?=
+ =?us-ascii?Q?GfnlK7Rr87JMmxmRY9PcDy4McAN/qRH8SLOIIFZMw1UnRgI9LG4HHtfUX4Lf?=
+ =?us-ascii?Q?9Bc26Ed5KObnf4S+A8lNT8bLID4lCBh2699GfBJKE+MotoCdaIuQK+SI59XX?=
+ =?us-ascii?Q?NXf1jCWBwzbjvUzM967OiY1L6VAtCn7lPot+i6fuYZ6ElMvLNCwas987NEi3?=
+ =?us-ascii?Q?EuH4ZxnYfhACSGcJBpgbts/5DkVnGnUXmPz3/JNIIKdtkg/HHUAh8Fjdcy7N?=
+ =?us-ascii?Q?4wT/RiOtyxZ3je/eXmJykJd2iZxAj15OkwT//mM05DBSLKmtgCY2eKs6T131?=
+ =?us-ascii?Q?RxWfWuvV1PdccpXYTmnhzo9szq1nSRRx02CFyeg3I/zYrqQkJg509f1hW9AC?=
+ =?us-ascii?Q?U/B1RXelmh8gwPIlTf4WvRBNRo9J1bDsGEXFBVJjwTuCn2pMo5JLMnrWJs73?=
+ =?us-ascii?Q?lOVOHHE+m+IvDWuVOPuoXErt34PDUCAxrPl3w2TNmh+102KbDmOPG0zV1H8j?=
+ =?us-ascii?Q?go/W3pJZKb4RfzbhIKZlBihraEcF+tscjRqyurIzrvNlJ0TeYmJx1boRMSe1?=
+ =?us-ascii?Q?og4tu+4EQ41pb47Xvrep+OfgqGPOHSZBC4K1/w1LNRYpx6jH9+SWacwR5Olq?=
+ =?us-ascii?Q?HRr5/iPFZ00JH7KwquRLKWZ6R8zSOHitcxEpDcOcP4HWtbe4B8LD5aNVIyOR?=
+ =?us-ascii?Q?hGcnGs1ftCD9rz5rnsqSdC4jCk/JQWmxSbdikP6jwNXNSQqKYZX+J4sbmlaf?=
+ =?us-ascii?Q?wLlL/Zkqx5e4xO7a0awA6xdn1Baf8wK438C7t/fdKQpciKoxdc5snFbZ5EL8?=
+ =?us-ascii?Q?1518Cyv1Csg6n3iH2DI1R3iL6VTecUXBJ1PTrhiqNyVo+VBj8N1pb33JKOUN?=
+ =?us-ascii?Q?yM8JT/Swcoh+TWsDEaijuAGm9lUCsSxAg4DarCL5EeCnpEObVnP3yIaRDLvg?=
+ =?us-ascii?Q?w09DVerXEXteznkUW3NGvdUCjf1SkKBg36lEWX4nLuBuDTILu9eU2V8SFfyR?=
+ =?us-ascii?Q?/EkufJVHYkdjpI3Nik4yQUs+L/F93Xfc5Th5twlC4i8XyDAyVmS9YFl7wBk9?=
+ =?us-ascii?Q?Bq/EGpDR94dC/JlK85DaSU6D7rYp1vgcNxdzkzdDYZFOpudibyg3bElBsnaC?=
+ =?us-ascii?Q?9z1CObzD1tV0ijgO1MZmW8LQWgn1pnrsIJ9LcCJ9tz+dlOu7iXHTjLhs/2wO?=
+ =?us-ascii?Q?SlfTN8f765LqwQZHgLqHmxbsfviZzh1TO+jUy9pqKWHqlO0YiB1iM1dvkxdI?=
+ =?us-ascii?Q?sPRJpjA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB7175.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2M2czUxNUNHMHV6ZWxPaHNmazVXaEl2OWJUUDloUDNBS3RrcldsQjlkSkwv?=
- =?utf-8?B?ZHZnUlcxQlhqYW0vdVR5Y1dGQVVqakNrdWk3Z2twSFY3dC93Rk81N2xvUVpD?=
- =?utf-8?B?U1Z0eXkwblJoam9FQm5kL2VjY0drbjh3ZGNRYTVCR3kzcVpqZVI2bUZRb01a?=
- =?utf-8?B?R0NXU3hUYkNqSW4xS0tLKzhteXVPV3poa0xoUktLTWRrd2wxcGU2ak1DbDJx?=
- =?utf-8?B?aWIzM0ZsNEt1ZXNIcGxTQ2UxbFFscUY3aGpvSDZVRVhzbGR6UUdiT1pTdmJi?=
- =?utf-8?B?K1ZCWWtUWENtWTE1c0twWkhiOUk0ai80bHN2MDU2cG4vSVB6M1ZWNHBWMjJF?=
- =?utf-8?B?WGlQWDNsc3AwZHMrYjNRTThUMGRnK1JOQ0tQWktEb1dlTUpiY2M2NUdBKzJ2?=
- =?utf-8?B?OENRZEdDN21wUGxLRlJRb01SRDJ0UyszYVRTMXBvd1ZYZzFCUEIyNHlScFJr?=
- =?utf-8?B?S2JyUy84YlFVWmJPcWpXbGFmdkcyeGJ1UTVhTHJWWHRieHFpY3M4ZWxqNmZl?=
- =?utf-8?B?V0RnSStVQ2w5YTRCVm9VSG5zcVdYOVZvQlhCVU0rOE15MkhDUTZHRkMrVTZD?=
- =?utf-8?B?cVNNZU9RZXNTQjNhQkJLNWdRbURlTFRFZjFrSG83c2cwaFlKZlZQdkhhMGlk?=
- =?utf-8?B?eUpSMVhWQVVSSEZGNk5CSHJEKzVnWmREMUNWLzlLeElnS2ZubUx0WTFEa0hC?=
- =?utf-8?B?K1FZYnVvd2hqSnR3RmJqME00bDhYZ0xZSnVRRFRpU09Yc09uTS9URVJyV0RP?=
- =?utf-8?B?WFFod09GYmJOVHJ5V2dsRStYek0rU2NOTHQ1OFYwTnhOa28vR1dERFk1ZS95?=
- =?utf-8?B?cEJuSFJTb2NvWEpsMkFRUC9McHVXeE5PclAwSndUaE9ldWJqVGJRSzR2QURi?=
- =?utf-8?B?aEtFQnBXdVVRNC81T3oyNHRueE5PeFVkbUY5QytERURwWU93VjViZHBJVGY2?=
- =?utf-8?B?bVNkYmJ4cmI0YVJmd3cyUHNzZURUUm1MVENua0JZZG4ramR2aE93ZGJ4M3B0?=
- =?utf-8?B?YjQ4ZUNCSzg4bk1FOTFYbnVwSHc0V0pyV2ZpcFFBZWVlMXFlY2FQNVBnRUdz?=
- =?utf-8?B?S0tnckt5UHZobTJkM0JpNnpPOFArcTNSYkdjU29kZGtyTGdaVEJyMWdicncz?=
- =?utf-8?B?bU05RitFVDBST3pFSHZIenJMbnJPdWE2SFMwWkJWNEQ5bkxwSlNYa0xYUVht?=
- =?utf-8?B?S0xFUzJhSWFmbEdsU2FrN3pWcjlQUE1LQ3dlTWJUckxMa3kySWJhdGRlek44?=
- =?utf-8?B?VHJFSkVVZTNuaVAvYWYzcklWS2RXTkgraTBFR3BvRzc3SFJ6dVVCQnFOK0FB?=
- =?utf-8?B?T2dNL3RBZnpYdU80NWNkYXFBdTBYVTg1SWE5MXVIN1JvTkoyVUVEQi9DRFBD?=
- =?utf-8?B?TDM5WHFwb3c1aEJzTDg4N1RacDBOOUcyVG9PWGpabDQxOFZLWFh6d0JXUy9N?=
- =?utf-8?B?RGRqeUQ0TXJmZ2JMcjhnbisyaW5GeGdLM3A0ZXhXdXVRTTVxczJkSTJnVUZC?=
- =?utf-8?B?LzdRS1hOYXpHNWUvMlg5TXNKVlp4eTBrWHZZWDFCWE5MT21aSVpCV1doaTVC?=
- =?utf-8?B?bFY0WCszTE9WcHY1U29VT1B4cWFSa0RZUCszdGdseUs1QnJqUEc0UThKMVZU?=
- =?utf-8?B?eWlNT2FmMmhwVHhGWHd5cGJQbld2dkJsUlV2NlF2WUJMZE9qMUtDWTZyUU5t?=
- =?utf-8?B?cWw2eEtKaFdlbUlKaGV3NWt5cktBN0FZbTJSekFyM296eVR5bWVpWjNaeGRp?=
- =?utf-8?B?QjdvdmVWR01XMHVxMEVmMmJwQm1VSVUwUkdzL05OSkNSNDJmSkFsdFgrL3B3?=
- =?utf-8?B?dDVDUXFFUTRxWjZDWENtWDVRZlNiWjVNc0ptYWZrZjhxcCtGUHNZWTZQeHJH?=
- =?utf-8?B?QTNqSVdRaFlySGh6M0IwSGdkVHFBZ04zbTdqZ3FCYndGUU1CU2FxLzhKZTJM?=
- =?utf-8?B?QkQ0Z0xWYnhhMktGNDdHdmwrM0xqVVR0N3FCdm1naWpWclgwRHF5elNZd3ZN?=
- =?utf-8?B?b0pGL3RYWWdLYmJvMWRDcC91VE9icGdmOEF3VXUwajZnN0Z5MXNMcXM0Mit3?=
- =?utf-8?B?L3V5Q3NSdUgySkFLSGlVVzFhSzVkRDU5ZEp1L0l6b3N3d05jNXNSdmtKR21k?=
- =?utf-8?B?K2NZTkVLaSttYVU0d2NTdmJIVzdrZ0hKQkgwcTJFdkRlVW9Bc2pTYlEvV0VM?=
- =?utf-8?Q?MZb0eaO7chfc2zlbcyRnyRevFM+cf+v7PTL1I06NlGN6?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ecec2a4-be34-4ce3-6e56-08ddcead04f5
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB7175.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A0CBja85ASt8Q2mOpAOJzNNMDIxLX2yJtzVCVSk6fgNiLrGhr6wKD1ewPF8f?=
+ =?us-ascii?Q?A8WLOJdRtBYMRqC63V/9byHwD3zQ8ziuQZqo7YfUcOt9/o+mJdYsvktE/v56?=
+ =?us-ascii?Q?ABTCso5OqTt18u7gc3zQt5nyVglm5TOE21ZkNYTkx+GOT2uXdB30N469/uoT?=
+ =?us-ascii?Q?HzfIMTNyUSvB6S0UPPSIo5EepMTTU7pKlzrU3M51dmeGtbNCI/qnhG0PTcf8?=
+ =?us-ascii?Q?5JF0jENS4fXq4jwQo3Jl5/2a8vVqWcZADwoJ/yZdgt5Cplis3zXC5BAXh0rt?=
+ =?us-ascii?Q?il7nP8CgPw76r8r9i/0RSG6jdEEfbvff/vnZvIKvAO31PbbXlDgx4Ku+GMzE?=
+ =?us-ascii?Q?E9dIakhc9ruEKflll/TvDXU0fJfRYzoJwVS3jFliGM2HfXM1z7umlUPLnR3Q?=
+ =?us-ascii?Q?1ckZurio7a0Ehl0IJwJ/754cE1Z4L5NkyUuhF4/ioeubAsUhimcKOOEdLK+K?=
+ =?us-ascii?Q?pjGQvK6Bdj9Y6OEC6iCwaeZfWrF6b1+88b8SQLI8d5H5yyAO4flUgcy0riqP?=
+ =?us-ascii?Q?Sy9HW1AjB9v2rKWYICpaBpE5hNcQK8Zb/O762Ydn0OaOa0oKLlplyZylK8gd?=
+ =?us-ascii?Q?kpUBD3sQ/+68gSWHwNqULGcc05DYvMu8bFINvJtqKdtO5KcWl7Aq30dF5D2Y?=
+ =?us-ascii?Q?XGiH2+2zQ2PeXL3I6rSrAw2PX4Xu3ijqRtsTAZfu6IHoGKaydfYFwHg66bsf?=
+ =?us-ascii?Q?+a4gczehtvyOuOSxuJPRTuFHYIiahfr4lHDu4Qz9LzYVKoDKW2wGIYPybgmI?=
+ =?us-ascii?Q?yVzAa5pWSq1zvVAq01FBoq9hlWLE1Obzfx1pKL/Xn3+WfTuKJ6CyM8I/eTdK?=
+ =?us-ascii?Q?m2JmXFpLebtBTPbtZgXIykNOWiCf4CXwBD0Qw554+BE8MNHj9mgYX3TgtgH5?=
+ =?us-ascii?Q?JTcha4Ly4D6jcq+lTN2VQYeUx6QGc6VbMFtvKIVE/o2L1CCu4fqQjjlKrNYN?=
+ =?us-ascii?Q?mc699cX5CTiakpy9hBI1i2zEM8hntAAOUQXe+wRL/jKJcXANCQjbvBgbXxWc?=
+ =?us-ascii?Q?uweA6kPzqHR4yIngMJ3mCsFrHG9JjUELr7fBM0pUx9vhA4xcYY8Ai0VF+7ri?=
+ =?us-ascii?Q?kbdxeX/qQZ2ZqvDrX9O4CuSo4ySukaU/nCmXi9SnuzsNUThJlXEXfJ73DN/c?=
+ =?us-ascii?Q?R9um1+2bu/I8XSD+BhJIGz+AX3cGdxIqzFxk7e6OK/tB7xWn5mdlMDYwKonf?=
+ =?us-ascii?Q?b8rrsIFuAt06zKId1eEtu8RIMdkj4B9hFUf1Cr4lyBJ7GwW4HG21Ry6TGj8E?=
+ =?us-ascii?Q?RnodegDM8Rwrgr0wV4CmqC8le8IWgzXVFSGwPaHMQZDoydK2CAawqlQxYpIB?=
+ =?us-ascii?Q?KxIQmw8Gza55nL/Vrg3BOpWQY0T8s9Tek1DooVPW88ynk+z/IMqJyV5bO9ju?=
+ =?us-ascii?Q?sYWUDdllHJvqPN1UvoZhVNe8JEbCcEXbsa0Zzp8QHiRN/2kFmOI2LG+QYC+h?=
+ =?us-ascii?Q?kNr5vhGZKsHrf2GR/Os/Or9qygl8om/Wd7yCCAKxOLd4lFmSJ2UifNyZMm09?=
+ =?us-ascii?Q?XLaeevVlxNoFKmsjQWmWu4RAbYTxyEwKTaVmvDw5syG9EXNQIWfzVUgJemSc?=
+ =?us-ascii?Q?l0PCRBUoxR35gt//4nuXseGcycnny5ZRYXU9JbG7EI0pfyP+8f9TS+wpj23c?=
+ =?us-ascii?Q?eA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: f17fd73a-c57f-4f56-54b4-08ddcead38a4
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 14:34:26.8118 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 14:35:53.4571 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mg3qka7SmkBQ7USmNayi+IczrW50qiQWBv0Ejjc+I+pZiB4x/PgyuCIhnsS3MmWVB0rxvpM718jA7AZZjHnPyS5y+30iY6TD80qLY5qNGzYVrR6Nb5gifTFJHYc123my
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8276
+X-MS-Exchange-CrossTenant-UserPrincipalName: bH+UIuV2Lz0IrNb4ivPOMMSbeEbss09+P1asS7UjA7pXn8bB4nv/vGnd6lWQd4yXdw5uaYf3zFo+4BPviTZAQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8489
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -199,186 +182,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 29-07-2025 18:57, Jani Nikula wrote:
-> On Tue, 29 Jul 2025, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
->> On 29-07-2025 13:47, Jani Nikula wrote:
->>> On Mon, 28 Jul 2025, Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com> wrote:
->>>>    The current wait_panel_status() uses intel_de_wait() with a long timeout
->>>>    (5000ms), which is suboptimal on Xe platforms where the underlying
->>>>    xe_mmio_wait32() employs an exponential backoff strategy. This leads
->>>>    to unnecessary delays during resume or power-on  when the panel becomes
->>>>    ready earlier than the full timeout.
->>> It's not about the timeout, it's about the exponentially increasing poll
->>> delay.
->>>
->>>>    This patch replaces intel_de_wait() with read_poll_timeout() +
->>>>    intel_de_read() to actively poll the register at given interval and exit
->>>>    early when panel is ready, improving resume latency
->>> Please do not say "this patch" in commit messages. Just use the
->>> imperative "Replace ...".
->>>
->>> The commit messages is unnecessarily indented with a space.
->> will correct this.
->>
->>>> Changes in v2:
->>>>    Replaced  two-phase intel_de_wait() with  read_poll_timeout()
->>>>    + intel_de_read()
->>>>
->>>> Changes in v3:
->>>>    - Add poll_interval_ms argument  'wait_panel_status' function.
->>>>    - Modify 'wait_panel_status' callers with proper poll interval
->>>>
->>>> Changes in v4:
->>>>    - Change 'wait_panel_off' poll interval to 10ms
->>>>
->>>> Signed-off-by: Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/i915/display/intel_pps.c | 41 +++++++++++++++++-------
->>>>    1 file changed, 30 insertions(+), 11 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
->>>> index b64d0b30f5b1..56ef835fc2eb 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->>>> @@ -22,6 +22,7 @@
->>>>    #include "intel_pps.h"
->>>>    #include "intel_pps_regs.h"
->>>>    #include "intel_quirks.h"
->>>> +#include <linux/iopoll.h>
->>> Please look at how includes are ordered in every single file in i915.
->> will correct this.
->>
->>>>    static void vlv_steal_power_sequencer(struct intel_display *display,
->>>>    				      enum pipe pipe);
->>>> @@ -600,14 +601,18 @@ void intel_pps_check_power_unlocked(struct intel_dp *intel_dp)
->>>>    #define IDLE_CYCLE_MASK		(PP_ON | PP_SEQUENCE_MASK | PP_CYCLE_DELAY_ACTIVE | PP_SEQUENCE_STATE_MASK)
->>>>    #define IDLE_CYCLE_VALUE	(0     | PP_SEQUENCE_NONE | 0                     | PP_SEQUENCE_STATE_OFF_IDLE)
->>>>    
->>>> +#define PANEL_MAXIMUM_ON_TIME_MS		(5000)
->>> The name of the macro is misleading. For single-use things, maybe better
->>> to just keep the value inline as it were.
->>>
->>> Side note, the parenthesis are superfluous here.
->> will correct this.
->>
->>>> +
->>>>    static void intel_pps_verify_state(struct intel_dp *intel_dp);
->>>>    
->>>>    static void wait_panel_status(struct intel_dp *intel_dp,
->>>> -			      u32 mask, u32 value)
->>>> +			      u32 mask, u32 value, int poll_interval_ms)
->>> Can we not add the extra parameter please? Can we have a meaningful
->>> default instead? 10 ms? Is the 1 ms poll interval really required?
->> Motive behind adding new parameter is to adjust the poll time based on case.
->> Currently each call is taking different time to complete as below
->> for panel power off time   - 82 ms
->> for panel power cycle      - 0.074 ms
->> for panel power on         -  327 ms
->>
->> Making default poll interval 10ms will  increase panel power cycle time  to 10ms
-> It's still opening a can of worms. The 5 second timeout is relevant for
-> all cases either, so you'd have to pass *both*. And it's not so simple
-> anymore.
->
+On Tue, Jul 29, 2025 at 12:44:47PM +0300, Jani Nikula wrote:
+> On Thu, 24 Jul 2025, Maarten Lankhorst <maarten.lankhorst@linux.intel.com> wrote:
+> > Hey,
+> >
+> > Den 2025-07-23 kl. 15:19, skrev Rodrigo Vivi:
+> >> On Wed, Jul 23, 2025 at 12:38:08PM +0300, Imre Deak wrote:
+> >>> On Wed, Jul 23, 2025 at 02:59:46PM +0530, Dibin Moolakadan Subrahmanian wrote:
+> >>>> It has been observed that during `xe_display_pm_suspend()` execution,
+> >>>> an HPD interrupt can still be triggered, resulting in `dig_port_work`
+> >>>> being scheduled. The issue arises when this work executes after
+> >>>> `xe_display_pm_suspend_late()`, by which time the display is fully
+> >>>> suspended.
+> >>>>
+> >>>> This can lead to errors such as "DC state mismatch", as the dig_port
+> >>>> work accesses display resources that are no longer available or
+> >>>> powered.
+> >>>>
+> >>>> To address this, introduce  'intel_encoder_block_all_hpds' and
+> >>>> 'intel_encoder_unblock_all_hpds' functions, which iterate over all
+> >>>> encoders and block/unblock HPD respectively.
+> >>>>
+> >>>> These are used to:
+> >>>> - Block HPD IRQs before calling 'intel_hpd_cancel_work' in suspend
+> >>>>   and shutdown
+> >>>> - Unblock HPD IRQs after 'intel_hpd_init' in resume
+> >>>>
+> >>>> This will prevent 'dig_port_work' being scheduled during display
+> >>>> suspend.
+> >>>>
+> >>>> Continuation of previous patch discussion:
+> >>>> https://patchwork.freedesktop.org/patch/663964/
+> >>>>
+> >>>> Changes in v2:
+> >>>>  - Add 'intel_encoder_block_all_hpds' to 'xe_display_pm_shutdown'
+> >>>>  - Add 'intel_hpd_cancel_work' to 'xe_display_fini_early' to cancel
+> >>>>    any HPD pending work at late driver removal
+> >>>>
+> >>>> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+> >>>> ---
+> >>>>  drivers/gpu/drm/i915/display/intel_encoder.c | 23 ++++++++++++++++++++
+> >>>>  drivers/gpu/drm/i915/display/intel_encoder.h |  3 +++
+> >>>>  drivers/gpu/drm/i915/display/intel_hotplug.c |  2 --
+> >>>>  drivers/gpu/drm/xe/display/xe_display.c      |  6 +++++
+> >>>>  4 files changed, 32 insertions(+), 2 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.c b/drivers/gpu/drm/i915/display/intel_encoder.c
+> >>>> index 0b7bd26f4339..4e2b77b87678 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_encoder.c
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_encoder.c
+> >>>> @@ -8,6 +8,7 @@
+> >>>>  #include "intel_display_core.h"
+> >>>>  #include "intel_display_types.h"
+> >>>>  #include "intel_encoder.h"
+> >>>> +#include "intel_hotplug.h"
+> >>>>  
+> >>>>  static void intel_encoder_link_check_work_fn(struct work_struct *work)
+> >>>>  {
+> >>>> @@ -37,6 +38,28 @@ void intel_encoder_link_check_queue_work(struct intel_encoder *encoder, int dela
+> >>>>  			 &encoder->link_check_work, msecs_to_jiffies(delay_ms));
+> >>>>  }
+> >>>>  
+> >>>> +void intel_encoder_unblock_all_hpds(struct intel_display *display)
+> >>>> +{
+> >>>> +	struct intel_encoder *encoder;
+> >>>> +
+> >>>> +	if (!HAS_DISPLAY(display))
+> >>>> +		return;
+> >>>> +
+> >>>> +	for_each_intel_encoder(display->drm, encoder)
+> >>>> +		intel_hpd_unblock(encoder);
+> >>>> +}
+> >>>> +
+> >>>> +void intel_encoder_block_all_hpds(struct intel_display *display)
+> >>>> +{
+> >>>> +	struct intel_encoder *encoder;
+> >>>> +
+> >>>> +	if (!HAS_DISPLAY(display))
+> >>>> +		return;
+> >>>> +
+> >>>> +	for_each_intel_encoder(display->drm, encoder)
+> >>>> +		intel_hpd_block(encoder);
+> >>>> +}
+> >>>> +
+> >>>>  void intel_encoder_suspend_all(struct intel_display *display)
+> >>>>  {
+> >>>>  	struct intel_encoder *encoder;
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_encoder.h b/drivers/gpu/drm/i915/display/intel_encoder.h
+> >>>> index 3fa5589f0b1c..e1d3aeab7c00 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_encoder.h
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_encoder.h
+> >>>> @@ -17,4 +17,7 @@ void intel_encoder_link_check_flush_work(struct intel_encoder *encoder);
+> >>>>  void intel_encoder_suspend_all(struct intel_display *display);
+> >>>>  void intel_encoder_shutdown_all(struct intel_display *display);
+> >>>>  
+> >>>> +void intel_encoder_block_all_hpds(struct intel_display *display);
+> >>>> +void intel_encoder_unblock_all_hpds(struct intel_display *display);
+> >>>> +
+> >>>>  #endif /* __INTEL_ENCODER_H__ */
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> >>>> index 265aa97fcc75..c69b535497bf 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+> >>>> @@ -971,8 +971,6 @@ void intel_hpd_cancel_work(struct intel_display *display)
+> >>>>  
+> >>>>  	spin_lock_irq(&display->irq.lock);
+> >>>>  
+> >>>> -	drm_WARN_ON(display->drm, get_blocked_hpd_pin_mask(display));
+> >>>> -
+> >>>>  	display->hotplug.long_hpd_pin_mask = 0;
+> >>>>  	display->hotplug.short_hpd_pin_mask = 0;
+> >>>>  	display->hotplug.event_bits = 0;
+> >>>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> >>>> index e2e0771cf274..9e984a045059 100644
+> >>>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> >>>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> >>>> @@ -96,6 +96,7 @@ static void xe_display_fini_early(void *arg)
+> >>>>  	if (!xe->info.probe_display)
+> >>>>  		return;
+> >>>>  
+> >>>> +	intel_hpd_cancel_work(display);
+> >>>>  	intel_display_driver_remove_nogem(display);
+> >>>>  	intel_display_driver_remove_noirq(display);
+> >>>>  	intel_opregion_cleanup(display);
+> >>>> @@ -340,6 +341,8 @@ void xe_display_pm_suspend(struct xe_device *xe)
+> >>>>  
+> >>>>  	xe_display_flush_cleanup_work(xe);
+> >>>>  
+> >>>> +	intel_encoder_block_all_hpds(display);
+> >>>> +
+> >>>>  	intel_hpd_cancel_work(display);
+> >>>>  
+> >>>>  	if (has_display(xe)) {
+> >>>> @@ -369,6 +372,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+> >>>>  	}
+> >>>>  
+> >>>>  	xe_display_flush_cleanup_work(xe);
+> >>>> +	intel_encoder_block_all_hpds(display);
+> >>>
+> >>> MST still needs HPD IRQs for side-band messaging, so the HPD IRQs must
+> >>> be blocked only after intel_dp_mst_suspend().
+> >>>
+> >>> Otherwise the patch looks ok to me, so with the above fixed and provided
+> >>> that Maarten is ok to disable all display IRQs only later:
+> >> 
+> >> Also probably good to identify the patch as both xe and i915 in the subject
+> >> drm/{i915,xe}/display:
+> >> 
+> >> and Maarten or Imre, any preference on which branch to go? any chance of
+> >> conflicting with any of work you might be doing in any side?
+> >> 
+> >> From my side I believe that any conflict might be easy to handle, so
+> >> 
+> >> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >> 
+> >> from either side...
+> >> 
+> >>>
+> >>> Reviewed-by: Imre Deak <imre.deak@intel.com>
+> > We had a discussion on this approach, and it seems that completely disabling interrupts here like in i915 would fail too.
+> >
+> > Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >
+> > I don't mind either branch. As long as it applies. :-)
+> 
+> Please do not merge through *any* tree.
+> 
+> How come you all think it's okay to add this xe specific thing, and make
+> unification harder?
+
+I lost any moral or rights to complain here since I couldn't move with my
+tasks of unification of the pm flow :(
+
+double sorry!
+
+> 
+> intel_encoder_block_all_hpds() is *way* too specific for a high level
+> function. Neither xe nor i915 should never call something like that
+> directly.
+
+that's a valid point indeed. But I cannot see another way to fix the
+current issue right now without trying to move with the full unification
+faster. Do you?
+
+> 
+> 
 > BR,
 > Jani.
-
-I assume any of the above 3 cases should not pass maximum timeout of 5 seconds, so
-wanted to keep the same maximum timeout currently present for wait_panel_status().
-
->
->>
->>>>    {
->>>>    	struct intel_display *display = to_intel_display(intel_dp);
->>>>    	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->>>>    	i915_reg_t pp_stat_reg, pp_ctrl_reg;
->>>> +	int ret;
->>>> +	u32 reg_val;
->>> Nitpick, usually just "val".
->> will correct this.
->>>>    	lockdep_assert_held(&display->pps.mutex);
->>>>    
->>>> @@ -624,14 +629,27 @@ static void wait_panel_status(struct intel_dp *intel_dp,
->>>>    		    intel_de_read(display, pp_stat_reg),
->>>>    		    intel_de_read(display, pp_ctrl_reg));
->>>>    
->>>> -	if (intel_de_wait(display, pp_stat_reg, mask, value, 5000))
->>>> -		drm_err(display->drm,
->>>> -			"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
->>>> -			dig_port->base.base.base.id, dig_port->base.base.name,
->>>> -			pps_name(intel_dp),
->>>> -			intel_de_read(display, pp_stat_reg),
->>>> -			intel_de_read(display, pp_ctrl_reg));
->>>> +	if (poll_interval_ms <= 0)
->>>> +		poll_interval_ms = 1; //if <0 is passed go with 1ms
->>> Without the parameter, we could get rid of checks like this.
->>>
->>> The comment just duplicates what the code already says.
->>>
->>> Also, we don't use // comments.
->> will correct this.
->>>> +
->>>> +	ret = read_poll_timeout(intel_de_read, reg_val,
->>>> +				((reg_val & mask) == value),
->>>> +				(poll_interval_ms * 1000),  // poll intervell
->>>> +				(PANEL_MAXIMUM_ON_TIME_MS * 1000),  // total timeout (us)
->>>> +				true,
->>>> +				display, pp_stat_reg);
->>> The outer parenthesis in the parameters are superfluous.
->>>
->>> The comments are useless (and have a typo too).
->>>
->>>> +
->>>> +	if (ret == 0)
->>>> +		goto panel_wait_complete;
->>> We do use goto in kernel, but primarily for error handling. Please use
->>>
->>> 	if (ret)
->>>
->>> here, and the whole drm_err() thing remains unchanged, and doesn't
->>> become part of the patch...
->>>
->> will correct this.
->>
->>>>    
->>>> +	drm_err(display->drm,
->>>> +		"dibin [ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
->>> ...and it'll be easier to notice you've left your name in the debug
->>> logs. Oops.
->>>> +		dig_port->base.base.base.id, dig_port->base.base.name,
->>>> +		pps_name(intel_dp),
->>>> +		intel_de_read(display, pp_stat_reg),
->>>> +		intel_de_read(display, pp_ctrl_reg));
->>>> +
->>>> +panel_wait_complete:
->>>>    	drm_dbg_kms(display->drm, "Wait complete\n");
->>>>    }
->>>>    
->>>> @@ -644,7 +662,8 @@ static void wait_panel_on(struct intel_dp *intel_dp)
->>>>    		    "[ENCODER:%d:%s] %s wait for panel power on\n",
->>>>    		    dig_port->base.base.base.id, dig_port->base.base.name,
->>>>    		    pps_name(intel_dp));
->>>> -	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE);
->>>> +
->>>> +	wait_panel_status(intel_dp, IDLE_ON_MASK, IDLE_ON_VALUE, 20);
->>>>    }
->>>>    
->>>>    static void wait_panel_off(struct intel_dp *intel_dp)
->>>> @@ -656,7 +675,7 @@ static void wait_panel_off(struct intel_dp *intel_dp)
->>>>    		    "[ENCODER:%d:%s] %s wait for panel power off time\n",
->>>>    		    dig_port->base.base.base.id, dig_port->base.base.name,
->>>>    		    pps_name(intel_dp));
->>>> -	wait_panel_status(intel_dp, IDLE_OFF_MASK, IDLE_OFF_VALUE);
->>>> +	wait_panel_status(intel_dp, IDLE_OFF_MASK, IDLE_OFF_VALUE, 10);
->>>>    }
->>>>    
->>>>    static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->>>> @@ -683,7 +702,7 @@ static void wait_panel_power_cycle(struct intel_dp *intel_dp)
->>>>    	if (remaining)
->>>>    		wait_remaining_ms_from_jiffies(jiffies, remaining);
->>>>    
->>>> -	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE);
->>>> +	wait_panel_status(intel_dp, IDLE_CYCLE_MASK, IDLE_CYCLE_VALUE, 1);
->>>>    }
->>>>    
->>>>    void intel_pps_wait_power_cycle(struct intel_dp *intel_dp)
+> 
+> 
+> -- 
+> Jani Nikula, Intel
