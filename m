@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86E6B158C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jul 2025 08:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4154B158C6
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Jul 2025 08:13:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3CCE10E365;
-	Wed, 30 Jul 2025 06:13:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5595B10E378;
+	Wed, 30 Jul 2025 06:13:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LqsCK2jU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j/4bHZP8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 567B910E365;
- Wed, 30 Jul 2025 06:13:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6F510E378;
+ Wed, 30 Jul 2025 06:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753855990; x=1785391990;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T2tTaIETAbp/cgAON4z+neaaqUAN/ldFUynHptHI764=;
- b=LqsCK2jUqCZbXqfqGWtCnHTAA22tve+/6KNwh/opWo3keanBuR1YqP0y
- clVY+ZvUJmKhxdqd/0bUTKJG5ggOOr5PXlcVEd2KktlgWQHHWjgKwmzQf
- u4ScJs6cfHRtn0aPAK8gpP1OiXpFuEL2+2Kz4u2YU9Z+l8HdVEsW9sxYg
- jGTH1m7EGEh7ll24VvB0bSCTebvbfL6WP1FraJQzr673kr+Ezuj9zpIHw
- MUsbLxOnC2Se1ar/CzEqdiGE2i4SPAZCC6cAi0W5jqGhU9ZC6ySk6Qday
- Cabif+GyQa5qWJVKA62j8JTFlLQ5c1xuSHL8SxfnvBXb/ekRq2+TC2u9Y g==;
-X-CSE-ConnectionGUID: sAi9tq9uT4ij0qKtyGZGqw==
-X-CSE-MsgGUID: Fl+5nyKsQvWcSuyL6lvcUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="56233852"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56233852"
+ t=1753855993; x=1785391993;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kXYDGgBpunzGrvGY3ZHAxVMbprzMwrs7a12giF2uTik=;
+ b=j/4bHZP8Vc9Q8LW3Mzkwz5N0oJSx/iWOHnfFhG9X1PBduomwwZJvYAsr
+ XQmNpDAGyIOtd4S4zrQCJH0t0NUeAnu8JjRZLyg/6iN80L/aodB0Ao7hR
+ iqud8HRhacL+dFy8GTUuE/dm/8IPQFzaOkwDSbD58NIdf/TGWepAqo06w
+ Bm6kIuK7PYGDQIsyesb5SUHvk30KuG3eigQ/5buYVwlgGkFRIBxznKE02
+ fSqNB+dhm07ckbM+93FD9agdcpmalhHdN3BEgSVPlOJtf9zgvGfKcDC/N
+ QNB8Q5AGHgm5fxk48mATZnE/Oxi+tbqWDw+Ofe8OC5iG8W9ILmG9HDLU+ w==;
+X-CSE-ConnectionGUID: lx+bNY7ZTnWP3+ojP372mQ==
+X-CSE-MsgGUID: FT6ECnW8Qbux8f2Ve84Cwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11506"; a="56233856"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="56233856"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jul 2025 23:13:10 -0700
-X-CSE-ConnectionGUID: tOi4JRYUQc2+PVW0oHIcJg==
-X-CSE-MsgGUID: EFPzIQKqRM+CSb//S2ptCA==
+ 29 Jul 2025 23:13:13 -0700
+X-CSE-ConnectionGUID: p08OfFNjSOeqBRexwcYerg==
+X-CSE-MsgGUID: GM6Mj1VeTG6dKZ2B1Gabzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="193890468"
+X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; d="scan'208";a="193890483"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 29 Jul 2025 23:13:08 -0700
+ by orviesa002.jf.intel.com with ESMTP; 29 Jul 2025 23:13:11 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: imre.deak@intel.com, ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com
-Subject: [PATCH 0/2] Limit minimum BPP to 30 for HDR content.
-Date: Wed, 30 Jul 2025 11:25:21 +0530
-Message-Id: <20250730055523.2214966-1-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 1/2] drm/i915/dp: Refactor intel_dp_in_hdr_mode() for broader
+ reuse
+Date: Wed, 30 Jul 2025 11:25:22 +0530
+Message-Id: <20250730055523.2214966-2-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250730055523.2214966-1-chaitanya.kumar.borah@intel.com>
+References: <20250730055523.2214966-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,38 +69,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bandwidth calculations in intel_dp_compute_link_config_wide() can lead
-to selecting of lower bpp (18/24). It does not account for the fact that
-user content can be HDR and needs 10bpc (BPP/3) for fidelity.
+The intel_dp_in_hdr_mode() helper was previously defined in
+intel_dp_aux_backlight.c but is generally useful beyond that
+context. Move the function to intel_dp.c and declare it in
+intel_dp.h to make it accessible to other DP-related code
+paths that need to check HDR metadata state.
 
-This can specifically happen in cases of DRRS eDP panel where we keep the
-link rate running according to the highest refresh rate the panel
-supports [1]. If such panel support 10bpc (without DSC) only at a lower
-refresh rate mode, the inflated link rate forces a lower BPP selection.
+This is a pure refactor with no functional change and
+prepares for a follow-up patch that uses this helper.
 
-This series takes into account the "HDR_OUTPUT_METADATA" connector property
-and limits the minimum BPP to 30 in case user-space sets the property with
-ST2084 metadata. If the required bandwidth for 30 bpp cannot be supported,
-the driver will either fall back to DSC or reject the mode
-during atomic check if DSC is not supported.
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c             | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h             |  1 +
+ .../gpu/drm/i915/display/intel_dp_aux_backlight.c   | 13 -------------
+ 3 files changed, 14 insertions(+), 13 deletions(-)
 
-This approach preserves the DRRS behaviour of the panel and makes the assumption
-that it will support 10bpc with all it's advertised modes atleast with DSC.
-
-
-[1] https://lore.kernel.org/intel-gfx/20220907091057.11572-16-ville.syrjala@linux.intel.com/
-
-
-Chaitanya Kumar Borah (2):
-  drm/i915/dp: Refactor intel_dp_in_hdr_mode() for broader reuse
-  drm/i915/dp: Set min_bpp limit to 30 in HDR mode
-
- drivers/gpu/drm/i915/display/intel_dp.c       | 24 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dp.h       |  3 ++-
- .../drm/i915/display/intel_dp_aux_backlight.c | 13 ----------
- drivers/gpu/drm/i915/display/intel_dp_mst.c   | 11 +++++----
- 4 files changed, 29 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 54d88f24b689..59d814abd3a9 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2917,6 +2917,19 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+ 	}
+ }
+ 
++bool
++intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
++{
++	struct hdr_output_metadata *hdr_metadata;
++
++	if (!conn_state->hdr_output_metadata)
++		return false;
++
++	hdr_metadata = conn_state->hdr_output_metadata->data;
++
++	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
++}
++
+ static void
+ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
+ 					    struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 0657f5681196..5def589e3c0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -214,5 +214,6 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+ 
+ int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
+ void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
++bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
+ 
+ #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index 41228478b21c..12084a542fc5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -225,19 +225,6 @@ intel_dp_aux_hdr_set_aux_backlight(const struct drm_connector_state *conn_state,
+ 			connector->base.base.id, connector->base.name);
+ }
+ 
+-static bool
+-intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
+-{
+-	struct hdr_output_metadata *hdr_metadata;
+-
+-	if (!conn_state->hdr_output_metadata)
+-		return false;
+-
+-	hdr_metadata = conn_state->hdr_output_metadata->data;
+-
+-	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
+-}
+-
+ static void
+ intel_dp_aux_hdr_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+ {
 -- 
 2.25.1
 
