@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC57AB1731F
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 16:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E69B1731E
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 16:21:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D1B10E7AE;
-	Thu, 31 Jul 2025 14:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3CE210E7AC;
+	Thu, 31 Jul 2025 14:21:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+tL1/Wa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MCiVeqZ0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0FB810E7AD;
- Thu, 31 Jul 2025 14:21:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 560C610E7AA;
+ Thu, 31 Jul 2025 14:21:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753971705; x=1785507705;
+ t=1753971707; x=1785507707;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mg5s4oEOVbmVN6azEOkbBuWOiq5AVFg68GLpdgKz7Jc=;
- b=j+tL1/WabCK3WRjYFUtaAvJUWHi8DK7CCgzB1B3ID0skki6KulRFUJ+O
- H/dZY1dFLF/U30Rp6hUoqNJb2eZ0O7m0p6W5bOsSBzLj1B8+sJI8VueNk
- 0n2URZlzO6fkypYv7w+pOxWXh0K5ACMxx1uuuaXf1khJCahV5SbeFxmxf
- xw2YQdPt6hiS2sCx6O8hW0u2deO2edu2DXHk1RNsFEFv/iMdqBfThBrOc
- H8bQRz40xi1I7+2GP3b96WO7vTokQwlHsVzQUkqiP/Am8cXnqMWBSaVfm
- rNJQILnp5JnG88+F/CGAWR6KeWFChbJ7mIyNjmHiwy73kJfqYc5yoiSLk Q==;
-X-CSE-ConnectionGUID: a7mdy/yzQF6wLOEDfUpR4A==
-X-CSE-MsgGUID: Y4q8f3KVT0G3yYGPoC7JNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66992230"
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66992230"
+ bh=oFS0agkHQD8XA1SeZwpm3xbR7C3q8Ud6rZXfHmKOCJo=;
+ b=MCiVeqZ0U96aYjQWfp5YEK7SHM20VIuMGcI4ozBmIHXxwpgZkrcG/KDg
+ UkisMUTc7Pb1KWFePfiMzWZ3IO+hc0tYGFKCjVQwfY4hzKge8MURd/Xu3
+ BRTZISQ0JYafc+FUVVLq6i4MVdbZtxMIRci5fBO0sLFurhnuz/jSHXzg7
+ rjC4qPKuayPbl1X7dZXcwsI8R+8ikoEUCBVEVEsKA8rfhaJWhsW3IMY9O
+ sodjgzwtYBakvpAcE8cDwFtktGOFSvGz71qXbnotihpUU0Ip2BmT1sYK8
+ GsAQEeGV7behVh6vkrZDt+goodWvz8kutW9ezXK8aznbSglcIexJqC6Q4 g==;
+X-CSE-ConnectionGUID: 8V/2NFxNTZu4q5zZjNcARQ==
+X-CSE-MsgGUID: feCoJbmJTw2JaRt5PQRecw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66992244"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66992244"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 07:21:42 -0700
-X-CSE-ConnectionGUID: RsJ38ifES4WiEJ20N97y3g==
-X-CSE-MsgGUID: 2Z2NQqNDSQ2TSSinSjdH7g==
+ 31 Jul 2025 07:21:47 -0700
+X-CSE-ConnectionGUID: xrbUZrMZRH6BbA9lulI7rA==
+X-CSE-MsgGUID: DaeP0oNvQL+RQ8gh2NIlIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="167453064"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="167453076"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 07:21:41 -0700
+ 31 Jul 2025 07:21:45 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/5] drm/i915/dram: add intel_mem_freq()
-Date: Thu, 31 Jul 2025 17:21:22 +0300
-Message-Id: <eeb7aa7e22e9b7eb68d958605650aeea1a6bbec4.1753971617.git.jani.nikula@intel.com>
+Subject: [PATCH 3/5] drm/i915/rps: use intel_fsb_freq() and intel_mem_freq()
+Date: Thu, 31 Jul 2025 17:21:23 +0300
+Message-Id: <c97769ae07cf42dfc8358b7177ab889c048fee89.1753971617.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1753971617.git.jani.nikula@intel.com>
 References: <cover.1753971617.git.jani.nikula@intel.com>
@@ -70,60 +70,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a more generic intel_mem_freq() function instead of platform
-specific ones. Expose it for future use outside of intel_dram.c.
+The rps init only happens once, so it's not important to use the cached
+versions, and we can drop the dependency on them.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_dram.c | 17 ++++++++++++-----
- drivers/gpu/drm/i915/soc/intel_dram.h |  1 +
- 2 files changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_rps.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 6be3618d4885..193e7f71a356 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -135,16 +135,23 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 0b35fdd461d4..006042e0b229 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -9,6 +9,7 @@
  
--static void detect_mem_freq(struct drm_i915_private *i915)
-+unsigned int intel_mem_freq(struct drm_i915_private *i915)
+ #include "display/intel_display.h"
+ #include "display/intel_display_rps.h"
++#include "soc/intel_dram.h"
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
+@@ -276,20 +277,24 @@ static void gen5_rps_init(struct intel_rps *rps)
  {
- 	if (IS_PINEVIEW(i915))
--		i915->mem_freq = pnv_mem_freq(i915);
-+		return pnv_mem_freq(i915);
- 	else if (GRAPHICS_VER(i915) == 5)
--		i915->mem_freq = ilk_mem_freq(i915);
-+		return ilk_mem_freq(i915);
- 	else if (IS_CHERRYVIEW(i915))
--		i915->mem_freq = chv_mem_freq(i915);
-+		return chv_mem_freq(i915);
- 	else if (IS_VALLEYVIEW(i915))
--		i915->mem_freq = vlv_mem_freq(i915);
-+		return vlv_mem_freq(i915);
-+	else
-+		return 0;
-+}
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
+ 	struct intel_uncore *uncore = rps_to_uncore(rps);
++	unsigned int fsb_freq, mem_freq;
+ 	u8 fmax, fmin, fstart;
+ 	u32 rgvmodectl;
+ 	int c_m, i;
+ 
+-	if (i915->fsb_freq <= 3200000)
++	fsb_freq = intel_fsb_freq(i915);
++	mem_freq = intel_mem_freq(i915);
 +
-+static void detect_mem_freq(struct drm_i915_private *i915)
-+{
-+	i915->mem_freq = intel_mem_freq(i915);
++	if (fsb_freq <= 3200000)
+ 		c_m = 0;
+-	else if (i915->fsb_freq <= 4800000)
++	else if (fsb_freq <= 4800000)
+ 		c_m = 1;
+ 	else
+ 		c_m = 2;
  
- 	if (IS_PINEVIEW(i915))
- 		i915->is_ddr3 = pnv_is_ddr3(i915);
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 09a7a581d949..5ba75e279e84 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.h
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -34,6 +34,7 @@ struct dram_info {
- void intel_dram_edram_detect(struct drm_i915_private *i915);
- int intel_dram_detect(struct drm_i915_private *i915);
- unsigned int intel_fsb_freq(struct drm_i915_private *i915);
-+unsigned int intel_mem_freq(struct drm_i915_private *i915);
- const struct dram_info *intel_dram_info(struct drm_device *drm);
- 
- #endif /* __INTEL_DRAM_H__ */
+ 	for (i = 0; i < ARRAY_SIZE(cparams); i++) {
+ 		if (cparams[i].i == c_m &&
+-		    cparams[i].t == DIV_ROUND_CLOSEST(i915->mem_freq, 1000)) {
++		    cparams[i].t == DIV_ROUND_CLOSEST(mem_freq, 1000)) {
+ 			rps->ips.m = cparams[i].m;
+ 			rps->ips.c = cparams[i].c;
+ 			break;
 -- 
 2.39.5
 
