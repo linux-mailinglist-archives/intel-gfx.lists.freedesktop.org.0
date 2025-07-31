@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9899EB17158
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 14:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C3AB17159
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 14:36:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F11C10E471;
-	Thu, 31 Jul 2025 12:36:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2130710E783;
+	Thu, 31 Jul 2025 12:36:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZC0iKoa+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zd7BoQ5d";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2512310E46F;
- Thu, 31 Jul 2025 12:36:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B7C10E783;
+ Thu, 31 Jul 2025 12:36:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753965387; x=1785501387;
+ t=1753965391; x=1785501391;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4I6sOAJe1sg5mbWjA8A3h1pwe1Wh3YU/d2GqETwZkVY=;
- b=ZC0iKoa+uLtA7d1Qnrq+Rz+Ul4KgUCTH4XWU+WepY3q8RXh3Wm89Bss/
- BSw9qNUlqKTUdSzZxLjcJDMMPiEveyDkE0HcSY3TqhaHKkagOyUCTbWjt
- gIeXFXX7Ij8BaCy73JKM8L8/IABsCjPG9qSePFiW6E/6hR3JfZvUX6uKP
- rGQFBSXXe4Q1oIwRvTGHf731zynfU16H+qqnPO2mTqAXCPTkmcM9bOqZS
- zuIIXSFaXptgomUcwzHuf4QSNVvHMr8OAsJUsjqfQz7llQcfVWiMzEeHE
- WW5J26qeBSkKKAp2ya+vFaMQw5f1HfWdYq+URd9KGirzIcZ+NlMxwExwa A==;
-X-CSE-ConnectionGUID: aKt/FkeWS1SYci+gDc7t5g==
-X-CSE-MsgGUID: tdpYJ6wpSjyLf9Yr6MefJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66852993"
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66852993"
+ bh=3BvRs/uQZNPHyXJX+vkfJR3f3p2bllqjmK2u3etgnJ0=;
+ b=Zd7BoQ5dsmlXtv3yD1AaokDQxpY4Fp1NcauuPpLHT5xb/2Hf1SfsrHpQ
+ P8YjkRwIJdarN6Kl6t0Ps2wq5x+w2S+F/l2FaqtctZOKJIjEfhIemSu8H
+ RwoOP265jdTOrvgA1LYpSFwpAmprIY0Yg2AggVMMlQMQfJE2SbCswSM7O
+ 3lJ8qXXQWlIEfPAorwjiz290s15xCw5fOcekznxeKjHzcDy8Gsv6sQ/5L
+ qEDYNIcsQmjFJnmavTEP4b/KiM0zMN2hobAY4m5JGSvDUUYFjnnMnBM3e
+ HA///IeFEDrkapGM3Y6+8vqWOEU6vxOIDlixjcKw1ujG/wUUlSCpnJaMm w==;
+X-CSE-ConnectionGUID: TpTEV28DReGeneHEjtQItA==
+X-CSE-MsgGUID: CbSenigdTmysshtekRvK8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66852994"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66852994"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:36:27 -0700
-X-CSE-ConnectionGUID: 4YkCGJuZQtO4uYFWbhEXRQ==
-X-CSE-MsgGUID: UmkkVU2jS9O6+H/HY+R+pQ==
+ 31 Jul 2025 05:36:31 -0700
+X-CSE-ConnectionGUID: QfRdyAc3Th23zQWgASRQNA==
+X-CSE-MsgGUID: JgfUHyogRCyMmzIFzZ2FVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="186935326"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="186935333"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.108])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 05:36:25 -0700
+ 31 Jul 2025 05:36:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/2] drm/xe/compat: remove unused platform macros
-Date: Thu, 31 Jul 2025 15:36:15 +0300
-Message-Id: <4507b49ead12c997de4615fa6ec277e666e5226a.1753965351.git.jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/xe/compat: stop including i915_utils.h from compat
+ i915_drv.h
+Date: Thu, 31 Jul 2025 15:36:16 +0300
+Message-Id: <6338c8524e600e048b56c5484624cfb51ed49d1d.1753965351.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1753965351.git.jani.nikula@intel.com>
 References: <cover.1753965351.git.jani.nikula@intel.com>
@@ -70,53 +71,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After refactors, a lot of platform macros have become unused. Remove
-them before new users have a chance to pop up.
+Expose the places that need i915_utils.h, and include it where needed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h | 21 -------------------
- 1 file changed, 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c               | 1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c              | 1 +
+ drivers/gpu/drm/i915/display/intel_display_driver.c     | 1 +
+ drivers/gpu/drm/i915/display/intel_display_power.c      | 1 +
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 1 +
+ drivers/gpu/drm/i915/display/intel_fb.c                 | 1 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c              | 1 +
+ drivers/gpu/drm/i915/display/intel_hotplug.c            | 1 +
+ drivers/gpu/drm/i915/display/intel_vblank.c             | 1 +
+ drivers/gpu/drm/i915/display/skl_universal_plane.c      | 1 +
+ drivers/gpu/drm/i915/soc/intel_dram.c                   | 1 +
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h       | 1 -
+ drivers/gpu/drm/xe/display/ext/i915_utils.c             | 1 +
+ 13 files changed, 12 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 9c268bed091d..276ac29e4daf 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -36,6 +36,7 @@
+ #include "soc/intel_rom.h"
+ 
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ #include "intel_display.h"
+ #include "intel_display_core.h"
+ #include "intel_display_rpm.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 228aa64c1349..8ff20415770f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -31,6 +31,7 @@
+ #include "hsw_ips.h"
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "intel_atomic.h"
+ #include "intel_audio.h"
+ #include "intel_bw.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 8586ba102605..cf1c14412abe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -18,6 +18,7 @@
+ #include <drm/drm_vblank.h>
+ 
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ #include "i9xx_wm.h"
+ #include "intel_acpi.h"
+ #include "intel_atomic.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 273054c22325..cc80c72ac9d1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -10,6 +10,7 @@
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "intel_backlight_regs.h"
+ #include "intel_cdclk.h"
+ #include "intel_clock_gating.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 48cac225a809..6efe5524cbbf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -6,6 +6,7 @@
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "intel_backlight_regs.h"
+ #include "intel_combo_phy.h"
+ #include "intel_combo_phy_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 0da842bd2f2f..b210c3250501 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -11,6 +11,7 @@
+ #include <drm/drm_modeset_helper.h>
+ 
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ #include "intel_bo.h"
+ #include "intel_display.h"
+ #include "intel_display_core.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 637f0f23f163..6a74805570e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -36,6 +36,7 @@
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 265aa97fcc75..740e5c930521 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -28,6 +28,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_irq.h"
++#include "i915_utils.h"
+ #include "intel_connector.h"
+ #include "intel_display_power.h"
+ #include "intel_display_core.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 3e51deca0c21..46d6db5fed11 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -6,6 +6,7 @@
+ #include <drm/drm_vblank.h>
+ 
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ #include "intel_color.h"
+ #include "intel_crtc.h"
+ #include "intel_de.h"
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ec3fe75f2c6c..950dc79dbdd4 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -10,6 +10,7 @@
+ 
+ #include "pxp/intel_pxp.h"
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ #include "intel_bo.h"
+ #include "intel_de.h"
+ #include "intel_display_irq.h"
+diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+index deb159548a09..3eeaabdf59e8 100644
+--- a/drivers/gpu/drm/i915/soc/intel_dram.c
++++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+@@ -11,6 +11,7 @@
+ 
+ #include "i915_drv.h"
+ #include "i915_reg.h"
++#include "i915_utils.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
+ #include "intel_pcode.h"
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 9b7572e06f34..d8cd66a96621 100644
+index d8cd66a96621..b8269391bc69 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -26,34 +26,13 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- #define IS_I915G(dev_priv)	(dev_priv && 0)
- #define IS_I915GM(dev_priv)	(dev_priv && 0)
- #define IS_PINEVIEW(dev_priv)	(dev_priv && 0)
--#define IS_IVYBRIDGE(dev_priv)	(dev_priv && 0)
- #define IS_VALLEYVIEW(dev_priv)	(dev_priv && 0)
- #define IS_CHERRYVIEW(dev_priv)	(dev_priv && 0)
- #define IS_HASWELL(dev_priv)	(dev_priv && 0)
- #define IS_BROADWELL(dev_priv)	(dev_priv && 0)
--#define IS_SKYLAKE(dev_priv)	(dev_priv && 0)
- #define IS_BROXTON(dev_priv)	(dev_priv && 0)
--#define IS_KABYLAKE(dev_priv)	(dev_priv && 0)
- #define IS_GEMINILAKE(dev_priv)	(dev_priv && 0)
--#define IS_COFFEELAKE(dev_priv)	(dev_priv && 0)
--#define IS_COMETLAKE(dev_priv)	(dev_priv && 0)
--#define IS_ICELAKE(dev_priv)	(dev_priv && 0)
--#define IS_JASPERLAKE(dev_priv)	(dev_priv && 0)
--#define IS_ELKHARTLAKE(dev_priv)	(dev_priv && 0)
--#define IS_TIGERLAKE(dev_priv)	IS_PLATFORM(dev_priv, XE_TIGERLAKE)
--#define IS_ROCKETLAKE(dev_priv)	IS_PLATFORM(dev_priv, XE_ROCKETLAKE)
--#define IS_DG1(dev_priv)        IS_PLATFORM(dev_priv, XE_DG1)
--#define IS_ALDERLAKE_S(dev_priv) IS_PLATFORM(dev_priv, XE_ALDERLAKE_S)
--#define IS_ALDERLAKE_P(dev_priv) (IS_PLATFORM(dev_priv, XE_ALDERLAKE_P) || \
--				  IS_PLATFORM(dev_priv, XE_ALDERLAKE_N))
- #define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, XE_DG2)
--#define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
--#define IS_LUNARLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_LUNARLAKE)
--#define IS_BATTLEMAGE(dev_priv)  IS_PLATFORM(dev_priv, XE_BATTLEMAGE)
--#define IS_PANTHERLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_PANTHERLAKE)
--
--#define IS_HASWELL_ULT(dev_priv) (dev_priv && 0)
--#define IS_BROADWELL_ULT(dev_priv) (dev_priv && 0)
+@@ -12,7 +12,6 @@
  
- #define IS_MOBILE(xe) (xe && 0)
+ #include <drm/drm_drv.h>
  
+-#include "i915_utils.h"
+ #include "xe_device.h" /* for xe_device_has_flat_ccs() */
+ #include "xe_device_types.h"
+ 
+diff --git a/drivers/gpu/drm/xe/display/ext/i915_utils.c b/drivers/gpu/drm/xe/display/ext/i915_utils.c
+index 43b10a2cc508..1421c2a7b64d 100644
+--- a/drivers/gpu/drm/xe/display/ext/i915_utils.c
++++ b/drivers/gpu/drm/xe/display/ext/i915_utils.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include "i915_drv.h"
++#include "i915_utils.h"
+ 
+ bool i915_vtd_active(struct drm_i915_private *i915)
+ {
 -- 
 2.39.5
 
