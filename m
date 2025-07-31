@@ -2,79 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D66B1729B
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 15:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E43B16B79
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 07:16:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B9C10E799;
-	Thu, 31 Jul 2025 13:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBC0110E246;
+	Thu, 31 Jul 2025 05:16:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ftxzUohf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KwQnG8Kz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4770A10E151
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 02:49:43 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id
- a640c23a62f3a-ae401ebcbc4so74766966b.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Jul 2025 19:49:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753930182; x=1754534982; darn=lists.freedesktop.org;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OzUZuxERan7vOG01vgHj1cm1HbxVQVkWsYiUSG9LzEI=;
- b=ftxzUohfToiJGZpbW01PxnYvfIONmoUqlaCjzE6LVuuKk/m3E09354Nc3NQpnDjo1H
- fDKmRcPKjWSXnHnLlXGlJ5QMpMf1meljSGyPKz82+SheOy1w2QMIxLWo5NfZz8AK4t8E
- n68cn4JBZ2PZQQgKTLPZ5BLf3FUIqeS0XbsUB3e8QewnqIC7EiykcVvLTLsyj2sTkHcY
- SV1iSu6Q1CaWuUNofSNteMY1r0VhIVJj9XknswXwHL9ERGkV5hs5pkhsizrFWn5NbNK7
- PmjUuA+v8Rz0mjhPX3SutXKagGKxzDKY2//heW8kvLwzYlsTUivkaFrU0GwYEh0FgsTO
- FMXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753930182; x=1754534982;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=OzUZuxERan7vOG01vgHj1cm1HbxVQVkWsYiUSG9LzEI=;
- b=vaScyOIDfgpsKsdyFIXTYRD/4oltQn4QXnRY7z9+O1+cGwnQiBXNaFZTrKyxkvkZh2
- spfcHijW0nlnIm4EjnQ8limX0N+PK/LTncbtQMMrZXxTxAuQ86Y0dcOL1kgtXWfT07mK
- hAdEUX6ERC2fJlWKvbOX61ubYPZiHCRZY9HocWTxsOQj4Z19VHqJXKvIAoLZ9/NUEIJ5
- lp+1Oykpf6LM0MJwvfzhwKe6Ywh3ITtzDyWptlU5hrF5L149KPdVrwbXFyuBU6e+ok8j
- cDMiqveQuyuWNdLdW6KLWeKgBPXHTieji9NDtZDjE76uIyqD1prF/VgUJibh1HERm1wZ
- dlgw==
-X-Gm-Message-State: AOJu0YwguVnFbVK+LbTsd+ut9663tDHK1Qxj0WuZz/kSCEE9VUXwHBav
- iKzA/5bvO/92mRhi9KkNg6Lvz2XAfEqj0PLxbozvBhYBsZ4TA1WC2x7ny5VquJNhNF8=
-X-Gm-Gg: ASbGncvMci4pPea98DJzDfU3mjOVkE+EOApIughj11ClXVqfsnmp6ZDRn/8tzwfx+sw
- 78E8RkVG5cnUYTBzuN8E/VEV+MjSfjPGUZcfvzm8T2NvQbL3YE3i7RBk7B6IaiJlN3JQBBRF59T
- +K3RiIkyCSiLnhbsqlAZNsNKKgL9BEoWZHqFw8+/aBI1bzgrmA3GS6CZtvq6AWir8Qoyoj7FK53
- 4M39T1ovWmVped+8xBrJY/cKXJNzEoj0t0XFYBCJQFEuiOpSkBxUIGXblnayd6IDN7zCVXpgHpN
- WqjNRb6lSH82NpPR2GG37+8ZfVugKvcrWasxomjDrNE3HHrCzeKzRexfKYjS81Urkf9bfO1+upd
- dpC+CyDW7lY5JF7M2SurG/nAjwhlpKDWsTkLpJqXV5euoR1HnvTdivMe95ETSx0iGF3Xp5FgDoZ
- EUXd/tuw==
-X-Google-Smtp-Source: AGHT+IFzLu7XtmIIsdUbgbOQczY80fXq3WQy1KmMN+7mzLHmJO4/zvoXg3RVxiGBQg0RX+3/dOYr0A==
-X-Received: by 2002:a17:907:9487:b0:ae3:e378:159e with SMTP id
- a640c23a62f3a-af8fd769c97mr612401666b.26.1753930181369; 
- Wed, 30 Jul 2025 19:49:41 -0700 (PDT)
-Received: from [192.168.0.52] (217-62-96-139.cable.dynamic.v4.ziggo.nl.
- [217.62.96.139]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-af91a1e8311sm32881566b.63.2025.07.30.19.49.40
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 30 Jul 2025 19:49:40 -0700 (PDT)
-Message-ID: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
-Date: Thu, 31 Jul 2025 04:49:39 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7141210E246;
+ Thu, 31 Jul 2025 05:16:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1753939014; x=1785475014;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LaRCkV/5JAMHwMJCzrxrX4l/dCPPErgCrsvZTIw0IxU=;
+ b=KwQnG8KzGeM+SqF+RqIs5XsWP8Cvdk2ATzvR7GjWBidm7H0ZPznyLLKs
+ G+HiSTisPhZwUXnApu2fPt4eUkC/IOGKOeDN7Fc4nRP4iHakjxt3v41pg
+ 6YZsA7XdxTDdsHQDPJB+fkrqw362hE90SVQSE7/aPa+u080+hWFApR3oN
+ jTatjmgEh7Z2JFNx/Kv0BQNnqUTlt7NdGhKx9pqswMNMjk9nzsbYS01Bf
+ KQEEg3mDeUrxxly6t5Yvi+O0WuKXqn7fYTHnFuWy0QzPHZUtOil0OtCj3
+ qGaXMg9RJJRisy0tKURRMwrlYnRQJqy5b6QS9vPdIuEbj5SBAoTaCDShO Q==;
+X-CSE-ConnectionGUID: A6GsSGf8RWGhC9qEF8Aoow==
+X-CSE-MsgGUID: LDpK8YOnSsC00XewpVVs8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="67332421"
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="67332421"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jul 2025 22:16:53 -0700
+X-CSE-ConnectionGUID: zqA6YLZ4SXifd8lzpYBp2g==
+X-CSE-MsgGUID: uyuhdXGRRyWy+pPf2d9N/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,353,1744095600"; d="scan'208";a="194154169"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa002.jf.intel.com with ESMTP; 30 Jul 2025 22:16:52 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 0/3] eDP Data Override
+Date: Thu, 31 Jul 2025 10:46:43 +0530
+Message-Id: <20250731051646.3009255-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-From: =?UTF-8?Q?Ren=C3=A9_Herman?= <rene.herman@gmail.com>
-Subject: Issue or bug concerning DRRS on old i7-4980HQ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 31 Jul 2025 13:57:42 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,56 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello all.
+When using link rates 2.43 and 6.75 causes a strong noise for WIFI
+bands. Its recommended we use 2.7 and 8.1 Gbps instead.
+The solution proposed was a static vbt field that provides us with a
+mask of rates which need to be skipped in favor of the next higher link
+rate.
 
-Addresses as per MANTAINERS, and Ville as per Git history...
+--v1
+-Optimize looping
 
-I've been trying to assist a new Linux user with an old 2015 Alienware 
-17 R2, i7-4980HQ (Iris Pro 5200) together with NVIDIA GTX980M.
+--v2
+-Break 2nd patch to two parts
+-Rename intel bios parse function
+-Create seprate function for setting rates
 
-The user experienced flickering (in a brightness sense) and had traced 
-this back to Intel DRRS. I supplied a simple test patch as
+-v3
+-Fix VBT definition
+-Rename intel bios function
+-Make the function only return mask
+-Protect against broken VBT
 
---- linux-6.8.0/drivers/gpu/drm/i915/display/intel_dp.c.orig	
-+++ linux-6.8.0/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2727,6 +2727,8 @@
-  {
-  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+HSD:14022096069
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-+	return false;
-+
-  	if (pipe_config->vrr.enable)
-  		return false;
+Suraj Kandpal (3):
+  drm/i915/vbt: Add eDP Data rate overrride field in VBT
+  drm/i915/bios: Add function to check if edp data override is needed
+  drm/i915/edp: eDP Data Overrride
 
-which does indeed work. Set out to then solve it right(er) and ran into 
-the debugfs drrs ctl file, for him
+ drivers/gpu/drm/i915/display/intel_bios.c     | 33 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 29 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 16 +++++++++
+ 4 files changed, 79 insertions(+), 1 deletion(-)
 
-/sys/kernel/debug/dri/1/crtc-0/i915_drrs_ctl
+-- 
+2.34.1
 
-We haven't however been able to do anything useful with that. If we echo 
-0 into it it seems that DRRS does temporarily go to "DRRS active: no" in 
-the corresponding i915_drrs_status file, but only seconds later it again 
-shows as "DRRS active: yes", and his problem returns/remains.
-
-It's making the system largely unusable with Linux -- or are we/am I 
-missing something as to configuration?
-
-The user is as said a new Linux user and will need to stick with generic 
-distribution kernels, Ubuntu here, but the debugfs thing seems to then 
-not work and a kernel parameter appears to not exist. When searching I 
-found this issue also at for example
-
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1928138
-
-and on the list at
-
-https://lists.freedesktop.org/archives/intel-gfx/2017-October/145050.html
-
-Is there something we/he could do to get DRRS disabled with a generic 
-distribution kernel? Should the i915_drrs_ctl thing have worked?
-
-And if not, is there a possibility for a kernel parameter that does 
-something akin to that above working test patch (but then right)?
-
-Kind regards,
-Rene Herman
