@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EADFBB1731D
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 16:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC57AB1731F
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 16:21:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08A0110E7A7;
-	Thu, 31 Jul 2025 14:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D1B10E7AE;
+	Thu, 31 Jul 2025 14:21:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BcAEfaEI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j+tL1/Wa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C1510E068;
- Thu, 31 Jul 2025 14:21:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0FB810E7AD;
+ Thu, 31 Jul 2025 14:21:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1753971700; x=1785507700;
+ t=1753971705; x=1785507705;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s3xetIdkT4v9wrskBn9wCYPkOxfs0Vmukb/JaWpaxTs=;
- b=BcAEfaEIGWnvVwNEakQYO/w8Bexg6Q5hNrxTaUpP3z0oTRcQZrYJ6opT
- xaMX3atXv6gyf8ZKsoBMSPx+5RpCw1UfQXSxRh+4fwuhjKmB9JK9xM/YZ
- dMaVIJDjnAhJqQozsdJYmwJFNTRrO3UbappRXri9afC6jXAZwPdQwWnCa
- y4NVXEkG7wf+GC/cgVRV7SVdE86VO6kqBnfihELm0frRfL2xfyJJ3iZ8i
- 0XNVZ7G4qq+J3QHpQWA2g+DfSI9mmrs3D+UlpoDbx7nykODr9KTCuh6+9
- 2d9+tt6X5IQTt1XqMkvbMG7maSlfwmHSZcD5qd8S3jWdhVtyd1GJcwpTG g==;
-X-CSE-ConnectionGUID: MxO6ZpHNSmipHfzUTP30ig==
-X-CSE-MsgGUID: aMBS3lYsT2O44KS2QvduwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66992212"
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66992212"
+ bh=mg5s4oEOVbmVN6azEOkbBuWOiq5AVFg68GLpdgKz7Jc=;
+ b=j+tL1/WabCK3WRjYFUtaAvJUWHi8DK7CCgzB1B3ID0skki6KulRFUJ+O
+ H/dZY1dFLF/U30Rp6hUoqNJb2eZ0O7m0p6W5bOsSBzLj1B8+sJI8VueNk
+ 0n2URZlzO6fkypYv7w+pOxWXh0K5ACMxx1uuuaXf1khJCahV5SbeFxmxf
+ xw2YQdPt6hiS2sCx6O8hW0u2deO2edu2DXHk1RNsFEFv/iMdqBfThBrOc
+ H8bQRz40xi1I7+2GP3b96WO7vTokQwlHsVzQUkqiP/Am8cXnqMWBSaVfm
+ rNJQILnp5JnG88+F/CGAWR6KeWFChbJ7mIyNjmHiwy73kJfqYc5yoiSLk Q==;
+X-CSE-ConnectionGUID: a7mdy/yzQF6wLOEDfUpR4A==
+X-CSE-MsgGUID: Y4q8f3KVT0G3yYGPoC7JNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="66992230"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="66992230"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 07:21:37 -0700
-X-CSE-ConnectionGUID: QmqOPfKgT0y5hHj50E1Z/Q==
-X-CSE-MsgGUID: LVg2YkCqRtSqyPfF0D3esA==
+ 31 Jul 2025 07:21:42 -0700
+X-CSE-ConnectionGUID: RsJ38ifES4WiEJ20N97y3g==
+X-CSE-MsgGUID: 2Z2NQqNDSQ2TSSinSjdH7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="167453034"
+X-IronPort-AV: E=Sophos;i="6.17,353,1747724400"; d="scan'208";a="167453064"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.108])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 07:21:36 -0700
+ 31 Jul 2025 07:21:41 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/5] drm/i915/dram: add intel_fsb_freq() and use it
-Date: Thu, 31 Jul 2025 17:21:21 +0300
-Message-Id: <05aff5118d67d1b3426c5337de1e73e523d643f1.1753971617.git.jani.nikula@intel.com>
+Subject: [PATCH 2/5] drm/i915/dram: add intel_mem_freq()
+Date: Thu, 31 Jul 2025 17:21:22 +0300
+Message-Id: <eeb7aa7e22e9b7eb68d958605650aeea1a6bbec4.1753971617.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1753971617.git.jani.nikula@intel.com>
 References: <cover.1753971617.git.jani.nikula@intel.com>
@@ -70,89 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a more generic intel_fsb_freq() function instead of platform
-specific ones.
+Add a more generic intel_mem_freq() function instead of platform
+specific ones. Expose it for future use outside of intel_dram.c.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c     |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c |  2 +-
- drivers/gpu/drm/i915/soc/intel_dram.c          | 14 ++++++++++----
- drivers/gpu/drm/i915/soc/intel_dram.h          |  2 +-
- 4 files changed, 13 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/soc/intel_dram.c | 17 ++++++++++++-----
+ drivers/gpu/drm/i915/soc/intel_dram.h |  1 +
+ 2 files changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 228aa64c1349..50f8e8e7b2a2 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -3569,7 +3569,7 @@ static int i9xx_hrawclk(struct intel_display *display)
- 	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	/* hrawclock is 1/4 the FSB frequency */
--	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(i915), 4);
-+	return DIV_ROUND_CLOSEST(intel_fsb_freq(i915), 4);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-index 6c499692d61e..88b147fa5cb1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-@@ -148,7 +148,7 @@ static u32 gen4_read_clock_frequency(struct intel_uncore *uncore)
- 	 *
- 	 * Testing on actual hardware has shown there is no /16.
- 	 */
--	return DIV_ROUND_CLOSEST(i9xx_fsb_freq(uncore->i915), 4) * 1000;
-+	return DIV_ROUND_CLOSEST(intel_fsb_freq(uncore->i915), 4) * 1000;
- }
- 
- static u32 read_clock_frequency(struct intel_uncore *uncore)
 diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index deb159548a09..6be3618d4885 100644
+index 6be3618d4885..193e7f71a356 100644
 --- a/drivers/gpu/drm/i915/soc/intel_dram.c
 +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -153,7 +153,7 @@ static void detect_mem_freq(struct drm_i915_private *i915)
- 		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
+@@ -135,16 +135,23 @@ static unsigned int vlv_mem_freq(struct drm_i915_private *i915)
+ 	return 0;
  }
  
--unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
-+static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
+-static void detect_mem_freq(struct drm_i915_private *i915)
++unsigned int intel_mem_freq(struct drm_i915_private *i915)
  {
- 	u32 fsb;
- 
-@@ -235,13 +235,19 @@ static unsigned int ilk_fsb_freq(struct drm_i915_private *dev_priv)
- 	}
- }
- 
--static void detect_fsb_freq(struct drm_i915_private *i915)
-+unsigned int intel_fsb_freq(struct drm_i915_private *i915)
- {
- 	if (GRAPHICS_VER(i915) == 5)
--		i915->fsb_freq = ilk_fsb_freq(i915);
-+		return ilk_fsb_freq(i915);
- 	else if (GRAPHICS_VER(i915) == 3 || GRAPHICS_VER(i915) == 4)
--		i915->fsb_freq = i9xx_fsb_freq(i915);
-+		return i9xx_fsb_freq(i915);
+ 	if (IS_PINEVIEW(i915))
+-		i915->mem_freq = pnv_mem_freq(i915);
++		return pnv_mem_freq(i915);
+ 	else if (GRAPHICS_VER(i915) == 5)
+-		i915->mem_freq = ilk_mem_freq(i915);
++		return ilk_mem_freq(i915);
+ 	else if (IS_CHERRYVIEW(i915))
+-		i915->mem_freq = chv_mem_freq(i915);
++		return chv_mem_freq(i915);
+ 	else if (IS_VALLEYVIEW(i915))
+-		i915->mem_freq = vlv_mem_freq(i915);
++		return vlv_mem_freq(i915);
 +	else
 +		return 0;
 +}
- 
-+static void detect_fsb_freq(struct drm_i915_private *i915)
++
++static void detect_mem_freq(struct drm_i915_private *i915)
 +{
-+	i915->fsb_freq = intel_fsb_freq(i915);
- 	if (i915->fsb_freq)
- 		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
- }
++	i915->mem_freq = intel_mem_freq(i915);
+ 
+ 	if (IS_PINEVIEW(i915))
+ 		i915->is_ddr3 = pnv_is_ddr3(i915);
 diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
-index 2a696e03aad4..09a7a581d949 100644
+index 09a7a581d949..5ba75e279e84 100644
 --- a/drivers/gpu/drm/i915/soc/intel_dram.h
 +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-@@ -33,7 +33,7 @@ struct dram_info {
- 
+@@ -34,6 +34,7 @@ struct dram_info {
  void intel_dram_edram_detect(struct drm_i915_private *i915);
  int intel_dram_detect(struct drm_i915_private *i915);
--unsigned int i9xx_fsb_freq(struct drm_i915_private *i915);
-+unsigned int intel_fsb_freq(struct drm_i915_private *i915);
+ unsigned int intel_fsb_freq(struct drm_i915_private *i915);
++unsigned int intel_mem_freq(struct drm_i915_private *i915);
  const struct dram_info *intel_dram_info(struct drm_device *drm);
  
  #endif /* __INTEL_DRAM_H__ */
