@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72568B16DB5
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 10:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A823BB16DBA
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 10:40:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC9C10E731;
-	Thu, 31 Jul 2025 08:39:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB5910E735;
+	Thu, 31 Jul 2025 08:40:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D589310E72E;
- Thu, 31 Jul 2025 08:39:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ACD410E72E;
+ Thu, 31 Jul 2025 08:40:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Regression_on_linux-next_?=
- =?utf-8?q?=28next-20250721=29?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_mtd=3A_MTD=5FIN?=
+ =?utf-8?q?TEL=5FDG_should_depend_on_DRM=5FI915_or_DRM=5FXE_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "John Johansen" <john.johansen@canonical.com>
+To: "Geert Uytterhoeven" <geert+renesas@glider.be>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 31 Jul 2025 08:39:29 -0000
-Message-ID: <175395116986.201293.9320388595696125850@1538d3639d33>
+Date: Thu, 31 Jul 2025 08:40:00 -0000
+Message-ID: <175395120056.201293.9326834660877822700@1538d3639d33>
 X-Patchwork-Hint: ignore
-References: <6a98e630-0610-4ba2-89c9-b2bd0d8ef9af@intel.com>
-In-Reply-To: <6a98e630-0610-4ba2-89c9-b2bd0d8ef9af@intel.com>
+References: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
+In-Reply-To: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,25 +43,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Regression on linux-next (next-20250721)
-URL   : https://patchwork.freedesktop.org/series/152326/
+Series: mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE (rev2)
+URL   : https://patchwork.freedesktop.org/series/152273/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/152326/revisions/1/mbox/ not applied
-Applying: Regression on linux-next (next-20250721)
-error: patch failed: security/apparmor/lsm.c:505
-error: security/apparmor/lsm.c: patch does not apply
-error: Did you hand edit your patch?
-It does not apply to blobs recorded in its index.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Using index info to reconstruct a base tree...
-M	security/apparmor/lsm.c
-Patch failed at 0001 Regression on linux-next (next-20250721)
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Address 'geert@glider.be' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
 
 
