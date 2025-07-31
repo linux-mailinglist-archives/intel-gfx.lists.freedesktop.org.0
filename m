@@ -2,80 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C36FB1A4B0
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 16:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 719D3B173D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Jul 2025 17:17:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8D610E55F;
-	Mon,  4 Aug 2025 14:23:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HCENOHtt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D05910E042;
+	Thu, 31 Jul 2025 15:17:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAA910E7B0
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 15:05:28 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-af66d49daffso173305866b.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Jul 2025 08:05:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753974327; x=1754579127; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=nkJjgrL0o6u4F0KlYZbqrTlEbUii7EoXWMzIyUXeRyc=;
- b=HCENOHtt+O8G0fzjDpG1qOjKy4gBzXjz+zvB3uVxNbhcmD2AW0eDusm3W5fWoma9Jt
- lg8GYOvyvReX1E0VcvESuZjQRmssgjA5BYIrz/eCiqQQW77MbhU4JY7lKeekGuBPCTfr
- Te879fh9ZO5+Am8LJHyDEj84Pvr38SDdZJWZiKdJu+SkHwRqmIH0wEy0rwVW5gZ4GNgT
- u1lMtSXVDGaT8+Qk/+a2chLdJ4AWicRMoPtbEO3HwMtBacvtwPkLpQX9DKtFsIoKfkHN
- 5C+wVB+VdWXmKtsIq31dMOBeVNgJ33D6cUNbOLnp1GJDXbZu4rxmL96ySItYTK/KSWMh
- bqlw==
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1095510E042;
+ Thu, 31 Jul 2025 15:17:37 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-4538bc52a8dso4829395e9.2; 
+ Thu, 31 Jul 2025 08:17:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753974327; x=1754579127;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=nkJjgrL0o6u4F0KlYZbqrTlEbUii7EoXWMzIyUXeRyc=;
- b=t8sHrJZNvL/fM+JCFc7mTE0CI+WzLv+RJFEXAChdoCxUEH/YS8gYBluxO3qnhCH2+x
- IgMDxEeoPEZjsfceXPu5lOy++81k5L0TczxS78XHc0dxPBooBUqD0yp//T27gzD1F7Bf
- abBqo0yyC3SY7OGR0zsmenATu8o0IwByLWNORY05Cy6k26lVlerfuTYRJb6/2iHLM4iU
- QGnHRKbFMOfg0IQF6eqQFv2OUtGMVyCqy3IbiALVeSPrFu2S99vZf4cq2XhJ/ecaEKY2
- Ci8tUYFJ0SRGhavBgIoZQBYyvjhMF9YlE08u04eoNUsJH3fDI1u8AtmsDhZrFD9Jk7E9
- mVIQ==
-X-Gm-Message-State: AOJu0YyCwbnXTWDy4C9OsFiHoA4dTrX+dGtmqyagEmTrFjOMdksi7DRO
- RzwYeSA04S6ycydeMbxOMuowVxz2JWAZ9hDvbcoAXoWgENUDjT+Hi17D
-X-Gm-Gg: ASbGncu8XocLVKmxvqnhqIOwsyWlBywSGKuRiiEvdgWhtcybqmfadW7Yxz8COwpE2nO
- kVUCIi1B9gLbXolMLiDPRNVuDKXvBaCeh/2GkiJBZSUxdN8W2j6kYB2pEni2ZBysp1BGhOE64Ow
- zoU+CvvOpoVhAiSeOfknDQS4jliTYSp/gNhyFeWehydgFDNpKgRI7JQF55fkqyBIOd2tOJoFBJw
- xOaNDW0tfgjgYqMvlKihpBgjgC0HX3oPmv11EHVdak7Zz4DrxNwXd30jGb3bl2gecHR18NmubjV
- NZ/Lk5GRzXTdeFJVSqZI2q20ETrBlt4vv7HCxr6gg4VQTwqSi6SHOfQII3UjEJwOfb/EXHRVLRF
- n0fpi3dC2JK98eDeSG1pii3BMkjbzKsR8ED8CxaYoD7z9W1ThWIS3xuGiHp7WXGTISfVFltE=
-X-Google-Smtp-Source: AGHT+IHAivIPXwq/x+CZVWYOkEzpqfVAXSEyzoK0DyqBsqEp4wsdtjpWg6HodymDmCz1GlqrhqtLiA==
-X-Received: by 2002:a17:907:e849:b0:ae3:595f:91a0 with SMTP id
- a640c23a62f3a-af8fd6b23dfmr901672766b.16.1753974326532; 
- Thu, 31 Jul 2025 08:05:26 -0700 (PDT)
-Received: from [192.168.0.13] (217-62-96-139.cable.dynamic.v4.ziggo.nl.
- [217.62.96.139]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-af91a0a3792sm122100866b.50.2025.07.31.08.05.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 31 Jul 2025 08:05:25 -0700 (PDT)
-Message-ID: <77f3386d-756b-4cca-b317-1b3c5ad725fb@gmail.com>
-Date: Thu, 31 Jul 2025 17:07:00 +0200
+ d=1e100.net; s=20230601; t=1753975055; x=1754579855;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=vG9n71NDhvvhpS5AF7y2C5d06t++b4vuCCmviXKpMXI=;
+ b=HTMFOK71smMdI/lOXNi/Hr4ktK+TaIG6ZsEvt3KTXidDR46uEP3nMcNI4Zips7eOQc
+ EGSsaBDvhKNQcqSVrrkkis+QeaC9XUpdtMze4oeXFKR8I6VgqhI8YhuPwwyiwNkvWckq
+ S68sWOcbA1EAgy2V7kvq6ElD9EcH52cpstes6R2vpaLKud5UFNG6JrjA5YJZC9ixuW18
+ XN/fQJEfbgQ9ayhVzbFYXB+NT641x5yOc7DMg+bDGS3NmaUjDOmMnWHa8x6onCfdQns+
+ BCrHS3/A2AZdgWAmvgKf6xylktUpptjihKBxAT2SUgygcajhCKlyW2nu7mgZ318Txzok
+ JRXg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUx+MifmkeI2PzBlChJrRYOL3doFB+LlqLPoqS76adkRz4EQyH6ntmGyEbk2efnSUXEOcE+8IpTgb3/@lists.freedesktop.org,
+ AJvYcCXyypwoXs1QbHM1ekwLWv/ij6W/NN6WmjLtGmhQOJooJy9bkFpGliyDRSLi4R8jkg7RMQ9hiyJw@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzo+WXHTXvY3q7O0a5YkCLvatDp4RmHno5dQ/yFulA6DatMWFqt
+ g/v7F6W5M6kUF7eByOMAdxbS8u5tiixo6o+mX7wCWTAV0XJFuKIpVXJe0K6cg8vKn90=
+X-Gm-Gg: ASbGncuAXSwWVPA2VCSvjf2UL9TZqWbQ4mfMsN8xBdnEawsM/1rgYFrJ/Qg4wrCJTtf
+ fXQrIeuTegwB2TdhM5pMCKRYn+Tv0P6cuKvp8QSs/htGrU2br47gHqtzp2mycZJ/V8DiJGdr6jL
+ qVNKtDpWvhpnw3oP4Dbv+/YGpqtCpQpmMNNV0P/SRHzcaSxjg/unpA3HiAcYlawdXiKLroYFd2Y
+ JuExHzKcbmjP/XPtlWCxrK1SPif/wtOzqy2NHRJCDtfnEp64th/0kYdl9akiQiXXQEOYB9ooHXn
+ M0u3L2f6CLJyPpDvuy4a7xteuZWoLe1hdwZAybwb94VPW5k5F+SsjmnugGdgiP7H/Lr7c7Rf+zR
+ gAX8xmEj3HUydyg14MEr297RjO5A0s/KE9+kqW9nf9Hiv
+X-Google-Smtp-Source: AGHT+IFLGMykw8L7Mi6+jHo4qQa+KzbEszEWWNjWZr6/HQ6oWJ9JrG/AadoKcKApGnU4fzd7e0ti+Q==
+X-Received: by 2002:a05:600c:1da8:b0:456:1006:5415 with SMTP id
+ 5b1f17b1804b1-45892b92eb2mr65403925e9.6.1753975055303; 
+ Thu, 31 Jul 2025 08:17:35 -0700 (PDT)
+Received: from xavers-framework.fritz.box
+ ([2a04:7d84:aac9:db50:f8c3:4ba6:f1c6:fef5])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4589ee4f089sm33092425e9.20.2025.07.31.08.17.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 31 Jul 2025 08:17:34 -0700 (PDT)
+From: Xaver Hugl <xaver.hugl@kde.org>
+To: dri-devel@lists.freedesktop.org
+Cc: xaver.hugl@kde.org, andrealmeid@igalia.com, chris@kode54.net,
+ naveen1.kumar@intel.com, ville.syrjala@linux.intel.com,
+ mdaenzer@redhat.com, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, alexdeucher@gmail.com,
+ arun.r.murthy@intel.com
+Subject: [PATCH v2] drm: don't run atomic_async_check for disabled planes
+Date: Thu, 31 Jul 2025 17:17:32 +0200
+Message-ID: <20250731151732.9295-1-xaver.hugl@kde.org>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Issue or bug concerning DRRS on old i7-4980HQ
-From: =?UTF-8?Q?Ren=C3=A9_Herman?= <rene.herman@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-References: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
-Content-Language: nl, en-US
-In-Reply-To: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 04 Aug 2025 14:23:32 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,70 +77,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Here's that Ubuntu launchpad bug on freedesktop.org, but including a 
-possibly interesting fix from 5 months ago in the currently last comment:
+It's entirely valid and correct for compositors to include disabled
+planes in the atomic commit, and doing that should not prevent async
+flips from working. To fix that, this commit moves the plane check
+to after all the properties of the object have been set, and skips
+the async checks if the plane was and still is not visible.
 
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3441
+Fixes: fd40a63c drm/atomic (Let drivers decide which planes to async flip)
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4263
 
-When Windows 10 goes out of support I expect a fair few of these older 
-systems (supposedly without TPM) will get Linufied.
+Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
+---
+ drivers/gpu/drm/drm_atomic_uapi.c   | 51 +++++++++++++++++++----------
+ drivers/gpu/drm/drm_crtc_internal.h |  3 +-
+ drivers/gpu/drm/drm_mode_object.c   |  3 +-
+ 3 files changed, 38 insertions(+), 19 deletions(-)
 
-Regards,
-Rene
-
-On 31-07-2025 04:49, René Herman wrote:
-
-> Hello all.
-> 
-> Addresses as per MANTAINERS, and Ville as per Git history...
-> 
-> I've been trying to assist a new Linux user with an old 2015 Alienware 
-> 17 R2, i7-4980HQ (Iris Pro 5200) together with NVIDIA GTX980M.
-> 
-> The user experienced flickering (in a brightness sense) and had traced 
-> this back to Intel DRRS. I supplied a simple test patch as
-> 
-> --- linux-6.8.0/drivers/gpu/drm/i915/display/intel_dp.c.orig
-> +++ linux-6.8.0/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2727,6 +2727,8 @@
->   {
->       struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> 
-> +    return false;
-> +
->       if (pipe_config->vrr.enable)
->           return false;
-> 
-> which does indeed work. Set out to then solve it right(er) and ran into 
-> the debugfs drrs ctl file, for him
-> 
-> /sys/kernel/debug/dri/1/crtc-0/i915_drrs_ctl
-> 
-> We haven't however been able to do anything useful with that. If we echo 
-> 0 into it it seems that DRRS does temporarily go to "DRRS active: no" in 
-> the corresponding i915_drrs_status file, but only seconds later it again 
-> shows as "DRRS active: yes", and his problem returns/remains.
-> 
-> It's making the system largely unusable with Linux -- or are we/am I 
-> missing something as to configuration?
-> 
-> The user is as said a new Linux user and will need to stick with generic 
-> distribution kernels, Ubuntu here, but the debugfs thing seems to then 
-> not work and a kernel parameter appears to not exist. When searching I 
-> found this issue also at for example
-> 
-> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1928138
-> 
-> and on the list at
-> 
-> https://lists.freedesktop.org/archives/intel-gfx/2017-October/145050.html
-> 
-> Is there something we/he could do to get DRRS disabled with a generic 
-> distribution kernel? Should the i915_drrs_ctl thing have worked?
-> 
-> And if not, is there a possibility for a kernel parameter that does 
-> something akin to that above working test patch (but then right)?
-> 
-> Kind regards,
-> Rene Herman
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index c2726af6698e..df298ac49dcd 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -1011,7 +1011,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 			    struct drm_mode_object *obj,
+ 			    struct drm_property *prop,
+ 			    u64 prop_value,
+-			    bool async_flip)
++			    bool async_flip,
++			    bool *needs_async_plane_check)
+ {
+ 	struct drm_mode_object *ref;
+ 	u64 old_val;
+@@ -1068,7 +1069,6 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 		struct drm_plane *plane = obj_to_plane(obj);
+ 		struct drm_plane_state *plane_state;
+ 		struct drm_mode_config *config = &plane->dev->mode_config;
+-		const struct drm_plane_helper_funcs *plane_funcs = plane->helper_private;
+ 
+ 		plane_state = drm_atomic_get_plane_state(state, plane);
+ 		if (IS_ERR(plane_state)) {
+@@ -1084,22 +1084,14 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 				ret = drm_atomic_plane_get_property(plane, plane_state,
+ 								    prop, &old_val);
+ 				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
++				if (ret)
++				    break;
+ 			}
+ 
+-			/* ask the driver if this non-primary plane is supported */
+-			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
+-				ret = -EINVAL;
+-
+-				if (plane_funcs && plane_funcs->atomic_async_check)
+-					ret = plane_funcs->atomic_async_check(plane, state, true);
+-
+-				if (ret) {
+-					drm_dbg_atomic(prop->dev,
+-						       "[PLANE:%d:%s] does not support async flips\n",
+-						       obj->id, plane->name);
+-					break;
+-				}
+-			}
++			/* Need to ask the driver if this non-primary plane is supported.
++			 * Note that this can't happen here, as the full state of the plane
++			 * is not known yet */
++			*needs_async_plane_check |= plane->type != DRM_PLANE_TYPE_PRIMARY;
+ 		}
+ 
+ 		ret = drm_atomic_plane_set_property(plane,
+@@ -1394,6 +1386,10 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	int ret = 0;
+ 	unsigned int i, j, num_fences;
+ 	bool async_flip = false;
++	bool needs_async_plane_check = false;
++	struct drm_plane *plane;
++	struct drm_plane_state *old_plane_state;
++	struct drm_plane_state *new_plane_state;
+ 
+ 	/* disallow for drivers not supporting atomic: */
+ 	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
+@@ -1450,6 +1446,7 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	copied_props = 0;
+ 	fence_state = NULL;
+ 	num_fences = 0;
++	needs_async_plane_check = false;
+ 
+ 	for (i = 0; i < arg->count_objs; i++) {
+ 		uint32_t obj_id, count_props;
+@@ -1512,7 +1509,8 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 			}
+ 
+ 			ret = drm_atomic_set_property(state, file_priv, obj,
+-						      prop, prop_value, async_flip);
++						      prop, prop_value, async_flip,
++						      &needs_async_plane_check);
+ 			if (ret) {
+ 				drm_mode_object_put(obj);
+ 				goto out;
+@@ -1521,6 +1519,25 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 			copied_props++;
+ 		}
+ 
++		if (needs_async_plane_check) {
++			plane = obj_to_plane(obj);
++			old_plane_state = drm_atomic_get_old_plane_state(state, plane);
++			new_plane_state = drm_atomic_get_new_plane_state(state, plane);
++			/* only do the check if the plane was or is enabled */
++			if (old_plane_state->visible || new_plane_state->visible)
++			    ret = -EINVAL;
++			if (ret &&
++			    plane->helper_private &&
++			    plane->helper_private->atomic_async_check) {
++				ret = plane->helper_private->atomic_async_check(plane, state, true);
++			}
++			if (ret) {
++				drm_dbg_atomic(dev, "[PLANE:%d:%s] does not support async flips\n",
++						obj->id, plane->name);
++				break;
++			}
++		}
++
+ 		drm_mode_object_put(obj);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/drm_crtc_internal.h b/drivers/gpu/drm/drm_crtc_internal.h
+index 89706aa8232f..111907a55d9b 100644
+--- a/drivers/gpu/drm/drm_crtc_internal.h
++++ b/drivers/gpu/drm/drm_crtc_internal.h
+@@ -260,7 +260,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 			    struct drm_file *file_priv,
+ 			    struct drm_mode_object *obj,
+ 			    struct drm_property *prop,
+-			    u64 prop_value, bool async_flip);
++			    u64 prop_value, bool async_flip,
++			    bool *needs_async_plane_check);
+ int drm_atomic_get_property(struct drm_mode_object *obj,
+ 			    struct drm_property *property, uint64_t *val);
+ 
+diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode_object.c
+index e943205a2394..ec471536cfbc 100644
+--- a/drivers/gpu/drm/drm_mode_object.c
++++ b/drivers/gpu/drm/drm_mode_object.c
+@@ -540,7 +540,8 @@ static int set_property_atomic(struct drm_mode_object *obj,
+ 						       obj_to_connector(obj),
+ 						       prop_value);
+ 	} else {
+-		ret = drm_atomic_set_property(state, file_priv, obj, prop, prop_value, false);
++		ret = drm_atomic_set_property(state, file_priv, obj, prop, prop_value,
++					      false, NULL);
+ 		if (ret)
+ 			goto out;
+ 		ret = drm_atomic_commit(state);
+-- 
+2.50.1
 
