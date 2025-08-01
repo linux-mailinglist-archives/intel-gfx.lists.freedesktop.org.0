@@ -2,121 +2,120 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD2DB1800C
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 12:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBEB5B18024
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 12:31:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E55DA10E82D;
-	Fri,  1 Aug 2025 10:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291AF10E398;
+	Fri,  1 Aug 2025 10:31:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="DQ43fMwv";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="JTfPhGUP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B48810E150
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 10:17:50 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5719PBsv001563
- for <intel-gfx@lists.freedesktop.org>; Fri, 1 Aug 2025 10:17:50 GMT
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 062C910E398
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 10:30:57 +0000 (UTC)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5718weJ1018848
+ for <intel-gfx@lists.freedesktop.org>; Fri, 1 Aug 2025 10:30:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=kGg6rqM1u5SDrbr76JM+wROW
- k0Dbpz++/IEnvo6Rduo=; b=DQ43fMwvNCnGyCDI47/ih7QrlHdtadKeJwdECzOg
- dnnqb0QOEbYLuc3//yB4hFm/pIdrKsti58b1DITQSQXLaY/HNrd93GOJjb2KH+T4
- clNzqSD3K3vf9MYpIfByVu2uTdTXjiUgrInVmLwUAvL3UeF8PpEIUB12/oIisN19
- 50GE0hgN6MbOtNfibHxhAS0Nqntazc5Er+2O+FQXQ2tobROI0SvRwF7VxTDaV8UH
- 7OoRdgIxJpPdL7KI54RQe3dgoadsoXRdvOPFFMWSngQ07zhptoCRGjFWKVEybWCl
- dIXuqGQbej4BwnX8gn86GuzGMNSdErspSOfI7Ss6d6UOIw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nyubwmv-1
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ L84CyF+woWXvkwBzd7M9RuuiXRAGPXc2Q4DgUeAC+f8=; b=JTfPhGUPPA8j0Ovh
+ zlYaGqbYQbcMEk+9sj9CeEoEZ8yVfvu1NvmEonIV4+m1eZtYr2geyQb6zadeS98c
+ PfPg44biaWsvMGO4GFtG5lengPCT4tyr5FC18ejZI3u16akjFJ2iLIi6MAVnxJ1Z
+ gp+ky7rZSxSSjUpL8jXQGASTZvJS4KNGCRyKyEOnacA6JT0xQraDWb1eywQYlt1m
+ RQFCMtq5gt+dlRMsOhNgy01tIjI3iKl2YAuohmo8YKjLhXECwbRyXgtzdOR+hcJ3
+ /r+huZ9FlAIBinJTpZ7L96oubmy1Z+rKKYd3VNb2n6hNx6jTcpkTUH2H6fND7fcg
+ AeFhEw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484qdabcwt-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 10:17:49 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-7074cb63bccso33578836d6.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 03:17:49 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 10:30:56 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id
+ d75a77b69052e-4ab844acca0so12447601cf.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 03:30:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754043468; x=1754648268;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=kGg6rqM1u5SDrbr76JM+wROWk0Dbpz++/IEnvo6Rduo=;
- b=LE1E0J0oMmi7rvGxw5x2acumvuhJ+lCtHs2pSQJbq9yUdr7gYWWhNVeXAIbPu1rEqa
- ZhNEZjh/nN0VAYLhBYS0d2AUXYLcw3Hi60kU+E8Dr9woR0FWxSkZlde/FgORfU6Zw4o7
- zqnwcJ/YCDkv4SJm9MkAaOsICyUDa7sOYG7USpuAJn8AI+MPxYUmzZ4o0g3gVrbqPrTx
- YZkhfnpvjtXqqtezPfsKKjP1nfcscQ/Cm7O5SrBG8NiGTPGpvhDQX+2cqULNijST3/SJ
- aigd6EGv5YAUrMkZ14LO/ABLFDH7V0Zh0n2eGFRTRJM1bKon+xk9dZiCaGaYTZ/qgDGr
- rlpA==
+ d=1e100.net; s=20230601; t=1754044256; x=1754649056;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=L84CyF+woWXvkwBzd7M9RuuiXRAGPXc2Q4DgUeAC+f8=;
+ b=suprB+0MJ51DcbUSs9bEq4vkRzj9TC4eDnxTjM10TrGh3x5Tu2yd26UfCn65c/3UOe
+ +RbkWJGUOhdNi/Fwi6z2UhuxtKXqu91pdXSjcQ5dxfitm85lpyOXPTFM3ao+Vl9MemYs
+ 0eCMuiyrhbuBj9RecShMlVfTXCQL2AVjRNZjtyo+vrCl4R9Co/3Chrn2WHltSBF/6I14
+ g9tN6nmv4ct7aEA/FBwG7msSsXflvFukpv3zDwQHnlZd2sbs+bnQ9FyY28Lauesilzk2
+ Wu+vGKALudA/KeKSzoRp+LAa7krUfIeud62zALtrcpPnT97dgaWdQ/bOrP+ZyAX9OK+d
+ qnPg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVNrGQ2K+ZXUUIBPJFUYSv62J/6Qmd/eAIyaYO6iYHm9AWP/EXX7NKOkLpVHIUQ7s4kerGnU8uIQdk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKIJVFdYg17OIKp3XxfucP4VzLssFmRGz0Hzebj4IqfApPINKs
- C83knbY+Zfpv/INHAf9StGwgnwm2jdH+5+ZcVs93lopS9Bqt0CYKyToye3n5HATKTNB82lODV9i
- kWK9fTZklZqxyZLi//CQZ1DKSKQEd+qZoyrQ9yHhjQa7YID6KePvOj8UJbFYLGA8Ihi1GULI=
-X-Gm-Gg: ASbGncsSPTylrYeBFrB1oEwbYjWKW1AvfH1y/t1GrgKzseWDxCCjPBUUQFZMsC6f9Ci
- vT3KQgy4LeG9xyn6OZFaYjBAJVM7JoJAAxBMnttRDeSW7HhtqI2txVaLU2mo+aiCPyJPazMRll2
- 3bFBh4y4oR1W8cv/uegiHETxMEKr/ltMU0klJFqMQqQEo6SPcFAG2UwLFi/UeFOMSilFF+sjcfn
- WHnT5rO3a8STYn4td3IfSmaXwZqtW89FN2cMBv87acRuW72VAlxXSh0fGyt245oXqx43esWEgPx
- v6PjgXF9en7k0+cVoueVSJDrp3b//DuHYyJ6TJz0ZVz+Gb0T7ny0806sNNDlYrdiWvNpFgNQdaE
- yy7IwY9MQEdJmPF6ZuK0zcbkTKjAqP4Pi2YmYFJFBdATgRT2HkN23
-X-Received: by 2002:a0c:f40e:0:b0:707:6d96:6dd with SMTP id
- 6a1803df08f44-7076d96112emr130424516d6.35.1754043467731; 
- Fri, 01 Aug 2025 03:17:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFYkzZknJw3VF/Vc50PaqHUQkABW2fMh1pyf1ULI+PgSKzGEczMndHvWDfKg6gTO/WkUSnGjQ==
-X-Received: by 2002:a0c:f40e:0:b0:707:6d96:6dd with SMTP id
- 6a1803df08f44-7076d96112emr130424036d6.35.1754043467179; 
- Fri, 01 Aug 2025 03:17:47 -0700 (PDT)
+ AJvYcCX1PSq7ElVu8wXdjGQdp/OTSeFnz8krTI0gSXOJJEziYIWMGmhiBnLZiGlKVDMN9jKg1qkGpiSUwqM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy8+Ci6D2nfymbHTewkQrUATr6E/t7XYQwCX5gLYsbggrBSv1u9
+ 1ShWsr2hSTNdLosBbpFuNrtxIPmYLfGjoniyH1j9rHD5H8fYnRJ7WVw2X6FkjrDGTHO9jTNxE8Y
+ bQE2N7Feqr0pDLLK78lu3z93QeXfgrU4xg7fSBT3qIi4P0WWJYQQsjywdztPng4sQl37aJ04=
+X-Gm-Gg: ASbGnctfLHZYJ+jy57LaD0Jrz+K7/ZVWLoR0gahVMegpq5dcUKbqwQBv5nvc4RickOJ
+ H6Rdy4mC75wYAhJt+ZLFASO3knHx2nVCi5LRH0nCXtwdmcgTRMNWbRsaigtfaZQHJydKpeJLJPl
+ zNWiQ1LxnoEDzYWqlABxmkkseT2mX6WsbyYbPIGZrLzC6gnqAP0mPFaov6vKIY4HrMXllnnE1/m
+ nXo+8PS1gXMyaCaOKmSOc4EFTV6+YqJdWffx4w1K0YrjuaGc1oZE0ARfsHleXsGaOiw5mr1t/de
+ U7/nB1VXruaWeUs4OtDkFtQJvH1BuUQZAg7O4iu0ceKmmFZeLH5hlzZOP//I1aCSEYG4obKP5CW
+ llmQm9iJQumD9KoGBtTNZ99j1VooIeaLWK8vgp8+/nVO+kGzJD1fk
+X-Received: by 2002:a05:622a:1921:b0:4ab:5b3a:5f14 with SMTP id
+ d75a77b69052e-4aedb9584d0mr162698791cf.4.1754044255868; 
+ Fri, 01 Aug 2025 03:30:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHJTrlqeDQwfKaCw8yyW7SIaGimL48nbTtFzI8FnF8q1lx/G/dFdELduNg51Bv5DRhilMLjzg==
+X-Received: by 2002:a05:622a:1921:b0:4ab:5b3a:5f14 with SMTP id
+ d75a77b69052e-4aedb9584d0mr162698231cf.4.1754044255332; 
+ Fri, 01 Aug 2025 03:30:55 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-55b88cabce5sm538607e87.151.2025.08.01.03.17.46
+ 2adb3069b0e04-55b88ca314bsm532410e87.128.2025.08.01.03.30.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Aug 2025 03:17:46 -0700 (PDT)
-Date: Fri, 1 Aug 2025 13:17:44 +0300
+ Fri, 01 Aug 2025 03:30:54 -0700 (PDT)
+Date: Fri, 1 Aug 2025 13:30:52 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Subject: Re: [PATCH 03/28] drm/writeback: Define function to get
- drm_connector from writeback
-Message-ID: <pax7q7t6gqf4v2ots4ycdfpyecyb62eycht5vlzxodxfl5tlzv@axijwakktt2u>
-References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
- <20250725050409.2687242-4-suraj.kandpal@intel.com>
- <ng2ps7k5h74w6zo62oqazzetunjc2psooobmh3zcrrmxesi2ua@va6z7eqjst2u>
- <DM3PPF208195D8D2676D013483985D2C3FFE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <t5fmzuwiy2otubqftwdghakwmbeltavhbsvrfhgi4tc52uigys@sg2jgz6yjjk7>
- <DM3PPF208195D8D9147AC80569982DE55EBE326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Andy Yan <andy.yan@rock-chips.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: build warning after merge of the drm-misc tree
+Message-ID: <cn3l445yzdhehsyyxurjn4x5stnyo34beogguupk7wsjqrloh5@d2berut7dn3l>
+References: <20250716203115.6e02e50c@canb.auug.org.au>
+ <20250801144354.0ac00f39@canb.auug.org.au>
+ <7304e450.4ca8.198645108de.Coremail.andyshrk@163.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DM3PPF208195D8D9147AC80569982DE55EBE326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-X-Proofpoint-GUID: 2aHkmxSM1vWVFUZiWSyl4WuArPb3U7DD
-X-Proofpoint-ORIG-GUID: 2aHkmxSM1vWVFUZiWSyl4WuArPb3U7DD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA3NSBTYWx0ZWRfX+i90+9gYz9tw
- 8r7gKl6OShFEuBs7nFJ3DRPQVqXCAeqzuXaj5AFXytFAVdFXUtdHg/gO1gPYtVWqCTud8eIi88Z
- grNA2Rb6pEkF0eDqRml9ishEb7addrILFpeQD5ELskGabrsHeq6NCsr/TY/0lQxxyFHg2ddqZYt
- iG6bDzFHKelAKeteUar/I8t5f/80RrNaAXoWhNGrF1V5QIEW0nSa7DRSTYgASD1zy9eYNaoVb5W
- RXUzuj+GHdgFPCEJo0QzTNz7hXIwC0vNHVUthus1wDFNrr5fTq/CeFkFBYgcwJttyhIr43dQUNJ
- WfNFoWme34wDbq0S+7SFSt8Kixb2qxuNi+EgktFWjWDHyqSiUWNO7hCWLjTsBhTdMTFvP6BJ7hn
- 8HueTfb26sdSTyZZ5N9eBJN9K6g9qbCLesWuTwFdo3XaJLu0Fbmi+GhKh4XuDQUzMIcW3RAD
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=688c944d cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=QyXUC8HyAAAA:8 a=s_w-jfvKb66AtO-dxM8A:9 a=CjuIK1q_8ugA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7304e450.4ca8.198645108de.Coremail.andyshrk@163.com>
+X-Proofpoint-ORIG-GUID: gpAVHYp9Y60nBeN5arD2IhRX9vWIxAcp
+X-Authority-Analysis: v=2.4 cv=Pfv/hjhd c=1 sm=1 tr=0 ts=688c9760 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=Byx-y9mGAAAA:8 a=rOUgymgbAAAA:8
+ a=7bnOuvaNDU_t_1VFS9oA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=MP9ZtiD8KjrkvI0BhSjB:22
+X-Proofpoint-GUID: gpAVHYp9Y60nBeN5arD2IhRX9vWIxAcp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA3NyBTYWx0ZWRfX9Iik03oXtACd
+ IJ/U4kT4j4NboLwGnouJzbf9am/bFqHk8CJhoSdJ0OQHtyCEWmVNn0jCmha9wgwrw0V+xgGqoD3
+ fbwqjHZaG9uJb4EOEFl4t5EE/7qko+8qzbWkdw8Eq9MvxHtwAtRToLsYNtGarxX3LTfi7AtFqHM
+ SScatlZ/XmT3iZRCu7Bye3UbL7S0mq8Z69HqF3Ho8EqdRAzwFsucLsEKS0WFSiZojjuPahRZdbV
+ 2FgWh0CN/nOuYdtodi71K9ecnFTRn77Ien/ajlPB0X2/Xbf3QbXfHE7CriozeirUi1HveoXjEFr
+ ymbazVqlg7iT8XLPuuDU8SWDioszQUcLDu124G6IQSZBZlY2RNZCAL62nmyM1O8scjo05JTwyTC
+ d024kI/GCaXRfaDqJfGA0m57VO1Cq6BwkscMW1xx6AedRN20Ye+IsE2cYrWJmCCz+3YmYIv8
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-01_03,2025-07-31_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ mlxlogscore=999 clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0
+ spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508010075
+ definitions=main-2508010077
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,177 +131,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 01, 2025 at 05:18:47AM +0000, Kandpal, Suraj wrote:
-> > Please tune your mail client to insert smaller quotation headers. This is just
-> > useless.
-> > 
-> > > >
-> > > > > Now that drm_connector may not always be embedded within
-> > > > > drm_writeback_connector, let's define a function which either uses
-> > > > > the writeback helper hook that returns the drm_connector
-> > > > > associated with the drm_writeback_connector or just return the
-> > > > > drm_connector embedded inside drm_writeback_connector if the
-> > > > > helper hook is not present. Lets use this function and call it
-> > > > > whenever drm_connector is required mostly when connector helper
-> > private funcs need to be fetched.
-> > > > >
-> > > > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/drm_writeback.c | 33
-> > > > > ++++++++++++++++++++++++++-------
-> > > > >  1 file changed, 26 insertions(+), 7 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/drm_writeback.c
-> > > > > b/drivers/gpu/drm/drm_writeback.c index e9f7123270d6..d610cb827975
-> > > > > 100644
-> > > > > --- a/drivers/gpu/drm/drm_writeback.c
-> > > > > +++ b/drivers/gpu/drm/drm_writeback.c
-> > > > > @@ -120,6 +120,18 @@ drm_connector_to_writeback(struct
-> > > > drm_connector
-> > > > > *connector)  }  EXPORT_SYMBOL(drm_connector_to_writeback);
-> > > > >
-> > > > > +static struct drm_connector *
-> > > > > +drm_connector_from_writeback(struct drm_writeback_connector
-> > > > > +*wb_connector) {
-> > > > > +	const struct drm_writeback_connector_helper_funcs *funcs =
-> > > > > +		wb_connector->helper_private;
-> > > > > +
-> > > > > +	if (funcs && funcs->get_connector_from_writeback)
-> > > > > +		return funcs-
-> > > > >get_connector_from_writeback(wb_connector);
-> > > >
-> > > > The get_connector_from_writeback() and
-> > > > drm_writeback_connector_helper_funcs should be moved to this patch.
-> > >
-> > > Want to keep them separate since they themselves introduce a lot of
-> > > changes on of them has use introducing a new writeback_helper_function
-> > structure.
-> > 
-> > Let's see how the series will take shape.
-> > 
-> > >
-> > >
-> > > >
-> > > > However it feels really awkward to make drm_writeback_connector,
-> > > > which is a wrapper around the drm_connector, to use some external DRM
-> > connector.
-> > > > A quick grepping reveals API (which you missed) that expects
-> > > > drm_writeback_connector.base to be a valid connector. And it would
-> > > > be very hard to catch sunch an API later on.
-> > >
-> > > Also seems like I did miss the fence_get_driver_name one which is an
-> > > easy fix or did you see anything else.
-> > > Really don't see any other problematic areas
-> > 
-> > Yes, it was that function. However it is a nice example of how easy it is to miss a
-> > call. Likewise anybody else changing the code might easily not notice that Intel
-> > driver uses drm_writeback_connector in a strange way.
-> > >
-> > > >
-> > > > If you want to use DRM framwework, while retaining intel_connector
-> > > > for writeback connectors, I'd suggest following slightly different
-> > > > path: extract common parts of drm_writeback_connector into a common
-> > > > structure, and use it within the DRM core. Then provide functions to
-> > > > fetch drm_connector from that struct or fetch it from drm_connector.
-> > >
-> > > Causes a lot of changes in the drm_writeback_connector structure
-> > > causing every other driver Using this to change how they essentially
-> > > call upon drm_writeback_connector. This API was to provide more non
-> > invasive way to give everyone another alternative.
-> > 
-> > Currently drm_writeback_connector is documented and implemented as being
-> > a wrapper around drm_connector. You are changing that contract in a non-
-> > intuitive way. I think there are several options on how to proceed:
-> > 
-> > - Clearly and loudly document that drm_writeback_connector is no longer
-> >   a wrapper around drm_connector. Clearly document how to distinguish
-> >   those two cases. In my opinion this is the worst option as it is
-> >   significantly error-prone
-> > 
+On Fri, Aug 01, 2025 at 02:28:09PM +0800, Andy Yan wrote:
 > 
-> I think this is already done when drm_writeback_connector_init_with_conn is
-> Defined
-
-No. You also need to update drm_writeback_connector documentation, etc.
-
+> Hello，
 > 
-> > - Make sure that the DRM framework can use writeback without
-> >   drm_writeback_connector and them implement all necessary plumbing in
-> >   the Intel driver. This can result in singnificant amount of code
-> >   duplication, so I'd skip this option.
+> At 2025-08-01 12:43:54, "Stephen Rothwell" <sfr@canb.auug.org.au> wrote:
+> >Hi all,
+> >
+> >On Wed, 16 Jul 2025 20:31:15 +1000 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
+> >>
+> >> After merging the drm-misc tree, today's linux-next build (htmldocs)
+> >> produced this warning:
+> >> 
+> >> drivers/gpu/drm/drm_bridge.c:1242: warning: Function parameter or struct member 'connector' not described in 'drm_bridge_detect'
+> >> 
+> >> Introduced by commit
+> >> 
+> >>   5d156a9c3d5e ("drm/bridge: Pass down connector to drm bridge detect hook")
+> >
+> >I am still seeing that warning.  That commit is now in Linus' tree.
 > 
-> Hmm Agreed.
 > 
-> > 
-> > - Separate writeback parts of drm_writeback_connector into a struct,
-> >   make drm_writeback_connector include drm_connector, new struct and
-> >   most likely drm_encoder. Implement conversion callbacks (like you did
-> >   in your patchset).
+> The fix is here：
 > 
-> Again a lot of changes to other drivers which everyone will resist.
-> Something like this was tried previously with both encoder and connector
-> which was not accepted leading the patch series towards creation 
-> of the drm_writeback_connector_init_with_encoder.
+> https://lore.kernel.org/dri-devel/20250716125602.3166573-1-andyshrk@163.com/
 > 
-> > 
-> > - Rework drm_writeback_connector and drm_connector in a similar way, but
-> >   use writeback structure as a field inside drm_connector (similar to
-> >   how we got the HDMI data). This saves you from having all conversion
-> >   callbacks and makes it extensible for other drivers too. In fact you
-> >   can use an anonymous union, making sure that HDMI and writeback
-> >   structures take the same space in memory.
-> 
-> The idea of not having it inside drm_connector was that it's not a "real connector"
-> and we should not be treating it like one which makes me a little doubtful on if the
-> community will go for this.
+> Hope that a Maintainer can review and apply it.
 
-Well... It is a "real" connector, otherwise e.g. Intel wouldn't have to
-wrap it into an intel_connector structure. I think this is more of the
-historical behaviour - to wrap the structure instead of adding data to
-it. HDMI connector showed that it's much easier to add data, so I assume
-it would be a preferred approach.
-
-> 
-> > 
-> > My preference is shifted towards the last option, it follows current HDMI
-> > subclassing design and it doesn't add unnecessary complexity.
-> > 
-> > Yes, this requires reworking of all writeback drivers. Yes, it's a price of having
-> > your own subclass of drm_connector. No, in my optionion, leaving a semi-
-> > broken abstraction is not an option. Whatever path gets implemented, it should
-> > be internally coherent.
-> 
-> Well to be honest this has already been done with drm_encoder which is placed
-> Inside drm_writeback_connector with drm_writeback_connector_init_encoder
-> so this is not something very unintuitive. Also I feel messing with all other drivers by changing
-> writeback structure is the more error prone way to go about it.
-
-This is what we frequently have to do: change other drivers and depend
-on developers testing them.
-
-For the reference, currently only the following drivers implement
-writeback. I think it's a pretty manageable change:
-
-- AMDGPU
-- ARM/Komeda
-- ARM/Mali
-- MSM/dpu1
-- R-Car
-- VC4
-- VKMS
-
-Yes, it requires some effort. But I think that it's better than just
-making drm_connector part optional. 
-
-> Also it will be understood that
-> drm_writeback_connector does not contain drm_connector to those using this API as it
-> will be documented. So its not really the semi-broken abstraction.
-
-Thinking in OOP terms, the encoder is just a field in the struct.
-drm_connector is a base class for drm_writeback_connector. By making it
-optional, you are definitely semi-breaking the abstraction.
-
-
+I tried picking it up into the drm-misc-next-fixes branch, but I could
+not do it: the offending commit is present in drm-misc-next-2025-07-17,
+while drm-misc-next-fixes is based on drm-misc-next-2025-07-10.
 
 -- 
 With best wishes
