@@ -2,66 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BBFB1822B
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 15:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1DCAB1825B
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 15:19:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7397110E847;
-	Fri,  1 Aug 2025 13:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB4610E0DA;
+	Fri,  1 Aug 2025 13:19:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Lo7XIR1j";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D461F10E847;
- Fri,  1 Aug 2025 13:11:06 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-3b786421e36so1251513f8f.3; 
- Fri, 01 Aug 2025 06:11:06 -0700 (PDT)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A21DA10E0DA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 13:19:18 +0000 (UTC)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5719g6Rw006268
+ for <intel-gfx@lists.freedesktop.org>; Fri, 1 Aug 2025 13:19:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=4d0tufGm/Z6Jl/eZwE1rEdUE
+ GHGFJncqqGMe/QFWJ0A=; b=Lo7XIR1j5ssJZ5aJFEJ3jvWOyhj23UPUeQqxJ6hZ
+ lEofbwCYySOusaS/0VzJhsYN2hE5iNrAwNK/Uu8la1alt5Di/PWAPaWQ0OHhhG3b
+ w+fDbupDSJGTg3PM4NhQdBnkA4ISzIUDQ6/dDE1ktx4dP8j+3MiC8pm3lyfOd+wk
+ 819RH9uWWspgz+fHIUuI7q1eAI5XyQMqt0umF7wLcnTy2QpbXGi5S4b4rmLjFN3d
+ hMsbupabECoalIltiG+JAE0tMCiZ60yIMZ+S2EdFabFm9vaDnkYLlPqgv5/99Ags
+ z4llyXiCXUfc6u348Vy/lR/Gw9/7SeLCtNJbaJWduSml4w==
+Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com
+ [209.85.217.69])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 488u650kwb-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 13:19:17 +0000 (GMT)
+Received: by mail-vs1-f69.google.com with SMTP id
+ ada2fe7eead31-4fd73dff961so27003137.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 01 Aug 2025 06:19:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754053865; x=1754658665;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=WU58hiZv14QoAb2coHWJzb0B6YUhtUSyBlxR4s/xk3Y=;
- b=jcaZcq1dhEizPE7EOS6pAWB2A9tByYa5o26EpkDc4clwYnNyp80aMCfPNoV9a9aIf2
- 1eK+Yv2F0TDXmRcBr+TSRzrWucuIUmr+oAAgWgSAD1L6j1o/gZX9YHaCL+OAo5YAe2tV
- Ww4CLhHhDOUwTScNsmAxx0wZO5U/j3/AAYVMD6yTwbk3Zzt5NGeMAlJKfIysm6Qq0vgC
- E+2uDL7rBETYRnyPUG2xnkAYzcXeKA2Xuo+EouvavluQCmMvKfhSnicE4Fx/gHfMtAE7
- So8goNcD3dTOKEB9rmlJkKY9OteZoxfbXkP1wsCs9Ofp0SsRsLKS7k5HsEjln1+zsHwn
- SbUg==
+ d=1e100.net; s=20230601; t=1754054357; x=1754659157;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4d0tufGm/Z6Jl/eZwE1rEdUEGHGFJncqqGMe/QFWJ0A=;
+ b=WFzzEgOxEFvlB+6X618iY7p0TKOoDzsW1VthcDy7NOYXbytHt5JMVg9WUwRcItVMJe
+ 8o9UPEeF+ra5pRfv1CCuBPj38pVsi7dd8TmpptsukaV6JaX79SJYEc8SXD856pMLjcBy
+ y0/vYx/9dCbmn0WWdnr00iokOWhSH+3Zrr5fmbtghEJKn7Eavl+cThOO1eMNCCPnunOb
+ iLogtKj8T4q60t4q3GMXD7dCwDYJ69SpQURLHwDwXyasI0HhjyAMx7BTaBCI4XWAxbyh
+ /BDBfZGUqSSfKRArHUo8ElZnFI/B8u6rmFHJfxP3bM0axvazf4TXa3We/K2oazytoJxc
+ zLuw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUYhziri16hpW7siyFcmNsoze/Mlku6MlO4OLVcMjnjUxb/aQsZtWqcpNrP5fVEhbrWsKfscRJT@lists.freedesktop.org,
- AJvYcCW1hPLQjCuolcO0cnQ30LxLkPPfL+sjZcHyNq0p4qGmMRsfKzD5vAe0emdEhdIhVSHuRGpBAagrlJju@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzQ9+ua99wARCDKSdiQxr+hsW/X08NmbjpYok3jKA0WjFGTN0d7
- zS2hwrbcgHar2mecvjGdJYnOwbLpwC6X7EyAZs3+7b9JGuvhb/rH4ceTiPXdEHrGaLc=
-X-Gm-Gg: ASbGncvW05vxprGKEwLCgafGhHiarUEqelHeS+gSl8SojUF4qaBCO7NZ1RGe7UEIIt2
- o5NxK94RxNE3n8siWPz1yu3UxqE5Yq6dqX3Rpy3EZ/QUjn+B6Ohm2LmqZIb9Vy7Y6QQouARCGHY
- CpuxwvYl1EftZr0xNPQ+RtSKQ78WPm1U+XUBswzfwUja8KzMVMh+GfLwhOHMMANchTT8DjybKJ0
- 7iRf39TqIZIO2Ka6dS+DXBP37Rx/INgHrjK20cDRdRuYxAiwP/B+DsVrmGjv1Vh1cdWy7hBTTE/
- TQVb//4EqxGobh8HPXEMMVKB2TR5hMttkDP5CqM9f5UG0JbBAAdN4yyaBws/SD36NjixPZ6dDwv
- jH+ULUEtIEsZyak09qlNb/v08wO+EGfPQ8J+Xyk/oMSj+uK/+bJtQ79w=
-X-Google-Smtp-Source: AGHT+IH1aibYc/RancdGBgJIc2PbDVdcjUdNJ0HKf9lkBt5l67CDRMmhfSnUiSN/5c9Ucyn6dxgPHg==
-X-Received: by 2002:a05:6000:2890:b0:3b7:7cb5:a539 with SMTP id
- ffacd0b85a97d-3b794fed101mr9316042f8f.18.1754053865135; 
- Fri, 01 Aug 2025 06:11:05 -0700 (PDT)
-Received: from xavers-framework.fritz.box
- ([2a04:7d84:aacc:d4a0:5576:52b6:171a:57c8])
+ AJvYcCXJhZoer9Z0wKY+W/51JkDfodhWgmDaO0p+UQ31kvcRbbxcsggja8ojsGAPhO/P9cxNpAg8sKVe8Hk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz6TwJ+KzuoMTbmnkkfSgj4ZrYqM+ayr9YQELrW5YSQIbavr0lc
+ CpFne25dkitEtROSZuoF9j2PWh0wC/goC2wEeDtWgKSH0p02/MnBNgyEY+i+5jfRgmV18W31xBu
+ jRI9o/1UogMmbfNhaEZy3G+BkdG33Zd8pQ6iSHfI5pHzQK5kNCIJvvfm8VHsdJucPix5y2wA=
+X-Gm-Gg: ASbGncvalWmw2TMmIbtmNAhcE2XWQFxj6q1ABuPFMg85tuHd4HwtQDHKI746NV9Mj10
+ GjHLEWlPvdlNz9n8sPGHc9W/h9xnPTAceUrTQ73hMaOWSAOyykFnfuERw3sNX4spMC0wNPVi8A2
+ aM3l4uLIPQwAqw5oajGe0d1UyVsJEDrwJtobBKixkCbRNWDoXRH6CYxPlLCa/gVpn0LXmFe9kJt
+ fP8r4Lgw6t3oZbKXwPWBzWZ3WVM1fdBiBUiry4zXIekNvxGGw4va0w6bdCuwMXf6FgYSiUC9RvL
+ SlkL1CoAr1MuSvFZ0V612U+n1Dfv00478MWDJkNZ8MbxqpraZIe6kE5YSDvRJ0W8kyR9kSrkTFE
+ ABFqfd0CAtQPFlpLMUIdV3Kc+OM5aXvsluN3CvewJwKhOmOnUYB5d
+X-Received: by 2002:a05:6102:15a9:b0:4e5:9d76:e8c8 with SMTP id
+ ada2fe7eead31-4fbe87a2aa6mr6627672137.18.1754054356689; 
+ Fri, 01 Aug 2025 06:19:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHHkaoT6O42+y0vCuPSSWkbuCgRp/zCqGSlqc9t9D1DVO2cvmFzSHXrdljQ2w8yw+NrsztPZw==
+X-Received: by 2002:a05:6102:15a9:b0:4e5:9d76:e8c8 with SMTP id
+ ada2fe7eead31-4fbe87a2aa6mr6627609137.18.1754054356170; 
+ Fri, 01 Aug 2025 06:19:16 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4589536bc34sm103315635e9.2.2025.08.01.06.11.03
+ 2adb3069b0e04-55b8898c164sm577451e87.23.2025.08.01.06.19.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Aug 2025 06:11:04 -0700 (PDT)
-From: Xaver Hugl <xaver.hugl@kde.org>
-To: dri-devel@lists.freedesktop.org
-Cc: andrealmeid@igalia.com, chris@kode54.net, naveen1.kumar@intel.com,
- ville.syrjala@linux.intel.com, mdaenzer@redhat.com,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- alexdeucher@gmail.com, arun.r.murthy@intel.com,
- Xaver Hugl <xaver.hugl@kde.org>
-Subject: [PATCH v3] drm: don't run atomic_async_check for disabled planes
-Date: Fri,  1 Aug 2025 15:10:53 +0200
-Message-ID: <20250801131053.6730-1-xaver.hugl@kde.org>
-X-Mailer: git-send-email 2.50.1
+ Fri, 01 Aug 2025 06:19:15 -0700 (PDT)
+Date: Fri, 1 Aug 2025 16:19:13 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Subject: Re: [PATCH 03/28] drm/writeback: Define function to get
+ drm_connector from writeback
+Message-ID: <mn5lxsobcdc27m7xjh6srii4gbrpus36bvxyu3krqrxzoj5hrv@k3rc4v2xz2nd>
+References: <20250725050409.2687242-1-suraj.kandpal@intel.com>
+ <20250725050409.2687242-4-suraj.kandpal@intel.com>
+ <ng2ps7k5h74w6zo62oqazzetunjc2psooobmh3zcrrmxesi2ua@va6z7eqjst2u>
+ <DM3PPF208195D8D2676D013483985D2C3FFE358A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <t5fmzuwiy2otubqftwdghakwmbeltavhbsvrfhgi4tc52uigys@sg2jgz6yjjk7>
+ <DM3PPF208195D8D9147AC80569982DE55EBE326A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <pax7q7t6gqf4v2ots4ycdfpyecyb62eycht5vlzxodxfl5tlzv@axijwakktt2u>
+ <81dccfde92580d525cab5ce95d529e08c27b972c@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <81dccfde92580d525cab5ce95d529e08c27b972c@intel.com>
+X-Proofpoint-ORIG-GUID: xzCPBNs0Sjsc514KMV7GArY9r9DqZkDA
+X-Proofpoint-GUID: xzCPBNs0Sjsc514KMV7GArY9r9DqZkDA
+X-Authority-Analysis: v=2.4 cv=f+RIBPyM c=1 sm=1 tr=0 ts=688cbed5 cx=c_pps
+ a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=xDGqbUokCh5CAw3SPFYA:9 a=CjuIK1q_8ugA:10
+ a=gYDTvv6II1OnSo0itH1n:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA5OSBTYWx0ZWRfX46YnII/QSJMD
+ oTfv8kz1KHx17DkKkThjCMC8HMJTd9mL9MF6OjZOIP4UuKpnT7s+OjuWzXLh/tfg1Fk7wYIK1DU
+ RvAuwqVvo6inXcmwxFr5zbFxJdDzmDwY15ms+Z73JsBBs8MDJcmUcybyF5n2/2D12fbepWR5SZS
+ IZDeS9w6oIP7eRFikdgCPhe5emvQ4pkz7Hk+RPtc74paB0lauDQL90uOgSoOkn4O1WCPbA79t7R
+ gHpPltyn+IxlucZdQfQRIT3B0cU/frwKsuwunbZZGaLBhvAgBrHKqn6idD2F8m6TAp2Z8ouW/Pe
+ xLi4wPvqV8D82w2mYqimNlYtN/blOfbqH2e8CMxzPnjIHgbWc670k9Z3w+Rh2ruoLOgy4OEY5Cx
+ pZ/qKXbAimL7vVKwgwQbWF6tCOvhJTXoX+vDRjOAHwsmmltbLqzFYExhNmG7XcziMvGCGCz8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-01_04,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 impostorscore=0 malwarescore=0 mlxlogscore=771 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ adultscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508010099
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,103 +135,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's entirely valid and correct for compositors to include disabled
-planes in the atomic commit, and doing that should not prevent async
-flips from working. To fix that, this commit moves the plane check
-to after all the properties of the object have been set, and skips
-the async checks if the plane was and still is not visible.
+On Fri, Aug 01, 2025 at 02:57:48PM +0300, Jani Nikula wrote:
+> On Fri, 01 Aug 2025, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > Thinking in OOP terms, the encoder is just a field in the struct.
+> > drm_connector is a base class for drm_writeback_connector. By making it
+> > optional, you are definitely semi-breaking the abstraction.
+> 
+> The trouble is, in OOP terms, drm_connector is the "base class" for both
+> drm_writeback_connector and intel_connector. We're already stretching
+> what we can do with C.
+> 
+> Currently, it's always guaranteed all drm_connectors i915 ever sees are
+> embedded within intel_connector. Changing from one pointer to another is
+> trivial, guaranteed to work, and is never NULL if the source pointer is
+> non-NULL. This is a design that's been around for the longest time.
+> 
+> The current writeback implementation forces a different design by always
+> embedding drm_connector itself. We can't use a drm_connector that's
+> embedded within an intel_connector with it. If we want to have our own
+> stuff, we'd need an intel_writeback_connector wrapping
+> drm_writeback_connector, and it gets even more complicated with all the
+> interfaces that use intel_connector. It really shouldn't have to be this
+> way.
+> 
+> Using the current drm_writeback_connector in i915 requires careful
+> auditing of all drm_connector <-> intel_connector conversions, NULL
+> checks, and graceful error handling, also in places that have no
+> convenient way to return errors at all.
+> 
+> The OOP abstractions just break hard with C, we can't have multiple
+> inheritance, and IMO the pragmatic approach is to let *drivers* do what
+> they want, instead of having a midlayer helper design force something on
+> them.
 
-Fixes: fd40a63c drm/atomic (Let drivers decide which planes to async flip)
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4263
+Yes. Basically, that's why I suggest refacoring drm_writeback_connector
+to mvoe drm_connector_writeback into drm_connector itself (like it's done
+for drm_connector_hdmi).
 
-Signed-off-by: Xaver Hugl <xaver.hugl@kde.org>
----
- drivers/gpu/drm/drm_atomic_uapi.c | 51 +++++++++++++++++++++----------
- 1 file changed, 35 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index c2726af6698e..2ae41a522e92 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1068,7 +1068,6 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 		struct drm_plane *plane = obj_to_plane(obj);
- 		struct drm_plane_state *plane_state;
- 		struct drm_mode_config *config = &plane->dev->mode_config;
--		const struct drm_plane_helper_funcs *plane_funcs = plane->helper_private;
- 
- 		plane_state = drm_atomic_get_plane_state(state, plane);
- 		if (IS_ERR(plane_state)) {
-@@ -1084,21 +1083,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 				ret = drm_atomic_plane_get_property(plane, plane_state,
- 								    prop, &old_val);
- 				ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
--			}
--
--			/* ask the driver if this non-primary plane is supported */
--			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
--				ret = -EINVAL;
--
--				if (plane_funcs && plane_funcs->atomic_async_check)
--					ret = plane_funcs->atomic_async_check(plane, state, true);
--
--				if (ret) {
--					drm_dbg_atomic(prop->dev,
--						       "[PLANE:%d:%s] does not support async flips\n",
--						       obj->id, plane->name);
--					break;
--				}
-+				if (ret)
-+				    break;
- 			}
- 		}
- 
-@@ -1394,6 +1380,10 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 	int ret = 0;
- 	unsigned int i, j, num_fences;
- 	bool async_flip = false;
-+	struct drm_plane *plane;
-+	struct drm_plane_state *old_plane_state = NULL;
-+	struct drm_plane_state *new_plane_state = NULL;
-+	u64 fb_id = 0;
- 
- 	/* disallow for drivers not supporting atomic: */
- 	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
-@@ -1521,6 +1511,35 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
- 			copied_props++;
- 		}
- 
-+		if (async_flip && obj->type == DRM_MODE_OBJECT_PLANE &&
-+		    obj_to_plane(obj)->type != DRM_PLANE_TYPE_PRIMARY) {
-+			/* need to ask the driver if this plane is supported */
-+			plane = obj_to_plane(obj);
-+			old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-+			new_plane_state = drm_atomic_get_new_plane_state(state, plane);
-+			ret = drm_atomic_plane_get_property(plane, new_plane_state,
-+							    dev->mode_config.prop_fb_id,
-+							    &fb_id);
-+			if (ret)
-+				break;
-+			/*
-+			 * Only do the check if the plane was or is enabled.
-+			 * Note that the new state doesn't have "visible" set yet,
-+			 * so this uses fb_id instead.
-+			 */
-+			if (old_plane_state->visible || fb_id)
-+				ret = -EINVAL;
-+			if (ret && plane->helper_private &&
-+			    plane->helper_private->atomic_async_check) {
-+				ret = plane->helper_private->atomic_async_check(plane, state, true);
-+			}
-+			if (ret) {
-+				drm_dbg_atomic(dev, "[PLANE:%d:%s] does not support async flips\n",
-+						obj->id, plane->name);
-+				break;
-+			}
-+		}
-+
- 		drm_mode_object_put(obj);
- 	}
- 
 -- 
-2.50.1
-
+With best wishes
+Dmitry
