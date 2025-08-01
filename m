@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D4AFB17CED
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 08:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68A8DB17D68
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 09:24:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36CBA10E7FB;
-	Fri,  1 Aug 2025 06:29:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIgKPckS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27AB10E3C3;
+	Fri,  1 Aug 2025 07:24:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34BAA10E3BE;
- Fri,  1 Aug 2025 06:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754029765; x=1785565765;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Fuyt19A7er1UoIFCfDJKsoVQCGqhNFEYlOOc1U7xarw=;
- b=kIgKPckSQ/jUXbgboEQatDwDJ0sewMFSBSs3qJqdMu3lUwpWW4AaMMGT
- cEz6HXKNRhsyv+7eyVN+c5/7ZbLrx6SJCUf+HMHA8RTR8eEC8Th0DhDCN
- R1YPXXsvPwpc5DaoJW9gvhsyHc7oauHtGj/BcaHgF8F6mKOYAODanbTnN
- 0Sy7mrigw4Q7Kbd5AORRqDuPilfl2YlVz3b+XxDiLaiJts4q9VZ3U0xPw
- CaMMs4CWyvfAY1DNErBWQdggHn/KZETvEvmSrj044Q5DQVN92Y1lw7JAT
- jlR2XzKnyVPdiSC8V0mhrR7utwwNyeqJU1N8FpexjKrvPqHyK1jn6Ro72 A==;
-X-CSE-ConnectionGUID: 60e3nbWfQW2yXbNH9PHP2Q==
-X-CSE-MsgGUID: V/WlSeaLSUOAZGBqFU7ILg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="55430341"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="55430341"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 23:29:25 -0700
-X-CSE-ConnectionGUID: bGUp/9kES9O0S6aPOzw5Og==
-X-CSE-MsgGUID: 42k2heFMRYSmhwO2prLOTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="187153479"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.99])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jul 2025 23:29:23 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Janna Martl <janna.martl109@gmail.com>
-Subject: [PATCH] drm/i915/psr: Do not trigger Frame Change events from
- frontbuffer flush
-Date: Fri,  1 Aug 2025 09:29:05 +0300
-Message-ID: <20250801062905.564453-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 560E710E311;
+ Fri,  1 Aug 2025 07:24:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5586397117758555344=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Do_not_tr?=
+ =?utf-8?q?igger_Frame_Change_events_from_frontbuffer_flush?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 01 Aug 2025 07:24:08 -0000
+Message-ID: <175403304834.204201.2642266246549323345@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250801062905.564453-1-jouni.hogander@intel.com>
+In-Reply-To: <20250801062905.564453-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,74 +37,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to get rid of triggering "Frame Change" events from
-frontbuffer flush calls. We are about to move using TRANS_PUSH
-register for this on LunarLake and onwards. Touching TRANS_PUSH
-register from fronbuffer flush would be problematic as it's written by
-DSB as well.
+--===============5586397117758555344==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fix this by using intel_psr_exit when flush or invalidate is done on
-LunarLake and onwards. This is not possible on AlderLake and
-MeteorLake due to HW bug in PSR2 disable.
+== Series Details ==
 
-This patch is also fixing problems with cursor plane where cursor is
-disappearing or duplicate cursor is seen on the screen.
+Series: drm/i915/psr: Do not trigger Frame Change events from frontbuffer flush
+URL   : https://patchwork.freedesktop.org/series/152392/
+State : success
 
-v2: Commit message updated
+== Summary ==
 
-Reported-by: Janna Martl <janna.martl109@gmail.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5522
-Fixes: 411ad63877bb ("drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards")
-Tested-by: Janna Martl <janna.martl109@gmail.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+CI Bug Log - changes from CI_DRM_16948 -> Patchwork_152392v1
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 6bd3454bb00e..4279c28ae27c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3254,7 +3254,9 @@ static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
- 
- static void _psr_invalidate_handle(struct intel_dp *intel_dp)
- {
--	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (!intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			intel_dp->psr.psr2_sel_fetch_cff_enabled = true;
- 			intel_psr_configure_full_frame_update(intel_dp);
-@@ -3340,7 +3342,7 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 
--	if (intel_dp->psr.psr2_sel_fetch_enabled) {
-+	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
- 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			/* can we turn CFF off? */
- 			if (intel_dp->psr.busy_frontbuffer_bits == 0)
-@@ -3357,11 +3359,13 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 		 * existing SU configuration
- 		 */
- 		intel_psr_configure_full_frame_update(intel_dp);
--	}
- 
--	intel_psr_force_update(intel_dp);
-+		intel_psr_force_update(intel_dp);
-+	} else {
-+		intel_psr_exit(intel_dp);
-+	}
- 
--	if (!intel_dp->psr.psr2_sel_fetch_enabled && !intel_dp->psr.active &&
-+	if ((!intel_dp->psr.psr2_sel_fetch_enabled || DISPLAY_VER(display) >= 20) &&
- 	    !intel_dp->psr.busy_frontbuffer_bits)
- 		queue_work(display->wq.unordered, &intel_dp->psr.work);
- }
--- 
-2.43.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152392v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-jsl-1:          [PASS][3] -> [DMESG-WARN][4] ([i915#13827]) +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-jsl-1/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-jsl-1/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [INCOMPLETE][5] ([i915#14764]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arlh-3/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arlh-3/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_tlb:
+    - bat-arlh-3:         [INCOMPLETE][7] ([i915#14768]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arlh-3/igt@i915_selftest@live@gt_tlb.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arlh-3/igt@i915_selftest@live@gt_tlb.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13827]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827
+  [i915#14764]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14764
+  [i915#14768]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14768
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16948 -> Patchwork_152392v1
+
+  CI-20190529: 20190529
+  CI_DRM_16948: 68a99106069be8ab52030c61215da008b2f6dbd2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8482: 8482
+  Patchwork_152392v1: 68a99106069be8ab52030c61215da008b2f6dbd2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/index.html
+
+--===============5586397117758555344==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Do not trigger Frame Change events from frontbuffer flush</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152392/">https://patchwork.freedesktop.org/series/152392/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16948 -&gt; Patchwork_152392v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152392v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-jsl-1/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827">i915#13827</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arlh-3/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14764">i915#14764</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_tlb:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arlh-3/igt@i915_selftest@live@gt_tlb.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14768">i915#14768</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arlh-3/igt@i915_selftest@live@gt_tlb.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16948/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152392v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16948 -&gt; Patchwork_152392v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16948: 68a99106069be8ab52030c61215da008b2f6dbd2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8482: 8482<br />
+  Patchwork_152392v1: 68a99106069be8ab52030c61215da008b2f6dbd2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5586397117758555344==--
