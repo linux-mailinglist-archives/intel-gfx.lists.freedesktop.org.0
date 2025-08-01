@@ -2,55 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554C8B181C2
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 14:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E06C7B18216
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Aug 2025 15:03:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE86A10E3D6;
-	Fri,  1 Aug 2025 12:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0878C10E845;
+	Fri,  1 Aug 2025 13:03:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JbQIxBuT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PBd+/2cm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC88D10E3D6
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 12:28:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E86C10E845
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Aug 2025 13:03:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754051321; x=1785587321;
+ t=1754053431; x=1785589431;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=71BduATe+9DXm5FYkd+jfN/UZH8IxDf0TlCTOiOujCI=;
- b=JbQIxBuTDD5bWzsKkN1uyuypvZn4ZMdiXTkrBZhmFKxdA/HTzGTDW3Wn
- VSxT7GktVhjX55hZtJdNXHkDIVgabXfvTd4MJyEu23Vlgw5WbMiXpMSKI
- j2bleyKga+Awl39eOqyDS2ow8zPgLks2LWXG0vuk1jJgM+DtHCYCNOoMr
- RgYSysLYElncsYMJs5lMIs+kR1oX5ux5WWmq7LBKAweeMSBMi2O6i2DfS
- xDyjVqpy6I2fYYl1SPtDeSLUlYjlKo/TQjGEr4XeP75KVPt3sOWG4rPl/
- pcAzBdOap9Bz0k0an/1QhVB+9ifJuo1ShCaDpDGOANjH4rHEZRQQrVJnX Q==;
-X-CSE-ConnectionGUID: E4nZsBDATMy+NwX7qkWOEA==
-X-CSE-MsgGUID: FJBg+ij7TcaFb4VClBKDGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="55603245"
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="55603245"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 05:28:40 -0700
-X-CSE-ConnectionGUID: F619sRxoS6avHFjf38mu/Q==
-X-CSE-MsgGUID: QmC7NGQWQr+3bD3TzeT0IQ==
+ bh=ctDC/9HG/WAxCS4AEPYDQP0F7L3MGjrq+eLLCXYzOiQ=;
+ b=PBd+/2cm4ywlqBYcJTDD/LVS1+F4cjMNtqQy5kgzqEZ2Whn6Bf4CkWRI
+ Hz4c88IF5iVqkMkyXU7aEJwTsZp+/xSecCII7nAH14KkTF5iWNBN+Omo8
+ XDUlCsx5NFiZvuvCVJn3LhG+h+utggU+8VkcizwkVWEtzDQZr8A8LKu6m
+ kFzy8kntUaF5KMarLh5EjdObMZi3t0UBAkv5MYh/L0880i7jxw+6db6ky
+ Jpf84dGhnqN0eZbIFiuW0KGAIdjds4hLTpnQ/9DTxFG3qlnVSfngfPZV8
+ W5jMWukFwvB2MYzbGg/88cox/mXiHh1tB0INkHYbotzpubrOKg6HzLQiX g==;
+X-CSE-ConnectionGUID: +qgb5hfdSKaIhCknWw54sQ==
+X-CSE-MsgGUID: 1jKXDtSGRBGy1EDmGQ4WSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56478857"
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="56478857"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Aug 2025 06:03:51 -0700
+X-CSE-ConnectionGUID: DLgmGt3NTsmipTvwMZqtww==
+X-CSE-MsgGUID: OL9Icyt/THeACUvb8cYMjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="164343316"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.164])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Aug 2025 05:28:39 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,255,1747724400"; d="scan'208";a="167823209"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa005.fm.intel.com with ESMTP; 01 Aug 2025 06:03:50 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/audio: drop irq enabled check from LPE audio setup
-Date: Fri,  1 Aug 2025 15:28:32 +0300
-Message-Id: <20250801122832.249985-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/display: WA_14011503117
+Date: Fri,  1 Aug 2025 18:28:35 +0530
+Message-Id: <20250801125835.2337614-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,51 +64,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There shouldn't be anything requiring irqs to be enabled at the point of
-LPE audio setup. Regardless, we've never hit the warning, as irqs are
-always enabled at the time LPE audio is initialized. Drop the
-superfluous warning, and the dependency on i915_drv.h.
+Mask the ERR_FATAL_MASK before scaler initialization.
+After enabling the scaler and waiting for one frame,
+unmask the previously masked bits, PS_ECC and
+ERR_FATAL_MASK
+Unmasking of ERR_FATAL_MASK bit is use for
+validation purpose. There is no functional
+impact.
 
-Fix style a bit while at it.
+v2: Remove intel_display_need_wa[Jani]
+    Optimize the ecc_unmask call[Animesh]
+v3: Add intel_display_wa[Jani]
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lpe_audio.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 ++++
+ .../gpu/drm/i915/display/intel_display_wa.c   |  8 +++++
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 29 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_scaler.h     |  3 ++
+ 5 files changed, 47 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 666148a14522..42284e9928f2 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -68,9 +68,9 @@
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7035c1fc9033..c1a3a95c65f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -76,6 +76,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_dmc.h"
+ #include "intel_dp.h"
+ #include "intel_dp_link_training.h"
+@@ -1081,6 +1082,11 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
+ 	if (audio_enabling(old_crtc_state, new_crtc_state))
+ 		intel_encoders_audio_enable(state, crtc);
  
-+#include <drm/drm_print.h>
- #include <drm/intel/intel_lpe_audio.h>
++	if (intel_display_wa(display, 14011503117)) {
++		if (old_crtc_state->pch_pfit.enabled != new_crtc_state->pch_pfit.enabled)
++			adl_scaler_ecc_unmask(new_crtc_state);
++	}
++
+ 	intel_alpm_post_plane_update(state, crtc);
  
--#include "i915_drv.h"
- #include "i915_irq.h"
- #include "intel_audio_regs.h"
- #include "intel_de.h"
-@@ -170,14 +170,11 @@ static struct irq_chip lpe_audio_irqchip = {
- 
- static int lpe_audio_irq_init(struct intel_display *display)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	int irq = display->audio.lpe.irq;
- 
--	drm_WARN_ON(display->drm, !intel_irqs_enabled(dev_priv));
--	irq_set_chip_and_handler_name(irq,
--				&lpe_audio_irqchip,
--				handle_simple_irq,
--				"hdmi_lpe_audio_irq_handler");
-+	irq_set_chip_and_handler_name(irq, &lpe_audio_irqchip,
-+				      handle_simple_irq,
-+				      "hdmi_lpe_audio_irq_handler");
- 
- 	return 0;
+ 	intel_psr_post_plane_update(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 399c08902413..31cd2c9cd488 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -52,6 +52,12 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
+ 	return DISPLAY_VERx100(display) == 3000 || DISPLAY_VERx100(display) == 3002;
  }
+ 
++/*
++ * Wa_14011503117:
++ * Fixes: Before enabling the scaler DE fatal error is masked
++ * Workaround: Unmask the DE fatal error register after enabling the scaler
++ * and after waiting of at least 1 frame.
++ */
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
+ {
+ 	switch (wa) {
+@@ -59,6 +65,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return intel_display_needs_wa_16023588340(display);
+ 	case INTEL_DISPLAY_WA_16025573575:
+ 		return intel_display_needs_wa_16025573575(display);
++	case INTEL_DISPLAY_WA_14011503117:
++		return DISPLAY_VER(display) == 13;
+ 	default:
+ 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index aedea4cfa3ce..abc1df83f066 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -24,6 +24,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
+ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_16023588340,
+ 	INTEL_DISPLAY_WA_16025573575,
++	INTEL_DISPLAY_WA_14011503117,
+ };
+ 
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 4cc55f4e1f9f..1374fa94ff5c 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -10,6 +10,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_trace.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_fb.h"
+ #include "skl_scaler.h"
+ #include "skl_universal_plane.h"
+@@ -762,6 +763,9 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
+ 			crtc_state->scaler_state.scaler_id < 0))
+ 		return;
+ 
++	if (intel_display_wa(display, 14011503117))
++		adl_scaler_ecc_mask(crtc_state);
++
+ 	drm_rect_init(&src, 0, 0,
+ 		      drm_rect_width(&crtc_state->pipe_src) << 16,
+ 		      drm_rect_height(&crtc_state->pipe_src) << 16);
+@@ -938,3 +942,28 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 	else
+ 		scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
+ }
++
++void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	if (!crtc_state->pch_pfit.enabled)
++		return;
++
++	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, ~0);
++}
++
++void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	const struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	int id;
++
++	if (!scaler_state && scaler_state->scaler_id == -1)
++		return;
++
++	intel_de_write_fw(display, SKL_PS_ECC_STAT(crtc->pipe, id), 1);
++	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
++}
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
+index 692716dd7616..f6fd70af93f1 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.h
++++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+@@ -44,4 +44,7 @@ skl_scaler_mode_valid(struct intel_display *display,
+ 		      enum intel_output_format output_format,
+ 		      int num_joined_pipes);
+ 
++void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state);
++
++void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state);
+ #endif
 -- 
-2.39.5
+2.25.1
 
