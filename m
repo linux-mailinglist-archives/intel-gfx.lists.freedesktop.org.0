@@ -2,65 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521F9B18B1D
-	for <lists+intel-gfx@lfdr.de>; Sat,  2 Aug 2025 09:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC18B18DF4
+	for <lists+intel-gfx@lfdr.de>; Sat,  2 Aug 2025 12:34:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2126410E0FE;
-	Sat,  2 Aug 2025 07:38:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8331910E004;
+	Sat,  2 Aug 2025 10:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="YW5RQ5S+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BYJ981Ox";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11EBD10E0A8;
- Sat,  2 Aug 2025 07:38:40 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id DDD65600B0;
- Sat,  2 Aug 2025 07:38:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 709B1C4CEEF;
- Sat,  2 Aug 2025 07:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1754120319;
- bh=2vLf14wUZIg7Aa40PWmweWyk77F53nEKWVI/sHXH0+Q=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YW5RQ5S+wS8w8bjrFrrmpEQxWCN1OoX0hrWQ8Qu7vDwfD69rWKN+zZ9Zw54z6T0iR
- SgpOdyyiSJBPC17LUzY6ELofT9SoWXlYJL7G5STU/V/aiAum+1Na5zwc5bF0OwiZuY
- ggfcJRwe/gRSo1kFy1e+PtTHHsbehAnqe93LsyB4=
-Date: Sat, 2 Aug 2025 08:38:36 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Imre Deak <imre.deak@intel.com>
-Cc: Shradha Gupta <shradhagupta@linux.microsoft.com>,
- Nicusor Huhulea <nicusor.huhulea@siemens.com>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "cip-dev@lists.cip-project.org" <cip-dev@lists.cip-project.org>,
- "jouni.hogander@intel.com" <jouni.hogander@intel.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "laurentiu.palcu@oss.nxp.com" <laurentiu.palcu@oss.nxp.com>,
- "cedric.hombourger@siemens.com" <cedric.hombourger@siemens.com>,
- "shrikant.bobade@siemens.com" <shrikant.bobade@siemens.com>
-Subject: Re: [PATCH 0/5] drm/i915: fixes for i915 Hot Plug Detection and
- build/runtime issues
-Message-ID: <2025080225-attach-ravioli-3d3d@gregkh>
-References: <20250730161106.80725-1-nicusor.huhulea@siemens.com>
- <aIp6UgiwtDU1Ktmp@ideak-desk>
- <DB3SPRMB000631927D36A721EAE657F3E626A@DB3SPRMB0006.EURPRD10.PROD.OUTLOOK.COM>
- <aIzcjMgUttb1UpVt@ideak-desk>
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2940710E004
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Aug 2025 10:34:30 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-6157c81ff9eso3851559a12.3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 02 Aug 2025 03:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754130868; x=1754735668; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=BPDH90Ipseb5fsuq0/lrfPBbYLJkTalgKoUEXPWHQB8=;
+ b=BYJ981OxAPU36SLdc40VYRbdQIaQz2CgjMAzvLduNNLHaIJ9nse2v7+ce7Vu259YvE
+ JWM94q/gy5XLjXP5xkDr84sJfrcVdtily04rbLtAIAlcWFMrDcX0R2rPEsFfRECM9aad
+ 3P1MScn+vmGUrtqjgWjUjHbwkCleD01J81nmDzckEoguNtSdvMob+cwS5/9XX0Xzm3vB
+ 4Yz/TzaqJ8qU9hFnq/XKAO+i+0XRvCb3n3HwZXvJMOcKg7nZev/lUkxHdpwi7hD2T773
+ SK/yBCD8AgRIqZtquTBSqOTo+SKJrx+JZBje4PlqIDRZx+cSoZjwzHeVUXrI+v9YJjAY
+ jSrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754130868; x=1754735668;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=BPDH90Ipseb5fsuq0/lrfPBbYLJkTalgKoUEXPWHQB8=;
+ b=BMr8YSqtsCaNbmRIC6hqZC1UF/zyHqEnTixoqpRjTMm8ufBAPyuZ8WR9ROFujFy2D8
+ o8fad9bu/llQfEgeuf54iZLBAspE5CweV3juECSQwKO3jkE2H8NWhuxRmf+w1k/ib+VG
+ ep7FhCBfb7QRWftr6zQkKiJBMMvk5CDjItTA2ODuG3aDN2e0tUnkPzp1FWg+hmBr03tr
+ H2emEra3efLuBR9ZN2MwlIi7w1sUu/V56wBCFd5AENTZs4MOufwRa6Y4nKZXHqfSQter
+ bSdIlw2+auw4XpyIcwb8McPtGa/3ErfJtB9+q2H8CuUTpH+e+gjR2m1XRHrkaEm8/1AG
+ LLkA==
+X-Gm-Message-State: AOJu0Yziusps1rxGLXNRnVlvndmL3pfs9TkiF66HNjA1CnmfPFY2i0fp
+ zUdBdrSSKGZzpZsRibxHHsErW0teeLVIoML1/aanpNvo+wmdgZqtXb5O
+X-Gm-Gg: ASbGncsia6ZJYexyxKwGKsktljNv3nZ/1+eVIXDyHZDOTTBufV7xeQ673o93YgGykgf
+ wFB9WOQfPY0a2RScM8FvVGsHm3L8xlJ3/6Mk5B+XV62o8NZoOmjXsUDvfqwUEoxC37VE6cNu1Id
+ 3/fSnvncjnGaWOQe4vZJMs3hxBlo0N4RkKRBaDs22yFpVeDlEHV8T5ob6nZTw5xmrIGwsj0F5BX
+ OdNkC+cJzr992QPGz/m9cvaMeExDRNNl4WVj2i8FXgQDs5J3AohQwZ3LuFS4lFRe/CI7G0z2qDq
+ NKE8jnWRMUeeyDYOC9/IotTk6j27DiJHmGDJjVu2QLrepOt/Q4SByXpxaGXptIw87vB02t8Y+U0
+ QTJoYlAmExzNc/1oKfRRygQUxNs/czlIILqpCz/27kMo8gNLTBsI4d/lbop254HrvjgdRwBE=
+X-Google-Smtp-Source: AGHT+IExrw/NbC198W5vNpxjfvf1kD5p9euULoz5pNlUqUJnhZbVlbc9NneHa/0qsLIPcmgEqpDxDA==
+X-Received: by 2002:a17:906:d554:b0:ad4:f517:ca3 with SMTP id
+ a640c23a62f3a-af94003330fmr323783266b.20.1754130868239; 
+ Sat, 02 Aug 2025 03:34:28 -0700 (PDT)
+Received: from [192.168.0.13] (217-62-96-139.cable.dynamic.v4.ziggo.nl.
+ [217.62.96.139]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-af91a0a3bd2sm420122066b.54.2025.08.02.03.34.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 02 Aug 2025 03:34:27 -0700 (PDT)
+Message-ID: <d9d1a7ff-307a-4964-98bf-209781ffc6fe@gmail.com>
+Date: Sat, 2 Aug 2025 12:36:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aIzcjMgUttb1UpVt@ideak-desk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: Issue or bug concerning DRRS on old i7-4980HQ
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+References: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
+ <77f3386d-756b-4cca-b317-1b3c5ad725fb@gmail.com>
+ <b2250460639d81b79f15995c9769eac21849766b@intel.com>
+Content-Language: nl, en-US
+From: =?UTF-8?Q?Ren=C3=A9_Herman?= <rene.herman@gmail.com>
+In-Reply-To: <b2250460639d81b79f15995c9769eac21849766b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,124 +93,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 01, 2025 at 06:26:04PM +0300, Imre Deak wrote:
-> Hi Greg and Shradha,
-> 
-> could you please check the comment below about the 4ad8d57d902f backport
-> commit in the v6.1.y stable tree and if you agree with the reasoning why
-> it has an issue, then suggest a way to resolve it?
-> 
-> Also, AFAICS, other stable trees are not affected, since the original
-> 5abffb66d12bcac commit got only backported to the above v6.1.y tree, but
-> please confirm this.
-> 
-> On Fri, Aug 01, 2025 at 02:37:04PM +0000, nicusor.huhulea@siemens.com wrote:
-> > > -----Original Message-----
-> > > From: Imre Deak <imre.deak@intel.com>
-> > > Sent: Wednesday, July 30, 2025 11:02 PM
-> > > To: Nicusor Liviu Huhulea (FT FDS CES LX PBU 1) <nicusor.huhulea@siemens.com>
-> > > Cc: stable@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> > > intel-gfx@lists.freedesktop.org; cip-dev@lists.cip-project.org;
-> > > jouni.hogander@intel.com; neil.armstrong@linaro.org; jani.nikula@linux.intel.com;
-> > > maarten.lankhorst@linux.intel.com; mripard@kernel.org; tzimmermann@suse.de;
-> > > airlied@gmail.com; daniel@ffwll.ch; joonas.lahtinen@linux.intel.com;
-> > > rodrigo.vivi@intel.com; tvrtko.ursulin@linux.intel.com;
-> > > laurentiu.palcu@oss.nxp.com;
-> > > Cedric Hombourger (FT FDS CES LX) <cedric.hombourger@siemens.com>;
-> > > Shrikant Krishnarao Bobade (FT FDS CES LX PBU 1) <shrikant.bobade@siemens.com>
-> > > Subject: Re: [PATCH 0/5] drm/i915: fixes for i915 Hot Plug Detection and build/runtime issues
-> > > 
-> > > Hi Nicusor,
-> > > 
-> > > thanks for the report and the root causing effort. The patchset itself has a few
-> > > issues:
-> > > 
-> > > - commit cfd48ad8c4a9 ("drm/i915: Fix HPD polling, reenabling the output
-> > >   poll work as needed") you backport fixes d33a54e3991d
-> > >   ("drm/probe_helper: sort out poll_running vs poll_enabled"), but this
-> > >   fixed commit is not part of the 6.1.y stable tree which you are
-> > >   targeting.
-> > > 
-> > >   Similarly commit d33a54e3991d fixes c8268795c9a9 ("drm/probe-helper:
-> > >   enable and disable HPD on connectors"), which is not part of 6.1.y
-> > >   either.
-> > > 
-> > >   This means the issue commit cfd48ad8c4a9 is fixing is not present in
-> > >   the 6.1.y tree, as the changes introducing that issue are not present
-> > >   in that tree either.
-> > > 
-> > > - The compile errors the patches in your patchset introduce would
-> > >   prevent bisection, so fixing up these compile errors only at the end
-> > >   of the patchset is not ok; the tree should compile without errors at
-> > >   each patch/commit.
-> > > 
-> > > Looking at v6.1.y and the patchset I suspect the actual issue is the
-> > > 
-> > > commit 4ad8d57d902f ("drm: Check output polling initialized before
-> > > disabling") backport in v6.1.y, which had the
-> > > 
-> > > -       if (!dev->mode_config.poll_enabled || !drm_kms_helper_poll)
-> > > +       if (drm_WARN_ON_ONCE(dev, !dev->mode_config.poll_enabled) ||
-> > > +           !drm_kms_helper_poll || dev->mode_config.poll_running)
-> > > 
-> > > change, not part of the original
-> > > 
-> > > commit 5abffb66d12b ("drm: Check output polling initialized before disabling"). i.e.
-> > > the original patch didn't add the check for
-> > > dev->mode_config.poll_running. So could you try on top of v6.1.147
-> > > (w/o the changes in the patchset you posted):
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_probe_helper.c
-> > > b/drivers/gpu/drm/drm_probe_helper.c
-> > > index 0e5eadc6d44d..a515b78f839e 100644
-> > > --- a/drivers/gpu/drm/drm_probe_helper.c
-> > > +++ b/drivers/gpu/drm/drm_probe_helper.c
-> > > @@ -250,7 +250,7 @@ void drm_kms_helper_poll_enable(struct drm_device *dev)
-> > >         unsigned long delay = DRM_OUTPUT_POLL_PERIOD;
-> > > 
-> > >         if (drm_WARN_ON_ONCE(dev, !dev->mode_config.poll_enabled) ||
-> > > -           !drm_kms_helper_poll || dev->mode_config.poll_running)
-> > > +           !drm_kms_helper_poll)
-> > >                 return;
-> > > 
-> > >         drm_connector_list_iter_begin(dev, &conn_iter);
-> > 
-> > Thank you for your thorough explanation, especially regarding the
-> > bisecting issue. I hadn't anticipated that by fixing compile errors
-> > only at the end of the series, I would make bisection unreliable.
-> > 
-> > I have tested your idea/fix and it works. HPD polling works reliably
-> > on both devices. I can see the polling in logs when display cable is
-> > not connected.
-> > 
-> > Since this fix is mostly your solution, would you prefer to submit
-> > yourself, or would you like me to resubmit it as a v2 and credit you
-> > appropriately ?
-> 
-> Thanks again Nicusor for the effort to root cause this and for all the
-> tests.
-> 
-> Greg, Shradha, as described above I think in the 4ad8d57d902f backport
-> commit in v6.1.y it was incorrect to add the
-> 
-> 	dev->mode_config.poll_running
-> 
-> condition, as the original 5abffb66d12b commit was not the one adding
-> this, in that commit that condition was only part of the diff context.
-> OTOH, adding the check for this condition causes an issue in the i915
-> driver's IRQ storm handling in the v6.1.y stable tree: after
-> dev->mode_config.poll_running gets set (during the first connector
-> detection in drm_helper_probe_single_connector_modes()), the
-> 
-> 	drm_kms_helper_poll_enable()
-> 
-> call in intel_hpd_irq_storm_switch_to_polling() will not any more
-> schedule the output_poll_work as expected. Thus after an IRQ storm, the
-> HPD IRQs get disabled, but the HPD polling will not run and so the HPD
-> detection will not work as Nicusor described above.
-> 
-> If you agree with the above and the above proposed solution to remove
-> the dev->mode_config.poll_running check from the v6.1.y tree, then what
-> would be Greg the correct way to do this?
+On 01-08-2025 11:19, Jani Nikula wrote:
 
-Send whatever fix is needed please.
+> On Thu, 31 Jul 2025, René Herman <rene.herman@gmail.com> wrote:
+>> Here's that Ubuntu launchpad bug on freedesktop.org, but including a
+>> possibly interesting fix from 5 months ago in the currently last comment:
+>>
+>> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3441
+> 
+> Might be useful to attach dmesg and VBT to the bug as described at [1].
+
+Just in case: please note the freedesktop.org bug is not our bug but 
+just a 4 year old same one. I also unfortunately don't have the hardware 
+on hand, and it seems the person I am assisting with this can't due to 
+vacation get to it right now.
+
+Although I'm not a graphics/display person, seems to me it's more or 
+less fixed by Arun Murthy (added to the To: list) in the last, still 
+recent-ish comment on that bug?
+
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3441#note_2803858
+
+I.e., could while working with the person with the hardware not figure 
+out what the point of that i915_drrs_ctl would be if the system 
+immediately enabled it again anyway, so Arun's approach seems to make 
+sense to me.
+
+This is probably going to be a more common issue soon when these older 
+no-TPM Haswell systems get installed with Linux at the end of Windows 10 
+support.
+
+Regards,
+Rene
+
