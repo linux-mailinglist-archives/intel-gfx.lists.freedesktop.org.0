@@ -2,113 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EECB193E1
-	for <lists+intel-gfx@lfdr.de>; Sun,  3 Aug 2025 13:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2046EB1A4B6
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 16:23:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B8C10E009;
-	Sun,  3 Aug 2025 11:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13A1610E56A;
+	Mon,  4 Aug 2025 14:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="SJIwlYss";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="la9SpDqk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E2F10E009
- for <intel-gfx@lists.freedesktop.org>; Sun,  3 Aug 2025 11:49:56 +0000 (UTC)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 573A14p8031445
- for <intel-gfx@lists.freedesktop.org>; Sun, 3 Aug 2025 11:49:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=F0atcWDoi+Vh1I34Vx1HQrc9
- 2SNS7uLMwCYa5Xut8DM=; b=SJIwlYssh9KLB/uQrHMtx6S0u09XzPlNa//seJws
- sPxs0Y/oCGI6ZNtXcXgADEGYO1vuOsW5zp64v9yb9cqdENyRma4Xnkp0xNePOX/I
- fiObKaDKS98g6F0uD4Pvx5KtnuA0OD7g0FP6EGanq0CHjqUgK83ZHLFhVjLGxWnf
- WKlySZ1Q3XTKQoneGV/5W0uBmCPLt/VQWnL9gb6Nxhy/nS1GW9T66YsKZpfShLEu
- rXIk+Cd7cuiJONPE+dGSF8h04Vjj23dwmZ96lw8GIwb4ZnaWTC6UfrwqPRsCZDp6
- C7tJFs+ts0SRJ/bOUwoN9p7Eg5wB5EbwI7hI4jcLPWjuyg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48a2ke09xh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sun, 03 Aug 2025 11:49:55 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id
- 6a1803df08f44-7073f12d546so72883106d6.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 03 Aug 2025 04:49:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754221794; x=1754826594;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60DF10E12B;
+ Sun,  3 Aug 2025 12:45:19 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-af8fd1b80e5so578724666b.2; 
+ Sun, 03 Aug 2025 05:45:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754225118; x=1754829918; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=F0atcWDoi+Vh1I34Vx1HQrc92SNS7uLMwCYa5Xut8DM=;
- b=gx3tL8UUPr2WLf+JiZOCls+NrhdqvFmACJ9LSZAk10atbhNE2XnsdirF43OAIAkrBt
- 8ZyVUukbP3RBtCKsNtxq/qrvqosfOJTYiI1sL7q08j4nDj1fYmDLpBfyCPFiFwJr9vY5
- So0QLmEerjA09r2uh2vKwxBn6tsOemJ2KBM+aqeUSLCFdD1ltcGCaEGx+lFoZeISsvZJ
- ztL8h2YIq+EHFed2dLO1KPjSllTYZrdvxZj3HhmjBQmtZhgaNe//sCIR7efY0Q+/+IXK
- gBLc/qxzfgop9/GLI4vyK6TeeU3jib0N6MkIa89ctDIHR3HYJcEY1ME10evqp1yEB8jE
- OOpw==
+ bh=pxXOv0H77qu3boXS8S20sjf3H+BGpeAjIG2LP7StaE4=;
+ b=la9SpDqk8KdVzkRyQoKpSrWy0c2Ya4eWglFIo+R05DAfTwskJ25gl+/ghypt0lHZu2
+ o01RrbpaHizlq/cDe/yovcERNmWyo529fy81dNe/5GgPqjVyhv3KIqy13wgJjuKxlvXi
+ i/M9r+UG426HV9fLdc4tWN4CokBKuTBqP1a5Re5MeLimUZPK62/4NhGQmOAo51OGRxz6
+ qdnABCNvZZNOAxRggcKBA4mqNGpmuC9ia8Is6LUzgwsYXe8m5h7G5emO3u047l9NWC3i
+ AjWGSRr6/KyWyW3Xo6hZX9HvV3KZGbd8cL0H6TuWgOSdS4JJNiGTfT+NeDOK7Azro45v
+ UzeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754225118; x=1754829918;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pxXOv0H77qu3boXS8S20sjf3H+BGpeAjIG2LP7StaE4=;
+ b=KxP/mnPw2UIXMFJ5wSieUY96VLy1vT6krKVnt9iVDUV0ZyANMhkr9ZcsXjB6hoobP7
+ YJ2nZHFyME0USbq6q1ipRlUqPIrnZU1kzHJesHabtfOvKjuB9rJTb38Sgw12myH/T8kM
+ oG5/hpxulik4MdqXKYTrWbeMcs5+MUTBKcAbPOrwCOSmF8WzT+ANZcV1dFqO+lSLgwDG
+ YWRS7eR4QxiPjipvRHMmq6QmUUoUTt1RlpbIawRj+DBBAe9pU80QD6HAhvezHn8cEjGj
+ 8ZFIyF9CqvfA+YJ0PaKEmO7bQImoupWVffBPEDDlYAcMEED8uysmo63S37g3s9HE1ka0
+ BPNg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWxs7xzP6A6hzoRfaAwW3ZjpW2xqLr3ZhASv/wfNtT/6ls3EwfJheqPIBywKFDYUk8D9DYXuuqrS2s=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxCT5p4TpuKBeqEqRgdJW/zpMsqnyDjsnalZhqc0c/jIaNXFKPv
- ysasQm552C4U8zRC0SQARyj+ErzUShql5ryDf9OP7Vr0kWyEH/tyyEELsbiB5hio6J53wIFKDJc
- LF7XvVbLlShFeGrQGX8VWfg3HRWSWBYAWpAMg66DdCUAuEoUENpFNLH9KTiMWkUDpnKmmfZ8=
-X-Gm-Gg: ASbGncskVV1enjzOYos/grbQHh8OgjVKpi835MTXATm77D5MUvFb/c0VihXQe/zdR0y
- +UW9oUX2Qf5HLCMeblkvvBBt3MO0sES0wUzFABqxb5kQlA7DbSekB9unNmewDWimj6L41Y04iF6
- 6BLV5Iol7xJlJl7tIVi1bBWttrnrPMmeWkdt0ZrGgsfhS51j9DXiklMWK4zsZJ/i//L1kYkz6Mh
- xc/mJc6Fi08smwVKHH91yxm2sCWicv5cLwGcfliLe3Gk1l2y6k5+kBP5oUvmCtVHR7gSUXi4s4A
- u9xcue/gnDtKqLCnhHcP22VZ8PpCUmycszJkL0tKeBO4qZwHA6Uj6tlAg+l/j19RkPSIL8c++U1
- jAbZvBTF2ikhjneJ2H8bH1AmS04Shr3GQu/teZmg+8f8Ob/gyilUD
-X-Received: by 2002:a05:6214:cc4:b0:707:3f8b:a5a4 with SMTP id
- 6a1803df08f44-709365781bfmr87897066d6.13.1754221794097; 
- Sun, 03 Aug 2025 04:49:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjhr/vnQ2UfAYXxw4URGjLAiAh2TXLLrb5gVPWPnRmIZywfUY0NMaZxf605O95p1SSwKofcg==
-X-Received: by 2002:a05:6214:cc4:b0:707:3f8b:a5a4 with SMTP id
- 6a1803df08f44-709365781bfmr87896826d6.13.1754221793639; 
- Sun, 03 Aug 2025 04:49:53 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-55b88cabb67sm1307362e87.152.2025.08.03.04.49.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Aug 2025 04:49:52 -0700 (PDT)
-Date: Sun, 3 Aug 2025 14:49:49 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
-Cc: airlied@gmail.com, jani.nikula@linux.intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mairacanal@riseup.net
-Subject: Re: [PATCH] drm/i915: move struct_mutex from drm_device to
- drm_i915_private
-Message-ID: <kqvtvlhwbwrkdueeszroeojflengsjdvqwu2n6lh4stl3vm2mg@7xgftffaqecw>
-References: <20250718161725.289944-1-luiz.mello@estudante.ufscar.br>
+ AJvYcCU0KB4Ws8fXoxShx4/akK2IcJo/lC4sn5jLNANFnkrJqHXdumlfC9VlLkCpEyJVTV9Aif9YNyrledc9@lists.freedesktop.org,
+ AJvYcCUha1aaPbsYzlWKi0hjNZhlrPpLcS1FvOPKoDURtjnQ5Av23QO1WEoAyXrJwgFGGsGxNxfurX4w78M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwgUhBghSlXmjYuZzhN643iYjJld5kRLnGTPXezGkCGycG9r0YC
+ 0QJzYwejNCHnek3VwjvNfFX5ONO7714iBA53ExxZueefM38AWEE1wXlvrn+eFDUvEjRtxqdr0qd
+ D1RlUO5N/cbntEdoIoDCzDjPhHPlR7zE=
+X-Gm-Gg: ASbGncuuJtcH0jwcSW4QzNriSej2So/JnFtfxqZHuCa7qltMfGxJEajrwmpZnuqbUMx
+ C1CRO5UWsgxNTwN/GwRyRo8sMg1A0omJotD9Jd3jg9EfOEAc8Reo1iEyPAiJ5rFRu5lghFYB/Bg
+ MmPJCX6IUsJVN++xrOt/811TxewvSgvJX6MYA5+gw4hAIe/tYIeqVK0htOjJbSBwE09bILQOZNY
+ fsdvMo=
+X-Google-Smtp-Source: AGHT+IHFQr61biS993WpaTiLN314ukC/GGuYrmWFHzReiBI+xBUUZ2E1nmjUhmzhYsuLobiRAM+1bP/mpJx6eUe4McA=
+X-Received: by 2002:a17:907:724a:b0:ae0:aa0d:7bfa with SMTP id
+ a640c23a62f3a-af9402301f3mr558310866b.50.1754225117967; Sun, 03 Aug 2025
+ 05:45:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250718161725.289944-1-luiz.mello@estudante.ufscar.br>
-X-Proofpoint-ORIG-GUID: -c4PKNuGQWEGV_Pjr3JgpMXHVA3aizkw
-X-Authority-Analysis: v=2.4 cv=TMNFS0la c=1 sm=1 tr=0 ts=688f4ce3 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=JRnknix9L4mqcjwq-FsA:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAzMDA4MCBTYWx0ZWRfX/EY3CzzpeaP9
- hMb+3nFxv26YtZMyovwdZs5W9rzDgOEhCpqak/JG5NFxY3wiSw5Xh1HO3fJtNCdVQT6LlNtqudT
- j8ylNH8TN+ydFsKBGBNBHM9GHVL1gpjr01M61selbRkQlsciPUkW+kjPM2NRo2vt2jRLtES+Y60
- QaOSPd5UmglNhYF2yrr2w0vHaBtxhRfc0AAu6bV5npGXZkLbHCWh8XgBqhfeUOP5zxKMXyyU8wM
- dv9KtwENwy9UBvCQMJbBYJk1DZBid8krVNNaMGmpRqKCw3R5NG/XYOwSH8AVn8nNks1JvXVdiZU
- XXP5jEgBKmsFZfwOqipadtJ+IXgp++Q8P6fIcwfVWL8IsEUXI3eLNizCIxNqdoALqeVFqAJcl1m
- OtKednibrR0T7suoFG8Yua7+dPTnzotnXnvZj301asKlPnI/eyBJVxjxFTvl/4CixH687p22
-X-Proofpoint-GUID: -c4PKNuGQWEGV_Pjr3JgpMXHVA3aizkw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-03_03,2025-08-01_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 phishscore=0 malwarescore=0 clxscore=1015
- impostorscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508030080
+References: <CACTEcX6oXBot1VBApOyKVMVXsAN9BsvQMLa8J0iKpNeB-eLttQ@mail.gmail.com>
+ <642d439ea1be8e48ee5c47fd3921a786452fb931@intel.com>
+In-Reply-To: <642d439ea1be8e48ee5c47fd3921a786452fb931@intel.com>
+From: Andy Mindful <andy.mindful@gmail.com>
+Date: Sun, 3 Aug 2025 15:45:06 +0300
+X-Gm-Features: Ac12FXwQ1gQW4qwRV_K-3Velp0hCrjgNlIh5_C2All-wPbXiQ1zvu-N5hZpFRGU
+Message-ID: <CACTEcX5Y3PNXNkhnK1dGFe+k3sigOZNpj66KKGAS9XeHqRu35w@mail.gmail.com>
+Subject: Re: [REGRESSION] tty lockup and WWAN loss after hibernate/suspend in
+ 6.8+ on ThinkPad X1 Carbon Gen 10
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: linux-kernel@vger.kernel.org, regressions@lists.linux.dev, 
+ linux-pm@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, 
+ rafael@kernel.org, ville.syrjala@linux.intel.com, tglx@linutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 04 Aug 2025 14:23:32 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,67 +90,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jul 18, 2025 at 01:17:25PM -0300, Luiz Otavio Mello wrote:
-> i915 is the only remaining user of struct_mutex lock.
-> 
-> Move it from drm_device to drm_i915_private so it is only used within
-> the i915 driver.
-> 
-> Signed-off-by: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 4 ++--
->  drivers/gpu/drm/i915/i915_drv.h            | 8 ++++++++
+Here what I have from bisecting, please let me know if it makes things
+clearer or not.
 
-You need to perform actual move: call mutex_init() somewhere, drop the
-fields from struct drm_device, etc.
+git bisect log
+git bisect start
+# status: waiting for both good and bad commits
+# good: [6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1] Linux 6.7.11
+git bisect good 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+# status: waiting for bad commit, 1 good commit known
+# bad: [6613476e225e090cc9aad49be7fa504e290dd33d] Linux 6.8-rc1
+git bisect bad 6613476e225e090cc9aad49be7fa504e290dd33d
+# skip: [0dd3ee31125508cd67f7e7172247f05b7fd1753a] Linux 6.7
+git bisect skip 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+# good: [ba5afb9a84df2e6b26a1b6389b98849cd16ea757] fs: rework
+listmount() implementation
+git bisect good ba5afb9a84df2e6b26a1b6389b98849cd16ea757
+# good: [61da593f4458f25c59f65cfd9ba1bda570db5db7] Merge tag
+'media/v6.8-2' of
+git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect good 61da593f4458f25c59f65cfd9ba1bda570db5db7
+# bad: [e38f734add21d75d76dbcf7b214f4823131c1bae] Merge tag
+'staging-6.8-rc1' of
+git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging
+git bisect bad e38f734add21d75d76dbcf7b214f4823131c1bae
+# bad: [5d197e97fb106c09d3d013be341e5961fd70ec8a] Merge tag
+'hsi-for-6.8' of
+git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-hsi
+git bisect bad 5d197e97fb106c09d3d013be341e5961fd70ec8a
+# good: [1b1934dbbdcf9aa2d507932ff488cec47999cf3f] Merge tag
+'docs-6.8-2' of git://git.lwn.net/linux
+git bisect good 1b1934dbbdcf9aa2d507932ff488cec47999cf3f
+# good: [1b1934dbbdcf9aa2d507932ff488cec47999cf3f] Merge tag
+'docs-6.8-2' of git://git.lwn.net/linux
+git bisect good 1b1934dbbdcf9aa2d507932ff488cec47999cf3f
+# bad: [8c9244af4dc8680a453e759331f0c93d5bde1898] Merge tag
+'kvm-x86-svm-6.8' of https://github.com/kvm-x86/linux into HEAD
+git bisect bad 8c9244af4dc8680a453e759331f0c93d5bde1898
+# bad: [783288010035e4c250a0b6491a4642cdb8d30548] KVM: x86: add
+missing "depends on KVM"
+git bisect bad 783288010035e4c250a0b6491a4642cdb8d30548
+# bad: [783288010035e4c250a0b6491a4642cdb8d30548] KVM: x86: add
+missing "depends on KVM"
+git bisect bad 783288010035e4c250a0b6491a4642cdb8d30548
+# bad: [861deac3b092f37b2c5e6871732f3e11486f7082] Linux 6.7-rc7
+git bisect bad 861deac3b092f37b2c5e6871732f3e11486f7082
 
->  2 files changed, 10 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index e8a04e476c57..7135fdb0ebb4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -678,7 +678,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
->  	if (level < GUC_LOG_LEVEL_DISABLED || level > GUC_LOG_LEVEL_MAX)
->  		return -EINVAL;
->  
-> -	mutex_lock(&i915->drm.struct_mutex);
-> +	mutex_lock(&i915->struct_mutex);
->  
->  	if (log->level == level)
->  		goto out_unlock;
-> @@ -696,7 +696,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
->  	log->level = level;
->  
->  out_unlock:
-> -	mutex_unlock(&i915->drm.struct_mutex);
-> +	mutex_unlock(&i915->struct_mutex);
->  
->  	return ret;
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index d0e1980dcba2..c585569b6036 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -224,6 +224,14 @@ struct drm_i915_private {
->  
->  	bool irqs_enabled;
->  
-> +	/*
-> +	 * Currently, struct_mutex is only used by the i915 driver as a replacement
-> +	 * for BLK. 
-> +	 * 
-> +	 * For this reason, it is no longer part of struct drm_device.
-> +	*/
-> +	struct mutex struct_mutex;
-> +
->  	/* LPT/WPT IOSF sideband protection */
->  	struct mutex sbi_lock;
->  
-> -- 
-> 2.49.0
-> 
+# being on a 861deac3b092
+git bisect bad
+The merge base ba5afb9a84df2e6b26a1b6389b98849cd16ea757 is bad.
+This means the bug has been fixed between
+ba5afb9a84df2e6b26a1b6389b98849cd16ea757 and
+[1b1934dbbdcf9aa2d507932ff488cec47999cf3f
+61da593f4458f25c59f65cfd9ba1bda570db5db7
+6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+ba5afb9a84df2e6b26a1b6389b98849cd16ea757].
 
--- 
-With best wishes
-Dmitry
+Thanks.
+
+=D0=B2=D1=82, 29 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 13:20 Jani=
+ Nikula <jani.nikula@intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Tue, 29 Jul 2025, Andy Mindful <andy.mindful@gmail.com> wrote:
+> > Please let me know if any further information or testing is required.
+>
+> Likely the quickest way to find the root cause is to bisect the issue.
+>
+>
+> BR,
+> Jani.
+>
+> --
+> Jani Nikula, Intel
