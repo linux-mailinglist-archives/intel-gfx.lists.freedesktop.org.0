@@ -2,91 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE2EB1A4BD
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 16:23:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6EECB193E1
+	for <lists+intel-gfx@lfdr.de>; Sun,  3 Aug 2025 13:49:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA15F10E578;
-	Mon,  4 Aug 2025 14:23:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31B8C10E009;
+	Sun,  3 Aug 2025 11:49:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SzLDC3l2";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="SJIwlYss";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com
- [209.85.166.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0754D10E4DA;
- Sun,  3 Aug 2025 03:59:58 +0000 (UTC)
-Received: by mail-il1-f179.google.com with SMTP id
- e9e14a558f8ab-3e3f152700fso12489755ab.0; 
- Sat, 02 Aug 2025 20:59:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754193597; x=1754798397; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=p6zBJEgANuVffuY9NQJyHG8/+Xeax9coZJWuW6ZJ2WM=;
- b=SzLDC3l22MaKFjvgO5c5XhUoUqNGeRQ/Ps5dg6AjSI9kX2G+zT5+UUOoWFfylmvWB0
- 3iOvM9+UEmILWB8admPVOe6pa9Fdc6rjwJJsOlMco/CiahA4hJGbRmintJbPErNVktoy
- UtlJC1Bp67BwvkbpkzYP87IJw45AzO55biuL0rel1KaSXMvPl9isKXIaPxq8Xc79s2or
- MUNZ2aAN+YseUarIQJiUPYvvumTYFUUx8yYaK+2pzIrnmj284H12EXartEYn7nFScwnt
- YFOg64PfHoV1u2J2R7SCBh/glVhs1Sur7YemrRBQ3NBIAnMtFeeWo6eG1C7QQRGLuXrM
- DB8Q==
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38E2F10E009
+ for <intel-gfx@lists.freedesktop.org>; Sun,  3 Aug 2025 11:49:56 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 573A14p8031445
+ for <intel-gfx@lists.freedesktop.org>; Sun, 3 Aug 2025 11:49:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=F0atcWDoi+Vh1I34Vx1HQrc9
+ 2SNS7uLMwCYa5Xut8DM=; b=SJIwlYssh9KLB/uQrHMtx6S0u09XzPlNa//seJws
+ sPxs0Y/oCGI6ZNtXcXgADEGYO1vuOsW5zp64v9yb9cqdENyRma4Xnkp0xNePOX/I
+ fiObKaDKS98g6F0uD4Pvx5KtnuA0OD7g0FP6EGanq0CHjqUgK83ZHLFhVjLGxWnf
+ WKlySZ1Q3XTKQoneGV/5W0uBmCPLt/VQWnL9gb6Nxhy/nS1GW9T66YsKZpfShLEu
+ rXIk+Cd7cuiJONPE+dGSF8h04Vjj23dwmZ96lw8GIwb4ZnaWTC6UfrwqPRsCZDp6
+ C7tJFs+ts0SRJ/bOUwoN9p7Eg5wB5EbwI7hI4jcLPWjuyg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48a2ke09xh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Sun, 03 Aug 2025 11:49:55 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-7073f12d546so72883106d6.1
+ for <intel-gfx@lists.freedesktop.org>; Sun, 03 Aug 2025 04:49:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754193597; x=1754798397;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=p6zBJEgANuVffuY9NQJyHG8/+Xeax9coZJWuW6ZJ2WM=;
- b=Nv8kTryvDn/SbfIlmEAf8Y3VbN5g+/PsUDWzeEvoPWcXvLfwiWXjjsSdTjIfQtzwOb
- aD69jPP977mXsmfSr6YmLDmXjRhxDnG/Rv89cNJZHjcv4d102Fk2KFs+0ASClNMGKaU3
- gEYM85uaWCOAQEWpZx1AFAWUZIz8yvn5/JcPvPpkShzH4kFYHNtL+IQnMnceHPq9SyP/
- sVIVDRTQ3MZfREFI7nKU65zgHAOyOem/Pl/J3Wr0TgteFc49pDqH06OrgpEz7J2xeR7Z
- DUvSlbHGJZIZs1ZfXb11MYGqREsqD8TM3sjbbdC3GcGPNNwooXrhvcFfAFAA7DqE58xU
- cONQ==
+ d=1e100.net; s=20230601; t=1754221794; x=1754826594;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=F0atcWDoi+Vh1I34Vx1HQrc92SNS7uLMwCYa5Xut8DM=;
+ b=gx3tL8UUPr2WLf+JiZOCls+NrhdqvFmACJ9LSZAk10atbhNE2XnsdirF43OAIAkrBt
+ 8ZyVUukbP3RBtCKsNtxq/qrvqosfOJTYiI1sL7q08j4nDj1fYmDLpBfyCPFiFwJr9vY5
+ So0QLmEerjA09r2uh2vKwxBn6tsOemJ2KBM+aqeUSLCFdD1ltcGCaEGx+lFoZeISsvZJ
+ ztL8h2YIq+EHFed2dLO1KPjSllTYZrdvxZj3HhmjBQmtZhgaNe//sCIR7efY0Q+/+IXK
+ gBLc/qxzfgop9/GLI4vyK6TeeU3jib0N6MkIa89ctDIHR3HYJcEY1ME10evqp1yEB8jE
+ OOpw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUcb3VnuyR9+Eyn1qD59X/gFrx9SoIlXNv7NAvvPAZ+vMdah85XLeMRXoBvtplMfHEwrxP/2SlcjWmQ2HCBpQ==@lists.freedesktop.org,
- AJvYcCW604kGVv+iu+7/Ezq+DBNnmqwvl9mNLAOXxsQGVp4dYSqXocL0pMOpYrYx/9RKzNv8UUcKUnfj@lists.freedesktop.org,
- AJvYcCWrPP+srOizS6ob5uKWpLFtpa7nlmI+r0QxOZujT6B6AOJxOUWsPc//YPasPn/Q/B7DIF3krJkfIsba@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzetdHpgcWFwSQaC7Asdeov3nDV1Gy+JxwEKWsTB1AcFP1aT93h
- ZaogkDMgTcijOBdeYCTU8N5SFPcWahhK0i/klMzpZ0TrVjfJ5I/t4YzV
-X-Gm-Gg: ASbGncujqbyJOwmzsOvGyeXWan/SZChgVSfhXjvHjdELDb5TdxGPa37bWIdo2n+QM6I
- iRlQE2nyCeG+nZ8LIwKNDVWw8zzNn1rBwxgzHtHKrPL3yLsSlrBjxHLqHUFjkuJYjNi3Dc598vI
- V9vNEy4GnKJBab5WZiETcgvNsJHE1L+nQ/bMy/LoWfIXg3Msp3Jskp8yyLz3pSeIkG3guHdabdx
- UoXea8g05ZrWMmQCgoa8w3Y+lNar+GfDQ10H94gh/YrxIPNaa0+RNVZhXG3/y6m6kE1kFfaq8DC
- 2IRoV7uVNTZLjvgppBbgytyqFHdhN00VQwnYlGjV451gEf13HKt+stVUo95zMB4m71Wote7eh7V
- 1Iwz9AW5ueTsF7iRg+hej8YavPn8Lju/1udLaXkkAKnnzt+wG9k4wImA8Q5RMm/MpWPvYZcP/od
- DwPnTynDTuy7Id
-X-Google-Smtp-Source: AGHT+IGUOgHvStYGi2AGuiva7QKSCj6X9DfG9+bxlaldERvaqq+8SW2QK11YiYCBPzmbmAT64CKkJw==
-X-Received: by 2002:a05:6602:6c01:b0:881:4a70:4651 with SMTP id
- ca18e2360f4ac-88168309e74mr805665539f.3.1754193597187; 
- Sat, 02 Aug 2025 20:59:57 -0700 (PDT)
-Received: from frodo.raven-morpho.ts.net (c-67-165-245-5.hsd1.co.comcast.net.
- [67.165.245.5]) by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-50a55df0940sm2268319173.106.2025.08.02.20.59.55
+ AJvYcCWxs7xzP6A6hzoRfaAwW3ZjpW2xqLr3ZhASv/wfNtT/6ls3EwfJheqPIBywKFDYUk8D9DYXuuqrS2s=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxCT5p4TpuKBeqEqRgdJW/zpMsqnyDjsnalZhqc0c/jIaNXFKPv
+ ysasQm552C4U8zRC0SQARyj+ErzUShql5ryDf9OP7Vr0kWyEH/tyyEELsbiB5hio6J53wIFKDJc
+ LF7XvVbLlShFeGrQGX8VWfg3HRWSWBYAWpAMg66DdCUAuEoUENpFNLH9KTiMWkUDpnKmmfZ8=
+X-Gm-Gg: ASbGncskVV1enjzOYos/grbQHh8OgjVKpi835MTXATm77D5MUvFb/c0VihXQe/zdR0y
+ +UW9oUX2Qf5HLCMeblkvvBBt3MO0sES0wUzFABqxb5kQlA7DbSekB9unNmewDWimj6L41Y04iF6
+ 6BLV5Iol7xJlJl7tIVi1bBWttrnrPMmeWkdt0ZrGgsfhS51j9DXiklMWK4zsZJ/i//L1kYkz6Mh
+ xc/mJc6Fi08smwVKHH91yxm2sCWicv5cLwGcfliLe3Gk1l2y6k5+kBP5oUvmCtVHR7gSUXi4s4A
+ u9xcue/gnDtKqLCnhHcP22VZ8PpCUmycszJkL0tKeBO4qZwHA6Uj6tlAg+l/j19RkPSIL8c++U1
+ jAbZvBTF2ikhjneJ2H8bH1AmS04Shr3GQu/teZmg+8f8Ob/gyilUD
+X-Received: by 2002:a05:6214:cc4:b0:707:3f8b:a5a4 with SMTP id
+ 6a1803df08f44-709365781bfmr87897066d6.13.1754221794097; 
+ Sun, 03 Aug 2025 04:49:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGjhr/vnQ2UfAYXxw4URGjLAiAh2TXLLrb5gVPWPnRmIZywfUY0NMaZxf605O95p1SSwKofcg==
+X-Received: by 2002:a05:6214:cc4:b0:707:3f8b:a5a4 with SMTP id
+ 6a1803df08f44-709365781bfmr87896826d6.13.1754221793639; 
+ Sun, 03 Aug 2025 04:49:53 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55b88cabb67sm1307362e87.152.2025.08.03.04.49.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 02 Aug 2025 20:59:56 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, jbaron@akamai.com,
- gregkh@linuxfoundation.org, ukaszb@chromium.org, louis.chauvet@bootlin.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- daniel.vetter@ffwll.ch, tvrtko.ursulin@linux.intel.com,
- jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- seanpaul@chromium.org, robdclark@gmail.com, groeck@google.com,
- yanivt@google.com, bleung@google.com, quic_saipraka@quicinc.com,
- will@kernel.org, catalin.marinas@arm.com, quic_psodagud@quicinc.com,
- maz@kernel.org, arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, mingo@redhat.com, jim.cromie@gmail.com
-Subject: [PATCH v4 58/58] accel: add -DDYNAMIC_DEBUG_MODULE to subdir-cflags -
- RFC
-Date: Sat,  2 Aug 2025 21:58:16 -0600
-Message-ID: <20250803035816.603405-59-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250803035816.603405-1-jim.cromie@gmail.com>
-References: <20250803035816.603405-1-jim.cromie@gmail.com>
+ Sun, 03 Aug 2025 04:49:52 -0700 (PDT)
+Date: Sun, 3 Aug 2025 14:49:49 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
+Cc: airlied@gmail.com, jani.nikula@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mairacanal@riseup.net
+Subject: Re: [PATCH] drm/i915: move struct_mutex from drm_device to
+ drm_i915_private
+Message-ID: <kqvtvlhwbwrkdueeszroeojflengsjdvqwu2n6lh4stl3vm2mg@7xgftffaqecw>
+References: <20250718161725.289944-1-luiz.mello@estudante.ufscar.br>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 04 Aug 2025 14:23:32 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250718161725.289944-1-luiz.mello@estudante.ufscar.br>
+X-Proofpoint-ORIG-GUID: -c4PKNuGQWEGV_Pjr3JgpMXHVA3aizkw
+X-Authority-Analysis: v=2.4 cv=TMNFS0la c=1 sm=1 tr=0 ts=688f4ce3 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=JRnknix9L4mqcjwq-FsA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAzMDA4MCBTYWx0ZWRfX/EY3CzzpeaP9
+ hMb+3nFxv26YtZMyovwdZs5W9rzDgOEhCpqak/JG5NFxY3wiSw5Xh1HO3fJtNCdVQT6LlNtqudT
+ j8ylNH8TN+ydFsKBGBNBHM9GHVL1gpjr01M61selbRkQlsciPUkW+kjPM2NRo2vt2jRLtES+Y60
+ QaOSPd5UmglNhYF2yrr2w0vHaBtxhRfc0AAu6bV5npGXZkLbHCWh8XgBqhfeUOP5zxKMXyyU8wM
+ dv9KtwENwy9UBvCQMJbBYJk1DZBid8krVNNaMGmpRqKCw3R5NG/XYOwSH8AVn8nNks1JvXVdiZU
+ XXP5jEgBKmsFZfwOqipadtJ+IXgp++Q8P6fIcwfVWL8IsEUXI3eLNizCIxNqdoALqeVFqAJcl1m
+ OtKednibrR0T7suoFG8Yua7+dPTnzotnXnvZj301asKlPnI/eyBJVxjxFTvl/4CixH687p22
+X-Proofpoint-GUID: -c4PKNuGQWEGV_Pjr3JgpMXHVA3aizkw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-03_03,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 phishscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508030080
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,72 +124,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently amdxdna uses drm_dbg, so it needs this cflag in order to
-compile; it currently gets the cflag from its own Makefile.
+On Fri, Jul 18, 2025 at 01:17:25PM -0300, Luiz Otavio Mello wrote:
+> i915 is the only remaining user of struct_mutex lock.
+> 
+> Move it from drm_device to drm_i915_private so it is only used within
+> the i915 driver.
+> 
+> Signed-off-by: Luiz Otavio Mello <luiz.mello@estudante.ufscar.br>
+> ---
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c | 4 ++--
+>  drivers/gpu/drm/i915/i915_drv.h            | 8 ++++++++
 
-If other accel modules want to use DRM.debug, they will need this flag
-too, so add it in accel/Makefile.
+You need to perform actual move: call mutex_init() somewhere, drop the
+fields from struct drm_device, etc.
 
-NOTE: ivpu has its own CLASS-ish dbg system:
+>  2 files changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> index e8a04e476c57..7135fdb0ebb4 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+> @@ -678,7 +678,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+>  	if (level < GUC_LOG_LEVEL_DISABLED || level > GUC_LOG_LEVEL_MAX)
+>  		return -EINVAL;
+>  
+> -	mutex_lock(&i915->drm.struct_mutex);
+> +	mutex_lock(&i915->struct_mutex);
+>  
+>  	if (log->level == level)
+>  		goto out_unlock;
+> @@ -696,7 +696,7 @@ int intel_guc_log_set_level(struct intel_guc_log *log, u32 level)
+>  	log->level = level;
+>  
+>  out_unlock:
+> -	mutex_unlock(&i915->drm.struct_mutex);
+> +	mutex_unlock(&i915->struct_mutex);
+>  
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index d0e1980dcba2..c585569b6036 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -224,6 +224,14 @@ struct drm_i915_private {
+>  
+>  	bool irqs_enabled;
+>  
+> +	/*
+> +	 * Currently, struct_mutex is only used by the i915 driver as a replacement
+> +	 * for BLK. 
+> +	 * 
+> +	 * For this reason, it is no longer part of struct drm_device.
+> +	*/
+> +	struct mutex struct_mutex;
+> +
+>  	/* LPT/WPT IOSF sideband protection */
+>  	struct mutex sbi_lock;
+>  
+> -- 
+> 2.49.0
+> 
 
-./drivers/accel/ivpu$ grep IVPU_DBG_ *
-ivpu_drv.c:MODULE_PARM_DESC(dbg_mask, "Driver debug mask. See IVPU_DBG_* macros.");
-ivpu_drv.h:#define IVPU_DBG_REG	 BIT(0)
-ivpu_drv.h:#define IVPU_DBG_IRQ	 BIT(1)
-ivpu_drv.h:#define IVPU_DBG_MMU	 BIT(2)
-ivpu_drv.h:#define IVPU_DBG_FILE	 BIT(3)
-ivpu_drv.h:#define IVPU_DBG_MISC	 BIT(4)
-ivpu_drv.h:#define IVPU_DBG_FW_BOOT BIT(5)
-ivpu_drv.h:#define IVPU_DBG_PM	 BIT(6)
-ivpu_drv.h:#define IVPU_DBG_IPC	 BIT(7)
-ivpu_drv.h:#define IVPU_DBG_BO	 BIT(8)
-ivpu_drv.h:#define IVPU_DBG_JOB	 BIT(9)
-ivpu_drv.h:#define IVPU_DBG_JSM	 BIT(10)
-ivpu_drv.h:#define IVPU_DBG_KREF	 BIT(11)
-ivpu_drv.h:#define IVPU_DBG_RPM	 BIT(12)
-ivpu_drv.h:#define IVPU_DBG_MMU_MAP BIT(13)
-ivpu_drv.h:	if (unlikely(IVPU_DBG_##type & ivpu_dbg_mask))                         \
-
-./drivers/accel/ivpu$ grep ivpu_dbg * | cut -f1,2 -d, | cut -d: -f2- | perl -pe 's/\s+/ /' | sort -u
-extern int ivpu_dbg_mask;
- if (unlikely(IVPU_DBG_##type & ivpu_dbg_mask))                         \
-int ivpu_dbg_mask;
- ivpu_dbg_bo(vdev, bo
- ivpu_dbg(vdev, BO
- ivpu_dbg(vdev, FILE
- ivpu_dbg(vdev, FW_BOOT
- ivpu_dbg(vdev, IPC
- ivpu_dbg(vdev, IRQ
- ivpu_dbg(vdev, JOB
- ivpu_dbg(vdev, JSM
- ivpu_dbg(vdev, KREF
- ivpu_dbg(vdev, MISC
- ivpu_dbg(vdev, MMU
- ivpu_dbg(vdev, MMU_MAP
- ivpu_dbg(vdev, PM
- ivpu_dbg(vdev, REG
-module_param_named(dbg_mask, ivpu_dbg_mask
-static inline void ivpu_dbg_bo(struct ivpu_device *vdev, struct ivpu_bo *bo
-
-This looks readily convertible to a dyndbg classmap and controlling kparam.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/accel/Makefile | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
-index a301fb6089d4c..e437549cba8ac 100644
---- a/drivers/accel/Makefile
-+++ b/drivers/accel/Makefile
-@@ -1,5 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+subdir-cflags-$(CONFIG_DYNAMIC_DEBUG_CORE) == -DDYNAMIC_DEBUG_MODULE
-+
- obj-$(CONFIG_DRM_ACCEL_AMDXDNA)		+= amdxdna/
- obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
- obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
 -- 
-2.50.1
-
+With best wishes
+Dmitry
