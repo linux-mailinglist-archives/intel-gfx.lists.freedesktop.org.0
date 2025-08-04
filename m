@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA946B1A620
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 17:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C10B6B1A639
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 17:43:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 605C210E59C;
-	Mon,  4 Aug 2025 15:34:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA96910E5A4;
+	Mon,  4 Aug 2025 15:42:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B7GtiPem";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fYNtQ7KF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73C2710E59C
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 15:34:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3508710E5A4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 15:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754321688; x=1785857688;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=qKz17TGyT1xgLaEMmI8MPFLHro7ro9c2OSvPp+r6jH8=;
- b=B7GtiPemRTzkizTSCHG6phaLaTmBlr0g/kKg/FRGUeQvt9fb/rki2vQl
- sL1aZHvLILvVCCzRBSe5GT98tGE7fcyUndjefQP/VusJwTsm1kJl+kedq
- oOfMLXjLb0urtDi16RrgB1G4QMEhFdMRLvU2niJ8gZtTyQKIC+Fp6XFbT
- jHmB3Q/mb65vvNVfYS8ZfrzQnY8O4RrFkRnFd/D/CyLit/E8s9EPP+VZV
- k+Pvw8TFp8TT64DxGV2zEFtLRNpGIFvSXukD80XlCnxz5cCrSlDGGl1p7
- wZ7b5klww+jXRlJV3LCcqmE93mPGC7iTwD7funhOM6RB4Gb5ZLEFPWpMs w==;
-X-CSE-ConnectionGUID: KK0T8wq/SzaU4wc4ag99LA==
-X-CSE-MsgGUID: e5hM56nBSFmqSwYW9V4HAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="66868888"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="66868888"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 08:34:48 -0700
-X-CSE-ConnectionGUID: sCBQVG6dT62WCdluVs9qXA==
-X-CSE-MsgGUID: CTe9SR2MTgiujfmWdF5OqA==
+ t=1754322177; x=1785858177;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=JNxp3pi+uI13c5DAoeGf0TJzRlYSLGrLul3Wnr2aO+E=;
+ b=fYNtQ7KFSZoev9g1nL3jYEetPg7zD8VUNu+LcsizZi+s0f1qtyjQwgRp
+ VkZKULpf4hpHAKSZEEt3dJj5Rkmu/tCfXCR6R1k10laL5o9u4vMKN+N9g
+ g+LvLH3rxlkLGiXp6irjn/EPsLsv6k8HDEYMn1cbW0Ctfex9g9D9wZjXz
+ x07u9Ofj3umTmBoT+CwtSpC6TSVJsi49PLyZFv3dD9IwMQO+wyRLnvhMr
+ II7iCLz/yPaY3pNldAbwu3QYaXk500Fpsai3P82hN2Axh4vUQLvg60Vac
+ EBb6+MltYWiYgNpzVmpd1mDe2bVQebzMGvSqH1LTk+BZPFAAmCDlVKqXR A==;
+X-CSE-ConnectionGUID: HrXqeWbYREue1UPr9WaRwg==
+X-CSE-MsgGUID: BAWieZH9T3y+mzyH8h+SmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56461757"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56461757"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 08:42:56 -0700
+X-CSE-ConnectionGUID: p69p2tiBQ/mKo9jIJv5nEQ==
+X-CSE-MsgGUID: 8TpDTOgDTxWoppjm//3CUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="169495089"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.35])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 08:34:46 -0700
-Date: Mon, 4 Aug 2025 14:34:43 -0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH v2] drm/i915/gt: Protect against overflow in
- active_engine()
-Message-ID: <aJDTEwmRrAWUKX_d@ashyti-mobl2.lan>
-References: <ifjlp3lvgfd47mkhzg2jnsyiwfofzqj5liuj7u34r5uel7d66e@d3mar5w3hhp3>
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="165002738"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.236])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 08:42:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Ren=C3=A9?= Herman <rene.herman@gmail.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: Issue or bug concerning DRRS on old i7-4980HQ
+In-Reply-To: <9436a617-ae53-4702-9ac3-27d9c1267626@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
+ <77f3386d-756b-4cca-b317-1b3c5ad725fb@gmail.com>
+ <b2250460639d81b79f15995c9769eac21849766b@intel.com>
+ <d9d1a7ff-307a-4964-98bf-209781ffc6fe@gmail.com>
+ <f9b10acb19bbe19813b4bebd9ac666b397d9c7c0@intel.com>
+ <9436a617-ae53-4702-9ac3-27d9c1267626@gmail.com>
+Date: Mon, 04 Aug 2025 18:42:50 +0300
+Message-ID: <57adde32e4fa7fc4c74d8cba39249af1399de609@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ifjlp3lvgfd47mkhzg2jnsyiwfofzqj5liuj7u34r5uel7d66e@d3mar5w3hhp3>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,52 +76,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 04, 2025 at 02:55:46PM +0000, Krzysztof Karas wrote:
-> It is unlikely, but possible for the first call to
-> intel_context_create() to fail with -ENOMEM, which would result
-> in entering the following code block and decrementing "count",
-> when it is set to 0 (initial condition in the for loop).
-> 
-> Protect from overflowing the variable by replacing "while" with
-> "do while" and using decrement as postfix to make sure
-> intel_context_put() fires at least once.
-> 
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> 
-> v2:
->  * remove unlikely() - Jani
->  * replace "while" with "do while" - Andi
-> 
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index f057c16410e7..4ec97024665a 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -904,8 +904,9 @@ static void active_engine(struct kthread_work *work)
->  			arg->result = PTR_ERR(ce[count]);
->  			pr_err("[%s] Create context #%ld failed: %d!\n",
->  			       engine->name, count, arg->result);
-> -			while (--count)
-> +			do {
->  				intel_context_put(ce[count]);
-> +			} while (count--);
+On Mon, 04 Aug 2025, Ren=C3=A9 Herman <rene.herman@gmail.com> wrote:
+> On 04-08-2025 10:21, Jani Nikula wrote:
+>
+>> On Sat, 02 Aug 2025, Ren=C3=A9 Herman <rene.herman@gmail.com> wrote:
+>
+>>> I.e., could while working with the person with the hardware not figure
+>>> out what the point of that i915_drrs_ctl would be if the system
+>>> immediately enabled it again anyway, so Arun's approach seems to make
+>>> sense to me.
+>>=20
+>> Hacking debugfs is not a fix, it's a hack.
+>
+> So I take it that's a no then on looking at/fixing the DRRS bug?
 
-you still need to decrease count, though, before entering the
-loop. However you do it, it requires some check on count. You
-should try out the different ways and choose one. Even a 'for'
-loop needs to check for count.
+All I'm saying is that any fix must not depend on the user having to use
+a debugfs or a module parameter. It needs to work out of the box.
 
-Andi
+BR,
+Jani.
 
->  			return;
->  		}
->  	}
-> -- 
-> 2.34.1
-> 
-> -- 
-> Best Regards,
-> Krzysztof
+
+> Please=20
+> don't get me wrong; as said to Arun as well, I have no experience with=20
+> either this code or really anything concerning this technology even: I=20
+> am assuming I'm missing something when I couldn't figure out why the=20
+> DRRS disable CTL existed when the system activated it again immediately=20
+> anyway.
+>
+> I am/was trying that help that user, and maybe you guys as to having=20
+> this issue on the map; that already reported bug is 4 year's old, so it=20
+> didn't seem to otherwise have a lot of traction.
+>
+> Kind regards,
+> Rene
+
+--=20
+Jani Nikula, Intel
