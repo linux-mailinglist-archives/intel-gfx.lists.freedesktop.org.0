@@ -2,60 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3B74B1A17A
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 14:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5FDB1A380
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 15:38:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63BFE10E1F1;
-	Mon,  4 Aug 2025 12:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82F4610E536;
+	Mon,  4 Aug 2025 13:38:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IfCq4u6H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eo8T+9WW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64DC510E1F1
- for <intel-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 12:33:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F64C10E525;
+ Mon,  4 Aug 2025 13:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754310820; x=1785846820;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=2uGmY7iKBeYhaq0Q3v282N7pMHoi85BHBM3ODcdDCW0=;
- b=IfCq4u6HeAxgXSHZ7wnACu9suyIu4YBgh+FQTBiQOP6x1peTvfDV2X2O
- 1MFzcyaw1f8w4qM8wqWJ+eR709rbIdqdnxDRLTnujdZju7zvKG5ZyXytf
- +KYYL3rdrma8I27q4riVHlXtUafFUeFDpvkZuhZ9jpd78DCCtXVdM7A9+
- 0nkCIw4xCho61hQ1eTtpLzT4Z30wG77vLYrmSgABeICo9sEKpE621GnCp
- ZSJvvmisxCuKfWEZfa6Zi8MrIroAKaXbsCuR40nZwc0GXf9C481AQc4Xw
- 3MPc7SeWRVro9wN0dfoBvU66SfyU12yIwsOvspv7K2Pn15fLnsqMkogom g==;
-X-CSE-ConnectionGUID: AIooXYLbQPuvRTYOtTLKTw==
-X-CSE-MsgGUID: HEkpxwtbSKSj190IY066QQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11511"; a="56649150"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56649150"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 05:33:39 -0700
-X-CSE-ConnectionGUID: eWsNyWOzR1+q9nxBxkZNlg==
-X-CSE-MsgGUID: ollSNcE9TmSl9q406dV7Mw==
+ t=1754314722; x=1785850722;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k/Z0JCbEE4r6x/ENMcCfWy213EHuG8fSMrolKR3tj1Q=;
+ b=eo8T+9WWw3LCQ0ZymbvKaBENFHztu/biL/1iiPwlJ60QL/5Xiyzt4PPu
+ JEeN0APVHJdSsfHrdolhQrpVcozAMe4PfGEfwMGslblFTg3hcaCFJDNXy
+ BJ9mgiBvsKiRetc9tEHvxrm7l2vIj5yzfkkU2bGrZttPVLsOrz33tWGvS
+ JJEXCOf5w6uMqM9QLEh9w5g8b+1oWGZZwv58CTHE2oYJ8iHLVQDhceFsT
+ fYaqgR72P0urCaZWXxOuP860zyT25H2eyQCUQjb7pZKxKAW2ys6CKd0v2
+ +0wc6w/LrjHDRG1uyghsqnmNfCmBV2P1DX8fFv+J1ug5F3hkjar+iaoYk A==;
+X-CSE-ConnectionGUID: XRrszuIsQ3CBKYLxM1+K9A==
+X-CSE-MsgGUID: zBG5ddtrQgaetO3dZR9PSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56447369"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56447369"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 06:38:40 -0700
+X-CSE-ConnectionGUID: DNNl8FIHQFaDvPSMnMZA7g==
+X-CSE-MsgGUID: xvdBMUhIS/u4twlICXm+bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163826077"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.35])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Aug 2025 05:33:36 -0700
-Date: Mon, 4 Aug 2025 11:33:32 -0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH] drm/i915/gt: Protect against overflow in active_engine()
-Message-ID: <aJConLDlhGTP9VnU@ashyti-mobl2.lan>
-References: <xb3spla5mxe3y74hbn3pbhjdb7b6peopcwctfokf43qs54uu64@a5pgr7dctcrt>
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163430627"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 06:38:38 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/15] Optimize vrr.guardband and fix LRR
+Date: Mon,  4 Aug 2025 18:54:25 +0530
+Message-ID: <20250804132441.990441-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xb3spla5mxe3y74hbn3pbhjdb7b6peopcwctfokf43qs54uu64@a5pgr7dctcrt>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,67 +66,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-On Mon, Aug 04, 2025 at 07:57:08AM +0000, Krzysztof Karas wrote:
-> It is unlikely, but possible for the first call to
-> intel_context_create() to fail with -ENOMEM, which would result
-> in entering the following code block and decrementing "count",
-> when it is set to 0 (initial condition in the for loop).
-> 
-> Protect from overflowing the variable with additional count > 0
-> check.
-> 
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> index f057c16410e7..cc0798dd30d5 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-> @@ -904,8 +904,10 @@ static void active_engine(struct kthread_work *work)
->  			arg->result = PTR_ERR(ce[count]);
->  			pr_err("[%s] Create context #%ld failed: %d!\n",
->  			       engine->name, count, arg->result);
-> -			while (--count)
+First few patches fix/refactor and extract common functions required for
+dsc/scaler prefill time computation. Later patches use these helpers to
+compute an optimized guardband.
 
-Off topic:
+Also, for seamless_mn where vtotal is same but mode clock is changed to
+seamlessly switch to lower rate, re-compute the vrr timings.
 
-This is one of the reasons why counters should always be signed,
-I've been always fighting with people saying that "this is
-impossible to be negative". It's called robust programming.
+Few things that still need work:
+-The timestamps corresponding with next start of vactive still need to be
+fixed with the new scheme.
+-Re-enabling CMRR
 
-if (count == 0) is one case out of all possible values of count.
-if (count >= 0) is covering half of the possible values rendering
-                the check more robust, even if we swear that
-		count will never be negative (we can also have
-		cases of memory corruption).
+Rev2:
+-Address comments from Mitul.
+-Extract helpers for dsc/scaler prefill latencies.
+-Fix downscaling factor for chroma subsampling.
+-Use missing pkg C max latency.
+-Fix guardband computation for seamless mn, always use vblank for
+higher resolution.
 
-Anyway...
+Ankit Nautiyal (15):
+  drm/i915/skl_watermark: Fix the scaling factor for chroma subsampling
+  drm/i915/skl_watermark: Add bounds check for scaler array access
+  drm/i915/skl_watermark: Pass linetime as argument to latency helpers
+  drm/i915/skl_scaler: Introduce helper for chroma downscale factor
+  drm/i915/display: Extract helpers to set dsc/scaler prefill latencies
+  drm/i915/dp: Add SDP latency computation helper
+  drm/i915/psr: Add function to compute max link-wake latency
+  drm/i915/psr: Store max PSR2/Panel Replay latency in crtc_state
+  drm/i915/vrr: Use vrr.sync_start for getting vtotal
+  drm/i915/display: Add guardband check for feature latencies
+  drm/i915/skl_watermark: Remove redundant latency checks from vblank
+    validation
+  drm/i915/vrr: Use static guardband to support seamless LRR switching
+  drm/i915/vrr: Set vrr.vmin to min Vtotal
+  drm/i915/panel: Add helper to get highest fixed mode
+  drm/i915/vrr: Fix seamless_mn drrs for PTL
 
-> -				intel_context_put(ce[count]);
-> +			if (likely(count > 0)) {
+ drivers/gpu/drm/i915/display/intel_display.c  | 174 +++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h  |   8 +
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  53 +++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |  13 +
+ drivers/gpu/drm/i915/display/intel_panel.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |  64 +++++
+ drivers/gpu/drm/i915/display/intel_psr.h      |   3 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 265 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   3 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |   5 +
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   2 +
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  89 +-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ 15 files changed, 570 insertions(+), 115 deletions(-)
 
-... no need for likely, if we are here, we are already in an
-unlikely situation.
+-- 
+2.45.2
 
-> +				while (--count)
-> +					intel_context_put(ce[count]);
-> +			}
-
-
-How about using a do ... while()?
-
-Andi
-
->  			return;
->  		}
->  	}
-> -- 
-> 2.34.1
-> 
-> -- 
-> Best Regards,
-> Krzysztof
