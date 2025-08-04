@@ -2,55 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F53DB1A13A
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 14:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B74B1A17A
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Aug 2025 14:33:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A91E810E442;
-	Mon,  4 Aug 2025 12:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63BFE10E1F1;
+	Mon,  4 Aug 2025 12:33:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NdhYXMYF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IfCq4u6H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AA8110E1A6;
- Mon,  4 Aug 2025 12:21:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id C780B5C4D68;
- Mon,  4 Aug 2025 12:21:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2477C4CEF0;
- Mon,  4 Aug 2025 12:21:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1754310082;
- bh=GVIsR9UI1altV1kTtPcm/oryGSkEOWVRMx3oTcoTi0E=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NdhYXMYF2kB3fulUFPbo2J9FQYtA2TD011batkMCZyIMlr/UOolu/T4sYpzeVSAmP
- QDNrZKVJzBrTGaphb+5EZZ9XeuoXhFq3c7d8dIEPiAIZ/W7vIrdlvHH7E6Dn5cCVLB
- +Qc/ByIvGFYuEsMP7tQL13P4wpB3w+trYOWG1oI5hfQxe72auVOiPnVkRL+OaiIoVT
- ylv4YwSiIN3PztHNfcKbMBQFXeJTiWWmo+oU4ggdtciVtO0yLhyz9U5PzsWHKW2a/3
- TxxT9+MmT4yx4D7eWfMLakTD3v8H73Nj3lzeuWMhocaemttC6lxAz2unBW3CTOTz7w
- dg/kaO4Mb0BPQ==
-Date: Mon, 4 Aug 2025 14:21:17 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>, 
- Thorsten Leemhuis <linux@leemhuis.info>
-Cc: Andy Mindful <andy.mindful@gmail.com>, linux-kernel@vger.kernel.org, 
- regressions@lists.linux.dev, linux-pm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, rafael@kernel.org,
- ville.syrjala@linux.intel.com, tglx@linutronix.de
-Subject: Re: [REGRESSION] tty lockup and WWAN loss after hibernate/suspend in
- 6.8+ on ThinkPad X1 Carbon Gen 10
-Message-ID: <20250804-canceln-lokal-6bd98d42ab9c@brauner>
-References: <CACTEcX6oXBot1VBApOyKVMVXsAN9BsvQMLa8J0iKpNeB-eLttQ@mail.gmail.com>
- <642d439ea1be8e48ee5c47fd3921a786452fb931@intel.com>
- <CACTEcX5Y3PNXNkhnK1dGFe+k3sigOZNpj66KKGAS9XeHqRu35w@mail.gmail.com>
- <0b15e33603a46f6cc7ad7d09a156044f11367169@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64DC510E1F1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  4 Aug 2025 12:33:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754310820; x=1785846820;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2uGmY7iKBeYhaq0Q3v282N7pMHoi85BHBM3ODcdDCW0=;
+ b=IfCq4u6HeAxgXSHZ7wnACu9suyIu4YBgh+FQTBiQOP6x1peTvfDV2X2O
+ 1MFzcyaw1f8w4qM8wqWJ+eR709rbIdqdnxDRLTnujdZju7zvKG5ZyXytf
+ +KYYL3rdrma8I27q4riVHlXtUafFUeFDpvkZuhZ9jpd78DCCtXVdM7A9+
+ 0nkCIw4xCho61hQ1eTtpLzT4Z30wG77vLYrmSgABeICo9sEKpE621GnCp
+ ZSJvvmisxCuKfWEZfa6Zi8MrIroAKaXbsCuR40nZwc0GXf9C481AQc4Xw
+ 3MPc7SeWRVro9wN0dfoBvU66SfyU12yIwsOvspv7K2Pn15fLnsqMkogom g==;
+X-CSE-ConnectionGUID: AIooXYLbQPuvRTYOtTLKTw==
+X-CSE-MsgGUID: HEkpxwtbSKSj190IY066QQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11511"; a="56649150"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="56649150"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 05:33:39 -0700
+X-CSE-ConnectionGUID: eWsNyWOzR1+q9nxBxkZNlg==
+X-CSE-MsgGUID: ollSNcE9TmSl9q406dV7Mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; d="scan'208";a="163826077"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.35])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2025 05:33:36 -0700
+Date: Mon, 4 Aug 2025 11:33:32 -0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH] drm/i915/gt: Protect against overflow in active_engine()
+Message-ID: <aJConLDlhGTP9VnU@ashyti-mobl2.lan>
+References: <xb3spla5mxe3y74hbn3pbhjdb7b6peopcwctfokf43qs54uu64@a5pgr7dctcrt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0b15e33603a46f6cc7ad7d09a156044f11367169@intel.com>
+In-Reply-To: <xb3spla5mxe3y74hbn3pbhjdb7b6peopcwctfokf43qs54uu64@a5pgr7dctcrt>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,95 +71,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 04, 2025 at 11:15:46AM +0300, Jani Nikula wrote:
-> On Sun, 03 Aug 2025, Andy Mindful <andy.mindful@gmail.com> wrote:
-> > Here what I have from bisecting, please let me know if it makes things
-> > clearer or not.
-> 
-> Doesn't point at graphics, anyway.
-> 
-> Cc: Christian.
+Hi,
 
-No idea, the listmount() changes look completely unrelated and it's way
-back in v6.8 so absolutely no clue. Should probably go talk to
-hibernate/suspend/power people or talk to Thorsten to bisect this
-further.
+On Mon, Aug 04, 2025 at 07:57:08AM +0000, Krzysztof Karas wrote:
+> It is unlikely, but possible for the first call to
+> intel_context_create() to fail with -ENOMEM, which would result
+> in entering the following code block and decrementing "count",
+> when it is set to 0 (initial condition in the for loop).
+> 
+> Protect from overflowing the variable with additional count > 0
+> check.
+> 
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_hangcheck.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> index f057c16410e7..cc0798dd30d5 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> @@ -904,8 +904,10 @@ static void active_engine(struct kthread_work *work)
+>  			arg->result = PTR_ERR(ce[count]);
+>  			pr_err("[%s] Create context #%ld failed: %d!\n",
+>  			       engine->name, count, arg->result);
+> -			while (--count)
 
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> > git bisect log
-> > git bisect start
-> > # status: waiting for both good and bad commits
-> > # good: [6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1] Linux 6.7.11
-> > git bisect good 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
-> > # status: waiting for bad commit, 1 good commit known
-> > # bad: [6613476e225e090cc9aad49be7fa504e290dd33d] Linux 6.8-rc1
-> > git bisect bad 6613476e225e090cc9aad49be7fa504e290dd33d
-> > # skip: [0dd3ee31125508cd67f7e7172247f05b7fd1753a] Linux 6.7
-> > git bisect skip 0dd3ee31125508cd67f7e7172247f05b7fd1753a
-> > # good: [ba5afb9a84df2e6b26a1b6389b98849cd16ea757] fs: rework
-> > listmount() implementation
-> > git bisect good ba5afb9a84df2e6b26a1b6389b98849cd16ea757
-> > # good: [61da593f4458f25c59f65cfd9ba1bda570db5db7] Merge tag
-> > 'media/v6.8-2' of
-> > git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
-> > git bisect good 61da593f4458f25c59f65cfd9ba1bda570db5db7
-> > # bad: [e38f734add21d75d76dbcf7b214f4823131c1bae] Merge tag
-> > 'staging-6.8-rc1' of
-> > git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging
-> > git bisect bad e38f734add21d75d76dbcf7b214f4823131c1bae
-> > # bad: [5d197e97fb106c09d3d013be341e5961fd70ec8a] Merge tag
-> > 'hsi-for-6.8' of
-> > git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-hsi
-> > git bisect bad 5d197e97fb106c09d3d013be341e5961fd70ec8a
-> > # good: [1b1934dbbdcf9aa2d507932ff488cec47999cf3f] Merge tag
-> > 'docs-6.8-2' of git://git.lwn.net/linux
-> > git bisect good 1b1934dbbdcf9aa2d507932ff488cec47999cf3f
-> > # good: [1b1934dbbdcf9aa2d507932ff488cec47999cf3f] Merge tag
-> > 'docs-6.8-2' of git://git.lwn.net/linux
-> > git bisect good 1b1934dbbdcf9aa2d507932ff488cec47999cf3f
-> > # bad: [8c9244af4dc8680a453e759331f0c93d5bde1898] Merge tag
-> > 'kvm-x86-svm-6.8' of https://github.com/kvm-x86/linux into HEAD
-> > git bisect bad 8c9244af4dc8680a453e759331f0c93d5bde1898
-> > # bad: [783288010035e4c250a0b6491a4642cdb8d30548] KVM: x86: add
-> > missing "depends on KVM"
-> > git bisect bad 783288010035e4c250a0b6491a4642cdb8d30548
-> > # bad: [783288010035e4c250a0b6491a4642cdb8d30548] KVM: x86: add
-> > missing "depends on KVM"
-> > git bisect bad 783288010035e4c250a0b6491a4642cdb8d30548
-> > # bad: [861deac3b092f37b2c5e6871732f3e11486f7082] Linux 6.7-rc7
-> > git bisect bad 861deac3b092f37b2c5e6871732f3e11486f7082
-> >
-> > # being on a 861deac3b092
-> > git bisect bad
-> > The merge base ba5afb9a84df2e6b26a1b6389b98849cd16ea757 is bad.
-> > This means the bug has been fixed between
-> > ba5afb9a84df2e6b26a1b6389b98849cd16ea757 and
-> > [1b1934dbbdcf9aa2d507932ff488cec47999cf3f
-> > 61da593f4458f25c59f65cfd9ba1bda570db5db7
-> > 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
-> > ba5afb9a84df2e6b26a1b6389b98849cd16ea757].
-> >
-> > Thanks.
-> >
-> > вт, 29 лип. 2025 р. о 13:20 Jani Nikula <jani.nikula@intel.com> пише:
-> >>
-> >> On Tue, 29 Jul 2025, Andy Mindful <andy.mindful@gmail.com> wrote:
-> >> > Please let me know if any further information or testing is required.
-> >>
-> >> Likely the quickest way to find the root cause is to bisect the issue.
-> >>
-> >>
-> >> BR,
-> >> Jani.
-> >>
-> >> --
-> >> Jani Nikula, Intel
+Off topic:
+
+This is one of the reasons why counters should always be signed,
+I've been always fighting with people saying that "this is
+impossible to be negative". It's called robust programming.
+
+if (count == 0) is one case out of all possible values of count.
+if (count >= 0) is covering half of the possible values rendering
+                the check more robust, even if we swear that
+		count will never be negative (we can also have
+		cases of memory corruption).
+
+Anyway...
+
+> -				intel_context_put(ce[count]);
+> +			if (likely(count > 0)) {
+
+... no need for likely, if we are here, we are already in an
+unlikely situation.
+
+> +				while (--count)
+> +					intel_context_put(ce[count]);
+> +			}
+
+
+How about using a do ... while()?
+
+Andi
+
+>  			return;
+>  		}
+>  	}
+> -- 
+> 2.34.1
 > 
 > -- 
-> Jani Nikula, Intel
+> Best Regards,
+> Krzysztof
