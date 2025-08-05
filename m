@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A8AB1B0DD
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F98B1B0DE
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:19:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68F5810E256;
-	Tue,  5 Aug 2025 09:19:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C2310E62B;
+	Tue,  5 Aug 2025 09:19:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKXRu7yX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZ2Q9bwc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F291C89DA9;
- Tue,  5 Aug 2025 09:19:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECBD10E62C;
+ Tue,  5 Aug 2025 09:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754385550; x=1785921550;
+ t=1754385555; x=1785921555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X8ggPfDdmgPuETD6Xr7pLJmJCwmjTokT9BsIxyqaEtY=;
- b=mKXRu7yXxTv/Xh7NlmL3liFY0Jhh3vcromFdx9AszgYIkHPI6muBCS2Z
- 4jWqFmePCp7fNuWSRZfbfd9x761rG7/ACR47lvveOTKfdsvepUZ9LlM3O
- /4Y5Hex+P96sRqE+CpvamFvhpNt/oSqJPb9uyPZ/IOXXso5lNfewclCZs
- H7QiPQdo4GZ8Lml+0sNe4EQefk+qtdhWF61aN+ijKgyBhn5hEJfZ4JNV6
- rTRWx2c/EAvDxBLP1v8YH1gvnYYs4RrZZDIK10q6Tm/Yr9gX6zZAChyvH
- 92EkEss1zQiGOLqch8SFBhUGt2E3xXNFJ06pJwfHnUgRtOwgM9FXbOJ6E A==;
-X-CSE-ConnectionGUID: vZvNeo3oTqala15/jHOwNA==
-X-CSE-MsgGUID: MiBjo9/ETyeKqTQA39pFyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56566649"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56566649"
+ bh=nl7E2+52zRcCvjwzQoaHc6zLQrDr1xwl2d5DWtbx1N0=;
+ b=KZ2Q9bwc+IrscZQygtHC6n5ZLoH2TeRAxsyKRsOv/+bsTl08kREcYtPd
+ XdBS9Q3fTXczh+cPboy3/e3otk0AwfGfcCy4CS80mnIKbI8qbpM8KdVIi
+ +AOaHoeo37MQEt1CRT2Bbvcc3ZCRBPmUKlpeEKO+wrxEkg8GfwiFuWVRF
+ jA3Z9KvaACG3LtjC7+WrSXvEAi9jjwD2JE8HkhKIbgBie+doW7Y3oZoNW
+ YKqI7Tr8q9QgJHAiFuhAjz+UL2tzKV9pvVb2CKijVsTqm8P2T+tiNUPfW
+ j4beITt0zvl3QIvDlU8UkKV6TOQt4RlR0NQmx9RfXmmaHYeFk5z6Nml38 A==;
+X-CSE-ConnectionGUID: I2+mc7x+TTOB/EIplYKNVg==
+X-CSE-MsgGUID: 5BMnKexbTtmK/a0b6H5X9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56566655"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56566655"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:10 -0700
-X-CSE-ConnectionGUID: RFqFquFrQUemWYVCeupDOg==
-X-CSE-MsgGUID: QmYp0wvYQlqtoGDVIyAgoA==
+ 05 Aug 2025 02:19:14 -0700
+X-CSE-ConnectionGUID: vh2k3xQzQpO4ZotHGplk9Q==
+X-CSE-MsgGUID: yF5zDsjFSf6EZhxZtdsyLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164738374"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164738387"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.8])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:09 -0700
+ 05 Aug 2025 02:19:13 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 08/12] drm/i915: cache the results in vlv_clock_get_hpll_vco()
- and use it more
-Date: Tue,  5 Aug 2025 12:18:21 +0300
-Message-Id: <f94f8f6606964a50c31fd31a9ba5720df88d7424.1754385408.git.jani.nikula@intel.com>
+Subject: [PATCH 09/12] drm/i915: remove intel_update_czclk() as unnecessary
+Date: Tue,  5 Aug 2025 12:18:22 +0300
+Message-Id: <1bf18b55d218ee4ddd35bc067decd097e7ae228f.1754385408.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754385408.git.jani.nikula@intel.com>
 References: <cover.1754385408.git.jani.nikula@intel.com>
@@ -71,108 +70,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use vlv_clock_get_hpll_vco() helper more to avoid looking at
-i915->hpll_freq directly. Cache and return the cached results to avoid
-repeated lookups.
+With vlv_clock_get_czclk() caching the result on first use, we no longer
+need a separate initializer. Remove intel_update_czclk() as
+unnecessary. Log the CZCLK in vlv_clock_get_czclk() instead.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c   | 10 +++-------
- drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++---------
- 2 files changed, 13 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c     | 16 +++-------------
+ drivers/gpu/drm/i915/display/intel_display.h     |  1 -
+ .../gpu/drm/i915/display/intel_display_driver.c  |  1 -
+ 3 files changed, 3 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index e8c9ad7d8e82..180d4d7dc1da 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -562,8 +562,7 @@ static void hsw_get_cdclk(struct intel_display *display,
- 
- static int vlv_calc_cdclk(struct intel_display *display, int min_cdclk)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--	int freq_320 = (dev_priv->hpll_freq <<  1) % 320000 != 0 ?
-+	int freq_320 = (vlv_clock_get_hpll_vco(display->drm) <<  1) % 320000 != 0 ?
- 		333333 : 320000;
- 
- 	/*
-@@ -583,8 +582,6 @@ static int vlv_calc_cdclk(struct intel_display *display, int min_cdclk)
- 
- static u8 vlv_calc_voltage_level(struct intel_display *display, int cdclk)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
--
- 	if (display->platform.valleyview) {
- 		if (cdclk >= 320000) /* jump to highest voltage for 400MHz too */
- 			return 2;
-@@ -598,7 +595,7 @@ static u8 vlv_calc_voltage_level(struct intel_display *display, int cdclk)
- 		 * hardware has shown that we just need to write the desired
- 		 * CCK divider into the Punit register.
- 		 */
--		return DIV_ROUND_CLOSEST(dev_priv->hpll_freq << 1, cdclk) - 1;
-+		return DIV_ROUND_CLOSEST(vlv_clock_get_hpll_vco(display->drm) << 1, cdclk) - 1;
- 	}
- }
- 
-@@ -666,7 +663,6 @@ static void vlv_set_cdclk(struct intel_display *display,
- 			  const struct intel_cdclk_config *cdclk_config,
- 			  enum pipe pipe)
- {
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	int cdclk = cdclk_config->cdclk;
- 	u32 val, cmd = cdclk_config->voltage_level;
- 	intel_wakeref_t wakeref;
-@@ -710,7 +706,7 @@ static void vlv_set_cdclk(struct intel_display *display,
- 	if (cdclk == 400000) {
- 		u32 divider;
- 
--		divider = DIV_ROUND_CLOSEST(dev_priv->hpll_freq << 1,
-+		divider = DIV_ROUND_CLOSEST(vlv_clock_get_hpll_vco(display->drm) << 1,
- 					    cdclk) - 1;
- 
- 		/* adjust cdclk divider */
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6fb7d14dba9e..077d0340ac2d 100644
+index 077d0340ac2d..a39133b45309 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -143,13 +143,18 @@ static void bdw_set_pipe_misc(struct intel_dsb *dsb,
- /* returns HPLL frequency in kHz */
- int vlv_clock_get_hpll_vco(struct drm_device *drm)
+@@ -197,9 +197,11 @@ int vlv_clock_get_czclk(struct drm_device *drm)
  {
-+	struct drm_i915_private *i915 = to_i915(drm);
- 	int hpll_freq, vco_freq[] = { 800, 1600, 2000, 2400 };
+ 	struct drm_i915_private *i915 = to_i915(drm);
  
--	/* Obtain SKU information */
--	hpll_freq = vlv_cck_read(drm, CCK_FUSE_REG) &
--		CCK_FUSE_HPLL_FREQ_MASK;
-+	if (!i915->hpll_freq) {
-+		/* Obtain SKU information */
-+		hpll_freq = vlv_cck_read(drm, CCK_FUSE_REG) &
-+			CCK_FUSE_HPLL_FREQ_MASK;
-+
-+		i915->hpll_freq = vco_freq[hpll_freq] * 1000;
+-	if (!i915->czclk_freq)
++	if (!i915->czclk_freq) {
+ 		i915->czclk_freq = vlv_get_cck_clock_hpll(drm, "czclk",
+ 							  CCK_CZ_CLOCK_CONTROL);
++		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", i915->czclk_freq);
 +	}
  
--	return vco_freq[hpll_freq] * 1000;
-+	return i915->hpll_freq;
+ 	return i915->czclk_freq;
+ }
+@@ -216,18 +218,6 @@ int vlv_clock_get_gpll(struct drm_device *drm)
+ 				 vlv_clock_get_czclk(drm));
  }
  
- static int vlv_get_cck_clock(struct drm_device *drm,
-@@ -171,15 +176,11 @@ static int vlv_get_cck_clock(struct drm_device *drm,
- static int vlv_get_cck_clock_hpll(struct drm_device *drm,
- 				  const char *name, u32 reg)
- {
--	struct drm_i915_private *dev_priv = to_i915(drm);
- 	int hpll;
- 
- 	vlv_cck_get(drm);
- 
--	if (dev_priv->hpll_freq == 0)
--		dev_priv->hpll_freq = vlv_clock_get_hpll_vco(drm);
+-void intel_update_czclk(struct intel_display *display)
+-{
+-	int czclk_freq;
 -
--	hpll = vlv_get_cck_clock(drm, name, reg, dev_priv->hpll_freq);
-+	hpll = vlv_get_cck_clock(drm, name, reg, vlv_clock_get_hpll_vco(drm));
+-	if (!display->platform.valleyview && !display->platform.cherryview)
+-		return;
+-
+-	czclk_freq = vlv_clock_get_czclk(display->drm);
+-
+-	drm_dbg_kms(display->drm, "CZ clock rate: %d kHz\n", czclk_freq);
+-}
+-
+ static bool is_hdr_mode(const struct intel_crtc_state *crtc_state)
+ {
+ 	return (crtc_state->active_planes &
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 5c406b276a76..54961cb656c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -528,7 +528,6 @@ void intel_init_display_hooks(struct intel_display *display);
+ void intel_setup_outputs(struct intel_display *display);
+ int intel_initial_commit(struct intel_display *display);
+ void intel_panel_sanitize_ssc(struct intel_display *display);
+-void intel_update_czclk(struct intel_display *display);
+ enum drm_mode_status intel_mode_valid(struct drm_device *dev,
+ 				      const struct drm_display_mode *mode);
+ int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index cf1c14412abe..f84a0b26b7a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -482,7 +482,6 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 	intel_dpll_init(display);
+ 	intel_fdi_pll_freq_update(display);
  
- 	vlv_cck_put(drm);
+-	intel_update_czclk(display);
+ 	intel_display_driver_init_hw(display);
+ 	intel_dpll_update_ref_clks(display);
  
 -- 
 2.39.5
