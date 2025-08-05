@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E68B1B0D5
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A882AB1B0D6
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:18:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2294110E615;
-	Tue,  5 Aug 2025 09:18:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44B4610E61A;
+	Tue,  5 Aug 2025 09:18:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fcLIwxa+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UpCJIYzS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77CDA10E256;
- Tue,  5 Aug 2025 09:18:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B93010E618;
+ Tue,  5 Aug 2025 09:18:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754385512; x=1785921512;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ExagmaDVYLt2sh4sNJG+ess4LTK6pnoqIXAf/5lzPRw=;
- b=fcLIwxa++AypFnjCToaH3XvCmyNmv2OMSp1xPpqaEPQe72d7+kYzD/0A
- 17ukzOnMX1RSSyoi6o7z9h9M8/3QJ76lFCiQIsuy8Dshl9gHhoFvGsccH
- HXioQcZZMlNCt66shW5bSsYTw/Qv50bLrxh9k8o7X5C8zu+UZTUO80kvx
- KuTHhf0/R1Ic79zh+V+ITi6PzmFRQplo80b+SdRmb5W4tpkOyH5FkuSm1
- 7MNCxN24jt3bOTlk7V7KruEfPHyuU835tkbySgbk7MYymbHZmQskwjrui
- hxhafXZ11wyW6Hoa2vHWTnPxXJ1R8fGnKAv+TOUZnQsaEPw1Ipi0FV2qM g==;
-X-CSE-ConnectionGUID: KJF99iRVTumR++9NQ8arOA==
-X-CSE-MsgGUID: MLnlqNtRQNmpY1ffS8MZBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="60504302"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="60504302"
+ t=1754385517; x=1785921517;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=87S+Yt+a5jQhQakfmsp6Qy9JoFEsDZMm1NMe1x35ObM=;
+ b=UpCJIYzS/jTgv3i2cFRzz+sVc43qbsn+uhMs1qSmTLMW+4SgkDnm6RhK
+ R3uO+DN9Kzcl8md1kZv9LcTGksjFj27HJ0q9F1VT57luAch0xnpVM5EIn
+ AaVi0kB5vqzDudX62N5xPTMzkdguoUDJe+Q01AAQZdCgZHLvBlNqu+GWT
+ 3Cnt/iBcQjmaY8vWLCLlyBsGtwxU5z2UwamerY0T59f9f2Uyqljt6KqsP
+ 96Mgwgxku3VH5vX9+tYZVIq8gDD9UTdGI4I/6fBQJwCKvGDOF2vFeQT5B
+ XZsazfUEeQRXZP1GzoLDHSQhRKmyMa544oX9sHRPNsohUAPqX3dt9W1s2 g==;
+X-CSE-ConnectionGUID: iEqosoNBSFijcW2BpbDNRQ==
+X-CSE-MsgGUID: xsrXbWRbS7KpJIw/W3CCLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="60504305"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="60504305"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:18:32 -0700
-X-CSE-ConnectionGUID: K03PwaAVRGCPRJX4MoSIiw==
-X-CSE-MsgGUID: T2Tqlq1oTdOJGDZaTmQsgw==
+ 05 Aug 2025 02:18:37 -0700
+X-CSE-ConnectionGUID: J+tD/yb1Rjucnk372f3cvg==
+X-CSE-MsgGUID: MlbjIl1JTcKHc/NoJ1yQAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="195398033"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="195398037"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.8])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:18:30 -0700
+ 05 Aug 2025 02:18:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 00/12] drm/i915: vlv clock cleanups
-Date: Tue,  5 Aug 2025 12:18:13 +0300
-Message-Id: <cover.1754385408.git.jani.nikula@intel.com>
+Subject: [PATCH 01/12] drm/i915: add vlv_clock_get_gpll()
+Date: Tue,  5 Aug 2025 12:18:14 +0300
+Message-Id: <becd1b070256c11ca3a12df76fb8fb1ac832d05c.1754385408.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1754385408.git.jani.nikula@intel.com>
+References: <cover.1754385408.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,43 +70,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The primary goal is to remove hpll_freq and czclk_freq members from
-struct drm_i915_private and struct xe_device, but take it a bit further.
+Add a vlv_clock_get_gpll() helper to hide the details from the callers.
 
-BR,
-Jani.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_display.h | 1 +
+ drivers/gpu/drm/i915/gt/intel_rps.c          | 5 +----
+ 3 files changed, 10 insertions(+), 4 deletions(-)
 
-Jani Nikula (12):
-  drm/i915: add vlv_clock_get_gpll()
-  drm/i915: add vlv_clock_get_czclk()
-  drm/i915: add vlv_clock_get_hrawclk()
-  drm/i915: make vlv_get_cck_clock_hpll() static
-  drm/i915: add vlv_clock_get_cdclk()
-  drm/i915: make vlv_get_cck_clock() static
-  drm/i915: rename vlv_get_hpll_vco() to vlv_clock_get_hpll_vco()
-  drm/i915: cache the results in vlv_clock_get_hpll_vco() and use it
-    more
-  drm/i915: remove intel_update_czclk() as unnecessary
-  drm/i915: log HPLL frequency similar to CZCLK
-  drm/i915: move hpll and czclk caching under display
-  drm/i915: split out vlv_clock.[ch]
-
- drivers/gpu/drm/i915/Makefile                 |  1 +
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 29 ++----
- drivers/gpu/drm/i915/display/intel_display.c  | 61 -------------
- drivers/gpu/drm/i915/display/intel_display.h  |  6 --
- .../gpu/drm/i915/display/intel_display_core.h |  5 ++
- .../drm/i915/display/intel_display_driver.c   |  1 -
- drivers/gpu/drm/i915/display/vlv_clock.c      | 89 +++++++++++++++++++
- drivers/gpu/drm/i915/display/vlv_clock.h      | 38 ++++++++
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  3 +-
- drivers/gpu/drm/i915/gt/intel_rps.c           | 10 +--
- drivers/gpu/drm/i915/i915_drv.h               |  3 -
- drivers/gpu/drm/xe/xe_device_types.h          |  2 -
- 12 files changed, 147 insertions(+), 101 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.c
- create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7035c1fc9033..fdd29d9256ed 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -186,6 +186,14 @@ int vlv_get_cck_clock_hpll(struct drm_device *drm,
+ 	return hpll;
+ }
+ 
++int vlv_clock_get_gpll(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++
++	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
++				 i915->czclk_freq);
++}
++
+ void intel_update_czclk(struct intel_display *display)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 37e2ab301a80..7ae899b8787a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -440,6 +440,7 @@ int vlv_get_cck_clock(struct drm_device *drm,
+ 		      const char *name, u32 reg, int ref_freq);
+ int vlv_get_cck_clock_hpll(struct drm_device *drm,
+ 			   const char *name, u32 reg);
++int vlv_clock_get_gpll(struct drm_device *drm);
+ bool intel_has_pending_fb_unpin(struct intel_display *display);
+ void intel_encoder_destroy(struct drm_encoder *encoder);
+ struct drm_display_mode *
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 0b35fdd461d4..e2b5cdf6b7cb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1683,10 +1683,7 @@ static void vlv_init_gpll_ref_freq(struct intel_rps *rps)
+ {
+ 	struct drm_i915_private *i915 = rps_to_i915(rps);
+ 
+-	rps->gpll_ref_freq =
+-		vlv_get_cck_clock(&i915->drm, "GPLL ref",
+-				  CCK_GPLL_CLOCK_CONTROL,
+-				  i915->czclk_freq);
++	rps->gpll_ref_freq = vlv_clock_get_gpll(&i915->drm);
+ 
+ 	drm_dbg(&i915->drm, "GPLL reference freq: %d kHz\n",
+ 		rps->gpll_ref_freq);
 -- 
 2.39.5
 
