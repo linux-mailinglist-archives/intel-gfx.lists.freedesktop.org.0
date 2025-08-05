@@ -2,60 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FB3B1B0E1
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2170FB1B130
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:35:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6C110E628;
-	Tue,  5 Aug 2025 09:19:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDA710E623;
+	Tue,  5 Aug 2025 09:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m1EUze2j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OaQcVbMJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0A1310E621;
- Tue,  5 Aug 2025 09:19:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D11D010E623;
+ Tue,  5 Aug 2025 09:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754385574; x=1785921574;
+ t=1754386515; x=1785922515;
  h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XKx9YwOSc+bYBtuxdFZhbqhJjpw22XQnqmFxvF1QlXM=;
- b=m1EUze2j5eaI+HjDS9EDRM0p/xrDIiCihnn6GKHbomcsGNEwJszWq0J1
- L4ntJlBQY8itF071aKPK8pb7N94XMTNsTPmGr3X9ZOoTcv+j+RXoYh0if
- oTGbpFRn+lZmHCttSoiH6rijQFDMFw2nsuBg4KGIzej4/3a0jt6Qp9gzQ
- YV3yGHJkmmNWFIt374dncWauppQ+REsABvzIPBDe3hYzL3ZcWKGxLQvKd
- 9qTe8ADLmhzs54mef3vkxEfT1uAPWFbOspRN9KXiYrlKPUeA9JOOVXJRF
- X4ltuLATpId1jKzezYSUcq6OvZUFT4iXH9HY/qJcx+K6JOQ0TAhzOh0lr A==;
-X-CSE-ConnectionGUID: Z4udpvlYT7K8vNH0wEXm4A==
-X-CSE-MsgGUID: /uDHbwqHSiyzYXALGn5BZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56566660"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56566660"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:34 -0700
-X-CSE-ConnectionGUID: OHeDt9KkRIC+nE1QJhihPQ==
-X-CSE-MsgGUID: G5/SS8fIRRu31DZu3KEOFg==
+ references:content-transfer-encoding:mime-version;
+ bh=gPNUsVyLAiirbNl2lnIkzz/SzdxC9zZfBI2ORwWJMOk=;
+ b=OaQcVbMJPgcy+Z3R51bSGb0gs3YYTtXt61zHeGfBpWNsAfYN1FdMBB9O
+ wqXGza5uBKNt+T1JS9nN6TaKhNEPrkRx+9XaaUUr4h/zMfjS45saXHCG8
+ mirBlOjdJ+1eTXh9pTMeAg60LZ9KEXD2wXlqT51e0vOWjcjP9fp7rkcgq
+ UCTmjvtPNwTbzjhHSc3OXouNylaCw8ismQniplR4yzcPR7Yu3dblohCtZ
+ 5qhknCnAKqU7Lsl2U+vdHIy5P3aA4uhDQfm78f2SlNRz5ElrVFbeuMsc6
+ mYR3rxsYynatfzeOqTkLu/qgXM0XqM1+6nkl03Iie9tzdqCRTaVDPbrI8 Q==;
+X-CSE-ConnectionGUID: Gh7vLws9RJWB81R6aQ9nQw==
+X-CSE-MsgGUID: LpbqXaM1R7SaqlJNetWf1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="74132018"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="74132018"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 02:35:14 -0700
+X-CSE-ConnectionGUID: 5RKdlGvUTzKlZfhUCwMZ/g==
+X-CSE-MsgGUID: AJdNTXSmQuu5d0tafU2SBA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164738424"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.8])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:28 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 12/12] drm/i915: split out vlv_clock.[ch]
-Date: Tue,  5 Aug 2025 12:18:25 +0300
-Message-Id: <a09c7d85f01062045840ef19678904222c1ba81e.1754385408.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1754385408.git.jani.nikula@intel.com>
-References: <cover.1754385408.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="188112740"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Aug 2025 02:35:14 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 5 Aug 2025 02:34:32 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Tue, 5 Aug 2025 02:34:32 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.78) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 5 Aug 2025 02:33:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LsQUn6wNIo4pNpjX8rzAdbDlzKbaBINj1H/nF/L076y9NlYIjURNZChlM1aT2Vbd7hnCKDGMSqXyPQo1vYQ/IAjIrnLfA9aNZgJ2hb+Gqb0aY4gaJu2V/13ebJql8A/Vy3qRUobd7E2uXZxYSX8V0e3MbCcdAHQ1c24yitLljm69WY0nNyF+2iLlLGa6L50pLSRKqleWOd9/mezVHPCitYrvEus/FQhT1i5Cit6LlzhnbXkp1EkR+mlIp3oplXvF17x0J1nt0qzt01xEistNUZbtTecyugiS0WSILlD41rO2spnDtgjh4qp20W0aXZrxGjxWy26FlWaKjw3rmQ5ryQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1mjlX2IXvEjhVa8LOhmVlE/2uDvn2R0RemsSeiisPa4=;
+ b=AaLgb135DrZ4nbnQo2Rt5zKxdvM2GAdLzuyxhnDo2NfpXcGgi9dfyGHCk6bkESDary3IGrVQs6KBIYYOk6I/kGtWQ7Jzhd+N6SrO+HXV/EAFCVFwyjKE0hgT9cmFZJy1NEFlXYdeUwSoTrwqd8rbh0a6J0ugmh+sS2mBD62LiEmeWwBuBD1DsNStHWDOYsrI/08ZtUl3rGfRsRe2vl7FEiZ5RLUz6T+wRFRrD9jTvUKREn0rjaxpiNAr/UPELwhg6jNUc/r02I2/5QOKx8ROwfwFR/MfDsqM0uWo1oAnBruqXzC0rIotedj/FrULNTOLxzfSVtpEVMEhg6ZgeK+LOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by CY5PR11MB6257.namprd11.prod.outlook.com (2603:10b6:930:26::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.13; Tue, 5 Aug
+ 2025 09:33:56 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.9009.013; Tue, 5 Aug 2025
+ 09:33:56 +0000
+From: Imre Deak <imre.deak@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <stable@vger.kernel.org>, Charlton Lin <charlton.lin@intel.com>, "Khaled
+ Almahallawy" <khaled.almahallawy@intel.com>
+Subject: [PATCH v2 02/19] drm/i915/icl+/tc: Cache the max lane count value
+Date: Tue, 5 Aug 2025 12:33:48 +0300
+Message-ID: <20250805093349.679158-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20250805073700.642107-3-imre.deak@intel.com>
+References: <20250805073700.642107-3-imre.deak@intel.com>
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: LO3P265CA0025.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:387::6) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6257:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea6a01a2-f78e-436c-c943-08ddd4033290
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|10070799003|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?6ZSfrgxkaLNhL5X5n5xJKvRJtNxgMtTYnbewU5+5FzFKDhvQKCM0WqLoPXy5?=
+ =?us-ascii?Q?mbLSgqCuOQDzF510CIzZP481nmYYYNn9ZRS71/Y+LkH3v/oVQs6bcYYzJvT3?=
+ =?us-ascii?Q?pqXRSaEC4Pv1i8zTFxEIHjaC0Op247wuZT2qW8/2vI5kXzmq1flDBldKDx1C?=
+ =?us-ascii?Q?e41DTLk+Xn1+9Q9KnG6WLMpwGPIAevj2ntJaIS6myaqRmHTt7GErhXu2/J8l?=
+ =?us-ascii?Q?MHCGfECUVjof5TITZytRNWAqwFLke/tDKD7JMyy6uYJOx1QRwoHw1l+DGaxS?=
+ =?us-ascii?Q?8Z232ktE6KrCkri52AXo5vd3LWPv2P0j7lzmsk4THH4OkgdKnBjDVza4Uh8/?=
+ =?us-ascii?Q?vk1Aw9+Cjukpo1oH9dH4rS4f+qDaEZFYUVIIub5HiO9ktNOgsePGLM7fJpvQ?=
+ =?us-ascii?Q?Y0AJRRyDRkq70Ghsiu53Q8mpZUmNmBmdtU6cR5HbXpF1S9pIR0/srOtadvsi?=
+ =?us-ascii?Q?JyhVGgO9n5O+f2ED0YB2LjgRE3/BI+SafINPgx2oxY9q8U2ZL9PWpksI/1yl?=
+ =?us-ascii?Q?TBsNecaYErjM1jwuVp+mE9piKFXoq01X5m0DOPz5mvWQv/eDEUXuVatMOwM6?=
+ =?us-ascii?Q?wfUnS0s3GZpEUB6qSoswYBoFMQKM/R1SHqRxxSlOr5n9flyWM3GI87YqlDxe?=
+ =?us-ascii?Q?v/QS5e1lrIH57fJBWkuNdCxJWW+x1k8NwIYaUXrkA1rSY7cQoEbNCxWMjUb0?=
+ =?us-ascii?Q?EKTWtCYff5RZAwXBeqgMw4I+Irj7G5A7Hq1BQjodYWIy+G01K/e8vmcKOXMy?=
+ =?us-ascii?Q?uW7agYEmPCr10HdeV+vFTdeP1gStrK/fhUsWNi6RAqFxLOMJTMg4ktEAXoPS?=
+ =?us-ascii?Q?50Dco41oHHC4xHykPIijtVd57qS9PlDWtVLqNwg9FlQdXO72fYjbEq5fO793?=
+ =?us-ascii?Q?bDHOwlpJY8eIPgRcZ1Lhne12AKuCjqOWn708/0b83fulR+ypw5n2f1pTc0Og?=
+ =?us-ascii?Q?96px4N/bLPMu7wkmQ4sazl4r7QDDZqc+bvhnVIrjY36PM52rJ9FcAlBslp2a?=
+ =?us-ascii?Q?R989EAy9tzry02sfZ2Gpc2nDOOu0p5d2EskIyfhEmHkUqoN1xC/LeAxRGRPW?=
+ =?us-ascii?Q?Rfgm7A7FBtfmYp3lQjdxiYhOAFbSxmUvjHPDe2GYWYikPoaYX00WkLa69Dbz?=
+ =?us-ascii?Q?Z2S4gYMkk58cfRRXinjQiLCYv+IQ/9PBtdaXmb7zMGOq7S0r88rBBv0z2rbM?=
+ =?us-ascii?Q?T+jLl0wan+N+f0o7zdIC0vsREeWuPnnQuj0Ztceq/cKzpGJANuu1+bfzf3+O?=
+ =?us-ascii?Q?LOvEfdThOdoip0E+VjVX+Sd4O1ct18BPyCC83FksB+OB0Wg8M+HXv25EacL+?=
+ =?us-ascii?Q?k1iYf7Q3x4UA2I5rF5xVePEy9X6tz+5RQJ/ulHGMA/wOduf82AwNf2BcO4I0?=
+ =?us-ascii?Q?fSY+31mS+2tDEZYNyTZFnR7o9bTYZtvZnNqsN5btcaFWFNw4EKYwT1tqOCQt?=
+ =?us-ascii?Q?edKfe8tM6Uo=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?v6WKOOc86tmEEEuabCJ8jU/BcWdJYE5ucvEjPiWK1J0L5oKippAefv6hNIJ1?=
+ =?us-ascii?Q?LbLgPmXme682VqjTudFj/ZZGUTI30N2DGkNcJocP/9OQuRr1y96Qqfrq9uVK?=
+ =?us-ascii?Q?L3aExV+NaYaF+wMhprrLs//6qtZa+Zb5aNtCoDThegtUd6c5FmOEHSRdjLuy?=
+ =?us-ascii?Q?+qYCemFZQyY2YYfXQmYZ447bm2TwBM+5wMQG2IbDTIGx6K7vOMxSyA+27UqN?=
+ =?us-ascii?Q?n4r9l1ENUAGoYnl9RvwjP77iYz4WgNU5aPrVujX3UM9Bh4kVuS8pg3L40pk+?=
+ =?us-ascii?Q?K9935vxurHJZKB8r2aYOmupJ/7gz9fmO9lB/+s0JHB7CxsOd8d/QCIO+mR6c?=
+ =?us-ascii?Q?4bbfO1eqVyAx3LbmBf93+zh+hajmW2Vv8Czki7d0MV3whTuVFTS0NmU2bMAy?=
+ =?us-ascii?Q?r1Nsn8wnUzPoky1Ya1OtqskLEyL59utP6ZcU6YdNNEWxTur4unEqAynPjP5L?=
+ =?us-ascii?Q?kgRodjzWcuAoYT7tl9Vdf1eoZjOTQSJo1wwEfi4h/k6t6MADx/VVuBEWheDC?=
+ =?us-ascii?Q?MT+j/KniPWLWZuMSKB+FkNDUDJ6QOk0rpSVatsxKvY0VxXv5oP4k5CcqtSJ9?=
+ =?us-ascii?Q?9KDXjZ6q3xOSgeBLgd5FWxdH1sxkqteWL/gtJnKOW2JBbaltDYBELzF0USyZ?=
+ =?us-ascii?Q?neqqQDYs2EQsG5dfHfXmy/U3H9R0gQIU+ARkGvzOuGRUn6GNaNgIVu0Sqp6O?=
+ =?us-ascii?Q?ynxA8UltS5eHog6Nfxj0QfRlIbbkDxkCuQcU1txg7wHOHwmUo4Niq8PfesMK?=
+ =?us-ascii?Q?zRZLFCaLJzNuQVBNfYMZD6wWntjVxSyXUV4UoBb8Aahcfs52guRvjwJ6Vk4/?=
+ =?us-ascii?Q?hoepP+qxWx7wF1gsg+XKg37ehPd6pHF74tocKQ6YNnNFFM8oU0s3nfyNjqBg?=
+ =?us-ascii?Q?8QVZc8YexGresy+tKfRLiWM9ZTgGx+AsdqCfv9KDvD4/zTbsHAMz22GwxMz7?=
+ =?us-ascii?Q?5Lc3sFBrk7d5q3MYBOoK8v0r4PBipaVAnn66AZ6KomKxjOY2UQQRxzqMPUai?=
+ =?us-ascii?Q?I3CD7p3GLOMmFm01iVZvKWwJuNMHdIOPRwV+H/8ixe8YdW+MLSnhlwuBX6m7?=
+ =?us-ascii?Q?Ko5EJxZXqDfhbSxgUNdqTYQ8ORFmFYLWO7hwAzkTXQpUbXO/SJ3o/8u7ykPI?=
+ =?us-ascii?Q?FUmpqGbxK0sby2hO6fJwG3lcfGC/xChFA9TLEuvmJiMuJE0cdHzJOAjI9QPy?=
+ =?us-ascii?Q?D1+rO3sLsDzdLQX2H4/z1T3CeOX+yi294PtTvZJ1bxwQlyoJzuPIVhRFO0cn?=
+ =?us-ascii?Q?rk0b0SnNkAbg5mW7Y6HcmmOqTVMf2z9pVhfplf4u5XiOG8zTxuXnrsRrfA5Q?=
+ =?us-ascii?Q?uoOnMoCQPGPfUYfVM/ZKBGmMDGRgep9qtMwowUccJ4b6ayzGrtk90jMVPR5W?=
+ =?us-ascii?Q?pJL25HSx224ew1ILlHcYD2SN212Vpb8aW6oJ3/kmpimrN5vcJFzln1KrzzOU?=
+ =?us-ascii?Q?nLFSGFKE2T4h/wVo7RloYAVbA4SQHudIczYrWq+f5q0M3uqQtitfXnkqkGtb?=
+ =?us-ascii?Q?9YfkkpnxQgREoz3gjg+ZHX5DLIQxsk7dVrHajD7bf7dgZo6+3m5d3LM4URot?=
+ =?us-ascii?Q?qm1Zve6Np6nDDQuqAEhNj7r1M4Z6tJH4qB6jvzo8UEVVBEZlKlCZp6+0u20L?=
+ =?us-ascii?Q?w4mdu0u/NAX1/41a5sZ21jPP7B4yx+NVWkt7DWw2qMbO?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea6a01a2-f78e-436c-c943-08ddd4033290
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 09:33:56.0135 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qa83ZFW0uO0iOLQg2cjQjedtbx7KxE7BOlGmbUqpHqYByntXhp4qCOyZESeY0utnKWMY0O17uBeSZ7g37Dj2Tg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6257
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,331 +178,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the VLV clock related functions to their own file.
+The PHY's pin assignment value in the TCSS_DDI_STATUS register - as set
+by the HW/FW based on the connected DP-alt sink's TypeC/PD pin
+assignment negotiation - gets cleared by the HW/FW on LNL+ as soon as
+the sink gets disconnected, even if the PHY ownership got acquired
+already by the driver (and hence the PHY itself is still connected and
+used by the display). This is similar to how the PHY Ready flag gets
+cleared on LNL+ in the same register.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+To be able to query the max lane count value on LNL+ - which is based on
+the above pin assignment - at all times even after the sink gets
+disconnected, the max lane count must be determined and cached during
+the PHY's HW readout and connect sequences. Do that here, leaving the
+actual use of the cached value to a follow-up change.
+
+v2: Don't read out the pin configuration if the PHY is disconnected.
+
+Cc: stable@vger.kernel.org # v6.8+
+Reported-by: Charlton Lin <charlton.lin@intel.com>
+Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                |  1 +
- drivers/gpu/drm/i915/display/intel_cdclk.c   |  1 +
- drivers/gpu/drm/i915/display/intel_display.c | 82 ------------------
- drivers/gpu/drm/i915/display/intel_display.h |  5 --
- drivers/gpu/drm/i915/display/vlv_clock.c     | 89 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/vlv_clock.h     | 38 +++++++++
- drivers/gpu/drm/i915/gt/intel_rc6.c          |  2 +-
- drivers/gpu/drm/i915/gt/intel_rps.c          |  2 +-
- 8 files changed, 131 insertions(+), 89 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.c
- create mode 100644 drivers/gpu/drm/i915/display/vlv_clock.h
+ drivers/gpu/drm/i915/display/intel_tc.c | 57 +++++++++++++++++++++----
+ 1 file changed, 48 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 853543443072..b9949e2629d7 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -298,6 +298,7 @@ i915-y += \
- 	display/skl_scaler.o \
- 	display/skl_universal_plane.o \
- 	display/skl_watermark.o \
-+	display/vlv_clock.o \
- 	display/vlv_sideband.o
- i915-$(CONFIG_ACPI) += \
- 	display/intel_acpi.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 180d4d7dc1da..18f5f93b613d 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -48,6 +48,7 @@
- #include "intel_vdsc.h"
- #include "skl_watermark.h"
- #include "skl_watermark_regs.h"
-+#include "vlv_clock.h"
- #include "vlv_dsi.h"
- #include "vlv_sideband.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index 73a08bd84a70a..b8453fc3ab688 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -66,6 +66,7 @@ struct intel_tc_port {
+ 	enum tc_port_mode init_mode;
+ 	enum phy_fia phy_fia;
+ 	u8 phy_fia_idx;
++	u8 max_lane_count;
+ };
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6109f3d505c3..cc08efc21cc2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -128,11 +128,9 @@
- #include "skl_scaler.h"
- #include "skl_universal_plane.h"
- #include "skl_watermark.h"
--#include "vlv_dpio_phy_regs.h"
- #include "vlv_dsi.h"
- #include "vlv_dsi_pll.h"
- #include "vlv_dsi_regs.h"
--#include "vlv_sideband.h"
+ static enum intel_display_power_domain
+@@ -365,12 +366,12 @@ static int intel_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
+ 	}
+ }
  
- static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state);
-@@ -140,86 +138,6 @@ static void hsw_set_transconf(const struct intel_crtc_state *crtc_state);
- static void bdw_set_pipe_misc(struct intel_dsb *dsb,
- 			      const struct intel_crtc_state *crtc_state);
- 
--/* returns HPLL frequency in kHz */
--int vlv_clock_get_hpll_vco(struct drm_device *drm)
--{
--	struct intel_display *display = to_intel_display(drm);
--	int hpll_freq, vco_freq[] = { 800, 1600, 2000, 2400 };
--
--	if (!display->vlv_clock.hpll_freq) {
--		/* Obtain SKU information */
--		hpll_freq = vlv_cck_read(drm, CCK_FUSE_REG) &
--			CCK_FUSE_HPLL_FREQ_MASK;
--
--		display->vlv_clock.hpll_freq = vco_freq[hpll_freq] * 1000;
--
--		drm_dbg_kms(drm, "HPLL frequency: %d kHz\n", display->vlv_clock.hpll_freq);
--	}
--
--	return display->vlv_clock.hpll_freq;
--}
--
--static int vlv_get_cck_clock(struct drm_device *drm,
--			     const char *name, u32 reg, int ref_freq)
--{
--	u32 val;
--	int divider;
--
--	val = vlv_cck_read(drm, reg);
--	divider = val & CCK_FREQUENCY_VALUES;
--
--	drm_WARN(drm, (val & CCK_FREQUENCY_STATUS) !=
--		 (divider << CCK_FREQUENCY_STATUS_SHIFT),
--		 "%s change in progress\n", name);
--
--	return DIV_ROUND_CLOSEST(ref_freq << 1, divider + 1);
--}
--
--static int vlv_get_cck_clock_hpll(struct drm_device *drm,
--				  const char *name, u32 reg)
--{
--	int hpll;
--
--	vlv_cck_get(drm);
--
--	hpll = vlv_get_cck_clock(drm, name, reg, vlv_clock_get_hpll_vco(drm));
--
--	vlv_cck_put(drm);
--
--	return hpll;
--}
--
--int vlv_clock_get_hrawclk(struct drm_device *drm)
--{
--	/* RAWCLK_FREQ_VLV register updated from power well code */
--	return vlv_get_cck_clock_hpll(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL);
--}
--
--int vlv_clock_get_czclk(struct drm_device *drm)
--{
--	struct intel_display *display = to_intel_display(drm);
--
--	if (!display->vlv_clock.czclk_freq) {
--		display->vlv_clock.czclk_freq = vlv_get_cck_clock_hpll(drm, "czclk",
--								       CCK_CZ_CLOCK_CONTROL);
--		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", display->vlv_clock.czclk_freq);
--	}
--
--	return display->vlv_clock.czclk_freq;
--}
--
--int vlv_clock_get_cdclk(struct drm_device *drm)
--{
--	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
--				 vlv_clock_get_hpll_vco(drm));
--}
--
--int vlv_clock_get_gpll(struct drm_device *drm)
--{
--	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
--				 vlv_clock_get_czclk(drm));
--}
--
- static bool is_hdr_mode(const struct intel_crtc_state *crtc_state)
+-int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
++static int get_max_lane_count(struct intel_tc_port *tc)
  {
- 	return (crtc_state->active_planes &
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 54961cb656c3..9a9a44b61f7f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -435,11 +435,6 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state);
- void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
- void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
- void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
--int vlv_clock_get_hpll_vco(struct drm_device *drm);
--int vlv_clock_get_hrawclk(struct drm_device *drm);
--int vlv_clock_get_czclk(struct drm_device *drm);
--int vlv_clock_get_cdclk(struct drm_device *drm);
--int vlv_clock_get_gpll(struct drm_device *drm);
- bool intel_has_pending_fb_unpin(struct intel_display *display);
- void intel_encoder_destroy(struct drm_encoder *encoder);
- struct drm_display_mode *
-diff --git a/drivers/gpu/drm/i915/display/vlv_clock.c b/drivers/gpu/drm/i915/display/vlv_clock.c
-new file mode 100644
-index 000000000000..3de5cc3e7d71
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/vlv_clock.c
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: MIT
-+/* Copyright © 2025 Intel Corporation */
-+
-+#include <drm/drm_print.h>
-+
-+#include "intel_display_core.h"
-+#include "intel_display_types.h"
-+#include "vlv_clock.h"
-+#include "vlv_sideband.h"
-+
-+/* returns HPLL frequency in kHz */
-+int vlv_clock_get_hpll_vco(struct drm_device *drm)
+-	struct intel_display *display = to_intel_display(dig_port);
+-	struct intel_tc_port *tc = to_tc_port(dig_port);
++	struct intel_display *display = to_intel_display(tc->dig_port);
++	struct intel_digital_port *dig_port = tc->dig_port;
+ 
+-	if (!intel_encoder_is_tc(&dig_port->base) || tc->mode != TC_PORT_DP_ALT)
++	if (tc->mode != TC_PORT_DP_ALT)
+ 		return 4;
+ 
+ 	assert_tc_cold_blocked(tc);
+@@ -384,6 +385,21 @@ int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
+ 	return intel_tc_port_get_max_lane_count(dig_port);
+ }
+ 
++static void read_pin_configuration(struct intel_tc_port *tc)
 +{
-+	struct intel_display *display = to_intel_display(drm);
-+	int hpll_freq, vco_freq[] = { 800, 1600, 2000, 2400 };
++	tc->max_lane_count = get_max_lane_count(tc);
++}
 +
-+	if (!display->vlv_clock.hpll_freq) {
-+		/* Obtain SKU information */
-+		hpll_freq = vlv_cck_read(drm, CCK_FUSE_REG) &
-+			CCK_FUSE_HPLL_FREQ_MASK;
++int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
++{
++	struct intel_tc_port *tc = to_tc_port(dig_port);
 +
-+		display->vlv_clock.hpll_freq = vco_freq[hpll_freq] * 1000;
++	if (!intel_encoder_is_tc(&dig_port->base))
++		return 4;
 +
-+		drm_dbg_kms(drm, "HPLL frequency: %d kHz\n", display->vlv_clock.hpll_freq);
++	return get_max_lane_count(tc);
++}
++
+ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
+ 				      int required_lanes)
+ {
+@@ -596,9 +612,12 @@ static void icl_tc_phy_get_hw_state(struct intel_tc_port *tc)
+ 	tc_cold_wref = __tc_cold_block(tc, &domain);
+ 
+ 	tc->mode = tc_phy_get_current_mode(tc);
+-	if (tc->mode != TC_PORT_DISCONNECTED)
++	if (tc->mode != TC_PORT_DISCONNECTED) {
+ 		tc->lock_wakeref = tc_cold_block(tc);
+ 
++		read_pin_configuration(tc);
 +	}
 +
-+	return display->vlv_clock.hpll_freq;
-+}
+ 	__tc_cold_unblock(tc, domain, tc_cold_wref);
+ }
+ 
+@@ -656,8 +675,11 @@ static bool icl_tc_phy_connect(struct intel_tc_port *tc,
+ 
+ 	tc->lock_wakeref = tc_cold_block(tc);
+ 
+-	if (tc->mode == TC_PORT_TBT_ALT)
++	if (tc->mode == TC_PORT_TBT_ALT) {
++		read_pin_configuration(tc);
 +
-+static int vlv_get_cck_clock(struct drm_device *drm,
-+			     const char *name, u32 reg, int ref_freq)
-+{
-+	u32 val;
-+	int divider;
-+
-+	val = vlv_cck_read(drm, reg);
-+	divider = val & CCK_FREQUENCY_VALUES;
-+
-+	drm_WARN(drm, (val & CCK_FREQUENCY_STATUS) !=
-+		 (divider << CCK_FREQUENCY_STATUS_SHIFT),
-+		 "%s change in progress\n", name);
-+
-+	return DIV_ROUND_CLOSEST(ref_freq << 1, divider + 1);
-+}
-+
-+static int vlv_get_cck_clock_hpll(struct drm_device *drm,
-+				  const char *name, u32 reg)
-+{
-+	int hpll;
-+
-+	vlv_cck_get(drm);
-+
-+	hpll = vlv_get_cck_clock(drm, name, reg, vlv_clock_get_hpll_vco(drm));
-+
-+	vlv_cck_put(drm);
-+
-+	return hpll;
-+}
-+
-+int vlv_clock_get_hrawclk(struct drm_device *drm)
-+{
-+	/* RAWCLK_FREQ_VLV register updated from power well code */
-+	return vlv_get_cck_clock_hpll(drm, "hrawclk", CCK_DISPLAY_REF_CLOCK_CONTROL);
-+}
-+
-+int vlv_clock_get_czclk(struct drm_device *drm)
-+{
-+	struct intel_display *display = to_intel_display(drm);
-+
-+	if (!display->vlv_clock.czclk_freq) {
-+		display->vlv_clock.czclk_freq = vlv_get_cck_clock_hpll(drm, "czclk",
-+								       CCK_CZ_CLOCK_CONTROL);
-+		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", display->vlv_clock.czclk_freq);
+ 		return true;
++	}
+ 
+ 	if ((!tc_phy_is_ready(tc) ||
+ 	     !icl_tc_phy_take_ownership(tc, true)) &&
+@@ -668,6 +690,7 @@ static bool icl_tc_phy_connect(struct intel_tc_port *tc,
+ 		goto out_unblock_tc_cold;
+ 	}
+ 
++	read_pin_configuration(tc);
+ 
+ 	if (!tc_phy_verify_legacy_or_dp_alt_mode(tc, required_lanes))
+ 		goto out_release_phy;
+@@ -858,9 +881,12 @@ static void adlp_tc_phy_get_hw_state(struct intel_tc_port *tc)
+ 	port_wakeref = intel_display_power_get(display, port_power_domain);
+ 
+ 	tc->mode = tc_phy_get_current_mode(tc);
+-	if (tc->mode != TC_PORT_DISCONNECTED)
++	if (tc->mode != TC_PORT_DISCONNECTED) {
+ 		tc->lock_wakeref = tc_cold_block(tc);
+ 
++		read_pin_configuration(tc);
 +	}
 +
-+	return display->vlv_clock.czclk_freq;
-+}
-+
-+int vlv_clock_get_cdclk(struct drm_device *drm)
-+{
-+	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
-+				 vlv_clock_get_hpll_vco(drm));
-+}
-+
-+int vlv_clock_get_gpll(struct drm_device *drm)
-+{
-+	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
-+				 vlv_clock_get_czclk(drm));
-+}
-diff --git a/drivers/gpu/drm/i915/display/vlv_clock.h b/drivers/gpu/drm/i915/display/vlv_clock.h
-new file mode 100644
-index 000000000000..5742ed3c628d
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/vlv_clock.h
-@@ -0,0 +1,38 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2025 Intel Corporation */
-+
-+#ifndef __VLV_CLOCK_H__
-+#define __VLV_CLOCK_H__
-+
-+struct drm_device;
-+
-+#ifdef I915
-+int vlv_clock_get_hpll_vco(struct drm_device *drm);
-+int vlv_clock_get_hrawclk(struct drm_device *drm);
-+int vlv_clock_get_czclk(struct drm_device *drm);
-+int vlv_clock_get_cdclk(struct drm_device *drm);
-+int vlv_clock_get_gpll(struct drm_device *drm);
-+#else
-+static inline int vlv_clock_get_hpll_vco(struct drm_device *drm)
-+{
-+	return 0;
-+}
-+static inline int vlv_clock_get_hrawclk(struct drm_device *drm)
-+{
-+	return 0;
-+}
-+static inline int vlv_clock_get_czclk(struct drm_device *drm)
-+{
-+	return 0;
-+}
-+static inline int vlv_clock_get_cdclk(struct drm_device *drm)
-+{
-+	return 0;
-+}
-+static inline int vlv_clock_get_gpll(struct drm_device *drm)
-+{
-+	return 0;
-+}
-+#endif
-+
-+#endif /* __VLV_CLOCK_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 0fd23b04d3f9..1cd476647f75 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -6,7 +6,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/string_helpers.h>
+ 	intel_display_power_put(display, port_power_domain, port_wakeref);
+ }
  
--#include "display/intel_display.h"
-+#include "display/vlv_clock.h"
- #include "gem/i915_gem_region.h"
- #include "i915_drv.h"
- #include "i915_reg.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
-index 664ffe02dc28..71db0a445afb 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rps.c
-@@ -7,8 +7,8 @@
+@@ -873,6 +899,9 @@ static bool adlp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
  
- #include <drm/intel/i915_drm.h>
+ 	if (tc->mode == TC_PORT_TBT_ALT) {
+ 		tc->lock_wakeref = tc_cold_block(tc);
++
++		read_pin_configuration(tc);
++
+ 		return true;
+ 	}
  
--#include "display/intel_display.h"
- #include "display/intel_display_rps.h"
-+#include "display/vlv_clock.h"
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
+@@ -894,6 +923,8 @@ static bool adlp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ 
+ 	tc->lock_wakeref = tc_cold_block(tc);
+ 
++	read_pin_configuration(tc);
++
+ 	if (!tc_phy_verify_legacy_or_dp_alt_mode(tc, required_lanes))
+ 		goto out_unblock_tc_cold;
+ 
+@@ -1124,9 +1155,12 @@ static void xelpdp_tc_phy_get_hw_state(struct intel_tc_port *tc)
+ 	tc_cold_wref = __tc_cold_block(tc, &domain);
+ 
+ 	tc->mode = tc_phy_get_current_mode(tc);
+-	if (tc->mode != TC_PORT_DISCONNECTED)
++	if (tc->mode != TC_PORT_DISCONNECTED) {
+ 		tc->lock_wakeref = tc_cold_block(tc);
+ 
++		read_pin_configuration(tc);
++	}
++
+ 	drm_WARN_ON(display->drm,
+ 		    (tc->mode == TC_PORT_DP_ALT || tc->mode == TC_PORT_LEGACY) &&
+ 		    !xelpdp_tc_phy_tcss_power_is_enabled(tc));
+@@ -1138,14 +1172,19 @@ static bool xelpdp_tc_phy_connect(struct intel_tc_port *tc, int required_lanes)
+ {
+ 	tc->lock_wakeref = tc_cold_block(tc);
+ 
+-	if (tc->mode == TC_PORT_TBT_ALT)
++	if (tc->mode == TC_PORT_TBT_ALT) {
++		read_pin_configuration(tc);
++
+ 		return true;
++	}
+ 
+ 	if (!xelpdp_tc_phy_enable_tcss_power(tc, true))
+ 		goto out_unblock_tccold;
+ 
+ 	xelpdp_tc_phy_take_ownership(tc, true);
+ 
++	read_pin_configuration(tc);
++
+ 	if (!tc_phy_verify_legacy_or_dp_alt_mode(tc, required_lanes))
+ 		goto out_release_phy;
+ 
 -- 
-2.39.5
+2.49.1
 
