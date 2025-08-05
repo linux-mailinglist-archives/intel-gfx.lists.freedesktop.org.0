@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F98B1B0DE
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BDAB1B0DF
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Aug 2025 11:19:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7C2310E62B;
-	Tue,  5 Aug 2025 09:19:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C4D410E62E;
+	Tue,  5 Aug 2025 09:19:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZ2Q9bwc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kgoyMmyL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECBD10E62C;
- Tue,  5 Aug 2025 09:19:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3484A10E62F;
+ Tue,  5 Aug 2025 09:19:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754385555; x=1785921555;
+ t=1754385559; x=1785921559;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nl7E2+52zRcCvjwzQoaHc6zLQrDr1xwl2d5DWtbx1N0=;
- b=KZ2Q9bwc+IrscZQygtHC6n5ZLoH2TeRAxsyKRsOv/+bsTl08kREcYtPd
- XdBS9Q3fTXczh+cPboy3/e3otk0AwfGfcCy4CS80mnIKbI8qbpM8KdVIi
- +AOaHoeo37MQEt1CRT2Bbvcc3ZCRBPmUKlpeEKO+wrxEkg8GfwiFuWVRF
- jA3Z9KvaACG3LtjC7+WrSXvEAi9jjwD2JE8HkhKIbgBie+doW7Y3oZoNW
- YKqI7Tr8q9QgJHAiFuhAjz+UL2tzKV9pvVb2CKijVsTqm8P2T+tiNUPfW
- j4beITt0zvl3QIvDlU8UkKV6TOQt4RlR0NQmx9RfXmmaHYeFk5z6Nml38 A==;
-X-CSE-ConnectionGUID: I2+mc7x+TTOB/EIplYKNVg==
-X-CSE-MsgGUID: 5BMnKexbTtmK/a0b6H5X9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56566655"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56566655"
+ bh=6VsJegsuF1PhZJ0+4SCM2Z8csrsHiBGSRM6uea1+Nl8=;
+ b=kgoyMmyLRVeXqScdwuC55ZEgHKSz0mwQdcUHO0JqvEUdCsY5/IdR1Kwh
+ W8be2WWrUEz8a5hg7DN1uOZsG16pY3DVpLtG7d3t7alztqqWpRLHzMwvk
+ bF7NbG+iATrRhrMJ92nIYFMLlRuRNsGTJwSzhg3mkIesi+HOWdQQIQCwM
+ K+14ImKvKoDnTqN5pzJCkSqOo9sTLw4ovGtcvdYx/KrluGCB/oZJiM7gS
+ ekAPxq+26CuzVpDRRRdtrbBsfRLWLhCdzjcMxH0kicbqE6H7SF2D75Ytf
+ Gl5nWaCbWTjxeuR3E+kAc4Dpr8wL8WRIWr4giLWOvxFM9ogmtXLR/QTFX w==;
+X-CSE-ConnectionGUID: 6APdXbtLSxeKCY7Zpc83wA==
+X-CSE-MsgGUID: YbkE0YqJSQCTlgIDybS0ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11512"; a="56566656"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="56566656"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:14 -0700
-X-CSE-ConnectionGUID: vh2k3xQzQpO4ZotHGplk9Q==
-X-CSE-MsgGUID: yF5zDsjFSf6EZhxZtdsyLw==
+ 05 Aug 2025 02:19:19 -0700
+X-CSE-ConnectionGUID: QT9NdnXzTuCcXrKAyAqrhQ==
+X-CSE-MsgGUID: U+EqZLN9T6KRvAO73t6FCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164738387"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; d="scan'208";a="164738390"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.8])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 02:19:13 -0700
+ 05 Aug 2025 02:19:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 09/12] drm/i915: remove intel_update_czclk() as unnecessary
-Date: Tue,  5 Aug 2025 12:18:22 +0300
-Message-Id: <1bf18b55d218ee4ddd35bc067decd097e7ae228f.1754385408.git.jani.nikula@intel.com>
+Subject: [PATCH 10/12] drm/i915: log HPLL frequency similar to CZCLK
+Date: Tue,  5 Aug 2025 12:18:23 +0300
+Message-Id: <92678b1950681c853541649c6c9c9da04f27e98c.1754385408.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754385408.git.jani.nikula@intel.com>
 References: <cover.1754385408.git.jani.nikula@intel.com>
@@ -70,77 +70,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With vlv_clock_get_czclk() caching the result on first use, we no longer
-need a separate initializer. Remove intel_update_czclk() as
-unnecessary. Log the CZCLK in vlv_clock_get_czclk() instead.
+With vlv_clock_get_czclk() logging the CZ clock rate when first cached,
+do the same for HPLL VCO.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c     | 16 +++-------------
- drivers/gpu/drm/i915/display/intel_display.h     |  1 -
- .../gpu/drm/i915/display/intel_display_driver.c  |  1 -
- 3 files changed, 3 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 077d0340ac2d..a39133b45309 100644
+index a39133b45309..ab35ecccba63 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -197,9 +197,11 @@ int vlv_clock_get_czclk(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
+@@ -152,6 +152,8 @@ int vlv_clock_get_hpll_vco(struct drm_device *drm)
+ 			CCK_FUSE_HPLL_FREQ_MASK;
  
--	if (!i915->czclk_freq)
-+	if (!i915->czclk_freq) {
- 		i915->czclk_freq = vlv_get_cck_clock_hpll(drm, "czclk",
- 							  CCK_CZ_CLOCK_CONTROL);
-+		drm_dbg_kms(drm, "CZ clock rate: %d kHz\n", i915->czclk_freq);
-+	}
+ 		i915->hpll_freq = vco_freq[hpll_freq] * 1000;
++
++		drm_dbg_kms(drm, "HPLL frequency: %d kHz\n", i915->hpll_freq);
+ 	}
  
- 	return i915->czclk_freq;
- }
-@@ -216,18 +218,6 @@ int vlv_clock_get_gpll(struct drm_device *drm)
- 				 vlv_clock_get_czclk(drm));
- }
- 
--void intel_update_czclk(struct intel_display *display)
--{
--	int czclk_freq;
--
--	if (!display->platform.valleyview && !display->platform.cherryview)
--		return;
--
--	czclk_freq = vlv_clock_get_czclk(display->drm);
--
--	drm_dbg_kms(display->drm, "CZ clock rate: %d kHz\n", czclk_freq);
--}
--
- static bool is_hdr_mode(const struct intel_crtc_state *crtc_state)
- {
- 	return (crtc_state->active_planes &
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 5c406b276a76..54961cb656c3 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -528,7 +528,6 @@ void intel_init_display_hooks(struct intel_display *display);
- void intel_setup_outputs(struct intel_display *display);
- int intel_initial_commit(struct intel_display *display);
- void intel_panel_sanitize_ssc(struct intel_display *display);
--void intel_update_czclk(struct intel_display *display);
- enum drm_mode_status intel_mode_valid(struct drm_device *dev,
- 				      const struct drm_display_mode *mode);
- int intel_atomic_commit(struct drm_device *dev, struct drm_atomic_state *_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index cf1c14412abe..f84a0b26b7a6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -482,7 +482,6 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 	intel_dpll_init(display);
- 	intel_fdi_pll_freq_update(display);
- 
--	intel_update_czclk(display);
- 	intel_display_driver_init_hw(display);
- 	intel_dpll_update_ref_clks(display);
- 
+ 	return i915->hpll_freq;
 -- 
 2.39.5
 
