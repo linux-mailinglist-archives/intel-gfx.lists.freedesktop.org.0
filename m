@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C357B1BFD9
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 07:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED8EAB1BFDA
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 07:22:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1748710E2EE;
-	Wed,  6 Aug 2025 05:22:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CFBF10E39E;
+	Wed,  6 Aug 2025 05:22:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6kNbFBM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N3NFolUB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 045E710E2EE;
- Wed,  6 Aug 2025 05:22:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25C5C10E300;
+ Wed,  6 Aug 2025 05:22:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754457750; x=1785993750;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kGzrsxFULmmhm0KPb9isSXjD1OBgxOFl1u2bi+bYJdg=;
- b=d6kNbFBMWQ3KeRbKfr89/nh+Ba7rUuSGLp3kqHt/Uk3B2IUtXwIJIDcB
- 0XaGf6AdwjpGA13yu3fJw5HJJ/hejEAgyWlERoeqIocgYlLa80XPnfydk
- WQVRGL11hEGHkyQOAKnPxN9HUmfW8VXyjyK/D+9l8qozd10goTRcZ831n
- YZadpLoXjwNdddqr/M56T2Y4gNWPnvUAt/gnIoXD9vGZR7oyFb/yz/HEu
- t0r3N2mzqliWA5t1y4eBJMK/MdQ4N4pz4+yaajbrcZkK/J1aobPM3IkIJ
- 8EA6hA6MD24XP/tX+YNXOYbZs4N31rmqjhKtiDcZWWN7e3elI0GAualK3 A==;
-X-CSE-ConnectionGUID: uWZgErm6QRKvk9vO+ncF8w==
-X-CSE-MsgGUID: lYEaCd1xSHinYcxaD1TObQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60597249"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60597249"
+ t=1754457751; x=1785993751;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=DjsSpUDqaDcMvEZMRtR3oW8XLEth1Ly0X2z2XnE5GS4=;
+ b=N3NFolUBEm0NnArq3DXn4zHLQ4fSv8rPMRvtLeOH24OP43TU1UInQcua
+ qV1eV385fw+ZES03i214cZeRcTL4h9q314UkB/WKmb/VxYBCwRP+BqVXP
+ esyG5iLvhXYMEbu+af8CpbmRQ5jELrVOjtft615PGQt7caTnDE3yjMMk5
+ jnfn1s2WZp3zezXTnc6HGKm2SzuFz6Fs78DgaNYA5wyOYWw9Gxc070yBZ
+ fK2uK2UkweYrgvFxiOnUrNCxnoa4DMtbw/x/Kq0hF6vK5zvmiRN5WxIbr
+ non0vDwoB5sfYOpDd9K4bLPASajeK0ZOc4oNG6EVpLVlRFhpYqeaWtQXl g==;
+X-CSE-ConnectionGUID: l9AYCzqpSVatQ4ErsdGa0A==
+X-CSE-MsgGUID: tgJJ51PURgq4Gccf+cvEaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60597250"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60597250"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 22:22:29 -0700
-X-CSE-ConnectionGUID: jkkGk07AT1iW/eVSWSk/HQ==
-X-CSE-MsgGUID: id32BdMNSha8BZlvL+dq4g==
+ 05 Aug 2025 22:22:30 -0700
+X-CSE-ConnectionGUID: 0CvTJ6giQoCl3zjF5smaVQ==
+X-CSE-MsgGUID: ucU2/vf8S3mN7DxtcDDUxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="188350225"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="188350229"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.95])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 22:22:27 -0700
+ 05 Aug 2025 22:22:29 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 0/4] Wait PSR idle before on dsb commit
-Date: Wed,  6 Aug 2025 08:22:09 +0300
-Message-ID: <20250806052213.1800559-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/psr: Pass intel_crtc_state instead of
+ intel_dp in wait_for_idle
+Date: Wed,  6 Aug 2025 08:22:10 +0300
+Message-ID: <20250806052213.1800559-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250806052213.1800559-1-jouni.hogander@intel.com>
+References: <20250806052213.1800559-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,28 +72,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are currently observing crc failures after we started using dsb for PSR
-updates as well. This seems to happen because PSR HW is still sending
-couple of updates using old framebuffers on wake-up.
+This is preparation to add own function for polling PSR being ready for
+update when doing dsb commit.
 
-On non-dsb commit we are waiting PSR HW to idle before starting a new
-commit. Fix problems with dsb commit by adding similar wait on dsb
-commit as well.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
-v2: add pass crtc_state->dsb_commit as parameter
-
-Jouni Högander (4):
-  drm/i915/psr: Pass intel_crtc_state instead of intel_dp in
-    wait_for_idle
-  drm/i915/psr: Add new define for PSR idle timeout
-  drm/i915/psr: New interface adding PSR idle poll into dsb commit
-  drm/i915/psr: Add poll for checking PSR is idle before starting update
-
- drivers/gpu/drm/i915/display/intel_display.c |  2 +
- drivers/gpu/drm/i915/display/intel_psr.c     | 70 +++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_psr.h     |  1 +
- 3 files changed, 57 insertions(+), 16 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 6bd3454bb00e..c2ab00fe2c20 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2982,10 +2982,11 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 	}
+ }
+ 
+-static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
++static int
++_psr2_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
+ {
+-	struct intel_display *display = to_intel_display(intel_dp);
+-	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
++	struct intel_display *display = to_intel_display(new_crtc_state);
++	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 
+ 	/*
+ 	 * Any state lower than EDP_PSR2_STATUS_STATE_DEEP_SLEEP is enough.
+@@ -2997,10 +2998,11 @@ static int _psr2_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
+ 				       EDP_PSR2_STATUS_STATE_DEEP_SLEEP, 50);
+ }
+ 
+-static int _psr1_ready_for_pipe_update_locked(struct intel_dp *intel_dp)
++static int
++_psr1_ready_for_pipe_update_locked(const struct intel_crtc_state *new_crtc_state)
+ {
+-	struct intel_display *display = to_intel_display(intel_dp);
+-	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
++	struct intel_display *display = to_intel_display(new_crtc_state);
++	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
+ 
+ 	/*
+ 	 * From bspec: Panel Self Refresh (BDW+)
+@@ -3039,9 +3041,9 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
+ 			continue;
+ 
+ 		if (intel_dp->psr.sel_update_enabled)
+-			ret = _psr2_ready_for_pipe_update_locked(intel_dp);
++			ret = _psr2_ready_for_pipe_update_locked(new_crtc_state);
+ 		else
+-			ret = _psr1_ready_for_pipe_update_locked(intel_dp);
++			ret = _psr1_ready_for_pipe_update_locked(new_crtc_state);
+ 
+ 		if (ret)
+ 			drm_err(display->drm,
 -- 
 2.43.0
 
