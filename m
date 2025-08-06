@@ -2,173 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3EE2B1C234
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 10:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B8BB1D995
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 16:02:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93DA410E73D;
-	Wed,  6 Aug 2025 08:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF1010E859;
+	Thu,  7 Aug 2025 14:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JNV/DtXW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OByNCURg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E83310E72D;
- Wed,  6 Aug 2025 08:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754469159; x=1786005159;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3RFy28csbOKMExhNlO2yJNejYE+BolTdIZNz7DRHKgc=;
- b=JNV/DtXWKKDcypR2Jw27RM6ajsVHSgjNgik7Djwus5dU8JXhEwdvvOeC
- t3D6P+IjBDPlOeyIVuUtec/A9cadig0kljt+Oh2uPVXeFJ9CJmf1SVgDL
- vPMs6Tv60wRgju1ZseQWGiYt85vm6aFDR3rlqYK7xgT9jtgwT/t+/fwK0
- FLuDeGq7esChuyp+9xmPt5zCemPrxilzaV+rdqZWfa4OWIOtv3a+hwnDj
- GC06wva3R/pXS6n9hLGlz5J0+DG+NUSl5WOBGJGI48pMxSxGN+pJskdeU
- D185XCT6XfOG2wf/Ys8dPZinf+3eX2aR8gJvqWy/D+ft3rt1nXZgIcBlN g==;
-X-CSE-ConnectionGUID: auRBdEw/Rue5cwOlYCx5Ew==
-X-CSE-MsgGUID: iYEvjHXQT+KTH/9H7Ha/4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="68230063"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68230063"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 01:32:39 -0700
-X-CSE-ConnectionGUID: hfPjfurqR6SKNedHGtuemw==
-X-CSE-MsgGUID: /Uv1X3MxSKmCy/R0QsMVRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165485382"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 01:32:38 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 01:32:38 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 01:32:38 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (40.107.95.53) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 01:32:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yEyuFawUVRekP4vuDMpNTjykcWpT84FTFnNqGkdneTf2aJZMF4+kzJiBNmUx1N1PtqgEgdnY4gfqT9LKgG8tJG0XUi/MIgDlrk5bDQ+yP4KY0tmpxuRNMZUt+wWw8ljA2cMys9OzKLDQH0dNnR5heeFQ8+TTRDWMkL4JBXgiMGEvCU9B7MUkBoI+NOrlhXCVaXMcHtpe5Kq45M4WqzowI6vV24k9PzilHeCUzxSRh32QwUFg9C+3D/9nPKgbqFs+UIxD2AXxcGeMK74/D52Jp3ENq4Do8b7RTPifAWxSrbaoLzh2kcMcHQ0NDs8thCozS2WZraWNHoxlYSsebL79qQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L/wrWNaweRlWWOwYJj7ZvEg6vE9tmhL4WynBVXW8bk4=;
- b=Rjs299Rhkf2XoE95IeLHQHbcJue8ihXZnemxRC2IooVJfiew11G+jStQSD7rFQGHP3Cq0GFYd9RxOBsvwoJclorhFPhbPHTGeqg+mEV+b6m32+9RaGWf38C1Tp1+oPfhHRpi6jiMfuf0RCYqIQlqg6A5i1w1KSFDZC5XnhmVBXHC+2s15/3t1M50k3BlPQxhZWGPv4kZraI6KjOA8XR1izT4ZP+YRNMkL4VTYREFC86RnNxG+2D0ui9eJWgdngUXSnNMN9oufyLq76fddgGpJ+uVpabkhO6WUM406nnp+7arvt78l1mMnfBEo9YLfBEVO/Ebh62qKt36xjaDAc7Hig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by LV2PR11MB6048.namprd11.prod.outlook.com
- (2603:10b6:408:178::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Wed, 6 Aug
- 2025 08:32:30 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::76e3:aa2a:a205:819f]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::76e3:aa2a:a205:819f%7]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
- 08:32:30 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Garg, Nemesa" <nemesa.garg@intel.com>, "Manna, Animesh"
- <animesh.manna@intel.com>
-Subject: RE: [PATCH] drm/i915/scaler: Fix WA_14011503117
-Thread-Topic: [PATCH] drm/i915/scaler: Fix WA_14011503117
-Thread-Index: AQHcBn9/AB0jz2RTTUa4CxHiczIdHbRVOY0AgAAQTgCAAAHgkA==
-Date: Wed, 6 Aug 2025 08:32:30 +0000
-Message-ID: <DM3PPF208195D8DA8B6D7B503B6C785A726E32DA@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20250806030856.3514127-1-suraj.kandpal@intel.com>
- <06796b24cd8fcaf992601b92dd8261a13546d22d@intel.com>
- <652c33a6b7b69e9cfea511a442df9b1280da752c@intel.com>
-In-Reply-To: <652c33a6b7b69e9cfea511a442df9b1280da752c@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|LV2PR11MB6048:EE_
-x-ms-office365-filtering-correlation-id: dc57c647-78b7-4999-2d7b-08ddd4c3c88f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?COEER8rDhGR2caJWlP70BQcfHo8c/Mg0VkTT7mEm5rAQ1O57IA6wqy3k8KO3?=
- =?us-ascii?Q?61VN9PyWZ9wrULro4oj96P0/ZliYyK7y/SmvIUx5kzmOOp+TdRK6nlRxu5X7?=
- =?us-ascii?Q?tYfU4rP1sclXuj5NfSXsnha1i9eh1vVGSCuhlFvOFWuEAayGi1VWzXxJ0Ncy?=
- =?us-ascii?Q?O2mJ8bSn6ojJUQwMOnj9R75Iv94+dg+ne9rpGoYquAnLpysvsova0RamCpwF?=
- =?us-ascii?Q?6+YCkRVCGbejZqArc1fA7wgqlXifRl46d0PunGGXM+IDiCXNYzj2oIFr4Cau?=
- =?us-ascii?Q?6B4dTfxm14ztxY8USe6YDpTebAq0knFkPaJErJnNcgsNOEXvCbf737Bn0m2a?=
- =?us-ascii?Q?+xLwBbNKWprU65CSlFeMgHhJSWzVvbW8lTajB46+0yRfzNSbA4xsOjk2/kHs?=
- =?us-ascii?Q?HGQRavOVKxv6bmIMC0cPdbeueUtx/CvgpG+1+wN2EKMMlQ8IKNAxro2l3+Vf?=
- =?us-ascii?Q?9nVIXlRu7GDAB2TJ6QCChbohNN7o9iPchQzpVHuP1sJ9Kf0BK9hkMWY/Wevy?=
- =?us-ascii?Q?btJ7MRejnyqp1NaTlstqaIuhuEoXVgzalCpXXNBoVK6aWVvsuMbl9BAQ1gaw?=
- =?us-ascii?Q?sGGzNHW5pIwe+tOtpHPbBox9SzXFi/r+WwaJVIxBSHHe8uBR8Kv7V2MVBAA4?=
- =?us-ascii?Q?IjO0Oby6WG/FYQXId/R35dPy01o+z+hnVMp38djy4KytbOFQJVxJ1kikzGYF?=
- =?us-ascii?Q?GbYQ+sUbbEqQ9Yt6dYkh0/f07vh1qSllujNe/2gGbz5bKFNS2CoCZvSm3EFj?=
- =?us-ascii?Q?xo+b32/Ewd7U4ybv0sBjlFihfFUrsTdclizmJX2BT5i4fY+iIVevadtJsauM?=
- =?us-ascii?Q?HpK4xmsZ2ZGSK0EGntJGzxs5kI+7oVVXPko4FiEy3n+X7e8f1L3hKVx6S1eC?=
- =?us-ascii?Q?p+fJhNYoIj3u+4iVgKiJbgJqanameNeglWZ6Z+/p+lD+T0tHOh0801R+KcPp?=
- =?us-ascii?Q?LTPuvai+JQXS1Hezn7uLSCzwJM853ruJip/u4LxYP+54ye6ElrfZmYEqYVnN?=
- =?us-ascii?Q?xZrGUMq4aD1sf1utTeQnDm0fYQDWduMzB5muFB4HZujrCusiPWDuOuHIKzPl?=
- =?us-ascii?Q?xfrFbKDGCi3Y55e/xkBB/x4tAqc/oBJjuAXMPGPA/x8k0WiCkxspq4yte/+M?=
- =?us-ascii?Q?6nKansNvjO9po4SebRCwdAo5DRDNW6zX0sTCunvAktlYMC7n13cnm8QCtyJi?=
- =?us-ascii?Q?Mubs+y+m4SO2bhvx7xNoEbSO7MMerV/Eitp8Mm+uvIxRidNKKvK6tU0+Z8BA?=
- =?us-ascii?Q?jTV4FbWLstH3zH0MEUqnt/Kkei+SWdWIQIsAttWlgMDlKFmxaD3sSQYrI4So?=
- =?us-ascii?Q?t9J0pW3TX4UTX3P1KjpZRdVkoYXwfixShPrF3hcWU3LkEe2uwJm8cSBsb/V5?=
- =?us-ascii?Q?pmaz2ovy+au2flooOjLLq35A+eG/byGOwH5i9f2fLN7sZ5y8KxsqqBI23UP6?=
- =?us-ascii?Q?mzNgxEArc8DJPJAsjDWgaGAuYM3qU6VFkAyrhTZqq9vuz6+i1ARd7Zc+wrUb?=
- =?us-ascii?Q?h3YIYvx0nZtJmzg=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yETm6BpvV/050ZPsJoe9yo7i+Ldvhkdn2PDiIYsH9TKWEZR7Tk5ze6XP2phS?=
- =?us-ascii?Q?HV9zY8htQkhc5KME9yW+97I2WVRioUyIdJz6niAyIK9Q/90kPEt1AAzqsek1?=
- =?us-ascii?Q?ZIGiigwne5ibnfvuqZuHb9tvi7AfHJWWSEqENKLdqEgmL9STMHB7J9+p+WJW?=
- =?us-ascii?Q?zEG4Jd/tbWBa+SjmIxLN2ONN3pm2dMUh5ALWV4AJYrZqNrmGNW+EaV/zymoA?=
- =?us-ascii?Q?8sBTzcmGvxLvLSNGopWqu12L8My8mGvOkDjtcBATzAq6TneASazpHK17N4DC?=
- =?us-ascii?Q?e1QVb+69SSyf+CVBYkosZBwrU452xVJg/feKRxm/idkIxI0/RaaxE8ou/sZy?=
- =?us-ascii?Q?bnW9iTlPEt8M2MBQZ5Y6z7q6JZneDPgvumT6pSgoesUVU0MYSYeS8AmdB1f1?=
- =?us-ascii?Q?SN9t7Fbqr/do0aP0hDe6DW2Im9mBkbrTEeQ0w804gSMITBG+IoCIo8ksfg+h?=
- =?us-ascii?Q?cfcZG8WX1rHyUzUIpb6tmA3/NeBHKavJAtYPRz2DxgZdkQHfUERttobPbiyD?=
- =?us-ascii?Q?4FZzNIuNHyFbhboRlZODUfQ0zCvEMMElV0/7V4xkt3uLlXuiHc/DoaA7BXpM?=
- =?us-ascii?Q?PcejeXiCoOBfu3DxAETX7eis4U1OgavYfkgc4cYnKMvecjaa/OV49U/dwGQP?=
- =?us-ascii?Q?ACQPpU6rhaMRSCMkWkKAsTfP6Pg9gRDhILGPppgfv0IslOUpNZKswkLcIoU9?=
- =?us-ascii?Q?4l8fYaX+PPSV7fwA0ofzbcilrw0YJOXnzZPITBpmlV0a3+ZlwZnLeoIgsB4H?=
- =?us-ascii?Q?lkcE5e0rrUYZzrUv1ROXY7VAybX6OVVrlPnz+DaTT7DXmaHUIbnsQoIdDKhm?=
- =?us-ascii?Q?OmsjQkQQ8uplIZxSvR+7sXdC/wDxR8JWcCQC7jqYf/w1VbaclpTJSZC/iZWl?=
- =?us-ascii?Q?wfaQa2Yds+v61ydhNEOq4GU4mIGj2ShN16gWyYqaq9dvCMt9KQbMlRqy1U7E?=
- =?us-ascii?Q?1gdxUEMnRw2QFVIw+0pN7iu5+s7q1gASNMDPH8JQh1Cn377/Op5o6oTRc+1J?=
- =?us-ascii?Q?bMhpUtEu4XmnEoT7rTWYY1RV4vRBMVmx6tglZuL1r1688nwlMLGupEcqnDMg?=
- =?us-ascii?Q?lckpb6zk2xav2DSe6aLla2QKdXBUlT7viqi4PCOzyPWjOkmmEPs4b6xRipBx?=
- =?us-ascii?Q?Bbo7Fo3AQbiWcFCIzKRSPY9WWZkfAKnW+TwQZlRJFiuJzy0/9Y0i5xJlqDGv?=
- =?us-ascii?Q?3MOCqxPkW9opTaRHTDsV7SXuQUmEswsXZCB7VWAw82iz1deuYaNHbWsjBUV6?=
- =?us-ascii?Q?x9MHg/OvTGW78zWbMveMOL6bg+iP3Cbmki687pPkEo3LW4Qrnp0/3RErSVEY?=
- =?us-ascii?Q?BJwB+inP5i35a+sPwbcJARMgeLyTcPICLog5B0ndYKcxVpPoe0DvDCs713fs?=
- =?us-ascii?Q?09YrYRykT7SI9rOiq1LZHWoj6VEpQcYpLU6i4zWHaJgyu3WrfNgirN5HsLYy?=
- =?us-ascii?Q?ciIDmmq5fN0YI+pZKEvvFLsjp04CGzpsSmyvR9sB3wgdJKvHCRgaKVFT2TZz?=
- =?us-ascii?Q?8C5M09T+1g2A26D0jyInKjUDRfhABQLrW2YLEs9zU4pTeDUoUCORl9F9cUWr?=
- =?us-ascii?Q?mStXMr8eSWvv/m4edCgkVOOfa99mnZ2i9yO97AG3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF45010E2F0;
+ Wed,  6 Aug 2025 08:40:20 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-af93c3bac8fso743911566b.2; 
+ Wed, 06 Aug 2025 01:40:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754469619; x=1755074419; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=BQS17Gx8nIJNb+Eu5z6Nn4tpeVvUU+ssz+FqyUsLAP4=;
+ b=OByNCURgdw2rQqqRxBEsuiJVpPjIkGv2XXyTjHGc1XqRh+pkU3VUeMR8LfKCafjcSV
+ gk/GkIHtwpTBxTdhl+ecypreGgw4aXXiTRfGS8ELeXKuC1uyybJbJCN3d2eRLr+mwCf7
+ /3URF5WPMo57lUd7i4GcR5nIkMbvcHQWcXTxHNLHYevO0ICEaT1OMmEClTx0JcFsMLen
+ Cu0f5Teawc3YgiKu4l0Rs71evQjYbVpcSeAwzbLfe78btNUsCiDX77i9oY0ExMkbWYk+
+ MSeyqewGgxOnphHGFRuHjZn8kozoJ0d0yWtWMUto1GfN6EJXPOwngrNJbsK2EgCptylw
+ duxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754469619; x=1755074419;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=BQS17Gx8nIJNb+Eu5z6Nn4tpeVvUU+ssz+FqyUsLAP4=;
+ b=BlcJ0XfWCfQSjtjYdFpGBiKzMM+4HZcT3Hno/mzFf/r4lhQOVPEfsnLK/Ox9g4/bzj
+ Ry5mvWEBgJlNo/6SASBFe9bupFj7zduqje7+PO5bFmtYAdAYWGd9lfybgBxGSw5rm9CX
+ 0tOokMbFvBwM0ANEPIBrIRcfr71uZmHd2+ijxBAzCiy5snFUP/FALVzQCU+ShRWzwGdy
+ RwxoogWUSkO9JK2fErymueYIoqBu5+cidITrruFYG0/fm8BJjyJpZPCa0ki6RfCC8byp
+ MBJa1epbRTIM8yCKrq9A8hgImk9RzyMNjOMLCAhDXqY9B3+AlXEFtN8ZOqqFE1NmYkM3
+ ZDNg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVBdjLqflaYjOgL0Mym7vCRhtFIlERpeRKzpc39uAjK1HM/44xclbTtWBULf9QDW4JNQ6xKVjRgYc0=@lists.freedesktop.org,
+ AJvYcCXrZ8sXXr4KXjElTei7NGZVA5HiHW9Q9+XN7ycb5KANhpI6zX9p3+vEGBYyoiEvNfdZsQvALJ8cTi2C@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxztQCymeDxKUN44O7Wse+tpWc+iiaBju3A7sP/CMGOxu2+hA8p
+ 1lT9V6cVXj5bt4Abpan6kJUcnajn+W69iei0w0SiMDj5lbyxUMjN8Bph3eODfW4E1gUwsQq8iQt
+ nUB/nkphLfhH6I2GNGIteqr/3BL8YwdM=
+X-Gm-Gg: ASbGncsu6xulKE7KSYBCc/eRVsyCp6sM0xA0jUE6bUUb3io9uygvy9OhEZlPNMYR8fe
+ nIYiS985p1I0It9aEVdZ7BmvvA9GijQ9Wpmvyd4LI8uzb3wsVDpPF7qRw3dX1owjuulJpplJQSz
+ qNLcEiz/eMMcycgyA6kWrJ98Yuq9FDXm3n6BRnD6bXGDWuzK80OHp1Np36v98NdotYnYdsFw9I4
+ ngp9/9E
+X-Google-Smtp-Source: AGHT+IHfJ9svIzWODa8rgbvEIq584AUL0oyBljvd+PygocMjYZHjM2aXI+fyfYg0JbEiFEnyH4qTbculH1RSbuT6U5U=
+X-Received: by 2002:a17:907:980f:b0:aec:6600:dbe3 with SMTP id
+ a640c23a62f3a-af992bc3acfmr138428466b.56.1754469619115; Wed, 06 Aug 2025
+ 01:40:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc57c647-78b7-4999-2d7b-08ddd4c3c88f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 08:32:30.4883 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BvEo/PG4BJxc+fO20zSYT40NgjciS7k5KtWKMTir9QkxWCPRPoK56CxZ3vP/rLpylwwBf16fYcBMsQjA/YASxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6048
-X-OriginatorOrg: intel.com
+References: <CACTEcX6oXBot1VBApOyKVMVXsAN9BsvQMLa8J0iKpNeB-eLttQ@mail.gmail.com>
+ <642d439ea1be8e48ee5c47fd3921a786452fb931@intel.com>
+ <CACTEcX5Y3PNXNkhnK1dGFe+k3sigOZNpj66KKGAS9XeHqRu35w@mail.gmail.com>
+ <0b15e33603a46f6cc7ad7d09a156044f11367169@intel.com>
+ <CACTEcX47bUd2tp=LYkQnhK29Js=vLN0JfXL8Aq6mOFBVYumpzQ@mail.gmail.com>
+ <CABgObfZKKeqMrAUyS8CB4ARkW_8Z9QREgpgYcq2jxoQ9ppS6MA@mail.gmail.com>
+ <CACTEcX7oa+Shj=uYiRMoWpng+RZXDeQrOa-VTRmzVVtXJMCgLQ@mail.gmail.com>
+In-Reply-To: <CACTEcX7oa+Shj=uYiRMoWpng+RZXDeQrOa-VTRmzVVtXJMCgLQ@mail.gmail.com>
+From: Andy Mindful <andy.mindful@gmail.com>
+Date: Wed, 6 Aug 2025 11:40:07 +0300
+X-Gm-Features: Ac12FXxTKMWG1pZklTF0P1qlwOqSdhMr6Q33eeVUrsVUud3FdPfuQWhVKcJIN3Y
+Message-ID: <CACTEcX7hsRkzYEBg4pQd5s36p_ZXJM=dtxSGmBjfkt5sWrXP8g@mail.gmail.com>
+Subject: Re: [REGRESSION] tty lockup and WWAN loss after hibernate/suspend in
+ 6.8+ on ThinkPad X1 Carbon Gen 10
+To: regressions@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-acpi@vger.kernel.org, rafael@kernel.org, ville.syrjala@linux.intel.com, 
+ tglx@linutronix.de, Christian Brauner <brauner@kernel.org>, 
+ Jani Nikula <jani.nikula@intel.com>, Paolo Bonzini <pbonzini@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 07 Aug 2025 14:02:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -184,82 +96,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hello,
 
+Can somebody advise how to properly bisect issues in linux-stable
+repository between v6.7.11 to v6.8-rc1 tags?
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Wednesday, August 6, 2025 1:54 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
-org;
-> intel-gfx@lists.freedesktop.org
-> Cc: Garg, Nemesa <nemesa.garg@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>; Manna, Animesh <animesh.manna@intel.com>
-> Subject: Re: [PATCH] drm/i915/scaler: Fix WA_14011503117
->=20
-> On Wed, 06 Aug 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> > On Wed, 06 Aug 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> >> This introduces and uses a variable id which is just uninitialized.
-> >> What really needs to be used is the scaler_id.
-> >>
-> >> Fixes: 73309ed9d598 ("drm/i915/display: WA_14011503117")
-> >> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/skl_scaler.c | 5 +++--
-> >>  1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> b/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> index 1374fa94ff5c..cd7ebbeb9508 100644
-> >> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> @@ -959,11 +959,12 @@ void adl_scaler_ecc_unmask(const struct
-> intel_crtc_state *crtc_state)
-> >>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> >>  	const struct intel_crtc_scaler_state *scaler_state =3D
-> >>  		&crtc_state->scaler_state;
-> >> -	int id;
-> >>
-> >>  	if (!scaler_state && scaler_state->scaler_id =3D=3D -1)
-> >
-> > That check does also does not make any sense.
-> >
-> > scaler_state =3D=3D NULL && scaler_state->scaler_id
->=20
-> So scaler_state can never be NULL. The whole if statement is a nop. Previ=
-ously
-> uninitialized stuff got written to the register, and with the fix -1 can =
-be written
-> to the register.
->=20
-> The fix passed xe CI, but got merged before i915 CI was run. But xe CI is
-> meaningless here, because the code doesn't get run with xe, only i915.
->=20
+I tried two options:
 
-Yes right I did forget to check the i915 patchwork while merging this will =
-keep that in mind going ahead
-As for the if statement we can send a fix patch immediately.
-Sorry won't happen again
+1. No skip
 
-Regards,
-Suraj Kandpal
+git checkout v6.7.11
+git bisect start
+git bisect good 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+git bisect bad 6613476e225e090cc9aad49be7fa504e290dd33d
+git bisect bad 0dd3ee31125508cd67f7e7172247f05b7fd1753a
 
->=20
-> BR,
-> Jani.
->=20
->=20
+Leads to:
+The merge base 0dd3ee31125508cd67f7e7172247f05b7fd1753a is bad.
+This means the bug has been fixed between
+0dd3ee31125508cd67f7e7172247f05b7fd1753a and
+[6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1].
+
+What should be done next?
+
+2. Skip
+git checkout v6.7.11
+git bisect start
+git bisect good 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+git bisect bad 6613476e225e090cc9aad49be7fa504e290dd33d
+git bisect bad 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+git bisect skip 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+git bisect good ba5afb9a84df2e6b26a1b6389b98849cd16ea757
+git bisect good 61da593f4458f25c59f65cfd9ba1bda570db5db7
+git bisect bad e38f734add21d75d76dbcf7b214f4823131c1bae
+git bisect bad 5d197e97fb106c09d3d013be341e5961fd70ec8a
+git bisect good 1b1934dbbdcf9aa2d507932ff488cec47999cf3f
+git bisect bad 8c9244af4dc8680a453e759331f0c93d5bde1898
+git bisect bad 783288010035e4c250a0b6491a4642cdb8d30548
+git bisect bad 1c3c87d720cbd1ff86dc1bfc6df8ee9adce5879b
+git bisect good 8d99e347c097ab3f9fb93d0f88dddf20051d7c88
+git bisect bad 6c370dc65374db5afbc5c6c64c662f922a2555ad
+git bisect good 43f623f350ce1c46c53b6b77f4dbe741af8c44f3
+git bisect good 8a89efd43423cb3005c5e641e846184e292c1465
+git bisect good 5d74316466f4aabdd2ee1e33b45e4933c9bc3ea1
+
+Leads to:
+
+# first bad commit: [6c370dc65374db5afbc5c6c64c662f922a2555ad] Merge
+branch 'kvm-guestmemfd' into HEAD
+
+Which is incorrect as per Paolo Bonzini comment.
+
+I'd like to test this thing, because hibernation is quite crucial in a
+multi-boot environment and may save a lot of time while working with
+different systems.
+
+Thank you in advance.
+
+=D0=BF=D0=BD, 4 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 22:49=
+ Andy Mindful <andy.mindful@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> Can you please advise on how to bisect further?
+>
+> andy@lenovo:~/linux-stable$ git bisect bad
+> The merge base 0dd3ee31125508cd67f7e7172247f05b7fd1753a is bad.
+> This means the bug has been fixed between
+> 0dd3ee31125508cd67f7e7172247f05b7fd1753a and
+> [6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1].
+>
+> andy@DESKTOP-0R165CF:~/linux-stable$ git bisect log
+> git bisect start
+> # status: waiting for both good and bad commits
+> # good: [6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1] Linux 6.7.11
+> git bisect good 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+> # status: waiting for bad commit, 1 good commit known
+> # bad: [6613476e225e090cc9aad49be7fa504e290dd33d] Linux 6.8-rc1
+> git bisect bad 6613476e225e090cc9aad49be7fa504e290dd33d
+> # bad: [0dd3ee31125508cd67f7e7172247f05b7fd1753a] Linux 6.7
+> git bisect bad 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+>
+> andy@lenovo:~/linux-stable$ git status
+> HEAD detached at 0dd3ee311255
+> You are currently bisecting, started from branch '6fc5460ed8dd'.
+> (use "git bisect reset" to get back to the original branch)
+>
+> It is not moving further.
+>
+> =D0=BF=D0=BD, 4 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 17:=
+50 Paolo Bonzini <pbonzini@redhat.com> =D0=BF=D0=B8=D1=88=D0=B5:
 > >
-> > BR,
-> > Jani.
+> > On Mon, Aug 4, 2025 at 12:57=E2=80=AFPM Andy Mindful <andy.mindful@gmai=
+l.com> wrote:
+> > > Double-checked bisect, looks like I've have found broken commit:
+> > >
+> > > > > git bisect bad
+> > > > > The merge base ba5afb9a84df2e6b26a1b6389b98849cd16ea757 is bad.
+> > > > > This means the bug has been fixed between
+> > > > > ba5afb9a84df2e6b26a1b6389b98849cd16ea757 and
+> > > > > [1b1934dbbdcf9aa2d507932ff488cec47999cf3f
+> > > > > 61da593f4458f25c59f65cfd9ba1bda570db5db7
+> > > > > 6fc5460ed8dd0edf29e7c5cfb1ef9b1aa04208a1
+> > > > > ba5afb9a84df2e6b26a1b6389b98849cd16ea757].
 > >
+> > This skip is messing up the results:
 > >
-> >>  		return;
-> >>
-> >> -	intel_de_write_fw(display, SKL_PS_ECC_STAT(crtc->pipe, id), 1);
-> >> +	intel_de_write_fw(display,
-> >> +			  SKL_PS_ECC_STAT(crtc->pipe, scaler_state->scaler_id),
-> >> +			  1);
-> >>  	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);  }
->=20
-> --
-> Jani Nikula, Intel
+> > # skip: [0dd3ee31125508cd67f7e7172247f05b7fd1753a] Linux 6.7
+> > git bisect skip 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+> >
+> > and there are still 3858 commits in
+> > ba5afb9a84df2e6b26a1b6389b98849cd16ea757..{1b1934dbbdcf9aa2d507932ff488=
+cec47999cf3f,61da593f4458f25c59f65cfd9ba1bda570db5db7,ba5afb9a84df2e6b26a1b=
+6389b98849cd16ea757}
+> >
+> > Any chance you can get 6.7 to work and restrict the range further?
+> >
+> > Thanks,
+> >
+> > Paolo
+> >
