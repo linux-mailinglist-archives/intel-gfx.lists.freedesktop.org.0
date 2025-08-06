@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EF9B1CB31
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 19:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B300CB1CB80
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 19:56:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA6E10E2F8;
-	Wed,  6 Aug 2025 17:43:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kC9BjhyJ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD1B10E132;
+	Wed,  6 Aug 2025 17:56:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C368510E2F8;
- Wed,  6 Aug 2025 17:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754502239; x=1786038239;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=7MFf4dbnziN4nSbCo3AqRmR+l3LmOXSFj+wnbUlHOt4=;
- b=kC9BjhyJqDR/RzWeA1Pc9SyKd6jjESekD+iOcP/9DuyJ0zQDyzejhja3
- b3u563ye+ENHuLbdE6qcNQBQ3yZcoPwnjGLHe+UXQhWvRzbRaXMj3me+q
- zN/ceA3ZHEfAXtJLQqoqrOv/oAP11WbylPK71gRMdRuHi7a1x0+difUGR
- Rlfv40mgsYnLE/EsfW6MxrjS8q+BKBDQJhz+ZdqWNYKpGHD5gcxj0usBO
- MqMzGn3nHsC1ylnASZMIOm15aIoy1snkHDXnA/NSzuazWVjoXZTjP6Tp7
- zzmDtapBcQrXwhIxFxZHInAIFf28PcxJi4/a+U4BLZGzUoEQ77ayRAFMI A==;
-X-CSE-ConnectionGUID: 6oeHZi5jTtG+wauhZBKkNA==
-X-CSE-MsgGUID: ZBjKGUMFTTihUe5i9GjsAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68278128"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68278128"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 10:43:58 -0700
-X-CSE-ConnectionGUID: POqkzQiQSPqS2wn5vC1Nvw==
-X-CSE-MsgGUID: tXsXoAsiQwqbWecLDL+/YQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165242784"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO [10.245.244.159])
- ([10.245.244.159])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 10:43:56 -0700
-Message-ID: <3ff97e0ee433817c0c071c264d3a28622d717dfa.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: airlied@gmail.com, matthew.brost@intel.com
-Date: Wed, 06 Aug 2025 19:43:54 +0200
-In-Reply-To: <20250806132838.1831-1-christian.koenig@amd.com>
-References: <20250806132838.1831-1-christian.koenig@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1A6D10E132;
+ Wed,  6 Aug 2025 17:56:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6166915624138997648=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dsi=3A_Fix_overf?=
+ =?utf-8?q?low_issue_in_pclk_parsing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Aug 2025 17:56:43 -0000
+Message-ID: <175450300391.217482.10682897626198410464@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250806102727.2043589-1-jouni.hogander@intel.com>
+In-Reply-To: <20250806102727.2043589-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,143 +37,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi, Christian
+--===============6166915624138997648==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2025-08-06 at 15:28 +0200, Christian K=C3=B6nig wrote:
-> On some old x86 systems we had the problem that changing the caching
-> flags
-> of system memory requires changing the global MTRR/PAT tables.
->=20
-> But on any modern x86 system (CPUs introduced rughly after 2004) we
-> actually don't need that any more and can update the caching flags
-> directly in the PTEs of the CPU mapping. It was just never disabled
-> because of the fear of regressions.
->=20
-> We already use the PTE flags for encryption on x86 64bit for quite a
-> while
-> and all other supported platforms (Sparc, PowerPC, ARM, MIPS,
-> LONGARCH)
-> have never done anything different either.
+== Series Details ==
 
-IIRC from my VMWARE days, changing SEV encryption mode of a page still
-requires changing all mappings including kernel maps?
-__set_memory_enc_pgtable()
+Series: drm/i915/dsi: Fix overflow issue in pclk parsing
+URL   : https://patchwork.freedesktop.org/series/152574/
+State : success
 
->=20
-> So disable the page pool completely for 64bit systems and just insert
-> a
-> clflush to be on the safe side so that we never return memory with
-> dirty
-> cache lines.
->=20
-> Testing on a Ryzen 5 and 7 shows that this has absolutely no
-> performance
-> impact and of hand the AMD CI can't find a problem either.
->=20
-> Let's see what the i915 and XE CI systems say to that.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+== Summary ==
 
-I don't think we can do this. First Lunar Lake can in some situations,
-just like the old Athlons, write-back clean cache lines which means
-writebacks of speculative prefetches may overwrite GPU data. LNL makes
-heavy use of non-coherent GPU mappings for performance.
+CI Bug Log - changes from CI_DRM_16962 -> Patchwork_152574v1
+====================================================
 
-Second, IIRC vm_insert_pfn_prot() on X86 will override the given
-caching mode with the last caching mode set for the kernel linear map,
-so if you try to set up a write-combined GPU mapping without a previous
-call to set_pages_xxxxx it will actually end up cached. see
-track_pfn_insert().
+Summary
+-------
 
-/Thomas
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152574v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [PASS][3] -> [INCOMPLETE][4] ([i915#12904]) +1 other test incomplete
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][7] ([i915#13494]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-9/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][12] ([i915#12061] / [i915#14204])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-atsm-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][13] ([i915#13929]) -> [DMESG-FAIL][14] ([i915#14204])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
 
 
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 16 +++++++++++-----
-> =C2=A01 file changed, 11 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
-> b/drivers/gpu/drm/ttm/ttm_pool.c
-> index baf27c70a419..7487eac29398 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -38,7 +38,7 @@
-> =C2=A0#include <linux/highmem.h>
-> =C2=A0#include <linux/sched/mm.h>
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0#include <asm/set_memory.h>
-> =C2=A0#endif
-> =C2=A0
-> @@ -46,6 +46,7 @@
-> =C2=A0#include <drm/ttm/ttm_pool.h>
-> =C2=A0#include <drm/ttm/ttm_tt.h>
-> =C2=A0#include <drm/ttm/ttm_bo.h>
-> +#include <drm/drm_cache.h>
-> =C2=A0
-> =C2=A0#include "ttm_module.h"
-> =C2=A0
-> @@ -192,7 +193,7 @@ static void ttm_pool_free_page(struct ttm_pool
-> *pool, enum ttm_caching caching,
-> =C2=A0	struct ttm_pool_dma *dma;
-> =C2=A0	void *vaddr;
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	/* We don't care that set_pages_wb is inefficient here. This
-> is only
-> =C2=A0	 * used when we have to shrink and CPU overhead is
-> irrelevant then.
-> =C2=A0	 */
-> @@ -218,7 +219,7 @@ static void ttm_pool_free_page(struct ttm_pool
-> *pool, enum ttm_caching caching,
-> =C2=A0/* Apply any cpu-caching deferred during page allocation */
-> =C2=A0static int ttm_pool_apply_caching(struct ttm_pool_alloc_state
-> *alloc)
-> =C2=A0{
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	unsigned int num_pages =3D alloc->pages - alloc-
-> >caching_divide;
-> =C2=A0
-> =C2=A0	if (!num_pages)
-> @@ -232,6 +233,11 @@ static int ttm_pool_apply_caching(struct
-> ttm_pool_alloc_state *alloc)
-> =C2=A0	case ttm_uncached:
-> =C2=A0		return set_pages_array_uc(alloc->caching_divide,
-> num_pages);
-> =C2=A0	}
-> +
-> +#elif defined(CONFIG_X86_64)
-> +	unsigned int num_pages =3D alloc->pages - alloc-
-> >caching_divide;
-> +
-> +	drm_clflush_pages(alloc->caching_divide, num_pages);
-> =C2=A0#endif
-> =C2=A0	alloc->caching_divide =3D alloc->pages;
-> =C2=A0	return 0;
-> @@ -342,7 +348,7 @@ static struct ttm_pool_type
-> *ttm_pool_select_type(struct ttm_pool *pool,
-> =C2=A0	if (pool->use_dma_alloc)
-> =C2=A0		return &pool->caching[caching].orders[order];
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	switch (caching) {
-> =C2=A0	case ttm_write_combined:
-> =C2=A0		if (pool->nid !=3D NUMA_NO_NODE)
-> @@ -980,7 +986,7 @@ long ttm_pool_backup(struct ttm_pool *pool,
-> struct ttm_tt *tt,
-> =C2=A0	=C2=A0=C2=A0=C2=A0 pool->use_dma_alloc || ttm_tt_is_backed_up(tt))
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> -#ifdef CONFIG_X86
-> +#ifdef CONFIG_X86_32
-> =C2=A0	/* Anything returned to the system needs to be cached. */
-> =C2=A0	if (tt->caching !=3D ttm_cached)
-> =C2=A0		set_pages_array_wb(tt->pages, tt->num_pages);
+Build changes
+-------------
 
+  * Linux: CI_DRM_16962 -> Patchwork_152574v1
+
+  CI-20190529: 20190529
+  CI_DRM_16962: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8487: 8487
+  Patchwork_152574v1: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/index.html
+
+--===============6166915624138997648==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: Fix overflow issue in pclk parsing</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152574/">https://patchwork.freedesktop.org/series/152574/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16962 -&gt; Patchwork_152574v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152574v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152574v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16962 -&gt; Patchwork_152574v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16962: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8487: 8487<br />
+  Patchwork_152574v1: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6166915624138997648==--
