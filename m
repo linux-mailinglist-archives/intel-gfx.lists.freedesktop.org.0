@@ -2,169 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4483DB1C6C3
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 15:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 483E1B1C6C9
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 15:27:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E07110E777;
-	Wed,  6 Aug 2025 13:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA8810E784;
+	Wed,  6 Aug 2025 13:27:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jatZdoQI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+gbzRDz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0A010E3E1;
- Wed,  6 Aug 2025 13:24:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 796CD10E77D
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 13:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754486694; x=1786022694;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=17oPGEzI76FozuI3AhiBqN9iUZfPyc+PTwwMPqS+ty8=;
- b=jatZdoQIk3OcZaHV8/wzLa79SDiTE2tr5GmpjkrFg5SmYQAYXd4kc01I
- Y66pZ/w3aMwRhn0xyruSi3uIdkKox0YtqH7UhCowutAGcLwk/kpycKiLo
- sR++JFVAe/7lsVNhd6N/V0Uv6MBpMyVwPFgIB66NGmUeY5GdAv+Q8b+LX
- h1v/BEdlbaRzuoukf46iHBgtflpFavNwJV5vvNXMqxftYt2h3lQvzwnp2
- MdLSJ4MuYH8VKp8mg0OUVxhRGhmAARvLDBAnZ20MGFH6xdi3N6yUcy9nQ
- FYZ1OxEsQqO3YnGD1S2MSZiyP+yJ/o0hdYraYQBCoUGx3Zvp8e/BKMAxH Q==;
-X-CSE-ConnectionGUID: WvMgYW32QtmHyTbR3DcUCw==
-X-CSE-MsgGUID: HwDiyV7RTlWjt4n6b3EbWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56698481"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56698481"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 06:24:54 -0700
-X-CSE-ConnectionGUID: MgdI3u5wR32qRYQySFYd3w==
-X-CSE-MsgGUID: byXKbSRdSUuxs3iezkyIDQ==
+ t=1754486826; x=1786022826;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DyTVDL97ulWHbGzlWwEqn/hwhDZ1KY7M2BhdNIVY7Wk=;
+ b=R+gbzRDzbYHc1KJfuEERIR+8pfoTk7hRpbsUNA6mTOyYH/6g/n3FX8uy
+ P25cwCE0Ag2jPq7bwrXC0+H5pTzPqqCbgj+SOJ/S/i9ibKG8IYJ/Y10fl
+ 5Fddu/HCxoe8a2vN4j35NtGNhGt7J1ygsuVHLLN11jX+Z7a6LHNXof66Q
+ UIhpkdhDN2Uq6scKTtKPyoUQroml6r1s6ycJJcs2cKkKBrDrXeMRGxmwv
+ /ySsk3XlDc1n6BH05JVyPVuRZRx4rAEcuGeVYIGwIihCn0pgBrnkPsYAO
+ TnVR8WWj8ukTSAgbZbpwwVFUMXQSMQCr/YEer7tmtsMIl1u/Bt1eRLFVs w==;
+X-CSE-ConnectionGUID: uGeo/mf8T6ehDzhLrHEW4g==
+X-CSE-MsgGUID: RcJNRoITRHmSknlvzPwZTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56940606"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56940606"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:27:05 -0700
+X-CSE-ConnectionGUID: AyJoDNh+TZmpskefr1iOTQ==
+X-CSE-MsgGUID: isYPrAz3QhS/uEB2djI1iQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165144992"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 06:24:53 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 06:24:53 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 06:24:53 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (40.107.236.53)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 06:24:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EhLuQ+LVfNR/ah4ahqqOEl7+v7KMcpPwT6MBER/QKPUlGRLyeSBg2wuiXndxG7WAJ/+2YEMvGNqBDCWZRBU7XIHNBRgBQfxTBlNDc6wa4X+Vonrkg5BBIBHN16Alq/+vIRA9V7hYdHTJ8pVumUJowMzYkoVijXbii6orUFeaXMDnAtK57sDU6uvNNgZGw6anegFeH4a7U926NeRSW+bb8U5GIcQxoTs9zgp3n04Dn2QMlrHdyHa+MoDE67SodZWFlEfdcWB6liiJCLXc4UFrMgDY16/2pKFWa4hJqD+fBstCefg3zK5yJnFpJHMLi7v0L8FZtKzulNWepJ+L5tJmKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YAyVC3k9C0Wt28Sv6UbkofJnkE8PYEfRBc4sj5BQvDA=;
- b=qEOJW/BjqcgnkUyYxCROlSh6TlEAFgGMXuELKQ1c+YRM4nKVd4kdyOcNFJyZmwtf6iJc6/E5U0A91GZf9HdCp+5zuQEIVioC7rSKUcKRgPle7ELVVGbr7NbO4eUGKiCQ03Rb3oAVGRr1AGsGFiRkAAQhWbCbnoE07cJMLvGx3FtGom8Z+Z96qa4oTQ5E1T0w3NujuG0buR23AUgsQfpkHkpNKe8iAC1VUN+xy0X+Cd9yiBTtFt2ysKTbSWILggLmjRNKFR1m7bUjJs2usRE0Qi2c5ioWrap5f9mDIm6qaLAd86Vt7XIP1HTLQ6bOyXlna++2bUAYR84u8o3/uRhBDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by IA4PR11MB9417.namprd11.prod.outlook.com (2603:10b6:208:569::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Wed, 6 Aug
- 2025 13:24:50 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%5]) with mapi id 15.20.8989.018; Wed, 6 Aug 2025
- 13:24:50 +0000
-Date: Wed, 6 Aug 2025 09:24:44 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <aJNXnIAp2Cq-2pZj@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-X-ClientProxiedBy: SJ0PR05CA0128.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::13) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165111974"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.70])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:27:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Lee Shawn C <shawn.c.lee@intel.com>, Shankar Uma <uma.shankar@intel.com>
+Subject: Re: [PATCH] drm/i915/hdmi: add debugfs to contorl HDMI bpc
+In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+Date: Wed, 06 Aug 2025 16:27:00 +0300
+Message-ID: <9503b1adc378ede3229835038307ab7eeb59571a@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|IA4PR11MB9417:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb8da8ae-c441-49f0-89a6-08ddd4ec9f1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uA6WMWoPCqk4Za9n92YCGuh9zJb68R3g156IKnwstq8ERJkLJuKNPYN2ExG7?=
- =?us-ascii?Q?0XeihxzX6nKwKc1Qk3bt97FnC7wLM/HRUV23/0KJGjc2qHapf2HkZK7zlEMm?=
- =?us-ascii?Q?rTW4aYy6Zx9x0OY25gmma/15MWBk3+ctZI40omPeSh1MZSwnFPo7YkAeLJrD?=
- =?us-ascii?Q?GBO0KlMHDtw8dh18vYtCHSQTK/bz+5INBSjrdWmB72y0HdIeQEkxN4H0p5yu?=
- =?us-ascii?Q?ht9KIhDU9m1pvR28gdsY9NkmUpHjHv8mRKbCVaFXfQ/0V2WXqyh3GmHZdnaX?=
- =?us-ascii?Q?zoFqA/LtAgq6BfjKjym7HYQ3ASkPKoK8zBaIdbu599rNV21Zjhey9UtXeeLm?=
- =?us-ascii?Q?dYnLXgh41LCjbU+kTcTNNs1UN8JxY6rx2/jzDUsLwlZtpULea8WJpLxeFWhH?=
- =?us-ascii?Q?xdFmrJJxHsXjuecKm2KrTsGEMtlpaOXujFdk/cd2eZsh+7O930AH5Hq59+Oj?=
- =?us-ascii?Q?92QVICiGGEoa9ql9sZnBm89QDeWudi0CdjykFDwkGH+GbDNFhMMoU5SYGnmi?=
- =?us-ascii?Q?nk7BSCJ/ht9BvqIsQP8CIF6dBQywT5PJw3sIfvYKGxj/oGuhbFwdWl2aEfyd?=
- =?us-ascii?Q?eBGgkFgDGFky9qbMoJDJ65qrKsIa6AemnwfB3dXDE2imH56z7ZYEBSbFh2Ig?=
- =?us-ascii?Q?k6Lvcab7CmVTraYfotyCyKvaB6iIWnvllyCmWXTurKv4giIZV4GA6Dm2BYdH?=
- =?us-ascii?Q?B/i6/shDD+Wb1Mgm6xbahr4UqYLsQNcKfcinnV1AW9zW8hqF+uX9raLXCAFK?=
- =?us-ascii?Q?J9G0gvNEu16mcHDpvYxkHjX/n7LXRtPv56iDuNirmxQz8+uhELDk3Aez4Nc7?=
- =?us-ascii?Q?QPZkxVLNu+qnBWvMXKYe/3RyVsM6Jz9I9P1B6SGjW6uG8gq+lEfE4KTSq7F7?=
- =?us-ascii?Q?n75KwsnqN1QT1gEO2YoFdAJJ1IP1ul7ry96lUF4F/GVeIHG2CZotnCjqOx2E?=
- =?us-ascii?Q?M0SzdZPq1avL+oHbai/kKX9V0HRZFraAjETy8X2YJkZeQMBKkWVd/wPQc4Mn?=
- =?us-ascii?Q?30tPQlA1/cK376oqVtWSyEkW5ky7WGXjbBX1w60h7axOg0VCQA37UPSRH3Ug?=
- =?us-ascii?Q?Waq1o44oM7rw1/nYayn4nTos/TYGnJWCNejXqeo5U4RjD2Wfmnlt8dR/dn6g?=
- =?us-ascii?Q?zfUIj2rJEVsNxx0lzEDv8ICmIked9QsdJAI8CFpzuHDPKYSZCnWbY7iTal1S?=
- =?us-ascii?Q?HQHUFELaRHJ99OBC2mqheh1oh79DhsKApXpSAx9ENOeao64PYZ242PQUtmjR?=
- =?us-ascii?Q?504THf+/UrPzJMtysP3vr/CKgWfkKZG0Qxa8/K0WHo5znkbuvKVUSd+Kiiam?=
- =?us-ascii?Q?jPxcDuIf6zirnIiO2qPD3PYRuSDLKH8BaGQ4GWsE7I5SRl6VTdUjFeWEETwU?=
- =?us-ascii?Q?hl90Yo8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LUkf/GIPn0NhH1wz01a022e4MDKYycqdecrPCh411VtdYiiuBgp0Got76tO8?=
- =?us-ascii?Q?hdVmAvdtXnk59TFwTdprGLUfe4l1yrWAV3VhBSmRr4t+YKWfUayu3wDiZiTI?=
- =?us-ascii?Q?p3p3rncjRHPg4Dm/Rz/EZ4yzZ++O/4oSUjmTHTfqOiQNbn2ORJj3WBlSP0qE?=
- =?us-ascii?Q?F/oa4pM+7RawbX4hfSLHPgpFVoPS/ktH+YIop+EmEBuBv6hzgrhfftv0lwfK?=
- =?us-ascii?Q?L3h64Gag3o4jtuMQ2gQamXGUCcIKBHioNsPb+3exCavMsqNVCsokITdMXZ3C?=
- =?us-ascii?Q?7tq5TaixqfAx371r+aGzhWu1pfDxYKhZhmMGMjDc4X3WPM5ZetV/XktjDJvz?=
- =?us-ascii?Q?TWgofF0uHkhw2PqiEShtZQnnLNte3KM9NbHD/cwK1gE+SSum9gg7txu9Qb7p?=
- =?us-ascii?Q?2cnpXFTUU1svHNlCLW56D5AlUfCwt0LI1T9PG2VJMdpphFR+0llXg+mXM3Bz?=
- =?us-ascii?Q?3teRTwRQFYQqHDqQMjsYMC1INXLtn9dOc8if5DbRY96gtOWARPTJfi2eVs38?=
- =?us-ascii?Q?BBhGCSZeYYUndvYmLHQxe4SOZrec1vgLRZdDQeihe5XfwkL476IYMFQh3LwF?=
- =?us-ascii?Q?IYO9NcDOryi5y3tK3XgudNLKMMQX22y5yJwo0BU82M1cGh5JtGvAtoqPbLKH?=
- =?us-ascii?Q?B6SP8/P4iZnjzJKzqmhMjVL0i/DcuXScI6YDWfKMqkNK6UwrOjqVX6i9ZZiw?=
- =?us-ascii?Q?yIao/xRCFL5zmy5pQRSsYZ42FYWOmC/Oh/OtpfbR/0Y6ufR3g56vyX+c3Ahx?=
- =?us-ascii?Q?YekQvVRTVRwZf32PN8Lsllm6e9s/9Gq7Myup7wv4jbeoAkMWD4zm+Y6E7TW1?=
- =?us-ascii?Q?99KGWldpnfTaYqoFPj2MUWgsxP6ERUkyDo9ZxsSLISCdvJI4DddGjt+7Mlpw?=
- =?us-ascii?Q?TcLOkjRu+HaRjQ4xG97VEzyw7BWFDZULm/HNLHvzNbqyeUQXIQ8ArRmHczHD?=
- =?us-ascii?Q?jVDbbODCgEZsype2TOWCa/qV1SO6il516lkWBtUKoJFH0PQF6bcYIaV0kTRC?=
- =?us-ascii?Q?tjpSMIcE5tmhewJLvgsZ28lQXLQn+GxniFMC/FNb0mOzUjTlPtQq0KrTbU5F?=
- =?us-ascii?Q?Xl1ILebbCyjWDo6N2btQBJxyJzA8LjyOOKPPGVi9sQvqfnFEv/fGp472pSP0?=
- =?us-ascii?Q?fA7hkP2IjJcz0x52mGhYfMD5wKCkkaiQ/4+tH4siDWA9O5NMltfXdjxDgBnq?=
- =?us-ascii?Q?H1fFFhrFaToZfFwN3hXI6muxM1mIiBKEeZaezXZqa9SJC8mNINqCCPx6YIhH?=
- =?us-ascii?Q?KWpLiyvOzz/Nw6qOixd2H8iHMUvI1SU3t8jUMxvc1pySA7NIIner8Li6VfwN?=
- =?us-ascii?Q?17BX070VmP5WjKWu30d+gUn9ktBWDKZUFxQsznOIG2X/2LhftEscugaynBB6?=
- =?us-ascii?Q?EDaVB7VBkK0JBV16Pu8NeANlVYq2x1nmWCLjcGeajrjb6moEEwbzGQscrQk7?=
- =?us-ascii?Q?JSdVNYER3KRgJhv1VxNs3Ry1TlreUEx89kPe5OU8tmBuB17h/kn9yqk7bjcB?=
- =?us-ascii?Q?ShRuswuN9XCzapLfq67rmfy3pcmZFC9bhIxd/IEq29f8FtxIoJUyqCE9jRai?=
- =?us-ascii?Q?wzPYvTmS76vZWoLK1HRKcbns+YWScjPCeJrLz1kXR6vm8nr98+C0dcjM01Sk?=
- =?us-ascii?Q?Dw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb8da8ae-c441-49f0-89a6-08ddd4ec9f1b
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 13:24:50.6039 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jfannm0TU6z6iL+mgr0BOSasvCL+Smzskx0ZdsOWV2clZV7k8prIY9zOPW9VMC5FPd/vw4uvhC1fWeNE4Vi8hQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9417
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,62 +68,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Wed, 06 Aug 2025, Lee Shawn C <shawn.c.lee@intel.com> wrote:
+> While performing HDMI compliance testing, test equipment may request
+> different bpc output for signal measurement. However, display driver
+> typically determines the maximum available bpc based on HW bandwidth.
+>
+> This patch introduces a new debugfs that allow user to configure
 
-Here goes our last xe-next-fixes pr towards 6.17-rc1.
+Please don't refer to "this patch" in a commit message. Just "Introduce
+...".
 
-It marks Xe driver as BROKEN if kernel page is not 4K, while
-we don't fix this ARM support, but work is in progress there.
+*allows
 
-Also, mostly SRIOV fixes, but one patch that is more of a
-convenience, removing the need of a kernel parameter to go
-to a PF mode in virtualized environment. I hope it is okay
-for this stage.
+> dedicated bpc manually, and making HDMI compliance test much easier.
+>
+> Cc: Shankar Uma <uma.shankar@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 58 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  7 +++
+>  3 files changed, 67 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index ce3f9810c42d..cca115a6f130 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1208,6 +1208,56 @@ static const struct file_operations i915_dsc_fractional_bpp_fops = {
+>  	.write = i915_dsc_fractional_bpp_write
+>  };
+>  
+> +static int i915_hdmi_req_bpc_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_connector *connector = m->private;
+> +
+> +	seq_printf(m, "request bpc: %u\n", connector->force_hdmi_bpc);
 
-Thanks,
-Rodrigo.
+IMO there's no need to print "request bpc: " prefix. It just makes using
+the interface harder for userspace.
 
-drm-xe-next-fixes-2025-08-06:
- - SRIOV: PF fixes and removal of need of module param (Michal)
- - Fix driver unbind around Devcoredump (Bala)
- - Mark xe driver as BROKEN if kernel page size is not 4kB (Simon)
-The following changes since commit 6531a2cf07ef156956840853692755cc7e1621b7:
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t i915_hdmi_req_bpc_write(struct file *file,
+> +					const char __user *ubuf,
+> +					size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct intel_connector *intel_connector = m->private;
 
-  Merge tag 'drm-xe-next-fixes-2025-07-31' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2025-08-01 07:09:16 +1000)
+Just connector, not intel_connector for naming.
 
-are available in the Git repository at:
+> +	struct intel_display *display = to_intel_display(intel_connector);
+> +	int new_bpc = 0, ret = 0;
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2025-08-06
+No need for the initialization.
 
-for you to fetch changes up to 022906afdf90327bce33d52fb4fb41b6c7d618fb:
+> +	char *kbuf;
+> +	const char *p;
+> +
+> +	kbuf = memdup_user_nul(ubuf, len);
+> +	if (IS_ERR(kbuf))
+> +		return PTR_ERR(kbuf);
+> +
+> +	p = strim(kbuf);
+> +
+> +	ret = kstrtoint(p, 0, &new_bpc);
+> +	if (ret < 0)
+> +		return -EINVAL;
 
-  Mark xe driver as BROKEN if kernel page size is not 4kB (2025-08-04 11:59:11 -0400)
+Drop all of the above, and just use kstrtoint_from_user().
 
-----------------------------------------------------------------
- - SRIOV: PF fixes and removal of need of module param (Michal)
- - Fix driver unbind around Devcoredump (Bala)
- - Mark xe driver as BROKEN if kernel page size is not 4kB (Simon)
+> +
+> +	switch (new_bpc) {
+> +	case 0:
+> +	case 8:
+> +	case 10:
+> +	case 12:
+> +		break;
+> +	default:
+> +		drm_dbg(display->drm,
+> +			"HDMI bpc (%u) may exceed the max value (12)\n", new_bpc);
 
-----------------------------------------------------------------
-Balasubramani Vivekanandan (1):
-      drm/xe/devcoredump: Defer devcoredump initialization during probe
+Not sure if the message is required, but drm_dbg_kms() and just say the
+value is invalid. Consider passing, say, 5, and getting message:
 
-Michal Wajdeczko (3):
-      drm/xe/pf: Enable SR-IOV PF mode by default
-      drm/xe/pf: Disable PF restart worker on device removal
-      drm/xe/pf: Make sure PF is ready to configure VFs
+	HDMI bpc (5) may exceed the max value (12)
 
-Simon Richter (1):
-      Mark xe driver as BROKEN if kernel page size is not 4kB
+Not helpful, is it?
 
- drivers/gpu/drm/xe/Kconfig                  |  1 +
- drivers/gpu/drm/xe/xe_device.c              |  8 ++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c         | 57 ++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf.h         |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |  4 +-
- drivers/gpu/drm/xe/xe_guc_capture.c         |  6 +++
- drivers/gpu/drm/xe/xe_module.c              |  8 +++-
- drivers/gpu/drm/xe/xe_pci_sriov.c           |  7 +++-
- drivers/gpu/drm/xe/xe_sriov_pf.c            | 27 ++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf.h            |  1 +
- 10 files changed, 112 insertions(+), 8 deletions(-)
+> +		return -EINVAL;
+> +	}
+> +
+> +	intel_connector->force_hdmi_bpc = new_bpc;
+> +
+> +	*offp += len;
+> +	kfree(kbuf);
+> +	return len;
+> +}
+> +DEFINE_SHOW_STORE_ATTRIBUTE(i915_hdmi_req_bpc);
+> +
+>  /*
+>   * Returns the Current CRTC's bpc.
+>   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> @@ -1359,6 +1409,13 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	    connector_type == DRM_MODE_CONNECTOR_HDMIB)
+>  		debugfs_create_file("i915_lpsp_capability", 0444, root,
+>  				    connector, &i915_lpsp_capability_fops);
+> +
+> +	if (connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+> +	    connector_type == DRM_MODE_CONNECTOR_HDMIB) {
+> +		connector->force_hdmi_bpc = 0;
+
+Unnecessary.
+
+> +		debugfs_create_file("i915_force_hdmi_bpc", 0644, root,
+
+Please use "intel_force_bpc". We're moving away from i915 naming for
+display, and there's no need to make it HDMI only. We can start off with
+making the *implementation* HDMI only, and only registering it for HDMI,
+but let's keep the door open for amending it for other connector types
+in the future.
+
+> +				    connector, &i915_hdmi_req_bpc_fops);
+
+Ditto, intel_hdmi_force_bpc_fops.
+
+> +	}
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 4d9df803ad47..e1e42d701f68 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -564,6 +564,8 @@ struct intel_connector {
+>  	struct work_struct modeset_retry_work;
+>  
+>  	struct intel_hdcp hdcp;
+> +
+> +	u8 force_hdmi_bpc;
+
+int
+
+>  };
+>  
+>  struct intel_digital_connector_state {
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index cbee628eb26b..0aa4044e2854 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2118,6 +2118,7 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+>  				  int clock, bool respect_downstream_limits)
+>  {
+>  	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+> +	struct intel_connector *intel_connector = intel_hdmi->attached_connector;
+
+Just connector, not intel_connector, is the current style.
+
+>  	int bpc;
+>  
+>  	/*
+> @@ -2134,6 +2135,12 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+>  	if (!respect_downstream_limits)
+>  		bpc = 8;
+>  
+> +	/*
+> +	 * overwrite bpc per user's request
+> +	 */
+
+Useless comment.
+
+> +	if (intel_connector->force_hdmi_bpc)
+> +		bpc = intel_connector->force_hdmi_bpc;
+> +
+>  	for (; bpc >= 8; bpc -= 2) {
+>  		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc,
+>  						       crtc_state->sink_format);
+
+-- 
+Jani Nikula, Intel
