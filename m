@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748BFB1CA22
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D188BB1CA34
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 19:00:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 060A210E7D8;
-	Wed,  6 Aug 2025 16:56:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HexsqIa0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5B410E196;
+	Wed,  6 Aug 2025 17:00:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78F6810E7CD;
- Wed,  6 Aug 2025 16:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754499392; x=1786035392;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=O0+hFxGblFWaySHHE+uj1Ne4x8alHt8xKjb6gkCQ7vU=;
- b=HexsqIa0XhXpR7+0lXAa/xowNNRKLtwffrF5CRiQgjt2Vxe4s8cpP6MF
- IeR0AKRUGnkntbs5OI7lD72jEE/iQCeXQ66Dz2RTj8SZmp374O3CxEYOZ
- AMB4SkE109G1xubJoiOZlOGof4x/2PIO3FAkAlyroQ7er2pH1WwfFI5v5
- J9mnd4rJQDgToFgidJcZRYgCZYuf9zhx2qZnziwT60/4Jr3+q2R22d0EN
- Z5Z57t5s2Ea909vcnuuFr3Mb2VDNs0f1SCmZrtYFpb9xKpc47nhc5I0WE
- M7yddja+H4AC6fCe9/JBYnTXqRGDEr2irK/kIeplJMxOqXtOBSxpYjKg8 Q==;
-X-CSE-ConnectionGUID: s99Y0WZeTqCPLY54YkC1oQ==
-X-CSE-MsgGUID: AE5JD5aVTHueDHynmOQWYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56691609"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56691609"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:32 -0700
-X-CSE-ConnectionGUID: QMRRV051QiqEdhGe6TPwlg==
-X-CSE-MsgGUID: NSZr77nOTK2AKVEwrGr6YA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="168999936"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.70])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 15/15] drm/i915/display: drop __to_intel_display() usage
-Date: Wed,  6 Aug 2025 19:55:16 +0300
-Message-Id: <d2c4a5aab3d69cec6f0640eed157a97531bd72f2.1754499175.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
-References: <cover.1754499174.git.jani.nikula@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0F0710E01F;
+ Wed,  6 Aug 2025 17:00:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6028496982055652224=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Wait_PSR_idle_before_on_d?=
+ =?utf-8?q?sb_commit_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Aug 2025 17:00:16 -0000
+Message-ID: <175449961677.217482.8424133337022284990@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250806052213.1800559-1-jouni.hogander@intel.com>
+In-Reply-To: <20250806052213.1800559-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,113 +37,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All the places that use __to_intel_display() now get passed a struct
-intel_display pointer, and the transitional adaptation macro has served
-its purpose. Remove the macro.
+--===============6028496982055652224==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_conversion.c  |  2 +-
- .../gpu/drm/i915/display/intel_display_conversion.h  | 12 ------------
- drivers/gpu/drm/i915/display/intel_display_device.h  |  7 +++----
- drivers/gpu/drm/i915/display/intel_pch.h             |  4 +---
- 4 files changed, 5 insertions(+), 20 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.c b/drivers/gpu/drm/i915/display/intel_display_conversion.c
-index 4d565935e2cc..d56065f22655 100644
---- a/drivers/gpu/drm/i915/display/intel_display_conversion.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_conversion.c
-@@ -4,7 +4,7 @@
- #include "i915_drv.h"
- #include "intel_display_conversion.h"
- 
--struct intel_display *__i915_to_display(struct drm_i915_private *i915)
-+static struct intel_display *__i915_to_display(struct drm_i915_private *i915)
- {
- 	return i915->display;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.h b/drivers/gpu/drm/i915/display/intel_display_conversion.h
-index 46c7208d42ba..d497bc58a73f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_conversion.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_conversion.h
-@@ -9,20 +9,8 @@
- #define __INTEL_DISPLAY_CONVERSION__
- 
- struct drm_device;
--struct drm_i915_private;
- struct intel_display;
- 
--struct intel_display *__i915_to_display(struct drm_i915_private *i915);
- struct intel_display *__drm_to_display(struct drm_device *drm);
--/*
-- * Transitional macro to optionally convert struct drm_i915_private * to struct
-- * intel_display *, also accepting the latter.
-- */
--#define __to_intel_display(p)						\
--	_Generic(p,							\
--		 const struct drm_i915_private *: __i915_to_display((struct drm_i915_private *)(p)), \
--		 struct drm_i915_private *: __i915_to_display((struct drm_i915_private *)(p)), \
--		 const struct intel_display *: (p),			\
--		 struct intel_display *: (p))
- 
- #endif /* __INTEL_DISPLAY_CONVERSION__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 4308822f0415..6e87b763fe7c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -9,7 +9,6 @@
- #include <linux/bitops.h>
- #include <linux/types.h>
- 
--#include "intel_display_conversion.h"
- #include "intel_display_limits.h"
- 
- struct drm_printer;
-@@ -224,8 +223,8 @@ struct intel_display_platforms {
- 	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
- 	 IS_DISPLAY_STEP((__display), (from), (until)))
- 
--#define DISPLAY_INFO(__display)		(__to_intel_display(__display)->info.__device_info)
--#define DISPLAY_RUNTIME_INFO(__display)	(&__to_intel_display(__display)->info.__runtime_info)
-+#define DISPLAY_INFO(__display)		((__display)->info.__device_info)
-+#define DISPLAY_RUNTIME_INFO(__display)	(&(__display)->info.__runtime_info)
- 
- #define DISPLAY_VER(__display)		(DISPLAY_RUNTIME_INFO(__display)->ip.ver)
- #define DISPLAY_VERx100(__display)	(DISPLAY_RUNTIME_INFO(__display)->ip.ver * 100 + \
-@@ -236,7 +235,7 @@ struct intel_display_platforms {
- #define INTEL_DISPLAY_STEP(__display)	(DISPLAY_RUNTIME_INFO(__display)->step)
- 
- #define IS_DISPLAY_STEP(__display, since, until) \
--	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
-+	(drm_WARN_ON((__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
- 	 INTEL_DISPLAY_STEP(__display) >= (since) && INTEL_DISPLAY_STEP(__display) < (until))
- 
- #define ARLS_HOST_BRIDGE_PCI_ID1 0x7D1C
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.h b/drivers/gpu/drm/i915/display/intel_pch.h
-index cf4dab1b98bf..19cac7412d0a 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.h
-+++ b/drivers/gpu/drm/i915/display/intel_pch.h
-@@ -6,8 +6,6 @@
- #ifndef __INTEL_PCH__
- #define __INTEL_PCH__
- 
--#include "intel_display_conversion.h"
--
- struct intel_display;
- 
- /*
-@@ -36,7 +34,7 @@ enum intel_pch {
- 	PCH_LNL,
- };
- 
--#define INTEL_PCH_TYPE(_display)		(__to_intel_display(_display)->pch_type)
-+#define INTEL_PCH_TYPE(_display)		((_display)->pch_type)
- #define HAS_PCH_DG2(display)			(INTEL_PCH_TYPE(display) == PCH_DG2)
- #define HAS_PCH_ADP(display)			(INTEL_PCH_TYPE(display) == PCH_ADP)
- #define HAS_PCH_DG1(display)			(INTEL_PCH_TYPE(display) == PCH_DG1)
--- 
-2.39.5
+Series: Wait PSR idle before on dsb commit (rev2)
+URL   : https://patchwork.freedesktop.org/series/152471/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16962 -> Patchwork_152471v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152471v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_auth@basic-auth:
+    - bat-adlp-6:         [PASS][1] -> [DMESG-WARN][2] ([i915#13890])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-adlp-6/igt@core_auth@basic-auth.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-adlp-6/igt@core_auth@basic-auth.html
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][3] -> [ABORT][4] ([i915#12904]) +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-apl-1/igt@dmabuf@all-tests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-apl-1/igt@dmabuf@all-tests.html
+
+  
+#### Possible fixes ####
+
+  * {igt@core_debugfs@read-all-entries}:
+    - bat-adlp-6:         [DMESG-WARN][5] ([i915#13890]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-adlp-6/igt@core_debugfs@read-all-entries.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-adlp-6/igt@core_debugfs@read-all-entries.html
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [DMESG-WARN][7] ([i915#13494]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-9/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#13890]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16962 -> Patchwork_152471v2
+
+  CI-20190529: 20190529
+  CI_DRM_16962: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8487: 8487
+  Patchwork_152471v2: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/index.html
+
+--===============6028496982055652224==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Wait PSR idle before on dsb commit (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152471/">https://patchwork.freedesktop.org/series/152471/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16962 -&gt; Patchwork_152471v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152471v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_auth@basic-auth:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-adlp-6/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-adlp-6/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>{igt@core_debugfs@read-all-entries}:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-adlp-6/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13890">i915#13890</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-adlp-6/igt@core_debugfs@read-all-entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16962/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152471v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16962 -&gt; Patchwork_152471v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16962: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8487: 8487<br />
+  Patchwork_152471v2: 886b8d8ef3839f604e3e7f6187ac6c46eb21b802 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6028496982055652224==--
