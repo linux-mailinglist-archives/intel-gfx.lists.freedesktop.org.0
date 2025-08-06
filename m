@@ -2,57 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A79CB1C44E
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 12:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4F2B1C530
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 13:44:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B154A10E3CC;
-	Wed,  6 Aug 2025 10:31:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5noZ54H";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4253110E749;
+	Wed,  6 Aug 2025 11:44:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D370110E3CC
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 10:31:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754476262; x=1786012262;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ghdkzW+7tArpv/lpYayNpNMn/UJbrFKyNNKYmg+ndpI=;
- b=O5noZ54HSGaVr9d9pFCX/ExqmnqIztBZ+ul1wdL/s5trKi0jBdjIwJZ/
- tvoNTo68AUhoc9ElgrjS7IEu484hFJRbvuh2qxnlXmBrvWfQ6lcqQJg8R
- ZUPqlcHVWfKhYfES/Wk4M0jqk3qHQAdPQBDVlDncDn1AjlTU/tkRXdrx/
- GLXA2io9tOhhvlrXTR2hHn1TGnEHcn/TzkNSOhUruyzOjyDuija796/vj
- KNXeSOjMXfkY3v6XdhJQq43yhDj7IhbaHacT2m6E1T4brVG0wIwC0GEHf
- zjATqNiQcVVAI62sGzBDSKWHxlvHUeiume4rwcwPwMnOuMfBarxP09/xM g==;
-X-CSE-ConnectionGUID: JQ/+YCYgSiyJ1+H5nO+IvQ==
-X-CSE-MsgGUID: 62Z6nw0KQfiZ4zbGABO/VQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56926386"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56926386"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 03:31:01 -0700
-X-CSE-ConnectionGUID: 41BuIuRQQgK42S6ILFzlAA==
-X-CSE-MsgGUID: DnRwFaEdSw6YG8QHgswN7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="163960880"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.95])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 03:31:00 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/dsi: Fix overflow issue in pclk parsing
-Date: Wed,  6 Aug 2025 13:27:27 +0300
-Message-ID: <20250806102727.2043589-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B684D10E279;
+ Wed,  6 Aug 2025 11:44:45 +0000 (UTC)
+Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1ujcZW-00000009VT8-1Gqt; Wed, 06 Aug 2025 14:44:43 +0300
+Message-ID: <7920b8ed0ae141aecae8d40177f35e642cb1ca16.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Charlton Lin <charlton.lin@intel.com>, Khaled Almahallawy
+ <khaled.almahallawy@intel.com>
+Date: Wed, 06 Aug 2025 14:44:41 +0300
+In-Reply-To: <20250805073700.642107-1-imre.deak@intel.com>
+References: <20250805073700.642107-1-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 00/19] drm/i915/tc: Fix enabled/disconnected DP-alt sink
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,33 +53,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Parsed divider p will overflow and is considered being valid divider in
-case pll_ctl == 0.
+On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
+> This patchset fixes an issue on LNL+, where the TypeC PHY's mode/state
+> is detected incorrectly during HW readout for a DP-alt sink that got
+> enabled by BIOS/GOP, but later the sink got disconnected by the user
+> before the driver got loaded.
+>=20
+> The issue in the driver is due to overlooking a change on LNL+ in the
+> way the PHY ready flag and pin assignment is set/cleared in the PHY
+> registers by the HW/FW wrt. how this works on all the earlier (ICL-MTL)
+> TypeC platforms.
+>=20
+> The first 5 patches fix the issue, the rest refactor the PHY's max lane
+> count and pin assignment query functions, sanitizing the code, removing
+> duplications and validating the register values read out from the HW.
 
-Fix this by using do while.
+If you have 5 fix patches and the rest is refactoring, wouldn't it be
+better to split the series in two?
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-index b52463fdec47..f56985c3da54 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-@@ -142,10 +142,10 @@ static int vlv_dsi_pclk(struct intel_encoder *encoder,
- 	pll_div &= DSI_PLL_M1_DIV_MASK;
- 	pll_div = pll_div >> DSI_PLL_M1_DIV_SHIFT;
- 
--	while (pll_ctl) {
-+	do {
- 		pll_ctl = pll_ctl >> 1;
- 		p++;
--	}
-+	} while (pll_ctl);
- 	p--;
- 
- 	if (!p) {
--- 
-2.43.0
-
+--
+Cheers,
+Luca.
