@@ -2,169 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D2DB1C57C
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 13:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8831B1C57F
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 14:02:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB5FE10E754;
-	Wed,  6 Aug 2025 11:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF9810E756;
+	Wed,  6 Aug 2025 12:02:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+oZKQuz";
+	dkim=pass (2048-bit key; unprotected) header.d=siemens.com header.i=@siemens.com header.b="SrT0DEcg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5951C10E754;
- Wed,  6 Aug 2025 11:55:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754481301; x=1786017301;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=3ECPWHjfa5OVr9yXi0IFN83VjeuTpLIEydRjEhDZi+s=;
- b=O+oZKQuzbvLSYyA4kXnoFEtvAc/q062ipkwQmbzCOGXQqL4s0uM7h/tp
- wc4TMEtmm/3BwV+r5Al+3lE9bkC+/NwCdhxwIKXhJ8xT4pwr7A+OG2qn5
- NZm32vPvarro/WQUK2nMGrUv2aQl/tXLvexutwrc0oOLETpJXE6CQqa3t
- nmvf9hkSfOVatcY5EYvFqgzmIkj207RzxJD42LKN0tQrOCgirOgxB5K73
- nw7gHKFsfCfLY2ua+Wsgn+lUSMsY28XsxYlQy5gl26XLhlUH6vy/V6di/
- OMOqH8dOjiVMC/PrcZhJF+UJ/Zs8hchN4Rd55RsaPw9gFoVlDziEZWYln A==;
-X-CSE-ConnectionGUID: uUCEm4NKTqOYmq0rcWZadA==
-X-CSE-MsgGUID: q1aHp7iqRQu+xEdKd6l0YQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56509376"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56509376"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 04:55:01 -0700
-X-CSE-ConnectionGUID: OZ3HOiKjSLyjPAFuX873+w==
-X-CSE-MsgGUID: iF5l1UuZSsmIij6QManl2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="169004066"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 04:55:01 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 04:55:00 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 04:55:00 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.66) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 04:55:00 -0700
+Received: from PA4PR04CU001.outbound.protection.outlook.com
+ (mail-francecentralazon11013036.outbound.protection.outlook.com
+ [40.107.162.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC2210E756;
+ Wed,  6 Aug 2025 12:02:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O3+w+Ra6vEadW+sZCHeBmoOO17n7p+lGST892uS4UuUf7o+EFeIKhPnvtGD7OuyvVA1hsfMf775TWd6ZJcHbjSZpYCt6qnPwrfwfNihRnOuEF/Mgan5jAf7DQotxgMOdswFXOCIazC4B1//M3kmcl7A5HoMzgjH/vGAiDYHennNJdE9+QG7b/lm1l880e1kcYJXF4qMDgeWcsZ6h72dlWM2uxl5eXlEjIDATzhiaCW33FLYpLyWsEi8/6WYDOfclx7r4HZW1khKchUhQbKEhI7N/87erkbiUSA3URXaPgZEiUII3urDLpC3/SsQbJeRUc27tplKrnmQ0cDDsV5Aq0A==
+ b=ABgXoMSYSsx1BNW7RqVbWsdSr2TORd70o53fQTD6oOwrfLb2ezKXr8r3Bx8Uu5PcV8oXTyVKvC7LiP8sXwdzzGuRM8tuGEeuJMRFF6IihKIhYmCBbnqAazE3MdNzYl4f1CwqAzl9/t6XBIRLRGp188FDISKAn6Xqvr+iLB+tNPJsEKjGbm8M10ECdOU7h4OPVgNpvxNxC09M7rIJ0ePUtoYkXNUsYowbz6fpYnbM3H7iI0XbfpzO9FoJS4U7YwwrApqqA5vnL8Sp8gRAv5wcfWLn8FUxJgNZWHttSAEPRymFHGiTnLYMFXc5u6RTLv+orlIeCCZuLY8DWrISTtGz2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C4Vodw3qO5p3rfU+StJ9IvDNHCBP/HZJZYu9ntTSODA=;
- b=OfJPKVPZUt0S9V2F9ZH3Z9t0g4/Ha3tzJdOTBd2yUQvHKQZPSXbDR5hG61Mwf9WOTh/SnqK1WORu/vyEVnHuoPMwmu8jOxO+NJCFgdH1fUoeDRWif4GEnkjA5oO0tBuUCJeuSKkPBmMwrAnOIqE+XU9ZB5O6QzUybO73KAMgs022Mxs+3kL7EsFjZf6lunj7AMbqztryvCc4xeYh6hu2nzzWG56qJpPKO6IRduJWIBQ4QTN0WAwlAL57BQ8Kb0UV3XXQeZds30dO64MOKDtxs7TZAjvmV81+00ru11q/3BkALCSCZHz55LvzmxsbNuAQpaKVxM/q/A8XKyOzeOpS1g==
+ bh=IuAbzlkwrNtBMHp6NNELXcTrLjD7efpTUPV/4F/vJq0=;
+ b=B5O1B/Amaew55ZvwYbJ0oep0DSpGljSolUy9YMxtFw00oVUErjvpfqD1r8BDkcBZCMMO89odrEHwEyiDGgtTtdgaQgLL8Qix4LywJzTu76Pu7+rpDmEreKdvqc319syx0zjpIhQGhS0N2v1mWbVpGEjoQEr4NW5gzrPtS+xU2Ef9gjD9EkBNmfmKoboSA+quSzzISqZtUTXFrGxbkOy6SC7zDEm9MQsL3+FrYPh5uDoL6q/6FnkpR1hmMqaoO7DAR/APW1vYIQWTpOYe+jA5AIj9FRSGMGj2Mo+0PqSOxs3k+hVtN/d+kkSj9v6zoyk58LXh3Fp4/7eiKV5dU13cRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH8PR11MB6950.namprd11.prod.outlook.com (2603:10b6:510:226::9)
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IuAbzlkwrNtBMHp6NNELXcTrLjD7efpTUPV/4F/vJq0=;
+ b=SrT0DEcgK2G2uL1RJrwuA/Sj2/e179LSyG0VduwT/bV4OecLp+zB+9c0Qo+ZADxxOXInVbD3sIPq3tVjGYrQHpdJnltPoA/SIgXjTNmi4b8G/HnMK4lOAYNiu99xeQDE3PvhphvDTXRipD4bN990TiziPk4jwlZUKjHMFBmMf0nMdnVCFq8cWT462RwvpJbtKPvUyMRvRyGFwbJ0rKHMFO7JJJR8/jTRpql+nM1nrePdx1yfLga7JGS/k9QCYT/rvccl21YGOrOhy4/r8pcnojgcgI4WVxufi7UuuD4/i776Dw4iBFzkSkaJZhoteaUz6jmmHGvzArk9dQa1bEF1ig==
+Received: from DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:431::21)
+ by AS1PR10MB5368.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4a0::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Wed, 6 Aug
- 2025 11:54:58 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
- 11:54:58 +0000
-Date: Wed, 6 Aug 2025 14:54:49 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Luca Coelho <luca@coelho.fi>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- Charlton Lin <charlton.lin@intel.com>, Khaled Almahallawy
- <khaled.almahallawy@intel.com>
-Subject: Re: [PATCH 00/19] drm/i915/tc: Fix enabled/disconnected DP-alt sink
- handling
-Message-ID: <aJNCicpwIY2YtAun@ideak-desk>
-References: <20250805073700.642107-1-imre.deak@intel.com>
- <7920b8ed0ae141aecae8d40177f35e642cb1ca16.camel@coelho.fi>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.18; Wed, 6 Aug
+ 2025 12:02:02 +0000
+Received: from DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::e1ee:257:5282:cad0]) by DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::e1ee:257:5282:cad0%6]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 12:02:02 +0000
+From: "nicusor.huhulea@siemens.com" <nicusor.huhulea@siemens.com>
+To: "imre.deak@intel.com" <imre.deak@intel.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@oss.qualcomm.com>
+CC: "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "cip-dev@lists.cip-project.org" <cip-dev@lists.cip-project.org>,
+ "shradhagupta@linux.microsoft.com" <shradhagupta@linux.microsoft.com>,
+ "jouni.hogander@intel.com" <jouni.hogander@intel.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
+ <tzimmermann@suse.de>, "airlied@gmail.com" <airlied@gmail.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "rodrigo.vivi@intel.com"
+ <rodrigo.vivi@intel.com>, "laurentiu.palcu@oss.nxp.com"
+ <laurentiu.palcu@oss.nxp.com>, "cedric.hombourger@siemens.com"
+ <cedric.hombourger@siemens.com>, "shrikant.bobade@siemens.com"
+ <shrikant.bobade@siemens.com>
+Subject: RE: [PATCH] drm/probe-helper: fix output polling not resuming after
+ HPD IRQ storm
+Thread-Topic: [PATCH] drm/probe-helper: fix output polling not resuming after
+ HPD IRQ storm
+Thread-Index: AQHcBXxdKRF6MYF9cUCK3BRks+j23bRT4YeAgABMOICAAVikEA==
+Date: Wed, 6 Aug 2025 12:02:02 +0000
+Message-ID: <DB3PR10MB69081B925B54BB906DAD0D20E62DA@DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM>
+References: <20250804201359.112764-1-nicusor.huhulea@siemens.com>
+ <z4jxkrseavbeblgji4cnbyeohkjv4ar3mbbdvothao6abfu6nf@nqlhcegwtwzf>
+ <aJIhCyP2mwaaiS22@ideak-desk>
+In-Reply-To: <aJIhCyP2mwaaiS22@ideak-desk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=81c2d151-86e1-4bf5-9926-d23bc8ef2367;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2025-08-06T11:53:10Z;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
+ MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Tag=10, 3, 0, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB3PR10MB6908:EE_|AS1PR10MB5368:EE_
+x-ms-office365-filtering-correlation-id: 6c7cc93b-2662-498d-edfb-08ddd4e10e28
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|366016|376014|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?SY7KUrixesCzqQE2h8il6S+YvWmYG0zrZE96zWa4FRjYbHAwJrhR3rW2wg9x?=
+ =?us-ascii?Q?ScyhDcI3slRtuMMMvqaFld226IJ3fkV1dLJ+ffY7kHBgg5H8PJEZINciZTbG?=
+ =?us-ascii?Q?hhV/y0WTmNzmXXZ62PTWgNW4MVoJ31bfTL3nkxQghx4bs0EWwADNoHaYjp6L?=
+ =?us-ascii?Q?XRMS/KgUqTniIy+RsvMRhC6XmRfpovWsY+brqViU2pgkoTpINZ70TxZIieP5?=
+ =?us-ascii?Q?2esNzGWUai3qb+jNPGrLdq2ccpMWUmxTU86h++wxzB/8m/twxfx+C03QUhVj?=
+ =?us-ascii?Q?6rapuwsaJaQr0Ff25aHsPzazNJy9I0qpLm04FTjE0YZXjI5E0tEYpy8mCoee?=
+ =?us-ascii?Q?Inxu358y2BK3tltVHQm9hPcIVhKQr5RPNqlTwSDsOzRLhOoszr8HOCUEjyc2?=
+ =?us-ascii?Q?WiaHhcLB3+V41QKVWUSeIYSAKoNzAHLKYJ83M/jkwEE8qBoFJKqJuyCgKTT+?=
+ =?us-ascii?Q?v6/sohfZ+gszY7Ajil9XB4Agj7C645knauN/Dd3hh4GdxYLvI+85sGfnuH2p?=
+ =?us-ascii?Q?6kZ0tFuLxnPyDDRhx4XLfRVlijcuH3LA+UTtOsEV2uPcie/oRA73ly1vPfvT?=
+ =?us-ascii?Q?VqQR3krbEW2Tv4Qutodajmk7do6aIg91/h5AflsnuGBLiewZfzaiwStL1Erd?=
+ =?us-ascii?Q?Fb2MBcmJnf3bJX0INaxM7bFqhh+oSaQ8lsm3+6V0NM35nbvc1Qjmk5GaCdu7?=
+ =?us-ascii?Q?cHf0tp/GKlkbU48a2Nj43RXjJIMVBL7q14t9EZJ+7LyCmFnVA98EcbxA3qyN?=
+ =?us-ascii?Q?/NuQgTdIKl8u0NZ4egywoHLmVa7B7dZHKbGEswKzWKqsvbmMWEdRL1QqsDMY?=
+ =?us-ascii?Q?enRMy8Xy63jBG6HxPdH5nrxV4FRc6cY6Lq3hJrfrS3/72lMDdnEYJdmm4oYK?=
+ =?us-ascii?Q?NpwgbAn1T0l7r53pWG+yo8q1sEJLVjEDYNtkO7pNn2bZIOr+nRvf6B3H0EYQ?=
+ =?us-ascii?Q?7QzHbawtKryQt/+4BzU9bycoPvnicrccR6Sd5wm6eTgUIfp9Aj6endC3eMpX?=
+ =?us-ascii?Q?gmz2XOC26zyABfB09NwCB7b2861afHnYHAws+vnzPKrtmbKYQaX0yuYZrRlj?=
+ =?us-ascii?Q?1RrWqAPQYKI+VX7XYHnC/y1aGwmOh9hmPxONATQUabX/BZz/boHXJZHHPAZu?=
+ =?us-ascii?Q?Si5Djw00W5yuVpzP+JApMVHL1xp4q5xucM30GrbAg0Q3OH3CNN7UdnQccUmy?=
+ =?us-ascii?Q?OcU+IK6NzljkWjrbeMsi1Q79SvznqyXTC+hAkXELroJe754X/bVFdzMes9AA?=
+ =?us-ascii?Q?1fhekTHWG4nQF+eCMHE+xOU/bqP02ub/6+CKuczUVSfPMgfEe8mV5YteKCN4?=
+ =?us-ascii?Q?sYDd3IluuZNnIn9Vn6MOMYewfY4z5bJW7te3UCJd05KtqFngYz+iaEoswUPw?=
+ =?us-ascii?Q?3I/GIV4jEgU5wvQKswN/4JdDQYVITk3Av+HbUSOXWpetKUeWLucxyXSkxFEM?=
+ =?us-ascii?Q?ZUs0vuq77xDxeb2kcSu55MHiOOW/8vcEpm06WgbTA1bMepmoM/2ucw=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PsRWdPgwp9tTj5vur9b12HXA4xA98DqryC2F0QmUvVW0ASx/H5q6CLudm7VT?=
+ =?us-ascii?Q?5p++7zks7+JNWiQ+Z0taYtCogsDewv+A7tZx+fT8Pk4gS3kz0DHHhnnShq90?=
+ =?us-ascii?Q?j3G75WNh9P8eYbzs8xRf/AHEqGKDvZ++DqplRN9d3PdusN777S2HJnTj5qtU?=
+ =?us-ascii?Q?NyywytldqdTzXJpkBWv1PKXQwGez0taPZz6keQYKo8n1G0W85nxAcBRcPwcN?=
+ =?us-ascii?Q?JQ8rDu0fUywPms1Ak1bsUSNER/8Y9yEA5AXALnaYsHdQnmpe3UBnQgSE5zJX?=
+ =?us-ascii?Q?qHR9nbMlFqoZBB2kZNAZ8sPNzqU4bxhaqEuHUJJHmNLG3Qeati0aRLNZVP8h?=
+ =?us-ascii?Q?TS+5tiWub3pFxmXs/xWE4aZg3ExK+PjYtMDb5TxFa5gQvuN6w9AQTjPTfh5L?=
+ =?us-ascii?Q?1uNCdQLkab/08Bty06HCbgQVEpqZ5opMiHtr5fGbYi/6mdlPgxB9cwuOHXTt?=
+ =?us-ascii?Q?BeeiIJ2JSqGPRiIklw12ym1uoR9fqdzbv+y4S3JacHMoCIP8rtdpD7Bb+1Bo?=
+ =?us-ascii?Q?0ypYU/J83EvMYehuFF/JM0s2u6mhlua+MOIHU8i9IWmgYr1nC2MYkg7xXIvB?=
+ =?us-ascii?Q?91f9ZhdTxoWKKgDhqtnmpiskXxZzrVytQZlMHJuPCasa6/Rx94NZFDVt8OVJ?=
+ =?us-ascii?Q?on00NgunB76A14s3ftfyEaM9+RcXETJOW8IZX+/ClyXQA9xpaA/d5e1ZSznl?=
+ =?us-ascii?Q?6qtLVPyyFiuw4W3S/Fur1dIecj6WCeJ31nYMQeXApsMmEdR1o8wZecpFnmLB?=
+ =?us-ascii?Q?aYNO277u7RdxN1iUhKj43v5UaKCVCVBaQEbqpnYdvcofSsS38C7xgdCXZOhx?=
+ =?us-ascii?Q?hkvLxEsA/Mtmh9C/ykmSv+2ORRWD44RTbFpg1SJyBY6rFplKs8SbVAYvFMzB?=
+ =?us-ascii?Q?4CydMddTF3CsdSS1EqU6Y0D/KrebHNEl6+Am/FfwGVyzN3Cg7fF0FtT91oHk?=
+ =?us-ascii?Q?oUk7984sv1BG5YrTL3k8yj7qHiiRaJkaVPpEByTl/hyBlR/JEvOToK6qY+7Z?=
+ =?us-ascii?Q?MDovDQbnhgmNkYMxNaukw/cEGi/EO0YUN/bd/cYWXXldNeJy3Lcz9Rk+gN3a?=
+ =?us-ascii?Q?Yszy74q7dfbYyTNpS9x8u8a7mHYxysNBmxP6L/J9jVfGSg43XTOkPNGzbWZq?=
+ =?us-ascii?Q?VCLDOaSDeh4GmnoOVpmKgGZvf7q7H9QbP8umzWlDshaNWNQcI9Wd+rMUa8Yu?=
+ =?us-ascii?Q?xRR9JTN640eGPccK1f8mcHDNPXEKgqeydUrpykgR3ns3Siag5q8lwmfODdGY?=
+ =?us-ascii?Q?obAsi8XfPJJAHxL2gywzReT2Q39uvdS2QqcuruvfbIthY6WtxX5RbYrGL/r2?=
+ =?us-ascii?Q?hOqRYRx07PGVgyDqfk7qsilYA/ZbvpgOMOLAkfWnJpHkopbJDGiqnvcttP8y?=
+ =?us-ascii?Q?7BkMYxkU62zR73dZaYDYQbkjFIHQYYuwui/Fh+NNpXEH2grp5jzHX5MEOQeU?=
+ =?us-ascii?Q?OSNDp1ByS84zlrJVgGDriO3/HElICZ+O62tZ0DsSO/FJdCsd8ZhaerF0joYm?=
+ =?us-ascii?Q?/wz2nTYhwHaTQ+U+Wd6tL2yi28Vfv/QNtSupg4cVvOZfjypJngUZMtQ8bsoV?=
+ =?us-ascii?Q?rUHjtTvDBDsdyjOrA3D2+fdQxkJH09ds1pUBUzM/sezPz41c+JeZuwNT879r?=
+ =?us-ascii?Q?SA=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <7920b8ed0ae141aecae8d40177f35e642cb1ca16.camel@coelho.fi>
-X-ClientProxiedBy: DUZPR01CA0146.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bd::9) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH8PR11MB6950:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6e4db5a-6586-4562-f479-08ddd4e010f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|1800799024|10070799003|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SotqN1SmwEplErNerYOZAtcMH9uSUyTAvyzv5LL2LCwdvESiAcqk4ORj7lmd?=
- =?us-ascii?Q?zDSE3ArekQs7RTEX+Lpj7X8ReQkrRZVAT0DzJ7tZYJDl10PPfeq3GlU/kKDM?=
- =?us-ascii?Q?Ck0VEjPvkwc33euMK7bLEhRqd7WtR75RXDRJAyPV4C/4MevTcXw11p97WaJO?=
- =?us-ascii?Q?b2sN//4pin7H03xmeXIvMR90MUp7fo/4Gjfkg6rdBiYu3dh4ieLdrL3R5v0b?=
- =?us-ascii?Q?D5gY0u2mBgQoHak6V/E46MFp0WHJ+eVb6+7DMRbqSJOpRh4vdz/XM7ZSTUk3?=
- =?us-ascii?Q?R3D5+uNjkkGstsbx6G1Na46wsBGAji7/L+IuP/TbhNRBBqbazt7dUpaRQgiy?=
- =?us-ascii?Q?MMyiz0KVRCw1SbSmlYEHncN/thv0AcYQNP5seZ4blHy7CDsMrypG/cAc20xI?=
- =?us-ascii?Q?uNGEe1/Yb1DdlmZ7Yu+oXhCtZ7+TkzUPG4vdXuU7OqDxWDPzKuwAXz1QrNEp?=
- =?us-ascii?Q?QJrfE+vczOXBhB01lMtn53LjsQhyiCeYO4UszvpDlWUeBhnLHG1TBFMrZkZd?=
- =?us-ascii?Q?nE6kZ8pcuMgu9y13PKHNhdWkO98Bso58lx/IrgU3eD86r0eJo4nkDLzGsDC8?=
- =?us-ascii?Q?qV1ZuoEZWweViemnHTX1ortMziQ06D+QOvXmtb1b8ooqUzvYWYGGM0PyxWbD?=
- =?us-ascii?Q?8xutfTJpHLoUNeJD7/pgRzUnpWe4b9QfA4FK9yi0dIlyhqz2t9zJ1lDkvns2?=
- =?us-ascii?Q?VV54BYXYJWi8AjY8fdJJSRvnPzZ4Ewd7EhYAwl0jqlZ2d6J8QJdiTp/2kS98?=
- =?us-ascii?Q?kRy/U/f9RlG2Bx3cOMuqjggnf98gB977vRxV+P47F/EmQUVw/BlJQMilimwM?=
- =?us-ascii?Q?Nhq+bB5BFyZsRVjYDFxbz4Km0++HmxlRwzoZ1LsUnUwMzZpkS9hJNP+/d2/e?=
- =?us-ascii?Q?riM1DoPpLDZ9pmkea76OlaoGopRzZbBV9v5u2YJw+uncO2yr8YMTZjlngnIo?=
- =?us-ascii?Q?1iNsHOf1mY1Vk3jxj0wh4ofg60QdXH25as4Jn0fCMMuG9/TRDo4Mez+iDkXU?=
- =?us-ascii?Q?oJQYWoaffavRdd6jMxqIy7vPo8KoM9E8bcAOqnAxQ4LkwdNQABX3ngSgT6hN?=
- =?us-ascii?Q?Pwpnuw3HD1pJn77RcRbo4ogMvmGV1daccOxlGFLhPHJxBWTbIhMtyBv3LbDa?=
- =?us-ascii?Q?qzXDEbraEohpNrutQbXcL9w7py8tIZf4BA3YbCWZGzn51mJYGeP03Uc22A+E?=
- =?us-ascii?Q?r0estKwTUhk/USHk5+DJfe3zujDuqdBBWdsrpyeu5Dmtzvrdt0e4ShtiXU0B?=
- =?us-ascii?Q?FQ7FN3IpHJMZrdcKerPsg8Qp6kqN90DTpHe4u6emyxoWaN7ISk1bD0RbXYgQ?=
- =?us-ascii?Q?VVxi7cBhI0uaZE63BEnM5vLuYmI3Ii8zNb70xNSITj5JlQAHFnrnEe4WDINB?=
- =?us-ascii?Q?Td5IfPuEOFvt7yp2EI4Q1q8MwPqH5vbEWCCpzZVuR3MK04TXNKLMZ8c5QLa8?=
- =?us-ascii?Q?CndeP4KvdH0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(10070799003)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GyTmxiGn/RvH7YTQk5QjcYdE3CdE6R6TXtGIc5A8dU3esQvsfv4d3Y8OpY3N?=
- =?us-ascii?Q?JAg8WgJC/HJPV5chfuMlOBNOSma1E8rtwKsjPIIGA28V3PmSZKsj/PpZg7w9?=
- =?us-ascii?Q?ks1EAVKHnfb1pMa4jTtxkwnSN3PpfKGJ8f64T+zi8T8qylOTknwfata6MXRF?=
- =?us-ascii?Q?JyWLtXkdZoBAW/37q0v3g99a59RDDbgORjrWmn0C8o0tdylVelqv1LxY1vhH?=
- =?us-ascii?Q?vFvRYIDWMCB4KAdXYttBpQKvT1BCHqMaLael6/jXtOSUHramiepqox+65yLo?=
- =?us-ascii?Q?8e/vfFW7T2TqtN7in1XLn/iZBraT+Te915wucEcwzvlf7XdOegbiuwwJYQjt?=
- =?us-ascii?Q?SJk1OY6UqEYrUHcRnUP+B/uOSdZ/E8X4RQiEL8SJWyzeSBO0x5YxQnBaG115?=
- =?us-ascii?Q?a0NdLS/D8Pm3goyb3v57SmfgG6Hke0CUxc1Gsvhh5d+/u6woAzSq9eHhdd9i?=
- =?us-ascii?Q?iki1/9+9EKeH8ADvVHVGMbk58cEzmxGk/om68Y+zGPotMm2ujmI3w1qPNpfQ?=
- =?us-ascii?Q?4CfR7DcrMKUfWVYtyFYSX5a4rQXPXi/h0KsCjzsbqjP15biDoN31axhLH0qx?=
- =?us-ascii?Q?VrLm8nreSZ5slexmgdIRUw2UQFfHnlpJHeIihvq+3j9Hk/27BS6yRFennB/c?=
- =?us-ascii?Q?NgiJ7A/bM6qbJdiFRKES6BxIgu0nVGvooRyHtBiv/52KPG0DdwHchqz6g4qF?=
- =?us-ascii?Q?2S2+KHuqeLOdaXmfTnlW0PaZKxuYEOUYKFkVXL5/o4SRlF2npXywae+4dB/y?=
- =?us-ascii?Q?4txrjxAxwCM/vCJ5D7x8kBk7D2bkuzZYR8UP/XH20xpMwLNAIZpr9MfbGtzh?=
- =?us-ascii?Q?MGNgUgmivxvCautHS8ahE0DLldykA4RskONMbJFj7cgugz77gH8ZbuyO2uHr?=
- =?us-ascii?Q?zus2xL84YgLPzjyw/naqmH6lP9wPz2gqzY7/wwpmxg+Y1BzVYUuNEtK7oD5L?=
- =?us-ascii?Q?j6AmwdZqpedW4XhRjRMu9dWpqi7mUehDit9KycEK28JxQdYyBti+3WeP2WrX?=
- =?us-ascii?Q?OWdQCz2Uk4s5F2/anGRKKfzuPrYqA3+SSRcK2v+4Glc41Q69iCEJWDutjqCq?=
- =?us-ascii?Q?g/p9BpWTS/sgbM/+Cfz327eEwN1MGtX084oDM1oaUwxbWZeRzhDiQQS5aTkc?=
- =?us-ascii?Q?29MtrsVbEuiWnXjI9A+x3cHsKWrgiQJHHWxzmIZOeRzo+Wl0ntBpIIq1vBs3?=
- =?us-ascii?Q?TFVR4bk/q+QA5+Dq2vngHbEWiFNEN8dPbtKN/YeWKpwtpFdtNnSSCe9pIX+q?=
- =?us-ascii?Q?lUvIer53hUeKs7Osrksxifnw/GAj+ni7zQcVe0vFRd7hch4elGjqP8Akvbfb?=
- =?us-ascii?Q?mKIl41d7+ycwTXNK8+K4JRorSO4oIhjq0h+6QZv/USb+tWCBz7cjm1DOmWRJ?=
- =?us-ascii?Q?YhXzDTmON0aZpvk+kmXF2KvK9XjTah1H3TA0D1rsSB/wNO60WqxOy7sP0LL4?=
- =?us-ascii?Q?cIVEArG/eauuhgOp0ywaDn+sWzFg/jmH2ELOI74TpqW84g0CPuYAYL7nvsGW?=
- =?us-ascii?Q?Cqus08KMXhHiORbDLj0xCnEOQ7FiYx/vFJc5LZclhan8o16xa1yjL0wUN2UO?=
- =?us-ascii?Q?8gWD/HyaY1cjpaP6xr4MxVE3YrbgY18KtkGBpK48jxA2xv18Hxj3W1c1QVJo?=
- =?us-ascii?Q?irKUywi++7NfvXScgPNkZBDZJZ3cIzklTRbouNI5H+MG?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6e4db5a-6586-4562-f479-08ddd4e010f1
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-OriginatorOrg: siemens.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 11:54:58.1581 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YDoHOS/8rxdfwo9GyZcakNNiFCot5AunvH263uOi0eqe9pcqg7x/3+Em1B+nwMpI4jqd58tETbr6tpHNsDRAjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6950
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-AuthSource: DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c7cc93b-2662-498d-edfb-08ddd4e10e28
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 12:02:02.6418 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GeXG/laPP9kCgQ/n5c5GwgEa5IPeV7kGvw4yNHnPCXR5267WfyVL9l35fRzklLPeeANOeYbpgnm29zxSNBH/mxd01tL7npqZmg5HgF6oMno=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR10MB5368
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,32 +177,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 06, 2025 at 02:44:41PM +0300, Luca Coelho wrote:
-> On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
-> > This patchset fixes an issue on LNL+, where the TypeC PHY's mode/state
-> > is detected incorrectly during HW readout for a DP-alt sink that got
-> > enabled by BIOS/GOP, but later the sink got disconnected by the user
-> > before the driver got loaded.
-> > 
-> > The issue in the driver is due to overlooking a change on LNL+ in the
-> > way the PHY ready flag and pin assignment is set/cleared in the PHY
-> > registers by the HW/FW wrt. how this works on all the earlier (ICL-MTL)
-> > TypeC platforms.
-> > 
-> > The first 5 patches fix the issue, the rest refactor the PHY's max lane
-> > count and pin assignment query functions, sanitizing the code, removing
-> > duplications and validating the register values read out from the HW.
-> 
-> If you have 5 fix patches and the rest is refactoring, wouldn't it be
-> better to split the series in two?
 
-The refactoring part depends on the changes in the fixes part, so I
-couldn't send the refactoring part separately.
 
-> --
-> Cheers,
-> Luca.
+>>-----Original Message-----
+>>From: Imre Deak <imre.deak@intel.com>
+>>Sent: Tuesday, August 5, 2025 6:20 PM
+>>To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>Cc: Huhulea, Nicusor Liviu (FT FDS CES LX PBU 1)
+>><nicusor.huhulea@siemens.com>; stable@vger.kernel.org; dri-
+>>devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; cip-dev@lis=
+ts.cip-
+>>project.org; shradhagupta@linux.microsoft.com; jouni.hogander@intel.com;
+>>neil.armstrong@linaro.org; jani.nikula@linux.intel.com;
+>>maarten.lankhorst@linux.intel.com; mripard@kernel.org; tzimmermann@suse.d=
+e;
+>>airlied@gmail.com; daniel@ffwll.ch; joonas.lahtinen@linux.intel.com;
+>>rodrigo.vivi@intel.com; laurentiu.palcu@oss.nxp.com; Hombourger, Cedric (=
+FT
+>>FDS CES LX) <cedric.hombourger@siemens.com>; Bobade, Shrikant Krishnarao
+>>(FT FDS CES LX PBU 1) <shrikant.bobade@siemens.com>
+>>Subject: Re: [PATCH] drm/probe-helper: fix output polling not resuming af=
+ter HPD
+>>IRQ storm
+>>
+>>On Tue, Aug 05, 2025 at 01:46:51PM +0300, Dmitry Baryshkov wrote:
+>>> On Mon, Aug 04, 2025 at 11:13:59PM +0300, Nicusor Huhulea wrote:
+>>> > A regression in output polling was introduced by commit
+>>> > 4ad8d57d902fbc7c82507cfc1b031f3a07c3de6e
+>>> > ("drm: Check output polling initialized before disabling") in the 6.1=
+.y stable
+>>tree.
+>>> > As a result, when the i915 driver detects an HPD IRQ storm and
+>>> > attempts to switch from IRQ-based hotplug detection to polling, outpu=
+t polling
+>>fails to resume.
+>>> >
+>>> > The root cause is the use of dev->mode_config.poll_running. Once
+>>> > poll_running is set (during the first connector detection) the calls
+>>> > to drm_kms_helper_poll_enable(), such as
+>>> > intel_hpd_irq_storm_switch_to_polling() fails to schedule output_poll=
+_work as
+>>expected.
+>>> > Therefore, after an IRQ storm disables HPD IRQs, polling does not sta=
+rt,
+>>breaking hotplug detection.
+>>>
+>>> Why doesn't disable path use drm_kms_helper_poll_disable() ?
+>>
+>>In general i915 doesn't disable polling as a whole after an IRQ storm and=
+ a 2
+>>minute delay (or runtime resuming), since on some other connectors the po=
+lling
+>>may be still required.
+>>
+>>Also, in the 6.1.y stable tree drm_kms_helper_poll_disable() is:
+>>
+>>        if (drm_WARN_ON(dev, !dev->mode_config.poll_enabled))
+>>                return;
+>>
+>>        cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
+>>
+>>so calling that wouldn't really fix the problem, which is clearly just an=
+ incorrect
+>>backport of the upstream commit 5abffb66d12bcac8 ("drm:
+>>Check output polling initialized before disabling") to the v6.1.y stable =
+tree by
+>>commit 4ad8d57d902f ("drm: Check output polling initialized before disabl=
+ing") in
+>>v6.1.y.
+>>
+>>The upstream commit did not add the check for
+>>dev->mode_config.poll_running in drm_kms_helper_poll_enable(), the
+>>condition was only part of the diff context in the commit. Hence adding t=
+he
+>>condition in the 4ad8d57d902f backport commit was incorrect.
+>>
+>>> > The fix is to remove the dev->mode_config.poll_running in the check
+>>> > condition, ensuring polling is always scheduled as requested.
+I'm not a full-time kernel developer, but I spent some time trying to reall=
+y understand both the rationale and the effects of commit "Check output pol=
+ling initialized before disabling."
+Here's how I see the issue:
+That commit was introduced mainly as a defensive measure, to protect driver=
+s such as hyperv-drm that do not initialize connector polling. In those dri=
+vers, calling drm_kms_helper_poll_disable() without proper polling setup co=
+uld trigger warnings or even stack traces, since there are no outputs to po=
+ll and the polling helpers don't apply.
+From what I understand, the poll_running variable was added to prevent case=
+s where polling was accidentally disabled for drivers that were never set u=
+p for it. However, this fix ended up creating a new class of breakage, whic=
+h I have observed and describe here.
+
+To me, the core logic should be simple: if polling is needed, then we shoul=
+d allow it to proceed (regardless of whether it's been scheduled previously=
+).
+
+Looking at the  drm_kms_helper_poll_disable()
+if (drm_WARN_ON(dev, !dev->mode_config.poll_enabled))
+    return;
+
+If the driver never enabled polling (that is, drm_kms_helper_poll_enable() =
+was never called), then the disable operation is effectively a no-op-totall=
+y safe for drivers like hyperv-drm.
+
+And in the enable function drm_kms_helper_poll_enable(..):
+        if (drm_WARN_ON_ONCE(dev, !dev->mode_config.poll_enabled) ||
+-           !drm_kms_helper_poll || dev->mode_config.poll_running)
++           !drm_kms_helper_poll)
+                return;
+The main thing being guarded here is whether polling has actually been init=
+ialized:
+1.For polling drivers like i915, removing poll_running from the enable path=
+ is both safe and necessary: it fixes the regression with HPD polling after=
+ IRQ storms
+2.For non-polling drivers like hyperv-drm, the existing checks on poll_enab=
+led in both enable and disable functions are sufficient. Removing poll_runn=
+ing doesn't affect these drivers-they don't go through the polling code pat=
+hs, so no polling gets scheduled or canceled by mistake
+
+Therefore based on my understanding and testing removing poll_running guard=
+ not only fixes a real bug but also does not introduce new regressions for =
+drivers that don't use output polling.
+
+
+Nicu
+>>> >
+>>> > Notes:
+>>> >  Initial analysis, assumptions, device testing details, the correct
+>>> > fix and detailed rationale  were discussed here
+>>> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
+o
+>>> > re.kernel.org%2Fstable%2FaI32HUzrT95nS_H9%40ideak-
+>>desk%2F&data=3D05%7C
+>>> >
+>>02%7Cnicusor.huhulea%40siemens.com%7Ca68c32efd9a044f7f86308ddd4338f8
+>>> >
+>>8%7C38ae3bcd95794fd4addab42e1495d55a%7C1%7C0%7C638900040113270385
+>>%7C
+>>> >
+>>Unknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwM
+>>CIsIl
+>>> >
+>>AiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D
+>>mH
+>>> > ublqHV5x2K%2BLZ3ylYHsQhtLbcQSwSwZxiqBl2KohM%3D&reserved=3D0
+>>> >
+>>>
+>>> --
+>>> With best wishes
+>>> Dmitry
