@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD19B1BFDD
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 07:22:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0E3B1C146
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 09:25:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12ED10E728;
-	Wed,  6 Aug 2025 05:22:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24A8F10E3BD;
+	Wed,  6 Aug 2025 07:25:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WegRr/x6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SaYhkjXO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D6210E39F;
- Wed,  6 Aug 2025 05:22:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DD8410E3B9;
+ Wed,  6 Aug 2025 07:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754457755; x=1785993755;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zO38RkFLOAv2R/ZuKs7B3x3+CZaDjKmn5Dinimcub48=;
- b=WegRr/x64TDqdQOeJxEFtAL3+yF65Didx5LSBuEAmthh9Q8dzy139KyF
- PM5oGUzK4kFTYHRqrFdL8k53bQegQpV9FFo9f354LbRxz97Cnq1aQQhUr
- udD19877dwrWuCP09Y7xzdnQ9OERwYfWZwdV9BJJIMxoscmmQan63OQBZ
- xBCrgo5agAlSDarom6Th4bca4XV1L8ID1KLyEa2K+8i4u3h7XTuxY9mnE
- NXgHHueoxQjha0p+EblT5U0Mp7ehuTYSitKuyRghJgaUbmcKEw4GCdZRm
- LoopXpMDDb7SZ5Tsx8IbFbXiwXZxEHdQWgitUC9fQ4MLDvjDDlN0vsXjp g==;
-X-CSE-ConnectionGUID: 86i2RKdQQOm9v61cy8cq3g==
-X-CSE-MsgGUID: SKaLGGCxT6W5VEwZ2rqNyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60597253"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60597253"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 22:22:35 -0700
-X-CSE-ConnectionGUID: 3YhXl0icRlesOj0FqySyzw==
-X-CSE-MsgGUID: bw8/KVyiR+CQU7p5aD1UYg==
+ t=1754465129; x=1786001129;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=acNitU0acs3HqiqEPaRRxXWLp2lRi8kzER654lid6bA=;
+ b=SaYhkjXOwkpHDRK6DJHuEo7mG+XL9fCBRbPhvWDfPf2Tvm7DOg0Mdtuz
+ qdg3pO+X+X36IXwW7Wi9bpCSWKwQy+LP9GqYSgD5rMNsyMbPezZFvglxy
+ 75lqd6IrsztNYjQ3ucjsJz2x92UpsiJW/Ybv1hEVIgvib7GBn0Pu6Dkfs
+ pYKW+DppGymAZ2XgXeVoBx29dKzGKV+9RNNAWeCd8SDsCEhwp0HkY0mV9
+ aRrBgRvWhrbyxetTIMyu691N0Vni/hw8xe3ZGMNMhUzt/Qo6BrzZqlwHs
+ S/H/4B3XKgi68RITMqp2FdSOrczmr+2ty7HcpcHF/nL1A9j8vTCz7VVHf A==;
+X-CSE-ConnectionGUID: CQGND9R2RqaMqMIFDSLtOA==
+X-CSE-MsgGUID: NvBYDDr2R5qymvkIET4SKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="55985792"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="55985792"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 00:25:29 -0700
+X-CSE-ConnectionGUID: p79QJlreSI2khd+9FB2Wxw==
+X-CSE-MsgGUID: K2H/HwkJRQywgU9p1IKpcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="188350240"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.95])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Aug 2025 22:22:33 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 4/4] drm/i915/psr: Add poll for checking PSR is idle before
- starting update
-Date: Wed,  6 Aug 2025 08:22:13 +0300
-Message-ID: <20250806052213.1800559-5-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250806052213.1800559-1-jouni.hogander@intel.com>
-References: <20250806052213.1800559-1-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="201881019"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.43])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 00:25:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: nemesa.garg@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/scaler: Fix WA_14011503117
+In-Reply-To: <20250806030856.3514127-1-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20250806030856.3514127-1-suraj.kandpal@intel.com>
+Date: Wed, 06 Aug 2025 10:25:24 +0300
+Message-ID: <06796b24cd8fcaf992601b92dd8261a13546d22d@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,30 +69,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are currently observing crc failures after we started using dsb for PSR
-updates as well. This seems to happen because PSR HW is still sending
-couple of updates using old framebuffers on wake-up.
+On Wed, 06 Aug 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> This introduces and uses a variable id which is just uninitialized.
+> What really needs to be used is the scaler_id.
+>
+> Fixes: 73309ed9d598 ("drm/i915/display: WA_14011503117")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index 1374fa94ff5c..cd7ebbeb9508 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -959,11 +959,12 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	const struct intel_crtc_scaler_state *scaler_state =
+>  		&crtc_state->scaler_state;
+> -	int id;
+>  
+>  	if (!scaler_state && scaler_state->scaler_id == -1)
 
-Fix this by adding poll ensuring PSR is idle before starting update.
+That check does also does not make any sense.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 2 ++
- 1 file changed, 2 insertions(+)
+scaler_state == NULL && scaler_state->scaler_id
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1a3a95c65f0..411c74c73eae 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7271,6 +7271,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_psr_trigger_frame_change_event(new_crtc_state->dsb_commit,
- 						     state, crtc);
- 
-+		intel_psr_wait_for_idle_dsb(new_crtc_state);
-+
- 		if (new_crtc_state->use_dsb)
- 			intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
- 
+BR,
+Jani.
+
+
+>  		return;
+>  
+> -	intel_de_write_fw(display, SKL_PS_ECC_STAT(crtc->pipe, id), 1);
+> +	intel_de_write_fw(display,
+> +			  SKL_PS_ECC_STAT(crtc->pipe, scaler_state->scaler_id),
+> +			  1);
+>  	intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, 0);
+>  }
+
 -- 
-2.43.0
-
+Jani Nikula, Intel
