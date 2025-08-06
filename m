@@ -2,52 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD56B1C431
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 12:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A79CB1C44E
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 12:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D5E10E746;
-	Wed,  6 Aug 2025 10:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B154A10E3CC;
+	Wed,  6 Aug 2025 10:31:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcNo8r2d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5noZ54H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAACD10E746
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 10:24:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D370110E3CC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 10:31:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754475873; x=1786011873;
+ t=1754476262; x=1786012262;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=EGRzxbCxI85NlA9ez31S2AhReEIozLk1mfmyureIcOg=;
- b=hcNo8r2d1iOAfii5cOoHyDKv2yypcKm6Wg+gQl9Fq9u75MWh9yj/NDze
- e/m++rZrdo1c1d+BszXKtjWYsNp0UnRQQ38B2BE9bUVucOskZNCSggWi/
- dTQwSu5WTGn6na3zdydDROK6QXuRNdHmNz9k5+z4SnYEEw0d5KlCqKvtZ
- 7G1Q7p0iS1OpJ3Rv+6LO7MO/2swDzp+7tKiiBG9TSV3QVkSklMB1Cp3nR
- R6P/sQu6TgMQN+ZbFZ5ylTsQcEwyPqh4/9z2l/RJ8H9WrAFUYIH1ok+x2
- 7h23Y2Uxj6pMxa6vMmHH2Fvd8Jz83YLtv1e0n3YGvSiXoQiDHfjjCQILv Q==;
-X-CSE-ConnectionGUID: S1gO44MuQJm34DeAktNCjw==
-X-CSE-MsgGUID: gI1GLFjNRsmz9ZApcxKaHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="60600408"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60600408"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 03:24:33 -0700
-X-CSE-ConnectionGUID: jW8njI4DQKqVaeKGAc9AmA==
-X-CSE-MsgGUID: pZGlAtI9R5CsE16R4jqDyg==
+ bh=ghdkzW+7tArpv/lpYayNpNMn/UJbrFKyNNKYmg+ndpI=;
+ b=O5noZ54HSGaVr9d9pFCX/ExqmnqIztBZ+ul1wdL/s5trKi0jBdjIwJZ/
+ tvoNTo68AUhoc9ElgrjS7IEu484hFJRbvuh2qxnlXmBrvWfQ6lcqQJg8R
+ ZUPqlcHVWfKhYfES/Wk4M0jqk3qHQAdPQBDVlDncDn1AjlTU/tkRXdrx/
+ GLXA2io9tOhhvlrXTR2hHn1TGnEHcn/TzkNSOhUruyzOjyDuija796/vj
+ KNXeSOjMXfkY3v6XdhJQq43yhDj7IhbaHacT2m6E1T4brVG0wIwC0GEHf
+ zjATqNiQcVVAI62sGzBDSKWHxlvHUeiume4rwcwPwMnOuMfBarxP09/xM g==;
+X-CSE-ConnectionGUID: JQ/+YCYgSiyJ1+H5nO+IvQ==
+X-CSE-MsgGUID: 62Z6nw0KQfiZ4zbGABO/VQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56926386"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56926386"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 03:31:01 -0700
+X-CSE-ConnectionGUID: 41BuIuRQQgK42S6ILFzlAA==
+X-CSE-MsgGUID: DnRwFaEdSw6YG8QHgswN7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165079360"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa008.jf.intel.com with ESMTP; 06 Aug 2025 03:24:33 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="163960880"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.95])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 03:31:00 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH] drm/i915/scaler: Fix for WA_14011503117
-Date: Wed,  6 Aug 2025 15:49:30 +0530
-Message-Id: <20250806101930.2969802-1-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/dsi: Fix overflow issue in pclk parsing
+Date: Wed,  6 Aug 2025 13:27:27 +0300
+Message-ID: <20250806102727.2043589-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,29 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove the redundant check statement.
+Parsed divider p will overflow and is considered being valid divider in
+case pll_ctl == 0.
 
-v2: Add scaler_id check [Jani]
+Fix this by using do while.
 
-Fixes: 73309ed9d598 ("drm/i915/display: WA_14011503117")
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index cd7ebbeb9508..6891a0b00f41 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -960,7 +960,7 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
- 	const struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+index b52463fdec47..f56985c3da54 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+@@ -142,10 +142,10 @@ static int vlv_dsi_pclk(struct intel_encoder *encoder,
+ 	pll_div &= DSI_PLL_M1_DIV_MASK;
+ 	pll_div = pll_div >> DSI_PLL_M1_DIV_SHIFT;
  
--	if (!scaler_state && scaler_state->scaler_id == -1)
-+	if (scaler_state->scaler_id == -1)
- 		return;
+-	while (pll_ctl) {
++	do {
+ 		pll_ctl = pll_ctl >> 1;
+ 		p++;
+-	}
++	} while (pll_ctl);
+ 	p--;
  
- 	intel_de_write_fw(display,
+ 	if (!p) {
 -- 
-2.25.1
+2.43.0
 
