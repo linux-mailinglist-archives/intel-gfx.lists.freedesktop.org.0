@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F168B1CA13
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D31BB1CA14
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:55:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 396A110E19E;
-	Wed,  6 Aug 2025 16:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E6410E7AF;
+	Wed,  6 Aug 2025 16:55:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ATForqAz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KEVB1BRc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F25010E19E;
- Wed,  6 Aug 2025 16:55:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075FD10E7AF;
+ Wed,  6 Aug 2025 16:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754499337; x=1786035337;
+ t=1754499341; x=1786035341;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6TAhUSyJKoYaDPOerSpYDujktTPdEkcRhMKl0lqYX3E=;
- b=ATForqAznezmuEjuNz3embEp+6kret5BSrezfNbQe/oPvw3TEoDMFjra
- oKnORXnBpkNTY7wuBz3z2j5AxEN1qf3HwJ6bxigZE+7e8OR2y1G9MYHSK
- FhaWgIveLsxYedSvgRBjFH7gQ3ksXmKRFAdE+hvJha8i95+e6T+aVrk/r
- flEMr5wvLWZXxwK1IEW1sSrbQA/S3ZoIjaX8q3dWwywD5akKv5FZkDC6H
- HSMZg0GczJx0DgoD9HegnDArAT/1wnys3B8p/dLdC3+r/JnP/Qy7r7fCh
- achS4rebSLfh7aVjBNM54gY28hSDrobkYdHpel6jOVnMHswoAPwF8Xih3 Q==;
-X-CSE-ConnectionGUID: EbC1GsWZQP+M3gc0wM+nVg==
-X-CSE-MsgGUID: IeUjsQtcTg+DyX/yculJ0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68199675"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68199675"
+ bh=/aYhT0mBsG6gMnhL7vsPZb5SMyvi6XJ9x/C5sRpf55M=;
+ b=KEVB1BRc0opXXTHDK2+jZMeTvfgr2Pqi8a+wRBybSPlwDS95mDXdROZU
+ Y/Ss8nbFk69nIk3nnaKHVCd6+eZYH79C8ZUqh+MJTgrBH8xoD4YSwByhC
+ g6+Lh8wBxO1UZ5/Wv1DznM4cYCpo9a4ZK+Kpbmjq9gbgw4ephbb6rel2v
+ ypWwHqhr2PqC9YvrF4Vq8c0wG0HvoRcgSX371x5HEuouW2GVeW3sYy90f
+ 7aRUcxr/t3Dr9xa1Cf2Oq2c8VAMQF5JPDzNHfVmnyYt5wMqX+mmLC4JT8
+ 61QmHbEzkysAVyg4FENcaakfxsuGEuhcB8LVFhtpTnH0xoTDHKce3HLzK Q==;
+X-CSE-ConnectionGUID: OMUdQ9ayThW/DMzh/QkrjQ==
+X-CSE-MsgGUID: 0gx11zxgQXKaB0Lym+qnKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68199680"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="68199680"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:55:37 -0700
-X-CSE-ConnectionGUID: OUflu4Z+RF6IBIe1dBlLrA==
-X-CSE-MsgGUID: LPieY9ZATMqgjVF9bYVJ4w==
+ 06 Aug 2025 09:55:41 -0700
+X-CSE-ConnectionGUID: K/3JO3eyTLq2JKeij9BoLQ==
+X-CSE-MsgGUID: 0wK5AzUFQlC8+X7kP0eBxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="195659289"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="195659305"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.70])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:55:35 -0700
+ 06 Aug 2025 09:55:39 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 03/15] drm/i915/clockgating: pass display to for_each_pipe()
-Date: Wed,  6 Aug 2025 19:55:04 +0300
-Message-Id: <1abcd9b4429a25eb40c30691c876d3db089b1cf2.1754499175.git.jani.nikula@intel.com>
+Subject: [PATCH 04/15] drm/i915/clockgating: pass display to HAS_PCH_*() macros
+Date: Wed,  6 Aug 2025 19:55:05 +0300
+Message-Id: <824750abaf4587501d61dce964b36542d93931f7.1754499175.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
 References: <cover.1754499174.git.jani.nikula@intel.com>
@@ -70,83 +70,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Underneath, for_each_pipe() really expects struct intel_display. Switch
+Underneath, the HAS_PCH_*() macros expect struct intel_display. Switch
 to it in preparation for removing the transitional __to_intel_display()
 macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/intel_clock_gating.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/intel_clock_gating.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index f86a3629ae9e..b4dddd03eaf3 100644
+index b4dddd03eaf3..bd919fa3bee5 100644
 --- a/drivers/gpu/drm/i915/intel_clock_gating.c
 +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -132,9 +132,10 @@ static void ibx_init_clock_gating(struct drm_i915_private *i915)
+@@ -308,11 +308,13 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
  
- static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+ static void lpt_init_clock_gating(struct drm_i915_private *i915)
  {
-+	struct intel_display *display = dev_priv->display;
- 	enum pipe pipe;
- 
--	for_each_pipe(dev_priv, pipe) {
-+	for_each_pipe(display, pipe) {
- 		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(dev_priv, pipe),
- 				 0, DISP_TRICKLE_FEED_DISABLE);
- 
-@@ -218,7 +219,7 @@ static void cpt_init_clock_gating(struct drm_i915_private *i915)
- 	/* The below fixes the weird display corruption, a few pixels shifted
- 	 * downward, on (only) LVDS of some HP laptops with IVY.
++	struct intel_display *display = i915->display;
++
+ 	/*
+ 	 * TODO: this bit should only be enabled when really needed, then
+ 	 * disabled when not needed anymore in order to save power.
  	 */
--	for_each_pipe(i915, pipe) {
-+	for_each_pipe(display, pipe) {
- 		val = intel_uncore_read(&i915->uncore, TRANS_CHICKEN2(pipe));
- 		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
- 		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
-@@ -229,7 +230,7 @@ static void cpt_init_clock_gating(struct drm_i915_private *i915)
- 		intel_uncore_write(&i915->uncore, TRANS_CHICKEN2(pipe), val);
- 	}
- 	/* WADP0ClockGatingDisable */
--	for_each_pipe(i915, pipe) {
-+	for_each_pipe(display, pipe) {
- 		intel_uncore_write(&i915->uncore, TRANS_CHICKEN1(pipe),
- 				   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
- 	}
-@@ -421,6 +422,7 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
+-	if (HAS_PCH_LPT_LP(i915))
++	if (HAS_PCH_LPT_LP(display))
+ 		intel_uncore_rmw(&i915->uncore, SOUTH_DSPCLK_GATE_D,
+ 				 0, PCH_LP_PARTITION_LEVEL_DISABLE);
  
- static void bdw_init_clock_gating(struct drm_i915_private *i915)
+@@ -356,7 +358,9 @@ static void dg2_init_clock_gating(struct drm_i915_private *i915)
+ 
+ static void cnp_init_clock_gating(struct drm_i915_private *i915)
+ {
+-	if (!HAS_PCH_CNP(i915))
++	struct intel_display *display = i915->display;
++
++	if (!HAS_PCH_CNP(display))
+ 		return;
+ 
+ 	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
+@@ -497,6 +501,8 @@ static void hsw_init_clock_gating(struct drm_i915_private *i915)
+ 
+ static void ivb_init_clock_gating(struct drm_i915_private *i915)
  {
 +	struct intel_display *display = i915->display;
- 	enum pipe pipe;
++
+ 	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
  
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-@@ -432,7 +434,7 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
- 	/* WaPsrDPAMaskVBlankInSRD:bdw */
- 	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
+ 	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
+@@ -534,7 +540,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
+ 			 GEN6_MBC_SNPCR_MED);
  
--	for_each_pipe(i915, pipe) {
-+	for_each_pipe(display, pipe) {
- 		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
- 		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
- 				 0, BDW_UNMASK_VBL_TO_REGS_IN_SRD);
-@@ -468,6 +470,7 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
+-	if (!HAS_PCH_NOP(i915))
++	if (!HAS_PCH_NOP(display))
+ 		cpt_init_clock_gating(i915);
  
- static void hsw_init_clock_gating(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = i915->display;
- 	enum pipe pipe;
- 
- 	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-@@ -476,7 +479,7 @@ static void hsw_init_clock_gating(struct drm_i915_private *i915)
- 	/* WaPsrDPAMaskVBlankInSRD:hsw */
- 	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
- 
--	for_each_pipe(i915, pipe) {
-+	for_each_pipe(display, pipe) {
- 		/* WaPsrDPRSUnmaskVBlankInSRD:hsw */
- 		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
- 				 0, HSW_UNMASK_VBL_TO_REGS_IN_SRD);
+ 	gen6_check_mch_setup(i915);
 -- 
 2.39.5
 
