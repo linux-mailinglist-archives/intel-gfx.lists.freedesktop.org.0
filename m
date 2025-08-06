@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2425B1CA1D
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3295AB1CA1F
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D61110E7BC;
-	Wed,  6 Aug 2025 16:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD73B10E7C0;
+	Wed,  6 Aug 2025 16:56:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwr9stq0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bAaeGN+w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDA4A10E7B1;
- Wed,  6 Aug 2025 16:56:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E767D10E7BF;
+ Wed,  6 Aug 2025 16:56:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754499375; x=1786035375;
+ t=1754499382; x=1786035382;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=atmjBV7tv9Oqm3Hf726G384RKR0FwyA4on3gRYmM3TQ=;
- b=hwr9stq0KJfLnZ3SqPeSMcCGxk/H6FHILzxGGBytPWGS7bG5Vqi4gMt7
- cpS4nexo3wDrbqHhguBwwM/V333rVrHaCL4mvaQKYmMQjwlq5ezRDdDHq
- j09ptASHUAFZA1qQ0oivv0JsICHm+0FYGD5qnJ5FVmXCnC40bu0RF5WX+
- ZttkULXGTIzWVDmyRbgDWVLul75Z+QPCXmi6ln8u+Lz8SGXL0gwleJOIw
- 3fcbeLTSetmRNFRids8CnzHLnn+iShXxPW85i8y+wvS88X2D3cCyLYSwC
- kVNOzbtyZTyS4naXZKTntbDEJ5glWiT5EdpyKhIT9znb+mduZ9oHmh4/H Q==;
-X-CSE-ConnectionGUID: ViQP5fqAROmQ0mZSx3zWqA==
-X-CSE-MsgGUID: 9YcVaY3PT665dpiPFS9xdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60455993"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60455993"
+ bh=CGuafBaGro14B+roINML81oSv12F/0r/srBkdCnthqQ=;
+ b=bAaeGN+wvqFpoz8rkDEDS6QbFbBrjNM5bC/J7Mqk0ffVkb1Wly4JlflA
+ eJkiVePNlibPfQwRHmHoQ/05CU6qMJOnrJrdaLnmV5slO3frQ9EFz2lie
+ 1MoJ3hqDviAf4FkgACs/5W239G046cemo6GcmiNbwuxv16xGrROVGFotG
+ Yb684nZ5oHBJ63TNylC+2Nx+NFPJTlzD1DIuLd9xjOmTzhcbQNHD6+6vf
+ B76ts5Eic6L+BCUW8mxrs02NZVDTE1rcGb2f87uML4diT4UWEqJA9yofl
+ FberOZJN+YGVZpoqeamjC2GfzLurcfzEHZd5kpASOx4qPpUn0fEE1ym/n Q==;
+X-CSE-ConnectionGUID: OEkfgr/SR8m84dFV+1esKQ==
+X-CSE-MsgGUID: 2B+8htHVTnSMPl7SW1xeLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60456009"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60456009"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:15 -0700
-X-CSE-ConnectionGUID: BS84kCQ2QP2f+o34sQV/aA==
-X-CSE-MsgGUID: sE4ZQ1h6QRa9MPe7++A1cw==
+ 06 Aug 2025 09:56:19 -0700
+X-CSE-ConnectionGUID: ySIMMG5DQQqZO5jfB+JmXw==
+X-CSE-MsgGUID: AG1m6mu9S9qRe4HnWHFGPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165164840"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165164855"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.70])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:12 -0700
+ 06 Aug 2025 09:56:17 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 11/15] drm/i915/drv: pass display to HAS_DISPLAY()
-Date: Wed,  6 Aug 2025 19:55:12 +0300
-Message-Id: <e1789e82d876eabef550abf537ca5dd2b71cbe6c.1754499175.git.jani.nikula@intel.com>
+Subject: [PATCH 12/15] drm/i915/uncore: pass display to
+ HAS_FPGA_DBG_UNCLAIMED()
+Date: Wed,  6 Aug 2025 19:55:13 +0300
+Message-Id: <e8cda779e192095dfa35d618f88bf7bfa526ac06.1754499175.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
 References: <cover.1754499174.git.jani.nikula@intel.com>
@@ -70,81 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Underneath, HAS_DISPLAY() really expects a struct intel_display. Switch
-to it in preparation for removing the transitional __to_intel_display()
-macro.
+Underneath, HAS_FPGA_DBG_UNCLAIMED() really expects struct
+intel_display. Switch to it in preparation for removing the transitional
+__to_intel_display() macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/intel_uncore.c           | 3 ++-
+ drivers/gpu/drm/i915/selftests/intel_uncore.c | 8 +++++---
+ 2 files changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c6263c6d3384..70f042ce8705 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -977,7 +977,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	intel_power_domains_disable(display);
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index c8e29fd72290..4ccba7c8ffb3 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -2502,6 +2502,7 @@ static int sanity_check_mmio_access(struct intel_uncore *uncore)
+ int intel_uncore_init_mmio(struct intel_uncore *uncore)
+ {
+ 	struct drm_i915_private *i915 = uncore->i915;
++	struct intel_display *display = i915->display;
+ 	int ret;
  
- 	drm_client_dev_suspend(&i915->drm, false);
--	if (HAS_DISPLAY(i915)) {
-+	if (HAS_DISPLAY(display)) {
- 		drm_kms_helper_poll_disable(&i915->drm);
- 		intel_display_driver_disable_user_access(display);
+ 	ret = sanity_check_mmio_access(uncore);
+@@ -2536,7 +2537,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
+ 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.read_fw_domains);
+ 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.write_fw_domains);
  
-@@ -989,7 +989,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	intel_irq_suspend(i915);
- 	intel_hpd_cancel_work(display);
+-	if (HAS_FPGA_DBG_UNCLAIMED(i915))
++	if (HAS_FPGA_DBG_UNCLAIMED(display))
+ 		uncore->flags |= UNCORE_HAS_FPGA_DBG_UNCLAIMED;
  
--	if (HAS_DISPLAY(i915))
-+	if (HAS_DISPLAY(display))
- 		intel_display_driver_suspend_access(display);
+ 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
+index 41eaa9b7f67d..58bcbdcef563 100644
+--- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
++++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
+@@ -277,13 +277,15 @@ static int live_forcewake_domains(void *arg)
+ #define FW_RANGE 0x40000
+ 	struct intel_gt *gt = arg;
+ 	struct intel_uncore *uncore = gt->uncore;
++	struct drm_i915_private *i915 = gt->i915;
++	struct intel_display *display = i915->display;
+ 	unsigned long *valid;
+ 	u32 offset;
+ 	int err;
  
- 	intel_encoder_suspend_all(display);
-@@ -1060,7 +1060,7 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	 * properly. */
- 	intel_power_domains_disable(display);
- 	drm_client_dev_suspend(dev, false);
--	if (HAS_DISPLAY(dev_priv)) {
-+	if (HAS_DISPLAY(display)) {
- 		drm_kms_helper_poll_disable(dev);
- 		intel_display_driver_disable_user_access(display);
- 	}
-@@ -1072,7 +1072,7 @@ static int i915_drm_suspend(struct drm_device *dev)
- 	intel_irq_suspend(dev_priv);
- 	intel_hpd_cancel_work(display);
+-	if (!HAS_FPGA_DBG_UNCLAIMED(gt->i915) &&
+-	    !IS_VALLEYVIEW(gt->i915) &&
+-	    !IS_CHERRYVIEW(gt->i915))
++	if (!HAS_FPGA_DBG_UNCLAIMED(display) &&
++	    !IS_VALLEYVIEW(i915) &&
++	    !IS_CHERRYVIEW(i915))
+ 		return 0;
  
--	if (HAS_DISPLAY(dev_priv))
-+	if (HAS_DISPLAY(display))
- 		intel_display_driver_suspend_access(display);
- 
- 	intel_encoder_suspend_all(display);
-@@ -1219,7 +1219,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 	 */
- 	intel_irq_resume(dev_priv);
- 
--	if (HAS_DISPLAY(dev_priv))
-+	if (HAS_DISPLAY(display))
- 		drm_mode_config_reset(dev);
- 
- 	i915_gem_resume(dev_priv);
-@@ -1228,14 +1228,14 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	intel_clock_gating_init(dev_priv);
- 
--	if (HAS_DISPLAY(dev_priv))
-+	if (HAS_DISPLAY(display))
- 		intel_display_driver_resume_access(display);
- 
- 	intel_hpd_init(display);
- 
- 	intel_display_driver_resume(display);
- 
--	if (HAS_DISPLAY(dev_priv)) {
-+	if (HAS_DISPLAY(display)) {
- 		intel_display_driver_enable_user_access(display);
- 		drm_kms_helper_poll_enable(dev);
- 	}
+ 	/*
 -- 
 2.39.5
 
