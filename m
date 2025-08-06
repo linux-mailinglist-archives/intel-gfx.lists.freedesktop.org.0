@@ -2,80 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382D5B1C6CF
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 15:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BAC6B1C707
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 15:52:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDD0510E77A;
-	Wed,  6 Aug 2025 13:28:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3824110E78D;
+	Wed,  6 Aug 2025 13:52:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lXh81Fln";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KJmcmecQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7977F10E3E1;
- Wed,  6 Aug 2025 13:28:41 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-459ddf83023so18784645e9.0; 
- Wed, 06 Aug 2025 06:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754486920; x=1755091720; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=FP1yL6HccCLefto+0HqWzAXB4+x2ufUWjFUdYaozs/4=;
- b=lXh81FlnZaiwW1pV5hF8alzGksKdSGudvnwa6bWx51TfhNSVgqrQx3UDXZvXsFUBIi
- yqsuN8oKZLmHVM09UnZ/wpvnRfmv6rRL8XuUD8VwZWoV8FLIFh4j0ntI3DyxI/JERrnN
- fumiNxrtOFeKBsOjL6vesfBKvr8VV41a0nbmyqidNCXxfAJnsq8wBXiAXIOnEjbwrgJd
- v/6Tv8AJfCgIzh0Z9T+vclPKjbpdFQhThWu//Nhs0GBSwTfxTVYETZCN64rdUiOFkByo
- qcKdlmrx9rL+32dBrfX3cGJ/wW06CGTTC1JEliA8wul03TPjnc+go77++EIQfb1zp/cU
- V35Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754486920; x=1755091720;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=FP1yL6HccCLefto+0HqWzAXB4+x2ufUWjFUdYaozs/4=;
- b=CD++iwneY1fevsohEwWIBPFExIoTgm7QQFGZKTnUyuXUSBKBRbnFy/oBGTrhhnzQmK
- JjjX7KnfAW5lHSzs62hbzxsIRWXpTFH1ti1uryheCjI8Mr8EXzF/6uoSgikpuK33I0wy
- v51YQUBRPvgCXV73lLdk71DBwgngplnS9Lel0/USUejzU0VndLclISV0j0Sp8RsdJnh1
- S3AdPrMJrQOGz12BpBgaudh599mQjh3qqibvWIGVYQa+7LgvTxjIWng+vF2rtR55LiHH
- R7n0cAqKWfppCC7GbwiiIUAMq6CoPqEphvayuZFyBhcoR6jFIQq2zNC6UH1E+w8gKjwB
- 5zvQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWdnEkN7O52x5igsOq2legAaToxI1eI5oMfzvBDND62qHvtlxRicaug8sFwvTISBFA2VHgp5jbuQ7M=@lists.freedesktop.org,
- AJvYcCXws7gpZh55vUu5fRBvmWiD3TLO/9BrkKSKk1MKBjFECPacxartaO/jDbGFPSI8aLBWh1m/X9FoWDQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwRdlRIEzT9WnKWr+x11UdB4apJNM+6KGVmz5BpDzTJNVqH4TpR
- u3qbmNKotTbw5+VmypYwGlgQsExsq/Vy9T+ki+GakrngHI4ZTrebqcerO/qh8A==
-X-Gm-Gg: ASbGnctwdfGHPA8deaOvUATkACpmyxiJbwi638oeeZ1f99l14FASxrCJJ/aK1B/IWIX
- PFbtueEoSQkvR75EsUMpr3INMJTwjvS9b55VjGaKkwDf4VjGU6QejJBB0mPhMR0wYI17D/rXjTO
- v3rMk9OWQF10zELCH7ub1ilMHiME9m8T8lY3ahPJMFTeB4Z6hVQQURgn/V0bpOrEJauORVXW/yo
- nWUym5zAYK7qGmEYy8OMYwabK9gVLQxKoQfIXHzaRX3Y1s0VEJhsGQoTuxfS7ZLD+kBQ1n/QW6a
- xP+IgamKjpVtcSqnS02CFt6uEOhMSTS669htz4DlFaaOHq1wo2HSAhHaVZoJK0G8WBva7JkRT0a
- nIw+Z4fsCeVxEFTuIaMdlsgQMzNphPhdJraZ3BFB50n4XxJw=
-X-Google-Smtp-Source: AGHT+IFhYXABE8jmnIDs1eyiMghA4zEQVv+XicYta4UrBQhVIaJmF6Du/eUpSf0FT/BLPqdISpWgjA==
-X-Received: by 2002:a05:600c:4fc4:b0:458:7005:2ac3 with SMTP id
- 5b1f17b1804b1-459e748f99dmr24198735e9.21.1754486919565; 
- Wed, 06 Aug 2025 06:28:39 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:1539:2d00:6adc:3e4b:bdf2:ac60])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-459e075047fsm49531155e9.1.2025.08.06.06.28.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 06 Aug 2025 06:28:39 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com
-Subject: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
-Date: Wed,  6 Aug 2025 15:28:38 +0200
-Message-ID: <20250806132838.1831-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3A710E782;
+ Wed,  6 Aug 2025 13:52:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754488336; x=1786024336;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OB9iWDl4fOcd9OodKeWQ1+Kk9mNMjdIwBHzKiyaUIz0=;
+ b=KJmcmecQ768RChrJ7GPfgMSuhOKvgDvly+byEDqzMLOwSLw4dB5uec4g
+ 9qDLdftWc8gujUHs1BikwovZmKoAOad7sD9L1QGPxRdZFCRIsT27EtdzE
+ Anv+VtqcdAnRU3TsXOdNfoL+WvKclQHl2DmayoW2PQJoGLJgZlZ0jHSsg
+ Nc/VgMWyQXv2oub9aQkiE1CRhVhJBkxnc6zezg7LcyWjEuUoKSupwqCMt
+ HxlqA7oNvuqbgHiPNvTBQdA95owLODvS5AHanABHV1QHKYU2q1N2YAr5/
+ ezmhLAflL+2PkcQz8QX8gWuGIWOgFiwX/T0ykbHbRLa5hkfR56vAovaE2 A==;
+X-CSE-ConnectionGUID: tVzsz/xFRA2B9X6yiTnpPQ==
+X-CSE-MsgGUID: AajdgEafT92Q82xZfAILEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60617561"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60617561"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:52:11 -0700
+X-CSE-ConnectionGUID: ckCAOGyNT4+03Qbi93LQiQ==
+X-CSE-MsgGUID: abo7OFHFQKaKbMUSO4ai8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164694958"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.70])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 06:52:09 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/5] drm/i915/dram: bypass fsb/mem freq detection on dg2
+ and no display
+In-Reply-To: <aJKEoYy1qiyaHa16@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1753971617.git.jani.nikula@intel.com>
+ <aa7b14eff92750fa1ddf878ac0f4e90c87b8d3d2.1753971617.git.jani.nikula@intel.com>
+ <aJKEoYy1qiyaHa16@intel.com>
+Date: Wed, 06 Aug 2025 16:52:06 +0300
+Message-ID: <d18558149f62c87be70d183b6f41d11e0092cf4a@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,101 +71,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On some old x86 systems we had the problem that changing the caching flags
-of system memory requires changing the global MTRR/PAT tables.
+On Tue, 05 Aug 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Jul 31, 2025 at 05:21:24PM +0300, Jani Nikula wrote:
+>> Non-display now calls the intel_fsb_freq() and intel_mem_freq()
+>> functions, so we don't have to have the frequencies initialized for dg2
+>> or non-display cases.
 
-But on any modern x86 system (CPUs introduced rughly after 2004) we
-actually don't need that any more and can update the caching flags
-directly in the PTEs of the CPU mapping. It was just never disabled
-because of the fear of regressions.
+Is this enough amendmend for the commit message:
 
-We already use the PTE flags for encryption on x86 64bit for quite a while
-and all other supported platforms (Sparc, PowerPC, ARM, MIPS, LONGARCH)
-have never done anything different either.
+"""
+This is in preparation for unifying the pre-gen9 handling in dram info.
 
-So disable the page pool completely for 64bit systems and just insert a
-clflush to be on the safe side so that we never return memory with dirty
-cache lines.
+DG2 remains a special case as described in commit 5eb6bf0b44e7
+("drm/i915/dg2: Don't read DRAM info").
+"""
 
-Testing on a Ryzen 5 and 7 shows that this has absolutely no performance
-impact and of hand the AMD CI can't find a problem either.
+Or do you want more?
 
-Let's see what the i915 and XE CI systems say to that.
+BR,
+Jani.
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/ttm/ttm_pool.c | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/soc/intel_dram.c | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
+>> index 193e7f71a356..d896fb67270f 100644
+>> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+>> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+>> @@ -725,10 +725,13 @@ int intel_dram_detect(struct drm_i915_private *i915)
+>>  	struct dram_info *dram_info;
+>>  	int ret;
+>>  
+>> +	if (IS_DG2(i915) || !HAS_DISPLAY(i915))
+>> +		return 0;
+>> +
+>>  	detect_fsb_freq(i915);
+>>  	detect_mem_freq(i915);
+>
+> but they will only be set to zero no? do we really need to avoid it?
+> if so, perhaps make this change earlier?
+>
+> Also I wonder what's special in DG2, but not in BMG...
+>
+>>  
+>> -	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
+>> +	if (GRAPHICS_VER(i915) < 9)
+>
+> what about the old gen remaining here? at least deserves a comment on why
+> it needs the upper calls, but not the call bellow? or should the upper
+> calls be in another function/flow?
+>
+>>  		return 0;
+>>  
+>>  	dram_info = drmm_kzalloc(&i915->drm, sizeof(*dram_info), GFP_KERNEL);
+>> -- 
+>> 2.39.5
+>> 
 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index baf27c70a419..7487eac29398 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -38,7 +38,7 @@
- #include <linux/highmem.h>
- #include <linux/sched/mm.h>
- 
--#ifdef CONFIG_X86
-+#ifdef CONFIG_X86_32
- #include <asm/set_memory.h>
- #endif
- 
-@@ -46,6 +46,7 @@
- #include <drm/ttm/ttm_pool.h>
- #include <drm/ttm/ttm_tt.h>
- #include <drm/ttm/ttm_bo.h>
-+#include <drm/drm_cache.h>
- 
- #include "ttm_module.h"
- 
-@@ -192,7 +193,7 @@ static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
- 	struct ttm_pool_dma *dma;
- 	void *vaddr;
- 
--#ifdef CONFIG_X86
-+#ifdef CONFIG_X86_32
- 	/* We don't care that set_pages_wb is inefficient here. This is only
- 	 * used when we have to shrink and CPU overhead is irrelevant then.
- 	 */
-@@ -218,7 +219,7 @@ static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
- /* Apply any cpu-caching deferred during page allocation */
- static int ttm_pool_apply_caching(struct ttm_pool_alloc_state *alloc)
- {
--#ifdef CONFIG_X86
-+#ifdef CONFIG_X86_32
- 	unsigned int num_pages = alloc->pages - alloc->caching_divide;
- 
- 	if (!num_pages)
-@@ -232,6 +233,11 @@ static int ttm_pool_apply_caching(struct ttm_pool_alloc_state *alloc)
- 	case ttm_uncached:
- 		return set_pages_array_uc(alloc->caching_divide, num_pages);
- 	}
-+
-+#elif defined(CONFIG_X86_64)
-+	unsigned int num_pages = alloc->pages - alloc->caching_divide;
-+
-+	drm_clflush_pages(alloc->caching_divide, num_pages);
- #endif
- 	alloc->caching_divide = alloc->pages;
- 	return 0;
-@@ -342,7 +348,7 @@ static struct ttm_pool_type *ttm_pool_select_type(struct ttm_pool *pool,
- 	if (pool->use_dma_alloc)
- 		return &pool->caching[caching].orders[order];
- 
--#ifdef CONFIG_X86
-+#ifdef CONFIG_X86_32
- 	switch (caching) {
- 	case ttm_write_combined:
- 		if (pool->nid != NUMA_NO_NODE)
-@@ -980,7 +986,7 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
- 	    pool->use_dma_alloc || ttm_tt_is_backed_up(tt))
- 		return -EBUSY;
- 
--#ifdef CONFIG_X86
-+#ifdef CONFIG_X86_32
- 	/* Anything returned to the system needs to be cached. */
- 	if (tt->caching != ttm_cached)
- 		set_pages_array_wb(tt->pages, tt->num_pages);
 -- 
-2.43.0
-
+Jani Nikula, Intel
