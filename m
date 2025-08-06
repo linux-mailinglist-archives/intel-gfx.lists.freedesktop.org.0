@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3295AB1CA1F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC957B1CA20
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD73B10E7C0;
-	Wed,  6 Aug 2025 16:56:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8CB10E7C1;
+	Wed,  6 Aug 2025 16:56:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bAaeGN+w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTXVXwig";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E767D10E7BF;
- Wed,  6 Aug 2025 16:56:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F016510E7C1;
+ Wed,  6 Aug 2025 16:56:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754499382; x=1786035382;
+ t=1754499384; x=1786035384;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CGuafBaGro14B+roINML81oSv12F/0r/srBkdCnthqQ=;
- b=bAaeGN+wvqFpoz8rkDEDS6QbFbBrjNM5bC/J7Mqk0ffVkb1Wly4JlflA
- eJkiVePNlibPfQwRHmHoQ/05CU6qMJOnrJrdaLnmV5slO3frQ9EFz2lie
- 1MoJ3hqDviAf4FkgACs/5W239G046cemo6GcmiNbwuxv16xGrROVGFotG
- Yb684nZ5oHBJ63TNylC+2Nx+NFPJTlzD1DIuLd9xjOmTzhcbQNHD6+6vf
- B76ts5Eic6L+BCUW8mxrs02NZVDTE1rcGb2f87uML4diT4UWEqJA9yofl
- FberOZJN+YGVZpoqeamjC2GfzLurcfzEHZd5kpASOx4qPpUn0fEE1ym/n Q==;
-X-CSE-ConnectionGUID: OEkfgr/SR8m84dFV+1esKQ==
-X-CSE-MsgGUID: 2B+8htHVTnSMPl7SW1xeLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60456009"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60456009"
+ bh=Me1CkvlOY8ggRYDfG11yFTX7acBDY+wmNmK2+EVu3kE=;
+ b=XTXVXwigSuV+1+VHcPkTvSF56gL29MO/RNIcR4oHd6pk5h0kKUNENoFJ
+ sW8B7sURc0QE4jykbeY+ZpHHh/vAGFsHJzmMPmSryFRYbvE30BUKPsxBZ
+ wCfUg2TyxwjxRy8PnUsHPiLOWKg4tXHuW3NPbZaiKT+nV8w3gjDECyb75
+ JZDkjyoEmK6PX33uzNJGUJU9PygbcxOhHKwrjhXvsc7wh/VU24s6gFkfP
+ KrSpnE3d+GHhqZDeOc2dZUkR8HCt3Nd1z1kc0uHSgLLr1jbPJjgwJmu8Y
+ TUha5lLGVdQjV2Kt5MtQJtN4ot9lPPfDXK6f5qZmMYGeBzJB12Aja0HT6 A==;
+X-CSE-ConnectionGUID: xIYStc4+T0WdKqJbzy7UvA==
+X-CSE-MsgGUID: +l+aGdgUQTGVNXGZUvOEjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60456022"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60456022"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:19 -0700
-X-CSE-ConnectionGUID: ySIMMG5DQQqZO5jfB+JmXw==
-X-CSE-MsgGUID: AG1m6mu9S9qRe4HnWHFGPg==
+ 06 Aug 2025 09:56:24 -0700
+X-CSE-ConnectionGUID: xQQfNoVSSlWIVpZ9BgY1Vg==
+X-CSE-MsgGUID: dMpObVeRTv6STkV6tKMebg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165164855"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="165164866"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.70])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:17 -0700
+ 06 Aug 2025 09:56:22 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 12/15] drm/i915/uncore: pass display to
- HAS_FPGA_DBG_UNCLAIMED()
-Date: Wed,  6 Aug 2025 19:55:13 +0300
-Message-Id: <e8cda779e192095dfa35d618f88bf7bfa526ac06.1754499175.git.jani.nikula@intel.com>
+Subject: [PATCH 13/15] drm/i915/gvt: convert mmio table to struct intel_display
+Date: Wed,  6 Aug 2025 19:55:14 +0300
+Message-Id: <ef50b08c9bf6066201c86dc7e0f08f008c7c47d5.1754499175.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
 References: <cover.1754499174.git.jani.nikula@intel.com>
@@ -71,60 +70,336 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Underneath, HAS_FPGA_DBG_UNCLAIMED() really expects struct
+Underneath, the register macros really expect a struct
 intel_display. Switch to it in preparation for removing the transitional
 __to_intel_display() macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/intel_uncore.c           | 3 ++-
- drivers/gpu/drm/i915/selftests/intel_uncore.c | 8 +++++---
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c | 266 ++++++++++----------
+ 1 file changed, 134 insertions(+), 132 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index c8e29fd72290..4ccba7c8ffb3 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -2502,6 +2502,7 @@ static int sanity_check_mmio_access(struct intel_uncore *uncore)
- int intel_uncore_init_mmio(struct intel_uncore *uncore)
+diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+index 87ac4446d306..ca57a3dd3148 100644
+--- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
++++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+@@ -62,6 +62,7 @@
+ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
  {
- 	struct drm_i915_private *i915 = uncore->i915;
-+	struct intel_display *display = i915->display;
- 	int ret;
+ 	struct drm_i915_private *dev_priv = iter->i915;
++	struct intel_display *display = dev_priv->display;
  
- 	ret = sanity_check_mmio_access(uncore);
-@@ -2536,7 +2537,7 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
- 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.read_fw_domains);
- 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.write_fw_domains);
+ 	MMIO_RING_D(RING_IMR);
+ 	MMIO_D(SDEIMR);
+@@ -133,38 +134,38 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(_MMIO(0x650b4));
+ 	MMIO_D(_MMIO(0xc4040));
+ 	MMIO_D(DERRMR);
+-	MMIO_D(PIPEDSL(dev_priv, PIPE_A));
+-	MMIO_D(PIPEDSL(dev_priv, PIPE_B));
+-	MMIO_D(PIPEDSL(dev_priv, PIPE_C));
+-	MMIO_D(PIPEDSL(dev_priv, _PIPE_EDP));
+-	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANSCONF(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPESTAT(dev_priv, PIPE_A));
+-	MMIO_D(PIPESTAT(dev_priv, PIPE_B));
+-	MMIO_D(PIPESTAT(dev_priv, PIPE_C));
+-	MMIO_D(PIPESTAT(dev_priv, _PIPE_EDP));
+-	MMIO_D(PIPE_FLIPCOUNT_G4X(dev_priv, PIPE_A));
+-	MMIO_D(PIPE_FLIPCOUNT_G4X(dev_priv, PIPE_B));
+-	MMIO_D(PIPE_FLIPCOUNT_G4X(dev_priv, PIPE_C));
+-	MMIO_D(PIPE_FLIPCOUNT_G4X(dev_priv, _PIPE_EDP));
+-	MMIO_D(PIPE_FRMCOUNT_G4X(dev_priv, PIPE_A));
+-	MMIO_D(PIPE_FRMCOUNT_G4X(dev_priv, PIPE_B));
+-	MMIO_D(PIPE_FRMCOUNT_G4X(dev_priv, PIPE_C));
+-	MMIO_D(PIPE_FRMCOUNT_G4X(dev_priv, _PIPE_EDP));
+-	MMIO_D(CURCNTR(dev_priv, PIPE_A));
+-	MMIO_D(CURCNTR(dev_priv, PIPE_B));
+-	MMIO_D(CURCNTR(dev_priv, PIPE_C));
+-	MMIO_D(CURPOS(dev_priv, PIPE_A));
+-	MMIO_D(CURPOS(dev_priv, PIPE_B));
+-	MMIO_D(CURPOS(dev_priv, PIPE_C));
+-	MMIO_D(CURBASE(dev_priv, PIPE_A));
+-	MMIO_D(CURBASE(dev_priv, PIPE_B));
+-	MMIO_D(CURBASE(dev_priv, PIPE_C));
+-	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_A));
+-	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_B));
+-	MMIO_D(CUR_FBC_CTL(dev_priv, PIPE_C));
++	MMIO_D(PIPEDSL(display, PIPE_A));
++	MMIO_D(PIPEDSL(display, PIPE_B));
++	MMIO_D(PIPEDSL(display, PIPE_C));
++	MMIO_D(PIPEDSL(display, _PIPE_EDP));
++	MMIO_D(TRANSCONF(display, TRANSCODER_A));
++	MMIO_D(TRANSCONF(display, TRANSCODER_B));
++	MMIO_D(TRANSCONF(display, TRANSCODER_C));
++	MMIO_D(TRANSCONF(display, TRANSCODER_EDP));
++	MMIO_D(PIPESTAT(display, PIPE_A));
++	MMIO_D(PIPESTAT(display, PIPE_B));
++	MMIO_D(PIPESTAT(display, PIPE_C));
++	MMIO_D(PIPESTAT(display, _PIPE_EDP));
++	MMIO_D(PIPE_FLIPCOUNT_G4X(display, PIPE_A));
++	MMIO_D(PIPE_FLIPCOUNT_G4X(display, PIPE_B));
++	MMIO_D(PIPE_FLIPCOUNT_G4X(display, PIPE_C));
++	MMIO_D(PIPE_FLIPCOUNT_G4X(display, _PIPE_EDP));
++	MMIO_D(PIPE_FRMCOUNT_G4X(display, PIPE_A));
++	MMIO_D(PIPE_FRMCOUNT_G4X(display, PIPE_B));
++	MMIO_D(PIPE_FRMCOUNT_G4X(display, PIPE_C));
++	MMIO_D(PIPE_FRMCOUNT_G4X(display, _PIPE_EDP));
++	MMIO_D(CURCNTR(display, PIPE_A));
++	MMIO_D(CURCNTR(display, PIPE_B));
++	MMIO_D(CURCNTR(display, PIPE_C));
++	MMIO_D(CURPOS(display, PIPE_A));
++	MMIO_D(CURPOS(display, PIPE_B));
++	MMIO_D(CURPOS(display, PIPE_C));
++	MMIO_D(CURBASE(display, PIPE_A));
++	MMIO_D(CURBASE(display, PIPE_B));
++	MMIO_D(CURBASE(display, PIPE_C));
++	MMIO_D(CUR_FBC_CTL(display, PIPE_A));
++	MMIO_D(CUR_FBC_CTL(display, PIPE_B));
++	MMIO_D(CUR_FBC_CTL(display, PIPE_C));
+ 	MMIO_D(_MMIO(0x700ac));
+ 	MMIO_D(_MMIO(0x710ac));
+ 	MMIO_D(_MMIO(0x720ac));
+@@ -172,32 +173,32 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(_MMIO(0x70094));
+ 	MMIO_D(_MMIO(0x70098));
+ 	MMIO_D(_MMIO(0x7009c));
+-	MMIO_D(DSPCNTR(dev_priv, PIPE_A));
+-	MMIO_D(DSPADDR(dev_priv, PIPE_A));
+-	MMIO_D(DSPSTRIDE(dev_priv, PIPE_A));
+-	MMIO_D(DSPPOS(dev_priv, PIPE_A));
+-	MMIO_D(DSPSIZE(dev_priv, PIPE_A));
+-	MMIO_D(DSPSURF(dev_priv, PIPE_A));
+-	MMIO_D(DSPOFFSET(dev_priv, PIPE_A));
+-	MMIO_D(DSPSURFLIVE(dev_priv, PIPE_A));
++	MMIO_D(DSPCNTR(display, PIPE_A));
++	MMIO_D(DSPADDR(display, PIPE_A));
++	MMIO_D(DSPSTRIDE(display, PIPE_A));
++	MMIO_D(DSPPOS(display, PIPE_A));
++	MMIO_D(DSPSIZE(display, PIPE_A));
++	MMIO_D(DSPSURF(display, PIPE_A));
++	MMIO_D(DSPOFFSET(display, PIPE_A));
++	MMIO_D(DSPSURFLIVE(display, PIPE_A));
+ 	MMIO_D(REG_50080(PIPE_A, PLANE_PRIMARY));
+-	MMIO_D(DSPCNTR(dev_priv, PIPE_B));
+-	MMIO_D(DSPADDR(dev_priv, PIPE_B));
+-	MMIO_D(DSPSTRIDE(dev_priv, PIPE_B));
+-	MMIO_D(DSPPOS(dev_priv, PIPE_B));
+-	MMIO_D(DSPSIZE(dev_priv, PIPE_B));
+-	MMIO_D(DSPSURF(dev_priv, PIPE_B));
+-	MMIO_D(DSPOFFSET(dev_priv, PIPE_B));
+-	MMIO_D(DSPSURFLIVE(dev_priv, PIPE_B));
++	MMIO_D(DSPCNTR(display, PIPE_B));
++	MMIO_D(DSPADDR(display, PIPE_B));
++	MMIO_D(DSPSTRIDE(display, PIPE_B));
++	MMIO_D(DSPPOS(display, PIPE_B));
++	MMIO_D(DSPSIZE(display, PIPE_B));
++	MMIO_D(DSPSURF(display, PIPE_B));
++	MMIO_D(DSPOFFSET(display, PIPE_B));
++	MMIO_D(DSPSURFLIVE(display, PIPE_B));
+ 	MMIO_D(REG_50080(PIPE_B, PLANE_PRIMARY));
+-	MMIO_D(DSPCNTR(dev_priv, PIPE_C));
+-	MMIO_D(DSPADDR(dev_priv, PIPE_C));
+-	MMIO_D(DSPSTRIDE(dev_priv, PIPE_C));
+-	MMIO_D(DSPPOS(dev_priv, PIPE_C));
+-	MMIO_D(DSPSIZE(dev_priv, PIPE_C));
+-	MMIO_D(DSPSURF(dev_priv, PIPE_C));
+-	MMIO_D(DSPOFFSET(dev_priv, PIPE_C));
+-	MMIO_D(DSPSURFLIVE(dev_priv, PIPE_C));
++	MMIO_D(DSPCNTR(display, PIPE_C));
++	MMIO_D(DSPADDR(display, PIPE_C));
++	MMIO_D(DSPSTRIDE(display, PIPE_C));
++	MMIO_D(DSPPOS(display, PIPE_C));
++	MMIO_D(DSPSIZE(display, PIPE_C));
++	MMIO_D(DSPSURF(display, PIPE_C));
++	MMIO_D(DSPOFFSET(display, PIPE_C));
++	MMIO_D(DSPSURFLIVE(display, PIPE_C));
+ 	MMIO_D(REG_50080(PIPE_C, PLANE_PRIMARY));
+ 	MMIO_D(SPRCTL(PIPE_A));
+ 	MMIO_D(SPRLINOFF(PIPE_A));
+@@ -238,73 +239,73 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(SPRSCALE(PIPE_C));
+ 	MMIO_D(SPRSURFLIVE(PIPE_C));
+ 	MMIO_D(REG_50080(PIPE_C, PLANE_SPRITE0));
+-	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_VTOTAL(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_VBLANK(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_VSYNC(dev_priv, TRANSCODER_A));
+-	MMIO_D(BCLRPAT(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_VSYNCSHIFT(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPESRC(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_VTOTAL(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_VBLANK(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_VSYNC(dev_priv, TRANSCODER_B));
+-	MMIO_D(BCLRPAT(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_VSYNCSHIFT(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPESRC(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_VTOTAL(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_VBLANK(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_VSYNC(dev_priv, TRANSCODER_C));
+-	MMIO_D(BCLRPAT(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_VSYNCSHIFT(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPESRC(dev_priv, TRANSCODER_C));
+-	MMIO_D(TRANS_HTOTAL(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_HBLANK(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_HSYNC(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_VTOTAL(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_VBLANK(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_VSYNC(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(BCLRPAT(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(TRANS_VSYNCSHIFT(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_DATA_M1(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_DATA_N1(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_DATA_M2(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_DATA_N2(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_LINK_M1(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_LINK_N1(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_LINK_M2(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_LINK_N2(dev_priv, TRANSCODER_A));
+-	MMIO_D(PIPE_DATA_M1(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_DATA_N1(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_DATA_M2(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_DATA_N2(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_LINK_M1(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_LINK_N1(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_LINK_M2(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_LINK_N2(dev_priv, TRANSCODER_B));
+-	MMIO_D(PIPE_DATA_M1(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_DATA_N1(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_DATA_M2(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_DATA_N2(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_LINK_M1(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_LINK_N1(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_LINK_M2(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_LINK_N2(dev_priv, TRANSCODER_C));
+-	MMIO_D(PIPE_DATA_M1(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_DATA_N1(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_DATA_M2(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_DATA_N2(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_LINK_M1(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_LINK_N1(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_LINK_M2(dev_priv, TRANSCODER_EDP));
+-	MMIO_D(PIPE_LINK_N2(dev_priv, TRANSCODER_EDP));
++	MMIO_D(TRANS_HTOTAL(display, TRANSCODER_A));
++	MMIO_D(TRANS_HBLANK(display, TRANSCODER_A));
++	MMIO_D(TRANS_HSYNC(display, TRANSCODER_A));
++	MMIO_D(TRANS_VTOTAL(display, TRANSCODER_A));
++	MMIO_D(TRANS_VBLANK(display, TRANSCODER_A));
++	MMIO_D(TRANS_VSYNC(display, TRANSCODER_A));
++	MMIO_D(BCLRPAT(display, TRANSCODER_A));
++	MMIO_D(TRANS_VSYNCSHIFT(display, TRANSCODER_A));
++	MMIO_D(PIPESRC(display, TRANSCODER_A));
++	MMIO_D(TRANS_HTOTAL(display, TRANSCODER_B));
++	MMIO_D(TRANS_HBLANK(display, TRANSCODER_B));
++	MMIO_D(TRANS_HSYNC(display, TRANSCODER_B));
++	MMIO_D(TRANS_VTOTAL(display, TRANSCODER_B));
++	MMIO_D(TRANS_VBLANK(display, TRANSCODER_B));
++	MMIO_D(TRANS_VSYNC(display, TRANSCODER_B));
++	MMIO_D(BCLRPAT(display, TRANSCODER_B));
++	MMIO_D(TRANS_VSYNCSHIFT(display, TRANSCODER_B));
++	MMIO_D(PIPESRC(display, TRANSCODER_B));
++	MMIO_D(TRANS_HTOTAL(display, TRANSCODER_C));
++	MMIO_D(TRANS_HBLANK(display, TRANSCODER_C));
++	MMIO_D(TRANS_HSYNC(display, TRANSCODER_C));
++	MMIO_D(TRANS_VTOTAL(display, TRANSCODER_C));
++	MMIO_D(TRANS_VBLANK(display, TRANSCODER_C));
++	MMIO_D(TRANS_VSYNC(display, TRANSCODER_C));
++	MMIO_D(BCLRPAT(display, TRANSCODER_C));
++	MMIO_D(TRANS_VSYNCSHIFT(display, TRANSCODER_C));
++	MMIO_D(PIPESRC(display, TRANSCODER_C));
++	MMIO_D(TRANS_HTOTAL(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_HBLANK(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_HSYNC(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_VTOTAL(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_VBLANK(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_VSYNC(display, TRANSCODER_EDP));
++	MMIO_D(BCLRPAT(display, TRANSCODER_EDP));
++	MMIO_D(TRANS_VSYNCSHIFT(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_DATA_M1(display, TRANSCODER_A));
++	MMIO_D(PIPE_DATA_N1(display, TRANSCODER_A));
++	MMIO_D(PIPE_DATA_M2(display, TRANSCODER_A));
++	MMIO_D(PIPE_DATA_N2(display, TRANSCODER_A));
++	MMIO_D(PIPE_LINK_M1(display, TRANSCODER_A));
++	MMIO_D(PIPE_LINK_N1(display, TRANSCODER_A));
++	MMIO_D(PIPE_LINK_M2(display, TRANSCODER_A));
++	MMIO_D(PIPE_LINK_N2(display, TRANSCODER_A));
++	MMIO_D(PIPE_DATA_M1(display, TRANSCODER_B));
++	MMIO_D(PIPE_DATA_N1(display, TRANSCODER_B));
++	MMIO_D(PIPE_DATA_M2(display, TRANSCODER_B));
++	MMIO_D(PIPE_DATA_N2(display, TRANSCODER_B));
++	MMIO_D(PIPE_LINK_M1(display, TRANSCODER_B));
++	MMIO_D(PIPE_LINK_N1(display, TRANSCODER_B));
++	MMIO_D(PIPE_LINK_M2(display, TRANSCODER_B));
++	MMIO_D(PIPE_LINK_N2(display, TRANSCODER_B));
++	MMIO_D(PIPE_DATA_M1(display, TRANSCODER_C));
++	MMIO_D(PIPE_DATA_N1(display, TRANSCODER_C));
++	MMIO_D(PIPE_DATA_M2(display, TRANSCODER_C));
++	MMIO_D(PIPE_DATA_N2(display, TRANSCODER_C));
++	MMIO_D(PIPE_LINK_M1(display, TRANSCODER_C));
++	MMIO_D(PIPE_LINK_N1(display, TRANSCODER_C));
++	MMIO_D(PIPE_LINK_M2(display, TRANSCODER_C));
++	MMIO_D(PIPE_LINK_N2(display, TRANSCODER_C));
++	MMIO_D(PIPE_DATA_M1(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_DATA_N1(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_DATA_M2(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_DATA_N2(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_LINK_M1(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_LINK_N1(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_LINK_M2(display, TRANSCODER_EDP));
++	MMIO_D(PIPE_LINK_N2(display, TRANSCODER_EDP));
+ 	MMIO_D(PF_CTL(PIPE_A));
+ 	MMIO_D(PF_WIN_SZ(PIPE_A));
+ 	MMIO_D(PF_WIN_POS(PIPE_A));
+@@ -513,12 +514,12 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(GAMMA_MODE(PIPE_A));
+ 	MMIO_D(GAMMA_MODE(PIPE_B));
+ 	MMIO_D(GAMMA_MODE(PIPE_C));
+-	MMIO_D(TRANS_MULT(dev_priv, TRANSCODER_A));
+-	MMIO_D(TRANS_MULT(dev_priv, TRANSCODER_B));
+-	MMIO_D(TRANS_MULT(dev_priv, TRANSCODER_C));
+-	MMIO_D(HSW_TVIDEO_DIP_CTL(dev_priv, TRANSCODER_A));
+-	MMIO_D(HSW_TVIDEO_DIP_CTL(dev_priv, TRANSCODER_B));
+-	MMIO_D(HSW_TVIDEO_DIP_CTL(dev_priv, TRANSCODER_C));
++	MMIO_D(TRANS_MULT(display, TRANSCODER_A));
++	MMIO_D(TRANS_MULT(display, TRANSCODER_B));
++	MMIO_D(TRANS_MULT(display, TRANSCODER_C));
++	MMIO_D(HSW_TVIDEO_DIP_CTL(display, TRANSCODER_A));
++	MMIO_D(HSW_TVIDEO_DIP_CTL(display, TRANSCODER_B));
++	MMIO_D(HSW_TVIDEO_DIP_CTL(display, TRANSCODER_C));
+ 	MMIO_D(SFUSE_STRAP);
+ 	MMIO_D(SBI_ADDR);
+ 	MMIO_D(SBI_DATA);
+@@ -1111,6 +1112,7 @@ static int iterate_skl_plus_mmio(struct intel_gvt_mmio_table_iter *iter)
+ static int iterate_bxt_mmio(struct intel_gvt_mmio_table_iter *iter)
+ {
+ 	struct drm_i915_private *dev_priv = iter->i915;
++	struct intel_display *display = dev_priv->display;
  
--	if (HAS_FPGA_DBG_UNCLAIMED(i915))
-+	if (HAS_FPGA_DBG_UNCLAIMED(display))
- 		uncore->flags |= UNCORE_HAS_FPGA_DBG_UNCLAIMED;
- 
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-index 41eaa9b7f67d..58bcbdcef563 100644
---- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-@@ -277,13 +277,15 @@ static int live_forcewake_domains(void *arg)
- #define FW_RANGE 0x40000
- 	struct intel_gt *gt = arg;
- 	struct intel_uncore *uncore = gt->uncore;
-+	struct drm_i915_private *i915 = gt->i915;
-+	struct intel_display *display = i915->display;
- 	unsigned long *valid;
- 	u32 offset;
- 	int err;
- 
--	if (!HAS_FPGA_DBG_UNCLAIMED(gt->i915) &&
--	    !IS_VALLEYVIEW(gt->i915) &&
--	    !IS_CHERRYVIEW(gt->i915))
-+	if (!HAS_FPGA_DBG_UNCLAIMED(display) &&
-+	    !IS_VALLEYVIEW(i915) &&
-+	    !IS_CHERRYVIEW(i915))
- 		return 0;
- 
- 	/*
+ 	MMIO_F(_MMIO(0x80000), 0x3000);
+ 	MMIO_D(GEN7_SAMPLER_INSTDONE);
+@@ -1242,9 +1244,9 @@ static int iterate_bxt_mmio(struct intel_gvt_mmio_table_iter *iter)
+ 	MMIO_D(BXT_DSI_PLL_ENABLE);
+ 	MMIO_D(GEN9_CLKGATE_DIS_0);
+ 	MMIO_D(GEN9_CLKGATE_DIS_4);
+-	MMIO_D(HSW_TVIDEO_DIP_GCP(dev_priv, TRANSCODER_A));
+-	MMIO_D(HSW_TVIDEO_DIP_GCP(dev_priv, TRANSCODER_B));
+-	MMIO_D(HSW_TVIDEO_DIP_GCP(dev_priv, TRANSCODER_C));
++	MMIO_D(HSW_TVIDEO_DIP_GCP(display, TRANSCODER_A));
++	MMIO_D(HSW_TVIDEO_DIP_GCP(display, TRANSCODER_B));
++	MMIO_D(HSW_TVIDEO_DIP_GCP(display, TRANSCODER_C));
+ 	MMIO_D(RC6_CTX_BASE);
+ 	MMIO_D(GEN8_PUSHBUS_CONTROL);
+ 	MMIO_D(GEN8_PUSHBUS_ENABLE);
 -- 
 2.39.5
 
