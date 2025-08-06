@@ -2,60 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C44B1C620
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 14:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7803B1C668
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 14:54:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B471D10E755;
-	Wed,  6 Aug 2025 12:42:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K2mu8Q22";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A41310E774;
+	Wed,  6 Aug 2025 12:54:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBD9510E755
- for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 12:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754484151; x=1786020151;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Yldn5Uh7qdMpBEUSrZ9J8SC/atCEmrENIJiTRfl6Afs=;
- b=K2mu8Q220dbfVpuAd4uCEJ2vqtsk8y/GGKaUuypUx5L5fxKdQ71wqzDt
- rJbvmowORDFlGVJsDFvm29230Tz4rcqbP61XUDTGp8Cuxgg5iMKhnr84p
- b+R4ggIyJCkpQNFFYxRyCU/rcaJevDm00M5JtDeKhMCNhTcO1x4anOR4v
- Nwos2gjarWd7sylvQCRKX/Y5UmUmYPHkil3h66wuvCTjBrrTVHd8wl4ML
- qykxes1XTuVkLXh4PkYdtHcKwFVJercrlk+Er+eaJsdQ+nlPjNkJ4jLcM
- PXJ+BvOpUYH2xd7BTLj1TOB2614oPoeGD47ASx+DEHRNtBqTC4SIOmfg5 Q==;
-X-CSE-ConnectionGUID: x5nlwe8sRxefAR+adq2I9A==
-X-CSE-MsgGUID: yd+J1lcKT3aZc+3Od2crVQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56693626"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56693626"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 05:42:31 -0700
-X-CSE-ConnectionGUID: ejfLnQ6hRiWcawKTrwfniw==
-X-CSE-MsgGUID: zK/HPJNdSdi1OFNNcxQmng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="170140123"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.70])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 05:42:29 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH] drm/i915/dsi: Fix overflow issue in pclk parsing
-In-Reply-To: <c02246564c85265aae33d6206ea750c274901cf3@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250806102727.2043589-1-jouni.hogander@intel.com>
- <c02246564c85265aae33d6206ea750c274901cf3@intel.com>
-Date: Wed, 06 Aug 2025 15:42:26 +0300
-Message-ID: <b71b5161c44e2ef73bd46917339bfe6f4e8864ac@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD62110E770;
+ Wed,  6 Aug 2025 12:54:05 +0000 (UTC)
+Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1ujdeb-00000009VXf-49Uy; Wed, 06 Aug 2025 15:54:04 +0300
+Message-ID: <c87c116fac9f588c177f0c957567844a36748274.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Charlton Lin <charlton.lin@intel.com>, Khaled Almahallawy
+ <khaled.almahallawy@intel.com>
+Date: Wed, 06 Aug 2025 15:54:00 +0300
+In-Reply-To: <aJNCicpwIY2YtAun@ideak-desk>
+References: <20250805073700.642107-1-imre.deak@intel.com>
+ <7920b8ed0ae141aecae8d40177f35e642cb1ca16.camel@coelho.fi>
+ <aJNCicpwIY2YtAun@ideak-desk>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
+MIME-Version: 1.0
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 00/19] drm/i915/tc: Fix enabled/disconnected DP-alt sink
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,45 +55,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Aug 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 06 Aug 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
->> Parsed divider p will overflow and is considered being valid divider in
->> case pll_ctl =3D=3D 0.
->>
->> Fix this by using do while.
->>
->> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/dr=
-m/i915/display/vlv_dsi_pll.c
->> index b52463fdec47..f56985c3da54 100644
->> --- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
->> +++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
->> @@ -142,10 +142,10 @@ static int vlv_dsi_pclk(struct intel_encoder *enco=
-der,
->>  	pll_div &=3D DSI_PLL_M1_DIV_MASK;
->>  	pll_div =3D pll_div >> DSI_PLL_M1_DIV_SHIFT;
->>=20=20
->> -	while (pll_ctl) {
->> +	do {
->>  		pll_ctl =3D pll_ctl >> 1;
->>  		p++;
->> -	}
->> +	} while (pll_ctl);
->>  	p--;
->
-> Alternatively, use p =3D lfs(pll_ctl), check the return value, and p--
-> after that?
+On Wed, 2025-08-06 at 14:54 +0300, Imre Deak wrote:
+> On Wed, Aug 06, 2025 at 02:44:41PM +0300, Luca Coelho wrote:
+> > On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
+> > > This patchset fixes an issue on LNL+, where the TypeC PHY's mode/stat=
+e
+> > > is detected incorrectly during HW readout for a DP-alt sink that got
+> > > enabled by BIOS/GOP, but later the sink got disconnected by the user
+> > > before the driver got loaded.
+> > >=20
+> > > The issue in the driver is due to overlooking a change on LNL+ in the
+> > > way the PHY ready flag and pin assignment is set/cleared in the PHY
+> > > registers by the HW/FW wrt. how this works on all the earlier (ICL-MT=
+L)
+> > > TypeC platforms.
+> > >=20
+> > > The first 5 patches fix the issue, the rest refactor the PHY's max la=
+ne
+> > > count and pin assignment query functions, sanitizing the code, removi=
+ng
+> > > duplications and validating the register values read out from the HW.
+> >=20
+> > If you have 5 fix patches and the rest is refactoring, wouldn't it be
+> > better to split the series in two?
+>=20
+> The refactoring part depends on the changes in the fixes part, so I
+> couldn't send the refactoring part separately.
 
-Should be fls(). (Find last set.)
+Okay, fair enough.  I'd usually send the second part _after_ sending
+the first one, of course, but you'd have to somehow mark the dependency
+for CI and such.  Is that possible with our infra?
 
->
->
->>=20=20
->>  	if (!p) {
-
---=20
-Jani Nikula, Intel
+--
+Cheers,
+Luca.
