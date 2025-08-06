@@ -2,169 +2,189 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8831B1C57F
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 14:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97834B1C584
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 14:02:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF9810E756;
-	Wed,  6 Aug 2025 12:02:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24AC510E75C;
+	Wed,  6 Aug 2025 12:02:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=siemens.com header.i=@siemens.com header.b="SrT0DEcg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpCduddf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com
- (mail-francecentralazon11013036.outbound.protection.outlook.com
- [40.107.162.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC2210E756;
- Wed,  6 Aug 2025 12:02:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C1E210E75C;
+ Wed,  6 Aug 2025 12:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754481763; x=1786017763;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=r1klu5GFpkpY9sip9jmRGsH9xGh/BzRrws2CZ6re7Gk=;
+ b=GpCduddfXp7X17myn89KXoBkafum5bwJe2AJyEKeNtm/j8C9rwA3+ZEe
+ 5wGr0Vg8Oehd8R404nMXXSmwbLq5nUttOPaVIdMhGhmnNkf0+oJvKmblF
+ c/JyX1uhFWgBdJ9FzaO70oPXuWkAELNaiZcTdXOtuycLMNj24wos6ixnl
+ ZoS/Teq+OgL8xT2wXeQG/uo8yAFoC/AOJ28moUXxXULGAAWiFu7PYxks3
+ mOBc/MGn24gODAzpTh+tze9PafVANfRCiArTFYO9Ee/LofEgAmck7crTW
+ ZDlYVe71cRzGFQHrf9U8rVFzWWbDNb7HqR5JjI4NoZOVu258pYdrDbiXB A==;
+X-CSE-ConnectionGUID: wB7j+p1rS+Kohilu06/w3A==
+X-CSE-MsgGUID: jJh9cw7NQxmrqVDuV5R6Ug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56758281"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56758281"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 05:02:43 -0700
+X-CSE-ConnectionGUID: A2W1sRf7SRyUOL3ImPpdaw==
+X-CSE-MsgGUID: 8PcXh4DJQIKXP1asV7+Hcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164672696"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 05:02:42 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 6 Aug 2025 05:02:42 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 05:02:42 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (40.107.96.49) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Wed, 6 Aug 2025 05:02:41 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ABgXoMSYSsx1BNW7RqVbWsdSr2TORd70o53fQTD6oOwrfLb2ezKXr8r3Bx8Uu5PcV8oXTyVKvC7LiP8sXwdzzGuRM8tuGEeuJMRFF6IihKIhYmCBbnqAazE3MdNzYl4f1CwqAzl9/t6XBIRLRGp188FDISKAn6Xqvr+iLB+tNPJsEKjGbm8M10ECdOU7h4OPVgNpvxNxC09M7rIJ0ePUtoYkXNUsYowbz6fpYnbM3H7iI0XbfpzO9FoJS4U7YwwrApqqA5vnL8Sp8gRAv5wcfWLn8FUxJgNZWHttSAEPRymFHGiTnLYMFXc5u6RTLv+orlIeCCZuLY8DWrISTtGz2g==
+ b=cBic1hGEcdbO5cxo3JCmhzFraRbb8PEBqG3q9dJiGaXM39Ed87IkQPC7C0g+a+w8CWqgW2Bgbd0RRqI4BngV01pD8LvcsuOVgGW6spYzykkcERKpU1xKeDXWkTXfwpiQH3VC+xtcvWGO7EtG2HwfIa8BBEWjwpgil3qWvOfMVB+4cvEx3nNpQbWrIriMUdTXPXQsdWV5H/dxVg6lqXyALNEmwdsXvQeRwCuBcXl/mhDblaMJrJAs/3HJrdxFIec5QlwEiwZnMpAnZi1Puwb9Xp0IlZgWVmdCP/bxK3Td0RckOrM129dUdi1uNhFI3jz09uWaZ74pd+BnSYbxDad85g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IuAbzlkwrNtBMHp6NNELXcTrLjD7efpTUPV/4F/vJq0=;
- b=B5O1B/Amaew55ZvwYbJ0oep0DSpGljSolUy9YMxtFw00oVUErjvpfqD1r8BDkcBZCMMO89odrEHwEyiDGgtTtdgaQgLL8Qix4LywJzTu76Pu7+rpDmEreKdvqc319syx0zjpIhQGhS0N2v1mWbVpGEjoQEr4NW5gzrPtS+xU2Ef9gjD9EkBNmfmKoboSA+quSzzISqZtUTXFrGxbkOy6SC7zDEm9MQsL3+FrYPh5uDoL6q/6FnkpR1hmMqaoO7DAR/APW1vYIQWTpOYe+jA5AIj9FRSGMGj2Mo+0PqSOxs3k+hVtN/d+kkSj9v6zoyk58LXh3Fp4/7eiKV5dU13cRQ==
+ bh=r1klu5GFpkpY9sip9jmRGsH9xGh/BzRrws2CZ6re7Gk=;
+ b=GHHR7eN1HEvix4s8Xh5UboEVRz/k8c5v2I1o7UWcDbgZ0bYTQ69CZHN2atbmUItHmzOSwB1llFAJ+qAdCsBCjbEQrElt2gdBEiAnZ6JXGADhYXhD2KaIQOzh607dbyM2nRtSgimembzs1bwYHEbmiUV2IURKOyMiwe6F4ekNGYCbNrTvC2Zx6F01nS5OvTzVU/m5N9HRwNGIBWuICBdZenKzAWkNDSYg2v8pzMRqG2J3dCZypFteiu1wjKwtZRlw1FQP0+wadvGe1RiRyfem3Uw7vMwAoCfqZGsStleJl4hnXbiRsqdMJmg4iAFSc/L76QxKl5o2bHkoxRBVLqb8UQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IuAbzlkwrNtBMHp6NNELXcTrLjD7efpTUPV/4F/vJq0=;
- b=SrT0DEcgK2G2uL1RJrwuA/Sj2/e179LSyG0VduwT/bV4OecLp+zB+9c0Qo+ZADxxOXInVbD3sIPq3tVjGYrQHpdJnltPoA/SIgXjTNmi4b8G/HnMK4lOAYNiu99xeQDE3PvhphvDTXRipD4bN990TiziPk4jwlZUKjHMFBmMf0nMdnVCFq8cWT462RwvpJbtKPvUyMRvRyGFwbJ0rKHMFO7JJJR8/jTRpql+nM1nrePdx1yfLga7JGS/k9QCYT/rvccl21YGOrOhy4/r8pcnojgcgI4WVxufi7UuuD4/i776Dw4iBFzkSkaJZhoteaUz6jmmHGvzArk9dQa1bEF1ig==
-Received: from DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:431::21)
- by AS1PR10MB5368.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4a0::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.18; Wed, 6 Aug
- 2025 12:02:02 +0000
-Received: from DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e1ee:257:5282:cad0]) by DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::e1ee:257:5282:cad0%6]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
- 12:02:02 +0000
-From: "nicusor.huhulea@siemens.com" <nicusor.huhulea@siemens.com>
-To: "imre.deak@intel.com" <imre.deak@intel.com>, Dmitry Baryshkov
- <dmitry.baryshkov@oss.qualcomm.com>
-CC: "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "cip-dev@lists.cip-project.org" <cip-dev@lists.cip-project.org>,
- "shradhagupta@linux.microsoft.com" <shradhagupta@linux.microsoft.com>,
- "jouni.hogander@intel.com" <jouni.hogander@intel.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
- <tzimmermann@suse.de>, "airlied@gmail.com" <airlied@gmail.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>, "joonas.lahtinen@linux.intel.com"
- <joonas.lahtinen@linux.intel.com>, "rodrigo.vivi@intel.com"
- <rodrigo.vivi@intel.com>, "laurentiu.palcu@oss.nxp.com"
- <laurentiu.palcu@oss.nxp.com>, "cedric.hombourger@siemens.com"
- <cedric.hombourger@siemens.com>, "shrikant.bobade@siemens.com"
- <shrikant.bobade@siemens.com>
-Subject: RE: [PATCH] drm/probe-helper: fix output polling not resuming after
- HPD IRQ storm
-Thread-Topic: [PATCH] drm/probe-helper: fix output polling not resuming after
- HPD IRQ storm
-Thread-Index: AQHcBXxdKRF6MYF9cUCK3BRks+j23bRT4YeAgABMOICAAVikEA==
-Date: Wed, 6 Aug 2025 12:02:02 +0000
-Message-ID: <DB3PR10MB69081B925B54BB906DAD0D20E62DA@DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM>
-References: <20250804201359.112764-1-nicusor.huhulea@siemens.com>
- <z4jxkrseavbeblgji4cnbyeohkjv4ar3mbbdvothao6abfu6nf@nqlhcegwtwzf>
- <aJIhCyP2mwaaiS22@ideak-desk>
-In-Reply-To: <aJIhCyP2mwaaiS22@ideak-desk>
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::28) by SJ0PR11MB5134.namprd11.prod.outlook.com
+ (2603:10b6:a03:2de::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.13; Wed, 6 Aug
+ 2025 12:02:33 +0000
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::a67b:4a39:4af2:43d8]) by DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::a67b:4a39:4af2:43d8%8]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 12:02:33 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 06/19] drm/i915/tc: Use the cached max lane count value
+Thread-Topic: [PATCH 06/19] drm/i915/tc: Use the cached max lane count value
+Thread-Index: AQHcBdvVeYaAGRvF70mfohgKQ2Kx37RViCRQ
+Date: Wed, 6 Aug 2025 12:02:33 +0000
+Message-ID: <DS4PPF69154114F1BA82DEA259CD7F0E974EF2DA@DS4PPF69154114F.namprd11.prod.outlook.com>
+References: <20250805073700.642107-1-imre.deak@intel.com>
+ <20250805073700.642107-7-imre.deak@intel.com>
+In-Reply-To: <20250805073700.642107-7-imre.deak@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=81c2d151-86e1-4bf5-9926-d23bc8ef2367;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2025-08-06T11:53:10Z;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Tag=10, 3, 0, 1;
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
+ header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB3PR10MB6908:EE_|AS1PR10MB5368:EE_
-x-ms-office365-filtering-correlation-id: 6c7cc93b-2662-498d-edfb-08ddd4e10e28
-x-ms-exchange-atpmessageproperties: SA
+x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|SJ0PR11MB5134:EE_
+x-ms-office365-filtering-correlation-id: 1d760a66-0ab0-446e-7535-08ddd4e12091
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|7416014|366016|376014|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?SY7KUrixesCzqQE2h8il6S+YvWmYG0zrZE96zWa4FRjYbHAwJrhR3rW2wg9x?=
- =?us-ascii?Q?ScyhDcI3slRtuMMMvqaFld226IJ3fkV1dLJ+ffY7kHBgg5H8PJEZINciZTbG?=
- =?us-ascii?Q?hhV/y0WTmNzmXXZ62PTWgNW4MVoJ31bfTL3nkxQghx4bs0EWwADNoHaYjp6L?=
- =?us-ascii?Q?XRMS/KgUqTniIy+RsvMRhC6XmRfpovWsY+brqViU2pgkoTpINZ70TxZIieP5?=
- =?us-ascii?Q?2esNzGWUai3qb+jNPGrLdq2ccpMWUmxTU86h++wxzB/8m/twxfx+C03QUhVj?=
- =?us-ascii?Q?6rapuwsaJaQr0Ff25aHsPzazNJy9I0qpLm04FTjE0YZXjI5E0tEYpy8mCoee?=
- =?us-ascii?Q?Inxu358y2BK3tltVHQm9hPcIVhKQr5RPNqlTwSDsOzRLhOoszr8HOCUEjyc2?=
- =?us-ascii?Q?WiaHhcLB3+V41QKVWUSeIYSAKoNzAHLKYJ83M/jkwEE8qBoFJKqJuyCgKTT+?=
- =?us-ascii?Q?v6/sohfZ+gszY7Ajil9XB4Agj7C645knauN/Dd3hh4GdxYLvI+85sGfnuH2p?=
- =?us-ascii?Q?6kZ0tFuLxnPyDDRhx4XLfRVlijcuH3LA+UTtOsEV2uPcie/oRA73ly1vPfvT?=
- =?us-ascii?Q?VqQR3krbEW2Tv4Qutodajmk7do6aIg91/h5AflsnuGBLiewZfzaiwStL1Erd?=
- =?us-ascii?Q?Fb2MBcmJnf3bJX0INaxM7bFqhh+oSaQ8lsm3+6V0NM35nbvc1Qjmk5GaCdu7?=
- =?us-ascii?Q?cHf0tp/GKlkbU48a2Nj43RXjJIMVBL7q14t9EZJ+7LyCmFnVA98EcbxA3qyN?=
- =?us-ascii?Q?/NuQgTdIKl8u0NZ4egywoHLmVa7B7dZHKbGEswKzWKqsvbmMWEdRL1QqsDMY?=
- =?us-ascii?Q?enRMy8Xy63jBG6HxPdH5nrxV4FRc6cY6Lq3hJrfrS3/72lMDdnEYJdmm4oYK?=
- =?us-ascii?Q?NpwgbAn1T0l7r53pWG+yo8q1sEJLVjEDYNtkO7pNn2bZIOr+nRvf6B3H0EYQ?=
- =?us-ascii?Q?7QzHbawtKryQt/+4BzU9bycoPvnicrccR6Sd5wm6eTgUIfp9Aj6endC3eMpX?=
- =?us-ascii?Q?gmz2XOC26zyABfB09NwCB7b2861afHnYHAws+vnzPKrtmbKYQaX0yuYZrRlj?=
- =?us-ascii?Q?1RrWqAPQYKI+VX7XYHnC/y1aGwmOh9hmPxONATQUabX/BZz/boHXJZHHPAZu?=
- =?us-ascii?Q?Si5Djw00W5yuVpzP+JApMVHL1xp4q5xucM30GrbAg0Q3OH3CNN7UdnQccUmy?=
- =?us-ascii?Q?OcU+IK6NzljkWjrbeMsi1Q79SvznqyXTC+hAkXELroJe754X/bVFdzMes9AA?=
- =?us-ascii?Q?1fhekTHWG4nQF+eCMHE+xOU/bqP02ub/6+CKuczUVSfPMgfEe8mV5YteKCN4?=
- =?us-ascii?Q?sYDd3IluuZNnIn9Vn6MOMYewfY4z5bJW7te3UCJd05KtqFngYz+iaEoswUPw?=
- =?us-ascii?Q?3I/GIV4jEgU5wvQKswN/4JdDQYVITk3Av+HbUSOXWpetKUeWLucxyXSkxFEM?=
- =?us-ascii?Q?ZUs0vuq77xDxeb2kcSu55MHiOOW/8vcEpm06WgbTA1bMepmoM/2ucw=3D=3D?=
+ ARA:13230040|366016|376014|1800799024|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?utf-8?B?ZFdMT01jcWh0Y0RQbWMxTFIxZmM5SWxSMDloY3BXRmNvNW1Nd0dzMTdoY09h?=
+ =?utf-8?B?M21QRkVuMEU2K3FMeTgzREw3VktTZTBydjRCNURGaU5DN0lNL2xLZFl1eXhN?=
+ =?utf-8?B?WVJHYjR2dm9uVEVXWHZVV0FVaTRpeTJqZmVxWlhEd0xLNFFwdURKcExKUnQ2?=
+ =?utf-8?B?RGpTaXNqRGl3Znp3eFpFWGt1cnhaR2hwUzIxRVUyOS9DSzZrV1FpbmVESjhy?=
+ =?utf-8?B?R2lsUXgyMHZPTVF3WlU1OWI0b3FyMjJURTdpdkhsNUJVbCs3d2VYZWhlZ1hi?=
+ =?utf-8?B?K29FTGt5WDNkVitudXREeU96L0VIT3poTVk5MzkyNjNpQnJsZzZZWTkxaHlI?=
+ =?utf-8?B?dGNZbHdBclphWlNSN2o4bGhidE9DL2wxSU4wOUJWcVN6T1l6eXNNWHFDaC85?=
+ =?utf-8?B?Q0RaUjhWdXdWbTZOa1hNVDYxY1QzRTZJV0s0N0Y3WHVHVjhkMnYrVUdmS3ZU?=
+ =?utf-8?B?aVdGbXhUUHBSYndSQ3pBeVp6Y3VYREdjSGZ4QW5SM05yWDY0WUZHQUg1ODdB?=
+ =?utf-8?B?U0YxZ2p4V1dJa250bVJGeGU5Uml2MmYwSnJKRUxwTXdzbHFzMXpCK1pqaTAr?=
+ =?utf-8?B?YW15VzBaV1ZKMUxtaVhzalZZTEJocUVNMklsaHJubXBKWFArREM0ajV1QVho?=
+ =?utf-8?B?cUpxK1U4U2pDTHhIdjNKWktuU0V3b1dlR1JWQ0lVcFJiNklFWXp4Z1V6UnBK?=
+ =?utf-8?B?M1Bsa2ZmWTlNR2FtMDBEQkRWbEs1SGhmQXBLdTFJYVdrUkx1Z25ST2xJTzlI?=
+ =?utf-8?B?WTlicitINnF6bXhKU29GYkE3bGVvMUNqZkNFNnB6MUt6TURIN28vaThHdXE2?=
+ =?utf-8?B?dnhocmNCMldBUFluTC9vejgxUGZhRHNkWlBZMUpRcytMUEdFcDF2WXhqTlE2?=
+ =?utf-8?B?NkxqYzZvWjFaZXlTWE0rTHNrMnpEYjczZ3V1eDRvbytRcXY2SlBWTDFKYS9u?=
+ =?utf-8?B?ZVFqbk50aVBNWWZmS1ZqTlE5MDk0eXNpL2tmbXNBZjZRTzNUbTAvYjUwQ2lC?=
+ =?utf-8?B?alROOEd4anpsdDAraG56WDJjTmk3SVJDOHZqczFMczdjb1BPS1kyeDUrM2hG?=
+ =?utf-8?B?b1RLT2FYb0FYdEYrbnFUT1RXUnp2R3J3RjVZZWF0TVhVdHA5MGxSQW9tSklz?=
+ =?utf-8?B?TDlnWWlTWTFZM0NWanU4a1FHU0krS2xqSmx4SHVaa3pOWWMwdCs4cGtacTNq?=
+ =?utf-8?B?S05jTy9EamRlUy9JOTdRSVkySXFTdWxGeGJQSjdyVHZ4bGRKNlFqUW1qLzdZ?=
+ =?utf-8?B?RUV0ckVTc3pFcHFGWlI4WkVURTJBS0lLVExJMGRXVHN5c2lIL2ZmdXI2NVlP?=
+ =?utf-8?B?Y3NGc2NubVdSS08yV0VZUXE1a3o5TUdjTGJrRWFzY3NuNklQekg5Y0NBZzJV?=
+ =?utf-8?B?SGwwcG04Q1ZHWHBReGNSWXAyazNwcDloV1MrcFd5TnR5U0F5SDhoV3VCeisx?=
+ =?utf-8?B?OGtlVmV1VG5RYzdvMHVNNDdvcU9Dci9DajlWYmx1ZXpJMVJ3QzZlZGtjckdD?=
+ =?utf-8?B?emhNL2Q3anlsQTdPVDcyZFFBbldLckxIZ09NU1BidFNQSjhYWWZuSUZrZmNO?=
+ =?utf-8?B?M2lxODRZbit6UmFBa2EyQTB1NGk3blRBRVhVRUs1Q3gwMXltM3YvUkorOG54?=
+ =?utf-8?B?UFFUVzE1RXpKcDBvSkJzOGdlMGVmT1pvRVVzVDFWaEl5ekZyV2R0Vm9uTWIx?=
+ =?utf-8?B?Q29YbkhadlFCd0JwcGd5b1l3bDN2L0NGZWFxSnc1MDlMeWNza29mOXJvcGE3?=
+ =?utf-8?B?azUvbHVlSmlVOWFZSWRhbytzWHZlRVl6b0pwdmVXNHZFbDJpVURGM0VkamJ0?=
+ =?utf-8?B?SEgzTWswVjJoc0tHOU5MWEd0ZTB4Ry9IZEFscndXczc5NXpQdEtVTzNpMzBt?=
+ =?utf-8?B?YzNUeTEyZXh5R2N0MzdYTG15b1hTZ2dIOWRWajRaODQrc2N5NVFsL2Y4YXNJ?=
+ =?utf-8?B?RDEybFBSc0dkNFVLM1d4elZOVUlXUHNLL25JWjRIbHZnR1JtQ2RwQkxYZGZo?=
+ =?utf-8?Q?+MhtM7C9g5JyxlKAq/iU5Gkj7kYtDs=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700018); DIR:OUT;
+ IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PsRWdPgwp9tTj5vur9b12HXA4xA98DqryC2F0QmUvVW0ASx/H5q6CLudm7VT?=
- =?us-ascii?Q?5p++7zks7+JNWiQ+Z0taYtCogsDewv+A7tZx+fT8Pk4gS3kz0DHHhnnShq90?=
- =?us-ascii?Q?j3G75WNh9P8eYbzs8xRf/AHEqGKDvZ++DqplRN9d3PdusN777S2HJnTj5qtU?=
- =?us-ascii?Q?NyywytldqdTzXJpkBWv1PKXQwGez0taPZz6keQYKo8n1G0W85nxAcBRcPwcN?=
- =?us-ascii?Q?JQ8rDu0fUywPms1Ak1bsUSNER/8Y9yEA5AXALnaYsHdQnmpe3UBnQgSE5zJX?=
- =?us-ascii?Q?qHR9nbMlFqoZBB2kZNAZ8sPNzqU4bxhaqEuHUJJHmNLG3Qeati0aRLNZVP8h?=
- =?us-ascii?Q?TS+5tiWub3pFxmXs/xWE4aZg3ExK+PjYtMDb5TxFa5gQvuN6w9AQTjPTfh5L?=
- =?us-ascii?Q?1uNCdQLkab/08Bty06HCbgQVEpqZ5opMiHtr5fGbYi/6mdlPgxB9cwuOHXTt?=
- =?us-ascii?Q?BeeiIJ2JSqGPRiIklw12ym1uoR9fqdzbv+y4S3JacHMoCIP8rtdpD7Bb+1Bo?=
- =?us-ascii?Q?0ypYU/J83EvMYehuFF/JM0s2u6mhlua+MOIHU8i9IWmgYr1nC2MYkg7xXIvB?=
- =?us-ascii?Q?91f9ZhdTxoWKKgDhqtnmpiskXxZzrVytQZlMHJuPCasa6/Rx94NZFDVt8OVJ?=
- =?us-ascii?Q?on00NgunB76A14s3ftfyEaM9+RcXETJOW8IZX+/ClyXQA9xpaA/d5e1ZSznl?=
- =?us-ascii?Q?6qtLVPyyFiuw4W3S/Fur1dIecj6WCeJ31nYMQeXApsMmEdR1o8wZecpFnmLB?=
- =?us-ascii?Q?aYNO277u7RdxN1iUhKj43v5UaKCVCVBaQEbqpnYdvcofSsS38C7xgdCXZOhx?=
- =?us-ascii?Q?hkvLxEsA/Mtmh9C/ykmSv+2ORRWD44RTbFpg1SJyBY6rFplKs8SbVAYvFMzB?=
- =?us-ascii?Q?4CydMddTF3CsdSS1EqU6Y0D/KrebHNEl6+Am/FfwGVyzN3Cg7fF0FtT91oHk?=
- =?us-ascii?Q?oUk7984sv1BG5YrTL3k8yj7qHiiRaJkaVPpEByTl/hyBlR/JEvOToK6qY+7Z?=
- =?us-ascii?Q?MDovDQbnhgmNkYMxNaukw/cEGi/EO0YUN/bd/cYWXXldNeJy3Lcz9Rk+gN3a?=
- =?us-ascii?Q?Yszy74q7dfbYyTNpS9x8u8a7mHYxysNBmxP6L/J9jVfGSg43XTOkPNGzbWZq?=
- =?us-ascii?Q?VCLDOaSDeh4GmnoOVpmKgGZvf7q7H9QbP8umzWlDshaNWNQcI9Wd+rMUa8Yu?=
- =?us-ascii?Q?xRR9JTN640eGPccK1f8mcHDNPXEKgqeydUrpykgR3ns3Siag5q8lwmfODdGY?=
- =?us-ascii?Q?obAsi8XfPJJAHxL2gywzReT2Q39uvdS2QqcuruvfbIthY6WtxX5RbYrGL/r2?=
- =?us-ascii?Q?hOqRYRx07PGVgyDqfk7qsilYA/ZbvpgOMOLAkfWnJpHkopbJDGiqnvcttP8y?=
- =?us-ascii?Q?7BkMYxkU62zR73dZaYDYQbkjFIHQYYuwui/Fh+NNpXEH2grp5jzHX5MEOQeU?=
- =?us-ascii?Q?OSNDp1ByS84zlrJVgGDriO3/HElICZ+O62tZ0DsSO/FJdCsd8ZhaerF0joYm?=
- =?us-ascii?Q?/wz2nTYhwHaTQ+U+Wd6tL2yi28Vfv/QNtSupg4cVvOZfjypJngUZMtQ8bsoV?=
- =?us-ascii?Q?rUHjtTvDBDsdyjOrA3D2+fdQxkJH09ds1pUBUzM/sezPz41c+JeZuwNT879r?=
- =?us-ascii?Q?SA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Szd6RGVqWkF6RzFwa3V5ZUN1U1hzMzJVbDVEWjQ2ZXl6RlpkRXJzMnJraDFu?=
+ =?utf-8?B?RjlCTng1OXpyQnpvdnZabUpnc2E4REc4T25HanNFU0FHSmI3UnBRbXdNcVE1?=
+ =?utf-8?B?NUkvSzE5aGJLdjVFZk1OUzZYeVU5YUhnV3VaSWxYVGRsbGlZRmZaMVZ4Sndj?=
+ =?utf-8?B?cDgwek0xcDZSdlNtN3c2enBQbEFIUkpGN0VxSXhqNGdGdFMvcS91cEhSbGJo?=
+ =?utf-8?B?MExCMVVtcUxidldXRzR3NGR6ejV4T0VUNGRtNFR2ZVE0djB4eCtwTzd5R3BK?=
+ =?utf-8?B?TlJzeDVMVzNSL1NNZ3pGV0NDT0FtZHk4UlhMWlZ2TW40NjdKTFlWa0VNZG8x?=
+ =?utf-8?B?c0JKeGllUUtKVTRWL1pEMGlCbGt3d3hLeWYrTnkrYnlNTTN1dERGYkE2a1pW?=
+ =?utf-8?B?WkU2cDlwS2w1RGF0ZHJ5NnY0eVh0b09LaXRIZWZyS0RIS2VzT041dmNuSzM1?=
+ =?utf-8?B?QlVWTCtoK0Z2dXM0emNQbVBWQm4zcW5NWXhibStBWUw5QWd0MWwwM3pzZEly?=
+ =?utf-8?B?Ynh3WVRLYis5RUtCTmdDaDJDWXAxeXN2MTYwTmVLdFY3ejZMVXFwMEViSjVP?=
+ =?utf-8?B?dWpScGNRd25ZVExVN1pTTXZuYmxCWGJsTkJqMkNyVTN2Y1BxSHl2N0NXeUY1?=
+ =?utf-8?B?SHNwdUhpdGI0QlpqcGpadnJIZTBFbk8yVEJCYU9NZERmUGdWU21KcmY3ei9r?=
+ =?utf-8?B?UHRJSk4xdlRmcndydURZWEp1ekprZ3RNL1R3V1JIZC92bEVBQU1zaDdTVWRp?=
+ =?utf-8?B?cGUyZkIzSnlHczREM1BnTlE3MzNJVVpBOUdlVkpBYWxZL0pVcXR4UmlPR0o1?=
+ =?utf-8?B?TkprKzZFTEp3MTdsNlRrMDZrODA3bWRobnNXS1RqS01wd3lXVmJobTRVeE1o?=
+ =?utf-8?B?Z2lMZDAxUnFVbld4VzVROThBZ2xOcW91cmZ3NjJ2anlsMnN2RCswVUJ4Znhh?=
+ =?utf-8?B?VU94MjBhelhJSWRSTlh0ZFp5UllnVy9JS0hKOWQ4TWYvc3BjcFdhampoYVNz?=
+ =?utf-8?B?cEl0Q1ZwWjRYYys3M3preHY4eWZCK2x5OFhkUGlRMW84M0taRFErNmlnRy9a?=
+ =?utf-8?B?TTRNRmw0UUF3cFlLekNSVTQ4QWJFU1ZlZXQwUEl1QnlmWGJtQnV0Um85dm9Z?=
+ =?utf-8?B?QXZyczR5Umo1SWlCbE1RM0l1NVFVTndCVlFwTnlwQTJoMzRyZHc5cFovckNI?=
+ =?utf-8?B?SXB4R1RvMnNUZDg1a1hlR0Q2YmF5cHNwWDl3MGxXMmxRYS9menJOUEhwZHZm?=
+ =?utf-8?B?Q2w4QzF2NEZhS3NQSnYyNVQ3WU5sT1ZUdHFMMU1YZmh5WE04eXBNalZ1dnBQ?=
+ =?utf-8?B?ZFJ5UWdDWkd4bTlOT1BpNFNlRmdndTFORnJpaFpJN05ORU4weUtBaFUwSFZC?=
+ =?utf-8?B?TXErck5CNGRvMEFiVEhNRFVPWVQ5QWo2ZFlSSTFDc2l1SW1yTERsZFQ5bVdI?=
+ =?utf-8?B?TUVFVlJkVjJYTUo4VDlxM0o5NDVCUENRWXRwcHRCUDhmTXNOeXY1OUR5NmZp?=
+ =?utf-8?B?ZWRNTzlmN1ArbzBXSTZNbG92MGZZeTBkQUZLVVdZTmg2TkM1aEZvZFpMSjhE?=
+ =?utf-8?B?TC9ZMWhJL09QYVFZNURpaDQyRXlZUEZISUFsSEFvSnhkMWhpcjVlRWJVRWFQ?=
+ =?utf-8?B?WXBzWlVMV05oQW9Bd2FOVlE2UXptb1lZbjJiUHdibldIOGhzbmNNaGlVOGNy?=
+ =?utf-8?B?ZUZJZkoyMTZ1SHd3d0RsUkpENHZiZ3YzNk5XdllmQ01MUUlHWFdoYXF5aUtj?=
+ =?utf-8?B?cWNrNlk1TjlpSTV6YVo5eExlVXAxeWVtbVRScDd5Y2NvWURiT3crRE9ROW1D?=
+ =?utf-8?B?RXVqZFZCMTkydDBLWGhNMFlqWWFubnFLUjF4WGNCbG0zNkh1VEFMMHRtTjRk?=
+ =?utf-8?B?TURzcXoxL3BnZk5nVENSTmN6NGExVUl2QXFLTTNHcXphWWIyeENQN0JFc1Jo?=
+ =?utf-8?B?RXIzcjZpaVZETnI1V1BVVHgrQVJkYXdXWGUwalVJQkZZM3ZBR2RHMEJad1Zh?=
+ =?utf-8?B?ekdZRUYvOEhQalN6SytXWkJNeUl5L00wRDRORVdPcFhSVjh0akRqYmcxd2FY?=
+ =?utf-8?B?QWNDK3l3bndFMkozUGIvTFNGVmpaOXZaK2d4ZFlyRGNubnZPcWNFS1pUMitw?=
+ =?utf-8?Q?SSDAqrvinTxbotMNxeV6gZyEs?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB3PR10MB6908.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c7cc93b-2662-498d-edfb-08ddd4e10e28
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 12:02:02.6418 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d760a66-0ab0-446e-7535-08ddd4e12091
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 12:02:33.5566 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GeXG/laPP9kCgQ/n5c5GwgEa5IPeV7kGvw4yNHnPCXR5267WfyVL9l35fRzklLPeeANOeYbpgnm29zxSNBH/mxd01tL7npqZmg5HgF6oMno=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR10MB5368
+X-MS-Exchange-CrossTenant-userprincipalname: +lbsGeDZ5MHRYAsXkuqYFR1+jq8cV51/xwiZl22+Czvo7v/N8pIGesd4so33wC8hpuBN8JZxw/Cl68pPVsJaww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5134
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,152 +200,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
->>-----Original Message-----
->>From: Imre Deak <imre.deak@intel.com>
->>Sent: Tuesday, August 5, 2025 6:20 PM
->>To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>Cc: Huhulea, Nicusor Liviu (FT FDS CES LX PBU 1)
->><nicusor.huhulea@siemens.com>; stable@vger.kernel.org; dri-
->>devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; cip-dev@lis=
-ts.cip-
->>project.org; shradhagupta@linux.microsoft.com; jouni.hogander@intel.com;
->>neil.armstrong@linaro.org; jani.nikula@linux.intel.com;
->>maarten.lankhorst@linux.intel.com; mripard@kernel.org; tzimmermann@suse.d=
-e;
->>airlied@gmail.com; daniel@ffwll.ch; joonas.lahtinen@linux.intel.com;
->>rodrigo.vivi@intel.com; laurentiu.palcu@oss.nxp.com; Hombourger, Cedric (=
-FT
->>FDS CES LX) <cedric.hombourger@siemens.com>; Bobade, Shrikant Krishnarao
->>(FT FDS CES LX PBU 1) <shrikant.bobade@siemens.com>
->>Subject: Re: [PATCH] drm/probe-helper: fix output polling not resuming af=
-ter HPD
->>IRQ storm
->>
->>On Tue, Aug 05, 2025 at 01:46:51PM +0300, Dmitry Baryshkov wrote:
->>> On Mon, Aug 04, 2025 at 11:13:59PM +0300, Nicusor Huhulea wrote:
->>> > A regression in output polling was introduced by commit
->>> > 4ad8d57d902fbc7c82507cfc1b031f3a07c3de6e
->>> > ("drm: Check output polling initialized before disabling") in the 6.1=
-.y stable
->>tree.
->>> > As a result, when the i915 driver detects an HPD IRQ storm and
->>> > attempts to switch from IRQ-based hotplug detection to polling, outpu=
-t polling
->>fails to resume.
->>> >
->>> > The root cause is the use of dev->mode_config.poll_running. Once
->>> > poll_running is set (during the first connector detection) the calls
->>> > to drm_kms_helper_poll_enable(), such as
->>> > intel_hpd_irq_storm_switch_to_polling() fails to schedule output_poll=
-_work as
->>expected.
->>> > Therefore, after an IRQ storm disables HPD IRQs, polling does not sta=
-rt,
->>breaking hotplug detection.
->>>
->>> Why doesn't disable path use drm_kms_helper_poll_disable() ?
->>
->>In general i915 doesn't disable polling as a whole after an IRQ storm and=
- a 2
->>minute delay (or runtime resuming), since on some other connectors the po=
-lling
->>may be still required.
->>
->>Also, in the 6.1.y stable tree drm_kms_helper_poll_disable() is:
->>
->>        if (drm_WARN_ON(dev, !dev->mode_config.poll_enabled))
->>                return;
->>
->>        cancel_delayed_work_sync(&dev->mode_config.output_poll_work);
->>
->>so calling that wouldn't really fix the problem, which is clearly just an=
- incorrect
->>backport of the upstream commit 5abffb66d12bcac8 ("drm:
->>Check output polling initialized before disabling") to the v6.1.y stable =
-tree by
->>commit 4ad8d57d902f ("drm: Check output polling initialized before disabl=
-ing") in
->>v6.1.y.
->>
->>The upstream commit did not add the check for
->>dev->mode_config.poll_running in drm_kms_helper_poll_enable(), the
->>condition was only part of the diff context in the commit. Hence adding t=
-he
->>condition in the 4ad8d57d902f backport commit was incorrect.
->>
->>> > The fix is to remove the dev->mode_config.poll_running in the check
->>> > condition, ensuring polling is always scheduled as requested.
-I'm not a full-time kernel developer, but I spent some time trying to reall=
-y understand both the rationale and the effects of commit "Check output pol=
-ling initialized before disabling."
-Here's how I see the issue:
-That commit was introduced mainly as a defensive measure, to protect driver=
-s such as hyperv-drm that do not initialize connector polling. In those dri=
-vers, calling drm_kms_helper_poll_disable() without proper polling setup co=
-uld trigger warnings or even stack traces, since there are no outputs to po=
-ll and the polling helpers don't apply.
-From what I understand, the poll_running variable was added to prevent case=
-s where polling was accidentally disabled for drivers that were never set u=
-p for it. However, this fix ended up creating a new class of breakage, whic=
-h I have observed and describe here.
-
-To me, the core logic should be simple: if polling is needed, then we shoul=
-d allow it to proceed (regardless of whether it's been scheduled previously=
-).
-
-Looking at the  drm_kms_helper_poll_disable()
-if (drm_WARN_ON(dev, !dev->mode_config.poll_enabled))
-    return;
-
-If the driver never enabled polling (that is, drm_kms_helper_poll_enable() =
-was never called), then the disable operation is effectively a no-op-totall=
-y safe for drivers like hyperv-drm.
-
-And in the enable function drm_kms_helper_poll_enable(..):
-        if (drm_WARN_ON_ONCE(dev, !dev->mode_config.poll_enabled) ||
--           !drm_kms_helper_poll || dev->mode_config.poll_running)
-+           !drm_kms_helper_poll)
-                return;
-The main thing being guarded here is whether polling has actually been init=
-ialized:
-1.For polling drivers like i915, removing poll_running from the enable path=
- is both safe and necessary: it fixes the regression with HPD polling after=
- IRQ storms
-2.For non-polling drivers like hyperv-drm, the existing checks on poll_enab=
-led in both enable and disable functions are sufficient. Removing poll_runn=
-ing doesn't affect these drivers-they don't go through the polling code pat=
-hs, so no polling gets scheduled or canceled by mistake
-
-Therefore based on my understanding and testing removing poll_running guard=
- not only fixes a real bug but also does not introduce new regressions for =
-drivers that don't use output polling.
-
-
-Nicu
->>> >
->>> > Notes:
->>> >  Initial analysis, assumptions, device testing details, the correct
->>> > fix and detailed rationale  were discussed here
->>> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-o
->>> > re.kernel.org%2Fstable%2FaI32HUzrT95nS_H9%40ideak-
->>desk%2F&data=3D05%7C
->>> >
->>02%7Cnicusor.huhulea%40siemens.com%7Ca68c32efd9a044f7f86308ddd4338f8
->>> >
->>8%7C38ae3bcd95794fd4addab42e1495d55a%7C1%7C0%7C638900040113270385
->>%7C
->>> >
->>Unknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwM
->>CIsIl
->>> >
->>AiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3D
->>mH
->>> > ublqHV5x2K%2BLZ3ylYHsQhtLbcQSwSwZxiqBl2KohM%3D&reserved=3D0
->>> >
->>>
->>> --
->>> With best wishes
->>> Dmitry
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEltcmUgRGVhaw0K
+PiBTZW50OiBUdWVzZGF5LCA1IEF1Z3VzdCAyMDI1IDEwLjM3DQo+IFRvOiBpbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3Vi
+amVjdDogW1BBVENIIDA2LzE5XSBkcm0vaTkxNS90YzogVXNlIHRoZSBjYWNoZWQgbWF4IGxhbmUg
+Y291bnQgdmFsdWUNCj4gDQo+IFVzZSB0aGUgUEhZJ3MgY2FjaGVkIG1heCBsYW5lIGNvdW50IHZh
+bHVlIG9uIGFsbCBwbGF0Zm9ybXMgc2ltaWxhcmx5IHRvDQo+IExOTCsuIE9uIExOTCsgdXNpbmcg
+dGhlIGNhY2hlZCB2YWx1ZSBpcyBtYW5kYXRvcnkgLSBzaW5jZSB0aGUNCj4gY29ycmVzcG9uZGlu
+ZyBIVyByZWdpc3RlciBmaWVsZCBjYW4gZ2V0IGNsZWFyZWQgYnkgdGhlIHRpbWUgdGhlIHZhbHVl
+IGlzIHF1ZXJpZWQgLSBvbiBlYXJsaWVyIHBsYXRmb3JtcyB0aGVyZSBpc24ndCBhIHByb2JsZW0g
+d2l0aA0KPiB1c2luZyB0aGUgSFcgcmVnaXN0ZXIgaW5zdGVhZC4gSGF2aW5nIGEgdW5pZm9ybSB3
+YXkgdG8gcXVlcnkgdGhlIHZhbHVlIHN0aWxsIG1ha2VzIHNlbnNlIGFuZCBpdCdzIGFsc28gYSBi
+aXQgbW9yZSBlZmZpY2llbnQsIHNvIGRvDQo+IHRoYXQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBJ
+bXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBNaWthIEthaG9s
+YSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPg0KDQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF90Yy5jIHwgNCAtLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBkZWxl
+dGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3RjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMNCj4g
+aW5kZXggZGVjNTRjYjBjOGM2My4uZDg5YzE3NGJjYjgzNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiBAQCAtMzk1LDE1ICszOTUsMTEgQEAgc3RhdGlj
+IHZvaWQgcmVhZF9waW5fY29uZmlndXJhdGlvbihzdHJ1Y3QgaW50ZWxfdGNfcG9ydCAqdGMpDQo+
+IA0KPiAgaW50IGludGVsX3RjX3BvcnRfbWF4X2xhbmVfY291bnQoc3RydWN0IGludGVsX2RpZ2l0
+YWxfcG9ydCAqZGlnX3BvcnQpICB7DQo+IC0Jc3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXkg
+PSB0b19pbnRlbF9kaXNwbGF5KGRpZ19wb3J0KTsNCj4gIAlzdHJ1Y3QgaW50ZWxfdGNfcG9ydCAq
+dGMgPSB0b190Y19wb3J0KGRpZ19wb3J0KTsNCj4gDQo+ICAJaWYgKCFpbnRlbF9lbmNvZGVyX2lz
+X3RjKCZkaWdfcG9ydC0+YmFzZSkpDQo+ICAJCXJldHVybiA0Ow0KPiANCj4gLQlpZiAoRElTUExB
+WV9WRVIoZGlzcGxheSkgPCAyMCkNCj4gLQkJcmV0dXJuIGdldF9tYXhfbGFuZV9jb3VudCh0Yyk7
+DQo+IC0NCj4gIAlyZXR1cm4gdGMtPm1heF9sYW5lX2NvdW50Ow0KPiAgfQ0KPiANCj4gLS0NCj4g
+Mi40OS4xDQoNCg==
