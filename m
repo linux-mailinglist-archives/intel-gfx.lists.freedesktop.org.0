@@ -2,60 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFF2B1C728
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 15:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E037B1C744
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 16:05:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41AAA10E3E1;
-	Wed,  6 Aug 2025 13:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51E2610E0DA;
+	Wed,  6 Aug 2025 14:05:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EvHttZ5u";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iOjNHASd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7AD610E0DA;
- Wed,  6 Aug 2025 13:57:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B9910E0DA
+ for <intel-gfx@lists.freedesktop.org>; Wed,  6 Aug 2025 14:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754488678; x=1786024678;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=vH4xOOkpeUxn2Q1GT2FC/TdNCuIvOcr9h3sypVYFBc8=;
- b=EvHttZ5uji5TiYEws2fFgphddGvhc+SUFcuORlH97ERPj3IZB4dSCcfr
- nNWs55G4LthkoE/Ih/K2upSCvkV9lYdu8PIkbzr6eH+sGi9SZLFH2fnxv
- mZ3HEXMNVqYW04ErbpGCVbRviYn3+6yxvwltwLrEf6rErreRMAqUi49BT
- MWCB/UYc4Nd6ukqL1gZSqlvzULNfUS/8+G+8xCCc9rqzngtZ1KlwE3Cnz
- aPAgtEYBy+BkAgub0P3mi3LdOt9EnpyhbvnyUzj1jkWCO1qP04/j7uvf6
- ridamRnKxOPBBhco7m7AYyEZW/PJPqX2dciVVu18dRj3N6ImM1iu1JtL/ w==;
-X-CSE-ConnectionGUID: sayvNDbjSimfZib1E7h12A==
-X-CSE-MsgGUID: X0RcCdl4SsS7/nbBX2n8Fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60645263"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="60645263"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 06:57:58 -0700
-X-CSE-ConnectionGUID: b8PsvuKcTqeLwtcK+qPCKg==
-X-CSE-MsgGUID: JPEbkaPZRG+ng7ULqEsilg==
+ t=1754489147; x=1786025147;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=wLLosc4FQYn8TMYkHmuUyKsFgdwCygrQy3ZyD2KF0FQ=;
+ b=iOjNHASd1PNbVlBDt6p9jceuxhdsFvKPeOdREYywKJRvMwFpE1GiC4xr
+ /T9LWP3iOUpubS4n0XqNAAscVM10Dp0LYxXb5sQ2v2Gzo/+969DA69Rwh
+ c3lW3o8uviWFuoHiw3wpoczqAy03oP24WcpHH5oXjwabOcAI+rnx2VDsR
+ mnjSCsxep5KP3AVthYY087ihelvLa+4Hqlk0T8wB2yvAIAlXO5PI+zcxF
+ Cbjh9RnmkkLrnw0lwxv6AeURH3Z0/GmcK4Xx4h5Hs2bC5uOtFzgNOeiCS
+ Z3kbCciGa2ScYdxsSkLtGdSxYLXOkuTQ59nxz5hlDxLGttPYtUYYTsBxd A==;
+X-CSE-ConnectionGUID: 6YoleqDCQ+S9ZcuyYMre1A==
+X-CSE-MsgGUID: YhKf4PM4T7mU0sfB73b/hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56725111"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56725111"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 07:05:47 -0700
+X-CSE-ConnectionGUID: Xb8PUDr0S3SD0eYdH8cRjg==
+X-CSE-MsgGUID: OVnqxWV9QfakoA4qzRIdfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="164304358"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.70])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 06:57:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/i915/dram: move fsb_freq and mem_freq to dram info
-In-Reply-To: <aJKFcINrXQvsM9ZQ@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1753971617.git.jani.nikula@intel.com>
- <e8301cbddf14c52cd7c58bd2d7fb1c6d498b69c0.1753971617.git.jani.nikula@intel.com>
- <aJKFcINrXQvsM9ZQ@intel.com>
-Date: Wed, 06 Aug 2025 16:57:53 +0300
-Message-ID: <61895ad35a6d50a3028ff84d1eeabdf3e0eca4ef@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="195751194"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 07:05:47 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 6 Aug 2025 07:05:46 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 07:05:46 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.40) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Wed, 6 Aug 2025 07:05:46 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tBOWaov0xxsDpzQCus5nkFYbWeObzd5DKav2XICbBV/TXDjKgZcEwqfe+W9jkNMJ4mwpLbwoSpMNcByiPj5dMwtaEuvFBxH+OITCFppsK7ylTLZEz1Myf9nPT13lUWnx1E/j9rdODi10qTGv5apoVcbdHVcjm1Gtp9xKIffgaaHRuPrQyHUTXKQpKR/RWGvrIcQhidYQhke9PXEvrKnCIQzgiyLg+r4BilIS+/F1rxoMbUn6y53JYxppcM/6C0K5vQ05JAV5f7PQ+1mweUBy5wAHV6WRiWIKdw/hsCWEFMcLDmZ3k8ctRuMOIBSWyK8+dcd3uKxH1EMoLvd9k/OaRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H4nhNfvuOl0WWV0gs2uthevW/RwmtvarxC9FkVsvDdI=;
+ b=SBW+vaZv/cflNxBpYZwQ9pMxtFWoOz3YDL36BJNFvSWasNjzHhoLObLwJoxr5BeSrMex6O5LSQreSiZeEVOHAiYCMrEVHW5My12YD5sY452AZKZCEGeTUEXnnu3CVGyf51nHHdx4QNxgwAbjXIlYaJA0tMxf3qTwxtGzESHI4hBNWow4RCi9ZSK45yW6Ie4gP/r/O8EU2ukPBAcNFpLc8p21gk5p9+gGqwK34pGbHJIMRb1LmzmKUWnfg3WlB9cyf5iNL+VjmjCl4osxRc7Mb3dkD7QgWVmDzJ/QJQ616SIJt+lD/xX/8uYKjDrMvLbNtvtfARpiIw7eJzTn0hynyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by PH8PR11MB7021.namprd11.prod.outlook.com (2603:10b6:510:223::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Wed, 6 Aug
+ 2025 14:05:43 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 14:05:43 +0000
+Date: Wed, 6 Aug 2025 17:05:39 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, Shankar Uma <uma.shankar@intel.com>
+Subject: Re: [PATCH] drm/i915/hdmi: add debugfs to contorl HDMI bpc
+Message-ID: <aJNhM0wtCqcQ1MwV@ideak-desk>
+References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+X-ClientProxiedBy: LO4P123CA0536.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c5::16) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH8PR11MB7021:EE_
+X-MS-Office365-Filtering-Correlation-Id: fdec3804-11bf-427f-6e11-08ddd4f25562
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0; ARA:13230040|10070799003|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?JLPkuJmUSAtGfJr3/gsID+M+xemSs8eFfY42+iJHVSmQCfsFiNPVr5ucAy1M?=
+ =?us-ascii?Q?Vx2wy+Hg0s8iE7qVlPKqoCiwTHXN284wr4bil+oo5tAXIvApCwlmKVAaPggJ?=
+ =?us-ascii?Q?ZAqdHq/mO/Xa6Fo9DoM9enQk4H8btfaxOhsNsNn2t3743qOYVNGcWYnT9/Hd?=
+ =?us-ascii?Q?Fv2cFva3EDmT/lEFff0Dimjt4eEmi7uVUxmWs4xyTu0AfW+zglzfjKlq5qSP?=
+ =?us-ascii?Q?CK4PJlqF8lGwIlhiMXdexfej58hHf8CmKZYrL20syrnV39tpoWu85YzxiGkY?=
+ =?us-ascii?Q?tuT3lJy8z7kGdlrqPWk2ZCIy2ew5oJFZmNH0zr9jCx2/5Cc2ZyoTahoBgdje?=
+ =?us-ascii?Q?7ZwRjzWNxmuAYn7BlVWYenoCg6OnA7K2PekBES5RjmCkaZJh+5uvhJ/y92WQ?=
+ =?us-ascii?Q?dVo9WNzBwcxuNoMOqQyxTLFkg22xLzyK4qAZrhpK3oMbC7IEU/PhSPT/tbK8?=
+ =?us-ascii?Q?Nb3y680MsVAe6QI3bFZwIcQcybKQMs+/ToBumBlX+LdOUr25B1s3dL5zSiJ4?=
+ =?us-ascii?Q?xGxQi2XvWBJySF3cCjVcGaxHFcosBxd1yw+5hzWy0xl7NpqU9yQRVbAYQ9CO?=
+ =?us-ascii?Q?R7FHDEEq3WkDTlv3VYjfYN3PO64dikA29ViIdxTXC94UL4wECfoQf+4TBV72?=
+ =?us-ascii?Q?wcPC6GaB1kUpnSbLPIATJU+37D6P+h0LRx0++DWumddnnwO3xKuTnRsPBFFe?=
+ =?us-ascii?Q?yhdjQFmt3EjvHgto4Y93ri7dGTQsTjqnZwWoIqlYN93oVqtGnuQzP9JXJmfp?=
+ =?us-ascii?Q?FUFWMvAY1s7qFw7PUSd2QgZkajmE1KhJDjrUCGH7VD0QU0TDD39nvqNpAbPr?=
+ =?us-ascii?Q?bXVpf0y6mfcbUpwlEn+2zbZzjM/2edsqviW2J1qbQr7fBbm37OLNu3E3aebk?=
+ =?us-ascii?Q?RWcjZgueeIF2kySYyGTxbfoiK445YvlpH/JA1nhEOMZz1CcJSovya8J+AQxF?=
+ =?us-ascii?Q?ez+MU2Terkh2/cD2jcRopDnsoIOiVyihKwET0Mh0OSdHtcBBRFaIFzxYHQEx?=
+ =?us-ascii?Q?eJnWmW//oqLtrJKTIKZ7p3Ho170cvtAoqRMFhrC6Svh1k5vfqAspmaSI9XWY?=
+ =?us-ascii?Q?DJko6dFilkOw7EwLKaVqtsIS622H8QhgyK7zpYPEZ5vaAFaG4mDUlpenlj9R?=
+ =?us-ascii?Q?YvmF8zEEeeL8pagByRoHVN1MtdlfSMb8sNxEDFPes49Q08qYzhe+bwnQJq2i?=
+ =?us-ascii?Q?Cffd+HbGiYliknYqDlQpJ+hzDVHnciZ1gSvroogfICV5VksMbk0kiv8KoYCy?=
+ =?us-ascii?Q?cl8+UbyVve4ZnO7JsRP5Z4z9G64TwC0vH7AvwaUdEZ5X1qgFIXf2G6G/tGQ6?=
+ =?us-ascii?Q?qKvfauiJ/pxPiO5HbSVFEtGZBtF6wNajFJeeT61mo2l0EY2cQRdnycysFT86?=
+ =?us-ascii?Q?pXBeZauPK/XL83ng4QzEvqTPBz13fbSeYpoDERSKl95LOCWfOE+V4xumux7D?=
+ =?us-ascii?Q?zcbdDSi4rJQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mqqwn43wb/lkFE1f8vV5xs2jucK3iPg5BaQtH6XketVyGnzLz8JrHB4xom6A?=
+ =?us-ascii?Q?xtdMR0uh98YSgNg14x8DGkTEKyAg+eZkgDsdC0vgeBlHaRfon53naTsdVk6q?=
+ =?us-ascii?Q?glkav3KMEP221Tkdxy7lopAQoi+NAz9SzlH39ce+6NEO1txayQtsR+BdogET?=
+ =?us-ascii?Q?25puqmIFUF1F3LYUtbFCArFBQ5LD+uJjcFaY/79ENF9Y/ZujNj+H0PClMySo?=
+ =?us-ascii?Q?SBKW9Taem07NDU4ZTVGAFwAprVh2nBq3EBuqm3JNGu+r+GXvUswmDq45HY1j?=
+ =?us-ascii?Q?DTzb2gxNOTLuAWB2P7E4OofvAdBveUxOcjOpKgNLMT2Z01N2KoYPRATf0ZBh?=
+ =?us-ascii?Q?8cfLXS2MWMysyVI5aYj2gDBk7J9aihNbJSw/OlXUEdwYhhrtmO6T15VXZfhf?=
+ =?us-ascii?Q?6qrasw8sqqxEKvxq+5y/SELOZNXS3LbK+x9pRNtQe21Pz/0apjn7zdQVQv/g?=
+ =?us-ascii?Q?24ToTcTD2sZ2vhh7iERXfEy/WnFA89HDuG1rMScXFeLZ6rLsXgozZnqsXAtT?=
+ =?us-ascii?Q?yNz/LCRj1yTPW7jCMC5r3+QWVuj+xj0QF8/w1tNq/7C3d0M0YgKKATkPMNJ1?=
+ =?us-ascii?Q?zIfVizekvVXPmx3+clPSlSSWLqA9YHB47/bSlbZ+I1NYaK4cHJJH5zg5PCbi?=
+ =?us-ascii?Q?uh8r5Y+o6t1ZRP9rzWDqixbxBY2tgNr7YyexElBhHIqnETwu+NcwV6f+P2uu?=
+ =?us-ascii?Q?0kB1CDnsf2BTgeVissYyTjLudtSFXI4kP8bgm5mJuZ/AM5gobY9dcwj75qcJ?=
+ =?us-ascii?Q?n1ndERQ2QQufMz2Bbvi9Hcw1e5yS8XIHqJZbydaWZNk1AsT4L4sT0i3pbSAV?=
+ =?us-ascii?Q?0R580Vt0HgoHCN7FaaCz7aaMBpICcOmpizKsqjGMYv2gXvm6Drtv5ocUDxtE?=
+ =?us-ascii?Q?MYXWaeRFvRYTIusEZ0Z2wEiDN7m1tXhZAp4jQ06yCf+Y3mXhk0sNPw66PItJ?=
+ =?us-ascii?Q?0/a82obqZDh4+R6Kj88oDFx9Mfp9+UhkhanWyuXbf2X10ZRkmsBe+926CNIt?=
+ =?us-ascii?Q?jsyvz6yY+WUq4ZAHnqKtGqRkEh7iW1TZQAGpUvB5gH+mjB464w3twTMOVp+F?=
+ =?us-ascii?Q?bFEUFQ/zh2k7JcPin1ARKaKGSOCYxsB0DYQfzj5r4i/QkJMJvuOC2BZa9zWi?=
+ =?us-ascii?Q?ar0yKM0xjF4DnaokfoOwXZU60fGkZlKpCVDHWwoTVtz8L50nGLZfbA3ESUJ7?=
+ =?us-ascii?Q?qwLrXqpHKlX6r81nkfzsycP2B8W9IiIZnDsr3zXGCYX6+/TfDKme4gZtO3c0?=
+ =?us-ascii?Q?1rjjbtoVnjDuh0NGek1+XArI3+VITcPKgAvlZm9+FEuJWPEuy6xSD0Br9pLM?=
+ =?us-ascii?Q?PhwX1nVD88xQ1DbVFKoKK+yuktTiX/E8l76nS1qE4p6ERQjZ6U+pHm5VIoW2?=
+ =?us-ascii?Q?qFSFVbUXaN7Kf3hV+39+jAjdWNDCnmdKinR68XsJvJAnSwy1VZZsAMdhGPxm?=
+ =?us-ascii?Q?hoYGAiAaNkvEe5QhdFmK7HZ9GBq6svgjVUH4aCj1a/QMnakbGPzv5bo4vUT7?=
+ =?us-ascii?Q?fDHMrV8SjLN2y6iK7Xv7T7RzVhG89Z9k/uXIrRxbEKVPsIiwwg614sP7TD5N?=
+ =?us-ascii?Q?O5gK1JNoSx+yQ6N4b1QAF65ruu9JNmnayH42lgLEJi4PU+dmO9lML8hM+zgv?=
+ =?us-ascii?Q?jr4Ble7wP80fLBmY5lQG8jiiduL8p1NVx7EhIa87VQdx?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fdec3804-11bf-427f-6e11-08ddd4f25562
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 14:05:43.7385 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K/9RyPZ93ftIcp4zBAuVmOmI9wN0vUVNCGbQytOn+Y9M4x+GwlprqIlAkQ6dHbJ4bnfJ7NG6cpJujM08zxltYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7021
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,216 +173,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 05 Aug 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Jul 31, 2025 at 05:21:25PM +0300, Jani Nikula wrote:
->> Store fsb_freq and mem_freq in dram info the same way we do for other
->> memory info on later platforms for a slightly more unified approach.
->>=20
->> This allows us to remove fsb_freq, mem_freq and is_ddr3 members from
->> struct drm_i915_private and struct xe_device.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/i9xx_wm.c | 13 +++++----
->>  drivers/gpu/drm/i915/i915_drv.h        |  2 --
->>  drivers/gpu/drm/i915/soc/intel_dram.c  | 38 +++++++++++---------------
->>  drivers/gpu/drm/i915/soc/intel_dram.h  |  2 ++
->>  drivers/gpu/drm/xe/xe_device_types.h   |  1 -
->>  5 files changed, 26 insertions(+), 30 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i9=
-15/display/i9xx_wm.c
->> index 1f9db5118777..591acce2a4b1 100644
->> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
->> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
->> @@ -3,6 +3,8 @@
->>   * Copyright =C2=A9 2023 Intel Corporation
->>   */
->>=20=20
->> +#include "soc/intel_dram.h"
->> +
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->>  #include "i9xx_wm.h"
->> @@ -85,7 +87,8 @@ static const struct cxsr_latency cxsr_latency_table[] =
-=3D {
->>=20=20
->>  static const struct cxsr_latency *pnv_get_cxsr_latency(struct intel_dis=
-play *display)
->>  {
->> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
->> +	const struct dram_info *dram_info =3D intel_dram_info(display->drm);
->> +	bool is_ddr3 =3D dram_info->type =3D=3D INTEL_DRAM_DDR3;
->
-> does this deserves a separate patch? I'm not sure if I followed here...
+On Wed, Aug 06, 2025 at 04:20:53AM +0000, Lee Shawn C wrote:
+> While performing HDMI compliance testing, test equipment may request
+> different bpc output for signal measurement. However, display driver
+> typically determines the maximum available bpc based on HW bandwidth.
+> 
+> This patch introduces a new debugfs that allow user to configure
+> dedicated bpc manually, and making HDMI compliance test much easier.
 
-The current check in the loop below is
+There is already the intel_force_link_bpp connector debugfs entry, IMO
+that should be enabled for all HDMI connectors (atm it's used only for
+those that are on an FDI link), instead of adding a new debugfs entry.
 
-	i915->is_ddr3 =3D=3D latency->is_ddr3
-
-and with i915->is_ddr3 being replaced by dram_info->type, I thought it's
-simpler to have that variable.
-
-The alternative is to convert the cxsr_latency_table to use enum
-intel_dram_type and INTEL_DRAM_DDR3, but I felt that's a bit much.
-
->
->>  	int i;
->>=20=20
->>  	for (i =3D 0; i < ARRAY_SIZE(cxsr_latency_table); i++) {
->> @@ -93,15 +96,15 @@ static const struct cxsr_latency *pnv_get_cxsr_laten=
-cy(struct intel_display *dis
->>  		bool is_desktop =3D !display->platform.mobile;
->>=20=20
->>  		if (is_desktop =3D=3D latency->is_desktop &&
->> -		    i915->is_ddr3 =3D=3D latency->is_ddr3 &&
->> -		    DIV_ROUND_CLOSEST(i915->fsb_freq, 1000) =3D=3D latency->fsb_freq =
-&&
->> -		    DIV_ROUND_CLOSEST(i915->mem_freq, 1000) =3D=3D latency->mem_freq)
->> +		    is_ddr3 =3D=3D latency->is_ddr3 &&
->> +		    DIV_ROUND_CLOSEST(dram_info->fsb_freq, 1000) =3D=3D latency->fsb_=
-freq &&
->> +		    DIV_ROUND_CLOSEST(dram_info->mem_freq, 1000) =3D=3D latency->mem_=
-freq)
->>  			return latency;
->>  	}
->>=20=20
->>  	drm_dbg_kms(display->drm,
->>  		    "Could not find CxSR latency for DDR%s, FSB %u kHz, MEM %u kHz\n",
->> -		    i915->is_ddr3 ? "3" : "2", i915->fsb_freq, i915->mem_freq);
->> +		    is_ddr3 ? "3" : "2", dram_info->fsb_freq, dram_info->mem_freq);
->>=20=20
->>  	return NULL;
->>  }
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915=
-_drv.h
->> index 4e4e89746aa6..2f3965feada1 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -237,8 +237,6 @@ struct drm_i915_private {
->>=20=20
->>  	bool preserve_bios_swizzle;
->>=20=20
->> -	unsigned int fsb_freq, mem_freq, is_ddr3;
->> -
->>  	unsigned int hpll_freq;
->>  	unsigned int czclk_freq;
->>=20=20
->> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i91=
-5/soc/intel_dram.c
->> index d896fb67270f..6405a3d0b930 100644
->> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
->> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
->> @@ -149,17 +149,6 @@ unsigned int intel_mem_freq(struct drm_i915_private=
- *i915)
->>  		return 0;
->>  }
->>=20=20
->> -static void detect_mem_freq(struct drm_i915_private *i915)
->> -{
->> -	i915->mem_freq =3D intel_mem_freq(i915);
->> -
->> -	if (IS_PINEVIEW(i915))
->> -		i915->is_ddr3 =3D pnv_is_ddr3(i915);
->> -
->> -	if (i915->mem_freq)
->> -		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
->> -}
->> -
->>  static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
->>  {
->>  	u32 fsb;
->> @@ -252,11 +241,20 @@ unsigned int intel_fsb_freq(struct drm_i915_privat=
-e *i915)
->>  		return 0;
->>  }
->>=20=20
->> -static void detect_fsb_freq(struct drm_i915_private *i915)
->> +static int i915_get_dram_info(struct drm_i915_private *i915, struct dra=
-m_info *dram_info)
->>  {
->> -	i915->fsb_freq =3D intel_fsb_freq(i915);
->> -	if (i915->fsb_freq)
->> -		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
->> +	dram_info->fsb_freq =3D intel_fsb_freq(i915);
->> +	if (dram_info->fsb_freq)
->> +		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", dram_info->fsb_freq);
->> +
->> +	dram_info->mem_freq =3D intel_mem_freq(i915);
->> +	if (dram_info->mem_freq)
->> +		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", dram_info->mem_freq);
->> +
->> +	if (IS_PINEVIEW(i915) && pnv_is_ddr3(i915))
->> +		dram_info->type =3D INTEL_DRAM_DDR3;
->> +
->> +	return 0;
->>  }
->>=20=20
->>  static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
->> @@ -728,12 +726,6 @@ int intel_dram_detect(struct drm_i915_private *i915)
->>  	if (IS_DG2(i915) || !HAS_DISPLAY(i915))
->>  		return 0;
->>=20=20
->> -	detect_fsb_freq(i915);
->> -	detect_mem_freq(i915);
->> -
->> -	if (GRAPHICS_VER(i915) < 9)
->> -		return 0;
->
-> oh! this responds my last question in the previous patch...
-
-Yeah, I could've referred to later changes there!
-
->
->> -
->>  	dram_info =3D drmm_kzalloc(&i915->drm, sizeof(*dram_info), GFP_KERNEL);
->>  	if (!dram_info)
->>  		return -ENOMEM;
->> @@ -754,8 +746,10 @@ int intel_dram_detect(struct drm_i915_private *i915)
->>  		ret =3D gen11_get_dram_info(i915, dram_info);
->>  	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
->>  		ret =3D bxt_get_dram_info(i915, dram_info);
->> -	else
->> +	else if (GRAPHICS_VER(i915) >=3D 9)
->>  		ret =3D skl_get_dram_info(i915, dram_info);
->> +	else
->> +		ret =3D i915_get_dram_info(i915, dram_info);
->>=20=20
->>  	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
->>  		    intel_dram_type_str(dram_info->type));
->> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i91=
-5/soc/intel_dram.h
->> index 5ba75e279e84..97d21894abdc 100644
->> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
->> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
->> @@ -29,6 +29,8 @@ struct dram_info {
->>  	} type;
->>  	u8 num_qgv_points;
->>  	u8 num_psf_gv_points;
->> +	unsigned int fsb_freq;
->> +	unsigned int mem_freq;
->>  };
->>=20=20
->>  void intel_dram_edram_detect(struct drm_i915_private *i915);
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/x=
-e_device_types.h
->> index 38c8329b4d2c..e2206e867b33 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -609,7 +609,6 @@ struct xe_device {
->>  	struct {
->>  		unsigned int hpll_freq;
->>  		unsigned int czclk_freq;
->> -		unsigned int fsb_freq, mem_freq, is_ddr3;
->>  	};
->>  #endif
->>  };
->> --=20
->> 2.39.5
->>=20
-
---=20
-Jani Nikula, Intel
+> Cc: Shankar Uma <uma.shankar@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 58 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  7 +++
+>  3 files changed, 67 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index ce3f9810c42d..cca115a6f130 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1208,6 +1208,56 @@ static const struct file_operations i915_dsc_fractional_bpp_fops = {
+>  	.write = i915_dsc_fractional_bpp_write
+>  };
+>  
+> +static int i915_hdmi_req_bpc_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_connector *connector = m->private;
+> +
+> +	seq_printf(m, "request bpc: %u\n", connector->force_hdmi_bpc);
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t i915_hdmi_req_bpc_write(struct file *file,
+> +					const char __user *ubuf,
+> +					size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct intel_connector *intel_connector = m->private;
+> +	struct intel_display *display = to_intel_display(intel_connector);
+> +	int new_bpc = 0, ret = 0;
+> +	char *kbuf;
+> +	const char *p;
+> +
+> +	kbuf = memdup_user_nul(ubuf, len);
+> +	if (IS_ERR(kbuf))
+> +		return PTR_ERR(kbuf);
+> +
+> +	p = strim(kbuf);
+> +
+> +	ret = kstrtoint(p, 0, &new_bpc);
+> +	if (ret < 0)
+> +		return -EINVAL;
+> +
+> +	switch (new_bpc) {
+> +	case 0:
+> +	case 8:
+> +	case 10:
+> +	case 12:
+> +		break;
+> +	default:
+> +		drm_dbg(display->drm,
+> +			"HDMI bpc (%u) may exceed the max value (12)\n", new_bpc);
+> +		return -EINVAL;
+> +	}
+> +
+> +	intel_connector->force_hdmi_bpc = new_bpc;
+> +
+> +	*offp += len;
+> +	kfree(kbuf);
+> +	return len;
+> +}
+> +DEFINE_SHOW_STORE_ATTRIBUTE(i915_hdmi_req_bpc);
+> +
+>  /*
+>   * Returns the Current CRTC's bpc.
+>   * Example usage: cat /sys/kernel/debug/dri/0/crtc-0/i915_current_bpc
+> @@ -1359,6 +1409,13 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	    connector_type == DRM_MODE_CONNECTOR_HDMIB)
+>  		debugfs_create_file("i915_lpsp_capability", 0444, root,
+>  				    connector, &i915_lpsp_capability_fops);
+> +
+> +	if (connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+> +	    connector_type == DRM_MODE_CONNECTOR_HDMIB) {
+> +		connector->force_hdmi_bpc = 0;
+> +		debugfs_create_file("i915_force_hdmi_bpc", 0644, root,
+> +				    connector, &i915_hdmi_req_bpc_fops);
+> +	}
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 4d9df803ad47..e1e42d701f68 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -564,6 +564,8 @@ struct intel_connector {
+>  	struct work_struct modeset_retry_work;
+>  
+>  	struct intel_hdcp hdcp;
+> +
+> +	u8 force_hdmi_bpc;
+>  };
+>  
+>  struct intel_digital_connector_state {
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index cbee628eb26b..0aa4044e2854 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2118,6 +2118,7 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+>  				  int clock, bool respect_downstream_limits)
+>  {
+>  	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
+> +	struct intel_connector *intel_connector = intel_hdmi->attached_connector;
+>  	int bpc;
+>  
+>  	/*
+> @@ -2134,6 +2135,12 @@ static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
+>  	if (!respect_downstream_limits)
+>  		bpc = 8;
+>  
+> +	/*
+> +	 * overwrite bpc per user's request
+> +	 */
+> +	if (intel_connector->force_hdmi_bpc)
+> +		bpc = intel_connector->force_hdmi_bpc;
+> +
+>  	for (; bpc >= 8; bpc -= 2) {
+>  		int tmds_clock = intel_hdmi_tmds_clock(clock, bpc,
+>  						       crtc_state->sink_format);
+> -- 
+> 2.34.1
+> 
