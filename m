@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A02DB1CA21
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748BFB1CA22
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Aug 2025 18:56:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24A0F10E7C8;
-	Wed,  6 Aug 2025 16:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 060A210E7D8;
+	Wed,  6 Aug 2025 16:56:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BSKBVNDb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HexsqIa0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4494C10E7C7;
- Wed,  6 Aug 2025 16:56:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78F6810E7CD;
+ Wed,  6 Aug 2025 16:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754499388; x=1786035388;
+ t=1754499392; x=1786035392;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FxTFplndw3S2Uvsn7dsv/cLTazTT0VVu2dIpTHCDDDc=;
- b=BSKBVNDbZXaWkTb2KcizD00A+hNejyCl4FlhiEIY4AM6dPCA0AoQiPdQ
- aM9xWlyOsRuGkSPqL/PG2Qf04Dfu8t8Fesk6PFMDeBRV25x4ZMunR+tV5
- gQXnnRqlQJp28lLTYYR23qDCMNtBiq114GD7TNBkC95Gfca3AnU5oxrDL
- kXS6H5k5GyxSn7DzAugByd2TyzkjpVkGrS+TcfhQtZ3bhHWbPzuOo/g3u
- 3ixOYwmyUuBk74YdEU7bWXKnI0hvZItJppqrjQc1y+eI2irkj17JV+iA9
- khgrEPSfsMPY9AVNT8Tyo2R8aEr1SK1zFR+wcEI8V+LbZ/vlZhY1FmFiP w==;
-X-CSE-ConnectionGUID: Ekzek/uyTtuuQrFOD3zc4A==
-X-CSE-MsgGUID: xJyawtm1SfadDC3eRRxtSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56691605"
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56691605"
+ bh=O0+hFxGblFWaySHHE+uj1Ne4x8alHt8xKjb6gkCQ7vU=;
+ b=HexsqIa0XhXpR7+0lXAa/xowNNRKLtwffrF5CRiQgjt2Vxe4s8cpP6MF
+ IeR0AKRUGnkntbs5OI7lD72jEE/iQCeXQ66Dz2RTj8SZmp374O3CxEYOZ
+ AMB4SkE109G1xubJoiOZlOGof4x/2PIO3FAkAlyroQ7er2pH1WwfFI5v5
+ J9mnd4rJQDgToFgidJcZRYgCZYuf9zhx2qZnziwT60/4Jr3+q2R22d0EN
+ Z5Z57t5s2Ea909vcnuuFr3Mb2VDNs0f1SCmZrtYFpb9xKpc47nhc5I0WE
+ M7yddja+H4AC6fCe9/JBYnTXqRGDEr2irK/kIeplJMxOqXtOBSxpYjKg8 Q==;
+X-CSE-ConnectionGUID: s99Y0WZeTqCPLY54YkC1oQ==
+X-CSE-MsgGUID: AE5JD5aVTHueDHynmOQWYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56691609"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="56691609"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:28 -0700
-X-CSE-ConnectionGUID: ntQUb8mdTT2XgYpxtJECiQ==
-X-CSE-MsgGUID: gbNsXkcYRtq6yMLHDnHwGA==
+ 06 Aug 2025 09:56:32 -0700
+X-CSE-ConnectionGUID: QMRRV051QiqEdhGe6TPwlg==
+X-CSE-MsgGUID: NSZr77nOTK2AKVEwrGr6YA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="168999930"
+X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; d="scan'208";a="168999936"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.70])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 09:56:26 -0700
+ 06 Aug 2025 09:56:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 14/15] drm/i915/reg: separate VLV_DSPCLK_GATE_D from
- DSPCLK_GATE_D
-Date: Wed,  6 Aug 2025 19:55:15 +0300
-Message-Id: <ac16d9d5192595944bf9bcf70aa721b504bc90c0.1754499175.git.jani.nikula@intel.com>
+Subject: [PATCH 15/15] drm/i915/display: drop __to_intel_display() usage
+Date: Wed,  6 Aug 2025 19:55:16 +0300
+Message-Id: <d2c4a5aab3d69cec6f0640eed157a97531bd72f2.1754499175.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1754499174.git.jani.nikula@intel.com>
 References: <cover.1754499174.git.jani.nikula@intel.com>
@@ -71,122 +70,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All the places that use DSPCLK_GATE_D are specific to certain platforms,
-and the parametrization of it to support VLV/CHV MMIO display base isn't
-really buying us anything. Add a separate macro for VLV_DSPCLK_GATE_D
-and use it.
+All the places that use __to_intel_display() now get passed a struct
+intel_display pointer, and the transitional adaptation macro has served
+its purpose. Remove the macro.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c              | 2 +-
- drivers/gpu/drm/i915/display/intel_overlay.c            | 5 ++---
- drivers/gpu/drm/i915/display/vlv_dsi.c                  | 4 ++--
- drivers/gpu/drm/i915/i915_reg.h                         | 3 ++-
- drivers/gpu/drm/i915/intel_clock_gating.c               | 4 ++--
- 6 files changed, 10 insertions(+), 10 deletions(-)
+ .../gpu/drm/i915/display/intel_display_conversion.c  |  2 +-
+ .../gpu/drm/i915/display/intel_display_conversion.h  | 12 ------------
+ drivers/gpu/drm/i915/display/intel_display_device.h  |  7 +++----
+ drivers/gpu/drm/i915/display/intel_pch.h             |  4 +---
+ 4 files changed, 5 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 6efe5524cbbf..31c2a07bb188 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1209,7 +1209,7 @@ static void vlv_init_display_clock_gating(struct intel_display *display)
- 	 * (and never recovering) in this case. intel_dsi_post_disable() will
- 	 * clear it when we turn off the display.
- 	 */
--	intel_de_rmw(display, DSPCLK_GATE_D(display),
-+	intel_de_rmw(display, VLV_DSPCLK_GATE_D,
- 		     ~DPOUNIT_CLOCK_GATE_DISABLE, VRHUNIT_CLOCK_GATE_DISABLE);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.c b/drivers/gpu/drm/i915/display/intel_display_conversion.c
+index 4d565935e2cc..d56065f22655 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_conversion.c
++++ b/drivers/gpu/drm/i915/display/intel_display_conversion.c
+@@ -4,7 +4,7 @@
+ #include "i915_drv.h"
+ #include "intel_display_conversion.h"
  
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 6a74805570e1..063335053d13 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -219,7 +219,7 @@ static void pnv_gmbus_clock_gating(struct intel_display *display,
- 				   bool enable)
+-struct intel_display *__i915_to_display(struct drm_i915_private *i915)
++static struct intel_display *__i915_to_display(struct drm_i915_private *i915)
  {
- 	/* When using bit bashing for I2C, this bit needs to be set to 1 */
--	intel_de_rmw(display, DSPCLK_GATE_D(display),
-+	intel_de_rmw(display, DSPCLK_GATE_D,
- 		     PNV_GMBUSUNIT_CLOCK_GATE_DISABLE,
- 		     !enable ? PNV_GMBUSUNIT_CLOCK_GATE_DISABLE : 0);
+ 	return i915->display;
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 159a5f998ea0..272f9e7af4d4 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -217,10 +217,9 @@ static void i830_overlay_clock_gating(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.h b/drivers/gpu/drm/i915/display/intel_display_conversion.h
+index 46c7208d42ba..d497bc58a73f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_conversion.h
++++ b/drivers/gpu/drm/i915/display/intel_display_conversion.h
+@@ -9,20 +9,8 @@
+ #define __INTEL_DISPLAY_CONVERSION__
  
- 	/* WA_OVERLAY_CLKGATE:alm */
- 	if (enable)
--		intel_de_write(display, DSPCLK_GATE_D(display), 0);
-+		intel_de_write(display, DSPCLK_GATE_D, 0);
- 	else
--		intel_de_write(display, DSPCLK_GATE_D(display),
--			       OVRUNIT_CLOCK_GATE_DISABLE);
-+		intel_de_write(display, DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
+ struct drm_device;
+-struct drm_i915_private;
+ struct intel_display;
  
- 	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
- 	pci_bus_read_config_byte(pdev->bus,
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 6d9f3312de7e..c9a53fde79c4 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -761,7 +761,7 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
+-struct intel_display *__i915_to_display(struct drm_i915_private *i915);
+ struct intel_display *__drm_to_display(struct drm_device *drm);
+-/*
+- * Transitional macro to optionally convert struct drm_i915_private * to struct
+- * intel_display *, also accepting the latter.
+- */
+-#define __to_intel_display(p)						\
+-	_Generic(p,							\
+-		 const struct drm_i915_private *: __i915_to_display((struct drm_i915_private *)(p)), \
+-		 struct drm_i915_private *: __i915_to_display((struct drm_i915_private *)(p)), \
+-		 const struct intel_display *: (p),			\
+-		 struct intel_display *: (p))
  
- 	if (display->platform.valleyview || display->platform.cherryview) {
- 		/* Disable DPOunit clock gating, can stall pipe */
--		intel_de_rmw(display, DSPCLK_GATE_D(display),
-+		intel_de_rmw(display, VLV_DSPCLK_GATE_D,
- 			     0, DPOUNIT_CLOCK_GATE_DISABLE);
- 	}
+ #endif /* __INTEL_DISPLAY_CONVERSION__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 4308822f0415..6e87b763fe7c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -9,7 +9,6 @@
+ #include <linux/bitops.h>
+ #include <linux/types.h>
  
-@@ -918,7 +918,7 @@ static void intel_dsi_post_disable(struct intel_atomic_state *state,
- 	} else {
- 		vlv_dsi_pll_disable(encoder);
+-#include "intel_display_conversion.h"
+ #include "intel_display_limits.h"
  
--		intel_de_rmw(display, DSPCLK_GATE_D(display),
-+		intel_de_rmw(display, VLV_DSPCLK_GATE_D,
- 			     DPOUNIT_CLOCK_GATE_DISABLE, 0);
- 	}
+ struct drm_printer;
+@@ -224,8 +223,8 @@ struct intel_display_platforms {
+ 	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
+ 	 IS_DISPLAY_STEP((__display), (from), (until)))
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 03b895897f60..b283b25d8368 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -613,7 +613,8 @@
- #define  DSTATE_GFX_CLOCK_GATING		(1 << 1)
- #define  DSTATE_DOT_CLOCK_GATING		(1 << 0)
+-#define DISPLAY_INFO(__display)		(__to_intel_display(__display)->info.__device_info)
+-#define DISPLAY_RUNTIME_INFO(__display)	(&__to_intel_display(__display)->info.__runtime_info)
++#define DISPLAY_INFO(__display)		((__display)->info.__device_info)
++#define DISPLAY_RUNTIME_INFO(__display)	(&(__display)->info.__runtime_info)
  
--#define DSPCLK_GATE_D(__i915)		_MMIO(DISPLAY_MMIO_BASE(__i915) + 0x6200)
-+#define DSPCLK_GATE_D			_MMIO(0x6200)
-+#define VLV_DSPCLK_GATE_D		_MMIO(VLV_DISPLAY_BASE + 0x6200)
- # define DPUNIT_B_CLOCK_GATE_DISABLE		(1 << 30) /* 965 */
- # define VSUNIT_CLOCK_GATE_DISABLE		(1 << 29) /* 965 */
- # define VRHUNIT_CLOCK_GATE_DISABLE		(1 << 28) /* 965 */
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index e501f4937510..467740969431 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -620,7 +620,7 @@ static void g4x_init_clock_gating(struct drm_i915_private *i915)
- 		OVCUNIT_CLOCK_GATE_DISABLE;
- 	if (IS_GM45(i915))
- 		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
--	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D(i915), dspclk_gate);
-+	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
+ #define DISPLAY_VER(__display)		(DISPLAY_RUNTIME_INFO(__display)->ip.ver)
+ #define DISPLAY_VERx100(__display)	(DISPLAY_RUNTIME_INFO(__display)->ip.ver * 100 + \
+@@ -236,7 +235,7 @@ struct intel_display_platforms {
+ #define INTEL_DISPLAY_STEP(__display)	(DISPLAY_RUNTIME_INFO(__display)->step)
  
- 	g4x_disable_trickle_feed(i915);
- }
-@@ -631,7 +631,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
+ #define IS_DISPLAY_STEP(__display, since, until) \
+-	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
++	(drm_WARN_ON((__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
+ 	 INTEL_DISPLAY_STEP(__display) >= (since) && INTEL_DISPLAY_STEP(__display) < (until))
  
- 	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
- 	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
--	intel_uncore_write(uncore, DSPCLK_GATE_D(i915), 0);
-+	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
- 	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
- 	intel_uncore_write16(uncore, DEUC, 0);
- 	intel_uncore_write(uncore,
+ #define ARLS_HOST_BRIDGE_PCI_ID1 0x7D1C
+diff --git a/drivers/gpu/drm/i915/display/intel_pch.h b/drivers/gpu/drm/i915/display/intel_pch.h
+index cf4dab1b98bf..19cac7412d0a 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch.h
++++ b/drivers/gpu/drm/i915/display/intel_pch.h
+@@ -6,8 +6,6 @@
+ #ifndef __INTEL_PCH__
+ #define __INTEL_PCH__
+ 
+-#include "intel_display_conversion.h"
+-
+ struct intel_display;
+ 
+ /*
+@@ -36,7 +34,7 @@ enum intel_pch {
+ 	PCH_LNL,
+ };
+ 
+-#define INTEL_PCH_TYPE(_display)		(__to_intel_display(_display)->pch_type)
++#define INTEL_PCH_TYPE(_display)		((_display)->pch_type)
+ #define HAS_PCH_DG2(display)			(INTEL_PCH_TYPE(display) == PCH_DG2)
+ #define HAS_PCH_ADP(display)			(INTEL_PCH_TYPE(display) == PCH_ADP)
+ #define HAS_PCH_DG1(display)			(INTEL_PCH_TYPE(display) == PCH_DG1)
 -- 
 2.39.5
 
