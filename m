@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB63AB1D66C
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 13:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E7AB1D6BA
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 13:32:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB47510E119;
-	Thu,  7 Aug 2025 11:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3924510E816;
+	Thu,  7 Aug 2025 11:32:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nw5VTPY3";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F19C410E119;
- Thu,  7 Aug 2025 11:11:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7433693413526139376=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3408810E7C9;
+ Thu,  7 Aug 2025 11:32:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754566335; x=1786102335;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9NN/dgEsD/Mv4yGpwqknAbe0h5Yt6A/UXCDCkWtPajU=;
+ b=Nw5VTPY3JGfWx68H6JsnbfKjTtDlazonZqr+3UaI5HeByIZgFeCaiy/6
+ cQSCRrAw8feSAhFvLt57r00ct0ifIiwbylejS/eU4l8JdTWkeoR9y5Eus
+ MZeF36pR80HokEKIfyxS4Et8lbPbh6qJKpL7Mli6oDZsTeIXm1/QpIIZ9
+ GNe9jjoqiDqlmqhVt7aMgkWyH0SblstxBjaYdcC8KCyUFwQoFmfZK6rx1
+ ZGTTDxIYE7Agvqjk+EflAFxVoj7PVeXAgxaSWHxKRxdD4Fn4Dw2vgBt/z
+ 45ZgPB+Nr3D3bZVKo1Qjhfl/ZbO0CcFEvfaUZVTyPkJmu907VapoZNh13 w==;
+X-CSE-ConnectionGUID: tF7+TuRvTa6ROb0HCi0mVQ==
+X-CSE-MsgGUID: pJcZqJokSIGofwQsw1fGyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="67166668"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="67166668"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 04:29:45 -0700
+X-CSE-ConnectionGUID: +L0RY7/mQ1SBUeL9TOPuyg==
+X-CSE-MsgGUID: qFaALGy6S0OzgPXRNwDvvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="188716440"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 04:29:43 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ mitulkumar.ajitkumar.golani@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/12] Optimize vrr.guardband and fix LRR
+Date: Thu,  7 Aug 2025 16:45:36 +0530
+Message-ID: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Introduce_drm_sharpness_p?=
- =?utf-8?q?roperty_=28rev16=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Aug 2025 11:11:59 -0000
-Message-ID: <175456511998.219080.7189039965773613709@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250807092841.3169436-1-nemesa.garg@intel.com>
-In-Reply-To: <20250807092841.3169436-1-nemesa.garg@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,161 +65,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7433693413526139376==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Instead of setting vrr.guardband to vblank, use optimal guardband that
+works for most of the cases. This will help in avoiding need of change
+in guardband and fix the LRR feature that needs seamless switching to
+a lower refresh rate.
 
-== Series Details ==
+First few patches fix/refactor and extract common functions required for
+dsc/scaler prefill time computation. Later patches use these helpers to
+compute an optimized guardband.
 
-Series: Introduce drm sharpness property (rev16)
-URL   : https://patchwork.freedesktop.org/series/138754/
-State : success
+Also, for seamless_mn where vtotal is same but mode clock is changed to
+seamlessly switch to lower rate, re-compute the vrr timings.
 
-== Summary ==
+Few things that still need work:
+-The timestamps corresponding with next start of vactive still need to be
+fixed with the new scheme.
+-Re-enabling CMRR
 
-CI Bug Log - changes from CI_DRM_16965 -> Patchwork_138754v16
-====================================================
+Rev2:
+-Address comments from Mitul.
+-Extract helpers for dsc/scaler prefill latencies.
+-Fix downscaling factor for chroma subsampling.
+-Use missing pkg C max latency.
+-Fix guardband computation for seamless mn, always use vblank for
+higher resolution.
 
-Summary
--------
+Rev3:
+-Drop patches for computing and storing PSR/Panel Replay wake times
+latencies and use existing helpers to compute these in intel_alpm.c.
+-Drop patch to change the Vmin as it was not required.
 
-  **SUCCESS**
+Rev4:
+-Rebase
+-Drop patch for checking bounds for scaler array access.
+-Use a new flag for setting vrr timings for seamless drrs.
 
-  No regressions found.
+Ankit 12):
+  drm/i915/skl_watermark: Fix the scaling factor for chroma subsampling
+  drm/i915/skl_watermark: Pass linetime as argument to latency helpers
+  drm/i915/skl_scaler: Introduce helper for chroma downscale factor
+  drm/i915/display: Extract helpers to set dsc/scaler prefill latencies
+  drm/i915/dp: Add SDP latency computation helper
+  drm/i915/alpm: Add function to compute max link-wake latency
+  drm/i915/vrr: Use vrr.sync_start for getting vtotal
+  drm/i915/display: Add guardband check for feature latencies
+  drm/i915/skl_watermark: Remove redundant latency checks from vblank
+    validation
+  drm/i915/vrr: Use static guardband to support seamless LRR switching
+  drm/i915/panel: Add helper to get highest fixed mode
+  drm/i915/vrr: Fix seamless_mn drrs for PTL
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/index.html
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  15 ++
+ drivers/gpu/drm/i915/display/intel_alpm.h     |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 174 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h  |   8 +
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  49 +++-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_panel.c    |  13 +
+ drivers/gpu/drm/i915/display/intel_panel.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 227 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   3 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |   5 +
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   3 +
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  89 +------
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ 15 files changed, 491 insertions(+), 103 deletions(-)
 
-Participating hosts (45 -> 44)
-------------------------------
+-- 
+2.45.2
 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_138754v16 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [ABORT][3] ([i915#12904]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-apl-1/igt@dmabuf@all-tests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16965 -> Patchwork_138754v16
-
-  CI-20190529: 20190529
-  CI_DRM_16965: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138754v16: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/index.html
-
---===============7433693413526139376==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce drm sharpness property (rev16)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138754/">https://patchwork.freedesktop.org/series/138754/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16965 -&gt; Patchwork_138754v16</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_138754v16 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138754v16/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16965 -&gt; Patchwork_138754v16</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16965: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_138754v16: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7433693413526139376==--
