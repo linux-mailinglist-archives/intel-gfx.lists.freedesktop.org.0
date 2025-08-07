@@ -2,43 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D84B1D636
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 12:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2428DB1D659
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 13:09:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56CC10E7AB;
-	Thu,  7 Aug 2025 10:59:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECB010E0DE;
+	Thu,  7 Aug 2025 11:09:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eK6NKBYj";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C79010E481;
- Thu,  7 Aug 2025 10:59:30 +0000 (UTC)
-Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1ujyLD-00000009Wpo-27Cb; Thu, 07 Aug 2025 13:59:28 +0300
-Message-ID: <95999d2602067f556dc2e5739758deef7c462e17.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Charlton Lin <charlton.lin@intel.com>, Khaled
- Almahallawy <khaled.almahallawy@intel.com>
-Date: Thu, 07 Aug 2025 13:59:21 +0300
-In-Reply-To: <20250805073700.642107-2-imre.deak@intel.com>
-References: <20250805073700.642107-1-imre.deak@intel.com>
- <20250805073700.642107-2-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39E9910E0DE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Aug 2025 11:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754564949; x=1786100949;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VUr1nw017sGEXlmY3XDF/8NZaW9pLVm8G9pv4j15b0w=;
+ b=eK6NKBYj3+Y8F5MHn2xd7jyJyRYapBbppnyvrcjU/yx9w9qr5kIIHn4U
+ xZPN+To9K+WQpQ20vvuZvF4YRl0RSGxeIbS82NQBNA1A8eu0arIbY9bjC
+ dxt85Epf9IGAx5FEvVyk5Hlg3dhfR/YPLOXkLvOGZs8rAEob2/PPMFnDI
+ /umNdXfQhXIhn4+2g3oqjQlpdkxiWVnz64Q0KPmKuhQkj8Lm9oWqa2ew0
+ TPavUyedIsGKn6H3mF82TlqFQspky9Oti7ppBfIxlSSJoDPCVJEvNrVxQ
+ ZM2H/e5VDtb7+sIzRTUC0i+V68+EohKwvasQODntGrMcg5cKX/Drvufzc Q==;
+X-CSE-ConnectionGUID: MJcmKeJwTM+r4KX7F0n6BQ==
+X-CSE-MsgGUID: uDcWBeJTQKq9dpjc8fem0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="59511520"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="59511520"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 04:09:09 -0700
+X-CSE-ConnectionGUID: 7vLstbwYR02G65FTH4swXQ==
+X-CSE-MsgGUID: e7dyMuPsSGKcZTA4xXhZxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165448911"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa008.fm.intel.com with ESMTP; 07 Aug 2025 04:09:07 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, jani.nikula@intel.com,
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/scaler: Fix condition for WA_14011503117
+Date: Thu,  7 Aug 2025 16:33:53 +0530
+Message-Id: <20250807110353.3170959-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250806101930.2969802-1>
+References: <20250806101930.2969802-1>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 01/19] drm/i915/lnl+/tc: Fix handling of an
- enabled/disconnected dp-alt sink
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,103 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
-> The TypeC PHY HW readout during driver loading and system resume
-> determines which TypeC mode the PHY is in (legacy/DP-alt/TBT-alt) and
-> whether the PHY is connected, based on the PHY's Owned and Ready flags.
-> For the PHY to be in DP-alt or legacy mode and for the PHY to be in the
-> connected state in these modes, both the Owned (set by the BIOS/driver)
-> and the Ready (set by the HW) flags should be set.
->=20
-> On ICL-MTL the HW kept the PHY's Ready flag set after the driver
-> connected the PHY by acquiring the PHY ownership (by setting the Owned
-> flag), until the driver disconnected the PHY by releasing the PHY
-> ownership (by clearing the Owned flag). On LNL+ this has changed, in
-> that the HW clears the Ready flag as soon as the sink gets disconnected,
-> even if the PHY ownership was acquired already and hence the PHY is
-> being used by the display.
->=20
-> When inheriting the HW state from BIOS for a PHY connected in DP-alt
-> mode on which the sink got disconnected - i.e. in a case where the sink
-> was connected while BIOS/GOP was running and so the sink got enabled
-> connecting the PHY, but the user disconnected the sink by the time the
-> driver loaded - the PHY Owned but not Ready state must be accounted for
-> on LNL+ according to the above. Do that by assuming on LNL+ that the PHY
-> is connected in DP-alt mode whenever the PHY Owned flag is set,
-> regardless of the PHY Ready flag.
->=20
-> This fixes a problem on LNL+, where the PHY TypeC mode / connected state
-> was detected incorrectly for a DP-alt sink, which got connected and then
-> disconnected by the user in the above way.
->=20
-> Cc: stable@vger.kernel.org # v6.8+
-> Reported-by: Charlton Lin <charlton.lin@intel.com>
-> Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_tc.c | 16 ++++++++++------
->  1 file changed, 10 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index 3bc57579fe53e..73a08bd84a70a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -1226,14 +1226,18 @@ static void tc_phy_get_hw_state(struct intel_tc_p=
-ort *tc)
->  	tc->phy_ops->get_hw_state(tc);
->  }
-> =20
-> -static bool tc_phy_is_ready_and_owned(struct intel_tc_port *tc,
-> -				      bool phy_is_ready, bool phy_is_owned)
-> +static bool tc_phy_in_legacy_or_dp_alt_mode(struct intel_tc_port *tc,
-> +					    bool phy_is_ready, bool phy_is_owned)
+Add a check statement to check the scaler_id, if
+less than 0 then return.
 
-Personally I don't like the "or" in the function name.  You're
-returning a boolean which is true or false.  The return value is akin
-to answering "Yes/No" to the question "Is it black or white".
+v2: Add scaler_id check [Jani]
+v3: Modify commit message[Suraj]
 
-This is a nitpick, obviously, so I'll leave it up to you.
+Fixes: 73309ed9d598 ("drm/i915/display: WA_14011503117")
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regardless:
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index cd7ebbeb9508..c6cccf170ff1 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -960,7 +960,7 @@ void adl_scaler_ecc_unmask(const struct intel_crtc_state *crtc_state)
+ 	const struct intel_crtc_scaler_state *scaler_state =
+ 		&crtc_state->scaler_state;
+ 
+-	if (!scaler_state && scaler_state->scaler_id == -1)
++	if (scaler_state->scaler_id < 0)
+ 		return;
+ 
+ 	intel_de_write_fw(display,
+-- 
+2.25.1
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
-
->  {
->  	struct intel_display *display =3D to_intel_display(tc->dig_port);
-> =20
-> -	drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
-> +	if (DISPLAY_VER(display) < 20) {
-> +		drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
-> =20
-> -	return phy_is_ready && phy_is_owned;
-> +		return phy_is_ready && phy_is_owned;
-> +	} else {
-> +		return phy_is_owned;
-> +	}
->  }
-> =20
->  static bool tc_phy_is_connected(struct intel_tc_port *tc,
-> @@ -1244,7 +1248,7 @@ static bool tc_phy_is_connected(struct intel_tc_por=
-t *tc,
->  	bool phy_is_owned =3D tc_phy_is_owned(tc);
->  	bool is_connected;
-> =20
-> -	if (tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned))
-> +	if (tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned))
->  		is_connected =3D port_pll_type =3D=3D ICL_PORT_DPLL_MG_PHY;
->  	else
->  		is_connected =3D port_pll_type =3D=3D ICL_PORT_DPLL_DEFAULT;
-> @@ -1352,7 +1356,7 @@ tc_phy_get_current_mode(struct intel_tc_port *tc)
->  	phy_is_ready =3D tc_phy_is_ready(tc);
->  	phy_is_owned =3D tc_phy_is_owned(tc);
-> =20
-> -	if (!tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned)) {
-> +	if (!tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned)) {
->  		mode =3D get_tc_mode_in_phy_not_owned_state(tc, live_mode);
->  	} else {
->  		drm_WARN_ON(display->drm, live_mode =3D=3D TC_PORT_TBT_ALT);
