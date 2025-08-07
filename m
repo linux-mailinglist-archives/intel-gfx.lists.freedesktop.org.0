@@ -2,56 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B715BB1D437
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 10:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D71BB1D446
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 10:28:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5FDF10E0FF;
-	Thu,  7 Aug 2025 08:22:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mURii/eN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DE810E0A8;
+	Thu,  7 Aug 2025 08:28:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1C010E0FF;
- Thu,  7 Aug 2025 08:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754554973; x=1786090973;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/VHnY+zvohJunzqNGyDpJ5v0EMRLr9R9bd9BEN87fBI=;
- b=mURii/eNGI4BF4gtX91iKgk1mFp0/yvJ2FuyukhchRZtQhILHgb3l+3p
- V5PzNjGTmjDkLStGhiK5blMYhEB7uh4yNm6VTrf7SL/9XxoWIudrYNmhZ
- gNe3ljACuE57QofzxqfOTky6Y+o2c8w4huariy5T8PPBGxBgWMmh8fAMA
- JfM1p9bnIQf5Cxj1mUulvE/hyGErgnLiHFsa7EkY/KpObb4wErASaAGWH
- XCmGMaWRrJcdbrBc/lxIPdpeqz6t/vIHJJ6IJAwi63/Gn6JKi2ZIsg8Sk
- umis3O2PSXDCq41zf79a/zhN2WE42BcYvYx5gCUGOTc7D/fRupPw7p4hm g==;
-X-CSE-ConnectionGUID: oLDfFVUtR0ig/n+kWH7NHQ==
-X-CSE-MsgGUID: kHr4MP67Ttavq58NRwnO4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56961895"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56961895"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 01:22:52 -0700
-X-CSE-ConnectionGUID: Ht05RHEPTS+ZG3dkNlS4jg==
-X-CSE-MsgGUID: t5KIdjCeT9ml2EBZJGgY3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="164903208"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2025 01:22:50 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com, arun.r.murthy@intel.com,
- jani.nikula@intel.com
-Subject: [PATCH v6] drm/i915/display: Optimize panel power-on wait time
-Date: Thu,  7 Aug 2025 13:54:02 +0530
-Message-ID: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69DD210E0A8;
+ Thu,  7 Aug 2025 08:28:04 +0000 (UTC)
+Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1ujvyh-00000009Wf0-2rUj; Thu, 07 Aug 2025 11:28:01 +0300
+Message-ID: <148f401ac6b2d0ec2ccf0713185d2e23d5967ac7.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Thu, 07 Aug 2025 11:27:58 +0300
+In-Reply-To: <ba8a2a7ec10e54b4d0a96926ef20c96e268c0b94.1753782998.git.jani.nikula@intel.com>
+References: <cover.1753782998.git.jani.nikula@intel.com>
+ <ba8a2a7ec10e54b4d0a96926ef20c96e268c0b94.1753782998.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [RESEND 3/3] drm/i915: use drm->debugfs_root for creating
+ debugfs files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +52,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The current wait_panel_status() uses intel_de_wait(),
-which internally on Xe platforms calls  xe_mmio_wait32().
-xe_mmio_wait32() increases poll interval exponentially.
+On Tue, 2025-07-29 at 12:57 +0300, Jani Nikula wrote:
+> Since commit 0b30d57acafc ("drm/debugfs: rework debugfs directory
+> creation v5") we should be using drm->debugfs_root instead of
+> minor->debugfs_root for creating debugfs files.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-This exponential poll interval increase causes unnessory delays
-during resume or power-on when the panel becomes ready earlier,
-but polling is delayed due to backoff.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Replace intel_de_wait() with read_poll_timeout() +
-intel_de_read() to actively poll the register at a fixed 10ms interval
-up to a 5 second timeout. This allows poll to exit
-early  when panel is ready.
-
-Changes in v2:
-Replaced  two-phase intel_de_wait() with  read_poll_timeout()
- + intel_de_read()
-Changes in v3:
- - Add poll_interval_ms argument  'wait_panel_status' function.
- - Modify 'wait_panel_status' callers with proper poll interval
-Changes in v4:
- - Change 'wait_panel_off' poll interval to 10ms
-Changes in v5:
- - Dropped  poll_interval_ms parameter,use fixed polling
-   interval of 10ms (Jani Nikula)
-Changes in v6:
- - Removed goto in error path
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pps.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index b64d0b30f5b1..b84eb43bd2d0 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/debugfs.h>
-+#include <linux/iopoll.h>
- 
- #include <drm/drm_print.h>
- 
-@@ -608,6 +609,8 @@ static void wait_panel_status(struct intel_dp *intel_dp,
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 	i915_reg_t pp_stat_reg, pp_ctrl_reg;
-+	int ret;
-+	u32 val;
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
-@@ -624,13 +627,20 @@ static void wait_panel_status(struct intel_dp *intel_dp,
- 		    intel_de_read(display, pp_stat_reg),
- 		    intel_de_read(display, pp_ctrl_reg));
- 
--	if (intel_de_wait(display, pp_stat_reg, mask, value, 5000))
-+	ret = read_poll_timeout(intel_de_read, val,
-+				(val & mask) == value,
-+				10 * 1000, 5000 * 1000, true,
-+				display, pp_stat_reg);
-+
-+	if (ret) {
- 		drm_err(display->drm,
- 			"[ENCODER:%d:%s] %s panel status timeout: PP_STATUS: 0x%08x PP_CONTROL: 0x%08x\n",
- 			dig_port->base.base.base.id, dig_port->base.base.name,
- 			pps_name(intel_dp),
- 			intel_de_read(display, pp_stat_reg),
- 			intel_de_read(display, pp_ctrl_reg));
-+		return;
-+	}
- 
- 	drm_dbg_kms(display->drm, "Wait complete\n");
- }
--- 
-2.43.0
-
+--
+Cheers,
+Luca.
