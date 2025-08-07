@@ -2,47 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA92AB1D9B0
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 16:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35793B1D9B8
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 16:13:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69B8F10E85E;
-	Thu,  7 Aug 2025 14:10:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B91B610E860;
+	Thu,  7 Aug 2025 14:13:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RCS2ok+C";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68BBA10E85E;
- Thu,  7 Aug 2025 14:10:19 +0000 (UTC)
-Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1uk1Jt-00000009X6s-0XuX; Thu, 07 Aug 2025 17:10:15 +0300
-Message-ID: <1e1a3f0db25d4487a3b10522404ea004139ce8e7.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: imre.deak@intel.com, Jani Nikula <jani.nikula@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- stable@vger.kernel.org, Charlton Lin <charlton.lin@intel.com>, Khaled
- Almahallawy <khaled.almahallawy@intel.com>
-Date: Thu, 07 Aug 2025 17:10:11 +0300
-In-Reply-To: <aJShB9ufOBH9AWLY@ideak-desk>
-References: <20250805073700.642107-1-imre.deak@intel.com>
- <20250805073700.642107-2-imre.deak@intel.com>
- <95999d2602067f556dc2e5739758deef7c462e17.camel@coelho.fi>
- <aJSQKu72vVYmUd4Y@ideak-desk>
- <d8e9cabb243cd8bbe7ac942d117146bf7f68b631@intel.com>
- <aJSc9UaVwn132FqX@ideak-desk> <aJShB9ufOBH9AWLY@ideak-desk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA77210E860;
+ Thu,  7 Aug 2025 14:13:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1754575995; x=1786111995;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=bZ6zqZxBaJLy3mVc+Rv1x9Ea4DTHTJK1PABAxuWa7UY=;
+ b=RCS2ok+CWBD5jpT9lzAl4YMt8PPavEFYf4ZdfyLSpZP86S0SHgo3hUun
+ /NVBEQrGkj3mjTFVapgkeJKSFovbshg5yOCojeEgOpazcY9DP/zxhg/TP
+ KqiDo79P0q4uazadwhM0o+B6iQ9PKdMeXqlmO6OeAo0DyD6FvcJdmY5gO
+ fWifkTIpeqmEQIOWz9Sruz4vcJWVMWvTSsL77wmhFoSABaYVhSc21HdAf
+ w0ngFPbY53rbWSyVjk4487po9zpIj/Cu+9pXcgb/W1QBE3rjJa25xs21k
+ AVOFkZJqM75Aq/TJmTwAIqUFKsoEpe8XduvsQXe2EpmcUnYiH1FdIIGxa g==;
+X-CSE-ConnectionGUID: OGvwZk9sRrOBS2Q//8GMSQ==
+X-CSE-MsgGUID: mmUWCxDwRamgiWu0takyAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="60756591"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="60756591"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 07:13:15 -0700
+X-CSE-ConnectionGUID: 8HckyPSMRPm6/2el+fYjhA==
+X-CSE-MsgGUID: O0Cth4ajRg+d+h2Bflkv9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="170452436"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.96])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2025 07:13:10 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Qianfeng Rong <rongqianfeng@vivo.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Qianfeng Rong
+ <rongqianfeng@vivo.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm: Remove redundant __GFP_NOWARN
+In-Reply-To: <20250807134639.555274-1-rongqianfeng@vivo.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250807134639.555274-1-rongqianfeng@vivo.com>
+Date: Thu, 07 Aug 2025 17:13:07 +0300
+Message-ID: <69a17c463c6351b4e0ee03445f59b2d245e85e97@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 01/19] drm/i915/lnl+/tc: Fix handling of an
- enabled/disconnected dp-alt sink
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,125 +73,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2025-08-07 at 15:50 +0300, Imre Deak wrote:
-> On Thu, Aug 07, 2025 at 03:33:04PM +0300, Imre Deak wrote:
-> > On Thu, Aug 07, 2025 at 03:19:17PM +0300, Jani Nikula wrote:
-> > > On Thu, 07 Aug 2025, Imre Deak <imre.deak@intel.com> wrote:
-> > > > On Thu, Aug 07, 2025 at 01:59:21PM +0300, Luca Coelho wrote:
-> > > > > On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
-> > > > > > The TypeC PHY HW readout during driver loading and system resum=
-e
-> > > > > > determines which TypeC mode the PHY is in (legacy/DP-alt/TBT-al=
-t) and
-> > > > > > whether the PHY is connected, based on the PHY's Owned and Read=
-y flags.
-> > > > > > For the PHY to be in DP-alt or legacy mode and for the PHY to b=
-e in the
-> > > > > > connected state in these modes, both the Owned (set by the BIOS=
-/driver)
-> > > > > > and the Ready (set by the HW) flags should be set.
-> > > > > >=20
-> > > > > > On ICL-MTL the HW kept the PHY's Ready flag set after the drive=
-r
-> > > > > > connected the PHY by acquiring the PHY ownership (by setting th=
-e Owned
-> > > > > > flag), until the driver disconnected the PHY by releasing the P=
-HY
-> > > > > > ownership (by clearing the Owned flag). On LNL+ this has change=
-d, in
-> > > > > > that the HW clears the Ready flag as soon as the sink gets disc=
-onnected,
-> > > > > > even if the PHY ownership was acquired already and hence the PH=
-Y is
-> > > > > > being used by the display.
-> > > > > >=20
-> > > > > > When inheriting the HW state from BIOS for a PHY connected in D=
-P-alt
-> > > > > > mode on which the sink got disconnected - i.e. in a case where =
-the sink
-> > > > > > was connected while BIOS/GOP was running and so the sink got en=
-abled
-> > > > > > connecting the PHY, but the user disconnected the sink by the t=
-ime the
-> > > > > > driver loaded - the PHY Owned but not Ready state must be accou=
-nted for
-> > > > > > on LNL+ according to the above. Do that by assuming on LNL+ tha=
-t the PHY
-> > > > > > is connected in DP-alt mode whenever the PHY Owned flag is set,
-> > > > > > regardless of the PHY Ready flag.
-> > > > > >=20
-> > > > > > This fixes a problem on LNL+, where the PHY TypeC mode / connec=
-ted state
-> > > > > > was detected incorrectly for a DP-alt sink, which got connected=
- and then
-> > > > > > disconnected by the user in the above way.
-> > > > > >=20
-> > > > > > Cc: stable@vger.kernel.org # v6.8+
-> > > > > > Reported-by: Charlton Lin <charlton.lin@intel.com>
-> > > > > > Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> > > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/display/intel_tc.c | 16 ++++++++++------
-> > > > > >  1 file changed, 10 insertions(+), 6 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/=
-gpu/drm/i915/display/intel_tc.c
-> > > > > > index 3bc57579fe53e..73a08bd84a70a 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> > > > > > @@ -1226,14 +1226,18 @@ static void tc_phy_get_hw_state(struct =
-intel_tc_port *tc)
-> > > > > >  	tc->phy_ops->get_hw_state(tc);
-> > > > > >  }
-> > > > > > =20
-> > > > > > -static bool tc_phy_is_ready_and_owned(struct intel_tc_port *tc=
-,
-> > > > > > -				      bool phy_is_ready, bool phy_is_owned)
-> > > > > > +static bool tc_phy_in_legacy_or_dp_alt_mode(struct intel_tc_po=
-rt *tc,
-> > > > > > +					    bool phy_is_ready, bool phy_is_owned)
-> > > > >=20
-> > > > > Personally I don't like the "or" in the function name.  You're
-> > > > > returning a boolean which is true or false.  The return value is =
-akin
-> > > > > to answering "Yes/No" to the question "Is it black or white".
-> > > >=20
-> > > > The question the function is meant to answer is "Is the PHY in lega=
-cy or
-> > > > DP-alt mode?". The return value is true (yes) if the PHY is in eith=
-er
-> > > > legacy or DP-alt mode, false (no) if the PHY is neither in legacy o=
-r
-> > > > DP-alt mode. There are many other uses of "or" in function names in=
- this
-> > > > sense, so not sure how else I'd name this one. Simply leaving out "=
-or"
-> > > > would make it less clear that the legacy and DP-alt modes are two
-> > > > separate modes.
+On Thu, 07 Aug 2025, Qianfeng Rong <rongqianfeng@vivo.com> wrote:
+> Commit 16f5dfbc851b ("gfp: include __GFP_NOWARN in GFP_NOWAIT")
+> made GFP_NOWAIT implicitly include __GFP_NOWARN.
+>
+> Therefore, explicit __GFP_NOWARN combined with GFP_NOWAIT
+> (e.g., `GFP_NOWAIT | __GFP_NOWARN`) is now redundant. Let's clean
+> up these redundant flags across subsystems.
+>
+> No functional changes.
+>
+> Signed-off-by: Qianfeng Rong <rongqianfeng@vivo.com>
+> ---
+>  drivers/gpu/drm/drm_modeset_lock.c               | 4 ++--
 
-Right, I missed that.  But one shouldn't have to go read the function
-implementation to know what it's doing.
+Please separate the drm core changes...
 
+>  drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c | 4 ++--
+>  drivers/gpu/drm/i915/i915_active.c               | 2 +-
 
-> > >=20
-> > > What's the opposite of "Is the PHY in legacy or DP-alt mode"?
-> > >=20
-> > > Would that lead to a simpler name, with the reversed return value?
-> >=20
-> > The opposite is either TBT-alt or disconnected mode, so the reversal
-> > would result in the same function name format.
->=20
-> Would you be ok with
->=20
-> tc_phy_owned_by_display()
->=20
-> ?
+...from the i915 driver changes.
 
-This sounds much better! And it's indeed what you're looking for.  It
-doesn't matter if it's legacy DP-alt, TBT-alt or whatever.  What you're
-checking is actually whether display owns the PHY.  So this is a much
-better choice IMHO. :)
+Thanks,
+Jani.
 
---
-Cheers,
-Luca.
+>  3 files changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_modeset_lock.c b/drivers/gpu/drm/drm_modeset_lock.c
+> index beb91a13a312..58eac20a8138 100644
+> --- a/drivers/gpu/drm/drm_modeset_lock.c
+> +++ b/drivers/gpu/drm/drm_modeset_lock.c
+> @@ -88,7 +88,7 @@ static noinline depot_stack_handle_t __drm_stack_depot_save(void)
+>  
+>  	n = stack_trace_save(entries, ARRAY_SIZE(entries), 1);
+>  
+> -	return stack_depot_save(entries, n, GFP_NOWAIT | __GFP_NOWARN);
+> +	return stack_depot_save(entries, n, GFP_NOWAIT);
+>  }
+>  
+>  static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+> @@ -98,7 +98,7 @@ static void __drm_stack_depot_print(depot_stack_handle_t stack_depot)
+>  	unsigned int nr_entries;
+>  	char *buf;
+>  
+> -	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT | __GFP_NOWARN);
+> +	buf = kmalloc(PAGE_SIZE, GFP_NOWAIT);
+>  	if (!buf)
+>  		return;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> index 8d4bb95f8424..22432912db2e 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+> @@ -220,7 +220,7 @@ static void heartbeat(struct work_struct *wrk)
+>  		goto out;
+>  	}
+>  
+> -	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+> +	rq = heartbeat_create(ce, GFP_NOWAIT);
+>  	if (IS_ERR(rq))
+>  		goto unlock;
+>  
+> @@ -282,7 +282,7 @@ static int __intel_engine_pulse(struct intel_engine_cs *engine)
+>  	GEM_BUG_ON(!intel_engine_has_preemption(engine));
+>  	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
+>  
+> -	rq = heartbeat_create(ce, GFP_NOWAIT | __GFP_NOWARN);
+> +	rq = heartbeat_create(ce, GFP_NOWAIT);
+>  	if (IS_ERR(rq))
+>  		return PTR_ERR(rq);
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 0dbc4e289300..402043cd84d5 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -727,7 +727,7 @@ int i915_request_await_active(struct i915_request *rq,
+>  static int sw_await_fence(void *arg, struct dma_fence *fence)
+>  {
+>  	return i915_sw_fence_await_dma_fence(arg, fence, 0,
+> -					     GFP_NOWAIT | __GFP_NOWARN);
+> +					     GFP_NOWAIT);
+>  }
+>  
+>  int i915_sw_fence_await_active(struct i915_sw_fence *fence,
+
+-- 
+Jani Nikula, Intel
