@@ -2,29 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4539AB1D5D7
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 12:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D84B1D636
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 12:59:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B1510E30D;
-	Thu,  7 Aug 2025 10:32:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B56CC10E7AB;
+	Thu,  7 Aug 2025 10:59:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D63610E30D;
- Thu,  7 Aug 2025 10:32:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1713859364543171259=="
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C79010E481;
+ Thu,  7 Aug 2025 10:59:30 +0000 (UTC)
+Received: from 91-155-254-205.elisa-laajakaista.fi ([91.155.254.205]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1ujyLD-00000009Wpo-27Cb; Thu, 07 Aug 2025 13:59:28 +0300
+Message-ID: <95999d2602067f556dc2e5739758deef7c462e17.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Charlton Lin <charlton.lin@intel.com>, Khaled
+ Almahallawy <khaled.almahallawy@intel.com>
+Date: Thu, 07 Aug 2025 13:59:21 +0300
+In-Reply-To: <20250805073700.642107-2-imre.deak@intel.com>
+References: <20250805073700.642107-1-imre.deak@intel.com>
+ <20250805073700.642107-2-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Optim?=
- =?utf-8?q?ize_panel_power-on_wait_time_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 07 Aug 2025 10:32:41 -0000
-Message-ID: <175456276150.219080.11980233050816587323@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20250807082402.79018-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 01/19] drm/i915/lnl+/tc: Fix handling of an
+ enabled/disconnected dp-alt sink
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,161 +51,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1713859364543171259==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2025-08-05 at 10:36 +0300, Imre Deak wrote:
+> The TypeC PHY HW readout during driver loading and system resume
+> determines which TypeC mode the PHY is in (legacy/DP-alt/TBT-alt) and
+> whether the PHY is connected, based on the PHY's Owned and Ready flags.
+> For the PHY to be in DP-alt or legacy mode and for the PHY to be in the
+> connected state in these modes, both the Owned (set by the BIOS/driver)
+> and the Ready (set by the HW) flags should be set.
+>=20
+> On ICL-MTL the HW kept the PHY's Ready flag set after the driver
+> connected the PHY by acquiring the PHY ownership (by setting the Owned
+> flag), until the driver disconnected the PHY by releasing the PHY
+> ownership (by clearing the Owned flag). On LNL+ this has changed, in
+> that the HW clears the Ready flag as soon as the sink gets disconnected,
+> even if the PHY ownership was acquired already and hence the PHY is
+> being used by the display.
+>=20
+> When inheriting the HW state from BIOS for a PHY connected in DP-alt
+> mode on which the sink got disconnected - i.e. in a case where the sink
+> was connected while BIOS/GOP was running and so the sink got enabled
+> connecting the PHY, but the user disconnected the sink by the time the
+> driver loaded - the PHY Owned but not Ready state must be accounted for
+> on LNL+ according to the above. Do that by assuming on LNL+ that the PHY
+> is connected in DP-alt mode whenever the PHY Owned flag is set,
+> regardless of the PHY Ready flag.
+>=20
+> This fixes a problem on LNL+, where the PHY TypeC mode / connected state
+> was detected incorrectly for a DP-alt sink, which got connected and then
+> disconnected by the user in the above way.
+>=20
+> Cc: stable@vger.kernel.org # v6.8+
+> Reported-by: Charlton Lin <charlton.lin@intel.com>
+> Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_tc.c | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 3bc57579fe53e..73a08bd84a70a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -1226,14 +1226,18 @@ static void tc_phy_get_hw_state(struct intel_tc_p=
+ort *tc)
+>  	tc->phy_ops->get_hw_state(tc);
+>  }
+> =20
+> -static bool tc_phy_is_ready_and_owned(struct intel_tc_port *tc,
+> -				      bool phy_is_ready, bool phy_is_owned)
+> +static bool tc_phy_in_legacy_or_dp_alt_mode(struct intel_tc_port *tc,
+> +					    bool phy_is_ready, bool phy_is_owned)
 
-== Series Details ==
+Personally I don't like the "or" in the function name.  You're
+returning a boolean which is true or false.  The return value is akin
+to answering "Yes/No" to the question "Is it black or white".
 
-Series: drm/i915/display: Optimize panel power-on wait time (rev7)
-URL   : https://patchwork.freedesktop.org/series/150957/
-State : success
+This is a nitpick, obviously, so I'll leave it up to you.
 
-== Summary ==
+Regardless:
 
-CI Bug Log - changes from CI_DRM_16965 -> Patchwork_150957v7
-====================================================
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-Summary
--------
+--
+Cheers,
+Luca.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_150957v7 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [ABORT][3] ([i915#12904]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-apl-1/igt@dmabuf@all-tests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16965 -> Patchwork_150957v7
-
-  CI-20190529: 20190529
-  CI_DRM_16965: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_150957v7: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/index.html
-
---===============1713859364543171259==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Optimize panel power-on wait time (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/150957/">https://patchwork.freedesktop.org/series/150957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16965 -&gt; Patchwork_150957v7</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_150957v7 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16965/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_150957v7/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16965 -&gt; Patchwork_150957v7</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16965: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8488: c4a9bee161f4bb74cbbf81c73b24c416ecf93976 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_150957v7: e75fad13646be2a02f21a8e9d438b3150108950d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1713859364543171259==--
+>  {
+>  	struct intel_display *display =3D to_intel_display(tc->dig_port);
+> =20
+> -	drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
+> +	if (DISPLAY_VER(display) < 20) {
+> +		drm_WARN_ON(display->drm, phy_is_owned && !phy_is_ready);
+> =20
+> -	return phy_is_ready && phy_is_owned;
+> +		return phy_is_ready && phy_is_owned;
+> +	} else {
+> +		return phy_is_owned;
+> +	}
+>  }
+> =20
+>  static bool tc_phy_is_connected(struct intel_tc_port *tc,
+> @@ -1244,7 +1248,7 @@ static bool tc_phy_is_connected(struct intel_tc_por=
+t *tc,
+>  	bool phy_is_owned =3D tc_phy_is_owned(tc);
+>  	bool is_connected;
+> =20
+> -	if (tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned))
+> +	if (tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned))
+>  		is_connected =3D port_pll_type =3D=3D ICL_PORT_DPLL_MG_PHY;
+>  	else
+>  		is_connected =3D port_pll_type =3D=3D ICL_PORT_DPLL_DEFAULT;
+> @@ -1352,7 +1356,7 @@ tc_phy_get_current_mode(struct intel_tc_port *tc)
+>  	phy_is_ready =3D tc_phy_is_ready(tc);
+>  	phy_is_owned =3D tc_phy_is_owned(tc);
+> =20
+> -	if (!tc_phy_is_ready_and_owned(tc, phy_is_ready, phy_is_owned)) {
+> +	if (!tc_phy_in_legacy_or_dp_alt_mode(tc, phy_is_ready, phy_is_owned)) {
+>  		mode =3D get_tc_mode_in_phy_not_owned_state(tc, live_mode);
+>  	} else {
+>  		drm_WARN_ON(display->drm, live_mode =3D=3D TC_PORT_TBT_ALT);
