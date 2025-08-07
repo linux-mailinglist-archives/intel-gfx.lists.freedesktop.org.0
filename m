@@ -2,184 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51296B1D21D
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 07:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97CBCB1D225
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Aug 2025 07:51:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9E4510E328;
-	Thu,  7 Aug 2025 05:42:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCE910E331;
+	Thu,  7 Aug 2025 05:51:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTDqEq4F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QZErBddR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C561710E328
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Aug 2025 05:42:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1688A10E0AD;
+ Thu,  7 Aug 2025 05:51:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754545349; x=1786081349;
+ t=1754545895; x=1786081895;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=NyHPeuu7QE4yBy8SuD1/Bbau8Uo2SIIwvAC/z7+Rv6k=;
- b=XTDqEq4Fs23Y1RIgmpk/TL00QdZLaAzPyKkDx7C3P43Uvs1FiHzOQXAI
- eMpbN+YtNlj9G6QI9TS9vMUDQ4HZ2NLi938+G/uUEnmFfcSMlD9OaVhND
- WxtCdwV26EJH8Z07l94VZlkVYQ2xTNS83VYz2BsZMPKRIc+YAX2g7ciuY
- 8/MPI7WNrKeLVBtVcy2EHuTNPATnGF8ltVHgDlBnxvd7UVx6hZKd2a+hf
- UM8/P2F9Ozy/tOY43RgeVyXOlvxqUfbxb5TKJhx+qBxx0xA705ySSDdxB
- Q/3Dk/S28NnhzzS0R9WroPk8PSciUnoDkRuTvyI8k3Qse2XMXO5bQvY35 A==;
-X-CSE-ConnectionGUID: Mo/eDWOmSqqlwI1hmCh4Gg==
-X-CSE-MsgGUID: 655ue8HiTlGTljaD9R1tuw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="68321828"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="68321828"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 22:42:28 -0700
-X-CSE-ConnectionGUID: WVowsjqcQRm4cMpjQL9ezg==
-X-CSE-MsgGUID: xMnXIs3XTPaZCcRX3zOFGg==
+ bh=KFzUzKamSG+vzyQY0gN9QYM0rZRsjf8S/APk9wcBgHs=;
+ b=QZErBddRdeL8gkXWX9nBT9fuSVr55GxmoWsia4WptZedWgfbkemE2ICo
+ E9QvDiXm3qfCCx2Ff0Q87d7Ev24Fo65ElYARtPvhxS339Xz2e6XG/HCGf
+ ICsT6avfAgYQ7jBXlVSxBu6e+8jKffBP93sGHLhIRZVTMDQSHZWp1OgKT
+ zZq4l5wOW05makONs3oRwrcbkd4SNk0Q6fYju084XlT2FcpH9pZFIkifQ
+ KYC9lAfhv5SlEOZLVtcYlA7hNKsoGO2DTZIdRaVCWwUekaxw8G9mEKJ4Q
+ SH8GgX4I/33uMbrUlwVgsQ+ULVZMGwR2RkxYw9xIu4DQsZP8rXU8donZq A==;
+X-CSE-ConnectionGUID: O93qHRJSTkWEe+VLcMZ5zw==
+X-CSE-MsgGUID: cbaCAtFeR9St7n/OvWfm5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56738521"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="56738521"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 22:51:34 -0700
+X-CSE-ConnectionGUID: 7IdQWVQ2S6SgEtRBpGdzDg==
+X-CSE-MsgGUID: jDfqYGcXRxyGOaktujntPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="165332859"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Aug 2025 22:42:28 -0700
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; d="scan'208";a="169425597"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Aug 2025 22:51:34 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 22:42:27 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ 15.2.1748.26; Wed, 6 Aug 2025 22:51:33 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 22:42:27 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.66)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.1748.26 via Frontend Transport; Wed, 6 Aug 2025 22:51:33 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.77) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Wed, 6 Aug 2025 22:42:27 -0700
+ 15.2.1748.26; Wed, 6 Aug 2025 22:51:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jZQtpJDVIbGBJiQEYCUz6QNoncSM4e4BfCqIWGtJRq77KJ+ipjN4jgXKIpwYHtmuI/Lr+vVIlIgNgJeOKNKunqLAk6OIbgZmnoTykqUIXXi+DONWQyF3g2PZ/BnAx4SrV3DHTiLg0jdYN4ldZMuKSstcw2Oyf7PrYEh6W4seT6LMBPOsV4o9hvqLYNhxv1cFxdWA3aYCUJR3/GTvM2M4Am/vUqc4LDVHK7/1jo9dt+/j2Zp40gKSuoKayyUAgpHiPE/KZFUtpPJ21rr+9BVHFJja1Jui95EwUtreRZjPWkZ2osWu/uBPu1bOAziU+rDuV2erm0NfytdueEQm4OrYrQ==
+ b=yT3/a6lF+WGX79/rKpLqtReqvW44gWiUQxfIkd9mJmVo9ji2Es7zy/pSwJ+IM45BeYh0K21Rp+KjF8cZR27rsjd7CsTwifkcN8XAc+lWlXxBUtqHzIxxddd9/lfbuxH0XXfJM6eCksVCv9rjdnr5sVB5Mrm/pcbEfyT2nng7M5Is7y+DU4PTx0dphcW4Xk+ks0WaKo1EPIfIPc5b1KO3h8NSTsnrzvmmHFgPbWj/8ShEMFx3Pqc/pdSsVba9UTwVHlNhR4WBJd0Fbv5jwGEvJfNX6u5ea2JZXilGGkfFuxTz57nrSvB598n2n1iT/HoJbmiEeB9+6s0jQR5Rvwm0Og==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VfnE8L8npI+9rA3MqFSGYrZZCSOzc6gHBEgKUdP4TNo=;
- b=wdmGM7DVnKAlYwhtb2JldhnFaqM1xttw5bmrzSdBPBsAvidY15Ek+vAuPuLUtqYicaG89G+0Q/i5kM3lAGvzIKYdwxY8PBuaIm9eL/tiLC6ukq8565SYK5DWYj/bbz9zE4XhUIVDwfinr2DdcEyEHU2KbiNRKo6PjCRBUfR+9aGGh9L5ZG420bvnR5z0oqwlWzSjzgO7E3Ld3mTShTTULiT9op2LRRyxp1rsohtcQpXTgORGyDPh/J9gXS/DROvNuWUCVAzVzVpSu+ie2lEqdcigxliJB4BWphwtnj7BUDLEpu9aTVQ6GbzcQnH3fZIrnqSDE5RXcYaMKiaidpnQQw==
+ bh=xFm1jv0hyfBAVbpLjmSfWS/bbQY9xxHOf6Ib2tgXMQM=;
+ b=lvUWdRbr8C575hlBtyVGdx2az0KN0BociES/ejY8mG/KEbv6urHK19sDYR/xeTFOt7FwABvOiwP/9yhBSLPbpRjsonOxP2/9jsuz0crnyzxb8arJ638O/18lrQhsY6J07QjEsB4/4DGo9KsNxaSTpmEYWoycLBaPqjUL6sQRsk0K7+e6QInSpROZMc4SiyZt5u6gCHv3zGhLEZpA+ZcC4pdPqhZSsmDGdswt75hsLE3qbE72Vqiu8f04VNkMJBh9yRCpGr4VyYVB2IyQ7J2R4XTCZwK2v1v3sFdu6DLUcNoZ60KTeXVuRRk5BLwgr/qzBQI01j+wDBT50vQM6aEr+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6391.namprd11.prod.outlook.com (2603:10b6:930:38::21)
- by MW4PR11MB7080.namprd11.prod.outlook.com (2603:10b6:303:21a::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Thu, 7 Aug
- 2025 05:42:25 +0000
-Received: from CY5PR11MB6391.namprd11.prod.outlook.com
- ([fe80::d1d5:6fa6:9a2d:92e2]) by CY5PR11MB6391.namprd11.prod.outlook.com
- ([fe80::d1d5:6fa6:9a2d:92e2%7]) with mapi id 15.20.8989.020; Thu, 7 Aug 2025
- 05:42:25 +0000
-Message-ID: <c55b4d1c-0b89-47c0-ae76-153aa67d327c@intel.com>
-Date: Wed, 6 Aug 2025 22:42:23 -0700
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CYXPR11MB8709.namprd11.prod.outlook.com (2603:10b6:930:dd::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.15; Thu, 7 Aug
+ 2025 05:51:30 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.8989.018; Thu, 7 Aug 2025
+ 05:51:30 +0000
+Message-ID: <ad3693fa-a8d4-4310-8522-5795d2fedc36@intel.com>
+Date: Thu, 7 Aug 2025 11:21:24 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915/guc: Include the GuC registers in the error
- state
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20250804233523.1613363-2-daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH 01/10] drm/drm-crtc: Introduce sharpness strength property
+To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20250724134544.284371-1-nemesa.garg@intel.com>
+ <20250724134544.284371-2-nemesa.garg@intel.com>
 Content-Language: en-US
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20250804233523.1613363-2-daniele.ceraolospurio@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250724134544.284371-2-nemesa.garg@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW2PR2101CA0010.namprd21.prod.outlook.com
- (2603:10b6:302:1::23) To CY5PR11MB6391.namprd11.prod.outlook.com
- (2603:10b6:930:38::21)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0021.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:179::10) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6391:EE_|MW4PR11MB7080:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3de5299-d875-4e75-1a21-08ddd5753016
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CYXPR11MB8709:EE_
+X-MS-Office365-Filtering-Correlation-Id: a25763fb-b58e-4646-ea76-08ddd5767519
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?a3VtM3VVNjZDK3haUktZRnlheFh5dTA3NldSbEx2N1NmajBrT0ZKb2doaVQr?=
- =?utf-8?B?UzlmVUkzNDBRZzRXMUtxUVBSd2oyUkV1WVZvdU5VZURWVCtqdlkzUURGYnFn?=
- =?utf-8?B?cGo3eUlCY0RZM1IwWXRqMFhMbVllWTVVVzhURUxqdXFzQUtwS3oyT25zVmp5?=
- =?utf-8?B?RnpYdEdMQjh5ZTFDNng0THNYeVBWbnlKQWRmTjlDM3pCUndaYkNtQkZhOHVC?=
- =?utf-8?B?VWVGMSsrYjg1L0RuR3Z5Wkk3bkI1QmhLelYzYnVXOWpIWDRCNGJWbjU3MndN?=
- =?utf-8?B?cjc2THJ1ZG0wSGJ5VEZ0N2lOc3krYzUrbGFsZzQ3S3dLME1JbmNNdzFXYW5Y?=
- =?utf-8?B?UFBPRG9TcTVod1FlMjdwQTlidXkwbWZQRm4yL2JMbjUyYm9NSFRrZ3BUUmt1?=
- =?utf-8?B?dTh0VllyUGhoSTVkMW8vYkpaRTVlWXc1THgrVXdEdGQ0Z0tLMm5aZmZjTUNC?=
- =?utf-8?B?MDYxQ2JjSTgxaXZnUktUMUdsWWcyZEJZM2VLc1ZUS0lQTHMxaDhYbGtPbS9L?=
- =?utf-8?B?VjNzNEV6a3pvTlBpajIvVVhCeWtkNTMvdjFTZ2lEUjFsV1Q5MjV1aWNYbWhk?=
- =?utf-8?B?YUQrMnZ2blNnSURUYldKa1pMVjU2VERCVFdzbjNEQUVzU00yU2VwOHo0MGFF?=
- =?utf-8?B?TUFZZXIwTVpMUzJrOHBWeWVZU05mcXZSZDczTHJrb3l2L2pmbWJuRHVWVFVB?=
- =?utf-8?B?THF0SE1pZmNCMVRGWHkrZ2lkSGxudEVaMW9kRDdYRTAweWtRaDNnOGVzSmtn?=
- =?utf-8?B?MDM4WDhPcmI0cHNidlduSXVxcmNYU1JLUit1OWQ0WHNGS2RnTDdSaS9SZ2xH?=
- =?utf-8?B?K2gzUGhWakQvaXIwZUF1YlRzNUdOR0hSRnQ2Uk1CZll0RUlsUFVhSk9rUzRS?=
- =?utf-8?B?U0lBcUw4cU1kQmhDYUw2a0llK3FVNnZFNmY1TWEyc0lhbU5Ia1NSWW10akJH?=
- =?utf-8?B?TEJkbXp2RmlFRzFTR2pNR1BDU21XUUZDcnRrTFNCaDlLQlJkL2M5c0pNQ1R1?=
- =?utf-8?B?aitCaHlldllsd0ZlMVBJL2hTdFNUNldoamhKTHNVM1pRVmQybThPYm9GbElB?=
- =?utf-8?B?Q0xwdW4yMjI4UDEzb1pZaWZaLzRESlFWdlBISlh5bFNPK2x6VGs5OWtvMmRY?=
- =?utf-8?B?T251aFRRKzBHK0dNUGx1WnZNTXg2cXpTWiswWDc1WGZQUml1VDNIMWNCcmNy?=
- =?utf-8?B?VWRwMXI5VDc4d1ppZGdheDlIRjNNMFJneWtuVWJVTXkzVGxkOFN1dXJSaWhi?=
- =?utf-8?B?OHprbXBjT2R1c1cyTExvOVlRR0ZieDU4bE9XdW16TUQ0bjcwWXFyNytUdTc0?=
- =?utf-8?B?Vm04dzZWbWkwZ0EvRGFPMmhmNW5lbTBSOGJjVUdmazluVEtQcnFRKzkwMmt6?=
- =?utf-8?B?d0hRUUhLUFB2OXg5cGs5UzFVVHN6RitXUU5TYm0zamV3ckQ5dTBiQjBFeEor?=
- =?utf-8?B?OHBqcXRwRHRnM1JFcmkvWVpjUmxMZm1raHMzZjkzbjFpWDdSR01MUG9oOEhW?=
- =?utf-8?B?SWJNdnVxUk5oR3k1UTEvQ3plRU5UaDlRdnlNckc3ZEpNODNqM2hpUSs5cWZp?=
- =?utf-8?B?bFhYQXBxc0FwbU12Z0RGMzlLa0FEWWRUdHIxazBYTnNTMlJoc0ZaYlYrR1g0?=
- =?utf-8?B?N0JOT3VhY2d6Ni9RY0JFNlFpa2V0dnc1YlFleVgwZnE1MGpjcXpZUVlpRWxN?=
- =?utf-8?B?d09mK2ZUN2RpWmtubGtRMkFGQXZvbzlVNWhGL21rZzcxMGgyN2Q1VGdRS0FL?=
- =?utf-8?B?UGkwcUVUYU5RU0V1UEUyS0ZieUhmWXpnNm91cVVEdnQ4M3NFeUo2UkVBL1Ey?=
- =?utf-8?B?c1YxMktBRnJIYkxlM2lQR3c3aUhlQkFSdlI2TW5MTG5KVitUbmNoMCt4Zzdl?=
- =?utf-8?B?M1VERWdwZUV4V2ZDYVRhTFdOeU1pZWdzTldCWUhBdWxHYVppQXNUNy9SZ2JF?=
- =?utf-8?Q?tC4IbrAcWtk=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ajZJd1NLR0ptK2cvR3BrZHFFZndjS3VRem9JK3h5ODFLUmM5K0RGVmFjYXNH?=
+ =?utf-8?B?T2tiOUhWTHREc0VlV1FvL3NNNkdLczlDejBPYjZ4cjlpRVRybTFaTTluMFZo?=
+ =?utf-8?B?eVpZWHVVWFhsenN4SEZIVDhBNVVJR1pkb2JBWjNRUnB6MGtJTytYd2VZdVpW?=
+ =?utf-8?B?akdnRTQ1M0hJQm16alhGMURmaFRjNUcwS1ZWb1lhbjk4dStRdFlTNEdEZjZa?=
+ =?utf-8?B?TU9LZU1RVkkxaStiL1MzUGYrbDlWMm0rMU1xbmgzWFJqUkEzdVEydGZJNHhl?=
+ =?utf-8?B?V29FeDNSTi9NdGhLYVErSVNLbnVqU0RkRCt6aEx5dHRnUVFEOXhKQVFuS0FY?=
+ =?utf-8?B?Z2hlZ0tLd2FvdVRXK1hheG05WkVycnQwT1hXYnVpMWxkbm9WR0pCZlBOOFlU?=
+ =?utf-8?B?QXB4VWxLaThuQ2xpTk9oWVVuakw2NmVCb3o2M3hnY05GdEpHbkFrZlNkUzB3?=
+ =?utf-8?B?MTFIL3VOMGs1OUJNWHB0Yjhwa3JzTnFjbDJxSmpqRkMzYkZyb2M2NklPc3p3?=
+ =?utf-8?B?ay9BRS9xdmtkTzVJSDRITVEyeUYyZjZ6NHJ0UllnWGd2bjIrVHAzdytJWFZU?=
+ =?utf-8?B?UHdSM21FUWxxZ2htdzlXcmZtMDJZN1FIam5TQk9UUm9hak5oTVNJNXEyQU04?=
+ =?utf-8?B?V2VIMXRBN25qUklqNkdXdnI3cGRiS2pmMlVDd2x1c1dsZWNoN2JiS09NWHZF?=
+ =?utf-8?B?dDM0V2VhQUVGR1RXaHdkQlFQMCtkS1VWeEV0bWtYQnFyazA5OGE0bVc5citB?=
+ =?utf-8?B?UnlCQ2RsZmFDYVRRdHBIeU5GWXdjNnBhSXBsMCttQ0VsR0VIK2Z6MUtVeGdk?=
+ =?utf-8?B?UEhwcWR6ek1UYUdRRktCWHhFK3ZkeXh1aWJySitXRk1TNVhzRWVET1dzTlNK?=
+ =?utf-8?B?ei9tMHdzK2N4MGw3Nk93OE5mOGlXVXAweFBNUDlQdGZTYzBpamJHZ1FkNnlD?=
+ =?utf-8?B?ZnN6eWtjVENPWnBuVjZYUjFUaHZxa0tqYk9BbDd4NHFZMHo2Q1hLSGZsQ201?=
+ =?utf-8?B?d3RSSDVramo4ZXR2TElYb2l0MkZ1UEo3bXRWbUNDSU1CUEE4TWRYSE04bUp2?=
+ =?utf-8?B?clVnUFg2RmlXZ3piT3pDM1BneUdhM0o2cjRaMUo3V0tndHR4ZnRDUjJPcEZQ?=
+ =?utf-8?B?aUk1ZDl0bzVTNml3Zm4zL3VhQUVOZjZmbXFla0g4UEV4Q01kbzBCY2RDRytp?=
+ =?utf-8?B?R2t4cFYzZGJuQUI1YjY1U25UenNEU1NWb2hKWk05K295UlFVRnVMUlNNOXhW?=
+ =?utf-8?B?Z3FxTkIrVkYxQWxqNlpMcDBPZExvSjZnOGQyV1hKQnY5aUxGQSs0ZU5iWVFI?=
+ =?utf-8?B?UDZvUEpFSEtqVjZyc0VJVXp1ODFoYmpaanNnSzB6TWkzRllHMlFMRnh0Mjla?=
+ =?utf-8?B?djMvS2hJMGZLMytlQ2lvVDdVR3JDRXFFVE9OQ0pMYWZ5NG1tZ2FsREJ2ZkxT?=
+ =?utf-8?B?TkxSQVZEQjg0VTlwV05Mdi9QUHdMS2NubExCd3lEV2ZyWjd3b1NQYjZjckZK?=
+ =?utf-8?B?Z1ZaTXNoemJhZThZUExxelBUOVlCb0VZZ2w5MUwydG1NU08rU3I4bG4zemZY?=
+ =?utf-8?B?OVZpRDF3eXBhZXM5cEczckdMU2E3L1BPOEE0eDVTaVpFQ2J1N1V4cWVqMkdj?=
+ =?utf-8?B?VFVXQldpS20zUlFmR1BYQkVpaE5pMU9aN3R0OExIWlVLUzVGYVhuTHdQVzZZ?=
+ =?utf-8?B?WTBJcldZeVlZYXRjVlVCN2JpM0FxOTZlMFlkTXlNMGtUYWFzelVJNFVBazlC?=
+ =?utf-8?B?WWZub1RkWFBGYU83YmR2bktRMGF5Q0JTNlNZa2syNmJzQVZVSno4aUxkSE9s?=
+ =?utf-8?B?Q0tPYm9Fd0lMbExRazQ3NGhPTzVzNlVYdzFDaE11NkNkclJRZWdncWlzdHQx?=
+ =?utf-8?B?ZG1PK2dMV283bEs0SldHcHdIbUFpSEh6ZlBubkFvdDZkR2V4QkJoNVJUZVFs?=
+ =?utf-8?Q?jkRjOZiy3CA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6391.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NkwxbEZ2blBIbUpGOWJPWGM2Y2xyRUlYemx4Z0oweGlVUUJwd0NySXVsemQ4?=
- =?utf-8?B?bDlUbkoyN2RtL3poRU5kdlNNdVVUTVRYQTB2d2cxczJmRU1ybWxSQXJwbmpY?=
- =?utf-8?B?Wll2VEtzbHcxczhwSG1rTGVBSDZJSVBTbUR2WW52WnlVV2pIUEYrTzhMVks5?=
- =?utf-8?B?V2VMbjFTaitQQ1c3ei9xRjQwQlgzQkFOVGRIYjBiZkluQklBUkwxNWVIdVVF?=
- =?utf-8?B?Uld0L1dqc1FrSFYvczYwM2xoajYxcm9qdmY1YmIzSUJKSzN1dVErNkxiOXJH?=
- =?utf-8?B?ZjdXOHBYMGRab28wTUYydVprL09WSStBT05hMjRiRjg3ajJxY3luc0djTHJH?=
- =?utf-8?B?aXVhdUMrNmJoaEFHNktISWdWNmxqQ29RYzV5SEt1R09oRXVuWi9IV0dLMEFR?=
- =?utf-8?B?OVhtcjlPSXNOa2cwRlJFam0vTGdiZWJ1NnlrMmZmMENBbllyalhTVFpnVnJn?=
- =?utf-8?B?WXFzNGtXRDNic2Rnc1pPUlYvbGZlcXdVWGpvK1VkQnhUelpOVnF1WFVSSVY5?=
- =?utf-8?B?cWFVM0c5UHNlKzhLQVdSbGdxQ1F0UWdwcDI2UTZtZ3l6Vk9yTldNT3BVRUt0?=
- =?utf-8?B?LzRLQXJiZXh1UWdUSUJMaDdENCs0WVBSdUVEVlNoOTlYWXhTdHVCRkdENFpZ?=
- =?utf-8?B?S0E4NUZoQjdZdEFLT0p0S09xSkFMd1BKN29XMmtTbVVSZXZ2L0tnU25oZlNX?=
- =?utf-8?B?a0NGbFhjMzJFeldRQ1hMMm1wazBxZEN6ODJmai9qUzJBYVU5THFoc3RxK2pU?=
- =?utf-8?B?WUViNnFPc3A3ZXNoSXhHM0hHZGozT0syNHF6WGNvREdwQkRNRUtvZkZIMlRs?=
- =?utf-8?B?QWw3a05TckRmRHNscExkcEh0bzNPWi93OHdEMW04RDV0aU8zMmc4QmVFS3Zp?=
- =?utf-8?B?OXphQmxvMU41UHJDZjdyK3hHaFhkTWUwd1FLWURCQmZvNFFIS3JZMnl3OGIx?=
- =?utf-8?B?THhJd2Q0TVdIakZoKzNBZkJZa0tNc0ZMK0R6YmE5OVJNeE9wa21oeFB3L3o3?=
- =?utf-8?B?UFZmZjkvWFIwcVd3dE5LT3JON09zSTJFTTVJTU0vTEpzbm5UMmJReUlnNnNm?=
- =?utf-8?B?OUxtOFlFU3AxVVN3ZHg2Wk1nRU82Y0FBUHQ3S1IyQzRnTE4rQ0NnOGh2cTlG?=
- =?utf-8?B?QmlxcVJoaEpZM01IdnlZUHMwMEtsY0Yxa0N1enZGdW11YnRrVHFZK2pWRHM2?=
- =?utf-8?B?bzhMNVZjS2ZZUm1OZVhIa0YxTmcrcFNOZ3ZSbVpwdTR1Q3ZUUFBGL2dKMURt?=
- =?utf-8?B?STQ5QyttL3FMV3c1TkZxTEZndGR6UjZSNDdHWXZJK1JWS0N6Y3Jia2Z5OFJ6?=
- =?utf-8?B?N3ltcW9MUGxRTklvRUs0dlFYU3F1Ly9NS3JITUhLRVRJUTMxZVUwckk1TW10?=
- =?utf-8?B?YVBPVk5UUGgremR1NEhETFdoSU5wbS9IUUUzY3BxMHdTQUF4cTRJMUdWUVBW?=
- =?utf-8?B?SFNMQm1OVHRwYTJIcmY0SkpTNnFacjFMVE8zM0tLTkw1V0NuOFlycndGbEZo?=
- =?utf-8?B?SVZUaVVNNGorWmhHbytMMDk4WmpUdmhsaG03c3RFa1BMQkxrOUN0SkdoTDZs?=
- =?utf-8?B?d0FRWVpGV3RTUmhZbzdGMUkrSE9qYmkzNlI4VjFNV2JhUlhEeFFqVGFMTTBa?=
- =?utf-8?B?WjNEcDA3N0RlbW04NXdiZ29LL3RybnhkNHRFZGF2ZW5mR1VyN3FrUFdkeGRa?=
- =?utf-8?B?TGlBTkRYQVIwSkJMQUxKU2gwUUNNL0JkMURlajFOVVk2NlJUdGc1aWg4dW04?=
- =?utf-8?B?WlZYRTZmZURlMW9BaTF0c1dNQ0RrbHoxKzNFMWQ5QWwyYWQxRFAwKy9KM3lm?=
- =?utf-8?B?OGFiWHF4ZzBlblFpMnhyYUtFWTdoK0VheUIxVE1PZHhob2tsN3ZBWmVkSHd5?=
- =?utf-8?B?WXMzbDFvelBUS2hqL0VMbU1OcnpJUERHRVdzZmZkODNVY25ackdPQTl5QmZ3?=
- =?utf-8?B?YXlXcStZYmZvMkZhOU4rMzlramgwQk11UzF5cTAxdkV3UXhNcFNVOFRyZ0sy?=
- =?utf-8?B?czFVMjFMK3NHc0xWU1pHSDJvMTBBZjJWU28xdE1TengwUFVCVGYxQmsvcUdz?=
- =?utf-8?B?bllhZW1YRFJnN1Y0bTA2U3BRanlVMy9zVldtcFE3VkZadEVNOE9oVHVXWlI5?=
- =?utf-8?B?ZUxkR2NZVzZoSHp5Z2RVc0xlNWRZbnA5OUIrY21HTE43a1JZMmQzQ0JobHE5?=
- =?utf-8?B?N2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3de5299-d875-4e75-1a21-08ddd5753016
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6391.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXhxaWJaN2owRG54Y0c2bGNJdkxTUWhUQnd0OHl5R3pKUXF3VjFRblRLUXAx?=
+ =?utf-8?B?WlpaTTJoeUlTR25qOXZTdG5XUHhMdmhNRjBqUXZyQnpwT1lxNmlxMVljeUpC?=
+ =?utf-8?B?VHlrNktSMDNKYS9sVnZ5Qzl4MU5VWmxONnVyMkpUem1JMGxxVUg1MERRNmxl?=
+ =?utf-8?B?UGg4Rzg0OCtVWTV0dE11Si85ZGc1bEJFbGRQbmZLOHNaeHplczZuWDN1QUFO?=
+ =?utf-8?B?MDJkNlBRdllMOW1KeWlaS0tKYk5TRy9nZStDVTZjSUZBbTdJanJFVUl2aHRP?=
+ =?utf-8?B?TjM1L3Ardjhvdzg4RngvZXlwd0gyZWE0T0pKNm1QRmhiVGxKODkvK1ZJcGp0?=
+ =?utf-8?B?Z2lLemgvckNra3BORjc1WEZ5MEdWbHd0eS9VSjJya2szVFAvVzFlbU81ZGFH?=
+ =?utf-8?B?TjJUNVRoTUQ3NytQeWVVaDU5R1J2QU1FejVONjVDY3RCU2IwcHJ6Zi9hbDNO?=
+ =?utf-8?B?VUQvT3VubE1BQXhROW1tVXhyR05RSEhlZE1GeXRYUUtiSzV0Q0FjZXNCS3Mw?=
+ =?utf-8?B?TTNEd3N0YkpOUHFIa0NYRzJGeWd1M0V5SW9BYjVRMnl6NVBobUNrZzduQU0z?=
+ =?utf-8?B?VG8wRFU1M0h1Nnl3ZVM1K2F5MGFmVDJjRi9hR25LTzVRTjhwelE3U3RzbkE2?=
+ =?utf-8?B?ZEUya1RWcnlrVGNLdjRLOWVPTDI1ZnVnRWRJY1NsWENNZkRyNE9MenVYUFIv?=
+ =?utf-8?B?NEpEUCtJdEIrYy9XYXV3RUx5dzg0RVdVd0dZeGJiL0Q3VUlZNzNvYUhQODJ6?=
+ =?utf-8?B?c1dtQk1nZzNHZUxNam9rMUw1bWllSnBmZUZuRjEvc1p2U29NcjlTQjJOZ05R?=
+ =?utf-8?B?TzBadzgxSFlENlhFZ3JHUTdWYlBZNEFucloxbktqQklpUTk5TnUvdUwxeHNN?=
+ =?utf-8?B?SzlSNVdMdE0zY3FxcHA5Ykc5NHZXRndKSHJ5Wlh4aTkxNTE5VGpUZzIramJW?=
+ =?utf-8?B?NTBhQXo5WStscUozTzAydkdxeG1PTHFsanFYU2xRdGg5bGRuZ1FQajZpRlM3?=
+ =?utf-8?B?ZEpDNENFNllXZHlYRk02dDNSNDd6b29nYktFVFNCd1ZCRlNxRDF2eGVUY2Nm?=
+ =?utf-8?B?UEhRWnhOcFd3RjJxdTVNTXk2Z1RvZTY4K1RGbGxIZTdwTGV5MncxbFo1c2Nl?=
+ =?utf-8?B?R3RLUE90dHhFSndXeFBmaU5kdk1JUnBFNmUxc2pkWmxvYWNKV1VQRU5hcDJB?=
+ =?utf-8?B?bVovSWdJdkZWeWpXTm1lRGpIY2ZNMWROTjYyWjg2SG9CekhxeTVXMkdPZ3pE?=
+ =?utf-8?B?TkttSEdDdGs1MEZzMjBDVklEU1N1ZFNnUXV3Z1BFSjhjOEd2ZGVCZmdQY1FE?=
+ =?utf-8?B?TlNwelIwaFVhdlh2MGxNZWNqM3k5K2laRkRsTWliTUhJWXNtdGdIVGQxTTky?=
+ =?utf-8?B?Zmc3ZkNEZ1lOTCtTbFcxTjlVb3dxMmNRdW91bFVubTVjWXcvWnhia2xMT2Nh?=
+ =?utf-8?B?ZUkyeGg0NWJsMHFyekRwdFVvVzV3bEtjbXUvZVU3SEF1NDR4YlErMm9rQ3Qr?=
+ =?utf-8?B?TWdFYUx0d0Y4WVgwMy9NbGZkdzFHbW9PVnJDcWloZldjYXVLVWVaR2R3c0Fh?=
+ =?utf-8?B?Sm9RcXhKT1ZTcFpuQUYrY3l1OGIrZllFMlQ0aGtEZzU0R3ZzRUUxeEFpUUN6?=
+ =?utf-8?B?KytSRVp1eWorU29pT0JWVGpyZjEwcGk0N2ZNSTQrUzRvVmIya2QybHdmcW5p?=
+ =?utf-8?B?bHlUVGZLS2g1U2E4VnhQclFpc0VJaUJ4c3R3M0l5MVBjYlFrRGhXOUZMSllD?=
+ =?utf-8?B?TnJ0UWcxaUFTZEp5ZGQvWjh2QzRKMWRMTGFrYlZraTlyeTd4WHVPNTIyNE1a?=
+ =?utf-8?B?ck9jLzVOUjI1YVVrTlFWdm5qdFkrOVRpbDJHWml5R2JITXN0b3BzeU9BYU5V?=
+ =?utf-8?B?R0drQ1JpS3NWZFh2UUF3STJVNGtkSWo4ZnZHUkMyVkxFTE9NZm1hRTZTdFFN?=
+ =?utf-8?B?M3hsZm1pVHlNTTRYOWI1Tm5lQWNHTGMycGd0RCttV1ViaVlEd29XcVVmOWZE?=
+ =?utf-8?B?bmw3RUNHUGRyZmdkTllVQ0FRNmlMb05oaUVGWjFjMWhCUVFpUVRCRzVNSWJC?=
+ =?utf-8?B?TE16V0k0bWNaRlNwcWJuNVZyK1U2cTB1Q1A5RFh0MTdxZkVYcVFvbkpLTERR?=
+ =?utf-8?B?MEF3NGpNNjRrckIycDRSdmRXR3FpZlpXcGVycDhZbkRUdmliR2IrQmJ6WjQz?=
+ =?utf-8?B?R0E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a25763fb-b58e-4646-ea76-08ddd5767519
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2025 05:42:25.2524 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2025 05:51:30.7290 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hgoaNuZBW+oe7ib3B5KAfXMLyJOA88buvnMKrPjqWNK0chAPWeTqkQx7lsOppPjz5iHYFRZOGEKyD7bOitc1Qxl1qBNPSPUVX/Nv12M9KDU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7080
+X-MS-Exchange-CrossTenant-UserPrincipalName: gKD4OInOurG4NCRR+DPE6DBmUyrVMhy5lDmt255cyMzZNfgh6DlIFobL/SN3EYCGqHhUyv4innhbgMMVrHo45ZCGmB8i9R57XRTlDS9aluA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8709
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,220 +196,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/4/2025 4:35 PM, Daniele Ceraolo Spurio wrote:
-> If GuC hangs, the GuC logs might not contain enough information to
-> understand exactly why the hang occurred. In this case, we need to
-> look at the GuC HW state to try to understand where the GuC is stuck. It
-> is therefore useful to include the GuC HW state in the error capture.
+Hi Nemesa,
+
+Patch looks good to me. Just a couple of minor suggestions in the inline 
+comments for slight improvements in documentation.
+
+Also, IMO,  drm_crtc might be better than drm-crtc in the subject line.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+On 7/24/2025 7:15 PM, Nemesa Garg wrote:
+> Introduces the new crtc property "SHARPNESS_STRENGTH" that allows
+> the user to set the intensity so as to get the sharpness effect.
+> The value of this property can be set from 0-255.
+> It is useful in scenario when the output is blurry and user
+> want to sharpen the pixels. User can increase/decrease the
+> sharpness level depending on the content displayed.
 >
-> The list of registers that are part of the GuC HW state can change based
-> on platform, but it is the same for all platforms from TGL to MTL so we
-> only need to support one version for i915.
+> v2: Rename crtc property variable [Arun]
+>      Add modeset detail in uapi doc[Uma]
+> v3: Fix build issue
 >
-> v2: revised list
->
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c  |   8 ++
->   drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h |   1 +
->   drivers/gpu/drm/i915/i915_gpu_error.c      | 103 +++++++++++++++++++++
->   drivers/gpu/drm/i915/i915_gpu_error.h      |   1 +
->   4 files changed, 113 insertions(+)
+>   drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
+>   drivers/gpu/drm/drm_crtc.c        | 35 +++++++++++++++++++++++++++++++
+>   include/drm/drm_crtc.h            | 17 +++++++++++++++
+>   3 files changed, 56 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> index e7ccfa520df3..384d1400134d 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-> @@ -46,6 +46,14 @@ static void guc_prepare_xfer(struct intel_gt *gt)
->   		/* allows for 5us (in 10ns units) before GT can go to RC6 */
->   		intel_uncore_write(uncore, GUC_ARAT_C6DIS, 0x1FF);
->   	}
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index ecc73d52bfae..2302c2bea28a 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -419,6 +419,8 @@ static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
+>   		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
+>   	} else if (property == crtc->scaling_filter_property) {
+>   		state->scaling_filter = val;
+> +	} else if (property == crtc->sharpness_strength_property) {
+> +		state->sharpness_strength = val;
+>   	} else if (crtc->funcs->atomic_set_property) {
+>   		return crtc->funcs->atomic_set_property(crtc, state, property, val);
+>   	} else {
+> @@ -456,6 +458,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
+>   		*val = 0;
+>   	else if (property == crtc->scaling_filter_property)
+>   		*val = state->scaling_filter;
+> +	else if (property == crtc->sharpness_strength_property)
+> +		*val = state->sharpness_strength;
+>   	else if (crtc->funcs->atomic_get_property)
+>   		return crtc->funcs->atomic_get_property(crtc, state, property, val);
+>   	else {
+> diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
+> index 46655339003d..1b7ce99cea5e 100644
+> --- a/drivers/gpu/drm/drm_crtc.c
+> +++ b/drivers/gpu/drm/drm_crtc.c
+> @@ -229,6 +229,25 @@ struct dma_fence *drm_crtc_create_fence(struct drm_crtc *crtc)
+>    * 		Driver's default scaling filter
+>    * 	Nearest Neighbor:
+>    * 		Nearest Neighbor scaling filter
+> + * SHARPNESS_STRENGTH:
+> + *	Atomic property for setting the sharpness strength/intensity by userspace.
+> + *
+> + *	The value of this property is set as an integer value ranging
+> + *	from 0 - 255 where:
+> + *
+> + *	0 means feature is disabled.
+
+
+Should mention here that this is the default value.
+
+> + *
+> + *	1 means minimum sharpness.
+> + *
+> + *	255 means maximum sharpness.
+
+These can just be:
+
+0: Sharpness feature is disabled (default value).
+
+1: Minimum sharpness.
+
+255: Maximum sharpness.
+
+
+> + *
+> + *	User can gradually increase or decrease the sharpness level and can
+> + *	set the optimum value depending on content and
+
+> this value will be
+> + *	passed to kernel through the Uapi.
+
+Use UAPI. Also, this  can be a separate sentence.
+
+
+> + *	The setting of this property does not require modeset.
+> + *	The sharpness effect takes place post blending on the final composed output.
+> + *	If the feature is disabled, the content remains same without any sharpening effect
+> + *	and when this feature is applied, it enhances the clarity of the content.
+>    */
+>   
+>   __printf(6, 0)
+> @@ -940,6 +959,22 @@ int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
+>   }
+>   EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
+>   
+> +int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc)
+> +{
+> +	struct drm_device *dev = crtc->dev;
+> +	struct drm_property *prop =
+> +		drm_property_create_range(dev, 0, "SHARPNESS_STRENGTH", 0, 255);
 > +
-> +	/*
-> +	 * Starting from IP 12.50 we need to enable the mirroring of GuC
-> +	 * internal state to debug registers. This is always enabled on previous
-> +	 * IPs.
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	crtc->sharpness_strength_property = prop;
+> +	drm_object_attach_property(&crtc->base, prop, 0);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_crtc_create_sharpness_strength_property);
+> +
+>   /**
+>    * drm_crtc_in_clone_mode - check if the given CRTC state is in clone mode
+>    *
+> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> index caa56e039da2..2b26b90e82e6 100644
+> --- a/include/drm/drm_crtc.h
+> +++ b/include/drm/drm_crtc.h
+> @@ -317,6 +317,16 @@ struct drm_crtc_state {
+>   	 */
+>   	enum drm_scaling_filter scaling_filter;
+>   
+> +	/**
+> +	 * @sharpness_strength:
+> +	 *
+> +	 * Used by the user to set the sharpness intensity.
+> +	 * The value ranges from 0-255.
+
+Perhaps we can add about default value:
+
+Default value is 0, which disables the sharpness feature.
+
+> +	 * Any value greater than 0 means enabling the featuring
+
+can simply be: Any value greater than 0 enables sharpening with the 
+specified strength.
+
+
+Regards,
+
+Ankit
+
+> +	 * along with setting the value for sharpness.
 > +	 */
-> +	if (GRAPHICS_VER_FULL(uncore->i915) >= IP_VER(12, 50))
-> +		intel_uncore_rmw(uncore, GUC_SHIM_CONTROL2, 0, GUC_ENABLE_DEBUG_REG);
->   }
+> +	u8 sharpness_strength;
+> +
+>   	/**
+>   	 * @event:
+>   	 *
+> @@ -1088,6 +1098,12 @@ struct drm_crtc {
+>   	 */
+>   	struct drm_property *scaling_filter_property;
 >   
->   static int guc_xfer_rsa_mmio(struct intel_uc_fw *guc_fw,
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> index 3fd798837502..f73dab527547 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_reg.h
-> @@ -96,6 +96,7 @@
->   #define   GUC_GEN10_SHIM_WC_ENABLE		(1<<21)
->   
->   #define GUC_SHIM_CONTROL2		_MMIO(0xc068)
-> +#define   GUC_ENABLE_DEBUG_REG		(1<<11)
->   #define   GUC_IS_PRIVILEGED		(1<<29)
->   #define   GSC_LOADS_HUC			(1<<30)
->   
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index f434b6825fc2..c8d731045793 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -685,6 +685,75 @@ static void err_print_guc_ctb(struct drm_i915_error_state_buf *m,
->   		   ctb->head, ctb->tail, ctb->desc_offset, ctb->cmds_offset, ctb->size);
->   }
->   
-> +/*
-> + * This list includes registers that are useful in debugging GuC hangs. We
-> + * include them in the error state so that we don't have to reproduce the
-> + * issue locally to capture them.
-The second sentence is an odd comment. Even if we can reproduce an issue 
-locally, we still need to capture this data somehow. Saving it in the 
-error state is much better than manually hacking something every time. I 
-would drop that comment and just keep the first sentence.
-
-> + */
-> +const struct {
-> +	u32 start;
-> +	u32 count;
-> +} guc_hw_reg_state[] = {
-> +	{ 0xc0b0, 2 },
-> +	{ 0xc000, 65 },
-> +	{ 0xc140, 1 },
-> +	{ 0xc180, 16 },
-> +	{ 0xc1dc, 10 },
-> +	{ 0xc300, 79 },
-> +	{ 0xc4b4, 47 },
-> +	{ 0xc574, 1 },
-> +	{ 0xc57c, 1 },
-> +	{ 0xc584, 11 },
-> +	{ 0xc5c0, 8 },
-> +	{ 0xc5e4, 1 },
-> +	{ 0xc5ec, 103 },
-> +	{ 0xc7c0, 1 },
-> +	{ 0xc0b0, 2 }
-> +};
+> +	/**
+> +	 * @sharpness_strength_property: property to apply
+> +	 * the intensity of the sharpness requested.
+> +	 */
+> +	struct drm_property *sharpness_strength_property;
 > +
-> +static u32 print_range_line(struct drm_i915_error_state_buf *m, u32 start, u32 *dump, u32 count)
-> +{
-> +	if (count >= 8) {
-> +		err_printf(m, "[0x%04x] 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x 0x%08x\n",
-> +			   start, dump[0], dump[1], dump[2], dump[3],
-> +			   dump[4], dump[5], dump[6], dump[7]);
-> +		return 8;
-> +	} else if (count >= 4) {
-> +		err_printf(m, "[0x%04x] 0x%08x 0x%08x 0x%08x 0x%08x\n",
-> +			   start, dump[0], dump[1], dump[2], dump[3]);
-> +		return 4;
-> +	} else if (count >= 2) {
-> +		err_printf(m, "[0x%04x] 0x%08x 0x%08x\n", start, dump[0], dump[1]);
-> +		return 2;
-> +	}
-> +
-> +	err_printf(m, "[0x%04x] 0x%08x\n", start, dump[0]);
-> +	return 1;
-> +}
-> +
-> +static void err_print_guc_hw_state(struct drm_i915_error_state_buf *m, u32 *hw_state)
-> +{
-> +	u32 total = 0;
-> +	int i;
-> +
-> +	if (!hw_state)
-> +		return;
-> +
-> +	err_printf(m, "GuC Register State:\n");
-> +
-> +	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++) {
-> +		u32 entry = 0;
-> +
-> +		while (entry < guc_hw_reg_state[i].count)
-> +			entry += print_range_line(m, guc_hw_reg_state[i].start + entry * 4,
-The 4 should be sizeof(u32)?
-
-Otherwise it looks good. With the two nits cleaned up:
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
-
-> +						  hw_state + total + entry,
-> +						  guc_hw_reg_state[i].count - entry);
-> +
-> +		GEM_BUG_ON(entry != guc_hw_reg_state[i].count);
-> +		total += entry;
-> +	}
-> +}
-> +
->   static void err_print_uc(struct drm_i915_error_state_buf *m,
->   			 const struct intel_uc_coredump *error_uc)
->   {
-> @@ -693,6 +762,7 @@ static void err_print_uc(struct drm_i915_error_state_buf *m,
->   	intel_uc_fw_dump(&error_uc->guc_fw, &p);
->   	intel_uc_fw_dump(&error_uc->huc_fw, &p);
->   	err_printf(m, "GuC timestamp: 0x%08x\n", error_uc->guc.timestamp);
-> +	err_print_guc_hw_state(m, error_uc->guc.hw_state);
->   	intel_gpu_error_print_vma(m, NULL, error_uc->guc.vma_log);
->   	err_printf(m, "GuC CTB fence: %d\n", error_uc->guc.last_fence);
->   	err_print_guc_ctb(m, "Send", error_uc->guc.ctb + 0);
-> @@ -1025,6 +1095,7 @@ static void cleanup_uc(struct intel_uc_coredump *uc)
->   	kfree(uc->huc_fw.file_wanted.path);
->   	i915_vma_coredump_free(uc->guc.vma_log);
->   	i915_vma_coredump_free(uc->guc.vma_ctb);
-> +	kfree(uc->guc.hw_state);
->   
->   	kfree(uc);
->   }
-> @@ -1721,6 +1792,37 @@ static void gt_record_guc_ctb(struct intel_ctb_coredump *saved,
->   	saved->cmds_offset = ((void *)ctb->cmds) - blob_ptr;
->   }
->   
-> +static u32 read_guc_state_reg(struct intel_uncore *uncore, int range, int count)
-> +{
-> +	GEM_BUG_ON(range >= ARRAY_SIZE(guc_hw_reg_state));
-> +	GEM_BUG_ON(count >= guc_hw_reg_state[range].count);
-> +
-> +	return intel_uncore_read(uncore,
-> +				 _MMIO(guc_hw_reg_state[range].start + count * sizeof(u32)));
-> +}
-> +
-> +static void gt_record_guc_hw_state(struct intel_uncore *uncore,
-> +				   struct intel_uc_coredump *error_uc)
-> +{
-> +	u32 *hw_state;
-> +	u32 count = 0;
-> +	int i, j;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++)
-> +		count += guc_hw_reg_state[i].count;
-> +
-> +	hw_state = kcalloc(count, sizeof(u32), ALLOW_FAIL);
-> +	if (!hw_state)
-> +		return;
-> +
-> +	count = 0;
-> +	for (i = 0; i < ARRAY_SIZE(guc_hw_reg_state); i++)
-> +		for (j = 0; j < guc_hw_reg_state[i].count; j++)
-> +			hw_state[count++] = read_guc_state_reg(uncore, i, j);
-> +
-> +	error_uc->guc.hw_state = hw_state;
-> +}
-> +
->   static struct intel_uc_coredump *
->   gt_record_uc(struct intel_gt_coredump *gt,
->   	     struct i915_vma_compress *compress)
-> @@ -1755,6 +1857,7 @@ gt_record_uc(struct intel_gt_coredump *gt,
->   			  uc->guc.ct.ctbs.send.desc, (struct intel_guc *)&uc->guc);
->   	gt_record_guc_ctb(error_uc->guc.ctb + 1, &uc->guc.ct.ctbs.recv,
->   			  uc->guc.ct.ctbs.send.desc, (struct intel_guc *)&uc->guc);
-> +	gt_record_guc_hw_state(gt->_gt->uncore, error_uc);
->   
->   	return error_uc;
->   }
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-> index 182324979278..91b3df621a49 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-> @@ -177,6 +177,7 @@ struct intel_gt_coredump {
->   			struct intel_ctb_coredump ctb[2];
->   			struct i915_vma_coredump *vma_ctb;
->   			struct i915_vma_coredump *vma_log;
-> +			u32 *hw_state;
->   			u32 timestamp;
->   			u16 last_fence;
->   			bool is_guc_capture;
-
+>   	/**
+>   	 * @state:
+>   	 *
+> @@ -1324,4 +1340,5 @@ static inline struct drm_crtc *drm_crtc_find(struct drm_device *dev,
+>   int drm_crtc_create_scaling_filter_property(struct drm_crtc *crtc,
+>   					    unsigned int supported_filters);
+>   bool drm_crtc_in_clone_mode(struct drm_crtc_state *crtc_state);
+> +int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc);
+>   #endif /* __DRM_CRTC_H__ */
