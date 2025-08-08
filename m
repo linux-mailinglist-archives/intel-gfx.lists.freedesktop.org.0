@@ -2,57 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD39DB1E3DF
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Aug 2025 09:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2631BB1E47A
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Aug 2025 10:37:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E62010E8D6;
-	Fri,  8 Aug 2025 07:52:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE6E10E8E7;
+	Fri,  8 Aug 2025 08:37:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OacwYMbh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dX+PDnzv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7DAD10E8D4;
- Fri,  8 Aug 2025 07:52:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795F410E8E7;
+ Fri,  8 Aug 2025 08:37:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754639568; x=1786175568;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1JC2YKN19py/GPsvVtwUXCT+aPTA20M1wTkdUfO0v9I=;
- b=OacwYMbhfLxRsJklqZvGEDYqYPpXmMa2vdNJor7DlO4s9mxrbT/zY2nv
- gEjgivD7UIfo0nsFtw38To9xpTOw1sTOwMjfnG+UsmVEcNc3ERN3BSgw5
- RNqYOrRxQy8kVfNiqv1bhPvbCBbaFGRIjRnuv/Bi0YTpVddDUq/hSxhok
- b6LJ+dPATjlx6kOOzzZpZP/V/p4KJgA3fh+iOohDlOGhntCJsXPyBDuyr
- KZivb86zSARObqm/6+EzBtnIcoRLp9I21J1SFvdAEiaZ/qRumGYrq4bz+
- ecwPW/DcHxxh5E3pJJ9hJMKnXRduxWEwUdwDUHzfm6uC4mRMDFV92jsKu A==;
-X-CSE-ConnectionGUID: blftA7w2TLuoBHt9yU+iFw==
-X-CSE-MsgGUID: fllgdwgaSoiy6sT6SvAq4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="74439104"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="74439104"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 00:52:48 -0700
-X-CSE-ConnectionGUID: RJ38Vb2HQhCzlp948iKEGw==
-X-CSE-MsgGUID: +iM8l3j9SZCLQcn+wBcRtw==
+ t=1754642234; x=1786178234;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VztVX7OHo+7pumyzc0nM0R9HCW1zc9T35uM5NilQO0I=;
+ b=dX+PDnzveHUQN+K41JFZ7Y7E+qQZ2islIslXaS53dtMHjH1gqdLALFjO
+ nwKWCXE3v2a6luzvOX3TFpBSkXvJXIm/JvHIrF3gOrGYdHd1QKpW+5h3t
+ fUMJIlF+2mad2ymcmv562eQnQY6eaBrROZw2kM8Fve+isK5eG3foEoWhQ
+ puO7Tl/kaNaAkFi6+obIed/5TXO7Lu4kZXU2rKZS/Y5m959tYbSCAUv1T
+ stClN4F/81YaYEYOTYP8sAP+RCjWm0eeJrcVrRDJjNoK20h810HK3zwdO
+ A9qPyOAcbV29NGEdUyajM1+Pamzm4d7tFnwJ7PeG+YxA9jp65JmTMS29t A==;
+X-CSE-ConnectionGUID: GfO6dWJiQs+sDEdm7778+w==
+X-CSE-MsgGUID: 2O7lIMwwQbiORjCwsVx4Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="79544603"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="79544603"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2025 01:37:14 -0700
+X-CSE-ConnectionGUID: kdh7xVHzTJO46dTaGUN5aw==
+X-CSE-MsgGUID: q/EbXF9JReG4WB9Xxufwhg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="169481634"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2025 00:52:47 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/dp: Honor prefer_sink_yuv420 debugfs override
- for DP
-Date: Fri,  8 Aug 2025 13:22:43 +0530
-Message-ID: <20250808075351.304612-4-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
-References: <20250808075351.304612-1-dibin.moolakadan.subrahmanian@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; d="scan'208";a="165663832"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa009.fm.intel.com with ESMTP; 08 Aug 2025 01:37:11 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	gustavo.sousa@intel.com
+Subject: [PATCH 1/2] drm/i915/display: Add power well mapping for WCL
+Date: Fri,  8 Aug 2025 13:49:30 +0530
+Message-Id: <20250808081931.4101388-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,39 +66,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the `prefer_sink_yuv420` flag is set via debugfs and the sink supports
-YCbCr 4:2:0 output for the current mode, prefer YCbCr 4:2:0 over
-the default RGB when computing the sink format.
+WCL has 3 pipes and two TC ports, create power well mapping to reflect
+HW. Rest remains similar to Xe3 power well configuration.
 
-This enables explicit testing and validation of 4:2:0 output handling
-via the debugfs interface, particularly useful in IGT tests targeting
-scaling and color.
+v2: Remove TC3/4 ports as they do not exist.
 
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../i915/display/intel_display_power_map.c    | 56 ++++++++++++++++++-
+ 1 file changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 625036c47bdf..8b593a6a0c7c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3055,6 +3055,15 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- 		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index 77268802b55e..611bbf188aba 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1717,6 +1717,58 @@ static const struct i915_power_well_desc_list xe3lpd_power_wells[] = {
+ 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
+ };
+ 
++static const struct i915_power_well_desc wcl_power_wells_main[] = {
++	{
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("PW_2", &xe3lpd_pwdoms_pw_2,
++				.hsw.idx = ICL_PW_CTL_IDX_PW_2,
++				.id = SKL_DISP_PW_2),
++		),
++		.ops = &hsw_power_well_ops,
++		.has_vga = true,
++		.has_fuses = true,
++	}, {
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("PW_A", &xelpd_pwdoms_pw_a,
++				.hsw.idx = XELPD_PW_CTL_IDX_PW_A),
++		),
++		.ops = &hsw_power_well_ops,
++		.irq_pipe_mask = BIT(PIPE_A),
++		.has_fuses = true,
++	}, {
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("PW_B", &xe3lpd_pwdoms_pw_b,
++				.hsw.idx = XELPD_PW_CTL_IDX_PW_B),
++		),
++		.ops = &hsw_power_well_ops,
++		.irq_pipe_mask = BIT(PIPE_B),
++		.has_fuses = true,
++	}, {
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("PW_C", &xe3lpd_pwdoms_pw_c,
++				.hsw.idx = XELPD_PW_CTL_IDX_PW_C),
++		),
++		.ops = &hsw_power_well_ops,
++		.irq_pipe_mask = BIT(PIPE_C),
++		.has_fuses = true,
++	}, {
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("AUX_A", &icl_pwdoms_aux_a, .xelpdp.aux_ch = AUX_CH_A),
++			I915_PW("AUX_B", &icl_pwdoms_aux_b, .xelpdp.aux_ch = AUX_CH_B),
++			I915_PW("AUX_TC1", &xelpdp_pwdoms_aux_tc1, .xelpdp.aux_ch = AUX_CH_USBC1),
++			I915_PW("AUX_TC2", &xelpdp_pwdoms_aux_tc2, .xelpdp.aux_ch = AUX_CH_USBC2),
++		),
++		.ops = &xelpdp_aux_power_well_ops,
++	},
++};
++static const struct i915_power_well_desc_list wcl_power_wells[] = {
++	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
++	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
++	I915_PW_DESCRIPTORS(xe3lpd_power_wells_dcoff),
++	I915_PW_DESCRIPTORS(wcl_power_wells_main),
++	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
++};
++
+ static void init_power_well_domains(const struct i915_power_well_instance *inst,
+ 				    struct i915_power_well *power_well)
+ {
+@@ -1824,7 +1876,9 @@ int intel_display_power_map_init(struct i915_power_domains *power_domains)
+ 		return 0;
  	}
  
-+	/* Check if prefer_sink_yuv420 is enabled and sink supports it, then override RGB */
-+	if (connector->prefer_sink_yuv420 &&
-+	    drm_mode_is_420_also(info, adjusted_mode) &&
-+	    connector->base.ycbcr_420_allowed) {
-+		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-+		drm_dbg_kms(display->drm, "prefer_sink_yuv420 enabled, selected format %d\n",
-+			    crtc_state->sink_format);
-+	}
-+
- 	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
- 
- 	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+-	if (DISPLAY_VER(display) >= 30)
++	if (DISPLAY_VERx100(display) == 3002)
++		return set_power_wells(power_domains, wcl_power_wells);
++	else if (DISPLAY_VER(display) >= 30)
+ 		return set_power_wells(power_domains, xe3lpd_power_wells);
+ 	else if (DISPLAY_VER(display) >= 20)
+ 		return set_power_wells(power_domains, xe2lpd_power_wells);
 -- 
-2.43.0
+2.25.1
 
