@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A249DB1F176
-	for <lists+intel-gfx@lfdr.de>; Sat,  9 Aug 2025 02:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E953DB1F177
+	for <lists+intel-gfx@lfdr.de>; Sat,  9 Aug 2025 02:34:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA3E610E1FE;
-	Sat,  9 Aug 2025 00:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 347B610E1FF;
+	Sat,  9 Aug 2025 00:34:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pO4ywBrM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="j3HmQZsB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D30510E1FE
- for <intel-gfx@lists.freedesktop.org>; Sat,  9 Aug 2025 00:31:43 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE9B810E1FF
+ for <intel-gfx@lists.freedesktop.org>; Sat,  9 Aug 2025 00:34:23 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0572846048;
- Sat,  9 Aug 2025 00:31:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E341C4CEF4;
- Sat,  9 Aug 2025 00:31:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 780475C628B;
+ Sat,  9 Aug 2025 00:34:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58F70C4CEF6;
+ Sat,  9 Aug 2025 00:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1754699502;
- bh=otyPQO0UMMJLuqffFWOYdmmpN4frBpy81fhyF6J7ct0=;
+ s=k20201202; t=1754699663;
+ bh=tBwR4ee+qcNCfAExvV+LbeFrUO2sgMsKYVwDnJ2JzP8=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pO4ywBrMO6IvRKfiROWG2nEIMKyyoFO710d+FXHO3krnsX0IuLiK8cAkH3GvEDP3y
- EIQnzP/UXyylVLRY/5au/A9ctHVavczjxjwn2MSdoJ3b7zWiI+SiklaqWDMplso7+y
- 31u7HMTIHfRLd4htzEkxK+7xdYM4bKuoFZ5zIKaPVThOQ03RVR5vmSqoDOw2h0NBnt
- 6v6XZoQZSvCvMirtYvdIs7Z2z7SaYRkDIXSGgStMQRAo1kKmeMSwJ+24Gg+v0Q4moV
- QBfpF0tc+z0NUAD9vUs9I24Bso178SoOCcDqrf3l4Nt5I5uUDKtPZ8WZPbQSs67v4v
- jUxEYwsX8xpmg==
-Date: Fri, 8 Aug 2025 23:31:38 -0100
+ b=j3HmQZsBqUg1WFRRTLikuuuu673BawLTuq49xhPD9IclIfmynoqLuPC5VEm1lDhnP
+ cIwuN5/KoEsorTeckjDl9eXTrCttESS/yGG32lYJhmel6Z/AalGJ6FyLXOEClxMC6D
+ 7dRcuRhaPVtHbWxgGhJsizjtOyQWl1oAQyClnRWSa5BY0R9GNUz5QrpCVHUqaieoCo
+ sq1uxlu+AdDJZMPwexVD5G2TSoSW4nDjr9R/74mW/WqjUCY5E8S/lYCNDV5A3JDLRo
+ wV4Z0B50AJt6bgCrqgydBCj3CG5CqNWReaNuPtUKJbKubsOaJlOTOD+ohVZctex6PJ
+ PFXtnKFs+olrQ==
+Date: Fri, 8 Aug 2025 23:34:18 -0100
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, krzysztof.karas@intel.com, 
  andi.shyti@linux.intel.com, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/3] drm/i915/gt: Relocate Gen7 context-specific
- workarounds
-Message-ID: <24rmieglqnsxsuvu6lclimk7qyubb7athbznfxsbwebtjvumim@ap7idlijqmo6>
+Subject: Re: [PATCH 3/3] drm/i915/gt: Relocate Gen6 context-specific workaround
+Message-ID: <ofojwl6u6d7ao2wayuue2kfi7ubs2h7p3m6zlp5ipyagmef2vr@nfekwxyfti5q>
 References: <cover.1754041191.git.sebastian.brzezinka@intel.com>
- <0c2cbd5cbcda14938954cad2382d8e030646c50e.1754041191.git.sebastian.brzezinka@intel.com>
+ <0162dba90c2c8720fb087ca4af2585908f1c69ee.1754041191.git.sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0c2cbd5cbcda14938954cad2382d8e030646c50e.1754041191.git.sebastian.brzezinka@intel.com>
+In-Reply-To: <0162dba90c2c8720fb087ca4af2585908f1c69ee.1754041191.git.sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,22 +60,21 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Sebastian,
 
-On Fri, Aug 01, 2025 at 09:49:01AM +0000, Sebastian Brzezinka wrote:
-> The workarounds for disabling Render Cache Operational Flush and
-> PIXEL_SUBSPAN_COLLECT_OPT_DISABLE were previously applied in
-> rcs_engine_wa_init(). These are specific to Gen7 platforms
-> so move them to gen7_ctx_workarounds_init() for better alignment with
-> platform-specific initialization.
+On Fri, Aug 01, 2025 at 09:49:08AM +0000, Sebastian Brzezinka wrote:
+> The workaround for disabling Render Cache Operational Flush
+> (WaDisable_RenderCache_OperationalFlush:snb) was previously applied
+> in rcs_engine_wa_init(). As it's a context workaround specific to Gen6,
+> move it to gen6_ctx_workarounds_init() for proper platform-specific
+> context setup.
+> 
+> CM0_STC_EVICT_DISABLE_LRA_SNB is also Gen6-specific, but it does
+> not stick when applied in context, so it remains in engine init.
 
-Same thing here, I would rewrite it as:
+clear!
 
-CACHE_MODE_1 register should be saved and restored as part of
-the context, not during engine reset. Move the related workaround
-from rcs_engine_wa_init() to gen7_ctx_workarounds_init() for
-Gen7 platforms. This ensures the WA is applied during context
-initialisation.
+I believe this is
 
-BSPEC: 55885
+BSPEC: 11322
 
 > Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 
