@@ -2,170 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03675B20CF1
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 17:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6651CB20D48
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 17:15:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD3510E4E4;
-	Mon, 11 Aug 2025 15:04:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C22F410E18A;
+	Mon, 11 Aug 2025 15:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P8UlwM8m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6jcPShN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDC010E114;
- Mon, 11 Aug 2025 15:04:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B401010E18A;
+ Mon, 11 Aug 2025 15:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754924685; x=1786460685;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=C0/CZtNN/ugsGC/FTxcNnTG82J3OJ0MYjJxAYC7u5kE=;
- b=P8UlwM8m5kXbyrLy6kGFp0w+XoHOgMxdz0ZaEBWrTFrzxtY+QSYMOdN7
- QLJlzAqRYdZEqF6Lvlr+yGg1BEuH1z4bjRvCxCKtTluyvN3pOMjKEEzrV
- rV5oEdU5YqgP/5ulV3H9imsooXYkS25v1v2JmqGUZu2zmwPxCGvofbcL3
- 8rCH/zCsQ1FfXTlvSGQjwKEqAoxVKhNcfkBcpCCBF24g05KV7Xy0Awnjy
- mBzrar3Vop1M9LSO/PDfHkS/NyZzHVyfrHYBKNdM1fkpHL17I+RCZLkv6
- wpWFw6GckJ0cq+OpIIGeOuosi4r6ivegeuXCN3HBtxLpZIy/eGpWm75BO g==;
-X-CSE-ConnectionGUID: ldzga6odSZywh+aHufO23A==
-X-CSE-MsgGUID: dYT4AJa5TxeRSN/eXIMRMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="74628676"
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="74628676"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 08:04:45 -0700
-X-CSE-ConnectionGUID: x2H5ITzBSrG8/Tnh91i2GA==
-X-CSE-MsgGUID: bTYdYHtoSii7rtlNMYPVuQ==
+ t=1754925300; x=1786461300;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DIxIfxVV5KFzgHdSDDfIUYKudUgT3m9cqnT8nW72w18=;
+ b=n6jcPShN1ay8jo0T4dUrNSs+Ef9IKdQUzzLTq5A5OZtAC9G5qsqLTTjL
+ x3kkuxgWxBxf0e5G2IDKprLsR7sbwAuu2gLEIbtu8tbS88RcE8jMYGfQ1
+ 0u0mVRKgnPw3mbkzmMXhtV4e+R1SPgYV2iEapcB610lRqZN8DsRPhHsUj
+ AnmEdXlnCPk42LHmiCesrF2ntTVYoxlQboszIuJUq72xvuSYGCpMkMH65
+ rVq8uVJLtUxqCx7q4rtDFYoH2a01DgcxMZqMXUerL8YpKkvjFhEKmpayG
+ NQgSHSK/nEiApRRurR5d9dYYlaG3MIdkcbufeTxfnAheEY89r/XkG54QE w==;
+X-CSE-ConnectionGUID: 0BNWp+Y/TJOUQQhqq5bzDA==
+X-CSE-MsgGUID: DJgWqtF/TdymVsj/6hvHRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67451198"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="67451198"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 08:15:00 -0700
+X-CSE-ConnectionGUID: sCmYt8NoRn6OTz90nFG/oQ==
+X-CSE-MsgGUID: of3UoGiDQYmRWGZUZge5PA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="170157031"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 08:04:44 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Mon, 11 Aug 2025 08:04:43 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Mon, 11 Aug 2025 08:04:43 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.61) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Mon, 11 Aug 2025 08:04:43 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gTAyUKDSvkO/TUCC9GrFVgvdtT7MZM3S1T70VmedmqNfxqnuqQIHwtM+jbAR0jQZlxeS/XhGKFhman/xPqUP/ufH6UhlA2ILBGYCN4IuKDeuM0s5btzmoWEYB8b70dbwgtS3ILPw5qzXdR/oRYS+NsHdG7t46BzlNQhlBQ/silMYWpalMA5zS+GhczEggYXygjOjgamUrMh8I6WIoQJcugHV4OaAzDi6qJZgRd4255veZ9n1a25ooTp09i2X0BwWBpE37IJa9bL/ZLgEitvDkt7oR+d6Q3mCyoEXsKIyO7Xp7yPDSMrGyawh+qVC5GUe1UU1fxliZpvTJ3OdwKgHRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0iVtNrxK7ITdNsLk0hIo9aAPnZ64dP4t4CWjWQ3Q6MA=;
- b=OSWxKuqCnM9pr5q3XQIxs5iQ23VpbPsCMOXt5aP8QDxXrVSTnjmCsHE4bI5L5ufXjJkYy6rAf0gtvU26vwlilxTbTPFOV/hzD1C6nUs6ch6mQBXxuWJ598Ent7wubqwMsvVdMaWt++ZP2moFOZyyhuYGH5PB/kyO82cP3zVGcNw3ZEQECiDV5DjSspcB1z4B+DRDwSYuj2InWdTUgTQDG7pQ2DeNGZ8OYJdS7LYYY9M27m8KAmfEK3dtkTAxnFYZiCVI2I1+XqR7f0E5cw1k7I09oHr0mLGHX15EE2R2/vacs48U3Htx73Yhg3pfCoe9Iz0Xm4xFN2sHzL9wi7+e8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH8PR11MB7965.namprd11.prod.outlook.com (2603:10b6:510:25c::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.21; Mon, 11 Aug
- 2025 15:04:40 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::8900:d137:e757:ac9f%5]) with mapi id 15.20.9009.018; Mon, 11 Aug 2025
- 15:04:40 +0000
-Date: Mon, 11 Aug 2025 18:04:32 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: JupallyX Ravali <jupallyx.ravali@intel.com>, TejasreeX Illipilli
- <tejasreex.illipilli@intel.com>, <I915-ci-infra@lists.freedesktop.org>
-CC: <intel-gfx@lists.freedesktop.org>
-Subject: Re: =?utf-8?B?4pyXIGk5MTUuQ0kuQkFUOiBmYWls?=
- =?utf-8?Q?ure_for_drm=2Fi915=2Ftc?= =?utf-8?Q?=3A?= Fix enabled/disconnected
- DP-alt sink handling (rev4)
-Message-ID: <aJoGgIX-VPN4_lSt@ideak-desk>
-References: <20250811080152.906216-1-imre.deak@intel.com>
- <175490280808.225841.18271231768889882943@1538d3639d33>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <175490280808.225841.18271231768889882943@1538d3639d33>
-X-ClientProxiedBy: DUZPR01CA0020.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:46b::16) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="166340649"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.226])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2025 08:14:57 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+ latencies
+In-Reply-To: <20250807111548.1490624-9-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
+ <20250807111548.1490624-9-ankit.k.nautiyal@intel.com>
+Date: Mon, 11 Aug 2025 18:14:54 +0300
+Message-ID: <58f184781929da07c8968970e1bc92f141223410@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH8PR11MB7965:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5865effe-602d-4834-e7ca-08ddd8e86567
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|10070799003|376014|7053199007|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gHjCIfF7oLulVoBXhg1jZ9DJuX0gsc1JmLCPDib9EvStmE1jQLfFT/CCYk5U?=
- =?us-ascii?Q?2pXOaEZEdUrwt7lYB87OkwRpApG+Pg8sLQG0QaS2BD9R1Ldcx5dceCBITBhs?=
- =?us-ascii?Q?mmSXAjSibygE5AO6zMKtqadbsOHhOTyIRYqNhlOtTkE4PItdslpaKcaSLymO?=
- =?us-ascii?Q?WKnzxOi8xCH8OZ4zcC4LQ9Npd/pZ9UVSiNz50jWePnxV3UpQLjeDmBwAqPu/?=
- =?us-ascii?Q?FVnIzr4NJaKKSphmjhllKu1POlnEH3zAb2e7a4J2tyuSAMdcbqRO1iufmoWC?=
- =?us-ascii?Q?8feOkPEqR83y3eDTnh/PUfTqTFq8jYu+/TodPNatadV4qRH5G3niYpl4w9do?=
- =?us-ascii?Q?lrE81ymgFHhPWsKdaAEY2ImCT9PoJdpW7HTZb3um8L49fjxc41z7vfRo5dHY?=
- =?us-ascii?Q?s/3ueCGfNZHICX42RoFZkoXqusVJm2lZy28oKU7RpVlatizwfl/FjNeyzTMI?=
- =?us-ascii?Q?uoqfpHzEm5iNdHanCNKK4jCg1h1ofJ2xi9gJnzRoQ8D935Ult847D1asWG52?=
- =?us-ascii?Q?1tSloCMCXPOEZ61ofQv8Kb/9ut1Sgc8Xe6S+jpJJQTWrNtRZ0HJp2UpvHOLF?=
- =?us-ascii?Q?De45M7WiS0jOf3V0dWQYPv3QI+zOfw8H6+wdvQFB445YP09BuLafQaJBAVPR?=
- =?us-ascii?Q?cqJbEIacc0FAUtwjbZkrMxTUEPTrzjjrGBI4fF6zD9Oll3ktYhZsoAW9V9nY?=
- =?us-ascii?Q?3Bmd9hmq610PNrb9dFQtz+KkmpgcDuMLF2WXcaFfEJfM9xKldQ8YC5Nhr3jF?=
- =?us-ascii?Q?wY7doTMOS9oJ1PzdY/nMte8G865XKVwKuxC4Y5wmV3Y1g0DwgX24Jgq4stVD?=
- =?us-ascii?Q?92/mNqsh7jPWPldPtBm0ddUxmIz5Efz/l7qsm1n7R2RBhzyw2SXvjY9R5qQZ?=
- =?us-ascii?Q?ni5ZUgbbwE1ZWYNDQoOA5DHnNBtJou4YBRpIJDkSjFRG9gGk65jDnvjA3jPX?=
- =?us-ascii?Q?28+SAP9+Cz/RdiSKHveKjldYPpC+loWqVa+eUMI8vJGgZsHpM/q4+YK8H6Uw?=
- =?us-ascii?Q?aHpqLJnRtnMhIOqvV0et2z5lGJ80T/a9pCgLOUa2MEMMnWZuJBUhQfnLVHDx?=
- =?us-ascii?Q?LHz40KoysdH5QQBF6lsu2gJeKahL54XzU9Fjmj4wRW0nmC2exbbPuvbRCjms?=
- =?us-ascii?Q?kzVjOKTinS+u9dfkaf/+C5JEOhwiQJAqLGvs2ciUUZXueMXiN5eLINZMTu7a?=
- =?us-ascii?Q?ls3ZAfy89kGaoPI8SezlaSdRW63N8Kx+/eh/5sn3Io0ReKh+wb7B89dofZq+?=
- =?us-ascii?Q?UxmFSAz48EDquBJHaV1+9xzeAwd4ALcPq3z/9yHFTPuH18DrySfEAbR4HQAF?=
- =?us-ascii?Q?KR9Yqz6VPM2CUhwcTpOmAIWL842VBzFUZMoKWTSjRN/ybvwOLtFhgPsc7H41?=
- =?us-ascii?Q?dQqzJPHrY+5lMEqRMCkDAtwFpg2o?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(7053199007)(13003099007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vZKZK4Y7jC154DgHlYhIRiV6MaCf8I8XEndcHB7869uoiNJiqUsFbscIm/3h?=
- =?us-ascii?Q?xGJxyTNJ01XpUHzcLIL9ddyMZjsM/dIuq9oqQuK8CyEROu317h9yWslXGvXW?=
- =?us-ascii?Q?TYje0WE005oIAJxwzy5yI2sBX02bkTJY9jJQx4qR1zxKrlPdcGBeAGFVutOf?=
- =?us-ascii?Q?yw0GTUnb3NJg5Mw6/WfKRbVBL8zk57f2Pj4Jj5MeSAm63TdDE+0/444f1cpL?=
- =?us-ascii?Q?uF+n5vqV7gLwcby8N+TbC7L3qxz3310I9fFnz31WEx/kA0+zfkIkZ50mMnH7?=
- =?us-ascii?Q?0XdzZmnJ8QlkL4t8/SFELyw+0EHfShzcf+kO4zNKDYFG4P73E6Csj4Y6oRMz?=
- =?us-ascii?Q?8bcNTqJcMY1Hc46oeIz3Y9cAdYcVYO039p8edxTTirVBTskoExlhl1wN8n7D?=
- =?us-ascii?Q?Zuw1asc8+SJtaIfXQUgAZpKWyEyqdQVngNNzRVKGI3ZdZP5asi0gSyylLIgE?=
- =?us-ascii?Q?mRBZ01Bgka4xCRb+IAi8P9/DO0NHLGx+pyodAkYvPKzE2oGPfYHLUJtyojVc?=
- =?us-ascii?Q?NzZgqHoTo19jASyavl5RN3v4PDO+gsvrnpEG373MjYZNUtE5SJzOV8l3uBQS?=
- =?us-ascii?Q?ElACFxDCPpy4UrxwFJBpPZjxAepwj3F404FrXjtiXVCPFpyunqAlfVljsztO?=
- =?us-ascii?Q?Q01yAs6ImohLZ5nhDzHc9FMhYRhIE1cm2ucAT3Vw+OtnpA8tNxRda+6uOjah?=
- =?us-ascii?Q?OtNKPGY8+ZSLu4I4gbQei0lXO25z6fn7LORa15kOxupe2BhhVJdkb67h+Rhb?=
- =?us-ascii?Q?Zm0v9SLIdOjDTHfTFXus41Y51N65G2eAE3q7Btfh353xo+8e/a9Unq+rznNx?=
- =?us-ascii?Q?bri65ILNCzGN1tCUbhC8bqXuIahnSm79aGiU0SqD9dog3Nf2I0vsbVNIuuZT?=
- =?us-ascii?Q?1N8cJcGfviYYotVqP4vNHp3i4SJsfYnlZowfdW1KtRSt9qNJBX9yrmsD0c/n?=
- =?us-ascii?Q?HcAg5lkUBp+TIu4mP+3sEU+xgFFCtHiVUUviMIrnxJWF5Hu7bXflBwCFElxf?=
- =?us-ascii?Q?frCBa+0snNK7osDiqZ865N94xdffIaszkPuFnnGKLuqDYc4cgOB12gaugJSA?=
- =?us-ascii?Q?+6oPictK/7WL5uQK+OUlq/FY6++q15B9fBEfKOq7BjnD4+mCjbmDpwO+GI8d?=
- =?us-ascii?Q?+ieze0JpKIflGlQkC3fzaC2MwSWo9FsVo5VQ4IwI6R0XIoRoBdHf208C1Mi7?=
- =?us-ascii?Q?GNYNPAB1WDQLP07Ev+YLZTy8yu6z3d0M7RgESrZsqjFmOYeluJZot6ruZ+cm?=
- =?us-ascii?Q?83GNAVn+ZI+00CMKYBUwqDQQgh/wtRxv4F5lM91GzhSutGdpFSRVMAzYbW/q?=
- =?us-ascii?Q?yWrIjo6ug5huRhKHviKrVskfemPJ49yyKj7b09J8NwtPuQFoaT+X9cgk6MPK?=
- =?us-ascii?Q?Q2ChZShisDor7nQyOyjBhICPtzl1hSasrm+9RkSNZx94d2xbaQE1nt8y2wyN?=
- =?us-ascii?Q?mDm+WS0AfXS0Zgaut0sJ2QqAdewYvsedQYDTUW0GezUJYZ+GZLoUbjMhmW+X?=
- =?us-ascii?Q?1HVhKwwp11gyA2tNK0Z7PEpJZC8dg6PRBrSIT7D8e5moz0enrr5dBOZD7jUJ?=
- =?us-ascii?Q?ElAWYopqNZf6tOWZg8VlfH4gnC8H5+YK8hI0H3vGtUn5OthtDEvdxqYolSeD?=
- =?us-ascii?Q?Y6w1I0p+25QuBxCy0OsFJJtL7enOtaUHT+/FL9etNL44?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5865effe-602d-4834-e7ca-08ddd8e86567
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2025 15:04:40.4198 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Lv9ABmqJumYpmIGu5qc6FcQ5OUkMp3533lz5seDp/Psd/HbjiOB96Z1wAyXZ6VT+zyk6ObAwc7J6aVACKycVNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7965
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,144 +69,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi CI team,
+On Thu, 07 Aug 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Add a check during atomic crtc check phase to ensure the programmed VRR
+> guardband is sufficient to cover latencies introduced by enabled features
+> such as DSC, PSR/PR, scalers, and DP SDPs.
+>
+> Currently, the guardband is programmed to match the vblank length, so
+> existing checks in skl_is_vblank_too_short() are valid. However, upcoming
+> changes will optimize the guardband independently of vblank, making those
+> checks incorrect.
+>
+> Introduce an explicit guardband check to prepare for future updates
+> that will remove checking against the vblank length and later program an
+> optimized guardband.
+>
+> v2: Use new helper for PSR2/Panel Replay latency.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 138 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+>  3 files changed, 140 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index af4d54672d0d..c542a3110051 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4227,6 +4227,138 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
+>  	return 0;
+>  }
+>  
+> +static int
+> +cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_atomic_state *state =
+> +		to_intel_atomic_state(crtc_state->uapi.state);
+> +	const struct intel_cdclk_state *cdclk_state;
+> +
+> +	cdclk_state = intel_atomic_get_cdclk_state(state);
+> +	if (IS_ERR(cdclk_state)) {
+> +		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+> +		return 1;
+> +	}
+> +
+> +	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+> +				   2 * intel_cdclk_logical(cdclk_state)));
+> +}
+> +
+> +static int
+> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+> +{
+> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	int num_scaler_users = hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u32 dsc_prefill_latency = 0;
+> +
+> +	if (!crtc_state->dsc.compression_enable ||
+> +	    !num_scaler_users ||
+> +	    num_scaler_users > crtc->num_scalers ||
+> +	    num_scaler_users > ARRAY_SIZE(scaler_state->scalers))
+> +		return dsc_prefill_latency;
+> +
+> +	for (int i = 0; i < num_scaler_users; i++) {
+> +		hscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+> +		vscale_k[i] = max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+> +	}
+> +
+> +	dsc_prefill_latency =
+> +		intel_display_dsc_prefill_latency(num_scaler_users, hscale_k, vscale_k,
+> +						  chroma_downscaling_factor,
+> +						  cdclk_prefill_adjustment(crtc_state),
+> +						  linetime);
+> +
+> +	return dsc_prefill_latency;
+> +}
+> +
+> +static int
+> +scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+> +{
+> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
+> +	int chroma_downscaling_factor = skl_scaler_chroma_downscale_factor(crtc_state);
+> +	int num_scaler_users = hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k = 1000, vscale_k = 1000;
+> +	int scaler_prefill_latency = 0;
+> +
+> +	if (!num_scaler_users)
+> +		return scaler_prefill_latency;
+> +
+> +	if (num_scaler_users > 1) {
+> +		hscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+> +		vscale_k = max(1000, mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+> +	}
+> +
+> +	scaler_prefill_latency =
+> +		intel_display_scaler_prefill_latency(num_scaler_users, hscale_k, vscale_k,
+> +						     chroma_downscaling_factor,
+> +						     cdclk_prefill_adjustment(crtc_state),
+> +						     linetime);
+> +
+> +	return scaler_prefill_latency;
+> +}
+> +
+> +static int intel_crtc_check_guardband(struct intel_crtc_state *crtc_state)
 
-could you please re-report this result?
+Please avoid "check" naming like this. In general, it's a poor verb to
+use, because what it does is ambiguous from the name. Is it an
+assertion, does it return a value, what does it do?
 
-The failure is unrelated, see the details below.
+However, as a special case, if a function gets called form the atomic
+check path (which I also think is ill-named, but what can you do), with
+the same parameters and conventions, then name it accordingly.
 
-On Mon, Aug 11, 2025 at 09:00:08AM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/tc: Fix enabled/disconnected DP-alt sink handling (rev4)
-> URL   : https://patchwork.freedesktop.org/series/152515/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_16975 -> Patchwork_152515v4
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_152515v4 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_152515v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/index.html
-> 
-> Participating hosts (43 -> 43)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_152515v4:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@core_hotunplug@unbind-rebind:
->     - fi-kbl-7567u:       [PASS][1] -> [ABORT][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
+Thus intel_crtc_guardband_atomic_check().
 
-kbl doesn't have TypeC connectors, so the changes in the patchset are
-unrelated to this failure.
+BR,
+Jani.
 
-The failure is:
-<4> [163.791609] WARNING: CPU: 0 PID: 5768 at ./include/linux/sched.h:2185 __ww_mutex_wound+0xb9/0x160
 
-and looks to be related to:
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14804
 
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - fi-tgl-1115g4:      [PASS][3] -> [ABORT][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
 
-tgl does have TypeC connectors, however nothing is connected on those,
-so none of the TypeC changes in the patchset should have an effect
-(they only matter if a sink got ever connected on a TypeC connector).
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	int dsc_prefill_time = 0;
+> +	int scaler_prefill_time;
+> +	int wm0_prefill_time;
+> +	int pkgc_max_latency;
+> +	int psr2_pr_latency;
+> +	int min_guardband;
+> +	int guardband_us;
+> +	int sagv_latency;
+> +	int linetime_us;
+> +	int sdp_latency;
+> +	int pm_delay;
+> +
+> +	if (!crtc_state->vrr.enable && !intel_vrr_always_use_vrr_tg(display))
+> +		return 0;
+> +
+> +	if (!adjusted_mode->crtc_clock)
+> +		return 0;
+> +
+> +	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
+> +				   adjusted_mode->crtc_clock);
+> +
+> +	pkgc_max_latency = skl_watermark_max_latency(display, 1);
+> +	sagv_latency = display->sagv.block_time_us;
+> +
+> +	wm0_prefill_time = skl_max_wm0_lines(crtc_state) * linetime_us + 20;
+> +
+> +	scaler_prefill_time = scaler_prefill_latency(crtc_state, linetime_us);
+> +
+> +	if (crtc_state->dsc.compression_enable)
+> +		dsc_prefill_time = dsc_prefill_latency(crtc_state, linetime_us);
+> +
+> +	pm_delay = crtc_state->framestart_delay +
+> +		   max(sagv_latency, pkgc_max_latency) +
+> +		   wm0_prefill_time +
+> +		   scaler_prefill_time +
+> +		   dsc_prefill_time;
+> +
+> +	psr2_pr_latency = intel_alpm_compute_max_link_wake_latency(crtc_state, false);
+> +	sdp_latency = intel_dp_compute_sdp_latency(crtc_state, false);
+> +
+> +	guardband_us = max(sdp_latency, psr2_pr_latency);
+> +	guardband_us = max(guardband_us, pm_delay);
+> +	min_guardband = DIV_ROUND_UP(guardband_us, linetime_us);
+> +
+> +	if (crtc_state->vrr.guardband < min_guardband) {
+> +		drm_dbg_kms(display->drm, "vrr.guardband %d < min guardband %d\n",
+> +			    crtc_state->vrr.guardband, min_guardband);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  				   struct intel_crtc *crtc)
+>  {
+> @@ -4289,6 +4421,12 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (HAS_VRR(display) && intel_vrr_possible(crtc_state)) {
+> +		ret = intel_crtc_check_guardband(crtc_state);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index 4474f987de06..5ffa76cb1633 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2249,7 +2249,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+>  		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
+>  }
+>  
+> -static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum plane_id plane_id;
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
+> index 62790816f030..8706c2010ebe 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> @@ -78,6 +78,7 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state);
+>  void intel_program_dpkgc_latency(struct intel_atomic_state *state);
+>  
+>  bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __SKL_WATERMARK_H__ */
 
-It looks to be the same ww_mutex() issue above.
-
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_152515v4 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_exec_fence@nb-await@vecs0:
->     - bat-rpls-4:         [PASS][5] -> [DMESG-WARN][6] ([i915#13400]) +2 other tests dmesg-warn
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/bat-rpls-4/igt@gem_exec_fence@nb-await@vecs0.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/bat-rpls-4/igt@gem_exec_fence@nb-await@vecs0.html
-> 
->   * igt@gem_lmem_swapping@basic:
->     - fi-bsw-n3050:       NOTRUN -> [SKIP][7] +3 other tests skip
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/fi-bsw-n3050/igt@gem_lmem_swapping@basic.html
-> 
->   * igt@i915_selftest@live:
->     - bat-jsl-1:          [PASS][8] -> [DMESG-WARN][9] ([i915#13827]) +1 other test dmesg-warn
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/bat-jsl-1/igt@i915_selftest@live.html
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/bat-jsl-1/igt@i915_selftest@live.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@core_hotunplug@unbind-rebind:
->     - fi-bsw-n3050:       [ABORT][10] -> [PASS][11]
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
-> 
->   * igt@gem_exec_parallel@engines@fds:
->     - bat-rpls-4:         [DMESG-WARN][12] ([i915#13400]) -> [PASS][13] +1 other test pass
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/bat-rpls-4/igt@gem_exec_parallel@engines@fds.html
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/bat-rpls-4/igt@gem_exec_parallel@engines@fds.html
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - bat-arls-5:         [ABORT][14] -> [PASS][15]
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/bat-arls-5/igt@i915_pm_rpm@module-reload.html
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/bat-arls-5/igt@i915_pm_rpm@module-reload.html
-> 
->   * igt@i915_selftest@live@workarounds:
->     - bat-dg2-9:          [DMESG-FAIL][16] ([i915#12061]) -> [PASS][17] +1 other test pass
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16975/bat-dg2-9/igt@i915_selftest@live@workarounds.html
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-> 
->   
->   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
->   [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
->   [i915#13827]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13827
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_16975 -> Patchwork_152515v4
-> 
->   CI-20190529: 20190529
->   CI_DRM_16975: b0354f42f0b7052682bfcc2f53b0aa023b6f68d8 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8489: 4972020ea0f3d0ac8a0d7dd4f5419119b1b30995 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_152515v4: b0354f42f0b7052682bfcc2f53b0aa023b6f68d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152515v4/index.html
+-- 
+Jani Nikula, Intel
