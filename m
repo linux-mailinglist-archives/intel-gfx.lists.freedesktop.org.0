@@ -2,71 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B106DB20383
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 11:28:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F470B2039F
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 11:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4870910E3F0;
-	Mon, 11 Aug 2025 09:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEFF610E3C8;
+	Mon, 11 Aug 2025 09:31:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2xTZUcS";
+	dkim=pass (1024-bit key; unprotected) header.d=didiglobal.com header.i=@didiglobal.com header.b="TPJLkk3c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B31510E3ED;
- Mon, 11 Aug 2025 09:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754904536; x=1786440536;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=E9jJ7k+W5lYtaJfmW3MRFOz2vsWiO/oCqhsJwrE+o9M=;
- b=B2xTZUcSZKwx/tXHdwqUXxioizTh8SU2ztg9jLg6m03rm0fhMlox6XxX
- WG+sN6rBZWjfKDBpOhu/NAVvi1O0jChxfRGOJhH5uKbKUtb4dH9I1fYYs
- MVUgfkEP+8gL1ejUbQqp7sH7Kh/mnFgA5Y7Gy8tL2i0XHrJWJ0PYYHDYW
- oZh7ELiwB/+4r/S6wrqV9aNWo2kB/AKW+iVFm1oA2VX/7O1B9fLKT9Aw4
- iaiSTYW+Fzb/WkE5clMUn/dj9grMNaA2pCx5tXH9e4f3071eqnytGXaTH
- DS8rmaMIdk49M25zvq+c3UOs6sY4rmn2WmnH/eNazCG7IOo+n+KqH+jLY g==;
-X-CSE-ConnectionGUID: +QIx5ch0TjiZBJRmUPELJg==
-X-CSE-MsgGUID: 9Ju5CI8YRDCbwvJ484MsuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="57218160"
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="57218160"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2025 02:28:54 -0700
-X-CSE-ConnectionGUID: m++gpaQhTSyyfUEMSVtS4g==
-X-CSE-MsgGUID: jzzzCi5SRLaGogjsG3FvLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; d="scan'208";a="165860518"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa007.jf.intel.com with ESMTP; 11 Aug 2025 02:28:45 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, uma.shankar@intel.com,
- jani.nikula@intel.com, dmitry.baryshkov@oss.qualcomm.com,
- harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev, tzimmermann@suse.de,
- jessica.zhang@oss.qualcomm.com, sean@poorly.run,
- marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
- mcanal@igalia.com, dave.stevenson@raspberrypi.com,
- tomi.valkeinen+renesas@ideasonboard.com,
- kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [RFC PATCH 8/8] drm/msm/dpu: Adapt dpu writeback to new
- drm_writeback_connector
-Date: Mon, 11 Aug 2025 14:57:07 +0530
-Message-Id: <20250811092707.3986802-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250811092707.3986802-1-suraj.kandpal@intel.com>
-References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+Received: from mx9.didiglobal.com (mx9.didiglobal.com [111.202.70.124])
+ by gabe.freedesktop.org (Postfix) with SMTP id E535610E3C8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 09:31:01 +0000 (UTC)
+Received: from mail.didiglobal.com (unknown [10.79.71.38])
+ by mx9.didiglobal.com (MailData Gateway V2.8.8) with ESMTPS id 5AAD5198EB986C; 
+ Mon, 11 Aug 2025 17:30:14 +0800 (CST)
+Received: from BJ02-ACTMBX-07.didichuxing.com (10.79.65.14) by
+ BJ03-ACTMBX-02.didichuxing.com (10.79.71.38) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 11 Aug 2025 17:30:55 +0800
+Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
+ BJ02-ACTMBX-07.didichuxing.com (10.79.65.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 11 Aug 2025 17:30:55 +0800
+Received: from BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e]) by
+ BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e%7]) with
+ mapi id 15.02.1748.010; Mon, 11 Aug 2025 17:30:55 +0800
+X-MD-Sfrom: chentaotao@didiglobal.com
+X-MD-SrcIP: 10.79.71.38
+From: =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
+To: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
+ <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>
+CC: "oe-lkp@lists.linux.dev" <oe-lkp@lists.linux.dev>, "lkp@intel.com"
+ <lkp@intel.com>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "brauner@kernel.org" <brauner@kernel.org>, 
+ "oliver.sang@intel.com" <oliver.sang@intel.com>,
+ =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
+Subject: [PATCH 1/2] drm/i915: set O_LARGEFILE in __create_shmem()
+Thread-Topic: [PATCH 1/2] drm/i915: set O_LARGEFILE in __create_shmem()
+Thread-Index: AQHcCqKjb8Z7QwCk60q7byo9M7F7ng==
+Date: Mon, 11 Aug 2025 09:30:55 +0000
+Message-ID: <20250811093050.38930-1-chentaotao@didiglobal.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.79.64.102]
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=didiglobal.com;
+ s=2025; t=1754904618;
+ bh=tbYqQ6dZ2UtNUjKP1xA+5JsyeFVSnoKQ9wVK4d6xk9U=;
+ h=From:To:CC:Subject:Date:Message-ID:Content-Type;
+ b=TPJLkk3ce9eO10IlTEyeS/cPeR1CTfjA8zYCUaNaQkWcwsfv4iSXEvizyvaMQIxLV
+ MwiIUbLh7H37Uk/dY/GVKOFaPvakeWH1ErfzqmA85hCTmnhZV7gmWmuISqsboD+E2k
+ ZiJyye10z0rZpabbEfnDdlsAyrf4tECyNc8K2uKg=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,106 +78,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that drm_writeback_connector is embedded with the drm_connector
-adapt the dpu writeback functionality to this changes. This
-includes changing the drm_writeback_connector to be changed to
-drm_connector within the dpu_wb_connector.
-Some other changes are done which are a result of the all the above
-changes mentioned.
-
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c  |  3 ++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c    | 16 +++++++++-------
- drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h    |  4 ++--
- 3 files changed, 13 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-index 56a5b596554d..0e60c1ac07c5 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c
-@@ -484,7 +484,8 @@ static void dpu_encoder_phys_wb_prepare_for_kickoff(
- 		return;
- 	}
- 
--	drm_conn = &wb_enc->wb_conn->base;
-+	drm_conn =
-+		container_of(wb_enc->wb_conn, struct drm_connector, writeback);
- 	state = drm_conn->state;
- 
- 	if (wb_enc->wb_conn && wb_enc->wb_job)
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-index cd73468e369a..49412d2ed9aa 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-@@ -28,8 +28,7 @@ static int dpu_wb_conn_get_modes(struct drm_connector *connector)
- static int dpu_wb_conn_atomic_check(struct drm_connector *connector,
- 				    struct drm_atomic_state *state)
- {
--	struct drm_writeback_connector *wb_conn = drm_connector_to_writeback(connector);
--	struct dpu_wb_connector *dpu_wb_conn = to_dpu_wb_conn(wb_conn);
-+	struct dpu_wb_connector *dpu_wb_conn = to_dpu_wb_conn(connector);
- 	struct drm_connector_state *conn_state =
- 		drm_atomic_get_new_connector_state(state, connector);
- 	struct drm_crtc *crtc;
-@@ -84,10 +83,11 @@ static const struct drm_connector_funcs dpu_wb_conn_funcs = {
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- };
- 
--static int dpu_wb_conn_prepare_job(struct drm_writeback_connector *connector,
-+static int dpu_wb_conn_prepare_job(struct drm_writeback_connector *wb_conn,
- 		struct drm_writeback_job *job)
- {
--
-+	struct drm_connector *connector =
-+		container_of(wb_conn, struct drm_connector, writeback);
- 	struct dpu_wb_connector *dpu_wb_conn = to_dpu_wb_conn(connector);
- 
- 	if (!job->fb)
-@@ -98,9 +98,11 @@ static int dpu_wb_conn_prepare_job(struct drm_writeback_connector *connector,
- 	return 0;
- }
- 
--static void dpu_wb_conn_cleanup_job(struct drm_writeback_connector *connector,
-+static void dpu_wb_conn_cleanup_job(struct drm_writeback_connector *wb_connector,
- 		struct drm_writeback_job *job)
- {
-+	struct drm_connector *connector =
-+		container_of(wb_connector, struct drm_connector, writeback);
- 	struct dpu_wb_connector *dpu_wb_conn = to_dpu_wb_conn(connector);
- 
- 	if (!job->fb)
-@@ -128,9 +130,9 @@ int dpu_writeback_init(struct drm_device *dev, struct drm_encoder *enc,
- 
- 	dpu_wb_conn->maxlinewidth = maxlinewidth;
- 
--	drm_connector_helper_add(&dpu_wb_conn->base.base, &dpu_wb_conn_helper_funcs);
-+	drm_connector_helper_add(&dpu_wb_conn->base, &dpu_wb_conn_helper_funcs);
- 
--	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base,
-+	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base.writeback,
- 					   &dpu_wb_conn_funcs, enc,
- 					   format_list, num_formats);
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h
-index 4b11cca8014c..9ebf15392b20 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.h
-@@ -16,12 +16,12 @@
- #include "dpu_encoder_phys.h"
- 
- struct dpu_wb_connector {
--	struct drm_writeback_connector base;
-+	struct drm_connector base;
- 	struct drm_encoder *wb_enc;
- 	u32 maxlinewidth;
- };
- 
--static inline struct dpu_wb_connector *to_dpu_wb_conn(struct drm_writeback_connector *conn)
-+static inline struct dpu_wb_connector *to_dpu_wb_conn(struct drm_connector *conn)
- {
- 	return container_of(conn, struct dpu_wb_connector, base);
- }
--- 
-2.34.1
-
+RnJvbTogVGFvdGFvIENoZW4gPGNoZW50YW90YW9AZGlkaWdsb2JhbC5jb20+DQoNCldpdGhvdXQg
+T19MQVJHRUZJTEUsIGZpbGUtPmZfb3AtPndyaXRlX2l0ZXIgY2FsbHMNCmdlbmVyaWNfd3JpdGVf
+Y2hlY2tfbGltaXRzKCksIHdoaWNoIGVuZm9yY2VzIGEgMkdCIChNQVhfTk9OX0xGUykgbGltaXQs
+DQpjYXVzaW5nIC1FRkJJRyBvbiBsYXJnZSB3cml0ZXMuDQoNCkluIHNobWVtX3B3cml0ZSgpLCB0
+aGlzIGVycm9yIGlzIGxhdGVyIG1hc2tlZCBhcyAtRUlPIGR1ZSB0byB0aGUgZXJyb3INCmhhbmRs
+aW5nIG9yZGVyLCBsZWFkaW5nIHRvIGlndCBmYWlsdXJlcyBsaWtlIGdlbjlfZXhlY19wYXJzZShi
+Yi1sYXJnZSkuDQoNClNldCBPX0xBUkdFRklMRSBpbiBfX2NyZWF0ZV9zaG1lbSgpIHRvIHByZXZl
+bnQgLUVGQklHIG9uIGxhcmdlIHdyaXRlcy4NCg0KUmVwb3J0ZWQtYnk6IGtlcm5lbCB0ZXN0IHJv
+Ym90IDxvbGl2ZXIuc2FuZ0BpbnRlbC5jb20+DQpDbG9zZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL29lLWxrcC8yMDI1MDgwODEwMjkuMzQzMTkyZWMtbGtwQGludGVsLmNvbQ0KRml4ZXM6IDA0
+ODgzMmEzZjQwMCAoImRybS9pOTE1OiBSZWZhY3RvciBzaG1lbV9wd3JpdGUoKSB0byB1c2Uga2lv
+Y2IgYW5kIHdyaXRlX2l0ZXIiKQ0KU2lnbmVkLW9mZi1ieTogVGFvdGFvIENoZW4gPGNoZW50YW90
+YW9AZGlkaWdsb2JhbC5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fc2htZW0uYyB8IDUgKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspDQoN
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc2htZW0uYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zaG1lbS5jDQppbmRleCBlM2QxODg0
+NTVmNjcuLjJiNTNhYWQ5MTVmNSAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dl
+bS9pOTE1X2dlbV9zaG1lbS5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fc2htZW0uYw0KQEAgLTUxNCw2ICs1MTQsMTEgQEAgc3RhdGljIGludCBfX2NyZWF0ZV9zaG1l
+bShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCiAJaWYgKElTX0VSUihmaWxwKSkNCiAJ
+CXJldHVybiBQVFJfRVJSKGZpbHApOw0KIA0KKwkvKg0KKwkgKiBQcmV2ZW50IC1FRkJJRyBieSBh
+bGxvd2luZyBsYXJnZSB3cml0ZXMgYmV5b25kIE1BWF9OT05fTEZTIG9uIHNobWVtDQorCSAqIG9i
+amVjdHMgYnkgc2V0dGluZyBPX0xBUkdFRklMRS4NCisJICovDQorCWZpbHAtPmZfZmxhZ3MgfD0g
+T19MQVJHRUZJTEU7DQogCW9iai0+ZmlscCA9IGZpbHA7DQogCXJldHVybiAwOw0KIH0NCi0tIA0K
+Mi4zNC4xDQo=
