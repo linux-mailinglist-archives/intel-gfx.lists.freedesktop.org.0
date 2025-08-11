@@ -2,69 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86713B203A0
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 11:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF7EB203E9
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Aug 2025 11:40:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202D410E3CB;
-	Mon, 11 Aug 2025 09:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0FF710E3FC;
+	Mon, 11 Aug 2025 09:40:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=didiglobal.com header.i=@didiglobal.com header.b="Kn8LIF4a";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="L0/QhBZi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx9.didiglobal.com (mx9.didiglobal.com [111.202.70.124])
- by gabe.freedesktop.org (Postfix) with SMTP id E290310E3CB
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Aug 2025 09:31:04 +0000 (UTC)
-Received: from mail.didiglobal.com (unknown [10.79.64.20])
- by mx9.didiglobal.com (MailData Gateway V2.8.8) with ESMTPS id C37A8198EB986E; 
- Mon, 11 Aug 2025 17:30:19 +0800 (CST)
-Received: from BJ01-ACTMBX-07.didichuxing.com (10.79.64.14) by
- BJ01-ACTMBX-01.didichuxing.com (10.79.64.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 11 Aug 2025 17:31:00 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com (10.79.71.34) by
- BJ01-ACTMBX-07.didichuxing.com (10.79.64.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 11 Aug 2025 17:31:00 +0800
-Received: from BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e]) by
- BJ03-ACTMBX-07.didichuxing.com ([fe80::2e1a:dd47:6d25:287e%7]) with
- mapi id 15.02.1748.010; Mon, 11 Aug 2025 17:31:00 +0800
-X-MD-Sfrom: chentaotao@didiglobal.com
-X-MD-SrcIP: 10.79.64.20
-From: =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-To: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
- <tursulin@ursulin.net>, "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>
-CC: "oe-lkp@lists.linux.dev" <oe-lkp@lists.linux.dev>, "lkp@intel.com"
- <lkp@intel.com>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "brauner@kernel.org" <brauner@kernel.org>, 
- "oliver.sang@intel.com" <oliver.sang@intel.com>,
- =?gb2312?B?s8LMzszOIFRhb3RhbyBDaGVu?= <chentaotao@didiglobal.com>
-Subject: [PATCH 2/2] drm/i915: Fix incorrect error handling in shmem_pwrite()
-Thread-Topic: [PATCH 2/2] drm/i915: Fix incorrect error handling in
- shmem_pwrite()
-Thread-Index: AQHcCqKmgqLv7STYsk2KonnlWsv+sQ==
-Date: Mon, 11 Aug 2025 09:31:00 +0000
-Message-ID: <20250811093050.38930-2-chentaotao@didiglobal.com>
-In-Reply-To: <20250811093050.38930-1-chentaotao@didiglobal.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.79.64.102]
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B2110E3B5;
+ Mon, 11 Aug 2025 09:40:24 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
+ [81.175.209.231])
+ by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id C719D4A4;
+ Mon, 11 Aug 2025 11:39:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1754905171;
+ bh=ErWu5p3IP8zhvqO/d0BfVnobP6PnfSl2P3urZEEN7C4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=L0/QhBZig6BVj0w2QIWmeTytqJiK1SPyjyoB4YqyU+RF6rGeN2LgiU0XNUiUO1lpS
+ l3Ky8rGXIjasOLQQmXYNA/4VkEzo82ToMNUuQ3GVUDp+f3v30EePnPuBqEX1w2uBCV
+ KkJ3svCA4b9L+7RMp+aLydw7CYatNMnwEayTPP+g=
+Date: Mon, 11 Aug 2025 12:40:04 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ arun.r.murthy@intel.com, uma.shankar@intel.com,
+ jani.nikula@intel.com, dmitry.baryshkov@oss.qualcomm.com,
+ harry.wentland@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, liviu.dudau@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev,
+ tzimmermann@suse.de, jessica.zhang@oss.qualcomm.com,
+ sean@poorly.run, marijn.suijten@somainline.org, mcanal@igalia.com,
+ dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, louis.chauvet@bootlin.com
+Subject: Re: [RFC PATCH 7/8] drm/rcar_du: Adapt vkms writeback to new
+ drm_writeback_connector
+Message-ID: <20250811094004.GD21313@pendragon.ideasonboard.com>
+References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
+ <20250811092707.3986802-8-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=didiglobal.com;
- s=2025; t=1754904622;
- bh=ymjq4f0feFEXVmBppl/K9K9Sf2wMwD/Qx6rX26sVtB4=;
- h=From:To:CC:Subject:Date:Message-ID:Content-Type;
- b=Kn8LIF4aWmOfrVkGRWP3vpe9W8taNhIXfAk3cKHNXBXEUWrbOtZa7gAjNdt2R8iu+
- bQROw/XVOcZ39MoECD11ALGKtGQKvjcuKxwBI3kBizJU/onMeyYaLAIx16jhuN6cm1
- /86j5hFfIj9XbKy/GV0c3SBNOjg+QU+MUVldgHg8=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250811092707.3986802-8-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,23 +70,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVGFvdGFvIENoZW4gPGNoZW50YW90YW9AZGlkaWdsb2JhbC5jb20+DQoNCnNobWVtX3B3
-cml0ZSgpIGN1cnJlbnRseSBjaGVja3MgZm9yIHNob3J0IHdyaXRlcyBiZWZvcmUgbmVnYXRpdmUg
-ZXJyb3INCmNvZGVzLCB3aGljaCBjYW4gb3ZlcndyaXRlIHJlYWwgZXJyb3JzIChlLmcuLCAtRUZC
-SUcpIHdpdGggLUVJTy4NClJlb3JkZXIgdGhlIGNoZWNrcyB0byByZXR1cm4gbmVnYXRpdmUgZXJy
-b3JzIGZpcnN0LCB0aGVuIGhhbmRsZSBzaG9ydA0Kd3JpdGVzLg0KDQpGaXhlczogMDQ4ODMyYTNm
-NDAwICgiZHJtL2k5MTU6IFJlZmFjdG9yIHNobWVtX3B3cml0ZSgpIHRvIHVzZSBraW9jYiBhbmQg
-d3JpdGVfaXRlciIpDQpTaWduZWQtb2ZmLWJ5OiBUYW90YW8gQ2hlbiA8Y2hlbnRhb3Rhb0BkaWRp
-Z2xvYmFsLmNvbT4NCi0tLQ0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zaG1l
-bS5jIHwgNiArKystLS0NCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0
-aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X3NobWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc2htZW0uYw0KaW5k
-ZXggMmI1M2FhZDkxNWY1Li43MDI1MzJlZWYyMDcgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fc2htZW0uYw0KKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX3NobWVtLmMNCkBAIC00NDEsMTIgKzQ0MSwxMiBAQCBzaG1lbV9wd3JpdGUo
-c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwNCiAJd3JpdHRlbiA9IGZpbGUtPmZfb3At
-PndyaXRlX2l0ZXIoJmtpb2NiLCAmaXRlcik7DQogCUJVR19PTih3cml0dGVuID09IC1FSU9DQlFV
-RVVFRCk7DQogDQotCWlmICh3cml0dGVuICE9IHNpemUpDQotCQlyZXR1cm4gLUVJTzsNCi0NCiAJ
-aWYgKHdyaXR0ZW4gPCAwKQ0KIAkJcmV0dXJuIHdyaXR0ZW47DQogDQorCWlmICh3cml0dGVuICE9
-IHNpemUpDQorCQlyZXR1cm4gLUVJTzsNCisNCiAJcmV0dXJuIDA7DQogfQ0KIA0KLS0gDQoyLjM0
-LjENCg==
+On Mon, Aug 11, 2025 at 02:57:06PM +0530, Suraj Kandpal wrote:
+> Now that drm_writeback_connector is embedded with the drm_connector
+> adapt the rcar-du writeback functionality to this changes. This
+> includes changing the drm_writeback_connector to be changed to drm_connector
+> within the rcar_du_crtc.
+> Some other changes are done which are a result of the all the above
+> changes mentioned.
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/renesas/rcar-du/rcar_du_crtc.h    |  4 ++--
+>  .../drm/renesas/rcar-du/rcar_du_writeback.c   | 22 +++++++++++--------
+>  2 files changed, 15 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.h b/drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.h
+> index d0f38a8b3561..457c803d75bc 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.h
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.h
+> @@ -72,11 +72,11 @@ struct rcar_du_crtc {
+>  	const char *const *sources;
+>  	unsigned int sources_count;
+>  
+> -	struct drm_writeback_connector writeback;
+> +	struct drm_connector connector;
+
+You forgot to update the documentation of the structure.
+
+"connector" is a too generic name. I'd keep the existing field name.
+
+>  };
+>  
+>  #define to_rcar_crtc(c)		container_of(c, struct rcar_du_crtc, crtc)
+> -#define wb_to_rcar_crtc(c)	container_of(c, struct rcar_du_crtc, writeback)
+> +#define connector_to_rcar_crtc(c)	container_of(c, struct rcar_du_crtc, connector)
+>  
+>  /**
+>   * struct rcar_du_crtc_state - Driver-specific CRTC state
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> index 9986a10e8114..95e6810612c2 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> @@ -47,10 +47,12 @@ static int rcar_du_wb_conn_get_modes(struct drm_connector *connector)
+>  				    dev->mode_config.max_height);
+>  }
+>  
+> -static int rcar_du_wb_prepare_job(struct drm_writeback_connector *connector,
+> +static int rcar_du_wb_prepare_job(struct drm_writeback_connector *wb_connector,
+>  				  struct drm_writeback_job *job)
+>  {
+> -	struct rcar_du_crtc *rcrtc = wb_to_rcar_crtc(connector);
+> +	struct drm_connector *connector =
+> +		container_of(wb_connector, struct drm_connector, writeback);
+> +	struct rcar_du_crtc *rcrtc = connector_to_rcar_crtc(connector);
+
+Modify wb_to_rcar_crtc() instead of changing the code here and below.
+
+>  	struct rcar_du_wb_job *rjob;
+>  	int ret;
+>  
+> @@ -72,10 +74,12 @@ static int rcar_du_wb_prepare_job(struct drm_writeback_connector *connector,
+>  	return 0;
+>  }
+>  
+> -static void rcar_du_wb_cleanup_job(struct drm_writeback_connector *connector,
+> +static void rcar_du_wb_cleanup_job(struct drm_writeback_connector *wb_connector,
+>  				   struct drm_writeback_job *job)
+>  {
+> -	struct rcar_du_crtc *rcrtc = wb_to_rcar_crtc(connector);
+> +	struct drm_connector *connector =
+> +		container_of(wb_connector, struct drm_connector, writeback);
+> +	struct rcar_du_crtc *rcrtc = connector_to_rcar_crtc(connector);
+>  	struct rcar_du_wb_job *rjob = job->priv;
+>  
+>  	if (!job->fb)
+> @@ -199,7 +203,7 @@ static const u32 writeback_formats[] = {
+>  int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>  			   struct rcar_du_crtc *rcrtc)
+>  {
+> -	struct drm_writeback_connector *wb_conn = &rcrtc->writeback;
+> +	struct drm_writeback_connector *wb_conn = &rcrtc->connector.writeback;
+>  
+>  	struct drm_encoder *encoder;
+>  
+> @@ -212,7 +216,7 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>  
+>  	encoder->possible_crtcs = 1 << drm_crtc_index(&rcrtc->crtc);
+>  
+> -	drm_connector_helper_add(&wb_conn->base,
+> +	drm_connector_helper_add(&rcrtc->connector,
+>  				 &rcar_du_wb_conn_helper_funcs);
+>  
+>  	return drmm_writeback_connector_init(&rcdu->ddev, wb_conn,
+> @@ -231,7 +235,7 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+>  	struct drm_framebuffer *fb;
+>  	unsigned int i;
+>  
+> -	state = rcrtc->writeback.base.state;
+> +	state = rcrtc->connector.state;
+>  	if (!state || !state->writeback_job)
+>  		return;
+>  
+> @@ -246,10 +250,10 @@ void rcar_du_writeback_setup(struct rcar_du_crtc *rcrtc,
+>  		cfg->mem[i] = sg_dma_address(rjob->sg_tables[i].sgl)
+>  			    + fb->offsets[i];
+>  
+> -	drm_writeback_queue_job(&rcrtc->writeback, state);
+> +	drm_writeback_queue_job(&rcrtc->connector.writeback, state);
+>  }
+>  
+>  void rcar_du_writeback_complete(struct rcar_du_crtc *rcrtc)
+>  {
+> -	drm_writeback_signal_completion(&rcrtc->writeback, 0);
+> +	drm_writeback_signal_completion(&rcrtc->connector.writeback, 0);
+>  }
+
+-- 
+Regards,
+
+Laurent Pinchart
