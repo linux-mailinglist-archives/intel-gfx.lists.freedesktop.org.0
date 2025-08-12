@@ -2,184 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E206B2247C
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Aug 2025 12:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE113B224B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Aug 2025 12:36:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3BBF10E5D9;
-	Tue, 12 Aug 2025 10:23:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EBB310E282;
+	Tue, 12 Aug 2025 10:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0l8zj00";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O7eRq+4b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78BDA10E5D9;
- Tue, 12 Aug 2025 10:23:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6A10E0A4;
+ Tue, 12 Aug 2025 10:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754994206; x=1786530206;
- h=message-id:date:subject:to:references:from:in-reply-to:
- mime-version; bh=8F/ickTAmrUwfVi/6FzeT0gNMyvNIGl2UW0UD8R9ISQ=;
- b=O0l8zj00jyluYGBiKYIqeBSWeOzdjf+JE1JImoeods4j25pLLFbxdmAB
- LVPKz6L8zoDUMrSUFf1HH0c1ZUA+1y0j/0WBWZA2nKbxnDbiiy2mYhS7T
- 8o7IEftvQA6uf1CbleR9fU0NA92R2+/4Uqp7YVDN1Yd6JkrK7Do/vqFKr
- bOgDwxTbQMYably5gEdwiO2WkfOFooU33ZM46I4OsCkOqaNsrokyp+3Oj
- caJ+Wov5ZZx9UNZnXpRaS9G1A2o9IluSR7RpMdwI7xn61gved4sEGgsz/
- KDC+O5ae/WhNPL9iUXkMsCj0MEfsUxNGYYQhmNjd8p2Wq2Ag8dHPg9Fo6 w==;
-X-CSE-ConnectionGUID: Qxx96ahqQwe7glpQIMjdRQ==
-X-CSE-MsgGUID: 3ZNppAXJQLSOdB0uQsSYtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="74846003"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208,217";a="74846003"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 03:23:26 -0700
-X-CSE-ConnectionGUID: gowtvbE+T/uGH77ph0q0pw==
-X-CSE-MsgGUID: 7n7EEXDHSUuOQUjWeaCSYA==
+ t=1754994967; x=1786530967;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=IOfO6TYef8wg7AzHQVYA1EguDQZernCJLIAoecY6xMU=;
+ b=O7eRq+4b5lXewKSoXa0artRQ19B+H52348NUuFzwIxrC52wobYENXBki
+ M7q+hccu8hZfaEy/oHr608bESmYP7w+o1pRV1lW2kMkslgUOcCXXsd0pL
+ cLqZOmb0WuB7IduZae5vxJ3TGVn6hGFlnFNK/qZ+Xt/aOhQeT98OD0pI4
+ Tf39nlg65u0dMZPyZrvVG8Yxbyy80TOHedpo7g9ZxVTx5nLrUK68d0EXl
+ 7YmxYFdQkMDsz2bI5yjLShi3APzVGcVBdtTmllg66+8ZSJ+r8Nqb3PS/C
+ BpYNb/GIj8uF3m+74KDfXr0Kbjh2s/vChjEsECrt7JrgzJhasy63Less8 Q==;
+X-CSE-ConnectionGUID: tYAKD1yYQ5G+dQi3Hr57GA==
+X-CSE-MsgGUID: AXzTJ7XRQ+WvkvTgXbfI4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="61064504"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="61064504"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 03:36:07 -0700
+X-CSE-ConnectionGUID: ORrIYLhaT4G+lasgqGoAMA==
+X-CSE-MsgGUID: cL6Jel2rQIyIIaAwHnYmnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; 
- d="scan'208,217";a="165347269"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 03:23:26 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 12 Aug 2025 03:23:25 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26 via Frontend Transport; Tue, 12 Aug 2025 03:23:25 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (40.107.237.43)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Tue, 12 Aug 2025 03:23:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D6ICyFr/18Ba/CjOgUIViBe13l5owmlPP1kaaCn4FbH1oRGEHdyyPWSNp+utohiHcxb4dgZzrRT9mKhBKGNm8VBOhon6SosRMAuIOwuzArq6u0+bW6+Ez26W0op+M+v1N+Ov0kKE/GZ/Rj/AKJ/xE83BFf+1Y0E2WXg6BONsgbDL1a6Cs/M7tYuS8m830zDwI/69lpnPfGdv3fCmZ/bnnCGhlQ7HgrhMYvys2x0Hoq1sRaTx7Srh8e2bw/G0TUr1yrXvjSnMOcLyblsqQVi2AoWdJMGem3QFpJRSayTKRE678kIeGP1CtETtv6OdLwYP/rEW1x+DJ4+sDYgErPxqrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JErmluHVO244XWSVAt/nvH0yfWZS+gf/IyOhUhefeuA=;
- b=GWk8+SSGRJF3YNxUpoC3o0vKW0b3FDe0UPJGCO2zOxyLset/p4WuAYYdv1epkakCtjKi8fzIXCZQSOR2Xve49kVA1U2cFDPedCyPSZdNNfmmc0ExdXd2OT+HXRhSPPtvRaiQTvQ9Nrl2vs6+y+URQI3dNPr/LNJx2v2oLg5ySNsk/Ymz1EjRselRnbc3JVcuM9i35LiijdDKxPOatFKiFjuUfm3a7V/zRcRdaYGcXEUChkUFEMR3w6QQGyjJ8iKba2R9Dc2PUZiu67qrYmtBbBsGlmlrNjeQ6xf1qAfiEwOpvFz7SCwj357ktA0tbTwqCKEOlIas3SO3hTzMg31rqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by SA2PR11MB4923.namprd11.prod.outlook.com (2603:10b6:806:fa::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.22; Tue, 12 Aug
- 2025 10:23:23 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::e656:9300:fc6a:1b5a]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::e656:9300:fc6a:1b5a%7]) with mapi id 15.20.9031.012; Tue, 12 Aug 2025
- 10:23:22 +0000
-Content-Type: multipart/alternative;
- boundary="------------zvWhHxvSOqQkoxcMZAQ4duti"
-Message-ID: <477e53d9-7c3e-44a5-93a8-8f8bfba81ca6@intel.com>
-Date: Tue, 12 Aug 2025 15:53:14 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/i915/connector: make intel_connector_init() static
-To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-References: <cover.1753787803.git.jani.nikula@intel.com>
- <46443c16f9cbff039cd3c830871289ab17110905.1753787803.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <46443c16f9cbff039cd3c830871289ab17110905.1753787803.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MA0PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::19) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="171413217"
+Received: from johunt-mobl9.ger.corp.intel.com (HELO [10.245.245.79])
+ ([10.245.245.79])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 03:36:05 -0700
+Message-ID: <303d5abe-34ca-4ecb-8a9b-8ae7e1bbf2a8@intel.com>
+Date: Tue, 12 Aug 2025 11:36:04 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|SA2PR11MB4923:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a6cba68-d4cb-43f1-0534-08ddd98a43e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VnRUSE9CVW1QVDhmNFpORG91MVdoMUI5Q3ZBaDhhQ1JUQ0N0ZGcrSkMyR3Ba?=
- =?utf-8?B?ekxCZXNVZGRvMStJYzkvc2JTMisvcXZxOUpMcThYZis1TFgzY2ZUalE1R2Zu?=
- =?utf-8?B?QjNYOUhMaW5XMTcwTDJuTzNkazFTZE5teUJiclkvU3Y2VytaMDJRVFZ0MjZ4?=
- =?utf-8?B?SHFnbllYMXphWXNoeXp2czlKVnZiWXhLV1orSkJpNVpoMkE3Wk0wTERJaFFv?=
- =?utf-8?B?b09DMlQzVW5RcVRkMmdHSGRtcmFQN1BvM3VpbEJHV0daUStTbjI3UVUxc1cy?=
- =?utf-8?B?WmgvMm1XR3NsTnpxSjdDdE1yb3d2aU81YU41WkMvUWNyTGYyOGY3cjZGUmpw?=
- =?utf-8?B?R1VjVlhFL2dFQXdYZzNqOU8xb1BiS3BnZlk1ZkJtT2d4c3ZvaEovY29MWVB5?=
- =?utf-8?B?Ryt2bnMyQ0xsVVEzZTQxeFdCdjV5SnpqNjBVLzI4OUhIaTBPUG9jaXpoRVRO?=
- =?utf-8?B?VUp6azNHaXg5WmszQjlWVXFyazd1ZmFCTUp5dytKT0xScTJiSkgvbDFFQjFE?=
- =?utf-8?B?aGcxL0Ewa29raXBoNVhjOXVNaGRORC9WaGRCak1hVjlqL1J3NkJ2ME1sRGRG?=
- =?utf-8?B?WlNFekxTOElSSWVmeTBkWUdDZGJPWFJjaW9abStJVEthMnlwQlhhNXF5dmtr?=
- =?utf-8?B?ZFV0Szg0dXI0OGN1VGFWSFd0YTJmQTV3STRiRDVYWEU3RnUxKzhnelpUREhs?=
- =?utf-8?B?clNndXB6L0JCemFmTEY5Z0lvMVpLa3NLdkhhcm42TmFPS3duNVg0VjR5MDNy?=
- =?utf-8?B?UjJCZzNBNWxJT0xrbDN5V3p0WjN5clRIUlZTa1BEWGZXenIvL2FiQmRTODRi?=
- =?utf-8?B?VFdnUGVKaUcxRzFIWWl4V015ZHpIWWNpamQza1VkbndvWFYyR29uVkR1ZkUv?=
- =?utf-8?B?SnBNeXd4MXlhNnhSTithMXdRQzRyeWc2T0NvaUVVWnBrMFBZeVJpYUNadGlu?=
- =?utf-8?B?ZTlXVWRhZ29TdXpIOXVOckk1K0lESTZNWWhRWnZ5YVp4V3NHdlFoQS80Z0Fm?=
- =?utf-8?B?QnIvUlZLS2dTNGZJQWpnNy9kV3FBeW1ldWpMMEIzZ0xnQnpRUXltWmZhSis3?=
- =?utf-8?B?VW1qeEpBZ2pjRS85amNndjUvVTJ3Yi9yaUJIWjExdFpDTXFodjY2WFpRdmZp?=
- =?utf-8?B?dU9zZnVobFpaUGNVNWwvei9SdjlFTDdKYk0raFhFU0t4anpPVHY5NnVpcE1I?=
- =?utf-8?B?dXJoNk1mdlh3RDQ3ZXp0b1dWaHRaV2l0OVR0WDdtc3doR2Z6NG1CWUlPY0pW?=
- =?utf-8?B?SHlyTnBZWjRmb1ZiMFlNQWUxeFlkYkhrMzNYNnlIYkczajBKYmZldzRLYU9s?=
- =?utf-8?B?OGV4Rm5NNFhMQVNmRU9saHVSSW1aNEtrbHV6YWpib2VaVEk2cENwaFZYR3pk?=
- =?utf-8?B?SGRXMVp4QTVIY2haRzZXdDVNaHA4a285cXliME1JNWpIQVpWelhUNVFmQ0kw?=
- =?utf-8?B?b1dFendFSGptL0N4Nks5cUxEQVBCUjlxQm1LYTlLSmhRajhRZEdVckF3cHpX?=
- =?utf-8?B?K2Qvb1Q2Q0pNSElFcTJISG9SUHJGNEsxcVh1QzlNOGUyREk1ZXpFcHAxMitx?=
- =?utf-8?B?ak1WaWJkUEh2a2JrL3J4c3RKcWxRWjhzREoxN2FjTTZmQ2VFZnJ4cTZmelRy?=
- =?utf-8?B?MWRJcmhWb2NnNk82bm40TWM0SUZtMUIrelpKYXFpUWdWRjl5TklwYmJ5eEJn?=
- =?utf-8?B?ZVk4SmJBTkJqMExzV3A1TUVZYkdnMFl1cEtVYlVYZUswVEU2ak80SGZPbXAw?=
- =?utf-8?B?bnQvRWlQNHJOWjI3ZUI5WHZRRUN5SHRJNFV1blJ4Q3lEa2Z4ZU1lbzk2VWdN?=
- =?utf-8?B?N0pGVTNESU5xM3FyNjlTUDV0OEVMdlp0bDRtNmY3Mll6NlhMTUhzWkRDU2U0?=
- =?utf-8?B?cm1ZOTd1NUh1RGZDUWtwcVB0WVM1WTArMmNjNjcvRVBIYmc9PQ==?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkMwWHV0b1NCTHU2djNFS0VRSEEvTHM5NDVLMmZ3L3Q1QjY2blNCRElYV0lx?=
- =?utf-8?B?R1FrcXF5a0xPQW00SFFQKzBhc09KVi8xempzUjIzc1puVjZ2S3lzR3JLTity?=
- =?utf-8?B?WmhWRjdxTjZtU3Z4RXZ2dERLWWxSTi9JUWI5M0dnRktIT3NwalhHaWRuKzQ2?=
- =?utf-8?B?OEllanh2MHVZMVlCN1Y2dkRNTW1zVFREdHM2aTAyaVFibmRncTJxRTBvVGgv?=
- =?utf-8?B?WDlNcXpaTENtTE5OSVdlS1M0L3hMQnE5cE45Uzl1RmJmUE9XeVRkTjlkUVdE?=
- =?utf-8?B?WFlpSHNON1hQcHFjT01vU1dLSjVMbncwZ3FEd3ozWHRPS2IvWVVGSGxvaHps?=
- =?utf-8?B?cG1rMjNJRlVXZnd2Qnh3TmxKelA5QzhuWUtoQXVJdjY4QUF5Qjl2T1JXYzYr?=
- =?utf-8?B?V2Q0K1g5eWZaclNBY1hIb3BtalNwVzkyRUVxeWFoOXhWcFA2WllGdHg0Mlp3?=
- =?utf-8?B?QjdPVkJFcm9xaHppYlhpV0hHQzlCZmpIN2p4SWowUHdvYmZkblpjSjNzZFBn?=
- =?utf-8?B?K1hubmlBWDJ1dE15a0NyRFJwT0tIMDhyQjZaWncxMWpZRjhidUt4bUk0Wkow?=
- =?utf-8?B?bngrUzJCeXVUS2ZNTUIvTmNlMURacTRSWFJWMnpaa1Fsek9id0tFMU8vK2Y2?=
- =?utf-8?B?VmlZbnFjaVR0YzJyLzBzang3RFhYUm9UTW9CUEVlZG92U21RV3l5TjFFaGRw?=
- =?utf-8?B?YmtGMW5uQU1EbVlpYW9mTDRTcDJXMDdUTVJVSkYvV2l1TW9ndCtxNUxvMDRh?=
- =?utf-8?B?SFIyUTh6Y3IrVDY5U2wzSWFiS2pndkZKb0p1d1kxa1FqV0JSWE9Pazk0QkQz?=
- =?utf-8?B?ZkZkN1hxWmV2dFlCaWFKWklQZUova05HclRmZno0ZUVXOHkrdCtKem80VDNP?=
- =?utf-8?B?NEYyYURTR2FKakNvN0NCbTh4QXoxV2Zic3NiWVQrdERodmsrOHdQS2F5OWhm?=
- =?utf-8?B?Tk4xY0l2djRVZDB0bzZrSEhhNm1tUk5VdlUvMnRIY2NObFV3MHZ5Y1p6eWZE?=
- =?utf-8?B?a1VUTG93Y04xRFc4S2NremVrdEdNc0dqZWlQMGdsVGFJWHJNaURQYXhxMXVL?=
- =?utf-8?B?ZVlKaHdreEFVUDJ3RDdXeFpSRlFmenF5YTBlcXlnZGJUZHdHYjZNK2huMGlq?=
- =?utf-8?B?OHFXbnB4UmdwWmFBa3Q0b2RmVFUrTlA1WkdMdTJUZVUrYmN0dHJ3MHA4eXlI?=
- =?utf-8?B?UDM2RXJNVVAzakY4OHRpdmt2TDBndUpUQUNjVUpHTXg4QzZQVkhhRFZVaDlm?=
- =?utf-8?B?T2V5YzAyWXF6eDlRTkoyT0s0dkxpODlSSDVZT0hGQkhwSWlhOTY2S2w1aFNR?=
- =?utf-8?B?TjVlUkVlTjk5Zk92WjNEclRJSmdwbUl5ZzQyMTBxZG9CeERwNGNZOWYrN3hS?=
- =?utf-8?B?QW8wQjZmSGFvRjF2YncybDRhTnRvQ3RVbmN6TWRMb3hERC93UU1ZWWthOStm?=
- =?utf-8?B?TWRrbTRpTFQybjVXaW1nbnhLMHkvVGx4TzZPOFA0cGtXNlVySml0VmRYbWJL?=
- =?utf-8?B?STZyT2J2QXIxSEM0SE04UTMxUlpvYW1BdVM0L05zL25NM0h2Z1NiVG9JY1JZ?=
- =?utf-8?B?VDJWYkhyVnVjSlphRVFCMmVlUzBYeUVxU1g1dFU3bmZkeEtYRytPKzRrRkVl?=
- =?utf-8?B?dEVkVk9iWmN2WHRyaWNwREhxdi9NcEdCVVZqZEFXNlpwVDI4Qm93YUFFS0hy?=
- =?utf-8?B?anI5THhwMW9Ba3FIcStWR2owWVA5aTRGMDQxNjM1WXlxS1hCMkdnZzB3S2tt?=
- =?utf-8?B?UmdteHVVSTFNZCtwcmdQTUZuZWNJSkxEWjZHMVh3VEphRXhWd3M1OGdvTGN3?=
- =?utf-8?B?bVVaa25GRVhIc1Fxb0dxZFZ6eHRLc2ZQOW5PYlg0Mk1lM1N0ZU5Nd3RCSW9n?=
- =?utf-8?B?ZkU2bDBSMW5mNitpaEQxYkU1WmNjRWYrYkRlY1JFdFcrWmNUYnhTbndSYVcv?=
- =?utf-8?B?cUp1UnJEazVuQWNGQWJxMmJ6enMvb0Q5TDF2eEtOWnU0RzBybU5XZUtIQ0M5?=
- =?utf-8?B?VnJGWmwrdEJRdFp3M3psQWNibU9Hc2NwYXY2K1hFdXZ2UFVwSHhFb0o4RmtX?=
- =?utf-8?B?TG1LMmtVY2ZVZXlYanMxL3ZOYkU5OGEzNHJYcXJVMXhhOWlDQnRDRHJkenI2?=
- =?utf-8?B?Vkx4L1FxMjRDM0c5Y0c1U1RMUjRCNWhYMXBmVEVPck0xVVkrczd1Ni96TXFu?=
- =?utf-8?Q?ewH464tHWIaVV6W2bV6f7BCpDV6JX6fTzUOCE+2Srr/y?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a6cba68-d4cb-43f1-0534-08ddd98a43e3
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 10:23:22.8477 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 21VQ7twWzlXlz9NCg7igDsltr2qABbbW0d+vFa7tp3Ly5sshX8L04jeyGR21ZYZ2AESVmrYVaG2MD84JKAQy92pOkHLb/DI7QkYLciCwjGaWVRl5/oYT3Ob8J93GSjyV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4923
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: WIP limit the TTM pool to 32bit CPUs
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
+ matthew.brost@intel.com
+References: <20250806132838.1831-1-christian.koenig@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20250806132838.1831-1-christian.koenig@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,105 +73,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------zvWhHxvSOqQkoxcMZAQ4duti
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-
-On 29-07-2025 16:47, Jani Nikula wrote:
-> intel_connector_init() is only used in intel_connector.c. Make it
-> static.
->
-> Signed-off-by: Jani Nikula<jani.nikula@intel.com>
-
-Looks good to me.
-Reviewed-by: Dibin Moolakadan Subrahmanian<dibin.moolakadan.subrahmanian@intel.com>
-
+On 06/08/2025 14:28, Christian König wrote:
+> On some old x86 systems we had the problem that changing the caching flags
+> of system memory requires changing the global MTRR/PAT tables.
+> 
+> But on any modern x86 system (CPUs introduced rughly after 2004) we
+> actually don't need that any more and can update the caching flags
+> directly in the PTEs of the CPU mapping. It was just never disabled
+> because of the fear of regressions.
+> 
+> We already use the PTE flags for encryption on x86 64bit for quite a while
+> and all other supported platforms (Sparc, PowerPC, ARM, MIPS, LONGARCH)
+> have never done anything different either.
+> 
+> So disable the page pool completely for 64bit systems and just insert a
+> clflush to be on the safe side so that we never return memory with dirty
+> cache lines.
+> 
+> Testing on a Ryzen 5 and 7 shows that this has absolutely no performance
+> impact and of hand the AMD CI can't find a problem either.
+> 
+> Let's see what the i915 and XE CI systems say to that.
+> 
+> Signed-off-by: Christian König <christian.koenig@amd.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_connector.c | 2 +-
->   drivers/gpu/drm/i915/display/intel_connector.h | 1 -
->   2 files changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index 42c923f416b3..6a55854db5b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -77,7 +77,7 @@ void intel_connector_cancel_modeset_retry_work(struct intel_connector *connector
->   		drm_connector_put(&connector->base);
->   }
+>   drivers/gpu/drm/ttm/ttm_pool.c | 16 +++++++++++-----
+>   1 file changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index baf27c70a419..7487eac29398 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -38,7 +38,7 @@
+>   #include <linux/highmem.h>
+>   #include <linux/sched/mm.h>
 >   
-> -int intel_connector_init(struct intel_connector *connector)
-> +static int intel_connector_init(struct intel_connector *connector)
+> -#ifdef CONFIG_X86
+> +#ifdef CONFIG_X86_32
+>   #include <asm/set_memory.h>
+>   #endif
+>   
+> @@ -46,6 +46,7 @@
+>   #include <drm/ttm/ttm_pool.h>
+>   #include <drm/ttm/ttm_tt.h>
+>   #include <drm/ttm/ttm_bo.h>
+> +#include <drm/drm_cache.h>
+>   
+>   #include "ttm_module.h"
+>   
+> @@ -192,7 +193,7 @@ static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
+>   	struct ttm_pool_dma *dma;
+>   	void *vaddr;
+>   
+> -#ifdef CONFIG_X86
+> +#ifdef CONFIG_X86_32
+>   	/* We don't care that set_pages_wb is inefficient here. This is only
+>   	 * used when we have to shrink and CPU overhead is irrelevant then.
+>   	 */
+> @@ -218,7 +219,7 @@ static void ttm_pool_free_page(struct ttm_pool *pool, enum ttm_caching caching,
+>   /* Apply any cpu-caching deferred during page allocation */
+>   static int ttm_pool_apply_caching(struct ttm_pool_alloc_state *alloc)
 >   {
->   	struct intel_digital_connector_state *conn_state;
+> -#ifdef CONFIG_X86
+> +#ifdef CONFIG_X86_32
+>   	unsigned int num_pages = alloc->pages - alloc->caching_divide;
 >   
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-> index aafb25a814fa..0aa86626e646 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.h
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.h
-> @@ -14,7 +14,6 @@ struct i2c_adapter;
->   struct intel_connector;
->   struct intel_encoder;
+>   	if (!num_pages)
+> @@ -232,6 +233,11 @@ static int ttm_pool_apply_caching(struct ttm_pool_alloc_state *alloc)
+>   	case ttm_uncached:
+>   		return set_pages_array_uc(alloc->caching_divide, num_pages);
+>   	}
+> +
+> +#elif defined(CONFIG_X86_64)
+> +	unsigned int num_pages = alloc->pages - alloc->caching_divide;
+> +
+> +	drm_clflush_pages(alloc->caching_divide, num_pages);
+
+Do we now also need manual clflushing for things like swap-in? Or what 
+caching type does copy_highpage() in ttm_tt_swapin() use now? Is it not 
+wb? If so, is that not one of the nice advantages of using set_pages_* 
+where raw kmap will respect the PAT setting?
+
+>   #endif
+>   	alloc->caching_divide = alloc->pages;
+>   	return 0;
+> @@ -342,7 +348,7 @@ static struct ttm_pool_type *ttm_pool_select_type(struct ttm_pool *pool,
+>   	if (pool->use_dma_alloc)
+>   		return &pool->caching[caching].orders[order];
 >   
-> -int intel_connector_init(struct intel_connector *connector);
->   struct intel_connector *intel_connector_alloc(void);
->   void intel_connector_free(struct intel_connector *connector);
->   void intel_connector_destroy(struct drm_connector *connector);
---------------zvWhHxvSOqQkoxcMZAQ4duti
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+> -#ifdef CONFIG_X86
+> +#ifdef CONFIG_X86_32
+>   	switch (caching) {
+>   	case ttm_write_combined:
+>   		if (pool->nid != NUMA_NO_NODE)
+> @@ -980,7 +986,7 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
+>   	    pool->use_dma_alloc || ttm_tt_is_backed_up(tt))
+>   		return -EBUSY;
+>   
+> -#ifdef CONFIG_X86
+> +#ifdef CONFIG_X86_32
+>   	/* Anything returned to the system needs to be cached. */
+>   	if (tt->caching != ttm_cached)
+>   		set_pages_array_wb(tt->pages, tt->num_pages);
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 29-07-2025 16:47, Jani Nikula wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:46443c16f9cbff039cd3c830871289ab17110905.1753787803.git.jani.nikula@intel.com">
-      <pre wrap="" class="moz-quote-pre">intel_connector_init() is only used in intel_connector.c. Make it
-static.
-
-Signed-off-by: Jani Nikula <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a></pre>
-    </blockquote>
-    <pre>Looks good to me.
-Reviewed-by: Dibin Moolakadan Subrahmanian <a class="moz-txt-link-rfc2396E" href="mailto:dibin.moolakadan.subrahmanian@intel.com">&lt;dibin.moolakadan.subrahmanian@intel.com&gt;</a></pre>
-    <blockquote type="cite" cite="mid:46443c16f9cbff039cd3c830871289ab17110905.1753787803.git.jani.nikula@intel.com">
-      <pre wrap="" class="moz-quote-pre">
----
- drivers/gpu/drm/i915/display/intel_connector.c | 2 +-
- drivers/gpu/drm/i915/display/intel_connector.h | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 42c923f416b3..6a55854db5b6 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -77,7 +77,7 @@ void intel_connector_cancel_modeset_retry_work(struct intel_connector *connector
- 		drm_connector_put(&amp;connector-&gt;base);
- }
- 
--int intel_connector_init(struct intel_connector *connector)
-+static int intel_connector_init(struct intel_connector *connector)
- {
- 	struct intel_digital_connector_state *conn_state;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index aafb25a814fa..0aa86626e646 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -14,7 +14,6 @@ struct i2c_adapter;
- struct intel_connector;
- struct intel_encoder;
- 
--int intel_connector_init(struct intel_connector *connector);
- struct intel_connector *intel_connector_alloc(void);
- void intel_connector_free(struct intel_connector *connector);
- void intel_connector_destroy(struct drm_connector *connector);
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------zvWhHxvSOqQkoxcMZAQ4duti--
