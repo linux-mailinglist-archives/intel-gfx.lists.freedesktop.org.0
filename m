@@ -2,61 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416ECB22235
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 Aug 2025 11:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 904E6B22251
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 Aug 2025 11:05:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1AF410E101;
-	Tue, 12 Aug 2025 09:00:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD5CE10E5C9;
+	Tue, 12 Aug 2025 09:05:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMwRsfXW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TCeqKvfx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2E2410E101;
- Tue, 12 Aug 2025 09:00:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27D5610E110;
+ Tue, 12 Aug 2025 09:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1754989201; x=1786525201;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=9aOPAs5puAtklPuYbcZrHhAbSyQJnoOPJjj0JEHpCCs=;
- b=mMwRsfXWYGj5q8uh3y97VTbate+3PcsAmahnWXPBcDRT/KZlxPIxplL4
- TRx56XygqACDSVmFcnLrwXaOY6yBzBj2bRpxqxx3Ozn3d4MS3aG6KCLu5
- KtExH8im+kT4HXJm4oQxuL6D3l9Lsg+uQykugpA6dLcur+JXoWLs0qjUj
- Y2zi8MrV1Rer3PZMAOvUd36YKJY7+YzpYzNy/Jf/LDSkpa23c0Cs2JzwN
- oD6bmAI6OBuLJzpUb+OR9AZdNOURv/vZnXk9vZMfwWz5N6jcs06sXnL48
- VW7lCsx6qAA94pkaj24yomUORu0Oikche3AkA6HjGxF3A3q1YWnR3LYBH A==;
-X-CSE-ConnectionGUID: TnR7trx6TyqvUrH1MLsJFg==
-X-CSE-MsgGUID: VTkzK/jDT5iQrcSDcJHnqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="56972161"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="56972161"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 02:00:01 -0700
-X-CSE-ConnectionGUID: 6IFgI63JS9Ce9lIZiurSSQ==
-X-CSE-MsgGUID: OvkcvalJTb+/A+Yi3OIMYA==
+ t=1754989519; x=1786525519;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=47nscbq+sB6m2FsX1lTqAbElkp/Qj7jDwQ9uWu5/4z0=;
+ b=TCeqKvfxGuUWZimYks+sY6zgRUEY7A+pgJOq7zmAlCpDu+lKPpi760Bn
+ VfZ3RMW9j0Z/MpyjEgDnBm6BRQX1xclMEWyYkR9nS6Tqk9KeRbcrFTyo2
+ 7NsYrkqqttm7GrY5FJsb7VF34U6joOzq1h6BkBpuEbCnvZk3JJKX267qW
+ 1GEFlGER4VWs2asjQkGSISnLCOQHLnlNbZ/e6vv9nj43j/NOm6st3HdnB
+ eewljI0f54rDJnSha+kAFVcfo2T2XsTBK2nEcBvKKHHvXUD4u6OEz0Nhf
+ fGr/4vCBgCcH+o+oxm4ml9Z1RC1veGbZW8nUVT7KmgAO+VoyIlgwQ8GnX w==;
+X-CSE-ConnectionGUID: BmVeQoBaTRaLHcfH9gw4iQ==
+X-CSE-MsgGUID: S2SfVvCSTvKiH9WkQ9ifXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="57179002"
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="57179002"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 02:05:19 -0700
+X-CSE-ConnectionGUID: BELvwtWESk6d/r347oITXg==
+X-CSE-MsgGUID: sZGCSPz0RiekHovaIJqJqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="166144887"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.12])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2025 02:00:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 1/4] drm/i915/vbt: split up DSI VBT defs to a separate file
-In-Reply-To: <DM3PPF208195D8D656DAF14AD40FAB681E7E32BA@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1754925923.git.jani.nikula@intel.com>
- <84417e0141f98ae8f8c7a66e9002c3e99c9ed3db.1754925923.git.jani.nikula@intel.com>
- <DM3PPF208195D8D656DAF14AD40FAB681E7E32BA@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Date: Tue, 12 Aug 2025 11:59:56 +0300
-Message-ID: <9d0c69a001b45df21bc16e62fde57110364d81b7@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; d="scan'208";a="196992763"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Aug 2025 02:05:18 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 12 Aug 2025 02:05:18 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26 via Frontend Transport; Tue, 12 Aug 2025 02:05:18 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.80) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Tue, 12 Aug 2025 02:05:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W6IaasjpUAkE7dhJaPrx+qb96TNI8s2ieTYlWegu0jgr8aBO7YrChCrKtHLFhaNp3f2D34qEqJ0EsU5tjJP21dodhFN10o1u8eBadYem0eKPBktf2W+ee2RdnluQO/edhcL+fDLNKF/xlI/dVRkBQtnU4XSPxC5QCvt/XsyHJJBzEeWT17Xbq4S5wJmBJoxMqKtp12MY5qK9lydL2Xf0JzBwETONI132eJRIsRC1D5bzs8Fdv48IvVcyT1jsloka8TxD6QHv0Ly9j5r+cf8z5ImegIAWezXxWa1atBxMJbfdmsw1NrsKlmXTSrsHIujF4X6wM9rpKqmCR+er+CGWqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uSwE84AwcBUFuFIoDXGC/Wdp8EIYZ260uxnwQFX2VpI=;
+ b=Sjdd3UDuyqinFZtj/PeJqg0foJdcGBfHRMbYHK3FZ8LsNx17JyY8mEq2/4zXRSmYXK0xcrL0UscJYWvjnV/SR16Ub57buoYRhifpPa799fT1y7/knqfS3D7LE4ksbsHXsD2hvJeSjIw4VnzeQwkfZXbKcwrV/D6O5e1Qyiot0mbZxobV0iF3oIa6z0REh06n8+ORzusvshqZrjTKm9rPiwUY5ijnQVjH5Tbkj/4WG4AA0hL2W5i8FNMeY2xCNVA9jib4/JDETF5garG723jkChW98amu5JXBTgo2K9TkkLwE3CYm/kEr91PaNygenxHm7ab9wJxiqkgWLWXHLTTz3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DS7PR11MB7738.namprd11.prod.outlook.com (2603:10b6:8:e0::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9009.21; Tue, 12 Aug 2025 09:05:16 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.8989.018; Tue, 12 Aug 2025
+ 09:05:16 +0000
+Message-ID: <45a8453c-0101-4900-b006-921ac753d845@intel.com>
+Date: Tue, 12 Aug 2025 14:35:10 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/7] drm/i915/psr: Add intel_psr_use_trans_push to
+ query if TRANS_PUSH is used
+To: =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20250721111406.1468064-1-jouni.hogander@intel.com>
+ <20250721111406.1468064-4-jouni.hogander@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250721111406.1468064-4-jouni.hogander@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0095.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::6) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DS7PR11MB7738:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3c68906-4b66-422b-5179-08ddd97f5a80
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QzFCV29xRFdoK05lYUYrYWhTazB2V2JSa0J1b2lKai82K2RpWWVzd2N4WEg4?=
+ =?utf-8?B?OGhrUkJCUWwzSXdQMlgxSk9rRllIU1JqMGgvRzdMelBDVWpVekV0QkxzdXd2?=
+ =?utf-8?B?OUhsOGhQTnhYUVZlZncyRjRoTERQdlpNUHpQU1YySjZHUkxLUEtRT2kvYndD?=
+ =?utf-8?B?eTYvRC9EN0NyTTJsUDBmQmxGVStTVnhlNUJMdm1ROTRVaDE3MUlmdXhDZVNz?=
+ =?utf-8?B?bEdhdlpxWUY2cWdJSFJnbkVWZTlRWSsvWThUOG5qRkJmN0tNMVU3Vk9RcEpG?=
+ =?utf-8?B?akZBdUVvd0JCR0R5aVArVDZ4THJvVmVmR2JXaXJFZXpNekV0czZzRkt2eXFP?=
+ =?utf-8?B?MjNnallCdThJamVNUjFjU0RDQkdGbDBtWGQ5L3NWckJZK1poY0pUV3VPSXVw?=
+ =?utf-8?B?ZE5OVzJvTVRpeW9VM3VDalhOUXprbCttZjhkK0EyTWE5SHY5YjJuYWpRSUJI?=
+ =?utf-8?B?U1VzMW1kSHlzcWt0VEM0cXdaOFdtQm9POXF5L3ZFV05PVFEzRnR5R3J4ZDdq?=
+ =?utf-8?B?SGQ5TGlvSVI4a20zbm9maW12UUxKTUFIM2dIdk1xQW9jSWNqNGcrZUNhY1Yv?=
+ =?utf-8?B?N3ZmT3hTN2tOSjZIUU41dDY4bGhsOUE1RmtoeXVYM08zK2k2NUdrMWpyNFNn?=
+ =?utf-8?B?UVgxVFp2bENUWEE2blRPRTEwbVJ4bUZycjVsOXIzTGdNR0h6aDZkdU9tNks1?=
+ =?utf-8?B?VHdsZ1pZNGRzbFlOUEJ0U1NTSzhkUWluVW5lRkxCcFRvK014eWltUEVna3RU?=
+ =?utf-8?B?Z0xKaFpUZGdaV21OMkFSbjkrcU4wdUlLTzVFRFU1ZmN0SzViVjV3WlRsSFlR?=
+ =?utf-8?B?N01TRjVZQ2ZhODZwYU5RaHhIdERaOHJoaTJRaFlNNVBkS0lic2VQL09wZ1lh?=
+ =?utf-8?B?NXgyWnRTdytzaHE3OWNTR3JyNkFubTBhOE8rZWYxNWU4VVNpTVh5L0tTRU5R?=
+ =?utf-8?B?NEtDSFZYalBXZHBMMXpxVEVGK1lsVzJlMFFycUkvWnFFVEtRYTZzeVcvcXE4?=
+ =?utf-8?B?UzhqZ2I4SURYaVVxWE1hZWpzalJiUzdIQ0x2ZG1KeTFOWExkVDBrUGRDaFNS?=
+ =?utf-8?B?WUdUOTNuaGlONThic2c2eWFRVmR0UjVCYWFJY0o1b0k3bWFscDJYQ01aWFFI?=
+ =?utf-8?B?QkFkWVFyVVJjUVc0VGhTd3RIZFVsRUNZaUtrS21KNHk4eXlEaUpJLzB0MndX?=
+ =?utf-8?B?VHRaOGNBYjFBZVp0SXJlSTZBUFA1S08veVl6WGZDbHpoRUR6VjRKU2k4ZGlD?=
+ =?utf-8?B?WnM1QUorMXJTbXp0L0pIWlVaT1ZVU0VvU2hISW5LUVFHekoxbEdrZXhLZFIr?=
+ =?utf-8?B?eTVSVURZNldWNkM4QUM2c1N6OG1sMDJ0bE55b0swMTAzUGlVNkY5a3dzWXY2?=
+ =?utf-8?B?ZWhRbmxUZmJsZ0dXWGZDajZCZXB4NTUyVG1sZkdScnV2WlkzWXZMTDZ4a0dT?=
+ =?utf-8?B?VmlkcEFCN00ybXZ4SHpWSHpDRUNyNGQ0MFJJUGNRdnl1aDRmbnp5RmZLTGU4?=
+ =?utf-8?B?TExhNlYybTBMMzdMVmZMdEtqaDhIYnlmVzdOYWZBNkM4bitMeGdvL1JXT3Qv?=
+ =?utf-8?B?Wms4OXdjVG5LdUJQMytUSWhTZndsOFBNMWxCekhkRGsrdDlwMXgrbmRHTzNG?=
+ =?utf-8?B?cklEaTNqb1hKMkI1U1NlU3lHa0I3QWZ6UTlmenV2TStpdW8yRGRxWmxua0tQ?=
+ =?utf-8?B?U1llNjVOZGxPTm12U2tVODdjS05vcy8vV1hxa0hMWmk5c2ZnNS91Y2VxVkxK?=
+ =?utf-8?B?MWt4ZGU2WFpMN0gxRjEwZDdsVU92VWQ4NEJNNkxoN3kwSEFkdUFMZGRBakN0?=
+ =?utf-8?B?TXM0VGd0Y2JVNCtuM09QUXdjRkVha3BZaDhUNVZWSzJuK3B2S2wyR0diZ2Jo?=
+ =?utf-8?B?S25zcnppTzdnQ2lQbCtXc0syZG90aUdJUCtVR0RCcHduUklzbTlMUEg2aHN3?=
+ =?utf-8?Q?GCBOwUJIkkQ=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmJ3bGZrbEhTejZmZUcxK0p2bTdIRFlNSWZkZTZJakdmWGJyTVRIa1hMVDU2?=
+ =?utf-8?B?ZS82ei9rVzVacVRUR281S3lWN25mZUloL0ZuSFlVTFBWSUZLWEdvbWlLa1Iw?=
+ =?utf-8?B?NVgwd01YeUtmQ290Wm9Wa2szUWZlQjEra2l1d0kzdGhTcS9hTC9LNklDRnpP?=
+ =?utf-8?B?blRyQWhpcFdiNUJBdFVnWWpWbHJuTjhsTzBGVU9sSDFpR2JLN3hoaEJTTmRL?=
+ =?utf-8?B?dVRwWmxMdEpUeG52ZCszOElwbHNrTU5PejZPenQ0aC80NTZLMkhoOUpCZ2lU?=
+ =?utf-8?B?MXRjQTF2YmREbGk1U3o5ajF2dFFHVVYzYlAyK0FZQ25LK2VmMXNzN0d1dlp1?=
+ =?utf-8?B?SWF4Nk5hMTQ0UUViQ3hsMXdyRE0zRTBkYllYLzhVd1FaU1h6cFZuS2k0bHkx?=
+ =?utf-8?B?b3NiQnNlS3ZQR3pMVEE5Sk80ajR1clFvOCtTeDJsSlNSUzdjOU9JK1hFQVRL?=
+ =?utf-8?B?WmhvUFBrc3hWMDJsbUVjbjdhNmRHekZKTWExcEVQb3Y0bmlLVkgvdDM3YnM0?=
+ =?utf-8?B?c1BLNlpiK1JRaTJwMld3TzJPTzJKaDRtbFNOT1lnZW9haXlYODlrYWNzZXFx?=
+ =?utf-8?B?M1FMQnRJeGdZaU5BL0dGaTFTWDAzVTBCS2kxVVRYRWxST1IvTk9IUEw5bC9t?=
+ =?utf-8?B?c1VONEFBZGNaRzhZK2IrM0xyZkdqMTZPZjFwYUQ3RDBnam9sNHVySDJId3VG?=
+ =?utf-8?B?TnBYRjZ3cFpDd294UExUb3FwRzQwcEd1RXpWanVkSHVMOW9OQ1pHcFdFZ3Nq?=
+ =?utf-8?B?Ynl2c0xIQVQwM1hGVk9GOTZLS01WazZRUXU4OTA4aDliN3o0RlhtSnJyU2Rs?=
+ =?utf-8?B?ZytBd0xuRFo5QkVuNjBjb1F1aTlhckNWMTVsQmFJeitDd2lJaDl6cmpmNko1?=
+ =?utf-8?B?OG1mYlRZTDJSbERyYWtOUUJiUFhGZVR4ZHZJN0hiMFFsTlFLemJCZ3c3ZFhD?=
+ =?utf-8?B?Wnl3VHRmNFNwTzRlOEtFUE9IUmxSdkg3Z1JyTmVBMDlDRkRCekE4cG1wRUxC?=
+ =?utf-8?B?N3hObG5BV2o4bnZJNHpFTlQ3NVRjdlZVY0ZvakFyRytvNCtTMnhyYndoSGZp?=
+ =?utf-8?B?TzhwZXhXMC9lVmhOcWtRb3YwK1VkVE1xVEhyTTlOWDRibk5ZVGpSWlpnZ2Ft?=
+ =?utf-8?B?UnBaZS94MnpXc3pnM0VLU05iMmluVTlRNFFYZzJ3d2FWc3orUWN2VzFxWlpl?=
+ =?utf-8?B?ZXNveVI2U1FBRkNwdG9SSTdVRTh2T083RVNiZlVhUERsZzJkMW5TaVN4dW9C?=
+ =?utf-8?B?RldjQ2FsVWhJdE1tVHNRUFQyb3RBMzRqM1JmTTRMUVFQZ21ITURUYjFxS2or?=
+ =?utf-8?B?UzN1bFBpNlNQQnJ6cndiN1FnYTN4MjlSM08rVEJ1SUI3a2dsUUVvUVNXVnY5?=
+ =?utf-8?B?VlM0OVduVFdMNnIwMG82VWFoaHJFeVJyV1dYYXY1ZlZxdzdKcDQ5Z0x4NXFu?=
+ =?utf-8?B?MU9Jb0ZGc2FNUkxlUUlMTEhieDl4VFZDdmppZVFaUC9nQ2VVR1hJY0FFL1BH?=
+ =?utf-8?B?dUozSG5Pb3JUZFVNb0RWRFVqQWQvUVMwelNiUWFuN0Z6czVxUVRuZDE3TTB5?=
+ =?utf-8?B?em1zUVdzKy9CYnBRVHlUMk55NEN3aGtkeTg0eElxTG9oNjRXalB3VEx4b2lm?=
+ =?utf-8?B?NDMzU3ZMRElIcWFWSkdtSlMwRUxZMGVGZ1pLcUxqQmNXQlNWV2VzNHRxaC9r?=
+ =?utf-8?B?eWF0RUh1ajlkQnNwdmM0NlN3L0N6THlLcU5PNGZsTTJDQktSQ2crYWtGY21x?=
+ =?utf-8?B?R2JydG9XR1ZlR0l6ektIczZVNGc5WEZSTVBEemQ1L0hvNzdSWWFzbHphK2hl?=
+ =?utf-8?B?WkFRRU5qZlllaTJqK2k1M25uQW9aQ29sRFozZ3NCTHlRSWNOMDhLbzJid1I3?=
+ =?utf-8?B?cUh2YUM5NEFTc0tPYjdCMUV1ZGgyTUE1aUd4U0JuVHBYSTUvY3BJUDRvMm53?=
+ =?utf-8?B?WktDa082RkVxU0dMdWlIQVNCMFRxdDV0U1RHaXI5NUgzZ0FhaCs4S1RDMGsr?=
+ =?utf-8?B?OE1tR2tDT01kN3M2Q0poSmNLYUMxQVBMTHhTakRjWkVFZjNYelNzVXpYbVZV?=
+ =?utf-8?B?b09Qek4vQjRFTENhYzlqYWNIOVlCMlNvSjc0VExMeXVtNmc5eTlTdWlzUll3?=
+ =?utf-8?B?cG1STmRONkZjajhmMk9nWER3YVA0S3RQbTVrelE1a0F6ZFpmNGI5NmRjb3lK?=
+ =?utf-8?B?bVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3c68906-4b66-422b-5179-08ddd97f5a80
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 09:05:16.3683 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7EZ3nhJBpCMcfAC6PCs/8N+69XUEmlwGKaYQk8dH+y2zXsBshOsW8eQZW5Fxmm0Wp/CojJNvIMENkp3RK/5ZckXf0+3fKoB+nOV/uFF2xQk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7738
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,447 +196,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 12 Aug 2025, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> Subject: [PATCH 1/4] drm/i915/vbt: split up DSI VBT defs to a separate f=
-ile
->>=20
->> The DSI VBT definitions have ended up in intel_bios.h, because intel_vbt=
-_defs.h
->> is supposed to be internal to intel_bios.c, but the DSI VBT definitions =
-are
->> needed in more places.
->>=20
->> Split out the DSI VBT definitions to intel_dsi_vbt_defs.h. This will als=
-o help keep
->> the definitions in sync with IGT.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+On 7/21/2025 4:44 PM, Jouni Högander wrote:
+> This is a preparation patch to start using TRANS_PUSH for PSR "Frame
+
+
+Lets avoid 'patch' from commit message.
+
+Perhaps can mention that this is just a placeholder for the helper to 
+use trans push.
+
+
+> Change". It adds intel_psr_use_trans_push which return false for now until
+> we have everything in place.
 >
-> LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-Thanks for the reviews, series pushed to din.
-
-BR,
-Jani.
-
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_psr.c | 5 +++++
+>   drivers/gpu/drm/i915/display/intel_psr.h | 1 +
+>   2 files changed, 6 insertions(+)
 >
->> ---
->>  drivers/gpu/drm/i915/display/intel_bios.h     | 174 -----------------
->>  .../drm/i915/display/intel_display_types.h    |   1 +
->>  .../gpu/drm/i915/display/intel_dsi_vbt_defs.h | 183 ++++++++++++++++++
->>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |   2 +-
->>  4 files changed, 185 insertions(+), 175 deletions(-)  create mode 100644
->> drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h
->> b/drivers/gpu/drm/i915/display/intel_bios.h
->> index 6cd7a011b8c4..8fdde85f7939 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bios.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
->> @@ -50,180 +50,6 @@ enum intel_backlight_type {
->>  	INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE,
->>  };
->>=20
->> -/*
->> - * MIPI Sequence Block definitions
->> - *
->> - * Note the VBT spec has AssertReset / DeassertReset swapped from their
->> - * usual naming, we use the proper names here to avoid confusion when
->> - * reading the code.
->> - */
->> -enum mipi_seq {
->> -	MIPI_SEQ_END =3D 0,
->> -	MIPI_SEQ_DEASSERT_RESET,	/* Spec says MipiAssertResetPin */
->> -	MIPI_SEQ_INIT_OTP,
->> -	MIPI_SEQ_DISPLAY_ON,
->> -	MIPI_SEQ_DISPLAY_OFF,
->> -	MIPI_SEQ_ASSERT_RESET,		/* Spec says
->> MipiDeassertResetPin */
->> -	MIPI_SEQ_BACKLIGHT_ON,		/* sequence block v2+ */
->> -	MIPI_SEQ_BACKLIGHT_OFF,		/* sequence block v2+ */
->> -	MIPI_SEQ_TEAR_ON,		/* sequence block v2+ */
->> -	MIPI_SEQ_TEAR_OFF,		/* sequence block v3+ */
->> -	MIPI_SEQ_POWER_ON,		/* sequence block v3+ */
->> -	MIPI_SEQ_POWER_OFF,		/* sequence block v3+ */
->> -	MIPI_SEQ_MAX
->> -};
->> -
->> -enum mipi_seq_element {
->> -	MIPI_SEQ_ELEM_END =3D 0,
->> -	MIPI_SEQ_ELEM_SEND_PKT,
->> -	MIPI_SEQ_ELEM_DELAY,
->> -	MIPI_SEQ_ELEM_GPIO,
->> -	MIPI_SEQ_ELEM_I2C,		/* sequence block v2+ */
->> -	MIPI_SEQ_ELEM_SPI,		/* sequence block v3+ */
->> -	MIPI_SEQ_ELEM_PMIC,		/* sequence block v3+ */
->> -	MIPI_SEQ_ELEM_MAX
->> -};
->> -
->> -#define MIPI_DSI_UNDEFINED_PANEL_ID	0
->> -#define MIPI_DSI_GENERIC_PANEL_ID	1
->> -
->> -struct mipi_config {
->> -	u16 panel_id;
->> -
->> -	/* General Params */
->> -	u32 enable_dithering:1;
->> -	u32 rsvd1:1;
->> -	u32 is_bridge:1;
->> -
->> -	u32 panel_arch_type:2;
->> -	u32 is_cmd_mode:1;
->> -
->> -#define NON_BURST_SYNC_PULSE	0x1
->> -#define NON_BURST_SYNC_EVENTS	0x2
->> -#define BURST_MODE		0x3
->> -	u32 video_transfer_mode:2;
->> -
->> -	u32 cabc_supported:1;
->> -#define PPS_BLC_PMIC   0
->> -#define PPS_BLC_SOC    1
->> -	u32 pwm_blc:1;
->> -
->> -	/* Bit 13:10 */
->> -#define PIXEL_FORMAT_RGB565			0x1
->> -#define PIXEL_FORMAT_RGB666			0x2
->> -#define PIXEL_FORMAT_RGB666_LOOSELY_PACKED	0x3
->> -#define PIXEL_FORMAT_RGB888			0x4
->> -	u32 videomode_color_format:4;
->> -
->> -	/* Bit 15:14 */
->> -#define ENABLE_ROTATION_0	0x0
->> -#define ENABLE_ROTATION_90	0x1
->> -#define ENABLE_ROTATION_180	0x2
->> -#define ENABLE_ROTATION_270	0x3
->> -	u32 rotation:2;
->> -	u32 bta_enabled:1;
->> -	u32 rsvd2:15;
->> -
->> -	/* 2 byte Port Description */
->> -#define DUAL_LINK_NOT_SUPPORTED	0
->> -#define DUAL_LINK_FRONT_BACK	1
->> -#define DUAL_LINK_PIXEL_ALT	2
->> -	u16 dual_link:2;
->> -	u16 lane_cnt:2;
->> -	u16 pixel_overlap:3;
->> -	u16 rgb_flip:1;
->> -#define DL_DCS_PORT_A			0x00
->> -#define DL_DCS_PORT_C			0x01
->> -#define DL_DCS_PORT_A_AND_C		0x02
->> -	u16 dl_dcs_cabc_ports:2;
->> -	u16 dl_dcs_backlight_ports:2;
->> -	u16 rsvd3:4;
->> -
->> -	u16 rsvd4;
->> -
->> -	u8 rsvd5;
->> -	u32 target_burst_mode_freq;
->> -	u32 dsi_ddr_clk;
->> -	u32 bridge_ref_clk;
->> -
->> -#define  BYTE_CLK_SEL_20MHZ		0
->> -#define  BYTE_CLK_SEL_10MHZ		1
->> -#define  BYTE_CLK_SEL_5MHZ		2
->> -	u8 byte_clk_sel:2;
->> -
->> -	u8 rsvd6:6;
->> -
->> -	/* DPHY Flags */
->> -	u16 dphy_param_valid:1;
->> -	u16 eot_pkt_disabled:1;
->> -	u16 enable_clk_stop:1;
->> -	u16 rsvd7:13;
->> -
->> -	u32 hs_tx_timeout;
->> -	u32 lp_rx_timeout;
->> -	u32 turn_around_timeout;
->> -	u32 device_reset_timer;
->> -	u32 master_init_timer;
->> -	u32 dbi_bw_timer;
->> -	u32 lp_byte_clk_val;
->> -
->> -	/*  4 byte Dphy Params */
->> -	u32 prepare_cnt:6;
->> -	u32 rsvd8:2;
->> -	u32 clk_zero_cnt:8;
->> -	u32 trail_cnt:5;
->> -	u32 rsvd9:3;
->> -	u32 exit_zero_cnt:6;
->> -	u32 rsvd10:2;
->> -
->> -	u32 clk_lane_switch_cnt;
->> -	u32 hl_switch_cnt;
->> -
->> -	u32 rsvd11[6];
->> -
->> -	/* timings based on dphy spec */
->> -	u8 tclk_miss;
->> -	u8 tclk_post;
->> -	u8 rsvd12;
->> -	u8 tclk_pre;
->> -	u8 tclk_prepare;
->> -	u8 tclk_settle;
->> -	u8 tclk_term_enable;
->> -	u8 tclk_trail;
->> -	u16 tclk_prepare_clkzero;
->> -	u8 rsvd13;
->> -	u8 td_term_enable;
->> -	u8 teot;
->> -	u8 ths_exit;
->> -	u8 ths_prepare;
->> -	u16 ths_prepare_hszero;
->> -	u8 rsvd14;
->> -	u8 ths_settle;
->> -	u8 ths_skip;
->> -	u8 ths_trail;
->> -	u8 tinit;
->> -	u8 tlpx;
->> -	u8 rsvd15[3];
->> -
->> -	/* GPIOs */
->> -	u8 panel_enable;
->> -	u8 bl_enable;
->> -	u8 pwm_enable;
->> -	u8 reset_r_n;
->> -	u8 pwr_down_r;
->> -	u8 stdby_r_n;
->> -
->> -} __packed;
->> -
->> -/* all delays have a unit of 100us */
->> -struct mipi_pps_data {
->> -	u16 panel_on_delay;
->> -	u16 bl_enable_delay;
->> -	u16 bl_disable_delay;
->> -	u16 panel_off_delay;
->> -	u16 panel_power_cycle_delay;
->> -} __packed;
->> -
->>  void intel_bios_init(struct intel_display *display);  void
->> intel_bios_init_panel_early(struct intel_display *display,
->>  				 struct intel_panel *panel,
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 35596f3921e8..0d945d1fedd6 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -50,6 +50,7 @@
->>  #include "intel_display_limits.h"
->>  #include "intel_display_power.h"
->>  #include "intel_dpll_mgr.h"
->> +#include "intel_dsi_vbt_defs.h"
->>  #include "intel_wm_types.h"
->>=20
->>  struct cec_notifier;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h
->> b/drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h
->> new file mode 100644
->> index 000000000000..f83d42ed0c5a
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt_defs.h
->> @@ -0,0 +1,183 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/* Copyright =C2=A9 2025 Intel Corporation */
->> +
->> +#ifndef __INTEL_DSI_VBT_DEFS_H__
->> +#define __INTEL_DSI_VBT_DEFS_H__
->> +
->> +#include <linux/types.h>
->> +
->> +/*
->> + * MIPI Sequence Block definitions
->> + *
->> + * Note the VBT spec has AssertReset / DeassertReset swapped from their
->> + * usual naming, we use the proper names here to avoid confusion when
->> + * reading the code.
->> + */
->> +enum mipi_seq {
->> +	MIPI_SEQ_END =3D 0,
->> +	MIPI_SEQ_DEASSERT_RESET,	/* Spec says MipiAssertResetPin */
->> +	MIPI_SEQ_INIT_OTP,
->> +	MIPI_SEQ_DISPLAY_ON,
->> +	MIPI_SEQ_DISPLAY_OFF,
->> +	MIPI_SEQ_ASSERT_RESET,		/* Spec says
->> MipiDeassertResetPin */
->> +	MIPI_SEQ_BACKLIGHT_ON,		/* sequence block v2+ */
->> +	MIPI_SEQ_BACKLIGHT_OFF,		/* sequence block v2+ */
->> +	MIPI_SEQ_TEAR_ON,		/* sequence block v2+ */
->> +	MIPI_SEQ_TEAR_OFF,		/* sequence block v3+ */
->> +	MIPI_SEQ_POWER_ON,		/* sequence block v3+ */
->> +	MIPI_SEQ_POWER_OFF,		/* sequence block v3+ */
->> +	MIPI_SEQ_MAX
->> +};
->> +
->> +enum mipi_seq_element {
->> +	MIPI_SEQ_ELEM_END =3D 0,
->> +	MIPI_SEQ_ELEM_SEND_PKT,
->> +	MIPI_SEQ_ELEM_DELAY,
->> +	MIPI_SEQ_ELEM_GPIO,
->> +	MIPI_SEQ_ELEM_I2C,		/* sequence block v2+ */
->> +	MIPI_SEQ_ELEM_SPI,		/* sequence block v3+ */
->> +	MIPI_SEQ_ELEM_PMIC,		/* sequence block v3+ */
->> +	MIPI_SEQ_ELEM_MAX
->> +};
->> +
->> +#define MIPI_DSI_UNDEFINED_PANEL_ID	0
->> +#define MIPI_DSI_GENERIC_PANEL_ID	1
->> +
->> +struct mipi_config {
->> +	u16 panel_id;
->> +
->> +	/* General Params */
->> +	u32 enable_dithering:1;
->> +	u32 rsvd1:1;
->> +	u32 is_bridge:1;
->> +
->> +	u32 panel_arch_type:2;
->> +	u32 is_cmd_mode:1;
->> +
->> +#define NON_BURST_SYNC_PULSE	0x1
->> +#define NON_BURST_SYNC_EVENTS	0x2
->> +#define BURST_MODE		0x3
->> +	u32 video_transfer_mode:2;
->> +
->> +	u32 cabc_supported:1;
->> +#define PPS_BLC_PMIC   0
->> +#define PPS_BLC_SOC    1
->> +	u32 pwm_blc:1;
->> +
->> +	/* Bit 13:10 */
->> +#define PIXEL_FORMAT_RGB565			0x1
->> +#define PIXEL_FORMAT_RGB666			0x2
->> +#define PIXEL_FORMAT_RGB666_LOOSELY_PACKED	0x3
->> +#define PIXEL_FORMAT_RGB888			0x4
->> +	u32 videomode_color_format:4;
->> +
->> +	/* Bit 15:14 */
->> +#define ENABLE_ROTATION_0	0x0
->> +#define ENABLE_ROTATION_90	0x1
->> +#define ENABLE_ROTATION_180	0x2
->> +#define ENABLE_ROTATION_270	0x3
->> +	u32 rotation:2;
->> +	u32 bta_enabled:1;
->> +	u32 rsvd2:15;
->> +
->> +	/* 2 byte Port Description */
->> +#define DUAL_LINK_NOT_SUPPORTED	0
->> +#define DUAL_LINK_FRONT_BACK	1
->> +#define DUAL_LINK_PIXEL_ALT	2
->> +	u16 dual_link:2;
->> +	u16 lane_cnt:2;
->> +	u16 pixel_overlap:3;
->> +	u16 rgb_flip:1;
->> +#define DL_DCS_PORT_A			0x00
->> +#define DL_DCS_PORT_C			0x01
->> +#define DL_DCS_PORT_A_AND_C		0x02
->> +	u16 dl_dcs_cabc_ports:2;
->> +	u16 dl_dcs_backlight_ports:2;
->> +	u16 rsvd3:4;
->> +
->> +	u16 rsvd4;
->> +
->> +	u8 rsvd5;
->> +	u32 target_burst_mode_freq;
->> +	u32 dsi_ddr_clk;
->> +	u32 bridge_ref_clk;
->> +
->> +#define  BYTE_CLK_SEL_20MHZ		0
->> +#define  BYTE_CLK_SEL_10MHZ		1
->> +#define  BYTE_CLK_SEL_5MHZ		2
->> +	u8 byte_clk_sel:2;
->> +
->> +	u8 rsvd6:6;
->> +
->> +	/* DPHY Flags */
->> +	u16 dphy_param_valid:1;
->> +	u16 eot_pkt_disabled:1;
->> +	u16 enable_clk_stop:1;
->> +	u16 rsvd7:13;
->> +
->> +	u32 hs_tx_timeout;
->> +	u32 lp_rx_timeout;
->> +	u32 turn_around_timeout;
->> +	u32 device_reset_timer;
->> +	u32 master_init_timer;
->> +	u32 dbi_bw_timer;
->> +	u32 lp_byte_clk_val;
->> +
->> +	/*  4 byte Dphy Params */
->> +	u32 prepare_cnt:6;
->> +	u32 rsvd8:2;
->> +	u32 clk_zero_cnt:8;
->> +	u32 trail_cnt:5;
->> +	u32 rsvd9:3;
->> +	u32 exit_zero_cnt:6;
->> +	u32 rsvd10:2;
->> +
->> +	u32 clk_lane_switch_cnt;
->> +	u32 hl_switch_cnt;
->> +
->> +	u32 rsvd11[6];
->> +
->> +	/* timings based on dphy spec */
->> +	u8 tclk_miss;
->> +	u8 tclk_post;
->> +	u8 rsvd12;
->> +	u8 tclk_pre;
->> +	u8 tclk_prepare;
->> +	u8 tclk_settle;
->> +	u8 tclk_term_enable;
->> +	u8 tclk_trail;
->> +	u16 tclk_prepare_clkzero;
->> +	u8 rsvd13;
->> +	u8 td_term_enable;
->> +	u8 teot;
->> +	u8 ths_exit;
->> +	u8 ths_prepare;
->> +	u16 ths_prepare_hszero;
->> +	u8 rsvd14;
->> +	u8 ths_settle;
->> +	u8 ths_skip;
->> +	u8 ths_trail;
->> +	u8 tinit;
->> +	u8 tlpx;
->> +	u8 rsvd15[3];
->> +
->> +	/* GPIOs */
->> +	u8 panel_enable;
->> +	u8 bl_enable;
->> +	u8 pwm_enable;
->> +	u8 reset_r_n;
->> +	u8 pwr_down_r;
->> +	u8 stdby_r_n;
->> +
->> +} __packed;
->> +
->> +/* all delays have a unit of 100us */
->> +struct mipi_pps_data {
->> +	u16 panel_on_delay;
->> +	u16 bl_enable_delay;
->> +	u16 bl_disable_delay;
->> +	u16 panel_off_delay;
->> +	u16 panel_power_cycle_delay;
->> +} __packed;
->> +
->> +#endif /* __INTEL_DSI_VBT_DEFS_H__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> index 92c04811aa28..6612d3a4ec49 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
->> @@ -37,7 +37,7 @@
->>  #ifndef _INTEL_VBT_DEFS_H_
->>  #define _INTEL_VBT_DEFS_H_
->>=20
->> -#include "intel_bios.h"
->> +#include "intel_dsi_vbt_defs.h"
->>=20
->>  /* EDID derived structures */
->>  struct bdb_edid_pnp_id {
->> --
->> 2.47.2
->
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 4279c28ae27c..d7c19b053fcc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -4253,3 +4253,8 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
+>   {
+>   	return intel_dp_is_edp(intel_dp) && crtc_state->has_panel_replay;
+>   }
+> +
+> +bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
+> +{
+> +	return false;
 
---=20
-Jani Nikula, Intel
+Will be good to add #TODO here.
+
+
+Regards,
+
+Ankit
+
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+> index 9b061a22361f..7237dfa388b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -81,5 +81,6 @@ void intel_psr_debugfs_register(struct intel_display *display);
+>   bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state);
+>   bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
+>   				   const struct intel_crtc_state *crtc_state);
+> +bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
+>   
+>   #endif /* __INTEL_PSR_H__ */
