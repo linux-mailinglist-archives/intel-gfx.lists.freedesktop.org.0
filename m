@@ -2,84 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C7FCB24900
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Aug 2025 14:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 221D3B249BE
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Aug 2025 14:47:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AE1810E075;
-	Wed, 13 Aug 2025 12:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88EB210E043;
+	Wed, 13 Aug 2025 12:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rOg9wUHI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ed7Ef53G";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEA5C10E075;
- Wed, 13 Aug 2025 12:00:49 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi
- [81.175.209.231])
- by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 5AE853D5;
- Wed, 13 Aug 2025 13:59:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1755086394;
- bh=Z0Wd8Ul5IDIWW8lxpyrGHrFqOEXZiZV2mDebB4u5iE0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rOg9wUHIbPEf8oD+S/HQgLiT+Ai8eRs5plN7KfY2BBIY0wfkrzEz3ag5dCeEf2/i3
- RF6xNPKTXbUbsF/QoBV6L8GEne60I13yX3l803DuYWioasayslSxglfN+k9p0fzG/W
- FevitONufT6X9SIEpJrGUMhPwvU+lq60Z0MZc1tI=
-Date: Wed, 13 Aug 2025 15:00:29 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>,
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "mcanal@igalia.com" <mcanal@igalia.com>,
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>, 
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>, 
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <20250813120029.GE20174@pendragon.ideasonboard.com>
-References: <20250811092707.3986802-1-suraj.kandpal@intel.com>
- <20250811092707.3986802-2-suraj.kandpal@intel.com>
- <20250811094429.GE21313@pendragon.ideasonboard.com>
- <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
- <20250811111546.GA30760@pendragon.ideasonboard.com>
- <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
- <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B8B10E009;
+ Wed, 13 Aug 2025 12:47:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755089238; x=1786625238;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jSPWnVhmlrAgGBExm/iLthQMgTaMjQEtp3rqPporWQU=;
+ b=ed7Ef53GCQH4pU2TtYBU+oD0Kb2i7Lv/BX4ubrv6zpxtgNU0rJpaMimC
+ /bPNJSgLB0xHV+Ur1nhCLoDrkiKKburHnyxCmMD1UyMuiIEsPa0UXX1kV
+ JFnGV55TCnVZGbAwpBP//GNspzUULDG/36oZhnmUkDan0DNKw+u0qxuNV
+ mrDIFhXLjKNjA67WmvTbfhA+MoEPjCInlRGmPtOiauRXFVkPA1R9cOwzm
+ zAaNVkSchjSBmP3sNK0b0Uba1h9RKQVnbCsEA0u9rvodvy6R0JEvO5z4I
+ BBvTX6x/zWKCJ4C1gi4bb+hUpTmZCfXd9bSGqyCrqGM/4trIrqTMcfKWp w==;
+X-CSE-ConnectionGUID: twZ3kIt1QNqJE7e/fBC5VQ==
+X-CSE-MsgGUID: A4P1MalpR7u/F9hh1fzowg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="44958534"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="44958534"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 05:47:17 -0700
+X-CSE-ConnectionGUID: nwW/sGjqQOeYQbTW6r72Iw==
+X-CSE-MsgGUID: t3Ywg6MNQvy6dBC8KtdyRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; d="scan'208";a="197318878"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.225])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Aug 2025 05:47:16 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>,
+ Nitin Gote <nitin.r.gote@intel.com>, intel-gfx@lists.freedesktop.org,
+ chris.p.wilson@intel.com, Sumit Semwal <sumit.semwal@linaro.org>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] dma-buf: Take a breath during dma-fence-chain subtests
+Date: Wed, 13 Aug 2025 14:43:47 +0200
+Message-ID: <7836906.EvYhyI6sBW@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <7a96d06d-54a9-42b4-84c7-0c262104ea5b@amd.com>
+References: <20250226155534.1099538-1-nitin.r.gote@intel.com>
+ <2153999.KlZ2vcFHjT@jkrzyszt-mobl2.ger.corp.intel.com>
+ <7a96d06d-54a9-42b4-84c7-0c262104ea5b@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,39 +74,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
-> > > > };
-> > >
-> > > I still don't like that. This really doesn't belong here. If anything,
-> > > the drm_connector for writeback belongs to drm_crtc.
-> > 
-> > Why? We already have generic HDMI field inside drm_connector. I am really
-> > hoping to be able to land DP parts next to it. In theory we can have a DVI-
-> > specific entry there (e.g. with the subconnector type).
-> > The idea is not to limit how the drivers subclass those structures.
-> > 
-> > I don't see a good case why WB should deviate from that design.
-> > 
-> > > If the issue is that some drivers need a custom drm_connector
-> > > subclass, then I'd rather turn the connector field of
-> > > drm_writeback_connector into a pointer.
-> > 
-> > Having a pointer requires additional ops in order to get drm_connector from
-> > WB code and vice versa. Having drm_connector_wb inside drm_connector
-> > saves us from those ops (which don't manifest for any other kind of structure).
-> > Nor will it take any more space since union will reuse space already taken up by
-> > HDMI part.
-> 
-> Seems like this thread has died. We need to get a conclusion on the design.
-> Laurent do you have any issue with the design given Dmitry's explanation as to why this
-> Design is good for drm_writeback_connector.
+Hi Christian,
 
-I'm busy, I'll try to reply in the next few days.
+On Tuesday, 8 July 2025 12:09:58 CEST Christian K=C3=B6nig wrote:
+> On 08.07.25 10:56, Janusz Krzysztofik wrote:
+> >>
+> >> There is no reason to test enabling signaling each of the element in a=
+ loop. So there should be something like 4096 calls to the dma_fence_chain_=
+cb function each jumping to the next unsignaled fence and re-installing the=
+ callback.
+> >=20
+> > So how building a chain should look like in real use cases?  When a use=
+r=20
+> > builds a chained link of her fence with another fence then may she enab=
+le=20
+> > signaling on the new chain link?  If that other fence occurs a chain li=
+nk then=20
+> > who should take care of disabling signaling on it so signaling is enabl=
+ed only=20
+> > on the last link of the chain, not leading to a situation similar to wh=
+at we=20
+> > have now in the test case?  IOW, what's a correct use pattern of=20
+> > dma_fence_chain?  I can't find that documented anywhere, neither in inl=
+ine=20
+> > docs nor in commit descriptions.
+>=20
+> The dma_fence_chain container is basically a single linked list which all=
+ows to "chain" together multiple dma_fence objects.
+>=20
+> The use cases is to keep only a single fence even when multiple asynchron=
+ous operations have been started.
+>=20
+> So you usually keep only the most recently created dma_fence_chain and ev=
+entually ask that one to signal when you need to wait for all fences inside=
+ the container.
+>=20
+> The tricky part is that since the chain can get very long the implementat=
+ion can't use recursion or otherwise we would potentially overflow the kern=
+el stack. And that needs to be tested and made sure we don't accidentally b=
+reak the implementation somehow.
+>=20
+> Keeping all elements of a dma_fence_chain in an array and asking all of t=
+hem to signal individually makes no sense, for this use case we have the dm=
+a_fence_array in the first place.
 
-> > > > I plan to add drm_connector_dp in a similar way, covering DP needs
-> > > > (currently WIP).
+I'm going to submit a patch that drops enabling of signaling on each link o=
+f=20
+the tested chain, as you suggested.  Don't you mind if I add your Suggested-
+by:?
 
--- 
-Regards,
+Thanks,
+Janusz
 
-Laurent Pinchart
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Thanks,
+> > Janusz
+>=20
+
+
+
+
