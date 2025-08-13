@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47436B244AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Aug 2025 10:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D593B244FE
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Aug 2025 11:07:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B96FE10E4EA;
-	Wed, 13 Aug 2025 08:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B02A510E6A7;
+	Wed, 13 Aug 2025 09:07:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sUtci6My";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VW4HIn/L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF5F710E4EA;
- Wed, 13 Aug 2025 08:50:15 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB73F10E6A6;
+ Wed, 13 Aug 2025 09:07:30 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 405A240BD5;
- Wed, 13 Aug 2025 08:50:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83FB9C4CEEB;
- Wed, 13 Aug 2025 08:50:13 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 5FBF55C6545;
+ Wed, 13 Aug 2025 09:07:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5893CC4CEF5;
+ Wed, 13 Aug 2025 09:07:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755075015;
- bh=HpSkLFEcgW7BuZHgarJdSFQxecSBz2gnVw9LpRrpxms=;
+ s=k20201202; t=1755076050;
+ bh=Xbf1FDxbQ/qRvhhN1Z5oTn4sAbhr4F55+ThZxmjLwko=;
  h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=sUtci6My47KSeL+0WBRNsXEy/dU9q4UPzoGOvQexfRZxsBOArTdeR6P4DWlRS9h0i
- 0uT5e/gSk86y/Yj7yyiy/jpAN3vNKkWWNEh1E/wMx+m2EwL9PUkINEyuR/7j0VYbYD
- aMrRnk04aXPt+W/bEJvv/mo6dqauVlY4hEPfxH5HpxW1ar7QNszFo8nWfQ86sxSjTs
- GTJ2Yfv9dy4OVZxMCX/o8zwGUdeYvw4pna0/hc/I2CTAYQSeYx/DnmpK6zkPoBXC/H
- eZAMOUvop2N+QczJpF9z+wfQioOwdrDpsQFhYT7dbwdRsI7J5P78A0KoANXT1AUph/
- sLAIxmztCY4pQ==
+ b=VW4HIn/Lpne9MfGqe54rPEZ12mib5gy4liVyd+esatGj5PHpXoyIJKRNEHjzRs5kO
+ ic3RMQhvDr2JIdvnXTT1SuymXML353qI237vplRz3dDGvOozjT/vEpomSjzRtSUGP9
+ xOgRY6njZiAse8mBtnxmoOtOIMG9Lzbw1JNbegnbjpqMmutJxeuBVlFZ3C/gZ6ojCQ
+ CG3sPPvmiM3YxIxZTJO3gLRJ4ZFUsPlu3RaNZj4shiXrg9hlB8WqwKluTi5vLJFJRQ
+ F/3T0sWgY88bUdXnwL3XJrafxYHhczO/qsK38T63TF6B9HLfA/rlogSGaqmW0yIRWG
+ /KEcg3hCmbntw==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 13 Aug 2025 10:50:11 +0200
-Message-Id: <DC1661RBEB1Q.1Y748EK7YML1Y@kernel.org>
+Date: Wed, 13 Aug 2025 11:07:26 +0200
+Message-Id: <DC16J93QUQGV.4Z8STIPX6MGM@kernel.org>
 Subject: Re: linux-next: manual merge of the mm-unstable tree with the
  drm-misc-fixes tree
-Cc: "Andrew Morton" <akpm@linux-foundation.org>, "Simona Vetter"
+Cc: "Stephen Rothwell" <sfr@canb.auug.org.au>, "Simona Vetter"
  <simona.vetter@ffwll.ch>, "Vitaly Wool" <vitaly.wool@konsulko.se>, "Intel
  Graphics" <intel-gfx@lists.freedesktop.org>, "DRI"
  <dri-devel@lists.freedesktop.org>, "Linux Kernel Mailing List"
  <linux-kernel@vger.kernel.org>, "Linux Next Mailing List"
  <linux-next@vger.kernel.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
+To: "Andrew Morton" <akpm@linux-foundation.org>
 From: "Danilo Krummrich" <dakr@kernel.org>
 References: <20250813111151.6a261ca1@canb.auug.org.au>
-In-Reply-To: <20250813111151.6a261ca1@canb.auug.org.au>
+ <20250812205946.2db0d8645f3c2ed6c8828ae2@linux-foundation.org>
+In-Reply-To: <20250812205946.2db0d8645f3c2ed6c8828ae2@linux-foundation.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +63,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed Aug 13, 2025 at 3:11 AM CEST, Stephen Rothwell wrote:
-> Hi all,
+On Wed Aug 13, 2025 at 5:59 AM CEST, Andrew Morton wrote:
+> Thanks.
 >
-> Today's linux-next merge of the mm-unstable tree got a conflict in:
->
->   rust/kernel/alloc/allocator.rs
->
-> between commit:
->
->   fde578c86281 ("rust: alloc: replace aligned_size() with Kmalloc::aligne=
-d_layout()")
->
-> from the drm-misc-fixes tree and commit:
->
->   cda097b07bce ("rust: support large alignments in allocations")
->
-> from the mm-unstable tree.
->
-> I fixed it up (see below) and can carry the fix as necessary. This
-> is now fixed as far as linux-next is concerned, but any non trivial
-> conflicts should be mentioned to your upstream maintainer when your tree
-> is submitted for merging.  You may also want to consider cooperating
-> with the maintainer of the conflicting tree to minimise any particularly
-> complex conflicts.
+> Well that's messy.
 
-Thanks, the resolution looks good!
+I think it's not too bad, the changes are just too close to each other -- n=
+o
+semantic conflict.
+
+As a general heads-up, Rust code is a bit more prone to conflicts.
+
+On one hand this is due to the more powerful type system and components of
+different subsystems being a bit closer connected to each other to provide
+additional safety guarantees.
+
+On the other hand, there's simply a lot of foundational work going on in
+parallel.
+
+For the Rust parts that are maintained under your mm tree, I think it shoul=
+d
+generally stay well within limits though.
+
+> Is it intended that the containing series ("Alloc and drm::Device
+> fixes") be merged into 6.17-rcX?
+
+Yes, not sure if it will be in -rc2 already, but should be in -rc3. So, the
+conflict in -next should vanish in case you backmerge the corresponding -rc=
+.
