@@ -2,45 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119BAB25C0F
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Aug 2025 08:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04014B25C14
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Aug 2025 08:44:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1627910E7F5;
-	Thu, 14 Aug 2025 06:43:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E07A10E127;
+	Thu, 14 Aug 2025 06:44:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NT81lk+Z";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="fVpwz3ku";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6A610E7F5
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Aug 2025 06:43:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=9PJCwaDEg66kUEEtyla4kYO9MX1zI3i0cR8hxtfYRyY=; b=NT81lk+ZvytXCPk+TLe+hJCk4F
- SRXfTEWhPade9EfkFGD9AJNarx/nhA6uLRo3DY5NSn81dwdnqGnW+0cd8QOQWYJztnm858IPaHoR2
- QhU0L+Lo/AwdbSHWeDnS1nk8hu5zGFiOaHfR7Zo1WZxEb1ty4S74zsmaLCZC7K/ElEvmstgcNzYP4
- Jyt0ee5E/SR9IeswL8lI//6PwNfzYwBKKV3mzHvIFI2jBQ3teJxgt4eyUCJyNOlUtQjQCoFrFPYUu
- 7BPbmfzRpkaGncMZ+/BbGWjHomcNlIoFUKXWQka8pkJcy2m1H8NjOv38t34XDeWgjvdDAdvACRwJS
- DnBkDBjw==;
-Received: from [84.66.36.92] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1umRgZ-00E06o-Ri
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Aug 2025 08:43:39 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [CI] drm/i915/active: Use try_cmpxchg64() in __active_lookup()
-Date: Thu, 14 Aug 2025 07:43:26 +0100
-Message-ID: <20250814064326.95519-1-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.48.0
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34E5610E127
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Aug 2025 06:44:43 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3b9e7437908so474876f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 Aug 2025 23:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1755153882; x=1755758682;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=cc498I+j1YOWceGut+z2RkLYjN1WkXnttkUY56LCj5U=;
+ b=fVpwz3kuAaQZuGPh+WT1jdzw0yhB9PHXbfn5XSVgz3fr8+/mID4s+Cy7fzFH7EVlcv
+ 0HNvIIxUwd7MkIXrWfOriCx23seUgDYWASF9JYZoNk9JvT9ybYE7gH7SEd9CunsCZzZb
+ 5VsqA7tT5ocBqO0RxF0Bk1CTVYOy8Y9EAwaX7zVOd3H5uXPv4273bHuaOV+lEzBO/Czb
+ h4bxV2jKVRr1VbIbuWew/h64KdNEaX/tim5HBqpiZC0qZ0zO4jhEGaEwKmKwfkY3qgy4
+ 9hK7fYg3OXM8WHQ5y114Ws6jQq114h/2mf+58/rxcDxvR+ZKXfARiHVN91W9sLikvF4K
+ EnSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755153882; x=1755758682;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=cc498I+j1YOWceGut+z2RkLYjN1WkXnttkUY56LCj5U=;
+ b=b4sjbirSM+FWK6jOeb+AN+nCa/8KNnYNGfOROxrxDhlLxwHPWQ8LtJw+7ipKx8exor
+ q/9caPuR3YDFGdaW9wIMyAb0GYdhZCs2hmwmaJiazWH/fPreYkwpp2eQgjWNsFzPcqbq
+ 1QRVscEbBsyAWY6p+4zJyb9CkAxbuoCTMNMfFNioGhPb8UsHGjUPDuyX0nr2B/O7ma/w
+ 1pqB1u4bbxu7zWnZN29pbsvk0+eg3w75hgajm1xIMqcUM07LevvEZUDj/z33WFVo1rb/
+ 1oXyO64lmWJfWC6j83rlg2LPdqmsxsDCTby2RtRToXAHQNMQhrQvlTdskQvOmiol2hgY
+ V+Dw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVjREhBYU59GbN3zATDc/3+T7vvtGWPrY6J7/VBalNhemjYg6lkCBmxIU1iyW6Lz6I2YhD67j7WPsY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwouoCTJq0Z/uAQpdLBcwSaNGLSzFbPGPab3hCwhD3KoWElgAAC
+ DESBeKAO/isvO8Nn4hB1d9++zxSTwxPdPNuM/8C/vYcDRwdJZM3C6nT+y0U7TBJvVC5DQLBRfH2
+ L+oMD
+X-Gm-Gg: ASbGnctpzCAydgpUP6bVbaTj4csVBIanHAew67d3m6u7P1wHTpfYFZjHwy0k9Cq9F7T
+ xjm8xfJMAgKtRM81ursCmmVYRFjvDn8H0pfvjHJ94/pRVk88YIN/creWDtFmqXbgUV/6UczRFwn
+ 4ye0elQ/KVqGQsfq3gab7eY3soEPKS1/4x5KlGLzKkD9HYfXXYOMxg6gdsW/xINKCEMILwCPq2r
+ jIAK0yz2C/mrQyvZkcGEK0S5tYKvuczv9L0iEuhXUppfhEdQglUjzghJvQvxD49YpzuYkm6rW7i
+ u+q+plHMAvRQ6HyA/wh4C2SSw1M5gSoMX6fLKZefSt4tz1xoUBiwXvtSGqu+GNJHMch6rZZRdt7
+ 6GN7AmMmk+RmAsQ6mAhKspOKfBoKLM2MgbZJgP0sX8yIfgw==
+X-Google-Smtp-Source: AGHT+IF8l0U9o5tnd3mzmSDQchRPhxwSlrS3PKFKAywoFUAe6DOgztRr7W+afUTUWc9q0QSWOk3RFg==
+X-Received: by 2002:a05:6000:22c5:b0:3b6:b020:9956 with SMTP id
+ ffacd0b85a97d-3b9edfe35dcmr1327501f8f.43.1755153881336; 
+ Wed, 13 Aug 2025 23:44:41 -0700 (PDT)
+Received: from [192.168.0.101] ([84.66.36.92])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3b8ff860acbsm23593149f8f.51.2025.08.13.23.44.40
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 13 Aug 2025 23:44:40 -0700 (PDT)
+Message-ID: <ceb80fde-dae5-478e-840c-9b949396d904@ursulin.net>
+Date: Thu, 14 Aug 2025 07:44:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/active: Use try_cmpxchg64() in __active_lookup()
+To: Uros Bizjak <ubizjak@gmail.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <20250725072727.68486-1-ubizjak@gmail.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20250725072727.68486-1-ubizjak@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,55 +96,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Uros Bizjak <ubizjak@gmail.com>
 
-Replace this pattern in __active_lookup():
+Hi,
 
-    cmpxchg64(*ptr, old, new) == old
+On 25/07/2025 08:26, Uros Bizjak wrote:
+> Replace this pattern in __active_lookup():
+> 
+>      cmpxchg64(*ptr, old, new) == old
+> 
+> ... with the simpler and faster:
+> 
+>      try_cmpxchg64(*ptr, &old, new)
+> 
+> The x86 CMPXCHG instruction returns success in the ZF flag,
+> so this change saves a compare after the CMPXCHG.
+> 
+> The patch also improves the explanation of what the code really
+> does. cmpxchg64() will *succeed* for the winner of the race and
+> try_cmpxchg64() nicely documents this fact.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> ---
+>   drivers/gpu/drm/i915/i915_active.c | 5 ++---
+>   1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 0dbc4e289300..6b0c1162505a 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -257,10 +257,9 @@ static struct active_node *__active_lookup(struct i915_active *ref, u64 idx)
+>   		 * claimed the cache and we know that is does not match our
+>   		 * idx. If, and only if, the timeline is currently zero is it
+>   		 * worth competing to claim it atomically for ourselves (for
+> -		 * only the winner of that race will cmpxchg return the old
+> -		 * value of 0).
+> +		 * only the winner of that race will cmpxchg succeed).
+>   		 */
+> -		if (!cached && !cmpxchg64(&it->timeline, 0, idx))
+> +		if (!cached && try_cmpxchg64(&it->timeline, &cached, idx))
+>   			return it;
+>   	}
+>   
 
-... with the simpler and faster:
+Patch looks fine, thank you!
 
-    try_cmpxchg64(*ptr, &old, new)
+I've sent it for a CI pass (see 
+https://patchwork.freedesktop.org/series/152185/) before merging.
 
-The x86 CMPXCHG instruction returns success in the ZF flag,
-so this change saves a compare after the CMPXCHG.
+Regards,
 
-The patch also improves the explanation of what the code really
-does. cmpxchg64() will *succeed* for the winner of the race and
-try_cmpxchg64() nicely documents this fact.
-
-No functional change intended.
-
-Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
----
- drivers/gpu/drm/i915/i915_active.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 0dbc4e289300..6b0c1162505a 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -257,10 +257,9 @@ static struct active_node *__active_lookup(struct i915_active *ref, u64 idx)
- 		 * claimed the cache and we know that is does not match our
- 		 * idx. If, and only if, the timeline is currently zero is it
- 		 * worth competing to claim it atomically for ourselves (for
--		 * only the winner of that race will cmpxchg return the old
--		 * value of 0).
-+		 * only the winner of that race will cmpxchg succeed).
- 		 */
--		if (!cached && !cmpxchg64(&it->timeline, 0, idx))
-+		if (!cached && try_cmpxchg64(&it->timeline, &cached, idx))
- 			return it;
- 	}
- 
--- 
-2.48.0
+Tvrtko
 
