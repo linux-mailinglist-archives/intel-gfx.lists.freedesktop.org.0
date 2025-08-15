@@ -2,166 +2,168 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C523B2831F
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Aug 2025 17:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F43B2833E
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Aug 2025 17:49:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A72B10E122;
-	Fri, 15 Aug 2025 15:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2FDE10E130;
+	Fri, 15 Aug 2025 15:49:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IxOk7za2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fv22dyCM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5674A10E068;
- Fri, 15 Aug 2025 15:43:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6C2F10E130;
+ Fri, 15 Aug 2025 15:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755272599; x=1786808599;
+ t=1755272963; x=1786808963;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Hb72BAv5K1jERJ5AT4ZsUT6otmxOEmib5E6K/tbLxvw=;
- b=IxOk7za2nBp/XB7DhDnEJbY/AiktMvD7zBjarLzPmCocTdn0JeU6pNpn
- qBBPyPmOW6SYJ0j1vfQyDxrEHyWYxBUhuDP4sKrA4aqdedeIdqKkQMKZC
- sBgD2NjQIZlLtPi/OYiG9mfE6ON+Tw43hJbhBvhIOFelKFG3K2ind3/zT
- HPA4C2W8ALbm79MT/INUxTRNJ+lEsiDq3zxz8qwLuTSsKGPu3EsFbj++Q
- z5YREsKye7mxfWk9d9IkeCWKOOgXrh5+RwnipyCzb39k6QKgUFCJL4qgD
- BPGmj6nnsRIS+Reg1RVk5GMDjUH9/Ov+wf6fWkokV9H8OSrk5qC8a1bq6 Q==;
-X-CSE-ConnectionGUID: lB5EyxhGRnKKIncN8RU5gA==
-X-CSE-MsgGUID: 5OUlNhcsRnqk8jjVBiM42A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="45167279"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="45167279"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:43:10 -0700
-X-CSE-ConnectionGUID: wiPy+ipUQ1W2xUa9XaS32Q==
-X-CSE-MsgGUID: m/XCRerIR5GMcqvab5yWZQ==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=SDoEIAANKorr31TlNRkdSCNV23kjh7OHfkgT0orSOFw=;
+ b=Fv22dyCMjztvveybnhKEFpnSBlaj7tNuAD1CDauSWG+IkR2l4bMhJ1ui
+ wb6Q/hOpn6UMNczMKvCvsTFTmNp4YyR5H7YeRMrXoLZmP34eVvAbEozFz
+ IvOgnKT+8RtqFkDQoURAs9Ab3rGO3htPvhGQi0gCoK7KUEbIC7bmdIkhe
+ 8IlQrXYu8Weg2DhJZRfseBDUJcPcBPTNOWoVseOJoFXyyodvb7edmXZSu
+ UKlu7gBUBa/G44HqrOwNRoZelDDySbCId8XynHH4MrFCT0J4Y5RxUdXob
+ 4keA2FPff8SEX8mUuQRQZ5CITLMxHdmu4WS5MwDja+iN/S/4NeZATTl0z Q==;
+X-CSE-ConnectionGUID: sGpaQ+LqTUqeUREY7bYSjw==
+X-CSE-MsgGUID: B7m69t5qRyOpUUT6cjrGpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11523"; a="57668727"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57668727"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:49:22 -0700
+X-CSE-ConnectionGUID: cjlHB3LqQLWaZRul7UAzHQ==
+X-CSE-MsgGUID: UT1px09SSsqdnc7W0xXFlw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="171166524"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="197896736"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 08:43:10 -0700
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2025 08:49:22 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 15 Aug 2025 08:43:10 -0700
+ 15.2.2562.17; Fri, 15 Aug 2025 08:49:21 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Fri, 15 Aug 2025 08:43:10 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.64) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Fri, 15 Aug 2025 08:49:21 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (40.107.212.86)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 15 Aug 2025 08:43:09 -0700
+ 15.2.2562.17; Fri, 15 Aug 2025 08:49:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W1NO5cWbnFlrOeKbPSwatcsxiOTV2+v7JrssNuAK5k+6CaSjmnrwqe2CySI1UunWbp7ukOB8acezsJ/3CRruGovWgmu6zlx2G5x7Uki8tCIolZXZPVV0uKZmv2rT30gtBONUNnZZEdCotLRf2G7PoYak3ra3Z1Gt8IWGi9oGxSc5eYLEB9Wah4FGTkKmw3dP7KsW/TPdH5jyyTWsRx+pJcDklxvAM3Z5g+nF9zrSc15697EFhE4GfPoBnl7PozttJyojzvmWYrTgI72MrCwqb+ZdacuhewHV4jGux2zAdEu+K7lGZnynpqqC4u0t5PNYSjGbpuklLZIV4+IE0T7qeQ==
+ b=dP70tacRhBhXr6hN6xev4Jl0n83FrO3N2Z6WB7lg3u6CO/PVWMd41M7lsGRWy8n8zzf1+SFsSG60anAhZ6pk4xv1Rz0FS+GC2j8+Sjli9ExOMjRt+bILNPkb2oLty3Ddscq/9bU+4sKp0d9tQZbfI9l+ggBmZRWgWB8O8KJFx/6V2aFp73bX0y0aLMJgxSuGLqNLNnvqLKyBh7tQfNqE3Jsxn3Z/3kKN+5lGirM39XoHnTS2Cli/P7abeqFguI7OTyu1dIw5l37znrgNtrxhz+4ZFZGz9VcCdbYTcsQpopJEMwvvJ+VGSZbelaWdoS0TOAJ3RHaz4I7Euv9gnTe9/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y+jqWruJoFfa4w32KAVQE+rZrS0so9khbJsNQJt1O2c=;
- b=dh29nqOtu1mJN24afGxU0ISLLBujc++1pOqH78b3eQ1WMMlzyZPx05CqbzeATyeFv/ZJ0ryJfVFxeVPAKDH4J1/1itFDhfDXXqDGLPdD9DuJ58wnhsfeTMzDflPicxD1GXj8evsrpEmHJGLSrRcf6BfV1mLkFihPKtEcLtBQbOZIlcA50yjvuIL7AoFE+IVnqRJENg1BUUGjB9Sl2YubtDyOzDWsTPleMx2brrmZTgeA7MkkVKO9AOlIzCHzZvf+5MTZ8tAtdJwA5wW54Jm50G/OLyRZsDuMAZ4Jq6uIEnAmEq5nz08HwuTMTNUXiln0zPvlHd7sdLMD0trKalBdwA==
+ bh=JvXBZQfbhc0TaQmZLWSQqZ8TwDM5STibQQfvQ1mtaH8=;
+ b=iZjvoBg1fCq+CqsyTuOthAfEj945jdyWXnurH2i/TFh0/2isd2C5sPMHuSv4VUoH1aVbRYpfGuBaCZUdyH8YjQTu1c2z56EUF6yDJc4he30eCNOSHlrMaYSBXyX8RR1yCdp1GLKO1vm/KnQca5D3xeLl7zKBXg2D6ro+8BKSiC7kSKy5Q/VYhvGWfvI4RTN5BgbwZKQKpwQJzKLdPzGum/LNe2wHuZL+rwqLORQljiP0XtCkQiDS/mpNKz01MQx+b2ZRx8+hB6b3olSHSaIIC9xWKtLFyEfgout/z9eRNIckAonHZ7wbRNg8NzsoJvU8IEIzWqAVS4NlM/ETE24QgA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SA1PR11MB8427.namprd11.prod.outlook.com (2603:10b6:806:373::19)
- by CO1PR11MB4915.namprd11.prod.outlook.com (2603:10b6:303:93::16)
+ by SA3PR11MB7416.namprd11.prod.outlook.com (2603:10b6:806:316::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.19; Fri, 15 Aug
- 2025 15:43:07 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.18; Fri, 15 Aug
+ 2025 15:49:12 +0000
 Received: from SA1PR11MB8427.namprd11.prod.outlook.com
  ([fe80::b156:b61b:d462:b781]) by SA1PR11MB8427.namprd11.prod.outlook.com
  ([fe80::b156:b61b:d462:b781%6]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
- 15:43:07 +0000
-Date: Fri, 15 Aug 2025 11:43:03 -0400
+ 15:49:11 +0000
+Date: Fri, 15 Aug 2025 11:49:08 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/5] drm/i915/dram: bypass fsb/mem freq detection on dg2
- and no display
-Message-ID: <aJ9Vh-HF-vz2vU1e@intel.com>
+Subject: Re: [PATCH 5/5] drm/i915/dram: move fsb_freq and mem_freq to dram info
+Message-ID: <aJ9W9JYeLiXPmHYo@intel.com>
 References: <cover.1753971617.git.jani.nikula@intel.com>
- <aa7b14eff92750fa1ddf878ac0f4e90c87b8d3d2.1753971617.git.jani.nikula@intel.com>
- <aJKEoYy1qiyaHa16@intel.com>
- <d18558149f62c87be70d183b6f41d11e0092cf4a@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ <e8301cbddf14c52cd7c58bd2d7fb1c6d498b69c0.1753971617.git.jani.nikula@intel.com>
+ <aJKFcINrXQvsM9ZQ@intel.com>
+ <61895ad35a6d50a3028ff84d1eeabdf3e0eca4ef@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <d18558149f62c87be70d183b6f41d11e0092cf4a@intel.com>
-X-ClientProxiedBy: BYAPR21CA0009.namprd21.prod.outlook.com
- (2603:10b6:a03:114::19) To SA1PR11MB8427.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <61895ad35a6d50a3028ff84d1eeabdf3e0eca4ef@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0158.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::13) To SA1PR11MB8427.namprd11.prod.outlook.com
  (2603:10b6:806:373::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB8427:EE_|CO1PR11MB4915:EE_
-X-MS-Office365-Filtering-Correlation-Id: 80942079-b9ec-46ed-54a5-08dddc126dda
+X-MS-TrafficTypeDiagnostic: SA1PR11MB8427:EE_|SA3PR11MB7416:EE_
+X-MS-Office365-Filtering-Correlation-Id: a49ccbf7-a6d2-44c4-8888-08dddc134767
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mOC0jTgwNDnpPoRaCjQi/r2+ujaUrxiACwc61gFSrYtIanf6g5PuoqATo31+?=
- =?us-ascii?Q?+aJlUbmdp/qd/Ke2Hp/fnv0HThRoEXmJnGc+Ugr4S/Xl/cYzTwH+dNMuszL5?=
- =?us-ascii?Q?eb+myDfhaG9HVMCfuQdaEyqBcDOQMOJ+ekzRFyRyd1YP7q9sksHrTGv4Gp1y?=
- =?us-ascii?Q?cSBat1rfNvc17KA0wWATrkbEAJhRoCSMecUaCAJ/aNCvX6N5rKCEBRhDnOSO?=
- =?us-ascii?Q?fPHUR3C5WO59HGzo9s6zzw6sGgiINQniajOjou6Q8n8NOQXlyeFc+b/S62Ab?=
- =?us-ascii?Q?afzEPkqeXhkMBEaB79LtnA/dbZQRpkGOLlRToICjENKeMLjT6aNWMZL/A2uA?=
- =?us-ascii?Q?6MWxpHPfqyNkEHBDBKd56x9spSbEsmGKZr+xMpwAC64+nUC2frcQcnGO9Bhi?=
- =?us-ascii?Q?SepPn1ClvPR/nusP2gyapzhnJrSbQ/N6MsfupPc6IxFXyduD+rDajVj/c1LM?=
- =?us-ascii?Q?EihwnpGYBlpV8HfrwpbfQgcdWY04RX82awJh9pE9IXn38gKeIgm86vhSfQdU?=
- =?us-ascii?Q?y3TO8AwHYJNKzNDTCVpRN3Krq7wVnX31tKK+JL0Hr5cb/PHBD67JCrZjd2X5?=
- =?us-ascii?Q?pg2ybYv300rhPa5VpR1HKgyCf05/UbuCO4TKzZVjMxFXQWKZZ/w0fhrAQTHw?=
- =?us-ascii?Q?mmZmGWXiYVmveV1PPgNEfzqryP/gqEh4HdufB64XQ1wLKihcjdw0TvX4uf5x?=
- =?us-ascii?Q?6sfQxA/nc7Rfhg8SXBRG/N45av+MrkH1+ojQ0ea19KPJIEGEnVxg/YRuPW+E?=
- =?us-ascii?Q?PCV2jOuxBWvJb2GQPLqJpPHiQT/X0S00JYmfqsUPfUAMNkZOS37y1SMYBWa4?=
- =?us-ascii?Q?lcXQ7E1TVoJ1CnxP+VfFkPiA+2Bbj1wB78rPGCQU+87dvVV+CY52e5OH6gXt?=
- =?us-ascii?Q?LkO3q25iheyfdRldUes1M9tg0lccDjF0uycecJomYlw223G6MP8VZPkc+LT0?=
- =?us-ascii?Q?rGVWwjBHEnodc4+WN60ShHxc1PcLEJ0ysQPJ0OPn5p+3LoZLXiYhTeiwIBfq?=
- =?us-ascii?Q?xaai2x9po0GvX47criF4L1YVBSwJG5dZKLzpZPhAMCx62kOXkEwljczZmF19?=
- =?us-ascii?Q?vuXk/L0IJm81fu03KMmt6DZjA1oQgPnkvW6ZQLKZER6t4JGJogGPLuRfzs+b?=
- =?us-ascii?Q?HK+ObLRgNGiLdjIIhEakkOPm8aok1jQhBx1pWWphy8PDZXpt7cV1tTo8ZO69?=
- =?us-ascii?Q?w9DVb4lXxiux2dalrBgFvFzxaOE0ry3s+RSEX9DhWfURlXETJGXhvpWgWQph?=
- =?us-ascii?Q?dFW9eibaPofxHPCChSU5LH9zd4DNfWj9RO4z+tDbFN1r6q7CuebtjsBUE6HI?=
- =?us-ascii?Q?By9xktSVDvD+F20BCZuVw0S4YRt3vNucQ/8r7oPOxk8ar3Wmmx55i1XcxLPz?=
- =?us-ascii?Q?Xcbq0jfwT/MHRnasLOTg7wxVcbZC0Alyypy2p6DWQX5Tfh93ZQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?va5hxXi9yL5PbNx9bMNN/Q1h5qu2hkIZzfjmQyIJnlDftbJy4QToVgpx1d?=
+ =?iso-8859-1?Q?HIB/sc9rHFEPVpSnLkjgojVfnBg6wOOCMiH+/K9c0R0s+fCFBmCrAnZxNL?=
+ =?iso-8859-1?Q?RJV8Ohd8Sdey29WMPaMHCXozOAKUYNPGjtdbHVFkU93NabSlIxbVXNlDyF?=
+ =?iso-8859-1?Q?skfa0uSthhjrHg8SZx02/2bqNSD60Z9Vmr+lgKVMlUgMXMAZlEoFLNiG11?=
+ =?iso-8859-1?Q?K5x49a4AtJCdpBZmNaXwwZGjyQY4BYSnRdgv3PHhv+54PuB0hDNvmGMtBL?=
+ =?iso-8859-1?Q?IiK9aBK73D7MTotw+XVlAAVGa3ZJvb5RYudQIDhNYvPwVuW03BATEWOa44?=
+ =?iso-8859-1?Q?i9YS8jMhC6/KJn5mu2hoB4yuA6DZ/UHma7itbs4rUszQR6dvyrmTEfte94?=
+ =?iso-8859-1?Q?RtJxLb6/JzzxQ2eNEYh3El51DYwcfHSVCLgs4Qy3c4XhAzsEWtW8NVzuir?=
+ =?iso-8859-1?Q?NPt7L91JpHvXJrE31u5/Gj46yooLMfOD+wy+tXnYj+KTM+I3mYatIEUqkS?=
+ =?iso-8859-1?Q?73bQVEPkdnwICstoSo6QURAAnhyRbVig6Lwl/xcXcjJCacQmiU2V1RsYD3?=
+ =?iso-8859-1?Q?JShWBOR5482WHUI7dXqZtq6OYU92IsIGtyJZ2DqkVDNsehqsAic+xjT03M?=
+ =?iso-8859-1?Q?/HgtmJCGm/Y/IADtYfUo+2mY229SbzZUZtKPszwUOEUkqFwTZSSN0eKZ9g?=
+ =?iso-8859-1?Q?GzQfYEA5WhsacuFhmtxnLK/PVfG0pnHVUIZhKXdElw3iQYB1gKoZQO8kF8?=
+ =?iso-8859-1?Q?KZavpqVH5qnVRWsbLxCHjA59J9yjgdfncEClbZm8j9A8xkzccLSbuT6OH5?=
+ =?iso-8859-1?Q?j4nEwodxzAdtxJ9ci6hfa9xXCAJNIUKGQg7t214eHTg8fFuduhG2GaFhQb?=
+ =?iso-8859-1?Q?6nigiR/LxFrySXxfubbn1ruuw3SAr6kmDrXnLfLgMHpURKI+x/WO6kqQSl?=
+ =?iso-8859-1?Q?vkDHFjdtJKCiYV31jFHm6R0XWji0sSg2yHjA2h2kxtn7bgTsq0s/jBN5Us?=
+ =?iso-8859-1?Q?ViLQTzH3nQ+pR2HAj7WtB0/Ta2SaFnSs3FqUDZvXkvuvoXH1SFbPGt94la?=
+ =?iso-8859-1?Q?emy6kHV+nlhZBn7k2ov9O5baagH8908j3TCZInXKNF1cKdOWA2w77onGLy?=
+ =?iso-8859-1?Q?aNI/W3oP/o2vldI6ntprw+m9xozDSv/QqSdasW31S0WhYi3a06+turA/Qz?=
+ =?iso-8859-1?Q?zFhVkuy+hqdl1w6TbktpB/I3xQrnNfI4yrzJrIAvAnPj2aL3ufc7qk45Nt?=
+ =?iso-8859-1?Q?GwrJe2fCxWXPfP+dzAm2tnibfm1vXkttZbuNIPJYws/INf/eUYi0f9Xcov?=
+ =?iso-8859-1?Q?hshHoFN6YfmtNJIUBzF3W8Rr3zuWyQSzOVIQbI8w/R5Ge3iFi5RTq74GTP?=
+ =?iso-8859-1?Q?AN1+k5REp4LocqeeMpsz3hD+aXi/3jCSKEw6jw3bGkXfeZcnMeU5sgPBBQ?=
+ =?iso-8859-1?Q?BZ+uSEY4OC2N87TVpMxvCfBKdLO0FL0bYYALgw=3D=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SA1PR11MB8427.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6G2VAwyCHCH2lTEZxkPUw/wlwc2og7CGgtA/43tPJbjqZjggQuxb2+oqqPdn?=
- =?us-ascii?Q?BbuG8m4Ypub8UTumtIipNKlhqajw+AzDBBqi8wyUqD1EnnLcJUmCYEbFz7Gh?=
- =?us-ascii?Q?WwckEHLcB3Y//EzzCZiHTO+IpTvnJMzRwFmhRxYvjv2zGabK3qs1nX0dqyZn?=
- =?us-ascii?Q?qmTOODgy4xNRi54Ans7ENTZhBZo6oWaxCp09E9TqE8fO/Lg6Lxtr0sHCPch4?=
- =?us-ascii?Q?3NwIBonjzn5JKBImxIWkxog7XAsKQJJh/iSgjo/a7etoksHQqyoLIrFiANTE?=
- =?us-ascii?Q?BufNH0Uux1brBvdUqJjSx16rLx+lx+Ojtj1BJHPgL23HYyGSfteu3QxrSpf2?=
- =?us-ascii?Q?oerII/Z2aCWIYPGWsFa9ijLuMZAaJtYdVWXiSGKYz7oEDw3DhtvECat+REaB?=
- =?us-ascii?Q?TsC4nu7dIJuxgqduuUiEr+57NVNmABk+ZSD61eP1HEXXdDa4vgSBlTvgaVLK?=
- =?us-ascii?Q?DiKnK72SmstQf0OmZ05NFJFp9rGXuMN/Xb/ffGLsQ+H/cwksnFScebP3Psuj?=
- =?us-ascii?Q?hHvAC9RKrFQFzLVIYGBMClsL8eDqUkL+Lul+pB9a2nW8V/a2TM8mxr0XxdME?=
- =?us-ascii?Q?Ee+IpD7r0AV/V7kO3JQjfP0KJnwy3y8XDHZsGZ2g9ZOmcn5GBfe11OS2NCKe?=
- =?us-ascii?Q?xHvqayctEVeIKuBDSoQvOxzuTwpCm0BwO7JIkOwqs8AAlrJiAD1erh+zI0Hv?=
- =?us-ascii?Q?iGgh3ln9+lxcFcYequzyohhsz7n3Aark7avKO5RvoPa0UYGwqlU+UFjne1dU?=
- =?us-ascii?Q?GRZqvnE+jNnbuqIXneevBPqvgdV6vSxvK5Tb/seFrr3QefdI/40AceAI0j9q?=
- =?us-ascii?Q?IgdTZJnzVTxZWWcO0X2p6QcbpzHE14adFPI9hXQzt/WyXDqJP7Qormowe5Sx?=
- =?us-ascii?Q?UZDeDEEgGgkyblw5YKDLj+yS2RoXsDfevWRPlqMLtj4DqyC0QDDTpRWeAhOT?=
- =?us-ascii?Q?NdAbUgR1nHKjabzlolyUE5VLMEG5i0TZ6D3SuzummZ0iyFFQ3atNr2zJWCxK?=
- =?us-ascii?Q?7ItWi4jwRpumBJsl6yBvXOC2p4N5rObUpGc/Ko01nYl7KYBacdgcXsw76OUl?=
- =?us-ascii?Q?FjF9Yo6019kNLXmUk/TjyJ02zYaCxeNJ1RTPzcFgY4DhhoiyOlwtrgo6Hz17?=
- =?us-ascii?Q?LeKKslBwYXpobUDR1AA2kOnbgVZHYLvKETkRgY8E8Ur4JjvCQZZKSuXhnQ2M?=
- =?us-ascii?Q?0pKIFZ4hue0S/9DQGFe3K5/bsZI1b5nJ+KV9lcjCBdRJYWosSFWeRhAsVWI9?=
- =?us-ascii?Q?wFMGdx81QfJpZKQusRr2yjBsDqOiyKx26TMari+VEgwqCPjY32qYjV2eeHS9?=
- =?us-ascii?Q?MNinlMsNzRcZycFTa+M+McsF0YWYykZk41u8dgAyD3goGnrldvrFhTvU0O7f?=
- =?us-ascii?Q?PRPgiP2iqk8hWeXNmJ+hfbzuCpYhGt4SQfOJ3LgAd/YhhPdVeWphXyWG6kiX?=
- =?us-ascii?Q?BHqMZq4dyC7T/aLejcYWAlSr+XJMMNnQ773+AskPk5sfcBDU8IKkymohNq3g?=
- =?us-ascii?Q?CpwQYobOJWiFFdSCGhfLVpLVvwXZz46mhX80plajSItty/7wb26PjyJ/STD5?=
- =?us-ascii?Q?xO8Mw4NwnpwFRm/Fyjef9VzOfqGK4e/VXF6Np2sW?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80942079-b9ec-46ed-54a5-08dddc126dda
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?424ZfIwmecjeT91A1HwuKMCoq1yEnT30oaYgAs+RfqW5nvZEnyhkf5f1Dd?=
+ =?iso-8859-1?Q?66iNxWwxKxGtygDIWfIe5J+s5KJc24LwbsyfyGzGwQeBqo2Shy7FP16UZL?=
+ =?iso-8859-1?Q?O4HRZ0bFKt005Ri+gyMBd9g29DtMmyKWlgdX7utcuFIG8ExBRVnTr7M0/r?=
+ =?iso-8859-1?Q?I4God0ia2hTdniwuiFQ4xwPtQQ0F6+Vqi9AYk2RakErMwlXRxsOpbDe17E?=
+ =?iso-8859-1?Q?c9zvsZXjg7AY3nioojNKJgM2F/hYv+28edyoT4kGxKBDOTsXhhNgmvc9YE?=
+ =?iso-8859-1?Q?somIOr3eufXslYy73PnjZWCoPE+ngiPadgRjKLSE2UsLAlpF+jez+3pvs4?=
+ =?iso-8859-1?Q?8M8BHR6oyRCHDdK7dQMrF0gcL5iib8gjXcQI6u1x2XAN2MBn9hE6LOqqJj?=
+ =?iso-8859-1?Q?kCfJCGhKSJPA/nqlFjKgnGg73ESglI5ghaoPbjjS7kcOLKMJz8XN1UvYjE?=
+ =?iso-8859-1?Q?L5OXzfOppftaYKw3jpWlprXIUbViomrdDsX8g/WH+eGtdPmfnNEj1mzZGS?=
+ =?iso-8859-1?Q?rhcU9TjgVOT4sJecAWZrXjJRifpQtjIrUNQdaqXrDiW93A55/qr1G4R5oq?=
+ =?iso-8859-1?Q?DeYj5sYx2miu20lSAKAuT5WV7frqCH7haOkLE1xZ93RDFuJc5/+8jFSr7x?=
+ =?iso-8859-1?Q?Cb8AUX/2HWIGHIrkfnbghgOVW2tEmsB8RXWg6Q9XfOZEcuRoQacECDpDzB?=
+ =?iso-8859-1?Q?oMYFLQ1qLIXoI7f6LjQLiGyttLsMPk/4VIofEPagRzTfbRjHWDeXjpsSbJ?=
+ =?iso-8859-1?Q?fb3OQj4hcCCZzGFOEKjt69MZhrPn/zbrGed0p3i7UzN+YDpxt4LRcwT7/R?=
+ =?iso-8859-1?Q?FJEikIankXY5rmf8O3/5NuFkHv4YrQQSaW8WAqy5NRTgvV4a7FdFNEklIh?=
+ =?iso-8859-1?Q?1Fe2g5yWdSOB0wt9uVJQB/HNmN9bLY+ir9nE1TqsI/EMhCLOU3YKecaUGa?=
+ =?iso-8859-1?Q?RzeTvIcgEme4Amnr+khphw8HEirjwbrHjSob3CwkVg7DixkeOnL0pISwhs?=
+ =?iso-8859-1?Q?3vWAH7FcIp0gGud9n27Cfr716L6evo3Ouu/U9+a2MRNJK/EV8p9p8D/MXH?=
+ =?iso-8859-1?Q?j3VmQXUctLU5XBmot810/e0Y36ArG2A28GOw43pRWW1cv0XkBc/1T6t2DN?=
+ =?iso-8859-1?Q?afbtwfuYKJZ4KrUEllscp1YSGT9rWdHdrhs+UfGOQJJlbp/+gpLv8kaGgG?=
+ =?iso-8859-1?Q?soiSR5lODUYsNQEL/BMkutd2ONBSJs+FunJNXr/rD+s4mPpYR3BLvPhJzk?=
+ =?iso-8859-1?Q?uxFnzussOjPKLjXRlTJIp4eflrygErHR8McJt5TS7jrQuONLLkHROmi3aQ?=
+ =?iso-8859-1?Q?gGpDbwgEi6oIBIsa+NBk4mVdmopWfl1mZbP9VMUVNU+XW2KRFrlOK2N9Mc?=
+ =?iso-8859-1?Q?pZbi3V0uNSlY1VHCjD4PmoCym0sKDt5/BUIeU+0X/lQNVOa36X3Wjn3u5q?=
+ =?iso-8859-1?Q?3LoaXZrRGKMwwTrPnE0XvFKIWgrMsLH98P0m3NBVGqRe8BIhcYWUDss3/8?=
+ =?iso-8859-1?Q?lDs+om+qy6ysoFd7fPeCYK/vxFlXENj8fGvXqGXS/Bex6zWDGG94q1w63/?=
+ =?iso-8859-1?Q?pO1UcEg15kFxh3kPiDD9C2BMF0NUkMo47akTaSaIh+HlX+c1D2snzEZS9o?=
+ =?iso-8859-1?Q?3RzpdyBrqskjta3O1BpyUXA2WAwYBHEa2O?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a49ccbf7-a6d2-44c4-8888-08dddc134767
 X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8427.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 15:43:06.9695 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 15:49:11.9411 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GSeXlQ+xLKq0zUe56C059fcYO8rXDVC+P2vqk6D2tRRAxrcki1ZYOdo8y/HuGbEnQAFIrdwvGyr/V48GGesSyg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4915
+X-MS-Exchange-CrossTenant-UserPrincipalName: K6TgCu/0K4BtsxW9s4f+npJyOnOKDqRVK8LDy/y7paVdqEH602XgpeJT6UWjCvRb6X2SNxFaxuj4h3CCZpW5ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7416
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,68 +180,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 06, 2025 at 04:52:06PM +0300, Jani Nikula wrote:
+On Wed, Aug 06, 2025 at 04:57:53PM +0300, Jani Nikula wrote:
 > On Tue, 05 Aug 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Thu, Jul 31, 2025 at 05:21:24PM +0300, Jani Nikula wrote:
-> >> Non-display now calls the intel_fsb_freq() and intel_mem_freq()
-> >> functions, so we don't have to have the frequencies initialized for dg2
-> >> or non-display cases.
+> > On Thu, Jul 31, 2025 at 05:21:25PM +0300, Jani Nikula wrote:
+> >> Store fsb_freq and mem_freq in dram info the same way we do for other
+> >> memory info on later platforms for a slightly more unified approach.
+> >> 
+> >> This allows us to remove fsb_freq, mem_freq and is_ddr3 members from
+> >> struct drm_i915_private and struct xe_device.
+> >> 
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/i9xx_wm.c | 13 +++++----
+> >>  drivers/gpu/drm/i915/i915_drv.h        |  2 --
+> >>  drivers/gpu/drm/i915/soc/intel_dram.c  | 38 +++++++++++---------------
+> >>  drivers/gpu/drm/i915/soc/intel_dram.h  |  2 ++
+> >>  drivers/gpu/drm/xe/xe_device_types.h   |  1 -
+> >>  5 files changed, 26 insertions(+), 30 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+> >> index 1f9db5118777..591acce2a4b1 100644
+> >> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
+> >> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+> >> @@ -3,6 +3,8 @@
+> >>   * Copyright © 2023 Intel Corporation
+> >>   */
+> >>  
+> >> +#include "soc/intel_dram.h"
+> >> +
+> >>  #include "i915_drv.h"
+> >>  #include "i915_reg.h"
+> >>  #include "i9xx_wm.h"
+> >> @@ -85,7 +87,8 @@ static const struct cxsr_latency cxsr_latency_table[] = {
+> >>  
+> >>  static const struct cxsr_latency *pnv_get_cxsr_latency(struct intel_display *display)
+> >>  {
+> >> -	struct drm_i915_private *i915 = to_i915(display->drm);
+> >> +	const struct dram_info *dram_info = intel_dram_info(display->drm);
+> >> +	bool is_ddr3 = dram_info->type == INTEL_DRAM_DDR3;
+> >
+> > does this deserves a separate patch? I'm not sure if I followed here...
 > 
-> Is this enough amendmend for the commit message:
+> The current check in the loop below is
 > 
-> """
-> This is in preparation for unifying the pre-gen9 handling in dram info.
+> 	i915->is_ddr3 == latency->is_ddr3
 > 
-> DG2 remains a special case as described in commit 5eb6bf0b44e7
-> ("drm/i915/dg2: Don't read DRAM info").
-> """
-> 
-> Or do you want more?
+> and with i915->is_ddr3 being replaced by dram_info->type, I thought it's
+> simpler to have that variable.
 
-this is great, with that
+oh, it makes sense now... what I was missing was the part where
+that was getting set in the pnv block.
+
+> 
+> The alternative is to convert the cxsr_latency_table to use enum
+> intel_dram_type and INTEL_DRAM_DDR3, but I felt that's a bit much.
+
+no need for that indeed.
+
+Thanks for the explanation and patience
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > 
-> BR,
-> Jani.
-> 
-> >> 
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/soc/intel_dram.c | 5 ++++-
-> >>  1 file changed, 4 insertions(+), 1 deletion(-)
-> >> 
+> >
+> >>  	int i;
+> >>  
+> >>  	for (i = 0; i < ARRAY_SIZE(cxsr_latency_table); i++) {
+> >> @@ -93,15 +96,15 @@ static const struct cxsr_latency *pnv_get_cxsr_latency(struct intel_display *dis
+> >>  		bool is_desktop = !display->platform.mobile;
+> >>  
+> >>  		if (is_desktop == latency->is_desktop &&
+> >> -		    i915->is_ddr3 == latency->is_ddr3 &&
+> >> -		    DIV_ROUND_CLOSEST(i915->fsb_freq, 1000) == latency->fsb_freq &&
+> >> -		    DIV_ROUND_CLOSEST(i915->mem_freq, 1000) == latency->mem_freq)
+> >> +		    is_ddr3 == latency->is_ddr3 &&
+> >> +		    DIV_ROUND_CLOSEST(dram_info->fsb_freq, 1000) == latency->fsb_freq &&
+> >> +		    DIV_ROUND_CLOSEST(dram_info->mem_freq, 1000) == latency->mem_freq)
+> >>  			return latency;
+> >>  	}
+> >>  
+> >>  	drm_dbg_kms(display->drm,
+> >>  		    "Could not find CxSR latency for DDR%s, FSB %u kHz, MEM %u kHz\n",
+> >> -		    i915->is_ddr3 ? "3" : "2", i915->fsb_freq, i915->mem_freq);
+> >> +		    is_ddr3 ? "3" : "2", dram_info->fsb_freq, dram_info->mem_freq);
+> >>  
+> >>  	return NULL;
+> >>  }
+> >> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> >> index 4e4e89746aa6..2f3965feada1 100644
+> >> --- a/drivers/gpu/drm/i915/i915_drv.h
+> >> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> >> @@ -237,8 +237,6 @@ struct drm_i915_private {
+> >>  
+> >>  	bool preserve_bios_swizzle;
+> >>  
+> >> -	unsigned int fsb_freq, mem_freq, is_ddr3;
+> >> -
+> >>  	unsigned int hpll_freq;
+> >>  	unsigned int czclk_freq;
+> >>  
 > >> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-> >> index 193e7f71a356..d896fb67270f 100644
+> >> index d896fb67270f..6405a3d0b930 100644
 > >> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
 > >> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-> >> @@ -725,10 +725,13 @@ int intel_dram_detect(struct drm_i915_private *i915)
-> >>  	struct dram_info *dram_info;
-> >>  	int ret;
+> >> @@ -149,17 +149,6 @@ unsigned int intel_mem_freq(struct drm_i915_private *i915)
+> >>  		return 0;
+> >>  }
 > >>  
-> >> +	if (IS_DG2(i915) || !HAS_DISPLAY(i915))
-> >> +		return 0;
+> >> -static void detect_mem_freq(struct drm_i915_private *i915)
+> >> -{
+> >> -	i915->mem_freq = intel_mem_freq(i915);
+> >> -
+> >> -	if (IS_PINEVIEW(i915))
+> >> -		i915->is_ddr3 = pnv_is_ddr3(i915);
+> >> -
+> >> -	if (i915->mem_freq)
+> >> -		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", i915->mem_freq);
+> >> -}
+> >> -
+> >>  static unsigned int i9xx_fsb_freq(struct drm_i915_private *i915)
+> >>  {
+> >>  	u32 fsb;
+> >> @@ -252,11 +241,20 @@ unsigned int intel_fsb_freq(struct drm_i915_private *i915)
+> >>  		return 0;
+> >>  }
+> >>  
+> >> -static void detect_fsb_freq(struct drm_i915_private *i915)
+> >> +static int i915_get_dram_info(struct drm_i915_private *i915, struct dram_info *dram_info)
+> >>  {
+> >> -	i915->fsb_freq = intel_fsb_freq(i915);
+> >> -	if (i915->fsb_freq)
+> >> -		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", i915->fsb_freq);
+> >> +	dram_info->fsb_freq = intel_fsb_freq(i915);
+> >> +	if (dram_info->fsb_freq)
+> >> +		drm_dbg(&i915->drm, "FSB frequency: %d kHz\n", dram_info->fsb_freq);
 > >> +
-> >>  	detect_fsb_freq(i915);
-> >>  	detect_mem_freq(i915);
-> >
-> > but they will only be set to zero no? do we really need to avoid it?
-> > if so, perhaps make this change earlier?
-> >
-> > Also I wonder what's special in DG2, but not in BMG...
-> >
+> >> +	dram_info->mem_freq = intel_mem_freq(i915);
+> >> +	if (dram_info->mem_freq)
+> >> +		drm_dbg(&i915->drm, "DDR speed: %d kHz\n", dram_info->mem_freq);
+> >> +
+> >> +	if (IS_PINEVIEW(i915) && pnv_is_ddr3(i915))
+> >> +		dram_info->type = INTEL_DRAM_DDR3;
+> >> +
+> >> +	return 0;
+> >>  }
 > >>  
-> >> -	if (GRAPHICS_VER(i915) < 9 || IS_DG2(i915) || !HAS_DISPLAY(i915))
-> >> +	if (GRAPHICS_VER(i915) < 9)
-> >
-> > what about the old gen remaining here? at least deserves a comment on why
-> > it needs the upper calls, but not the call bellow? or should the upper
-> > calls be in another function/flow?
-> >
+> >>  static int intel_dimm_num_devices(const struct dram_dimm_info *dimm)
+> >> @@ -728,12 +726,6 @@ int intel_dram_detect(struct drm_i915_private *i915)
+> >>  	if (IS_DG2(i915) || !HAS_DISPLAY(i915))
 > >>  		return 0;
 > >>  
+> >> -	detect_fsb_freq(i915);
+> >> -	detect_mem_freq(i915);
+> >> -
+> >> -	if (GRAPHICS_VER(i915) < 9)
+> >> -		return 0;
+> >
+> > oh! this responds my last question in the previous patch...
+> 
+> Yeah, I could've referred to later changes there!
+> 
+> >
+> >> -
 > >>  	dram_info = drmm_kzalloc(&i915->drm, sizeof(*dram_info), GFP_KERNEL);
+> >>  	if (!dram_info)
+> >>  		return -ENOMEM;
+> >> @@ -754,8 +746,10 @@ int intel_dram_detect(struct drm_i915_private *i915)
+> >>  		ret = gen11_get_dram_info(i915, dram_info);
+> >>  	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
+> >>  		ret = bxt_get_dram_info(i915, dram_info);
+> >> -	else
+> >> +	else if (GRAPHICS_VER(i915) >= 9)
+> >>  		ret = skl_get_dram_info(i915, dram_info);
+> >> +	else
+> >> +		ret = i915_get_dram_info(i915, dram_info);
+> >>  
+> >>  	drm_dbg_kms(&i915->drm, "DRAM type: %s\n",
+> >>  		    intel_dram_type_str(dram_info->type));
+> >> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915/soc/intel_dram.h
+> >> index 5ba75e279e84..97d21894abdc 100644
+> >> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
+> >> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
+> >> @@ -29,6 +29,8 @@ struct dram_info {
+> >>  	} type;
+> >>  	u8 num_qgv_points;
+> >>  	u8 num_psf_gv_points;
+> >> +	unsigned int fsb_freq;
+> >> +	unsigned int mem_freq;
+> >>  };
+> >>  
+> >>  void intel_dram_edram_detect(struct drm_i915_private *i915);
+> >> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> >> index 38c8329b4d2c..e2206e867b33 100644
+> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> >> @@ -609,7 +609,6 @@ struct xe_device {
+> >>  	struct {
+> >>  		unsigned int hpll_freq;
+> >>  		unsigned int czclk_freq;
+> >> -		unsigned int fsb_freq, mem_freq, is_ddr3;
+> >>  	};
+> >>  #endif
+> >>  };
 > >> -- 
 > >> 2.39.5
 > >> 
