@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5763B27BAD
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Aug 2025 10:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF58B27BAE
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Aug 2025 10:52:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBA810E386;
-	Fri, 15 Aug 2025 08:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8BF10E365;
+	Fri, 15 Aug 2025 08:52:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJhK0FYm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PajzIMCJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD06610E386;
- Fri, 15 Aug 2025 08:52:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8894010E8F1;
+ Fri, 15 Aug 2025 08:52:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755247940; x=1786783940;
+ t=1755247942; x=1786783942;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=l2N8p5TcLnSsyIfKYCNa/Tjgp7q88h3EuhKQ2AoGUgo=;
- b=SJhK0FYmHrtRikv8gF+M1e8ZS2mT84O3GxvpMsux3Cy6izVQCmiqgGWO
- ztOnkCdiH9cOIOdpeH+/XiXPkmGwyqRV9dIOypuufeTBtuH5FdhVK2DtD
- 7Lbc3XCeBWPSQ3UsI/ij2SrwVy9tXN2AEi4fB1aPd69VxlZC45rWunvPZ
- o2i1cj1dFGTwgruE53opLicEiEcAMtv999k2M+DASPcx933B52s9CFBTu
- 9sC6O+fQ9+UrxvnKJy5qqfHgwgK7zhHL3KrQeWUlqOcR/KH9u3F/iWEOx
- iitPj3yxLjvRimRiz8Sm8edO7PZkKVraCceGmSIJ8SMeiB8B6bcieyLKo w==;
-X-CSE-ConnectionGUID: dJb/GbpEQ3O59aURIkzAbA==
-X-CSE-MsgGUID: UB2ah3lWQLqOHG+LUKaGqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="57647499"
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57647499"
+ bh=dwuvpX7AXx533V87IdmZ2WbG2sfghrcKAScIo/n5E8k=;
+ b=PajzIMCJOW8bLxih3CG4j8qx0EZ82DzPDFr/WRxkuwuBQucKIy0Ns3QB
+ vaaVsxQkm2XO+TQtINQXI40Fs3Aw3duVuwV+Jjui0hEyJwQGY/NetW0Y1
+ oXIPAc2yEEsTeDxiWojF7doMlfXO5E2TIufiCto0zHs9BuY3xX0u6tfrO
+ 9LGU20g4BzHDlMfOJyH+PgwE6kXijqqEwK8mJDFlV0jDp9e8RY3ZnY0tb
+ nAJTB0YmXCAd2/15bPP9Bvrt3T7P+kYHbpfGWZLgqwoZV5nZxwCOWbdEp
+ ytvRSMkdFhijyVzFg3ZB01lOOtxJHyAstEM8A2cuM2mMgvDuIr3pN+FL4 w==;
+X-CSE-ConnectionGUID: 89EQaY6tR0m+jSJqJsx0xQ==
+X-CSE-MsgGUID: c8xBpB1hQMOnJP026Y/KUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11522"; a="57647500"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="57647500"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 01:52:19 -0700
-X-CSE-ConnectionGUID: JC/jk3JNTASY+1XCmgeH0g==
-X-CSE-MsgGUID: s0IMr+mcR9ujwIM4h7M0tw==
+ 15 Aug 2025 01:52:22 -0700
+X-CSE-ConnectionGUID: sFwVrInBSriSM7ZJ8/NyKA==
+X-CSE-MsgGUID: mAQOZ2SfSaKUSyy6VA5CqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="167233443"
+X-IronPort-AV: E=Sophos;i="6.17,290,1747724400"; d="scan'208";a="167233450"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.12])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2025 01:52:18 -0700
+ 15 Aug 2025 01:52:21 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 2/3] drm/i915/psr: Do not activate disabled PSR on
- irq_aux_error
-Date: Fri, 15 Aug 2025 11:45:33 +0300
-Message-ID: <20250815084534.1637030-3-jouni.hogander@intel.com>
+Subject: [PATCH 3/3] drm/i915/psr: Check pause counter before continuing to
+ PSR activation
+Date: Fri, 15 Aug 2025 11:45:34 +0300
+Message-ID: <20250815084534.1637030-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250815084534.1637030-1-jouni.hogander@intel.com>
 References: <20250815084534.1637030-1-jouni.hogander@intel.com>
@@ -72,33 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently intel_psr_work is continuing to activation of PSR which was just
-disabled when irq_aux_error == true.
+Currently intel_psr_work is re-activating PSR even when pause_counter > 0
+which is incorrect. Fix this by checking pause_counter before re-activating
+PSR.
 
-Fix this by skipping everything else than intel_psr_handle_irq in
-intel_psr_work when irq_aux_error == true.
-
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14822
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 226d4d1c7c82..3930d28e3486 100644
+index 3930d28e3486..c6715dd44418 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3209,8 +3209,10 @@ static void intel_psr_work(struct work_struct *work)
- 	if (!intel_dp->psr.enabled)
+@@ -3214,6 +3214,9 @@ static void intel_psr_work(struct work_struct *work)
  		goto unlock;
+ 	}
  
--	if (READ_ONCE(intel_dp->psr.irq_aux_error))
-+	if (READ_ONCE(intel_dp->psr.irq_aux_error)) {
- 		intel_psr_handle_irq(intel_dp);
++	if (intel_dp->psr.pause_counter)
 +		goto unlock;
-+	}
- 
++
  	/*
  	 * We have to make sure PSR is ready for re-enable
+ 	 * otherwise it keeps disabled until next full enable/disable cycle.
 -- 
 2.43.0
 
