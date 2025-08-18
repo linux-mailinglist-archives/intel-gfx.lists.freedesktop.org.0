@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56D5B29B5D
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 09:56:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1381B29BD3
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 10:16:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6674A10E469;
-	Mon, 18 Aug 2025 07:56:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7067B10E405;
+	Mon, 18 Aug 2025 08:16:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHmStQB8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1D710E463;
- Mon, 18 Aug 2025 07:56:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5134517525493038706=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE56010E41A;
+ Mon, 18 Aug 2025 08:16:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755504975; x=1787040975;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WKCPDXCho5aflXkFBASrM5EyCDKRoITqzqB3yk5WvU8=;
+ b=kHmStQB8ucEffUsqyT7Y8Wku2vcs+BeWpIzLkapAx+YP0XRyF1h+wF/3
+ cxmOeM7/uX0oRoNCUXLfxrKDaN3yIxkvkC40Q9i328Hh0lj6ht2olIWZn
+ 1LKrPVMWFJyk1JTybk/etSCCOo0GD6atBW5PRVbFtYkuRo/wDv8zi9GXc
+ 99fbTA72H26tslwmAXsJCwAzuy9yb+eKoZcTWAEEFXkMbZh0WHgLgJJF+
+ BXJeATwz7agQ49Ytxh6XYYlxFnrAhovjY9PMd5jTYOI0dLtpbXzu5o6d8
+ fPId5ZkmoUf0jX+ZB3eWCHBgBHydYEtkm2wCiuZDK/WxodDsIn/1wCQTI A==;
+X-CSE-ConnectionGUID: INn4atGYSxaCbCULLV7ZNw==
+X-CSE-MsgGUID: fdkGuY8LS2yxkN7WyII4Dg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68434705"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68434705"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 01:16:14 -0700
+X-CSE-ConnectionGUID: YEsdwrHeStKQNrfSHUH0Ww==
+X-CSE-MsgGUID: fVFI4v+GTgCLWLhJAlWHJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="167434161"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa006.fm.intel.com with ESMTP; 18 Aug 2025 01:16:13 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Subject: [core-for-CI] Revert "block: restore default wbt enablement"
+Date: Mon, 18 Aug 2025 13:28:38 +0530
+Message-Id: <20250818075838.444487-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Fixes_for_PSR_work_implem?=
- =?utf-8?q?entation_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Aug 2025 07:56:05 -0000
-Message-ID: <175550376511.243205.4435009567244065871@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250815084534.1637030-1-jouni.hogander@intel.com>
-In-Reply-To: <20250815084534.1637030-1-jouni.hogander@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,109 +61,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5134517525493038706==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This reverts commit 8f5845e0743bf3512b71b3cb8afe06c192d6acc4.
 
-== Series Details ==
+This commit seems to cause regression in CI [1]. Revert it.
 
-Series: Fixes for PSR work implementation (rev2)
-URL   : https://patchwork.freedesktop.org/series/152981/
-State : success
+[1] https://intel-gfx-ci.01.org/tree/intel-xe/index.html?
 
-== Summary ==
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+ block/blk-sysfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-CI Bug Log - changes from CI_DRM_17020 -> Patchwork_152981v2
-====================================================
+diff --git a/block/blk-sysfs.c b/block/blk-sysfs.c
+index 4a7f1a349998..c5cf79a20842 100644
+--- a/block/blk-sysfs.c
++++ b/block/blk-sysfs.c
+@@ -902,9 +902,9 @@ int blk_register_queue(struct gendisk *disk)
+ 
+ 	if (queue_is_mq(q))
+ 		elevator_set_default(q);
++	wbt_enable_default(disk);
+ 
+ 	blk_queue_flag_set(QUEUE_FLAG_REGISTERED, q);
+-	wbt_enable_default(disk);
+ 
+ 	/* Now everything is ready and send out KOBJ_ADD uevent */
+ 	kobject_uevent(&disk->queue_kobj, KOBJ_ADD);
+-- 
+2.25.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152981v2/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17020 -> Patchwork_152981v2
-
-  CI-20190529: 20190529
-  CI_DRM_17020: e96ac495247bb459351af3e70cad06769afbb1a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_152981v2: e96ac495247bb459351af3e70cad06769afbb1a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152981v2/index.html
-
---===============5134517525493038706==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fixes for PSR work implementation (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152981/">https://patchwork.freedesktop.org/series/152981/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152981v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152981v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17020 -&gt; Patchwork_152981v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152981v2/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17020 -&gt; Patchwork_152981v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17020: e96ac495247bb459351af3e70cad06769afbb1a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_152981v2: e96ac495247bb459351af3e70cad06769afbb1a2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5134517525493038706==--
