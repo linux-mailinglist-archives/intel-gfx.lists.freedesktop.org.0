@@ -2,174 +2,188 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49DCFB29954
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 08:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 689B0B29966
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 08:09:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E28F10E3C1;
-	Mon, 18 Aug 2025 06:06:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9250D10E1B7;
+	Mon, 18 Aug 2025 06:09:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNVesESN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hRGK+oix";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB2810E1B7;
- Mon, 18 Aug 2025 06:06:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26BD810E1B7;
+ Mon, 18 Aug 2025 06:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755497196; x=1787033196;
- h=from:to:cc:subject:date:message-id:references:
+ t=1755497361; x=1787033361;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=z/w22DEfCiEqW7pv1Hb0JsoqcWyDuaPzOfHfgrCJhEk=;
- b=FNVesESNCkfOf1oYEMNewnyVCt/E18BsZrGILd6r0+5Gq+oHXW0kfEuy
- 0VhR9nTXD/y4xAySfxz0sqw8ZWxYmydc210vIx5OE3ntse7AosD5cqTBg
- toH897h2cIVjwoCG6ynjFVstSJi7k395lcYKQKKpSI+QfYWY74IY3J/x4
- OqDV5+B0LNhqAxPs5ktQoHoUcTgG2hH9LRVGLoOQzYn3g2+4oKQBaFs73
- hW1sRuhm0Ojg8/bSbIX/pInp9yPFnqS11ooOzjxU96I04GbucmMktitoD
- PG7BiynCscdlEe+1NL4myYN7tXcru4FeOLoklTx/V8AW3mWS+4JGRna75 g==;
-X-CSE-ConnectionGUID: Stm370KGT+uRhFikY1VVww==
-X-CSE-MsgGUID: jywiHENKThCRNaSzlLhYmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68425867"
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68425867"
+ bh=NjspnLk0JBGQv1BjynzFAYvprC4gTEHj/v3I3YbAAWc=;
+ b=hRGK+oix5b/AAybqqZafbAcOsdI8lNkIfGlOas+I4S8086r+/pPUOByA
+ cb/tkyfotJ7XxSI7lz/5rDtxRbKGEunFE8VGOIbLKfw/actkbl9RepfQb
+ tq8BZ95hA41BNQjtOYmVVmZ1nhhcqFiOoBkDrgi5HPzRrgmT8lL3P+nJn
+ cla7a8TZo8dSX5k5LyPluJjKmV6/uJ3zQx3xDsdxqbaUh7xHxwX1FTwrv
+ Y0IdNd8IpiWhsDsBXDvx5JCJtwbToCxI6XE7TDWa+uCvEArxvogrO7dpj
+ 8QfQXrPggN8Hzuu014pOYWGDYmRzBl/YQSGsFS2jMOO6IiqteyO5DPybO g==;
+X-CSE-ConnectionGUID: NALXiIoATwOVMyukKUwhNg==
+X-CSE-MsgGUID: ytYHJ65gQXWvrQU0AOtkbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68426114"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68426114"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2025 23:06:36 -0700
-X-CSE-ConnectionGUID: FpxtMrfLSEmbPt+22JkS8g==
-X-CSE-MsgGUID: WXoTlwYvRlaRBZ7YGiKbOQ==
+ 17 Aug 2025 23:09:20 -0700
+X-CSE-ConnectionGUID: zqxrSG1iSUG99SrEEWa8TQ==
+X-CSE-MsgGUID: d2vFb9zmREa4GBZjw16QHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="166990201"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="166991067"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Aug 2025 23:06:35 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ 17 Aug 2025 23:09:21 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 17 Aug 2025 23:06:35 -0700
+ 15.2.2562.17; Sun, 17 Aug 2025 23:09:20 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Sun, 17 Aug 2025 23:06:35 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (40.107.96.40) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Sun, 17 Aug 2025 23:09:20 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.81)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 17 Aug 2025 23:06:34 -0700
+ 15.2.2562.17; Sun, 17 Aug 2025 23:09:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uC0/TOm8uCE0vnR9YJYGSlw9UG4vhpXp7MAw6tcEnYaN1NWPWtZT5Z6+Fq3TVIHqrHKv1zCKpmGY8TUEV6eRc5oCqEy7LfQgpcfnX0bgevPQNz8r6kgURbDgXQT9L7riY/j2KinvKewxZ6fu6x8gXojm3IMGcQXOKad6XPPl/MTOpgzfuV8jL2W/Yg/hCrPGnzVT8cgt3jgpC8A6VME91oCxWE77LWBN9Y3OA64ky9itv1mbwK0gQryCzWrahqzqp7yjn/oCpSYmgoqLYVn33SOXPe8Pn1UbPD/VyDL7bKCqdmmwofBGEHBJeJVEpgvKG3XzRyW8xBZWgLQDPFQP+Q==
+ b=cQMrz8bBP2iA5zUh5lhyKLGwkikZfROe19e6boRWkTCuPF2jSjJsYhi0HynfSsU/Vm02ux5C5N8077gYFB0IOkjGJ6oQo8ODVJH8RtTGRpiOKStLiI5j3dWimCAeGZxfPYZc+Ck9kOySXWAARqkx1hwvNGmwoGwCxwUxtIRP4Mu5Zf+zgmGRcZMml21DYFw2idlKV72m/ZIswMQV3QSxDn0K2C4wROzunvIjcIaYLZMNY7VFZ9M7Nbuzc2zB3jB2VgqRlOyAeikv6Z5VPs45eDpy9uB1U8zbpFrS9TNorEgLo3ZZF4IGlNbkZOh2r7KKYP1jyCS8mCvl5LspspkEig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SnbCkSuAB36yqHaTum9S5IWR+8jejDzHSodG5/i79Hw=;
- b=b3xXqoNaMShex3jGqncXHIR3GGU2al30bCBq/tOpCcBrR78tlkTcVZx8PdfbcpUyNkpLSzN8ceJobO7tLrQEg8qGt2IC8EhkcP01y0ILQnHNZ7dKITYCvyPOw9wd+nM2z4K3LVtCZqLCMCgvGpi45N5OkVBVMQUJJ2k4WVn4sCBtpail00aUBRw/tmb81tdlhg1Fz0HJ19QWAS4WgK92KDLm1mkHxVkFc/VFkmgBy5EDr2himBF5Y/VetU+3OJ5XFwXvVWiMImQK9uMP0WjxzFLbAbdyQf2UGgnrMYLK8mZ/mj9aWtVsus5KGK+yd3u2BHfJOT1tHzR1iDmLVbGkdQ==
+ bh=09zllaGOyfvAVvO3NLrBcRQYRUJWebRzfhNa7k9NHgc=;
+ b=Xi0PypeVmFDbHCTGDWHXMh7LApPjdRjMiu6dp8V5Ar+C5JlILrCVblXOeyxFie05FzfERkvrtXmTthg24u+EMRL3Z0L8sDJo7J2GOr49dzaVRSqeyogDA2unZ6Efhk1E61E/KXofjDd+ImV68CE7hP0ykk9jmRkwuMMuAYbAVk5bMu0o3UNdYa0lVSOh4jWXPhnT/BciWdV6u70j5q5ovQc3iJUtbuRw2SJsJCiQZmU2v0nzFK82er4qQpZm/c07reCRYS9kHNpoHNYs0R39mjutUD2pEe1/+1BUpeFfG9/RqIzlSlUN/8uM9dDrN4HtNi+S7Agauktq+3MiZPp3Sg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MW6PR11MB8391.namprd11.prod.outlook.com (2603:10b6:303:243::14)
- by MW4PR11MB6811.namprd11.prod.outlook.com (2603:10b6:303:208::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.14; Mon, 18 Aug
- 2025 06:06:32 +0000
-Received: from MW6PR11MB8391.namprd11.prod.outlook.com
- ([fe80::229a:3e89:506f:a662]) by MW6PR11MB8391.namprd11.prod.outlook.com
- ([fe80::229a:3e89:506f:a662%3]) with mapi id 15.20.9031.021; Mon, 18 Aug 2025
- 06:06:32 +0000
-From: "G M, Adarsh" <adarsh.g.m@intel.com>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>
-CC: "Garg, Nemesa" <nemesa.garg@intel.com>, "Nautiyal, Ankit K"
- <ankit.k.nautiyal@intel.com>
-Subject: RE: [PATCH 01/10] drm/drm_crtc: Introduce sharpness strength property
-Thread-Topic: [PATCH 01/10] drm/drm_crtc: Introduce sharpness strength property
-Thread-Index: AQHcB357TjVZThAFWkStUzz+19glnLRn/QRA
-Date: Mon, 18 Aug 2025 06:06:32 +0000
-Message-ID: <MW6PR11MB8391EABD7C6AB5BD99453422C831A@MW6PR11MB8391.namprd11.prod.outlook.com>
-References: <20250807092841.3169436-1-nemesa.garg@intel.com>
- <20250807092841.3169436-2-nemesa.garg@intel.com>
-In-Reply-To: <20250807092841.3169436-2-nemesa.garg@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW6PR11MB8391:EE_|MW4PR11MB6811:EE_
-x-ms-office365-filtering-correlation-id: c33f2c0d-720f-4805-b87f-08ddde1d6157
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|42112799006|366016|376014|1800799024|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?V2poBV5AUh2aD66jCNNyVnwjUCt7ywdLe647tpibaB6n6GDOWfVCNwVo34g4?=
- =?us-ascii?Q?0ST1XPaPShnUYJHTyoqe7b+hXXEFghKpEmi+JRHy6GNqTPTOp+j446mBVSTj?=
- =?us-ascii?Q?7vtMww7ulhJ0T2Qlk3X9DFAIPSiqj7ieU+lIhks8d4pxKFFVB2qujsjxWxo6?=
- =?us-ascii?Q?a1qdTRQmS+6E7EY5IP0KthHuOYGJL8IVbbrBf8EpgBU+ek4cGwOzhuShHCWe?=
- =?us-ascii?Q?7K6rgOwTJ/lkXU9G2CkoOhpypbfAB+p39x+b+W96KXAixLcsTkB7aJQxt+/e?=
- =?us-ascii?Q?LKClRgsdNT0kwuFxQFq5+0EVIdihR4nhMA9yTO4v9XT//rSkttDqMlXYUGRc?=
- =?us-ascii?Q?RfSLhYosCA+S1YkBesaEIfg5BXT4cG3P7np2kv/vzOOFtVJaBIESsuJrNl4c?=
- =?us-ascii?Q?1ASzUl90fP+FjMFFkQeortpCTKoht3Ofmy5fdJPGWBmrVPwZAnpkWq5lgkvC?=
- =?us-ascii?Q?vkXk9odK7vWopZOE68GRM+bU0lUF1yZHHrcnZ2qd+JuUAAmee/FQbIg4BiDt?=
- =?us-ascii?Q?rzgrbFu2hO/gvPXaR5CI1pMomkwzn0Jr62JSaysYb4LgyIVg+ClCn/RRNAHM?=
- =?us-ascii?Q?eInP5gHTWfoH2ohBBZKqDSHshpA8Izmom/eP568J0cV5Xcd1wCN9qeyzmnkC?=
- =?us-ascii?Q?dPx5KOt9cnQyZUkVlhJCrroOaiID9onWYcXPJ9vT1Pgec9NVy29SIhCUtca2?=
- =?us-ascii?Q?gM9ICCQMqPrRsyqLTUOCKQSk40GSYz+6r/PZfB4I8AfaMaz3AaQDKTKPOfCI?=
- =?us-ascii?Q?fPb0Y2/3Xglq3KgliKr/0eHYimfwo74cLCAa86IYzDXHHBNvDurC5ixRl0bl?=
- =?us-ascii?Q?z0JKg3uP/B/+TWzqVnM9nYa2zvxhq4LC6d++NOt1tul97oSk1FZ9xl0+HWcD?=
- =?us-ascii?Q?oRdTq38csA1RK8t17VPyxICstIwBPaw26NvOYK1dhv687uMDTQPDoXsqCdzg?=
- =?us-ascii?Q?ijyh1ELfW2kQ5tdvHdaFKwosYCDVOcQaidH2GdTOytaXNW//qQaffDMcxqnP?=
- =?us-ascii?Q?yQKtg2rANH2GlRh+I7kIbIN0dKu8kUexMN5+vs/7BBMRqrGKQoPaFK4sRuR/?=
- =?us-ascii?Q?hajn28zt6LzdorDXZ2PIjoHa9lwdz/hE6Ft9uNTWXnE+1C/RbymUWwdXYtW8?=
- =?us-ascii?Q?37ewuRnaSvch8edsLgtisl3uywE625acOcFBIdya26w56lymePhfeVgM8iW2?=
- =?us-ascii?Q?8lTE/8hWQdSu1Ylxs1nEHz3CuXfh8SWt7rKMdlASjZD+vDr102UEffmunaF9?=
- =?us-ascii?Q?v8rcVP+0HnSuue4K3L8m4rYxc21HNudPLTgb/XPH2iBR2pAF0Tas8ZEVkdnI?=
- =?us-ascii?Q?AkWFanyl+Ua4MNlOwbyKMLKKpTPrRQBdKr53Dh3MiXesqsTjWtyhuz4gbehK?=
- =?us-ascii?Q?AeyzZpEcPZ1snLMTYWmDalv5GOpRK4ZLRkV4q6ly1/KrmG4egyJKStmc+uQS?=
- =?us-ascii?Q?OFZSkzIdYwJp2Xw+IaGeZKUmudpYWxvbXcRJd4cPOVOKKhmHZ6hjb5vWAIz2?=
- =?us-ascii?Q?FnZQ8L8b8aE14ss=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW6PR11MB8391.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(42112799006)(366016)(376014)(1800799024)(7053199007)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?X3+Y0fCivtsF+GzyFamG4iXcZxLXXqZ/c+NPtLOVQFPBvjR2Ma5Vv83MmbSC?=
- =?us-ascii?Q?LPQIb9kJLbO+dH0Fpri2H4BH0AE6kOFvYcHVXDkMjnhiDL1ED30+crW5G5bM?=
- =?us-ascii?Q?n3J3bhuw5rI988D+i5P0sqJ9ZZvF4iVqTg/MqZUkbaqqNjPeuhxBA47L7X+Z?=
- =?us-ascii?Q?uoBTVYF0tliyeqWtJT521S/QeX7UeNdsziAoaVPBBDDXbdfwXBS5K+eey7CM?=
- =?us-ascii?Q?Sk6etDu/UDxAyIqRddGG/mIjVgGFyOstebUXNw+qvXqat9hCenPJ4Ljjkzgo?=
- =?us-ascii?Q?QHXgs2uZjzaE1ZsY3r4F0+UArIEg5A/bDkP0aLMUQatZpcrNZ5YkGinRpxv8?=
- =?us-ascii?Q?g63rIl+7PG9HYEV1gCAa2hjJ89I/QVIqNJE2KCF0rLjLxWuB1O8hjN5flEKS?=
- =?us-ascii?Q?MBCcXN6cwBt/q/e97n9sHjeGATATf+8JpwpJ6Zvyj8WGFhNuTBQe0mP+ehbS?=
- =?us-ascii?Q?zOTo4lNsBdY4qAdwBtjB3a1XAruteW+W3kC7WO2eXufrqOAvdmzY2UgfNYCm?=
- =?us-ascii?Q?n5tCYKbVV/A2ihv2GdMmZW9KpspM3dTCWuccC8wVeAi3mDCsGcaMGgLG2NJF?=
- =?us-ascii?Q?GkpummmtlM7s1EKF+lw/ErBfQftiTNdv/TnU1t50cCKE4DarZk/wip6i0jIT?=
- =?us-ascii?Q?mR1Hp/3seo2TVYSAJbzHITtBFuQIwclehMWcXvvqffN5ChjvhzS8vYObCIwX?=
- =?us-ascii?Q?iK+J0f9rDIXigTDVB44Fp1+dWVA6qv3CezghxB9YAQe887XmH4jHPEy/24fH?=
- =?us-ascii?Q?NIeXaxb1e2dUgB8oEMH0GIpQtw6+X1htOP/aEXNAVCDMI5vPb/jA/v8FUxac?=
- =?us-ascii?Q?AQnJODuPitP9ckqvebe9pDvO2Be5YpVKufUN0D3GqKmWjGI3OCDPiR05L1ov?=
- =?us-ascii?Q?MryA5pY0Jv26JG9TQro7E/FbGE9Btfl8WnsMrk5AzrG3jG0n+tbL6zSjPReY?=
- =?us-ascii?Q?mG/ukAoi9+weKDjd8U1zxZBsG0RAzr++G1wWUUY1qPXc+P8Hf6yMkvD4v7Ju?=
- =?us-ascii?Q?4dfesIfDQ9//f20C+lLlZQ61Xd+rdgjej0hA+vz2Es8I1U4XJ8GrVuystzlg?=
- =?us-ascii?Q?ceYPr48cliTZHk+Kvny+lUqvpkf0IQko8L9G6PYrG2B+RUDJcKv2LpNyi4me?=
- =?us-ascii?Q?mPuTqpTvMOI8Mi2JTqeSoeys/HtttrIHF2FiH4cQczY+ZGlm8zVkGAV/ZPQO?=
- =?us-ascii?Q?MiC9NM7oRrL3NZOcidP0lFZxD7Lei/31qUXn+auuut9xUywcfgqigJHANkqU?=
- =?us-ascii?Q?W9e13WQ3WH/PCIOr54MaQlpdIfwK975wMpMfs1hxJLB7rtc8XBEI618EXeJm?=
- =?us-ascii?Q?6f6knJllWpOZFqNrcKEGNkh6nQSn3I7Mqu3PTu/oRdLCRbQKIJGUs69EE4Pn?=
- =?us-ascii?Q?wDqsT9iTo06YbVS11T+tZhho1Xb038FfAXGvKEzq6jHBvhXLVEFyMhRnczBV?=
- =?us-ascii?Q?1QcsejFUxGTOvZ9JDzxywOJIP+DweDjvrbXd7JRhXCFOmcG1yg+FRHws/vNm?=
- =?us-ascii?Q?gKPZaKMjf9b8lpju4sEvZnrbvDZNug6P1RUyvsV3/GLmV7MS0qJddGh/e/OJ?=
- =?us-ascii?Q?pPpjw7mxf+oksSQTkaU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CH3PR11MB8210.namprd11.prod.outlook.com (2603:10b6:610:163::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Mon, 18 Aug
+ 2025 06:09:16 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.8989.018; Mon, 18 Aug 2025
+ 06:09:16 +0000
+Message-ID: <5bf4ef6e-cafe-4f7f-aa9b-5deb80fab6ba@intel.com>
+Date: Mon, 18 Aug 2025 11:39:09 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/12] drm/i915/display: Extract helpers to set dsc/scaler
+ prefill latencies
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+References: <20250807111548.1490624-1-ankit.k.nautiyal@intel.com>
+ <20250807111548.1490624-5-ankit.k.nautiyal@intel.com>
+ <IA1PR11MB63482583ED9773132E155F73B228A@IA1PR11MB6348.namprd11.prod.outlook.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <IA1PR11MB63482583ED9773132E155F73B228A@IA1PR11MB6348.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MAXPR01CA0114.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::32) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH3PR11MB8210:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd4849d4-75fd-4167-9269-08ddde1dc2e1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Q0hUZWV6RTBLYmZOd0c1ekdkVlNaVytPejBBN1p3cVlzNEk3TzJrWlIwVmZs?=
+ =?utf-8?B?ZldiaHhoem5DSVNOUXNoNytTakZlNW9WZ1FjeE9vZ2RIbURWYSt5TldFcE9j?=
+ =?utf-8?B?dzVsSm5wSnQ3dURmQlYxWElYYTlJMm9jR0xpQkVpSUpkZEo5VHZpTERBL2lK?=
+ =?utf-8?B?VS9TNDc0dVJmTFdtUklJTFBkYWlMeW51R0wrZ2lNR051d3Ywb21WNHd6dUQz?=
+ =?utf-8?B?S25RKzVtb2h3T2lRYXdUZGMwa2xOY0E0ZGxxOFBGREdDN0xpTkloK3JnVlJD?=
+ =?utf-8?B?RWhpV250Wm1sRGRzd0UvVHZNVUprQ0tJVGtMd09NU2NHZXN2NjJhZy81U3My?=
+ =?utf-8?B?YmdCbERzZ1RXakYwY0FLTCtZdjlnd3FGdHVINU9OdzBoK0JDRUU5ZjYwNzR3?=
+ =?utf-8?B?blNESEtHWThVTzhFUjFYZjI0M3kzeVVCdEcrek1ySm1KNW9EYmVIM1lNRFFU?=
+ =?utf-8?B?bW43NG1qb2J1UzBhMHpoWDJKb0RZd0hIK1RicjEwZHZXM2RpYXAwVEl4RXB4?=
+ =?utf-8?B?MmRFeUt0SlRtejI4SmppWEx6aXppNWptK0pxOStuQW5Ka0hsenlDR2Mwc1Uy?=
+ =?utf-8?B?ZzhvOTA4M2VEY2FmRHpvZXVvRlJjTHNTRUwvOWFqTWFKbUR2eXVNeVM5Rjkw?=
+ =?utf-8?B?dUpzWHdWMTJzbFBzRWw1OGJ5MHpzNENyYjNYbDZ1TUZKdHgwaytZNEkreDJr?=
+ =?utf-8?B?b2hMWllhcko4MHlabXFBcFZvR2lzeDhKUk9EMUVYTDkxVFQrQmxzZUorUEdT?=
+ =?utf-8?B?enB5Y1VicHVVby84TFFwL3p5WDMxeEl0VW1SaUxCb1puUEkrK1dzWG1nZy9u?=
+ =?utf-8?B?K1JXNWFvWG45Tld6WmRxSkNCclpOTnJPR0pJYWo3UC90V2MrNHVtVnZWQXZz?=
+ =?utf-8?B?K0JOMFM4eXNNUFA0dkVobnh0ejJmRDBMU0VHSkhhRU1BTWtLY0tIdmdyMTZK?=
+ =?utf-8?B?TDlRMTd5aWdUTXpWYjUwaTNWemFUWVg4elBNaXpiVW1PeTBTaHJnaTVLSlhM?=
+ =?utf-8?B?akdEb2t4QlFySHFTS2pPdHhUMEpFTnJ6TU1JdHRSZUVaNHg2K0U1VW8xS0gy?=
+ =?utf-8?B?MFlISE9NZDZKY0ltQyttWXJvTUcwY2lvRFk2Wkl6bEZBZDk3REFmTlNzOTBS?=
+ =?utf-8?B?bXNXSGtxQWdmQWNsNUVJQlpadHdKRDdoL3BKZDdkRXFOclF3K0lWVjh1Ry9v?=
+ =?utf-8?B?bmhHU1owMlgydFBuSHpTVGgxeHlGWE0zYjlKWHVNZ0R2TW9lY3h0NUJ3aHNs?=
+ =?utf-8?B?Y0F6WnhZbllqNE5LM2pCWDREQm80Myt0NnhSVTIyalNac1BIMXBDeUlFcWc1?=
+ =?utf-8?B?NjdiR1RaLzZVRU42a0RFR3ZLLzFnUldlZlBBMFM0T1BkUmNDS2duVk5WQStS?=
+ =?utf-8?B?VG9raTV4YW8xMlBydHJnTWtpM2R3QXNGSEJ2SXBjOGdTOFdoZndxZUdsblNY?=
+ =?utf-8?B?S3BYcm5rRUpaZGlyckNaZVhaRm5WWnFJejZzUGRwNXNnSzUwNE4vckpUZkFS?=
+ =?utf-8?B?NEVvWDZMSGppU0RCdmkxL0h4NnFnQVFGZXhybEppa3JrMnE3d1hEUUpESENQ?=
+ =?utf-8?B?elBML2hDNXZJNTU1OUZWYWdiSDVRek1SRnF4Vnd0S3FoalgwTTVPaitUaE5C?=
+ =?utf-8?B?VnI4a1FmSHBYWW9RNHdtRXBKalJRbThhb3Z1YWM1T01EaUZMT1FSL21BNnMy?=
+ =?utf-8?B?TEVtdU1VY3puNjl6UmpBWEp1RzF2MElZVURxa3dNUmNia1lKeUhYd2dzaDVo?=
+ =?utf-8?B?ZG94WWE4UENibXV4UXAydWhhR0dyRTUzSlpWVS94ald2UzFKaXM0OWJmTms2?=
+ =?utf-8?B?amJ0KzFxNDBJRjJBY1FlWjRVVWRRaDkvYjNGYjExK1JPNlI5T0tQNEJSQ1dF?=
+ =?utf-8?B?UmlCaXJ0N3Q3Z2s3YWFPTjZuNjFjRnZNLzlrSi9nWm05L1E9PQ==?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SnR4QWxxOWIrcHNSbzF1dm55VDN2RlFKNmNvdFlTMUdBTU1yU0ZJN1JoSUdu?=
+ =?utf-8?B?NXdTWE1vRjdjOVcvNXNKK2h5NXR4WTI4cUg3bmptQlNJdEJsbHUzeGcyTms3?=
+ =?utf-8?B?aUxvOW5FRC9RbWxMSjFDcTNyTHZCdmU5bjZDdVE4cW9FRlBicVlyWFFJeWU1?=
+ =?utf-8?B?cTVyZjBIQTRqRithK1pySHhDVkNzOU5pUk1NNnZ4UU1MK1dvTUEvdHJDTVp1?=
+ =?utf-8?B?Z21FanlNV2t0Y1RMVGN0SjN1ZkF6QWgrWGtNNzdRWkFvWXQ2akQxUEdkUHUv?=
+ =?utf-8?B?azdsRDFrNDEwUm9SU0RweDVkQUYwaDNXN0dueEJOMHpFTVI4THRtdHY1Z0xz?=
+ =?utf-8?B?RUs0NitDWnM3RGMwRnNMQUp6elVoRm0xSzdNZG55MWR4NFE2cGNxT1Vhc3g4?=
+ =?utf-8?B?bWpKbDFqQTVZUmE1U3MvY1ZhdzJWTlVMUVlQbG1yblg1OEk1TEZldUJPSGNZ?=
+ =?utf-8?B?MWtWQk9ZK04xcXNob1lkUExwSHg3KzJJTXg1dnY5Y0tnSFZrM2xPL3ZNc1g4?=
+ =?utf-8?B?TDdkbk1lcUhuMk92VnNHYThmVElkQ2JkMWNXODh0akZHNHJDWmpYQitoWWZr?=
+ =?utf-8?B?NE1wWE84bk9OdmQ4SGd2T2czYU1GQXROc2thNVdMd3Faa3pJdE15aVJSWlY1?=
+ =?utf-8?B?SWhIUUlEdmpCMjdVTU0rUTVGcmw2bnlEcXRZM3hpM054VWdrNC9RVVhhMGRF?=
+ =?utf-8?B?dDFsT2d4aUdVUzMxcjZ6cUhadjZ3RzFMU1Z5RGxRWWtzWDlwNnZFQ2taYmhO?=
+ =?utf-8?B?Y0dwMm1nMmtvOG1YNzMyaG9ObkwxRUZGbkdLVUNIQlZ3VXd4UHRwaENYYXBV?=
+ =?utf-8?B?WXdMZGFhWE1mc202N05zcW5hZDN0WHlsVExibFpINWYzR2ZiemxrVlJya1VS?=
+ =?utf-8?B?clJ5L3dIUDY3ZUVFZkNLMk1IY1dka213QlRwbm5sQ1JzVS90V0hyMVVteFZC?=
+ =?utf-8?B?TjRVQS9ySTBneHFEbHVLZ0NoMS80aVNVaTl0eitBNUlNWml5M3BSekV3N0xu?=
+ =?utf-8?B?NjNFTnlXS2xpam83eDMzZ2RKN2NsN1g5V05RYms5c2FPZk5QSEVYaEpVcGFt?=
+ =?utf-8?B?MFByM25ranB1ZU03eVhJUEp3NUFmTEJBdU1xVlZuVXhYU1ZDZitLQ0c1Smd0?=
+ =?utf-8?B?Q1pMalo1TU9JenYyU2pxMVZHM3hKK21TRHRLODhiY3pKbXZUS1RxZjBjNTJV?=
+ =?utf-8?B?WWNlTkRaRGRaRmowYkkxanNrbC9tT2hRSlZGbGZjbDRBbFRLcXhzZTZwSWFJ?=
+ =?utf-8?B?cXYvemNGME5zamphUnBJWGZKVCtkNmVYeUFaTTlPUXhTbmxjMzlyWFk0ZHk4?=
+ =?utf-8?B?blJ4WmhsTUxGK2VobzRRdXl2aWxabVF0em9wZEwrRFJSZEs2Ty95RzJoV21a?=
+ =?utf-8?B?ZHBkOHNUdmxPT0pUQ1RJVVdaMkUyNjBacVRRVEI3Uk4rRDFMdk5MRmNOM3Vk?=
+ =?utf-8?B?RHJoMU5PVGM4ZEFWNTFnc3RqNkVoUjg0UVhjTHVRcU9Da3NJbmwyMjBDSWFq?=
+ =?utf-8?B?SGR3dGVEMjlNVkFQMHQ1Mk5JS1U5Y0M3ZTh6UVBGa1JCM1dZc2I3eVE4WFVU?=
+ =?utf-8?B?NEFsdUpFNVFZMUxaM25aY0E1R21ZampsV1R4dWVSeEdZQXQzQXFwbTZDdUhp?=
+ =?utf-8?B?RjdpVEtuS1J6T0F3NzFqTEwvRGY2WGxUb0t0d0hXWE1XUGVTUmhMSDZ1dnp4?=
+ =?utf-8?B?MndNc040Y1hiVG5hR0pBaDNnaGJHcE9xQTAwaEd2Q3F0S0FUYmJVS2xncnNV?=
+ =?utf-8?B?M3gvRWNGZi9DQWcwQmk2SWpGVVhrM1FRM2hvazRCcE4xL0NxOEdjZ2EvdmhN?=
+ =?utf-8?B?dkdEUEkrZEtJa0xqRHlqVW96WUtIcjVZb2NrQ3FKYnZjMTluZWlyQWxwRnFJ?=
+ =?utf-8?B?cWpaaGhwWHp0NytZTk5DaHRnNGxpdlJRWVQydW91QXN2T2htT2ZvUC96TlVo?=
+ =?utf-8?B?ZHg3ODhSem1HUWxvcjlHMWE2a3NqNTFuNDJOMDhaTWFTZkJGeENBbHppSXpS?=
+ =?utf-8?B?NDQ5Z3YraFprbXpiNGZ5Uis1cktBM1B3d3dKaVUxKzJTSjlHeXZMZHNDL3BE?=
+ =?utf-8?B?WUNZR1VWR3FhbTNjVFg1TGFabnpKeTZmZndaY2VkcFRZSG8rRjdWakwvT3RI?=
+ =?utf-8?B?Y2JqUThqUkZEcnVDMllIYzJYUTJFRlJRK1hRei9ETGd4dzNWUlk2Mjk5KzZm?=
+ =?utf-8?B?bVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd4849d4-75fd-4167-9269-08ddde1dc2e1
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW6PR11MB8391.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c33f2c0d-720f-4805-b87f-08ddde1d6157
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Aug 2025 06:06:32.4919 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lOF8TB9l92U/TtR1yeyQtbpzo50tGR4lBeVK5PhEkFIZPsoQA+QLSxrhz3w7Ys95xhWzD7PNw1oqS4zVzsa6wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6811
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2025 06:09:16.4839 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wFOp9sLImECx6+vT6+VCK7CvUCDbg7QoBzwrbjTfXEagT92lJMcEeDU58/BaoW3MBCWatfLTG7RlwC4IYUFISygaob2UcUk5rC49RIt233g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8210
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -186,171 +200,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-I have tested this patch series (rev 16) with https://invent.kde.org/plasma=
-/kwin/-/merge_requests/7689, uApi works well. The sharpness is applied and =
-the changes are seen immediately and relative to the change in user input (=
-Strength).
+On 8/11/2025 11:46 AM, Golani, Mitulkumar Ajitkumar wrote:
+>
+>> -----Original Message-----
+>> From: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+>> Sent: 07 August 2025 16:46
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: ville.syrjala@linux.intel.com; jani.nikula@linux.intel.com; Golani,
+>> Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>; Nautiyal,
+>> Ankit K <ankit.k.nautiyal@intel.com>
+>> Subject: [PATCH 04/12] drm/i915/display: Extract helpers to set dsc/scaler
+>> prefill latencies
+>>
+>> Currently dsc/scaler prefill latencies are handled during watermark
+>> calculations. With the optimized guardband, we need to compute the latencies
+>> to find the minimum guardband that works for most cases.
+>> Extract the helpers to compute these latencies, so that they can be used while
+>> computing vrr guardband.
+>>
+>> While at it, put declarations in reverse xmas tree order for better redability.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 34 +++++++++++++++
+>> drivers/gpu/drm/i915/display/intel_display.h |  8 ++++
+>> drivers/gpu/drm/i915/display/skl_watermark.c | 46 +++++++++-----------
+>>   3 files changed, 63 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> b/drivers/gpu/drm/i915/display/intel_display.c
+>> index c1a3a95c65f0..af4d54672d0d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -8328,3 +8328,37 @@ bool intel_scanout_needs_vtd_wa(struct
+>> intel_display *display)
+>>
+>>   	return IS_DISPLAY_VER(display, 6, 11) && i915_vtd_active(i915);  }
+>> +
+>> +int intel_display_scaler_prefill_latency(int num_scaler_users, u64 hscale, u64
+>> vscale,
+>> +					 int chroma_downscaling_factor,
+>> +					 int cdclk_prefill_adjustment,
+>> +					 int linetime)
+>> +{
+>> +	int scaler_prefill_latency;
+>> +
+>> +	scaler_prefill_latency = 4 * linetime;
+>> +	if (num_scaler_users > 1)
+>> +		scaler_prefill_latency += DIV_ROUND_UP_ULL((4 * linetime *
+>> hscale * vscale *
+>> +
+>> chroma_downscaling_factor), 1000000);
+>> +
+>> +	scaler_prefill_latency *= cdclk_prefill_adjustment;
+>> +
+>> +	return scaler_prefill_latency;
+>> +}
+>> +
+>> +int intel_display_dsc_prefill_latency(int num_scaler_users, u64 *hscale, u64
+>> *vscale,
+>> +				      int chroma_downscaling_factor,
+>> +				      int cdclk_prefill_adjustment,
+>> +				      int linetime)
+>> +{
+>> +	int dsc_prefill_latency;
+>> +
+>> +	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime *
+>> +chroma_downscaling_factor, 10);
+>> +
+>> +	for (int i = 0; i < num_scaler_users; i++)
+>> +		dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency
+>> * hscale[i] * vscale[i],
+>> +						       1000000);
+>> +	dsc_prefill_latency *= cdclk_prefill_adjustment;
+>> +
+>> +	return dsc_prefill_latency;
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+>> b/drivers/gpu/drm/i915/display/intel_display.h
+>> index 37e2ab301a80..8d094b0a8c6b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -559,5 +559,13 @@ bool assert_port_valid(struct intel_display *display,
+>> enum port port);
+>>
+>>   bool intel_scanout_needs_vtd_wa(struct intel_display *display);  int
+>> intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
+>> +int intel_display_scaler_prefill_latency(int num_scaler_users, u64 hscale, u64
+>> vscale,
+>> +					 int chroma_downscaling_factor,
+>> +					 int cdclk_prefill_adjustment,
+>> +					 int linetime);
+>> +int intel_display_dsc_prefill_latency(int num_scaler_users, u64 *hscale, u64
+>> *vscale,
+>> +				      int chroma_downscaling_factor,
+>> +				      int cdclk_prefill_adjustment,
+>> +				      int linetime);
+>>
+>>   #endif
+>> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+>> b/drivers/gpu/drm/i915/display/skl_watermark.c
+>> index 97b42bbf5642..4474f987de06 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+>> @@ -2179,11 +2179,12 @@ cdclk_prefill_adjustment(const struct
+>> intel_crtc_state *crtc_state)  static int  dsc_prefill_latency(const struct
+>> intel_crtc_state *crtc_state, int linetime)  {
+>> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state-
+>>> scaler_state;
+>> +	int chroma_downscaling_factor =
+>> +skl_scaler_chroma_downscale_factor(crtc_state);
+>>   	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> -	const struct intel_crtc_scaler_state *scaler_state =
+>> -					&crtc_state->scaler_state;
+>>   	int num_scaler_users = hweight32(scaler_state->scaler_users);
+>> -	int chroma_downscaling_factor =
+>> skl_scaler_chroma_downscale_factor(crtc_state);
+>> +	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+>> +	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+>>   	u32 dsc_prefill_latency = 0;
+>>
+>>   	if (!crtc_state->dsc.compression_enable || @@ -2191,18 +2192,16
+>> @@ dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int linetime)
+>>   	    num_scaler_users > crtc->num_scalers)
+>>   		return dsc_prefill_latency;
+>>
+>> -	dsc_prefill_latency = DIV_ROUND_UP(15 * linetime *
+>> chroma_downscaling_factor, 10);
+>> -
+>>   	for (int i = 0; i < num_scaler_users; i++) {
+>> -		u64 hscale_k, vscale_k;
+>> -
+>> -		hscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[i].hscale, 1000) >> 16);
+>> -		vscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[i].vscale, 1000) >> 16);
+>> -		dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency
+>> * hscale_k * vscale_k,
+>> -						       1000000);
+>> +		hscale_k[i] = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[i].hscale, 1000) >> 16);
+>> +		vscale_k[i] = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[i].vscale,
+>> +1000) >> 16);
+>>   	}
+>>
+>> -	dsc_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
+>> +	dsc_prefill_latency =
+>> +		intel_display_dsc_prefill_latency(num_scaler_users, hscale_k,
+>> vscale_k,
+>> +						  chroma_downscaling_factor,
+>> +
+>> cdclk_prefill_adjustment(crtc_state),
+>> +						  linetime);
+>>
+>>   	return dsc_prefill_latency;
+>>   }
+>> @@ -2210,28 +2209,25 @@ dsc_prefill_latency(const struct intel_crtc_state
+>> *crtc_state, int linetime)  static int  scaler_prefill_latency(const struct
+>> intel_crtc_state *crtc_state, int linetime)  {
+>> -	const struct intel_crtc_scaler_state *scaler_state =
+>> -					&crtc_state->scaler_state;
+>> +	const struct intel_crtc_scaler_state *scaler_state = &crtc_state-
+>>> scaler_state;
+>> +	int chroma_downscaling_factor =
+>> +skl_scaler_chroma_downscale_factor(crtc_state);
+>>   	int num_scaler_users = hweight32(scaler_state->scaler_users);
+>> +	u64 hscale_k = 1000, vscale_k = 1000;
+> This could be initialized to 0 ?
+>
+> As further going, you are already assigning to max 1000 when even 1 scaler is being used, also  intel_display_scaler_prefill_latency we are again redundantly check for number scaler presence
+>
+> this could be avoided if initialised to 0 and assigning to max when scaler users presence is found ?
 
-Tested-by: Adarsh G M <Adarsh.g.m@intel.com>
+Makes sense. Will change this in the next version.
 
-Warm regards,
-Adarsh G M
+Regards,
 
------Original Message-----
-From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Neme=
-sa Garg
-Sent: Thursday, August 7, 2025 2:59 PM
-To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; dri-de=
-vel@lists.freedesktop.org
-Cc: Garg, Nemesa <nemesa.garg@intel.com>; Nautiyal, Ankit K <ankit.k.nautiy=
-al@intel.com>
-Subject: [PATCH 01/10] drm/drm_crtc: Introduce sharpness strength property
+Ankit
 
-Introduce a new crtc property "SHARPNESS_STRENGTH" that allows the user to =
-set the intensity so as to get the sharpness effect.
-The value of this property can be set from 0-255.
-It is useful in scenario when the output is blurry and user want to sharpen=
- the pixels. User can increase/decrease the sharpness level depending on th=
-e content displayed.
 
-v2: Rename crtc property variable [Arun]
-    Add modeset detail in uapi doc[Uma]
-v3: Fix build issue
-v4: Modify the subject line[Ankit]
-
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/drm_atomic_uapi.c |  4 ++++
- drivers/gpu/drm/drm_crtc.c        | 35 +++++++++++++++++++++++++++++++
- include/drm/drm_crtc.h            | 18 ++++++++++++++++
- 3 files changed, 57 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic=
-_uapi.c
-index ecc73d52bfae..2302c2bea28a 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -419,6 +419,8 @@ static int drm_atomic_crtc_set_property(struct drm_crtc=
- *crtc,
- 		set_out_fence_for_crtc(state->state, crtc, fence_ptr);
- 	} else if (property =3D=3D crtc->scaling_filter_property) {
- 		state->scaling_filter =3D val;
-+	} else if (property =3D=3D crtc->sharpness_strength_property) {
-+		state->sharpness_strength =3D val;
- 	} else if (crtc->funcs->atomic_set_property) {
- 		return crtc->funcs->atomic_set_property(crtc, state, property, val);
- 	} else {
-@@ -456,6 +458,8 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
- 		*val =3D 0;
- 	else if (property =3D=3D crtc->scaling_filter_property)
- 		*val =3D state->scaling_filter;
-+	else if (property =3D=3D crtc->sharpness_strength_property)
-+		*val =3D state->sharpness_strength;
- 	else if (crtc->funcs->atomic_get_property)
- 		return crtc->funcs->atomic_get_property(crtc, state, property, val);
- 	else {
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c index =
-46655339003d..a7797d260f1e 100644
---- a/drivers/gpu/drm/drm_crtc.c
-+++ b/drivers/gpu/drm/drm_crtc.c
-@@ -229,6 +229,25 @@ struct dma_fence *drm_crtc_create_fence(struct drm_crt=
-c *crtc)
-  * 		Driver's default scaling filter
-  * 	Nearest Neighbor:
-  * 		Nearest Neighbor scaling filter
-+ * SHARPNESS_STRENGTH:
-+ *	Atomic property for setting the sharpness strength/intensity by userspa=
-ce.
-+ *
-+ *	The value of this property is set as an integer value ranging
-+ *	from 0 - 255 where:
-+ *
-+ *	0: Sharpness feature is disabled(default value).
-+ *
-+ *	1: Minimum sharpness.
-+ *
-+ *	255: Maximum sharpness.
-+ *
-+ *	User can gradually increase or decrease the sharpness level and can
-+ *	set the optimum value depending on content.
-+ *	This value will be passed to kernel through the UAPI.
-+ *	The setting of this property does not require modeset.
-+ *	The sharpness effect takes place post blending on the final composed ou=
-tput.
-+ *	If the feature is disabled, the content remains same without any sharpe=
-ning effect
-+ *	and when this feature is applied, it enhances the clarity of the conten=
-t.
-  */
-=20
- __printf(6, 0)
-@@ -940,6 +959,22 @@ int drm_crtc_create_scaling_filter_property(struct drm=
-_crtc *crtc,  }  EXPORT_SYMBOL(drm_crtc_create_scaling_filter_property);
-=20
-+int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc)=20
-+{
-+	struct drm_device *dev =3D crtc->dev;
-+	struct drm_property *prop =3D
-+		drm_property_create_range(dev, 0, "SHARPNESS_STRENGTH", 0, 255);
-+
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	crtc->sharpness_strength_property =3D prop;
-+	drm_object_attach_property(&crtc->base, prop, 0);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_crtc_create_sharpness_strength_property);
-+
- /**
-  * drm_crtc_in_clone_mode - check if the given CRTC state is in clone mode
-  *
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h index caa56e03=
-9da2..bcdbde681986 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -317,6 +317,17 @@ struct drm_crtc_state {
- 	 */
- 	enum drm_scaling_filter scaling_filter;
-=20
-+	/**
-+	 * @sharpness_strength:
-+	 *
-+	 * Used by the user to set the sharpness intensity.
-+	 * The value ranges from 0-255.
-+	 * Default value is 0 which disable the sharpness feature.
-+	 * Any value greater than 0 enables sharpening with the
-+	 * specified strength.
-+	 */
-+	u8 sharpness_strength;
-+
- 	/**
- 	 * @event:
- 	 *
-@@ -1088,6 +1099,12 @@ struct drm_crtc {
- 	 */
- 	struct drm_property *scaling_filter_property;
-=20
-+	/**
-+	 * @sharpness_strength_property: property to apply
-+	 * the intensity of the sharpness requested.
-+	 */
-+	struct drm_property *sharpness_strength_property;
-+
- 	/**
- 	 * @state:
- 	 *
-@@ -1324,4 +1341,5 @@ static inline struct drm_crtc *drm_crtc_find(struct d=
-rm_device *dev,  int drm_crtc_create_scaling_filter_property(struct drm_crt=
-c *crtc,
- 					    unsigned int supported_filters);  bool drm_crtc_in_clone_mode(str=
-uct drm_crtc_state *crtc_state);
-+int drm_crtc_create_sharpness_strength_property(struct drm_crtc *crtc);
- #endif /* __DRM_CRTC_H__ */
---
-2.25.1
-
+>
+> also in
+>>   	int scaler_prefill_latency = 0;
+>>
+>>   	if (!num_scaler_users)
+>>   		return scaler_prefill_latency;
+>>
+>> -	scaler_prefill_latency = 4 * linetime;
+>> -
+>>   	if (num_scaler_users > 1) {
+>> -		u64 hscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[0].hscale, 1000) >> 16);
+>> -		u64 vscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[0].vscale, 1000) >> 16);
+>> -		int chroma_downscaling_factor =
+>> skl_scaler_chroma_downscale_factor(crtc_state);
+>> -		int latency;
+>> -
+>> -		latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k *
+>> vscale_k *
+>> -					    chroma_downscaling_factor),
+>> 1000000);
+>> -		scaler_prefill_latency += latency;
+>> +		hscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[0].hscale, 1000) >> 16);
+>> +		vscale_k = max(1000, mul_u32_u32(scaler_state-
+>>> scalers[0].vscale,
+>> +1000) >> 16);
+>>   	}
+>>
+>> -	scaler_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
+>> +	scaler_prefill_latency =
+>> +		intel_display_scaler_prefill_latency(num_scaler_users,
+>> hscale_k, vscale_k,
+>> +
+>> chroma_downscaling_factor,
+>> +
+>> cdclk_prefill_adjustment(crtc_state),
+>> +						     linetime);
+>>
+>>   	return scaler_prefill_latency;
+>>   }
+>> --
+>> 2.45.2
