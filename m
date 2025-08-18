@@ -2,50 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7906FB29716
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 04:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C033B29934
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 07:56:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5022710E077;
-	Mon, 18 Aug 2025 02:39:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73B8010E1A9;
+	Mon, 18 Aug 2025 05:56:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="CzSJpoG/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Hlr8iV7F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F51B10E077;
- Mon, 18 Aug 2025 02:38:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=202503; t=1755484735;
- bh=/EDNXDGvVfSLRGFAXKGz2eTcc7Spw0fcXsFzzN/5iQU=;
- h=Date:From:To:Cc:Subject:From;
- b=CzSJpoG/GgfU3PY9O6GYZQTK4BTk3TntijldJ+X3foNUkaFWj1OoaxpTOugdQTBio
- 7VE+p4y4hrFksFU1MfM6mF2n5CLsovO0BcdjlPJP+Kz4O+oYf9r6k/U33pDv2HlNMP
- GG7/G6JBa7hcFI9MY+tOb6MQtRyr4RTvnZBROFmD0c925zljg2NCjJ1hFQ0eNl8djf
- GFSUigrfKwvjzQSKbDMKPHip4XTQvz7kc29uGOER0Ts+xWxdqxPay0LjE306/tcyg4
- LsniPvgflACICgUa4+z0iAbM7odf75g18BjctdVoHSaodvD3AZqKDVNic2xwNxqbNM
- QOjO5LxuwW2yw==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4c4xjp279Lz4wbn;
- Mon, 18 Aug 2025 12:38:54 +1000 (AEST)
-Date: Mon, 18 Aug 2025 12:38:53 +1000
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <seanpaul@chromium.org>
-Cc: Bagas Sanjaya <bagasdotme@gmail.com>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Danilo Krummrich <dakr@kernel.org>, Javier
- Garcia <rampxxxx@gmail.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build warnings after merge of the drm-misc-fixes tree
-Message-ID: <20250818123853.51aa3bc4@canb.auug.org.au>
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 883FD10E1A9;
+ Mon, 18 Aug 2025 05:56:09 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id
+ 41be03b00d2f7-b47174c3817so2718577a12.2; 
+ Sun, 17 Aug 2025 22:56:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755496569; x=1756101369; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=KDnEbrSfurZQ+Y1DvjkMBGJWcaizeGgNKLPFyaBX9ww=;
+ b=Hlr8iV7F7Zo3+wri8aVZeap/Efohr5h+csZkzDt6yYSmiiQv/D8/h1WvCTMe0kmCDD
+ lBrgywO8F3xBwss6GsYM6PSiaC7RCk7v3Z33rIxVsTcdzL1Q5ptrmuuWLWTrspIjhE9z
+ fxgwELDAbMeIp4jFElPyDz1DWUgANjS5TnMPbStd2Jtki/yRu/mIPbLBPNDxqJvQ+0V0
+ pGCeoVVFRR6qJYt3v2vbxb51aXorka8Zn96MAcRQZI8ra76jSBDAMtc/RwbfHsrFsvhc
+ 0tWBiJPsEOrCCjyoOEUMGG1OYVELB15yHkXHwCINZ+eIJ+aDTeBJ/YfBA4m1oNxVAzQ3
+ 67Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755496569; x=1756101369;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=KDnEbrSfurZQ+Y1DvjkMBGJWcaizeGgNKLPFyaBX9ww=;
+ b=jF2m6LYmOp2i/ydU0UVZeDZXQwJWEqHtKoAjbrjswgDOvsQnwNf4VThYpe8A5Mu8Ni
+ bpwu/xgRKazOKIb5RmRpWXsMZ9SlxxZ0/R/Bx+FL2JwsfYAzcJzcfuz5htgHhCinwn6o
+ pmlEsdgU0gCJCb+ARxy+QuKZtWjWrZEzCUo2aOkyaaD4JdPMkFojTHxEdtkuObyHDkhP
+ XC6d9R1eqmfQ/U0cqPhNkS2Z5hMtxNoLvC2HWUX9/eTfrZvSeAtAzGMaXS+DWOUpG45E
+ j/B7LdTH4J4uD+fAVvqx07KUn/rzWAyvmNqnYD2TuO28j4q8KU3/10nqnCrJO43Y2cbA
+ kbcA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWQwDJMs0IPEsWCzppcLoaKP5eMkFChzQ+mhwrol9WcO9rJym80W3xAFEQYNB42gtLweig7WfmbkPE=@lists.freedesktop.org,
+ AJvYcCXrpBNWOwTw59cUV9oo3m23UY90MkCtIA2Fo845Ha++m2vgiZsof0Y8T5BzCIcup/t6corYrbxZQpPP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyolwXok7ju1fyeWgaDG/S4LVFm5l7E5rhOUPSCvz+OICUnB8SX
+ CaPfArztN1EBSnPEf2HQ742QtrC68sWiABTL4SGZAWgmcIS8rgUKKh+l
+X-Gm-Gg: ASbGncuWSNWL8fs9gNDDTQsq3DvurZD4EmnxvCbMFW1v1lRYokz5B3HBYC5smIPiXIA
+ pHDczKO6osp8fxg9J0jnt0TpL+AQHzc4p+pbcP8N0fMANxWyCN4R5ZMUCGv9TEcR+Yo9jNl7HIJ
+ EL8YEHGkxIYJe1xxDs8dcSqxcjfUgAB/moyiNan0JOgSmVy73PP9Ly/IVUybH/KGDVbViNQH8MZ
+ mlClxC9tog0vfslJF44vYCEXfgnwzUzr3W94/O7VgqUcwFiBNQfUunl9WSg52WDdP3pq64Rsa1M
+ nC/wHfPzDOLh/MPdsmdQvUbXevgyWNqt6d/olspi2Vb6TZt5JCsmPNtg8mouR0R+az0iSAGTrFc
+ N+WVQ31TYGTXEG8ZtUeqILg==
+X-Google-Smtp-Source: AGHT+IGrZb2yXUpDByWXrf0RogRL3wdxGrw6LQsIafOIhXImWcKlQrD4Hqci3k0Rb6xnexOYz1c78g==
+X-Received: by 2002:a17:903:3c6f:b0:23f:df56:c74c with SMTP id
+ d9443c01a7336-2446d715b0bmr129857355ad.14.1755496568819; 
+ Sun, 17 Aug 2025 22:56:08 -0700 (PDT)
+Received: from archie.me ([103.124.138.155]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2446d57f12esm69189155ad.157.2025.08.17.22.56.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 Aug 2025 22:56:07 -0700 (PDT)
+Received: by archie.me (Postfix, from userid 1000)
+ id 14B60459631D; Mon, 18 Aug 2025 12:56:03 +0700 (WIB)
+Date: Mon, 18 Aug 2025 12:56:03 +0700
+From: Bagas Sanjaya <bagasdotme@gmail.com>
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <seanpaul@chromium.org>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+ Danilo Krummrich <dakr@kernel.org>, Javier Garcia <rampxxxx@gmail.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: build warnings after merge of the drm-misc-fixes tree
+Message-ID: <aKLAc27XGAadB8n5@archie.me>
+References: <20250818123853.51aa3bc4@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/7yr2msOT_t5hQ/B_590u7Cu";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="Ys5Z0BDSBVttoXV4"
+Content-Disposition: inline
+In-Reply-To: <20250818123853.51aa3bc4@canb.auug.org.au>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,63 +97,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/7yr2msOT_t5hQ/B_590u7Cu
-Content-Type: text/plain; charset=US-ASCII
+
+--Ys5Z0BDSBVttoXV4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+On Mon, Aug 18, 2025 at 12:38:53PM +1000, Stephen Rothwell wrote:
+> Hi all,
+>=20
+> After merging the drm-misc-fixes tree, today's linux-next build (htmldocs)
+> produced these warnings:
+>=20
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2446: ERROR: Un=
+expected indentation. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2448: WARNING: =
+Block quote ends without a blank line; unexpected unindent. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2452: WARNING: =
+Definition list ends without a blank line; unexpected unindent. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2453: WARNING: =
+Definition list ends without a blank line; unexpected unindent. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2457: ERROR: Un=
+expected indentation. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2458: WARNING: =
+Definition list ends without a blank line; unexpected unindent. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2459: WARNING: =
+Definition list ends without a blank line; unexpected unindent. [docutils]
+> Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2460: WARNING: =
+Definition list ends without a blank line; unexpected unindent. [docutils]
+>=20
+> Introduced by commit
+>=20
+>   6cc44e9618f0 ("drm: Add directive to format code in comment")
+>=20
+> interacting with commit
+>=20
+>   bb324f85f722 ("drm/gpuvm: Wrap drm_gpuvm_sm_map_exec_lock() expected us=
+age in literal code block")
 
-After merging the drm-misc-fixes tree, today's linux-next build (htmldocs)
-produced these warnings:
+Duh! drm_gpuvm.c gets tangled...
 
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2446: ERROR: Unex=
-pected indentation. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2448: WARNING: Bl=
-ock quote ends without a blank line; unexpected unindent. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2452: WARNING: De=
-finition list ends without a blank line; unexpected unindent. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2453: WARNING: De=
-finition list ends without a blank line; unexpected unindent. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2457: ERROR: Unex=
-pected indentation. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2458: WARNING: De=
-finition list ends without a blank line; unexpected unindent. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2459: WARNING: De=
-finition list ends without a blank line; unexpected unindent. [docutils]
-Documentation/gpu/drm-mm:506: drivers/gpu/drm/drm_gpuvm.c:2460: WARNING: De=
-finition list ends without a blank line; unexpected unindent. [docutils]
+Danilo, can you please drop my commit (and kept Javier's one)?
 
-Introduced by commit
-
-  6cc44e9618f0 ("drm: Add directive to format code in comment")
-
-interacting with commit
-
-  bb324f85f722 ("drm/gpuvm: Wrap drm_gpuvm_sm_map_exec_lock() expected usag=
-e in literal code block")
-
-from the drm-msm-fixes tree.  Both get applied.
-
-The drm-misc-fixes commit is unneeded.
+Thanks.
 
 --=20
-Cheers,
-Stephen Rothwell
+An old man doll... just what I always wanted! - Clara
 
---Sig_/7yr2msOT_t5hQ/B_590u7Cu
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--Ys5Z0BDSBVttoXV4
+Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmiikj0ACgkQAVBC80lX
-0Gz1tAgAgAhVdDzeptXMLx88AmQAPNlAy0Xzi9slrZrZ1hwwDh6oyS41qYbLy9/J
-9flRTMeEFCjFYu04qzmk3Eb8L0tdy2O3CTpXY47upNERgWuXhjU25TCLRvQ0Pqms
-CtTixVhqEDLaV8C53UMj4R/a1aImOvS0OfwGnNKk1QQqfObErG0Qi0WF5sUfPI2S
-5kHDIjJ6WAX2Pr0HARYzhKHIMPreQxq3LdScTWwovdedE4XNZ1rAvFTr3qHRzke2
-JLBdjQaTswwDfxwDLHs3XaEn4LnUWjb1o0wATNCfljJeJ4jBTvfY6htEWjKv/0Wt
-HVf3FtpWq23lzX9dgALG99VBdZC4hw==
-=TljA
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCaKLAbgAKCRD2uYlJVVFO
+owDKAQCoKfhqaU9MYn5NO39SYn5JIOoZm6yD0EQIjQ8QNH3+YgD9GtPzY2zmWOwU
+dNDspoFrAULfH+otQwwYcVaT6w0F8Q8=
+=+vhx
 -----END PGP SIGNATURE-----
 
---Sig_/7yr2msOT_t5hQ/B_590u7Cu--
+--Ys5Z0BDSBVttoXV4--
