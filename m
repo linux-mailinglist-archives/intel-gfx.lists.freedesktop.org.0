@@ -2,29 +2,178 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88DF7B29FDF
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 13:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7BF7B2A023
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 13:16:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1848B10E1D4;
-	Mon, 18 Aug 2025 11:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A86810E42C;
+	Mon, 18 Aug 2025 11:16:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKVm2ySJ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADF5C10E1D4;
- Mon, 18 Aug 2025 11:00:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1761968748752905728=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_Optimize_vrr=2Eguardband?=
- =?utf-8?q?_and_fix_LRR_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 18 Aug 2025 11:00:36 -0000
-Message-ID: <175551483670.243606.13407381069804183714@1538d3639d33>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A13AA10E1D7;
+ Mon, 18 Aug 2025 11:16:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755515782; x=1787051782;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6ScHc4qeEbMcVVOvgvFH+T0RUaGxaTXotU7W5PWQz2g=;
+ b=cKVm2ySJteGlndIbh7HCjSzfoSp2T06JDVGtWux86rP+WCImacCPbcX4
+ UuBydp1wt2qqCU0AtdCTwxvm8dkM615Lm7RlHLSYTTZKQvntlArBSYg+y
+ 2St1r5xj6U7Z+57huIAJA7dihDWiGaUBgrADFJVMWMTJN9x3qtQP52IAq
+ 7mIGphf2zlZwsOorMU5q01hBPRDlaL9eknL3ygZEV2f530Ztq4/kdAz6S
+ Ekf+KnHJ2wB+ysg/0vbQWg3dWDVeoBwkrWQRFdGNuMKT4wUbd2GCMJZWG
+ o8TxhEeqgcrx0NL2r4bsXv2JDpzvifwceBUOQNniUrlQluDMnt8AMu4XR A==;
+X-CSE-ConnectionGUID: nLIoGKy2TTWLS+wBIBhCaw==
+X-CSE-MsgGUID: qtKJf5BUTXydhgq853qKQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="57691411"
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="57691411"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 04:16:21 -0700
+X-CSE-ConnectionGUID: 1oX/VCH/SMGBQIPtLVTYqQ==
+X-CSE-MsgGUID: tBlZsHD/Rk6kuoqhiZCGQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="204713672"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Aug 2025 04:16:22 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 04:16:20 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 18 Aug 2025 04:16:20 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (40.107.102.67)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 18 Aug 2025 04:16:20 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cbbQ8z6dT6gvKkzYIY5giNprXKx+i+X0Su545BGyQTSQncj3Ei0+kWYwnnk0movPEpfiP/qPVRSaVNN//Fnq5k4q1/+VTJGHvCkgUP/ir+WThTTCm0PON6pF2VLxq0MT3UUI7PYMwAGcWpHGSV9fZendIMaQNjpya56koG2sgcZyF8jvNAeap/23uOWPB1VtZlN/vOcz9BMEtH6b1+9qvyVO+K5o8HTMGl6UuLCjP1Z/L1P+phMORVuO91Qf8pXN0ShCu6iWLsGtbv3J0x3Y3twYu3JUArlU+tacOwmXZZyVAfDvMs9x0pvOFD0NMcXO/I4kOtyER87iBhtcrXF0Kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3jOdhL3wQ7RoK/r4jP18JfPcqm2DX3jIAENzEivfvTk=;
+ b=tjrttnwJ3AmMw8jtuciFzGDxJLBfQHm9mkZ9Wn778UylrYuUu4NX6l7RnAGswyM2pSXXXPoz1Kpd8UMR64FMK+25Qzzy/i2nsxdCVWsdiMX9Ngr831rCaj1SwQ/J1+A6CZ0eADeNTgtOtESS0hBQaWZG1UQPv29wXe/XhgE4F30in51w0h1fFULqTTSSEv2Ham9zQFDHcGzfEVmvCnNWxbL4n34wuuDjA82huPl6ObiunaX9W464X7p+Vz4ybTKIgPzPMOK3MwRzKjF+OiopTpuXYWIeuXs1vVdOaAgyi5zE1ZvSmsEBghz9QNKsH8inVNSF0kIhQ/Pow91bdH2BHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by DS7PR11MB6199.namprd11.prod.outlook.com (2603:10b6:8:99::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9031.24; Mon, 18 Aug 2025 11:16:17 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52%6]) with mapi id 15.20.9031.023; Mon, 18 Aug 2025
+ 11:16:17 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+ latencies
+Thread-Topic: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+ latencies
+Thread-Index: AQHcEBVDk0ydt8ywUEuAxU2ziAhPvbRoQswQ
+Date: Mon, 18 Aug 2025 11:16:17 +0000
+Message-ID: <IA1PR11MB63481F43832280DB7A0B8605B231A@IA1PR11MB6348.namprd11.prod.outlook.com>
 References: <20250818073128.2319762-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20250818073128.2319762-1-ankit.k.nautiyal@intel.com>
+ <20250818073128.2319762-9-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250818073128.2319762-9-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|DS7PR11MB6199:EE_
+x-ms-office365-filtering-correlation-id: 56b5f670-888e-4240-a67d-08ddde48a6a8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|10070799003|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?o2tB38OcCyt4QiHlgY14P4yOI0UEkYpio7xR3MrKNBArvb3AG/WUhB8HMqPM?=
+ =?us-ascii?Q?y2ZGHx6XeBaRLIsQwdfEoOztkBJr/voO4uk7CzrtadxPPAZ9hQxd5hms01tu?=
+ =?us-ascii?Q?MlVWYupgpqF/7r+o9qmlqGWWXRfWCimIaJ3hyBsaegCCLft5zggQ1R6g626n?=
+ =?us-ascii?Q?Pjqjsqe1mc5UZtKXM1ue0qqZjF0rORXQqFi+5kOTyMhTuQq9akZBJi61hujS?=
+ =?us-ascii?Q?Oe6aRP1DkmsA/DJjrLvbULF5wg16qJnsY4lo9aAewU4hsmKAtkHOpxiGzPZ9?=
+ =?us-ascii?Q?pUf8WfdqIimk6u/Rxjbh/VOpKHNWBbvuKqAGfPICs2oI+EQlaHRMFRG/WlZt?=
+ =?us-ascii?Q?CrdQhNiRsYss879N39Z8dvaeLUvTKPqCO12BGvsznxC8MgYkbmVCLc3T/Nav?=
+ =?us-ascii?Q?zeAw6DS/Th4vXPlwUUWIeIq1H4NZ6Ssij5bejt80XD6PFLZKM9DDpii1KjV2?=
+ =?us-ascii?Q?5QXSJIGugXDQ7mrs2QVpONR2fIdSnZS0fa/L+TlVcot6I69y5ahJsGo9NzEW?=
+ =?us-ascii?Q?C9LjJGqF0nnlTTG5ADgReBA+t8heFS8xSHwlqGBO/HZNBZwsf4zNVGt8qCBd?=
+ =?us-ascii?Q?XqmkGA0Sm6qfNcSC9z5kYFfAF+6e6Mv49hTtn/y4VfzpreXo7cHMOn58mEp3?=
+ =?us-ascii?Q?9AGO2D9C4Clw/6HmlvhrH0tCtSsRJb9XT/hb3e03Y5z4ms2p0YILRrgfcuon?=
+ =?us-ascii?Q?mKCf1tPEjMncZZRAmRSkk8KHU8THo9BKxh5G8laV0EOioeDgeXGoGcrWWy5R?=
+ =?us-ascii?Q?Q1AMHD1GgwRtq9TCGPUQYzrzxSUszlmFKazgT/5yVs9F4ubFrJk1v0pnp31b?=
+ =?us-ascii?Q?M4d0MgrZzQK2IoGrpJ+syspHwFhKNtjfeaigZPDkwN5JBTzuXk14opQOG8qx?=
+ =?us-ascii?Q?Ft7J1cxg3SfXyt1QNMM01ZtCw273Pp/Dggz7v8mAxZA8jDwtsFWPbZEXX02F?=
+ =?us-ascii?Q?/pTBDjaLyHgx9Sy/K5cTwJKCZRdbvHrdReJddTyBcE+F5Etlw7udOwHp82ts?=
+ =?us-ascii?Q?ftcPa7ckMSWgi1jKpgSD3gl94YaCL/Xl4lkWXRADTgxMeEW5X++TuMS3Lmfq?=
+ =?us-ascii?Q?6SUAgROUAfflYqu2O3W2+SCA3ljL3RT6Spt4bdvpFGBQ46koJ0CTYHL5t/oV?=
+ =?us-ascii?Q?VyJ9+4MhIZz6UToLLpNj4+V7n0BrQAkA4YkWbMdwUGayHG7aAjUNjhPZOAYK?=
+ =?us-ascii?Q?7hu21Bwzbz0GFxxa1TaPrl4LwsgjuquEMNwk2CJBieMsEYBd2R51f0xDzW30?=
+ =?us-ascii?Q?AK9AQs+9K5wKRY8O3CVAxvWytkyR3AIic/MtKaqMMyt4l74PtQKsJNOhjh4/?=
+ =?us-ascii?Q?hlhf/NSkdSdE7HOLx7W0LpKwf6saXEZSxbeMKB5vpuv/697oa+Ea22kx50PA?=
+ =?us-ascii?Q?CMLAkDM7h74t+qD0NnQcYw9dysreO5m1BMVeGReCD/C3oLIRjcWBNw3SNj/D?=
+ =?us-ascii?Q?KvsHplqHzH5HrlfCqLhFZ6jmj79Dt5UHpy8qOsjUxD+ok04jxSRYfMHI0zbF?=
+ =?us-ascii?Q?+ejyIu5Y4xYG+8U=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(10070799003)(7053199007)(38070700018);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1MAsiF5taJOpfJxEoh+Q0V8C+mAS/OdkIByQhHs9tsCPiy7gmQit5WvFtZPp?=
+ =?us-ascii?Q?mh+mFvE3EIScDkc2J0hT8pALFThnCnIYOnvoT8NkEcaQtRzj4kXxFm5xi9j1?=
+ =?us-ascii?Q?xqe1W2RRHp+WdSFr3eZQZ82NY0ZI3Zfb42wYk3BGI0Z0O2yUP4b7I5I0aNy6?=
+ =?us-ascii?Q?P/kwXP/OVhYRPpb5edqlPkhD8dsbZSvK4HJuvD6jNjlxpRPw+XSiCNw8cmtH?=
+ =?us-ascii?Q?Sa1wm1DkTgueC7FiFgnFrXUlIe0ynlmiAzp+MUiC/1hPuCJaSMx3M0eHzg68?=
+ =?us-ascii?Q?Fz5qzZrvjvXwihl0bORgf1ump7RcAGxLRxNI7VxGpYXSuegGqNdxruuJPmqb?=
+ =?us-ascii?Q?oQt/wBR5+M1h02zUzn9VdiV4yfc0cdWhNCIZ5/zzlMFoAUo15T5PsAefFGMm?=
+ =?us-ascii?Q?wUWvzP/uArZ5ib58IarFYXC+g7ofeu+p1AO3Bgg5JcLktREoTDOHTlzI9WvQ?=
+ =?us-ascii?Q?4X8YWf36BToJoT2Dfw4W/hpbIyRvnxdGT5uNcokqZf7Xf5x0aMS97eQ1/Ww6?=
+ =?us-ascii?Q?f5gRMw1O4dkvO3qV4GAuyPeIb39uFIvK4KPkYq9epnql1MbpQEmU0+DtLJj9?=
+ =?us-ascii?Q?af+3tzg/MkoxhL2Ic5Tqq2hQBvhEv3Sqi7m7ajGXtFDhVkzPXPubCNqPVICb?=
+ =?us-ascii?Q?i0p1uFlX2A6z7XXTqxpadAl/74NNMIZ/rBA/SJHERN2Mu7UI5oj0CAdKuhlx?=
+ =?us-ascii?Q?VhCfKNahH0/umUq0gWJucVooyqHDGX6gMy1+A8FqbNMWbC0kM2XaWmRPvPN2?=
+ =?us-ascii?Q?HBJApDAdp/LSHjOwnpTW6WFP0LL3Job/rkV5fKszgr26lGV9SPmSVbcq4FaW?=
+ =?us-ascii?Q?3spXFMo5RhWCKHUGkdtmzTv2F9a9SO8pLwwkZXLEdQ8/B0neraPbUYu7D/he?=
+ =?us-ascii?Q?drkXuYDdSEh5dKht/s2G1xuzZx2X8evBwfVF3iR8LgLEcdW5G7xp+6QT0zlC?=
+ =?us-ascii?Q?6wo3RudCgxCu7k8yAT3r7+ew2frlGabjq9kkcQ4ZCZRKzD9VPw0Nbd7cQ+x6?=
+ =?us-ascii?Q?7FJcd2LwcTWns7SxDQJNJgMwP2idk/RPw8MNI2AjklTwG2WUne0FzrB0wkdj?=
+ =?us-ascii?Q?5BYcab1qNHMdJ2iYlxtTW2kT0BLovbqlfx0nGbzXFtTaLupE0mfqkKUy1oHU?=
+ =?us-ascii?Q?qoI2W1DLvsX8yfkqd3RMI1kLsR09aW3RCe/dG+Vv24KQAUjMDoOfeRLYIdr4?=
+ =?us-ascii?Q?54YncmFwupQtOOohbhDdn/9f7reNQ5GGrdEn745pyGaqMUAbS7pj813jtihg?=
+ =?us-ascii?Q?FqRhDdyyszAY9Jwsu24cuRCXOZavR5M8iE4pZgGPdDzs/chyAj2qCbGh9Jc/?=
+ =?us-ascii?Q?W9Q6PovQ756so7cw5Pa8leLpuu4q71K8jjJd0rMwiELUwQh/6elapK0PhSWW?=
+ =?us-ascii?Q?H33UBdRUolnsTMgTlMjCLdx193eS4bbhE3iI/ipVlwLPwPWNhxI8yDC5+C2q?=
+ =?us-ascii?Q?OFyZzV2cUBbOoWAOT/EF9/V2TrhqdHMfOMMUMxE5Hwn3IpRvHie8ixiUmSQV?=
+ =?us-ascii?Q?HvKYyEDKS6qRNCW+lw8LGPVPC4Ee18Za6jexdgcpj3iXHLSbwTckWXXElINj?=
+ =?us-ascii?Q?qP34hvOjsjGIc9kBcLuqhvbN58Otmta4ClyQQkgP0E3dkqde724OYQyrNTI1?=
+ =?us-ascii?Q?nqHaFZ8Id3jd8uYJh5fe4XKZ73IxbfwKAqyocJg3Naiipd+pmilg77P26Vup?=
+ =?us-ascii?Q?awnt7IGuhDVhgAUkk4+YTBchANM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56b5f670-888e-4240-a67d-08ddde48a6a8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Aug 2025 11:16:17.0952 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zUQnUnLGQiIBcQquGotYqnToq1B1ez20YvcVzt7e9qTLXNj31YRS3DBnHJBpr6uP75+dUB8oYkNdpPSxqv5u4bjXWSVPStrgDkuUPXhDXuey4zB5GkSPzIXISP+OrE1u
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6199
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,1282 +186,265 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1761968748752905728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-=3D=3D Series Details =3D=3D
-
-Series: Optimize vrr.guardband and fix LRR (rev5)
-URL   : https://patchwork.freedesktop.org/series/151245/
-State : success
-
-=3D=3D Summary =3D=3D
-
-CI Bug Log - changes from CI_DRM_17021_full -> Patchwork_151245v5_full
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
- =20
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_151245v5_full that come from know=
-n issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - shard-tglu-1:       ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4]) ([i9=
-15#14749]) -> ([FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL=
-][10]) ([i915#14749] / [i915#14832])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/=
-igt@runner@aborted.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/=
-igt@runner@aborted.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/=
-igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/=
-igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-1/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-1/igt@runner@aborted.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-1/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-1/igt@runner@aborted.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-1/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-tglu-1/igt@runner@aborted.html
-    - shard-snb:          ([FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], =
-[FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FA=
-IL][21], [FAIL][22], [FAIL][23], [FAIL][24], [FAIL][25], [FAIL][26], [FAIL]=
-[27], [FAIL][28], [FAIL][29], [FAIL][30], [FAIL][31], [FAIL][32], [FAIL][33=
-], [FAIL][34], [FAIL][35], [FAIL][36], [FAIL][37], [FAIL][38], [FAIL][39], =
-[FAIL][40], [FAIL][41], [FAIL][42], [FAIL][43], [FAIL][44], [FAIL][45], [FA=
-IL][46], [FAIL][47], [FAIL][48], [FAIL][49], [FAIL][50], [FAIL][51], [FAIL]=
-[52], [FAIL][53], [FAIL][54], [FAIL][55], [FAIL][56], [FAIL][57], [FAIL][58=
-], [FAIL][59], [FAIL][60]) ([i915#14749]) -> ([FAIL][61], [FAIL][62], [FAIL=
-][63], [FAIL][64], [FAIL][65], [FAIL][66], [FAIL][67], [FAIL][68], [FAIL][6=
-9], [FAIL][70], [FAIL][71], [FAIL][72], [FAIL][73], [FAIL][74], [FAIL][75],=
- [FAIL][76], [FAIL][77], [FAIL][78], [FAIL][79], [FAIL][80], [FAIL][81], [F=
-AIL][82], [FAIL][83], [FAIL][84], [FAIL][85], [FAIL][86], [FAIL][87], [FAIL=
-][88], [FAIL][89], [FAIL][90], [FAIL][91], [FAIL][92], [FAIL][93], [FAIL][9=
-4], [FAIL][95], [FAIL][96], [FAIL][97], [FAIL][98], [FAIL][99], [FAIL][100]=
-, [FAIL][101], [FAIL][102], [FAIL][103], [FAIL][104], [FAIL][105], [FAIL][1=
-06], [FAIL][107], [FAIL][108], [FAIL][109], [FAIL][110]) ([i915#14749] / [i=
-915#14832])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/i=
-gt@runner@aborted.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/i=
-gt@runner@aborted.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/i=
-gt@runner@aborted.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb5/igt@runner@aborted.html
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb6/igt@runner@aborted.html
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb4/igt@runner@aborted.html
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-snb7/igt@runner@aborted.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb6/igt@runner@aborted.html
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb6/igt@runner@aborted.html
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb4/igt@runner@aborted.html
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb4/igt@runner@aborted.html
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb4/igt@runner@aborted.html
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb4/igt@runner@aborted.html
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb5/igt@runner@aborted.html
-    - shard-tglu:         ([FAIL][111], [FAIL][112], [FAIL][113], [FAIL][11=
-4], [FAIL][115], [FAIL][116], [FAIL][117], [FAIL][118], [FAIL][119], [FAIL]=
-[120], [FAIL][121], [FAIL][122], [FAIL][123], [FAIL][124], [FAIL][125], [FA=
-IL][126], [FAIL][127], [FAIL][128], [FAIL][129], [FAIL][130], [FAIL][131], =
-[FAIL][132], [FAIL][133], [FAIL][134], [FAIL][135], [FAIL][136], [FAIL][137=
-], [FAIL][138], [FAIL][139], [FAIL][140], [FAIL][141], [FAIL][142], [FAIL][=
-143], [FAIL][144], [FAIL][145], [FAIL][146], [FAIL][147], [FAIL][148], [FAI=
-L][149], [FAIL][150], [FAIL][151], [FAIL][152], [FAIL][153], [FAIL][154], [=
-FAIL][155], [FAIL][156]) ([i915#14749]) -> ([FAIL][157], [FAIL][158], [FAIL=
-][159], [FAIL][160], [FAIL][161], [FAIL][162], [FAIL][163], [FAIL][164], [F=
-AIL][165], [FAIL][166], [FAIL][167], [FAIL][168], [FAIL][169], [FAIL][170],=
- [FAIL][171], [FAIL][172], [FAIL][173], [FAIL][174], [FAIL][175], [FAIL][17=
-6], [FAIL][177], [FAIL][178], [FAIL][179], [FAIL][180], [FAIL][181], [FAIL]=
-[182], [FAIL][183], [FAIL][184], [FAIL][185], [FAIL][186], [FAIL][187], [FA=
-IL][188], [FAIL][189], [FAIL][190], [FAIL][191], [FAIL][192], [FAIL][193], =
-[FAIL][194], [FAIL][195], [FAIL][196], [FAIL][197], [FAIL][198], [FAIL][199=
-], [FAIL][200]) ([i915#14749] / [i915#14832])
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-4/igt@runner@aborted.html
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-4/igt@runner@aborted.html
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-10/igt@runner@aborted.html
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-5/igt@runner@aborted.html
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-7/igt@runner@aborted.html
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-7/igt@runner@aborted.html
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-7/igt@runner@aborted.html
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-7/igt@runner@aborted.html
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-6/igt@runner@aborted.html
-   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-2/igt@runner@aborted.html
-   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html
-   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-4/igt@runner@aborted.html
-   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-8/igt@runner@aborted.html
-   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-10/igt@runner@aborted.html
-   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [150]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-9/igt@runner@aborted.html
-   [151]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-10/igt@runner@aborted.html
-   [152]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-10/igt@runner@aborted.html
-   [153]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-4/igt@runner@aborted.html
-   [154]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-5/igt@runner@aborted.html
-   [155]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-5/igt@runner@aborted.html
-   [156]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-5/igt@runner@aborted.html
-   [157]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [158]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-2/igt@runner@aborted.html
-   [159]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-9/igt@runner@aborted.html
-   [160]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-2/igt@runner@aborted.html
-   [161]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-9/igt@runner@aborted.html
-   [162]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-2/igt@runner@aborted.html
-   [163]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [164]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [165]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [166]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-8/igt@runner@aborted.html
-   [167]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-2/igt@runner@aborted.html
-   [168]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [169]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [170]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [171]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [172]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [173]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-7/igt@runner@aborted.html
-   [174]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [175]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [176]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [177]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-9/igt@runner@aborted.html
-   [178]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [179]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [180]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-10/igt@runner@aborted.html
-   [181]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-3/igt@runner@aborted.html
-   [182]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [183]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-5/igt@runner@aborted.html
-   [184]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [185]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [186]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-9/igt@runner@aborted.html
-   [187]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-8/igt@runner@aborted.html
-   [188]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-10/igt@runner@aborted.html
-   [189]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-8/igt@runner@aborted.html
-   [190]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-10/igt@runner@aborted.html
-   [191]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-8/igt@runner@aborted.html
-   [192]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [193]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [194]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-6/igt@runner@aborted.html
-   [195]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-5/igt@runner@aborted.html
-   [196]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-10/igt@runner@aborted.html
-   [197]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [198]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-4/igt@runner@aborted.html
-   [199]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-5/igt@runner@aborted.html
-   [200]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--tglu-5/igt@runner@aborted.html
-    - shard-mtlp:         ([FAIL][201], [FAIL][202], [FAIL][203], [FAIL][20=
-4], [FAIL][205], [FAIL][206], [FAIL][207], [FAIL][208], [FAIL][209], [FAIL]=
-[210], [FAIL][211], [FAIL][212], [FAIL][213], [FAIL][214], [FAIL][215], [FA=
-IL][216], [FAIL][217], [FAIL][218], [FAIL][219], [FAIL][220], [FAIL][221], =
-[FAIL][222], [FAIL][223], [FAIL][224], [FAIL][225], [FAIL][226], [FAIL][227=
-], [FAIL][228], [FAIL][229], [FAIL][230], [FAIL][231], [FAIL][232], [FAIL][=
-233], [FAIL][234], [FAIL][235], [FAIL][236], [FAIL][237], [FAIL][238], [FAI=
-L][239], [FAIL][240], [FAIL][241], [FAIL][242], [FAIL][243], [FAIL][244], [=
-FAIL][245], [FAIL][246], [FAIL][247], [FAIL][248], [FAIL][249], [FAIL][250]=
-) ([i915#14489]) -> ([FAIL][251], [FAIL][252], [FAIL][253], [FAIL][254], [F=
-AIL][255], [FAIL][256], [FAIL][257], [FAIL][258], [FAIL][259], [FAIL][260],=
- [FAIL][261], [FAIL][262], [FAIL][263], [FAIL][264], [FAIL][265], [FAIL][26=
-6], [FAIL][267], [FAIL][268], [FAIL][269], [FAIL][270], [FAIL][271], [FAIL]=
-[272], [FAIL][273], [FAIL][274], [FAIL][275], [FAIL][276], [FAIL][277], [FA=
-IL][278], [FAIL][279], [FAIL][280], [FAIL][281], [FAIL][282], [FAIL][283], =
-[FAIL][284], [FAIL][285], [FAIL][286], [FAIL][287], [FAIL][288], [FAIL][289=
-], [FAIL][290], [FAIL][291], [FAIL][292], [FAIL][293], [FAIL][294], [FAIL][=
-295], [FAIL][296], [FAIL][297], [FAIL][298], [FAIL][299]) ([i915#14489] / [=
-i915#14832])
-   [201]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [202]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [203]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [204]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [205]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [206]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [207]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [208]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [209]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [210]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [211]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [212]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [213]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [214]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [215]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [216]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-1/igt@runner@aborted.html
-   [217]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [218]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [219]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [220]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [221]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [222]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [223]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [224]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [225]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [226]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [227]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [228]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html
-   [229]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [230]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [231]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-6/igt@runner@aborted.html
-   [232]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [233]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [234]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [235]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [236]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [237]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [238]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [239]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [240]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-8/igt@runner@aborted.html
-   [241]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-5/igt@runner@aborted.html
-   [242]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [243]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [244]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [245]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [246]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-4/igt@runner@aborted.html
-   [247]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [248]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [249]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-2/igt@runner@aborted.html
-   [250]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-3/igt@runner@aborted.html
-   [251]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [252]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [253]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [254]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [255]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [256]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [257]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [258]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [259]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [260]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [261]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [262]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [263]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [264]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-1/igt@runner@aborted.html
-   [265]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [266]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [267]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [268]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [269]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-6/igt@runner@aborted.html
-   [270]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [271]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [272]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [273]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [274]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [275]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [276]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [277]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [278]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-2/igt@runner@aborted.html
-   [279]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [280]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [281]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [282]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-5/igt@runner@aborted.html
-   [283]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [284]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [285]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-   [286]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [287]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [288]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [289]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-7/igt@runner@aborted.html
-   [290]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [291]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-   [292]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-   [293]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [294]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [295]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-8/igt@runner@aborted.html
-   [296]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-3/igt@runner@aborted.html
-   [297]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-   [298]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-   [299]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--mtlp-4/igt@runner@aborted.html
-
- =20
-  [i915#14489]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/144=
-89
-  [i915#14749]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/147=
-49
-  [i915#14832]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/148=
-32
 
 
-Build changes
--------------
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of An=
+kit
+> Nautiyal
+> Sent: 18 August 2025 13:01
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: ville.syrjala@linux.intel.com; Nautiyal, Ankit K <ankit.k.nautiyal@in=
+tel.com>
+> Subject: [PATCH 08/12] drm/i915/display: Add guardband check for feature
+> latencies
+>=20
+> Add a check during atomic crtc check phase to ensure the programmed VRR
+> guardband is sufficient to cover latencies introduced by enabled features=
+ such as
+> DSC, PSR/PR, scalers, and DP SDPs.
+>=20
+> Currently, the guardband is programmed to match the vblank length, so exi=
+sting
+> checks in skl_is_vblank_too_short() are valid. However, upcoming changes =
+will
+> optimize the guardband independently of vblank, making those checks incor=
+rect.
+>=20
+> Introduce an explicit guardband check to prepare for future updates that =
+will
+> remove checking against the vblank length and later program an optimized
+> guardband.
+>=20
+> v2: Use new helper for PSR2/Panel Replay latency.
+>=20
+> v3:
+> -Align the name of helper with intel_crtc_atomic_check and rename it to
+> intel_crtc_guardband_atomic_check(). (Jani) -Simplify checks in the helpe=
+r.
+> (Mitul) -Make a separate helper to compute wm0 prefill time. (Mitul)
+>=20
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 143 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_watermark.c |   2 +-
+>  drivers/gpu/drm/i915/display/skl_watermark.h |   1 +
+>  3 files changed, 145 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 62ec95a75154..9138cd1d6284 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4227,6 +4227,143 @@ static int hsw_compute_linetime_wm(struct
+> intel_atomic_state *state,
+>  	return 0;
+>  }
+>=20
+> +static int
+> +cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state) {
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +	struct intel_atomic_state *state =3D
+> +		to_intel_atomic_state(crtc_state->uapi.state);
+> +	const struct intel_cdclk_state *cdclk_state;
+> +
+> +	cdclk_state =3D intel_atomic_get_cdclk_state(state);
+> +	if (IS_ERR(cdclk_state)) {
+> +		drm_WARN_ON(display->drm, PTR_ERR(cdclk_state));
+> +		return 1;
+> +	}
+> +
+> +	return min(1, DIV_ROUND_UP(crtc_state->pixel_rate,
+> +				   2 * intel_cdclk_logical(cdclk_state)));
+> +}
+> +
+> +static int
+> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int
+> +linetime) {
+> +	const struct intel_crtc_scaler_state *scaler_state =3D &crtc_state-
+> >scaler_state;
+> +	int chroma_downscaling_factor =3D
+> skl_scaler_chroma_downscale_factor(crtc_state);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+> +	u32 dsc_prefill_latency =3D 0;
+> +
+> +	if (!crtc_state->dsc.compression_enable ||
+> +	    !num_scaler_users ||
+> +	    num_scaler_users > crtc->num_scalers ||
+> +	    num_scaler_users > ARRAY_SIZE(scaler_state->scalers))
+> +		return dsc_prefill_latency;
+> +
+> +	for (int i =3D 0; i < num_scaler_users; i++) {
+> +		hscale_k[i] =3D max(1000, mul_u32_u32(scaler_state-
+> >scalers[i].hscale, 1000) >> 16);
+> +		vscale_k[i] =3D max(1000, mul_u32_u32(scaler_state-
+> >scalers[i].vscale, 1000) >> 16);
+> +	}
+> +
+> +	dsc_prefill_latency =3D
+> +		intel_display_dsc_prefill_latency(num_scaler_users, hscale_k,
+> vscale_k,
+> +						  chroma_downscaling_factor,
+> +
+> cdclk_prefill_adjustment(crtc_state),
+> +						  linetime);
+> +
+> +	return dsc_prefill_latency;
+> +}
+> +
+> +static int
+> +scaler_prefill_latency(const struct intel_crtc_state *crtc_state, int
+> +linetime) {
+> +	const struct intel_crtc_scaler_state *scaler_state =3D &crtc_state-
+> >scaler_state;
+> +	int chroma_downscaling_factor =3D
+> skl_scaler_chroma_downscale_factor(crtc_state);
+> +	int num_scaler_users =3D hweight32(scaler_state->scaler_users);
+> +	u64 hscale_k =3D 0, vscale_k =3D 0;
+> +	int scaler_prefill_latency =3D 0;
+> +
+> +	if (!num_scaler_users)
+> +		return scaler_prefill_latency;
+> +
+> +	if (num_scaler_users > 1) {
+> +		hscale_k =3D max(1000, mul_u32_u32(scaler_state-
+> >scalers[0].hscale, 1000) >> 16);
+> +		vscale_k =3D max(1000, mul_u32_u32(scaler_state-
+> >scalers[0].vscale, 1000) >> 16);
+> +	}
+> +
+> +	scaler_prefill_latency =3D
+> +		intel_display_scaler_prefill_latency(num_scaler_users, hscale_k,
+> vscale_k,
+> +						     chroma_downscaling_factor,
+> +
+> cdclk_prefill_adjustment(crtc_state),
+> +						     linetime);
+> +
+> +	return scaler_prefill_latency;
+> +}
+> +
+> +static int
+> +wm0_prefill_latency(int linetime_us, int max_wm0_lines) {
+> +	return 20 + linetime_us * max_wm0_lines; }
+> +
+> +static int intel_crtc_guardband_atomic_check(struct intel_crtc_state
+> +*crtc_state) {
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state-
+> >hw.adjusted_mode;
+> +	int dsc_prefill_time =3D 0;
+> +	int scaler_prefill_time;
+> +	int wm0_prefill_time;
+> +	int pkgc_max_latency;
+> +	int psr2_pr_latency;
+> +	int min_guardband;
+> +	int guardband_us;
+> +	int sagv_latency;
+> +	int linetime_us;
+> +	int sdp_latency;
+> +	int pm_delay;
+> +
+> +	if (!crtc_state->vrr.enable && !intel_vrr_always_use_vrr_tg(display))
+> +		return 0;
+> +
+> +	if (!adjusted_mode->crtc_clock)
+> +		return 0;
+> +
+> +	linetime_us =3D DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
+> +				   adjusted_mode->crtc_clock);
+> +
+> +	pkgc_max_latency =3D skl_watermark_max_latency(display, 1);
+> +	sagv_latency =3D display->sagv.block_time_us;
+> +
+> +	wm0_prefill_time =3D wm0_prefill_latency(linetime_us,
+> +skl_max_wm0_lines(crtc_state));
+> +
+> +	scaler_prefill_time =3D scaler_prefill_latency(crtc_state, linetime_us)=
+;
+> +
+> +	dsc_prefill_time =3D dsc_prefill_latency(crtc_state, linetime_us);
+> +
+> +	pm_delay =3D crtc_state->framestart_delay +
+> +		   max(sagv_latency, pkgc_max_latency) +
+> +		   wm0_prefill_time +
+> +		   scaler_prefill_time +
+> +		   dsc_prefill_time;
+> +
+> +	psr2_pr_latency =3D
+> intel_alpm_compute_max_link_wake_latency(crtc_state, false);
+> +	sdp_latency =3D intel_dp_compute_sdp_latency(crtc_state, false);
+> +
+> +	guardband_us =3D max(sdp_latency, psr2_pr_latency);
+> +	guardband_us =3D max(guardband_us, pm_delay);
+> +	min_guardband =3D DIV_ROUND_UP(guardband_us, linetime_us);
+> +
+> +	if (crtc_state->vrr.guardband < min_guardband) {
+> +		drm_dbg_kms(display->drm, "vrr.guardband %d < min
+> guardband %d\n",
+> +			    crtc_state->vrr.guardband, min_guardband);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+>  				   struct intel_crtc *crtc)
+>  {
+> @@ -4289,6 +4426,12 @@ static int intel_crtc_atomic_check(struct
+> intel_atomic_state *state,
+>  	if (ret)
+>  		return ret;
+>=20
+> +	if (HAS_VRR(display) && intel_vrr_possible(crtc_state)) {
+> +		ret =3D intel_crtc_guardband_atomic_check(crtc_state);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c
+> b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index f0213785e9fc..6e9cdf5bc60b 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2249,7 +2249,7 @@ skl_is_vblank_too_short(const struct intel_crtc_sta=
+te
+> *crtc_state,
+>  		adjusted_mode->crtc_vtotal - adjusted_mode-
+> >crtc_vblank_start;  }
+>=20
+> -static int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum plane_id plane_id;
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h
+> b/drivers/gpu/drm/i915/display/skl_watermark.h
+> index 62790816f030..8706c2010ebe 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
+> @@ -78,6 +78,7 @@ void intel_dbuf_mbus_post_ddb_update(struct
+> intel_atomic_state *state);  void intel_program_dpkgc_latency(struct
+> intel_atomic_state *state);
+>=20
+>  bool intel_dbuf_pmdemand_needs_update(struct intel_atomic_state *state);
+> +int skl_max_wm0_lines(const struct intel_crtc_state *crtc_state);
 
-  * Linux: CI_DRM_17021 -> Patchwork_151245v5
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-  CI-20190529: 20190529
-  CI_DRM_17021: 2109e38df4c111216f291cde8fd0f7eede4ebd62 @ git://anongit.fr=
-eedesktop.org/gfx-ci/linux
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freed=
-esktop.org/drm/igt-gpu-tools.git
-  Patchwork_151245v5: 2109e38df4c111216f291cde8fd0f7eede4ebd62 @ git://anon=
-git.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
-edesktop.org/piglit
+>=20
+>  #endif /* __SKL_WATERMARK_H__ */
+>=20
+> --
+> 2.45.2
 
-=3D=3D Logs =3D=3D
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15=
-1245v5/index.html
-
---===============1761968748752905728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-
-<!DOCTYPE html>
-<html xmlns=3D"http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Optimize vrr.guardband and fix LRR (rev5)</t=
-d></tr>
-<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
-ries/151245/">https://patchwork.freedesktop.org/series/151245/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_151245v5/index.html">https://intel-gfx-ci.01.org/tre=
-e/drm-tip/Patchwork_151245v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17021_full -&gt; Patchwork_151245v=
-5_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_151245v5_full that come from kno=
-wn issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>shard-tglu-1:       (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/CI_DRM_17021/shard-tglu-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/CI_DRM_17021/shard-tglu-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-1/igt@runn=
-er@aborted.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/i=
-915/kernel/-/issues/14749">i915#14749</a>) -&gt; (<a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-1/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_151245v5/shard-tglu-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-1/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-tglu-1/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sha=
-rd-tglu-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-1/igt@runner@aborted.ht=
-ml">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
-issues/14749">i915#14749</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
-m/i915/kernel/-/issues/14832">i915#14832</a>)</li>
-<li>shard-snb:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"htt=
-ps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@ab=
-orted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/C=
-I_DRM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
-RM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://i=
-ntel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@runner@aborted.=
-html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_=
-17021/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://inte=
-l-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_170=
-21/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runner@aborted.html">=
-FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/=
-shard-snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@aborted.html">FAI=
-L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sha=
-rd-snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@aborted.html">FAIL</=
-a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-=
-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb=
-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/i=
-gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/drm-tip/CI_DRM_17021/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a hr=
-ef=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb4/igt@=
-runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
-drm-tip/CI_DRM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/CI_DRM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/CI_DRM_17021/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
-tps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-CI_DRM_17021/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runner@abor=
-ted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_=
-DRM_17021/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt@runner@aborted=
-.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM=
-_17021/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17=
-021/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021=
-/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sh=
-ard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL<=
-/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard=
--snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-sn=
-b6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/CI_DRM_17021/shard-snb7/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/=
-igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb6/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/CI_DRM_17021/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-snb5/igt@runne=
-r@aborted.html">FAIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
-15/kernel/-/issues/14749">i915#14749</a>) -&gt; (<a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt@runner@aborted.=
-html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
-rk_151245v5/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb6/igt@runner=
-@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/Patchwork_151245v5/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb6/=
-igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/Patchwork_151245v5/shard-snb6/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sh=
-ard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15=
-1245v5/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt@runner@abor=
-ted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
-chwork_151245v5/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
-tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_151245v5/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-sn=
-b7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt@runner@aborted.html">FAIL<=
-/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5=
-/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_151245v5/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb7/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_151245v5/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/Patchwork_151245v5/shard-snb7/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15124=
-5v5/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb6/igt@runner@aborted=
-.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_151245v5/shard-snb5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/Patchwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb5/=
-igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/Patchwork_151245v5/shard-snb7/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sh=
-ard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb6/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15=
-1245v5/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt@runner@abor=
-ted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
-chwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
-tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-sn=
-b7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/Patchwork_151245v5/shard-snb7/igt@runner@aborted.html">FAIL<=
-/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5=
-/shard-snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb6/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_151245v5/shard-snb6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-snb4/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-snb4/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard=
--snb7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/Patchwork_151245v5/shard-snb7/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15124=
-5v5/shard-snb5/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https://gitla=
-b.freedesktop.org/drm/i915/kernel/-/issues/14749">i915#14749</a> / <a href=
-=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14832">i915#148=
-32</a>)</li>
-<li>shard-tglu:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/CI_DRM_17021/shard-tglu-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-9/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/CI_DRM_17021/shard-tglu-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-2/igt@runn=
-er@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/CI_DRM_17021/shard-tglu-6/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-6/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/CI_DRM_17021/shard-tglu-4/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-4/igt@=
-runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
-drm-tip/CI_DRM_17021/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-9/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/CI_DRM_17021/shard-tglu-10/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-2/i=
-gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/drm-tip/CI_DRM_17021/shard-tglu-6/igt@runner@aborted.html">FAIL</a>, <a =
-href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-5/=
-igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/CI_DRM_17021/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-7=
-/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/CI_DRM_17021/shard-tglu-7/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-=
-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/CI_DRM_17021/shard-tglu-3/igt@runner@aborted.html">FAIL</a>, =
-<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu=
--7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/CI_DRM_17021/shard-tglu-6/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tgl=
-u-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/CI_DRM_17021/shard-tglu-3/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tg=
-lu-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/CI_DRM_17021/shard-tglu-8/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-t=
-glu-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/CI_DRM_17021/shard-tglu-2/igt@runner@aborted.html">FAIL</=
-a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-=
-tglu-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.0=
-1.org/tree/drm-tip/CI_DRM_17021/shard-tglu-8/igt@runner@aborted.html">FAIL<=
-/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard=
--tglu-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-6/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shar=
-d-tglu-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-2/igt@runner@aborted.html">FAI=
-L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sha=
-rd-tglu-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-4/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sh=
-ard-tglu-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-8/igt@runner@aborted.html">F=
-AIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/s=
-hard-tglu-10/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-9/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021=
-/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-10/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_170=
-21/shard-tglu-10/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://inte=
-l-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-4/igt@runner@aborted.h=
-tml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1=
-7021/shard-tglu-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-tglu-5/igt@runner@aborted.=
-html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_=
-17021/shard-tglu-5/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https://g=
-itlab.freedesktop.org/drm/i915/kernel/-/issues/14749">i915#14749</a>) -&gt;=
- (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sh=
-ard-tglu-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-2/igt@runner@aborted.h=
-tml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_151245v5/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-2/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/Patchwork_151245v5/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a =
-href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-t=
-glu-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-7/igt@runner@aborted.html">=
-FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151=
-245v5/shard-tglu-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-7/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_151245v5/shard-tglu-8/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-=
-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_151245v5/shard-tglu-3/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v=
-5/shard-tglu-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-7/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_151245v5/shard-tglu-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-3/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-tglu-7/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sha=
-rd-tglu-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-3/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_151245v5/shard-tglu-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-9/igt@runn=
-er@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/Patchwork_151245v5/shard-tglu-6/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tg=
-lu-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/Patchwork_151245v5/shard-tglu-10/igt@runner@aborted.html">=
-FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151=
-245v5/shard-tglu-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-4/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-Patchwork_151245v5/shard-tglu-5/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-=
-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_151245v5/shard-tglu-6/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v=
-5/shard-tglu-9/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-8/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_151245v5/shard-tglu-10/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-8/ig=
-t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
-e/drm-tip/Patchwork_151245v5/shard-tglu-10/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/s=
-hard-tglu-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-4/igt@runner@aborted.=
-html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
-rk_151245v5/shard-tglu-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-6/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_151245v5/shard-tglu-5/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-tglu-10/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-4/igt@runner@aborted.html=
-">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
-51245v5/shard-tglu-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-tglu-5/igt@runner=
-@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/Patchwork_151245v5/shard-tglu-5/igt@runner@aborted.html">FAIL</a>) (<a hr=
-ef=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14749">i915#1=
-4749</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issu=
-es/14832">i915#14832</a>)</li>
-<li>shard-mtlp:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/CI_DRM_17021/shard-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-6/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/CI_DRM_17021/shard-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-5/igt@runn=
-er@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/CI_DRM_17021/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-5/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/CI_DRM_17021/shard-mtlp-1/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-5/igt@=
-runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/=
-drm-tip/CI_DRM_17021/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-1/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/CI_DRM_17021/shard-mtlp-1/igt@runner@aborted.html">FAIL</a>, <a hr=
-ef=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-5/ig=
-t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
-e/drm-tip/CI_DRM_17021/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-1/i=
-gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/drm-tip/CI_DRM_17021/shard-mtlp-1/igt@runner@aborted.html">FAIL</a>, <a =
-href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-1/=
-igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/CI_DRM_17021/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-8=
-/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/CI_DRM_17021/shard-mtlp-8/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-=
-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/CI_DRM_17021/shard-mtlp-7/igt@runner@aborted.html">FAIL</a>, =
-<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp=
--7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/CI_DRM_17021/shard-mtlp-8/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtl=
-p-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/CI_DRM_17021/shard-mtlp-7/igt@runner@aborted.html">FAIL</a>=
-, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mt=
-lp-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/CI_DRM_17021/shard-mtlp-8/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-m=
-tlp-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-6/igt@runner@aborted.html">FAIL</=
-a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-=
-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.0=
-1.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-6/igt@runner@aborted.html">FAIL<=
-/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard=
--mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-4/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shar=
-d-mtlp-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-3/igt@runner@aborted.html">FAI=
-L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sha=
-rd-mtlp-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-3/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/sh=
-ard-mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-3/igt@runner@aborted.html">F=
-AIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/s=
-hard-mtlp-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-5/igt@runner@aborted.html">=
-FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/=
-shard-mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-2/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021=
-/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-4/igt@runner@aborted.html=
-">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1702=
-1/shard-mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-2/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_170=
-21/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel=
--gfx-ci.01.org/tree/drm-tip/CI_DRM_17021/shard-mtlp-2/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17=
-021/shard-mtlp-3/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https://git=
-lab.freedesktop.org/drm/i915/kernel/-/issues/14489">i915#14489</a>) -&gt; (=
-<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shar=
-d-mtlp-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-6/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-151245v5/shard-mtlp-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:/=
-/intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-6/igt@runne=
-r@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/Patchwork_151245v5/shard-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a hr=
-ef=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtl=
-p-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/Patchwork_151245v5/shard-mtlp-1/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15124=
-5v5/shard-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://inte=
-l-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-8/igt@runner@abo=
-rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_151245v5/shard-mtlp-1/igt@runner@aborted.html">FAIL</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-1/i=
-gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/drm-tip/Patchwork_151245v5/shard-mtlp-8/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/s=
-hard-mtlp-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx=
--ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-1/igt@runner@aborted.=
-html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
-rk_151245v5/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-6/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_151245v5/shard-mtlp-7/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-=
-mtlp-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.0=
-1.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-6/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_15=
-1245v5/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://i=
-ntel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-2/igt@runner@=
-aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/Patchwork_151245v5/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-=
-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_151245v5/shard-mtlp-5/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v=
-5/shard-mtlp-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-2/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_151245v5/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-2/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sha=
-rd-mtlp-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-3/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_151245v5/shard-mtlp-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-3/igt@runn=
-er@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/Patchwork_151245v5/shard-mtlp-8/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mt=
-lp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.=
-org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-8/igt@runner@aborted.html">F=
-AIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1512=
-45v5/shard-mtlp-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-7/igt@runner@ab=
-orted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_151245v5/shard-mtlp-7/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-=
-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_151245v5/shard-mtlp-4/igt@runner@aborted.html">FAIL=
-</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v=
-5/shard-mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-3/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_151245v5/shard-mtlp-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-8/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_151245v5/shard-mtlp-3/igt@runner@aborted.html">FAIL</a>,=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_151245v5/sha=
-rd-mtlp-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_151245v5/shard-mtlp-4/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_151245v5/shard-mtlp-4/igt@runner@aborted.html">FAIL</a>) (<a href=3D"https=
-://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14489">i915#14489</a> / =
-<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14832">i=
-915#14832</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17021 -&gt; Patchwork_151245v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17021: 2109e38df4c111216f291cde8fd0f7eede4ebd62 @ git://anongit.fr=
-eedesktop.org/gfx-ci/linux<br />
-  IGT_8495: b412b144685feadfd5675f3108de3d6820a4d1db @ https://gitlab.freed=
-esktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_151245v5: 2109e38df4c111216f291cde8fd0f7eede4ebd62 @ git://anon=
-git.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
-edesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============1761968748752905728==--
