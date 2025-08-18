@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1381B29BD3
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 10:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF150B29BFC
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Aug 2025 10:24:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7067B10E405;
-	Mon, 18 Aug 2025 08:16:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D23510E3E1;
+	Mon, 18 Aug 2025 08:24:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHmStQB8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MpHYspAz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE56010E41A;
- Mon, 18 Aug 2025 08:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755504975; x=1787040975;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WKCPDXCho5aflXkFBASrM5EyCDKRoITqzqB3yk5WvU8=;
- b=kHmStQB8ucEffUsqyT7Y8Wku2vcs+BeWpIzLkapAx+YP0XRyF1h+wF/3
- cxmOeM7/uX0oRoNCUXLfxrKDaN3yIxkvkC40Q9i328Hh0lj6ht2olIWZn
- 1LKrPVMWFJyk1JTybk/etSCCOo0GD6atBW5PRVbFtYkuRo/wDv8zi9GXc
- 99fbTA72H26tslwmAXsJCwAzuy9yb+eKoZcTWAEEFXkMbZh0WHgLgJJF+
- BXJeATwz7agQ49Ytxh6XYYlxFnrAhovjY9PMd5jTYOI0dLtpbXzu5o6d8
- fPId5ZkmoUf0jX+ZB3eWCHBgBHydYEtkm2wCiuZDK/WxodDsIn/1wCQTI A==;
-X-CSE-ConnectionGUID: INn4atGYSxaCbCULLV7ZNw==
-X-CSE-MsgGUID: fdkGuY8LS2yxkN7WyII4Dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11524"; a="68434705"
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="68434705"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2025 01:16:14 -0700
-X-CSE-ConnectionGUID: YEsdwrHeStKQNrfSHUH0Ww==
-X-CSE-MsgGUID: fVFI4v+GTgCLWLhJAlWHJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,293,1747724400"; d="scan'208";a="167434161"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa006.fm.intel.com with ESMTP; 18 Aug 2025 01:16:13 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Subject: [core-for-CI] Revert "block: restore default wbt enablement"
-Date: Mon, 18 Aug 2025 13:28:38 +0530
-Message-Id: <20250818075838.444487-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E20810E3F7;
+ Mon, 18 Aug 2025 08:24:07 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 674415C5B0E;
+ Mon, 18 Aug 2025 08:24:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07D0CC4CEEB;
+ Mon, 18 Aug 2025 08:24:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1755505446;
+ bh=oHe8L6AJ1HN36OrIi1UFNdMX8VNWXSRddHimq5CZjsQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=MpHYspAzfcqUFGH9LU2mLKVPXtjQbW+njzf0JVMQ+IFJrXikO/Jkn8jcUWtD7SZjT
+ xy1d4rUPAvp/ahldzFLNaLepm0HHfpgp+S01zniBRz9sxgnsX8KF4M8lelArs9G70n
+ OcqZ8sEoJy0psmJbYv1vOvVzR7Vf/oKhXvrQrbrpkTsIkPfj/NQGAKS2HCukxYeoxk
+ bibNys36behl8ImQvodAXJ3fbwL8MJWlJoKyxYd3UGaS2G++aJb1ZhatS4TO7HsnJ0
+ ivrgiCPtKTEs9pfHj4X9DZQna25troV18QONGEBbYUkDBKZR73lbWy2N7Oc9bBW5NF
+ cFGWCEMRBXKcg==
+Message-ID: <cce242b2-dd21-446f-80f9-7f501aa15725@kernel.org>
+Date: Mon, 18 Aug 2025 10:24:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: linux-next: build warnings after merge of the drm-misc-fixes tree
+To: Bagas Sanjaya <bagasdotme@gmail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <seanpaul@chromium.org>, Javier Garcia <rampxxxx@gmail.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+References: <20250818123853.51aa3bc4@canb.auug.org.au>
+ <aKLAc27XGAadB8n5@archie.me>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <aKLAc27XGAadB8n5@archie.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,32 +66,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 8f5845e0743bf3512b71b3cb8afe06c192d6acc4.
+On 8/18/25 7:56 AM, Bagas Sanjaya wrote:
+> Danilo, can you please drop my commit (and kept Javier's one)?
 
-This commit seems to cause regression in CI [1]. Revert it.
+I think yours is in drm-msm-fixes, which I don't maintain.
 
-[1] https://intel-gfx-ci.01.org/tree/intel-xe/index.html?
-
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- block/blk-sysfs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/block/blk-sysfs.c b/block/blk-sysfs.c
-index 4a7f1a349998..c5cf79a20842 100644
---- a/block/blk-sysfs.c
-+++ b/block/blk-sysfs.c
-@@ -902,9 +902,9 @@ int blk_register_queue(struct gendisk *disk)
- 
- 	if (queue_is_mq(q))
- 		elevator_set_default(q);
-+	wbt_enable_default(disk);
- 
- 	blk_queue_flag_set(QUEUE_FLAG_REGISTERED, q);
--	wbt_enable_default(disk);
- 
- 	/* Now everything is ready and send out KOBJ_ADD uevent */
- 	kobject_uevent(&disk->queue_kobj, KOBJ_ADD);
--- 
-2.25.1
-
+@Rob: Can you drop it please?
