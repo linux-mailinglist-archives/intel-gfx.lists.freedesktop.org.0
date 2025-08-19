@@ -2,157 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7335B2BCC0
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 11:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2FE9B2BCD7
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 11:17:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B554C10E582;
-	Tue, 19 Aug 2025 09:15:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50BC210E56F;
+	Tue, 19 Aug 2025 09:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="K5KWSMKo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nThVgr+c";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2053.outbound.protection.outlook.com [40.107.243.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E0A510E57E;
- Tue, 19 Aug 2025 09:15:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC07A10E56B;
+ Tue, 19 Aug 2025 09:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755595022; x=1787131022;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Y7hRpPzAt1DNUC9mt46HB0CoepZ0agMTtt1WMObFPCg=;
+ b=nThVgr+cO2cNatW2PC73zCLaiU6twYe5+Uah+qrCSFSBozuKK9qm77NA
+ tNDrKg7mHhNhdbtOYf1HYPX4Iz7HYWKJMlRdhQvea2QKVo2cmujN+ihJ7
+ 5XLzgO4Mpm7wHC5uhnfOzbF4ArqzaoI6GXq4LCr2Pq254tO6nuM5CQRKu
+ 61vakxJxq7rn1opu3Ce8Bq+Ig1A+VNc9NAnHgbawbk1Y0USMm9STupUmE
+ t5JLafujVoVAeF4XFltlFVzyM1Vk8Oot5Gzrse3e7/xzopBgREesocXK1
+ bmZeP0cvfle6ZCP2Xae+Sei3fskqXSUFmWRNt/EoEqikdLiYpPm9L2TZ1 A==;
+X-CSE-ConnectionGUID: xeKMD96+SmC9KXFqe9RLDA==
+X-CSE-MsgGUID: cioPLFqRRbShxm909msEng==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="45406032"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="45406032"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 02:17:01 -0700
+X-CSE-ConnectionGUID: qAM5LwxhTIKSwIRWrCCMSw==
+X-CSE-MsgGUID: uzlT/JV5Qver6MvZqstzjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="173029679"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 02:16:56 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 19 Aug 2025 02:16:46 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Tue, 19 Aug 2025 02:16:46 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (40.107.92.63) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 19 Aug 2025 02:16:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nPoxR/iAvKC6A356YnPOWJr+hxDKRzGH2Gk/dlu4a9dlVJks3nEsodPuWo2JrnC+q36IZbxFmo5SeRF2J5XZg3ITQpIiQzyLCtGgig2bdvDMVCU+aRSfyB0Ss87yebeqMDtUuXznjaoM645MjQWHHoUOgyi5UM/l0Wq1F8FdHJoYyaEU4uSLh+p3i5HXKeDrzsGyprq3lnZwn5MdOOBtV2DwmcqKZyLhtjVoMZeSb2DUYQ0+n7kFlcFL4MB9CWO6SVDXxQpaJOwD99CQ84DkAn0452+ILnIo2t+PVb8AEUh6d1jaAh2l2PgsFeAS5IEOe+ZqoM+6sIJW2JtyLrTviQ==
+ b=j+Tn2pHGvoGQSCMaNp2yYL3p1rWP4LdTxwTXzSQ8If8gtRz9batOkH7e0/1TRR9rc1Nfm2ATnkdBeuNxHKfFrM5lt/LQdEdrKuLwl6OSkfxiDIaGrLVf/OSpxz0HMUb77kLWnWB7vgavRZbabIwadG0th0mPAx0/8MbHCtW9a1v6N5FccpTodRxiKiSfzeYw15kYaiWwGccaaE/CXLasLHDSRoaEPjV5VzL1u3V25RHA4WbnO34rJybAhCm0t8HxmlXL/AyF/Dd1cD+65sUrBlButmFOlQVh1uZGquLljkZU54A1ks4ryajXz+k2oIsDhlD3GmfSnyVdTqulatGIHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cxgu4VMMvXFy9zjrzTJjug+s8V3eVJXWeMJ732Qz5CM=;
- b=GU+L/jvLv4yiIQtNFz4+m3/1Yhcs4R2CO9QXa5z5bhiegJ3GDwAwvZCY1GPRPjxulGli4St5jMgb/TsCxXhoaNAOUo4Z0Vq8w+7d4XW8VJAuilWxpZ0wZspCpc5w/PxcJP9Qc1E7Md9DwBhZQyyURYgpp5qkyjUY8/JQ8EIo3Xx6X7BuWsiR4dUDf//11ixQtsItj7fvD3CNMCxqA3cP/OCy4t964mEv2c0lU/FioANmlIhxy56Af/y9KYgBETG9b1A7nVD2Gs+OZK7lvWVwJyeDAGkxEXbggnFNhgJ0ARTli1Zd4yOtcVRVHfxxm5w7rKOhYBhdIIgB5DNw9rap+Q==
+ bh=NZ2vrLNN5f3G1KnhFnUF1O9e8YuvYb8pnDpuM5jKta8=;
+ b=BgbR+69XWiPQuCbvBT6W+yT/je49RatuLN3PXQkNd/RzsdhHa5JTLCWaofuWeq8w3tTMEGZAaW5MtYKOiHs2NcKff3T62gwcWy4VoBGMnsPyki2WXIhjPAmY5LaKiR5oMZx5n8yDidSNIUkFWHlRslzWEB3qPBBZsSHIaI32LMbtxg0ZLlN0GqQjIJ3aeTiDVRNCjrs5t1dNQ0LvcaBjrpbC4GiAt17kNRudsab6D3NgAQF6QiAYAOiA3D1Xfm0p8kORQX20/3cK/rUFma2fhyjdEy9yCn7KMDWcP7/hQ+shqksFVD91CbEluGRZEG/LrDldqRWme4MlQvQTHIukdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cxgu4VMMvXFy9zjrzTJjug+s8V3eVJXWeMJ732Qz5CM=;
- b=K5KWSMKoi8yypdvx+hRpXlGWtyYUIWsK+35KI/ubKHSCPRGM2WFeVcUelcJdBESk/H6NLL/lpBJQjudLtnYFN6bpvToC6a4S+2MQwPpiUOZdS5rX2jtpatRxXmF2gb3wiiFrAQNszwe64YNLc2djDLS85LWNq2Jn8lGCsk6wwFE=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA0PPFAF883AE17.namprd12.prod.outlook.com
- (2603:10b6:20f:fc04::be1) with Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by IA1PR11MB9518.namprd11.prod.outlook.com (2603:10b6:208:5b0::24) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Tue, 19 Aug
- 2025 09:15:18 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.9031.023; Tue, 19 Aug 2025
- 09:15:17 +0000
-Message-ID: <94132288-a3a5-49e7-8f3b-2f7983f3bc51@amd.com>
-Date: Tue, 19 Aug 2025 11:15:08 +0200
+ 2025 09:16:45 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.8989.018; Tue, 19 Aug 2025
+ 09:16:45 +0000
+Message-ID: <c74588f3-027a-4afa-bdf4-3c000c599bd7@intel.com>
+Date: Tue, 19 Aug 2025 14:46:38 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dma-buf/fence-chain: Speed up processing of rearmed
- callbacks
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20250814094824.217142-6-janusz.krzysztofik@linux.intel.com>
- <2443311.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
- <c4bac4d8-9c5b-446c-b9a1-1bc7ac6b38ff@amd.com>
- <2067093.PIDvDuAF1L@jkrzyszt-mobl2.ger.corp.intel.com>
+Subject: Re: [PATCH v5 1/3] drm/i915/vbt: Add eDP Data rate overrride field in
+ VBT
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+CC: <jani.nikula@intel.com>
+References: <20250819080602.84826-1-suraj.kandpal@intel.com>
+ <20250819080602.84826-2-suraj.kandpal@intel.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <2067093.PIDvDuAF1L@jkrzyszt-mobl2.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0189.namprd13.prod.outlook.com
- (2603:10b6:208:2be::14) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250819080602.84826-2-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0002.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::11) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PPFAF883AE17:EE_
-X-MS-Office365-Filtering-Correlation-Id: 629249c9-a483-4424-613a-08dddf00e9ba
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA1PR11MB9518:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50723b8a-fc42-4e5d-b2f8-08dddf011de0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SXNkdUdUUTZWNUNzanh6b2ZqU0JWdHh6dDRtZ2JyY2hhM0ZtdXI2T0NYcDIr?=
- =?utf-8?B?bEhwUy9WeWNINDNBYUhkUlZPSmYyUXh6S0JLcy9yTlphUDN0bEVtRWVLSnEz?=
- =?utf-8?B?TWx3Vms3ckFmRWhyS2lmT2FVVUl6YVRaVTZpWkt6RlJpUkZiYm4wd0VUajV0?=
- =?utf-8?B?cGpBOVZ1eTBGdEdGa29VdC9qNVpaVmxGVUdMT1E4eVRMMHEvdzU5L3k4QmM2?=
- =?utf-8?B?NWpGa0FPVGlmSmpNV3lRUGlvVENMSmlPUkxyeGNVa0lhNUt3ajh4WUZjVEpD?=
- =?utf-8?B?NkVrQXJFYVR4SHFQanVHUkgwQTRMT2NIYUhyTkJXYko2U0FTUENSbndraC9S?=
- =?utf-8?B?Qmp2NW5FREJsRFhtUUtGTlBuTmJ6Rk00SDVXQmxlVnZySTJKQkRWaTMvRzRX?=
- =?utf-8?B?cUZLZ1dlc2hVMjltNlgyVzdYK0FpNjRhQ1FrT1dIVWp6ZzEvaXZoOC9TdkFv?=
- =?utf-8?B?Rks0NmxQUWtLTDVaQ1JLbFJuNXhvWXBLWXpGbWVyUWVaSUtQcXZjL2JXUHlX?=
- =?utf-8?B?MlJlZTlrNi80dEN2MmNsaFpMbkdqdDVTUVFaaExPTjJGQXR1TlNGMlVXWEpk?=
- =?utf-8?B?cG41SC9nUHN0ZSttWlpmM3U2ZDJmQVZJNytLZ0RvejBJRGdLT1IvVzFldGZn?=
- =?utf-8?B?ZlR2bjhwKzQyUG1NWmxJbktMMWtiL1dVY0x2bnhDWW5vRkJxWWc1TFVjQ3gx?=
- =?utf-8?B?bmoxWmJCQWh6OXdVVVR2Vy9UUHJsUTdaRXhKd05LYWVEY0U0dk1YblhPTWZk?=
- =?utf-8?B?SFBoYitoN0NKSnArUG94QmxKeW9PeDR1S0RCQ05Ia1U1STI0eDkvYnJkQS9o?=
- =?utf-8?B?Z1JRemFsaE1PTklPN0tHR2RFcDRzbDA0VWlrN2pOdUx4d0dkRmJES3g5eC9G?=
- =?utf-8?B?a2ZtSm1mb2RvZVpzNWF2NFhsaDFwYXRySm0zOXBXbGFKM08vZDI0aERsSk10?=
- =?utf-8?B?bUZqZS8vMUxKZ2RFcWM1T29SaGRwM2pTSmgwQ0RCZjRFOXdWWjM5TkdkOGEv?=
- =?utf-8?B?RnAwSDkyaFUvbVdEUFZKeXFaMTNGcnRLV3hQY2hFdW9HTGtRSnhKazZKYzZG?=
- =?utf-8?B?eENDbHlJck5JbUsvS05IbXFsQmxMeHpISUhBUEIva2pELzRLbFRoNHptdXdx?=
- =?utf-8?B?TUlBTzBXL3JKWHRvYWJiNXBWV21kRjBZMUhNbktZcnJ5aEtraTA2SjkzbFpn?=
- =?utf-8?B?TkUzaExyaVZPOWtjaE5oSXNQL1lVRWNFME5tMldsVzZGc2dmSE9ZTkhMREpU?=
- =?utf-8?B?aUhSVWxZdnYzdFU2QS9mRGF5WmFzN04wajJKUUJ5b1NpZFhGc0pvZngrb3l5?=
- =?utf-8?B?a0hrZUM1cHN4TXlkSE4xSmsrYVlOeGdTem1WQ1FKVmtmTEhsb212cjh6VHRt?=
- =?utf-8?B?VHY5VVhYR05qT3lwU2RScC8xTERYTDVKTlRqZXU3cUtEK1RKVkRuUXFLQkxN?=
- =?utf-8?B?bVNTMityNjI3NVYrbENaWWlsT0lkYWxYRExKRHN6eU1Yc21hekJHakNEVE9U?=
- =?utf-8?B?bHZQZ2I0NVhYdzlWRmlBK0lJSVUzZnJ4bnMxVUc2SzJadzErSVd4cGtFR1dN?=
- =?utf-8?B?ei9DVERvT3dleUVsV3RvbmxpTE44MzVPY25pMm9GQnYzUm5NMiszV0laaUQ0?=
- =?utf-8?B?YTZ5QnVCalNHS0kxa0Y2dXpqcHl0NXFKdXF5Q0MzRVBxWDM2SEJFOXVxd2lo?=
- =?utf-8?B?YWpheHFQQzFzTVhXWW0wRFZTYWkzLzNReDZVWTV5enZEelF1K1dieTR0MEk5?=
- =?utf-8?B?TE5jTUsyUVcrWDVtRFV0N0VIVTdpcVR3WUVOK1VkVHhQUXVtZ2ZzYmdmT2pQ?=
- =?utf-8?Q?Q7U1jBWNxmeOmtVP7sXgxvXq4w3XXZkNQ8x38=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WDd3RExnaTBJT0JwaWZKaWZoTStScjhXMzdyV1NBZnNEeDYzTldQNGhqcndR?=
+ =?utf-8?B?d0R0bGFDaXg1LzE4WjdMejJXYkZWSStlTzBKK3d5bTd1OWgzMmR6YXdFWVBU?=
+ =?utf-8?B?R2RNNU04Nmt5dE1BOFNsc0liaEJrZjZZQkkyTWo5aWcySGpkMWRRY0tYSnY1?=
+ =?utf-8?B?WnJLb01KckpNZ2Y2QnZONkJwVExITzZXUjFJdnhzOVRiTW1NZWVLRWRzZmU4?=
+ =?utf-8?B?aEwxS25Zbk96SEV6eG8rRWQ2dzVSa2V3eTE0bGM1d1lBdnp1Q00yWTdZRis5?=
+ =?utf-8?B?bWI2UldRbVEwNUJXUW9MVitrZ3MrQ2pqakhPUWJZYjViN3lvZXJqZ0dhWnUy?=
+ =?utf-8?B?UFUrdlRCRHJTditHLzBxM0FhNGVCbVg3RTdQdGF2eXUzS3FJUklTMWsveml1?=
+ =?utf-8?B?Z0RUemZkY0ZpVlRydkoySTBkZFNYL3NMQjYxMXpERjVnbFN1RHJNOWRPQ0RR?=
+ =?utf-8?B?bjZqN2o2a3VqZ1ZKZ3NSOHhXQi83Q2I3ZlNvWTM4NUorM1YxYTNTdHZlelFs?=
+ =?utf-8?B?cDV0Q0l4WG9DS1lJbzI1VGJsZVRPYXZ3RHNlYVdXRlpIYmY3TE9GWDVISHVa?=
+ =?utf-8?B?ZDJ5RXZOK0hsNis4b25PcGdzZjgyWjczRlBzUzBhTTh0WFJBc3FwN1FLN1Fs?=
+ =?utf-8?B?N3VRVGR5SEVlUmZrT1MrK20veFExMnRGM3c4czJvOWk2Sm02cTFLa3daZmtn?=
+ =?utf-8?B?NjM1SnBRaVQ3ZVBzcFJSSUdiRnVCSXlmb0dsUTBLb1FJdVV0OHlWM1hsNjNO?=
+ =?utf-8?B?QVRwZmhvSWVueGEzYTVGSUxtQW5renRWMEFhRFlKaUpIR3JmWjBheWRMSGhx?=
+ =?utf-8?B?bllTd2l6UzdJdEN5OGJSMjJZV3AvQ3Z4VzZ3N1VYUUo2UEtPdFQrRG9UdGFl?=
+ =?utf-8?B?b09rcTFZdWs5dFhNQVp6RUNnV2ZoMWFuREJuK3NOWVpYck9IU0ZCNWorQ0Ri?=
+ =?utf-8?B?WHZ3MU5FUXZTVGpOS2dkOWhUK1B6QkhUZ2ZRZFVWS1lNVW02UnhNMUtTOXd0?=
+ =?utf-8?B?NUo0UUFmOGVSTFZBVzJ1L3NObjVuWFNhMEhQVFdzNnppQ2NrSmN0SGd1VFRU?=
+ =?utf-8?B?QXV5YkNHSlpaYzdieEw0UGl0aVh3TUlvYTFwZGZuN2hiS3pvaTZZaFc3bWFk?=
+ =?utf-8?B?YzVUZWFnZDJaVThHV2RqSnppdVdETFhwdFg4ck9DOUNObkREZnREMW5zZ2VY?=
+ =?utf-8?B?WXdnaVExYlA3T2tvNGZGc2hHTEkrcVVMSVk1bGpQR0NHWDQ5ekJBRHhZS3R4?=
+ =?utf-8?B?YnpvZTNVZXhQSmNNY2F1eERkYXJCSldnV3g3Y1BYWnBid1ZTRkRuTU1ENm5L?=
+ =?utf-8?B?YWdjQ0FyVXUxSVhLanNGZ1E2QXIwcFkwcDdRekpYbVd2OTBSai9tbG9EbHBK?=
+ =?utf-8?B?NmV1M3lXcFQ3SjE1bmw3VG5FQUpVSStLeEZqVXRpVDEvR1BGK2hrSXlBUHRn?=
+ =?utf-8?B?bDdabnRnQVMrYzNVZU81QURXQWVrZVNGaDdWb0lZQlROZUJwM3dqZDFTaE1P?=
+ =?utf-8?B?cW94UjdQaG9VbmVPT1AxRnhneE4vWWwrbWd4bUVmNXR5OWZGZzFMdFVPZDVN?=
+ =?utf-8?B?L0laY1h2cURDOXJLYWlLSWVBM25BcG9ROElnNWVsb1ZCSWtXSlFud3JZTFJu?=
+ =?utf-8?B?OWN6U1B2WlFMYVF5Q1kvSHdiTkRkSUZoSmxzZGt3bkdpWlp5VnZCT25xdHc2?=
+ =?utf-8?B?REh3c2pvZTlIMWxadURyV3hTOWJ2VWZKOERmc1NtalZxOHJGYk1JeThrOU13?=
+ =?utf-8?B?dW9Wa1VGR0RvMDlhbTg5TmMyYjVxQzIrQXF1a0JaS3FHejk2V29yeldOMXBF?=
+ =?utf-8?B?MmREemdaRzhNRDVXL09OMHBJdFdpRGk1amE3aHRtdDE4cWpmc2dTRDUyd095?=
+ =?utf-8?B?OExROGtFTFFuVHZaemxETWpxZEZCdUdCeUpFTk02YkJRUEE9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDB4ZnJWbTNSZDdoZFFVR1p1dzB5YXdaeThFUmVDaFpvZjFjaEFBa3V5N2hh?=
- =?utf-8?B?YTl3Y2RDc0YyUGR2WlduZkhnMFlocWljYzZMc2lUNEFoYlVaMU96VGplTCs1?=
- =?utf-8?B?bldLcW5xcFRES1lRZS9xbExmckVVRmFJLzhBWlpZZ3ByeDlBVkxDZHFJM0Vp?=
- =?utf-8?B?WVdGcm1LamltdXpER01wMTZHOW42Mm4wRWRMamZZZkZTL2hONnREK3RlcFEx?=
- =?utf-8?B?UXQ0dXlpS2JVZ29TUjVQRzhzYmZzKzVzQ1RPbUxkVFpLVU1vU0VCaUFWam54?=
- =?utf-8?B?OWJwcnJuSHdSTjJ5anM5bnZ1dS95cjFMQ3JXakNmTVFmSWNpYkFMOW1HWk5T?=
- =?utf-8?B?VTg2SFJuUkRtSk1MS1FqdXE4Ris5eHJkSzFiK2pzNnZZWjJGOUlWZi9obVBT?=
- =?utf-8?B?alhIdjFVWjdoaVRlNXk5c2RXZzRXOGZzelkvNlhLRkJJVndGdFgrTGtNaXFt?=
- =?utf-8?B?cGxJaDZNWWZOZ1NURm0yb1U2cEo3RDExYzJ4N1M5c2VLR09tREsvZnZRN3Yv?=
- =?utf-8?B?eG85aTU0ZEJCNy9uU1ByZC96WlJoL1gxRXRVeEJDekxDRHREYnhkOHE4Mkd3?=
- =?utf-8?B?RFI1Wnk0dkhnci9PbWgydzlqdmVxbEFNaHpYZjVOaEs1Y1AveTQ1S2pKYU1t?=
- =?utf-8?B?UFB3NDZzYk5mblJrc3lJcnJrSUdoWEZmUXVLaTJIRFI1S2F3Qm5sYmVGTkNw?=
- =?utf-8?B?OGw1YldnSVlEYnlsUEw0TWZDcjByRUdiVDk5SFJnbmZ1UUhPdGFSK0JUMFBX?=
- =?utf-8?B?eUtZQmQvK25tU2U0ZldSKzZhNXpGL3ZJSTlLSVIwWElRQnE0blRMdmhZaUV1?=
- =?utf-8?B?MDVkWjIwbE9UZGFKQ2ptVnpEcHYwZGV4S1JJYU42L3haMWNtMStBT2FXUlgv?=
- =?utf-8?B?bGQyUE9taXhyallnOWtWT0JnbDVnQkZUbEZuV1lpankraTBOWmk4UzFXcURp?=
- =?utf-8?B?YmhONVpGN1J5NC8zMklxRHAwTWhNSlpMVTVhWkVHWVY1TU96MlU3UkUrWVhv?=
- =?utf-8?B?aGQvSC96RWpXZThQeEgycVhEVzVKTHV0WFlGTm93RTRnWEVvR2krcHBkWG9w?=
- =?utf-8?B?ODR3QXlIUzJ6eGFteVFnWTQrT09PWE42Q3hoOVEwMUFySWRaVi9IdzNNTHh6?=
- =?utf-8?B?UEx5bEE5SStLTytsRzR2M3BrVEpnaTVYL2dpVG11UExGSGJEcVNMVFBIOXNk?=
- =?utf-8?B?Ym94NU1xSmhyY0R5MTFFRVRUZ0s2bmVPajY3TjF1M2ZDd1JheTJFdUN0WXpi?=
- =?utf-8?B?bnhRRGJXS1lMUUU0dUlhRHZaZklmdkM3ZWN2ZHRGOU9MWjNjNHBOV1oyaTFu?=
- =?utf-8?B?YzBpTEtlZ2FIcElYVlgvM1I4bGpzcUhraDRBU1ZhLytWZzJEamtPY3FFMzJh?=
- =?utf-8?B?cVlRa2RrS0RwQVpFbHJBaTcxdlFxalBpa3ZsS0paM01pdnUvYnJkWDdmZkY4?=
- =?utf-8?B?VzhmWU5RaUg3V3V5MlJoQXNTMXlpYmdWZzJMVy9FbzR4TTV3MDdiUUNlOGhE?=
- =?utf-8?B?SzlQVnJEQkIvcllJaXg3bXFiQ0s5Rk0rVThKNnU5MWJkYzVQbEtWSis4Y3hy?=
- =?utf-8?B?UlFjamJYVjV0MVpzWmNHNzU2cTcvUHlZVG9kcnNQdGZ2UWhKWjB6STFUTzdZ?=
- =?utf-8?B?dXBiWTdSMG92b24yT0FQUXFIU0I5NUFVclJDNWUwR2xMSVNkZ3JEdStXaFhl?=
- =?utf-8?B?QXhVb09CUmM1TXg2OEhoWTBjWHBkbGdzQU56ck9qZ3ZDc2xhdVNpcFJNSkRj?=
- =?utf-8?B?TFhsdU0rZWpEaDEvcjRSUjZoaWxzSmpoUXpaQWJaR3dXUjQ4bW5sNk0yZFhk?=
- =?utf-8?B?MEgxTGIxNis1SUNNZjI1ZzFHS3dGdEZ4UFEvUVFRV0xoaE8vaXlsd2FSTVJH?=
- =?utf-8?B?K0FhNjlmSXRKcHlDckpRN1FPZ0drZDZmb2RwWDJPa25pQVRqVC9RR3JpYkM4?=
- =?utf-8?B?M2VHajNYdEc1dUVkcVVHeFBRQ3dGY0ZNaHk0Wk80dFM1amNmNmlSMWNyNGZx?=
- =?utf-8?B?MHZKK1JsNVM3TlpodUVCOW12TTR0U28ycytMTFdCTHE4VElzeEJWK3RqRGFP?=
- =?utf-8?B?OXpXUUhpWmR3cU1vTTJhZTQ2dWI3bWRJZXJ6OTJXL1d5V2NDU0FXVlRlQjIv?=
- =?utf-8?Q?cFFudgN0KJZi/ZFaMEtl7kmo2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 629249c9-a483-4424-613a-08dddf00e9ba
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R0dPYjN1Mm01am1hMlc5QUJ0SHVydFo4OFNpb0YvaGwwdXpyUDZsN05vMkNw?=
+ =?utf-8?B?V0Y0dmVvL0tSWThwSU5oZ0xpQXRNdWtBOFZzY09BcU91Ylpsd2xPd011SHZX?=
+ =?utf-8?B?ajVjZ0dlemcwajdqWG5TWGgxQUNBaEFLYndWZFFPOVpTL1Rpa0FGd1d6dWpv?=
+ =?utf-8?B?cFdoY0c5enJDNWhlOERQVDUrbGg5anREVlRCdlpFWE4veDAwakFNRi9reHVB?=
+ =?utf-8?B?V3BPM0xvcSttb05Uc3lmYWVUVVNSYkJoa0dSTno4bkR5NXQwcUJDSC9PcWgw?=
+ =?utf-8?B?VWxUeHlsR1NKMm5mWEJheld4VHlhUDl6VVh0ZVZndXRnUkNVNkxMQ1Z5VjR3?=
+ =?utf-8?B?b0dwVWtrRENVTzRhUWhiNEZDZGxHTS9hMmZDbDRzN0pmU0JqSVFFWGxtRHR3?=
+ =?utf-8?B?YTJnOFMrcmsrclg3NW53SHNKOU0xV3M3SG5OYkVXaE5TVWR3RzNqbm9la3dE?=
+ =?utf-8?B?SENIMWhnbjdDMWZpMjFWd3lhdGt3d1dJZmpnMVN5OXRYOU51ci9BMGZrOW5E?=
+ =?utf-8?B?V0lnQTdMMWR3Z3FXWVZ1eG0wcllzMHM2bHlXUEVqZHdtZS90M1N0bkdlQ2hL?=
+ =?utf-8?B?UTJnTzE1THVxNjl3bVpMYmdudUFrbFN6anlHZkhhbXllQUlJZFppQ2xxM3Bw?=
+ =?utf-8?B?RThtdExPbFZmaUhvYnhDZGlQMFZjOEMrQ0V6d0pWcnlZOVVPOFFreE5MTXFL?=
+ =?utf-8?B?NkV3SEhnYVI5VmI4VG5peTBzMWhyMjlMd0NMSFJvR3lJL0xPM3c4WmFQSmZu?=
+ =?utf-8?B?UUlWb2VETzBJc0FzZUJVcEpRVzM0dWRWa1pWcjdFTUV4ekRvOUNsZlJDZWFh?=
+ =?utf-8?B?dHg5SmNyL3hRaFZlY3U4QWlYNW00YUxKMGtCcEkrS1BUanVBREFXTmFKN2tP?=
+ =?utf-8?B?eWZ4eUkyMWFEQ2dRTXlHcnduN3VjYW9QOVVFM1BCWTY5dTBET1pZOFo1bnd3?=
+ =?utf-8?B?dm9WalppdEVtMlp5R0Q5VDJIenl4ZG9Wa0hnU0xsbXh6SVZOemgyeGdjeExm?=
+ =?utf-8?B?WXVra1lTZ0VUWHlNcGc2b1FYRmpwakVQcHJEYnRpTWtIZnpVRUFQUVlka2tN?=
+ =?utf-8?B?TFVCRGo3bWRFYnc3YWpSZ2dObE5MWlltams5dzdXZTJvcE45NXYxOFhzWCt0?=
+ =?utf-8?B?cWErSDYrNHltamtKODQvbDRRVVFkUUgyTG1wVHNrUmN5WHlOYm5OS1dGZGxZ?=
+ =?utf-8?B?b200aEdLZHE1UVMyMlk2M3ZwK2txdXFWa1QyY0tocmdxZS9VYmg0ZXl5WXIv?=
+ =?utf-8?B?RGsvbzUzZDdhblRVZUp1UmVqeGtDRG5TenFnM09YbnJEWUVhNTBZVnJpOUJH?=
+ =?utf-8?B?b3pzNjRrRnl2RUNXL0dsazNkN3NGMXFQQ3VSZ01nNHN2OTJic0N3SFdwSlNr?=
+ =?utf-8?B?Z1FXUC95cHFyTmtoMjNuYTZwdU5CZi9DOUR2bXZJTWxtbnlSMnMvNXJRZ0c1?=
+ =?utf-8?B?Q2RteTdiSmdCTTY4V3FZODJHSmkyZ0hxMlZMVmRFZTMveWJKVmhod0tPaW1S?=
+ =?utf-8?B?cUlxNHJYMGhZbnh1MFhoQzN0cnFkaklmRVk5cEtseTBiVG4rWjA1dzh3UDE5?=
+ =?utf-8?B?UTdNNjR5bXRVaXFDVmtEZC9kejVJVXdtdytCTkc5NVNpR2pSSWt6bnU4cTBl?=
+ =?utf-8?B?SStqWUg1NXovZTJPd1hjb3d3TE0zQlNIVFNCREFQbElMYVc2eXJUbGxUc0th?=
+ =?utf-8?B?Tm1LWlVobzc0RU1KQjJ4VXRxeHhsczN0cTdUc251RUt0MEZyY1dqN2MyWmpw?=
+ =?utf-8?B?aFpjL1BhbnJ1WWVOWkRlUzNORkczK1UxYmd5WTdDa3NkTzRFSVkyQmxURzl3?=
+ =?utf-8?B?a2NtZ0pncHRxdkRvaEQ1V1JjdXpydjhHSXhDUlZrVG5QWDdhbWZvai80S1pv?=
+ =?utf-8?B?VG8valI5SmJxRTFUS2VxVzBqMTdNRUlxNE95NnkrSjZuSWE4YlZQdEVMTUFP?=
+ =?utf-8?B?SGUzOGE0S2NmVFhNY0h3cWJ1UG8wNFplUnljRWJqWFh0Tmp1azdIaVlZWHZj?=
+ =?utf-8?B?MksyTEYzRXJFdVRQTVRidGhQSHVCRlNmRXlEYldEM2FhZFpwVEFyeFFxMFcx?=
+ =?utf-8?B?OGFQeUFiR0EreExMSTk3emo0cTZHMnA4ZVNzSS9icjFrdVI3d3FPYUxaTTNm?=
+ =?utf-8?B?eUpVZjJOZ1paWnVTYmJWMTlwdVNrS3hEN3RUNFhpUzloaDBMS1BJRnVGUTNH?=
+ =?utf-8?B?b2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50723b8a-fc42-4e5d-b2f8-08dddf011de0
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 09:15:17.2145 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2025 09:16:45.0134 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jBwO3nLxPdWo18zkLCDEoPSk4avbeFwAvaP5WfufQkYU8V8w0eGGGlsUgGgSx3FA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPFAF883AE17
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ah83BkEVzbZ9x+YSNnzukpsdYG9lhhfv6Zq+10SLrQRwBenuTD1dYGw9wWSM28u0naX/drEG5yhnzjsrct+hQUqrFqveKrvAyQyitfzsnyE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB9518
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,300 +197,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 19.08.25 11:04, Janusz Krzysztofik wrote:
-> On Monday, 18 August 2025 16:42:56 CEST Christian König wrote:
->> On 18.08.25 16:30, Janusz Krzysztofik wrote:
->>> Hi Christian,
->>>
->>> On Thursday, 14 August 2025 14:24:29 CEST Christian König wrote:
->>>>
->>>> On 14.08.25 10:16, Janusz Krzysztofik wrote:
->>>>> When first user starts waiting on a not yet signaled fence of a chain
->>>>> link, a dma_fence_chain callback is added to a user fence of that link.
->>>>> When the user fence of that chain link is then signaled, the chain is
->>>>> traversed in search for a first not signaled link and the callback is
->>>>> rearmed on a user fence of that link.
->>>>>
->>>>> Since chain fences may be exposed to user space, e.g. over drm_syncobj
->>>>> IOCTLs, users may start waiting on any link of the chain, then many links
->>>>> of a chain may have signaling enabled and their callbacks added to their
->>>>> user fences.  Once an arbitrary user fence is signaled, all
->>>>> dma_fence_chain callbacks added to it so far must be rearmed to another
->>>>> user fence of the chain.  In extreme scenarios, when all N links of a
->>>>> chain are awaited and then signaled in reverse order, the dma_fence_chain
->>>>> callback may be called up to N * (N + 1) / 2 times (an arithmetic series).
->>>>>
->>>>> To avoid that potential excessive accumulation of dma_fence_chain
->>>>> callbacks, rearm a trimmed-down, signal only callback version to the base
->>>>> fence of a previous link, if not yet signaled, otherwise just signal the
->>>>> base fence of the current link instead of traversing the chain in search
->>>>> for a first not signaled link and moving all callbacks collected so far to
->>>>> a user fence of that link.
->>>>
->>>> Well clear NAK to that! You can easily overflow the kernel stack with that!
->>>
->>> I'll be happy to propose a better solution, but for that I need to understand 
->>> better your message.  Could you please point out an exact piece of the 
->>> proposed code and/or describe a scenario where you can see the risk of stack 
->>> overflow?
->>
->> The sentence "rearm .. to the base fence of a previous link" sounds like you are trying to install a callback on the signaling to the previous chain element.
->>
->> That is exactly what I pointed out previously where you need to be super careful because when this chain signals the callbacks will execute recursively which means that you can trivially overflow the kernel stack if you have more than a handful of chain elements.
->>
->> In other words A waits for B, B waits for C, C waits for D etc.... when D finally signals it will call C which in turn calls B which in turn calls A.
-> 
-> OK, maybe my commit description was not precise enough, however, I didn't 
-> describe implementation details (how) intentionally.
-> When D signals then it doesn't call C directly, only it submits an irq work 
-> that calls C.  Then C doesn't just call B, only it submits another irq work 
-> that calls B, and so on.
-> Doesn't that code pattern effectively break the recursion loop into separate 
-> work items, each with its own separate stack?
 
-No, it's architecture dependent if the irq_work executes on a separate stack or not.
+On 8/19/2025 1:36 PM, Suraj Kandpal wrote:
+> Add edp_data_rate_override field VBT which gives us a mask
+> of rates which needs to be skipped in favour of
+> subsequent higher rate.
+>
+> --v2
+> -Rename vbt field [Jani]
+> -Fix comment to 263+ [Jani]
+> -Use BIT_U32 [Jani]
+> -Fix the bits assignment in vbt [Jani]
+>
+> Bspec: 20124
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-You would need a work_struct to really separate the two and I would reject that because it adds additional latency to the signaling path.
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
->>
->> Even if the chain is a recursive data structure you absolutely can't use recursion for the handling of it.
->>
->> Maybe I misunderstood your textual description but reading a sentence like this rings all alarm bells here. Otherwise I can't see what the patch is supposed to be optimizing.
-> 
-> OK, maybe I should start my commit description of this patch with a copy of 
-> the first sentence from cover letter and also from patch 1/4 description that 
-> informs about the problem as reported by CI.  Maybe I should also provide a 
-> comparison of measured signaling times from trybot executions [1][2][3].  
-> Here are example numbers from CI machine fi-bsw-n3050:
 
-Yeah and I've pointed out before that this is irrelevant.
-
-The problem is *not* the dma_fence_chain implementation, that one is doing exactly what is expected to do.
-
-The problem is that the test case is nonsense. I've pointed that out numerous times now!
-
-Regards,
-Christian.
-
-> 
-> With signaling time reports only added to selftests (patch 1 of 4):
-> <6> [777.914451] dma-buf: Running dma_fence_chain/wait_forward
-> <6> [778.123516] wait_forward: 4096 signals in 21373487 ns
-> <6> [778.335709] dma-buf: Running dma_fence_chain/wait_backward
-> <6> [795.791546] wait_backward: 4096 signals in 17249051192 ns
-> <6> [795.859699] dma-buf: Running dma_fence_chain/wait_random
-> <6> [796.161375] wait_random: 4096 signals in 97386256 ns
-> 
-> With dma_fence_enable_signaling() replaced in selftests with dma_fence_wait() 
-> (patches 1-3 of 4):
-> <6> [782.505692] dma-buf: Running dma_fence_chain/wait_forward
-> <6> [784.609213] wait_forward: 4096 signals in 36513103 ns
-> <3> [784.837226] Reported -4 for kthread_stop_put(0)!
-> <6> [785.147643] dma-buf: Running dma_fence_chain/wait_backward
-> <6> [806.367763] wait_backward: 4096 signals in 18428009499 ns
-> <6> [807.175325] dma-buf: Running dma_fence_chain/wait_random
-> <6> [809.453942] wait_random: 4096 signals in 119761950 ns
-> 
-> With the fix (patches 1-4 of 4):
-> <6> [731.519020] dma-buf: Running dma_fence_chain/wait_forward
-> <6> [733.623375] wait_forward: 4096 signals in 31890220 ns
-> <6> [734.258972] dma-buf: Running dma_fence_chain/wait_backward
-> <6> [736.267325] wait_backward: 4096 signals in 39007955 ns
-> <6> [736.700221] dma-buf: Running dma_fence_chain/wait_random
-> <6> [739.346706] wait_random: 4096 signals in 48384865 ns
-> 
-> Signaling time in wait_backward selftest has been reduced from 17s to 39ms.
-> 
-> [1] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152785v1/index.html?
-> [2] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152828v2/index.html?
-> [3] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152830v2/index.html?
-> 
->>
->>>>
->>>> Additional to this messing with the fence ops outside of the dma_fence code is an absolute no-go.
->>>
->>> Could you please explain what piece of code you are referring to when you say 
->>> "messing with the fence ops outside the dma_fence code"?  If not this patch 
->>> then which particular one of this series did you mean?  I'm assuming you 
->>> didn't mean drm_syncobj code that I mentioned in my commit descriptions.
->>
->> See below.
->>
->>>
->>> Thanks,
->>> Janusz
->>>
->>>>
->>>> Regards,
->>>> Christian.
->>>>
->>>>>
->>>>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
->>>>> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
->>>>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
->>>>> ---
->>>>>  drivers/dma-buf/dma-fence-chain.c | 101 +++++++++++++++++++++++++-----
->>>>>  1 file changed, 84 insertions(+), 17 deletions(-)
->>>>>
->>>>> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
->>>>> index a8a90acf4f34d..90eff264ee05c 100644
->>>>> --- a/drivers/dma-buf/dma-fence-chain.c
->>>>> +++ b/drivers/dma-buf/dma-fence-chain.c
->>>>> @@ -119,46 +119,113 @@ static const char *dma_fence_chain_get_timeline_name(struct dma_fence *fence)
->>>>>          return "unbound";
->>>>>  }
->>>>>  
->>>>> -static void dma_fence_chain_irq_work(struct irq_work *work)
->>>>> +static void signal_irq_work(struct irq_work *work)
->>>>>  {
->>>>>  	struct dma_fence_chain *chain;
->>>>>  
->>>>>  	chain = container_of(work, typeof(*chain), work);
->>>>>  
->>>>> -	/* Try to rearm the callback */
->>>>> -	if (!dma_fence_chain_enable_signaling(&chain->base))
->>>>> -		/* Ok, we are done. No more unsignaled fences left */
->>>>> -		dma_fence_signal(&chain->base);
->>>>> +	dma_fence_signal(&chain->base);
->>>>>  	dma_fence_put(&chain->base);
->>>>>  }
->>>>>  
->>>>> -static void dma_fence_chain_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>>>> +static void signal_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>>>> +{
->>>>> +	struct dma_fence_chain *chain;
->>>>> +
->>>>> +	chain = container_of(cb, typeof(*chain), cb);
->>>>> +	init_irq_work(&chain->work, signal_irq_work);
->>>>> +	irq_work_queue(&chain->work);
->>>>> +}
->>>>> +
->>>>> +static void rearm_irq_work(struct irq_work *work)
->>>>> +{
->>>>> +	struct dma_fence_chain *chain;
->>>>> +	struct dma_fence *prev;
->>>>> +
->>>>> +	chain = container_of(work, typeof(*chain), work);
->>>>> +
->>>>> +	rcu_read_lock();
->>>>> +	prev = rcu_dereference(chain->prev);
->>>>> +	if (prev && dma_fence_add_callback(prev, &chain->cb, signal_cb))
->>>>> +		prev = NULL;
->>>>> +	rcu_read_unlock();
->>>>> +	if (prev)
->>>>> +		return;
->>>>> +
->>>>> +	/* Ok, we are done. No more unsignaled fences left */
->>>>> +	signal_irq_work(work);
->>>>> +}
->>>>> +
->>>>> +static inline bool fence_is_signaled__nested(struct dma_fence *fence)
->>>>> +{
->>>>> +	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->>>>> +		return true;
->>>>> +
->>
->>>>> +	if (fence->ops->signaled && fence->ops->signaled(fence)) {
->>
->> Calling this outside of dma-fence.[ch] is a clear no-go.
-> 
-> But this patch applies only to drivers/dma-buf/dma-fence-chain.c, not 
-> outside of it.
-> 
-> Thanks,
-> Janusz
-> 
->>
->> Regards,
->> Christian.
->>
->>>>> +		unsigned long flags;
->>>>> +
->>>>> +		spin_lock_irqsave_nested(fence->lock, flags, SINGLE_DEPTH_NESTING);
->>>>> +		dma_fence_signal_locked(fence);
->>>>> +		spin_unlock_irqrestore(fence->lock, flags);
->>>>> +
->>>>> +		return true;
->>>>> +	}
->>>>> +
->>>>> +	return false;
->>>>> +}
->>>>> +
->>>>> +static bool prev_is_signaled(struct dma_fence_chain *chain)
->>>>> +{
->>>>> +	struct dma_fence *prev;
->>>>> +	bool result;
->>>>> +
->>>>> +	rcu_read_lock();
->>>>> +	prev = rcu_dereference(chain->prev);
->>>>> +	result = !prev || fence_is_signaled__nested(prev);
->>>>> +	rcu_read_unlock();
->>>>> +
->>>>> +	return result;
->>>>> +}
->>>>> +
->>>>> +static void rearm_or_signal_cb(struct dma_fence *f, struct dma_fence_cb *cb)
->>>>>  {
->>>>>  	struct dma_fence_chain *chain;
->>>>>  
->>>>>  	chain = container_of(cb, typeof(*chain), cb);
->>>>> -	init_irq_work(&chain->work, dma_fence_chain_irq_work);
->>>>> +	if (prev_is_signaled(chain)) {
->>>>> +		/* Ok, we are done. No more unsignaled fences left */
->>>>> +		init_irq_work(&chain->work, signal_irq_work);
->>>>> +	} else {
->>>>> +		/* Try to rearm the callback */
->>>>> +		init_irq_work(&chain->work, rearm_irq_work);
->>>>> +	}
->>>>> +
->>>>>  	irq_work_queue(&chain->work);
->>>>> -	dma_fence_put(f);
->>>>>  }
->>>>>  
->>>>>  static bool dma_fence_chain_enable_signaling(struct dma_fence *fence)
->>>>>  {
->>>>>  	struct dma_fence_chain *head = to_dma_fence_chain(fence);
->>>>> +	int err = -ENOENT;
->>>>>  
->>>>> -	dma_fence_get(&head->base);
->>>>> -	dma_fence_chain_for_each(fence, &head->base) {
->>>>> -		struct dma_fence *f = dma_fence_chain_contained(fence);
->>>>> +	if (WARN_ON(!head))
->>>>> +		return false;
->>>>>  
->>>>> -		dma_fence_get(f);
->>>>> -		if (!dma_fence_add_callback(f, &head->cb, dma_fence_chain_cb)) {
->>>>> +	dma_fence_get(fence);
->>>>> +	if (head->fence)
->>>>> +		err = dma_fence_add_callback(head->fence, &head->cb, rearm_or_signal_cb);
->>>>> +	if (err) {
->>>>> +		if (prev_is_signaled(head)) {
->>>>>  			dma_fence_put(fence);
->>>>> -			return true;
->>>>> +		} else {
->>>>> +			init_irq_work(&head->work, rearm_irq_work);
->>>>> +			irq_work_queue(&head->work);
->>>>> +			err = 0;
->>>>>  		}
->>>>> -		dma_fence_put(f);
->>>>>  	}
->>>>> -	dma_fence_put(&head->base);
->>>>> -	return false;
->>>>> +
->>>>> +	return !err;
->>>>>  }
->>>>>  
->>>>>  static bool dma_fence_chain_signaled(struct dma_fence *fence)
->>>>
->>>>
->>>
->>>
->>>
->>>
->>
->>
-> 
-> 
-> 
-> 
-
+> ---
+>   drivers/gpu/drm/i915/display/intel_bios.c     |  4 +++-
+>   drivers/gpu/drm/i915/display/intel_vbt_defs.h | 17 +++++++++++++++++
+>   2 files changed, 20 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+> index 9c268bed091d..8337ebe0f2c8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2747,8 +2747,10 @@ static int child_device_expected_size(u16 version)
+>   {
+>   	BUILD_BUG_ON(sizeof(struct child_device_config) < 40);
+>   
+> -	if (version > 256)
+> +	if (version > 263)
+>   		return -ENOENT;
+> +	else if (version >= 263)
+> +		return 44;
+>   	else if (version >= 256)
+>   		return 40;
+>   	else if (version >= 216)
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> index 92c04811aa28..d4d89d5573db 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -437,6 +437,21 @@ enum vbt_gmbus_ddi {
+>   #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5	6
+>   #define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20	7
+>   
+> +/* EDP link rate 263+ */
+> +#define BDB_263_VBT_EDP_LINK_RATE_1_62		BIT_U32(0)
+> +#define BDB_263_VBT_EDP_LINK_RATE_2_16		BIT_U32(1)
+> +#define BDB_263_VBT_EDP_LINK_RATE_2_43		BIT_U32(2)
+> +#define BDB_263_VBT_EDP_LINK_RATE_2_7		BIT_U32(3)
+> +#define BDB_263_VBT_EDP_LINK_RATE_3_24		BIT_U32(4)
+> +#define BDB_263_VBT_EDP_LINK_RATE_4_32		BIT_U32(5)
+> +#define BDB_263_VBT_EDP_LINK_RATE_5_4		BIT_U32(6)
+> +#define BDB_263_VBT_EDP_LINK_RATE_6_75		BIT_U32(7)
+> +#define BDB_263_VBT_EDP_LINK_RATE_8_1		BIT_U32(8)
+> +#define BDB_263_VBT_EDP_LINK_RATE_10		BIT_U32(9)
+> +#define BDB_263_VBT_EDP_LINK_RATE_13_5		BIT_U32(10)
+> +#define BDB_263_VBT_EDP_LINK_RATE_20		BIT_U32(11)
+> +#define BDB_263_VBT_EDP_NUM_RATES		12
+> +
+>   /*
+>    * The child device config, aka the display device data structure, provides a
+>    * description of a port and its configuration on the platform.
+> @@ -547,6 +562,8 @@ struct child_device_config {
+>   	u8 dp_max_link_rate:3;					/* 216+ */
+>   	u8 dp_max_link_rate_reserved:5;				/* 216+ */
+>   	u8 efp_index;						/* 256+ */
+> +	u32 edp_data_rate_override:12;				/* 263+ */
+> +	u32 edp_data_rate_override_reserved:20;			/* 263+ */
+>   } __packed;
+>   
+>   struct bdb_general_definitions {
