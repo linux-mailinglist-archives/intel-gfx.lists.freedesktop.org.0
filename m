@@ -2,67 +2,177 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C199B2BC83
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 11:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD193B2BC9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 11:09:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3915410E561;
-	Tue, 19 Aug 2025 09:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DC010E568;
+	Tue, 19 Aug 2025 09:09:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dD8NsG0b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EumwcwUr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C34F10E55A;
- Tue, 19 Aug 2025 09:04:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F358910E564;
+ Tue, 19 Aug 2025 09:09:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755594259; x=1787130259;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=35wbuXUWqXLw3bf6coBuXABFfBPt40tPdTPKUaMbrMo=;
- b=dD8NsG0bNaLSibAI1iioopdLS+r/fDHVxWPweT7QA6LZf4RJ91/krLWX
- fkM8Cr4zeETzee9bykxHDs3GNl6HZJvYBJWGhPP9tG+UYenQ6s7RSpQ3Q
- MCJlt7OxNgT/MD0xHLZkOJy8aUbYThqsO/T6P2Lb++E941XXxYkLriAan
- j3H0DlGiM49nHYhD6foXuGxMU78RZaqGAS5Xd8QvsR3Mpj56QLrksGp+7
- rNDwIEN78PDHtpNN9UzGK+sov/FFN91HqZ9DR7GTp7sExV7B0rPX5xmUw
- ccPkIi2LL61lFYsDasLA2KN76Ln4eeER0DbD0EQP0YcxpqfPdylK/abdE w==;
-X-CSE-ConnectionGUID: bUDqvG+sSHWux8IFbVXsGQ==
-X-CSE-MsgGUID: gwZtUGghSqmGE/mVBX82NA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="68540643"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="68540643"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 02:04:18 -0700
-X-CSE-ConnectionGUID: uvbEHuYfT9O568xJmssRyw==
-X-CSE-MsgGUID: asPcGpJWT1e3UldB8qS6jg==
+ t=1755594571; x=1787130571;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=5K8M5TrSbjmKGQt2hWDKatGzJdsQOxllaPLlSbDqWKQ=;
+ b=EumwcwUrcl23mZGIYqonHYqJ3l+TYYcUquEBEquEnOEp/brMx5W+EZFd
+ l+h6dINjlcu45mredhLgbBYetwv7YR/z9cJ0O3CNpX1T8XdxQgE2S6nL3
+ F1WcwQb9hDeGnEC/ersW3XmjZNTg8aRf7Hgo2Wvfx3Bp3huriyNp5RB0V
+ dODVObp4hp1W6O0ShuZmF0aH6IiBd6rmx+9KUd01FWbpplydtb4kjTuMx
+ zDZnWFslVhsBwLkEnEyn906Tn/G82zHT9CdtYA001B72ruDo3rjap6PXH
+ q4mQy4YWT24k0vuNqf/z708JSuRguyef19imERMM2t3z6RaT/7ozIi70E g==;
+X-CSE-ConnectionGUID: x8u59yPzRGqE4yfLwSlTmQ==
+X-CSE-MsgGUID: Ws4GIuDuTdWfDSjeeTUMow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="68928469"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="68928469"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 02:09:31 -0700
+X-CSE-ConnectionGUID: BOQ3TIzJTbqg92fDLkq7cA==
+X-CSE-MsgGUID: dqg7w0fGQGaozIAA8CCNow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="172222542"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.244.139])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 02:04:14 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Gustavo Padovan <gustavo@padovan.org>,
- Chris Wilson <chris.p.wilson@linux.intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH 4/4] dma-buf/fence-chain: Speed up processing of rearmed
- callbacks
-Date: Tue, 19 Aug 2025 11:04:11 +0200
-Message-ID: <2067093.PIDvDuAF1L@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <c4bac4d8-9c5b-446c-b9a1-1bc7ac6b38ff@amd.com>
-References: <20250814094824.217142-6-janusz.krzysztofik@linux.intel.com>
- <2443311.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
- <c4bac4d8-9c5b-446c-b9a1-1bc7ac6b38ff@amd.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="167703004"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 02:09:30 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 19 Aug 2025 02:09:30 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Tue, 19 Aug 2025 02:09:30 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (40.107.100.41)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Tue, 19 Aug 2025 02:09:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zRzL1orDyrQ/eBOFs5ntYrPBlUYmeFvwEurrRkx37hPQbS3s5IrcGTsS+sO60dfel+GBxup+8t9RUCjezxVbVj9ZJ6uGvjTRzOWJgFJzMh6YOoDLgWVadA7Ygtm7hndDrruqjwMmLsIkOisl3QTiUbroxlNZUh9nfHlzTHKFz+eWuYGrkikQOvT1ocgACshHHI0PwtKONuZ9ecVCpqPawue6k2l7tRTr7zaexTQUVlDm+QX5ltdeWaX1AenNCnurMKPVWYf9Kd3mtSUzsA5zinRl+oWWrSM6kXRrsJfSTz5SFo93HsZqsY5oQUaWbDjsRYLf+UnVECBES4gbFQJ6TQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=T+FUpwPXTrpogWyoD01j1Q92VhU/zv1zNWA1G3+XFAM=;
+ b=pu4knUUBNRtrEUTWbO6OAftkQoFFCgS3ixr8/rOFJINikHZUQsrEbucnSbe88IbjQ8EDegyZaa2YgEVAr4ZQjc4AEVt7yOlvPsakOTc9l8V2v+CZDh1kp0czMTxPTiOV6du/m2b0GkZwN19bLCHkYxpEqoDnn/a3R6iLSXjOiq2058PEV1pGoYRjTeNc/IlPMXuvmTzhvo6V9qgS/G6IIXuPo/J9vhEeCKo9xH6jiDcTWmQfPTq2b4jK3KEvLWYvpXM+gES+rHvUDiW5gCPNzdTeBv3svdWUA2gOSj+0je2EwkQyLn7r0/tTns6v8WaAonsE/KOfdBHwDHOnBxCQyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com (2603:10b6:208:3af::16)
+ by IA3PR11MB9206.namprd11.prod.outlook.com (2603:10b6:208:574::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Tue, 19 Aug
+ 2025 09:09:22 +0000
+Received: from IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52]) by IA1PR11MB6348.namprd11.prod.outlook.com
+ ([fe80::4db5:b0d9:b6b3:bb52%6]) with mapi id 15.20.9031.023; Tue, 19 Aug 2025
+ 09:09:22 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH 11/12] drm/i915/panel: Refactor helper to get highest
+ fixed mode
+Thread-Topic: [PATCH 11/12] drm/i915/panel: Refactor helper to get highest
+ fixed mode
+Thread-Index: AQHcEBVDgYS3iU3IS0a9Tku5hSMObLRpsanQ
+Date: Tue, 19 Aug 2025 09:09:22 +0000
+Message-ID: <IA1PR11MB63489DD52E998714C535F2BBB230A@IA1PR11MB6348.namprd11.prod.outlook.com>
+References: <20250818073128.2319762-1-ankit.k.nautiyal@intel.com>
+ <20250818073128.2319762-12-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250818073128.2319762-12-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR11MB6348:EE_|IA3PR11MB9206:EE_
+x-ms-office365-filtering-correlation-id: 46702d0f-474f-4af4-d4c3-08dddf001665
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|1800799024|366016|376014|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?flzLMjSGWlB8NPhNOaBCMEf8Bbm0tDM+Efo/bYMDdVt/ihcHpzBOOu1La/0S?=
+ =?us-ascii?Q?PEJZVkwIqVQZa+VB/fZAr3zU/rDQkpsJgjorEfY8a2Ep7UpJeUJh0z4/YHEb?=
+ =?us-ascii?Q?sptm2Yk+pzcRsQm5qNAAenkseLaS/Jx9QajW2U0y4Jw66NYWpT6awDjZ18Ju?=
+ =?us-ascii?Q?f+2Xa4kitMiMpLzFyQvHgiKQsk8x65zf+8XTDK05XxLgta72E7691RqH8n+a?=
+ =?us-ascii?Q?2Ja6gZ/HuyhLw8SiM59bXTExjTCDhdTDpm5XAxgrYJ+vm3ccTpvc/710zmCK?=
+ =?us-ascii?Q?nbDSJen9U1fGzvIQFfLuZ2o4NRmaF4weknSLF9H97lPRsII6rjUnKlTEVgcR?=
+ =?us-ascii?Q?2YPLJVo+955ahnLMWqb6fT17qtIYmGm+QZlsJ9ftDRltBzCQgAifQnY5fK7l?=
+ =?us-ascii?Q?mg4tE50RnUYagMEsa7qOBMqmijruKtsG/J3xs3XtaneJm7wWvBmzCdBu0U4R?=
+ =?us-ascii?Q?Trk+4cPrMHDTX4a6iFEEk02dAuNKE/jOyRImyCmFA6P0JfcFo2rObhj4p5Ce?=
+ =?us-ascii?Q?Y7/RAkP9uz2frtJLth2Z/5m3PHNC0BaaD45jk07tseaP1ONiGfjmEHviWr+Z?=
+ =?us-ascii?Q?n/5dB06uunlJS3358IuSbo1fN59xg/JSVqX+Mbbse9Tz5CQP62uF8fqEo2y9?=
+ =?us-ascii?Q?b7QcKgmjPmv4ZdWzoMujl7MWXyPWqjW1BpI9xjMbU4dywMP5JP9xM3WiSGyc?=
+ =?us-ascii?Q?Lojyhp9ZzJMlmNpDtepFCY/R5MV1xWRys+OcCjwzsj+iy3zFapdRWS35JS+q?=
+ =?us-ascii?Q?Jp85SSuYsddPpkhDMTYBUrnxG22M6EAYQHmAhNQ+HEQFSY5ROhwBKUAyyXEt?=
+ =?us-ascii?Q?uJCBFforMgLE8JjTZ9AT3jiAeG0SYChrScFochJjU7pCJ9CTUD9HR9U4RET+?=
+ =?us-ascii?Q?iUaVey1PiXttAyuarm5wAFygzDhzYjq18/0y6HJcOP6hvK0pZinxOiTwXYR9?=
+ =?us-ascii?Q?Fx9DoMB3/nypIfHIQ0pu2+nVe2QYKhL4tf1D+RKE3ZK99x4u0Ld2F/FCFAxL?=
+ =?us-ascii?Q?HnrqlHhp504SZJGu0xF1uMqvs/ipEXxsaohyQJZZNMxZmquGNvRTiAhexXkH?=
+ =?us-ascii?Q?8IQWPv7RUdmoViKaZ/5JX8V3CaJaOaa6BwuSuvOgA4iP/ZhAmnMnY7xl2d++?=
+ =?us-ascii?Q?ju45ucPJFCjL2we++umiwB6nbDQv7Vd6Z5l2Lkq13FSqA/y3MUjraGLq5TYT?=
+ =?us-ascii?Q?YhXYSUGNajQPNYVtRR08zrLjTUVko/urD48IEffUkSvquKheh8OvS2GSx+Nv?=
+ =?us-ascii?Q?bovphGgYAOvVMeX3ggm5MGz/M8zO2Ss65oGa0Pkh8/hE90GyQcTUJy2u7tbu?=
+ =?us-ascii?Q?+4Zx+wZU4BZGAXEj2uLu3x6tkCk0ZGLXiPo9/9Oiek4vohuMJaw4Kn+JtREl?=
+ =?us-ascii?Q?qpealGRGDNfhDwSYuSJc3nlCtjdYnmw2FnZLOkXJvRXhWlIqLPAs5fJiYbPR?=
+ =?us-ascii?Q?vuimsr27VJevwEQrei0RHJyyPWYHtsrvIHLiuz1qXWhBwfW+TC75UA=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR11MB6348.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(1800799024)(366016)(376014)(38070700018)(7053199007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PRm8EvIL2y5Ue8AJPV+EY8DwXRCCnV02C+p1hO9c9sHYgtgE8hhZcG2ZbNhA?=
+ =?us-ascii?Q?6r95mjqXjrOaObVvpCmfgYz5g/AGRBlZsxRpMnk5EfAq/tkkpDdP5wYnJyXQ?=
+ =?us-ascii?Q?iDq9BBPyd0VefwDCbVFWABmDBQmFcwLX2G0AF2bSaeF4a+W7F13v4yYA7ZTz?=
+ =?us-ascii?Q?uFqC/PC8sNXxizBru19w5yAdoL22L/4I4ObuGrfsO+cIAvx9U8bizkPO9hu/?=
+ =?us-ascii?Q?JM4JKN6hRXY1w/kKVXZd3ONwpjEyU8QwkGVSDVCqNQB3C4+9+CZnDfFSFtW4?=
+ =?us-ascii?Q?3MqRL8nfhn73xT39VaYjqKYJf5YWCZ8dQQneqW+/z5Cl6bEyPKmnxu5cEh1Y?=
+ =?us-ascii?Q?LzWCR5ibWYzkKjlh76EaSe2dicv+FbUOqpf2ngInILrAHem6SFQ6cjkEtkp7?=
+ =?us-ascii?Q?Sk008rSsnKgNg8bj99li+ojfPTkV4D2blQg6ElwHDsnvN7p3HpMOI5grakqN?=
+ =?us-ascii?Q?oODQS1qJNJxXzpiGYWq9X56AzhNIelx0gFc6bYVdCKNCK86ulpMtKoUduhwY?=
+ =?us-ascii?Q?RSN0xddi4GXnevDTM/MtGQWfDjMUBOLKdlV/6dRBrulesszyve8NkSZ3ySgZ?=
+ =?us-ascii?Q?gsx3+CkBeOtCTIxdE/gR7qTeTUo+h+AeMOk8iGOdUGczEMdtf4P5yK87bHUZ?=
+ =?us-ascii?Q?NVZX9/sIRhBCNXkcZExRU5UGXdkUJWtEFTudS6nkKRcdpdFurxnhWuZ7hPYT?=
+ =?us-ascii?Q?sBG/VtLdao13THR+/XZ0iG+JqQ3I+vnQr+Up/+/+ZPIXppdenvpJtPfYS77r?=
+ =?us-ascii?Q?4MW3hSbcZIuGdTz+N3VUjAZnj06SQMDNd/IzTwsC6ew1WkmdS5lkHOeBgMmV?=
+ =?us-ascii?Q?ZX0quFxSK0sW4/hun8e1kMfGNjiTovL7dBUPROWaKDcPO29c9XMO5+gCdpg0?=
+ =?us-ascii?Q?Fi+3yQNE2nlq9FeASyTM1akd61tHrbUKyUewTq+EUtLS1B0mZ31I/DuXFF4I?=
+ =?us-ascii?Q?tahsjeEQBcDAKZXACpjpqOuUVvA42rIXAbB1zsavW194KU+PrS98+aDLM9J4?=
+ =?us-ascii?Q?6rkbJ8OOwLT//5GzFO8XU8HTwvvC/Zb/Gz2kXebF6jwtvfTFY6YH73q9YOHc?=
+ =?us-ascii?Q?P77uWk92n1KukCeWr/kshak/PEbNvfougU7GAY/sa1GBl95LNaIGpMi4Bodx?=
+ =?us-ascii?Q?WzKKLJBaNd7z094nlOybP4DdEG2sbgL3u83PbEcZbM8v0APOLzctMQuQHvsR?=
+ =?us-ascii?Q?CLZD97y0DI4fb7noCbvDZxJoRGEDvy0SnnTJJASxGhwKv3d6cRkCKUDKHJxM?=
+ =?us-ascii?Q?CW5+GA+dFBZ/Uc7k1HaPAOxgjgbexjI4hLc2i9xmR3CbENlEdPQukIpSymLJ?=
+ =?us-ascii?Q?fm9tvK+ixRqK6UVzecPoLU8rAKOUoOw1zvIKJXkcfEXvUOMcjdL5adQY7xAb?=
+ =?us-ascii?Q?uryw8wYqgAxdzEbuCE4h4vjM5WWvzXD8r2hNfs0HcBztSJAP0OdvLRBzpV1+?=
+ =?us-ascii?Q?dtTd8JFM6LOGLoOE1ERW1a6b5V4FPkOW62ghZ7NNokXPe6M0rve6V7/WgVTq?=
+ =?us-ascii?Q?w5osmXG2ebNAZvDw2uXMzdDmPMx9+SzWqnIp8Drng15ZgYLadZXORtQT81uj?=
+ =?us-ascii?Q?ZtaxcV5lhflbthr/KUApADTTc3AR4kZgEE6pAf/TGh6wFYqdln533W/iHKwP?=
+ =?us-ascii?Q?D1hBfFzO0rQa8wzzuREzoffHeH1CjLVhnTkKDmBbc+CCdv+tpgygd2YDUVNb?=
+ =?us-ascii?Q?zHEze8iR6mdJ3ODd9ddHeLu7s/k=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6348.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46702d0f-474f-4af4-d4c3-08dddf001665
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2025 09:09:22.4670 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HLF5RCJkgYZHi0vK44PcDpUezVxSQVHJP62296TU6Ku4Sp9iSgoEmJdaChQKgJ5dbTyBp7P1CT6sC3SIHble9yBvXBpTzvy/mMUsNULt7d3926vnfD+w/jL7d8hA185W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9206
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,324 +188,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Monday, 18 August 2025 16:42:56 CEST Christian K=C3=B6nig wrote:
-> On 18.08.25 16:30, Janusz Krzysztofik wrote:
-> > Hi Christian,
-> >=20
-> > On Thursday, 14 August 2025 14:24:29 CEST Christian K=C3=B6nig wrote:
-> >>
-> >> On 14.08.25 10:16, Janusz Krzysztofik wrote:
-> >>> When first user starts waiting on a not yet signaled fence of a chain
-> >>> link, a dma_fence_chain callback is added to a user fence of that lin=
-k.
-> >>> When the user fence of that chain link is then signaled, the chain is
-> >>> traversed in search for a first not signaled link and the callback is
-> >>> rearmed on a user fence of that link.
-> >>>
-> >>> Since chain fences may be exposed to user space, e.g. over drm_syncobj
-> >>> IOCTLs, users may start waiting on any link of the chain, then many l=
-inks
-> >>> of a chain may have signaling enabled and their callbacks added to th=
-eir
-> >>> user fences.  Once an arbitrary user fence is signaled, all
-> >>> dma_fence_chain callbacks added to it so far must be rearmed to anoth=
-er
-> >>> user fence of the chain.  In extreme scenarios, when all N links of a
-> >>> chain are awaited and then signaled in reverse order, the dma_fence_c=
-hain
-> >>> callback may be called up to N * (N + 1) / 2 times (an arithmetic ser=
-ies).
-> >>>
-> >>> To avoid that potential excessive accumulation of dma_fence_chain
-> >>> callbacks, rearm a trimmed-down, signal only callback version to the =
-base
-> >>> fence of a previous link, if not yet signaled, otherwise just signal =
-the
-> >>> base fence of the current link instead of traversing the chain in sea=
-rch
-> >>> for a first not signaled link and moving all callbacks collected so f=
-ar to
-> >>> a user fence of that link.
-> >>
-> >> Well clear NAK to that! You can easily overflow the kernel stack with =
-that!
-> >=20
-> > I'll be happy to propose a better solution, but for that I need to unde=
-rstand=20
-> > better your message.  Could you please point out an exact piece of the=
-=20
-> > proposed code and/or describe a scenario where you can see the risk of =
-stack=20
-> > overflow?
+
+
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of An=
+kit
+> Nautiyal
+> Sent: 18 August 2025 13:01
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: ville.syrjala@linux.intel.com; Nautiyal, Ankit K
+> <ankit.k.nautiyal@intel.com>
+> Subject: [PATCH 11/12] drm/i915/panel: Refactor helper to get highest fix=
+ed
+> mode
 >=20
-> The sentence "rearm .. to the base fence of a previous link" sounds like =
-you are trying to install a callback on the signaling to the previous chain=
- element.
+> Refactor intel_panel_highest_mode() to return the fixed mode with the
+> highest pixel clock, removing the fallback to the adjusted mode. This mak=
+es the
+> function semantics clearer and better suited for future use cases where
+> fallback is not desirable.
 >=20
-> That is exactly what I pointed out previously where you need to be super =
-careful because when this chain signals the callbacks will execute recursiv=
-ely which means that you can trivially overflow the kernel stack if you hav=
-e more than a handful of chain elements.
+> Update the caller in intel_dp_mode_clock() to handle the NULL case explic=
+itly
+> by falling back to the adjusted mode's crtc_clock. This also addresses th=
+e
+> existing FIXME comment about ambiguity between clock and crtc_clock, by
+> using mode->clock for fixed modes and mode->crtc_clock for adjusted modes=
+.
 >=20
-> In other words A waits for B, B waits for C, C waits for D etc.... when D=
- finally signals it will call C which in turn calls B which in turn calls A.
-
-OK, maybe my commit description was not precise enough, however, I didn't=20
-describe implementation details (how) intentionally.
-When D signals then it doesn't call C directly, only it submits an irq work=
-=20
-that calls C.  Then C doesn't just call B, only it submits another irq work=
-=20
-that calls B, and so on.
-Doesn't that code pattern effectively break the recursion loop into separat=
-e=20
-work items, each with its own separate stack?
-
+> v2: Avoid introducing a new function and refactor existing one instead.
+> (Jani).
 >=20
-> Even if the chain is a recursive data structure you absolutely can't use =
-recursion for the handling of it.
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c    | 14 +++++++++-----
+>  drivers/gpu/drm/i915/display/intel_panel.c | 11 +++++------
+> drivers/gpu/drm/i915/display/intel_panel.h |  3 +--
+>  3 files changed, 15 insertions(+), 13 deletions(-)
 >=20
-> Maybe I misunderstood your textual description but reading a sentence lik=
-e this rings all alarm bells here. Otherwise I can't see what the patch is =
-supposed to be optimizing.
-
-OK, maybe I should start my commit description of this patch with a copy of=
-=20
-the first sentence from cover letter and also from patch 1/4 description th=
-at=20
-informs about the problem as reported by CI.  Maybe I should also provide a=
-=20
-comparison of measured signaling times from trybot executions [1][2][3]. =20
-Here are example numbers from CI machine fi-bsw-n3050:
-
-With signaling time reports only added to selftests (patch 1 of 4):
-<6> [777.914451] dma-buf: Running dma_fence_chain/wait_forward
-<6> [778.123516] wait_forward: 4096 signals in 21373487 ns
-<6> [778.335709] dma-buf: Running dma_fence_chain/wait_backward
-<6> [795.791546] wait_backward: 4096 signals in 17249051192 ns
-<6> [795.859699] dma-buf: Running dma_fence_chain/wait_random
-<6> [796.161375] wait_random: 4096 signals in 97386256 ns
-
-With dma_fence_enable_signaling() replaced in selftests with dma_fence_wait=
-()=20
-(patches 1-3 of 4):
-<6> [782.505692] dma-buf: Running dma_fence_chain/wait_forward
-<6> [784.609213] wait_forward: 4096 signals in 36513103 ns
-<3> [784.837226] Reported -4 for kthread_stop_put(0)!
-<6> [785.147643] dma-buf: Running dma_fence_chain/wait_backward
-<6> [806.367763] wait_backward: 4096 signals in 18428009499 ns
-<6> [807.175325] dma-buf: Running dma_fence_chain/wait_random
-<6> [809.453942] wait_random: 4096 signals in 119761950 ns
-
-With the fix (patches 1-4 of 4):
-<6> [731.519020] dma-buf: Running dma_fence_chain/wait_forward
-<6> [733.623375] wait_forward: 4096 signals in 31890220 ns
-<6> [734.258972] dma-buf: Running dma_fence_chain/wait_backward
-<6> [736.267325] wait_backward: 4096 signals in 39007955 ns
-<6> [736.700221] dma-buf: Running dma_fence_chain/wait_random
-<6> [739.346706] wait_random: 4096 signals in 48384865 ns
-
-Signaling time in wait_backward selftest has been reduced from 17s to 39ms.
-
-[1] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152785v1/index.html?
-[2] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152828v2/index.html?
-[3] https://intel-gfx-ci.01.org/tree/drm-tip/Trybot_152830v2/index.html?
-
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0c2bec1fbe42..2fa80b2750f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1759,11 +1759,15 @@ static int intel_dp_mode_clock(const struct
+> intel_crtc_state *crtc_state,
+>  	struct intel_connector *connector =3D to_intel_connector(conn_state-
+> >connector);
+>  	const struct drm_display_mode *adjusted_mode =3D &crtc_state-
+> >hw.adjusted_mode;
 >=20
-> >>
-> >> Additional to this messing with the fence ops outside of the dma_fence=
- code is an absolute no-go.
-> >=20
-> > Could you please explain what piece of code you are referring to when y=
-ou say=20
-> > "messing with the fence ops outside the dma_fence code"?  If not this p=
-atch=20
-> > then which particular one of this series did you mean?  I'm assuming yo=
-u=20
-> > didn't mean drm_syncobj code that I mentioned in my commit descriptions.
+> -	/* FIXME a bit of a mess wrt clock vs. crtc_clock */
+> -	if (has_seamless_m_n(connector))
+> -		return intel_panel_highest_mode(connector,
+> adjusted_mode)->clock;
+> -	else
+> -		return adjusted_mode->crtc_clock;
+> +	if (has_seamless_m_n(connector)) {
+> +		const struct drm_display_mode *highest_mode;
+> +
+> +		highest_mode =3D intel_panel_highest_mode(connector);
+> +		if (highest_mode)
+> +			return highest_mode->clock;
+> +	}
+> +
+> +	return adjusted_mode->crtc_clock;
+>  }
 >=20
-> See below.
+>  /* Optimize link config in order: max bpp, min clock, min lanes */ diff =
+--git
+> a/drivers/gpu/drm/i915/display/intel_panel.c
+> b/drivers/gpu/drm/i915/display/intel_panel.c
+> index 2a20aaaaac39..ac0f04073ecb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> @@ -144,18 +144,17 @@ intel_panel_downclock_mode(struct
+> intel_connector *connector,  }
 >=20
-> >=20
-> > Thanks,
-> > Janusz
-> >=20
-> >>
-> >> Regards,
-> >> Christian.
-> >>
-> >>>
-> >>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-> >>> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> >>> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> >>> ---
-> >>>  drivers/dma-buf/dma-fence-chain.c | 101 +++++++++++++++++++++++++---=
-=2D-
-> >>>  1 file changed, 84 insertions(+), 17 deletions(-)
-> >>>
-> >>> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-=
-fence-chain.c
-> >>> index a8a90acf4f34d..90eff264ee05c 100644
-> >>> --- a/drivers/dma-buf/dma-fence-chain.c
-> >>> +++ b/drivers/dma-buf/dma-fence-chain.c
-> >>> @@ -119,46 +119,113 @@ static const char *dma_fence_chain_get_timelin=
-e_name(struct dma_fence *fence)
-> >>>          return "unbound";
-> >>>  }
-> >>> =20
-> >>> -static void dma_fence_chain_irq_work(struct irq_work *work)
-> >>> +static void signal_irq_work(struct irq_work *work)
-> >>>  {
-> >>>  	struct dma_fence_chain *chain;
-> >>> =20
-> >>>  	chain =3D container_of(work, typeof(*chain), work);
-> >>> =20
-> >>> -	/* Try to rearm the callback */
-> >>> -	if (!dma_fence_chain_enable_signaling(&chain->base))
-> >>> -		/* Ok, we are done. No more unsignaled fences left */
-> >>> -		dma_fence_signal(&chain->base);
-> >>> +	dma_fence_signal(&chain->base);
-> >>>  	dma_fence_put(&chain->base);
-> >>>  }
-> >>> =20
-> >>> -static void dma_fence_chain_cb(struct dma_fence *f, struct dma_fence=
-_cb *cb)
-> >>> +static void signal_cb(struct dma_fence *f, struct dma_fence_cb *cb)
-> >>> +{
-> >>> +	struct dma_fence_chain *chain;
-> >>> +
-> >>> +	chain =3D container_of(cb, typeof(*chain), cb);
-> >>> +	init_irq_work(&chain->work, signal_irq_work);
-> >>> +	irq_work_queue(&chain->work);
-> >>> +}
-> >>> +
-> >>> +static void rearm_irq_work(struct irq_work *work)
-> >>> +{
-> >>> +	struct dma_fence_chain *chain;
-> >>> +	struct dma_fence *prev;
-> >>> +
-> >>> +	chain =3D container_of(work, typeof(*chain), work);
-> >>> +
-> >>> +	rcu_read_lock();
-> >>> +	prev =3D rcu_dereference(chain->prev);
-> >>> +	if (prev && dma_fence_add_callback(prev, &chain->cb, signal_cb))
-> >>> +		prev =3D NULL;
-> >>> +	rcu_read_unlock();
-> >>> +	if (prev)
-> >>> +		return;
-> >>> +
-> >>> +	/* Ok, we are done. No more unsignaled fences left */
-> >>> +	signal_irq_work(work);
-> >>> +}
-> >>> +
-> >>> +static inline bool fence_is_signaled__nested(struct dma_fence *fence)
-> >>> +{
-> >>> +	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
-> >>> +		return true;
-> >>> +
+>  const struct drm_display_mode *
+> -intel_panel_highest_mode(struct intel_connector *connector,
+> -			 const struct drm_display_mode *adjusted_mode)
+> +intel_panel_highest_mode(struct intel_connector *connector)
+>  {
+> -	const struct drm_display_mode *fixed_mode, *best_mode =3D
+> adjusted_mode;
+> +	const struct drm_display_mode *fixed_mode, *highest_mode =3D NULL;
 >=20
-> >>> +	if (fence->ops->signaled && fence->ops->signaled(fence)) {
+>  	/* pick the fixed_mode that has the highest clock */
+>  	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes,
+> head) {
+> -		if (fixed_mode->clock > best_mode->clock)
+> -			best_mode =3D fixed_mode;
+> +		if (!highest_mode || fixed_mode->clock > highest_mode-
+> >clock)
+> +			highest_mode =3D fixed_mode;
+>  	}
 >=20
-> Calling this outside of dma-fence.[ch] is a clear no-go.
+> -	return best_mode;
+> +	return highest_mode;
+>  }
+>=20
+>  int intel_panel_get_modes(struct intel_connector *connector) diff --git
+> a/drivers/gpu/drm/i915/display/intel_panel.h
+> b/drivers/gpu/drm/i915/display/intel_panel.h
+> index 56a6412cf0fb..8a17600e46a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_panel.h
+> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+> @@ -37,8 +37,7 @@ const struct drm_display_mode *
+> intel_panel_downclock_mode(struct intel_connector *connector,
+>  			   const struct drm_display_mode *adjusted_mode);
+> const struct drm_display_mode * -intel_panel_highest_mode(struct
+> intel_connector *connector,
+> -			 const struct drm_display_mode *adjusted_mode);
+> +intel_panel_highest_mode(struct intel_connector *connector);
 
-But this patch applies only to drivers/dma-buf/dma-fence-chain.c, not=20
-outside of it.
+Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-Thanks,
-Janusz
-
->=20
-> Regards,
-> Christian.
->=20
-> >>> +		unsigned long flags;
-> >>> +
-> >>> +		spin_lock_irqsave_nested(fence->lock, flags, SINGLE_DEPTH_NESTING);
-> >>> +		dma_fence_signal_locked(fence);
-> >>> +		spin_unlock_irqrestore(fence->lock, flags);
-> >>> +
-> >>> +		return true;
-> >>> +	}
-> >>> +
-> >>> +	return false;
-> >>> +}
-> >>> +
-> >>> +static bool prev_is_signaled(struct dma_fence_chain *chain)
-> >>> +{
-> >>> +	struct dma_fence *prev;
-> >>> +	bool result;
-> >>> +
-> >>> +	rcu_read_lock();
-> >>> +	prev =3D rcu_dereference(chain->prev);
-> >>> +	result =3D !prev || fence_is_signaled__nested(prev);
-> >>> +	rcu_read_unlock();
-> >>> +
-> >>> +	return result;
-> >>> +}
-> >>> +
-> >>> +static void rearm_or_signal_cb(struct dma_fence *f, struct dma_fence=
-_cb *cb)
-> >>>  {
-> >>>  	struct dma_fence_chain *chain;
-> >>> =20
-> >>>  	chain =3D container_of(cb, typeof(*chain), cb);
-> >>> -	init_irq_work(&chain->work, dma_fence_chain_irq_work);
-> >>> +	if (prev_is_signaled(chain)) {
-> >>> +		/* Ok, we are done. No more unsignaled fences left */
-> >>> +		init_irq_work(&chain->work, signal_irq_work);
-> >>> +	} else {
-> >>> +		/* Try to rearm the callback */
-> >>> +		init_irq_work(&chain->work, rearm_irq_work);
-> >>> +	}
-> >>> +
-> >>>  	irq_work_queue(&chain->work);
-> >>> -	dma_fence_put(f);
-> >>>  }
-> >>> =20
-> >>>  static bool dma_fence_chain_enable_signaling(struct dma_fence *fence)
-> >>>  {
-> >>>  	struct dma_fence_chain *head =3D to_dma_fence_chain(fence);
-> >>> +	int err =3D -ENOENT;
-> >>> =20
-> >>> -	dma_fence_get(&head->base);
-> >>> -	dma_fence_chain_for_each(fence, &head->base) {
-> >>> -		struct dma_fence *f =3D dma_fence_chain_contained(fence);
-> >>> +	if (WARN_ON(!head))
-> >>> +		return false;
-> >>> =20
-> >>> -		dma_fence_get(f);
-> >>> -		if (!dma_fence_add_callback(f, &head->cb, dma_fence_chain_cb)) {
-> >>> +	dma_fence_get(fence);
-> >>> +	if (head->fence)
-> >>> +		err =3D dma_fence_add_callback(head->fence, &head->cb, rearm_or_si=
-gnal_cb);
-> >>> +	if (err) {
-> >>> +		if (prev_is_signaled(head)) {
-> >>>  			dma_fence_put(fence);
-> >>> -			return true;
-> >>> +		} else {
-> >>> +			init_irq_work(&head->work, rearm_irq_work);
-> >>> +			irq_work_queue(&head->work);
-> >>> +			err =3D 0;
-> >>>  		}
-> >>> -		dma_fence_put(f);
-> >>>  	}
-> >>> -	dma_fence_put(&head->base);
-> >>> -	return false;
-> >>> +
-> >>> +	return !err;
-> >>>  }
-> >>> =20
-> >>>  static bool dma_fence_chain_signaled(struct dma_fence *fence)
-> >>
-> >>
-> >=20
-> >=20
-> >=20
-> >=20
->=20
->=20
-
-
-
+>  int intel_panel_get_modes(struct intel_connector *connector);  enum
+> drrs_type intel_panel_drrs_type(struct intel_connector *connector);  enum
+> drm_mode_status
+> --
+> 2.45.2
 
