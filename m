@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE52B2BA1E
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 09:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE72B2BA1F
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 09:04:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4862C10E544;
-	Tue, 19 Aug 2025 07:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 934CC10E54B;
+	Tue, 19 Aug 2025 07:04:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kJPUb3/L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BCC78qwh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB17410E543;
- Tue, 19 Aug 2025 07:04:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF9910E551;
+ Tue, 19 Aug 2025 07:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755587057; x=1787123057;
+ t=1755587058; x=1787123058;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=knhcCynXrL2U3chwauB2RRS0NMEqgjB7N8fghSlAuIM=;
- b=kJPUb3/L90lYZOBOlj8OVdhCvEvoAVygrRb6W4VucCE3Jkj1/EQxxtLB
- /vycOCCQomRhTIVkthKAnh59f9MzQi4Dt8mdSRhZoZ4F56/icbZ8Bn34g
- O6ffWUo+Gw2IseoPDNthh27RJNq3iHRbqY84gVjlvmSO4Lzqtk2D1Stav
- eLL8LdZZBXnF7xxl62jdGKL/OiqIwITTW4V44bN16//btHG3g4qkvDzIv
- dcx/jXr8dDzQC5UgRQ4ojEslykqxLXehmCQGeCqu3kxBN+/FCequYQMQM
- m1wNcYtmlhV7NwoK/7ECottPA79JK0nhmegWCjf+evga+UwKTGC+Xn00w g==;
-X-CSE-ConnectionGUID: MXhziKVZTvmKbgzc0TeOmg==
-X-CSE-MsgGUID: 1CA0eRWwR/Gq7zyuPJfRKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392360"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392360"
+ bh=HXA6xTnkumlIdPWNN97e4N3Ri6/KGmBdFzxQI55Zb0I=;
+ b=BCC78qwhhc7GiYwLfg9h0Om4hYFWEj6rTgHloPpcof7LOAgv5mPhw9tG
+ poPca3MCRFUfm9by4gADri9vYXKHlVqoCDQz9UIuc/zm6ZhNbfp/5AcU8
+ EYs+sUca0AqtxHz1i4pJA6jNXgj0NZqEf41BCZGh9Jg1JE/BAXl/zg7S6
+ mZCD3HZKHMAXnQVl35G3cVfaU8eOGzr6VLLC5n0jQJYQQgtFkmXePBSMh
+ TQ3x06kAysgtnS4lIJ77FhS3w2qmN2bpyCfz0qJQwBAYA0ylxyvTVFz6g
+ Ae3+5HARPFcVy0GyS7TSGTsFtsrq1Qbq3wAbcVjGu753pVkUm28BVz4SG A==;
+X-CSE-ConnectionGUID: DER4gRpiT7C7QBFt3jDm9g==
+X-CSE-MsgGUID: io5sZI3hRW2IWM80yRywxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392382"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392382"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:16 -0700
-X-CSE-ConnectionGUID: PT02Kl1xQ4GShECL/ZowXw==
-X-CSE-MsgGUID: +SzAVOu2T2y50fN8v346bQ==
+ 19 Aug 2025 00:04:18 -0700
+X-CSE-ConnectionGUID: eSGL9VObThabGuCNrCAsTQ==
+X-CSE-MsgGUID: NqoEwHnbQsueJmHCM4xsjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008308"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008318"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.65])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:15 -0700
+ 19 Aug 2025 00:04:17 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v7 4/6] drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for
- LunarLake and onwards
-Date: Tue, 19 Aug 2025 10:03:51 +0300
-Message-ID: <20250819070353.3062341-5-jouni.hogander@intel.com>
+Subject: [PATCH v7 5/6] drm/i915/display: Wait for vblank in case of PSR is
+ using trans push
+Date: Tue, 19 Aug 2025 10:03:52 +0300
+Message-ID: <20250819070353.3062341-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250819070353.3062341-1-jouni.hogander@intel.com>
 References: <20250819070353.3062341-1-jouni.hogander@intel.com>
@@ -72,57 +72,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On LunarLake we are using TRANS_PUSH mechanism to trigger "Frame Change"
-event. This way we have more control on when PSR HW is woken up. I.e. not
-every display register write is triggering sending update. This allows us
-setting DSB_SKIP_WAITS_EN chicken bit as well.
+In case PSR uses trans push as a "frame change" event and we need to wait
+vblank after triggering PSR "frame change" event. Othervise we may miss
+selective updates.
+
+DSB skips all waits while PSR is active. Check push send is skipped as well
+because trans push send bit is not clearn by the HW if VRR is not enabled
+-> we may start configuring new selective update while previous is not
+complete. Avoid this by waiting for vblank after sending trans push.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 53d8ae3a70e9..3266dd52e6d2 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -16,6 +16,7 @@
- #include "intel_dsb.h"
- #include "intel_dsb_buffer.h"
- #include "intel_dsb_regs.h"
-+#include "intel_psr.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
- #include "skl_watermark.h"
-@@ -183,18 +184,24 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
-  * definitely do not want to skip vblank wait. We also have concern what comes
-  * to skipping vblank evasion. I.e. arming registers are latched before we have
-  * managed writing them. Due to these reasons we are not setting
-- * DSB_SKIP_WAITS_EN.
-+ * DSB_SKIP_WAITS_EN except when using TRANS_PUSH mechanism to trigger
-+ * "frame change" event.
-  */
- static u32 dsb_chicken(struct intel_atomic_state *state,
- 		       struct intel_crtc *crtc)
- {
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
-+		DSB_SKIP_WAITS_EN : 0;
-+
- 	if (pre_commit_is_vrr_active(state, crtc))
--		return DSB_CTRL_WAIT_SAFE_WINDOW |
-+		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
- 			DSB_INST_WAIT_SAFE_WINDOW |
- 			DSB_INST_NO_WAIT_VBLANK;
--	else
--		return 0;
-+
-+	return chicken;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c1a3a95c65f0..95179aedf6f2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7301,9 +7301,27 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 				new_crtc_state->dsb_color);
  
- static bool assert_dsb_has_room(struct intel_dsb *dsb)
+ 	if (new_crtc_state->use_dsb && !intel_color_uses_chained_dsb(new_crtc_state)) {
+-		intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
++		/*
++		 * Dsb wait vblank may or may not skip. Let's remove it for PSR
++		 * trans push case to ensure we are not waiting two vblanks
++		 */
++		if (!intel_psr_use_trans_push(new_crtc_state))
++			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+ 
+ 		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
++
++		/*
++		 * In case PSR uses trans push as a "frame change" event and
++		 * VRR is not in use we need to wait vblank. Othervise we may
++		 * miss selective updates. DSB skips all waits while PSR is
++		 * active. Check push send is skipped as well because trans push
++		 * send bit is not clearn by the HW if VRR is not enabled -> we
++		 * may start configuring new selective update while previous is
++		 * not complete.
++		 */
++		if (intel_psr_use_trans_push(new_crtc_state))
++			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
++
+ 		intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
+ 		intel_vrr_check_push_sent(new_crtc_state->dsb_commit,
+ 					  new_crtc_state);
 -- 
 2.43.0
 
