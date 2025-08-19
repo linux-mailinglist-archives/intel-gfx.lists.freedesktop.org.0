@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA1CB2BB61
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 10:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BCDB2BB94
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 10:17:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37F0A10E548;
-	Tue, 19 Aug 2025 08:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC1310E011;
+	Tue, 19 Aug 2025 08:17:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xac8cL/g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HvSrIMjb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3253410E54D;
- Tue, 19 Aug 2025 08:06:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2801C10E011
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 Aug 2025 08:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755590782; x=1787126782;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LKSVc1nAtfr9yyrTdGKBFjxvjEB9ukHu4koi6h4jWmY=;
- b=Xac8cL/gLhekDFZd7g2uJzM2P1xRfDEIabdLn9E6l0iDOIsVbimfehXN
- mjtq+D8SdBzEQPshVyN23RqWNjfgvMXQqpzLHdD0Is//tOXEOVJOfhTnZ
- nLtykZIDbpg4JDUIX3VSZkJIsFWhiqERbVJV2a+GvbCakaIRFJxHxaWFj
- do9gUXgYcfscGKT0ajCaKpLCYR8UedvoQtCPStkmeik9oVTS6yQtynqUm
- Knr1qNtrJ/PXuSiWXrobzG51VYRErxO/sX3QAoO55VoUOZW6dWSlhJ9tC
- DOATYnH3ycQWJ25qTZgi49wyDtDHneoilGJMKePFFvJhFPO2OImfUA56m Q==;
-X-CSE-ConnectionGUID: vW93rlckSuSWBK03hLurPQ==
-X-CSE-MsgGUID: EYSMXsTuTiyP0ZtGT4vyNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="68923528"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="68923528"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 01:06:22 -0700
-X-CSE-ConnectionGUID: SC8JrVIMQyG3HJ4Pj+Oq5Q==
-X-CSE-MsgGUID: TIpHZoY3QlOqXzOjIbdhzg==
+ t=1755591457; x=1787127457;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OXoZYB9DVMb9aa6rKPyCid7umcUbVYikf23SO4oTYEk=;
+ b=HvSrIMjbx84Q0bMBm3PP0i8tmo2Jhr/+yk2vs6/Q3ZEc0+9W5he9/M2n
+ jCkhcHdaGkxZ32fAbAlmq9+22nRVZG2TIrJfNKTlXouuRNgkde5oQxxXE
+ oZzOC8TiNo1oBMb47JJKFNqJ8F9NCsNtHqElrKADgRpo9MFoj+vuhv9Ap
+ Umj6Vad6gQMieX06J335cMmvEYEj105A/vWYpPBhjlQC3qay0+b2MD6Tx
+ JfqTtZ+C/F3K/ADozBmQ7StbblRSuaqqpuNiVqsdbnStSNJUJxLcf/Wzl
+ YnRVWTzr7BhkG30Usf065K6cGIZZtSOhr84IchyqsGpWlRQunrBMyJRP6 g==;
+X-CSE-ConnectionGUID: /dwlCm4IRdWzMUyGsQUgmA==
+X-CSE-MsgGUID: cRvniPtXSjKcurKyV+au1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="61660720"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="61660720"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 01:17:36 -0700
+X-CSE-ConnectionGUID: Nf8yJWJ2RC2fs98t5ZZLVA==
+X-CSE-MsgGUID: Nzi60xy+TMKTbjp8rL1YuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="204932833"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 19 Aug 2025 01:06:20 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v5 3/3] drm/i915/edp: eDP Data Overrride
-Date: Tue, 19 Aug 2025 13:36:02 +0530
-Message-Id: <20250819080602.84826-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250819080602.84826-1-suraj.kandpal@intel.com>
-References: <20250819080602.84826-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="167402825"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.251])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 01:17:34 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: kernel test robot <lkp@intel.com>, Dan Carpenter <dan.carpenter@linaro.org>
+Subject: Re: [PATCH] drm/i915/switcheroo: check for NULL before dereferencing
+In-Reply-To: <175552587452.2359.6170388271062176019@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250818071605.2541523-1-jani.nikula@intel.com>
+ <175552222425.2359.8280537352019435466@intel.com>
+ <8e309d1064aa09c47049c079b583f0dfb6635434@intel.com>
+ <175552587452.2359.6170388271062176019@intel.com>
+Date: Tue, 19 Aug 2025 11:17:30 +0300
+Message-ID: <11c53332611b4cd7b7c5fc38169ffd051c32e0f0@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +71,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need override certain link rates in favour of the next available
-higher link rate. The Link rates that need to be overridden are
-indicated by a mask in VBT. To make sure these modes are skipped we
-don't add them in them in the sink rates array.
+On Mon, 18 Aug 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2025-08-18 10:30:30-03:00)
+>>On Mon, 18 Aug 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>>> Quoting Jani Nikula (2025-08-18 04:16:05-03:00)
+>>>>Both i915_switcheroo_set_state() and i915_switcheroo_can_switch() check
+>>>>for i915 == NULL. Commit d2e184f8e16a ("drm/i915/switcheroo: pass
+>>>>display to HAS_DISPLAY()") started dereferencing it before the NULL
+>>>>check. Fix it.
+>>>
+>>> Hm... Did it? I think i915->display will only give you an invalid
+>>> address when i915 is NULL, but I don't think any dereferencing will
+>>> happen, because of the checks on i915.
+>>
+>>What would be the case for &i915->display, but not i915->display?
+>
+> Ah, right.
+>
+> Yeah, I got confused thinking this was the same as the old times when we
+> stored display directly in the structure. In that case, we would use
+> &i915->display and no dereferencing would happen.
+>
+> Now we store a pointer to the display in i915 and we need
+> dereferencing in order to get the address.
+>
+> Sorry for the noise!
 
---v2
--Update the link rates after we have a final set of link rates [Ankit]
--Break this patch up [Ankit]
--Optimize the assingment during loop [Ankit]
+Good to clarify!
 
---v3
--Add protection against broken VBTs [Jani]
+Thanks for the review, pushed to din.
 
---v4
--Fix build errors
--Create a seprate function to check if edp data override is selected
-and using the correct vbt
+BR,
+Jani.
 
---v5
--Use correct number to check the num of edp rates [Ankit]
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 15 ++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bios.h |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c   | 22 ++++++++++++++++++++++
- 3 files changed, 38 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 444ed54f7c35..05a74c3bc9af 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2521,11 +2521,24 @@ int intel_bios_dp_max_lane_count(const struct intel_bios_encoder_data *devdata)
- bool
- intel_bios_encoder_reject_edp_rate(const struct intel_bios_encoder_data *devdata,
- 				   int rate)
-+{
-+	return devdata->child.edp_data_rate_override & edp_rate_override_mask(rate);
-+}
-+
-+bool
-+intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata)
- {
- 	if (!devdata || devdata->display->vbt.version < 263)
- 		return false;
- 
--	return devdata->child.edp_data_rate_override & edp_rate_override_mask(rate);
-+	/*
-+	 * This means the VBT ends up asking us to override every possible rate
-+	 * indicating the VBT is broken so skip this
-+	 */
-+	if (hweight32(devdata->child.edp_data_rate_override) >= BDB_263_VBT_EDP_NUM_RATES)
-+		return false;
-+
-+	return true;
- }
- 
- static void sanitize_device_type(struct intel_bios_encoder_data *devdata,
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 781e08f7eeb2..d24660bcc7f3 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -276,5 +276,7 @@ void intel_bios_for_each_encoder(struct intel_display *display,
- 					      const struct intel_bios_encoder_data *devdata));
- 
- void intel_bios_debugfs_register(struct intel_display *display);
-+bool
-+intel_bios_vbt_supports_edp_data_override(const struct intel_bios_encoder_data *devdata);
- 
- #endif /* _INTEL_BIOS_H_ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 54d88f24b689..f6fad42182ae 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4277,6 +4277,26 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
- 	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
- }
- 
-+static void
-+intel_edp_set_data_override_rates(struct intel_dp *intel_dp)
-+{
-+	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
-+	int *sink_rates = intel_dp->sink_rates;
-+	int i, j = 0;
-+
-+	if (!intel_bios_vbt_supports_edp_data_override(encoder->devdata))
-+		return;
-+
-+	for (i = 0; i < intel_dp->num_sink_rates; i++) {
-+		if (intel_bios_encoder_reject_edp_rate(encoder->devdata,
-+						       intel_dp->sink_rates[i]))
-+			continue;
-+
-+		sink_rates[j++] = intel_dp->sink_rates[i];
-+	}
-+	intel_dp->num_sink_rates = j;
-+}
-+
- static void
- intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- {
-@@ -4327,6 +4347,8 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 		intel_dp->use_rate_select = true;
- 	else
- 		intel_dp_set_sink_rates(intel_dp);
-+
-+	intel_edp_set_data_override_rates(intel_dp);
- }
- 
- static bool
+>
+> --
+> Gustavo Sousa
+>
+>>
+>>>
+>>> Anyways, playing it safe here is probably a good idea. I would just
+>>> reword the commit message a bit. With that,
+>>>
+>>> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>>
+>>Thanks.
+>>
+>>>
+>>>>
+>>>>Fixes: d2e184f8e16a ("drm/i915/switcheroo: pass display to HAS_DISPLAY()")
+>>>>Reported-by: kernel test robot <lkp@intel.com>
+>>>>Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+>>>>Closes: https://lore.kernel.org/r/202508160035.hmzuKiww-lkp@intel.com/
+>>>>Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+>>>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>>>>---
+>>>> drivers/gpu/drm/i915/i915_switcheroo.c | 4 ++--
+>>>> 1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>
+>>>>diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
+>>>>index 231d27497706..3a95a55b2e87 100644
+>>>>--- a/drivers/gpu/drm/i915/i915_switcheroo.c
+>>>>+++ b/drivers/gpu/drm/i915/i915_switcheroo.c
+>>>>@@ -15,7 +15,7 @@ static void i915_switcheroo_set_state(struct pci_dev *pdev,
+>>>>                                       enum vga_switcheroo_state state)
+>>>> {
+>>>>         struct drm_i915_private *i915 = pdev_to_i915(pdev);
+>>>>-        struct intel_display *display = i915->display;
+>>>>+        struct intel_display *display = i915 ? i915->display : NULL;
+>>>>         pm_message_t pmm = { .event = PM_EVENT_SUSPEND };
+>>>> 
+>>>>         if (!i915) {
+>>>>@@ -45,7 +45,7 @@ static void i915_switcheroo_set_state(struct pci_dev *pdev,
+>>>> static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
+>>>> {
+>>>>         struct drm_i915_private *i915 = pdev_to_i915(pdev);
+>>>>-        struct intel_display *display = i915->display;
+>>>>+        struct intel_display *display = i915 ? i915->display : NULL;
+>>>> 
+>>>>         /*
+>>>>          * FIXME: open_count is protected by drm_global_mutex but that would lead to
+>>>>-- 
+>>>>2.47.2
+>>>>
+>>
+>>-- 
+>>Jani Nikula, Intel
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
