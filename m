@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE47B2C9FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 18:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1F2B2CB58
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 19:49:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B6ED10E0C5;
-	Tue, 19 Aug 2025 16:54:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61ACF10E642;
+	Tue, 19 Aug 2025 17:49:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D661910E0C5;
- Tue, 19 Aug 2025 16:54:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8706527796128741204=="
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A53410E0E2;
+ Tue, 19 Aug 2025 17:49:15 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E877152B;
+ Tue, 19 Aug 2025 10:49:06 -0700 (PDT)
+Received: from [10.1.196.50] (e121345-lin.cambridge.arm.com [10.1.196.50])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 475103F738;
+ Tue, 19 Aug 2025 10:49:10 -0700 (PDT)
+Message-ID: <cdb7b1e7-6e51-4c0e-bffb-b0d4b654a623@arm.com>
+Date: Tue, 19 Aug 2025 18:49:08 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Add_synch?=
- =?utf-8?q?ronization_on_interrupt_enable_flag?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 19 Aug 2025 16:54:12 -0000
-Message-ID: <175562245287.247874.10764641987025687558@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250819160010.3386940-1-zhanjun.dong@intel.com>
-In-Reply-To: <20250819160010.3386940-1-zhanjun.dong@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 19/19] perf: Garbage-collect event_init checks
+To: kernel test robot <oliver.sang@intel.com>
+Cc: oe-lkp@lists.linux.dev, lkp@intel.com,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-perf-users@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-fpga@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, peterz@infradead.org, mingo@redhat.com,
+ will@kernel.org, mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
+ adrian.hunter@intel.com, kan.liang@linux.intel.com,
+ linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ imx@lists.linux.dev, linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-riscv@lists.infradead.org
+References: <202508190403.33c83ece-lkp@intel.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <202508190403.33c83ece-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,191 +60,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8706527796128741204==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 19/08/2025 3:44 am, kernel test robot wrote:
+> 
+> 
+> Hello,
+> 
+> kernel test robot noticed "BUG:unable_to_handle_page_fault_for_address" on:
+> 
+> commit: 1ba20479196e5af3ebbedf9321de6b26f2a0cdd3 ("[PATCH 19/19] perf: Garbage-collect event_init checks")
+> url: https://github.com/intel-lab-lkp/linux/commits/Robin-Murphy/perf-arm-cmn-Fix-event-validation/20250814-010626
+> base: https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git 91325f31afc1026de28665cf1a7b6e157fa4d39d
+> patch link: https://lore.kernel.org/all/ace3532a8a438a96338bf349a27636d8294c7111.1755096883.git.robin.murphy@arm.com/
+> patch subject: [PATCH 19/19] perf: Garbage-collect event_init checks
 
-== Series Details ==
+OK, after looking a bit more deeply at x86 and PowerPC, I think it
+probably is nicest to solve this commonly too. Below is what I've cooked
+up for a v2 (I'll save reposting the whole series this soon...)
 
-Series: drm/i915/guc: Add synchronization on interrupt enable flag
-URL   : https://patchwork.freedesktop.org/series/153158/
-State : success
+Thanks,
+Robin.
 
-== Summary ==
+----->8-----
+Subject: [PATCH 18.5/19] perf: Add common uncore-CPU check
 
-CI Bug Log - changes from CI_DRM_17032 -> Patchwork_153158v1
-====================================================
+Many uncore drivers depend on event->cpu being valid in order to look
+up various data in their event_init call. Since we've now factored out
+common PMU identification, we can factor out this check in the correct
+order too. While it might technically be possible to hoist the general
+task/cgroup check up here now, that would be horribly messy, so for
+clarity let's keep these as distinct (albeit related) concerns.
 
-Summary
--------
+Reported-by: kernel test robot <oliver.sang@intel.com>
+Closes: https://lore.kernel.org/oe-lkp/202508190403.33c83ece-lkp@intel.com
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+  kernel/events/core.c | 12 +++++++++++-
+  1 file changed, 11 insertions(+), 1 deletion(-)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_153158v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-apl-1/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index 5f7eb526d87c..ddf045ad4d83 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -12562,6 +12562,11 @@ static bool is_raw_pmu(const struct pmu *pmu)
+  	       pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
+  }
   
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-rpls-4:         [DMESG-WARN][5] ([i915#13400]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [DMESG-WARN][7] ([i915#13494]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-mtlp-9/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-11:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
++static bool is_uncore_pmu(const struct pmu *pmu)
++{
++	return pmu->task_ctx_nr == perf_invalid_context;
++}
++
+  static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
+  {
+  	struct perf_event_context *ctx = NULL;
+@@ -12571,11 +12576,16 @@ static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
+  	 * Before touching anything, we can safely skip:
+  	 * - any event for a specific PMU which is not this one
+  	 * - any common event if this PMU doesn't support them
++	 * - non-CPU-bound uncore events (so drivers can assume event->cpu is
++	 *   valid; we'll check the actual task/cgroup attach state later)
+  	 */
+  	if (event->attr.type != pmu->type &&
+  	    (event->attr.type >= PERF_TYPE_MAX || !is_raw_pmu(pmu)))
+  		return -ENOENT;
   
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17032 -> Patchwork_153158v1
-
-  CI-20190529: 20190529
-  CI_DRM_17032: 8093b67375779a975c13b9a23c8fcc25cb1e9c83 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8498: 8498
-  Patchwork_153158v1: 8093b67375779a975c13b9a23c8fcc25cb1e9c83 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/index.html
-
---===============8706527796128741204==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/guc: Add synchronization on interrupt enable flag</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153158/">https://patchwork.freedesktop.org/series/153158/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17032 -&gt; Patchwork_153158v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_153158v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17032/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153158v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17032 -&gt; Patchwork_153158v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17032: 8093b67375779a975c13b9a23c8fcc25cb1e9c83 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8498: 8498<br />
-  Patchwork_153158v1: 8093b67375779a975c13b9a23c8fcc25cb1e9c83 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8706527796128741204==--
++	if (is_uncore_pmu(pmu) && event->cpu < 0)
++		return -EINVAL;
++
+  	if (!try_module_get(pmu->module))
+  		return -ENODEV;
+  
+@@ -12990,7 +13000,7 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
+  	 * events (they don't make sense as the cgroup will be different
+  	 * on other CPUs in the uncore mask).
+  	 */
+-	if (pmu->task_ctx_nr == perf_invalid_context && (task || cgroup_fd != -1))
++	if (is_uncore_pmu(pmu) && (task || cgroup_fd != -1))
+  		return ERR_PTR(-EINVAL);
+  
+  	if (event->attr.aux_output &&
+-- 
