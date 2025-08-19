@@ -2,60 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBE0B2BA20
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 09:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE80AB2BB5E
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 10:06:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA6210E550;
-	Tue, 19 Aug 2025 07:04:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E832110E549;
+	Tue, 19 Aug 2025 08:06:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNWB8D7i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HwFFK6eQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACA2810E547;
- Tue, 19 Aug 2025 07:04:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A11289A94;
+ Tue, 19 Aug 2025 08:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755587059; x=1787123059;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IolXGu4ndMfVxmpkPik6iqviJUiYiSu6RJEHHNh0qF8=;
- b=YNWB8D7iPuabBzWkMeFma5GDNMwDWw5djS1rkqku9f9G8qj+lOGSAZs6
- WAiP2enCaqszSJLHyKCV1qEVBcahlzeinKjZ/bskDhKHL1DDbNnF2Os6Y
- EZVWl8K4itzIiSGeasR21KbcIJOpy9Utdhb3MAluIvUPjPNQ1JYitmyD2
- 0xypTZjRBQFXh1LXWAC0ll4SUiNNBRlQqJ3H7KwzO2as17/4KPBer7Qia
- CraOtLB4gcMxJQla+zJxswjqYZU+OpjovTMNDGJ/wZ6vdIvqRd/yYsc52
- k0OF6tiiWsKjLpURiP3ARt14hLS/sPS0/PMZhE+FNQNZZTnTPoidIsj0c w==;
-X-CSE-ConnectionGUID: ilGro9FuR/eYRiwsay9GUA==
-X-CSE-MsgGUID: Vs3ReDfVTg+i3UIZ55YzUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392394"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392394"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:19 -0700
-X-CSE-ConnectionGUID: rzNNvyG0TVGQcbx+RGqPhg==
-X-CSE-MsgGUID: Bv4EHvCQSlu16+2gA4Y2ng==
+ t=1755590776; x=1787126776;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eoSpmm/Zk/fHsw/feWQSOOO3Zm4aiAVqqJ6BR4MCPz4=;
+ b=HwFFK6eQs004pib0LeKLlKVamFMegg4a28RjtaWcGK+e67+oyk7UHGJK
+ nuX9vKgxNMX9UH3v5U8Q4SNKXshOwWPlhYCirrr1NB/m6G/MqYNnE0z1P
+ 3PJn+P44PvJ59YpKp/F+6zt8yen5Eovaq2Rg/fIUBu9YsjewxDj+K1+qh
+ L2pG14BV5mSJV27imKR2udTNNwKXyA7TJ/lM789bwRxG/7O2A2W23dy0l
+ 8XAX0qqpb14bAsF1JFqXZ4ki6cIC+zfHVpAEL7tqNSzAdq1WUI7aC6HYg
+ 44Sva5XmMi8wvqhpIdi1SY9w4v5OWwMuu1Blt91GYgCKtMhVAN+eZ0NwW g==;
+X-CSE-ConnectionGUID: OlJ7fEwmTz2dlpjvXTFNWg==
+X-CSE-MsgGUID: RmZtbrORTEG0bYbnOV5xhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="68923524"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="68923524"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 01:06:16 -0700
+X-CSE-ConnectionGUID: QC/nq5D/RJiVxunrZ5ShuA==
+X-CSE-MsgGUID: Dk4JlWVPQu6zx/+ShNdUTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008322"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.65])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:18 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v7 6/6] drm/i915/psr: Use TRANS_PUSH to trigger frame change
- event
-Date: Tue, 19 Aug 2025 10:03:53 +0300
-Message-ID: <20250819070353.3062341-7-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250819070353.3062341-1-jouni.hogander@intel.com>
-References: <20250819070353.3062341-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="204932805"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa001.jf.intel.com with ESMTP; 19 Aug 2025 01:06:14 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v5 0/3] eDP Data Override
+Date: Tue, 19 Aug 2025 13:35:59 +0530
+Message-Id: <20250819080602.84826-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,31 +66,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now we have everything in place for triggering PSR "frame change" event
-using TRANS_PUSH: use TRANS_PUSH for LunarLake and onwards.
+When using link rates 2.43 and 6.75 causes a strong noise for WIFI
+bands. Its recommended we use 2.7 and 8.1 Gbps instead.
+The solution proposed was a static vbt field that provides us with a
+mask of rates which need to be skipped in favor of the next higher link
+rate.
 
-v3: use HAS_PSR_FRAME_CHANGE macro
-v2: use AND instead of OR in intel_psr_use_trans_push
+--v1
+-Optimize looping
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+--v2
+-Break 2nd patch to two parts
+-Rename intel bios parse function
+-Create seprate function for setting rates
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 6481e3f6eca3..09d46010d13c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4263,6 +4263,7 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
- 
- bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
- {
--	/* TODO: Enable using trans push when everything is in place */
--	return false;
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return HAS_PSR_FRAME_CHANGE(display) && crtc_state->has_psr;
- }
+-v3
+-Fix VBT definition
+-Rename intel bios function
+-Make the function only return mask
+-Protect against broken VBT
+
+--v4
+-Fix function naming
+-Define macro for num of rates
+
+HSD:14022096069
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+Suraj Kandpal (3):
+  drm/i915/vbt: Add eDP Data rate overrride field in VBT
+  drm/i915/bios: Add function to check if edp data override is needed
+  drm/i915/edp: eDP Data Overrride
+
+ drivers/gpu/drm/i915/display/intel_bios.c     | 46 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |  4 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 22 +++++++++
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h | 17 +++++++
+ 4 files changed, 88 insertions(+), 1 deletion(-)
+
 -- 
-2.43.0
+2.34.1
 
