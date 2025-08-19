@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215C7B2C43B
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 14:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38840B2C43C
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 14:54:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A91A610E5E1;
-	Tue, 19 Aug 2025 12:54:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C922610E5E7;
+	Tue, 19 Aug 2025 12:54:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bzON8ZVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fzuPkNb5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A41110E5E7;
- Tue, 19 Aug 2025 12:54:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5307910E5E6;
+ Tue, 19 Aug 2025 12:54:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755608055; x=1787144055;
+ t=1755608059; x=1787144059;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EwQP0YGEMbj/VqiEnAWA/AEvgMOSLWbvpq1zqJSd/C4=;
- b=bzON8ZVYGWQjynZyD3hF4Hn78beuKFQ4QrUdFXqDluyNAv6OYN2NNKcC
- nY0t73UR9iuBZoOS04NWR7gMgBP9WVxdU70vA3N8U/U80BEk5X/r6xgV8
- RysZUkyngfamHHiPyKKtf9iu8sifKA7g1pPb8RmLC7kIADhCGdtrKbg8S
- JXV5tnXcYTK7EIsptrk8oJsmlu5I1uC7RSpbaNnhEHEAD4Xu+/B9SnQ2U
- LQsHTgzwuxHWT20knaFl2NNA8uLY9eArrjGGdNIzp20UB3+DIfMOBMpIy
- VsA/S6D7JhCaNitiGHV8oKQuXUZ7YnTxd+r+WLfwwE4VWPj6C6jns/9bH w==;
-X-CSE-ConnectionGUID: NR4ofgvPTqy/eXgJMM5XQA==
-X-CSE-MsgGUID: 5uCtUQJjTMSHEa0kC3qp9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="75300792"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75300792"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 05:54:14 -0700
-X-CSE-ConnectionGUID: ArCbxUu2QiykUu7BZorGUA==
-X-CSE-MsgGUID: 4TdU8l78TsWgIBgfD7eAWQ==
+ bh=Fmu7VrX7ZixcPcPWyxhhNVGeAKzsUG5847442WVae9k=;
+ b=fzuPkNb5b2CiYZh/BBRiN3XZPHVLCKwFXJm5d+NnVhXoFedP+H141QR5
+ WZuOciA/8Bg9JKkg8T+OKdYAogXXWYQ7zpX7KjrfK1VxBOPwR7HsFM3xL
+ Q07xwAmqoC2qPHRYt4o1Rgq2GTIclYLqhWzBxLZY5zGjB7GZlRH35IW8b
+ x9f1Bs101lx6yRtAxcCV/AU0I0dbNdAfZNN6S8Pr3hKMRRmIGzv9TxwuX
+ AhnNsVMCw/cda0N56Dxz4z50xw019vlQVRy3LFHtmJxehGX4EkK8MQHHe
+ XlNK2IG9LnsksorgPQhM4kDtaDFyzjeWy7L2Cr+KAncTVwyApUjPEkfW6 A==;
+X-CSE-ConnectionGUID: bP5R9DS3S56Zk1ukecABCQ==
+X-CSE-MsgGUID: /db8rB5CSDCqKDVSYTyT0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="69222128"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="69222128"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 05:54:19 -0700
+X-CSE-ConnectionGUID: 4cN+lTn8Sdm3JnT+K4wb4w==
+X-CSE-MsgGUID: D/itJ1k/QQiwbZV2NLQ5/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168246578"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168089261"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.251])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 05:54:12 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2025 05:54:17 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 05/12] drm/i915: add vlv_clock_get_cdclk()
-Date: Tue, 19 Aug 2025 15:53:35 +0300
-Message-ID: <ddb128204f27ee029fe2858973ec9ca2c59a67e3.1755607980.git.jani.nikula@intel.com>
+Subject: [RESEND 06/12] drm/i915: make vlv_get_cck_clock() static
+Date: Tue, 19 Aug 2025 15:53:36 +0300
+Message-ID: <b67410d32ac2b68d02491bc04e1b0f64fba1a0db.1755607980.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1755607980.git.jani.nikula@intel.com>
 References: <cover.1755607980.git.jani.nikula@intel.com>
@@ -70,62 +70,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add vlv_clock_get_cdclk() helper to hide the details from the callers.
-
-For now, this means running vlv_get_hpll_vco() twice in vlv_get_cdclk(),
-but this will be improved later.
+vlv_get_cck_clock() is no longer used outside of intel_display.c, make
+it static.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c   | 4 +---
- drivers/gpu/drm/i915/display/intel_display.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_display.h | 1 +
- 3 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display.h | 2 --
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 65ad7d48dd39..e898c0541168 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -610,9 +610,7 @@ static void vlv_get_cdclk(struct intel_display *display,
- 	vlv_iosf_sb_get(display->drm, BIT(VLV_IOSF_SB_CCK) | BIT(VLV_IOSF_SB_PUNIT));
- 
- 	cdclk_config->vco = vlv_get_hpll_vco(display->drm);
--	cdclk_config->cdclk = vlv_get_cck_clock(display->drm, "cdclk",
--						CCK_DISPLAY_CLOCK_CONTROL,
--						cdclk_config->vco);
-+	cdclk_config->cdclk = vlv_clock_get_cdclk(display->drm);
- 
- 	val = vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8baa5f898284..644028d0c7ef 100644
+index 644028d0c7ef..98fdaa159a4a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -204,6 +204,12 @@ int vlv_clock_get_czclk(struct drm_device *drm)
- 	return i915->czclk_freq;
+@@ -153,8 +153,8 @@ int vlv_get_hpll_vco(struct drm_device *drm)
+ 	return vco_freq[hpll_freq] * 1000;
  }
  
-+int vlv_clock_get_cdclk(struct drm_device *drm)
-+{
-+	return vlv_get_cck_clock(drm, "cdclk", CCK_DISPLAY_CLOCK_CONTROL,
-+				 vlv_get_hpll_vco(drm));
-+}
-+
- int vlv_clock_get_gpll(struct drm_device *drm)
+-int vlv_get_cck_clock(struct drm_device *drm,
+-		      const char *name, u32 reg, int ref_freq)
++static int vlv_get_cck_clock(struct drm_device *drm,
++			     const char *name, u32 reg, int ref_freq)
  {
- 	return vlv_get_cck_clock(drm, "GPLL ref", CCK_GPLL_CLOCK_CONTROL,
+ 	u32 val;
+ 	int divider;
 diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 5c9b57e94a65..9fdbc4ad5391 100644
+index 9fdbc4ad5391..57b06cad314b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.h
 +++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -440,6 +440,7 @@ int vlv_get_cck_clock(struct drm_device *drm,
- 		      const char *name, u32 reg, int ref_freq);
+@@ -436,8 +436,6 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
+ void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
+ void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
+ int vlv_get_hpll_vco(struct drm_device *drm);
+-int vlv_get_cck_clock(struct drm_device *drm,
+-		      const char *name, u32 reg, int ref_freq);
  int vlv_clock_get_hrawclk(struct drm_device *drm);
  int vlv_clock_get_czclk(struct drm_device *drm);
-+int vlv_clock_get_cdclk(struct drm_device *drm);
- int vlv_clock_get_gpll(struct drm_device *drm);
- bool intel_has_pending_fb_unpin(struct intel_display *display);
- void intel_encoder_destroy(struct drm_encoder *encoder);
+ int vlv_clock_get_cdclk(struct drm_device *drm);
 -- 
 2.47.2
 
