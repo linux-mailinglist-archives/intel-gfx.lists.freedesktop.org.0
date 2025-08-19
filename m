@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB57BB2BA1B
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 09:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B279B2BA1D
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Aug 2025 09:04:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AAB210E540;
-	Tue, 19 Aug 2025 07:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9433910E54A;
+	Tue, 19 Aug 2025 07:04:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4nW551S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e1L/QUI2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8D810E53D;
- Tue, 19 Aug 2025 07:04:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F3B210E541;
+ Tue, 19 Aug 2025 07:04:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755587052; x=1787123052;
+ t=1755587053; x=1787123053;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jZSkKAsCHAYvcxMb9IwZdhmSg4Y1RQopAykb5XbKlbM=;
- b=Q4nW551SnEOwKn4bUdp8OwHH5ZjR/y095IyISf0MYgrVqTohTCr292vO
- 0ADQhTQFC635O2Uo55F/tsP3drhQ+DwByFM8KT4gNkzotia/VhNp0xbDM
- 3umvwkxiGGg5DbNcwOKcKfT4rVG2tgOqWRCjJNN+S2t3vOHE0X3Th8Pfi
- qM/8ThkuxOti4Njra+BRDaJWJV2UC35sVu1hJh4ZZv4+gE/6INz2v2pAk
- CnwbCYVIWBSSTIRFlnQruVfLyaEAf0/FrfeaFYxAcygLvnAjiymYdywLR
- ZoBdLqu22tP38AkC009VgoxCGy2yb3rCUm9s7o8u5QShT5QEu0w1KO2yF w==;
-X-CSE-ConnectionGUID: 3b8Ies3nSbaFiRitDNDhXQ==
-X-CSE-MsgGUID: m7MB+hhkRMK2QiIRNfu6Ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392353"
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392353"
+ bh=IzQYhbmuGTQpsRUqBPH3XwlHPfiCXkVI9zAmnYDnB7E=;
+ b=e1L/QUI2MjS4SE9CirpCj86sxJuP3qm5x4crQ7Uri2hVvNg0P1iZMqNQ
+ cyjVFQ+p4eG3vLLSegUkf/70kbKmtm2l3B55lO97naUBf2OD5XjLuPXUM
+ hv/vQeTmazPf1EJyShArO3u836hbQtaT0T9WyDKSE8FJiCA1FbU89oECv
+ Av3sOJZIajZI4Vt06cV5G4WtOy25fYBQ0mc87vrfC2v6J/4E9cEEJSkum
+ tIqmZp7EWTxVF72ulFSszQSzWdIW742h/syQgZuI49QeHBtvoEKB7hvn2
+ 51LPcrrCR7Wrd8krkzgKapkmpxsZ8tpzHQQxRv5uKqBY4aIfxBb+lBlrA w==;
+X-CSE-ConnectionGUID: DrQTpEmgQ4inCDeN3RytCQ==
+X-CSE-MsgGUID: eSazquIPQRWdW2W2tp7THg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11526"; a="75392354"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="75392354"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:12 -0700
-X-CSE-ConnectionGUID: 3SBdjgdwTnmxXDHjGQsU8Q==
-X-CSE-MsgGUID: wac7F+d8R8W8Kzv+LznpgQ==
+ 19 Aug 2025 00:04:13 -0700
+X-CSE-ConnectionGUID: xcMs9N3KTUuehEZVNVlkiQ==
+X-CSE-MsgGUID: vUx/Z4UuTGuVgKbt5GUAkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008238"
+X-IronPort-AV: E=Sophos;i="6.17,300,1747724400"; d="scan'208";a="168008253"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.65])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Aug 2025 00:04:11 -0700
+ 19 Aug 2025 00:04:12 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v7 1/6] drm/i915/psr: Add TRANS_PUSH register bit definition
- for PSR
-Date: Tue, 19 Aug 2025 10:03:48 +0300
-Message-ID: <20250819070353.3062341-2-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v7 2/6] drm/i915/psr: Add intel_psr_use_trans_push to query if
+ TRANS_PUSH is used
+Date: Tue, 19 Aug 2025 10:03:49 +0300
+Message-ID: <20250819070353.3062341-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250819070353.3062341-1-jouni.hogander@intel.com>
 References: <20250819070353.3062341-1-jouni.hogander@intel.com>
@@ -73,30 +72,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add TRANS_PUSH register bit LNL_TRANS_PUSH_PSR_PR_EN definition for PSR
-usage.
+This is a preparation to start using trans push as a PSR "Frame Change"
+event. It adds intel_psr_use_trans_push placeholder which return false for
+now until we have everything in place.
 
-v2: add bspec reference
+v2:
+  - modify commit message
+  - add TODO
 
-Bspec: 69984
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr_regs.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_psr.h | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-index ba9b9215dc11..a67b2eb125ce 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
-@@ -97,6 +97,7 @@
- #define TRANS_PUSH(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_PUSH_A)
- #define   TRANS_PUSH_EN				REG_BIT(31)
- #define   TRANS_PUSH_SEND			REG_BIT(30)
-+#define   LNL_TRANS_PUSH_PSR_PR_EN		REG_BIT(16)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 8bea2b8188a7..302744252b24 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -4253,3 +4253,9 @@ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
+ {
+ 	return intel_dp_is_edp(intel_dp) && crtc_state->has_panel_replay;
+ }
++
++bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
++{
++	/* TODO: Enable using trans push when everything is in place */
++	return false;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 9b061a22361f..7237dfa388b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -81,5 +81,6 @@ void intel_psr_debugfs_register(struct intel_display *display);
+ bool intel_psr_needs_alpm(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state);
+ bool intel_psr_needs_alpm_aux_less(struct intel_dp *intel_dp,
+ 				   const struct intel_crtc_state *crtc_state);
++bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
  
- #define _TRANS_VRR_VSYNC_A			0x60078
- #define TRANS_VRR_VSYNC(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_VRR_VSYNC_A)
+ #endif /* __INTEL_PSR_H__ */
 -- 
 2.43.0
 
