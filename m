@@ -2,82 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B5AB2F960
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 15:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9ACB2E77A
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 23:29:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDE310E379;
-	Thu, 21 Aug 2025 13:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA3210E801;
+	Wed, 20 Aug 2025 21:29:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bpGe5fGD";
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="hO63XzgC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7002F10E7C2;
- Wed, 20 Aug 2025 18:35:15 +0000 (UTC)
-Received: by mail-pf1-f172.google.com with SMTP id
- d2e1a72fcca58-76e39ec6f52so382121b3a.1; 
- Wed, 20 Aug 2025 11:35:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755714915; x=1756319715; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VbccaaOrg7oxw/duvj7P0mjLZUiDBUvzDNDOakXvN4k=;
- b=bpGe5fGDLJSWvrzmZjUkRgh6/oIxPIf6P4g0U6fbifJ5XZYts9VECq7YK0qgLCJnI0
- jHCH9BHiyjmKAGHspWcLiYoMQrRzItdxvcYu+ypNBYmRTFIWlgNIJK2TNnBkjAygXLfK
- ZgrWeF79y3a6WfiMS+SWx654quHsUdswizWV13/LvAfat2orNEehlRG5pD47cAj1SmIS
- Mi7EigwIBI1ETKFmU1x+VrnWYIUPU+5DjIpoWlgQwLHYjKIhYIQlSvegms20Q0Kb+SVh
- AM0AtTWlsFdnoFZbAB0fRH5utNNGw0hP/DND+Fx/DwIxdwN+jKFC6XpmU38rfRyxdU72
- 9mRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755714915; x=1756319715;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VbccaaOrg7oxw/duvj7P0mjLZUiDBUvzDNDOakXvN4k=;
- b=a60XnIUmQqBVB7enMEtnMjiqydgaRHeuJSF/lfsCeFjhvyB2AkSEUOz3/4gv1BwZcL
- eyihny0gkgC6FmX8Ts8curdSPaoYzs4eKt+cSIw9Hl3mGiQov3ORN3jOFTswIaTGhaSU
- G2IYoz68blzik8uwU+1kXG9JztwspY4xy0Fpsi1+nAhYhAblHdnxnW2EQ7HTSg3O/rNd
- BUXjFPdhG+ZdIvwKXIrDL/8qLu2KtNAOkyUuPd7YjxlEVqhfmIi2vopN0otP5r9bP27B
- qNZrUT701hffPCvjbUFdAber07GE7LTYrgveBrK5NHR2D6xYRgVSi9BXefpbbx+LXoOL
- WmGQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWEr3IdplUfhiderwaCYlkhfQ26VwI12j0BnmB/lGAoyRTBW8E/AQsh/6c2YEaqFQ1gTXnEpx6HiE1G@lists.freedesktop.org,
- AJvYcCXTjzr3wqgwBRrBQKr6Z/iZ+qTVUj/NIKwisMQX3dQ3BBgAJ5g5vdZR9fcH7++hNkIYcf2Dv2Nf/GQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxS1pqgIzhLnOYvMsqkaNGarunq0v8rIRoWhaankaJBvZSOIf8Y
- Ao/kSkM5TjFB4vKXwhnTCHnEMaYHy6tJJbzKWczB5eZ++4zg9jWpfZbp
-X-Gm-Gg: ASbGncvJYSxli1pKZqZC+LGDO5QE687Uu0oTdAjRy/Ob6IHJ/rD8dCDeZ7MiLK0dn1S
- WGpVkEX3WYiZqKhbEDmLQPxyYvSEKmGuj9aJJeC3I59v0UC644U+s2JKjPBRQLIER88BfXlzwXd
- mKHSF3EzuHkBiTLU9TvS5Vw7p6jFGhKqP4bYhvejJqhMY8wf6R0XkM3snSBfj4tPi9FU8njAiT9
- cGAp3Q7euoFOri8fJIx49V/Cs+y4YE6vk0r+03HksRZ2znWq3FpIRHmDIhpuaLwXpVGXAYqjre+
- upcgdbqPRROQuzQyvMwByL7zM8TzElUONbHyDXFZtP0VzmAeD/xs+aFhFHOM3pbtgvlJrd8x+Yw
- uu8IDtdsSQ9uC+uLjZ9CJoXARFdF+TRdEmA==
-X-Google-Smtp-Source: AGHT+IFeFM27GRtupFDaHDrUEu5suTdscDY+yaEhRj/AfNxMn4BTjhM/K7Lr8qgDcWB09OwaZG9Aeg==
-X-Received: by 2002:a05:6a00:2304:b0:76e:885a:c3e7 with SMTP id
- d2e1a72fcca58-76e8dd6c022mr4913681b3a.27.1755714914847; 
- Wed, 20 Aug 2025 11:35:14 -0700 (PDT)
-Received: from server.. ([103.250.145.167]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-76e7f4a6e60sm5738583b3a.110.2025.08.20.11.35.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 Aug 2025 11:35:13 -0700 (PDT)
-From: Bala-Vignesh-Reddy <reddybalavignesh9979@gmail.com>
-To: bagasdotme@gmail.com
-Cc: dakr@kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-next@vger.kernel.org, rampxxxx@gmail.com, robdclark@gmail.com,
- robin.clark@oss.qualcomm.com, seanpaul@chromium.org, sfr@canb.auug.org.au,
- simona.vetter@ffwll.ch
-Subject: Re: linux-next: build warnings after merge of the drm-misc-fixes tree
-Date: Thu, 21 Aug 2025 00:05:07 +0530
-Message-ID: <20250820183507.84200-1-reddybalavignesh9979@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <aKLAc27XGAadB8n5@archie.me>
-References: <aKLAc27XGAadB8n5@archie.me>
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFE010E7FD;
+ Wed, 20 Aug 2025 21:29:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=202503; t=1755725344;
+ bh=ZYmXWe6TcU4XRK0rHRezXUd3ygqj/SvPg85mvqxwbno=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=hO63XzgC0HOe8rl8zT08VZ7dALn59sl2OnyOyafAsISSLgOwtWY1PFsGTEgP1dyzP
+ CkwhTXKPMThwTpHSifkSE8DIGBQFarmFGdHNfpLNF/A9f9HqrxriIMveE+o5Wk9yFY
+ wRib2ypijgkjZB/FqisHr1pM7cozTelxoe5VgBG9+OOAf32e9d9M+7dXF2jWvCMidx
+ BSi1+ZTjpCQYNeP/2yif3JcUEJMFF6aeiCrUHpTYKELVjtf6kyB8vG4pMHEWppc+0p
+ 93QhEO1yVBmCyIuN2nliKpcSMjVE0/gXPbePc4fR0LeHGNYYUup7enqbtj8ZBfgGtd
+ mVBJ7dPtQ/o7A==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4c6fhw0V9Qz4wbr;
+ Thu, 21 Aug 2025 07:29:04 +1000 (AEST)
+Date: Thu, 21 Aug 2025 07:29:02 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: "Danilo Krummrich" <dakr@kernel.org>
+Cc: "Dave Airlie" <airlied@redhat.com>, "Simona Vetter"
+ <simona.vetter@ffwll.ch>, "Beata Michalska" <beata.michalska@arm.com>,
+ "Miguel Ojeda" <ojeda@kernel.org>, "DRI" <dri-devel@lists.freedesktop.org>,
+ "Intel Graphics" <intel-gfx@lists.freedesktop.org>, "Linux Kernel Mailing
+ List" <linux-kernel@vger.kernel.org>, "Linux Next Mailing List"
+ <linux-next@vger.kernel.org>
+Subject: Re: linux-next: manual merge of the drm tree with the
+ drm-misc-fixes tree
+Message-ID: <20250821072902.7a230ab9@canb.auug.org.au>
+In-Reply-To: <DC76OGHHB0NH.2150TC0DHRN8A@kernel.org>
+References: <20250820112144.43714c90@canb.auug.org.au>
+ <DC76OGHHB0NH.2150TC0DHRN8A@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 21 Aug 2025 13:06:56 +0000
+Content-Type: multipart/signed; boundary="Sig_/achTr6dFbFgspk_=FCvdvd8";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,23 +64,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+--Sig_/achTr6dFbFgspk_=FCvdvd8
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Those htmldocs warnings come from missing Sphinx markup in 
-`drm_gpuvm_sm_map_exec_lock()`.
+Hi Danilo,
 
-This is already addressed by my patch:
+On Wed, 20 Aug 2025 12:30:14 +0200 "Danilo Krummrich" <dakr@kernel.org> wro=
+te:
+>
+> I think this resolution doesn't compile, since attributes on expressions =
+are
+> behind an unstable feature flag.
+>=20
+> I assume your config does not have CONFIG_DRM_NOVA=3D{y,m}.
+>=20
+> The resolution in [1] is the one I came up with in the drm-tip tree.
+>=20
+> I should probably have given you a head-up on this conflict, sorry for th=
+at.
+>=20
+> [1]
+>=20
+> diff --cc drivers/gpu/drm/nova/file.rs
+> index 4fe62cf98a23,7e7d4e2de2fb..90b9d2d0ec4a
+> --- a/drivers/gpu/drm/nova/file.rs
+> +++ b/drivers/gpu/drm/nova/file.rs
+> @@@ -39,8 -36,7 +36,7 @@@ impl File
+>               _ =3D> return Err(EINVAL),
+>           };
+>=20
+> -         #[allow(clippy::useless_conversion)]
+> -         getparam.set_value(value.into());
+>  -        getparam.value =3D value;
+> ++        getparam.value =3D Into::<u64>::into(value);
+>=20
+>           Ok(0)
+>       }
+>=20
 
-[PATCH] drm/gpuvm: Fix kernel-doc formatting and typo in
-drm_gpuvm_sm_map_exec_lock
+Thanks for that.  I will use that resolution from now on.
 
-Link: https://lore.kernel.org/lkml/20250803092622.27532-1-reddybalavignesh9979@gmail.com/
+--=20
+Cheers,
+Stephen Rothwell
 
-The patch inserts the required directive and corrects the return-value typo.
-I have verified this.
+--Sig_/achTr6dFbFgspk_=FCvdvd8
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Could anyone please pick this up or keep it queued, so 
-warnings disappear from -next.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks!
-Bala Vignesh
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmimPh8ACgkQAVBC80lX
+0GzG3ggAhpCg4N/adzC9Wll12L8Giz65Otl8iwmjWFPSa6HvK/PYP6J2ykru9JUd
++Mgrefu37HrzrOswLuc/bhVKVZW2RrTAlTWNqcI8Nf3v7TVJADPz6utotStzxB8P
+cs1S5WdrGySUpiSslV5IyFoBJg6ajfykGXuRn4uYxHCI0gjW0DIwwi9XycAHo9Qw
+mtYQQE37HhF1A+gswTCJdG2kTKid4Gsdu2xrQk2AWDW7qjvpGQUFuP47Wg4wNHc+
+4NU4pbkZnHNkYTGn1j303ua/x39yUu8l2BI0sXNS84YPDxQmWDCv9ESQaBVLhI/z
+VecuxeVm8hce5qiV+GuBFGZG4Pxg4g==
+=QFON
+-----END PGP SIGNATURE-----
+
+--Sig_/achTr6dFbFgspk_=FCvdvd8--
