@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8473B2D8D8
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 11:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60627B2D943
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 11:53:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47AFC10E252;
-	Wed, 20 Aug 2025 09:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E728510E6C0;
+	Wed, 20 Aug 2025 09:53:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a9FVxN04";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kbXRDGL9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F39F10E252
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 09:45:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57FC310E6C0;
+ Wed, 20 Aug 2025 09:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755683101; x=1787219101;
+ t=1755683625; x=1787219625;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=w2H80F4eqKty3qvqL+zXC+wGxOsjQTL8ohefq+bAPck=;
- b=a9FVxN04q0DBlEpKVH122+CC2CHB99izutxaR85vMi1CoTIoyYeRkmwI
- ivxQEx4T38c6UdWhQcZ09hoo+4pBNYurvbxXSexhlbwoFaA8ZvaASNN/H
- ux9NEWq7uSjkmMALD5zONdEOWTOWAtMcrnoNFXdsk8XL3pSpseh3NbfU4
- lOtsP+nEVjuAXLF1iuZHGPsU8r2692/zP25VAqmsGUhRZvcul1cYxFgna
- Y2NwMhyEcZGWzkxkXLNxV0JGqDuqo/m10tcht0FFOTJiTk/hA3pWPEiBV
- Zuf6Rhops4xqyHOQKGzhN/2VzBQ/h78UL8uqZzKo9raCx2UlgccxMcikC A==;
-X-CSE-ConnectionGUID: CgLnmu2EQZyE9D06VO4Thg==
-X-CSE-MsgGUID: RDF/klzWSbeO4B4sOI6GQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="68215006"
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="68215006"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 02:45:00 -0700
-X-CSE-ConnectionGUID: z8zaCrvHRJSZCeq6l3+w2w==
-X-CSE-MsgGUID: LWiP9iOoTJO0CLVXT7lZow==
+ bh=c8fZnW2mUY2xeFPlaeib/S8KNRflmUJTFODXbSGzleA=;
+ b=kbXRDGL9jfykMr2gi1DdwFRfi103ih8hq4kmJcphgS6dPTYrAqb9y3Dn
+ dNpqs7cRkkIt4CP+rW9d600m42G6z2aBTMFSpkwEVHnZzx4mAskTNOUkp
+ SRHGYEvXEoLeniqcBE391Fqt4WmcoZt6nXmV0KJ7qMI7F6Uxc1GdCBgel
+ ZwcLVAia45slYQJsBM1m6hB1lSqA8aUiPl+epef41vLV4PGoil4rnkVm9
+ qzrchGu4rYt1YtT6jF5PybP099NsGXxKfU9L3lnOoD4vFiMcDxYIHrGt8
+ hep0d9a/eQ8eIipodpFn1p23vxcV/2XFvv3CyGPXyYstXfCXLC2r5fF5N A==;
+X-CSE-ConnectionGUID: 16bgM+/VTE+PervZrLEewA==
+X-CSE-MsgGUID: xFoz2nVGTZygCHnS1aPoTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57896333"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="57896333"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 02:53:44 -0700
+X-CSE-ConnectionGUID: aq5UP+H4QMmxgLJH6l0gzw==
+X-CSE-MsgGUID: Rm5mF3JzTjW/Q+pq5blTvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168490865"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Aug 2025 02:44:58 -0700
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: badal.nilawar@intel.com, anshuman.gupta@intel.com, riana.tauro@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH] drm/i915/selftests: Add RPS debug info for power test failure
-Date: Wed, 20 Aug 2025 15:15:28 +0530
-Message-ID: <20250820094527.467883-2-sk.anirban@intel.com>
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168038896"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.252])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 02:53:43 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 1/2] drm/i915/psr: Check drm_dp_dpcd_read return value on PSR
+ dpcd init
+Date: Wed, 20 Aug 2025 12:53:33 +0300
+Message-ID: <20250820095334.3849458-1-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,34 +70,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add debug logging to show RPS frequency configuration when the
-live_rps_power selftest fails to conserve power at lower frequencies.
-This helps diagnose frequency scaling issues by showing max_freq,
-rp0_freq, and max_freq_softlimit values.
+Currently we are ignoriong drm_dp_dpcd_read return values when reading PSR
+and Panel Replay capability DPCD register. Rework intel_psr_dpcd a bit to
+take care of checking the return value.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
-
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_rps.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 32 ++++++++++++++++--------
+ 1 file changed, 21 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index 73bc91c6ea07..4012213ab1b7 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -1216,6 +1216,11 @@ int live_rps_power(void *arg)
- 		if (11 * min.power > 10 * max.power) {
- 			pr_err("%s: did not conserve power when setting lower frequency!\n",
- 			       engine->name);
-+			pr_debug("%s: RPS Debug - max_freq:%u:%uMHz, rp0_freq:%u:%uMHz, max_freq_softlimit:%u:%uMHz\n",
-+				 engine->name, rps->max_freq, intel_gpu_freq(rps, rps->max_freq),
-+				 rps->rp0_freq, intel_gpu_freq(rps, rps->rp0_freq),
-+				 rps->max_freq_softlimit, intel_gpu_freq(rps,
-+				 rps->max_freq_softlimit));
- 			err = -EINVAL;
- 			break;
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 609df53f1ef1..68eb02127f47 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -580,6 +580,16 @@ static void intel_dp_get_su_granularity(struct intel_dp *intel_dp)
+ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
++	int ret;
++
++	ret = drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
++			       &intel_dp->pr_dpcd, sizeof(intel_dp->pr_dpcd));
++	if (ret != sizeof(intel_dp->pr_dpcd))
++		return;
++
++	if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
++	      DP_PANEL_REPLAY_SUPPORT))
++		return;
+ 
+ 	if (intel_dp_is_edp(intel_dp)) {
+ 		if (!intel_alpm_aux_less_wake_supported(intel_dp)) {
+@@ -611,6 +621,15 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
+ static void _psr_init_dpcd(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
++	int ret;
++
++	ret = drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
++			       sizeof(intel_dp->psr_dpcd));
++	if (ret != sizeof(intel_dp->psr_dpcd))
++		return;
++
++	if (!intel_dp->psr_dpcd[0])
++		return;
+ 
+ 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
+ 		    intel_dp->psr_dpcd[0]);
+@@ -656,18 +675,9 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp)
+ 
+ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
+ {
+-	drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
+-			 sizeof(intel_dp->psr_dpcd));
+-
+-	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
+-			 &intel_dp->pr_dpcd, sizeof(intel_dp->pr_dpcd));
+-
+-	if (intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
+-	    DP_PANEL_REPLAY_SUPPORT)
+-		_panel_replay_init_dpcd(intel_dp);
++	_psr_init_dpcd(intel_dp);
+ 
+-	if (intel_dp->psr_dpcd[0])
+-		_psr_init_dpcd(intel_dp);
++	_panel_replay_init_dpcd(intel_dp);
+ 
+ 	if (intel_dp->psr.sink_psr2_support ||
+ 	    intel_dp->psr.sink_panel_replay_su_support)
 -- 
 2.43.0
 
