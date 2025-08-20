@@ -2,49 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA34B2DE76
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 15:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29702B2DF85
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 16:37:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E2010E73C;
-	Wed, 20 Aug 2025 13:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40F1C10E75C;
+	Wed, 20 Aug 2025 14:37:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BAxD45zL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="f8xgm3jj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B55F10E73C
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Aug 2025 13:57:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 8ACBD5C68C8;
- Wed, 20 Aug 2025 13:57:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C071C4CEE7;
- Wed, 20 Aug 2025 13:57:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755698227;
- bh=a+17jPcnFvpz0bgN0Pw82s23PrcQOR0qxsWQzE+RgmQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BAxD45zL6GAL2jvCKmaoNs5sPDI2pBEdfFZa5G4CtOZe02jEjowJt2Rb4/e09p4FX
- 1FL+rWnzht1cD+5ZUvBiTRcNU/m8BlrY226btZ1QtCuRFvgX4u9AoiAc8+AFG/Fb7+
- 4S4DH8zSrRqEwy4WMHFTjufWwLdl/6aLJSW8YgZdC9/zSIGpqd7CLFuVZb1jxi9P6X
- Ilju2v+b1PJye4B2dygjgK+a6n4HrGqkfk5JHUTHZG5GGJSQZboY5Wnjwd786dA8gr
- MRbmp2n3Yv58GFXs1qNvRZI2mGjeV0ym/GSIkTTlZqTSk91QMCHCjS0Lc5GdEBEGpt
- Y/dCAsdn0VQ8Q==
-Date: Wed, 20 Aug 2025 12:57:00 -0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: "Anirban, Sk" <sk.anirban@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, badal.nilawar@intel.com, 
- anshuman.gupta@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH] drm/i915/selftests: Add RPS debug info for power test
- failure
-Message-ID: <ypf5mf2u4gkxncim5z4w7lgb2ev6xjpdcmfapp2z5mow74yhv5@f4hvivmqshwi>
-References: <20250820094527.467883-2-sk.anirban@intel.com>
- <gxp6ehzn62mzfwhkckuurp5wblja6ftq2etnngmcmufpqpsjn7@btkz4wimzk2j>
- <6f20edd3-4c77-402c-911f-d0b95664900b@intel.com>
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE1810E75C;
+ Wed, 20 Aug 2025 14:37:43 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-3b9e413a219so5221606f8f.3; 
+ Wed, 20 Aug 2025 07:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755700662; x=1756305462; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=/h5WgUnURJmKBz6rjpCrYx59xCj8F+hnE2Z4mDxSI2Q=;
+ b=f8xgm3jjl6ULfFlcOvu4/3ofX4SzzESuy2x5Ru7gM9krsyjCJgN4B50p8dItUMY6yf
+ goecWhivAa690eDDUkNQhKodpsWMbjjC7vR5qrt8zTGprwxwmWDmMU5mTRsXO0gIa6WB
+ PBE6V2lrlz7VYIgL01pNBPrMI0/htHnhIsITSDdHPwMF/aIVEQ71xI+fxulAs/GD2o4p
+ 76Ls7NeKxnlgo06N1VWCicoSz/Vgl9z8JMcuKsGwwDW2b8RM3qOZDwlEZ/Uz2eEGv47L
+ kJeqIJ3l+R8jX3a3a6HwKHCWz/nPKX5aHE1wIZ/tNxr778nNNxqT0AdkFOidbK8+o1qC
+ xn3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755700662; x=1756305462;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=/h5WgUnURJmKBz6rjpCrYx59xCj8F+hnE2Z4mDxSI2Q=;
+ b=eqbvAW7inmX4c4bnw9WPPgTxol8gmzH9++MHGKAQd/t/8OYToyTaKv2b9TrU0hWlog
+ Alm8Es12ptivbEC6IxkVP85Q0k9ucWL4OOUcbkVezPbj9WSD7RxJ04oa/uLl92TLYkpQ
+ AKQvMG/iOJzC6sTUN7Fjg9bSj0txDBDOYU1vtZiSo8MVVX8nsetFwCXhJ5dY08Y8Cd5L
+ +RmIVbGSoziwi8DeEGMNPz06OYiETYuoOdjRzKeBlkmU165ReYDS3pcdA74sYMWavcok
+ 8WiIgcg/oxByUUqBUOPImhXqSYOyJpYaeSy20qbPRLM42MDrXQzvD45J0Ij18cPbxm3h
+ MQlg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUs8Gpy/I5gJDxby3yKMnVAnTIYQG8XW/RxSg4ukB/gVMg/TB8g+V0YSUNHdWoq+3/brPtQDEqZ@lists.freedesktop.org,
+ AJvYcCV6x5MyFSs/4ydCos6k+ulXjN5+ogUisPURWCD53kJmGBy9z/w8cwY5YMb3yCRw1CY6T6q0NrZVAIhJ@lists.freedesktop.org,
+ AJvYcCW85IKLV0XMrLXUm69yWnwpmJBh65v/n7owuscZMJEDcWvqfq/OkdQSuf1YlrYI2JiqNoIBLy/kwdSU@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyS3Tlj9aZ4bSrf129tCulv5wVYD3xodefFRdsNwRnLAqBr2DtD
+ f+fB5qoIpDM5URVHiPMO60eAKNoWBfeSHSHJPKB9mqVeX5uhP5p1CBScqdX9QQ==
+X-Gm-Gg: ASbGncukQJombH8rAdRGuEC4sYs74eZ0WtvpXHWymv+N9SQkvxcGGqTDB+A5537idfJ
+ eSEUkUlSHX8/WzCje1zqn4zwTapcZM/uboWCt9sarlqLcyfZxR3ROrh3b1R8yQRybuxx4YFzClp
+ 4lEJfupG7WVA7yVxE5/Rqf24T3fFz7KDYmUW6/zy3kIE1DpDXgUX9M3sfU9s9sDV3KtEJEl6B3q
+ vlLhsdLCOt1XdDWDtBxGmXq7xyY4I01ZOTDup7lLqjvtORK6CRBrwJNSZXiE5HF0UU7HDnsvG0D
+ M69wdyvCQtYzApH1kreSwwKwkxfYvML3T++bDi/0UluRjGAFCifpqtuTqvX3kbRb+C1kAy1lVXb
+ u74BIT5nxPfbdxlv4g52+GuMjNdGsPXZe5aI=
+X-Google-Smtp-Source: AGHT+IFlIZ6/tJ89WsmhsHbBVGGH2HYC8H+uJsmdtnLvVwssi83j9MwXW/m6IgCdY5cNkUWzI98S/g==
+X-Received: by 2002:a05:6000:2409:b0:3b7:9dc1:74a9 with SMTP id
+ ffacd0b85a97d-3c32e6fe70cmr2407135f8f.42.1755700661762; 
+ Wed, 20 Aug 2025 07:37:41 -0700 (PDT)
+Received: from able.fritz.box ([2a00:e180:1579:3800:9446:56c7:e203:3b9c])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3c074d43ba5sm8090404f8f.22.2025.08.20.07.37.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 20 Aug 2025 07:37:41 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ x86@kernel.org
+Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
+ matthew.brost@intel.com, david@redhat.com, dave.hansen@linux.intel.com,
+ luto@kernel.org, peterz@infradead.org
+Subject: 
+Date: Wed, 20 Aug 2025 16:33:10 +0200
+Message-ID: <20250820143739.3422-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6f20edd3-4c77-402c-911f-d0b95664900b@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,31 +93,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi everyone,
 
-On Wed, Aug 20, 2025 at 03:41:23PM +0530, Anirban, Sk wrote:
-> On 20-08-2025 15:32, Andi Shyti wrote:
-> > On Wed, Aug 20, 2025 at 03:15:28PM +0530, Sk Anirban wrote:
-> > > Add debug logging to show RPS frequency configuration when the
-> > > live_rps_power selftest fails to conserve power at lower frequencies.
-> > > This helps diagnose frequency scaling issues by showing max_freq,
-> > > rp0_freq, and max_freq_softlimit values.
-> > > 
-> > > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13774
-> > how is this helping to close the issue?
-> > 
-> > Andi
-> Good point - this patch adds debugging capability to investigate the issue
-> rather than solving it. I'll switch to "References:" instead of "Closes:"
-> for the proper context.
+sorry for CCing so many people, but that rabbit hole turned out to be
+deeper than originally thought.
 
-no need to resend, it can be changed before applying.
+TTM always had problems with UC/WC mappings on 32bit systems and drivers
+often had to revert to hacks like using GFP_DMA32 to get things working
+while having no rational explanation why that helped (see the TTM AGP,
+radeon and nouveau driver code for that).
 
-Do you want me to take care of it?
+It turned out that the PAT implementation we use on x86 not only enforces
+the same caching attributes for pages in the linear kernel mapping, but
+also for highmem pages through a separate R/B tree.
 
-BTW, I don't have anything against the patch itself:
+That was unexpected and TTM never updated that R/B tree for highmem pages,
+so the function pgprot_set_cachemode() just overwrote the caching
+attributes drivers passed in to vmf_insert_pfn_prot() and that essentially
+caused all kind of random trouble.
 
-Acked-by: Andi Shyti <andi.shyti@linux.intel.com>
+An R/B tree is potentially not a good data structure to hold thousands if
+not millions of different attributes for each page, so updating that is
+probably not the way to solve this issue. 
+
+Thomas pointed out that the i915 driver is using apply_page_range()
+instead of vmf_insert_pfn_prot() to circumvent the PAT implementation and
+just fill in the page tables with what the driver things is the right
+caching attribute.
+
+This patch set here implements this and it turns out to much *faster* than
+the old implementation. Together with another change on my test system
+mapping 1GiB of memory through TTM improved nearly by a factor of 10
+(197ms -> 20ms)!
+
+Please review the general idea and/or comment on the patches.
 
 Thanks,
-Andi
+Christian.
+
