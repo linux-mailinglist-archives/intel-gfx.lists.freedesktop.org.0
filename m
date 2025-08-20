@@ -2,124 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339B8B2E0B5
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 17:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C26C6B2D6DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Aug 2025 10:42:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B919510E266;
-	Wed, 20 Aug 2025 15:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF0910E6B5;
+	Wed, 20 Aug 2025 08:42:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Xixm2oi8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mUVakAHw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 028F110E248;
- Wed, 20 Aug 2025 08:09:30 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57JNmmLo017631;
- Wed, 20 Aug 2025 08:09:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=XyEp7P
- B6Crc5O/n3hDpRBdclhiXWepi7f2DlP7ISOnE=; b=Xixm2oi8D/e/+wAITPeDp3
- TALHrRG4EBVti1e3wM1Z6LnCfvINBVfhRGmgOPkipNfgbFhBD0MWSeZRRuGZ/NN+
- NKDq98HPciL4Zozeql4srzji2nvV3CzcZ3UlmCS5mUo4axD1CO9niYr/utY3r3nU
- R/k9YIllh44h9uoNOFLeppTj5ZpJGLc7EDb+zLBQQ5R2NO8ZqfzYF65N+NeIflzl
- gTcYt/B8t87ieiFU691ZjDHQqARPeaX+Fy6nA8Cm30nsgWe9R3Iis8b6CyGL5Xlw
- ovWuvSCaaobgeWwxqiRAGHpZnDDJ13JX7jkAK7240Uso3SZWpw/1sppbNb+XqHPQ
- ==
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrww-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:13 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
- by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 57K89CuX005377;
- Wed, 20 Aug 2025 08:09:12 GMT
-Received: from ppma12.dal12v.mail.ibm.com
- (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48n38vhrwp-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:12 +0000 (GMT)
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
- by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 57K4xm2t015619;
- Wed, 20 Aug 2025 08:09:11 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
- by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 48my422cjr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 20 Aug 2025 08:09:11 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
- [10.20.54.106])
- by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 57K899B961342160
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 20 Aug 2025 08:09:09 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id A734720043;
- Wed, 20 Aug 2025 08:09:09 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 407A620040;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Received: from [9.111.5.117] (unknown [9.111.5.117])
- by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTP;
- Wed, 20 Aug 2025 08:09:08 +0000 (GMT)
-Message-ID: <295ae4dd-4734-42a0-be63-2d322f00c799@linux.ibm.com>
-Date: Wed, 20 Aug 2025 10:09:07 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5EB710E362;
+ Wed, 20 Aug 2025 08:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755679326; x=1787215326;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=YMQMpDDXA3wCO+sVcqb2LXrZ0OLA+5awibMSxq46aIo=;
+ b=mUVakAHw1GBTPYEyvc2kNTUHWf/8x/n77eCuNyVgNWxUJnLXZ8Mdv9Jn
+ sUMBqQ4Ec0ZHW4/Xy8wivZnqIF6Nwhy3Fz1A7dfKlDseKQ5KnhrdlzTJ7
+ +TyvXAtSUU+o0Z2j8tM7TLOp9L0AprgYUnMU/Axopfle1pSMAG1WTvKfR
+ ct79hD0LVOmDrM2Hf58jn3yFA0AqQ7pHOu42PVe5D/osA7+diY7IL3gM6
+ HyWclhznOI6Y0hzv5j7uqzgk6QYk1RRFAhy2GpmPg5khgfS6BBFZ8eCLj
+ Tu2NAVXE8mOp00ROlRtkLPCxZNWyWkeeFYxzskEOcAl7s4REPMWeVqHz0 A==;
+X-CSE-ConnectionGUID: MVTMzIWfSTCDbqP2hBiprQ==
+X-CSE-MsgGUID: rg51eATnQoK/rdcioOqjag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="57646657"
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="57646657"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 01:42:06 -0700
+X-CSE-ConnectionGUID: pRuJJX/MRp6C9Q+tv/JbFg==
+X-CSE-MsgGUID: ncJLXt6WQp2uBFtdLh/6ag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,302,1747724400"; d="scan'208";a="168875560"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2025 01:42:05 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 20 Aug 2025 01:42:04 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Wed, 20 Aug 2025 01:42:04 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (40.107.101.49)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Wed, 20 Aug 2025 01:42:04 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S2yCdyZWXbm3qHXpoPdS2TFnJh+1W3092PwKX3Bqs4KTA1Z5tzBxA6RyrUgYjWudEukYdvukCMrAPMc+H9YOzt1VASGEmObnSG8YqHFd9NGlCUYbtihdyb1F522XKIhEvOYrt5shKz3ptr17JtMrNcutC1Qo+egAvIC4a5wNSFMaWdgF6oFGIM5Ka4OfV2iZnbGBDDG4Ea/QKMa8XL8R/46YDiwzbX5zqymV219oZNFDwSLYnw8ET4i15BdCYsO6JaSaN7wrRSQ25yEzjM2IWmyLUPPyJS7TLYHbpBLlEOy68H0a7FtN+MoQrw8esSdOhAjfjp/e7b7lx05o9DeZ7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jY8QvEixD46yDvI5Kwd34gF3ZSekaKIP6o1i/o+PLT0=;
+ b=qM4PWGBkYwY5KwRBmwq5oDToZjpmBIn+nQpUmoHtJm1jE2KZOCkgf5400DR9pN/XeaJZhdUox7BzF2Abqsa14MeGF/hznualPYqgjfYKePD10+/6VWLkVzFs9geRlK2ob6U93VjGEnzB7kDBwQE+7Y357NTn/8s2kU+uGHRVaJ3lvWR5il6+Ku82lBs3Jd6HtaLZxgzCPwaHSYG63Y5QxvB9HarTbhtfW/VFtS1YSoD1CtEKiNyOW/1i5LE3Etb5n8mUdyrcxHWoMuozJMFMcAIDITm7n0zPpONkDdsEC0mGcsUHCFPMRllGGxm8Muywo4EzCxpT2WHE/+8sXay2HA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SJ2PR11MB8348.namprd11.prod.outlook.com (2603:10b6:a03:53a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.24; Wed, 20 Aug
+ 2025 08:42:03 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.8989.018; Wed, 20 Aug 2025
+ 08:42:02 +0000
+Message-ID: <615a008b-5734-4326-9616-a5ebf58e9a7a@intel.com>
+Date: Wed, 20 Aug 2025 14:11:56 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/19] perf: Introduce positive capability for raw events
-To: Robin Murphy <robin.murphy@arm.com>, peterz@infradead.org,
- mingo@redhat.com, will@kernel.org, mark.rutland@arm.com,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com, kan.liang@linux.intel.com
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <542787fd188ea15ef41c53d557989c962ed44771.1755096883.git.robin.murphy@arm.com>
- <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
+Subject: Re: [PATCH] drm/i915/hdcp: Remove the encoder check in hdcp enable
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+CC: <jani.nikula@intel.com>
+References: <20250819150729.88561-1-suraj.kandpal@intel.com>
 Content-Language: en-US
-From: Thomas Richter <tmricht@linux.ibm.com>
-Organization: IBM
-In-Reply-To: <67a0d778-6e2c-4955-a7ce-56a10043ae8d@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: rc1CmpHVUr4PjN6HeVNNaTAKVoWbVX32
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODE5MDIyMiBTYWx0ZWRfX4xTzLYCTQsxG
- AGD1we0J4ezItB0ejTfm7DJNuDAARyH4VivdukTDV+G2c134zt0WbxSJSEE76uDxTym3DRzLeZX
- mOf6bUkLRc8HI2z83HLeSrLnCDaUzt6ctsGigqq+Yny6dHl56O82/ysxGcmIZx9UyZO+hyMZvb/
- ecuWa/hbBYOZ6yeacF65qy/00k1eAjO++Mj45cxXjqV85T1khiwKHAStutPkN05LIcWmzIOI2N6
- JcZUW/XH3ZbwPgzY20enHnuM+rxpiC2AXWamVYRgBgnxytZoHYJTbh5BurqPVICmyND/IQHxcAh
- w3J7un0oPnbnMNdQ3B2TA6VUHKYY82ln4UWEvFzI/Jn0XaQRTQr//JuEseTSCgQIqbo5FGoTW85
- ypKOH5UDXA9ip20lItNjpe1wLNO1nQ==
-X-Proofpoint-GUID: GZ2wu60A03msHy_JXXsuf0f5WSTi9QT-
-X-Authority-Analysis: v=2.4 cv=KPwDzFFo c=1 sm=1 tr=0 ts=68a582a9 cx=c_pps
- a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=7CQSdrXTAAAA:8 a=gUTjnckvcJroK4elFEgA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
- a=DXsff8QfwkrTrK3sU8N1:22 a=Z5ABNNGmrOfJ6cZ5bIyy:22 a=bWyr8ysk75zN3GCy5bjg:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-20_03,2025-08-20_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 spamscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2508110000 definitions=main-2508190222
-X-Mailman-Approved-At: Wed, 20 Aug 2025 15:21:50 +0000
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250819150729.88561-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0115.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::13) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ2PR11MB8348:EE_
+X-MS-Office365-Filtering-Correlation-Id: b47f1646-8d4f-4005-822f-08dddfc56f40
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?WkVQeURCeWdJbTM2RXIxdHVrY2xSV1d0NzVSRjBsekFnRzNTVDZJbzB4ZjZR?=
+ =?utf-8?B?OXhWMGZYZXZaVWg0Y0h4R2JtUWFpQzErLytaS0NaNmRrc3BRTkhkNjJVSHIw?=
+ =?utf-8?B?WmFtU2pFKzZhSG5sekRMWTRVSkhqVEpNcmhHK3Z4TjdUeGhLeU0vNWd2S25p?=
+ =?utf-8?B?TzFmWjJma1VVRlFWY0krVHZiRy9BSjFIL1pMZkUvam5jM09tcXI3OVJNTk8y?=
+ =?utf-8?B?VW85em9BTkkwR1dTYnVKZVdZbTNHU0FzWWxKK2loSXpFUFFlUjEvOHBqS0lo?=
+ =?utf-8?B?TTNudk15N0lId3o5RVJXZTFiODVWRUdjTHEwWmlqQ09CRVE3NGdveS9aQWZs?=
+ =?utf-8?B?MHlodDJQRkI0dTFYeHVwbkJnZ3piRllCRkdaMnhwMXp2ZWlBZ3hPWjFZaHpu?=
+ =?utf-8?B?amwrUURsdUtYelJuR1Bzb0Y1K1JKWkN4WUxDNFlUZDNWaVNQTmxxN3IwUW4w?=
+ =?utf-8?B?d3JwTDNaOWVaSStESmRCYjZ4blgxRzlOMkcyMkVqL0F0T0RSYVpkL3RmR1Fw?=
+ =?utf-8?B?b2tuZjJNdmlMZFFidkxvOEUxa1Z2VCtMdzI4YWFiTnVabUxaWjhEVkJkNERV?=
+ =?utf-8?B?aGVKaUxjR2VHdUhZUnI2ajczSFZXbUF4RzRRV0pySmFRMWFPMXgrOFBQZ1Q1?=
+ =?utf-8?B?Vk9sSi9JTW9QRlV1alFCa2k5bDdVNjBYNmc4Wkc3eG0zN2M4M3lCQ1J4UTN5?=
+ =?utf-8?B?TDJ4L0Ztd1JsK1lrQ05jTVd0SU14QmVZamhxblh2RlhXSktwcDlUTTZlK0hK?=
+ =?utf-8?B?YjVUQ1RiTklwNTcycjgrMDRhQ3RseWxWQkN4dlVvRXBCK2d6K1JFeWc3Z1Vh?=
+ =?utf-8?B?emlJNDhZckgwOFFuaGltanFGNHlWb0F4cWgrbjFnc0ZGYm5paWNYMkUyMk51?=
+ =?utf-8?B?RU1uUk9FTjdqWEgwZXBpcDY3Ujh1b3h2Ri9lSVpteTVIdmVEaEdWeTNGU1JB?=
+ =?utf-8?B?Y2lGa2pHL29uSnp2aHJidHN1Sm4rTWdWQ2FreWlmWXdUZzhub01PVGtJcEJE?=
+ =?utf-8?B?aDQ3eHlLa05BSFVqUDZ4WGc3dmZnNzlLY0RKanI3VjMyUFNxQ2ZFZXQyREIx?=
+ =?utf-8?B?TEZxMzFZRkNoYWVwUU80bVEreEpwRklIaCtqb24xcHFPNWt4SGF4REpCWEZH?=
+ =?utf-8?B?OHpNZmNzaEpqUUFuUUp3Q3pjUnFzempyZlFWNjZCRlhDQ2xhblVCREZxcjgw?=
+ =?utf-8?B?UmhuMFVRSmN6NU4rYjlFSWFZZnMzbklVTk9OQUVnb1QySGFBNmRtM2JyZ3Yr?=
+ =?utf-8?B?U2tOSSs1a1BYa0dnZ2h3NnloZG5KVCtrUllmT21WZnJaVStlWWwxSzN0SDJY?=
+ =?utf-8?B?N0g0OFFPQ0pYbmx5WUx3aVA5QlNocmR2aFVBWXpVU1ZGQ0h3OUlvUnFUMWNN?=
+ =?utf-8?B?Wjh2dDNuT3ZneE1NTHdKSEd5U2s2YWdhYlF5Q29rUHNLd1BJc1ZwVnlDcG9V?=
+ =?utf-8?B?aTkyY0d2ci9kQWdjRG1TV1hPd25ESjQvdFMwSUZnWUUvQnYxUXZoSnkzSFFi?=
+ =?utf-8?B?NGNhNWVDNXZONDhGWG9waG96Y3BCSlAxTG5BUUxKb3BhRkwwSFZhU29qYzlm?=
+ =?utf-8?B?eFc5SUtCcmQ2VGlwdlMrQ2poTE1udmN6dmM1VHByUkYrd2FONFZjN3dZUE5z?=
+ =?utf-8?B?SUdUYTRtcTU4MkIxcEVKVW8zRkMyU3JYMSs5UG9MWktQdjhTRGlYQkZ6TjBU?=
+ =?utf-8?B?OGxCNlNzUHI2MGlhcWFZY1FNbHczNTNUa2xNdm8rRW5SOXM5clZ0c1FXSGJh?=
+ =?utf-8?B?ek5GSlkzdGUxdWxERUR3bUtoN2F0eVZmSFBmdlQ1MlhGWkF1QU5remw1dEkr?=
+ =?utf-8?B?NnJaS1oraHo0NFBML3JUcmxxNnZpSG5KMWR6S0VudkNkZDA2WEJNWC83V09w?=
+ =?utf-8?B?dWNyOWZYK3VFcGVDZHlNYy9pTzNRTW9leVFIaXVIbmk5dDRvMUpBZDJ6Z1VV?=
+ =?utf-8?Q?Zex693iIH6U=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZG1BaW5GdXB3LzdYeWkweVhwWUVVbGdlUUlmSDRsYUtnV2M5UGRmUktHTHdH?=
+ =?utf-8?B?RlhDNFNXcGdxQlpuVVlEZkpMdVdEWG5XRFYydG5abm9scGVPS0JERldMQ0Fl?=
+ =?utf-8?B?L1NRdm5TdEFmVnRZcElrRHJnbUJkUHE3L1NnaWhhZm9IeDhkOStVcGV2bkh1?=
+ =?utf-8?B?dVVEZTdSQ3BVMEI3MEdCeGJ5QXRFY08yODZMOVNwb3ZydkhYTmswdmduN25p?=
+ =?utf-8?B?YldIclBLS09HZ3RLVXpmekNwcldzSytrc0svMndSR2VMWC8zMXE0WUcybERs?=
+ =?utf-8?B?clAyWUhmNndRSEI0bDNGcmtmNUtLeFVaVFNGbE1OWkJMekd4dHYxM09CeGFH?=
+ =?utf-8?B?L0MzbTFqNlpHV1dlOTNPU285d3MyUUZOcHJ4MnJ4NExmYTRPREhoaW5vOWd2?=
+ =?utf-8?B?QVAyLy9NZmNVQzJ5dVFFb0JZWVM1b2JJcUZRak9rejhPc0hENWVMMTZrUTE3?=
+ =?utf-8?B?eTBvQVkzamhkM0w1b2hqcVZwRjl5THAxNUZjOWtNaHUwVG5qbnBwKzlMOU5t?=
+ =?utf-8?B?UDN1Ti9SSUFDcmFLbHBoVEVOMmQrdXVkTHdLam93OFpEZVE2U0lDeWdvMW4w?=
+ =?utf-8?B?Rkt2QmpHQk9ueXRmZlVNRXY4YWxnSEtFZ3o5cjlqMjlCQ2FmOTJMWjkwcGdU?=
+ =?utf-8?B?TlRkUk1JaUVvYzZHVHQxSnNyaWJqRFplWVVPUEpNMlR3TFdHSzladGxydUQ0?=
+ =?utf-8?B?eUtVT1VoNG9FYytFdTAwM3RRb2toMmx3aElaQnFSK2dDZ3cwOTJheDIvYnE3?=
+ =?utf-8?B?WU4zcnpCajV5R0ZZMFBNSHBrTTFtU0FzcDhuQkVEcHhOMVFCS3ppdjFLalZL?=
+ =?utf-8?B?NmxuSS9TREZTTldkdzhBUGxlWktzQnVWYlJ4Z3p5QnBJcEZLaHVtNHVaQXR1?=
+ =?utf-8?B?TVN3ZjhvdWdGSnRqeEcwTVk2bjJ4NXZ5YTljQ2daZVhHSXJwMW4wdk1wUmVx?=
+ =?utf-8?B?UnRqa2kwMU1rMmJlYmdTTGI5enBiSVRjNVhlMjZRK3dNZVZHeTZFTXJtaEZU?=
+ =?utf-8?B?Vm0wWWdwby9KVVJvWmFTcWV3YmU3amlUVnNKcG1HLzY2dDl4OGJUMFZrT0Fx?=
+ =?utf-8?B?T0E4TWxBUjF2SGhWTG9PZEZ4L2RMOHpWMFhYM1gwaDFhTExIYmZ0TWxBQ2o4?=
+ =?utf-8?B?Y1dlay9zdjZkaVRIS1RBV2hKV0NnZHlVSGNTbmFoemI5c0JpTno1SEhuUmpq?=
+ =?utf-8?B?Tlh1alVpQWdpQkRWMmZkOGNyR0kxN0NDeFV2aCsvS0crWnRHTEZOTThSUE1C?=
+ =?utf-8?B?RVRNR0FTWjJnKzhBZytwQVo3ZS9GekNDb3dlS1MxTWJobUlnQnFSdkVhaTBo?=
+ =?utf-8?B?NzNoZUR3RU1GVXVmWkZ5YlhXT2tKYWJ3YjU1Y2VZZjl5a0FFM0lRdGM1b3NF?=
+ =?utf-8?B?NE0vNElXa2lrYWRmSVpwS0IyZ0lId0VpQlA1NzhTbFkvNUxEMmFBaFJHZFdq?=
+ =?utf-8?B?TWpZMTJlcWVkQ2tVWncwOUtpVm5Gc1RwaXAybmNnVThZQ1Q1TlE3WVh4elJi?=
+ =?utf-8?B?QXI1MHROaDkyM2tDQzVuYlZ2ZHJCTlhsQlY1dStSQWp3OWNtRGprYm5FR3V0?=
+ =?utf-8?B?cGdoc3hQZnFucHAxTVowWnA2cEFIL2V3YjlhREs3bVptaTlidzNQTjUveCsw?=
+ =?utf-8?B?akVldmFRY3Jqd3dlODFob2lidkMwMUJNaDFCZGpaY1lFc2h6THljWWxtazJ0?=
+ =?utf-8?B?Nk5SQmEvUzJRTU5EaHA1bEZGNEpQUC91anIyaTEwTXVDZ2ViWkZzR091aXZw?=
+ =?utf-8?B?ZXl5WlVJZUhDdGtsdDVCZXdsQ0VDOUZlbGhPd0dRQStRMWhDS05UZnNPZFdG?=
+ =?utf-8?B?VlUyNi9qTUg5a1d4N29CNE5Xell4QXlUZmRhYjhJallBczQ0b0JLaVZDa0Rm?=
+ =?utf-8?B?Yk8zYVVKSWJCd2dNMUxBSWs0YmhEZFVCUi9tUmlGT0RzMGRXRWZQWVV2Y3NV?=
+ =?utf-8?B?N0lLV1pacW9Cc2hDV1d5U09YRVZDdXZCTjQ0YTE4RUx4K2xVQXF6eFBCZjk2?=
+ =?utf-8?B?ZG5rZ2FGRVlxeXZwMUhNeURmSEJ6Q3dBdGRPV1ZxaGQyZDkvUUsrS0xHcGR3?=
+ =?utf-8?B?aUZETTIwSnBIdmZJNENoM1ljeUJzK2pFV0hZb2ttZ3RtR25rNytLRGIxWkNB?=
+ =?utf-8?B?aDNCUi83M25XQ05sK0MxNnN4N1Q0L2grQ2VGbmRua1k0Z3JVaFhFR25mSGt5?=
+ =?utf-8?B?VWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b47f1646-8d4f-4005-822f-08dddfc56f40
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2025 08:42:02.8549 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 91Y3z1zlsh7xy5npOL5lk5BJ+VUDYokDkuf7uxxlaGcmMW2tqyj376aDAaQ2gy4aeAbqpIuYaEzst2tPrg+6Bc5PkseRQeucTCdo0Ne1vAI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8348
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,155 +196,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 8/19/25 15:15, Robin Murphy wrote:
-> On 13/08/2025 6:01 pm, Robin Murphy wrote:
->> Only a handful of CPU PMUs accept PERF_TYPE_{RAW,HARDWARE,HW_CACHE}
->> events without registering themselves as PERF_TYPE_RAW in the first
->> place. Add an explicit opt-in for these special cases, so that we can
->> make life easier for every other driver (and probably also speed up the
->> slow-path search) by having perf_try_init_event() do the basic type
->> checking to cover the majority of cases.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>
->> A further possibility is to automatically add the cap to PERF_TYPE_RAW
->> PMUs in perf_pmu_register() to have a single point-of-use condition; I'm
->> undecided...
->> ---
->>   arch/s390/kernel/perf_cpum_cf.c    |  1 +
->>   arch/s390/kernel/perf_pai_crypto.c |  2 +-
->>   arch/s390/kernel/perf_pai_ext.c    |  2 +-
->>   arch/x86/events/core.c             |  2 +-
->>   drivers/perf/arm_pmu.c             |  1 +
->>   include/linux/perf_event.h         |  1 +
->>   kernel/events/core.c               | 15 +++++++++++++++
->>   7 files changed, 21 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/s390/kernel/perf_cpum_cf.c b/arch/s390/kernel/perf_cpum_cf.c
->> index 1a94e0944bc5..782ab755ddd4 100644
->> --- a/arch/s390/kernel/perf_cpum_cf.c
->> +++ b/arch/s390/kernel/perf_cpum_cf.c
->> @@ -1054,6 +1054,7 @@ static void cpumf_pmu_del(struct perf_event *event, int flags)
->>   /* Performance monitoring unit for s390x */
->>   static struct pmu cpumf_pmu = {
->>       .task_ctx_nr  = perf_sw_context,
->> +    .capabilities = PERF_PMU_CAP_RAW_EVENTS,
->>       .pmu_enable   = cpumf_pmu_enable,
->>       .pmu_disable  = cpumf_pmu_disable,
->>       .event_init   = cpumf_pmu_event_init,
->> diff --git a/arch/s390/kernel/perf_pai_crypto.c b/arch/s390/kernel/perf_pai_crypto.c
->> index a64b6b056a21..b5b6d8b5d943 100644
->> --- a/arch/s390/kernel/perf_pai_crypto.c
->> +++ b/arch/s390/kernel/perf_pai_crypto.c
->> @@ -569,7 +569,7 @@ static const struct attribute_group *paicrypt_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paicrypt = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paicrypt_event_init,
->>       .add          = paicrypt_add,
->>       .del          = paicrypt_del,
->> diff --git a/arch/s390/kernel/perf_pai_ext.c b/arch/s390/kernel/perf_pai_ext.c
->> index 1261f80c6d52..bcd28c38da70 100644
->> --- a/arch/s390/kernel/perf_pai_ext.c
->> +++ b/arch/s390/kernel/perf_pai_ext.c
->> @@ -595,7 +595,7 @@ static const struct attribute_group *paiext_attr_groups[] = {
->>   /* Performance monitoring unit for mapped counters */
->>   static struct pmu paiext = {
->>       .task_ctx_nr  = perf_hw_context,
->> -    .capabilities = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>       .event_init   = paiext_event_init,
->>       .add          = paiext_add,
->>       .del          = paiext_del,
->> diff --git a/arch/x86/events/core.c b/arch/x86/events/core.c
->> index 789dfca2fa67..764728bb80ae 100644
->> --- a/arch/x86/events/core.c
->> +++ b/arch/x86/events/core.c
->> @@ -2697,7 +2697,7 @@ static bool x86_pmu_filter(struct pmu *pmu, int cpu)
->>   }
->>     static struct pmu pmu = {
->> -    .capabilities        = PERF_PMU_CAP_SAMPLING,
->> +    .capabilities        = PERF_PMU_CAP_SAMPLING | PERF_PMU_CAP_RAW_EVENTS,
->>         .pmu_enable        = x86_pmu_enable,
->>       .pmu_disable        = x86_pmu_disable,
->> diff --git a/drivers/perf/arm_pmu.c b/drivers/perf/arm_pmu.c
->> index 72d8f38d0aa5..bc772a3bf411 100644
->> --- a/drivers/perf/arm_pmu.c
->> +++ b/drivers/perf/arm_pmu.c
->> @@ -877,6 +877,7 @@ struct arm_pmu *armpmu_alloc(void)
->>            * specific PMU.
->>            */
->>           .capabilities    = PERF_PMU_CAP_SAMPLING |
->> +                  PERF_PMU_CAP_RAW_EVENTS |
->>                     PERF_PMU_CAP_EXTENDED_REGS |
->>                     PERF_PMU_CAP_EXTENDED_HW_TYPE,
->>       };
->> diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
->> index 183b7c48b329..c6ad036c0037 100644
->> --- a/include/linux/perf_event.h
->> +++ b/include/linux/perf_event.h
->> @@ -305,6 +305,7 @@ struct perf_event_pmu_context;
->>   #define PERF_PMU_CAP_EXTENDED_HW_TYPE    0x0100
->>   #define PERF_PMU_CAP_AUX_PAUSE        0x0200
->>   #define PERF_PMU_CAP_AUX_PREFER_LARGE    0x0400
->> +#define PERF_PMU_CAP_RAW_EVENTS        0x0800
->>     /**
->>    * pmu::scope
->> diff --git a/kernel/events/core.c b/kernel/events/core.c
->> index 71b2a6730705..2ecee76d2ae2 100644
->> --- a/kernel/events/core.c
->> +++ b/kernel/events/core.c
->> @@ -12556,11 +12556,26 @@ static inline bool has_extended_regs(struct perf_event *event)
->>              (event->attr.sample_regs_intr & PERF_REG_EXTENDED_MASK);
->>   }
->>   +static bool is_raw_pmu(const struct pmu *pmu)
->> +{
->> +    return pmu->type == PERF_TYPE_RAW ||
->> +           pmu->capabilities & PERF_PMU_CAP_RAW_EVENTS;
->> +}
->> +
->>   static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
->>   {
->>       struct perf_event_context *ctx = NULL;
->>       int ret;
->>   +    /*
->> +     * Before touching anything, we can safely skip:
->> +     * - any event for a specific PMU which is not this one
->> +     * - any common event if this PMU doesn't support them
->> +     */
->> +    if (event->attr.type != pmu->type &&
->> +        (event->attr.type >= PERF_TYPE_MAX || is_raw_pmu(pmu)))
-> 
-> Ah, that should be "!is_raw_pmu(pmu)" there (although it's not entirely the cause of the LKP report on the final patch.)
-> 
-> Thanks,
-> Robin.
-> 
->> +        return -ENOENT;
->> +
->>       if (!try_module_get(pmu->module))
->>           return -ENODEV;
->>   
-> 
-> 
 
-Hi Robin,
+On 8/19/2025 8:37 PM, Suraj Kandpal wrote:
+> Remove the intel_encoder NULL check from _intel_hdcp_enable
 
-what is the intention of that patch?
-Can you explain that a bit more.
+Missing period '.' here.
 
-Thanks.
 
--- 
-Thomas Richter, Dept 3303, IBM s390 Linux Development, Boeblingen, Germany
---
-IBM Deutschland Research & Development GmbH
+> with
+> all the changes it has gone through this check has become unnecessary
+> since at this point the connector is supposed to have the encoder
+> in it.
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Vorsitzender des Aufsichtsrats: Wolfgang Wendt
+With above typo fixed:
 
-Geschäftsführung: David Faller
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Sitz der Gesellschaft: Böblingen / Registergericht: Amtsgericht Stuttgart, HRB 243294
+
+> ---
+>   drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ------
+>   1 file changed, 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 42202c8bb066..e11cf26ed0bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2446,12 +2446,6 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+>   	if (!hdcp->shim)
+>   		return -ENOENT;
+>   
+> -	if (!connector->encoder) {
+> -		drm_err(display->drm, "[CONNECTOR:%d:%s] encoder is not initialized\n",
+> -			connector->base.base.id, connector->base.name);
+> -		return -ENODEV;
+> -	}
+> -
+>   	mutex_lock(&hdcp->mutex);
+>   	mutex_lock(&dig_port->hdcp.mutex);
+>   	drm_WARN_ON(display->drm,
