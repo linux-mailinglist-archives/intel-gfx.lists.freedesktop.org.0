@@ -2,76 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A6F9B3039D
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9771AB3038E
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82BC10E9EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41FA610E9ED;
 	Thu, 21 Aug 2025 20:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Op8uFe6f";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="U3k26lLo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C07D410E9EB
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CEC610E9ED
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806871;
+ s=mimecast20190719; t=1755806872;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=TaqjYk7qiFpFT4dP16wKMuC8fiQfbkUwRRgQVKGzHC8=;
- b=Op8uFe6fbQz66cPqpSGeBKIt4Fxe2uD2Tfq0kQhmS49NQ1KgQKbcrnDow9W3tLwIOvGFnK
- svMZVqlKHgS/TE4U3eu5+0mIO3zFU+h8q7+RyaoeS/j3EdWBUrySW5HGKysuyccswgd4ih
- vdY9TRImjht21qHvKGRq6X5BoPlijBU=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=MzMWVCGQW0mP4+/ULAfe7CdOmgWkAKLnoxAB4Fy092E=;
+ b=U3k26lLojuRdCNgBwR1ZihkwkQjaEy8RQeTcjK1Z/GA3kx55Nm4vezg5ze72xWvFL2/0rS
+ /3Lthet/wOUxegobDiOpW9bNNfn6tYj/R/dbQhLBvzN2p+BuvdEPDz+1b7dLs5SI6gUXg1
+ G9ZEvz7H8hS51IH1Xw+Og7FGegbk1oA=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-640-9pAznWOsOvG87iQlRX3GGg-1; Thu, 21 Aug 2025 16:07:47 -0400
-X-MC-Unique: 9pAznWOsOvG87iQlRX3GGg-1
-X-Mimecast-MFC-AGG-ID: 9pAznWOsOvG87iQlRX3GGg_1755806866
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-45a1b0d221aso6547715e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:47 -0700 (PDT)
+ us-mta-660-wnQQXSI0NwiSWOPxiep5hg-1; Thu, 21 Aug 2025 16:07:50 -0400
+X-MC-Unique: wnQQXSI0NwiSWOPxiep5hg-1
+X-Mimecast-MFC-AGG-ID: wnQQXSI0NwiSWOPxiep5hg_1755806869
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-3b9dc56225aso832660f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806866; x=1756411666;
+ d=1e100.net; s=20230601; t=1755806869; x=1756411669;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=TaqjYk7qiFpFT4dP16wKMuC8fiQfbkUwRRgQVKGzHC8=;
- b=weQ5JCpdsZ0YvzLbzzYLUCGdmi5OoM9oN5q37E8TXWbZBMYihs+lAVkEumblI7/2W+
- mdH2YVtK5NJ+46qQHKT+NyGtBFLqzy/AAxC9ic5YQSi5DI1jXwsu+K9XwOktVAh71S9P
- CSIeLboparX2AAh4BFo2glTIWBGJfgk2fVmdRNRslrQZ3p0iKoJOJebRV+I/1Cx/KlT/
- oQVYqKwUrRRSyM8ePDdSROaioRYe8el5QtZo/nVpw0BvvK6PaVii/XWCEyWJZ934t3Ca
- SQ86sfLsVYuC5T9kIfPe/FkXuGOSbb3LjluvEyvLa+9+8xftLmV2t/pSoq3897uExJUC
- Daow==
+ bh=MzMWVCGQW0mP4+/ULAfe7CdOmgWkAKLnoxAB4Fy092E=;
+ b=Vwb0Vt93SGr/NMZuBPQNhZ0mIKkVZiBa2KlyY75Mt1th0a6QJXXxzZ4RNSpVdlyUlQ
+ mJB3G9rIZRNtccrzyL4V9IWsXrAkfatR8xPSy2dUr2Di3M6bH22JYLWGpM5tGQaCT/VB
+ AARazUcRKJQ79HHbNtlyJckA+nQjJFSTS3r+04dC1j1NlTFLP2s30tb2pEr3sSyVArUL
+ fTsQLaC1NUuaauQoLSXUa8xTYMi/aV6tH2mbHKODcLoK3BTiNWXOuButlYaqMNfn8YDO
+ VIPhM9dx8dbKN0AYxlWw97UEg5E7uicg8tzbyPLDpMa31RXIsSQxHMPSY0IeoAMMtnrH
+ cVJg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWUlwuhFzhzQ1haOEE792kXrbrioqTJViTcTmzuyvWEZbgk+XMMUjvzuvxDM0aWhAUFgYLtAWLLhKE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzZqgH5xqXUCfKpFyxSmi/jE32m2WiN6TQ69xHhWy1WO0un8+7T
- HEdcikWZFPAJNGpUOveFFuCtnyHXAQA5gomaSvL2VuyHbc2spTaGu3DCH4vrCPXwWENCxV89mdO
- gtd4lFBjVo9mrdv6nT517Hqvdijz+er65+0bSyHJTdq1pa2Xk520OEQxxHjJBjYiBs5BY1w==
-X-Gm-Gg: ASbGncvGUNfUSJ3MpnuYFWRcK0dPUjJTH68zvAxVfCGoWQ6zuP54yCqnpZdxvzDR35F
- u9ktCsaCTsAwPioECwXm+llvx4TFvS5gm/RhUbOhZkM11UcJoz6ICRXjcGClLwyogkN0Q8PLPY3
- m6/Mti+N3BlwhVqDe9OOBznhmnhcPn+apSz6QKl8sIQrwqWUvX6+UB8zZbYJeJ9AzJB7Uj/KSYC
- gHH2XwWsHYgPhMJKrubaTofBRBYxlRGxr30nKipHAQqYceWEBkzVixVQcorNzYT+ckYZYoJemFp
- ++yhjESsIXdwJxjoRHDEoWdPSPaeTdkEIsFTAe4E4ad5O8F9OJbHg+c1gkHwFHNUhmN5pGZIi1u
- E7KyQIQtuIKM9dfaINDY7cg==
-X-Received: by 2002:a05:600c:1392:b0:453:5a04:b60e with SMTP id
- 5b1f17b1804b1-45b517d4e23mr2819645e9.26.1755806866202; 
- Thu, 21 Aug 2025 13:07:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHUtzGc4rPv18tjnV22wd1xjfGI25AJiVbHUBF3o7jj7YvZLrrv8XzLc39l/Z4dCqHj4yY2QA==
-X-Received: by 2002:a05:600c:1392:b0:453:5a04:b60e with SMTP id
- 5b1f17b1804b1-45b517d4e23mr2819075e9.26.1755806865726; 
- Thu, 21 Aug 2025 13:07:45 -0700 (PDT)
+ AJvYcCW05SVpF2/B7N3S8GagmHa1OuAIZrYuyKWgU5jvepgADmvxiWMCW3iahIGqI2CZtdPXWStoVKWtoIY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyTWfb0fEm00iXC1s9SVRy6PjZbpiQ0eMvT1EVNffx9alChAv1z
+ W+tRtdtuf2dd8WQ5c2/PWc7oxb4Uo+CpT3b90qpzQtA046CCdO8tt5Qo209MHv6jzSNoMWtHr47
+ G71O3kaUfnIXMUZiXo5GFx6v/PdKef3tL37DIiiydWHj7aR37Gwl1e8pVV9Ot3wmm7PIPMw==
+X-Gm-Gg: ASbGnctlSWN06d8MosDOPeG7GOc2nDOeha4vFA2bWequaNfdSwSCAPPdGQWGeSAfYdN
+ f7B55+3ba9hcV1cXtMzentXlIBOme+qLywp/tIIGTmsdYSwAarMD0SDj1ErB4YYC41Qy6WtuFPo
+ vyTi+7LX/rz6TxFYlt3mrr5rVD2txGeSAreRmAFtRyv2BF5+Xp++yxRJlWVt7KuuL/JP5tcCavv
+ BYRf19h7v/QSAKBD6hj58Rg93a6Y0tyobxR8160yelmzmKB5LZY9FcAR1kIZ/kZWnMgiUViafUS
+ 5UaKXZajEez6YKKDXc8D/3ucPSRSaqbZPf6YMBxeUZgZtgL0x+6fYEXg+BQaEAnwJmPfn1SI6Oa
+ 1CXbrCZ3KoNbMJ07rJhV+Wg==
+X-Received: by 2002:a05:6000:2901:b0:3b7:c703:ce4 with SMTP id
+ ffacd0b85a97d-3c5dcff5f3amr167800f8f.59.1755806868896; 
+ Thu, 21 Aug 2025 13:07:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHCm64ALptQrKyrLlaLt4xJ2vziBy3gZm4Q1WMVX6wnWhr2W2tRcHnZJHBwxpAOnTfL4mKx+A==
+X-Received: by 2002:a05:6000:2901:b0:3b7:c703:ce4 with SMTP id
+ ffacd0b85a97d-3c5dcff5f3amr167760f8f.59.1755806868453; 
+ Thu, 21 Aug 2025 13:07:48 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45b50dd0380sm8632985e9.10.2025.08.21.13.07.43
+ ffacd0b85a97d-3c5826751d5sm1323274f8f.14.2025.08.21.13.07.46
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:07:45 -0700 (PDT)
+ Thu, 21 Aug 2025 13:07:47 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
@@ -100,16 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 14/35] mm/mm/percpu-km: drop nth_page() usage within
- single allocation
-Date: Thu, 21 Aug 2025 22:06:40 +0200
-Message-ID: <20250821200701.1329277-15-david@redhat.com>
+Subject: [PATCH RFC 15/35] fs: hugetlbfs: remove nth_page() usage within folio
+ in adjust_range_hwpoison()
+Date: Thu, 21 Aug 2025 22:06:41 +0200
+Message-ID: <20250821200701.1329277-16-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Yyf12O93W55iW2XjGFou23F53imIiWweTmghIYFevxg_1755806866
+X-Mimecast-MFC-PROC-ID: rC_YEwdIs4WEdJKtdOly4IHTValu8hDKah25qd4Xyhs_1755806869
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -128,28 +128,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We're allocating a higher-order page from the buddy. For these pages
-(that are guaranteed to not exceed a single memory section) there is no
-need to use nth_page().
+The nth_page() is not really required anymore, so let's remove it.
+While at it, cleanup and simplify the code a bit.
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- mm/percpu-km.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ fs/hugetlbfs/inode.c | 25 ++++++++-----------------
+ 1 file changed, 8 insertions(+), 17 deletions(-)
 
-diff --git a/mm/percpu-km.c b/mm/percpu-km.c
-index fe31aa19db81a..4efa74a495cb6 100644
---- a/mm/percpu-km.c
-+++ b/mm/percpu-km.c
-@@ -69,7 +69,7 @@ static struct pcpu_chunk *pcpu_create_chunk(gfp_t gfp)
+diff --git a/fs/hugetlbfs/inode.c b/fs/hugetlbfs/inode.c
+index 34d496a2b7de6..dc981509a7717 100644
+--- a/fs/hugetlbfs/inode.c
++++ b/fs/hugetlbfs/inode.c
+@@ -198,31 +198,22 @@ hugetlb_get_unmapped_area(struct file *file, unsigned long addr,
+ static size_t adjust_range_hwpoison(struct folio *folio, size_t offset,
+ 		size_t bytes)
+ {
+-	struct page *page;
+-	size_t n = 0;
+-	size_t res = 0;
++	struct page *page = folio_page(folio, offset / PAGE_SIZE);
++	size_t n, safe_bytes;
+ 
+-	/* First page to start the loop. */
+-	page = folio_page(folio, offset / PAGE_SIZE);
+ 	offset %= PAGE_SIZE;
+-	while (1) {
++	for (safe_bytes = 0; safe_bytes < bytes; safe_bytes += n) {
++
+ 		if (is_raw_hwpoison_page_in_hugepage(page))
+ 			break;
+ 
+ 		/* Safe to read n bytes without touching HWPOISON subpage. */
+-		n = min(bytes, (size_t)PAGE_SIZE - offset);
+-		res += n;
+-		bytes -= n;
+-		if (!bytes || !n)
+-			break;
+-		offset += n;
+-		if (offset == PAGE_SIZE) {
+-			page = nth_page(page, 1);
+-			offset = 0;
+-		}
++		n = min(bytes - safe_bytes, (size_t)PAGE_SIZE - offset);
++		offset = 0;
++		page++;
  	}
  
- 	for (i = 0; i < nr_pages; i++)
--		pcpu_set_page_chunk(nth_page(pages, i), chunk);
-+		pcpu_set_page_chunk(pages + i, chunk);
+-	return res;
++	return safe_bytes;
+ }
  
- 	chunk->data = pages;
- 	chunk->base_addr = page_address(pages);
+ /*
 -- 
 2.50.1
 
