@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3507BB2F94D
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 15:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6BAB2F991
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 15:11:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C647710E306;
-	Thu, 21 Aug 2025 13:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508F710E996;
+	Thu, 21 Aug 2025 13:11:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eZOR3qTq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GFR1Fbcx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA5910E306;
- Thu, 21 Aug 2025 13:05:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB37310E995;
+ Thu, 21 Aug 2025 13:10:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755781511; x=1787317511;
+ t=1755781859; x=1787317859;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=qd0bbUuUGks1hrJq7wVYxgCYIhVBy4u1m7Cst/selJo=;
- b=eZOR3qTqH1kdu7QTxpBwDEUaPaXqfuoFp5mnGViWm8gkwR2n00crwoBw
- Y3YQwhHlroT/wu4c+mEB6I7+789EO0J50IB/SSVK/aBishLnUiQc94K6L
- pp/xXj3QZF8p1/8rHfdM40QipKQzcPKNo8+xGfGektSj8yHHfnIBISAB5
- 4sRu3MmRetj0KPAG6Ij0kgpWQe8t31effRldixG5Qusyce9P/yRoOLaYJ
- BL3miGE65heuQ64v1Kg6ZNB0dPUXpq1Fa6cCoLlXxKk23WnKps3mO21VB
- 6FngIYhc3iMFG/DcyQqotGmR9wI+8y7EIWwxeDDctrssDUCeRfAiZdRbJ Q==;
-X-CSE-ConnectionGUID: TIKxiU9pTAWn2xtbQIIVgg==
-X-CSE-MsgGUID: X/D+fLIpTGqEnQ7luicOag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61712373"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="61712373"
+ bh=qLjij0ecOn/GWEV0IVEDlS0xlT7Uo6heBKVhB+p0klU=;
+ b=GFR1FbcxqSf6JNQ4i7grqoQsWrUnx4D9ODmLtTKJPWgGLUrfRYcVe1dG
+ CsAFbCuE69pfeeKDVSaP+Fpmr7M8OoAZkt5iLXOUFwh6oWSGc18aXSROY
+ aKJNd83Vr4v7Kt43pK97w03eMBB4s07p5vLAbT0C2B0NWODFIyUyhazhh
+ nfBFjhA7K+amuSO6mGaM2ejzaCm1DxFZJQ8Ktb2WMUI8ai4uuF3xY8m20
+ 5d9IXu2GeOR4FDCz+gfHZTrLCUQRLlOKGIt5wL0RZueCwBTsqAFPVuhRT
+ zAr9fw1S+vvGwVRroeYUbJaxmBTK6GEA/SIisUj242KlNuuw+2ELUAG0N Q==;
+X-CSE-ConnectionGUID: m/Ixu7CmQDSY5q85VTHM+g==
+X-CSE-MsgGUID: k3gzZplWTa2M46iQ24UHig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="75653557"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="75653557"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 06:05:11 -0700
-X-CSE-ConnectionGUID: 5Mtb22kKSWKFVKtEhB+t0w==
-X-CSE-MsgGUID: PwX03zqPSluFA4hQiU3M3w==
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2025 06:10:58 -0700
+X-CSE-ConnectionGUID: ReidKLjfRS2t37mlYmUAww==
+X-CSE-MsgGUID: GxcZ47RZTLaz8oA1lF9Cgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="173746077"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="173747133"
 Received: from dalessan-mobl3.ger.corp.intel.com (HELO stinkbox)
  ([10.245.244.10])
- by orviesa005.jf.intel.com with SMTP; 21 Aug 2025 06:05:09 -0700
+ by orviesa005.jf.intel.com with SMTP; 21 Aug 2025 06:10:54 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Aug 2025 16:05:07 +0300
-Date: Thu, 21 Aug 2025 16:05:07 +0300
+ Thu, 21 Aug 2025 16:10:54 +0300
+Date: Thu, 21 Aug 2025 16:10:54 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: Avoid divide by zero
-Message-ID: <aKcZg9tk2YH0r67f@intel.com>
-References: <20250820132913.496505-1-juhapekka.heikkila@gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/i915/psr: check drm_mode_vrefresh return value
+Message-ID: <aKca3nYynsprAZU1@intel.com>
+References: <20250821045918.17757-1-jouni.hogander@intel.com>
+ <20250821045918.17757-2-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250820132913.496505-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20250821045918.17757-2-jouni.hogander@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,34 +72,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 20, 2025 at 04:29:13PM +0300, Juha-Pekka Heikkila wrote:
-> skl_crtc_allocate_plane_ddb allow iter.data_rate to be zero
-> which could cause divide by zero in skl_allocate_plane_ddb,
-> check against that.
+On Thu, Aug 21, 2025 at 07:59:18AM +0300, Jouni Högander wrote:
+> Check drm_mode_vrefresh return value sanity before using it in
+> intel_get_frame_time_us.
 > 
-> Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_psr.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index def5150231a4..403783504ab3 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -1388,7 +1388,7 @@ skl_allocate_plane_ddb(struct skl_plane_ddb_iter *iter,
->  {
->  	u16 size, extra = 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 5addde63168e..8cc2314fac6f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1116,11 +1116,16 @@ transcoder_has_psr2(struct intel_display *display, enum transcoder cpu_transcode
 >  
-> -	if (data_rate) {
-> +	if (data_rate && iter->data_rate) {
+>  static u32 intel_get_frame_time_us(const struct intel_crtc_state *crtc_state)
+>  {
+> +	int vrefresh;
+> +
+>  	if (!crtc_state->hw.active)
+>  		return 0;
+>  
+> -	return DIV_ROUND_UP(1000 * 1000,
+> -			    drm_mode_vrefresh(&crtc_state->hw.adjusted_mode));
+> +	vrefresh = drm_mode_vrefresh(&crtc_state->hw.adjusted_mode);
+> +	if (vrefresh <= 0)
 
-I don't think it should be possible to have iter_data->data_rate==0 
-and data_rate!=0, with iter->data_rate being the sum of all the
-planes' data_rates.
+How would that happen?
 
->  		extra = min_t(u16, iter->size,
->  			      DIV64_U64_ROUND_UP(iter->size * data_rate,
->  						 iter->data_rate));
+> +		return 0;
+> +
+> +	return DIV_ROUND_UP(1000 * 1000, vrefresh);
+>  }
+>  
+>  static void psr2_program_idle_frames(struct intel_dp *intel_dp,
 > -- 
 > 2.43.0
 
