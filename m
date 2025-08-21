@@ -2,76 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B77FB30397
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C64B30395
 	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E9AF10E9FA;
-	Thu, 21 Aug 2025 20:08:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610FB10E9F8;
+	Thu, 21 Aug 2025 20:08:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="d50BOTRb";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="jDPfnpv3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AB5210E9F8
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A03110E9F5
  for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:08:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806880;
+ s=mimecast20190719; t=1755806882;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=hICKs+PYshPEfoclHwqOXtWPheskj6p8LyRcJkrFnX4=;
- b=d50BOTRb+SEcMJs+gPi21vd4ycSzxd+Hq6bmtV+XrL44+R89DB6hvtzUQNgULdNUcDSJVS
- 0goysmH283RP0xKSkgdmsR0QkSU5sOzbbYg3LDOKmhcFFui3QjMGy0RNsIGRAnFZWlO5Zp
- t1fmTshP+97z+qpiYMKOo/BrfLJTrNc=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=w6VkvDa+3msZeC5nA9B9+aDln+Mg2ABReefULBX94/4=;
+ b=jDPfnpv3+N2oUxzL5Ms/5QeVqCMWtriLWVMs1G7Kk3oF7j6obMtvwE4/l4Rl3RVImRwBMJ
+ tYlwCX+2//9mdOdWxx7BRMqQeSIGCfrjNDue+zl1985K4KJuXla1qfTmWwK0XOlsaknX3K
+ estHeUaIsFKzD8WJkn1aT3SLSx0o5BE=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-99-XuSIIyyrO1u9Px8DOJkbtg-1; Thu, 21 Aug 2025 16:07:58 -0400
-X-MC-Unique: XuSIIyyrO1u9Px8DOJkbtg-1
-X-Mimecast-MFC-AGG-ID: XuSIIyyrO1u9Px8DOJkbtg_1755806877
-Received: by mail-wr1-f70.google.com with SMTP id
- ffacd0b85a97d-3b9edf34ad0so613140f8f.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:58 -0700 (PDT)
+ us-mta-306-Aokg9ED2Oe-9cgobDHNHvA-1; Thu, 21 Aug 2025 16:08:01 -0400
+X-MC-Unique: Aokg9ED2Oe-9cgobDHNHvA-1
+X-Mimecast-MFC-AGG-ID: Aokg9ED2Oe-9cgobDHNHvA_1755806880
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-45a15fd6b45so10808175e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:08:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806877; x=1756411677;
+ d=1e100.net; s=20230601; t=1755806880; x=1756411680;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hICKs+PYshPEfoclHwqOXtWPheskj6p8LyRcJkrFnX4=;
- b=UMB+NLVGH24X9ZJPCDa50pRAdWYyWBhdFMNoxHO0FZHukGJe6YguAF4TdDsQDMU7Rl
- mn4zSI6GNwwlWo3ZLVV0qjJKWaKBEH3Pq3JBxIjfHaZiRDk8i62i1Cu8F+WgPCKIwgsO
- TuoIheZwMGJ5IAhesUXTXlT83tijV0P/nEtkjsEFlrFHM69UKh9kGHz2v74hXKi5wr2g
- mp0Q9GjPwxVtFg/z+aaLwvGaQQNmn166bJ/FBfijmzDhwwFIOAwH7xpfDgdIT006T25v
- k8askpJjprDYDlVm8sEQCOgsZXDGdPsJEgPCMr6vlI/3BT+jwXXrkxpzRYJQ+FYVcD1k
- 92ew==
+ bh=w6VkvDa+3msZeC5nA9B9+aDln+Mg2ABReefULBX94/4=;
+ b=ABf/aNTNAZEWQaqpO6dZLBKqiHTgyQSooriK/mAWRsggmB0WicyBIkp0NeC0uA7k+T
+ E+dC2Kk6YsA0Nc5yRXmoqSyZYh8Aghwsl8p3vaWUKzi953/BpqAcfe0Xg49Q2aKbVW2n
+ yUuKmon0v9WqhK+G8qiOYXhujh3TUZR28h7Nw0v0tXW4PC8FbQ/LWhjEHd1K9UaG6rur
+ JFDDJnSoe6GtgZu7jNt8d03p5ZrbSWjZFyMLUbeusmqqYSui4m1ArHDQbCB8ZJ6rKarP
+ /O9PjOw3PO7Ea7QGCV7/GP1LFxpQRWrXA0cwqcirPyx18rwRzvgMSKBmJ8WCbpconKYB
+ sZNg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWIlLvyI6NfiZImFaNGkGzYCIWYpjcIkE4JGqcgfcK0sINwMYPh4ytCuZ2eP+RM3P07wCa6sBNjb8Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBj0KU/B9NiJ8wWBmQyTgB1b9cJ7leH6RjHvgb2nW9kBVm7cCy
- EpuQU5BQKxMrjG+fYmTm3nTmAcdiWJI1xs6ntZEd65SORgDhBwmkwJnT/s3VfZk+lEXbJ5C/vEr
- OkN8KErlSRz8C37/ZUobJmj+1+6FEr4jjAQa0+JSmDQyLuDsCL65G7Y1fYiIbd0gFKLjAoA==
-X-Gm-Gg: ASbGncsnZIU7Lqou4PGYMmUlHNL3HTfJygSzqZzRUtyQ672QgI1mMl948HHhraTAqrG
- LraOejkQpnola4P+H75I0xkqPCFRYFJALja7pV+f11+1DaaJXgeI3Xakx5RXIlp1GMzJqUT7HJy
- xWDLkK+5gFxqKmpjxlk2R7faJ1bVW+KYZthkXhy5xKErH3mRpKEOXe7FyCK2qYuBfCztxV5za2U
- e2wi4gEgTmLyESFDSaRcZYO9uAR0PRLEX/1NrXa0Cv/zJO6KrXnZR+yHKSIeXLDx1c+sKKnGe4U
- XyJD+mStz0tQh4JR86q43wxtUpAOjpD655yCmjb0bRFbaAdHqB3rEubYa7ljPUuucIHDZwkWBGs
- 3mPp2aFomK5j9V9Rt1RIbEQ==
-X-Received: by 2002:a05:6000:1789:b0:3b4:9721:2b2b with SMTP id
- ffacd0b85a97d-3c5dac17062mr195827f8f.12.1755806877254; 
- Thu, 21 Aug 2025 13:07:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgVLjhFaRrDh3LOBLGV7UmH7wFAxvy1IR++ErfO8cOP/XFU/ikMyZpM3bVU7Jjqctj1mhmFQ==
-X-Received: by 2002:a05:6000:1789:b0:3b4:9721:2b2b with SMTP id
- ffacd0b85a97d-3c5dac17062mr195797f8f.12.1755806876810; 
- Thu, 21 Aug 2025 13:07:56 -0700 (PDT)
+ AJvYcCUKjhwmeRbhav8F7q8cC+rlOwA86vskZ0IuCFgIcgHTmskquB1r50PQmjc/Dx8+58Fy6GlyY7nsiWE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy65J+SaEWN3Bhcg7enR3OLX0oY5IJFDFZqkHN78/8T3V3HhFO/
+ V90SaSHpeoS0wnUhWtG0gYYpC2lag2Kol+8W7dflvUo/dirGnmeRMHYlPSwpEvQU7I22e0BOJwx
+ 6huzVwYwIgDcPx/peqwFF0NoLKFUrgdOlxQ1CQvPv6mUCIbk6yyTffPUSpuk4G9jgpgSTvQ==
+X-Gm-Gg: ASbGncvHdYLSUFhNZUauWEat6I3IejTj8TMDah2IGp+GKOxU5Shm/iowax9cVcA801J
+ dAmqf5tTlDlYu7sLIjQL0vwpuS0WvvMDwDJV8LtZG5qVEE2XAjfxCf5Ps5bq+LHMcnKy0K0mHoa
+ TdyvI78oVMOp3vX/YEB733cJmwbTdIQtpMedzOmpHwZfs5jJgLEoKQmv4zhEDyJIu44xRcdm5gg
+ ISaWwuxjbNfJcxfyqYz51mwyX2meKqFORQ/RUfU5L+vXRyrv4QBUIEE+Hr1TpDviuaJWCxcg1Ua
+ jwHvwDFtuLy1vkWy3vVxduq9cF31ZxMeidY+MKfvH0p5xli3MdkdEnCU1OX43NcEIsNJW0+EXfr
+ 7SOJw6CW6WI0Y2POC+0jZ6w==
+X-Received: by 2002:a05:600c:1c87:b0:456:942:b162 with SMTP id
+ 5b1f17b1804b1-45b51792539mr3328615e9.11.1755806880042; 
+ Thu, 21 Aug 2025 13:08:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG9ciI0WdoI3CxhUtu7m/cESVsdReJmvmXFWCMaWsO+hhXySreox2GeOL2sJ8kVyLPwCYhbEA==
+X-Received: by 2002:a05:600c:1c87:b0:456:942:b162 with SMTP id
+ 5b1f17b1804b1-45b51792539mr3328365e9.11.1755806879543; 
+ Thu, 21 Aug 2025 13:07:59 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3c4f77e968esm2903478f8f.21.2025.08.21.13.07.54
+ ffacd0b85a97d-3c07778939bsm12219075f8f.46.2025.08.21.13.07.57
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:07:56 -0700 (PDT)
+ Thu, 21 Aug 2025 13:07:59 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>, Jens Axboe <axboe@kernel.dk>,
@@ -99,16 +99,15 @@ Cc: David Hildenbrand <david@redhat.com>, Jens Axboe <axboe@kernel.dk>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 18/35] io_uring/zcrx: remove "struct io_copy_cache" and
- one nth_page() usage
-Date: Thu, 21 Aug 2025 22:06:44 +0200
-Message-ID: <20250821200701.1329277-19-david@redhat.com>
+Subject: [PATCH RFC 19/35] io_uring/zcrx: remove nth_page() usage within folio
+Date: Thu, 21 Aug 2025 22:06:45 +0200
+Message-ID: <20250821200701.1329277-20-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: bD5YVmpaN5MDzECHb30Goy3bGPhwzRr7gq50MwFJ3d8_1755806877
+X-Mimecast-MFC-PROC-ID: 3ev5VNzK2_RHiS9FUbu3I4uZT-q7WOkFyAVtswAeUZc_1755806880
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -127,95 +126,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We always provide a single dst page, it's unclear why the io_copy_cache
-complexity is required.
+Within a folio/compound page, nth_page() is no longer required.
+Given that we call folio_test_partial_kmap()+kmap_local_page(), the code
+would already be problematic if the src_pages would span multiple folios.
 
-So let's simplify and get rid of "struct io_copy_cache", simply working on
-the single page.
-
-... which immediately allows us for dropping one "nth_page" usage,
-because it's really just a single page.
+So let's just assume that all src pages belong to a single
+folio/compound page and can be iterated ordinarily.
 
 Cc: Jens Axboe <axboe@kernel.dk>
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- io_uring/zcrx.c | 32 +++++++-------------------------
- 1 file changed, 7 insertions(+), 25 deletions(-)
+ io_uring/zcrx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/io_uring/zcrx.c b/io_uring/zcrx.c
-index e5ff49f3425e0..f29b2a4867516 100644
+index f29b2a4867516..107b2a1b31c1c 100644
 --- a/io_uring/zcrx.c
 +++ b/io_uring/zcrx.c
-@@ -954,29 +954,18 @@ static struct net_iov *io_zcrx_alloc_fallback(struct io_zcrx_area *area)
- 	return niov;
- }
- 
--struct io_copy_cache {
--	struct page		*page;
--	unsigned long		offset;
--	size_t			size;
--};
--
--static ssize_t io_copy_page(struct io_copy_cache *cc, struct page *src_page,
-+static ssize_t io_copy_page(struct page *dst_page, struct page *src_page,
- 			    unsigned int src_offset, size_t len)
- {
--	size_t copied = 0;
-+	size_t dst_offset = 0;
- 
--	len = min(len, cc->size);
-+	len = min(len, PAGE_SIZE);
- 
- 	while (len) {
- 		void *src_addr, *dst_addr;
--		struct page *dst_page = cc->page;
--		unsigned dst_offset = cc->offset;
+@@ -966,7 +966,7 @@ static ssize_t io_copy_page(struct page *dst_page, struct page *src_page,
  		size_t n = len;
  
--		if (folio_test_partial_kmap(page_folio(dst_page)) ||
--		    folio_test_partial_kmap(page_folio(src_page))) {
--			dst_page = nth_page(dst_page, dst_offset / PAGE_SIZE);
--			dst_offset = offset_in_page(dst_offset);
-+		if (folio_test_partial_kmap(page_folio(src_page))) {
- 			src_page = nth_page(src_page, src_offset / PAGE_SIZE);
+ 		if (folio_test_partial_kmap(page_folio(src_page))) {
+-			src_page = nth_page(src_page, src_offset / PAGE_SIZE);
++			src_page += src_offset / PAGE_SIZE;
  			src_offset = offset_in_page(src_offset);
  			n = min(PAGE_SIZE - src_offset, PAGE_SIZE - dst_offset);
-@@ -991,12 +980,10 @@ static ssize_t io_copy_page(struct io_copy_cache *cc, struct page *src_page,
- 		kunmap_local(src_addr);
- 		kunmap_local(dst_addr);
- 
--		cc->size -= n;
--		cc->offset += n;
-+		dst_offset += n;
- 		len -= n;
--		copied += n;
- 	}
--	return copied;
-+	return dst_offset;
- }
- 
- static ssize_t io_zcrx_copy_chunk(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
-@@ -1011,7 +998,6 @@ static ssize_t io_zcrx_copy_chunk(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
- 		return -EFAULT;
- 
- 	while (len) {
--		struct io_copy_cache cc;
- 		struct net_iov *niov;
- 		size_t n;
- 
-@@ -1021,11 +1007,7 @@ static ssize_t io_zcrx_copy_chunk(struct io_kiocb *req, struct io_zcrx_ifq *ifq,
- 			break;
- 		}
- 
--		cc.page = io_zcrx_iov_page(niov);
--		cc.offset = 0;
--		cc.size = PAGE_SIZE;
--
--		n = io_copy_page(&cc, src_page, src_offset, len);
-+		n = io_copy_page(io_zcrx_iov_page(niov), src_page, src_offset, len);
- 
- 		if (!io_zcrx_queue_cqe(req, niov, ifq, 0, n)) {
- 			io_zcrx_return_niov(niov);
+ 			n = min(n, len);
 -- 
 2.50.1
 
