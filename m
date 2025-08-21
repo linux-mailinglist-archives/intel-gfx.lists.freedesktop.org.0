@@ -2,80 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D75B303AA
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBACB303AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0041210EA04;
-	Thu, 21 Aug 2025 20:08:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5E6610EA02;
+	Thu, 21 Aug 2025 20:08:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Asgvc2nR";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="RpPHIlIz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2FB10EA06
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:08:15 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7CFA10EA07
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806894;
+ s=mimecast20190719; t=1755806897;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NKFS9/TuG2v9AIcAoooIJr3bGKW6zmP0XL+5izT5Y+4=;
- b=Asgvc2nRe+TJEI/uMByKO0brPcrRkTx89JxKNv/DzB0ld+4mIl0YJFypNHpcqTdk7x3Vbu
- 0xnohi5l3C7ieinDW9UAB/Y4J6Pyq6TeJ5iZ2kNUsH1yFrKBwpCY9USfDDICSpbEYpzpOf
- bmBgtmyzF4u/4vr9Pyaua/G5SjzFLjw=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=qEz5al18caSg7WeU7/xaDhHrA43/vq8xaUIrOF+uMyw=;
+ b=RpPHIlIzTn2wy4DImGCL6lMrvKPiPAG8KmWV9t7khMbi/4nUYWvaLrEGXrPwNwJ+42n/uC
+ OErGeNh7AqwBjFtTuJHcMlvC/WwdcxMjwcrabUj3JwiQPwlUalSi2xA3/3xdEl5JlXksFy
+ YllAkT3ItE+u3VH4kKDNhliOVy9zE1Y=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-227--gEyL_sNN7G-q3PkFXFVtA-1; Thu, 21 Aug 2025 16:08:13 -0400
-X-MC-Unique: -gEyL_sNN7G-q3PkFXFVtA-1
-X-Mimecast-MFC-AGG-ID: -gEyL_sNN7G-q3PkFXFVtA_1755806892
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-45a1b0ccb6cso6975115e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:08:12 -0700 (PDT)
+ us-mta-604-ZVdda1LQPTif4emTRw7ucg-1; Thu, 21 Aug 2025 16:08:15 -0400
+X-MC-Unique: ZVdda1LQPTif4emTRw7ucg-1
+X-Mimecast-MFC-AGG-ID: ZVdda1LQPTif4emTRw7ucg_1755806895
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3b9e4117542so631247f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:08:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806892; x=1756411692;
+ d=1e100.net; s=20230601; t=1755806894; x=1756411694;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=NKFS9/TuG2v9AIcAoooIJr3bGKW6zmP0XL+5izT5Y+4=;
- b=nXfqB1nT6WBQ6ctbUp2Rdc5Dz7eLrn3DDsyDQPi+zOw2wF/8AOuOR4QAwkRggiArxK
- BE5hyCJXBCrWlun9I82oi6YvC6v8skPRHSjbn3i2S2S/95/3T8IECD1lvv60wjJ1YpT1
- WDOojyWusnaCjoiL2VW89hTMWYHGnFLyxDQbzj0iWVIqCL/SrZ+djLUs6wcUehajyUMd
- 0w1ysxvzaf4vqZ0QS2CH+BOsW/DtsKDDnhvS5pQ50Br3sZRp24ANT5z9v+pYYRpLw+Qg
- ezcI75MGZVjlIITa8e2Q8hY/m7GhRr1KAEQBbN4/nqjpQjlUlo7HINopEx8wTnzHV7d+
- 7tig==
+ bh=qEz5al18caSg7WeU7/xaDhHrA43/vq8xaUIrOF+uMyw=;
+ b=maJYYs6Ju9w374cIm36IcG+DtFx0lwp+gak6+GjDoPrQghLbHRw1Urv9ZedmLUBZVa
+ H4TtYqP7247A/Py+WBYr0DFTh5iP8DL4aUSxadsmfd3r6qekTrOzt4b7kbWZLwkKcnWW
+ zk3GiV1FXG2RwCY4234eV8WKqrqUxcfQff0Ur+CGHd9NHS4RI4sq3HkSprNNuSBBSh3p
+ FWogtB3U7ZcRNDMQcgNeMI6w0iFnwhxveRwBAoULj1r9PJ+HvsjNs3To2plnPTz6f7wO
+ h0WVvoBE4LYctx3ASAOB9bAMuzoylBzlVFYjouWGlk8C3as2RsSulcOr95DV71tafQh5
+ ETtA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXVjtZP7+M+/Q6/0lGh0Bm7RNCACZ/1MBLcfckm4mz3Z9jfB7TAiRrCZUcRy9psw1DCq9SDQXlNAT4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyhWOJgN4bKU0s2Xx/lVN3fJxnGLGx0jT8Uu9SRbbBZ0ITAA99n
- GWEAiaW/Ky4c4HO7U3PeY8X4wJ3vC0orS3hpeDUcbvMDsVykw630ECBVVZ8nrJRodtqKGSP4Z2T
- sOFRqGfxYv0BrTSReNGR6o7UmLqqdGSj0Zknu1Wcgd2ZYqbLXVSB62Ib3F8Xdlkpj7crfXQ==
-X-Gm-Gg: ASbGncuMo2eQXDxHQWIRE3CpAesN+ZREa2JrfJPFLR6gDB5WYZh/alBqfgHuGBkqD0i
- lhj8O7+2Qfoh1rmabchfMQbK9uV8QL3pZpZ7PGB1gn/IMZGvMgLQQ7ThaLUUel56ta0bbLIwe3g
- vEC3FqK1RwLeHtR+GI2IqpBcqnKzIeK/T521DHXm4V0sXNPb/GtBcBnt/F0X8tEyOPq/io/fGAl
- jfsnDCvObgl4iTrXybLrZG7MOM1tYX9OwM9xZBUAgqvnUBUwSi20ah29BrfrVbKjaKbHkJzRTmu
- ZUxFW3DOPdCq0+mbrSnt+d4u8HLB7rsH26gFrZ2l8XeBm71ZgyNyz9sHvEYxfqfMXI8qSprwY6B
- MhsvLaAbJNHsWp3CaTIqreQ==
-X-Received: by 2002:a05:600c:1f1a:b0:45b:43cc:e557 with SMTP id
- 5b1f17b1804b1-45b517cbee2mr2552625e9.34.1755806891777; 
- Thu, 21 Aug 2025 13:08:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE/z26sBz7JGLAktk/cnLNnmvA2KmHoRy5M1TseKC0NpCNohvOWfWbiwnk6fyruz4Gv4BdEig==
-X-Received: by 2002:a05:600c:1f1a:b0:45b:43cc:e557 with SMTP id
- 5b1f17b1804b1-45b517cbee2mr2552235e9.34.1755806891155; 
- Thu, 21 Aug 2025 13:08:11 -0700 (PDT)
+ AJvYcCUxpv8X7nH686ZiIStE52CSHUoOjqnRk5e7H02FYj3o4SRvIsERzhVtbDWSyGPrWVH8DrAfp/HeR54=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyJ2Oqj7CQA9m1spy/CLtXtxTWPB+GXXlLqeO0kI3SXeiV5l6WT
+ G/XMahZoKtSAXk9WCSYj/+SBPACVX/ObS29Fv9tsE4SuInO7KDMaS4I1y/KZwMa2QqjvzD+3pUM
+ FY7p2gG70jae3KiOeg1I2ZgnfPDJFTta5S1msvJUfeVFlFet+HjfLhQ9UhPt5d6awu9qGUw==
+X-Gm-Gg: ASbGncvfwfNU1fqPIVHHDQtep7Aq0XQ2xFntRpHGU9RHiDirD6qd4hbDtGZb/mGJgWP
+ PYVqyWy63CGac+Pdf7FVyWB4GnY7T0uhXEiwl3sdBYx5VWv6GuXORgKkoNd5Udv+IuNqhzpmzCb
+ WhrsLA8dut8lo1BthPeseDwQgjitQiRI0mrzJF+YU2Ksi27Rc7eWpzRaKUJFgeHkRMfhu0QJf3F
+ d5o8DpK49/G2WIJVAPYi5cDK3J/YLJhsn0xLogpfNOgy2B7Jg0agMVXjYrVFheCIYfT5i+Cix3Z
+ 5Stxhd3OrkMm2iyGEw63HcYJHuQoADb0H+MuSHKVmiQSUBeMDXnPOc9ceda02l00O5U55979z2T
+ XRr1Ds5K5KkHTlq3qN0apOA==
+X-Received: by 2002:a05:6000:18ad:b0:3b7:9c79:32bb with SMTP id
+ ffacd0b85a97d-3c5dcdf9bd9mr215842f8f.44.1755806894493; 
+ Thu, 21 Aug 2025 13:08:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYrE9N2OTZOZSEOVxEUY9xhX4UsF8UOhI+5wOqBRpd/3VSIxUjVMLdiea20BiXkc+w3FSZ8A==
+X-Received: by 2002:a05:6000:18ad:b0:3b7:9c79:32bb with SMTP id
+ ffacd0b85a97d-3c5dcdf9bd9mr215789f8f.44.1755806894010; 
+ Thu, 21 Aug 2025 13:08:14 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3c0748797acsm12277591f8f.10.2025.08.21.13.08.09
+ ffacd0b85a97d-3c074e38d65sm12982954f8f.27.2025.08.21.13.08.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:08:10 -0700 (PDT)
+ Thu, 21 Aug 2025 13:08:13 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
-Cc: David Hildenbrand <david@redhat.com>,
- Alexander Potapenko <glider@google.com>,
+Cc: David Hildenbrand <david@redhat.com>, Damien Le Moal <dlemoal@kernel.org>,
+ Niklas Cassel <cassel@kernel.org>, Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
  Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
@@ -100,16 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 23/35] scatterlist: disallow non-contigous page ranges in
- a single SG entry
-Date: Thu, 21 Aug 2025 22:06:49 +0200
-Message-ID: <20250821200701.1329277-24-david@redhat.com>
+Subject: [PATCH RFC 24/35] ata: libata-eh: drop nth_page() usage within SG
+ entry
+Date: Thu, 21 Aug 2025 22:06:50 +0200
+Message-ID: <20250821200701.1329277-25-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: LidaOluRXPc_MjR5zSSiiJByFXbINP2jmQdqlUHN_pY_1755806892
+X-Mimecast-MFC-PROC-ID: 576SycRAAXhtHjHvJOpCiv6KKLzm9EJhuDNiBJsWJ2g_1755806895
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -128,55 +128,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The expectation is that there is currently no user that would pass in
-non-contigous page ranges: no allocator, not even VMA, will hand these
-out.
+It's no longer required to use nth_page() when iterating pages within a
+single SG entry, so let's drop the nth_page() usage.
 
-The only problematic part would be if someone would provide a range
-obtained directly from memblock, or manually merge problematic ranges.
-If we find such cases, we should fix them to create separate
-SG entries.
-
-Let's check in sg_set_page() that this is really the case. No need to
-check in sg_set_folio(), as pages in a folio are guaranteed to be
-contiguous.
-
-We can now drop the nth_page() usage in sg_page_iter_page().
-
+Cc: Damien Le Moal <dlemoal@kernel.org>
+Cc: Niklas Cassel <cassel@kernel.org>
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- include/linux/scatterlist.h | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/ata/libata-sff.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/scatterlist.h b/include/linux/scatterlist.h
-index 6f8a4965f9b98..8196949dfc82c 100644
---- a/include/linux/scatterlist.h
-+++ b/include/linux/scatterlist.h
-@@ -6,6 +6,7 @@
- #include <linux/types.h>
- #include <linux/bug.h>
- #include <linux/mm.h>
-+#include <linux/mm_inline.h>
- #include <asm/io.h>
+diff --git a/drivers/ata/libata-sff.c b/drivers/ata/libata-sff.c
+index 7fc407255eb46..9f5d0f9f6d686 100644
+--- a/drivers/ata/libata-sff.c
++++ b/drivers/ata/libata-sff.c
+@@ -614,7 +614,7 @@ static void ata_pio_sector(struct ata_queued_cmd *qc)
+ 	offset = qc->cursg->offset + qc->cursg_ofs;
  
- struct scatterlist {
-@@ -158,6 +159,7 @@ static inline void sg_assign_page(struct scatterlist *sg, struct page *page)
- static inline void sg_set_page(struct scatterlist *sg, struct page *page,
- 			       unsigned int len, unsigned int offset)
- {
-+	VM_WARN_ON_ONCE(!page_range_contiguous(page, ALIGN(len + offset, PAGE_SIZE) / PAGE_SIZE));
- 	sg_assign_page(sg, page);
- 	sg->offset = offset;
- 	sg->length = len;
-@@ -600,7 +602,7 @@ void __sg_page_iter_start(struct sg_page_iter *piter,
-  */
- static inline struct page *sg_page_iter_page(struct sg_page_iter *piter)
- {
--	return nth_page(sg_page(piter->sg), piter->sg_pgoffset);
-+	return sg_page(piter->sg) + piter->sg_pgoffset;
- }
+ 	/* get the current page and offset */
+-	page = nth_page(page, (offset >> PAGE_SHIFT));
++	page += offset / PAGE_SHIFT;
+ 	offset %= PAGE_SIZE;
  
- /**
+ 	/* don't overrun current sg */
+@@ -631,7 +631,7 @@ static void ata_pio_sector(struct ata_queued_cmd *qc)
+ 		unsigned int split_len = PAGE_SIZE - offset;
+ 
+ 		ata_pio_xfer(qc, page, offset, split_len);
+-		ata_pio_xfer(qc, nth_page(page, 1), 0, count - split_len);
++		ata_pio_xfer(qc, page + 1, 0, count - split_len);
+ 	} else {
+ 		ata_pio_xfer(qc, page, offset, count);
+ 	}
+@@ -751,7 +751,7 @@ static int __atapi_pio_bytes(struct ata_queued_cmd *qc, unsigned int bytes)
+ 	offset = sg->offset + qc->cursg_ofs;
+ 
+ 	/* get the current page and offset */
+-	page = nth_page(page, (offset >> PAGE_SHIFT));
++	page += offset / PAGE_SIZE;
+ 	offset %= PAGE_SIZE;
+ 
+ 	/* don't overrun current sg */
 -- 
 2.50.1
 
