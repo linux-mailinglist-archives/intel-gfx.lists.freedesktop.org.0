@@ -2,174 +2,150 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1448CB302DE
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 21:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B0FB3035C
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:07:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44DB110E3A6;
-	Thu, 21 Aug 2025 19:26:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 378A010E3B1;
+	Thu, 21 Aug 2025 20:07:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NhCg/HFS";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="aiDlWg1p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B69A10E3A6;
- Thu, 21 Aug 2025 19:26:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755804413; x=1787340413;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=CSGmTj9vQ+sSCbw6Jz0R9Jj28djznFwvBs7ruFYzq/M=;
- b=NhCg/HFSJ8inbIq+tZ9CPZBiA4OP3JJxQBESqjjYCq+ukTf6umXnubXc
- vTegSEMaSg6AQ8RPAevxgSzJlnDNfsZVqKYu4353WqXorTgr5Aa54mlEQ
- yxRMadQz8s67wDxmTqHIKoE9zXsPlBQl67kU6XU5yPgjVlbqru256SShL
- 7T9f+HjtfNWHrpccvxp4jTIzc1TR2Oabw9OCRppXfyvq4BoQuSdyuGAIz
- FocFKUcC5GmJLqFXQDSQ5skhtg2z8k7J7K1JGYkSNc2ZyTx+GVk7jbfbC
- SbUiHwzJudozLWKwy0X2XLN5U6zXqd77iDC4kjz0WQqyj2zx9VejTm7T2 Q==;
-X-CSE-ConnectionGUID: I5nrUVLmSE63pW1L6kGtRQ==
-X-CSE-MsgGUID: whPGsN3FSDCRLJfsi3nFpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="58031685"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="58031685"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 12:26:52 -0700
-X-CSE-ConnectionGUID: kRG37C5mRXS5vL8qqQHZQQ==
-X-CSE-MsgGUID: wtbhElCjRny6UI4hwBGdag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="172707063"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 12:26:52 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 21 Aug 2025 12:26:51 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Thu, 21 Aug 2025 12:26:51 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.56) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 21 Aug 2025 12:26:50 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uQIPQZam1V7n/uNSib1avqqsQqGEY4lksuFmnTcdqnwVuPPOlVZIjVCkSIqaH12v8Pi205iHaUaqnF6zCmQbOB5dK7Bzc7qq+j3ibPejRY1cuIfQ0c/JeeyeMquiqlEVVaOP89Xf7bYpZY4SDQeVMdE2avFnDIaz6DY0SROs1PlVG1n0T3eQIiiu4SujZzLY39fcre6OKbMN8z0NlsJbfVvK0JEP5r7ieZf0TLPqAcf9kwIXBnydL0fcbGL3YOsfKQy0QdY7HGlw/IOerIW9KueZ3HpSsfVbw22y3tTnPCoSxLP3ZrmRiCJWf+RzRbRyih8wwaYEQwH23z1eToDvmw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ueG/UN3hHkmyE/0lGiWk8nhMimyS45g1sUFwQgMehxI=;
- b=ZsajEWn3VJXe1fUGvcIVxEZwWSMqOK9sFCsBuRQ+tz4y2vk3o4QpSuXQAmXeJmlxnvqlQmbAL1qUQdCcvyqBprzrdoOOPVbtXds6/Z2INPy4zTIBYfM8kqWegecavumcJMD3NdAtQOjDEY+7RBINJBi0oCROKRrSvAUY1cDsGKJg0tYyqspFOvR6RG+kR7LUGVtSB24F+iYRgB+DBkJF8wUC5yHFg39K6HtT998K8EnnP1KJ2TX4tbipzH5plXfjmisMIZ6+W5iwvgHykx4FG5NeIyXX2Wu8jZXxYXmVhPn7VFye/X6wmB+1p/xO+yvPd7WB5Q+lc4GUhMOxL/HFEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by PH0PR11MB5030.namprd11.prod.outlook.com (2603:10b6:510:41::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.16; Thu, 21 Aug
- 2025 19:26:48 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::76d2:8036:2c6b:7563%6]) with mapi id 15.20.9052.013; Thu, 21 Aug 2025
- 19:26:48 +0000
-Date: Thu, 21 Aug 2025 15:26:43 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-CC: Luke Jones <luke@ljones.dev>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Corentin Chary <corentin.chary@gmail.com>, Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: Re: [REGRESSSION] on linux-next (next-20250509)
-Message-ID: <aKdy8_zVcdg-t1ga@intel.com>
-References: <SJ1PR11MB6129F730EEDCD051DAD8A5DCB967A@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <0325a50d-8499-4602-aa8c-67445b626587@app.fastmail.com>
- <iwo3m4fclstsm4lqmomdmlvk7gwtxjupbczbcw6i2ib5cqv2na@nsu3y5kzqzsp>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <iwo3m4fclstsm4lqmomdmlvk7gwtxjupbczbcw6i2ib5cqv2na@nsu3y5kzqzsp>
-X-ClientProxiedBy: SJ0PR03CA0190.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::15) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F388710E3B1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1755806831;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=LLdMjSHtv+zm1bY5U2c0p8D/d+U3cemLYeHBKaj7voE=;
+ b=aiDlWg1ppKiD+6e70brpJ2tO6bwNYDKSmFAJPO0O2bV8N4U5G3A6Mhxc5IPxOoQwLoPnbZ
+ LRjI2crvfJoIZJ8yuUb8qXzvuDrW2nJLEkDnx9CBm/bZ9yy8VBlB62sZuEkXru/qeJ3s4g
+ WfT6CmJAS96jpdZN7Hx878uPoh6s354=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-368-seGe2LGFNkGE8byAQP4-oQ-1; Thu, 21 Aug 2025 16:07:07 -0400
+X-MC-Unique: seGe2LGFNkGE8byAQP4-oQ-1
+X-Mimecast-MFC-AGG-ID: seGe2LGFNkGE8byAQP4-oQ_1755806827
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-45a256a20fcso8249475e9.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755806826; x=1756411626;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=LLdMjSHtv+zm1bY5U2c0p8D/d+U3cemLYeHBKaj7voE=;
+ b=wPyMI9r8q5v85pHH/xGotz1hD8r/THPe0cu1WzkaRa4Jxqm3WKdakKn8mer6tmesTE
+ h7D8gJNbgAFj6By7W4E9YO7DOZYUsCuPenI1H89J0tpMjHeOi9KwPIrAq0z+y6DWGWM+
+ kFMRx/x4qKhMOdce3PasNYkLlmj76XT0AW+lFjtoVX+BjFX7NHl3IWEGY98nCbU/GeLy
+ PxaGjCv4UQX00Byham2lyntFs+CAaWsbouWqmKrzH2BAr3q+f94Kco2GlvuKUmMmnsHf
+ Ucfheh9HBx/iIY89hBPtlnYMcaLVz1ptJWTCSlTx1olC1S033/wNdtX9+EJB7jQTHEzV
+ 2Kpg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUvFaUzvI4wti8U6xRhXIrlWyZMyAyXr/vjYKziiBNprjunYLv3ZK9AwoDZdYXUif9wkRx/B8nOjxU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzd4Swm1WH2ZqNxHjHqN9fJrkZ+8kGT+/QcIO0olCBr1qXn5GzF
+ NvqYFBwOHwR28OJ1GozBa9pS0MO0qposzhnvpraob8ZgBfhIqTbiF6w53dQY81oMbDLqTPT5xR2
+ AdD0h4/CzIt8SAfGMqf44T5OhIWO6VOFX4tvXp1rkOR96Gu8rQq/ipzJyRKjK+c0VEj+hiw==
+X-Gm-Gg: ASbGnctt/48PFQ4hPd+x6g0PHbM5KQHSgUxK8x0tNJWVBC3BdRTjkL5BEminCdlLpWi
+ gFkjtQzBw+HADZWuV2qOHYM1pgrpf7HwbxF58iSjMemHeKmC4tCQxY1YY3KP0x0oMDLsxwkPOql
+ IEBfoaBUdW5q/xgPUQH+dHIurDgQ1ZnD2672lfD0PXAHBPC43cobHbDhfn9Wkr9ZyG2vQb4jMt3
+ eG/oI35YUtPOnzIg4VcokCtMjwQ+couvba/D0FRrvUW8xYcNQk6lSE0nzqKurATwpHNdsxEpDut
+ L26Hjtw1n3Z3HC4vdy657lb7DQECoiFITMx21W4jqRPesml+DDZHXHDutDKQFqEycYFfCUfpYn8
+ 2yNg2DHFlRfAEhpIoj4FWHQ==
+X-Received: by 2002:a05:600c:4506:b0:456:1bae:5470 with SMTP id
+ 5b1f17b1804b1-45b5179b6camr3191255e9.8.1755806826480; 
+ Thu, 21 Aug 2025 13:07:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG7XEacdneicK9OezeDu7E6BzvwjamEpx7+RbUEh0t7qSo20kryXdXhBwYQdhu2/m95zw+e6A==
+X-Received: by 2002:a05:600c:4506:b0:456:1bae:5470 with SMTP id
+ 5b1f17b1804b1-45b5179b6camr3190665e9.8.1755806825859; 
+ Thu, 21 Aug 2025 13:07:05 -0700 (PDT)
+Received: from localhost
+ (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
+ [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-3c077788df7sm12764142f8f.48.2025.08.21.13.07.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 21 Aug 2025 13:07:05 -0700 (PDT)
+From: David Hildenbrand <david@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: David Hildenbrand <david@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Jason Gunthorpe <jgg@nvidia.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jens Axboe <axboe@kernel.dk>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Robin Murphy <robin.murphy@arm.com>, John Hubbard <jhubbard@nvidia.com>,
+ Peter Xu <peterx@redhat.com>, Alexander Potapenko <glider@google.com>,
+ Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
+ Christoph Lameter <cl@gentwo.org>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>, x86@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-mmc@vger.kernel.org,
+ linux-arm-kernel@axis.com, linux-scsi@vger.kernel.org, kvm@vger.kernel.org,
+ virtualization@lists.linux.dev, linux-mm@kvack.org,
+ io-uring@vger.kernel.org, iommu@lists.linux.dev,
+ kasan-dev@googlegroups.com, wireguard@lists.zx2c4.com,
+ netdev@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Alexandre Ghiti <alex@ghiti.fr>, Alex Dubov <oakad@yahoo.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Andreas Larsson <andreas@gaisler.com>, Borislav Petkov <bp@alien8.de>,
+ Brett Creeley <brett.creeley@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Damien Le Moal <dlemoal@kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ Doug Gilbert <dgilbert@interlog.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Huacai Chen <chenhuacai@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Lars Persson <lars.persson@axis.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Maxim Levitsky <maximlevitsky@gmail.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
+ Niklas Cassel <cassel@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Shuah Khan <shuah@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Sven Schnelle <svens@linux.ibm.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Vasily Gorbik <gor@linux.ibm.com>,
+ WANG Xuerui <kernel@xen0n.name>, Will Deacon <will@kernel.org>,
+ Yishai Hadas <yishaih@nvidia.com>
+Subject: [PATCH RFC 00/35] mm: remove nth_page()
+Date: Thu, 21 Aug 2025 22:06:26 +0200
+Message-ID: <20250821200701.1329277-1-david@redhat.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH0PR11MB5030:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5bb08d0b-66b7-4c48-5281-08dde0e8ac4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gKAmz1jXVmSYchZUnw4oAFU85aQSaG9Ur7V9cLlKJB25wJX5t4uN60u7xF7n?=
- =?us-ascii?Q?f6aXhss2eQ+7chLBBJuUTWWw1eiP3Ln/H2XLEhkG763DlZDrUvk5iWVtS9Xz?=
- =?us-ascii?Q?g7pIomwbXSbZnBL4a59SfaXPqZn88CG/PiO1EKGhBhF/CEpeflS0UB97LpfA?=
- =?us-ascii?Q?xiOmKDAqxliYnhZz16garfWfuDJziH//I0SYkKW7G5U1RW2r62YiuyUcMi5u?=
- =?us-ascii?Q?GoJPcX41xI8mBkLx0LT0RoZ1vCMINhf7EBX4vkp4uaFDUSRZK4PP91NlxlqQ?=
- =?us-ascii?Q?Y44OOPw6xaVzjjqJoKOKMdOUkrAakKMih+D9qMN/EG81xF/F8WZcmNSyS5w6?=
- =?us-ascii?Q?xllVGrZQuRl5YsC0g+LzeZA4w87oCQ+1lIzpKHe9T0hfY958s8rObDnyIIc+?=
- =?us-ascii?Q?vyXcpCosXCKvy2H7JJyOnTLXbZiDChheX5/BhSbyF+a3mvY/Fq5VG/4DPjFD?=
- =?us-ascii?Q?j9NWnPRfmAuhpXijE46aN1LSCeZf+CxgqJe9XhqKto6mb5Wjd6ElTrtls8xP?=
- =?us-ascii?Q?jINPj/joUC7rpay/crMKsKFY5MoLlxR5NJ4gkBGASc0erjcTqYxhevV8bknx?=
- =?us-ascii?Q?OdzR4SkEnTeqcv6O674fa1ItWtr8IFGnTW37Ut3XvwkW2sds/1u590a/9wcN?=
- =?us-ascii?Q?eqvlUKLsizDdt2zqnWyMglpQ/Nh4vw2oAmlKpp+h5Kbfb/eG56ksExBjQJ0h?=
- =?us-ascii?Q?i6nDLfhwQVTE45AqSpeNatN9HtOpC2QtHjmkxDL++et+ABXj1UhogxpgjCWq?=
- =?us-ascii?Q?l8uxvTvXmBt6VF7q7xz2zAEPBTXgtnp0LwVxWmhuMimroZlxds/st5h1WXxY?=
- =?us-ascii?Q?8LlTvnhtofki34rCCPcp03IZTE+Q6dXdP9UndS+LK3TRFDH31P+Jo/Hl47kV?=
- =?us-ascii?Q?igFihTuhGwV2GeNPnwFGayxEZdfOmETsy8IaQ7kmxUW1QuWxu5eJz7kUh7FU?=
- =?us-ascii?Q?yXnPln4mWZ7WDTnD5iyvpn0YZCVyPd8REBR2pzawZ2pkkc+zxmCP0igbBNzi?=
- =?us-ascii?Q?HOOB68kRrNa59ZgV2zlf2PdM5/L/iKWxFYeKpFKrj/VZxDCwlwzKBR+hWuvb?=
- =?us-ascii?Q?067d+s0SMHGJzFlfgpsNqydKW57J/a5RHdUB0W/41lvrV+9+a6XYnlrdzk81?=
- =?us-ascii?Q?Soc8nowB/7alQhe7Ke6932Wa0ANvJr1t9HWQl0XdMWUl3hXnj6kKwXMcp2Ma?=
- =?us-ascii?Q?45mzVUVc8cEIG+7G4bd6DSY+3LP9XwsbudlJjxKg2XV/Lq4+h03ooCb9/kNw?=
- =?us-ascii?Q?7RUK22zWRMyOS4grYXwY3+inJX3X3M+G4Q2GeHXg/Kyggg6d0408/NLY53B2?=
- =?us-ascii?Q?bDk6tUA9ggV65Azi6IuzSLpyvCzUEV8gI8mSoj5GfLdd+0+4E5xBPHQir0Fc?=
- =?us-ascii?Q?wgF+E4s=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MR9i2CJRX1JFaVNC065zeZ0DA/uZANf/BRceMrb1bvadQhJqGEm98+uabKZw?=
- =?us-ascii?Q?FLuPchmF9oc1hkTiAS8b4uYF8dsTQBN8inTB4lxyHW4Ua+rFgP1NyuUDtwJn?=
- =?us-ascii?Q?xXL3yYatZkWkLZGYyr9slyFVeSWwAqz0+YsUyrA02DaVtkUN2bXmXzlkPKL6?=
- =?us-ascii?Q?7rDfGLUtriD8t/Jf6gTCm6DPAMM9wW7koqYTv/u60UUI+ZvXpIknR27l6rlD?=
- =?us-ascii?Q?QGHcAkUy/HUHzul+xNAwE3lvA1AwqxwihDCgYm4dbMqqdkZhb/MiJAhGS8ZV?=
- =?us-ascii?Q?nFDq+qJOBpwh7No+o0/piJD7Ec/fLgkyMSihhfwCzYxu3Ogbl5e6FR21H7EO?=
- =?us-ascii?Q?DT0nWI98TWZ2vJh698A/OqYX31tGUQYeMPCnPhohSyjO+64SY3+wE6jpCm9v?=
- =?us-ascii?Q?MAHfmDmPTGy38eMC+d2Ex9mP7Pydx9t6wsOiznjb4yeM06gf40YnsVzsqoRS?=
- =?us-ascii?Q?TvsQugBpSCl5DGC59YHFgUcir3j3xhMu3R26Lf0wnEt9ZIruCq8v+A5ECSKr?=
- =?us-ascii?Q?af3cvGCrXiY2i7lEIrZFCWmFWUtWuS9rnM7ZZX+Fb5Dz94IZHByifklgsp5U?=
- =?us-ascii?Q?72NV5DK10vRkxyOpOtCIp9TgbXHKsq+2BWBqtBLcxQC8+B8jedBGh5kp8slk?=
- =?us-ascii?Q?6bPL3uIZPyIhybR+MVNCxNZpT5mjUUk/lX/USvbj99lh1JTSzR+zsMtmsTXB?=
- =?us-ascii?Q?LqpEW1qt1Q0fGy2N8xNxGIk3wOPHD5C/MOucpKlIq4opGgOG4b+16H0b/9jO?=
- =?us-ascii?Q?dSThQC9J33E7RTWipfFn/rF++uimd6pwsISiNbtnfSRs1r/TxI+WovWfOEVS?=
- =?us-ascii?Q?AuQyJl+m2qTUBDMFe7BM+3ALrpZi6t1VoAdsy+lPXHnV7Zjku40WrAWYUKcZ?=
- =?us-ascii?Q?yFwhVc3fsTmrKVehc4vku8YG0psP20g/GejkdHN0ReBJ0OHPTTipcKuQBoJf?=
- =?us-ascii?Q?LnqNUUrnZSjXa95tDB3ZlhbIwvHBF+4suwuAInFkZWg90qHbzGnjNBPONrzD?=
- =?us-ascii?Q?H39CaeD7jYgXr0mEoIAfgXXXoXOsgn/Uu/93gIf9fHkhm01Bt4maMTW5nuvS?=
- =?us-ascii?Q?vuYnxDSshRSdhS2ahrBekq4bl+kdEvMGSkF9rlAqHhI4vH3pCgd5z77YRO/S?=
- =?us-ascii?Q?nT3KrSclfeVY1BkYIDBZbF7PEA4crPfhv6wQbjNenusMTWTXtKO5wVXEgtjq?=
- =?us-ascii?Q?pMIm4X0zreU0R06A9Ohp566/ciQ35Sc5P542eUtn4nDxAwGRCHkZYQ/1DqNv?=
- =?us-ascii?Q?z3EM8ntLNqFZTGI1L+QJ8an1P1zGZVdQl83FvC02r7+iFHj75y/82qQVSw7T?=
- =?us-ascii?Q?yCTZkCz2+McN10JffeXcVPJlKEeGfEzueXZ6GkKcxXt8mEVPrUCvbPbTTNr1?=
- =?us-ascii?Q?kXmQYJ42Bw/3KwQruuS320b5S4mPejugMy+Zt0gNPvi3QKihLb4QERLS1XEQ?=
- =?us-ascii?Q?DajnniuqNrHj7JOy6Cz7Cg/e7NUSlgNNjzCejp7Qji/2OjrwOdijcl3S609j?=
- =?us-ascii?Q?QrTxtTXY9UypDgBIVBns1Y5MWnalPy/4jTBohS3uwcH17J5cG5d8MDry3RnV?=
- =?us-ascii?Q?Qyrsg+T9Al8uxxQF5WJ7voh26asUEGuUCfeejSZJ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bb08d0b-66b7-4c48-5281-08dde0e8ac4d
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2025 19:26:48.7223 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1Cknxx61hJl0bYEyYFcPbxyi99BJdN6UjLmtfFGH+UNz1A1Ypon8HZqWSHKNWVGZH2c+fsm9ZGZIoLFA+Qrwpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5030
-X-OriginatorOrg: intel.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: bwJlVP6GtbinAhqE2ueDvQb1teSjPC5aTMlgeYKprjk_1755806827
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,51 +161,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jul 03, 2025 at 09:43:41AM -0500, Lucas De Marchi wrote:
-> Hi,
-> 
-> On Wed, May 28, 2025 at 03:07:51PM +0200, Luke Jones wrote:
-> > On Wed, 28 May 2025, at 12:08 PM, Borah, Chaitanya Kumar wrote:
-> > > Hello Luke,
-> > > 
-> > > Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
-> > > 
-> > > This mail is regarding a regression we are seeing in our CI runs[1] on
-> > > linux-next repository.
-> > 
-> > Can you tell me if the fix here was included?
-> > https://lkml.org/lkml/2025/5/24/152
-> > 
-> > I could change to:
-> > static void asus_s2idle_check_register(void)
-> > {
-> >    // Only register for Ally devices
-> >    if (dmi_check_system(asus_rog_ally_device)) {
-> >        if (acpi_register_lps0_dev(&asus_ally_s2idle_dev_ops))
-> >            pr_warn("failed to register LPS0 sleep handler in asus-wmi\n");
-> >    }
-> > }
-> > 
-> > but I don't really understand what is happening here. The inner lps0 functions won't run unless use_ally_mcu_hack is set.
-> > 
-> > I will do my best to fix but I need to understand what happened a bit better.
+This is based on mm-unstable and was cross-compiled heavily.
 
-Hi Luke, is there anything we could do to help here? Any log or info that
-could help from this machine?
+I should probably have already dropped the RFC label but I want to hear
+first if I ignored some corner case (SG entries?) and I need to do
+at least a bit more testing.
 
-This bug is blocking some of our CI runs here.
+I will only CC non-MM folks on the cover letter and the respective patch
+to not flood too many inboxes (the lists receive all patches).
 
-Thanks,
-Rodrigo.
+---
 
-> 
-> Any updates here? This is basically killing our tests for drm-xe-fixes
-> we are submitting to 6.16 since it taints the kernel. If we can't fix,
-> maybe it's already late enough in RCs that we should need a revert?
-> 
-> FWIW, for 6.17 we have a branch on the side we also merge before testing
-> and we've been including the change above to stop it from killing the
-> rest of our CI:
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/commit/e9d0926aa1c6afcc920013c39d5bd6dd85f581fb
-> 
-> Lucas De Marchi
+As discussed recently with Linus, nth_page() is just nasty and we would
+like to remove it.
+
+To recap, the reason we currently need nth_page() within a folio is because
+on some kernel configs (SPARSEMEM without SPARSEMEM_VMEMMAP), the
+memmap is allocated per memory section.
+
+While buddy allocations cannot cross memory section boundaries, hugetlb
+and dax folios can.
+
+So crossing a memory section means that "page++" could do the wrong thing.
+Instead, nth_page() on these problematic configs always goes from
+page->pfn, to the go from (++pfn)->page, which is rather nasty.
+
+Likely, many people have no idea when nth_page() is required and when
+it might be dropped.
+
+We refer to such problematic PFN ranges and "non-contiguous pages".
+If we only deal with "contiguous pages", there is not need for nth_page().
+
+Besides that "obvious" folio case, we might end up using nth_page()
+within CMA allocations (again, could span memory sections), and in
+one corner case (kfence) when processing memblock allocations (again,
+could span memory sections).
+
+So let's handle all that, add sanity checks, and remove nth_page().
+
+Patch #1 -> #5   : stop making SPARSEMEM_VMEMMAP user-selectable + cleanups
+Patch #6 -> #12  : disallow folios to have non-contiguous pages
+Patch #13 -> #20 : remove nth_page() usage within folios
+Patch #21        : disallow CMA allocations of non-contiguous pages
+Patch #22 -> #31 : sanity+check + remove nth_page() usage within SG entry
+Patch #32        : sanity-check + remove nth_page() usage in
+                   unpin_user_page_range_dirty_lock()
+Patch #33        : remove nth_page() in kfence
+Patch #34        : adjust stale comment regarding nth_page
+Patch #35        : mm: remove nth_page()
+
+A lot of this is inspired from the discussion at [1] between Linus, Jason
+and me, so cudos to them.
+
+[1] https://lore.kernel.org/all/CAHk-=wiCYfNp4AJLBORU-c7ZyRBUp66W2-Et6cdQ4REx-GyQ_A@mail.gmail.com/T/#u
+
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: "Liam R. Howlett" <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@suse.cz>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Jens Axboe <axboe@kernel.dk>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: John Hubbard <jhubbard@nvidia.com>
+Cc: Peter Xu <peterx@redhat.com>
+Cc: Alexander Potapenko <glider@google.com>
+Cc: Marco Elver <elver@google.com>
+Cc: Dmitry Vyukov <dvyukov@google.com>
+Cc: Brendan Jackman <jackmanb@google.com>
+Cc: Johannes Weiner <hannes@cmpxchg.org>
+Cc: Zi Yan <ziy@nvidia.com>
+Cc: Dennis Zhou <dennis@kernel.org>
+Cc: Tejun Heo <tj@kernel.org>
+Cc: Christoph Lameter <cl@gentwo.org>
+Cc: Muchun Song <muchun.song@linux.dev>
+Cc: Oscar Salvador <osalvador@suse.de>
+Cc: x86@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
+Cc: linux-s390@vger.kernel.org
+Cc: linux-crypto@vger.kernel.org
+Cc: linux-ide@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-mmc@vger.kernel.org
+Cc: linux-arm-kernel@axis.com
+Cc: linux-scsi@vger.kernel.org
+Cc: kvm@vger.kernel.org
+Cc: virtualization@lists.linux.dev
+Cc: linux-mm@kvack.org
+Cc: io-uring@vger.kernel.org
+Cc: iommu@lists.linux.dev
+Cc: kasan-dev@googlegroups.com
+Cc: wireguard@lists.zx2c4.com
+Cc: netdev@vger.kernel.org
+Cc: linux-kselftest@vger.kernel.org
+Cc: linux-riscv@lists.infradead.org
+
+David Hildenbrand (35):
+  mm: stop making SPARSEMEM_VMEMMAP user-selectable
+  arm64: Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+  s390/Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+  x86/Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+  wireguard: selftests: remove CONFIG_SPARSEMEM_VMEMMAP=y from qemu
+    kernel config
+  mm/page_alloc: reject unreasonable folio/compound page sizes in
+    alloc_contig_range_noprof()
+  mm/memremap: reject unreasonable folio/compound page sizes in
+    memremap_pages()
+  mm/hugetlb: check for unreasonable folio sizes when registering hstate
+  mm/mm_init: make memmap_init_compound() look more like
+    prep_compound_page()
+  mm/hugetlb: cleanup hugetlb_folio_init_tail_vmemmap()
+  mm: sanity-check maximum folio size in folio_set_order()
+  mm: limit folio/compound page sizes in problematic kernel configs
+  mm: simplify folio_page() and folio_page_idx()
+  mm/mm/percpu-km: drop nth_page() usage within single allocation
+  fs: hugetlbfs: remove nth_page() usage within folio in
+    adjust_range_hwpoison()
+  mm/pagewalk: drop nth_page() usage within folio in folio_walk_start()
+  mm/gup: drop nth_page() usage within folio when recording subpages
+  io_uring/zcrx: remove "struct io_copy_cache" and one nth_page() usage
+  io_uring/zcrx: remove nth_page() usage within folio
+  mips: mm: convert __flush_dcache_pages() to
+    __flush_dcache_folio_pages()
+  mm/cma: refuse handing out non-contiguous page ranges
+  dma-remap: drop nth_page() in dma_common_contiguous_remap()
+  scatterlist: disallow non-contigous page ranges in a single SG entry
+  ata: libata-eh: drop nth_page() usage within SG entry
+  drm/i915/gem: drop nth_page() usage within SG entry
+  mspro_block: drop nth_page() usage within SG entry
+  memstick: drop nth_page() usage within SG entry
+  mmc: drop nth_page() usage within SG entry
+  scsi: core: drop nth_page() usage within SG entry
+  vfio/pci: drop nth_page() usage within SG entry
+  crypto: remove nth_page() usage within SG entry
+  mm/gup: drop nth_page() usage in unpin_user_page_range_dirty_lock()
+  kfence: drop nth_page() usage
+  block: update comment of "struct bio_vec" regarding nth_page()
+  mm: remove nth_page()
+
+ arch/arm64/Kconfig                            |  1 -
+ arch/mips/include/asm/cacheflush.h            | 11 +++--
+ arch/mips/mm/cache.c                          |  8 ++--
+ arch/s390/Kconfig                             |  1 -
+ arch/x86/Kconfig                              |  1 -
+ crypto/ahash.c                                |  4 +-
+ crypto/scompress.c                            |  8 ++--
+ drivers/ata/libata-sff.c                      |  6 +--
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  2 +-
+ drivers/memstick/core/mspro_block.c           |  3 +-
+ drivers/memstick/host/jmb38x_ms.c             |  3 +-
+ drivers/memstick/host/tifm_ms.c               |  3 +-
+ drivers/mmc/host/tifm_sd.c                    |  4 +-
+ drivers/mmc/host/usdhi6rol0.c                 |  4 +-
+ drivers/scsi/scsi_lib.c                       |  3 +-
+ drivers/scsi/sg.c                             |  3 +-
+ drivers/vfio/pci/pds/lm.c                     |  3 +-
+ drivers/vfio/pci/virtio/migrate.c             |  3 +-
+ fs/hugetlbfs/inode.c                          | 25 ++++------
+ include/crypto/scatterwalk.h                  |  4 +-
+ include/linux/bvec.h                          |  7 +--
+ include/linux/mm.h                            | 48 +++++++++++++++----
+ include/linux/page-flags.h                    |  5 +-
+ include/linux/scatterlist.h                   |  4 +-
+ io_uring/zcrx.c                               | 34 ++++---------
+ kernel/dma/remap.c                            |  2 +-
+ mm/Kconfig                                    |  3 +-
+ mm/cma.c                                      | 36 +++++++++-----
+ mm/gup.c                                      | 13 +++--
+ mm/hugetlb.c                                  | 23 ++++-----
+ mm/internal.h                                 |  1 +
+ mm/kfence/core.c                              | 17 ++++---
+ mm/memremap.c                                 |  3 ++
+ mm/mm_init.c                                  | 13 ++---
+ mm/page_alloc.c                               |  5 +-
+ mm/pagewalk.c                                 |  2 +-
+ mm/percpu-km.c                                |  2 +-
+ mm/util.c                                     | 33 +++++++++++++
+ tools/testing/scatterlist/linux/mm.h          |  1 -
+ .../selftests/wireguard/qemu/kernel.config    |  1 -
+ 40 files changed, 203 insertions(+), 150 deletions(-)
+
+
+base-commit: c0e3b3f33ba7b767368de4afabaf7c1ddfdc3872
+-- 
+2.50.1
+
