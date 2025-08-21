@@ -2,76 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C24BDB3039B
+	by mail.lfdr.de (Postfix) with ESMTPS id B499EB30398
 	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFE710E9F0;
-	Thu, 21 Aug 2025 20:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA4E410E9F5;
+	Thu, 21 Aug 2025 20:08:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="G+CZgNUE";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="fZ5Ty5sW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD79210E9EE
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A30F910E9F5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806875;
+ s=mimecast20190719; t=1755806878;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=QCvnB/7xI7T/4p4mwWx/D4+W6s//h9G2+oSyfbDOFZs=;
- b=G+CZgNUEzSQLJQwIThKqzOElNl60IpSHI0G8WEH1Kb07Xpe7Qthvh4flAOa7Lk/pCP40GN
- oz6Ib2b1vdKYzzWOQvSUymmnlsQDaunkPY01qS6f6PgTmAJZyLv49ifoOCxUzPp3v6/WQd
- DpmsAWewxFzq6Wfg1vHOCkCFLY2rpgM=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=NPs2EdTZ9fd3MpWdb0ATDCa6nUqfGtFMv2uyZP7L+uU=;
+ b=fZ5Ty5sW0qYz/PmHJwB7r+5zVnYtzRpVlLaUlzm3PSHu5K6hamNED5c6VRFgrH71JEg4Z/
+ wWDBbUjKT1SY/c9ehqhg/OoH672bAuvfrs1c1EfDAO5Hd6Amygv0bVitRC+qOAkKHCn1j6
+ GpFL7RYOiyBMHmebo8RJtNauZ0sANPg=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-665-7bP4rrikM-W34tLCEujCtQ-1; Thu, 21 Aug 2025 16:07:52 -0400
-X-MC-Unique: 7bP4rrikM-W34tLCEujCtQ-1
-X-Mimecast-MFC-AGG-ID: 7bP4rrikM-W34tLCEujCtQ_1755806872
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-45b4d6f3ab0so8379575e9.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:52 -0700 (PDT)
+ us-mta-61-q3opz3L9Oda9_YMpD7iRLg-1; Thu, 21 Aug 2025 16:07:55 -0400
+X-MC-Unique: q3opz3L9Oda9_YMpD7iRLg-1
+X-Mimecast-MFC-AGG-ID: q3opz3L9Oda9_YMpD7iRLg_1755806874
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-45a1b00352eso7028875e9.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806872; x=1756411672;
+ d=1e100.net; s=20230601; t=1755806874; x=1756411674;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QCvnB/7xI7T/4p4mwWx/D4+W6s//h9G2+oSyfbDOFZs=;
- b=LeU19Tnftp27G5EIuPhe8gcxizT1xweNlsGjNBiUaie8lvNF7qaHUvX/2VGwbHs3bd
- hA2YjvTHClWguz6poDGJepn6yBeEkVtZL/Z2ahsCADPzFj9NHJQtzMbSERG51AYpogMG
- 6L+rBRrWcWmPXfViCX94K4AwZA+0PGtPPGC8Ii0Ldqn3ROQIbBlH05v4In6e5rNtDRN/
- LGetZFzoV9jbUhTi7ypNjxnt1k7SFPgvTr1n5KxCA4DPUzHf1GBeVoqFtkphRs84d5lO
- OvLw0NXPHlZ3pJSIgNL3VopusFVqWz6ibnESgBXGTWWUnMJ/CMZIsOz8pW8HioZjFdIc
- zzYw==
+ bh=NPs2EdTZ9fd3MpWdb0ATDCa6nUqfGtFMv2uyZP7L+uU=;
+ b=NTKFzYcmQ/7gCJOMWCkEMxJ1vUX7MMiANTQgeIReavxlPSQwYIA9H71XgDnJ18UzfV
+ yLP6LD7yjNWMCW4oHZbr/6jLHHRG4LeBg/b9fTUrnPjQqz+tfwr7FaNF0vzIXhYwbIfK
+ NuMV2hHMgYifut/QKVs3tpa1zj+mS6Qt0dhBw5zp2s75RGNT6FNMmEkmVuOtzT0G9Wqh
+ xL+Foc7P1J/vOJ9O8HiZM9ZGCGjhG0nO0opKcWzdbc+AN+H7/fDmd8eI3bgK9B1I3qg9
+ xy1AflxSwthiZgJHuIvGjbCimje+XJcpZ10HH/gPcXM0A7XbhzzQEuRtcSTiXd91kwvI
+ NEYQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWVrVuMFWLTHLLI6MdrRGHvlP26Uq7rdo4tJ+kaq4zDFLo+bGj/OrZkTIEn8PgqgbL0JIJdP7XxW5o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwuB2XOS4MntUGcR6E/7dmBTbA8roZqB5Iwfp/vaYiAIuNqt3LJ
- blTveP37QjY0X3feOqGaKKZj5gB+CGa1wWwIMDEqqYlFuLz16Wo0pHft3Wf0Ea/htf6fFTYkjdR
- 2eILHN9QD6OhTbKtPRGDszwQtYyvetSlRHxldJ6sJ9nhs7DDxHxRPrIB97G5grYLxRtimcQ==
-X-Gm-Gg: ASbGncvWe03NGSTik9xrgqNyOqCZgWmCDr2EPzLybSsFaJMXf/y4+C4Qrfuu+qbAyj8
- B8Cq6WB8yTQhI2Oqp1kt4/cAZusxGJ6GD4lTPVO0HybUIez9Zd7jas7UCmlFkJeHGFtVczO95AX
- 5pYDNv4LCv7dRUkip59uOHaANe3mGVUK3tL0d4ko0PFiYF9nm5dPvq3AoQt/i9CMkNmMqUJs4qJ
- ZNtWskjXf6ADbV3rAyQ1l3KPnyRxVcxn4mHEceK95atuiTrBkUe2ogTmlnOLM0KfLVArq86sD9u
- KewLTD1RjqQfpPtQYPRUPbjnZnYkbDkRdO2N/y0sexb2/HpVqCALkh/buY48d5tw7ikaXgoLDhZ
- qCGim7r8z0XyMrfRdYGiTiw==
-X-Received: by 2002:a05:600c:1d07:b0:459:e025:8c40 with SMTP id
- 5b1f17b1804b1-45b5179e897mr2278895e9.10.1755806871589; 
- Thu, 21 Aug 2025 13:07:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGQe1GSIQC6LfutgynQLrqB1o4Jo0GTrBjlhxRWjM7nqTD8l8oEo1HOcPxtIuVQVn3tsHm8QA==
-X-Received: by 2002:a05:600c:1d07:b0:459:e025:8c40 with SMTP id
- 5b1f17b1804b1-45b5179e897mr2278575e9.10.1755806871147; 
- Thu, 21 Aug 2025 13:07:51 -0700 (PDT)
+ AJvYcCWwh/+hYmYyQwYAXCI2g1R3pUPuPna1lcHKfD1FPDXY7dp2XDtwAs/wOZIqdtg3roo/pSrIWLLHlWc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzpZ7A+lwV03QyyQOCRbwbMpGClb5Dk1Hbbojos4vu0mrpddVEn
+ oVrs6Fs5SZFP4JS1F3q2106qT0wFMxhA+r25wOAy+NWXwlh9McM/OAq8hEutz8Uh+AKMLFPBuFv
+ oEu+nJCKl6f5Ww/3kffD4t/S+WJIi10xc56CIOYUT+/HWfuBfaEf+N19pffXcnli7A9qvTA==
+X-Gm-Gg: ASbGncslGW0ud5zgFQZ2IvkJ5BRcC62fddnNWzDRDPBDP6lbqUXX3oVtF8FdfjFWpip
+ fEQonTaqEOlHFEWuFF+x3vNEzZjurfglAU3xWtAWNOmYDFQn4kIa52iMDpgyS7DGmN1Me/WhXT9
+ BjrLT4rCXGl1+ZPV4oqOh+b/BDXHeMahQ/SPN9A+ZldRPare+ys9k6GK7IIN7UeQWrxQwiox6UZ
+ XNyADN9erjY+yNUElpahG8m0MlYDEEBPxI+8Uvcl9b8gQV2NXfpl7ZeDkXNmACTLocCSXu7kRH0
+ pFhvoPCZVxBC/4PUZdUX4aUOusrhww9ZgZ36Pfj2SgoZtjYiSTJvzF8E4hNCj83gJwb1ua9F0RX
+ qASCC4Wsz7W+zqWxErF0Llg==
+X-Received: by 2002:a05:600c:1388:b0:459:d451:3364 with SMTP id
+ 5b1f17b1804b1-45b517d40f2mr2554285e9.24.1755806874315; 
+ Thu, 21 Aug 2025 13:07:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFo8ikhW4DoWVw60oDeAXqMRvn4UERlcVawLCjGel2pacwRc1R1ONhYVQm5EzuW0YIJQT4FDg==
+X-Received: by 2002:a05:600c:1388:b0:459:d451:3364 with SMTP id
+ 5b1f17b1804b1-45b517d40f2mr2553905e9.24.1755806873856; 
+ Thu, 21 Aug 2025 13:07:53 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45b4e1d77e0sm22159155e9.0.2025.08.21.13.07.49
+ ffacd0b85a97d-3c07487a009sm12690403f8f.11.2025.08.21.13.07.51
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:07:50 -0700 (PDT)
+ Thu, 21 Aug 2025 13:07:53 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
@@ -100,16 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 16/35] mm/pagewalk: drop nth_page() usage within folio in
- folio_walk_start()
-Date: Thu, 21 Aug 2025 22:06:42 +0200
-Message-ID: <20250821200701.1329277-17-david@redhat.com>
+Subject: [PATCH RFC 17/35] mm/gup: drop nth_page() usage within folio when
+ recording subpages
+Date: Thu, 21 Aug 2025 22:06:43 +0200
+Message-ID: <20250821200701.1329277-18-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 02axNAwO4OfpBOMQKpogUo_1wl6WK4lbphhJOaVlKmY_1755806872
+X-Mimecast-MFC-PROC-ID: ypF3VWWPe6fFzT7wbwaM3x7uNGvJTt0gmoXv3CLf2xA_1755806874
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -128,27 +128,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's no longer required to use nth_page() within a folio, so let's just
-drop the nth_page() in folio_walk_start().
+nth_page() is no longer required when iterating over pages within a
+single folio, so let's just drop it when recording subpages.
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- mm/pagewalk.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ mm/gup.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/mm/pagewalk.c b/mm/pagewalk.c
-index c6753d370ff4e..9e4225e5fcf5c 100644
---- a/mm/pagewalk.c
-+++ b/mm/pagewalk.c
-@@ -1004,7 +1004,7 @@ struct folio *folio_walk_start(struct folio_walk *fw,
- found:
- 	if (expose_page)
- 		/* Note: Offset from the mapped page, not the folio start. */
--		fw->page = nth_page(page, (addr & (entry_size - 1)) >> PAGE_SHIFT);
-+		fw->page = page + ((addr & (entry_size - 1)) >> PAGE_SHIFT);
- 	else
- 		fw->page = NULL;
- 	fw->ptl = ptl;
+diff --git a/mm/gup.c b/mm/gup.c
+index b2a78f0291273..f017ff6d7d61a 100644
+--- a/mm/gup.c
++++ b/mm/gup.c
+@@ -491,9 +491,9 @@ static int record_subpages(struct page *page, unsigned long sz,
+ 	struct page *start_page;
+ 	int nr;
+ 
+-	start_page = nth_page(page, (addr & (sz - 1)) >> PAGE_SHIFT);
++	start_page = page + ((addr & (sz - 1)) >> PAGE_SHIFT);
+ 	for (nr = 0; addr != end; nr++, addr += PAGE_SIZE)
+-		pages[nr] = nth_page(start_page, nr);
++		pages[nr] = start_page + nr;
+ 
+ 	return nr;
+ }
+@@ -1512,7 +1512,7 @@ static long __get_user_pages(struct mm_struct *mm,
+ 			}
+ 
+ 			for (j = 0; j < page_increm; j++) {
+-				subpage = nth_page(page, j);
++				subpage = page + j;
+ 				pages[i + j] = subpage;
+ 				flush_anon_page(vma, subpage, start + j * PAGE_SIZE);
+ 				flush_dcache_page(subpage);
 -- 
 2.50.1
 
