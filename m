@@ -2,80 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55277B3036D
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29648B30371
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:07:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE5C110E9CC;
-	Thu, 21 Aug 2025 20:07:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A545F10E9D6;
+	Thu, 21 Aug 2025 20:07:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UTMr6Gx8";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dBdGbLGc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C035E10E3BC
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:25 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00DC410E9D2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806845;
+ s=mimecast20190719; t=1755806847;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=aOl+Pd7m6DQCTUATshUDhXjEbKNtUx8aQQ0CVjE/d9w=;
- b=UTMr6Gx80u/MdHhmb0nX9KR9K1Y9mBBNZdMhmiTyizUXmPVAka1kPbgfHeSrj+xq5AU449
- 31vHiecKeLgib3giSO/EvygS+/4G6YvCO+CVyrFduoeJdrdAMNjkmPmttA0i9gEeMyzGSB
- 6GKlHo3EyWP+28+KQHE1pqIN/h3+5rA=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=saIpwl0G6zoDDZA6kqzaAKGDHCkLp/ivw/dNNi90asQ=;
+ b=dBdGbLGcVbRa9Ikps2KwOnaoL4YsVb8wdAXF6ARS144K7GPVFJrdibgBt7thHpBMe1Vgzy
+ 68z0YKbhgXTw55s7BNSlH/0FOyk4bm7wyBFmjdho+lGObZK2cz0zVmk81MszaIIKKpdo7B
+ Tot+dhPdVLSrkCrClPDcdtWNEXv5Qhc=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-589-KYDz5WZGPV6IQBpUyaLT9A-1; Thu, 21 Aug 2025 16:07:22 -0400
-X-MC-Unique: KYDz5WZGPV6IQBpUyaLT9A-1
-X-Mimecast-MFC-AGG-ID: KYDz5WZGPV6IQBpUyaLT9A_1755806842
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-45a1b05a59cso9773055e9.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:22 -0700 (PDT)
+ us-mta-78-YhekR9bdNI-Rpc2YLRgb9w-1; Thu, 21 Aug 2025 16:07:25 -0400
+X-MC-Unique: YhekR9bdNI-Rpc2YLRgb9w-1
+X-Mimecast-MFC-AGG-ID: YhekR9bdNI-Rpc2YLRgb9w_1755806845
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-45a1b05d251so7739935e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806842; x=1756411642;
+ d=1e100.net; s=20230601; t=1755806844; x=1756411644;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=aOl+Pd7m6DQCTUATshUDhXjEbKNtUx8aQQ0CVjE/d9w=;
- b=rXXb9/do67D/barvhVv6Lld2LBGowHmR9bg0LVZ1H6eTdu+uddlOo9DwhOpiWsu+Nw
- 6OcNE3KRlf2mlhsh1hJiH+gcIs6oGemS2L2tF9XibMKmk10b+vBPzQeqRL2DGGx+UlZW
- KtL0nMt3ZtCQRoZMmyQX9xdzo/mDQFPswIKkeBelh2FcFB2A9R0xnD7M7EjzzcaCn5qy
- dwyLhfYtS0UTWCKxZ+9UrbJo6Ohif9r9HfFmxU4Mo8P5UbmbOz6NIaOd0xOW0VBpI4+3
- Ws3XTJ44HFi4gI3wqEhdotcukzEIUthZMxvblpIQvwTQippw5wuaaA+2oZI+lKX55tcq
- D/Vw==
+ bh=saIpwl0G6zoDDZA6kqzaAKGDHCkLp/ivw/dNNi90asQ=;
+ b=DENcpN1KaQ2o13Ym48ZPkcK+XsOp8IcCbxutvpZ6Yeh4jXzbH+Y12N6zMwirHemYAZ
+ eXBNAvf6u6DoHhjFdFUq8Zrt9FvfMWW+FioIXVlT/+PWBe3Ygd63n1CEarEyTiJTWsKG
+ TBYhYogHra8syamaElQpZeAZtoDktx7Ru0eMtmgQksFEnHa6ARn+QiNSD3zsi05m2U0I
+ iBvW4MRy7SECRAlawl+5pYeaeSjBz/tMXbjEQK+iXyGNufS2XF0r+pEfhAGRyNYDju/p
+ Qeq78kngbxp1QCOEd9Fab+bD8sfJJTlxqWnQtVFVvEQfB6TSjEWBitlu0frisMDsM3OJ
+ GABw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWFpheIc2iVwvdC6IN8NZez56gmQ7hGqxeDpAkkSrwiibUbCXCR8wCYnts2654/t4/H7YJ0CvbCTbw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBnZSY/sSohDOqFMMs6uy2jRx9tNmrPvVvs2v/fZQCgYo+g4Gy
- QgLV/3J+r7kprj9JQf5WhN++2ttEuotACs5BKOEOyD8JOw8fgH1NFzHEO36Qu4dY8xGvphft01q
- f7Z6mdfxUEGQ2hp+E/awGPPR15aPs8r3nCN6ljIiF3UDpoesTnK/ACTrJibhCIblF3jGDZA==
-X-Gm-Gg: ASbGncsK/O9HESEBf6CYxzzarpV/7CJyxeDoflw2xO7O594DJR7nHDXlEJlkgPIiUZJ
- 6Db5D6RE/TVqYmc/iw7XLk73L3wXB/xaAqEfRFTfMCDi35pv+1xGHHpOTTj71sOwM8TBZWbgm4N
- gr7Z00vuARpF6a1EX00GZhL7VCsDTUW9OzX2ToQE+nQLmiLeW5Epj5h3OqUTgB2RyUKeqY0lHNN
- HpN4R4gmoUCxbThj9GuBLRzArrjzn1sL6Xegz9WHpsAX6I+O2WLOADQEc+FrPfH26Ew+2rjUNzq
- kwSPyHisPM9nO1dxjobIjlYuMXqsbDeYeZhV8rNEE6Ah6AHAsLaQ2aUz3QTe+fYoQ4FW8nydwCK
- zxe+MdmWhlS6MwHzCCKGb7A==
-X-Received: by 2002:a05:600c:1993:b0:456:e39:ec1a with SMTP id
- 5b1f17b1804b1-45b517ad4a9mr2412585e9.14.1755806841695; 
- Thu, 21 Aug 2025 13:07:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHtBnzBdejX2oNj8vG9iZBZKJew+pPrkGWxHzVnhFEnb5RkXIsj+cBFTtJrIXnzr/4lYhSU+w==
-X-Received: by 2002:a05:600c:1993:b0:456:e39:ec1a with SMTP id
- 5b1f17b1804b1-45b517ad4a9mr2412295e9.14.1755806841198; 
- Thu, 21 Aug 2025 13:07:21 -0700 (PDT)
+ AJvYcCVUNbD4vAOvsptOX3ksI3KYbMah9pNRhuWLvgSsMXr0SeWrWKbFFcf+7JTqImuMrrh9pnObz+mh+/8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyi+sBcoD6eUekiEbTNlT7Atx7dMn2ulN4Q0I/hr61zFjv8H4Rs
+ Bd9vgxSvarZs3yzqn8YhXZIPOFGd87Gf3KAzwSHOeF0M85uKuxqhlpJxYZqXGIMLLIDo6ZETYoL
+ U3zeQf+/H3+s5bBs2holHkDaJWH1g9NrxZQJt+fZlzrU2kRG8WVXGBqqLMfpTLxUSJn767Q==
+X-Gm-Gg: ASbGncuetpfQliCo9G0arsNT/z5HsOG1dUw9gU0VHAq8GvTpI2SksnmZAddSnX6EiBe
+ GL4D6JId9ddwkWSQByDRvMlC3L3Z2zd5rvcCvFmgiDLklzZLZu2hJGO0Y7P1mMlvN+PIy2DDyu+
+ Qb+YCUuCgkgmKY0ljf+NRoJQbsLa7v18bCP/yXsavCWEefdeSHXJxHr5ytglN2Gk6offk5CPQc9
+ 3w7OECOzb11DjtrCDK1zR0m+7VYuQZmh6Bq6xUavxR2jr1UGv6fvyDEYyvEk+k64YpIRuW2lbh3
+ HohnsJyEjP4/RuLxhlv/07XxtmAUi9yyuLOgpALZ60f7thcG02Ir+UnfmoMKK2KE+qCO7VBHSAb
+ nzYmix/BNylmUfwMcwx1SCA==
+X-Received: by 2002:a05:600c:35c3:b0:456:285b:db3c with SMTP id
+ 5b1f17b1804b1-45b5178e768mr3050035e9.3.1755806844537; 
+ Thu, 21 Aug 2025 13:07:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFwjTyvRglWWHHllkR7aRLdEFYS2lmKXV2DYH9bn4L7+YG6UNdB0HbBuiJbZZ1vy18QyYWFNg==
+X-Received: by 2002:a05:600c:35c3:b0:456:285b:db3c with SMTP id
+ 5b1f17b1804b1-45b5178e768mr3049835e9.3.1755806844048; 
+ Thu, 21 Aug 2025 13:07:24 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45b50dc00a8sm10960275e9.1.2025.08.21.13.07.19
+ ffacd0b85a97d-3c074e38d65sm12980909f8f.27.2025.08.21.13.07.22
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:07:20 -0700 (PDT)
+ Thu, 21 Aug 2025 13:07:23 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
- "Jason A. Donenfeld" <Jason@zx2c4.com>, Shuah Khan <shuah@kernel.org>,
  Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
@@ -101,16 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 05/35] wireguard: selftests: remove
- CONFIG_SPARSEMEM_VMEMMAP=y from qemu kernel config
-Date: Thu, 21 Aug 2025 22:06:31 +0200
-Message-ID: <20250821200701.1329277-6-david@redhat.com>
+Subject: [PATCH RFC 06/35] mm/page_alloc: reject unreasonable folio/compound
+ page sizes in alloc_contig_range_noprof()
+Date: Thu, 21 Aug 2025 22:06:32 +0200
+Message-ID: <20250821200701.1329277-7-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: NwOVY4iGyUX702Sx-UBgKT_v3sabvAtrWoQGvhVUfe8_1755806842
+X-Mimecast-MFC-PROC-ID: 5ZyAl2y25od-5C2dPvrNToJmAFEyhZGOfBCVTt2uwAM_1755806845
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -129,28 +128,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's no longer user-selectable (and the default was already "y"), so
-let's just drop it.
+Let's reject them early, which in turn makes folio_alloc_gigantic() reject
+them properly.
 
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Cc: Shuah Khan <shuah@kernel.org>
+To avoid converting from order to nr_pages, let's just add MAX_FOLIO_ORDER
+and calculate MAX_FOLIO_NR_PAGES based on that.
+
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- tools/testing/selftests/wireguard/qemu/kernel.config | 1 -
- 1 file changed, 1 deletion(-)
+ include/linux/mm.h | 6 ++++--
+ mm/page_alloc.c    | 5 ++++-
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/tools/testing/selftests/wireguard/qemu/kernel.config b/tools/testing/selftests/wireguard/qemu/kernel.config
-index 0a5381717e9f4..1149289f4b30f 100644
---- a/tools/testing/selftests/wireguard/qemu/kernel.config
-+++ b/tools/testing/selftests/wireguard/qemu/kernel.config
-@@ -48,7 +48,6 @@ CONFIG_JUMP_LABEL=y
- CONFIG_FUTEX=y
- CONFIG_SHMEM=y
- CONFIG_SLUB=y
--CONFIG_SPARSEMEM_VMEMMAP=y
- CONFIG_SMP=y
- CONFIG_SCHED_SMT=y
- CONFIG_SCHED_MC=y
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index 00c8a54127d37..77737cbf2216a 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -2055,11 +2055,13 @@ static inline long folio_nr_pages(const struct folio *folio)
+ 
+ /* Only hugetlbfs can allocate folios larger than MAX_ORDER */
+ #ifdef CONFIG_ARCH_HAS_GIGANTIC_PAGE
+-#define MAX_FOLIO_NR_PAGES	(1UL << PUD_ORDER)
++#define MAX_FOLIO_ORDER		PUD_ORDER
+ #else
+-#define MAX_FOLIO_NR_PAGES	MAX_ORDER_NR_PAGES
++#define MAX_FOLIO_ORDER		MAX_PAGE_ORDER
+ #endif
+ 
++#define MAX_FOLIO_NR_PAGES	(1UL << MAX_FOLIO_ORDER)
++
+ /*
+  * compound_nr() returns the number of pages in this potentially compound
+  * page.  compound_nr() can be called on a tail page, and is defined to
+diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+index ca9e6b9633f79..1e6ae4c395b30 100644
+--- a/mm/page_alloc.c
++++ b/mm/page_alloc.c
+@@ -6833,6 +6833,7 @@ static int __alloc_contig_verify_gfp_mask(gfp_t gfp_mask, gfp_t *gfp_cc_mask)
+ int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+ 			      acr_flags_t alloc_flags, gfp_t gfp_mask)
+ {
++	const unsigned int order = ilog2(end - start);
+ 	unsigned long outer_start, outer_end;
+ 	int ret = 0;
+ 
+@@ -6850,6 +6851,9 @@ int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+ 					    PB_ISOLATE_MODE_CMA_ALLOC :
+ 					    PB_ISOLATE_MODE_OTHER;
+ 
++	if (WARN_ON_ONCE((gfp_mask & __GFP_COMP) && order > MAX_FOLIO_ORDER))
++		return -EINVAL;
++
+ 	gfp_mask = current_gfp_context(gfp_mask);
+ 	if (__alloc_contig_verify_gfp_mask(gfp_mask, (gfp_t *)&cc.gfp_mask))
+ 		return -EINVAL;
+@@ -6947,7 +6951,6 @@ int alloc_contig_range_noprof(unsigned long start, unsigned long end,
+ 			free_contig_range(end, outer_end - end);
+ 	} else if (start == outer_start && end == outer_end && is_power_of_2(end - start)) {
+ 		struct page *head = pfn_to_page(start);
+-		int order = ilog2(end - start);
+ 
+ 		check_new_pages(head, order);
+ 		prep_new_page(head, order, gfp_mask, 0);
 -- 
 2.50.1
 
