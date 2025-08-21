@@ -2,76 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 482C0B30373
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:07:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50FB0B303F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:10:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0A6810E9D2;
-	Thu, 21 Aug 2025 20:07:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D296B89289;
+	Thu, 21 Aug 2025 20:10:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="W9dd/Bj/";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GHlGvPFE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC79010E9D7
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:07:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A09089289
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806849;
+ s=mimecast20190719; t=1755807024;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=A9Znt0atqEjtEUkbTSfKRsvBJ9rEcbnqI7Kn1XkJSrA=;
- b=W9dd/Bj/wbbTcXkSwqfISdP029wUxlVJLeThAn8+QdYJqZd87yyVZl3OdO7Mi4EdNvVPDJ
- pe90WwlD86bh/Ty+q1TRGr8yQUO8kIPMV4SuEiJwChATrpJzcNKP6r+80WZBChvOYLZg7N
- G7IvhtChARwoWTvY8ahgFrJnjlyYRhs=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=G9hzYOZv6YXUN4v1wicJ53nqMhopJDezqYU76J2buLg=;
+ b=GHlGvPFErrOBuvtexooYrnXYsHshgxOHAU9+pDWUOsDkJzAVsyL8wPd0w0fRQPENopGINM
+ 3KootTHycxSZ2elasTTyOeX/hmtGUQVxrsb/qAcaPEAUMqkIfqqhMfHzoC2gpQ2dSQPnWM
+ gFXA8JEOOQm3Pe8141v5XNxYlj96Pts=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-206-hFPGkY5jPuWaj0jnFeSC5w-1; Thu, 21 Aug 2025 16:07:28 -0400
-X-MC-Unique: hFPGkY5jPuWaj0jnFeSC5w-1
-X-Mimecast-MFC-AGG-ID: hFPGkY5jPuWaj0jnFeSC5w_1755806847
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-45b4d6f3ab0so8376875e9.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:28 -0700 (PDT)
+ us-mta-190-1PBkG-cMP0GZzOqIpCasbw-1; Thu, 21 Aug 2025 16:07:32 -0400
+X-MC-Unique: 1PBkG-cMP0GZzOqIpCasbw-1
+X-Mimecast-MFC-AGG-ID: 1PBkG-cMP0GZzOqIpCasbw_1755806850
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-45a1b0b6466so9581905e9.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:07:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806847; x=1756411647;
+ d=1e100.net; s=20230601; t=1755806850; x=1756411650;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=A9Znt0atqEjtEUkbTSfKRsvBJ9rEcbnqI7Kn1XkJSrA=;
- b=qhMco+IrQxSMhIresJtrlVXhKYvPB8x/2pMY83OFe+00cPtf6jj+BHx95j90gEzg/k
- WFKxWXpi1fnZJ/HvUm+qhmA9KfmaPmWhHhSJWSS6ALPtq4So6mfZ6U8AfV25qj583HSH
- SWXmyxP5EYtpQKfGwBTKb8nfXtoTXkR4nJMgZ1+NakgLkfUBcWs74DXLgGCy30HfNDbP
- J0P6E+QgNuajgADOixkJUNjHxm26uElteWvm3rD1JHp8+CClwCCpJpk4O2g3XQ4Ytz5U
- xejz4TfnKpl4GAVzBgBA+IDOTeI+HQvt5e2VKQbROVnY5LssgCByWsY4ZtIKIbdlm+Tb
- F5Jw==
+ bh=G9hzYOZv6YXUN4v1wicJ53nqMhopJDezqYU76J2buLg=;
+ b=Yw/VcDmQ8uQ+I5QR8AoC9o2ktEnkErec90qKoeQ4711wLw+/aPGyoi6cSjWs+q5+Ma
+ d137pigknV+06DbxGU+EVxV1Ne7yMaG6YDHSNGF5H4JzY1TTtmfB3vQbqGPFIhRmYYW1
+ CCgKers/EDd7hHFtnvXv8l0p0xyP3GtueQdLIQKGGfQz+QlMimJoFNz0n+OYokvPZDom
+ h9vA3nRDa4va86n3XkEaDiwdyHDHxnxn1yFw1Lx4sYVDE+cSQgbIpIglVnCQUGDmvsUB
+ JZSlYfW3SXE+f3QDGUqkf743IyX2DS4j6nFb7EYPidC8xMbhqpuhzFMGPzbEr0SrBKEF
+ Kneg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWMlMEZHEn/d96U7rm/qMjzdq7RM5qKQ9+ohy1UU9uusByNaHa4MovUvl7SJ8eq5Y3AeoX++1iS2b0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzQRdbkgJ0ZVi2cu561dWCKpGvqHXIAR/aqb+bUc5dUGWz5rnZN
- 35+wZ5o5z50fhWQl2MZLwBG6bp84demIYGfznoPQ3tQv0WeES6+c3lfdQiwCulIBXCfbxoERqqI
- UZvAQJza044nUqQ3SrznjEZAkm4KNIbyG3lhQZN8h+8tHlliSH8ygmaw0heN0mcZBGwowxA==
-X-Gm-Gg: ASbGncsc+JoJCruZ5VL438ywZyCVaObgDS/ZNM6WdufZqfWYjyDqaU1xhFZB78/oB1f
- cpCV3OHpmHplUQWb2PMTrLfhbNA4ejg72U1p7OghsOHwwnNX6d7F4HhQzgxx4bpsyVPDbRud92P
- Tt3R97rR3/apmWW7Gv9fM1XHBMzrKFdkD+cF+inyr95TjdmHalfLwSm8aMId1aP3bJjYFt9qRjV
- PBxi/7Ry1JtKBfS8gXyujCsfQYbDEy89X5bAV/imOKrFnuS2Pi0x0nrLoT8Y7YN1IVtlywMp+Zr
- YEAd2h8OagEiflb5/5/7h+JH32whSZBfn27sKwycWvGdV98jk2O1iEGtTBgtm8Ce+dpmFGOVEDk
- 989bdaRlsYC15DsscVCWT+A==
-X-Received: by 2002:a05:600c:3552:b0:459:dde3:1a33 with SMTP id
- 5b1f17b1804b1-45b517d26d4mr2922205e9.26.1755806847222; 
- Thu, 21 Aug 2025 13:07:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGUeapMM5JkcwJNJXC+LM6ICHu4lGUEF2ir46AAuHXhYXAFzTcPIdec/q/lplZD/isU7mGEgg==
-X-Received: by 2002:a05:600c:3552:b0:459:dde3:1a33 with SMTP id
- 5b1f17b1804b1-45b517d26d4mr2921795e9.26.1755806846742; 
- Thu, 21 Aug 2025 13:07:26 -0700 (PDT)
+ AJvYcCV6acTHEHKhWM/tuGx9oQJqFcS+zihHiWPwd7j7pyoS/90OZ+JeCHp3qc6V8lQ1HZu9xnKqXcsmYJE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yze6P4t25JtXyv37cv9HFNQzpHBC7dbKzNlb0j30lh018j0+Sdd
+ dCY/+3ArNow53Q07voOTZgg0JSC7nmaXuYNoPLb9rBK5QHQWBgxUZNV5LOH3cw9DqAVuf1f7mY6
+ WjLZ09w/G7rrK0XkhAE4xieIh9AWkr8gHwDmFJ5r3p6K2NnRZS/07XQdlx9h6urUmobU58Q==
+X-Gm-Gg: ASbGncvB5R3wc0S+1Nw/uPkEcT66tqmyPlat3qCiMLglQju2b1dvPidVFnzrYKR8NTE
+ wa3Eh3+hvkZeva7MshUn7hDvtgkWF32zwLRuMPI5sjrFACo4qfg3Nf20KUfboLVEibquesLQqbk
+ dihKxKFjIA6iVV+qVEgu1ifY4N8tiIyispFVigVhFQOfivfI7THBxdAGqfXo5PLOE1ss3X4bGm1
+ kx4XkR5sMcdrnwW45vudv4UGYp8hkMfypzI/Rk/lTP7v1Tjh3uYu2dCmBhv9WfmRHTi+q0W0yG3
+ P9zZidbehqJzZja8CA4oKdAYKZaxbKVVhPGMv3JKa3vgamenb44+IopevmQ5UJEvUji0UYsLZXn
+ yDkpv9te6VOeZV7XH9aciRQ==
+X-Received: by 2002:a05:600c:1548:b0:459:dfde:3329 with SMTP id
+ 5b1f17b1804b1-45b517ddbe2mr2955995e9.31.1755806850042; 
+ Thu, 21 Aug 2025 13:07:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHPNoTdvVqQJqQwQf/z0aFpcDb/7HunF1Y6KwbAqmFFF4D3cnAaKEmAnoGbjwE6N5eIepmoyw==
+X-Received: by 2002:a05:600c:1548:b0:459:dfde:3329 with SMTP id
+ 5b1f17b1804b1-45b517ddbe2mr2955545e9.31.1755806849496; 
+ Thu, 21 Aug 2025 13:07:29 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-45b50d62991sm9535385e9.0.2025.08.21.13.07.24
+ ffacd0b85a97d-3c3a8980ed5sm7242256f8f.16.2025.08.21.13.07.27
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:07:26 -0700 (PDT)
+ Thu, 21 Aug 2025 13:07:29 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
@@ -100,16 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 07/35] mm/memremap: reject unreasonable folio/compound
- page sizes in memremap_pages()
-Date: Thu, 21 Aug 2025 22:06:33 +0200
-Message-ID: <20250821200701.1329277-8-david@redhat.com>
+Subject: [PATCH RFC 08/35] mm/hugetlb: check for unreasonable folio sizes when
+ registering hstate
+Date: Thu, 21 Aug 2025 22:06:34 +0200
+Message-ID: <20250821200701.1329277-9-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: JX3zFxkCMcN8YEm26Z_4OYvH6SJioRJ7HIKaFkcFMFw_1755806847
+X-Mimecast-MFC-PROC-ID: XP0ZOIt7Bv3BncCg7HrBMTXgvyDibKc_v_edG_fVtq4_1755806850
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -128,36 +128,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let's reject unreasonable folio sizes early, where we can still fail.
-We'll add sanity checks to prepare_compound_head/prepare_compound_page
-next.
+Let's check that no hstate that corresponds to an unreasonable folio size
+is registered by an architecture. If we were to succeed registering, we
+could later try allocating an unsupported gigantic folio size.
 
-Is there a way to configure a system such that unreasonable folio sizes
-would be possible? It would already be rather questionable.
+Further, let's add a BUILD_BUG_ON() for checking that HUGETLB_PAGE_ORDER
+is sane at build time. As HUGETLB_PAGE_ORDER is dynamic on powerpc, we have
+to use a BUILD_BUG_ON_INVALID() to make it compile.
 
-If so, we'd probably want to bail out earlier, where we can avoid a
-WARN and just report a proper error message that indicates where
-something went wrong such that we messed up.
+No existing kernel configuration should be able to trigger this check:
+either SPARSEMEM without SPARSEMEM_VMEMMAP cannot be configured or
+gigantic folios will not exceed a memory section (the case on sparse).
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- mm/memremap.c | 3 +++
- 1 file changed, 3 insertions(+)
+ mm/hugetlb.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/mm/memremap.c b/mm/memremap.c
-index b0ce0d8254bd8..a2d4bb88f64b6 100644
---- a/mm/memremap.c
-+++ b/mm/memremap.c
-@@ -275,6 +275,9 @@ void *memremap_pages(struct dev_pagemap *pgmap, int nid)
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+index 514fab5a20ef8..d12a9d5146af4 100644
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -4657,6 +4657,7 @@ static int __init hugetlb_init(void)
  
- 	if (WARN_ONCE(!nr_range, "nr_range must be specified\n"))
- 		return ERR_PTR(-EINVAL);
-+	if (WARN_ONCE(pgmap->vmemmap_shift > MAX_FOLIO_ORDER,
-+		      "requested folio size unsupported\n"))
-+		return ERR_PTR(-EINVAL);
+ 	BUILD_BUG_ON(sizeof_field(struct page, private) * BITS_PER_BYTE <
+ 			__NR_HPAGEFLAGS);
++	BUILD_BUG_ON_INVALID(HUGETLB_PAGE_ORDER > MAX_FOLIO_ORDER);
  
- 	switch (pgmap->type) {
- 	case MEMORY_DEVICE_PRIVATE:
+ 	if (!hugepages_supported()) {
+ 		if (hugetlb_max_hstate || default_hstate_max_huge_pages)
+@@ -4740,6 +4741,7 @@ void __init hugetlb_add_hstate(unsigned int order)
+ 	}
+ 	BUG_ON(hugetlb_max_hstate >= HUGE_MAX_HSTATE);
+ 	BUG_ON(order < order_base_2(__NR_USED_SUBPAGE));
++	WARN_ON(order > MAX_FOLIO_ORDER);
+ 	h = &hstates[hugetlb_max_hstate++];
+ 	__mutex_init(&h->resize_lock, "resize mutex", &h->resize_key);
+ 	h->order = order;
 -- 
 2.50.1
 
