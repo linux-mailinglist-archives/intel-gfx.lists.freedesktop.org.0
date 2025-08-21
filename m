@@ -2,95 +2,96 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ABF8B303D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D20B303D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:08:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEE2310EA22;
-	Thu, 21 Aug 2025 20:08:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85D4110EA1E;
+	Thu, 21 Aug 2025 20:08:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="CzmGaUii";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="N3GKuT+u";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0D0210EA1F
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:08:43 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C8410EA1F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755806923;
+ s=mimecast20190719; t=1755806926;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=OnKBChYNBt6k7pWFZ1VK2zlCQ3hhOdGhc0x5VCAB6rA=;
- b=CzmGaUiiH135QgXQPa2GhxtkqHGW1H7LLKC59fxfjy/fCH7u3PG6m1Jw3xTI195snKEAwO
- MKwmOT8pxEhTVPupqSKUKXZDR8f6LOvZWaGzkF3qZDd/4qRO9CeWunW6QgOekDSW9NiJK9
- Ql3EEslQ0UceZ+uqpdIGpf4/iz2sLlg=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=Z7iPpUiW3LrFM0W3XrB+Z82uodwKTsefoCzXwhLbLUo=;
+ b=N3GKuT+u+DvWAvpzT2+mvlAtduXZobTWJI+3sLR4n+mBp55UgBmZqrwcbah/wnQnuNvIpR
+ nWpNVe5FqYr5gneMGqTlrYfsxr8VObYpfaB6lwP/3SfYXYILP+0irgqowy1Vk+Wvjvhkmw
+ yHGVkgAZZBwaMGshQcCZhzTVuOoI4Tk=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-576-h7T6I7ESORqzPrFbvsnlqw-1; Thu, 21 Aug 2025 16:08:41 -0400
-X-MC-Unique: h7T6I7ESORqzPrFbvsnlqw-1
-X-Mimecast-MFC-AGG-ID: h7T6I7ESORqzPrFbvsnlqw_1755806920
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-45a256a20fcso8255515e9.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:08:41 -0700 (PDT)
+ us-mta-157-7lb3ITpoP8Sci4i5b48BfA-1; Thu, 21 Aug 2025 16:08:44 -0400
+X-MC-Unique: 7lb3ITpoP8Sci4i5b48BfA-1
+X-Mimecast-MFC-AGG-ID: 7lb3ITpoP8Sci4i5b48BfA_1755806923
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-3b9e41037e6so864607f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:08:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755806920; x=1756411720;
+ d=1e100.net; s=20230601; t=1755806923; x=1756411723;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=OnKBChYNBt6k7pWFZ1VK2zlCQ3hhOdGhc0x5VCAB6rA=;
- b=KTbyB8JNRDlwMNzSG4vwc9eZVbUT0t8Yo7oleykR10/mG28d7AkVT/+CSdjqXgPBYN
- SaMNDDJWcJo+khmXvYb/AdqQxKTLIrVxyp9phtYHuH8Z5932nJsAQMj+aYPCgpm07fcr
- P6pgPY80U1jfhR/SHRNXqT8ZIXb9vw+0AQHS1v1Agu1RpSMwOfnJQXMqYxUHkecycMiE
- BQCLZGzjxHoRYdue/1SIt0TjXMQWS7g/p11RtkLn6bDZosDQ9CRdbzmomiQuu15l41z3
- JczJMLUoUudxtxDU96krD6kcmA8ZsXhqBEw0deFN+OtEqGX8k8v9M9r0qcvC+jPym+Pv
- R68Q==
+ bh=Z7iPpUiW3LrFM0W3XrB+Z82uodwKTsefoCzXwhLbLUo=;
+ b=amBocK9dJEPUJxzyeoFUZHo3OhfX/SaIjL8DIHl1gfI+vhMfskwva2ItVln/pXqlxA
+ JE8h0ohZlXXBylG/1aIkm3leDhOpuTVS0UGaO3V2gix32vJQ0G/zLt1JN86LH4V3v/y+
+ f0Q9Is0mdj4Y0YitBBjZ9MaYA81pfL+Z0u5Ak3cuA4Yyim7SSaRpt8U28/5lrPZrd8AH
+ uEMo81LAwqLiev6sBc/fpax/BvfOTfn/oCYHRguTM2im5d9XLGS6TYPLT+SzfSMV1KQJ
+ A+YNTvx8tcps9Wvts5YelIw/YA3QcZLAPPZ6FxEYJB9K7SDjdPZJ2KPwkLGi4E0xEC3M
+ hMOw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUU5Yfddxh4ub1MZjUACRpVw5aQZ142OlXJW50VvHOsdCxshz6bQQfcIPgd9K0c1Ugx4WoiklE9A1k=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzw1MBc+iTeZGhLGfSB5ApsxdP9knfZDvOiy6wkdq02bDtgesnq
- aR95L8XfrHjevJcvHyTQdMZyXDnjhcyWM3iurgllWcvu7C+XpmFhn6zgm+6Nd74yxtmfTz9mbnC
- 7tScwbiG/jR+eck6+kYlt/ijpgv5jP4zkVKbwytdCc069iVN0vN4/mlXRvywOaiGJn6AvOw==
-X-Gm-Gg: ASbGncsrdmfdyCBF0kT7w4vZI92GjMRLzwfM09u5bgQDC7HKgah0BYYFqw2tJtq4q8B
- 65kQ7gIzYr6LTv6gn5+W/CLdU+06qnhzSWngWWNkC1Osmn0DTIneDmL9zrr5saFjpvD3N3XCyuO
- 35TXR1X1mqqqucq5xkVHBbeQoEETBIBHf7qwSK6Mj6Wz7UCcdF6zLXrHwsqxcAYEecsvO3HxDte
- atDTW6o7MTBCSO+QmZnqj4VWe/BRY75B2M5E/vQVkZdphQJU/vQXvCocQ9quqxPAOJJJoLFr5V2
- polcdGutMr5dHGmGdVSZz9t/FUMdF33isChfYAAckG0xAhdw2BjXhQezWF0zmgDlIuQJBrCWNXd
- 3YNTnBMvCS10IUBS2ESPDeg==
-X-Received: by 2002:a05:6000:2405:b0:3a4:e841:b236 with SMTP id
- ffacd0b85a97d-3c5dc735246mr192378f8f.33.1755806920402; 
- Thu, 21 Aug 2025 13:08:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFrWn9aM0C/1GZBHvF1UL+fKz7WhllpDdsBGpm2GmVOIF4Yc/dULhABMcTdk4u9sLFplZdR3g==
-X-Received: by 2002:a05:6000:2405:b0:3a4:e841:b236 with SMTP id
- ffacd0b85a97d-3c5dc735246mr192328f8f.33.1755806919917; 
- Thu, 21 Aug 2025 13:08:39 -0700 (PDT)
+ AJvYcCVGk7/NVY5nY0crNtAbr1ZzsYCBLNVcm18PQPOx6mlhkCiPM7rD4UYudzdjM22RNpmzMbTo1tn5s80=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwO6aa82VMc8UDtgPwnMrB7RQmnIJTjirmzTMJwQdBcfzXmRdsl
+ X1XgO0lX8zbUseyGvWC3VMCHVXQs0kFGGOuiAJ0WXn8PVHVec/rpQyPJrp0voWMLafZ2r8wwZ3F
+ S82QUgr07onhgAHsKOGxCczoSK8os1A+psGXql50F6aWwoC7G3WgHbwBEJNtI121yVyGMJQ==
+X-Gm-Gg: ASbGncvRfoyHnSBJIYkznfBV2mAqKfLgigUkA5IsU9U+GK0FADkEcTzVlaEGer1bBEH
+ hZcpNCBAIGXy7ebjX9Ta1FUD63Wby30WxbDiaUg7C/qzVVWfNzcHww7PhZz1H0r10M+N+kC24FA
+ wvqH+OMOKYjiYyVBltYDH4bw994OYEUiwiNIrmk7t0/XfPvjrBkv4dsnCokeAApjP69fX6spiBP
+ KHokuCl6BwE9bdprok8mKmK5AXkqtwRlGSSdknXHzPiNiJc6q3y2xSpNOIrE1nag6Qh2Fl3Xowp
+ dH0AU9T1IyPz90aO4hL3OdZO4cpIZQhsIqne+FerXnVStsIq58KYW05pYf/3Xn1QN/RVTe1sjsK
+ 0MN6Uuek5NdWNvwfCi06wlg==
+X-Received: by 2002:a5d:64ed:0:b0:3b5:dafc:1525 with SMTP id
+ ffacd0b85a97d-3c5dc7313famr204667f8f.33.1755806922944; 
+ Thu, 21 Aug 2025 13:08:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHnHzRKC08dohUKQD/XdldMc6IWYVddiLtTh8Yidep5vx+5++gzVG23SiimMwYZ+HldR36Zkg==
+X-Received: by 2002:a5d:64ed:0:b0:3b5:dafc:1525 with SMTP id
+ ffacd0b85a97d-3c5dc7313famr204645f8f.33.1755806922505; 
+ Thu, 21 Aug 2025 13:08:42 -0700 (PDT)
 Received: from localhost
  (p200300d82f26ba0008036ec5991806fd.dip0.t-ipconnect.de.
  [2003:d8:2f26:ba00:803:6ec5:9918:6fd])
  by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-3c0771c166bsm12920369f8f.33.2025.08.21.13.08.38
+ 5b1f17b1804b1-45b50e3a587sm10028205e9.18.2025.08.21.13.08.40
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:08:39 -0700 (PDT)
+ Thu, 21 Aug 2025 13:08:42 -0700 (PDT)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
- Alexander Potapenko <glider@google.com>, Marco Elver <elver@google.com>,
- Dmitry Vyukov <dvyukov@google.com>,
+ Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, iommu@lists.linux.dev,
- io-uring@vger.kernel.org, Jason Gunthorpe <jgg@nvidia.com>,
- Jens Axboe <axboe@kernel.dk>, Johannes Weiner <hannes@cmpxchg.org>,
- John Hubbard <jhubbard@nvidia.com>, kasan-dev@googlegroups.com,
- kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
  Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
  linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
  linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
  linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
  linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
  linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>,
  Marek Szyprowski <m.szyprowski@samsung.com>,
  Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
  Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
@@ -99,15 +100,16 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH RFC 33/35] kfence: drop nth_page() usage
-Date: Thu, 21 Aug 2025 22:06:59 +0200
-Message-ID: <20250821200701.1329277-34-david@redhat.com>
+Subject: [PATCH RFC 34/35] block: update comment of "struct bio_vec" regarding
+ nth_page()
+Date: Thu, 21 Aug 2025 22:07:00 +0200
+Message-ID: <20250821200701.1329277-35-david@redhat.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250821200701.1329277-1-david@redhat.com>
 References: <20250821200701.1329277-1-david@redhat.com>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Jly9373CQHCstooiNm72lqgPztLBItRiHvgd4cysego_1755806920
+X-Mimecast-MFC-PROC-ID: skta401qF7P9spdHJtCZqWovBMcGgf0D5OeyP84bUBY_1755806923
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
@@ -126,82 +128,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to get rid of nth_page(), and kfence init code is the last user.
+Ever since commit 858c708d9efb ("block: move the bi_size update out of
+__bio_try_merge_page"), page_is_mergeable() no longer exists, and the
+logic in bvec_try_merge_page() is now a simple page pointer
+comparison.
 
-Unfortunately, we might actually walk a PFN range where the pages are
-not contiguous, because we might be allocating an area from memblock
-that could span memory sections in problematic kernel configs (SPARSEMEM
-without SPARSEMEM_VMEMMAP).
-
-We could check whether the page range is contiguous
-using page_range_contiguous() and failing kfence init, or making kfence
-incompatible these problemtic kernel configs.
-
-Let's keep it simple and simply use pfn_to_page() by iterating PFNs.
-
-Cc: Alexander Potapenko <glider@google.com>
-Cc: Marco Elver <elver@google.com>
-Cc: Dmitry Vyukov <dvyukov@google.com>
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- mm/kfence/core.c | 17 ++++++++++-------
- 1 file changed, 10 insertions(+), 7 deletions(-)
+ include/linux/bvec.h | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/mm/kfence/core.c b/mm/kfence/core.c
-index 0ed3be100963a..793507c77f9e8 100644
---- a/mm/kfence/core.c
-+++ b/mm/kfence/core.c
-@@ -594,15 +594,15 @@ static void rcu_guarded_free(struct rcu_head *h)
+diff --git a/include/linux/bvec.h b/include/linux/bvec.h
+index 0a80e1f9aa201..3fc0efa0825b1 100644
+--- a/include/linux/bvec.h
++++ b/include/linux/bvec.h
+@@ -22,11 +22,8 @@ struct page;
+  * @bv_len:    Number of bytes in the address range.
+  * @bv_offset: Start of the address range relative to the start of @bv_page.
+  *
+- * The following holds for a bvec if n * PAGE_SIZE < bv_offset + bv_len:
+- *
+- *   nth_page(@bv_page, n) == @bv_page + n
+- *
+- * This holds because page_is_mergeable() checks the above property.
++ * All pages within a bio_vec starting from @bv_page are contiguous and
++ * can simply be iterated (see bvec_advance()).
   */
- static unsigned long kfence_init_pool(void)
- {
--	unsigned long addr;
--	struct page *pages;
-+	unsigned long addr, pfn, start_pfn, end_pfn;
- 	int i;
- 
- 	if (!arch_kfence_init_pool())
- 		return (unsigned long)__kfence_pool;
- 
- 	addr = (unsigned long)__kfence_pool;
--	pages = virt_to_page(__kfence_pool);
-+	start_pfn = PHYS_PFN(virt_to_phys(__kfence_pool));
-+	end_pfn = start_pfn + KFENCE_POOL_SIZE / PAGE_SIZE;
- 
- 	/*
- 	 * Set up object pages: they must have PGTY_slab set to avoid freeing
-@@ -612,12 +612,13 @@ static unsigned long kfence_init_pool(void)
- 	 * fast-path in SLUB, and therefore need to ensure kfree() correctly
- 	 * enters __slab_free() slow-path.
- 	 */
--	for (i = 0; i < KFENCE_POOL_SIZE / PAGE_SIZE; i++) {
--		struct slab *slab = page_slab(nth_page(pages, i));
-+	for (pfn = start_pfn; pfn != end_pfn; pfn++) {
-+		struct slab *slab;
- 
- 		if (!i || (i % 2))
- 			continue;
- 
-+		slab = page_slab(pfn_to_page(pfn));
- 		__folio_set_slab(slab_folio(slab));
- #ifdef CONFIG_MEMCG
- 		slab->obj_exts = (unsigned long)&kfence_metadata_init[i / 2 - 1].obj_exts |
-@@ -664,11 +665,13 @@ static unsigned long kfence_init_pool(void)
- 	return 0;
- 
- reset_slab:
--	for (i = 0; i < KFENCE_POOL_SIZE / PAGE_SIZE; i++) {
--		struct slab *slab = page_slab(nth_page(pages, i));
-+	for (pfn = start_pfn; pfn != end_pfn; pfn++) {
-+		struct slab *slab;
- 
- 		if (!i || (i % 2))
- 			continue;
-+
-+		slab = page_slab(pfn_to_page(pfn));
- #ifdef CONFIG_MEMCG
- 		slab->obj_exts = 0;
- #endif
+ struct bio_vec {
+ 	struct page	*bv_page;
 -- 
 2.50.1
 
