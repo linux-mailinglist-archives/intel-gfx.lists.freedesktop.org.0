@@ -2,114 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9A7B3050A
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3223CB3056C
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 22:30:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31EF710E397;
-	Thu, 21 Aug 2025 20:24:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="DggB5Lys";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B7D110E3B0;
+	Thu, 21 Aug 2025 20:29:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com
- [209.85.221.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECABC10E397
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 20:24:47 +0000 (UTC)
-Received: by mail-vk1-f179.google.com with SMTP id
- 71dfb90a1353d-53b17534eeeso554933e0c.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:24:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1755807886; x=1756412686;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=6aeG3+zXNcZH2d1Z1/su6zkQOg7Uc4j3Xw+oqie+iPw=;
- b=DggB5LysdHzKnNcc4Bsb0g2TFp1S2uVATvQS4yf0cb1kYPOBuHm99pJ+2D9UoJWkex
- rzFjXhH80PfRm7hZOXdQ+XQyX+EVgX3tGnbKTsNlHHGePQCssJKD0+XopzsIbHB6PIJT
- vvwwd6ST3pLDhKWWQu1gsFhkmxzYUz1JuBvKA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755807886; x=1756412686;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=6aeG3+zXNcZH2d1Z1/su6zkQOg7Uc4j3Xw+oqie+iPw=;
- b=A8NV2vYYx5xiZHspjN7uU+VBHBnR96N7xTsb2MaYn/5ZiphVBcROlzsAteiwL+cA41
- HTVu6bMwpBy+K0LvdkE/VIM98aNRxZirIlXllDgbI4bosx88MzjpBPgp1ldLJ15k8A+8
- x9dXmuF23/wlB4ZPgUHPxCw/jS1qpEQPiq225yBjGJa6IjZKBTRtLo2VH1eh07axLrux
- QbUZxBLlPYPdcPluSCVzZCm3+iTYSvIZdgkzi41AFks7+YlOp7od+D4E78BhNMpwqmd4
- nnGudbShzZ63ySk9q46QJWaQ3p5WPFnt3TH50t5Jk/ACOnjZx0N7f19xPoDpXOaKteP8
- 6jBQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVNBq2nNWs7NbA4X7QFAJAxOwehp13AVV9mr7ANrT8wyjpJGBdFgqMQqb72vDe2tp2fn+35LDROJ3c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy9WzCJCQLocsF98HrOIdqmcM0X4nVhiNOHZ3KC+815gnDcJxkF
- UT1vRSwx1kpS1PZyHaVmJfyN/kBIhsa8+HfpzPvR3o+E+Gky16q0ZIi25cjb41gBshFzLvngsaF
- W3Z7+fWA=
-X-Gm-Gg: ASbGncsrzTb11pkKKHAYMLA3ONcJ9aSHFwu8Njx12mrRLVrc1XhIg6OXF9ULq8bVQOz
- XKR6FWioE80qOL9PhOJjZuNOBEmTx/uVdbQ68feKgjSBDzqUmFNwUdudSETT+VV9O6nxBMMyjgO
- tvJKeIkuNreF4d2XZR9ieq5xUFWceHXNTXfCvUm44j2Wshm6OXRArgAV7CqgIK9ww93at8RRJy7
- Jt+wiWGVaIY0luAnSly65jHtCU2K+0BVd6l2M4Ka4useirtjg1MWSKBCa6cM8h+mCtO8GJL5q6E
- YYDriPT/NBM49wjQKarfmRfp8So09ANTQNXT5ZrwoKGQ984YYB5//DJmhe2vWk8dwkFTiX2mnzT
- w7g8zNoUseXZLjKmiPv2ecaMzBwMvdtCEc5HDQiVHEI58eOYk6+giUjIxn1fbL3m1tFC0d1ACmy
- buxgy27PxBOdo=
-X-Google-Smtp-Source: AGHT+IG4Wqx9TWq2h0imW8k7/r08QHyy9M5xfuyiV6HrThfy3k2jQHf4QXLSAVHJ2YoP6WptjRjCfg==
-X-Received: by 2002:a05:6102:3e1b:b0:4e5:8b76:44c5 with SMTP id
- ada2fe7eead31-51d0edcc3afmr172454137.22.1755807886556; 
- Thu, 21 Aug 2025 13:24:46 -0700 (PDT)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com.
- [209.85.221.171]) by smtp.gmail.com with ESMTPSA id
- ada2fe7eead31-5127cff2c48sm4200418137.4.2025.08.21.13.24.45
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 13:24:45 -0700 (PDT)
-Received: by mail-vk1-f171.google.com with SMTP id
- 71dfb90a1353d-53b174ac3e5so531260e0c.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 13:24:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVmrrLfkMYPcfhGR0FwLJ9Lu+rB/7EAWhJETMVCa1D1w2HX3sXnNOxdStdF5NVfm1hbEFFWER7hr84=@lists.freedesktop.org
-X-Received: by 2002:a05:6122:1ad2:b0:53c:896e:2870 with SMTP id
- 71dfb90a1353d-53c8a40b923mr212315e0c.12.1755807884664; Thu, 21 Aug 2025
- 13:24:44 -0700 (PDT)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC3210E3B0;
+ Thu, 21 Aug 2025 20:29:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8F9F5449B7;
+ Thu, 21 Aug 2025 20:29:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC82C4CEF4;
+ Thu, 21 Aug 2025 20:29:43 +0000 (UTC)
+Message-ID: <2926d7d9-b44e-40c0-b05d-8c42e99c511d@redhat.com>
+Date: Thu, 21 Aug 2025 22:29:41 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 31/35] crypto: remove nth_page() usage within SG entry
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: linux-kernel@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
+ Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
+ Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
+ Tejun Heo <tj@kernel.org>, virtualization@lists.linux.dev,
+ Vlastimil Babka <vbabka@suse.cz>, wireguard@lists.zx2c4.com, x86@kernel.org,
+ Zi Yan <ziy@nvidia.com>
 References: <20250821200701.1329277-1-david@redhat.com>
  <20250821200701.1329277-32-david@redhat.com>
-In-Reply-To: <20250821200701.1329277-32-david@redhat.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 21 Aug 2025 16:24:23 -0400
-X-Gmail-Original-Message-ID: <CAHk-=wjGzyGPgqKDNXM6_2Puf7OJ+DQAXMg5NgtSASN8De1roQ@mail.gmail.com>
-X-Gm-Features: Ac12FXxaZhwn04a0gbwY6rjh9UGLxnRlGOG0Jy0WjRbVAG0UxLDqNy0Wydj0GQk
-Message-ID: <CAHk-=wjGzyGPgqKDNXM6_2Puf7OJ+DQAXMg5NgtSASN8De1roQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 31/35] crypto: remove nth_page() usage within SG entry
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>, 
- "David S. Miller" <davem@davemloft.net>,
- Alexander Potapenko <glider@google.com>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, 
- Christoph Lameter <cl@gentwo.org>, Dennis Zhou <dennis@kernel.org>,
- Dmitry Vyukov <dvyukov@google.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- iommu@lists.linux.dev, io-uring@vger.kernel.org, 
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, 
- John Hubbard <jhubbard@nvidia.com>, kasan-dev@googlegroups.com,
- kvm@vger.kernel.org, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, linux-arm-kernel@axis.com, 
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org, 
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
- Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
- Muchun Song <muchun.song@linux.dev>, 
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, 
- Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
- Tejun Heo <tj@kernel.org>, 
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+ <CAHk-=wjGzyGPgqKDNXM6_2Puf7OJ+DQAXMg5NgtSASN8De1roQ@mail.gmail.com>
+From: David Hildenbrand <david@redhat.com>
+Content-Language: en-US
+Autocrypt: addr=david@redhat.com; keydata=
+ xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
+ dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
+ QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
+ XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
+ Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
+ PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
+ WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
+ UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
+ jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
+ B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
+ ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
+ FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
+ 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
+ opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
+ 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
+ 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
+ Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
+ lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
+ cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
+ Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
+ otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
+ LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
+ 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
+ VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
+ /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
+ iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
+ 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
+ zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
+ azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
+ FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
+ sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
+ 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
+ EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
+ IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
+ 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
+ Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
+ sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
+ yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
+ 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
+ r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
+ 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
+ CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
+ qIws/H2t
+In-Reply-To: <CAHk-=wjGzyGPgqKDNXM6_2Puf7OJ+DQAXMg5NgtSASN8De1roQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,24 +115,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 21 Aug 2025 at 16:08, David Hildenbrand <david@redhat.com> wrote:
->
-> -       page = nth_page(page, offset >> PAGE_SHIFT);
-> +       page += offset / PAGE_SIZE;
+On 21.08.25 22:24, Linus Torvalds wrote:
+> On Thu, 21 Aug 2025 at 16:08, David Hildenbrand <david@redhat.com> wrote:
+>>
+>> -       page = nth_page(page, offset >> PAGE_SHIFT);
+>> +       page += offset / PAGE_SIZE;
+> 
+> Please keep the " >> PAGE_SHIFT" form.
 
-Please keep the " >> PAGE_SHIFT" form.
+No strong opinion.
 
-Is "offset" unsigned? Yes it is, But I had to look at the source code
-to make sure, because it wasn't locally obvious from the patch. And
-I'd rather we keep a pattern that is "safe", in that it doesn't
-generate strange code if the value might be a 's64' (eg loff_t) on
-32-bit architectures.
+I was primarily doing it to get rid of (in other cases) the parentheses.
 
-Because doing a 64-bit shift on x86-32 is like three cycles. Doing a
-64-bit signed division by a simple constant is something like ten
-strange instructions even if the end result is only 32-bit.
+Like in patch #29
 
-And again - not the case *here*, but just a general "let's keep to one
-pattern", and the shift pattern is simply the better choice.
+-	/* Assumption: contiguous pages can be accessed as "page + i" */
+-	page = nth_page(sg_page(sg), (*offset >> PAGE_SHIFT));
++	page = sg_page(sg) + *offset / PAGE_SIZE;
 
-             Linus
+> 
+> Is "offset" unsigned? Yes it is, But I had to look at the source code
+> to make sure, because it wasn't locally obvious from the patch. And
+> I'd rather we keep a pattern that is "safe", in that it doesn't
+> generate strange code if the value might be a 's64' (eg loff_t) on
+> 32-bit architectures.
+> 
+> Because doing a 64-bit shift on x86-32 is like three cycles. Doing a
+> 64-bit signed division by a simple constant is something like ten
+> strange instructions even if the end result is only 32-bit.
+
+I would have thought that the compiler is smart enough to optimize that? 
+PAGE_SIZE is a constant.
+
+> 
+> And again - not the case *here*, but just a general "let's keep to one
+> pattern", and the shift pattern is simply the better choice.
+
+It's a wild mixture, but I can keep doing what we already do in these cases.
+
+-- 
+Cheers
+
+David / dhildenb
