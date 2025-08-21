@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D920AB2EFE9
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 09:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4E6B2EFEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Aug 2025 09:42:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B59810E897;
-	Thu, 21 Aug 2025 07:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B0FC10E898;
+	Thu, 21 Aug 2025 07:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AVqOZ/a4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q9wf7+XI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F24510E896;
- Thu, 21 Aug 2025 07:42:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6D710E898;
+ Thu, 21 Aug 2025 07:42:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755762137; x=1787298137;
+ t=1755762150; x=1787298150;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=Ws4QC1HA4IdoL4+aQqpJoaK97E3vD8nE73dIrdurmqw=;
- b=AVqOZ/a4ABwyyotiQxWMQFq1s+hdWyaCQWhQ1Iy1wQSVIH3Qg81z3MoR
- 4naMJ+3HElZmR5W08kX7+T3BkzqeFgLmtAmIPIlCJ+WhDzCkgjbEYL7Wi
- SBhEmbi2zDJIzo5o+qWfsiSuJnA5+uRq4o7q6j4206bVErg8BVb0NYi5n
- H4yUNaBPFK1cSxnB2D5gHfOmHBP9ehzDtgmntJ5qWyvhG/kj9uXR9Gc/F
- QsEZf87Nz8BMQVQ9L0w3pc+WhXBf2jk5hCxK9mkjL/eh56os9Fqg7F8AS
- crhcqArZGN5FOunMvpNPO7hxtRuiw7S+jjYdLdvZLQzdqIx/LT3xf1t8S Q==;
-X-CSE-ConnectionGUID: A+X6noajSiq0rBLpk5bbNQ==
-X-CSE-MsgGUID: vUX0Vs3bTf6AWW20Y1B4FA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="61855536"
-X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="61855536"
+ bh=d/YWryRjJULq6ZmXN4ecwFgBk6vFJwLLXx3nXdMwsYY=;
+ b=Q9wf7+XIk60ASiORmp+2088nTcSxdLchiPmpPJEmgZoLTXacm7u2lGhh
+ H87OdD9EZXpjCYuUljQeFQl0nYUwixwMApdYiSe1m1cgdx0ZYGQjSTyt5
+ Ry432bAyfmHvrO8pC74ddFpS4xXGkOr2oDpWcnhw3ekHj0GCdnBnv8FkP
+ pblNJpMYB+y3lZV5B+yb4/fHl7Un5NrM+4rhMpjq/YEwYI4lmZ4NNzCvo
+ M9mNyPbsaPD7aSeIOfsphIjM1yuGnHf426G3J/QsnmHOtdM4aplV/lVTt
+ bk720azfUeaaWCtyxhi7XYHw+kZJgB7gdObCekrtWqlwk8UCiIi5GXu7k w==;
+X-CSE-ConnectionGUID: yZoHSdQ2SyqiyL45ZIpVOA==
+X-CSE-MsgGUID: +VvizsnUSYKdwvpSV/xtqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11527"; a="61855566"
+X-IronPort-AV: E=Sophos;i="6.17,306,1747724400"; d="scan'208";a="61855566"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 00:42:17 -0700
-X-CSE-ConnectionGUID: lxZNSgmiQ/aM8E5eKdI9lA==
-X-CSE-MsgGUID: 2lcha3LzRE+KSuFLhAngWw==
+ 21 Aug 2025 00:42:29 -0700
+X-CSE-ConnectionGUID: rLrL8kY3SiaDJnCfdI9G7A==
+X-CSE-MsgGUID: D86m9Jw7SyWzxIDp1gK05g==
 X-ExtLoop1: 1
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.126])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2025 00:42:15 -0700
+ 21 Aug 2025 00:42:28 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2 1/2] drm/i915/psr: Check drm_dp_dpcd_read return
- value on PSR dpcd init
-In-Reply-To: <20250821045918.17757-1-jouni.hogander@intel.com>
+Subject: Re: [PATCH v2 2/2] drm/i915/psr: check drm_mode_vrefresh return value
+In-Reply-To: <20250821045918.17757-2-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250821045918.17757-1-jouni.hogander@intel.com>
-Date: Thu, 21 Aug 2025 10:42:12 +0300
-Message-ID: <53e3d526cd41f74c906377cf8fb9add6d7dd441b@intel.com>
+ <20250821045918.17757-2-jouni.hogander@intel.com>
+Date: Thu, 21 Aug 2025 10:42:25 +0300
+Message-ID: <bb9915f57a7158030af13196cfd9c755afaf59ad@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -71,11 +71,8 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 21 Aug 2025, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Currently we are ignoriong drm_dp_dpcd_read return values when reading PSR
-> and Panel Replay capability DPCD register. Rework intel_psr_dpcd a bit to
-> take care of checking the return value.
->
-> v2: use drm_dp_dpcd_read_data
+> Check drm_mode_vrefresh return value sanity before using it in
+> intel_get_frame_time_us.
 >
 > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
@@ -83,74 +80,35 @@ Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
 > ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 32 ++++++++++++++++--------
->  1 file changed, 21 insertions(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_psr.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
 915/display/intel_psr.c
-> index 609df53f1ef1..5addde63168e 100644
+> index 5addde63168e..8cc2314fac6f 100644
 > --- a/drivers/gpu/drm/i915/display/intel_psr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -580,6 +580,16 @@ static void intel_dp_get_su_granularity(struct intel=
-_dp *intel_dp)
->  static void _panel_replay_init_dpcd(struct intel_dp *intel_dp)
+> @@ -1116,11 +1116,16 @@ transcoder_has_psr2(struct intel_display *display=
+, enum transcoder cpu_transcode
+>=20=20
+>  static u32 intel_get_frame_time_us(const struct intel_crtc_state *crtc_s=
+tate)
 >  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> +	int ret;
+> +	int vrefresh;
 > +
-> +	ret =3D drm_dp_dpcd_read_data(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPO=
-RT,
-> +				    &intel_dp->pr_dpcd, sizeof(intel_dp->pr_dpcd));
-> +	if (ret < 0)
-> +		return;
+>  	if (!crtc_state->hw.active)
+>  		return 0;
+>=20=20
+> -	return DIV_ROUND_UP(1000 * 1000,
+> -			    drm_mode_vrefresh(&crtc_state->hw.adjusted_mode));
+> +	vrefresh =3D drm_mode_vrefresh(&crtc_state->hw.adjusted_mode);
+> +	if (vrefresh <=3D 0)
+> +		return 0;
 > +
-> +	if (!(intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT=
-)] &
-> +	      DP_PANEL_REPLAY_SUPPORT))
-> +		return;
+> +	return DIV_ROUND_UP(1000 * 1000, vrefresh);
+>  }
 >=20=20
->  	if (intel_dp_is_edp(intel_dp)) {
->  		if (!intel_alpm_aux_less_wake_supported(intel_dp)) {
-> @@ -611,6 +621,15 @@ static void _panel_replay_init_dpcd(struct intel_dp =
-*intel_dp)
->  static void _psr_init_dpcd(struct intel_dp *intel_dp)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> +	int ret;
-> +
-> +	ret =3D drm_dp_dpcd_read_data(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp-=
->psr_dpcd,
-> +				    sizeof(intel_dp->psr_dpcd));
-> +	if (ret < 0)
-> +		return;
-> +
-> +	if (!intel_dp->psr_dpcd[0])
-> +		return;
->=20=20
->  	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
->  		    intel_dp->psr_dpcd[0]);
-> @@ -656,18 +675,9 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp)
->=20=20
->  void intel_psr_init_dpcd(struct intel_dp *intel_dp)
->  {
-> -	drm_dp_dpcd_read(&intel_dp->aux, DP_PSR_SUPPORT, intel_dp->psr_dpcd,
-> -			 sizeof(intel_dp->psr_dpcd));
-> -
-> -	drm_dp_dpcd_read(&intel_dp->aux, DP_PANEL_REPLAY_CAP_SUPPORT,
-> -			 &intel_dp->pr_dpcd, sizeof(intel_dp->pr_dpcd));
-> -
-> -	if (intel_dp->pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)]=
- &
-> -	    DP_PANEL_REPLAY_SUPPORT)
-> -		_panel_replay_init_dpcd(intel_dp);
-> +	_psr_init_dpcd(intel_dp);
->=20=20
-> -	if (intel_dp->psr_dpcd[0])
-> -		_psr_init_dpcd(intel_dp);
-> +	_panel_replay_init_dpcd(intel_dp);
->=20=20
->  	if (intel_dp->psr.sink_psr2_support ||
->  	    intel_dp->psr.sink_panel_replay_su_support)
+>  static void psr2_program_idle_frames(struct intel_dp *intel_dp,
 
 --=20
 Jani Nikula, Intel
