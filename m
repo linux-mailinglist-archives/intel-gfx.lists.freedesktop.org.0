@@ -2,66 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6376BB315BF
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 12:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D84B315FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 12:59:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7FA510EABB;
-	Fri, 22 Aug 2025 10:50:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7310910EAC3;
+	Fri, 22 Aug 2025 10:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iFiBDPCz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="llenHf17";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5751010EABB;
- Fri, 22 Aug 2025 10:50:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8448D10EAC2;
+ Fri, 22 Aug 2025 10:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755859827; x=1787395827;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=a+42Fe+87HocRbu1N9P0T+fMcFa/NUGTH2WIp1alzpY=;
- b=iFiBDPCz9+CnBLs+hfzHTO4GRTPLlEF47PleHfTIp1RhEt2LJV+Maz58
- jbTatmQUq/iUO5Q5UQaTh8A+/8OoVkAXuCUMahX8PcP4XWcZgyOvT7bdG
- 0hj9Ybns+U1GFkuYFJb4Sek51dkdo4tk+Zd2hJvav9hD+BNX/Ye94o3zG
- n3Dsnz/YUiaJM0Y5gA9sovFQhv7no1i0w7TdID/ceTmBYgJEN7q/xStyR
- Vt+gDR4F7WKjdMnGCkTkqrWkZvcccCUE01SSlL/fKKCH8vrzmrnk90UvW
- x8R+Cp9L5vGcd2cnNnGtTi5+LXFFJQmMHc0bacMM17SVCDnVTadyslwod A==;
-X-CSE-ConnectionGUID: S+dpUlJrSou5CYebQ7GLfA==
-X-CSE-MsgGUID: iGYEVHMwSdaV2f4Fncbvaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61977795"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="61977795"
+ t=1755860342; x=1787396342;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cS7TZZCySoBPv6EDVf4bC6rBKVIFp3K8gSdeZSmFxJA=;
+ b=llenHf17EDbTAaHtRPzdl6i4E5diCHeb8iCWS0n7sTmdU/aUHg63bdCl
+ EcmHysZkqIsFJLZj6hriiD2IaRt1QXUzJf+PwR05RmposX+XsovFLY9kG
+ JvpIrMoOcFgGfT5yo5l/vJPvSIk6LE8hneAXqomzz1skW4Z8rO7IakM/i
+ X2fPGyLJxm5tu8dsUS70cTZA0whCX75AZgWabMeWQXVrrGf2UNeoozpzj
+ 6a/cbGpsdw9dVtJ3EEDOOmgbCMQTZf+ji254AImAoxfT6FHhik5xGbSsA
+ /icO/j6P2X0Yk3ou/nlpIDFp5jI+lZypUNZJXMLdv2YHsV5ijSz1QiQJv Q==;
+X-CSE-ConnectionGUID: PdA4aamUTTKJbHGqN56njA==
+X-CSE-MsgGUID: 49MfJo3GRr+GEv5Xfp3WVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="61978628"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="61978628"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 03:50:27 -0700
-X-CSE-ConnectionGUID: qxoSMHNyRVqoYTZDcBNalA==
-X-CSE-MsgGUID: H9cTNwWWRKKRB1g9pdFNoQ==
+ 22 Aug 2025 03:59:01 -0700
+X-CSE-ConnectionGUID: eU0zV0FcRBSDqkV0YdJvkg==
+X-CSE-MsgGUID: /7vFgKCXSF2yOKhTjfuwRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="199556647"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.190])
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="199558210"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.79])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 03:50:22 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com,
- xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com, Arun R
- Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH v3 3/4] drm/atomic: Return user readable error in
- atomic_ioctl
-In-Reply-To: <20250822-atomic-v3-3-13a0e8f2c581@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
- <20250822-atomic-v3-3-13a0e8f2c581@intel.com>
-Date: Fri, 22 Aug 2025 13:50:19 +0300
-Message-ID: <dc5d62fc065b1273f04f07422be61e94a0d153f7@intel.com>
+ 22 Aug 2025 03:58:59 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/psr: Do not unnecessarily remove underrun on idle
+ PSR WA
+Date: Fri, 22 Aug 2025 13:58:46 +0300
+Message-ID: <20250822105846.1023631-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,192 +71,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 22 Aug 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> Add user readable error codes for failure cases in drm_atomic_ioctl() so
-> that user can decode the error code and take corrective measurements.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/drm_atomic.c      |  6 ++++
->  drivers/gpu/drm/drm_atomic_uapi.c | 60 ++++++++++++++++++++++++++++++++-------
->  2 files changed, 56 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index cd15cf52f0c9144711da5879da57884674aea9e4..5f25e6d3cf6cf246f83a8c39450b410e97fe45bb 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -1513,6 +1513,9 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
->  				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
->  					       crtc->base.id, crtc->name);
-> +				state->error_code->failure_flags =
-> +					DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
+We are currently removing underrun on idle PSR WA even if it's not
+applied. Fix this by checking pkg_c_latency_used on PSR exit as well.
 
-It says flags, implying multiple, but you're just adding one there
-anyway. Just like it was a regular enum.
+Fixes: 9b1795e9b0ae ("drm/i915/psr: Underrun on idle PSR wa only when pkgc latency > delayed vblank")
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-> +
->  				return -EINVAL;
->  			}
->  		}
-> @@ -1537,8 +1540,11 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  		drm_dbg_atomic(dev,
->  			       "driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
->  			       requested_crtc, affected_crtc);
-> +		state->error_code->failure_flags = DRM_MODE_ATOMIC_NEED_FULL_MODESET;
->  		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
->  		     requested_crtc, affected_crtc);
-> +
-> +		return -EINVAL;
-
-This changes behaviour.
-
->  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index ecc73d52bfae41a7ef455a7e13649ec56c690b90..94eaf9c98eb4ac2455799f1416010d366e1b5bbc 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -1058,6 +1058,9 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
->  			ret = drm_atomic_crtc_get_property(crtc, crtc_state,
->  							   prop, &old_val);
->  			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
-> +			if (ret)
-> +				state->error_code->failure_flags =
-> +					DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED;
->  			break;
->  		}
->  
-> @@ -1089,6 +1092,8 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
->  
->  			/* ask the driver if this non-primary plane is supported */
->  			if (plane->type != DRM_PLANE_TYPE_PRIMARY) {
-> +				state->error_code->failure_flags =
-> +					DRM_MODE_ATOMIC_ASYNC_NOT_SUP_PLANE;
->  				ret = -EINVAL;
->  
->  				if (plane_funcs && plane_funcs->atomic_async_check)
-> @@ -1380,6 +1385,13 @@ set_async_flip(struct drm_atomic_state *state)
->  	}
->  }
->  
-> +#define FAILURE_REASON(flag, reason) #reason,
-> +const char *drm_mode_atomic_failure_string[] = {
-> +	DRM_MODE_ATOMIC_FAILURE_REASON
-> +};
-> +
-> +#undef FAILURE_REASON
-> +
->  int drm_mode_atomic_ioctl(struct drm_device *dev,
->  			  void *data, struct drm_file *file_priv)
->  {
-> @@ -1389,9 +1401,11 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  	uint32_t __user *props_ptr = (uint32_t __user *)(unsigned long)(arg->props_ptr);
->  	uint64_t __user *prop_values_ptr = (uint64_t __user *)(unsigned long)(arg->prop_values_ptr);
->  	unsigned int copied_objs, copied_props;
-> -	struct drm_atomic_state *state;
-> +	struct drm_atomic_state *state = NULL;
->  	struct drm_modeset_acquire_ctx ctx;
->  	struct drm_out_fence_state *fence_state;
-> +	struct drm_mode_atomic_err_code error_code;
-> +	struct drm_mode_atomic_err_code __user *error_code_ptr;
->  	int ret = 0;
->  	unsigned int i, j, num_fences;
->  	bool async_flip = false;
-> @@ -1400,6 +1414,11 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
->  		return -EOPNOTSUPP;
->  
-> +	if (!arg->reserved)
-> +		drm_err(dev, "memory not allocated for drm_atomic error reporting\n");
-
-This right here makes me suspect you never really tried this with your
-regular desktop environment.
-
-> +
-> +	memset(&error_code, 0, sizeof(struct drm_mode_atomic_err_code));
-> +
->  	/* disallow for userspace that has not enabled atomic cap (even
->  	 * though this may be a bit overkill, since legacy userspace
->  	 * wouldn't know how to call this ioctl)
-> @@ -1407,24 +1426,25 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  	if (!file_priv->atomic) {
->  		drm_dbg_atomic(dev,
->  			       "commit failed: atomic cap not enabled\n");
-> -		return -EINVAL;
-> +		error_code.failure_flags = DRM_MODE_ATOMIC_CAP_NOT_ENABLED;
-> +		ret = -EINVAL;
-> +		goto out;
->  	}
->  
->  	if (arg->flags & ~DRM_MODE_ATOMIC_FLAGS) {
->  		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	if (arg->reserved) {
-> -		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
-> -		return -EINVAL;
-> +		error_code.failure_flags = DRM_MODE_ATOMIC_INVALID_FLAG;
-> +		ret = -EINVAL;
-> +		goto out;
->  	}
->  
->  	if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
->  		if (!dev->mode_config.async_page_flip) {
->  			drm_dbg_atomic(dev,
->  				       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
-> -			return -EINVAL;
-> +			error_code.failure_flags = DRM_MODE_ATOMIC_PAGE_FLIP_ASYNC;
-> +			ret = -EINVAL;
-> +			goto out;
->  		}
->  
->  		async_flip = true;
-> @@ -1435,7 +1455,9 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  			(arg->flags & DRM_MODE_PAGE_FLIP_EVENT)) {
->  		drm_dbg_atomic(dev,
->  			       "commit failed: page-flip event requested with test-only commit\n");
-> -		return -EINVAL;
-> +		error_code.failure_flags = DRM_MODE_ATOMIC_FLIP_EVENT_WITH_CHECKONLY;
-> +		ret = -EINVAL;
-> +		goto out;
->  	}
->  
->  	state = drm_atomic_state_alloc(dev);
-> @@ -1446,6 +1468,8 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  	state->acquire_ctx = &ctx;
->  	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
->  
-> +	state->error_code = &error_code;
-> +
->  retry:
->  	copied_objs = 0;
->  	copied_props = 0;
-> @@ -1542,6 +1566,22 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->  	}
->  
->  out:
-> +	/* update the error code if any error to allow user handling it */
-> +	if (ret < 0 && arg->reserved) {
-> +		error_code_ptr = (struct drm_mode_atomic_err_code __user *)
-> +				 (unsigned long)arg->reserved;
-> +
-> +		strscpy_pad(error_code.failure_string,
-> +			    drm_mode_atomic_failure_string[error_code.failure_flags],
-> +			    sizeof(error_code.failure_string));
-> +
-> +		if (copy_to_user(error_code_ptr, &error_code, sizeof(error_code)))
-> +			return -EFAULT;
-> +	}
-> +
-> +	if (!state)
-> +		return ret;
-> +
->  	complete_signaling(dev, state, fence_state, num_fences, !ret);
->  
->  	if (ret == -EDEADLK) {
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b4091d28e814..88eceb8f00fd 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2090,8 +2090,9 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
+ 
+ 		drm_WARN_ON(display->drm, !(val & EDP_PSR2_ENABLE));
+ 	} else {
+-		if (DISPLAY_VER(display) == 20 ||
+-		    IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0))
++		if ((DISPLAY_VER(display) == 20 ||
++		     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
++			intel_dp->psr.pkg_c_latency_used)
+ 			intel_dmc_start_pkgc_exit_at_start_of_undelayed_vblank(display,
+ 								       intel_dp->psr.pipe,
+ 								       false);
 -- 
-Jani Nikula, Intel
+2.43.0
+
