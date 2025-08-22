@@ -2,161 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9516B30ED4
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 08:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD602B30FAF
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 08:59:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 582D210EA5A;
-	Fri, 22 Aug 2025 06:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5AF10E06D;
+	Fri, 22 Aug 2025 06:59:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UJwID/Ny";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W1e+kh1T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 780C610EA5A
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Aug 2025 06:24:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1755843878;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=WiI+ZnCzEnb/n6DQfRPkU+9oejYIM/R2hKOTH1yevco=;
- b=UJwID/Ny9BPDInw1YPGRiKYIqsfJIcRM6APajZRPAC861tVWZStwPqaU4lf0ELAT2FMEBW
- CTYdqKYWjUKVDsIInd+Xaa4/UWaYmRIoS87In1H4aIZOKwCl7M+Gb4sFKOnG69NBgx5pBS
- +2gKkd6e7fgdBX2gIX4O2cRyfn+3hzQ=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-360-W6vaVRbIM-a70GsLSO6Isg-1; Fri, 22 Aug 2025 02:24:37 -0400
-X-MC-Unique: W6vaVRbIM-a70GsLSO6Isg-1
-X-Mimecast-MFC-AGG-ID: W6vaVRbIM-a70GsLSO6Isg_1755843875
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3b9d41b88ffso1025123f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 Aug 2025 23:24:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755843875; x=1756448675;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=WiI+ZnCzEnb/n6DQfRPkU+9oejYIM/R2hKOTH1yevco=;
- b=LpEZddsyfCCo0Od9OBA43kXwjMh/+HmGfPbYrp2MjwlXjMqTpL8n69YSEXIXt405u7
- 9f6hLOqPUjOafQ/+sPY/qZfnlnF/nMHhLIIX/Y0QsEz8EDnP9F2u+/p7eYkbcILVoPDq
- 0V/qlVOGjgn7zs/6kYFj5yX6KMDogVK31eS1tzfQajv/O9n+nmsrEpApmbC/rp+li206
- hfrDzQaPP7BD1gPDDPMSPjP6dptMDStiDLtbvOoONblERg643ahV/DoFeM3GYvatlVNd
- PvbJaSyoz6GA6D3QGjrpygw5Uw8o9OipOuPW4M9Jo2Jwoy2O8xVGRUowIZIe6TExB658
- X4ig==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUuY6s+AfnuXtA7oOVVx+ag4I24fLUUq0SsLQV+kqWshzuccmwsnEJ/7pzpEDiqPwsIy4+/LAwypO8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxluhkhSsSuI8V4QDuO3ABQ4YgU8qoK1lC94FrwR0ljH9B/wOog
- F9cHVDNAjls/QbzGERXWW6WvYHgwlLZQ0/VcS9F2fPZ9GNWJqnxD8OG763ENNtrK78reIdR60u6
- U6zHO9cTA7Yv9oBKahHrOWsIqHv2dVnCMutdnxhnFkgCy9i57Ubg+hTbPVHdTmNFkHZg/Kw==
-X-Gm-Gg: ASbGncsKNqlzVFMVHWR5fJFf3rI/YJjBKafj1dN9C9XJYne7GCJa2CzA+L2I0NT+mJL
- 7S89pgfHEfm0bwYftnJKLiVvYCqr7fS4o4/XsODdk6j/VcwkiYIywcG2RwYLs3BIdPtIUDpVI37
- nqiH+7Ek0f+GPexncBVY4RNjt6srMrhvtSmWwUug2ONssG7wNpoBaRD7OAY60S9MxHzJdKJZSDX
- VrCfeEK6MadUCxkHnZhboygGQhYkrwoCYTb0zfV0kmQSRcDmQNIqmUuSJ/Cm2wDruY4hQzURWsA
- /XSxwNlFzSas64AcdQRnWRWczwy5fInhpooLKDxUeOMiFunjUMDxWkTUdL7FvWGay/HZuA==
-X-Received: by 2002:a05:6000:26c1:b0:3a3:7ba5:93a5 with SMTP id
- ffacd0b85a97d-3c5daefc4a3mr930363f8f.26.1755843874958; 
- Thu, 21 Aug 2025 23:24:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkMOIqwJnbz0zMoKzv9XjVteH9mRf82hflWECX8mqHGwhCkTy10DA8QnyI2PcknGc6Szk7/A==
-X-Received: by 2002:a05:6000:26c1:b0:3a3:7ba5:93a5 with SMTP id
- ffacd0b85a97d-3c5daefc4a3mr930326f8f.26.1755843874452; 
- Thu, 21 Aug 2025 23:24:34 -0700 (PDT)
-Received: from [192.168.3.141] (p4ff1f25c.dip0.t-ipconnect.de. [79.241.242.92])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c6070264fbsm1198544f8f.67.2025.08.21.23.24.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 21 Aug 2025 23:24:33 -0700 (PDT)
-Message-ID: <7077e09f-6ce9-43ba-8f87-47a290680141@redhat.com>
-Date: Fri, 22 Aug 2025 08:24:31 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47B4910E06D;
+ Fri, 22 Aug 2025 06:59:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1755845992; x=1787381992;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=Kx7iXLw1E6P+5gYeIoPaKWc0B9IRL+fLV/WtVPDfx0o=;
+ b=W1e+kh1TV0JfKzQqLQ1ab1ZTmtta9LWcvuiapmkfcLBApSwS4MivkYsj
+ ddnM7emyV6+XM5g1PWWf9/VRJ2nxWwUnke7rEPCFCRHtO0JTk3Gs4za7g
+ y20+vJPrJ5hBuDgcJxJwj1Zm6Ge9l8IZnXswsb1IUeLlM+GOezD23Q20p
+ xV74ntJrcEt0hml4NOmBrvzKLwv+WH4m+c2fWoth4zNcKB7cZehUgNbCS
+ M+brLUiSu4i6nExexLrD1Kf/okgkski5VKW/LZvLE/hxj6iE12YZRz0WM
+ d0y1eQqyMQ9KS1VHjBoGbbIbNm4o9+vOWrAM7C70q8y7ExUBhX05jhVRG Q==;
+X-CSE-ConnectionGUID: pu+CwP6mSoSctQGC2n29uw==
+X-CSE-MsgGUID: chmbVCp1QhiyDOKOAYp3NA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="68751471"
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="68751471"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2025 23:59:52 -0700
+X-CSE-ConnectionGUID: THeEOonaS5aMp91WULZ9bQ==
+X-CSE-MsgGUID: pSguEmHeTG6gE0Cy+yye9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192300996"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2025 23:59:48 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v3 0/4] User readable error codes on atomic_ioctl failure
+Date: Fri, 22 Aug 2025 12:30:00 +0530
+Message-Id: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 10/35] mm/hugetlb: cleanup
- hugetlb_folio_init_tail_vmemmap()
-To: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>,
- linux-kernel@vger.kernel.org
-Cc: Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
- Michal Hocko <mhocko@suse.com>, Mike Rapoport <rppt@kernel.org>,
- Muchun Song <muchun.song@linux.dev>, netdev@vger.kernel.org,
- Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>,
- Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
- Tejun Heo <tj@kernel.org>, virtualization@lists.linux.dev,
- Vlastimil Babka <vbabka@suse.cz>, wireguard@lists.zx2c4.com, x86@kernel.org,
- Zi Yan <ziy@nvidia.com>
-References: <20250821200701.1329277-1-david@redhat.com>
- <20250821200701.1329277-11-david@redhat.com>
- <9156d191-9ec4-4422-bae9-2e8ce66f9d5e@redhat.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <9156d191-9ec4-4422-bae9-2e8ce66f9d5e@redhat.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 7ZX9ZvJjNjNAf23eTjPJEF2rr4NkuukwUmS1sbXAQNo_1755843875
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHAVqGgC/0XMQQrDIBCF4auEWXdK1BibrnqP0oXo2AzUGFRCI
+ eTulULp8oP3vx0KZaYC126HTBsXTkuDOnXgZrs8Cdk3g+yl7o28oK0pskM3GaGCV9rQAG28Zgr
+ 8/h7dH80hp4h1zmT/+SjNL98EChzt5KwQXnk93Hip9Dq7FOE4PmoRnaWWAAAA
+X-Change-ID: 20250728-atomic-c9713fd357e4
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com, 
+ xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,31 +76,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 22.08.25 06:09, Mika Penttilä wrote:
-> 
-> On 8/21/25 23:06, David Hildenbrand wrote:
-> 
->> All pages were already initialized and set to PageReserved() with a
->> refcount of 1 by MM init code.
-> 
-> Just to be sure, how is this working with MEMBLOCK_RSRV_NOINIT, where MM is supposed not to
-> initialize struct pages?
+The series focuses on providing a user readable error value on a failure
+in drm_atomic_ioctl(). Usually -EINVAL is returned in most of the error
+cases and it is difficult for the user to decode the error and get to
+know the real cause for the error. If user gets to know the reason for
+the error then corrective measurements can be taken up.
 
-Excellent point, I did not know about that one.
+TODO: driver specific error codes are to be added and will be done in
+the follow-up patches.
 
-Spotting that we don't do the same for the head page made me assume that 
-it's just a misuse of __init_single_page().
+The IGT related changes are pushed for review @
+https://patchwork.freedesktop.org/series/153330/
 
-But the nasty thing is that we use memblock_reserved_mark_noinit() to 
-only mark the tail pages ...
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+Arun R Murthy (4):
+      drm: Define user readable error codes for atomic ioctl
+      drm/atomic: Add error_code element in atomic_state
+      drm/atomic: Return user readable error in atomic_ioctl
+      drm/i915/display: Error codes for async flip failures
 
-Let me revert back to __init_single_page() and add a big fat comment why 
-this is required.
+ drivers/gpu/drm/drm_atomic.c                 |  6 +++
+ drivers/gpu/drm/drm_atomic_uapi.c            | 60 +++++++++++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_display.c |  4 ++
+ include/drm/drm_atomic.h                     |  7 ++++
+ include/uapi/drm/drm_mode.h                  | 42 +++++++++++++++++++
+ 5 files changed, 109 insertions(+), 10 deletions(-)
+---
+base-commit: cca87ca63e2f5b8a785dc59c23e526987530b27f
+change-id: 20250728-atomic-c9713fd357e4
 
-Thanks!
-
+Best regards,
 -- 
-Cheers
-
-David / dhildenb
+Arun R Murthy <arun.r.murthy@intel.com>
 
