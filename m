@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6E6B31DC5
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 17:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0FCB31E79
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 17:27:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87F9C10EB4A;
-	Fri, 22 Aug 2025 15:13:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86DA710EB54;
+	Fri, 22 Aug 2025 15:27:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Oq+YiBtz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CMSA8/iN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E19210EB4A;
- Fri, 22 Aug 2025 15:13:58 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3D010EB53;
+ Fri, 22 Aug 2025 15:27:42 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id DBD4344F53;
- Fri, 22 Aug 2025 15:13:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4A19C4CEED;
- Fri, 22 Aug 2025 15:13:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2FD7B601E7;
+ Fri, 22 Aug 2025 15:27:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95AB4C4CEF4;
+ Fri, 22 Aug 2025 15:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1755875637;
- bh=p0iPLyXnfNJdu+YoCuoUVSR7eRuOWUAmkwSHtZmbswo=;
+ s=k20201202; t=1755876460;
+ bh=0qR8BCWLBcRlRrpkcs+atUvi5PdtJ50YHK9esf5ZAKk=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Oq+YiBtzNwt4g95Bu7PV0Fl9ib86q+ONSg37ZzPXpeT67l668lZdZKcDZ17zCgq/+
- NUr9Cggu/NQsNbAf8J5LWQZhrBwU1g/MF3aj/PVZNB0J8PVxbWJVmp+W/+1x83AUZi
- Ksafl3fKhK5d4QzvSbcncq8HLEoFlkjFsSlSh1hzeqF0bChtCL26UZCq78qNfMb29E
- EBeBkg4phSCnNI6fLlpTsGgIlXQA3OAyRkh7ArJn5n6ii54fXevJBkxPUnY9AstAPY
- LmiLofHFtmfQUlmw4ITl2sEhNM7ay49imRJJkphBZ9EWVC8vpCEY5+m+WLFICOjhFU
- VsNUYbhaEIPrw==
-Date: Fri, 22 Aug 2025 18:13:39 +0300
+ b=CMSA8/iNRQzGZkbIDx5A4cJNOwmFhybJqReMu4HdwOVn3PNotQlsB8AgT+yFZA8Y8
+ tXDvC072J+TRehmdgF6MQY8T9LhOc8Vm8r28olhGEPc9En2no+wNDu0dVCg2CmWd50
+ VDF4ewu4MW0eWpp/VV3ju+VCox+NXDJKc5r3/Tt5bBkHB/AdI2MAkYGs2yDcmuxBr5
+ hcRW5ZzeP6W5XkLDFTOtzNceF2yrK9Br6VLgJmKNP6QZnYnlUbDho/SCHAoD5sdcAx
+ wQt2gTTeyRZX4my8A32bD2sZ4a3Ym/R4GffRVx6rLGX5yIxOwM3XEG7ZllyzhSW098
+ +DeEOtb4E7cHQ==
+Date: Fri, 22 Aug 2025 18:27:22 +0300
 From: Mike Rapoport <rppt@kernel.org>
 To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Shuah Khan <shuah@kernel.org>, Alexander Potapenko <glider@google.com>,
+Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>,
  Christoph Lameter <cl@gentwo.org>, Dennis Zhou <dennis@kernel.org>,
@@ -59,15 +58,15 @@ Cc: linux-kernel@vger.kernel.org, "Jason A. Donenfeld" <Jason@zx2c4.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: Re: [PATCH RFC 05/35] wireguard: selftests: remove
- CONFIG_SPARSEMEM_VMEMMAP=y from qemu kernel config
-Message-ID: <aKiJI0jiFEjtLE3l@kernel.org>
+Subject: Re: [PATCH RFC 09/35] mm/mm_init: make memmap_init_compound() look
+ more like prep_compound_page()
+Message-ID: <aKiMWoZMyXYTAPJj@kernel.org>
 References: <20250821200701.1329277-1-david@redhat.com>
- <20250821200701.1329277-6-david@redhat.com>
+ <20250821200701.1329277-10-david@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821200701.1329277-6-david@redhat.com>
+In-Reply-To: <20250821200701.1329277-10-david@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,34 +82,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 21, 2025 at 10:06:31PM +0200, David Hildenbrand wrote:
-> It's no longer user-selectable (and the default was already "y"), so
-> let's just drop it.
-
-and it should not matter for wireguard selftest anyway
+On Thu, Aug 21, 2025 at 10:06:35PM +0200, David Hildenbrand wrote:
+> Grepping for "prep_compound_page" leaves on clueless how devdax gets its
+> compound pages initialized.
 > 
-> Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
-> Cc: Shuah Khan <shuah@kernel.org>
+> Let's add a comment that might help finding this open-coded
+> prep_compound_page() initialization more easily.
+> 
+> Further, let's be less smart about the ordering of initialization and just
+> perform the prep_compound_head() call after all tail pages were
+> initialized: just like prep_compound_page() does.
+> 
+> No need for a lengthy comment then: again, just like prep_compound_page().
+> 
+> Note that prep_compound_head() already does initialize stuff in page[2]
+> through prep_compound_head() that successive tail page initialization
+> will overwrite: _deferred_list, and on 32bit _entire_mapcount and
+> _pincount. Very likely 32bit does not apply, and likely nobody ever ends
+> up testing whether the _deferred_list is empty.
+> 
+> So it shouldn't be a fix at this point, but certainly something to clean
+> up.
+> 
 > Signed-off-by: David Hildenbrand <david@redhat.com>
-
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-
 > ---
->  tools/testing/selftests/wireguard/qemu/kernel.config | 1 -
->  1 file changed, 1 deletion(-)
+>  mm/mm_init.c | 13 +++++--------
+>  1 file changed, 5 insertions(+), 8 deletions(-)
 > 
-> diff --git a/tools/testing/selftests/wireguard/qemu/kernel.config b/tools/testing/selftests/wireguard/qemu/kernel.config
-> index 0a5381717e9f4..1149289f4b30f 100644
-> --- a/tools/testing/selftests/wireguard/qemu/kernel.config
-> +++ b/tools/testing/selftests/wireguard/qemu/kernel.config
-> @@ -48,7 +48,6 @@ CONFIG_JUMP_LABEL=y
->  CONFIG_FUTEX=y
->  CONFIG_SHMEM=y
->  CONFIG_SLUB=y
-> -CONFIG_SPARSEMEM_VMEMMAP=y
->  CONFIG_SMP=y
->  CONFIG_SCHED_SMT=y
->  CONFIG_SCHED_MC=y
+> diff --git a/mm/mm_init.c b/mm/mm_init.c
+> index 5c21b3af216b2..708466c5b2cc9 100644
+> --- a/mm/mm_init.c
+> +++ b/mm/mm_init.c
+> @@ -1091,6 +1091,10 @@ static void __ref memmap_init_compound(struct page *head,
+>  	unsigned long pfn, end_pfn = head_pfn + nr_pages;
+>  	unsigned int order = pgmap->vmemmap_shift;
+>  
+> +	/*
+> +	 * This is an open-coded prep_compound_page() whereby we avoid
+> +	 * walking pages twice by initializing them in the same go.
+> +	 */
+
+While on it, can you also mention that prep_compound_page() is not used to
+properly set page zone link?
+
+With this
+
+Reviewed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+
+>  	__SetPageHead(head);
+>  	for (pfn = head_pfn + 1; pfn < end_pfn; pfn++) {
+>  		struct page *page = pfn_to_page(pfn);
+> @@ -1098,15 +1102,8 @@ static void __ref memmap_init_compound(struct page *head,
+>  		__init_zone_device_page(page, pfn, zone_idx, nid, pgmap);
+>  		prep_compound_tail(head, pfn - head_pfn);
+>  		set_page_count(page, 0);
+> -
+> -		/*
+> -		 * The first tail page stores important compound page info.
+> -		 * Call prep_compound_head() after the first tail page has
+> -		 * been initialized, to not have the data overwritten.
+> -		 */
+> -		if (pfn == head_pfn + 1)
+> -			prep_compound_head(head, order);
+>  	}
+> +	prep_compound_head(head, order);
+>  }
+>  
+>  void __ref memmap_init_zone_device(struct zone *zone,
 > -- 
 > 2.50.1
 > 
