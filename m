@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C929FB30FBA
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 09:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C7DAB31108
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Aug 2025 10:02:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45D3210EA76;
-	Fri, 22 Aug 2025 07:00:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JvohIZPA";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D303B10EA83;
+	Fri, 22 Aug 2025 08:02:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 512D010EA76;
- Fri, 22 Aug 2025 07:00:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1755846010; x=1787382010;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=bYfztuFj+cBsEPLwzghG5h/SB1j93fA9NrWb8Eqccio=;
- b=JvohIZPAaOAIS8EKu1giij/e72GqK0LihiBF2T9BRRy3iPYieEytlWPV
- 3QZpa/ZtTe1DNAJI5UVEeEX8RbPNuRHtlKcDHiQJlWmjqoBUTp2czbLdU
- IjORRY+CJOs6+pWpGZJfmP5VhIGVAVWdG6DHgKc+K2vGza/QluBhhfl2a
- 1nWZXcrSkrCkHLFYNe0FhNCT9kpbXYDDhDRCQND5alAI09bPj0MfGQp7X
- oqCLPgk5bL1K+yBEIFrd703hr+g+hoTLV7yEZeiOEnosCNsPIJfI2+xUp
- npcf5Hjk2KVCt6dJmiZZPSP+iljIG0xyM4byo8EnTciJYGTBPNJhrMprf Q==;
-X-CSE-ConnectionGUID: u2PF/hOqRl6id9aV5uLurA==
-X-CSE-MsgGUID: 5KO7HganTxea8IAcpLqvpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11529"; a="68751646"
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="68751646"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2025 00:00:10 -0700
-X-CSE-ConnectionGUID: 2MdvZXcxRPS0Pu6IKQm72Q==
-X-CSE-MsgGUID: 2bVltB6dQ8a1KOPn3U26Og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,309,1747724400"; d="scan'208";a="192301173"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa002.fm.intel.com with ESMTP; 22 Aug 2025 00:00:06 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 22 Aug 2025 12:30:04 +0530
-Subject: [PATCH v3 4/4] drm/i915/display: Error codes for async flip failures
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D97E10EA83;
+ Fri, 22 Aug 2025 08:02:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8960010135830710439=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250822-atomic-v3-4-13a0e8f2c581@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_User_readable_error_codes?=
+ =?utf-8?q?_on_atomic=5Fioctl_failure_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 22 Aug 2025 08:02:09 -0000
+Message-ID: <175584972944.260016.9912809687489370369@1538d3639d33>
+X-Patchwork-Hint: ignore
 References: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
 In-Reply-To: <20250822-atomic-v3-0-13a0e8f2c581@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, naveen1.kumar@intel.com, 
- xaver.hugl@kde.org, uma.shankar@intel.com, harry.wentland@amd.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,47 +37,397 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For failures in async flip atomic check/commit path return user readable
-error codes in struct drm_atomic_state.
+--===============8960010135830710439==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++++
- 1 file changed, 4 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1a3a95c65f0b66c24ddd64f47dfdc67bbde86c9..5e23f4fc747bd01fa05eba63661bf7279b083317 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5950,6 +5950,7 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
- 		drm_dbg_kms(display->drm,
- 			    "[CRTC:%d:%s] modeset required\n",
- 			    crtc->base.base.id, crtc->base.name);
-+		state->base.error_code->failure_flags = DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
- 		return -EINVAL;
- 	}
- 
-@@ -6019,6 +6020,7 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 		drm_dbg_kms(display->drm,
- 			    "[CRTC:%d:%s] modeset required\n",
- 			    crtc->base.base.id, crtc->base.name);
-+		state->base.error_code->failure_flags = DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET;
- 		return -EINVAL;
- 	}
- 
-@@ -6061,6 +6063,8 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
- 				    plane->base.base.id, plane->base.name,
- 				    &new_plane_state->hw.fb->format->format,
- 				    new_plane_state->hw.fb->modifier);
-+			state->base.error_code->failure_flags =
-+				DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPPORTED;
- 			return -EINVAL;
- 		}
- 
+Series: User readable error codes on atomic_ioctl failure (rev2)
+URL   : https://patchwork.freedesktop.org/series/152275/
+State : failure
 
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17049 -> Patchwork_152275v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_152275v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_152275v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/index.html
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (1): fi-glk-j4005 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_152275v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_busy@basic:
+    - bat-adlp-6:         [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adlp-6/igt@kms_busy@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adlp-6/igt@kms_busy@basic.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-cfl-8700k:       [PASS][3] -> [DMESG-WARN][4] +8 other tests dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-8700k/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-8700k/igt@kms_busy@basic@flip.html
+    - bat-dg2-14:         [PASS][5] -> [ABORT][6] +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-14/igt@kms_busy@basic@flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-14/igt@kms_busy@basic@flip.html
+    - fi-elk-e7500:       [PASS][7] -> [DMESG-WARN][8] +10 other tests dmesg-warn
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-elk-e7500/igt@kms_busy@basic@flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-elk-e7500/igt@kms_busy@basic@flip.html
+    - bat-mtlp-9:         [PASS][9] -> [ABORT][10] +1 other test abort
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-9/igt@kms_busy@basic@flip.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-9/igt@kms_busy@basic@flip.html
+    - bat-rpls-4:         [PASS][11] -> [ABORT][12] +1 other test abort
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-rpls-4/igt@kms_busy@basic@flip.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-rpls-4/igt@kms_busy@basic@flip.html
+    - fi-cfl-8109u:       [PASS][13] -> [ABORT][14] +1 other test abort
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-8109u/igt@kms_busy@basic@flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-hsw-4770:        [PASS][15] -> [DMESG-WARN][16] +10 other tests dmesg-warn
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-hsw-4770/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-hsw-4770/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-mtlp-8:         [PASS][17] -> [DMESG-WARN][18] +10 other tests dmesg-warn
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-adls-6:         [PASS][19] -> [DMESG-WARN][20] +8 other tests dmesg-warn
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-arlh-3:         [PASS][21] -> [DMESG-WARN][22] +10 other tests dmesg-warn
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arlh-3/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arlh-3/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-dg1-7:          [PASS][23] -> [DMESG-WARN][24] +8 other tests dmesg-warn
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg1-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg1-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - fi-glk-j4005:       NOTRUN -> [DMESG-WARN][25] +8 other tests dmesg-warn
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-adlp-9:         [PASS][26] -> [DMESG-WARN][27] +8 other tests dmesg-warn
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-twl-1:          [PASS][28] -> [DMESG-WARN][29] +10 other tests dmesg-warn
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-twl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-twl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+    - bat-apl-1:          [PASS][30] -> [DMESG-WARN][31] +8 other tests dmesg-warn
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-apl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-apl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - fi-skl-6600u:       [PASS][32] -> [DMESG-WARN][33] +10 other tests dmesg-warn
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - bat-arls-6:         [PASS][34] -> [DMESG-WARN][35] +8 other tests dmesg-warn
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+    - fi-kbl-7567u:       [PASS][36] -> [DMESG-WARN][37] +8 other tests dmesg-warn
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+    - fi-cfl-guc:         [PASS][38] -> [DMESG-WARN][39] +8 other tests dmesg-warn
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - bat-twl-2:          [PASS][40] -> [DMESG-WARN][41] +10 other tests dmesg-warn
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-twl-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-twl-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - bat-dg2-11:         [PASS][42] -> [DMESG-WARN][43] +8 other tests dmesg-warn
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-11/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-11/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - fi-ivb-3770:        [PASS][44] -> [DMESG-WARN][45] +10 other tests dmesg-warn
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-ivb-3770/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-ivb-3770/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - bat-dg2-8:          [PASS][46] -> [DMESG-WARN][47] +13 other tests dmesg-warn
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-8/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-8/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - fi-bsw-n3050:       [PASS][48] -> [DMESG-WARN][49] +10 other tests dmesg-warn
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+    - bat-arls-5:         [PASS][50] -> [DMESG-WARN][51] +8 other tests dmesg-warn
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-5/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-5/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - fi-ilk-650:         [PASS][52] -> [DMESG-WARN][53] +10 other tests dmesg-warn
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-ilk-650/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-ilk-650/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+    - fi-tgl-1115g4:      [PASS][54] -> [DMESG-WARN][55] +8 other tests dmesg-warn
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_dsc@dsc-basic@pipe-a-dp-1:
+    - bat-dg2-9:          [PASS][56] -> [DMESG-WARN][57] +13 other tests dmesg-warn
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-glk-j4005:       NOTRUN -> [ABORT][58] +1 other test abort
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@kms_pm_backlight@basic-brightness@edp-1:
+    - bat-jsl-1:          [PASS][59] -> [DMESG-WARN][60] +10 other tests dmesg-warn
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-jsl-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-jsl-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
+    - bat-rplp-1:         [PASS][61] -> [DMESG-WARN][62] +10 other tests dmesg-warn
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152275v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][63] ([i915#2190])
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [PASS][64] -> [DMESG-FAIL][65] ([i915#12061]) +1 other test dmesg-fail
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@intel_hwmon@hwmon-read:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][66] +4 other tests skip
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@intel_hwmon@hwmon-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][67] ([i915#12061]) -> [PASS][68] +1 other test pass
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-5:         [DMESG-FAIL][69] ([i915#12061]) -> [PASS][70] +1 other test pass
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][71] ([i915#12061]) -> [PASS][72] +1 other test pass
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17049 -> Patchwork_152275v2
+
+  CI-20190529: 20190529
+  CI_DRM_17049: cca87ca63e2f5b8a785dc59c23e526987530b27f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8503: 8503
+  Patchwork_152275v2: cca87ca63e2f5b8a785dc59c23e526987530b27f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/index.html
+
+--===============8960010135830710439==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>User readable error codes on atomic_ioctl failure (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152275/">https://patchwork.freedesktop.org/series/152275/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17049 -&gt; Patchwork_152275v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_152275v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_152275v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>Additional (1): fi-glk-j4005 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_152275v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_busy@basic:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adlp-6/igt@kms_busy@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adlp-6/igt@kms_busy@basic.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-8700k/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-8700k/igt@kms_busy@basic@flip.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-14/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-14/igt@kms_busy@basic@flip.html">ABORT</a> +1 other test abort</li>
+<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-elk-e7500/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-elk-e7500/igt@kms_busy@basic@flip.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-9/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-9/igt@kms_busy@basic@flip.html">ABORT</a> +1 other test abort</li>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-rpls-4/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-rpls-4/igt@kms_busy@basic@flip.html">ABORT</a> +1 other test abort</li>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-8109u/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-hsw-4770/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-hsw-4770/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-8/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arlh-3/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arlh-3/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg1-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg1-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-adlp-9/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-twl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-twl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-apl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-apl-1/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-6/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-cfl-guc/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-twl-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-twl-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-11/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-11/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-ivb-3770/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-ivb-3770/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-8/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-8/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +13 other tests dmesg-warn</li>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-bsw-n3050/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-5/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-5/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-ilk-650/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-ilk-650/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-tgl-1115g4/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">DMESG-WARN</a> +8 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic@pipe-a-dp-1:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-9/igt@kms_dsc@dsc-basic@pipe-a-dp-1.html">DMESG-WARN</a> +13 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@kms_flip@basic-flip-vs-dpms.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness@edp-1:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-jsl-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-jsl-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-rplp-1/igt@kms_pm_backlight@basic-brightness@edp-1.html">DMESG-WARN</a> +10 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152275v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@intel_hwmon@hwmon-read:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/fi-glk-j4005/igt@intel_hwmon@hwmon-read.html">SKIP</a> +4 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17049/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17049 -&gt; Patchwork_152275v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17049: cca87ca63e2f5b8a785dc59c23e526987530b27f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8503: 8503<br />
+  Patchwork_152275v2: cca87ca63e2f5b8a785dc59c23e526987530b27f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8960010135830710439==--
