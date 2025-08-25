@@ -2,165 +2,190 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D91DB33FE3
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 14:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 430AAB34026
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 14:56:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29F5810E25D;
-	Mon, 25 Aug 2025 12:49:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5B710E47D;
+	Mon, 25 Aug 2025 12:56:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HV1nSTp7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IOxvA4Wp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87D2110E25D
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 12:49:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756126144;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=3vXE/JZQfiOFAY8LityNc5lKOCwFML9m2hfnchuxSjw=;
- b=HV1nSTp7Q1GCYDLMq+4QqifxDxb7uYS4woQOiYC5rfSiucsVc4NcdRRzILeC5aQoVz5gJ1
- VSYwyFt/6kpVm+Via2f8IpHsZqabREVOTk60SlKbsQICe0pSG1jDTpnt5HFTSNVgTipQaT
- vz7KDhXANuJ5abMoEjjmje7XP3A+SOc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-103-HsTHuiQTORiRxhQxLFI8bw-1; Mon, 25 Aug 2025 08:49:03 -0400
-X-MC-Unique: HsTHuiQTORiRxhQxLFI8bw-1
-X-Mimecast-MFC-AGG-ID: HsTHuiQTORiRxhQxLFI8bw_1756126142
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-45b51baec92so10317555e9.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 05:49:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756126142; x=1756730942;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=3vXE/JZQfiOFAY8LityNc5lKOCwFML9m2hfnchuxSjw=;
- b=Yk0TpFXDZ/eBWIRF8ZsC1HiiT8TbX35FTFBY7mxaDlx2ZdmQ2JQNPWU8Hb6kskmh6u
- 9JpCd89aID0BCtC+FjPckTnIlyKh4ih9lp7E/xv37Qm9D2UyAKhBm8dvOIx6E5EQRBnW
- IOfhcxSbLBY/gfnFJupHWdXpkkVoRrNc32PJ1hVoUll0hJUrY7K4EyKIHndgg2VGizs2
- 5Vmiojgcql44WXsWAczcMCwV08NLfAFhOfyWk+IZLNdxVK/b0iNEBND7nawPNy7mWYzZ
- NLxCpDTAfK2Pfyeeu9w4fZ0tPyXLeMMXliIXKUjBiLMcm6YKxIeZQkhyf/e4dgkq+2nE
- y3Pg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVlK3xAMgQ+7S7ed8uUu430xVaNSNpP0zoQeOyT+MCNGCj6dbHalNh2YdzxOlQhDAdF1ZLufynNKHU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxzpP/gB2/7w078l9RYhz+icvCPjRm2EGMbdyrWMv93ofBKjiOL
- Tic1w19x7xYPZu8q+whgGhVTIevc6yhoJrnTEF/PXUjnGkUl6nWxtUUJFrC7cWlPJN0kuZ0ultd
- ncb4JhmTzVs99Y/dypVYq92LdWNTQN9nVlh9AESgnYnVQqcgZj7Vd6kL+zr37Rddaennvmw==
-X-Gm-Gg: ASbGnctNzw2QDzkocHdzC/XQhKc1h+800NETBVCk4kNbSV6fatPZjmTKuQ1FGL3cyf2
- Uys6jcwM+S0ClVU/tZHX1HEFIahshzo9xj/5BSnLJQd29dC0XTtmCl6tykEfJA5JV4wRtJY7GJj
- Jw81xOKLiGjGaPqMPC8dAHmH1CdaID3z1QsMJ6TZvdqNyzeXC4mpjnfDF6m45HWT6UpXvgPpa2L
- UAAL3NwHcPLpi/as0X304p4xgDKN+uW9IBiO55IDncT43tgGA4BcKnLl/feZCw4yKFa2E16WYsR
- scO8T04EQDPRVjaeoYrT8Ip8JmkkTk8RNIFD/s3vzHefBw943ldz7xoEnvZhc/rSleTVB8HzUae
- CsnjmaWazIgz9thfcJY/iIPRBNpeOEknT4K8TmEq9g64GDfAoBZC2TLq1qw50Q+g5dcg=
-X-Received: by 2002:a05:600c:3b0f:b0:43c:fe5e:f03b with SMTP id
- 5b1f17b1804b1-45b517d4d50mr117581905e9.30.1756126141733; 
- Mon, 25 Aug 2025 05:49:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFXxc8CWovMYNQS1+MbZ/J1HLlRjFi84VTIxSAk5gdBYVSg2EOk3SSNbd5GU03jnCMkyvwvPg==
-X-Received: by 2002:a05:600c:3b0f:b0:43c:fe5e:f03b with SMTP id
- 5b1f17b1804b1-45b517d4d50mr117581475e9.30.1756126141263; 
- Mon, 25 Aug 2025 05:49:01 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76?
- (p200300d82f4f130042f198e5ddf83a76.dip0.t-ipconnect.de.
- [2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3c70ea81d38sm11742640f8f.17.2025.08.25.05.48.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Aug 2025 05:49:00 -0700 (PDT)
-Message-ID: <a90cf9a3-d662-4239-ad54-7ea917c802a5@redhat.com>
-Date: Mon, 25 Aug 2025 14:48:58 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B283010E47D;
+ Mon, 25 Aug 2025 12:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756126564; x=1787662564;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=e2SCdlqcAWlqOoZVgu6NJMJTVR8qbjAGrk90zx3AlYo=;
+ b=IOxvA4WppfOUmv343Y2+Zz6smFYsl6lYABfBUWbvtq3TXdrmZQm5yiYW
+ SgixebT/k+d+lC7KG+CRGAc5dkzuXtosM+n/Fa7Ibqp26YR2pTkYAyXzM
+ xbMdjiiXvLFw/+zXBUTYDO9O3BQ7Q3Xxn01eRB3B4ladfokwHS/vV7tWb
+ t4ld1+uP6OfHkRZIqB3H3EZ6M7pRelPBgeflvKN7TCKh2zQvKYtTw4NH1
+ 03viBKvY2u118Lzs1lM516v67HI/MP/2eNJxT25nbvTAs0omYGLC1F3s1
+ 2UrVPHxEkB6s8/hWOkgffMylsKPc9e8WJd7cn7fV+B39oMuuSDR7cTmN7 g==;
+X-CSE-ConnectionGUID: C74I8vsURpKh8ODtHx3QEA==
+X-CSE-MsgGUID: OCeC1P1PTmm+36bWd54xKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164593"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164593"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:56:04 -0700
+X-CSE-ConnectionGUID: Sy7GGKCbTzq9POH9az5KBA==
+X-CSE-MsgGUID: RPu9cfzyS5GyuMeLVrTv2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="169481161"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2025 05:56:03 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 25 Aug 2025 05:56:02 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Mon, 25 Aug 2025 05:56:02 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.74)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Mon, 25 Aug 2025 05:56:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jtppb3ttPk0MYGICeDG5mwJj2nhop9XCyZJY+mesoZqorefzB06dpDS95a1u8GHdSUFGAC1s21fouOwjU2qbr9rbpELVthZF1oQC17ujgwk65lYadx93cWGjKkqwb4gRjz6a8oKo1LhfnWJ4/R9YS7h5d3PvVxXCdMWXQz2TgeOGdV2zE2cQcWW9yT3ZsEqhjCRgDbWU1T4kPey1KMK6VYFn6IbFklkwpdAHV4kb2BOeJUAGJSsenOZJFLuBwtvvyegoK8pyS3resAHeIS4mNjCGsLbYoKYVEveXwhq+GPN61ZL0G4NOrhwQwEqCmMzF7sFCUhjuGyFYwD32HK3FFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=naDdFZXKOIcVC2Otbg3BvtpioRKkDYpmfXMIRyPz9oE=;
+ b=yl/A7u5s9RsIk/RdcSjDm+DvaY3qg40/pbe3Wwzxttoc7uks6uE2Uk0yqO1uBcsAEJUACB3LlcQrbj85M7n6m6+2ZNljboyanh5RQyaEv+Ms8eqjfBz9GqfQWx4Es/S4bLMbZyPBvRLxENxOZf640i1UBMgVxWuA38+38eNRMYUMeU3N1pyxWN9vFbiwhZ679wy3LM3zNVxvoRr3F0SO83uPtG4MAkTJIN/a1wbEusGHtqj5L2SckoXhhu5OcqUge+1m72w/6nClEficD9/zG5PMS/jbOcK4HJt8X9yQvjCzcoGYo3yExesUoSqWbsXBho7m/Skp/Zptx6rNgCcwDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DM4PR11MB5247.namprd11.prod.outlook.com (2603:10b6:5:38a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.19; Mon, 25 Aug
+ 2025 12:56:00 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%2]) with mapi id 15.20.9052.013; Mon, 25 Aug 2025
+ 12:56:00 +0000
+Message-ID: <af82d5ed-d3c4-44ae-bc17-16f4eb5999a1@intel.com>
+Date: Mon, 25 Aug 2025 18:25:53 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 10/35] mm/hugetlb: cleanup
- hugetlb_folio_init_tail_vmemmap()
-To: Mike Rapoport <rppt@kernel.org>
-Cc: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>,
- linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
- Michal Hocko <mhocko@suse.com>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-References: <20250821200701.1329277-1-david@redhat.com>
- <20250821200701.1329277-11-david@redhat.com>
- <9156d191-9ec4-4422-bae9-2e8ce66f9d5e@redhat.com>
- <7077e09f-6ce9-43ba-8f87-47a290680141@redhat.com>
- <aKmDBobyvEX7ZUWL@kernel.org>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <aKmDBobyvEX7ZUWL@kernel.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ZBOywKnGDJYRPJ2PDfBInflEtavguyaPb-o0nsx8ItI_1756126142
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH 04/12] drm/i915/display: Extract helpers to set dsc/scaler
+ prefill latencies
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <ville.syrjala@linux.intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>
+References: <20250820080451.2634888-1-ankit.k.nautiyal@intel.com>
+ <20250820080451.2634888-5-ankit.k.nautiyal@intel.com>
+ <ec108ab6a7018cd162e5fcbdead88a2f1fd89a9d@intel.com>
+ <44dbccd6-854e-41f8-a226-3be406f15f76@intel.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <44dbccd6-854e-41f8-a226-3be406f15f76@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0048.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:175::14) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB5247:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45460d1f-56e1-4445-e705-08dde3d6bd9a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?M0grM2p4VEEra3g0YXVMdVBrUldpcEJwU1c1WXdwVEp0Y3p5WXRMSHFENVl3?=
+ =?utf-8?B?eHYzMGR3aFAxMVFxeHY0akwwaHVOQmRUTitwRldoOTJxU3ZKMk52bWNWczJE?=
+ =?utf-8?B?T0VFTHlpZkYxWVNnUlczOHgwN29DY25OU29xay9IalVMblMyMWxDelIxZS9H?=
+ =?utf-8?B?ejE5QXZEZW9uLzZuMDVHbkV3TmVuZi9tR0hmdUhPYWRJNmg5TnRGRXliYnRR?=
+ =?utf-8?B?L3cvanh3Q2dXTElJVTNnMG5FYzl0MFlVbWpySDdyd0NjTWtCaHJDcm9CUTFm?=
+ =?utf-8?B?YjZJTldGaURvNEJXaVJHM1ZVbmVOMmJqTkI0M0xMQkJkSFdDQ1VQajhmeTBH?=
+ =?utf-8?B?NkdVQ2c3WDY4ZmprTVRkRVdjdTdick9FTlFKWEx6T0hrMXNLZXNBUDZERjYv?=
+ =?utf-8?B?S2w1djJqbWJZM0w5aVl1Z0pSRk5QZXRvRWZGMzgxMnZZN3NKZFpROURSa20r?=
+ =?utf-8?B?ZHIzM25HVnUzcmVBNDZEbGVJRHVZMVBWL2licUtqZGpsWGVDbVVOMTNNcEI4?=
+ =?utf-8?B?VE9GL2hIYUErOENtd3JkVE5vK3gwRlVESFJXTll6cXBUOWxOVVFYQ2ZiV3Fh?=
+ =?utf-8?B?dzg4cVdBekdOS0pBai9MSmJMd2oxY3Y2QTQzSGRnT1l4V29DYlJweXBMdTZ1?=
+ =?utf-8?B?YjVrcy96dTNSTU5mV0QweWY1UFBTTXgxMEZQSDZ3VUYweENJWm9vYlhWM0to?=
+ =?utf-8?B?b3dncmZVcGlGbWxWZ3JNY2NUMWxzMk1JaFZqamQ2NHlZRDBZWmZaOU4yVEZn?=
+ =?utf-8?B?ZjVYR05EZ0VEdmU1ZEFJa1EzNUFMK1V6TS95MkJJc3JBdmpmc25pSFM2MnZa?=
+ =?utf-8?B?cXQvb3poVDh3N09MamJackt3SE03Vnd6OExGR3lhU3cvZ1ZKTnZVa3Q0RHpq?=
+ =?utf-8?B?Z000bkxOUkhaOG9PZHlVQjdUTGR3L3lQS0lsczRINlNmcDZUOU9iUVp6QzAw?=
+ =?utf-8?B?L0lZNXplditmS2NMeGRXbVB4bGNSTmhVamg4Tk9VQVV4aW1COHFMdjE4WU5z?=
+ =?utf-8?B?K1o2ek0xWTNIUkYzY1BVU2x0eHl0K1dwTktoZ0JDd2ZieEwxQmRyUFRoTGRN?=
+ =?utf-8?B?TDhGT2JzU3ZTQzNJUytXYk1pLzdjanRYcGxkS1pBeDZOaHJEM2hHQ0cxaXU0?=
+ =?utf-8?B?VDRoTHlsMm1VUnFnKzhHcENLcDczZFVqU0R0cWhxNG9LM21nRFlKTFliVjZD?=
+ =?utf-8?B?bGgvYkhxRGZyU0FPTVpKY0dtdTEveFhJbDVsTERsaFVjNkFRS1dpc1Zua1M2?=
+ =?utf-8?B?L2c4SnJBWkdyblhhZ3ExUDEwa3hYQklGQXdwMlJVcDE1U1NlYnpGWXZMVFZ6?=
+ =?utf-8?B?U0VOdzMyNzhibWNWUkY4bHlZOS9nZVdGdXprSWhCSHBHODl2a0lhalRpdnZk?=
+ =?utf-8?B?MVhpZFAwOUpkajlBZ2tKTUZocG9XMklXNHl4YnV5c1l6RzJoUUQ0VWhnUHNQ?=
+ =?utf-8?B?UHNkKzB0clNJaWl1eXJJWm9iZjFpUThJUncvQTFLTzFMTEVoZU1vUEs2V2RL?=
+ =?utf-8?B?UnRWd0NEcVFsT0JqcFhYTGJCMWhHa25FVWtxS0xQazl6TW95S1o2MW1RY0dz?=
+ =?utf-8?B?UW5Vc1Bobkl6SS8zMnBKdjZRQ0VaVUgwVklnL0NEa3dwRzhrYmIvMFl2R3Np?=
+ =?utf-8?B?TWZkTlcwdGRjaGE0cEM1WjJNMCtEUzloS3JKMGFiWHh3bDhFTW43YW50aDh4?=
+ =?utf-8?B?MVBpbkc1MWJmOHZ2eExhUDByby9xY2sxTTFxOFhaazEwLzBmWUZSRkx2RHRB?=
+ =?utf-8?B?RGdWWDZBUk1HUjlILys4VVV6alhBb3BGSnRaSVlJRHptQjNESWs1TGMzd1da?=
+ =?utf-8?B?M0o3SjRjTVRRYWpKOHpGV0xpSVlldUx4K3dnS01laXZMZ1JNYzMwYjJUakZv?=
+ =?utf-8?B?bndFbVJnNzdCM1JSbFhBdTRwWHlRUWFDK3Vid0NyU2JLRXNtMjdrTGVaMndm?=
+ =?utf-8?Q?XUOkqDTqrrw=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TmI0Y3NxeVF0R202bmJnZlFkL09pN2IrVzM0QmZna3BZS0Zmc0RLb1lhSDdw?=
+ =?utf-8?B?REZVVlJKb1ZMR0V5ai9oSmlSUUlwNjRndWZaa05CQ2t1cDAwQlRsdG1sVVNr?=
+ =?utf-8?B?OUM4ZTA2clZmbXo5Q05HYnhicHRRWkJ2eHpWNktONkJIbU1vOGhWOHgxL1E2?=
+ =?utf-8?B?VCtNY2w0VnI4cC9NN3NyNTFxNjJ2WUNqYmZtaVNiUlV6K0ErL25YY004UkRN?=
+ =?utf-8?B?TWdsUktsZEZ6a3dHRnFtRGIxcDZaekVyNThUVFIrdU54QnBLZGRUM281clBt?=
+ =?utf-8?B?d0dQTlh0bjdiOVNTWm0yOWd2V3JBSXRXUGNuSjRXRTlGbzZqN05RcDB4YkRl?=
+ =?utf-8?B?MTdzT1RMQ2dXSHJSU3pKRXBXZHp1ZERaZjdOL1V6VXNyZlJOV2FCZSs3eE1G?=
+ =?utf-8?B?eDFmMDhKcU92OC94OGF4WXkwT2RXUzdzRVRib2EyNm5OVFVVVVFJTmVnamw5?=
+ =?utf-8?B?RURSYXNoa01RL3UwUGZBYk1WWE41bDZvcWl6bVF1cGREZXNKNGlSeERlVkhI?=
+ =?utf-8?B?MmdnUWZ0Q0V4cXpzL21yUUdxSm9QYzhlZC9Sb3hjWlF4ZHRxWWxUN3BtT3Y5?=
+ =?utf-8?B?RTkzd0IveGxqbE5CN2o3V3A5a3UxN0VZcEg1cHRtTDlXbS9xR2hiVXpHdFo2?=
+ =?utf-8?B?MzgxSGpoUWtlM21ocHhQVWpkbmUzWmU1N3BQUGhndmZCTThBak1kaGtUSHdV?=
+ =?utf-8?B?VUl2aWYzZlJTa0JBMVVWWW8yaHA0UTVDSlZzSjJkakVqalJidnp4V05KUFAv?=
+ =?utf-8?B?QVhleFBBSm10RjJVMStmK3V0SCtvSStWa2hzd2g3eDhnQ2IyTzRGbmNyQkdX?=
+ =?utf-8?B?WGI1RXBGUjkwVktvbjBEcnJaWWxBNEI1NlF4SFdUcHJrK3k4Mm5VK0Vma1dG?=
+ =?utf-8?B?QnZ0VlJOcCt4WU1jbTFINmdSellSaHBLWENFSzd5Wk5HY3JDbUIxWm1EWFlN?=
+ =?utf-8?B?eE9Rc1Z3SUY2RWtjSk9EY05Fa0FBeEFNeklZcVZadUdIZkVvWEVJWFF5Tmxl?=
+ =?utf-8?B?TVZKU3hsUWRRL0lkb05ISkh4R204blJheEVIWnRQRTJqMHNxWElhanUxYlhy?=
+ =?utf-8?B?UGljaHhHaDhEL3h2Z1RiQVJrWE1rRTRQK3cxV3VZZUtQQlp3cjNGRkFzRDE4?=
+ =?utf-8?B?Zm9iZDVsenBRZU5YanlWVEpXSXJJaFEwSDEzYlNzYWNzdDZxQ2VabFpSN1k4?=
+ =?utf-8?B?RUR4MmtuYlcxQ2V2VXd4bytpSXBSYlhoUTZGUXZiWkVsR3NjVnFzWEM5alRw?=
+ =?utf-8?B?aUkvRW9ZZkdrdzZaUDN1OXY2L280VTMzUHpnOGlvN2xBQnNZNFFpaG9nc0ZK?=
+ =?utf-8?B?N05uQlNYQWg2VEJoUlE3Qk90cWpIUDQ5eHRFWkF2ZEMxUkpIODFrOGpSUk5M?=
+ =?utf-8?B?QjJETlZBclNpTGRjSXExUllWejlWUlg2VVBSaWdxcWVZbXd3WkVnZXZrcnpm?=
+ =?utf-8?B?RU1JOU5WSmNXUFMzWUVuNnpUWTlnSHdtWnd3SWM0T0VsU2crVWtBS2hKbDNm?=
+ =?utf-8?B?U2ZJSHpJTWR5dXljV040MUx2Ymk3UkdkOFFPRU8vNG9rSmkvYUYranI1Z2da?=
+ =?utf-8?B?enY5WW9FVE1yb0tYejkrNWZmUFNVOWNheU55bzIvTWZabUxqZm9FVnBDS3hi?=
+ =?utf-8?B?cjJkUkhTY005TmxPajZZUzhESnlJaEJjbjFXbWh0QVZKMlRQRVJpMThVRlA2?=
+ =?utf-8?B?N2lwU0JGSTdnSmxOdVhrSjlvaFhFaXFucnl2b0g0d3dwZWo2S2lnK28rYmt2?=
+ =?utf-8?B?QzZTSUtnQk5OQnJuTTdZTG4vMDBTUnRURkhvY3NzNVBFQXVFck1ETGpqU3A3?=
+ =?utf-8?B?WG1GcFBNU2wzV3ZpQWIxU1QwaHNrNmFMTFRCSHlyQVJycGIzbm9yTkdZR2N3?=
+ =?utf-8?B?K2tDNHlmb0cwb0JieVhyV3h3cUhzaE1Fb0R4TnhBd2RUK254eHdHU0RSY2VJ?=
+ =?utf-8?B?UjNrRkgrdkExSFJjbjBFaXdWcWNzaWZCZGc3NDEyQzZXQ29VY1dQTVIvWG4r?=
+ =?utf-8?B?elRERHZZOVFjWHdrYzBOY2o3TW5WNVJ6UDNIZ25TdEVxUWQ4eUFmSnlxTlVm?=
+ =?utf-8?B?S2VNdHJmcUlha2dZNW15VmdNV0UvbkRnVHdiZlFITmpnWEFFcFFsMlJhYlB0?=
+ =?utf-8?B?SkNON216eXJXTlZaQ3dDNE9sY1daV0R6NHhkL3V2NU1aMVRjcnd4cVZxaldR?=
+ =?utf-8?B?TVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45460d1f-56e1-4445-e705-08dde3d6bd9a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2025 12:56:00.7733 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v9/xQVQyRwJw6u4EiQRQBKTxOMVecP3B0HBQ+jIJfwLkuI6WY63uHNFYObTGwj9EtOxuems5qvh7/T6s/A9XxQelzoWphhtdPTmnnug735c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5247
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,40 +201,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 23.08.25 10:59, Mike Rapoport wrote:
-> On Fri, Aug 22, 2025 at 08:24:31AM +0200, David Hildenbrand wrote:
->> On 22.08.25 06:09, Mika Penttilä wrote:
+
+On 8/24/2025 10:06 AM, Nautiyal, Ankit K wrote:
+>
+> On 8/22/2025 4:53 PM, Jani Nikula wrote:
+>> On Wed, 20 Aug 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>>> Currently dsc/scaler prefill latencies are handled during watermark
+>>> calculations. With the optimized guardband, we need to compute the
+>>> latencies to find the minimum guardband that works for most cases.
+>>> Extract the helpers to compute these latencies, so that they can be 
+>>> used
+>>> while computing vrr guardband.
 >>>
->>> On 8/21/25 23:06, David Hildenbrand wrote:
+>>> While at it, put declarations in reverse xmas tree order for better
+>>> redability.
 >>>
->>>> All pages were already initialized and set to PageReserved() with a
->>>> refcount of 1 by MM init code.
+>>> v2: Initialize {h,v}scale_k to 0, and simplify the check in
+>>> intel_display_scaler_prefill_latency(). (Mitul)
 >>>
->>> Just to be sure, how is this working with MEMBLOCK_RSRV_NOINIT, where MM is supposed not to
->>> initialize struct pages?
+>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>> Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_display.c | 33 ++++++++++++++
+>>>   drivers/gpu/drm/i915/display/intel_display.h |  8 ++++
+>> Side note, basically adding anything to intel_display.c becomes a new
+>> todo item of things to move out of intel_display.c.
 >>
->> Excellent point, I did not know about that one.
+>> It has long been a dumping ground, and continues to be so. :(
+>
+> Thanks, Jani. Understood about intel_display.c being overloaded.
+>
+> I can keep the latency computation helpers in skl_watermark.c for now 
+> to avoid adding more to intel_display.c.
+
+
+While going about it, intel_vrr.c appeared to be a better place to have 
+these helpers, as we are using these latencies to be accommodated in 
+vrr.guardband.
+
+I have sent the new revision, with this change.
+
+
+Regards,
+
+Ankit
+
+
+>
+> Let me know if you'd prefer a different location.
+>
+>
+> Regards,
+>
+> Ankit
+>
 >>
->> Spotting that we don't do the same for the head page made me assume that
->> it's just a misuse of __init_single_page().
+>> BR,
+>> Jani.
 >>
->> But the nasty thing is that we use memblock_reserved_mark_noinit() to only
->> mark the tail pages ...
-> 
-> And even nastier thing is that when CONFIG_DEFERRED_STRUCT_PAGE_INIT is
-> disabled struct pages are initialized regardless of
-> memblock_reserved_mark_noinit().
-> 
-> I think this patch should go in before your updates:
-
-Shouldn't we fix this in memblock code?
-
-Hacking around that in the memblock_reserved_mark_noinit() user sound 
-wrong -- and nothing in the doc of memblock_reserved_mark_noinit() 
-spells that behavior out.
-
--- 
-Cheers
-
-David / dhildenb
-
+>>
+>>> drivers/gpu/drm/i915/display/skl_watermark.c | 46 +++++++++-----------
+>>>   3 files changed, 62 insertions(+), 25 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c 
+>>> b/drivers/gpu/drm/i915/display/intel_display.c
+>>> index c1a3a95c65f0..62ec95a75154 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>> @@ -8328,3 +8328,36 @@ bool intel_scanout_needs_vtd_wa(struct 
+>>> intel_display *display)
+>>>         return IS_DISPLAY_VER(display, 6, 11) && i915_vtd_active(i915);
+>>>   }
+>>> +
+>>> +int intel_display_scaler_prefill_latency(int num_scaler_users, u64 
+>>> hscale, u64 vscale,
+>>> +                     int chroma_downscaling_factor,
+>>> +                     int cdclk_prefill_adjustment,
+>>> +                     int linetime)
+>>> +{
+>>> +    int scaler_prefill_latency;
+>>> +
+>>> +    scaler_prefill_latency = 4 * linetime +
+>>> +                 DIV_ROUND_UP_ULL((4 * linetime * hscale * vscale *
+>>> +                           chroma_downscaling_factor), 1000000);
+>>> +
+>>> +    scaler_prefill_latency *= cdclk_prefill_adjustment;
+>>> +
+>>> +    return scaler_prefill_latency;
+>>> +}
+>>> +
+>>> +int intel_display_dsc_prefill_latency(int num_scaler_users, u64 
+>>> *hscale, u64 *vscale,
+>>> +                      int chroma_downscaling_factor,
+>>> +                      int cdclk_prefill_adjustment,
+>>> +                      int linetime)
+>>> +{
+>>> +    int dsc_prefill_latency;
+>>> +
+>>> +    dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * 
+>>> chroma_downscaling_factor, 10);
+>>> +
+>>> +    for (int i = 0; i < num_scaler_users; i++)
+>>> +        dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency 
+>>> * hscale[i] * vscale[i],
+>>> +                               1000000);
+>>> +    dsc_prefill_latency *= cdclk_prefill_adjustment;
+>>> +
+>>> +    return dsc_prefill_latency;
+>>> +}
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h 
+>>> b/drivers/gpu/drm/i915/display/intel_display.h
+>>> index 37e2ab301a80..8d094b0a8c6b 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>>> @@ -559,5 +559,13 @@ bool assert_port_valid(struct intel_display 
+>>> *display, enum port port);
+>>>     bool intel_scanout_needs_vtd_wa(struct intel_display *display);
+>>>   int intel_crtc_num_joined_pipes(const struct intel_crtc_state 
+>>> *crtc_state);
+>>> +int intel_display_scaler_prefill_latency(int num_scaler_users, u64 
+>>> hscale, u64 vscale,
+>>> +                     int chroma_downscaling_factor,
+>>> +                     int cdclk_prefill_adjustment,
+>>> +                     int linetime);
+>>> +int intel_display_dsc_prefill_latency(int num_scaler_users, u64 
+>>> *hscale, u64 *vscale,
+>>> +                      int chroma_downscaling_factor,
+>>> +                      int cdclk_prefill_adjustment,
+>>> +                      int linetime);
+>>>     #endif
+>>> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c 
+>>> b/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> index 97b42bbf5642..f0213785e9fc 100644
+>>> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+>>> @@ -2179,11 +2179,12 @@ cdclk_prefill_adjustment(const struct 
+>>> intel_crtc_state *crtc_state)
+>>>   static int
+>>>   dsc_prefill_latency(const struct intel_crtc_state *crtc_state, int 
+>>> linetime)
+>>>   {
+>>> +    const struct intel_crtc_scaler_state *scaler_state = 
+>>> &crtc_state->scaler_state;
+>>> +    int chroma_downscaling_factor = 
+>>> skl_scaler_chroma_downscale_factor(crtc_state);
+>>>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>>> -    const struct intel_crtc_scaler_state *scaler_state =
+>>> -                    &crtc_state->scaler_state;
+>>>       int num_scaler_users = hweight32(scaler_state->scaler_users);
+>>> -    int chroma_downscaling_factor = 
+>>> skl_scaler_chroma_downscale_factor(crtc_state);
+>>> +    u64 hscale_k[ARRAY_SIZE(scaler_state->scalers)];
+>>> +    u64 vscale_k[ARRAY_SIZE(scaler_state->scalers)];
+>>>       u32 dsc_prefill_latency = 0;
+>>>         if (!crtc_state->dsc.compression_enable ||
+>>> @@ -2191,18 +2192,16 @@ dsc_prefill_latency(const struct 
+>>> intel_crtc_state *crtc_state, int linetime)
+>>>           num_scaler_users > crtc->num_scalers)
+>>>           return dsc_prefill_latency;
+>>>   -    dsc_prefill_latency = DIV_ROUND_UP(15 * linetime * 
+>>> chroma_downscaling_factor, 10);
+>>> -
+>>>       for (int i = 0; i < num_scaler_users; i++) {
+>>> -        u64 hscale_k, vscale_k;
+>>> -
+>>> -        hscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+>>> -        vscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+>>> -        dsc_prefill_latency = DIV_ROUND_UP_ULL(dsc_prefill_latency 
+>>> * hscale_k * vscale_k,
+>>> -                               1000000);
+>>> +        hscale_k[i] = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
+>>> +        vscale_k[i] = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
+>>>       }
+>>>   -    dsc_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
+>>> +    dsc_prefill_latency =
+>>> +        intel_display_dsc_prefill_latency(num_scaler_users, 
+>>> hscale_k, vscale_k,
+>>> +                          chroma_downscaling_factor,
+>>> + cdclk_prefill_adjustment(crtc_state),
+>>> +                          linetime);
+>>>         return dsc_prefill_latency;
+>>>   }
+>>> @@ -2210,28 +2209,25 @@ dsc_prefill_latency(const struct 
+>>> intel_crtc_state *crtc_state, int linetime)
+>>>   static int
+>>>   scaler_prefill_latency(const struct intel_crtc_state *crtc_state, 
+>>> int linetime)
+>>>   {
+>>> -    const struct intel_crtc_scaler_state *scaler_state =
+>>> -                    &crtc_state->scaler_state;
+>>> +    const struct intel_crtc_scaler_state *scaler_state = 
+>>> &crtc_state->scaler_state;
+>>> +    int chroma_downscaling_factor = 
+>>> skl_scaler_chroma_downscale_factor(crtc_state);
+>>>       int num_scaler_users = hweight32(scaler_state->scaler_users);
+>>> +    u64 hscale_k = 0, vscale_k = 0;
+>>>       int scaler_prefill_latency = 0;
+>>>         if (!num_scaler_users)
+>>>           return scaler_prefill_latency;
+>>>   -    scaler_prefill_latency = 4 * linetime;
+>>> -
+>>>       if (num_scaler_users > 1) {
+>>> -        u64 hscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+>>> -        u64 vscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+>>> -        int chroma_downscaling_factor = 
+>>> skl_scaler_chroma_downscale_factor(crtc_state);
+>>> -        int latency;
+>>> -
+>>> -        latency = DIV_ROUND_UP_ULL((4 * linetime * hscale_k * 
+>>> vscale_k *
+>>> -                        chroma_downscaling_factor), 1000000);
+>>> -        scaler_prefill_latency += latency;
+>>> +        hscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[0].hscale, 1000) >> 16);
+>>> +        vscale_k = max(1000, 
+>>> mul_u32_u32(scaler_state->scalers[0].vscale, 1000) >> 16);
+>>>       }
+>>>   -    scaler_prefill_latency *= cdclk_prefill_adjustment(crtc_state);
+>>> +    scaler_prefill_latency =
+>>> + intel_display_scaler_prefill_latency(num_scaler_users, hscale_k, 
+>>> vscale_k,
+>>> +                             chroma_downscaling_factor,
+>>> + cdclk_prefill_adjustment(crtc_state),
+>>> +                             linetime);
+>>>         return scaler_prefill_latency;
+>>>   }
