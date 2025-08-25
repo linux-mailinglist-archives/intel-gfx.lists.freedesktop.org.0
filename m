@@ -2,190 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8211CB33678
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 08:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFE2B33AEF
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 11:26:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEA210E33B;
-	Mon, 25 Aug 2025 06:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA8210E428;
+	Mon, 25 Aug 2025 09:26:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKCnDDmA";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="XlG1Zg00";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785E510E33B;
- Mon, 25 Aug 2025 06:30:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756103427; x=1787639427;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=pxyVr+b/ECqjMt0Ac15NXg6m5t1ffQotr7ULZbzDv9w=;
- b=jKCnDDmApluADFo1rIrIjl20V7Ngs3J6jcD0VEA5xNpm5Hicrg86av2E
- HiIphaP56fjdna7JZ28RTmvJwGB5tnR/GTkrFgBE/E9l4Mle9Rx0794p2
- X2c7gbWE3vxoMWl21ELG4Nu0f5NWIPtOKZY/hK2VXx8wCnnrzByoL2PUQ
- aMzm1lYOAmOIs0XKnZhooj7xR0BJNkMAD51fNjvkZQjEMYfh7m5Q5khO+
- xwXYvNOhJn5Xz2WiTHnlaz2M/jMQpKLjNew492VLrSsQKrGrxtrFJntQ4
- FUogwJrzbXvQE2CF8jx/4kVkyQRyXFREPqyrmXk7ZNQFJbHY+prPNUcV6 Q==;
-X-CSE-ConnectionGUID: /QX046HhTiKgaaSepscqgw==
-X-CSE-MsgGUID: s3a02vs6RPuiuuj48sUeZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11532"; a="58166223"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58166223"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2025 23:30:26 -0700
-X-CSE-ConnectionGUID: fEnTmWJ5Q4CIInqZrWTMqg==
-X-CSE-MsgGUID: wd5MTtuPTfSR/qpOCq1dYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="169588167"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2025 23:30:26 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 24 Aug 2025 23:30:25 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Sun, 24 Aug 2025 23:30:25 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (40.107.220.84)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Sun, 24 Aug 2025 23:30:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QvQikphLMsncc7RdEQ7OI3jlr9m4zuGibEftvqnH/lMLat2TyEdP0sxDamfmRafBzemM6KKpXNovJTe6eu6WJVpmJt+t2UUyXAhfBlYbkH0VFZkYOPEpxTJ6B0n9dkif39ewnTchJDybNzC9DVlR+rT4DzYHxLybQ9ICpVuxhoE/BsgYwzJTw/SEXZtnylBAhxlyYAr42nZIXM9SVDWw0b+6u+Y9yrAcRznKUeu98SodwMd29x/EyObdinH/itbZjxaqBpT4tAW5vUSzlFwArof0YWLD1HBoYbihNLS7VD0HqxA9rQaBHJPyilOyW6sjAFPIKCvGEdabCjWOBwLyTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pxyVr+b/ECqjMt0Ac15NXg6m5t1ffQotr7ULZbzDv9w=;
- b=FIdG7R/Ypwwn+xVEznCSvc+0k7LfrAx/KNT7Au8QMS9OGDG4UyzZ/1v4VgEqw0OmDYqT/75tgWGkgezKR6Fr0Qx3Pq4GZqLpuPd8gsG8zlOPUEzVMczNFBcOTDKg4W96CqypfE+XKyjNY8sguQdl+T3ie03r6IOcST6W9GyFeR0dt1w3maNISrnp93MbxIm9VUIQ18P6B+XBeS5yQpinF4V9edL+LE5gHg7iEnBW4hEAGGlEkW4P0pgbjYAPYrAoycdSOS/JeO5MvsEvJOb89AC2EPHQqFtvCGB7JqeyQ+mEe9wHa6g3erJxSKLY7xpAFRLc4wxQQXRXv7D7QHr1eA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
- CH3PR11MB7820.namprd11.prod.outlook.com (2603:10b6:610:120::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9052.20; Mon, 25 Aug 2025 06:30:21 +0000
-Received: from DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6]) by DM4PR11MB6360.namprd11.prod.outlook.com
- ([fe80::8648:3a6b:af5c:b6e6%4]) with mapi id 15.20.9052.019; Mon, 25 Aug 2025
- 06:30:21 +0000
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2A1110E42D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 09:26:43 +0000 (UTC)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57P8S5ok020181
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 09:26:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=4EjmfETgNQm/Vlvha9wFXQHI
+ t0wG5jz8jtoxkPVtlaI=; b=XlG1Zg007yo8B7QsjnIaAxiPH9JAUnbzR9Sab0I3
+ YHz+BiXJi/mP3RdpI6WVigzYtLwx6oOTG51Yrn9GneL9axk7y47GahXNS9xHdBjR
+ macTnmoASdfVIYIxqLuL6IG9rUS79yUrksDyXcUVlWzqceHPjXh9qS9iLGIUXpD/
+ DSRuKz3jSsmXW4rBN0qDlOv+LSLwxTV4d2ZA1U1bUOUV0/MJ/FRiNDO0/Lq1GpUR
+ M2uUZlHtnqYt/POZif6PT/757sXTQfYKiUhKtzVg1qCLtyAudYXo+28fu7weMMll
+ DeMHZH3f2KfZzHtUTT0b25G8n5UTpdC64UeVQaf4Pz6+0w==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5unmhht-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 09:26:42 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-70d9f5bded7so56823186d6.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 02:26:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756114002; x=1756718802;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4EjmfETgNQm/Vlvha9wFXQHIt0wG5jz8jtoxkPVtlaI=;
+ b=nMDrFeQB8UzS+0qvCfFza06L5J0JgpoxHubBgL2A+MM/M05yDDwKh3MKwPNThO7DpD
+ KkbceSGS2fujIu0YQdbPiOtI8NJr1hJxvRPyeeHiVcL7XX7xDlGWI++cEMekeuYlrs0a
+ Z1/HQHPQfqnHGJyjRrvdMbu0sUCSHK7n7uevs2/ZSymXDPJlwfNVDqJpGC5ezJqSAWPR
+ TJ3Cz7kEZbfY79hEDSW42Oh0c/j8kKhp7LIPHRwtW5RDc5qkW1ep7D6gpqNAh4m1tkyS
+ oXj+k3ruoVt5wI9HUEBXx18/yMIDh4y8kU4n674NRauQez747pzhlV9xa2EeilXNvhs+
+ 8ejw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUCwcnmGyO6cDFShnC9PJsrYRCxPFXvwWW6Ny4Aq6kjYVDaSVXuzzxG5oE9o18OLlEJKzHL+eqU5S8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwpjiASaZJxPGxR9+fOIcDVSRLM81cHLmH0PqyRP+HzEPUiP5gM
+ qFHqMI8isP+bPB3srJAx5AhdM3acftERWjtjrcI/a8z49Q53fogYnUkzXj2KRwnFJ64tM9TzCMb
+ X4B/5d1CNOO9Y0J8uZlqXVcBPNQzWEw8UlI6kkpN9FmG7YblZ0iQ/HCOx2ib7si2Q0wRaih4=
+X-Gm-Gg: ASbGncsk7UjZMU/gm6oZ3mRmJoroS9uHMGgMJ4QotLks5OzhNb5PfXjkZer13TG5oi4
+ 2m3gLUJaFfuW1Bzk3uo2YjKVWAfNSQzNUqNXig4c0cVQJ3TQAldWZd3ZwMkJpMGVeK4q4i49tPm
+ iM7h0mJYLJuEWM97KKo7CwsCKejoqQ+FJpGuOdSrv4TLHwwTgSf0RA+mQPi/fZy/0ErYE30kMxZ
+ Jacv+TGUDeK/AGOaB3YSVK6Jv9Bw74dg18Yz29YaNV7zcVX3jDXF6iL3shePCm8lH8T6jKcDL1N
+ iHmvDLOOWIKfiibO8KICSM3dy1aQzTaXHHNNrMQHJjr9mCHGuXmgmnHSNpu8L9da8bmP2KOMcNl
+ 6c1FN7GiC6wswbJu8A/GOAvLmSZ4QL0iumHqnFTJpP6bv7lnUwFUz
+X-Received: by 2002:a05:6214:4a02:b0:70d:a44c:7888 with SMTP id
+ 6a1803df08f44-70da44c7dc8mr92019806d6.24.1756114001825; 
+ Mon, 25 Aug 2025 02:26:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEm4osqf3FKfdRsdXmqHxRRVdAGOSVE7liNGQR4vahCuDo4dZvvt3gTYb3tINRaNS66Ihgu0w==
+X-Received: by 2002:a05:6214:4a02:b0:70d:a44c:7888 with SMTP id
+ 6a1803df08f44-70da44c7dc8mr92019466d6.24.1756114001224; 
+ Mon, 25 Aug 2025 02:26:41 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-3365e20ed53sm15882191fa.4.2025.08.25.02.26.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 25 Aug 2025 02:26:40 -0700 (PDT)
+Date: Mon, 25 Aug 2025 12:26:38 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: "mripard@kernel.org" <mripard@kernel.org>,
+ "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/psr: Do not unnecessarily remove underrun on
- idle PSR WA
-Thread-Topic: [PATCH] drm/i915/psr: Do not unnecessarily remove underrun on
- idle PSR WA
-Thread-Index: AQHcE1PLUsJaiCxDD0arWleTw6TOdLRy7FhA
-Date: Mon, 25 Aug 2025 06:30:21 +0000
-Message-ID: <DM4PR11MB63606B19B182535C43C1FF5DF43EA@DM4PR11MB6360.namprd11.prod.outlook.com>
-References: <20250822105846.1023631-1-jouni.hogander@intel.com>
-In-Reply-To: <20250822105846.1023631-1-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|CH3PR11MB7820:EE_
-x-ms-office365-filtering-correlation-id: b6e34cf3-da1c-4e08-f82a-08dde3a0dded
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?utf-8?B?OERvcWFhbHh5Y1hURGFPNTVuMFdyU25Bc0FheWs3bWhFYUdrZzJ5WUJpWFh0?=
- =?utf-8?B?MXRpOTRpdkd0SmREM005a09LMFN0ZTFseXI4czhHNzNHU3I4a1pTYnV4QUNr?=
- =?utf-8?B?SVFVUnh1cENpb2lpYXJVK2tQdytrNDVqSndCRHBLcVltMzBZMi9rVHovNEFL?=
- =?utf-8?B?WTk2V2xMc2NsU1U0bGxhdzdSK3o5TW1jbVUzOFFvRm1wZUxYU0VUTWJjZFFl?=
- =?utf-8?B?Mi9tYWc4U3dWUmxPNTlucTZTWkEyd0MveHlkZ1NzNEovK0JVVWpkK0cyeHJv?=
- =?utf-8?B?bzZNa0lodE9RTHVEMG9rZmRVbHAyVHphMkkzbDBvQ3hGTEhTY3NSa0I2dFMv?=
- =?utf-8?B?Z0FVZHM4V1ljTEpQWm9PWGhBTnR2RnpPeVFiano0UzlJaUNPUmJCMlJuY2pi?=
- =?utf-8?B?SzdqSXQweGdsYWNBOFd4RXhBaFA1d0Mwcmt0SDNOVUlsU3ZDelRQWmsxbGpY?=
- =?utf-8?B?d29UV3pOb05JVTJWSjc2K0dQMFJxays3NW1lM0M5QjVSUm5ib0ZaS3IzL1Fs?=
- =?utf-8?B?NzBId1FiM2Q2aGY2TnBqbkVIMFVTczB1eDZpY21ndUNla0ZhNGlhWXNSb2N0?=
- =?utf-8?B?TVljaXVDbkxnZWlpTUpkWlhIYkpaN1JsWDl5cWp0WmZEcmpWZlNJdWlXNWVS?=
- =?utf-8?B?bkRxSFN2VGt3bmZPRkovVzhxd2NxNWR2ODd4aTB1eURjWHNEZmtCQjVGT1pJ?=
- =?utf-8?B?MFQ2NGhzRDd1bGFPdWhPaUVzZ3BqRUorbkszVXZ1VFNyVlBtV2tyMjJJVmJr?=
- =?utf-8?B?RHE5WWg0N0ZsT05LMXlpcENvREJZNDN1dWFZcHEyZnVtaTVUSVI2OEhEUjlv?=
- =?utf-8?B?b0tUMW9mRTdxbEZyYnhnK1pYS2FzL09JcUI5UXdYWVZpUkdHRHBKQjdqSHQ4?=
- =?utf-8?B?cURWOGNqUFovWXk2TXNPUlpzTVlKQ3J2ZkVrWmptNFl2dHhEWG1EemFvcW9I?=
- =?utf-8?B?c3lmRFJDaE5PdVcyWFBSYk1mVnk3NzV2OEs5VmFEdG1UZWc3OWxkdU1JVUdw?=
- =?utf-8?B?WG0yNllkWm5qRnFYTEdCT2xmS2VLdVAyQkpGSGVqMlloVWppckgwWUJNVnd2?=
- =?utf-8?B?bzczNDg2TTUzaFdmakxrZHc1UWZoMStIK2xjeXpDUElTZEE4NVpZdXpFMGNt?=
- =?utf-8?B?RFpNZmdzWFVrM2M1M0d1bGVWa09zVTc4RGkrNE5PT1ZVRVRzZEptZVFINno1?=
- =?utf-8?B?cGtRb0N5bHY0WFZRMmVKS0FRUmUxQjJHR1JTMTNCMWpwQVp4c1MvaUwwRmxF?=
- =?utf-8?B?Yi9KNzBGbHk1eHNpRGNKV3FubjVjSDAraHZMV0ZGSTcwaWcvNzFQaHlISUFO?=
- =?utf-8?B?WnQxclFtSnBTRDZpbmlrZ0orVHU0enBSRDBaQ1RuNUJtL0lhOTBGcEZYNDNN?=
- =?utf-8?B?L0ZZYXNjTmpZWTdURnZYdis1T1JVZmZZd0daMmErNFZzUm1NcnNaSHl4aTRY?=
- =?utf-8?B?b091S3VHbko2dkZEN0RjNTkrL1RLVm4yb1ovU1UySFhYdExVdk5PQUFUUmJV?=
- =?utf-8?B?NzNjdTZnSjJ2YUxBbm40R1RrV1YyV21TaDJTZHFtV3JxdXE0QkFsNWFHNUNB?=
- =?utf-8?B?ZHdvTkhtcnJtejRPZjBRREluRFlkUVU5aWRSZ1AyUjNwbW11aFkvQVRkbUFh?=
- =?utf-8?B?dUpRZWNkY3JmZXFIS3Z6SnQzQ0lDNmErSkVNcUxKelVuLzdZS3hNTlkyV0lX?=
- =?utf-8?B?N0oxczFaRlQ2c2RtQ2NFRnBEa0syY3Axdm11MzhBWDJTSGJsWHZqNzlkZmpZ?=
- =?utf-8?B?R2RiMzBqTmF6V0Z6NG5GYU12MFJ0NllSWEIrTjFOVklGakZCMWdOMmg1WjAr?=
- =?utf-8?B?bnY0b09yRTBLajhkeCtWUE1XWnVENFRsRlFoSGdtRXNsSjhpSEM5WVZ6eVE5?=
- =?utf-8?B?YWxYeUVZendIYi80YlZIRFB2QkE0WFpWSlMybTg3WXZYYi9ac0IvUWVrcVVL?=
- =?utf-8?B?cXRwWVZReG1SWkhXVDRTSDhvOUpwS3dFdFU5Y0dHZEo1WEl3SldRbEdzUHpx?=
- =?utf-8?Q?5PNpEEfszivHfyviqwNqAFbCEX5h5A=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(38070700018); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cllJZCt2TlRrMEsySk5BNmJWNk1HQ2hPMWVDNmsrc0RDRDgrb3UzQ29QblpF?=
- =?utf-8?B?a2RWUVdlTnJGSFU1ZUlTYmJxaHZpV25QNFg0TVl5VjdCaDlQSjNYa2VnbFNF?=
- =?utf-8?B?SnVueU9CU00yUU96bXQ3Ym1uc0ZNWDQ4OTYyZEp1TjIzQmgvc3pCSWJINEFy?=
- =?utf-8?B?em5uTkdzdmVSdlpKbzdFd1ViQUJWU3NqbnNNRml5a3VWUHJkTnhzQklDbVFV?=
- =?utf-8?B?bm9MU1Q5RVEySUJ2Slh4MzBoekVtQ05JRWNibEJJSEkrSWNyL3lVZ2hVaXZH?=
- =?utf-8?B?RjY4UmRKR0J4bE9GUEJBaER6WUFjRWQyK21IQW1OT1dzZ0dXYVFCVHZ2TlQw?=
- =?utf-8?B?ODlRV0VVamMzaDFqREdKeWJReWVzSUNXN1lNSW9uc2JXcHhISHlwRERPK3JW?=
- =?utf-8?B?aXh3R3R5SmJudFdISFN4MUN5VHF5NDNiVDh1djc3a3VoaDVycDdzLzgvbUFC?=
- =?utf-8?B?ZExrWnNkVzFTMms4MFFmYTZRb0R0YTJ2NnhvenplOWNFTlFqRHBleGoybVVw?=
- =?utf-8?B?TFlpY25vMGhQeiszOXZnOG0xRm0vSktrcHpKbjlCd0tRZXdBQ3dQN2dOUERG?=
- =?utf-8?B?ZDVhSHJiQzBlRkNiS1gvOWZSdDdiOURjVDZLbmVCbGxHRHJJSGdHaG9GOHdT?=
- =?utf-8?B?TjRGbnpoNkRmQldGQVFFNmI3VGZndHgxQmxWczJBeHEzazA0bHBkdzRxQnh6?=
- =?utf-8?B?QmhkR1VKSEdDcDl3enJ2UncvUk5SZ2tRclNpMWQ0czlTUFZNa2RVSWFPTkto?=
- =?utf-8?B?QjczN1JLdXh0WWQrUmltVFk3T2hteUoxcG5PbWQzZ3djd0tYK0N2a1FqUjlV?=
- =?utf-8?B?ZzZudkRrTTJVSm1FbUcvY24zczNrTTlGUWp6QzhyaTI4eWJ2aExYcUpKN2JE?=
- =?utf-8?B?TSszMFBzV0RpUVVaSjE2WFNxcVFqZ2VzcFJTaTVkZHpaNlB3RFNyZ09VbUdN?=
- =?utf-8?B?elZOQ0FTWkIvM2lHbUlFWnNoMTJ3MkJlMDhZOFVySWxhOWpLY1AyZ1BBcmhN?=
- =?utf-8?B?Z212Y04zbkFDcTU4cHArYXZWdXUzVW5nLzBXdzJvME5HV1pxelZzUnZVRVJR?=
- =?utf-8?B?U0FEUW8rRWI5RXUvcWdwcHVsd0JOTUVSdU9JQ3JNYldXVGFPbjJ4ckRCV0pC?=
- =?utf-8?B?cyt0NEFGdHpWTmd6SThoRW5iaXhwMS8rdTVEakJrWFdwaHg4NDdrN1Vsb0gr?=
- =?utf-8?B?MWRXc01Xb2pVU3pISEZobU1wdUVwSlFDTmtUdTBhR2F2aUpORk9GZGRDTWUz?=
- =?utf-8?B?SHdSKzVtVzhtQ1BiZVVhRmxhRFlDMnlianB1VnFkQkQ1QWlBejlKTUJGM21u?=
- =?utf-8?B?TU9hVjB1Tk81WVhSN29vbE1rdlhVZHRBdUpCQzI4VEcrS0poNmVvaHQrbUZ4?=
- =?utf-8?B?Q3hyQ1QrbDlVUCtwWlRlZEUvV2pCZGxsVlp3REZlUkdFRXBqUlh3aFNZQlRF?=
- =?utf-8?B?bUkrV3AyeGQ2cUk2VXNOVGYzUUtyZmNpUVRydW00aGVHT0I1Rnp4Y1RYRVFR?=
- =?utf-8?B?RmtOeE03VWNOcXJKYStOMWl3V0NlRGxSc0xNbnZwcmgrczdQY1hGNlBNM09Z?=
- =?utf-8?B?RjBxZ2lhMDF3ekNmS0paT0lhK1MvTExKWHdQdnQyU21vYklRTVpWSXJiQmd3?=
- =?utf-8?B?aUxtMzd4aFFXckdPRjllcGxSaXVNczZONGR4bk51dlRYQ0tCbEVZekRld1l6?=
- =?utf-8?B?WG5UWDJKN2VBeWF3M2xua1BaNUlnOVhTMG00bWVxZGxsbWh3ZHdEaXpLT1BD?=
- =?utf-8?B?cmNTbWM3VnZBRTZtdlIwQWVQK0o1Z0M4TnFOTlFQNmdTcWVtOE02a0ZhRFFz?=
- =?utf-8?B?VnZsNzNXTW1STTAzQzlITWluNkNpbzVFcXJiMURlZDQ4QjlydVYvTDE4VUN0?=
- =?utf-8?B?dHFsYkszUC9zT2FvSVlURXRqR0xFUklBMFRvWS9OeUxSYWJyNUVHUEJoNDNy?=
- =?utf-8?B?WHZ3U25UbnVtdlpWY0xnNlEyL1lwVFJQcm55bFFwcWYxdGVsR1hNbFkxNG9X?=
- =?utf-8?B?MCtucVIyWjR3eFBVMFUxRkd1R3hENzEyUERvV0FtT2lqSjdWbjBtdUJzVzFa?=
- =?utf-8?B?ZG1SQ1c5SGplTmh4cDI0SXhhTzBvcGtjV3lTUWVpOUZ6aXNUaUgxOGxoSWNs?=
- =?utf-8?Q?YuB3E2awl/daA3kwi3BWbrhfa?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
+ "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
+ "sean@poorly.run" <sean@poorly.run>,
+ "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
+ "mcanal@igalia.com" <mcanal@igalia.com>,
+ "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
+ "tomi.valkeinen+renesas@ideasonboard.com"
+ <tomi.valkeinen+renesas@ideasonboard.com>, 
+ "kieran.bingham+renesas@ideasonboard.com"
+ <kieran.bingham+renesas@ideasonboard.com>, 
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <tk2x6a3laaiwa2tiaewa4esl5o2gi363h3tfb5uha6apno34gr@fxqbhixyicw6>
+References: <20250811092707.3986802-2-suraj.kandpal@intel.com>
+ <20250811094429.GE21313@pendragon.ideasonboard.com>
+ <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
+ <20250811111546.GA30760@pendragon.ideasonboard.com>
+ <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
+ <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
+ <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
+ <wr76vyag2osox2xf7ducnkiaanzk2k5ehd2ahnoyqdm5qiywlk@penf4v5bvg5z>
+ <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6e34cf3-da1c-4e08-f82a-08dde3a0dded
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Aug 2025 06:30:21.3597 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4W4xgOx10Y2CfTD43wLzA++BtKsd3Bb3Vloqzbv7y+uPiBRvPuOsLeWuvfwgfSZmMvHxXq1uhZoHIjkg74SqQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7820
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+X-Proofpoint-GUID: z6wxFi6aWAXgZ2G3rj0FkqwTDbF-5Wu7
+X-Proofpoint-ORIG-GUID: z6wxFi6aWAXgZ2G3rj0FkqwTDbF-5Wu7
+X-Authority-Analysis: v=2.4 cv=JJo7s9Kb c=1 sm=1 tr=0 ts=68ac2c52 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=2bDsevyxfkvo1t3REK0A:9
+ a=CjuIK1q_8ugA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMSBTYWx0ZWRfXyja9TxuwXnTh
+ U30NssiI9lQYlRJdx48F7YiDoKIPnwIUJ6rBx8yooxOiDUTOwn9PsPPdR1mo/u1ZZcfCjYd+X0n
+ 4RHEvMVvvvyKe6sIT8zmGqw1En+I+7ZwIZkeU7l3j+oD0ZzI+v7R38MHu8gaRrF/XtvFWucxNVa
+ JKOmPpespZonjLX3KepAxse05MVhhr+9t7FXSPNA4vCi7U2B1vx0c8905uplFegHBgaeY78PQ9S
+ Madunyg9a/9x6irhfycQRw7DLx9P0s1E4oBDsXNMU51QPwJcVK7Y8RqDDBegNfP25FCHB62lqxm
+ X9TZ+/td/36UoEXCL3qsNOVjDtb/IacTZnddZJR4CnwwT0xpov2U/q7fSAwzziwA79YP2lW+M9v
+ D+dgpfoU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-25_04,2025-08-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230031
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,34 +165,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSG9nYW5kZXIsIEpvdW5p
-IDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IFNlbnQ6IEZyaWRheSwgQXVndXN0IDIyLCAy
-MDI1IDQ6MjkgUE0NCj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVs
-LXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogU2hhbmthciwgVW1hIDx1bWEuc2hhbmth
-ckBpbnRlbC5jb20+OyBIb2dhbmRlciwgSm91bmkNCj4gPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNv
-bT4NCj4gU3ViamVjdDogW1BBVENIXSBkcm0vaTkxNS9wc3I6IERvIG5vdCB1bm5lY2Vzc2FyaWx5
-IHJlbW92ZSB1bmRlcnJ1biBvbiBpZGxlDQo+IFBTUiBXQQ0KPiANCj4gV2UgYXJlIGN1cnJlbnRs
-eSByZW1vdmluZyB1bmRlcnJ1biBvbiBpZGxlIFBTUiBXQSBldmVuIGlmIGl0J3Mgbm90IGFwcGxp
-ZWQuIEZpeA0KPiB0aGlzIGJ5IGNoZWNraW5nIHBrZ19jX2xhdGVuY3lfdXNlZCBvbiBQU1IgZXhp
-dCBhcyB3ZWxsLg0KPiANCj4gRml4ZXM6IDliMTc5NWU5YjBhZSAoImRybS9pOTE1L3BzcjogVW5k
-ZXJydW4gb24gaWRsZSBQU1Igd2Egb25seSB3aGVuIHBrZ2MNCj4gbGF0ZW5jeSA+IGRlbGF5ZWQg
-dmJsYW5rIikNCj4gU2lnbmVkLW9mZi1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRl
-ckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9wc3IuYyB8IDUgKysrLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDIg
-ZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-cHNyLmMNCj4gaW5kZXggYjQwOTFkMjhlODE0Li44OGVjZWI4ZjAwZmQgMTAwNjQ0DQo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBAQCAtMjA5MCw4ICsyMDkwLDkg
-QEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX2V4aXQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkN
-Cj4gDQo+ICAJCWRybV9XQVJOX09OKGRpc3BsYXktPmRybSwgISh2YWwgJiBFRFBfUFNSMl9FTkFC
-TEUpKTsNCj4gIAl9IGVsc2Ugew0KPiAtCQlpZiAoRElTUExBWV9WRVIoZGlzcGxheSkgPT0gMjAg
-fHwNCj4gLQkJICAgIElTX0RJU1BMQVlfVkVSeDEwMF9TVEVQKGRpc3BsYXksIDMwMDAsIFNURVBf
-QTAsDQo+IFNURVBfQjApKQ0KPiArCQlpZiAoKERJU1BMQVlfVkVSKGRpc3BsYXkpID09IDIwIHx8
-DQo+ICsJCSAgICAgSVNfRElTUExBWV9WRVJ4MTAwX1NURVAoZGlzcGxheSwgMzAwMCwgU1RFUF9B
-MCwNCj4gU1RFUF9CMCkpICYmDQo+ICsJCQlpbnRlbF9kcC0+cHNyLnBrZ19jX2xhdGVuY3lfdXNl
-ZCkNCj4gDQoNCkxvb2tzIEdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogVW1hIFNoYW5rYXIgPHVt
-YS5zaGFua2FyQGludGVsLmNvbT4NCg0KPiAJaW50ZWxfZG1jX3N0YXJ0X3BrZ2NfZXhpdF9hdF9z
-dGFydF9vZl91bmRlbGF5ZWRfdmJsYW5rKGRpc3BsYXksDQo+ICAJCQkJCQkJCSAgICAgICBpbnRl
-bF9kcC0NCj4gPnBzci5waXBlLA0KPiAgCQkJCQkJCQkgICAgICAgZmFsc2UpOw0KPiAtLQ0KPiAy
-LjQzLjANCg0K
+On Mon, Aug 25, 2025 at 06:26:48AM +0000, Kandpal, Suraj wrote:
+> > Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor
+> > drm_writeback_connector structure
+> > 
+> > Hi,
+> > 
+> > On Sat, Aug 16, 2025 at 01:20:53AM +0300, Dmitry Baryshkov wrote:
+> > > On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wrote:
+> > > > Hi,
+> > > >
+> > > > On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
+> > > > > > > > };
+> > > > > > >
+> > > > > > > I still don't like that. This really doesn't belong here. If
+> > > > > > > anything, the drm_connector for writeback belongs to drm_crtc.
+> > > > > >
+> > > > > > Why? We already have generic HDMI field inside drm_connector. I
+> > > > > > am really hoping to be able to land DP parts next to it. In
+> > > > > > theory we can have a DVI- specific entry there (e.g. with the
+> > subconnector type).
+> > > > > > The idea is not to limit how the drivers subclass those structures.
+> > > > > >
+> > > > > > I don't see a good case why WB should deviate from that design.
+> > > > > >
+> > > > > > > If the issue is that some drivers need a custom drm_connector
+> > > > > > > subclass, then I'd rather turn the connector field of
+> > > > > > > drm_writeback_connector into a pointer.
+> > > > > >
+> > > > > > Having a pointer requires additional ops in order to get
+> > > > > > drm_connector from WB code and vice versa. Having
+> > > > > > drm_connector_wb inside drm_connector saves us from those ops
+> > (which don't manifest for any other kind of structure).
+> > > > > > Nor will it take any more space since union will reuse space
+> > > > > > already taken up by HDMI part.
+> > > > > >
+> > > > > > >
+> > > > >
+> > > > > Seems like this thread has died. We need to get a conclusion on the
+> > design.
+> > > > > Laurent do you have any issue with the design given Dmitry's
+> > > > > explanation as to why this Design is good for drm_writeback_connector.
+> > > >
+> > > > I'm with Laurent here. The idea for drm_connector (and a lot of drm
+> > > > structures) are to be used as base "classes" for extended
+> > > > structures. I don't know why HDMI connector ended up inside
+> > > > drm_connector as not all connectors have HDMI functionality, but that's a
+> > cleanup for another day.
+> > >
+> > > Maybe Maxime can better comment on it, but I think it was made exactly
+> > > for the purpose of not limiting the driver's design. For example, a
+> > > lot of drivers subclass drm_connector via drm_bridge_connector. If
+> > > struct drm_connector_hdmi was a wrapper around struct drm_connector,
+> > > then it would have been impossible to use HDMI helpers for bridge
+> > > drivers, while current design freely allows any driver to utilize
+> > > corresponding library code.
+> > 
+> > That's exactly why we ended up like this. With that design, we wouldn't have
+> > been able to "inherit" two connector "classes": bridge_connector is one,
+> > intel_connector another one.
+> > 
+> > See here for the rationale:
+> > https://lore.kernel.org/dri-devel/ZOTDKHxn2bOg+Xmg@phenom.ffwll.local/
+> > 
+> > I don't think the "but we'll bloat drm_connector" makes sense either.
+> > There's already a *lot* of things that aren't useful to every connector (fwnode,
+> > display_info, edid in general, scaling, vrr, etc.)
+> > 
+> > And it's not like we allocate more than a handful of them during a system's life.
+> 
+> So Are we okay with the approach mentioned here with the changes that have been proposed here like
+> Having drm_writeback_connector in union with drm_hdmi_connector
+> Also one more thing I would like to clarify here is how everyone would like the patches
+> patches where each patch changes both the drm core and all related drivers (ensures buildability but then review is tough for each driver).
+> Or patches where we have initial drm core changes and then each patch does the all changes in a driver in its own respective patch.
+
+The kernel must be bisectable. Which means that after each patch in the
+series the kernel must build completely and work without additionally
+introduced issues.
+
+-- 
+With best wishes
+Dmitry
