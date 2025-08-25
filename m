@@ -2,57 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC56B34003
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 14:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D91DB33FE3
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 14:49:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 589CC10E465;
-	Mon, 25 Aug 2025 12:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F5810E25D;
+	Mon, 25 Aug 2025 12:49:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnTth1ie";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HV1nSTp7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF6D310E460;
- Mon, 25 Aug 2025 12:49:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756126197; x=1787662197;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FjNay09CbWJXXC/wAhdfWpOOMWa46oG1KN/GfdJhH0E=;
- b=TnTth1ie8lmauJfWEx7gFvomEyNa5h9i8EocUyvDoo1T7JAPjwNWy3N7
- /S94XKqZPyDW+YOIeDB+6w31Mi+oB633qOsIzYHDmXN8d62C3jFYsUGqu
- 9oqggNdLxxi8sm+0yIYFeFx1pxkb1LWzATwxrlP6FyOTs4mUr/96j/bZt
- rGNc2N8pwlthsfEauQwhBdHNFQamy1m2KP7H96OsuXNCJHoKXU0fzFxIT
- nwlaU8/CBFAoZ2Zd2i5JR04Je4i+8k8jQWHvUOkcbjPmeemdzqLRzpe+3
- NdJCMkRUwYbA0XCqNdDinNjkodEW+zsIcvKxWkV1McJ7n4NIR2sr0P+bL Q==;
-X-CSE-ConnectionGUID: Rek/ogEAS620/r/VOkXtkg==
-X-CSE-MsgGUID: F7mFtDMLS7GyGQhNmpc6Mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62164131"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62164131"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:57 -0700
-X-CSE-ConnectionGUID: rnLA3KWKS8ilW8FDhZB4HA==
-X-CSE-MsgGUID: WxAyDRXHQfeAatnp83riZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="200230036"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 05:49:55 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 12/12] drm/i915/vrr: Fix seamless_mn drrs for PTL
-Date: Mon, 25 Aug 2025 18:05:48 +0530
-Message-ID: <20250825123548.3022474-13-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
-References: <20250825123548.3022474-1-ankit.k.nautiyal@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87D2110E25D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 12:49:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1756126144;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=3vXE/JZQfiOFAY8LityNc5lKOCwFML9m2hfnchuxSjw=;
+ b=HV1nSTp7Q1GCYDLMq+4QqifxDxb7uYS4woQOiYC5rfSiucsVc4NcdRRzILeC5aQoVz5gJ1
+ VSYwyFt/6kpVm+Via2f8IpHsZqabREVOTk60SlKbsQICe0pSG1jDTpnt5HFTSNVgTipQaT
+ vz7KDhXANuJ5abMoEjjmje7XP3A+SOc=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-103-HsTHuiQTORiRxhQxLFI8bw-1; Mon, 25 Aug 2025 08:49:03 -0400
+X-MC-Unique: HsTHuiQTORiRxhQxLFI8bw-1
+X-Mimecast-MFC-AGG-ID: HsTHuiQTORiRxhQxLFI8bw_1756126142
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-45b51baec92so10317555e9.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 05:49:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756126142; x=1756730942;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=3vXE/JZQfiOFAY8LityNc5lKOCwFML9m2hfnchuxSjw=;
+ b=Yk0TpFXDZ/eBWIRF8ZsC1HiiT8TbX35FTFBY7mxaDlx2ZdmQ2JQNPWU8Hb6kskmh6u
+ 9JpCd89aID0BCtC+FjPckTnIlyKh4ih9lp7E/xv37Qm9D2UyAKhBm8dvOIx6E5EQRBnW
+ IOfhcxSbLBY/gfnFJupHWdXpkkVoRrNc32PJ1hVoUll0hJUrY7K4EyKIHndgg2VGizs2
+ 5Vmiojgcql44WXsWAczcMCwV08NLfAFhOfyWk+IZLNdxVK/b0iNEBND7nawPNy7mWYzZ
+ NLxCpDTAfK2Pfyeeu9w4fZ0tPyXLeMMXliIXKUjBiLMcm6YKxIeZQkhyf/e4dgkq+2nE
+ y3Pg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVlK3xAMgQ+7S7ed8uUu430xVaNSNpP0zoQeOyT+MCNGCj6dbHalNh2YdzxOlQhDAdF1ZLufynNKHU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxzpP/gB2/7w078l9RYhz+icvCPjRm2EGMbdyrWMv93ofBKjiOL
+ Tic1w19x7xYPZu8q+whgGhVTIevc6yhoJrnTEF/PXUjnGkUl6nWxtUUJFrC7cWlPJN0kuZ0ultd
+ ncb4JhmTzVs99Y/dypVYq92LdWNTQN9nVlh9AESgnYnVQqcgZj7Vd6kL+zr37Rddaennvmw==
+X-Gm-Gg: ASbGnctNzw2QDzkocHdzC/XQhKc1h+800NETBVCk4kNbSV6fatPZjmTKuQ1FGL3cyf2
+ Uys6jcwM+S0ClVU/tZHX1HEFIahshzo9xj/5BSnLJQd29dC0XTtmCl6tykEfJA5JV4wRtJY7GJj
+ Jw81xOKLiGjGaPqMPC8dAHmH1CdaID3z1QsMJ6TZvdqNyzeXC4mpjnfDF6m45HWT6UpXvgPpa2L
+ UAAL3NwHcPLpi/as0X304p4xgDKN+uW9IBiO55IDncT43tgGA4BcKnLl/feZCw4yKFa2E16WYsR
+ scO8T04EQDPRVjaeoYrT8Ip8JmkkTk8RNIFD/s3vzHefBw943ldz7xoEnvZhc/rSleTVB8HzUae
+ CsnjmaWazIgz9thfcJY/iIPRBNpeOEknT4K8TmEq9g64GDfAoBZC2TLq1qw50Q+g5dcg=
+X-Received: by 2002:a05:600c:3b0f:b0:43c:fe5e:f03b with SMTP id
+ 5b1f17b1804b1-45b517d4d50mr117581905e9.30.1756126141733; 
+ Mon, 25 Aug 2025 05:49:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFXxc8CWovMYNQS1+MbZ/J1HLlRjFi84VTIxSAk5gdBYVSg2EOk3SSNbd5GU03jnCMkyvwvPg==
+X-Received: by 2002:a05:600c:3b0f:b0:43c:fe5e:f03b with SMTP id
+ 5b1f17b1804b1-45b517d4d50mr117581475e9.30.1756126141263; 
+ Mon, 25 Aug 2025 05:49:01 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76?
+ (p200300d82f4f130042f198e5ddf83a76.dip0.t-ipconnect.de.
+ [2003:d8:2f4f:1300:42f1:98e5:ddf8:3a76])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3c70ea81d38sm11742640f8f.17.2025.08.25.05.48.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 25 Aug 2025 05:49:00 -0700 (PDT)
+Message-ID: <a90cf9a3-d662-4239-ad54-7ea917c802a5@redhat.com>
+Date: Mon, 25 Aug 2025 14:48:58 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 10/35] mm/hugetlb: cleanup
+ hugetlb_folio_init_tail_vmemmap()
+To: Mike Rapoport <rppt@kernel.org>
+Cc: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>,
+ linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Muchun Song <muchun.song@linux.dev>,
+ netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
+ Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
+ Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
+ virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
+ wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
+References: <20250821200701.1329277-1-david@redhat.com>
+ <20250821200701.1329277-11-david@redhat.com>
+ <9156d191-9ec4-4422-bae9-2e8ce66f9d5e@redhat.com>
+ <7077e09f-6ce9-43ba-8f87-47a290680141@redhat.com>
+ <aKmDBobyvEX7ZUWL@kernel.org>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <aKmDBobyvEX7ZUWL@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: ZBOywKnGDJYRPJ2PDfBInflEtavguyaPb-o0nsx8ItI_1756126142
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,215 +176,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With VRR timing generator always on, the fixed refresh rate is achieved
-by setting vrr.flipline and vrr.vmax as the vtotal for the desired mode.
+On 23.08.25 10:59, Mike Rapoport wrote:
+> On Fri, Aug 22, 2025 at 08:24:31AM +0200, David Hildenbrand wrote:
+>> On 22.08.25 06:09, Mika Penttilä wrote:
+>>>
+>>> On 8/21/25 23:06, David Hildenbrand wrote:
+>>>
+>>>> All pages were already initialized and set to PageReserved() with a
+>>>> refcount of 1 by MM init code.
+>>>
+>>> Just to be sure, how is this working with MEMBLOCK_RSRV_NOINIT, where MM is supposed not to
+>>> initialize struct pages?
+>>
+>> Excellent point, I did not know about that one.
+>>
+>> Spotting that we don't do the same for the head page made me assume that
+>> it's just a misuse of __init_single_page().
+>>
+>> But the nasty thing is that we use memblock_reserved_mark_noinit() to only
+>> mark the tail pages ...
+> 
+> And even nastier thing is that when CONFIG_DEFERRED_STRUCT_PAGE_INIT is
+> disabled struct pages are initialized regardless of
+> memblock_reserved_mark_noinit().
+> 
+> I think this patch should go in before your updates:
 
-This creates a problem for seamless_mn drrs feature, where user can
-seamlessly set a lower mode on the supporting panels. With VRR timing
-generator, the vrr.flipline and vrr.vmax are set to vtotal, but that
-corresponds to the higher mode.
+Shouldn't we fix this in memblock code?
 
-To fix this, re-compute the vrr timings when seamless_mn drrs is in
-picture. At the same time make sure that the vrr.guardband is set as
-per the highest mode for such panels, so that switching between higher
-to lower mode, does not change the vrr.guardband.
+Hacking around that in the memblock_reserved_mark_noinit() user sound 
+wrong -- and nothing in the doc of memblock_reserved_mark_noinit() 
+spells that behavior out.
 
-v2: Add a new member `use_highest_mode` to vrr struct to help set the
-vrr timings for highest mode for the seamless_mn drrs case.
-v3:
--Modify existing function to compute fixed refresh rate timings instead
-of adding a new function. (Mitul)
--Tweak computation for scaling the vtotal and use DIV_ROUND_UP_ULL.
--Improve documentation.
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  2 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      | 90 ++++++++++++++++++-
- 4 files changed, 90 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index fd9d2527889b..e2b0d0a22ffd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1319,6 +1319,8 @@ struct intel_crtc_state {
- 		u8 pipeline_full;
- 		u16 flipline, vmin, vmax, guardband;
- 		u32 vsync_end, vsync_start;
-+		/* Indicates VRR timing is scaled to highest mode for seamless M/N */
-+		bool use_highest_mode;
- 	} vrr;
- 
- 	/* Content Match Refresh Rate state */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4c3a4b7c0abe..17a58f439954 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1741,7 +1741,7 @@ static int intel_dp_max_bpp(struct intel_dp *intel_dp,
- 	return bpp;
- }
- 
--static bool has_seamless_m_n(struct intel_connector *connector)
-+bool has_seamless_m_n(struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index bfd1bd448672..932f5504399e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -216,5 +216,6 @@ int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
- bool intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state);
- int intel_dp_compute_sdp_latency(struct intel_crtc_state *crtc_state, bool assume_all_enabled);
-+bool has_seamless_m_n(struct intel_connector *connector);
- 
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index fb4cfa048c57..402a9cb0ef60 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -11,6 +11,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
-+#include "intel_panel.h"
- #include "intel_vrr.h"
- #include "intel_vrr_regs.h"
- #include "skl_scaler.h"
-@@ -299,6 +300,16 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
-+	if (crtc_state->vrr.use_highest_mode) {
-+		intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
-+			       crtc_state->vrr.vmin - 1);
-+		intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-+			       crtc_state->vrr.vmax - 1);
-+		intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
-+			       crtc_state->vrr.flipline - 1);
-+		return;
-+	}
-+
- 	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
- 		       intel_vrr_fixed_rr_vmin(crtc_state) - 1);
- 	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
-@@ -307,15 +318,69 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
- 		       intel_vrr_fixed_rr_flipline(crtc_state) - 1);
- }
- 
-+static bool needs_seamless_m_n_timings(struct intel_crtc_state *crtc_state,
-+				       struct intel_connector *connector)
-+{
-+	if (!has_seamless_m_n(connector) || crtc_state->joiner_pipes)
-+		return false;
-+
-+	return true;
-+}
-+
-+static int intel_vrr_scale_vtotal_for_seamless_m_n(struct intel_crtc_state *crtc_state,
-+						   struct intel_connector *connector)
-+{
-+	const struct drm_display_mode *highest_mode = intel_panel_highest_mode(connector);
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int vtotal = adjusted_mode->crtc_vtotal;
-+
-+	/*
-+	 * For panels with seamless_m_n drrs, the user can seamlessly switch to
-+	 * a lower mode, which has a lower clock. This works with legacy timing
-+	 * generator, but not with the VRR timing generator.
-+	 *
-+	 * The VRR timing generator requires flipline and vmax to be equal for
-+	 * fixed refresh rate operation. The default fixed RR computation sets
-+	 * these to the current mode's vtotal. However, when switching to a
-+	 * lower clock mode, this would result in a higher refresh rate than
-+	 * desired.
-+	 *
-+	 * To simulate the lower refresh rate correctly, we scale the vtotal
-+	 * based on the ratio of the highest mode's clock to the current mode's
-+	 * clock.
-+	 *
-+	 * When switching to a higher clock mode, the current vtotal already
-+	 * results in the desired refresh rate, so no scaling is needed.
-+	 *
-+	 * So compute the scaled vtotal if required, and update vrr.vmin to
-+	 * the scaled value. Also, set vrr.use_highest_mode to indicate that
-+	 * VRR timings are based on the highest mode.
-+	 */
-+	if (highest_mode && adjusted_mode->crtc_clock < highest_mode->clock) {
-+		vtotal = DIV_ROUND_UP_ULL(vtotal * highest_mode->clock,
-+					  adjusted_mode->crtc_clock);
-+		crtc_state->vrr.vmin = vtotal;
-+		crtc_state->vrr.use_highest_mode = true;
-+	}
-+
-+	return vtotal;
-+}
-+
- static
--void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
-+void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state,
-+					struct intel_connector *connector)
- {
-+	int vtotal = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+
-+	if (needs_seamless_m_n_timings(crtc_state, connector))
-+		vtotal = intel_vrr_scale_vtotal_for_seamless_m_n(crtc_state, connector);
-+
- 	/*
- 	 * For fixed rr,  vmin = vmax = flipline.
- 	 * vmin is already set to crtc_vtotal set vmax and flipline the same.
- 	 */
--	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
--	crtc_state->vrr.flipline = crtc_state->hw.adjusted_mode.crtc_vtotal;
-+	crtc_state->vrr.vmax = vtotal;
-+	crtc_state->vrr.flipline = vtotal;
- }
- 
- static
-@@ -397,7 +462,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	else if (is_cmrr_frac_required(crtc_state) && is_edp)
- 		intel_vrr_compute_cmrr_timings(crtc_state);
- 	else
--		intel_vrr_compute_fixed_rr_timings(crtc_state);
-+		intel_vrr_compute_fixed_rr_timings(crtc_state, connector);
- 
- 	/*
- 	 * flipline determines the min vblank length the hardware will
-@@ -478,6 +543,7 @@ int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
- {
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	const struct drm_display_mode *highest_mode;
- 	int dsc_prefill_time = 0;
- 	int psr2_pr_latency = 0;
- 	int scaler_prefill_time;
-@@ -490,6 +556,22 @@ int intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state,
- 	int guardband;
- 	int pm_delay;
- 
-+	/*
-+	 * For seamless m_n the clock is changed while other modeline
-+	 * parameters are same. In that case the linetime_us will change,
-+	 * causing the guardband to change, and the seamless switch to
-+	 * lower mode would not take place.
-+	 * To avoid this, take the highest mode where panel supports
-+	 * seamless drrs and make guardband equal to the vblank length
-+	 * for the highest mode.
-+	 */
-+	highest_mode = intel_panel_highest_mode(connector);
-+	if (needs_seamless_m_n_timings(crtc_state, connector) && highest_mode) {
-+		guardband = highest_mode->vtotal - highest_mode->vdisplay;
-+
-+		return guardband;
-+	}
-+
- 	linetime_us = DIV_ROUND_UP(adjusted_mode->crtc_htotal * 1000,
- 				   adjusted_mode->crtc_clock);
- 
 -- 
-2.45.2
+Cheers
+
+David / dhildenb
 
