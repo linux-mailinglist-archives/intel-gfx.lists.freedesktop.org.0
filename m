@@ -2,56 +2,103 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B2DB342CC
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 16:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 825FFB342DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 Aug 2025 16:13:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DD2610E25C;
-	Mon, 25 Aug 2025 14:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9451010E481;
+	Mon, 25 Aug 2025 14:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BL+/SPnr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e4fvRADW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4380110E25C;
- Mon, 25 Aug 2025 14:11:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756131077; x=1787667077;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DSUzq1yCZifxIG5hKiKAtJZfq7rW44Rc8gFi2WoLuKY=;
- b=BL+/SPnrChD9sKEL2LVYs/UAzR2MBVW5bpYzHLk6O4YLC5P+FAYYlF51
- Zwu6Lo41mdtLDBnKloew5joHeHrdCmdORHALOHLtkk58B9BniJz7OjdkE
- D3zIxTPOHhx3IRkCl2DDuqGQ42MDyfEvylPQfjZktXbwQOvya+vcduOgx
- fwWSMS+9GeB2mtiFgQH65kinUiNg5rehAE/Nnm6CQ0NqLDj1irc/zZWK2
- VcdgzuoMalyQo3AR+OJtEtyi9WeO7I9C7Htj5SvClGYxSH4kl+MmmYLSd
- iu/u780BituxiFXBumLCqz0X880gMTEliAEcUCTwlqhxKVUPN6alXoy2M Q==;
-X-CSE-ConnectionGUID: 5BylTRrbS5OUVnFYwd+N4A==
-X-CSE-MsgGUID: K7FlYAutSDSdbvGqdtiQKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="58270093"
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="58270093"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 07:11:17 -0700
-X-CSE-ConnectionGUID: DxvZLo7eQUuLpi4mqA3yTg==
-X-CSE-MsgGUID: kEbdkkhBRfGjs1VjPoINKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,213,1751266800"; d="scan'208";a="174585907"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 07:11:15 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- mitulkumar.ajitkumar.golani@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/vrr: Drop redundant HAS_VRR checks
-Date: Mon, 25 Aug 2025 19:27:33 +0530
-Message-ID: <20250825135733.3202475-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0161B10E357;
+ Mon, 25 Aug 2025 14:13:40 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7D96A44DBF;
+ Mon, 25 Aug 2025 14:13:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61258C116C6;
+ Mon, 25 Aug 2025 14:13:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756131220;
+ bh=3RLeKCKpDIk2eBgGx5sPwZfoBKyVmeEo49RWhYh8Kh8=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=e4fvRADWc2SiGyvairwMKdDw1zm1wGOXThGQeER0f4MYqsGYBRhD4UrfH+q2kimaE
+ 978Vxb2gnRrcxwK29zKxBr5sDuyaM7DyuM68nemBfDcJoWAJvdefCrMf4ky3tm3mTR
+ ZEf5XaC0Deu8RHdTatQRuIX1UHKAPHYmvItTm0G3jHrBoDa0LYl7qMs/ZPY2JpgApc
+ lQtDHIn1yKhsLsiU+tvHyxR+ZutYlrHGoRZcd4IzOHtkeInzrDGgR65atrSWLdNsYt
+ TaeLwZDvBl70cfWDcKc3Px3Inhk2GTRE0IlvBDIzWF32uT29HeibPtjI2oz6UM54HE
+ cW6lqbzTmXm7Q==
+Received: by mail-ot1-f45.google.com with SMTP id
+ 46e09a7af769-74381efd643so1012817a34.1; 
+ Mon, 25 Aug 2025 07:13:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU9I6fNsukDrDBLqMZHqA0twpAhWS+QEi2owheO7HSrt/WsHgxs/6P3mT7xYLBr0ftWiq8GDY91GYtW@lists.freedesktop.org,
+ AJvYcCXlR1lumCAKY6GwpTmvrvvd1j1JcGoG3oqqbhiQjSTbhnNMtAZHmUxEBdwKhYB7qcue7xRKHLFAkQE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqD7mrYR6OOiMa7qyfblB7qoFX/aNUv9unkHjZUbv1zoJr/yAO
+ jVZBDpjvs2hE3XhYAE8YODovmUEjn4ZQ/8mp3ZvO17Gbecu9ykqM511BOffyAQJ16+2GdRzQGKN
+ xd1KRP5vzgmqSNAnYKuX1lJYiFWhIO9c=
+X-Google-Smtp-Source: AGHT+IGEnV+1YshDCmjAscdFjkSNQru4o/XG/DWYuObgbMiwP57k9JdqOZlPe3YdSW0fnLXsvsMiCF3QToEZVDUm+Q8=
+X-Received: by 2002:a05:6830:d18:b0:742:fd7f:e105 with SMTP id
+ 46e09a7af769-74500aafdb9mr6734918a34.19.1756131219164; Mon, 25 Aug 2025
+ 07:13:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250825092833.42441-1-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250825092833.42441-1-zhangzihuan@kylinos.cn>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 25 Aug 2025 16:13:27 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0g7rJn=z5p4DuJJoPpZrR5ismYftpDWp5X=z74DqaGYBQ@mail.gmail.com>
+X-Gm-Features: Ac12FXwCyvYKc8Ipwt4NeaLRZNsWY9t1kMBiUFhDRbkfLg-XPnoGM5Pxq1PIQzg
+Message-ID: <CAJZ5v0g7rJn=z5p4DuJJoPpZrR5ismYftpDWp5X=z74DqaGYBQ@mail.gmail.com>
+Subject: Re: [PATCH v1] cpufreq: use __free() for all cpufreq_cpu_get()
+ references
+To: Zihuan Zhang <zhangzihuan@kylinos.cn>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Sean Christopherson <seanjc@google.com>, Paolo Bonzini <pbonzini@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, Markus Mayer <mmayer@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ zhenglifeng <zhenglifeng1@huawei.com>, "H . Peter Anvin" <hpa@zytor.com>,
+ Zhang Rui <rui.zhang@intel.com>, 
+ Len Brown <lenb@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Lukasz Luba <lukasz.luba@arm.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, 
+ Fabio Estevam <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>, 
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, 
+ Yicong Yang <yangyicong@hisilicon.com>, linux-pm@vger.kernel.org,
+ x86@kernel.org, kvm@vger.kernel.org, linux-acpi@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-samsung-soc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,42 +114,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We fill crtc_state->vrr.flipline only when HAS_VRR() returns true.
-This makes HAS_VRR() check redundant in places where we are already
-checking for intel_vrr_possible(), which returns true only if vrr.flipline
-is set.
+On Mon, Aug 25, 2025 at 11:29=E2=80=AFAM Zihuan Zhang <zhangzihuan@kylinos.=
+cn> wrote:
+>
+> This patch replaces all remaining uses of cpufreq_cpu_get() with
+> the __free(cpufreq_cpu_put) annotation.
+>
+> Motivation:
+> - Ensures automatic cleanup of policy references when they go out of scop=
+e,
+>   reducing the risk of forgetting to call cpufreq_cpu_put() on early retu=
+rn
+>   or error paths.
+> - Brings the code in line with the latest kernel coding style and best
+>   practices for managing reference-counted objects.
+> - No functional changes are introduced; behavior remains the same,
+>   but reference counting is now safer and easier to maintain.
+>
+> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+> ---
+>  arch/arm64/kernel/topology.c                  |  9 +++----
+>  arch/x86/kvm/x86.c                            | 10 ++++----
+>  drivers/acpi/processor_thermal.c              | 13 ++++------
+>  drivers/cpufreq/brcmstb-avs-cpufreq.c         |  4 +---
+>  drivers/cpufreq/cppc_cpufreq.c                |  4 +---
+>  drivers/cpufreq/intel_pstate.c                |  3 +--
+>  drivers/cpufreq/longhaul.c                    |  3 +--
+>  drivers/cpufreq/mediatek-cpufreq.c            |  6 ++---
+>  drivers/cpufreq/powernv-cpufreq.c             |  6 ++---
+>  drivers/cpufreq/s5pv210-cpufreq.c             |  3 +--
+>  drivers/cpufreq/tegra186-cpufreq.c            |  3 +--
+>  drivers/devfreq/governor_passive.c            | 19 ++++-----------
+>  drivers/gpu/drm/i915/gt/intel_llc.c           |  3 +--
+>  drivers/macintosh/windfarm_cpufreq_clamp.c    |  4 +---
+>  drivers/powercap/dtpm_cpu.c                   | 24 ++++++-------------
+>  drivers/thermal/imx_thermal.c                 |  7 ++----
+>  .../ti-soc-thermal/ti-thermal-common.c        |  5 +---
+>  kernel/power/energy_model.c                   |  7 ++----
+>  18 files changed, 40 insertions(+), 93 deletions(-)
 
-Drop such HAS_VRR() checks to simplify the logic.
+This changes different pieces of code maintained by different people
+and the changes are not interdependent AFAICS, so better send it as a
+series of separate patches.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 3eed37f271b0..b9061cbb67d5 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -652,9 +652,6 @@ void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
--	if (!HAS_VRR(display))
--		return;
--
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
-@@ -678,9 +675,6 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 
--	if (!HAS_VRR(display))
--		return;
--
- 	if (!intel_vrr_possible(crtc_state))
- 		return;
- 
--- 
-2.45.2
-
+Thanks!
