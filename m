@@ -2,148 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C34AB35EC8
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 14:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FF4B35EFF
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 14:19:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B705710E640;
-	Tue, 26 Aug 2025 12:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D3810E302;
+	Tue, 26 Aug 2025 12:19:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LT6YwBJR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cE6e+/nl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8886310E640
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 12:07:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756210077;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Uo8QqPtYPWcbg2SJ7UNAfQxo4xVeFqBTJ7SinpEUAHI=;
- b=LT6YwBJRt5Jv5hFynYfvIs6DnsPKBpjPx7K/oUdJLbtSB6xJgkCE3mqTF1Rr/o0WoGp8K5
- TRGK0vszpmaWuz7giEOPq+8h93FdP2cFlnqeFV6/UKYAf7BT0LmhTzKNpb+YYA2msBYSx0
- ansHSR1teeEWKlQfFTlIU+eVgj85pIw=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-639-7wxtj13fMiSX_a9IL2_mxg-1; Tue, 26 Aug 2025 08:07:54 -0400
-X-MC-Unique: 7wxtj13fMiSX_a9IL2_mxg-1
-X-Mimecast-MFC-AGG-ID: 7wxtj13fMiSX_a9IL2_mxg_1756210073
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-3c79f0a6050so1335542f8f.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 05:07:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756210073; x=1756814873;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Uo8QqPtYPWcbg2SJ7UNAfQxo4xVeFqBTJ7SinpEUAHI=;
- b=iD2qilkRSG4rYmJhxcTT8XgPG0APJsJT+wAn+FDg/eLmt2G9bvO7/SglhsHfFeUQwt
- 7czMOqgRaSiOruVTFB0aYOHdcr6NiApZYIXVJnSNI4jgAxXgAMF2BrTqe4/eCvlC5O7S
- DzUXkxSKYBKc1zuKCTgSAyIzekjHT3C03Fb/Hn4erxzoLSW03hUW7IdI6/ginhnWzfjQ
- Bf8RF/c3PKt4NLahTWTQeR+KhjDR652XhqZP+XF23EGfds770lYJ4UDdngExMEQ3EhDA
- yTxpNOUYZIfSaB1YQ99EY4rnmSH5JNWsdQsWA+8iTPgUkxVNg4kdLWDasOwK4WPoIm1g
- aV9Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXkM+10lpCGjSyVkvKe2nQW3IzfDB7OJDf5ahUeSqp5xoweaCTKNgUomsRzSSDseV0Hz3sl13g4ICw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzJE2kV08U3iBcQCjDiMrdSMAEssJhbifIc8CFo19xH078PXMUd
- c73ynZclg3szfs0Q/UsHhYSZ4lV5SH+D5IDCmEq5ad6ViFEWkOs/a7PlOq9c/62tnvdcqKZ1h/X
- DmpebKNeWISz3fOwQswO8cPsM/Ukh+ulVOKcem4SWEjFt+jnLplb28PEjLzado9Q0MG+6fg==
-X-Gm-Gg: ASbGnctOGEar8vqV06DimgmS1mW+gv/dgD73BulpJs1WMnthAY9nfAkqTZukxVqCsGX
- /YuvTDqQVprY8Flz5qcBIW/3XXY0wwyDn6uhliZUEdp3riGyRQBIOPG34Pm/mAXBvNm5CxjyjvI
- 7F9nxwk9iKudbKIBV0nhA3ldBPCkzKUn4hF3o3G0WdHFX3e4mfqodikYYRONlOOp9R1ahPmG5KO
- 5Sc7HdQysRDkDLj4uTT11SKJbQoc+IDZyHw4Vx1Xcpy92sBZOBSBni9LdbyNkHjcyj71MTmRKTM
- wlj58aKDIwE71wmHmbDZT5BY9F6MOkafhCD2HsJPpLeZfltDisByDgv9ufzPXM5iVd9mOR/reA=
- =
-X-Received: by 2002:a5d:4948:0:b0:3c6:af40:a774 with SMTP id
- ffacd0b85a97d-3c6af40aa2amr8520861f8f.22.1756210073127; 
- Tue, 26 Aug 2025 05:07:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGph2EoUnVtafTDMODsVx9IZs4dFlfHWSAK/zJyh0p3gRtMg5bs99D6Y9j7BY5F1T/rMK8pCA==
-X-Received: by 2002:a5d:4948:0:b0:3c6:af40:a774 with SMTP id
- ffacd0b85a97d-3c6af40aa2amr8520837f8f.22.1756210072601; 
- Tue, 26 Aug 2025 05:07:52 -0700 (PDT)
-Received: from ?IPV6:2a09:80c0:192:0:5dac:bf3d:c41:c3e7?
- ([2a09:80c0:192:0:5dac:bf3d:c41:c3e7])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cbb710172fsm1709728f8f.48.2025.08.26.05.07.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 26 Aug 2025 05:07:52 -0700 (PDT)
-Message-ID: <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
-Date: Tue, 26 Aug 2025 14:07:50 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA3F510E0CC;
+ Tue, 26 Aug 2025 12:19:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756210745; x=1787746745;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=iSWqkZTtB6eEPQcdTdV/Qd/XnBlny5HUFok2Z1oxgdQ=;
+ b=cE6e+/nlqF0phEbu8eRZ76tZJ4BZMBZPqTERFJfkIj+25f1eHFQU+fLQ
+ Rvg3dLxVlMCPJ4F12k5iiH+2jR6VYGsj/WzlE/ibGbOUwqW8ql/5ykWnI
+ 6MgaE+XIzP+nWnq3Rv4EW1qupMnxvude3XUVpGGSSVJ8zNOk9oHvr3e5q
+ IRFyPDbxtqI08/UMeLSIBYdT9U74mqWZwfWDDh9ySFGHzIFR9vJ1EBoat
+ TygfOOZK1FOFuPR0XZ9AtDWNtnRIQtWEzFMk55prSTqF5XyGitKYKzC+b
+ isKd1GpPUV1P67Y5wwsvLrucgC4PYo5+neqJfNC492Av5lITdYDRnJkIp Q==;
+X-CSE-ConnectionGUID: 7QUy7fctS0SQwzZZvPTYtg==
+X-CSE-MsgGUID: b/VB7uytTUaaUKm6r5YOqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11534"; a="62087776"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="62087776"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2025 05:19:05 -0700
+X-CSE-ConnectionGUID: hw19vAroSYqnXs0LusRgOg==
+X-CSE-MsgGUID: kfU/Xs5KQOCNO9ew1mr8ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="174866502"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.254])
+ by orviesa005.jf.intel.com with SMTP; 26 Aug 2025 05:19:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 26 Aug 2025 15:18:59 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: linux-kernel@vger.kernel.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ David Laight <david.laight.linux@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Matt Wagantall <mattw@codeaurora.org>, Dejin Zheng <zhengdejin5@gmail.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 1/3] iopoll: Generalize read_poll_timeout() into
+ poll_timeout_us()
+Date: Tue, 26 Aug 2025 15:18:57 +0300
+Message-ID: <20250826121859.15497-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re:
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
- ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZoEEwEIAEQCGwMCF4ACGQEFCwkIBwICIgIG
- FQoJCAsCBBYCAwECHgcWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaJzangUJJlgIpAAKCRBN
- 3hD3AP+DWhAxD/9wcL0A+2rtaAmutaKTfxhTP0b4AAp1r/eLxjrbfbCCmh4pqzBhmSX/4z11
- opn2KqcOsueRF1t2ENLOWzQu3Roiny2HOU7DajqB4dm1BVMaXQya5ae2ghzlJN9SIoopTWlR
- 0Af3hPj5E2PYvQhlcqeoehKlBo9rROJv/rjmr2x0yOM8qeTroH/ZzNlCtJ56AsE6Tvl+r7cW
- 3x7/Jq5WvWeudKrhFh7/yQ7eRvHCjd9bBrZTlgAfiHmX9AnCCPRPpNGNedV9Yty2Jnxhfmbv
- Pw37LA/jef8zlCDyUh2KCU1xVEOWqg15o1RtTyGV1nXV2O/mfuQJud5vIgzBvHhypc3p6VZJ
- lEf8YmT+Ol5P7SfCs5/uGdWUYQEMqOlg6w9R4Pe8d+mk8KGvfE9/zTwGg0nRgKqlQXrWRERv
- cuEwQbridlPAoQHrFWtwpgYMXx2TaZ3sihcIPo9uU5eBs0rf4mOERY75SK+Ekayv2ucTfjxr
- Kf014py2aoRJHuvy85ee/zIyLmve5hngZTTe3Wg3TInT9UTFzTPhItam6dZ1xqdTGHZYGU0O
- otRHcwLGt470grdiob6PfVTXoHlBvkWRadMhSuG4RORCDpq89vu5QralFNIf3EysNohoFy2A
- LYg2/D53xbU/aa4DDzBb5b1Rkg/udO1gZocVQWrDh6I2K3+cCs7BTQRVy5+RARAA59fefSDR
- 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
- VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
- /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
- iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
- 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
- zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
- azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
- FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
- sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
- 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
- EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
- IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
- 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
- Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
- sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
- yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
- 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
- r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
- 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
- CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
- qIws/H2t
-In-Reply-To: <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: lDVO6FfcamWl4iUu3wAsjFII-Sgf70Rm6eK9-riifLY_1756210073
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,64 +77,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
->>
->> 1) We use another interface that consumes pages instead of PFNs, like a
->>     vm_insert_pages_pgprot() we would be adding.
->>
->>     Is there any strong requirement for inserting non-refcounted PFNs?
-> 
-> Yes, there is a strong requirement to insert non-refcounted PFNs.
-> 
-> We had a lot of trouble with KVM people trying to grab a reference to those pages even if the VMA had the VM_PFNMAP flag set.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Yes, KVM ignored (and maybe still does) VM_PFNMAP to some degree, which 
-is rather nasty.
+While read_poll_timeout() & co. were originally introduced just
+for simple I/O usage scenarios they have since been generalized to
+be useful in more cases.
 
-> 
->> 2) We add another interface that consumes PFNs, but explicitly states
->>     that it is only for ordinary system RAM, and that the user is
->>     required for updating the direct map.
->>
->>     We could sanity-check the direct map in debug kernels.
-> 
-> I would rather like to see vmf_insert_pfn_prot() fixed instead.
-> 
-> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
+However the interface is very cumbersome to use in the general case.
+Attempt to make it more flexible by combining the 'op', 'var' and
+'args' parameter into just a single 'op' that the caller can fully
+specify.
 
-It's all a bit tricky :(
+For example i915 has one case where one might currently
+have to write something like:
+	ret = read_poll_timeout(drm_dp_dpcd_read_byte, err,
+				err || (status & mask),
+				0 * 1000, 200 * 1000, false,
+				aux, DP_FEC_STATUS, &status);
+which is practically illegible, but with the adjusted macro
+we do:
+	ret = poll_timeout_us(err = drm_dp_dpcd_read_byte(aux, DP_FEC_STATUS, &status),
+			      err || (status & mask),
+			      0 * 1000, 200 * 1000, false);
+which much easier to understand.
 
-> 
->>
->> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
->>     system RAM differently.
->>
->>
->> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
->>
->> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
-> 
-> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
-> 
-> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
+One could even combine the 'op' and 'cond'  parameters into
+one, but that might make the caller a bit too unwieldly with
+assignments and checks being done on the same statement.
 
-I mean, the use case of "allocate pages from the buddy and fixup the 
-linear map" sounds perfectly reasonable to me. Absolutely no reason to 
-get PAT involved. Nobody else should be messing with that memory after all.
+This makes poll_timeout_us() closer to the i915 __wait_for()
+macro, with the main difference being that __wait_for() uses
+expenential backoff as opposed to the fixed polling interval
+used by poll_timeout_us(). Eventually we might be able to switch
+(at least most of) i915 to use poll_timeout_us().
 
-As soon as we are talking about other memory ranges (iomem) that are not 
-from the buddy, it gets weird to bypass PAT, and the question I am 
-asking myself is, when is it okay, and when not.
+v2: Fix typos (Jani)
+    Fix delay_us docs for poll_timeout_us_atomic() (Jani)
 
-> 
-> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: David Laight <david.laight.linux@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Matt Wagantall <mattw@codeaurora.org>
+Cc: Dejin Zheng <zhengdejin5@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ include/linux/iopoll.h | 110 +++++++++++++++++++++++++++++------------
+ 1 file changed, 78 insertions(+), 32 deletions(-)
 
-I'll have to think about this a bit: assuming only vmf_insert_pfn() 
-calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, 
-how could we sanity check that somebody is doing something against the 
-will of PAT.
-
+diff --git a/include/linux/iopoll.h b/include/linux/iopoll.h
+index 91324c331a4b..440aca5b4b59 100644
+--- a/include/linux/iopoll.h
++++ b/include/linux/iopoll.h
+@@ -14,41 +14,38 @@
+ #include <linux/io.h>
+ 
+ /**
+- * read_poll_timeout - Periodically poll an address until a condition is
+- *			met or a timeout occurs
+- * @op: accessor function (takes @args as its arguments)
+- * @val: Variable to read the value into
+- * @cond: Break condition (usually involving @val)
+- * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
+- *            read usleep_range() function description for details and
++ * poll_timeout_us - Periodically poll and perform an operation until
++ *                   a condition is met or a timeout occurs
++ *
++ * @op: Operation
++ * @cond: Break condition
++ * @sleep_us: Maximum time to sleep between operations in us (0 tight-loops).
++ *            Please read usleep_range() function description for details and
+  *            limitations.
+  * @timeout_us: Timeout in us, 0 means never timeout
+- * @sleep_before_read: if it is true, sleep @sleep_us before read.
+- * @args: arguments for @op poll
++ * @sleep_before_op: if it is true, sleep @sleep_us before operation.
+  *
+  * When available, you'll probably want to use one of the specialized
+  * macros defined below rather than this macro directly.
+  *
+- * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+- * case, the last read value at @args is stored in @val. Must not
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout. Must not
+  * be called from atomic context if sleep_us or timeout_us are used.
+  */
+-#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
+-				sleep_before_read, args...) \
++#define poll_timeout_us(op, cond, sleep_us, timeout_us, sleep_before_op) \
+ ({ \
+ 	u64 __timeout_us = (timeout_us); \
+ 	unsigned long __sleep_us = (sleep_us); \
+ 	ktime_t __timeout = ktime_add_us(ktime_get(), __timeout_us); \
+ 	might_sleep_if((__sleep_us) != 0); \
+-	if (sleep_before_read && __sleep_us) \
++	if ((sleep_before_op) && __sleep_us) \
+ 		usleep_range((__sleep_us >> 2) + 1, __sleep_us); \
+ 	for (;;) { \
+-		(val) = op(args); \
++		op; \
+ 		if (cond) \
+ 			break; \
+ 		if (__timeout_us && \
+ 		    ktime_compare(ktime_get(), __timeout) > 0) { \
+-			(val) = op(args); \
++			op; \
+ 			break; \
+ 		} \
+ 		if (__sleep_us) \
+@@ -59,17 +56,16 @@
+ })
+ 
+ /**
+- * read_poll_timeout_atomic - Periodically poll an address until a condition is
+- * 				met or a timeout occurs
+- * @op: accessor function (takes @args as its arguments)
+- * @val: Variable to read the value into
+- * @cond: Break condition (usually involving @val)
+- * @delay_us: Time to udelay between reads in us (0 tight-loops). Please
+- *            read udelay() function description for details and
++ * poll_timeout_us_atomic - Periodically poll and perform an operation until
++ *                          a condition is met or a timeout occurs
++ *
++ * @op: Operation
++ * @cond: Break condition
++ * @delay_us: Time to udelay between operations in us (0 tight-loops).
++ *            Please read udelay() function description for details and
+  *            limitations.
+  * @timeout_us: Timeout in us, 0 means never timeout
+- * @delay_before_read: if it is true, delay @delay_us before read.
+- * @args: arguments for @op poll
++ * @delay_before_op: if it is true, delay @delay_us before operation.
+  *
+  * This macro does not rely on timekeeping.  Hence it is safe to call even when
+  * timekeeping is suspended, at the expense of an underestimation of wall clock
+@@ -78,27 +74,26 @@
+  * When available, you'll probably want to use one of the specialized
+  * macros defined below rather than this macro directly.
+  *
+- * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+- * case, the last read value at @args is stored in @val.
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout.
+  */
+-#define read_poll_timeout_atomic(op, val, cond, delay_us, timeout_us, \
+-					delay_before_read, args...) \
++#define poll_timeout_us_atomic(op, cond, delay_us, timeout_us, \
++			       delay_before_op) \
+ ({ \
+ 	u64 __timeout_us = (timeout_us); \
+ 	s64 __left_ns = __timeout_us * NSEC_PER_USEC; \
+ 	unsigned long __delay_us = (delay_us); \
+ 	u64 __delay_ns = __delay_us * NSEC_PER_USEC; \
+-	if (delay_before_read && __delay_us) { \
++	if ((delay_before_op) && __delay_us) { \
+ 		udelay(__delay_us); \
+ 		if (__timeout_us) \
+ 			__left_ns -= __delay_ns; \
+ 	} \
+ 	for (;;) { \
+-		(val) = op(args); \
++		op; \
+ 		if (cond) \
+ 			break; \
+ 		if (__timeout_us && __left_ns < 0) { \
+-			(val) = op(args); \
++			op; \
+ 			break; \
+ 		} \
+ 		if (__delay_us) { \
+@@ -113,6 +108,57 @@
+ 	(cond) ? 0 : -ETIMEDOUT; \
+ })
+ 
++/**
++ * read_poll_timeout - Periodically poll an address until a condition is
++ *                     met or a timeout occurs
++ * @op: accessor function (takes @args as its arguments)
++ * @val: Variable to read the value into
++ * @cond: Break condition (usually involving @val)
++ * @sleep_us: Maximum time to sleep between reads in us (0 tight-loops). Please
++ *            read usleep_range() function description for details and
++ *            limitations.
++ * @timeout_us: Timeout in us, 0 means never timeout
++ * @sleep_before_read: if it is true, sleep @sleep_us before read.
++ * @args: arguments for @op poll
++ *
++ * When available, you'll probably want to use one of the specialized
++ * macros defined below rather than this macro directly.
++ *
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
++ * case, the last read value at @args is stored in @val. Must not
++ * be called from atomic context if sleep_us or timeout_us are used.
++ */
++#define read_poll_timeout(op, val, cond, sleep_us, timeout_us, \
++			  sleep_before_read, args...) \
++	poll_timeout_us((val) = op(args), cond, sleep_us, timeout_us, sleep_before_read)
++
++/**
++ * read_poll_timeout_atomic - Periodically poll an address until a condition is
++ *                            met or a timeout occurs
++ * @op: accessor function (takes @args as its arguments)
++ * @val: Variable to read the value into
++ * @cond: Break condition (usually involving @val)
++ * @delay_us: Time to udelay between reads in us (0 tight-loops). Please
++ *            read udelay() function description for details and
++ *            limitations.
++ * @timeout_us: Timeout in us, 0 means never timeout
++ * @delay_before_read: if it is true, delay @delay_us before read.
++ * @args: arguments for @op poll
++ *
++ * This macro does not rely on timekeeping.  Hence it is safe to call even when
++ * timekeeping is suspended, at the expense of an underestimation of wall clock
++ * time, which is rather minimal with a non-zero delay_us.
++ *
++ * When available, you'll probably want to use one of the specialized
++ * macros defined below rather than this macro directly.
++ *
++ * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
++ * case, the last read value at @args is stored in @val.
++ */
++#define read_poll_timeout_atomic(op, val, cond, sleep_us, timeout_us, \
++				 sleep_before_read, args...) \
++	poll_timeout_us_atomic((val) = op(args), cond, sleep_us, timeout_us, sleep_before_read)
++
+ /**
+  * readx_poll_timeout - Periodically poll an address until a condition is met or a timeout occurs
+  * @op: accessor function (takes @addr as its only argument)
 -- 
-Cheers
-
-David / dhildenb
+2.49.1
 
