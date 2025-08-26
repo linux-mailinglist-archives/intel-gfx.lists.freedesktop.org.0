@@ -2,90 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 563F5B36E7E
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 17:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 626E7B36EDE
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 17:54:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87AE810E68D;
-	Tue, 26 Aug 2025 15:48:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cBpUZwwJ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B99C10E376;
+	Tue, 26 Aug 2025 15:54:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C46410E383;
- Tue, 26 Aug 2025 15:48:22 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3A799602BB;
- Tue, 26 Aug 2025 15:48:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D1E1C4CEF1;
- Tue, 26 Aug 2025 15:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1756223300;
- bh=b8FPl/vsVw5JNumARcRZVHO1eLeE0zNGP8ZNm5DfGWI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cBpUZwwJwkflKJ0/vGcmpkC8DliLFLjpny0HUmG2Ln346CiBilgYH94HOREACj5jF
- Eq+XapbP4mc3qqOBbKqJAOA0njYw2EK8+6zfRSA0eWXfO/SnsO8pThLIrOhMQixQZd
- XHTps7BStTJKDCTVj8vOn5Gy/oHQabqqNoH1MEnvwi5qkv97UYldOWhQP3PUn5/9Lm
- OHy0yblKZsp109frfTjXxEUXfzNX/BWGVXFCAq2cHizxUwV7oPc2+wbbiLb4kwDlOc
- 9FKAQoMjqXrG9GwaCG+g+UxkSz4WB1qo0ykVddH858/C+LLN/pLzUJQA3YX3ce1Yuk
- 4SOasopz6FeBw==
-Date: Tue, 26 Aug 2025 17:48:18 +0200
-From: "mripard@kernel.org" <mripard@kernel.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nautiyal,
- Ankit K" <ankit.k.nautiyal@intel.com>, 
- "Murthy, Arun R" <arun.r.murthy@intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>, 
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>, 
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, 
- "simona@ffwll.ch" <simona@ffwll.ch>, 
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>, 
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>, 
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "mcanal@igalia.com" <mcanal@igalia.com>, 
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>, 
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>, 
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>,
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <20250826-skinny-dancing-otter-de9be4@houat>
-References: <20250811092707.3986802-2-suraj.kandpal@intel.com>
- <20250811094429.GE21313@pendragon.ideasonboard.com>
- <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
- <20250811111546.GA30760@pendragon.ideasonboard.com>
- <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
- <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
- <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
- <wr76vyag2osox2xf7ducnkiaanzk2k5ehd2ahnoyqdm5qiywlk@penf4v5bvg5z>
- <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1F75010E371;
+ Tue, 26 Aug 2025 15:54:02 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 39F0B1A25;
+ Tue, 26 Aug 2025 08:53:54 -0700 (PDT)
+Received: from [10.57.4.86] (unknown [10.57.4.86])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8041A3F694;
+ Tue, 26 Aug 2025 08:53:54 -0700 (PDT)
+Message-ID: <983df32a-ba74-421d-bc20-06e778b4d2c9@arm.com>
+Date: Tue, 26 Aug 2025 16:53:51 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="h5fbt5za66ojtx6g"
-Content-Disposition: inline
-In-Reply-To: <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 16/19] perf: Introduce positive capability for sampling
+To: Leo Yan <leo.yan@arm.com>
+Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
+ mark.rutland@arm.com, acme@kernel.org, namhyung@kernel.org,
+ alexander.shishkin@linux.intel.com, jolsa@kernel.org, irogers@google.com,
+ adrian.hunter@intel.com, kan.liang@linux.intel.com,
+ linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
+ iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
+ linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <cover.1755096883.git.robin.murphy@arm.com>
+ <ae81cb65b38555c628e395cce67ac6c7eaafdd23.1755096883.git.robin.murphy@arm.com>
+ <20250826131124.GB745921@e132581.arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250826131124.GB745921@e132581.arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,121 +65,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 2025-08-26 2:11 pm, Leo Yan wrote:
+> On Wed, Aug 13, 2025 at 06:01:08PM +0100, Robin Murphy wrote:
+>> Sampling is inherently a feature for CPU PMUs, given that the thing
+>> to be sampled is a CPU context. These days, we have many more
+>> uncore/system PMUs than CPU PMUs, so it no longer makes much sense to
+>> assume sampling support by default and force the ever-growing majority
+>> of drivers to opt out of it (or erroneously fail to). Instead, let's
+>> introduce a positive opt-in capability that's more obvious and easier to
+>> maintain.
+> 
+> [...]
+> 
+>> diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+>> index 369e77ad5f13..dbd52851f5c6 100644
+>> --- a/drivers/perf/arm_spe_pmu.c
+>> +++ b/drivers/perf/arm_spe_pmu.c
+>> @@ -955,7 +955,8 @@ static int arm_spe_pmu_perf_init(struct arm_spe_pmu *spe_pmu)
+>>   	spe_pmu->pmu = (struct pmu) {
+>>   		.module = THIS_MODULE,
+>>   		.parent		= &spe_pmu->pdev->dev,
+>> -		.capabilities	= PERF_PMU_CAP_EXCLUSIVE | PERF_PMU_CAP_ITRACE,
+>> +		.capabilities	= PERF_PMU_CAP_SAMPLING |
+>> +				  PERF_PMU_CAP_EXCLUSIVE | PERF_PMU_CAP_ITRACE,
+>>   		.attr_groups	= arm_spe_pmu_attr_groups,
+>>   		/*
+>>   		 * We hitch a ride on the software context here, so that
+> 
+> The change in Arm SPE driver looks good to me.
+> 
+> I noticed you did not set the flag for other AUX events, like Arm
+> CoreSight, Intel PT and bts. The drivers locate in:
+> 
+>    drivers/hwtracing/coresight/coresight-etm-perf.c
+>    arch/x86/events/intel/bts.c
+>    arch/x86/events/intel/pt.c
+> 
+> Genearlly, AUX events generate interrupts based on AUX ring buffer
+> watermark but not the period. Seems to me, it is correct to set the
+> PERF_PMU_CAP_SAMPLING flag for them.
 
---h5fbt5za66ojtx6g
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
-MIME-Version: 1.0
+This cap is given to drivers which handle event->attr.sample_period and 
+call perf_event_overflow() - or in a few rare cases, 
+perf_output_sample() directly - to do something meaningful with it, 
+since the intent is to convey "I properly handle events for which 
+is_sampling_event() is true". My understanding is that aux events are 
+something else entirely, but I'm happy to be corrected.
 
-On Mon, Aug 25, 2025 at 06:26:48AM +0000, Kandpal, Suraj wrote:
-> > Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor
-> > drm_writeback_connector structure
-> >=20
-> > Hi,
-> >=20
-> > On Sat, Aug 16, 2025 at 01:20:53AM +0300, Dmitry Baryshkov wrote:
-> > > On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wrote:
-> > > > Hi,
-> > > >
-> > > > On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
-> > > > > > > > };
-> > > > > > >
-> > > > > > > I still don't like that. This really doesn't belong here. If
-> > > > > > > anything, the drm_connector for writeback belongs to drm_crtc.
-> > > > > >
-> > > > > > Why? We already have generic HDMI field inside drm_connector. I
-> > > > > > am really hoping to be able to land DP parts next to it. In
-> > > > > > theory we can have a DVI- specific entry there (e.g. with the
-> > subconnector type).
-> > > > > > The idea is not to limit how the drivers subclass those structu=
-res.
-> > > > > >
-> > > > > > I don't see a good case why WB should deviate from that design.
-> > > > > >
-> > > > > > > If the issue is that some drivers need a custom drm_connector
-> > > > > > > subclass, then I'd rather turn the connector field of
-> > > > > > > drm_writeback_connector into a pointer.
-> > > > > >
-> > > > > > Having a pointer requires additional ops in order to get
-> > > > > > drm_connector from WB code and vice versa. Having
-> > > > > > drm_connector_wb inside drm_connector saves us from those ops
-> > (which don't manifest for any other kind of structure).
-> > > > > > Nor will it take any more space since union will reuse space
-> > > > > > already taken up by HDMI part.
-> > > > > >
-> > > > > > >
-> > > > >
-> > > > > Seems like this thread has died. We need to get a conclusion on t=
-he
-> > design.
-> > > > > Laurent do you have any issue with the design given Dmitry's
-> > > > > explanation as to why this Design is good for drm_writeback_conne=
-ctor.
-> > > >
-> > > > I'm with Laurent here. The idea for drm_connector (and a lot of drm
-> > > > structures) are to be used as base "classes" for extended
-> > > > structures. I don't know why HDMI connector ended up inside
-> > > > drm_connector as not all connectors have HDMI functionality, but th=
-at's a
-> > cleanup for another day.
-> > >
-> > > Maybe Maxime can better comment on it, but I think it was made exactly
-> > > for the purpose of not limiting the driver's design. For example, a
-> > > lot of drivers subclass drm_connector via drm_bridge_connector. If
-> > > struct drm_connector_hdmi was a wrapper around struct drm_connector,
-> > > then it would have been impossible to use HDMI helpers for bridge
-> > > drivers, while current design freely allows any driver to utilize
-> > > corresponding library code.
-> >=20
-> > That's exactly why we ended up like this. With that design, we wouldn't=
- have
-> > been able to "inherit" two connector "classes": bridge_connector is one,
-> > intel_connector another one.
-> >=20
-> > See here for the rationale:
-> > https://lore.kernel.org/dri-devel/ZOTDKHxn2bOg+Xmg@phenom.ffwll.local/
-> >=20
-> > I don't think the "but we'll bloat drm_connector" makes sense either.
-> > There's already a *lot* of things that aren't useful to every connector=
- (fwnode,
-> > display_info, edid in general, scaling, vrr, etc.)
-> >=20
-> > And it's not like we allocate more than a handful of them during a syst=
-em's life.
->=20
-> So Are we okay with the approach mentioned here with the changes that hav=
-e been proposed here like
-> Having drm_writeback_connector in union with drm_hdmi_connector
+Otherwise, perhaps this suggests it deserves to be named a little more 
+specifically for clarity, maybe PERF_CAP_SAMPLING_EVENTS?
 
-I don't think we need a union here. It artificially creates the same
-issue: we can't have two types for a connector if we do so.
+Thanks,
+Robin.
 
-> Also one more thing I would like to clarify here is how everyone would
-> like the patches patches where each patch changes both the drm core
-> and all related drivers (ensures buildability but then review is tough
-> for each driver). Or patches where we have initial drm core changes
-> and then each patch does the all changes in a driver in its own
-> respective patch.
+> A special case is Arm CoreSight legacy sinks (like ETR/ETB, etc)
+> don't has interrupt. We might need set or clear the flag on the fly
+> based on sink type:
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/drivers/hwtracing/coresight/coresight-etm-perf.c
+> index f1551c08ecb2..404edc94c198 100644
+> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
+> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
+> @@ -433,6 +433,11 @@ static void *etm_setup_aux(struct perf_event *event, void **pages,
+>          if (!sink)
+>                  goto err;
+>   
+> +       if (coresight_is_percpu_sink(sink))
+> +               event->pmu.capabilities = PERF_PMU_CAP_SAMPLING;
+> +       else
+> +               event->pmu.capabilities &= ~PERF_PMU_CAP_SAMPLING;
+> +
+> 
+> Thanks,
+> Leo
 
-The latter should be preferred, but if you can't maintain bisectability
-that way, then it's the most important and you should fall back to the
-former.
-
-Maxime
-
---h5fbt5za66ojtx6g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJQEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaK3XPQAKCRAnX84Zoj2+
-dkGOAXsF9clyGa0v79Lvcn8LKsqqNonbB//uZEuQy7tvsCVTi+DhFkU8idQEhmiv
-4/hwQBIBdjsjXoUxkxPssK1Cqn88KbP1KGjTWNATiM+3ovUf9J35gCUaNCEzp/9o
-nS7FRKYC
-=Lfn+
------END PGP SIGNATURE-----
-
---h5fbt5za66ojtx6g--
