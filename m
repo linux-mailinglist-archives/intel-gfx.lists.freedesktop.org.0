@@ -2,55 +2,154 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58FE3B36EFA
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 17:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F116B36F83
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 18:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6EC410E692;
-	Tue, 26 Aug 2025 15:55:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C644A10E69A;
+	Tue, 26 Aug 2025 16:08:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="JbswCT6s";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4DF6110E692;
- Tue, 26 Aug 2025 15:55:58 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3F871A25;
- Tue, 26 Aug 2025 08:55:49 -0700 (PDT)
-Received: from J2N7QTR9R3 (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D7E113F694;
- Tue, 26 Aug 2025 08:55:51 -0700 (PDT)
-Date: Tue, 26 Aug 2025 16:55:49 +0100
-From: Mark Rutland <mark.rutland@arm.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: peterz@infradead.org, mingo@redhat.com, will@kernel.org,
- acme@kernel.org, namhyung@kernel.org,
- alexander.shishkin@linux.intel.com, jolsa@kernel.org,
- irogers@google.com, adrian.hunter@intel.com,
- kan.liang@linux.intel.com, linux-perf-users@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-alpha@vger.kernel.org,
- linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- linux-csky@vger.kernel.org, loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, dmaengine@vger.kernel.org,
- linux-fpga@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, coresight@lists.linaro.org,
- iommu@lists.linux.dev, linux-amlogic@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 02/19] perf/hisilicon: Fix group validation
-Message-ID: <aK3ZBUQ3QeB2egX7@J2N7QTR9R3>
-References: <cover.1755096883.git.robin.murphy@arm.com>
- <c7b877e66ba0d34d8558c5af8bbb620e8c0e47d9.1755096883.git.robin.murphy@arm.com>
- <aK2XS_GhLw1EQ2ml@J2N7QTR9R3>
- <ab80cb84-42b2-4ce8-aa6c-4ce6be7a12b7@arm.com>
- <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3CB10E39C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 16:08:26 +0000 (UTC)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57QFdlg9000529
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 16:08:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=5Y6MH/IfjA1JcEnoDtSw8pJM
+ 2X/EunOT5oKJPorXhUE=; b=JbswCT6sjJBwB/oXRot1KzTm7NFqJUos8kr5i1CQ
+ MP1A0cQ0WBCm2vDiljFK0hOwi19o+0cJpUQVlWAONGs8nOm7/NEe7wEfUuvyhydc
+ CmhkC/SkW6VCegD9VGihV7/3wCI+YqYEZI5A1/Fx3TizavTs3DR0NGFBGFUhhTxl
+ SnU65YAmgvZinrJ1lwsb93+k8Klg1GXt/QBvWkL4nZ9pJmbQFJHCg5jMMZS1tKnE
+ KWpQSqL6k5pfdetx2H7bjnQOy4oeSH6onMkGAxSU27uvyINNG6CJd8IgdNd1kXyE
+ Z/lqRkYgZuw4nptDVgV7LXFFAaNJJzX1TbIWhbep88YBhA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5xfhhb4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 16:08:25 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id
+ d75a77b69052e-4b10993f679so156559731cf.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 09:08:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756224504; x=1756829304;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5Y6MH/IfjA1JcEnoDtSw8pJM2X/EunOT5oKJPorXhUE=;
+ b=A63RLyWsnu8k/iIEtewgFp2NzU6ziooMli8nkUwyN4SdoO21+z9xjcEt3Eba/9hh2I
+ l+KH6lDx1IovQ4bTyUrrIgkoaRWeOJnvv45cRkKwoZqnM+AGeifGR1EZV0X5g9aVLpgy
+ TQVQXK1woS1MCiqWMRy9PlTGB3Bv2GZJ0JMhZT74NzL7VZrTb1jG/i9FBQN8JjyJRHiJ
+ HGO6zlHrLfjiRQAV8c6T6NK7S8DwTyrRdJzUxhBqgu5hDhibdQ+TxaqTTFucbszc93JO
+ qEuQdVJxGmKGG4znXIsxYktWNZuAgv1mj5DZe9EXeig9JcnPRzjGpvjwyIzvgkNbuN4c
+ s8JQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXvnSDQ2HzJgDHDJ2WWCdUq9oL/hJVkmdM14uNOsjT1SuOrr71uqSG8BDT7tAzrQH19LLrhYzc/YhU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxS8ru0VRUPENp9QV94O81feREujIJdTH0hnFPvhcIuKsHWGbPL
+ tVdZeP8pUeHQuW1hQMLOHjvPXWOAg+Z/fIUauhwwJgGx1JHQfxZcQxWa+BoDnsVMl91xjFlJPjB
+ rwNBK+tuoF5nRJ0ZE/E6F1wF0qoiKndzoq9CFXNyQEtbCgkHIH3irPtuww4lsKppMzXaIz+o=
+X-Gm-Gg: ASbGncuVw/lT005xVbYFuMp/zMnLjIbCg3Wq9CStivn5iPIVfFhIFTW2zPYGpcvN/cn
+ UPJ7ju0HGMNCrsFvCct6KBAKinHTYFvgWKstcTb85VFC52nN3AWkQoUeH+K6QVmrU3/FIeKCHEP
+ pR3/wAY2URMHeJEinDbuK66yHts3ViOl8BQwIb5n8eCx3VYUpQrziCT4azbZEuR4lmGbiplfGfu
+ nHINLoMFo3afhqisEYqwCquZqBZucaaKh7+mGlDK7zmcJE1Lm/nE3I9D3b+0p6b07Slp4DAUKnf
+ xkgJsgKDLQhiA1lpsJOUBm6C7XaOk82dd5lG6hIeYfKXvuTQAvUxbD22vgRWEjw3v8HeF1f28ss
+ DbsCdJb8OHurgCVkojQUSWqbRVTv5We6XgLwES/iw9XqBkUT1LLv8
+X-Received: by 2002:a05:622a:188e:b0:4b0:677d:d8e1 with SMTP id
+ d75a77b69052e-4b2aaa055c4mr159229981cf.17.1756224504042; 
+ Tue, 26 Aug 2025 09:08:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGw4XVvhS8sJ4oPyO5LSxRLiQgorFOHBMUJBTT8et5S5EVGydVwVkXldGpoHbR11UxUC58e2w==
+X-Received: by 2002:a05:622a:188e:b0:4b0:677d:d8e1 with SMTP id
+ d75a77b69052e-4b2aaa055c4mr159227761cf.17.1756224501655; 
+ Tue, 26 Aug 2025 09:08:21 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-55f45a230ddsm1241131e87.59.2025.08.26.09.08.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 Aug 2025 09:08:20 -0700 (PDT)
+Date: Tue, 26 Aug 2025 19:08:17 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: "mripard@kernel.org" <mripard@kernel.org>
+Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
+ "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
+ "sean@poorly.run" <sean@poorly.run>,
+ "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
+ "mcanal@igalia.com" <mcanal@igalia.com>,
+ "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
+ "tomi.valkeinen+renesas@ideasonboard.com"
+ <tomi.valkeinen+renesas@ideasonboard.com>, 
+ "kieran.bingham+renesas@ideasonboard.com"
+ <kieran.bingham+renesas@ideasonboard.com>, 
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
+Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
+ structure
+Message-ID: <76cmo6pqa534cdnckfgsnspczenzt7kiwkpgg4olxysjn2can7@g5dxteqi5jjs>
+References: <20250811094429.GE21313@pendragon.ideasonboard.com>
+ <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
+ <20250811111546.GA30760@pendragon.ideasonboard.com>
+ <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
+ <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
+ <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
+ <wr76vyag2osox2xf7ducnkiaanzk2k5ehd2ahnoyqdm5qiywlk@penf4v5bvg5z>
+ <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <20250826-skinny-dancing-otter-de9be4@houat>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aK3TS3s5_Pczx1nu@J2N7QTR9R3>
+In-Reply-To: <20250826-skinny-dancing-otter-de9be4@houat>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMyBTYWx0ZWRfX9Aw9N5XbAITS
+ jQLmrEUF/iW5MJKX6Qc7qCzD3m6/vReiHj1LUJFZVpn5jFjmeGjgMOVFPlXqgr+N7WvWxHaEu4p
+ N9ru5gquUMk92+/AA4J7NV6roYZxY4xVlmc/WLD/DL1r/ToyKL1b0kK79SpmJffqmWwkl3nYg0E
+ hx3WGyWphu9gc1vIL645BXtWnUOUnEDRQL5fCFB9qdWfZQG7PnuhFyAjTcr/lab4l/STihcxbmP
+ 6tUhYhnZkGMOKxrSk/AniDr+yk2GLDJyAWDXehAZfNMH5dgalMkg4uf+zCcTuROpZbCaotBZr3x
+ Z6/WYzKhztVVh16s++qzpyRTq7LnRYlsPfUdc2GOEK6cznUGtP9GMY346FE/ENClpM5izUTNqZ7
+ vGz37YP7
+X-Proofpoint-GUID: 2SKAJBf-IpR53bcm0voDEYnXWHkF5HZu
+X-Authority-Analysis: v=2.4 cv=MutS63ae c=1 sm=1 tr=0 ts=68addbf9 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=cj-Nge-_NgV5cCdd3SwA:9
+ a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-ORIG-GUID: 2SKAJBf-IpR53bcm0voDEYnXWHkF5HZu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-26_02,2025-08-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 adultscore=0 spamscore=0 malwarescore=0
+ suspectscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230033
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,74 +165,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 26, 2025 at 04:31:23PM +0100, Mark Rutland wrote:
-> On Tue, Aug 26, 2025 at 03:35:48PM +0100, Robin Murphy wrote:
-> > On 2025-08-26 12:15 pm, Mark Rutland wrote:
-> > > On Wed, Aug 13, 2025 at 06:00:54PM +0100, Robin Murphy wrote:
-> > > > diff --git a/drivers/perf/hisilicon/hisi_pcie_pmu.c b/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > index c5394d007b61..3b0b2f7197d0 100644
-> > > > --- a/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > +++ b/drivers/perf/hisilicon/hisi_pcie_pmu.c
-> > > > @@ -338,21 +338,16 @@ static bool hisi_pcie_pmu_validate_event_group(struct perf_event *event)
-> > > >   	int counters = 1;
-> > > >   	int num;
-> > > > -	event_group[0] = leader;
-> > > > -	if (!is_software_event(leader)) {
-> > > > -		if (leader->pmu != event->pmu)
-> > > > -			return false;
-> > > > +	if (leader == event)
-> > > > +		return true;
-> > > > -		if (leader != event && !hisi_pcie_pmu_cmp_event(leader, event))
-> > > > -			event_group[counters++] = event;
-> > > > -	}
-> > > > +	event_group[0] = event;
-> > > > +	if (leader->pmu == event->pmu && !hisi_pcie_pmu_cmp_event(leader, event))
-> > > > +		event_group[counters++] = leader;
+On Tue, Aug 26, 2025 at 05:48:18PM +0200, mripard@kernel.org wrote:
+> On Mon, Aug 25, 2025 at 06:26:48AM +0000, Kandpal, Suraj wrote:
+> > > Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor
+> > > drm_writeback_connector structure
 > > > 
-> > > Looking at this, the existing logic to share counters (which
-> > > hisi_pcie_pmu_cmp_event() is trying to permit) looks to be bogus, given
-> > > that the start/stop callbacks will reprogram the HW counters (and hence
-> > > can fight with one another).
+> > > Hi,
+> > > 
+> > > On Sat, Aug 16, 2025 at 01:20:53AM +0300, Dmitry Baryshkov wrote:
+> > > > On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wrote:
+> > > > > Hi,
+> > > > >
+> > > > > On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
+> > > > > > > > > };
+> > > > > > > >
+> > > > > > > > I still don't like that. This really doesn't belong here. If
+> > > > > > > > anything, the drm_connector for writeback belongs to drm_crtc.
+> > > > > > >
+> > > > > > > Why? We already have generic HDMI field inside drm_connector. I
+> > > > > > > am really hoping to be able to land DP parts next to it. In
+> > > > > > > theory we can have a DVI- specific entry there (e.g. with the
+> > > subconnector type).
+> > > > > > > The idea is not to limit how the drivers subclass those structures.
+> > > > > > >
+> > > > > > > I don't see a good case why WB should deviate from that design.
+> > > > > > >
+> > > > > > > > If the issue is that some drivers need a custom drm_connector
+> > > > > > > > subclass, then I'd rather turn the connector field of
+> > > > > > > > drm_writeback_connector into a pointer.
+> > > > > > >
+> > > > > > > Having a pointer requires additional ops in order to get
+> > > > > > > drm_connector from WB code and vice versa. Having
+> > > > > > > drm_connector_wb inside drm_connector saves us from those ops
+> > > (which don't manifest for any other kind of structure).
+> > > > > > > Nor will it take any more space since union will reuse space
+> > > > > > > already taken up by HDMI part.
+> > > > > > >
+> > > > > > > >
+> > > > > >
+> > > > > > Seems like this thread has died. We need to get a conclusion on the
+> > > design.
+> > > > > > Laurent do you have any issue with the design given Dmitry's
+> > > > > > explanation as to why this Design is good for drm_writeback_connector.
+> > > > >
+> > > > > I'm with Laurent here. The idea for drm_connector (and a lot of drm
+> > > > > structures) are to be used as base "classes" for extended
+> > > > > structures. I don't know why HDMI connector ended up inside
+> > > > > drm_connector as not all connectors have HDMI functionality, but that's a
+> > > cleanup for another day.
+> > > >
+> > > > Maybe Maxime can better comment on it, but I think it was made exactly
+> > > > for the purpose of not limiting the driver's design. For example, a
+> > > > lot of drivers subclass drm_connector via drm_bridge_connector. If
+> > > > struct drm_connector_hdmi was a wrapper around struct drm_connector,
+> > > > then it would have been impossible to use HDMI helpers for bridge
+> > > > drivers, while current design freely allows any driver to utilize
+> > > > corresponding library code.
+> > > 
+> > > That's exactly why we ended up like this. With that design, we wouldn't have
+> > > been able to "inherit" two connector "classes": bridge_connector is one,
+> > > intel_connector another one.
+> > > 
+> > > See here for the rationale:
+> > > https://lore.kernel.org/dri-devel/ZOTDKHxn2bOg+Xmg@phenom.ffwll.local/
+> > > 
+> > > I don't think the "but we'll bloat drm_connector" makes sense either.
+> > > There's already a *lot* of things that aren't useful to every connector (fwnode,
+> > > display_info, edid in general, scaling, vrr, etc.)
+> > > 
+> > > And it's not like we allocate more than a handful of them during a system's life.
 > > 
-> > Yeah, this had a dodgy smell when I first came across it, but after doing
-> > all the digging I think it does actually work out - the trick seems to be
-> > the group_leader check in hisi_pcie_pmu_get_event_idx(), with the
-> > implication the PMU is going to be stopped while scheduling in/out the whole
-> > group, so assuming hisi_pcie_pmu_del() doesn't clear the counter value in
-> > hardware (even though the first call nukes the rest of the event
-> > configuration), then the events should stay in sync.
+> > So Are we okay with the approach mentioned here with the changes that have been proposed here like
+> > Having drm_writeback_connector in union with drm_hdmi_connector
 > 
-> I don't think that's sufficient. If nothing else, overflow is handled
-> per-event, and for a group of two identical events, upon overflow
-> hisi_pcie_pmu_irq() will reprogram the shared HW counter when handling
-> the first event, and the second event will see an arbitrary
-> discontinuity. Maybe no-one has spotted that due to the 2^63 counter
-> period that we program, but this is clearly bogus.
-> 
-> In addition, AFAICT the IRQ handler doesn't stop the PMU, so in general
-> groups aren't handled atomically, and snapshots of the counters won't be
-> atomic.
-> 
-> > It does seem somewhat nonsensical to have multiple copies of the same event
-> > in the same group, but I imagine it could happen with some sort of scripted
-> > combination of metrics, and supporting it at this level saves needing
-> > explicit deduplication further up. So even though my initial instinct was to
-> > rip it out too, in the end I concluded that that doesn't seem justified.
-> 
+> I don't think we need a union here. It artificially creates the same
+> issue: we can't have two types for a connector if we do so.
 
-[...]
+Well... What kind of connector would be both HDMI and WriteBack? I think
+they are mutually exclusive already.
 
-> As above, I think it's clearly bogus. I don't think we should have
-> merged it as-is and it's not something I'd like to see others copy.
-> Other PMUs don't do this sort of event deduplication, and in general it
-> should be up to the user or userspace software to do that rather than
-> doing that badly in the kernel.
+> > Also one more thing I would like to clarify here is how everyone would
+> > like the patches patches where each patch changes both the drm core
+> > and all related drivers (ensures buildability but then review is tough
+> > for each driver). Or patches where we have initial drm core changes
+> > and then each patch does the all changes in a driver in its own
+> > respective patch.
 > 
-> Given it was implemented with no rationale I think we should rip it out.
-> If that breaks someone's scripting, then we can consider implementing
-> something that actually works.
+> The latter should be preferred, but if you can't maintain bisectability
+> that way, then it's the most important and you should fall back to the
+> former.
 
-FWIW, I'm happy to go do that as a follow-up, so if that's a pain, feel
-free to leave that as-is for now.
+I'd say, we should be trying our best in providing bisectability. It
+really a PITA if one can not use `git bisect run`.
 
-Mark.
+-- 
+With best wishes
+Dmitry
