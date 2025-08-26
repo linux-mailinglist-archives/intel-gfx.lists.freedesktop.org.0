@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D8FB3563F
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 10:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3143B35656
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 10:05:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B61AE10E614;
-	Tue, 26 Aug 2025 08:00:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C452810E5D6;
+	Tue, 26 Aug 2025 08:05:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bK/7/BDa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yspa5uCi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2D4910E616;
- Tue, 26 Aug 2025 08:00:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35A4310E5D6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 08:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756195211; x=1787731211;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tpk/ddwqgICbWK42gOs4hHKhjwk1cVuCOhvy3+iA7gQ=;
- b=bK/7/BDa0iu2mbW1vkZlED93YEAAHci93fNr0BF86i2YODef2MDI7bIA
- SvfFkUeDnGdVMyy7ZCxLw9Vjvlqy0CHclpFWQYA8fs1j4+CZdd4PEu0Ve
- qS1BEqyE0owhO79SWNCNXfp7T1QfXLgZfxEN5UYXrEqWwmqnhLbQl5LH0
- m6AYJKdKRiRf+sq5kdUNto3d04RV5KHnWPB65paR+CiinUPTATO+vkidS
- Vzn7aaH6sktP/w3lAwSIKVh9WLSX+T4DPz3GvDBQxpPgF3+Q65G7+gDpN
- E/xSgPH4tEvXvRFAangfRO6YFiOuzu13SFfmbXfMeatmC0TrTLS7XDODI Q==;
-X-CSE-ConnectionGUID: gTvtpyzdQqW3u+LbNBBl4w==
-X-CSE-MsgGUID: AtfdB9bySNegaM1tsvsrkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58341179"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58341179"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2025 01:00:10 -0700
-X-CSE-ConnectionGUID: BHdHaBLnSZe1LoNbejnPxA==
-X-CSE-MsgGUID: to7Z3StyTiWjsbMrDZZuBw==
+ t=1756195532; x=1787731532;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=h7bMDprU1rOwcKzavss0z5IHz9GmluY8HDfei2Y/Jug=;
+ b=Yspa5uCiWH88wpqpuvLNsAituUWlfzdWu4Uc041Q4xohmLNR6vGDDU88
+ FbHT7/L51Jb6JW2mlCh8Vvu8d6Xx11SEOXpRLUlHNL2tt1ruBqx7Fivk0
+ sgMCfy9splW8uL/h99FcqvflZtxWxhQsYb+h3h7ZfzAXqZtyw1ygTD5Bk
+ XosEstLzScFzgA3bPBUo4uaymYJQNU44GgJyB6kcJjagsaztW3qJ/yRhL
+ aIFg4S2UYZaE5YQI2vp0u7PdAEahfQY1N37fvJzb89zpBInS34rTrg0m9
+ GHK6MaI7o6BP2KfD8/FzttJXzUD0HcFlzwmG9G9L9Edz1vkU5sXsDFOnA w==;
+X-CSE-ConnectionGUID: 5z+OWnx8QcW6XVO5JWjbRw==
+X-CSE-MsgGUID: CT8G/pMpSFGqi3f76i0y4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="45998092"
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="45998092"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2025 01:05:31 -0700
+X-CSE-ConnectionGUID: Qgf4FxZMQ+qA/meDQ1NJ9Q==
+X-CSE-MsgGUID: /zSmjvFKQTCe2FFJ0/3VQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="173909072"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa004.jf.intel.com with ESMTP; 26 Aug 2025 01:00:09 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: arun.r.murthy@intel.com, ankit.k.nautiyal@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/backlight: Disable backlight when using luminance
- control
-Date: Tue, 26 Aug 2025 13:30:05 +0530
-Message-Id: <20250826080005.501534-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169680473"
+Received: from shawnle1-i9-build-machine.itwn.intel.com ([10.225.64.200])
+ by orviesa008.jf.intel.com with ESMTP; 26 Aug 2025 01:05:29 -0700
+From: Lee Shawn C <shawn.c.lee@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Lee Shawn C <shawn.c.lee@intel.com>, Shankar Uma <uma.shankar@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: [v4] drm/i915/hdmi: add debugfs to contorl HDMI bpc
+Date: Tue, 26 Aug 2025 08:01:17 +0000
+Message-Id: <20250826080117.151587-1-shawn.c.lee@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,32 +68,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We just return when using luminance control instead we should be
-calling the disable helper to get everything cleaned up properly.
+While performing HDMI compliance testing, test equipment may request
+different bpc output for signal measurement. However, display driver
+typically determines the maximum available bpc based on HW bandwidth.
+This change leverages the existing debugfs (intel_force_link_bpp)
+to manage HDMI bpc, and making it easier to pass HDMI CTS.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+v2: Using exist variable max_requested_bpc.
+v3: Extend intel_force_link_bpp to support HDMI as suggested by Imre.
+v4: Update commit message suggested by Jani.
+
+Cc: Shankar Uma <uma.shankar@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Vidya Srinivas <vidya.srinivas@intel.com>
+Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_hdmi.c      | 5 +----
+ drivers/gpu/drm/i915/display/intel_hdmi.c    | 4 ++++
+ drivers/gpu/drm/i915/display/intel_link_bw.c | 6 +-----
+ 3 files changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 12084a542fc5..7306858467fe 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -508,10 +508,10 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+index 108ebd97f9e4..b31fb1e4bc1a 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+@@ -136,11 +136,8 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
+ 	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  
--	if (panel->backlight.edp.vesa.luminance_control_support)
-+	if (panel->backlight.edp.vesa.luminance_control_support) {
-+		drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
- 		return;
+-	if (HAS_PCH_SPLIT(display)) {
++	if (HAS_PCH_SPLIT(display))
+ 		crtc_state->has_pch_encoder = true;
+-		if (!intel_fdi_compute_pipe_bpp(crtc_state))
+-			return -EINVAL;
+-	}
+ 
+ 	if (display->platform.g4x)
+ 		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index cbee628eb26b..027e8ed0cea8 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -55,6 +55,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_dp.h"
++#include "intel_fdi.h"
+ #include "intel_gmbus.h"
+ #include "intel_hdcp.h"
+ #include "intel_hdcp_regs.h"
+@@ -2345,6 +2346,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		pipe_config->pixel_multiplier = 2;
+ 
++	if (!intel_fdi_compute_pipe_bpp(pipe_config))
++		return -EINVAL;
++
+ 	pipe_config->has_audio =
+ 		intel_hdmi_has_audio(encoder, pipe_config, conn_state) &&
+ 		intel_audio_compute_config(encoder, pipe_config, conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
+index 3caef7f9c7c4..d194a366ff10 100644
+--- a/drivers/gpu/drm/i915/display/intel_link_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+@@ -449,6 +449,7 @@ void intel_link_bw_connector_debugfs_add(struct intel_connector *connector)
+ 	switch (connector->base.connector_type) {
+ 	case DRM_MODE_CONNECTOR_DisplayPort:
+ 	case DRM_MODE_CONNECTOR_eDP:
++	case DRM_MODE_CONNECTOR_HDMIA:
+ 		break;
+ 	case DRM_MODE_CONNECTOR_VGA:
+ 	case DRM_MODE_CONNECTOR_SVIDEO:
+@@ -457,11 +458,6 @@ void intel_link_bw_connector_debugfs_add(struct intel_connector *connector)
+ 		if (HAS_FDI(display))
+ 			break;
+ 
+-		return;
+-	case DRM_MODE_CONNECTOR_HDMIA:
+-		if (HAS_FDI(display) && !HAS_DDI(display))
+-			break;
 -
--	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
-+	}
- 
- 	if (!panel->backlight.edp.vesa.info.aux_enable)
- 		panel->backlight.pwm_funcs->disable(old_conn_state,
+ 		return;
+ 	default:
+ 		return;
 -- 
 2.34.1
 
