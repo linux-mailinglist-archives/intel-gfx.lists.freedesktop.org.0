@@ -2,183 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9E2B34FCC
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 01:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4C7B35FA4
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 14:52:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559D810E0A1;
-	Mon, 25 Aug 2025 23:51:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RvRckxbs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0727F10E00B;
+	Tue, 26 Aug 2025 12:52:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB71610E0A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 Aug 2025 23:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756165907; x=1787701907;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=l4d23LEwcybe6dDgwWSchF6bOrjsTrV1gGY96NbLlBA=;
- b=RvRckxbsk/NRS6PyMTOBBlqLGBbH0Fn7Fmn2Pe2AsX+K/9LzeCCj4Y6H
- 5Sh2U9kt5osgS7XKBDYCC3Ah4YqdKzX7Bo7YOEJ7rLzY3L6MCsDOCtFFd
- TIpUUAWE6kyP6nZUIK+Kx5/YMtC46PwgjXpnsAaRld76wSrblhAtmvN9T
- VBErV3w+DLlb4bCv7L3hn85668sOllPFDzLS7moxkX5t+DGeojhArhsH1
- po2W5DAjTzgg/DLSbRqD1+L3lY107IJVNnRgZKrYyn5nrWpu/EYdNckjq
- RXahQAyUp5X/DT9lj7tI9Gq70fmI2XQqeF7snEB+DNqZGOsmIn2IQdEXY Q==;
-X-CSE-ConnectionGUID: jm321seZRSyhRIqv67WQBQ==
-X-CSE-MsgGUID: +rBI8gjhRjCfMR9by6qRfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62217823"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="62217823"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 16:51:46 -0700
-X-CSE-ConnectionGUID: iJxzjHjLS1yErr3bWOiOBw==
-X-CSE-MsgGUID: 31lfumapTti6yknSIWpoYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="168927757"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2025 16:51:45 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 25 Aug 2025 16:51:45 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Mon, 25 Aug 2025 16:51:45 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.47)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 25 Aug 2025 16:51:45 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BCfOjqXOuw5kFAMU1aHK9bec2I4nIy+6Wjsdbza3F0Mi9/HgaGeqFXnRWVWm3RhG9sLuVO5asY/Z0ZddNSFf2uCBS9i+Wpa250W+SwAa87FVhbRVl+lRhLJb76MrB18LdxIOv4XnL/1PCINjLhf49VQHaR35Vph3l/AusbPdQ4kwLF9RZm46biNxFwEKsyS6oouoIQ5jar/NXyqKJIO/JuVvp4n/kuyYmCQZT24wdcyemH5O9C85RCROB4eHkTattDZFsQnTONS38QjRK6MDNnTiTjbMvWSMMqlMiCjFXGfVL1dqE/5Ct/mRU004p05aZf4hNIgs/n38PNZYt+Ggcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TlFTn5MbbbGoLWs01bTCXmxCbgivFvN6IG1UHgFOHsQ=;
- b=aEZH56+Wrp4efjwBI69kjHKBKXQiPuhnll6dUIiMJZbHhX0OesAnnq/sr+ekD1Q0sF9FOPnPaDpJ2HnQ1mgbNj+qeXn5/apyYa/tTQnyzMNQQyPwfEC+AeWK1T27JqsFkwq3rv3fET3vR7vSznDNhG7GD9GeKyniol1aFBFrkH8SvVwgO9vkJYlnqiPL2sHXQ6qvR5/y3rsRUgtfVddWv8XyAygTbUnllGbK4ZqxDOHDvS+vPX0v/B/18Sy8TDQtESx6y5MQ25DYZnNLdbK+9J125rb6JgiD/8UGz87a+5sjMeoUlQxADeRzUKGsCruKeZAZ5pcXQrsPJS7cmj0ViQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com (2603:10b6:208:454::6)
- by SA2PR11MB4987.namprd11.prod.outlook.com (2603:10b6:806:113::24)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.21; Mon, 25 Aug
- 2025 23:51:42 +0000
-Received: from IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::b6d:5228:91bf:469e]) by IA1PR11MB8200.namprd11.prod.outlook.com
- ([fe80::b6d:5228:91bf:469e%4]) with mapi id 15.20.9052.019; Mon, 25 Aug 2025
- 23:51:42 +0000
-Message-ID: <4d5075f7-d0cf-4529-96f3-e07193d65b86@intel.com>
-Date: Mon, 25 Aug 2025 19:51:39 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/i915/guc: Add synchronization on interrupt enable
- flag
-To: <intel-gfx@lists.freedesktop.org>
-References: <20250825211924.300253-1-zhanjun.dong@intel.com>
- <0309a6e9-e664-4130-bfc9-4e28e68cc74a@intel.com>
-Content-Language: en-US
-From: "Dong, Zhanjun" <zhanjun.dong@intel.com>
-In-Reply-To: <0309a6e9-e664-4130-bfc9-4e28e68cc74a@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4P221CA0018.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::23) To IA1PR11MB8200.namprd11.prod.outlook.com
- (2603:10b6:208:454::6)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6124010E5A7;
+ Tue, 26 Aug 2025 00:30:06 +0000 (UTC)
+X-UUID: cd72a7a4821311f0b29709d653e92f7d-20250826
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:ceaaac63-66e7-4386-900f-99b09cee1dbd, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:0
+X-CID-META: VersionHash:6493067, CLOUDID:73c0f838f0cb681a0e66fa356d1f9674,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|52,EDM:
+ -3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
+ AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: cd72a7a4821311f0b29709d653e92f7d-20250826
+Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
+ (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
+ with ESMTP id 266996130; Tue, 26 Aug 2025 08:30:01 +0800
+Received: from mail.kylinos.cn (localhost [127.0.0.1])
+ by mail.kylinos.cn (NSMail) with SMTP id 2B004E008FA5;
+ Tue, 26 Aug 2025 08:30:00 +0800 (CST)
+X-ns-mid: postfix-68AD0007-5837181
+Received: from [172.25.120.24] (unknown [172.25.120.24])
+ by mail.kylinos.cn (NSMail) with ESMTPA id 830B3E008FA2;
+ Tue, 26 Aug 2025 08:29:47 +0800 (CST)
+Message-ID: <c19b9a8c-bb7d-4d71-89d0-eb98c70a9a85@kylinos.cn>
+Date: Tue, 26 Aug 2025 08:29:46 +0800
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB8200:EE_|SA2PR11MB4987:EE_
-X-MS-Office365-Filtering-Correlation-Id: 770972ca-ad2a-4163-4fe7-08dde4325767
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?MmlkT2xPaS93TzVzU0JJaFJjVm02NXdKb3hUVUVTRWlkcURMUjlVdWNWN2Iv?=
- =?utf-8?B?WUhJRmNCd0gxNlVXNVFsVzRwa1p2TGJCYWZnZnRYZ2VPS3UvdjdPdWN1dEhW?=
- =?utf-8?B?QmhUNFlJa3NndVlHK1ozemxKcElXQU9xdUIzZHc4VEJqYldVY2tuNmJ5TmFr?=
- =?utf-8?B?cERoSEpEY05aSkVKWnZTalpxbnZNeEcwUUNaajJ2bGYwZ0R6M3lscE9DQ1oz?=
- =?utf-8?B?aEVwMnBtakYxVitIM2ppS3Vjd0FIelhxSzEyNTZsTjRJTVFrVitDd1RnL1hV?=
- =?utf-8?B?dzVhV2JGV0ovd3grMUxwazNIT0w0ekVnNnhPUTMrUUZhNG1GUkQ2ZmFONDBa?=
- =?utf-8?B?bDRzek5wRXU4QU9Oa0hPWFVXamJRNFJ0T016NjYxeDlSclFNY09lUVpNbHdL?=
- =?utf-8?B?dUUxTVZQeHdVeUdWYldONUt1NENISHYvbWhzZHByNitXK2d0aXYvdnM4TU9G?=
- =?utf-8?B?dnEyaHVhSFErbTQwRGh5aHN2S2pqTjFjN2s1UzFDeHcybFdjWTBlWEJHTjJL?=
- =?utf-8?B?V0JEb0JsbXNnVzJPc0Y0RkEzRVBOTS9GU25lVWNDRHZJMW5EVzMyMUJLbEg2?=
- =?utf-8?B?T01pdFQxRnpOSng2SklvUld3S01MN2RHZSsvOGxPNGFUS2FNa1o2cWZKdHgy?=
- =?utf-8?B?ZlFFRHl6SmxsWldtVjZTdEQyNTIzTjBBV3Vub1ozcEd3UGFDazB4cS9qWno1?=
- =?utf-8?B?RmRVUTg5a0dRZXJMaENZV2Z6bnVWekI2WWJRQitGWmh5aGJOeERvKys5S1hG?=
- =?utf-8?B?d1hrVjA2MDFZUml1YWVnTmtpQXlxc0l4dUQvSGtLYkY4TG5hNFpCV3g5NFFF?=
- =?utf-8?B?eXNlNVYvcTF1UWhDUmJRdEd6T0JhcUlESVFlWkRXTnhQdlF1NGpSUTBtajND?=
- =?utf-8?B?S2thNXIwc1J3SkZvVDFtWVJPUHZzQlBpYjNJWWJJVVl1RTdFbnYySGtoM1Q5?=
- =?utf-8?B?bUVMdGNvNmdLaVJVb25GQVlkZllnZWp0QW02WjBubHZIaEU5K2xSN3RFL3ZV?=
- =?utf-8?B?bzRsWU9ObmdiYzlUd3dNV1laSU1PRkV1TFZLQm00R1JiZUpZQWNlaGZKTVVW?=
- =?utf-8?B?MEtySVhJQnRZMU5sTTNiVm5JYVFWYmxsMXlxMjY4eEFUcTBMaFZpdTJ0OG41?=
- =?utf-8?B?OG16c2h4U3lwUUVrdFltZE5iNTV6TWdobnczQVptSDVoL1MwdDlHRmVzQUVW?=
- =?utf-8?B?V1Ztajh5L05kaGM3R3hvTHFUVUZhSFJmYVVtOVYxNjJ0bUxmNUdUb1JoamUy?=
- =?utf-8?B?bFZVSE0xQXZGdkUyeEJ6akFVQ2VYQ3Q3cEw0TUZHeHFiNCtBcGRRVHpxV3ln?=
- =?utf-8?B?TSttZE1qSXRUSDJYSFc4MEhCVnFML0Y5ZURBT08zNHFNcVdoSmt6NktLZnA1?=
- =?utf-8?B?Y0VOS2s5OXpGZW9ac1JsMDhxOTdzaklLT29WVW5pWnBLbURuZ1BEM1ZEV3lz?=
- =?utf-8?B?V25NU3V2c09RV0hyVDdSekJRZjFjU0wycjBqR3R3Z1JoSFpTN3NFLzYybHk4?=
- =?utf-8?B?VHpXZ2I4d3ROWCtDVGw4SWhCMHF1YzM4WUIxSVhpdkhKcFEwRjZsN3Zxc2Er?=
- =?utf-8?B?NlYwMVpta0hMVHB6bVVXTWU5WGZBM2VLOTlDbkNzdS9PNEpROHY1M0Z6dFM4?=
- =?utf-8?B?VTFBQm9md2tWOFFXbG0veGJyRnE4cVNnY1B3MXRVcUQ4N1ozSlpFZk9xdjc3?=
- =?utf-8?B?cExjU1Z0Yjh1OXUzNGFqYkRjQXBQUGhmZkQ5YjVFTTVVQ2U5N1ZmZ21IVmVY?=
- =?utf-8?B?TlhVcnZ5Mm83UzFWbytndk0xZzJhcHRjUmgya2s0cytMbFdIR0QvM2VxbG1B?=
- =?utf-8?Q?KeRZs/DclbDUf36lggLC5j5hgIAYVdizcjtV8=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB8200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0ZBZUhETEZFOFNDa3plL2lzSE0wZTI3WVduUUkvUWhMVExnblVWaFhjaHpt?=
- =?utf-8?B?VVlBeHMwamxTQXdkdW0vY1F2L1pFcGdFNVVkWmNnUTRneFcvVzlKY3pWVkpH?=
- =?utf-8?B?RzhCVmRkODZBVkxSRkFpSm00b0cwaFJEenRka0FEa2g0TXk3ZWZ0b2FtTVNG?=
- =?utf-8?B?b2RUUUwvWkdIYWtPSlA1TG9yeGlKUElIRW5DMDZMcEgxYmRTdXRITlVKVmtO?=
- =?utf-8?B?dm9EQTdhWDNxcG9uMWhCWVoxeW1UKzJZZGpSemlNZzVyd0dxcThrRUkvTExE?=
- =?utf-8?B?ZmVBajN4VVNaMWJ1ZEovK1NvZ2s4TG9MeUw3ODJZektUQUxCNVRKamNhNlRD?=
- =?utf-8?B?YlRvM1ZSV1BIY2ovREJRR1lielU4QVNNMEU3amI3Z3lRSlZCLzNnNG5wdFBC?=
- =?utf-8?B?YkVHZ05rbDd6Vm9aa240TVptYStuQ2JnYlhUMmxPQTYzL29RU0tpcU9tYW43?=
- =?utf-8?B?V3R1cWVjdUF4Q0RJL2djbzUwb3pYUG9Ob3VYaldQK1VQQk1CNUw2ck1UZFhq?=
- =?utf-8?B?RnBsR0JUYmZLN1lSaWtOVnplMUV1T3JYZTNPVDJPbEV0RFo0UWZYbHNxTktm?=
- =?utf-8?B?QmZ4cmE4VnJ4ZHU1d1RUdFFuYU92SXRBbDQ4R0wvY2NJUmJLbEhpcGVmak9z?=
- =?utf-8?B?NkFSM0tkMzVKQ2RsZWlUeEtZRzRsRmVtbkJZaXpxTE1NZ21vdlJGbFd5V214?=
- =?utf-8?B?SzAzdGEzZFFGREhFamZyVnZ2cjJQTERrWmUzZkdDaTU4ejY2Nk1ONjlrOXNL?=
- =?utf-8?B?elE3UFhITnRsN0hTT0xIYnZaMEY0Yy92a2tmdUxpaUJERVNKcUpDSUtrWVhX?=
- =?utf-8?B?blNWdHhtU01EaEUzWkdFMVAxYmpRQWFPbmdvc0dDV2JhZU9QVE1NTXZFVXNC?=
- =?utf-8?B?RFdLNWU1Uzg1R1hFVVZaUnlVc0w1bWFrTU82dXZDcDRublcydzVuTHRESXpi?=
- =?utf-8?B?NC9tZ1ArMTVtQXNyOVRvaE9KVkVLc0VaTWxvdi9EaytrTEp6M20vWjNENm10?=
- =?utf-8?B?WCt4azE0TzU5T2J4Q2JwRFJEZ3JFOWlUcUVYejlCd2dDWFNjdjZFQVF5NE1h?=
- =?utf-8?B?YmJiZFVaZm1TK2tGb0NxU3huWjBucUk0dEFLc005WjUvaVpURC9MWEMyTGZr?=
- =?utf-8?B?Y2RscmRIdzZVOEdiZlVaVWZEQUJ3QmErT0RuVEl2TVd0R2o0OFpSREFuS240?=
- =?utf-8?B?TFAwUWlGY2VLZktkd0NiVkpRSlliLy9OSWdWcE5heDJMTW55dXdTM1hTaWlD?=
- =?utf-8?B?NXBGSGgxSlJ4ZUJSRTdWQXVGUjgvNEJmUDdwT0NldUZaTTZSWkFHbUNUaTJs?=
- =?utf-8?B?QlVuV2NWWWNTdGY1UC96dnlUNjVrajY2Y2pHbk1PalMwRk44bFpCV04zSlZJ?=
- =?utf-8?B?YmFhVklEZ3NMbkRFZ2x3ZThTaUpVUnpLUlFBMFRsYWNkZHdoa2tnYXRweWMz?=
- =?utf-8?B?bHlVa0VrOEl3NHAxNDFQblJ2aTdhSXg3RCtVV1oxaDdEOGd0YXkrS3UwQ0JS?=
- =?utf-8?B?dTVmbTBnbUI4eDJhZHdVM1lKYzVrV1Vaek5WOEhaYkt6S1YvQWVTSk4zSGNi?=
- =?utf-8?B?bDBwUjBxYit1WVRQamk4bERsVFZqUTYxNGlicHZJQmdoeFBxa3AweVJVcDY0?=
- =?utf-8?B?N05NMDlwTzAyTkdQU2UxNnNyU0RGdXBpK1lPOXUxNU1mTFRjTkdNa1gyT0d4?=
- =?utf-8?B?c0ZBbGxiN0JMN0krYmtQazVxM0lDT0lPa2k5SFFMSEdqYk03a2dwTEVRWHRa?=
- =?utf-8?B?VDdRODNpRTJpRTBFVlUrb0lncHpXZXpuMy9ORmxjN2RpdGVRNktXRUtVMmZw?=
- =?utf-8?B?NjB2QnVBTWY1cGVBK1NzdHZSQThjMzlQQmYvcmp2Ujl0U0lFVTZZb29ETktt?=
- =?utf-8?B?YkJ4VEw3a2ZWKzh0SWV3Znk5d3ROREFFc0U2VGlKbnhhWHVURFltbkFxRllx?=
- =?utf-8?B?ZE0zWjhBK0NJb0pjZTdtMHV1Qy9yV3IrdTc4Y2IwL1lrWnRNSDZvTUVWcUg0?=
- =?utf-8?B?bjdsVDNUR1NudnFNdjJQOFljNW5SMHJqT0E0a2k0VUw3UG9qOFpFNmdBL0lL?=
- =?utf-8?B?Qnh1VmlMM1pwZ1A0Umw3Qkg3MWpJZmpLazJoN3R0T2ZEc1ZEOXZENHB4VGlx?=
- =?utf-8?B?VnliRllJOVVtWng5T0FHakUrSm5MbDc2dWJkNEc3Q1p0a1ZuUHFjSlNkSnRs?=
- =?utf-8?B?U1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 770972ca-ad2a-4163-4fe7-08dde4325767
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB8200.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2025 23:51:42.3438 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CwXXc/dXH5EmU6vQm3617Yihq2efevruIhr+f0jSl/L46p2u6cl1ST/WO+C2Y41jVEJHlhPRLYXyqAtSTOnpVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4987
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] cpufreq: use __free() for all cpufreq_cpu_get()
+ references
+To: Gautam Menghani <gautam@linux.ibm.com>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sean Christopherson <seanjc@google.com>, Paolo Bonzini
+ <pbonzini@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, Markus Mayer
+ <mmayer@broadcom.com>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ zhenglifeng <zhenglifeng1@huawei.com>, "H . Peter Anvin" <hpa@zytor.com>,
+ Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>,
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ linux-pm@vger.kernel.org, x86@kernel.org, kvm@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250825092833.42441-1-zhangzihuan@kylinos.cn>
+ <aKxI8D5mgLRyydb3@li-c6426e4c-27cf-11b2-a85c-95d65bc0de0e.ibm.com>
+From: Zihuan Zhang <zhangzihuan@kylinos.cn>
+In-Reply-To: <aKxI8D5mgLRyydb3@li-c6426e4c-27cf-11b2-a85c-95d65bc0de0e.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 26 Aug 2025 12:52:02 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -194,159 +110,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For ct_try_receive_message, issue happens on tasklet path, not the
-caller intel_guc_to_host_event_handler, so sounds like need to add it back.
-Due to the low reproduce rate, I Will test it for few days before send 
-next rev.
 
-Regards,
-Zhanjun Dong
+=E5=9C=A8 2025/8/25 19:28, Gautam Menghani =E5=86=99=E9=81=93:
+> On Mon, Aug 25, 2025 at 05:28:33PM +0800, Zihuan Zhang wrote:
+>> This patch replaces all remaining uses of cpufreq_cpu_get() with
+>> the __free(cpufreq_cpu_put) annotation.
+>>
+>> Motivation:
+>> - Ensures automatic cleanup of policy references when they go out of s=
+cope,
+>>    reducing the risk of forgetting to call cpufreq_cpu_put() on early =
+return
+>>    or error paths.
+>> - Brings the code in line with the latest kernel coding style and best
+>>    practices for managing reference-counted objects.
+>> - No functional changes are introduced; behavior remains the same,
+>>    but reference counting is now safer and easier to maintain.
+>>
+>> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+>> ---
+>>   arch/arm64/kernel/topology.c                  |  9 +++----
+>>   arch/x86/kvm/x86.c                            | 10 ++++----
+>>   drivers/acpi/processor_thermal.c              | 13 ++++------
+>>   drivers/cpufreq/brcmstb-avs-cpufreq.c         |  4 +---
+>>   drivers/cpufreq/cppc_cpufreq.c                |  4 +---
+>>   drivers/cpufreq/intel_pstate.c                |  3 +--
+>>   drivers/cpufreq/longhaul.c                    |  3 +--
+>>   drivers/cpufreq/mediatek-cpufreq.c            |  6 ++---
+>>   drivers/cpufreq/powernv-cpufreq.c             |  6 ++---
+>>   drivers/cpufreq/s5pv210-cpufreq.c             |  3 +--
+>>   drivers/cpufreq/tegra186-cpufreq.c            |  3 +--
+>>   drivers/devfreq/governor_passive.c            | 19 ++++-----------
+>>   drivers/gpu/drm/i915/gt/intel_llc.c           |  3 +--
+>>   drivers/macintosh/windfarm_cpufreq_clamp.c    |  4 +---
+>>   drivers/powercap/dtpm_cpu.c                   | 24 ++++++-----------=
+--
+>>   drivers/thermal/imx_thermal.c                 |  7 ++----
+>>   .../ti-soc-thermal/ti-thermal-common.c        |  5 +---
+>>   kernel/power/energy_model.c                   |  7 ++----
+>>   18 files changed, 40 insertions(+), 93 deletions(-)
+>>
+>> diff --git a/arch/arm64/kernel/topology.c b/arch/arm64/kernel/topology=
+.c
+>> index 5d07ee85bdae..e3cb6d54f35b 100644
+>> --- a/arch/arm64/kernel/topology.c
+>> +++ b/arch/arm64/kernel/topology.c
+>> @@ -307,17 +307,16 @@ int arch_freq_get_on_cpu(int cpu)
+>>   		 */
+>>   		if (!housekeeping_cpu(cpu, HK_TYPE_TICK) ||
+>>   		    time_is_before_jiffies(last_update + msecs_to_jiffies(AMU_SAMP=
+LE_EXP_MS))) {
+>> -			struct cpufreq_policy *policy =3D cpufreq_cpu_get(cpu);
+>> +			struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>   			int ref_cpu;
+>>  =20
+>> +			policy =3D cpufreq_cpu_get(cpu);
+>>   			if (!policy)
+>>   				return -EINVAL;
+>>  =20
+>>   			if (!cpumask_intersects(policy->related_cpus,
+>> -						housekeeping_cpumask(HK_TYPE_TICK))) {
+>> -				cpufreq_cpu_put(policy);
+>> +						housekeeping_cpumask(HK_TYPE_TICK)))
+>>   				return -EOPNOTSUPP;
+>> -			}
+>>  =20
+>>   			for_each_cpu_wrap(ref_cpu, policy->cpus, cpu + 1) {
+>>   				if (ref_cpu =3D=3D start_cpu) {
+>> @@ -329,8 +328,6 @@ int arch_freq_get_on_cpu(int cpu)
+>>   					break;
+>>   			}
+>>  =20
+>> -			cpufreq_cpu_put(policy);
+>> -
+>>   			if (ref_cpu >=3D nr_cpu_ids)
+>>   				/* No alternative to pull info from */
+>>   				return -EAGAIN;
+>> diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
+>> index a1c49bc681c4..2a825f4ec701 100644
+>> --- a/arch/x86/kvm/x86.c
+>> +++ b/arch/x86/kvm/x86.c
+>> @@ -9492,16 +9492,14 @@ static void kvm_timer_init(void)
+>>   		max_tsc_khz =3D tsc_khz;
+>>  =20
+>>   		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
+>> -			struct cpufreq_policy *policy;
+>> +			struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>   			int cpu;
+>>  =20
+>>   			cpu =3D get_cpu();
+>>   			policy =3D cpufreq_cpu_get(cpu);
+>> -			if (policy) {
+>> -				if (policy->cpuinfo.max_freq)
+>> -					max_tsc_khz =3D policy->cpuinfo.max_freq;
+>> -				cpufreq_cpu_put(policy);
+>> -			}
+>> +			if (policy && policy->cpuinfo.max_freq)
+>> +				max_tsc_khz =3D policy->cpuinfo.max_freq;
+>> +
+>>   			put_cpu();
+>>   		}
+>>   		cpufreq_register_notifier(&kvmclock_cpufreq_notifier_block,
+>> diff --git a/drivers/acpi/processor_thermal.c b/drivers/acpi/processor=
+_thermal.c
+>> index 1219adb11ab9..8367a81c4842 100644
+>> --- a/drivers/acpi/processor_thermal.c
+>> +++ b/drivers/acpi/processor_thermal.c
+>> @@ -64,17 +64,14 @@ static int phys_package_first_cpu(int cpu)
+>>  =20
+>>   static int cpu_has_cpufreq(unsigned int cpu)
+>>   {
+>> -	struct cpufreq_policy *policy;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>  =20
+>>   	if (!acpi_processor_cpufreq_init)
+>>   		return 0;
+>>  =20
+>>   	policy =3D cpufreq_cpu_get(cpu);
+>> -	if (policy) {
+>> -		cpufreq_cpu_put(policy);
+>> -		return 1;
+>> -	}
+>> -	return 0;
+>> +
+>> +	return !!policy;
+>>   }
+>>  =20
+>>   static int cpufreq_get_max_state(unsigned int cpu)
+>> @@ -95,7 +92,7 @@ static int cpufreq_get_cur_state(unsigned int cpu)
+>>  =20
+>>   static int cpufreq_set_cur_state(unsigned int cpu, int state)
+>>   {
+>> -	struct cpufreq_policy *policy;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>   	struct acpi_processor *pr;
+>>   	unsigned long max_freq;
+>>   	int i, ret;
+>> @@ -127,8 +124,6 @@ static int cpufreq_set_cur_state(unsigned int cpu,=
+ int state)
+>>   		max_freq =3D (policy->cpuinfo.max_freq *
+>>   			    (100 - reduction_step(i) * cpufreq_thermal_reduction_pctg)) /=
+ 100;
+>>  =20
+>> -		cpufreq_cpu_put(policy);
+>> -
+>>   		ret =3D freq_qos_update_request(&pr->thermal_req, max_freq);
+>>   		if (ret < 0) {
+>>   			pr_warn("Failed to update thermal freq constraint: CPU%d (%d)\n",
+>> diff --git a/drivers/cpufreq/brcmstb-avs-cpufreq.c b/drivers/cpufreq/b=
+rcmstb-avs-cpufreq.c
+>> index 5940d262374f..71450cca8e9f 100644
+>> --- a/drivers/cpufreq/brcmstb-avs-cpufreq.c
+>> +++ b/drivers/cpufreq/brcmstb-avs-cpufreq.c
+>> @@ -480,7 +480,7 @@ static bool brcm_avs_is_firmware_loaded(struct pri=
+vate_data *priv)
+>>  =20
+>>   static unsigned int brcm_avs_cpufreq_get(unsigned int cpu)
+>>   {
+>> -	struct cpufreq_policy *policy =3D cpufreq_cpu_get(cpu);
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpufreq=
+_cpu_get(cpu);
+>>   	struct private_data *priv;
+>>  =20
+>>   	if (!policy)
+>> @@ -488,8 +488,6 @@ static unsigned int brcm_avs_cpufreq_get(unsigned =
+int cpu)
+>>  =20
+>>   	priv =3D policy->driver_data;
+>>  =20
+>> -	cpufreq_cpu_put(policy);
+>> -
+>>   	return brcm_avs_get_frequency(priv->base);
+>>   }
+>>  =20
+>> diff --git a/drivers/cpufreq/cppc_cpufreq.c b/drivers/cpufreq/cppc_cpu=
+freq.c
+>> index 4a17162a392d..7183754b1f31 100644
+>> --- a/drivers/cpufreq/cppc_cpufreq.c
+>> +++ b/drivers/cpufreq/cppc_cpufreq.c
+>> @@ -726,7 +726,7 @@ static int cppc_get_perf_ctrs_sample(int cpu,
+>>   static unsigned int cppc_cpufreq_get_rate(unsigned int cpu)
+>>   {
+>>   	struct cppc_perf_fb_ctrs fb_ctrs_t0 =3D {0}, fb_ctrs_t1 =3D {0};
+>> -	struct cpufreq_policy *policy =3D cpufreq_cpu_get(cpu);
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpufreq=
+_cpu_get(cpu);
+>>   	struct cppc_cpudata *cpu_data;
+>>   	u64 delivered_perf;
+>>   	int ret;
+>> @@ -736,8 +736,6 @@ static unsigned int cppc_cpufreq_get_rate(unsigned=
+ int cpu)
+>>  =20
+>>   	cpu_data =3D policy->driver_data;
+>>  =20
+>> -	cpufreq_cpu_put(policy);
+>> -
+>>   	ret =3D cppc_get_perf_ctrs_sample(cpu, &fb_ctrs_t0, &fb_ctrs_t1);
+>>   	if (ret) {
+>>   		if (ret =3D=3D -EFAULT)
+>> diff --git a/drivers/cpufreq/intel_pstate.c b/drivers/cpufreq/intel_ps=
+tate.c
+>> index f366d35c5840..fb962140af56 100644
+>> --- a/drivers/cpufreq/intel_pstate.c
+>> +++ b/drivers/cpufreq/intel_pstate.c
+>> @@ -1698,7 +1698,7 @@ static ssize_t store_no_turbo(struct kobject *a,=
+ struct kobj_attribute *b,
+>>   static void update_qos_request(enum freq_qos_req_type type)
+>>   {
+>>   	struct freq_qos_request *req;
+>> -	struct cpufreq_policy *policy;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>   	int i;
+>>  =20
+>>   	for_each_possible_cpu(i) {
+>> @@ -1710,7 +1710,6 @@ static void update_qos_request(enum freq_qos_req=
+_type type)
+>>   			continue;
+>>  =20
+>>   		req =3D policy->driver_data;
+>> -		cpufreq_cpu_put(policy);
+>>  =20
+>>   		if (!req)
+>>   			continue;
+>> diff --git a/drivers/cpufreq/longhaul.c b/drivers/cpufreq/longhaul.c
+>> index ba0e08c8486a..ae5596919671 100644
+>> --- a/drivers/cpufreq/longhaul.c
+>> +++ b/drivers/cpufreq/longhaul.c
+>> @@ -950,7 +950,7 @@ static int __init longhaul_init(void)
+>>  =20
+>>   static void __exit longhaul_exit(void)
+>>   {
+>> -	struct cpufreq_policy *policy =3D cpufreq_cpu_get(0);
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpufreq=
+_cpu_get(0);
+>>   	int i;
+>>  =20
+>>   	for (i =3D 0; i < numscales; i++) {
+>> @@ -968,7 +968,6 @@ static void __exit longhaul_exit(void)
+>>   		}
+>>   	}
+>>  =20
+>> -	cpufreq_cpu_put(policy);
+>>   	cpufreq_unregister_driver(&longhaul_driver);
+>>   	kfree(longhaul_table);
+>>   }
+>> diff --git a/drivers/cpufreq/mediatek-cpufreq.c b/drivers/cpufreq/medi=
+atek-cpufreq.c
+>> index f3f02c4b6888..1fae060e16d9 100644
+>> --- a/drivers/cpufreq/mediatek-cpufreq.c
+>> +++ b/drivers/cpufreq/mediatek-cpufreq.c
+>> @@ -320,7 +320,7 @@ static int mtk_cpufreq_opp_notifier(struct notifie=
+r_block *nb,
+>>   	struct dev_pm_opp *new_opp;
+>>   	struct mtk_cpu_dvfs_info *info;
+>>   	unsigned long freq, volt;
+>> -	struct cpufreq_policy *policy;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>>   	int ret =3D 0;
+>>  =20
+>>   	info =3D container_of(nb, struct mtk_cpu_dvfs_info, opp_nb);
+>> @@ -354,11 +354,9 @@ static int mtk_cpufreq_opp_notifier(struct notifi=
+er_block *nb,
+>>  =20
+>>   			dev_pm_opp_put(new_opp);
+>>   			policy =3D cpufreq_cpu_get(info->opp_cpu);
+>> -			if (policy) {
+>> +			if (policy)
+>>   				cpufreq_driver_target(policy, freq / 1000,
+>>   						      CPUFREQ_RELATION_L);
+>> -				cpufreq_cpu_put(policy);
+>> -			}
+>>   		}
+>>   	}
+>>  =20
+>> diff --git a/drivers/cpufreq/powernv-cpufreq.c b/drivers/cpufreq/power=
+nv-cpufreq.c
+>> index 7d9a5f656de8..ea9d78bbeb38 100644
+>> --- a/drivers/cpufreq/powernv-cpufreq.c
+>> +++ b/drivers/cpufreq/powernv-cpufreq.c
+>> @@ -892,7 +892,7 @@ static int powernv_cpufreq_reboot_notifier(struct =
+notifier_block *nb,
+>>   				unsigned long action, void *unused)
+>>   {
+>>   	int cpu;
+>> -	struct cpufreq_policy *cpu_policy;
+>> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+> There's a typo here. I got a compile error because of wrong variable na=
+me.
+>
+> Thanks,
+> Gautam
 
-On 2025-08-25 5:33 p.m., Dong, Zhanjun wrote:
-> The skip on disabled case for tasklet add in v2, effected part:
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/ 
-> drm/i915/gt/uc/intel_guc_ct.c
-> index 380a11c92d63..f0ee3f1235d4 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -1326,6 +1326,9 @@  static void ct_try_receive_message(struct 
-> intel_guc_ct *ct)
->   {
->       int ret;
-> 
-> +    if (!atomic_read(&ct_to_guc(ct)->interrupts.enabled))
-> +        return;
-> +
->       if (GEM_WARN_ON(!ct->enabled))
->           return;
-> 
-> This part was dropped, caller intel_guc_to_host_event_handler already 
-> did that check.
-> 
-> Regards,
-> Zhanjun Dong
-> 
-> On 2025-08-25 5:19 p.m., Zhanjun Dong wrote:
->> Boolean flag access from interrupt context might have synchronous issueis
->> on multiple processor platform, flags modified by one core might be read
->> as an old value by another core. This issue on interrupt enable flag 
->> might
->> causes interrupt misses or leakage.
->> Change the interrupts.enable type to atomic to ensure memory
->> synchronization.
->>
->> Fixes: a187f13d51fa0 ("drm/i915/guc: handle interrupts from media GuC")
->> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14834
->> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
->> Cc: Andi Shyti <andi.shyti@kernel.org>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>
->> ---
->> Change history:
->> v3: Drop skip on disabled case for tasklet
->>      Drop memory barrier
->> v2: Add skip on disabled case for tasklet
->>      Add memory barrier after flag changed
->>      Add Closes tag and typo fix
->> ---
->>   drivers/gpu/drm/i915/gt/intel_gt_irq.c |  2 +-
->>   drivers/gpu/drm/i915/gt/uc/intel_guc.c | 11 +++++++----
->>   drivers/gpu/drm/i915/gt/uc/intel_guc.h |  4 ++--
->>   drivers/gpu/drm/i915/gt/uc/intel_uc.c  |  5 +++--
->>   4 files changed, 13 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/ 
->> i915/gt/intel_gt_irq.c
->> index 75e802e10be2..21804eec8320 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> @@ -20,7 +20,7 @@
->>   static void guc_irq_handler(struct intel_guc *guc, u16 iir)
->>   {
->> -    if (unlikely(!guc->interrupts.enabled))
->> +    if (unlikely(!atomic_read(&guc->interrupts.enabled)))
->>           return;
->>       if (iir & GUC_INTR_GUC2HOST)
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/ 
->> i915/gt/uc/intel_guc.c
->> index f360f020d8f1..1b8d3bbfa16d 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->> @@ -100,8 +100,8 @@ static void gen9_enable_guc_interrupts(struct 
->> intel_guc *guc)
->>                gt->pm_guc_events);
->>       gen6_gt_pm_enable_irq(gt, gt->pm_guc_events);
->>       spin_unlock_irq(gt->irq_lock);
->> +    atomic_set(&guc->interrupts.enabled, true);
->> -    guc->interrupts.enabled = true;
->>   }
->>   static void gen9_disable_guc_interrupts(struct intel_guc *guc)
->> @@ -109,7 +109,8 @@ static void gen9_disable_guc_interrupts(struct 
->> intel_guc *guc)
->>       struct intel_gt *gt = guc_to_gt(guc);
->>       assert_rpm_wakelock_held(&gt->i915->runtime_pm);
->> -    guc->interrupts.enabled = false;
->> +    atomic_set(&guc->interrupts.enabled, false);
->> +
->>       spin_lock_irq(gt->irq_lock);
->> @@ -146,14 +147,16 @@ static void gen11_enable_guc_interrupts(struct 
->> intel_guc *guc)
->>       __gen11_reset_guc_interrupts(gt);
->>       spin_unlock_irq(gt->irq_lock);
->> -    guc->interrupts.enabled = true;
->> +    atomic_set(&guc->interrupts.enabled, true);
->> +
->>   }
->>   static void gen11_disable_guc_interrupts(struct intel_guc *guc)
->>   {
->>       struct intel_gt *gt = guc_to_gt(guc);
->> -    guc->interrupts.enabled = false;
->> +    atomic_set(&guc->interrupts.enabled, false);
->> +
->>       intel_synchronize_irq(gt->i915);
->>       gen11_reset_guc_interrupts(guc);
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/ 
->> i915/gt/uc/intel_guc.h
->> index 053780f562c1..40242bbb166e 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
->> @@ -93,7 +93,7 @@ struct intel_guc {
->>       /** @interrupts: pointers to GuC interrupt-managing functions. */
->>       struct {
->> -        bool enabled;
->> +        atomic_t enabled;
->>           void (*reset)(struct intel_guc *guc);
->>           void (*enable)(struct intel_guc *guc);
->>           void (*disable)(struct intel_guc *guc);
->> @@ -393,7 +393,7 @@ static inline int intel_guc_send_busy_loop(struct 
->> intel_guc *guc,
->>   /* Only call this from the interrupt handler code */
->>   static inline void intel_guc_to_host_event_handler(struct intel_guc 
->> *guc)
->>   {
->> -    if (guc->interrupts.enabled)
->> +    if (atomic_read(&guc->interrupts.enabled))
->>           intel_guc_ct_event_handler(&guc->ct);
->>   }
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/ 
->> i915/gt/uc/intel_uc.c
->> index 4a3493e8d433..9d01c3c3d504 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
->> @@ -659,7 +659,8 @@ void intel_uc_runtime_suspend(struct intel_uc *uc)
->>       struct intel_guc *guc = &uc->guc;
->>       if (!intel_guc_is_ready(guc)) {
->> -        guc->interrupts.enabled = false;
->> +        atomic_set(&guc->interrupts.enabled, false);
->> +
->>           return;
->>       }
->> @@ -687,7 +688,7 @@ void intel_uc_suspend(struct intel_uc *uc)
->>       wake_up_all_tlb_invalidate(guc);
->>       if (!intel_guc_is_ready(guc)) {
->> -        guc->interrupts.enabled = false;
->> +        atomic_set(&guc->interrupts.enabled, false);
->>           return;
->>       }
-> 
+Sorry about that.
+
+Although we did compile-test it, some configs are not enabled by default=20
+so we missed this issue. I=E2=80=99ll fix it in the next version.
+
+Thanks for catching this!
+
+
 
