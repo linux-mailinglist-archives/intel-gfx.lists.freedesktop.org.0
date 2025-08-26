@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3143B35656
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 10:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A63BB35676
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Aug 2025 10:13:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C452810E5D6;
-	Tue, 26 Aug 2025 08:05:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yspa5uCi";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59B9B10E5DB;
+	Tue, 26 Aug 2025 08:13:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35A4310E5D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Aug 2025 08:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756195532; x=1787731532;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=h7bMDprU1rOwcKzavss0z5IHz9GmluY8HDfei2Y/Jug=;
- b=Yspa5uCiWH88wpqpuvLNsAituUWlfzdWu4Uc041Q4xohmLNR6vGDDU88
- FbHT7/L51Jb6JW2mlCh8Vvu8d6Xx11SEOXpRLUlHNL2tt1ruBqx7Fivk0
- sgMCfy9splW8uL/h99FcqvflZtxWxhQsYb+h3h7ZfzAXqZtyw1ygTD5Bk
- XosEstLzScFzgA3bPBUo4uaymYJQNU44GgJyB6kcJjagsaztW3qJ/yRhL
- aIFg4S2UYZaE5YQI2vp0u7PdAEahfQY1N37fvJzb89zpBInS34rTrg0m9
- GHK6MaI7o6BP2KfD8/FzttJXzUD0HcFlzwmG9G9L9Edz1vkU5sXsDFOnA w==;
-X-CSE-ConnectionGUID: 5z+OWnx8QcW6XVO5JWjbRw==
-X-CSE-MsgGUID: CT8G/pMpSFGqi3f76i0y4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11533"; a="45998092"
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="45998092"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2025 01:05:31 -0700
-X-CSE-ConnectionGUID: Qgf4FxZMQ+qA/meDQ1NJ9Q==
-X-CSE-MsgGUID: /zSmjvFKQTCe2FFJ0/3VQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,214,1751266800"; d="scan'208";a="169680473"
-Received: from shawnle1-i9-build-machine.itwn.intel.com ([10.225.64.200])
- by orviesa008.jf.intel.com with ESMTP; 26 Aug 2025 01:05:29 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>, Shankar Uma <uma.shankar@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: [v4] drm/i915/hdmi: add debugfs to contorl HDMI bpc
-Date: Tue, 26 Aug 2025 08:01:17 +0000
-Message-Id: <20250826080117.151587-1-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
-References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 758C110E5D4;
+ Tue, 26 Aug 2025 08:13:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6177588651478025532=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/hdmi=3A_add_debu?=
+ =?utf-8?q?gfs_to_contorl_HDMI_bpc_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Aug 2025 08:13:22 -0000
+Message-ID: <175619600247.269761.6264249132530154328@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,93 +37,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While performing HDMI compliance testing, test equipment may request
-different bpc output for signal measurement. However, display driver
-typically determines the maximum available bpc based on HW bandwidth.
-This change leverages the existing debugfs (intel_force_link_bpp)
-to manage HDMI bpc, and making it easier to pass HDMI CTS.
+--===============6177588651478025532==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Using exist variable max_requested_bpc.
-v3: Extend intel_force_link_bpp to support HDMI as suggested by Imre.
-v4: Update commit message suggested by Jani.
+== Series Details ==
 
-Cc: Shankar Uma <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/g4x_hdmi.c      | 5 +----
- drivers/gpu/drm/i915/display/intel_hdmi.c    | 4 ++++
- drivers/gpu/drm/i915/display/intel_link_bw.c | 6 +-----
- 3 files changed, 6 insertions(+), 9 deletions(-)
+Series: drm/i915/hdmi: add debugfs to contorl HDMI bpc (rev3)
+URL   : https://patchwork.freedesktop.org/series/152562/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index 108ebd97f9e4..b31fb1e4bc1a 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -136,11 +136,8 @@ static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
- 	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	if (HAS_PCH_SPLIT(display)) {
-+	if (HAS_PCH_SPLIT(display))
- 		crtc_state->has_pch_encoder = true;
--		if (!intel_fdi_compute_pipe_bpp(crtc_state))
--			return -EINVAL;
--	}
- 
- 	if (display->platform.g4x)
- 		crtc_state->has_hdmi_sink = g4x_compute_has_hdmi_sink(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index cbee628eb26b..027e8ed0cea8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -55,6 +55,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
-+#include "intel_fdi.h"
- #include "intel_gmbus.h"
- #include "intel_hdcp.h"
- #include "intel_hdcp_regs.h"
-@@ -2345,6 +2346,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		pipe_config->pixel_multiplier = 2;
- 
-+	if (!intel_fdi_compute_pipe_bpp(pipe_config))
-+		return -EINVAL;
-+
- 	pipe_config->has_audio =
- 		intel_hdmi_has_audio(encoder, pipe_config, conn_state) &&
- 		intel_audio_compute_config(encoder, pipe_config, conn_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-index 3caef7f9c7c4..d194a366ff10 100644
---- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-@@ -449,6 +449,7 @@ void intel_link_bw_connector_debugfs_add(struct intel_connector *connector)
- 	switch (connector->base.connector_type) {
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 	case DRM_MODE_CONNECTOR_eDP:
-+	case DRM_MODE_CONNECTOR_HDMIA:
- 		break;
- 	case DRM_MODE_CONNECTOR_VGA:
- 	case DRM_MODE_CONNECTOR_SVIDEO:
-@@ -457,11 +458,6 @@ void intel_link_bw_connector_debugfs_add(struct intel_connector *connector)
- 		if (HAS_FDI(display))
- 			break;
- 
--		return;
--	case DRM_MODE_CONNECTOR_HDMIA:
--		if (HAS_FDI(display) && !HAS_DDI(display))
--			break;
--
- 		return;
- 	default:
- 		return;
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17068 -> Patchwork_152562v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_152562v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_152562v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_152562v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gem:
+    - bat-arlh-2:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-arlh-2/igt@i915_selftest@live@gem.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-arlh-2/igt@i915_selftest@live@gem.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152562v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [PASS][3] -> [DMESG-WARN][4] ([i915#13494])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-mtlp-9/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-mtlp-9/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live:
+    - bat-arlh-2:         [PASS][5] -> [INCOMPLETE][6] ([i915#14803] / [i915#14838])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-arlh-2/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-arlh-2/igt@i915_selftest@live.html
+
+  
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#14803]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14803
+  [i915#14838]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14838
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17068 -> Patchwork_152562v3
+
+  CI-20190529: 20190529
+  CI_DRM_17068: 8660eb3be99b607b54bf3fa47fd66e9fbd59af46 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8507: 8507
+  Patchwork_152562v3: 8660eb3be99b607b54bf3fa47fd66e9fbd59af46 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/index.html
+
+--===============6177588651478025532==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdmi: add debugfs to contorl HDMI bpc (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152562/">https://patchwork.freedesktop.org/series/152562/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17068 -&gt; Patchwork_152562v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_152562v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_152562v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_152562v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gem:<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-arlh-2/igt@i915_selftest@live@gem.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-arlh-2/igt@i915_selftest@live@gem.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152562v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@load:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17068/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v3/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14803">i915#14803</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14838">i915#14838</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17068 -&gt; Patchwork_152562v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17068: 8660eb3be99b607b54bf3fa47fd66e9fbd59af46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8507: 8507<br />
+  Patchwork_152562v3: 8660eb3be99b607b54bf3fa47fd66e9fbd59af46 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6177588651478025532==--
