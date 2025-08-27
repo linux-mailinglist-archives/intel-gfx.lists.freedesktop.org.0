@@ -2,90 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02FF3B37A70
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Aug 2025 08:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3F6B37AF3
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Aug 2025 08:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB1810E6FF;
-	Wed, 27 Aug 2025 06:34:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a9JgtiBX";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8249910E70B;
+	Wed, 27 Aug 2025 06:56:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F93410E700;
- Wed, 27 Aug 2025 06:34:31 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 9251360254;
- Wed, 27 Aug 2025 06:34:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C05A1C4CEEB;
- Wed, 27 Aug 2025 06:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1756276470;
- bh=dOTckYvVImYjZpxv/z1LSXxh9jwhCh1JDe2QIDn/QlQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=a9JgtiBXRDvkjujnxJ63j3G2BMBZVXUoeQbzJbonwjIZLHPiuoODiOQnpyZfvAFSv
- 2eeWEu4bPG9d3tqUKmy94/CaSdPvNzDmYgid7EqE5KZMs8ZhF1mOl+uQ0Rg8kv34rR
- +JF2p+orkisruTV7t1/t8vri6wXXMA8EaCEU+rhWWND/ItO2jnsfY8MnkxdPMwJQXm
- GoDw5Cz3c6E55kksuBZc4BsvgleH9LUm39UmPVpP8ixE8stafVx2ht4sV+IpXsQ1+M
- efTdYxGKDj72P0jGMA/6sMEql96ydxNBxpBhJUBM8ifaJPEAJaVh8DH1uYqWuH90Wc
- DN7o74Mp3X6Jg==
-Date: Wed, 27 Aug 2025 08:34:27 +0200
-From: "mripard@kernel.org" <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: "Kandpal, Suraj" <suraj.kandpal@intel.com>, 
- "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
- "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nautiyal,
- Ankit K" <ankit.k.nautiyal@intel.com>, 
- "Murthy, Arun R" <arun.r.murthy@intel.com>, "Shankar,
- Uma" <uma.shankar@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>, 
- "siqueira@igalia.com" <siqueira@igalia.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>, 
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, 
- "simona@ffwll.ch" <simona@ffwll.ch>, 
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>, 
- "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "jessica.zhang@oss.qualcomm.com" <jessica.zhang@oss.qualcomm.com>,
- "sean@poorly.run" <sean@poorly.run>, 
- "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
- "mcanal@igalia.com" <mcanal@igalia.com>, 
- "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>, 
- "tomi.valkeinen+renesas@ideasonboard.com"
- <tomi.valkeinen+renesas@ideasonboard.com>, 
- "kieran.bingham+renesas@ideasonboard.com"
- <kieran.bingham+renesas@ideasonboard.com>,
- "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
-Message-ID: <20250827-helpful-outgoing-capuchin-d2acc8@houat>
-References: <awtqznhquyn7etojonmjn7karznefsb7fdudawcjsj5g2bok3u@2iqcdviuiz2s>
- <20250811111546.GA30760@pendragon.ideasonboard.com>
- <2ah3pau7p7brgw7huoxznvej3djct76vgfwtc72n6uub7sjojd@zzaebjdcpdwf>
- <DM3PPF208195D8D0E55A761A3C16B87BAEEE32AA@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <aJ4LQvqli36TlETu@e110455-lin.cambridge.arm.com>
- <hc6f6wgsnauh72cowocpm55tikejhiha5z4mgufeq7v6gb2qml@kmgfd26bigos>
- <wr76vyag2osox2xf7ducnkiaanzk2k5ehd2ahnoyqdm5qiywlk@penf4v5bvg5z>
- <DM3PPF208195D8D87AECE8397914A67D9A1E33EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <20250826-skinny-dancing-otter-de9be4@houat>
- <76cmo6pqa534cdnckfgsnspczenzt7kiwkpgg4olxysjn2can7@g5dxteqi5jjs>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09BC710E70B;
+ Wed, 27 Aug 2025 06:56:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2958707430575449232=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="2bcu3ttzioot2gyg"
-Content-Disposition: inline
-In-Reply-To: <76cmo6pqa534cdnckfgsnspczenzt7kiwkpgg4olxysjn2can7@g5dxteqi5jjs>
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Panel_Rep?=
+ =?utf-8?q?lay_SU_cap_dpcd_read_return_value?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Aug 2025 06:56:34 -0000
+Message-ID: <175627779403.273188.2438023510062849385@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250827060809.2461725-1-jouni.hogander@intel.com>
+In-Reply-To: <20250827060809.2461725-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,149 +37,182 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---2bcu3ttzioot2gyg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor drm_writeback_connector
- structure
+--===============2958707430575449232==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 26, 2025 at 07:08:17PM +0300, Dmitry Baryshkov wrote:
-> On Tue, Aug 26, 2025 at 05:48:18PM +0200, mripard@kernel.org wrote:
-> > On Mon, Aug 25, 2025 at 06:26:48AM +0000, Kandpal, Suraj wrote:
-> > > > Subject: Re: [RFC PATCH 1/8] drm: writeback: Refactor
-> > > > drm_writeback_connector structure
-> > > >=20
-> > > > Hi,
-> > > >=20
-> > > > On Sat, Aug 16, 2025 at 01:20:53AM +0300, Dmitry Baryshkov wrote:
-> > > > > On Thu, Aug 14, 2025 at 05:13:54PM +0100, liviu.dudau@arm.com wro=
-te:
-> > > > > > Hi,
-> > > > > >
-> > > > > > On Wed, Aug 13, 2025 at 10:04:22AM +0000, Kandpal, Suraj wrote:
-> > > > > > > > > > };
-> > > > > > > > >
-> > > > > > > > > I still don't like that. This really doesn't belong here.=
- If
-> > > > > > > > > anything, the drm_connector for writeback belongs to drm_=
-crtc.
-> > > > > > > >
-> > > > > > > > Why? We already have generic HDMI field inside drm_connecto=
-r. I
-> > > > > > > > am really hoping to be able to land DP parts next to it. In
-> > > > > > > > theory we can have a DVI- specific entry there (e.g. with t=
-he
-> > > > subconnector type).
-> > > > > > > > The idea is not to limit how the drivers subclass those str=
-uctures.
-> > > > > > > >
-> > > > > > > > I don't see a good case why WB should deviate from that des=
-ign.
-> > > > > > > >
-> > > > > > > > > If the issue is that some drivers need a custom drm_conne=
-ctor
-> > > > > > > > > subclass, then I'd rather turn the connector field of
-> > > > > > > > > drm_writeback_connector into a pointer.
-> > > > > > > >
-> > > > > > > > Having a pointer requires additional ops in order to get
-> > > > > > > > drm_connector from WB code and vice versa. Having
-> > > > > > > > drm_connector_wb inside drm_connector saves us from those o=
-ps
-> > > > (which don't manifest for any other kind of structure).
-> > > > > > > > Nor will it take any more space since union will reuse space
-> > > > > > > > already taken up by HDMI part.
-> > > > > > > >
-> > > > > > > > >
-> > > > > > >
-> > > > > > > Seems like this thread has died. We need to get a conclusion =
-on the
-> > > > design.
-> > > > > > > Laurent do you have any issue with the design given Dmitry's
-> > > > > > > explanation as to why this Design is good for drm_writeback_c=
-onnector.
-> > > > > >
-> > > > > > I'm with Laurent here. The idea for drm_connector (and a lot of=
- drm
-> > > > > > structures) are to be used as base "classes" for extended
-> > > > > > structures. I don't know why HDMI connector ended up inside
-> > > > > > drm_connector as not all connectors have HDMI functionality, bu=
-t that's a
-> > > > cleanup for another day.
-> > > > >
-> > > > > Maybe Maxime can better comment on it, but I think it was made ex=
-actly
-> > > > > for the purpose of not limiting the driver's design. For example,=
- a
-> > > > > lot of drivers subclass drm_connector via drm_bridge_connector. If
-> > > > > struct drm_connector_hdmi was a wrapper around struct drm_connect=
-or,
-> > > > > then it would have been impossible to use HDMI helpers for bridge
-> > > > > drivers, while current design freely allows any driver to utilize
-> > > > > corresponding library code.
-> > > >=20
-> > > > That's exactly why we ended up like this. With that design, we woul=
-dn't have
-> > > > been able to "inherit" two connector "classes": bridge_connector is=
- one,
-> > > > intel_connector another one.
-> > > >=20
-> > > > See here for the rationale:
-> > > > https://lore.kernel.org/dri-devel/ZOTDKHxn2bOg+Xmg@phenom.ffwll.loc=
-al/
-> > > >=20
-> > > > I don't think the "but we'll bloat drm_connector" makes sense eithe=
-r.
-> > > > There's already a *lot* of things that aren't useful to every conne=
-ctor (fwnode,
-> > > > display_info, edid in general, scaling, vrr, etc.)
-> > > >=20
-> > > > And it's not like we allocate more than a handful of them during a =
-system's life.
-> > >=20
-> > > So Are we okay with the approach mentioned here with the changes that=
- have been proposed here like
-> > > Having drm_writeback_connector in union with drm_hdmi_connector
-> >=20
-> > I don't think we need a union here. It artificially creates the same
-> > issue: we can't have two types for a connector if we do so.
->=20
-> Well... What kind of connector would be both HDMI and WriteBack? I think
-> they are mutually exclusive already.
->=20
-> > > Also one more thing I would like to clarify here is how everyone would
-> > > like the patches patches where each patch changes both the drm core
-> > > and all related drivers (ensures buildability but then review is tough
-> > > for each driver). Or patches where we have initial drm core changes
-> > > and then each patch does the all changes in a driver in its own
-> > > respective patch.
-> >=20
-> > The latter should be preferred, but if you can't maintain bisectability
-> > that way, then it's the most important and you should fall back to the
-> > former.
->=20
-> I'd say, we should be trying our best in providing bisectability. It
-> really a PITA if one can not use `git bisect run`.
+== Series Details ==
 
-Yeah, I believe we are saying the same thing :)
+Series: drm/i915/psr: Panel Replay SU cap dpcd read return value
+URL   : https://patchwork.freedesktop.org/series/153547/
+State : success
 
-Maxime
+== Summary ==
 
---2bcu3ttzioot2gyg
-Content-Type: application/pgp-signature; name="signature.asc"
+CI Bug Log - changes from CI_DRM_17074 -> Patchwork_153547v1
+====================================================
 
------BEGIN PGP SIGNATURE-----
+Summary
+-------
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaK6m7wAKCRAnX84Zoj2+
-doq7AYCGPkzQsh6eK7sNZpx+oS1S0ulIy7SlWpjGFlx+gKw8CWeZ49ePtAl290cq
-u833Oa0BgLNM0z3GhbAuoZEIMj3lrg5ki7r3yNe4zG/aPbKJZ1ocfGrd2wTgY+q3
-3zMMttn/aw==
-=kBfE
------END PGP SIGNATURE-----
+  **SUCCESS**
 
---2bcu3ttzioot2gyg--
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): bat-apl-1 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_153547v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-9:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [ABORT][7] ([i915#12904]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-atsm-1/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#13929]) -> [DMESG-FAIL][12] ([i915#14204])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17074 -> Patchwork_153547v1
+
+  CI-20190529: 20190529
+  CI_DRM_17074: 3a2760f3080e5188b19cdb4640cec5eb0926d578 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8511: 8511
+  Patchwork_153547v1: 3a2760f3080e5188b19cdb4640cec5eb0926d578 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/index.html
+
+--===============2958707430575449232==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Panel Replay SU cap dpcd read return value</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153547/">https://patchwork.freedesktop.org/series/153547/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17074 -&gt; Patchwork_153547v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 42)</h2>
+<p>Missing    (1): bat-apl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_153547v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@dmabuf@all-tests@dma_fence_chain:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17074/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153547v1/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17074 -&gt; Patchwork_153547v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17074: 3a2760f3080e5188b19cdb4640cec5eb0926d578 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8511: 8511<br />
+  Patchwork_153547v1: 3a2760f3080e5188b19cdb4640cec5eb0926d578 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2958707430575449232==--
