@@ -2,111 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57835B38485
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Aug 2025 16:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 290A7B384BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Aug 2025 16:17:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADADD10E133;
-	Wed, 27 Aug 2025 14:13:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC11810E119;
+	Wed, 27 Aug 2025 14:17:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="WBS57/cS";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RYmvafAc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com
- [209.85.214.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3C5910E133
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 14:13:13 +0000 (UTC)
-Received: by mail-pl1-f201.google.com with SMTP id
- d9443c01a7336-24636484391so59558445ad.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 07:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1756303993; x=1756908793;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=oT9Qx0pL0526DK73EqyoLYw0wsYmSjn2bOtkKWj9+LI=;
- b=WBS57/cS9rxZbdAzOkaykFUzqP+f7SBhxnXEzpnOBScZPoVFEleWC4Tk3tcGS1l0GP
- YlyG5q4XuyArv9pPJ91ltDaP8H1qos8Hs5SF3IovIK4O6y0Aar3eHqkm4d0pVt1m121G
- MMnHehxsezBugqftJ1KCUT1ZCoeC53CqvHansy6go7IdMG7bY0S173GgAxORgiXQSFbU
- 6PFyA+YGe5T4fqpHiNEo+MJ9q5jOQXBTrXYHWiftDMfye9HAFIWJq5D1Jg/I1b5NRZ1i
- oxljLuKkRuiFGUcYtopucoB/82v8EKAnEgSPHCeTVH40EGrVlxJ+bpJ32sCTyJL4vz8h
- ZzPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756303993; x=1756908793;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=oT9Qx0pL0526DK73EqyoLYw0wsYmSjn2bOtkKWj9+LI=;
- b=RB9SeKPSwmGlOMk77BZ14ab/vTTFC/bCU5JktGvBNkhW3F3L46sPhkoLwPOYHTxwwD
- pEiBuSQnDr6+saibfVhXijS3pAN2Aan+w0miQfAG7UFjKEH8IMwwof6U6lHrhmXhbMRU
- SbNjx1vk5l4IsAULZqXs5QWDZgQ4zMLciAv5BT7loDIm1PCpyUlehyEiixr7wRvsP5a+
- k7DqojinHlV5FNbPDpWezXsYsH7UXZL7ui+DGvxxsV7cQnqhv06pf+styFXGWEaBAy1e
- 1nTPzgmlBbvq1o0+QfU/1NDdqvC0OGoLLU1oPJmAx/qNSOD2dnxeK1GQTFspTpH/N0tu
- YZNQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWaRrS86LgTRb6VMsjy3zURqF48Zm3p8OANkrPoNxdHKCUdOWISz7QIY+xfXyKdb356AfakiVT9vs8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx5U82OLEFKZVYd3mcRIe0YncZY2lC7QLKZGPb6sWcQOfsOiZzm
- owHJsrJn4SOK5780Sea2qXy35qj/PKNk+WpmdIOodu2w1r8V87CiaQV3BFrywK0RKrMVfdYUHhW
- 5bJPRFw==
-X-Google-Smtp-Source: AGHT+IGTSg2J3odWqRi5DzWDmdBYNRXtpWLMNIy0mlgNYPFM/YLwHCJkE7ruCavXPIcZq+6RDeJTdDhPxa4=
-X-Received: from plan10.prod.google.com ([2002:a17:903:404a:b0:248:7792:b8da])
- (user=seanjc job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:1a8e:b0:246:620:a0b9
- with SMTP id d9443c01a7336-2462efcaaa3mr229124795ad.61.1756303993097; Wed, 27
- Aug 2025 07:13:13 -0700 (PDT)
-Date: Wed, 27 Aug 2025 07:13:11 -0700
-In-Reply-To: <20250827023202.10310-3-zhangzihuan@kylinos.cn>
-Mime-Version: 1.0
-References: <20250827023202.10310-1-zhangzihuan@kylinos.cn>
- <20250827023202.10310-3-zhangzihuan@kylinos.cn>
-Message-ID: <aK8Sd30K64mbN1Nt@google.com>
-Subject: Re: [PATCH v2 02/18] KVM: x86: Use __free(put_cpufreq_policy) for
- policy reference
-From: Sean Christopherson <seanjc@google.com>
-To: Zihuan Zhang <zhangzihuan@kylinos.cn>
-Cc: "Rafael J . wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, 
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
- Markus Mayer <mmayer@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, 
- MyungJoo Ham <myungjoo.ham@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- zhenglifeng <zhenglifeng1@huawei.com>, "H . Peter Anvin" <hpa@zytor.com>,
- Zhang Rui <rui.zhang@intel.com>, 
- Len Brown <lenb@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, 
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Lukasz Luba <lukasz.luba@arm.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Beata Michalska <beata.michalska@arm.com>, 
- Fabio Estevam <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
- Sumit Gupta <sumitg@nvidia.com>, 
- Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
- Sudeep Holla <sudeep.holla@arm.com>, 
- Yicong Yang <yangyicong@hisilicon.com>, linux-pm@vger.kernel.org,
- x86@kernel.org, kvm@vger.kernel.org, linux-acpi@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-samsung-soc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- imx@lists.linux.dev, linux-omap@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2641E10E119
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 14:17:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 55FFC60266;
+ Wed, 27 Aug 2025 14:17:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9C4C4CEEB;
+ Wed, 27 Aug 2025 14:17:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756304262;
+ bh=4VUy+JLJsj7U6VfLOX4oHAyFHleYUyfKKNLFPwFLj9Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=RYmvafAchu2NrY8cyp4s5m6IUoq2dYdO4FFUNA5avflSqWkMz69OMyyS/T6b4LIAU
+ hTRwaKxeN9djeazZJxrtHW4yYFF0w/8ZJ6/TzwBc8vel4QA47QcduEYuW6Mi6cSw99
+ y5HPUL54rEoG/aSYabo/B5gIDHjd50mE3P9JFGg3nqmZssn1kQOTkStm5jksayj4Bx
+ XSuYhmC+0DNovYjiZWvj4n82yFuV/OrnvnZ/kOQCQ8lYH0QLUnsk5s0MkcpXJPxp6J
+ WLWb1CZvavNqMc6Xg5WgMp/1NvTIGdAE+7j0bdA7xEGaVReTkz1CSfoj/zzIqPyPR/
+ hBJRIdSmtXrIQ==
+Date: Wed, 27 Aug 2025 13:17:37 -0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Luca Coelho <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com
+Subject: Re: [PATCH v2] drm/i915: use REG_BIT on FW_BLC_SELF_* macros
+Message-ID: <74h4w5535nsjoww3d54nguxfxz7wbb6a3mw4nolah2fhmw2no7@4ftybd2wqc2l>
+References: <20250827111109.401604-1-luciano.coelho@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250827111109.401604-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,79 +56,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Aug 27, 2025, Zihuan Zhang wrote:
-> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
-> annotation for policy references. This reduces the risk of reference
-> counting mistakes and aligns the code with the latest kernel style.
+Hi Luca,
+
+On Wed, Aug 27, 2025 at 02:10:40PM +0300, Luca Coelho wrote:
+> Use REG_BIT() instead of open coding the shift in the FW_BLC_SELF_*
+> macro definitions to avoid potentially typing them as 'int'.
 > 
-> No functional change intended.
+> For example, this happens when we pass them to _MASKED_BIT_ENABLE(),
+> because of the typeof() construct there.  When we pass 1 << 15 (the
+> FW_BLC_SELF_EN macro), we get typeof(1 << 15), which is 'int'.  Then
+> the value becomes negative (-2147450880) and we try to assign it to a
+> 'u32'.
 > 
-> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
-> ---
->  arch/x86/kvm/x86.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
+> In practice this is not a problem though, because when we try to
+> assign -2147450880 to the u32, that becomes 0x80008000, which was the
+> intended result.
 > 
-> diff --git a/arch/x86/kvm/x86.c b/arch/x86/kvm/x86.c
-> index a1c49bc681c4..2a825f4ec701 100644
-> --- a/arch/x86/kvm/x86.c
-> +++ b/arch/x86/kvm/x86.c
-> @@ -9492,16 +9492,14 @@ static void kvm_timer_init(void)
->  		max_tsc_khz = tsc_khz;
->  
->  		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
-> -			struct cpufreq_policy *policy;
-> +			struct cpufreq_policy *policy __free(put_cpufreq_policy);
->  			int cpu;
->  
->  			cpu = get_cpu();
->  			policy = cpufreq_cpu_get(cpu);
-> -			if (policy) {
-> -				if (policy->cpuinfo.max_freq)
-> -					max_tsc_khz = policy->cpuinfo.max_freq;
-> -				cpufreq_cpu_put(policy);
-> -			}
-> +			if (policy && policy->cpuinfo.max_freq)
-> +				max_tsc_khz = policy->cpuinfo.max_freq;
-> +
->  			put_cpu();
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
-Hmm, this is technically buggy.  __free() won't invoke put_cpufreq_policy() until
-policy goes out of scope, and so using __free() means the code is effectively:
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
-			struct cpufreq_policy *policy;
-			int cpu;
-
-			cpu = get_cpu();
-			policy = cpufreq_cpu_get(cpu);
-			if (policy && policy->cpuinfo.max_freq)
-				max_tsc_khz = policy->cpuinfo.max_freq;
-			put_cpu();
-
-			if (policy)
-				cpufreq_cpu_put(policy);
-		}
-
-That's "fine" because the policy isn't truly referenced after preemption is
-disabled, the lifecycle of the policy doesn't rely on preemption being disabled,
-and KVM doesn't actually care which CPU is used to get the max frequency, i.e.
-this would technically be "fine" too:
-
-		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
-			struct cpufreq_policy *policy;
-			int cpu;
-
-			cpu = get_cpu();
-			policy = cpufreq_cpu_get(cpu);
-			put_cpu();
-
-			if (policy && policy->cpuinfo.max_freq)
-				max_tsc_khz = policy->cpuinfo.max_freq;
-
-			if (policy)
-				cpufreq_cpu_put(policy);
-		}
-
-But given that the code we have today is perfectly readable, I don't see any
-reason to switch to __free() given that's it's technically flawed.  So I'm very
-strongly inclined to skip this patch and keep things as-is.
+Thanks,
+Andi
