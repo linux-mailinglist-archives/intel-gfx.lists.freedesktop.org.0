@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E76A4B38C16
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 00:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B97C6B38C1F
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 00:03:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FA5110E8CE;
-	Wed, 27 Aug 2025 22:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A19810E8CF;
+	Wed, 27 Aug 2025 22:03:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EfWOWoAw";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MuhYbdMk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8F210E8CE
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 22:03:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58C0510E8D0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 22:03:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756332223;
+ s=mimecast20190719; t=1756332236;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=BoCigziN+sd3886gtncwVGrOobwk0eDvjUtVkuDjFuc=;
- b=EfWOWoAwhVhXs9QwPjqQzvn72zQCQ3+lwACKmMXo90YnfIC7rwyO2nbVIkYOKrA4RopEmb
- aJnTMEM6VDKSaeKj99aRanTbnet0Sb0BwTaYj6CTvujXW2zWiiWMpM5qPljUG7pMsWC2ai
- AOt3Q8pk0lg7MWNkF+Webbzi8yVuC2c=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ bh=0slYk4bfz75S649wa7kW6E6tBTFrSx9AC44N5jnD3cE=;
+ b=MuhYbdMkgEIDAsIfx+d+4PfkxjqEHCTdK4XDUDhRqnvN6rsNIps57h1afzof/dYY9vDi8H
+ uu0G5nIINZ6n8IJ4G3bGR9IKWxsW6K3M9NZcnaGCFnmSxVmM3DGDXoabHPekwdKL/rtQjr
+ thhPUU6/GkzNdrK48HoE85jF9hLqUJE=
+Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-389-k0g0ERAQMDW3c6U23kRavw-1; Wed,
- 27 Aug 2025 18:03:37 -0400
-X-MC-Unique: k0g0ERAQMDW3c6U23kRavw-1
-X-Mimecast-MFC-AGG-ID: k0g0ERAQMDW3c6U23kRavw_1756332211
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-49-Gig6YInBOwuPYECmvWEljg-1; Wed,
+ 27 Aug 2025 18:03:53 -0400
+X-MC-Unique: Gig6YInBOwuPYECmvWEljg-1
+X-Mimecast-MFC-AGG-ID: Gig6YInBOwuPYECmvWEljg_1756332228
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id ACA3A195608E; Wed, 27 Aug 2025 22:03:30 +0000 (UTC)
+ by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 7A462195608A; Wed, 27 Aug 2025 22:03:47 +0000 (UTC)
 Received: from t14s.redhat.com (unknown [10.22.80.195])
  by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 2E8CE30001A5; Wed, 27 Aug 2025 22:03:13 +0000 (UTC)
+ id 47BA430001A1; Wed, 27 Aug 2025 22:03:31 +0000 (UTC)
 From: David Hildenbrand <david@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: David Hildenbrand <david@redhat.com>,
  "Mike Rapoport (Microsoft)" <rppt@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>, Shuah Khan <shuah@kernel.org>,
  Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
@@ -73,10 +72,10 @@ Cc: David Hildenbrand <david@redhat.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
  wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Subject: [PATCH v1 04/36] x86/Kconfig: drop superfluous "select
- SPARSEMEM_VMEMMAP"
-Date: Thu, 28 Aug 2025 00:01:08 +0200
-Message-ID: <20250827220141.262669-5-david@redhat.com>
+Subject: [PATCH v1 05/36] wireguard: selftests: remove
+ CONFIG_SPARSEMEM_VMEMMAP=y from qemu kernel config
+Date: Thu, 28 Aug 2025 00:01:09 +0200
+Message-ID: <20250827220141.262669-6-david@redhat.com>
 In-Reply-To: <20250827220141.262669-1-david@redhat.com>
 References: <20250827220141.262669-1-david@redhat.com>
 MIME-Version: 1.0
@@ -97,31 +96,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now handled by the core automatically once SPARSEMEM_VMEMMAP_ENABLE
-is selected.
+It's no longer user-selectable (and the default was already "y"), so
+let's just drop it.
 
-Reviewed-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>
+It was never really relevant to the wireguard selftests either way.
+
+Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Cc: Shuah Khan <shuah@kernel.org>
 Signed-off-by: David Hildenbrand <david@redhat.com>
 ---
- arch/x86/Kconfig | 1 -
+ tools/testing/selftests/wireguard/qemu/kernel.config | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-index 58d890fe2100e..e431d1c06fecd 100644
---- a/arch/x86/Kconfig
-+++ b/arch/x86/Kconfig
-@@ -1552,7 +1552,6 @@ config ARCH_SPARSEMEM_ENABLE
- 	def_bool y
- 	select SPARSEMEM_STATIC if X86_32
- 	select SPARSEMEM_VMEMMAP_ENABLE if X86_64
--	select SPARSEMEM_VMEMMAP if X86_64
- 
- config ARCH_SPARSEMEM_DEFAULT
- 	def_bool X86_64 || (NUMA && X86_32)
+diff --git a/tools/testing/selftests/wireguard/qemu/kernel.config b/tools/testing/selftests/wireguard/qemu/kernel.config
+index 0a5381717e9f4..1149289f4b30f 100644
+--- a/tools/testing/selftests/wireguard/qemu/kernel.config
++++ b/tools/testing/selftests/wireguard/qemu/kernel.config
+@@ -48,7 +48,6 @@ CONFIG_JUMP_LABEL=y
+ CONFIG_FUTEX=y
+ CONFIG_SHMEM=y
+ CONFIG_SLUB=y
+-CONFIG_SPARSEMEM_VMEMMAP=y
+ CONFIG_SMP=y
+ CONFIG_SCHED_SMT=y
+ CONFIG_SCHED_MC=y
 -- 
 2.50.1
 
