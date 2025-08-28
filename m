@@ -2,91 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2BBB393A2
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 08:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0951B393CD
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 08:32:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2693E10E01F;
-	Thu, 28 Aug 2025 06:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70A8110E197;
+	Thu, 28 Aug 2025 06:32:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nc40Y+5B";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="P3Dh0KkN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F88810E01F
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 06:10:50 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-afe84202bb6so63230266b.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 23:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756361448; x=1756966248; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
- :cc:subject:date:message-id:reply-to;
- bh=c5s2MMXuiOg5nGJ7QuBLczFPiM2lZQeU9+6vrDAtE94=;
- b=Nc40Y+5BKgXeac2EVpNb1oGftsWP3HNmHQACjymcThX2B61UayF0iUc9PkFZE9haTk
- tjo6EvYrVLuSSFxNN0H+mD8tZdzQzRQiRPEVCvxFgCk5wZFaNIMp5LGuU+LBeALErK69
- DwQkH+3XQw5lHkTiWWtQ8KnenfDqLmkHsNll7f7wD8t7xfu3AuxFYN5r4a+ipbujf8yq
- DE48jyLh4SANyUYUB2o2aaEyVDZhNIodw9whsbwAZwYgCP0137DgVzoEDm9aSrIjaE6s
- 7VleqF3RULVfpKYPuo2BnFh6MSJF4utHR37S2lXiPfKmQIQZjhZVMR8d5CoF6cmg9CdQ
- 3NnA==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C58910E193
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 06:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1756362758;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=7AoG9YHih5iXChLTsxRiuXwiWs4qQNPsTE1cJiG9KLo=;
+ b=P3Dh0KkNWqYsgGdVNqVdvP5ZxGC8p/GcUzMeaYMeCk8+Bq2YTFVM/DtngDu8PbIhpRJRJK
+ LLPSrG7ToqV51jPk9mmIovrdSZyslN+Q+1WRIWR0Qn8ttn6WYJZUBkBuIbnl0kLuthgE5n
+ WV3acxrSme5rWkbiu8zfvTtvn/i+9q4=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-413-s2egY00MPFeAMglXSaiK2A-1; Thu, 28 Aug 2025 02:32:36 -0400
+X-MC-Unique: s2egY00MPFeAMglXSaiK2A-1
+X-Mimecast-MFC-AGG-ID: s2egY00MPFeAMglXSaiK2A_1756362755
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-45b7bb85e90so1159205e9.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Aug 2025 23:32:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756361448; x=1756966248;
- h=content-transfer-encoding:in-reply-to:content-language:references
- :cc:to:from:subject:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20230601; t=1756362755; x=1756967555;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=c5s2MMXuiOg5nGJ7QuBLczFPiM2lZQeU9+6vrDAtE94=;
- b=BLWHKZde8izE50iFxXAJ3RAzBtOF2c5S1bUE5VOvayQX4vjGGDw0BlIw/dZAkY6ZOr
- 9voSowPgDEeI28GNLq5nHuO4w3z+sfv1hpteN+xNmpaC2cV3kOtFPjf3FswS5Gbc449B
- JYEVuOdpC8X3qdpwHqVrlruGw/K26lymMZ/WnguL2904CwAOzP7oi20LomUXjIGrmRTu
- rQBnGhyRDF0pmsWAVCeSSLpXAapetx7ru2sQpwP8ggMCc9ywpegtyX7MsWTljKSdZf1b
- Ws+hVCBLCc7KGx8BA1yrUwFbLWQtzPLIAh7Ii2st0QXycpWNpolUXriuz5/W2GKp/oVi
- V4Fw==
-X-Gm-Message-State: AOJu0Yzq1RIw0Is/3ByxXg1EODQkpqY3zXjVTOvGoG2djmrtJcSUCAmL
- Gy2OQO+v3H30D8ufcu3dF9mv7MQYk+Bx8p7nQI4wUD0NKPbJiieGOSYF
-X-Gm-Gg: ASbGncu5KltxiAshorfGjkvqXfVbWOuRSfbvcXqDHuB7BLWzWIQ7ZbE+WWZYwknjenD
- SBubfEtVFKHeCHqwOYPeqaOdMliBgNSAL6QgZ2paiUlaFB1AqzlNS+mIkQeYcq5cTkEVMSgrFv0
- Vm+3uFd6IChLXAZGZAooh4xEmlyBLOhsL4g7h82yS0pz+W4UwvvXuvVyL0P2awW5xeMxpUOU8lo
- EBgbfXjAIn2dbX40PHEdehpQG63vGi7Hd77VyKy1H/AFG/dvWvApcaFcB1b1ghLD0ZHuW1EURyz
- 2mtr8Na/AludcwBLfSDZBtsChtac2n0aCDlF2iPJd5UnJo3+RU/NVFaWM1jPCm0YZfY0hzQAOcI
- OMm2PkPENTbyBpFDigzwZ2fefeLS5E0cB+nSSSkn1vt/ICIwsjfYlavT2yFdWGXGkGyJCRGtxUy
- cRi2p5sg==
-X-Google-Smtp-Source: AGHT+IHAxgMAJT1QOW6dTYGJwUU/9nVZcWFwsZj60x33zxzk42O+Nn/DCojQZUJj12IBQXKF4kHjzQ==
-X-Received: by 2002:a17:906:7315:b0:afd:f70a:1d26 with SMTP id
- a640c23a62f3a-afe28f175e0mr2067947566b.24.1756361448076; 
- Wed, 27 Aug 2025 23:10:48 -0700 (PDT)
-Received: from [192.168.0.52] (217-62-96-139.cable.dynamic.v4.ziggo.nl.
- [217.62.96.139]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-afe6bb1337bsm948039666b.107.2025.08.27.23.10.46
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 27 Aug 2025 23:10:47 -0700 (PDT)
-Message-ID: <d0542c33-e4ce-493b-8e08-78c3b7c3ce43@gmail.com>
-Date: Thu, 28 Aug 2025 08:10:45 +0200
+ bh=7AoG9YHih5iXChLTsxRiuXwiWs4qQNPsTE1cJiG9KLo=;
+ b=H5qaq1OkJrEXC2ogL2/hx/5AqAckiBok2U3ycPx3o1Qn0G+oRaxMn6r7LY1imDEa/N
+ Cw63FphydqjuXf8x9QhefAX5+W9bKXpjMD34JnaB5hooh1uUJnF5ti7+LbZs7gZEqRY5
+ GaDWfL7Zqx29EIUN238l6QBJsWtlV990RCM+I8Ouh6DwfRoLKGxWZWpykpV3mNdcu1A/
+ vlyBFNqHit4l9JXaW5FZQ39NilLcIrCpgMJCfO9BBab/ZbPhJM0nyr/0u1y9z1YdqAlP
+ Sf9GSaLecJxopLiTby+Ml6Kh3rj6uRsRfXgVblvfq6SCbTLGqtSoJDv3ULLDZvi1k0lM
+ id9A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX7EhvJ5eym9+AxC96jZ3XW7DAZfCo9yt+wfxt7Ef/qSku6M/XkYawycTyo+ob0jbFtRBQ1dKvvTo4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyPbBpWk2A4uCILYTxHIiwWY7UlGIiatxbkXsSWm7vts/mBykTJ
+ UJheZ3m1Qmd0rcqyG6/BDI5ZolNBAN/g+Y61AdLPhmH2TToRH/WzleLL03fgMBda5oi25eebtxS
+ r7J0kb37UH+hMBCFmhROJCde0AlZ2Lk5TONGoH0pUWmIyKHS7bHyLbwKIvfRBomxkUD4KbQ==
+X-Gm-Gg: ASbGncvNHbhuAWoC+HJ3RdwRflw6Ic6TxlJycelL+VIAc6+V6yjxP617JmfLb+9/Nwj
+ NMmaGbqVfggzDHo8oojv+o0hOIAmmE2KdyuxVytDikNtZphP7EdHJRBr1d0UCdiQ4Fbfb3EDb0p
+ 5pug0rGo7xJIWc38hQz878Cg6p62/rrOSv0JoSQ+U9R9y2G7HovwRjKhX79Ihdr1mXCZ8hlYe5E
+ p1MmkjSONj0x87WJvRey7285P9Py35AruYwduXs5lKMvc7vxLFgz0oWENCBH0qDBrrZLF00nyFQ
+ YiNf+7JE2NZtk7I=
+X-Received: by 2002:a05:600c:c493:b0:45b:7bba:c79f with SMTP id
+ 5b1f17b1804b1-45b7bbaca16mr4471355e9.13.1756362754958; 
+ Wed, 27 Aug 2025 23:32:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfmgTsZg/VX13PXkOipuoNoPe3imAyCZvKudh2VGqkUeTRG4jj92qcBhtntnqYiRsxLL3FQg==
+X-Received: by 2002:a05:600c:c493:b0:45b:7bba:c79f with SMTP id
+ 5b1f17b1804b1-45b7bbaca16mr4471145e9.13.1756362754535; 
+ Wed, 27 Aug 2025 23:32:34 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-3c70e4ba046sm25390318f8f.1.2025.08.27.23.32.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Aug 2025 23:32:33 -0700 (PDT)
+Date: Thu, 28 Aug 2025 08:32:33 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20250828-hypersonic-colorful-squirrel-64f04b@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Issue or bug concerning DRRS on old i7-4980HQ
-From: =?UTF-8?Q?Ren=C3=A9_Herman?= <rene.herman@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-References: <3aebffd3-b3b7-4c3c-a7ac-816965d0204d@gmail.com>
- <77f3386d-756b-4cca-b317-1b3c5ad725fb@gmail.com>
- <b2250460639d81b79f15995c9769eac21849766b@intel.com>
- <d9d1a7ff-307a-4964-98bf-209781ffc6fe@gmail.com>
- <f9b10acb19bbe19813b4bebd9ac666b397d9c7c0@intel.com>
- <9436a617-ae53-4702-9ac3-27d9c1267626@gmail.com>
- <57adde32e4fa7fc4c74d8cba39249af1399de609@intel.com>
- <6020c152-9de5-40cc-aedf-7024df45d27c@gmail.com>
- <2d1e5f5e70d67361e3415dbbd764bfc0a4ff5a17@intel.com>
- <9b7e2c8a-e728-4d10-8787-76d4834d1e26@gmail.com>
- <6f55d851-53ac-403b-b2e0-834df94b16bf@gmail.com>
-Content-Language: en-US
-In-Reply-To: <6f55d851-53ac-403b-b2e0-834df94b16bf@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="xhzf22kj3z7coqpl"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,19 +102,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21-08-2025 21:24, René Herman wrote:
 
-> We managed to install the 6.16 mainline kernel and generate the 
-> requested dmesg and VBT logs, with the requested "drm.debug=0xe 
-> log_buf_len=4M ignore_loglevel" kernel parameters. They are attached at
-> 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3441#note_3064300
-> 
-> Hope this helps. Many thanks for looking.
+--xhzf22kj3z7coqpl
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-Hi all.
+Hi,
 
-Was this useful?
+Here's this week drm-misc-fixes PR
 
-Kind regards,
-Rene.
+Maxime
+
+drm-misc-fixes-2025-08-28:
+Several nouveau fixes to remove unused code, fix an error path and be
+less restrictive with the formats it accepts. A fix for amdgpu to pin
+vmapped dma-buf, and a revert for tegra for a regression in the dma-buf
+/ GEM code.
+The following changes since commit 1a2cf179e2973f6801c67397ecc987391b084bcf:
+
+  Merge drm/drm-fixes into drm-misc-fixes (2025-08-20 16:08:49 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-08-28
+
+for you to fetch changes up to 16fdb3cc6af8460f23a706512c6f5e7dfdd4f338:
+
+  Revert "drm/tegra: Use dma_buf from GEM object instance" (2025-08-26 10:41:27 +0200)
+
+----------------------------------------------------------------
+Several nouveau fixes to remove unused code, fix an error path and be
+less restrictive with the formats it accepts. A fix for amdgpu to pin
+vmapped dma-buf, and a revert for tegra for a regression in the dma-buf
+/ GEM code.
+
+----------------------------------------------------------------
+Alice Ryhl (1):
+      drm/gpuvm: fix various typos in .c and .h gpuvm file
+
+James Jones (1):
+      drm/nouveau/disp: Always accept linear modifier
+
+Thomas Zimmermann (2):
+      drm/amdgpu: Pin buffers while vmap'ing exported dma-buf objects
+      Revert "drm/tegra: Use dma_buf from GEM object instance"
+
+Timur Tabi (3):
+      drm/nouveau: fix error path in nvkm_gsp_fwsec_v2
+      drm/nouveau: remove unused increment in gm200_flcn_pio_imem_wr
+      drm/nouveau: remove unused memory target test
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c     | 34 ++++++++++-
+ drivers/gpu/drm/drm_gpuvm.c                     | 78 ++++++++++++-------------
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c         |  4 ++
+ drivers/gpu/drm/nouveau/nvkm/falcon/gm200.c     | 15 ++---
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/fwsec.c |  5 +-
+ drivers/gpu/drm/tegra/gem.c                     |  2 +-
+ include/drm/drm_gpuvm.h                         | 10 ++--
+ 7 files changed, 88 insertions(+), 60 deletions(-)
+
+--xhzf22kj3z7coqpl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaK/4AQAKCRAnX84Zoj2+
+dkEEAYDpd0YqFdGm9BGLBX+ExSDguR4FXLpIfdqxzG6EJoktzNXweJcV9HXhC2AT
+waiATMUBfR2v2dsmPYo2/ACCLvLsmbz+Suzjg42Wau45mht7nnKgJaNO+SsDm0AL
+2rWgo3t/4A==
+=TtXz
+-----END PGP SIGNATURE-----
+
+--xhzf22kj3z7coqpl--
+
