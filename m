@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A27B39CFE
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29297B39D00
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A5210E995;
-	Thu, 28 Aug 2025 12:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9876A10E991;
+	Thu, 28 Aug 2025 12:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nAPOXMZN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cbUZ+8g/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 159CD10E990;
- Thu, 28 Aug 2025 12:21:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D32C10E335;
+ Thu, 28 Aug 2025 12:21:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383693; x=1787919693;
+ t=1756383697; x=1787919697;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8Suy7m3gh6o923BwWhTe/QR2Y+6cXiyTXQStnCFFP90=;
- b=nAPOXMZNTrhREG0mVL4Kl1J6kG6Z22ap2NTUfnOMBttOxzc1huWT/BHo
- mKHVr1LSlk5LPQibP3WPpU4YDY3s8GhUvM6MPMXbat/lREkb00q/O1/e+
- ruzCXkORAIRlqAlrncGlS18vq9fcgn41kHb5wnUUXVl31cICNgU9Jao0A
- VBqxxc6PrYgS3yaQ/OInA7nezbGfdUxnXPWn9Vnz78cXs+4rsAdrj6004
- /vELxocopxAWvMZGhVb6co+WBEJX9GbMWGaE5iFLvy5u/eubbYLY6MItc
- U1uIf4M3JuNa4bQeS2746w1d2G9YJeV3H7Pd0JH/YkGVCTr/HnrmFionL w==;
-X-CSE-ConnectionGUID: q00EZ2a2QDmECpVYvbUoyQ==
-X-CSE-MsgGUID: GI3bw2CARHqYzcnCvYVVcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848635"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848635"
+ bh=1Saty0RyAkPEvHjOgtC2s2VNXAole3dS7AeT8fvKivg=;
+ b=cbUZ+8g/a0yLxXOdHFDykUu8cXgh4jXBVjs43g3N59+Q0P4KYbHpOamq
+ 7E62S9T7+LbGID1XiJDV+VgKIO2iNLBVJri5/T8YI54cRQuQUrSQVZ4WV
+ U92XE18HDmoBIwj/WadjQmtmO6LNtWADZT1SO7PlMrWp1uqGKJHysW3Ay
+ RpFZ7KVUxc2YgOGih200++84FFru5VT1mcTec2bB2Z0zVifsGM7sHUIb9
+ haD6w7OtAxL08Lut6cwTe4ZlCPgdSjTVUp7prcDshoLrbYI3iXDV6hn67
+ aWmWY3it5EpeH7CnYD9OVJibdRFYSHfOdZyhWQVu03/Sa4Wn0ozzOvM2s Q==;
+X-CSE-ConnectionGUID: gY3i/43rQhm298NhQBkISw==
+X-CSE-MsgGUID: byRTibGbQouEaFQoIaaZIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848639"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848639"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:33 -0700
-X-CSE-ConnectionGUID: LUMCkUtBRfOmSZmerF4KAw==
-X-CSE-MsgGUID: Nv4FV1JETOmuIwBexHaASg==
+ 28 Aug 2025 05:21:37 -0700
+X-CSE-ConnectionGUID: qLeqAVcXQHKT6vvkAayeSQ==
+X-CSE-MsgGUID: BbrHIqeET526N8tMZwqtpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270665"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270687"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:31 -0700
+ 28 Aug 2025 05:21:36 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 05/20] drm/i915/dsi-pll: use generic poll_timeout_us() instead
- of wait_for()
-Date: Thu, 28 Aug 2025 15:20:47 +0300
-Message-ID: <476fcc5aad9e2ddbf6d8c14bd5ff5cbf071c5dca.1756383233.git.jani.nikula@intel.com>
+Subject: [PATCH 06/20] drm/i915/gmbus: use generic poll_timeout*() instead of
+ wait_for*()
+Date: Thu, 28 Aug 2025 15:20:48 +0300
+Message-ID: <564b397352c53a1116519fb2d53050c0426bc0dc.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 References: <cover.1756383233.git.jani.nikula@intel.com>
@@ -74,58 +74,63 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Prefer generic poll helpers over i915 custom helpers.
 
-The functional change is losing the exponentially growing sleep of
-wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
+The "two tier" wait_for_us() + wait_for() combination appeared without
+much explanation in commit 4e6c2d58ba86 ("drm/i915: Take forcewake once
+for the entire GMBUS transaction"). Try to mimic roughly the same with
+the generic helpers.
 
-Use an arbitrary constant 500 us sleep instead. The timeout remains at
-20 ms.
+wait_for_us() with 10 us or shorter timeouts ends up in
+_wait_for_atomic(). Thus use poll_timeout_us_atomic() for the first try,
+with the same 2 us timeout and no sleep.
+
+For the fallback, the functional change is losing the exponentially
+growing sleep of wait_for(), which used to be 10, 20, 40, ..., 640, and
+1280 us. Use an arbitrary constant 500 us sleep instead. The timeout
+remains at 50 ms.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-index 83afe1315e96..f078b9cda96c 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
-@@ -25,12 +25,12 @@
-  *	Yogesh Mohan Marimuthu <yogesh.mohan.marimuthu@intel.com>
-  */
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 063335053d13..358210adb8f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -30,13 +30,13 @@
+ #include <linux/export.h>
+ #include <linux/i2c-algo-bit.h>
+ #include <linux/i2c.h>
 +#include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/string_helpers.h>
  
- #include <drm/drm_print.h>
+ #include <drm/display/drm_hdcp_helper.h>
  
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
 -#include "i915_utils.h"
  #include "intel_de.h"
+ #include "intel_display_regs.h"
  #include "intel_display_types.h"
- #include "intel_dsi.h"
-@@ -214,6 +214,8 @@ void vlv_dsi_pll_enable(struct intel_encoder *encoder,
- 			const struct intel_crtc_state *config)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-+	u32 val;
-+	int ret;
+@@ -415,11 +415,14 @@ static int gmbus_wait(struct intel_display *display, u32 status, u32 irq_en)
+ 	intel_de_write_fw(display, GMBUS4(display), irq_en);
  
- 	drm_dbg_kms(display->drm, "\n");
+ 	status |= GMBUS_SATOER;
+-	ret = wait_for_us((gmbus2 = intel_de_read_fw(display, GMBUS2(display))) & status,
+-			  2);
++
++	ret = poll_timeout_us_atomic(gmbus2 = intel_de_read_fw(display, GMBUS2(display)),
++				     gmbus2 & status,
++				     0, 2, false);
+ 	if (ret)
+-		ret = wait_for((gmbus2 = intel_de_read_fw(display, GMBUS2(display))) & status,
+-			       50);
++		ret = poll_timeout_us(gmbus2 = intel_de_read_fw(display, GMBUS2(display)),
++				      gmbus2 & status,
++				      500, 50 * 1000, false);
  
-@@ -231,9 +233,10 @@ void vlv_dsi_pll_enable(struct intel_encoder *encoder,
- 
- 	vlv_cck_write(display->drm, CCK_REG_DSI_PLL_CONTROL, config->dsi_pll.ctrl);
- 
--	if (wait_for(vlv_cck_read(display->drm, CCK_REG_DSI_PLL_CONTROL) &
--						DSI_PLL_LOCK, 20)) {
--
-+	ret = poll_timeout_us(val = vlv_cck_read(display->drm, CCK_REG_DSI_PLL_CONTROL),
-+			      val & DSI_PLL_LOCK,
-+			      500, 20 * 1000, false);
-+	if (ret) {
- 		vlv_cck_put(display->drm);
- 		drm_err(display->drm, "DSI PLL lock failed\n");
- 		return;
+ 	intel_de_write_fw(display, GMBUS4(display), 0);
+ 	remove_wait_queue(&display->gmbus.wait_queue, &wait);
 -- 
 2.47.2
 
