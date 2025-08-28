@@ -2,79 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889FEB3ACBA
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 23:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B33CAB3ACC1
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 23:32:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79C2F10EAE3;
-	Thu, 28 Aug 2025 21:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDBE810EAE7;
+	Thu, 28 Aug 2025 21:32:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="F5wZyP/t";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LEVn+ZDQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C17310EAE4
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:28:17 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFAFF10EAE8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756416496;
+ s=mimecast20190719; t=1756416768;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Lv6/zQCqAV4OX9ZdJAAYbVMFPNXv5eYlJHCs5O334rc=;
- b=F5wZyP/t39TwSaIC3FSMtE4QhNHdIAzZAJvwB3MK54Tdw7F/JFijwp/th+V4UJc4Cu9I9M
- wshi+XujZOyguZk6OqoS7GQxEojjy/eCyDYpl5nyftnenuCAnkmx5FF60Sdd/m0TnDn8bv
- CJbHXQw6mT3C/iLG/gs3KVPx6GLfsv4=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=C0j74VLoZzIyA22SXyOfjOP2Dou5xBRBs0saBWJsMOI=;
+ b=LEVn+ZDQ5hglyGKhmzDxdcisWrRDnb/Gp2DGSMwrw+6rhI9mLdJofncO8xKMgL5WrkO/xv
+ ZIExn712iM06Yol9DPij4T4APRvLQJ2fov5BgIjeO4WKYmCx0hDmwKcNpOrQjZdIQTPnVG
+ K1es1CnBLTsG6ytAh4/tWa4E3ADQteY=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-205-jQVZ2f8qM26gp7OxI3HUvw-1; Thu, 28 Aug 2025 17:28:14 -0400
-X-MC-Unique: jQVZ2f8qM26gp7OxI3HUvw-1
-X-Mimecast-MFC-AGG-ID: jQVZ2f8qM26gp7OxI3HUvw_1756416494
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3ccfd9063a0so473605f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:28:14 -0700 (PDT)
+ us-mta-656-dj2FbS6DOU6dsLb7wmnsiw-1; Thu, 28 Aug 2025 17:32:46 -0400
+X-MC-Unique: dj2FbS6DOU6dsLb7wmnsiw-1
+X-Mimecast-MFC-AGG-ID: dj2FbS6DOU6dsLb7wmnsiw_1756416765
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3ce65accfc7so656241f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:32:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756416493; x=1757021293;
+ d=1e100.net; s=20230601; t=1756416765; x=1757021565;
  h=content-transfer-encoding:in-reply-to:autocrypt:content-language
  :references:cc:to:from:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=Lv6/zQCqAV4OX9ZdJAAYbVMFPNXv5eYlJHCs5O334rc=;
- b=llc2/1KnR9usbnauqznzJmmHGa9gGnnFx06ob9UMLDnsuUUrD/yyxZHfCrclXO9Jjq
- fQ6S+19SfEG1xwSLFb3Ghp4QMZVs09+APRZm0cvInTthuhGho7KlG7NWu6oRRh52dpLY
- MmRMrZdr3Y4RaIbNbqNW/2W7P/HxWKp7/2d91aju77GA4ar8yz4yZMnqYC0vjDQhknLw
- cxaM7mZRuEsEvdIL+akintPGSYaWnKbRjayNYh1yll6b2lX2shRaSI7QFtc9bWkehxJP
- 2dUKg6TjmvRLMJAkyGfBtPbwsDvezXy3tj3cCoPUpWkEY2PJxijzp3LkVh6yjWfwDAOx
- qOiA==
+ bh=C0j74VLoZzIyA22SXyOfjOP2Dou5xBRBs0saBWJsMOI=;
+ b=gBD/1MfImeF8XFDHQzx++9bF62q026YUs6CQY9Ndcwmx/5eXS3sUwyyT/E6tx4E9Y6
+ XCxdwcoUvx6P839cH0QL+Ojxv+9RQrilej/P6RPhLxow6uXcuN9M69UmpejzAR5rQgGN
+ aDNUFz42SKgbs4Nt9xGn1NfgO5UYvqWi0jQIRJL3KLjKKyKZt5/AFms/4v0zPkApXuAN
+ VsQiqLVZbLHlc27YStNN9Wfa3ZCJ9KEQxtGba4iUl8rF3Pdk7sS9Hy8r2TN+GRE7b9M7
+ qP0fMrVkDQULz9nIEp5p3A5C62QCW4X9AEyETBuSiHM+QXjK7Iu9BX9RZdyJ9iI6DJOF
+ Kdtw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVWRRTIByEEZhXUg/awXunxokziKVB9IRlQ5eWg1xqw8Z4R/jKgCwxtLHW7h/RgeUQ39TPlRsX8QGc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxMhdDbsm7Pey4NP6rwWJfsT170wFdtVCWNS5UbCF6pQkalFUfG
- Q/a00t9ChFeVwHSmETdC39Wyhe+ZsQcBVobSnZhv86jzbfOSNwQnLscSbtXOI710FzyDoeqGrII
- T0mY5Rp9aYf7wLgXDA2sIDE7uZlhPnyyNrzwI8pJyZGKZiG3T3eFJ4lxH47d25DRW9gGTbg==
-X-Gm-Gg: ASbGncvYN8umUenVbQftM9xf6IDzL23Ce+nnLgkh560OC1QcswwEXYEZXvYtTh8VF89
- ZnGO/nZM3sBiiSo7pshbjEuKVngsq45Y8bKcy0geZZtEwH+z7UZjkycr8uYsbh27yYdYQmHwTT5
- FbiJwLGLSPtIqcu1GqOY8rJLP5zhL4Kv16011K14wK3O9/LCKOTu7IT/lPWXdLskmY4Jx2T6Gz1
- VftVamTKu7JQypKlKK9SZIoBKFcQSExfFv0uoJdUJnC0dnufRXlJjcs29mv0VoGm/3Lxjt2bU6f
- Mp29L3N0VxfgrNYNPkJ6eCCazX4/HW5ZtKE3Gk+FqpNKse3/pyshXIn9+jbxECfdb7gwj46aRi3
- k/6nHOpNtOlBHU9BcaMu5qdwXxxMRnZaD+4wSrZdIb2A4o3ehVG7CjbaSMivLyPii2QY=
-X-Received: by 2002:a5d:5f44:0:b0:3b7:905e:2a32 with SMTP id
- ffacd0b85a97d-3c5db8aae79mr20134711f8f.12.1756416493549; 
- Thu, 28 Aug 2025 14:28:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEpPBB1UBrq7ouKLPRciUAnI93U7all+alRRSZw1tCrq3FgG7cFJaTXK6AO/BVAXPJcbW3u9w==
-X-Received: by 2002:a5d:5f44:0:b0:3b7:905e:2a32 with SMTP id
- ffacd0b85a97d-3c5db8aae79mr20134700f8f.12.1756416493054; 
- Thu, 28 Aug 2025 14:28:13 -0700 (PDT)
+ AJvYcCXinMzq+9Q14GUgU0ehEKKQVM2yFs3HPR5r/EMNURT6eYovsptqE+d7Iz3uCiyZH0SbguBGi3InH34=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwKO41Ym5l8eviD+Sjco4Oz3+squrJzrW27khqBFN4P+UmLTviq
+ sLzHspGBNByJmjg1aypvSdvwPpsj6jKeVqhMxRRGJ4Ek0E++Lb4DFSmaC/6DmlBnnXDWqHAiDuT
+ Cabl+VsW3vDKWvccSe0fpBd3Aw4E7e3VcCK5mCBZaAlr4SzM0ajzlmzQV+dglMpMFfhMmKQ==
+X-Gm-Gg: ASbGncsFbuyuF5lB4LBZ9gZxIGARYZlLzluW7449LKvSlhNPnkqXJf5jDRh+CRxwftH
+ MCGMiYkyAPpeCjRchZfFEdlnSYbOyAG8IlqsXHK113YqImv0X+DkasZBnOIycLfdy5O9O3n7iF8
+ IMDARt0nujR0oqKqWXqKyCIXE2v2O5bLc65CvyCSNzwVrAphzHNa2g/HHHG3zT5s8VFN7Eipy9t
+ RLQNLSDqxdnzS8YltnFZwhXsHUo5d/tAC170DpA4cMabiWa+l8BKivgPHz1CUmOoIWnKALiJnud
+ 7Al3oWw5NY19RfwQ/ubJYgCpQouNeQQQHmGXNHCF+BDc7DChefClt7dV7WwAGlQneScsBiy5Zaw
+ ++Vht3k/dR0cMcca27CMCncnbKHGBIKhwELkme5sYFGAzauP13PzU6aN3mD9TqYE1z9M=
+X-Received: by 2002:a05:6000:238a:b0:3b6:1a8c:569f with SMTP id
+ ffacd0b85a97d-3c5dac171cemr18072934f8f.1.1756416765106; 
+ Thu, 28 Aug 2025 14:32:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHspPYzy9VDcs1nRFH5znRALMbdoBByGfKNseGZml3VPVB+lInB01b2p18L3b1N1oh8yoq0TA==
+X-Received: by 2002:a05:6000:238a:b0:3b6:1a8c:569f with SMTP id
+ ffacd0b85a97d-3c5dac171cemr18072917f8f.1.1756416764626; 
+ Thu, 28 Aug 2025 14:32:44 -0700 (PDT)
 Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
  (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
  [2003:d8:2f28:c100:2225:10aa:f247:7b85])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b7e88785bsm9897325e9.14.2025.08.28.14.28.12
+ ffacd0b85a97d-3cf33bd7cebsm716764f8f.40.2025.08.28.14.32.43
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 14:28:12 -0700 (PDT)
-Message-ID: <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
-Date: Thu, 28 Aug 2025 23:28:11 +0200
+ Thu, 28 Aug 2025 14:32:44 -0700 (PDT)
+Message-ID: <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
+Date: Thu, 28 Aug 2025 23:32:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: stupid and complicated PAT :)
@@ -98,6 +98,7 @@ References: <20250820143739.3422-1-christian.koenig@amd.com>
  <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
  <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
  <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
+ <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
  dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
@@ -142,9 +143,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
+In-Reply-To: <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: FI0yi49Czd6jYx9EhWAtOJnlvEFyhg9Ya1NMb6bjLoE_1756416494
+X-Mimecast-MFC-PROC-ID: 86iITItyb5zy7PbEP6FY3n3o3l05n3v-IBSSg1uf5TE_1756416765
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -164,114 +165,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28.08.25 23:18, David Hildenbrand wrote:
-> On 26.08.25 18:09, Christian König wrote:
->> On 26.08.25 14:07, David Hildenbrand wrote:
->>>>
->>>>> 2) We add another interface that consumes PFNs, but explicitly states
->>>>>       that it is only for ordinary system RAM, and that the user is
->>>>>       required for updating the direct map.
+On 28.08.25 23:28, David Hildenbrand wrote:
+> On 28.08.25 23:18, David Hildenbrand wrote:
+>> On 26.08.25 18:09, Christian König wrote:
+>>> On 26.08.25 14:07, David Hildenbrand wrote:
 >>>>>
->>>>>       We could sanity-check the direct map in debug kernels.
+>>>>>> 2) We add another interface that consumes PFNs, but explicitly states
+>>>>>>        that it is only for ordinary system RAM, and that the user is
+>>>>>>        required for updating the direct map.
+>>>>>>
+>>>>>>        We could sanity-check the direct map in debug kernels.
+>>>>>
+>>>>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
+>>>>>
+>>>>> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
 >>>>
->>>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
->>>>
->>>> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
+>>>> It's all a bit tricky :(
 >>>
->>> It's all a bit tricky :(
->>
->> I would rather say horrible complicated :(
->>
+>>> I would rather say horrible complicated :(
+>>>
+>>>>>>
+>>>>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
+>>>>>>        system RAM differently.
+>>>>>>
+>>>>>>
+>>>>>> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
+>>>>>>
+>>>>>> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
 >>>>>
->>>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
->>>>>       system RAM differently.
+>>>>> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
 >>>>>
->>>>>
->>>>> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
->>>>>
->>>>> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
+>>>>> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
 >>>>
->>>> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
+>>>> I mean, the use case of "allocate pages from the buddy and fixup the linear map" sounds perfectly reasonable to me. Absolutely no reason to get PAT involved. Nobody else should be messing with that memory after all.
 >>>>
->>>> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
+>>>> As soon as we are talking about other memory ranges (iomem) that are not from the buddy, it gets weird to bypass PAT, and the question I am asking myself is, when is it okay, and when not.
 >>>
->>> I mean, the use case of "allocate pages from the buddy and fixup the linear map" sounds perfectly reasonable to me. Absolutely no reason to get PAT involved. Nobody else should be messing with that memory after all.
+>>> Ok let me try to explain parts of the history and the big picture for at least the graphics use case on x86.
 >>>
->>> As soon as we are talking about other memory ranges (iomem) that are not from the buddy, it gets weird to bypass PAT, and the question I am asking myself is, when is it okay, and when not.
->>
->> Ok let me try to explain parts of the history and the big picture for at least the graphics use case on x86.
->>
->> In 1996/97 Intel came up with the idea of AGP: https://en.wikipedia.org/wiki/Accelerated_Graphics_Port
->>
->> At that time the CPUs, PCI bus and system memory were all connected together through the north bridge: https://en.wikipedia.org/wiki/Northbridge_(computing)
->>
->> The problem was that AGP also introduced the concept of putting large amounts of data for the video controller (PCI device) into system memory when you don't have enough local device memory (VRAM).
->>
->> But that meant when that memory is cached that the north bridge always had to snoop the CPU cache over the front side bus for every access the video controller made. This meant a huge performance bottleneck, so the idea was born to access that data uncached.
-> 
-> Ack.
-> 
->>
->>
->> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
->>
->> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
->>
->> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
-> 
-> That makes perfect sense. I assume we might or might not have "struct
-> page" (pfn_valid) for the iomem, depending on where these areas reside,
-> correct?
-> 
->>
->>
->> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
->>
->>>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
+>>> In 1996/97 Intel came up with the idea of AGP: https://en.wikipedia.org/wiki/Accelerated_Graphics_Port
 >>>
->>> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
+>>> At that time the CPUs, PCI bus and system memory were all connected together through the north bridge: https://en.wikipedia.org/wiki/Northbridge_(computing)
+>>>
+>>> The problem was that AGP also introduced the concept of putting large amounts of data for the video controller (PCI device) into system memory when you don't have enough local device memory (VRAM).
+>>>
+>>> But that meant when that memory is cached that the north bridge always had to snoop the CPU cache over the front side bus for every access the video controller made. This meant a huge performance bottleneck, so the idea was born to access that data uncached.
 >>
->> I think the most defensive approach for a quick fix is this change here:
+>> Ack.
 >>
->>    static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
->>    {
->> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
->> -                        cachemode2protval(pcm));
->> +       if (pcm != _PAGE_CACHE_MODE_WB)
->> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
->> +                                cachemode2protval(pcm));
->>    }
+>>>
+>>>
+>>> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
+>>>
+>>> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
+>>>
+>>> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
 >>
->> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
+>> That makes perfect sense. I assume we might or might not have "struct
+>> page" (pfn_valid) for the iomem, depending on where these areas reside,
+>> correct?
 >>
->> What do you think?
+>>>
+>>>
+>>> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
+>>>
+>>>>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
+>>>>
+>>>> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
+>>>
+>>> I think the most defensive approach for a quick fix is this change here:
+>>>
+>>>     static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
+>>>     {
+>>> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
+>>> -                        cachemode2protval(pcm));
+>>> +       if (pcm != _PAGE_CACHE_MODE_WB)
+>>> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
+>>> +                                cachemode2protval(pcm));
+>>>     }
+>>>
+>>> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
+>>>
+>>> What do you think?
+>>
+>> This feels like too big of a hammer. In particular, it changes things
+>> like phys_mem_access_prot_allowed(), which requires more care.
+>>
+>> First, I thought we should limit what we do to vmf_insert_pfn_prot()
+>> only. But then I realized that we have stuff like
+>>
+>> 	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+>>
+>> I'm still trying to find out the easy way out that is not a complete hack.
+>>
+>> Will the iomem ever be mapped by the driver again with a different cache
+>> mode? (e.g., WB -> UC -> WB)
 > 
-> This feels like too big of a hammer. In particular, it changes things
-> like phys_mem_access_prot_allowed(), which requires more care.
+> What I am currently wondering is: assume we get a
+> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
+> there was a previous registration, then we could do
 > 
-> First, I thought we should limit what we do to vmf_insert_pfn_prot()
-> only. But then I realized that we have stuff like
+> (a) No previous registration: don't modify pgprot. Hopefully the driver
+>       knows what it is doing. Maybe we can add sanity checks that the
+>       direct map was already updated etc.
 > 
-> 	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+> (b) A previous registration: modify pgprot like we do today.
 > 
-> I'm still trying to find out the easy way out that is not a complete hack.
-> 
-> Will the iomem ever be mapped by the driver again with a different cache
-> mode? (e.g., WB -> UC -> WB)
+> System RAM is the problem. I wonder how many of these registrations we
+> really get and if we could just store them in the same tree as !system
+> RAM instead of abusing page flags.
 
-What I am currently wondering is: assume we get a 
-pfnmap_setup_cachemode_pfn() call and we could reliably identify whether 
-there was a previous registration, then we could do
+commit 9542ada803198e6eba29d3289abb39ea82047b92
+Author: Suresh Siddha <suresh.b.siddha@intel.com>
+Date:   Wed Sep 24 08:53:33 2008 -0700
 
-(a) No previous registration: don't modify pgprot. Hopefully the driver
-     knows what it is doing. Maybe we can add sanity checks that the
-     direct map was already updated etc.
+     x86: track memtype for RAM in page struct
+     
+     Track the memtype for RAM pages in page struct instead of using the
+     memtype list. This avoids the explosion in the number of entries in
+     memtype list (of the order of 20,000 with AGP) and makes the PAT
+     tracking simpler.
+     
+     We are using PG_arch_1 bit in page->flags.
+     
+     We still use the memtype list for non RAM pages.
 
-(b) A previous registration: modify pgprot like we do today.
 
-System RAM is the problem. I wonder how many of these registrations we 
-really get and if we could just store them in the same tree as !system 
-RAM instead of abusing page flags.
+I do wonder if that explosion is still an issue today.
+
 
 -- 
 Cheers
