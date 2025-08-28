@@ -2,30 +2,114 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82386B3A768
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 19:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31053B3A771
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 19:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD2310EA5B;
-	Thu, 28 Aug 2025 17:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8289510EA59;
+	Thu, 28 Aug 2025 17:15:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="U1vmJQuL";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E61510EA5A;
- Thu, 28 Aug 2025 17:14:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2876320989927059256=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv?=
- =?utf-8?q?4=2C1/2=5D_drm/buddy=3A_Optimize_free_block_management_with_RB_tr?=
- =?utf-8?q?ee?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Aug 2025 17:14:51 -0000
-Message-ID: <175640129125.279562.4450616971147719335@1538d3639d33>
-X-Patchwork-Hint: ignore
-References: <20250828105646.2280-1-Arunpravin.PaneerSelvam@amd.com>
-In-Reply-To: <20250828105646.2280-1-Arunpravin.PaneerSelvam@amd.com>
+Received: from mail-pj1-f74.google.com (mail-pj1-f74.google.com
+ [209.85.216.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA9110EA58
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 17:15:19 +0000 (UTC)
+Received: by mail-pj1-f74.google.com with SMTP id
+ 98e67ed59e1d1-325e31cecd6so1072053a91.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 10:15:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1756401319; x=1757006119;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:from:subject:message-id:references
+ :mime-version:in-reply-to:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=g/D1R1ws5ojuN4WG3pCUGyU24UMqyGj6lojr+YSYQ0c=;
+ b=U1vmJQuLewXbWwDYMROWIh9ioIbwYsAWVqk5XfQl0adeNoFvLXZFXXlev9iz92jZha
+ mLQmuAUowXzr10nQqJEIYLCIbcp9yzifkSnS6pi270qIR6/gGbLZPrvWqPLaH5UCg4m0
+ fwlpOEOLaO0aUeDWWPoAtxeqiO504/RziIUxgEFM1LJ4Bt0BoB3vZeVb+yP0ofQk5ZiX
+ bYzEh5bcJcndK/i1gsacbvgoNYb4iP6hFnxnbzyG1Q13hrLOPQoQznKFdwueAnA2qc2X
+ /VIcJt+EPbdtXgWqNRrpJOBpRNhw2zMK2D6PiQ6wAthM77kG7xhyminMq6SasZVal18b
+ 0qtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756401319; x=1757006119;
+ h=content-transfer-encoding:cc:to:from:subject:message-id:references
+ :mime-version:in-reply-to:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=g/D1R1ws5ojuN4WG3pCUGyU24UMqyGj6lojr+YSYQ0c=;
+ b=dNGTFJ83/OWU/llH9DxY9QrdZpiKHNClISqsPpV1JJ3u7lDiFGUbgesYFV+96oMKtR
+ w86i+7c2Pnykh6QVVF2VyBc5n1uKBdbWJgz5pdo30+Yijge4327EFREfGBLV2VR+g6eX
+ F7tZ6pSXT2akHhVxs093lgt3GaYetcG4ex+iox6ja1tXpUbLJdevjtolAPG2dTTu73D3
+ oxMoy20jVySuJ7U6NgOcpkAnJwr/psdflPGLegZsGSO/a6zUohspNUWkYANAWORCElQw
+ tv7z1O/0DOBxbSLMSHgYZR4YXxocREhKK3nbYAgUgPwugdNsZa749Gj4Fzd4HfPm0u40
+ r+Ag==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWEP80fYDK4u9ICinI1ED1at7f21fe/eMhgRP2qzoKthn9RkUfDlbNPEh+eWMTshMzwYatrgeDgJ3M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw4uRgAvjhE3iGPsuslURLASRskrc4T/CotLMcAba1kW6au5Y9q
+ m8QNQkDmkgov8gwGiGZLNaNwRAgwJyUXhEM63H70w2GR2FxEpDKCPqeE3zq7CAvLQ3+ENSwb3gt
+ zeDaGxw==
+X-Google-Smtp-Source: AGHT+IEgfCMAj/kPGbx0Dj2C82B+XByTzBEnlSaJgGQHGzaozLp7T19v0PG28aEIfyLg5E6WkydfWYNcBOM=
+X-Received: from pjhk31.prod.google.com ([2002:a17:90a:4ca2:b0:327:9b90:7a79])
+ (user=seanjc job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:90b:1dc3:b0:327:cec7:b8c6
+ with SMTP id 98e67ed59e1d1-327cec7cb53mr1738031a91.32.1756401318775; Thu, 28
+ Aug 2025 10:15:18 -0700 (PDT)
+Date: Thu, 28 Aug 2025 10:15:17 -0700
+In-Reply-To: <874d821e-8ea3-40ac-921b-c19bb380a456@kylinos.cn>
+Mime-Version: 1.0
+References: <20250827023202.10310-1-zhangzihuan@kylinos.cn>
+ <20250827023202.10310-3-zhangzihuan@kylinos.cn> <aK8Sd30K64mbN1Nt@google.com>
+ <874d821e-8ea3-40ac-921b-c19bb380a456@kylinos.cn>
+Message-ID: <aLCOpfNkcQN9P-Wa@google.com>
+Subject: Re: [PATCH v2 02/18] KVM: x86: Use __free(put_cpufreq_policy) for
+ policy reference
+From: Sean Christopherson <seanjc@google.com>
+To: Zihuan Zhang <zhangzihuan@kylinos.cn>
+Cc: "Rafael J . wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, 
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+ Markus Mayer <mmayer@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ zhenglifeng <zhenglifeng1@huawei.com>, "H . Peter Anvin" <hpa@zytor.com>,
+ Zhang Rui <rui.zhang@intel.com>, 
+ Len Brown <lenb@kernel.org>, Nicholas Piggin <npiggin@gmail.com>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Lukasz Luba <lukasz.luba@arm.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, 
+ Fabio Estevam <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>, 
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, 
+ Yicong Yang <yangyicong@hisilicon.com>, linux-pm@vger.kernel.org,
+ x86@kernel.org, kvm@vger.kernel.org, linux-acpi@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-samsung-soc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,153 +122,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2876320989927059256==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Aug 28, 2025, Zihuan Zhang wrote:
+> > Hmm, this is technically buggy.  __free() won't invoke put_cpufreq_poli=
+cy() until
+> > policy goes out of scope, and so using __free() means the code is effec=
+tively:
+> >=20
+> > 		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
+> > 			struct cpufreq_policy *policy;
+> > 			int cpu;
+> >=20
+> > 			cpu =3D get_cpu();
+> > 			policy =3D cpufreq_cpu_get(cpu);
+> > 			if (policy && policy->cpuinfo.max_freq)
+> > 				max_tsc_khz =3D policy->cpuinfo.max_freq;
+> > 			put_cpu();
+> >=20
+> > 			if (policy)
+> > 				cpufreq_cpu_put(policy);
+> > 		}
 
-== Series Details ==
+...
 
-Series: series starting with [v4,1/2] drm/buddy: Optimize free block management with RB tree
-URL   : https://patchwork.freedesktop.org/series/153625/
-State : success
+> Yes, this will indeed change the execution order.
+> Can you accept that?=20
 
-== Summary ==
+No, because it's buggy.
 
-CI Bug Log - changes from CI_DRM_17082 -> Patchwork_153625v1
-====================================================
+> Personally, I don=E2=80=99t think it=E2=80=99s ideal either.
+>=20
+> 		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
+>  			int cpu;
+> 			cpu =3D get_cpu();
+> 			{
+> 				struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D cpufreq_=
+cpu_get(cpu);
+> 				if (policy && policy->cpuinfo.max_freq)
+> 					max_tsc_khz =3D policy->cpuinfo.max_freq;
+> 			}
+> 			put_cpu();
+>=20
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 }
+>=20
+> Other places may also have the same issue,
+>=20
+> maybe we should consider introducing a macro to handle this properly,
+> so that initialization and cleanup are well defined without changing
+> the existing order unexpected.
+>=20
+> like this:
+>=20
+> #define WITH_CPUFREQ_POLICY(cpu) {\
+>=20
+> for(struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D  \
+> 			cpufreq_cpu_get(cpu);			\
+> 			policy;)
+>=20
+> Then Use it:
+>=20
+> 		if (IS_ENABLED(CONFIG_CPU_FREQ)) {
+>  			int cpu;
+> 			cpu =3D get_cpu();
+> 			WITH_CPUFREQ_POLICY(cpu){
+> 				if (policy->cpuinfo.max_freq)
+> 					max_tsc_khz =3D policy->cpuinfo.max_freq;
+> 			}
+> 			put_cpu();
 
-Summary
--------
+This all feels very forced, in the sense that we have a shiny new tool and =
+are
+trying to use it everywhere without thinking critically about whether or no=
+t
+doing so is actually an improvement.
 
-  **SUCCESS**
+At a glance, this is literally the only instance in the entire kernel where=
+ the
+CPU to use is grabbed immediately before the policy.
+=20
+  $ git grep -B 20 cpufreq_cpu_get | grep -e get_cpu -e smp_processor_id
+  arch/x86/kvm/x86.c-			cpu =3D get_cpu();
+  drivers/cpufreq/cppc_cpufreq.c-static int cppc_get_cpu_power(struct devic=
+e *cpu_dev,
+  drivers/cpufreq/cppc_cpufreq.c-static int cppc_get_cpu_cost(struct device=
+ *cpu_dev, unsigned long KHz,
+  drivers/cpufreq/mediatek-cpufreq-hw.c-mtk_cpufreq_get_cpu_power(struct de=
+vice *cpu_dev, unsigned long *uW,
 
-  No regressions found.
+Probably because KVM's usage is rather bizarre and honestly kind of dumb.  =
+But
+KVM has had this behavior for 15+ years, so as weird as it is, I'm not incl=
+ined
+to change it without a really, really strong reason to do so, e.g. to itera=
+te
+over all CPUs or something.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/index.html
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Missing    (2): bat-adlp-9 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_153625v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-adlp-6:         [ABORT][1] -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-adlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@reset:
-    - bat-adlp-6:         [ABORT][3] ([i915#14365]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live@reset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-adlp-6/igt@i915_selftest@live@reset.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_17082 -> Patchwork_153625v1
-
-  CI-20190529: 20190529
-  CI_DRM_17082: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8512: 8512
-  Patchwork_153625v1: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/index.html
-
---===============2876320989927059256==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/2] drm/buddy: Optimize free block management with RB tree</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153625/">https://patchwork.freedesktop.org/series/153625/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_17082 -&gt; Patchwork_153625v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/index.html</p>
-<h2>Participating hosts (44 -&gt; 42)</h2>
-<p>Missing    (2): bat-adlp-9 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_153625v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-adlp-6/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@reset:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-adlp-6/igt@i915_selftest@live@reset.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153625v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_17082 -&gt; Patchwork_153625v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_17082: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8512: 8512<br />
-  Patchwork_153625v1: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2876320989927059256==--
+So given that this is the only intance of the problem patter, I think it ma=
+kes
+sense to leave KVM as-is, and not spend a bunch of time trying to figure ou=
+t how
+to make KVM's usage play nice with __free().
