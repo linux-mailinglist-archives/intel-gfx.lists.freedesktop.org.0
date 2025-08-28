@@ -2,110 +2,190 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF966B39470
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 08:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6443B3947B
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 09:01:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29D1F10E662;
-	Thu, 28 Aug 2025 06:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0FFB10E3B6;
+	Thu, 28 Aug 2025 07:01:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="DjmPXXJ0";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="X3cLXoV4";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="DjmPXXJ0";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="X3cLXoV4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ivw+ZiIl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F113B10E650
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 06:57:17 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 6D2B520A2B;
- Thu, 28 Aug 2025 06:57:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1756364236; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=qDWNDVvNNsAxXJooDXOa/tZgDE103c22K7NDiMqZuqw=;
- b=DjmPXXJ0cl2xp/Dry6gOZ+hmYUeZCK1ASitG5fXQj4J0a6evWZbd3A98ibe5c7uUpAe4nq
- tQZG82rghF1Foj0R2KhY7Xc5HIpyRDH2v+/fREBxOlpjehLKDQ79Csh/uPSuMP82ahrX5l
- +UncMQ01scYjplpXbKjJs3XjowZwk18=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1756364236;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=qDWNDVvNNsAxXJooDXOa/tZgDE103c22K7NDiMqZuqw=;
- b=X3cLXoV4xOQPQjW84hWp4RGupkx84GFl7l2nW2XMGKHFm7llGZRHloZ8uFBGRgDxlYe5Ru
- wqkpwXAPx5f4yUDw==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=DjmPXXJ0;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=X3cLXoV4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1756364236; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=qDWNDVvNNsAxXJooDXOa/tZgDE103c22K7NDiMqZuqw=;
- b=DjmPXXJ0cl2xp/Dry6gOZ+hmYUeZCK1ASitG5fXQj4J0a6evWZbd3A98ibe5c7uUpAe4nq
- tQZG82rghF1Foj0R2KhY7Xc5HIpyRDH2v+/fREBxOlpjehLKDQ79Csh/uPSuMP82ahrX5l
- +UncMQ01scYjplpXbKjJs3XjowZwk18=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1756364236;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=qDWNDVvNNsAxXJooDXOa/tZgDE103c22K7NDiMqZuqw=;
- b=X3cLXoV4xOQPQjW84hWp4RGupkx84GFl7l2nW2XMGKHFm7llGZRHloZ8uFBGRgDxlYe5Ru
- wqkpwXAPx5f4yUDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 07E881368B;
- Thu, 28 Aug 2025 06:57:16 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id s6S2AMz9r2gtDgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 28 Aug 2025 06:57:16 +0000
-Date: Thu, 28 Aug 2025 08:57:14 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20250828065714.GA11906@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77EC210E3B6;
+ Thu, 28 Aug 2025 07:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1756364467; x=1787900467;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=te+S/rHBwKynGqkH6Awt+Pql/A04VKoc6LODIi0R8F4=;
+ b=Ivw+ZiIlDzJpgpI02QlW4oGBhoc5DKiAeUWzGheoarCcikkYmKbnjya7
+ 21tESOjMSg4Lc3b7iMLv9mkeSBiayTrkWau5ud4QvX8rCSGOUeBwXfzBU
+ du7Z2kZ4Uo3bwkaYi8L51+HxrpQT/r271kA08LTjRig1YA4Iqhld2r7a4
+ MT8UIb/pwNwTvZiqxE0V2BHjwSUUt5T/xAZTyz18WE2LHlTRnliwIgTVk
+ UBTrPLyFzAY5U/bXmkdcfUV/W6pq1wB3m2CV2e1EO5mwaTbm21ukvTXkw
+ Egx0qunstPssWrQujclV+s0N+/abTgOCGkPAQBB/JHqi27zoh0lqBLSTe g==;
+X-CSE-ConnectionGUID: CMInm8C+S1mcWuq2gZxqTw==
+X-CSE-MsgGUID: jYnClJyVSIWojUWb5YV0Fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="62268613"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="62268613"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 00:01:06 -0700
+X-CSE-ConnectionGUID: aRG6pPznSVyl4LQmrt3aXQ==
+X-CSE-MsgGUID: DrAfelefSouIGERruLN7BA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="207185058"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2025 00:01:06 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 00:01:05 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 28 Aug 2025 00:01:05 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (40.107.244.68)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 Aug 2025 00:00:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KkPTwywXTRbVBibO2mB7pQDc3DjM0rtBpCkByjeR4lTeTJN/FI9EMed6OW+P9DLWTm0J5WRL8/i2euRl14+/wE1n5QVfyTTZsUksIJ/h4GKarOAFACwcWGQDIZ7Muq3o/TkQCP8emwIKM6fQcH4KxpET3uBiTRYMgA2TkKfmPseiRGI3/TFlVkNGDECPxRN0/4/aBa1tKoHtzc9WrQDiHary+1Hbi0t4TXu4Gv70mr6XJpuDCSx1mCTCJN52RBOURHPlHoEIImsMXUIb73aXuUjEYINBA7wEhSfPW2Fcg0DBusSc9sWqe0xC8/QWh14u4sNIMtn7Cjm+LfVMwwWq9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=te+S/rHBwKynGqkH6Awt+Pql/A04VKoc6LODIi0R8F4=;
+ b=a8h9HbB8Ml3PQniIW2kk24QmyEqJxwO5ZJwDOfrlIF/sRe8zR4xzR4L3Jonhct+sfy4fBABlWm9aFl9TBFUOW7DJaouGfFt0M2d2LJPni1pFFPsngC04D5TbYgPiAkfiKkapHbx7a1ajpX3I95UnE+EMtfK650GN4s0xb5hliJiA/q28DrHhqWr772asPvqx16XZYD2Vwagw++SOGgPtbajtDt/00NuJ57L4eFuYb1xusx0drdgcr+jmP/0yMVD7g8d/KILHsdKIt5VMOqMd4XtzeCmxf1OzfReMDPdfg8ay/w/VE4jDgsczAZfg4ammCwFjsm80y9qADREWAcatcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
+ SJ0PR11MB6743.namprd11.prod.outlook.com (2603:10b6:a03:47c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.21; Thu, 28 Aug
+ 2025 07:00:24 +0000
+Received: from DS0PR11MB8049.namprd11.prod.outlook.com
+ ([fe80::d84a:3532:5337:1f7c]) by DS0PR11MB8049.namprd11.prod.outlook.com
+ ([fe80::d84a:3532:5337:1f7c%4]) with mapi id 15.20.9052.019; Thu, 28 Aug 2025
+ 07:00:23 +0000
+From: "Manna, Animesh" <animesh.manna@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Hogander, Jouni" <jouni.hogander@intel.com>
+Subject: RE: [PATCH 2/4] drm/i915/alpm: Add own define for LFPS count
+Thread-Topic: [PATCH 2/4] drm/i915/alpm: Add own define for LFPS count
+Thread-Index: AQHcDCD0g0mqJ1QY70Gej8hNJnWOgrR3umBw
+Date: Thu, 28 Aug 2025 07:00:23 +0000
+Message-ID: <DS0PR11MB8049F7F387873AE521BA7849F93BA@DS0PR11MB8049.namprd11.prod.outlook.com>
+References: <20250813070617.480793-1-jouni.hogander@intel.com>
+ <20250813070617.480793-3-jouni.hogander@intel.com>
+In-Reply-To: <20250813070617.480793-3-jouni.hogander@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|SJ0PR11MB6743:EE_
+x-ms-office365-filtering-correlation-id: 3253e727-e535-4de8-2726-08dde6008f6e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|38070700018|7053199007; 
+x-microsoft-antispam-message-info: =?utf-8?B?N2FMWG92RjduNTRTMExlYnVjYWdsZmRiTnFNVmdrdFg5WEQxRW0zd2QxREJL?=
+ =?utf-8?B?cmFEanIzbVN4Z3p2TVB2QUVNQUFjaFlOWkx5Z1N3YU1LNndFWGY0aXp1U3gy?=
+ =?utf-8?B?aFc3eU1QSXkvaHNvcDhnb1FWNVhyN3pIVnlkNWkrS1BoUmRnRk8zRlRkRDM3?=
+ =?utf-8?B?alFSeDF2cEtHMm0yaWhMQUFWVGg5aG4zcXFYTzBsVldGdjdDNk1qVXVwTTRh?=
+ =?utf-8?B?UEx5Z3R0c3YwejRxOUc0RlpJMXJzdTRWN1UzcmVZK1hickhaZkJNSk93cWt6?=
+ =?utf-8?B?ZXdOUUg0NmJNTEU1aUN6ckU2OFg1S3BmN1puUFJSOXgrYndOTHNCUkltTk9I?=
+ =?utf-8?B?dGVVMmY2d0w0OVFOM3luSGZQblVuSEJWdWF4N3VheENpUnZXOUdNODBmc29S?=
+ =?utf-8?B?alRObmVnT2kvVEtNLy9yOE96WXI0Z0t2VUlwYkx6d3FsSm9FVmV1U0dSMzVu?=
+ =?utf-8?B?WVFRQVdMR3B6OVZDNllVMVhQdTIxSDdBcmRsTXpnVzhPY1dvb1dSdjQ3NkVu?=
+ =?utf-8?B?SEgvOWwrNkVBTHFuS3ZXYjJSYUR2OE5ndmZXMTZ2eTRyMXg5Q1B0dDZWNmZW?=
+ =?utf-8?B?U2dPaXUyOU5YaHpLU0tXTmg2RXdvWHNjb2pFMkRkRWxCWUV0dkRNY01hMnFH?=
+ =?utf-8?B?dzRDbWJGbFJFR1AwSFZlZ2JtYlRYUHlrc0Z4Y1Z2SDNIcXJSREdEcXV5TUFt?=
+ =?utf-8?B?WGp0WFVIUnJhNXZ0d2RJRzdURWJJdGFqRzlsNXF6WmNtZlE5Tjh0VEx1VWJ2?=
+ =?utf-8?B?V0VBSmo0SDVKRnRvY1IxS1lxc0tWTjc2d1pTZE9ySENGT0xsaC9PNzBqcnhp?=
+ =?utf-8?B?VUhMeU9mckYzUzg1MEIzbmhVWW94Z1FYMHE4TnN3NDJwSEZMVXhRdXFtTE44?=
+ =?utf-8?B?Q2JabDA0dG5RTGpneXlXckNTMjlmOTZURUVkWHMwUUdlVlhPeU1lc29CQnhk?=
+ =?utf-8?B?T3ZQcFcyenY4cy92eXF3alRLMGpVanBPZ29qbW5HR2djdk5FY09IL2hqb2Rj?=
+ =?utf-8?B?c0JyeFQyekhuOUVKWE4ybTQ3UFdtSTJDb1BoOTNoWlhObW03YUhONkJ6RjFk?=
+ =?utf-8?B?WUoyTzArYm9QWm1zYnEyUUhmNXp3K2tsSVMxeGdyZnFPbkVaUmxiWm5FOGhB?=
+ =?utf-8?B?ZVNGMTNVUEprTFR4a1FoNnhHUXNjakNNckNreWNXYjJoNXBFVVNmL3J1Y2Ux?=
+ =?utf-8?B?VjFkaGxkU0pFcDVTZTNrVytnTHc2TXVVaVFuUEU3SExMNTZZR0RCcW9MWEdB?=
+ =?utf-8?B?TzAzSm9ScnFOSmlJNGtSQ2kxVUY3TXFGSVRRcUR0T09HZlp0RUxWZ0JNTitF?=
+ =?utf-8?B?R3o1dmtobzFrTEFZUE1jbkpLdTEyNGhCdGJrbFlCeXcyWk9wVEpCODJGT0c2?=
+ =?utf-8?B?bGFFRmEvTjRDQ3U0bU9JVjZ1OHRxWWFnb0dTYzUxd0FuVWN6TUNFVVZuYWJG?=
+ =?utf-8?B?RTNHZE5kSytZd3JRTkN2WC9wdjhwWExXVXRXanBhMDZvdGtkT0dxU2dyWVFz?=
+ =?utf-8?B?ZVlBdExMQlVEdGdFcmIwcFBneWhlWXFSMlpCVXRWRmxaUjhBOFdrRmZDWktV?=
+ =?utf-8?B?WCtlUm1nK3BYdkFXbzZhWW8xRnBDWGZJcjNmMzFDWlQxVG1mek9yVktWQVVu?=
+ =?utf-8?B?OUlkUjhWcUV2bTBmdjl6eUpxc3ZGM3ZOeUxRK2dDRkc1aDBQZzN2aTk0N3ox?=
+ =?utf-8?B?emgvampYMSt2L0h0aGh6NlB6T2VoMjVXc1VhRzJ5bVBTeG1vQi9PWDQyYTVX?=
+ =?utf-8?B?TjZ6bG1iMVhCaGszSWpPbXp4VFpwVDlsS1UwQnBsdktYclVSOTdlL0M3NzZi?=
+ =?utf-8?B?bjB6VW9wV1R1VWJrbWUxckpLU3FhK0praS81a2xIYzVCOVlXemVISGpKSEJH?=
+ =?utf-8?B?Z2JmUTVQL3NJdlN1YnN6eEhYajZPeGlSUnZ4YjBJT09CRWNjZlBHcW40UUFR?=
+ =?utf-8?B?c3piOGZRTlYrVVJHNTJLcnVHVXRSWDdRMlhUbWo2TnYvTm5Falp6RWRkakNN?=
+ =?utf-8?Q?2t3E0k/tGkM/4wdT5oY1x6gXOhNoDs=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018)(7053199007); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SHkzWHE3K3FYZ1N3M0xxTDZWK3JSb0FkZmY3NWtwanJVMXB2NVovZFA3Ukpk?=
+ =?utf-8?B?dVJ4L2s0aFVrOWN6NTdxTmsvR05lVkdGK05jVkRRcG5kd2xpYnRCMTBzQXds?=
+ =?utf-8?B?Qk0wTi9XOG1lSDEyNUZKUjNKUlRtYm52Mks0Z3QwbldNUGk2V200VWZqVlEx?=
+ =?utf-8?B?VUdYTWhiZzl3T1ZIaWlGQ3VBdDhRMEJNRXdsUC85YnlRYkRiVEZiZXF0alhx?=
+ =?utf-8?B?MUM0SDdxaElmeVF0aGhxcHREMlB0RmVNcEExYlQwUml1akJ1NEkrN1B0dVc0?=
+ =?utf-8?B?QlB6WlBOb253NHAwSmUydnh4N3J6OEVsSHVKOXF3TjZXQytuSjVEeC9GbDUw?=
+ =?utf-8?B?QXZ4VGI1SVppNlFHT3ZHRnZsWWx2cG1lUEVSbUFSNkd3NDRXWlM3aFFDYVpt?=
+ =?utf-8?B?dTh2WEMyUEZJK3lCVmNKNlAzUzNLYmIvdHFBSEErZnR0aXNWVnVPcjIzaXla?=
+ =?utf-8?B?VkpBOXJxcHVlc2xlekU0NWl4Qm9SVk5NTUZCUmpabjhvTDdabFlJR2Q2N3M0?=
+ =?utf-8?B?amlYZGpLb1RNWDI3Rk1wSDhxdVJIUldnd2cxSUpVdzRWenp6L3NPY3d0SVNP?=
+ =?utf-8?B?WmZzUVFETHRkMnhiS3haK1dFVFNoUnVkTTY0Smw1T1F0dEozaUhmLzBuQi9V?=
+ =?utf-8?B?bysxZDlNVGNKcStscHFjNlpEbC8zWkVEQWlraVhqZ3M3Y0N5bU5DWmJYSmFC?=
+ =?utf-8?B?dlFXSHhzaFhQRmp2WFhEWUN0K01BTm9pbDBTUzI0REtFS1psQTlZQThiRmN1?=
+ =?utf-8?B?U0c2cC9hQUZ5SWh0L1NTMysxWVJZNFhHMGpSdm43ZEMvcnExelNxRmZVRlM1?=
+ =?utf-8?B?dEltUWxiM2pCejgrN0tKUmdTMThZZnVJMStFckltc3IyTjJHVlRHVEs1NFdH?=
+ =?utf-8?B?T0pQVk9tZExsVXFKelpLSlBMTlNFZlIydVdCbDBrQlJMc1ZkWkpvRzZZeGJK?=
+ =?utf-8?B?Tmh3ZTJsNXRUTDJrak1Xd2F5OUxOcG5WV0RIMVkzRHJPdUk3SllQdGdDSGhn?=
+ =?utf-8?B?QlFXSnEzTVRCU2RCT2tYdHF5T05JV1Y3ODVreThTZWZSRDhTbEoxOURkMUkv?=
+ =?utf-8?B?bStXODdPNi8wV1dIckZtNkRmVzRhQVdLNnZRVjZKdzU4RVRVQ2lveFBIVlRS?=
+ =?utf-8?B?VDBkK2lKOHRrK2crcTM0TUlTYUdpNWxDS2VwNmVkQkdqUktMYnhBWFpPVkR1?=
+ =?utf-8?B?dllHdEZHWSsxRm9FUWs0dDg2dVBPb2l2R3JwQnVZWUhHTGZFSXNPSHAvUWw3?=
+ =?utf-8?B?YWlpK0pKTWUyamk4VjBDT3BCRXNRSWE2Nk9NUndoMS9LTlZPVXU3UVFBdXlM?=
+ =?utf-8?B?ZVBIRG5qWnVwN2xSNkNzWWlVNWhMeXRDREdoM1NmMDJDZGVVWEx1WElhSTZW?=
+ =?utf-8?B?eEJTMzc1ZVF6dVorUFZHSWg0Rlg5RW1lUmUydThXY0xRaWVicXZ4NmZiVXFo?=
+ =?utf-8?B?MGtlM01FaVNCa3VGbDBHKzdYVGpwa2kzZ0JySXI4cUJpbDBWTkh5aTQ3Z0l1?=
+ =?utf-8?B?VUVrRTAwVjM0SG9jM2VKZ2MyUmFxNFM2THVaUzdLZFIzQUdMRjdYRFY0T0ZI?=
+ =?utf-8?B?RzZmVHM0ZXRDSkVQcm5IVU1rVTh6d0sxSVBxT0JiOTZNOC9OZ01RTWI5NUwz?=
+ =?utf-8?B?RUlFSVdROWZ0M0VxWmxyb2pPSWEvTXpXWlFsYzl2UTBLaTRPNXhQSklrM2po?=
+ =?utf-8?B?bmJLSVJKdWlTcExoSTZxRUxHSmhWK2piWmw4ZDNaSk1JbHFiaC9hcDRsSS90?=
+ =?utf-8?B?K0huNTl1WStFNVdTbGQ4enJoZisvMmx4aHcySDROWjlUOFlZOHBHZzV4L3J0?=
+ =?utf-8?B?eTh1K2x1cjFPZFJYbDBBaElFZEViSlBRMStYSjJsTmpoY3puemFsclZ0aE1u?=
+ =?utf-8?B?TmpnTDZ3WTZhL00vNE53RWcxMEVIbmN4QUc2aXJTMDFTalhybi9ZWURIMy9w?=
+ =?utf-8?B?aWVXZ1Z1ZzBrV3M5eW1CdjgyNmMvdEdrQllLd1U2WXpBL3A0VmRzZzMvMTlv?=
+ =?utf-8?B?bklFN3FQOGNaS3BVMGYzVlB2K1gvMmJrT1EvMkwyb2NkdGFPUUFuODFKb0Iw?=
+ =?utf-8?B?UTh5c1BwTEFSV25GVXRuQnJCa0M5NVcrK2luSWhZRFRYSXIycEhzYzB2VStD?=
+ =?utf-8?Q?11E1dTmf4x1W/Gbwi4Bv3E/up?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[16];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Rspamd-Queue-Id: 6D2B520A2B
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3253e727-e535-4de8-2726-08dde6008f6e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2025 07:00:23.6994 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EE18gq325/Lb6AXzuYkAWaf3q8EBaCfi+pPdUib6+Cu1Cu3r4CtEzbRfadOkE/lNC7P3B9kaAo8o/yQSj++vDw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6743
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,209 +201,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
-
-this is the PR from drm-misc-next for this week. Noteworthy is a UAPI
-fix for async page flips.
-
-Best regards
-Thomas
-
-drm-misc-next-2025-08-28:
-drm-misc-next for v6.18:
-
-UAPI Changes:
-
-atomic:
-- Reallow no-op async page flips
-
-Cross-subsystem Changes:
-
-hid:
-- i2c-hid: Make elan touch controllers power on after panel is enabled
-
-video:
-- Improve pixel-format handling for struct screen_info
-
-Core Changes:
-
-display:
-- dp: Fix command length
-
-Driver Changes:
-
-amdxdna:
-- Fixes
-
-bridge:
-- Add support for Radxa Ra620 plus DT bindings
-
-msm:
-- Fix VMA allocation
-
-panel:
-- ilitek-ili9881c: Refactor mode setting; Add support for Bestar
-  BSD1218-A101KL68 LCD plus DT bindings
-- lvds: Add support for Ampire AMP19201200B5TZQW-T03 to DT bindings
-
-rockchip:
-- dsi2: Add support for RK3576 plus DT bindings
-
-stm:
-- Clean up logging
-
-vesadrm:
-- Support 8-bit palette mode
-The following changes since commit 043d9c6928b010be7902a01b5cdfa7d754535b1a:
-
-  drm/bridge: anx7625: register content protect property (2025-08-20 08:22:01 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2025-08-28
-
-for you to fetch changes up to 5c76c794bf29399394ebacaa5af8436b8bed0d46:
-
-  HID: i2c-hid: Fix test in i2c_hid_core_register_panel_follower() (2025-08-27 16:35:20 -0700)
-
-----------------------------------------------------------------
-drm-misc-next for v6.18:
-
-UAPI Changes:
-
-atomic:
-- Reallow no-op async page flips
-
-Cross-subsystem Changes:
-
-hid:
-- i2c-hid: Make elan touch controllers power on after panel is enabled
-
-video:
-- Improve pixel-format handling for struct screen_info
-
-Core Changes:
-
-display:
-- dp: Fix command length
-
-Driver Changes:
-
-amdxdna:
-- Fixes
-
-bridge:
-- Add support for Radxa Ra620 plus DT bindings
-
-msm:
-- Fix VMA allocation
-
-panel:
-- ilitek-ili9881c: Refactor mode setting; Add support for Bestar
-  BSD1218-A101KL68 LCD plus DT bindings
-- lvds: Add support for Ampire AMP19201200B5TZQW-T03 to DT bindings
-
-rockchip:
-- dsi2: Add support for RK3576 plus DT bindings
-
-stm:
-- Clean up logging
-
-vesadrm:
-- Support 8-bit palette mode
-
-----------------------------------------------------------------
-Andy Yan (2):
-      dt-bindings: display: simple-bridge: Add ra620 compatible
-      drm/bridge: simple-bridge: Add support for radxa ra620
-
-Dan Carpenter (2):
-      drm/panel: jdi-lpm102a188a: Fix error code in jdi_panel_prepare()
-      HID: i2c-hid: Fix test in i2c_hid_core_register_panel_follower()
-
-Dmitry Baryshkov (1):
-      drm/msm: fix msm_gem_vma_new() allocations for managed GPUVMs
-
-Guochun Huang (1):
-      drm/rockchip: dsi2: add support rk3576
-
-Heiko Stuebner (7):
-      drm/panel: ilitek-ili9881c: turn off power-supply when init fails
-      drm/panel: ilitek-ili9881c: move display_on/_off dcs calls to (un-)prepare
-      drm/panel: ilitek-ili9881c: convert (un-)prepare to mipi_dsi_multi_context
-      dt-bindings: vendor-prefixes: Add prefix for Shenzhen Bestar Electronic
-      dt-bindings: display: ili9881c: Add Bestar BSD1218-A101KL68 LCD panel
-      drm/panel: ilitek-ili9881c: Add Bestar BSD1218-A101KL68 support
-      dt-bindings: display: rockchip: Add rk3576 to RK3588 DW DSI2 controller schema
-
-Lizhi Hou (2):
-      Documentation: accel: amdxdna: Update compiler information
-      accel/amdxdna: Fix incorrect type used for a local variable
-
-Pin-yen Lin (2):
-      drm/panel: Allow powering on panel follower after panel is enabled
-      HID: i2c-hid: Make elan touch controllers power on after panel is enabled
-
-Raphael Gallais-Pou (3):
-      drm: of: fix documentation reference
-      dt-bindings: panel: lvds: Append ampire,amp19201200b5tzqw-t03 in panel-lvds
-      drm/stm: ltdc: unify log system
-
-Thomas Zimmermann (10):
-      video: pixel_format: Add compare helpers
-      video: screen_info: Add pixel-format helper for linear framebuffers
-      drm/sysfb: Find screen_info format with helpers
-      drm/sysfb: Blit to CRTC destination format
-      drm/color-mgmt: Prepare for RGB332 palettes
-      drm/format-helper: Add XRGB8888-to-RGB332 to drm_fb_blit()
-      drm/vesadrm: Rename vesadrm_set_gamma_lut() to vesadrm_set_color_lut()
-      drm/vesadrm: Prepare color management for palette-based framebuffers
-      drm/vesadrm: Support DRM_FORMAT_C8
-      drm/sysfb: Do not deref unexisting CRTC state in atomic_disable
-
-Val Packett (1):
-      drm/dp: drm_edp_backlight_set_level: do not always send 3-byte commands
-
-Xaver Hugl (1):
-      drm: re-allow no-op changes on non-primary planes in async flips
-
- Documentation/accel/amdxdna/amdnpu.rst             |  10 +-
- .../bindings/display/bridge/simple-bridge.yaml     |   1 +
- .../bindings/display/panel/ilitek,ili9881c.yaml    |   1 +
- .../bindings/display/panel/panel-lvds.yaml         |   2 +
- .../rockchip/rockchip,rk3588-mipi-dsi2.yaml        |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- drivers/accel/amdxdna/aie2_pci.c                   |   3 +-
- drivers/gpu/drm/bridge/simple-bridge.c             |   5 +
- drivers/gpu/drm/display/drm_dp_helper.c            |   4 +-
- drivers/gpu/drm/drm_atomic_uapi.c                  |  23 +-
- drivers/gpu/drm/drm_color_mgmt.c                   |  34 +++
- drivers/gpu/drm/drm_format_helper.c                |   3 +
- drivers/gpu/drm/drm_of.c                           |   7 +-
- drivers/gpu/drm/drm_panel.c                        |  73 ++++-
- drivers/gpu/drm/msm/msm_gem_vma.c                  |  13 +-
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c      | 302 +++++++++++++++++----
- drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c      |   4 +-
- drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c   |  21 ++
- drivers/gpu/drm/stm/ltdc.c                         | 139 +++++-----
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h           |   2 +-
- drivers/gpu/drm/sysfb/drm_sysfb_modeset.c          |  24 +-
- drivers/gpu/drm/sysfb/drm_sysfb_screen_info.c      |  19 +-
- drivers/gpu/drm/sysfb/vesadrm.c                    | 153 +++++++++--
- drivers/hid/i2c-hid/i2c-hid-core.c                 |  46 ++--
- drivers/hid/i2c-hid/i2c-hid-of-elan.c              |  11 +-
- drivers/video/screen_info_generic.c                |  55 ++++
- include/drm/drm_color_mgmt.h                       |   1 +
- include/drm/drm_panel.h                            |  14 +
- include/linux/hid.h                                |   2 +
- include/linux/screen_info.h                        |   2 +
- include/video/pixel_format.h                       |  61 +++++
- 31 files changed, 817 insertions(+), 221 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBKb3VuaQ0K
+PiBIw7ZnYW5kZXINCj4gU2VudDogV2VkbmVzZGF5LCBBdWd1c3QgMTMsIDIwMjUgMTI6MzYgUE0N
+Cj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLXhlQGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZw0KPiBDYzogSG9nYW5kZXIsIEpvdW5pIDxqb3VuaS5ob2dhbmRlckBpbnRl
+bC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSCAyLzRdIGRybS9pOTE1L2FscG06IEFkZCBvd24gZGVm
+aW5lIGZvciBMRlBTIGNvdW50DQo+IA0KPiBBZGQgb3duIGRlZmluZSBmb3IgTEZQUyBjb3VudCBh
+bmQgdXNlIGl0IGZvciB0aGUgY29uZmlndXJhdGlvbi4gVGhpcyBuZXcNCj4gZGVmaW5lIHdpbGwg
+YmUgdXNlZCBmb3IgY2FsY3VsYXRpbmcgQUxQTSBwYXJhbWV0ZXJzIGFzIHdlbGwuDQo+IA0KPiBT
+aWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4N
+Cg0KTEdUTS4NClJldmlld2VkLWJ5OiBBbmltZXNoIE1hbm5hIDxhbmltZXNoLm1hbm5hQGludGVs
+LmNvbT4NCg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWxw
+bS5jIHwgNCArKystDQo+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0
+aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9hbHBtLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FscG0u
+Yw0KPiBpbmRleCBlNDhhNDIxOGMxNjMuLmFlNTU2YTg4NWMyYSAxMDA2NDQNCj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMNCj4gQEAgLTIyLDYgKzIyLDggQEANCj4g
+IAkJCQkoU0lMRU5DRV9QRVJJT0RfTUFYX1RJTUUgLQlcDQo+ICAJCQkJIFNJTEVOQ0VfUEVSSU9E
+X01JTl9USU1FKSAvIDIpDQo+IA0KPiArI2RlZmluZSBMRlBTX0NZQ0xFX0NPVU5UIDEwDQo+ICsN
+Cj4gIGJvb2wgaW50ZWxfYWxwbV9hdXhfd2FrZV9zdXBwb3J0ZWQoc3RydWN0IGludGVsX2RwICpp
+bnRlbF9kcCkgIHsNCj4gIAlyZXR1cm4gaW50ZWxfZHAtPmFscG1fZHBjZCAmIERQX0FMUE1fQ0FQ
+OyBAQCAtNDAzLDcgKzQwNSw3DQo+IEBAIHZvaWQgaW50ZWxfYWxwbV9wb3J0X2NvbmZpZ3VyZShz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiAgCQkJUE9SVF9BTFBNX0NUTF9NQVhfUEhZX1NX
+SU5HX0hPTEQoMCkgfA0KPiAgCQkJUE9SVF9BTFBNX0NUTF9TSUxFTkNFX1BFUklPRCgNCj4gIAkJ
+CQlpbnRlbF9kcC0NCj4gPmFscG1fcGFyYW1ldGVycy5zaWxlbmNlX3BlcmlvZF9zeW1fY2xvY2tz
+KTsNCj4gLQkJbGZwc19jdGxfdmFsID0gUE9SVF9BTFBNX0xGUFNfQ1RMX0xGUFNfQ1lDTEVfQ09V
+TlQoMTApDQo+IHwNCj4gKwkJbGZwc19jdGxfdmFsID0NCj4gUE9SVF9BTFBNX0xGUFNfQ1RMX0xG
+UFNfQ1lDTEVfQ09VTlQoTEZQU19DWUNMRV9DT1VOVCkNCj4gK3wNCj4gDQo+IAlQT1JUX0FMUE1f
+TEZQU19DVExfTEZQU19IQUxGX0NZQ0xFX0RVUkFUSU9OKA0KPiAgCQkJCWludGVsX2RwLQ0KPiA+
+YWxwbV9wYXJhbWV0ZXJzLmxmcHNfaGFsZl9jeWNsZV9udW1fb2Zfc3ltcykgfA0KPiANCj4gCVBP
+UlRfQUxQTV9MRlBTX0NUTF9GSVJTVF9MRlBTX0hBTEZfQ1lDTEVfRFVSQVRJT04oDQo+IC0tDQo+
+IDIuNDMuMA0KDQo=
