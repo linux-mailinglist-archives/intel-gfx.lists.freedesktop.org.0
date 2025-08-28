@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80458B39D19
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAEFB39D1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:22:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D15AB10E9B5;
-	Thu, 28 Aug 2025 12:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 779AC10E9AC;
+	Thu, 28 Aug 2025 12:22:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qq0PueHL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eS9PuPjS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB1E10E9AA;
- Thu, 28 Aug 2025 12:22:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9FEB10E9A5;
+ Thu, 28 Aug 2025 12:22:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383748; x=1787919748;
+ t=1756383753; x=1787919753;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mTzGXG4lSf5lffncu3UlwuT1PF9Ho1gCrto7TSBax7A=;
- b=Qq0PueHLQsF6Wc01djVrunTD54PcQmlFhMRgeLm/fzvlnRU6t5WxZb7k
- gi3SnZCana4DEIkTl3EnOaNvbYN74uC0YXR5/chLWCf1iINdGiKnf9JpQ
- cVyHmJpRTTMxdSWngeBuytQb5QJ9LMcgKUWdyAOUzmzBD6dskNc0grP4t
- /epaRobpVrmyHOO2wcjxgj2cmEluEBQPDqF8g78n/TGUApijcJDNQeqjM
- zYB8nWOrevB/cHj3EEgupE2wQmbPQqdoephdopeRM11lfv1sRe91N4wxR
- fhjImomntAS2kNF3NGmKXlZgGVlNNQ0+jmlIJuoT7pE9ntpxHgAsEluDj A==;
-X-CSE-ConnectionGUID: BFDoTI0pRe6gvJ1wwzfm4Q==
-X-CSE-MsgGUID: sgkSNIWlTYSneH2of6Kn7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="84053280"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="84053280"
+ bh=PdIVyrk/63+YBO6r52ZKpNzQ6ajU5DEQUy7cTXSkrBk=;
+ b=eS9PuPjS1kUwBBlhagOG9mWD6G9o2kmhrLZGwy6qd6BICch2wwIQDG90
+ VZxaNSxiF0Aj0fj8qjPZDQhJ1DtbLFTF69usMzwe5cbdq1oFbTbxbXotx
+ 7JtlUQTOpb4K32eCtuoSDImeF8l3/XvsVCuQpsVfpz4q5JdKj/wWZFojq
+ yzQqaHz7kjbC8d4ri9aM50op6FyH1WkNnVzIWPiqsvJHZf77alWFxg2pT
+ ZUatxk/ga9zGj6xLCjrv0BUGU3tMUr2F79V4ZXtAewc2IHDIOr4NhDTWm
+ r+zqJiK7W9d/Q7y86xKWC1o9PTfZqpDWvnQWLG7q2nPtu2ieJwvFPkRp7 Q==;
+X-CSE-ConnectionGUID: k8qfWQa0Q0yCxSUcz30CkA==
+X-CSE-MsgGUID: mwtf1HCJRbOVs4l5PK0k+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="84053286"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="84053286"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:22:28 -0700
-X-CSE-ConnectionGUID: +smw3Qo9TRKPx54myU/k5g==
-X-CSE-MsgGUID: J4CoYk84TGOliWc6mjef7g==
+ 28 Aug 2025 05:22:33 -0700
+X-CSE-ConnectionGUID: K9sLMF/XSE+ddLATPlOFtw==
+X-CSE-MsgGUID: GuB2hzJ3Q7yL4XWyhdBAZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170271288"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="170271294"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:22:27 -0700
+ 28 Aug 2025 05:22:32 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 17/20] drm/i915/lspcon: use generic poll_timeout_us() instead
- of wait_for()
-Date: Thu, 28 Aug 2025 15:20:59 +0300
-Message-ID: <4065fa96c0ef6afd51a384f365761d2ca802256b.1756383233.git.jani.nikula@intel.com>
+Subject: [PATCH 18/20] drm/i915/opregion: use generic poll_timeout_us()
+ instead of wait_for()
+Date: Thu, 28 Aug 2025 15:21:00 +0300
+Message-ID: <63db3a1e1db9e55a18ed322c55f2dffe511a10bb.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 References: <cover.1756383233.git.jani.nikula@intel.com>
@@ -77,52 +77,49 @@ Prefer generic poll helpers over i915 custom helpers.
 The functional change is losing the exponentially growing sleep of
 wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
 
-Use an arbitrary constant 5 ms sleep instead. The timeouts remain, being
-400 ms or 800 ms, depending on the case.
+Use an arbitrary constant 1 ms sleep instead. The timeout remains, being
+opregion defined, 50 ms by default, and 1500 ms at most.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lspcon.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_opregion.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index abc4b562083d..d56026c4efdd 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -23,6 +23,8 @@
-  *
-  */
- 
+diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
+index 380314a3b4d9..cbc220310813 100644
+--- a/drivers/gpu/drm/i915/display/intel_opregion.c
++++ b/drivers/gpu/drm/i915/display/intel_opregion.c
+@@ -28,13 +28,13 @@
+ #include <linux/acpi.h>
+ #include <linux/debugfs.h>
+ #include <linux/dmi.h>
 +#include <linux/iopoll.h>
-+
- #include <drm/display/drm_dp_dual_mode_helper.h>
- #include <drm/display/drm_hdmi_helper.h>
- #include <drm/drm_atomic_helper.h>
-@@ -181,6 +183,8 @@ static enum drm_lspcon_mode lspcon_wait_mode(struct intel_lspcon *lspcon,
- 	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum drm_lspcon_mode current_mode;
-+	int timeout_us;
-+	int ret;
+ #include <acpi/video.h>
  
- 	current_mode = lspcon_get_current_mode(lspcon);
- 	if (current_mode == mode)
-@@ -189,9 +193,12 @@ static enum drm_lspcon_mode lspcon_wait_mode(struct intel_lspcon *lspcon,
- 	drm_dbg_kms(display->drm, "Waiting for LSPCON mode %s to settle\n",
- 		    lspcon_mode_name(mode));
+ #include <drm/drm_edid.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_print.h>
  
--	wait_for((current_mode = lspcon_get_current_mode(lspcon)) == mode,
--		 lspcon_get_mode_settle_timeout(lspcon));
--	if (current_mode != mode)
-+	timeout_us = lspcon_get_mode_settle_timeout(lspcon) * 1000;
-+
-+	ret = poll_timeout_us(current_mode = lspcon_get_current_mode(lspcon),
-+			      current_mode == mode,
-+			      5000, timeout_us, false);
-+	if (ret)
- 		drm_err(display->drm, "LSPCON mode hasn't settled\n");
+-#include "i915_utils.h"
+ #include "intel_acpi.h"
+ #include "intel_backlight.h"
+ #include "intel_display_core.h"
+@@ -357,10 +357,12 @@ static int swsci(struct intel_display *display,
+ 	pci_write_config_word(pdev, SWSCI, swsci_val);
  
- out:
+ 	/* Poll for the result. */
+-#define C (((scic = swsci->scic) & SWSCI_SCIC_INDICATOR) == 0)
+-	if (wait_for(C, dslp)) {
++	ret = poll_timeout_us(scic = swsci->scic,
++			      (scic & SWSCI_SCIC_INDICATOR) == 0,
++			      1000, dslp * 1000, false);
++	if (ret) {
+ 		drm_dbg(display->drm, "SWSCI request timed out\n");
+-		return -ETIMEDOUT;
++		return ret;
+ 	}
+ 
+ 	scic = (scic & SWSCI_SCIC_EXIT_STATUS_MASK) >>
 -- 
 2.47.2
 
