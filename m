@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF1EB39D05
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7B7B39D07
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E128210E990;
-	Thu, 28 Aug 2025 12:21:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A5710E998;
+	Thu, 28 Aug 2025 12:21:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EsdUvUHB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HDzwuc+G";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2E7F10E997;
- Thu, 28 Aug 2025 12:21:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40DBB10E335;
+ Thu, 28 Aug 2025 12:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383706; x=1787919706;
+ t=1756383711; x=1787919711;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QGdlqQDCbsVW7zDcKBCppjGreB6moPwNbP866bhxwjE=;
- b=EsdUvUHBsDUUF8iSBNRaSpRoTiVUt5hZUfCyI2pgr+5P4oE6/Z0AYYr8
- uw5fHL6G6963Gxrihkpnl2Zp/FLX5jXgFsrHXAHMcP6ZZ6a5+CoWrEK9h
- z4kvTYaizN+x4JGBB2erOQDErFt78w3vGT1QF/mY8j8Yw6mNC1yQ3Vuyj
- D/cdYRzldJNBsJm9EU1qN+9fCqpTHtJbAsovoLzf0n99w+OxDwM9LIpoP
- BYf/uVhutE/hCeUtf/qm134sldnQwCL+QhVkiJJKy8DmM2U/Fiq7uFwUR
- sUiAX2UG7XJqDAUDAX/O8yAoNfQK03w3auz6Kygb2AX5gZ/3Pkzrm6r34 A==;
-X-CSE-ConnectionGUID: kagsPvanRjCJBvYD4tDZ/w==
-X-CSE-MsgGUID: X3WdM39mRxC0QMVwafIH8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848655"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848655"
+ bh=LVcCZRiiuu7yBY4w+Ef9810JQu0CFktZ+evbU34ZIGY=;
+ b=HDzwuc+GonXXkrQxT5CCBf51r5y31pvifxYAevGa6iTkQZR2xeYP+64A
+ ACV5ZyZAqo+jxWA3Q9LK//f6p9KA/eqvRXSP4lhHBmo6jiGF40tLvCgNq
+ 0V1M6ir0BRexTnDjc6AVW7zwCW/+2ftYDwRtyq63NWTlGaJ0WW4swlxyS
+ v55yK7zz7l9joY+sDsvr6oIpSakUk1KeU7Drk6WJGyt4Mke+WGUK3CSne
+ Morv2D1rDd1UcIBiSiDUZZz53qHdDIsKjrkVfRTYxi1sRKw2yNPgdTLbQ
+ Kziqx8FIJXA6ydlikPy1QHJCJoywYjxP7bEaj6lthLOQWEmjbFk4a+0FQ A==;
+X-CSE-ConnectionGUID: WSk4uC72RgSWXF+hDPoJNQ==
+X-CSE-MsgGUID: jI0OtJiFQz+/b36Wypinjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848667"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848667"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:46 -0700
-X-CSE-ConnectionGUID: OZKhzFElRSmF48/NJcIydQ==
-X-CSE-MsgGUID: 59Q90OdUTQCIkg2l1utEUA==
+ 28 Aug 2025 05:21:51 -0700
+X-CSE-ConnectionGUID: Acpuat/ASMehQAXV41uA0Q==
+X-CSE-MsgGUID: Kx+J9Em8RPq7JFRXgyaDJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270728"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270740"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:45 -0700
+ 28 Aug 2025 05:21:49 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 08/20] drm/i915/cdclk: use generic poll_timeout_us() instead
+Subject: [PATCH 09/20] drm/i915/power: use generic poll_timeout_us() instead
  of wait_for()
-Date: Thu, 28 Aug 2025 15:20:50 +0300
-Message-ID: <6d50031411d5517508867d4b595ce90a2b44073b.1756383233.git.jani.nikula@intel.com>
+Date: Thu, 28 Aug 2025 15:20:51 +0300
+Message-ID: <900680516b047ae32e3298b5cdbcede0393e0466.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 References: <cover.1756383233.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,97 +78,39 @@ Prefer generic poll helpers over i915 custom helpers.
 The functional change is losing the exponentially growing sleep of
 wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
 
-Use an arbitrary constant 500 us sleep instead. The timeout remains at
-50 ms.
+Use an arbitrary constant 100 us sleep instead. The timeout remains at 1
+ms.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 37 ++++++++++++----------
- 1 file changed, 20 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index d7ba3970e1e9..9725eebe5706 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -22,6 +22,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index d1d3b6f89e2a..7340d5a71673 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2019 Intel Corporation
   */
  
- #include <linux/debugfs.h>
 +#include <linux/iopoll.h>
- #include <linux/time.h>
+ #include <linux/string_helpers.h>
  
- #include <drm/drm_fixed.h>
-@@ -673,6 +674,7 @@ static void vlv_set_cdclk(struct intel_display *display,
- 	int cdclk = cdclk_config->cdclk;
- 	u32 val, cmd = cdclk_config->voltage_level;
- 	intel_wakeref_t wakeref;
-+	int ret;
+ #include "soc/intel_dram.h"
+@@ -1310,8 +1311,10 @@ static void hsw_disable_lcpll(struct intel_display *display,
+ 	hsw_write_dcomp(display, val);
+ 	ndelay(100);
  
- 	switch (cdclk) {
- 	case 400000:
-@@ -703,12 +705,12 @@ static void vlv_set_cdclk(struct intel_display *display,
- 	val &= ~DSPFREQGUAR_MASK;
- 	val |= (cmd << DSPFREQGUAR_SHIFT);
- 	vlv_punit_write(display->drm, PUNIT_REG_DSPSSPM, val);
--	if (wait_for((vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM) &
--		      DSPFREQSTAT_MASK) == (cmd << DSPFREQSTAT_SHIFT),
--		     50)) {
--		drm_err(display->drm,
--			"timed out waiting for CDclk change\n");
--	}
-+
-+	ret = poll_timeout_us(val = vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM),
-+			      (val & DSPFREQSTAT_MASK) == (cmd << DSPFREQSTAT_SHIFT),
-+			      500, 50 * 1000, false);
+-	if (wait_for((hsw_read_dcomp(display) &
+-		      D_COMP_RCOMP_IN_PROGRESS) == 0, 1))
++	ret = poll_timeout_us(val = hsw_read_dcomp(display),
++			      (val & D_COMP_RCOMP_IN_PROGRESS) == 0,
++			      100, 1000, false);
 +	if (ret)
-+		drm_err(display->drm, "timed out waiting for CDCLK change\n");
+ 		drm_err(display->drm, "D_COMP RCOMP still in progress\n");
  
- 	if (cdclk == 400000) {
- 		u32 divider;
-@@ -722,11 +724,11 @@ static void vlv_set_cdclk(struct intel_display *display,
- 		val |= divider;
- 		vlv_cck_write(display->drm, CCK_DISPLAY_CLOCK_CONTROL, val);
- 
--		if (wait_for((vlv_cck_read(display->drm, CCK_DISPLAY_CLOCK_CONTROL) &
--			      CCK_FREQUENCY_STATUS) == (divider << CCK_FREQUENCY_STATUS_SHIFT),
--			     50))
--			drm_err(display->drm,
--				"timed out waiting for CDclk change\n");
-+		ret = poll_timeout_us(val = vlv_cck_read(display->drm, CCK_DISPLAY_CLOCK_CONTROL),
-+				      (val & CCK_FREQUENCY_STATUS) == (divider << CCK_FREQUENCY_STATUS_SHIFT),
-+				      500, 50 * 1000, false);
-+		if (ret)
-+			drm_err(display->drm, "timed out waiting for CDCLK change\n");
- 	}
- 
- 	/* adjust self-refresh exit latency value */
-@@ -762,6 +764,7 @@ static void chv_set_cdclk(struct intel_display *display,
- 	int cdclk = cdclk_config->cdclk;
- 	u32 val, cmd = cdclk_config->voltage_level;
- 	intel_wakeref_t wakeref;
-+	int ret;
- 
- 	switch (cdclk) {
- 	case 333333:
-@@ -787,12 +790,12 @@ static void chv_set_cdclk(struct intel_display *display,
- 	val &= ~DSPFREQGUAR_MASK_CHV;
- 	val |= (cmd << DSPFREQGUAR_SHIFT_CHV);
- 	vlv_punit_write(display->drm, PUNIT_REG_DSPSSPM, val);
--	if (wait_for((vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM) &
--		      DSPFREQSTAT_MASK_CHV) == (cmd << DSPFREQSTAT_SHIFT_CHV),
--		     50)) {
--		drm_err(display->drm,
--			"timed out waiting for CDclk change\n");
--	}
-+
-+	ret = poll_timeout_us(val = vlv_punit_read(display->drm, PUNIT_REG_DSPSSPM),
-+			      (val & DSPFREQSTAT_MASK_CHV) == (cmd << DSPFREQSTAT_SHIFT_CHV),
-+			      500, 50 * 1000, false);
-+	if (ret)
-+		drm_err(display->drm, "timed out waiting for CDCLK change\n");
- 
- 	vlv_punit_put(display->drm);
- 
+ 	if (allow_power_down) {
 -- 
 2.47.2
 
