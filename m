@@ -2,112 +2,100 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A69B3ABF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 22:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68861B3AC3C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 23:01:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED2F610EAC8;
-	Thu, 28 Aug 2025 20:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C59D10EAD8;
+	Thu, 28 Aug 2025 21:01:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LnDnbKmC";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="OzJ/hIqB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD39110EAC8
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 20:51:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D512810EAD9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:01:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756414314;
+ s=mimecast20190719; t=1756414878;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=TWFVCA1eidbRWe4Mvk+B7obYKckT+mqN7M8LbBoJEjM=;
- b=LnDnbKmCy2/YUzPjTsaiBoVqM1piA608572AGEvYZzom2KkhsoQr9hIiZabsAzGtvR+tqn
- Av8HZtAXP/+2uqM1hha0i/cibf/CitQ+YH3pFVGJsH86kyZpimjlmOtN1mPrq58h+J7JG1
- qAwnjv7u3f/ZVbOY6qdoMpyG+6E7NYo=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
+ b=OzJ/hIqBDrvSDqyq6nuzFXhf9IAt0EyVGiRbsH94kTS4uRRbMFuVxbTGJjbLGpOu/SoBSZ
+ H6H0KtTlM0GM5tO//M3jDeqOoYTqduWX+rb3gFY2JYOpK7g8a+CqLJkJpkDU8tTt2A9CjG
+ seXcpmQEfJRO5eAg5ENmNFcSrLUd3SY=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-538-tIuhlhdhMGy4fJJUqhCsfg-1; Thu, 28 Aug 2025 16:51:52 -0400
-X-MC-Unique: tIuhlhdhMGy4fJJUqhCsfg-1
-X-Mimecast-MFC-AGG-ID: tIuhlhdhMGy4fJJUqhCsfg_1756414311
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-45a1b0cb0aaso10125035e9.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 13:51:52 -0700 (PDT)
+ us-mta-496-9sWRdHpgMXyyQslD-tmHYA-1; Thu, 28 Aug 2025 17:01:16 -0400
+X-MC-Unique: 9sWRdHpgMXyyQslD-tmHYA-1
+X-Mimecast-MFC-AGG-ID: 9sWRdHpgMXyyQslD-tmHYA_1756414875
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-45b467f5173so10644505e9.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:01:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756414311; x=1757019111;
+ d=1e100.net; s=20230601; t=1756414875; x=1757019675;
  h=content-transfer-encoding:in-reply-to:autocrypt:content-language
  :from:references:cc:to:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=TWFVCA1eidbRWe4Mvk+B7obYKckT+mqN7M8LbBoJEjM=;
- b=OHj/3XKOBS1wUPC4pTUeUUAVf4y1alLzBP0kqIxuzMy/JowcYfX3iPA+gBJgz46mty
- BuVCoA59AKVSy05hJ+BJsP+5ifUeU/TrSSxad4fvoqx87rFMq0Qj2Ss0Mn4sdfeevejo
- AaKtYzJ/CT5+OEjYOsn8vT4m6KW2F7DAJ699I+m34r3U7+tA9LzkRtaqXHA6rD/96kkj
- WYbzTuJZUzZati3v2g9rHsjdi6qc+KlcXlnVmyzwJpGOgX0Xve5eG22gn6+YyANDnNSK
- tifVkehrA2G7/f5M7WGf8fh1FAAV88OcvZ5oILIRapWVz6OdZF9A0w7exy2r6uU6oIA4
- hpbQ==
+ bh=iesHPe3095uz1hg1RS4IEYFmUcjEO4H8uiojPv6Z2C8=;
+ b=kQQ+/7aQMWUZE0qNqHqoJwQEG4yxC1dEtkH4n1aVHJjie50jvfHeHPPIG+EavIEoTI
+ CjfaLF6cBxuShD0QGGj+Z6+FUe3FTUKqHgz7/pebp5zfxnoaJSht1GEpA5CSTgRlyZBG
+ bHpJmEootZ52aJDtcLh8eucZI6mxSq6l/csxpDb3eTYMO13gb+TJ8DPl4YkO0L5Nwduo
+ 09JcYjB5tm0Vs4tbiduPuZODNYFobVwytTDb8WI0JlS/1HJX5anDyD5cq3H0j2/UsWJc
+ ITjdaloZ5PF1DOD8EXUSW/kNG4IcK7JLVB60BVfpuzys9prjzXhX4nDu2iSuKErMvD1x
+ Avkg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWYrihUSq3Lqr7+wl9zLgty1P9qn6mPfEkd6XQE4rKkZXFoHJvaZ8BTvkAsFxaUPZzzG1VohPaBk1o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzBXSwCT9bmvN+Pp770vpjIw3wNSYd0+Gt+KigocE1GOV2JkSZF
- DhF42XP7bOj0tNICLRqjEQP89Vfbx69uxvyL8Y7QVXnAgMNeTc8b1A+VYjDObULPZQPw412+gdA
- 9CbynAY7UIpHeOVwizCjHLJ8JXDAjA/uaeZjAuxxhnrfzi7MVvYJa8VpGDPxE+JCCEwjnaw==
-X-Gm-Gg: ASbGnctp/MWzEtiilZPYw46T4nMMROcfSOe6ZLdjqXK5aaxn1x12mJec8CCKNIvQGuB
- sbs/Vp7xKpY6Ijd8t6bXBoEGvXTUFWYAInf4OF2/xzdMaKH+2zbXvjTvIkqkFwWI8Gy9ydhhASK
- bshepSQXClBFuzKz4BujtRZIPpAnM07D7M2680VM1zywGJjtEUjpmwbRv8MfF6aEKt0Cy8Jif+n
- pxsx4/A/4p9vfsriY34SWnAjKBZqGoTkR0OOfAT+j2CZ1lHrv24PQeXLoJtPK/ZX6N05ouMLq3i
- ffE22vKrkvnoPTNufeuYI/GeFjX/9eZYobLfMqwrJsIa96IYaws9V6A/qzyx8zbsnvLnP/ZTHik
- X4iLPrpJgapvh7EHtRom6/RnYsE6L1gvaDvHlGnLK7VLaWnaNpJV/kePpPwTmEO7ItdQ=
-X-Received: by 2002:a05:600c:c491:b0:45b:4d47:5559 with SMTP id
- 5b1f17b1804b1-45b517dadd6mr212975795e9.36.1756414310767; 
- Thu, 28 Aug 2025 13:51:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEBxEpIi+OizhCOrvRivNgDFtglg6ujTEy6gKjCh35xHRfgibjOrf5BEosBm4/LLfFcliwoKA==
-X-Received: by 2002:a05:600c:c491:b0:45b:4d47:5559 with SMTP id
- 5b1f17b1804b1-45b517dadd6mr212975405e9.36.1756414310334; 
- Thu, 28 Aug 2025 13:51:50 -0700 (PDT)
+ AJvYcCXZ50kmk2XwbV/pQXYcYygpN15iaDoN0+SgN0q/uhtWDYn02iBDVN9oWgdS2qBueBSRSFVFnkx3HQk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzf3CjsHZqmIm9uH282Xi5iMLdoZxrE34PdD/NsGyuAh8W6vddK
+ vqbD9engeHIkRDWVlagX/YSiTTfSU4sb2Y64DHxwpgJlK8uMksD/OtX/XQCcGHAEV1CAcG/DOyE
+ atF/E3N77j1K3FMNKApvH0xwiYH+iKZ/tDcaQYXiKfRJx2Ce8vaekAvxPdDANE1NfdKVpbA==
+X-Gm-Gg: ASbGncvsWKqX2IHemlneObeRriWgeHHmToH7KZZj06phkFobJ9ZUQWg68pGyMr/5lfL
+ 5Cgh6Blb0bZTjUAnxuTMZogvilUTfVWpMF4SHMcIxxhGsuVVO/raDLxrqbQ5/BHk+rJFzoCbqX6
+ aXqQEatPXm4OXpJE5yCVVmM4K64g1rFgTBc3gvvsZEkopV1qhs/OAxfNPsQd/bRvnIQchkHG/Go
+ rarLB/IB5xAqVqmY2Ep49GkGp/XUz4IUmhpTemC9NojCSLjJWXSz2b0CzrJC8bb8mUgd2LHFbn2
+ MKkz7tu12oaPAO79ByezaRucGlVvQsUojA2swTdChB5GVc4gpVxf4wjgue+xA+rEsEQytpWWv/L
+ UahaHdCzGRdhtQCggf6FKan4O0vvDE3hmHqvmb4dH9LgTXI55Cdc4Ee6EyFgkLXau6xg=
+X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
+ ffacd0b85a97d-3ca2bc7ef61mr12602364f8f.53.1756414874934; 
+ Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IELkWMXHF95PsTcVdmFjM8EzCAM7gzseZtqGs+N0bJROmmnC1culcus9SRn7U0k/o9W/T4AXg==
+X-Received: by 2002:a05:6000:1a8d:b0:3ca:2bc7:e821 with SMTP id
+ ffacd0b85a97d-3ca2bc7ef61mr12602341f8f.53.1756414874375; 
+ Thu, 28 Aug 2025 14:01:14 -0700 (PDT)
 Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
  (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
  [2003:d8:2f28:c100:2225:10aa:f247:7b85])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-45b7df3ff72sm8506805e9.1.2025.08.28.13.51.47
+ ffacd0b85a97d-3cf270fd2dfsm685916f8f.3.2025.08.28.14.01.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 13:51:49 -0700 (PDT)
-Message-ID: <2be7db96-2fa2-4348-837e-648124bd604f@redhat.com>
-Date: Thu, 28 Aug 2025 22:51:46 +0200
+ Thu, 28 Aug 2025 14:01:13 -0700 (PDT)
+Message-ID: <f0338ec0-b093-4ba7-a26a-a3668587e334@redhat.com>
+Date: Thu, 28 Aug 2025 23:01:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 20/36] mips: mm: convert __flush_dcache_pages() to
- __flush_dcache_folio_pages()
-To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: linux-kernel@vger.kernel.org,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Alexander Potapenko <glider@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- iommu@lists.linux.dev, io-uring@vger.kernel.org,
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
- kasan-dev@googlegroups.com, kvm@vger.kernel.org,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, Marco Elver <elver@google.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>,
- Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
- Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
- Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-References: <20250827220141.262669-1-david@redhat.com>
- <20250827220141.262669-21-david@redhat.com>
- <ea74f0e3-bacf-449a-b7ad-213c74599df1@lucifer.local>
+Subject: Re: stupid PAT :)
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ x86@kernel.org
+Cc: airlied@gmail.com, matthew.brost@intel.com, dave.hansen@linux.intel.com,
+ luto@kernel.org, peterz@infradead.org,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+References: <20250820143739.3422-1-christian.koenig@amd.com>
+ <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
+ <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
+ <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
+ <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
+ <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
+ <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
+ <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
+ <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
+ <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -153,13 +141,13 @@ Autocrypt: addr=david@redhat.com; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <ea74f0e3-bacf-449a-b7ad-213c74599df1@lucifer.local>
+In-Reply-To: <b297fb4289ceaf36e8a9a237a7b2ac8d5f373158.camel@linux.intel.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: bcymiUnoQn_xVkOnr_NzrxeXDXzoxGfuoW1y_Y4AaAs_1756414311
+X-Mimecast-MFC-PROC-ID: p1btFDwZMwm12gg3spOoO0uqT7W942t0JIQCrJgQIYw_1756414875
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,67 +163,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28.08.25 18:57, Lorenzo Stoakes wrote:
-> On Thu, Aug 28, 2025 at 12:01:24AM +0200, David Hildenbrand wrote:
->> Let's make it clearer that we are operating within a single folio by
->> providing both the folio and the page.
->>
->> This implies that for flush_dcache_folio() we'll now avoid one more
->> page->folio lookup, and that we can safely drop the "nth_page" usage.
->>
->> Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
->> Signed-off-by: David Hildenbrand <david@redhat.com>
->> ---
->>   arch/mips/include/asm/cacheflush.h | 11 +++++++----
->>   arch/mips/mm/cache.c               |  8 ++++----
->>   2 files changed, 11 insertions(+), 8 deletions(-)
->>
->> diff --git a/arch/mips/include/asm/cacheflush.h b/arch/mips/include/asm/cacheflush.h
->> index 5d283ef89d90d..8d79bfc687d21 100644
->> --- a/arch/mips/include/asm/cacheflush.h
->> +++ b/arch/mips/include/asm/cacheflush.h
->> @@ -50,13 +50,14 @@ extern void (*flush_cache_mm)(struct mm_struct *mm);
->>   extern void (*flush_cache_range)(struct vm_area_struct *vma,
->>   	unsigned long start, unsigned long end);
->>   extern void (*flush_cache_page)(struct vm_area_struct *vma, unsigned long page, unsigned long pfn);
->> -extern void __flush_dcache_pages(struct page *page, unsigned int nr);
->> +extern void __flush_dcache_folio_pages(struct folio *folio, struct page *page, unsigned int nr);
+On 26.08.25 16:27, Thomas Hellström wrote:
+> Hi, Christian,
 > 
-> NIT: Be good to drop the extern.
-
-I think I'll leave the one in, though, someone should clean up all of 
-them in one go.
-
-Just imagine how the other functions would think about the new guy 
-showing off here. :)
-
-> 
+> On Tue, 2025-08-26 at 11:56 +0200, Christian König wrote:
+>> On 26.08.25 11:17, David Hildenbrand wrote:
+>>> On 26.08.25 11:00, Christian König wrote:
+>>>> On 26.08.25 10:46, David Hildenbrand wrote:
+>>>>>>> So my assumption would be that that is missing for the
+>>>>>>> drivers here?
+>>>>>>
+>>>>>> Well yes and no.
+>>>>>>
+>>>>>> See the PAT is optimized for applying specific caching
+>>>>>> attributes to ranges [A..B] (e.g. it uses an R/B tree). But
+>>>>>> what drivers do here is that they have single pages (usually
+>>>>>> for get_free_page or similar) and want to apply a certain
+>>>>>> caching attribute to it.
+>>>>>>
+>>>>>> So what would happen is that we completely clutter the R/B
+>>>>>> tree used by the PAT with thousands if not millions of
+>>>>>> entries.
+>>>>>>
+>>>>>
+>>>>> Hm, above you're saying that there is no direct map, but now
+>>>>> you are saying that the pages were obtained through
+>>>>> get_free_page()?
+>>>>
+>>>> The problem only happens with highmem pages on 32bit kernels.
+>>>> Those pages are not in the linear mapping.
+>>>
+>>> Right, in the common case there is a direct map.
+>>>
+>>>>
+>>>>> I agree that what you describe here sounds suboptimal. But if
+>>>>> the pages where obtained from the buddy, there surely is a
+>>>>> direct map -- unless we explicitly remove it :(
+>>>>>
+>>>>> If we're talking about individual pages without a directmap, I
+>>>>> would wonder if they are actually part of a bigger memory
+>>>>> region that can just be reserved in one go (similar to how
+>>>>> remap_pfn_range()) would handle it.
+>>>>>
+>>>>> Can you briefly describe how your use case obtains these PFNs,
+>>>>> and how scattered tehy + their caching attributes might be?
+>>>>
+>>>> What drivers do is to call get_free_page() or alloc_pages_node()
+>>>> with the GFP_HIGHUSER flag set.
+>>>>
+>>>> For non highmem pages drivers then calls set_pages_wc/uc() which
+>>>> changes the caching of the linear mapping, but for highmem pages
+>>>> there is no linear mapping so set_pages_wc() or set_pages_uc()
+>>>> doesn't work and drivers avoid calling it.
+>>>>
+>>>> Those are basically just random system memory pages. So they are
+>>>> potentially scattered over the whole memory address space.
+>>>
+>>> Thanks, that's valuable information.
+>>>
+>>> So essentially these drivers maintain their own consistency and PAT
+>>> is not aware of that.
+>>>
+>>> And the real problem is ordinary system RAM.
+>>>
+>>> There are various ways forward.
+>>>
+>>> 1) We use another interface that consumes pages instead of PFNs,
+>>> like a
+>>>     vm_insert_pages_pgprot() we would be adding.
+>>>
+>>>     Is there any strong requirement for inserting non-refcounted
+>>> PFNs?
 >>
->>   #define ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE 1
->>   static inline void flush_dcache_folio(struct folio *folio)
->>   {
->>   	if (cpu_has_dc_aliases)
->> -		__flush_dcache_pages(&folio->page, folio_nr_pages(folio));
->> +		__flush_dcache_folio_pages(folio, folio_page(folio, 0),
->> +					   folio_nr_pages(folio));
->>   	else if (!cpu_has_ic_fills_f_dc)
->>   		folio_set_dcache_dirty(folio);
->>   }
->> @@ -64,10 +65,12 @@ static inline void flush_dcache_folio(struct folio *folio)
+>> Yes, there is a strong requirement to insert non-refcounted PFNs.
 >>
->>   static inline void flush_dcache_page(struct page *page)
->>   {
->> +	struct folio *folio = page_folio(page);
->> +
->>   	if (cpu_has_dc_aliases)
->> -		__flush_dcache_pages(page, 1);
->> +		__flush_dcache_folio_pages(folio, page, folio_nr_pages(folio));
+>> We had a lot of trouble with KVM people trying to grab a reference to
+>> those pages even if the VMA had the VM_PFNMAP flag set.
+>>
+>>> 2) We add another interface that consumes PFNs, but explicitly
+>>> states
+>>>     that it is only for ordinary system RAM, and that the user is
+>>>     required for updating the direct map.
+>>>
+>>>     We could sanity-check the direct map in debug kernels.
+>>
+>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
+>>
+>> That function was explicitly added to insert the PFN with the given
+>> attributes and as far as I can see all users of that function expect
+>> exactly that.
+>>
+>>>
+>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating
+>>> this
+>>>     system RAM differently.
+>>>
+>>>
+>>> There is also the option for a mixture between 1 and 2, where we
+>>> get pages, but we map them non-refcounted in a VM_PFNMAP.
+>>>
+>>> In general, having pages makes it easier to assert that they are
+>>> likely ordinary system ram pages, and that the interface is not
+>>> getting abused for something else.
+>>
+>> Well, exactly that's the use case here and that is not abusive at all
+>> as far as I can see.
+>>
+>> What drivers want is to insert a PFN with a certain set of caching
+>> attributes regardless if it's system memory or iomem. That's why
+>> vmf_insert_pfn_prot() was created in the first place.
+>>
+>> That drivers need to call set_pages_wc/uc() for the linear mapping on
+>> x86 manually is correct and checking that is clearly a good idea for
+>> debug kernels.
 > 
-> Hmmm, shouldn't this be 1 not folio_nr_pages()? Seems that the original
-> implementation only flushed a single page even if contained within a larger
-> folio?
+> So where is this trending? Is the current suggestion to continue
+> disallowing aliased mappings with conflicting caching modes and enforce
+> checks in debug kernels?
 
-Yes, reworked it 3 times and messed it up during the last rework. Thanks!
+Not sure, it's a mess. The big question is to find out when it is really 
+ok to bypass PAT and when to better let it have a saying.
 
 -- 
 Cheers
