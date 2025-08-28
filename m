@@ -2,58 +2,163 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5853FB39670
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 10:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C08FDB396A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 10:18:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE42310E85B;
-	Thu, 28 Aug 2025 08:11:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD80210E85C;
+	Thu, 28 Aug 2025 08:18:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VIUxWfM2";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="BJjycywl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D96E10E83E
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:11:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756368671; x=1787904671;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=J9jQTYRZCOAjXvZABTDCRD41UEnixD9mRCgHkMfzhYc=;
- b=VIUxWfM28o8MUgbgFmXMZWRNESaBtfY7TM48t+zyYQfTlyRnsxf+n4sa
- QD9ORxeXty6bmwQ6WXjOHKZxEa8qegPEyfspFwmz0SVW0Ai91lEGBAdbF
- 8VJ1dy8UiwtrUrOT9OUe7qaZZam/kgi0Y90b+cvZIlOxhZDU2k2PgalFZ
- yNBgS/yTgHQoTzWDU05mtcWXsETNIWnC/tM4oDowJn+ERgrd1Gf7k+SHr
- R70iG66h1j83Lic4TOJDZsMwarhjZkrKlDRMsANfx0G/i5KpNzPpNNsBx
- h1Y0fuULuz1ZjDhRQAk+MZfoB912QAkIXKDn4QuJOBHuHQqu2QzIdmexB Q==;
-X-CSE-ConnectionGUID: ZV8vYzAxSHqBTE66g2E1UQ==
-X-CSE-MsgGUID: MpAyAS59QeuBOknhQdbKSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58483045"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58483045"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 01:11:11 -0700
-X-CSE-ConnectionGUID: N3doXlTLQkWGGkAr9Pd65w==
-X-CSE-MsgGUID: AgrEt0zMRSiV2njamdzZEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="201012682"
-Received: from shawnle1-i9-build-machine.itwn.intel.com ([10.225.64.200])
- by orviesa002.jf.intel.com with ESMTP; 28 Aug 2025 01:11:09 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>, Shankar Uma <uma.shankar@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: [PATCH 2/2] drm/i915: compute pipe bpp from link bandwidth management
-Date: Thu, 28 Aug 2025 08:06:49 +0000
-Message-Id: <20250828080649.186452-2-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250828080649.186452-1-shawn.c.lee@intel.com>
-References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
- <20250828080649.186452-1-shawn.c.lee@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96BA210E85C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1756369111;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=dQiayb6TF/jkGdLdQdDfmQoC9oGAqREv3FJiJ/1tw1w=;
+ b=BJjycywlYO5+tYRwfuhNoHaRnlIVEGBfCCFaTXgc2Vw009UARHGblqpX5Yb6y23UTWh9Ni
+ /z73jVbcE5pBXdr0LvJfF7W22QCe9VtqCEqPujRtbmCJE/aqYnt+7o0KfJ9Y4xURQl0ODR
+ o82KDX7aPlCQVSCVepY/c/zjiVqDVtk=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-196-ZfL4uQ-NNGe12ENx6q5k-w-1; Thu, 28 Aug 2025 04:18:28 -0400
+X-MC-Unique: ZfL4uQ-NNGe12ENx6q5k-w-1
+X-Mimecast-MFC-AGG-ID: ZfL4uQ-NNGe12ENx6q5k-w_1756369107
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-45b51baec92so1245725e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 01:18:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1756369107; x=1756973907;
+ h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+ :from:references:cc:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=dQiayb6TF/jkGdLdQdDfmQoC9oGAqREv3FJiJ/1tw1w=;
+ b=GDDNY6GGCVdEomf08lvHWlHTnKIddsoW8U32Un1cpLaIIn00ruawfgHHDQB4HZv0tw
+ 3tXE58e+48v6UUC9AgQoRnarcqY+6JjLgSmK/z0b9QDmCzqWF1NUSPYCfT//hqV2d89c
+ sTpRdhVRZzMCrr0wd88DcHi4GZdH2+4ZEVCbvn5qZQxW50ddu3Bi1W0DMXcTU0E0AtX/
+ SBV1EI05WTJsDAQukVAszDM82bDp1nt6CxYbaO38FqK+YCl74+DLYJGZe4BbhcO5Y3nM
+ xcygyQucURpK3cFKZaUOgjekXHs7mv5NWuDy+HskV7C/D8+DMe48+KTpSgC/5ZJaXblg
+ 1qmA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVfGqqX7LCbd1iJNTOl0mmGUqg14ri+mQeH9EKqs7ceci9lZy8fUiCt4J6SF6clNafMCHDCnj57udg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzPIU9rDgGyfb41JzPdUPz/XisKqAJqxLRCba7J+b7Hzx9t3DRC
+ tUC15TSeALAYGE8sr4bHURnw+e2uJvS3ns8RuJZBqg2yh2ammbKIl8sp8ELtwSr8GW7+s80W8BS
+ 3EHthIin6P8OOnrcyIQfQXisPOWFBkAq/ppAjqh5c250KzpipPx46MptGYWlLb5u/sMpgyQ==
+X-Gm-Gg: ASbGnct/oISccTn926xJyWNFi8GPzrFc1EmWcSloQrLb/78foq8kl8sUHqPDU2dB1Ac
+ ttwMZA0v1SG8Fs8R8z8WjNi25OxyhfQz4eEiVsGkEKyHqisD6UyhpK1Y31LUOFD1ARa43OuZe0V
+ XGp3OvIAShRNCTuG3A49GJcEhTCteJDcGM4NlPurs1GvsDxGM3APdd9H1jbdLZ8W/Xir/uscCG4
+ lhZlz1MFi3/XZWsHJM+ZtgfakRAcx4fmseWLoHHAoZOiRR3KHxvH09CjwjnCybQWrIILGsTU9BJ
+ jemyEAbmeKR0tJUcP51dPDpr8aUNl12K/uoWG1/tKyfr5P6QJmhEb8lggjUCCED0dwx3h6Ibimd
+ QBcW+a3RjLFbKXcZb9XzHQCWFaonCoZSmzEhAN70M1hQkMO54Dac6IuuCj5mYe6zIrdI=
+X-Received: by 2002:a05:600c:190b:b0:45b:6743:2240 with SMTP id
+ 5b1f17b1804b1-45b68aa25cbmr59784685e9.27.1756369107130; 
+ Thu, 28 Aug 2025 01:18:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHUJsaR2J7iF3R+ldMkn3aeuQzBBUKQPNZcZ93/+SZsto/QZ9LRuZpML8ujkA6ncDdKY9np+A==
+X-Received: by 2002:a05:600c:190b:b0:45b:6743:2240 with SMTP id
+ 5b1f17b1804b1-45b68aa25cbmr59784365e9.27.1756369106625; 
+ Thu, 28 Aug 2025 01:18:26 -0700 (PDT)
+Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
+ (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
+ [2003:d8:2f28:c100:2225:10aa:f247:7b85])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-45b732671b7sm21138515e9.3.2025.08.28.01.18.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 28 Aug 2025 01:18:26 -0700 (PDT)
+Message-ID: <6880f125-803d-4eea-88ac-b67fdcc5995d@redhat.com>
+Date: Thu, 28 Aug 2025 10:18:23 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 13/36] mm/hugetlb: cleanup
+ hugetlb_folio_init_tail_vmemmap()
+To: Mike Rapoport <rppt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
+ Dennis Zhou <dennis@kernel.org>, Dmitry Vyukov <dvyukov@google.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ iommu@lists.linux.dev, io-uring@vger.kernel.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
+ Johannes Weiner <hannes@cmpxchg.org>, John Hubbard <jhubbard@nvidia.com>,
+ kasan-dev@googlegroups.com, kvm@vger.kernel.org,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, linux-arm-kernel@axis.com,
+ linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+ linux-ide@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org, linux-mm@kvack.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Marco Elver <elver@google.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
+ Michal Hocko <mhocko@suse.com>, Muchun Song <muchun.song@linux.dev>,
+ netdev@vger.kernel.org, Oscar Salvador <osalvador@suse.de>,
+ Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
+ Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
+ virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
+ wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
+References: <20250827220141.262669-1-david@redhat.com>
+ <20250827220141.262669-14-david@redhat.com> <aLADXP89cp6hAq0q@kernel.org>
+ <377449bd-3c06-4a09-8647-e41354e64b30@redhat.com>
+ <aLAN7xS4WQsN6Hpm@kernel.org>
+From: David Hildenbrand <david@redhat.com>
+Autocrypt: addr=david@redhat.com; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <aLAN7xS4WQsN6Hpm@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: VGGzoHuziD0HBFeFhBiOH47bB1zdH2u41kBG2G-CQaA_1756369107
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,220 +174,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since intel_fdi_compute_pipe_bpp() is no longer FDI-specific and
-now applies to all connectors. Move it to intel_link_bw.c,
-and rename to intel_link_bw_compute_pipe_bpp().
+On 28.08.25 10:06, Mike Rapoport wrote:
+> On Thu, Aug 28, 2025 at 09:44:27AM +0200, David Hildenbrand wrote:
+>> On 28.08.25 09:21, Mike Rapoport wrote:
+>>> On Thu, Aug 28, 2025 at 12:01:17AM +0200, David Hildenbrand wrote:
+>>>> We can now safely iterate over all pages in a folio, so no need for the
+>>>> pfn_to_page().
+>>>>
+>>>> Also, as we already force the refcount in __init_single_page() to 1,
+>>>> we can just set the refcount to 0 and avoid page_ref_freeze() +
+>>>> VM_BUG_ON. Likely, in the future, we would just want to tell
+>>>> __init_single_page() to which value to initialize the refcount.
+>>>>
+>>>> Further, adjust the comments to highlight that we are dealing with an
+>>>> open-coded prep_compound_page() variant, and add another comment explaining
+>>>> why we really need the __init_single_page() only on the tail pages.
+>>>>
+>>>> Note that the current code was likely problematic, but we never ran into
+>>>> it: prep_compound_tail() would have been called with an offset that might
+>>>> exceed a memory section, and prep_compound_tail() would have simply
+>>>> added that offset to the page pointer -- which would not have done the
+>>>> right thing on sparsemem without vmemmap.
+>>>>
+>>>> Signed-off-by: David Hildenbrand <david@redhat.com>
+>>>> ---
+>>>>    mm/hugetlb.c | 20 ++++++++++++--------
+>>>>    1 file changed, 12 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+>>>> index 4a97e4f14c0dc..1f42186a85ea4 100644
+>>>> --- a/mm/hugetlb.c
+>>>> +++ b/mm/hugetlb.c
+>>>> @@ -3237,17 +3237,18 @@ static void __init hugetlb_folio_init_tail_vmemmap(struct folio *folio,
+>>>>    {
+>>>>    	enum zone_type zone = zone_idx(folio_zone(folio));
+>>>>    	int nid = folio_nid(folio);
+>>>> +	struct page *page = folio_page(folio, start_page_number);
+>>>>    	unsigned long head_pfn = folio_pfn(folio);
+>>>>    	unsigned long pfn, end_pfn = head_pfn + end_page_number;
+>>>> -	int ret;
+>>>> -
+>>>> -	for (pfn = head_pfn + start_page_number; pfn < end_pfn; pfn++) {
+>>>> -		struct page *page = pfn_to_page(pfn);
+>>>> +	/*
+>>>> +	 * We mark all tail pages with memblock_reserved_mark_noinit(),
+>>>> +	 * so these pages are completely uninitialized.
+>>>
+>>>                                ^ not? ;-)
+>>
+>> Can you elaborate?
+> 
+> Oh, sorry, I misread "uninitialized".
+> Still, I'd phrase it as
+> 
+> 	/*
+> 	 * We marked all tail pages with memblock_reserved_mark_noinit(),
+> 	 * so we must initialize them here.
+> 	 */
 
-Cc: Shankar Uma <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crt.c     |  5 ++--
- drivers/gpu/drm/i915/display/intel_fdi.c     | 28 --------------------
- drivers/gpu/drm/i915/display/intel_fdi.h     |  1 -
- drivers/gpu/drm/i915/display/intel_hdmi.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_link_bw.c | 28 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_link_bw.h |  1 +
- drivers/gpu/drm/i915/display/intel_lvds.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_sdvo.c    |  3 ++-
- 8 files changed, 38 insertions(+), 34 deletions(-)
+I prefer what I currently have, but thanks for the review.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 898c5d9e8f7a..31e68047f217 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -50,6 +50,7 @@
- #include "intel_gmbus.h"
- #include "intel_hotplug.h"
- #include "intel_hotplug_irq.h"
-+#include "intel_link_bw.h"
- #include "intel_load_detect.h"
- #include "intel_pch_display.h"
- #include "intel_pch_refclk.h"
-@@ -421,7 +422,7 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 
- 	crtc_state->has_pch_encoder = true;
--	if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+	if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 		return -EINVAL;
- 
- 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-@@ -446,7 +447,7 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 
- 	crtc_state->has_pch_encoder = true;
--	if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+	if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 		return -EINVAL;
- 
- 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 8039a84671cc..59a36b3a22c1 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -292,34 +292,6 @@ int intel_fdi_link_freq(struct intel_display *display,
- 		return display->fdi.pll_freq;
- }
- 
--/**
-- * intel_fdi_compute_pipe_bpp - compute pipe bpp limited by max link bpp
-- * @crtc_state: the crtc state
-- *
-- * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
-- * call this function during state computation in the simple case where the
-- * link bpp will always match the pipe bpp. This is the case for all non-DP
-- * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
-- * of DSC compression.
-- *
-- * Returns %true in case of success, %false if pipe bpp would need to be
-- * reduced below its valid range.
-- */
--bool intel_fdi_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
--{
--	int pipe_bpp = min(crtc_state->pipe_bpp,
--			   fxp_q4_to_int(crtc_state->max_link_bpp_x16));
--
--	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
--
--	if (pipe_bpp < 6 * 3)
--		return false;
--
--	crtc_state->pipe_bpp = pipe_bpp;
--
--	return true;
--}
--
- int ilk_fdi_compute_config(struct intel_crtc *crtc,
- 			   struct intel_crtc_state *pipe_config)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-index ad5e103c38a8..1cd08df9b0c2 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.h
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-@@ -20,7 +20,6 @@ struct intel_link_bw_limits;
- int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state);
- int intel_fdi_link_freq(struct intel_display *display,
- 			const struct intel_crtc_state *pipe_config);
--bool intel_fdi_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
- int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
- 			   struct intel_crtc_state *pipe_config);
- int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 027e8ed0cea8..4650181932d7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -61,6 +61,7 @@
- #include "intel_hdcp_regs.h"
- #include "intel_hdcp_shim.h"
- #include "intel_hdmi.h"
-+#include "intel_link_bw.h"
- #include "intel_lspcon.h"
- #include "intel_panel.h"
- #include "intel_pfit.h"
-@@ -2346,7 +2347,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		pipe_config->pixel_multiplier = 2;
- 
--	if (!intel_fdi_compute_pipe_bpp(pipe_config))
-+	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
- 		return -EINVAL;
- 
- 	pipe_config->has_audio =
-diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-index d194a366ff10..f52dee0ea412 100644
---- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-@@ -164,6 +164,34 @@ int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
- 	return ret;
- }
- 
-+/**
-+ * intel_link_bw_compute_pipe_bpp - compute pipe bpp limited by max link bpp
-+ * @crtc_state: the crtc state
-+ *
-+ * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
-+ * call this function during state computation in the simple case where the
-+ * link bpp will always match the pipe bpp. This is the case for all non-DP
-+ * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
-+ * of DSC compression.
-+ *
-+ * Returns %true in case of success, %false if pipe bpp would need to be
-+ * reduced below its valid range.
-+ */
-+bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
-+{
-+	int pipe_bpp = min(crtc_state->pipe_bpp,
-+			   fxp_q4_to_int(crtc_state->max_link_bpp_x16));
-+
-+	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
-+
-+	if (pipe_bpp < 6 * 3)
-+		return false;
-+
-+	crtc_state->pipe_bpp = pipe_bpp;
-+
-+	return true;
-+}
-+
- /**
-  * intel_link_bw_set_bpp_limit_for_pipe - set link bpp limit for a pipe to its minimum
-  * @state: atomic state
-diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.h b/drivers/gpu/drm/i915/display/intel_link_bw.h
-index b499042e62b1..a458c8edacf6 100644
---- a/drivers/gpu/drm/i915/display/intel_link_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_link_bw.h
-@@ -34,5 +34,6 @@ bool intel_link_bw_set_bpp_limit_for_pipe(struct intel_atomic_state *state,
- int intel_link_bw_atomic_check(struct intel_atomic_state *state,
- 			       struct intel_link_bw_limits *new_limits);
- void intel_link_bw_connector_debugfs_add(struct intel_connector *connector);
-+bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 7e48a235c99f..48f4d8ed4f15 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -48,6 +48,7 @@
- #include "intel_dpll.h"
- #include "intel_fdi.h"
- #include "intel_gmbus.h"
-+#include "intel_link_bw.h"
- #include "intel_lvds.h"
- #include "intel_lvds_regs.h"
- #include "intel_panel.h"
-@@ -433,7 +434,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
- 
- 	if (HAS_PCH_SPLIT(display)) {
- 		crtc_state->has_pch_encoder = true;
--		if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 			return -EINVAL;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 87aff2754f69..eae07d3909cc 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -52,6 +52,7 @@
- #include "intel_gmbus.h"
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
-+#include "intel_link_bw.h"
- #include "intel_panel.h"
- #include "intel_sdvo.h"
- #include "intel_sdvo_regs.h"
-@@ -1367,7 +1368,7 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
- 
- 	if (HAS_PCH_SPLIT(display)) {
- 		pipe_config->has_pch_encoder = true;
--		if (!intel_fdi_compute_pipe_bpp(pipe_config))
-+		if (!intel_link_bw_compute_pipe_bpp(pipe_config))
- 			return -EINVAL;
- 	}
- 
 -- 
-2.34.1
+Cheers
+
+David / dhildenb
 
