@@ -2,152 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B893B3ACA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 23:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDCC5B3ACB3
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 23:26:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC69710EAE0;
-	Thu, 28 Aug 2025 21:18:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="C1PCi1W2";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA0D10EADD;
+	Thu, 28 Aug 2025 21:26:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E601710EAE0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 21:18:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756415912;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=gskdp2N1fjQ2XPNnusUxDzPfRKenxAJAiphfAnxet1A=;
- b=C1PCi1W246bJY6zoFa/dynjQVGLy3G8L75jIIZTcgqHbq0TH8TJQrkdxJVyNsyZxcvcVrl
- cI85iG/lSrbWDk9IKw77Iu+t2LXvC6A4tbxqOSg7/fuZO5hAEotrbSU+XFaUYYs/MPJAvL
- g0kewuSnoSDrHvzNivNzfMyZjtQbGv4=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-652-U5dBtX2xP2unyeHNYeV3NQ-1; Thu, 28 Aug 2025 17:18:25 -0400
-X-MC-Unique: U5dBtX2xP2unyeHNYeV3NQ-1
-X-Mimecast-MFC-AGG-ID: U5dBtX2xP2unyeHNYeV3NQ_1756415905
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-45b7a0d1a71so8704155e9.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 14:18:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756415904; x=1757020704;
- h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=gskdp2N1fjQ2XPNnusUxDzPfRKenxAJAiphfAnxet1A=;
- b=XuU7MrcNE3S6KXC78e0rQ8Z36H5btdhl++oFobYIVAb2M0GFVZb9ZFcjlO0XbCzP05
- iOmnobxgTx2kRUPyU4dqHhFiAIFuCHoN7z+aPsC2ZO9SECgNbpSLnsPhR2HJYnuRMWDY
- jgSXznXjr97hEWSE+icxYhjGZBmej4dynKT2T7iTFUYHXaKlUQle0aRBPbhAyIW2DaHF
- z0rvCGVms0ZUrSpo0ohlfgxQeXuTrXmNrR700GSqT/vbMJ3nxYMZ3AfvC2iXF7+1N5Vj
- cj5OnprsCNs6sjKCGhsEqQWVrqlQfWP8v9JUhFMtgTt0Qhe9g4Il9gWoP5Axz3eIKrcy
- b6IQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWpWDNQgRNJe7QrKVQTjc5W2OO0L+Uhuf0ADzZkocnKJMRtnAOgY26qpqSz22qdWNn1JOy+ZOGxIc8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyiTUsl2RRua4MX/GewgoFM2D7DqXBVMSbUlE51p5xJOhHLca3d
- N9w0KjSRS8KJlp3IHAHmb7UhThXQyFmGo6nkE1PTG5gjZGHnN3rHslpRDojOD8xOEs7ZC/1UHzI
- KjoVGcvmZy+o1/p+JSDE7T4ZFwJsf65Sc9ca7e3VDzYkb/YwwlXXQIV+byLexKtCZ5VN33g==
-X-Gm-Gg: ASbGncs5fQXYGHQOWw80rsifLJAmCPW9k5yWAtEtl+AXwxB7drlq5k1Bw/kp9b2fRnt
- hZwKEDyDutNy4ZGW9d2eqeCxsCDQaWDAWcnlHHwFH++LawsaN5Bgi+x5qHBGYcQkOjBmoan8oaN
- TKfwjm4MNRoTiXD8vmopGLWQoz8GesFVhEkeK+PlS0rtQk4Up07vI42Rq0mECJyp2ZYNtg2LXbj
- TLoifLosXhFW22dQMXAEHpHymb3tVftP4dAJybsMrRHH5UNX7c5MVBUo1PazoFyb01t7HjYmpBQ
- MGAlq9vF4PT/PFExd7yPljcUOPAJwsshHOrZV5p3R5omi7MR6l9Md5VEzwFpdQxI2Q3mSn2Rqzm
- iRFg+dyn1sQ0+nyxpcc89o1jHnoaZG+hU0YlAORw9wvcQrF15PNhzEAN68J7gj2XezB0=
-X-Received: by 2002:a05:600c:1c20:b0:458:c059:7d9c with SMTP id
- 5b1f17b1804b1-45b5d48ea24mr170590375e9.6.1756415904569; 
- Thu, 28 Aug 2025 14:18:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEPgDrrxDZ6vdtoS52zcAGrXMn5CAGoWaDFan/vG8uMfMxrjyia55dqZy7eBAVPbdsrurfc0Q==
-X-Received: by 2002:a05:600c:1c20:b0:458:c059:7d9c with SMTP id
- 5b1f17b1804b1-45b5d48ea24mr170590035e9.6.1756415904010; 
- Thu, 28 Aug 2025 14:18:24 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f28:c100:2225:10aa:f247:7b85?
- (p200300d82f28c100222510aaf2477b85.dip0.t-ipconnect.de.
- [2003:d8:2f28:c100:2225:10aa:f247:7b85])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf33fba9c4sm657825f8f.48.2025.08.28.14.18.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 28 Aug 2025 14:18:23 -0700 (PDT)
-Message-ID: <e717c8b8-51f1-4332-b5fd-ade55aaba1b0@redhat.com>
-Date: Thu, 28 Aug 2025 23:18:22 +0200
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D14410EADD;
+ Thu, 28 Aug 2025 21:26:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4554155533321314799=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: stupid and complicated PAT :)
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- x86@kernel.org
-Cc: airlied@gmail.com, thomas.hellstrom@linux.intel.com,
- matthew.brost@intel.com, dave.hansen@linux.intel.com, luto@kernel.org,
- peterz@infradead.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-References: <20250820143739.3422-1-christian.koenig@amd.com>
- <edf4aee5-54eb-4fad-aa89-4913d44371fe@redhat.com>
- <4e5f4ef0-53f1-417e-8f3b-76fd7c64cd23@amd.com>
- <f983521c-b43d-4245-93fc-fcb847908573@redhat.com>
- <a1b95d23-1908-42c1-8ff6-da051fc140aa@amd.com>
- <6591105b-969d-44d6-80e1-233c1b84b121@redhat.com>
- <fc3e013c-e7f7-441d-a638-2ee3dd372775@amd.com>
- <75aca34d-3557-49e9-a523-bd3244c28190@redhat.com>
- <a01f7ca8-7930-4b04-b597-0ebf8500a748@amd.com>
- <d32fa753-66a1-451a-8cef-95c1f78fc366@redhat.com>
- <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
-From: David Hildenbrand <david@redhat.com>
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <87050572-811e-4b0c-9ebd-8ebb05f3c617@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: NFphrZU6YxBjTiaWb9F_StBZhczOm457ucthYYL50e4_1756415905
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/guc=3A_Test_GuC_?=
+ =?utf-8?q?v70=2E49=2E4_for_ADL-P=2C_DG1=2C_DG2=2C_MTL=2C_TGL_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 21:26:08 -0000
+Message-ID: <175641636844.280646.6322565646145833720@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250828200606.359583-2-julia.filipchuk@intel.com>
+In-Reply-To: <20250828200606.359583-2-julia.filipchuk@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,105 +37,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26.08.25 18:09, Christian König wrote:
-> On 26.08.25 14:07, David Hildenbrand wrote:
->>>
->>>> 2) We add another interface that consumes PFNs, but explicitly states
->>>>      that it is only for ordinary system RAM, and that the user is
->>>>      required for updating the direct map.
->>>>
->>>>      We could sanity-check the direct map in debug kernels.
->>>
->>> I would rather like to see vmf_insert_pfn_prot() fixed instead.
->>>
->>> That function was explicitly added to insert the PFN with the given attributes and as far as I can see all users of that function expect exactly that.
->>
->> It's all a bit tricky :(
-> 
-> I would rather say horrible complicated :(
-> 
->>>>
->>>> 3) We teach PAT code in pfnmap_setup_cachemode_pfn() about treating this
->>>>      system RAM differently.
->>>>
->>>>
->>>> There is also the option for a mixture between 1 and 2, where we get pages, but we map them non-refcounted in a VM_PFNMAP.
->>>>
->>>> In general, having pages makes it easier to assert that they are likely ordinary system ram pages, and that the interface is not getting abused for something else.
->>>
->>> Well, exactly that's the use case here and that is not abusive at all as far as I can see.
->>>
->>> What drivers want is to insert a PFN with a certain set of caching attributes regardless if it's system memory or iomem. That's why vmf_insert_pfn_prot() was created in the first place.
->>
->> I mean, the use case of "allocate pages from the buddy and fixup the linear map" sounds perfectly reasonable to me. Absolutely no reason to get PAT involved. Nobody else should be messing with that memory after all.
->>
->> As soon as we are talking about other memory ranges (iomem) that are not from the buddy, it gets weird to bypass PAT, and the question I am asking myself is, when is it okay, and when not.
-> 
-> Ok let me try to explain parts of the history and the big picture for at least the graphics use case on x86.
-> 
-> In 1996/97 Intel came up with the idea of AGP: https://en.wikipedia.org/wiki/Accelerated_Graphics_Port
-> 
-> At that time the CPUs, PCI bus and system memory were all connected together through the north bridge: https://en.wikipedia.org/wiki/Northbridge_(computing)
-> 
-> The problem was that AGP also introduced the concept of putting large amounts of data for the video controller (PCI device) into system memory when you don't have enough local device memory (VRAM).
-> 
-> But that meant when that memory is cached that the north bridge always had to snoop the CPU cache over the front side bus for every access the video controller made. This meant a huge performance bottleneck, so the idea was born to access that data uncached.
+--===============4554155533321314799==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ack.
+== Series Details ==
 
-> 
-> 
-> Well that was nearly 30years ago, PCI, AGP and front side bus are long gone, but the concept of putting video controller (GPU) stuff into uncached system memory has prevailed.
-> 
-> So for example even modern AMD CPU based laptops need uncached system memory if their local memory is not large enough to contain the picture to display on the monitor. And with modern 8k monitors that can actually happen quite fast...
-> 
-> What drivers do today is to call vmf_insert_pfn_prot() either with the PFN of their local memory (iomem) or uncached/wc system memory.
+Series: drm/i915/guc: Test GuC v70.49.4 for ADL-P, DG1, DG2, MTL, TGL (rev4)
+URL   : https://patchwork.freedesktop.org/series/153534/
+State : success
 
-That makes perfect sense. I assume we might or might not have "struct 
-page" (pfn_valid) for the iomem, depending on where these areas reside, 
-correct?
+== Summary ==
 
-> 
-> 
-> To summarize that we have an interface to fill in the page tables with either iomem or system memory is actually part of the design. That's how the HW driver is expected to work.
-> 
->>> That drivers need to call set_pages_wc/uc() for the linear mapping on x86 manually is correct and checking that is clearly a good idea for debug kernels.
->>
->> I'll have to think about this a bit: assuming only vmf_insert_pfn() calls pfnmap_setup_cachemode_pfn() but vmf_insert_pfn_prot() doesn't, how could we sanity check that somebody is doing something against the will of PAT.
-> 
-> I think the most defensive approach for a quick fix is this change here:
-> 
->   static inline void pgprot_set_cachemode(pgprot_t *prot, enum page_cache_mode pcm)
->   {
-> -       *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
-> -                        cachemode2protval(pcm));
-> +       if (pcm != _PAGE_CACHE_MODE_WB)
-> +               *prot = __pgprot((pgprot_val(*prot) & ~_PAGE_CACHE_MASK) |
-> +                                cachemode2protval(pcm));
->   }
-> 
-> This applies the PAT value if it's anything else than _PAGE_CACHE_MODE_WB but still allows callers to use something different on normal WB system memory.
-> 
-> What do you think?
+CI Bug Log - changes from CI_DRM_17082 -> Patchwork_153534v4
+====================================================
 
-This feels like too big of a hammer. In particular, it changes things 
-like phys_mem_access_prot_allowed(), which requires more care.
+Summary
+-------
 
-First, I thought we should limit what we do to vmf_insert_pfn_prot() 
-only. But then I realized that we have stuff like
+  **SUCCESS**
 
-	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+  No regressions found.
 
-I'm still trying to find out the easy way out that is not a complete hack.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/index.html
 
-Will the iomem ever be mapped by the driver again with a different cache 
-mode? (e.g., WB -> UC -> WB)
+Participating hosts (44 -> 42)
+------------------------------
 
--- 
-Cheers
+  Missing    (2): bat-adlp-9 fi-snb-2520m 
 
-David / dhildenb
+Known issues
+------------
 
+  Here are the changes found in Patchwork_153534v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-dg2-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-dg2-8/igt@i915_selftest@live.html
+    - bat-adlp-6:         [ABORT][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-adlp-6/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-adlp-6:         [ABORT][7] ([i915#14365]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live@reset.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-adlp-6/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17082 -> Patchwork_153534v4
+
+  CI-20190529: 20190529
+  CI_DRM_17082: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8512: 8512
+  Patchwork_153534v4: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/index.html
+
+--===============4554155533321314799==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/guc: Test GuC v70.49.4 for ADL-P, DG1, DG2, MTL, TGL (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153534/">https://patchwork.freedesktop.org/series/153534/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17082 -&gt; Patchwork_153534v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/index.html</p>
+<h2>Participating hosts (44 -&gt; 42)</h2>
+<p>Missing    (2): bat-adlp-9 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_153534v4 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-adlp-6/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-adlp-6/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-adlp-6/igt@i915_selftest@live@reset.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17082/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153534v4/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17082 -&gt; Patchwork_153534v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17082: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8512: 8512<br />
+  Patchwork_153534v4: a59cf1d7fe0e19ce3a6e8cf2a20cfb24896baa97 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4554155533321314799==--
