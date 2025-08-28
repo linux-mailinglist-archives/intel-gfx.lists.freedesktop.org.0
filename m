@@ -2,97 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6F1B3AAF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 21:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3524FB397D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 11:09:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59EF310EAAF;
-	Thu, 28 Aug 2025 19:34:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="Ji8h1Cae";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9316410E8A7;
+	Thu, 28 Aug 2025 09:09:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8F7510E895
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 08:43:53 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-24456ce0b96so8419515ad.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 01:43:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1756370633; x=1756975433;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=jLT2osl3N94HJBBJWKPAk2avCo16Lo88yw1WJjz/wsM=;
- b=Ji8h1CaeHE+GbhOjp2OORH2Q/7usRsG45Z+YUXeptmguTr8gGwdhFhi08tw924Otpm
- l9hv2mf53X6bxk0ySDLRF9PjaExqr9HNItnJYcDc8JYF1wlnH6NPcnf9JS75sxXB3vti
- edijMj/rEeGEUVaKQ4U/u/4mFBMinKPjTU9abH7gKGJoe3chg4Sqkhl2Tvj0jCyLLUO9
- wthfOS0nePSK9c7cOVNNTAEHiDZq+KHQeZICtN9ZtbKBJuA5/v9YTlWroukwULAdwdsw
- cgx9NTUAXw4BDxesud8+Y8+4p3dXW6qEB379DVnol2m29aZWKmpvpc09WCf/RN2aIkch
- K2jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756370633; x=1756975433;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jLT2osl3N94HJBBJWKPAk2avCo16Lo88yw1WJjz/wsM=;
- b=J7TYjTE8XXkRZvl+0hF0WKwY/h+dDfwURuS3zBEfoUYCKPwTUOmQuIke5+KfNMuXDf
- TXh5aWDPSJwmvDsZKcY3ZrB/SFg5B8m3Zgs6X+zClaVAatc9dbFBVx6pS2JGlMgCyKxg
- AiPhlzRZAuWHgWRoWTF2CSAJyL//h0cFzjMnqORcP6DpXnItsr1UmRIruer/lKwMgR3S
- RbvlKpHhopohn2Y7FV1gEUmyjXzLcyR4o28VIpj+eokafGtY3rIk5GdzRpTGeJR2iCn3
- vfqbeWn8aqc2K6qz9bLCoSMbIK4KjJI12Vj/sA8r/EZRyw9W1V0MTA/3m0p9WFJTHG1H
- j1jw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXz8sBVBXzlQqpxi8LHo0SRk0DBROWgjgR+Q3uj+Y3Jwjv/J3xAgf5aTc4XcbAhHmJQzPFnxtik0EE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyrkqWsj0YhBKBzkOh6Mto8awCALE6ssfLTs44nHMJGPL8IAT/F
- 5KFm659uBBtCxdB1z/P4dQenISywBzrwCbR2ZdUam4snSYwXzFNQvK2nftnVPdLzFIi5JgfoU4G
- mhd4mUSR3V22ohhfjlWlYAEQqkb1xQdzz9qKQ9l27
-X-Gm-Gg: ASbGncuwaEFjtlLX/+g7USZF1IsL+Y+eF6IIJXoJ3yMyUcy8BE/JZIcywfDgmxZosq0
- upgP0lxmZpInPRm7X9FNRlM8b+89V4CtGn8z0iUbD0zb4CCZv7gN3ONjLHikn0TEklbb5Q4JXBp
- Tr0+srLW7zyosLNkDvL8/lUu0RMPk/cClhGTHhLM/TCAOu/4Pkqv5U01QAmbh47bamjb3Eq81lf
- vb9vdzPKzgxbnV6PDRQC/RFGpA=
-X-Google-Smtp-Source: AGHT+IGJmjz+YHPyNxr90AMhiQNNDQu9deq8PWwNfyq+zFWi/YcgUyPYkmS3VX3aACMgtkUmoKeOvBcyBRDmMb3NDeE=
-X-Received: by 2002:a17:903:3d06:b0:248:8063:a8b4 with SMTP id
- d9443c01a7336-2488063abcbmr89508125ad.22.1756370632768; Thu, 28 Aug 2025
- 01:43:52 -0700 (PDT)
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1908510E1C6;
+ Thu, 28 Aug 2025 09:09:18 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Luca Abeni <lucabe72@gmail.com>, Steven Rostedt <rostedt@goodmis.org>
+Subject: [PATCH 1/2] drm/i915: Disable tracepoints for PREEMPT_RT
+Date: Thu, 28 Aug 2025 11:09:43 +0200
+Message-ID: <20250828090944.101069-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20250827220141.262669-1-david@redhat.com>
- <20250827220141.262669-35-david@redhat.com>
-In-Reply-To: <20250827220141.262669-35-david@redhat.com>
-From: Marco Elver <elver@google.com>
-Date: Thu, 28 Aug 2025 10:43:16 +0200
-X-Gm-Features: Ac12FXwMzUnIHp_v7uH0kV3Hu6ram9vqgPmCMZ3TyuNNAlhDfe6K8rTgx1FpO8k
-Message-ID: <CANpmjNP8-dM-cizCfsVOUNDS2jBaY6d=0Wx8OGen5RbXgaqcfQ@mail.gmail.com>
-Subject: Re: [PATCH v1 34/36] kfence: drop nth_page() usage
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>, 
- Dmitry Vyukov <dvyukov@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
- Brendan Jackman <jackmanb@google.com>, Christoph Lameter <cl@gentwo.org>,
- Dennis Zhou <dennis@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- iommu@lists.linux.dev, io-uring@vger.kernel.org, 
- Jason Gunthorpe <jgg@nvidia.com>, Jens Axboe <axboe@kernel.dk>,
- Johannes Weiner <hannes@cmpxchg.org>, 
- John Hubbard <jhubbard@nvidia.com>, kasan-dev@googlegroups.com,
- kvm@vger.kernel.org, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, 
- linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org, 
- linux-crypto@vger.kernel.org, linux-ide@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, linux-mips@vger.kernel.org, 
- linux-mmc@vger.kernel.org, linux-mm@kvack.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- linux-scsi@vger.kernel.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, Michal Hocko <mhocko@suse.com>, 
- Mike Rapoport <rppt@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- netdev@vger.kernel.org, 
- Oscar Salvador <osalvador@suse.de>, Peter Xu <peterx@redhat.com>, 
- Robin Murphy <robin.murphy@arm.com>, Suren Baghdasaryan <surenb@google.com>,
- Tejun Heo <tj@kernel.org>, 
- virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 28 Aug 2025 19:34:39 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,89 +40,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 28 Aug 2025 at 00:11, 'David Hildenbrand' via kasan-dev
-<kasan-dev@googlegroups.com> wrote:
->
-> We want to get rid of nth_page(), and kfence init code is the last user.
->
-> Unfortunately, we might actually walk a PFN range where the pages are
-> not contiguous, because we might be allocating an area from memblock
-> that could span memory sections in problematic kernel configs (SPARSEMEM
-> without SPARSEMEM_VMEMMAP).
->
-> We could check whether the page range is contiguous
-> using page_range_contiguous() and failing kfence init, or making kfence
-> incompatible these problemtic kernel configs.
->
-> Let's keep it simple and simply use pfn_to_page() by iterating PFNs.
->
-> Cc: Alexander Potapenko <glider@google.com>
-> Cc: Marco Elver <elver@google.com>
-> Cc: Dmitry Vyukov <dvyukov@google.com>
-> Signed-off-by: David Hildenbrand <david@redhat.com>
+Luca Abeni reported this:
+| BUG: scheduling while atomic: kworker/u8:2/15203/0x00000003
+| CPU: 1 PID: 15203 Comm: kworker/u8:2 Not tainted 4.19.1-rt3 #10
+| Call Trace:
+|  rt_spin_lock+0x3f/0x50
+|  gen6_read32+0x45/0x1d0 [i915]
+|  g4x_get_vblank_counter+0x36/0x40 [i915]
+|  trace_event_raw_event_i915_pipe_update_start+0x7d/0xf0 [i915]
 
-Reviewed-by: Marco Elver <elver@google.com>
+The tracing events use trace_intel_pipe_update_start() among other events
+use functions acquire spinlock_t locks which are transformed into
+sleeping locks on PREEMPT_RT. A few trace points use
+intel_get_crtc_scanline(), others use ->get_vblank_counter() wich also
+might acquire a sleeping locks on PREEMPT_RT.
+At the time the arguments are evaluated within trace point, preemption
+is disabled and so the locks must not be acquired on PREEMPT_RT.
 
-Thanks.
+Based on this I don't see any other way than disable trace points on
+PREMPT_RT.
 
-> ---
->  mm/kfence/core.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
->
-> diff --git a/mm/kfence/core.c b/mm/kfence/core.c
-> index 0ed3be100963a..727c20c94ac59 100644
-> --- a/mm/kfence/core.c
-> +++ b/mm/kfence/core.c
-> @@ -594,15 +594,14 @@ static void rcu_guarded_free(struct rcu_head *h)
->   */
->  static unsigned long kfence_init_pool(void)
->  {
-> -       unsigned long addr;
-> -       struct page *pages;
-> +       unsigned long addr, start_pfn;
->         int i;
->
->         if (!arch_kfence_init_pool())
->                 return (unsigned long)__kfence_pool;
->
->         addr = (unsigned long)__kfence_pool;
-> -       pages = virt_to_page(__kfence_pool);
-> +       start_pfn = PHYS_PFN(virt_to_phys(__kfence_pool));
->
->         /*
->          * Set up object pages: they must have PGTY_slab set to avoid freeing
-> @@ -613,11 +612,12 @@ static unsigned long kfence_init_pool(void)
->          * enters __slab_free() slow-path.
->          */
->         for (i = 0; i < KFENCE_POOL_SIZE / PAGE_SIZE; i++) {
-> -               struct slab *slab = page_slab(nth_page(pages, i));
-> +               struct slab *slab;
->
->                 if (!i || (i % 2))
->                         continue;
->
-> +               slab = page_slab(pfn_to_page(start_pfn + i));
->                 __folio_set_slab(slab_folio(slab));
->  #ifdef CONFIG_MEMCG
->                 slab->obj_exts = (unsigned long)&kfence_metadata_init[i / 2 - 1].obj_exts |
-> @@ -665,10 +665,12 @@ static unsigned long kfence_init_pool(void)
->
->  reset_slab:
->         for (i = 0; i < KFENCE_POOL_SIZE / PAGE_SIZE; i++) {
-> -               struct slab *slab = page_slab(nth_page(pages, i));
-> +               struct slab *slab;
->
->                 if (!i || (i % 2))
->                         continue;
-> +
-> +               slab = page_slab(pfn_to_page(start_pfn + i));
->  #ifdef CONFIG_MEMCG
->                 slab->obj_exts = 0;
->  #endif
-> --
-> 2.50.1
->
-> --
-> You received this message because you are subscribed to the Google Groups "kasan-dev" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to kasan-dev+unsubscribe@googlegroups.com.
-> To view this discussion visit https://groups.google.com/d/msgid/kasan-dev/20250827220141.262669-35-david%40redhat.com.
+[mlankhorst]
+The original patch was insufficient, and since the tracing
+infrastructure does not allow for partial disabling of tracepoints.
+
+Completely disable tracing for the entire i915 driver in PREEMPT_RT,
+a separate fix for display tracepoints on xe is added to make those
+work.
+
+Cc: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reported-by: Luca Abeni <lucabe72@gmail.com>
+Cc: Steven Rostedt <rostedt@goodmis.org>
+Co-developed-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/Makefile | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 8535434430728..ba825d7f6ddf5 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -13,6 +13,11 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
+ # drivers. Define I915 when building i915.
+ subdir-ccflags-y += -DI915
+ 
++# Disable tracepoints on i915 for PREEMPT_RT, unfortunately
++# it's an all or nothing flag. You cannot selectively disable
++# only some tracepoints.
++subdir-ccflags-$(CONFIG_PREEMPT_RT) += -DNOTRACE
++
+ subdir-ccflags-y += -I$(src)
+ 
+ # Please keep these build lists sorted!
+-- 
+2.50.1
+
