@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1047BB39CFB
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04028B39CFC
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76CAC10E98C;
-	Thu, 28 Aug 2025 12:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE6810E98E;
+	Thu, 28 Aug 2025 12:21:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I8LgCjGG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JT0AVYxG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 192E910E98C;
- Thu, 28 Aug 2025 12:21:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79E9F10E98E;
+ Thu, 28 Aug 2025 12:21:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383679; x=1787919679;
+ t=1756383684; x=1787919684;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jzgALfs3vCSsyqSu2qXpKXYUXwKLpb6VVPOomUUsX/c=;
- b=I8LgCjGGJmlicOXhRN8ZKwPEkWLyg9p4mNzshbzWcDtJ3kP//6rlB5jo
- R/wh2HbmhrVAmWaZbcCy5JZN1pmv0n+xO/TpdZ4tt+FLLLBGTgaLItbkD
- xj+no4/rvTUKPQ4T+uW2JXlrJi2SicsH3YkZfqb3V9q9Onm2xyxJVVYrV
- 1ww/n6NnGzs9ij/v5rQYnL+7A2ig82yciyfOP6z2IcPKNB4iZ7gyXlwPW
- qrltWmZqyVr9MmbavdA3Eh6tdmaAkbKkPMd6f2eHUcJo4Lx+qtL7QzV3x
- AObeNVIJX31yQLxGUmFd3hv2KReIAHXCMd7uOJQXrwn+GFc5M3ho3viag Q==;
-X-CSE-ConnectionGUID: Zy+1v2cnR1awIoAI299dlw==
-X-CSE-MsgGUID: iIAEEuw2SsOYL6ASVUPKRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58360027"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58360027"
+ bh=e6NlzyFdGjvZbyKFqroeW9tAr7d76FEB1fwNxN5yJj0=;
+ b=JT0AVYxGFMyu5vGZoPBLsUsO3sBFxZLLqfzSNrr8GnH7qVTs3Jy2uhNM
+ cWo44/f5/xaVlbuqHw7sJS5img4eCIo1b0thQ+P4NeBMOygNmDC17TdcZ
+ Hx9AWosfrvjB2wLm5k16mYCeRvXAV30HOzbVSzd/GZrkf9+qOt1Pnc4+e
+ DMKhTTzEUv/8kVVWEGJO45OobHanreTpXBro29TvZ4sOCbSbDNLGDfM/+
+ 4T9EIV59MzFFpnVQMTTDttRDaBWyBf1IwBRcGRa0SqiCUt3A7h3zFdjW+
+ jxgTeAG8o8Bd2Y4bbK5QjDisL3R8GC+Vlm/DCrG4e8+zADVjHBO0WVOY+ Q==;
+X-CSE-ConnectionGUID: IlIw4vrrTcOkbbHVM05NHQ==
+X-CSE-MsgGUID: 6G13GjC6Rza0R9hXUAmTIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58360039"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58360039"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:19 -0700
-X-CSE-ConnectionGUID: blCGUQkZRLuZhyybzNxjbg==
-X-CSE-MsgGUID: JUaqSz5DQ3O3vsVj7nXFLg==
+ 28 Aug 2025 05:21:23 -0700
+X-CSE-ConnectionGUID: PfOtrE5pTeut2ZETm583SA==
+X-CSE-MsgGUID: cHCtASzCRfarwOptcdzAHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169999564"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169999576"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:17 -0700
+ 28 Aug 2025 05:21:22 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 02/20] drm/i915/hdcp: use generic poll_timeout_us() instead of
- __wait_for()
-Date: Thu, 28 Aug 2025 15:20:44 +0300
-Message-ID: <bfc9f941ec1628830644f1419d606e3d085aaba0.1756383233.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH 03/20] drm/i915/hdcp: use generic poll_timeout_us() instead of
+ wait_for()
+Date: Thu, 28 Aug 2025 15:20:45 +0300
+Message-ID: <2871a07337401c25ef3df44073c5e78fedc45e8e.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 References: <cover.1756383233.git.jani.nikula@intel.com>
@@ -75,43 +75,66 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 Prefer generic poll helpers over i915 custom helpers.
 
 The functional change is losing the exponentially growing sleep of
-__wait_for(), which used to be 1, 2, 4, ... 64, and 128 ms in this
-particular case.
+wait_for(), which used to be 10, 20, 40, ..., 640, and 1280 us.
 
-Use an arbitrary 100 ms sleep instead. The timeout remains at 5000 ms.
+Use an arbitrary constant 100 us sleep instead. The timeout remains at 1
+ms.
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+While at it, use the last failing value for debug logging instead of
+reading it again.
+
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 42202c8bb066..0c98e50501a6 100644
+index 0c98e50501a6..d6a105959d26 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -11,6 +11,7 @@
- #include <linux/component.h>
- #include <linux/debugfs.h>
- #include <linux/i2c.h>
-+#include <linux/iopoll.h>
- #include <linux/random.h>
+@@ -817,6 +817,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 	enum port port = dig_port->base.port;
+ 	unsigned long r0_prime_gen_start;
+ 	int ret, i, tries = 2;
++	u32 val;
+ 	union {
+ 		u32 reg[2];
+ 		u8 shim[DRM_HDCP_AN_LEN];
+@@ -905,8 +906,10 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 		       HDCP_CONF_AUTH_AND_ENC);
  
- #include <drm/display/drm_hdcp_helper.h>
-@@ -326,10 +327,9 @@ static int intel_hdcp_poll_ksv_fifo(struct intel_digital_port *dig_port,
- 	bool ksv_ready;
+ 	/* Wait for R0 ready */
+-	if (wait_for(intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)) &
+-		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
++	ret = poll_timeout_us(val = intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)),
++			      val & (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC),
++			      100, 1000, false);
++	if (ret) {
+ 		drm_err(display->drm, "Timed out waiting for R0 ready\n");
+ 		return -ETIMEDOUT;
+ 	}
+@@ -938,16 +941,16 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 			       ri.reg);
  
- 	/* Poll for ksv list ready (spec says max time allowed is 5s) */
--	ret = __wait_for(read_ret = shim->read_ksv_ready(dig_port,
--							 &ksv_ready),
--			 read_ret || ksv_ready, 5 * 1000 * 1000, 1000,
--			 100 * 1000);
-+	ret = poll_timeout_us(read_ret = shim->read_ksv_ready(dig_port, &ksv_ready),
-+			      read_ret || ksv_ready,
-+			      100 * 1000, 5 * 1000 * 1000, false);
- 	if (ret)
- 		return ret;
- 	if (read_ret)
+ 		/* Wait for Ri prime match */
+-		if (!wait_for(intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)) &
+-			      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1))
++		ret = poll_timeout_us(val = intel_de_read(display, HDCP_STATUS(display, cpu_transcoder, port)),
++				      val & (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC),
++				      100, 1000, false);
++		if (!ret)
+ 			break;
+ 	}
+ 
+ 	if (i == tries) {
+ 		drm_dbg_kms(display->drm,
+-			    "Timed out waiting for Ri prime match (%x)\n",
+-			    intel_de_read(display,
+-					  HDCP_STATUS(display, cpu_transcoder, port)));
++			    "Timed out waiting for Ri prime match (%x)\n", val);
+ 		return -ETIMEDOUT;
+ 	}
+ 
 -- 
 2.47.2
 
