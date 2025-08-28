@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FBBB39E18
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 15:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81063B39EAD
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 15:23:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E37A10E99B;
-	Thu, 28 Aug 2025 13:04:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="GCR82Bhl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEE010E9A0;
+	Thu, 28 Aug 2025 13:23:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD1FD10E999;
- Thu, 28 Aug 2025 13:04:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1756386284; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=TOmNEwl0DMHamfZbLANbE8aEL7rEqLD2ofEZgqF5fee7kClDcy945gZTuxSqRyLy0j2+JTe2b2VXFEpiEEQuRG+XR23vwyqc3e6b7V9ckTDuOmJupfuB1Xrk+G6ltQmeCY+M09T1o8PQkRTg96aBaU/d4nAMiLnrXclPWHGaOaI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1756386284;
- h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=4TS1k4LRCQTHSGqNRqlw3cP03vW3DyZE1O9aH1AZfcs=; 
- b=BYv63lL5LAoQBZ6kHYm63yUNLUHCMXGBR4jac4ofQRZp9yMFX7mSFeLasGPfbtfm4RHCX5AuMaYfcAwz0RvhHrUnpOIsM+mSHLXlAYo8JjzMWO5EaIYGtHj+ztoTvpya1OBP2a+Mrvfw3ACtt90Yyghdz8zlRwaPGd7hPxOgZTU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
- dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1756386284; 
- s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=4TS1k4LRCQTHSGqNRqlw3cP03vW3DyZE1O9aH1AZfcs=;
- b=GCR82BhlnRoOgZ1pJFDB18am+JzC8pijOUAD9MpempEVRmji2f1hpr9pQJ+Dtz5h
- /5tiBtL0t3nGwf3y4Ys+e7N7uGMLRKW4at6EaNTeeGe3lWZiWVL78W6NZqSAgzA6gJN
- pWQe5Z1v32aqDRYfXM07FR0ZhD8dsnljPjALLHQo=
-Received: by mx.zohomail.com with SMTPS id 1756386282738356.89489380871726;
- Thu, 28 Aug 2025 06:04:42 -0700 (PDT)
-From: Daniel Almeida <daniel.almeida@collabora.com>
-To: adrinael@adrinael.net, arek@hiler.eu, kamil.konieczny@linux.intel.com,
- juhapekka.heikkila@gmail.com, bhanuprakash.modem@gmail.com,
- ashutosh.dixit@intel.com, karthik.b.s@intel.com,
- boris.brezillon@collabora.com, liviu.dudau@arm.com, steven.price@arm.com
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH i-g-t 4/4] tests/panthor: add panthor tests
-Date: Thu, 28 Aug 2025 10:04:00 -0300
-Message-ID: <20250828130402.2549948-5-daniel.almeida@collabora.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250828130402.2549948-1-daniel.almeida@collabora.com>
-References: <20250828130402.2549948-1-daniel.almeida@collabora.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA7F910E3BF;
+ Thu, 28 Aug 2025 13:23:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4374917961586897898=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_cpufreq=3A_use_=5F=5Ffree?=
+ =?utf-8?q?=28=29_for_all_cpufreq=5Fcpu=5Fget=28=29_references_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zihuan Zhang" <zhangzihuan@kylinos.cn>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Aug 2025 13:23:22 -0000
+Message-ID: <175638740269.279076.4713853707174772653@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250827023202.10310-1-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250827023202.10310-1-zhangzihuan@kylinos.cn>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,666 +37,339 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add an initial test suit covering query device properties, allocating
-memory, binding and unbinding VA ranges through VM_BIND and submitting a
-simple piece of work through GROUP_SUBMIT.
----
- lib/igt_panthor.c             | 136 ++++++++++++++++++
- lib/igt_panthor.h             |  20 +++
- tests/panthor/meson.build     |   4 +
- tests/panthor/panthor_gem.c   |  59 ++++++++
- tests/panthor/panthor_group.c | 264 ++++++++++++++++++++++++++++++++++
- tests/panthor/panthor_query.c |  25 ++++
- tests/panthor/panthor_vm.c    |  73 ++++++++++
- 7 files changed, 581 insertions(+)
- create mode 100644 tests/panthor/panthor_gem.c
- create mode 100644 tests/panthor/panthor_group.c
- create mode 100644 tests/panthor/panthor_query.c
- create mode 100644 tests/panthor/panthor_vm.c
+--===============4374917961586897898==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-diff --git a/lib/igt_panthor.c b/lib/igt_panthor.c
-index 3e2c29b17..c422320c5 100644
---- a/lib/igt_panthor.c
-+++ b/lib/igt_panthor.c
-@@ -2,6 +2,9 @@
- // SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
- 
- #include "igt_panthor.h"
-+#include "drmtest.h"
-+#include "ioctl_wrappers.h"
-+#include "panthor_drm.h"
- 
- /**
-  * SECTION:igt_panthor
-@@ -12,3 +15,136 @@
-  * This library provides various auxiliary helper functions for writing Panthor
-  * tests.
-  */
-+
-+void igt_panthor_query(int fd, int32_t type, void* data, size_t size, int err)
-+{
-+    struct drm_panthor_dev_query query = {
-+        .type = type,
-+        .pointer = (uintptr_t)data,
-+        .size = size,
-+    };
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query);
-+    }
-+}
-+
-+void igt_panthor_vm_create(int fd, uint32_t *vm_id, int err)
-+{
-+    struct drm_panthor_vm_create vm_create = {};
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create);
-+        *vm_id = vm_create.id;
-+    }
-+}
-+
-+void igt_panthor_vm_destroy(int fd, uint32_t vm_id, int err)
-+{
-+    struct drm_panthor_vm_destroy vm_destroy = {
-+        .id = vm_id,
-+    };
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy);
-+    }
-+}
-+
-+void igt_panthor_vm_bind(int fd, uint32_t vm_id, uint32_t bo_handle,
-+                         uint64_t va, uint64_t size, uint32_t flags, int err)
-+{
-+    struct drm_panthor_vm_bind_op bind_op = {
-+        .flags = flags,
-+        .bo_handle = bo_handle,
-+        .va = va,
-+        .size = size,
-+    };
-+
-+    struct drm_panthor_vm_bind vm_bind = {
-+        .vm_id = vm_id,
-+        .flags = 0,
-+        .ops = DRM_PANTHOR_OBJ_ARRAY(1, &bind_op),
-+    };
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind);
-+    }
-+}
-+
-+void igt_panthor_bo_create(int fd, struct panthor_bo *bo,
-+                           uint64_t size, uint32_t flags, int err)
-+{
-+    struct drm_panthor_bo_create bo_create = {
-+        .size = size,
-+        .flags = flags,
-+    };
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create);
-+    }
-+
-+    bo->handle = bo_create.handle;
-+    bo->size = bo_create.size;
-+    bo->offset = 0;
-+    bo->map = NULL;
-+}
-+
-+uint64_t igt_panthor_bo_mmap_offset(int fd, uint32_t handle, int err)
-+{
-+    struct drm_panthor_bo_mmap_offset bo_mmap_offset = {
-+        .handle = handle,
-+    };
-+
-+    if (err) {
-+        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &bo_mmap_offset, err);
-+    } else {
-+        do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &bo_mmap_offset);
-+    }
-+    return bo_mmap_offset.offset;
-+}
-+
-+void *igt_panthor_mmap_bo(int fd, uint32_t handle, uint64_t size, unsigned prot)
-+{
-+    struct drm_panthor_bo_mmap_offset mmap_bo = {
-+        .handle = handle,
-+    };
-+    void *ptr;
-+
-+    do_ioctl(fd, DRM_IOCTL_PANTHOR_BO_MMAP_OFFSET, &mmap_bo);
-+
-+    ptr = mmap(0, size, prot, MAP_SHARED, fd, mmap_bo.offset);
-+    if (ptr == MAP_FAILED)
-+        return NULL;
-+    else
-+        return ptr;
-+}
-+
-+void igt_panthor_bo_create_mapped(int fd, struct panthor_bo *bo, uint64_t size,
-+                                  uint32_t flags, int err) {
-+  igt_panthor_bo_create(fd, bo, size, flags, err);
-+  bo->offset = igt_panthor_bo_mmap_offset(fd, bo->handle, err);
-+  bo->map = igt_panthor_mmap_bo(fd, bo->handle, bo->size,
-+                           PROT_READ | PROT_WRITE);
-+}
-+
-+void igt_panthor_free_bo(int fd, struct panthor_bo *bo)
-+{
-+    if (!bo)
-+        return;
-+
-+    if (bo->map) {
-+        munmap(bo->map, bo->size);
-+    }
-+
-+    gem_close(fd, bo->handle);
-+}
-\ No newline at end of file
-diff --git a/lib/igt_panthor.h b/lib/igt_panthor.h
-index c4bee1838..421f44a33 100644
---- a/lib/igt_panthor.h
-+++ b/lib/igt_panthor.h
-@@ -4,5 +4,25 @@
- #ifndef IGT_PANTHOR_H
- #define IGT_PANTHOR_H
- 
-+#include <stdint.h>
-+#include <stddef.h>
-+
-+struct panthor_bo {
-+    int handle;
-+    uint64_t offset;
-+    uint64_t size;
-+    void *map;
-+};
-+
-+void igt_panthor_query(int fd, int32_t type, void* data, size_t size, int err);
-+void igt_panthor_vm_create(int fd, uint32_t *vm_id, int err);
-+void igt_panthor_vm_destroy(int fd, uint32_t vm_id, int err);
-+void igt_panthor_vm_bind(int fd, uint32_t vm_id, uint32_t bo_handle, uint64_t va, uint64_t size, uint32_t flags, int err);
-+void igt_panthor_bo_create(int fd, struct panthor_bo *bo, uint64_t size, uint32_t flags, int err);
-+uint64_t igt_panthor_bo_mmap_offset(int fd, uint32_t handle, int err);
-+void igt_panthor_free_bo(int fd, struct panthor_bo *bo);
-+void igt_panthor_bo_create_mapped(int fd, struct panthor_bo *bo, uint64_t size,
-+                                  uint32_t flags, int err);
-+void *igt_panthor_mmap_bo(int fd, uint32_t handle, uint64_t size, unsigned prot);
- 
- #endif /* IGT_PANTHOR_H */
-diff --git a/tests/panthor/meson.build b/tests/panthor/meson.build
-index 979ae91e0..89edcc844 100644
---- a/tests/panthor/meson.build
-+++ b/tests/panthor/meson.build
-@@ -1,4 +1,8 @@
- panthor_progs = [
-+	'panthor_gem',
-+	'panthor_query',
-+	'panthor_vm',
-+	'panthor_group',
- ]
- 
- foreach prog : panthor_progs
-diff --git a/tests/panthor/panthor_gem.c b/tests/panthor/panthor_gem.c
-new file mode 100644
-index 000000000..0bdaa3495
---- /dev/null
-+++ b/tests/panthor/panthor_gem.c
-@@ -0,0 +1,59 @@
-+// SPDX-License-Identifier: MIT
-+// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-+
-+#include "igt.h"
-+#include "igt_core.h"
-+#include "igt_panthor.h"
-+
-+igt_main {
-+  int fd;
-+
-+  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-+
-+  igt_subtest("bo_create") {
-+    struct panthor_bo bo;
-+    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-+    igt_assert(bo.handle != 0);
-+
-+    igt_panthor_free_bo(fd, &bo);
-+  }
-+
-+  igt_subtest("bo_mmap_offset") {
-+    struct panthor_bo bo;
-+    uint64_t mmap_offset;
-+
-+    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-+    igt_assert(bo.handle != 0);
-+
-+    mmap_offset = igt_panthor_bo_mmap_offset(fd, bo.handle, 0);
-+    igt_assert(mmap_offset != 0);
-+
-+    igt_panthor_free_bo(fd, &bo);
-+  }
-+
-+  igt_subtest("bo_mmap_offset_invalid_handle") {
-+    struct panthor_bo bo;
-+    uint64_t mmap_offset;
-+
-+    igt_panthor_bo_create(fd, &bo, 4096, 0, 0);
-+    igt_assert(bo.handle != 0);
-+
-+    mmap_offset = igt_panthor_bo_mmap_offset(fd, 0xdeadbeef, ENOENT);
-+    igt_assert(mmap_offset == 0);
-+
-+    igt_panthor_free_bo(fd, &bo);
-+  }
-+
-+  igt_subtest("bo_create_round_size") {
-+    struct panthor_bo bo;
-+    uint64_t expected_size = 8192;
-+
-+    igt_panthor_bo_create(fd, &bo, 5000, 0, 0);
-+    igt_assert(bo.handle != 0);
-+    igt_assert(bo.size == expected_size);
-+
-+    igt_panthor_free_bo(fd, &bo);
-+  }
-+
-+  igt_fixture { drm_close_driver(fd); }
-+}
-diff --git a/tests/panthor/panthor_group.c b/tests/panthor/panthor_group.c
-new file mode 100644
-index 000000000..b7e3cf9c3
---- /dev/null
-+++ b/tests/panthor/panthor_group.c
-@@ -0,0 +1,264 @@
-+// SPDX-License-Identifier: MIT
-+// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-+
-+#include <stdint.h>
-+#include <sys/mman.h>
-+#include <endian.h> // For htole64
-+#include <unistd.h>
-+
-+#include "drm.h"
-+#include "igt.h"
-+#include "igt_core.h"
-+#include "igt_panthor.h"
-+#include "panthor_drm.h"
-+
-+static void
-+issue_store_multiple(u8 *command_stream, uint64_t kernel_va, uint32_t constant)
-+{
-+    uint64_t opcode, reg_num, mov48, store_multiple, flush;
-+    uint64_t sr, src0, register_bitmap, offset;
-+
-+    // MOV48: Load the source register ([r68; r69]) with the kernel address
-+    opcode = 0x1;
-+    reg_num = 68;
-+    mov48 = (opcode << 56) | (reg_num << 48) | kernel_va;
-+    mov48 = htole64(mov48);
-+    memcpy(&command_stream[0], &mov48, sizeof(mov48));
-+
-+    // MOV48: Load a known constant into r70
-+    opcode = 0x1;
-+    reg_num = 70;
-+    mov48 = (opcode << 56) | (reg_num << 48) | constant;
-+    mov48 = htole64(mov48);
-+    memcpy(&command_stream[8], &mov48, sizeof(mov48));
-+
-+    // STORE_MULTIPLE: Store the first register to the address pointed to by [r68; r69]
-+    opcode = 0x15; // STORE_MULTIPLE
-+    sr = 70; // Starting from register r70
-+    src0 = 68; // Address pointed to by [r68; r69]
-+    register_bitmap = 1; // Store the first register
-+    offset = 0; // Offset
-+    store_multiple = (opcode << 56) | (sr << 48) | (src0 << 40) | (register_bitmap << 16) | offset;
-+    store_multiple = htole64(store_multiple);
-+    memcpy(&command_stream[16], &store_multiple, sizeof(store_multiple));
-+
-+    opcode = 0x1;
-+    reg_num = 68;
-+    mov48 = (opcode << 56) | (reg_num << 48) | 0;
-+    mov48 = htole64(mov48);
-+    memcpy(&command_stream[24], &mov48, sizeof(mov48));
-+
-+    opcode = 36;
-+    flush = opcode << 56 | 0ull << 48 | reg_num << 40 | 0ull << 16 | 0x233;
-+    flush = htole64(flush);
-+    memcpy(&command_stream[32], &flush, sizeof(flush));
-+}
-+
-+igt_main {
-+  int fd;
-+
-+  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-+
-+  igt_subtest("group_create") {
-+    struct drm_panthor_gpu_info gpu_info = {};
-+    struct drm_panthor_vm_create vm_create = {};
-+    struct drm_panthor_group_create group_create = {};
-+    struct drm_panthor_queue_create queue = {};
-+    struct drm_panthor_obj_array queues;
-+    struct drm_panthor_group_destroy group_destroy;
-+    struct drm_panthor_vm_destroy vm_destroy;
-+
-+    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu_info, sizeof(gpu_info), 0);
-+    igt_assert(gpu_info.gpu_id != 0);
-+
-+    vm_create.flags = 0;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create), 0);
-+    igt_assert(vm_create.id != 0);
-+
-+    queue.priority = 0; // Low priority
-+    queue.ringbuf_size = 4096; // Example size
-+    queues = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue);
-+
-+    group_create.queues = queues;
-+    group_create.max_compute_cores = 1;
-+    group_create.max_fragment_cores = 1;
-+    group_create.max_tiler_cores = 1;
-+    group_create.priority = PANTHOR_GROUP_PRIORITY_MEDIUM;
-+    group_create.compute_core_mask = gpu_info.shader_present & 0x1; // Use first core
-+    group_create.fragment_core_mask = gpu_info.shader_present & 0x1; // Use first core
-+    group_create.tiler_core_mask = gpu_info.tiler_present & 0x1; // Use first tiler
-+    group_create.vm_id = vm_create.id;
-+
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_CREATE, &group_create), 0);
-+    igt_assert(group_create.group_handle != 0);
-+
-+    // Cleanup: Destroy the group and VM
-+    group_destroy = (struct drm_panthor_group_destroy){ .group_handle = group_create.group_handle };
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_DESTROY, &group_destroy), 0);
-+
-+    vm_destroy = (struct drm_panthor_vm_destroy) { .id = vm_create.id };
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy), 0);
-+  }
-+
-+  igt_subtest("group_submit") {
-+    struct drm_panthor_gpu_info gpu_info = {};
-+    struct drm_panthor_vm_create vm_create = {};
-+    struct drm_panthor_group_create group_create = {};
-+    struct drm_panthor_queue_create queue = {};
-+    struct drm_panthor_obj_array queues;
-+    struct drm_panthor_group_submit group_submit = {};
-+    struct drm_panthor_queue_submit queue_submit = {};
-+    struct drm_panthor_group_destroy group_destroy;
-+    struct drm_panthor_obj_array queue_submits;
-+    struct drm_panthor_vm_destroy vm_destroy;
-+    struct drm_panthor_bo_create bo_create = {};
-+    struct drm_panthor_vm_bind vm_bind = {};
-+    struct drm_panthor_vm_bind_op vm_bind_op = {};
-+    struct drm_syncobj_wait wait = {};
-+    struct drm_syncobj_create syncobj_create = {};
-+    struct drm_panthor_sync_op sync_op = {};
-+    struct drm_gem_close gem_close = {};
-+    struct drm_syncobj_destroy syncobj_destroy = {};
-+    uint64_t command_stream_gpu_addr;
-+    uint32_t command_stream_size;
-+    uint64_t result_gpu_addr;
-+    uint32_t cmd_buf_bo_handle;
-+    uint32_t result_bo_handle;
-+    uint32_t syncobj_handle;
-+    uint8_t command_stream[64] = {0};
-+    uint8_t *bo_cpu_addr;
-+    uint8_t *result_cpu_addr;
-+    const int INITIAL_VA = 0x1000000;
-+
-+
-+    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu_info, sizeof(gpu_info), 0);
-+    igt_assert(gpu_info.gpu_id != 0);
-+
-+    vm_create.flags = 0;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_CREATE, &vm_create), 0);
-+    igt_assert(vm_create.id != 0);
-+
-+    bo_create.size = 4096;
-+    bo_create.flags = 0;
-+    bo_create.exclusive_vm_id = vm_create.id;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create), 0);
-+    igt_assert(bo_create.handle != 0);
-+    cmd_buf_bo_handle = bo_create.handle;
-+
-+    vm_bind_op.flags = DRM_PANTHOR_VM_BIND_OP_TYPE_MAP;
-+    vm_bind_op.bo_handle = cmd_buf_bo_handle;
-+    vm_bind_op.bo_offset = 0;
-+    vm_bind_op.va = INITIAL_VA;
-+    vm_bind_op.size = bo_create.size;
-+    vm_bind.ops = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &vm_bind_op);
-+    vm_bind.vm_id = vm_create.id;
-+    vm_bind.flags = 0;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind), 0);
-+
-+    command_stream_gpu_addr = vm_bind_op.va;
-+    command_stream_size = sizeof(command_stream);
-+
-+    bo_cpu_addr = igt_panthor_mmap_bo(fd, bo_create.handle, bo_create.size, PROT_READ | PROT_WRITE);
-+    igt_assert(bo_cpu_addr != MAP_FAILED);
-+
-+    // Create the BO to receive the result of the store.
-+    memset(&bo_create, 0, sizeof(bo_create));
-+    bo_create.size = 4096;
-+    bo_create.flags = 0;
-+    bo_create.exclusive_vm_id = vm_create.id;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_BO_CREATE, &bo_create), 0);
-+    igt_assert(bo_create.handle != 0);
-+    result_bo_handle = bo_create.handle;
-+
-+    // Also bind the result BO.
-+    vm_bind_op.flags = DRM_PANTHOR_VM_BIND_OP_TYPE_MAP;
-+    vm_bind_op.bo_handle = result_bo_handle;
-+    vm_bind_op.bo_offset = 0;
-+    vm_bind_op.va = INITIAL_VA + 4096;
-+    vm_bind_op.size = bo_create.size;
-+    vm_bind.ops = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &vm_bind_op);
-+    vm_bind.vm_id = vm_create.id;
-+    vm_bind.flags = 0;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_BIND, &vm_bind), 0);
-+    result_gpu_addr = vm_bind_op.va;
-+
-+    issue_store_multiple(command_stream, result_gpu_addr, 0xdeadbeef);
-+    memcpy(bo_cpu_addr, command_stream, command_stream_size);
-+    munmap(bo_cpu_addr, bo_create.size);
-+
-+    queue.priority = 0;
-+    queue.ringbuf_size = 4096;
-+    queues = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue);
-+
-+    group_create.queues = queues;
-+    group_create.max_compute_cores = 1;
-+    group_create.max_fragment_cores = 1;
-+    group_create.max_tiler_cores = 1;
-+    group_create.priority = PANTHOR_GROUP_PRIORITY_MEDIUM;
-+    group_create.compute_core_mask = gpu_info.shader_present & 0x1;
-+    group_create.fragment_core_mask = gpu_info.shader_present & 0x1;
-+    group_create.tiler_core_mask = gpu_info.tiler_present & 0x1;
-+    group_create.vm_id = vm_create.id;
-+
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_CREATE, &group_create), 0);
-+    igt_assert(group_create.group_handle != 0);
-+
-+    syncobj_create = (struct drm_syncobj_create){
-+        .flags = 0,
-+    };
-+
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_CREATE, &syncobj_create), 0);
-+    syncobj_handle = syncobj_create.handle;
-+
-+    sync_op = (struct drm_panthor_sync_op) {
-+        .handle = syncobj_handle,
-+        .flags = DRM_PANTHOR_SYNC_OP_SIGNAL,
-+    };
-+
-+    queue_submit.syncs = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &sync_op);
-+
-+    queue_submit.queue_index = 0;
-+    queue_submit.stream_size = command_stream_size;
-+    queue_submit.stream_addr = command_stream_gpu_addr;
-+    queue_submit.latest_flush = 0;
-+    queue_submits = (struct drm_panthor_obj_array)DRM_PANTHOR_OBJ_ARRAY(1, &queue_submit);
-+
-+    group_submit.group_handle = group_create.group_handle;
-+    group_submit.queue_submits = queue_submits;
-+
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_SUBMIT, &group_submit), 0);
-+
-+    wait = (struct drm_syncobj_wait) {
-+      .handles = (uint64_t)&syncobj_handle,
-+      .count_handles = 1,
-+      .timeout_nsec = INT64_MAX,
-+      .flags = 0,
-+    };
-+
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_WAIT, &wait), 0);
-+
-+    result_cpu_addr = igt_panthor_mmap_bo(fd, bo_create.handle, bo_create.size, PROT_READ | PROT_WRITE);
-+
-+    igt_assert(*(uint32_t *)result_cpu_addr == 0xdeadbeef);
-+    munmap(result_cpu_addr, bo_create.size);
-+
-+    syncobj_destroy.handle = syncobj_handle;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_SYNCOBJ_DESTROY, &syncobj_destroy), 0);
-+
-+
-+    group_destroy.group_handle = group_create.group_handle;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_GROUP_DESTROY, &group_destroy), 0);
-+
-+    vm_destroy.id = vm_create.id;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_PANTHOR_VM_DESTROY, &vm_destroy), 0);
-+
-+    gem_close.handle = cmd_buf_bo_handle;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_GEM_CLOSE, &gem_close), 0);
-+
-+    gem_close.handle = result_bo_handle;
-+    igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_GEM_CLOSE, &gem_close), 0);
-+
-+}
-+
-+  igt_fixture { drm_close_driver(fd); }
-+}
-diff --git a/tests/panthor/panthor_query.c b/tests/panthor/panthor_query.c
-new file mode 100644
-index 000000000..3bbecf3a6
---- /dev/null
-+++ b/tests/panthor/panthor_query.c
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: MIT
-+// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-+
-+#include "igt.h"
-+#include "igt_core.h"
-+#include "igt_panthor.h"
-+#include "panthor_drm.h"
-+#include <stdint.h>
-+
-+igt_main {
-+  int fd;
-+
-+  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-+
-+  igt_subtest("query") {
-+    struct drm_panthor_gpu_info gpu = {};
-+
-+    igt_panthor_query(fd, DRM_PANTHOR_DEV_QUERY_GPU_INFO, &gpu, sizeof(gpu), 0);
-+
-+    igt_assert(gpu.gpu_id != 0);
-+    igt_assert(gpu.gpu_rev != 0);
-+  }
-+
-+  igt_fixture { drm_close_driver(fd); }
-+}
-diff --git a/tests/panthor/panthor_vm.c b/tests/panthor/panthor_vm.c
-new file mode 100644
-index 000000000..484602de3
---- /dev/null
-+++ b/tests/panthor/panthor_vm.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: MIT
-+// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
-+
-+#include "igt.h"
-+#include "igt_core.h"
-+#include "igt_panthor.h"
-+#include "panthor_drm.h"
-+
-+igt_main {
-+  int fd;
-+
-+  igt_fixture { fd = drm_open_driver(DRIVER_PANTHOR); }
-+
-+  igt_subtest("vm_create_destroy") {
-+    uint32_t vm_id;
-+
-+    igt_panthor_vm_create(fd, &vm_id, 0);
-+    igt_assert(vm_id != 0);
-+
-+    igt_panthor_vm_destroy(fd, vm_id, 0);
-+  }
-+
-+  igt_subtest("vm_destroy_invalid") {
-+    igt_panthor_vm_destroy(fd, 0xdeadbeef, EINVAL);
-+  }
-+
-+  igt_subtest("vm_bind") {
-+    uint32_t vm_id;
-+    struct panthor_bo bo;
-+    uint64_t bo_size = 0x1000;
-+
-+    igt_panthor_vm_create(fd, &vm_id, 0);
-+    igt_assert(vm_id != 0);
-+
-+    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-+    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_MAP, 0);
-+
-+    igt_panthor_vm_destroy(fd, vm_id, 0);
-+  }
-+
-+  igt_subtest("vm_unbind") {
-+    uint32_t vm_id;
-+    struct panthor_bo bo;
-+    uint64_t bo_size = 0x1000;
-+
-+    igt_panthor_vm_create(fd, &vm_id, 0);
-+    igt_assert(vm_id != 0);
-+
-+    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-+    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_MAP, 0);
-+    igt_panthor_vm_bind(fd, vm_id, 0, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP, 0);
-+
-+    igt_panthor_vm_destroy(fd, vm_id, 0);
-+  }
-+
-+  igt_subtest("vm_unbind_invalid_address") {
-+    uint32_t vm_id;
-+    struct panthor_bo bo;
-+    uint64_t bo_size = 0x1000;
-+
-+    igt_panthor_vm_create(fd, &vm_id, 0);
-+    igt_assert(vm_id != 0);
-+
-+    igt_panthor_bo_create(fd, &bo, bo_size, 0, 0);
-+
-+    /* This was not bound previously*/
-+    igt_panthor_vm_bind(fd, vm_id, bo.handle, 0x1000, 0x1000, DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP, EINVAL);
-+    igt_panthor_vm_destroy(fd, vm_id, 0);
-+  }
-+
-+
-+  igt_fixture { drm_close_driver(fd); }
-+}
--- 
-2.50.1
+== Series Details ==
 
+Series: cpufreq: use __free() for all cpufreq_cpu_get() references (rev2)
+URL   : https://patchwork.freedesktop.org/series/153442/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17080 -> Patchwork_153442v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_153442v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_153442v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/index.html
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (1): bat-adls-6 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_153442v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-hsw-4770:        NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/fi-hsw-4770/igt@runner@aborted.html
+    - fi-ivb-3770:        NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/fi-ivb-3770/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_153442v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-adls-6:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][4] ([i915#3282])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_selftest@live@active:
+    - bat-dg2-14:         [PASS][5] -> [ABORT][6] ([i915#14201]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-dg2-14/igt@i915_selftest@live@active.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-dg2-14/igt@i915_selftest@live@active.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@intel_hwmon@hwmon-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][9] ([i915#7707]) +1 other test skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@intel_hwmon@hwmon-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-adls-6:         NOTRUN -> [SKIP][10] ([i915#4103]) +1 other test skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][11] ([i915#3555] / [i915#3840])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-adls-6:         NOTRUN -> [SKIP][12]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-adls-6:         NOTRUN -> [SKIP][13] ([i915#5354])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - bat-adls-6:         NOTRUN -> [SKIP][14] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adls-6:         NOTRUN -> [SKIP][15] ([i915#3555])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][16] ([i915#3291]) +2 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@prime_vgem@basic-fence-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][17] ([i915#12061]) -> [PASS][18] +1 other test pass
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [DMESG-FAIL][19] ([i915#12061]) -> [PASS][20] +1 other test pass
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][21] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][22] ([i915#12061] / [i915#14204])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-atsm-1/igt@i915_selftest@live.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][23] ([i915#13929]) -> [DMESG-FAIL][24] ([i915#14204])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+  [i915#3282]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282
+  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
+  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
+  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
+  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17080 -> Patchwork_153442v2
+
+  CI-20190529: 20190529
+  CI_DRM_17080: 40e48afb83440fb70a14f8bb43eb5bc399ca0a07 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8512: 8512
+  Patchwork_153442v2: 40e48afb83440fb70a14f8bb43eb5bc399ca0a07 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/index.html
+
+--===============4374917961586897898==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>cpufreq: use __free() for all cpufreq_cpu_get() references (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153442/">https://patchwork.freedesktop.org/series/153442/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17080 -&gt; Patchwork_153442v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_153442v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_153442v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/index.html</p>
+<h2>Participating hosts (43 -&gt; 43)</h2>
+<p>Additional (1): bat-adls-6 <br />
+  Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_153442v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>fi-hsw-4770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/fi-hsw-4770/igt@runner@aborted.html">FAIL</a></li>
+<li>fi-ivb-3770:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/fi-ivb-3770/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_153442v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@gem_tiled_pread_basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282">i915#3282</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@active:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-dg2-14/igt@i915_selftest@live@active.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-dg2-14/igt@i915_selftest@live@active.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@intel_hwmon@hwmon-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-mmap-gtt:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-adls-6/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17080/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153442v2/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17080 -&gt; Patchwork_153442v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17080: 40e48afb83440fb70a14f8bb43eb5bc399ca0a07 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8512: 8512<br />
+  Patchwork_153442v2: 40e48afb83440fb70a14f8bb43eb5bc399ca0a07 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4374917961586897898==--
