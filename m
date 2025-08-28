@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414A8B39CF8
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F67B39CFA
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE92210E32C;
-	Thu, 28 Aug 2025 12:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5885C10E34C;
+	Thu, 28 Aug 2025 12:21:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zu4e0XPU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iM3J3MP6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F58F10E32C;
- Thu, 28 Aug 2025 12:21:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C09210E98D;
+ Thu, 28 Aug 2025 12:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383669; x=1787919669;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LQlJxiBA7pFn6yF2xbth9BS4RTcFNIP3yVmOx9W1wTY=;
- b=Zu4e0XPU3o4jmLpLNvdJrVzaRkSZaNPRwLqGTaMw5APz8E5e1s0qREFR
- 0AR3UvwtNk2E9BqsYknCEkPLkvRJ5fSmXwEKZvRoy7E6m5uFLsjmsQ+LQ
- vRk6+GrqTJpZiQk16+eRBm4jNEvJ1Y7tF6b2wRBYuAqskyjg/zIDNIcJ3
- O3IT7Vc2TXFbIR1Am5wdAuYvCS3EXMWPX9Ox7TdRGl9C/GYWFKdak0pVi
- OE8dNyAFbE7szfoQtK1EE/nlFfbYUL7dQLvN4zUm2RN2WaLL6LQN5IGW6
- aGpGuDSg0jtgVOKqGpsHAJcOwZewxOoLsc8tAlVO3dTnt1/TPKDXQLQVF w==;
-X-CSE-ConnectionGUID: 8pAB3FahTs6OgoYWSn3nZw==
-X-CSE-MsgGUID: tluL6hqVTTaL8O/vHJn7zQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58360001"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58360001"
+ t=1756383674; x=1787919674;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7eBi/6/JxHoomOTgPUVYJOye+xQYV+e/6elOWpMQv9Y=;
+ b=iM3J3MP6NlN6wElajT7WkTqTUFjqQAc6+gzq+WAiMiUMIwgwaVnK3mZ+
+ nmgV4pN3b8xQTSZAR8ZkG8Ug+zFweWi4X6wwcWahwVgD/wXdMbcDbjLwJ
+ qL1MBzuwzWR/QxPrBROvQT/5x1pq6MiXeYXDXAEM8Gry7BUvPXefXkYEl
+ pnP6qHbae/GEbqm19n7IWIq42NdvQnkkNq5eP8N6NDOustvpConfUnMJT
+ muJ+AFTX/J/01N028OxYMUohU3duKw6z1FjrMTEvfQ6yWqJa+jV5oCfwl
+ pQyXAJiTC+CLGjiW7M91ey8ZaFcPqBytVAL07AGg4m+uf7zCKa6EEHMlj Q==;
+X-CSE-ConnectionGUID: Xo7Y1IJTRpmfhZCFvUZQ7g==
+X-CSE-MsgGUID: D4IE3t3+RCGEFl83uHS+Bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="58360015"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="58360015"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:09 -0700
-X-CSE-ConnectionGUID: MCXLImjlSAK3kOHBJz+H6Q==
-X-CSE-MsgGUID: uO89pnLbQROI8SDNOGrbbg==
+ 28 Aug 2025 05:21:14 -0700
+X-CSE-ConnectionGUID: vgN25mCnSeGXU4fZLfAPpg==
+X-CSE-MsgGUID: mSwv0fGcQgKf9eGvqbwQrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169999550"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="169999557"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:07 -0700
+ 28 Aug 2025 05:21:12 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 00/20] drm/i915/display: convert to generic poll_timeout_us()
-Date: Thu, 28 Aug 2025 15:20:42 +0300
-Message-ID: <cover.1756383233.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 01/20] drm/i915/hdmi: use generic poll_timeout_us() instead of
+ __wait_for()
+Date: Thu, 28 Aug 2025 15:20:43 +0300
+Message-ID: <fc3a67f9de0049f415a276bba1c11a4df97e01d6.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
+In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
+References: <cover.1756383233.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,71 +72,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Completely remove the remaining custom i915_utils.h wait macro usage
-from display code, and unify on the kernel generic poll_timeout_us()
-poll waiter. Also convert existing read_poll_timeout() and
-readx_poll_timeout() to poll_timeout_us().
+Prefer generic poll helpers over i915 custom helpers.
 
-This is a rewrite of [1] switching to the new poll_timeout_us() instead
-of read_poll_timeout().
+The functional change is losing the exponentially growing sleep of
+__wait_for(), which used to be 1, 2, 4, and 8 ms in this particular
+case.
 
-The main functional change is losing the exponentially growing sleep
-from the custom macros. This is highlighted in each commit message with
-details.
+Use an arbitrary constant 4 ms sleep instead. The timeout remains,
+varying between 20 ms and 3000 ms.
 
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/cover.1751023767.git.jani.nikula@intel.com
-
-
-Jani Nikula (20):
-  drm/i915/hdmi: use generic poll_timeout_us() instead of __wait_for()
-  drm/i915/hdcp: use generic poll_timeout_us() instead of __wait_for()
-  drm/i915/hdcp: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/dsi: use generic poll_timeout_us() instead of wait_for_us()
-  drm/i915/dsi-pll: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/gmbus: use generic poll_timeout*() instead of wait_for*()
-  drm/i915/wm: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/cdclk: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/power: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/power-well: use generic poll_timeout_us() instead of
-    wait_for() for DKL PHY
-  drm/i915/power-well: use generic poll_timeout_us() instead of
-    wait_for() for VLV/CHV
-  drm/i915/dp: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/dp: use generic poll_timeout_us() instead of wait_for() in
-    link training
-  drm/i915/vblank: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/tc: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/dsb: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/lspcon: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/opregion: use generic poll_timeout_us() instead of wait_for()
-  drm/i915/ddi: prefer poll_timeout_us() over readx_poll_timeout()
-  drm/i915/pps: prefer poll_timeout_us() over read_poll_timeout()
-
- drivers/gpu/drm/i915/display/i9xx_wm.c        | 16 +++++--
- drivers/gpu/drm/i915/display/icl_dsi.c        | 18 ++++++--
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 37 ++++++++--------
- drivers/gpu/drm/i915/display/intel_ddi.c      | 32 +++++---------
- .../drm/i915/display/intel_display_power.c    |  7 +++-
- .../i915/display/intel_display_power_well.c   | 42 +++++++++++--------
- drivers/gpu/drm/i915/display/intel_dp.c       | 21 +++++-----
- .../drm/i915/display/intel_dp_link_training.c | 17 ++++++--
- drivers/gpu/drm/i915/display/intel_dsb.c      | 10 ++++-
- drivers/gpu/drm/i915/display/intel_gmbus.c    | 13 +++---
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 25 ++++++-----
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 10 ++---
- drivers/gpu/drm/i915/display/intel_lspcon.c   | 13 ++++--
- drivers/gpu/drm/i915/display/intel_opregion.c | 10 +++--
- drivers/gpu/drm/i915/display/intel_pps.c      |  8 ++--
- drivers/gpu/drm/i915/display/intel_tc.c       | 16 ++++++-
- drivers/gpu/drm/i915/display/intel_vblank.c   |  9 +++-
- drivers/gpu/drm/i915/display/vlv_dsi_pll.c    | 11 +++--
- 18 files changed, 193 insertions(+), 122 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index cbee628eb26b..09111e6d1d20 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -29,6 +29,7 @@
+ #include <linux/delay.h>
+ #include <linux/hdmi.h>
+ #include <linux/i2c.h>
++#include <linux/iopoll.h>
+ #include <linux/slab.h>
+ #include <linux/string_helpers.h>
+ 
+@@ -1689,11 +1690,10 @@ intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *dig_port,
+ 	if (timeout < 0)
+ 		return timeout;
+ 
+-	ret = __wait_for(ret = hdcp2_detect_msg_availability(dig_port,
+-							     msg_id, &msg_ready,
+-							     &msg_sz),
+-			 !ret && msg_ready && msg_sz, timeout * 1000,
+-			 1000, 5 * 1000);
++	ret = poll_timeout_us(ret = hdcp2_detect_msg_availability(dig_port, msg_id,
++								  &msg_ready, &msg_sz),
++			      !ret && msg_ready && msg_sz,
++			      4000, timeout * 1000, false);
+ 	if (ret)
+ 		drm_dbg_kms(display->drm,
+ 			    "msg_id: %d, ret: %d, timeout: %d\n",
 -- 
 2.47.2
 
