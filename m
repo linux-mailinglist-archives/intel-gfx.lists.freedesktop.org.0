@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7B7B39D07
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E24B5B39D09
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 14:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A5710E998;
-	Thu, 28 Aug 2025 12:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 484A310E98F;
+	Thu, 28 Aug 2025 12:21:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HDzwuc+G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FUkxSbMI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40DBB10E335;
- Thu, 28 Aug 2025 12:21:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9881410E98F;
+ Thu, 28 Aug 2025 12:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756383711; x=1787919711;
+ t=1756383715; x=1787919715;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LVcCZRiiuu7yBY4w+Ef9810JQu0CFktZ+evbU34ZIGY=;
- b=HDzwuc+GonXXkrQxT5CCBf51r5y31pvifxYAevGa6iTkQZR2xeYP+64A
- ACV5ZyZAqo+jxWA3Q9LK//f6p9KA/eqvRXSP4lhHBmo6jiGF40tLvCgNq
- 0V1M6ir0BRexTnDjc6AVW7zwCW/+2ftYDwRtyq63NWTlGaJ0WW4swlxyS
- v55yK7zz7l9joY+sDsvr6oIpSakUk1KeU7Drk6WJGyt4Mke+WGUK3CSne
- Morv2D1rDd1UcIBiSiDUZZz53qHdDIsKjrkVfRTYxi1sRKw2yNPgdTLbQ
- Kziqx8FIJXA6ydlikPy1QHJCJoywYjxP7bEaj6lthLOQWEmjbFk4a+0FQ A==;
-X-CSE-ConnectionGUID: WSk4uC72RgSWXF+hDPoJNQ==
-X-CSE-MsgGUID: jI0OtJiFQz+/b36Wypinjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848667"
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848667"
+ bh=9TYzUWw9c0YbZkmYlcfTz1G26XJbO0XJF9R3HneDru4=;
+ b=FUkxSbMIm8v19W5B9e+R6el462qTmvcSoodGM3Ne/DW7yD/UpklAfaxf
+ 6+iyy8ojPSw9spSxfjr3fc27lzbobWZoeZvYP+G06muW/0Gs1asgK1xqm
+ u1SN7/24ExH51+fhLHCUuFJdt928x3Cmu4pTMbEeml7Q9h1oYwOdTskdm
+ CZrRKt8uH0TU6zJfT48Dmqxdx2JSeo3WINUvrSIRB3mAVx4Py60hj/GyS
+ KSWQsRb99lsaisqlVmp/oHOOsDRom27PX1BtlcwkAv1yHegbjbTG5oBLf
+ vrolszgmowcxCqw4uAxq8yPQBA3ByMnfJhSmSxqTEWp5jLTmQlAOtal0P g==;
+X-CSE-ConnectionGUID: VQ8XqKVyTSOw7t7k56xbnA==
+X-CSE-MsgGUID: GPJrp6uIQqeBElqLk5d5uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11535"; a="57848675"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="57848675"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:51 -0700
-X-CSE-ConnectionGUID: Acpuat/ASMehQAXV41uA0Q==
-X-CSE-MsgGUID: Kx+J9Em8RPq7JFRXgyaDJQ==
+ 28 Aug 2025 05:21:55 -0700
+X-CSE-ConnectionGUID: RCSVP4iVSqerEVm9mxQklw==
+X-CSE-MsgGUID: hU2LxOLRQRio61q1czi3QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270740"
+X-IronPort-AV: E=Sophos;i="6.18,217,1751266800"; d="scan'208";a="174270793"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.10])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2025 05:21:49 -0700
+ 28 Aug 2025 05:21:54 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 09/20] drm/i915/power: use generic poll_timeout_us() instead
- of wait_for()
-Date: Thu, 28 Aug 2025 15:20:51 +0300
-Message-ID: <900680516b047ae32e3298b5cdbcede0393e0466.1756383233.git.jani.nikula@intel.com>
+Subject: [PATCH 10/20] drm/i915/power-well: use generic poll_timeout_us()
+ instead of wait_for() for DKL PHY
+Date: Thu, 28 Aug 2025 15:20:52 +0300
+Message-ID: <663c9edf4a98b09121d7200f8d734ebc829da85b.1756383233.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756383233.git.jani.nikula@intel.com>
 References: <cover.1756383233.git.jani.nikula@intel.com>
@@ -83,34 +83,47 @@ ms.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/display/intel_display_power_well.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index d1d3b6f89e2a..7340d5a71673 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2019 Intel Corporation
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 31c2a07bb188..275bc2708a0e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2022 Intel Corporation
   */
  
 +#include <linux/iopoll.h>
- #include <linux/string_helpers.h>
++
+ #include "i915_drv.h"
+ #include "i915_irq.h"
+ #include "i915_reg.h"
+@@ -528,6 +530,8 @@ icl_tc_phy_aux_power_well_enable(struct intel_display *display,
+ 	const struct i915_power_well_regs *regs = power_well->desc->ops->regs;
+ 	bool is_tbt = power_well->desc->is_tc_tbt;
+ 	bool timeout_expected;
++	u32 val;
++	int ret;
  
- #include "soc/intel_dram.h"
-@@ -1310,8 +1311,10 @@ static void hsw_disable_lcpll(struct intel_display *display,
- 	hsw_write_dcomp(display, val);
- 	ndelay(100);
+ 	icl_tc_port_assert_ref_held(display, power_well, dig_port);
  
--	if (wait_for((hsw_read_dcomp(display) &
--		      D_COMP_RCOMP_IN_PROGRESS) == 0, 1))
-+	ret = poll_timeout_us(val = hsw_read_dcomp(display),
-+			      (val & D_COMP_RCOMP_IN_PROGRESS) == 0,
-+			      100, 1000, false);
-+	if (ret)
- 		drm_err(display->drm, "D_COMP RCOMP still in progress\n");
+@@ -554,10 +558,11 @@ icl_tc_phy_aux_power_well_enable(struct intel_display *display,
  
- 	if (allow_power_down) {
+ 		tc_port = TGL_AUX_PW_TO_TC_PORT(i915_power_well_instance(power_well)->hsw.idx);
+ 
+-		if (wait_for(intel_dkl_phy_read(display, DKL_CMN_UC_DW_27(tc_port)) &
+-			     DKL_CMN_UC_DW27_UC_HEALTH, 1))
+-			drm_warn(display->drm,
+-				 "Timeout waiting TC uC health\n");
++		ret = poll_timeout_us(val = intel_dkl_phy_read(display, DKL_CMN_UC_DW_27(tc_port)),
++				      val & DKL_CMN_UC_DW27_UC_HEALTH,
++				      100, 1000, false);
++		if (ret)
++			drm_warn(display->drm, "Timeout waiting TC uC health\n");
+ 	}
+ }
+ 
 -- 
 2.47.2
 
