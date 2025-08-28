@@ -2,81 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4E3B3AAF5
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 21:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F60AB394FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Aug 2025 09:21:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D39FC10EAAB;
-	Thu, 28 Aug 2025 19:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEFC210E83F;
+	Thu, 28 Aug 2025 07:21:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P/BEZEs1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P3P6rik2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA1110E6BE;
- Thu, 28 Aug 2025 07:18:53 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-afebb6d4093so95912966b.1; 
- Thu, 28 Aug 2025 00:18:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756365532; x=1756970332; darn=lists.freedesktop.org;
- h=user-agent:in-reply-to:content-disposition:mime-version:references
- :reply-to:message-id:subject:cc:to:from:date:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ACPidqQG6DQZNVxh12NaJPKP3Jkf06hyqyPjQ1p5F2E=;
- b=P/BEZEs1Gp1r8lAk7Cwq+2yuudfNPTcNyQGMrPYdRLVJ0w5lRWatxgwgtf+/XkdDYc
- jZX0Ble8qa8PBEIFGc94tjbAU4lc3AyAlmhnNljIbUZ8MqqG/TBMJJ3ePl7zAztQzNPo
- 1CcFcmtVC/ITAXdToEdjai460Fz0e+CM7NftwRXP8afXpmlAYdEmPCgTuAqDpJZQJKZC
- LuVIxGhJUvj80FXnSyvrta8DflvvhEwmtIVqnrUB6pPgyHvl+SYDOcCn/yGDSWZo8fGJ
- GjCsBW5NHE334IiIFAajvMr1iBpQG9GtlbwdDg7xzSpRnrR5bacP17YfMoMK5lhy/qTB
- M/sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756365532; x=1756970332;
- h=user-agent:in-reply-to:content-disposition:mime-version:references
- :reply-to:message-id:subject:cc:to:from:date:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=ACPidqQG6DQZNVxh12NaJPKP3Jkf06hyqyPjQ1p5F2E=;
- b=m+5D+738Fv88i+G6BJqhahTZn/6faIcse5TaHVEORn5zInyLNPYZ0Y/2dQLv61NOWD
- mf6YuQKs5rCMPg37cyIKG7UBymrRh1KJKU67WOc5tCPGpwjeApqRC/ZNqtswTUBkzncj
- 32nGHg+mC0v55KW7nx7g0NTVvXdgWFYdK/lqT9DhwqDFHUXGVy7Ez9/9DYU4Ch10q3Nl
- VqKSd3nZajQQKDBauAv638dJZQ6taNVJRXFKYY+mnETXj+h1izZBArc5+8Bo63FbNXcm
- zG/02NFc63+s7ALEPMJ/qilc+fJqdRM+Wvqt235LAqygWmxOkVvtEpnDek4sS+1zsPzw
- 9JrQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUL1PVRxCClDFUViv4sE/U5WpDE99iDS0bGHCwPPjK20SA9bx6pJnf67fZJr1vD7IE3fMtTZ6QPCf4T@lists.freedesktop.org,
- AJvYcCW7LpRJaGI+Hn21ixOqedgKIOYqUbA56t46p2qBICyRUh5BqqUjtqjO+kNXjTGJbBh0AJ5X7VxGkbA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwWK/adrI9sWY2ojgcpgCUMExa5hVLgzKVuvTgfRcPoV4AEAP7/
- MBP/6RQgJpXhQE0ahaqU9V00l8I8lcH5ShZUukz1koK6xGzl2zrwaexs
-X-Gm-Gg: ASbGncs/+/WCuv7womVzPejyCM8aJrd6k5GLrQMy782/sbPIK1xBy1JXIRdlslsd+2s
- Y0vcbjk1fkxvmXmA2fF74wOQekngos1kBOUxh5fUn5K2t8GEjx1wgbSbyR6+znlBvNPFyA+9zAl
- zJQZDezbZfsmy35vCEVF1kjzHVVvYl4WlQCKhSBBqzApZaOrtcgFd59mLdCPb6pkbdxe5tgEygv
- 5eUSN/xcaZ878DFfuxuoxsvumW2AtWmVYXCV0BQzxCA/j+DhIpUFpoZ0DSU7fXyA3ZXTWu7oUFZ
- yhZ3Xs6iM1sByNhQfp/kXkKVhQVTp2OY9BvT2s7kvt/sa5PWscYQRvek/9UVEL93iWLu/lsChit
- /eCQM7PcbK9Bs1yXhBWoRv0PB91VER6K7R/WX
-X-Google-Smtp-Source: AGHT+IEf18QCG44U8jBJ4evHstdtd0oL4Hr6BpN08BPT0cHmsLXVki3gbBRZpXohq9eRx3IUTA8+0Q==
-X-Received: by 2002:a17:907:d2a:b0:afe:dbfb:b10e with SMTP id
- a640c23a62f3a-afedbfbb935mr140730666b.47.1756365531421; 
- Thu, 28 Aug 2025 00:18:51 -0700 (PDT)
-Received: from localhost ([185.92.221.13]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-afe98ade972sm616427066b.50.2025.08.28.00.18.50
- (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 28 Aug 2025 00:18:50 -0700 (PDT)
-Date: Thu, 28 Aug 2025 07:18:50 +0000
-From: Wei Yang <richard.weiyang@gmail.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7620A10E6C4;
+ Thu, 28 Aug 2025 07:21:20 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 4394B601D3;
+ Thu, 28 Aug 2025 07:21:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6A4FC4CEF5;
+ Thu, 28 Aug 2025 07:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756365679;
+ bh=C7/duUHB1jzTe2zoRwJGPq9tnOYsk04M/lnKM6Lw4jw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=P3P6rik2V+dAnat9eWuSvAQFs7ROQol0qfl7mXX/2cUYI+C7QRP3XNCAjTFTXOboX
+ PnGh4LwLXGdtC/lBzkP3HHTgLg4rsEUWyyc9GJT6llTjHe+2h8KOlurSZnUiJw3NW7
+ qKwPWdsXnTrtZmXRScitgLnU7lvFVln3pfXq+R+VNtWe5rSbPPMi2iORZuC/qKAp5S
+ 3fe04bSwMQR8OaSYcElHlHSfQVwB6Zb3HSUqkl5IfcwdDCl1ZwfSrzEWyOB1KGcrlw
+ JUhlVcCM4Av5WDpYuP6k5h/vdvl0/1bLz8dvd0y2eUBSbWa12OIyuKGJ2VR5zTU1an
+ L77vfQGsfA4Og==
+Date: Thu, 28 Aug 2025 10:21:00 +0300
+From: Mike Rapoport <rppt@kernel.org>
 To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Zi Yan <ziy@nvidia.com>,
- "Mike Rapoport (Microsoft)" <rppt@kernel.org>,
- SeongJae Park <sj@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- "David S. Miller" <davem@davemloft.net>,
- Andreas Larsson <andreas@gaisler.com>,
- Alexander Potapenko <glider@google.com>,
+Cc: linux-kernel@vger.kernel.org, Alexander Potapenko <glider@google.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  Brendan Jackman <jackmanb@google.com>,
  Christoph Lameter <cl@gentwo.org>, Dennis Zhou <dennis@kernel.org>,
@@ -100,17 +57,16 @@ Cc: linux-kernel@vger.kernel.org, Zi Yan <ziy@nvidia.com>,
  Peter Xu <peterx@redhat.com>, Robin Murphy <robin.murphy@arm.com>,
  Suren Baghdasaryan <surenb@google.com>, Tejun Heo <tj@kernel.org>,
  virtualization@lists.linux.dev, Vlastimil Babka <vbabka@suse.cz>,
- wireguard@lists.zx2c4.com, x86@kernel.org
-Subject: Re: [PATCH v1 01/36] mm: stop making SPARSEMEM_VMEMMAP user-selectable
-Message-ID: <20250828071850.kl7clyh6e75horlk@master>
+ wireguard@lists.zx2c4.com, x86@kernel.org, Zi Yan <ziy@nvidia.com>
+Subject: Re: [PATCH v1 13/36] mm/hugetlb: cleanup
+ hugetlb_folio_init_tail_vmemmap()
+Message-ID: <aLADXP89cp6hAq0q@kernel.org>
 References: <20250827220141.262669-1-david@redhat.com>
- <20250827220141.262669-2-david@redhat.com>
+ <20250827220141.262669-14-david@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250827220141.262669-2-david@redhat.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Mailman-Approved-At: Thu, 28 Aug 2025 19:34:39 +0000
+In-Reply-To: <20250827220141.262669-14-david@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,78 +79,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Wei Yang <richard.weiyang@gmail.com>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 28, 2025 at 12:01:05AM +0200, David Hildenbrand wrote:
->In an ideal world, we wouldn't have to deal with SPARSEMEM without
->SPARSEMEM_VMEMMAP, but in particular for 32bit SPARSEMEM_VMEMMAP is
->considered too costly and consequently not supported.
->
->However, if an architecture does support SPARSEMEM with
->SPARSEMEM_VMEMMAP, let's forbid the user to disable VMEMMAP: just
->like we already do for arm64, s390 and x86.
->
->So if SPARSEMEM_VMEMMAP is supported, don't allow to use SPARSEMEM without
->SPARSEMEM_VMEMMAP.
->
->This implies that the option to not use SPARSEMEM_VMEMMAP will now be
->gone for loongarch, powerpc, riscv and sparc. All architectures only
->enable SPARSEMEM_VMEMMAP with 64bit support, so there should not really
->be a big downside to using the VMEMMAP (quite the contrary).
->
->This is a preparation for not supporting
->
->(1) folio sizes that exceed a single memory section
->(2) CMA allocations of non-contiguous page ranges
->
->in SPARSEMEM without SPARSEMEM_VMEMMAP configs, whereby we
->want to limit possible impact as much as possible (e.g., gigantic hugetlb
->page allocations suddenly fails).
->
->Acked-by: Zi Yan <ziy@nvidia.com>
->Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
->Acked-by: SeongJae Park <sj@kernel.org>
->Cc: Huacai Chen <chenhuacai@kernel.org>
->Cc: WANG Xuerui <kernel@xen0n.name>
->Cc: Madhavan Srinivasan <maddy@linux.ibm.com>
->Cc: Michael Ellerman <mpe@ellerman.id.au>
->Cc: Nicholas Piggin <npiggin@gmail.com>
->Cc: Christophe Leroy <christophe.leroy@csgroup.eu>
->Cc: Paul Walmsley <paul.walmsley@sifive.com>
->Cc: Palmer Dabbelt <palmer@dabbelt.com>
->Cc: Albert Ou <aou@eecs.berkeley.edu>
->Cc: Alexandre Ghiti <alex@ghiti.fr>
->Cc: "David S. Miller" <davem@davemloft.net>
->Cc: Andreas Larsson <andreas@gaisler.com>
->Signed-off-by: David Hildenbrand <david@redhat.com>
-
-Reviewed-by: Wei Yang <richard.weiyang@gmail.com>
-
->---
-> mm/Kconfig | 3 +--
-> 1 file changed, 1 insertion(+), 2 deletions(-)
->
->diff --git a/mm/Kconfig b/mm/Kconfig
->index 4108bcd967848..330d0e698ef96 100644
->--- a/mm/Kconfig
->+++ b/mm/Kconfig
->@@ -439,9 +439,8 @@ config SPARSEMEM_VMEMMAP_ENABLE
-> 	bool
+On Thu, Aug 28, 2025 at 12:01:17AM +0200, David Hildenbrand wrote:
+> We can now safely iterate over all pages in a folio, so no need for the
+> pfn_to_page().
 > 
-> config SPARSEMEM_VMEMMAP
->-	bool "Sparse Memory virtual memmap"
->+	def_bool y
-> 	depends on SPARSEMEM && SPARSEMEM_VMEMMAP_ENABLE
->-	default y
-> 	help
-> 	  SPARSEMEM_VMEMMAP uses a virtually mapped memmap to optimise
-> 	  pfn_to_page and page_to_pfn operations.  This is the most
->-- 
->2.50.1
->
+> Also, as we already force the refcount in __init_single_page() to 1,
+> we can just set the refcount to 0 and avoid page_ref_freeze() +
+> VM_BUG_ON. Likely, in the future, we would just want to tell
+> __init_single_page() to which value to initialize the refcount.
+> 
+> Further, adjust the comments to highlight that we are dealing with an
+> open-coded prep_compound_page() variant, and add another comment explaining
+> why we really need the __init_single_page() only on the tail pages.
+> 
+> Note that the current code was likely problematic, but we never ran into
+> it: prep_compound_tail() would have been called with an offset that might
+> exceed a memory section, and prep_compound_tail() would have simply
+> added that offset to the page pointer -- which would not have done the
+> right thing on sparsemem without vmemmap.
+> 
+> Signed-off-by: David Hildenbrand <david@redhat.com>
+> ---
+>  mm/hugetlb.c | 20 ++++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
+> 
+> diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+> index 4a97e4f14c0dc..1f42186a85ea4 100644
+> --- a/mm/hugetlb.c
+> +++ b/mm/hugetlb.c
+> @@ -3237,17 +3237,18 @@ static void __init hugetlb_folio_init_tail_vmemmap(struct folio *folio,
+>  {
+>  	enum zone_type zone = zone_idx(folio_zone(folio));
+>  	int nid = folio_nid(folio);
+> +	struct page *page = folio_page(folio, start_page_number);
+>  	unsigned long head_pfn = folio_pfn(folio);
+>  	unsigned long pfn, end_pfn = head_pfn + end_page_number;
+> -	int ret;
+> -
+> -	for (pfn = head_pfn + start_page_number; pfn < end_pfn; pfn++) {
+> -		struct page *page = pfn_to_page(pfn);
+>  
+> +	/*
+> +	 * We mark all tail pages with memblock_reserved_mark_noinit(),
+> +	 * so these pages are completely uninitialized.
+
+                             ^ not? ;-)
+
+> +	 */
+> +	for (pfn = head_pfn + start_page_number; pfn < end_pfn; page++, pfn++) {
+>  		__init_single_page(page, pfn, zone, nid);
+>  		prep_compound_tail((struct page *)folio, pfn - head_pfn);
+> -		ret = page_ref_freeze(page, 1);
+> -		VM_BUG_ON(!ret);
+> +		set_page_count(page, 0);
+>  	}
+>  }
+>  
+> @@ -3257,12 +3258,15 @@ static void __init hugetlb_folio_init_vmemmap(struct folio *folio,
+>  {
+>  	int ret;
+>  
+> -	/* Prepare folio head */
+> +	/*
+> +	 * This is an open-coded prep_compound_page() whereby we avoid
+> +	 * walking pages twice by initializing/preparing+freezing them in the
+> +	 * same go.
+> +	 */
+>  	__folio_clear_reserved(folio);
+>  	__folio_set_head(folio);
+>  	ret = folio_ref_freeze(folio, 1);
+>  	VM_BUG_ON(!ret);
+> -	/* Initialize the necessary tail struct pages */
+>  	hugetlb_folio_init_tail_vmemmap(folio, 1, nr_pages);
+>  	prep_compound_head((struct page *)folio, huge_page_order(h));
+>  }
+> -- 
+> 2.50.1
+> 
 
 -- 
-Wei Yang
-Help you, Help me
+Sincerely yours,
+Mike.
