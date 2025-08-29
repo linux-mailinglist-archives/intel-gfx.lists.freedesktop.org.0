@@ -2,62 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057DDB3BB65
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 14:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00237B3BB7C
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 14:38:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB5F10EBA1;
-	Fri, 29 Aug 2025 12:32:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="POejy53h";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D409F10EBAA;
+	Fri, 29 Aug 2025 12:37:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A90210EBA1;
- Fri, 29 Aug 2025 12:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756470762; x=1788006762;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ouB7hbzQ/ojfnFgqg2swVDTJkji38QYl4PSNGHhL9Bc=;
- b=POejy53h/G08hk0JkPBCFEg9uEr5t/Cic6oNWzQ9BJYSJwdIJeaqQOxt
- XgTRb73QG0trqYuaFI7sPyRgGuXlauL6hG/EOZ1gGaEb7UFhNhbZrfPrn
- RsbsHm7G+/6bFkqUcfUbHRla5K6uDgx1AG31vGfLJpmHIhFcAB0g6Cdys
- 22B4S9WcwWa5e8BlB+4eMhsKyI0MjC/ctvel4cobw7xoA4WB6HAqB9DBU
- 2dw1hO+Eq23TVhhnJKsYOQ/ftaqkUfzHj4RkPt4vBfqfJ+ezp/iPBMqOA
- 9dYr/M5sPwdYVIZ7G+t0HZJOmIuT00ncqdambYNDPUjYeJIdXRZrchSk9 A==;
-X-CSE-ConnectionGUID: NVIIli8XSESJF/+PNwFPNg==
-X-CSE-MsgGUID: +GOzh8oSTrOyla1Tpawx7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58678149"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58678149"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 05:32:41 -0700
-X-CSE-ConnectionGUID: 22gppxgkTZySQjvxaTd8qQ==
-X-CSE-MsgGUID: vSgT9p6oQv+lBsL/Ch8eGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="171165476"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.58])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 05:32:39 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: Re: [PATCH 2/2] drm/i915/display: Make tracepoints work correctly
- on xe with PREEMPT_RT
-In-Reply-To: <8c28c641-958c-4966-a631-effc00c31633@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Received: from lankhorst.se (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDDF010EBA8;
+ Fri, 29 Aug 2025 12:37:57 +0000 (UTC)
+Message-ID: <a5f1568b-6abf-43b0-ae72-5ae0d4024319@lankhorst.se>
+Date: Fri, 29 Aug 2025 14:37:55 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915/display: Make tracepoints work correctly on
+ xe with PREEMPT_RT
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 References: <20250828090944.101069-1-dev@lankhorst.se>
  <20250828090944.101069-2-dev@lankhorst.se>
  <7ba38466ab2295059820d3d540b6324769ba5485@intel.com>
- <8c28c641-958c-4966-a631-effc00c31633@lankhorst.se>
-Date: Fri, 29 Aug 2025 15:32:36 +0300
-Message-ID: <5c6aef6949d5a39445783f06f6f1c4e6a5e61636@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+ <20250829120810.xsF9vGw7@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20250829120810.xsF9vGw7@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,13 +45,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 29 Aug 2025, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> I want to repropose my original patch, where drm_crtc_vblank_count() is used on preempt-rt.
+Hey,
 
-Link?
+Den 2025-08-29 kl. 14:08, skrev Sebastian Andrzej Siewior:
+> On 2025-08-29 14:14:10 [+0300], Jani Nikula wrote:
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+>>> @@ -10,6 +10,8 @@
+>>>  #define TRACE_SYSTEM xe
+>>>  #endif
+>>>  
+>>> +#define UPDATE_VBLANK (!IS_ENABLED(CONFIG_PREEMPT_RT))
+>>
+>> So I'm thinking leave intel_crtc_get_vblank_counter() alone completely,
+>> and hide all the ugly parts inside the trace file:
+>>
+>> #if IS_ENABLED(CONFIG_PREEMPT_RT)
+>> /* Avoid irq lock in tracepoints with PREEMPT_RT=y */
+>> static inline u32 __trace_intel_crtc_get_vblank_counter(struct intel_crtc *crtc)
+>> {
+>> 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(&crtc->base);
+>>
+>> 	if (!crtc->active)
+>> 		return 0;
+>>
+>> 	if (!vblank->max_vblank_count)
+>> 		return (u32)drm_crtc_accurate_vblank_count(&crtc->base);
+>>                 return (u32)drm_crtc_vblank_count(&crtc->base);
+>>
+>> 	return crtc->base.funcs->get_vblank_counter(&crtc->base);
+>> }
+>> #else
+>> #define __trace_intel_crtc_get_vblank_counter intel_crtc_get_vblank_counter
+>> #endif
+>>
+>> And then
+>> s/intel_crtc_get_vblank_counter/__trace_intel_crtc_get_vblank_counter/
+>> below.
+> 
+> If I may: There is also the possibility to use the _enabled() function of
+> a trace point. So instead trace_intel_pipe_enable() you would so
+> something like
+> 
+> | void do_trace_intel_pipe_enable(struct intel_crtc *crtc)
+> | {
+> | 	if (!trace_intel_pipe_enable_enabled())
+> | 		return;
+> | 	trace_intel_pipe(crtc, 
+> | 		intel_crtc_get_vblank_counter(crtc));
+> | }
+> 
+> The _enabled() macro uses the static branches as the actual TP. The
+> intel_crtc_get_vblank_counter() would only be evaluated if the TP is
+> enabled and passed early.
 
-BR,
-Jani.
+That requires adding new macros for 23 tracepoints for something that only affects preempt-rt,
+and even then only on a specific type of uncommon output (DSI).
 
--- 
-Jani Nikula, Intel
+Aren't we also completely duplicating the functionality of tracepoints then?
+
+>> BR,
+>> Jani.
+> 
+> Sebastian
+
+Kind regards,
+~maarten Lankhorst
+
