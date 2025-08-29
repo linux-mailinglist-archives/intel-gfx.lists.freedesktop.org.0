@@ -2,70 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B23B3B9F5
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E85B3B9F7
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:33:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D6B10EB87;
-	Fri, 29 Aug 2025 11:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B16310EB8B;
+	Fri, 29 Aug 2025 11:33:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CiBrjVZw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLPyUSDX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C933B10E035;
- Fri, 29 Aug 2025 11:31:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C262F10EB8A;
+ Fri, 29 Aug 2025 11:33:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756467118; x=1788003118;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rqZFIZg6hhjuXI2cqRkKrKAgoibbV8tjWAJYKVqXfUk=;
- b=CiBrjVZwtA4mqzUlqESl98qbZWvpZM6kBCb0No8LwvGcONyGrwfcsCe/
- fP3U2LTDs1DyaXkZBfjTKC08ioys3C9PVNx10BIdWQG55nUEYzYrin/np
- 8qMyrRh8BSWl8tZCSN0RLhTYr+49AmniJaSjFBeI+4L5wqZ7IboCrjjY0
- Lon2QSr436uriLgeROdA7Ww3WjgZI6WvELktDXFFF1HbhZvJBurf5TUBm
- bnQ/vx2bvB2lVqarmEiPoLPjG0qfUZdkv+Br8KXJZwYXPbL3lQBiYBXhV
- cA7wizRBT3Q/vp7NkWXAotcs6gGd1KhJPscR5+SxejdGHltHWRUIE/jMu w==;
-X-CSE-ConnectionGUID: 2xN0tbc7Se27hRevTsVjdw==
-X-CSE-MsgGUID: xCjNXAepTweolFaJqEG0fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="84155536"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="84155536"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:31:57 -0700
-X-CSE-ConnectionGUID: DVhZKaykSVehyhCfsVbEmA==
-X-CSE-MsgGUID: upnz0RL4Qnytrpitnfze+A==
+ t=1756467197; x=1788003197;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ls93Wi4Gq75jEY0BQQNJ/sIeXdBTWWR+AoAFVBU4GeI=;
+ b=FLPyUSDXA/X6fyDGg1FgComG7pkw+kR3WpJsB2y6z0dMDurTahWyX/MK
+ u6iWPxpr/T9xPs0YShXKeeCCixDvgcgAr3ig0Z3yMJgsHVmJRmnPUIe1e
+ RiGK4WrcjVFw5RTF8z6B6qFhBYxXrmFUbxgrHHDMYleXxKWygw9HmD4KN
+ 0R8o8/wrIsArDJCRC42b1BG4wu9pOLAuSQdeeTIvSXicgjzA+9EFLm5C8
+ D15qst83QIYs889cPbkXx48xi1sMDUzQQsoOdWJJRZl1Y2ncAPM1xmTCs
+ VKaBiKhNc71g+tH2PaDFEwVk2uuWiBQsOlH7K+NTV9cs5V8RhFE9K1VeO w==;
+X-CSE-ConnectionGUID: wPPJJDaQSwe3oY/aJxZlHw==
+X-CSE-MsgGUID: nPP5Ydd0QTSJJ9YjoHfcxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="61386514"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="61386514"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:33:17 -0700
+X-CSE-ConnectionGUID: 444LXHJ8SjqXryZw8Dbr8Q==
+X-CSE-MsgGUID: 8Qr7D6F3Sc2arUuOz24c5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="201303668"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa002-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 04:31:55 -0700
-Date: Fri, 29 Aug 2025 13:31:51 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: adrinael@adrinael.net, arek@hiler.eu, juhapekka.heikkila@gmail.com,
- bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
- karthik.b.s@intel.com, boris.brezillon@collabora.com,
- liviu.dudau@arm.com, steven.price@arm.com,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t 4/4] tests/panthor: add panthor tests
-Message-ID: <20250829113151.hb2jcmcy2wq5g5fd@kamilkon-DESK.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- adrinael@adrinael.net, arek@hiler.eu, juhapekka.heikkila@gmail.com,
- bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
- karthik.b.s@intel.com, boris.brezillon@collabora.com,
- liviu.dudau@arm.com, steven.price@arm.com,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20250828130402.2549948-1-daniel.almeida@collabora.com>
- <20250828130402.2549948-5-daniel.almeida@collabora.com>
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="207504039"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.58])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:33:15 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH] drm/i915/dp: convert open-coded timeout to poll_timeout_us()
+Date: Fri, 29 Aug 2025 14:33:11 +0300
+Message-ID: <20250829113311.1930618-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250828130402.2549948-5-daniel.almeida@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,71 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
-On 2025-08-28 at 10:04:00 -0300, Daniel Almeida wrote:
-> Add an initial test suit covering query device properties, allocating
-> memory, binding and unbinding VA ranges through VM_BIND and submitting a
-> simple piece of work through GROUP_SUBMIT.
+Use poll_timeout_us() instead of open-coding the timeout loop.
 
-Missing s-o-b here.
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
-> ---
->  lib/igt_panthor.c             | 136 ++++++++++++++++++
->  lib/igt_panthor.h             |  20 +++
->  tests/panthor/meson.build     |   4 +
->  tests/panthor/panthor_gem.c   |  59 ++++++++
->  tests/panthor/panthor_group.c | 264 ++++++++++++++++++++++++++++++++++
->  tests/panthor/panthor_query.c |  25 ++++
->  tests/panthor/panthor_vm.c    |  73 ++++++++++
->  7 files changed, 581 insertions(+)
->  create mode 100644 tests/panthor/panthor_gem.c
->  create mode 100644 tests/panthor/panthor_group.c
->  create mode 100644 tests/panthor/panthor_query.c
->  create mode 100644 tests/panthor/panthor_vm.c
-> 
-> diff --git a/lib/igt_panthor.c b/lib/igt_panthor.c
-> index 3e2c29b17..c422320c5 100644
-> --- a/lib/igt_panthor.c
-> +++ b/lib/igt_panthor.c
-> @@ -2,6 +2,9 @@
->  // SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
->  
->  #include "igt_panthor.h"
-> +#include "drmtest.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index bed7cba1ca68..958e48859beb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -27,6 +27,7 @@
+ 
+ #include <linux/export.h>
+ #include <linux/i2c.h>
++#include <linux/iopoll.h>
+ #include <linux/log2.h>
+ #include <linux/math.h>
+ #include <linux/notifier.h>
+@@ -5662,14 +5663,9 @@ bool intel_digital_port_connected_locked(struct intel_encoder *encoder)
+ 	intel_wakeref_t wakeref;
+ 
+ 	with_intel_display_power(display, POWER_DOMAIN_DISPLAY_CORE, wakeref) {
+-		unsigned long wait_expires = jiffies + msecs_to_jiffies_timeout(4);
+-
+-		do {
+-			is_connected = dig_port->connected(encoder);
+-			if (is_connected || is_glitch_free)
+-				break;
+-			usleep_range(10, 30);
+-		} while (time_before(jiffies, wait_expires));
++		poll_timeout_us(is_connected = dig_port->connected(encoder),
++				is_connected || is_glitch_free,
++				30, 4000, false);
+ 	}
+ 
+ 	return is_connected;
+-- 
+2.47.2
 
-Keep it in alphabetical order, so "drmtest.h" before "igt_panthor.h"
-
-> +#include "ioctl_wrappers.h"
-> +#include "panthor_drm.h"
->  
->  /**
->   * SECTION:igt_panthor
-> @@ -12,3 +15,136 @@
->   * This library provides various auxiliary helper functions for writing Panthor
->   * tests.
->   */
-> +
-> +void igt_panthor_query(int fd, int32_t type, void* data, size_t size, int err)
-> +{
-> +    struct drm_panthor_dev_query query = {
-
-Here and everywhere below use tabs in beginnig of line,
-as checkpatch.pl should tell you. Also, in IGT there is
-.checkpatch.conf in root folder, you could reuse it.
-
-Regards,
-Kamil
-
-> +        .type = type,
-> +        .pointer = (uintptr_t)data,
-> +        .size = size,
-> +    };
-> +
-> +    if (err) {
-> +        do_ioctl_err(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query, err);
-> +    } else {
-> +        do_ioctl(fd, DRM_IOCTL_PANTHOR_DEV_QUERY, &query);
-> +    }
-> +}
-
-[cut]
