@@ -2,66 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68578B3BD33
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 16:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96631B3BD3A
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 16:12:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 252B710EBCD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFFF710EBD4;
 	Fri, 29 Aug 2025 14:12:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="ljMQi516";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="DARvNZB9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95CDD10EB48
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 06:26:27 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-327ae052173so958261a91.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 23:26:27 -0700 (PDT)
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1543510EB48
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 06:29:55 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-248a638dbbeso15830845ad.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Aug 2025 23:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1756448787; x=1757053587; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=FcWNphyv+aV6VigruYXsycpBhyL4rRdrU3NDODM9P5A=;
- b=ljMQi516JYBrdkhOEJECm+OO9kwBDxKfW8wQziLThuL18NDgPk6YD9Z/XGpuzIUeFa
- wFf6tjNIT2rVzdfeqYa6BkkrOjA10nnN+/2Yr++7tBECg214tneYjD26oJgicu/dLTio
- BGYRI5iuY2mi3vBXubWT+NytN5liks884i1cJj3Ondn5V/1ZKQ+SLJ0MgRpXCkJOZdkD
- uQWFeD9kSaUCpN3OiVvfjmeBWVq9r1HAYVyjaGvT4PIWHQUgekHpvU/6Oz7X6/mHGXtI
- HjAozgsVsIkjTowwFbgA72nanlvMSWM5Y7jVUMWHuGqDfTa9+P1HM7ZG3tf0PNHlQf6v
- 9keA==
+ d=linaro.org; s=google; t=1756448994; x=1757053794; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=CokGLX1/yeX4DJMWAz1LmKt9I3G7o4FsQeoqSBuvVPY=;
+ b=DARvNZB971d7DkZjj7IYIkedXVM6735izRo0hh1B6xysWChc1jNATTN43de1yZNQIg
+ FURRPObKv317ltqlS3VGKQBVewPVjmlAcLD6/S4C3Hp8o19v/uFZVtR+IfgCv87moaLu
+ 0/QhDtOENWDh6UBvggUf9D0v0L4OLBIcB3YEt0TMXHjd+2ttZ/yl3+xNmbYV2qT+s9HI
+ fZHQvzOAevYnRXp4xA00Hoc6n1DWH7+3L2LRkn5cwHoPCs7oiUgdPEGVk5MzRrchtCjI
+ 525ajjSE0K8xrsjyHFGdQb4EaNPKY+TYCPkWOyjKw0v9NBTg5l44ncDh/Z5KPkRbvgpu
+ TYPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756448787; x=1757053587;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=FcWNphyv+aV6VigruYXsycpBhyL4rRdrU3NDODM9P5A=;
- b=jseVWFdxlBeloGY1UBSrppUBTdhsl85oIcTnH1948u1CxgkmeRUZ1emDERRn6XwbEo
- FLwC8DCdX0JfctlUKeyDkP9V81HR1c06OJi9gfcIoW13HwRUHd8NLY9V1boojmjCZmBM
- Iq5IgkL0/khVftetIbyoB3CfC10KxgKVD+Z1OZjKbKf3Oa5ViWLYdlE+83vgjtW29Isk
- +T5KrEbHF1/Y+kWkpZKK/Em9xFgZgtWC7fZsTrNPvsIQ8OPMBrEXIsk69ld06tTu/GRb
- 0lgWOdYAmLQ9yGRiEk1rfXFNNcbGyolMtnKIkPsteFt7VUC7EfkWlTvuYS7YdXb71DSZ
- UWfA==
+ d=1e100.net; s=20230601; t=1756448994; x=1757053794;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=CokGLX1/yeX4DJMWAz1LmKt9I3G7o4FsQeoqSBuvVPY=;
+ b=lgFtcIwkvVoMfVcAX11rMF6waK26kCjJtDPyKzY/pyCyuVN815SVTm8MpkA+xI4LXd
+ TsELfHPyl+DbeaktcKaEvwOwHwCqr96f50tcCTJgSRe8XuZSRko9Zrpe3iAUAKTVrLz5
+ wagByr85gCtkvPz9e0Hunmj+8DRFZBLLR2wGhiQYxnoi334HultjMBvh2fOHIVr2PpPr
+ rcHMjKj8CvoyduyLqxW/58sRweojZDTq/BLo+CSYIybEMtqAD3WKzKoNac+1TbZsQyKY
+ 9QDP0nrQ3MWg/mMY8RvFTOYdQ1f/K8fqDJiokR27mf3MV2WhxlRFgI60/8zkCmKTC/ir
+ YxtA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU4J3OtufDNcpayt3LWgxJ6m8a4Wdebg+/6Q3yErGggtrz6QowExxDVdL4ZQk7PQJdNOadIey+lT1Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1tgl7d8r8cuzSBVoMfn3UBpgWwGIB45+Yyt6I3CacL6Vptq/4
- L3GQsQ20/O3Int2YzbF7SBp/xEqL4Jx45zPUUVF1IJZvu61+M4uJlt2xfHtz9YFNPrY=
-X-Gm-Gg: ASbGncvB3V3JLGaal8HfCaIUoOt0+NNdm+ntq65oJCYTCTjmLna4e6cMW7GhMcCNc8b
- lKLz0B0bGsa5SwEJAzxbQ7WgKiSOqPgj+3zY3z46ISoeaw7KQ6EYJBLYTrnKXiEpGBZABf5KZ4n
- 3iomxEQACR8vDXUNLgEOHAhKpmri/rvupB8Q+MbsQIFmQcJ/t73CSHWINNP79XjoKkFf66JeOFF
- hM7qUNTnwYYN1lb7sdl3g3mpAPNaPmummDplTKsj9K4Csk9NuUyGPJBNhP6E+RvrLG/IU/ZtpLE
- EtyU59bI/IL2PQZm2c0NLd3dA8s/whCDPGZd4W6n7R+bImSP+xClHzcBoTTYlpveglfMvfHq3jB
- A+wxzA8u4xjEMl5fWadIAUvsr
-X-Google-Smtp-Source: AGHT+IFHYb22k9tJefksk8Ol8WzLcbkUpFNWBPL7w5JQ2Y92t38N6cXrTs0utCYM4huh3xQWCdkxbA==
-X-Received: by 2002:a17:90b:57ce:b0:31f:210e:e34a with SMTP id
- 98e67ed59e1d1-32515eacfddmr32147827a91.8.1756448787009; 
- Thu, 28 Aug 2025 23:26:27 -0700 (PDT)
+ AJvYcCXMyu3YmJeOL0qEQ1voNYWm4kZLuHHlJiqXnasbk4a0AdfW11swo3SxEZ4/16ggcqguu4lvuxaS/Z4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzblnevWANRvl1lk+RhPLhwJU2W2xNLkNrDeNemPKZHFmCNaxXG
+ nAGT7ICXfWvTBPXp4qmKr23jNYKKy2dkGnF3IlK+9XB6KfZIexHlUv+TpbKrT5Z564Y=
+X-Gm-Gg: ASbGncvvTsOUzl1ApJd88GrfCy8f82q4Oy4DoO2+uktiUu4Svv0whOwLiqGAEWSXKZs
+ N+Bltfk6dj5CU6oqr+R3p5HRG6J9r3KCDp4kO5rQpt+Y4X5DBSIopjasLUBuv3v31cY50xcp2vu
+ +TFlg2smbPtvz7qWLzWUFFImMfRaAq/WLfQ9zBePrY0ZYD5rA6TSxNknkvphc0cq0T5QSnpqGS4
+ VZg6xRBgjLOYA7hmeIeWQ0hYH8yUZgBQV4ffrWQjsAubsWzlKMZXyZO0UCMsrDZqWKJaXc050Pu
+ txbQLBK+Yc1Ld6NXjIxYX3ZW2heWZUaLVZg6f63gB5JVM2YKoNP3DsBDJHKbCIwT0+CVPQaHmI2
+ o4ZZItIoUvFTFOb21La1xjwuF
+X-Google-Smtp-Source: AGHT+IFbX3s0aoe3pqEivfWfaakWxvchfFFbfgXfyIlcOqslqMMZIBk7FeaK/V2UaSwtVV106XuK4Q==
+X-Received: by 2002:a17:902:ec89:b0:245:fa00:6e25 with SMTP id
+ d9443c01a7336-2462ef1ea0bmr386065885ad.28.1756448994426; 
+ Thu, 28 Aug 2025 23:29:54 -0700 (PDT)
 Received: from localhost ([122.172.87.165]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3276fcd4bd6sm6984417a91.15.2025.08.28.23.26.25
+ d9443c01a7336-24903705be3sm14571325ad.18.2025.08.28.23.29.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Aug 2025 23:26:26 -0700 (PDT)
-Date: Fri, 29 Aug 2025 11:56:24 +0530
+ Thu, 28 Aug 2025 23:29:53 -0700 (PDT)
+Date: Fri, 29 Aug 2025 11:59:51 +0530
 From: Viresh Kumar <viresh.kumar@linaro.org>
 To: Zihuan Zhang <zhangzihuan@kylinos.cn>
 Cc: "Rafael J . wysocki" <rafael@kernel.org>,
@@ -110,18 +109,15 @@ Cc: "Rafael J . wysocki" <rafael@kernel.org>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  imx@lists.linux.dev, linux-omap@vger.kernel.org,
  linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/18] cpufreq: brcmstb-avs-cpufreq: Use
+Subject: Re: [PATCH v2 11/18] cpufreq: tegra186: Use
  __free(put_cpufreq_policy) for policy reference
-Message-ID: <20250829062624.jalqqsigs7hanf7i@vireshk-i7>
+Message-ID: <20250829062951.ximauv2so442q4gv@vireshk-i7>
 References: <20250827023202.10310-1-zhangzihuan@kylinos.cn>
- <20250827023202.10310-5-zhangzihuan@kylinos.cn>
- <20250829055944.ragfnh62q2cuew3e@vireshk-i7>
- <4bd55a08-62bb-46c4-bfb6-a3375ce37e79@kylinos.cn>
+ <20250827023202.10310-12-zhangzihuan@kylinos.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4bd55a08-62bb-46c4-bfb6-a3375ce37e79@kylinos.cn>
+In-Reply-To: <20250827023202.10310-12-zhangzihuan@kylinos.cn>
 X-Mailman-Approved-At: Fri, 29 Aug 2025 14:12:32 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -138,21 +134,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 29-08-25, 14:16, Zihuan Zhang wrote:
-> Thanks for applying the patch!
+On 27-08-25, 10:31, Zihuan Zhang wrote:
+> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+> annotation for policy references. This reduces the risk of reference
+> counting mistakes and aligns the code with the latest kernel style.
 > 
-> I’ve been thinking further — instead of using __free directly, maybe we
-> could introduce a small macro wrapper around it to make the release scope
-> more controllable and consistent.
+> No functional change intended.
 > 
-> Link:
-> https://lore.kernel.org/all/6174bcc8-30f5-479b-bac6-f42eb1232b4d@kylinos.cn/
+> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+> ---
+>  drivers/cpufreq/tegra186-cpufreq.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> Do you think this would be a better approach, or should we just stick with
-> the current use of __free?
+> diff --git a/drivers/cpufreq/tegra186-cpufreq.c b/drivers/cpufreq/tegra186-cpufreq.c
+> index cbabb726c664..4d71e262a729 100644
+> --- a/drivers/cpufreq/tegra186-cpufreq.c
+> +++ b/drivers/cpufreq/tegra186-cpufreq.c
+> @@ -105,7 +105,7 @@ static unsigned int tegra186_cpufreq_get(unsigned int cpu)
+>  {
+>  	struct tegra186_cpufreq_data *data = cpufreq_get_driver_data();
+>  	struct tegra186_cpufreq_cluster *cluster;
+> -	struct cpufreq_policy *policy;
+> +	struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>  	unsigned int edvd_offset, cluster_id;
+>  	u32 ndiv;
+>  
+> @@ -117,7 +117,6 @@ static unsigned int tegra186_cpufreq_get(unsigned int cpu)
+>  	ndiv = readl(data->regs + edvd_offset) & EDVD_CORE_VOLT_FREQ_F_MASK;
+>  	cluster_id = data->cpus[policy->cpu].bpmp_cluster_id;
+>  	cluster = &data->clusters[cluster_id];
+> -	cpufreq_cpu_put(policy);
+>  
+>  	return (cluster->ref_clk_khz * ndiv) / cluster->div;
 
-Lets keep it simple for now and use __free directly. And keep this
-similar with other parts of the kernel.
+Merged with:
+
+diff --git a/drivers/cpufreq/tegra186-cpufreq.c b/drivers/cpufreq/tegra186-cpufreq.c
+index 4d71e262a729..4270686fc3e3 100644
+--- a/drivers/cpufreq/tegra186-cpufreq.c
++++ b/drivers/cpufreq/tegra186-cpufreq.c
+@@ -103,13 +103,12 @@ static int tegra186_cpufreq_set_target(struct cpufreq_policy *policy,
+ 
+ static unsigned int tegra186_cpufreq_get(unsigned int cpu)
+ {
++       struct cpufreq_policy *policy __free(put_cpufreq_policy) = cpufreq_cpu_get(cpu);
+        struct tegra186_cpufreq_data *data = cpufreq_get_driver_data();
+        struct tegra186_cpufreq_cluster *cluster;
+-       struct cpufreq_policy *policy __free(put_cpufreq_policy);
+        unsigned int edvd_offset, cluster_id;
+        u32 ndiv;
+ 
+-       policy = cpufreq_cpu_get(cpu);
+        if (!policy)
+                return 0;
+ 
 
 -- 
 viresh
