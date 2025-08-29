@@ -2,71 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E3FB3BA02
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE86CB3BA13
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:42:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A540410E212;
-	Fri, 29 Aug 2025 11:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 248D510E035;
+	Fri, 29 Aug 2025 11:42:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gkPBDHri";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVQnHdPq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22EC010E210;
- Fri, 29 Aug 2025 11:35:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C46B10E035;
+ Fri, 29 Aug 2025 11:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756467330; x=1788003330;
+ t=1756467770; x=1788003770;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=HFvNeQpRuFggkVxUiCKm9Tk5+mf228T1GMnqBuwvQFc=;
- b=gkPBDHrilLHW/WeNAiPSdFHskLkE9iM4R7XJgnNP8GJc7pXL8AIOyOPf
- sVV5ydv9HflH4YPOzmvqhlghercctu8bciGBgP3mMTyKuODIh4DTu5V88
- aKaFVAZSGJH7pzkQGl429UtO89Saxk+jZMx/fJfPaT4Iwago+aonK3kfX
- hBCXB5wJmzvwwt2z3PIbsyCCaqmJkfH1c7cLlGUr1ruAOM0e8wTG1ugp7
- cCfvL/PHlU76PVOzo2Vb+4Fdx/WiFrzaoKAzl5xmLUQhA3RUYAagc1FuW
- kO8Bu7V9QftDlbJ2L5We49+sr15THl9FPv6VNBhbM67uX8RICccMPXt4P w==;
-X-CSE-ConnectionGUID: Uwn8qYAMQaSOZTPGE/+V9A==
-X-CSE-MsgGUID: XkhUwCJLQI6o7qU80Ef1yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="81342674"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="81342674"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:35:30 -0700
-X-CSE-ConnectionGUID: aegE+q/+TEaTHzM7i7fV8w==
-X-CSE-MsgGUID: DjzC7ZG6Qve0EncCnFbCOQ==
+ bh=M5YZX/k473bXhW3f1BZQTbpkQWVySIVhxfb29zOKWDk=;
+ b=YVQnHdPqqGJvwAk6cS1o3uRcRG5+aA87MoPchnA8no7xazNpTLgNPdIp
+ YA0MjFC/h6YYgeDEUuNpljCrP+aWS2+jYqMAs6sqlzRpN1OK5EuP8EJ+z
+ xBA7x7GE4c9feUaDWKyZBof7hZ1YW5vB1CaYHC4yr9X3yD0uGynGf1uVZ
+ ik6viuvDfCZ+SnmjAYmPemhi2V5dsN99xaAsbIn63HOaHV5rkQlCdL0bk
+ Zzbpblpm89tO9x20HgwWm33Qu23nXob3Lof79nyVPYbgGRz4MjcZCuJHG
+ JF0inK2JYDiVoRZ2kAi9PDB35jagd2IPAKg5oQ4JmNgIPdRpePAHz5WQN A==;
+X-CSE-ConnectionGUID: wAHhQ5hKQsmbhQQ4afDiMA==
+X-CSE-MsgGUID: c4xVH7GZQZ+kRxlA+IKpNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="70190401"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="70190401"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:42:49 -0700
+X-CSE-ConnectionGUID: oSC9uAjSRUCD1RsCQP7Arg==
+X-CSE-MsgGUID: Pg9Kd0A2TYK4elhMPbiOiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="169663667"
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="170257394"
 Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa010-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 04:35:27 -0700
-Date: Fri, 29 Aug 2025 13:35:23 +0200
+ by orviesa007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 04:42:46 -0700
+Date: Fri, 29 Aug 2025 13:42:43 +0200
 From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: Steven Price <steven.price@arm.com>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>, adrinael@adrinael.net,
- arek@hiler.eu, juhapekka.heikkila@gmail.com,
+To: Daniel Almeida <daniel.almeida@collabora.com>
+Cc: adrinael@adrinael.net, arek@hiler.eu, juhapekka.heikkila@gmail.com,
  bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
  karthik.b.s@intel.com, boris.brezillon@collabora.com,
- liviu.dudau@arm.com, intel-gfx@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t 1/4] lib: add support for opening Panthor devices
-Message-ID: <20250829113523.t7salqbxioyy7u2p@kamilkon-DESK.igk.intel.com>
+ liviu.dudau@arm.com, steven.price@arm.com,
+ intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH i-g-t 3/4] lib: initial panthor infrastructure
+Message-ID: <20250829114243.wkerbxpyngc7h3ha@kamilkon-DESK.igk.intel.com>
 Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Steven Price <steven.price@arm.com>,
  Daniel Almeida <daniel.almeida@collabora.com>,
  adrinael@adrinael.net, arek@hiler.eu, juhapekka.heikkila@gmail.com,
  bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
  karthik.b.s@intel.com, boris.brezillon@collabora.com,
- liviu.dudau@arm.com, intel-gfx@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+ liviu.dudau@arm.com, steven.price@arm.com,
+ intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 References: <20250828130402.2549948-1-daniel.almeida@collabora.com>
- <20250828130402.2549948-2-daniel.almeida@collabora.com>
- <2f9336f7-898e-4fe9-a17e-b41042de4d13@arm.com>
+ <20250828130402.2549948-4-daniel.almeida@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <2f9336f7-898e-4fe9-a17e-b41042de4d13@arm.com>
+In-Reply-To: <20250828130402.2549948-4-daniel.almeida@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,63 +81,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Steven,
-On 2025-08-28 at 16:39:23 +0100, Steven Price wrote:
-> On 28/08/2025 14:03, Daniel Almeida wrote:
-
-In subject please add a fuller name what you improve,
-as this is only one lib here, so a sligtly better:
-
-[PATCH i-g-t 1/4] lib/drmtest: add support for Panthor devices
-
-> > We will be adding tests for Panthor in a subsequent patch, so first add
-> > the ability to open the device.
-> > 
-> > Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
+Hi Daniel,
+On 2025-08-28 at 10:03:59 -0300, Daniel Almeida wrote:
+> Add the basic infrastructure that will be used by the Panthor tests
+> themselves.
 > 
-> There's also chipset_to_str() which should be updated to return the
-> correct name. Although I think that only makes some error messages prettier.
+> Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
+> ---
+>  lib/igt_panthor.c | 14 ++++++++++++++
+>  lib/igt_panthor.h |  8 ++++++++
+>  lib/meson.build   |  1 +
 
-Looks like something to improve, now I think driver name should
-not be repeated in two places. I will sent a patch for this
-function soon.
+Could you squash patch 2 and this one plus one basic test?
+imho panthor_query.c is a good candidate for a first
+working test, simple enough.
+
+>  3 files changed, 23 insertions(+)
+>  create mode 100644 lib/igt_panthor.c
+>  create mode 100644 lib/igt_panthor.h
+> 
+> diff --git a/lib/igt_panthor.c b/lib/igt_panthor.c
+> new file mode 100644
+> index 000000000..3e2c29b17
+> --- /dev/null
+> +++ b/lib/igt_panthor.c
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: MIT
+> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
+> +
+> +#include "igt_panthor.h"
+> +
+> +/**
+> + * SECTION:igt_panthor
+> + * @short_description: Panthor support library
+> + * @title: Panthor
+> + * @include: igt.h
+> + *
+> + * This library provides various auxiliary helper functions for writing Panthor
+> + * tests.
+> + */
+> diff --git a/lib/igt_panthor.h b/lib/igt_panthor.h
+> new file mode 100644
+> index 000000000..c4bee1838
+> --- /dev/null
+> +++ b/lib/igt_panthor.h
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: MIT
+
+In headers you should use C-ctyle comments:
+
+/* SPDX-License-Identifier: MIT */
+
+> +// SPDX-FileCopyrightText: Copyright (C) 2025 Collabora Ltd.
+
+Same here.
 
 Regards,
 Kamil
 
-> 
-> I'm not familiar enough with IGT to really provide a proper review, but
-> I gave the tests a spin. See my comments on patch 4 for the bugs I hit ;)
-> 
-> Steve
-> 
-> > ---
-> >  lib/drmtest.c | 1 +
-> >  lib/drmtest.h | 1 +
-> >  2 files changed, 2 insertions(+)
-> > 
-> > diff --git a/lib/drmtest.c b/lib/drmtest.c
-> > index 436b6de78..f4b429048 100644
-> > --- a/lib/drmtest.c
-> > +++ b/lib/drmtest.c
-> > @@ -220,6 +220,7 @@ static const struct module {
-> >  	{ DRIVER_INTEL, "i915", modprobe_i915 },
-> >  	{ DRIVER_MSM, "msm" },
-> >  	{ DRIVER_PANFROST, "panfrost" },
-> > +	{ DRIVER_PANTHOR, "panthor" },
-> >  	{ DRIVER_V3D, "v3d" },
-> >  	{ DRIVER_VC4, "vc4" },
-> >  	{ DRIVER_VGEM, "vgem" },
-> > diff --git a/lib/drmtest.h b/lib/drmtest.h
-> > index 27e5a18e2..1a933eae1 100644
-> > --- a/lib/drmtest.h
-> > +++ b/lib/drmtest.h
-> > @@ -55,6 +55,7 @@ int __get_drm_device_name(int fd, char *name, int name_size);
-> >  #define DRIVER_MSM	(1 << 6)
-> >  #define DRIVER_XE	(1 << 7)
-> >  #define DRIVER_VMWGFX   (1 << 8)
-> > +#define DRIVER_PANTHOR   (1 << 9)
-> >  
-> >  /*
-> >   * Exclude DRVER_VGEM from DRIVER_ANY since if you run on a system
+> +
+> +#ifndef IGT_PANTHOR_H
+> +#define IGT_PANTHOR_H
+> +
+> +
+> +#endif /* IGT_PANTHOR_H */
+> diff --git a/lib/meson.build b/lib/meson.build
+> index f078dad4e..1738f1b54 100644
+> --- a/lib/meson.build
+> +++ b/lib/meson.build
+> @@ -104,6 +104,7 @@ lib_sources = [
+>  	'igt_kmod.c',
+>  	'igt_ktap.c',
+>  	'igt_panfrost.c',
+> +	'igt_panthor.c',
+>  	'igt_v3d.c',
+>  	'igt_vc4.c',
+>  	'igt_vmwgfx.c',
+> -- 
+> 2.50.1
 > 
