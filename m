@@ -2,82 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59F5B3C35D
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 21:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA668B3C37D
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 21:58:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5229110E179;
-	Fri, 29 Aug 2025 19:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04E0C10E209;
+	Fri, 29 Aug 2025 19:58:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="egx3H2Kl";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FOrMRRSk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B9F610E209
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 19:52:06 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175F410E203
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 19:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1756497125;
+ s=mimecast20190719; t=1756497525;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Qdef9Piv775GEt9ecqC3DBhio0JyExkR0P3CDUdZaXQ=;
- b=egx3H2KlGUPl1Hq2ByW7m5puFXcr/AOC46KvhbR3pEyAlxlPhUKUNx75N471x5yVt7m/gI
- 1qN7jQ3RgMHBEhXQaxTt6DWvkQZBFMRgcgjiY+T8GhfuX/Ab5c9IFs4zbGBLpLW72J3Oc0
- 9rErSThFdoeczzILWgwHhoxG3jTCeJ8=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=xZo5kWZ4wC3wGmKqPk6eI0RfSbah2VPwvlM0503suW8=;
+ b=FOrMRRSkoY5PWWAmFIj2m5d3a9DqEMrUM7o1OcpvnksSudcJu0Fj7X9sZPlB0vRRWCvFsG
+ 8x5np7JxmLrowAGIH86GTvi0tVGu5jOwQOeDJu6Wk4Jlb/z9qjYSQl9xfVlltx5atWrESK
+ CvtPaYQk4I6SeusCjM0CajmO2+G4LBk=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-562-ZWNV4c9QOZOLgM2URwG5oQ-1; Fri, 29 Aug 2025 15:52:04 -0400
-X-MC-Unique: ZWNV4c9QOZOLgM2URwG5oQ-1
-X-Mimecast-MFC-AGG-ID: ZWNV4c9QOZOLgM2URwG5oQ_1756497123
-Received: by mail-wr1-f72.google.com with SMTP id
- ffacd0b85a97d-3ce059e3b83so945924f8f.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 12:52:04 -0700 (PDT)
+ us-mta-657-uQ5o3t99Pe25Abv07qDYHg-1; Fri, 29 Aug 2025 15:58:43 -0400
+X-MC-Unique: uQ5o3t99Pe25Abv07qDYHg-1
+X-Mimecast-MFC-AGG-ID: uQ5o3t99Pe25Abv07qDYHg_1756497523
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-45a1b0b46bbso13475315e9.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Aug 2025 12:58:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756497123; x=1757101923;
+ d=1e100.net; s=20230601; t=1756497522; x=1757102322;
  h=content-transfer-encoding:in-reply-to:autocrypt:content-language
- :from:references:cc:to:subject:user-agent:mime-version:date
+ :references:cc:to:from:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=Qdef9Piv775GEt9ecqC3DBhio0JyExkR0P3CDUdZaXQ=;
- b=LdNLeBcKpaohgOzAF+BjX6z8wA9srjyCLdmlIEVOba2TZg+aJcOtRyZRkJadD8fAcW
- u+E4YPp5CEF+Wt3Jy4/UjkXyflfrP/dj1G0RtBurDK9zI0rZJohUNpSOucUmqvEj2ZBy
- uhZOFHpmfDEDjTFNSr93vIeIJghuOeR8SaorhdcPELCG8QkeT0ThI1H/LI0uTTriuvc+
- tcjPoe2HXDgBxIeIvm6gm3N+XQJiIqe40RrZOwE+QILRZXpVbwTQc1aohJYCXxiCOokR
- Q4LlVTVla2ODrTHgWdxE7ddtjPg5y72OA8/MpYsVU+1EuysPEbjebLe4bcWOeRr5+8/N
- fXZw==
+ bh=xZo5kWZ4wC3wGmKqPk6eI0RfSbah2VPwvlM0503suW8=;
+ b=Ggazg2Yopje3MuJkXu+GJh4gRatjhaLqBnB36teT19Ze3n0e23ME6cPqm+Vi8faThj
+ D+x4AaiorR5pE7jeC9+elMs5RqF/DOKMjtVALCi+rPWBj7nPULCl849Wlm3LSlo+IiIg
+ RtDOS5h4+IPwtCd2Mcvqwci3F2UbA1p6/GGhXlx0VNehJ7Wox/qcwn13Pb5aho7Bmakr
+ rO22e/djbaPSmf0E2xHcj1aZiWy7UAwAJs96vIQq70tkABnFK/M+f/Mk3fa+rheGXCIl
+ Z4yY3y7LbchrFgzkQ/Kkd59jkFrQ3gsI8NEoTlsNF4LTCOGHAayUWTcwroNctkljv2GL
+ bv3w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX+7Kz++vgakr/DZcWBNamnKvSM3/AUa2TA1D3pPIErqSOcMHRloOlZsr3HiDBjg9uEljRkn1HwOiM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwVF6Ml2EMC75sU85cevbkuJsaz5FrqlMZzSKNKD6yy4B2oZt/U
- PUPI2kwbxIHOUt++Os7RdZgXfsoJXmPqUbPHscAAu0VV+tQvjYEZrSbZuCMcCDcNQAiY8en8Jvn
- 6HjZdUMBNyVLajX1FwZC3HjKY30s/Rwq63unVA5EHP9PzBxp2yBH9Ajacp1+LDH161BiKlw==
-X-Gm-Gg: ASbGncu1ILm58IsBFppW8ohtG1uMFAEkLX2uplbQgE1TqlBnhqgWTCyHTz4YipEK4MG
- FL9TdGyO6l+g7yJSi5QG2ATn7Gfe2obo+W03+6cknwnW38F1CW4XIPM7HuU/bBY6uNRzPfzjVuF
- dwyuR+jya9/dOZOy1IQZMpFul3tYpo/J2+zP3P/O94O4v36n8D2WGlQG55pDKsuPfzVOxGdazWD
- pDkjeEtjTDWdS5C7P//ejQ85utCHQMh7oQ3UlAhaSJZEi/WevMsqx5Y/Z1tFcEAFpbcZlVX4Erl
- 2bgJXE7MiSR5dqJGZclYY76bZunhF/QzlOWzZC5xtyEW+/dPT9Xm7r4xGn8o6CzlnChxJQ9xvO8
- znO9COz4B76EgUOMFjSRY5+Bt5Vhegt4tDvbGuJnxK1pd5w7g0ptWRt0Nx3sxAwZq
-X-Received: by 2002:a05:6000:1acf:b0:3c8:c89d:6b5b with SMTP id
- ffacd0b85a97d-3c8c89d6f7dmr15934173f8f.48.1756497122835; 
- Fri, 29 Aug 2025 12:52:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGFEdnfetEA0BUizp3/CuPF56sLxPoeCqh2ZRwgbpaot2nz3v6EntxAXtiXE/xXI9ZBdLsGFA==
-X-Received: by 2002:a05:6000:1acf:b0:3c8:c89d:6b5b with SMTP id
- ffacd0b85a97d-3c8c89d6f7dmr15934152f8f.48.1756497122351; 
- Fri, 29 Aug 2025 12:52:02 -0700 (PDT)
+ AJvYcCXk5plxGw+YfXUTjA+hdCI5eKoCnM88ri3aRGGsO/9aPiHDkRUZz3vls4df0hzT23yPAlYTXvz8wis=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyFCl/1yiv40VWzYKLEmioXXjYghTeKLo+e5jPgqrZNxmOWatvw
+ +6+qY0oZWdBGiAAkNp3SYyTgu7LXi7fPJ1Ony0SpIkZGtKfH6DNhS5GcYiEhyB+8WVOHDQT9S4h
+ goSN0UJ0iJPqw3wNMnISkIQI/CCRWX9OpVgBMkoA4jwkThT8NX8G4is1RS0YoFcA6bWWMpw==
+X-Gm-Gg: ASbGncvAOCjNvrRRl0AK1uHeDE4/UpcidlhtmEgjFOIMEZwbq1mJH3EKFzqrQ6isXDo
+ nODzZUQinr750j9BuEq8iXZA6YqvOMtm9Y+cZpPEKKqVEylvTCBrYqlmhUQpDdbYIC9lAIi2bVR
+ J21AaBnbmDfeiH4kYcLW9wa9ReBzC9aX8O9qAKtGI5Xmyd49+0MLRrnBNkRHGjKMiPlN93+VvnP
+ fscdz2tyTjW9xSCEvyg6+WkXDOXg4s94f80viiYU7CM2a1tINIUekrpz1vWP4xF3vHP5iXQq3CB
+ fcGoP4Xa1vPBp65fFEpkj2RI8okkDy6aFA0legUGEvGxfeZnqVnbzAyB8+DJLD7jbYiCuVipvao
+ GYUBM9BtVZ4lDuEABWJCcIVm3unuZ3IkoMFkSSH4u7GAoSixc+8sc+ZO7hP7YWt/1
+X-Received: by 2002:a05:6000:40dd:b0:3a4:d6ed:8df8 with SMTP id
+ ffacd0b85a97d-3c5dc734927mr22634452f8f.39.1756497522575; 
+ Fri, 29 Aug 2025 12:58:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEvHEkvHJSsvUdMiTLwAfagEik+QO+Eh4rmmPk5gnzbPICxQ2Th8mxXR7QyiTGZMb0BpkDB9Q==
+X-Received: by 2002:a05:6000:40dd:b0:3a4:d6ed:8df8 with SMTP id
+ ffacd0b85a97d-3c5dc734927mr22634443f8f.39.1756497522163; 
+ Fri, 29 Aug 2025 12:58:42 -0700 (PDT)
 Received: from ?IPV6:2003:d8:2f1d:100:4f8e:bb13:c3c7:f854?
  (p200300d82f1d01004f8ebb13c3c7f854.dip0.t-ipconnect.de.
  [2003:d8:2f1d:100:4f8e:bb13:c3c7:f854])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3cf276ccc13sm4411990f8f.22.2025.08.29.12.52.01
+ ffacd0b85a97d-3cf8a64fce8sm4236812f8f.34.2025.08.29.12.58.40
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 29 Aug 2025 12:52:01 -0700 (PDT)
-Message-ID: <4ef6e251-37c2-47ac-bff7-3b2a7d7e58d6@redhat.com>
-Date: Fri, 29 Aug 2025 21:52:00 +0200
+ Fri, 29 Aug 2025 12:58:41 -0700 (PDT)
+Message-ID: <46b99b0f-688d-4625-8b68-8176185ced43@redhat.com>
+Date: Fri, 29 Aug 2025 21:58:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: stupid and complicated PAT :)
+From: David Hildenbrand <david@redhat.com>
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -100,7 +101,7 @@ References: <20250820143739.3422-1-christian.koenig@amd.com>
  <3a91d9df-1536-490b-bbc6-268a3a32ac1c@redhat.com>
  <00aaca69-2549-48b4-bd3c-fcebe2589df0@redhat.com>
  <094606f3-a138-4561-a0b7-d952f4896939@amd.com>
-From: David Hildenbrand <david@redhat.com>
+ <4ef6e251-37c2-47ac-bff7-3b2a7d7e58d6@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
  dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
@@ -145,9 +146,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <094606f3-a138-4561-a0b7-d952f4896939@amd.com>
+In-Reply-To: <4ef6e251-37c2-47ac-bff7-3b2a7d7e58d6@redhat.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Idn3XBq7Ih4OGSfZTksbofsWUNJwqGzU96BjzIstfKg_1756497123
+X-Mimecast-MFC-PROC-ID: HYKTpA8XjR6X16gonMPtrIbQB-OPFagT4U6n9NBZd4Q_1756497523
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -167,70 +168,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
+On 29.08.25 21:52, David Hildenbrand wrote:
 > 
-> Yes, that can absolutely happen. But for iomem we would have an explicit call to ioremap(), ioremap_wc(), ioremap_cache() for that before anybody would map anything into userspace page tables.
+>>
+>> Yes, that can absolutely happen. But for iomem we would have an explicit call to ioremap(), ioremap_wc(), ioremap_cache() for that before anybody would map anything into userspace page tables.
+>>
+>> But thinking more about it I just had an OMFG moment! Is it possible that the PAT currently already has a problem with that?
+>>
+>> We had customer projects where BARs of different PCIe devices ended up on different physical addresses after a hot remove/re-add.
+>>
+>> Is it possible that the PAT keeps enforcing certain caching attributes for a physical address? E.g. for example because a driver doesn't clean up properly on hot remove?
+>>
+>> If yes than that would explain a massive number of problems we had with hot add/remove.
 > 
-> But thinking more about it I just had an OMFG moment! Is it possible that the PAT currently already has a problem with that?
+> The code is a mess, so if a driver messed up, likely everything is possible.
 > 
-> We had customer projects where BARs of different PCIe devices ended up on different physical addresses after a hot remove/re-add.
+> TBH, the more I look at this all, the more WTF moments I am having.
 > 
-> Is it possible that the PAT keeps enforcing certain caching attributes for a physical address? E.g. for example because a driver doesn't clean up properly on hot remove?
-> 
-> If yes than that would explain a massive number of problems we had with hot add/remove.
-
-The code is a mess, so if a driver messed up, likely everything is possible.
-
-TBH, the more I look at this all, the more WTF moments I am having.
-
-> 
->>> What I am currently wondering is: assume we get a
->>> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
->>> there was a previous registration, then we could do
+>>
+>>>> What I am currently wondering is: assume we get a
+>>>> pfnmap_setup_cachemode_pfn() call and we could reliably identify whether
+>>>> there was a previous registration, then we could do
+>>>>
+>>>> (a) No previous registration: don't modify pgprot. Hopefully the driver
+>>>>         knows what it is doing. Maybe we can add sanity checks that the
+>>>>         direct map was already updated etc.
+>>>> (b) A previous registration: modify pgprot like we do today.
+>>
+>> That would work for me.
+>>
+>>>> System RAM is the problem. I wonder how many of these registrations we
+>>>> really get and if we could just store them in the same tree as !system
+>>>> RAM instead of abusing page flags.
 >>>
->>> (a) No previous registration: don't modify pgprot. Hopefully the driver
->>>        knows what it is doing. Maybe we can add sanity checks that the
->>>        direct map was already updated etc.
->>> (b) A previous registration: modify pgprot like we do today.
-> 
-> That would work for me.
-> 
->>> System RAM is the problem. I wonder how many of these registrations we
->>> really get and if we could just store them in the same tree as !system
->>> RAM instead of abusing page flags.
+>>> commit 9542ada803198e6eba29d3289abb39ea82047b92
+>>> Author: Suresh Siddha <suresh.b.siddha@intel.com>
+>>> Date:   Wed Sep 24 08:53:33 2008 -0700
+>>>
+>>>       x86: track memtype for RAM in page struct
+>>>           Track the memtype for RAM pages in page struct instead of using the
+>>>       memtype list. This avoids the explosion in the number of entries in
+>>>       memtype list (of the order of 20,000 with AGP) and makes the PAT
+>>>       tracking simpler.
+>>>           We are using PG_arch_1 bit in page->flags.
+>>>           We still use the memtype list for non RAM pages.
+>>>
+>>>
+>>> I do wonder if that explosion is still an issue today.
 >>
->> commit 9542ada803198e6eba29d3289abb39ea82047b92
->> Author: Suresh Siddha <suresh.b.siddha@intel.com>
->> Date:   Wed Sep 24 08:53:33 2008 -0700
+>> Yes it is. That is exactly the issue I'm working on here.
 >>
->>      x86: track memtype for RAM in page struct
->>          Track the memtype for RAM pages in page struct instead of using the
->>      memtype list. This avoids the explosion in the number of entries in
->>      memtype list (of the order of 20,000 with AGP) and makes the PAT
->>      tracking simpler.
->>          We are using PG_arch_1 bit in page->flags.
->>          We still use the memtype list for non RAM pages.
->>
->>
->> I do wonder if that explosion is still an issue today.
+>> It's just that AGP was replaced by internal GPU MMUs over time and so we don't use the old AGP code any more but just call get_free_pages() (or similar) directly.
 > 
-> Yes it is. That is exactly the issue I'm working on here.
+> Okay, I thought I slowly understood how it works, then I stumbled over
+> the set_memory_uc / set_memory_wc implementation and now I am *all
+> confused*.
 > 
-> It's just that AGP was replaced by internal GPU MMUs over time and so we don't use the old AGP code any more but just call get_free_pages() (or similar) directly.
+> I mean, that does perform a PAT reservation.
+> 
+> But when is that reservation ever freed again? :/
 
-Okay, I thought I slowly understood how it works, then I stumbled over 
-the set_memory_uc / set_memory_wc implementation and now I am *all 
-confused*.
-
-I mean, that does perform a PAT reservation.
-
-But when is that reservation ever freed again? :/
-
-How can set_memory_wc() followed by set_memory_uc() possibly work? I am 
-pretty sure I am missing a piece of the puzzle.
-
-I think you mentioned that set_memory_uc() is avoided by drivers because 
-of highmem mess, but what are drivers then using to modify the direct map?
+Ah, set_memory_wb() does that. It just frees stuff. It should have been 
+called something like "reset", probably.
 
 -- 
 Cheers
