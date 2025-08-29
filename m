@@ -2,61 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66914B3C203
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 19:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E57CB3C29F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 20:45:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F77110EC26;
-	Fri, 29 Aug 2025 17:46:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FdHDF/OR";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB87510E0FD;
+	Fri, 29 Aug 2025 18:45:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD44E10EC1F;
- Fri, 29 Aug 2025 17:46:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756489588; x=1788025588;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ffhQYsIDiciYhH+b5mTnOldlYmqjRKlLJpxwdY8kaKM=;
- b=FdHDF/ORjTykHzDvfkMrhDXH5I5Kc+BOEsEYQQ6KMHkk4kdBfwO/80bm
- d03ac4CK0tPqbEuUHm+M6/vpxaA/LFl06YPZzaApZ1yfP9P4KHaJD2p9o
- f4VwdcHtA3i58NTpfXq3gbir4/ssRAyoSIJcAKVv4BUP1c9XH5OvYHiwT
- f4VeWYcpLXGaJDXPK1y+w65bQ5fg++jOmZiXU2IRM6JqmDPBPHMGovu4n
- fgEf9TxuNXnKG7Z61vSLVNfxETMH294PSmx/zVtaDnpbGHm14MnYBpKv8
- xNT837i0FM5CmbEdY1Kc9ttosoMlbnnkBvt/2TChnqyve6I45UsaigoZv A==;
-X-CSE-ConnectionGUID: IgAFV+yrQ/KIqiYc6/9A9w==
-X-CSE-MsgGUID: Hp776OS3SiCD7X1kPS4LqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58851405"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58851405"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 10:46:28 -0700
-X-CSE-ConnectionGUID: fGPMj5/lRymVIoM1KyC6qA==
-X-CSE-MsgGUID: oKGJbnFSTQKo7EXZ0qa+Hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="175716544"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.58])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 10:46:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org, jani.nikula@intel.com,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-hardening@vger.kernel.org
-Subject: [PATCH 3/3] overflow: add range_overflows() and range_end_overflows()
-Date: Fri, 29 Aug 2025 20:46:01 +0300
-Message-ID: <20250829174601.2163064-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250829174601.2163064-1-jani.nikula@intel.com>
-References: <20250829174601.2163064-1-jani.nikula@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0691410E0FD;
+ Fri, 29 Aug 2025 18:45:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4868546220020314244=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/i915=3A_rename_range=5Foverflows=5Fend=28=29_to_range?=
+ =?utf-8?q?=5Fend=5Foverflows=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Aug 2025 18:45:45 -0000
+Message-ID: <175649314502.285848.6966815938050268008@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250829174601.2163064-1-jani.nikula@intel.com>
+In-Reply-To: <20250829174601.2163064-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,204 +38,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the range_overflows() and range_end_overflows() along with the _t
-variants over from drm/i915 and drm/buddy to overflow.h.
+--===============4868546220020314244==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Kees Cook <kees@kernel.org>
-Cc: Gustavo A. R. Silva <gustavoars@kernel.org>
-Cc: linux-hardening@vger.kernel.org
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_utils.h | 70 -------------------------------
- include/drm/drm_buddy.h           |  9 ----
- include/linux/overflow.h          | 70 +++++++++++++++++++++++++++++++
- 3 files changed, 70 insertions(+), 79 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 968dae941532..eb4d43c40009 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -67,76 +67,6 @@ bool i915_error_injected(void);
- 		drm_err(&(i915)->drm, fmt, ##__VA_ARGS__); \
- })
- 
--/**
-- * range_overflows() - Check if a range is out of bounds
-- * @start: Start of the range.
-- * @size:  Size of the range.
-- * @max:   Exclusive upper boundary.
-- *
-- * A strict check to determine if the range [@start, @start + @size) is
-- * invalid with respect to the allowable range [0, @max). Any range
-- * starting at or beyond @max is considered an overflow, even if @size is 0.
-- *
-- * Returns: true if the range is out of bounds.
-- */
--#define range_overflows(start, size, max) ({ \
--	typeof(start) start__ = (start); \
--	typeof(size) size__ = (size); \
--	typeof(max) max__ = (max); \
--	(void)(&start__ == &size__); \
--	(void)(&start__ == &max__); \
--	start__ >= max__ || size__ > max__ - start__; \
--})
--
--/**
-- * range_overflows_t() - Check if a range is out of bounds
-- * @type:  Data type to use.
-- * @start: Start of the range.
-- * @size:  Size of the range.
-- * @max:   Exclusive upper boundary.
-- *
-- * Same as range_overflows() but forcing the parameters to @type.
-- *
-- * Returns: true if the range is out of bounds.
-- */
--#define range_overflows_t(type, start, size, max) \
--	range_overflows((type)(start), (type)(size), (type)(max))
--
--/**
-- * range_end_overflows() - Check if a range's endpoint is out of bounds
-- * @start: Start of the range.
-- * @size:  Size of the range.
-- * @max:   Exclusive upper boundary.
-- *
-- * Checks only if the endpoint of a range (@start + @size) exceeds @max.
-- * Unlike range_overflows(), a zero-sized range at the boundary (@start == @max)
-- * is not considered an overflow. Useful for iterator-style checks.
-- *
-- * Returns: true if the endpoint exceeds the boundary.
-- */
--#define range_end_overflows(start, size, max) ({ \
--	typeof(start) start__ = (start); \
--	typeof(size) size__ = (size); \
--	typeof(max) max__ = (max); \
--	(void)(&start__ == &size__); \
--	(void)(&start__ == &max__); \
--	start__ > max__ || size__ > max__ - start__; \
--})
--
--/**
-- * range_end_overflows_t() - Check if a range's endpoint is out of bounds
-- * @type:  Data type to use.
-- * @start: Start of the range.
-- * @size:  Size of the range.
-- * @max:   Exclusive upper boundary.
-- *
-- * Same as range_end_overflows() but forcing the parameters to @type.
-- *
-- * Returns: true if the endpoint exceeds the boundary.
-- */
--#define range_end_overflows_t(type, start, size, max) \
--	range_end_overflows((type)(start), (type)(size), (type)(max))
--
- #define ptr_mask_bits(ptr, n) ({					\
- 	unsigned long __v = (unsigned long)(ptr);			\
- 	(typeof(ptr))(__v & -BIT(n));					\
-diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
-index 513837632b7d..04afd7c21a82 100644
---- a/include/drm/drm_buddy.h
-+++ b/include/drm/drm_buddy.h
-@@ -13,15 +13,6 @@
- 
- #include <drm/drm_print.h>
- 
--#define range_overflows(start, size, max) ({ \
--	typeof(start) start__ = (start); \
--	typeof(size) size__ = (size); \
--	typeof(max) max__ = (max); \
--	(void)(&start__ == &size__); \
--	(void)(&start__ == &max__); \
--	start__ >= max__ || size__ > max__ - start__; \
--})
--
- #define DRM_BUDDY_RANGE_ALLOCATION		BIT(0)
- #define DRM_BUDDY_TOPDOWN_ALLOCATION		BIT(1)
- #define DRM_BUDDY_CONTIGUOUS_ALLOCATION		BIT(2)
-diff --git a/include/linux/overflow.h b/include/linux/overflow.h
-index 154ed0dbb43f..725f95f7e416 100644
---- a/include/linux/overflow.h
-+++ b/include/linux/overflow.h
-@@ -238,6 +238,76 @@ static inline bool __must_check __must_check_overflow(bool overflow)
- 			      __overflows_type_constexpr(n, T),	\
- 			      __overflows_type(n, T))
- 
-+/**
-+ * range_overflows() - Check if a range is out of bounds
-+ * @start: Start of the range.
-+ * @size:  Size of the range.
-+ * @max:   Exclusive upper boundary.
-+ *
-+ * A strict check to determine if the range [@start, @start + @size) is
-+ * invalid with respect to the allowable range [0, @max). Any range
-+ * starting at or beyond @max is considered an overflow, even if @size is 0.
-+ *
-+ * Returns: true if the range is out of bounds.
-+ */
-+#define range_overflows(start, size, max) ({ \
-+	typeof(start) start__ = (start); \
-+	typeof(size) size__ = (size); \
-+	typeof(max) max__ = (max); \
-+	(void)(&start__ == &size__); \
-+	(void)(&start__ == &max__); \
-+	start__ >= max__ || size__ > max__ - start__; \
-+})
-+
-+/**
-+ * range_overflows_t() - Check if a range is out of bounds
-+ * @type:  Data type to use.
-+ * @start: Start of the range.
-+ * @size:  Size of the range.
-+ * @max:   Exclusive upper boundary.
-+ *
-+ * Same as range_overflows() but forcing the parameters to @type.
-+ *
-+ * Returns: true if the range is out of bounds.
-+ */
-+#define range_overflows_t(type, start, size, max) \
-+	range_overflows((type)(start), (type)(size), (type)(max))
-+
-+/**
-+ * range_end_overflows() - Check if a range's endpoint is out of bounds
-+ * @start: Start of the range.
-+ * @size:  Size of the range.
-+ * @max:   Exclusive upper boundary.
-+ *
-+ * Checks only if the endpoint of a range (@start + @size) exceeds @max.
-+ * Unlike range_overflows(), a zero-sized range at the boundary (@start == @max)
-+ * is not considered an overflow. Useful for iterator-style checks.
-+ *
-+ * Returns: true if the endpoint exceeds the boundary.
-+ */
-+#define range_end_overflows(start, size, max) ({ \
-+	typeof(start) start__ = (start); \
-+	typeof(size) size__ = (size); \
-+	typeof(max) max__ = (max); \
-+	(void)(&start__ == &size__); \
-+	(void)(&start__ == &max__); \
-+	start__ > max__ || size__ > max__ - start__; \
-+})
-+
-+/**
-+ * range_end_overflows_t() - Check if a range's endpoint is out of bounds
-+ * @type:  Data type to use.
-+ * @start: Start of the range.
-+ * @size:  Size of the range.
-+ * @max:   Exclusive upper boundary.
-+ *
-+ * Same as range_end_overflows() but forcing the parameters to @type.
-+ *
-+ * Returns: true if the endpoint exceeds the boundary.
-+ */
-+#define range_end_overflows_t(type, start, size, max) \
-+	range_end_overflows((type)(start), (type)(size), (type)(max))
-+
- /**
-  * castable_to_type - like __same_type(), but also allows for casted literals
-  *
--- 
-2.47.2
+Series: series starting with [1/3] drm/i915: rename range_overflows_end() to range_end_overflows()
+URL   : https://patchwork.freedesktop.org/series/153730/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_17092 -> Patchwork_153730v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_153730v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][1] -> [ABORT][2] ([i915#12904]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-mtlp-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-dg2-11:         [PASS][5] -> [ABORT][6] ([i915#12061])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@client:
+    - bat-dg2-11:         [PASS][7] -> [ABORT][8] ([i915#14201])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live@client.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live@client.html
+
+  * igt@i915_selftest@live@reset:
+    - bat-twl-1:          [PASS][9] -> [ABORT][10] ([i915#14365])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-twl-1/igt@i915_selftest@live@reset.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-twl-1/igt@i915_selftest@live@reset.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-11:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#14201]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201
+  [i915#14365]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17092 -> Patchwork_153730v1
+
+  CI-20190529: 20190529
+  CI_DRM_17092: 73ec1b82fc684756350c4bb8ee675158ef439bba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8516: 8516
+  Patchwork_153730v1: 73ec1b82fc684756350c4bb8ee675158ef439bba @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/index.html
+
+--===============4868546220020314244==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: rename range_overflows_end() to range_end_overflows()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153730/">https://patchwork.freedesktop.org/series/153730/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17092 -&gt; Patchwork_153730v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_153730v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-apl-1/igt@dmabuf@all-tests.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live@client.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14201">i915#14201</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@reset:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-twl-1/igt@i915_selftest@live@reset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-twl-1/igt@i915_selftest@live@reset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14365">i915#14365</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17092/bat-dg2-11/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_153730v1/bat-dg2-11/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17092 -&gt; Patchwork_153730v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17092: 73ec1b82fc684756350c4bb8ee675158ef439bba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8516: 8516<br />
+  Patchwork_153730v1: 73ec1b82fc684756350c4bb8ee675158ef439bba @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4868546220020314244==--
