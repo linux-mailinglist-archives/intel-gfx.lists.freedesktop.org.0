@@ -2,57 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E85B3B9F7
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E3FB3BA02
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Aug 2025 13:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B16310EB8B;
-	Fri, 29 Aug 2025 11:33:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A540410E212;
+	Fri, 29 Aug 2025 11:35:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLPyUSDX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gkPBDHri";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C262F10EB8A;
- Fri, 29 Aug 2025 11:33:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22EC010E210;
+ Fri, 29 Aug 2025 11:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756467197; x=1788003197;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ls93Wi4Gq75jEY0BQQNJ/sIeXdBTWWR+AoAFVBU4GeI=;
- b=FLPyUSDXA/X6fyDGg1FgComG7pkw+kR3WpJsB2y6z0dMDurTahWyX/MK
- u6iWPxpr/T9xPs0YShXKeeCCixDvgcgAr3ig0Z3yMJgsHVmJRmnPUIe1e
- RiGK4WrcjVFw5RTF8z6B6qFhBYxXrmFUbxgrHHDMYleXxKWygw9HmD4KN
- 0R8o8/wrIsArDJCRC42b1BG4wu9pOLAuSQdeeTIvSXicgjzA+9EFLm5C8
- D15qst83QIYs889cPbkXx48xi1sMDUzQQsoOdWJJRZl1Y2ncAPM1xmTCs
- VKaBiKhNc71g+tH2PaDFEwVk2uuWiBQsOlH7K+NTV9cs5V8RhFE9K1VeO w==;
-X-CSE-ConnectionGUID: wPPJJDaQSwe3oY/aJxZlHw==
-X-CSE-MsgGUID: nPP5Ydd0QTSJJ9YjoHfcxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="61386514"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="61386514"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:33:17 -0700
-X-CSE-ConnectionGUID: 444LXHJ8SjqXryZw8Dbr8Q==
-X-CSE-MsgGUID: 8Qr7D6F3Sc2arUuOz24c5Q==
+ t=1756467330; x=1788003330;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HFvNeQpRuFggkVxUiCKm9Tk5+mf228T1GMnqBuwvQFc=;
+ b=gkPBDHrilLHW/WeNAiPSdFHskLkE9iM4R7XJgnNP8GJc7pXL8AIOyOPf
+ sVV5ydv9HflH4YPOzmvqhlghercctu8bciGBgP3mMTyKuODIh4DTu5V88
+ aKaFVAZSGJH7pzkQGl429UtO89Saxk+jZMx/fJfPaT4Iwago+aonK3kfX
+ hBCXB5wJmzvwwt2z3PIbsyCCaqmJkfH1c7cLlGUr1ruAOM0e8wTG1ugp7
+ cCfvL/PHlU76PVOzo2Vb+4Fdx/WiFrzaoKAzl5xmLUQhA3RUYAagc1FuW
+ kO8Bu7V9QftDlbJ2L5We49+sr15THl9FPv6VNBhbM67uX8RICccMPXt4P w==;
+X-CSE-ConnectionGUID: Uwn8qYAMQaSOZTPGE/+V9A==
+X-CSE-MsgGUID: XkhUwCJLQI6o7qU80Ef1yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="81342674"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="81342674"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2025 04:35:30 -0700
+X-CSE-ConnectionGUID: aegE+q/+TEaTHzM7i7fV8w==
+X-CSE-MsgGUID: DjzC7ZG6Qve0EncCnFbCOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="207504039"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.58])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2025 04:33:15 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/dp: convert open-coded timeout to poll_timeout_us()
-Date: Fri, 29 Aug 2025 14:33:11 +0300
-Message-ID: <20250829113311.1930618-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.2
+X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; d="scan'208";a="169663667"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by orviesa010-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 04:35:27 -0700
+Date: Fri, 29 Aug 2025 13:35:23 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Steven Price <steven.price@arm.com>
+Cc: Daniel Almeida <daniel.almeida@collabora.com>, adrinael@adrinael.net,
+ arek@hiler.eu, juhapekka.heikkila@gmail.com,
+ bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
+ karthik.b.s@intel.com, boris.brezillon@collabora.com,
+ liviu.dudau@arm.com, intel-gfx@lists.freedesktop.org,
+ igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH i-g-t 1/4] lib: add support for opening Panthor devices
+Message-ID: <20250829113523.t7salqbxioyy7u2p@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Steven Price <steven.price@arm.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ adrinael@adrinael.net, arek@hiler.eu, juhapekka.heikkila@gmail.com,
+ bhanuprakash.modem@gmail.com, ashutosh.dixit@intel.com,
+ karthik.b.s@intel.com, boris.brezillon@collabora.com,
+ liviu.dudau@arm.com, intel-gfx@lists.freedesktop.org,
+ igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20250828130402.2549948-1-daniel.almeida@collabora.com>
+ <20250828130402.2549948-2-daniel.almeida@collabora.com>
+ <2f9336f7-898e-4fe9-a17e-b41042de4d13@arm.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2f9336f7-898e-4fe9-a17e-b41042de4d13@arm.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +82,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use poll_timeout_us() instead of open-coding the timeout loop.
+Hi Steven,
+On 2025-08-28 at 16:39:23 +0100, Steven Price wrote:
+> On 28/08/2025 14:03, Daniel Almeida wrote:
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+In subject please add a fuller name what you improve,
+as this is only one lib here, so a sligtly better:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index bed7cba1ca68..958e48859beb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -27,6 +27,7 @@
- 
- #include <linux/export.h>
- #include <linux/i2c.h>
-+#include <linux/iopoll.h>
- #include <linux/log2.h>
- #include <linux/math.h>
- #include <linux/notifier.h>
-@@ -5662,14 +5663,9 @@ bool intel_digital_port_connected_locked(struct intel_encoder *encoder)
- 	intel_wakeref_t wakeref;
- 
- 	with_intel_display_power(display, POWER_DOMAIN_DISPLAY_CORE, wakeref) {
--		unsigned long wait_expires = jiffies + msecs_to_jiffies_timeout(4);
--
--		do {
--			is_connected = dig_port->connected(encoder);
--			if (is_connected || is_glitch_free)
--				break;
--			usleep_range(10, 30);
--		} while (time_before(jiffies, wait_expires));
-+		poll_timeout_us(is_connected = dig_port->connected(encoder),
-+				is_connected || is_glitch_free,
-+				30, 4000, false);
- 	}
- 
- 	return is_connected;
--- 
-2.47.2
+[PATCH i-g-t 1/4] lib/drmtest: add support for Panthor devices
 
+> > We will be adding tests for Panthor in a subsequent patch, so first add
+> > the ability to open the device.
+> > 
+> > Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
+> 
+> There's also chipset_to_str() which should be updated to return the
+> correct name. Although I think that only makes some error messages prettier.
+
+Looks like something to improve, now I think driver name should
+not be repeated in two places. I will sent a patch for this
+function soon.
+
+Regards,
+Kamil
+
+> 
+> I'm not familiar enough with IGT to really provide a proper review, but
+> I gave the tests a spin. See my comments on patch 4 for the bugs I hit ;)
+> 
+> Steve
+> 
+> > ---
+> >  lib/drmtest.c | 1 +
+> >  lib/drmtest.h | 1 +
+> >  2 files changed, 2 insertions(+)
+> > 
+> > diff --git a/lib/drmtest.c b/lib/drmtest.c
+> > index 436b6de78..f4b429048 100644
+> > --- a/lib/drmtest.c
+> > +++ b/lib/drmtest.c
+> > @@ -220,6 +220,7 @@ static const struct module {
+> >  	{ DRIVER_INTEL, "i915", modprobe_i915 },
+> >  	{ DRIVER_MSM, "msm" },
+> >  	{ DRIVER_PANFROST, "panfrost" },
+> > +	{ DRIVER_PANTHOR, "panthor" },
+> >  	{ DRIVER_V3D, "v3d" },
+> >  	{ DRIVER_VC4, "vc4" },
+> >  	{ DRIVER_VGEM, "vgem" },
+> > diff --git a/lib/drmtest.h b/lib/drmtest.h
+> > index 27e5a18e2..1a933eae1 100644
+> > --- a/lib/drmtest.h
+> > +++ b/lib/drmtest.h
+> > @@ -55,6 +55,7 @@ int __get_drm_device_name(int fd, char *name, int name_size);
+> >  #define DRIVER_MSM	(1 << 6)
+> >  #define DRIVER_XE	(1 << 7)
+> >  #define DRIVER_VMWGFX   (1 << 8)
+> > +#define DRIVER_PANTHOR   (1 << 9)
+> >  
+> >  /*
+> >   * Exclude DRVER_VGEM from DRIVER_ANY since if you run on a system
+> 
