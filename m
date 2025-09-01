@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A4DCB3E319
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Sep 2025 14:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFDEB3E37F
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Sep 2025 14:43:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0B4910E448;
-	Mon,  1 Sep 2025 12:35:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="U+LMqe9i";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1787A10E450;
+	Mon,  1 Sep 2025 12:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 564 seconds by postgrey-1.36 at gabe;
- Mon, 01 Sep 2025 12:35:34 UTC
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF02210E448
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 12:35:34 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id 2C461C6B380;
- Mon,  1 Sep 2025 12:25:54 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 044AD60699;
- Mon,  1 Sep 2025 12:26:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id B6D601C22DA15; 
- Mon,  1 Sep 2025 14:26:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1756729567; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=YCqaE2ySIm63FisMTJw+SXZ6ZQeQnKmc9VEQeBOhYn0=;
- b=U+LMqe9iV+Swgehee0pXcKAhLo0/LDdrz1Ai5aPoKhYqOroiF2TWliFgjrp26Ht9lomvJT
- hwss5BxWG1+miMipU3yEWy9H7QbaMG//0xxedQ5AJbsVzl+Lxz/HYXc4vLx5gbhAgweuGu
- YxFA59FUOIB47sxOqKaQhs05cRqnn8ZH8qA1y2qrpJOGBRGVs4koV42imwxQmIiSBDool3
- 0MjNgHxADWyLSpvVQPviodq7pTETuyYX7vfTN28+T4sVOW/t9H9NfBQx8CN/QzjsMBv0lA
- 12PzWREHJWSLnv9raIOvD1iErCrWX0urZXxWTolgapgCfFZH5abDQ86SHur1UQ==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Weinberger <richard@nod.at>, 
- Vignesh Raghavendra <vigneshr@ti.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tomas Winkler <tomasw@gmail.com>, 
- Alexander Usyskin <alexander.usyskin@intel.com>, 
- Raag Jadav <raag.jadav@intel.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-mtd@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
-In-Reply-To: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
-References: <def775b1d7afe43720d2a1778735e764a01cb017.1753950712.git.geert+renesas@glider.be>
-Subject: Re: [PATCH v2] mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE
-Message-Id: <175672956260.48300.15057365027365895620.b4-ty@bootlin.com>
-Date: Mon, 01 Sep 2025 14:26:02 +0200
-MIME-Version: 1.0
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF22210E44D;
+ Mon,  1 Sep 2025 12:43:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBtbTogcmVtb3ZlIG50aF9wYWdl?=
+ =?utf-8?b?KCkgKHJldjQp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "David Hildenbrand" <david@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 01 Sep 2025 12:43:09 -0000
+Message-ID: <175673058971.288951.16382622411635053532@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250827220141.262669-1-david@redhat.com>
+In-Reply-To: <20250827220141.262669-1-david@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,27 +37,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 31 Jul 2025 10:35:14 +0200, Geert Uytterhoeven wrote:
-> Intel Discrete Graphics non-volatile memory is only present on Intel
-> discrete graphics devices, and its auxiliary device is instantiated by
-> the Intel i915 and Xe2 DRM drivers.  Hence add dependencies on DRM_I915
-> and DRM_XE, to prevent asking the user about this driver when
-> configuring a kernel without Intel graphics support.
-> 
-> 
-> [...]
+== Series Details ==
 
-Applied to mtd/fixes, thanks!
+Series: mm: remove nth_page() (rev4)
+URL   : https://patchwork.freedesktop.org/series/153593/
+State : failure
 
-[1/1] mtd: MTD_INTEL_DG should depend on DRM_I915 or DRM_XE
-      commit: f544bf03a771ee746b908e9a08ecb97c65a35055
+== Summary ==
 
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/153593/revisions/4/mbox/ not applied
+Applying: mm: stop making SPARSEMEM_VMEMMAP user-selectable
+Applying: arm64: Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+Applying: s390/Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+Applying: x86/Kconfig: drop superfluous "select SPARSEMEM_VMEMMAP"
+Applying: wireguard: selftests: remove CONFIG_SPARSEMEM_VMEMMAP=y from qemu kernel config
+Applying: mm/page_alloc: reject unreasonable folio/compound page sizes in alloc_contig_range_noprof()
+Applying: mm/memremap: reject unreasonable folio/compound page sizes in memremap_pages()
+Applying: mm/hugetlb: check for unreasonable folio sizes when registering hstate
+Applying: mm/mm_init: make memmap_init_compound() look more like prep_compound_page()
+Applying: mm: sanity-check maximum folio size in folio_set_order()
+Applying: mm: limit folio/compound page sizes in problematic kernel configs
+Applying: mm: simplify folio_page() and folio_page_idx()
+Applying: mm/hugetlb: cleanup hugetlb_folio_init_tail_vmemmap()
+Applying: mm/mm/percpu-km: drop nth_page() usage within single allocation
+Applying: fs: hugetlbfs: remove nth_page() usage within folio in adjust_range_hwpoison()
+Applying: fs: hugetlbfs: cleanup folio in adjust_range_hwpoison()
+Applying: mm/pagewalk: drop nth_page() usage within folio in folio_walk_start()
+Applying: mm/gup: drop nth_page() usage within folio when recording subpages
+error: sha1 information is lacking or useless (mm/gup.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0018 mm/gup: drop nth_page() usage within folio when recording subpages
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
-Kind regards,
-Miquèl
 
