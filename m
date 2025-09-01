@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559B6B3D965
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Sep 2025 08:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A228B3DC5C
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Sep 2025 10:30:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BBBF10E316;
-	Mon,  1 Sep 2025 06:01:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BvbEmDzl";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B14F210E095;
+	Mon,  1 Sep 2025 08:30:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8620210E316
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Sep 2025 06:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756706518; x=1788242518;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bmC/KHWZtfmWhiq6Y3P3zpM725j4DWijiKu5HLINWu0=;
- b=BvbEmDzl4eODCJL9d7xMGCPqz8aqMT9am/wF0Z512g0lPL0KLRmA2mlR
- pcExukKaxLOHI60HqdQ+t+nYsPawPIFAjKyvfPMsW8lllxmIV7zPjZ6J+
- y6SKVrnEHr9scDHSh2Z3zirDjyx/9zPOYGb27gyGErnbf9HYo1py7WjZi
- AFjk4cvOUmw7vOLxGIWglf+mP2+TLzyuLojlFroHdsMbKQmOd8J8sznv8
- Fo6GPvF2miKbk166iNNvASHVBpbQd04hnsclBfw7dCidGF7pJCXgyf0PP
- Tze3PI0yDOA4I3nBw0aOkW7VMr749DD9FYib3gHQ5hD3vSMUXeIQhgbf7 g==;
-X-CSE-ConnectionGUID: 5DgSri+GRueIAdmv2XF8XQ==
-X-CSE-MsgGUID: dtcIxi+8SiK56rvFsZfnQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="81485495"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="81485495"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2025 23:01:58 -0700
-X-CSE-ConnectionGUID: CrppdxYLTumF3cMzrT3nKA==
-X-CSE-MsgGUID: U1c0x2tvSnGyfqnjIAdGLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; d="scan'208";a="171670663"
-Received: from shawnle1-i9-build-machine.itwn.intel.com ([10.225.64.200])
- by fmviesa010.fm.intel.com with ESMTP; 31 Aug 2025 23:01:41 -0700
-From: Lee Shawn C <shawn.c.lee@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lee Shawn C <shawn.c.lee@intel.com>, Shankar Uma <uma.shankar@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Imre Deak <imre.deak@intel.com>,
- Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: [PATCH 2/2] drm/i915: compute pipe bpp from link bandwidth management
-Date: Mon,  1 Sep 2025 05:57:21 +0000
-Message-Id: <20250901055721.219995-3-shawn.c.lee@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250901055721.219995-1-shawn.c.lee@intel.com>
-References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
- <20250901055721.219995-1-shawn.c.lee@intel.com>
+Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9166D10E095;
+ Mon,  1 Sep 2025 08:30:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7008049001516930194=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/hdmi=3A_add_debu?=
+ =?utf-8?q?gfs_to_contorl_HDMI_bpc_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 01 Sep 2025 08:30:47 -0000
+Message-ID: <175671544759.288126.14279205953503010422@1538d3639d33>
+X-Patchwork-Hint: ignore
+References: <20250806042053.3570558-1-shawn.c.lee@intel.com>
+In-Reply-To: <20250806042053.3570558-1-shawn.c.lee@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,231 +37,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since intel_fdi_compute_pipe_bpp() is no longer FDI-specific and
-now applies to all connectors. Move it to intel_link_bw.c,
-and rename to intel_link_bw_compute_pipe_bpp().
+--===============7008049001516930194==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Remove unused header file.
+== Series Details ==
 
-Cc: Shankar Uma <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Vidya Srinivas <vidya.srinivas@intel.com>
-Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
----
- drivers/gpu/drm/i915/display/intel_crt.c     |  5 ++--
- drivers/gpu/drm/i915/display/intel_fdi.c     | 28 --------------------
- drivers/gpu/drm/i915/display/intel_fdi.h     |  1 -
- drivers/gpu/drm/i915/display/intel_hdmi.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_link_bw.c | 28 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_link_bw.h |  1 +
- drivers/gpu/drm/i915/display/intel_lvds.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_sdvo.c    |  4 +--
- 8 files changed, 38 insertions(+), 35 deletions(-)
+Series: drm/i915/hdmi: add debugfs to contorl HDMI bpc (rev7)
+URL   : https://patchwork.freedesktop.org/series/152562/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 898c5d9e8f7a..31e68047f217 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -50,6 +50,7 @@
- #include "intel_gmbus.h"
- #include "intel_hotplug.h"
- #include "intel_hotplug_irq.h"
-+#include "intel_link_bw.h"
- #include "intel_load_detect.h"
- #include "intel_pch_display.h"
- #include "intel_pch_refclk.h"
-@@ -421,7 +422,7 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 
- 	crtc_state->has_pch_encoder = true;
--	if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+	if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 		return -EINVAL;
- 
- 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-@@ -446,7 +447,7 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
- 		return -EINVAL;
- 
- 	crtc_state->has_pch_encoder = true;
--	if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+	if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 		return -EINVAL;
- 
- 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index 8039a84671cc..59a36b3a22c1 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -292,34 +292,6 @@ int intel_fdi_link_freq(struct intel_display *display,
- 		return display->fdi.pll_freq;
- }
- 
--/**
-- * intel_fdi_compute_pipe_bpp - compute pipe bpp limited by max link bpp
-- * @crtc_state: the crtc state
-- *
-- * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
-- * call this function during state computation in the simple case where the
-- * link bpp will always match the pipe bpp. This is the case for all non-DP
-- * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
-- * of DSC compression.
-- *
-- * Returns %true in case of success, %false if pipe bpp would need to be
-- * reduced below its valid range.
-- */
--bool intel_fdi_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
--{
--	int pipe_bpp = min(crtc_state->pipe_bpp,
--			   fxp_q4_to_int(crtc_state->max_link_bpp_x16));
--
--	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
--
--	if (pipe_bpp < 6 * 3)
--		return false;
--
--	crtc_state->pipe_bpp = pipe_bpp;
--
--	return true;
--}
--
- int ilk_fdi_compute_config(struct intel_crtc *crtc,
- 			   struct intel_crtc_state *pipe_config)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.h b/drivers/gpu/drm/i915/display/intel_fdi.h
-index ad5e103c38a8..1cd08df9b0c2 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.h
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.h
-@@ -20,7 +20,6 @@ struct intel_link_bw_limits;
- int intel_fdi_add_affected_crtcs(struct intel_atomic_state *state);
- int intel_fdi_link_freq(struct intel_display *display,
- 			const struct intel_crtc_state *pipe_config);
--bool intel_fdi_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
- int ilk_fdi_compute_config(struct intel_crtc *intel_crtc,
- 			   struct intel_crtc_state *pipe_config);
- int intel_fdi_atomic_check_link(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 027e8ed0cea8..4650181932d7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -61,6 +61,7 @@
- #include "intel_hdcp_regs.h"
- #include "intel_hdcp_shim.h"
- #include "intel_hdmi.h"
-+#include "intel_link_bw.h"
- #include "intel_lspcon.h"
- #include "intel_panel.h"
- #include "intel_pfit.h"
-@@ -2346,7 +2347,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		pipe_config->pixel_multiplier = 2;
- 
--	if (!intel_fdi_compute_pipe_bpp(pipe_config))
-+	if (!intel_link_bw_compute_pipe_bpp(pipe_config))
- 		return -EINVAL;
- 
- 	pipe_config->has_audio =
-diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/drm/i915/display/intel_link_bw.c
-index d194a366ff10..f52dee0ea412 100644
---- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-@@ -164,6 +164,34 @@ int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
- 	return ret;
- }
- 
-+/**
-+ * intel_link_bw_compute_pipe_bpp - compute pipe bpp limited by max link bpp
-+ * @crtc_state: the crtc state
-+ *
-+ * Compute the pipe bpp limited by the CRTC's maximum link bpp. Encoders can
-+ * call this function during state computation in the simple case where the
-+ * link bpp will always match the pipe bpp. This is the case for all non-DP
-+ * encoders, while DP encoders will use a link bpp lower than pipe bpp in case
-+ * of DSC compression.
-+ *
-+ * Returns %true in case of success, %false if pipe bpp would need to be
-+ * reduced below its valid range.
-+ */
-+bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state)
-+{
-+	int pipe_bpp = min(crtc_state->pipe_bpp,
-+			   fxp_q4_to_int(crtc_state->max_link_bpp_x16));
-+
-+	pipe_bpp = rounddown(pipe_bpp, 2 * 3);
-+
-+	if (pipe_bpp < 6 * 3)
-+		return false;
-+
-+	crtc_state->pipe_bpp = pipe_bpp;
-+
-+	return true;
-+}
-+
- /**
-  * intel_link_bw_set_bpp_limit_for_pipe - set link bpp limit for a pipe to its minimum
-  * @state: atomic state
-diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.h b/drivers/gpu/drm/i915/display/intel_link_bw.h
-index b499042e62b1..95ab7c50c61d 100644
---- a/drivers/gpu/drm/i915/display/intel_link_bw.h
-+++ b/drivers/gpu/drm/i915/display/intel_link_bw.h
-@@ -27,6 +27,7 @@ int intel_link_bw_reduce_bpp(struct intel_atomic_state *state,
- 			     struct intel_link_bw_limits *limits,
- 			     u8 pipe_mask,
- 			     const char *reason);
-+bool intel_link_bw_compute_pipe_bpp(struct intel_crtc_state *crtc_state);
- bool intel_link_bw_set_bpp_limit_for_pipe(struct intel_atomic_state *state,
- 					  const struct intel_link_bw_limits *old_limits,
- 					  struct intel_link_bw_limits *new_limits,
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 7e48a235c99f..48f4d8ed4f15 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -48,6 +48,7 @@
- #include "intel_dpll.h"
- #include "intel_fdi.h"
- #include "intel_gmbus.h"
-+#include "intel_link_bw.h"
- #include "intel_lvds.h"
- #include "intel_lvds_regs.h"
- #include "intel_panel.h"
-@@ -433,7 +434,7 @@ static int intel_lvds_compute_config(struct intel_encoder *encoder,
- 
- 	if (HAS_PCH_SPLIT(display)) {
- 		crtc_state->has_pch_encoder = true;
--		if (!intel_fdi_compute_pipe_bpp(crtc_state))
-+		if (!intel_link_bw_compute_pipe_bpp(crtc_state))
- 			return -EINVAL;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 87aff2754f69..8848a33fe9cc 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -47,11 +47,11 @@
- #include "intel_display_driver.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
--#include "intel_fdi.h"
- #include "intel_fifo_underrun.h"
- #include "intel_gmbus.h"
- #include "intel_hdmi.h"
- #include "intel_hotplug.h"
-+#include "intel_link_bw.h"
- #include "intel_panel.h"
- #include "intel_sdvo.h"
- #include "intel_sdvo_regs.h"
-@@ -1367,7 +1367,7 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
- 
- 	if (HAS_PCH_SPLIT(display)) {
- 		pipe_config->has_pch_encoder = true;
--		if (!intel_fdi_compute_pipe_bpp(pipe_config))
-+		if (!intel_link_bw_compute_pipe_bpp(pipe_config))
- 			return -EINVAL;
- 	}
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_17098 -> Patchwork_152562v7
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/index.html
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_152562v7 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-n3050:       [INCOMPLETE][3] ([i915#12904]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-dg2-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-atsm-1:         [DMESG-FAIL][9] ([i915#12061] / [i915#13929]) -> [DMESG-FAIL][10] ([i915#12061] / [i915#14204])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-atsm-1/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-atsm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@mman:
+    - bat-atsm-1:         [DMESG-FAIL][11] ([i915#13929]) -> [DMESG-FAIL][12] ([i915#14204])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-atsm-1/igt@i915_selftest@live@mman.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-atsm-1/igt@i915_selftest@live@mman.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13929]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929
+  [i915#14204]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_17098 -> Patchwork_152562v7
+
+  CI-20190529: 20190529
+  CI_DRM_17098: 8d06b14349900b39d8fa9f60eb69e1432efd2399 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8519: 8519
+  Patchwork_152562v7: 8d06b14349900b39d8fa9f60eb69e1432efd2399 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/index.html
+
+--===============7008049001516930194==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdmi: add debugfs to contorl HDMI bpc (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152562/">https://patchwork.freedesktop.org/series/152562/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_17098 -&gt; Patchwork_152562v7</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/index.html</p>
+<h2>Participating hosts (44 -&gt; 43)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_152562v7 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/fi-bsw-n3050/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-atsm-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@mman:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17098/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13929">i915#13929</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152562v7/bat-atsm-1/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204">i915#14204</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_17098 -&gt; Patchwork_152562v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_17098: 8d06b14349900b39d8fa9f60eb69e1432efd2399 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8519: 8519<br />
+  Patchwork_152562v7: 8d06b14349900b39d8fa9f60eb69e1432efd2399 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7008049001516930194==--
