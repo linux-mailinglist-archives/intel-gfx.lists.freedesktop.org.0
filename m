@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E7D5B404C7
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 15:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB58B405A7
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 15:56:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6FF410E721;
-	Tue,  2 Sep 2025 13:46:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B7AC10E71E;
+	Tue,  2 Sep 2025 13:56:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lTXyMvjM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C1j+/QD2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37C4310E721;
- Tue,  2 Sep 2025 13:46:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7627510E71E;
+ Tue,  2 Sep 2025 13:56:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756820788; x=1788356788;
+ t=1756821383; x=1788357383;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=varB7XTQyQaxdmRUnlQ29tpwZcGJ8QkLbTFIl5Vyg6E=;
- b=lTXyMvjMmJ8GF0vdozPA63Hp/hnh5IuDtxGDRl2I4D2Tdy1o4rsJ8ks2
- kc8DBVpnjIblrvTJ33rOKhOF1Z/dLVRS3PDZPC+MYQeTIXILqvqAIgLUj
- pwSPWmNj+pPexTUgBlUHGfKp1lChZzdob1FgR0uGzz6dncbkwWlMcJWtq
- DGm2NbYqjH/gR1vURGuKyglYN2/oxFKODEaZVUDBHqeqrWFDML6Xp+5Fa
- tAz5BORWm24KQehX6wWh3l/MgOlrsiMFZwt5LMQzNnICuiku0qVDHHPUk
- SHpbOSfywV2UrEJ8KCW4WM+hdE1TaixZLWx1d4/yVts+xm3+E62qrX8/q Q==;
-X-CSE-ConnectionGUID: KHGXstUYQ6O4K7HcWVvvpg==
-X-CSE-MsgGUID: OrrSj6drROmshn8TPxw40A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="69706048"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="69706048"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 06:46:28 -0700
-X-CSE-ConnectionGUID: vhznDpT9Q/azpnTMqKFO0w==
-X-CSE-MsgGUID: I0iIZPWUQbu3/EUHgI8ogA==
+ bh=FUyOUZ3ZBahr6ayvVnUiNuZF+YxNoUjSgIHLBhHUb48=;
+ b=C1j+/QD22ZLeEZ0KQ75PJizZScjjkVyOolrzc880dcxQ0czyPL7tfsm2
+ nHvnzDPYPN4ZqARAaiyILB3tHDtbLnDZJvvSEA6QbuYf9a+sSdg2GMK5z
+ m8bAJc+wk5JuS7un9qJ2zjv6lXXJVV0IqC5LdguvcUKhUtXRDy1oei8KH
+ MBPoY0Aiu152yjQN9pvDym+7pjzZPv3vNG5pgLA1IrGRtV8QF1dmV698f
+ QTFk5255r2xrxJvpWVGXawkMcQiWF7Eb9RvA+XS+BBspxNp+8LZSq8avn
+ FdwaRTnXTzhsyexvqB6EaKq7/qiYD43OLHNJzBfBxF87IGBvF0czfyeNC w==;
+X-CSE-ConnectionGUID: xeFqaT3eQ+uvS6D/F3PjiA==
+X-CSE-MsgGUID: Dws738tITNGxhITwrZGqGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="62915956"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="62915956"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 06:56:23 -0700
+X-CSE-ConnectionGUID: b+kvfEMITvmjrCUDKRVOLg==
+X-CSE-MsgGUID: Tiuw4EcKSKyQ7xKd0xZSYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="175658835"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="171725115"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.193])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 06:46:26 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 06:56:21 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/8] drm/i915/dram: Pack dram_info better
-In-Reply-To: <20250902133113.18778-4-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 5/8] drm/i915/dram: Move 16Gb DIMM detection fully to
+ the skl/icl codepaths
+In-Reply-To: <20250902133113.18778-6-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250902133113.18778-1-ville.syrjala@linux.intel.com>
- <20250902133113.18778-4-ville.syrjala@linux.intel.com>
-Date: Tue, 02 Sep 2025 16:46:23 +0300
-Message-ID: <cda7d8ac5f158572bb4e6ae2606c545a4c4452e1@intel.com>
+ <20250902133113.18778-6-ville.syrjala@linux.intel.com>
+Date: Tue, 02 Sep 2025 16:56:18 +0300
+Message-ID: <234b7892c94b7974e2281812825c85ae56b50aac@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,48 +75,93 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 02 Sep 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> struct dram_info has two holes in the middle. Shuffle things
-> around to plug them.
+> Only skl (and derivatives) and icl need the 16Gb DIMM w/as, and we
+> do the real detection only on those platforms anyway. Move the initial
+> has_16gb_dimms assignment into those codepaths as well.
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Currently we are incorrectly always applying the 1 usec wm latency bump
+> on all mtl+ platforms due to this (the tgl/adl codepath did remember to
+> undo the assignment, but the mtl+ codepath didn't).
+
+The commit message could have more clarity that we're fixing this here.
+
+With that,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+
+I think after this we could also drop the "!display->platform.dg2 && "
+part in adjust_wm_latency():
+
+	if (!display->platform.dg2 && dram_info->has_16gb_dimms)
+
+Can be a follow-up.
+
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/soc/intel_dram.h | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/soc/intel_dram.c | 17 ++++++-----------
+>  1 file changed, 6 insertions(+), 11 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.h b/drivers/gpu/drm/i915=
-/soc/intel_dram.h
-> index 846a77b1aa90..6212944d44aa 100644
-> --- a/drivers/gpu/drm/i915/soc/intel_dram.h
-> +++ b/drivers/gpu/drm/i915/soc/intel_dram.h
-> @@ -12,9 +12,6 @@ struct drm_i915_private;
->  struct drm_device;
+> diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915=
+/soc/intel_dram.c
+> index efb72e137748..bf3ba874f8c5 100644
+> --- a/drivers/gpu/drm/i915/soc/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/soc/intel_dram.c
+> @@ -406,6 +406,9 @@ skl_dram_get_channels_info(struct drm_i915_private *i=
+915, struct dram_info *dram
+>  	u32 val;
+>  	int ret;
 >=20=20
->  struct dram_info {
-> -	bool wm_lv_0_adjust_needed;
-> -	u8 num_channels;
-> -	bool symmetric_memory;
->  	enum intel_dram_type {
->  		INTEL_DRAM_UNKNOWN,
->  		INTEL_DRAM_DDR2,
-> @@ -28,10 +25,13 @@ struct dram_info {
->  		INTEL_DRAM_GDDR_ECC,
->  		__INTEL_DRAM_TYPE_MAX,
->  	} type;
-> -	u8 num_qgv_points;
-> -	u8 num_psf_gv_points;
->  	unsigned int fsb_freq;
->  	unsigned int mem_freq;
-> +	u8 num_channels;
-> +	u8 num_qgv_points;
-> +	u8 num_psf_gv_points;
-> +	bool symmetric_memory;
-> +	bool wm_lv_0_adjust_needed;
->  };
+> +	/* Assume 16Gb DIMMs are present until proven otherwise */
+> +	dram_info->has_16gb_dimms =3D true;
+> +
+>  	val =3D intel_uncore_read(&i915->uncore,
+>  				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
+>  	ret =3D skl_dram_get_channel_info(i915, &ch0, 0, val);
+> @@ -435,6 +438,9 @@ skl_dram_get_channels_info(struct drm_i915_private *i=
+915, struct dram_info *dram
+>  	drm_dbg_kms(&i915->drm, "Memory configuration is symmetric? %s\n",
+>  		    str_yes_no(dram_info->symmetric_memory));
 >=20=20
->  void intel_dram_edram_detect(struct drm_i915_private *i915);
+> +	drm_dbg_kms(&i915->drm, "16Gb DIMMs: %s\n",
+> +		    str_yes_no(dram_info->has_16gb_dimms));
+> +
+>  	return 0;
+>  }
+>=20=20
+> @@ -673,8 +679,6 @@ static int gen11_get_dram_info(struct drm_i915_privat=
+e *i915, struct dram_info *
+>=20=20
+>  static int gen12_get_dram_info(struct drm_i915_private *i915, struct dra=
+m_info *dram_info)
+>  {
+> -	dram_info->has_16gb_dimms =3D false;
+> -
+>  	return icl_pcode_read_mem_global_info(i915, dram_info);
+>  }
+>=20=20
+> @@ -736,12 +740,6 @@ int intel_dram_detect(struct drm_i915_private *i915)
+>=20=20
+>  	i915->dram_info =3D dram_info;
+>=20=20
+> -	/*
+> -	 * Assume 16Gb DIMMs are present until proven
+> -	 * otherwise, this w/a is not needed by bxt/glk.
+> -	 */
+> -	dram_info->has_16gb_dimms =3D !IS_BROXTON(i915) && !IS_GEMINILAKE(i915);
+> -
+>  	if (DISPLAY_VER(display) >=3D 14)
+>  		ret =3D xelpdp_get_dram_info(i915, dram_info);
+>  	else if (GRAPHICS_VER(i915) >=3D 12)
+> @@ -766,9 +764,6 @@ int intel_dram_detect(struct drm_i915_private *i915)
+>=20=20
+>  	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_channels);
+>=20=20
+> -	drm_dbg_kms(&i915->drm, "16Gb DIMMs: %s\n",
+> -		    str_yes_no(dram_info->has_16gb_dimms));
+> -
+>  	return 0;
+>  }
 
 --=20
 Jani Nikula, Intel
