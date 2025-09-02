@@ -2,63 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9413B3FC2C
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 12:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 023A2B40161
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:55:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF9D10E651;
-	Tue,  2 Sep 2025 10:23:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YWJI1Yvc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A82E10E34C;
+	Tue,  2 Sep 2025 12:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED6E10E650;
- Tue,  2 Sep 2025 10:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756808607; x=1788344607;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rR6Wp8GZtCXlW02r8wzOYU1nLDI4RbUlUd1eOGVJRvk=;
- b=YWJI1YvcMxW1HqiUX5ImrjolyNz3IywTTi5bFKPMxU5xVIU+djvD7dwn
- GSfZjJixA0sNZ+5bWpKEfujWZHSUjZ4JIKB1LpAFrfcgbKl6WyA+mOIgC
- CJFUzPLuN0Yj+Jcrabji5N5U7ev5CZELvzkPkz4duQommfwrwAr1CEEI6
- /5aJcqnKo/HiqjZVta3G3gWGq+mKdxwjlikYR6ERHwXxCGLdmS4TfGnv/
- tC1yQYypcIC0U6ZUOtBtfIpukReoJPgULkwS2aFYws0qbgHBSHVQ1XxTr
- gR6f8TUKw8T0xXkFT3x6R74HvcoBibyWeLLyiGIWHHRRDqhF8LRvlrfst w==;
-X-CSE-ConnectionGUID: rdmBTHfhScC3mfxIMX+E/Q==
-X-CSE-MsgGUID: WmacfJQETc6suhGV3aBO/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="58990908"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="58990908"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 03:23:27 -0700
-X-CSE-ConnectionGUID: wYlb5+c0QZOMWQXpcfYFtg==
-X-CSE-MsgGUID: 0zTKK58kQziK686jbzw0vA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="176516743"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.193])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 03:23:23 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, matthew.auld@intel.com, peterz@infradead.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: alexander.deucher@amd.com, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: Re: [PATCH v5 1/2] drm/buddy: Optimize free block management with
- RB tree
-In-Reply-To: <20250901185604.2222-1-Arunpravin.PaneerSelvam@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250901185604.2222-1-Arunpravin.PaneerSelvam@amd.com>
-Date: Tue, 02 Sep 2025 13:23:20 +0300
-Message-ID: <23142157adbc54a6e2f03a2ebaf209c9bd89439e@intel.com>
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7DB210E653;
+ Tue,  2 Sep 2025 10:33:06 +0000 (UTC)
+X-UUID: 3107081c87e811f0b29709d653e92f7d-20250902
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45, REQID:3fbf43f8-ebc9-4b27-884e-79c619713230, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:0
+X-CID-META: VersionHash:6493067, CLOUDID:7ac0a2afc203774c376dc034898cbd81,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|52,EDM:
+ -3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
+ AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 3107081c87e811f0b29709d653e92f7d-20250902
+Received: from mail.kylinos.cn [(10.44.16.175)] by mailgw.kylinos.cn
+ (envelope-from <zhangzihuan@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1546738643; Tue, 02 Sep 2025 18:32:57 +0800
+Received: from mail.kylinos.cn (localhost [127.0.0.1])
+ by mail.kylinos.cn (NSMail) with SMTP id A718FE008FA3;
+ Tue,  2 Sep 2025 18:32:56 +0800 (CST)
+X-ns-mid: postfix-68B6C7D8-5510786
+Received: from [172.25.120.24] (unknown [172.25.120.24])
+ by mail.kylinos.cn (NSMail) with ESMTPA id 589C2E008FA2;
+ Tue,  2 Sep 2025 18:32:48 +0800 (CST)
+Message-ID: <29890791-4ddf-49c7-a4f2-0ac83e6d53c6@kylinos.cn>
+Date: Tue, 2 Sep 2025 18:32:47 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 03/12] cpufreq: intel_pstate: Use scope-based cleanup
+ helper
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
+ Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
+ Zhang Rui <rui.zhang@intel.com>, Len Brown <lenb@kernel.org>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Beata Michalska <beata.michalska@arm.com>, Fabio Estevam
+ <festevam@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Sumit Gupta <sumitg@nvidia.com>,
+ Prasanna Kumar T S M <ptsm@linux.microsoft.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Yicong Yang <yangyicong@hisilicon.com>,
+ linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250901085748.36795-1-zhangzihuan@kylinos.cn>
+ <20250901085748.36795-4-zhangzihuan@kylinos.cn>
+ <CAJZ5v0hu48NrMr6Vkjn_UyHywJMx7F5N6yWf2LiXxykZF79EKA@mail.gmail.com>
+From: Zihuan Zhang <zhangzihuan@kylinos.cn>
+In-Reply-To: <CAJZ5v0hu48NrMr6Vkjn_UyHywJMx7F5N6yWf2LiXxykZF79EKA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 02 Sep 2025 12:55:00 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,57 +96,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Sep 2025, Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com> wrote:
-> Replace the freelist (O(n)) used for free block management with a
-> red-black tree, providing more efficient O(log n) search, insert,
-> and delete operations. This improves scalability and performance
-> when managing large numbers of free blocks per order (e.g., hundreds
-> or thousands).
->
-> In the VK-CTS memory stress subtest, the buddy manager merges
-> fragmented memory and inserts freed blocks into the freelist. Since
-> freelist insertion is O(n), this becomes a bottleneck as fragmentation
-> increases. Benchmarking shows list_insert_sorted() consumes ~52.69% CPU
-> with the freelist, compared to just 0.03% with the RB tree
-> (rbtree_insert.isra.0), despite performing the same sorted insert.
->
-> This also improves performance in heavily fragmented workloads,
-> such as games or graphics tests that stress memory.
->
-> v3(Matthew):
->   - Remove RB_EMPTY_NODE check in force_merge function.
->   - Rename rb for loop macros to have less generic names and move to
->     .c file.
->   - Make the rb node rb and link field as union.
->
-> v4(Jani Nikula):
->   - The kernel-doc comment should be "/**"
->   - Move all the rbtree macros to rbtree.h and add parens to ensure
->     correct precedence.
->
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> ---
->  drivers/gpu/drm/drm_buddy.c | 142 ++++++++++++++++++++++--------------
->  include/drm/drm_buddy.h     |   9 ++-
->  include/linux/rbtree.h      |  56 ++++++++++++++
->  3 files changed, 152 insertions(+), 55 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-> index a94061f373de..978cabfbcf0f 100644
-> --- a/drivers/gpu/drm/drm_buddy.c
-> +++ b/drivers/gpu/drm/drm_buddy.c
 
-...
-
-> +static inline struct drm_buddy_block *
-> +rbtree_last_entry(struct drm_buddy *mm, unsigned int order)
-
-Drive-by reminder that "inline" in a .c file is, in absense of evidence
-to the contrary, superfluous. Please just let the compiler do its job.
-
-BR,
-Jani.
+=E5=9C=A8 2025/9/1 23:17, Rafael J. Wysocki =E5=86=99=E9=81=93:
+> On Mon, Sep 1, 2025 at 10:58=E2=80=AFAM Zihuan Zhang <zhangzihuan@kylin=
+os.cn> wrote:
+>> Replace the manual cpufreq_cpu_put() with __free(put_cpufreq_policy)
+>> annotation for policy references. This reduces the risk of reference
+>> counting mistakes and aligns the code with the latest kernel style.
+>>
+>> No functional change intended.
+>>
+>> Signed-off-by: Zihuan Zhang <zhangzihuan@kylinos.cn>
+>> ---
+>>   drivers/cpufreq/intel_pstate.c | 8 +++-----
+>>   1 file changed, 3 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/cpufreq/intel_pstate.c b/drivers/cpufreq/intel_ps=
+tate.c
+>> index f366d35c5840..4abc1ef2d2b0 100644
+>> --- a/drivers/cpufreq/intel_pstate.c
+>> +++ b/drivers/cpufreq/intel_pstate.c
+>> @@ -1502,9 +1502,8 @@ static void __intel_pstate_update_max_freq(struc=
+t cpufreq_policy *policy,
+>>
+>>   static bool intel_pstate_update_max_freq(struct cpudata *cpudata)
+>>   {
+>> -       struct cpufreq_policy *policy __free(put_cpufreq_policy);
+>> +       struct cpufreq_policy *policy __free(put_cpufreq_policy) =3D c=
+pufreq_cpu_get(cpudata->cpu);
+>>
+>> -       policy =3D cpufreq_cpu_get(cpudata->cpu);
+>>          if (!policy)
+>>                  return false;
+> The structure of the code is intentional here and there's no reason to
+> change it.
 
 
--- 
-Jani Nikula, Intel
+Got it. Thanks for clarifying.
+
+So for this case the current structure is intentional -
+
+should I also avoid similar changes in other drivers?
+
