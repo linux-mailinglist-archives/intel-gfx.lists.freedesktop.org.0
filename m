@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B7FB409F0
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 17:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 912F4B409FE
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 17:59:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFBAC10E009;
-	Tue,  2 Sep 2025 15:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E60E410E7D3;
+	Tue,  2 Sep 2025 15:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Q/fJnIUe";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ud0/eFyj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4AC510E009;
- Tue,  2 Sep 2025 15:58:24 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B6310E7D3;
+ Tue,  2 Sep 2025 15:59:32 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6DD204374F;
- Tue,  2 Sep 2025 15:58:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0060C4CEED;
- Tue,  2 Sep 2025 15:58:13 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 12A466021C;
+ Tue,  2 Sep 2025 15:59:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01BDFC4CEED;
+ Tue,  2 Sep 2025 15:59:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1756828704;
- bh=p9LX1J8OB47eGZSBufCQ0NCMRaLyzY7dyM6OvdV2fn4=;
+ s=k20201202; t=1756828770;
+ bh=h6gGkPa+yogQhUhsg5tcVHk0cLLn+dh6AGZcG93uf7s=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Q/fJnIUePrEmtB3jGxs5sXxTiOpjkneVTfCS8aGXxrge+I7eRhoUp/VrWKw0Hp5Av
- 7/yMMMoDY3uf4zbOr1qrCvQbUQdfF0rxH+L8odYDJGkEzL497fxrw04Ay5tgx5lKow
- 2mJtK9hw1iTs3p7Nqm8rh+7jqov/ffrQu48zZ3jqGVJUgN/tlYOWCZu/pxnHyUHt8q
- rx60Oi0rBmJckMYvBhCX09gIsGWqa1rEdd40SEyfV5zBcUmJAcbkXfU6nC8L3Bn5Xx
- kKZSJDcxk0NBwX11+/u16ApogOs6MSqP278oWv9WSTWa3EtFMXF37agP5A/MeoJdgW
- fh/6kw64NW2Lw==
-Message-ID: <ff165a2e-cd63-462f-b2ea-cb27cb514ef9@kernel.org>
-Date: Tue, 2 Sep 2025 17:58:11 +0200
+ b=Ud0/eFyjy1LcAqZg8/j8CGG2Y+QtH7azwAQmg7B6nqOqfw7uH3isn8BWEsvAZ/rys
+ zO9DuR3o+bc/yW7QUD/9dtYpcAQX49gCnPKGsgHgLZW0IZULcY2x+fnynasWOmKQ4U
+ 3HmROMU44lKBDLB/MSAJeZWuJ7IxmOBCqv14kIqng4BI0NGKCBlREva7OmyCvehMZf
+ aYDsTt0OmKhB88FURiUCJ3Ot+suF9wyekWpNCkvgTMVPqqjZeo6NzUGrl9yKAD69nG
+ 3W7lWRc93bSi6BuXL06aDnkVp8e5I1/cY6kApSel/xtw+cXgctCwzB/n1ANxqWBroC
+ m5fjuZeIJSwNQ==
+Message-ID: <3815a847-c6ea-44f1-8c4f-666483841b16@kernel.org>
+Date: Tue, 2 Sep 2025 17:59:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/12] cpufreq: longhaul: Use scope-based cleanup helper
+Subject: Re: [PATCH v3 08/12] cpufreq: powerpc: macintosh: Use scope-based
+ cleanup helper
 To: Zihuan Zhang <zhangzihuan@kylinos.cn>,
  "Rafael J . wysocki" <rafael@kernel.org>,
  Viresh Kumar <viresh.kumar@linaro.org>,
@@ -66,7 +67,7 @@ Cc: Ben Horgan <ben.horgan@arm.com>, zhenglifeng <zhenglifeng1@huawei.com>,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  imx@lists.linux.dev, linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250901085748.36795-1-zhangzihuan@kylinos.cn>
- <20250901085748.36795-5-zhangzihuan@kylinos.cn>
+ <20250901085748.36795-9-zhangzihuan@kylinos.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,7 +113,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250901085748.36795-5-zhangzihuan@kylinos.cn>
+In-Reply-To: <20250901085748.36795-9-zhangzihuan@kylinos.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -131,22 +132,22 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 01/09/2025 10:57, Zihuan Zhang wrote:
->  static void __exit longhaul_exit(void)
->  {
-> -	struct cpufreq_policy *policy = cpufreq_cpu_get(0);
 > +	struct cpufreq_policy *policy __free(put_cpufreq_policy) = cpufreq_cpu_get(0);
->  	int i;
+>  	struct wf_control *clamp;
+>  	struct device *dev;
+>  	int ret;
 >  
->  	for (i = 0; i < numscales; i++) {
-> @@ -968,7 +968,6 @@ static void __exit longhaul_exit(void)
->  		}
->  	}
+> -	policy = cpufreq_cpu_get(0);
+>  	if (!policy) {
+>  		pr_warn("%s: cpufreq policy not found cpu0\n", __func__);
+>  		return -EPROBE_DEFER;
+> @@ -79,8 +78,6 @@ static int __init wf_cpufreq_clamp_init(void)
+>  	ret = freq_qos_add_request(&policy->constraints, &qos_req, FREQ_QOS_MAX,
+>  				   max_freq);
 >  
 > -	cpufreq_cpu_put(policy);
-
-You are not improving any code here.
-
-
+> -
+Not much improvement. Previously this was simple code, easy to grasp.
 Best regards,
 Krzysztof
 
