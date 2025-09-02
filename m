@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01E2B3FF03
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05120B4001D
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:21:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA15110E683;
-	Tue,  2 Sep 2025 12:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1E4C10E697;
+	Tue,  2 Sep 2025 12:21:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="0112SxHx";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tvO717jS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3314110E683;
- Tue,  2 Sep 2025 12:04:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35CF410E697;
+ Tue,  2 Sep 2025 12:21:53 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0EC74601D3;
- Tue,  2 Sep 2025 12:04:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47278C4CEED;
- Tue,  2 Sep 2025 12:04:09 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id F325F601D3;
+ Tue,  2 Sep 2025 12:21:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53DA5C4CEED;
+ Tue,  2 Sep 2025 12:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1756814649;
- bh=m4iVxB1YPBdp0DHClEAyxCmlXfIDdPJXaohrqyi76K0=;
+ s=korg; t=1756815711;
+ bh=A7hymjpWxgXfYshoJoFU5kuPhC+9nCEFOQDxRGMOF98=;
  h=Subject:To:Cc:From:Date:From;
- b=0112SxHxE1taPYDAZFvx2+G71H42ucFbGUBKx8mbw3QxFr1/0X/V3RYDGOllHP9SJ
- TXF8FrvomT+ZIdXDzNXD4yHtH6RfDWLmEfS4DjXrW+WnBohbBlnbd/coz+MqaSGScT
- aXzFISdgJjtFEv8kX9N6lB4Nu42KrAns1LxKF2Cw=
+ b=tvO717jScnCZ8uOl+sWWDUm2FNh1YQtsje5KtdDvnshI6F7yp0hlAeA7Gbw0PfGR3
+ hFIoTdUPSNPPc2tpiaoGttllLPLX0lMlAtwiVUhoRywYCiW1pYI0O/BETk4EWAVgXZ
+ USuqXm+GkKoXuM55xIXCvGhN+YaDZBbdlYEyE5y8=
 Subject: Patch "Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to
- LANE0_1_STATUS"" has been added to the 6.16-stable tree
+ LANE0_1_STATUS"" has been added to the 5.15-stable tree
 To: dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org,
  imre.deak@intel.com, intel-gfx@lists.freedesktop.org, sashal@kernel.org
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
-Date: Tue, 02 Sep 2025 14:03:52 +0200
-Message-ID: <2025090252-fall-embargo-d67c@gregkh>
+Date: Tue, 02 Sep 2025 14:21:38 +0200
+Message-ID: <2025090238-idealize-fading-cd62@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
@@ -60,27 +60,27 @@ This is a note to let you know that I've just added the patch titled
 
     Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS"
 
-to the 6.16-stable tree which can be found at:
+to the 5.15-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      revert-drm-dp-change-aux-dpcd-probe-address-from-dpcd_rev-to-lane0_1_status.patch
-and it can be found in the queue-6.16 subdirectory.
+and it can be found in the queue-5.15 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
 
 
-From imre.deak@intel.com  Tue Sep  2 13:50:59 2025
+From imre.deak@intel.com  Tue Sep  2 13:49:03 2025
 From: Imre Deak <imre.deak@intel.com>
-Date: Thu, 28 Aug 2025 20:49:29 +0300
+Date: Thu, 28 Aug 2025 20:49:27 +0300
 Subject: Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS"
 To: <stable@vger.kernel.org>
 Cc: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Sasha Levin <sashal@kernel.org>
 
 From: Imre Deak <imre.deak@intel.com>
 
-This reverts commit 944e732be9c3a33e64e9fb0f5451a37fc252ddfc which is
+This reverts commit a19b31f854a8992dfa35255f43efd19be292b15c which is
 commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f upstream.
 
 The upstream commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f ("drm/dp:
@@ -97,22 +97,22 @@ Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14558
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c |    2 +-
+ drivers/gpu/drm/drm_dp_helper.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -725,7 +725,7 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_a
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -336,7 +336,7 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_a
  	 * monitor doesn't power down exactly after the throw away read.
  	 */
  	if (!aux->is_remote) {
--		ret = drm_dp_dpcd_probe(aux, DP_LANE0_1_STATUS);
-+		ret = drm_dp_dpcd_probe(aux, DP_DPCD_REV);
- 		if (ret < 0)
- 			return ret;
- 	}
+-		ret = drm_dp_dpcd_access(aux, DP_AUX_NATIVE_READ, DP_LANE0_1_STATUS,
++		ret = drm_dp_dpcd_access(aux, DP_AUX_NATIVE_READ, DP_DPCD_REV,
+ 					 buffer, 1);
+ 		if (ret != 1)
+ 			goto out;
 
 
 Patches currently in stable-queue which might be from imre.deak@intel.com are
 
-queue-6.16/revert-drm-dp-change-aux-dpcd-probe-address-from-dpcd_rev-to-lane0_1_status.patch
+queue-5.15/revert-drm-dp-change-aux-dpcd-probe-address-from-dpcd_rev-to-lane0_1_status.patch
