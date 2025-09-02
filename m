@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 894E9B40C88
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 19:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCA0FB40C89
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 19:52:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E822110E80F;
-	Tue,  2 Sep 2025 17:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 365B610E811;
+	Tue,  2 Sep 2025 17:52:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mvqRL72+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8B+Vzku";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5EF10E816;
- Tue,  2 Sep 2025 17:52:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70B1210E815;
+ Tue,  2 Sep 2025 17:52:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756835548; x=1788371548;
+ t=1756835554; x=1788371554;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LwPR1Uq4upPuof+KJoAZE52k4MVixe6QZ75+7xGYDqs=;
- b=mvqRL72+QQEpYUO6GOKt+ev0Dcto+n+xHI8+NsGdj36dSPvhYnasBQ4h
- 3E+QxfRdj9fwfqMdVzYh1uqSDjG1/psjDpi7l8bPgvYJ2AimOUNSuuVjU
- qVR/4ZduGELXa9FE6Q7PNE7yNyABdT5m3rdSegqPqI/dEOhyXnZc8hw9I
- NmoqX17yW/vGh3zx45vF4r3jQj9J09DsZAKQzwO93zGFh8vsNzfdtx4j/
- ASt9tmVmDc0hjjPeNsXBGEjeO/G7k/hDfgSO0NiphcVgJ66NPDnhWuXVe
- uF0u+SlmuONUZi2DCtzAX3Tl8avyybOoJ6/03kenmfyehKPS6hptmGYJ4 w==;
-X-CSE-ConnectionGUID: 2sEdxn3SQhmTMxyRd1sgVQ==
-X-CSE-MsgGUID: bHBwz9/hQ+2LNfgUtjSRpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="58338380"
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="58338380"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 10:52:28 -0700
-X-CSE-ConnectionGUID: e/vXvbaKS9eDNmWcZ77lSw==
-X-CSE-MsgGUID: Vjk8nt0RTGWWzSBXelf6OQ==
+ bh=FedffyfexSSo3FZhzvjzZOmJznI5t6ZLKXd5scEMOM0=;
+ b=Z8B+VzkuEo8hlL6YpOLol78ydgwGzD2vcvQ2UTIsBfENO8l8o6FEiDRq
+ Oy+y2AHhkYdZsteG4aMVICRiKSfuKbkOxVHwmIl1GkX/+RFPa0xrv0hZS
+ me92E90W5Anr9cOVYJTDcrgtgmgRswOmH2Ye55YpeJ7+wLnogj2tms+my
+ FcqsOY3Z8gRxfg/e14YCAv5QdY9OGg1KJZr6byOqvo0sLGGxNPaLVCjUt
+ xTyfAElRD8BayImhh9O3PcrzwE8IR7vyG9jL4FsOA9UmKv7a+1zbll1E9
+ fmEun8PoE70jXHr+IdPghKlTQHzG+CCzimeJF7CWNgBCiO50gSWB9cpiL g==;
+X-CSE-ConnectionGUID: ghQ6nfUdReOz21UH93XuQA==
+X-CSE-MsgGUID: gw7/EmUQSpiP4l7G59dJ4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="62945084"
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="62945084"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 10:52:34 -0700
+X-CSE-ConnectionGUID: Av/cFkMfQgurNKhHb5ikAQ==
+X-CSE-MsgGUID: b0MlbLRTRL2xew4nm19t+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="172177624"
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="171501390"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.193])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 10:52:25 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 10:52:31 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Jocelyn Falempe <jfalempe@redhat.com>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 5/8] drm/{i915, xe}/panic: rename struct {i915,
- xe}_panic_data to struct intel_panic
-Date: Tue,  2 Sep 2025 20:51:51 +0300
-Message-ID: <884ffc80c8b5fef1b92956e644a4e559560cc2ba.1756835342.git.jani.nikula@intel.com>
+Subject: [PATCH 6/8] drm/{i915,
+ xe}/panic: move framebuffer allocation where it belongs
+Date: Tue,  2 Sep 2025 20:51:52 +0300
+Message-ID: <d29f63e0118d002fc8edd368caea7e8185418e17.1756835342.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <cover.1756835342.git.jani.nikula@intel.com>
 References: <cover.1756835342.git.jani.nikula@intel.com>
@@ -72,149 +72,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Prepare for better shared interfaces between panic implementations. The
-struct intel_panic remains an opaque data type, with unique
-implementations in i915 and xe.
-
-This allows us to change the panic data pointer from void * to struct
-intel_panic *, helping type safety.
+The struct intel_framebuffer allocation naturally belongs in intel_fb.c,
+not hidden inside panic implementation. Separate the panic
+allocation. Drop the unnecessary struct i915_framebuffer and struct
+xe_framebuffer types.
 
 Cc: Jocelyn Falempe <jfalempe@redhat.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h |  3 ++-
- drivers/gpu/drm/i915/gem/i915_gem_pages.c          | 12 ++++++------
- drivers/gpu/drm/xe/display/xe_panic.c              | 12 ++++++------
- 3 files changed, 14 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c    | 17 ++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_panic.c |  4 ++--
+ drivers/gpu/drm/i915/display/intel_panic.h |  3 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  5 +++--
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c  | 17 ++++-------------
+ drivers/gpu/drm/xe/display/xe_panic.c      | 17 ++++-------------
+ 6 files changed, 31 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 608fd69af657..358ab922d7a7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -60,6 +60,7 @@ struct intel_ddi_buf_trans;
- struct intel_fbc;
- struct intel_global_objs_state;
- struct intel_hdcp_shim;
-+struct intel_panic;
- struct intel_tc_port;
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 2a2ed0f0461f..22a4a1575d22 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -2346,7 +2346,22 @@ intel_user_framebuffer_create(struct drm_device *dev,
  
- /*
-@@ -149,7 +150,7 @@ struct intel_framebuffer {
- 	unsigned int vtd_guard;
- 
- 	unsigned int (*panic_tiling)(unsigned int x, unsigned int y, unsigned int width);
--	void *panic;
+ struct intel_framebuffer *intel_framebuffer_alloc(void)
+ {
+-	return intel_bo_alloc_framebuffer();
++	struct intel_framebuffer *intel_fb;
 +	struct intel_panic *panic;
- };
- 
- enum intel_hotplug_state {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index c54ed1b33e60..e36d60b785b1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -357,7 +357,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
- 	return vaddr ?: ERR_PTR(-ENOMEM);
++
++	intel_fb = kzalloc(sizeof(*intel_fb), GFP_KERNEL);
++	if (!intel_fb)
++		return NULL;
++
++	panic = intel_panic_alloc();
++	if (!panic) {
++		kfree(intel_fb);
++		return NULL;
++	}
++
++	intel_fb->panic = panic;
++
++	return intel_fb;
  }
  
--struct i915_panic_data {
-+struct intel_panic {
- 	struct page **pages;
- 	int page;
- 	void *vaddr;
-@@ -365,10 +365,10 @@ struct i915_panic_data {
+ struct drm_framebuffer *
+diff --git a/drivers/gpu/drm/i915/display/intel_panic.c b/drivers/gpu/drm/i915/display/intel_panic.c
+index 20eecb0f168f..5431bd4d3a7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_panic.c
++++ b/drivers/gpu/drm/i915/display/intel_panic.c
+@@ -4,9 +4,9 @@
+ #include "gem/i915_gem_object.h"
+ #include "intel_panic.h"
  
- struct i915_framebuffer {
- 	struct intel_framebuffer base;
--	struct i915_panic_data panic;
-+	struct intel_panic panic;
+-struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
++struct intel_panic *intel_panic_alloc(void)
+ {
+-	return i915_gem_object_alloc_framebuffer();
++	return i915_gem_object_alloc_panic();
+ }
+ 
+ int intel_panic_setup(struct drm_scanout_buffer *sb)
+diff --git a/drivers/gpu/drm/i915/display/intel_panic.h b/drivers/gpu/drm/i915/display/intel_panic.h
+index 67ce253fcdf5..45ce6104e6fb 100644
+--- a/drivers/gpu/drm/i915/display/intel_panic.h
++++ b/drivers/gpu/drm/i915/display/intel_panic.h
+@@ -6,8 +6,9 @@
+ 
+ struct drm_scanout_buffer;
+ struct intel_framebuffer;
++struct intel_panic;
+ 
+-struct intel_framebuffer *intel_bo_alloc_framebuffer(void);
++struct intel_panic *intel_panic_alloc(void);
+ int intel_panic_setup(struct drm_scanout_buffer *sb);
+ void intel_panic_finish(struct intel_framebuffer *fb);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 565f8fa330db..9b3f25cb48db 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -16,9 +16,10 @@
+ #include "i915_gem_ww.h"
+ #include "i915_vma_types.h"
+ 
+-struct drm_scanout_buffer;
+ enum intel_region_id;
++struct drm_scanout_buffer;
+ struct intel_framebuffer;
++struct intel_panic;
+ 
+ #define obj_to_i915(obj__) to_i915((obj__)->base.dev)
+ 
+@@ -693,7 +694,7 @@ i915_gem_object_unpin_pages(struct drm_i915_gem_object *obj)
+ int __i915_gem_object_put_pages(struct drm_i915_gem_object *obj);
+ int i915_gem_object_truncate(struct drm_i915_gem_object *obj);
+ 
+-struct intel_framebuffer *i915_gem_object_alloc_framebuffer(void);
++struct intel_panic *i915_gem_object_alloc_panic(void);
+ int i915_gem_object_panic_setup(struct drm_scanout_buffer *sb);
+ void i915_gem_object_panic_finish(struct intel_framebuffer *fb);
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+index e36d60b785b1..b219474aecc7 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
+@@ -363,11 +363,6 @@ struct intel_panic {
+ 	void *vaddr;
  };
  
--static void i915_panic_kunmap(struct i915_panic_data *panic)
-+static void i915_panic_kunmap(struct intel_panic *panic)
+-struct i915_framebuffer {
+-	struct intel_framebuffer base;
+-	struct intel_panic panic;
+-};
+-
+ static void i915_panic_kunmap(struct intel_panic *panic)
  {
  	if (panic->vaddr) {
- 		drm_clflush_virt_range(panic->vaddr, PAGE_SIZE);
-@@ -415,7 +415,7 @@ static void i915_gem_object_panic_page_set_pixel(struct drm_scanout_buffer *sb,
- 	unsigned int new_page;
- 	unsigned int offset;
- 	struct intel_framebuffer *fb = (struct intel_framebuffer *)sb->private;
--	struct i915_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
+@@ -436,17 +431,13 @@ static void i915_gem_object_panic_page_set_pixel(struct drm_scanout_buffer *sb,
+ 	}
+ }
  
- 	if (fb->panic_tiling)
- 		offset = fb->panic_tiling(sb->width, x, y);
-@@ -458,7 +458,7 @@ int i915_gem_object_panic_setup(struct drm_scanout_buffer *sb)
+-struct intel_framebuffer *i915_gem_object_alloc_framebuffer(void)
++struct intel_panic *i915_gem_object_alloc_panic(void)
  {
- 	enum i915_map_type has_type;
- 	struct intel_framebuffer *fb = (struct intel_framebuffer *)sb->private;
--	struct i915_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
- 	struct drm_i915_gem_object *obj = to_intel_bo(intel_fb_bo(&fb->base));
- 	void *ptr;
+-	struct i915_framebuffer *i915_fb;
+-
+-	i915_fb = kzalloc(sizeof(*i915_fb), GFP_KERNEL);
+-	if (!i915_fb)
+-		return NULL;
++	struct intel_panic *panic;
  
-@@ -486,7 +486,7 @@ int i915_gem_object_panic_setup(struct drm_scanout_buffer *sb)
+-	i915_fb->base.panic = &i915_fb->panic;
++	panic = kzalloc(sizeof(*panic), GFP_KERNEL);
  
- void i915_gem_object_panic_finish(struct intel_framebuffer *fb)
- {
--	struct i915_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
+-	return &i915_fb->base;
++	return panic;
+ }
  
- 	i915_panic_kunmap(panic);
- 	panic->page = -1;
+ /*
 diff --git a/drivers/gpu/drm/xe/display/xe_panic.c b/drivers/gpu/drm/xe/display/xe_panic.c
-index fc1804d330e4..3ef23a6795b3 100644
+index 3ef23a6795b3..b5a7615708a1 100644
 --- a/drivers/gpu/drm/xe/display/xe_panic.c
 +++ b/drivers/gpu/drm/xe/display/xe_panic.c
-@@ -9,7 +9,7 @@
- #include "intel_panic.h"
- #include "xe_bo.h"
- 
--struct xe_panic_data {
-+struct intel_panic {
- 	struct page **pages;
- 	int page;
+@@ -15,11 +15,6 @@ struct intel_panic {
  	void *vaddr;
-@@ -17,10 +17,10 @@ struct xe_panic_data {
- 
- struct xe_framebuffer {
- 	struct intel_framebuffer base;
--	struct xe_panic_data panic;
-+	struct intel_panic panic;
  };
  
--static void xe_panic_kunmap(struct xe_panic_data *panic)
-+static void xe_panic_kunmap(struct intel_panic *panic)
+-struct xe_framebuffer {
+-	struct intel_framebuffer base;
+-	struct intel_panic panic;
+-};
+-
+ static void xe_panic_kunmap(struct intel_panic *panic)
  {
  	if (panic->vaddr) {
- 		drm_clflush_virt_range(panic->vaddr, PAGE_SIZE);
-@@ -38,7 +38,7 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
- 				    unsigned int y, u32 color)
+@@ -62,17 +57,13 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
+ 	}
+ }
+ 
+-struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
++struct intel_panic *intel_panic_alloc(void)
  {
- 	struct intel_framebuffer *fb = (struct intel_framebuffer *)sb->private;
--	struct xe_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
- 	struct xe_bo *bo = gem_to_xe_bo(intel_fb_bo(&fb->base));
- 	unsigned int new_page;
- 	unsigned int offset;
-@@ -78,7 +78,7 @@ struct intel_framebuffer *intel_bo_alloc_framebuffer(void)
+-	struct xe_framebuffer *xe_fb;
+-
+-	xe_fb = kzalloc(sizeof(*xe_fb), GFP_KERNEL);
+-	if (!xe_fb)
+-		return NULL;
++	struct intel_panic *panic;
+ 
+-	xe_fb->base.panic = &xe_fb->panic;
++	panic = kzalloc(sizeof(*panic), GFP_KERNEL);
+ 
+-	return &xe_fb->base;
++	return panic;
+ }
+ 
  int intel_panic_setup(struct drm_scanout_buffer *sb)
- {
- 	struct intel_framebuffer *fb = (struct intel_framebuffer *)sb->private;
--	struct xe_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
- 
- 	panic->page = -1;
- 	sb->set_pixel = xe_panic_page_set_pixel;
-@@ -87,7 +87,7 @@ int intel_panic_setup(struct drm_scanout_buffer *sb)
- 
- void intel_panic_finish(struct intel_framebuffer *fb)
- {
--	struct xe_panic_data *panic = fb->panic;
-+	struct intel_panic *panic = fb->panic;
- 
- 	xe_panic_kunmap(panic);
- 	panic->page = -1;
 -- 
 2.47.2
 
