@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F37CB408A9
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 17:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32285B40925
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 17:39:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D644510E793;
-	Tue,  2 Sep 2025 15:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC5F310E1AF;
+	Tue,  2 Sep 2025 15:39:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VevwAiwy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LiJdCAjy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 565DB10E793;
- Tue,  2 Sep 2025 15:14:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F297510E1AF;
+ Tue,  2 Sep 2025 15:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756826062; x=1788362062;
+ t=1756827559; x=1788363559;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Kmn/EYOXL3fOQoAgg2oSPK75walN01UOPO+cV7rnUSA=;
- b=VevwAiwyoQWyoF3KviR3RcHvuNKhpEMV5JCGOwS4AKL4MmPLxSrLUlPQ
- BY0gNwW9VscSgH9bUppVcx88A72h7FCBySoU4/2NODQx72GPYsMpzTL7f
- tZehong3khlcWsyCH9wxcOGWMJoPVmSmJVkYgkE6yiPxaHklZhdSJdq7S
- +OSurnO9v7IVWrIYL6XOEJc4yQX+lYntEavsJpdSg4nl23Q6GjIzUrqJ1
- UBFN0Ah0TyvuC1nQ3MBtsE/EAKYfrs6CNjEKwn76plTU9N8FjFzkSwKpc
- 1WsCz4U+vjkc+NrTShfrWAWD2ktwMpr2UtBhU6RedaAkoinEtAhl5vxpB Q==;
-X-CSE-ConnectionGUID: UERHjQArQHab+YL2N2/uaQ==
-X-CSE-MsgGUID: Gh2lcTzCQguJcdP0Z0Ephw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59054721"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59054721"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 08:14:22 -0700
-X-CSE-ConnectionGUID: VWFpbNYGQRWqY+UX76UTww==
-X-CSE-MsgGUID: LjvaMp8ASruLeX9MLqx/tg==
+ bh=3/PCvos/KssPfvreLFyUGexk05sUzBGJ1A78qvqi+hM=;
+ b=LiJdCAjyWlgfFeGxKs5wezWdYGEDKG4Zsy5fBy3+7h5R5P2q0y8XSFuD
+ /pAy4XJqgi2lGoMnkeU48E1JQN2MZRev2Ar876X/4CRcP6WkMi0aEM5R0
+ pMyprkTNnG6zwoRM8qR1uSaQ7qcA3AHnrXt5YH5PaQxGbcFeTyGOisH9d
+ KDmyso1WfWk85fVwL/ZytDXW9p+ybFvhnyFtu1GFqOJvsmMCn5in0zY1u
+ /f9G5rkEdEn/2i4LB9Rb1OsXEH8nvbdajxkD+u7Nn5aE1vrI79ku49PrW
+ Pz3oQKLXfL9YgKvvd+ylMVChY6QwufLVLz9LdyPIWcciZQSs6KtuLBh8w w==;
+X-CSE-ConnectionGUID: HC/qaIn9Q+Gh0J875IG0gQ==
+X-CSE-MsgGUID: 3Palw0cCQ2uJ75magyM6zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="61748168"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="61748168"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2025 08:39:18 -0700
+X-CSE-ConnectionGUID: BBmQ7s0SS3uvl2TFuTtmWQ==
+X-CSE-MsgGUID: EzqAaefJQ++wxKX9OQX6SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="202224717"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by orviesa002.jf.intel.com with ESMTP; 02 Sep 2025 08:14:22 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v4] drm/i915/guc: Add synchronization on interrupt enable flag
-Date: Tue,  2 Sep 2025 11:14:19 -0400
-Message-Id: <20250902151419.231828-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="176616364"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO stinkbox)
+ ([10.245.245.118])
+ by orviesa005.jf.intel.com with SMTP; 02 Sep 2025 08:39:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 02 Sep 2025 18:39:15 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/hpd: Fix mtp_tc_hpd_enable_detection()
+Date: Tue,  2 Sep 2025 18:39:15 +0300
+Message-ID: <20250902153915.4423-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.49.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,150 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Boolean flag access from interrupt context might have synchronous issueis
-on multiple processor platform, flags modified by one core might be read
-as an old value by another core. This issue on interrupt enable flag might
-causes interrupt misses or leakage.
-Change the interrupts.enable type to atomic to ensure memory
-synchronization.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Fixes: a187f13d51fa0 ("drm/i915/guc: handle interrupts from media GuC")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14834
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Set the MTP TC hotplug bits in the correct register.
 
+Shouldn't matter really as this only gets used for eDP
+detection and there should be never eDP on TC ports on
+current hw.
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
-Change history:
-v4: Add back skip on disabled case for tasklet
-v3: Drop skip on disabled case for tasklet
-    Drop memory barrier
-v2: Add skip on disabled case for tasklet
-    Add memory barrier after flag changed
-    Add Closes tag and typo fix
----
- drivers/gpu/drm/i915/gt/intel_gt_irq.c    |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c    | 11 +++++++----
- drivers/gpu/drm/i915/gt/uc/intel_guc.h    |  4 ++--
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  3 +++
- drivers/gpu/drm/i915/gt/uc/intel_uc.c     |  5 +++--
- 5 files changed, 16 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index 75e802e10be2..21804eec8320 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -20,7 +20,7 @@
- 
- static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+index 43aee70597bf..4f72f3fb9af5 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
+@@ -1025,7 +1025,7 @@ static void mtp_tc_hpd_enable_detection(struct intel_encoder *encoder)
  {
--	if (unlikely(!guc->interrupts.enabled))
-+	if (unlikely(!atomic_read(&guc->interrupts.enabled)))
- 		return;
+ 	struct intel_display *display = to_intel_display(encoder);
  
- 	if (iir & GUC_INTR_GUC2HOST)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index f360f020d8f1..1b8d3bbfa16d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -100,8 +100,8 @@ static void gen9_enable_guc_interrupts(struct intel_guc *guc)
- 			 gt->pm_guc_events);
- 	gen6_gt_pm_enable_irq(gt, gt->pm_guc_events);
- 	spin_unlock_irq(gt->irq_lock);
-+	atomic_set(&guc->interrupts.enabled, true);
- 
--	guc->interrupts.enabled = true;
+-	intel_de_rmw(display, SHOTPLUG_CTL_DDI,
++	intel_de_rmw(display, SHOTPLUG_CTL_TC,
+ 		     mtp_tc_hotplug_mask(encoder->hpd_pin),
+ 		     mtp_tc_hotplug_enables(encoder));
  }
- 
- static void gen9_disable_guc_interrupts(struct intel_guc *guc)
-@@ -109,7 +109,8 @@ static void gen9_disable_guc_interrupts(struct intel_guc *guc)
- 	struct intel_gt *gt = guc_to_gt(guc);
- 
- 	assert_rpm_wakelock_held(&gt->i915->runtime_pm);
--	guc->interrupts.enabled = false;
-+	atomic_set(&guc->interrupts.enabled, false);
-+
- 
- 	spin_lock_irq(gt->irq_lock);
- 
-@@ -146,14 +147,16 @@ static void gen11_enable_guc_interrupts(struct intel_guc *guc)
- 	__gen11_reset_guc_interrupts(gt);
- 	spin_unlock_irq(gt->irq_lock);
- 
--	guc->interrupts.enabled = true;
-+	atomic_set(&guc->interrupts.enabled, true);
-+
- }
- 
- static void gen11_disable_guc_interrupts(struct intel_guc *guc)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
- 
--	guc->interrupts.enabled = false;
-+	atomic_set(&guc->interrupts.enabled, false);
-+
- 	intel_synchronize_irq(gt->i915);
- 
- 	gen11_reset_guc_interrupts(guc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 053780f562c1..40242bbb166e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -93,7 +93,7 @@ struct intel_guc {
- 
- 	/** @interrupts: pointers to GuC interrupt-managing functions. */
- 	struct {
--		bool enabled;
-+		atomic_t enabled;
- 		void (*reset)(struct intel_guc *guc);
- 		void (*enable)(struct intel_guc *guc);
- 		void (*disable)(struct intel_guc *guc);
-@@ -393,7 +393,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
- /* Only call this from the interrupt handler code */
- static inline void intel_guc_to_host_event_handler(struct intel_guc *guc)
- {
--	if (guc->interrupts.enabled)
-+	if (atomic_read(&guc->interrupts.enabled))
- 		intel_guc_ct_event_handler(&guc->ct);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-index 380a11c92d63..f0ee3f1235d4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-@@ -1326,6 +1326,9 @@ static void ct_try_receive_message(struct intel_guc_ct *ct)
- {
- 	int ret;
- 
-+	if (!atomic_read(&ct_to_guc(ct)->interrupts.enabled))
-+		return;
-+
- 	if (GEM_WARN_ON(!ct->enabled))
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 4a3493e8d433..9d01c3c3d504 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -659,7 +659,8 @@ void intel_uc_runtime_suspend(struct intel_uc *uc)
- 	struct intel_guc *guc = &uc->guc;
- 
- 	if (!intel_guc_is_ready(guc)) {
--		guc->interrupts.enabled = false;
-+		atomic_set(&guc->interrupts.enabled, false);
-+
- 		return;
- 	}
- 
-@@ -687,7 +688,7 @@ void intel_uc_suspend(struct intel_uc *uc)
- 	wake_up_all_tlb_invalidate(guc);
- 
- 	if (!intel_guc_is_ready(guc)) {
--		guc->interrupts.enabled = false;
-+		atomic_set(&guc->interrupts.enabled, false);
- 		return;
- 	}
- 
 -- 
-2.34.1
+2.49.1
 
