@@ -2,55 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1783B400ED
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246A2B40081
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:29:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30DFD10E6B4;
-	Tue,  2 Sep 2025 12:42:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7842710E6A2;
+	Tue,  2 Sep 2025 12:29:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUFnblTl";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="CHfYD8nd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73BCA10E6B4;
- Tue,  2 Sep 2025 12:42:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756816948; x=1788352948;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zm1pEAquvAAUPHA6kbgx9kr8shcQMAuBRlItuZHnC/c=;
- b=iUFnblTlyfqF1TffzNf7ehWR6pKcoIMPAUQNacCH5QxUU3DlGqO3tfhB
- C9XYaFjtqwzSswqbq8kTQ31Aq8CQY77VM5eouhGEgluZssK/fI92B7KKc
- Lmmxb5A861dkFUZHdY7ZPrQg1/ReAgl0XsPNHYKq/jMfiHMqKljU2KylX
- D0/JPoj33G5TXC9QTmaYSC0rv3de/qy4sOF0/JOxNEpOdr8l/vVkoQKoc
- A/3MRcgC6cXholgVPWunLr2x/QJ3gx03jZ5I1VPuhADfOF9FqcNJ3iE3O
- qmfbsFsTz9y2qc4HG0gVKb6nqaPftQlAx2dRG32h1KqoV0o41zMl8a2Pa Q==;
-X-CSE-ConnectionGUID: 7sQPOvrmRTGRkJW9SRklFg==
-X-CSE-MsgGUID: YTiIwgdRQoyNBlUhO/rQdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="59157435"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="59157435"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 05:42:28 -0700
-X-CSE-ConnectionGUID: 2wb2SDDsQGWY5xj499RkcA==
-X-CSE-MsgGUID: LLAno+9rQ/m7DKJWKh/XJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; d="scan'208";a="176577842"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2025 05:42:26 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/vrr: Refactor VRR live status wait into common helper
-Date: Tue,  2 Sep 2025 17:58:50 +0530
-Message-ID: <20250902122850.3649828-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F098210E6A2;
+ Tue,  2 Sep 2025 12:29:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8BC88444FE;
+ Tue,  2 Sep 2025 12:29:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFBAFC4CEED;
+ Tue,  2 Sep 2025 12:29:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1756816154;
+ bh=92weadBsLBtOBpIDdkSwgWW4PsaDkAvpE3CfW3zHmb8=;
+ h=Subject:To:Cc:From:Date:From;
+ b=CHfYD8ndmrbSsuxCWQwRyq4qz2Cgi19V8bLdjYlAijDhBTOksooJkThRwc0vmzzIL
+ Lrd4QtbxYTCsE/cex8z8CMLD+2LUYCH/oIa9kZ4eem6/V3ZODVhIMfRKOrSoSnZKm+
+ y/dYGLqbbe+i02TdQ7+gXOxUQni4xKIh81yczWUY=
+Subject: Patch "Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to
+ LANE0_1_STATUS"" has been added to the 6.6-stable tree
+To: dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org,
+ imre.deak@intel.com, intel-gfx@lists.freedesktop.org, sashal@kernel.org
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Tue, 02 Sep 2025 14:28:56 +0200
+Message-ID: <2025090256-pleading-removing-21f6@gregkh>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +55,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a helper to consolidate timeout handling and error logging when waiting
-for VRR live status to clear. Log an error message if the VRR live status
-bit fails to clear within the timeout.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+This is a note to let you know that I've just added the patch titled
+
+    Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS"
+
+to the 6.6-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     revert-drm-dp-change-aux-dpcd-probe-address-from-dpcd_rev-to-lane0_1_status.patch
+and it can be found in the queue-6.6 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From imre.deak@intel.com  Tue Sep  2 13:50:59 2025
+From: Imre Deak <imre.deak@intel.com>
+Date: Thu, 28 Aug 2025 20:49:29 +0300
+Subject: Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS"
+To: <stable@vger.kernel.org>
+Cc: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Sasha Levin <sashal@kernel.org>
+
+From: Imre Deak <imre.deak@intel.com>
+
+This reverts commit 65e46aeaf84aa88539bcff6b8077e05fbd0700da which is
+commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f upstream.
+
+The upstream commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f ("drm/dp:
+Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS") the
+reverted commit backported causes a regression, on one eDP panel at
+least resulting in display flickering, described in detail at the Link:
+below. The issue fixed by the upstream commit will need a different
+solution, revert the backport for now.
+
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Sasha Levin <sashal@kernel.org>
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14558
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/display/drm_dp_helper.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 3eed37f271b0..0797b5b375b8 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -627,6 +627,15 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -663,7 +663,7 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_a
+ 	 * monitor doesn't power down exactly after the throw away read.
+ 	 */
+ 	if (!aux->is_remote) {
+-		ret = drm_dp_dpcd_probe(aux, DP_LANE0_1_STATUS);
++		ret = drm_dp_dpcd_probe(aux, DP_DPCD_REV);
+ 		if (ret < 0)
+ 			return ret;
  	}
- }
- 
-+static void intel_vrr_wait_for_live_status_clear(struct intel_display *display,
-+						 enum transcoder cpu_transcoder)
-+{
-+	if (intel_de_wait_for_clear(display,
-+				    TRANS_VRR_STATUS(display, cpu_transcoder),
-+				    VRR_STATUS_VRR_EN_LIVE, 1000))
-+		drm_err(display->drm, "Timed out waiting for VRR live status to clear\n");
-+}
-+
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- {
- 	struct intel_display *display = to_intel_display(old_crtc_state);
-@@ -638,9 +647,7 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	if (!intel_vrr_always_use_vrr_tg(display)) {
- 		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
- 			       trans_vrr_ctl(old_crtc_state));
--		intel_de_wait_for_clear(display,
--					TRANS_VRR_STATUS(display, cpu_transcoder),
--					VRR_STATUS_VRR_EN_LIVE, 1000);
-+		intel_vrr_wait_for_live_status_clear(display, cpu_transcoder);
- 		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- 	}
- 
-@@ -686,8 +693,8 @@ void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state)
- 
- 	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), 0);
- 
--	intel_de_wait_for_clear(display, TRANS_VRR_STATUS(display, cpu_transcoder),
--				VRR_STATUS_VRR_EN_LIVE, 1000);
-+	intel_vrr_wait_for_live_status_clear(display, cpu_transcoder);
-+
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
- }
- 
--- 
-2.45.2
 
+
+Patches currently in stable-queue which might be from imre.deak@intel.com are
+
+queue-6.6/revert-drm-dp-change-aux-dpcd-probe-address-from-dpcd_rev-to-lane0_1_status.patch
