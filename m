@@ -2,30 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5658B4019D
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 14:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB833B4032F
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Sep 2025 15:29:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC9810E6D6;
-	Tue,  2 Sep 2025 12:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 419A310E6DF;
+	Tue,  2 Sep 2025 13:29:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="TJP6ul3d";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1538d3639d33 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BBCF10E6D6;
- Tue,  2 Sep 2025 12:58:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Patch_=22Revert_=22drm/dp?=
- =?utf-8?q?=3A_Change_AUX_DPCD_probe_address_from_DPCD=5FREV_to_LANE0=5F1=5F?=
- =?utf-8?q?STATUS=22=22_has_been_added_to_the_5=2E15-stable_tree?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: gregkh@linuxfoundation.org
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 02 Sep 2025 12:58:53 -0000
-Message-ID: <175681793337.293791.1530026143217938405@1538d3639d33>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4882C10E6DF;
+ Tue,  2 Sep 2025 13:29:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id B8063417E7;
+ Tue,  2 Sep 2025 13:29:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4137EC4CEED;
+ Tue,  2 Sep 2025 13:29:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1756819784;
+ bh=lw+2f1hzugIWKiSdRUqh3aCTm8vSpr9XFbb2GjRXs1Q=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=TJP6ul3d4sFJmGvDImEGVjRG2Qp21m8rev7ib7WhCxGbXAzMJR9CiEDSGlxWBX2HE
+ ORkDzvo6JwwN54bMuhEvCGXYe8T6feHwzFVR/M5IUydXrl6sXvinSftsqjUHNJ1AH9
+ kkzaQz1rHY/q2DLpXSFIr2fKF1QA+0a+TZRXdNe0=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Sasha Levin <sashal@kernel.org>, Imre Deak <imre.deak@intel.com>
+Subject: [PATCH 6.16 139/142] Revert "drm/dp: Change AUX DPCD probe address
+ from DPCD_REV to LANE0_1_STATUS"
+Date: Tue,  2 Sep 2025 15:20:41 +0200
+Message-ID: <20250902131953.603872091@linuxfoundation.org>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250902131948.154194162@linuxfoundation.org>
+References: <20250902131948.154194162@linuxfoundation.org>
+User-Agent: quilt/0.68
+X-stable: review
 X-Patchwork-Hint: ignore
-References: <2025090238-idealize-fading-cd62@gregkh>
-In-Reply-To: <2025090238-idealize-fading-cd62@gregkh>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,24 +56,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+6.16-stable review patch.  If anyone has any objections, please let me know.
 
-Series: Patch "Revert "drm/dp: Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS"" has been added to the 5.15-stable tree
-URL   : https://patchwork.freedesktop.org/series/153864/
-State : failure
+------------------
 
-== Summary ==
+From: Imre Deak <imre.deak@intel.com>
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/153864/revisions/1/mbox/ not applied
-Patch is empty.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To record the empty patch as an empty commit, run "git am --allow-empty".
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+This reverts commit 944e732be9c3a33e64e9fb0f5451a37fc252ddfc which is
+commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f upstream.
+
+The upstream commit a40c5d727b8111b5db424a1e43e14a1dcce1e77f ("drm/dp:
+Change AUX DPCD probe address from DPCD_REV to LANE0_1_STATUS") the
+reverted commit backported causes a regression, on one eDP panel at
+least resulting in display flickering, described in detail at the Link:
+below. The issue fixed by the upstream commit will need a different
+solution, revert the backport for now.
+
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Sasha Levin <sashal@kernel.org>
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14558
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/display/drm_dp_helper.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -725,7 +725,7 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_a
+ 	 * monitor doesn't power down exactly after the throw away read.
+ 	 */
+ 	if (!aux->is_remote) {
+-		ret = drm_dp_dpcd_probe(aux, DP_LANE0_1_STATUS);
++		ret = drm_dp_dpcd_probe(aux, DP_DPCD_REV);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
 
 
