@@ -2,66 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963FCB41631
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 09:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78A3DB416D2
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Sep 2025 09:37:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74ABC10E45C;
-	Wed,  3 Sep 2025 07:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F04F010E425;
+	Wed,  3 Sep 2025 07:37:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="etRf+fWn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JPKkhp+I";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1697110E1FB;
- Wed,  3 Sep 2025 07:20:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C1510E434;
+ Wed,  3 Sep 2025 07:37:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1756884021; x=1788420021;
+ t=1756885032; x=1788421032;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=PYnQIWbb0enx4xIHdseDEpTf2H9LpmI1OxNIKZw8PPU=;
- b=etRf+fWn5tytNIgFgm5BUm4nksu/Q/e3Oo3S0NUEYxdYc5NbAUwtwB6r
- 4w/A7qETMGUusg65OP+xFyki/IfpAOcYnrnBO47CyOLAKHMkUl1O6hKx4
- 4vjZLmDCBQHqrzdw/ZW0IxeMg7qo22KaFB8AWnx3bUmgiy6OeT3d5ab2w
- pYhYvjW4kl1alVl3zKiNTCUcPANDb3+iLU3wgyzMqGcobdAi+6Srn8y/8
- hcWqN8SK28ztYQbhp6LbNsvaXt1wYy7iFdMf9sPvduYSRZvnidVSeicDB
- uHI1XJqVizjKwbPCbGIiUDbWTIYRYHibrKPPPjdm379huIlBDFICMbOx6 Q==;
-X-CSE-ConnectionGUID: hPjE3qGvS3mx+fRAlZ+INQ==
-X-CSE-MsgGUID: rTGvm7V1RuyAO6ztbC0Sow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59102202"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; d="scan'208";a="59102202"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 00:20:20 -0700
-X-CSE-ConnectionGUID: pRBd4LdHT2CFD7FLurmYjA==
-X-CSE-MsgGUID: JJMhAKm4RAawh6JY/BrpIg==
+ bh=7B5HxczyirBwLi2KuVVRmNDM0qgbUFC1l1HfFr3IAeo=;
+ b=JPKkhp+IDgupcTE7lPFHB5PADgUEMnhnJHUBdSJY/YYS7NqpkEgJ9/ZM
+ g+zpbVaBD03TOHGD90UJC4TNnblxPZT7bRDDP0lsCDntePP31Wz11A5u4
+ Tw+jE7pNGKfCpIeBaJD4vYh5b3pLXquGJHIrt+dEF2V+GcH9+BBd6/1rO
+ E+g2PNYT7t1i+d09hwaZnKA1T7a772E4e/yysrPy5T8mOG5AmW5C448UX
+ YPNVhyCsv5pH9khD/U3UAVwKwBu1fZWfbZsx76AaUlPrR11rfMYChxiRf
+ XG2gXS47/2i/muRfJh6fKM/1b1YxvvZkaeDPJvEn5UbMXzT51hVJuQZgD w==;
+X-CSE-ConnectionGUID: cGYISW2aRLORDkJ8Yu3iDg==
+X-CSE-MsgGUID: 5xQ+QxcrQdOkxU/G0c2tVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="59256635"
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="59256635"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2025 00:37:12 -0700
+X-CSE-ConnectionGUID: H9oA0cCBS9Gt5J8aThFeig==
+X-CSE-MsgGUID: CwkkJw2RT1yxg1a8XtgOmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="175872718"
+X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; d="scan'208";a="171482853"
 Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.246])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2025 00:20:15 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2025 00:37:10 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, xaver.hugl@kde.org, harry.wentland@amd.com,
- uma.shankar@intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 3/4] drm/atomic: Return user readable error in
- atomic_ioctl
-In-Reply-To: <d8513636-f616-4219-8e46-24376dca7b97@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH] drm/i915/hdmi: Fix potential overflow while using
+ intel_encoder_to_tc
+In-Reply-To: <20250903035022.3654997-1-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250902-atomic-v4-0-a97b4bed969b@intel.com>
- <20250902-atomic-v4-3-a97b4bed969b@intel.com>
- <b7e82c4736145ccb8d9ba0e1381d7d2f89971563@intel.com>
- <d8513636-f616-4219-8e46-24376dca7b97@intel.com>
-Date: Wed, 03 Sep 2025 10:20:12 +0300
-Message-ID: <bc6dfb6765b153901c3af5b1c008c8d82f99bdc2@intel.com>
+References: <20250903035022.3654997-1-ankit.k.nautiyal@intel.com>
+Date: Wed, 03 Sep 2025 10:37:07 +0300
+Message-ID: <29e10fcd0e9bf9e995739cf53ae8f49544ebb06a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -79,302 +70,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Sep 2025, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
-> On 02-09-2025 15:46, Jani Nikula wrote:
->> On Tue, 02 Sep 2025, Arun R Murthy <arun.r.murthy@intel.com> wrote:
->>> Add user readable error codes for failure cases in drm_atomic_ioctl() so
->>> that user can decode the error code and take corrective measurements.
->>>
->>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->>> ---
->>>   drivers/gpu/drm/drm_atomic.c      | 23 +++++++----
->>>   drivers/gpu/drm/drm_atomic_uapi.c | 83 ++++++++++++++++++++++++++++++---------
->>>   include/drm/drm_atomic.h          | 19 +++++++++
->>>   3 files changed, 100 insertions(+), 25 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
->>> index cd15cf52f0c9144711da5879da57884674aea9e4..4f6c7e659b362f0887ffcc85dade1122fd30df3d 100644
->>> --- a/drivers/gpu/drm/drm_atomic.c
->>> +++ b/drivers/gpu/drm/drm_atomic.c
->>> @@ -1463,6 +1463,7 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->>>   	unsigned int requested_crtc = 0;
->>>   	unsigned int affected_crtc = 0;
->>>   	int i, ret = 0;
->>> +	char *err_string;
->>>   
->>>   	drm_dbg_atomic(dev, "checking %p\n", state);
->>>   
->>> @@ -1511,8 +1512,13 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->>>   	if (!state->allow_modeset) {
->>>   		for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
->>>   			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
->>> -				drm_dbg_atomic(dev, "[CRTC:%d:%s] requires full modeset\n",
->>> -					       crtc->base.id, crtc->name);
->>> +				err_string = "requires full modeset";
->> This points a non-const pointer to const data.
->>
->> Anyway none of this should require or start a precendent of using local
->> variables all over the place for the error strings. It's ugly. Ditto
->> below for all the places.
->>
->> If all the places calling drm_mode_atomic_add_error_msg() do debug
->> logging, maybe that's where the debug logging should be?
->>
->>> +				drm_dbg_atomic(dev, "[CRTC:%d:%s] %s\n",
->>> +					       crtc->base.id, crtc->name, err_string);
->>> +				drm_mode_atomic_add_error_msg(state->error_code,
->>> +							      DRM_MODE_ATOMIC_CRTC_NEED_FULL_MODESET,
->>> +							      err_string);
->> I guess you didn't want to follow what Maarten suggested.
-> Yes, felt so, as adding a new function doesnt make much sense just for 
-> filling the struct drm_mode_atomic_err_code.
+On Wed, 03 Sep 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> The helper intel_encoder_to_tc() can potentially return TC_PORT_NONE
+> (-1) and cause overflow while computing ddc pins in
+> icl_encoder_to_ddc_pin().
 >
-> Will remove this function and fill the struct drm_mode_atomic_err_code 
-> in place, thereby the below comment also should be handled.
+> Check for TC_PORT_NONE before deriving the ddc pins for TC port.
+>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index cbee628eb26b..85f70cedc40c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -2791,10 +2791,16 @@ static u8 icl_encoder_to_ddc_pin(struct intel_encoder *encoder)
+>  	struct intel_display *display = to_intel_display(encoder);
+>  	enum port port = encoder->port;
+>  
+> -	if (intel_encoder_is_combo(encoder))
+> +	if (intel_encoder_is_combo(encoder)) {
+>  		return GMBUS_PIN_1_BXT + port;
+> -	else if (intel_encoder_is_tc(encoder))
+> -		return GMBUS_PIN_9_TC1_ICP + intel_encoder_to_tc(encoder);
+> +	} else if (intel_encoder_is_tc(encoder)) {
+> +		enum tc_port tc_port = intel_encoder_to_tc(encoder);
 
-Nobody suggested that! Keep the function.
+intel_encoder_to_tc() can only return TC_PORT_NONE if intel_phy_is_tc()
+== false. But intel_encoder_is_tc() just above means intel_phy_is_tc()
+== true.
+
+This case can't happen, it's a static analyzer being overzealous.
+
+Adding checks like this to please a static analyzer leads to misery,
+because it adds unnecessary code to maintain, and it will never be run.
+
+I think it would be more interesting to make intel_port_to_tc() WARN on
+!intel_phy_is_tc(), return a bogus >= 0 port, and ensure all callers
+only call it on TC ports.
+
+This obviously leads to issues if it happens, but hey, it shouldn't
+happen, and intel_encoder_to_tc() returning TC_PORT_NONE is *already*
+such a case. Just move it to lower levels.
+
+If we start checking for every impossible situation, and propagating
+errors for them, our codebase will be 90% error handling.
 
 
->
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
->
->>
->>> +
->>>   				return -EINVAL;
->> Adding the return is a functional change, and I mentioned it
->> earlier. Ignoring review is one of the certain ways to stop receiving
->> review in the future.
-> Will take it out of this series.
->>>   			}
->>>   		}
->>> @@ -1534,11 +1540,14 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->>>   	 * so compositors know what's going on.
->>>   	 */
->>>   	if (affected_crtc != requested_crtc) {
->>> -		drm_dbg_atomic(dev,
->>> -			       "driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
->>> -			       requested_crtc, affected_crtc);
->>> -		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
->>> -		     requested_crtc, affected_crtc);
->>> +		err_string = "adding CRTC not allowed without modesets";
->>> +		drm_dbg_atomic(dev, "%s: requested 0x%x, affected 0x%0x\n",
->>> +			       err_string, requested_crtc, affected_crtc);
->>> +		drm_mode_atomic_add_error_msg(state->error_code,
->>> +					      DRM_MODE_ATOMIC_NEED_FULL_MODESET,
->>> +					      err_string);
->>> +
->>> +		return -EINVAL;
->> Adding the return is a functional change, and I mentioned it earlier.
-> Will take it out of this series.
->>
->>>   	}
->>>   
->>>   	return 0;
->>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
->>> index 85dbdaa4a2e25878c953b9b41539c8566d55c6d9..60f1b8baebce0db1ce984c8cda56039261b519e8 100644
->>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
->>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
->>> @@ -1017,6 +1017,7 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
->>>   	struct drm_mode_object *ref;
->>>   	u64 old_val;
->>>   	int ret;
->>> +	char *err_string;
->>>   
->>>   	if (!drm_property_change_valid_get(prop, prop_value, &ref))
->>>   		return -EINVAL;
->>> @@ -1058,6 +1059,12 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
->>>   			ret = drm_atomic_crtc_get_property(crtc, crtc_state,
->>>   							   prop, &old_val);
->>>   			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
->>> +			if (ret) {
->>> +				err_string = "property change not allowed in async flip";
->>> +				drm_mode_atomic_add_error_msg(state->error_code,
->>> +							      DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
->>> +							      err_string);
->>> +			}
->>>   			break;
->>>   		}
->>>   
->>> @@ -1096,9 +1103,14 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
->>>   					ret = plane_funcs->atomic_async_check(plane, state, true);
->>>   
->>>   				if (ret) {
->>> +					err_string = "plane does not support async flip";
->>> +					drm_mode_atomic_add_error_msg(state->error_code,
->>> +								      DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
->>> +								      err_string);
->>>   					drm_dbg_atomic(prop->dev,
->>> -						       "[PLANE:%d:%s] does not support async flips\n",
->>> -						       obj->id, plane->name);
->>> +							"[PLANE:%d:%s] %s\n",
->>> +						       obj->id, plane->name,
->>> +						       err_string);
->>>   					break;
->>>   				}
->>>   			}
->>> @@ -1390,42 +1402,63 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->>>   	uint32_t __user *props_ptr = (uint32_t __user *)(unsigned long)(arg->props_ptr);
->>>   	uint64_t __user *prop_values_ptr = (uint64_t __user *)(unsigned long)(arg->prop_values_ptr);
->>>   	unsigned int copied_objs, copied_props;
->>> -	struct drm_atomic_state *state;
->>> +	struct drm_atomic_state *state = NULL;
->> Unrelated change.
-> Noted!
->>
->>>   	struct drm_modeset_acquire_ctx ctx;
->>>   	struct drm_out_fence_state *fence_state;
->>> +	struct drm_mode_atomic_err_code error_code;
->>> +	struct drm_mode_atomic_err_code __user *error_code_ptr;
->>>   	int ret = 0;
->>>   	unsigned int i, j, num_fences;
->>>   	bool async_flip = false;
->>> +	char *err_string;
->>>   
->>>   	/* disallow for drivers not supporting atomic: */
->>>   	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
->>>   		return -EOPNOTSUPP;
->>>   
->>> +	if (!arg->reserved)
->>> +		drm_err(dev, "memory not allocated for drm_atomic error reporting\n");
->>> +	else
->>> +		/* update the error code if any error to allow user handling it */
->>> +		error_code_ptr = (struct drm_mode_atomic_err_code __user *)
->>> +				 (unsigned long)arg->reserved;
->>> +
->>> +	memset(&error_code, 0, sizeof(struct drm_mode_atomic_err_code));
->>> +
->>>   	/* disallow for userspace that has not enabled atomic cap (even
->>>   	 * though this may be a bit overkill, since legacy userspace
->>>   	 * wouldn't know how to call this ioctl)
->>>   	 */
->>>   	if (!file_priv->atomic) {
->>> +		err_string = "DRM_ATOMIC capability not enabled";
->> Yeah, just repeating, don't start using this err_string local variable
->> idea.
->>
->>>   		drm_dbg_atomic(dev,
->>> -			       "commit failed: atomic cap not enabled\n");
->>> -		return -EINVAL;
->>> +			       "commit failed: %s\n", err_string);
->>> +		drm_mode_atomic_add_error_msg(&error_code,
->>> +					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
->>> +					      err_string);
->>> +		ret = -EINVAL;
->>> +		goto out;
->>>   	}
->>>   
->>>   	if (arg->flags & ~DRM_MODE_ATOMIC_FLAGS) {
->>> -		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
->>> -		return -EINVAL;
->>> -	}
->>> -
->>> -	if (arg->reserved) {
->>> -		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
->>> -		return -EINVAL;
->>> +		err_string = "invalid flag";
->>> +		drm_dbg_atomic(dev, "commit failed: %s\n", err_string);
->>> +		drm_mode_atomic_add_error_msg(&error_code,
->>> +					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
->>> +					      err_string);
->>> +		ret = -EINVAL;
->>> +		goto out;
->>>   	}
->>>   
->>>   	if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
->>>   		if (!dev->mode_config.async_page_flip) {
->>> -			drm_dbg_atomic(dev,
->>> -				       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
->>> -			return -EINVAL;
->>> +			err_string = "DRM_MODE_PAGE_FLIP_ASYNC not supported with ATOMIC ioctl";
->>> +			drm_dbg_atomic(dev, "commit failed: %s\n", err_string);
->>> +			drm_mode_atomic_add_error_msg(&error_code,
->>> +						      DRM_MODE_ATOMIC_INVALID_API_USAGE,
->>> +						      err_string);
->>> +			ret = -EINVAL;
->>> +			goto out;
->>>   		}
->>>   
->>>   		async_flip = true;
->>> @@ -1434,9 +1467,13 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->>>   	/* can't test and expect an event at the same time. */
->>>   	if ((arg->flags & DRM_MODE_ATOMIC_TEST_ONLY) &&
->>>   			(arg->flags & DRM_MODE_PAGE_FLIP_EVENT)) {
->>> -		drm_dbg_atomic(dev,
->>> -			       "commit failed: page-flip event requested with test-only commit\n");
->>> -		return -EINVAL;
->>> +		err_string = "page-flip event requested with test-only commit";
->>> +		drm_dbg_atomic(dev, "commit failed: %s\n", err_string);
->>> +		drm_mode_atomic_add_error_msg(&error_code,
->>> +					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
->>> +					      err_string);
->>> +		ret = -EINVAL;
->>> +		goto out;
->>>   	}
->>>   
->>>   	state = drm_atomic_state_alloc(dev);
->>> @@ -1447,6 +1484,8 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->>>   	state->acquire_ctx = &ctx;
->>>   	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
->>>   
->>> +	state->error_code = &error_code;
->>> +
->>>   retry:
->>>   	copied_objs = 0;
->>>   	copied_props = 0;
->>> @@ -1543,6 +1582,14 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
->>>   	}
->>>   
->>>   out:
->>> +	/* update the error code if any error to allow user handling it */
->>> +	if (ret < 0 && arg->reserved)
->>> +		if (copy_to_user(error_code_ptr, &error_code, sizeof(error_code)))
->>> +			return -EFAULT;
->>> +
->>> +	if (!state)
->>> +		return ret;
->>> +
->>>   	complete_signaling(dev, state, fence_state, num_fences, !ret);
->>>   
->>>   	if (ret == -EDEADLK) {
->>> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
->>> index d380001b24b4223baa54dae6c3c43e19dfb1958d..8956b175795128422eefc2bc047b320b80aedc3f 100644
->>> --- a/include/drm/drm_atomic.h
->>> +++ b/include/drm/drm_atomic.h
->>> @@ -1255,4 +1255,23 @@ struct drm_bridge_state *
->>>   drm_atomic_get_new_bridge_state(const struct drm_atomic_state *state,
->>>   				struct drm_bridge *bridge);
->>>   
->>> +/**
->>> + * drm_mode_atomic_add_error_msg - function to add error code and error string
->>> + *
->>> + * @err_code: pointer to struct drm_mode_atomic_err_code that stores the failure
->>> + *	      reason
->>> + * @failure_code: failure code in enum drm_mode_atomic_failure_codes
->>> + * @failure_string: failure reason string message
->>> + *
->>> + * Returns: void
->>> + */
->>> +static inline void drm_mode_atomic_add_error_msg(struct drm_mode_atomic_err_code *err_code,
->>> +						 __u64 failure_code,
->>> +						 char *failure_string)
->> So this should be "const char *format, ..." with printf format, with
->> printf format annotation, to help callers pass in other stuff than just
->> fixed strings.
->>
->> This should be a proper function instead of static inline.
->>
->>> +{
->>> +	err_code->failure_code = failure_code;
->>> +	strscpy_pad(err_code->failure_string, failure_string,
->>> +		    strlen(err_code->failure_string));
->> If the size is fixed, why do we just silently truncate the string? If
->> the message is for the user, it'll be ugly to emit truncated strings.
->>
->>> +}
->>> +
->>>   #endif /* DRM_ATOMIC_H_ */
+BR,
+Jani.
+
+
+> +
+> +		if (tc_port != TC_PORT_NONE)
+> +			return GMBUS_PIN_9_TC1_ICP + tc_port;
+> +
+> +		drm_WARN(display->drm, 1, "Invalid TC port\n");
+> +	}
+>  
+>  	drm_WARN(display->drm, 1, "Unknown port:%c\n", port_name(port));
+>  	return GMBUS_PIN_2_BXT;
 
 -- 
 Jani Nikula, Intel
